@@ -1,5 +1,4 @@
 import type { Container, IPlugin, RecursivePartial, Main } from "tsparticles-core";
-import type { IOptions } from "tsparticles-core/Options/Interfaces/IOptions";
 import type { IPolygonMaskOptions } from "./Options/Interfaces/IPolygonMaskOptions";
 import { Options } from "tsparticles-core/Options/Classes/Options";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
@@ -20,11 +19,11 @@ class Plugin implements IPlugin {
         return new PolygonMaskInstance(container);
     }
 
-    public needsPlugin(options?: RecursivePartial<IOptions & IPolygonMaskOptions>): boolean {
+    public needsPlugin(options?: RecursivePartial<IPolygonMaskOptions>): boolean {
         return options?.polygon?.enable ?? (options?.polygon?.type !== undefined && options.polygon.type !== Type.none);
     }
 
-    public loadOptions(options: Options, source?: RecursivePartial<IOptions & IPolygonMaskOptions>): void {
+    public loadOptions(options: Options, source?: RecursivePartial<IPolygonMaskOptions>): void {
         if (!this.needsPlugin(source)) {
             return;
         }

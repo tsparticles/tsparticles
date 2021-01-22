@@ -451,6 +451,12 @@ export class Container {
 
         this.particles.init();
         this.particles.setDensity();
+
+        for (const [, plugin] of this.plugins) {
+            if (plugin.particlesSetup !== undefined) {
+                plugin.particlesSetup();
+            }
+        }
     }
 
     private intersectionManager(entries: IntersectionObserverEntry[]) {

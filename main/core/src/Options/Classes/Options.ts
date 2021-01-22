@@ -4,7 +4,6 @@ import { Particles } from "./Particles/Particles";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
 import type { RecursivePartial } from "../../Types";
 import { Background } from "./Background/Background";
-import { Infection } from "./Infection/Infection";
 import { Plugins } from "../../Utils";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import { Theme } from "./Theme/Theme";
@@ -72,7 +71,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     public fullScreen;
     public detectRetina;
     public fpsLimit;
-    public infection;
     public interactivity;
     public manualParticles: ManualParticle[];
     public motion;
@@ -90,7 +88,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.fullScreen = new FullScreen();
         this.detectRetina = true;
         this.fpsLimit = 30;
-        this.infection = new Infection();
         this.interactivity = new Interactivity();
         this.manualParticles = [];
         this.motion = new Motion();
@@ -149,7 +146,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.background.load(data.background);
         this.fullScreen.load(data.fullScreen ?? data.backgroundMode);
         this.backgroundMask.load(data.backgroundMask);
-        this.infection.load(data.infection);
         this.interactivity.load(data.interactivity);
 
         if (data.manualParticles !== undefined) {

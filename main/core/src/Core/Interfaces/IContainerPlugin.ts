@@ -5,6 +5,7 @@ import type { RecursivePartial } from "../../Types";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
 import type { IDelta } from "./IDelta";
 import { OutModeDirection } from "../../Enums/Directions/OutModeDirection";
+import { IColor } from "./Colors";
 
 /**
  * @category Interfaces
@@ -18,6 +19,8 @@ export interface IContainerPlugin {
     play?: () => void;
     pause?: () => void;
     particleBounce?: (particle: Particle, delta: IDelta, direction: OutModeDirection) => boolean;
+    particleFillColor?: (particle: Particle) => string | IColor | undefined;
+    particleStrokeColor?: (particle: Particle) => string | IColor | undefined;
     particlePosition?: (position?: ICoordinates, particle?: Particle) => ICoordinates | undefined;
     particleUpdate?: (particle: Particle, delta: IDelta) => void;
     particlesInitialization?: () => boolean;

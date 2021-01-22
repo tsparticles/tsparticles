@@ -52,9 +52,9 @@
     "tsparticles-slim": "^1.0.0-alpha.0",
     "tsparticles-plugin-absorbers": "^1.0.0-alpha.0",
     "tsparticles-plugin-emitters": "^1.0.0-alpha.0",
+    "tsparticles-plugin-infection": "^1.0.0-alpha.0",
     "tsparticles-plugin-polygon-mask": "^1.0.0-alpha.0",
     "tsparticles-interaction-external-trail": "^1.0.0-alpha.0",
-    "tsparticles-interaction-light": "^1.0.0-alpha.0",
-    "tsparticles-interaction-particles-infection": "^1.0.0-alpha.0"
+    "tsparticles-interaction-light": "^1.0.0-alpha.0"
   }
 }

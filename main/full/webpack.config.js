@@ -48,6 +48,14 @@ const getExternals = (bundle) => {
         amd: "tsparticles-plugin-emitters",
         root: "window"
       }
+    },
+    {
+      "tsparticles-plugin-infection": {
+        commonjs: "tsparticles-plugin-infection",
+        commonjs2: "tsparticles-plugin-infection",
+        amd: "tsparticles-plugin-infection",
+        root: "window"
+      }
     }, {
       "tsparticles-plugin-polygon-mask": {
         commonjs: "tsparticles-plugin-polygon-mask",
@@ -69,14 +77,6 @@ const getExternals = (bundle) => {
         commonjs: "tsparticles-interaction-light",
         commonjs2: "tsparticles-interaction-light",
         amd: "tsparticles-interaction-light",
-        root: "window"
-      }
-    },
-    {
-      "tsparticles-interaction-particles-infection": {
-        commonjs: "tsparticles-interaction-particles-infection",
-        commonjs2: "tsparticles-interaction-particles-infection",
-        amd: "tsparticles-interaction-particles-infection",
         root: "window"
       }
     }

@@ -2,7 +2,6 @@ import type { IInteractivity } from "./Interactivity/IInteractivity";
 import type { IParticles } from "./Particles/IParticles";
 import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask";
 import type { IBackground } from "./Background/IBackground";
-import type { IInfection } from "./Infection/IInfection";
 import type { SingleOrMultiple } from "../../Types";
 import type { ITheme } from "./Theme/ITheme";
 import type { IFullScreen } from "./FullScreen/IFullScreen";
@@ -63,11 +62,6 @@ export interface IOptions {
      * The FPS (Frame Per Second) limit applied to all particles animations.
      */
     fpsLimit: number;
-
-    /**
-     * The infection options
-     */
-    infection: IInfection;
 
     /**
      * The particles interaction options

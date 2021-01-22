@@ -414,28 +414,42 @@ export class Canvas {
             return;
         }
 
-        const options = this.container.options;
+        const container = this.container;
+        const options = container.options;
         const pOptions = particle.options;
+        const radius = particle.getRadius();
         const twinkle = pOptions.twinkle.particles;
         const twinkleFreq = twinkle.frequency;
-        const twinkleRgb = colorToRgb(twinkle.color);
         const twinkling = twinkle.enable && Math.random() < twinkleFreq;
-        const radius = particle.getRadius();
         const opacity = twinkling ? twinkle.opacity : particle.bubble.opacity ?? particle.opacity.value;
         const strokeOpacity = particle.stroke.opacity ?? opacity;
-        const infectionStage = particle.infection.stage;
-        const infection = options.infection;
-        const infectionStages = infection.stages;
-        const infectionColor = infectionStage !== undefined ? infectionStages[infectionStage].color : undefined;
-        const infectionRgb = colorToRgb(infectionColor);
-        const fColor =
-            twinkling && twinkleRgb !== undefined
-                ? twinkleRgb
-                : infectionRgb ?? (pfColor ? hslToRgb(pfColor) : undefined);
-        const sColor =
-            twinkling && twinkleRgb !== undefined
-                ? twinkleRgb
-                : infectionRgb ?? (psColor ? hslToRgb(psColor) : undefined);
+        const twinkleRgb = colorToRgb(twinkle.color);
+
+        let fColor: IRgb | undefined;
+        let sColor: IRgb | undefined;
+
+        for (const [, plugin] of container.plugins) {
+            if (!fColor && plugin.particleFillColor !== undefined) {
+                fColor = colorToRgb(plugin.particleFillColor(particle));
+            }
+
+            if (!sColor && plugin.particleStrokeColor !== undefined) {
+                sColor = colorToRgb(plugin.particleStrokeColor(particle));
+            }
+
+            if (fColor && sColor) {
+                break;
+            }
+        }
+
+        if (!fColor) {
+            fColor = twinkling && twinkleRgb !== undefined ? twinkleRgb : pfColor ? hslToRgb(pfColor) : undefined;
+        }
+
+        if (!sColor) {
+            sColor = twinkling && twinkleRgb !== undefined ? twinkleRgb : psColor ? hslToRgb(psColor) : undefined;
+        }
+
         const zIndexOptions = particle.options.zIndex;
         const zOpacityFactor = 1 - zIndexOptions.opacityRate * particle.zIndexFactor;
         const zOpacity = opacity * zOpacityFactor;

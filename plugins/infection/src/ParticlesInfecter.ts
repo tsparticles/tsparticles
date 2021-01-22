@@ -1,26 +1,32 @@
-import type { Container, IDelta, Particle } from "tsparticles-core";
+import type { IDelta } from "tsparticles-core";
 import { ParticlesInteractorBase } from "tsparticles-core";
-import { Infecter } from "./Infecter";
-import { InfectionInstance } from "./InfectionInstance";
+import type { InfectableContainer, InfectableParticle } from "./Types";
+import type { IInfectionOptions } from "./Options/Interfaces/IInfectionOptions";
 
 /**
  * @category Interactions
  */
 export class ParticlesInfecter extends ParticlesInteractorBase {
-    constructor(container: Container, private readonly plugin: InfectionInstance) {
+    constructor(container: InfectableContainer) {
         super(container, "infection");
     }
 
     public isEnabled(): boolean {
-        return this.container.options.infection.enable;
+        const infOptions = (this.container.options as unknown) as IInfectionOptions;
+
+        return infOptions.infection.enable;
     }
 
     public reset(): void {
         // do nothing
     }
 
-    public interact(p1: Particle, delta: IDelta): void {
-        const infecter = this.plugin.infecter;
+    public interact(p1: InfectableParticle, delta: IDelta): void {
+        const infecter = (this.container as InfectableContainer).infecter;
+
+        if (!infecter) {
+            return;
+        }
 
         infecter.updateInfection(p1, delta.value);
 
@@ -29,7 +35,7 @@ export class ParticlesInfecter extends ParticlesInteractorBase {
         }
 
         const container = this.container;
-        const options = container.options;
+        const options = (container.options as unknown) as IInfectionOptions;
         const infectionOptions = options.infection;
 
         if (!infectionOptions.enable || infectionOptions.stages.length < 1) {
@@ -46,23 +52,25 @@ export class ParticlesInfecter extends ParticlesInteractorBase {
         const neighbors = query.length;
 
         for (const p2 of query) {
+            const infP2 = p2 as InfectableParticle;
+
             if (
-                p2 === p1 ||
-                p2.destroyed ||
-                p2.spawning ||
-                !(p2.infection.stage === undefined || p2.infection.stage !== p1.infection.stage)
+                infP2 === p1 ||
+                infP2.destroyed ||
+                infP2.spawning ||
+                !(infP2.infection.stage === undefined || infP2.infection.stage !== p1.infection.stage)
             ) {
                 continue;
             }
 
             if (Math.random() < infections / neighbors) {
-                if (p2.infection.stage === undefined) {
-                    infecter.startInfection(p2, infectedStage1);
-                } else if (p2.infection.stage < p1.infection.stage) {
-                    infecter.updateInfectionStage(p2, infectedStage1);
-                } else if (p2.infection.stage > p1.infection.stage) {
-                    const infectionStage2 = infectionOptions.stages[p2.infection.stage];
-                    const infectedStage2 = infectionStage2?.infectedStage ?? p2.infection.stage;
+                if (infP2.infection.stage === undefined) {
+                    infecter.startInfection(infP2, infectedStage1);
+                } else if (infP2.infection.stage < p1.infection.stage) {
+                    infecter.updateInfectionStage(infP2, infectedStage1);
+                } else if (infP2.infection.stage > p1.infection.stage) {
+                    const infectionStage2 = infectionOptions.stages[infP2.infection.stage];
+                    const infectedStage2 = infectionStage2?.infectedStage ?? infP2.infection.stage;
 
                     infecter.updateInfectionStage(p1, infectedStage2);
                 }

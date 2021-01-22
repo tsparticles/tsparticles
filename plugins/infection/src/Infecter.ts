@@ -1,13 +1,14 @@
-import type { Container, Particle } from "tsparticles-core";
+import { InfectableContainer, InfectableParticle } from "./Types";
+import type { IInfectionOptions } from "./Options/Interfaces/IInfectionOptions";
 
 /**
  * @category Core
  */
 export class Infecter {
-    constructor(private readonly container: Container) {}
+    constructor(private readonly container: InfectableContainer) {}
 
-    public startInfection(particle: Particle, stage: number): void {
-        const options = this.container.options,
+    public startInfection(particle: InfectableParticle, stage: number): void {
+        const options = (this.container.options as unknown) as IInfectionOptions,
             stages = options.infection.stages,
             stagesCount = stages.length;
 
@@ -19,8 +20,8 @@ export class Infecter {
         particle.infection.delayStage = stage;
     }
 
-    public updateInfectionStage(particle: Particle, stage: number): void {
-        const options = this.container.options,
+    public updateInfectionStage(particle: InfectableParticle, stage: number): void {
+        const options = (this.container.options as unknown) as IInfectionOptions,
             stagesCount = options.infection.stages.length;
 
         if (
@@ -35,8 +36,8 @@ export class Infecter {
         particle.infection.time = 0;
     }
 
-    public updateInfection(particle: Particle, delta: number): void {
-        const options = this.container.options,
+    public updateInfection(particle: InfectableParticle, delta: number): void {
+        const options = (this.container.options as unknown) as IInfectionOptions,
             infection = options.infection,
             stages = options.infection.stages,
             stagesCount = stages.length;
@@ -48,7 +49,7 @@ export class Infecter {
                 return;
             }
 
-            if (particle.infection.delay > infection.delay * 1000) {
+            if (particle.infection.delay >= infection.delay * 1000) {
                 particle.infection.stage = stage;
                 particle.infection.time = 0;
 
@@ -80,8 +81,8 @@ export class Infecter {
         }
     }
 
-    private nextInfectionStage(particle: Particle): void {
-        const options = this.container.options,
+    private nextInfectionStage(particle: InfectableParticle): void {
+        const options = (this.container.options as unknown) as IInfectionOptions,
             stagesCount = options.infection.stages.length;
 
         if (stagesCount <= 0 || particle.infection.stage === undefined) {

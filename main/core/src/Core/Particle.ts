@@ -9,7 +9,6 @@ import type {
     ILink,
     IParticle,
     IParticleHslAnimation,
-    IParticleInfection,
     IParticleLife,
     IParticleLoops,
     IParticleSpin,
@@ -86,7 +85,6 @@ export class Particle implements IParticle {
     public fill: boolean;
 
     public readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
-    public readonly infection: IParticleInfection;
     public readonly life: IParticleLife;
     public readonly loops: IParticleLoops;
     public readonly spin?: IParticleSpin;
@@ -127,7 +125,6 @@ export class Particle implements IParticle {
             opacity: 0,
             size: 0,
         };
-        this.infection = {};
         this.maxDistance = {};
 
         const pxRatio = container.retina.pixelRatio;

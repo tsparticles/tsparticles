@@ -16,7 +16,6 @@ import { InteractionManager } from "./InteractionManager";
 import type { ICoordinates, IDelta, IMouseData, IParticle, IRgb } from "./Interfaces";
 import type { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";
 import { Particles as ParticlesOptions } from "../Options/Classes/Particles/Particles";
-import { Infecter } from "./Particle/Infecter";
 import { Mover } from "./Particle/Mover";
 
 /**
@@ -46,7 +45,6 @@ export class Particles {
     public linksColor?: IRgb | string;
     public grabLineColor?: IRgb | string;
 
-    public readonly infecter;
     public readonly mover;
 
     private interactionManager;
@@ -64,7 +62,6 @@ export class Particles {
         this.linksFreq = new Map<string, number>();
         this.trianglesFreq = new Map<string, number>();
         this.interactionManager = new InteractionManager(this.container);
-        this.infecter = new Infecter(this.container);
         this.mover = new Mover(this.container);
 
         const canvasSize = this.container.canvas.size;
@@ -122,15 +119,6 @@ export class Particles {
 
             for (let i = this.count; i < options.particles.number.value; i++) {
                 this.addParticle();
-            }
-        }
-
-        if (options.infection.enable) {
-            for (let i = 0; i < options.infection.infections; i++) {
-                const notInfected = this.array.filter((p) => p.infection.stage === undefined);
-                const infected = itemFromArray(notInfected);
-
-                this.infecter.startInfection(infected, 0);
             }
         }
 
@@ -452,6 +440,7 @@ export class Particles {
     ): Particle | undefined {
         try {
             const particle = new Particle(this.nextId, this.container, position, overrideOptions, group);
+
             let canAdd = true;
 
             if (initializer) {

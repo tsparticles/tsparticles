@@ -1,8 +1,9 @@
 import type { IPolygonMask } from "./IPolygonMask";
+import { IOptions } from "tsparticles-core";
 
 /**
  * @category Polygon Mask Plugin
  */
-export interface IPolygonMaskOptions {
+export type IPolygonMaskOptions = IOptions & {
     polygon: IPolygonMask;
 }

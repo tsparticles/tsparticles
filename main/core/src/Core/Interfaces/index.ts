@@ -19,7 +19,6 @@ export * from "./IMouseData";
 export * from "./INoise";
 export * from "./IParticle";
 export * from "./IParticleHslAnimation";
-export * from "./IParticleInfection";
 export * from "./IParticleLife";
 export * from "./IParticleLoops";
 export * from "./IParticlesInteractor";
