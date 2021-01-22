@@ -14,7 +14,7 @@ export class ParticlesInfecter extends ParticlesInteractorBase {
     public isEnabled(): boolean {
         const infOptions = (this.container.options as unknown) as IInfectionOptions;
 
-        return infOptions.infection.enable;
+        return infOptions?.infection?.enable ?? false;
     }
 
     public reset(): void {
