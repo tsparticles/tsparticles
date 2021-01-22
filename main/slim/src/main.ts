@@ -3,7 +3,6 @@ import { LifeUpdater } from "tsparticles-core/Updaters/LifeUpdater";
 import { OpacityUpdater } from "tsparticles-core/Updaters/OpacityUpdater";
 import { SizeUpdater } from "tsparticles-core/Updaters/SizeUpdater";
 import { AngleUpdater } from "tsparticles-core/Updaters/AngleUpdater";
-import { ColorUpdater } from "tsparticles-core/Updaters/ColorUpdater";
 import { StrokeColorUpdater } from "tsparticles-core/Updaters/StrokeColorUpdater";
 import { OutOfCanvasUpdater } from "tsparticles-core/Updaters/OutOfCanvasUpdater";
 import { loadInteraction as loadExternalAttractInteraction } from "tsparticles-interaction-external-attract";
@@ -23,13 +22,14 @@ import { loadShape as loadPolygonShape } from "tsparticles-shape-polygon";
 import { loadShape as loadSquareShape } from "tsparticles-shape-square";
 import { loadShape as loadStarShape } from "tsparticles-shape-star";
 import { loadShape as loadTextShape } from "tsparticles-shape-text";
+import { loadUpdater as loadColorUpdater } from "tsparticles-updater-color";
 
 export function loadSlim(tsParticles: Main): void {
     tsParticles.addParticleUpdater((container) => new LifeUpdater(container));
     tsParticles.addParticleUpdater((container) => new OpacityUpdater(container));
     tsParticles.addParticleUpdater((container) => new SizeUpdater(container));
     tsParticles.addParticleUpdater((container) => new AngleUpdater(container));
-    tsParticles.addParticleUpdater((container) => new ColorUpdater(container));
+    loadColorUpdater(tsParticles);
     tsParticles.addParticleUpdater((container) => new StrokeColorUpdater(container));
     tsParticles.addParticleUpdater((container) => new OutOfCanvasUpdater(container));
     loadExternalAttractInteraction(tsParticles);

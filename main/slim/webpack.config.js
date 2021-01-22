@@ -162,6 +162,14 @@ const getExternals = (bundle) => {
         amd: "tsparticles-interaction-external-links",
         root: "window"
       }
+    },
+    {
+      "tsparticles-updater-color": {
+        commonjs: "tsparticles-updater-color",
+        commonjs2: "tsparticles-updater-color",
+        amd: "tsparticles-updater-color",
+        root: "window"
+      }
     }
   ];
 };

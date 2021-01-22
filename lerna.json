@@ -10,7 +10,8 @@
     "plugins/*",
     "presets/*",
     "shapes/*",
-    "templates/*"
+    "templates/*",
+    "updaters/*"
   ],
   "version": "independent",
   "npmClient": "yarn",
