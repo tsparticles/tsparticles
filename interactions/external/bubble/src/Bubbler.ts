@@ -1,4 +1,4 @@
-import type { IBubblerProcessParam, Container, Particle } from "tsparticles-core";
+import type { Container, Particle } from "tsparticles-core";
 import {
     Circle,
     clamp,
@@ -15,11 +15,12 @@ import {
     DivMode,
     DivType,
     HoverMode,
-    ProcessBubbleType,
     ExternalInteractorBase,
 } from "tsparticles-core";
 import type { DivEvent } from "tsparticles-core/Options/Classes/Interactivity/Events/DivEvent";
 import type { BubbleDiv } from "tsparticles-core/Options/Classes/Interactivity/Modes/BubbleDiv";
+import type { IBubblerProcessParam } from "./IBubblerProcessParam";
+import { ProcessBubbleType } from "./ProcessBubbleType";
 
 const calculateBubbleValue = (particleValue: number, modeValue: number, optionsValue: number, ratio: number) => {
     if (modeValue > optionsValue) {

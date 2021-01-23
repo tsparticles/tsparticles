@@ -3,7 +3,6 @@ export * from "./IAttract";
 export * from "./IBounds";
 export * from "./IBubble";
 export * from "./IBubbleParticleData";
-export * from "./IBubblerProcessParam";
 export * from "./ICircleBouncer";
 export * from "./IContainerInteractivity";
 export * from "./IContainerPlugin";

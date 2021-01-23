@@ -1,4 +1,4 @@
-import type { ProcessBubbleType } from "../../Enums";
+import type { ProcessBubbleType } from "./ProcessBubbleType";
 
 /**
  * @category Interfaces
