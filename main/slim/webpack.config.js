@@ -164,6 +164,14 @@ const getExternals = (bundle) => {
       }
     },
     {
+      "tsparticles-updater-angle": {
+        commonjs: "tsparticles-updater-angle",
+        commonjs2: "tsparticles-updater-angle",
+        amd: "tsparticles-updater-angle",
+        root: "window"
+      }
+    },
+    {
       "tsparticles-updater-color": {
         commonjs: "tsparticles-updater-color",
         commonjs2: "tsparticles-updater-color",
@@ -172,10 +180,26 @@ const getExternals = (bundle) => {
       }
     },
     {
-      "tsparticles-updater-stroke-color": {
-        commonjs: "tsparticles-updater-stroke-color",
-        commonjs2: "tsparticles-updater-stroke-color",
-        amd: "tsparticles-updater-stroke-color",
+      "tsparticles-updater-life": {
+        commonjs: "tsparticles-updater-life",
+        commonjs2: "tsparticles-updater-life",
+        amd: "tsparticles-updater-life",
+        root: "window"
+      }
+    },
+    {
+      "tsparticles-updater-opacity": {
+        commonjs: "tsparticles-updater-opacity",
+        commonjs2: "tsparticles-updater-opacity",
+        amd: "tsparticles-updater-life",
+        root: "window"
+      }
+    },
+    {
+      "tsparticles-updater-out-modes": {
+        commonjs: "tsparticles-updater-out-modes",
+        commonjs2: "tsparticles-updater-out-modes",
+        amd: "tsparticles-updater-out-modes",
         root: "window"
       }
     },
@@ -184,6 +208,14 @@ const getExternals = (bundle) => {
         commonjs: "tsparticles-updater-size",
         commonjs2: "tsparticles-updater-size",
         amd: "tsparticles-updater-size",
+        root: "window"
+      }
+    },
+    {
+      "tsparticles-updater-stroke-color": {
+        commonjs: "tsparticles-updater-stroke-color",
+        commonjs2: "tsparticles-updater-stroke-color",
+        amd: "tsparticles-updater-stroke-color",
         root: "window"
       }
     }

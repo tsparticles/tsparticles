@@ -1,8 +1,4 @@
 import type { Main } from "tsparticles-core";
-import { LifeUpdater } from "tsparticles-core/Updaters/LifeUpdater";
-import { OpacityUpdater } from "tsparticles-core/Updaters/OpacityUpdater";
-import { AngleUpdater } from "tsparticles-core/Updaters/AngleUpdater";
-import { OutOfCanvasUpdater } from "tsparticles-core/Updaters/OutOfCanvasUpdater";
 import { loadInteraction as loadExternalAttractInteraction } from "tsparticles-interaction-external-attract";
 import { loadInteraction as loadExternalBounceInteraction } from "tsparticles-interaction-external-bounce";
 import { loadInteraction as loadExternalBubbleInteraction } from "tsparticles-interaction-external-bubble";
@@ -20,29 +16,40 @@ import { loadShape as loadPolygonShape } from "tsparticles-shape-polygon";
 import { loadShape as loadSquareShape } from "tsparticles-shape-square";
 import { loadShape as loadStarShape } from "tsparticles-shape-star";
 import { loadShape as loadTextShape } from "tsparticles-shape-text";
+import { loadUpdater as loadAngleUpdater } from "tsparticles-updater-angle";
 import { loadUpdater as loadColorUpdater } from "tsparticles-updater-color";
+import { loadUpdater as loadLifeUpdater } from "tsparticles-updater-life";
+import { loadUpdater as loadOpacityUpdater } from "tsparticles-updater-opacity";
+import { loadUpdater as loadOutModesUpdater } from "tsparticles-updater-out-modes";
 import { loadUpdater as loadStrokeColorUpdater } from "tsparticles-updater-stroke-color";
 import { loadUpdater as loadSizeUpdater } from "tsparticles-updater-size";
 
 export function loadSlim(tsParticles: Main): void {
-    tsParticles.addParticleUpdater((container) => new LifeUpdater(container));
-    tsParticles.addParticleUpdater((container) => new OpacityUpdater(container));
-    tsParticles.addParticleUpdater((container) => new AngleUpdater(container));
+    /* updaters */
+    loadAngleUpdater(tsParticles);
     loadColorUpdater(tsParticles);
+    loadLifeUpdater(tsParticles);
+    loadOpacityUpdater(tsParticles);
+    loadOutModesUpdater(tsParticles);
     loadSizeUpdater(tsParticles);
     loadStrokeColorUpdater(tsParticles);
-    tsParticles.addParticleUpdater((container) => new OutOfCanvasUpdater(container));
+
+    /* updaters */
+    /* externals */
     loadExternalAttractInteraction(tsParticles);
     loadExternalBounceInteraction(tsParticles);
     loadExternalBubbleInteraction(tsParticles);
     loadExternalConnectInteraction(tsParticles);
     loadExternalGrabInteraction(tsParticles);
     loadExternalRepulseInteraction(tsParticles);
+
+    /* particles */
     loadParticlesAttractInteraction(tsParticles);
     loadParticlesCollisionsInteraction(tsParticles);
     loadParticlesRepulseInteraction(tsParticles);
     loadParticlesLinksInteraction(tsParticles);
 
+    /* shapes */
     loadCircleShape(tsParticles);
     loadImageShape(tsParticles);
     loadLineShape(tsParticles);

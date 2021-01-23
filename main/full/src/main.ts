@@ -5,8 +5,8 @@ import { loadPlugin as loadInfectionPlugin } from "tsparticles-plugin-infection"
 import { loadPlugin as loadPolygonMaskPlugin } from "tsparticles-plugin-polygon-mask";
 import { loadInteraction as loadTrailInteraction } from "tsparticles-interaction-external-trail";
 import { loadInteraction as loadLightInteraction } from "tsparticles-interaction-light";
-import { OrbitUpdater } from "tsparticles-core/Updaters/OrbitUpdater";
 import { loadSlim } from "tsparticles-slim";
+import { loadUpdater as loadOrbitUpdater } from "tsparticles-updater-orbit";
 
 /**
  * Main class for creating the singleton on window.
@@ -18,7 +18,8 @@ export function loadFull(tsParticles: Main): void {
 
     loadTrailInteraction(tsParticles);
     loadLightInteraction(tsParticles);
-    tsParticles.addParticleUpdater((container) => new OrbitUpdater(container));
+
+    loadOrbitUpdater(tsParticles);
 
     loadAbsorbersPlugin(tsParticles);
     loadEmittersPlugin(tsParticles);

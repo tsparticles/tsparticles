@@ -1,13 +1,13 @@
-import type { Container } from "../Core/Container";
-import type { Particle } from "../Core/Particle";
-import type { IParticleUpdater } from "../Core/Interfaces/IParticleUpdater";
-import type { IDelta } from "../Core/Interfaces/IDelta";
-import { OutModeDirection } from "../Enums/Directions/OutModeDirection";
-import { OutMode, OutModeAlt } from "../Enums";
-import { calculateBounds, getRangeValue, isPointInside } from "../Utils";
-import { IBounds } from "../Core/Interfaces/IBounds";
-import { IDimension } from "../Core/Interfaces/IDimension";
-import { ICoordinates } from "../Core/Interfaces/ICoordinates";
+import { calculateBounds, getRangeValue, isPointInside, OutMode, OutModeAlt, OutModeDirection } from "tsparticles-core";
+import type {
+    Container,
+    IBounds,
+    ICoordinates,
+    IDelta,
+    IDimension,
+    IParticleUpdater,
+    Particle,
+} from "tsparticles-core";
 
 interface IBounceData {
     particle: Particle;

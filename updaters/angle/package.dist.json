@@ -1,12 +1,12 @@
 {
-  "name": "tsparticles-updater-size",
+  "name": "tsparticles-updater-angle",
   "version": "1.0.0-alpha.0",
-  "description": "tsParticles particles size updater",
+  "description": "tsParticles particles angle updater",
   "homepage": "https://particles.matteobruni.it/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
-    "directory": "updaters/size"
+    "directory": "updaters/angle"
   },
   "keywords": [
     "tsparticles",
@@ -39,8 +39,8 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "main": "updater.js",
-  "jsdelivr": "tsparticles.updater.size.min.js",
-  "unpkg": "tsparticles.updater.size.min.js",
+  "jsdelivr": "tsparticles.updater.angle.min.js",
+  "unpkg": "tsparticles.updater.angle.min.js",
   "browser": "updater.js",
   "module": "updater.js",
   "types": "updater.d.ts",

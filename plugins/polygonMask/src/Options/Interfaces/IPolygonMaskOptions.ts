@@ -6,4 +6,4 @@ import { IOptions } from "tsparticles-core";
  */
 export type IPolygonMaskOptions = IOptions & {
     polygon: IPolygonMask;
-}
+};

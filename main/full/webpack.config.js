@@ -79,6 +79,14 @@ const getExternals = (bundle) => {
         amd: "tsparticles-interaction-light",
         root: "window"
       }
+    },
+    {
+      "tsparticles-updater-orbit": {
+        commonjs: "tsparticles-updater-orbit",
+        commonjs2: "tsparticles-updater-orbit",
+        amd: "tsparticles-updater-orbit",
+        root: "window"
+      }
     }
   ];
 };
@@ -93,7 +101,7 @@ const getConfig = (entry, banner, minBanner, dir, bundle) => {
       globalObject: "this"
     },
     resolve: {
-      extensions: [ ".js", ".json" ]
+      extensions: [".js", ".json"]
     },
     externals: getExternals(bundle),
     module: {

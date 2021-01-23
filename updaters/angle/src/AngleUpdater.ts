@@ -2,8 +2,7 @@ import type { Container, IDelta, IParticleUpdater, Particle } from "tsparticles-
 import { AnimationStatus } from "tsparticles-core";
 
 export class AngleUpdater implements IParticleUpdater {
-    constructor(private readonly container: Container) {
-    }
+    constructor(private readonly container: Container) {}
 
     public isEnabled(particle: Particle): boolean {
         const rotate = particle.options.rotate;

@@ -1,7 +1,7 @@
 {
-  "name": "tsparticles-updater-size",
+  "name": "tsparticles-updater-angle",
   "version": "1.0.0-alpha.0",
-  "description": "tsParticles particles size updater",
+  "description": "tsParticles particles angle updater",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
     "prettify:src": "prettier --write ./src/",
@@ -17,7 +17,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
-    "directory": "updaters/size"
+    "directory": "updaters/angle"
   },
   "keywords": [
     "tsparticles",

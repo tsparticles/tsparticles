@@ -1,7 +1,4 @@
-import type { Container } from "../Core/Container";
-import type { Particle } from "../Core/Particle";
-import type { IParticleUpdater } from "../Core/Interfaces/IParticleUpdater";
-import type { IDelta } from "../Core/Interfaces/IDelta";
+import type { Container, IDelta, IParticleUpdater, Particle } from "tsparticles-core";
 
 export class OrbitUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
