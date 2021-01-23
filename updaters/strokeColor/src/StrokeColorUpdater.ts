@@ -1,12 +1,8 @@
-import type { IParticleUpdater } from "../Core/Interfaces/IParticleUpdater";
-import type { Container } from "../Core/Container";
-import type { Particle } from "../Core/Particle";
-import type { IDelta } from "../Core/Interfaces/IDelta";
-import type { IAnimatableColor } from "../Options/Interfaces/IAnimatableColor";
-import { randomInRange } from "../Utils";
-import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
-import type { IParticleValueAnimation } from "../Core/Interfaces/IParticleValueAnimation";
-import type { IHslAnimation } from "../Options/Interfaces/IHslAnimation";
+import type { Container, IDelta, IParticleUpdater, IParticleValueAnimation, Particle } from "tsparticles-core";
+import type { IHslAnimation } from "tsparticles-core/Options/Interfaces/IHslAnimation";
+import { randomInRange } from "tsparticles-core";
+import type { IAnimatableColor } from "tsparticles-core/Options/Interfaces/IAnimatableColor";
+import type { IColorAnimation } from "tsparticles-core/Options/Interfaces/IColorAnimation";
 
 export class StrokeColorUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}

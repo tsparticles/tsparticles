@@ -87,6 +87,8 @@
     "tsparticles-interaction-particles-collisions": "^1.0.0-alpha.0",
     "tsparticles-interaction-particles-links": "^1.0.0-alpha.0",
     "tsparticles-interaction-particles-repulse": "^1.0.0-alpha.0",
-    "tsparticles-updater-color": "^1.0.0-alpha.0"
+    "tsparticles-updater-color": "^1.0.0-alpha.0",
+    "tsparticles-updater-stroke-color": "^1.0.0-alpha.0",
+    "tsparticles-updater-size": "^1.0.0-alpha.0"
   }
 }

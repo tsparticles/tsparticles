@@ -1,7 +1,7 @@
 {
-  "name": "tsparticles-updater-color",
+  "name": "tsparticles-updater-stroke-color",
   "version": "1.0.0-alpha.0",
-  "description": "tsParticles particles color updater",
+  "description": "tsParticles particles stroke color updater",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
     "prettify:src": "prettier --write ./src/",
@@ -17,7 +17,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
-    "directory": "updaters/color"
+    "directory": "updaters/strokeColor"
   },
   "keywords": [
     "tsparticles",

@@ -170,6 +170,22 @@ const getExternals = (bundle) => {
         amd: "tsparticles-updater-color",
         root: "window"
       }
+    },
+    {
+      "tsparticles-updater-stroke-color": {
+        commonjs: "tsparticles-updater-stroke-color",
+        commonjs2: "tsparticles-updater-stroke-color",
+        amd: "tsparticles-updater-stroke-color",
+        root: "window"
+      }
+    },
+    {
+      "tsparticles-updater-size": {
+        commonjs: "tsparticles-updater-size",
+        commonjs2: "tsparticles-updater-size",
+        amd: "tsparticles-updater-size",
+        root: "window"
+      }
     }
   ];
 };
