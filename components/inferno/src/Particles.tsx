@@ -1,8 +1,9 @@
 import { Component, InfernoNode } from "inferno";
-import { isEqual } from "lodash";
+import equal from "fast-deep-equal/react";
 import { tsParticles, Container } from "tsparticles-core";
 import type { IParticlesProps } from "./IParticlesProps";
 import type { IParticlesState } from "./IParticlesState";
+import type { ISourceOptions } from "tsparticles-core";
 
 interface MutableRefObject<T> {
 	current: T | null;
@@ -17,7 +18,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 		height: "100%",
 		options: {},
 		style: {},
-		id: "tsparticles",
+		id: "tsparticles"
 	};
 
 	constructor(props: IParticlesProps) {
@@ -25,7 +26,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 
 		this.state = {
 			canvas: undefined,
-			library: undefined,
+			library: undefined
 		};
 	}
 
@@ -37,12 +38,12 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 		this.state.library.destroy();
 
 		this.setState({
-			library: undefined,
+			library: undefined
 		});
 	}
 
 	public shouldComponentUpdate(nextProps: Readonly<IParticlesProps>): boolean {
-		return !isEqual(nextProps, this.props);
+		return !equal(nextProps, this.props);
 	}
 
 	public componentDidUpdate(): void {
@@ -77,7 +78,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 					style={{
 						...this.props.style,
 						width,
-						height,
+						height
 					}}
 				/>
 			</div>

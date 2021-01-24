@@ -1,9 +1,10 @@
 import React, { Component } from "preact/compat";
 import type { ComponentChild } from "preact";
-import isEqual from "lodash/isEqual";
+import equal from "fast-deep-equal/react";
 import { tsParticles, Container } from "tsparticles-core";
 import type { IParticlesProps } from "./IParticlesProps";
 import type { IParticlesState } from "./IParticlesState";
+import type { ISourceOptions } from "tsparticles-core";
 import { MutableRefObject } from "react";
 
 /**
@@ -40,7 +41,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
     }
 
     public shouldComponentUpdate(nextProps: Readonly<IParticlesProps>): boolean {
-        return !this.state.library || !isEqual(nextProps, this.props);
+        return !this.state.library || !equal(nextProps, this.props);
     }
 
     public componentDidUpdate(): void {
