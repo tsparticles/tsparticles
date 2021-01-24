@@ -1,7 +1,7 @@
 {
   "packages": [
     "components/*",
-    "editor/*",
+    "editor",
     "demo/*",
     "interactions/*",
     "interactions/external/*",
