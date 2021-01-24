@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import type { Container } from "tsparticles";
+import type { Container } from "tsparticles-core";
 
 @Component({
     selector: 'app-container',

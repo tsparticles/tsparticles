@@ -1,0 +1,69 @@
+{
+  "name": "tsparticles-editor",
+  "version": "2.0.0-alpha.1",
+  "description": "tsParticles Configuration Editor",
+  "keywords": [
+    "tsparticles",
+    "particles.js",
+    "particles",
+    "editor",
+    "dat.gui",
+    "javascript",
+    "wysiwyg"
+  ],
+  "publishConfig": {
+    "directory": "dist"
+  },
+  "author": "Matteo Bruni <ar3s@icloud.com>",
+  "homepage": "https://particles.matteobruni.it/",
+  "license": "MIT",
+  "directories": {
+    "dist": "dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/tsparticles.git",
+    "directory": "core/editor"
+  },
+  "scripts": {
+    "prettify:src": "prettier --write ./src/",
+    "prettify:readme": "prettier --write ./README.md",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
+    "clear:dist": "rimraf -f ./dist",
+    "build:ts:esm": "tsc -b tsconfig.esm.json",
+    "build:ts:cjs": "tsc",
+    "build:ts": "yarn build:ts:browser && yarn build:ts:esm && yarn build:ts:cjs",
+    "build:ts:check": "tsc --noEmit",
+    "build:ts:browser": "tsc -b tsconfig.browser.json",
+    "build": "yarn clear:dist && yarn prettify:src && yarn build:ts:check && yarn lint && yarn build:ts && webpack --mode production && yarn prettify:readme && yarn distfiles",
+    "distfiles": "node ./scripts/distfiles.js",
+    "prepack": "yarn build"
+  },
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles/issues"
+  },
+  "dependencies": {
+    "object-gui": "^1.0.11",
+    "tsparticles": "^2.0.0-alpha.1",
+    "tsparticles-core": "^2.0.0-alpha.1",
+    "tsparticles-slim": "^2.0.0-alpha.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@typescript-eslint/eslint-plugin": "^4.9.1",
+    "@typescript-eslint/parser": "^4.9.1",
+    "babel-loader": "^8.2.2",
+    "eslint": "^7.15.0",
+    "eslint-config-prettier": "^7.0.0",
+    "fibers": "^5.0.0",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "sass": "^1.30.0",
+    "sass-loader": "^10.1.0",
+    "terser-webpack-plugin": "^5.0.3",
+    "typescript": "^4.1.2",
+    "webpack": "^5.10.0",
+    "webpack-bundle-analyzer": "^4.2.0",
+    "webpack-cli": "^4.2.0"
+  }
+}

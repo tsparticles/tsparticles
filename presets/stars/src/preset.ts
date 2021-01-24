@@ -1,4 +1,4 @@
-import { MoveDirection, OutMode, ShapeType, Main } from "tsparticles";
+import { MoveDirection, OutMode, Main } from "tsparticles-core";
 
 export function loadPreset(tsParticles: Main) {
     tsParticles.addPreset("stars", {
@@ -29,7 +29,7 @@ export function loadPreset(tsParticles: Main) {
                 value: 1,
             },
             shape: {
-                type: ShapeType.circle,
+                type: "circle",
             },
             size: {
                 random: true,

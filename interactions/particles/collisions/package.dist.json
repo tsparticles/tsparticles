@@ -1,0 +1,50 @@
+{
+  "name": "tsparticles-interaction-particles-collisions",
+  "version": "2.0.0-alpha.0",
+  "description": "tsParticles Collisions particles interaction",
+  "homepage": "https://particles.matteobruni.it/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/tsparticles.git",
+    "directory": "interactions/particles/collisions"
+  },
+  "keywords": [
+    "tsparticles",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles.js",
+    "particles-ts",
+    "particles.ts",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background",
+    "tsparticles-shape"
+  ],
+  "author": "Matteo Bruni",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles/issues"
+  },
+  "main": "interaction.js",
+  "jsdelivr": "tsparticles.interaction.particles.collisions.min.js",
+  "unpkg": "tsparticles.interaction.particles.collisions.min.js",
+  "browser": "interaction.js",
+  "module": "interaction.js",
+  "types": "interaction.d.ts",
+  "dependencies": {
+    "tsparticles-core": "^2.0.0-alpha.0"
+  }
+}

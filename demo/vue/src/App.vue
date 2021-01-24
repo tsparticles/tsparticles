@@ -7,12 +7,13 @@
 
 <script lang="ts">
 import { Vue } from "vue-property-decorator";
-import { Container, ISourceOptions, Main } from "tsparticles";
-import { loadPreset } from "tsparticles-preset-sea-anemone";
+import { Container } from "tsparticles-core";
+import { ISourceOptions, Main } from "tsparticles";
+import { loadPreset } from "tsparticles-preset-big-circles";
 
 export default class App extends Vue {
   private options: ISourceOptions = {
-    preset: "seaAnemone"
+    preset: "bigCircles"
   };
 
   private particlesInit: (tsParticles: Main) => void = (tsParticles => {

@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-sea-anemone",
-  "version": "1.4.0-alpha.4",
+  "version": "2.0.0-alpha.1",
   "description": "tsParticles sea anemone preset",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -9,7 +9,8 @@
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "compile": "tsc",
     "bundle": "webpack --mode production",
-    "build": "yarn clear:dist && yarn prettify:src && yarn compile && yarn lint && yarn bundle && yarn prettify:readme",
+    "distfiles": "node ./scripts/distfiles.js",
+    "build": "yarn clear:dist && yarn prettify:src && yarn compile && yarn lint && yarn bundle && yarn prettify:readme && yarn distfiles",
     "clear:dist": "rimraf -f ./dist",
     "prepack": "yarn build"
   },
@@ -43,6 +44,9 @@
     "background",
     "tsparticles-preset"
   ],
+  "publishConfig": {
+    "directory": "dist"
+  },
   "author": "Matteo Bruni",
   "license": "MIT",
   "files": [
@@ -51,29 +55,23 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "main": "dist/preset.js",
-  "jsdelivr": "dist/tsparticles.preset.seaAnemone.min.js",
-  "unpkg": "dist/tsparticles.preset.seaAnemone.min.js",
-  "browser": "dist/preset.js",
-  "module": "dist/preset.js",
-  "types": "dist/preset.d.ts",
   "devDependencies": {
-    "@babel/core": "^7.12.3",
-    "@types/webpack-env": "^1.15.3",
-    "@typescript-eslint/eslint-plugin": "^4.8.1",
-    "@typescript-eslint/parser": "^4.8.1",
-    "babel-loader": "^8.2.1",
-    "eslint": "^7.13.0",
+    "@babel/core": "^7.12.9",
+    "@types/webpack-env": "^1.16.0",
+    "@typescript-eslint/eslint-plugin": "^4.9.1",
+    "@typescript-eslint/parser": "^4.9.1",
+    "babel-loader": "^8.2.2",
+    "eslint": "^7.15.0",
     "eslint-config-prettier": "^7.0.0",
-    "prettier": "^2.2.0",
+    "prettier": "^2.2.1",
     "rimraf": "^3.0.2",
     "terser-webpack-plugin": "^5.0.3",
     "typescript": "^4.1.2",
-    "webpack": "^5.6.0",
-    "webpack-bundle-analyzer": "^4.1.0",
+    "webpack": "^5.10.0",
+    "webpack-bundle-analyzer": "^4.2.0",
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "tsparticles": "^1.19.0-alpha.4"
+    "tsparticles-core": "^2.0.0-alpha.1"
   }
 }

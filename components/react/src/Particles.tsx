@@ -1,5 +1,5 @@
 import React, { Component, MutableRefObject, ReactNode } from "react";
-import { tsParticles, Container } from "tsparticles";
+import { tsParticles, Container } from "tsparticles-core";
 import { isEqual } from "lodash";
 import type { IParticlesProps } from "./IParticlesProps";
 import type { IParticlesState } from "./IParticlesState";

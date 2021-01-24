@@ -1,4 +1,4 @@
-import { ClickMode, Main } from "tsparticles";
+import { ClickMode, Main } from "tsparticles-core";
 
 export function loadPreset(tsParticles: Main): void {
     tsParticles.addPreset("fire", {

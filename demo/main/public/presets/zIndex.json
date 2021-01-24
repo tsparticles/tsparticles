@@ -85,8 +85,8 @@
     },
     "move": {
       "angle": {
-        "value": 5,
-        "offset": 10
+        "value": 10,
+        "offset": 0
       },
       "enable": true,
       "speed": 15,

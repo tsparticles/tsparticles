@@ -1,11 +1,17 @@
 {
   "packages": [
     "components/*",
-    "core/*",
+    "editor",
     "demo/*",
+    "interactions/*",
+    "interactions/external/*",
+    "interactions/particles/*",
+    "main/*",
+    "plugins/*",
     "presets/*",
     "shapes/*",
-    "templates/*"
+    "templates/*",
+    "updaters/*"
   ],
   "version": "independent",
   "npmClient": "yarn",

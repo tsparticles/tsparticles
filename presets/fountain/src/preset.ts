@@ -1,7 +1,7 @@
-import { DestroyMode, InteractivityDetect, MoveDirection, OutMode, ShapeType, Main, ISourceOptions } from "tsparticles";
+import { DestroyMode, InteractivityDetect, MoveDirection, OutMode, Main, ISourceOptions } from "tsparticles-core";
 
 export function loadPreset(tsParticles: Main): void {
-    const options: ISourceOptions = {
+    const options = ({
         fullScreen: {
             enable: true,
         },
@@ -31,7 +31,7 @@ export function loadPreset(tsParticles: Main): void {
                 },
             },
             shape: {
-                type: ShapeType.circle,
+                type: "circle",
                 options: {
                     polygon: [
                         {
@@ -153,7 +153,7 @@ export function loadPreset(tsParticles: Main): void {
                 },
             },
         },
-    };
+    } as unknown) as ISourceOptions;
 
     tsParticles.addPreset("fountain", options);
 }

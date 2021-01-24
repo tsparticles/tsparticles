@@ -1,4 +1,4 @@
-import { InteractivityDetect, Main, MoveDirection, OutMode, ShapeType } from "tsparticles";
+import { InteractivityDetect, Main, MoveDirection, OutMode } from "tsparticles-core";
 
 export function loadPreset(tsParticles: Main): void {
     const options = {
@@ -27,7 +27,7 @@ export function loadPreset(tsParticles: Main): void {
                 ],
             },
             shape: {
-                type: ShapeType.circle,
+                type: "circle",
             },
             opacity: {
                 value: 0.5,
@@ -41,7 +41,7 @@ export function loadPreset(tsParticles: Main): void {
             },
             move: {
                 enable: true,
-                speed: 10,
+                speed: 20,
                 direction: MoveDirection.top,
                 outMode: OutMode.destroy,
             },

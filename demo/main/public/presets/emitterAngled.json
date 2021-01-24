@@ -16,14 +16,6 @@
       "stroke": {
         "width": 0,
         "color": "#000000"
-      },
-      "polygon": {
-        "nb_sides": 5
-      },
-      "image": {
-        "src": "https://cdn.matteobruni.it/images/particles/github.svg",
-        "width": 100,
-        "height": 100
       }
     },
     "opacity": {
@@ -46,7 +38,7 @@
         "sync": false
       }
     },
-    "line_linked": {
+    "links": {
       "enable": true,
       "distance": 150,
       "color": "#000",
@@ -109,7 +101,7 @@
       }
     }
   },
-  "retina_detect": true,
+  "detectRetina": true,
   "background": {
     "color": "#fff",
     "image": "",
@@ -150,10 +142,10 @@
         },
         "move": {
           "angle": {
-            "offset": 0,
+            "offset": 15,
             "value": 30
           },
-          "speed": 15,
+          "speed": 20,
           "random": false,
           "straight": false,
           "outMode": "destroy"

@@ -1,12 +1,10 @@
-import type { ISourceOptions, Main } from "tsparticles";
-import type { INoise } from "tsparticles/dist/Core/Interfaces/INoise";
-import type { IParticle } from "tsparticles/dist/Core/Interfaces/IParticle";
+import type { INoise, IParticle, ISourceOptions, Main } from "tsparticles-core";
 
 export function loadPreset(tsParticles: Main): void {
     const presetName = "seaAnemone";
     const noiseGeneratorName = "seaAnemoneNoise";
 
-    const options: ISourceOptions = {
+    const options = ({
         fpsLimit: 60,
         interactivity: {
             detectsOn: "canvas",
@@ -41,7 +39,7 @@ export function loadPreset(tsParticles: Main): void {
                     generator: "seaAnemoneNoise",
                 },
                 random: false,
-                speed: 1,
+                speed: 2,
                 straight: false,
                 trail: {
                     fillColor: "#000",
@@ -118,7 +116,7 @@ export function loadPreset(tsParticles: Main): void {
                 y: 50,
             },
         },
-    };
+    } as unknown) as ISourceOptions;
 
     function NoiseGen(
         rndFunc: (() => number) | null,
@@ -198,8 +196,8 @@ export function loadPreset(tsParticles: Main): void {
                 p.seaSpeed += 0.01;
             }
 
-            p.velocity.horizontal = 0;
-            p.velocity.vertical = 0;
+            p.velocity.x = 0;
+            p.velocity.y = 0;
 
             return {
                 angle: p.seaDir,
