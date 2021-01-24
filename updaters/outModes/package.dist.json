@@ -45,6 +45,6 @@
   "module": "updater.js",
   "types": "updater.d.ts",
   "dependencies": {
-    "tsparticles-core": "^1.0.0-alpha.0"
+    "tsparticles-core": "^2.0.0-alpha.0"
   }
 }
