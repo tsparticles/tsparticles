@@ -91,7 +91,7 @@ export class AbsorberInstance {
 
         const pos = particle.getPosition();
         const { dx, dy, distance } = getDistances(this.position, pos);
-        const angle = Math.atan2(dx, dy);
+        const angle = Math.atan2(dy, dx);
         const acceleration = (this.mass / Math.pow(distance, 2)) * container.retina.reduceFactor;
 
         if (distance < this.size + particle.getRadius()) {
@@ -211,8 +211,8 @@ export class AbsorberInstance {
         } else {
             const addV = new Vector(0, 0);
 
-            addV.angle = angle;
             addV.length = acceleration;
+            addV.angle = angle;
 
             particle.velocity.addTo(addV);
         }

@@ -6,10 +6,7 @@ export class Vector implements ICoordinates {
     }
 
     public set angle(angle: number) {
-        const length = this.length;
-
-        this.x = Math.cos(angle) * length;
-        this.y = Math.sin(angle) * length;
+        this.updateFromAngle(angle, this.length);
     }
 
     public get length(): number {
@@ -17,10 +14,7 @@ export class Vector implements ICoordinates {
     }
 
     public set length(length: number) {
-        const angle = this.angle;
-
-        this.x = Math.cos(angle) * length;
-        this.y = Math.sin(angle) * length;
+        this.updateFromAngle(this.angle, length);
     }
 
     constructor(public x: number, public y: number) {}
@@ -91,5 +85,10 @@ export class Vector implements ICoordinates {
             this.x * Math.cos(angle) - this.y * Math.sin(angle),
             this.x * Math.sin(angle) + this.y * Math.cos(angle)
         );
+    }
+
+    private updateFromAngle(angle: number, length: number) {
+        this.x = Math.cos(angle) * length;
+        this.y = Math.sin(angle) * length;
     }
 }
