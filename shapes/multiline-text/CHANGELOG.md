@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-alpha.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-multiline-text@1.4.0-alpha.5...tsparticles-shape-multiline-text@2.0.0-alpha.1) (2021-01-24)
+
+**Note:** Version bump only for package tsparticles-shape-multiline-text
+
+
+
+
+
 # [2.0.0-alpha.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-multiline-text@1.4.0-alpha.5...tsparticles-shape-multiline-text@2.0.0-alpha.0) (2021-01-24)
 
 **Note:** Version bump only for package tsparticles-shape-multiline-text
