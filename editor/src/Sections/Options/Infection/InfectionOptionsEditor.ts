@@ -1,3 +1,4 @@
+/*
 import type { Container } from "tsparticles-core";
 import type { IInfection } from "tsparticles-core/Options/Interfaces/Infection/IInfection";
 import type { IInfectionStage } from "tsparticles-core/Options/Interfaces/Infection/IInfectionStage";
@@ -94,3 +95,4 @@ export class InfectionOptionsEditor extends EditorBase {
         });
     }
 }
+*/

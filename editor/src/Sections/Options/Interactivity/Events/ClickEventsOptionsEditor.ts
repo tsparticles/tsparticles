@@ -2,10 +2,10 @@ import type { Container } from "tsparticles-core";
 import type { IClickEvent } from "tsparticles-core/Options/Interfaces/Interactivity/Events/IClickEvent";
 import { EditorGroup, EditorType } from "object-gui";
 import { ClickMode } from "tsparticles-core";
-import { AbsorberClickMode, EmitterClickMode } from "tsparticles";
+/*import { AbsorberClickMode, EmitterClickMode } from "tsparticles";*/
 import { EditorBase } from "../../../../EditorBase";
-import { AbsorbersPlugin } from "tsparticles-core/Plugins/Absorbers/AbsorbersPlugin";
-import { EmittersPlugin } from "tsparticles-core/Plugins/Emitters/EmittersPlugin";
+/*import { AbsorbersPlugin } from "tsparticles-core/Plugins/Absorbers/AbsorbersPlugin";
+import { EmittersPlugin } from "tsparticles-core/Plugins/Emitters/EmittersPlugin";*/
 
 export class ClickEventsOptionsEditor extends EditorBase {
     public group!: EditorGroup;
@@ -58,7 +58,7 @@ export class ClickEventsOptionsEditor extends EditorBase {
                 },
             ]);
 
-        if (typeof AbsorbersPlugin !== "undefined") {
+        /*if (typeof AbsorbersPlugin !== "undefined") {
             const absorbersGroup = "Absorbers";
 
             modeSelectInput.addItemGroup(absorbersGroup);
@@ -70,6 +70,6 @@ export class ClickEventsOptionsEditor extends EditorBase {
 
             modeSelectInput.addItemGroup(emittersGroup);
             modeSelectInput.addItem(EmitterClickMode.emitter, undefined, emittersGroup);
-        }
+        }*/
     }
 }

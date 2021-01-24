@@ -2,7 +2,7 @@ import { EditorGroup, EditorType } from "object-gui";
 import type { Container, SingleOrMultiple } from "tsparticles-core";
 import type { IDivEvent } from "tsparticles-core/Options/Interfaces/Interactivity/Events/IDivEvent";
 import { EditorBase } from "../../../../EditorBase";
-import { DivMode, DivType } from "tsparticles";
+import { DivMode, DivType } from "tsparticles-core";
 
 export class DivsEventsOptionsEditor extends EditorBase {
     public group!: EditorGroup;
