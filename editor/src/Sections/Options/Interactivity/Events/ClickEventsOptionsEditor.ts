@@ -2,10 +2,11 @@ import type { Container } from "tsparticles-core";
 import type { IClickEvent } from "tsparticles-core/Options/Interfaces/Interactivity/Events/IClickEvent";
 import { EditorGroup, EditorType } from "object-gui";
 import { ClickMode } from "tsparticles-core";
-/*import { AbsorberClickMode, EmitterClickMode } from "tsparticles";*/
 import { EditorBase } from "../../../../EditorBase";
-/*import { AbsorbersPlugin } from "tsparticles-core/Plugins/Absorbers/AbsorbersPlugin";
-import { EmittersPlugin } from "tsparticles-core/Plugins/Emitters/EmittersPlugin";*/
+import { loadPlugin as loadAbsorbersPlugin } from "tsparticles-plugin-absorbers";
+import { loadPlugin as loadEmittersPlugin } from "tsparticles-plugin-emitters";
+import { AbsorberClickMode } from "tsparticles-plugin-absorbers/Enums";
+import { EmitterClickMode } from "tsparticles-plugin-emitters/Enums";
 
 export class ClickEventsOptionsEditor extends EditorBase {
     public group!: EditorGroup;
@@ -58,18 +59,18 @@ export class ClickEventsOptionsEditor extends EditorBase {
                 },
             ]);
 
-        /*if (typeof AbsorbersPlugin !== "undefined") {
+        if (typeof loadAbsorbersPlugin !== "undefined") {
             const absorbersGroup = "Absorbers";
 
             modeSelectInput.addItemGroup(absorbersGroup);
             modeSelectInput.addItem(AbsorberClickMode.absorber, undefined, absorbersGroup);
         }
 
-        if (typeof EmittersPlugin !== "undefined") {
+        if (typeof loadEmittersPlugin !== "undefined") {
             const emittersGroup = "Emitters";
 
             modeSelectInput.addItemGroup(emittersGroup);
             modeSelectInput.addItem(EmitterClickMode.emitter, undefined, emittersGroup);
-        }*/
+        }
     }
 }

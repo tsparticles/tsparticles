@@ -1,9 +1,8 @@
-/*
 import type { Container } from "tsparticles-core";
-import type { IInfection } from "tsparticles-core/Options/Interfaces/Infection/IInfection";
-import type { IInfectionStage } from "tsparticles-core/Options/Interfaces/Infection/IInfectionStage";
 import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../EditorBase";
+import type { IInfection } from "tsparticles-plugin-infection/Options/Interfaces/IInfection";
+import type { IInfectionStage } from "tsparticles-plugin-infection/Options/Interfaces/IInfectionStage";
 
 export class InfectionOptionsEditor extends EditorBase {
     public group!: EditorGroup;
@@ -95,4 +94,3 @@ export class InfectionOptionsEditor extends EditorBase {
         });
     }
 }
-*/

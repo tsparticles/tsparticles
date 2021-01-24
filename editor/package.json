@@ -46,7 +46,11 @@
     "object-gui": "^1.0.11",
     "tsparticles": "^2.0.0-alpha.1",
     "tsparticles-core": "^2.0.0-alpha.1",
-    "tsparticles-slim": "^2.0.0-alpha.1"
+    "tsparticles-slim": "^2.0.0-alpha.1",
+    "tsparticles-plugin-infection": "^2.0.0-alpha.1",
+    "tsparticles-plugin-absorbers": "^2.0.0-alpha.1",
+    "tsparticles-plugin-polygon-mask": "^2.0.0-alpha.1",
+    "tsparticles-plugin-emitters": "^2.0.0-alpha.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
