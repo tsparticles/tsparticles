@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-plugin-infection",
-  "version": "1.0.0-alpha.0",
+  "version": "2.0.0-alpha.0",
   "description": "tsParticles infection plugin",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -70,6 +70,6 @@
   },
   "dependencies": {
     "pathseg": "^1.2.0",
-    "tsparticles-core": "^1.0.0-alpha.0"
+    "tsparticles-core": "^2.0.0-alpha.0"
   }
 }

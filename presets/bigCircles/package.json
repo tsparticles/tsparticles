@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-big-circles",
-  "version": "1.4.0-alpha.5",
+  "version": "2.0.0-alpha.0",
   "description": "tsParticles big circles preset",
   "homepage": "https://particles.matteobruni.it/",
   "scripts": {
@@ -69,6 +69,6 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "tsparticles-core": "^1.0.0-alpha.0"
+    "tsparticles-core": "^2.0.0-alpha.0"
   }
 }

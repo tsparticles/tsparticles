@@ -1,6 +1,6 @@
 {
   "name": "ng-particles-demo",
-  "version": "1.4.0-alpha.5",
+  "version": "2.0.0-alpha.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -23,12 +23,12 @@
     "@angular/platform-browser": "~11.0.3",
     "@angular/platform-browser-dynamic": "~11.0.3",
     "@angular/router": "~11.0.3",
-    "ng-particles": "^2.2.0-alpha.5",
+    "ng-particles": "^3.0.0-alpha.0",
     "rxjs": "~6.6.3",
     "tslib": "^2.0.3",
-    "tsparticles": "^1.19.0-alpha.5",
-    "tsparticles-core": "1.0.0-alpha.0",
-    "tsparticles-slim": "1.0.0-alpha.0",
+    "tsparticles": "^2.0.0-alpha.0",
+    "tsparticles-core": "^2.0.0-alpha.0",
+    "tsparticles-slim": "^2.0.0-alpha.0",
     "zone.js": "^0.11.3"
   },
   "bugs": {

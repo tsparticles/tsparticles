@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0-alpha.0 (2021-01-24)
+
+**Note:** Version bump only for package tsparticles-shape-square
+
+
+
+
+
 # [1.4.0-alpha.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-bubble@1.4.0-alpha.4...tsparticles-shape-bubble@1.4.0-alpha.5) (2020-12-11)
 
 **Note:** Version bump only for package tsparticles-shape-bubble
