@@ -72,7 +72,6 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/preset-env": "^7.12.7",
-    "@types/lodash": "^4.14.165",
     "@types/node": "^14.14.11",
     "@types/react": ">=16",
     "@types/react-dom": ">=16",
@@ -93,7 +92,7 @@
     "webpack-node-externals": "^2.5.2"
   },
   "dependencies": {
-    "lodash": "^4.17.20",
+    "fast-deep-equal": "^3.1.3",
     "react": ">=16",
     "tslib": "^2.0.3",
     "tsparticles-core": "^2.0.0-alpha.1"
