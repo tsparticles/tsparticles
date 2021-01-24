@@ -100,6 +100,10 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
             this.setState({
                 library: container,
             });
+
+            if (this.props.loaded) {
+                this.props.loaded(container);
+            }
         };
 
         if (this.props.url) {

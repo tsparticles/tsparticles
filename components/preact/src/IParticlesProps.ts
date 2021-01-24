@@ -14,4 +14,5 @@ export interface IParticlesProps {
     canvasClassName?: string;
     container?: RefObject<Container>;
     init?: (tsParticles: Main) => void;
+    loaded?: (container: Container) => void;
 }
