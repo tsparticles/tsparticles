@@ -7131,14 +7131,14 @@ preact-cli@^3.0.5:
     workbox-strategies "^5.1.3"
     workbox-webpack-plugin "^5.1.3"
 
-preact-particles@^1.19.0-alpha.5:
-  version "1.19.0-alpha.5"
-  resolved "https://registry.yarnpkg.com/preact-particles/-/preact-particles-1.19.0-alpha.5.tgz#1501842b5a99e0b7be76efcda2f749d46e9d8eed"
-  integrity sha512-q5M0+Dk7MVe9IsYQBT4OuQq/ZavaLgxUTxH2ak++pyOoLoXAZBed/VSW/0zNcPeqaHr/Ut6eq10CIX2kVpQDRA==
+preact-particles@^2.0.0-alpha.1:
+  version "2.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/preact-particles/-/preact-particles-2.0.0-alpha.1.tgz#41ce6531f9d44dfbc2582cf8e00bd9f5f5848d35"
+  integrity sha512-SYQE4YjJ5TXEnVuUkNmIMsBRsjExI1w2yPDZ/8mUJsk535tEIL2f1Uj/j+yRRHWK30qId99/DtzaUrW/290Z6Q==
   dependencies:
     lodash "^4.17.20"
     preact ">=10"
-    tsparticles "^1.19.0-alpha.5"
+    tsparticles-core "^2.0.0-alpha.1"
 
 preact-render-spy@^1.3.0:
   version "1.3.0"
@@ -7176,9 +7176,9 @@ preact-router@^3.2.1:
   integrity sha512-KEN2VN1DxUlTwzW5IFkF13YIA2OdQ2OvgJTkQREF+AA2NrHRLaGbB68EjS4IeZOa1shvQ1FvEm3bSLta4sXBhg==
 
 preact@>=10, preact@^10.5.7:
-  version "10.5.8"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.5.8.tgz#96e71e2caadf60b5ff901f0e4772a46ba0756336"
-  integrity sha512-8d0FfBX3O0ay34i15mTckXicSsvaQLemPUByXTyfQUxDeFqZhbtnftVZMNqX3zEJLHcy1bqRu9t+V4GqJtG1TQ==
+  version "10.5.11"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.5.11.tgz#2c8a431f16613e442901068175771806cf1cc0f6"
+  integrity sha512-BdtFePVilR1430kDuzh3VkkZktCmp8RTqHOjG8qesyGZXHNYJjdrjEBuc2f7O/vthhVENxJd0/aTjWtYeH46aw==
 
 prelude-ls@^1.2.1:
   version "1.2.1"
@@ -8806,10 +8806,10 @@ tslib@^1.8.1, tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tsparticles@^1.19.0-alpha.5:
-  version "1.19.0-alpha.5"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.19.0-alpha.5.tgz#87ccc0884350cfa1536a5ce7e0b0b3dc5a48afd8"
-  integrity sha512-Or11usaw6aM7a3WEcRnBGGUbAIAsyQSlhmpUbHCF3TzEqIdGcVLrS6rxomehM8b8MAGMfsrUSg8ANCGhenK2vw==
+tsparticles-core@^2.0.0-alpha.1:
+  version "2.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/tsparticles-core/-/tsparticles-core-2.0.0-alpha.1.tgz#eb67841390da3f7625162c4c732faa6851e0187f"
+  integrity sha512-lkiORwvIWdvlJYrLfzakrggbW7BK23swoFehlr4SlaorhqCW8uJlkyFiBimw+U6rScfiDwTtg9QjcRb2ByjefA==
   optionalDependencies:
     pathseg "^1.2.0"
 
