@@ -48,6 +48,9 @@
   "module": "preset.js",
   "types": "preset.d.ts",
   "dependencies": {
-    "tsparticles-core": "^2.0.0-alpha.0"
+    "tsparticles-core": "^2.0.0-alpha.0",
+    "tsparticles-shape-circle": "^2.0.0-alpha.2",
+    "tsparticles-updater-out-modes": "^2.0.0-alpha.2",
+    "tsparticles-plugin-emitters": "^2.0.0-alpha.2"
   }
 }

@@ -5,89 +5,103 @@ const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const version = require("./package.json").version;
 
 const getEntry = (name) => {
-    const obj = {};
+  const obj = {};
 
-    obj[`tsparticles.preset.${name}`] = "./dist/index.js";
-    obj[`tsparticles.preset.${name}.min`] = "./dist/index.js";
+  obj[`tsparticles.preset.${name}`] = "./dist/index.js";
+  obj[`tsparticles.preset.${name}.min`] = "./dist/index.js";
 
-    return obj;
-}
+  return obj;
+};
 
-const getConfig = (entry, banner, minBanner, dir) => {
-    return {
-        entry: entry,
-        output: {
-            path: path.resolve(dir, "dist"),
-            filename: "[name].js",
-            libraryTarget: "umd",
-            globalObject: "this"
+const getExternals = (bundle) => {
+  if (!bundle) {
+    return [
+      {
+        "tsparticles-core": {
+          commonjs: "tsparticles-core",
+          commonjs2: "tsparticles-core",
+          amd: "tsparticles-core",
+          root: "window"
         },
-        resolve: {
-            extensions: [ ".js", ".json" ]
+        "tsparticles-shape-circle": {
+          commonjs: "tsparticles-shape-circle",
+          commonjs2: "tsparticles-shape-circle",
+          amd: "tsparticles-shape-circle",
+          root: "window"
         },
-        externals: [
-            {
-                tsparticles: {
-                    commonjs: "tsparticles",
-                    commonjs2: "tsparticles",
-                    amd: "tsparticles",
-                    root: "window"
-                },
-                "tsparticles-core": {
-                    commonjs: "tsparticles-core",
-                    commonjs2: "tsparticles-core",
-                    amd: "tsparticles-core",
-                    root: "window"
-                },
-                "tsparticles-slim": {
-                    commonjs: "tsparticles-slim",
-                    commonjs2: "tsparticles-slim",
-                    amd: "tsparticles-slim",
-                    root: "window"
-                },
-            }
-        ],
-        module: {
-            rules: [
-                {
-                    // Include ts, tsx, js, and jsx files.
-                    test: /\.js$/,
-                    exclude: /node_modules/,
-                    loader: "babel-loader"
-                }
-            ]
+        "tsparticles-updater-out-modes": {
+          commonjs: "tsparticles-updater-out-modes",
+          commonjs2: "tsparticles-updater-out-modes",
+          amd: "tsparticles-updater-out-modes",
+          root: "window"
         },
-        plugins: [
-            new webpack.BannerPlugin({
-                banner: banner,
-                exclude: /\.min\.js$/
-            }),
-            new webpack.BannerPlugin({
-                banner: minBanner,
-                include: /\.min\.js$/
-            }),
-            new BundleAnalyzerPlugin({
-                openAnalyzer: false,
-                analyzerMode: "static",
-                exclude: /\.min\.js$/,
-                reportFilename: `report.html`
-            })
-        ],
-        optimization: {
-            minimize: true,
-            minimizer: [
-                new TerserPlugin({
-                    include: /\.min\.js$/,
-                    terserOptions: {
-                        output: {
-                            comments: minBanner
-                        }
-                    },
-                    extractComments: false
-                })
-            ]
+        "tsparticles-updater-plugin-emitters": {
+          commonjs: "tsparticles-plugin-emitters",
+          commonjs2: "tsparticles-plugin-emitters",
+          amd: "tsparticles-plugin-emitters",
+          root: "window"
         }
-    };
+      }
+    ];
+  }
+
+  return [];
+};
+
+const getConfig = (entry, banner, minBanner, dir, bundle) => {
+  return {
+    entry: entry,
+    output: {
+      path: path.resolve(dir, "dist"),
+      filename: "[name].js",
+      libraryTarget: "umd",
+      globalObject: "this"
+    },
+    resolve: {
+      extensions: [ ".js", ".json" ]
+    },
+    externals: getExternals(bundle),
+    module: {
+      rules: [
+        {
+          // Include ts, tsx, js, and jsx files.
+          test: /\.js$/,
+          exclude: /node_modules/,
+          loader: "babel-loader"
+        }
+      ]
+    },
+    plugins: [
+      new webpack.BannerPlugin({
+        banner: banner,
+        exclude: /\.min\.js$/
+      }),
+      new webpack.BannerPlugin({
+        banner: minBanner,
+        include: /\.min\.js$/
+      }),
+      new BundleAnalyzerPlugin({
+        openAnalyzer: false,
+        analyzerMode: "static",
+        exclude: /\.min\.js$/,
+        reportFilename: `report.html`
+      })
+    ],
+    optimization: {
+      minimize: true,
+      minimizer: [
+        new TerserPlugin({
+          include: /\.min\.js$/,
+          terserOptions: {
+            output: {
+              comments: minBanner
+            }
+          },
+          extractComments: false
+        })
+      ]
+    }
+  };
 };
 
 const banner = `Author : Matteo Bruni - https://www.matteobruni.it
@@ -100,5 +114,6 @@ v${version}`;
 const minBanner = `tsParticles Big Circles Preset v${version} by Matteo Bruni`;
 
 module.exports = [
-    getConfig(getEntry("bigCircles"), banner, minBanner, __dirname)
+  getConfig(getEntry("bigCircles"), banner, minBanner, __dirname, false),
+  getConfig(getEntry("bigCircles.bundle"), banner, minBanner, __dirname, true)
 ];
