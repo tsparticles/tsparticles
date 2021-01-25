@@ -1,8 +1,9 @@
 import React, { Component, MutableRefObject, ReactNode } from "react";
 import { tsParticles, Container } from "tsparticles-core";
-import { isEqual } from "lodash";
+import equal from "fast-deep-equal/react";
 import type { IParticlesProps } from "./IParticlesProps";
 import type { IParticlesState } from "./IParticlesState";
+import type { ISourceOptions } from "tsparticles-core";
 
 /**
  * @param {{id?: string,width?: string,height?: string,options?: ISourceOptions,params?: ISourceOptions,style?: CSSProperties,className?: string,canvasClassName?: string,container?: RefObject<Container>}}
@@ -40,7 +41,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
     public shouldComponentUpdate(nextProps: Readonly<IParticlesProps>): boolean {
         console.log("should update");
 
-        return !isEqual(nextProps, this.props);
+        return !equal(nextProps, this.props);
     }
 
     public componentDidUpdate(): void {
@@ -99,6 +100,10 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
             this.setState({
                 library: container,
             });
+
+            if (this.props.loaded) {
+                this.props.loaded(container);
+            }
         };
 
         if (this.props.url) {

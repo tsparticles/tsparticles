@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-plugin-polygon-mask",
-  "version": "2.0.0-alpha.0",
+  "version": "2.0.0-alpha.2",
   "description": "tsParticles polygon mask plugin",
   "homepage": "https://particles.matteobruni.it/",
   "repository": {

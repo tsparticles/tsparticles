@@ -1,17 +1,24 @@
-const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
+const CleanWebpackPlugin = require("clean-webpack-plugin").CleanWebpackPlugin;
 
 module.exports = {
 	mode: "none",
 	entry: "./src/index.ts", // Point to main file
 	externals: [
-		/ts[Pp]articles/,
-		"lodash",
+		"fast-deep-equal",
 		{
 			inferno: {
 				commonjs: "inferno",
 				commonjs2: "inferno",
 				amd: "inferno",
 				root: "Inferno"
+			},
+			"tsparticles-core": {
+				"tsparticles-core": {
+					commonjs: "tsparticles-core",
+					commonjs2: "tsparticles-core",
+					amd: "tsparticles-core",
+					root: "window"
+				}
 			}
 		}
 	],
@@ -21,7 +28,7 @@ module.exports = {
 		libraryTarget: "commonjs"
 	},
 	resolve: {
-		extensions: [ '.js', '.jsx', '.ts', '.tsx' ]
+		extensions: [ ".js", ".jsx", ".ts", ".tsx" ]
 	},
 	performance: {
 		hints: false
@@ -30,7 +37,7 @@ module.exports = {
 		rules: [
 			{
 				test: /\.(js|jsx|tsx|ts)$/,   // All ts and tsx files will be process by
-				loader: 'babel-loader',			// first babel-loader, then ts-loader
+				loader: "babel-loader",			// first babel-loader, then ts-loader
 				exclude: /node_modules/				// ignore node_modules
 			}
 		]
