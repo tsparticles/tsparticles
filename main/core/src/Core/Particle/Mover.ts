@@ -2,7 +2,7 @@ import { clamp, getDistance, getDistances, getRangeMax, isInArray, isSsr, Plugin
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
 import { HoverMode, RotateDirection } from "../../Enums";
-import type { IDelta } from "../Interfaces/IDelta";
+import type { IDelta } from "../Interfaces";
 import { Vector } from "./Vector";
 
 /**
@@ -55,14 +55,16 @@ export class Mover {
             sizeValue = particle.options.size.value,
             maxSize = getRangeMax(sizeValue) * container.retina.pixelRatio,
             sizeFactor = particlesOptions.move.size ? particle.getRadius() / maxSize : 1,
-            moveSpeed = (baseSpeed / 4) * sizeFactor * slowFactor * delta.factor;
+            diffFactor = 4,
+            speedFactor = (sizeFactor * slowFactor * delta.factor) / diffFactor,
+            moveSpeed = baseSpeed * speedFactor;
 
         this.applyNoise(particle, delta);
 
         const gravityOptions = particlesOptions.move.gravity;
 
         if (gravityOptions.enable) {
-            particle.velocity.y += (gravityOptions.acceleration * delta.factor) / (60 * moveSpeed);
+            particle.velocity.y += ((gravityOptions.acceleration / diffFactor) * delta.factor) / (60 * moveSpeed);
         }
 
         const velocity = particle.velocity.mult(moveSpeed);
