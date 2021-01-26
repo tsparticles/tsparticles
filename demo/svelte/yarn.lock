@@ -707,14 +707,14 @@ svelte-check@^1.1.20:
     svelte-preprocess "^4.0.0"
     typescript "*"
 
-svelte-particles@^2.0.0-alpha.1:
-  version "2.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/svelte-particles/-/svelte-particles-2.0.0-alpha.1.tgz#ff38d5783155daa8022eace4ab4b2a2e8d3b899d"
-  integrity sha512-msXRHxvx+IrbPtr+Y3W4/wL1royakxoEfSVW8swe734TyrnAPVaKa3plntPMui4e/ZDFCdy8iJA1cONrhpuWgA==
+svelte-particles@^2.0.0-alpha.2:
+  version "2.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/svelte-particles/-/svelte-particles-2.0.0-alpha.2.tgz#e54299a0168e6bd0cb7addfcbede3e890d10f163"
+  integrity sha512-TNYBH9/TmI2zru8FyZHyhkndTiyG+GqjbXGs6FuHi6M1V55h6MZohNy9wvm+s1P4Pk4BnlXIt16WixpzZz4C9w==
   dependencies:
     svelte ">=3"
     tslib "^2.0.3"
-    tsparticles-core "^2.0.0-alpha.1"
+    tsparticles-core "^2.0.0-alpha.2"
 
 svelte-preprocess@^4.0.0, svelte-preprocess@^4.6.1:
   version "4.6.3"
@@ -727,9 +727,9 @@ svelte-preprocess@^4.0.0, svelte-preprocess@^4.6.1:
     strip-indent "^3.0.0"
 
 svelte@>=3, svelte@^3.31.0:
-  version "3.31.2"
-  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.31.2.tgz#d2ddf6cacbb95e4cc3796207510b660a25586324"
-  integrity sha512-TxZGrXzX2ggFH3BIKY5fmbeMdJuZrMIMDYPMX6R9255bueuYIuVaBQSLUeY2oD7W4IdeqRZiAVGCjDw2POKBRA==
+  version "3.32.0"
+  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.32.0.tgz#06d7dcdf65e62a708c74231f7099569df43e3af6"
+  integrity sha512-+EA3qfKDG0uB16s7m1z9Nc1o01G7YC4eq1cnHOzCy+fKsvGAJrjhjBIM3zCW2eZUu639UbHQElaOPQWUjBN3Yw==
 
 terser@^5.0.0:
   version "5.3.8"
@@ -762,10 +762,10 @@ tslib@^2.0.3:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.3.tgz#8e0741ac45fc0c226e58a17bfc3e64b9bc6ca61c"
   integrity sha512-uZtkfKblCEQtZKBF6EBXVZeQNl82yqtDQdv+eck8u7tdPxjLu2/lp5/uPW+um2tpuxINHWy3GhiccY7QgEaVHQ==
 
-tsparticles-core@^2.0.0-alpha.1:
-  version "2.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/tsparticles-core/-/tsparticles-core-2.0.0-alpha.1.tgz#eb67841390da3f7625162c4c732faa6851e0187f"
-  integrity sha512-lkiORwvIWdvlJYrLfzakrggbW7BK23swoFehlr4SlaorhqCW8uJlkyFiBimw+U6rScfiDwTtg9QjcRb2ByjefA==
+tsparticles-core@^2.0.0-alpha.2:
+  version "2.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/tsparticles-core/-/tsparticles-core-2.0.0-alpha.2.tgz#1788ed7894a0e896df92098167424feaa0e65887"
+  integrity sha512-Icqlaz+rj+o7ITd0Q6DgQ3ggp6De4BKZMswQ2n3B1PsGSiGcG1wuP2fXi2DpUVKLDAr636Z8K6neLmCAhrCrKw==
   optionalDependencies:
     pathseg "^1.2.0"
 
