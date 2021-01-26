@@ -14,6 +14,28 @@ export function loadPreset(tsParticles: Main): void {
         },
         fpsLimit: 60,
         particles: {
+            bounce: {
+                vertical: {
+                    value: 0.85,
+                    random: {
+                        enable: true,
+                        minimumValue: 0.75,
+                    },
+                },
+            },
+            color: {
+                value: [
+                    "#3998D0",
+                    "#2EB6AF",
+                    "#A9BD33",
+                    "#FEC73B",
+                    "#F89930",
+                    "#F45623",
+                    "#D62E32",
+                    "#EB586E",
+                    "#9952CF",
+                ],
+            },
             number: {
                 value: 0,
             },
@@ -41,10 +63,10 @@ export function loadPreset(tsParticles: Main): void {
                 type: "circle",
             },
             opacity: {
-                value: 1,
+                value: 0.5,
             },
             size: {
-                value: 15,
+                value: 20,
                 random: {
                     enable: true,
                     minimumValue: 10,
@@ -54,8 +76,12 @@ export function loadPreset(tsParticles: Main): void {
                 enable: true,
                 gravity: {
                     enable: true,
+                    maximumSpeed: 50,
                 },
-                speed: 10,
+                speed: {
+                    min: 10,
+                    max: 20,
+                },
                 direction: MoveDirection.none,
                 random: false,
                 straight: false,
@@ -95,44 +121,6 @@ export function loadPreset(tsParticles: Main): void {
             size: {
                 width: 0,
                 height: 0,
-            },
-            particles: {
-                bounce: {
-                    vertical: {
-                        value: 0.99,
-                        random: {
-                            enable: true,
-                            minimumValue: 0.88,
-                        },
-                    },
-                },
-                color: {
-                    value: [
-                        "#3998D0",
-                        "#2EB6AF",
-                        "#A9BD33",
-                        "#FEC73B",
-                        "#F89930",
-                        "#F45623",
-                        "#D62E32",
-                        "#EB586E",
-                        "#9952CF",
-                    ],
-                },
-                size: {
-                    value: 20,
-                    random: {
-                        enable: true,
-                        minimumValue: 10,
-                    },
-                },
-                opacity: {
-                    value: 0.5,
-                },
-                move: {
-                    speed: 10,
-                    random: false,
-                },
             },
         },
     } as unknown) as ISourceOptions;
