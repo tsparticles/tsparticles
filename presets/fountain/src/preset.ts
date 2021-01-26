@@ -1,6 +1,13 @@
 import { DestroyMode, InteractivityDetect, MoveDirection, OutMode, Main, ISourceOptions } from "tsparticles-core";
+import { loadShape as loadCircleShape } from "tsparticles-shape-circle";
+import { loadUpdater as loadOutModesUpdater } from "tsparticles-updater-out-modes";
+import { loadPlugin as loadEmittersPlugin } from "tsparticles-plugin-emitters";
 
 export function loadPreset(tsParticles: Main): void {
+    loadCircleShape(tsParticles);
+    loadOutModesUpdater(tsParticles);
+    loadEmittersPlugin(tsParticles);
+
     const options = ({
         fullScreen: {
             enable: true,
@@ -32,19 +39,6 @@ export function loadPreset(tsParticles: Main): void {
             },
             shape: {
                 type: "circle",
-                options: {
-                    polygon: [
-                        {
-                            sides: 3,
-                        },
-                        {
-                            sides: 4,
-                        },
-                        {
-                            sides: 5,
-                        },
-                    ],
-                },
             },
             opacity: {
                 value: 1,
@@ -55,15 +49,6 @@ export function loadPreset(tsParticles: Main): void {
                     enable: true,
                     minimumValue: 10,
                 },
-                animation: {
-                    enable: false,
-                    speed: 40,
-                    minimumValue: 0.1,
-                    sync: false,
-                },
-            },
-            links: {
-                enable: false,
             },
             move: {
                 enable: true,
@@ -133,9 +118,6 @@ export function loadPreset(tsParticles: Main): void {
                         "#EB586E",
                         "#9952CF",
                     ],
-                },
-                links: {
-                    enable: false,
                 },
                 size: {
                     value: 20,

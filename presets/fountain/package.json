@@ -72,6 +72,9 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "tsparticles-core": "^2.0.0-alpha.2"
+    "tsparticles-core": "^2.0.0-alpha.2",
+    "tsparticles-shape-circle": "^2.0.0-alpha.2",
+    "tsparticles-updater-out-modes": "^2.0.0-alpha.2",
+    "tsparticles-plugin-emitters": "^2.0.0-alpha.2"
   }
 }
