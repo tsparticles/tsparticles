@@ -1,6 +1,12 @@
-import { ClickMode, Main } from "tsparticles-core";
+import { ClickMode } from "tsparticles-core";
+import type { Main } from "tsparticles-core";
+import { loadShape as loadCircleShape } from "tsparticles-shape-circle";
+import { loadUpdater as loadOutModesUpdater } from "tsparticles-updater-out-modes";
 
 export function loadPreset(tsParticles: Main): void {
+    loadCircleShape(tsParticles);
+    loadOutModesUpdater(tsParticles);
+
     tsParticles.addPreset("fire", {
         fpsLimit: 40,
         particles: {
@@ -8,7 +14,7 @@ export function loadPreset(tsParticles: Main): void {
                 value: 80,
                 density: {
                     enable: true,
-                    value_area: 800,
+                    area: 800,
                 },
             },
             color: {
@@ -30,7 +36,7 @@ export function loadPreset(tsParticles: Main): void {
         },
         interactivity: {
             events: {
-                onclick: {
+                onClick: {
                     enable: true,
                     mode: ClickMode.push,
                 },

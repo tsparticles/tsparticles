@@ -14,38 +14,38 @@ const getEntry = (name) => {
 };
 
 const getExternals = (bundle) => {
-  if (!bundle) {
-    return [
-      {
-        "tsparticles-core": {
-          commonjs: "tsparticles-core",
-          commonjs2: "tsparticles-core",
-          amd: "tsparticles-core",
-          root: "window"
-        },
-        "tsparticles-shape-circle": {
-          commonjs: "tsparticles-shape-circle",
-          commonjs2: "tsparticles-shape-circle",
-          amd: "tsparticles-shape-circle",
-          root: "window"
-        },
-        "tsparticles-updater-out-modes": {
-          commonjs: "tsparticles-updater-out-modes",
-          commonjs2: "tsparticles-updater-out-modes",
-          amd: "tsparticles-updater-out-modes",
-          root: "window"
-        },
-        "tsparticles-updater-plugin-emitters": {
-          commonjs: "tsparticles-plugin-emitters",
-          commonjs2: "tsparticles-plugin-emitters",
-          amd: "tsparticles-plugin-emitters",
-          root: "window"
-        }
-      }
-    ];
+  if (bundle) {
+    return [];
   }
 
-  return [];
+  return [
+    {
+      "tsparticles-core": {
+        commonjs: "tsparticles-core",
+        commonjs2: "tsparticles-core",
+        amd: "tsparticles-core",
+        root: "window"
+      },
+      "tsparticles-shape-circle": {
+        commonjs: "tsparticles-shape-circle",
+        commonjs2: "tsparticles-shape-circle",
+        amd: "tsparticles-shape-circle",
+        root: "window"
+      },
+      "tsparticles-updater-out-modes": {
+        commonjs: "tsparticles-updater-out-modes",
+        commonjs2: "tsparticles-updater-out-modes",
+        amd: "tsparticles-updater-out-modes",
+        root: "window"
+      },
+      "tsparticles-updater-plugin-emitters": {
+        commonjs: "tsparticles-plugin-emitters",
+        commonjs2: "tsparticles-plugin-emitters",
+        amd: "tsparticles-plugin-emitters",
+        root: "window"
+      }
+    }
+  ];
 };
 
 const getConfig = (entry, banner, minBanner, dir, bundle) => {
