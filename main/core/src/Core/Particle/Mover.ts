@@ -64,7 +64,7 @@ export class Mover {
         const gravityOptions = particlesOptions.move.gravity;
 
         if (gravityOptions.enable) {
-            particle.velocity.y += ((gravityOptions.acceleration / diffFactor) * delta.factor) / (60 * moveSpeed);
+            particle.velocity.y += (gravityOptions.acceleration * delta.factor) / (60 * moveSpeed);
         }
 
         const velocity = particle.velocity.mult(moveSpeed);

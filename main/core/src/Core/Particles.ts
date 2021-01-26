@@ -316,7 +316,7 @@ export class Particles {
                 return false;
             }
 
-            particle.velocity.setTo(parent.velocity);
+            particle.velocity.setTo(parent.velocity.sub(particle.velocity));
             particle.splitCount = parent.splitCount + 1;
             particle.unbreakable = true;
 
