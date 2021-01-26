@@ -55,7 +55,7 @@ export class Mover {
             sizeValue = particle.options.size.value,
             maxSize = getRangeMax(sizeValue) * container.retina.pixelRatio,
             sizeFactor = particlesOptions.move.size ? particle.getRadius() / maxSize : 1,
-            diffFactor = 4,
+            diffFactor = 2,
             speedFactor = (sizeFactor * slowFactor * delta.factor) / diffFactor,
             moveSpeed = baseSpeed * speedFactor;
 
