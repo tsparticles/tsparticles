@@ -3935,7 +3935,7 @@ fast-async@^6.3.7:
     nodent-compiler "^3.2.10"
     nodent-runtime ">=3.2.1"
 
-fast-deep-equal@^3.1.1:
+fast-deep-equal@^3.1.1, fast-deep-equal@^3.1.3:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz#3a7d56b559d6cbc3eb512325244e619a65c6c525"
   integrity sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==
@@ -7131,14 +7131,14 @@ preact-cli@^3.0.5:
     workbox-strategies "^5.1.3"
     workbox-webpack-plugin "^5.1.3"
 
-preact-particles@^2.0.0-alpha.1:
-  version "2.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/preact-particles/-/preact-particles-2.0.0-alpha.1.tgz#41ce6531f9d44dfbc2582cf8e00bd9f5f5848d35"
-  integrity sha512-SYQE4YjJ5TXEnVuUkNmIMsBRsjExI1w2yPDZ/8mUJsk535tEIL2f1Uj/j+yRRHWK30qId99/DtzaUrW/290Z6Q==
+preact-particles@^2.0.0-alpha.2:
+  version "2.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/preact-particles/-/preact-particles-2.0.0-alpha.2.tgz#8ae1135930c246e1f00e347a8c45738d96743c5a"
+  integrity sha512-UPtnDWaNpk+8qvFd8aQD0kLZlcd/LURXGWSPypsWufZQnYFyW81r5C6xj1DIk3zdX8UZwwspZPgPibC25x/onQ==
   dependencies:
-    lodash "^4.17.20"
+    fast-deep-equal "^3.1.3"
     preact ">=10"
-    tsparticles-core "^2.0.0-alpha.1"
+    tsparticles-core "^2.0.0-alpha.2"
 
 preact-render-spy@^1.3.0:
   version "1.3.0"
@@ -7176,9 +7176,9 @@ preact-router@^3.2.1:
   integrity sha512-KEN2VN1DxUlTwzW5IFkF13YIA2OdQ2OvgJTkQREF+AA2NrHRLaGbB68EjS4IeZOa1shvQ1FvEm3bSLta4sXBhg==
 
 preact@>=10, preact@^10.5.7:
-  version "10.5.11"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.5.11.tgz#2c8a431f16613e442901068175771806cf1cc0f6"
-  integrity sha512-BdtFePVilR1430kDuzh3VkkZktCmp8RTqHOjG8qesyGZXHNYJjdrjEBuc2f7O/vthhVENxJd0/aTjWtYeH46aw==
+  version "10.5.12"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.5.12.tgz#6a8ee8bf40a695c505df9abebacd924e4dd37704"
+  integrity sha512-r6siDkuD36oszwlCkcqDJCAKBQxGoeEGytw2DGMD5A/GGdu5Tymw+N2OBXwvOLxg6d1FeY8MgMV3cc5aVQo4Cg==
 
 prelude-ls@^1.2.1:
   version "1.2.1"
@@ -8806,10 +8806,10 @@ tslib@^1.8.1, tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tsparticles-core@^2.0.0-alpha.1:
-  version "2.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/tsparticles-core/-/tsparticles-core-2.0.0-alpha.1.tgz#eb67841390da3f7625162c4c732faa6851e0187f"
-  integrity sha512-lkiORwvIWdvlJYrLfzakrggbW7BK23swoFehlr4SlaorhqCW8uJlkyFiBimw+U6rScfiDwTtg9QjcRb2ByjefA==
+tsparticles-core@^2.0.0-alpha.2:
+  version "2.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/tsparticles-core/-/tsparticles-core-2.0.0-alpha.2.tgz#1788ed7894a0e896df92098167424feaa0e65887"
+  integrity sha512-Icqlaz+rj+o7ITd0Q6DgQ3ggp6De4BKZMswQ2n3B1PsGSiGcG1wuP2fXi2DpUVKLDAr636Z8K6neLmCAhrCrKw==
   optionalDependencies:
     pathseg "^1.2.0"
 
