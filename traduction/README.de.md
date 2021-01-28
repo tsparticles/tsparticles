@@ -326,7 +326,7 @@ _Nicht klicken! NICHT KLICKEN! OH NEIN, ES BREITET SICH AUS!!!!_
 
 ## **_Optionen_**
 
-Alle verfügbaren Optionen findest du [hier](https://particles.js.org/interfaces/_options_interfaces_ioptions_.ioptions.html) 📖
+Alle verfügbaren Optionen findest du [hier](https://particles.js.org/docs/interfaces/_options_interfaces_ioptions_.ioptions.html) 📖
 
 ## Möchtest du es in Aktion sehen und ausprobieren?
 
@@ -375,7 +375,7 @@ tsParticles unterstützt jetzt einige individuelle Anpassungen 🥳.
 
 **Du kannst deine eigenen Plugins erstellen**
 
-_Lies mehr dazu [hier](https://particles.js.org/modules/_core_interfaces_iplugin_.html)...\_
+_Lies mehr dazu [hier](https://particles.js.org/docs/modules/_core_interfaces_iplugin_.html)...\_
 
 ---
 

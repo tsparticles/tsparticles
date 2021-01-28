@@ -311,7 +311,7 @@ Temukan contoh kode di [disini](https://github.com/matteobruni/tsparticles/wiki/
 
 ## **Pengaturan/Konfigurasi**
 
-Kamu dapat menemukan semua konfigurasi [disini](https://particles.js.org/interfaces/_options_interfaces_ioptions_.ioptions.html) 📖
+Kamu dapat menemukan semua konfigurasi [disini](https://particles.js.org/docs/interfaces/_options_interfaces_ioptions_.ioptions.html) 📖
 
 ## Ingin melihat dan mencobanya langsung?
 
@@ -357,7 +357,7 @@ tsParticles sekarang mendukung beberapa kustomisasi 🥳.
 
 **Kamu bisa membuat plugin mu sendiri**
 
-_Baca selengkapnya [disini](https://particles.js.org/modules/_core_interfaces_iplugin_.html)...\_
+_Baca selengkapnya [disini](https://particles.js.org/docs/modules/_core_interfaces_iplugin_.html)...\_
 
 ---
 

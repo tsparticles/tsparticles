@@ -315,7 +315,7 @@ You can find a sample config [here](https://github.com/matteobruni/tsparticles/w
 
 ## **_Options_**
 
-You can find all options available [here](https://particles.js.org/interfaces/_options_interfaces_ioptions_.ioptions.html) 📖
+You can find all options available [here](https://particles.js.org/docs/interfaces/_options_interfaces_ioptions_.ioptions.html) 📖
 
 ## Want to see it in action and try it?
 
@@ -361,7 +361,7 @@ tsParticles now supports some customizations 🥳.
 
 **You can create your own plugins**
 
-_Read more [here](https://particles.js.org/modules/_core_interfaces_iplugin_.html)..._
+_Read more [here](https://particles.js.org/docs/modules/_core_interfaces_iplugin_.html)..._
 
 ---
 
