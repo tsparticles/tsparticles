@@ -1,6 +1,6 @@
 try {
     console.log("Thank you for installing tsParticles.");
-    console.log("Remember to checkout the official website https://particles.matteobruni.it to explore some samples.");
+    console.log("Remember to checkout the official website https://particles.js.org to explore some samples.");
     console.log("You can find more samples on CodePen too: https://codepen.io/collection/DPOage");
     console.log("If you need documentation you can find it here: https://particles.js.org");
     console.log("Remember to leave a star on the tsParticles repository if you like the project and want to support it: https://github.com/matteobruni/tsparticles");

@@ -26,7 +26,7 @@ function App() {
                 </a>
                 <a
                     className="App-link"
-                    href="https://particles.matteobruni.it"
+                    href="https://particles.js.org"
                     target="_blank"
                     rel="noopener noreferrer"
                 >

@@ -65,7 +65,7 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "homepage": "https://particles.matteobruni.it/",
+  "homepage": "https://particles.js.org/",
   "funding": {
     "type": "github",
     "url": "https://github.com/sponsors/matteobruni"

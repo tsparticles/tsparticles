@@ -6,7 +6,7 @@ const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 const banner = `Author : Matteo Bruni - https://www.matteobruni.it
 MIT license: https://opensource.org/licenses/MIT
-Demo / Generator : https://particles.matteobruni.it/
+Demo / Generator : https://particles.js.org/
 GitHub : https://www.github.com/matteobruni/tsparticles
 How to use? : Check the GitHub README
 v${version}`;

@@ -1,4 +1,4 @@
-[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.matteobruni.it)
+[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.js.org)
 
 # preact-particles
 
@@ -175,7 +175,7 @@ class App extends Component {
 
 | container | object | Die Instanz des [Partikel-Containers](https://github.com/matteobruni/tsparticles/wiki/Particles-Container-class) |
 
-Finde die Konfiguration der Parameter [hier](https://particles.matteobruni.it).
+Finde die Konfiguration der Parameter [hier](https://particles.js.org).
 
 ### Errors
 
@@ -183,9 +183,9 @@ Sollten Fehler auftreten: `tsParticles` benutzt TypeScript `3.9.6`. Benutze also
 
 ## Demos
 
-Klicke [hier](https://particles.matteobruni.it) für die Demo-Webseite.
+Klicke [hier](https://particles.js.org) für die Demo-Webseite.
 
-<https://particles.matteobruni.it>
+<https://particles.js.org>
 
 [Hier](https://codepen.io/collection/DPOage) gibt es auch eine CodePen-Sammlung, die aktiv gepflegt und geupdated wird.
 
