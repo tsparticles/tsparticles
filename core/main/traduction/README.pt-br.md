@@ -1,4 +1,4 @@
-[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.matteobruni.it)
+[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.js.org)
 
 # tsParticles - TypeScript Particles
 
@@ -80,7 +80,7 @@ O `tsParticles` importado é a mesma instância que você tem quando está inclu
 
 Carregue tsParticles e configure as partículas:
 
-[![tsParticles demo](https://media.giphy.com/media/ftHwBpp3b0qNyCXRuu/giphy.gif)](https://particles.matteobruni.it)
+[![tsParticles demo](https://media.giphy.com/media/ftHwBpp3b0qNyCXRuu/giphy.gif)](https://particles.js.org)
 
 **index.html**
 
@@ -235,57 +235,57 @@ Você pode encontrar as instruções [aqui](https://github.com/matteobruni/tspar
 
 ## **_Demo / Gerador_**
 
-<https://particles.matteobruni.it/>
+<https://particles.js.org/>
 
-[![Particles demo](https://particles.matteobruni.it/images/demo.png?v=1.8.1)](https://particles.matteobruni.it/)
+[![Particles demo](https://particles.js.org/images/demo.png?v=1.8.1)](https://particles.js.org/)
 
 ---
 
 ### Caracteres como partículas
 
-[![Particles chars demo](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.matteobruni.it/#chars)
+[![Particles chars demo](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.js.org/#chars)
 
 ---
 
 ### Conexões com mouse hover
 
-[![Particles mouse connections demo](https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)](https://particles.matteobruni.it/#connect)
+[![Particles mouse connections demo](https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)](https://particles.js.org/#connect)
 
 ---
 
 ### Máscara poligonal
 
-[![tsParticles Polygon Mask demo](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.matteobruni.it/#polygonMask)
+[![tsParticles Polygon Mask demo](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.js.org/#polygonMask)
 
 ---
 
 ### Estrelas animadas
 
-[![Particles NASA demo](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.matteobruni.it/#nasa)
+[![Particles NASA demo](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.js.org/#nasa)
 
 ---
 
 ### Nyan cat voando em estrelas rolando
 
-[![Particles Nyan Cat demo](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.matteobruni.it/#nyancat2)
+[![Particles Nyan Cat demo](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.js.org/#nyancat2)
 
 ---
 
 ### Partículas de neve
 
-[![tsParticles Snow demo](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.matteobruni.it/#snow)
+[![tsParticles Snow demo](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.js.org/#snow)
 
 ---
 
 ### Partículas de Máscara de Background
 
-[![tsParticles Background Mask demo](https://media.giphy.com/media/dWraWgqInWFGWiOyRu/giphy.gif)](https://particles.matteobruni.it/#background)
+[![tsParticles Background Mask demo](https://media.giphy.com/media/dWraWgqInWFGWiOyRu/giphy.gif)](https://particles.js.org/#background)
 
 ---
 
 #### Partículas COVID-19 SARS-CoV-2
 
-[![tsParticles COVID-19 demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.matteobruni.it/#virus)
+[![tsParticles COVID-19 demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/#virus)
 
 _Não clique! Não clique! OH NÃO ESTÁ SE ESPALHANDO!!!!_
 
@@ -309,7 +309,7 @@ Eu criei uma coleção do tsParticles no [CodePen](https://codepen.io/collection
 
 De outra maneira tem o link da página da demo abaixo. Apenas clique/toque o Coronavirus abaixo, não tenha medo. **É seguro** 😷.
 
-[![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.matteobruni.it/#virus)
+[![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/#virus)
 
 Quer ver mais demos? Clone o repositório no seu computador e execute esses comandos
 
@@ -353,7 +353,7 @@ _Leia mais [aqui](https://github.com/matteobruni/tsparticles/wiki/Create-a-tsPar
 
 ### API Docs
 
-Documentação e referências de Desenvolvimento [aqui](https://particles.matteobruni.it/docs/) 📖
+Documentação e referências de Desenvolvimento [aqui](https://particles.js.org/docs/) 📖
 
 ---
 

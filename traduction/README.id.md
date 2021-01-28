@@ -1,4 +1,4 @@
-[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.matteobruni.it)
+[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.js.org)
 
 # tsParticles - TypeScript Particles
 
@@ -86,7 +86,7 @@ import { tsParticles } from "tsparticles";
 
 Muat dan konfigurasi _particles_ nya:
 
-[![tsParticles demo](https://media.giphy.com/media/ftHwBpp3b0qNyCXRuu/giphy.gif)](https://particles.matteobruni.it)
+[![tsParticles demo](https://media.giphy.com/media/ftHwBpp3b0qNyCXRuu/giphy.gif)](https://particles.js.org)
 
 **index.html**
 
@@ -245,57 +245,57 @@ Jika Kamu membuat beberapa desain template bagus dengan _ tsParticles _ jangan r
 
 ## **_Demo / Generator_**
 
-<https://particles.matteobruni.it/Samples>
+<https://particles.js.org/Samples>
 
-[![Particles demo](https://particles.matteobruni.it/images/demo.png?v=1.8.1)](https://particles.matteobruni.it/Samples)
+[![Particles demo](https://particles.js.org/images/demo.png?v=1.8.1)](https://particles.js.org/Samples)
 
 ---
 
 ### Characters as particles
 
-[![Particles chars demo](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.matteobruni.it/Samples#chars)
+[![Particles chars demo](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.js.org/Samples#chars)
 
 ---
 
 ### Mouse hover connections
 
-[![Particles mouse connections demo](https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)](https://particles.matteobruni.it/Samples#connect)
+[![Particles mouse connections demo](https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)](https://particles.js.org/Samples#connect)
 
 ---
 
 ### Polygon mask
 
-[![tsParticles Polygon Mask demo](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.matteobruni.it/Samples#polygonMask)
+[![tsParticles Polygon Mask demo](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.js.org/Samples#polygonMask)
 
 ---
 
 ### Animated stars
 
-[![Particles NASA demo](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.matteobruni.it/Samples#nasa)
+[![Particles NASA demo](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.js.org/Samples#nasa)
 
 ---
 
 ### Nyan cat flying on scrolling stars
 
-[![Particles Nyan Cat demo](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.matteobruni.it/Samples#nyancat2)
+[![Particles Nyan Cat demo](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.js.org/Samples#nyancat2)
 
 ---
 
 ### Snow particles
 
-[![tsParticles Snow demo](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.matteobruni.it/Samples#snow)
+[![tsParticles Snow demo](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.js.org/Samples#snow)
 
 ---
 
 ### Background Mask particles
 
-[![tsParticles Background Mask demo](https://media.giphy.com/media/dWraWgqInWFGWiOyRu/giphy.gif)](https://particles.matteobruni.it/Samples#background)
+[![tsParticles Background Mask demo](https://media.giphy.com/media/dWraWgqInWFGWiOyRu/giphy.gif)](https://particles.js.org/Samples#background)
 
 ---
 
 #### COVID-19 SARS-CoV-2 particles
 
-[![tsParticles COVID-19 demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.matteobruni.it/Samples#virus)
+[![tsParticles COVID-19 demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/Samples#virus)
 
 _JANGAN DISENTUH! JANGAN! OH TIDAK VIRUS NYA MENYEBAR!!!!_
 
@@ -319,7 +319,7 @@ Saya sedah membuat sebuah koleksi di [CodePen](https://codepen.io/collection/DPO
 
 Jika tidak, ada tautan halaman demo di bawah ini. Cukup klik / tap Coronavirus di bawah ini, jangan takut. **Ini aman** 😷.
 
-[![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.matteobruni.it/#virus)
+[![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/#virus)
 
 Ingin melihat lebih banyak demo? _Clone repository_ ini ke komputermu dan ikuti instruksi dibawah ini.
 
@@ -363,7 +363,7 @@ _Baca selengkapnya [disini](https://particles.js.org/docs/modules/_core_interfac
 
 ### API Docs
 
-Dokumentasi dan Referensi Pengembangan [here](https://particles.matteobruni.it/docs/) 📖
+Dokumentasi dan Referensi Pengembangan [here](https://particles.js.org/docs/) 📖
 
 ---
 

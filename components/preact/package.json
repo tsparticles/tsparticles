@@ -61,7 +61,7 @@
   },
   "author": "Matteo Bruni <matteo.bruni@me.com> (https://www.matteobruni.it)",
   "license": "MIT",
-  "homepage": "https://particles.matteobruni.it/",
+  "homepage": "https://particles.js.org/",
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.12.1",

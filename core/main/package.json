@@ -2,7 +2,7 @@
   "name": "tsparticles",
   "version": "1.18.11",
   "description": "Easily add particle animations to your website. Browser ready and with official React/Vue/Angular/jQuery/Preact components.",
-  "homepage": "https://particles.matteobruni.it/",
+  "homepage": "https://particles.js.org/",
   "scripts": {
     "prettify:src": "prettier --write ./src/",
     "prettify:tests": "prettier --write ./tests/",

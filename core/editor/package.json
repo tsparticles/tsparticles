@@ -12,7 +12,7 @@
     "wysiwyg"
   ],
   "author": "Matteo Bruni <ar3s@icloud.com>",
-  "homepage": "https://particles.matteobruni.it/",
+  "homepage": "https://particles.js.org/",
   "license": "MIT",
   "directories": {
     "dist": "dist"

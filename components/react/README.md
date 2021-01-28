@@ -1,4 +1,4 @@
-[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.matteobruni.it)
+[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.js.org)
 
 # react-tsparticles
 
@@ -147,7 +147,7 @@ class App extends Component {
 | canvasClassName | string | the class name of the canvas.                                                                                        |
 | container       | object | The instance of the [particles container](https://github.com/matteobruni/tsparticles/wiki/Particles-Container-class) |
 
-Find your parameters configuration [here](https://particles.matteobruni.it).
+Find your parameters configuration [here](https://particles.js.org).
 
 ### Errors
 
@@ -155,9 +155,9 @@ If you have typescript errors `tsParticles` uses TypeScript `3.9.6` so try insta
 
 ## Demos
 
-The demo website is [here](https://particles.matteobruni.it)
+The demo website is [here](https://particles.js.org)
 
-<https://particles.matteobruni.it>
+<https://particles.js.org>
 
 There's also a CodePen collection actively maintained and updated [here](https://codepen.io/collection/DPOage)
 
