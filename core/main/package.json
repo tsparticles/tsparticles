@@ -27,8 +27,7 @@
     "postversion": "git push && git push --tags",
     "prepack": "yarn build",
     "release:alpha": "yarn version --prerelease --preid alpha",
-    "release:beta": "yarn version --prerelease --preid beta",
-    "deploy:docs": "yarn build && node deploy.docs.js"
+    "release:beta": "yarn version --prerelease --preid beta"
   },
   "repository": {
     "type": "git",
@@ -112,7 +111,6 @@
     "copyfiles": "^2.4.0",
     "eslint": "^7.11.0",
     "eslint-config-prettier": "^6.13.0",
-    "gh-pages": "^3.1.0",
     "install": "^0.13.0",
     "mocha": "^8.2.0",
     "nyc": "^15.1.0",

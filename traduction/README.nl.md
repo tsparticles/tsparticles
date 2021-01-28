@@ -308,7 +308,7 @@ Je kan [hier](https://github.com/matteobruni/tsparticles/wiki/tsParticles-Sample
 
 ## **_Opties_**
 
-You can find all options available [here](https://particles.js.org/interfaces/_options_interfaces_ioptions_.ioptions.html) vinden 📖
+You can find all options available [here](https://particles.js.org/docs/interfaces/_options_interfaces_ioptions_.ioptions.html) vinden 📖
 
 ## Wil je dit in actie zien het uitproberen?
 
@@ -354,7 +354,7 @@ tsParticles ondersteund nu wat aanpassingen 🥳.
 
 **Je kan je eigen plugins maken**
 
-_Lees meer [hier](https://particles.js.org/modules/_core_interfaces_iplugin_.html)..._
+_Lees meer [hier](https://particles.js.org/docs/modules/_core_interfaces_iplugin_.html)..._
 
 ---
 

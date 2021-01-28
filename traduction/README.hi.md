@@ -312,7 +312,7 @@ _ क्लिक न करें! क्लिक न करें! ओह न
 
 ## **_विकल्प_**
 
-आप यहां उपलब्ध सभी विकल्प पा सकते हैं (https://particles.js.org/interfaces/_options_interfaces_ioptions_.ioptions.html) available
+आप यहां उपलब्ध सभी विकल्प पा सकते हैं (https://particles.js.org/docs/interfaces/_options_interfaces_ioptions_.ioptions.html) available
 
 ##इसे कार्रवाई में देखना चाहते हैं और इसे आज़माना चाहते हैं?
 
@@ -356,7 +356,7 @@ tsParticles अब कुछ अनुकूलन का समर्थन क
 
 **आप अपने खुद के प्लगइन्स बना सकते हैं**
 
-_Read more [here](https://particles.js.org/modules/_core_interfaces_iplugin_.html)..._
+_Read more [here](https://particles.js.org/docs/modules/_core_interfaces_iplugin_.html)..._
 
 ---
 

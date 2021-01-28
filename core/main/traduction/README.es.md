@@ -308,7 +308,7 @@ Puedes encontrar un ejemplo de configuración [aquí](https://github.com/matteob
 
 ## **_Opciones_**
 
-Puedes encontrar todas las opciones disponibles [aquí](https://particles.js.org/interfaces/_options_interfaces_ioptions_.ioptions.html) 📖
+Puedes encontrar todas las opciones disponibles [aquí](https://particles.js.org/docs/interfaces/_options_interfaces_ioptions_.ioptions.html) 📖
 
 ## ¿Quieres verlo en acción y probarlo?
 
@@ -354,7 +354,7 @@ tsParticles ahora soporta personalizaciones 🥳.
 
 **Puedes crear tus propios plugins**
 
-_Leé más [aquí](https://particles.js.org/modules/_core_interfaces_iplugin_.html)..._
+_Leé más [aquí](https://particles.js.org/docs/modules/_core_interfaces_iplugin_.html)..._
 
 ---
 
