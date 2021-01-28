@@ -1,4 +1,4 @@
-﻿@font-face {
+@font-face {
     font-family: Polya;
     src: url(https://cdn.matteobruni.it/fonts/Polya/Polya.otf);
 }
@@ -37,7 +37,7 @@ body {
 .github {
     bottom: 10px;
     right: 10px;
-    padding: 0px 12px 6px 12px;
+    padding: 0 12px 6px;
     position: fixed;
     border-radius: 10px;
     background: #fff;
