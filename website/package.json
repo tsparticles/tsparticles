@@ -5,8 +5,9 @@
   "description": "tsParticles Official Website",
   "main": "index.html",
   "scripts": {
+    "clear:cache": "rimraf -f ./node_modules/.cache",
     "clear:docs": "rimraf -f ./docs",
-    "deploy": "yarn clear:docs && lerna run build:docs && node deploy.js"
+    "deploy": "yarn clear:docs && lerna run build:docs && yarn clear:cache && node deploy.js"
   },
   "repository": {
     "type": "git",
