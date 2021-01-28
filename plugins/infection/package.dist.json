@@ -2,7 +2,7 @@
   "name": "tsparticles-plugin-infection",
   "version": "2.0.0-alpha.2",
   "description": "tsParticles infection plugin",
-  "homepage": "https://particles.matteobruni.it/",
+  "homepage": "https://particles.js.org/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",

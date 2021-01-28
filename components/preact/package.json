@@ -61,7 +61,7 @@
   },
   "author": "Matteo Bruni <matteo.bruni@me.com> (https://www.matteobruni.it)",
   "license": "MIT",
-  "homepage": "https://particles.matteobruni.it/",
+  "homepage": "https://particles.js.org/",
   "funding": {
     "type": "github",
     "url": "https://github.com/sponsors/matteobruni"
