@@ -2,7 +2,7 @@
   "name": "ng-particles",
   "version": "2.1.11",
   "description": "tsParticles official Angular component",
-  "homepage": "https://particles.matteobruni.it/",
+  "homepage": "https://particles.js.org/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",

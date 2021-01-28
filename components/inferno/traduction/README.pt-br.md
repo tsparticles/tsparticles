@@ -1,4 +1,4 @@
-[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.matteobruni.it)
+[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.js.org)
 
 # inferno-particles
 
@@ -128,7 +128,7 @@ class App extends Component {
 | canvasClassName | string | Nome da classe do canvas.                                                                                        |
 | container       | object | Instância do [particles container](https://github.com/matteobruni/tsparticles/wiki/Particles-Container-class) |
 
-Veja as configurações dos parâmetros [aqui](https://particles.matteobruni.it).
+Veja as configurações dos parâmetros [aqui](https://particles.js.org).
 
 ### Erros
 
@@ -136,9 +136,9 @@ Caso você tenha algum erro de typescript, `tsParticles` usa TypeScript `3.9.6` 
 
 ## Demos
 
-O website com a demo está [aqui](https://particles.matteobruni.it)
+O website com a demo está [aqui](https://particles.js.org)
 
-<https://particles.matteobruni.it>
+<https://particles.js.org>
 
 Também existe uma coleção no CodePen ativamente mantida e atualizada [aqui](https://codepen.io/collection/DPOage)
 

@@ -54,7 +54,7 @@
 	],
 	"author": "Matteo Bruni <matteo.bruni@me.com> (https://www.matteobruni.it)",
 	"license": "MIT",
-	"homepage": "https://particles.matteobruni.it/",
+	"homepage": "https://particles.js.org/",
 	"dependencies": {
 		"lodash": "^4.17.20",
 		"tsparticles": "^1.18.11"

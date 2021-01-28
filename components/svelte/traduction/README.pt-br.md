@@ -1,4 +1,4 @@
-[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.matteobruni.it)
+[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.js.org)
 
 # svelte-particles
 
@@ -105,9 +105,9 @@ Você pode ver um exemplo abaixo:
 
 ## Demos
 
-O website com a demo está [aqui](https://particles.matteobruni.it)
+O website com a demo está [aqui](https://particles.js.org)
 
-<https://particles.matteobruni.it>
+<https://particles.js.org>
 
 Também existe uma coleção no CodePen ativamente mantida e atualizada [aqui](https://codepen.io/collection/DPOage)
 
