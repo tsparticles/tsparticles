@@ -1,4 +1,4 @@
-[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.matteobruni.it)
+[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.js.org)
 
 # tsParticles - Частицы на TypeScript
 
@@ -82,7 +82,7 @@ import { tsParticles } from "tsparticles";
 
 Загрузите tsParticles и настройте частицы:
 
-[![Демо tsParticles](https://media.giphy.com/media/ftHwBpp3b0qNyCXRuu/giphy.gif)](https://particles.matteobruni.it)
+[![Демо tsParticles](https://media.giphy.com/media/ftHwBpp3b0qNyCXRuu/giphy.gif)](https://particles.js.org)
 
 **index.html**
 
@@ -241,57 +241,57 @@ particles.pause();
 
 ## **Демо / Генератор**
 
-<https://particles.matteobruni.it/Samples>
+<https://particles.js.org/Samples>
 
-[![Демо частиц](https://particles.matteobruni.it/images/demo.png?v=1.8.1)](https://particles.matteobruni.it/Samples)
+[![Демо частиц](https://particles.js.org/images/demo.png?v=1.8.1)](https://particles.js.org/Samples)
 
 ---
 
 ### Символы в качестве частиц
 
-[![Демо частиц в виде символов](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.matteobruni.it/Samples#chars)
+[![Демо частиц в виде символов](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.js.org/Samples#chars)
 
 ---
 
 ### Соединения при наведении мыши
 
-[![Демо соединения частиц при наведении мыши](https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)](https://particles.matteobruni.it/Samples#connect)
+[![Демо соединения частиц при наведении мыши](https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)](https://particles.js.org/Samples#connect)
 
 ---
 
 ### Многоугольная маска
 
-[![Демо применения многоугольной маски tsParticles](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.matteobruni.it/Samples#polygonMask)
+[![Демо применения многоугольной маски tsParticles](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.js.org/Samples#polygonMask)
 
 ---
 
 ### Анимация звезд
 
-[![Демо частиц для NASA](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.matteobruni.it/Samples#nasa)
+[![Демо частиц для NASA](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.js.org/Samples#nasa)
 
 ---
 
 ### Летящая Nyan cat с анимацией звезд
 
-[![Демо частиц и Nyan Cat](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.matteobruni.it/Samples#nyancat2)
+[![Демо частиц и Nyan Cat](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.js.org/Samples#nyancat2)
 
 ---
 
 ### Снежинки
 
-[![Демо снежинок на tsParticles](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.matteobruni.it/Samples#snow)
+[![Демо снежинок на tsParticles](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.js.org/Samples#snow)
 
 ---
 
 ### Частицы в виде фоновой маски
 
-[![Демо фоновой маски в tsParticles](https://media.giphy.com/media/dWraWgqInWFGWiOyRu/giphy.gif)](https://particles.matteobruni.it/Samples#background)
+[![Демо фоновой маски в tsParticles](https://media.giphy.com/media/dWraWgqInWFGWiOyRu/giphy.gif)](https://particles.js.org/Samples#background)
 
 ---
 
 #### Частицы вида COVID-19 SARS-CoV-2
 
-[![tsParticles COVID-19 demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.matteobruni.it/Samples#virus)
+[![tsParticles COVID-19 demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/Samples#virus)
 
 _Не нажимайте! НЕ НАЖИМАЙТЕ! О НЕТ, ОНО РАСПРОСТРАНЯЕТСЯ!!!!_
 
@@ -307,7 +307,7 @@ _Не нажимайте! НЕ НАЖИМАЙТЕ! О НЕТ, ОНО РАСПР�
 
 ## **_Параметры_**
 
-[Здесь](https://particles.js.org/interfaces/_options_interfaces_ioptions_.ioptions.html) вы  сможете найти все доступные варианты 📖
+[Здесь](https://particles.js.org/docs/interfaces/_options_interfaces_ioptions_.ioptions.html) вы  сможете найти все доступные варианты 📖
 
 ## Хотите увидеть библиотеку в действии и попробовать сами?
 
@@ -315,7 +315,7 @@ _Не нажимайте! НЕ НАЖИМАЙТЕ! О НЕТ, ОНО РАСПР�
 
 В ином случае есть ссылка на страницу с демо ниже. Просто нажмите / коснитесь на демо вируса ниже и не бойтесь. **Это безопасно** 😷.
 
-[![tsParticles демо](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.matteobruni.it/#virus)
+[![tsParticles демо](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/#virus)
 
 Хотите посмотреть больше примеров? Склонируйте репозиторий к себе компьютер и следуйте этим инструкциям
 
@@ -353,13 +353,13 @@ tsParticles поддерживает дополнительные настрой
 
 **Вы можете создавать свои собственные плагины**
 
-_Подробности [здесь](https://particles.js.org/modules/_core_interfaces_iplugin_.html)...\_
+_Подробности [здесь](https://particles.js.org/docs/modules/_core_interfaces_iplugin_.html)...\_
 
 ---
 
 ### API документация
 
-[Здесь](https://particles.matteobruni.it/docs/) можно найти ссылки на документацию и разработки 📖
+[Здесь](https://particles.js.org/docs/) можно найти ссылки на документацию и разработки 📖
 
 ---
 

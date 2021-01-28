@@ -7,7 +7,7 @@
     <authors>Matteo Bruni</authors>
     <owners>Matteo Bruni</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <projectUrl>https://particles.matteobruni.it/</projectUrl>
+    <projectUrl>https://particles.js.org/</projectUrl>
     <description>Porting of Vincent Garreau's particles.js, converted in TypeScript.</description>
   </metadata>
   <files>

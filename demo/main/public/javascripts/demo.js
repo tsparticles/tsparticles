@@ -296,7 +296,7 @@
                 const inputData = document.getElementById("code-pen-data");
                 const particlesContainer = document.getElementById('tsparticles');
                 const data = {
-                    html: `<!-- tsParticles - https://particles.matteobruni.it - https://github.com/matteobruni/tsparticles -->
+                    html: `<!-- tsParticles - https://particles.js.org - https://github.com/matteobruni/tsparticles -->
 <div id="tsparticles"></div>`,
                     css: `/* ---- reset ---- */
 body {
@@ -322,7 +322,7 @@ canvas {
                     js: `tsParticles.load("tsparticles", ${JSON.stringify(container.fullOptions)});`,
                     js_external: 'https://cdn.jsdelivr.net/npm/tsparticles@1.10.4/dist/tsparticles.min.js',
                     title: 'tsParticles example',
-                    description: 'This pen was created with tsParticles from https://particles.matteobruni.it',
+                    description: 'This pen was created with tsParticles from https://particles.js.org',
                     tags: "tsparticles, javascript, typescript, design, animation",
                     editors: "001"
                 }

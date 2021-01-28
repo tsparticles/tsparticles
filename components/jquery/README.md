@@ -1,4 +1,4 @@
-[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.matteobruni.it)
+[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.js.org)
 
 # jquery-particles
 
@@ -131,9 +131,9 @@ $("#tsparticles")
 
 ## Demos
 
-The demo website is [here](https://particles.matteobruni.it)
+The demo website is [here](https://particles.js.org)
 
-<https://particles.matteobruni.it>
+<https://particles.js.org>
 
 There's also a CodePen collection actively maintained and updated [here](https://codepen.io/collection/DPOage)
 

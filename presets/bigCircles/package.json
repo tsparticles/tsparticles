@@ -2,7 +2,7 @@
   "name": "tsparticles-preset-big-circles",
   "version": "2.0.0-alpha.2",
   "description": "tsParticles big circles preset",
-  "homepage": "https://particles.matteobruni.it/",
+  "homepage": "https://particles.js.org/",
   "scripts": {
     "prettify:src": "prettier --write ./src/",
     "prettify:readme": "prettier --write ./README.md",

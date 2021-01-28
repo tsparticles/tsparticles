@@ -1,4 +1,4 @@
-[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.matteobruni.it)
+[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.js.org)
 
 # tsParticles - Paticulas TypeScript 
 
@@ -82,7 +82,7 @@ El `tsParticles` importado es la misma instancia que tienes cuando incluyes el s
 
 Carga tsParticles y configura las particulas:
 
-[![tsParticles demo](https://media.giphy.com/media/ftHwBpp3b0qNyCXRuu/giphy.gif)](https://particles.matteobruni.it)
+[![tsParticles demo](https://media.giphy.com/media/ftHwBpp3b0qNyCXRuu/giphy.gif)](https://particles.js.org)
 
 **index.html**
 
@@ -249,57 +249,57 @@ Si creas algun buen diseño con *tsParticles* eres libre de crear un pull reques
 
 ## **_Demo / Generator_**
 
-<https://particles.matteobruni.it/Samples>
+<https://particles.js.org/Samples>
 
-[![Particles demo](https://particles.matteobruni.it/images/demo.png?v=1.8.1)](https://particles.matteobruni.it/Samples)
+[![Particles demo](https://particles.js.org/images/demo.png?v=1.8.1)](https://particles.js.org/Samples)
 
 ---
 
 ### Caracteres como particulas
 
-[![Particles chars demo](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.matteobruni.it/Samples#chars)
+[![Particles chars demo](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.js.org/Samples#chars)
 
 ---
 
 ### Mouse hover connections
 
-[![Particles mouse connections demo](https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)](https://particles.matteobruni.it/Samples#connect)
+[![Particles mouse connections demo](https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)](https://particles.js.org/Samples#connect)
 
 ---
 
 ### Máscara Polígono 
 
-[![tsParticles Polygon Mask demo](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.matteobruni.it/Samples#polygonMask)
+[![tsParticles Polygon Mask demo](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.js.org/Samples#polygonMask)
 
 ---
 
 ### Estrellas animadas
 
-[![Particles NASA demo](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.matteobruni.it/Samples#nasa)
+[![Particles NASA demo](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.js.org/Samples#nasa)
 
 ---
 
 ### Nyan cat volando sobre estrellas en movimiento
 
-[![Particles Nyan Cat demo](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.matteobruni.it/Samples#nyancat2)
+[![Particles Nyan Cat demo](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.js.org/Samples#nyancat2)
 
 ---
 
 ### Partículas de Nieve
 
-[![tsParticles Snow demo](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.matteobruni.it/Samples#snow)
+[![tsParticles Snow demo](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.js.org/Samples#snow)
 
 ---
 
 ### Partículas de máscara de Backgroun
 
-[![tsParticles Background Mask demo](https://media.giphy.com/media/dWraWgqInWFGWiOyRu/giphy.gif)](https://particles.matteobruni.it/Samples#background)
+[![tsParticles Background Mask demo](https://media.giphy.com/media/dWraWgqInWFGWiOyRu/giphy.gif)](https://particles.js.org/Samples#background)
 
 ---
 
 #### COVID-19 SARS-CoV-2 partículas
 
-[![tsParticles COVID-19 demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.matteobruni.it/Samples#virus)
+[![tsParticles COVID-19 demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/Samples#virus)
 
 _No hagas clic! NO HAGAS CLIC! OH NO SE ESTÁ PROPAGANDO!!!!_
 
@@ -315,7 +315,7 @@ Puede encontrar una configuración de ejemplo [aqui](https://github.com/matteobr
 
 ## **_Opciones_**
 
-Puedes encontrar todas las opciones disponibles [aqui](https://particles.js.org/interfaces/_options_interfaces_ioptions_.ioptions.html) 📖
+Puedes encontrar todas las opciones disponibles [aqui](https://particles.js.org/docs/interfaces/_options_interfaces_ioptions_.ioptions.html) 📖
 
 ## ¿Quieres verlo en acción y probarlo?
 
@@ -323,7 +323,7 @@ He creado una colleción de tsParticles en [CodePen](https://codepen.io/collecti
 
 De lo contrario, está el enlace de la página de demostración a continuación. Sol haz clic/tap sobre el Coronavirus abajo, no te asustes. **Es seguro** 😷.
 
-[![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.matteobruni.it/#virus)
+[![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/#virus)
 
 ¿Quieres ver más demos? Clona el repositorio en tu ordenador y sigue estas instrucciones
 
@@ -361,13 +361,13 @@ tsParticles ahora soporta algunas personalizaciones 🥳.
 
 **Puedes crear tus propios plugins**
 
-_Lee más [aqui](https://particles.js.org/modules/_core_interfaces_iplugin_.html)..._
+_Lee más [aqui](https://particles.js.org/docs/modules/_core_interfaces_iplugin_.html)..._
 
 ---
 
 ### API Docs
 
-Documentación y Desarrollo referencias [aqui](https://particles.matteobruni.it/docs/) 📖
+Documentación y Desarrollo referencias [aqui](https://particles.js.org/docs/) 📖
 
 ---
 
