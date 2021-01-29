@@ -14,9 +14,9 @@
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
     "@octokit/core": "^3.2.4",
+    "fs-extra": "^9.0.1",
     "husky": "^4.3.0",
-    "lerna": "^3.22.1",
-    "fs-extra": "^9.0.1"
+    "lerna": "^3.22.1"
   },
   "husky": {
     "hooks": {

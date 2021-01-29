@@ -1,13 +1,13 @@
 {
   "name": "tsparticles-website",
-  "version": "1.18.11",
+  "version": "2.0.0-alpha.2",
   "private": true,
   "description": "tsParticles Official Website",
   "main": "index.html",
   "scripts": {
     "clear:cache": "rimraf -f ./node_modules/.cache",
     "clear:docs": "rimraf -f ./docs",
-    "deploy": "yarn clear:docs && lerna run build:docs && yarn clear:cache && node deploy.js"
+    "deploy": "echo yarn clear:docs && lerna run build:docs && yarn clear:cache && node deploy.js"
   },
   "repository": {
     "type": "git",
