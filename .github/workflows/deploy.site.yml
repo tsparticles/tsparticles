@@ -1,13 +1,11 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI
+name: Deploy Site
 
 on:
   push:
-    branches: [ master, staging, dev ]
-  pull_request:
-    branches: [ master, staging, dev  ]
+    branches: [ master ]
 
 jobs:
   build:
@@ -16,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x]
+        node-version: [14.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -27,9 +25,4 @@ jobs:
       - run: yarn install
       - run: npx lerna bootstrap
       - run: npx lerna run build
-      #- run: lerna test
-      #- name: Codacy Coverage Reporter
-      #  uses: codacy/codacy-coverage-reporter-action@0.2.0
-      #  with:
-      #    project-token: ${{ secrets.CodacyCoverageToken }}
-      #    coverage-reports: coverage/lcov.info
+      - run: npx lerna run --scope tsparticles-website deploy

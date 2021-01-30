@@ -32,35 +32,35 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/object-gui@1.0.11/dist/css/object-gui.min.css"
           integrity="sha256-qPg70ikwqwc6oHBUkTvAnpYVvPFs+XsxjMNjhiBBUjk=" crossorigin="anonymous">
 
-    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <link href="css/main.min.css" rel="stylesheet" type="text/css">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161253125-1"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
+      window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      gtag("js", new Date());
+
+      gtag("config", "UA-161253125-1", {
+        "custom_map": {
+          "dimension1": "dimension_codepen_data",
+          "dimension2": "dimension_editor_data",
+          "dimension3": "dimension_editor_error",
+          "dimension4": "dimension_editor_mode",
+          "dimension5": "dimension_particles_export_config",
+          "dimension6": "dimension_new_preset",
+          "dimension7": "dimension_old_preset",
+          "dimension8": "dimension_status",
+          "dimension9": "dimension_particles_options"
         }
+      });
 
-        gtag('js', new Date());
-
-        gtag('config', 'UA-161253125-1', {
-            'custom_map': {
-                'dimension1': 'dimension_codepen_data',
-                'dimension2': 'dimension_editor_data',
-                'dimension3': 'dimension_editor_error',
-                'dimension4': 'dimension_editor_mode',
-                'dimension5': 'dimension_particles_export_config',
-                'dimension6': 'dimension_new_preset',
-                'dimension7': 'dimension_old_preset',
-                'dimension8': 'dimension_status',
-                'dimension9': 'dimension_particles_options'
-            }
-        });
-
-        gtag('config', 'AW-1021008757');
-        gtag('event', 'conversion', {'send_to': 'AW-1021008757/3t7QCNqulswBEPW27eYD'});
+      gtag("config", "AW-1021008757");
+      gtag("event", "conversion", { "send_to": "AW-1021008757/3t7QCNqulswBEPW27eYD" });
     </script>
 </head>
 <body>
@@ -259,125 +259,128 @@
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-editor@1.18.11/dist/tsparticles.editor.min.js"
         integrity="sha256-+M9wmsGo3kS6MOoY2zXrLdF/8YLhQSwIgBc+2uuSMbI=" crossorigin="anonymous"></script>
 <script type="text/javascript">
-    hljs.initHighlightingOnLoad();
+  hljs.initHighlightingOnLoad();
 </script>
 
 <script type="text/javascript">
-    tsParticles.load("tsparticles", {
-        background: {
-            color: "#000"
-        },
-        detectRetina: true,
-        fpsLimit: 60,
-        interactivity: {
-            detectsOn: "window",
-            events: {
-                onHover: {
-                    mode: "trail",
-                    enable: true
-                }
-            },
-            modes: {
-                trail: {
-                    delay: 0.005,
-                    quantity: 5,
-                    particles: {
-                        color: {
-                            value: "#ff0000",
-                            animation: {
-                                enable: true,
-                                speed: 400,
-                                sync: true
-                            }
-                        },
-                        collisions: {
-                            enable: false
-                        },
-                        links: {
-                            enable: false
-                        },
-                        move: {
-                            outMode: "destroy",
-                            speed: 5
-                        },
-                        size: {
-                            value: 5,
-                            animation: {
-                                enable: true,
-                                speed: 5,
-                                minimumValue: 1,
-                                sync: true,
-                                startValue: "min",
-                                destroy: "max"
-                            }
-                        }
-                    }
-                }
-            },
-            resize: true
-        },
-        motion: {
-            reduce: {
-                value: true
-            }
-        },
-        particles: {
+  tsParticles.load("tsparticles", {
+    background: {
+      color: "#000"
+    },
+    backgroundMode: {
+      enable: true
+    },
+    detectRetina: true,
+    fpsLimit: 60,
+    interactivity: {
+      detectsOn: "window",
+      events: {
+        onHover: {
+          mode: "trail",
+          enable: true
+        }
+      },
+      modes: {
+        trail: {
+          delay: 0.005,
+          quantity: 5,
+          particles: {
             color: {
-                animation: {
-                    enable: true,
-                    sync: false,
-                    speed: 50
-                },
-                value: "#f00"
-            },
-            links: {
-                color: "random",
-                enable: true
+              value: "#ff0000",
+              animation: {
+                enable: true,
+                speed: 400,
+                sync: true
+              }
             },
             collisions: {
-                enable: true,
+              enable: false
+            },
+            links: {
+              enable: false
             },
             move: {
-                enable: true
-            },
-            number: {
-                density: {
-                    enable: true
-                }
-            },
-            opacity: {
-                animation: {
-                    enable: true,
-                    minimumValue: 0.3,
-                    speed: 0.5
-                },
-                value: 0.8,
-                random: {
-                    enable: true,
-                    minimumValue: 0.3
-                }
+              outMode: "destroy",
+              speed: 5
             },
             size: {
-                animation: {
-                    enable: true,
-                    minimumValue: 1,
-                    speed: 3
-                },
-                value: 3,
-                random: {
-                    enable: true,
-                    minimumValue: 1
-                }
+              value: 5,
+              animation: {
+                enable: true,
+                speed: 5,
+                minimumValue: 1,
+                sync: true,
+                startValue: "min",
+                destroy: "max"
+              }
             }
+          }
         }
-    }).then((container) => {
-        showEditor(container).top().right().theme("neu-dark");
+      },
+      resize: true
+    },
+    motion: {
+      reduce: {
+        value: true
+      }
+    },
+    particles: {
+      color: {
+        animation: {
+          enable: true,
+          sync: false,
+          speed: 50
+        },
+        value: "#f00"
+      },
+      links: {
+        color: "random",
+        enable: true
+      },
+      collisions: {
+        enable: true
+      },
+      move: {
+        enable: true
+      },
+      number: {
+        density: {
+          enable: true
+        }
+      },
+      opacity: {
+        animation: {
+          enable: true,
+          minimumValue: 0.3,
+          speed: 0.5
+        },
+        value: 0.8,
+        random: {
+          enable: true,
+          minimumValue: 0.3
+        }
+      },
+      size: {
+        animation: {
+          enable: true,
+          minimumValue: 1,
+          speed: 3
+        },
+        value: 3,
+        random: {
+          enable: true,
+          minimumValue: 1
+        }
+      }
+    }
+  }).then((container) => {
+    showEditor(container).top().right().theme("neu-dark");
 
-        const editor = document.querySelector("#p_tsparticles_editor");
+    const editor = document.querySelector("#p_tsparticles_editor");
 
-        editor.classList.add("d-md-block");
-        editor.classList.add("d-none");
-    });
+    editor.classList.add("d-md-block");
+    editor.classList.add("d-none");
+  });
 </script>
 </body>
 </html>

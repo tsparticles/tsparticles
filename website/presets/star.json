@@ -1,4 +1,8 @@
 {
+  "backgroundMode": {
+    "enable": true,
+    "zIndex": 1
+  },
   "particles": {
     "number": {
       "value": 10,
@@ -117,12 +121,11 @@
     }
   },
   "retina_detect": true,
-  "config_demo": {
-    "hide_card": false,
-    "background_color": "#111",
-    "background_image": "",
-    "background_position": "50% 50%",
-    "background_repeat": "no-repeat",
-    "background_size": "cover"
+  "background": {
+    "color": "#111",
+    "image": "",
+    "position": "50% 50%",
+    "repeat": "no-repeat",
+    "size": "cover"
   }
 }
