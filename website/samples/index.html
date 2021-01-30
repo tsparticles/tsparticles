@@ -28,35 +28,35 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsoneditor@8.6.3/dist/jsoneditor.min.css"
           integrity="sha256-thQmdfrg82/N5u9ybMxam1RKdSfaxOPCgl5q9AI/mDI=" crossorigin="anonymous">
 
-    <link href="../css/main.css" rel="stylesheet" type="text/css">
+    <link href="../css/main.min.css" rel="stylesheet" type="text/css">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161253125-1"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
+      window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      gtag("js", new Date());
+
+      gtag("config", "UA-161253125-1", {
+        "custom_map": {
+          "dimension1": "dimension_codepen_data",
+          "dimension2": "dimension_editor_data",
+          "dimension3": "dimension_editor_error",
+          "dimension4": "dimension_editor_mode",
+          "dimension5": "dimension_particles_export_config",
+          "dimension6": "dimension_new_preset",
+          "dimension7": "dimension_old_preset",
+          "dimension8": "dimension_status",
+          "dimension9": "dimension_particles_options"
         }
+      });
 
-        gtag('js', new Date());
-
-        gtag('config', 'UA-161253125-1', {
-            'custom_map': {
-                'dimension1': 'dimension_codepen_data',
-                'dimension2': 'dimension_editor_data',
-                'dimension3': 'dimension_editor_error',
-                'dimension4': 'dimension_editor_mode',
-                'dimension5': 'dimension_particles_export_config',
-                'dimension6': 'dimension_new_preset',
-                'dimension7': 'dimension_old_preset',
-                'dimension8': 'dimension_status',
-                'dimension9': 'dimension_particles_options'
-            }
-        });
-
-        gtag('config', 'AW-1021008757');
-        gtag('event', 'conversion', {'send_to': 'AW-1021008757/3t7QCNqulswBEPW27eYD'});
+      gtag("config", "AW-1021008757");
+      gtag("event", "conversion", { "send_to": "AW-1021008757/3t7QCNqulswBEPW27eYD" });
     </script>
 </head>
 <body>
@@ -168,7 +168,8 @@
         </nav>
     </header>
     <div class="row m-0 h-100">
-        <div class="col-xxl-3 col-xl-4 col-md-5 p-0 d-md-block d-none p-0 h-100" id="sidebar" style="overflow: auto;">
+        <div class="col-xxl-3 col-xl-4 col-md-5 p-0 d-md-block d-none p-0 h-100" id="sidebar"
+             style="overflow: auto; z-index: 100">
             <div class="row m-0 p-1">
                 <div class="col p-0">
                     <div class="btn-group w-100">
@@ -356,8 +357,8 @@
         integrity="sha256-NP9NujdEzS5m4ZxvNqkcbxyHB0dTRy9hG13RwTVBGwo=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/jsoneditor@8.6.3/dist/jsoneditor.min.js"
         integrity="sha256-iha/QQwSuta8sBMrJ7j9cR7WF/duYY3RmJy+1JIYWjU=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.115.0/examples/js/libs/stats.min.js"
-        integrity="sha256-scZlLg0QNRnJIByqrB0ZBkso5mTmVb5fXGwBZMGZVgA=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/stats.ts@1.1.0/dist/stats.min.js"
+        integrity="sha256-WPj1kJMqFC8e1B4yBtOJ3OPV31gGsJydT6D4Dg6JMww=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/pathseg@1.2.0/pathseg.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"
         integrity="sha256-ur/YlHMU96MxHEsy3fHGszZHas7NzH4RQlD4tDVvFhw=" crossorigin="anonymous"></script>
@@ -369,6 +370,6 @@
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-basic@1.3.8/dist/tsparticles.preset.basic.min.js"
         integrity="sha256-hMhsY14LqpA22oKaMaWygAfoCj1t2+6O6YnpNtJTFiQ=" crossorigin="anonymous"></script>
 
-<script src="../js/demo.js"></script>
+<script src="../js/demo.min.js"></script>
 </body>
 </html>

@@ -1,4 +1,15 @@
 {
+  "background": {
+    "color": "#0d47a1",
+    "image": "",
+    "position": "50% 50%",
+    "repeat": "no-repeat",
+    "size": "cover"
+  },
+  "backgroundMode": {
+    "enable": true,
+    "zIndex": 1
+  },
   "particles": {
     "number": {
       "value": 80,
@@ -124,13 +135,5 @@
     }
   },
   "fpsLimit": 30,
-  "retina_detect": true,
-  "config_demo": {
-    "hide_card": false,
-    "background_color": "#0d47a1",
-    "background_image": "",
-    "background_position": "50% 50%",
-    "background_repeat": "no-repeat",
-    "background_size": "cover"
-  }
+  "retina_detect": true
 }
