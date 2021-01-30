@@ -1481,14 +1481,6 @@ jmespath@^0.15.0:
   resolved "https://registry.yarnpkg.com/jmespath/-/jmespath-0.15.0.tgz#a3f222a9aae9f966f5d27c796510e28091764217"
   integrity sha1-o/Iiqarp+Wb10nx5ZRDigJF2Qhc=
 
-jquery-particles@^1.19.0-alpha.5:
-  version "1.19.0-alpha.5"
-  resolved "https://registry.yarnpkg.com/jquery-particles/-/jquery-particles-1.19.0-alpha.5.tgz#15e49dc2979948623f5b9150a0519702ec6cd5b3"
-  integrity sha512-7La3Nl1Syh3asAyQrE/onsZ3CbC4gi3lLu7o5UesI/4ztLbS0McN+YVa9/cZEWoQVIeHrX+hllGpVIP/uv6KiA==
-  dependencies:
-    jquery "^3.5.1"
-    tsparticles "^1.19.0-alpha.5"
-
 jquery@^3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"
@@ -1734,11 +1726,6 @@ path-type@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
-
-pathseg@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/pathseg/-/pathseg-1.2.0.tgz#22af051e28037671e7799e296fe96c5dcbe53acd"
-  integrity sha512-+pQS7lTaoVIXhaCW7R3Wd/165APzZHWzYVqe7dxzdupxQwebgpBaCmf0/XZwmoA/rkDq3qvzO0qv4d5oFVrBRw==
 
 picomatch@^2.0.5, picomatch@^2.2.1:
   version "2.2.2"
@@ -2236,20 +2223,6 @@ tslib@^1.8.1:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
-
-tsparticles-preset-links@^1.4.0-alpha.5:
-  version "1.4.0-alpha.5"
-  resolved "https://registry.yarnpkg.com/tsparticles-preset-links/-/tsparticles-preset-links-1.4.0-alpha.5.tgz#f9f64fd45e6f7ab40ffc5ba936829cb076b6c8f6"
-  integrity sha512-T1943Jn7X4GC5A97diC+H3frzcqHH8eYwG2qJLXelk+J+CHDKuMHoq64bz+cTVtVHF9XTMHUlRBRw+aAhzvTNQ==
-  dependencies:
-    tsparticles "^1.19.0-alpha.5"
-
-tsparticles@^1.19.0-alpha.5:
-  version "1.19.0-alpha.5"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.19.0-alpha.5.tgz#87ccc0884350cfa1536a5ce7e0b0b3dc5a48afd8"
-  integrity sha512-Or11usaw6aM7a3WEcRnBGGUbAIAsyQSlhmpUbHCF3TzEqIdGcVLrS6rxomehM8b8MAGMfsrUSg8ANCGhenK2vw==
-  optionalDependencies:
-    pathseg "^1.2.0"
 
 tsutils@^3.17.1:
   version "3.17.1"
