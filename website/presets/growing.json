@@ -1,4 +1,8 @@
 ﻿{
+  "backgroundMode": {
+    "enable": true,
+    "zIndex": 1
+  },
   "fpsLimit": 60,
   "emitters": {
     "direction": "top",

@@ -1,4 +1,8 @@
 {
+  "backgroundMode": {
+    "enable": true,
+    "zIndex": 1
+  },
   "particles": {
     "number": {
       "value": 80,

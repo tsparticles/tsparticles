@@ -1,4 +1,8 @@
 {
+  "backgroundMode": {
+    "enable": true,
+    "zIndex": 1
+  },
   "detectRetina": false,
   "fpsLimit": 30,
   "interactivity": {
