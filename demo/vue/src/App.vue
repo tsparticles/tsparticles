@@ -7,8 +7,9 @@
 
 <script lang="ts">
 import { Vue } from "vue-property-decorator";
-import { Container } from "tsparticles-core";
-import { ISourceOptions, Main } from "tsparticles";
+import type { Container } from "tsparticles-core";
+import type { ISourceOptions, Main } from "tsparticles-core";
+import { loadFull } from "tsparticles";
 import { loadPreset } from "tsparticles-preset-big-circles";
 
 export default class App extends Vue {
@@ -17,6 +18,7 @@ export default class App extends Vue {
   };
 
   private particlesInit: (tsParticles: Main) => void = (tsParticles => {
+    loadFull(tsParticles);
     loadPreset(tsParticles);
   });
 

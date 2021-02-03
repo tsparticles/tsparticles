@@ -1,14 +1,15 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png"/>
   <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-  <Particles id="tsparticles" :options="options" :particlesInit="particlesInit" :particlesLoaded="particlesLoaded" />
+  <Particles id="tsparticles" :options="options" :particlesInit="particlesInit" :particlesLoaded="particlesLoaded"/>
 
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import HelloWorld from "./components/HelloWorld.vue";
-import { Container, ISourceOptions, Main, RecursivePartial } from "tsparticles";
+import type { Container, ISourceOptions, Main, RecursivePartial } from "tsparticles-core";
+import { loadFull } from "tsparticles";
 import { loadPreset } from "tsparticles-preset-big-circles";
 
 @Options({
@@ -18,12 +19,13 @@ import { loadPreset } from "tsparticles-preset-big-circles";
 })
 export default class App extends Vue {
   private particlesInit: (main: Main) => void = (main) => {
+    loadFull(main);
     loadPreset(main);
-  }
+  };
 
   private particlesLoaded: (container: Container) => void = (container) => {
     console.log(container);
-  }
+  };
 
   /*
   {
@@ -107,7 +109,7 @@ export default class App extends Vue {
    */
 
   private options: RecursivePartial<ISourceOptions> = {
-    preset: 'bigCircles'
+    preset: "bigCircles"
   };
 }
 </script>
