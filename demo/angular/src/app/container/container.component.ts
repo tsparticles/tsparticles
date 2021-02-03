@@ -1,30 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import type { Container } from "tsparticles-core";
+import { Component, OnInit } from "@angular/core";
+import type { Main, Container } from "tsparticles-core";
+import { loadFull } from "tsparticles";
 
 @Component({
-    selector: 'app-container',
-    templateUrl: './container.component.html',
-    styleUrls: [ './container.component.css' ]
+    selector: "app-container",
+    templateUrl: "./container.component.html",
+    styleUrls: [ "./container.component.css" ]
 })
 export class ContainerComponent implements OnInit {
-    id = 'tsparticles';
+    id = "tsparticles";
     options = {
         background: {
             color: {
-                value: '#0d47a1'
+                value: "#0d47a1"
             }
         },
         fpsLimit: 60,
         interactivity: {
-            detectsOn: 'window',
+            detectsOn: "window",
             events: {
                 onClick: {
                     enable: true,
-                    mode: 'push'
+                    mode: "push"
                 },
                 onHover: {
                     enable: true,
-                    mode: 'repulse'
+                    mode: "repulse"
                 },
                 resize: true
             },
@@ -47,10 +48,10 @@ export class ContainerComponent implements OnInit {
         },
         particles: {
             color: {
-                value: '#ffffff'
+                value: "#ffffff"
             },
             links: {
-                color: '#ffffff',
+                color: "#ffffff",
                 distance: 150,
                 enable: true,
                 opacity: 0.5,
@@ -60,9 +61,9 @@ export class ContainerComponent implements OnInit {
                 enable: true
             },
             move: {
-                direction: 'none',
+                direction: "none",
                 enable: true,
-                outMode: 'bounce',
+                outMode: "bounce",
                 random: false,
                 speed: 6,
                 straight: false
@@ -78,7 +79,7 @@ export class ContainerComponent implements OnInit {
                 value: 0.5
             },
             shape: {
-                type: 'circle'
+                type: "circle"
             },
             size: {
                 random: true,
@@ -96,5 +97,9 @@ export class ContainerComponent implements OnInit {
 
     public particlesLoaded(container: Container): void {
         console.log(container);
+    }
+
+    public particlesInit(main: Main): void {
+        loadFull(main);
     }
 }

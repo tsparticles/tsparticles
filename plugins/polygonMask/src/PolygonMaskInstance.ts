@@ -29,7 +29,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
     constructor(private readonly container: Container) {
         this.dimension = {
             height: 0,
-            width: 0
+            width: 0,
         };
         this.path2DSupported = !!Path2D;
         this.options = new PolygonMask();
@@ -228,7 +228,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
             if (path) {
                 this.paths.push({
                     element: path,
-                    length: path.getTotalLength()
+                    length: path.getTotalLength(),
                 });
             }
         }
@@ -241,13 +241,13 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
         const position = options.position ?? {
             x: 50,
-            y: 50
+            y: 50,
         };
 
         /* centering of the polygon mask */
         this.offset = {
             x: (container.canvas.size.width * position.x) / (100 * pxRatio) - this.dimension.width / 2,
-            y: (container.canvas.size.height * position.y) / (100 * pxRatio) - this.dimension.height / 2
+            y: (container.canvas.size.height * position.y) / (100 * pxRatio) - this.dimension.height / 2,
         };
 
         return parsePaths(this.paths, scale, this.offset);
@@ -289,7 +289,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         for (const item of this.raw) {
             this.container.particles.addParticle({
                 x: item.x,
-                y: item.y
+                y: item.y,
             });
         }
     }
@@ -319,7 +319,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         } else {
             position = {
                 x: Math.random() * container.canvas.size.width,
-                y: Math.random() * container.canvas.size.height
+                y: Math.random() * container.canvas.size.height,
             };
         }
 
@@ -339,7 +339,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
         return {
             x: coords.x,
-            y: coords.y
+            y: coords.y,
         };
     }
 
@@ -356,7 +356,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
         return {
             x: point.x * options.scale + (this.offset?.x || 0),
-            y: point.y * options.scale + (this.offset?.y || 0)
+            y: point.y * options.scale + (this.offset?.y || 0),
         };
     }
 
@@ -386,7 +386,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
         return {
             x: (point?.x ?? 0) * polygonMaskOptions.scale + (this.offset?.x ?? 0),
-            y: (point?.y ?? 0) * polygonMaskOptions.scale + (this.offset?.y ?? 0)
+            y: (point?.y ?? 0) * polygonMaskOptions.scale + (this.offset?.y ?? 0),
         };
     }
 
@@ -399,7 +399,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
         return {
             x: coords.x,
-            y: coords.y
+            y: coords.y,
         };
     }
 
@@ -463,7 +463,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
                         ? data.path.map((t) => `<path d="${t}" />`).join("")
                         : `<path d="${data.path}" />`;
 
-                const namespaces = "xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"";
+                const namespaces = 'xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"';
 
                 svg = `<svg ${namespaces} width="${data.size.width}" height="${data.size.height}">${path}</svg>`;
             } else {
