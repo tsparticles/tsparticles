@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-bouncing",
-  "version": "1.3.11",
+  "version": "1.3.12",
   "description": "tsParticles bouncing preset",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -68,6 +68,6 @@
     "webpack-cli": "^4.1.0"
   },
   "dependencies": {
-    "tsparticles": "^1.18.11"
+    "tsparticles": "^1.18.12"
   }
 }
