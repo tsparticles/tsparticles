@@ -98,6 +98,6 @@
     "tsparticles": "^1.18.11"
   },
   "peerDependencies": {
-    "react": "^16"
+    "react": ">=16"
   }
 }
