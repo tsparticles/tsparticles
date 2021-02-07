@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-links",
-  "version": "2.0.0-alpha.2",
+  "version": "2.0.0-alpha.3",
   "description": "tsParticles links preset",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -72,10 +72,10 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "tsparticles-core": "^2.0.0-alpha.2",
-    "tsparticles-interaction-particles-links": "^2.0.0-alpha.2",
-    "tsparticles-interaction-particles-move": "^2.0.0-alpha.2",
-    "tsparticles-shape-circle": "^2.0.0-alpha.2",
-    "tsparticles-updater-out-modes": "^2.0.0-alpha.2"
+    "tsparticles-core": "^2.0.0-alpha.3",
+    "tsparticles-interaction-particles-links": "^2.0.0-alpha.3",
+    "tsparticles-interaction-particles-move": "^2.0.0-alpha.3",
+    "tsparticles-shape-circle": "^2.0.0-alpha.3",
+    "tsparticles-updater-out-modes": "^2.0.0-alpha.3"
   }
 }

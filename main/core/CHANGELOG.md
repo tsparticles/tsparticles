@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-alpha.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-core@2.0.0-alpha.2...tsparticles-core@2.0.0-alpha.3) (2021-02-07)
+
+
+### Bug Fixes
+
+* fixed gravity with new speed algorithm ([6dc837f](https://github.com/matteobruni/tsparticles/commit/6dc837f07a34426cdb81d3a6ebde983801cce68b))
+* fixed split bounce ([5955d53](https://github.com/matteobruni/tsparticles/commit/5955d530e0f3db8725bc9b38e7c90a60809631ea))
+* some changes to movement and gravity ([ed45f2b](https://github.com/matteobruni/tsparticles/commit/ed45f2ba4c9bfd5f0520a5f3e3d2c467a565ce37))
+
+
+### Features
+
+* working on add split particles, the new particle velocity needs improvements ([a05cc3e](https://github.com/matteobruni/tsparticles/commit/a05cc3ed9301b2862a474ff72a95aadca1d0bfe1))
+
+
+
+
+
 # [2.0.0-alpha.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-core@2.0.0-alpha.1...tsparticles-core@2.0.0-alpha.2) (2021-01-24)
 
 **Note:** Version bump only for package tsparticles-core

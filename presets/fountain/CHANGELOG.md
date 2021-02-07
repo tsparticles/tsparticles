@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-alpha.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fountain@2.0.0-alpha.2...tsparticles-preset-fountain@2.0.0-alpha.3) (2021-02-07)
+
+
+### Bug Fixes
+
+* updated fountain preset ([f509944](https://github.com/matteobruni/tsparticles/commit/f5099446c7be44c49fb593a969fc4202eb1daf97))
+
+
+
+
+
 # [2.0.0-alpha.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fountain@2.0.0-alpha.1...tsparticles-preset-fountain@2.0.0-alpha.2) (2021-01-24)
 
 **Note:** Version bump only for package tsparticles-preset-fountain
