@@ -75,6 +75,8 @@
     "tsparticles-updater-orbit": "^2.0.0-alpha.2",
     "tsparticles-updater-out-modes": "^2.0.0-alpha.2",
     "tsparticles-updater-size": "^2.0.0-alpha.2",
-    "tsparticles-updater-stroke-color": "^2.0.0-alpha.2"
+    "tsparticles-updater-stroke-color": "^2.0.0-alpha.2",
+    "tsparticles-interaction-particles-move": "^2.0.0-alpha.2",
+    "tsparticles-interaction-particles-parallax": "^2.0.0-alpha.2"
   }
 }

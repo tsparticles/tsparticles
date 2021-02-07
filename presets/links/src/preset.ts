@@ -13,14 +13,14 @@ export function loadPreset(tsParticles: Main) {
     tsParticles.addPreset("basic", {
         particles: {
             links: {
-                enable: true
+                enable: true,
             },
             move: {
-                enable: true
+                enable: true,
             },
             shape: {
-                type: "circle"
-            }
-        }
+                type: "circle",
+            },
+        },
     });
 }

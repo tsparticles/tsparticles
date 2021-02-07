@@ -16,12 +16,12 @@ export function loadPreset(tsParticles: Main): void {
         interactivity: {
             detectsOn: "canvas",
             events: {
-                resize: true
-            }
+                resize: true,
+            },
         },
         particles: {
             color: {
-                value: "#FF0000"
+                value: "#FF0000",
             },
             move: {
                 attract: {
@@ -29,21 +29,21 @@ export function loadPreset(tsParticles: Main): void {
                     distance: 100,
                     rotate: {
                         x: 2000,
-                        y: 2000
-                    }
+                        y: 2000,
+                    },
                 },
                 direction: "none",
                 enable: true,
                 outModes: {
-                    default: "destroy"
+                    default: "destroy",
                 },
                 noise: {
                     clamp: false,
                     enable: true,
                     delay: {
-                        value: 0
+                        value: 0,
                     },
-                    generator: "seaAnemoneNoise"
+                    generator: "seaAnemoneNoise",
                 },
                 random: false,
                 speed: 2,
@@ -51,22 +51,22 @@ export function loadPreset(tsParticles: Main): void {
                 trail: {
                     fillColor: "#000",
                     length: 30,
-                    enable: true
-                }
+                    enable: true,
+                },
             },
             number: {
                 density: {
                     enable: true,
-                    area: 800
+                    area: 800,
                 },
                 value: 0,
-                limit: 300
+                limit: 300,
             },
             opacity: {
-                value: 1
+                value: 1,
             },
             shape: {
-                type: "circle"
+                type: "circle",
             },
             size: {
                 value: 10,
@@ -76,24 +76,24 @@ export function loadPreset(tsParticles: Main): void {
                     enable: true,
                     minimumValue: 1,
                     speed: 10,
-                    sync: true
-                }
-            }
+                    sync: true,
+                },
+            },
         },
         background: {
-            color: "#000"
+            color: "#000",
         },
         detectRetina: true,
         emitters: {
             direction: "none",
             rate: {
                 quantity: 10,
-                delay: 0.3
+                delay: 0.3,
             },
             size: {
                 width: 0,
                 height: 0,
-                mode: "precise"
+                mode: "precise",
             },
             spawnColor: {
                 value: "#ff0000",
@@ -102,27 +102,27 @@ export function loadPreset(tsParticles: Main): void {
                         enable: true,
                         offset: {
                             min: -1.4,
-                            max: 1.4
+                            max: 1.4,
                         },
                         speed: 5,
-                        sync: false
+                        sync: false,
                     },
                     l: {
                         enable: true,
                         offset: {
                             min: 20,
-                            max: 80
+                            max: 80,
                         },
                         speed: 0,
-                        sync: false
-                    }
-                }
+                        sync: false,
+                    },
+                },
             },
             position: {
                 x: 50,
-                y: 50
-            }
-        }
+                y: 50,
+            },
+        },
     } as unknown) as ISourceOptions;
 
     function NoiseGen(
@@ -208,9 +208,9 @@ export function loadPreset(tsParticles: Main): void {
 
             return {
                 angle: p.seaDir,
-                length: p.seaSpeed
+                length: p.seaSpeed,
             };
-        }
+        },
     };
 
     tsParticles.addPreset(presetName, options);
