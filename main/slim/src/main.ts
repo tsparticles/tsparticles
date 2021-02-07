@@ -8,6 +8,8 @@ import { loadInteraction as loadExternalRepulseInteraction } from "tsparticles-i
 import { loadInteraction as loadParticlesAttractInteraction } from "tsparticles-interaction-particles-attract";
 import { loadInteraction as loadParticlesCollisionsInteraction } from "tsparticles-interaction-particles-collisions";
 import { loadInteraction as loadParticlesLinksInteraction } from "tsparticles-interaction-particles-links";
+import { loadInteraction as loadParticlesMoveInteraction } from "tsparticles-interaction-particles-move";
+import { loadInteraction as loadParticlesParallaxInteraction } from "tsparticles-interaction-particles-parallax";
 import { loadInteraction as loadParticlesRepulseInteraction } from "tsparticles-interaction-particles-repulse";
 import { loadShape as loadCircleShape } from "tsparticles-shape-circle";
 import { loadShape as loadImageShape } from "tsparticles-shape-image";
@@ -48,6 +50,8 @@ export function loadSlim(tsParticles: Main): void {
     loadParticlesCollisionsInteraction(tsParticles);
     loadParticlesRepulseInteraction(tsParticles);
     loadParticlesLinksInteraction(tsParticles);
+    loadParticlesMoveInteraction(tsParticles);
+    loadParticlesParallaxInteraction(tsParticles);
 
     /* shapes */
     loadCircleShape(tsParticles);

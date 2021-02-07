@@ -1,7 +1,7 @@
 {
-  "name": "tsparticles-slim",
+  "name": "tsparticles-interaction-particles-move",
   "version": "2.0.0-alpha.2",
-  "description": "tsParticles slim version",
+  "description": "tsParticles Move particles interaction",
   "homepage": "https://particles.js.org/",
   "scripts": {
     "prettify:src": "prettier --write ./src/",
@@ -17,7 +17,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
-    "directory": "core/slim"
+    "directory": "interactions/particles/move"
   },
   "keywords": [
     "tsparticles",
@@ -42,13 +42,16 @@
     "css3",
     "animated",
     "background",
-    "tsparticles-preset"
+    "tsparticles-shape"
   ],
   "publishConfig": {
     "directory": "dist"
   },
   "author": "Matteo Bruni",
   "license": "MIT",
+  "files": [
+    "dist/**/*"
+  ],
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
@@ -69,32 +72,6 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "tsparticles-core": "^2.0.0-alpha.2",
-    "tsparticles-interaction-external-attract": "^2.0.0-alpha.2",
-    "tsparticles-interaction-external-bounce": "^2.0.0-alpha.2",
-    "tsparticles-interaction-external-bubble": "^2.0.0-alpha.2",
-    "tsparticles-interaction-external-connect": "^2.0.0-alpha.2",
-    "tsparticles-interaction-external-grab": "^2.0.0-alpha.2",
-    "tsparticles-interaction-external-repulse": "^2.0.0-alpha.2",
-    "tsparticles-interaction-particles-attract": "^2.0.0-alpha.2",
-    "tsparticles-interaction-particles-collisions": "^2.0.0-alpha.2",
-    "tsparticles-interaction-particles-links": "^2.0.0-alpha.2",
-    "tsparticles-interaction-particles-repulse": "^2.0.0-alpha.2",
-    "tsparticles-interaction-particles-move": "^2.0.0-alpha.2",
-    "tsparticles-interaction-particles-parallax": "^2.0.0-alpha.2",
-    "tsparticles-shape-circle": "^2.0.0-alpha.2",
-    "tsparticles-shape-image": "^2.0.0-alpha.2",
-    "tsparticles-shape-line": "^2.0.0-alpha.2",
-    "tsparticles-shape-polygon": "^2.0.0-alpha.2",
-    "tsparticles-shape-square": "^2.0.0-alpha.2",
-    "tsparticles-shape-star": "^2.0.0-alpha.2",
-    "tsparticles-shape-text": "^2.0.0-alpha.2",
-    "tsparticles-updater-angle": "^2.0.0-alpha.2",
-    "tsparticles-updater-color": "^2.0.0-alpha.2",
-    "tsparticles-updater-life": "^2.0.0-alpha.2",
-    "tsparticles-updater-opacity": "^2.0.0-alpha.2",
-    "tsparticles-updater-out-modes": "^2.0.0-alpha.2",
-    "tsparticles-updater-size": "^2.0.0-alpha.2",
-    "tsparticles-updater-stroke-color": "^2.0.0-alpha.2"
+    "tsparticles-core": "^2.0.0-alpha.0"
   }
 }

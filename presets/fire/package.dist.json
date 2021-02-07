@@ -46,6 +46,7 @@
   "types": "preset.d.ts",
   "dependencies": {
     "tsparticles-core": "^2.0.0-alpha.0",
+    "tsparticles-interaction-particles-move": "^2.0.0-alpha.2",
     "tsparticles-shape-circle": "^2.0.0-alpha.2",
     "tsparticles-updater-out-modes": "^2.0.0-alpha.2"
   }

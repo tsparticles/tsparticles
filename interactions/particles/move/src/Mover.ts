@@ -1,48 +1,76 @@
-import { clamp, getDistance, getDistances, getRangeMax, isInArray, isSsr, Plugins } from "../../Utils";
-import type { Container } from "../Container";
-import type { Particle } from "../Particle";
-import { HoverMode, RotateDirection } from "../../Enums";
-import type { IDelta } from "../Interfaces";
-import { Vector } from "./Vector";
+import {
+    clamp,
+    getDistance,
+    getDistances,
+    getRangeMax,
+    HoverMode,
+    isInArray,
+    ParticlesInteractorBase,
+    Plugins,
+    RotateDirection,
+    Vector,
+} from "tsparticles-core";
+import type { Container, IDelta, Particle } from "tsparticles-core";
 
-/**
- * @category Core
- */
-export class Mover {
-    constructor(private readonly container: Container) {}
+function applyDistance(particle: Particle): void {
+    const initialPosition = particle.initialPosition;
+    const { dx, dy } = getDistances(initialPosition, particle.position);
+    const dxFixed = Math.abs(dx),
+        dyFixed = Math.abs(dy);
 
-    public move(particle: Particle, delta: IDelta): void {
-        const resizeFactor = this.container.canvas.resizeFactor;
+    const hDistance = particle.maxDistance.horizontal;
+    const vDistance = particle.maxDistance.vertical;
 
-        if (resizeFactor) {
-            particle.position.x *= resizeFactor.width;
-            particle.position.y *= resizeFactor.height;
-        }
-
-        particle.bubble.inRange = false;
-        particle.links = [];
-
-        for (const [, plugin] of this.container.plugins) {
-            if (particle.destroyed) {
-                break;
-            }
-
-            if (plugin.particleUpdate) {
-                plugin.particleUpdate(particle, delta);
-            }
-        }
-
-        if (particle.destroyed) {
-            return;
-        }
-
-        this.moveParticle(particle, delta);
-
-        /* parallax */
-        this.moveParallax(particle);
+    if (!(hDistance !== undefined || vDistance !== undefined)) {
+        return;
     }
 
-    private moveParticle(particle: Particle, delta: IDelta): void {
+    if (
+        ((hDistance !== undefined && dxFixed >= hDistance) || (vDistance !== undefined && dyFixed >= vDistance)) &&
+        !particle.misplaced
+    ) {
+        particle.misplaced =
+            (hDistance !== undefined && dxFixed > hDistance) || (vDistance !== undefined && dyFixed > vDistance);
+
+        if (hDistance !== undefined) {
+            particle.velocity.x = particle.velocity.y / 2 - particle.velocity.x;
+        }
+
+        if (vDistance !== undefined) {
+            particle.velocity.y = particle.velocity.x / 2 - particle.velocity.y;
+        }
+    } else if (
+        (hDistance === undefined || dxFixed < hDistance) &&
+        (vDistance === undefined || dyFixed < vDistance) &&
+        particle.misplaced
+    ) {
+        particle.misplaced = false;
+    } else if (particle.misplaced) {
+        const pos = particle.position,
+            vel = particle.velocity;
+
+        if (
+            hDistance !== undefined &&
+            ((pos.x < initialPosition.x && vel.x < 0) || (pos.x > initialPosition.x && vel.x > 0))
+        ) {
+            vel.x *= -Math.random();
+        }
+
+        if (
+            vDistance !== undefined &&
+            ((pos.y < initialPosition.y && vel.y < 0) || (pos.y > initialPosition.y && vel.y > 0))
+        ) {
+            vel.y *= -Math.random();
+        }
+    }
+}
+
+export class Mover extends ParticlesInteractorBase {
+    constructor(container: Container) {
+        super(container, "parallax");
+    }
+
+    public interact(particle: Particle, delta: IDelta): void {
         const particlesOptions = particle.options;
 
         if (!particlesOptions.move.enable) {
@@ -95,7 +123,15 @@ export class Mover {
             }
         }
 
-        this.applyDistance(particle);
+        applyDistance(particle);
+    }
+
+    public isEnabled(particle: Particle): boolean {
+        return particle.options.move.enable;
+    }
+
+    public reset(particle: Particle): void {
+        particle.bubble.inRange = false;
     }
 
     private spin(particle: Particle, moveSpeed: number): void {
@@ -125,59 +161,6 @@ export class Mover {
         }
 
         particle.spin.angle += (moveSpeed / 100) * (1 - particle.spin.radius / maxCanvasSize);
-    }
-
-    private applyDistance(particle: Particle): void {
-        const initialPosition = particle.initialPosition;
-        const { dx, dy } = getDistances(initialPosition, particle.position);
-        const dxFixed = Math.abs(dx),
-            dyFixed = Math.abs(dy);
-
-        const hDistance = particle.maxDistance.horizontal;
-        const vDistance = particle.maxDistance.vertical;
-
-        if (!(hDistance !== undefined || vDistance !== undefined)) {
-            return;
-        }
-
-        if (
-            ((hDistance !== undefined && dxFixed >= hDistance) || (vDistance !== undefined && dyFixed >= vDistance)) &&
-            !particle.misplaced
-        ) {
-            particle.misplaced =
-                (hDistance !== undefined && dxFixed > hDistance) || (vDistance !== undefined && dyFixed > vDistance);
-
-            if (hDistance !== undefined) {
-                particle.velocity.x = particle.velocity.y / 2 - particle.velocity.x;
-            }
-
-            if (vDistance !== undefined) {
-                particle.velocity.y = particle.velocity.x / 2 - particle.velocity.y;
-            }
-        } else if (
-            (hDistance === undefined || dxFixed < hDistance) &&
-            (vDistance === undefined || dyFixed < vDistance) &&
-            particle.misplaced
-        ) {
-            particle.misplaced = false;
-        } else if (particle.misplaced) {
-            const pos = particle.position,
-                vel = particle.velocity;
-
-            if (
-                hDistance !== undefined &&
-                ((pos.x < initialPosition.x && vel.x < 0) || (pos.x > initialPosition.x && vel.x > 0))
-            ) {
-                vel.x *= -Math.random();
-            }
-
-            if (
-                vDistance !== undefined &&
-                ((pos.y < initialPosition.y && vel.y < 0) || (pos.y > initialPosition.y && vel.y > 0))
-            ) {
-                vel.y *= -Math.random();
-            }
-        }
     }
 
     private applyNoise(particle: Particle, delta: IDelta): void {
@@ -222,36 +205,6 @@ export class Mover {
         }
 
         particle.lastNoiseTime -= particle.noiseDelay;
-    }
-
-    private moveParallax(particle: Particle): void {
-        const container = this.container,
-            options = container.options;
-
-        if (isSsr() || !options.interactivity.events.onHover.parallax.enable) {
-            return;
-        }
-
-        const parallaxForce = options.interactivity.events.onHover.parallax.force,
-            mousePos = container.interactivity.mouse.position;
-
-        if (!mousePos) {
-            return;
-        }
-
-        const canvasCenter = {
-                x: container.canvas.size.width / 2,
-                y: container.canvas.size.height / 2,
-            },
-            parallaxSmooth = options.interactivity.events.onHover.parallax.smooth,
-            factor = particle.getRadius() / parallaxForce,
-            tmp = {
-                x: (mousePos.x - canvasCenter.x) * factor,
-                y: (mousePos.y - canvasCenter.y) * factor,
-            };
-
-        particle.offset.x += (tmp.x - particle.offset.x) / parallaxSmooth; // Easing equation
-        particle.offset.y += (tmp.y - particle.offset.y) / parallaxSmooth; // Easing equation
     }
 
     private getProximitySpeedFactor(particle: Particle): number {

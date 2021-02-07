@@ -1,4 +1,4 @@
-import type { Container, ICoordinates, IDimension, IParticle } from "tsparticles-core";
+import type { Container, ICoordinates, IDimension, IParticle, Particle } from "tsparticles-core";
 import { Circle, CircleWarp, getDistance, getLinkRandomColor, ParticlesInteractorBase } from "tsparticles-core";
 
 export class Linker extends ParticlesInteractorBase {
@@ -14,7 +14,9 @@ export class Linker extends ParticlesInteractorBase {
         // do nothing
     }
 
-    public interact(p1: IParticle): void {
+    public interact(p1: Particle): void {
+        p1.links = [];
+
         const container = this.container;
         const linkOpt1 = p1.options.links;
         const optOpacity = linkOpt1.opacity;

@@ -66,6 +66,8 @@
     "tsparticles-interaction-particles-collisions": "^2.0.0-alpha.0",
     "tsparticles-interaction-particles-links": "^2.0.0-alpha.0",
     "tsparticles-interaction-particles-repulse": "^2.0.0-alpha.0",
+    "tsparticles-interaction-particles-move": "^2.0.0-alpha.2",
+    "tsparticles-interaction-particles-parallax": "^2.0.0-alpha.2",
     "tsparticles-updater-angle": "^2.0.0-alpha.0",
     "tsparticles-updater-color": "^2.0.0-alpha.0",
     "tsparticles-updater-life": "^2.0.0-alpha.0",

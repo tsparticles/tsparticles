@@ -52,6 +52,22 @@ const getExternals = (bundle) => {
       }
     },
     {
+      "tsparticles-interaction-particles-move": {
+        commonjs: "tsparticles-interaction-particles-move",
+        commonjs2: "tsparticles-interaction-particles-move",
+        amd: "tsparticles-interaction-particles-move",
+        root: "window"
+      }
+    },
+    {
+      "tsparticles-interaction-particles-parallax": {
+        commonjs: "tsparticles-interaction-particles-parallax",
+        commonjs2: "tsparticles-interaction-particles-parallax",
+        amd: "tsparticles-interaction-particles-parallax",
+        root: "window"
+      }
+    },
+    {
       "tsparticles-interaction-particles-repulse": {
         commonjs: "tsparticles-interaction-particles-repulse",
         commonjs2: "tsparticles-interaction-particles-repulse",
