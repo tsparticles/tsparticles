@@ -4,13 +4,19 @@ import { loadInteraction as loadParticlesLinksInteraction } from "tsparticles-in
 import { loadInteraction as loadParticlesMoveInteraction } from "tsparticles-interaction-particles-move";
 import { loadUpdater as loadOutModesUpdater } from "tsparticles-updater-out-modes";
 
-export function loadPreset(tsParticles: Main) {
+export function loadPreset(tsParticles: Main): void {
     loadCircleShape(tsParticles);
     loadParticlesLinksInteraction(tsParticles);
     loadParticlesMoveInteraction(tsParticles);
     loadOutModesUpdater(tsParticles);
 
-    tsParticles.addPreset("basic", {
+    tsParticles.addPreset("links", {
+        background: {
+            color: "#000000",
+        },
+        fullScreen: {
+            enable: true,
+        },
         particles: {
             links: {
                 enable: true,

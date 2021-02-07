@@ -1,7 +1,20 @@
 import { MoveDirection, OutMode, Main } from "tsparticles-core";
+import { loadShape as loadCircleShape } from "tsparticles-shape-circle";
+import { loadUpdater as loadOutModesUpdater } from "tsparticles-updater-out-modes";
+import { loadInteraction as loadMoveInteraction } from "tsparticles-interaction-particles-move";
 
-export function loadPreset(tsParticles: Main) {
+export function loadPreset(tsParticles: Main): void {
+    loadCircleShape(tsParticles);
+    loadOutModesUpdater(tsParticles);
+    loadMoveInteraction(tsParticles);
+
     tsParticles.addPreset("stars", {
+        background: {
+            color: "#000",
+        },
+        fullScreen: {
+            enable: true,
+        },
         particles: {
             color: {
                 value: "#ffffff",

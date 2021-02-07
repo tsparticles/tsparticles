@@ -48,6 +48,7 @@
     "tsparticles-core": "^2.0.0-alpha.2",
     "tsparticles-interaction-particles-move": "^2.0.0-alpha.2",
     "tsparticles-plugin-emitters": "^2.0.0-alpha.2",
-    "tsparticles-shape-circle": "^2.0.0-alpha.2"
+    "tsparticles-shape-circle": "^2.0.0-alpha.2",
+    "tsparticles-updater-size": "^2.0.0-alpha.2"
   }
 }

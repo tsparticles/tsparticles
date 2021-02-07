@@ -10,6 +10,9 @@ export function loadPreset(tsParticles: Main): void {
     loadParticlesMoveInteraction(tsParticles);
 
     tsParticles.addPreset("fire", {
+        fullScreen: {
+            enable: true,
+        },
         fpsLimit: 40,
         particles: {
             number: {
