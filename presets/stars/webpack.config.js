@@ -37,6 +37,18 @@ const getExternals = (bundle) => {
         commonjs2: "tsparticles-updater-out-modes",
         amd: "tsparticles-updater-out-modes",
         root: "window"
+      },
+      "tsparticles-updater-opacity": {
+        commonjs: "tsparticles-updater-opacity",
+        commonjs2: "tsparticles-updater-opacity",
+        amd: "tsparticles-updater-opacity",
+        root: "window"
+      },
+      "tsparticles-shape-circle": {
+        commonjs: "tsparticles-shape-circle",
+        commonjs2: "tsparticles-shape-circle",
+        amd: "tsparticles-shape-circle",
+        root: "window"
       }
     }
   ];

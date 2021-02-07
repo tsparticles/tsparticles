@@ -1,10 +1,12 @@
 import { MoveDirection, OutMode, Main } from "tsparticles-core";
 import { loadShape as loadCircleShape } from "tsparticles-shape-circle";
+import { loadUpdater as loadOpacityUpdater } from "tsparticles-updater-opacity";
 import { loadUpdater as loadOutModesUpdater } from "tsparticles-updater-out-modes";
 import { loadInteraction as loadMoveInteraction } from "tsparticles-interaction-particles-move";
 
 export function loadPreset(tsParticles: Main): void {
     loadCircleShape(tsParticles);
+    loadOpacityUpdater(tsParticles);
     loadOutModesUpdater(tsParticles);
     loadMoveInteraction(tsParticles);
 
@@ -28,11 +30,11 @@ export function loadPreset(tsParticles: Main): void {
                 enable: true,
                 outMode: OutMode.out,
                 random: true,
-                speed: 0.3,
+                speed: 0.1,
                 straight: false,
             },
             opacity: {
-                anim: {
+                animation: {
                     enable: true,
                     minimumValue: 0,
                     speed: 1,
