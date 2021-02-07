@@ -37,6 +37,12 @@ const getExternals = (bundle) => {
         commonjs2: "tsparticles-updater-out-modes",
         amd: "tsparticles-updater-out-modes",
         root: "window"
+      },
+      "tsparticles-interaction-particles-move": {
+        commonjs: "tsparticles-interaction-particles-move",
+        commonjs2: "tsparticles-interaction-particles-move",
+        amd: "tsparticles-interaction-particles-move",
+        root: "window"
       }
     }
   ];

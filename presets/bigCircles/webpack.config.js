@@ -43,6 +43,12 @@ const getExternals = (bundle) => {
         commonjs2: "tsparticles-plugin-emitters",
         amd: "tsparticles-plugin-emitters",
         root: "window"
+      },
+      "tsparticles-interaction-particles-move": {
+        commonjs: "tsparticles-interaction-particles-move",
+        commonjs2: "tsparticles-interaction-particles-move",
+        amd: "tsparticles-interaction-particles-move",
+        root: "window"
       }
     }
   ];

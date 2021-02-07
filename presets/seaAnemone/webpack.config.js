@@ -45,6 +45,24 @@ const getConfig = (entry, banner, minBanner, dir) => {
                     amd: "tsparticles-slim",
                     root: "window"
                 },
+                "tsparticles-interaction-particles-move": {
+                    commonjs: "tsparticles-interaction-particles-move",
+                    commonjs2: "tsparticles-interaction-particles-move",
+                    amd: "tsparticles-interaction-particles-move",
+                    root: "window"
+                },
+                "tsparticles-plugin-emitters": {
+                    commonjs: "tsparticles-plugin-emitters",
+                    commonjs2: "tsparticles-plugin-emitters",
+                    amd: "tsparticles-plugin-emitters",
+                    root: "window"
+                },
+                "tsparticles-shape-circle": {
+                    commonjs: "tsparticles-shape-circle",
+                    commonjs2: "tsparticles-shape-circle",
+                    amd: "tsparticles-shape-circle",
+                    root: "window"
+                }
             }
         ],
         module: {
