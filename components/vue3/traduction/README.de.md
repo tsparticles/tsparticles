@@ -1,4 +1,4 @@
-[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.matteobruni.it)
+[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.js.org)
 
 # particles.vue3
 
@@ -199,9 +199,9 @@ declare module 'particles.vue3';
 
 ## Demos
 
-Klicke [hier](https://particles.matteobruni.it) für die Demo-Webseite.
+Klicke [hier](https://particles.js.org) für die Demo-Webseite.
 
-<https://particles.matteobruni.it>
+<https://particles.js.org>
 
 [Hier](https://codepen.io/collection/DPOage) gibt es auch eine CodePen-Sammlung, die aktiv gepflegt und geupdated wird.
 

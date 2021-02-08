@@ -1,4 +1,4 @@
-[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.matteobruni.it)
+[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.js.org)
 
 # react-tsparticles
 
@@ -147,7 +147,7 @@ class App extends Component {
 | canvasClassName | строка | Имя класса для элемента canvas.                                                                                  |
 | container       | объект | Экземпляр класса [контейнера частиц](https://github.com/matteobruni/tsparticles/wiki/Particles-Container-class). |
 
-[Здесь](https://particles.matteobruni.it) можно найти параметры для настройки.
+[Здесь](https://particles.js.org) можно найти параметры для настройки.
 
 ### Ошибки
 
@@ -155,9 +155,9 @@ class App extends Component {
 
 ## Демо
 
-[Здесь](https://particles.matteobruni.it) размещены примеры использования библиотеки
+[Здесь](https://particles.js.org) размещены примеры использования библиотеки
 
-<https://particles.matteobruni.it>
+<https://particles.js.org>
 
 Также активно поддерживается и обновляется коллекция CodePen, которую можно посмотреть [здесь](https://codepen.io/collection/DPOage)
 

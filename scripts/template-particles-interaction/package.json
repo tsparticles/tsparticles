@@ -2,7 +2,7 @@
   "name": "tsparticles-interaction-particles-template",
   "version": "1.0.0-alpha.0",
   "description": "tsParticles custom particles interaction",
-  "homepage": "https://particles.matteobruni.it/",
+  "homepage": "https://particles.js.org/",
   "scripts": {
     "prettify:src": "prettier --write ./src/",
     "prettify:readme": "prettier --write ./README.md",

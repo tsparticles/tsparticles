@@ -1,8 +1,8 @@
 {
   "name": "ng-particles",
-  "version": "3.0.0-alpha.2",
+  "version": "3.0.0-alpha.3",
   "description": "tsParticles official Angular component",
-  "homepage": "https://particles.matteobruni.it/",
+  "homepage": "https://particles.js.org/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
@@ -58,6 +58,6 @@
   "peerDependencies": {
     "@angular/common": ">=2.0.0",
     "@angular/core": ">=2.0.0",
-    "tsparticles-core": "^2.0.0-alpha.2"
+    "tsparticles-core": "^2.0.0-alpha.3"
   }
 }

@@ -1,8 +1,8 @@
 {
   "name": "tsparticles-preset-big-circles",
-  "version": "2.0.0-alpha.2",
+  "version": "2.0.0-alpha.3",
   "description": "tsParticles big circles preset",
-  "homepage": "https://particles.matteobruni.it/",
+  "homepage": "https://particles.js.org/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
@@ -48,6 +48,10 @@
   "module": "preset.js",
   "types": "preset.d.ts",
   "dependencies": {
-    "tsparticles-core": "^2.0.0-alpha.0"
+    "tsparticles-core": "^2.0.0-alpha.0",
+    "tsparticles-interaction-particles-move": "^2.0.0-alpha.2",
+    "tsparticles-shape-circle": "^2.0.0-alpha.2",
+    "tsparticles-updater-out-modes": "^2.0.0-alpha.2",
+    "tsparticles-plugin-emitters": "^2.0.0-alpha.2"
   }
 }

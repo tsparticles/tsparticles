@@ -1,7 +1,20 @@
 import { MoveDirection, Main } from "tsparticles-core";
+import { loadInteraction as loadParticlesMoveInteraction } from "tsparticles-interaction-particles-move";
+import { loadUpdater as loadOutModesUpdater } from "tsparticles-updater-out-modes";
+import { loadShape as loadCircleShape } from "tsparticles-shape-circle";
 
-export function loadPreset(tsParticles: Main) {
+export function loadPreset(tsParticles: Main): void {
+    loadParticlesMoveInteraction(tsParticles);
+    loadOutModesUpdater(tsParticles);
+    loadCircleShape(tsParticles);
+
     tsParticles.addPreset("snow", {
+        background: {
+            color: "#333",
+        },
+        fullScreen: {
+            enable: true,
+        },
         particles: {
             color: {
                 value: "#fff",

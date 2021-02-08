@@ -1053,14 +1053,6 @@
     "@typescript-eslint/typescript-estree" "4.11.1"
     debug "^4.1.1"
 
-"@typescript-eslint/scope-manager@4.11.0":
-  version "4.11.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/scope-manager/-/scope-manager-4.11.0.tgz#2d906537db8a3a946721699e4fc0833810490254"
-  integrity sha512-6VSTm/4vC2dHM3ySDW9Kl48en+yLNfVV6LECU8jodBHQOhO8adAVizaZ1fV0QGZnLQjQ/y0aBj5/KXPp2hBTjA==
-  dependencies:
-    "@typescript-eslint/types" "4.11.0"
-    "@typescript-eslint/visitor-keys" "4.11.0"
-
 "@typescript-eslint/scope-manager@4.11.1":
   version "4.11.1"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/scope-manager/-/scope-manager-4.11.1.tgz#72dc2b60b0029ab0888479b12bf83034920b4b69"
@@ -1069,29 +1061,10 @@
     "@typescript-eslint/types" "4.11.1"
     "@typescript-eslint/visitor-keys" "4.11.1"
 
-"@typescript-eslint/types@4.11.0":
-  version "4.11.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-4.11.0.tgz#86cf95e7eac4ccfd183f9fcf1480cece7caf4ca4"
-  integrity sha512-XXOdt/NPX++txOQHM1kUMgJUS43KSlXGdR/aDyEwuAEETwuPt02Nc7v+s57PzuSqMbNLclblQdv3YcWOdXhQ7g==
-
 "@typescript-eslint/types@4.11.1":
   version "4.11.1"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-4.11.1.tgz#3ba30c965963ef9f8ced5a29938dd0c465bd3e05"
   integrity sha512-5kvd38wZpqGY4yP/6W3qhYX6Hz0NwUbijVsX2rxczpY6OXaMxh0+5E5uLJKVFwaBM7PJe1wnMym85NfKYIh6CA==
-
-"@typescript-eslint/typescript-estree@4.11.0":
-  version "4.11.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-4.11.0.tgz#1144d145841e5987d61c4c845442a24b24165a4b"
-  integrity sha512-eA6sT5dE5RHAFhtcC+b5WDlUIGwnO9b0yrfGa1mIOIAjqwSQCpXbLiFmKTdRbQN/xH2EZkGqqLDrKUuYOZ0+Hg==
-  dependencies:
-    "@typescript-eslint/types" "4.11.0"
-    "@typescript-eslint/visitor-keys" "4.11.0"
-    debug "^4.1.1"
-    globby "^11.0.1"
-    is-glob "^4.0.1"
-    lodash "^4.17.15"
-    semver "^7.3.2"
-    tsutils "^3.17.1"
 
 "@typescript-eslint/typescript-estree@4.11.1":
   version "4.11.1"
@@ -1106,14 +1079,6 @@
     lodash "^4.17.15"
     semver "^7.3.2"
     tsutils "^3.17.1"
-
-"@typescript-eslint/visitor-keys@4.11.0":
-  version "4.11.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/visitor-keys/-/visitor-keys-4.11.0.tgz#906669a50f06aa744378bb84c7d5c4fdbc5b7d51"
-  integrity sha512-tRYKyY0i7cMk6v4UIOCjl1LhuepC/pc6adQqJk4Is3YcC6k46HvsV9Wl7vQoLbm9qADgeujiT7KdLrylvFIQ+A==
-  dependencies:
-    "@typescript-eslint/types" "4.11.0"
-    eslint-visitor-keys "^2.0.0"
 
 "@typescript-eslint/visitor-keys@4.11.1":
   version "4.11.1"
@@ -4760,11 +4725,6 @@ path-type@^4.0.0:
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
-pathseg@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/pathseg/-/pathseg-1.2.0.tgz#22af051e28037671e7799e296fe96c5dcbe53acd"
-  integrity sha512-+pQS7lTaoVIXhaCW7R3Wd/165APzZHWzYVqe7dxzdupxQwebgpBaCmf0/XZwmoA/rkDq3qvzO0qv4d5oFVrBRw==
-
 pbkdf2@^3.0.3:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/pbkdf2/-/pbkdf2-3.1.1.tgz#cb8724b0fada984596856d1a6ebafd3584654b94"
@@ -5374,17 +5334,7 @@ react-syntax-highlighter@^15.4.2:
     prismjs "^1.22.0"
     refractor "^3.2.0"
 
-react-tsparticles@^1.19.0-alpha.5:
-  version "1.19.0-alpha.5"
-  resolved "https://registry.yarnpkg.com/react-tsparticles/-/react-tsparticles-1.19.0-alpha.5.tgz#2c439a35dcd22b53460d438fcc46f206ee2dde42"
-  integrity sha512-LbJ4jMFKXsWHjrsB5Qt3S/oKtgX0KQTOt19MGVh56+Ubfh3P+2z25u8lOmmXk0ispPcasILkglU90n3balAfcA==
-  dependencies:
-    lodash "^4.17.20"
-    react ">=16"
-    tslib "^2.0.3"
-    tsparticles "^1.19.0-alpha.5"
-
-react@>=16, react@^17.0.1:
+react@^17.0.1:
   version "17.0.1"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.1.tgz#6e0600416bd57574e3f86d92edba3d9008726127"
   integrity sha512-lG9c9UuMHdcAexXtigOZLX8exLWkW0Ku29qPRU8uhF2R9BN96dLCt0psvzPLlHc5OWkgymP3qwTRgbnw5BKx3w==
@@ -6435,20 +6385,6 @@ tslib@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.3.tgz#8e0741ac45fc0c226e58a17bfc3e64b9bc6ca61c"
   integrity sha512-uZtkfKblCEQtZKBF6EBXVZeQNl82yqtDQdv+eck8u7tdPxjLu2/lp5/uPW+um2tpuxINHWy3GhiccY7QgEaVHQ==
-
-tsparticles-preset-sea-anemone@^1.4.0-alpha.5:
-  version "1.4.0-alpha.5"
-  resolved "https://registry.yarnpkg.com/tsparticles-preset-sea-anemone/-/tsparticles-preset-sea-anemone-1.4.0-alpha.5.tgz#f0a8a750d38dd91681475f70e3cccafa73d2e25d"
-  integrity sha512-sgXgujucsHdzvPDcdd0lruuGk6tdiU+Nq8IaQ4A6aGBmVjX6DOCQrUKPvDufW16+4/qJrVHrMr3xk76NgqTrFA==
-  dependencies:
-    tsparticles "^1.19.0-alpha.5"
-
-tsparticles@^1.19.0-alpha.5:
-  version "1.19.0-alpha.5"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.19.0-alpha.5.tgz#87ccc0884350cfa1536a5ce7e0b0b3dc5a48afd8"
-  integrity sha512-Or11usaw6aM7a3WEcRnBGGUbAIAsyQSlhmpUbHCF3TzEqIdGcVLrS6rxomehM8b8MAGMfsrUSg8ANCGhenK2vw==
-  optionalDependencies:
-    pathseg "^1.2.0"
 
 tsutils@^3.17.1:
   version "3.17.1"

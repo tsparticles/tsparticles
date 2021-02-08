@@ -1,4 +1,4 @@
-[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.matteobruni.it)
+[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.js.org)
 
 # jquery-particles
 
@@ -131,9 +131,9 @@ $("#tsparticles")
 
 ## Демо
 
-[Здесь](https://particles.matteobruni.it) размещены примеры использования библиотеки
+[Здесь](https://particles.js.org) размещены примеры использования библиотеки
 
-<https://particles.matteobruni.it>
+<https://particles.js.org>
 
 Также активно поддерживается и обновляется коллекция CodePen, которую можно посмотреть [здесь](https://codepen.io/collection/DPOage)
 

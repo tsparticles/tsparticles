@@ -11,7 +11,8 @@
     "presets/*",
     "shapes/*",
     "templates/*",
-    "updaters/*"
+    "updaters/*",
+    "website"
   ],
   "version": "independent",
   "npmClient": "yarn",

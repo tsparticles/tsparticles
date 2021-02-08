@@ -1,22 +1,12 @@
 import type { Container } from "./Container";
 import { Particle } from "./Particle";
-import {
-    getRangeValue,
-    itemFromArray,
-    Plugins,
-    Point,
-    QuadTree,
-    randomInRange,
-    Rectangle,
-    setRangeValue,
-} from "../Utils";
+import { getRangeValue, Plugins, Point, QuadTree, randomInRange, Rectangle, setRangeValue } from "../Utils";
 import type { RecursivePartial } from "../Types";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { InteractionManager } from "./InteractionManager";
 import type { ICoordinates, IDelta, IMouseData, IParticle, IRgb } from "./Interfaces";
 import type { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";
 import { Particles as ParticlesOptions } from "../Options/Classes/Particles/Particles";
-import { Mover } from "./Particle/Mover";
 
 /**
  * Particles manager object
@@ -45,13 +35,12 @@ export class Particles {
     public linksColor?: IRgb | string;
     public grabLineColor?: IRgb | string;
 
-    public readonly mover;
-
     private interactionManager;
     private nextId;
     private linksFreq;
     private trianglesFreq;
-    private updaters;
+
+    private readonly updaters;
 
     constructor(private readonly container: Container) {
         this.nextId = 0;
@@ -62,7 +51,6 @@ export class Particles {
         this.linksFreq = new Map<string, number>();
         this.trianglesFreq = new Map<string, number>();
         this.interactionManager = new InteractionManager(this.container);
-        this.mover = new Mover(this.container);
 
         const canvasSize = this.container.canvas.size;
 
@@ -175,7 +163,22 @@ export class Particles {
                 continue;
             }
 
-            this.mover.move(particle, delta);
+            const resizeFactor = this.container.canvas.resizeFactor;
+
+            if (resizeFactor) {
+                particle.position.x *= resizeFactor.width;
+                particle.position.y *= resizeFactor.height;
+            }
+
+            for (const [, plugin] of this.container.plugins) {
+                if (particle.destroyed) {
+                    break;
+                }
+
+                if (plugin.particleUpdate) {
+                    plugin.particleUpdate(particle, delta);
+                }
+            }
 
             if (particle.destroyed) {
                 particlesToDelete.push(particle);
@@ -316,6 +319,7 @@ export class Particles {
                 return false;
             }
 
+            particle.velocity.length = randomInRange(setRangeValue(parent.velocity.length, particle.velocity.length));
             particle.splitCount = parent.splitCount + 1;
             particle.unbreakable = true;
 

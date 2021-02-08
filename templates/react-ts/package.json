@@ -1,6 +1,6 @@
 {
   "name": "cra-template-particles-typescript",
-  "version": "2.0.0-alpha.2",
+  "version": "2.0.0-alpha.3",
   "description": "Official TypeScript React tsParticles template",
   "keywords": [
     "tsparticles",
@@ -46,7 +46,7 @@
     "background"
   ],
   "author": "Matteo Bruni <ar3s@icloud.com>",
-  "homepage": "https://particles.matteobruni.it",
+  "homepage": "https://particles.js.org",
   "license": "MIT",
   "main": "template.json",
   "files": [
@@ -62,7 +62,7 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "dependencies": {
-    "react-tsparticles": "^2.0.0-alpha.2",
+    "react-tsparticles": "^2.0.0-alpha.3",
     "tslib": "^2.0.3"
   },
   "scripts": {

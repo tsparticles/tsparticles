@@ -1,12 +1,43 @@
 import { DestroyMode, InteractivityDetect, MoveDirection, OutMode, Main, ISourceOptions } from "tsparticles-core";
+import { loadShape as loadCircleShape } from "tsparticles-shape-circle";
+import { loadUpdater as loadOutModesUpdater } from "tsparticles-updater-out-modes";
+import { loadPlugin as loadEmittersPlugin } from "tsparticles-plugin-emitters";
+import { loadInteraction as loadParticlesMoveInteraction } from "tsparticles-interaction-particles-move";
 
 export function loadPreset(tsParticles: Main): void {
+    loadCircleShape(tsParticles);
+    loadOutModesUpdater(tsParticles);
+    loadEmittersPlugin(tsParticles);
+    loadParticlesMoveInteraction(tsParticles);
+
     const options = ({
         fullScreen: {
             enable: true,
         },
         fpsLimit: 60,
         particles: {
+            bounce: {
+                vertical: {
+                    value: 0.85,
+                    random: {
+                        enable: true,
+                        minimumValue: 0.75,
+                    },
+                },
+            },
+            color: {
+                value: [
+                    "#3998D0",
+                    "#2EB6AF",
+                    "#A9BD33",
+                    "#FEC73B",
+                    "#F89930",
+                    "#F45623",
+                    "#D62E32",
+                    "#EB586E",
+                    "#9952CF",
+                ],
+            },
             number: {
                 value: 0,
             },
@@ -32,45 +63,27 @@ export function loadPreset(tsParticles: Main): void {
             },
             shape: {
                 type: "circle",
-                options: {
-                    polygon: [
-                        {
-                            sides: 3,
-                        },
-                        {
-                            sides: 4,
-                        },
-                        {
-                            sides: 5,
-                        },
-                    ],
-                },
             },
             opacity: {
-                value: 1,
+                value: 0.5,
             },
             size: {
-                value: 15,
+                value: 20,
                 random: {
                     enable: true,
                     minimumValue: 10,
                 },
-                animation: {
-                    enable: false,
-                    speed: 40,
-                    minimumValue: 0.1,
-                    sync: false,
-                },
-            },
-            links: {
-                enable: false,
             },
             move: {
                 enable: true,
                 gravity: {
                     enable: true,
+                    maximumSpeed: 50,
                 },
-                speed: 10,
+                speed: {
+                    min: 10,
+                    max: 20,
+                },
                 direction: MoveDirection.none,
                 random: false,
                 straight: false,
@@ -110,47 +123,6 @@ export function loadPreset(tsParticles: Main): void {
             size: {
                 width: 0,
                 height: 0,
-            },
-            particles: {
-                bounce: {
-                    vertical: {
-                        value: 0.99,
-                        random: {
-                            enable: true,
-                            minimumValue: 0.88,
-                        },
-                    },
-                },
-                color: {
-                    value: [
-                        "#3998D0",
-                        "#2EB6AF",
-                        "#A9BD33",
-                        "#FEC73B",
-                        "#F89930",
-                        "#F45623",
-                        "#D62E32",
-                        "#EB586E",
-                        "#9952CF",
-                    ],
-                },
-                links: {
-                    enable: false,
-                },
-                size: {
-                    value: 20,
-                    random: {
-                        enable: true,
-                        minimumValue: 10,
-                    },
-                },
-                opacity: {
-                    value: 0.5,
-                },
-                move: {
-                    speed: 10,
-                    random: false,
-                },
             },
         },
     } as unknown) as ISourceOptions;

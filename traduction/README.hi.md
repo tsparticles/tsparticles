@@ -1,4 +1,4 @@
-[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.matteobruni.it)
+[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.js.org)
 
 # tsParticles - TypeScript Particles
 
@@ -82,7 +82,7 @@ import { tsParticles } from "tsparticles";
 
 TsParticles लोड करें और कणों को कॉन्फ़िगर करें:
 
-[![tsParticles demo](https://media.giphy.com/media/ftHwBpp3b0qNyCXRuu/giphy.gif)](https://particles.matteobruni.it)
+[![tsParticles demo](https://media.giphy.com/media/ftHwBpp3b0qNyCXRuu/giphy.gif)](https://particles.js.org)
 
 **index.html**
 
@@ -240,30 +240,30 @@ particles.pause();
 
 ## ** _ डेमो / जनरेटर _ **
 
-<Https://particles.matteobruni.it/Samples>
+<Https://particles.js.org/Samples>
 
-[![Particles demo](https://particles.matteobruni.it/images/demo.png?v=1.8.1)](https://particles.matteobruni.it/Samples)
+[![Particles demo](https://particles.js.org/images/demo.png?v=1.8.1)](https://particles.js.org/Samples)
 
 
 ---
 
 ### कण के रूप में वर्ण
 
-[![Particles chars demo](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.matteobruni.it/Samples#chars)
+[![Particles chars demo](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.js.org/Samples#chars)
 
 
 ---
 
 ### माउस होवर कनेक्शन
 
-[![Particles mouse connections demo](https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)](https://particles.matteobruni.it/Samples#connect)
+[![Particles mouse connections demo](https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)](https://particles.js.org/Samples#connect)
 
 ---
 
 ### बहुभुज मुखौटा
 
 
-[![tsParticles Polygon Mask demo](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.matteobruni.it/Samples#polygonMask)
+[![tsParticles Polygon Mask demo](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.js.org/Samples#polygonMask)
 
 
 ---
@@ -271,32 +271,32 @@ particles.pause();
 ### एनिमेटेड सितारे
 
 
-[![Particles NASA demo](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.matteobruni.it/Samples#nasa)
+[![Particles NASA demo](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.js.org/Samples#nasa)
 
 
 ---
 
 ### स्क्रॉलिंग सितारों पर नयन बिल्ली उड़ती हुई
-[![Particles Nyan Cat demo](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.matteobruni.it/Samples#nyancat2)
+[![Particles Nyan Cat demo](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.js.org/Samples#nyancat2)
 
 
 ---
 
 ### बर्फ के कण
 
-[![tsParticles Snow demo](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.matteobruni.it/Samples#snow)
+[![tsParticles Snow demo](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.js.org/Samples#snow)
 
 ---
 
 ### पृष्ठभूमि मास्क कण
 
-[![tsParticles Background Mask demo](https://media.giphy.com/media/dWraWgqInWFGWiOyRu/giphy.gif)](https://particles.matteobruni.it/Samples#background)
+[![tsParticles Background Mask demo](https://media.giphy.com/media/dWraWgqInWFGWiOyRu/giphy.gif)](https://particles.js.org/Samples#background)
 
 ---
 
 #### COVID-19 SARS-CoV-2 कण
 
-[![tsParticles COVID-19 demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.matteobruni.it/Samples#virus)
+[![tsParticles COVID-19 demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/Samples#virus)
 
 
 _ क्लिक न करें! क्लिक न करें! ओह नहीं आईटी का कारोबार !!!!!!
@@ -312,7 +312,7 @@ _ क्लिक न करें! क्लिक न करें! ओह न
 
 ## **_विकल्प_**
 
-आप यहां उपलब्ध सभी विकल्प पा सकते हैं (https://particles.js.org/interfaces/_options_interfaces_ioptions_.ioptions.html) available
+आप यहां उपलब्ध सभी विकल्प पा सकते हैं (https://particles.js.org/docs/interfaces/_options_interfaces_ioptions_.ioptions.html) available
 
 ##इसे कार्रवाई में देखना चाहते हैं और इसे आज़माना चाहते हैं?
 
@@ -320,7 +320,7 @@ _ क्लिक न करें! क्लिक न करें! ओह न
 
 अन्यथा नीचे डेमो पेज लिंक है। बस नीचे कोरोनोवायरस पर क्लिक / टैप करें, डरें नहीं। ** यह सुरक्षित है ** 😷।
 
-[! [tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)] (https://particles.matteobruni.it/#virus)
+[! [tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)] (https://particles.js.org/#virus)
 
 कभी और डेमो देखना चाहते हैं? अपने कंप्यूटर पर रिपॉजिटरी को क्लोन करें और इन निर्देशों का पालन करें
 ```shell
@@ -356,13 +356,13 @@ tsParticles अब कुछ अनुकूलन का समर्थन क
 
 **आप अपने खुद के प्लगइन्स बना सकते हैं**
 
-_Read more [here](https://particles.js.org/modules/_core_interfaces_iplugin_.html)..._
+_Read more [here](https://particles.js.org/docs/modules/_core_interfaces_iplugin_.html)..._
 
 ---
 
 ### API Docs
 
-प्रलेखन और विकास संदर्भ [here](https://particles.matteobruni.it/docs/) 📖
+प्रलेखन और विकास संदर्भ [here](https://particles.js.org/docs/) 📖
 
 ---
 

@@ -5,8 +5,8 @@
 <script lang="ts">
 import { nextTick, PropType } from "vue";
 import { Options, Vue } from "vue-class-component";
-import { Main, tsParticles } from "tsparticles-core";
-import type { Container, ISourceOptions } from "tsparticles-core";
+import { tsParticles } from "tsparticles-core";
+import type { Container, ISourceOptions, Main } from "tsparticles-core";
 
 export type IParticlesProps = ISourceOptions;
 export type IParticlesParams = IParticlesProps;
@@ -21,7 +21,7 @@ export type IParticlesParams = IParticlesProps;
       type: Object as PropType<IParticlesProps>
     },
     url: {
-      type: String,
+      type: String
     },
     particlesLoaded: {
       type: Object as PropType<(container: Container) => void>

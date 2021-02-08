@@ -1,4 +1,4 @@
-[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.matteobruni.it)
+[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.js.org)
 
 # ng-particles
 
@@ -142,9 +142,9 @@ export class AppModule {}
 
 ## Demos
 
-De demo website is [here](https://particles.matteobruni.it)
+De demo website is [here](https://particles.js.org)
 
-<https://particles.matteobruni.it>
+<https://particles.js.org>
 
 Er is ook een CodePen collectie die actief onderhouden en geüpdated wordt [hier](https://codepen.io/collection/DPOage)
 

@@ -1,8 +1,8 @@
 {
   "name": "tsparticles-preset-snow",
-  "version": "2.0.0-alpha.2",
+  "version": "2.0.0-alpha.3",
   "description": "tsParticles snow preset",
-  "homepage": "https://particles.matteobruni.it/",
+  "homepage": "https://particles.js.org/",
   "scripts": {
     "prettify:src": "prettier --write ./src/",
     "prettify:readme": "prettier --write ./README.md",
@@ -72,6 +72,9 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "tsparticles-core": "^2.0.0-alpha.2"
+    "tsparticles-core": "^2.0.0-alpha.3",
+    "tsparticles-interaction-particles-move": "^2.0.0-alpha.3",
+    "tsparticles-shape-circle": "^2.0.0-alpha.3",
+    "tsparticles-updater-out-modes": "^2.0.0-alpha.3"
   }
 }

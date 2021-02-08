@@ -52,6 +52,22 @@ const getExternals = (bundle) => {
       }
     },
     {
+      "tsparticles-interaction-particles-move": {
+        commonjs: "tsparticles-interaction-particles-move",
+        commonjs2: "tsparticles-interaction-particles-move",
+        amd: "tsparticles-interaction-particles-move",
+        root: "window"
+      }
+    },
+    {
+      "tsparticles-interaction-particles-parallax": {
+        commonjs: "tsparticles-interaction-particles-parallax",
+        commonjs2: "tsparticles-interaction-particles-parallax",
+        amd: "tsparticles-interaction-particles-parallax",
+        root: "window"
+      }
+    },
+    {
       "tsparticles-interaction-particles-repulse": {
         commonjs: "tsparticles-interaction-particles-repulse",
         commonjs2: "tsparticles-interaction-particles-repulse",
@@ -280,7 +296,7 @@ const getConfig = (entry, banner, minBanner, dir, bundle) => {
 
 const banner = `Author : Matteo Bruni - https://www.matteobruni.it
 MIT license: https://opensource.org/licenses/MIT
-Demo / Generator : https://particles.matteobruni.it/
+Demo / Generator : https://particles.js.org/
 GitHub : https://www.github.com/matteobruni/tsparticles
 How to use? : Check the GitHub README
 v${version}`;

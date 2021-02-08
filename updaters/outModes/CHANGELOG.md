@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-alpha.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-updater-out-modes@2.0.0-alpha.2...tsparticles-updater-out-modes@2.0.0-alpha.3) (2021-02-07)
+
+
+### Bug Fixes
+
+* some changes to movement and gravity ([ed45f2b](https://github.com/matteobruni/tsparticles/commit/ed45f2ba4c9bfd5f0520a5f3e3d2c467a565ce37))
+
+
+
+
+
 # [2.0.0-alpha.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-updater-out-modes@2.0.0-alpha.1...tsparticles-updater-out-modes@2.0.0-alpha.2) (2021-01-24)
 
 **Note:** Version bump only for package tsparticles-updater-out-modes
