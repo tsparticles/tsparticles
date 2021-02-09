@@ -1,5 +1,5 @@
 # 👋 Fresh
-> Fresh is a free landing page starter [cssninjaStudio](https://cssninja.io).
+> Fresh is a free landing page starter built by [cssninjaStudio](https://cssninja.io).
 
 ![Screenshot](https://media.cssninja.io/products/fresh/product.png "Fresh")
 
