@@ -15,7 +15,7 @@
     "@commitlint/config-conventional": "^11.0.0",
     "@octokit/core": "^3.2.5",
     "fs-extra": "^9.1.0",
-    "husky": "^4.3.8",
+    "husky": "^5.0.9",
     "lerna": "^3.22.1"
   },
   "husky": {
