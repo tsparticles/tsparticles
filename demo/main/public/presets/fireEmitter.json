@@ -54,7 +54,7 @@
         "enable": true,
         "acceleration": -0.5
       },
-      "speed": 10,
+      "speed": 5,
       "direction": "top",
       "random": false,
       "straight": false,

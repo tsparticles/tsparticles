@@ -1,5 +1,6 @@
 import { HoverMode, isInArray, ParticlesInteractorBase } from "tsparticles-core";
 import type { Container, Particle } from "tsparticles-core";
+import { drawParticleShadow } from "./utils";
 
 export class ParticlesLighter extends ParticlesInteractorBase {
     constructor(container: Container) {
@@ -14,7 +15,9 @@ export class ParticlesLighter extends ParticlesInteractorBase {
             const mousePos = this.container.interactivity.mouse.position;
 
             if (mousePos) {
-                container.canvas.drawParticleShadow(particle, mousePos);
+                container.canvas.draw((ctx) => {
+                    drawParticleShadow(container, ctx, particle, mousePos);
+                });
             }
         }
     }

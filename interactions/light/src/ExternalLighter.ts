@@ -1,5 +1,6 @@
 import { ExternalInteractorBase, HoverMode, isInArray } from "tsparticles-core";
 import type { Container } from "tsparticles-core";
+import { drawLight } from "./utils";
 
 export class ExternalLighter extends ExternalInteractorBase {
     constructor(container: Container) {
@@ -17,7 +18,9 @@ export class ExternalLighter extends ExternalInteractorBase {
                 return;
             }
 
-            container.canvas.drawLight(mousePos);
+            container.canvas.draw((ctx) => {
+                drawLight(container, ctx, mousePos);
+            });
         }
     }
 

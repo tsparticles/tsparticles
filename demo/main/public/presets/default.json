@@ -64,8 +64,8 @@
     "move": {
       "enable": true,
       "speed": {
-        "max": 6,
-        "min": 3
+        "max": 3,
+        "min": 1
       },
       "direction": "none",
       "random": false,

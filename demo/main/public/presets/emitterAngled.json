@@ -47,7 +47,7 @@
     },
     "move": {
       "enable": true,
-      "speed": 2,
+      "speed": 1,
       "direction": "none",
       "random": false,
       "straight": false,
@@ -145,7 +145,7 @@
             "offset": 15,
             "value": 30
           },
-          "speed": 20,
+          "speed": 10,
           "random": false,
           "straight": false,
           "outMode": "destroy"

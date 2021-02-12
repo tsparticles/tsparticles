@@ -99,7 +99,7 @@
     },
     "move": {
       "enable": true,
-      "speed": 7,
+      "speed": 3,
       "direction": "none",
       "random": false,
       "straight": false,

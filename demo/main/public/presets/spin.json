@@ -5,7 +5,6 @@
       "value": 80,
       "density": {
         "enable": false,
-
         "value_area": 800
       }
     },
@@ -53,7 +52,7 @@
     },
     "move": {
       "enable": true,
-      "speed": 1,
+      "speed": 0.5,
       "direction": "none",
       "random": false,
       "straight": false,

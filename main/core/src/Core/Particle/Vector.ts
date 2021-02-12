@@ -40,9 +40,9 @@ export class Vector implements ICoordinates {
 
             const coords = x as ICoordinates;
 
-            [ defX, defY ] = [ coords.x, coords.y ];
+            [defX, defY] = [coords.x, coords.y];
         } else {
-            [ defX, defY ] = [ x as number, y ];
+            [defX, defY] = [x as number, y];
         }
 
         this.x = defX;

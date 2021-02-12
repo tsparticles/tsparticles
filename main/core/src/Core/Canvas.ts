@@ -8,10 +8,8 @@ import {
     drawConnectLine,
     drawEllipse,
     drawGrabLine,
-    drawLight,
     drawParticle,
     drawParticlePlugin,
-    drawParticleShadow,
     drawPlugin,
     getStyleFromRgb,
     gradient,
@@ -256,14 +254,6 @@ export class Canvas {
         drawGrabLine(ctx, particle.linksWidth ?? container.retina.linksWidth, beginPos, mousePos, lineColor, opacity);
     }
 
-    public drawParticleShadow(particle: Particle, mousePos: ICoordinates): void {
-        if (!this.context) {
-            return;
-        }
-
-        drawParticleShadow(this.container, this.context, particle, mousePos);
-    }
-
     public drawParticle(particle: Particle, delta: IDelta): void {
         if (particle.spawning || particle.destroyed) {
             return;
@@ -387,36 +377,30 @@ export class Canvas {
         );
     }
 
-    public drawPlugin(plugin: IContainerPlugin, delta: IDelta): void {
+    public draw(fn: (context: CanvasRenderingContext2D) => void) {
         if (!this.context) {
             return;
         }
 
-        drawPlugin(this.context, plugin, delta);
+        fn(this.context);
+    }
+
+    public drawPlugin(plugin: IContainerPlugin, delta: IDelta): void {
+        this.draw((ctx) => {
+            drawPlugin(ctx, plugin, delta);
+        });
     }
 
     public drawParticlePlugin(plugin: IContainerPlugin, particle: Particle, delta: IDelta): void {
-        if (!this.context) {
-            return;
-        }
-
-        drawParticlePlugin(this.context, plugin, particle, delta);
-    }
-
-    public drawLight(mousePos: ICoordinates): void {
-        if (!this.context) {
-            return;
-        }
-
-        drawLight(this.container, this.context, mousePos);
+        this.draw((ctx) => {
+            drawParticlePlugin(ctx, plugin, particle, delta);
+        });
     }
 
     private paintBase(baseColor?: string): void {
-        if (!this.context) {
-            return;
-        }
-
-        paintBase(this.context, this.size, baseColor);
+        this.draw((ctx) => {
+            paintBase(ctx, this.size, baseColor);
+        });
     }
 
     private lineStyle(p1: IParticle, p2: IParticle): CanvasGradient | undefined {

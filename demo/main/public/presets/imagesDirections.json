@@ -36,7 +36,7 @@
       "direction": "none",
       "enable": true,
       "outMode": "out",
-      "speed": 2
+      "speed": 1
     },
     "number": {
       "density": {

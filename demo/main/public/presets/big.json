@@ -57,8 +57,8 @@
     "move": {
       "enable": true,
       "speed": {
-        "max": 20,
-        "min": 10
+        "max": 10,
+        "min": 5
       },
       "direction": "top",
       "random": false,

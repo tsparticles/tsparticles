@@ -89,7 +89,7 @@
         "offset": 0
       },
       "enable": true,
-      "speed": 15,
+      "speed": 7,
       "direction": "right",
       "random": false,
       "straight": false,
