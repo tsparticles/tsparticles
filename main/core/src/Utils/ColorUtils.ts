@@ -1,10 +1,18 @@
-import type { IColor, IRgb, IRgba, IHsl, IHsla, IValueColor, IHsv, IHsva } from "../Core/Interfaces/Colors";
+import type {
+    IColor,
+    IHsl,
+    IHsla,
+    IHsv,
+    IHsva,
+    IParticle,
+    IParticleHslAnimation,
+    IRgb,
+    IRgba,
+    IValueColor,
+} from "../Core/Interfaces";
 import { itemFromArray } from "./Utils";
 import { Constants } from "./Constants";
-import type { IImage } from "../Core/Interfaces/IImage";
 import { mix, randomInRange, setRangeValue } from "./NumberUtils";
-import type { IParticle } from "../Core/Interfaces/IParticle";
-import type { IParticleHslAnimation } from "../Core/Interfaces/IParticleHslAnimation";
 
 /**
  *
@@ -457,18 +465,6 @@ export function colorMix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number
         g: mix(rgb1.g, rgb2.g, size1, size2),
         r: mix(rgb1.r, rgb2.r, size1, size2),
     };
-}
-
-export function replaceColorSvg(image: IImage, color: IHsl, opacity: number): string {
-    if (!image.svgData) {
-        return "";
-    }
-
-    /* set color to svg element */
-    const svgXml = image.svgData;
-    const rgbHex = /#([0-9A-F]{3,6})/gi;
-
-    return svgXml.replace(rgbHex, () => getStyleFromHsl(color, opacity));
 }
 
 export function getLinkColor(p1: IParticle, p2?: IParticle, linkColor?: string | IRgb): IRgb | undefined {

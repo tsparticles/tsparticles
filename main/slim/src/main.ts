@@ -7,7 +7,7 @@ import { loadInteraction as loadExternalGrabInteraction } from "tsparticles-inte
 import { loadInteraction as loadExternalRepulseInteraction } from "tsparticles-interaction-external-repulse";
 import { loadInteraction as loadParticlesAttractInteraction } from "tsparticles-interaction-particles-attract";
 import { loadInteraction as loadParticlesCollisionsInteraction } from "tsparticles-interaction-particles-collisions";
-import { loadInteraction as loadParticlesLinksInteraction } from "tsparticles-interaction-particles-links";
+import { loadLinks } from "tsparticles-interaction-particles-links";
 import { loadInteraction as loadParticlesMoveInteraction } from "tsparticles-interaction-particles-move";
 import { loadInteraction as loadParticlesParallaxInteraction } from "tsparticles-interaction-particles-parallax";
 import { loadInteraction as loadParticlesRepulseInteraction } from "tsparticles-interaction-particles-repulse";
@@ -49,7 +49,7 @@ export function loadSlim(tsParticles: Main): void {
     loadParticlesAttractInteraction(tsParticles);
     loadParticlesCollisionsInteraction(tsParticles);
     loadParticlesRepulseInteraction(tsParticles);
-    loadParticlesLinksInteraction(tsParticles);
+    loadLinks(tsParticles);
     loadParticlesMoveInteraction(tsParticles);
     loadParticlesParallaxInteraction(tsParticles);
 

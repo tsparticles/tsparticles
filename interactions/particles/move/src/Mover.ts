@@ -65,16 +65,24 @@ function applyDistance(particle: Particle): void {
     }
 }
 
+type NoiseParticle = Particle & {
+    lastNoiseTime: number;
+};
+
 export class Mover extends ParticlesInteractorBase {
     constructor(container: Container) {
         super(container, "parallax");
     }
 
-    public interact(particle: Particle, delta: IDelta): void {
+    public interact(particle: NoiseParticle, delta: IDelta): void {
         const particlesOptions = particle.options;
 
         if (!particlesOptions.move.enable) {
             return;
+        }
+
+        if (!particle.lastNoiseTime) {
+            particle.lastNoiseTime = 0;
         }
 
         const container = this.container,
@@ -114,7 +122,7 @@ export class Mover extends ParticlesInteractorBase {
             particle.position.addTo(velocity);
 
             if (particlesOptions.move.vibrate) {
-                const vibrateVelocity = new Vector(
+                const vibrateVelocity = Vector.create(
                     Math.sin(particle.position.x * Math.cos(particle.position.y) * zVelocityFactor),
                     Math.cos(particle.position.y * Math.sin(particle.position.x) * zVelocityFactor)
                 );
@@ -163,7 +171,7 @@ export class Mover extends ParticlesInteractorBase {
         particle.spin.angle += (moveSpeed / 100) * (1 - particle.spin.radius / maxCanvasSize);
     }
 
-    private applyNoise(particle: Particle, delta: IDelta): void {
+    private applyNoise(particle: NoiseParticle, delta: IDelta): void {
         const particlesOptions = particle.options,
             noiseOptions = particlesOptions.move.noise,
             noiseEnabled = noiseOptions.enable;
@@ -192,7 +200,7 @@ export class Mover extends ParticlesInteractorBase {
 
         const noise = generator.generate(particle),
             vel = particle.velocity,
-            noiseVel = new Vector(0, 0);
+            noiseVel = Vector.origin;
 
         noiseVel.length = noise.length;
         noiseVel.angle = noise.angle;

@@ -458,6 +458,19 @@ export function drawPlugin(context: CanvasRenderingContext2D, plugin: IContainer
     }
 }
 
+export function drawParticlePlugin(
+    context: CanvasRenderingContext2D,
+    plugin: IContainerPlugin,
+    particle: Particle,
+    delta: IDelta
+): void {
+    if (plugin.drawParticle !== undefined) {
+        context.save();
+        plugin.drawParticle(context, particle, delta);
+        context.restore();
+    }
+}
+
 export function drawEllipse(
     context: CanvasRenderingContext2D,
     particle: IParticle,

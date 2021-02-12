@@ -59,31 +59,28 @@ import { Vector3d } from "./Particle/Vector3d";
  * @category Core
  */
 export class Particle implements IParticle {
+    public attractDistance?: number;
+    public close: boolean;
     public destroyed;
+    public fill: boolean;
+    public links: ILink[];
+    public linksDistance?: number;
+    public linksWidth?: number;
+    public moveSpeed: number;
     public misplaced;
+    public orbitRadius?: number;
+    public orbitRotation?: number;
+    public randomIndexData?: number;
+    public sizeAnimationSpeed?: number;
     public spawning;
-    public lastNoiseTime;
-    public zIndexFactor;
     public splitCount;
     public unbreakable;
+    public zIndexFactor;
 
     public readonly noiseDelay;
     public readonly sides;
     public readonly strokeWidth;
     public readonly options;
-
-    public links: ILink[];
-    public randomIndexData?: number;
-    public linksDistance?: number;
-    public attractDistance?: number;
-    public linksWidth?: number;
-    public moveSpeed: number;
-    public sizeAnimationSpeed?: number;
-    public orbitRadius?: number;
-    public orbitRotation?: number;
-    public close: boolean;
-    public fill: boolean;
-
     public readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     public readonly life: IParticleLife;
     public readonly loops: IParticleLoops;
@@ -116,7 +113,6 @@ export class Particle implements IParticle {
         this.links = [];
         this.fill = true;
         this.close = true;
-        this.lastNoiseTime = 0;
         this.splitCount = 0;
         this.unbreakable = false;
         this.destroyed = false;
@@ -193,7 +189,7 @@ export class Particle implements IParticle {
         particles.lastZIndex = this.position.z;
 
         /* parallax */
-        this.offset = new Vector(0, 0);
+        this.offset = Vector.origin;
 
         // Scale z-index factor to be between 0 and 2
         this.zIndexFactor = this.position.z / container.zLayers;
@@ -470,6 +466,12 @@ export class Particle implements IParticle {
     }
 
     public draw(delta: IDelta): void {
+        const container = this.container;
+
+        for (const [, plugin] of container.plugins) {
+            container.canvas.drawParticlePlugin(plugin, this, delta);
+        }
+
         this.container.canvas.drawParticle(this, delta);
     }
 
@@ -554,13 +556,13 @@ export class Particle implements IParticle {
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
             if (pluginPos !== undefined) {
-                return new Vector3d(pluginPos.x, pluginPos.y, zIndex);
+                return Vector3d.create(pluginPos.x, pluginPos.y, zIndex);
             }
         }
 
         const cSize = container.canvas.size;
 
-        const pos = new Vector3d(
+        const pos = Vector3d.create(
             position?.x ?? cSize.width * Math.random(),
             position?.y ?? cSize.height * Math.random(),
             zIndex

@@ -1,11 +1,10 @@
 import type { ICoordinates } from "./ICoordinates";
 import type { Particle } from "../Particle";
-import type { ClickMode } from "../../Enums";
+import type { ClickMode, OutModeDirection } from "../../Enums";
 import type { RecursivePartial } from "../../Types";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
 import type { IDelta } from "./IDelta";
-import { OutModeDirection } from "../../Enums/Directions/OutModeDirection";
-import { IColor } from "./Colors";
+import type { IColor } from "./Colors";
 
 /**
  * @category Interfaces
@@ -13,6 +12,7 @@ import { IColor } from "./Colors";
 export interface IContainerPlugin {
     clickPositionValid?: (position: ICoordinates) => boolean;
     draw?: (context: CanvasRenderingContext2D, delta: IDelta) => void;
+    drawParticle?: (context: CanvasRenderingContext2D, particle: Particle, delta: IDelta) => void;
     handleClickMode?: (mode: ClickMode | string) => void;
     init?: (options?: RecursivePartial<IOptions>) => void;
     initAsync?: (options?: RecursivePartial<IOptions>) => Promise<void>;

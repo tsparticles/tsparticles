@@ -20,7 +20,7 @@ import { FrameManager } from "./FrameManager";
 import type { RecursivePartial } from "../Types";
 import { Options } from "../Options/Classes/Options";
 import type { IContainerPlugin } from "./Interfaces";
-import { animate, cancelAnimation, EventListeners, Plugins } from "../Utils";
+import { animate, cancelAnimation, EventListeners, isSsr, Plugins } from "../Utils";
 import { Particle } from "./Particle";
 
 /**
@@ -163,7 +163,7 @@ export class Container {
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);
 
-        if (typeof IntersectionObserver !== "undefined" && IntersectionObserver) {
+        if (!isSsr() && typeof IntersectionObserver !== "undefined" && IntersectionObserver) {
             this.intersectionObserver = new IntersectionObserver((entries) => this.intersectionManager(entries));
         }
     }

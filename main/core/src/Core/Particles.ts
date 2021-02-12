@@ -229,11 +229,6 @@ export class Particles {
         /* update each particles param */
         this.update(delta);
 
-        /* draw polygon shape in debug mode */
-        for (const [, plugin] of container.plugins) {
-            container.canvas.drawPlugin(plugin, delta);
-        }
-
         /*if (container.canvas.context) {
             this.quadTree.draw(container.canvas.context);
         }*/
@@ -242,6 +237,11 @@ export class Particles {
             this.array.sort((a, b) => b.position.z - a.position.z || a.id - b.id);
             this.lastZIndex = this.array[this.array.length - 1].position.z;
             this.needsSort = false;
+        }
+
+        /* draw polygon shape in debug mode */
+        for (const [, plugin] of container.plugins) {
+            container.canvas.drawPlugin(plugin, delta);
         }
 
         /* draw each particle */

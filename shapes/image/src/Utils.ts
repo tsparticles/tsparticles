@@ -1,0 +1,94 @@
+import type { IHsl, IParticle } from "tsparticles-core";
+import { getStyleFromHsl } from "tsparticles-core";
+
+export interface IImage {
+    source: string;
+    type: string;
+    element?: HTMLImageElement;
+    svgData?: string;
+}
+
+export interface IParticleImage {
+    source: string;
+    data: IImage;
+    ratio: number;
+    element?: HTMLImageElement;
+    loaded?: boolean;
+    replaceColor: boolean;
+}
+
+export interface ContainerImage {
+    id: string;
+    images: IImage[];
+}
+
+export type IImageParticle = IParticle & {
+    image: IParticleImage;
+};
+
+export function loadImage(source: string): Promise<IImage | undefined> {
+    return new Promise(
+        (resolve: (value?: IImage | PromiseLike<IImage> | undefined) => void, reject: (reason?: string) => void) => {
+            if (!source) {
+                reject("Error tsParticles - No image.src");
+                return;
+            }
+
+            const image: IImage = {
+                source: source,
+                type: source.substr(source.length - 3),
+            };
+
+            const img = new Image();
+
+            img.addEventListener("load", () => {
+                image.element = img;
+
+                resolve(image);
+            });
+
+            img.addEventListener("error", () => {
+                reject(`Error tsParticles - loading image: ${source}`);
+            });
+
+            img.src = source;
+        }
+    );
+}
+
+export async function downloadSvgImage(source: string): Promise<IImage | undefined> {
+    if (!source) {
+        throw new Error("Error tsParticles - No image.src");
+    }
+
+    const image: IImage = {
+        source: source,
+        type: source.substr(source.length - 3),
+    };
+
+    if (image.type !== "svg") {
+        return loadImage(source);
+    }
+
+    const response = await fetch(image.source);
+
+    if (!response.ok) {
+        throw new Error("Error tsParticles - Image not found");
+    }
+
+    image.svgData = await response.text();
+
+    return image;
+}
+
+export function replaceColorSvg(image: IImage, color: IHsl, opacity: number): string {
+    if (!image.svgData) {
+        return "";
+    }
+
+    /* set color to svg element */
+    const svgXml = image.svgData;
+    const rgbHex = /#([0-9A-F]{3,6})/gi;
+
+    return svgXml.replace(rgbHex, () => getStyleFromHsl(color, opacity));
+}
