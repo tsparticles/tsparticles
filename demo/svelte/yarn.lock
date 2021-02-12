@@ -717,9 +717,9 @@ svelte-particles@^2.0.0-alpha.3:
     tsparticles-core "^2.0.0-alpha.3"
 
 svelte-preprocess@^4.0.0, svelte-preprocess@^4.6.1:
-  version "4.6.7"
-  resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-4.6.7.tgz#5cf8d411eb3f91f413873c55ae07ea8210a6f61d"
-  integrity sha512-cAndD5+of9jc7WxrBqOozjTmF+Nv4VU04DEnj6Uvl8ejvW5YrermOSFLV7f4ZRW+kBHKfzV+ZZAiGRLK+zJ2Ww==
+  version "4.6.8"
+  resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-4.6.8.tgz#bad8a3a1a03163f3941f0dc264b64a40c44a7ae0"
+  integrity sha512-yrT+vuHPoGnNx5Oxa6gMqWV5ZhLgA4isfhUOBwv9iVqZAro9/Nyy8XF5sahAglfMmnCxJkDZSwg7CdAwGpVxhw==
   dependencies:
     "@types/pug" "^2.0.4"
     "@types/sass" "^1.16.0"
