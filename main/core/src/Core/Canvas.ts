@@ -1,5 +1,5 @@
 import type { Container } from "./Container";
-import type { IContainerPlugin, ICoordinates, IDelta, IDimension, ILink, IParticle, IRgb, IRgba } from "./Interfaces";
+import type { IContainerPlugin, ICoordinates, IDelta, IDimension, IParticle, IRgb, IRgba } from "./Interfaces";
 import {
     clear,
     colorToRgb,
