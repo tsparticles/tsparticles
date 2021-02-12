@@ -1,5 +1,5 @@
 import { Vector } from "./Vector";
-import type { ICoordinates3d } from "../Interfaces/ICoordinates";
+import type { ICoordinates3d } from "../Interfaces";
 
 export class Vector3d extends Vector implements ICoordinates3d {
     public static clone(source: Vector3d) {

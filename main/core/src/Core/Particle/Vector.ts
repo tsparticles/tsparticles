@@ -34,11 +34,15 @@ export class Vector implements ICoordinates {
         let defX: number, defY: number;
 
         if (y === undefined) {
+            if (typeof x === "number") {
+                throw new Error("tsParticles - Vector not initialized correctly");
+            }
+
             const coords = x as ICoordinates;
 
-            [defX, defY] = [coords.x, coords.y];
+            [ defX, defY ] = [ coords.x, coords.y ];
         } else {
-            [defX, defY] = [x as number, y];
+            [ defX, defY ] = [ x as number, y ];
         }
 
         this.x = defX;
