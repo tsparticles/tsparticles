@@ -108,8 +108,8 @@ export class Bouncer extends ExternalInteractorBase {
                 circleBounce(circleBounceDataFromParticle(particle), {
                     position,
                     radius,
-                    velocity: new Vector(0, 0),
-                    factor: new Vector(0, 0),
+                    velocity: Vector.origin,
+                    factor: Vector.origin,
                 });
             } else if (area instanceof Rectangle) {
                 rectBounce(particle, calculateBounds(position, radius));

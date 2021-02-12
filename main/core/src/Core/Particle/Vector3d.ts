@@ -2,12 +2,24 @@ import { Vector } from "./Vector";
 import type { ICoordinates3d } from "../Interfaces/ICoordinates";
 
 export class Vector3d extends Vector implements ICoordinates3d {
-    constructor(x: number, y: number, public z: number) {
+    public static clone(source: Vector3d) {
+        return Vector3d.create(source.x, source.y, source.z);
+    }
+
+    public static create(x: number | ICoordinates3d, y?: number, z?: number) {
+        return new Vector3d(x, y, z);
+    }
+
+    public z;
+
+    protected constructor(x: number | ICoordinates3d, y?: number, z?: number) {
         super(x, y);
+
+        this.z = z === undefined ? (x as ICoordinates3d).z : z;
     }
 
     public add(v: Vector): Vector {
-        return v instanceof Vector3d ? new Vector3d(this.x + v.x, this.y + v.y, this.z + v.z) : super.add(v);
+        return v instanceof Vector3d ? Vector3d.create(this.x + v.x, this.y + v.y, this.z + v.z) : super.add(v);
     }
 
     public addTo(v: Vector): void {
@@ -19,7 +31,7 @@ export class Vector3d extends Vector implements ICoordinates3d {
     }
 
     public sub(v: Vector): Vector {
-        return v instanceof Vector3d ? new Vector3d(this.x - v.x, this.y - v.y, this.z - v.z) : super.sub(v);
+        return v instanceof Vector3d ? Vector3d.create(this.x - v.x, this.y - v.y, this.z - v.z) : super.sub(v);
     }
 
     public subFrom(v: Vector): void {
@@ -31,7 +43,7 @@ export class Vector3d extends Vector implements ICoordinates3d {
     }
 
     public mult(n: number): Vector {
-        return new Vector3d(this.x * n, this.y * n, this.z * n);
+        return Vector3d.create(this.x * n, this.y * n, this.z * n);
     }
 
     public multTo(n: number): void {
@@ -41,7 +53,7 @@ export class Vector3d extends Vector implements ICoordinates3d {
     }
 
     public div(n: number): Vector {
-        return new Vector3d(this.x / n, this.y / n, this.z / n);
+        return Vector3d.create(this.x / n, this.y / n, this.z / n);
     }
 
     public divTo(n: number): void {
@@ -51,7 +63,7 @@ export class Vector3d extends Vector implements ICoordinates3d {
     }
 
     public copy(): Vector3d {
-        return new Vector3d(this.x, this.y, this.z);
+        return Vector3d.clone(this);
     }
 
     public setTo(v: Vector): void {

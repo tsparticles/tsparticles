@@ -209,7 +209,7 @@ export class AbsorberInstance {
             particle.absorberOrbitAngle +=
                 ((particle.moveSpeed * container.retina.pixelRatio) / 100) * container.retina.reduceFactor;
         } else {
-            const addV = new Vector(0, 0);
+            const addV = Vector.origin;
 
             addV.length = acceleration;
             addV.angle = angle;

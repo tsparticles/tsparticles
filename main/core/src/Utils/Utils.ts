@@ -1,18 +1,19 @@
-import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
+import type {
+    IBounds,
+    ICircleBouncer,
+    ICoordinates,
+    IDimension,
+    IParticle,
+    IRangeValue,
+    IRectSideResult,
+} from "../Core/Interfaces";
 import { DestroyType, DivMode } from "../Enums";
 import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICharacterShape";
-import type { IBounds } from "../Core/Interfaces/IBounds";
-import type { IDimension } from "../Core/Interfaces/IDimension";
-import type { IImage } from "../Core/Interfaces/IImage";
 import type { SingleOrMultiple } from "../Types";
 import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
-import { OutModeDirection } from "../Enums/Directions/OutModeDirection";
-import { collisionVelocity, getRangeValue, rotateVelocity } from "./NumberUtils";
-import type { IParticle } from "../Core/Interfaces/IParticle";
-import type { ISideData } from "../Core/Interfaces/ISideData";
-import type { IRectSideResult } from "../Core/Interfaces/IRectSideResult";
-import type { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer";
+import { OutModeDirection } from "../Enums";
+import { collisionVelocity, getRangeValue } from "./NumberUtils";
 import { Particle } from "../Core/Particle";
 import { Vector } from "../Core/Particle/Vector";
 
@@ -64,11 +65,11 @@ declare global {
     }
 }
 
-function rectSideBounce(
-    pSide: ISideData,
-    pOtherSide: ISideData,
-    rectSide: ISideData,
-    rectOtherSide: ISideData,
+export function rectSideBounce(
+    pSide: IRangeValue,
+    pOtherSide: IRangeValue,
+    rectSide: IRangeValue,
+    rectOtherSide: IRangeValue,
     velocity: number,
     factor: number
 ): IRectSideResult {
@@ -93,7 +94,7 @@ function rectSideBounce(
     return res;
 }
 
-function checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>): boolean {
+export function checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>): boolean {
     if (selectors instanceof Array) {
         for (const selector of selectors) {
             if (element.matches(selector)) {
@@ -206,61 +207,6 @@ export function calculateBounds(point: ICoordinates, radius: number): IBounds {
     };
 }
 
-export function loadImage(source: string): Promise<IImage | undefined> {
-    return new Promise(
-        (resolve: (value?: IImage | PromiseLike<IImage> | undefined) => void, reject: (reason?: string) => void) => {
-            if (!source) {
-                reject("Error tsParticles - No image.src");
-                return;
-            }
-
-            const image: IImage = {
-                source: source,
-                type: source.substr(source.length - 3),
-            };
-
-            const img = new Image();
-
-            img.addEventListener("load", () => {
-                image.element = img;
-
-                resolve(image);
-            });
-
-            img.addEventListener("error", () => {
-                reject(`Error tsParticles - loading image: ${source}`);
-            });
-
-            img.src = source;
-        }
-    );
-}
-
-export async function downloadSvgImage(source: string): Promise<IImage | undefined> {
-    if (!source) {
-        throw new Error("Error tsParticles - No image.src");
-    }
-
-    const image: IImage = {
-        source: source,
-        type: source.substr(source.length - 3),
-    };
-
-    if (image.type !== "svg") {
-        return loadImage(source);
-    }
-
-    const response = await fetch(image.source);
-
-    if (!response.ok) {
-        throw new Error("Error tsParticles - Image not found");
-    }
-
-    image.svgData = await response.text();
-
-    return image;
-}
-
 export function deepExtend(destination: unknown, ...sources: unknown[]): unknown {
     for (const source of sources) {
         if (source === undefined || source === null) {
@@ -300,9 +246,8 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
     return destination;
 }
 
-export function isDivModeEnabled(mode: DivMode, divs: SingleOrMultiple<DivEvent>): boolean {
-    return divs instanceof Array ? !!divs.find((t) => t.enable && isInArray(mode, t.mode)) : isInArray(mode, divs.mode);
-}
+export const isDivModeEnabled = (mode: DivMode, divs: SingleOrMultiple<DivEvent>): boolean =>
+    divs instanceof Array ? !!divs.find((t) => t.enable && isInArray(mode, t.mode)) : isInArray(mode, divs.mode);
 
 export function divModeExecute(
     mode: DivMode,
@@ -347,22 +292,22 @@ export function divMode<T extends IModeDiv>(divs?: SingleOrMultiple<T>, element?
 
     if (divs instanceof Array) {
         return divs.find((d) => checkSelector(element, d.selectors));
-    } else if (checkSelector(element, divs.selectors)) {
+    }
+
+    if (checkSelector(element, divs.selectors)) {
         return divs;
     }
 }
 
-export function circleBounceDataFromParticle(p: IParticle): ICircleBouncer {
-    return {
-        position: p.getPosition(),
-        radius: p.getRadius(),
-        velocity: p.velocity,
-        factor: new Vector(
-            getRangeValue(p.options.bounce.horizontal.value),
-            getRangeValue(p.options.bounce.vertical.value)
-        ),
-    };
-}
+export const circleBounceDataFromParticle = (p: IParticle): ICircleBouncer => ({
+    position: p.getPosition(),
+    radius: p.getRadius(),
+    velocity: p.velocity,
+    factor: Vector.create(
+        getRangeValue(p.options.bounce.horizontal.value),
+        getRangeValue(p.options.bounce.vertical.value)
+    ),
+});
 
 export function circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
     const xVelocityDiff = p1.velocity.x;
@@ -375,33 +320,24 @@ export function circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
     const yDist = pos2.y - pos1.y;
 
     // Prevent accidental overlap of particles
-    if (xVelocityDiff * xDist + yVelocityDiff * yDist >= 0) {
-        // Grab angle between the two colliding particles
-        const angle = -Math.atan2(pos2.y - pos1.y, pos2.x - pos1.x);
-
-        // Store mass in var for better readability in collision equation
-        const m1 = p1.radius;
-        const m2 = p2.radius;
-
-        // Velocity before equation
-        const u1 = rotateVelocity(p1.velocity, angle);
-        const u2 = rotateVelocity(p2.velocity, angle);
-
-        // Velocity after 1d collision equation
-        const v1 = collisionVelocity(u1, u2, m1, m2);
-        const v2 = collisionVelocity(u2, u1, m1, m2);
-
-        // Final velocity after rotating axis back to original location
-        const vFinal1 = rotateVelocity(v1, -angle);
-        const vFinal2 = rotateVelocity(v2, -angle);
-
-        // Swap particle velocities for realistic bounce effect
-        p1.velocity.x = vFinal1.x * p1.factor.x;
-        p1.velocity.y = vFinal1.y * p1.factor.y;
-
-        p2.velocity.x = vFinal2.x * p2.factor.x;
-        p2.velocity.y = vFinal2.y * p2.factor.y;
+    if (xVelocityDiff * xDist + yVelocityDiff * yDist < 0) {
+        return;
     }
+
+    const angle = -Math.atan2(pos2.y - pos1.y, pos2.x - pos1.x);
+    const m1 = p1.radius;
+    const m2 = p2.radius;
+    const u1 = p1.velocity.rotate(angle);
+    const u2 = p2.velocity.rotate(angle);
+    const v1 = collisionVelocity(u1, u2, m1, m2);
+    const v2 = collisionVelocity(u2, u1, m1, m2);
+    const vFinal1 = v1.rotate(-angle);
+    const vFinal2 = v2.rotate(-angle);
+
+    p1.velocity.x = vFinal1.x * p1.factor.x;
+    p1.velocity.y = vFinal1.y * p1.factor.y;
+    p2.velocity.x = vFinal2.x * p2.factor.x;
+    p2.velocity.y = vFinal2.y * p2.factor.y;
 }
 
 export function rectBounce(particle: IParticle, divBounds: IBounds): void {

@@ -1,6 +1,16 @@
-import type { ICoordinates } from "../Interfaces/ICoordinates";
+import type { ICoordinates } from "../Interfaces";
 
 export class Vector implements ICoordinates {
+    public static clone(source: Vector) {
+        return Vector.create(source.x, source.y);
+    }
+
+    public static create(x: number | ICoordinates, y?: number) {
+        return new Vector(x, y);
+    }
+
+    public static readonly origin = Vector.create(0, 0);
+
     public get angle(): number {
         return Math.atan2(this.y, this.x);
     }
@@ -17,10 +27,26 @@ export class Vector implements ICoordinates {
         this.updateFromAngle(this.angle, length);
     }
 
-    constructor(public x: number, public y: number) {}
+    public x;
+    public y;
+
+    protected constructor(x: number | ICoordinates, y?: number) {
+        let defX: number, defY: number;
+
+        if (y === undefined) {
+            const coords = x as ICoordinates;
+
+            [defX, defY] = [coords.x, coords.y];
+        } else {
+            [defX, defY] = [x as number, y];
+        }
+
+        this.x = defX;
+        this.y = defY;
+    }
 
     public add(v: Vector): Vector {
-        return new Vector(this.x + v.x, this.y + v.y);
+        return Vector.create(this.x + v.x, this.y + v.y);
     }
 
     public addTo(v: Vector): void {
@@ -29,7 +55,7 @@ export class Vector implements ICoordinates {
     }
 
     public sub(v: Vector): Vector {
-        return new Vector(this.x - v.x, this.y - v.y);
+        return Vector.create(this.x - v.x, this.y - v.y);
     }
 
     public subFrom(v: Vector): void {
@@ -38,7 +64,7 @@ export class Vector implements ICoordinates {
     }
 
     public mult(n: number): Vector {
-        return new Vector(this.x * n, this.y * n);
+        return Vector.create(this.x * n, this.y * n);
     }
 
     public multTo(n: number): void {
@@ -47,7 +73,7 @@ export class Vector implements ICoordinates {
     }
 
     public div(n: number): Vector {
-        return new Vector(this.x / n, this.y / n);
+        return Vector.create(this.x / n, this.y / n);
     }
 
     public divTo(n: number): void {
@@ -72,7 +98,7 @@ export class Vector implements ICoordinates {
     }
 
     public copy(): Vector {
-        return new Vector(this.x, this.y);
+        return Vector.clone(this);
     }
 
     public setTo(velocity: Vector): void {
@@ -81,7 +107,7 @@ export class Vector implements ICoordinates {
     }
 
     public rotate(angle: number): Vector {
-        return new Vector(
+        return Vector.create(
             this.x * Math.cos(angle) - this.y * Math.sin(angle),
             this.x * Math.sin(angle) + this.y * Math.cos(angle)
         );

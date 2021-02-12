@@ -1,25 +1,22 @@
 import { expect } from "chai";
-import { Container, MoveDirection } from "../src";
-import type { IContainerPlugin } from "../src/Core/Interfaces/IContainerPlugin";
-import type { IPlugin } from "../src/Core/Interfaces/IPlugin";
+import type { IContainerPlugin, IPlugin, IRangeValue } from "../src";
 import {
     areBoundsInside,
     arrayRandomIndex,
     calculateBounds,
     clamp,
-    downloadSvgImage,
+    Container,
     getDistance,
     getParticleBaseVelocity,
     isInArray,
     isPointInside,
     itemFromArray,
-    loadImage,
     mix,
+    MoveDirection,
     Plugins,
     randomInRange,
     setRangeValue,
-} from "../src/Utils";
-import { IRangeValue } from "../src/Core/Interfaces/IRange";
+} from "../src";
 
 function buildPluginWithId(id: string, needsPlugin: boolean): IPlugin {
     return {
@@ -488,109 +485,6 @@ describe("Utils", () => {
         });
         it("should return the proper base velocity, when it's moving top-left", () => {
             expect(getParticleBaseVelocity(MoveDirection.topLeft).angle).to.equal((-3 * Math.PI) / 4);
-        });
-    });
-
-    describe("loadImage", () => {
-        afterEach(() => {
-            global.Image = window.Image;
-        });
-
-        it("should reject when no source was specified", async () => {
-            const source = "";
-            try {
-                await loadImage(source);
-                throw new Error("Should not have reached this line");
-            } catch (error) {
-                expect(error).to.match(/Error.*No Image.*/i);
-            }
-        });
-
-        it("should resolve with the image data when loaded successfully", async () => {
-            global.Image = (class MockImage {
-                addEventListener(name: string, callback: () => void) {
-                    if (name === "load") callback();
-                }
-            } as unknown) as typeof Image;
-
-            const source = "https://someimageurl.com/image.png";
-            const data = await loadImage(source);
-
-            expect(data?.source).to.equal(source);
-            expect(data?.type).to.equal("png");
-        });
-
-        it("should reject when image cannot be loaded", async () => {
-            global.Image = (class MockImage {
-                addEventListener(name: string, callback: () => void) {
-                    if (name === "error") callback();
-                }
-            } as unknown) as typeof Image;
-
-            const source = "https://someimageurl.com/image.png";
-
-            try {
-                await loadImage(source);
-                throw new Error("Should not have reached this line");
-            } catch (error) {
-                expect(error).to.match(/Error.*Loading.*/i);
-            }
-        });
-    });
-
-    describe("downloadSvgImage", () => {
-        it("should reject when no source was specified", async () => {
-            const source = "";
-            try {
-                await downloadSvgImage(source);
-                throw new Error("Should not have reached this line");
-            } catch (error) {
-                expect(error).to.match(/Error.*No Image.*/i);
-            }
-        });
-
-        it("should fallback to loadImage when the type is not SVG", async () => {
-            try {
-                const source = "https://someimageurl.com/image.png";
-                await downloadSvgImage(source);
-            } catch (error) {
-                expect(error).to.match(/Error tsParticles - loading image:*/i);
-            }
-        });
-
-        it("should resolve with the image data when loaded successfully", async () => {
-            const mockSvgData = "some svg";
-
-            global.fetch = (async function mockFetch() {
-                return {
-                    ok: true,
-                    text: async () => mockSvgData,
-                };
-            } as unknown) as typeof fetch;
-
-            const source = "https://someimageurl.com/image.svg";
-            const data = await downloadSvgImage(source);
-
-            expect(data?.source).to.equal(source);
-            expect(data?.type).to.equal("svg");
-            expect(data?.svgData).to.equal(mockSvgData);
-        });
-
-        it("should reject when image cannot be loaded", async () => {
-            global.fetch = (async function mockFetch() {
-                return {
-                    ok: false,
-                };
-            } as unknown) as typeof fetch;
-
-            const source = "https://someimageurl.com/image.svg";
-
-            try {
-                await downloadSvgImage(source);
-                throw new Error("Should not have reached this line");
-            } catch (error) {
-                expect(error).to.match(/Error.*not found.*/i);
-            }
         });
     });
 

@@ -1,33 +1,24 @@
-import type { Container, IImage, IParticle, IShapeDrawer, Particle } from "tsparticles-core";
-import { downloadSvgImage, isInArray, loadImage, replaceColorSvg } from "tsparticles-core";
+import type { Container, IParticle, IShapeDrawer, Particle } from "tsparticles-core";
+import { isInArray } from "tsparticles-core";
 import type { IImageShape } from "tsparticles-core/Options/Interfaces/Particles/Shape/IImageShape";
-
-interface IParticleImage {
-    source: string;
-    data: IImage;
-    ratio: number;
-    element?: HTMLImageElement;
-    loaded?: boolean;
-    replaceColor: boolean;
-}
-
-interface ContainerImage {
-    id: string;
-    images: IImage[];
-}
-
-type IImageParticle = IParticle & {
-    image: IParticleImage;
-};
+import {
+    ContainerImage,
+    downloadSvgImage,
+    IImage,
+    IImageParticle,
+    IParticleImage,
+    loadImage,
+    replaceColorSvg,
+} from "./Utils";
 
 /**
  * @category Shape Drawers
  */
 export class ImageDrawer implements IShapeDrawer {
-    public images: ContainerImage[];
+    #images: ContainerImage[];
 
     constructor() {
-        this.images = [];
+        this.#images = [];
     }
 
     public getSidesCount(): number {
@@ -35,10 +26,10 @@ export class ImageDrawer implements IShapeDrawer {
     }
 
     public getImages(container: Container): ContainerImage {
-        const containerImages = this.images.filter((t) => t.id === container.id);
+        const containerImages = this.#images.filter((t) => t.id === container.id);
 
         if (!containerImages.length) {
-            this.images.push({
+            this.#images.push({
                 id: container.id,
                 images: [],
             });
@@ -79,7 +70,7 @@ export class ImageDrawer implements IShapeDrawer {
     }
 
     public destroy(): void {
-        this.images = [];
+        this.#images = [];
     }
 
     private async loadImageShape(container: Container, imageShape: IImageShape): Promise<void> {

@@ -130,7 +130,7 @@ export class Repulser extends ExternalInteractorBase {
             const { dx, dy, distance } = getDistances(particle.position, position);
             const velocity = (divRepulse?.speed ?? repulseOptions.speed) * repulseOptions.factor;
             const repulseFactor = clamp((1 - Math.pow(distance / repulseRadius, 2)) * velocity, 0, velocity);
-            const normVec = new Vector(
+            const normVec = Vector.create(
                 distance === 0 ? velocity : (dx / distance) * repulseFactor,
                 distance === 0 ? velocity : (dy / distance) * repulseFactor
             );
@@ -175,7 +175,7 @@ export class Repulser extends ExternalInteractorBase {
                 if (d <= repulseRadius) {
                     container.repulse.particles.push(particle);
 
-                    const vect = new Vector(dx, dy);
+                    const vect = Vector.create(dx, dy);
 
                     vect.length = force;
 
