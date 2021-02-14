@@ -1,15 +1,20 @@
-import type { IDimension } from "../Core/Interfaces/IDimension";
-import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import type { IHsl, IRgb } from "../Core/Interfaces/Colors";
+import type {
+    IContainerPlugin,
+    ICoordinates,
+    IDelta,
+    IDimension,
+    IHsl,
+    IParticle,
+    IRgb,
+    IRgba,
+} from "../Core/Interfaces";
 import type { ILinksShadow } from "../Options/Interfaces/Particles/Links/ILinksShadow";
-import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
-import type { Container } from "..";
-import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
-import type { IDelta } from "../Core/Interfaces/IDelta";
-import { Particle } from "../Core/Particle";
+import type { Container } from "../Core/Container";
+import type { Particle } from "../Core/Particle";
 import { deg2rad, getDistance, getDistances } from "./NumberUtils";
 import { colorToRgb, getStyleFromHsl, getStyleFromRgb, colorMix } from "./ColorUtils";
+import { getStyleFromRgba } from "..";
 
 function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
     context.beginPath();
@@ -26,10 +31,14 @@ function drawTriangle(context: CanvasRenderingContext2D, p1: ICoordinates, p2: I
     context.closePath();
 }
 
-export function paintBase(context: CanvasRenderingContext2D, dimension: IDimension, baseColor?: string): void {
+export function paintBase(context: CanvasRenderingContext2D, dimension: IDimension, baseColor?: IRgba): void {
     if (baseColor) {
         context.save();
-        context.fillStyle = baseColor;
+
+        if (baseColor) {
+            context.fillStyle = getStyleFromRgba(baseColor);
+        }
+
         context.fillRect(0, 0, dimension.width, dimension.height);
         context.restore();
     } else {

@@ -59,7 +59,7 @@
     });
 
     let maxParticles = 0;
-    stats.showPanel(2);
+    stats.showPanel(0);
     stats.dom.style.position = "absolute";
     stats.dom.style.left = "3px";
     stats.dom.style.top = "3px";

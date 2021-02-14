@@ -1,22 +1,22 @@
 import { expect } from "chai";
 import type { IContainerPlugin, IPlugin, IRangeValue } from "../src";
+import { Container } from "../src/Core/Container";
+import { MoveDirection } from "../src/Enums";
 import {
     areBoundsInside,
     arrayRandomIndex,
     calculateBounds,
     clamp,
-    Container,
     getDistance,
     getParticleBaseVelocity,
     isInArray,
     isPointInside,
     itemFromArray,
     mix,
-    MoveDirection,
     Plugins,
     randomInRange,
     setRangeValue,
-} from "../src";
+} from "../src/Utils";
 
 function buildPluginWithId(id: string, needsPlugin: boolean): IPlugin {
     return {

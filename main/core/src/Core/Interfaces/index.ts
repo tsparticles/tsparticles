@@ -12,7 +12,6 @@ export * from "./IDimension";
 export * from "./IDistance";
 export * from "./IExternalInteractor";
 export * from "./IInteractor";
-export * from "./ILink";
 export * from "./IMouseData";
 export * from "./INoise";
 export * from "./IParticle";

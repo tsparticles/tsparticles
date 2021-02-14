@@ -431,12 +431,28 @@ export function getStyleFromRgb(color: IRgb, opacity?: number): string {
 }
 
 /**
+ * Prepares a rgba() css function from a [[IRgb]] object
+ * @param color the [[IRgba]] color to convert
+ */
+export function getStyleFromRgba(color: IRgba): string {
+    return getStyleFromRgb(color, color.a);
+}
+
+/**
  * Prepares a hsla() css function from a [[IHsl]] object
  * @param color the [[IHsl]] color to convert
  * @param opacity the opacity to apply to color
  */
 export function getStyleFromHsl(color: IHsl, opacity?: number): string {
     return `hsla(${color.h}, ${color.s}%, ${color.l}%, ${opacity ?? 1})`;
+}
+
+/**
+ * Prepares a hsla() css function from a [[IHsl]] object
+ * @param color the [[IHsla]] color to convert
+ */
+export function getStyleFromHsla(color: IHsla): string {
+    return getStyleFromHsl(color, color.a);
 }
 
 /**

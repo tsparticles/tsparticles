@@ -6,7 +6,6 @@ import type {
     IDelta,
     IDistance,
     IHsl,
-    ILink,
     IParticle,
     IParticleHslAnimation,
     IParticleLife,
@@ -63,7 +62,6 @@ export class Particle implements IParticle {
     public close: boolean;
     public destroyed;
     public fill: boolean;
-    public links: ILink[];
     public linksDistance?: number;
     public linksWidth?: number;
     public moveSpeed: number;
@@ -110,7 +108,6 @@ export class Particle implements IParticle {
         overrideOptions?: RecursivePartial<IParticles>,
         public readonly group?: string
     ) {
-        this.links = [];
         this.fill = true;
         this.close = true;
         this.splitCount = 0;
@@ -463,6 +460,12 @@ export class Particle implements IParticle {
         }
 
         this.shadowColor = colorToRgb(this.options.shadow.color);
+
+        for (const [, plugin] of container.plugins) {
+            if (plugin.particleCreated) {
+                plugin.particleCreated(this);
+            }
+        }
     }
 
     public draw(delta: IDelta): void {
@@ -505,7 +508,12 @@ export class Particle implements IParticle {
 
         this.destroyed = true;
         this.bubble.inRange = false;
-        this.links = [];
+
+        for (const [, plugin] of this.container.plugins) {
+            if (plugin.particleDestroyed) {
+                plugin.particleDestroyed(this, override);
+            }
+        }
 
         if (override) {
             return;
