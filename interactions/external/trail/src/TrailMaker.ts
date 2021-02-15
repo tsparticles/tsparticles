@@ -9,7 +9,7 @@ export class TrailMaker extends ExternalInteractorBase {
     private lastPosition?: ICoordinates;
 
     constructor(container: Container) {
-        super(container, "trail");
+        super(container);
 
         this.delay = 0;
     }

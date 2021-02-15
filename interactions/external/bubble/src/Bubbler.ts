@@ -40,7 +40,7 @@ const calculateBubbleValue = (particleValue: number, modeValue: number, optionsV
  */
 export class Bubbler extends ExternalInteractorBase {
     constructor(container: Container) {
-        super(container, "bubble");
+        super(container);
     }
 
     public isEnabled(): boolean {

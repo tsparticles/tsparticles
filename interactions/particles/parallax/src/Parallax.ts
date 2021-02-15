@@ -3,7 +3,7 @@ import type { Container, IDelta, Particle } from "tsparticles-core";
 
 export class Parallax extends ParticlesInteractorBase {
     constructor(container: Container) {
-        super(container, "parallax");
+        super(container);
     }
 
     public interact(particle: Particle, delta: IDelta): void {

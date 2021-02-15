@@ -97,9 +97,9 @@ GitHub : https://www.github.com/matteobruni/tsparticles
 How to use? : Check the GitHub README
 v${version}`;
 
-const minBanner = `tsParticles Angle Updater v${version} by Matteo Bruni`;
+const minBanner = `tsParticles Orbit Updater v${version} by Matteo Bruni`;
 
 module.exports = [
-  getConfig(getEntry("angle"), banner, minBanner, __dirname)
+  getConfig(getEntry("orbit"), banner, minBanner, __dirname)
 ];
 

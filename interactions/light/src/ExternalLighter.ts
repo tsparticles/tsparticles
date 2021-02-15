@@ -4,7 +4,7 @@ import { drawLight } from "./utils";
 
 export class ExternalLighter extends ExternalInteractorBase {
     constructor(container: Container) {
-        super(container, "lighter");
+        super(container);
     }
 
     public interact(): void {

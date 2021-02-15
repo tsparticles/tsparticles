@@ -71,7 +71,7 @@ type NoiseParticle = Particle & {
 
 export class Mover extends ParticlesInteractorBase {
     constructor(container: Container) {
-        super(container, "parallax");
+        super(container);
     }
 
     public interact(particle: NoiseParticle, delta: IDelta): void {

@@ -1,6 +1,6 @@
 import { tsParticles } from "tsparticles-core";
-import { loadPreset } from "./preset";
+import { loadSeaAnemonePreset } from "./preset";
 
-loadPreset(tsParticles);
+loadSeaAnemonePreset(tsParticles);
 
 export { tsParticles };

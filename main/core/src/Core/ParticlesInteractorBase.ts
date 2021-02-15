@@ -1,15 +1,10 @@
-import type { IParticlesInteractor } from "./Interfaces/IParticlesInteractor";
-import type { IDelta } from "./Interfaces/IDelta";
+import type { IDelta, IParticlesInteractor } from "./Interfaces";
 import type { Particle } from "./Particle";
+import type { Container } from "./Container";
 import { InteractorType } from "../Enums/Types/InteractorType";
-import { Container } from "../index";
 
 export abstract class ParticlesInteractorBase implements IParticlesInteractor {
-    public name: string;
-
-    protected constructor(protected readonly container: Container, subName: string) {
-        this.name = `particles${subName}`;
-    }
+    protected constructor(protected readonly container: Container) {}
 
     public type: InteractorType = InteractorType.Particles;
 

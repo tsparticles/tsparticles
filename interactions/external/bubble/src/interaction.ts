@@ -1,6 +1,6 @@
 import type { Main } from "tsparticles-core";
 import { Bubbler } from "./Bubbler";
 
-export function loadInteraction(tsParticles: Main): void {
-    tsParticles.addInteractor((container) => new Bubbler(container));
+export function loadExternalBubbleInteraction(tsParticles: Main): void {
+    tsParticles.addInteractor("externalBubble", (container) => new Bubbler(container));
 }

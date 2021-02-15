@@ -42,9 +42,9 @@ class Plugin implements IPlugin {
     }
 }
 
-export function loadPlugin(tsParticles: Main): void {
+export function loadInfectionPlugin(tsParticles: Main): void {
     const plugin = new Plugin();
 
     tsParticles.addPlugin(plugin);
-    tsParticles.addInteractor((container) => new ParticlesInfecter(container));
+    tsParticles.addInteractor("particlesInfection", (container) => new ParticlesInfecter(container));
 }

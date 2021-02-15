@@ -25,7 +25,7 @@ import type { RepulseDiv } from "tsparticles-core/Options/Classes/Interactivity/
  */
 export class Repulser extends ExternalInteractorBase {
     constructor(container: Container) {
-        super(container, "repulser");
+        super(container);
     }
 
     public isEnabled(): boolean {

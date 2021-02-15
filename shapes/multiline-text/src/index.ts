@@ -1,4 +1,6 @@
-import { loadShape } from "./shape";
+import { loadMultilineTextShape } from "./shape";
 import { tsParticles } from "tsparticles-core";
 
-loadShape(tsParticles);
+loadMultilineTextShape(tsParticles);
+
+export { tsParticles, loadMultilineTextShape };

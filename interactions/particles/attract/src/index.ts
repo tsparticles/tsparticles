@@ -1,6 +1,6 @@
-import { loadInteraction } from "./interaction";
+import { loadParticlesAttractInteraction } from "./interaction";
 import { tsParticles } from "tsparticles-core";
 
-loadInteraction(tsParticles);
+loadParticlesAttractInteraction(tsParticles);
 
-export { loadInteraction };
+export { loadParticlesAttractInteraction };

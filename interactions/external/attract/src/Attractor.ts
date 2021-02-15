@@ -16,7 +16,7 @@ import {
  */
 export class Attractor extends ExternalInteractorBase {
     constructor(container: Container) {
-        super(container, "attractor");
+        super(container);
     }
 
     public isEnabled(): boolean {

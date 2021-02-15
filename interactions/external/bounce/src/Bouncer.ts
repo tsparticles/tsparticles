@@ -21,7 +21,7 @@ import type { DivEvent } from "tsparticles-core/Options/Classes/Interactivity/Ev
 
 export class Bouncer extends ExternalInteractorBase {
     constructor(container: Container) {
-        super(container, "bounce");
+        super(container);
     }
 
     public isEnabled(): boolean {

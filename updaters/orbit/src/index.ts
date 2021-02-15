@@ -1,6 +1,6 @@
-import { loadUpdater } from "./updater";
+import { loadOrbitUpdater } from "./updater";
 import { tsParticles } from "tsparticles-core";
 
-loadUpdater(tsParticles);
+loadOrbitUpdater(tsParticles);
 
-export { loadUpdater };
+export { loadOrbitUpdater };

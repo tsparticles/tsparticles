@@ -1,4 +1,6 @@
-import { loadShape } from "./shape";
+import { loadBubbleShape } from "./shape";
 import { tsParticles } from "tsparticles-core";
 
-loadShape(tsParticles);
+loadBubbleShape(tsParticles);
+
+export { tsParticles, loadBubbleShape };

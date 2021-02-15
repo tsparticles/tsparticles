@@ -130,6 +130,6 @@ export class MultilineTextDrawer implements IShapeDrawer {
     }
 }
 
-export function loadShape(tsParticles: Main) {
+export function loadMultilineTextShape(tsParticles: Main) {
     tsParticles.addShape("multiline-text", new MultilineTextDrawer());
 }

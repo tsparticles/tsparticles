@@ -15,7 +15,7 @@ import {
  */
 export class Grabber extends ExternalInteractorBase {
     constructor(container: Container) {
-        super(container, "grab");
+        super(container);
     }
 
     public isEnabled(): boolean {

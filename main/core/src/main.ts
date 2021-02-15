@@ -2,7 +2,6 @@ import { Plugins } from "./Utils";
 import type { IOptions } from "./Options/Interfaces/IOptions";
 import type { Container } from "./Core/Container";
 import { Loader } from "./Core/Loader";
-import type { IShapeDrawer } from "./Core/Interfaces/IShapeDrawer";
 import type {
     ShapeDrawerAfterEffectFunction,
     ShapeDrawerDestroyFunction,
@@ -11,11 +10,8 @@ import type {
     RecursivePartial,
     SingleOrMultiple,
 } from "./Types";
-import type { IPlugin } from "./Core/Interfaces/IPlugin";
+import type { IInteractor, INoise, IParticleUpdater, IPlugin, IShapeDrawer } from "./Core/Interfaces";
 import type { Particle } from "./Core/Particle";
-import type { INoise } from "./Core/Interfaces/INoise";
-import type { IInteractor } from "./Core/Interfaces/IInteractor";
-import type { IParticleUpdater } from "./Core/Interfaces/IParticleUpdater";
 
 /**
  * Main class for creating the singleton on window.
@@ -180,17 +176,19 @@ export class Main {
 
     /**
      *
+     * @param name
      * @param interactorInitializer
      */
-    public addInteractor(interactorInitializer: (container: Container) => IInteractor): void {
-        Plugins.addInteractor(interactorInitializer);
+    public addInteractor(name: string, interactorInitializer: (container: Container) => IInteractor): void {
+        Plugins.addInteractor(name, interactorInitializer);
     }
 
     /**
      *
+     * @param name
      * @param updaterInitializer
      */
-    public addParticleUpdater(updaterInitializer: (container: Container) => IParticleUpdater): void {
-        Plugins.addParticleUpdater(updaterInitializer);
+    public addParticleUpdater(name: string, updaterInitializer: (container: Container) => IParticleUpdater): void {
+        Plugins.addParticleUpdater(name, updaterInitializer);
     }
 }

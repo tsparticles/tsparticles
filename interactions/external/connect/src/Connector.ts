@@ -7,7 +7,7 @@ import { HoverMode, isInArray, ExternalInteractorBase } from "tsparticles-core";
  */
 export class Connector extends ExternalInteractorBase {
     constructor(container: Container) {
-        super(container, "connect");
+        super(container);
     }
 
     public isEnabled(): boolean {

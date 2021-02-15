@@ -1,15 +1,10 @@
-import type { IExternalInteractor } from "./Interfaces/IExternalInteractor";
-import type { IDelta } from "./Interfaces/IDelta";
+import type { IDelta, IExternalInteractor } from "./Interfaces";
 import type { Particle } from "./Particle";
+import type { Container } from "./Container";
 import { InteractorType } from "../Enums/Types/InteractorType";
-import { Container } from "../index";
 
 export abstract class ExternalInteractorBase implements IExternalInteractor {
-    public name: string;
-
-    protected constructor(protected readonly container: Container, subName: string) {
-        this.name = `external${subName}`;
-    }
+    protected constructor(protected readonly container: Container) {}
 
     public type: InteractorType = InteractorType.External;
 

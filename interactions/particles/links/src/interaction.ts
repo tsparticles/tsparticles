@@ -3,10 +3,10 @@ import { Linker } from "./Linker";
 import { loadPlugin } from "./plugin";
 
 export function loadInteraction(tsParticles: Main): void {
-    tsParticles.addInteractor((container) => new Linker(container));
+    tsParticles.addInteractor("particlesLinks", (container) => new Linker(container));
 }
 
-export function loadLinks(tsParticles: Main): void {
+export function loadParticlesLinksInteraction(tsParticles: Main): void {
     loadInteraction(tsParticles);
     loadPlugin(tsParticles);
 }

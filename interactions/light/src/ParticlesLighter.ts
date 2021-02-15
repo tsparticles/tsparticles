@@ -4,7 +4,7 @@ import { drawParticleShadow } from "./utils";
 
 export class ParticlesLighter extends ParticlesInteractorBase {
     constructor(container: Container) {
-        super(container, "lighter");
+        super(container);
     }
 
     public interact(particle: Particle): void {

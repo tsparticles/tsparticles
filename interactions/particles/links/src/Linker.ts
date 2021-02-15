@@ -49,7 +49,7 @@ function getLinkDistance(
 
 export class Linker extends ParticlesInteractorBase {
     constructor(container: Container) {
-        super(container, "links");
+        super(container);
     }
 
     public isEnabled(particle: IParticle): boolean {

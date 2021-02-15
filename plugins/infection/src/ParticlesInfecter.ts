@@ -8,7 +8,7 @@ import type { IInfectionOptions } from "./Options/Interfaces/IInfectionOptions";
  */
 export class ParticlesInfecter extends ParticlesInteractorBase {
     constructor(container: InfectableContainer) {
-        super(container, "infection");
+        super(container);
     }
 
     public isEnabled(): boolean {

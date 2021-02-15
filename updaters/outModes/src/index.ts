@@ -1,6 +1,6 @@
-import { loadUpdater } from "./updater";
+import { loadOutModesUpdater } from "./updater";
 import { tsParticles } from "tsparticles-core";
 
-loadUpdater(tsParticles);
+loadOutModesUpdater(tsParticles);
 
-export { loadUpdater };
+export { loadOutModesUpdater };

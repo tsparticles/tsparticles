@@ -39,7 +39,7 @@ class Plugin implements IPlugin {
     }
 }
 
-export function loadPlugin(tsParticles: Main): void {
+export function loadPolygonMaskPlugin(tsParticles: Main): void {
     const plugin = new Plugin();
 
     tsParticles.addPlugin(plugin);

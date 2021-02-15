@@ -97,9 +97,9 @@ GitHub : https://www.github.com/matteobruni/tsparticles
 How to use? : Check the GitHub README
 v${version}`;
 
-const minBanner = `tsParticles Bubble Shape v${version} by Matteo Bruni`;
+const minBanner = `tsParticles Circle Shape v${version} by Matteo Bruni`;
 
 module.exports = [
-    getConfig(getEntry("bubble"), banner, minBanner, __dirname)
+    getConfig(getEntry("circle"), banner, minBanner, __dirname)
 ];
 

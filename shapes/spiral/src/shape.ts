@@ -6,7 +6,7 @@ interface ISpiralData extends IShapeValues {
     lineSpacing: number;
 }
 
-export function loadShape(tsParticles: Main) {
+export function loadSpiralShape(tsParticles: Main) {
     tsParticles.addShape(
         "spiral",
         function (

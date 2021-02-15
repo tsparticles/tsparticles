@@ -1,14 +1,14 @@
 import { InteractivityDetect, Main, MoveDirection, OutMode } from "tsparticles-core";
-import { loadInteraction as loadParticlesMoveInteraction } from "tsparticles-interaction-particles-move";
-import { loadShape as loadCircleShape } from "tsparticles-shape-circle";
-import { loadUpdater as loadOutModesUpdater } from "tsparticles-updater-out-modes";
-import { loadPlugin as loadEmittersPlugin } from "tsparticles-plugin-emitters";
+import { loadParticlesMoveInteraction } from "tsparticles-interaction-particles-move";
+import { loadCircleShape } from "tsparticles-shape-circle";
+import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
+import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
 
-export function loadPreset(tsParticles: Main): void {
+export function loadBigCirclesPreset(tsParticles: Main): void {
     loadCircleShape(tsParticles);
+    loadParticlesMoveInteraction(tsParticles);
     loadOutModesUpdater(tsParticles);
     loadEmittersPlugin(tsParticles);
-    loadParticlesMoveInteraction(tsParticles);
 
     const options = {
         fpsLimit: 60,

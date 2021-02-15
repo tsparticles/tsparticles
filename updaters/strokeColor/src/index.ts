@@ -1,6 +1,6 @@
-import { loadUpdater } from "./updater";
+import { loadStrokeColorUpdater } from "./updater";
 import { tsParticles } from "tsparticles-core";
 
-loadUpdater(tsParticles);
+loadStrokeColorUpdater(tsParticles);
 
-export { loadUpdater };
+export { loadStrokeColorUpdater };

@@ -6,7 +6,7 @@ import { getDistances, ParticlesInteractorBase } from "tsparticles-core";
  */
 export class Attractor extends ParticlesInteractorBase {
     constructor(container: Container) {
-        super(container, "attract");
+        super(container);
     }
 
     public interact(p1: IParticle): void {

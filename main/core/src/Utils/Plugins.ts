@@ -1,20 +1,22 @@
-import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
-import type { IPlugin } from "../Core/Interfaces/IPlugin";
+import type {
+    IContainerPlugin,
+    IInteractor,
+    INoise,
+    IParticleUpdater,
+    IPlugin,
+    IShapeDrawer,
+} from "../Core/Interfaces";
 import type { Container } from "../Core/Container";
 import type { RecursivePartial } from "../Types";
 import type { IOptions } from "../Options/Interfaces/IOptions";
-import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
 import type { Options } from "../Options/Classes/Options";
-import type { INoise } from "../Core/Interfaces/INoise";
-import type { IParticleUpdater } from "../Core/Interfaces/IParticleUpdater";
-import type { IInteractor } from "../Core/Interfaces/IInteractor";
 
 type InteractorInitializer = (container: Container) => IInteractor;
 type UpdaterInitializer = (container: Container) => IParticleUpdater;
 
 const plugins: IPlugin[] = [];
-const interactorsInitializers: InteractorInitializer[] = [];
-const updatersInitializers: UpdaterInitializer[] = [];
+const interactorsInitializers: Map<string, InteractorInitializer> = new Map<string, InteractorInitializer>();
+const updatersInitializers: Map<string, UpdaterInitializer> = new Map<string, UpdaterInitializer>();
 const interactors: Map<Container, IInteractor[]> = new Map<Container, IInteractor[]>();
 const updaters: Map<Container, IParticleUpdater[]> = new Map<Container, IParticleUpdater[]>();
 const presets: Map<string, RecursivePartial<IOptions>> = new Map<string, RecursivePartial<IOptions>>();
@@ -92,7 +94,7 @@ export class Plugins {
         let res = interactors.get(container);
 
         if (!res) {
-            res = interactorsInitializers.map((t) => t(container));
+            res = [...interactorsInitializers.values()].map((t) => t(container));
 
             interactors.set(container, res);
         }
@@ -100,15 +102,15 @@ export class Plugins {
         return res;
     }
 
-    public static addInteractor(initInteractor: (container: Container) => IInteractor): void {
-        interactorsInitializers.push(initInteractor);
+    public static addInteractor(name: string, initInteractor: (container: Container) => IInteractor): void {
+        interactorsInitializers.set(name, initInteractor);
     }
 
     public static getUpdaters(container: Container): IParticleUpdater[] {
         let res = updaters.get(container);
 
         if (!res) {
-            res = updatersInitializers.map((t) => t(container));
+            res = [...updatersInitializers.values()].map((t) => t(container));
 
             updaters.set(container, res);
         }
@@ -116,7 +118,7 @@ export class Plugins {
         return res;
     }
 
-    public static addParticleUpdater(initUpdater: (container: Container) => IParticleUpdater): void {
-        updatersInitializers.push(initUpdater);
+    public static addParticleUpdater(name: string, initUpdater: (container: Container) => IParticleUpdater): void {
+        updatersInitializers.set(name, initUpdater);
     }
 }

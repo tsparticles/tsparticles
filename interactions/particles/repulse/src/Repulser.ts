@@ -3,7 +3,7 @@ import { clamp, getDistances, Particle, ParticlesInteractorBase, Vector } from "
 
 export class Repulser extends ParticlesInteractorBase {
     constructor(container: Container) {
-        super(container, "repulse");
+        super(container);
     }
 
     public isEnabled(particle: Particle): boolean {

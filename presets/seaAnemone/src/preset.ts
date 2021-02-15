@@ -1,11 +1,11 @@
 import type { ISourceOptions, Main } from "tsparticles-core";
-import { loadInteraction as loadParticlesMoveInteraction } from "tsparticles-interaction-particles-move";
-import { loadPlugin as loadEmittersPlugin } from "tsparticles-plugin-emitters";
-import { loadShape as loadCircleShape } from "tsparticles-shape-circle";
-import { loadUpdater as loadSizeUpdater } from "tsparticles-updater-size";
+import { loadParticlesMoveInteraction } from "tsparticles-interaction-particles-move";
+import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
+import { loadCircleShape } from "tsparticles-shape-circle";
+import { loadSizeUpdater } from "tsparticles-updater-size";
 import { seaNoiseGenerator } from "./noiseGen";
 
-export function loadPreset(tsParticles: Main): void {
+export function loadSeaAnemonePreset(tsParticles: Main): void {
     loadParticlesMoveInteraction(tsParticles);
     loadEmittersPlugin(tsParticles);
     loadCircleShape(tsParticles);

@@ -35,7 +35,7 @@ function destroy(p1: Particle, p2: Particle): void {
  */
 export class Collider extends ParticlesInteractorBase {
     constructor(container: Container) {
-        super(container, "collisions");
+        super(container);
     }
 
     public isEnabled(particle: Particle): boolean {

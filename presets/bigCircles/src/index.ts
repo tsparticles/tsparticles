@@ -1,6 +1,6 @@
 import { tsParticles } from "tsparticles-core";
-import { loadPreset } from "./preset";
+import { loadBigCirclesPreset } from "./preset";
 
-loadPreset(tsParticles);
+loadBigCirclesPreset(tsParticles);
 
 export { tsParticles };
