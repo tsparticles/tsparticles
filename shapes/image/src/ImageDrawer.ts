@@ -122,7 +122,7 @@ export class ImageDrawer implements IShapeDrawer {
     }
 
     public loadShape(particle: Particle): void {
-        if (!(particle.shape === "image" || particle.shape === "images")) {
+        if (particle.shape !== "image" && particle.shape !== "images") {
             return;
         }
 
