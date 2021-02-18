@@ -42,8 +42,6 @@ export class ImageDrawer implements IShapeDrawer {
     }
 
     public addImage(container: Container, image: IImage): void {
-        console.log(`adding image ${image.source}`);
-
         const containerImages = this.getImages(container);
 
         containerImages?.images.push(image);
@@ -102,8 +100,6 @@ export class ImageDrawer implements IShapeDrawer {
         const element = image?.data?.element;
 
         if (!element) {
-            console.log("no element");
-
             return;
         }
 
