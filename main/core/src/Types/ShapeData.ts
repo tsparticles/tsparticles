@@ -4,6 +4,8 @@ import type { IShapeValues } from "../Options/Interfaces/Particles/Shape/IShapeV
 /**
  * @category Types
  */
+export type ShapeDataValue = SingleOrMultiple<IShapeValues>;
+
 export type ShapeData = {
-    [type: string]: SingleOrMultiple<IShapeValues | unknown>;
+    [type: string]: ShapeDataValue;
 };

@@ -1,5 +1,5 @@
 import type { IShape } from "../../../Interfaces/Particles/Shape/IShape";
-import type { RecursivePartial, ShapeData, SingleOrMultiple } from "../../../../Types";
+import type { RecursivePartial, ShapeData, ShapeDataValue, SingleOrMultiple } from "../../../../Types";
 import { Stroke } from "../Stroke";
 import { deepExtend } from "../../../../Utils";
 import type { IShapeValues } from "../../../Interfaces/Particles/Shape/IShapeValues";
@@ -17,7 +17,7 @@ export class Shape implements IShape, IOptionLoader<IShape> {
      * @deprecated this property was integrated in custom shape management
      */
     get image(): SingleOrMultiple<IImageShape> {
-        return (this.options["image"] ?? this.options["images"]) as SingleOrMultiple<IImageShape>;
+        return (this.options["image"] ?? this.options["images"] ?? {}) as SingleOrMultiple<IImageShape>;
     }
 
     /**
@@ -48,7 +48,7 @@ export class Shape implements IShape, IOptionLoader<IShape> {
      * @deprecated the property images is deprecated, please use the image property, it works with one and many
      */
     get images(): IImageShape[] {
-        return this.image instanceof Array ? this.image : [this.image];
+        return !this.image ? this.image : this.image instanceof Array ? this.image : [this.image];
     }
 
     /**
@@ -122,7 +122,19 @@ export class Shape implements IShape, IOptionLoader<IShape> {
                 const item = options[shape];
 
                 if (item !== undefined) {
-                    this.options[shape] = deepExtend(this.options[shape] ?? {}, item) as IShapeValues[];
+                    if (item instanceof Array) {
+                        if (!(this.options[shape] instanceof Array)) {
+                            this.options[shape] = [];
+                        }
+
+                        this.options[shape] = deepExtend(this.options[shape] ?? [], item) as ShapeDataValue;
+                    } else {
+                        if (this.options[shape] instanceof Array) {
+                            this.options[shape] = {};
+                        }
+
+                        this.options[shape] = deepExtend(this.options[shape] ?? {}, item) as ShapeDataValue;
+                    }
                 }
             }
         }
@@ -155,10 +167,10 @@ export class Shape implements IShape, IOptionLoader<IShape> {
                 }
             }
 
-            this.options[mainKey] = deepExtend(this.options[mainKey] ?? [], item) as IShapeValues[];
+            this.options[mainKey] = deepExtend(this.options[mainKey] ?? [], item) as ShapeDataValue;
 
             if (!this.options[altKey] || altOverride) {
-                this.options[altKey] = deepExtend(this.options[altKey] ?? [], item) as IShapeValues[];
+                this.options[altKey] = deepExtend(this.options[altKey] ?? [], item) as ShapeDataValue;
             }
         } else {
             if (this.options[mainKey] instanceof Array) {
@@ -169,10 +181,10 @@ export class Shape implements IShape, IOptionLoader<IShape> {
                 }
             }
 
-            this.options[mainKey] = deepExtend(this.options[mainKey] ?? {}, item) as IShapeValues[];
+            this.options[mainKey] = deepExtend(this.options[mainKey] ?? {}, item) as ShapeDataValue;
 
             if (!this.options[altKey] || altOverride) {
-                this.options[altKey] = deepExtend(this.options[altKey] ?? {}, item) as IShapeValues[];
+                this.options[altKey] = deepExtend(this.options[altKey] ?? {}, item) as ShapeDataValue;
             }
         }
     }

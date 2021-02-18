@@ -7,7 +7,7 @@ import { Background } from "./Background/Background";
 import { Plugins } from "../../Utils";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import { Theme } from "./Theme/Theme";
-import { ThemeMode } from "../../Enums/Modes";
+import { ThemeMode } from "../../Enums";
 import { FullScreen } from "./FullScreen/FullScreen";
 import { Motion } from "./Motion/Motion";
 import { ManualParticle } from "./ManualParticle";
@@ -80,6 +80,8 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     public preset?: string | string[];
     public responsive: Responsive[];
     public themes: Theme[];
+
+    [name: string]: unknown;
 
     constructor() {
         this.autoPlay = true;
