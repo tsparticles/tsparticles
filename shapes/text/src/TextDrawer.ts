@@ -26,7 +26,7 @@ export class TextDrawer implements IShapeDrawer {
                 const promises: Promise<void>[] = [];
 
                 for (const character of shapeOptions) {
-                    promises.push(loadFont(character));
+                    promises.push(loadFont(character as ICharacterShape));
                 }
 
                 await Promise.allSettled(promises);
