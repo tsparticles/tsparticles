@@ -146,20 +146,11 @@
           "weight": "900"
         }
       ],
-      "image": {
-        "height": 100,
-        "replaceColor": true,
-        "src": "https://cdn.matteobruni.it/images/particles/github.svg",
-        "width": 100
-      },
-      "polygon": {
-        "sides": 5
-      },
-      "stroke": {
-        "color": "#ffffff",
-        "width": 1
-      },
       "type": "char"
+    },
+    "stroke": {
+      "color": "#ffffff",
+      "width": 1
     },
     "size": {
       "animation": {

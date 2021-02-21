@@ -235,18 +235,6 @@ describe("Options tests", () => {
                 },
                 shape: {
                     type: "circle",
-                    stroke: {
-                        width: 0,
-                        color: "#000000",
-                    },
-                    polygon: {
-                        nb_sides: 5,
-                    },
-                    image: {
-                        src: "https://cdn.matteobruni.it/images/particles/github.svg",
-                        width: 100,
-                        height: 100,
-                    },
                 },
                 opacity: {
                     value: 0.5,
@@ -425,18 +413,6 @@ describe("Options tests", () => {
                 },
                 shape: {
                     type: ShapeType.circle,
-                    stroke: {
-                        width: 0,
-                        color: "#000000",
-                    },
-                    polygon: {
-                        nb_sides: 5,
-                    },
-                    image: {
-                        src: "https://cdn.matteobruni.it/images/particles/github.svg",
-                        width: 100,
-                        height: 100,
-                    },
                 },
                 opacity: {
                     value: 0.5,
@@ -545,12 +521,12 @@ describe("Options tests", () => {
         expect(options.particles.size.value).to.equal(4);
 
         /* particles stroke */
-        expect(options.particles.stroke)
+        /*expect(options.particles.stroke)
             .to.be.an("object")
             .to.have.property("color")
             .to.be.an("object")
             .to.have.property("value")
-            .to.equal("#000000");
+            .to.equal("#000000");*/
         expect(options.particles.stroke).to.be.an("object").to.have.property("width").to.equal(0);
     });
 
@@ -570,18 +546,6 @@ describe("Options tests", () => {
             },
             shape: {
                 type: "circle",
-                stroke: {
-                    width: 0,
-                    color: "#000000",
-                },
-                polygon: {
-                    nb_sides: 5,
-                },
-                image: {
-                    src: "https://cdn.matteobruni.it/images/particles/github.svg",
-                    width: 100,
-                    height: 100,
-                },
             },
             opacity: {
                 value: 0.5,

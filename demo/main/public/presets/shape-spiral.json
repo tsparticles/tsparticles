@@ -20,22 +20,11 @@
       "type": "spiral",
       "options": {
         "spiral": {
-          "innerRadius": 1,
-          "lineSpacing": 1,
+          "innerRadius": 2,
+          "lineSpacing": 2,
           "fill": false,
           "close": false
         }
-      },
-      "stroke": {
-        "width": 1
-      },
-      "polygon": {
-        "nb_sides": 5
-      },
-      "image": {
-        "src": "https://cdn.matteobruni.it/images/particles/github.svg",
-        "width": 100,
-        "height": 100
       }
     },
     "opacity": {

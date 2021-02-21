@@ -104,27 +104,11 @@
       "value": 0.5
     },
     "shape": {
-      "character": {
-        "fill": true,
-        "font": "Verdana",
-        "style": "",
-        "value": "M",
-        "weight": "400"
-      },
-      "image": {
-        "height": 100,
-        "replaceColor": true,
-        "src": "https://cdn.matteobruni.it/images/particles/github.svg",
-        "width": 100
-      },
-      "polygon": {
-        "sides": 5
-      },
-      "stroke": {
-        "color": "#fff",
-        "width": 1
-      },
       "type": "circle"
+    },
+    "stroke": {
+      "color": "#fff",
+      "width": 1
     },
     "size": {
       "animation": {
