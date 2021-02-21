@@ -11,15 +11,12 @@
     "color": {
       "value": "#ff0000"
     },
+    "stroke": {
+      "width": 1,
+      "color": "#ffffff"
+    },
     "shape": {
       "type": "char",
-      "stroke": {
-        "width": 1,
-        "color": "#ffffff"
-      },
-      "polygon": {
-        "nb_sides": 5
-      },
       "character": [
         {
           "value": [
@@ -59,12 +56,7 @@
           "weight": "400",
           "fill": false
         }
-      ],
-      "image": {
-        "src": "https://cdn.matteobruni.it/images/particles/github.svg",
-        "width": 100,
-        "height": 100
-      }
+      ]
     },
     "opacity": {
       "value": 0.5,

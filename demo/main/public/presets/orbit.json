@@ -122,27 +122,28 @@
       }
     },
     "shape": {
-      "character": {
-        "fill": true,
-        "font": "Verdana",
-        "style": "",
-        "value": "M",
-        "weight": "400"
-      },
-      "image": {
-        "height": 100,
-        "replaceColor": true,
-        "src": "https://cdn.matteobruni.it/images/particles/github.svg",
-        "width": 100
-      },
-      "polygon": {
-        "sides": 5
-      },
-      "stroke": {
-        "color": "#fff",
-        "width": 1
-      },
-      "type": "circle"
+      "character": [
+        {
+          "fill": true,
+          "font": "Font Awesome 5 Brands",
+          "value": [
+            "\uf179"
+          ],
+          "weight": "400"
+        },
+        {
+          "fill": true,
+          "value": [
+            "\uf5d1"
+          ],
+          "weight": "900"
+        }
+      ],
+      "type": "char"
+    },
+    "stroke": {
+      "color": "#ffffff",
+      "width": 1
     },
     "size": {
       "animation": {
