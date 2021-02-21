@@ -89,7 +89,7 @@
     "shape": {
       "image": {
         "height": 128,
-        "src": "https://cdn.matteobruni.it/images/particles/plane_alt.png",
+        "src": "https://particles.js.org/images/plane_alt.png",
         "width": 128
       },
       "type": "image"

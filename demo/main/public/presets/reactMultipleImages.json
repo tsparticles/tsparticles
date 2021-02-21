@@ -149,7 +149,7 @@
         {
           "height": 20,
           "replaceColor": true,
-          "src": "https://cdn.matteobruni.it/images/particles/fruits/cherry.png",
+          "src": "https://particles.js.org/images/fruits/cherry.png",
           "width": 23,
           "fill": true,
           "close": true
@@ -157,7 +157,7 @@
         {
           "height": 20,
           "replaceColor": true,
-          "src": "https://cdn.matteobruni.it/images/particles/fruits/grapes.png",
+          "src": "https://particles.js.org/images/fruits/grapes.png",
           "width": 20,
           "fill": true,
           "close": true
@@ -165,7 +165,7 @@
         {
           "height": 20,
           "replaceColor": true,
-          "src": "https://cdn.matteobruni.it/images/particles/fruits/lemon.png",
+          "src": "https://particles.js.org/images/fruits/lemon.png",
           "width": 20,
           "fill": true,
           "close": true

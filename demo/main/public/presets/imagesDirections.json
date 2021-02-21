@@ -63,7 +63,7 @@
       "options": {
         "image": [
           {
-            "src": "https://cdn.matteobruni.it/images/particles/fruits/apple.png",
+            "src": "https://particles.js.org/images/fruits/apple.png",
             "width": 32,
             "height": 32,
             "particles": {
@@ -73,7 +73,7 @@
             }
           },
           {
-            "src": "https://cdn.matteobruni.it/images/particles/fruits/avocado.png",
+            "src": "https://particles.js.org/images/fruits/avocado.png",
             "width": 32,
             "height": 32,
             "particles": {
