@@ -65,8 +65,6 @@ common/autoinstallers/*/.npmrc
 **/.rush/temp/
 
 .cache/
-
-.DS_Store
 dist/
 build/
 docs/
@@ -75,6 +73,7 @@ demo/main/report.html
 demo/main/report.htm
 demo/main/report.*.html
 demo/main/report.*.htm
+demo/main/views/*.html
 components/preact/report.html
 components/react/report.html
 
