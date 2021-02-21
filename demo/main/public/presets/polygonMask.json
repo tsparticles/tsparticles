@@ -139,7 +139,7 @@
     "inlineArrangement": "equidistant",
     "scale": 0.5,
     "type": "inline",
-    "url": "https://cdn.matteobruni.it/images/particles/smalldeer.svg"
+    "url": "https://particles.js.org/images/smalldeer.svg"
   },
   "background": {
     "color": "#000000",

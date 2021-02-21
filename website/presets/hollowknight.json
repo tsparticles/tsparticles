@@ -140,7 +140,7 @@
     "inlineArrangement": "equidistant",
     "scale": 2,
     "type": "inline",
-    "url": "https://cdn.matteobruni.it/images/particles/hollowknight.svg"
+    "url": "https://particles.js.org/images/hollowknight.svg"
   },
   "background": {
     "color": "#000000",

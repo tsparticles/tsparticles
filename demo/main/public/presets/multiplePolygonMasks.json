@@ -144,7 +144,7 @@
     "inlineArrangement": "equidistant",
     "scale": 1,
     "type": "inline",
-    "url": "https://cdn.matteobruni.it/images/particles/google.svg"
+    "url": "https://particles.js.org/images/google.svg"
   },
   "background": {
     "color": "#000000",
