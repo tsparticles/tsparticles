@@ -3,7 +3,7 @@ import { loadParticlesMoveInteraction } from "tsparticles-interaction-particles-
 import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
 import { loadCircleShape } from "tsparticles-shape-circle";
 import { loadSizeUpdater } from "tsparticles-updater-size";
-import { seaNoiseGenerator } from "./noiseGen";
+import { seaPathGenerator } from "./pathGen";
 
 export function loadSeaAnemonePreset(tsParticles: Main): void {
     loadParticlesMoveInteraction(tsParticles);
@@ -12,7 +12,7 @@ export function loadSeaAnemonePreset(tsParticles: Main): void {
     loadSizeUpdater(tsParticles);
 
     const presetName = "seaAnemone";
-    const noiseGeneratorName = `${presetName}Noise`;
+    const pathGeneratorName = `${presetName}Path`;
     const options = ({
         fullScreen: {
             enable: true,
@@ -42,13 +42,13 @@ export function loadSeaAnemonePreset(tsParticles: Main): void {
                 outModes: {
                     default: "destroy",
                 },
-                noise: {
+                path: {
                     clamp: false,
                     enable: true,
                     delay: {
                         value: 0,
                     },
-                    generator: "seaAnemoneNoise",
+                    generator: pathGeneratorName,
                 },
                 random: false,
                 speed: 2,
@@ -131,5 +131,5 @@ export function loadSeaAnemonePreset(tsParticles: Main): void {
     } as unknown) as ISourceOptions;
 
     tsParticles.addPreset(presetName, options);
-    tsParticles.addNoiseGenerator(noiseGeneratorName, seaNoiseGenerator);
+    tsParticles.addPathGenerator(pathGeneratorName, seaPathGenerator);
 }

@@ -1,12 +1,12 @@
-import type { INoise } from "../../../../Interfaces/Particles/Move/Noise/INoise";
+import type { IMovePath } from "../../../../Interfaces/Particles/Move/IMovePath";
 import type { RecursivePartial } from "../../../../../Types";
-import { NoiseDelay } from "./NoiseDelay";
+import { MovePathDelay } from "./MovePathDelay";
 import type { IOptionLoader } from "../../../../Interfaces/IOptionLoader";
 
 /**
  * @category Options
  */
-export class Noise implements INoise, IOptionLoader<INoise> {
+export class MovePath implements IMovePath, IOptionLoader<IMovePath> {
     public clamp;
     public delay;
     public enable;
@@ -14,11 +14,11 @@ export class Noise implements INoise, IOptionLoader<INoise> {
 
     constructor() {
         this.clamp = true;
-        this.delay = new NoiseDelay();
+        this.delay = new MovePathDelay();
         this.enable = false;
     }
 
-    public load(data?: RecursivePartial<INoise>): void {
+    public load(data?: RecursivePartial<IMovePath>): void {
         if (data === undefined) {
             return;
         }

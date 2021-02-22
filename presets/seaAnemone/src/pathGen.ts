@@ -1,12 +1,12 @@
-import type { INoise, IParticle } from "tsparticles-core";
+import type { IMovePathGenerator, IParticle } from "tsparticles-core";
+import { Vector } from "tsparticles-core";
 
-type SeaNoiseParticle = IParticle & {
-    noiseGen?: () => number;
-    seaDir?: number;
-    seaSpeed?: number;
+type SeaPathParticle = IParticle & {
+    pathGen?: () => number;
+    seaVelocity?: Vector;
 };
 
-function noiseGen(
+function pathGen(
     rndFunc: (() => number) | null,
     period: number,
     nbHarmonics: number,
@@ -58,40 +58,35 @@ function noiseGen(
 
         return signal + lowValue;
     }; // returned function
-} // NoiseGen
+} // PathGen
 
-const seaNoiseGenerator: INoise = {
+const seaPathGenerator: IMovePathGenerator = {
     init: () => {
         // do nothing
     },
     update: () => {
         // do nothing
     },
-    generate: (p: SeaNoiseParticle) => {
-        if (p.noiseGen === undefined) {
-            p.noiseGen = noiseGen(null, 100, 2, 0.8, -0.03, 0.03);
+    generate: (p: SeaPathParticle) => {
+        if (p.pathGen === undefined) {
+            p.pathGen = pathGen(null, 100, 2, 0.8, -0.03, 0.03);
         }
 
-        if (p.seaDir === undefined) {
-            p.seaDir = Math.random() * Math.PI * 2;
-        } else {
-            p.seaDir = (p.seaDir + p.noiseGen()) % (Math.PI * 2);
-        }
+        if (p.seaVelocity === undefined) {
+            p.seaVelocity = Vector.create(0, 0);
 
-        if (p.seaSpeed === undefined) {
-            p.seaSpeed = Math.random() * 0.6 + 0.8;
+            p.seaVelocity.length = Math.random() * 0.6 + 0.8;
+            p.seaVelocity.angle = Math.random() * Math.PI * 2;
         } else {
-            p.seaSpeed += 0.01;
+            p.seaVelocity.length += 0.01;
+            p.seaVelocity.angle = (p.seaVelocity.angle + p.pathGen()) % (Math.PI * 2);
         }
 
         p.velocity.x = 0;
         p.velocity.y = 0;
 
-        return {
-            angle: p.seaDir,
-            length: p.seaSpeed,
-        };
+        return p.seaVelocity;
     },
 };
 
-export { seaNoiseGenerator };
+export { seaPathGenerator };

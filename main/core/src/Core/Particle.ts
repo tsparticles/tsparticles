@@ -75,7 +75,7 @@ export class Particle implements IParticle {
     public unbreakable;
     public zIndexFactor;
 
-    public readonly noiseDelay;
+    public readonly pathDelay;
     public readonly sides;
     public readonly strokeWidth;
     public readonly options;
@@ -190,7 +190,7 @@ export class Particle implements IParticle {
 
         // Scale z-index factor to be between 0 and 2
         this.zIndexFactor = this.position.z / container.zLayers;
-        this.noiseDelay = getRangeValue(this.options.move.noise.delay.value) * 1000;
+        this.pathDelay = getRangeValue(this.options.move.path.delay.value) * 1000;
 
         container.retina.initParticle(this);
 

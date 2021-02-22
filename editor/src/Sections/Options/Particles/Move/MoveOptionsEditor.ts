@@ -21,7 +21,7 @@ export class MoveOptionsEditor extends EditorBase {
         this.addAttract();
         this.addDistance();
         this.addGravity();
-        this.addNoise();
+        this.addPath();
         this.addOutModes();
         this.addTrail();
         this.addProperties();
@@ -89,9 +89,9 @@ export class MoveOptionsEditor extends EditorBase {
         });
     }
 
-    private addNoise(): void {
+    private addPath(): void {
         const particles = this.particles;
-        const group = this.group.addGroup("noise", "Noise");
+        const group = this.group.addGroup("path", "Path");
         const delayGroup = group.addGroup("delay", "Delay");
 
         delayGroup.addProperty("value", "value", EditorType.number).change(async () => {

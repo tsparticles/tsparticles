@@ -3,20 +3,29 @@ import { Attract } from "./Attract";
 import { MoveDirection, MoveDirectionAlt, OutMode, OutModeAlt } from "../../../../Enums";
 import { Trail } from "./Trail";
 import type { RangeValue, RecursivePartial } from "../../../../Types";
-import { Noise } from "./Noise/Noise";
+import { MovePath } from "./Path/MovePath";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { MoveAngle } from "./MoveAngle";
 import { MoveGravity } from "./MoveGravity";
 import { OutModes } from "./OutModes";
 import { Spin } from "./Spin";
 import { deepExtend, setRangeValue } from "../../../../Utils";
-import type { IDistance } from "../../../../Core/Interfaces/IDistance";
+import type { IDistance } from "../../../../Core/Interfaces";
+import { IMovePath } from "../../../Interfaces/Particles/Move/IMovePath";
 
 /**
  * [[include:Options/Particles/Move.md]]
  * @category Options
  */
 export class Move implements IMove, IOptionLoader<IMove> {
+    get noise(): IMovePath {
+        return this.path;
+    }
+
+    set noise(value: IMovePath) {
+        this.path.load(value);
+    }
+
     /**
      * @deprecated this property is obsolete, please use the new collisions object on particles options
      */
@@ -87,8 +96,8 @@ export class Move implements IMove, IOptionLoader<IMove> {
     public distance: Partial<IDistance>;
     public enable;
     public gravity;
-    public noise;
     public outModes: OutModes;
+    public path;
     public random;
     public size;
     public speed: RangeValue;
@@ -105,8 +114,8 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.distance = {};
         this.enable = false;
         this.gravity = new MoveGravity();
-        this.noise = new Noise();
         this.outModes = new OutModes();
+        this.path = new MovePath();
         this.random = false;
         this.size = false;
         this.speed = 2;
@@ -151,7 +160,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
         }
 
         this.gravity.load(data.gravity);
-        this.noise.load(data.noise);
+        this.path.load(data.path ?? data.noise);
 
         const outMode = data.outMode ?? data.out_mode;
 

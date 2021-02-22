@@ -10,7 +10,7 @@ import type {
     RecursivePartial,
     SingleOrMultiple,
 } from "./Types";
-import type { IInteractor, INoise, IParticleUpdater, IPlugin, IShapeDrawer } from "./Core/Interfaces";
+import type { IInteractor, IMovePathGenerator, IParticleUpdater, IPlugin, IShapeDrawer } from "./Core/Interfaces";
 import type { Particle } from "./Core/Particle";
 
 /**
@@ -166,12 +166,12 @@ export class Main {
     }
 
     /**
-     * addNoiseGenerator adds a named noise generator to tsParticles, this can be called by options
-     * @param name the noise generator name
-     * @param generator the noise generator object
+     * addPathGenerator adds a named path generator to tsParticles, this can be called by options
+     * @param name the path generator name
+     * @param generator the path generator object
      */
-    public addNoiseGenerator(name: string, generator: INoise): void {
-        Plugins.addNoiseGenerator(name, generator);
+    public addPathGenerator(name: string, generator: IMovePathGenerator): void {
+        Plugins.addPathGenerator(name, generator);
     }
 
     /**

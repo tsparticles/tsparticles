@@ -13,7 +13,7 @@ export * from "./IDistance";
 export * from "./IExternalInteractor";
 export * from "./IInteractor";
 export * from "./IMouseData";
-export * from "./INoise";
+export * from "./IMovePathGenerator";
 export * from "./IParticle";
 export * from "./IParticleHslAnimation";
 export * from "./IParticleLife";

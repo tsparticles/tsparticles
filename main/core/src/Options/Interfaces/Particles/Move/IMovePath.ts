@@ -1,9 +1,9 @@
-import type { IValueWithRandom } from "../../../IValueWithRandom";
+import type { IValueWithRandom } from "../../IValueWithRandom";
 
 /**
  * @category Options
  */
-export interface INoise {
+export interface IMovePath {
     clamp: boolean;
     delay: IValueWithRandom;
     enable: boolean;

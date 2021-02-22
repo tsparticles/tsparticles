@@ -1,7 +1,7 @@
 import type {
     IContainerPlugin,
     IInteractor,
-    INoise,
+    IMovePathGenerator,
     IParticleUpdater,
     IPlugin,
     IShapeDrawer,
@@ -21,7 +21,7 @@ const interactors: Map<Container, IInteractor[]> = new Map<Container, IInteracto
 const updaters: Map<Container, IParticleUpdater[]> = new Map<Container, IParticleUpdater[]>();
 const presets: Map<string, RecursivePartial<IOptions>> = new Map<string, RecursivePartial<IOptions>>();
 const drawers: Map<string, IShapeDrawer> = new Map<string, IShapeDrawer>();
-const noiseGenerators: Map<string, INoise> = new Map<string, INoise>();
+const pathGenerators: Map<string, IMovePathGenerator> = new Map<string, IMovePathGenerator>();
 
 /**
  * @category Utils
@@ -80,13 +80,13 @@ export class Plugins {
         return drawers.keys();
     }
 
-    public static getNoiseGenerator(type: string): INoise | undefined {
-        return noiseGenerators.get(type);
+    public static getPathGenerator(type: string): IMovePathGenerator | undefined {
+        return pathGenerators.get(type);
     }
 
-    public static addNoiseGenerator(type: string, noiseGenerator: INoise): void {
-        if (!Plugins.getNoiseGenerator(type)) {
-            noiseGenerators.set(type, noiseGenerator);
+    public static addPathGenerator(type: string, pathGenerator: IMovePathGenerator): void {
+        if (!Plugins.getPathGenerator(type)) {
+            pathGenerators.set(type, pathGenerator);
         }
     }
 
