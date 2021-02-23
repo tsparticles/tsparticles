@@ -1,6 +1,5 @@
 import type { IParticles } from "../IParticles";
 import type { RecursivePartial } from "../../../../Types";
-import { ShapeDataValue } from "../../../../Types";
 
 /**
  * @category Options

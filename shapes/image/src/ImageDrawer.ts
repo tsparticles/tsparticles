@@ -1,5 +1,4 @@
 import type { Container, IParticle, IShapeDrawer, Particle } from "tsparticles-core";
-import { isInArray } from "tsparticles-core";
 import type { IImageShape } from "tsparticles-core/Options/Interfaces/Particles/Shape/IImageShape";
 import {
     ContainerImage,
