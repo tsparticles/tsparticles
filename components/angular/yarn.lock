@@ -5723,9 +5723,9 @@ next-tick@~1.0.0:
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
 ng-packagr@>=6:
-  version "11.2.2"
-  resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-11.2.2.tgz#46370418d43c8663def3834ef14a1e7f63c19071"
-  integrity sha512-zCRjoXgmAGC3RNTJqr0tqH6i+o/IlRM87wv49el6dO2fyROSWNzggb9d+Lu5MS4p/Gba4kkNNwTTOfjvJbDXlg==
+  version "11.2.3"
+  resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-11.2.3.tgz#7b59eecce6df0e72cc35b1a4bbca4aa5ddca6232"
+  integrity sha512-KBkKw5gMtmtxm4aC1Ley2HGnV/N3MaS4y1NOh3vTY+vgSFMNUbCuuSHDG5x6dGhUerk5RsaCUYuTSp94CeDigA==
   dependencies:
     "@rollup/plugin-commonjs" "^17.0.0"
     "@rollup/plugin-json" "^4.1.0"
@@ -6328,6 +6328,11 @@ path-type@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
+
+pathseg@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/pathseg/-/pathseg-1.2.0.tgz#22af051e28037671e7799e296fe96c5dcbe53acd"
+  integrity sha512-+pQS7lTaoVIXhaCW7R3Wd/165APzZHWzYVqe7dxzdupxQwebgpBaCmf0/XZwmoA/rkDq3qvzO0qv4d5oFVrBRw==
 
 pbkdf2@^3.0.3:
   version "3.1.1"
@@ -8349,6 +8354,13 @@ tslint@~6.1.3:
     semver "^5.3.0"
     tslib "^1.13.0"
     tsutils "^2.29.0"
+
+tsparticles-core@^2.0.0-alpha.3:
+  version "2.0.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/tsparticles-core/-/tsparticles-core-2.0.0-alpha.3.tgz#c7aab9bdbda1a37f10ccca630f2c1e9da3c9346a"
+  integrity sha512-lEKhSaqELzqTcppR/yGYwEtn1N+ja3J9GuE9Su/g4boqzbFmXKaqsxC1QHO3STcVXoFbiUoi15s5R1PpkxuekA==
+  optionalDependencies:
+    pathseg "^1.2.0"
 
 tsutils@^2.29.0:
   version "2.29.0"
