@@ -1,7 +1,7 @@
 import type { IAbsorberSize } from "../Interfaces/IAbsorberSize";
 import type { RecursivePartial } from "tsparticles-core";
 import type { IOptionLoader } from "tsparticles-core/Options/Interfaces/IOptionLoader";
-import { ValueWithRandom } from "tsparticles-core/Options/Classes/ValueWithRandom";
+import { ValueWithRandom } from "tsparticles-core";
 
 export class AbsorberSize extends ValueWithRandom implements IAbsorberSize, IOptionLoader<IAbsorberSize> {
     public density;

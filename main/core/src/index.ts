@@ -20,5 +20,6 @@ export * from "./Types";
 export * from "./Core/Interfaces";
 export * from "./Core/ExternalInteractorBase";
 export * from "./Core/ParticlesInteractorBase";
+export * from "./Options/Classes/ValueWithRandom";
 export { tsParticles, particlesJS, pJSDom, Main, IOptions };
 export type ISourceOptions = RecursivePartial<IOptions>;

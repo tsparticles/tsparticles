@@ -112,6 +112,8 @@
       });
     }
 
+    loadFull(tsParticles);
+
     tsParticles.loadJSON("tsparticles", `/presets/${presetId}.json`).then((particles) => {
       localStorage.presetId = presetId;
       editor.set(particles.fullOptions);

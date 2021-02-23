@@ -6,7 +6,7 @@ import type {
     IHsl,
     IParticle,
     IRgb,
-    IRgba
+    IRgba,
 } from "../Core/Interfaces";
 import type { ILinksShadow } from "../Options/Interfaces/Particles/Links/ILinksShadow";
 import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
@@ -74,7 +74,7 @@ export function drawLinkLine(
 
         const endNE = {
             x: end.x - canvasSize.width,
-            y: end.y
+            y: end.y,
         };
 
         const d1 = getDistances(begin, endNE);
@@ -87,7 +87,7 @@ export function drawLinkLine(
         } else {
             const endSW = {
                 x: end.x,
-                y: end.y - canvasSize.height
+                y: end.y - canvasSize.height,
             };
 
             const d2 = getDistances(begin, endSW);
@@ -101,7 +101,7 @@ export function drawLinkLine(
             } else {
                 const endSE = {
                     x: end.x - canvasSize.width,
-                    y: end.y - canvasSize.height
+                    y: end.y - canvasSize.height,
                 };
 
                 const d3 = getDistances(begin, endSE);

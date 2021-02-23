@@ -1,7 +1,23 @@
-import { tsParticles } from "tsparticles-core";
-import { loadFull } from "./main";
+import type { Main } from "tsparticles-core";
+import { loadSlim } from "tsparticles-slim";
+import { loadAbsorbersPlugin } from "tsparticles-plugin-absorbers";
+import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
+import { loadInfectionPlugin } from "tsparticles-plugin-infection";
+import { loadPolygonMaskPlugin } from "tsparticles-plugin-polygon-mask";
+import { loadTrailInteraction } from "tsparticles-interaction-external-trail";
+import { loadLightInteraction } from "tsparticles-interaction-light";
+import { loadOrbitUpdater } from "tsparticles-updater-orbit";
 
-loadFull(tsParticles);
+export function loadFull(tsParticles: Main): void {
+    loadSlim(tsParticles);
 
-export * from "tsparticles-slim";
-export { loadFull };
+    loadTrailInteraction(tsParticles);
+    loadLightInteraction(tsParticles);
+
+    loadOrbitUpdater(tsParticles);
+
+    loadAbsorbersPlugin(tsParticles);
+    loadEmittersPlugin(tsParticles);
+    loadInfectionPlugin(tsParticles);
+    loadPolygonMaskPlugin(tsParticles);
+}
