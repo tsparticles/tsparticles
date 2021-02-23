@@ -1,6 +1,9 @@
-import { loadImageShape } from "./shape";
-import { tsParticles } from "tsparticles-core";
+import type { Main } from "tsparticles-core";
+import { ImageDrawer } from "./ImageDrawer";
 
-loadImageShape(tsParticles);
+export function loadImageShape(tsParticles: Main): void {
+    const imageDrawer = new ImageDrawer();
 
-export { tsParticles, loadImageShape };
+    tsParticles.addShape("image", imageDrawer);
+    tsParticles.addShape("images", imageDrawer);
+}

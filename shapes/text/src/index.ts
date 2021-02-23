@@ -1,6 +1,10 @@
-import { loadTextShape } from "./shape";
-import { tsParticles } from "tsparticles-core";
+import type { Main } from "tsparticles-core";
+import { validTypes, TextDrawer } from "./TextDrawer";
 
-loadTextShape(tsParticles);
+export function loadTextShape(tsParticles: Main): void {
+    const drawer = new TextDrawer();
 
-export { tsParticles, loadTextShape };
+    for (const type of validTypes) {
+        tsParticles.addShape(type, drawer);
+    }
+}

@@ -1,6 +1,6 @@
-import { loadLineShape } from "./shape";
-import { tsParticles } from "tsparticles-core";
+import type { Main } from "tsparticles-core";
+import { LineDrawer } from "./LineDrawer";
 
-loadLineShape(tsParticles);
-
-export { tsParticles, loadLineShape };
+export function loadLineShape(tsParticles: Main): void {
+    tsParticles.addShape("shape", new LineDrawer());
+}

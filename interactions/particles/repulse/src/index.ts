@@ -1,6 +1,6 @@
-import { loadParticlesRepulseInteraction } from "./interaction";
-import { tsParticles } from "tsparticles-core";
+import type { Main } from "tsparticles-core";
+import { Repulser } from "./Repulser";
 
-loadParticlesRepulseInteraction(tsParticles);
-
-export { loadParticlesRepulseInteraction };
+export function loadParticlesRepulseInteraction(tsParticles: Main): void {
+    tsParticles.addInteractor("particlesRepulse", (container) => new Repulser(container));
+}

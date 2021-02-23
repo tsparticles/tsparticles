@@ -38,13 +38,13 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "main": "interaction.js",
+  "main": "index.js",
   "jsdelivr": "tsparticles.interaction.external.connect.min.js",
   "unpkg": "tsparticles.interaction.external.connect.min.js",
-  "browser": "interaction.js",
-  "module": "interaction.js",
-  "types": "interaction.d.ts",
+  "browser": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
   "dependencies": {
-    "tsparticles-core": "^2.0.0-alpha.0"
+    "tsparticles-core": "^2.0.0-alpha.3"
   }
 }

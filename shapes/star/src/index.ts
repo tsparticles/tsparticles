@@ -1,6 +1,6 @@
-import { loadStarShape } from "./shape";
-import { tsParticles } from "tsparticles-core";
+import type { Main } from "tsparticles-core";
+import { StarDrawer } from "./StarDrawer";
 
-loadStarShape(tsParticles);
-
-export { tsParticles, loadStarShape };
+export function loadStarShape(tsParticles: Main): void {
+    tsParticles.addShape("star", new StarDrawer());
+}

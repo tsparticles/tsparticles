@@ -1,6 +1,6 @@
-import { loadTrailInteraction } from "./interaction";
-import { tsParticles } from "tsparticles-core";
+import type { Main } from "tsparticles-core";
+import { TrailMaker } from "./TrailMaker";
 
-loadTrailInteraction(tsParticles);
-
-export { loadTrailInteraction, tsParticles };
+export function loadTrailInteraction(tsParticles: Main): void {
+    tsParticles.addInteractor("externalTrail", (container) => new TrailMaker(container));
+}

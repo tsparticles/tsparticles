@@ -1,6 +1,6 @@
-import { loadOrbitUpdater } from "./updater";
-import { tsParticles } from "tsparticles-core";
+import type { Main } from "tsparticles-core";
+import { OrbitUpdater } from "./OrbitUpdater";
 
-loadOrbitUpdater(tsParticles);
-
-export { loadOrbitUpdater };
+export function loadOrbitUpdater(tsParticles: Main): void {
+    tsParticles.addParticleUpdater("orbit", (container) => new OrbitUpdater(container));
+}

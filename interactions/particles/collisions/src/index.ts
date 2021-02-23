@@ -1,6 +1,6 @@
-import { loadParticlesCollisionsInteraction } from "./interaction";
-import { tsParticles } from "tsparticles-core";
+import type { Main } from "tsparticles-core";
+import { Collider } from "./Collider";
 
-loadParticlesCollisionsInteraction(tsParticles);
-
-export { loadParticlesCollisionsInteraction };
+export function loadParticlesCollisionsInteraction(tsParticles: Main): void {
+    tsParticles.addInteractor("particlesCollisions", (container) => new Collider(container));
+}

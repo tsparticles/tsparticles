@@ -1,6 +1,6 @@
-import { loadOutModesUpdater } from "./updater";
-import { tsParticles } from "tsparticles-core";
+import type { Main } from "tsparticles-core";
+import { OutOfCanvasUpdater } from "./OutOfCanvasUpdater";
 
-loadOutModesUpdater(tsParticles);
-
-export { loadOutModesUpdater };
+export function loadOutModesUpdater(tsParticles: Main): void {
+    tsParticles.addParticleUpdater("outModes", (container) => new OutOfCanvasUpdater(container));
+}

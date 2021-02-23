@@ -12,6 +12,7 @@ fs.readFile(libPackage, function(error, data) {
   const libObj = JSON.parse(text);
 
   libObj.version = mainInfo.version;
+  libObj.dependencies = JSON.parse(JSON.stringify(mainInfo.dependencies));
 
   fs.writeFileSync(libPackage, JSON.stringify(libObj, undefined, 2), "utf-8");
 

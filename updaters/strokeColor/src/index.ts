@@ -1,6 +1,6 @@
-import { loadStrokeColorUpdater } from "./updater";
-import { tsParticles } from "tsparticles-core";
+import type { Main } from "tsparticles-core";
+import { StrokeColorUpdater } from "./StrokeColorUpdater";
 
-loadStrokeColorUpdater(tsParticles);
-
-export { loadStrokeColorUpdater };
+export function loadStrokeColorUpdater(tsParticles: Main): void {
+    tsParticles.addParticleUpdater("strokeColor", (container) => new StrokeColorUpdater(container));
+}

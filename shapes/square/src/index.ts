@@ -1,6 +1,9 @@
-import { loadSquareShape } from "./shape";
-import { tsParticles } from "tsparticles-core";
+import type { Main } from "tsparticles-core";
+import { SquareDrawer } from "./SquareDrawer";
 
-loadSquareShape(tsParticles);
+export function loadSquareShape(tsParticles: Main): void {
+    const drawer = new SquareDrawer();
 
-export { tsParticles, loadSquareShape };
+    tsParticles.addShape("edge", drawer);
+    tsParticles.addShape("square", drawer);
+}

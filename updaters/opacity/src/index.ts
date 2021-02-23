@@ -1,6 +1,6 @@
-import { loadOpacityUpdater } from "./updater";
-import { tsParticles } from "tsparticles-core";
+import type { Main } from "tsparticles-core";
+import { OpacityUpdater } from "./OpacityUpdater";
 
-loadOpacityUpdater(tsParticles);
-
-export { loadOpacityUpdater };
+export function loadOpacityUpdater(tsParticles: Main): void {
+    tsParticles.addParticleUpdater("opacity", (container) => new OpacityUpdater(container));
+}

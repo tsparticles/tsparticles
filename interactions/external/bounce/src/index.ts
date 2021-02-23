@@ -1,6 +1,6 @@
-import { loadExternalBounceInteraction } from "./interaction";
-import { tsParticles } from "tsparticles-core";
+import type { Main } from "tsparticles-core";
+import { Bouncer } from "./Bouncer";
 
-loadExternalBounceInteraction(tsParticles);
-
-export { loadExternalBounceInteraction, tsParticles };
+export function loadExternalBounceInteraction(tsParticles: Main): void {
+    tsParticles.addInteractor("externalBounce", (container) => new Bouncer(container));
+}
