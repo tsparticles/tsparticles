@@ -5,7 +5,7 @@ const options = {
     background: {
         color: "#fff",
     },
-    backgroundMode: {
+    fullScreen: {
         enable: true,
     },
     particles: {

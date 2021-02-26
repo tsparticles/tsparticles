@@ -1,7 +1,7 @@
 import { InteractivityDetect, MoveDirection, OutMode, ShapeType, tsParticles } from "tsparticles";
 
 const options = {
-    backgroundMode: {
+    fullScreen: {
         enable: true,
     },
     fpsLimit: 60,

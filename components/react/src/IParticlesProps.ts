@@ -1,5 +1,5 @@
 import type { RefObject } from "react";
-import type { Container, ISourceOptions } from "tsparticles";
+import type { Container, ISourceOptions, Main } from "tsparticles";
 import type { CSSProperties } from "react";
 
 export interface IParticlesProps {
@@ -8,8 +8,11 @@ export interface IParticlesProps {
     height?: string;
     options?: ISourceOptions;
     params?: ISourceOptions;
+    url?: string;
     style?: CSSProperties;
     className?: string;
     canvasClassName?: string;
     container?: RefObject<Container>;
+    init?: (tsParticles: Main) => void;
+    loaded?: (container: Container) => void;
 }

@@ -18,7 +18,7 @@ export * from "./Enums";
 export * from "./Plugins/Absorbers/Enums";
 export * from "./Plugins/Emitters/Enums";
 export * from "./Plugins/PolygonMask/Enums";
-export { CanvasUtils, ColorUtils, Constants, Utils };
+export { CanvasUtils, ColorUtils, Constants, Utils, Main };
 export * from "./Types";
 export { particlesJS, pJSDom, tsParticles };
 export type IOptions = ISlimOptions & IAbsorberOptions & IEmitterOptions & IPolygonMaskOptions;
