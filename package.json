@@ -10,15 +10,6 @@
     "publish:beta": "lerna publish from-package --pre-dist-tag beta --preid beta",
     "deploy:site": "lerna run deploy --scope website"
   },
-  "workspaces": [
-    "components/*",
-    "core/*",
-    "demo/*",
-    "presets/*",
-    "shapes/*",
-    "templates/*",
-    "website"
-  ],
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
