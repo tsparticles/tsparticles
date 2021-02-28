@@ -25,7 +25,7 @@ yarn add ng-particles
 _template.html_
 
 ```html
-<Particles [id]="id" [options]="particlesOptions" (particlesLoaded)="particlesLoaded($event)"></Particles>
+<ng-particles [id]="id" [options]="particlesOptions" (particlesLoaded)="particlesLoaded($event)"></ng-particles>
 ```
 
 _app.ts_
