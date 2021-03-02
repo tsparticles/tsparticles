@@ -50,7 +50,7 @@
     "prepack": "yarn build"
   },
   "publishConfig": {
-    "directory": "dist/ng-particles"
+    "directory": "projects/ng-particles/dist/ng-particles"
   },
   "dependencies": {
     "@angular/animations": "~10.2.0",
