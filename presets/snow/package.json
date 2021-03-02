@@ -50,10 +50,10 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "main": "dist/index.js",
+  "main": "dist/preset.js",
   "jsdelivr": "dist/tsparticles.preset.snow.min.js",
   "unpkg": "dist/tsparticles.preset.snow.min.js",
-  "browser": "dist/index.js",
+  "browser": "dist/preset.js",
   "devDependencies": {
     "@babel/core": "^7.13.1",
     "@types/webpack-env": "^1.15.3",

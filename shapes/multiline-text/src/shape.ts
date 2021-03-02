@@ -1,7 +1,6 @@
-import { tsParticles, Utils } from "tsparticles";
-import type { IParticle } from "tsparticles/dist/Core/Interfaces/IParticle";
+import { Utils } from "tsparticles";
 import type { IShapeDrawer } from "tsparticles/dist/Core/Interfaces/IShapeDrawer";
-import type { Container, SingleOrMultiple } from "tsparticles";
+import type { Container, SingleOrMultiple, Main, IParticle } from "tsparticles";
 import type { IShapeValues } from "tsparticles/dist/Options/Interfaces/Particles/Shape/IShapeValues";
 
 type CSSOMString = string;
@@ -124,4 +123,6 @@ export class MultilineTextDrawer implements IShapeDrawer {
     }
 }
 
-tsParticles.addShape("multiline-text", new MultilineTextDrawer());
+export function loadMultilineTextShape(tsParticles: Main): void {
+    tsParticles.addShape("multiline-text", new MultilineTextDrawer());
+}

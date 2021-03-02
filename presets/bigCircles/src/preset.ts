@@ -1,4 +1,5 @@
-import { InteractivityDetect, MoveDirection, OutMode, ShapeType, tsParticles } from "tsparticles";
+import { InteractivityDetect, MoveDirection, OutMode, ShapeType } from "tsparticles";
+import type { Main } from "tsparticles";
 
 const options = {
     fpsLimit: 60,
@@ -59,5 +60,7 @@ const options = {
     },
 };
 
-tsParticles.addPreset("bigCircles", options);
-tsParticles.addPreset("big-circles", options);
+export function loadBigCirclesPreset(tsParticles: Main): void {
+    tsParticles.addPreset("bigCircles", options);
+    tsParticles.addPreset("big-circles", options);
+}

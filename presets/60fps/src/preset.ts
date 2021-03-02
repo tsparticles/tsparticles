@@ -1,5 +1,7 @@
-import { tsParticles } from "tsparticles";
+import type { Main } from "tsparticles";
 
-tsParticles.addPreset("60fps", {
-    fpsLimit: 60,
-});
+export function load60fpsPreset(tsParticles: Main): void {
+    tsParticles.addPreset("60fps", {
+        fpsLimit: 60,
+    });
+}
