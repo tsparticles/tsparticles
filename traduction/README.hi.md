@@ -306,7 +306,7 @@ _ क्लिक न करें! क्लिक न करें! ओह न
 ---
 
 ** particles.json **
-आप एक नमूना विन्यास [here](https://github.com/matteobruni/tsparticles/wiki/tsParticles-Sample-Config) config पा सकते हैं
+आप एक नमूना विन्यास [here](https://github.com/matteobruni/tsparticles/tree/main/website/presets) config पा सकते हैं
 
 ---
 

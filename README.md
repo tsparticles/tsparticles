@@ -309,7 +309,7 @@ _Don't click! DON'T CLICK! OH NO IT'S SPREADING!!!!_
 
 **particles.json**
 
-You can find a sample config [here](https://github.com/matteobruni/tsparticles/wiki/tsParticles-Sample-Config) 📖
+You can find some config samples [here](https://github.com/matteobruni/tsparticles/tree/main/website/presets) 📖
 
 ---
 

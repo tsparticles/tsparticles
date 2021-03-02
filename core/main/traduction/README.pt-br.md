@@ -295,13 +295,13 @@ _Não clique! Não clique! OH NÃO ESTÁ SE ESPALHANDO!!!!_
 
 **particles.json**
 
-Você pode encontrar uma config de exemplo [aqui](https://github.com/matteobruni/tsparticles/wiki/tsParticles-Sample-Config) 📖
+Você pode encontrar uma config de exemplo [aqui](https://github.com/matteobruni/tsparticles/tree/main/website/presets) 📖
 
 ---
 
 ## **_Opções_**
 
-Você pode encontrar todas as opções disponíveis [aqui](https://github.com/matteobruni/tsparticles/wiki/tsParticles-Options) 📖
+Você pode encontrar todas as opções disponíveis [aqui](https://particles.js.org/docs/interfaces/_options_interfaces_ioptions_.ioptions.html) 📖
 
 ## Quer ver em ação e testar?
 
@@ -347,7 +347,7 @@ tsParticles agora tem suporte a algumas customizações 🥳.
 
 **Você pode criar seus próprios plugins**
 
-_Leia mais [aqui](https://github.com/matteobruni/tsparticles/wiki/Create-a-tsParticles-Plugin)..._
+_Leia mais [aqui](https://particles.js.org/docs/modules/_core_interfaces_iplugin_.html)..._
 
 ---
 

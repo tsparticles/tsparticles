@@ -301,7 +301,7 @@ _Não clique! Não clique! OH NÃO ESTÁ SE ESPALHANDO!!!!_
 
 **particles.json**
 
-Você pode encontrar uma config de exemplo [aqui](https://github.com/matteobruni/tsparticles/wiki/tsParticles-Sample-Config) 📖
+Você pode encontrar uma config de exemplo [aqui](https://github.com/matteobruni/tsparticles/tree/main/website/presets) 📖
 
 ---
 

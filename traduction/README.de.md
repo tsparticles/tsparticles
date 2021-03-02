@@ -320,7 +320,7 @@ _Nicht klicken! NICHT KLICKEN! OH NEIN, ES BREITET SICH AUS!!!!_
 
 **particles.json**
 
-[Hier](https://github.com/matteobruni/tsparticles/wiki/tsParticles-Sample-Config) findest du eine Beispielkonfiguration. 📖
+[Hier](https://github.com/matteobruni/tsparticles/tree/main/website/presets) findest du eine Beispielkonfiguration. 📖
 
 ---
 

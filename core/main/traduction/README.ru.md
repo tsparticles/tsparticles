@@ -297,7 +297,7 @@ _Не нажимайте! НЕ НАЖИМАЙТЕ! О НЕТ, ОНО РАСПР�
 
 **particles.json**
 
-[Здесь](https://github.com/matteobruni/tsparticles/wiki/tsParticles-Sample-Config) вы сможете найти образец конфигурации 📖
+[Здесь](https://github.com/matteobruni/tsparticles/tree/main/website/presets) вы сможете найти образец конфигурации 📖
 
 ---
 
