@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-website",
-  "version": "1.18.12",
+  "version": "1.19.0",
   "private": true,
   "description": "tsParticles Official Website",
   "main": "index.html",
