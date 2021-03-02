@@ -3,10 +3,10 @@
 </template>
 
 <script lang="ts">
-import { nextTick } from "vue";
+import { nextTick, PropType } from "vue";
 import { Options, Vue } from "vue-class-component";
 import { tsParticles } from "tsparticles";
-import type { Container, ISourceOptions } from "tsparticles";
+import type { Container, ISourceOptions, Main } from "tsparticles";
 
 export type IParticlesProps = ISourceOptions;
 export type IParticlesParams = IParticlesProps;
@@ -18,17 +18,26 @@ export type IParticlesParams = IParticlesProps;
       required: true
     },
     options: {
-      type: Object as () => IParticlesProps
+      type: Object as PropType<IParticlesProps>
     },
-    particlesContainer: {
-      type: Object as () => Container
+    url: {
+      type: String
+    },
+    particlesLoaded: {
+      type: Object as PropType<(container: Container) => void>
+    },
+    particlesInit: {
+      type: Function as PropType<(tsParticles: Main) => void>
     }
   }
 })
 export default class Particles extends Vue {
   private id!: string;
   private options?: IParticlesProps;
-  private particlesContainer?: Container;
+  private url?: string;
+  private particlesLoaded?: (container: Container) => void;
+  private particlesInit?: (tsParticles: Main) => void;
+  private container?: Container;
 
   public mounted(): void {
     nextTick(() => {
@@ -36,15 +45,35 @@ export default class Particles extends Vue {
         throw new Error("Prop 'id' is required!");
       }
 
-      tsParticles
-          .load(this.id, this.options ?? {})
-          .then(container => this.particlesContainer = container);
+      tsParticles.init();
+
+      if (this.particlesInit) {
+        this.particlesInit(tsParticles);
+      }
+
+      const cb = (container?: Container) => {
+        this.container = container;
+
+        if (this.particlesLoaded && container) {
+          this.particlesLoaded(container);
+        }
+      };
+
+      if (this.url) {
+        tsParticles
+            .loadJSON(this.id, this.url)
+            .then(cb);
+      } else {
+        tsParticles
+            .load(this.id, this.options ?? {})
+            .then(cb);
+      }
     });
   }
 
   public beforeDestroy(): void {
-    if (this.particlesContainer) {
-      this.particlesContainer.destroy();
+    if (this.container) {
+      this.container.destroy();
     }
   }
 }

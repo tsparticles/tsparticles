@@ -1,4 +1,4 @@
-# Background Mode
+# Full Screen
 
 | key      | option type | example          | notes               |
 | -------- | ----------- | ---------------- | ------------------- |

@@ -1,6 +1,6 @@
 {
   "name": "ng-particles",
-  "version": "2.1.12",
+  "version": "2.2.0",
   "description": "tsParticles official Angular component",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -58,6 +58,6 @@
   "peerDependencies": {
     "@angular/common": ">=2.0.0",
     "@angular/core": ">=2.0.0",
-    "tsparticles": "^1.18.12"
+    "tsparticles": "^1.19.0"
   }
 }

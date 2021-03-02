@@ -1,40 +1,54 @@
 <script lang="ts">
-    import { afterUpdate, createEventDispatcher } from "svelte";
-    import { tsParticles } from "tsparticles";
+  import { afterUpdate, createEventDispatcher } from "svelte";
+  import { Container, tsParticles } from "tsparticles";
 
-    export let options = {};
-    export let id = "tsparticles";
+  export let options = {};
+  export let url = "";
+  export let id = "tsparticles";
 
-    const dispatch = createEventDispatcher();
+  const dispatch = createEventDispatcher();
+  const particlesInitEvent = "particlesInit";
+  const particlesLoadedEvent = "particlesLoaded";
 
-    let oldId = id;
+  let oldId = id;
 
-    afterUpdate(() => {
-        if (oldId) {
-            const oldContainer = tsParticles.dom().find(c => c.id === oldId);
+  afterUpdate(() => {
+    tsParticles.init();
 
-            if (oldContainer) {
-                oldContainer.destroy();
-            }
-        }
+    dispatch(particlesInitEvent, tsParticles);
 
-        if (id) {
-            tsParticles.load(id, options).then((container) => {
-                dispatch("particlesLoaded", {
-                    particles: container
-                });
+    if (oldId) {
+      const oldContainer = tsParticles.dom().find((c) => c.id === oldId);
 
-                oldId = id;
-            });
-        } else {
-            dispatch("particlesLoaded", {
-                particles: undefined
-            });
-        }
-    });
+      if (oldContainer) {
+        oldContainer.destroy();
+      }
+    }
+
+    if (id) {
+      const cb = (container) => {
+        dispatch(particlesLoadedEvent, {
+          particles: container,
+        });
+
+        oldId = id;
+      };
+
+      if (url) {
+        tsParticles.loadJSON(id, url).then(cb);
+      } else if (options) {
+        tsParticles.load(id, options).then(cb);
+      } else {
+        console.error("You must specify options or url to load tsParticles");
+      }
+    } else {
+      dispatch(particlesLoadedEvent, {
+        particles: undefined,
+      });
+    }
+  });
 </script>
 
-<svelte:options accessors={true}/>
+<svelte:options accessors={true} />
 
-<div id={id}></div>
-
+<div {id} />

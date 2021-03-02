@@ -5,7 +5,7 @@ import type { IBackground } from "./Background/IBackground";
 import type { IInfection } from "./Infection/IInfection";
 import type { SingleOrMultiple } from "../../Types";
 import type { ITheme } from "./Theme/ITheme";
-import type { IBackgroundMode } from "./BackgroundMode/IBackgroundMode";
+import type { IFullScreen } from "./FullScreen/IFullScreen";
 import type { IMotion } from "./Motion/IMotion";
 import type { IManualParticle } from "./IManualParticle";
 
@@ -32,8 +32,9 @@ export interface IOptions {
 
     /**
      * Sets the animated background mode for particles canvas bringing it to the back
+     * @deprecated use the new fullScreen instead
      */
-    backgroundMode: IBackgroundMode;
+    backgroundMode: IFullScreen;
 
     /**
      * Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.
@@ -50,6 +51,11 @@ export interface IOptions {
      * The FPS (Frame Per Second) limit applied to all particles animations.
      */
     fpsLimit: number;
+
+    /**
+     * Sets the animated background mode for particles canvas bringing it to the back
+     */
+    fullScreen: IFullScreen;
 
     /**
      * The infection options

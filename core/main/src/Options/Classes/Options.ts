@@ -9,7 +9,7 @@ import { Plugins } from "../../Utils";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import { Theme } from "./Theme/Theme";
 import { ThemeMode } from "../../Enums/Modes";
-import { BackgroundMode } from "./BackgroundMode/BackgroundMode";
+import { FullScreen } from "./FullScreen/FullScreen";
 import { Motion } from "./Motion/Motion";
 import { ManualParticle } from "./ManualParticle";
 
@@ -49,12 +49,27 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.detectRetina = value;
     }
 
+    /**
+     * @deprecated this property is obsolete, please use the new fullScreen
+     */
+    public get backgroundMode(): FullScreen {
+        return this.fullScreen;
+    }
+
+    /**
+     * @deprecated this property is obsolete, please use the new fullScreen
+     * @param value
+     */
+    public set backgroundMode(value: FullScreen) {
+        this.fullScreen.load(value);
+    }
+
     public autoPlay;
     public background;
     public backgroundMask;
-    public backgroundMode;
     public detectRetina;
     public fpsLimit;
+    public fullScreen;
     public infection;
     public interactivity;
     public manualParticles: ManualParticle[];
@@ -69,9 +84,9 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.autoPlay = true;
         this.background = new Background();
         this.backgroundMask = new BackgroundMask();
-        this.backgroundMode = new BackgroundMode();
+        this.fullScreen = new FullScreen();
         this.detectRetina = true;
-        this.fpsLimit = 30;
+        this.fpsLimit = 60;
         this.infection = new Infection();
         this.interactivity = new Interactivity();
         this.manualParticles = [];
@@ -126,7 +141,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
 
         this.background.load(data.background);
-        this.backgroundMode.load(data.backgroundMode);
+        this.fullScreen.load(data.fullScreen ?? data.backgroundMode);
         this.backgroundMask.load(data.backgroundMask);
         this.infection.load(data.infection);
         this.interactivity.load(data.interactivity);

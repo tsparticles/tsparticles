@@ -1,6 +1,6 @@
 {
   "name": "jquery-particles",
-  "version": "1.18.12",
+  "version": "1.19.0",
   "description": "tsParticles official jQuery plugin",
   "main": "dist/jquery.particles.min.js",
   "scripts": {
@@ -72,10 +72,11 @@
   },
   "dependencies": {
     "jquery": "^3.5.1",
-    "tsparticles": "^1.18.12"
+    "tsparticles": "^1.19.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.13.5",
     "@types/jquery": "^3.5.3",
     "@types/node": "^14.11.10",
     "@types/webpack-env": "^1.15.3",

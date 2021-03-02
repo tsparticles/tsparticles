@@ -22,14 +22,14 @@ try {
     if (dependencies["react"] || dependencies["next"]) {
         if (!dependencies["react-tsparticles"] && !dependencies["react-particles-js"]) {
             console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found React installed. Please download react-tsparticles to use tsParticles with a component ready to use and easier to configure.");
-            console.log("You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/master/components/react/README.md");
+            console.log("You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md");
         }
     }
 
     if (dependencies["@angular/core"]) {
         if (!dependencies["ng-particles"]) {
             console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found Angular installed. Please download ng-particles to use tsParticles with a component ready to use and easier to configure.");
-            console.log("You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/master/components/angular/README.md");
+            console.log("You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/main/components/angular/README.md");
         }
     }
 
@@ -42,12 +42,12 @@ try {
         if (vueMajor > 2) {
             if (!dependencies["particles.vue3"]) {
                 console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found Vue 3.x installed. Please Download particles.vue3 to use tsParticles with a component ready to use and easier to configure.");
-                console.log("You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/master/components/vue3/README.md");
+                console.log("You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/main/components/vue3/README.md");
             }
         } else {
             if (!dependencies["particles.vue"]) {
                 console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found Vue 2.x installed. Please Download particles.vue to use tsParticles with a component ready to use and easier to configure.");
-                console.log("You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/master/components/vue/README.md");
+                console.log("You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md");
             }
         }
 
@@ -56,28 +56,28 @@ try {
     if (dependencies["svelte"]) {
         if (!dependencies["svelte-particles"]) {
             console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found Svelte installed. Please Download svelte-particles to use tsParticles with a component ready to use and easier to configure.");
-            console.log("You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/master/components/svelte/README.md");
+            console.log("You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/main/components/svelte/README.md");
         }
     }
 
     if (dependencies["inferno"]) {
         if (!dependencies["inferno-particles"]) {
             console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found Inferno installed. Please Download inferno-particles to use tsParticles with a component ready to use and easier to configure.");
-            console.log("You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/master/components/inferno/README.md");
+            console.log("You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/main/components/inferno/README.md");
         }
     }
 
     if (dependencies["preact"]) {
         if (!dependencies["preact-particles"]) {
             console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found Preact installed. Please Download preact-particles to use tsParticles with a component ready to use and easier to configure.");
-            console.log("You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/master/components/preact/README.md");
+            console.log("You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/main/components/preact/README.md");
         }
     }
 
     if (dependencies["jquery"]) {
         if (!dependencies["jquery-particles"]) {
             console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found jQuery installed. Please Download jquery-particles to use tsParticles with a plugin ready to use and easier to configure.");
-            console.log("You can read more about the plugin here: https://github.com/matteobruni/tsparticles/blob/master/components/jquery/README.md");
+            console.log("You can read more about the plugin here: https://github.com/matteobruni/tsparticles/blob/main/components/jquery/README.md");
         }
     }
 } catch (error) {

@@ -58,11 +58,11 @@ export class Canvas {
         const element = this.element;
 
         if (element) {
-            if (options.backgroundMode.enable) {
+            if (options.fullScreen.enable) {
                 this.originalStyle = Utils.deepExtend({}, element.style) as CSSStyleDeclaration;
 
                 element.style.position = "fixed";
-                element.style.zIndex = options.backgroundMode.zIndex.toString(10);
+                element.style.zIndex = options.fullScreen.zIndex.toString(10);
                 element.style.top = "0";
                 element.style.left = "0";
                 element.style.width = "100%";

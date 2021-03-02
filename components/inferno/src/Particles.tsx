@@ -1,16 +1,16 @@
 import { Component, InfernoNode } from "inferno";
-import { isEqual } from "lodash";
-import type { ISourceOptions } from "tsparticles";
+import equal from "fast-deep-equal/react";
 import { tsParticles, Container } from "tsparticles";
 import type { IParticlesProps } from "./IParticlesProps";
 import type { IParticlesState } from "./IParticlesState";
+import type { ISourceOptions } from "tsparticles";
 
 interface MutableRefObject<T> {
 	current: T | null;
 }
 
 /**
- * @param {{id?: string,width?: string,height?: string,options?: ISourceOptions,params?: ISourceOptions,style?: CSSProperties,className?: string,canvasClassName?: string,container?: RefObject<Container>}}
+ * @param {{id?: string,width?: string,height?: string,options?: ISourceOptions,params?: ISourceOptions,url?: string,style?: CSSProperties,className?: string,canvasClassName?: string,container?: RefObject<Container>}}
  */
 export default class Particles extends Component<IParticlesProps, IParticlesState> {
 	public static defaultProps: IParticlesProps = {
@@ -18,18 +18,15 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 		height: "100%",
 		options: {},
 		style: {},
-		id: "tsparticles",
+		id: "tsparticles"
 	};
 
 	constructor(props: IParticlesProps) {
 		super(props);
 
 		this.state = {
-			canvas: undefined,
-			library: undefined,
+			library: undefined
 		};
-
-		this.loadCanvas = this.loadCanvas.bind(this);
 	}
 
 	public destroy(): void {
@@ -40,53 +37,30 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 		this.state.library.destroy();
 
 		this.setState({
-			library: undefined,
+			library: undefined
 		});
 	}
 
-	public loadCanvas(canvas: HTMLCanvasElement): void {
-		if (!canvas) {
-			return;
-		}
-
-		this.setState(
-			{
-				canvas,
-			},
-			() => {
-				const { library } = this.state;
-
-				if (!library) {
-					return;
-				}
-
-				library.canvas.loadCanvas(canvas);
-
-				library.start().catch(err => {
-					console.log(err);
-				});
-			}
-		);
-	}
-
 	public shouldComponentUpdate(nextProps: Readonly<IParticlesProps>): boolean {
-		return !isEqual(nextProps, this.props);
+		return !equal(nextProps, this.props);
 	}
 
 	public componentDidUpdate(): void {
-		this.refresh(this.props);
+		this.refresh();
 	}
 
 	public forceUpdate(): void {
-		this.refresh(this.props);
+		this.refresh();
 
 		super.forceUpdate();
 	}
 
 	public componentDidMount(): void {
-		this.setState({
-			library: this.buildParticlesLibrary(this.props.id, this.props.params ?? this.props.options),
-		});
+		if (this.props.init) {
+			this.props.init(tsParticles);
+		}
+
+		this.loadParticles();
 	}
 
 	public componentWillUnmount(): void {
@@ -99,54 +73,42 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 		return (
 			<div className={className} id={id}>
 				<canvas
-					ref={this.loadCanvas}
 					className={canvasClassName}
 					style={{
 						...this.props.style,
 						width,
-						height,
+						height
 					}}
 				/>
 			</div>
 		);
 	}
 
-	private buildParticlesLibrary(tagId?: string, options?: ISourceOptions): Container | undefined {
-		try {
-			if (window === undefined) {
-				return undefined;
-			}
-		} catch {
-			return undefined;
-		} // SSR
-
-		tsParticles.init();
-
-		const container = new Container(tagId ?? Particles.defaultProps.id, options);
-
-		if (this.props.container) {
-			(this.props.container as MutableRefObject<Container>).current = container;
-		}
-
-		return container;
-	}
-
-	private refresh(props: Readonly<IParticlesProps>): void {
-		const { canvas } = this.state;
-
-		if (!canvas) {
-			return;
-		}
-
+	private refresh(): void {
 		this.destroy();
 
-		this.setState(
-			{
-				library: this.buildParticlesLibrary(props.id, props.params ?? props.options),
-			},
-			() => {
-				this.loadCanvas(canvas);
+		this.loadParticles();
+	}
+
+	private loadParticles(): void {
+		const cb = (container?: Container) => {
+			if (this.props.container) {
+				(this.props.container as MutableRefObject<Container>).current = container;
 			}
-		);
+
+			this.setState({
+				library: container
+			});
+
+			if (this.props.loaded) {
+				this.props.loaded(container);
+			}
+		};
+
+		if (this.props.url) {
+			tsParticles.loadJSON(this.props.id, this.props.url).then(cb);
+		} else {
+			tsParticles.load(this.props.id, this.props.params ?? this.props.options).then(cb);
+		}
 	}
 }

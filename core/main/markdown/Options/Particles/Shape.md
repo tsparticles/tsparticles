@@ -23,7 +23,7 @@ All the shapes have in common these properties
 
 | key         | option type | example          | notes                                                                     |
 | ----------- | ----------- | ---------------- | ------------------------------------------------------------------------- |
-| `particles` | `object`    |                  | See Particles options [here](https://github.com/matteobruni/tsparticles/wiki/tsParticles-Options-Particles)                                               |
+| `particles` | `object`    |                  | See Particles options [here](https://particles.js.org/docs/interfaces/_options_interfaces_ioptions_.ioptions.html-Particles)                                               |
 | `fill`      | `boolean`   | `true` / `false` | Used to specify if its shape particles should be filled with color or not |
 | `close`     | `boolean`   | `true` / `false` | Used to specify if its shape particles should have a closed shape         |
 

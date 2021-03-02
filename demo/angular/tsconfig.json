@@ -17,7 +17,7 @@
     ],
     "paths": {
       "@angular/*": [
-        "../../node_modules/@angular/*"
+        "./node_modules/@angular/*"
       ],
       "ng-particles": [
         "../../components/angular/projects/ng-particles/src/public-api"

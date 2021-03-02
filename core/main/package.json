@@ -1,6 +1,6 @@
 {
   "name": "tsparticles",
-  "version": "1.18.12",
+  "version": "1.19.0",
   "description": "Easily add particle animations to your website. Browser ready and with official React/Vue/Angular/jQuery/Preact components.",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -19,7 +19,7 @@
     "build:ts:cjs": "tsc",
     "build:ts:esm": "tsc -b tsconfig.module.json",
     "build:docs": "yarn clear:docs && typedoc && copyfiles -f ../../CNAME ./docs",
-    "build:schema": "echo typescript-json-schema tsconfig.schema.json IOptions --out ./schema/options.schema.json",
+    "build:schema": "typescript-json-schema tsconfig.schema.json IOptions --out ./schema/options.schema.json",
     "test": "nyc mocha",
     "preversion": "yarn test",
     "install": "node ./scripts/install.js",

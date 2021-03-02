@@ -12,7 +12,7 @@ _[Библиотека Particles.js](https://github.com/VincentGarreau/particles
 
 **Она доступна на двух самых главных CDNs, интутивно понята и готова к применению. Если вы ранее использовали particles.js, то применять текущую версию еще проще.**.
 
-Вы найдете инструкции [ниже](https://github.com/matteobruni/tsparticles/blob/master/README.md#library-installation), включая все необходимые ссылки, и _не бойтесь **TypeScript**, он используется для исходного кода_.
+Вы найдете инструкции [ниже](https://github.com/matteobruni/tsparticles/blob/main/README.md#library-installation), включая все необходимые ссылки, и _не бойтесь **TypeScript**, он используется для исходного кода_.
 
 **На выходе файлы переведены в JavaScript**. 🤩
 
@@ -175,7 +175,7 @@ particles.pause();
 
 [![npm](https://img.shields.io/npm/v/ng-particles)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/ng-particles)](https://www.npmjs.com/package/ng-particles)
 
-[Здесь](https://github.com/matteobruni/tsparticles/blob/master/components/angular/README.md) вы можете ознакомиться с инструкциями.
+[Здесь](https://github.com/matteobruni/tsparticles/blob/main/components/angular/README.md) вы можете ознакомиться с инструкциями.
 
 ### Inferno
 
@@ -183,7 +183,7 @@ particles.pause();
 
 [![npm](https://img.shields.io/npm/v/inferno-particles)](https://www.npmjs.com/package/inferno-particles) [![npm](https://img.shields.io/npm/dm/inferno-particles)](https://www.npmjs.com/package/inferno-particles)
 
-[Здесь](https://github.com/matteobruni/tsparticles/blob/master/components/inferno/README.md) вы можете ознакомиться с инструкциями.
+[Здесь](https://github.com/matteobruni/tsparticles/blob/main/components/inferno/README.md) вы можете ознакомиться с инструкциями.
 
 ### jQuery
 
@@ -191,7 +191,7 @@ particles.pause();
 
 [![npm](https://img.shields.io/npm/v/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles)](https://www.npmjs.com/package/jquery-particles)
 
-[Здесь](https://github.com/matteobruni/tsparticles/blob/master/components/jquery/README.md) вы можете ознакомиться с инструкциями.
+[Здесь](https://github.com/matteobruni/tsparticles/blob/main/components/jquery/README.md) вы можете ознакомиться с инструкциями.
 
 ### Preact
 
@@ -199,7 +199,7 @@ particles.pause();
 
 [![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles)
 
-[Здесь](https://github.com/matteobruni/tsparticles/blob/master/components/preact/README.md) вы можете ознакомиться с инструкциями.
+[Здесь](https://github.com/matteobruni/tsparticles/blob/main/components/preact/README.md) вы можете ознакомиться с инструкциями.
 
 ### ReactJS
 
@@ -207,7 +207,7 @@ particles.pause();
 
 [![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
 
-[Здесь](https://github.com/matteobruni/tsparticles/blob/master/components/react/README.md) вы можете ознакомиться с инструкциями.
+[Здесь](https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md) вы можете ознакомиться с инструкциями.
 
 ### Svelte
 
@@ -215,7 +215,7 @@ particles.pause();
 
 [![npm](https://img.shields.io/npm/v/svelte-particles)](https://www.npmjs.com/package/svelte-particles) [![npm downloads](https://img.shields.io/npm/dm/svelte-particles)](https://www.npmjs.com/package/svelte-particles)
 
-[Здесь](https://github.com/matteobruni/tsparticles/blob/master/components/svelte/README.md) вы можете ознакомиться с инструкциями.
+[Здесь](https://github.com/matteobruni/tsparticles/blob/main/components/svelte/README.md) вы можете ознакомиться с инструкциями.
 
 ### VueJS 2.x
 
@@ -223,7 +223,7 @@ particles.pause();
 
 [![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue)
 
-[Здесь](https://github.com/matteobruni/tsparticles/blob/master/components/vue/README.md) вы можете ознакомиться с инструкциями.
+[Здесь](https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md) вы можете ознакомиться с инструкциями.
 
 ### VueJS 3.x
 
@@ -231,7 +231,7 @@ particles.pause();
 
 [![npm](https://img.shields.io/npm/v/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![npm](https://img.shields.io/npm/dm/particles.vue3)](https://www.npmjs.com/package/particles.vue3)
 
-[Здесь](https://github.com/matteobruni/tsparticles/blob/master/components/vue3/README.md) вы можете ознакомиться с инструкциями.
+[Здесь](https://github.com/matteobruni/tsparticles/blob/main/components/vue3/README.md) вы можете ознакомиться с инструкциями.
 
 ---
 
@@ -297,7 +297,7 @@ _Не нажимайте! НЕ НАЖИМАЙТЕ! О НЕТ, ОНО РАСПР�
 
 **particles.json**
 
-[Здесь](https://github.com/matteobruni/tsparticles/wiki/tsParticles-Sample-Config) вы сможете найти образец конфигурации 📖
+[Здесь](https://github.com/matteobruni/tsparticles/tree/main/website/presets) вы сможете найти образец конфигурации 📖
 
 ---
 

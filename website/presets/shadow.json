@@ -6,7 +6,7 @@
     "repeat": "no-repeat",
     "size": "cover"
   },
-  "backgroundMode": {
+  "fullScreen": {
     "enable": true,
     "zIndex": 1
   },
