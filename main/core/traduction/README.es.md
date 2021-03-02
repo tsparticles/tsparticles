@@ -176,7 +176,7 @@ particles.pause();
 
 [![npm](https://img.shields.io/npm/v/ng-particles)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/ng-particles)](https://www.npmjs.com/package/ng-particles)
 
-Puedes encontrar las instrucciones [aquí](https://github.com/matteobruni/tsparticles/blob/master/components/angular/README.md)
+Puedes encontrar las instrucciones [aquí](https://github.com/matteobruni/tsparticles/blob/main/components/angular/README.md)
 
 ### Inferno
 
@@ -184,7 +184,7 @@ Puedes encontrar las instrucciones [aquí](https://github.com/matteobruni/tspart
 
 [![npm](https://img.shields.io/npm/v/inferno-particles)](https://www.npmjs.com/package/inferno-particles) [![npm](https://img.shields.io/npm/dm/inferno-particles)](https://www.npmjs.com/package/inferno-particles)
 
-Puedes encontrar las instrucciones [aquí](https://github.com/matteobruni/tsparticles/blob/master/components/inferno/README.md)
+Puedes encontrar las instrucciones [aquí](https://github.com/matteobruni/tsparticles/blob/main/components/inferno/README.md)
 
 ### jQuery
 
@@ -192,7 +192,7 @@ Puedes encontrar las instrucciones [aquí](https://github.com/matteobruni/tspart
 
 [![npm](https://img.shields.io/npm/v/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles)](https://www.npmjs.com/package/jquery-particles)
 
-Puedes encontrar las instrucciones [aquí](https://github.com/matteobruni/tsparticles/blob/master/components/jquery/README.md)
+Puedes encontrar las instrucciones [aquí](https://github.com/matteobruni/tsparticles/blob/main/components/jquery/README.md)
 
 ### Preact
 
@@ -200,7 +200,7 @@ Puedes encontrar las instrucciones [aquí](https://github.com/matteobruni/tspart
 
 [![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles)
 
-Puedes encontrar las instrucciones [aquí](https://github.com/matteobruni/tsparticles/blob/master/components/preact/README.md)
+Puedes encontrar las instrucciones [aquí](https://github.com/matteobruni/tsparticles/blob/main/components/preact/README.md)
 
 ### ReactJS
 
@@ -208,7 +208,7 @@ Puedes encontrar las instrucciones [aquí](https://github.com/matteobruni/tspart
 
 [![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
 
-Puedes encontrar las instrucciones [aquí](https://github.com/matteobruni/tsparticles/blob/master/components/react/README.md)
+Puedes encontrar las instrucciones [aquí](https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md)
 
 ### Svelte
 
@@ -216,7 +216,7 @@ Puedes encontrar las instrucciones [aquí](https://github.com/matteobruni/tspart
 
 [![npm](https://img.shields.io/npm/v/svelte-particles)](https://www.npmjs.com/package/svelte-particles) [![npm downloads](https://img.shields.io/npm/dm/svelte-particles)](https://www.npmjs.com/package/svelte-particles)
 
-Puedes encontrar las instrucciones [aquí](https://github.com/matteobruni/tsparticles/blob/master/components/svelte/README.md)
+Puedes encontrar las instrucciones [aquí](https://github.com/matteobruni/tsparticles/blob/main/components/svelte/README.md)
 
 ### VueJS
 
@@ -224,7 +224,7 @@ Puedes encontrar las instrucciones [aquí](https://github.com/matteobruni/tspart
 
 [![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue)
 
-Puedes encontrar las instrucciones [aquí](https://github.com/matteobruni/tsparticles/blob/master/components/vue/README.md)
+Puedes encontrar las instrucciones [aquí](https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md)
 
 ---
 
@@ -302,7 +302,7 @@ _¡No hagas click! ¡NO HAGAS CLICK! OH NO ¡¡¡SE ESPARCE!!!_
 
 **particles.json**
 
-Puedes encontrar un ejemplo de configuración [aquí](https://github.com/matteobruni/tsparticles/wiki/tsParticles-Sample-Config) 📖
+Puedes encontrar un ejemplo de configuración [aquí](https://github.com/matteobruni/tsparticles/tree/main/website/presets) 📖
 
 ---
 

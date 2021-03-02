@@ -25,7 +25,6 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 		super(props);
 
 		this.state = {
-			canvas: undefined,
 			library: undefined
 		};
 	}
@@ -86,12 +85,6 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 	}
 
 	private refresh(): void {
-		const { canvas } = this.state;
-
-		if (!canvas) {
-			return;
-		}
-
 		this.destroy();
 
 		this.loadParticles();

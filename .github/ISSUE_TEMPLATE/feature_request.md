@@ -10,7 +10,7 @@ assignees: ''
 /* DO NOT DELETE THE TEMPLATE BELOW, you can safely delete this line */
 
 **Which version are you using?**
-Ex. 1.18.12
+Ex. 1.19.0
 
 **Is the latest version affected?**
 

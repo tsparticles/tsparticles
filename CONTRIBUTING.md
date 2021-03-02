@@ -49,7 +49,7 @@ A demo folder will be probably created in near future with all the demo apps nee
 
 If you want to contribute to the project please use *dev* as base branch.
 
-Use *master* branch **ONLY** for critical bug fixes.
+Use *main* branch **ONLY** for critical bug fixes.
 
 Once done create the **Pull Request** to *dev* branch, if it's a critical bug fix use *staging*.
 
@@ -66,9 +66,9 @@ This branch should always build, sometimes can be necessary break this rule, thi
 
 This branch is for testing the product before a new release.
 
-This branch is the one used to make PR to *master* so this branch **MUST** build.
+This branch is the one used to make PR to *main* so this branch **MUST** build.
 
-### *master*
+### *main*
 
 This branch is the production one.
 

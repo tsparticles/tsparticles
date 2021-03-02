@@ -23,7 +23,6 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
         super(props);
 
         this.state = {
-            canvas: undefined,
             library: undefined,
         };
     }
@@ -41,7 +40,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
     }
 
     public shouldComponentUpdate(nextProps: Readonly<IParticlesProps>): boolean {
-        return !this.state.library || !equal(nextProps, this.props);
+        return !equal(nextProps, this.props);
     }
 
     public componentDidUpdate(): void {
@@ -84,12 +83,6 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
     }
 
     private refresh(): void {
-        const { canvas } = this.state;
-
-        if (!canvas) {
-            return;
-        }
-
         this.destroy();
 
         this.loadParticles();

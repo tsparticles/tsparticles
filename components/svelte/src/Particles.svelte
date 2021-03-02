@@ -49,7 +49,6 @@
     });
 </script>
 
-<svelte:options accessors={true}/>
+<svelte:options accessors={true} />
 
-<div id={id}></div>
-
+<div {id} />

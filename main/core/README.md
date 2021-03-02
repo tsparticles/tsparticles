@@ -12,7 +12,7 @@ _[Particles.js](https://github.com/VincentGarreau/particles.js) converted in Typ
 
 **This library is available on the two most popular CDNs and it's easy and ready to use, if you were using particles.js it's even easier**.
 
-You'll find the instructions [below](https://github.com/matteobruni/tsparticles/blob/master/README.md#library-installation), with all the links you need, and _don't be scared by **TypeScript**, it's just the source language_.
+You'll find the instructions [below](https://github.com/matteobruni/tsparticles/blob/main/README.md#library-installation), with all the links you need, and _don't be scared by **TypeScript**, it's just the source language_.
 
 **The output files are just JavaScript**. 🤩
 
@@ -175,7 +175,7 @@ particles.pause();
 
 [![npm](https://img.shields.io/npm/v/ng-particles)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/ng-particles)](https://www.npmjs.com/package/ng-particles)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/angular/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/components/angular/README.md)
 
 ### Inferno
 
@@ -183,7 +183,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![npm](https://img.shields.io/npm/v/inferno-particles)](https://www.npmjs.com/package/inferno-particles) [![npm](https://img.shields.io/npm/dm/inferno-particles)](https://www.npmjs.com/package/inferno-particles)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/inferno/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/components/inferno/README.md)
 
 ### jQuery
 
@@ -191,7 +191,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![npm](https://img.shields.io/npm/v/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![Mentioned in Awesome jQuery](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/petk/awesome-jquery#readme)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/jquery/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/components/jquery/README.md)
 
 ### Preact
 
@@ -199,7 +199,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles) [![Mentioned in Awesome Preact](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/preactjs/awesome-preact#readme)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/preact/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/components/preact/README.md)
 
 ### ReactJS
 
@@ -207,7 +207,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![Mentioned in Awesome React](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/enaqx/awesome-react#readme)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/react/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md)
 
 ### Svelte
 
@@ -215,7 +215,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![npm](https://img.shields.io/npm/v/svelte-particles)](https://www.npmjs.com/package/svelte-particles) [![npm downloads](https://img.shields.io/npm/dm/svelte-particles)](https://www.npmjs.com/package/svelte-particles)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/svelte/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/components/svelte/README.md)
 
 ### VueJS 2.x
 
@@ -223,7 +223,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue) [![Mentioned in Awesome Vue.js](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/vuejs/awesome-vue#readme)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/vue/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md)
 
 ### VueJS 3.x
 
@@ -231,7 +231,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![npm](https://img.shields.io/npm/v/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![npm](https://img.shields.io/npm/dm/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![Mentioned in Awesome Vue.js](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/vuejs/awesome-vue#readme)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/master/components/vue3/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/components/vue3/README.md)
 
 ---
 
@@ -309,13 +309,13 @@ _Don't click! DON'T CLICK! OH NO IT'S SPREADING!!!!_
 
 **particles.json**
 
-You can find a sample config [here](https://github.com/matteobruni/tsparticles/wiki/tsParticles-Sample-Config) 📖
+You can find a sample config [here](https://particles.js.org/docs/modules/_core_container_.html) 📖
 
 ---
 
 ## **_Options_**
 
-You can find all options available [here](https://particles.js.org/interfaces/_options_interfaces_ioptions_.ioptions.html) 📖
+You can find all options available [here](https://particles.js.org/docs/interfaces/_options_interfaces_ioptions_.ioptions.html) 📖
 
 ## Want to see it in action and try it?
 
@@ -361,7 +361,7 @@ tsParticles now supports some customizations 🥳.
 
 **You can create your own plugins**
 
-_Read more [here](https://particles.js.org/modules/_core_interfaces_iplugin_.html)...\_
+_Read more [here](https://particles.js.org/docs/modules/_core_interfaces_iplugin_.html)...\_
 
 ---
 

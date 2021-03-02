@@ -65,6 +65,21 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.detectRetina = value;
     }
 
+    /**
+     * @deprecated this property is obsolete, please use the new fullScreen
+     */
+    public get backgroundMode(): FullScreen {
+        return this.fullScreen;
+    }
+
+    /**
+     * @deprecated this property is obsolete, please use the new fullScreen
+     * @param value
+     */
+    public set backgroundMode(value: FullScreen) {
+        this.fullScreen.load(value);
+    }
+
     public autoPlay;
     public background;
     public backgroundMask;
@@ -89,7 +104,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.backgroundMask = new BackgroundMask();
         this.fullScreen = new FullScreen();
         this.detectRetina = true;
-        this.fpsLimit = 30;
+        this.fpsLimit = 60;
         this.interactivity = new Interactivity();
         this.manualParticles = [];
         this.motion = new Motion();
