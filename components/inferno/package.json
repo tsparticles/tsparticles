@@ -1,7 +1,7 @@
 {
 	"name": "inferno-particles",
 	"version": "1.2.0",
-	"description": "tsParticles official Inferno component",
+	"description": "Official tsParticles Inferno Component - Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact.",
 	"main": "index.js",
 	"scripts": {
 		"build": "webpack --mode production",
