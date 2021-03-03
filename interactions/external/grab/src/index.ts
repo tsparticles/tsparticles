@@ -1,4 +1,6 @@
-import { tsParticles } from "tsparticles";
-import { loadBouncingParticles } from "./preset";
+import type { Main } from "tsparticles-core";
+import { Grabber } from "./Grabber";
 
-loadBouncingParticles(tsParticles);
+export function loadExternalGrabInteraction(tsParticles: Main): void {
+    tsParticles.addInteractor("externalGrab", (container) => new Grabber(container));
+}

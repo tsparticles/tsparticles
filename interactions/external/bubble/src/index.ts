@@ -1,4 +1,6 @@
-import { tsParticles } from "tsparticles";
-import { loadBackgroundMaskPreset } from "./preset";
+import type { Main } from "tsparticles-core";
+import { Bubbler } from "./Bubbler";
 
-loadBackgroundMaskPreset(tsParticles);
+export function loadExternalBubbleInteraction(tsParticles: Main): void {
+    tsParticles.addInteractor("externalBubble", (container) => new Bubbler(container));
+}
