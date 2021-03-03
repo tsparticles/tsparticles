@@ -16,7 +16,7 @@
     "@octokit/core": "^3.2.5",
     "fs-extra": "^9.1.0",
     "husky": "^5.0.9",
-    "lerna": "^3.22.1"
+    "lerna": "^4.0.0"
   },
   "husky": {
     "hooks": {
