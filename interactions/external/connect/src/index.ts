@@ -1,6 +1,4 @@
-import type { Main } from "tsparticles-core";
-import { Connector } from "./Connector";
+import { tsParticles } from "tsparticles";
+import { loadBasicPreset } from "./preset";
 
-export function loadExternalConnectInteraction(tsParticles: Main): void {
-    tsParticles.addInteractor("externalConnect", (container) => new Connector(container));
-}
+loadBasicPreset(tsParticles);

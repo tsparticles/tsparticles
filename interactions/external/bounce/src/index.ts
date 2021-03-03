@@ -1,6 +1,4 @@
-import type { Main } from "tsparticles-core";
-import { Bouncer } from "./Bouncer";
+import { tsParticles } from "tsparticles";
+import { load60fpsPreset } from "./preset";
 
-export function loadExternalBounceInteraction(tsParticles: Main): void {
-    tsParticles.addInteractor("externalBounce", (container) => new Bouncer(container));
-}
+load60fpsPreset(tsParticles);

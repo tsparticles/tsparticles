@@ -1,6 +1,4 @@
-import type { Main } from "tsparticles-core";
-import { Repulser } from "./Repulser";
+import { tsParticles } from "tsparticles";
+import { loadFontAwesomePreset } from "./preset";
 
-export function loadExternalRepulseInteraction(tsParticles: Main): void {
-    tsParticles.addInteractor("externalRepulse", (container) => new Repulser(container));
-}
+loadFontAwesomePreset(tsParticles);
