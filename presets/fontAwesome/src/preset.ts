@@ -1,5 +1,4 @@
-import { tsParticles } from "tsparticles";
-import type { ISourceOptions } from "tsparticles";
+import type { Main, ISourceOptions } from "tsparticles";
 import type { IShapeValues } from "tsparticles/dist/Options/Interfaces/Particles/Shape/IShapeValues";
 
 interface ICharacterShape extends IShapeValues {
@@ -30,5 +29,7 @@ const data: ISourceOptions = {
     },
 };
 
-tsParticles.addPreset("fontAwesome", data);
-tsParticles.addPreset("font-awesome", data);
+export function loadFontAwesomePreset(tsParticles: Main): void {
+    tsParticles.addPreset("fontAwesome", data);
+    tsParticles.addPreset("font-awesome", data);
+}

@@ -1,11 +1,12 @@
 import { initPjs } from "./pjs";
 import { Main } from "./main";
 import { CanvasUtils, ColorUtils, Constants, Utils } from "./Utils";
-import { IOptions as ISlimOptions } from "./Options/Interfaces/IOptions";
-import { IAbsorberOptions } from "./Plugins/Absorbers/Options/Interfaces/IAbsorberOptions";
-import { IEmitterOptions } from "./Plugins/Emitters/Options/Interfaces/IEmitterOptions";
-import { IPolygonMaskOptions } from "./Plugins/PolygonMask/Options/Interfaces/IPolygonMaskOptions";
-import { RecursivePartial } from "./Types";
+import type { IOptions as ISlimOptions } from "./Options/Interfaces/IOptions";
+import type { IAbsorberOptions } from "./Plugins/Absorbers/Options/Interfaces/IAbsorberOptions";
+import type { IEmitterOptions } from "./Plugins/Emitters/Options/Interfaces/IEmitterOptions";
+import type { IPolygonMaskOptions } from "./Plugins/PolygonMask/Options/Interfaces/IPolygonMaskOptions";
+import type { RecursivePartial } from "./Types";
+import type { IParticle } from "./Core/Interfaces/IParticle";
 
 const tsParticles = new Main();
 
@@ -22,4 +23,5 @@ export { CanvasUtils, ColorUtils, Constants, Utils, Main };
 export * from "./Types";
 export { particlesJS, pJSDom, tsParticles };
 export type IOptions = ISlimOptions & IAbsorberOptions & IEmitterOptions & IPolygonMaskOptions;
+export { IParticle };
 export type ISourceOptions = RecursivePartial<IOptions>;

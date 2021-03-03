@@ -6,8 +6,8 @@ const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 function getEntry(name) {
     const obj = {};
 
-    obj[`tsparticles.shape.${name}`] = "./dist/shape.js";
-    obj[`tsparticles.shape.${name}.min`] = "./dist/shape.js";
+    obj[`tsparticles.shape.${name}`] = "./dist/index.js";
+    obj[`tsparticles.shape.${name}.min`] = "./dist/index.js";
 
     return obj;
 }

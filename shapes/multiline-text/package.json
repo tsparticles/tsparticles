@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-multiline-text",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "tsParticles multiline text shape",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -50,10 +50,10 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "main": "dist/index.js",
+  "main": "dist/shape.js",
   "jsdelivr": "dist/tsparticles.shape.multiline-text.min.js",
   "unpkg": "dist/tsparticles.shape.multiline-text.min.js",
-  "browser": "dist/index.js",
+  "browser": "dist/shape.js",
   "devDependencies": {
     "@babel/core": "^7.13.1",
     "@types/webpack-env": "^1.15.3",
@@ -70,6 +70,6 @@
     "webpack-cli": "^4.1.0"
   },
   "dependencies": {
-    "tsparticles": "^1.19.1"
+    "tsparticles": "^1.19.2"
   }
 }

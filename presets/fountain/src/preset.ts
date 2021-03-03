@@ -1,4 +1,5 @@
-import { InteractivityDetect, MoveDirection, OutMode, ShapeType, tsParticles } from "tsparticles";
+import { InteractivityDetect, MoveDirection, OutMode, ShapeType } from "tsparticles";
+import type { Main } from "tsparticles";
 
 const options = {
     fullScreen: {
@@ -126,4 +127,7 @@ const options = {
         },
     },
 };
-tsParticles.addPreset("fountain", options);
+
+export function loadFountainPreset(tsParticles: Main): void {
+    tsParticles.addPreset("fountain", options);
+}

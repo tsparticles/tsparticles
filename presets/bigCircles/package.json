@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-big-circles",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "tsParticles big circles preset",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -50,10 +50,10 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "main": "dist/index.js",
+  "main": "dist/preset.js",
   "jsdelivr": "dist/tsparticles.preset.bigCircles.min.js",
   "unpkg": "dist/tsparticles.preset.bigCircles.min.js",
-  "browser": "dist/index.js",
+  "browser": "dist/preset.js",
   "devDependencies": {
     "@babel/core": "^7.13.1",
     "@types/webpack-env": "^1.15.3",
@@ -70,6 +70,6 @@
     "webpack-cli": "^4.1.0"
   },
   "dependencies": {
-    "tsparticles": "^1.19.1"
+    "tsparticles": "^1.19.2"
   }
 }

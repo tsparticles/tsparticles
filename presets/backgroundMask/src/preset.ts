@@ -1,4 +1,5 @@
-import { HoverMode, ISourceOptions, tsParticles } from "tsparticles";
+import { HoverMode } from "tsparticles";
+import type { ISourceOptions, Main } from "tsparticles";
 
 const data: ISourceOptions = {
     backgroundMask: {
@@ -34,5 +35,7 @@ const data: ISourceOptions = {
     },
 };
 
-tsParticles.addPreset("backgroundMask", data);
-tsParticles.addPreset("background-mask", data);
+export function loadBackgroundMaskPreset(tsParticles: Main): void {
+    tsParticles.addPreset("backgroundMask", data);
+    tsParticles.addPreset("background-mask", data);
+}
