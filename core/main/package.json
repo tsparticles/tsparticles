@@ -108,6 +108,7 @@
     "babel-loader": "^8.1.0",
     "canvas": "^2.6.1",
     "chai": "^4.2.0",
+    "compare-versions": "^3.6.0",
     "copyfiles": "^2.4.0",
     "eslint": "^7.11.0",
     "eslint-config-prettier": "^6.13.0",
