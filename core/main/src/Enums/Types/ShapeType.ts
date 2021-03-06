@@ -1,7 +1,7 @@
 /**
  * @category Enums
  */
-export enum ShapeType {
+export const enum ShapeType {
     char = "char",
     character = "character",
     circle = "circle",
