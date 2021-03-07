@@ -10,10 +10,7 @@ import type { IOptions } from "../../Options/Interfaces/IOptions";
 import { AbsorberClickMode } from "./Enums";
 import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
-
-interface AbsorberContainer {
-    addAbsorber: (options: IAbsorber, position: ICoordinates) => AbsorberInstance;
-}
+import type { AbsorberContainer } from "./AbsorberContainer";
 
 /**
  * @category Absorbers Plugin

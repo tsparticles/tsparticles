@@ -9,12 +9,7 @@ import type { IOptions } from "../../Options/Interfaces/IOptions";
 import { EmitterClickMode } from "./Enums";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
-
-interface EmitterContainer {
-    addEmitter: (options: IEmitter, position: ICoordinates) => EmitterInstance;
-    playEmitter: (idx: number) => void;
-    pauseEmitter: (idx: number) => void;
-}
+import type { EmitterContainer } from "./EmitterContainer";
 
 /**
  * @category Emitters Plugin
