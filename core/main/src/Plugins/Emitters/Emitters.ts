@@ -12,6 +12,8 @@ import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 
 interface EmitterContainer {
     addEmitter: (options: IEmitter, position: ICoordinates) => EmitterInstance;
+    playEmitter: (idx: number) => void;
+    pauseEmitter: (idx: number) => void;
 }
 
 /**
@@ -31,6 +33,22 @@ export class Emitters implements IContainerPlugin {
 
         overridableContainer.addEmitter = (options: IEmitter, position?: ICoordinates) =>
             this.addEmitter(options, position);
+
+        overridableContainer.playEmitter = (idx?: number) => {
+            const emitter = this.array[idx || 0];
+
+            if (emitter) {
+                emitter.play();
+            }
+        };
+
+        overridableContainer.pauseEmitter = (idx?: number) => {
+            const emitter = this.array[idx ?? 0];
+
+            if (emitter) {
+                emitter.pause();
+            }
+        };
     }
 
     public init(options?: RecursivePartial<IOptions & IEmitterOptions>): void {
