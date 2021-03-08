@@ -18,7 +18,7 @@
     "build:ts:browser": "tsc -b tsconfig.browser.json",
     "build:ts:cjs": "tsc",
     "build:ts:esm": "tsc -b tsconfig.module.json",
-    "build:ts:old": "npx downlevel-dts ./dist ./dist/ts3.4",
+    "build:ts:old": "npx downlevel-dts ./dist ./dist/ts4.0 --to=4.0 && npx downlevel-dts ./dist ./dist/ts3.8 --to=3.8 && npx downlevel-dts ./dist ./dist/ts3.4",
     "build:docs": "yarn clear:docs && typedoc && copyfiles -f ../../CNAME ./docs",
     "build:schema": "typescript-json-schema tsconfig.schema.json IOptions --out ./schema/options.schema.json",
     "test": "nyc mocha",
@@ -95,7 +95,17 @@
   "browser": "dist/index.js",
   "types": "dist/index.d.ts",
   "typesVersions": {
-    "<4.0": {
+    ">=4.0 <4.1": {
+      "*": [
+        "dist/ts4.0"
+      ]
+    },
+    ">=3.8 <4.0": {
+      "*": [
+        "dist/ts3.8"
+      ]
+    },
+    "<3.8": {
       "*": [
         "dist/ts3.4"
       ]
@@ -133,7 +143,7 @@
     "typedoc": "^0.19.2",
     "typedoc-particles-theme": "^1.0.9",
     "typedoc-plugin-nojekyll": "^1.0.1",
-    "typescript": "^4.0.3",
+    "typescript": "^4.2.3",
     "typescript-json-schema": "^0.43.0",
     "webpack": "^5.2.0",
     "webpack-bundle-analyzer": "^3.9.0",
