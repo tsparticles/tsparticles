@@ -1,6 +1,6 @@
 import type { EmitterInstance } from "./EmitterInstance";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
-import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
+import type { ICoordinates } from "tsparticles-core";
 
 export interface EmitterContainer {
     addEmitter: (options: IEmitter, position: ICoordinates) => EmitterInstance;
