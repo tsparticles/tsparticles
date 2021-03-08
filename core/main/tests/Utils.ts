@@ -1,7 +1,8 @@
 import { expect } from "chai";
-import { Container, MoveDirection } from "../src";
+import { Container } from "../src/Core/Container";
 import { IParticle } from "../src/Core/Interfaces/IParticle";
 import { Particle } from "../src/Core/Particle";
+import { MoveDirection } from "../src/Enums";
 import { NumberUtils, Utils } from "../src/Utils";
 
 function buildParticleWithDirection(direction: MoveDirection): IParticle {

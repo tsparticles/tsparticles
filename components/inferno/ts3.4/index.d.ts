@@ -4,14 +4,14 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 /// <reference types="inferno" />
-import type { IParticlesProps, IParticlesState, ParticlesProps } from "./src/";
-import type { ISourceOptions } from "tsparticles";
-import type { Component } from "inferno";
+import { IParticlesProps, IParticlesState, ParticlesProps } from "../src/";
+import { ISourceOptions } from "tsparticles";
+import { Component } from "inferno";
 
-export type IParticlesParams = IParticlesProps;
+type IParticlesParams = IParticlesProps;
 
 export * from "tsparticles/dist/Enums";
-export type { ISourceOptions, IParticlesProps, ParticlesProps };
+export { ISourceOptions, IParticlesProps, ParticlesProps, IParticlesParams };
 
 type Particles = Component<IParticlesProps, IParticlesState>;
 

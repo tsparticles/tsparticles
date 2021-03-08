@@ -5,7 +5,7 @@ import type { ILinksShadow } from "../Options/Interfaces/Particles/Links/ILinksS
 import { ColorUtils } from "./ColorUtils";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
-import type { Container } from "..";
+import type { Container } from "../Core/Container";
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
 import type { IDelta } from "../Core/Interfaces/IDelta";
 import { Particle } from "../Core/Particle";

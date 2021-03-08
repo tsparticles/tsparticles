@@ -29,10 +29,10 @@ import type { Particle } from "./Core/Particle";
  * @category Main
  */
 export class MainSlim {
-    private initialized;
+    #initialized: boolean;
 
     constructor() {
-        this.initialized = false;
+        this.#initialized = false;
 
         const squareDrawer = new SquareDrawer();
         const textDrawer = new TextDrawer();
@@ -55,8 +55,8 @@ export class MainSlim {
      * init method, used by imports
      */
     public init(): void {
-        if (!this.initialized) {
-            this.initialized = true;
+        if (!this.#initialized) {
+            this.#initialized = true;
         }
     }
 
