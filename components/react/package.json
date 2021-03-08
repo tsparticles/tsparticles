@@ -6,6 +6,13 @@
   "unpkg": "umd/particles.js",
   "jsdelivr": "umd/particles.js",
   "types": "index.d.ts",
+  "typesVersions": {
+    "<3.8": {
+      "*": [
+        "ts3.4"
+      ]
+    }
+  },
   "scripts": {
     "prettify:src": "prettier --write ./src/",
     "prettify:readme": "prettier --write ./README.md",
@@ -85,7 +92,7 @@
     "react-dom": ">=16",
     "ts-loader": "^8.0.15",
     "ts-node": "^9.1.1",
-    "typescript": "^4.1.5",
+    "typescript": "^4.2.3",
     "webpack": "^5.21.1",
     "webpack-bundle-analyzer": "^4.4.0",
     "webpack-cli": "^4.5.0",

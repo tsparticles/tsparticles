@@ -39,8 +39,6 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
     }
 
     public shouldComponentUpdate(nextProps: Readonly<IParticlesProps>): boolean {
-        console.log("should update");
-
         return !equal(nextProps, this.props);
     }
 

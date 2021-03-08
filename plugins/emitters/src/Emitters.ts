@@ -8,12 +8,7 @@ import { Emitter } from "./Options/Classes/Emitter";
 import type { IOptions } from "tsparticles-core/Options/Interfaces/IOptions";
 import { EmitterClickMode } from "./Enums";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
-import type { ICoordinates } from "tsparticles-core/Core/Interfaces/ICoordinates";
-import type { IDelta } from "tsparticles-core/Core/Interfaces/IDelta";
-
-interface EmitterContainer {
-    addEmitter: (options: IEmitter, position: ICoordinates) => EmitterInstance;
-}
+import type { EmitterContainer } from "./EmitterContainer";
 
 /**
  * @category Emitters Plugin
@@ -32,6 +27,22 @@ export class Emitters implements IContainerPlugin {
 
         overridableContainer.addEmitter = (options: IEmitter, position?: ICoordinates) =>
             this.addEmitter(options, position);
+
+        overridableContainer.playEmitter = (idx?: number) => {
+            const emitter = this.array[idx || 0];
+
+            if (emitter) {
+                emitter.play();
+            }
+        };
+
+        overridableContainer.pauseEmitter = (idx?: number) => {
+            const emitter = this.array[idx ?? 0];
+
+            if (emitter) {
+                emitter.pause();
+            }
+        };
     }
 
     public init(options?: RecursivePartial<IOptions & IEmitterOptions>): void {

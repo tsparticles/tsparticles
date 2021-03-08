@@ -13,10 +13,7 @@ import { itemFromArray } from "tsparticles-core";
 import { Absorber } from "./Options/Classes/Absorber";
 import { AbsorberClickMode } from "./Enums";
 import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
-
-interface AbsorberContainer {
-    addAbsorber: (options: IAbsorber, position: ICoordinates) => AbsorberInstance;
-}
+import type { AbsorberContainer } from "./AbsorberContainer";
 
 /**
  * @category Absorbers Plugin

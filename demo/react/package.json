@@ -34,7 +34,7 @@
     "react-syntax-highlighter": "^15.4.2",
     "rxjs": "^6.6.3",
     "scheduler": "^0.20.1",
-    "typescript": "^4.1.5"
+    "typescript": "^4.2.3"
   },
   "dependencies": {
     "react": "^17.0.1",

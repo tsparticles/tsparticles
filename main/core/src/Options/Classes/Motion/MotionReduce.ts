@@ -18,7 +18,7 @@ export class MotionReduce implements IMotionReduce, IOptionLoader<IMotionReduce>
 
     public constructor() {
         this.factor = 4;
-        this.value = false;
+        this.value = true;
     }
 
     public load(data?: RecursivePartial<IMotionReduce>): void {
