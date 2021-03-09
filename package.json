@@ -13,6 +13,7 @@
   "devDependencies": {
     "@commitlint/cli": "^12.0.1",
     "@commitlint/config-conventional": "^12.0.1",
+    "@lerna/cli": "^4.0.0",
     "@octokit/core": "^3.2.5",
     "fs-extra": "^9.1.0",
     "husky": "^5.1.3",
