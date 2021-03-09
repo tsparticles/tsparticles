@@ -83,6 +83,7 @@
     "@vue/cli-plugin-typescript": "~4.5.8",
     "@vue/cli-service": "~4.5.8",
     "postcss": "^8.1.2",
+    "pug": "^3.0.2",
     "rollup": "^2.32.1",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript": "^1.0.1",
