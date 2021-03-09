@@ -27,6 +27,7 @@ export class EmitterInstance {
     public position: ICoordinates;
     public size: IEmitterSize;
     public emitterOptions: IEmitter;
+    public readonly name?: string;
 
     private lifeCount;
 
@@ -46,6 +47,7 @@ export class EmitterInstance {
         this.initialPosition = position;
         this.emitterOptions = Utils.deepExtend({}, emitterOptions) as IEmitter;
         this.position = this.initialPosition ?? this.calcPosition();
+        this.name = emitterOptions.name;
 
         let particlesOptions = Utils.deepExtend({}, this.emitterOptions.particles) as RecursivePartial<IParticles>;
 

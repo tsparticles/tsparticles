@@ -4,6 +4,6 @@ import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 
 export interface EmitterContainer {
     addEmitter: (options: IEmitter, position: ICoordinates) => EmitterInstance;
-    playEmitter: (idx: number) => void;
-    pauseEmitter: (idx: number) => void;
+    playEmitter: (idxOrName: number | string) => void;
+    pauseEmitter: (idxOrName: number | string) => void;
 }

@@ -28,6 +28,11 @@ export interface IEmitter {
     life: IEmitterLife;
 
     /**
+     * The emitter name
+     */
+    name?: string;
+
+    /**
      * Particles emitted customization.
      * These settings will overrides other particles settings for the particles emitted by this emitter
      * Particles number options won't override anything, they will be ignored completely
