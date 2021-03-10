@@ -1,7 +1,7 @@
 /**
  * @category Enums
  */
-export const enum HoverMode {
+export enum HoverMode {
     attract = "attract",
     bounce = "bounce",
     bubble = "bubble",

@@ -1,4 +1,4 @@
-export const enum InlineArrangement {
+export enum InlineArrangement {
     equidistant = "equidistant",
     onePerPoint = "one-per-point",
     perPoint = "per-point",

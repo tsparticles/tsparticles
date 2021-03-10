@@ -1,6 +1,6 @@
 /**
  * @category Absorbers Plugin
  */
-export const enum AbsorberClickMode {
+export enum AbsorberClickMode {
     absorber = "absorber",
 }

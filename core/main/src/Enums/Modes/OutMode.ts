@@ -1,7 +1,7 @@
 /**
  * @category Enums
  */
-export const enum OutMode {
+export enum OutMode {
     bounce = "bounce",
     bounceHorizontal = "bounce-horizontal",
     bounceVertical = "bounce-vertical",
