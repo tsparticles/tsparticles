@@ -1,7 +1,7 @@
 /**
  * @category Enums
  */
-export const enum MoveDirection {
+export enum MoveDirection {
     bottom = "bottom",
     bottomLeft = "bottom-left",
     bottomRight = "bottom-right",

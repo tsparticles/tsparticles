@@ -1,4 +1,4 @@
-export const enum AnimationStatus {
+export enum AnimationStatus {
     increasing,
     decreasing,
 }

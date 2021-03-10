@@ -1,7 +1,7 @@
 /**
  * @category Enums
  */
-export const enum ClickMode {
+export enum ClickMode {
     attract = "attract",
     bubble = "bubble",
     push = "push",
