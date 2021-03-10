@@ -1,4 +1,4 @@
-export const enum MoveType {
+export enum MoveType {
     path = "path",
     radius = "radius",
 }

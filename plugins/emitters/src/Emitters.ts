@@ -33,16 +33,22 @@ export class Emitters implements IContainerPlugin {
         overridableContainer.addEmitter = (options: IEmitter, position?: ICoordinates) =>
             this.addEmitter(options, position);
 
-        overridableContainer.playEmitter = (idx?: number) => {
-            const emitter = this.array[idx || 0];
+        overridableContainer.playEmitter = (idxOrName?: number | string) => {
+            const emitter =
+                idxOrName === undefined || typeof idxOrName === "number"
+                    ? this.array[idxOrName || 0]
+                    : this.array.find((t) => t.name === idxOrName);
 
             if (emitter) {
                 emitter.play();
             }
         };
 
-        overridableContainer.pauseEmitter = (idx?: number) => {
-            const emitter = this.array[idx ?? 0];
+        overridableContainer.pauseEmitter = (idxOrName?: number | string) => {
+            const emitter =
+                idxOrName === undefined || typeof idxOrName === "number"
+                    ? this.array[idxOrName || 0]
+                    : this.array.find((t) => t.name === idxOrName);
 
             if (emitter) {
                 emitter.pause();

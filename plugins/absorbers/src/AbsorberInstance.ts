@@ -30,6 +30,7 @@ export class AbsorberInstance {
 
     public color: IRgb;
     public limit?: number;
+    public readonly name?: string;
     public position: ICoordinates;
 
     private dragging;
@@ -47,6 +48,7 @@ export class AbsorberInstance {
         this.options = options;
         this.dragging = false;
 
+        this.name = this.options.name;
         this.opacity = this.options.opacity;
         this.size = getRangeValue(options.size.value) * container.retina.pixelRatio;
         this.mass = this.size * options.size.density * container.retina.reduceFactor;

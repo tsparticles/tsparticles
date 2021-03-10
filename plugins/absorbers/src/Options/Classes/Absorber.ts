@@ -11,6 +11,7 @@ import type { IOptionLoader } from "tsparticles-core/Options/Interfaces/IOptionL
 export class Absorber implements IAbsorber, IOptionLoader<IAbsorber> {
     public color;
     public draggable;
+    public name?: string;
     public opacity;
     public position?: RecursivePartial<ICoordinates>;
     public size;
@@ -39,6 +40,8 @@ export class Absorber implements IAbsorber, IOptionLoader<IAbsorber> {
         if (data.draggable !== undefined) {
             this.draggable = data.draggable;
         }
+
+        this.name = data.name;
 
         if (data.opacity !== undefined) {
             this.opacity = data.opacity;

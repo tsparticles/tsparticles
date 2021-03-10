@@ -13,6 +13,11 @@ export interface IAbsorber {
     color: IColor | string;
 
     /**
+     * Absorber name
+     */
+    name?: string;
+
+    /**
      * Absorber opacity
      */
     opacity: number;

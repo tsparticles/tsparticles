@@ -18,6 +18,7 @@ import { EmitterSpin } from "./EmitterSpin";
 export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     public direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     public life;
+    public name?: string;
     public particles?: RecursivePartial<IParticles>;
     public position?: RecursivePartial<ICoordinates>;
     public rate;
@@ -50,6 +51,8 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
         }
 
         this.life.load(data.life);
+
+        this.name = data.name;
 
         if (data.particles !== undefined) {
             this.particles = deepExtend({}, data.particles) as RecursivePartial<IParticles>;
