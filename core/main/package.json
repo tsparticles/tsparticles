@@ -1,6 +1,6 @@
 {
   "name": "tsparticles",
-  "version": "1.19.3",
+  "version": "1.19.4",
   "description": "Easily add particle animations to your website. Browser ready and with official React/Vue/Angular/jQuery/Preact components.",
   "homepage": "https://particles.js.org/",
   "scripts": {
