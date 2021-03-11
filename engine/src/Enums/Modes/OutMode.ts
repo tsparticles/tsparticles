@@ -1,7 +1,7 @@
 /**
  * @category Enums
  */
-export const enum OutMode {
+export enum OutMode {
     /**
      * @deprecated This property is now obsolete, since every side can have a different out mode
      */

@@ -1,4 +1,4 @@
-export const enum DestroyMode {
+export enum DestroyMode {
     none = "none",
     split = "split",
 }
