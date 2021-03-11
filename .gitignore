@@ -69,11 +69,11 @@ dist/
 build/
 docs/
 core/main/typedoc/themes/particles/assets/js/tsparticles.min.js
-demo/main/report.html
-demo/main/report.htm
-demo/main/report.*.html
-demo/main/report.*.htm
-demo/main/views/*.html
+demo/vanilla/report.html
+demo/vanilla/report.htm
+demo/vanilla/report.*.html
+demo/vanilla/report.*.htm
+demo/vanilla/views/*.html
 components/preact/report.html
 components/react/report.html
 
@@ -90,7 +90,7 @@ components/react/umd/
 
 size-plugin.json
 size-plugin-ssr.json
-demo/main/views/index.html
+demo/vanilla/views/index.html
 
 deprecate.sh
 options.schema.json
