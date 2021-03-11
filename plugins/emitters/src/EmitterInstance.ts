@@ -32,6 +32,7 @@ export class EmitterInstance {
     public size: IEmitterSize;
     public emitterOptions: IEmitter;
     public spawnColor?: IHsl;
+    public readonly name?: string;
     private currentEmitDelay;
     private currentSpawnDelay;
     private currentDuration;
@@ -59,6 +60,7 @@ export class EmitterInstance {
         this.initialPosition = position;
         this.emitterOptions = deepExtend({}, emitterOptions) as IEmitter;
         this.position = this.initialPosition ?? this.calcPosition();
+        this.name = emitterOptions.name;
 
         let particlesOptions = deepExtend({}, this.emitterOptions.particles) as RecursivePartial<IParticles>;
 
