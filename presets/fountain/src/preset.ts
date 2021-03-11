@@ -1,4 +1,4 @@
-import { DestroyMode, InteractivityDetect, MoveDirection, OutMode, Main, ISourceOptions } from "tsparticles-core";
+import { DestroyMode, InteractivityDetect, MoveDirection, OutMode, Main, ISourceOptions } from "tsparticles-engine";
 import { loadCircleShape } from "tsparticles-shape-circle";
 import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
 import { loadEmittersPlugin } from "tsparticles-plugin-emitters";

@@ -1,4 +1,4 @@
-import type { Main } from "tsparticles-core";
+import type { Main } from "tsparticles-engine";
 import { Bubbler } from "./Bubbler";
 
 export function loadExternalBubbleInteraction(tsParticles: Main): void {

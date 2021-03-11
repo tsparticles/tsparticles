@@ -1,4 +1,4 @@
-import type { Main } from "tsparticles-core";
+import type { Main } from "tsparticles-engine";
 import { PolygonDrawer } from "./PolygonDrawer";
 import { TriangleDrawer } from "./TriangleDrawer";
 

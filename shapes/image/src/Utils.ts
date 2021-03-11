@@ -1,5 +1,5 @@
-import type { IHsl, IParticle } from "tsparticles-core";
-import { getStyleFromHsl } from "tsparticles-core";
+import type { IHsl, IParticle } from "tsparticles-engine";
+import { getStyleFromHsl } from "tsparticles-engine";
 
 export interface IImage {
     source: string;

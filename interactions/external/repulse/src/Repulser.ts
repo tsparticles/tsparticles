@@ -1,4 +1,4 @@
-import type { Container, ICoordinates, Range } from "tsparticles-core";
+import type { Container, ICoordinates, Range } from "tsparticles-engine";
 import {
     ClickMode,
     DivMode,
@@ -15,9 +15,9 @@ import {
     isDivModeEnabled,
     isInArray,
     Vector,
-} from "tsparticles-core";
-import type { DivEvent } from "tsparticles-core/Options/Classes/Interactivity/Events/DivEvent";
-import type { RepulseDiv } from "tsparticles-core/Options/Classes/Interactivity/Modes/RepulseDiv";
+} from "tsparticles-engine";
+import type { DivEvent } from "tsparticles-engine/Options/Classes/Interactivity/Events/DivEvent";
+import type { RepulseDiv } from "tsparticles-engine/Options/Classes/Interactivity/Modes/RepulseDiv";
 
 /**
  * Particle repulse manager

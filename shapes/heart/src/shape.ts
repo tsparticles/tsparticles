@@ -1,4 +1,4 @@
-import { IParticle, Main } from "tsparticles-core";
+import { IParticle, Main } from "tsparticles-engine";
 
 export function loadHeartShape(tsParticles: Main): void {
     tsParticles.addShape(

@@ -7,8 +7,8 @@ import {
     loadFont,
     Main,
     SingleOrMultiple,
-} from "tsparticles-core";
-import type { IShapeValues } from "tsparticles-core/Options/Interfaces/Particles/Shape/IShapeValues";
+} from "tsparticles-engine";
+import type { IShapeValues } from "tsparticles-engine/Options/Interfaces/Particles/Shape/IShapeValues";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = "unloaded" | "loading" | "loaded" | "error";

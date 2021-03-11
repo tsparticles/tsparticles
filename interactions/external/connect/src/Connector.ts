@@ -1,5 +1,5 @@
-import type { Container } from "tsparticles-core";
-import { HoverMode, isInArray, ExternalInteractorBase } from "tsparticles-core";
+import type { Container } from "tsparticles-engine";
+import { HoverMode, isInArray, ExternalInteractorBase } from "tsparticles-engine";
 
 /**
  * Particle connection manager

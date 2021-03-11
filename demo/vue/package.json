@@ -22,7 +22,7 @@
   "dependencies": {
     "particles.vue": "^3.0.0-alpha.3",
     "tsparticles": "^2.0.0-alpha.3",
-    "tsparticles-core": "^2.0.0-alpha.3",
+    "tsparticles-engine": "^2.0.0-alpha.3",
     "tsparticles-preset-big-circles": "^2.0.0-alpha.3",
     "tsparticles-preset-sea-anemone": "^2.0.0-alpha.3",
     "tsparticles-slim": "^2.0.0-alpha.3",

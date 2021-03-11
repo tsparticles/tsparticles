@@ -1,5 +1,5 @@
-import type { IBounds, ICoordinates, IDimension, Particle } from "tsparticles-core";
-import type { OutMode, OutModeAlt, OutModeDirection } from "tsparticles-core";
+import type { IBounds, ICoordinates, IDimension, Particle } from "tsparticles-engine";
+import type { OutMode, OutModeAlt, OutModeDirection } from "tsparticles-engine";
 
 export interface IBounceData {
     particle: Particle;

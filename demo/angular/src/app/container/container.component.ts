@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import type { Main, Container } from "tsparticles-core";
+import type { Main, Container } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 
 @Component({

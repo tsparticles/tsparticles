@@ -15,9 +15,9 @@ import {
     DivType,
     ExternalInteractorBase,
     Vector,
-} from "tsparticles-core";
-import type { Container, ICoordinates } from "tsparticles-core";
-import type { DivEvent } from "tsparticles-core/Options/Classes/Interactivity/Events/DivEvent";
+} from "tsparticles-engine";
+import type { Container, ICoordinates } from "tsparticles-engine";
+import type { DivEvent } from "tsparticles-engine/Options/Classes/Interactivity/Events/DivEvent";
 
 export class Bouncer extends ExternalInteractorBase {
     constructor(container: Container) {

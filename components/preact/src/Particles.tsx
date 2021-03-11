@@ -1,10 +1,10 @@
 import React, { Component } from "preact/compat";
 import type { ComponentChild } from "preact";
 import equal from "fast-deep-equal/react";
-import { tsParticles, Container } from "tsparticles-core";
+import { tsParticles, Container } from "tsparticles-engine";
 import type { IParticlesProps } from "./IParticlesProps";
 import type { IParticlesState } from "./IParticlesState";
-import type { ISourceOptions } from "tsparticles-core";
+import type { ISourceOptions } from "tsparticles-engine";
 import { MutableRefObject } from "react";
 
 /**

@@ -1,4 +1,4 @@
-import type { Main } from "tsparticles-core";
+import type { Main } from "tsparticles-engine";
 import { StrokeColorUpdater } from "./StrokeColorUpdater";
 
 export function loadStrokeColorUpdater(tsParticles: Main): void {

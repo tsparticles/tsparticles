@@ -1,5 +1,5 @@
-import { ClickMode } from "tsparticles-core";
-import type { Main } from "tsparticles-core";
+import { ClickMode } from "tsparticles-engine";
+import type { Main } from "tsparticles-engine";
 import { loadParticlesMoveInteraction } from "tsparticles-interaction-particles-move";
 import { loadCircleShape } from "tsparticles-shape-circle";
 import { loadOutModesUpdater } from "tsparticles-updater-out-modes";

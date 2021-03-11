@@ -1,4 +1,4 @@
-import { InteractivityDetect, Main, MoveDirection, OutMode } from "tsparticles-core";
+import { InteractivityDetect, Main, MoveDirection, OutMode } from "tsparticles-engine";
 import { loadParticlesMoveInteraction } from "tsparticles-interaction-particles-move";
 import { loadCircleShape } from "tsparticles-shape-circle";
 import { loadOutModesUpdater } from "tsparticles-updater-out-modes";

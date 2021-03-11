@@ -1,4 +1,4 @@
-import { MoveDirection, OutMode, Main } from "tsparticles-core";
+import { MoveDirection, OutMode, Main } from "tsparticles-engine";
 import { loadCircleShape } from "tsparticles-shape-circle";
 import { loadOpacityUpdater } from "tsparticles-updater-opacity";
 import { loadOutModesUpdater } from "tsparticles-updater-out-modes";

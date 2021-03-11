@@ -1,5 +1,5 @@
 import type { IBounceData } from "./IBounceData";
-import { getRangeValue, OutMode, OutModeDirection } from "tsparticles-core";
+import { getRangeValue, OutMode, OutModeDirection } from "tsparticles-engine";
 
 export function bounceHorizontal(data: IBounceData): void {
     if (

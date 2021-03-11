@@ -1,5 +1,5 @@
-import type { Container, ICoordinates, IDelta } from "tsparticles-core";
-import { ClickMode, ExternalInteractorBase, HoverMode, isInArray } from "tsparticles-core";
+import type { Container, ICoordinates, IDelta } from "tsparticles-engine";
+import { ClickMode, ExternalInteractorBase, HoverMode, isInArray } from "tsparticles-engine";
 
 /**
  * @category Interactions

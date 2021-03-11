@@ -1,5 +1,5 @@
-import type { Container, IParticle, IShapeDrawer, Particle } from "tsparticles-core";
-import type { IImageShape } from "tsparticles-core/Options/Interfaces/Particles/Shape/IImageShape";
+import type { Container, IParticle, IShapeDrawer, Particle } from "tsparticles-engine";
+import type { IImageShape } from "tsparticles-engine/Options/Interfaces/Particles/Shape/IImageShape";
 import {
     ContainerImage,
     downloadSvgImage,
@@ -9,7 +9,7 @@ import {
     loadImage,
     replaceColorSvg,
 } from "./Utils";
-import type { Shape } from "tsparticles-core/Options/Classes/Particles/Shape/Shape";
+import type { Shape } from "tsparticles-engine/Options/Classes/Particles/Shape/Shape";
 
 /**
  * @category Shape Drawers

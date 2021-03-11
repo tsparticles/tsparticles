@@ -1,4 +1,4 @@
-import type { Main } from "tsparticles-core";
+import type { Main } from "tsparticles-engine";
 import { TrailMaker } from "./TrailMaker";
 
 export function loadTrailInteraction(tsParticles: Main): void {

@@ -1,10 +1,10 @@
-import type { Container } from "tsparticles-core";
-import type { IModes } from "tsparticles-core/Options/Interfaces/Interactivity/Modes/IModes";
+import type { Container } from "tsparticles-engine";
+import type { IModes } from "tsparticles-engine/Options/Interfaces/Interactivity/Modes/IModes";
 import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
 import { ParticlesOptionsEditor } from "../../Particles/ParticlesOptionsEditor";
-import type { IPush } from "tsparticles-core/Options/Interfaces/Interactivity/Modes/IPush";
-import type { IRemove } from "tsparticles-core/Options/Interfaces/Interactivity/Modes/IRemove";
+import type { IPush } from "tsparticles-engine/Options/Interfaces/Interactivity/Modes/IPush";
+import type { IRemove } from "tsparticles-engine/Options/Interfaces/Interactivity/Modes/IRemove";
 
 export class ModesOptionsEditor extends EditorBase {
     public group!: EditorGroup;

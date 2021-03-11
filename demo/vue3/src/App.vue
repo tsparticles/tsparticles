@@ -8,7 +8,7 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import HelloWorld from "./components/HelloWorld.vue";
-import type { Container, ISourceOptions, Main, RecursivePartial } from "tsparticles-core";
+import type { Container, ISourceOptions, Main, RecursivePartial } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 import { loadBigCirclesPreset } from "tsparticles-preset-big-circles";
 

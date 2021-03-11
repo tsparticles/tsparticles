@@ -10,7 +10,7 @@
     "core-js": "^3.8.1",
     "particles.vue3": "^2.0.0-alpha.3",
     "tsparticles": "^2.0.0-alpha.3",
-    "tsparticles-core": "^2.0.0-alpha.3",
+    "tsparticles-engine": "^2.0.0-alpha.3",
     "tsparticles-preset-big-circles": "^2.0.0-alpha.3",
     "tsparticles-preset-sea-anemone": "^2.0.0-alpha.3",
     "vue": "^3.0.4",

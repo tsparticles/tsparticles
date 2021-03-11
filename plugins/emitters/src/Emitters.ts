@@ -6,11 +6,11 @@ import type {
     IDelta,
     RecursivePartial,
     SingleOrMultiple,
-} from "tsparticles-core";
-import { deepExtend, itemFromArray } from "tsparticles-core";
+} from "tsparticles-engine";
+import { deepExtend, itemFromArray } from "tsparticles-engine";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
 import { Emitter } from "./Options/Classes/Emitter";
-import type { IOptions } from "tsparticles-core/Options/Interfaces/IOptions";
+import type { IOptions } from "tsparticles-engine/Options/Interfaces/IOptions";
 import { EmitterClickMode } from "./Enums";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 import type { EmitterContainer } from "./EmitterContainer";

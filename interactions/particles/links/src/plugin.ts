@@ -1,4 +1,4 @@
-import type { Container, IPlugin, Main } from "tsparticles-core";
+import type { Container, IPlugin, Main } from "tsparticles-engine";
 import { LinkInstance } from "./LinkInstance";
 
 class Plugin implements IPlugin {

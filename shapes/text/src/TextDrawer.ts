@@ -1,6 +1,6 @@
-import type { Container, IParticle, IShapeDrawer } from "tsparticles-core";
-import { isInArray, itemFromArray, loadFont } from "tsparticles-core";
-import type { ICharacterShape } from "tsparticles-core/Options/Interfaces/Particles/Shape/ICharacterShape";
+import type { Container, IParticle, IShapeDrawer } from "tsparticles-engine";
+import { isInArray, itemFromArray, loadFont } from "tsparticles-engine";
+import type { ICharacterShape } from "tsparticles-engine/Options/Interfaces/Particles/Shape/ICharacterShape";
 
 export const validTypes = ["text", "character", "char"];
 

@@ -1,5 +1,5 @@
 import type { IDrawStroke } from "./IDrawStroke";
-import type { IColor } from "tsparticles-core/Core/Interfaces/Colors";
+import type { IColor } from "tsparticles-engine/Core/Interfaces/Colors";
 
 /**
  * @category Polygon Mask Plugin

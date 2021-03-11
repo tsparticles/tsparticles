@@ -69,7 +69,7 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "tsparticles-core": "^2.0.0-alpha.3",
+    "tsparticles-engine": "^2.0.0-alpha.3",
     "tsparticles-interaction-external-attract": "^2.0.0-alpha.3",
     "tsparticles-interaction-external-bounce": "^2.0.0-alpha.3",
     "tsparticles-interaction-external-bubble": "^2.0.0-alpha.3",

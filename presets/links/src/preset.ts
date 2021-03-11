@@ -1,4 +1,4 @@
-import { Main } from "tsparticles-core";
+import { Main } from "tsparticles-engine";
 import { loadCircleShape } from "tsparticles-shape-circle";
 import { loadParticlesLinksInteraction } from "tsparticles-interaction-particles-links";
 import { loadParticlesMoveInteraction } from "tsparticles-interaction-particles-move";

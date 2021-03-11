@@ -1,5 +1,5 @@
 {
-  "name": "tsparticles-core",
+  "name": "tsparticles-engine",
   "version": "2.0.0-alpha.3",
   "description": "Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno.",
   "homepage": "https://particles.js.org/",

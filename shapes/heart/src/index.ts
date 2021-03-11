@@ -1,5 +1,5 @@
 import { loadHeartShape } from "./shape";
-import { tsParticles } from "tsparticles-core";
+import { tsParticles } from "tsparticles-engine";
 
 loadHeartShape(tsParticles);
 

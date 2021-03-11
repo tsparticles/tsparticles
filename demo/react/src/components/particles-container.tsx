@@ -1,6 +1,6 @@
 import * as React from "react";
 import Particles from "react-tsparticles";
-import { IOptions, RecursivePartial, Main } from "tsparticles-core";
+import { IOptions, RecursivePartial, Main } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 import { loadSeaAnemonePreset } from "tsparticles-preset-sea-anemone";
 

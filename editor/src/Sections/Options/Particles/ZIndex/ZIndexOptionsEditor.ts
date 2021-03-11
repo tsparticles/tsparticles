@@ -1,7 +1,7 @@
 import { EditorBase } from "../../../../EditorBase";
 import type { EditorGroup } from "object-gui";
-import type { Container } from "tsparticles-core";
-import type { IZIndex } from "tsparticles-core/Options/Interfaces/Particles/ZIndex/IZIndex";
+import type { Container } from "tsparticles-engine";
+import type { IZIndex } from "tsparticles-engine/Options/Interfaces/Particles/ZIndex/IZIndex";
 import { EditorType } from "object-gui";
 
 export class ZIndexOptionsEditor extends EditorBase {

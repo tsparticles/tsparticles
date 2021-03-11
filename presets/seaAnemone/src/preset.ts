@@ -1,4 +1,4 @@
-import type { ISourceOptions, Main } from "tsparticles-core";
+import type { ISourceOptions, Main } from "tsparticles-engine";
 import { loadParticlesMoveInteraction } from "tsparticles-interaction-particles-move";
 import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
 import { loadCircleShape } from "tsparticles-shape-circle";

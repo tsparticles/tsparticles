@@ -72,7 +72,7 @@
   },
   "dependencies": {
     "jquery": "^3.5.1",
-    "tsparticles-core": "^2.0.0-alpha.3"
+    "tsparticles-engine": "^2.0.0-alpha.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.13",

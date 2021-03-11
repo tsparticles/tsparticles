@@ -1,4 +1,4 @@
-import type { Container, IParticle, IShapeDrawer, Particle } from "tsparticles-core";
+import type { Container, IParticle, IShapeDrawer, Particle } from "tsparticles-engine";
 
 /**
  * The Shape Drawer used to draw this custom shape

@@ -1,5 +1,5 @@
 import { loadLightInteraction } from "./interaction";
-import { tsParticles } from "tsparticles-core";
+import { tsParticles } from "tsparticles-engine";
 
 loadLightInteraction(tsParticles);
 

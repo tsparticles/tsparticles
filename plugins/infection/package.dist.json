@@ -49,6 +49,6 @@
   "types": "index.d.ts",
   "dependencies": {
     "pathseg": "^1.2.0",
-    "tsparticles-core": "^2.0.0-alpha.3"
+    "tsparticles-engine": "^2.0.0-alpha.3"
   }
 }

@@ -1,5 +1,5 @@
-import type { Container, IDelta, IParticleUpdater, Particle } from "tsparticles-core";
-import { calculateBounds, isPointInside, OutMode, OutModeAlt, OutModeDirection } from "tsparticles-core";
+import type { Container, IDelta, IParticleUpdater, Particle } from "tsparticles-engine";
+import { calculateBounds, isPointInside, OutMode, OutModeAlt, OutModeDirection } from "tsparticles-engine";
 import { bounceHorizontal, bounceVertical } from "./Utils";
 
 export class OutOfCanvasUpdater implements IParticleUpdater {

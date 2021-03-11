@@ -1,5 +1,5 @@
-import { isSsr, ParticlesInteractorBase } from "tsparticles-core";
-import type { Container, IDelta, Particle } from "tsparticles-core";
+import { isSsr, ParticlesInteractorBase } from "tsparticles-engine";
+import type { Container, IDelta, Particle } from "tsparticles-engine";
 
 export class Parallax extends ParticlesInteractorBase {
     constructor(container: Container) {

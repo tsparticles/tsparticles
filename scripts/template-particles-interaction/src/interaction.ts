@@ -1,4 +1,4 @@
-import type { Main } from "tsparticles-core";
+import type { Main } from "tsparticles-engine";
 import { Interactor } from "./Interactor";
 
 export function loadInteraction(tsParticles: Main): void {

@@ -1,7 +1,7 @@
-import type { SingleOrMultiple } from "tsparticles-core";
+import type { SingleOrMultiple } from "tsparticles-engine";
 import type { IAbsorber } from "./IAbsorber";
-import type { IInteractivity } from "tsparticles-core/Options/Interfaces/Interactivity/IInteractivity";
-import type { IModes } from "tsparticles-core/Options/Interfaces/Interactivity/Modes/IModes";
+import type { IInteractivity } from "tsparticles-engine/Options/Interfaces/Interactivity/IInteractivity";
+import type { IModes } from "tsparticles-engine/Options/Interfaces/Interactivity/Modes/IModes";
 
 /**
  * @category Absorbers Plugin

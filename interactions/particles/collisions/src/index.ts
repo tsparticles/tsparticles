@@ -1,4 +1,4 @@
-import type { Main } from "tsparticles-core";
+import type { Main } from "tsparticles-engine";
 import { Collider } from "./Collider";
 
 export function loadParticlesCollisionsInteraction(tsParticles: Main): void {

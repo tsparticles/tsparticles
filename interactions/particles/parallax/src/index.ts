@@ -1,4 +1,4 @@
-import type { Main } from "tsparticles-core";
+import type { Main } from "tsparticles-engine";
 import { Parallax } from "./Parallax";
 
 export function loadParticlesParallaxInteraction(tsParticles: Main): void {

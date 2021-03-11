@@ -17,7 +17,7 @@ app.use("/jsoneditor", express.static("./node_modules/jsoneditor/dist"));
 app.use("/jquery", express.static("./node_modules/jquery/dist"));
 app.use("/popper.js", express.static("./node_modules/popper.js/dist"));
 app.use("/bootstrap", express.static("./node_modules/bootstrap/dist"));
-app.use("/tsparticles-core", express.static("./node_modules/tsparticles-core"));
+app.use("/tsparticles-engine", express.static("./node_modules/tsparticles-engine"));
 app.use("/tsparticles-interaction-external-attract", express.static("./node_modules/tsparticles-interaction-external-attract"));
 app.use("/tsparticles-interaction-external-bounce", express.static("./node_modules/tsparticles-interaction-external-bounce"));
 app.use("/tsparticles-interaction-external-bubble", express.static("./node_modules/tsparticles-interaction-external-bubble"));

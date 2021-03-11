@@ -1,4 +1,4 @@
-import type { Container, ICoordinates, IRgb } from "tsparticles-core";
+import type { Container, ICoordinates, IRgb } from "tsparticles-engine";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
 import {
     colorToRgb,
@@ -10,7 +10,7 @@ import {
     RotateDirection,
     Particle,
     Vector,
-} from "tsparticles-core";
+} from "tsparticles-engine";
 import type { Absorbers } from "./Absorbers";
 
 type OrbitingParticle = Particle & {

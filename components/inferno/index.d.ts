@@ -9,7 +9,7 @@ import type { Component } from "inferno";
 
 export type IParticlesParams = IParticlesProps;
 
-export * from "tsparticles-core/Enums";
+export * from "tsparticles-engine/Enums";
 export type { ISourceOptions, IParticlesProps, ParticlesProps };
 
 type Particles = Component<IParticlesProps, IParticlesState>;

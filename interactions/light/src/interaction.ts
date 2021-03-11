@@ -1,4 +1,4 @@
-import type { Main } from "tsparticles-core";
+import type { Main } from "tsparticles-engine";
 import { ExternalLighter } from "./ExternalLighter";
 import { ParticlesLighter } from "./ParticlesLighter";
 

@@ -1,4 +1,4 @@
-import type { Main } from "tsparticles-core";
+import type { Main } from "tsparticles-engine";
 import { Attractor } from "./Attractor";
 
 export function loadParticlesAttractInteraction(tsParticles: Main): void {

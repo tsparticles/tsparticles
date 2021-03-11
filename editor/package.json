@@ -45,7 +45,7 @@
   "dependencies": {
     "object-gui": "^1.0.11",
     "tsparticles": "^2.0.0-alpha.3",
-    "tsparticles-core": "^2.0.0-alpha.3",
+    "tsparticles-engine": "^2.0.0-alpha.3",
     "tsparticles-plugin-absorbers": "^2.0.0-alpha.3",
     "tsparticles-plugin-emitters": "^2.0.0-alpha.3",
     "tsparticles-plugin-infection": "^2.0.0-alpha.3",

@@ -1,4 +1,4 @@
-import type { Main } from "tsparticles-core";
+import type { Main } from "tsparticles-engine";
 import { Repulser } from "./Repulser";
 
 export function loadExternalRepulseInteraction(tsParticles: Main): void {

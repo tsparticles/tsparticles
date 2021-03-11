@@ -1,8 +1,8 @@
-import type { IPlugin } from "tsparticles-core";
-import type { Container } from "tsparticles-core/Core/Container";
-import type { RecursivePartial } from "tsparticles-core/Types";
-import { Options } from "tsparticles-core/Options/Classes/Options";
-import { Main } from "tsparticles-core";
+import type { IPlugin } from "tsparticles-engine";
+import type { Container } from "tsparticles-engine/Core/Container";
+import type { RecursivePartial } from "tsparticles-engine/Types";
+import { Options } from "tsparticles-engine/Options/Classes/Options";
+import { Main } from "tsparticles-engine";
 import { InfectionInstance } from "./InfectionInstance";
 import { ParticlesInfecter } from "./ParticlesInfecter";
 import type { IInfectionOptions } from "./Options/Interfaces/IInfectionOptions";

@@ -8,7 +8,7 @@ export default [ {
     format: "esm",
     file: "dist/particles.vue.js"
   },
-  external: [ "vue", "vue-class-component", "tsparticles-core" ],
+  external: [ "vue", "vue-class-component", "tsparticles-engine" ],
   plugins: [
     typescript({
       //tsconfig: true//,
@@ -24,7 +24,7 @@ export default [ {
       format: "esm",
       file: "dist/particles.vue.min.js"
     },
-    external: [ "vue", "vue-class-component", "tsparticles-core" ],
+    external: [ "vue", "vue-class-component", "tsparticles-engine" ],
     plugins: [
       typescript({
         //tsconfig: true//,

@@ -1,4 +1,4 @@
-import type { Main } from "tsparticles-core";
+import type { Main } from "tsparticles-engine";
 import { loadExternalAttractInteraction } from "tsparticles-interaction-external-attract";
 import { loadExternalBounceInteraction } from "tsparticles-interaction-external-bounce";
 import { loadExternalBubbleInteraction } from "tsparticles-interaction-external-bubble";

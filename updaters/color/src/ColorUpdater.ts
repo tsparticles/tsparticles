@@ -1,6 +1,6 @@
-import type { Container, IDelta, IParticleUpdater, IParticleValueAnimation, Particle } from "tsparticles-core";
-import { AnimationStatus, randomInRange } from "tsparticles-core";
-import type { ColorAnimation } from "tsparticles-core/Options/Classes/ColorAnimation";
+import type { Container, IDelta, IParticleUpdater, IParticleValueAnimation, Particle } from "tsparticles-engine";
+import { AnimationStatus, randomInRange } from "tsparticles-engine";
+import type { ColorAnimation } from "tsparticles-engine/Options/Classes/ColorAnimation";
 
 export class ColorUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}

@@ -1,12 +1,13 @@
 {
   "packages": [
+    "bundles/*",
     "components/*",
     "editor",
     "demo/*",
+    "engine",
     "interactions/*",
     "interactions/external/*",
     "interactions/particles/*",
-    "main/*",
     "plugins/*",
     "presets/*",
     "shapes/*",

@@ -1,4 +1,4 @@
-import { tsParticles } from "tsparticles-core";
+import { tsParticles } from "tsparticles-engine";
 import { loadPolygonMaskPlugin } from "./plugin";
 
 loadPolygonMaskPlugin(tsParticles);

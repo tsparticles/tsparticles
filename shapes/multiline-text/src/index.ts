@@ -1,5 +1,5 @@
 import { loadMultilineTextShape } from "./shape";
-import { tsParticles } from "tsparticles-core";
+import { tsParticles } from "tsparticles-engine";
 
 loadMultilineTextShape(tsParticles);
 

@@ -9,8 +9,8 @@ import {
     Plugins,
     RotateDirection,
     Vector,
-} from "tsparticles-core";
-import type { Container, IDelta, Particle } from "tsparticles-core";
+} from "tsparticles-engine";
+import type { Container, IDelta, Particle } from "tsparticles-engine";
 
 function applyDistance(particle: Particle): void {
     const initialPosition = particle.initialPosition;

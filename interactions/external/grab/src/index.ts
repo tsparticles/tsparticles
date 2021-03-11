@@ -1,4 +1,4 @@
-import type { Main } from "tsparticles-core";
+import type { Main } from "tsparticles-engine";
 import { Grabber } from "./Grabber";
 
 export function loadExternalGrabInteraction(tsParticles: Main): void {

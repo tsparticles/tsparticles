@@ -48,7 +48,7 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles-core": "^2.0.0-alpha.3",
+    "tsparticles-engine": "^2.0.0-alpha.3",
     "tsparticles-interaction-particles-move": "^2.0.0-alpha.3",
     "tsparticles-plugin-emitters": "^2.0.0-alpha.3",
     "tsparticles-shape-circle": "^2.0.0-alpha.3",

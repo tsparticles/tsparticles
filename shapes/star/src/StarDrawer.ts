@@ -1,5 +1,5 @@
-import type { IParticle, IShapeDrawer } from "tsparticles-core";
-import type { IStarShape } from "tsparticles-core/Options/Interfaces/Particles/Shape/IStarShape";
+import type { IParticle, IShapeDrawer } from "tsparticles-engine";
+import type { IStarShape } from "tsparticles-engine/Options/Interfaces/Particles/Shape/IStarShape";
 
 /**
  * @category Shape Drawers

@@ -1,6 +1,6 @@
 import type { IEmitterSpin } from "../Interfaces/IEmitterSpin";
-import type { IOptionLoader } from "tsparticles-core/Options/Interfaces/IOptionLoader";
-import { RecursivePartial } from "tsparticles-core/Types";
+import type { IOptionLoader } from "tsparticles-engine/Options/Interfaces/IOptionLoader";
+import { RecursivePartial } from "tsparticles-engine/Types";
 
 export class EmitterSpin implements IEmitterSpin, IOptionLoader<IEmitterSpin> {
     public enable;

@@ -1,17 +1,17 @@
-import type { Container } from "tsparticles-core/Core/Container";
-import type { ICoordinates } from "tsparticles-core/Core/Interfaces/ICoordinates";
+import type { Container } from "tsparticles-engine/Core/Container";
+import type { ICoordinates } from "tsparticles-engine/Core/Interfaces/ICoordinates";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
-import { colorToHsl, deepExtend, isPointInside, randomInRange } from "tsparticles-core/Utils";
-import { SizeMode } from "tsparticles-core/Enums";
+import { colorToHsl, deepExtend, isPointInside, randomInRange } from "tsparticles-engine/Utils";
+import { SizeMode } from "tsparticles-engine/Enums";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
 import type { Emitters } from "./Emitters";
-import type { RecursivePartial } from "tsparticles-core/Types";
-import type { IParticles } from "tsparticles-core/Options/Interfaces/Particles/IParticles";
+import type { RecursivePartial } from "tsparticles-engine/Types";
+import type { IParticles } from "tsparticles-engine/Options/Interfaces/Particles/IParticles";
 import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
-import type { IHsl } from "tsparticles-core/Core/Interfaces/Colors";
-import type { IDelta } from "tsparticles-core/Core/Interfaces/IDelta";
-import type { IColorAnimation } from "tsparticles-core/Options/Interfaces/IColorAnimation";
-import type { IHslAnimation } from "tsparticles-core/Options/Interfaces/IHslAnimation";
+import type { IHsl } from "tsparticles-engine/Core/Interfaces/Colors";
+import type { IDelta } from "tsparticles-engine/Core/Interfaces/IDelta";
+import type { IColorAnimation } from "tsparticles-engine/Options/Interfaces/IColorAnimation";
+import type { IHslAnimation } from "tsparticles-engine/Options/Interfaces/IHslAnimation";
 
 function randomCoordinate(position: number, offset: number): number {
     return position + offset * (Math.random() - 0.5);

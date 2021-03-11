@@ -1,4 +1,4 @@
-import type { Main } from "tsparticles-core";
+import type { Main } from "tsparticles-engine";
 import { Bouncer } from "./Bouncer";
 
 export function loadExternalBounceInteraction(tsParticles: Main): void {

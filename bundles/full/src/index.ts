@@ -1,4 +1,4 @@
-import type { Main } from "tsparticles-core";
+import type { Main } from "tsparticles-engine";
 import { loadSlim } from "tsparticles-slim";
 import { loadAbsorbersPlugin } from "tsparticles-plugin-absorbers";
 import { loadEmittersPlugin } from "tsparticles-plugin-emitters";

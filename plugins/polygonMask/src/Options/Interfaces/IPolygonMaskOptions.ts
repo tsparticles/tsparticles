@@ -1,5 +1,5 @@
 import type { IPolygonMask } from "./IPolygonMask";
-import { IOptions } from "tsparticles-core";
+import { IOptions } from "tsparticles-engine";
 
 /**
  * @category Polygon Mask Plugin

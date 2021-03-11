@@ -1,5 +1,5 @@
-import { ExternalInteractorBase, HoverMode, isInArray } from "tsparticles-core";
-import type { Container } from "tsparticles-core";
+import { ExternalInteractorBase, HoverMode, isInArray } from "tsparticles-engine";
+import type { Container } from "tsparticles-engine";
 import { drawLight } from "./utils";
 
 export class ExternalLighter extends ExternalInteractorBase {

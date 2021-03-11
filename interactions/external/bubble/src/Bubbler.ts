@@ -1,4 +1,4 @@
-import type { Container, Particle } from "tsparticles-core";
+import type { Container, Particle } from "tsparticles-engine";
 import {
     Circle,
     clamp,
@@ -16,9 +16,9 @@ import {
     DivType,
     HoverMode,
     ExternalInteractorBase,
-} from "tsparticles-core";
-import type { DivEvent } from "tsparticles-core/Options/Classes/Interactivity/Events/DivEvent";
-import type { BubbleDiv } from "tsparticles-core/Options/Classes/Interactivity/Modes/BubbleDiv";
+} from "tsparticles-engine";
+import type { DivEvent } from "tsparticles-engine/Options/Classes/Interactivity/Events/DivEvent";
+import type { BubbleDiv } from "tsparticles-engine/Options/Classes/Interactivity/Modes/BubbleDiv";
 import type { IBubblerProcessParam } from "./IBubblerProcessParam";
 import { ProcessBubbleType } from "./ProcessBubbleType";
 

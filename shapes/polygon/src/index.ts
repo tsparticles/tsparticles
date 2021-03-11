@@ -1,5 +1,5 @@
 import { loadPolygonShape } from "./shape";
-import { tsParticles } from "tsparticles-core";
+import { tsParticles } from "tsparticles-engine";
 
 loadPolygonShape(tsParticles);
 

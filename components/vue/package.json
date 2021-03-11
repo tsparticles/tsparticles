@@ -68,7 +68,7 @@
   },
   "dependencies": {
     "tslib": "^2.1.0",
-    "tsparticles-core": "^2.0.0-alpha.3",
+    "tsparticles-engine": "^2.0.0-alpha.3",
     "vue": ">=2 && <3",
     "vue-class-component": "<8",
     "vue-property-decorator": "^9.1.2"

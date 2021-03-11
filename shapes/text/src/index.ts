@@ -1,4 +1,4 @@
-import type { Main } from "tsparticles-core";
+import type { Main } from "tsparticles-engine";
 import { validTypes, TextDrawer } from "./TextDrawer";
 
 export function loadTextShape(tsParticles: Main): void {

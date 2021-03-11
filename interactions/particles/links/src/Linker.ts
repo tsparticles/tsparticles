@@ -1,5 +1,5 @@
-import type { Container, ICoordinates, IDimension, IParticle } from "tsparticles-core";
-import { Circle, CircleWarp, getDistance, getLinkRandomColor, ParticlesInteractorBase } from "tsparticles-core";
+import type { Container, ICoordinates, IDimension, IParticle } from "tsparticles-engine";
+import { Circle, CircleWarp, getDistance, getLinkRandomColor, ParticlesInteractorBase } from "tsparticles-engine";
 import { LinkParticle } from "./LinkParticle";
 
 function getLinkDistance(
