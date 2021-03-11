@@ -1,6 +1,6 @@
 {
   "name": "tsparticles",
-  "version": "2.0.0-alpha.3",
+  "version": "2.0.0-alpha.4",
   "description": "tsParticles full version",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -69,14 +69,14 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.0.0-alpha.3",
-    "tsparticles-interaction-external-trail": "^2.0.0-alpha.3",
-    "tsparticles-interaction-light": "^2.0.0-alpha.3",
-    "tsparticles-plugin-absorbers": "^2.0.0-alpha.3",
-    "tsparticles-plugin-emitters": "^2.0.0-alpha.3",
-    "tsparticles-plugin-infection": "^2.0.0-alpha.3",
-    "tsparticles-plugin-polygon-mask": "^2.0.0-alpha.3",
-    "tsparticles-slim": "^2.0.0-alpha.3",
-    "tsparticles-updater-orbit": "^2.0.0-alpha.3"
+    "tsparticles-engine": "^2.0.0-alpha.4",
+    "tsparticles-interaction-external-trail": "^2.0.0-alpha.4",
+    "tsparticles-interaction-light": "^2.0.0-alpha.4",
+    "tsparticles-plugin-absorbers": "^2.0.0-alpha.4",
+    "tsparticles-plugin-emitters": "^2.0.0-alpha.4",
+    "tsparticles-plugin-infection": "^2.0.0-alpha.4",
+    "tsparticles-plugin-polygon-mask": "^2.0.0-alpha.4",
+    "tsparticles-slim": "^2.0.0-alpha.4",
+    "tsparticles-updater-orbit": "^2.0.0-alpha.4"
   }
 }

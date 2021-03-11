@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-alpha.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fountain@1.4.4...tsparticles-preset-fountain@2.0.0-alpha.4) (2021-03-11)
+
+
+### Bug Fixes
+
+* fixed RecursivePartial type ([5c64fa2](https://github.com/matteobruni/tsparticles/commit/5c64fa2c55a15eb87ee9cb0b6a04166627ad5d0e))
+* orbit color is now a string/color and not a hsl object ([fd5df21](https://github.com/matteobruni/tsparticles/commit/fd5df21d4a2ba785a4f256f54b9c351c8b6af02e))
+* updated fountain preset ([f509944](https://github.com/matteobruni/tsparticles/commit/f5099446c7be44c49fb593a969fc4202eb1daf97))
+
+
+### Features
+
+* new out mode split added, it calls the destroy after bounce. fixes [#994](https://github.com/matteobruni/tsparticles/issues/994) ([b3e4ccc](https://github.com/matteobruni/tsparticles/commit/b3e4ccc61f30d10e2d9207aade18b37d87342f60))
+
+
+
+
+
 # [2.0.0-alpha.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fountain@2.0.0-alpha.2...tsparticles-preset-fountain@2.0.0-alpha.3) (2021-02-07)
 
 

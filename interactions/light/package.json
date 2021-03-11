@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-interaction-light",
-  "version": "2.0.0-alpha.3",
+  "version": "2.0.0-alpha.4",
   "description": "tsParticles Light interaction",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -72,6 +72,6 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.0.0-alpha.3"
+    "tsparticles-engine": "^2.0.0-alpha.4"
   }
 }

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-alpha.4](https://github.com/matteobruni/tsparticles/compare/jquery-particles-demo@1.4.4...jquery-particles-demo@2.0.0-alpha.4) (2021-03-11)
+
+
+### Features
+
+* added noise generator management like shape drawers and plugins ([0ae5ac6](https://github.com/matteobruni/tsparticles/commit/0ae5ac620c43199557f56c76517efbc7c178bd29))
+
+
+
+
+
 # [2.0.0-alpha.3](https://github.com/matteobruni/tsparticles/compare/jquery-particles-demo@2.0.0-alpha.2...jquery-particles-demo@2.0.0-alpha.3) (2021-02-07)
 
 **Note:** Version bump only for package jquery-particles-demo
