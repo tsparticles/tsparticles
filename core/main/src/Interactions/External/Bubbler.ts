@@ -33,7 +33,7 @@ export class Bubbler implements IExternalInteractor {
 
     public isEnabled(): boolean {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
 
         const mouse = container.interactivity.mouse;
         const events = options.interactivity.events;
@@ -65,7 +65,7 @@ export class Bubbler implements IExternalInteractor {
     }
 
     public interact(): void {
-        const options = this.container.options;
+        const options = this.container.actualOptions;
         const events = options.interactivity.events;
         const onHover = events.onHover;
         const onClick = events.onClick;
@@ -123,7 +123,7 @@ export class Bubbler implements IExternalInteractor {
 
                 particle.bubble.inRange = true;
 
-                const divs = container.options.interactivity.modes.bubble.divs;
+                const divs = container.actualOptions.interactivity.modes.bubble.divs;
                 const divBubble = Utils.divMode(divs, elem);
 
                 if (!particle.bubble.div || particle.bubble.div !== elem) {
@@ -152,7 +152,7 @@ export class Bubbler implements IExternalInteractor {
             return;
         }
 
-        const options = container.options;
+        const options = container.actualOptions;
         const bubbleDuration = options.interactivity.modes.bubble.duration;
         const bubbleDistance = container.retina.bubbleModeDistance;
         const particlesParam = data.particlesObj.optValue;
@@ -199,7 +199,7 @@ export class Bubbler implements IExternalInteractor {
 
     private clickBubble(): void {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
 
         /* on click event */
         const mouseClickPos = container.interactivity.mouse.clickPosition;
@@ -327,7 +327,7 @@ export class Bubbler implements IExternalInteractor {
     }
 
     private hoverBubbleOpacity(particle: Particle, ratio: number, divBubble?: BubbleDiv): void {
-        const options = this.container.options;
+        const options = this.container.actualOptions;
         const modeOpacity = divBubble?.opacity ?? options.interactivity.modes.bubble.opacity;
 
         if (modeOpacity === undefined) {
@@ -344,7 +344,7 @@ export class Bubbler implements IExternalInteractor {
     }
 
     private hoverBubbleColor(particle: Particle, divBubble?: BubbleDiv): void {
-        const options = this.container.options;
+        const options = this.container.actualOptions;
 
         if (particle.bubble.color === undefined) {
             const modeColor = divBubble?.color ?? options.interactivity.modes.bubble.color;

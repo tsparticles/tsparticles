@@ -54,7 +54,7 @@ export class Canvas {
     public init(): void {
         this.resize();
 
-        const options = this.container.options;
+        const options = this.container.actualOptions;
         const element = this.element;
 
         if (element) {
@@ -144,7 +144,7 @@ export class Canvas {
      * Paints the canvas background
      */
     public paint(): void {
-        const options = this.container.options;
+        const options = this.container.actualOptions;
 
         if (!this.context) {
             return;
@@ -162,7 +162,7 @@ export class Canvas {
      * Clears the canvas content
      */
     public clear(): void {
-        const options = this.container.options;
+        const options = this.container.actualOptions;
         const trail = options.particles.move.trail;
 
         if (options.backgroundMask.enable) {
@@ -257,7 +257,7 @@ export class Canvas {
 
     public drawLinkTriangle(p1: IParticle, link1: ILink, link2: ILink): void {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
         const p2 = link1.destination;
         const p3 = link2.destination;
         const triangleOptions = p1.particlesOptions.links.triangles;
@@ -315,7 +315,7 @@ export class Canvas {
 
     public drawLinkLine(p1: IParticle, link: ILink): void {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
         const p2 = link.destination;
         let opacity = link.opacity;
         const pos1 = p1.getPosition();
@@ -396,7 +396,7 @@ export class Canvas {
             return;
         }
 
-        const options = this.container.options;
+        const options = this.container.actualOptions;
         const pOptions = particle.particlesOptions;
         const twinkle = pOptions.twinkle.particles;
         const twinkleFreq = twinkle.frequency;
@@ -524,7 +524,7 @@ export class Canvas {
     }
 
     private lineStyle(p1: IParticle, p2: IParticle): CanvasGradient | undefined {
-        const options = this.container.options;
+        const options = this.container.actualOptions;
         const connectOptions = options.interactivity.modes.connect;
 
         if (this.context) {
@@ -533,7 +533,7 @@ export class Canvas {
     }
 
     private initBackground(): void {
-        const options = this.container.options;
+        const options = this.container.actualOptions;
         const background = options.background;
         const element = this.element;
 

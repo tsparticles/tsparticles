@@ -47,7 +47,7 @@ export class ImageDrawer implements IShapeDrawer {
     }
 
     public async init(container: Container): Promise<void> {
-        const options = container.options;
+        const options = container.actualOptions;
         const shapeOptions = options.particles.shape;
 
         if (

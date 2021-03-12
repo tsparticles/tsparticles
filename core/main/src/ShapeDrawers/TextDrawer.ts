@@ -19,7 +19,7 @@ export class TextDrawer implements IShapeDrawer {
     }
 
     public async init(container: Container): Promise<void> {
-        const options = container.options;
+        const options = container.actualOptions;
 
         if (
             Utils.isInArray(ShapeType.char, options.particles.shape.type) ||

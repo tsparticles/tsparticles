@@ -28,7 +28,7 @@ export class Plugins {
         const res = new Map<string, IContainerPlugin>();
 
         for (const plugin of plugins) {
-            if (!plugin.needsPlugin(container.options)) {
+            if (!plugin.needsPlugin(container.actualOptions)) {
                 continue;
             }
             res.set(plugin.id, plugin.getPlugin(container));

@@ -13,7 +13,7 @@ export class Attractor implements IExternalInteractor {
 
     public isEnabled(): boolean {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
 
         const mouse = container.interactivity.mouse;
         const events = options.interactivity.events;
@@ -34,7 +34,7 @@ export class Attractor implements IExternalInteractor {
 
     public interact(): void {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
         const mouseMoveStatus = container.interactivity.status === Constants.mouseMoveEvent;
         const events = options.interactivity.events;
         const hoverEnabled = events.onHover.enable;
@@ -73,7 +73,7 @@ export class Attractor implements IExternalInteractor {
                 y: dy / distance,
             };
 
-            const velocity = container.options.interactivity.modes.attract.speed;
+            const velocity = container.actualOptions.interactivity.modes.attract.speed;
             const attractFactor = NumberUtils.clamp((1 - Math.pow(distance / attractRadius, 2)) * velocity, 0, 50);
 
             particle.position.x = particle.position.x - normVec.x * attractFactor;

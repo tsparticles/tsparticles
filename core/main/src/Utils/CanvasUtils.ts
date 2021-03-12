@@ -230,7 +230,7 @@ export class CanvasUtils {
     }
 
     public static drawLight(container: Container, context: CanvasRenderingContext2D, mousePos: ICoordinates): void {
-        const lightOptions = container.options.interactivity.modes.light.area;
+        const lightOptions = container.actualOptions.interactivity.modes.light.area;
 
         context.beginPath();
         context.arc(mousePos.x, mousePos.y, lightOptions.radius, 0, 2 * Math.PI);
@@ -267,7 +267,7 @@ export class CanvasUtils {
         mousePos: ICoordinates
     ): void {
         const pos = particle.getPosition();
-        const shadowOptions = container.options.interactivity.modes.light.shadow;
+        const shadowOptions = container.actualOptions.interactivity.modes.light.shadow;
 
         context.save();
 

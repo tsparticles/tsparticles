@@ -136,7 +136,7 @@ export class Mover {
 
     private moveParallax(): void {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
 
         if (Utils.isSsr() || !options.interactivity.events.onHover.parallax.enable) {
             return;
@@ -169,7 +169,7 @@ export class Mover {
 
     private getProximitySpeedFactor(): number {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
         const active = Utils.isInArray(HoverMode.slow, options.interactivity.events.onHover.mode);
 
         if (!active) {

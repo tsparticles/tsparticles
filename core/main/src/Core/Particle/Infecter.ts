@@ -12,7 +12,7 @@ export class Infecter {
     constructor(private readonly container: Container) {}
 
     public startInfection(stage: number): void {
-        const options = this.container.options;
+        const options = this.container.actualOptions;
         const stages = options.infection.stages;
         const stagesCount = stages.length;
 
@@ -25,7 +25,7 @@ export class Infecter {
     }
 
     public updateInfectionStage(stage: number): void {
-        const options = this.container.options;
+        const options = this.container.actualOptions;
         const stagesCount = options.infection.stages.length;
 
         if (stage > stagesCount || stage < 0 || (this.infectionStage !== undefined && this.infectionStage > stage)) {
@@ -37,7 +37,7 @@ export class Infecter {
     }
 
     public updateInfection(delta: number): void {
-        const options = this.container.options;
+        const options = this.container.actualOptions;
         const infection = options.infection;
         const stages = options.infection.stages;
         const stagesCount = stages.length;
@@ -82,7 +82,7 @@ export class Infecter {
     }
 
     private nextInfectionStage(): void {
-        const options = this.container.options;
+        const options = this.container.actualOptions;
         const stagesCount = options.infection.stages.length;
 
         if (stagesCount <= 0 || this.infectionStage === undefined) {

@@ -15,7 +15,7 @@ export class Repulser implements IExternalInteractor {
 
     public isEnabled(): boolean {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
 
         const mouse = container.interactivity.mouse;
         const events = options.interactivity.events;
@@ -43,7 +43,7 @@ export class Repulser implements IExternalInteractor {
 
     public interact(): void {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
         const mouseMoveStatus = container.interactivity.status === Constants.mouseMoveEvent;
         const events = options.interactivity.events;
         const hoverEnabled = events.onHover.enable;
@@ -90,7 +90,7 @@ export class Repulser implements IExternalInteractor {
                           elem.offsetHeight * pxRatio
                       );
 
-            const divs = container.options.interactivity.modes.repulse.divs;
+            const divs = container.actualOptions.interactivity.modes.repulse.divs;
             const divRepulse = Utils.divMode(divs, elem);
 
             this.processRepulse(pos, repulseRadius, area, divRepulse);
@@ -121,7 +121,7 @@ export class Repulser implements IExternalInteractor {
                 y: dy / distance,
             };
 
-            const velocity = (divRepulse?.speed ?? container.options.interactivity.modes.repulse.speed) * 100;
+            const velocity = (divRepulse?.speed ?? container.actualOptions.interactivity.modes.repulse.speed) * 100;
             const repulseFactor = NumberUtils.clamp((1 - Math.pow(distance / repulseRadius, 2)) * velocity, 0, 50);
 
             particle.position.x = particle.position.x + normVec.x * repulseFactor;
@@ -159,7 +159,7 @@ export class Repulser implements IExternalInteractor {
             for (const particle of query) {
                 const { dx, dy, distance } = NumberUtils.getDistances(mouseClickPos, particle.position);
                 const d = distance * distance;
-                const velocity = container.options.interactivity.modes.repulse.speed;
+                const velocity = container.actualOptions.interactivity.modes.repulse.speed;
                 const force = (-repulseRadius * velocity) / d;
 
                 if (d <= repulseRadius) {

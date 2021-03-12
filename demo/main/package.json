@@ -34,6 +34,7 @@
     "helmet": "^4.1.1",
     "jquery": "^3.5.1",
     "jsoneditor": "^9.1.1",
+    "pathseg": "1.2.0",
     "popper.js": "^1.16.1",
     "prettier": "^2.1.2",
     "pug": "^3.0.2",
