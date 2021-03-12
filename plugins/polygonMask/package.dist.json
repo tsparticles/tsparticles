@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-plugin-polygon-mask",
-  "version": "2.0.0-alpha.3",
+  "version": "2.0.0-alpha.4",
   "description": "tsParticles polygon mask plugin",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -49,6 +49,6 @@
   "types": "index.d.ts",
   "dependencies": {
     "pathseg": "^1.2.0",
-    "tsparticles-engine": "^2.0.0-alpha.3"
+    "tsparticles-engine": "^2.0.0-alpha.4"
   }
 }
