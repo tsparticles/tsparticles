@@ -1,6 +1,6 @@
 import type { RefObject } from "inferno";
-import type { Container, ISourceOptions } from "tsparticles-core";
-import type { Main } from "tsparticles-core";
+import type { Container, ISourceOptions } from "tsparticles-engine";
+import type { Main } from "tsparticles-engine";
 
 export interface IParticlesProps {
 	id?: string;

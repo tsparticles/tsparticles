@@ -1,5 +1,5 @@
-import type { SizeMode } from "tsparticles-core/Enums";
-import type { IDimension } from "tsparticles-core/Core/Interfaces/IDimension";
+import type { SizeMode } from "tsparticles-engine/Enums";
+import type { IDimension } from "tsparticles-engine/Core/Interfaces/IDimension";
 
 /**
  * @category Emitters Plugin

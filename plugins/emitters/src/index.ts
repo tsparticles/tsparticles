@@ -1,6 +1,6 @@
-import { tsParticles } from "tsparticles-core";
-import { loadPlugin } from "./plugin";
+import { tsParticles } from "tsparticles-engine";
+import { loadEmittersPlugin } from "./plugin";
 
-loadPlugin(tsParticles);
+loadEmittersPlugin(tsParticles);
 
-export { loadPlugin };
+export { loadEmittersPlugin, tsParticles };

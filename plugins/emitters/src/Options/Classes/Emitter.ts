@@ -1,14 +1,14 @@
 import type { IEmitter } from "../Interfaces/IEmitter";
-import type { RecursivePartial } from "tsparticles-core/Types";
-import type { ICoordinates } from "tsparticles-core/Core/Interfaces/ICoordinates";
-import { MoveDirection, MoveDirectionAlt } from "tsparticles-core/Enums";
-import type { IParticles } from "tsparticles-core/Options/Interfaces/Particles/IParticles";
+import type { RecursivePartial } from "tsparticles-engine/Types";
+import type { ICoordinates } from "tsparticles-engine/Core/Interfaces/ICoordinates";
+import { MoveDirection, MoveDirectionAlt } from "tsparticles-engine/Enums";
+import type { IParticles } from "tsparticles-engine/Options/Interfaces/Particles/IParticles";
 import { EmitterRate } from "./EmitterRate";
 import { EmitterLife } from "./EmitterLife";
-import { deepExtend } from "tsparticles-core/Utils";
+import { deepExtend } from "tsparticles-engine/Utils";
 import { EmitterSize } from "./EmitterSize";
-import type { IOptionLoader } from "tsparticles-core/Options/Interfaces/IOptionLoader";
-import { AnimatableColor } from "tsparticles-core/Options/Classes/AnimatableColor";
+import type { IOptionLoader } from "tsparticles-engine/Options/Interfaces/IOptionLoader";
+import { AnimatableColor } from "tsparticles-engine/Options/Classes/AnimatableColor";
 import { EmitterSpin } from "./EmitterSpin";
 
 /**
@@ -18,6 +18,7 @@ import { EmitterSpin } from "./EmitterSpin";
 export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     public direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     public life;
+    public name?: string;
     public particles?: RecursivePartial<IParticles>;
     public position?: RecursivePartial<ICoordinates>;
     public rate;
@@ -50,6 +51,8 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
         }
 
         this.life.load(data.life);
+
+        this.name = data.name;
 
         if (data.particles !== undefined) {
             this.particles = deepExtend({}, data.particles) as RecursivePartial<IParticles>;

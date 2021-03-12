@@ -1,6 +1,6 @@
-import { loadInteraction } from "./interaction";
-import { tsParticles } from "tsparticles-core";
+import type { Main } from "tsparticles-engine";
+import { Parallax } from "./Parallax";
 
-loadInteraction(tsParticles);
-
-export { loadInteraction };
+export function loadParticlesParallaxInteraction(tsParticles: Main): void {
+    tsParticles.addInteractor("particlesParallax", (container) => new Parallax(container));
+}

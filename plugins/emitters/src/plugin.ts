@@ -1,14 +1,14 @@
-import type { IPlugin } from "tsparticles-core/Core/Interfaces/IPlugin";
-import type { Container } from "tsparticles-core/Core/Container";
-import { isInArray } from "tsparticles-core/Utils";
+import type { IPlugin } from "tsparticles-engine/Core/Interfaces/IPlugin";
+import type { Container } from "tsparticles-engine/Core/Container";
+import { isInArray } from "tsparticles-engine/Utils";
 import { Emitters } from "./Emitters";
-import type { RecursivePartial } from "tsparticles-core/Types";
-import type { IOptions } from "tsparticles-core/Options/Interfaces/IOptions";
+import type { RecursivePartial } from "tsparticles-engine/Types";
+import type { IOptions } from "tsparticles-engine/Options/Interfaces/IOptions";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 import { EmitterClickMode } from "./Enums";
-import { Options } from "tsparticles-core/Options/Classes/Options";
+import { Options } from "tsparticles-engine/Options/Classes/Options";
 import { Emitter } from "./Options/Classes/Emitter";
-import { Main } from "tsparticles-core";
+import { Main } from "tsparticles-engine";
 
 /**
  * @category Emitters Plugin
@@ -99,7 +99,7 @@ class Plugin implements IPlugin {
     }
 }
 
-export function loadPlugin(tsParticles: Main) {
+export function loadEmittersPlugin(tsParticles: Main) {
     const plugin = new Plugin();
 
     tsParticles.addPlugin(plugin);

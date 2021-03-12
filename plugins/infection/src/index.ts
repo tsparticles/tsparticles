@@ -1,6 +1,6 @@
-import { tsParticles } from "tsparticles-core";
-import { loadPlugin } from "./plugin";
+import { tsParticles } from "tsparticles-engine";
+import { loadInfectionPlugin } from "./plugin";
 
-loadPlugin(tsParticles);
+loadInfectionPlugin(tsParticles);
 
-export { loadPlugin };
+export { loadInfectionPlugin, tsParticles };

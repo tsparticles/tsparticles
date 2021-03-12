@@ -1,6 +1,6 @@
-import { loadInteraction } from "./interaction";
-import { tsParticles } from "tsparticles-core";
+import type { Main } from "tsparticles-engine";
+import { Grabber } from "./Grabber";
 
-loadInteraction(tsParticles);
-
-export { loadInteraction };
+export function loadExternalGrabInteraction(tsParticles: Main): void {
+    tsParticles.addInteractor("externalGrab", (container) => new Grabber(container));
+}

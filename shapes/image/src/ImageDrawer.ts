@@ -1,6 +1,5 @@
-import type { Container, IParticle, IShapeDrawer, Particle } from "tsparticles-core";
-import { isInArray } from "tsparticles-core";
-import type { IImageShape } from "tsparticles-core/Options/Interfaces/Particles/Shape/IImageShape";
+import type { Container, IParticle, IShapeDrawer, Particle } from "tsparticles-engine";
+import type { IImageShape } from "tsparticles-engine/Options/Interfaces/Particles/Shape/IImageShape";
 import {
     ContainerImage,
     downloadSvgImage,
@@ -10,6 +9,7 @@ import {
     loadImage,
     replaceColorSvg,
 } from "./Utils";
+import type { Shape } from "tsparticles-engine/Options/Classes/Particles/Shape/Shape";
 
 /**
  * @category Shape Drawers
@@ -26,9 +26,9 @@ export class ImageDrawer implements IShapeDrawer {
     }
 
     public getImages(container: Container): ContainerImage {
-        const containerImages = this.#images.filter((t) => t.id === container.id);
+        const containerImages = this.#images.find((t) => t.id === container.id);
 
-        if (!containerImages.length) {
+        if (!containerImages) {
             this.#images.push({
                 id: container.id,
                 images: [],
@@ -36,7 +36,7 @@ export class ImageDrawer implements IShapeDrawer {
 
             return this.getImages(container);
         } else {
-            return containerImages[0];
+            return containerImages;
         }
     }
 
@@ -46,15 +46,23 @@ export class ImageDrawer implements IShapeDrawer {
         containerImages?.images.push(image);
     }
 
-    public async init(container: Container): Promise<void> {
+    public init(container: Container): Promise<void> {
         const options = container.options;
         const shapeOptions = options.particles.shape;
 
-        if (!isInArray("image", shapeOptions.type) && !isInArray("images", shapeOptions.type)) {
-            return;
-        }
+        return this.initShape(container, shapeOptions);
+    }
 
-        const imageOptions = shapeOptions.options["images"] ?? shapeOptions.options["image"];
+    public destroy(): void {
+        this.#images = [];
+    }
+
+    private async initShape(container: Container, shapeOptions: Shape): Promise<void> {
+        /*if (!isInArray("image", shapeOptions.type) && !isInArray("images", shapeOptions.type)) {
+            return;
+        }*/
+
+        const imageOptions = shapeOptions.options["image"] ?? shapeOptions.options["images"];
 
         if (imageOptions instanceof Array) {
             const promises: Promise<void>[] = [];
@@ -69,15 +77,10 @@ export class ImageDrawer implements IShapeDrawer {
         }
     }
 
-    public destroy(): void {
-        this.#images = [];
-    }
-
     private async loadImageShape(container: Container, imageShape: IImageShape): Promise<void> {
         try {
-            const imagePromise = imageShape.replaceColor ? downloadSvgImage(imageShape.src) : loadImage(imageShape.src);
-
-            const image = await imagePromise;
+            const imageFunc = imageShape.replaceColor ? downloadSvgImage : loadImage;
+            const image = await imageFunc(imageShape.src);
 
             if (image) {
                 this.addImage(container, image);
@@ -118,7 +121,7 @@ export class ImageDrawer implements IShapeDrawer {
     }
 
     public loadShape(particle: Particle): void {
-        if (!(particle.shape === "image" || particle.shape === "images")) {
+        if (particle.shape !== "image" && particle.shape !== "images") {
             return;
         }
 

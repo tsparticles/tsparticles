@@ -66,13 +66,13 @@ export default class App extends Component {
                     <div>
                         <button onClick={() => {
                             this.switchFrame('simple1');
-                        }}>Simple 1
+                        }}>Sample 1
                         </button>
                     </div>
                     <div>
                         <button onClick={() => {
                             this.switchFrame('simple2');
-                        }}>Simple 2
+                        }}>Sample 2
                         </button>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 import type { EditorGroup } from "object-gui";
-import type { Container } from "tsparticles-core";
+import type { Container } from "tsparticles-engine";
 
 export abstract class EditorBase {
     protected constructor(protected readonly particles: Container) {}

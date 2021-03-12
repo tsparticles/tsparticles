@@ -1,4 +1,4 @@
-import type { Container } from "tsparticles-core";
+import type { Container } from "tsparticles-engine";
 
 const changeHandler = async (container: Container, callback?: (container: Container) => void): Promise<void> => {
     if (callback) {

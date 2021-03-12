@@ -1,4 +1,4 @@
-[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
 
 # react-tsparticles
 
@@ -41,16 +41,73 @@ create-react-app your_app --template particles-typescript
 
 ### Code
 
-Example:
+Examples:
+
+_Remote url_
 
 ```javascript
 import Particles from "react-tsparticles";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.particlesInit = this.particlesInit.bind(this);
+    this.particlesLoaded = this.particlesLoaded.bind(this);
+  }
+
+  particlesInit(main) {
+    console.log(main);
+
+    // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+  }
+
+  particlesLoaded(container) {
+    console.log(container);
+  }
+
   render() {
     return (
       <Particles
         id="tsparticles"
+        url="http://foo.bar/particles.json"
+        init={this.particlesInit}
+        loaded={this.particlesLoaded}
+      />
+    );
+  }
+}
+```
+
+_Options object_
+
+```javascript
+import Particles from "react-tsparticles";
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.particlesInit = this.particlesInit.bind(this);
+    this.particlesLoaded = this.particlesLoaded.bind(this);
+  }
+
+  particlesInit(main) {
+    console.log(main);
+
+    // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+  }
+
+  particlesLoaded(container) {
+    console.log(container);
+  }
+
+  render() {
+    return (
+      <Particles
+        id="tsparticles"
+        init={this.particlesInit}
+        loaded={this.particlesLoaded}
         options={{
           background: {
             color: {
@@ -137,15 +194,18 @@ class App extends Component {
 
 ### Props
 
-| Prop            | Type   | Definition                                                                                                           |
-| --------------- | ------ | -------------------------------------------------------------------------------------------------------------------- |
-| width           | string | The width of the canvas.                                                                                             |
-| height          | string | The height of the canvas.                                                                                            |
-| options         | object | The options of the particles instance.                                                                               |
-| style           | object | The style of the canvas element.                                                                                     |
-| className       | string | The class name of the canvas wrapper.                                                                                |
-| canvasClassName | string | the class name of the canvas.                                                                                        |
-| container       | object | The instance of the [particles container](https://github.com/matteobruni/tsparticles/wiki/Particles-Container-class) |
+| Prop            | Type     | Definition                                                                                                                                          |
+| --------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| width           | string   | The width of the canvas.                                                                                                                            |
+| height          | string   | The height of the canvas.                                                                                                                           |
+| options         | object   | The options of the particles instance.                                                                                                              |
+| url             | string   | The remote options url, called using an AJAX request                                                                                                |
+| style           | object   | The style of the canvas element.                                                                                                                    |
+| className       | string   | The class name of the canvas wrapper.                                                                                                               |
+| canvasClassName | string   | the class name of the canvas.                                                                                                                       |
+| container       | object   | The instance of the [particles container](https://particles.js.org/docs/modules/_core_container_.html)                                              |
+| init            | function | This function is called after the tsParticles instance initialization, the instance is the parameter and you can load custom presets or shapes here |
+| loaded          | function | This function is called when particles are correctly loaded in canvas, the current container is the parameter and you can customize it here         |
 
 Find your parameters configuration [here](https://particles.js.org).
 

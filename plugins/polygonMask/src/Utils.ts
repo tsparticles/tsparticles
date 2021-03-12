@@ -1,7 +1,7 @@
 import type { IDrawStroke } from "./Options/Interfaces/IDrawStroke";
 import type { ISvgPath } from "./Interfaces/ISvgPath";
-import type { ICoordinates, Particle } from "tsparticles-core";
-import { colorToRgb, getStyleFromRgb } from "tsparticles-core";
+import type { ICoordinates, Particle } from "tsparticles-engine";
+import { colorToRgb, getStyleFromRgb } from "tsparticles-engine";
 
 export type SvgAbsoluteCoordinatesTypes =
     | SVGPathSegArcAbs

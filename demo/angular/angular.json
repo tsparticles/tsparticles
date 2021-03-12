@@ -15,7 +15,7 @@
           "options": {
             "allowedCommonJsDependencies": [
               "tsparticles",
-              "tsparticles-core",
+              "tsparticles-engine",
               "tsparticles-slim"
             ],
             "outputPath": "dist/ng-particles-demo",

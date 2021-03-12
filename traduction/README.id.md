@@ -1,4 +1,4 @@
-[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
 
 # tsParticles - TypeScript Particles
 
@@ -12,7 +12,7 @@ _Konversi dari [Particles.js](https://github.com/VincentGarreau/particles.js) ke
 
 **Library ini tersedia pada dua layanan CDN populer yang mudah dan siap untuk digunakan, jika kamu pernah menggunakan particles.js ini akan lebih mudah**.
 
-Temukan Instruksi penggunaan [dibawah](https://github.com/matteobruni/tsparticles/blob/master/README.md#library-installation), dengan semua tautan yang dibutuhkan, dan _jangan takut dengan **TypeScript**, itu hanya bahasa sumber_.
+Temukan Instruksi penggunaan [dibawah](https://github.com/matteobruni/tsparticles/blob/main/README.md#library-installation), dengan semua tautan yang dibutuhkan, dan _jangan takut dengan **TypeScript**, itu hanya bahasa sumber_.
 
 **Output file nya akan tetap JavaScript**. 🤩
 
@@ -179,7 +179,7 @@ particles.pause();
 
 [![npm](https://img.shields.io/npm/v/ng-particles)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/ng-particles)](https://www.npmjs.com/package/ng-particles)
 
-Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/tsparticles/blob/master/components/angular/README.md)
+Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/tsparticles/blob/main/components/angular/README.md)
 
 ### Inferno
 
@@ -187,7 +187,7 @@ Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/t
 
 [![npm](https://img.shields.io/npm/v/inferno-particles)](https://www.npmjs.com/package/inferno-particles) [![npm](https://img.shields.io/npm/dm/inferno-particles)](https://www.npmjs.com/package/inferno-particles)
 
-Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/tsparticles/blob/master/components/inferno/README.md)
+Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/tsparticles/blob/main/components/inferno/README.md)
 
 ### jQuery
 
@@ -195,7 +195,7 @@ Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/t
 
 [![npm](https://img.shields.io/npm/v/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles)](https://www.npmjs.com/package/jquery-particles)
 
-Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/tsparticles/blob/master/components/jquery/README.md)
+Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/tsparticles/blob/main/components/jquery/README.md)
 
 ### Preact
 
@@ -203,7 +203,7 @@ Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/t
 
 [![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles)
 
-Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/tsparticles/blob/master/components/preact/README.md)
+Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/tsparticles/blob/main/components/preact/README.md)
 
 ### ReactJS
 
@@ -211,7 +211,7 @@ Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/t
 
 [![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
 
-Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/tsparticles/blob/master/components/react/README.md)
+Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md)
 
 ### Svelte
 
@@ -219,7 +219,7 @@ Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/t
 
 [![npm](https://img.shields.io/npm/v/svelte-particles)](https://www.npmjs.com/package/svelte-particles) [![npm downloads](https://img.shields.io/npm/dm/svelte-particles)](https://www.npmjs.com/package/svelte-particles)
 
-Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/tsparticles/blob/master/components/svelte/README.md)
+Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/tsparticles/blob/main/components/svelte/README.md)
 
 ### VueJS
 
@@ -227,7 +227,7 @@ Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/t
 
 [![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue)
 
-Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/tsparticles/blob/master/components/vue/README.md)
+Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md)
 
 ---
 
@@ -305,7 +305,7 @@ _JANGAN DISENTUH! JANGAN! OH TIDAK VIRUS NYA MENYEBAR!!!!_
 
 **particles.json**
 
-Temukan contoh kode di [disini](https://github.com/matteobruni/tsparticles/wiki/tsParticles-Sample-Config) 📖
+Temukan contoh kode di [disini](https://github.com/matteobruni/tsparticles/tree/main/website/presets) 📖
 
 ---
 
@@ -367,19 +367,19 @@ Dokumentasi dan Referensi Pengembangan [here](https://particles.js.org/docs/) �
 
 ---
 
-[![Slack](https://cdn.matteobruni.it/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI) [![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles")
+[![Slack](https://particles.js.org/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI) [![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles")
 
 ---
 
 <p>
 <a  href="https://www.jetbrains.com/?from=tsParticles">
-<img  src="https://cdn.matteobruni.it/images/jetbrains-logos/jetbrains-variant-4.png"  height="150"  alt="JetBrains" />
+<img  src="https://particles.js.org/images/jetbrains-logos/jetbrains-variant-4.png"  height="150"  alt="JetBrains" />
 
 </a>
 
 <a  href="https://www.jetbrains.com/webstorm/?from=tsParticles">
 
-<img  src="https://cdn.matteobruni.it/images/jetbrains-logos/webstorm_logos/logo.png"  height="150"  alt="JetBrains" />
+<img  src="https://particles.js.org/images/jetbrains-logos/webstorm_logos/logo.png"  height="150"  alt="JetBrains" />
 
 </a>
 

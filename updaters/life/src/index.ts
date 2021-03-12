@@ -1,6 +1,6 @@
-import { loadUpdater } from "./updater";
-import { tsParticles } from "tsparticles-core";
+import type { Main } from "tsparticles-engine";
+import { LifeUpdater } from "./LifeUpdater";
 
-loadUpdater(tsParticles);
-
-export { loadUpdater };
+export function loadLifeUpdater(tsParticles: Main): void {
+    tsParticles.addParticleUpdater("life", (container) => new LifeUpdater(container));
+}

@@ -1,4 +1,4 @@
-[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
 
 # svelte-particles
 
@@ -24,6 +24,8 @@ yarn add svelte-particles
 <script>
   import Particles from "svelte-particles";
 
+  let particlesUrl = "http://foo.bar/particles.json";
+
   let particlesConfig = {
     particles: {
       color: {
@@ -45,18 +47,33 @@ yarn add svelte-particles
     // you can use particlesContainer to call all the Container class
     // (from the core library) methods like play, pause, refresh, start, stop
   };
+
+  let onParticlesInit = (main) => {
+    // you can use main to customize the tsParticles instance adding presets or custom shapes
+  };
 </script>
 
 <Particles
   id="tsparticles"
   options="{particlesConfig}"
   on:particlesLoaded="{onParticlesLoaded}"
+  on:particlesInit="{onParticlesInit}"
+/>
+
+<!-- or -->
+
+<Particles
+  id="tsparticles"
+  url="{particlesUrl}"
+  on:particlesLoaded="{onParticlesLoaded}"
+  on:particlesInit="{onParticlesInit}"
 />
 ```
 
 ### SSR
 
-The particles component isn't built for SSR, so you have to force the component to be called client side with `async import`.
+The particles component isn't built for SSR, so you have to force the component to be called client side
+with `async import`.
 
 You can see a sample below:
 
@@ -72,6 +89,8 @@ You can see a sample below:
     ParticlesComponent = module.default;
   });
 
+  let particlesUrl = "http://foo.bar/particles.json";
+
   let particlesConfig = {
     particles: {
       color: {
@@ -93,6 +112,10 @@ You can see a sample below:
     // you can use particlesContainer to call all the Container class
     // (from the core library) methods like play, pause, refresh, start, stop
   };
+
+  let onParticlesInit = (main) => {
+    // you can use main to customize the tsParticles instance adding presets or custom shapes
+  };
 </script>
 
 <svelte:component
@@ -100,6 +123,17 @@ You can see a sample below:
   id="tsparticles"
   options="{particlesConfig}"
   on:particlesLoaded="{onParticlesLoaded}"
+  on:particlesInit="{onParticlesInit}"
+/>
+
+<!-- or -->
+
+<svelte:component
+  this="{ParticlesComponent}"
+  id="tsparticles"
+  url="{particlesUrl}"
+  on:particlesLoaded="{onParticlesLoaded}"
+  on:particlesInit="{onParticlesInit}"
 />
 ```
 

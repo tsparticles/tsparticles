@@ -1,6 +1,6 @@
-import { loadUpdater } from "./updater";
-import { tsParticles } from "tsparticles-core";
+import type { Main } from "tsparticles-engine";
+import { SizeUpdater } from "./SizeUpdater";
 
-loadUpdater(tsParticles);
-
-export { loadUpdater };
+export function loadSizeUpdater(tsParticles: Main): void {
+    tsParticles.addParticleUpdater("size", (container) => new SizeUpdater(container));
+}

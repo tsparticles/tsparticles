@@ -1,8 +1,8 @@
-import type { Main } from "tsparticles-core";
+import type { Main } from "tsparticles-engine";
 import { ExternalLighter } from "./ExternalLighter";
 import { ParticlesLighter } from "./ParticlesLighter";
 
-export function loadInteraction(tsParticles: Main): void {
-    tsParticles.addInteractor((container) => new ExternalLighter(container));
-    tsParticles.addInteractor((container) => new ParticlesLighter(container));
+export function loadLightInteraction(tsParticles: Main): void {
+    tsParticles.addInteractor("externalLight", (container) => new ExternalLighter(container));
+    tsParticles.addInteractor("particlesLight", (container) => new ParticlesLighter(container));
 }

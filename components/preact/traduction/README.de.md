@@ -1,4 +1,4 @@
-[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
 
 # preact-particles
 
@@ -173,7 +173,7 @@ class App extends Component {
 
 | canvasClassName | string | Der Klassenname des canvas. |
 
-| container | object | Die Instanz des [Partikel-Containers](https://github.com/matteobruni/tsparticles/wiki/Particles-Container-class) |
+| container | object | Die Instanz des [Partikel-Containers](https://particles.js.org/docs/modules/_core_container_.html) |
 
 Finde die Konfiguration der Parameter [hier](https://particles.js.org).
 

@@ -1,10 +1,10 @@
 import React, { Component } from "preact/compat";
 import type { ComponentChild } from "preact";
 import equal from "fast-deep-equal/react";
-import { tsParticles, Container } from "tsparticles-core";
+import { tsParticles, Container } from "tsparticles-engine";
 import type { IParticlesProps } from "./IParticlesProps";
 import type { IParticlesState } from "./IParticlesState";
-import type { ISourceOptions } from "tsparticles-core";
+import type { ISourceOptions } from "tsparticles-engine";
 import { MutableRefObject } from "react";
 
 /**
@@ -23,7 +23,6 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
         super(props);
 
         this.state = {
-            canvas: undefined,
             library: undefined,
         };
     }
@@ -41,7 +40,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
     }
 
     public shouldComponentUpdate(nextProps: Readonly<IParticlesProps>): boolean {
-        return !this.state.library || !equal(nextProps, this.props);
+        return !equal(nextProps, this.props);
     }
 
     public componentDidUpdate(): void {
@@ -84,12 +83,6 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
     }
 
     private refresh(): void {
-        const { canvas } = this.state;
-
-        if (!canvas) {
-            return;
-        }
-
         this.destroy();
 
         this.loadParticles();

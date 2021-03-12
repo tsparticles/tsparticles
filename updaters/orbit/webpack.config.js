@@ -33,10 +33,10 @@ function getConfig(entry, banner, minBanner, dir) {
           amd: "tsparticles",
           root: "window"
         },
-        "tsparticles-core": {
-          commonjs: "tsparticles-core",
-          commonjs2: "tsparticles-core",
-          amd: "tsparticles-core",
+        "tsparticles-engine": {
+          commonjs: "tsparticles-engine",
+          commonjs2: "tsparticles-engine",
+          amd: "tsparticles-engine",
           root: "window"
         },
         "tsparticles-slim": {
@@ -97,9 +97,9 @@ GitHub : https://www.github.com/matteobruni/tsparticles
 How to use? : Check the GitHub README
 v${version}`;
 
-const minBanner = `tsParticles Angle Updater v${version} by Matteo Bruni`;
+const minBanner = `tsParticles Orbit Updater v${version} by Matteo Bruni`;
 
 module.exports = [
-  getConfig(getEntry("angle"), banner, minBanner, __dirname)
+  getConfig(getEntry("orbit"), banner, minBanner, __dirname)
 ];
 

@@ -1,5 +1,5 @@
 import type { RefObject } from "react";
-import type { Container, ISourceOptions, Main } from "tsparticles-core";
+import type { Container, ISourceOptions, Main } from "tsparticles-engine";
 import type { CSSProperties } from "react";
 
 export interface IParticlesProps {

@@ -1,8 +1,8 @@
-import type { Container, IDelta, IParticleUpdater, IParticleValueAnimation, Particle } from "tsparticles-core";
-import type { IHslAnimation } from "tsparticles-core/Options/Interfaces/IHslAnimation";
-import { randomInRange } from "tsparticles-core";
-import type { IAnimatableColor } from "tsparticles-core/Options/Interfaces/IAnimatableColor";
-import type { IColorAnimation } from "tsparticles-core/Options/Interfaces/IColorAnimation";
+import type { Container, IDelta, IParticleUpdater, IParticleValueAnimation, Particle } from "tsparticles-engine";
+import type { IHslAnimation } from "tsparticles-engine/Options/Interfaces/IHslAnimation";
+import { randomInRange } from "tsparticles-engine";
+import type { IAnimatableColor } from "tsparticles-engine/Options/Interfaces/IAnimatableColor";
+import type { IColorAnimation } from "tsparticles-engine/Options/Interfaces/IColorAnimation";
 
 export class StrokeColorUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}

@@ -1,4 +1,4 @@
-[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
 
 # react-tsparticles
 
@@ -145,7 +145,7 @@ class App extends Component {
 | style           | object | De stijl van het canvas element.                                                                                     |
 | className       | string | De class naam van de canvas wrapper.                                                                                |
 | canvasClassName | string | De class naam van het canvas.                                                                                        |
-| container       | object | De instantie van de [deeltjes container](https://github.com/matteobruni/tsparticles/wiki/Particles-Container-class) |
+| container       | object | De instantie van de [deeltjes container](https://particles.js.org/docs/modules/_core_container_.html) |
 
 Vind je parameters configuratie [hier](https://particles.js.org).
 

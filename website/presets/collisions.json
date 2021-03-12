@@ -1,5 +1,5 @@
 {
-  "backgroundMode": {
+  "fullScreen": {
     "enable": true,
     "zIndex": 1
   },
@@ -15,19 +15,7 @@
       "value": "#ffffff"
     },
     "shape": {
-      "type": "circle",
-      "stroke": {
-        "width": 0,
-        "color": "#000000"
-      },
-      "polygon": {
-        "sides": 5
-      },
-      "image": {
-        "src": "https://cdn.matteobruni.it/images/particles/github.svg",
-        "width": 100,
-        "height": 100
-      }
+      "type": "circle"
     },
     "opacity": {
       "value": 0.5,

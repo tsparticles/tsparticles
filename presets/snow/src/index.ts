@@ -1,6 +1,6 @@
-import { tsParticles } from "tsparticles-core";
-import { loadPreset } from "./preset";
+import { tsParticles } from "tsparticles-engine";
+import { loadSnowPreset } from "./preset";
 
-loadPreset(tsParticles);
+loadSnowPreset(tsParticles);
 
 export { tsParticles };

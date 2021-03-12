@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-updater-color",
-  "version": "2.0.0-alpha.3",
+  "version": "2.0.0-alpha.4",
   "description": "tsParticles particles color updater",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -38,13 +38,13 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "main": "updater.js",
+  "main": "index.js",
   "jsdelivr": "tsparticles.updater.color.min.js",
   "unpkg": "tsparticles.updater.color.min.js",
-  "browser": "updater.js",
-  "module": "updater.js",
-  "types": "updater.d.ts",
+  "browser": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
   "dependencies": {
-    "tsparticles-core": "^2.0.0-alpha.0"
+    "tsparticles-engine": "^2.0.0-alpha.4"
   }
 }

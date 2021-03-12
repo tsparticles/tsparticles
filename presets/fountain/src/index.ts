@@ -1,6 +1,6 @@
-import { tsParticles } from "tsparticles-core";
-import { loadPreset } from "./preset";
+import { tsParticles } from "tsparticles-engine";
+import { loadFountainPreset } from "./preset";
 
-loadPreset(tsParticles);
+loadFountainPreset(tsParticles);
 
 export { tsParticles };

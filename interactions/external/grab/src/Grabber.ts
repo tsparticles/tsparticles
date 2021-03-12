@@ -1,4 +1,4 @@
-import type { Container } from "tsparticles-core";
+import type { Container } from "tsparticles-engine";
 import {
     Constants,
     getLinkColor,
@@ -7,7 +7,7 @@ import {
     HoverMode,
     isInArray,
     ExternalInteractorBase,
-} from "tsparticles-core";
+} from "tsparticles-engine";
 
 /**
  * Particle grab manager
@@ -15,7 +15,7 @@ import {
  */
 export class Grabber extends ExternalInteractorBase {
     constructor(container: Container) {
-        super(container, "grab");
+        super(container);
     }
 
     public isEnabled(): boolean {

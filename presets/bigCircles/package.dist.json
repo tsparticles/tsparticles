@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-big-circles",
-  "version": "2.0.0-alpha.3",
+  "version": "2.0.0-alpha.4",
   "description": "tsParticles big circles preset",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -41,17 +41,17 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "main": "preset.js",
+  "main": "index.js",
   "jsdelivr": "tsparticles.preset.bigCircles.min.js",
   "unpkg": "tsparticles.preset.bigCircles.min.js",
-  "browser": "preset.js",
-  "module": "preset.js",
-  "types": "preset.d.ts",
+  "browser": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
   "dependencies": {
-    "tsparticles-core": "^2.0.0-alpha.0",
-    "tsparticles-interaction-particles-move": "^2.0.0-alpha.2",
-    "tsparticles-shape-circle": "^2.0.0-alpha.2",
-    "tsparticles-updater-out-modes": "^2.0.0-alpha.2",
-    "tsparticles-plugin-emitters": "^2.0.0-alpha.2"
+    "tsparticles-engine": "^2.0.0-alpha.4",
+    "tsparticles-interaction-particles-move": "^2.0.0-alpha.4",
+    "tsparticles-plugin-emitters": "^2.0.0-alpha.4",
+    "tsparticles-shape-circle": "^2.0.0-alpha.4",
+    "tsparticles-updater-out-modes": "^2.0.0-alpha.4"
   }
 }

@@ -1,7 +1,7 @@
 {
   "name": "particles.vue-demo",
   "private": true,
-  "version": "2.0.0-alpha.3",
+  "version": "2.0.0-alpha.4",
   "description": "VueJS Demo",
   "author": "Matteo Bruni <ar3s@icloud.com>",
   "homepage": "https://github.com/matteobruni/tsparticles#readme",
@@ -20,12 +20,12 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "dependencies": {
-    "particles.vue": "^3.0.0-alpha.3",
-    "tsparticles": "^2.0.0-alpha.3",
-    "tsparticles-core": "^2.0.0-alpha.3",
-    "tsparticles-preset-big-circles": "^2.0.0-alpha.3",
-    "tsparticles-preset-sea-anemone": "^2.0.0-alpha.3",
-    "tsparticles-slim": "^2.0.0-alpha.3",
+    "particles.vue": "^3.0.0-alpha.4",
+    "tsparticles": "^2.0.0-alpha.4",
+    "tsparticles-engine": "^2.0.0-alpha.4",
+    "tsparticles-preset-big-circles": "^2.0.0-alpha.4",
+    "tsparticles-preset-sea-anemone": "^2.0.0-alpha.4",
+    "tsparticles-slim": "^2.0.0-alpha.4",
     "vue": ">=2 && <3",
     "vue-class-component": "<8",
     "vue-property-decorator": "^9.1.2"
@@ -50,7 +50,7 @@
     "rollup-plugin-typescript": "^1.0.1",
     "rollup-plugin-typescript2": "^0.29.0",
     "rollup-plugin-vue": "<6",
-    "typescript": "^4.1.2",
+    "typescript": "^4.2.3",
     "vue-template-compiler": "^2.6.12"
   }
 }

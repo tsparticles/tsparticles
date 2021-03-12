@@ -1,8 +1,8 @@
-import type { Container } from "tsparticles-core";
-import type { IRotate } from "tsparticles-core/Options/Interfaces/Particles/Rotate/IRotate";
+import type { Container } from "tsparticles-engine";
+import type { IRotate } from "tsparticles-engine/Options/Interfaces/Particles/Rotate/IRotate";
 import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
-import { RotateDirection } from "tsparticles-core";
+import { RotateDirection } from "tsparticles-engine";
 
 export class RotateOptionsEditor extends EditorBase {
     public group!: EditorGroup;

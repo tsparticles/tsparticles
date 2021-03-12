@@ -1,6 +1,6 @@
-import { IParticle, Main } from "tsparticles-core";
+import { IParticle, Main } from "tsparticles-engine";
 
-export function loadShape(tsParticles: Main): void {
+export function loadHeartShape(tsParticles: Main): void {
     tsParticles.addShape(
         "heart",
         function (context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {

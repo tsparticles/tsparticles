@@ -3464,13 +3464,12 @@ envinfo@^7.3.1:
   resolved "https://registry.yarnpkg.com/envinfo/-/envinfo-7.7.3.tgz#4b2d8622e3e7366afb8091b23ed95569ea0208cc"
   integrity sha512-46+j5QxbPWza0PB1i15nZx0xQ4I/EfQxg9J8Had3b408SV63nEtor2e+oiY63amTo9KTuh2a3XLObNwduxYwwA==
 
-enzyme-adapter-preact-pure@^2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/enzyme-adapter-preact-pure/-/enzyme-adapter-preact-pure-2.2.3.tgz#b77c6272e7516cb952011047ddc754e1bce3f1b3"
-  integrity sha512-8BkTQRUDDCNe8/UDACU2wXoZNpUP2biq6sYvL9haN+UoKPfEVT1J4C8+gSvblNe4kcJZUMP48SltJQW47oia4w==
+enzyme-adapter-preact-pure@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/enzyme-adapter-preact-pure/-/enzyme-adapter-preact-pure-3.0.0.tgz#ca696ad106549cfc95eef376e0154fff5591561c"
+  integrity sha512-xFmANLdbTWJ3sSup15Dvl479XS1gPaFYQM6zpDJ6LfGv6PUAP0WOyWx4P5xZJG4DrrVu0ltSiD5JwWrica4J1w==
   dependencies:
     array.prototype.flatmap "^1.2.1"
-    preact-render-to-string "^4.1.0"
 
 enzyme-shallow-equal@^1.0.1:
   version "1.0.4"
@@ -7142,17 +7141,10 @@ preact-render-to-string@^3.6.3:
   dependencies:
     pretty-format "^3.5.1"
 
-preact-render-to-string@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/preact-render-to-string/-/preact-render-to-string-4.1.0.tgz#70d98a8385cb86558366c558aad7311ebecb881d"
-  integrity sha512-FlFBJRxo8z4cp6VsDmeYjIEx4ZK2clFJnKIvIj8K1IQCRm7ZgJ/SZ1+BotT86/Nc+V1pNtFabHoUi6gpjx5Pug==
-  dependencies:
-    pretty-format "^3.8.0"
-
 preact-render-to-string@^5.1.12:
-  version "5.1.12"
-  resolved "https://registry.yarnpkg.com/preact-render-to-string/-/preact-render-to-string-5.1.12.tgz#3d258a177ef8947f768dd0f2c56629e7fda2dc39"
-  integrity sha512-nXVCOpvepSk9AfPwqS08rf9NDOCs8eeYYlG+7tE85iP5jVyjz+aYb1BYaP5SPdfVWVrzI9L5NzxozUvKaD96tA==
+  version "5.1.14"
+  resolved "https://registry.yarnpkg.com/preact-render-to-string/-/preact-render-to-string-5.1.14.tgz#4b01a9354be6a7d09a66707393bcf68ce3f72714"
+  integrity sha512-xG/spHMnDX1cOOetZiFhljtczYUXqBrhuB+C2H+V0y3fJX8TmZtMrC+5di70y0E9fWAWiQIO5VTCpSDLoRmhzg==
   dependencies:
     pretty-format "^3.8.0"
 

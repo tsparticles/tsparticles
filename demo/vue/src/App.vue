@@ -7,10 +7,10 @@
 
 <script lang="ts">
 import { Vue } from "vue-property-decorator";
-import type { Container } from "tsparticles-core";
-import type { ISourceOptions, Main } from "tsparticles-core";
+import type { Container } from "tsparticles-engine";
+import type { ISourceOptions, Main } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
-import { loadPreset } from "tsparticles-preset-big-circles";
+import { loadBigCirclesPreset } from "tsparticles-preset-big-circles";
 
 export default class App extends Vue {
   private options: ISourceOptions = {
@@ -19,7 +19,7 @@ export default class App extends Vue {
 
   private particlesInit: (tsParticles: Main) => void = (tsParticles => {
     loadFull(tsParticles);
-    loadPreset(tsParticles);
+    loadBigCirclesPreset(tsParticles);
   });
 
   private particlesLoaded: (container: Container) => void = (container => {

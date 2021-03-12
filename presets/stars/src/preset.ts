@@ -1,14 +1,14 @@
-import { MoveDirection, OutMode, Main } from "tsparticles-core";
-import { loadShape as loadCircleShape } from "tsparticles-shape-circle";
-import { loadUpdater as loadOpacityUpdater } from "tsparticles-updater-opacity";
-import { loadUpdater as loadOutModesUpdater } from "tsparticles-updater-out-modes";
-import { loadInteraction as loadMoveInteraction } from "tsparticles-interaction-particles-move";
+import { MoveDirection, OutMode, Main } from "tsparticles-engine";
+import { loadCircleShape } from "tsparticles-shape-circle";
+import { loadOpacityUpdater } from "tsparticles-updater-opacity";
+import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
+import { loadParticlesMoveInteraction } from "tsparticles-interaction-particles-move";
 
-export function loadPreset(tsParticles: Main): void {
+export function loadStarsPreset(tsParticles: Main): void {
     loadCircleShape(tsParticles);
     loadOpacityUpdater(tsParticles);
+    loadParticlesMoveInteraction(tsParticles);
     loadOutModesUpdater(tsParticles);
-    loadMoveInteraction(tsParticles);
 
     tsParticles.addPreset("stars", {
         background: {

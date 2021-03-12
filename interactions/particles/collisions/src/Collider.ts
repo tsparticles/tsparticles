@@ -1,4 +1,4 @@
-import type { Container, Particle } from "tsparticles-core";
+import type { Container, Particle } from "tsparticles-engine";
 import {
     circleBounce,
     circleBounceDataFromParticle,
@@ -6,7 +6,7 @@ import {
     clamp,
     getDistance,
     ParticlesInteractorBase,
-} from "tsparticles-core";
+} from "tsparticles-engine";
 
 function bounce(p1: Particle, p2: Particle): void {
     circleBounce(circleBounceDataFromParticle(p1), circleBounceDataFromParticle(p2));
@@ -35,7 +35,7 @@ function destroy(p1: Particle, p2: Particle): void {
  */
 export class Collider extends ParticlesInteractorBase {
     constructor(container: Container) {
-        super(container, "collisions");
+        super(container);
     }
 
     public isEnabled(particle: Particle): boolean {

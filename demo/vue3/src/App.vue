@@ -8,9 +8,9 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import HelloWorld from "./components/HelloWorld.vue";
-import type { Container, ISourceOptions, Main, RecursivePartial } from "tsparticles-core";
+import type { Container, ISourceOptions, Main, RecursivePartial } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
-import { loadPreset } from "tsparticles-preset-big-circles";
+import { loadBigCirclesPreset } from "tsparticles-preset-big-circles";
 
 @Options({
   components: {
@@ -20,7 +20,7 @@ import { loadPreset } from "tsparticles-preset-big-circles";
 export default class App extends Vue {
   private particlesInit: (main: Main) => void = (main) => {
     loadFull(main);
-    loadPreset(main);
+    loadBigCirclesPreset(main);
   };
 
   private particlesLoaded: (container: Container) => void = (container) => {

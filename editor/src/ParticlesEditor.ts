@@ -1,4 +1,4 @@
-import type { Container } from "tsparticles-core";
+import type { Container } from "tsparticles-engine";
 import { OptionsEditor } from "./Sections/Options/OptionsEditor";
 import { Editor } from "object-gui";
 

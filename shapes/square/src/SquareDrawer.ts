@@ -1,4 +1,4 @@
-import type { IParticle, IShapeDrawer } from "tsparticles-core";
+import type { IParticle, IShapeDrawer } from "tsparticles-engine";
 
 /**
  * @category Shape Drawers
@@ -9,6 +9,8 @@ export class SquareDrawer implements IShapeDrawer {
     }
 
     public draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
-        context.rect(-radius, -radius, radius * 2, radius * 2);
+        const f = Math.sqrt(2);
+
+        context.rect(-radius / f, -radius / f, (radius * 2) / f, (radius * 2) / f);
     }
 }

@@ -1,7 +1,7 @@
 import { EditorBase } from "../../../../EditorBase";
 import type { EditorGroup } from "object-gui";
-import type { Container } from "tsparticles-core";
-import type { IRepulse } from "tsparticles-core/Core/Interfaces/IRepulse";
+import type { Container } from "tsparticles-engine";
+import type { IRepulse } from "tsparticles-engine/Core/Interfaces/IRepulse";
 import { EditorType } from "object-gui";
 
 export class RepulseOptionsEditor extends EditorBase {

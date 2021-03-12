@@ -1,4 +1,4 @@
-[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
 
 # react-tsparticles
 
@@ -47,91 +47,91 @@ Exemplo:
 import Particles from "react-tsparticles";
 
 class App extends Component {
-  render() {
-    return (
-      <Particles
-        id="tsparticles"
-        options={{
-          background: {
-            color: {
-              value: "#0d47a1",
-            },
-          },
-          fpsLimit: 60,
-          interactivity: {
-            detectsOn: "canvas",
-            events: {
-              onClick: {
-                enable: true,
-                mode: "push",
-              },
-              onHover: {
-                enable: true,
-                mode: "repulse",
-              },
-              resize: true,
-            },
-            modes: {
-              bubble: {
-                distance: 400,
-                duration: 2,
-                opacity: 0.8,
-                size: 40,
-              },
-              push: {
-                quantity: 4,
-              },
-              repulse: {
-                distance: 200,
-                duration: 0.4,
-              },
-            },
-          },
-          particles: {
-            color: {
-              value: "#ffffff",
-            },
-            links: {
-              color: "#ffffff",
-              distance: 150,
-              enable: true,
-              opacity: 0.5,
-              width: 1,
-            },
-            collisions: {
-              enable: true,
-            },
-            move: {
-              direction: "none",
-              enable: true,
-              outMode: "bounce",
-              random: false,
-              speed: 6,
-              straight: false,
-            },
-            number: {
-              density: {
-                enable: true,
-                value_area: 800,
-              },
-              value: 80,
-            },
-            opacity: {
-              value: 0.5,
-            },
-            shape: {
-              type: "circle",
-            },
-            size: {
-              random: true,
-              value: 5,
-            },
-          },
-          detectRetina: true,
-        }}
-      />
-    );
-  }
+    render() {
+        return (
+            <Particles
+                id="tsparticles"
+                options={{
+                    background: {
+                        color: {
+                            value: "#0d47a1",
+                        },
+                    },
+                    fpsLimit: 60,
+                    interactivity: {
+                        detectsOn: "canvas",
+                        events: {
+                            onClick: {
+                                enable: true,
+                                mode: "push",
+                            },
+                            onHover: {
+                                enable: true,
+                                mode: "repulse",
+                            },
+                            resize: true,
+                        },
+                        modes: {
+                            bubble: {
+                                distance: 400,
+                                duration: 2,
+                                opacity: 0.8,
+                                size: 40,
+                            },
+                            push: {
+                                quantity: 4,
+                            },
+                            repulse: {
+                                distance: 200,
+                                duration: 0.4,
+                            },
+                        },
+                    },
+                    particles: {
+                        color: {
+                            value: "#ffffff",
+                        },
+                        links: {
+                            color: "#ffffff",
+                            distance: 150,
+                            enable: true,
+                            opacity: 0.5,
+                            width: 1,
+                        },
+                        collisions: {
+                            enable: true,
+                        },
+                        move: {
+                            direction: "none",
+                            enable: true,
+                            outMode: "bounce",
+                            random: false,
+                            speed: 6,
+                            straight: false,
+                        },
+                        number: {
+                            density: {
+                                enable: true,
+                                value_area: 800,
+                            },
+                            value: 80,
+                        },
+                        opacity: {
+                            value: 0.5,
+                        },
+                        shape: {
+                            type: "circle",
+                        },
+                        size: {
+                            random: true,
+                            value: 5,
+                        },
+                    },
+                    detectRetina: true,
+                }}
+            />
+        );
+    }
 }
 ```
 
@@ -145,13 +145,14 @@ class App extends Component {
 | style           | object | O estilo do elemento canvas.                                                                                     |
 | className       | string | Nome da classe do elemento que contém o canvas.                                                                                |
 | canvasClassName | string | Nome da classe do canvas.                                                                                        |
-| container       | object | Instância do [particles container](https://github.com/matteobruni/tsparticles/wiki/Particles-Container-class) |
+| container       | object | Instância do [particles container](https://particles.js.org/docs/modules/_core_container_.html) |
 
 Veja as configurações dos parâmetros [aqui](https://particles.js.org).
 
 ### Erros
 
-Caso você tenha algum erro de typescript, `tsParticles` usa TypeScript `3.9.6` então instale pelo menos a versão 3.8 para usar a sintaxe `import type`.
+Caso você tenha algum erro de typescript, `tsParticles` usa TypeScript `3.9.6` então instale pelo menos a versão 3.8
+para usar a sintaxe `import type`.
 
 ## Demos
 

@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-interaction-external-bubble",
-  "version": "2.0.0-alpha.3",
+  "version": "2.0.0-alpha.4",
   "description": "tsParticles Bubble external interaction",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -38,13 +38,13 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "main": "interaction.js",
+  "main": "index.js",
   "jsdelivr": "tsparticles.interaction.external.bubble.min.js",
   "unpkg": "tsparticles.interaction.external.bubble.min.js",
-  "browser": "interaction.js",
-  "module": "interaction.js",
-  "types": "interaction.d.ts",
+  "browser": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
   "dependencies": {
-    "tsparticles-core": "^2.0.0-alpha.0"
+    "tsparticles-engine": "^2.0.0-alpha.4"
   }
 }

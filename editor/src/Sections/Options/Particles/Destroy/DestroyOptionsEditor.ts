@@ -1,9 +1,9 @@
 import { EditorBase } from "../../../../EditorBase";
 import type { EditorGroup } from "object-gui";
 import { EditorType } from "object-gui";
-import type { Container } from "tsparticles-core";
-import { DestroyMode } from "tsparticles-core";
-import { IDestroy } from "tsparticles-core/Options/Interfaces/Particles/Destroy/IDestroy";
+import type { Container } from "tsparticles-engine";
+import { DestroyMode } from "tsparticles-engine";
+import { IDestroy } from "tsparticles-engine/Options/Interfaces/Particles/Destroy/IDestroy";
 
 export class DestroyOptionsEditor extends EditorBase {
     public group!: EditorGroup;

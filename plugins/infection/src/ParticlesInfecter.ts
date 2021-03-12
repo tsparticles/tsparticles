@@ -1,5 +1,5 @@
-import type { IDelta } from "tsparticles-core";
-import { ParticlesInteractorBase } from "tsparticles-core";
+import type { IDelta } from "tsparticles-engine";
+import { ParticlesInteractorBase } from "tsparticles-engine";
 import type { InfectableContainer, InfectableParticle } from "./Types";
 import type { IInfectionOptions } from "./Options/Interfaces/IInfectionOptions";
 
@@ -8,7 +8,7 @@ import type { IInfectionOptions } from "./Options/Interfaces/IInfectionOptions";
  */
 export class ParticlesInfecter extends ParticlesInteractorBase {
     constructor(container: InfectableContainer) {
-        super(container, "infection");
+        super(container);
     }
 
     public isEnabled(): boolean {

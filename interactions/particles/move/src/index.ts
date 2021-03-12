@@ -1,6 +1,6 @@
-import { loadInteraction } from "./interaction";
-import { tsParticles } from "tsparticles-core";
+import type { Main } from "tsparticles-engine";
+import { Mover } from "./Mover";
 
-loadInteraction(tsParticles);
-
-export { loadInteraction };
+export function loadParticlesMoveInteraction(tsParticles: Main): void {
+    tsParticles.addInteractor("particlesMove", (container) => new Mover(container));
+}

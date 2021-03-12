@@ -1,5 +1,5 @@
-import type { Container, IDelta, IParticleUpdater, Particle } from "tsparticles-core";
-import { AnimationStatus, checkDestroy, clamp } from "tsparticles-core";
+import type { Container, IDelta, IParticleUpdater, Particle } from "tsparticles-engine";
+import { AnimationStatus, checkDestroy, clamp } from "tsparticles-engine";
 
 export class OpacityUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}

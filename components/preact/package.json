@@ -1,11 +1,18 @@
 {
   "name": "preact-particles",
-  "version": "2.0.0-alpha.3",
+  "version": "2.0.0-alpha.4",
   "description": "Official tsParticles Preact Component - Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Inferno.",
   "main": "index.js",
   "unpkg": "umd/particles.js",
   "jsdelivr": "umd/particles.js",
   "types": "index.d.ts",
+  "typesVersions": {
+    "<3.8": {
+      "*": [
+        "ts3.4"
+      ]
+    }
+  },
   "scripts": {
     "prettify:src": "prettier --write ./src/",
     "prettify:readme": "prettier --write ./README.md",
@@ -69,7 +76,7 @@
   "dependencies": {
     "fast-deep-equal": "^3.1.3",
     "preact": ">=10",
-    "tsparticles-core": "^2.0.0-alpha.3"
+    "tsparticles-engine": "^2.0.0-alpha.4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.13",
@@ -86,7 +93,7 @@
     "prettier": "^2.2.1",
     "ts-loader": "^8.0.15",
     "ts-node": "^9.1.1",
-    "typescript": "^4.1.3",
+    "typescript": "^4.2.3",
     "webpack": "^5.21.1",
     "webpack-bundle-analyzer": "^4.4.0",
     "webpack-cli": "^4.5.0",

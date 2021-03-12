@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-alpha.4](https://github.com/matteobruni/tsparticles/compare/jquery-particles@1.19.4...jquery-particles@2.0.0-alpha.4) (2021-03-11)
+
+**Note:** Version bump only for package jquery-particles
+
+
+
+
+
 # [2.0.0-alpha.3](https://github.com/matteobruni/tsparticles/compare/jquery-particles@2.0.0-alpha.2...jquery-particles@2.0.0-alpha.3) (2021-02-07)
 
 **Note:** Version bump only for package jquery-particles

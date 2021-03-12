@@ -1,13 +1,13 @@
-import { ClickMode } from "tsparticles-core";
-import type { Main } from "tsparticles-core";
-import { loadInteraction as loadParticlesMoveInteraction } from "tsparticles-interaction-particles-move";
-import { loadShape as loadCircleShape } from "tsparticles-shape-circle";
-import { loadUpdater as loadOutModesUpdater } from "tsparticles-updater-out-modes";
+import { ClickMode } from "tsparticles-engine";
+import type { Main } from "tsparticles-engine";
+import { loadParticlesMoveInteraction } from "tsparticles-interaction-particles-move";
+import { loadCircleShape } from "tsparticles-shape-circle";
+import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
 
-export function loadPreset(tsParticles: Main): void {
+export function loadFirePreset(tsParticles: Main): void {
     loadCircleShape(tsParticles);
-    loadOutModesUpdater(tsParticles);
     loadParticlesMoveInteraction(tsParticles);
+    loadOutModesUpdater(tsParticles);
 
     tsParticles.addPreset("fire", {
         fullScreen: {

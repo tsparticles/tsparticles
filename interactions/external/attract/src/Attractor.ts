@@ -1,4 +1,4 @@
-import type { Container, ICoordinates, Range } from "tsparticles-core";
+import type { Container, ICoordinates, Range } from "tsparticles-engine";
 import {
     Circle,
     clamp,
@@ -8,7 +8,7 @@ import {
     ExternalInteractorBase,
     ClickMode,
     HoverMode,
-} from "tsparticles-core";
+} from "tsparticles-engine";
 
 /**
  * Particle attract manager
@@ -16,7 +16,7 @@ import {
  */
 export class Attractor extends ExternalInteractorBase {
     constructor(container: Container) {
-        super(container, "attractor");
+        super(container);
     }
 
     public isEnabled(): boolean {

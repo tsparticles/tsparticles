@@ -9,8 +9,8 @@ import {
     Plugins,
     RotateDirection,
     Vector,
-} from "tsparticles-core";
-import type { Container, IDelta, Particle } from "tsparticles-core";
+} from "tsparticles-engine";
+import type { Container, IDelta, Particle } from "tsparticles-engine";
 
 function applyDistance(particle: Particle): void {
     const initialPosition = particle.initialPosition;
@@ -65,24 +65,24 @@ function applyDistance(particle: Particle): void {
     }
 }
 
-type NoiseParticle = Particle & {
-    lastNoiseTime: number;
+type PathParticle = Particle & {
+    lastPathTime: number;
 };
 
 export class Mover extends ParticlesInteractorBase {
     constructor(container: Container) {
-        super(container, "parallax");
+        super(container);
     }
 
-    public interact(particle: NoiseParticle, delta: IDelta): void {
+    public interact(particle: PathParticle, delta: IDelta): void {
         const particlesOptions = particle.options;
 
         if (!particlesOptions.move.enable) {
             return;
         }
 
-        if (!particle.lastNoiseTime) {
-            particle.lastNoiseTime = 0;
+        if (!particle.lastPathTime) {
+            particle.lastPathTime = 0;
         }
 
         const container = this.container,
@@ -95,7 +95,7 @@ export class Mover extends ParticlesInteractorBase {
             speedFactor = (sizeFactor * slowFactor * delta.factor) / diffFactor,
             moveSpeed = baseSpeed * speedFactor;
 
-        this.applyNoise(particle, delta);
+        this.applyPath(particle, delta);
 
         const gravityOptions = particlesOptions.move.gravity;
 
@@ -171,48 +171,48 @@ export class Mover extends ParticlesInteractorBase {
         particle.spin.angle += (moveSpeed / 100) * (1 - particle.spin.radius / maxCanvasSize);
     }
 
-    private applyNoise(particle: NoiseParticle, delta: IDelta): void {
+    private applyPath(particle: PathParticle, delta: IDelta): void {
         const particlesOptions = particle.options,
-            noiseOptions = particlesOptions.move.noise,
-            noiseEnabled = noiseOptions.enable;
+            pathOptions = particlesOptions.move.path,
+            pathEnabled = pathOptions.enable;
 
-        if (!noiseEnabled) {
+        if (!pathEnabled) {
             return;
         }
 
         const container = this.container;
 
-        if (particle.lastNoiseTime <= particle.noiseDelay) {
-            particle.lastNoiseTime += delta.value;
+        if (particle.lastPathTime <= particle.pathDelay) {
+            particle.lastPathTime += delta.value;
 
             return;
         }
 
-        let generator = container.noise;
+        let generator = container.pathGenerator;
 
-        if (noiseOptions.generator) {
-            const customGenerator = Plugins.getNoiseGenerator(noiseOptions.generator);
+        if (pathOptions.generator) {
+            const customGenerator = Plugins.getPathGenerator(pathOptions.generator);
 
             if (customGenerator) {
                 generator = customGenerator;
             }
         }
 
-        const noise = generator.generate(particle),
+        const path = generator.generate(particle),
             vel = particle.velocity,
-            noiseVel = Vector.origin;
+            pathVel = Vector.origin;
 
-        noiseVel.length = noise.length;
-        noiseVel.angle = noise.angle;
+        pathVel.length = path.length;
+        pathVel.angle = path.angle;
 
-        vel.addTo(noiseVel);
+        vel.addTo(pathVel);
 
-        if (noiseOptions.clamp) {
+        if (pathOptions.clamp) {
             vel.x = clamp(vel.x, -1, 1);
             vel.y = clamp(vel.y, -1, 1);
         }
 
-        particle.lastNoiseTime -= particle.noiseDelay;
+        particle.lastPathTime -= particle.pathDelay;
     }
 
     private getProximitySpeedFactor(particle: Particle): number {

@@ -1,6 +1,6 @@
-import { tsParticles } from "tsparticles-core";
-import { loadPreset } from "./preset";
+import { tsParticles } from "tsparticles-engine";
+import { loadStarsPreset } from "./preset";
 
-loadPreset(tsParticles);
+loadStarsPreset(tsParticles);
 
 export { tsParticles };

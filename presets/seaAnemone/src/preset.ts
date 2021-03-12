@@ -1,18 +1,18 @@
-import type { ISourceOptions, Main } from "tsparticles-core";
-import { loadInteraction as loadParticlesMoveInteraction } from "tsparticles-interaction-particles-move";
-import { loadPlugin as loadEmittersPlugin } from "tsparticles-plugin-emitters";
-import { loadShape as loadCircleShape } from "tsparticles-shape-circle";
-import { loadUpdater as loadSizeUpdater } from "tsparticles-updater-size";
-import { seaNoiseGenerator } from "./noiseGen";
+import type { ISourceOptions, Main } from "tsparticles-engine";
+import { loadParticlesMoveInteraction } from "tsparticles-interaction-particles-move";
+import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
+import { loadCircleShape } from "tsparticles-shape-circle";
+import { loadSizeUpdater } from "tsparticles-updater-size";
+import { seaPathGenerator } from "./pathGen";
 
-export function loadPreset(tsParticles: Main): void {
+export function loadSeaAnemonePreset(tsParticles: Main): void {
     loadParticlesMoveInteraction(tsParticles);
     loadEmittersPlugin(tsParticles);
     loadCircleShape(tsParticles);
     loadSizeUpdater(tsParticles);
 
     const presetName = "seaAnemone";
-    const noiseGeneratorName = `${presetName}Noise`;
+    const pathGeneratorName = `${presetName}Path`;
     const options = ({
         fullScreen: {
             enable: true,
@@ -42,13 +42,13 @@ export function loadPreset(tsParticles: Main): void {
                 outModes: {
                     default: "destroy",
                 },
-                noise: {
+                path: {
                     clamp: false,
                     enable: true,
                     delay: {
                         value: 0,
                     },
-                    generator: "seaAnemoneNoise",
+                    generator: pathGeneratorName,
                 },
                 random: false,
                 speed: 2,
@@ -131,5 +131,5 @@ export function loadPreset(tsParticles: Main): void {
     } as unknown) as ISourceOptions;
 
     tsParticles.addPreset(presetName, options);
-    tsParticles.addNoiseGenerator(noiseGeneratorName, seaNoiseGenerator);
+    tsParticles.addPathGenerator(pathGeneratorName, seaPathGenerator);
 }

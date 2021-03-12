@@ -1,6 +1,6 @@
-import type { Container, IPlugin, RecursivePartial, Main } from "tsparticles-core";
+import type { Container, IPlugin, RecursivePartial, Main } from "tsparticles-engine";
 import type { IPolygonMaskOptions } from "./Options/Interfaces/IPolygonMaskOptions";
-import { Options } from "tsparticles-core/Options/Classes/Options";
+import { Options } from "tsparticles-engine/Options/Classes/Options";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
 import { Type } from "./Enums";
 import { PolygonMaskInstance } from "./PolygonMaskInstance";
@@ -39,7 +39,7 @@ class Plugin implements IPlugin {
     }
 }
 
-export function loadPlugin(tsParticles: Main): void {
+export function loadPolygonMaskPlugin(tsParticles: Main): void {
     const plugin = new Plugin();
 
     tsParticles.addPlugin(plugin);

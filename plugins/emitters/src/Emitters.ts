@@ -1,19 +1,19 @@
-import type { IContainerPlugin } from "tsparticles-core/Core/Interfaces/IContainerPlugin";
 import { EmitterInstance } from "./EmitterInstance";
-import type { Container } from "tsparticles-core/Core/Container";
+import type {
+    Container,
+    ICoordinates,
+    IContainerPlugin,
+    IDelta,
+    RecursivePartial,
+    SingleOrMultiple,
+} from "tsparticles-engine";
+import { deepExtend, itemFromArray } from "tsparticles-engine";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
-import { deepExtend, itemFromArray } from "tsparticles-core/Utils";
-import type { RecursivePartial, SingleOrMultiple } from "tsparticles-core/Types";
 import { Emitter } from "./Options/Classes/Emitter";
-import type { IOptions } from "tsparticles-core/Options/Interfaces/IOptions";
+import type { IOptions } from "tsparticles-engine/Options/Interfaces/IOptions";
 import { EmitterClickMode } from "./Enums";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
-import type { ICoordinates } from "tsparticles-core/Core/Interfaces/ICoordinates";
-import type { IDelta } from "tsparticles-core/Core/Interfaces/IDelta";
-
-interface EmitterContainer {
-    addEmitter: (options: IEmitter, position: ICoordinates) => EmitterInstance;
-}
+import type { EmitterContainer } from "./EmitterContainer";
 
 /**
  * @category Emitters Plugin
@@ -32,6 +32,28 @@ export class Emitters implements IContainerPlugin {
 
         overridableContainer.addEmitter = (options: IEmitter, position?: ICoordinates) =>
             this.addEmitter(options, position);
+
+        overridableContainer.playEmitter = (idxOrName?: number | string) => {
+            const emitter =
+                idxOrName === undefined || typeof idxOrName === "number"
+                    ? this.array[idxOrName || 0]
+                    : this.array.find((t) => t.name === idxOrName);
+
+            if (emitter) {
+                emitter.play();
+            }
+        };
+
+        overridableContainer.pauseEmitter = (idxOrName?: number | string) => {
+            const emitter =
+                idxOrName === undefined || typeof idxOrName === "number"
+                    ? this.array[idxOrName || 0]
+                    : this.array.find((t) => t.name === idxOrName);
+
+            if (emitter) {
+                emitter.pause();
+            }
+        };
     }
 
     public init(options?: RecursivePartial<IOptions & IEmitterOptions>): void {

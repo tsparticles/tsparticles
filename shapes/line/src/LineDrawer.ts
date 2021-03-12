@@ -1,4 +1,4 @@
-import type { IParticle, IShapeDrawer } from "tsparticles-core";
+import type { IParticle, IShapeDrawer } from "tsparticles-engine";
 
 /**
  * @category Shape Drawers

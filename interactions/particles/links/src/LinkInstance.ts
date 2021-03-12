@@ -2,29 +2,42 @@ import {
     colorToRgb,
     getDistance,
     getLinkColor,
-    ILink,
-    IParticle,
     Container,
     IContainerPlugin,
     IDelta,
-    Particle,
     drawLinkTriangle,
     drawLinkLine,
     IRgb,
-} from "tsparticles-core";
+    Particle,
+} from "tsparticles-engine";
+import type { ILink } from "./ILink";
+import type { LinkParticle } from "./LinkParticle";
 
 export class LinkInstance implements IContainerPlugin {
     constructor(private readonly container: Container) {}
 
+    particleCreated(particle: Particle): void {
+        const linkParticle = (particle as unknown) as LinkParticle;
+
+        linkParticle.links = [];
+    }
+
+    particleDestroyed(particle: Particle, override?: boolean): void {
+        const linkParticle = (particle as unknown) as LinkParticle;
+
+        linkParticle.links = [];
+    }
+
     drawParticle(context: CanvasRenderingContext2D, particle: Particle, delta: IDelta): void {
+        const linkParticle = (particle as unknown) as LinkParticle;
         const container = this.container;
         const particles = container.particles;
         const pOptions = particle.options;
 
-        if (particle.links.length > 0) {
+        if (linkParticle.links.length > 0) {
             context.save();
-            const p1Links = particle.links.filter((l) => {
-                const linkFreq = container.particles.getLinkFrequency(particle, l.destination);
+            const p1Links = linkParticle.links.filter((l) => {
+                const linkFreq = container.particles.getLinkFrequency(linkParticle, l.destination);
 
                 return linkFreq <= pOptions.links.frequency;
             });
@@ -43,19 +56,19 @@ export class LinkInstance implements IContainerPlugin {
                     if (vertices.length) {
                         for (const vertex of vertices) {
                             const p3 = vertex.destination;
-                            const triangleFreq = particles.getTriangleFrequency(particle, p2, p3);
+                            const triangleFreq = particles.getTriangleFrequency(linkParticle, p2, p3);
 
                             if (triangleFreq > pOptions.links.triangles.frequency) {
                                 continue;
                             }
 
-                            this.drawLinkTriangle(context, particle, link, vertex);
+                            this.drawLinkTriangle(context, linkParticle, link, vertex);
                         }
                     }
                 }
 
                 if (link.opacity > 0 && container.retina.linksWidth > 0) {
-                    this.drawLinkLine(context, particle, link);
+                    this.drawLinkLine(context, linkParticle, link);
                 }
             }
 
@@ -63,7 +76,7 @@ export class LinkInstance implements IContainerPlugin {
         }
     }
 
-    private drawLinkTriangle(ctx: CanvasRenderingContext2D, p1: IParticle, link1: ILink, link2: ILink): void {
+    private drawLinkTriangle(ctx: CanvasRenderingContext2D, p1: LinkParticle, link1: ILink, link2: ILink): void {
         const container = this.container;
         const options = container.options;
         const p2 = link1.destination;
@@ -119,7 +132,7 @@ export class LinkInstance implements IContainerPlugin {
         );
     }
 
-    private drawLinkLine(ctx: CanvasRenderingContext2D, p1: IParticle, link: ILink): void {
+    private drawLinkLine(ctx: CanvasRenderingContext2D, p1: LinkParticle, link: ILink): void {
         const container = this.container;
         const options = container.options;
         const p2 = link.destination;

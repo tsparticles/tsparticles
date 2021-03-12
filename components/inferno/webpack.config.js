@@ -12,11 +12,11 @@ module.exports = {
 				amd: "inferno",
 				root: "Inferno"
 			},
-			"tsparticles-core": {
-				"tsparticles-core": {
-					commonjs: "tsparticles-core",
-					commonjs2: "tsparticles-core",
-					amd: "tsparticles-core",
+			"tsparticles-engine": {
+				"tsparticles-engine": {
+					commonjs: "tsparticles-engine",
+					commonjs2: "tsparticles-engine",
+					amd: "tsparticles-engine",
 					root: "window"
 				}
 			}

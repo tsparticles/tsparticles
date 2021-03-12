@@ -1,6 +1,6 @@
-import type { ICoordinates, IParticle, IShapeDrawer } from "tsparticles-core";
-import type { IPolygonShape } from "tsparticles-core/Options/Interfaces/Particles/Shape/IPolygonShape";
-import { deg2rad } from "tsparticles-core";
+import type { ICoordinates, IParticle, IShapeDrawer } from "tsparticles-engine";
+import type { IPolygonShape } from "tsparticles-engine/Options/Interfaces/Particles/Shape/IPolygonShape";
+import { deg2rad } from "tsparticles-engine";
 
 export interface ISideCount {
     numerator: number;

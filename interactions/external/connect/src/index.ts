@@ -1,6 +1,6 @@
-import { loadInteraction } from "./interaction";
-import { tsParticles } from "tsparticles-core";
+import type { Main } from "tsparticles-engine";
+import { Connector } from "./Connector";
 
-loadInteraction(tsParticles);
-
-export { loadInteraction };
+export function loadExternalConnectInteraction(tsParticles: Main): void {
+    tsParticles.addInteractor("externalConnect", (container) => new Connector(container));
+}

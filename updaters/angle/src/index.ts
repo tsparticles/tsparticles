@@ -1,6 +1,6 @@
-import { loadUpdater } from "./updater";
-import { tsParticles } from "tsparticles-core";
+import type { Main } from "tsparticles-engine";
+import { AngleUpdater } from "./AngleUpdater";
 
-loadUpdater(tsParticles);
-
-export { loadUpdater };
+export function loadAngleUpdater(tsParticles: Main): void {
+    tsParticles.addParticleUpdater("angle", (container) => new AngleUpdater(container));
+}

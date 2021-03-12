@@ -1,7 +1,7 @@
-import type { Container } from "tsparticles-core";
+import type { Container } from "tsparticles-engine";
 import {
     ExternalInteractorBase
-} from "tsparticles-core";
+} from "tsparticles-engine";
 
 /**
  * Particle attract manager

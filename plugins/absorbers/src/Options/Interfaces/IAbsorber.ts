@@ -1,4 +1,4 @@
-import type { IColor, ICoordinates, RecursivePartial } from "tsparticles-core";
+import type { IColor, ICoordinates, RecursivePartial } from "tsparticles-engine";
 import type { IAbsorberSize } from "./IAbsorberSize";
 
 /**
@@ -11,6 +11,11 @@ export interface IAbsorber {
      * Absorber color
      */
     color: IColor | string;
+
+    /**
+     * Absorber name
+     */
+    name?: string;
 
     /**
      * Absorber opacity

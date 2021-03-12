@@ -1,4 +1,4 @@
-[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
 
 # preact-particles
 
@@ -126,7 +126,7 @@ class App extends Component {
 | style           | объект | Стили элемента canvas.                                                                                           |
 | className       | строка | Имя класса для элемента-обертки элемента canvas.                                                                 |
 | canvasClassName | строка | Имя класса для элемента canvas.                                                                                  |
-| container       | объект | Экземпляр класса [контейнера частиц](https://github.com/matteobruni/tsparticles/wiki/Particles-Container-class). |
+| container       | объект | Экземпляр класса [контейнера частиц](https://particles.js.org/docs/modules/_core_container_.html). |
 
 [Здесь](https://particles.js.org) можно найти параметры для настройки.
 

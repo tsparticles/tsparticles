@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-bubble",
-  "version": "2.0.0-alpha.3",
+  "version": "2.0.0-alpha.4",
   "description": "tsParticles bubble shape",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -38,13 +38,13 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "main": "shape.js",
+  "main": "index.js",
   "jsdelivr": "tsparticles.shape.bubble.min.js",
   "unpkg": "tsparticles.shape.bubble.min.js",
-  "browser": "shape.js",
-  "module": "shape.js",
-  "types": "shape.d.ts",
+  "browser": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
   "dependencies": {
-    "tsparticles-core": "^2.0.0-alpha.0"
+    "tsparticles-engine": "^2.0.0-alpha.4"
   }
 }

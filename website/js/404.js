@@ -1,6 +1,6 @@
 tsParticles.load("tsparticles", {
   fpsLimit: 60,
-  "backgroundMode": {
+  "fullScreen": {
     "enable": true,
     "zIndex": -1
   },

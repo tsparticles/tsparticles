@@ -10,9 +10,11 @@ assignees: ''
 /* DO NOT DELETE THE TEMPLATE BELOW, you can safely delete this line */
 
 **Which version are you using?**
-Ex. 1.18.11
+Ex. 1.19.2
 
 **Is the latest version affected?**
+
+*You can checkout latest version [here](https://www.npmjs.com/package/tsparticles)*
 
 - [ ] Yes
 - [ ] No
@@ -28,5 +30,13 @@ Ex. 1.18.11
 - [ ] Preact (`preact-particles`)
 - [ ] Inferno (`inferno-particles`)
 - [ ] jQuery (`jquery-particles`)
+
+<details>
+ <summary><b>tsParticles Configuration</b></summary>
+  
+  ```javascript
+  /* add your config here */
+  ```
+</details>
 
 /* DO NOT DELETE THE TEMPLATE ABOVE, you can safely delete this line */

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-alpha.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-big-circles@1.4.4...tsparticles-preset-big-circles@2.0.0-alpha.4) (2021-03-11)
+
+**Note:** Version bump only for package tsparticles-preset-big-circles
+
+
+
+
+
 # [2.0.0-alpha.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-big-circles@2.0.0-alpha.2...tsparticles-preset-big-circles@2.0.0-alpha.3) (2021-02-07)
 
 **Note:** Version bump only for package tsparticles-preset-big-circles

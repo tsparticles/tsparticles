@@ -1,6 +1,6 @@
-import { loadUpdater } from "./updater";
-import { tsParticles } from "tsparticles-core";
+import type { Main } from "tsparticles-engine";
+import { ColorUpdater } from "./ColorUpdater";
 
-loadUpdater(tsParticles);
-
-export { loadUpdater };
+export function loadColorUpdater(tsParticles: Main): void {
+    tsParticles.addParticleUpdater("color", (container) => new ColorUpdater(container));
+}

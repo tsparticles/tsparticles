@@ -1,5 +1,5 @@
 {
-  "backgroundMode": {
+  "fullScreen": {
     "enable": true,
     "zIndex": 1
   },
@@ -156,7 +156,7 @@
       "image": {
         "height": 100,
         "replaceColor": true,
-        "src": "https://cdn.matteobruni.it/images/particles/github.svg",
+        "src": "https://particles.js.org/images/github.svg",
         "width": 100
       },
       "polygon": {

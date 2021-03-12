@@ -1,6 +1,5 @@
-import type { Container } from "tsparticles-core";
+import type { Container } from "tsparticles-engine";
 
 export interface IParticlesState {
-    canvas?: HTMLCanvasElement;
     library?: Container;
 }

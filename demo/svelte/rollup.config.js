@@ -17,12 +17,12 @@ export default {
     file: "public/dist/bundle.js",
     globals: {
       "tsparticles": "window",
-      "tsparticles-core": "window"
+      "tsparticles-engine": "window"
     }
   },
   external: [
     "tsparticles",
-    "tsparticles-core"
+    "tsparticles-engine"
   ],
   plugins: [
     svelte({
@@ -37,7 +37,7 @@ export default {
     // https://github.com/rollup/plugins/tree/master/packages/commonjs
     resolve({
       browser: true,
-      dedupe: [ "svelte", "svelte-particles", "tsparticles", "tsparticles-core" ]
+      dedupe: [ "svelte", "svelte-particles", "tsparticles", "tsparticles-engine" ]
     }),
     commonjs(),
     typescript({ sourceMap: true }),

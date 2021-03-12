@@ -1,4 +1,4 @@
-[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
 
 # tsParticles - Paticulas TypeScript 
 
@@ -12,7 +12,7 @@ _[Particles.js](https://github.com/VincentGarreau/particles.js) convertido en Ty
 
 **Esta librería está disponible en los dos CDNs más populares. es fácil y está listo para usar, si haz utilizado particles.js es incluso más fácil**.
 
-Encontrarás las instrucciones [abajo](https://github.com/matteobruni/tsparticles/blob/master/README.md#library-installation), con todos los enlaces que necesites, y _no te asustes por **TypeScript**, es solo el lenguaje base_.
+Encontrarás las instrucciones [abajo](https://github.com/matteobruni/tsparticles/blob/main/README.md#library-installation), con todos los enlaces que necesites, y _no te asustes por **TypeScript**, es solo el lenguaje base_.
 
 **Los archivos de salida son JavaScript puro**. 🤩
 
@@ -175,7 +175,7 @@ particles.pause();
 
 [![npm](https://img.shields.io/npm/v/ng-particles)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/ng-particles)](https://www.npmjs.com/package/ng-particles)
 
-Puedes encontrar las intrucciones [aqui](https://github.com/matteobruni/tsparticles/blob/master/components/angular/README.md)
+Puedes encontrar las intrucciones [aqui](https://github.com/matteobruni/tsparticles/blob/main/components/angular/README.md)
 
 ### Inferno
 
@@ -183,7 +183,7 @@ Puedes encontrar las intrucciones [aqui](https://github.com/matteobruni/tspartic
 
 [![npm](https://img.shields.io/npm/v/inferno-particles)](https://www.npmjs.com/package/inferno-particles) [![npm](https://img.shields.io/npm/dm/inferno-particles)](https://www.npmjs.com/package/inferno-particles)
 
-Puedes encontrar las intrucciones [aqui](https://github.com/matteobruni/tsparticles/blob/master/components/inferno/README.md)
+Puedes encontrar las intrucciones [aqui](https://github.com/matteobruni/tsparticles/blob/main/components/inferno/README.md)
 
 ### jQuery
 
@@ -191,7 +191,7 @@ Puedes encontrar las intrucciones [aqui](https://github.com/matteobruni/tspartic
 
 [![npm](https://img.shields.io/npm/v/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles)](https://www.npmjs.com/package/jquery-particles)
 
-Puedes encontrar las intrucciones [aqui](https://github.com/matteobruni/tsparticles/blob/master/components/jquery/README.md)
+Puedes encontrar las intrucciones [aqui](https://github.com/matteobruni/tsparticles/blob/main/components/jquery/README.md)
 
 ### Preact
 
@@ -199,7 +199,7 @@ Puedes encontrar las intrucciones [aqui](https://github.com/matteobruni/tspartic
 
 [![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles)
 
-Puedes encontrar las intrucciones [aqui](https://github.com/matteobruni/tsparticles/blob/master/components/preact/README.md)
+Puedes encontrar las intrucciones [aqui](https://github.com/matteobruni/tsparticles/blob/main/components/preact/README.md)
 
 ### ReactJS
 
@@ -207,7 +207,7 @@ Puedes encontrar las intrucciones [aqui](https://github.com/matteobruni/tspartic
 
 [![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
 
-Puedes encontrar las intrucciones [aqui](https://github.com/matteobruni/tsparticles/blob/master/components/react/README.md)
+Puedes encontrar las intrucciones [aqui](https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md)
 
 ### Svelte
 
@@ -215,7 +215,7 @@ Puedes encontrar las intrucciones [aqui](https://github.com/matteobruni/tspartic
 
 [![npm](https://img.shields.io/npm/v/svelte-particles)](https://www.npmjs.com/package/svelte-particles) [![npm downloads](https://img.shields.io/npm/dm/svelte-particles)](https://www.npmjs.com/package/svelte-particles)
 
-Puedes encontrar las intrucciones [aqui](https://github.com/matteobruni/tsparticles/blob/master/components/svelte/README.md)
+Puedes encontrar las intrucciones [aqui](https://github.com/matteobruni/tsparticles/blob/main/components/svelte/README.md)
 
 ### VueJS 2.x
 
@@ -223,7 +223,7 @@ Puedes encontrar las intrucciones [aqui](https://github.com/matteobruni/tspartic
 
 [![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue)
 
-Puedes encontrar las intrucciones [aqui](https://github.com/matteobruni/tsparticles/blob/master/components/vue/README.md)
+Puedes encontrar las intrucciones [aqui](https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md)
 
 ### VueJS 3.x
 
@@ -231,7 +231,7 @@ Puedes encontrar las intrucciones [aqui](https://github.com/matteobruni/tspartic
 
 [![npm](https://img.shields.io/npm/v/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![npm](https://img.shields.io/npm/dm/particles.vue3)](https://www.npmjs.com/package/particles.vue3)
 
-Puedes encontrar las intrucciones [aqui](https://github.com/matteobruni/tsparticles/blob/master/components/vue3/README.md)
+Puedes encontrar las intrucciones [aqui](https://github.com/matteobruni/tsparticles/blob/main/components/vue3/README.md)
 
 ---
 
@@ -309,7 +309,7 @@ _No hagas clic! NO HAGAS CLIC! OH NO SE ESTÁ PROPAGANDO!!!!_
 
 **particles.json**
 
-Puede encontrar una configuración de ejemplo [aqui](https://github.com/matteobruni/tsparticles/wiki/tsParticles-Sample-Config) 📖
+Puede encontrar una configuración de ejemplo [aqui](https://github.com/matteobruni/tsparticles/tree/main/website/presets) 📖
 
 ---
 
@@ -371,16 +371,16 @@ Documentación y Desarrollo referencias [aqui](https://particles.js.org/docs/) �
 
 ---
 
-[![Slack](https://cdn.matteobruni.it/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI) [![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles")
+[![Slack](https://particles.js.org/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI) [![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles")
 
 ---
 
 <p>  
     <a href="https://www.jetbrains.com/?from=tsParticles">  
-        <img src="https://cdn.matteobruni.it/images/jetbrains-logos/jetbrains-variant-4.png" height="150" alt="JetBrains" />  
+        <img src="https://particles.js.org/images/jetbrains-logos/jetbrains-variant-4.png" height="150" alt="JetBrains" />  
     </a>  
     <a href="https://www.jetbrains.com/webstorm/?from=tsParticles">  
-        <img src="https://cdn.matteobruni.it/images/jetbrains-logos/webstorm_logos/logo.png" height="150" alt="JetBrains" />  
+        <img src="https://particles.js.org/images/jetbrains-logos/webstorm_logos/logo.png" height="150" alt="JetBrains" />  
     </a>  
 </p>
 

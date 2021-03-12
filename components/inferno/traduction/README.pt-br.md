@@ -1,4 +1,4 @@
-[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
 
 # inferno-particles
 
@@ -126,7 +126,7 @@ class App extends Component {
 | style           | object | O estilo do elemento canvas.                                                                                     |
 | className       | string | Nome da classe do elemento que contém o canvas.                                                                                |
 | canvasClassName | string | Nome da classe do canvas.                                                                                        |
-| container       | object | Instância do [particles container](https://github.com/matteobruni/tsparticles/wiki/Particles-Container-class) |
+| container       | object | Instância do [particles container](https://particles.js.org/docs/modules/_core_container_.html) |
 
 Veja as configurações dos parâmetros [aqui](https://particles.js.org).
 

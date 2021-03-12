@@ -1,9 +1,9 @@
-import { isSsr, ParticlesInteractorBase } from "tsparticles-core";
-import type { Container, IDelta, Particle } from "tsparticles-core";
+import { isSsr, ParticlesInteractorBase } from "tsparticles-engine";
+import type { Container, IDelta, Particle } from "tsparticles-engine";
 
 export class Parallax extends ParticlesInteractorBase {
     constructor(container: Container) {
-        super(container, "parallax");
+        super(container);
     }
 
     public interact(particle: Particle, delta: IDelta): void {

@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-plugin-infection",
-  "version": "2.0.0-alpha.3",
+  "version": "2.0.0-alpha.4",
   "description": "tsParticles infection plugin",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -41,14 +41,14 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "main": "plugin.js",
+  "main": "index.js",
   "jsdelivr": "tsparticles.plugin.infection.min.js",
   "unpkg": "tsparticles.plugin.infection.min.js",
-  "browser": "plugin.js",
-  "module": "plugin.js",
-  "types": "plugin.d.ts",
+  "browser": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
   "dependencies": {
     "pathseg": "^1.2.0",
-    "tsparticles-core": "^2.0.0-alpha.0"
+    "tsparticles-engine": "^2.0.0-alpha.4"
   }
 }

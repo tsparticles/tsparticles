@@ -1,9 +1,9 @@
-import { MoveDirection, Main } from "tsparticles-core";
-import { loadInteraction as loadParticlesMoveInteraction } from "tsparticles-interaction-particles-move";
-import { loadUpdater as loadOutModesUpdater } from "tsparticles-updater-out-modes";
-import { loadShape as loadCircleShape } from "tsparticles-shape-circle";
+import { MoveDirection, Main } from "tsparticles-engine";
+import { loadParticlesMoveInteraction } from "tsparticles-interaction-particles-move";
+import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
+import { loadCircleShape } from "tsparticles-shape-circle";
 
-export function loadPreset(tsParticles: Main): void {
+export function loadSnowPreset(tsParticles: Main): void {
     loadParticlesMoveInteraction(tsParticles);
     loadOutModesUpdater(tsParticles);
     loadCircleShape(tsParticles);

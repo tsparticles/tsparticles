@@ -385,9 +385,9 @@ make-dir@^3.0.2:
     semver "^6.0.0"
 
 minify@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/minify/-/minify-7.0.0.tgz#501d1585f439d9313fabb6d67c09a1e522f7f776"
-  integrity sha512-vgavF0qIto4WV4xpuaEx6Uo5hWyOh1rr/THg3v3AIwBc86b7ahLOdv5OCnRerQ75kObqo49/1J2CFSv7/fEL1g==
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/minify/-/minify-7.0.1.tgz#f368afeadcf1cd2525d18c32446112f595e951d0"
+  integrity sha512-U3CjnPKRjPu3DxZX7NsB833r2ijbw9af3fHsaChn6o7BHKvaT/zxYDQ8Q/3W7VFXGDrnkAx6XBx3ggEf5KJm7A==
   dependencies:
     clean-css "^5.0.1"
     css-b64-images "~0.2.5"

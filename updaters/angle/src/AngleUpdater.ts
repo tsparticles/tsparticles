@@ -1,5 +1,5 @@
-import type { Container, IDelta, IParticleUpdater, Particle } from "tsparticles-core";
-import { AnimationStatus } from "tsparticles-core";
+import type { Container, IDelta, IParticleUpdater, Particle } from "tsparticles-engine";
+import { AnimationStatus } from "tsparticles-engine";
 
 export class AngleUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}

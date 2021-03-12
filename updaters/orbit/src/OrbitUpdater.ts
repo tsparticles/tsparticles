@@ -1,4 +1,4 @@
-import type { Container, IDelta, IParticleUpdater, Particle } from "tsparticles-core";
+import type { Container, IDelta, IParticleUpdater, Particle } from "tsparticles-engine";
 
 export class OrbitUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}

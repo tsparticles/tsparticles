@@ -1,5 +1,5 @@
 {
-  "backgroundMode": {
+  "fullScreen": {
     "enable": true,
     "zIndex": 1
   },
@@ -16,13 +16,6 @@
     },
     "shape": {
       "type": "char",
-      "stroke": {
-        "width": 1,
-        "color": "#ffffff"
-      },
-      "polygon": {
-        "nb_sides": 5
-      },
       "character": {
         "value": [
           "t",
@@ -41,12 +34,11 @@
         "style": "",
         "weight": "400",
         "fill": true
-      },
-      "image": {
-        "src": "https://cdn.matteobruni.it/images/particles/github.svg",
-        "width": 100,
-        "height": 100
       }
+    },
+    "stroke": {
+      "width": 1,
+      "color": "#ffffff"
     },
     "opacity": {
       "value": 0.5,

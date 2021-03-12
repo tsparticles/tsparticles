@@ -1,12 +1,12 @@
-import type { IParticle, Main } from "tsparticles-core";
-import type { IShapeValues } from "tsparticles-core/Options/Interfaces/Particles/Shape/IShapeValues";
+import type { IParticle, Main } from "tsparticles-engine";
+import type { IShapeValues } from "tsparticles-engine/Options/Interfaces/Particles/Shape/IShapeValues";
 
 interface ISpiralData extends IShapeValues {
     innerRadius: number;
     lineSpacing: number;
 }
 
-export function loadShape(tsParticles: Main) {
+export function loadSpiralShape(tsParticles: Main) {
     tsParticles.addShape(
         "spiral",
         function (

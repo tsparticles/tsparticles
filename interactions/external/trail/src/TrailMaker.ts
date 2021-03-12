@@ -1,5 +1,5 @@
-import type { Container, ICoordinates, IDelta } from "tsparticles-core";
-import { ClickMode, ExternalInteractorBase, HoverMode, isInArray } from "tsparticles-core";
+import type { Container, ICoordinates, IDelta } from "tsparticles-engine";
+import { ClickMode, ExternalInteractorBase, HoverMode, isInArray } from "tsparticles-engine";
 
 /**
  * @category Interactions
@@ -9,7 +9,7 @@ export class TrailMaker extends ExternalInteractorBase {
     private lastPosition?: ICoordinates;
 
     constructor(container: Container) {
-        super(container, "trail");
+        super(container);
 
         this.delay = 0;
     }

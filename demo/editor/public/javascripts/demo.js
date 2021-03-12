@@ -22,16 +22,6 @@ tsParticles.load("particles", {
         },
         shape: {
             type: "circle",
-            options: {
-                polygon: {
-                    sides: 5
-                },
-                image: {
-                    src: "https://cdn.matteobruni.it/images/particles/github.svg",
-                    width: 100,
-                    height: 100
-                }
-            }
         },
         stroke: {
             width: 0

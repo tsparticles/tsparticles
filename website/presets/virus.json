@@ -1,5 +1,5 @@
 {
-  "backgroundMode": {
+  "fullScreen": {
     "enable": true,
     "zIndex": 1
   },
@@ -101,7 +101,7 @@
       "image": {
         "height": 32,
         "replace_color": true,
-        "src": "https://cdn.matteobruni.it/images/particles/sars-cov-2.png",
+        "src": "https://particles.js.org/images/sars-cov-2.png",
         "width": 32
       },
       "polygon": {

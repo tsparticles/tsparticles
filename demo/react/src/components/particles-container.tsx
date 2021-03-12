@@ -1,8 +1,8 @@
 import * as React from "react";
 import Particles from "react-tsparticles";
-import { IOptions, RecursivePartial, Main } from "tsparticles-core";
+import { IOptions, RecursivePartial, Main } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
-import { loadPreset } from "tsparticles-preset-sea-anemone";
+import { loadSeaAnemonePreset } from "tsparticles-preset-sea-anemone";
 
 interface IProps {
     options: RecursivePartial<IOptions>;
@@ -17,7 +17,7 @@ export class ParticlesContainer extends React.PureComponent<IProps> {
 
     customInit(tsParticles: Main) {
         loadFull(tsParticles);
-        loadPreset(tsParticles);
+        loadSeaAnemonePreset(tsParticles);
     }
 
     render() {

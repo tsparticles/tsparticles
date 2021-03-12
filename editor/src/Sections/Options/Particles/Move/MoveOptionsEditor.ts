@@ -1,9 +1,9 @@
 import { EditorGroup, EditorType } from "object-gui";
-import type { Container } from "tsparticles-core";
-import type { IMove } from "tsparticles-core/Options/Interfaces/Particles/Move/IMove";
-import { MoveDirection, OutMode } from "tsparticles-core";
+import type { Container } from "tsparticles-engine";
+import type { IMove } from "tsparticles-engine/Options/Interfaces/Particles/Move/IMove";
+import { MoveDirection, OutMode } from "tsparticles-engine";
 import { EditorBase } from "../../../../EditorBase";
-import type { ITrail } from "tsparticles-core/Options/Interfaces/Particles/Move/ITrail";
+import type { ITrail } from "tsparticles-engine/Options/Interfaces/Particles/Move/ITrail";
 
 export class MoveOptionsEditor extends EditorBase {
     public group!: EditorGroup;
@@ -21,7 +21,7 @@ export class MoveOptionsEditor extends EditorBase {
         this.addAttract();
         this.addDistance();
         this.addGravity();
-        this.addNoise();
+        this.addPath();
         this.addOutModes();
         this.addTrail();
         this.addProperties();
@@ -89,9 +89,9 @@ export class MoveOptionsEditor extends EditorBase {
         });
     }
 
-    private addNoise(): void {
+    private addPath(): void {
         const particles = this.particles;
-        const group = this.group.addGroup("noise", "Noise");
+        const group = this.group.addGroup("path", "Path");
         const delayGroup = group.addGroup("delay", "Delay");
 
         delayGroup.addProperty("value", "value", EditorType.number).change(async () => {

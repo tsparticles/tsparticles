@@ -1,5 +1,5 @@
 {
-  "backgroundMode": {
+  "fullScreen": {
     "enable": true,
     "zIndex": 1
   },
@@ -114,26 +114,6 @@
       "value": 0.4
     },
     "shape": {
-      "character": {
-        "fill": false,
-        "font": "Verdana",
-        "style": "",
-        "value": "*",
-        "weight": "400"
-      },
-      "image": {
-        "height": 100,
-        "replaceColor": true,
-        "src": "https://cdn.matteobruni.it/images/particles/github.svg",
-        "width": 100
-      },
-      "polygon": {
-        "sides": 5
-      },
-      "stroke": {
-        "color": "#000000",
-        "width": 0
-      },
       "type": "circle"
     },
     "size": {
@@ -160,7 +140,7 @@
     "inlineArrangement": "equidistant",
     "scale": 2,
     "type": "inline",
-    "url": "https://cdn.matteobruni.it/images/particles/hollowknight.svg"
+    "url": "https://particles.js.org/images/hollowknight.svg"
   },
   "background": {
     "color": "#000000",

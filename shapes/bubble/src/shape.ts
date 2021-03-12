@@ -1,6 +1,6 @@
-import { IParticle, Main } from "tsparticles-core";
+import { IParticle, Main } from "tsparticles-engine";
 
-export function loadShape(tsParticles: Main): void {
+export function loadBubbleShape(tsParticles: Main): void {
     tsParticles.addShape(
         "bubble",
         function (context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {

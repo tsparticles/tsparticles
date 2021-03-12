@@ -1,5 +1,5 @@
 import { ISide, PolygonDrawerBase } from "./PolygonDrawerBase";
-import type { ICoordinates, IParticle } from "tsparticles-core";
+import type { ICoordinates, IParticle } from "tsparticles-engine";
 
 /**
  * @category Shape Drawers

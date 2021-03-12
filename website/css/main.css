@@ -1,6 +1,6 @@
 @font-face {
   font-family: Polya;
-  src: url(https://cdn.matteobruni.it/fonts/Polya/Polya.otf);
+  src: url(https://raw.githubusercontent.com/matteobruni/tsparticles/gh-pages/fonts/Polya/Polya.otf);
 }
 html {
   height: 100%;

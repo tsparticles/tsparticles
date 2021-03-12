@@ -1,14 +1,14 @@
-import { DestroyMode, InteractivityDetect, MoveDirection, OutMode, Main, ISourceOptions } from "tsparticles-core";
-import { loadShape as loadCircleShape } from "tsparticles-shape-circle";
-import { loadUpdater as loadOutModesUpdater } from "tsparticles-updater-out-modes";
-import { loadPlugin as loadEmittersPlugin } from "tsparticles-plugin-emitters";
-import { loadInteraction as loadParticlesMoveInteraction } from "tsparticles-interaction-particles-move";
+import { DestroyMode, InteractivityDetect, MoveDirection, OutMode, Main, ISourceOptions } from "tsparticles-engine";
+import { loadCircleShape } from "tsparticles-shape-circle";
+import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
+import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
+import { loadParticlesMoveInteraction } from "tsparticles-interaction-particles-move";
 
-export function loadPreset(tsParticles: Main): void {
+export function loadFountainPreset(tsParticles: Main): void {
     loadCircleShape(tsParticles);
+    loadParticlesMoveInteraction(tsParticles);
     loadOutModesUpdater(tsParticles);
     loadEmittersPlugin(tsParticles);
-    loadParticlesMoveInteraction(tsParticles);
 
     const options = ({
         fullScreen: {
