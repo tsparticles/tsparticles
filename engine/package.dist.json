@@ -62,15 +62,12 @@
   },
   "main": "index.js",
   "module": "esm/index.js",
-  "jsdelivr": "tsparticles.core.min.js",
-  "unpkg": "tsparticles.core.min.js",
+  "jsdelivr": "tsparticles.engine.min.js",
+  "unpkg": "tsparticles.engine.min.js",
   "browser": "index.js",
   "types": "index.d.ts",
   "funding": {
     "type": "github",
     "url": "https://github.com/sponsors/matteobruni"
-  },
-  "optionalDependencies": {
-    "pathseg": "^1.2.0"
   }
 }

@@ -127,9 +127,6 @@
     "webpack-cli": "^4.5.0",
     "window": "^4.2.7"
   },
-  "optionalDependencies": {
-    "pathseg": "^1.2.0"
-  },
   "nyc": {
     "extension": [
       ".ts",
