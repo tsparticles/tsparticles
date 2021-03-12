@@ -24,6 +24,8 @@ export class Canvas {
      */
     public readonly size: IDimension;
 
+    public resizeFactor?: IDimension;
+
     /**
      * The particles canvas context
      */
@@ -129,18 +131,6 @@ export class Canvas {
     }
 
     /**
-     * Calculates the size of the canvas
-     */
-    public resize(): void {
-        if (!this.element) {
-            return;
-        }
-
-        this.element.width = this.size.width;
-        this.element.height = this.size.height;
-    }
-
-    /**
      * Paints the canvas background
      */
     public paint(): void {
@@ -181,7 +171,8 @@ export class Canvas {
 
         const container = this.container;
 
-        container.canvas.initSize();
+        container.canvas.resize();
+        container.actualOptions.setResponsive(this.size.width, container.retina.pixelRatio, container.options);
 
         /* density particles enabled */
         container.particles.setDensity();
@@ -193,19 +184,32 @@ export class Canvas {
         }
     }
 
-    public initSize(): void {
+    /**
+     * Calculates the size of the canvas
+     */
+    public resize(): void {
         if (!this.element) {
             return;
         }
 
         const container = this.container;
         const pxRatio = container.retina.pixelRatio;
+        const size = container.canvas.size;
+        const oldSize = {
+            width: size.width,
+            height: size.height,
+        };
 
-        container.canvas.size.width = this.element.offsetWidth * pxRatio;
-        container.canvas.size.height = this.element.offsetHeight * pxRatio;
+        size.width = this.element.offsetWidth * pxRatio;
+        size.height = this.element.offsetHeight * pxRatio;
 
-        this.element.width = container.canvas.size.width;
-        this.element.height = container.canvas.size.height;
+        this.element.width = size.width;
+        this.element.height = size.height;
+
+        this.resizeFactor = {
+            width: size.width / oldSize.width,
+            height: size.height / oldSize.height,
+        };
     }
 
     public drawConnectLine(p1: IParticle, p2: IParticle): void {

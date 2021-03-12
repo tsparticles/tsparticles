@@ -408,11 +408,13 @@ export class Container {
         this.actualOptions = new Options();
 
         this.actualOptions.load(this.options);
-        this.actualOptions.setTheme(undefined);
 
         /* init canvas + particles */
         this.retina.init();
         this.canvas.init();
+
+        this.actualOptions.setResponsive(this.canvas.size.width, this.retina.pixelRatio, this.options);
+        this.actualOptions.setTheme(undefined);
 
         this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 60;
 
@@ -436,7 +438,7 @@ export class Container {
             }
         }
 
-        this.canvas.initSize();
+        this.canvas.resize();
         this.particles.init();
         this.particles.setDensity();
     }

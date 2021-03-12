@@ -148,6 +148,13 @@ export class Particles {
             //     p.vy = f * Math.sin(t);
             // }
 
+            const resizeFactor = this.container.canvas.resizeFactor;
+
+            if (resizeFactor) {
+                particle.position.x *= resizeFactor.width;
+                particle.position.y *= resizeFactor.height;
+            }
+
             particle.move(delta);
 
             if (particle.destroyed) {
@@ -172,6 +179,8 @@ export class Particles {
                 this.interactionManager.particlesInteract(particle, delta);
             }
         }
+
+        delete container.canvas.resizeFactor;
     }
 
     public draw(delta: IDelta): void {
