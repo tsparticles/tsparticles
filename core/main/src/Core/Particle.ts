@@ -53,7 +53,7 @@ export class Particle implements IParticle {
     public readonly mover;
     public readonly sides;
     public readonly strokeWidth;
-    public readonly particlesOptions;
+    public readonly options;
 
     public links: ILink[];
     public randomIndexData?: number;
@@ -155,15 +155,15 @@ export class Particle implements IParticle {
 
         this.fill = this.shapeData?.fill ?? this.fill;
         this.close = this.shapeData?.close ?? this.close;
-        this.particlesOptions = particlesOptions;
-        this.noiseDelay = NumberUtils.getValue(this.particlesOptions.move.noise.delay) * 1000;
+        this.options = particlesOptions;
+        this.noiseDelay = NumberUtils.getValue(this.options.move.noise.delay) * 1000;
 
         container.retina.initParticle(this);
 
-        const color = this.particlesOptions.color;
+        const color = this.options.color;
 
         /* size */
-        const sizeOptions = this.particlesOptions.size;
+        const sizeOptions = this.options.size;
         const sizeValue = NumberUtils.getValue(sizeOptions) * container.retina.pixelRatio;
 
         const randomSize = typeof sizeOptions.random === "boolean" ? sizeOptions.random : sizeOptions.random.enable;
@@ -172,7 +172,7 @@ export class Particle implements IParticle {
             value: sizeValue,
         };
 
-        this.direction = this.particlesOptions.move.direction;
+        this.direction = this.options.move.direction;
         this.bubble = {
             inRange: false,
         };
@@ -186,7 +186,7 @@ export class Particle implements IParticle {
 
         this.pathAngle = Math.atan2(this.initialVelocity.vertical, this.initialVelocity.horizontal);
 
-        const rotateOptions = this.particlesOptions.rotate;
+        const rotateOptions = this.options.rotate;
 
         this.rotate = {
             value: ((rotateOptions.random.enable ? Math.random() * 360 : rotateOptions.value) * Math.PI) / 180,
@@ -210,7 +210,7 @@ export class Particle implements IParticle {
                 break;
         }
 
-        const rotateAnimation = this.particlesOptions.rotate.animation;
+        const rotateAnimation = this.options.rotate.animation;
 
         if (rotateAnimation.enable) {
             this.rotate.velocity = (rotateAnimation.speed / 360) * container.retina.reduceFactor;
@@ -220,7 +220,7 @@ export class Particle implements IParticle {
             }
         }
 
-        const sizeAnimation = this.particlesOptions.size.animation;
+        const sizeAnimation = this.options.size.animation;
 
         if (sizeAnimation.enable) {
             this.size.status = AnimationStatus.increasing;
@@ -262,7 +262,7 @@ export class Particle implements IParticle {
             value: ColorUtils.colorToHsl(color, this.id, reduceDuplicates),
         };
 
-        const colorAnimation = this.particlesOptions.color.animation;
+        const colorAnimation = this.options.color.animation;
 
         if (colorAnimation.enable) {
             this.color.velocity = (colorAnimation.speed / 100) * container.retina.reduceFactor;
@@ -286,7 +286,7 @@ export class Particle implements IParticle {
         };
 
         /* opacity */
-        const opacityOptions = this.particlesOptions.opacity;
+        const opacityOptions = this.options.opacity;
         const randomOpacity =
             typeof opacityOptions.random === "boolean" ? opacityOptions.random : opacityOptions.random.enable;
 
@@ -357,9 +357,9 @@ export class Particle implements IParticle {
         }
 
         this.stroke =
-            this.particlesOptions.stroke instanceof Array
-                ? Utils.itemFromArray(this.particlesOptions.stroke, this.id, reduceDuplicates)
-                : this.particlesOptions.stroke;
+            this.options.stroke instanceof Array
+                ? Utils.itemFromArray(this.options.stroke, this.id, reduceDuplicates)
+                : this.options.stroke;
 
         this.strokeWidth = this.stroke.width * container.retina.pixelRatio;
 
@@ -413,7 +413,7 @@ export class Particle implements IParticle {
             this.livesRemaining = -1;
         }
 
-        this.shadowColor = ColorUtils.colorToRgb(this.particlesOptions.shadow.color);
+        this.shadowColor = ColorUtils.colorToRgb(this.options.shadow.color);
         this.updater = new Updater(container, this);
         this.infecter = new Infecter(container);
         this.mover = new Mover(container, this);
@@ -457,7 +457,7 @@ export class Particle implements IParticle {
         this.links = [];
     }
 
-    private calcPosition(container: Container, position?: ICoordinates): ICoordinates {
+    private calcPosition(container: Container, position: ICoordinates | undefined, tryCount = 0): ICoordinates {
         for (const [, plugin] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
@@ -473,7 +473,7 @@ export class Particle implements IParticle {
         };
 
         /* check position  - into the canvas */
-        const outMode = this.particlesOptions.move.outMode;
+        const outMode = this.options.move.outMode;
 
         if (Utils.isInArray(outMode, OutMode.bounce) || Utils.isInArray(outMode, OutMode.bounceHorizontal)) {
             if (pos.x > container.canvas.size.width - this.size.value * 2) {
@@ -491,7 +491,36 @@ export class Particle implements IParticle {
             }
         }
 
+        if (this.checkOverlap(pos, tryCount)) {
+            return this.calcPosition(container, undefined, tryCount + 1);
+        }
+
         return pos;
+    }
+
+    private checkOverlap(pos: ICoordinates, tryCount = 0): boolean {
+        const overlapOptions = this.options.collisions.overlap;
+
+        if (!overlapOptions.enable) {
+            const retries = overlapOptions.retries;
+
+            if (retries >= 0 && tryCount > retries) {
+                throw new Error("Particle is overlapping and can't be placed");
+            }
+
+            let overlaps = false;
+
+            for (const particle of this.container.particles.array) {
+                if (NumberUtils.getDistance(pos, particle.position) < this.size.value + particle.size.value) {
+                    overlaps = true;
+                    break;
+                }
+            }
+
+            return overlaps;
+        }
+
+        return false;
     }
 
     private calculateVelocity(): IVelocity {
@@ -500,7 +529,7 @@ export class Particle implements IParticle {
             horizontal: 0,
             vertical: 0,
         };
-        const moveOptions = this.particlesOptions.move;
+        const moveOptions = this.options.move;
 
         let rad: number;
         let radOffset = Math.PI / 4;

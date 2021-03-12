@@ -8,7 +8,7 @@ import type { IRotate } from "./Rotate/IRotate";
 import type { IShadow } from "./IShadow";
 import type { SingleOrMultiple } from "../../../Types";
 import type { IStroke } from "./IStroke";
-import type { ICollisions } from "./ICollisions";
+import type { ICollisions } from "./Collisions/ICollisions";
 import type { ITwinkle } from "./Twinkle/ITwinkle";
 import type { IAnimatableColor } from "./IAnimatableColor";
 import type { ILife } from "./Life/ILife";

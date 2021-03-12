@@ -264,7 +264,7 @@ export class Canvas {
         const options = container.actualOptions;
         const p2 = link1.destination;
         const p3 = link2.destination;
-        const triangleOptions = p1.particlesOptions.links.triangles;
+        const triangleOptions = p1.options.links.triangles;
         const opacityTriangle = triangleOptions.opacity ?? (link1.opacity + link2.opacity) / 2;
 
         if (opacityTriangle <= 0) {
@@ -292,7 +292,7 @@ export class Canvas {
         let colorTriangle = ColorUtils.colorToRgb(triangleOptions.color);
 
         if (!colorTriangle) {
-            const linksOptions = p1.particlesOptions.links;
+            const linksOptions = p1.options.links;
             const linkColor =
                 linksOptions.id !== undefined
                     ? container.particles.linksColors.get(linksOptions.id)
@@ -342,7 +342,7 @@ export class Canvas {
          *                        from those two for the connecting line color
          */
 
-        const twinkle = p1.particlesOptions.twinkle.lines;
+        const twinkle = p1.options.twinkle.lines;
 
         if (twinkle.enable) {
             const twinkleFreq = twinkle.frequency;
@@ -356,7 +356,7 @@ export class Canvas {
         }
 
         if (!colorLine) {
-            const linksOptions = p1.particlesOptions.links;
+            const linksOptions = p1.options.links;
             const linkColor =
                 linksOptions.id !== undefined
                     ? container.particles.linksColors.get(linksOptions.id)
@@ -379,12 +379,12 @@ export class Canvas {
             pos2,
             maxDistance,
             container.canvas.size,
-            p1.particlesOptions.links.warp,
+            p1.options.links.warp,
             options.backgroundMask.enable,
             options.backgroundMask.composite,
             colorLine,
             opacity,
-            p1.particlesOptions.links.shadow
+            p1.options.links.shadow
         );
     }
 
@@ -401,7 +401,7 @@ export class Canvas {
         }
 
         const options = this.container.actualOptions;
-        const pOptions = particle.particlesOptions;
+        const pOptions = particle.options;
         const twinkle = pOptions.twinkle.particles;
         const twinkleFreq = twinkle.frequency;
         const twinkleRgb = ColorUtils.colorToRgb(twinkle.color);
@@ -447,7 +447,7 @@ export class Canvas {
                 options.backgroundMask.composite,
                 radius,
                 opacity,
-                particle.particlesOptions.shadow
+                particle.options.shadow
             );
         }
     }
@@ -459,7 +459,7 @@ export class Canvas {
 
         const container = this.container;
         const particles = container.particles;
-        const pOptions = particle.particlesOptions;
+        const pOptions = particle.options;
 
         if (particle.links.length > 0) {
             this.context.save();
@@ -477,7 +477,7 @@ export class Canvas {
                     const vertices = p2.links.filter((t) => {
                         const linkFreq = container.particles.getLinkFrequency(p2, t.destination);
 
-                        return linkFreq <= p2.particlesOptions.links.frequency && links.indexOf(t.destination) >= 0;
+                        return linkFreq <= p2.options.links.frequency && links.indexOf(t.destination) >= 0;
                     });
 
                     if (vertices.length) {

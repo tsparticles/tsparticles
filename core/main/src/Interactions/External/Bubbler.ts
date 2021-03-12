@@ -247,7 +247,7 @@ export class Bubbler implements IExternalInteractor {
                     value: particle.bubble.opacity,
                 },
                 particlesObj: {
-                    optValue: particle.particlesOptions.opacity.value,
+                    optValue: particle.options.opacity.value,
                     value: particle.opacity.value,
                 },
                 type: ProcessBubbleType.opacity,
@@ -334,7 +334,7 @@ export class Bubbler implements IExternalInteractor {
             return;
         }
 
-        const optOpacity = particle.particlesOptions.opacity.value;
+        const optOpacity = particle.options.opacity.value;
         const pOpacity = particle.opacity.value;
         const opacity = calculateBubbleValue(pOpacity, modeOpacity, optOpacity, ratio);
 

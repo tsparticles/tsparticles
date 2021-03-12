@@ -104,7 +104,7 @@ export class Retina {
     }
 
     public initParticle(particle: Particle): void {
-        const particlesOptions = particle.particlesOptions;
+        const particlesOptions = particle.options;
         const ratio = this.pixelRatio;
 
         particle.linksDistance = particlesOptions.links.distance * ratio;

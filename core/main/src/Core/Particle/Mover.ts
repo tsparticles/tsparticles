@@ -38,7 +38,7 @@ export class Mover {
 
     private moveParticle(delta: IDelta): void {
         const particle = this.particle;
-        const particlesOptions = particle.particlesOptions;
+        const particlesOptions = particle.options;
 
         if (!particlesOptions.move.enable) {
             return;
@@ -108,7 +108,7 @@ export class Mover {
 
     private applyNoise(delta: IDelta): void {
         const particle = this.particle;
-        const particlesOptions = particle.particlesOptions;
+        const particlesOptions = particle.options;
         const noiseOptions = particlesOptions.move.noise;
         const noiseEnabled = noiseOptions.enable;
 

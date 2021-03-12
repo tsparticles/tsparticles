@@ -58,7 +58,7 @@ export class Grabber implements IExternalInteractor {
 
                     if (opacityLine > 0) {
                         /* style */
-                        const optColor = grabLineOptions.color ?? particle.particlesOptions.links.color;
+                        const optColor = grabLineOptions.color ?? particle.options.links.color;
 
                         if (!container.particles.grabLineColor) {
                             const linksOptions = container.actualOptions.interactivity.modes.grab.links;

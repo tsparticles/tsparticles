@@ -29,7 +29,7 @@ export class Collider implements IParticlesInteractor {
     constructor(private readonly container: Container) {}
 
     public isEnabled(particle: Particle): boolean {
-        return particle.particlesOptions.collisions.enable;
+        return particle.options.collisions.enable;
     }
 
     public reset(): void {
@@ -45,8 +45,8 @@ export class Collider implements IParticlesInteractor {
         for (const p2 of query) {
             if (
                 p1 === p2 ||
-                !p2.particlesOptions.collisions.enable ||
-                p1.particlesOptions.collisions.mode !== p2.particlesOptions.collisions.mode ||
+                !p2.options.collisions.enable ||
+                p1.options.collisions.mode !== p2.options.collisions.mode ||
                 p2.destroyed ||
                 p2.spawning
             ) {
@@ -66,7 +66,7 @@ export class Collider implements IParticlesInteractor {
     }
 
     private resolveCollision(p1: Particle, p2: Particle): void {
-        switch (p1.particlesOptions.collisions.mode) {
+        switch (p1.options.collisions.mode) {
             case CollisionMode.absorb: {
                 this.absorb(p1, p2);
                 break;

@@ -348,7 +348,7 @@ export class CanvasUtils {
         context.translate(pos.x, pos.y);
         context.beginPath();
 
-        const angle = particle.rotate.value + (particle.particlesOptions.rotate.path ? particle.pathAngle : 0);
+        const angle = particle.rotate.value + (particle.options.rotate.path ? particle.pathAngle : 0);
 
         if (angle !== 0) {
             context.rotate(angle);
