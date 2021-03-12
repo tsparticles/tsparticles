@@ -38,12 +38,29 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "main": "shape.js",
+  "main": "index.js",
   "jsdelivr": "tsparticles.shape.template.min.js",
   "unpkg": "tsparticles.shape.template.min.js",
-  "browser": "shape.js",
-  "module": "shape.js",
-  "types": "shape.d.ts",
+  "browser": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "typesVersions": {
+    ">=4.0 <4.1": {
+      "*": [
+        "dist/ts4.0"
+      ]
+    },
+    ">=3.8 <4.0": {
+      "*": [
+        "dist/ts3.8"
+      ]
+    },
+    "<3.8": {
+      "*": [
+        "dist/ts3.4"
+      ]
+    }
+  },
   "dependencies": {
     "tsparticles-engine": "^2.0.0-alpha.0"
   }

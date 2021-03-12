@@ -105,6 +105,7 @@
     "chai": "^4.3.0",
     "compare-versions": "^3.6.0",
     "copyfiles": "^2.4.1",
+    "downlevel-dts": "^0.7.0",
     "eslint": "^7.19.0",
     "eslint-config-prettier": "^7.2.0",
     "gh-pages": "^3.1.0",
