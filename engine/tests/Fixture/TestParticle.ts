@@ -26,7 +26,7 @@ export class TestParticle {
         if (container === undefined) {
             container = this.container;
         }
-        const sizeValue = container.options.particles.size.value;
+        const sizeValue = container.actualOptions.particles.size.value;
         const maxValue = typeof sizeValue === "number" ? sizeValue : sizeValue.max;
         const width = container.canvas.size.width;
         const height = container.canvas.size.height;

@@ -18,7 +18,7 @@ export class OptionsEditor extends EditorBase {
     }
 
     public addToGroup(parent: EditorGroup | Editor): void {
-        this.group = parent.addGroup("fullOptions", "Options", true);
+        this.group = parent.addGroup("options", "Options", true);
         this.options = this.group.data as IOptions;
 
         this.addBackground();

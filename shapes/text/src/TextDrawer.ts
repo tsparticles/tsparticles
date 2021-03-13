@@ -17,7 +17,7 @@ export class TextDrawer implements IShapeDrawer {
     }
 
     public async init(container: Container): Promise<void> {
-        const options = container.options;
+        const options = container.actualOptions;
 
         if (validTypes.find((t) => isInArray(t, options.particles.shape.type))) {
             const shapeOptions = validTypes.map((t) => options.particles.shape.options[t]).find((t) => !!t);

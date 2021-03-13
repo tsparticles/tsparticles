@@ -58,7 +58,7 @@ interface MultilineTextParticle extends IParticle {
 
 export class MultilineTextDrawer implements IShapeDrawer {
     public async init(container: Container): Promise<void> {
-        const options = container.options;
+        const options = container.actualOptions;
         const shapeType = "multiline-text";
 
         if (isInArray(shapeType, options.particles.shape.type)) {

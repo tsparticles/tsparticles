@@ -12,7 +12,8 @@
     "bundle": "rollup -c",
     "minify": "uglifyjs dist/jquery.particles.js --output dist/jquery.particles.min.js --source-map \"filename='dist/jquery.particles.min.js.map',url='jquery.particles.min.js.map',content='dist/jquery.particles.js.map'\"",
     "build": "yarn prettify:src && yarn lint && yarn compile && yarn bundle && yarn minify && yarn prettify:readme",
-    "prepack": "yarn build"
+    "prepack": "yarn build",
+    "clear:dist": "rimraf -f ./dist"
   },
   "files": [
     "dist/**/*"
@@ -88,6 +89,7 @@
     "eslint": "^7.19.0",
     "eslint-config-prettier": "^7.2.0",
     "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
     "rollup": "^2.38.5",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-sourcemaps": "^0.6.3",

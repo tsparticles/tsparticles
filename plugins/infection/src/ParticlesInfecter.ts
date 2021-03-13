@@ -12,7 +12,7 @@ export class ParticlesInfecter extends ParticlesInteractorBase {
     }
 
     public isEnabled(): boolean {
-        const infOptions = (this.container.options as unknown) as IInfectionOptions;
+        const infOptions = (this.container.actualOptions as unknown) as IInfectionOptions;
 
         return infOptions?.infection?.enable ?? false;
     }
@@ -35,7 +35,7 @@ export class ParticlesInfecter extends ParticlesInteractorBase {
         }
 
         const container = this.container;
-        const options = (container.options as unknown) as IInfectionOptions;
+        const options = (container.actualOptions as unknown) as IInfectionOptions;
         const infectionOptions = options.infection;
 
         if (!infectionOptions.enable || infectionOptions.stages.length < 1) {

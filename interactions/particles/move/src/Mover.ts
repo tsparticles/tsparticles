@@ -217,7 +217,7 @@ export class Mover extends ParticlesInteractorBase {
 
     private getProximitySpeedFactor(particle: Particle): number {
         const container = this.container,
-            options = container.options,
+            options = container.actualOptions,
             active = isInArray(HoverMode.slow, options.interactivity.events.onHover.mode);
 
         if (!active) {

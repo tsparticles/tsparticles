@@ -78,7 +78,7 @@ export class LinkInstance implements IContainerPlugin {
 
     private drawLinkTriangle(ctx: CanvasRenderingContext2D, p1: LinkParticle, link1: ILink, link2: ILink): void {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
         const p2 = link1.destination;
         const p3 = link2.destination;
         const triangleOptions = p1.options.links.triangles;
@@ -134,7 +134,7 @@ export class LinkInstance implements IContainerPlugin {
 
     private drawLinkLine(ctx: CanvasRenderingContext2D, p1: LinkParticle, link: ILink): void {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
         const p2 = link.destination;
         let opacity = link.opacity;
         const pos1 = p1.getPosition();

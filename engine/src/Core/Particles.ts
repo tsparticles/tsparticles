@@ -71,7 +71,7 @@ export class Particles {
     /* --------- tsParticles functions - particles ----------- */
     public init(): void {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
 
         this.lastZIndex = 0;
         this.needsSort = false;
@@ -379,7 +379,7 @@ export class Particles {
 
     public addManualParticles(): void {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
 
         for (const particle of options.manualParticles) {
             const pos = particle.position
@@ -397,7 +397,7 @@ export class Particles {
      * Aligns particles number to the specified density in the current canvas size
      */
     public setDensity(): void {
-        const options = this.container.options;
+        const options = this.container.actualOptions;
 
         for (const group in options.particles.groups) {
             this.applyDensity(options.particles.groups[group], 0, group);

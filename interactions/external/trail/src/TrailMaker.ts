@@ -20,7 +20,7 @@ export class TrailMaker extends ExternalInteractorBase {
         }
 
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
 
         const trailOptions = options.interactivity.modes.trail;
         const optDelay = (trailOptions.delay * 1000) / this.container.retina.reduceFactor;
@@ -61,7 +61,7 @@ export class TrailMaker extends ExternalInteractorBase {
 
     public isEnabled(): boolean {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
 
         const mouse = container.interactivity.mouse;
         const events = options.interactivity.events;

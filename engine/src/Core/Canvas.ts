@@ -110,7 +110,7 @@ export class Canvas {
      */
     public paint(): void {
         this.draw((ctx) => {
-            const options = this.container.options;
+            const options = this.container.actualOptions;
 
             if (options.backgroundMask.enable && options.backgroundMask.cover && this.coverColor) {
                 clear(ctx, this.size);
@@ -126,7 +126,7 @@ export class Canvas {
      * Clears the canvas content
      */
     public clear(): void {
-        const options = this.container.options;
+        const options = this.container.actualOptions;
         const trail = options.particles.move.trail;
 
         if (options.backgroundMask.enable) {
@@ -148,7 +148,7 @@ export class Canvas {
         const container = this.container;
 
         container.canvas.resize();
-        container.options.setResponsive(this.size.width, container.retina.pixelRatio, container.fullOptions);
+        container.actualOptions.setResponsive(this.size.width, container.retina.pixelRatio, container.fullOptions);
         container.particles.setDensity();
 
         for (const [, plugin] of container.plugins) {
@@ -245,7 +245,7 @@ export class Canvas {
             }
         }
 
-        const options = container.options;
+        const options = container.actualOptions;
         const zIndexOptions = particle.options.zIndex;
         const zOpacityFactor = 1 - zIndexOptions.opacityRate * particle.zIndexFactor;
         const opacity = twinkling ? twinkle.opacity : particle.bubble.opacity ?? particle.opacity.value;
@@ -353,14 +353,14 @@ export class Canvas {
     }
 
     private lineStyle(p1: IParticle, p2: IParticle): CanvasGradient | undefined {
-        const options = this.container.options;
+        const options = this.container.actualOptions;
         const connectOptions = options.interactivity.modes.connect;
 
         return this.context ? gradient(this.context, p1, p2, connectOptions.links.opacity) : undefined;
     }
 
     private initBackground(): void {
-        const options = this.container.options;
+        const options = this.container.actualOptions;
         const background = options.background;
         const element = this.element;
 
@@ -396,7 +396,7 @@ export class Canvas {
     }
 
     private initCover(): void {
-        const options = this.container.options;
+        const options = this.container.actualOptions;
         const cover = options.backgroundMask.cover;
         const color = cover.color;
         const coverRgb = colorToRgb(color);
@@ -412,7 +412,7 @@ export class Canvas {
     }
 
     private initTrail(): void {
-        const options = this.container.options;
+        const options = this.container.actualOptions;
         const trail = options.particles.move.trail;
         const fillColor = colorToRgb(trail.fillColor);
 
@@ -451,7 +451,7 @@ export class Canvas {
 
     private initStyle(): void {
         const element = this.element,
-            options = this.container.options;
+            options = this.container.actualOptions;
 
         if (!element) {
             return;

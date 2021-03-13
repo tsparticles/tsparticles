@@ -56,7 +56,7 @@ export class Container {
     /**
      * The options currently used by the container, it's a full [[Options]] object
      */
-    public options;
+    public actualOptions;
 
     public readonly retina;
     public readonly canvas;
@@ -139,7 +139,7 @@ export class Container {
 
         /* tsParticles variables with default values */
         this.fullOptions = new Options();
-        this.options = new Options();
+        this.actualOptions = new Options();
 
         for (const preset of presets) {
             this.fullOptions.load(Plugins.getPreset(preset));
@@ -177,7 +177,7 @@ export class Container {
     public play(force?: boolean): void {
         const needsUpdate = this.paused || force;
 
-        if (this.firstStart && !this.options.autoPlay) {
+        if (this.firstStart && !this.actualOptions.autoPlay) {
             this.firstStart = false;
             return;
         }
@@ -323,7 +323,7 @@ export class Container {
      * @returns a JSON string created from `options` property
      */
     public exportConfiguration(): string {
-        return JSON.stringify(this.options, undefined, 2);
+        return JSON.stringify(this.actualOptions, undefined, 2);
     }
 
     /**
@@ -376,7 +376,7 @@ export class Container {
      * @param name the theme name, if `undefined` resets the default options or the default theme
      */
     public async loadTheme(name?: string): Promise<void> {
-        this.options.setTheme(name);
+        this.actualOptions.setTheme(name);
 
         return this.refresh();
     }
@@ -411,21 +411,21 @@ export class Container {
     }
 
     private async init(): Promise<void> {
-        this.options = new Options();
-        this.options.load(this.fullOptions);
+        this.actualOptions = new Options();
+        this.actualOptions.load(this.fullOptions);
 
         /* init canvas + particles */
         this.retina.init();
         this.canvas.init();
 
-        this.options.setResponsive(this.canvas.size.width, this.retina.pixelRatio, this.fullOptions);
-        this.options.setTheme(undefined);
+        this.actualOptions.setResponsive(this.canvas.size.width, this.retina.pixelRatio, this.fullOptions);
+        this.actualOptions.setTheme(undefined);
 
         /* this re-init is necessary since options could have different values */
         this.retina.init();
         this.canvas.init();
 
-        this.fpsLimit = this.options.fpsLimit > 0 ? this.options.fpsLimit : 60;
+        this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 60;
 
         const availablePlugins = Plugins.getAvailablePlugins(this);
 
@@ -445,9 +445,9 @@ export class Container {
 
         for (const [, plugin] of this.plugins) {
             if (plugin.init) {
-                plugin.init(this.options);
+                plugin.init(this.actualOptions);
             } else if (plugin.initAsync !== undefined) {
-                await plugin.initAsync(this.options);
+                await plugin.initAsync(this.actualOptions);
             }
         }
 
@@ -462,7 +462,7 @@ export class Container {
     }
 
     private intersectionManager(entries: IntersectionObserverEntry[]) {
-        if (!this.options.pauseOnOutsideViewport) {
+        if (!this.actualOptions.pauseOnOutsideViewport) {
             return;
         }
 

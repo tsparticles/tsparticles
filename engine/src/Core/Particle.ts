@@ -121,7 +121,7 @@ export class Particle implements IParticle {
         this.maxDistance = {};
 
         const pxRatio = container.retina.pixelRatio;
-        const options = container.options;
+        const options = container.actualOptions;
         const particlesOptions = new Particles();
 
         particlesOptions.load(options.particles);

@@ -8,7 +8,7 @@ export class Parallax extends ParticlesInteractorBase {
 
     public interact(particle: Particle, delta: IDelta): void {
         const container = this.container,
-            options = container.options;
+            options = container.actualOptions;
 
         if (isSsr() || !options.interactivity.events.onHover.parallax.enable) {
             return;
@@ -37,7 +37,7 @@ export class Parallax extends ParticlesInteractorBase {
     }
 
     public isEnabled(particle: Particle): boolean {
-        const options = this.container.options;
+        const options = this.container.actualOptions;
 
         return !isSsr() || options.interactivity.events.onHover.parallax.enable;
     }

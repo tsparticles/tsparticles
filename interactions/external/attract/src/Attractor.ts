@@ -21,7 +21,7 @@ export class Attractor extends ExternalInteractorBase {
 
     public isEnabled(): boolean {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
 
         const mouse = container.interactivity.mouse;
         const events = options.interactivity.events;
@@ -42,7 +42,7 @@ export class Attractor extends ExternalInteractorBase {
 
     public interact(): void {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
         const mouseMoveStatus = container.interactivity.status === Constants.mouseMoveEvent;
         const events = options.interactivity.events;
         const hoverEnabled = events.onHover.enable;
@@ -72,7 +72,7 @@ export class Attractor extends ExternalInteractorBase {
 
     private processAttract(position: ICoordinates, attractRadius: number, area: Range): void {
         const container = this.container;
-        const attractOptions = container.options.interactivity.modes.attract;
+        const attractOptions = container.actualOptions.interactivity.modes.attract;
         const query = container.particles.quadTree.query(area);
 
         for (const particle of query) {
