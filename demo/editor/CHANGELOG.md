@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-alpha.5](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.5.0...editor-demo@2.0.0-alpha.5) (2021-03-14)
+
+
+### Bug Fixes
+
+* orbit color is now a string/color and not a hsl object ([fd5df21](https://github.com/matteobruni/tsparticles/commit/fd5df21d4a2ba785a4f256f54b9c351c8b6af02e))
+
+
+
+
+
 # [2.0.0-alpha.4](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.4.4...editor-demo@2.0.0-alpha.4) (2021-03-11)
 
 
