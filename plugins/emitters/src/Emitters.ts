@@ -14,6 +14,7 @@ import type { IOptions } from "tsparticles-engine/Options/Interfaces/IOptions";
 import { EmitterClickMode } from "./Enums";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 import type { EmitterContainer } from "./EmitterContainer";
+import { IDelta } from "../../Core/Interfaces/IDelta";
 
 /**
  * @category Emitters Plugin
