@@ -51,7 +51,7 @@ export class Container {
     /**
      * All the options loaded into the container, it's a full [[Options]] object
      */
-    public readonly fullOptions;
+    public readonly options;
 
     /**
      * The options currently used by the container, it's a full [[Options]] object
@@ -139,11 +139,11 @@ export class Container {
         this.drawers = new Map<string, IShapeDrawer>();
 
         /* tsParticles variables with default values */
-        this.fullOptions = new Options();
+        this.options = new Options();
         this.actualOptions = new Options();
 
         for (const preset of presets) {
-            this.fullOptions.load(Plugins.getPreset(preset));
+            this.options.load(Plugins.getPreset(preset));
         }
 
         const shapes = Plugins.getSupportedShapes();
@@ -158,10 +158,10 @@ export class Container {
 
         /* options settings */
         if (this.sourceOptions) {
-            this.fullOptions.load(this.sourceOptions);
+            this.options.load(this.sourceOptions);
         }
 
-        this.fpsLimit = this.fullOptions.fpsLimit > 0 ? this.fullOptions.fpsLimit : 60;
+        this.fpsLimit = this.options.fpsLimit > 0 ? this.options.fpsLimit : 60;
 
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);
@@ -413,13 +413,13 @@ export class Container {
 
     private async init(): Promise<void> {
         this.actualOptions = new Options();
-        this.actualOptions.load(this.fullOptions);
+        this.actualOptions.load(this.options);
 
         /* init canvas + particles */
         this.retina.init();
         this.canvas.init();
 
-        this.actualOptions.setResponsive(this.canvas.size.width, this.retina.pixelRatio, this.fullOptions);
+        this.actualOptions.setResponsive(this.canvas.size.width, this.retina.pixelRatio, this.options);
         this.actualOptions.setTheme(undefined);
 
         /* this re-init is necessary since options could have different values */

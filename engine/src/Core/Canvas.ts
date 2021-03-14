@@ -148,7 +148,7 @@ export class Canvas {
         const container = this.container;
 
         container.canvas.resize();
-        container.actualOptions.setResponsive(this.size.width, container.retina.pixelRatio, container.fullOptions);
+        container.actualOptions.setResponsive(this.size.width, container.retina.pixelRatio, container.options);
         container.particles.setDensity();
 
         for (const [, plugin] of container.plugins) {
