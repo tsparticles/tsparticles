@@ -1,7 +1,7 @@
 {
   "name": "particles.vue-demo",
   "private": true,
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "VueJS Demo",
   "author": "Matteo Bruni <ar3s@icloud.com>",
   "homepage": "https://github.com/matteobruni/tsparticles#readme",
@@ -20,8 +20,8 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "dependencies": {
-    "particles.vue": "^2.3.0",
-    "tsparticles": "^1.20.0",
+    "particles.vue": "^2.3.1",
+    "tsparticles": "^1.20.1",
     "vue": "<3",
     "vue-class-component": "<8",
     "vue-property-decorator": "^9.0.2"
