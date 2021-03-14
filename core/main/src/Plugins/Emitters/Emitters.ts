@@ -10,6 +10,7 @@ import { EmitterClickMode } from "./Enums";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { EmitterContainer } from "./EmitterContainer";
+import { IDelta } from "../../Core/Interfaces/IDelta";
 
 /**
  * @category Emitters Plugin
@@ -118,6 +119,12 @@ export class Emitters implements IContainerPlugin {
 
     public stop(): void {
         this.array = [];
+    }
+
+    public update(delta: IDelta): void {
+        for (const emitter of this.array) {
+            emitter.update(delta);
+        }
     }
 
     public handleClickMode(mode: string): void {

@@ -138,6 +138,12 @@ export class Particles {
 
         container.noise.update();
 
+        for (const [, plugin] of container.plugins) {
+            if (plugin.update !== undefined) {
+                plugin.update(delta);
+            }
+        }
+
         for (const particle of this.array) {
             // let d = ( dx = container.interactivity.mouse.click_pos_x - p.x ) * dx +
             //         ( dy = container.interactivity.mouse.click_pos_y - p.y ) * dy;
