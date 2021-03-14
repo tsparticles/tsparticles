@@ -45,6 +45,7 @@
     "tsparticles-plugin-infection": "^2.0.0-alpha.4",
     "tsparticles-plugin-polygon-mask": "^2.0.0-alpha.4",
     "tsparticles-preset-big-circles": "^2.0.0-alpha.4",
+    "tsparticles-preset-bubbles": "^2.0.0-alpha.4",
     "tsparticles-preset-fire": "^2.0.0-alpha.4",
     "tsparticles-preset-fountain": "^2.0.0-alpha.4",
     "tsparticles-preset-links": "^2.0.0-alpha.4",

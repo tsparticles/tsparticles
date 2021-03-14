@@ -57,6 +57,7 @@ app.use("/tsparticles-plugin-absorbers", express.static("./node_modules/tspartic
 app.use("/tsparticles-plugin-emitters", express.static("./node_modules/tsparticles-plugin-emitters"));
 app.use("/tsparticles-plugin-polygon-mask", express.static("./node_modules/tsparticles-plugin-polygon-mask"));
 app.use("/preset-big-circles", express.static("./node_modules/tsparticles-preset-big-circles"));
+app.use("/preset-bubbles", express.static("./node_modules/tsparticles-preset-bubbles"));
 app.use("/preset-fire", express.static("./node_modules/tsparticles-preset-fire"));
 app.use("/preset-links", express.static("./node_modules/tsparticles-preset-links"));
 app.use("/preset-sea-anemone", express.static("./node_modules/tsparticles-preset-sea-anemone"));
@@ -84,6 +85,10 @@ app.get("/presets", function(req, res) {
 
 app.get("/presets/bigCircles", function(req, res) {
   res.render("presets/bigCircles");
+});
+
+app.get("/presets/bubbles", function(req, res) {
+  res.render("presets/bubbles");
 });
 
 app.get("/presets/fire", function(req, res) {

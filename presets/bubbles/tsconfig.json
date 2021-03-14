@@ -7,6 +7,12 @@
     "module": "esnext",
     /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
     "lib": [
+      "ESNext",
+      "ES2020",
+      "ES2019",
+      "ES2018",
+      "ES2017",
+      "ES2016",
       "ES2015",
       "DOM"
     ],
