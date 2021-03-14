@@ -8,6 +8,7 @@ import type { ITheme } from "./Theme/ITheme";
 import type { IFullScreen } from "./FullScreen/IFullScreen";
 import type { IMotion } from "./Motion/IMotion";
 import type { IManualParticle } from "./IManualParticle";
+import type { IResponsive } from "./IResponsive";
 
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`
@@ -96,6 +97,11 @@ export interface IOptions {
      * This property will be used to add specified presets to the options
      */
     preset?: SingleOrMultiple<string>;
+
+    /**
+     * This sets custom options based on canvas size
+     */
+    responsive: IResponsive[];
 
     /**
      * Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.

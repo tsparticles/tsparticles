@@ -24,6 +24,8 @@ export class Canvas {
      */
     public readonly size: IDimension;
 
+    public resizeFactor?: IDimension;
+
     /**
      * The particles canvas context
      */
@@ -54,7 +56,7 @@ export class Canvas {
     public init(): void {
         this.resize();
 
-        const options = this.container.options;
+        const options = this.container.actualOptions;
         const element = this.element;
 
         if (element) {
@@ -129,22 +131,10 @@ export class Canvas {
     }
 
     /**
-     * Calculates the size of the canvas
-     */
-    public resize(): void {
-        if (!this.element) {
-            return;
-        }
-
-        this.element.width = this.size.width;
-        this.element.height = this.size.height;
-    }
-
-    /**
      * Paints the canvas background
      */
     public paint(): void {
-        const options = this.container.options;
+        const options = this.container.actualOptions;
 
         if (!this.context) {
             return;
@@ -162,7 +152,7 @@ export class Canvas {
      * Clears the canvas content
      */
     public clear(): void {
-        const options = this.container.options;
+        const options = this.container.actualOptions;
         const trail = options.particles.move.trail;
 
         if (options.backgroundMask.enable) {
@@ -181,7 +171,8 @@ export class Canvas {
 
         const container = this.container;
 
-        container.canvas.initSize();
+        container.canvas.resize();
+        container.actualOptions.setResponsive(this.size.width, container.retina.pixelRatio, container.options);
 
         /* density particles enabled */
         container.particles.setDensity();
@@ -193,19 +184,32 @@ export class Canvas {
         }
     }
 
-    public initSize(): void {
+    /**
+     * Calculates the size of the canvas
+     */
+    public resize(): void {
         if (!this.element) {
             return;
         }
 
         const container = this.container;
         const pxRatio = container.retina.pixelRatio;
+        const size = container.canvas.size;
+        const oldSize = {
+            width: size.width,
+            height: size.height,
+        };
 
-        container.canvas.size.width = this.element.offsetWidth * pxRatio;
-        container.canvas.size.height = this.element.offsetHeight * pxRatio;
+        size.width = this.element.offsetWidth * pxRatio;
+        size.height = this.element.offsetHeight * pxRatio;
 
-        this.element.width = container.canvas.size.width;
-        this.element.height = container.canvas.size.height;
+        this.element.width = size.width;
+        this.element.height = size.height;
+
+        this.resizeFactor = {
+            width: size.width / oldSize.width,
+            height: size.height / oldSize.height,
+        };
     }
 
     public drawConnectLine(p1: IParticle, p2: IParticle): void {
@@ -257,10 +261,10 @@ export class Canvas {
 
     public drawLinkTriangle(p1: IParticle, link1: ILink, link2: ILink): void {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
         const p2 = link1.destination;
         const p3 = link2.destination;
-        const triangleOptions = p1.particlesOptions.links.triangles;
+        const triangleOptions = p1.options.links.triangles;
         const opacityTriangle = triangleOptions.opacity ?? (link1.opacity + link2.opacity) / 2;
 
         if (opacityTriangle <= 0) {
@@ -288,7 +292,7 @@ export class Canvas {
         let colorTriangle = ColorUtils.colorToRgb(triangleOptions.color);
 
         if (!colorTriangle) {
-            const linksOptions = p1.particlesOptions.links;
+            const linksOptions = p1.options.links;
             const linkColor =
                 linksOptions.id !== undefined
                     ? container.particles.linksColors.get(linksOptions.id)
@@ -315,7 +319,7 @@ export class Canvas {
 
     public drawLinkLine(p1: IParticle, link: ILink): void {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
         const p2 = link.destination;
         let opacity = link.opacity;
         const pos1 = p1.getPosition();
@@ -338,7 +342,7 @@ export class Canvas {
          *                        from those two for the connecting line color
          */
 
-        const twinkle = p1.particlesOptions.twinkle.lines;
+        const twinkle = p1.options.twinkle.lines;
 
         if (twinkle.enable) {
             const twinkleFreq = twinkle.frequency;
@@ -352,7 +356,7 @@ export class Canvas {
         }
 
         if (!colorLine) {
-            const linksOptions = p1.particlesOptions.links;
+            const linksOptions = p1.options.links;
             const linkColor =
                 linksOptions.id !== undefined
                     ? container.particles.linksColors.get(linksOptions.id)
@@ -375,12 +379,12 @@ export class Canvas {
             pos2,
             maxDistance,
             container.canvas.size,
-            p1.particlesOptions.links.warp,
+            p1.options.links.warp,
             options.backgroundMask.enable,
             options.backgroundMask.composite,
             colorLine,
             opacity,
-            p1.particlesOptions.links.shadow
+            p1.options.links.shadow
         );
     }
 
@@ -396,8 +400,8 @@ export class Canvas {
             return;
         }
 
-        const options = this.container.options;
-        const pOptions = particle.particlesOptions;
+        const options = this.container.actualOptions;
+        const pOptions = particle.options;
         const twinkle = pOptions.twinkle.particles;
         const twinkleFreq = twinkle.frequency;
         const twinkleRgb = ColorUtils.colorToRgb(twinkle.color);
@@ -443,7 +447,7 @@ export class Canvas {
                 options.backgroundMask.composite,
                 radius,
                 opacity,
-                particle.particlesOptions.shadow
+                particle.options.shadow
             );
         }
     }
@@ -455,7 +459,7 @@ export class Canvas {
 
         const container = this.container;
         const particles = container.particles;
-        const pOptions = particle.particlesOptions;
+        const pOptions = particle.options;
 
         if (particle.links.length > 0) {
             this.context.save();
@@ -473,7 +477,7 @@ export class Canvas {
                     const vertices = p2.links.filter((t) => {
                         const linkFreq = container.particles.getLinkFrequency(p2, t.destination);
 
-                        return linkFreq <= p2.particlesOptions.links.frequency && links.indexOf(t.destination) >= 0;
+                        return linkFreq <= p2.options.links.frequency && links.indexOf(t.destination) >= 0;
                     });
 
                     if (vertices.length) {
@@ -524,7 +528,7 @@ export class Canvas {
     }
 
     private lineStyle(p1: IParticle, p2: IParticle): CanvasGradient | undefined {
-        const options = this.container.options;
+        const options = this.container.actualOptions;
         const connectOptions = options.interactivity.modes.connect;
 
         if (this.context) {
@@ -533,7 +537,7 @@ export class Canvas {
     }
 
     private initBackground(): void {
-        const options = this.container.options;
+        const options = this.container.actualOptions;
         const background = options.background;
         const element = this.element;
 

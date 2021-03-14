@@ -369,8 +369,8 @@ export class Utils {
             radius: p.getRadius(),
             velocity: p.velocity,
             factor: {
-                horizontal: NumberUtils.getValue(p.particlesOptions.bounce.horizontal),
-                vertical: NumberUtils.getValue(p.particlesOptions.bounce.vertical),
+                horizontal: NumberUtils.getValue(p.options.bounce.horizontal),
+                vertical: NumberUtils.getValue(p.options.bounce.vertical),
             },
         };
     }
@@ -438,7 +438,7 @@ export class Utils {
                 max: divBounds.bottom,
             },
             particle.velocity.horizontal,
-            NumberUtils.getValue(particle.particlesOptions.bounce.horizontal)
+            NumberUtils.getValue(particle.options.bounce.horizontal)
         );
 
         if (resH.bounced) {
@@ -469,7 +469,7 @@ export class Utils {
                 max: divBounds.right,
             },
             particle.velocity.vertical,
-            NumberUtils.getValue(particle.particlesOptions.bounce.vertical)
+            NumberUtils.getValue(particle.options.bounce.vertical)
         );
 
         if (resV.bounced) {

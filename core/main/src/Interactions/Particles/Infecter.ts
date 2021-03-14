@@ -10,7 +10,7 @@ export class Infecter implements IParticlesInteractor {
     constructor(private readonly container: Container) {}
 
     public isEnabled(): boolean {
-        return this.container.options.infection.enable;
+        return this.container.actualOptions.infection.enable;
     }
 
     public reset(): void {
@@ -27,7 +27,7 @@ export class Infecter implements IParticlesInteractor {
         }
 
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
         const infectionOptions = options.infection;
 
         if (!infectionOptions.enable || infectionOptions.stages.length < 1) {

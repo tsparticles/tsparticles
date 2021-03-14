@@ -30,7 +30,7 @@ export class Retina {
      */
     public init(): void {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
 
         if (options.detectRetina) {
             this.pixelRatio = Utils.isSsr() ? 1 : window.devicePixelRatio;
@@ -38,7 +38,7 @@ export class Retina {
             this.pixelRatio = 1;
         }
 
-        const motionOptions = this.container.options.motion;
+        const motionOptions = this.container.actualOptions.motion;
 
         if (motionOptions && (motionOptions.disable || motionOptions.reduce.value)) {
             if (Utils.isSsr() || typeof matchMedia === "undefined" || !matchMedia) {
@@ -104,7 +104,7 @@ export class Retina {
     }
 
     public initParticle(particle: Particle): void {
-        const particlesOptions = particle.particlesOptions;
+        const particlesOptions = particle.options;
         const ratio = this.pixelRatio;
 
         particle.linksDistance = particlesOptions.links.distance * ratio;
@@ -116,7 +116,7 @@ export class Retina {
     }
 
     private handleMotionChange(mediaQuery: MediaQueryList): void {
-        const options = this.container.options;
+        const options = this.container.actualOptions;
 
         if (mediaQuery.matches) {
             const motion = options.motion;

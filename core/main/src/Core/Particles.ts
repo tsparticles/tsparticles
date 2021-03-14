@@ -66,7 +66,7 @@ export class Particles {
     /* --------- tsParticles functions - particles ----------- */
     public init(): void {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
 
         this.linksFreq = new Map<string, number>();
         this.trianglesFreq = new Map<string, number>();
@@ -148,6 +148,13 @@ export class Particles {
             //     p.vy = f * Math.sin(t);
             // }
 
+            const resizeFactor = this.container.canvas.resizeFactor;
+
+            if (resizeFactor) {
+                particle.position.x *= resizeFactor.width;
+                particle.position.y *= resizeFactor.height;
+            }
+
             particle.move(delta);
 
             if (particle.destroyed) {
@@ -172,6 +179,8 @@ export class Particles {
                 this.interactionManager.particlesInteract(particle, delta);
             }
         }
+
+        delete container.canvas.resizeFactor;
     }
 
     public draw(delta: IDelta): void {
@@ -220,7 +229,7 @@ export class Particles {
     /* ---------- tsParticles functions - modes events ------------ */
     public push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticles>): void {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
         const limit = options.particles.number.limit * container.density;
 
         this.pushing = true;
@@ -303,7 +312,7 @@ export class Particles {
     }
 
     public setDensity(): void {
-        const options = this.container.options;
+        const options = this.container.actualOptions;
 
         this.applyDensity(options.particles);
     }

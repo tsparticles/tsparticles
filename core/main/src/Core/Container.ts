@@ -51,6 +51,11 @@ export class Container {
      */
     public readonly options;
 
+    /**
+     * The options loaded by the container, it's a full [[Options]] object
+     */
+    public actualOptions;
+
     public readonly retina;
     public readonly canvas;
 
@@ -92,6 +97,7 @@ export class Container {
         public readonly sourceOptions?: RecursivePartial<IOptions>,
         ...presets: string[]
     ) {
+        this.fpsLimit = 60;
         this.firstStart = true;
         this.started = false;
         this.destroyed = false;
@@ -130,6 +136,7 @@ export class Container {
         this.density = 1;
         /* tsParticles variables with default values */
         this.options = new Options();
+        this.actualOptions = new Options();
 
         for (const preset of presets) {
             this.options.load(Plugins.getPreset(preset));
@@ -146,13 +153,9 @@ export class Container {
         }
 
         /* options settings */
-        if (this.sourceOptions) {
+        if (this.options) {
             this.options.load(this.sourceOptions);
         }
-
-        this.fpsLimit = this.options.fpsLimit > 0 ? this.options.fpsLimit : 60;
-
-        this.options.setTheme(undefined);
 
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);
@@ -169,7 +172,7 @@ export class Container {
     public play(force?: boolean): void {
         const needsUpdate = this.paused || force;
 
-        if (this.firstStart && !this.options.autoPlay) {
+        if (this.firstStart && !this.actualOptions.autoPlay) {
             this.firstStart = false;
             return;
         }
@@ -315,7 +318,7 @@ export class Container {
      * @returns a JSON string created from `options` property
      */
     public exportConfiguration(): string {
-        return JSON.stringify(this.options, undefined, 2);
+        return JSON.stringify(this.actualOptions, undefined, 2);
     }
 
     /**
@@ -367,7 +370,7 @@ export class Container {
      * @param name the theme name, if `undefined` resets the default options or the default theme
      */
     public async loadTheme(name?: string): Promise<void> {
-        this.options.setTheme(name);
+        this.actualOptions.setTheme(name);
 
         await this.refresh();
     }
@@ -402,11 +405,18 @@ export class Container {
     }
 
     private async init(): Promise<void> {
+        this.actualOptions = new Options();
+
+        this.actualOptions.load(this.options);
+
         /* init canvas + particles */
         this.retina.init();
         this.canvas.init();
 
-        this.fpsLimit = this.options.fpsLimit > 0 ? this.options.fpsLimit : 60;
+        this.actualOptions.setResponsive(this.canvas.size.width, this.retina.pixelRatio, this.options);
+        this.actualOptions.setTheme(undefined);
+
+        this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 60;
 
         const availablePlugins = Plugins.getAvailablePlugins(this);
 
@@ -422,19 +432,19 @@ export class Container {
 
         for (const [, plugin] of this.plugins) {
             if (plugin.init) {
-                plugin.init(this.options);
+                plugin.init(this.actualOptions);
             } else if (plugin.initAsync !== undefined) {
-                await plugin.initAsync(this.options);
+                await plugin.initAsync(this.actualOptions);
             }
         }
 
-        this.canvas.initSize();
+        this.canvas.resize();
         this.particles.init();
         this.particles.setDensity();
     }
 
     private intersectionManager(entries: IntersectionObserverEntry[]) {
-        if (!this.options.pauseOnOutsideViewport) {
+        if (!this.actualOptions.pauseOnOutsideViewport) {
             return;
         }
 

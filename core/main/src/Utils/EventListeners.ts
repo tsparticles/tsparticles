@@ -85,7 +85,7 @@ export class EventListeners {
      */
     private manageListeners(add: boolean): void {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
         const detectType = options.interactivity.detectsOn;
         let mouseLeaveEvent = Constants.mouseLeaveEvent;
 
@@ -156,7 +156,7 @@ export class EventListeners {
 
     private handleVisibilityChange(): void {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
 
         this.mouseTouchFinish();
 
@@ -196,7 +196,7 @@ export class EventListeners {
      */
     private mouseTouchMove(e: Event): void {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
 
         if (container.interactivity?.element === undefined) {
             return;
@@ -301,7 +301,7 @@ export class EventListeners {
      */
     private mouseTouchClick(e: Event): void {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
         const mouse = container.interactivity.mouse;
 
         mouse.inside = true;
@@ -337,7 +337,7 @@ export class EventListeners {
      */
     private doMouseTouchClick(e: Event): void {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
 
         if (this.canPush) {
             const mousePos = container.interactivity.mouse.position;
@@ -370,7 +370,7 @@ export class EventListeners {
 
     private handleClickMode(mode: ClickMode | string): void {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
         const pushNb = options.interactivity.modes.push.quantity;
         const removeNb = options.interactivity.modes.remove.quantity;
 

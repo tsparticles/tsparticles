@@ -31,7 +31,7 @@ function bounceHorizontal(data: IBounceData): void {
             (data.direction === OutModeDirection.right && data.bounds.right >= data.canvasSize.width && velocity > 0) ||
             (data.direction === OutModeDirection.left && data.bounds.left <= 0 && velocity < 0)
         ) {
-            const newVelocity = NumberUtils.getValue(data.particle.particlesOptions.bounce.horizontal);
+            const newVelocity = NumberUtils.getValue(data.particle.options.bounce.horizontal);
 
             data.particle.velocity.horizontal *= -newVelocity;
 
@@ -65,7 +65,7 @@ function bounceVertical(data: IBounceData): void {
                 velocity > 0) ||
             (data.direction === OutModeDirection.top && data.bounds.top <= 0 && velocity < 0)
         ) {
-            const newVelocity = NumberUtils.getValue(data.particle.particlesOptions.bounce.vertical);
+            const newVelocity = NumberUtils.getValue(data.particle.options.bounce.vertical);
 
             data.particle.velocity.vertical *= -newVelocity;
 
@@ -189,7 +189,7 @@ export class Updater {
                 particle.lifeDelayTime = 0;
                 particle.lifeTime = 0;
 
-                const lifeOptions = particle.particlesOptions.life;
+                const lifeOptions = particle.options.life;
 
                 particle.lifeDelay = NumberUtils.getValue(lifeOptions.delay) * 1000;
                 particle.lifeDuration = NumberUtils.getValue(lifeOptions.duration) * 1000;
@@ -199,9 +199,9 @@ export class Updater {
 
     private updateOpacity(delta: IDelta): void {
         const particle = this.particle;
-        const opacityAnim = particle.particlesOptions.opacity.anim;
+        const opacityAnim = particle.options.opacity.anim;
         const minValue = opacityAnim.minimumValue;
-        const maxValue = particle.particlesOptions.opacity.value;
+        const maxValue = particle.options.opacity.value;
 
         if (opacityAnim.enable) {
             switch (particle.opacity.status) {
@@ -232,7 +232,7 @@ export class Updater {
     private updateSize(delta: IDelta): void {
         const container = this.container;
         const particle = this.particle;
-        const sizeOpt = particle.particlesOptions.size;
+        const sizeOpt = particle.options.size;
         const sizeAnim = sizeOpt.animation;
         const sizeVelocity = (particle.size.velocity ?? 0) * delta.factor;
         const maxValue = particle.sizeValue ?? container.retina.sizeValue;
@@ -265,7 +265,7 @@ export class Updater {
 
     private updateAngle(delta: IDelta): void {
         const particle = this.particle;
-        const rotate = particle.particlesOptions.rotate;
+        const rotate = particle.options.rotate;
         const rotateAnimation = rotate.animation;
         const speed = (particle.rotate.velocity ?? 0) * delta.factor;
         const max = 2 * Math.PI;
@@ -300,7 +300,7 @@ export class Updater {
             return;
         }
 
-        if (particle.particlesOptions.color.animation.enable) {
+        if (particle.options.color.animation.enable) {
             particle.color.value.h += (particle.color.velocity ?? 0) * delta.factor;
 
             if (particle.color.value.h > 360) {
@@ -333,7 +333,7 @@ export class Updater {
     }
 
     private updateOutModes(delta: IDelta): void {
-        const outModes = this.particle.particlesOptions.move.outModes;
+        const outModes = this.particle.options.move.outModes;
 
         this.updateOutMode(delta, outModes.bottom ?? outModes.default, OutModeDirection.bottom);
         this.updateOutMode(delta, outModes.left ?? outModes.default, OutModeDirection.left);
@@ -377,7 +377,7 @@ export class Updater {
     private fixOutOfCanvasPosition(direction: OutModeDirection): void {
         const container = this.container;
         const particle = this.particle;
-        const wrap = particle.particlesOptions.move.warp;
+        const wrap = particle.options.move.warp;
         const canvasSize = container.canvas.size;
         const newPos = {
             bottom: canvasSize.height + particle.getRadius() - particle.offset.y,
@@ -454,11 +454,11 @@ export class Updater {
     private bounceNone(direction: OutModeDirection): void {
         const particle = this.particle;
 
-        if (particle.particlesOptions.move.distance) {
+        if (particle.options.move.distance) {
             return;
         }
 
-        const gravityOptions = particle.particlesOptions.move.gravity;
+        const gravityOptions = particle.options.move.gravity;
         const container = this.container;
 
         if (!gravityOptions.enable) {

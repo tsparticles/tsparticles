@@ -10,7 +10,7 @@ import type { RecursivePartial } from "../../../Types";
 import { Shadow } from "./Shadow";
 import type { SingleOrMultiple } from "../../../Types";
 import { Stroke } from "./Stroke";
-import { Collisions } from "./Collisions";
+import { Collisions } from "./Collisions/Collisions";
 import { Twinkle } from "./Twinkle/Twinkle";
 import { AnimatableColor } from "./AnimatableColor";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
