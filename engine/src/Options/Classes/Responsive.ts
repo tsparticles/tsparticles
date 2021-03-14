@@ -2,7 +2,7 @@ import type { IResponsive } from "../Interfaces/IResponsive";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import type { RecursivePartial } from "../../Types";
 import type { IOptions } from "../Interfaces/IOptions";
-import { deepExtend } from "../../Utils";
+import { Utils } from "../../Utils";
 
 export class Responsive implements IResponsive, IOptionLoader<IResponsive> {
     public maxWidth: number;
@@ -23,7 +23,7 @@ export class Responsive implements IResponsive, IOptionLoader<IResponsive> {
         }
 
         if (data.options !== undefined) {
-            this.options = deepExtend({}, data.options) as RecursivePartial<IOptions>;
+            this.options = Utils.deepExtend({}, data.options) as RecursivePartial<IOptions>;
         }
     }
 }

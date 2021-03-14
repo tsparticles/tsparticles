@@ -1,5 +1,6 @@
 import { tsParticles } from "../../src";
 import { Container } from "../../src/Core/Container";
+import { Options } from "../../src/Options/Classes/Options";
 import type { IOptions } from "../../src/Options/Interfaces/IOptions";
 import { RecursivePartial } from "../../src/Types";
 
@@ -30,7 +31,10 @@ export class TestContainer {
         if (options !== undefined) {
             this.options = options;
         }
+
         this.container = new Container(this.id, this.options);
+        this.container.actualOptions = new Options();
+        this.container.actualOptions.load(this.container.options);
         this.container.retina.init();
     }
 }

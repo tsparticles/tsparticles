@@ -99,6 +99,7 @@ export class Container {
         public readonly sourceOptions?: RecursivePartial<IOptions>,
         ...presets: string[]
     ) {
+        this.fpsLimit = 60;
         this.firstStart = true;
         this.started = false;
         this.destroyed = false;

@@ -168,7 +168,9 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         if (data.responsive !== undefined) {
             for (const responsive of data.responsive) {
                 const optResponsive = new Responsive();
+
                 optResponsive.load(responsive);
+
                 this.responsive.push(optResponsive);
             }
         }
@@ -219,5 +221,10 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
     private importPreset(preset: string): void {
         this.load(Plugins.getPreset(preset));
+    }
+
+    public setResponsive(width: number, pxRatio: number, defaultOptions: IOptions): void {
+        this.load(defaultOptions);
+        this.load(this.responsive.find((t) => t.maxWidth * pxRatio > width)?.options);
     }
 }
