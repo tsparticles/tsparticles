@@ -26,7 +26,7 @@ export class Bouncer extends ExternalInteractorBase {
 
     public isEnabled(): boolean {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
         const mouse = container.interactivity.mouse;
         const events = options.interactivity.events;
         const divs = events.onDiv;
@@ -38,7 +38,7 @@ export class Bouncer extends ExternalInteractorBase {
 
     public interact(): void {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
         const events = options.interactivity.events;
         const mouseMoveStatus = container.interactivity.status === Constants.mouseMoveEvent;
         const hoverEnabled = events.onHover.enable;

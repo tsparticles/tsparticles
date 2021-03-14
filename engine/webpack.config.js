@@ -75,8 +75,8 @@ GitHub : https://www.github.com/matteobruni/tsparticles
 How to use? : Check the GitHub README
 v${version}`;
 
-const minBanner = `tsParticles Core v${version} by Matteo Bruni`;
+const minBanner = `tsParticles Engine v${version} by Matteo Bruni`;
 
 module.exports = [
-  getConfig(getEntry("core"), banner, minBanner, __dirname)
+  getConfig(getEntry("engine"), banner, minBanner, __dirname)
 ];

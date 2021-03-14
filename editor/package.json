@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-editor",
-  "version": "2.0.0-alpha.4",
+  "version": "2.0.0-alpha.5",
   "description": "tsParticles Configuration Editor",
   "keywords": [
     "tsparticles",
@@ -32,7 +32,8 @@
     "clear:dist": "rimraf -f ./dist",
     "build:ts:esm": "tsc -b tsconfig.esm.json",
     "build:ts:cjs": "tsc",
-    "build:ts": "yarn build:ts:browser && yarn build:ts:esm && yarn build:ts:cjs",
+    "build:ts:old": "npx downlevel-dts ./dist ./dist/ts4.0 --to=4.0 && npx downlevel-dts ./dist ./dist/ts3.8 --to=3.8 && npx downlevel-dts ./dist ./dist/ts3.4",
+    "build:ts": "yarn build:ts:browser && yarn build:ts:esm && yarn build:ts:cjs && yarn build:ts:old",
     "build:ts:check": "tsc --noEmit",
     "build:ts:browser": "tsc -b tsconfig.browser.json",
     "build": "yarn clear:dist && yarn prettify:src && yarn build:ts:check && yarn lint && yarn build:ts && webpack --mode production && yarn prettify:readme && yarn distfiles",
@@ -44,19 +45,20 @@
   },
   "dependencies": {
     "object-gui": "^1.0.11",
-    "tsparticles": "^2.0.0-alpha.4",
-    "tsparticles-engine": "^2.0.0-alpha.4",
-    "tsparticles-plugin-absorbers": "^2.0.0-alpha.4",
-    "tsparticles-plugin-emitters": "^2.0.0-alpha.4",
-    "tsparticles-plugin-infection": "^2.0.0-alpha.4",
-    "tsparticles-plugin-polygon-mask": "^2.0.0-alpha.4",
-    "tsparticles-slim": "^2.0.0-alpha.4"
+    "tsparticles": "^2.0.0-alpha.5",
+    "tsparticles-engine": "^2.0.0-alpha.5",
+    "tsparticles-plugin-absorbers": "^2.0.0-alpha.5",
+    "tsparticles-plugin-emitters": "^2.0.0-alpha.5",
+    "tsparticles-plugin-infection": "^2.0.0-alpha.5",
+    "tsparticles-plugin-polygon-mask": "^2.0.0-alpha.5",
+    "tsparticles-slim": "^2.0.0-alpha.5"
   },
   "devDependencies": {
     "@babel/core": "^7.12.13",
     "@typescript-eslint/eslint-plugin": "^4.14.2",
     "@typescript-eslint/parser": "^4.14.2",
     "babel-loader": "^8.2.2",
+    "downlevel-dts": "^0.7.0",
     "eslint": "^7.19.0",
     "eslint-config-prettier": "^7.2.0",
     "fibers": "^5.0.0",

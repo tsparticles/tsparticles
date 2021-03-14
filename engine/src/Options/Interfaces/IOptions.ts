@@ -7,7 +7,7 @@ import type { ITheme } from "./Theme/ITheme";
 import type { IFullScreen } from "./FullScreen/IFullScreen";
 import type { IMotion } from "./Motion/IMotion";
 import type { IManualParticle } from "./IManualParticle";
-import { IResponsive } from "./IResponsive";
+import type { IResponsive } from "./IResponsive";
 
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`

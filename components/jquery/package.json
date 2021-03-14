@@ -1,17 +1,19 @@
 {
   "name": "jquery-particles",
-  "version": "2.0.0-alpha.4",
+  "version": "2.0.0-alpha.5",
   "description": "Official tsParticles jQuery Plugin - Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, Preact, Inferno.",
   "main": "dist/jquery.particles.min.js",
   "scripts": {
     "prettify:src": "prettier --write ./src/",
     "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
-    "compile": "tsc",
+    "compile": "tsc && yarn build:ts:old",
+    "build:ts:old": "npx downlevel-dts ./dist ./dist/ts4.0 --to=4.0 && npx downlevel-dts ./dist ./dist/ts3.8 --to=3.8 && npx downlevel-dts ./dist ./dist/ts3.4",
     "bundle": "rollup -c",
     "minify": "uglifyjs dist/jquery.particles.js --output dist/jquery.particles.min.js --source-map \"filename='dist/jquery.particles.min.js.map',url='jquery.particles.min.js.map',content='dist/jquery.particles.js.map'\"",
     "build": "yarn prettify:src && yarn lint && yarn compile && yarn bundle && yarn minify && yarn prettify:readme",
-    "prepack": "yarn build"
+    "prepack": "yarn build",
+    "clear:dist": "rimraf -f ./dist"
   },
   "files": [
     "dist/**/*"
@@ -72,7 +74,7 @@
   },
   "dependencies": {
     "jquery": "^3.5.1",
-    "tsparticles-engine": "^2.0.0-alpha.4"
+    "tsparticles-engine": "^2.0.0-alpha.5"
   },
   "devDependencies": {
     "@babel/core": "^7.12.13",
@@ -83,9 +85,11 @@
     "@typescript-eslint/eslint-plugin": "^4.14.2",
     "@typescript-eslint/parser": "^4.14.2",
     "babel-preset-env": "^1.7.0",
+    "downlevel-dts": "^0.7.0",
     "eslint": "^7.19.0",
     "eslint-config-prettier": "^7.2.0",
     "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
     "rollup": "^2.38.5",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-sourcemaps": "^0.6.3",

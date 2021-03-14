@@ -10,7 +10,7 @@ export class InfectionInstance implements IContainerPlugin {
     }
 
     public particlesSetup(): void {
-        const options = (this.container.options as unknown) as IInfectionOptions;
+        const options = (this.container.actualOptions as unknown) as IInfectionOptions;
 
         for (let i = 0; i < options.infection.infections; i++) {
             const notInfected = this.container.particles.array.filter((p) => {
@@ -31,7 +31,7 @@ export class InfectionInstance implements IContainerPlugin {
 
     public particleFillColor(particle: Particle): string | IColor | undefined {
         const infParticle = (particle as unknown) as InfectableParticle;
-        const options = (this.container.options as unknown) as IInfectionOptions;
+        const options = (this.container.actualOptions as unknown) as IInfectionOptions;
 
         if (!infParticle.infection) {
             return;

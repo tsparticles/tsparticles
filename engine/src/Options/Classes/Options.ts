@@ -168,7 +168,9 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         if (data.responsive !== undefined) {
             for (const responsive of data.responsive) {
                 const optResponsive = new Responsive();
+
                 optResponsive.load(responsive);
+
                 this.responsive.push(optResponsive);
             }
         }

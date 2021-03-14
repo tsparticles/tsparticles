@@ -361,7 +361,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
 
     private getEquidistantPointByIndex(index: number): ICoordinates {
-        const options = this.container.options;
+        const options = this.container.actualOptions;
         const polygonMaskOptions = this.options;
 
         if (!this.raw || !this.raw.length || !this.paths?.length) throw new Error(Constants.noPolygonDataLoaded);

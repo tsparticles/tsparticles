@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-slim",
-  "version": "2.0.0-alpha.4",
+  "version": "2.0.0-alpha.5",
   "description": "tsParticles slim version",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -47,33 +47,50 @@
   "browser": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
+  "typesVersions": {
+    ">=4.0 <4.1": {
+      "*": [
+        "dist/ts4.0"
+      ]
+    },
+    ">=3.8 <4.0": {
+      "*": [
+        "dist/ts3.8"
+      ]
+    },
+    "<3.8": {
+      "*": [
+        "dist/ts3.4"
+      ]
+    }
+  },
   "dependencies": {
-    "tsparticles-engine": "^2.0.0-alpha.4",
-    "tsparticles-interaction-external-attract": "^2.0.0-alpha.4",
-    "tsparticles-interaction-external-bounce": "^2.0.0-alpha.4",
-    "tsparticles-interaction-external-bubble": "^2.0.0-alpha.4",
-    "tsparticles-interaction-external-connect": "^2.0.0-alpha.4",
-    "tsparticles-interaction-external-grab": "^2.0.0-alpha.4",
-    "tsparticles-interaction-external-repulse": "^2.0.0-alpha.4",
-    "tsparticles-interaction-particles-attract": "^2.0.0-alpha.4",
-    "tsparticles-interaction-particles-collisions": "^2.0.0-alpha.4",
-    "tsparticles-interaction-particles-links": "^2.0.0-alpha.4",
-    "tsparticles-interaction-particles-move": "^2.0.0-alpha.4",
-    "tsparticles-interaction-particles-parallax": "^2.0.0-alpha.4",
-    "tsparticles-interaction-particles-repulse": "^2.0.0-alpha.4",
-    "tsparticles-shape-circle": "^2.0.0-alpha.4",
-    "tsparticles-shape-image": "^2.0.0-alpha.4",
-    "tsparticles-shape-line": "^2.0.0-alpha.4",
-    "tsparticles-shape-polygon": "^2.0.0-alpha.4",
-    "tsparticles-shape-square": "^2.0.0-alpha.4",
-    "tsparticles-shape-star": "^2.0.0-alpha.4",
-    "tsparticles-shape-text": "^2.0.0-alpha.4",
-    "tsparticles-updater-angle": "^2.0.0-alpha.4",
-    "tsparticles-updater-color": "^2.0.0-alpha.4",
-    "tsparticles-updater-life": "^2.0.0-alpha.4",
-    "tsparticles-updater-opacity": "^2.0.0-alpha.4",
-    "tsparticles-updater-out-modes": "^2.0.0-alpha.4",
-    "tsparticles-updater-size": "^2.0.0-alpha.4",
-    "tsparticles-updater-stroke-color": "^2.0.0-alpha.4"
+    "tsparticles-engine": "^2.0.0-alpha.5",
+    "tsparticles-interaction-external-attract": "^2.0.0-alpha.5",
+    "tsparticles-interaction-external-bounce": "^2.0.0-alpha.5",
+    "tsparticles-interaction-external-bubble": "^2.0.0-alpha.5",
+    "tsparticles-interaction-external-connect": "^2.0.0-alpha.5",
+    "tsparticles-interaction-external-grab": "^2.0.0-alpha.5",
+    "tsparticles-interaction-external-repulse": "^2.0.0-alpha.5",
+    "tsparticles-interaction-particles-attract": "^2.0.0-alpha.5",
+    "tsparticles-interaction-particles-collisions": "^2.0.0-alpha.5",
+    "tsparticles-interaction-particles-links": "^2.0.0-alpha.5",
+    "tsparticles-interaction-particles-move": "^2.0.0-alpha.5",
+    "tsparticles-interaction-particles-parallax": "^2.0.0-alpha.5",
+    "tsparticles-interaction-particles-repulse": "^2.0.0-alpha.5",
+    "tsparticles-shape-circle": "^2.0.0-alpha.5",
+    "tsparticles-shape-image": "^2.0.0-alpha.5",
+    "tsparticles-shape-line": "^2.0.0-alpha.5",
+    "tsparticles-shape-polygon": "^2.0.0-alpha.5",
+    "tsparticles-shape-square": "^2.0.0-alpha.5",
+    "tsparticles-shape-star": "^2.0.0-alpha.5",
+    "tsparticles-shape-text": "^2.0.0-alpha.5",
+    "tsparticles-updater-angle": "^2.0.0-alpha.5",
+    "tsparticles-updater-color": "^2.0.0-alpha.5",
+    "tsparticles-updater-life": "^2.0.0-alpha.5",
+    "tsparticles-updater-opacity": "^2.0.0-alpha.5",
+    "tsparticles-updater-out-modes": "^2.0.0-alpha.5",
+    "tsparticles-updater-size": "^2.0.0-alpha.5",
+    "tsparticles-updater-stroke-color": "^2.0.0-alpha.5"
   }
 }

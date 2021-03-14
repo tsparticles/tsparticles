@@ -38,12 +38,29 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "main": "interaction.js",
+  "main": "index.js",
   "jsdelivr": "tsparticles.interaction.external.template.min.js",
   "unpkg": "tsparticles.interaction.external.template.min.js",
-  "browser": "interaction.js",
-  "module": "interaction.js",
-  "types": "interaction.d.ts",
+  "browser": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "typesVersions": {
+    ">=4.0 <4.1": {
+      "*": [
+        "dist/ts4.0"
+      ]
+    },
+    ">=3.8 <4.0": {
+      "*": [
+        "dist/ts3.8"
+      ]
+    },
+    "<3.8": {
+      "*": [
+        "dist/ts3.4"
+      ]
+    }
+  },
   "dependencies": {
     "tsparticles-engine": "^2.0.0-alpha.0"
   }

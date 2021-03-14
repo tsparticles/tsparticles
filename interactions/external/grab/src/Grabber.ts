@@ -21,7 +21,7 @@ export class Grabber extends ExternalInteractorBase {
     public isEnabled(): boolean {
         const container = this.container;
         const mouse = container.interactivity.mouse;
-        const events = container.options.interactivity.events;
+        const events = container.actualOptions.interactivity.events;
 
         if (!(events.onHover.enable && mouse.position)) {
             return false;
@@ -38,7 +38,7 @@ export class Grabber extends ExternalInteractorBase {
 
     public interact(): void {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
         const interactivity = options.interactivity;
 
         if (interactivity.events.onHover.enable && container.interactivity.status === Constants.mouseMoveEvent) {
@@ -69,7 +69,7 @@ export class Grabber extends ExternalInteractorBase {
                         const optColor = grabLineOptions.color ?? particle.options.links.color;
 
                         if (!container.particles.grabLineColor) {
-                            const linksOptions = container.options.interactivity.modes.grab.links;
+                            const linksOptions = options.interactivity.modes.grab.links;
 
                             container.particles.grabLineColor = getLinkRandomColor(
                                 optColor,

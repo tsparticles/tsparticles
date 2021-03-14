@@ -9,7 +9,7 @@ export class ParticlesLighter extends ParticlesInteractorBase {
 
     public interact(particle: Particle): void {
         const container = this.container;
-        const options = container.options;
+        const options = container.actualOptions;
 
         if (options.interactivity.events.onHover.enable && container.interactivity.status === "mousemove") {
             const mousePos = this.container.interactivity.mouse.position;
@@ -25,7 +25,7 @@ export class ParticlesLighter extends ParticlesInteractorBase {
     public isEnabled(): boolean {
         const container = this.container;
         const mouse = container.interactivity.mouse;
-        const events = container.options.interactivity.events;
+        const events = container.actualOptions.interactivity.events;
 
         if (!(events.onHover.enable && mouse.position)) {
             return false;

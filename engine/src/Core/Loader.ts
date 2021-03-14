@@ -215,7 +215,7 @@ export class Loader {
                     y: pos.y * pxRatio,
                 };
 
-                const sizeValue = domItem.options.particles.size.value;
+                const sizeValue = domItem.actualOptions.particles.size.value;
                 const particles = domItem.particles.quadTree.queryCircle(
                     posRetina,
                     domItem.retina.pixelRatio * (typeof sizeValue === "number" ? sizeValue : sizeValue.max)

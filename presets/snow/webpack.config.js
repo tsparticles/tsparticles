@@ -4,11 +4,12 @@ const webpack = require("webpack");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const version = require("./package.json").version;
 
-const getEntry = (name) => {
+const getEntry = (name, bundle) => {
   const obj = {};
+  const fileName = bundle ? "bundle" : "index";
 
-  obj[`tsparticles.preset.${name}`] = "./dist/index.js";
-  obj[`tsparticles.preset.${name}.min`] = "./dist/index.js";
+  obj[`tsparticles.preset.${name}`] = `./dist/${fileName}.js`;
+  obj[`tsparticles.preset.${name}.min`] = `./dist/${fileName}.js`;
 
   return obj;
 };
@@ -120,6 +121,6 @@ v${version}`;
 const minBanner = `tsParticles Snow Preset v${version} by Matteo Bruni`;
 
 module.exports = [
-  getConfig(getEntry("snow"), banner, minBanner, __dirname, false),
-  getConfig(getEntry("snow.bundle"), banner, minBanner, __dirname, true)
+  getConfig(getEntry("snow", false), banner, minBanner, __dirname, false),
+  getConfig(getEntry("snow.bundle", true), banner, minBanner, __dirname, true)
 ];

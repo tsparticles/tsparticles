@@ -1,13 +1,14 @@
 {
   "name": "tsparticles",
-  "version": "2.0.0-alpha.4",
+  "version": "2.0.0-alpha.5",
   "description": "tsParticles full version",
   "homepage": "https://particles.js.org/",
   "scripts": {
     "prettify:src": "prettier --write ./src/",
     "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
-    "compile": "tsc",
+    "compile": "tsc && yarn build:ts:old",
+    "build:ts:old": "npx downlevel-dts ./dist ./dist/ts4.0 --to=4.0 && npx downlevel-dts ./dist ./dist/ts3.8 --to=3.8 && npx downlevel-dts ./dist ./dist/ts3.4",
     "bundle": "webpack --mode production",
     "distfiles": "node ./scripts/distfiles.js",
     "build": "yarn clear:dist && yarn prettify:src && yarn compile && yarn lint && yarn bundle && yarn prettify:readme && yarn distfiles",
@@ -17,7 +18,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
-    "directory": "core/full"
+    "directory": "bundles/full"
   },
   "keywords": [
     "tsparticles",
@@ -58,6 +59,7 @@
     "@typescript-eslint/eslint-plugin": "^4.9.1",
     "@typescript-eslint/parser": "^4.9.1",
     "babel-loader": "^8.2.2",
+    "downlevel-dts": "^0.7.0",
     "eslint": "^7.15.0",
     "eslint-config-prettier": "^7.0.0",
     "prettier": "^2.2.1",
@@ -69,14 +71,14 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.0.0-alpha.4",
-    "tsparticles-interaction-external-trail": "^2.0.0-alpha.4",
-    "tsparticles-interaction-light": "^2.0.0-alpha.4",
-    "tsparticles-plugin-absorbers": "^2.0.0-alpha.4",
-    "tsparticles-plugin-emitters": "^2.0.0-alpha.4",
-    "tsparticles-plugin-infection": "^2.0.0-alpha.4",
-    "tsparticles-plugin-polygon-mask": "^2.0.0-alpha.4",
-    "tsparticles-slim": "^2.0.0-alpha.4",
-    "tsparticles-updater-orbit": "^2.0.0-alpha.4"
+    "tsparticles-engine": "^2.0.0-alpha.5",
+    "tsparticles-interaction-external-trail": "^2.0.0-alpha.5",
+    "tsparticles-interaction-light": "^2.0.0-alpha.5",
+    "tsparticles-plugin-absorbers": "^2.0.0-alpha.5",
+    "tsparticles-plugin-emitters": "^2.0.0-alpha.5",
+    "tsparticles-plugin-infection": "^2.0.0-alpha.5",
+    "tsparticles-plugin-polygon-mask": "^2.0.0-alpha.5",
+    "tsparticles-slim": "^2.0.0-alpha.5",
+    "tsparticles-updater-orbit": "^2.0.0-alpha.5"
   }
 }

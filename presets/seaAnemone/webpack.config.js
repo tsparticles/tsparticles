@@ -4,11 +4,12 @@ const webpack = require("webpack");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const version = require("./package.json").version;
 
-const getEntry = (name) => {
+const getEntry = (name, bundle) => {
   const obj = {};
+  const fileName = bundle ? "bundle" : "index";
 
-  obj[`tsparticles.preset.${name}`] = "./dist/index.js";
-  obj[`tsparticles.preset.${name}.min`] = "./dist/index.js";
+  obj[`tsparticles.preset.${name}`] = `./dist/${fileName}.js`;
+  obj[`tsparticles.preset.${name}.min`] = `./dist/${fileName}.js`;
 
   return obj;
 };
@@ -64,7 +65,7 @@ const getConfig = (entry, banner, minBanner, dir, bundle) => {
       globalObject: "this"
     },
     resolve: {
-      extensions: [ ".js", ".json" ]
+      extensions: [".js", ".json"]
     },
     externals: getExternals(bundle),
     module: {
@@ -120,6 +121,6 @@ v${version}`;
 const minBanner = `tsParticles Sea Anemone Preset v${version} by Matteo Bruni`;
 
 module.exports = [
-  getConfig(getEntry("seaAnemone"), banner, minBanner, __dirname, false),
-  getConfig(getEntry("seaAnemone.bundle"), banner, minBanner, __dirname, true)
+  getConfig(getEntry("seaAnemone", false), banner, minBanner, __dirname, false),
+  getConfig(getEntry("seaAnemone.bundle", true), banner, minBanner, __dirname, true)
 ];

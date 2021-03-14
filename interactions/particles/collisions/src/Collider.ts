@@ -100,7 +100,7 @@ export class Collider extends ParticlesInteractorBase {
 
     private absorb(p1: Particle, p2: Particle): void {
         const container = this.container;
-        const fps = container.options.fpsLimit / 1000;
+        const fps = container.fpsLimit / 1000;
 
         if (p1.getRadius() === undefined && p2.getRadius() !== undefined) {
             p1.destroy();

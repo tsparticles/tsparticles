@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-engine",
-  "version": "2.0.0-alpha.4",
+  "version": "2.0.0-alpha.5",
   "description": "Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno.",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -9,7 +9,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
-    "directory": "core/main"
+    "directory": "engine"
   },
   "keywords": [
     "tsparticles",
@@ -62,15 +62,29 @@
   },
   "main": "index.js",
   "module": "esm/index.js",
-  "jsdelivr": "tsparticles.core.min.js",
-  "unpkg": "tsparticles.core.min.js",
+  "jsdelivr": "tsparticles.engine.min.js",
+  "unpkg": "tsparticles.engine.min.js",
   "browser": "index.js",
   "types": "index.d.ts",
+  "typesVersions": {
+    ">=4.0 <4.1": {
+      "*": [
+        "dist/ts4.0"
+      ]
+    },
+    ">=3.8 <4.0": {
+      "*": [
+        "dist/ts3.8"
+      ]
+    },
+    "<3.8": {
+      "*": [
+        "dist/ts3.4"
+      ]
+    }
+  },
   "funding": {
     "type": "github",
     "url": "https://github.com/sponsors/matteobruni"
-  },
-  "optionalDependencies": {
-    "pathseg": "^1.2.0"
   }
 }

@@ -9,7 +9,7 @@ export default {
         sourcemap: true,
         globals: {
             jquery: 'jQuery',
-            'tsparticles-core': 'window'
+            'tsparticles-engine': 'window'
         }
     },
     external: [
