@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-plugin-emitters",
-  "version": "2.0.0-alpha.4",
+  "version": "2.0.0-alpha.5",
   "description": "tsParticles emitters plugin",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -65,6 +65,6 @@
     }
   },
   "dependencies": {
-    "tsparticles-engine": "^2.0.0-alpha.4"
+    "tsparticles-engine": "^2.0.0-alpha.5"
   }
 }
