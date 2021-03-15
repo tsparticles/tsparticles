@@ -1915,6 +1915,39 @@ tslib@^1.8.1, tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
+tsparticles-engine@^2.0.0-alpha.5:
+  version "2.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.0-alpha.5.tgz#dd054053444426d475d19ef47c4d886bef221634"
+  integrity sha512-RyowzNL7Pg03JWZf8vvmRuS+l42aNsU2qgskl0K70dO2M3hfDdsDSibnIv7GqIjYSeO5WGp4ZixhvGifptuX4Q==
+
+tsparticles-interaction-particles-move@^2.0.0-alpha.5:
+  version "2.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/tsparticles-interaction-particles-move/-/tsparticles-interaction-particles-move-2.0.0-alpha.5.tgz#9f3022b0614ea05c6ebdc405ee65fc1725df556b"
+  integrity sha512-afhINqSlR3y0VLrxW+afGX1lWJl98/NR2oBzboHMswcc7w8Hf4gHv+uYVuB6UKzbOiGb+/EWu8U4NHSjE2AdFw==
+  dependencies:
+    tsparticles-engine "^2.0.0-alpha.5"
+
+tsparticles-plugin-emitters@^2.0.0-alpha.5:
+  version "2.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/tsparticles-plugin-emitters/-/tsparticles-plugin-emitters-2.0.0-alpha.5.tgz#1a5d1faf1ea8b56b63e71cbd2005e2ae596a6354"
+  integrity sha512-+7Wbqh2GhW6vpdqt9iQ3RcEf6mEoTYtYpQvSgE7p9FkuBthR0TgcZCskVF8BoZJbQGt3BpZoKkaYmOvNc/pHCA==
+  dependencies:
+    tsparticles-engine "^2.0.0-alpha.5"
+
+tsparticles-shape-circle@^2.0.0-alpha.5:
+  version "2.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/tsparticles-shape-circle/-/tsparticles-shape-circle-2.0.0-alpha.5.tgz#1cea088de1e14fe65f59ecbbdce7de281316f12f"
+  integrity sha512-XK4layf7ALifXIs/vJu8PDK4nBm+fpvfKUTs4fk2x2khQ+UjKCytkca7HtUvuEXO3tFV4EOSyBKzYrl7PZHClg==
+  dependencies:
+    tsparticles-engine "^2.0.0-alpha.5"
+
+tsparticles-updater-out-modes@^2.0.0-alpha.5:
+  version "2.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/tsparticles-updater-out-modes/-/tsparticles-updater-out-modes-2.0.0-alpha.5.tgz#ab69e4d17ae98f85513d9f9dbaf483212ad22ecd"
+  integrity sha512-PP9+RuqH/+TblARRhWuRuVw70pVT46vc9QVS+TMpIEDjsO7aJ9vcRWghiTugdYV7ZBjI6x68t1l8gAVOynjbug==
+  dependencies:
+    tsparticles-engine "^2.0.0-alpha.5"
+
 tsutils@^3.17.1:
   version "3.21.0"
   resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-3.21.0.tgz#b48717d394cea6c1e096983eed58e9d61715b623"
