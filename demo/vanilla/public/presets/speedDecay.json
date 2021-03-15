@@ -1,36 +1,38 @@
 {
   "fpsLimit": 60,
   "particles": {
+    "bounce": {
+      "vertical": {
+        "value": 0.8,
+        "random": {
+          "enable": true,
+          "minimValue": 0.4
+        }
+      }
+    },
     "number": {
       "value": 0
     },
     "color": {
-      "value": "#ffffff"
+      "value": [
+        "#5bc0eb",
+        "#fde74c",
+        "#9bc53d",
+        "#e55934",
+        "#fa7921"
+      ]
     },
     "shape": {
       "type": "circle"
     },
     "opacity": {
-      "value": 0.5,
-      "random": false,
-      "animation": {
-        "enable": false,
-        "speed": 1,
-        "minimumValue": 0.1,
-        "sync": false
-      }
+      "value": 0.5
     },
     "size": {
-      "value": 15,
+      "value": 10,
       "random": {
         "enable": true,
-        "minimumValue": 10
-      },
-      "animation": {
-        "enable": false,
-        "speed": 40,
-        "minimumValue": 0.1,
-        "sync": false
+        "minimumValue": 5
       }
     },
     "links": {
@@ -48,7 +50,8 @@
       "gravity": {
         "enable": true
       },
-      "speed": 10,
+      "decay": 0.05,
+      "speed": 30,
       "direction": "none",
       "random": false,
       "straight": false,
@@ -69,43 +72,7 @@
   "interactivity": {
     "detect_on": "canvas",
     "events": {
-      "onHover": {
-        "enable": false,
-        "mode": "repulse",
-        "parallax": {
-          "enable": false,
-          "force": 60,
-          "smooth": 10
-        }
-      },
-      "onClick": {
-        "enable": true,
-        "mode": "push"
-      },
       "resize": true
-    },
-    "modes": {
-      "grab": {
-        "distance": 400,
-        "line_linked": {
-          "opacity": 1
-        }
-      },
-      "bubble": {
-        "distance": 400,
-        "size": 40,
-        "duration": 2,
-        "opacity": 0.8
-      },
-      "repulse": {
-        "distance": 200
-      },
-      "push": {
-        "particles_nb": 4
-      },
-      "remove": {
-        "particles_nb": 2
-      }
     }
   },
   "detectRetina": true,
@@ -114,11 +81,6 @@
   },
   "emitters": {
     "direction": "top",
-    "life": {
-      "count": 0,
-      "duration": 5,
-      "delay": 2
-    },
     "rate": {
       "delay": 0.1,
       "quantity": 1
@@ -127,43 +89,9 @@
       "width": 0,
       "height": 0
     },
-    "particles": {
-      "bounce": {
-        "vertical": {
-          "value": 0.8,
-          "random": {
-            "enable": true,
-            "minimValue": 0.4
-          }
-        }
-      },
-      "color": {
-        "value": [
-          "#5bc0eb",
-          "#fde74c",
-          "#9bc53d",
-          "#e55934",
-          "#fa7921"
-        ]
-      },
-      "links": {
-        "enable": false
-      },
-      "size": {
-        "value": 10,
-        "random": {
-          "enable": true,
-          "minimumValue": 5
-        }
-      },
-      "opacity": {
-        "value": 0.5
-      },
-      "move": {
-        "speed": 30,
-        "random": false,
-        "decay": 0.1
-      }
+    "position": {
+      "x": 50,
+      "y": 50
     }
   }
 }
