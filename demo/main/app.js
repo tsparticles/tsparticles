@@ -29,6 +29,7 @@ app.use("/preset-fountain", express.static("./node_modules/tsparticles-preset-fo
 app.use("/preset-snow", express.static("./node_modules/tsparticles-preset-snow/dist"));
 app.use("/preset-stars", express.static("./node_modules/tsparticles-preset-stars/dist"));
 app.use("/shape-bubble", express.static("./node_modules/tsparticles-shape-bubble/dist"));
+app.use("/shape-confetti", express.static("./node_modules/tsparticles-shape-confetti/dist"));
 app.use("/shape-heart", express.static("./node_modules/tsparticles-shape-heart/dist"));
 app.use("/shape-multiline-text", express.static("./node_modules/tsparticles-shape-multiline-text/dist"));
 app.use("/shape-rounded-rect", express.static("./node_modules/tsparticles-shape-rounded-rect/dist"));

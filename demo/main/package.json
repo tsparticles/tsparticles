@@ -53,6 +53,7 @@
     "tsparticles-preset-snow": "^1.5.1",
     "tsparticles-preset-stars": "^1.5.1",
     "tsparticles-shape-bubble": "^1.5.1",
+    "tsparticles-shape-confetti": "^1.5.1",
     "tsparticles-shape-heart": "^1.5.1",
     "tsparticles-shape-multiline-text": "^1.5.1",
     "tsparticles-shape-rounded-rect": "^1.5.1",
