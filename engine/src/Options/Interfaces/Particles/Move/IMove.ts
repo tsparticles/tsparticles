@@ -43,6 +43,7 @@ export interface IMove {
 
     angle: number | IMoveAngle;
     attract: IAttract;
+    decay: number;
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     distance: number | Partial<IDistance>;
     enable: boolean;

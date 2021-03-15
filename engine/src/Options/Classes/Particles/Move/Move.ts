@@ -111,6 +111,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
     constructor() {
         this.angle = new MoveAngle();
         this.attract = new Attract();
+        this.decay = 0;
         this.direction = MoveDirection.none;
         this.distance = {};
         this.enable = false;
