@@ -55,6 +55,7 @@
     "tsparticles-shape-bubble": "^1.5.1",
     "tsparticles-shape-heart": "^1.5.1",
     "tsparticles-shape-multiline-text": "^1.5.1",
+    "tsparticles-shape-rounded-rect": "^1.5.1",
     "tsparticles-shape-spiral": "^1.5.1"
   }
 }
