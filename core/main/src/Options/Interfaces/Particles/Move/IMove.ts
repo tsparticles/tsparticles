@@ -33,6 +33,7 @@ export interface IMove {
 
     angle: number | IMoveAngle;
     attract: IAttract;
+    decay: number;
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     distance: number;
     enable: boolean;

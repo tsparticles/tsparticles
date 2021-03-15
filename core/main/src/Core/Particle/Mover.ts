@@ -59,6 +59,11 @@ export class Mover {
             particle.velocity.vertical += (gravityOptions.acceleration * delta.factor) / (60 * moveSpeed);
         }
 
+        const decay = 1 - particle.options.move.decay;
+
+        particle.velocity.horizontal *= decay;
+        particle.velocity.vertical *= decay;
+
         const velocity = {
             horizontal: particle.velocity.horizontal * moveSpeed,
             vertical: particle.velocity.vertical * moveSpeed,
