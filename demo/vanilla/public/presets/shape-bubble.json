@@ -17,7 +17,7 @@
       }
     },
     "shape": {
-      "type": "rounded-rect"
+      "type": "bubble"
     },
     "opacity": {
       "value": 0.5,
@@ -30,7 +30,7 @@
       }
     },
     "size": {
-      "value": 50,
+      "value": 10,
       "random": {
         "enable": true,
         "minimumValue": 5

@@ -115,7 +115,7 @@
     loadFull(tsParticles);
     loadBubbleShape(tsParticles);
     loadHeartShape(tsParticles);
-    loadMutliLineTextShape(tsParticles);
+    loadMultilineTextShape(tsParticles);
     loadRoundedRectShape(tsParticles);
     loadSpiralShape(tsParticles);
 

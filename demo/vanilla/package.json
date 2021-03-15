@@ -59,6 +59,7 @@
     "tsparticles-shape-line": "^2.0.0-alpha.5",
     "tsparticles-shape-multiline-text": "^2.0.0-alpha.5",
     "tsparticles-shape-polygon": "^2.0.0-alpha.5",
+    "tsparticles-shape-rounded-rect": "^2.0.0-alpha.5",
     "tsparticles-shape-spiral": "^2.0.0-alpha.5",
     "tsparticles-shape-square": "^2.0.0-alpha.5",
     "tsparticles-shape-star": "^2.0.0-alpha.5",
