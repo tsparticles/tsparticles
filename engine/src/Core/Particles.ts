@@ -157,12 +157,6 @@ export class Particles {
             }
         }
 
-        for (const [, plugin] of container.plugins) {
-            if (plugin.update !== undefined) {
-                plugin.update(delta);
-            }
-        }
-
         for (const particle of this.array) {
             if (particle.destroyed) {
                 particlesToDelete.push(particle);
