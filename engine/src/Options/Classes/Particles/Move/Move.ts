@@ -115,7 +115,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.distance = {};
         this.enable = false;
         this.gravity = new MoveGravity();
-        this.decay = 1;
+        this.decay = 0;
         this.outModes = new OutModes();
         this.path = new MovePath();
         this.random = false;
