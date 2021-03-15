@@ -92,6 +92,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
     public angle;
     public attract;
+    public decay;
     public direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     public distance: Partial<IDistance>;
     public enable;
@@ -114,6 +115,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.distance = {};
         this.enable = false;
         this.gravity = new MoveGravity();
+        this.decay = 1;
         this.outModes = new OutModes();
         this.path = new MovePath();
         this.random = false;
@@ -141,6 +143,10 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
         this.attract.load(data.attract);
 
+        if (data.decay !== undefined) {
+            this.decay = data.decay;
+        }
+
         if (data.direction !== undefined) {
             this.direction = data.direction;
         }
@@ -160,6 +166,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
         }
 
         this.gravity.load(data.gravity);
+
         this.path.load(data.path ?? data.noise);
 
         const outMode = data.outMode ?? data.out_mode;

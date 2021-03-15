@@ -99,6 +99,8 @@ export class Mover extends ParticlesInteractorBase {
 
         const gravityOptions = particlesOptions.move.gravity;
 
+        particle.velocity.multTo(1 - particle.options.move.decay);
+
         if (gravityOptions.enable) {
             particle.velocity.y += (gravityOptions.acceleration * delta.factor) / (60 * moveSpeed);
         }

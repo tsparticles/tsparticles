@@ -24,6 +24,8 @@ export interface IMove {
      */
     collisions: boolean;
 
+    decay: number;
+
     /**
      * @deprecated use the new outModes instead
      */
