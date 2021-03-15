@@ -113,6 +113,11 @@
     }
 
     loadFull(tsParticles);
+    loadBubbleShape(tsParticles);
+    loadHeartShape(tsParticles);
+    loadMutliLineTextShape(tsParticles);
+    loadRoundedRectShape(tsParticles);
+    loadSpiralShape(tsParticles);
 
     tsParticles.loadJSON("tsparticles", `/presets/${presetId}.json`).then((particles) => {
       localStorage.presetId = presetId;
