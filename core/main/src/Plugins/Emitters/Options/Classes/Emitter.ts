@@ -8,6 +8,7 @@ import { EmitterLife } from "./EmitterLife";
 import { Utils } from "../../../../Utils";
 import { EmitterSize } from "./EmitterSize";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
+import { AnimatableColor } from "../../../../Options/Classes/Particles/AnimatableColor";
 
 /**
  * [[include:Options/Plugins/Emitters.md]]
@@ -21,6 +22,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     public particles?: RecursivePartial<IParticles>;
     public position?: RecursivePartial<ICoordinates>;
     public rate;
+    public spawnColor?: AnimatableColor;
 
     constructor() {
         this.direction = MoveDirection.none;
@@ -60,6 +62,14 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
                 x: data.position.x,
                 y: data.position.y,
             };
+        }
+
+        if (data.spawnColor !== undefined) {
+            if (this.spawnColor === undefined) {
+                this.spawnColor = new AnimatableColor();
+            }
+
+            this.spawnColor.load(data.spawnColor);
         }
     }
 }

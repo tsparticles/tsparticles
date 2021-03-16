@@ -1,3 +1,4 @@
+import { describe, it } from "mocha";
 import { expect } from "chai";
 import { Container } from "../src/Core/Container";
 import { IParticle } from "../src/Core/Interfaces/IParticle";
@@ -204,7 +205,7 @@ describe("Utils", () => {
         it("should generate a random number in the specified range, range in positive reals", () => {
             const min = 1;
             const max = 10;
-            const randomNumber = NumberUtils.randomInRange(min, max);
+            const randomNumber = NumberUtils.randomInRange(NumberUtils.setRangeValue(min, max));
 
             expect(randomNumber).to.be.within(min, max);
         });
@@ -212,7 +213,7 @@ describe("Utils", () => {
         it("should generate a random number in the specified range, range in negative reals", () => {
             const min = -10;
             const max = -1;
-            const randomNumber = NumberUtils.randomInRange(min, max);
+            const randomNumber = NumberUtils.randomInRange(NumberUtils.setRangeValue(min, max));
 
             expect(randomNumber).to.be.within(min, max);
         });
@@ -220,7 +221,7 @@ describe("Utils", () => {
         it("should generate a random number in the specified range, range crossing negative and positive reals", () => {
             const min = -10;
             const max = 10;
-            const randomNumber = NumberUtils.randomInRange(min, max);
+            const randomNumber = NumberUtils.randomInRange(NumberUtils.setRangeValue(min, max));
 
             expect(randomNumber).to.be.within(min, max);
         });
