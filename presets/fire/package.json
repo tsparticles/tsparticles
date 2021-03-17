@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-fire",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "description": "tsParticles fire preset",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -70,6 +70,6 @@
     "webpack-cli": "^4.1.0"
   },
   "dependencies": {
-    "tsparticles": "^1.20.1"
+    "tsparticles": "^1.21.0"
   }
 }
