@@ -1,6 +1,6 @@
-import { RecursivePartial } from "../../Types";
-import { IOptionLoader } from "../Interfaces/IOptionLoader";
-import { IAnimation } from "../Interfaces/IAnimation";
+import type { IAnimation } from "../Interfaces/IAnimation";
+import type { IOptionLoader } from "../Interfaces/IOptionLoader";
+import type { RecursivePartial } from "../../Types";
 
 export class AnimationOptions implements IAnimation, IOptionLoader<IAnimation> {
     public count: number;
