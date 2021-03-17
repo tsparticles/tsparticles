@@ -48,9 +48,9 @@ export class Particle implements IParticle {
     public livesRemaining;
     public misplaced;
     public spawning;
-    public lastNoiseTime;
+    public lastPathTime;
 
-    public readonly noiseDelay;
+    public readonly pathDelay;
     public readonly updater;
     public readonly infecter;
     public readonly mover;
@@ -97,7 +97,7 @@ export class Particle implements IParticle {
         this.links = [];
         this.fill = true;
         this.close = true;
-        this.lastNoiseTime = 0;
+        this.lastPathTime = 0;
         this.destroyed = false;
         this.misplaced = false;
         this.loops = {
@@ -164,7 +164,7 @@ export class Particle implements IParticle {
         this.fill = this.shapeData?.fill ?? this.fill;
         this.close = this.shapeData?.close ?? this.close;
         this.options = particlesOptions;
-        this.noiseDelay = NumberUtils.getValue(this.options.move.noise.delay) * 1000;
+        this.pathDelay = NumberUtils.getValue(this.options.move.noise.delay) * 1000;
 
         container.retina.initParticle(this);
 

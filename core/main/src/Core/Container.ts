@@ -16,10 +16,10 @@ import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import { EventListeners, Plugins, Utils } from "../Utils";
 import { Particle } from "./Particle";
-import type { INoiseValue } from "./Interfaces/INoiseValue";
-import type { INoise } from "./Interfaces/INoise";
+import type { IPathValue } from "./Interfaces/IPathValue";
 import type { IRgb } from "./Interfaces/Colors";
 import type { IAttract } from "./Interfaces/IAttract";
+import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -76,7 +76,7 @@ export class Container {
      */
     public readonly plugins;
 
-    public readonly noise: INoise;
+    public readonly pathGenerator: IMovePathGenerator;
 
     private paused;
     private firstStart;
@@ -108,8 +108,8 @@ export class Container {
         this.canvas = new Canvas(this);
         this.particles = new Particles(this);
         this.drawer = new FrameManager(this);
-        this.noise = {
-            generate: (): INoiseValue => {
+        this.pathGenerator = {
+            generate: (): IPathValue => {
                 return {
                     angle: Math.random() * Math.PI * 2,
                     length: Math.random(),
@@ -235,41 +235,56 @@ export class Container {
     }
 
     /**
-     * Customise noise generation
-     * @param noiseOrGenerator the [[INoise]] object or a function that generates a [[INoiseValue]] object from [[Particle]]
-     * @param init the [[INoise]] init function, if the first parameter is a generator function
-     * @param update the [[INoise]] update function, if the first parameter is a generator function
+     * Customise path generation
+     * @deprecated Use the new setPath
+     * @param noiseOrGenerator the [[IMovePathGenerator]] object or a function that generates a [[Vector]] object from [[Particle]]
+     * @param init the [[IMovePathGenerator]] init function, if the first parameter is a generator function
+     * @param update the [[IMovePathGenerator]] update function, if the first parameter is a generator function
      */
     public setNoise(
-        noiseOrGenerator?: INoise | ((particle: Particle) => INoiseValue),
+        noiseOrGenerator?: IMovePathGenerator | ((particle: Particle) => IPathValue),
         init?: () => void,
         update?: () => void
     ): void {
-        if (!noiseOrGenerator) {
+        this.setPath(noiseOrGenerator, init, update);
+    }
+
+    /**
+     * Customise path generation
+     * @param pathOrGenerator the [[IMovePathGenerator]] object or a function that generates a [[Vector]] object from [[Particle]]
+     * @param init the [[IMovePathGenerator]] init function, if the first parameter is a generator function
+     * @param update the [[IMovePathGenerator]] update function, if the first parameter is a generator function
+     */
+    public setPath(
+        pathOrGenerator?: IMovePathGenerator | ((particle: Particle) => IPathValue),
+        init?: () => void,
+        update?: () => void
+    ): void {
+        if (!pathOrGenerator) {
             return;
         }
 
-        if (typeof noiseOrGenerator === "function") {
-            this.noise.generate = noiseOrGenerator;
+        if (typeof pathOrGenerator === "function") {
+            this.pathGenerator.generate = pathOrGenerator;
 
             if (init) {
-                this.noise.init = init;
+                this.pathGenerator.init = init;
             }
 
             if (update) {
-                this.noise.update = update;
+                this.pathGenerator.update = update;
             }
         } else {
-            if (noiseOrGenerator.generate) {
-                this.noise.generate = noiseOrGenerator.generate;
+            if (pathOrGenerator.generate) {
+                this.pathGenerator.generate = pathOrGenerator.generate;
             }
 
-            if (noiseOrGenerator.init) {
-                this.noise.init = noiseOrGenerator.init;
+            if (pathOrGenerator.init) {
+                this.pathGenerator.init = pathOrGenerator.init;
             }
 
-            if (noiseOrGenerator.update) {
-                this.noise.update = noiseOrGenerator.update;
+            if (pathOrGenerator.update) {
+                this.pathGenerator.update = pathOrGenerator.update;
             }
         }
     }

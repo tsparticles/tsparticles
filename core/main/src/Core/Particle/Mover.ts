@@ -1,4 +1,4 @@
-import { NumberUtils, Utils } from "../../Utils";
+import { NumberUtils, Plugins, Utils } from "../../Utils";
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
 import { HoverMode } from "../../Enums";
@@ -51,7 +51,7 @@ export class Mover {
         const sizeFactor = particlesOptions.move.size ? particle.getRadius() / maxSize : 1;
         const moveSpeed = (baseSpeed / 2) * sizeFactor * slowFactor * delta.factor;
 
-        this.applyNoise(delta);
+        this.applyPath(delta);
 
         const gravityOptions = particlesOptions.move.gravity;
 
@@ -111,32 +111,45 @@ export class Mover {
         }
     }
 
-    private applyNoise(delta: IDelta): void {
+    private applyPath(delta: IDelta): void {
         const particle = this.particle;
         const particlesOptions = particle.options;
-        const noiseOptions = particlesOptions.move.noise;
-        const noiseEnabled = noiseOptions.enable;
+        const pathOptions = particlesOptions.move.noise;
+        const pathEnabled = pathOptions.enable;
 
-        if (!noiseEnabled) {
+        if (!pathEnabled) {
             return;
         }
 
         const container = this.container;
 
-        if (particle.lastNoiseTime <= particle.noiseDelay) {
-            particle.lastNoiseTime += delta.value;
+        if (particle.lastPathTime <= particle.pathDelay) {
+            particle.lastPathTime += delta.value;
 
             return;
         }
 
-        const noise = container.noise.generate(particle);
+        let generator = container.pathGenerator;
 
-        particle.velocity.horizontal += Math.cos(noise.angle) * noise.length;
-        particle.velocity.horizontal = NumberUtils.clamp(particle.velocity.horizontal, -1, 1);
-        particle.velocity.vertical += Math.sin(noise.angle) * noise.length;
-        particle.velocity.vertical = NumberUtils.clamp(particle.velocity.vertical, -1, 1);
+        if (pathOptions.generator) {
+            const customGenerator = Plugins.getPathGenerator(pathOptions.generator);
 
-        particle.lastNoiseTime -= particle.noiseDelay;
+            if (customGenerator) {
+                generator = customGenerator;
+            }
+        }
+
+        const path = generator.generate(particle);
+
+        particle.velocity.horizontal += Math.cos(path.angle) * path.length;
+        particle.velocity.vertical += Math.sin(path.angle) * path.length;
+
+        if (pathOptions.clamp) {
+            particle.velocity.horizontal = NumberUtils.clamp(particle.velocity.horizontal, -1, 1);
+            particle.velocity.vertical = NumberUtils.clamp(particle.velocity.vertical, -1, 1);
+        }
+
+        particle.lastPathTime -= particle.pathDelay;
     }
 
     private moveParallax(): void {

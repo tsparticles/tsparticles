@@ -26,6 +26,7 @@ app.use("/preset-bouncing", express.static("./node_modules/tsparticles-preset-bo
 app.use("/preset-fire", express.static("./node_modules/tsparticles-preset-fire/dist"));
 app.use("/preset-font-awesome", express.static("./node_modules/tsparticles-preset-font-awesome/dist"));
 app.use("/preset-fountain", express.static("./node_modules/tsparticles-preset-fountain/dist"));
+app.use("/preset-sea-anemone", express.static("./node_modules/tsparticles-preset-sea-anemone/dist"));
 app.use("/preset-snow", express.static("./node_modules/tsparticles-preset-snow/dist"));
 app.use("/preset-stars", express.static("./node_modules/tsparticles-preset-stars/dist"));
 app.use("/shape-bubble", express.static("./node_modules/tsparticles-shape-bubble/dist"));
