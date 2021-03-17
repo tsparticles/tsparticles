@@ -32,6 +32,7 @@ import type { ILink } from "./Interfaces/ILink";
 import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 import type { Stroke } from "../Options/Classes/Particles/Stroke";
+import { IParticleLoops } from "./Interfaces/IParticleLoops";
 
 /**
  * The single particle object
@@ -56,6 +57,7 @@ export class Particle implements IParticle {
     public readonly sides;
     public readonly strokeWidth;
     public readonly options;
+    public readonly loops: IParticleLoops;
 
     public links: ILink[];
     public randomIndexData?: number;
@@ -98,6 +100,10 @@ export class Particle implements IParticle {
         this.lastNoiseTime = 0;
         this.destroyed = false;
         this.misplaced = false;
+        this.loops = {
+            opacity: 0,
+            size: 0,
+        };
 
         const pxRatio = container.retina.pixelRatio;
         const options = container.actualOptions;
@@ -465,6 +471,14 @@ export class Particle implements IParticle {
         this.destroyed = true;
         this.bubble.inRange = false;
         this.links = [];
+    }
+
+    /**
+     * This method is used when the particle has lost a life and needs some value resets
+     */
+    public reset(): void {
+        this.loops.opacity = 0;
+        this.loops.size = 0;
     }
 
     private setColorAnimation(colorAnimation: IColorAnimation, colorValue: IParticleValueAnimation<number>): void {

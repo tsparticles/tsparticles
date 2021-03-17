@@ -2,11 +2,12 @@ import type { IOpacityAnimation } from "../../../Interfaces/Particles/Opacity/IO
 import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { DestroyType, StartValueType } from "../../../../Enums/Types";
+import { AnimationOptions } from "../../AnimationOptions";
 
 /**
  * @category Options
  */
-export class OpacityAnimation implements IOpacityAnimation, IOptionLoader<IOpacityAnimation> {
+export class OpacityAnimation extends AnimationOptions implements IOpacityAnimation, IOptionLoader<IOpacityAnimation> {
     /**
      *
      * @deprecated this property is obsolete, please use the new minimumValue
@@ -25,13 +26,11 @@ export class OpacityAnimation implements IOpacityAnimation, IOptionLoader<IOpaci
     }
 
     public destroy: DestroyType | keyof typeof DestroyType;
-    public enable;
     public minimumValue;
-    public speed;
     public startValue: StartValueType | keyof typeof StartValueType;
-    public sync;
 
     constructor() {
+        super();
         this.destroy = DestroyType.none;
         this.enable = false;
         this.minimumValue = 0;
@@ -44,6 +43,8 @@ export class OpacityAnimation implements IOpacityAnimation, IOptionLoader<IOpaci
         if (data === undefined) {
             return;
         }
+
+        super.load(data);
 
         if (data.destroy !== undefined) {
             this.destroy = data.destroy;

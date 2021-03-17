@@ -8,7 +8,6 @@ import { IBounds } from "../Interfaces/IBounds";
 import { IDimension } from "../Interfaces/IDimension";
 import { ICoordinates } from "../Interfaces/ICoordinates";
 import { IParticleValueAnimation } from "../Interfaces/IParticleValueAnimation";
-import { ColorAnimation } from "../../Options/Classes/ColorAnimation";
 import { IColorAnimation } from "../../Options/Interfaces/IColorAnimation";
 import { IHslAnimation } from "../../Options/Interfaces/IHslAnimation";
 import { IAnimatableColor } from "../../Options/Interfaces/Particles/IAnimatableColor";
@@ -193,6 +192,7 @@ export class Updater {
                 particle.spawning = true;
                 particle.lifeDelayTime = 0;
                 particle.lifeTime = 0;
+                particle.reset();
 
                 const lifeOptions = particle.options.life;
 
@@ -208,11 +208,12 @@ export class Updater {
         const minValue = opacityAnim.minimumValue;
         const maxValue = particle.options.opacity.value;
 
-        if (opacityAnim.enable) {
+        if (!particle.destroyed && opacityAnim.enable && particle.loops.size < opacityAnim.count) {
             switch (particle.opacity.status) {
                 case AnimationStatus.increasing:
                     if (particle.opacity.value >= maxValue) {
                         particle.opacity.status = AnimationStatus.decreasing;
+                        particle.loops.opacity++;
                     } else {
                         particle.opacity.value += (particle.opacity.velocity ?? 0) * delta.factor;
                     }
@@ -220,6 +221,7 @@ export class Updater {
                 case AnimationStatus.decreasing:
                     if (particle.opacity.value <= minValue) {
                         particle.opacity.status = AnimationStatus.increasing;
+                        particle.loops.opacity++;
                     } else {
                         particle.opacity.value -= (particle.opacity.velocity ?? 0) * delta.factor;
                     }
@@ -243,11 +245,12 @@ export class Updater {
         const maxValue = particle.sizeValue ?? container.retina.sizeValue;
         const minValue = sizeAnim.minimumValue * container.retina.pixelRatio;
 
-        if (sizeAnim.enable) {
+        if (!particle.destroyed && sizeAnim.enable && particle.loops.size < sizeAnim.count) {
             switch (particle.size.status) {
                 case AnimationStatus.increasing:
                     if (particle.size.value >= maxValue) {
                         particle.size.status = AnimationStatus.decreasing;
+                        particle.loops.size++;
                     } else {
                         particle.size.value += sizeVelocity;
                     }
@@ -255,6 +258,7 @@ export class Updater {
                 case AnimationStatus.decreasing:
                     if (particle.size.value <= minValue) {
                         particle.size.status = AnimationStatus.increasing;
+                        particle.loops.size++;
                     } else {
                         particle.size.value -= sizeVelocity;
                     }
