@@ -2,6 +2,7 @@ const path = require("path");
 const TerserPlugin = require("terser-webpack-plugin");
 const webpack = require("webpack");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const version = require("./package.json").version;
 
 function getEntry(name) {
     const obj = {};
@@ -12,17 +13,17 @@ function getEntry(name) {
     return obj;
 }
 
-const getConfig = (entry, bannerInput, minBannerInput) => {
+function getConfig(entry, banner, minBanner, dir) {
     return {
         entry: entry,
         output: {
-            path: path.resolve(__dirname, "dist"),
+            path: path.resolve(dir, "dist"),
             filename: "[name].js",
             libraryTarget: "umd",
             globalObject: "this"
         },
         resolve: {
-            extensions: [ ".js", ".json" ]
+            extensions: [".js", ".json"]
         },
         externals: [
             {
@@ -30,6 +31,18 @@ const getConfig = (entry, bannerInput, minBannerInput) => {
                     commonjs: "tsparticles",
                     commonjs2: "tsparticles",
                     amd: "tsparticles",
+                    root: "window"
+                },
+                "tsparticles-engine": {
+                    commonjs: "tsparticles-engine",
+                    commonjs2: "tsparticles-engine",
+                    amd: "tsparticles-engine",
+                    root: "window"
+                },
+                "tsparticles-slim": {
+                    commonjs: "tsparticles-slim",
+                    commonjs2: "tsparticles-slim",
+                    amd: "tsparticles-slim",
                     root: "window"
                 },
             }
@@ -46,18 +59,18 @@ const getConfig = (entry, bannerInput, minBannerInput) => {
         },
         plugins: [
             new webpack.BannerPlugin({
-                banner: bannerInput,
+                banner,
                 exclude: /\.min\.js$/
             }),
             new webpack.BannerPlugin({
-                banner: minBannerInput,
+                banner: minBanner,
                 include: /\.min\.js$/
             }),
             new BundleAnalyzerPlugin({
                 openAnalyzer: false,
                 analyzerMode: "static",
                 exclude: /\.min\.js$/,
-                reportFilename: "report.html"
+                reportFilename: `report.html`
             })
         ],
         optimization: {
@@ -75,9 +88,7 @@ const getConfig = (entry, bannerInput, minBannerInput) => {
             ]
         }
     };
-};
-
-const version = require("./package.json").version;
+}
 
 const banner = `Author : Matteo Bruni - https://www.matteobruni.it
 MIT license: https://opensource.org/licenses/MIT
@@ -89,5 +100,6 @@ v${version}`;
 const minBanner = `tsParticles Confetti Shape v${version} by Matteo Bruni`;
 
 module.exports = [
-    getConfig(getEntry("confetti"), banner, minBanner)
+    getConfig(getEntry("confetti"), banner, minBanner, __dirname)
 ];
+
