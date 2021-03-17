@@ -1,7 +1,7 @@
 {
   "name": "react-tsparticles-demo",
   "private": true,
-  "version": "1.5.1",
+  "version": "1.6.0",
   "description": "> TODO: description",
   "author": "Matteo Bruni <ar3s@icloud.com>",
   "homepage": "https://github.com/matteobruni/tsparticles#readme",
@@ -35,7 +35,7 @@
   "dependencies": {
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
-    "react-tsparticles": "^1.20.1",
-    "tsparticles": "^1.20.1"
+    "react-tsparticles": "^1.21.0",
+    "tsparticles": "^1.21.0"
   }
 }

@@ -35,7 +35,9 @@ export class StrokeOptionsEditor extends EditorBase {
             options.color = {
                 value: "",
                 animation: {
+                    count: 0,
                     enable: false,
+                    offset: { max: 0, min: 0 },
                     speed: 0,
                     sync: false,
                 },

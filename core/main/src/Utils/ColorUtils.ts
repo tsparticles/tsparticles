@@ -3,7 +3,8 @@ import { Utils } from "./Utils";
 import { Constants } from "./Constants";
 import type { IImage } from "../Core/Interfaces/IImage";
 import { NumberUtils } from "./NumberUtils";
-import { IParticle } from "../Core/Interfaces/IParticle";
+import type { IParticle } from "../Core/Interfaces/IParticle";
+import type { IParticleHslAnimation } from "../Core/Interfaces/IParticleHslAnimation";
 
 /**
  *
@@ -426,9 +427,9 @@ export class ColorUtils {
         const fixedMin = min ?? 0;
 
         return {
-            b: Math.floor(NumberUtils.randomInRange(fixedMin, 256)),
-            g: Math.floor(NumberUtils.randomInRange(fixedMin, 256)),
-            r: Math.floor(NumberUtils.randomInRange(fixedMin, 256)),
+            b: Math.floor(NumberUtils.randomInRange(NumberUtils.setRangeValue(fixedMin, 256))),
+            g: Math.floor(NumberUtils.randomInRange(NumberUtils.setRangeValue(fixedMin, 256))),
+            r: Math.floor(NumberUtils.randomInRange(NumberUtils.setRangeValue(fixedMin, 256))),
         };
     }
 
@@ -533,5 +534,15 @@ export class ColorUtils {
                 value: color,
             });
         }
+    }
+
+    public static getHslFromAnimation(animation?: IParticleHslAnimation): IHsl | undefined {
+        return animation !== undefined
+            ? {
+                  h: animation.h.value,
+                  s: animation.s.value,
+                  l: animation.l.value,
+              }
+            : undefined;
     }
 }

@@ -3,6 +3,7 @@ import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import { MoveDirection } from "../Enums/Directions";
 import type { IVelocity } from "../Core/Interfaces/IVelocity";
+import { RangeValue } from "../Types/RangeValue";
 
 export class NumberUtils {
     /**
@@ -26,18 +27,50 @@ export class NumberUtils {
         return Math.floor((comp1 * weight1 + comp2 * weight2) / (weight1 + weight2));
     }
 
-    public static randomInRange(r1: number, r2: number): number {
-        const max = Math.max(r1, r2),
-            min = Math.min(r1, r2);
+    public static randomInRange(r: RangeValue): number {
+        const max = NumberUtils.getRangeMax(r);
+        let min = NumberUtils.getRangeMin(r);
+
+        if (max === min) {
+            min = 0;
+        }
 
         return Math.random() * (max - min) + min;
+    }
+
+    public static getRangeValue(value: RangeValue): number {
+        return typeof value === "number" ? value : NumberUtils.randomInRange(value);
+    }
+
+    public static getRangeMin(value: RangeValue): number {
+        return typeof value === "number" ? value : value.min;
+    }
+
+    public static getRangeMax(value: RangeValue): number {
+        return typeof value === "number" ? value : value.max;
+    }
+
+    public static setRangeValue(source: RangeValue, value?: number): RangeValue {
+        if (source === value || (value === undefined && typeof source === "number")) {
+            return source;
+        }
+
+        const min = NumberUtils.getRangeMin(source),
+            max = NumberUtils.getRangeMax(source);
+
+        return value !== undefined
+            ? {
+                  min: Math.min(min, value),
+                  max: Math.max(max, value),
+              }
+            : NumberUtils.setRangeValue(min, max);
     }
 
     public static getValue(options: IValueWithRandom): number {
         const random = options.random;
         const { enable, minimumValue } = typeof random === "boolean" ? { enable: random, minimumValue: 0 } : random;
 
-        return enable ? NumberUtils.randomInRange(minimumValue, options.value) : options.value;
+        return enable ? NumberUtils.randomInRange({ min: minimumValue, max: options.value }) : options.value;
     }
 
     /**

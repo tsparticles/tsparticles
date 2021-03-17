@@ -2,11 +2,12 @@ import type { ISizeAnimation } from "../../../Interfaces/Particles/Size/ISizeAni
 import type { RecursivePartial } from "../../../../Types";
 import { DestroyType, StartValueType } from "../../../../Enums";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import { AnimationOptions } from "../../AnimationOptions";
 
 /**
  * @category Options
  */
-export class SizeAnimation implements ISizeAnimation, IOptionLoader<ISizeAnimation> {
+export class SizeAnimation extends AnimationOptions implements ISizeAnimation, IOptionLoader<ISizeAnimation> {
     /**
      *
      * @deprecated this property is obsolete, please use the new minimumValue
@@ -25,13 +26,12 @@ export class SizeAnimation implements ISizeAnimation, IOptionLoader<ISizeAnimati
     }
 
     public destroy: DestroyType | keyof typeof DestroyType;
-    public enable;
     public minimumValue;
-    public speed;
     public startValue: StartValueType | keyof typeof StartValueType;
-    public sync;
 
     constructor() {
+        super();
+
         this.destroy = DestroyType.none;
         this.enable = false;
         this.minimumValue = 0;
@@ -44,6 +44,8 @@ export class SizeAnimation implements ISizeAnimation, IOptionLoader<ISizeAnimati
         if (data === undefined) {
             return;
         }
+
+        super.load(data);
 
         if (data.destroy !== undefined) {
             this.destroy = data.destroy;

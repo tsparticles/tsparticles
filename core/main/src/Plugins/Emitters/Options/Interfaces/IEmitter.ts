@@ -5,6 +5,7 @@ import type { IEmitterRate } from "./IEmitterRate";
 import type { IEmitterLife } from "./IEmitterLife";
 import type { RecursivePartial } from "../../../../Types";
 import type { IEmitterSize } from "./IEmitterSize";
+import type { IAnimatableColor } from "../../../../Options/Interfaces/Particles/IAnimatableColor";
 
 /**
  * Particles emitter object options
@@ -49,4 +50,9 @@ export interface IEmitter {
      * The particles emitting rate options
      */
     rate: IEmitterRate;
+
+    /**
+     * The particle spawn color
+     */
+    spawnColor?: IAnimatableColor;
 }

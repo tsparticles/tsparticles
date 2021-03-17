@@ -1,8 +1,10 @@
 import type { IAnimatableColor } from "../../Interfaces/Particles/IAnimatableColor";
 import { OptionsColor } from "../OptionsColor";
 import type { RecursivePartial } from "../../../Types";
-import { ColorAnimation } from "./ColorAnimation";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
+import { IColorAnimation } from "../../Interfaces/IColorAnimation";
+import type { IHslAnimation } from "../../Interfaces/IHslAnimation";
+import { HslAnimation } from "./HslAnimation";
 
 /**
  * [[include:Options/Particles/Color.md]]
@@ -14,7 +16,7 @@ export class AnimatableColor extends OptionsColor implements IAnimatableColor, I
     constructor() {
         super();
 
-        this.animation = new ColorAnimation();
+        this.animation = new HslAnimation();
     }
 
     public static create(
@@ -33,6 +35,18 @@ export class AnimatableColor extends OptionsColor implements IAnimatableColor, I
     public load(data?: RecursivePartial<IAnimatableColor>): void {
         super.load(data);
 
-        this.animation.load(data?.animation);
+        if (!data) {
+            return;
+        }
+
+        const colorAnimation = data.animation as IColorAnimation;
+
+        if (colorAnimation !== undefined) {
+            if (colorAnimation.enable !== undefined) {
+                this.animation.h.load(colorAnimation);
+            } else {
+                this.animation.load(data.animation as IHslAnimation);
+            }
+        }
     }
 }

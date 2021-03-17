@@ -5,7 +5,6 @@ import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IParticleImage } from "./Interfaces/IParticleImage";
 import { Updater } from "./Particle/Updater";
 import type { IHsl, IRgb } from "./Interfaces/Colors";
-import type { IStroke } from "../Options/Interfaces/Particles/IStroke";
 import type { IShapeValues } from "../Options/Interfaces/Particles/Shape/IShapeValues";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
 import type { IParticle } from "./Interfaces/IParticle";
@@ -30,6 +29,10 @@ import { Infecter } from "./Particle/Infecter";
 import type { IDelta } from "./Interfaces/IDelta";
 import { Mover } from "./Particle/Mover";
 import type { ILink } from "./Interfaces/ILink";
+import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation";
+import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
+import type { Stroke } from "../Options/Classes/Particles/Stroke";
+import { IParticleLoops } from "./Interfaces/IParticleLoops";
 
 /**
  * The single particle object
@@ -54,6 +57,7 @@ export class Particle implements IParticle {
     public readonly sides;
     public readonly strokeWidth;
     public readonly options;
+    public readonly loops: IParticleLoops;
 
     public links: ILink[];
     public randomIndexData?: number;
@@ -67,15 +71,15 @@ export class Particle implements IParticle {
     public readonly close: boolean;
     public readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     public readonly fill: boolean;
-    public readonly stroke: IStroke;
+    public readonly stroke: Stroke;
     public readonly position: ICoordinates;
     public readonly offset: ICoordinates;
     public readonly shadowColor: IRgb | undefined;
-    public readonly color: IParticleValueAnimation<IHsl | undefined>;
+    public readonly color?: IParticleHslAnimation;
     public readonly opacity: IParticleValueAnimation<number>;
     public readonly rotate: IParticleValueAnimation<number>;
     public readonly size: IParticleValueAnimation<number>;
-    public readonly strokeColor: IParticleValueAnimation<IHsl | undefined>;
+    public readonly strokeColor?: IParticleHslAnimation;
     public readonly velocity: IVelocity;
     public readonly shape: ShapeType | string;
     public readonly image?: IParticleImage;
@@ -96,6 +100,10 @@ export class Particle implements IParticle {
         this.lastNoiseTime = 0;
         this.destroyed = false;
         this.misplaced = false;
+        this.loops = {
+            opacity: 0,
+            size: 0,
+        };
 
         const pxRatio = container.retina.pixelRatio;
         const options = container.actualOptions;
@@ -234,8 +242,7 @@ export class Particle implements IParticle {
 
                     case StartValueType.random:
                         this.size.value = NumberUtils.randomInRange(
-                            sizeAnimation.minimumValue * pxRatio,
-                            this.size.value
+                            NumberUtils.setRangeValue(sizeAnimation.minimumValue * pxRatio, this.size.value)
                         );
 
                         break;
@@ -258,18 +265,27 @@ export class Particle implements IParticle {
         }
 
         /* color */
-        this.color = {
-            value: ColorUtils.colorToHsl(color, this.id, reduceDuplicates),
-        };
+        const hslColor = ColorUtils.colorToHsl(color, this.id, reduceDuplicates);
 
-        const colorAnimation = this.options.color.animation;
+        if (hslColor) {
+            /* color */
+            this.color = {
+                h: {
+                    value: hslColor.h,
+                },
+                s: {
+                    value: hslColor.s,
+                },
+                l: {
+                    value: hslColor.l,
+                },
+            };
 
-        if (colorAnimation.enable) {
-            this.color.velocity = (colorAnimation.speed / 100) * container.retina.reduceFactor;
+            const colorAnimation = this.options.color.animation;
 
-            if (!colorAnimation.sync) {
-                this.color.velocity *= Math.random();
-            }
+            this.setColorAnimation(colorAnimation.h, this.color.h);
+            this.setColorAnimation(colorAnimation.s, this.color.s);
+            this.setColorAnimation(colorAnimation.l, this.color.l);
         }
 
         /* position */
@@ -308,8 +324,7 @@ export class Particle implements IParticle {
 
                     case StartValueType.random:
                         this.opacity.value = NumberUtils.randomInRange(
-                            opacityAnimation.minimumValue,
-                            this.opacity.value
+                            NumberUtils.setRangeValue(opacityAnimation.minimumValue, this.opacity.value)
                         );
 
                         break;
@@ -364,27 +379,28 @@ export class Particle implements IParticle {
         this.strokeWidth = this.stroke.width * container.retina.pixelRatio;
 
         /* strokeColor */
-        this.strokeColor = {
-            value: ColorUtils.colorToHsl(this.stroke.color) ?? this.color.value,
-        };
+        const strokeHslColor = ColorUtils.colorToHsl(this.stroke.color) ?? this.getFillColor();
 
-        if (typeof this.stroke.color !== "string") {
+        if (strokeHslColor) {
+            /* strokeColor */
+            this.strokeColor = {
+                h: {
+                    value: strokeHslColor.h,
+                },
+                s: {
+                    value: strokeHslColor.s,
+                },
+                l: {
+                    value: strokeHslColor.l,
+                },
+            };
+
             const strokeColorAnimation = this.stroke.color?.animation;
 
             if (strokeColorAnimation && this.strokeColor) {
-                if (strokeColorAnimation.enable) {
-                    this.strokeColor.velocity = (strokeColorAnimation.speed / 100) * container.retina.reduceFactor;
-
-                    if (!strokeColorAnimation.sync) {
-                        this.strokeColor.velocity = this.strokeColor.velocity * Math.random();
-                    }
-                } else {
-                    this.strokeColor.velocity = 0;
-                }
-
-                if (strokeColorAnimation.enable && !strokeColorAnimation.sync && this.strokeColor.value) {
-                    this.strokeColor.value.h = Math.random() * 360;
-                }
+                this.setColorAnimation(strokeColorAnimation.h, this.strokeColor.h);
+                this.setColorAnimation(strokeColorAnimation.s, this.strokeColor.s);
+                this.setColorAnimation(strokeColorAnimation.l, this.strokeColor.l);
             }
         }
 
@@ -444,17 +460,44 @@ export class Particle implements IParticle {
     }
 
     public getFillColor(): IHsl | undefined {
-        return this.bubble.color ?? this.color.value;
+        return this.bubble.color ?? ColorUtils.getHslFromAnimation(this.color);
     }
 
     public getStrokeColor(): IHsl | undefined {
-        return this.bubble.color ?? this.strokeColor.value ?? this.color.value;
+        return this.bubble.color ?? ColorUtils.getHslFromAnimation(this.strokeColor) ?? this.getFillColor();
     }
 
     public destroy(): void {
         this.destroyed = true;
         this.bubble.inRange = false;
         this.links = [];
+    }
+
+    /**
+     * This method is used when the particle has lost a life and needs some value resets
+     */
+    public reset(): void {
+        this.loops.opacity = 0;
+        this.loops.size = 0;
+    }
+
+    private setColorAnimation(colorAnimation: IColorAnimation, colorValue: IParticleValueAnimation<number>): void {
+        if (colorAnimation.enable) {
+            colorValue.velocity = (colorAnimation.speed / 100) * this.container.retina.reduceFactor;
+
+            if (colorAnimation.sync) {
+                return;
+            }
+
+            colorValue.status = AnimationStatus.increasing;
+            colorValue.velocity *= Math.random();
+
+            if (colorValue.value) {
+                colorValue.value *= Math.random();
+            }
+        } else {
+            colorValue.velocity = 0;
+        }
     }
 
     private calcPosition(container: Container, position: ICoordinates | undefined, tryCount = 0): ICoordinates {
@@ -551,12 +594,14 @@ export class Particle implements IParticle {
             res.vertical = baseVelocity.y;
 
             if (moveOptions.random) {
-                res.horizontal += NumberUtils.randomInRange(range.left, range.right) / 2;
-                res.vertical += NumberUtils.randomInRange(range.left, range.right) / 2;
+                res.horizontal += NumberUtils.randomInRange(NumberUtils.setRangeValue(range.left, range.right)) / 2;
+                res.vertical += NumberUtils.randomInRange(NumberUtils.setRangeValue(range.left, range.right)) / 2;
             }
         } else {
-            res.horizontal = baseVelocity.x + NumberUtils.randomInRange(range.left, range.right) / 2;
-            res.vertical = baseVelocity.y + NumberUtils.randomInRange(range.left, range.right) / 2;
+            res.horizontal =
+                baseVelocity.x + NumberUtils.randomInRange(NumberUtils.setRangeValue(range.left, range.right)) / 2;
+            res.vertical =
+                baseVelocity.y + NumberUtils.randomInRange(NumberUtils.setRangeValue(range.left, range.right)) / 2;
         }
 
         // const theta = 2.0 * Math.PI * Math.random();
