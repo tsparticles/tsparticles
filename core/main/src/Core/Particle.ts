@@ -164,7 +164,7 @@ export class Particle implements IParticle {
         this.fill = this.shapeData?.fill ?? this.fill;
         this.close = this.shapeData?.close ?? this.close;
         this.options = particlesOptions;
-        this.pathDelay = NumberUtils.getValue(this.options.move.noise.delay) * 1000;
+        this.pathDelay = NumberUtils.getValue(this.options.move.path.delay) * 1000;
 
         container.retina.initParticle(this);
 

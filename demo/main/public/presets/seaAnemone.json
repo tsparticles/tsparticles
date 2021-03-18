@@ -24,7 +24,7 @@
         "outModes": {
           "default": "destroy"
         },
-        "noise": {
+        "path": {
           "clamp": false,
           "enable": true,
           "delay": {

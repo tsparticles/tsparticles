@@ -114,7 +114,7 @@ export class Mover {
     private applyPath(delta: IDelta): void {
         const particle = this.particle;
         const particlesOptions = particle.options;
-        const pathOptions = particlesOptions.move.noise;
+        const pathOptions = particlesOptions.move.path;
         const pathEnabled = pathOptions.enable;
 
         if (!pathEnabled) {
