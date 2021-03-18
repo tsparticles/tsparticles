@@ -3,7 +3,7 @@ import type { IValueWithRandom } from "../../../IValueWithRandom";
 /**
  * @category Options
  */
-export interface INoise {
+export interface IPath {
     clamp: boolean;
     delay: IValueWithRandom;
     enable: boolean;

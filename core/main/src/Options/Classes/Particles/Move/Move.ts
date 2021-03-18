@@ -3,7 +3,7 @@ import { Attract } from "./Attract";
 import { MoveDirection, MoveDirectionAlt, OutMode, OutModeAlt } from "../../../../Enums";
 import { Trail } from "./Trail";
 import type { RecursivePartial } from "../../../../Types";
-import { Noise } from "./Noise/Noise";
+import { Path } from "./Path/Path";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { MoveAngle } from "./MoveAngle";
 import { MoveGravity } from "./MoveGravity";
@@ -78,6 +78,20 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.outModes.default = value;
     }
 
+    /**
+     * @deprecated use the new [[path]] property instead
+     */
+    public get noise(): Path {
+        return this.path;
+    }
+
+    /**
+     * @deprecated use the new [[path]] property instead
+     */
+    public set noise(value: Path) {
+        this.path = value;
+    }
+
     public angle;
     public attract;
     public direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
@@ -85,7 +99,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
     public decay;
     public enable;
     public gravity;
-    public noise;
+    public path;
     public outModes: OutModes;
     public random;
     public size;
@@ -103,7 +117,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.distance = 0;
         this.enable = false;
         this.gravity = new MoveGravity();
-        this.noise = new Noise();
+        this.path = new Path();
         this.outModes = new OutModes();
         this.random = false;
         this.size = false;
@@ -146,7 +160,6 @@ export class Move implements IMove, IOptionLoader<IMove> {
         }
 
         this.gravity.load(data.gravity);
-        this.noise.load(data.noise);
 
         const outMode = data.outMode ?? data.out_mode;
 
@@ -159,6 +172,8 @@ export class Move implements IMove, IOptionLoader<IMove> {
                 this.outModes.load(data.outModes);
             }
         }
+
+        this.path.load(data.noise);
 
         if (data.random !== undefined) {
             this.random = data.random;

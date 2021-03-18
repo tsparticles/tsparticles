@@ -1,6 +1,6 @@
 import { ValueWithRandom } from "../../../ValueWithRandom";
 
-export class NoiseDelay extends ValueWithRandom {
+export class PathDelay extends ValueWithRandom {
     constructor() {
         super();
     }

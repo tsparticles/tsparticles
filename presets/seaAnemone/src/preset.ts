@@ -34,7 +34,7 @@ export function loadSeaAnemonePreset(tsParticles: Main): void {
                 outModes: {
                     default: OutMode.destroy,
                 },
-                noise: {
+                path: {
                     clamp: false,
                     enable: true,
                     delay: {
