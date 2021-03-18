@@ -173,7 +173,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
             }
         }
 
-        this.path.load(data.noise);
+        this.path.load(data.path ?? data.noise);
 
         if (data.random !== undefined) {
             this.random = data.random;
