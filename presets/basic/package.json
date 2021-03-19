@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-basic",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "tsParticles basic preset",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -70,6 +70,6 @@
     "webpack-cli": "^4.1.0"
   },
   "dependencies": {
-    "tsparticles": "^1.22.0"
+    "tsparticles": "^1.22.1"
   }
 }
