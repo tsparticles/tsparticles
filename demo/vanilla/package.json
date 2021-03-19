@@ -54,6 +54,7 @@
     "tsparticles-preset-stars": "^2.0.0-alpha.5",
     "tsparticles-shape-bubble": "^2.0.0-alpha.5",
     "tsparticles-shape-circle": "^2.0.0-alpha.5",
+    "tsparticles-shape-confetti": "^2.0.0-alpha.5",
     "tsparticles-shape-heart": "^2.0.0-alpha.5",
     "tsparticles-shape-image": "^2.0.0-alpha.5",
     "tsparticles-shape-line": "^2.0.0-alpha.5",
