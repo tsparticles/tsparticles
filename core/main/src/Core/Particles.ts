@@ -111,7 +111,7 @@ export class Particles {
 
         this.interactionManager.init();
 
-        container.noise.init();
+        container.pathGenerator.init();
     }
 
     public redraw(): void {
@@ -136,7 +136,7 @@ export class Particles {
         const container = this.container;
         const particlesToDelete = [];
 
-        container.noise.update();
+        container.pathGenerator.update();
 
         for (const [, plugin] of container.plugins) {
             if (plugin.update !== undefined) {

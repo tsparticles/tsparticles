@@ -22,6 +22,7 @@ import type {
 } from "./Types";
 import type { IPlugin } from "./Core/Interfaces/IPlugin";
 import type { Particle } from "./Core/Particle";
+import type { IMovePathGenerator } from "./Core/Interfaces/IMovePathGenerator";
 
 /**
  * Main class for creating the singleton on window.
@@ -189,5 +190,14 @@ export class MainSlim {
      */
     public addPlugin(plugin: IPlugin): void {
         Plugins.addPlugin(plugin);
+    }
+
+    /**
+     * addPathGenerator adds a named path generator to tsParticles, this can be called by options
+     * @param name the path generator name
+     * @param generator the path generator object
+     */
+    public addPathGenerator(name: string, generator: IMovePathGenerator): void {
+        Plugins.addPathGenerator(name, generator);
     }
 }

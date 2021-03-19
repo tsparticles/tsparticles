@@ -73,7 +73,7 @@
       "straight": false,
       "out_mode": "destroy",
       "bounce": false,
-      "noise": {
+      "path": {
         "enable": true,
         "delay": {
           "value": 0.1

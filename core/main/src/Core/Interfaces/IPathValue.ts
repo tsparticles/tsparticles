@@ -1,7 +1,7 @@
 /**
  * @category Interfaces
  */
-export interface INoiseValue {
+export interface IPathValue {
     angle: number;
     length: number;
 }

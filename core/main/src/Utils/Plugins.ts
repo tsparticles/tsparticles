@@ -5,10 +5,12 @@ import type { RecursivePartial } from "../Types";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
 import type { Options } from "../Options/Classes/Options";
+import type { IMovePathGenerator } from "../Core/Interfaces/IMovePathGenerator";
 
 const plugins: IPlugin[] = [];
 const presets: Map<string, RecursivePartial<IOptions>> = new Map<string, RecursivePartial<IOptions>>();
 const drawers: Map<string, IShapeDrawer> = new Map<string, IShapeDrawer>();
+const pathGenerators: Map<string, IMovePathGenerator> = new Map<string, IMovePathGenerator>();
 
 /**
  * @category Utils
@@ -65,5 +67,15 @@ export class Plugins {
 
     public static getSupportedShapes(): IterableIterator<string> {
         return drawers.keys();
+    }
+
+    public static getPathGenerator(type: string): IMovePathGenerator | undefined {
+        return pathGenerators.get(type);
+    }
+
+    public static addPathGenerator(type: string, pathGenerator: IMovePathGenerator): void {
+        if (!Plugins.getPathGenerator(type)) {
+            pathGenerators.set(type, pathGenerator);
+        }
     }
 }

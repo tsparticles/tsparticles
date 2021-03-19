@@ -54,7 +54,7 @@
         "rotateX": 600,
         "rotateY": 1200
       },
-      "noise": {
+      "path": {
         "enable": true
       },
       "bounce": false,

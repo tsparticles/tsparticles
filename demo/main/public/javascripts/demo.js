@@ -18,7 +18,7 @@
         for (let x = 0; x < columns; x++) {
             field[x] = new Array(columns);
             for (let y = 0; y < rows; y++) {
-                field[x][y] = [ 0, 0 ];
+                field[x][y] = [0, 0];
             }
         }
     }
@@ -112,8 +112,8 @@
             editor.set(particles.options);
             editor.expandAll();
 
-            if (particles.options.particles.move.noise.enable) {
-                particles.setNoise({
+            if (particles.options.particles.move.path.enable) {
+                particles.setPath({
                     init: function () {
                         setup(particles);
                     },
@@ -194,7 +194,7 @@
         const element = document.getElementById('editor');
         const options = {
             mode: 'form',
-            modes: [ 'form', 'view', 'preview' ], // allowed modes
+            modes: ['form', 'view', 'preview'], // allowed modes
             autocomplete: {
                 filter: 'contain',
                 trigger: 'focus'
