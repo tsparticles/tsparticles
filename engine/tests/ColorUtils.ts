@@ -11,6 +11,7 @@ import {
     stringToAlpha,
     stringToRgb,
 } from "../src/Utils";
+import { describe, it } from "mocha";
 import { expect } from "chai";
 import { IColor, IRgb, IHsl, IHsla, IHsv } from "../src/Core/Interfaces/Colors";
 

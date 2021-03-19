@@ -1,3 +1,4 @@
+import { describe, it } from "mocha";
 import { Options } from "../src/Options/Classes/Options";
 import { RotateDirection, MoveDirection, ClickMode, HoverMode, OutMode, ThemeMode } from "../src/Enums";
 import { expect } from "chai";

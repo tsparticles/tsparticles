@@ -1,3 +1,4 @@
+import { describe, it } from "mocha";
 import { expect } from "chai";
 import { ICoordinates3d } from "../src/Core/Interfaces/ICoordinates";
 import { TestCanvas } from "./Fixture/TestCanvas";

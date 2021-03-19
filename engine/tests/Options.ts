@@ -1,4 +1,5 @@
 import { Options } from "../src/Options/Classes/Options";
+import { describe, it } from "mocha";
 import { expect } from "chai";
 import {
     ClickMode,
