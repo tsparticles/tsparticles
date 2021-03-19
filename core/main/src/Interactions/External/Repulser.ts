@@ -167,14 +167,14 @@ export class Repulser implements IExternalInteractor {
 
                     const angle = Math.atan2(dy, dx);
 
-                    particle.velocity.horizontal = force * Math.cos(angle);
-                    particle.velocity.vertical = force * Math.sin(angle);
+                    particle.velocity.x = force * Math.cos(angle);
+                    particle.velocity.y = force * Math.sin(angle);
                 }
             }
         } else if (container.repulse.clicking === false) {
             for (const particle of container.repulse.particles) {
-                particle.velocity.horizontal = particle.initialVelocity.horizontal;
-                particle.velocity.vertical = particle.initialVelocity.vertical;
+                particle.velocity.x = particle.initialVelocity.x;
+                particle.velocity.y = particle.initialVelocity.y;
             }
             container.repulse.particles = [];
         }

@@ -28,7 +28,7 @@ function bounceHorizontal(data: IBounceData): void {
         data.outMode === OutMode.bounceHorizontal ||
         data.outMode === "bounceHorizontal"
     ) {
-        const velocity = data.particle.velocity.horizontal;
+        const velocity = data.particle.velocity.x;
         let bounced = false;
 
         if (
@@ -37,7 +37,7 @@ function bounceHorizontal(data: IBounceData): void {
         ) {
             const newVelocity = NumberUtils.getValue(data.particle.options.bounce.horizontal);
 
-            data.particle.velocity.horizontal *= -newVelocity;
+            data.particle.velocity.x *= -newVelocity;
 
             bounced = true;
         }
@@ -60,7 +60,7 @@ function bounceVertical(data: IBounceData): void {
         data.outMode === OutMode.bounceVertical ||
         data.outMode === "bounceVertical"
     ) {
-        const velocity = data.particle.velocity.vertical;
+        const velocity = data.particle.velocity.y;
         let bounced = false;
 
         if (
@@ -71,7 +71,7 @@ function bounceVertical(data: IBounceData): void {
         ) {
             const newVelocity = NumberUtils.getValue(data.particle.options.bounce.vertical);
 
-            data.particle.velocity.vertical *= -newVelocity;
+            data.particle.velocity.y *= -newVelocity;
 
             bounced = true;
         }
@@ -283,9 +283,7 @@ export class Updater {
         const speed = (particle.rotate.velocity ?? 0) * delta.factor;
         const max = 2 * Math.PI;
 
-        if (rotate.path) {
-            particle.pathAngle = Math.atan2(particle.velocity.vertical, particle.velocity.horizontal);
-        } else if (rotateAnimation.enable) {
+        if (rotateAnimation.enable) {
             switch (particle.rotate.status) {
                 case AnimationStatus.increasing:
                     particle.rotate.value += speed;

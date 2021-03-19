@@ -376,8 +376,8 @@ export class Utils {
     }
 
     public static circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
-        const xVelocityDiff = p1.velocity.horizontal;
-        const yVelocityDiff = p1.velocity.vertical;
+        const xVelocityDiff = p1.velocity.x;
+        const yVelocityDiff = p1.velocity.y;
 
         const pos1 = p1.position;
         const pos2 = p2.position;
@@ -395,23 +395,23 @@ export class Utils {
             const m2 = p2.radius;
 
             // Velocity before equation
-            const u1 = NumberUtils.rotateVelocity(p1.velocity, angle);
-            const u2 = NumberUtils.rotateVelocity(p2.velocity, angle);
+            const u1 = p1.velocity.rotate(angle);
+            const u2 = p2.velocity.rotate(angle);
 
             // Velocity after 1d collision equation
             const v1 = NumberUtils.collisionVelocity(u1, u2, m1, m2);
             const v2 = NumberUtils.collisionVelocity(u2, u1, m1, m2);
 
             // Final velocity after rotating axis back to original location
-            const vFinal1 = NumberUtils.rotateVelocity(v1, -angle);
-            const vFinal2 = NumberUtils.rotateVelocity(v2, -angle);
+            const vFinal1 = v1.rotate(-angle);
+            const vFinal2 = v2.rotate(-angle);
 
             // Swap particle velocities for realistic bounce effect
-            p1.velocity.horizontal = vFinal1.horizontal * p1.factor.horizontal;
-            p1.velocity.vertical = vFinal1.vertical * p1.factor.vertical;
+            p1.velocity.x = vFinal1.x * p1.factor.horizontal;
+            p1.velocity.y = vFinal1.y * p1.factor.vertical;
 
-            p2.velocity.horizontal = vFinal2.horizontal * p2.factor.horizontal;
-            p2.velocity.vertical = vFinal2.vertical * p2.factor.vertical;
+            p2.velocity.x = vFinal2.x * p2.factor.horizontal;
+            p2.velocity.y = vFinal2.y * p2.factor.vertical;
         }
     }
 
@@ -437,13 +437,13 @@ export class Utils {
                 min: divBounds.top,
                 max: divBounds.bottom,
             },
-            particle.velocity.horizontal,
+            particle.velocity.x,
             NumberUtils.getValue(particle.options.bounce.horizontal)
         );
 
         if (resH.bounced) {
             if (resH.velocity !== undefined) {
-                particle.velocity.horizontal = resH.velocity;
+                particle.velocity.x = resH.velocity;
             }
 
             if (resH.position !== undefined) {
@@ -468,13 +468,13 @@ export class Utils {
                 min: divBounds.left,
                 max: divBounds.right,
             },
-            particle.velocity.vertical,
+            particle.velocity.y,
             NumberUtils.getValue(particle.options.bounce.vertical)
         );
 
         if (resV.bounced) {
             if (resV.velocity !== undefined) {
-                particle.velocity.vertical = resV.velocity;
+                particle.velocity.y = resV.velocity;
             }
 
             if (resV.position !== undefined) {

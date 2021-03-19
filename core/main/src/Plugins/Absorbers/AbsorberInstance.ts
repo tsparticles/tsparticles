@@ -175,8 +175,8 @@ export class AbsorberInstance {
             const orbitRadius = particle.orbitRadius;
             const orbitAngle = particle.orbitAngle;
 
-            particle.velocity.horizontal = 0;
-            particle.velocity.vertical = 0;
+            particle.velocity.x = 0;
+            particle.velocity.y = 0;
 
             particle.position.x = this.position.x + orbitRadius * Math.cos(orbitAngle);
             particle.position.y = this.position.y + orbitRadius * Math.sin(orbitAngle);
@@ -185,8 +185,8 @@ export class AbsorberInstance {
             particle.orbitAngle +=
                 ((particle.moveSpeed ?? this.container.retina.moveSpeed) / 100) * this.container.retina.reduceFactor;
         } else {
-            particle.velocity.horizontal += Math.sin(angle) * acceleration;
-            particle.velocity.vertical += Math.cos(angle) * acceleration;
+            particle.velocity.x += Math.sin(angle) * acceleration;
+            particle.velocity.y += Math.cos(angle) * acceleration;
         }
     }
 }

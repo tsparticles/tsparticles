@@ -393,8 +393,7 @@ export class EventListeners {
                 container.repulse.count = 0;
 
                 for (const particle of container.repulse.particles) {
-                    particle.velocity.horizontal = particle.initialVelocity.horizontal;
-                    particle.velocity.vertical = particle.initialVelocity.vertical;
+                    particle.velocity.setTo(particle.initialVelocity);
                 }
 
                 container.repulse.particles = [];
@@ -412,8 +411,7 @@ export class EventListeners {
                 container.attract.count = 0;
 
                 for (const particle of container.attract.particles) {
-                    particle.velocity.horizontal = particle.initialVelocity.horizontal;
-                    particle.velocity.vertical = particle.initialVelocity.vertical;
+                    particle.velocity.setTo(particle.initialVelocity);
                 }
 
                 container.attract.particles = [];

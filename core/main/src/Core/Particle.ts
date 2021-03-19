@@ -33,13 +33,13 @@ import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 import type { Stroke } from "../Options/Classes/Particles/Stroke";
 import { IParticleLoops } from "./Interfaces/IParticleLoops";
+import { Vector } from "./Particle/Vector";
 
 /**
  * The single particle object
  * @category Core
  */
 export class Particle implements IParticle {
-    public pathAngle;
     public destroyed;
     public lifeDelay;
     public lifeDelayTime;
@@ -80,11 +80,11 @@ export class Particle implements IParticle {
     public readonly rotate: IParticleValueAnimation<number>;
     public readonly size: IParticleValueAnimation<number>;
     public readonly strokeColor?: IParticleHslAnimation;
-    public readonly velocity: IVelocity;
+    public readonly velocity: Vector;
     public readonly shape: ShapeType | string;
     public readonly image?: IParticleImage;
     public readonly initialPosition: ICoordinates;
-    public readonly initialVelocity: IVelocity;
+    public readonly initialVelocity: Vector;
     public readonly shapeData?: IShapeValues;
     public readonly bubble: IBubbleParticleData;
 
@@ -187,12 +187,7 @@ export class Particle implements IParticle {
 
         /* animation - velocity for speed */
         this.initialVelocity = this.calculateVelocity();
-        this.velocity = {
-            horizontal: this.initialVelocity.horizontal,
-            vertical: this.initialVelocity.vertical,
-        };
-
-        this.pathAngle = Math.atan2(this.initialVelocity.vertical, this.initialVelocity.horizontal);
+        this.velocity = this.initialVelocity.copy();
 
         const rotateOptions = this.options.rotate;
 
@@ -566,12 +561,9 @@ export class Particle implements IParticle {
         return false;
     }
 
-    private calculateVelocity(): IVelocity {
-        const baseVelocity = NumberUtils.getParticleBaseVelocity(this);
-        const res = {
-            horizontal: 0,
-            vertical: 0,
-        };
+    private calculateVelocity(): Vector {
+        const baseVelocity = NumberUtils.getParticleBaseVelocity(this.direction);
+        const res = Vector.create(0, 0);
         const moveOptions = this.options.move;
 
         let rad: number;
@@ -590,18 +582,16 @@ export class Particle implements IParticle {
         };
 
         if (moveOptions.straight) {
-            res.horizontal = baseVelocity.x;
-            res.vertical = baseVelocity.y;
+            res.x = baseVelocity.x;
+            res.y = baseVelocity.y;
 
             if (moveOptions.random) {
-                res.horizontal += NumberUtils.randomInRange(NumberUtils.setRangeValue(range.left, range.right)) / 2;
-                res.vertical += NumberUtils.randomInRange(NumberUtils.setRangeValue(range.left, range.right)) / 2;
+                res.x += NumberUtils.randomInRange(NumberUtils.setRangeValue(range.left, range.right)) / 2;
+                res.y += NumberUtils.randomInRange(NumberUtils.setRangeValue(range.left, range.right)) / 2;
             }
         } else {
-            res.horizontal =
-                baseVelocity.x + NumberUtils.randomInRange(NumberUtils.setRangeValue(range.left, range.right)) / 2;
-            res.vertical =
-                baseVelocity.y + NumberUtils.randomInRange(NumberUtils.setRangeValue(range.left, range.right)) / 2;
+            res.x = baseVelocity.x + NumberUtils.randomInRange(NumberUtils.setRangeValue(range.left, range.right)) / 2;
+            res.y = baseVelocity.y + NumberUtils.randomInRange(NumberUtils.setRangeValue(range.left, range.right)) / 2;
         }
 
         // const theta = 2.0 * Math.PI * Math.random();

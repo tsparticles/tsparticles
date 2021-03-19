@@ -35,8 +35,8 @@ type IPolygonMaskOptions = IOptions & {
 };
 
 function polygonBounce(particle: Particle): void {
-    particle.velocity.horizontal = particle.velocity.vertical / 2 - particle.velocity.horizontal;
-    particle.velocity.vertical = particle.velocity.horizontal / 2 - particle.velocity.vertical;
+    particle.velocity.x = particle.velocity.y / 2 - particle.velocity.x;
+    particle.velocity.y = particle.velocity.x / 2 - particle.velocity.y;
 }
 
 function drawPolygonMask(context: CanvasRenderingContext2D, rawData: ICoordinates[], stroke: IDrawStroke): void {

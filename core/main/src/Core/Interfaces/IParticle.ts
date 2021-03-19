@@ -1,6 +1,5 @@
 import type { IStroke } from "../../Options/Interfaces/Particles/IStroke";
 import type { ICoordinates } from "./ICoordinates";
-import type { IVelocity } from "./IVelocity";
 import type { MoveDirection, MoveDirectionAlt, ShapeType } from "../../Enums";
 import type { IParticleImage } from "./IParticleImage";
 import type { IParticleValueAnimation } from "./IParticleValueAnimation";
@@ -10,6 +9,7 @@ import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
 import type { IHsl, IRgb } from "./Colors";
 import type { ILink } from "./ILink";
 import type { IParticleHslAnimation } from "./IParticleHslAnimation";
+import { Vector } from "../Particle/Vector";
 
 /**
  * @category Interfaces
@@ -18,7 +18,6 @@ export interface IParticle {
     misplaced: boolean;
     randomIndexData?: number;
 
-    readonly pathAngle: number;
     readonly bubble: IBubbleParticleData;
     readonly close: boolean;
     readonly destroyed: boolean;
@@ -26,7 +25,7 @@ export interface IParticle {
     readonly fill: boolean;
     readonly id: number;
     readonly image?: IParticleImage;
-    readonly initialVelocity: IVelocity;
+    readonly initialVelocity: Vector;
     readonly links: ILink[];
     readonly offset: ICoordinates;
     readonly color?: IParticleHslAnimation;
@@ -42,7 +41,7 @@ export interface IParticle {
     readonly sides: number;
     readonly stroke: IStroke;
     readonly strokeWidth: number;
-    readonly velocity: IVelocity;
+    readonly velocity: Vector;
     readonly linksDistance?: number;
     readonly linksWidth?: number;
     readonly moveSpeed?: number;
