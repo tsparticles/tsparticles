@@ -1,10 +1,9 @@
-import type { IParticle } from "tsparticles";
+import { IParticle, Vector } from "tsparticles";
 import type { IMovePathGenerator } from "tsparticles/dist/Core/Interfaces/IMovePathGenerator";
-import type { IPathValue } from "tsparticles/dist/Core/Interfaces/IPathValue";
 
 type SeaPathParticle = IParticle & {
     pathGen?: () => number;
-    seaVelocity?: IPathValue;
+    seaVelocity?: Vector;
 };
 
 function pathGen(
@@ -74,7 +73,7 @@ const seaPathGenerator: IMovePathGenerator = {
         }
 
         if (p.seaVelocity === undefined) {
-            p.seaVelocity = { length: 0, angle: 0 };
+            p.seaVelocity = Vector.create(0, 0);
 
             p.seaVelocity.length = Math.random() * 0.6 + 0.8;
             p.seaVelocity.angle = Math.random() * Math.PI * 2;

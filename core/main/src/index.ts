@@ -14,6 +14,7 @@ tsParticles.init();
 
 const { particlesJS, pJSDom } = initPjs(tsParticles);
 
+export * from "./Core/Particle/Vector";
 export * from "./Core/Container";
 export * from "./Enums";
 export * from "./Plugins/Absorbers/Enums";

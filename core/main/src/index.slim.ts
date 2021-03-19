@@ -12,6 +12,7 @@ tsParticles.init();
 
 const { particlesJS, pJSDom } = initPjs(tsParticles);
 
+export * from "./Core/Particle/Vector";
 export * from "./Core/Container";
 export * from "./Enums";
 export { CanvasUtils, Circle, CircleWarp, ColorUtils, Constants, Point, Rectangle, Utils, MainSlim };

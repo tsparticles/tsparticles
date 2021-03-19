@@ -1,5 +1,5 @@
 import type { Particle } from "../Particle";
-import type { IPathValue } from "./IPathValue";
+import { Vector } from "../Particle/Vector";
 
 /**
  * @category Interfaces
@@ -9,5 +9,5 @@ export interface IMovePathGenerator {
 
     update: () => void;
 
-    generate: (particle: Particle) => IPathValue;
+    generate: (particle: Particle) => Vector;
 }

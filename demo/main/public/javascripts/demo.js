@@ -140,14 +140,16 @@
                         const px = Math.max(Math.floor(pos.x / size), 0);
                         const py = Math.max(Math.floor(pos.y / size), 0);
 
+                        const v = Vector.create(0, 0);
+
                         if (!field || !field[px] || !field[px][py]) {
-                            return { angle: 0, length: 0 };
+                            return v;
                         }
 
-                        return {
-                            angle: field[px][py][0],
-                            length: field[px][py][1]
-                        };
+                        v.length = field[px][py][1];
+                        v.angle = field[px][py][0];
+
+                        return v;
                     }
                 });
 

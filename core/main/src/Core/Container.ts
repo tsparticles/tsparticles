@@ -16,10 +16,10 @@ import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import { EventListeners, Plugins, Utils } from "../Utils";
 import { Particle } from "./Particle";
-import type { IPathValue } from "./Interfaces/IPathValue";
 import type { IRgb } from "./Interfaces/Colors";
 import type { IAttract } from "./Interfaces/IAttract";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator";
+import { Vector } from "./Particle/Vector";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -109,11 +109,13 @@ export class Container {
         this.particles = new Particles(this);
         this.drawer = new FrameManager(this);
         this.pathGenerator = {
-            generate: (): IPathValue => {
-                return {
-                    angle: Math.random() * Math.PI * 2,
-                    length: Math.random(),
-                };
+            generate: (): Vector => {
+                const v = Vector.create(0, 0);
+
+                v.length = Math.random();
+                v.angle = Math.random() * Math.PI * 2;
+
+                return v;
             },
             init: (): void => {
                 // nothing required
@@ -242,7 +244,7 @@ export class Container {
      * @param update the [[IMovePathGenerator]] update function, if the first parameter is a generator function
      */
     public setNoise(
-        noiseOrGenerator?: IMovePathGenerator | ((particle: Particle) => IPathValue),
+        noiseOrGenerator?: IMovePathGenerator | ((particle: Particle) => Vector),
         init?: () => void,
         update?: () => void
     ): void {
@@ -256,7 +258,7 @@ export class Container {
      * @param update the [[IMovePathGenerator]] update function, if the first parameter is a generator function
      */
     public setPath(
-        pathOrGenerator?: IMovePathGenerator | ((particle: Particle) => IPathValue),
+        pathOrGenerator?: IMovePathGenerator | ((particle: Particle) => Vector),
         init?: () => void,
         update?: () => void
     ): void {
