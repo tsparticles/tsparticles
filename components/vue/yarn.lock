@@ -8439,11 +8439,6 @@ tslint@^5.20.1:
     tslib "^1.8.0"
     tsutils "^2.29.0"
 
-tsparticles-engine@^2.0.0-alpha.5:
-  version "2.0.0-alpha.5"
-  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.0-alpha.5.tgz#dd054053444426d475d19ef47c4d886bef221634"
-  integrity sha512-RyowzNL7Pg03JWZf8vvmRuS+l42aNsU2qgskl0K70dO2M3hfDdsDSibnIv7GqIjYSeO5WGp4ZixhvGifptuX4Q==
-
 tsutils@^2.29.0:
   version "2.29.0"
   resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-2.29.0.tgz#32b488501467acbedd4b85498673a0812aca0b99"
