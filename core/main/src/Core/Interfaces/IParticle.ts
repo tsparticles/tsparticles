@@ -27,14 +27,14 @@ export interface IParticle {
     readonly image?: IParticleImage;
     readonly initialVelocity: Vector;
     readonly links: ILink[];
-    readonly offset: ICoordinates;
+    readonly offset: Vector;
     readonly color?: IParticleHslAnimation;
     readonly opacity: IParticleValueAnimation<number>;
     readonly rotate: IParticleValueAnimation<number>;
     readonly size: IParticleValueAnimation<number>;
     readonly strokeColor?: IParticleHslAnimation;
     readonly options: IParticles;
-    readonly position: ICoordinates;
+    readonly position: Vector;
     readonly shadowColor: IRgb | undefined;
     readonly shape?: ShapeType | string;
     readonly shapeData?: IShapeValues;

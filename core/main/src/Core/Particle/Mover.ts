@@ -71,8 +71,7 @@ export class Mover {
             particle.velocity.y = velocity.y / moveSpeed;
         }
 
-        particle.position.x += velocity.x;
-        particle.position.y += velocity.y;
+        particle.position.addTo(velocity);
 
         if (particlesOptions.move.vibrate) {
             particle.position.x += Math.sin(particle.position.x * Math.cos(particle.position.y));

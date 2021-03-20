@@ -124,8 +124,8 @@ export class Repulser implements IExternalInteractor {
             const velocity = (divRepulse?.speed ?? container.actualOptions.interactivity.modes.repulse.speed) * 100;
             const repulseFactor = NumberUtils.clamp((1 - Math.pow(distance / repulseRadius, 2)) * velocity, 0, 50);
 
-            particle.position.x = particle.position.x + normVec.x * repulseFactor;
-            particle.position.y = particle.position.y + normVec.y * repulseFactor;
+            particle.position.x += normVec.x * repulseFactor;
+            particle.position.y += normVec.y * repulseFactor;
         }
     }
 
@@ -332,8 +332,8 @@ export class Repulser implements IExternalInteractor {
 
             const repulseFactor = Utils.clamp((1 - Math.pow(distance / repulseRadius, 2)) * velocity, 0, 50);
 
-            particle.position.x = particle.position.x + normVec.x * repulseFactor;
-            particle.position.y = particle.position.y + normVec.y * repulseFactor;
+            particle.position.x += normVec.x * repulseFactor;
+            particle.position.y += normVec.y * repulseFactor;
         }
     }
 }

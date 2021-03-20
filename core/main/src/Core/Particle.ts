@@ -72,8 +72,8 @@ export class Particle implements IParticle {
     public readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     public readonly fill: boolean;
     public readonly stroke: Stroke;
-    public readonly position: ICoordinates;
-    public readonly offset: ICoordinates;
+    public readonly position: Vector;
+    public readonly offset: Vector;
     public readonly shadowColor: IRgb | undefined;
     public readonly color?: IParticleHslAnimation;
     public readonly opacity: IParticleValueAnimation<number>;
@@ -83,7 +83,7 @@ export class Particle implements IParticle {
     public readonly velocity: Vector;
     public readonly shape: ShapeType | string;
     public readonly image?: IParticleImage;
-    public readonly initialPosition: ICoordinates;
+    public readonly initialPosition: Vector;
     public readonly initialVelocity: Vector;
     public readonly shapeData?: IShapeValues;
     public readonly bubble: IBubbleParticleData;
@@ -285,16 +285,10 @@ export class Particle implements IParticle {
 
         /* position */
         this.position = this.calcPosition(this.container, position);
-        this.initialPosition = {
-            x: this.position.x,
-            y: this.position.y,
-        };
+        this.initialPosition = this.position.copy();
 
         /* parallax */
-        this.offset = {
-            x: 0,
-            y: 0,
-        };
+        this.offset = Vector.create(0, 0);
 
         /* opacity */
         const opacityOptions = this.options.opacity;
@@ -444,10 +438,7 @@ export class Particle implements IParticle {
     }
 
     public getPosition(): ICoordinates {
-        return {
-            x: this.position.x + this.offset.x,
-            y: this.position.y + this.offset.y,
-        };
+        return this.position.add(this.offset);
     }
 
     public getRadius(): number {
@@ -495,20 +486,20 @@ export class Particle implements IParticle {
         }
     }
 
-    private calcPosition(container: Container, position: ICoordinates | undefined, tryCount = 0): ICoordinates {
+    private calcPosition(container: Container, position: ICoordinates | undefined, tryCount = 0): Vector {
         for (const [, plugin] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
             if (pluginPos !== undefined) {
-                return Utils.deepExtend({}, pluginPos) as ICoordinates;
+                return Vector.create(pluginPos.x, pluginPos.y);
             }
         }
 
-        const pos = {
-            x: position?.x ?? Math.random() * container.canvas.size.width,
-            y: position?.y ?? Math.random() * container.canvas.size.height,
-        };
+        const pos = Vector.create(
+            position?.x ?? Math.random() * container.canvas.size.width,
+            position?.y ?? Math.random() * container.canvas.size.height
+        );
 
         /* check position  - into the canvas */
         const outMode = this.options.move.outMode;
