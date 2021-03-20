@@ -82,8 +82,8 @@ const seaPathGenerator: IMovePathGenerator = {
             p.seaVelocity.angle = (p.seaVelocity.angle + p.pathGen()) % (Math.PI * 2);
         }
 
-        p.velocity.horizontal = 0;
-        p.velocity.vertical = 0;
+        p.velocity.x = 0;
+        p.velocity.y = 0;
 
         return p.seaVelocity;
     },
