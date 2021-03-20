@@ -1,5 +1,4 @@
 import type { Container } from "./Container";
-import type { IVelocity } from "./Interfaces/IVelocity";
 import type { IParticleValueAnimation } from "./Interfaces/IParticleValueAnimation";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IParticleImage } from "./Interfaces/IParticleImage";
@@ -397,14 +396,14 @@ export class Particle implements IParticle {
 
         this.lifeDelay = container.retina.reduceFactor
             ? ((NumberUtils.getValue(lifeOptions.delay) * (lifeOptions.delay.sync ? 1 : Math.random())) /
-                  container.retina.reduceFactor) *
-              1000
+                container.retina.reduceFactor) *
+            1000
             : 0;
         this.lifeDelayTime = 0;
         this.lifeDuration = container.retina.reduceFactor
             ? ((NumberUtils.getValue(lifeOptions.duration) * (lifeOptions.duration.sync ? 1 : Math.random())) /
-                  container.retina.reduceFactor) *
-              1000
+                container.retina.reduceFactor) *
+            1000
             : 0;
         this.lifeTime = 0;
         this.livesRemaining = particlesOptions.life.count;
@@ -598,10 +597,10 @@ export class Particle implements IParticle {
         drawer?: IShapeDrawer
     ):
         | {
-              image: IParticleImage | undefined;
-              fill: boolean;
-              close: boolean;
-          }
+            image: IParticleImage | undefined;
+            fill: boolean;
+            close: boolean;
+        }
         | undefined {
         if (!(this.shape === ShapeType.image || this.shape === ShapeType.images)) {
             return;

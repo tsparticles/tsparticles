@@ -1,6 +1,5 @@
 import type { IValueWithRandom } from "../Options/Interfaces/IValueWithRandom";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import type { IParticle } from "../Core/Interfaces/IParticle";
 import { MoveDirection, MoveDirectionAlt } from "../Enums/Directions";
 import type { IVelocity } from "../Core/Interfaces/IVelocity";
 import { RangeValue } from "../Types/RangeValue";
@@ -61,9 +60,9 @@ export class NumberUtils {
 
         return value !== undefined
             ? {
-                  min: Math.min(min, value),
-                  max: Math.max(max, value),
-              }
+                min: Math.min(min, value),
+                max: Math.max(max, value),
+            }
             : NumberUtils.setRangeValue(min, max);
     }
 
