@@ -1,22 +1,18 @@
 import type { Main, IParticle, SingleOrMultiple } from "tsparticles";
 import type { IShapeValues } from "tsparticles/dist/Options/Interfaces/Particles/Shape/IShapeValues";
-import { Utils } from "tsparticles";
+import { Utils, Vector } from "tsparticles";
 
 type ConfettiType = "circle" | "square";
+
+const ovalScalar = 0.6;
 
 interface IConfettiData extends IShapeValues {
     type: SingleOrMultiple<ConfettiType>;
 }
 
 interface IConfettiParticle extends IParticle {
-    wobble?: number;
-    tiltAngle?: number;
-    tiltSin?: number;
-    tiltCos?: number;
-    random?: number;
-    wobbleX?: number;
-    wobbleY?: number;
-    ovalScalar?: number;
+    wobble?: Vector;
+    tilt?: Vector;
 }
 
 export function loadConfettiShape(tsParticles: Main): void {
@@ -39,44 +35,42 @@ export function loadConfettiShape(tsParticles: Main): void {
             }
 
             if (particle.wobble === undefined) {
-                particle.wobble = Math.random() * 10;
+                particle.wobble = Vector.create(0, 0);
+                particle.wobble.length = radius * 2;
+                particle.wobble.angle = Math.random() * 10;
             }
 
-            if (particle.tiltAngle === undefined) {
-                particle.tiltAngle = Math.random() * Math.PI;
+            if (particle.tilt === undefined) {
+                particle.tilt = Vector.create(0, 0);
+                particle.tilt.length = 1;
+                particle.tilt.angle = Math.random() * Math.PI;
             }
 
-            const scalar = radius * 2;
+            particle.wobble.angle += 0.1;
+            particle.tilt.angle += 0.1;
 
-            particle.ovalScalar = 0.6;
-            particle.wobble += 0.1;
-            particle.tiltAngle += 0.1;
-            particle.tiltSin = Math.sin(particle.tiltAngle);
-            particle.tiltCos = Math.cos(particle.tiltAngle);
-            particle.random = Math.random() + 5;
-            particle.wobbleX = scalar * Math.cos(particle.wobble);
-            particle.wobbleY = scalar * Math.sin(particle.wobble);
+            const random = Math.random() + 5;
 
-            const x1 = particle.random * particle.tiltCos,
-                y1 = particle.random * particle.tiltSin,
-                x2 = particle.wobbleX + particle.random * particle.tiltCos,
-                y2 = particle.wobbleY + particle.random * particle.tiltSin;
+            const x1 = random * particle.tilt.x,
+                y1 = random * particle.tilt.y,
+                x2 = particle.wobble.x + random * particle.tilt.x,
+                y2 = particle.wobble.y + random * particle.tilt.y;
 
             if (shapeData.type === "circle") {
                 context.ellipse(
                     0,
                     0,
-                    Math.abs(x2 - x1) * particle.ovalScalar,
-                    Math.abs(y2 - y1) * particle.ovalScalar,
-                    (Math.PI / 10) * particle.wobble,
+                    Math.abs(x2 - x1) * ovalScalar,
+                    Math.abs(y2 - y1) * ovalScalar,
+                    (Math.PI / 10) * particle.wobble.angle,
                     0,
                     2 * Math.PI
                 );
             } else {
                 context.moveTo(0, 0);
-                context.lineTo(particle.wobbleX, y1);
+                context.lineTo(particle.wobble.x, y1);
                 context.lineTo(x2, y2);
-                context.lineTo(x1, particle.wobbleY);
+                context.lineTo(x1, particle.wobble.y);
             }
         }
     );
