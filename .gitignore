@@ -78,6 +78,7 @@ components/preact/report.html
 components/react/report.html
 
 .idea/
+.vscode/
 .nyc_output/
 coverage/
 .codacy-coverage/
