@@ -5,10 +5,10 @@ import type { IRgb } from "../../Core/Interfaces/Colors";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
 import { ColorUtils, NumberUtils, Utils } from "../../Utils";
 import type { Absorbers } from "./Absorbers";
+import { Vector } from "../../Core/Particle/Vector";
 
 type OrbitingParticle = Particle & {
-    orbitRadius?: number;
-    orbitAngle?: number;
+    orbit?: Vector;
     needsNewPosition?: boolean;
 };
 
@@ -23,11 +23,11 @@ export class AbsorberInstance {
     public color: IRgb;
     public limit?: number;
     public readonly name?: string;
-    public position: ICoordinates;
+    public position: Vector;
 
     private dragging;
 
-    private readonly initialPosition?: ICoordinates;
+    private readonly initialPosition?: Vector;
     private readonly options: IAbsorber;
 
     constructor(
@@ -36,7 +36,7 @@ export class AbsorberInstance {
         options: IAbsorber,
         position?: ICoordinates
     ) {
-        this.initialPosition = position;
+        this.initialPosition = position ? Vector.create(position.x, position.y) : undefined;
         this.options = options;
         this.dragging = false;
 
@@ -57,7 +57,7 @@ export class AbsorberInstance {
             r: 0,
         };
 
-        this.position = this.initialPosition ?? this.calcPosition();
+        this.position = this.initialPosition?.copy() ?? this.calcPosition();
     }
 
     public attract(particle: OrbitingParticle): void {
@@ -84,8 +84,8 @@ export class AbsorberInstance {
 
         const pos = particle.getPosition();
         const { dx, dy, distance } = NumberUtils.getDistances(this.position, pos);
-        const angle = Math.atan2(dx, dy);
-        const acceleration = (this.mass / Math.pow(distance, 2)) * this.container.retina.reduceFactor;
+        const v = Vector.create(dx, dy);
+        v.length = (this.mass / Math.pow(distance, 2)) * this.container.retina.reduceFactor;
 
         if (distance < this.size + particle.getRadius()) {
             const sizeFactor = particle.getRadius() * 0.033 * this.container.retina.pixelRatio;
@@ -96,14 +96,14 @@ export class AbsorberInstance {
                 } else {
                     particle.needsNewPosition = true;
 
-                    this.updateParticlePosition(particle, angle, acceleration);
+                    this.updateParticlePosition(particle, v);
                 }
             } else {
                 if (options.destroy) {
                     particle.size.value -= sizeFactor;
                 }
 
-                this.updateParticlePosition(particle, angle, acceleration);
+                this.updateParticlePosition(particle, v);
             }
 
             if (this.limit === undefined || this.size < this.limit) {
@@ -112,7 +112,7 @@ export class AbsorberInstance {
 
             this.mass += sizeFactor * this.options.size.density * this.container.retina.reduceFactor;
         } else {
-            this.updateParticlePosition(particle, angle, acceleration);
+            this.updateParticlePosition(particle, v);
         }
     }
 
@@ -134,18 +134,17 @@ export class AbsorberInstance {
         context.fill();
     }
 
-    private calcPosition(): ICoordinates {
+    private calcPosition(): Vector {
         const container = this.container;
-
         const percentPosition = this.options.position;
 
-        return {
-            x: ((percentPosition?.x ?? Math.random() * 100) / 100) * container.canvas.size.width,
-            y: ((percentPosition?.y ?? Math.random() * 100) / 100) * container.canvas.size.height,
-        };
+        return Vector.create(
+            ((percentPosition?.x ?? Math.random() * 100) / 100) * container.canvas.size.width,
+            ((percentPosition?.y ?? Math.random() * 100) / 100) * container.canvas.size.height
+        );
     }
 
-    private updateParticlePosition(particle: OrbitingParticle, angle: number, acceleration: number): void {
+    private updateParticlePosition(particle: OrbitingParticle, v: Vector): void {
         if (particle.destroyed) {
             return;
         }
@@ -160,33 +159,27 @@ export class AbsorberInstance {
         }
 
         if (this.options.orbits) {
-            if (particle.orbitRadius === undefined) {
-                particle.orbitRadius = NumberUtils.getDistance(particle.getPosition(), this.position);
+            if (particle.orbit === undefined) {
+                particle.orbit = Vector.create(0, 0);
+
+                particle.orbit.length = NumberUtils.getDistance(particle.getPosition(), this.position);
+                particle.orbit.angle = Math.random() * Math.PI * 2;
             }
 
-            if (particle.orbitRadius <= this.size && !this.options.destroy) {
-                particle.orbitRadius = Math.random() * Math.max(canvasSize.width, canvasSize.height);
+            if (particle.orbit.length <= this.size && !this.options.destroy) {
+                particle.orbit.length = Math.random() * Math.max(canvasSize.width, canvasSize.height);
             }
-
-            if (particle.orbitAngle === undefined) {
-                particle.orbitAngle = Math.random() * Math.PI * 2;
-            }
-
-            const orbitRadius = particle.orbitRadius;
-            const orbitAngle = particle.orbitAngle;
 
             particle.velocity.x = 0;
             particle.velocity.y = 0;
 
-            particle.position.x += orbitRadius * Math.cos(orbitAngle);
-            particle.position.y += orbitRadius * Math.sin(orbitAngle);
+            particle.position.setTo(particle.orbit.add(this.position));
 
-            particle.orbitRadius -= acceleration;
-            particle.orbitAngle +=
+            particle.orbit.length -= v.length;
+            particle.orbit.angle +=
                 ((particle.moveSpeed ?? this.container.retina.moveSpeed) / 100) * this.container.retina.reduceFactor;
         } else {
-            particle.velocity.x += Math.sin(angle) * acceleration;
-            particle.velocity.y += Math.cos(angle) * acceleration;
+            particle.velocity.addTo(v);
         }
     }
 }
