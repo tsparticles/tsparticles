@@ -12,7 +12,7 @@ import { Vector } from "../../Core/Particle/Vector";
  * @category Interactions
  */
 export class Repulser implements IExternalInteractor {
-    constructor(private readonly container: Container) { }
+    constructor(private readonly container: Container) {}
 
     public isEnabled(): boolean {
         const container = this.container;
@@ -85,11 +85,11 @@ export class Repulser implements IExternalInteractor {
                 div.type === DivType.circle
                     ? new Circle(pos.x, pos.y, repulseRadius)
                     : new Rectangle(
-                        elem.offsetLeft * pxRatio,
-                        elem.offsetTop * pxRatio,
-                        elem.offsetWidth * pxRatio,
-                        elem.offsetHeight * pxRatio
-                    );
+                          elem.offsetLeft * pxRatio,
+                          elem.offsetTop * pxRatio,
+                          elem.offsetWidth * pxRatio,
+                          elem.offsetHeight * pxRatio
+                      );
 
             const divs = container.actualOptions.interactivity.modes.repulse.divs;
             const divRepulse = Utils.divMode(divs, elem);
