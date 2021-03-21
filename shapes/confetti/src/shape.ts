@@ -12,20 +12,14 @@ interface IConfettiData extends IShapeValues {
 
 interface IConfettiParticle extends IParticle {
     wobble?: Vector;
+    wobbleSpeed?: number;
     tilt?: Vector;
 }
 
 export function loadConfettiShape(tsParticles: Main): void {
     tsParticles.addShape(
         "confetti",
-        function (
-            context: CanvasRenderingContext2D,
-            particle: IConfettiParticle,
-            radius: number,
-            opacity: number,
-            delta: number,
-            pixelRatio: number
-        ): void {
+        function (context: CanvasRenderingContext2D, particle: IConfettiParticle, radius: number): void {
             const shapeData = (particle.shapeData ?? {}) as IConfettiData;
 
             if (shapeData.type === undefined) {
@@ -40,16 +34,20 @@ export function loadConfettiShape(tsParticles: Main): void {
                 particle.wobble.angle = Math.random() * 10;
             }
 
+            if (particle.wobbleSpeed === undefined) {
+                particle.wobbleSpeed = Math.min(0.11, Math.random() * 0.1 + 0.05);
+            }
+
             if (particle.tilt === undefined) {
                 particle.tilt = Vector.create(0, 0);
                 particle.tilt.length = 1;
-                particle.tilt.angle = Math.random() * Math.PI;
+                particle.tilt.angle = (Math.random() * (0.75 - 0.25) + 0.25) * Math.PI;
             }
 
-            particle.wobble.angle += 0.1;
+            particle.wobble.angle += particle.wobbleSpeed;
             particle.tilt.angle += 0.1;
 
-            const random = Math.random() + 5;
+            const random = Math.random() + 2;
 
             const x1 = random * particle.tilt.x,
                 y1 = random * particle.tilt.y,
