@@ -7,6 +7,7 @@ import { DivMode } from "../../Enums/Modes";
 import { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
 import { DivType } from "../../Enums/Types";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
+import { Vector } from "../../Core/Particle/Vector";
 
 export class Bouncer implements IExternalInteractor {
     constructor(private readonly container: Container) {}
@@ -97,10 +98,7 @@ export class Bouncer implements IExternalInteractor {
                 Utils.circleBounce(Utils.circleBounceDataFromParticle(particle), {
                     position,
                     radius,
-                    velocity: {
-                        horizontal: 0,
-                        vertical: 0,
-                    },
+                    velocity: Vector.create(0, 0),
                     factor: {
                         horizontal: 0,
                         vertical: 0,

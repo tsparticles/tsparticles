@@ -30,10 +30,10 @@ export class Attractor implements IParticlesInteractor {
             const ax = dx / (rotate.x * 1000);
             const ay = dy / (rotate.y * 1000);
 
-            p1.velocity.horizontal -= ax;
-            p1.velocity.vertical -= ay;
-            p2.velocity.horizontal += ax;
-            p2.velocity.vertical += ay;
+            p1.velocity.x -= ax;
+            p1.velocity.y -= ay;
+            p2.velocity.x += ax;
+            p2.velocity.y += ay;
         }
     }
 

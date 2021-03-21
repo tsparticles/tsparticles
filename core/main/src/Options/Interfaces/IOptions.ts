@@ -113,4 +113,9 @@ export interface IOptions {
      * User-defined themes that can be retrieved by the particles [[Container]]
      */
     themes: ITheme[];
+
+    /**
+     * More custom options for external plugins or customizations
+     */
+    [name: string]: unknown;
 }

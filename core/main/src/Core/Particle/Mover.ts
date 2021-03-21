@@ -56,27 +56,22 @@ export class Mover {
         const gravityOptions = particlesOptions.move.gravity;
 
         if (gravityOptions.enable) {
-            particle.velocity.vertical += (gravityOptions.acceleration * delta.factor) / (60 * moveSpeed);
+            particle.velocity.y += (gravityOptions.acceleration * delta.factor) / (60 * moveSpeed);
         }
 
         const decay = 1 - particle.options.move.decay;
 
-        particle.velocity.horizontal *= decay;
-        particle.velocity.vertical *= decay;
+        particle.velocity.multTo(decay);
 
-        const velocity = {
-            horizontal: particle.velocity.horizontal * moveSpeed,
-            vertical: particle.velocity.vertical * moveSpeed,
-        };
+        const velocity = particle.velocity.mult(moveSpeed);
 
-        if (gravityOptions.enable && velocity.vertical >= gravityOptions.maxSpeed && gravityOptions.maxSpeed > 0) {
-            velocity.vertical = gravityOptions.maxSpeed;
+        if (gravityOptions.enable && velocity.y >= gravityOptions.maxSpeed && gravityOptions.maxSpeed > 0) {
+            velocity.y = gravityOptions.maxSpeed;
 
-            particle.velocity.vertical = velocity.vertical / moveSpeed;
+            particle.velocity.y = velocity.y / moveSpeed;
         }
 
-        particle.position.x += velocity.horizontal;
-        particle.position.y += velocity.vertical;
+        particle.position.addTo(velocity);
 
         if (particlesOptions.move.vibrate) {
             particle.position.x += Math.sin(particle.position.x * Math.cos(particle.position.y));
@@ -89,23 +84,23 @@ export class Mover {
         if (particle.maxDistance) {
             if (initialDistance >= particle.maxDistance && !particle.misplaced) {
                 particle.misplaced = initialDistance > particle.maxDistance;
-                particle.velocity.horizontal = particle.velocity.vertical / 2 - particle.velocity.horizontal;
-                particle.velocity.vertical = particle.velocity.horizontal / 2 - particle.velocity.vertical;
+                particle.velocity.x = particle.velocity.y / 2 - particle.velocity.x;
+                particle.velocity.y = particle.velocity.x / 2 - particle.velocity.y;
             } else if (initialDistance < particle.maxDistance && particle.misplaced) {
                 particle.misplaced = false;
             } else if (particle.misplaced) {
                 if (
-                    (particle.position.x < initialPosition.x && particle.velocity.horizontal < 0) ||
-                    (particle.position.x > initialPosition.x && particle.velocity.horizontal > 0)
+                    (particle.position.x < initialPosition.x && particle.velocity.x < 0) ||
+                    (particle.position.x > initialPosition.x && particle.velocity.x > 0)
                 ) {
-                    particle.velocity.horizontal *= -Math.random();
+                    particle.velocity.x *= -Math.random();
                 }
 
                 if (
-                    (particle.position.y < initialPosition.y && particle.velocity.vertical < 0) ||
-                    (particle.position.y > initialPosition.y && particle.velocity.vertical > 0)
+                    (particle.position.y < initialPosition.y && particle.velocity.y < 0) ||
+                    (particle.position.y > initialPosition.y && particle.velocity.y > 0)
                 ) {
-                    particle.velocity.vertical *= -Math.random();
+                    particle.velocity.y *= -Math.random();
                 }
             }
         }
@@ -141,12 +136,11 @@ export class Mover {
 
         const path = generator.generate(particle);
 
-        particle.velocity.horizontal += Math.cos(path.angle) * path.length;
-        particle.velocity.vertical += Math.sin(path.angle) * path.length;
+        particle.velocity.addTo(path);
 
         if (pathOptions.clamp) {
-            particle.velocity.horizontal = NumberUtils.clamp(particle.velocity.horizontal, -1, 1);
-            particle.velocity.vertical = NumberUtils.clamp(particle.velocity.vertical, -1, 1);
+            particle.velocity.x = NumberUtils.clamp(particle.velocity.x, -1, 1);
+            particle.velocity.y = NumberUtils.clamp(particle.velocity.y, -1, 1);
         }
 
         particle.lastPathTime -= particle.pathDelay;

@@ -82,6 +82,8 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     public responsive: Responsive[];
     public themes: Theme[];
 
+    [name: string]: unknown;
+
     constructor() {
         this.autoPlay = true;
         this.background = new Background();
@@ -95,7 +97,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.motion = new Motion();
         this.particles = new Particles();
         this.pauseOnBlur = true;
-        this.pauseOnOutsideViewport = false;
+        this.pauseOnOutsideViewport = true;
         this.responsive = [];
         this.themes = [];
     }

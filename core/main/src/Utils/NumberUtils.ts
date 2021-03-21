@@ -1,9 +1,9 @@
 import type { IValueWithRandom } from "../Options/Interfaces/IValueWithRandom";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import type { IParticle } from "../Core/Interfaces/IParticle";
-import { MoveDirection } from "../Enums/Directions";
+import { MoveDirection, MoveDirectionAlt } from "../Enums/Directions";
 import type { IVelocity } from "../Core/Interfaces/IVelocity";
 import { RangeValue } from "../Types/RangeValue";
+import { Vector } from "../Core/Particle/Vector";
 
 export class NumberUtils {
     /**
@@ -100,40 +100,45 @@ export class NumberUtils {
      * Get Particle base velocity
      * @param particle the particle to use for calculating the velocity
      */
-    public static getParticleBaseVelocity(particle: IParticle): ICoordinates {
-        let velocityBase: ICoordinates;
+    public static getParticleBaseVelocity(
+        direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt
+    ): Vector {
+        const baseVelocity = Vector.origin;
 
-        switch (particle.direction) {
+        baseVelocity.length = 1;
+
+        switch (direction) {
             case MoveDirection.top:
-                velocityBase = { x: 0, y: -1 };
+                baseVelocity.angle = -Math.PI / 2;
                 break;
             case MoveDirection.topRight:
-                velocityBase = { x: 0.5, y: -0.5 };
+                baseVelocity.angle = -Math.PI / 4;
                 break;
             case MoveDirection.right:
-                velocityBase = { x: 1, y: -0 };
+                baseVelocity.angle = 0;
                 break;
             case MoveDirection.bottomRight:
-                velocityBase = { x: 0.5, y: 0.5 };
+                baseVelocity.angle = Math.PI / 4;
                 break;
             case MoveDirection.bottom:
-                velocityBase = { x: 0, y: 1 };
+                baseVelocity.angle = Math.PI / 2;
                 break;
             case MoveDirection.bottomLeft:
-                velocityBase = { x: -0.5, y: 1 };
+                baseVelocity.angle = (3 * Math.PI) / 4;
                 break;
             case MoveDirection.left:
-                velocityBase = { x: -1, y: 0 };
+                baseVelocity.angle = Math.PI;
                 break;
             case MoveDirection.topLeft:
-                velocityBase = { x: -0.5, y: -0.5 };
+                baseVelocity.angle = (-3 * Math.PI) / 4;
                 break;
+            case MoveDirection.none:
             default:
-                velocityBase = { x: 0, y: 0 };
+                baseVelocity.angle = Math.random() * Math.PI * 2;
                 break;
         }
 
-        return velocityBase;
+        return baseVelocity;
     }
 
     public static rotateVelocity(velocity: IVelocity, angle: number): IVelocity {
@@ -143,10 +148,7 @@ export class NumberUtils {
         };
     }
 
-    public static collisionVelocity(v1: IVelocity, v2: IVelocity, m1: number, m2: number): IVelocity {
-        return {
-            horizontal: (v1.horizontal * (m1 - m2)) / (m1 + m2) + (v2.horizontal * 2 * m2) / (m1 + m2),
-            vertical: v1.vertical,
-        };
+    public static collisionVelocity(v1: Vector, v2: Vector, m1: number, m2: number): Vector {
+        return Vector.create((v1.x * (m1 - m2)) / (m1 + m2) + (v2.x * 2 * m2) / (m1 + m2), v1.y);
     }
 }

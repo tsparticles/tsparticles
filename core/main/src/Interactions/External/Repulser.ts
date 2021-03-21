@@ -5,6 +5,7 @@ import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
 import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
 import type { RepulseDiv } from "../../Options/Classes/Interactivity/Modes/RepulseDiv";
+import { Vector } from "../../Core/Particle/Vector";
 
 /**
  * Particle repulse manager
@@ -124,8 +125,8 @@ export class Repulser implements IExternalInteractor {
             const velocity = (divRepulse?.speed ?? container.actualOptions.interactivity.modes.repulse.speed) * 100;
             const repulseFactor = NumberUtils.clamp((1 - Math.pow(distance / repulseRadius, 2)) * velocity, 0, 50);
 
-            particle.position.x = particle.position.x + normVec.x * repulseFactor;
-            particle.position.y = particle.position.y + normVec.y * repulseFactor;
+            particle.position.x += normVec.x * repulseFactor;
+            particle.position.y += normVec.y * repulseFactor;
         }
     }
 
@@ -159,22 +160,21 @@ export class Repulser implements IExternalInteractor {
             for (const particle of query) {
                 const { dx, dy, distance } = NumberUtils.getDistances(mouseClickPos, particle.position);
                 const d = distance * distance;
-                const velocity = container.actualOptions.interactivity.modes.repulse.speed;
-                const force = (-repulseRadius * velocity) / d;
 
                 if (d <= repulseRadius) {
                     container.repulse.particles.push(particle);
 
-                    const angle = Math.atan2(dy, dx);
+                    const velocity = container.actualOptions.interactivity.modes.repulse.speed;
+                    const v = Vector.create(dx, dy);
 
-                    particle.velocity.horizontal = force * Math.cos(angle);
-                    particle.velocity.vertical = force * Math.sin(angle);
+                    v.length = (-repulseRadius * velocity) / d;
+
+                    particle.velocity.setTo(v);
                 }
             }
         } else if (container.repulse.clicking === false) {
             for (const particle of container.repulse.particles) {
-                particle.velocity.horizontal = particle.initialVelocity.horizontal;
-                particle.velocity.vertical = particle.initialVelocity.vertical;
+                particle.velocity.setTo(particle.initialVelocity);
             }
             container.repulse.particles = [];
         }
@@ -332,8 +332,8 @@ export class Repulser implements IExternalInteractor {
 
             const repulseFactor = Utils.clamp((1 - Math.pow(distance / repulseRadius, 2)) * velocity, 0, 50);
 
-            particle.position.x = particle.position.x + normVec.x * repulseFactor;
-            particle.position.y = particle.position.y + normVec.y * repulseFactor;
+            particle.position.x += normVec.x * repulseFactor;
+            particle.position.y += normVec.y * repulseFactor;
         }
     }
 }

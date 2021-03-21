@@ -260,130 +260,20 @@
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"
         integrity="sha256-ur/YlHMU96MxHEsy3fHGszZHas7NzH4RQlD4tDVvFhw=" crossorigin="anonymous"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@1.22.0/dist/tsparticles.min.js"
-        integrity="sha256-ysokM2wfOuRY3J5SLS0I9QDzAbmd5l+SoyBZAInoY1Q=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-basic@1.6.0/dist/tsparticles.preset.basic.min.js"
-        integrity="sha256-Xe84x19fZi2+rQvtpYQCNs/NcZiq8ksjPiez4/uPMYs=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@1.22.1/dist/tsparticles.min.js"
+        integrity="sha256-ZXmMQDcGOCk6mRUMRP2GfsuNupVzuqskETnM2ldax1M=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-basic@1.7.1/dist/tsparticles.preset.basic.min.js"
+        integrity="sha256-1HIAtxrfXnDqDl7xy4WLCOxxtieUSNKGMSXWk6xjfvc=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/object-gui@1.0.11/dist/js/object-gui.min.js"
         integrity="sha256-OZuddowXLKMeqh3QhEFcVRcrWjJbjQKUhUnYY/PWxro=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles-editor@1.22.0/dist/tsparticles.editor.min.js"
-        integrity="sha256-boXRJRO9lVRTPNhd33L6MLgA7riq6NFfzQGR0WKEZIE=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-editor@1.22.1/dist/tsparticles.editor.min.js"
+        integrity="sha256-gE7lrDELj2sKEyLxRyXJHSLxg0UK8vDYpzMAX+3Qie4=" crossorigin="anonymous"></script>
     <script type="text/javascript">
         hljs.initHighlightingOnLoad();
     </script>
 
     <script type="text/javascript">
-        tsParticles.load("tsparticles", {
-            background: {
-                color: "#000"
-            },
-            fullScreen: {
-                enable: true
-            },
-            detectRetina: true,
-            fpsLimit: 60,
-            interactivity: {
-                detectsOn: "window",
-                events: {
-                    onHover: {
-                        mode: "trail",
-                        enable: true
-                    }
-                },
-                modes: {
-                    trail: {
-                        delay: 0.005,
-                        quantity: 5,
-                        particles: {
-                            color: {
-                                value: "#ff0000",
-                                animation: {
-                                    enable: true,
-                                    speed: 400,
-                                    sync: true
-                                }
-                            },
-                            collisions: {
-                                enable: false
-                            },
-                            links: {
-                                enable: false
-                            },
-                            move: {
-                                outMode: "destroy",
-                                speed: 5
-                            },
-                            size: {
-                                value: 5,
-                                animation: {
-                                    enable: true,
-                                    speed: 5,
-                                    minimumValue: 1,
-                                    sync: true,
-                                    startValue: "min",
-                                    destroy: "max"
-                                }
-                            }
-                        }
-                    }
-                },
-                resize: true
-            },
-            motion: {
-                reduce: {
-                    value: true
-                }
-            },
-            particles: {
-                color: {
-                    animation: {
-                        enable: true,
-                        sync: false,
-                        speed: 50
-                    },
-                    value: "#f00"
-                },
-                links: {
-                    color: "random",
-                    enable: true
-                },
-                collisions: {
-                    enable: true
-                },
-                move: {
-                    enable: true
-                },
-                number: {
-                    density: {
-                        enable: true
-                    }
-                },
-                opacity: {
-                    animation: {
-                        enable: true,
-                        minimumValue: 0.3,
-                        speed: 0.5
-                    },
-                    value: 0.8,
-                    random: {
-                        enable: true,
-                        minimumValue: 0.3
-                    }
-                },
-                size: {
-                    animation: {
-                        enable: true,
-                        minimumValue: 1,
-                        speed: 3
-                    },
-                    value: 3,
-                    random: {
-                        enable: true,
-                        minimumValue: 1
-                    }
-                }
-            }
-        }).then((container) => {
+        tsParticles.loadJSON("tsparticles", "/configs/index.json").then((container) => {
             showEditor(container).top().right().theme("neu-dark");
 
             const editor = document.querySelector("#p_tsparticles_editor");
