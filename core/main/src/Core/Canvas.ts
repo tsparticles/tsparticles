@@ -213,15 +213,15 @@ export class Canvas {
     }
 
     public drawConnectLine(p1: IParticle, p2: IParticle): void {
-        const lineStyle = this.lineStyle(p1, p2);
-
-        if (!lineStyle) {
-            return;
-        }
-
         const ctx = this.context;
 
         if (!ctx) {
+            return;
+        }
+
+        const lineStyle = this.lineStyle(p1, p2);
+
+        if (!lineStyle) {
             return;
         }
 
@@ -528,47 +528,41 @@ export class Canvas {
     }
 
     private lineStyle(p1: IParticle, p2: IParticle): CanvasGradient | undefined {
+        if (!this.context) {
+            return;
+        }
+
         const options = this.container.actualOptions;
         const connectOptions = options.interactivity.modes.connect;
 
-        if (this.context) {
-            return CanvasUtils.gradient(this.context, p1, p2, connectOptions.links.opacity);
-        }
+        return CanvasUtils.gradient(this.context, p1, p2, connectOptions.links.opacity);
     }
 
     private initBackground(): void {
         const options = this.container.actualOptions;
         const background = options.background;
         const element = this.element;
+        const elementStyle = element?.style;
 
-        if (!element) {
+        if (!elementStyle) {
             return;
         }
-
-        const elementStyle = element.style;
 
         if (background.color) {
             const color = ColorUtils.colorToRgb(background.color);
 
             if (color) {
                 elementStyle.backgroundColor = ColorUtils.getStyleFromRgb(color, background.opacity);
+            } else {
+                elementStyle.backgroundColor = "";
             }
+        } else {
+            elementStyle.backgroundColor = "";
         }
 
-        if (background.image) {
-            elementStyle.backgroundImage = background.image;
-        }
-
-        if (background.position) {
-            elementStyle.backgroundPosition = background.position;
-        }
-
-        if (background.repeat) {
-            elementStyle.backgroundRepeat = background.repeat;
-        }
-
-        if (background.size) {
-            elementStyle.backgroundSize = background.size;
-        }
+        elementStyle.backgroundImage = background.image || "";
+        elementStyle.backgroundPosition = background.position || "";
+        elementStyle.backgroundRepeat = background.repeat || "";
+        elementStyle.backgroundSize = background.size || "";
     }
 }
