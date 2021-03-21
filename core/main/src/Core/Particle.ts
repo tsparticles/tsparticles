@@ -33,6 +33,7 @@ import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 import type { Stroke } from "../Options/Classes/Particles/Stroke";
 import { IParticleLoops } from "./Interfaces/IParticleLoops";
 import { Vector } from "./Particle/Vector";
+import { resolveMx } from "node:dns";
 
 /**
  * The single particle object
@@ -553,7 +554,7 @@ export class Particle implements IParticle {
 
     private calculateVelocity(): Vector {
         const baseVelocity = NumberUtils.getParticleBaseVelocity(this.direction);
-        const res = Vector.create(0, 0);
+        const res = baseVelocity.copy();
         const moveOptions = this.options.move;
 
         let rad: number;
@@ -571,23 +572,10 @@ export class Particle implements IParticle {
             right: Math.cos(radOffset + rad / 2) - Math.cos(radOffset - rad / 2),
         };
 
-        if (moveOptions.straight) {
-            res.x = baseVelocity.x;
-            res.y = baseVelocity.y;
-
-            if (moveOptions.random) {
-                res.x += NumberUtils.randomInRange(NumberUtils.setRangeValue(range.left, range.right)) / 2;
-                res.y += NumberUtils.randomInRange(NumberUtils.setRangeValue(range.left, range.right)) / 2;
-            }
-        } else {
-            res.x = baseVelocity.x + NumberUtils.randomInRange(NumberUtils.setRangeValue(range.left, range.right)) / 2;
-            res.y = baseVelocity.y + NumberUtils.randomInRange(NumberUtils.setRangeValue(range.left, range.right)) / 2;
+        if (!moveOptions.straight || moveOptions.random) {
+            res.x += NumberUtils.randomInRange(NumberUtils.setRangeValue(range.left, range.right)) / 2;
+            res.y += NumberUtils.randomInRange(NumberUtils.setRangeValue(range.left, range.right)) / 2;
         }
-
-        // const theta = 2.0 * Math.PI * Math.random();
-
-        // res.x = Math.cos(theta);
-        // res.y = Math.sin(theta);
 
         return res;
     }
