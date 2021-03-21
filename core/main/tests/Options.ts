@@ -1,3 +1,4 @@
+import { describe, it } from "mocha";
 import { Options } from "../src/Options/Classes/Options";
 import { expect } from "chai";
 import {
@@ -156,7 +157,7 @@ describe("Options tests", () => {
         expect(options.pauseOnBlur).to.be.true;
 
         /** pause on Element Outside Viewport*/
-        expect(options.pauseOnOutsideViewport).to.be.false;
+        expect(options.pauseOnOutsideViewport).to.be.true;
     });
 
     it("check default preset options", () => {
