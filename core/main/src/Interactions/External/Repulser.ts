@@ -5,13 +5,14 @@ import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
 import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
 import type { RepulseDiv } from "../../Options/Classes/Interactivity/Modes/RepulseDiv";
+import { Vector } from "../../Core/Particle/Vector";
 
 /**
  * Particle repulse manager
  * @category Interactions
  */
 export class Repulser implements IExternalInteractor {
-    constructor(private readonly container: Container) {}
+    constructor(private readonly container: Container) { }
 
     public isEnabled(): boolean {
         const container = this.container;
@@ -84,11 +85,11 @@ export class Repulser implements IExternalInteractor {
                 div.type === DivType.circle
                     ? new Circle(pos.x, pos.y, repulseRadius)
                     : new Rectangle(
-                          elem.offsetLeft * pxRatio,
-                          elem.offsetTop * pxRatio,
-                          elem.offsetWidth * pxRatio,
-                          elem.offsetHeight * pxRatio
-                      );
+                        elem.offsetLeft * pxRatio,
+                        elem.offsetTop * pxRatio,
+                        elem.offsetWidth * pxRatio,
+                        elem.offsetHeight * pxRatio
+                    );
 
             const divs = container.actualOptions.interactivity.modes.repulse.divs;
             const divRepulse = Utils.divMode(divs, elem);
@@ -159,22 +160,21 @@ export class Repulser implements IExternalInteractor {
             for (const particle of query) {
                 const { dx, dy, distance } = NumberUtils.getDistances(mouseClickPos, particle.position);
                 const d = distance * distance;
-                const velocity = container.actualOptions.interactivity.modes.repulse.speed;
-                const force = (-repulseRadius * velocity) / d;
 
                 if (d <= repulseRadius) {
                     container.repulse.particles.push(particle);
 
-                    const angle = Math.atan2(dy, dx);
+                    const velocity = container.actualOptions.interactivity.modes.repulse.speed;
+                    const v = Vector.create(dx, dy);
 
-                    particle.velocity.x = force * Math.cos(angle);
-                    particle.velocity.y = force * Math.sin(angle);
+                    v.length = (-repulseRadius * velocity) / d;
+
+                    particle.velocity.setTo(v);
                 }
             }
         } else if (container.repulse.clicking === false) {
             for (const particle of container.repulse.particles) {
-                particle.velocity.x = particle.initialVelocity.x;
-                particle.velocity.y = particle.initialVelocity.y;
+                particle.velocity.setTo(particle.initialVelocity);
             }
             container.repulse.particles = [];
         }
