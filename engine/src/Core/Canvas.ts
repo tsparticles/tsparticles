@@ -184,13 +184,13 @@ export class Canvas {
     }
 
     public drawConnectLine(p1: IParticle, p2: IParticle): void {
-        const lineStyle = this.lineStyle(p1, p2);
-
-        if (!lineStyle) {
-            return;
-        }
-
         this.draw((ctx) => {
+            const lineStyle = this.lineStyle(p1, p2);
+
+            if (!lineStyle) {
+                return;
+            }
+
             const pos1 = p1.getPosition();
             const pos2 = p2.getPosition();
 
@@ -363,12 +363,11 @@ export class Canvas {
         const options = this.container.actualOptions;
         const background = options.background;
         const element = this.element;
+        const elementStyle = element?.style;
 
-        if (!element) {
+        if (!elementStyle) {
             return;
         }
-
-        const elementStyle = element.style;
 
         if (background.color) {
             const color = colorToRgb(background.color);
@@ -378,21 +377,10 @@ export class Canvas {
             elementStyle.backgroundColor = noColor;
         }
 
-        if (background.image) {
-            elementStyle.backgroundImage = background.image;
-        }
-
-        if (background.position) {
-            elementStyle.backgroundPosition = background.position;
-        }
-
-        if (background.repeat) {
-            elementStyle.backgroundRepeat = background.repeat;
-        }
-
-        if (background.size) {
-            elementStyle.backgroundSize = background.size;
-        }
+        elementStyle.backgroundImage = background.image || "";
+        elementStyle.backgroundPosition = background.position || "";
+        elementStyle.backgroundRepeat = background.repeat || "";
+        elementStyle.backgroundSize = background.size || "";
     }
 
     private initCover(): void {
