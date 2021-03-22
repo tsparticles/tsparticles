@@ -38,7 +38,7 @@
                         "outModes": {
                             "default": "destroy"
                         },
-                        "speed": 5
+                        "speed": 2
                     },
                     "size": {
                         "value": 5,
