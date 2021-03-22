@@ -12,6 +12,7 @@ interface IConfettiData extends IShapeValues {
 
 interface IConfettiParticle extends IParticle {
     wobble?: Vector;
+    wobbleInc?: number;
     wobbleSpeed?: number;
     tilt?: Vector;
 }
@@ -34,6 +35,10 @@ export function loadConfettiShape(tsParticles: Main): void {
                 particle.wobble.angle = Math.random() * 10;
             }
 
+            if (particle.wobbleInc === undefined) {
+                particle.wobbleInc = particle.wobble.angle;
+            }
+
             if (particle.wobbleSpeed === undefined) {
                 particle.wobbleSpeed = Math.min(0.11, Math.random() * 0.1 + 0.05);
             }
@@ -45,6 +50,7 @@ export function loadConfettiShape(tsParticles: Main): void {
             }
 
             particle.wobble.angle += particle.wobbleSpeed;
+            particle.wobbleInc += particle.wobbleSpeed;
             particle.tilt.angle += 0.1;
 
             const random = Math.random() + 2;
@@ -60,7 +66,7 @@ export function loadConfettiShape(tsParticles: Main): void {
                     0,
                     Math.abs(x2 - x1) * ovalScalar,
                     Math.abs(y2 - y1) * ovalScalar,
-                    (Math.PI / 10) * particle.wobble.angle,
+                    (Math.PI / 10) * particle.wobbleInc,
                     0,
                     2 * Math.PI
                 );

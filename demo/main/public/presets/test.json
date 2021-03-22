@@ -1,61 +1,55 @@
 {
   "fpsLimit": 60,
   "particles": {
-    "bounce": {
-      "horizontal": {
-        "value": 0.8
-      },
-      "vertical": {
-        "value": 0.8
-      }
-    },
     "number": {
-      "value": 0
+      "value": 5
     },
     "color": {
-      "value": "#ffffff"
-    },
-    "collisions": {
-      "enable": true
+      "value": [
+        "#ffffff",
+        "#ff0000"
+      ]
     },
     "shape": {
-      "type": "circle"
+      "type": "confetti",
+      "options": {
+        "confetti": {
+          "type": [
+            "square",
+            "circle"
+          ],
+          "drift": 0.1
+        }
+      }
     },
     "opacity": {
-      "value": 0.4
+      "value": 1
     },
     "size": {
-      "value": 15
+      "value": 20
+    },
+    "links": {
+      "enable": false
     },
     "move": {
       "enable": true,
-      "gravity": {
-        "enable": true
-      },
       "speed": 1,
-      "direction": "none",
+      "direction": "bottom",
       "random": false,
-      "straight": false,
-      "outMode": "bounce"
+      "straight": true,
+      "outModes": {
+        "default": "out"
+      }
     }
   },
   "interactivity": {
     "detectsOn": "canvas",
     "events": {
-      "onClick": {
-        "enable": true,
-        "mode": "push"
-      },
       "resize": true
-    },
-    "modes": {
-      "push": {
-        "quantity": 1
-      }
     }
   },
   "detectRetina": true,
   "background": {
-    "color": "#000000"
+    "color": "#000"
   }
 }
