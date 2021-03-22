@@ -1,4 +1,8 @@
 {
+  "fullScreen": {
+    "enable": true,
+    "zIndex": 1
+  },
   "fpsLimit": 60,
   "particles": {
     "number": {
@@ -74,36 +78,19 @@
   "background": {
     "color": "#000"
   },
-  "emitters": [
-    {
-      "direction": "top-right",
-      "rate": {
-        "delay": 0.1,
-        "quantity": 5
-      },
-      "position": {
-        "x": 0,
-        "y": 50
-      },
-      "size": {
-        "width": 0,
-        "height": 0
-      }
+  "emitters": {
+    "direction": "top-left",
+    "rate": {
+      "delay": 0.1,
+      "quantity": 5
     },
-    {
-      "direction": "top-left",
-      "rate": {
-        "delay": 0.1,
-        "quantity": 5
-      },
-      "position": {
-        "x": 100,
-        "y": 50
-      },
-      "size": {
-        "width": 0,
-        "height": 0
-      }
+    "position": {
+      "x": 100,
+      "y": 50
+    },
+    "size": {
+      "width": 0,
+      "height": 0
     }
-  ]
+  }
 }
