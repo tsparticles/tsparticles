@@ -82,6 +82,7 @@
     "@vue/cli-plugin-babel": "~4.5.11",
     "@vue/cli-plugin-typescript": "~4.5.11",
     "@vue/cli-service": "~4.5.11",
+    "is-svg": "^4.3.1",
     "postcss": "^8.2.5",
     "pug": "^3.0.2",
     "rollup": "^2.38.5",
