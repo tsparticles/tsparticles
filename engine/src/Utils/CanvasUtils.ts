@@ -300,6 +300,7 @@ export function drawParticle(
     context.restore();
 
     context.save();
+
     context.translate(pos.x, pos.y);
 
     if (angle !== 0) {

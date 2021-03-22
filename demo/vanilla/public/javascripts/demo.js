@@ -1,4 +1,4 @@
-(function() {
+(function () {
   let noiseZ;
   let size;
   let columns;
@@ -18,7 +18,7 @@
     for (let x = 0; x < columns; x++) {
       field[x] = new Array(columns);
       for (let y = 0; y < rows; y++) {
-        field[x][y] = [ 0, 0 ];
+        field[x][y] = [0, 0];
       }
     }
   }
@@ -65,8 +65,8 @@
   stats.dom.style.top = "3px";
   stats.dom.id = "stats-graph";
 
-  let initStats = function() {
-    const update = function() {
+  let initStats = function () {
+    const update = function () {
       stats.begin();
 
       stats.end();
@@ -81,7 +81,7 @@
     return self.indexOf(value) === index;
   }
 
-  let updateParticles = function(editor) {
+  let updateParticles = function (editor) {
     let presetId = localStorage.presetId || "default";
 
     if (presetId === "divEvents") {
@@ -114,6 +114,7 @@
 
     loadFull(tsParticles);
     loadBubbleShape(tsParticles);
+    loadConfettiShape(tsParticles);
     loadHeartShape(tsParticles);
     loadMultilineTextShape(tsParticles);
     loadRoundedRectShape(tsParticles);
@@ -126,15 +127,15 @@
 
       if (particles.options.particles.move.noise.enable) {
         particles.setPath({
-          init: function() {
+          init: function () {
             setup(particles);
           },
-          update: function() {
+          update: function () {
             calculateField();
 
             noiseZ += 0.002;
           },
-          generate: function(p) {
+          generate: function (p) {
             const pos = p.getPosition();
 
             const px = Math.max(Math.floor(pos.x / size), 0);
@@ -158,7 +159,7 @@
     });
   };
 
-  let initSidebar = function() {
+  let initSidebar = function () {
     const rightCaret = document.body.querySelector(".caret-right");
     const leftCaret = document.body.querySelector(".caret-left");
     const sidebar = document.getElementById("sidebar");
@@ -173,7 +174,7 @@
     }
   };
 
-  let toggleSidebar = function() {
+  let toggleSidebar = function () {
     const rightCaret = document.body.querySelector(".caret-right");
     const leftCaret = document.body.querySelector(".caret-left");
     const sidebar = document.getElementById("sidebar");
@@ -192,28 +193,28 @@
     tsParticles.domItem(0).refresh();
   };
 
-  window.addEventListener("load", function() {
+  window.addEventListener("load", function () {
     const element = document.getElementById("editor");
     const options = {
       mode: "form",
-      modes: [ "form", "view", "preview" ], // allowed modes
+      modes: ["form", "view", "preview"], // allowed modes
       autocomplete: {
         filter: "contain",
         trigger: "focus"
       },
-      onError: function(err) {
+      onError: function (err) {
         alert(err.toString());
       },
-      onModeChange: function(newMode, oldMode) {
+      onModeChange: function (newMode, oldMode) {
       },
-      onChange: function() {
+      onChange: function () {
       }
     };
     const editor = new JSONEditor(element, options);
 
     const cmbPresets = document.getElementById("presets");
 
-    cmbPresets.onchange = function() {
+    cmbPresets.onchange = function () {
       localStorage.presetId = this.value;
 
       updateParticles(editor);
@@ -232,7 +233,7 @@
     cmbPresets.dispatchEvent(event);
 
     const btnUpdate = document.getElementById("btnUpdate");
-    btnUpdate.onclick = function() {
+    btnUpdate.onclick = function () {
       const particles = tsParticles.domItem(0);
       particles.options.load(editor.get());
       particles.refresh().then(() => {
@@ -243,7 +244,7 @@
 
     const statsToggler = document.body.querySelector("#toggle-stats");
 
-    statsToggler.addEventListener("click", function() {
+    statsToggler.addEventListener("click", function () {
       const statsEl = document.body.querySelector("#stats");
       if (statsEl.hasAttribute("hidden")) {
         statsEl.removeAttribute("hidden");
@@ -254,15 +255,15 @@
 
     const sidebarToggler = document.body.querySelector(".toggle-sidebar");
 
-    sidebarToggler.addEventListener("click", function() {
+    sidebarToggler.addEventListener("click", function () {
       toggleSidebar();
     });
 
-    document.getElementById("export-image").addEventListener("click", function() {
+    document.getElementById("export-image").addEventListener("click", function () {
       const container = tsParticles.domItem(0);
 
       if (container) {
-        container.exportImage(function(blob) {
+        container.exportImage(function (blob) {
           const modalBody = document.body.querySelector("#exportModal .modal-body .modal-body-content");
 
           modalBody.innerHTML = "";
@@ -285,7 +286,7 @@
       }
     });
 
-    document.getElementById("export-config").addEventListener("click", function() {
+    document.getElementById("export-config").addEventListener("click", function () {
       const container = tsParticles.domItem(0);
 
       if (container) {
@@ -297,7 +298,7 @@
       }
     });
 
-    document.getElementById("codepen-export").addEventListener("click", function() {
+    document.getElementById("codepen-export").addEventListener("click", function () {
       const container = tsParticles.domItem(0);
 
       if (container) {
