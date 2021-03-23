@@ -7151,9 +7151,9 @@ preact-render-to-string@^3.6.3:
     pretty-format "^3.5.1"
 
 preact-render-to-string@^5.1.12:
-  version "5.1.14"
-  resolved "https://registry.yarnpkg.com/preact-render-to-string/-/preact-render-to-string-5.1.14.tgz#4b01a9354be6a7d09a66707393bcf68ce3f72714"
-  integrity sha512-xG/spHMnDX1cOOetZiFhljtczYUXqBrhuB+C2H+V0y3fJX8TmZtMrC+5di70y0E9fWAWiQIO5VTCpSDLoRmhzg==
+  version "5.1.16"
+  resolved "https://registry.yarnpkg.com/preact-render-to-string/-/preact-render-to-string-5.1.16.tgz#379db30e51916d45a67c00163ef812ad376aa721"
+  integrity sha512-HvO3W29Sziz9r5FZGwl2e34XJKzyRLvjhouv3cpkCGszNPdnvkO8p4B6CBpe0MT/tzR+QVbmsAKLrMK222UXew==
   dependencies:
     pretty-format "^3.8.0"
 
