@@ -1,6 +1,6 @@
 {
   "name": "react-tsparticles",
-  "version": "1.24.1",
+  "version": "1.24.2",
   "description": "Official tsParticles React Component - Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno.",
   "main": "index.js",
   "unpkg": "umd/particles.js",
