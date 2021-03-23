@@ -1,6 +1,6 @@
 import type { Container } from "./Container";
 import type { Particle } from "./Particle";
-import { Utils } from "../Utils";
+import { NumberUtils, Utils } from "../Utils";
 
 /**
  * @category Core
@@ -17,7 +17,6 @@ export class Retina {
     public slowModeRadius!: number;
     public linksDistance!: number;
     public linksWidth!: number;
-    public moveSpeed!: number;
     public sizeValue!: number;
     public sizeAnimationSpeed!: number;
     public pixelRatio!: number;
@@ -83,7 +82,6 @@ export class Retina {
 
         this.linksDistance = particles.links.distance * ratio;
         this.linksWidth = particles.links.width * ratio;
-        this.moveSpeed = particles.move.speed * ratio;
         this.sizeValue = particles.size.value * ratio;
         this.sizeAnimationSpeed = particles.size.animation.speed * ratio;
 
@@ -109,7 +107,8 @@ export class Retina {
 
         particle.linksDistance = particlesOptions.links.distance * ratio;
         particle.linksWidth = particlesOptions.links.width * ratio;
-        particle.moveSpeed = particlesOptions.move.speed * ratio;
+        particle.moveDrift = NumberUtils.getRangeValue(particlesOptions.move.drift) * ratio;
+        particle.moveSpeed = NumberUtils.getRangeValue(particlesOptions.move.speed) * ratio;
         particle.sizeValue = particlesOptions.size.value * ratio;
         particle.sizeAnimationSpeed = particlesOptions.size.animation.speed * ratio;
         particle.maxDistance = particlesOptions.move.distance * ratio;

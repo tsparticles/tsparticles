@@ -49,11 +49,18 @@
       "count": 1
     },
     "move": {
+      "drift": {
+        "min": -2,
+        "max": 2
+      },
       "enable": true,
       "gravity": {
         "enable": true
       },
-      "speed": 100,
+      "speed": {
+        "min": 50,
+        "max": 100
+      },
       "decay": 0.1,
       "direction": "none",
       "random": false,
