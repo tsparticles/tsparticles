@@ -3,6 +3,7 @@ import { OpacityAnimation } from "./OpacityAnimation";
 import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { ValueWithRandom } from "../../ValueWithRandom";
+import { NumberUtils } from "../../../../Utils";
 
 /**
  * [[include:Options/Particles/Opacity.md]]
@@ -42,6 +43,15 @@ export class Opacity extends ValueWithRandom implements IOpacity, IOptionLoader<
 
         super.load(data);
 
-        this.animation.load(data.animation ?? data.anim);
+        const animation = data.animation ?? data.anim;
+
+        if (animation !== undefined) {
+            this.animation.load(animation);
+
+            this.value = NumberUtils.setRangeValue(
+                this.value,
+                this.animation.enable ? this.animation.minimumValue : undefined
+            );
+        }
     }
 }

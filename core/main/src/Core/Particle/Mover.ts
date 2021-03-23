@@ -50,7 +50,7 @@ export class Mover {
             (particle.moveSpeed ??
                 NumberUtils.getRangeValue(particle.options.move.speed) * container.retina.pixelRatio) *
             container.retina.reduceFactor;
-        const maxSize = particle.sizeValue ?? container.retina.sizeValue;
+        const maxSize = NumberUtils.getRangeMax(particle.options.size.value) * container.retina.pixelRatio;
         const sizeFactor = particlesOptions.move.size ? particle.getRadius() / maxSize : 1;
         const moveSpeed = (baseSpeed / 2) * sizeFactor * slowFactor * delta.factor;
         const moveDrift =
