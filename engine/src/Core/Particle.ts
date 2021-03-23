@@ -64,6 +64,7 @@ export class Particle implements IParticle {
     public fill: boolean;
     public linksDistance?: number;
     public linksWidth?: number;
+    public moveDrift?: number;
     public moveSpeed: number;
     public misplaced;
     public orbitRadius?: number;
@@ -209,7 +210,7 @@ export class Particle implements IParticle {
         const rotateOptions = this.options.rotate;
 
         this.rotate = {
-            value: deg2rad(rotateOptions.random.enable ? Math.random() * 360 : getRangeValue(rotateOptions.value)),
+            value: deg2rad(getRangeValue(rotateOptions.value)),
         };
 
         let rotateDirection = rotateOptions.direction;

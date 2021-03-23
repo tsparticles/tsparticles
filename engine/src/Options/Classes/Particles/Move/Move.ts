@@ -95,6 +95,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
     public decay;
     public direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     public distance: Partial<IDistance>;
+    public drift: RangeValue;
     public enable;
     public gravity;
     public outModes: OutModes;
@@ -114,6 +115,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.decay = 0;
         this.direction = MoveDirection.none;
         this.distance = {};
+        this.drift = 0;
         this.enable = false;
         this.gravity = new MoveGravity();
         this.outModes = new OutModes();
@@ -155,10 +157,14 @@ export class Move implements IMove, IOptionLoader<IMove> {
             this.distance =
                 typeof data.distance === "number"
                     ? {
-                          horizontal: data.distance,
-                          vertical: data.distance,
-                      }
+                        horizontal: data.distance,
+                        vertical: data.distance,
+                    }
                     : (deepExtend({}, data.distance) as IDistance);
+        }
+
+        if (data.drift !== undefined) {
+            this.drift = setRangeValue(data.drift);
         }
 
         if (data.enable !== undefined) {

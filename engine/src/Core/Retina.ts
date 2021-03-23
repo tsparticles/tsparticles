@@ -1,6 +1,6 @@
 import type { Container } from "./Container";
 import type { Particle } from "./Particle";
-import { isSsr } from "../Utils";
+import { getRangeValue, isSsr } from "../Utils";
 
 /**
  * @category Core
@@ -23,7 +23,7 @@ export class Retina {
     public bounceModeDistance!: number;
     public orbitRadius?: number;
 
-    constructor(private readonly container: Container) {}
+    constructor(private readonly container: Container) { }
 
     /**
      * Initializes all the values needing a pixel ratio factor (sizes, widths, distances)
@@ -126,6 +126,8 @@ export class Retina {
 
         maxDistance.horizontal = moveDistance.horizontal !== undefined ? moveDistance.horizontal * ratio : undefined;
         maxDistance.vertical = moveDistance.vertical !== undefined ? moveDistance.vertical * ratio : undefined;
+
+        particle.moveDrift = getRangeValue(options.move.drift) * ratio;
     }
 
     private handleMotionChange(mediaQuery: MediaQueryList): void {

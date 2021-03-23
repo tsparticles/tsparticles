@@ -33,11 +33,12 @@ export class EmitterInstance {
     public emitterOptions: IEmitter;
     public spawnColor?: IHsl;
     public readonly name?: string;
+    private paused;
     private currentEmitDelay;
     private currentSpawnDelay;
     private currentDuration;
-
     private lifeCount;
+    private firstSpawn: boolean;
 
     private duration?: number;
     private emitDelay?: number;
@@ -54,11 +55,13 @@ export class EmitterInstance {
         emitterOptions: IEmitter,
         position?: ICoordinates
     ) {
+        this.firstSpawn = true;
         this.currentDuration = 0;
         this.currentEmitDelay = 0;
         this.currentSpawnDelay = 0;
         this.initialPosition = position;
         this.emitterOptions = deepExtend({}, emitterOptions) as IEmitter;
+        this.spawnDelay = ((this.emitterOptions.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
         this.position = this.initialPosition ?? this.calcPosition();
         this.name = emitterOptions.name;
 
@@ -79,6 +82,8 @@ export class EmitterInstance {
         if (this.emitterOptions.spawnColor !== undefined) {
             this.spawnColor = colorToHsl(this.emitterOptions.spawnColor);
         }
+
+        this.paused = !this.emitterOptions.autoPlay;
 
         this.particlesOptions = particlesOptions;
 
@@ -102,7 +107,23 @@ export class EmitterInstance {
         this.play();
     }
 
+    public externalPlay(): void {
+        this.paused = false;
+
+        this.play();
+    }
+
+    public externalPause(): void {
+        this.paused = true;
+
+        this.pause();
+    }
+
     public play(): void {
+        if (this.paused) {
+            return;
+        }
+
         if (
             this.container.retina.reduceFactor &&
             (this.lifeCount > 0 || this.immortal || !this.emitterOptions.life.count)
@@ -118,6 +139,10 @@ export class EmitterInstance {
     }
 
     public pause(): void {
+        if (this.paused) {
+            return;
+        }
+
         delete this.emitDelay;
     }
 
@@ -131,6 +156,18 @@ export class EmitterInstance {
     }
 
     public update(delta: IDelta): void {
+        if (this.paused) {
+            return;
+        }
+
+        if (this.firstSpawn) {
+            this.firstSpawn = false;
+
+            this.currentSpawnDelay = this.spawnDelay ?? 0;
+            this.currentEmitDelay = this.emitDelay ?? 0;
+            delta.value = 0;
+        }
+
         if (this.duration !== undefined) {
             this.currentDuration += delta.value;
 
@@ -155,6 +192,7 @@ export class EmitterInstance {
                 }
 
                 this.currentDuration -= this.duration;
+
                 delete this.duration;
             }
         }
@@ -180,6 +218,10 @@ export class EmitterInstance {
     }
 
     private prepareToDie(): void {
+        if (this.paused) {
+            return;
+        }
+
         const duration = this.emitterOptions.life?.duration;
 
         if (
@@ -208,6 +250,10 @@ export class EmitterInstance {
     }
 
     private emit(): void {
+        if (this.paused) {
+            return;
+        }
+
         const container = this.container;
         const position = this.position;
         const offset = {

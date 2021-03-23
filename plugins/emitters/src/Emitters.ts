@@ -40,7 +40,7 @@ export class Emitters implements IContainerPlugin {
                     : this.array.find((t) => t.name === idxOrName);
 
             if (emitter) {
-                emitter.play();
+                emitter.externalPlay();
             }
         };
 
@@ -51,7 +51,7 @@ export class Emitters implements IContainerPlugin {
                     : this.array.find((t) => t.name === idxOrName);
 
             if (emitter) {
-                emitter.pause();
+                emitter.externalPause();
             }
         };
     }

@@ -15,6 +15,11 @@ import type { IAnimatableColor } from "tsparticles-engine/Options/Interfaces/IAn
  */
 export interface IEmitter {
     /**
+     * Starts the emitter automatically
+     */
+    autoPlay: boolean;
+
+    /**
      * The direction of the emitted particles, [[MoveDirection]] is the enum used for values
      */
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
