@@ -14,6 +14,11 @@ import type { IAnimatableColor } from "../../../../Options/Interfaces/Particles/
  */
 export interface IEmitter {
     /**
+     * Starts the emitter automatically
+     */
+    autoPlay: boolean;
+
+    /**
      * The size of the particles emitter area
      */
     size?: IEmitterSize;

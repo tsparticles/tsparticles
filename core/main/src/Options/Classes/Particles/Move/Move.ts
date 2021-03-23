@@ -2,12 +2,13 @@ import type { IMove } from "../../../Interfaces/Particles/Move/IMove";
 import { Attract } from "./Attract";
 import { MoveDirection, MoveDirectionAlt, OutMode, OutModeAlt } from "../../../../Enums";
 import { Trail } from "./Trail";
-import type { RecursivePartial } from "../../../../Types";
+import type { RangeValue, RecursivePartial } from "../../../../Types";
 import { Path } from "./Path/Path";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { MoveAngle } from "./MoveAngle";
 import { MoveGravity } from "./MoveGravity";
 import { OutModes } from "./OutModes";
+import { NumberUtils } from "../../../../Utils";
 
 /**
  * [[include:Options/Particles/Move.md]]
@@ -97,13 +98,14 @@ export class Move implements IMove, IOptionLoader<IMove> {
     public direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     public distance;
     public decay;
+    public drift: RangeValue;
     public enable;
     public gravity;
     public path;
     public outModes: OutModes;
     public random;
     public size;
-    public speed;
+    public speed: RangeValue;
     public straight;
     public trail;
     public vibrate;
@@ -113,8 +115,9 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.angle = new MoveAngle();
         this.attract = new Attract();
         this.decay = 0;
-        this.direction = MoveDirection.none;
         this.distance = 0;
+        this.direction = MoveDirection.none;
+        this.drift = 0;
         this.enable = false;
         this.gravity = new MoveGravity();
         this.path = new Path();
@@ -155,6 +158,10 @@ export class Move implements IMove, IOptionLoader<IMove> {
             this.distance = data.distance;
         }
 
+        if (data.drift !== undefined) {
+            this.drift = NumberUtils.setRangeValue(data.drift);
+        }
+
         if (data.enable !== undefined) {
             this.enable = data.enable;
         }
@@ -184,7 +191,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
         }
 
         if (data.speed !== undefined) {
-            this.speed = data.speed;
+            this.speed = NumberUtils.setRangeValue(data.speed);
         }
 
         if (data.straight !== undefined) {

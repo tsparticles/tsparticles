@@ -70,7 +70,9 @@ export class NumberUtils {
         const random = options.random;
         const { enable, minimumValue } = typeof random === "boolean" ? { enable: random, minimumValue: 0 } : random;
 
-        return enable ? NumberUtils.randomInRange({ min: minimumValue, max: options.value }) : options.value;
+        return enable
+            ? NumberUtils.getRangeValue(NumberUtils.setRangeValue(options.value, minimumValue))
+            : NumberUtils.getRangeValue(options.value);
     }
 
     /**

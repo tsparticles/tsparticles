@@ -1,61 +1,118 @@
 {
   "fpsLimit": 60,
   "particles": {
-    "bounce": {
-      "horizontal": {
-        "value": 0.8
-      },
-      "vertical": {
-        "value": 0.8
-      }
-    },
     "number": {
       "value": 0
     },
     "color": {
-      "value": "#ffffff"
-    },
-    "collisions": {
-      "enable": true
+      "value": [
+        "#00FFFC",
+        "#FC00FF",
+        "#fffc00"
+      ]
     },
     "shape": {
-      "type": "circle"
+      "type": "confetti",
+      "options": {
+        "confetti": {
+          "type": [
+            "circle",
+            "square"
+          ]
+        }
+      }
     },
     "opacity": {
-      "value": 0.4
+      "value": 1,
+      "animation": {
+        "enable": true,
+        "minimumValue": 0,
+        "speed": 2,
+        "startValue": "max",
+        "destroy": "min"
+      }
     },
     "size": {
-      "value": 15
+      "value": 7,
+      "random": {
+        "enable": true,
+        "minimumValue": 3
+      }
+    },
+    "links": {
+      "enable": false
+    },
+    "life": {
+      "duration": {
+        "sync": true,
+        "value": 5
+      },
+      "count": 1
     },
     "move": {
       "enable": true,
       "gravity": {
-        "enable": true
+        "enable": true,
+        "acceleration": 20
       },
-      "speed": 1,
+      "speed": 20,
+      "decay": 0.1,
       "direction": "none",
       "random": false,
       "straight": false,
-      "outMode": "bounce"
+      "outModes": {
+        "default": "destroy",
+        "top": "none"
+      }
     }
   },
   "interactivity": {
-    "detectsOn": "canvas",
+    "detectsOn": "window",
     "events": {
-      "onClick": {
-        "enable": true,
-        "mode": "push"
-      },
       "resize": true
-    },
-    "modes": {
-      "push": {
-        "quantity": 1
-      }
     }
   },
   "detectRetina": true,
   "background": {
-    "color": "#000000"
+    "color": "#232323"
+  },
+  "emitters": {
+    "direction": "none",
+    "spawnColor": {
+      "value": "#ff0000",
+      "animation": {
+        "h": {
+          "enable": true,
+          "offset": {
+            "min": -1.4,
+            "max": 1.4
+          },
+          "speed": 0.1,
+          "sync": false
+        },
+        "l": {
+          "enable": true,
+          "offset": {
+            "min": 20,
+            "max": 80
+          },
+          "speed": 0,
+          "sync": false
+        }
+      }
+    },
+    "life": {
+      "count": 0,
+      "duration": 0.1,
+      "delay": 1
+    },
+    "rate": {
+      "delay": 0.1,
+      "quantity": 100
+    },
+    "size": {
+      "width": 0,
+      "height": 0
+    }
   }
 }

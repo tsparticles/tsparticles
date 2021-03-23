@@ -20,7 +20,7 @@ try {
     }
 
     if (dependencies["react"] || dependencies["next"]) {
-        if (!dependencies["react-tsparticles"] && !dependencies["react-particles-js"]) {
+        if (!dependencies["react-tsparticles"]) {
             console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found React installed. Please download react-tsparticles to use tsParticles with a component ready to use and easier to configure.");
             console.log("You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md");
         }

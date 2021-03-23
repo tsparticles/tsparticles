@@ -235,7 +235,7 @@ export class Bubbler implements IExternalInteractor {
                     value: particle.bubble.radius,
                 },
                 particlesObj: {
-                    optValue: particle.sizeValue ?? container.retina.sizeValue,
+                    optValue: NumberUtils.getRangeMax(particle.options.size.value) * container.retina.pixelRatio,
                     value: particle.size.value,
                 },
                 type: ProcessBubbleType.size,
@@ -247,7 +247,7 @@ export class Bubbler implements IExternalInteractor {
                     value: particle.bubble.opacity,
                 },
                 particlesObj: {
-                    optValue: particle.options.opacity.value,
+                    optValue: NumberUtils.getRangeMax(particle.options.opacity.value),
                     value: particle.opacity.value,
                 },
                 type: ProcessBubbleType.opacity,
@@ -317,7 +317,7 @@ export class Bubbler implements IExternalInteractor {
             return;
         }
 
-        const optSize = particle.sizeValue ?? container.retina.sizeValue;
+        const optSize = NumberUtils.getRangeMax(particle.options.size.value) * container.retina.pixelRatio;
         const pSize = particle.size.value;
         const size = calculateBubbleValue(pSize, modeSize, optSize, ratio);
 
@@ -336,7 +336,7 @@ export class Bubbler implements IExternalInteractor {
 
         const optOpacity = particle.options.opacity.value;
         const pOpacity = particle.opacity.value;
-        const opacity = calculateBubbleValue(pOpacity, modeOpacity, optOpacity, ratio);
+        const opacity = calculateBubbleValue(pOpacity, modeOpacity, NumberUtils.getRangeMax(optOpacity), ratio);
 
         if (opacity !== undefined) {
             particle.bubble.opacity = opacity;

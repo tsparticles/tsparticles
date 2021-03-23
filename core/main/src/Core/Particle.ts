@@ -63,8 +63,8 @@ export class Particle implements IParticle {
     public linksDistance?: number;
     public linksWidth?: number;
     public maxDistance?: number;
+    public moveDrift?: number;
     public moveSpeed?: number;
-    public sizeValue?: number;
     public sizeAnimationSpeed?: number;
 
     public readonly close: boolean;
@@ -191,7 +191,7 @@ export class Particle implements IParticle {
         const rotateOptions = this.options.rotate;
 
         this.rotate = {
-            value: ((rotateOptions.random.enable ? Math.random() * 360 : rotateOptions.value) * Math.PI) / 180,
+            value: (NumberUtils.getRangeValue(rotateOptions.value) * Math.PI) / 180,
         };
 
         let rotateDirection = rotateOptions.direction;

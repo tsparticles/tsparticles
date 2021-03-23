@@ -177,7 +177,10 @@ export class AbsorberInstance {
 
             particle.orbit.length -= v.length;
             particle.orbit.angle +=
-                ((particle.moveSpeed ?? this.container.retina.moveSpeed) / 100) * this.container.retina.reduceFactor;
+                ((particle.moveSpeed ??
+                    NumberUtils.getRangeValue(particle.options.move.speed) * this.container.retina.pixelRatio) /
+                    100) *
+                this.container.retina.reduceFactor;
         } else {
             particle.velocity.addTo(v);
         }

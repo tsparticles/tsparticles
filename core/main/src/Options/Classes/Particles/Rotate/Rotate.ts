@@ -19,6 +19,10 @@ export class Rotate extends ValueWithRandom implements IRotate, IOptionLoader<IR
         this.animation = new RotateAnimation();
         this.direction = RotateDirection.clockwise;
         this.path = false;
+        this.value = {
+            min: 0,
+            max: 360,
+        };
     }
 
     public load(data?: RecursivePartial<IRotate>): void {

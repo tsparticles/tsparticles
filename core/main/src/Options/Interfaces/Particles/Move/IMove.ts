@@ -5,6 +5,7 @@ import type { IPath } from "./Path/iPath";
 import type { IMoveAngle } from "./IMoveAngle";
 import type { IMoveGravity } from "./IMoveGravity";
 import type { IOutModes } from "./IOutModes";
+import type { RangeValue } from "../../../../Types";
 
 /**
  * [[include:Options/Particles/Move.md]]
@@ -41,13 +42,14 @@ export interface IMove {
     decay: number;
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     distance: number;
+    drift: RangeValue;
     enable: boolean;
     gravity: IMoveGravity;
     outModes: IOutModes | OutMode | keyof typeof OutMode | OutModeAlt;
     path: IPath;
     random: boolean;
     size: boolean;
-    speed: number;
+    speed: RangeValue;
     straight: boolean;
     trail: ITrail;
     vibrate: boolean;

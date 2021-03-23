@@ -204,9 +204,10 @@ export class Updater {
 
     private updateOpacity(delta: IDelta): void {
         const particle = this.particle;
-        const opacityAnim = particle.options.opacity.anim;
-        const minValue = opacityAnim.minimumValue;
-        const maxValue = particle.options.opacity.value;
+        const opacityOpt = particle.options.opacity;
+        const opacityAnim = opacityOpt.animation;
+        const minValue = NumberUtils.getRangeMin(opacityOpt.value);
+        const maxValue = NumberUtils.getRangeMax(opacityOpt.value);
 
         if (
             !particle.destroyed &&
@@ -246,8 +247,8 @@ export class Updater {
         const sizeOpt = particle.options.size;
         const sizeAnim = sizeOpt.animation;
         const sizeVelocity = (particle.size.velocity ?? 0) * delta.factor;
-        const maxValue = particle.sizeValue ?? container.retina.sizeValue;
-        const minValue = sizeAnim.minimumValue * container.retina.pixelRatio;
+        const minValue = NumberUtils.getRangeMin(sizeOpt.value) * container.retina.pixelRatio;
+        const maxValue = NumberUtils.getRangeMax(sizeOpt.value) * container.retina.pixelRatio;
 
         if (!particle.destroyed && sizeAnim.enable && (sizeAnim.count <= 0 || particle.loops.size < sizeAnim.count)) {
             switch (particle.size.status) {

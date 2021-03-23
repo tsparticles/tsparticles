@@ -46,10 +46,15 @@ export class Mover {
 
         const container = this.container;
         const slowFactor = this.getProximitySpeedFactor();
-        const baseSpeed = (particle.moveSpeed ?? container.retina.moveSpeed) * container.retina.reduceFactor;
-        const maxSize = particle.sizeValue ?? container.retina.sizeValue;
+        const baseSpeed =
+            (particle.moveSpeed ??
+                NumberUtils.getRangeValue(particle.options.move.speed) * container.retina.pixelRatio) *
+            container.retina.reduceFactor;
+        const maxSize = NumberUtils.getRangeMax(particle.options.size.value) * container.retina.pixelRatio;
         const sizeFactor = particlesOptions.move.size ? particle.getRadius() / maxSize : 1;
         const moveSpeed = (baseSpeed / 2) * sizeFactor * slowFactor * delta.factor;
+        const moveDrift =
+            particle.moveDrift ?? NumberUtils.getRangeValue(particle.options.move.drift) * container.retina.pixelRatio;
 
         this.applyPath(delta);
 
@@ -58,6 +63,8 @@ export class Mover {
         if (gravityOptions.enable) {
             particle.velocity.y += (gravityOptions.acceleration * delta.factor) / (60 * moveSpeed);
         }
+
+        particle.velocity.x += (moveDrift * delta.factor) / (60 * moveSpeed);
 
         const decay = 1 - particle.options.move.decay;
 
