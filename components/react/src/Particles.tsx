@@ -88,8 +88,6 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
     }
 
     private loadParticles(): void {
-        console.dir(this.props);
-
         const cb = (container?: Container) => {
             if (this.props.container) {
                 (this.props.container as MutableRefObject<Container>).current = container;
