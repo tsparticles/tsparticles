@@ -15,7 +15,10 @@ interface IConfettiParticle extends IParticle {
     wobbleInc?: number;
     wobbleSpeed?: number;
     tilt?: Vector;
+    tiltSpeed?: number;
 }
+
+const types: ConfettiType[] = ["square", "circle"];
 
 export function loadConfettiShape(tsParticles: Main): void {
     tsParticles.addShape(
@@ -24,7 +27,7 @@ export function loadConfettiShape(tsParticles: Main): void {
             const shapeData = (particle.shapeData ?? {}) as IConfettiData;
 
             if (shapeData.type === undefined) {
-                shapeData.type = "square";
+                shapeData.type = Utils.itemFromArray(types);
             } else if (shapeData.type instanceof Array) {
                 shapeData.type = Utils.itemFromArray(shapeData.type);
             }
@@ -49,9 +52,13 @@ export function loadConfettiShape(tsParticles: Main): void {
                 particle.tilt.angle = (Math.random() * (0.75 - 0.25) + 0.25) * Math.PI;
             }
 
+            if (particle.tiltSpeed === undefined) {
+                particle.tiltSpeed = Math.min(0.11, Math.random() * 0.1 + 0.05);
+            }
+
             particle.wobble.angle += particle.wobbleSpeed;
             particle.wobbleInc += particle.wobbleSpeed;
-            particle.tilt.angle += 0.1;
+            particle.tilt.angle += particle.tiltSpeed;
 
             const random = Math.random() + 2;
 
