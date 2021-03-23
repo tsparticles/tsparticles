@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-bubbles",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "description": "tsParticles bubbles preset",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -70,6 +70,6 @@
     "webpack-cli": "^4.1.0"
   },
   "dependencies": {
-    "tsparticles": "^1.24.0"
+    "tsparticles": "^1.24.1"
   }
 }
