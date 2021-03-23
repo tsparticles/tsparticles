@@ -37,8 +37,8 @@ export class EmitterInstance {
     private currentEmitDelay;
     private currentSpawnDelay;
     private currentDuration;
-
     private lifeCount;
+    private firstSpawn: boolean;
 
     private duration?: number;
     private emitDelay?: number;
@@ -55,11 +55,13 @@ export class EmitterInstance {
         emitterOptions: IEmitter,
         position?: ICoordinates
     ) {
+        this.firstSpawn = true;
         this.currentDuration = 0;
         this.currentEmitDelay = 0;
         this.currentSpawnDelay = 0;
         this.initialPosition = position;
         this.emitterOptions = Utils.deepExtend({}, emitterOptions) as IEmitter;
+        this.spawnDelay = ((this.emitterOptions.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
         this.position = this.initialPosition ?? this.calcPosition();
         this.name = emitterOptions.name;
 
@@ -137,7 +139,7 @@ export class EmitterInstance {
     }
 
     public pause(): void {
-        if (!this.paused) {
+        if (this.paused) {
             return;
         }
 
@@ -156,6 +158,14 @@ export class EmitterInstance {
     public update(delta: IDelta): void {
         if (this.paused) {
             return;
+        }
+
+        if (this.firstSpawn) {
+            this.firstSpawn = false;
+
+            this.currentSpawnDelay = this.spawnDelay ?? 0;
+            this.currentEmitDelay = this.emitDelay ?? 0;
+            delta.value = 0;
         }
 
         if (this.duration !== undefined) {
@@ -182,6 +192,7 @@ export class EmitterInstance {
                 }
 
                 this.currentDuration -= this.duration;
+
                 delete this.duration;
             }
         }
