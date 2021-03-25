@@ -1,5 +1,5 @@
 import type { Container, IDelta, IParticleUpdater, Particle } from "tsparticles-engine";
-import { AnimationStatus, checkDestroy, clamp } from "tsparticles-engine";
+import { AnimationStatus, checkDestroy, clamp, getRangeMin, getRangeMax } from "tsparticles-engine";
 
 export class OpacityUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
@@ -19,8 +19,8 @@ export class OpacityUpdater implements IParticleUpdater {
         const opacityOpt = particle.options.opacity;
         const opacityAnim = opacityOpt.anim;
         const value = opacityOpt.value;
-        const minValue = typeof value === "number" ? value : value.min;
-        const maxValue = typeof value === "number" ? value : value.max;
+        const minValue = getRangeMin(value);
+        const maxValue = getRangeMax(value);
 
         if (!this.isEnabled(particle)) {
             return;

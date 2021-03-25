@@ -1,4 +1,4 @@
-import type { Container, IDelta, IParticleUpdater, Particle } from "tsparticles-engine";
+import { Container, getRangeMax, getRangeMin, IDelta, IParticleUpdater, Particle } from "tsparticles-engine";
 import { AnimationStatus, checkDestroy, clamp } from "tsparticles-engine";
 
 export class SizeUpdater implements IParticleUpdater {
@@ -22,8 +22,8 @@ export class SizeUpdater implements IParticleUpdater {
         const sizeAnim = sizeOpt.animation;
         const sizeVelocity = (particle.size.velocity ?? 0) * delta.factor;
         const value = sizeOpt.value;
-        const minValue = (typeof value === "number" ? value : value.min) * container.retina.pixelRatio;
-        const maxValue = (typeof value === "number" ? value : value.max) * container.retina.pixelRatio;
+        const minValue = getRangeMin(value) * container.retina.pixelRatio;
+        const maxValue = getRangeMax(value) * container.retina.pixelRatio;
 
         if (!this.isEnabled(particle)) {
             return;

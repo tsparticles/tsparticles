@@ -3,6 +3,7 @@ import {
     getDistance,
     getDistances,
     getRangeMax,
+    getRangeValue,
     HoverMode,
     isInArray,
     ParticlesInteractorBase,
@@ -88,6 +89,7 @@ export class Mover extends ParticlesInteractorBase {
         const container = this.container,
             slowFactor = this.getProximitySpeedFactor(particle),
             baseSpeed = particle.moveSpeed * container.retina.pixelRatio * container.retina.reduceFactor,
+            moveDrift = particle.moveDrift ?? getRangeValue(particle.options.move.drift) * container.retina.pixelRatio,
             sizeValue = particle.options.size.value,
             maxSize = getRangeMax(sizeValue) * container.retina.pixelRatio,
             sizeFactor = moveOptions.size ? particle.getRadius() / maxSize : 1,
@@ -98,6 +100,8 @@ export class Mover extends ParticlesInteractorBase {
         this.applyPath(particle, delta);
 
         const gravityOptions = moveOptions.gravity;
+
+        particle.velocity.x += (moveDrift * delta.factor) / (60 * moveSpeed);
 
         particle.velocity.multTo(1 - particle.options.move.decay);
 

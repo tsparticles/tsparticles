@@ -23,11 +23,7 @@ const types: ConfettiType[] = ["square", "circle"];
 export function loadConfettiShape(tsParticles: Main): void {
     tsParticles.addShape(
         "confetti",
-        function (
-            context: CanvasRenderingContext2D,
-            particle: IConfettiParticle,
-            radius: number
-        ): void {
+        function (context: CanvasRenderingContext2D, particle: IConfettiParticle, radius: number): void {
             const shapeData = (particle.shapeData ?? {}) as IConfettiData;
 
             if (shapeData.type === undefined) {

@@ -157,9 +157,9 @@ export class Move implements IMove, IOptionLoader<IMove> {
             this.distance =
                 typeof data.distance === "number"
                     ? {
-                        horizontal: data.distance,
-                        vertical: data.distance,
-                    }
+                          horizontal: data.distance,
+                          vertical: data.distance,
+                      }
                     : (deepExtend({}, data.distance) as IDistance);
         }
 
