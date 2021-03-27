@@ -52,6 +52,8 @@ export interface IParticle {
 
     getRadius(): number;
 
+    getMass(): number;
+
     getFillColor(): IHsl | undefined;
 
     getStrokeColor(): IHsl | undefined;

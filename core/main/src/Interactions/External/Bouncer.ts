@@ -10,7 +10,8 @@ import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import { Vector } from "../../Core/Particle/Vector";
 
 export class Bouncer implements IExternalInteractor {
-    constructor(private readonly container: Container) {}
+    constructor(private readonly container: Container) {
+    }
 
     public isEnabled(): boolean {
         const container = this.container;
@@ -80,11 +81,11 @@ export class Bouncer implements IExternalInteractor {
                 div.type === DivType.circle
                     ? new Circle(pos.x, pos.y, radius + tolerance)
                     : new Rectangle(
-                          elem.offsetLeft * pxRatio - tolerance,
-                          elem.offsetTop * pxRatio - tolerance,
-                          elem.offsetWidth * pxRatio + tolerance * 2,
-                          elem.offsetHeight * pxRatio + tolerance * 2
-                      );
+                    elem.offsetLeft * pxRatio - tolerance,
+                    elem.offsetTop * pxRatio - tolerance,
+                    elem.offsetWidth * pxRatio + tolerance * 2,
+                    elem.offsetHeight * pxRatio + tolerance * 2
+                    );
 
             this.processBounce(pos, radius, area);
         });
@@ -98,6 +99,7 @@ export class Bouncer implements IExternalInteractor {
                 Utils.circleBounce(Utils.circleBounceDataFromParticle(particle), {
                     position,
                     radius,
+                    mass: radius ** 2 * Math.PI / 2,
                     velocity: Vector.create(0, 0),
                     factor: {
                         horizontal: 0,

@@ -444,6 +444,12 @@ export class Particle implements IParticle {
         return this.bubble.radius || this.size.value;
     }
 
+    public getMass(): number {
+        const radius = this.getRadius();
+
+        return (radius ** 2 * Math.PI) / 2;
+    }
+
     public getFillColor(): IHsl | undefined {
         return this.bubble.color ?? ColorUtils.getHslFromAnimation(this.color);
     }
