@@ -12,6 +12,7 @@ app.set('views', './views');
 app.set('view engine', 'pug');
 app.use(stylus.middleware('./public'));
 app.use(express.static('./public'));
+app.use("/docs", express.static("../../core/main/docs"));
 app.use("/fontawesome", express.static("./node_modules/@fortawesome/fontawesome-free"));
 app.use("/jsoneditor", express.static("./node_modules/jsoneditor/dist"));
 app.use("/jquery", express.static("./node_modules/jquery/dist"));
