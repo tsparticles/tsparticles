@@ -242,57 +242,57 @@ Si creaste un buen diseño que utiliza *tsParticles*, siéntete libre de enviar 
 
 ## **_Demo / Generador_**
 
-<https://particles.js.org/Samples>
+<https://particles.js.org/samples>
 
-[![Demo de partículas](https://particles.js.org/images/demo.png?v=1.8.1)](https://particles.js.org/Samples)
+[![Demo de partículas](https://particles.js.org/images/demo.png?v=1.8.1)](https://particles.js.org/samples)
 
 ---
 
 ### Caracteres como partículas
 
-[![Demo de letras como partículas](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.js.org/Samples#chars)
+[![Demo de letras como partículas](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.js.org/samples#chars)
 
 ---
 
 ### Conecciones al pasar el mouse
 
-[![Demo de conecciones con el mouse](https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)](https://particles.js.org/Samples#connect)
+[![Demo de conecciones con el mouse](https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)](https://particles.js.org/samples#connect)
 
 ---
 
 ### Máscara poligonal
 
-[![Demo de máscara poligonal](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.js.org/Samples#polygonMask)
+[![Demo de máscara poligonal](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.js.org/samples#polygonMask)
 
 ---
 
 ### Estrellas animadas
 
-[![Demo de partículas NASA](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.js.org/Samples#nasa)
+[![Demo de partículas NASA](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.js.org/samples#nasa)
 
 ---
 
 ### Nyan cat volando a través de estrellas desplazándose
 
-[![Demo de partículas con Nyan cat](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.js.org/Samples#nyancat2)
+[![Demo de partículas con Nyan cat](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.js.org/samples#nyancat2)
 
 ---
 
 ### Partículas de nieve
 
-[![Demo de partículas de nieve](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.js.org/Samples#snow)
+[![Demo de partículas de nieve](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.js.org/samples#snow)
 
 ---
 
 ### Partículas como máscara para el fondo
 
-[![Demo de máscara del fondo](https://media.giphy.com/media/dWraWgqInWFGWiOyRu/giphy.gif)](https://particles.js.org/Samples#background)
+[![Demo de máscara del fondo](https://media.giphy.com/media/dWraWgqInWFGWiOyRu/giphy.gif)](https://particles.js.org/samples#background)
 
 ---
 
 #### Partículas de COVID-19 SARS-CoV-2
 
-[![Demo de partículas COVID-19](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/Samples#virus)
+[![Demo de partículas COVID-19](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/samples#virus)
 
 _¡No hagas click! ¡NO HAGAS CLICK! OH NO ¡¡¡SE ESPARCE!!!_
 

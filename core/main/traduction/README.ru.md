@@ -237,57 +237,57 @@ particles.pause();
 
 ## **Демо / Генератор**
 
-<https://particles.js.org/Samples>
+<https://particles.js.org/samples>
 
-[![Демо частиц](https://particles.js.org/images/demo.png?v=1.8.1)](https://particles.js.org/Samples)
+[![Демо частиц](https://particles.js.org/images/demo.png?v=1.8.1)](https://particles.js.org/samples)
 
 ---
 
 ### Символы в качестве частиц
 
-[![Демо частиц в виде символов](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.js.org/Samples#chars)
+[![Демо частиц в виде символов](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.js.org/samples#chars)
 
 ---
 
 ### Соединения при наведении мыши
 
-[![Демо соединения частиц при наведении мыши](https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)](https://particles.js.org/Samples#connect)
+[![Демо соединения частиц при наведении мыши](https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)](https://particles.js.org/samples#connect)
 
 ---
 
 ### Многоугольная маска
 
-[![Демо применения многоугольной маски tsParticles](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.js.org/Samples#polygonMask)
+[![Демо применения многоугольной маски tsParticles](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.js.org/samples#polygonMask)
 
 ---
 
 ### Анимация звезд
 
-[![Демо частиц для NASA](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.js.org/Samples#nasa)
+[![Демо частиц для NASA](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.js.org/samples#nasa)
 
 ---
 
 ### Летящая Nyan cat с анимацией звезд
 
-[![Демо частиц и Nyan Cat](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.js.org/Samples#nyancat2)
+[![Демо частиц и Nyan Cat](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.js.org/samples#nyancat2)
 
 ---
 
 ### Снежинки
 
-[![Демо снежинок на tsParticles](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.js.org/Samples#snow)
+[![Демо снежинок на tsParticles](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.js.org/samples#snow)
 
 ---
 
 ### Частицы в виде фоновой маски
 
-[![Демо фоновой маски в tsParticles](https://media.giphy.com/media/dWraWgqInWFGWiOyRu/giphy.gif)](https://particles.js.org/Samples#background)
+[![Демо фоновой маски в tsParticles](https://media.giphy.com/media/dWraWgqInWFGWiOyRu/giphy.gif)](https://particles.js.org/samples#background)
 
 ---
 
 #### Частицы вида COVID-19 SARS-CoV-2
 
-[![tsParticles COVID-19 demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/Samples#virus)
+[![tsParticles COVID-19 demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/samples#virus)
 
 _Не нажимайте! НЕ НАЖИМАЙТЕ! О НЕТ, ОНО РАСПРОСТРАНЯЕТСЯ!!!!_
 
