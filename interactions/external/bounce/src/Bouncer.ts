@@ -108,6 +108,7 @@ export class Bouncer extends ExternalInteractorBase {
                 circleBounce(circleBounceDataFromParticle(particle), {
                     position,
                     radius,
+                    mass: (radius ** 2 * Math.PI) / 2,
                     velocity: Vector.origin,
                     factor: Vector.origin,
                 });
