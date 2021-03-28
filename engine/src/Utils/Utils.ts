@@ -300,13 +300,14 @@ export function divMode<T extends IModeDiv>(divs?: SingleOrMultiple<T>, element?
 }
 
 export const circleBounceDataFromParticle = (p: IParticle): ICircleBouncer => ({
-    position: p.getPosition(),
-    radius: p.getRadius(),
-    velocity: p.velocity,
     factor: Vector.create(
         getRangeValue(p.options.bounce.horizontal.value),
         getRangeValue(p.options.bounce.vertical.value)
     ),
+    mass: p.getMass(),
+    position: p.getPosition(),
+    radius: p.getRadius(),
+    velocity: p.velocity,
 });
 
 export function circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
