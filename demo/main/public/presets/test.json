@@ -1,118 +1,50 @@
 {
   "fpsLimit": 60,
+  "fullScrren": {
+    "enable": true
+  },
+  "background": {
+    "color": "#000"
+  },
   "particles": {
-    "number": {
-      "value": 0
-    },
     "color": {
-      "value": [
-        "#00FFFC",
-        "#FC00FF",
-        "#fffc00"
-      ]
-    },
-    "shape": {
-      "type": "confetti",
-      "options": {
-        "confetti": {
-          "type": [
-            "circle",
-            "square"
-          ]
-        }
-      }
-    },
-    "opacity": {
-      "value": 1,
-      "animation": {
-        "enable": true,
-        "minimumValue": 0,
-        "speed": 2,
-        "startValue": "max",
-        "destroy": "min"
-      }
-    },
-    "size": {
-      "value": 7,
-      "random": {
-        "enable": true,
-        "minimumValue": 3
-      }
+      "value": "#ffffff"
     },
     "links": {
-      "enable": false
+      "color": "#ffffff",
+      "distance": 150,
+      "enable": true,
+      "opacity": 0.5,
+      "width": 1
     },
-    "life": {
-      "duration": {
-        "sync": true,
-        "value": 5
-      },
-      "count": 1
+    "collisions": {
+      "enable": true
     },
     "move": {
-      "enable": true,
-      "gravity": {
-        "enable": true,
-        "acceleration": 20
-      },
-      "speed": 20,
-      "decay": 0.1,
       "direction": "none",
-      "random": false,
-      "straight": false,
-      "outModes": {
-        "default": "destroy",
-        "top": "none"
-      }
-    }
-  },
-  "interactivity": {
-    "detectsOn": "window",
-    "events": {
-      "resize": true
-    }
-  },
-  "detectRetina": true,
-  "background": {
-    "color": "#232323"
-  },
-  "emitters": {
-    "direction": "none",
-    "spawnColor": {
-      "value": "#ff0000",
-      "animation": {
-        "h": {
-          "enable": true,
-          "offset": {
-            "min": -1.4,
-            "max": 1.4
-          },
-          "speed": 0.1,
-          "sync": false
-        },
-        "l": {
-          "enable": true,
-          "offset": {
-            "min": 20,
-            "max": 80
-          },
-          "speed": 0,
-          "sync": false
-        }
-      }
+      "enable": true,
+      "outMode": "bounce",
+      "random": true,
+      "speed": 3,
+      "straight": false
     },
-    "life": {
-      "count": 0,
-      "duration": 0.1,
-      "delay": 1
+    "number": {
+      "density": {
+        "enable": true,
+        "value_area": 800
+      },
+      "value": 80
     },
-    "rate": {
-      "delay": 0.1,
-      "quantity": 100
+    "opacity": {
+      "value": 0.5
+    },
+    "shape": {
+      "type": "circle"
     },
     "size": {
-      "width": 0,
-      "height": 0
+      "random": true,
+      "value": 5
     }
-  }
+  },
+  "detectRetina": true
 }

@@ -367,6 +367,7 @@ export class Utils {
         return {
             position: p.getPosition(),
             radius: p.getRadius(),
+            mass: p.getMass(),
             velocity: p.velocity,
             factor: {
                 horizontal: NumberUtils.getValue(p.options.bounce.horizontal),
@@ -391,8 +392,8 @@ export class Utils {
             const angle = -Math.atan2(pos2.y - pos1.y, pos2.x - pos1.x);
 
             // Store mass in var for better readability in collision equation
-            const m1 = p1.radius;
-            const m2 = p2.radius;
+            const m1 = p1.mass;
+            const m2 = p2.mass;
 
             // Velocity before equation
             const u1 = p1.velocity.rotate(angle);

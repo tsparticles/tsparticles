@@ -9,7 +9,7 @@ import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
 import type { IHsl, IRgb } from "./Colors";
 import type { ILink } from "./ILink";
 import type { IParticleHslAnimation } from "./IParticleHslAnimation";
-import { Vector } from "../Particle/Vector";
+import type { Vector } from "../Particle/Vector";
 
 /**
  * @category Interfaces
@@ -51,6 +51,8 @@ export interface IParticle {
     getPosition(): ICoordinates;
 
     getRadius(): number;
+
+    getMass(): number;
 
     getFillColor(): IHsl | undefined;
 

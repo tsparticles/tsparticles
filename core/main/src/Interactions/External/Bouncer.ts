@@ -1,11 +1,8 @@
 import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
-import { Constants } from "../../Utils";
-import { HoverMode } from "../../Enums/Modes";
+import { Circle, Constants, Range, Rectangle, Utils } from "../../Utils";
 import type { Container } from "../../Core/Container";
-import { Circle, Range, Rectangle, Utils } from "../../Utils";
-import { DivMode } from "../../Enums/Modes";
+import { DivMode, DivType, HoverMode } from "../../Enums";
 import { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
-import { DivType } from "../../Enums/Types";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import { Vector } from "../../Core/Particle/Vector";
 
@@ -98,6 +95,7 @@ export class Bouncer implements IExternalInteractor {
                 Utils.circleBounce(Utils.circleBounceDataFromParticle(particle), {
                     position,
                     radius,
+                    mass: (radius ** 2 * Math.PI) / 2,
                     velocity: Vector.create(0, 0),
                     factor: {
                         horizontal: 0,
