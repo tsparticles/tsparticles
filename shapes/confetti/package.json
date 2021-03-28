@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-confetti",
-  "version": "1.9.1",
+  "version": "1.9.2",
   "description": "tsParticles confetti shape",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -70,6 +70,6 @@
     "webpack-cli": "^4.1.0"
   },
   "dependencies": {
-    "tsparticles": "^1.24.1"
+    "tsparticles": "^1.24.2"
   }
 }
