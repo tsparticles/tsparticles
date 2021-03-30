@@ -7,8 +7,8 @@ const version = require("./package.json").version;
 const getEntry = (bundle) => {
   const obj = {};
 
-  obj[`tsparticles${bundle ? ".bundle" : ""}`] = "./dist/index.js";
-  obj[`tsparticles${bundle ? ".bundle" : ""}.min`] = "./dist/index.js";
+  obj[`tsparticles${bundle ? ".bundle" : ""}`] = `./dist/${bundle ? "bundle" : "index"}.js`;
+  obj[`tsparticles${bundle ? ".bundle" : ""}.min`] = `./dist/${bundle ? "bundle" : "index"}.js`;
 
   return obj;
 };
@@ -101,7 +101,7 @@ const getConfig = (entry, banner, minBanner, dir, bundle) => {
       globalObject: "this"
     },
     resolve: {
-      extensions: [".js", ".json"]
+      extensions: [ ".js", ".json" ]
     },
     externals: getExternals(bundle),
     module: {

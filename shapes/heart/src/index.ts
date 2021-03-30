@@ -1,6 +1,21 @@
-import { loadHeartShape } from "./shape";
-import { tsParticles } from "tsparticles-engine";
+import { IParticle, Main } from "tsparticles-engine";
 
-loadHeartShape(tsParticles);
+export function loadHeartShape(tsParticles: Main): void {
+    tsParticles.addShape(
+        "heart",
+        function (context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
+            const x = -radius;
+            const y = -radius;
 
-export { tsParticles, loadHeartShape };
+            context.moveTo(x, y + radius / 2);
+            context.quadraticCurveTo(x, y, x + radius / 2, y);
+            context.quadraticCurveTo(x + radius, y, x + radius, y + radius / 2);
+            context.quadraticCurveTo(x + radius, y, x + (radius * 3) / 2, y);
+            context.quadraticCurveTo(x + radius * 2, y, x + radius * 2, y + radius / 2);
+            context.quadraticCurveTo(x + radius * 2, y + radius, x + (radius * 3) / 2, y + (radius * 3) / 2);
+            context.lineTo(x + radius, y + radius * 2);
+            context.lineTo(x + radius / 2, y + (radius * 3) / 2);
+            context.quadraticCurveTo(x, y + radius, x, y + radius / 2);
+        }
+    );
+}

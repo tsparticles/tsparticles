@@ -1,4 +1,4 @@
-import type { Container, ICoordinates, Range } from "tsparticles-engine";
+import { Container, ICoordinates, Range, Vector } from "tsparticles-engine";
 import {
     Circle,
     clamp,
@@ -79,13 +79,12 @@ export class Attractor extends ExternalInteractorBase {
             const { dx, dy, distance } = getDistances(particle.position, position);
             const velocity = attractOptions.speed * attractOptions.factor;
             const attractFactor = clamp((1 - Math.pow(distance / attractRadius, 2)) * velocity, 0, velocity);
-            const normVec = {
-                x: distance === 0 ? velocity : (dx / distance) * attractFactor,
-                y: distance === 0 ? velocity : (dy / distance) * attractFactor,
-            };
+            const normVec = Vector.create(
+                distance === 0 ? velocity : (dx / distance) * attractFactor,
+                distance === 0 ? velocity : (dy / distance) * attractFactor
+            );
 
-            particle.position.x = particle.position.x - normVec.x;
-            particle.position.y = particle.position.y - normVec.y;
+            particle.position.subFrom(normVec);
         }
     }
 

@@ -21,8 +21,8 @@ export class MoveOptionsEditor extends EditorBase {
         this.addAttract();
         this.addDistance();
         this.addGravity();
-        this.addPath();
         this.addOutModes();
+        this.addPath();
         this.addTrail();
         this.addProperties();
     }
@@ -89,30 +89,6 @@ export class MoveOptionsEditor extends EditorBase {
         });
     }
 
-    private addPath(): void {
-        const particles = this.particles;
-        const group = this.group.addGroup("path", "Path");
-        const delayGroup = group.addGroup("delay", "Delay");
-
-        delayGroup.addProperty("value", "value", EditorType.number).change(async () => {
-            await particles.refresh();
-        });
-
-        const randomGroup = delayGroup.addGroup("random", "Random");
-
-        randomGroup.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
-            await particles.refresh();
-        });
-
-        randomGroup.addProperty("minimumValue", "Minimum Value", EditorType.number).change(async () => {
-            await particles.refresh();
-        });
-
-        group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
-            await particles.refresh();
-        });
-    }
-
     private addOutModes(): void {
         const particles = this.particles;
         const group = this.group.addGroup("outModes", "Out Modes");
@@ -166,6 +142,38 @@ export class MoveOptionsEditor extends EditorBase {
                 await particles.refresh();
             })
             .addItems(outModesValues);
+    }
+
+    private addPath(): void {
+        const particles = this.particles;
+        const group = this.group.addGroup("path", "Path");
+        const delayGroup = group.addGroup("delay", "Delay");
+
+        delayGroup.addProperty("value", "value", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
+
+        const randomGroup = delayGroup.addGroup("random", "Random");
+
+        randomGroup.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
+            await particles.refresh();
+        });
+
+        randomGroup.addProperty("minimumValue", "Minimum Value", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
+
+        group.addProperty("clamp", "Clamp", EditorType.boolean).change(async () => {
+            await particles.refresh();
+        });
+
+        group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
+            await particles.refresh();
+        });
+
+        group.addProperty("generator", "Generator", EditorType.string).change(async () => {
+            await particles.refresh();
+        });
     }
 
     private addTrail(): void {

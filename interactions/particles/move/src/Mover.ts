@@ -3,6 +3,7 @@ import {
     getDistance,
     getDistances,
     getRangeMax,
+    getRangeValue,
     HoverMode,
     isInArray,
     ParticlesInteractorBase,
@@ -75,9 +76,9 @@ export class Mover extends ParticlesInteractorBase {
     }
 
     public interact(particle: PathParticle, delta: IDelta): void {
-        const particlesOptions = particle.options;
+        const moveOptions = particle.options.move;
 
-        if (!particlesOptions.move.enable) {
+        if (!moveOptions.enable) {
             return;
         }
 
@@ -88,16 +89,21 @@ export class Mover extends ParticlesInteractorBase {
         const container = this.container,
             slowFactor = this.getProximitySpeedFactor(particle),
             baseSpeed = particle.moveSpeed * container.retina.pixelRatio * container.retina.reduceFactor,
+            moveDrift = particle.moveDrift ?? getRangeValue(particle.options.move.drift) * container.retina.pixelRatio,
             sizeValue = particle.options.size.value,
             maxSize = getRangeMax(sizeValue) * container.retina.pixelRatio,
-            sizeFactor = particlesOptions.move.size ? particle.getRadius() / maxSize : 1,
+            sizeFactor = moveOptions.size ? particle.getRadius() / maxSize : 1,
             diffFactor = 2,
             speedFactor = (sizeFactor * slowFactor * delta.factor) / diffFactor,
             moveSpeed = baseSpeed * speedFactor;
 
         this.applyPath(particle, delta);
 
-        const gravityOptions = particlesOptions.move.gravity;
+        const gravityOptions = moveOptions.gravity;
+
+        particle.velocity.x += (moveDrift * delta.factor) / (60 * moveSpeed);
+
+        particle.velocity.multTo(1 - particle.options.move.decay);
 
         if (gravityOptions.enable) {
             particle.velocity.y += (gravityOptions.acceleration * delta.factor) / (60 * moveSpeed);
@@ -114,17 +120,17 @@ export class Mover extends ParticlesInteractorBase {
         const zIndexOptions = particle.options.zIndex,
             zVelocityFactor = 1 - zIndexOptions.velocityRate * particle.zIndexFactor;
 
-        if (particlesOptions.move.spin.enable) {
+        if (moveOptions.spin.enable) {
             this.spin(particle, moveSpeed);
         } else {
             velocity.multTo(zVelocityFactor);
 
             particle.position.addTo(velocity);
 
-            if (particlesOptions.move.vibrate) {
+            if (moveOptions.vibrate) {
                 const vibrateVelocity = Vector.create(
-                    Math.sin(particle.position.x * Math.cos(particle.position.y) * zVelocityFactor),
-                    Math.cos(particle.position.y * Math.sin(particle.position.x) * zVelocityFactor)
+                    Math.cos(particle.position.y * Math.sin(particle.position.x) * zVelocityFactor),
+                    Math.sin(particle.position.x * Math.cos(particle.position.y) * zVelocityFactor)
                 );
 
                 particle.position.addTo(vibrateVelocity);

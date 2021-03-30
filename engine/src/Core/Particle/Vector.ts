@@ -1,11 +1,11 @@
-import type { ICoordinates } from "../Interfaces";
+import type { ICoordinates } from "../Interfaces/ICoordinates";
 
 export class Vector implements ICoordinates {
-    public static clone(source: Vector) {
+    public static clone(source: Vector): Vector {
         return Vector.create(source.x, source.y);
     }
 
-    public static create(x: number | ICoordinates, y?: number) {
+    public static create(x: number | ICoordinates, y?: number): Vector {
         return new Vector(x, y);
     }
 

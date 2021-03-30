@@ -8,20 +8,23 @@
         "value_area": 800
       }
     },
-    "color": {
-      "value": "#ff0000",
-      "animation": {
-        "enable": true,
-        "speed": 20,
-        "sync": true
+    "stroke": {
+      "width": 1,
+      "color": {
+        "value": "#ff0000",
+        "animation": {
+          "enable": true,
+          "speed": 20,
+          "sync": true
+        }
       }
     },
     "shape": {
       "type": "spiral",
       "options": {
         "spiral": {
-          "innerRadius": 2,
-          "lineSpacing": 2,
+          "innerRadius": 1,
+          "lineSpacing": 1,
           "fill": false,
           "close": false
         }
@@ -38,7 +41,7 @@
       }
     },
     "size": {
-      "value": 10,
+      "value": 20,
       "random": {
         "enable": true,
         "minimumValue": 5
@@ -49,13 +52,6 @@
         "size_min": 0.1,
         "sync": false
       }
-    },
-    "links": {
-      "enable": true,
-      "distance": 100,
-      "color": "#ffffff",
-      "opacity": 0.4,
-      "width": 1
     },
     "move": {
       "enable": true,

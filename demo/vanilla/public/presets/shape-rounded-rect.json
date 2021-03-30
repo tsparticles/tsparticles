@@ -1,0 +1,104 @@
+{
+  "fpsLimit": 60,
+  "particles": {
+    "number": {
+      "value": 80,
+      "density": {
+        "enable": true,
+        "area": 800
+      }
+    },
+    "color": {
+      "value": "#ff0000",
+      "animation": {
+        "enable": true,
+        "speed": 20,
+        "sync": true
+      }
+    },
+    "rotate": {
+      "value": 0,
+      "random": true,
+      "direction": "clockwise",
+      "animation": {
+        "enable": true,
+        "speed": 5,
+        "sync": false
+      }
+    },
+    "shape": {
+      "type": "rounded-rect",
+      "options": {
+        "rounded-rect": {
+          "radius": 5
+        }
+      }
+    },
+    "opacity": {
+      "value": 0.5,
+      "random": false,
+      "anim": {
+        "enable": false,
+        "speed": 3,
+        "opacity_min": 0.1,
+        "sync": false
+      }
+    },
+    "size": {
+      "value": 30
+    },
+    "move": {
+      "enable": true,
+      "speed": 6,
+      "direction": "none",
+      "random": false,
+      "straight": false,
+      "outMode": "out"
+    }
+  },
+  "interactivity": {
+    "detectsOn": "canvas",
+    "events": {
+      "onhover": {
+        "enable": true,
+        "mode": "repulse"
+      },
+      "onclick": {
+        "enable": true,
+        "mode": "push"
+      },
+      "resize": true
+    },
+    "modes": {
+      "grab": {
+        "distance": 400,
+        "links": {
+          "opacity": 1
+        }
+      },
+      "bubble": {
+        "distance": 400,
+        "size": 40,
+        "duration": 2,
+        "opacity": 0.8
+      },
+      "repulse": {
+        "distance": 200
+      },
+      "push": {
+        "particles_nb": 4
+      },
+      "remove": {
+        "particles_nb": 2
+      }
+    }
+  },
+  "retina_detect": true,
+  "background": {
+    "color": "#000000",
+    "image": "",
+    "position": "50% 50%",
+    "repeat": "no-repeat",
+    "size": "cover"
+  }
+}

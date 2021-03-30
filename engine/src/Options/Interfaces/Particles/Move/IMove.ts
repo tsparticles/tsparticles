@@ -6,8 +6,8 @@ import type { IMoveAngle } from "./IMoveAngle";
 import type { IMoveGravity } from "./IMoveGravity";
 import type { IOutModes } from "./IOutModes";
 import type { ISpin } from "../ISpin";
-import { IDistance } from "../../../../Core/Interfaces";
-import { RangeValue } from "../../../../Types";
+import type { IDistance } from "../../../../Core/Interfaces";
+import type { RangeValue } from "../../../../Types";
 
 /**
  * [[include:Options/Particles/Move.md]]
@@ -41,8 +41,10 @@ export interface IMove {
 
     angle: number | IMoveAngle;
     attract: IAttract;
+    decay: number;
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     distance: number | Partial<IDistance>;
+    drift: RangeValue;
     enable: boolean;
     gravity: IMoveGravity;
     outModes: IOutModes | OutMode | keyof typeof OutMode | OutModeAlt;

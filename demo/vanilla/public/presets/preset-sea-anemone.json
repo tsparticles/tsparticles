@@ -1,4 +1,7 @@
 {
   "fpsLimit": 60,
-  "preset": "seaAnemone"
+  "preset": "seaAnemone",
+  "background": {
+    "color": "#000"
+  }
 }

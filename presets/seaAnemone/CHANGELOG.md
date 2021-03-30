@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-alpha.6](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-sea-anemone@1.9.2...tsparticles-preset-sea-anemone@2.0.0-alpha.6) (2021-03-30)
+
+
+### Bug Fixes
+
+* fixed all hsl animations with the right offset value ([1d274eb](https://github.com/matteobruni/tsparticles/commit/1d274ebb4586f0ae5ea372da736dafcb19ed12d8))
+
+
+### Features
+
+* added noise generator management like shape drawers and plugins ([0ae5ac6](https://github.com/matteobruni/tsparticles/commit/0ae5ac620c43199557f56c76517efbc7c178bd29))
+
+
+
+
+
 # [2.0.0-alpha.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-sea-anemone@2.0.0-alpha.4...tsparticles-preset-sea-anemone@2.0.0-alpha.5) (2021-03-14)
 
 **Note:** Version bump only for package tsparticles-preset-sea-anemone

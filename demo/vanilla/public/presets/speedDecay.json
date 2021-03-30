@@ -1,0 +1,97 @@
+{
+  "fpsLimit": 60,
+  "particles": {
+    "bounce": {
+      "vertical": {
+        "value": 0.8,
+        "random": {
+          "enable": true,
+          "minimValue": 0.4
+        }
+      }
+    },
+    "number": {
+      "value": 0
+    },
+    "color": {
+      "value": [
+        "#5bc0eb",
+        "#fde74c",
+        "#9bc53d",
+        "#e55934",
+        "#fa7921"
+      ]
+    },
+    "shape": {
+      "type": "circle"
+    },
+    "opacity": {
+      "value": 0.5
+    },
+    "size": {
+      "value": 10,
+      "random": {
+        "enable": true,
+        "minimumValue": 5
+      }
+    },
+    "links": {
+      "enable": false
+    },
+    "life": {
+      "duration": {
+        "sync": true,
+        "value": 5
+      },
+      "count": 1
+    },
+    "move": {
+      "enable": true,
+      "gravity": {
+        "enable": true
+      },
+      "decay": 0.05,
+      "speed": 30,
+      "direction": "none",
+      "random": false,
+      "straight": false,
+      "outModes": {
+        "default": "bounce",
+        "bottom": "bounce",
+        "left": "destroy",
+        "right": "destroy",
+        "top": "none"
+      },
+      "trail": {
+        "enable": true,
+        "fillColor": "#000000",
+        "length": 10
+      }
+    }
+  },
+  "interactivity": {
+    "detect_on": "canvas",
+    "events": {
+      "resize": true
+    }
+  },
+  "detectRetina": true,
+  "background": {
+    "color": "#000"
+  },
+  "emitters": {
+    "direction": "top",
+    "rate": {
+      "delay": 0.1,
+      "quantity": 1
+    },
+    "size": {
+      "width": 0,
+      "height": 0
+    },
+    "position": {
+      "x": 50,
+      "y": 50
+    }
+  }
+}

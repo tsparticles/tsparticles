@@ -92,8 +92,10 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
     public angle;
     public attract;
+    public decay;
     public direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
     public distance: Partial<IDistance>;
+    public drift: RangeValue;
     public enable;
     public gravity;
     public outModes: OutModes;
@@ -110,8 +112,10 @@ export class Move implements IMove, IOptionLoader<IMove> {
     constructor() {
         this.angle = new MoveAngle();
         this.attract = new Attract();
+        this.decay = 0;
         this.direction = MoveDirection.none;
         this.distance = {};
+        this.drift = 0;
         this.enable = false;
         this.gravity = new MoveGravity();
         this.outModes = new OutModes();
@@ -141,6 +145,10 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
         this.attract.load(data.attract);
 
+        if (data.decay !== undefined) {
+            this.decay = data.decay;
+        }
+
         if (data.direction !== undefined) {
             this.direction = data.direction;
         }
@@ -155,11 +163,16 @@ export class Move implements IMove, IOptionLoader<IMove> {
                     : (deepExtend({}, data.distance) as IDistance);
         }
 
+        if (data.drift !== undefined) {
+            this.drift = setRangeValue(data.drift);
+        }
+
         if (data.enable !== undefined) {
             this.enable = data.enable;
         }
 
         this.gravity.load(data.gravity);
+
         this.path.load(data.path ?? data.noise);
 
         const outMode = data.outMode ?? data.out_mode;
