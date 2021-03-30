@@ -4,11 +4,11 @@ const webpack = require("webpack");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const version = require("./package.json").version;
 
-const getEntry = (name) => {
+const getEntry = (name, bundle) => {
   const obj = {};
 
-  obj[`tsparticles.${name}`] = "./dist/index.js";
-  obj[`tsparticles.${name}.min`] = "./dist/index.js";
+  obj[`tsparticles.${name}`] = `./dist/${bundle ? "bundle" : "index"}.js`;
+  obj[`tsparticles.${name}.min`] = `./dist/${bundle ? "bundle" : "index"}.js`;
 
   return obj;
 };
@@ -304,6 +304,6 @@ v${version}`;
 const minBanner = `tsParticles Slim v${version} by Matteo Bruni`;
 
 module.exports = [
-  getConfig(getEntry("slim"), banner, minBanner, __dirname, false),
-  getConfig(getEntry("slim.bundle"), banner, minBanner, __dirname, true)
+  getConfig(getEntry("slim", false), banner, minBanner, __dirname, false),
+  getConfig(getEntry("slim.bundle", true), banner, minBanner, __dirname, true)
 ];
