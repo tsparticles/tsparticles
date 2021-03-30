@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-fire",
-  "version": "2.0.0-alpha.5",
+  "version": "2.0.0-alpha.6",
   "description": "tsParticles fire preset",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -62,9 +62,9 @@
     }
   },
   "dependencies": {
-    "tsparticles-engine": "^2.0.0-alpha.5",
-    "tsparticles-interaction-particles-move": "^2.0.0-alpha.5",
-    "tsparticles-shape-circle": "^2.0.0-alpha.5",
-    "tsparticles-updater-out-modes": "^2.0.0-alpha.5"
+    "tsparticles-engine": "^2.0.0-alpha.6",
+    "tsparticles-interaction-particles-move": "^2.0.0-alpha.6",
+    "tsparticles-shape-circle": "^2.0.0-alpha.6",
+    "tsparticles-updater-out-modes": "^2.0.0-alpha.6"
   }
 }

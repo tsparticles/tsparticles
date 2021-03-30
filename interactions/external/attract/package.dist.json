@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-interaction-external-attract",
-  "version": "2.0.0-alpha.5",
+  "version": "2.0.0-alpha.6",
   "description": "tsParticles attract external interaction",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -62,6 +62,6 @@
     }
   },
   "dependencies": {
-    "tsparticles-engine": "^2.0.0-alpha.5"
+    "tsparticles-engine": "^2.0.0-alpha.6"
   }
 }
