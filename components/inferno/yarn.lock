@@ -3243,14 +3243,19 @@ source-list-map@^2.0.1:
   resolved "https://registry.yarnpkg.com/source-list-map/-/source-list-map-2.0.1.tgz#3993bd873bfc48479cca9ea3a547835c7c154b34"
   integrity sha512-qnQ7gVMxGNxsiL4lEuJwe/To8UnK7fAnmbGEEH8RpLouuKbeEm0lhbQVFIrNSuB+G7tVrAlVsZgETT5nljf+Iw==
 
+source-map-js@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-0.6.2.tgz#0bb5de631b41cfbda6cfba8bd05a80efdfd2385e"
+  integrity sha512-/3GptzWzu0+0MBQFrDKzw/DvvMTUORvgY6k6jd/VS6iCR4RDTKWH6v6WPwQoUO8667uQEf9Oe38DxAYWY5F/Ug==
+
 source-map-loader@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/source-map-loader/-/source-map-loader-2.0.0.tgz#6651dc5a46beb2b914abacd00b8f9dd0e7757820"
-  integrity sha512-DJLK+gR9hlx+58yGU54EDAQZzR/TksgrtvRtyEBWnd5DR7O4n0RgdyO/KBwJ76zF+wDiFRT/1vdV3SdLUR68Lg==
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/source-map-loader/-/source-map-loader-2.0.1.tgz#b4fd0ae7fa7e7d3954300f383f2d6fcc230a4261"
+  integrity sha512-UzOTTQhoNPeTNzOxwFw220RSRzdGSyH4lpNyWjR7Qm34P4/N0W669YSUFdH07+YNeN75h765XLHmNsF/bm97RQ==
   dependencies:
     abab "^2.0.5"
     iconv-lite "^0.6.2"
-    source-map "^0.6.1"
+    source-map-js "^0.6.2"
 
 source-map-support@~0.5.12, source-map-support@~0.5.19:
   version "0.5.19"
@@ -3519,10 +3524,10 @@ tslib@^2.0.3:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.1.0.tgz#da60860f1c2ecaa5703ab7d39bc05b6bf988b97a"
   integrity sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==
 
-tsparticles-engine@^2.0.0-alpha.5:
-  version "2.0.0-alpha.5"
-  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.0-alpha.5.tgz#dd054053444426d475d19ef47c4d886bef221634"
-  integrity sha512-RyowzNL7Pg03JWZf8vvmRuS+l42aNsU2qgskl0K70dO2M3hfDdsDSibnIv7GqIjYSeO5WGp4ZixhvGifptuX4Q==
+tsparticles-engine@^2.0.0-alpha.6:
+  version "2.0.0-alpha.6"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.0-alpha.6.tgz#9290a074e8fdcd9917015eb6a908d7e72b5ad501"
+  integrity sha512-HbPtEEvBuyaJe7kPkrVJ80FavzlSjeIEQMFveExN3w9hIkw6O3qFLRTe1+BSX6+vDd5zk5iBwPEshU/A3ak6qw==
 
 tunnel-agent@^0.6.0:
   version "0.6.0"
