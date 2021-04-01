@@ -49,7 +49,13 @@ export class Container {
     /**
      * The options used by the container, it's a full [[Options]] object
      */
-    public readonly options;
+    public get options(): Options {
+        return this._options;
+    }
+
+    public get sourceOptions(): RecursivePartial<IOptions> | undefined {
+        return this._sourceOptions;
+    }
 
     /**
      * The options loaded by the container, it's a full [[Options]] object
@@ -78,6 +84,8 @@ export class Container {
 
     public readonly pathGenerator: IMovePathGenerator;
 
+    private _options;
+    private _sourceOptions;
     private paused;
     private firstStart;
     private drawAnimationFrame?: number;
@@ -92,11 +100,7 @@ export class Container {
      * @param sourceOptions the options to load
      * @param presets all the presets to load with options
      */
-    constructor(
-        public readonly id: string,
-        public readonly sourceOptions?: RecursivePartial<IOptions>,
-        ...presets: string[]
-    ) {
+    constructor(public readonly id: string, sourceOptions?: RecursivePartial<IOptions>, ...presets: string[]) {
         this.fpsLimit = 60;
         this.firstStart = true;
         this.started = false;
@@ -104,6 +108,7 @@ export class Container {
         this.paused = true;
         this.lastFrameTime = 0;
         this.pageHidden = false;
+        this._sourceOptions = sourceOptions;
         this.retina = new Retina(this);
         this.canvas = new Canvas(this);
         this.particles = new Particles(this);
@@ -137,11 +142,11 @@ export class Container {
         this.drawers = new Map<string, IShapeDrawer>();
         this.density = 1;
         /* tsParticles variables with default values */
-        this.options = new Options();
+        this._options = new Options();
         this.actualOptions = new Options();
 
         for (const preset of presets) {
-            this.options.load(Plugins.getPreset(preset));
+            this._options.load(Plugins.getPreset(preset));
         }
 
         const shapes = Plugins.getSupportedShapes();
@@ -155,8 +160,8 @@ export class Container {
         }
 
         /* options settings */
-        if (this.options) {
-            this.options.load(this.sourceOptions);
+        if (this._options) {
+            this._options.load(this._sourceOptions);
         }
 
         /* ---------- tsParticles - start ------------ */
@@ -341,10 +346,16 @@ export class Container {
     /**
      * Restarts the container, just a [[stop]]/[[start]] alias
      */
-    public async refresh(): Promise<void> {
+    public refresh(): Promise<void> {
         /* restart */
         this.stop();
-        await this.start();
+        return this.start();
+    }
+
+    public reset(): Promise<void> {
+        this._options = new Options();
+
+        return this.refresh();
     }
 
     /**
@@ -424,13 +435,13 @@ export class Container {
     private async init(): Promise<void> {
         this.actualOptions = new Options();
 
-        this.actualOptions.load(this.options);
+        this.actualOptions.load(this._options);
 
         /* init canvas + particles */
         this.retina.init();
         this.canvas.init();
 
-        this.actualOptions.setResponsive(this.canvas.size.width, this.retina.pixelRatio, this.options);
+        this.actualOptions.setResponsive(this.canvas.size.width, this.retina.pixelRatio, this._options);
         this.actualOptions.setTheme(undefined);
 
         this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 60;

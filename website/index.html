@@ -275,12 +275,17 @@
 
 <script type="text/javascript">
     tsParticles.loadJSON("tsparticles", "/configs/index.json").then((container) => {
-        showEditor(container).top().right().theme("neu-dark");
+        const editor = showEditor(container);
+        const configsUrl = "/configs";
 
-        const editor = document.querySelector("#p_tsparticles_editor");
+        editor.addPreset("Starry", `${configsUrl}/starry.json`);
 
-        editor.classList.add("d-md-block");
-        editor.classList.add("d-none");
+        editor.top().right().theme("neu-dark");
+
+        const editorEl = document.querySelector("#p_tsparticles_editor");
+
+        editorEl.classList.add("d-md-block");
+        editorEl.classList.add("d-none");
     });
 </script>
 </body>
