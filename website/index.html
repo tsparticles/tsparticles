@@ -137,6 +137,18 @@
                     <a class="github-button" href="https://github.com/matteobruni/tsparticles/fork"
                        data-icon="octicon-repo-forked" data-size="large" data-show-count="true"
                        aria-label="Fork matteobruni/tsparticles on GitHub">Fork</a>
+                    <a class="twitter-share-button" data-size="large"
+                       href="https://twitter.com/intent/tweet?text=tsParticles%20-%20A%20lightweight%20TypeScript%20library%20for%20creating%20particles&amp;url=https://particles.js.org&amp;hashtags=typescript,particles,html5,webdesign&amp;via=HollowMatt_ITA">
+                        Tweet
+                    </a>
+                    <div class="fb-share-button" data-href="https://particles.js.org" data-layout="button"
+                         data-size="large">
+                        <a target="_blank"
+                           href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fparticles.js.org%2F&amp;src=sdkpreparse"
+                           class="fb-xfbml-parse-ignore">
+                            Share
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -274,7 +286,26 @@
 <script type="text/javascript">
     hljs.initHighlightingOnLoad();
 </script>
+<script>window.twttr = (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
 
+    t._e = [];
+    t.ready = function (f) {
+        t._e.push(f);
+    };
+
+    return t;
+}(document, "script", "twitter-wjs"));</script>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v10.0&appId=130672560341873&autoLogAppEvents=1"
+        nonce="jC6Fjy00"></script>
 <script type="text/javascript">
     tsParticles.loadJSON("tsparticles", "/configs/index.json").then((container) => {
         const editor = showEditor(container);
