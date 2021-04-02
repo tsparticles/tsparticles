@@ -2753,9 +2753,9 @@ totalist@^1.0.0:
   integrity sha512-gduQwd1rOdDMGxFG1gEvhV88Oirdo2p+KjoYFU7k2g+i7n6AFFbDQ5kMPUsW0pNbfQsB/cwXvT1i4Bue0s9g5g==
 
 ts-loader@^8.0.15:
-  version "8.0.18"
-  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-8.0.18.tgz#b2385cbe81c34ad9f997915129cdde3ad92a61ea"
-  integrity sha512-hRZzkydPX30XkLaQwJTDcWDoxZHK6IrEMDQpNd7tgcakFruFkeUp/aY+9hBb7BUGb+ZWKI0jiOGMo0MckwzdDQ==
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-8.1.0.tgz#d6292487df279c7cc79b6d3b70bb9d31682b693e"
+  integrity sha512-YiQipGGAFj2zBfqLhp28yUvPP9jUGqHxRzrGYuc82Z2wM27YIHbElXiaZDc93c3x0mz4zvBmS6q/DgExpdj37A==
   dependencies:
     chalk "^4.1.0"
     enhanced-resolve "^4.0.0"
@@ -2785,10 +2785,10 @@ tslib@^2.1.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.1.0.tgz#da60860f1c2ecaa5703ab7d39bc05b6bf988b97a"
   integrity sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==
 
-tsparticles-engine@^2.0.0-alpha.5:
-  version "2.0.0-alpha.5"
-  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.0-alpha.5.tgz#dd054053444426d475d19ef47c4d886bef221634"
-  integrity sha512-RyowzNL7Pg03JWZf8vvmRuS+l42aNsU2qgskl0K70dO2M3hfDdsDSibnIv7GqIjYSeO5WGp4ZixhvGifptuX4Q==
+tsparticles-engine@^2.0.0-alpha.6:
+  version "2.0.0-alpha.6"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.0-alpha.6.tgz#9290a074e8fdcd9917015eb6a908d7e72b5ad501"
+  integrity sha512-HbPtEEvBuyaJe7kPkrVJ80FavzlSjeIEQMFveExN3w9hIkw6O3qFLRTe1+BSX6+vDd5zk5iBwPEshU/A3ak6qw==
 
 tsutils@^3.17.1:
   version "3.20.0"
