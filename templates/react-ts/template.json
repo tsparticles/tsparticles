@@ -8,7 +8,7 @@
       "@types/react": "^16.9.50",
       "@types/react-dom": "^16.9.8",
       "@types/jest": "^26.0.14",
-      "react-tsparticles": "^1.24.3",
+      "react-tsparticles": "^1.24.4",
       "tslib": "^2.0.3",
       "typescript": "^4.2.3",
       "web-vitals": "^0.2.4"
