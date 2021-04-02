@@ -19,8 +19,7 @@
       "options": {
         "confetti": {
           "type": [
-            "circle",
-            "square"
+            "circle"
           ]
         }
       }
