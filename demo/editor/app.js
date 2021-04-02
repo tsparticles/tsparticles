@@ -6,7 +6,7 @@ const app = express();
 
 // app.use(helmet()); // Safari requires https, probably a bug
 
-const port = 3000;
+const port = 3001;
 
 app.set('views', './views');
 app.set('view engine', 'pug');
