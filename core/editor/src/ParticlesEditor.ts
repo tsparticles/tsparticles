@@ -60,8 +60,6 @@ export class ParticlesEditor extends Editor {
     private addPresets(): void {
         this._presets = this.addProperty("preset", "Preset", EditorType.select, "", false);
 
-        this.addPreset("", "");
-
         this._presets.change(async (value) => {
             try {
                 const res = await fetch(value as string);

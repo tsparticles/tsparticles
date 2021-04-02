@@ -278,6 +278,7 @@
         const editor = showEditor(container);
         const configsUrl = "/configs";
 
+        editor.addPreset("Default", `${configsUrl}/index.json`);
         editor.addPreset("Starry", `${configsUrl}/starry.json`);
 
         editor.top().right().theme("neu-dark");
