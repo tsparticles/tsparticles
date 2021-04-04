@@ -113,6 +113,11 @@ tsParticles.load("particles", {
         size: "cover"
     }
 }).then(container => {
-    showEditor(container).top().left().theme("neu-dark");
-})
+    const editor = showEditor(container);
+
+    editor.addPreset("", "");
+    editor.addPreset("starry", "/presets/starry.json");
+
+    editor.top().left().theme("neu-dark");
+});
 

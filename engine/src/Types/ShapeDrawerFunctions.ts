@@ -1,6 +1,7 @@
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { Container } from "../Core/Container";
 import type { Particle } from "../Core/Particle";
+import type { IDelta } from "../Core/Interfaces/IDelta";
 
 /**
  * @category Types
@@ -10,7 +11,7 @@ export type ShapeDrawerDrawFunction = (
     particle: IParticle,
     radius: number,
     opacity: number,
-    delta: number,
+    delta: IDelta,
     pixelRatio: number
 ) => void;
 
@@ -27,7 +28,7 @@ export type ShapeDrawerAfterEffectFunction = (
     particle: IParticle,
     radius: number,
     opacity: number,
-    delta: number,
+    delta: IDelta,
     pixelRatio: number
 ) => void;
 
