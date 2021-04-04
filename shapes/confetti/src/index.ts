@@ -1,4 +1,4 @@
-import type { Main, IParticle, SingleOrMultiple } from "tsparticles-engine";
+import type { IDelta, Main, IParticle, SingleOrMultiple } from "tsparticles-engine";
 import { itemFromArray, Vector } from "tsparticles-engine";
 import type { IShapeValues } from "tsparticles-engine/Options/Interfaces/Particles/Shape/IShapeValues";
 
@@ -11,6 +11,7 @@ interface IConfettiData extends IShapeValues {
 }
 
 interface IConfettiParticle extends IParticle {
+    confettiType?: string;
     wobble?: Vector;
     wobbleInc?: number;
     wobbleSpeed?: number;
@@ -23,13 +24,24 @@ const types: ConfettiType[] = ["square", "circle"];
 export function loadConfettiShape(tsParticles: Main): void {
     tsParticles.addShape(
         "confetti",
-        function (context: CanvasRenderingContext2D, particle: IConfettiParticle, radius: number): void {
-            const shapeData = (particle.shapeData ?? {}) as IConfettiData;
+        function (
+            context: CanvasRenderingContext2D,
+            particle: IConfettiParticle,
+            radius: number,
+            opacity: number,
+            delta: IDelta,
+            pixelRatio: number
+        ): void {
+            if (!particle.confettiType) {
+                const shapeData = (particle.shapeData ?? {}) as IConfettiData;
 
-            if (shapeData.type === undefined) {
-                shapeData.type = itemFromArray(types);
-            } else if (shapeData.type instanceof Array) {
-                shapeData.type = itemFromArray(shapeData.type);
+                if (shapeData.type === undefined) {
+                    shapeData.type = itemFromArray(types);
+                } else if (shapeData.type instanceof Array) {
+                    shapeData.type = itemFromArray(shapeData.type);
+                }
+
+                particle.confettiType = shapeData.type;
             }
 
             if (particle.wobble === undefined) {
@@ -43,7 +55,7 @@ export function loadConfettiShape(tsParticles: Main): void {
             }
 
             if (particle.wobbleSpeed === undefined) {
-                particle.wobbleSpeed = Math.min(0.11, Math.random() * 0.1 + 0.05);
+                particle.wobbleSpeed = Math.min(0.11, Math.random() * 0.1 + 0.05) * pixelRatio;
             }
 
             if (particle.tilt === undefined) {
@@ -53,12 +65,12 @@ export function loadConfettiShape(tsParticles: Main): void {
             }
 
             if (particle.tiltSpeed === undefined) {
-                particle.tiltSpeed = Math.min(0.11, Math.random() * 0.1 + 0.05);
+                particle.tiltSpeed = Math.min(0.11, Math.random() * 0.1 + 0.05) * pixelRatio;
             }
 
-            particle.wobble.angle += particle.wobbleSpeed;
-            particle.wobbleInc += particle.wobbleSpeed;
-            particle.tilt.angle += particle.tiltSpeed;
+            particle.wobble.angle += particle.wobbleSpeed * delta.factor;
+            particle.wobbleInc += particle.wobbleSpeed * delta.factor;
+            particle.tilt.angle += particle.tiltSpeed * delta.factor;
 
             const random = Math.random() + 2;
 
@@ -67,7 +79,7 @@ export function loadConfettiShape(tsParticles: Main): void {
                 x2 = particle.wobble.x + random * particle.tilt.x,
                 y2 = particle.wobble.y + random * particle.tilt.y;
 
-            if (shapeData.type === "circle") {
+            if (particle.confettiType === "circle") {
                 context.ellipse(
                     0,
                     0,

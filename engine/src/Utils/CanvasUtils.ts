@@ -334,7 +334,7 @@ export function drawShape(
         return;
     }
 
-    drawer.draw(context, particle, radius, opacity, delta.value, container.retina.pixelRatio);
+    drawer.draw(context, particle, radius, opacity, delta, container.retina.pixelRatio);
 }
 
 export function drawShapeAfterEffect(
@@ -355,7 +355,7 @@ export function drawShapeAfterEffect(
         return;
     }
 
-    drawer.afterEffect(context, particle, radius, opacity, delta.value, container.retina.pixelRatio);
+    drawer.afterEffect(context, particle, radius, opacity, delta, container.retina.pixelRatio);
 }
 
 export function drawPlugin(context: CanvasRenderingContext2D, plugin: IContainerPlugin, delta: IDelta): void {

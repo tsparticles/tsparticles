@@ -1,4 +1,4 @@
-import type { Main, IParticle } from "tsparticles-engine";
+import type { Main, IParticle, IDelta } from "tsparticles-engine";
 import type { IShapeValues } from "tsparticles-engine/Options/Interfaces/Particles/Shape/IShapeValues";
 
 type RectInfo = {
@@ -56,7 +56,7 @@ export function loadRoundedRectShape(tsParticles: Main): void {
             particle: IParticle,
             radius: number,
             opacity: number,
-            delta: number,
+            delta: IDelta,
             pixelRatio: number
         ): void {
             const shapeData = particle.shapeData as IRoundedRectData;

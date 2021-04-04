@@ -1,4 +1,4 @@
-import type { IParticle, Main } from "tsparticles-engine";
+import type { IDelta, IParticle, Main } from "tsparticles-engine";
 import type { IShapeValues } from "tsparticles-engine/Options/Interfaces/Particles/Shape/IShapeValues";
 
 interface ISpiralData extends IShapeValues {
@@ -14,7 +14,7 @@ export function loadSpiralShape(tsParticles: Main) {
             particle: IParticle,
             radius: number,
             opacity: number,
-            delta: number,
+            delta: IDelta,
             pixelRatio: number
         ) {
             const shapeData = particle.shapeData as ISpiralData,
