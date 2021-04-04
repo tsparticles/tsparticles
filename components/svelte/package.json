@@ -1,6 +1,6 @@
 {
   "name": "svelte-particles",
-  "version": "1.7.3",
+  "version": "1.8.0",
   "description": "Official tsParticles Svelte Component - Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, jQuery, Preact, Inferno.",
   "scripts": {
     "build": "prettier --write ./README.md && rollup -c",
@@ -71,7 +71,7 @@
   "dependencies": {
     "svelte": ">=3",
     "tslib": "^2.0.3",
-    "tsparticles": "^1.24.3"
+    "tsparticles": "^1.25.0"
   },
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"

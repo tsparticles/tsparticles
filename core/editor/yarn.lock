@@ -1787,12 +1787,10 @@ npm-run-path@^4.0.1:
   dependencies:
     path-key "^3.0.0"
 
-object-gui@^1.0.11:
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/object-gui/-/object-gui-1.0.11.tgz#fb7ca55f5759c0e79a704261f7c6ad121072c452"
-  integrity sha512-XrVu1gXm4Y5PfwaW3WTxbVCk2gP3GtK0nAaeUIXlOUJHI74dExyqwiGx7GRngGbR85nMrMlmBCtket47ZGFe7w==
-  dependencies:
-    tslib "^2.0.1"
+object-gui@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/object-gui/-/object-gui-1.1.1.tgz#f205a44e3a808d087faedebe2d87c78e24e23f21"
+  integrity sha512-ahXwt0G7vZmUNtMCWTcJbzRybj3bMx4xTTmLas6y6BsfZwlyMjIURIksFGNnER9jih6PHa8gs50lj5cefZeWaA==
 
 on-finished@~2.3.0:
   version "2.3.0"
@@ -2337,11 +2335,6 @@ tslib@^1.8.1, tslib@^1.9.0:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
-
-tslib@^2.0.1:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.1.0.tgz#da60860f1c2ecaa5703ab7d39bc05b6bf988b97a"
-  integrity sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==
 
 tsutils@^3.17.1:
   version "3.20.0"

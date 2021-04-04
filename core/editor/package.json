@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-editor",
-  "version": "1.24.3",
+  "version": "1.25.0",
   "description": "tsParticles Configuration Editor",
   "keywords": [
     "tsparticles",
@@ -48,8 +48,8 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "dependencies": {
-    "object-gui": "^1.0.11",
-    "tsparticles": "^1.24.3"
+    "object-gui": "^1.1.1",
+    "tsparticles": "^1.25.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
