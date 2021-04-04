@@ -32,11 +32,7 @@
       }
     },
     "size": {
-      "value": 7,
-      "random": {
-        "enable": true,
-        "minimumValue": 3
-      }
+      "value": 7
     },
     "links": {
       "enable": false
@@ -47,6 +43,15 @@
         "value": 5
       },
       "count": 1
+    },
+    "zIndex": {
+      "value": {
+        "min": 0,
+        "max": 1000
+      },
+      "opacityRate": 5,
+      "sizeRate": 5,
+      "velocityRate": 0.2
     },
     "move": {
       "drift": {
