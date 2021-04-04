@@ -429,7 +429,7 @@ export class CanvasUtils {
             return;
         }
 
-        drawer.draw(context, particle, radius, opacity, delta.value, container.retina.pixelRatio);
+        drawer.draw(context, particle, radius, opacity, delta, container.retina.pixelRatio);
     }
 
     public static drawShapeAfterEffect(
@@ -450,7 +450,7 @@ export class CanvasUtils {
             return;
         }
 
-        drawer.afterEffect(context, particle, radius, opacity, delta.value, container.retina.pixelRatio);
+        drawer.afterEffect(context, particle, radius, opacity, delta, container.retina.pixelRatio);
     }
 
     public static drawPlugin(context: CanvasRenderingContext2D, plugin: IContainerPlugin, delta: IDelta): void {

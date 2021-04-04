@@ -1,6 +1,7 @@
 import type { Main, IParticle, SingleOrMultiple } from "tsparticles";
 import type { IShapeValues } from "tsparticles/dist/Options/Interfaces/Particles/Shape/IShapeValues";
 import { Utils, Vector } from "tsparticles";
+import type { IDelta } from "tsparticles/dist/Core/Interfaces/IDelta";
 
 type ConfettiType = "circle" | "square";
 
@@ -23,7 +24,14 @@ const types: ConfettiType[] = ["square", "circle"];
 export function loadConfettiShape(tsParticles: Main): void {
     tsParticles.addShape(
         "confetti",
-        function (context: CanvasRenderingContext2D, particle: IConfettiParticle, radius: number): void {
+        function (
+            context: CanvasRenderingContext2D,
+            particle: IConfettiParticle,
+            radius: number,
+            opacity: number,
+            delta: IDelta,
+            pixelRatio: number
+        ): void {
             const shapeData = (particle.shapeData ?? {}) as IConfettiData;
 
             if (shapeData.type === undefined) {
@@ -43,7 +51,7 @@ export function loadConfettiShape(tsParticles: Main): void {
             }
 
             if (particle.wobbleSpeed === undefined) {
-                particle.wobbleSpeed = Math.min(0.11, Math.random() * 0.1 + 0.05);
+                particle.wobbleSpeed = Math.min(0.11, Math.random() * 0.1 + 0.05) * pixelRatio;
             }
 
             if (particle.tilt === undefined) {
@@ -53,12 +61,12 @@ export function loadConfettiShape(tsParticles: Main): void {
             }
 
             if (particle.tiltSpeed === undefined) {
-                particle.tiltSpeed = Math.min(0.11, Math.random() * 0.1 + 0.05);
+                particle.tiltSpeed = Math.min(0.11, Math.random() * 0.1 + 0.05) * pixelRatio;
             }
 
-            particle.wobble.angle += particle.wobbleSpeed;
-            particle.wobbleInc += particle.wobbleSpeed;
-            particle.tilt.angle += particle.tiltSpeed;
+            particle.wobble.angle += particle.wobbleSpeed * delta.factor;
+            particle.wobbleInc += particle.wobbleSpeed * delta.factor;
+            particle.tilt.angle += particle.tiltSpeed * delta.factor;
 
             const random = Math.random() + 2;
 
