@@ -12,6 +12,7 @@ interface IConfettiData extends IShapeValues {
 }
 
 interface IConfettiParticle extends IParticle {
+    confettiType?: string;
     wobble?: Vector;
     wobbleInc?: number;
     wobbleSpeed?: number;
@@ -32,12 +33,16 @@ export function loadConfettiShape(tsParticles: Main): void {
             delta: IDelta,
             pixelRatio: number
         ): void {
-            const shapeData = (particle.shapeData ?? {}) as IConfettiData;
+            if (!particle.confettiType) {
+                const shapeData = (particle.shapeData ?? {}) as IConfettiData;
 
-            if (shapeData.type === undefined) {
-                shapeData.type = Utils.itemFromArray(types);
-            } else if (shapeData.type instanceof Array) {
-                shapeData.type = Utils.itemFromArray(shapeData.type);
+                if (shapeData.type === undefined) {
+                    shapeData.type = Utils.itemFromArray(types);
+                } else if (shapeData.type instanceof Array) {
+                    shapeData.type = Utils.itemFromArray(shapeData.type);
+                }
+
+                particle.confettiType = shapeData.type;
             }
 
             if (particle.wobble === undefined) {
@@ -75,7 +80,7 @@ export function loadConfettiShape(tsParticles: Main): void {
                 x2 = particle.wobble.x + random * particle.tilt.x,
                 y2 = particle.wobble.y + random * particle.tilt.y;
 
-            if (shapeData.type === "circle") {
+            if (particle.confettiType === "circle") {
                 context.ellipse(
                     0,
                     0,

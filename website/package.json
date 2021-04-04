@@ -27,6 +27,10 @@
     "gh-pages": "^3.1.0",
     "minify": "^6.0.1",
     "rimraf": "^3.0.2",
-    "sass": "^1.32.5"
+    "sass": "^1.32.5",
+    "tsparticles": "^1.24.3",
+    "tsparticles-editor": "^1.24.4",
+    "tsparticles-preset-basic": "^1.9.3",
+    "tsparticles-shape-confetti": "^1.9.3"
   }
 }

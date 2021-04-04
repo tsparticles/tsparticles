@@ -15,12 +15,7 @@
       ]
     },
     "shape": {
-      "type": "confetti",
-      "options": {
-        "confetti": {
-          "type": "circle"
-        }
-      }
+      "type": "confetti"
     },
     "opacity": {
       "value": 1,
