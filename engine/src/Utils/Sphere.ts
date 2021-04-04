@@ -1,4 +1,4 @@
-import type { ICoordinates3d } from "../Core/Interfaces/ICoordinates";
+import type { ICoordinates3d } from "../Core/Interfaces";
 import { Parallelepiped } from "./Parallelepiped";
 import { Range3d } from "./Range3d";
 
