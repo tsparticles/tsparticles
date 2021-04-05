@@ -31,11 +31,7 @@ export class Retina {
         const container = this.container;
         const options = container.actualOptions;
 
-        if (options.detectRetina) {
-            this.pixelRatio = Utils.isSsr() ? 1 : window.devicePixelRatio;
-        } else {
-            this.pixelRatio = 1;
-        }
+        this.pixelRatio = !options.detectRetina || Utils.isSsr() ? 1 : window.devicePixelRatio;
 
         const motionOptions = this.container.actualOptions.motion;
 

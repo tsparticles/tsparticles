@@ -35,9 +35,9 @@ export class ImageDrawer implements IShapeDrawer {
             });
 
             return this.getImages(container);
-        } else {
-            return containerImages[0];
         }
+
+        return containerImages[0];
     }
 
     public addImage(container: Container, image: IImage): void {

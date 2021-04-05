@@ -551,11 +551,7 @@ export class Canvas {
         if (background.color) {
             const color = ColorUtils.colorToRgb(background.color);
 
-            if (color) {
-                elementStyle.backgroundColor = ColorUtils.getStyleFromRgb(color, background.opacity);
-            } else {
-                elementStyle.backgroundColor = "";
-            }
+            elementStyle.backgroundColor = color ? ColorUtils.getStyleFromRgb(color, background.opacity) : "";
         } else {
             elementStyle.backgroundColor = "";
         }

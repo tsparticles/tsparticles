@@ -47,11 +47,9 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
      * @deprecated this property is obsolete, please use the new ids
      */
     get ids(): SingleOrMultiple<string> {
-        if (this.selectors instanceof Array) {
-            return this.selectors.map((t) => t.replace("#", ""));
-        } else {
-            return this.selectors.replace("#", "");
-        }
+        return this.selectors instanceof Array
+            ? this.selectors.map((t) => t.replace("#", ""))
+            : this.selectors.replace("#", "");
 
         // this is the best we can do, if a non-id selector is used the old property won't work
         // but ids is deprecated so who cares.
@@ -63,11 +61,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
      * @param value
      */
     set ids(value: SingleOrMultiple<string>) {
-        if (value instanceof Array) {
-            this.selectors = value.map((t) => `#${t}`);
-        } else {
-            this.selectors = `#${value}`;
-        }
+        this.selectors = value instanceof Array ? value.map((t) => `#${t}`) : `#${value}`;
     }
 
     public selectors: SingleOrMultiple<string>;
