@@ -1167,24 +1167,24 @@ json-stable-stringify-without-jsonify@^1.0.1:
   integrity sha1-nbe1lJatPzz+8wp1FC0tkwrXJlE=
 
 jsoneditor@^9.1.4:
-  version "9.2.0"
-  resolved "https://registry.yarnpkg.com/jsoneditor/-/jsoneditor-9.2.0.tgz#cb11cf5cb80ce686f5275e50f79785c2430f0de9"
-  integrity sha512-n8ceD09+L9U9lwP3poW6NAEmm2Z02rxhq4HRB6pC+id1N2LpyMhYFxIDlEisdVMr7Rd0HF33YiIbUPjBw9O7JA==
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/jsoneditor/-/jsoneditor-9.3.0.tgz#0117d98507822f7beb1c91438e8dad99fe71ca85"
+  integrity sha512-sZP6hJ69bLRKrddedbI3gBAHFKhlWL7WAtbyNFuu+tL6KylQBqXpRCnuZVtd1WmjebdE8zoxXWSLFCDbBgIueg==
   dependencies:
     ace-builds "^1.4.12"
     ajv "^6.12.6"
     javascript-natural-sort "^0.7.1"
     jmespath "^0.15.0"
     json-source-map "^0.6.1"
-    jsonrepair "^2.0.0"
+    jsonrepair "^2.2.0"
     mobius1-selectr "^2.4.13"
     picomodal "^3.0.0"
     vanilla-picker "^2.11.2"
 
-jsonrepair@^2.0.0:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/jsonrepair/-/jsonrepair-2.0.1.tgz#1db6dced1c23e9d1898b078dbd49fb70ec70f59d"
-  integrity sha512-VlbosQrxExLhfOZ4o3IyBcmqewcmc/1iKyo7nYDt/xFG5pwtYL41+QxMZM11oaFff8SoF2aW5fwM6nGnL4nVbg==
+jsonrepair@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/jsonrepair/-/jsonrepair-2.2.0.tgz#3cdaa6fbc9ced360f401cef9c97f1a8caf3470e5"
+  integrity sha512-NyqcDyer9N4OEDwkZZjmSwd17T9tOfvqTSs9GDpbmPp928Rc1Tot7sOTNenIpMaavD3LkAFkDcNcjmxv3Vqvbg==
 
 jstransformer@1.0.0:
   version "1.0.0"
