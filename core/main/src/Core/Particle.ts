@@ -12,6 +12,7 @@ import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions"
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import {
     AnimationStatus,
+    DestroyMode,
     MoveDirection,
     MoveDirectionAlt,
     OutMode,
@@ -33,7 +34,6 @@ import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 import type { Stroke } from "../Options/Classes/Particles/Stroke";
 import type { IParticleLoops } from "./Interfaces/IParticleLoops";
 import { Vector } from "./Particle/Vector";
-import { DestroyMode } from "../Enums";
 
 /**
  * The single particle object

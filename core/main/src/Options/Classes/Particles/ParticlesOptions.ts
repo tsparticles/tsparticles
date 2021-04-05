@@ -23,6 +23,23 @@ import { Destroy } from "./Destroy/Destroy";
  * @category Options
  */
 export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
+    public bounce;
+    public collisions;
+    public color;
+    public destroy;
+    public life;
+    public links;
+    public move;
+    public number;
+    public opacity;
+    public reduceDuplicates;
+    public rotate;
+    public shape;
+    public size;
+    public shadow;
+    public stroke: SingleOrMultiple<Stroke>;
+    public twinkle;
+
     /**
      *
      * @deprecated this property is obsolete, please use the new links
@@ -56,23 +73,6 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
     public set lineLinked(value: Links) {
         this.links = value;
     }
-
-    public bounce;
-    public collisions;
-    public color;
-    public destroy;
-    public life;
-    public links;
-    public move;
-    public number;
-    public opacity;
-    public reduceDuplicates;
-    public rotate;
-    public shape;
-    public size;
-    public shadow;
-    public stroke: SingleOrMultiple<Stroke>;
-    public twinkle;
 
     constructor() {
         this.bounce = new Bounce();

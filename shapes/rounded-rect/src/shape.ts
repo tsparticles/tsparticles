@@ -52,14 +52,14 @@ const drawRoundedRect = (
 export function loadRoundedRectShape(tsParticles: Main): void {
     tsParticles.addShape(
         "rounded-rect",
-        function (
+        (
             context: CanvasRenderingContext2D,
             particle: IParticle,
             radius: number,
             opacity: number,
             delta: IDelta,
             pixelRatio: number
-        ): void {
+        ) => {
             const shapeData = particle.shapeData as IRoundedRectData;
             const borderRadius = (shapeData?.radius ?? 4) * pixelRatio;
 
