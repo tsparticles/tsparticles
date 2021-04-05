@@ -29,7 +29,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
      * The element id to detect the event
      * @deprecated this property is obsolete, please use the new selectors
      */
-    public get el(): SingleOrMultiple<string> {
+    get el(): SingleOrMultiple<string> {
         return this.elementId;
     }
 
@@ -38,7 +38,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
      * @deprecated this property is obsolete, please use the new selectors
      * @param value
      */
-    public set el(value: SingleOrMultiple<string>) {
+    set el(value: SingleOrMultiple<string>) {
         this.elementId = value;
     }
 
@@ -64,19 +64,19 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
         this.selectors = value instanceof Array ? value.map((t) => `#${t}`) : `#${value}`;
     }
 
-    public selectors: SingleOrMultiple<string>;
+    selectors: SingleOrMultiple<string>;
 
     /**
      * The div event handler enabling mode
      */
-    public enable;
+    enable;
 
     /**
      * Div mode values described in [[DivMode]], an array of these values is also valid.
      */
-    public mode: SingleOrMultiple<DivMode | keyof typeof DivMode | string>;
+    mode: SingleOrMultiple<DivMode | keyof typeof DivMode | string>;
 
-    public type;
+    type;
 
     constructor() {
         this.selectors = [];
@@ -85,7 +85,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
         this.type = DivType.circle;
     }
 
-    public load(data?: RecursivePartial<IDivEvent>): void {
+    load(data?: RecursivePartial<IDivEvent>): void {
         if (data === undefined) {
             return;
         }

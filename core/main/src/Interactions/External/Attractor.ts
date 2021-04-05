@@ -11,7 +11,7 @@ import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInterac
 export class Attractor implements IExternalInteractor {
     constructor(private readonly container: Container) {}
 
-    public isEnabled(): boolean {
+    isEnabled(): boolean {
         const container = this.container;
         const options = container.actualOptions;
 
@@ -28,11 +28,11 @@ export class Attractor implements IExternalInteractor {
         return Utils.isInArray(HoverMode.attract, hoverMode) || Utils.isInArray(ClickMode.attract, clickMode);
     }
 
-    public reset(): void {
+    reset(): void {
         // do nothing
     }
 
-    public interact(): void {
+    interact(): void {
         const container = this.container;
         const options = container.actualOptions;
         const mouseMoveStatus = container.interactivity.status === Constants.mouseMoveEvent;

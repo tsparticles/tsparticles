@@ -6,16 +6,16 @@ import { Utils } from "../../../Utils";
 import { ThemeDefault } from "./ThemeDefault";
 
 export class Theme implements ITheme, IOptionLoader<ITheme> {
-    public name;
-    public default;
-    public options?: RecursivePartial<IOptions>;
+    name;
+    default;
+    options?: RecursivePartial<IOptions>;
 
     constructor() {
         this.name = "";
         this.default = new ThemeDefault();
     }
 
-    public load(data?: RecursivePartial<ITheme>): void {
+    load(data?: RecursivePartial<ITheme>): void {
         if (data === undefined) {
             return;
         }

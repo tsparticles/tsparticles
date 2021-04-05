@@ -6,11 +6,11 @@ import type { IParticle } from "../Core/Interfaces/IParticle";
  * @category Shape Drawers
  */
 export class TriangleDrawer extends PolygonDrawerBase {
-    public getSidesCount(): number {
+    getSidesCount(): number {
         return 3;
     }
 
-    public getSidesData(particle: IParticle, radius: number): ISide {
+    getSidesData(particle: IParticle, radius: number): ISide {
         return {
             count: {
                 denominator: 2,
@@ -20,7 +20,7 @@ export class TriangleDrawer extends PolygonDrawerBase {
         };
     }
 
-    public getCenter(particle: IParticle, radius: number): ICoordinates {
+    getCenter(particle: IParticle, radius: number): ICoordinates {
         return {
             x: -radius,
             y: radius / 1.66,

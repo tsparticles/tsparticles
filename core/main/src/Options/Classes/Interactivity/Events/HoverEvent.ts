@@ -9,9 +9,9 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class HoverEvent implements IHoverEvent, IOptionLoader<IHoverEvent> {
-    public enable;
-    public mode: SingleOrMultiple<HoverMode | keyof typeof HoverMode | string>;
-    public parallax;
+    enable;
+    mode: SingleOrMultiple<HoverMode | keyof typeof HoverMode | string>;
+    parallax;
 
     constructor() {
         this.enable = false;
@@ -19,7 +19,7 @@ export class HoverEvent implements IHoverEvent, IOptionLoader<IHoverEvent> {
         this.parallax = new Parallax();
     }
 
-    public load(data?: RecursivePartial<IHoverEvent>): void {
+    load(data?: RecursivePartial<IHoverEvent>): void {
         if (data === undefined) {
             return;
         }

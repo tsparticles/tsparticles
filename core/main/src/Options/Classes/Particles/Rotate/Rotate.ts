@@ -10,9 +10,9 @@ import { ValueWithRandom } from "../../ValueWithRandom";
  * @category Options
  */
 export class Rotate extends ValueWithRandom implements IRotate, IOptionLoader<IRotate> {
-    public animation;
-    public direction: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
-    public path;
+    animation;
+    direction: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
+    path;
 
     constructor() {
         super();
@@ -25,7 +25,7 @@ export class Rotate extends ValueWithRandom implements IRotate, IOptionLoader<IR
         };
     }
 
-    public load(data?: RecursivePartial<IRotate>): void {
+    load(data?: RecursivePartial<IRotate>): void {
         if (!data) {
             return;
         }

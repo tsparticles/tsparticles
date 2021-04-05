@@ -5,7 +5,7 @@ import { Particle } from "../../src/Core/Particle";
 export class TestParticle {
     private container: Container;
     private position?: ICoordinates;
-    public particle?: Particle;
+    particle?: Particle;
 
     constructor(container: Container, position?: ICoordinates) {
         this.container = container;
@@ -22,7 +22,7 @@ export class TestParticle {
      *
      * @param container
      */
-    public randomPositionInCanvas(container?: Container): ICoordinates {
+    randomPositionInCanvas(container?: Container): ICoordinates {
         if (container === undefined) {
             container = this.container;
         }
@@ -46,7 +46,7 @@ export class TestParticle {
      * @param container
      * @param position
      */
-    public reset(container?: Container, position?: ICoordinates): void {
+    reset(container?: Container, position?: ICoordinates): void {
         if (container !== undefined) {
             this.container = container;
         }
@@ -62,7 +62,7 @@ export class TestParticle {
      * @param particle1
      * @param particle2
      */
-    public static sort(particle1: Particle, particle2: Particle): number {
+    static sort(particle1: Particle, particle2: Particle): number {
         const position1 = particle1.getPosition();
         const position2 = particle2.getPosition();
 
@@ -88,7 +88,7 @@ export class TestParticle {
      *
      * @param particles
      */
-    public static sortedPositions(particles: Particle[]): ICoordinates[] {
+    static sortedPositions(particles: Particle[]): ICoordinates[] {
         return particles.sort(TestParticle.sort).map((particle) => particle.getPosition());
     }
 
@@ -98,7 +98,7 @@ export class TestParticle {
      *
      * @param queryResults
      */
-    public static sortedPositionsWithDistances(
+    static sortedPositionsWithDistances(
         queryResults: { distance: number; particle: Particle }[]
     ): { distance: number; position: ICoordinates }[] {
         return queryResults

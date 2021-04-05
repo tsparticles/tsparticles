@@ -5,14 +5,14 @@ import { EditorBase } from "../../../../EditorBase";
 import { RotateDirection } from "tsparticles";
 
 export class RotateOptionsEditor extends EditorBase {
-    public group!: EditorGroup;
+    group!: EditorGroup;
     private options!: IRotate;
 
     constructor(particles: Container) {
         super(particles);
     }
 
-    public addToGroup(parent: EditorGroup): void {
+    addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("rotate", "Rotate");
         this.options = this.group.data as IRotate;
 

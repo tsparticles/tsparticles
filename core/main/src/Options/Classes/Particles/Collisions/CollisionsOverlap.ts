@@ -3,15 +3,15 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { ICollisionsOverlap } from "../../../Interfaces/Particles/Collisions/ICollisionsOverlap";
 
 export class CollisionsOverlap implements ICollisionsOverlap, IOptionLoader<ICollisionsOverlap> {
-    public enable: boolean;
-    public retries: number;
+    enable: boolean;
+    retries: number;
 
     constructor() {
         this.enable = true;
         this.retries = 0;
     }
 
-    public load(data?: RecursivePartial<ICollisionsOverlap>): void {
+    load(data?: RecursivePartial<ICollisionsOverlap>): void {
         if (!data) {
             return;
         }

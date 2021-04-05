@@ -106,7 +106,7 @@ export class ColorUtils {
      * @param index the array index, if needed
      * @param useIndex set to false to ignore the index parameter
      */
-    public static colorToRgb(input?: string | IColor, index?: number, useIndex = true): IRgb | undefined {
+    static colorToRgb(input?: string | IColor, index?: number, useIndex = true): IRgb | undefined {
         if (input === undefined) {
             return;
         }
@@ -157,13 +157,13 @@ export class ColorUtils {
      * @param index the array index, if needed
      * @param useIndex set to false to ignore the index parameter
      */
-    public static colorToHsl(color: string | IColor | undefined, index?: number, useIndex = true): IHsl | undefined {
+    static colorToHsl(color: string | IColor | undefined, index?: number, useIndex = true): IHsl | undefined {
         const rgb = ColorUtils.colorToRgb(color, index, useIndex);
 
         return rgb !== undefined ? ColorUtils.rgbToHsl(rgb) : undefined;
     }
 
-    public static rgbToHsl(color: IRgb): IHsl {
+    static rgbToHsl(color: IRgb): IHsl {
         const r1 = color.r / 255;
         const g1 = color.g / 255;
         const b1 = color.b / 255;
@@ -199,7 +199,7 @@ export class ColorUtils {
         return res;
     }
 
-    public static stringToAlpha(input: string): number | undefined {
+    static stringToAlpha(input: string): number | undefined {
         return stringToRgba(input)?.a;
     }
 
@@ -207,7 +207,7 @@ export class ColorUtils {
      * Converts hexadecimal string (HTML color code) in a [[IRgb]] object
      * @param input the hexadecimal string (#f70 or #ff7700)
      */
-    public static stringToRgb(input: string): IRgb | undefined {
+    static stringToRgb(input: string): IRgb | undefined {
         return stringToRgba(input);
     }
 
@@ -215,7 +215,7 @@ export class ColorUtils {
      * Converts a Hue Saturation Lightness ([[IHsl]]) object in a [[IRgb]] object
      * @param hsl
      */
-    public static hslToRgb(hsl: IHsl): IRgb {
+    static hslToRgb(hsl: IHsl): IRgb {
         const result: IRgb = { b: 0, g: 0, r: 0 };
         const hslPercent: IHsl = {
             h: hsl.h / 360,
@@ -246,7 +246,7 @@ export class ColorUtils {
         return result;
     }
 
-    public static hslaToRgba(hsla: IHsla): IRgba {
+    static hslaToRgba(hsla: IHsla): IRgba {
         const rgbResult = ColorUtils.hslToRgb(hsla);
 
         return {
@@ -257,7 +257,7 @@ export class ColorUtils {
         };
     }
 
-    public static hslToHsv(hsl: IHsl): IHsv {
+    static hslToHsv(hsl: IHsl): IHsv {
         const l = hsl.l / 100,
             sl = hsl.s / 100;
         const v = l + sl * Math.min(l, 1 - l),
@@ -270,7 +270,7 @@ export class ColorUtils {
         };
     }
 
-    public static hslaToHsva(hsla: IHsla): IHsva {
+    static hslaToHsva(hsla: IHsla): IHsva {
         const hsvResult = ColorUtils.hslToHsv(hsla);
 
         return {
@@ -281,7 +281,7 @@ export class ColorUtils {
         };
     }
 
-    public static hsvToHsl(hsv: IHsv): IHsl {
+    static hsvToHsl(hsv: IHsv): IHsl {
         const v = hsv.v / 100,
             sv = hsv.s / 100;
         const l = v * (1 - sv / 2),
@@ -294,7 +294,7 @@ export class ColorUtils {
         };
     }
 
-    public static hsvaToHsla(hsva: IHsva): IHsla {
+    static hsvaToHsla(hsva: IHsva): IHsla {
         const hslResult = ColorUtils.hsvToHsl(hsva);
 
         return {
@@ -305,7 +305,7 @@ export class ColorUtils {
         };
     }
 
-    public static hsvToRgb(hsv: IHsv): IRgb {
+    static hsvToRgb(hsv: IHsv): IRgb {
         const result: IRgb = { b: 0, g: 0, r: 0 };
         const hsvPercent = {
             h: hsv.h / 60,
@@ -367,7 +367,7 @@ export class ColorUtils {
         return result;
     }
 
-    public static hsvaToRgba(hsva: IHsva): IRgba {
+    static hsvaToRgba(hsva: IHsva): IRgba {
         const rgbResult = ColorUtils.hsvToRgb(hsva);
 
         return {
@@ -378,7 +378,7 @@ export class ColorUtils {
         };
     }
 
-    public static rgbToHsv(rgb: IRgb): IHsv {
+    static rgbToHsv(rgb: IRgb): IHsv {
         const rgbPercent = {
                 r: rgb.r / 255,
                 g: rgb.g / 255,
@@ -408,7 +408,7 @@ export class ColorUtils {
         };
     }
 
-    public static rgbaToHsva(rgba: IRgba): IHsva {
+    static rgbaToHsva(rgba: IRgba): IHsva {
         const hsvResult = ColorUtils.rgbToHsv(rgba);
 
         return {
@@ -423,7 +423,7 @@ export class ColorUtils {
      * Generate a random Rgb color
      * @param min a minimum seed value for all 3 values
      */
-    public static getRandomRgbColor(min?: number): IRgb {
+    static getRandomRgbColor(min?: number): IRgb {
         const fixedMin = min ?? 0;
 
         return {
@@ -438,7 +438,7 @@ export class ColorUtils {
      * @param color the [[IRgb]] color to convert
      * @param opacity the opacity to apply to color
      */
-    public static getStyleFromRgb(color: IRgb, opacity?: number): string {
+    static getStyleFromRgb(color: IRgb, opacity?: number): string {
         return `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity ?? 1})`;
     }
 
@@ -447,7 +447,7 @@ export class ColorUtils {
      * @param color the [[IHsl]] color to convert
      * @param opacity the opacity to apply to color
      */
-    public static getStyleFromHsl(color: IHsl, opacity?: number): string {
+    static getStyleFromHsl(color: IHsl, opacity?: number): string {
         return `hsla(${color.h}, ${color.s}%, ${color.l}%, ${opacity ?? 1})`;
     }
 
@@ -456,11 +456,11 @@ export class ColorUtils {
      * @param color the [[IHsv]] color to convert
      * @param opacity the opacity to apply to color
      */
-    public static getStyleFromHsv(color: IHsv, opacity?: number): string {
+    static getStyleFromHsv(color: IHsv, opacity?: number): string {
         return ColorUtils.getStyleFromHsl(ColorUtils.hsvToHsl(color), opacity);
     }
 
-    public static mix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number, size2: number): IRgb {
+    static mix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number, size2: number): IRgb {
         let rgb1 = color1 as IRgb;
         let rgb2 = color2 as IRgb;
 
@@ -479,7 +479,7 @@ export class ColorUtils {
         };
     }
 
-    public static replaceColorSvg(image: IImage, color: IHsl, opacity: number): string {
+    static replaceColorSvg(image: IImage, color: IHsl, opacity: number): string {
         if (!image.svgData) {
             return "";
         }
@@ -491,7 +491,7 @@ export class ColorUtils {
         return svgXml.replace(rgbHex, () => ColorUtils.getStyleFromHsl(color, opacity));
     }
 
-    public static getLinkColor(p1: IParticle, p2?: IParticle, linkColor?: string | IRgb): IRgb | undefined {
+    static getLinkColor(p1: IParticle, p2?: IParticle, linkColor?: string | IRgb): IRgb | undefined {
         if (linkColor === Constants.randomColorValue) {
             return ColorUtils.getRandomRgbColor();
         } else if (linkColor === "mid") {
@@ -512,11 +512,7 @@ export class ColorUtils {
         }
     }
 
-    public static getLinkRandomColor(
-        optColor: string | IColor,
-        blink: boolean,
-        consent: boolean
-    ): IRgb | string | undefined {
+    static getLinkRandomColor(optColor: string | IColor, blink: boolean, consent: boolean): IRgb | string | undefined {
         const color = typeof optColor === "string" ? optColor : optColor.value;
 
         if (color === Constants.randomColorValue) {
@@ -536,7 +532,7 @@ export class ColorUtils {
         }
     }
 
-    public static getHslFromAnimation(animation?: IParticleHslAnimation): IHsl | undefined {
+    static getHslFromAnimation(animation?: IParticleHslAnimation): IHsl | undefined {
         return animation !== undefined
             ? {
                   h: animation.h.value,

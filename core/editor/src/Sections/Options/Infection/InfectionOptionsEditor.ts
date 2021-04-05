@@ -5,14 +5,14 @@ import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../EditorBase";
 
 export class InfectionOptionsEditor extends EditorBase {
-    public group!: EditorGroup;
+    group!: EditorGroup;
     private options!: IInfection;
 
     constructor(particles: Container) {
         super(particles);
     }
 
-    public addToGroup(parent: EditorGroup): void {
+    addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("infection", "Infection");
         this.options = this.group.data as IInfection;
 

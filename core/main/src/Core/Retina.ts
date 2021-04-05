@@ -6,28 +6,28 @@ import { NumberUtils, Utils } from "../Utils";
  * @category Core
  */
 export class Retina {
-    public reduceFactor!: number;
-    public bubbleModeDistance!: number;
-    public bubbleModeSize?: number;
-    public connectModeDistance!: number;
-    public connectModeRadius!: number;
-    public grabModeDistance!: number;
-    public repulseModeDistance!: number;
-    public attractModeDistance!: number;
-    public slowModeRadius!: number;
-    public linksDistance!: number;
-    public linksWidth!: number;
-    public sizeValue!: number;
-    public sizeAnimationSpeed!: number;
-    public pixelRatio!: number;
-    public bounceModeDistance!: number;
+    reduceFactor!: number;
+    bubbleModeDistance!: number;
+    bubbleModeSize?: number;
+    connectModeDistance!: number;
+    connectModeRadius!: number;
+    grabModeDistance!: number;
+    repulseModeDistance!: number;
+    attractModeDistance!: number;
+    slowModeRadius!: number;
+    linksDistance!: number;
+    linksWidth!: number;
+    sizeValue!: number;
+    sizeAnimationSpeed!: number;
+    pixelRatio!: number;
+    bounceModeDistance!: number;
 
     constructor(private readonly container: Container) {}
 
     /**
      * Initializes all the values needing a pixel ratio factor (sizes, widths, distances)
      */
-    public init(): void {
+    init(): void {
         const container = this.container;
         const options = container.actualOptions;
 
@@ -96,7 +96,7 @@ export class Retina {
         }
     }
 
-    public initParticle(particle: Particle): void {
+    initParticle(particle: Particle): void {
         const particlesOptions = particle.options;
         const ratio = this.pixelRatio;
 

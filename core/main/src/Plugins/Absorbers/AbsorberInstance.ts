@@ -16,14 +16,14 @@ type OrbitingParticle = Particle & {
  * @category Absorbers Plugin
  */
 export class AbsorberInstance {
-    public mass;
-    public opacity;
-    public size;
+    mass;
+    opacity;
+    size;
 
-    public color: IRgb;
-    public limit?: number;
-    public readonly name?: string;
-    public position: Vector;
+    color: IRgb;
+    limit?: number;
+    readonly name?: string;
+    position: Vector;
 
     private dragging;
 
@@ -60,7 +60,7 @@ export class AbsorberInstance {
         this.position = this.initialPosition?.copy() ?? this.calcPosition();
     }
 
-    public attract(particle: OrbitingParticle): void {
+    attract(particle: OrbitingParticle): void {
         const options = this.options;
 
         if (options.draggable) {
@@ -116,7 +116,7 @@ export class AbsorberInstance {
         }
     }
 
-    public resize(): void {
+    resize(): void {
         const initialPosition = this.initialPosition;
 
         this.position =
@@ -125,7 +125,7 @@ export class AbsorberInstance {
                 : this.calcPosition();
     }
 
-    public draw(context: CanvasRenderingContext2D): void {
+    draw(context: CanvasRenderingContext2D): void {
         context.translate(this.position.x, this.position.y);
         context.beginPath();
         context.arc(0, 0, this.size, 0, Math.PI * 2, false);

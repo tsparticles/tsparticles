@@ -4,14 +4,14 @@ import type { IAnimatableColor } from "tsparticles/dist/Options/Interfaces/Parti
 import { EditorBase } from "../../../../EditorBase";
 
 export class ColorOptionsEditor extends EditorBase {
-    public group!: EditorGroup;
+    group!: EditorGroup;
     private options!: IAnimatableColor;
 
     constructor(particles: Container) {
         super(particles);
     }
 
-    public addToGroup(parent: EditorGroup, options?: unknown): void {
+    addToGroup(parent: EditorGroup, options?: unknown): void {
         this.group = parent.addGroup("color", "Color", true, options);
         this.options = this.group.data as IAnimatableColor;
 

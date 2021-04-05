@@ -5,14 +5,14 @@ import type { IHoverEvent } from "tsparticles/dist/Options/Interfaces/Interactiv
 import { EditorBase } from "../../../../EditorBase";
 
 export class HoverEventsOptionsEditor extends EditorBase {
-    public group!: EditorGroup;
+    group!: EditorGroup;
     private options!: IHoverEvent;
 
     constructor(particles: Container) {
         super(particles);
     }
 
-    public addToGroup(parent: EditorGroup): void {
+    addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("onHover", "Hover Events");
         this.options = this.group.data as IHoverEvent;
 

@@ -11,10 +11,13 @@ module.exports = {
         "prettier"
     ],
     rules: {
-        "@typescript-eslint/no-explicit-any": 1,
-        "@typescript-eslint/no-var-requires": 1,
-        "@typescript-eslint/ban-types": 1,
-        "@typescript-eslint/no-unused-vars": 1,
-        "@typescript-eslint/no-empty-function": 1
+        "@typescript-eslint/no-explicit-any": "warn",
+        "@typescript-eslint/no-var-requires": "warn",
+        "@typescript-eslint/ban-types": "warn",
+        "@typescript-eslint/explicit-member-accessibility": ["error", {
+            "accessibility": "no-public"
+        }],
+        "@typescript-eslint/no-unused-vars": "warn",
+        "@typescript-eslint/no-empty-function": "warn"
     }
 };

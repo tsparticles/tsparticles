@@ -18,17 +18,17 @@ import { Bounce } from "./Bounce";
  * @category Options
  */
 export class Modes implements IModes, IOptionLoader<IModes> {
-    public attract;
-    public bounce;
-    public bubble;
-    public connect;
-    public grab;
-    public light;
-    public push;
-    public remove;
-    public repulse;
-    public slow;
-    public trail;
+    attract;
+    bounce;
+    bubble;
+    connect;
+    grab;
+    light;
+    push;
+    remove;
+    repulse;
+    slow;
+    trail;
 
     constructor() {
         this.attract = new Attract();
@@ -44,7 +44,7 @@ export class Modes implements IModes, IOptionLoader<IModes> {
         this.trail = new Trail();
     }
 
-    public load(data?: RecursivePartial<IModes>): void {
+    load(data?: RecursivePartial<IModes>): void {
         if (data === undefined) {
             return;
         }

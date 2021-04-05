@@ -21,7 +21,7 @@ export class Loader {
     /**
      * All the [[Container]] objects loaded
      */
-    public static dom(): Container[] {
+    static dom(): Container[] {
         return tsParticlesDom;
     }
 
@@ -29,7 +29,7 @@ export class Loader {
      * Retrieves a [[Container]] from all the objects loaded
      * @param index the object index
      */
-    public static domItem(index: number): Container | undefined {
+    static domItem(index: number): Container | undefined {
         const dom = Loader.dom();
         const item = dom[index];
 
@@ -46,7 +46,7 @@ export class Loader {
      * @param options the options object to initialize the [[Container]]
      * @param index if an options array is provided, this will retrieve the exact index of that array
      */
-    public static async load(
+    static async load(
         tagId: string,
         options?: SingleOrMultiple<RecursivePartial<IOptions>>,
         index?: number
@@ -68,7 +68,7 @@ export class Loader {
      * @param options the options object to initialize the [[Container]]
      * @param index if an options array is provided, this will retrieve the exact index of that array
      */
-    public static async set(
+    static async set(
         id: string,
         domContainer: HTMLElement,
         options?: SingleOrMultiple<RecursivePartial<IOptions>>,
@@ -145,7 +145,7 @@ export class Loader {
      * @param index the index of the paths array, if a single path is passed this value is ignored
      * @returns A Promise with the [[Container]] object created
      */
-    public static async loadJSON(
+    static async loadJSON(
         tagId: string,
         jsonUrl: SingleOrMultiple<string>,
         index?: number
@@ -169,11 +169,7 @@ export class Loader {
      * @param domContainer the container used to contains the particles
      * @param jsonUrl the json path to use in the GET request
      */
-    public static async setJSON(
-        id: string,
-        domContainer: HTMLElement,
-        jsonUrl: string
-    ): Promise<Container | undefined> {
+    static async setJSON(id: string, domContainer: HTMLElement, jsonUrl: string): Promise<Container | undefined> {
         /* load json config */
         const response = await fetch(jsonUrl);
 
@@ -190,7 +186,7 @@ export class Loader {
      * Adds an additional click handler to all the loaded [[Container]] objects.
      * @param callback the function called after the click event is fired
      */
-    public static setOnClickHandler(callback: (evt: Event, particles?: Particle[]) => void): void {
+    static setOnClickHandler(callback: (evt: Event, particles?: Particle[]) => void): void {
         const dom = Loader.dom();
 
         if (dom.length === 0) {

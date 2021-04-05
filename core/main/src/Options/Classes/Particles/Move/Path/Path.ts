@@ -7,10 +7,10 @@ import type { IOptionLoader } from "../../../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class Path implements IPath, IOptionLoader<IPath> {
-    public clamp;
-    public delay;
-    public enable;
-    public generator?: string;
+    clamp;
+    delay;
+    enable;
+    generator?: string;
 
     constructor() {
         this.clamp = true;
@@ -18,7 +18,7 @@ export class Path implements IPath, IOptionLoader<IPath> {
         this.enable = false;
     }
 
-    public load(data?: RecursivePartial<IPath>): void {
+    load(data?: RecursivePartial<IPath>): void {
         if (data === undefined) {
             return;
         }

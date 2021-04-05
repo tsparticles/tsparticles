@@ -6,9 +6,9 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class RotateAnimation implements IRotateAnimation, IOptionLoader<IRotateAnimation> {
-    public enable;
-    public speed;
-    public sync;
+    enable;
+    speed;
+    sync;
 
     constructor() {
         this.enable = false;
@@ -16,7 +16,7 @@ export class RotateAnimation implements IRotateAnimation, IOptionLoader<IRotateA
         this.sync = false;
     }
 
-    public load(data?: RecursivePartial<IRotateAnimation>): void {
+    load(data?: RecursivePartial<IRotateAnimation>): void {
         if (data === undefined) {
             return;
         }

@@ -4,14 +4,14 @@ import type { Container } from "tsparticles";
 import type { ILife } from "tsparticles/dist/Options/Interfaces/Particles/Life/ILife";
 
 export class LifeOptionsEditor extends EditorBase {
-    public group!: EditorGroup;
+    group!: EditorGroup;
     private options!: ILife;
 
     constructor(particles: Container) {
         super(particles);
     }
 
-    public addToGroup(parent: EditorGroup, options?: unknown): void {
+    addToGroup(parent: EditorGroup, options?: unknown): void {
         this.group = parent.addGroup("life", "Life", true, options);
         this.options = this.group.data as ILife;
 

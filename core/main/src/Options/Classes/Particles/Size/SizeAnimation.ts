@@ -12,7 +12,7 @@ export class SizeAnimation extends AnimationOptions implements ISizeAnimation, I
      *
      * @deprecated this property is obsolete, please use the new minimumValue
      */
-    public get size_min(): number {
+    get size_min(): number {
         return this.minimumValue;
     }
 
@@ -21,13 +21,13 @@ export class SizeAnimation extends AnimationOptions implements ISizeAnimation, I
      * @deprecated this property is obsolete, please use the new minimumValue
      * @param value
      */
-    public set size_min(value: number) {
+    set size_min(value: number) {
         this.minimumValue = value;
     }
 
-    public destroy: DestroyType | keyof typeof DestroyType;
-    public minimumValue;
-    public startValue: StartValueType | keyof typeof StartValueType;
+    destroy: DestroyType | keyof typeof DestroyType;
+    minimumValue;
+    startValue: StartValueType | keyof typeof StartValueType;
 
     constructor() {
         super();
@@ -40,7 +40,7 @@ export class SizeAnimation extends AnimationOptions implements ISizeAnimation, I
         this.sync = false;
     }
 
-    public load(data?: RecursivePartial<ISizeAnimation>): void {
+    load(data?: RecursivePartial<ISizeAnimation>): void {
         if (data === undefined) {
             return;
         }

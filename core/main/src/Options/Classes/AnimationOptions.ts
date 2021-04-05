@@ -3,10 +3,10 @@ import { IOptionLoader } from "../Interfaces/IOptionLoader";
 import { IAnimation } from "../Interfaces/IAnimation";
 
 export class AnimationOptions implements IAnimation, IOptionLoader<IAnimation> {
-    public count: number;
-    public enable: boolean;
-    public speed: number;
-    public sync: boolean;
+    count: number;
+    enable: boolean;
+    speed: number;
+    sync: boolean;
 
     constructor() {
         this.count = 0;
@@ -15,7 +15,7 @@ export class AnimationOptions implements IAnimation, IOptionLoader<IAnimation> {
         this.sync = false;
     }
 
-    public load(data?: RecursivePartial<IAnimation>): void {
+    load(data?: RecursivePartial<IAnimation>): void {
         if (!data) {
             return;
         }

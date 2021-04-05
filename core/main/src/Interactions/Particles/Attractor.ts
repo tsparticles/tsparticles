@@ -10,7 +10,7 @@ import { NumberUtils } from "../../Utils";
 export class Attractor implements IParticlesInteractor {
     constructor(private readonly container: Container) {}
 
-    public interact(p1: IParticle): void {
+    interact(p1: IParticle): void {
         const container = this.container;
         const distance = p1.linksDistance ?? container.retina.linksDistance;
         const pos1 = p1.getPosition();
@@ -37,11 +37,11 @@ export class Attractor implements IParticlesInteractor {
         }
     }
 
-    public isEnabled(particle: Particle): boolean {
+    isEnabled(particle: Particle): boolean {
         return particle.options.move.attract.enable;
     }
 
-    public reset(): void {
+    reset(): void {
         // do nothing
     }
 }

@@ -6,18 +6,18 @@ import { OptionsColor } from "../../OptionsColor";
  * @category Options
  */
 export abstract class BubbleBase implements IBubbleBase {
-    public distance;
-    public duration;
-    public opacity?: number;
-    public size?: number;
-    public color?: SingleOrMultiple<OptionsColor>;
+    distance;
+    duration;
+    opacity?: number;
+    size?: number;
+    color?: SingleOrMultiple<OptionsColor>;
 
     constructor() {
         this.distance = 200;
         this.duration = 0.4;
     }
 
-    public load(data?: RecursivePartial<IBubbleBase>): void {
+    load(data?: RecursivePartial<IBubbleBase>): void {
         if (data === undefined) {
             return;
         }

@@ -130,7 +130,7 @@ function checkDestroy(
 export class Updater {
     constructor(private readonly container: Container, private readonly particle: Particle) {}
 
-    public update(delta: IDelta): void {
+    update(delta: IDelta): void {
         if (this.particle.destroyed) {
             return;
         }
@@ -375,7 +375,7 @@ export class Updater {
         }
     }
 
-    public updateColorValue(
+    updateColorValue(
         particle: Particle,
         delta: IDelta,
         value: IParticleValueAnimation<number>,

@@ -11,7 +11,7 @@ export class Attract implements IAttract, IOptionLoader<IAttract> {
      *
      * @deprecated this property is obsolete, please use the new rotate.x
      */
-    public get rotateX(): number {
+    get rotateX(): number {
         return this.rotate.x;
     }
 
@@ -20,7 +20,7 @@ export class Attract implements IAttract, IOptionLoader<IAttract> {
      * @deprecated this property is obsolete, please use the new rotate.x
      * @param value
      */
-    public set rotateX(value: number) {
+    set rotateX(value: number) {
         this.rotate.x = value;
     }
 
@@ -28,7 +28,7 @@ export class Attract implements IAttract, IOptionLoader<IAttract> {
      *
      * @deprecated this property is obsolete, please use the new rotate.y
      */
-    public get rotateY(): number {
+    get rotateY(): number {
         return this.rotate.y;
     }
 
@@ -37,12 +37,12 @@ export class Attract implements IAttract, IOptionLoader<IAttract> {
      * @deprecated this property is obsolete, please use the new rotate.y
      * @param value
      */
-    public set rotateY(value: number) {
+    set rotateY(value: number) {
         this.rotate.y = value;
     }
 
-    public enable;
-    public rotate: ICoordinates;
+    enable;
+    rotate: ICoordinates;
 
     constructor() {
         this.enable = false;
@@ -52,7 +52,7 @@ export class Attract implements IAttract, IOptionLoader<IAttract> {
         };
     }
 
-    public load(data?: RecursivePartial<IAttract>): void {
+    load(data?: RecursivePartial<IAttract>): void {
         if (data === undefined) {
             return;
         }

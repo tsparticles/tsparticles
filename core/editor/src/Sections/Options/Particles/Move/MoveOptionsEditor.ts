@@ -6,14 +6,14 @@ import { EditorBase } from "../../../../EditorBase";
 import type { ITrail } from "tsparticles/dist/Options/Interfaces/Particles/Move/ITrail";
 
 export class MoveOptionsEditor extends EditorBase {
-    public group!: EditorGroup;
+    group!: EditorGroup;
     private options!: IMove;
 
     constructor(particles: Container) {
         super(particles);
     }
 
-    public addToGroup(parent: EditorGroup): void {
+    addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("move", "Move");
         this.options = this.group.data as IMove;
 

@@ -8,9 +8,9 @@ import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader
  * @category Polygon Mask Plugin
  */
 export class DrawStroke implements IDrawStroke, IOptionLoader<IDrawStroke> {
-    public color;
-    public width;
-    public opacity;
+    color;
+    width;
+    opacity;
 
     constructor() {
         this.color = new OptionsColor();
@@ -18,7 +18,7 @@ export class DrawStroke implements IDrawStroke, IOptionLoader<IDrawStroke> {
         this.opacity = 1;
     }
 
-    public load(data?: RecursivePartial<IDrawStroke>): void {
+    load(data?: RecursivePartial<IDrawStroke>): void {
         if (data !== undefined) {
             this.color = OptionsColor.create(this.color, data.color);
 

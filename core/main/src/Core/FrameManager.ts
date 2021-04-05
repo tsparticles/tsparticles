@@ -11,7 +11,7 @@ export class FrameManager {
      * limiting it if it's needed by the current configuration
      * @param timestamp
      */
-    public nextFrame(timestamp: DOMHighResTimeStamp): void {
+    nextFrame(timestamp: DOMHighResTimeStamp): void {
         try {
             const container = this.container;
 

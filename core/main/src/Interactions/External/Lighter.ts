@@ -6,7 +6,7 @@ import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInterac
 export class Lighter implements IExternalInteractor {
     constructor(private readonly container: Container) {}
 
-    public interact(): void {
+    interact(): void {
         const container = this.container;
         const options = container.actualOptions;
 
@@ -21,7 +21,7 @@ export class Lighter implements IExternalInteractor {
         }
     }
 
-    public isEnabled(): boolean {
+    isEnabled(): boolean {
         const container = this.container;
         const mouse = container.interactivity.mouse;
         const events = container.actualOptions.interactivity.events;
@@ -35,7 +35,7 @@ export class Lighter implements IExternalInteractor {
         return Utils.isInArray(HoverMode.light, hoverMode);
     }
 
-    public reset(): void {
+    reset(): void {
         // do nothing
     }
 }

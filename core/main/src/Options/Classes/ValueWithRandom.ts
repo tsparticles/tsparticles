@@ -8,16 +8,16 @@ export abstract class ValueWithRandom implements IValueWithRandom, IOptionLoader
     /**
      * @deprecated use the new [[RangeValue]] type instead
      */
-    public random: Random;
+    random: Random;
 
-    public value: RangeValue;
+    value: RangeValue;
 
     protected constructor() {
         this.random = new Random();
         this.value = 0;
     }
 
-    public load(data?: RecursivePartial<IValueWithRandom>): void {
+    load(data?: RecursivePartial<IValueWithRandom>): void {
         if (!data) {
             return;
         }

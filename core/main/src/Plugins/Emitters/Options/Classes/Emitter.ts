@@ -15,15 +15,15 @@ import { AnimatableColor } from "../../../../Options/Classes/Particles/Animatabl
  * @category Emitters Plugin
  */
 export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
-    public autoPlay;
-    public size?: EmitterSize;
-    public direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
-    public life;
-    public name?: string;
-    public particles?: RecursivePartial<IParticles>;
-    public position?: RecursivePartial<ICoordinates>;
-    public rate;
-    public spawnColor?: AnimatableColor;
+    autoPlay;
+    size?: EmitterSize;
+    direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
+    life;
+    name?: string;
+    particles?: RecursivePartial<IParticles>;
+    position?: RecursivePartial<ICoordinates>;
+    rate;
+    spawnColor?: AnimatableColor;
 
     constructor() {
         this.autoPlay = true;
@@ -32,7 +32,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
         this.rate = new EmitterRate();
     }
 
-    public load(data?: RecursivePartial<IEmitter>): void {
+    load(data?: RecursivePartial<IEmitter>): void {
         if (data === undefined) {
             return;
         }

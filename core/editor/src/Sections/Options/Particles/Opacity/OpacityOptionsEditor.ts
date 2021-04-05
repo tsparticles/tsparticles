@@ -5,14 +5,14 @@ import { EditorBase } from "../../../../EditorBase";
 import { DestroyType, StartValueType } from "tsparticles";
 
 export class OpacityOptionsEditor extends EditorBase {
-    public group!: EditorGroup;
+    group!: EditorGroup;
     private options!: IOpacity;
 
     constructor(particles: Container) {
         super(particles);
     }
 
-    public addToGroup(parent: EditorGroup, options?: unknown): void {
+    addToGroup(parent: EditorGroup, options?: unknown): void {
         this.group = parent.addGroup("opacity", "Opacity", true, options);
         this.options = this.group.data as IOpacity;
 

@@ -3,15 +3,15 @@ import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import type { RecursivePartial } from "../../Types";
 
 export class Random implements IRandom, IOptionLoader<IRandom> {
-    public enable;
-    public minimumValue;
+    enable;
+    minimumValue;
 
     constructor() {
         this.enable = false;
         this.minimumValue = 0;
     }
 
-    public load(data?: RecursivePartial<IRandom>): void {
+    load(data?: RecursivePartial<IRandom>): void {
         if (!data) {
             return;
         }

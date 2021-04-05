@@ -8,15 +8,15 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class Twinkle implements ITwinkle, IOptionLoader<ITwinkle> {
-    public lines;
-    public particles;
+    lines;
+    particles;
 
     constructor() {
         this.lines = new TwinkleValues();
         this.particles = new TwinkleValues();
     }
 
-    public load(data?: RecursivePartial<ITwinkle>): void {
+    load(data?: RecursivePartial<ITwinkle>): void {
         if (data === undefined) {
             return;
         }

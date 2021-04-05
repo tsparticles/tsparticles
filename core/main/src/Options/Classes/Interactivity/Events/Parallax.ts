@@ -6,9 +6,9 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class Parallax implements IParallax, IOptionLoader<IParallax> {
-    public enable;
-    public force;
-    public smooth;
+    enable;
+    force;
+    smooth;
 
     constructor() {
         this.enable = false;
@@ -16,7 +16,7 @@ export class Parallax implements IParallax, IOptionLoader<IParallax> {
         this.smooth = 10;
     }
 
-    public load(data?: RecursivePartial<IParallax>): void {
+    load(data?: RecursivePartial<IParallax>): void {
         if (data === undefined) {
             return;
         }

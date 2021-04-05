@@ -4,14 +4,14 @@ import type { RecursivePartial } from "../../../../Types";
 import { ValueWithRandom } from "../../ValueWithRandom";
 
 export class LifeDelay extends ValueWithRandom implements ILifeDelay, IOptionLoader<ILifeDelay> {
-    public sync;
+    sync;
 
     constructor() {
         super();
         this.sync = false;
     }
 
-    public load(data?: RecursivePartial<ILifeDelay>): void {
+    load(data?: RecursivePartial<ILifeDelay>): void {
         if (!data) {
             return;
         }

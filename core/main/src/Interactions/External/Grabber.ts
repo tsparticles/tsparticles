@@ -10,7 +10,7 @@ import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInterac
 export class Grabber implements IExternalInteractor {
     constructor(private readonly container: Container) {}
 
-    public isEnabled(): boolean {
+    isEnabled(): boolean {
         const container = this.container;
         const mouse = container.interactivity.mouse;
         const events = container.actualOptions.interactivity.events;
@@ -24,11 +24,11 @@ export class Grabber implements IExternalInteractor {
         return Utils.isInArray(HoverMode.grab, hoverMode);
     }
 
-    public reset(): void {
+    reset(): void {
         // do nothing
     }
 
-    public interact(): void {
+    interact(): void {
         const container = this.container;
         const options = container.actualOptions;
         const interactivity = options.interactivity;

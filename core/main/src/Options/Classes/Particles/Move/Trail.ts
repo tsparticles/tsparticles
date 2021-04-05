@@ -7,9 +7,9 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class Trail implements ITrail, IOptionLoader<ITrail> {
-    public enable;
-    public length;
-    public fillColor;
+    enable;
+    length;
+    fillColor;
 
     constructor() {
         this.enable = false;
@@ -19,7 +19,7 @@ export class Trail implements ITrail, IOptionLoader<ITrail> {
         this.fillColor.value = "#000000";
     }
 
-    public load(data?: RecursivePartial<ITrail>): void {
+    load(data?: RecursivePartial<ITrail>): void {
         if (data === undefined) {
             return;
         }

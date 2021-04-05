@@ -32,7 +32,7 @@ export class RepulseDiv extends RepulseBase implements IRepulseDiv, IOptionLoade
         }
     }
 
-    public selectors: SingleOrMultiple<string>;
+    selectors: SingleOrMultiple<string>;
 
     constructor() {
         super();
@@ -40,7 +40,7 @@ export class RepulseDiv extends RepulseBase implements IRepulseDiv, IOptionLoade
         this.selectors = [];
     }
 
-    public load(data?: RecursivePartial<IRepulseDiv>): void {
+    load(data?: RecursivePartial<IRepulseDiv>): void {
         super.load(data);
 
         if (data === undefined) {

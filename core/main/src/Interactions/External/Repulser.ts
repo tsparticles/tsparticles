@@ -14,7 +14,7 @@ import { Vector } from "../../Core/Particle/Vector";
 export class Repulser implements IExternalInteractor {
     constructor(private readonly container: Container) {}
 
-    public isEnabled(): boolean {
+    isEnabled(): boolean {
         const container = this.container;
         const options = container.actualOptions;
 
@@ -38,11 +38,11 @@ export class Repulser implements IExternalInteractor {
         );
     }
 
-    public reset(): void {
+    reset(): void {
         // do nothing
     }
 
-    public interact(): void {
+    interact(): void {
         const container = this.container;
         const options = container.actualOptions;
         const mouseMoveStatus = container.interactivity.status === Constants.mouseMoveEvent;

@@ -55,7 +55,7 @@ export class MainSlim {
     /**
      * init method, used by imports
      */
-    public init(): void {
+    init(): void {
         if (!this.#initialized) {
             this.#initialized = true;
         }
@@ -68,7 +68,7 @@ export class MainSlim {
      * @param index If provided gets the corresponding item from the array
      * @returns A Promise with the [[Container]] object created
      */
-    public async loadFromArray(
+    async loadFromArray(
         tagId: string,
         options: RecursivePartial<IOptions>[],
         index?: number
@@ -82,10 +82,7 @@ export class MainSlim {
      * @param options The options object to initialize the [[Container]]
      * @returns A Promise with the [[Container]] object created
      */
-    public async load(
-        tagId: string,
-        options: SingleOrMultiple<RecursivePartial<IOptions>>
-    ): Promise<Container | undefined> {
+    async load(tagId: string, options: SingleOrMultiple<RecursivePartial<IOptions>>): Promise<Container | undefined> {
         return Loader.load(tagId, options);
     }
 
@@ -95,11 +92,7 @@ export class MainSlim {
      * @param element The dom element used to contain the particles
      * @param options The options object to initialize the [[Container]]
      */
-    public async set(
-        id: string,
-        element: HTMLElement,
-        options: RecursivePartial<IOptions>
-    ): Promise<Container | undefined> {
+    async set(id: string, element: HTMLElement, options: RecursivePartial<IOptions>): Promise<Container | undefined> {
         return Loader.set(id, element, options);
     }
 
@@ -111,11 +104,7 @@ export class MainSlim {
      * @param index the index of the paths array, if a single path is passed this value is ignored
      * @returns A Promise with the [[Container]] object created
      */
-    public loadJSON(
-        tagId: string,
-        pathConfigJson: SingleOrMultiple<string>,
-        index?: number
-    ): Promise<Container | undefined> {
+    loadJSON(tagId: string, pathConfigJson: SingleOrMultiple<string>, index?: number): Promise<Container | undefined> {
         return Loader.loadJSON(tagId, pathConfigJson, index);
     }
 
@@ -123,7 +112,7 @@ export class MainSlim {
      * Adds an additional click handler to all the loaded [[Container]] objects.
      * @param callback The function called after the click event is fired
      */
-    public setOnClickHandler(callback: (e: Event, particles?: Particle[]) => void): void {
+    setOnClickHandler(callback: (e: Event, particles?: Particle[]) => void): void {
         Loader.setOnClickHandler(callback);
     }
 
@@ -131,7 +120,7 @@ export class MainSlim {
      * All the [[Container]] objects loaded
      * @returns All the [[Container]] objects loaded
      */
-    public dom(): Container[] {
+    dom(): Container[] {
         return Loader.dom();
     }
 
@@ -140,7 +129,7 @@ export class MainSlim {
      * @param index The object index
      * @returns The [[Container]] object at specified index, if present or not destroyed, otherwise undefined
      */
-    public domItem(index: number): Container | undefined {
+    domItem(index: number): Container | undefined {
         return Loader.domItem(index);
     }
 
@@ -152,7 +141,7 @@ export class MainSlim {
      * @param afterEffect Optional: the shape drawer after effect function, used only if the drawer parameter is a function
      * @param destroy Optional: the shape drawer destroy function, used only if the drawer parameter is a function
      */
-    public addShape(
+    addShape(
         shape: string,
         drawer: IShapeDrawer | ShapeDrawerDrawFunction,
         init?: ShapeDrawerInitFunction,
@@ -180,7 +169,7 @@ export class MainSlim {
      * @param preset the preset name
      * @param options the options to add to the preset
      */
-    public addPreset(preset: string, options: RecursivePartial<IOptions>): void {
+    addPreset(preset: string, options: RecursivePartial<IOptions>): void {
         Plugins.addPreset(preset, options);
     }
 
@@ -188,7 +177,7 @@ export class MainSlim {
      * addPlugin adds plugin to tsParticles, if an instance needs it it will be loaded
      * @param plugin the plugin implementation of [[IPlugin]]
      */
-    public addPlugin(plugin: IPlugin): void {
+    addPlugin(plugin: IPlugin): void {
         Plugins.addPlugin(plugin);
     }
 
@@ -197,7 +186,7 @@ export class MainSlim {
      * @param name the path generator name
      * @param generator the path generator object
      */
-    public addPathGenerator(name: string, generator: IMovePathGenerator): void {
+    addPathGenerator(name: string, generator: IMovePathGenerator): void {
         Plugins.addPathGenerator(name, generator);
     }
 }

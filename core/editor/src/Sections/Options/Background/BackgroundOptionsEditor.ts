@@ -12,7 +12,7 @@ export class BackgroundOptionsEditor extends EditorBase {
         super(particles);
     }
 
-    public addToGroup(parent: EditorGroup): void {
+    addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("background", "Background");
         this.options = this.group.data as IBackground;
 

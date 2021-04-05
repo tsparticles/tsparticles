@@ -7,10 +7,10 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class GrabLinks implements IGrabLinks, IOptionLoader<IGrabLinks> {
-    public blink;
-    public color?: OptionsColor;
-    public consent;
-    public opacity;
+    blink;
+    color?: OptionsColor;
+    consent;
+    opacity;
 
     constructor() {
         this.blink = false;
@@ -18,7 +18,7 @@ export class GrabLinks implements IGrabLinks, IOptionLoader<IGrabLinks> {
         this.opacity = 1;
     }
 
-    public load(data?: RecursivePartial<IGrabLinks>): void {
+    load(data?: RecursivePartial<IGrabLinks>): void {
         if (data === undefined) {
             return;
         }

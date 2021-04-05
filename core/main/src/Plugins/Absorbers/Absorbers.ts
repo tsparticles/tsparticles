@@ -16,9 +16,9 @@ import type { AbsorberContainer } from "./AbsorberContainer";
  * @category Absorbers Plugin
  */
 export class Absorbers implements IContainerPlugin {
-    public array: AbsorberInstance[];
-    public absorbers: SingleOrMultiple<Absorber>;
-    public interactivityAbsorbers: SingleOrMultiple<Absorber>;
+    array: AbsorberInstance[];
+    absorbers: SingleOrMultiple<Absorber>;
+    interactivityAbsorbers: SingleOrMultiple<Absorber>;
 
     constructor(private readonly container: Container) {
         this.array = [];
@@ -31,7 +31,7 @@ export class Absorbers implements IContainerPlugin {
             this.addAbsorber(options, position);
     }
 
-    public init(options?: RecursivePartial<IOptions & IAbsorberOptions>): void {
+    init(options?: RecursivePartial<IOptions & IAbsorberOptions>): void {
         if (!options) {
             return;
         }
@@ -83,7 +83,7 @@ export class Absorbers implements IContainerPlugin {
         }
     }
 
-    public particleUpdate(particle: Particle): void {
+    particleUpdate(particle: Particle): void {
         for (const absorber of this.array) {
             absorber.attract(particle);
 
@@ -93,7 +93,7 @@ export class Absorbers implements IContainerPlugin {
         }
     }
 
-    public draw(context: CanvasRenderingContext2D): void {
+    draw(context: CanvasRenderingContext2D): void {
         for (const absorber of this.array) {
             context.save();
             absorber.draw(context);
@@ -101,17 +101,17 @@ export class Absorbers implements IContainerPlugin {
         }
     }
 
-    public stop(): void {
+    stop(): void {
         this.array = [];
     }
 
-    public resize(): void {
+    resize(): void {
         for (const absorber of this.array) {
             absorber.resize();
         }
     }
 
-    public handleClickMode(mode: string): void {
+    handleClickMode(mode: string): void {
         const container = this.container;
         const absorberOptions = this.absorbers;
         const modeAbsorbers = this.interactivityAbsorbers;
@@ -137,7 +137,7 @@ export class Absorbers implements IContainerPlugin {
         }
     }
 
-    public addAbsorber(options: IAbsorber, position?: ICoordinates): AbsorberInstance {
+    addAbsorber(options: IAbsorber, position?: ICoordinates): AbsorberInstance {
         const absorber = new AbsorberInstance(this, this.container, options, position);
 
         this.array.push(absorber);
@@ -145,7 +145,7 @@ export class Absorbers implements IContainerPlugin {
         return absorber;
     }
 
-    public removeAbsorber(absorber: AbsorberInstance): void {
+    removeAbsorber(absorber: AbsorberInstance): void {
         const index = this.array.indexOf(absorber);
 
         if (index >= 0) {

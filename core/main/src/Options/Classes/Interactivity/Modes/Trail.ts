@@ -8,16 +8,16 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class Trail implements ITrail, IOptionLoader<ITrail> {
-    public delay;
-    public particles?: RecursivePartial<IParticles>;
-    public quantity;
+    delay;
+    particles?: RecursivePartial<IParticles>;
+    quantity;
 
     constructor() {
         this.delay = 1;
         this.quantity = 1;
     }
 
-    public load(data?: RecursivePartial<ITrail>): void {
+    load(data?: RecursivePartial<ITrail>): void {
         if (data === undefined) {
             return;
         }

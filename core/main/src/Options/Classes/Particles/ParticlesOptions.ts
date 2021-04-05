@@ -23,28 +23,28 @@ import { Destroy } from "./Destroy/Destroy";
  * @category Options
  */
 export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
-    public bounce;
-    public collisions;
-    public color;
-    public destroy;
-    public life;
-    public links;
-    public move;
-    public number;
-    public opacity;
-    public reduceDuplicates;
-    public rotate;
-    public shape;
-    public size;
-    public shadow;
-    public stroke: SingleOrMultiple<Stroke>;
-    public twinkle;
+    bounce;
+    collisions;
+    color;
+    destroy;
+    life;
+    links;
+    move;
+    number;
+    opacity;
+    reduceDuplicates;
+    rotate;
+    shape;
+    size;
+    shadow;
+    stroke: SingleOrMultiple<Stroke>;
+    twinkle;
 
     /**
      *
      * @deprecated this property is obsolete, please use the new links
      */
-    public get line_linked(): Links {
+    get line_linked(): Links {
         return this.links;
     }
 
@@ -53,7 +53,7 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
      * @deprecated this property is obsolete, please use the new links
      * @param value
      */
-    public set line_linked(value: Links) {
+    set line_linked(value: Links) {
         this.links = value;
     }
 
@@ -61,7 +61,7 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
      *
      * @deprecated this property is obsolete, please use the new lineLinked
      */
-    public get lineLinked(): Links {
+    get lineLinked(): Links {
         return this.links;
     }
 
@@ -70,7 +70,7 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
      * @deprecated this property is obsolete, please use the new lineLinked
      * @param value
      */
-    public set lineLinked(value: Links) {
+    set lineLinked(value: Links) {
         this.links = value;
     }
 
@@ -93,7 +93,7 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
         this.twinkle = new Twinkle();
     }
 
-    public load(data?: RecursivePartial<IParticles>): void {
+    load(data?: RecursivePartial<IParticles>): void {
         if (data === undefined) {
             return;
         }

@@ -7,14 +7,14 @@ import { AbsorbersPlugin } from "tsparticles/dist/Plugins/Absorbers/AbsorbersPlu
 import { EditorBase } from "../../../../EditorBase";
 
 export class ClickEventsOptionsEditor extends EditorBase {
-    public group!: EditorGroup;
+    group!: EditorGroup;
     private options!: IClickEvent;
 
     constructor(particles: Container) {
         super(particles);
     }
 
-    public addToGroup(parent: EditorGroup): void {
+    addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("onClick", "Click Events");
         this.options = this.group.data as IClickEvent;
 

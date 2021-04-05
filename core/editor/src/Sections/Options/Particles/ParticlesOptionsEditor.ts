@@ -19,14 +19,14 @@ import { BounceOptionsEditor } from "./Bounce/BounceOptionsEditor";
 import { EditorType } from "object-gui";
 
 export class ParticlesOptionsEditor extends EditorBase {
-    public group!: EditorGroup;
+    group!: EditorGroup;
     private options!: IParticles;
 
     constructor(particles: Container) {
         super(particles);
     }
 
-    public addToGroup(parent: EditorGroup, customName?: string, parentData?: unknown): void {
+    addToGroup(parent: EditorGroup, customName?: string, parentData?: unknown): void {
         this.group = parent.addGroup(customName ?? "particles", "Particles", true, parentData);
         this.options = this.group.data as IParticles;
 

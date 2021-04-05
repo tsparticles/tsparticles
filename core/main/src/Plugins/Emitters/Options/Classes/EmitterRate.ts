@@ -6,15 +6,15 @@ import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader
  * @category Emitters Plugin
  */
 export class EmitterRate implements IEmitterRate, IOptionLoader<IEmitterRate> {
-    public quantity;
-    public delay;
+    quantity;
+    delay;
 
     constructor() {
         this.quantity = 1;
         this.delay = 0.1;
     }
 
-    public load(data?: RecursivePartial<IEmitterRate>): void {
+    load(data?: RecursivePartial<IEmitterRate>): void {
         if (data === undefined) {
             return;
         }

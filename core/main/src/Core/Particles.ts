@@ -17,25 +17,25 @@ import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions"
  * @category Core
  */
 export class Particles {
-    public get count(): number {
+    get count(): number {
         return this.array.length;
     }
 
     /**
      * The quad tree used to search particles withing ranges
      */
-    public quadTree;
-    public linksColors;
-    public limit;
+    quadTree;
+    linksColors;
+    limit;
 
     /**
      * All the particles used in canvas
      */
-    public array: Particle[];
+    array: Particle[];
 
-    public pushing?: boolean;
-    public linksColor?: IRgb | string;
-    public grabLineColor?: IRgb | string;
+    pushing?: boolean;
+    linksColor?: IRgb | string;
+    grabLineColor?: IRgb | string;
 
     private interactionManager;
     private nextId;
@@ -65,7 +65,7 @@ export class Particles {
     }
 
     /* --------- tsParticles functions - particles ----------- */
-    public init(): void {
+    init(): void {
         const container = this.container;
         const options = container.actualOptions;
 
@@ -115,13 +115,13 @@ export class Particles {
         container.pathGenerator.init();
     }
 
-    public redraw(): void {
+    redraw(): void {
         this.clear();
         this.init();
         this.draw({ value: 0, factor: 0 });
     }
 
-    public removeAt(index: number, quantity?: number, override?: boolean): void {
+    removeAt(index: number, quantity?: number, override?: boolean): void {
         if (index >= 0 && index <= this.count) {
             for (const particle of this.array.splice(index, quantity ?? 1)) {
                 particle.destroy(override);
@@ -129,11 +129,11 @@ export class Particles {
         }
     }
 
-    public remove(particle: Particle, override?: boolean): void {
+    remove(particle: Particle, override?: boolean): void {
         this.removeAt(this.array.indexOf(particle), undefined, override);
     }
 
-    public update(delta: IDelta): void {
+    update(delta: IDelta): void {
         const container = this.container;
         const particlesToDelete = [];
 
@@ -190,7 +190,7 @@ export class Particles {
         delete container.canvas.resizeFactor;
     }
 
-    public draw(delta: IDelta): void {
+    draw(delta: IDelta): void {
         const container = this.container;
 
         /* clear canvas */
@@ -229,12 +229,12 @@ export class Particles {
     /**
      * Removes all particles from the array
      */
-    public clear(): void {
+    clear(): void {
         this.array = [];
     }
 
     /* ---------- tsParticles functions - modes events ------------ */
-    public push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticles>): void {
+    push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticles>): void {
         const container = this.container;
         const options = container.actualOptions;
         const limit = options.particles.number.limit * container.density;
@@ -256,11 +256,11 @@ export class Particles {
         this.pushing = false;
     }
 
-    public addParticle(position?: ICoordinates, overrideOptions?: RecursivePartial<IParticles>): Particle | undefined {
+    addParticle(position?: ICoordinates, overrideOptions?: RecursivePartial<IParticles>): Particle | undefined {
         return this.pushParticle(position, overrideOptions);
     }
 
-    public addSplitParticle(parent: Particle): Particle | undefined {
+    addSplitParticle(parent: Particle): Particle | undefined {
         const splitOptions = parent.options.destroy.split;
         const options = new ParticlesOptions();
 
@@ -309,11 +309,11 @@ export class Particles {
         });
     }
 
-    public removeQuantity(quantity: number): void {
+    removeQuantity(quantity: number): void {
         this.removeAt(0, quantity);
     }
 
-    public getLinkFrequency(p1: IParticle, p2: IParticle): number {
+    getLinkFrequency(p1: IParticle, p2: IParticle): number {
         const key = `${Math.min(p1.id, p2.id)}_${Math.max(p1.id, p2.id)}`;
 
         let res = this.linksFreq.get(key);
@@ -327,7 +327,7 @@ export class Particles {
         return res;
     }
 
-    public getTriangleFrequency(p1: IParticle, p2: IParticle, p3: IParticle): number {
+    getTriangleFrequency(p1: IParticle, p2: IParticle, p3: IParticle): number {
         let [id1, id2, id3] = [p1.id, p2.id, p3.id];
 
         if (id1 > id2) {
@@ -355,7 +355,7 @@ export class Particles {
         return res;
     }
 
-    public setDensity(): void {
+    setDensity(): void {
         const options = this.container.actualOptions;
 
         this.applyDensity(options.particles);

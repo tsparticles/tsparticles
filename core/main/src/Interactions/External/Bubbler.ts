@@ -31,7 +31,7 @@ function calculateBubbleValue(
 export class Bubbler implements IExternalInteractor {
     constructor(private readonly container: Container) {}
 
-    public isEnabled(): boolean {
+    isEnabled(): boolean {
         const container = this.container;
         const options = container.actualOptions;
 
@@ -55,7 +55,7 @@ export class Bubbler implements IExternalInteractor {
         );
     }
 
-    public reset(particle: Particle, force?: boolean): void {
+    reset(particle: Particle, force?: boolean): void {
         if (!particle.bubble.inRange || force) {
             delete particle.bubble.div;
             delete particle.bubble.opacity;
@@ -64,7 +64,7 @@ export class Bubbler implements IExternalInteractor {
         }
     }
 
-    public interact(): void {
+    interact(): void {
         const options = this.container.actualOptions;
         const events = options.interactivity.events;
         const onHover = events.onHover;

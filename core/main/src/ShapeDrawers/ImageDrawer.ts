@@ -15,17 +15,17 @@ interface ContainerImage {
  * @category Shape Drawers
  */
 export class ImageDrawer implements IShapeDrawer {
-    public images: ContainerImage[];
+    images: ContainerImage[];
 
     constructor() {
         this.images = [];
     }
 
-    public getSidesCount(): number {
+    getSidesCount(): number {
         return 12;
     }
 
-    public getImages(container: Container): ContainerImage {
+    getImages(container: Container): ContainerImage {
         const containerImages = this.images.filter((t) => t.id === container.id);
 
         if (!containerImages.length) {
@@ -40,13 +40,13 @@ export class ImageDrawer implements IShapeDrawer {
         return containerImages[0];
     }
 
-    public addImage(container: Container, image: IImage): void {
+    addImage(container: Container, image: IImage): void {
         const containerImages = this.getImages(container);
 
         containerImages?.images.push(image);
     }
 
-    public async init(container: Container): Promise<void> {
+    async init(container: Container): Promise<void> {
         const options = container.actualOptions;
         const shapeOptions = options.particles.shape;
 
@@ -68,7 +68,7 @@ export class ImageDrawer implements IShapeDrawer {
         }
     }
 
-    public destroy(): void {
+    destroy(): void {
         this.images = [];
     }
 
@@ -86,7 +86,7 @@ export class ImageDrawer implements IShapeDrawer {
         }
     }
 
-    public draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number, opacity: number): void {
+    draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number, opacity: number): void {
         if (!context) {
             return;
         }
