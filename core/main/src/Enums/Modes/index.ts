@@ -1,4 +1,5 @@
 export * from "./ClickMode";
+export * from "./DestroyMode";
 export * from "./DivMode";
 export * from "./HoverMode";
 export * from "./CollisionMode";

@@ -13,6 +13,7 @@ import type { ITwinkle } from "./Twinkle/ITwinkle";
 import type { IAnimatableColor } from "./IAnimatableColor";
 import type { ILife } from "./Life/ILife";
 import type { IBounce } from "./Bounce/IBounce";
+import type { IDestroy } from "./Destroy/IDestroy";
 
 /**
  * [[include:Options/Particles.md]]
@@ -32,6 +33,7 @@ export interface IParticles {
     bounce: IBounce;
     collisions: ICollisions;
     color: IAnimatableColor;
+    destroy: IDestroy;
     life: ILife;
     links: ILinks;
     move: IMove;

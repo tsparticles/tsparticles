@@ -3,13 +3,14 @@ import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IMouseData } from "./Interfaces/IMouseData";
 import type { IRgb } from "./Interfaces/Colors";
 import { Particle } from "./Particle";
-import { Point, QuadTree, Rectangle, Utils } from "../Utils";
+import { NumberUtils, Point, QuadTree, Rectangle, Utils } from "../Utils";
 import type { RecursivePartial } from "../Types";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { InteractionManager } from "./Particle/InteractionManager";
 import type { IDelta } from "./Interfaces/IDelta";
 import type { IParticle } from "./Interfaces/IParticle";
 import { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";
+import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
 
 /**
  * Particles manager object
@@ -120,16 +121,16 @@ export class Particles {
         this.draw({ value: 0, factor: 0 });
     }
 
-    public removeAt(index: number, quantity?: number): void {
+    public removeAt(index: number, quantity?: number, override?: boolean): void {
         if (index >= 0 && index <= this.count) {
             for (const particle of this.array.splice(index, quantity ?? 1)) {
-                particle.destroy();
+                particle.destroy(override);
             }
         }
     }
 
-    public remove(particle: Particle): void {
-        this.removeAt(this.array.indexOf(particle));
+    public remove(particle: Particle, override?: boolean): void {
+        this.removeAt(this.array.indexOf(particle), undefined, override);
     }
 
     public update(delta: IDelta): void {
@@ -256,19 +257,56 @@ export class Particles {
     }
 
     public addParticle(position?: ICoordinates, overrideOptions?: RecursivePartial<IParticles>): Particle | undefined {
-        try {
-            const particle = new Particle(this.nextId, this.container, position, overrideOptions);
+        return this.pushParticle(position, overrideOptions);
+    }
 
-            this.array.push(particle);
+    public addSplitParticle(parent: Particle): Particle | undefined {
+        const splitOptions = parent.options.destroy.split;
+        const options = new ParticlesOptions();
 
-            this.nextId++;
+        options.load(parent.options);
 
-            return particle;
-        } catch {
-            console.warn("error adding particle");
+        const factor = NumberUtils.getRangeValue(splitOptions.factor.value);
 
-            return;
+        options.color.load({
+            value: {
+                hsl: parent.getFillColor(),
+            },
+        });
+
+        if (typeof options.size.value === "number") {
+            options.size.value /= factor;
+        } else {
+            options.size.value.min /= factor;
+            options.size.value.max /= factor;
         }
+
+        options.load(splitOptions.particles);
+
+        const offset = NumberUtils.setRangeValue(-parent.size.value, parent.size.value);
+
+        const position = {
+            x: parent.position.x + NumberUtils.randomInRange(offset),
+            y: parent.position.y + NumberUtils.randomInRange(offset),
+        };
+
+        return this.pushParticle(position, options, (particle) => {
+            if (particle.size.value < 0.5) {
+                return false;
+            }
+
+            particle.velocity.length = NumberUtils.randomInRange(
+                NumberUtils.setRangeValue(parent.velocity.length, particle.velocity.length)
+            );
+            particle.splitCount = parent.splitCount + 1;
+            particle.unbreakable = true;
+
+            setTimeout(() => {
+                particle.unbreakable = false;
+            }, 500);
+
+            return true;
+        });
     }
 
     public removeQuantity(quantity: number): void {
@@ -355,5 +393,35 @@ export class Particles {
         const pxRatio = container.retina.pixelRatio;
 
         return (canvas.width * canvas.height) / (densityOptions.factor * pxRatio * pxRatio * densityOptions.area);
+    }
+
+    private pushParticle(
+        position?: ICoordinates,
+        overrideOptions?: RecursivePartial<IParticles>,
+        initializer?: (particle: Particle) => boolean
+    ): Particle | undefined {
+        try {
+            const particle = new Particle(this.nextId, this.container, position, overrideOptions);
+
+            let canAdd = true;
+
+            if (initializer) {
+                canAdd = initializer(particle);
+            }
+
+            if (!canAdd) {
+                return;
+            }
+
+            this.array.push(particle);
+
+            this.nextId++;
+
+            return particle;
+        } catch (e) {
+            console.warn(`error adding particle: ${e}`);
+
+            return;
+        }
     }
 }

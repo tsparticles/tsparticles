@@ -1,6 +1,6 @@
 import type { IOptions } from "../Interfaces/IOptions";
 import { Interactivity } from "./Interactivity/Interactivity";
-import { Particles } from "./Particles/Particles";
+import { ParticlesOptions } from "./Particles/ParticlesOptions";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
 import type { RecursivePartial } from "../../Types";
 import { Background } from "./Background/Background";
@@ -8,7 +8,7 @@ import { Infection } from "./Infection/Infection";
 import { Plugins } from "../../Utils";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import { Theme } from "./Theme/Theme";
-import { ThemeMode } from "../../Enums/Modes";
+import { ThemeMode } from "../../Enums";
 import { FullScreen } from "./FullScreen/FullScreen";
 import { Motion } from "./Motion/Motion";
 import { ManualParticle } from "./ManualParticle";
@@ -95,7 +95,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.interactivity = new Interactivity();
         this.manualParticles = [];
         this.motion = new Motion();
-        this.particles = new Particles();
+        this.particles = new ParticlesOptions();
         this.pauseOnBlur = true;
         this.pauseOnOutsideViewport = true;
         this.responsive = [];

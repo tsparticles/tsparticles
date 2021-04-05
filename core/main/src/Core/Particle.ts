@@ -8,7 +8,7 @@ import type { IShapeValues } from "../Options/Interfaces/Particles/Shape/IShapeV
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
 import type { IParticle } from "./Interfaces/IParticle";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
-import { Particles } from "../Options/Classes/Particles/Particles";
+import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import {
     AnimationStatus,
@@ -33,6 +33,7 @@ import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 import type { Stroke } from "../Options/Classes/Particles/Stroke";
 import type { IParticleLoops } from "./Interfaces/IParticleLoops";
 import { Vector } from "./Particle/Vector";
+import { DestroyMode } from "../Enums";
 
 /**
  * The single particle object
@@ -40,6 +41,7 @@ import { Vector } from "./Particle/Vector";
  */
 export class Particle implements IParticle {
     public destroyed;
+    public lastPathTime;
     public lifeDelay;
     public lifeDelayTime;
     public lifeDuration;
@@ -47,7 +49,8 @@ export class Particle implements IParticle {
     public livesRemaining;
     public misplaced;
     public spawning;
-    public lastPathTime;
+    public splitCount;
+    public unbreakable;
 
     public readonly pathDelay;
     public readonly updater;
@@ -98,6 +101,8 @@ export class Particle implements IParticle {
         this.close = true;
         this.lastPathTime = 0;
         this.destroyed = false;
+        this.unbreakable = false;
+        this.splitCount = 0;
         this.misplaced = false;
         this.loops = {
             opacity: 0,
@@ -106,7 +111,7 @@ export class Particle implements IParticle {
 
         const pxRatio = container.retina.pixelRatio;
         const options = container.actualOptions;
-        const particlesOptions = new Particles();
+        const particlesOptions = new ParticlesOptions();
 
         particlesOptions.load(options.particles);
 
@@ -458,10 +463,33 @@ export class Particle implements IParticle {
         return this.bubble.color ?? ColorUtils.getHslFromAnimation(this.strokeColor) ?? this.getFillColor();
     }
 
-    public destroy(): void {
+    public destroy(override?: boolean): void {
         this.destroyed = true;
         this.bubble.inRange = false;
         this.links = [];
+
+        if (this.unbreakable) {
+            return;
+        }
+
+        this.destroyed = true;
+        this.bubble.inRange = false;
+
+        for (const [, plugin] of this.container.plugins) {
+            if (plugin.particleDestroyed) {
+                plugin.particleDestroyed(this, override);
+            }
+        }
+
+        if (override) {
+            return;
+        }
+
+        const destroyOptions = this.options.destroy;
+
+        if (destroyOptions.mode === DestroyMode.split) {
+            this.split();
+        }
     }
 
     /**
@@ -470,6 +498,20 @@ export class Particle implements IParticle {
     public reset(): void {
         this.loops.opacity = 0;
         this.loops.size = 0;
+    }
+
+    private split(): void {
+        const splitOptions = this.options.destroy.split;
+
+        if (splitOptions.count >= 0 && this.splitCount++ > splitOptions.count) {
+            return;
+        }
+
+        const rate = NumberUtils.getRangeValue(splitOptions.rate.value);
+
+        for (let i = 0; i < rate; i++) {
+            this.container.particles.addSplitParticle(this);
+        }
     }
 
     private setColorAnimation(colorAnimation: IColorAnimation, colorValue: IParticleValueAnimation<number>): void {
