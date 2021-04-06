@@ -5,14 +5,14 @@ import type { Container } from "tsparticles-engine";
 import type { IOrbit } from "tsparticles-engine/Options/Interfaces/Particles/Orbit/IOrbit";
 
 export class OrbitOptionsEditor extends EditorBase {
-    public group!: EditorGroup;
+    group!: EditorGroup;
     private options!: IOrbit;
 
     constructor(particles: Container) {
         super(particles);
     }
 
-    public addToGroup(parent: EditorGroup): void {
+    addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("orbit", "Orbit");
         this.options = this.group.data as IOrbit;
 

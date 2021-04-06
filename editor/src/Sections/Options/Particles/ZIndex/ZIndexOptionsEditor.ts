@@ -5,14 +5,14 @@ import type { IZIndex } from "tsparticles-engine/Options/Interfaces/Particles/ZI
 import { EditorType } from "object-gui";
 
 export class ZIndexOptionsEditor extends EditorBase {
-    public group!: EditorGroup;
+    group!: EditorGroup;
     private options!: IZIndex;
 
     constructor(particles: Container) {
         super(particles);
     }
 
-    public addToGroup(parent: EditorGroup): void {
+    addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("zIndex", "Z Index");
         this.options = this.group.data as IZIndex;
 

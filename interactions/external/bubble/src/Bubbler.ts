@@ -43,7 +43,7 @@ export class Bubbler extends ExternalInteractorBase {
         super(container);
     }
 
-    public isEnabled(): boolean {
+    isEnabled(): boolean {
         const container = this.container,
             options = container.actualOptions,
             mouse = container.interactivity.mouse,
@@ -63,7 +63,7 @@ export class Bubbler extends ExternalInteractorBase {
         return isInArray(HoverMode.bubble, hoverMode) || isInArray(ClickMode.bubble, clickMode) || divBubble;
     }
 
-    public reset(particle: Particle, force?: boolean): void {
+    reset(particle: Particle, force?: boolean): void {
         if (!(!particle.bubble.inRange || force)) {
             return;
         }
@@ -74,7 +74,7 @@ export class Bubbler extends ExternalInteractorBase {
         delete particle.bubble.color;
     }
 
-    public interact(): void {
+    interact(): void {
         const options = this.container.actualOptions,
             events = options.interactivity.events,
             onHover = events.onHover,

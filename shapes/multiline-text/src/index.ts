@@ -57,7 +57,7 @@ interface MultilineTextParticle extends IParticle {
 }
 
 export class MultilineTextDrawer implements IShapeDrawer {
-    public async init(container: Container): Promise<void> {
+    async init(container: Container): Promise<void> {
         const options = container.actualOptions;
         const shapeType = "multiline-text";
 
@@ -75,7 +75,7 @@ export class MultilineTextDrawer implements IShapeDrawer {
         }
     }
 
-    public draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
+    draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
         const character = particle.shapeData as IMultilineTextShape;
 
         if (character === undefined) {

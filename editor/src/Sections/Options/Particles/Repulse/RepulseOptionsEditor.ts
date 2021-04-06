@@ -5,14 +5,14 @@ import type { IRepulse } from "tsparticles-engine/Core/Interfaces/IRepulse";
 import { EditorType } from "object-gui";
 
 export class RepulseOptionsEditor extends EditorBase {
-    public group!: EditorGroup;
+    group!: EditorGroup;
     private options!: IRepulse;
 
     constructor(particles: Container) {
         super(particles);
     }
 
-    public addToGroup(parent: EditorGroup): void {
+    addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("repulse", "Repulse");
         this.options = this.group.data as IRepulse;
 

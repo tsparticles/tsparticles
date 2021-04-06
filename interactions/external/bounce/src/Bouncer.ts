@@ -24,7 +24,7 @@ export class Bouncer extends ExternalInteractorBase {
         super(container);
     }
 
-    public isEnabled(): boolean {
+    isEnabled(): boolean {
         const container = this.container,
             options = container.actualOptions,
             mouse = container.interactivity.mouse,
@@ -37,7 +37,7 @@ export class Bouncer extends ExternalInteractorBase {
         );
     }
 
-    public interact(): void {
+    interact(): void {
         const container = this.container,
             options = container.actualOptions,
             events = options.interactivity.events,
@@ -53,7 +53,7 @@ export class Bouncer extends ExternalInteractorBase {
         }
     }
 
-    public reset(): void {
+    reset(): void {
         // do nothing
     }
 

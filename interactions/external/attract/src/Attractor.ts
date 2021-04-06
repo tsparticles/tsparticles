@@ -19,7 +19,7 @@ export class Attractor extends ExternalInteractorBase {
         super(container);
     }
 
-    public isEnabled(): boolean {
+    isEnabled(): boolean {
         const container = this.container,
             options = container.actualOptions,
             mouse = container.interactivity.mouse,
@@ -35,11 +35,11 @@ export class Attractor extends ExternalInteractorBase {
         return isInArray(HoverMode.attract, hoverMode) || isInArray(ClickMode.attract, clickMode);
     }
 
-    public reset(): void {
+    reset(): void {
         // do nothing
     }
 
-    public interact(): void {
+    interact(): void {
         const container = this.container,
             options = container.actualOptions,
             mouseMoveStatus = container.interactivity.status === Constants.mouseMoveEvent,
