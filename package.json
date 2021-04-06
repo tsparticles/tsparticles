@@ -11,10 +11,10 @@
     "deploy:site": "lerna run deploy --scope website"
   },
   "devDependencies": {
-    "@commitlint/cli": "^12.0.1",
-    "@commitlint/config-conventional": "^12.0.1",
-    "husky": "^5.1.3",
-    "ini": "^1.3.6",
+    "@commitlint/cli": "^12.1.1",
+    "@commitlint/config-conventional": "^12.1.1",
+    "husky": "^6.0.0",
+    "ini": "^2.0.0",
     "lerna": "^4.0.0"
   },
   "husky": {
