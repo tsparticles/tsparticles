@@ -7,7 +7,7 @@ import type { IColorAnimation } from "tsparticles-engine/Options/Interfaces/ICol
 export class StrokeColorUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
 
-    public isEnabled(particle: Particle): boolean {
+    isEnabled(particle: Particle): boolean {
         const color = particle.stroke.color;
 
         return (
@@ -20,7 +20,7 @@ export class StrokeColorUpdater implements IParticleUpdater {
         );
     }
 
-    public update(particle: Particle, delta: IDelta): void {
+    update(particle: Particle, delta: IDelta): void {
         if (!this.isEnabled(particle)) {
             return;
         }
@@ -57,7 +57,7 @@ export class StrokeColorUpdater implements IParticleUpdater {
         }
     }
 
-    public updateValue(
+    updateValue(
         particle: Particle,
         delta: IDelta,
         value: IParticleValueAnimation<number>,

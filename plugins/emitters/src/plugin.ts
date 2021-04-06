@@ -14,7 +14,7 @@ import { Main } from "tsparticles-engine";
  * @category Emitters Plugin
  */
 class Plugin implements IPlugin {
-    public readonly id;
+    readonly id;
 
     constructor() {
         this.id = "emitters";

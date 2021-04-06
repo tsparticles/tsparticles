@@ -1,4 +1,4 @@
-import type { Main, IParticle, IDelta } from "tsparticles-engine";
+import type { Main } from "tsparticles-engine";
 import type { IShapeValues } from "tsparticles-engine/Options/Interfaces/Particles/Shape/IShapeValues";
 
 type RectInfo = {
@@ -49,34 +49,24 @@ const drawRoundedRect = (
 };
 
 export function loadRoundedRectShape(tsParticles: Main): void {
-    tsParticles.addShape(
-        "rounded-rect",
-        function (
-            context: CanvasRenderingContext2D,
-            particle: IParticle,
-            radius: number,
-            opacity: number,
-            delta: IDelta,
-            pixelRatio: number
-        ): void {
-            const shapeData = particle.shapeData as IRoundedRectData;
-            const borderRadius = (shapeData?.radius ?? 4) * pixelRatio;
+    tsParticles.addShape("rounded-rect", (context, particle, radius, opacity, delta, pixelRatio) => {
+        const shapeData = particle.shapeData as IRoundedRectData;
+        const borderRadius = (shapeData?.radius ?? 4) * pixelRatio;
 
-            drawRoundedRect(
-                context,
-                {
-                    x: 0,
-                    y: 0,
-                    height: radius,
-                    width: radius,
-                },
-                {
-                    topLeft: borderRadius,
-                    topRight: borderRadius,
-                    bottomLeft: borderRadius,
-                    bottomRight: borderRadius,
-                }
-            );
-        }
-    );
+        drawRoundedRect(
+            context,
+            {
+                x: 0,
+                y: 0,
+                height: radius,
+                width: radius,
+            },
+            {
+                topLeft: borderRadius,
+                topRight: borderRadius,
+                bottomLeft: borderRadius,
+                bottomRight: borderRadius,
+            }
+        );
+    });
 }

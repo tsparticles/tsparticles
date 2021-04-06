@@ -9,7 +9,7 @@ export class InfectionInstance implements IContainerPlugin {
         this.container.infecter = new Infecter(this.container);
     }
 
-    public particlesSetup(): void {
+    particlesSetup(): void {
         const options = (this.container.actualOptions as unknown) as IInfectionOptions;
 
         for (let i = 0; i < options.infection.infections; i++) {
@@ -29,7 +29,7 @@ export class InfectionInstance implements IContainerPlugin {
         }
     }
 
-    public particleFillColor(particle: Particle): string | IColor | undefined {
+    particleFillColor(particle: Particle): string | IColor | undefined {
         const infParticle = (particle as unknown) as InfectableParticle;
         const options = (this.container.actualOptions as unknown) as IInfectionOptions;
 
@@ -44,7 +44,7 @@ export class InfectionInstance implements IContainerPlugin {
         return infectionStage !== undefined ? infectionStages[infectionStage].color : undefined;
     }
 
-    public particleStrokeColor(particle: Particle): string | IColor | undefined {
+    particleStrokeColor(particle: Particle): string | IColor | undefined {
         return this.particleFillColor(particle);
     }
 }

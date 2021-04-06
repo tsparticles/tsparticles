@@ -8,7 +8,7 @@ export class SquareDrawer implements IShapeDrawer {
         return 4;
     }
 
-    public draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
+    draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
         const f = Math.sqrt(2);
 
         context.rect(-radius / f, -radius / f, (radius * 2) / f, (radius * 2) / f);

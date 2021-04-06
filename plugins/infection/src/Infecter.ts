@@ -7,7 +7,7 @@ import type { IInfectionOptions } from "./Options/Interfaces/IInfectionOptions";
 export class Infecter {
     constructor(private readonly container: InfectableContainer) {}
 
-    public startInfection(particle: InfectableParticle, stage: number): void {
+    startInfection(particle: InfectableParticle, stage: number): void {
         const options = (this.container.actualOptions as unknown) as IInfectionOptions,
             stages = options.infection.stages,
             stagesCount = stages.length;
@@ -20,7 +20,7 @@ export class Infecter {
         particle.infection.delayStage = stage;
     }
 
-    public updateInfectionStage(particle: InfectableParticle, stage: number): void {
+    updateInfectionStage(particle: InfectableParticle, stage: number): void {
         const options = (this.container.actualOptions as unknown) as IInfectionOptions,
             stagesCount = options.infection.stages.length;
 
@@ -36,7 +36,7 @@ export class Infecter {
         particle.infection.time = 0;
     }
 
-    public updateInfection(particle: InfectableParticle, delta: number): void {
+    updateInfection(particle: InfectableParticle, delta: number): void {
         const options = (this.container.actualOptions as unknown) as IInfectionOptions,
             infection = options.infection,
             stages = options.infection.stages,

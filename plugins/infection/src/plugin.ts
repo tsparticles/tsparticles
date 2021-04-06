@@ -12,21 +12,21 @@ import { Infection } from "./Options/Classes/Infection";
  * @category Infection Plugin
  */
 class Plugin implements IPlugin {
-    public readonly id;
+    readonly id;
 
     constructor() {
         this.id = "infection";
     }
 
-    public getPlugin(container: Container): InfectionInstance {
+    getPlugin(container: Container): InfectionInstance {
         return new InfectionInstance(container);
     }
 
-    public needsPlugin(options?: RecursivePartial<IInfectionOptions>): boolean {
+    needsPlugin(options?: RecursivePartial<IInfectionOptions>): boolean {
         return options?.infection?.enable ?? false;
     }
 
-    public loadOptions(options: Options, source?: RecursivePartial<IInfectionOptions>): void {
+    loadOptions(options: Options, source?: RecursivePartial<IInfectionOptions>): void {
         if (!this.needsPlugin(source)) {
             return;
         }

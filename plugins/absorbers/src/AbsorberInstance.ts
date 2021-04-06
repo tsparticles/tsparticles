@@ -67,7 +67,7 @@ export class AbsorberInstance {
         this.position = this.initialPosition?.copy() ?? this.calcPosition();
     }
 
-    public attract(particle: OrbitingParticle): void {
+    attract(particle: OrbitingParticle): void {
         const container = this.container;
         const options = this.options;
 

@@ -5,7 +5,7 @@ import type { ColorAnimation } from "tsparticles-engine/Options/Classes/ColorAni
 export class ColorUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
 
-    public isEnabled(particle: Particle): boolean {
+    isEnabled(particle: Particle): boolean {
         const animationOptions = particle.options.color.animation;
 
         return (
@@ -17,7 +17,7 @@ export class ColorUpdater implements IParticleUpdater {
         );
     }
 
-    public update(particle: Particle, delta: IDelta): void {
+    update(particle: Particle, delta: IDelta): void {
         const animationOptions = particle.options.color.animation;
 
         if (!this.isEnabled(particle)) {
@@ -37,7 +37,7 @@ export class ColorUpdater implements IParticleUpdater {
         }
     }
 
-    public updateValue(
+    updateValue(
         particle: Particle,
         delta: IDelta,
         value: IParticleValueAnimation<number>,

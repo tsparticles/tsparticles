@@ -4,7 +4,7 @@ import { AnimationStatus, checkDestroy, clamp, getRangeMin, getRangeMax } from "
 export class OpacityUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
 
-    public isEnabled(particle: Particle): boolean {
+    isEnabled(particle: Particle): boolean {
         const opacityAnim = particle.options.opacity.anim;
 
         return (
@@ -15,7 +15,7 @@ export class OpacityUpdater implements IParticleUpdater {
         );
     }
 
-    public update(particle: Particle, delta: IDelta): void {
+    update(particle: Particle, delta: IDelta): void {
         const opacityOpt = particle.options.opacity;
         const opacityAnim = opacityOpt.anim;
         const value = opacityOpt.value;

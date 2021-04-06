@@ -4,7 +4,7 @@ import { AnimationStatus, checkDestroy, clamp } from "tsparticles-engine";
 export class SizeUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
 
-    public isEnabled(particle: Particle): boolean {
+    isEnabled(particle: Particle): boolean {
         const sizeOpt = particle.options.size;
         const sizeAnim = sizeOpt.animation;
 
@@ -16,7 +16,7 @@ export class SizeUpdater implements IParticleUpdater {
         );
     }
 
-    public update(particle: Particle, delta: IDelta): void {
+    update(particle: Particle, delta: IDelta): void {
         const container = this.container;
         const sizeOpt = particle.options.size;
         const sizeAnim = sizeOpt.animation;

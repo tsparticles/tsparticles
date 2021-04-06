@@ -11,17 +11,17 @@ export class ParticlesInfecter extends ParticlesInteractorBase {
         super(container);
     }
 
-    public isEnabled(): boolean {
+    isEnabled(): boolean {
         const infOptions = (this.container.actualOptions as unknown) as IInfectionOptions;
 
         return infOptions?.infection?.enable ?? false;
     }
 
-    public reset(): void {
+    reset(): void {
         // do nothing
     }
 
-    public interact(p1: InfectableParticle, delta: IDelta): void {
+    interact(p1: InfectableParticle, delta: IDelta): void {
         const infecter = (this.container as InfectableContainer).infecter;
 
         if (!infecter) {

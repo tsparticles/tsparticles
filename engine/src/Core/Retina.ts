@@ -32,11 +32,7 @@ export class Retina {
         const container = this.container;
         const options = container.actualOptions;
 
-        if (options.detectRetina) {
-            this.pixelRatio = typeof devicePixelRatio === "undefined" ? 1 : devicePixelRatio;
-        } else {
-            this.pixelRatio = 1;
-        }
+        this.pixelRatio = !options.detectRetina || typeof devicePixelRatio === "undefined" ? 1 : devicePixelRatio;
 
         const motionOptions = this.container.actualOptions.motion;
 

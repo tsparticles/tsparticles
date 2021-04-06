@@ -10,7 +10,7 @@ import { Absorber } from "./Options/Classes/Absorber";
  * @category Absorbers Plugin
  */
 class Plugin implements IPlugin {
-    public readonly id;
+    readonly id;
 
     constructor() {
         this.id = "absorbers";

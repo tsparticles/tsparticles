@@ -49,7 +49,7 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "dependencies": {
-    "object-gui": "^1.0.11",
+    "object-gui": "^1.1.1",
     "tsparticles": "^2.0.0-alpha.0",
     "tsparticles-engine": "^2.0.0-alpha.0",
     "tsparticles-slim": "^2.0.0-alpha.0",

@@ -16,16 +16,16 @@ import { EmitterSpin } from "./EmitterSpin";
  * @category Emitters Plugin
  */
 export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
-    public autoPlay;
-    public direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
-    public life;
-    public name?: string;
-    public particles?: RecursivePartial<IParticles>;
-    public position?: RecursivePartial<ICoordinates>;
-    public rate;
-    public size?: EmitterSize;
-    public spin;
-    public spawnColor?: AnimatableColor;
+    autoPlay;
+    direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
+    life;
+    name?: string;
+    particles?: RecursivePartial<IParticles>;
+    position?: RecursivePartial<ICoordinates>;
+    rate;
+    size?: EmitterSize;
+    spin;
+    spawnColor?: AnimatableColor;
 
     constructor() {
         this.autoPlay = true;

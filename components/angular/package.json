@@ -62,17 +62,17 @@
     "@angular/platform-browser": ">=6",
     "@angular/platform-browser-dynamic": ">=6",
     "@angular/router": ">=6",
-    "rxjs": "~6.6.3",
-    "tslib": "^2.1.0",
+    "rxjs": "~6.6.7",
+    "tslib": "~2.1.0",
     "tsparticles-engine": "^2.0.0-alpha.6",
-    "zone.js": "~0.11.3"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": ">=0.8.0",
     "@angular-devkit/build-ng-packagr": ">=0.8.0",
     "@angular/cli": ">=6",
     "@angular/compiler-cli": ">=6",
-    "@types/node": "^14.14.25",
+    "@types/node": "^14.14.37",
     "codelyzer": "^6.0.1",
     "fs": "^0.0.1-security",
     "is-svg": "^4.3.1",

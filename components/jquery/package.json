@@ -73,27 +73,27 @@
     "url": "https://github.com/sponsors/matteobruni"
   },
   "dependencies": {
-    "jquery": "^3.5.1",
+    "jquery": ">=1",
     "tsparticles-engine": "^2.0.0-alpha.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.13",
-    "@babel/preset-env": "^7.12.13",
+    "@babel/core": "^7.13.14",
+    "@babel/preset-env": "^7.13.12",
     "@types/jquery": "^3.5.5",
-    "@types/node": "^14.14.25",
+    "@types/node": "^14.14.37",
     "@types/webpack-env": "^1.16.0",
-    "@typescript-eslint/eslint-plugin": "^4.14.2",
-    "@typescript-eslint/parser": "^4.14.2",
+    "@typescript-eslint/eslint-plugin": "^4.21.0",
+    "@typescript-eslint/parser": "^4.21.0",
     "babel-preset-env": "^1.7.0",
     "downlevel-dts": "^0.7.0",
-    "eslint": "^7.19.0",
-    "eslint-config-prettier": "^7.2.0",
+    "eslint": "^7.23.0",
+    "eslint-config-prettier": "^8.1.0",
     "prettier": "^2.2.1",
     "rimraf": "^3.0.2",
-    "rollup": "^2.38.5",
+    "rollup": "^2.44.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-sourcemaps": "^0.6.3",
     "typescript": "^4.2.3",
-    "uglify-js": "^3.12.7"
+    "uglify-js": "^3.13.3"
   }
 }
