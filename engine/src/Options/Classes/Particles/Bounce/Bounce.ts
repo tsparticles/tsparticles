@@ -4,15 +4,15 @@ import type { RecursivePartial } from "../../../../Types";
 import { BounceFactor } from "./BounceFactor";
 
 export class Bounce implements IBounce, IOptionLoader<IBounce> {
-    public horizontal;
-    public vertical;
+    horizontal;
+    vertical;
 
     constructor() {
         this.horizontal = new BounceFactor();
         this.vertical = new BounceFactor();
     }
 
-    public load(data?: RecursivePartial<IBounce>): void {
+    load(data?: RecursivePartial<IBounce>): void {
         if (!data) {
             return;
         }

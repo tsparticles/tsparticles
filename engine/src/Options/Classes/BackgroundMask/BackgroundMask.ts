@@ -14,17 +14,17 @@ export class BackgroundMask implements IBackgroundMask, IOptionLoader<IBackgroun
      * Canvas composite operation
      * values here: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation
      */
-    public composite;
+    composite;
 
     /**
      * Background covering color
      */
-    public cover;
+    cover;
 
     /**
      * Background mask enabling options
      */
-    public enable;
+    enable;
 
     constructor() {
         this.composite = "destination-out";
@@ -32,7 +32,7 @@ export class BackgroundMask implements IBackgroundMask, IOptionLoader<IBackgroun
         this.enable = false;
     }
 
-    public load(data?: RecursivePartial<IBackgroundMask>): void {
+    load(data?: RecursivePartial<IBackgroundMask>): void {
         if (data === undefined) {
             return;
         }

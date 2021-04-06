@@ -5,14 +5,14 @@ import { EditorBase } from "../../../../EditorBase";
 import type { ICollisions } from "tsparticles-engine/Options/Interfaces/Particles/Collisions/ICollisions";
 
 export class CollisionsOptionsEditor extends EditorBase {
-    public group!: EditorGroup;
+    group!: EditorGroup;
     private options!: ICollisions;
 
     constructor(particles: Container) {
         super(particles);
     }
 
-    public addToGroup(parent: EditorGroup): void {
+    addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("collisions", "Collisions");
         this.options = this.group.data as ICollisions;
 

@@ -11,7 +11,7 @@ import type { IHslAnimation } from "../Interfaces/IHslAnimation";
  * @category Options
  */
 export class AnimatableColor extends OptionsColor implements IAnimatableColor, IOptionLoader<IAnimatableColor> {
-    public animation;
+    animation;
 
     constructor() {
         super();
@@ -19,10 +19,7 @@ export class AnimatableColor extends OptionsColor implements IAnimatableColor, I
         this.animation = new HslAnimation();
     }
 
-    public static create(
-        source?: AnimatableColor,
-        data?: string | RecursivePartial<IAnimatableColor>
-    ): AnimatableColor {
+    static create(source?: AnimatableColor, data?: string | RecursivePartial<IAnimatableColor>): AnimatableColor {
         const color = source ?? new AnimatableColor();
 
         if (data !== undefined) {
@@ -32,7 +29,7 @@ export class AnimatableColor extends OptionsColor implements IAnimatableColor, I
         return color;
     }
 
-    public load(data?: RecursivePartial<IAnimatableColor>): void {
+    load(data?: RecursivePartial<IAnimatableColor>): void {
         super.load(data);
 
         if (!data) {

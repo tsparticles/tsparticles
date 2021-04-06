@@ -1,6 +1,29 @@
 {
   "fpsLimit": 60,
   "particles": {
+    "destroy": {
+      "mode": "split",
+      "split": {
+        "count": 1,
+        "factor": {
+          "value": {
+            "min": 4,
+            "max": 9
+          }
+        },
+        "particles": {
+          "collisions": {
+            "enable": false
+          },
+          "destroy": {
+            "mode": "none"
+          },
+          "life": {
+            "count": 1
+          }
+        }
+      }
+    },
     "number": {
       "value": 0
     },
@@ -53,8 +76,7 @@
       "random": false,
       "straight": false,
       "outModes": {
-        "default": "bounce",
-        "bottom": "bounce",
+        "bottom": "split",
         "left": "destroy",
         "right": "destroy",
         "top": "none"

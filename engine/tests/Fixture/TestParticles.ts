@@ -3,7 +3,7 @@ import { Particles } from "../../src/Core/Particles";
 
 export class TestParticles {
     private container: Container;
-    public particles: Particles;
+    particles: Particles;
 
     constructor(container: Container) {
         this.container = container;
@@ -19,7 +19,7 @@ export class TestParticles {
      *
      * @param container
      */
-    public reset(container?: Container): void {
+    reset(container?: Container): void {
         if (container !== undefined) {
             this.container = container;
         }

@@ -73,14 +73,14 @@ export class EventListeners {
     /**
      * Adding all listeners
      */
-    public addListeners(): void {
+    addListeners(): void {
         this.manageListeners(true);
     }
 
     /**
      * Removing all listeners
      */
-    public removeListeners(): void {
+    removeListeners(): void {
         this.manageListeners(false);
     }
 

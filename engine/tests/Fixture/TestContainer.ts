@@ -7,7 +7,7 @@ import { RecursivePartial } from "../../src/Types";
 export class TestContainer {
     private readonly id: string;
     private options: RecursivePartial<IOptions> | undefined;
-    public container: Container;
+    container: Container;
 
     constructor(options?: RecursivePartial<IOptions>) {
         tsParticles.init();
@@ -27,7 +27,7 @@ export class TestContainer {
      *
      * @param options
      */
-    public reset(options?: RecursivePartial<IOptions>): void {
+    reset(options?: RecursivePartial<IOptions>): void {
         if (options !== undefined) {
             this.options = options;
         }

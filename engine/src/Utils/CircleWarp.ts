@@ -16,7 +16,7 @@ export class CircleWarp extends Circle {
         };
     }
 
-    public contains(point: ICoordinates): boolean {
+    contains(point: ICoordinates): boolean {
         if (super.contains(point)) {
             return true;
         }
@@ -47,7 +47,7 @@ export class CircleWarp extends Circle {
         return super.contains(posSW);
     }
 
-    public intersects(range: Range): boolean {
+    intersects(range: Range): boolean {
         if (super.intersects(range)) {
             return true;
         }

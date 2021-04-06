@@ -12,24 +12,27 @@ interface MutableRefObject<T> {
 /**
  * @param {{id?: string,width?: string,height?: string,options?: ISourceOptions,params?: ISourceOptions,url?: string,style?: CSSProperties,className?: string,canvasClassName?: string,container?: RefObject<Container>}}
  */
-export default class Particles extends Component<IParticlesProps, IParticlesState> {
-	public static defaultProps: IParticlesProps = {
+export default class Particles extends Component<
+	IParticlesProps,
+	IParticlesState
+> {
+	static defaultProps: IParticlesProps = {
 		width: "100%",
 		height: "100%",
 		options: {},
 		style: {},
-		id: "tsparticles"
+		id: "tsparticles",
 	};
 
 	constructor(props: IParticlesProps) {
 		super(props);
 
 		this.state = {
-			library: undefined
+			library: undefined,
 		};
 	}
 
-	public destroy(): void {
+	destroy(): void {
 		if (!this.state.library) {
 			return;
 		}
@@ -37,25 +40,25 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 		this.state.library.destroy();
 
 		this.setState({
-			library: undefined
+			library: undefined,
 		});
 	}
 
-	public shouldComponentUpdate(nextProps: Readonly<IParticlesProps>): boolean {
+	shouldComponentUpdate(nextProps: Readonly<IParticlesProps>): boolean {
 		return !equal(nextProps, this.props);
 	}
 
-	public componentDidUpdate(): void {
+	componentDidUpdate(): void {
 		this.refresh();
 	}
 
-	public forceUpdate(): void {
+	forceUpdate(): void {
 		this.refresh();
 
 		super.forceUpdate();
 	}
 
-	public componentDidMount(): void {
+	componentDidMount(): void {
 		if (this.props.init) {
 			this.props.init(tsParticles);
 		}
@@ -63,11 +66,11 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 		this.loadParticles();
 	}
 
-	public componentWillUnmount(): void {
+	componentWillUnmount(): void {
 		this.destroy();
 	}
 
-	public render(): InfernoNode {
+	render(): InfernoNode {
 		const { width, height, className, canvasClassName, id } = this.props;
 
 		return (
@@ -77,7 +80,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 					style={{
 						...this.props.style,
 						width,
-						height
+						height,
 					}}
 				/>
 			</div>
@@ -93,11 +96,12 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 	private loadParticles(): void {
 		const cb = (container?: Container) => {
 			if (this.props.container) {
-				(this.props.container as MutableRefObject<Container>).current = container;
+				(this.props
+					.container as MutableRefObject<Container>).current = container;
 			}
 
 			this.setState({
-				library: container
+				library: container,
 			});
 
 			if (this.props.loaded) {
@@ -108,7 +112,9 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 		if (this.props.url) {
 			tsParticles.loadJSON(this.props.id, this.props.url).then(cb);
 		} else {
-			tsParticles.load(this.props.id, this.props.params ?? this.props.options).then(cb);
+			tsParticles
+				.load(this.props.id, this.props.params ?? this.props.options)
+				.then(cb);
 		}
 	}
 }

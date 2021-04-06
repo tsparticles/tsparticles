@@ -12,11 +12,11 @@ interface TextParticle extends IParticle {
  * @category Shape Drawers
  */
 export class TextDrawer implements IShapeDrawer {
-    public getSidesCount(): number {
+    getSidesCount(): number {
         return 12;
     }
 
-    public async init(container: Container): Promise<void> {
+    async init(container: Container): Promise<void> {
         const options = container.actualOptions;
 
         if (validTypes.find((t) => isInArray(t, options.particles.shape.type))) {
@@ -38,7 +38,7 @@ export class TextDrawer implements IShapeDrawer {
         }
     }
 
-    public draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
+    draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
         const character = particle.shapeData as ICharacterShape;
 
         if (character === undefined) {

@@ -5,14 +5,14 @@ import { EditorGroup, SingleOrMultiple, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
 
 export class StrokeOptionsEditor extends EditorBase {
-    public group!: EditorGroup;
+    group!: EditorGroup;
     private options!: SingleOrMultiple<IStroke>;
 
     constructor(particles: Container) {
         super(particles);
     }
 
-    public addToGroup(parent: EditorGroup): void {
+    addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("stroke", "Stroke");
         this.options = this.group.data as SingleOrMultiple<IStroke>;
 

@@ -6,17 +6,17 @@ import type { Rectangle } from "./Rectangle";
  * @category Utils
  */
 export class Circle extends Range {
-    constructor(x: number, y: number, public readonly radius: number) {
+    constructor(x: number, y: number, readonly radius: number) {
         super(x, y);
     }
 
-    public contains(point: ICoordinates): boolean {
+    contains(point: ICoordinates): boolean {
         const d = Math.pow(point.x - this.position.x, 2) + Math.pow(point.y - this.position.y, 2);
 
         return d <= this.radius ** 2;
     }
 
-    public intersects(range: Range): boolean {
+    intersects(range: Range): boolean {
         const rect = range as Rectangle;
         const circle = range as Circle;
         const pos1 = this.position;

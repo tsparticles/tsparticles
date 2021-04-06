@@ -19,7 +19,7 @@ export class Trail implements ITrail, IOptionLoader<ITrail> {
         this.pauseOnStop = false;
     }
 
-    public load(data?: RecursivePartial<ITrail>): void {
+    load(data?: RecursivePartial<ITrail>): void {
         if (data === undefined) {
             return;
         }

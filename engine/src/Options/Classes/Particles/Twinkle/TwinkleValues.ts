@@ -7,10 +7,10 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class TwinkleValues implements ITwinkleValues, IOptionLoader<ITwinkleValues> {
-    public color?: OptionsColor;
-    public enable;
-    public frequency;
-    public opacity;
+    color?: OptionsColor;
+    enable;
+    frequency;
+    opacity;
 
     constructor() {
         this.enable = false;
@@ -18,7 +18,7 @@ export class TwinkleValues implements ITwinkleValues, IOptionLoader<ITwinkleValu
         this.opacity = 1;
     }
 
-    public load(data?: RecursivePartial<ITwinkleValues>): void {
+    load(data?: RecursivePartial<ITwinkleValues>): void {
         if (data === undefined) {
             return;
         }

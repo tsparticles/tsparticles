@@ -47,7 +47,7 @@ export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {
         this.type = Type.none;
     }
 
-    public load(data?: RecursivePartial<IPolygonMask>): void {
+    load(data?: RecursivePartial<IPolygonMask>): void {
         if (data !== undefined) {
             this.draw.load(data.draw);
 

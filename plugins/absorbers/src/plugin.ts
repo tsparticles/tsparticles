@@ -16,11 +16,11 @@ class Plugin implements IPlugin {
         this.id = "absorbers";
     }
 
-    public getPlugin(container: Container): Absorbers {
+    getPlugin(container: Container): Absorbers {
         return new Absorbers(container);
     }
 
-    public needsPlugin(options?: RecursivePartial<IOptions & IAbsorberOptions>): boolean {
+    needsPlugin(options?: RecursivePartial<IOptions & IAbsorberOptions>): boolean {
         if (options === undefined) {
             return false;
         }
@@ -44,7 +44,7 @@ class Plugin implements IPlugin {
         return loadAbsorbers;
     }
 
-    public loadOptions(options: Options, source?: RecursivePartial<IOptions & IAbsorberOptions>): void {
+    loadOptions(options: Options, source?: RecursivePartial<IOptions & IAbsorberOptions>): void {
         if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
             return;
         }

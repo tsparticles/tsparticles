@@ -27,7 +27,7 @@ export class Rotate extends ValueWithRandom implements IAnimatable<AnimationOpti
         };
     }
 
-    public load(data?: RecursivePartial<IRotate>): void {
+    load(data?: RecursivePartial<IRotate>): void {
         if (!data) {
             return;
         }

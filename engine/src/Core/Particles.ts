@@ -13,21 +13,21 @@ import { Particles as ParticlesOptions } from "../Options/Classes/Particles/Part
  * @category Core
  */
 export class Particles {
-    public get count(): number {
+    get count(): number {
         return this.array.length;
     }
 
     /**
      * The quad tree used to search particles withing ranges
      */
-    public quadTree;
-    public linksColors;
-    public limit;
+    quadTree;
+    linksColors;
+    limit;
 
     /**
      * All the particles used in canvas
      */
-    public array: Particle[];
+    array: Particle[];
 
     public lastZIndex: number;
     public needsSort: boolean;
@@ -69,7 +69,7 @@ export class Particles {
     }
 
     /* --------- tsParticles functions - particles ----------- */
-    public init(): void {
+    init(): void {
         const container = this.container;
         const options = container.actualOptions;
 
@@ -113,7 +113,7 @@ export class Particles {
         container.pathGenerator.init();
     }
 
-    public redraw(): void {
+    redraw(): void {
         this.clear();
         this.init();
         this.draw({ value: 0, factor: 0 });
@@ -145,7 +145,7 @@ export class Particles {
         this.removeAt(this.array.indexOf(particle), undefined, group ?? particle.group, override);
     }
 
-    public update(delta: IDelta): void {
+    update(delta: IDelta): void {
         const container = this.container;
         const particlesToDelete = [];
 
@@ -208,7 +208,7 @@ export class Particles {
         delete container.canvas.resizeFactor;
     }
 
-    public draw(delta: IDelta): void {
+    draw(delta: IDelta): void {
         const container = this.container;
 
         /* clear canvas */
@@ -253,7 +253,7 @@ export class Particles {
     /**
      * Removes all particles from the array
      */
-    public clear(): void {
+    clear(): void {
         this.array = [];
     }
 
@@ -335,7 +335,7 @@ export class Particles {
         this.removeAt(0, quantity, group);
     }
 
-    public getLinkFrequency(p1: IParticle, p2: IParticle): number {
+    getLinkFrequency(p1: IParticle, p2: IParticle): number {
         const key = `${Math.min(p1.id, p2.id)}_${Math.max(p1.id, p2.id)}`;
 
         let res = this.linksFreq.get(key);
@@ -349,7 +349,7 @@ export class Particles {
         return res;
     }
 
-    public getTriangleFrequency(p1: IParticle, p2: IParticle, p3: IParticle): number {
+    getTriangleFrequency(p1: IParticle, p2: IParticle, p3: IParticle): number {
         let [id1, id2, id3] = [p1.id, p2.id, p3.id];
 
         if (id1 > id2) {
@@ -444,6 +444,36 @@ export class Particles {
     ): Particle | undefined {
         try {
             const particle = new Particle(this.nextId, this.container, position, overrideOptions, group);
+
+            let canAdd = true;
+
+            if (initializer) {
+                canAdd = initializer(particle);
+            }
+
+            if (!canAdd) {
+                return;
+            }
+
+            this.array.push(particle);
+
+            this.nextId++;
+
+            return particle;
+        } catch (e) {
+            console.warn(`error adding particle: ${e}`);
+
+            return;
+        }
+    }
+
+    private pushParticle(
+        position?: ICoordinates,
+        overrideOptions?: RecursivePartial<IParticles>,
+        initializer?: (particle: Particle) => boolean
+    ): Particle | undefined {
+        try {
+            const particle = new Particle(this.nextId, this.container, position, overrideOptions);
 
             let canAdd = true;
 

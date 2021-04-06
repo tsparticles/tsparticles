@@ -14,7 +14,7 @@ export class MoveAngle implements IMoveAngle, IOptionLoader<IMoveAngle> {
         this.value = 45;
     }
 
-    public load(data?: RecursivePartial<IMoveAngle>): void {
+    load(data?: RecursivePartial<IMoveAngle>): void {
         if (data === undefined) {
             return;
         }

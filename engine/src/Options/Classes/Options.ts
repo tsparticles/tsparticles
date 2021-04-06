@@ -1,6 +1,6 @@
 import type { IOptions } from "../Interfaces/IOptions";
 import { Interactivity } from "./Interactivity/Interactivity";
-import { Particles } from "./Particles/Particles";
+import { ParticlesOptions } from "./Particles/ParticlesOptions";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
 import type { RecursivePartial } from "../../Types";
 import { Background } from "./Background/Background";
@@ -37,7 +37,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     /**
      * @deprecated this property is obsolete, please use the new fpsLimit
      */
-    public get fps_limit(): number {
+    get fps_limit(): number {
         return this.fpsLimit;
     }
 
@@ -46,14 +46,14 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
      * @deprecated this property is obsolete, please use the new fpsLimit
      * @param value
      */
-    public set fps_limit(value: number) {
+    set fps_limit(value: number) {
         this.fpsLimit = value;
     }
 
     /**
      * @deprecated this property is obsolete, please use the new retinaDetect
      */
-    public get retina_detect(): boolean {
+    get retina_detect(): boolean {
         return this.detectRetina;
     }
 
@@ -61,7 +61,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
      * @deprecated this property is obsolete, please use the new retinaDetect
      * @param value
      */
-    public set retina_detect(value: boolean) {
+    set retina_detect(value: boolean) {
         this.detectRetina = value;
     }
 
@@ -93,7 +93,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.interactivity = new Interactivity();
         this.manualParticles = [];
         this.motion = new Motion();
-        this.particles = new Particles();
+        this.particles = new ParticlesOptions();
         this.pauseOnBlur = true;
         this.pauseOnOutsideViewport = true;
         this.responsive = [];
@@ -106,7 +106,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
      * This methods loads the source object in the current instance
      * @param data the source data to load into the instance
      */
-    public load(data?: RecursivePartial<IOptions>): void {
+    load(data?: RecursivePartial<IOptions>): void {
         if (data === undefined) {
             return;
         }
@@ -186,7 +186,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
     }
 
-    public setTheme(name?: string): void {
+    setTheme(name?: string): void {
         if (name) {
             const chosenTheme = this.themes.find((theme) => theme.name === name);
 

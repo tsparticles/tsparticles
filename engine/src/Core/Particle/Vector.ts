@@ -1,34 +1,34 @@
 import type { ICoordinates } from "../Interfaces/ICoordinates";
 
 export class Vector implements ICoordinates {
-    public static clone(source: Vector): Vector {
+    static clone(source: Vector): Vector {
         return Vector.create(source.x, source.y);
     }
 
-    public static create(x: number | ICoordinates, y?: number): Vector {
+    static create(x: number | ICoordinates, y?: number): Vector {
         return new Vector(x, y);
     }
 
-    public static readonly origin = Vector.create(0, 0);
+    static readonly origin = Vector.create(0, 0);
 
-    public get angle(): number {
+    get angle(): number {
         return Math.atan2(this.y, this.x);
     }
 
-    public set angle(angle: number) {
+    set angle(angle: number) {
         this.updateFromAngle(angle, this.length);
     }
 
-    public get length(): number {
+    get length(): number {
         return Math.sqrt(this.x ** 2 + this.y ** 2);
     }
 
-    public set length(length: number) {
+    set length(length: number) {
         this.updateFromAngle(this.angle, length);
     }
 
-    public x;
-    public y;
+    x;
+    y;
 
     protected constructor(x: number | ICoordinates, y?: number) {
         let defX: number, defY: number;
@@ -49,68 +49,68 @@ export class Vector implements ICoordinates {
         this.y = defY;
     }
 
-    public add(v: Vector): Vector {
+    add(v: Vector): Vector {
         return Vector.create(this.x + v.x, this.y + v.y);
     }
 
-    public addTo(v: Vector): void {
+    addTo(v: Vector): void {
         this.x += v.x;
         this.y += v.y;
     }
 
-    public sub(v: Vector): Vector {
+    sub(v: Vector): Vector {
         return Vector.create(this.x - v.x, this.y - v.y);
     }
 
-    public subFrom(v: Vector): void {
+    subFrom(v: Vector): void {
         this.x -= v.x;
         this.y -= v.y;
     }
 
-    public mult(n: number): Vector {
+    mult(n: number): Vector {
         return Vector.create(this.x * n, this.y * n);
     }
 
-    public multTo(n: number): void {
+    multTo(n: number): void {
         this.x *= n;
         this.y *= n;
     }
 
-    public div(n: number): Vector {
+    div(n: number): Vector {
         return Vector.create(this.x / n, this.y / n);
     }
 
-    public divTo(n: number): void {
+    divTo(n: number): void {
         this.x /= n;
         this.y /= n;
     }
 
-    public distanceTo(v: Vector): number {
+    distanceTo(v: Vector): number {
         return this.sub(v).length;
     }
 
-    public getLengthSq(): number {
+    getLengthSq(): number {
         return this.x ** 2 + this.y ** 2;
     }
 
-    public distanceToSq(v: Vector): number {
+    distanceToSq(v: Vector): number {
         return this.sub(v).getLengthSq();
     }
 
-    public manhattanDistanceTo(v: Vector): number {
+    manhattanDistanceTo(v: Vector): number {
         return Math.abs(v.x - this.x) + Math.abs(v.y - this.y);
     }
 
-    public copy(): Vector {
+    copy(): Vector {
         return Vector.clone(this);
     }
 
-    public setTo(velocity: Vector): void {
+    setTo(velocity: Vector): void {
         this.x = velocity.x;
         this.y = velocity.y;
     }
 
-    public rotate(angle: number): Vector {
+    rotate(angle: number): Vector {
         return Vector.create(
             this.x * Math.cos(angle) - this.y * Math.sin(angle),
             this.x * Math.sin(angle) + this.y * Math.cos(angle)

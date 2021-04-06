@@ -3,13 +3,13 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { RecursivePartial } from "../../../../Types";
 
 export class Bounce implements IBounce, IOptionLoader<IBounce> {
-    public distance: number;
+    distance: number;
 
     constructor() {
         this.distance = 200;
     }
 
-    public load(data?: RecursivePartial<IBounce>): void {
+    load(data?: RecursivePartial<IBounce>): void {
         if (!data) {
             return;
         }

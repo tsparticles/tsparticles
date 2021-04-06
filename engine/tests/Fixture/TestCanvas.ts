@@ -4,7 +4,7 @@ import { Container } from "../../src/Core/Container";
 import { Canvas } from "../../src/Core/Canvas";
 
 export class TestCanvas {
-    public canvas: Canvas;
+    canvas: Canvas;
     private container: Container;
 
     constructor(container: Container, width: number, height: number) {
@@ -27,7 +27,7 @@ export class TestCanvas {
      * @param height
      * @param container
      */
-    public reset(width: number, height: number, container?: Container): void {
+    reset(width: number, height: number, container?: Container): void {
         if (container !== undefined) {
             this.container = container;
         }

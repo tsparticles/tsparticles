@@ -4,8 +4,8 @@ import { OptionsColor } from "../../OptionsColor";
 import type { RecursivePartial } from "../../../../Types";
 
 export class LightShadow implements ILightShadow, IOptionLoader<ILightShadow> {
-    public color;
-    public length;
+    color;
+    length;
 
     constructor() {
         this.color = new OptionsColor();
@@ -14,7 +14,7 @@ export class LightShadow implements ILightShadow, IOptionLoader<ILightShadow> {
         this.length = 2000;
     }
 
-    public load(data?: RecursivePartial<ILightShadow>): void {
+    load(data?: RecursivePartial<ILightShadow>): void {
         if (data === undefined) {
             return;
         }

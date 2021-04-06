@@ -4,9 +4,9 @@ import type { RecursivePartial } from "../../Types";
 import { ColorAnimation } from "./ColorAnimation";
 
 export class HslAnimation implements IHslAnimation, IOptionLoader<IHslAnimation> {
-    public h;
-    public s;
-    public l;
+    h;
+    s;
+    l;
 
     constructor() {
         this.h = new ColorAnimation();
@@ -14,7 +14,7 @@ export class HslAnimation implements IHslAnimation, IOptionLoader<IHslAnimation>
         this.l = new ColorAnimation();
     }
 
-    public load(data?: RecursivePartial<IHslAnimation>): void {
+    load(data?: RecursivePartial<IHslAnimation>): void {
         if (!data) {
             return;
         }

@@ -3,15 +3,15 @@ import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import type { RecursivePartial } from "../../../Types";
 
 export class FullScreen implements IFullScreen, IOptionLoader<IFullScreen> {
-    public enable;
-    public zIndex;
+    enable;
+    zIndex;
 
     constructor() {
         this.enable = false;
         this.zIndex = -1;
     }
 
-    public load(data?: RecursivePartial<IFullScreen>): void {
+    load(data?: RecursivePartial<IFullScreen>): void {
         if (!data) {
             return;
         }

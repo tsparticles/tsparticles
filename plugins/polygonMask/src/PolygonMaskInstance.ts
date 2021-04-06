@@ -16,13 +16,13 @@ import { drawPolygonMask, drawPolygonMaskPath, parsePaths, polygonBounce } from 
  * @category Polygon Mask Plugin
  */
 export class PolygonMaskInstance implements IContainerPlugin {
-    public redrawTimeout?: number;
-    public raw?: ICoordinates[];
-    public paths?: ISvgPath[];
-    public dimension: IDimension;
-    public offset?: ICoordinates;
-    public readonly path2DSupported;
-    public readonly options;
+    redrawTimeout?: number;
+    raw?: ICoordinates[];
+    paths?: ISvgPath[];
+    dimension: IDimension;
+    offset?: ICoordinates;
+    readonly path2DSupported;
+    readonly options;
 
     private polygonMaskMoveRadius;
 
@@ -36,7 +36,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         this.polygonMaskMoveRadius = this.options.move.radius * container.retina.pixelRatio;
     }
 
-    public async initAsync(options?: RecursivePartial<IPolygonMaskOptions>): Promise<void> {
+    async initAsync(options?: RecursivePartial<IPolygonMaskOptions>): Promise<void> {
         this.options.load(options?.polygon);
 
         const polygonMaskOptions = this.options;
@@ -49,7 +49,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
     }
 
-    public resize(): void {
+    resize(): void {
         const container = this.container;
         const options = this.options;
 
@@ -68,12 +68,12 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }, 250);
     }
 
-    public stop(): void {
+    stop(): void {
         delete this.raw;
         delete this.paths;
     }
 
-    public particlesInitialization(): boolean {
+    particlesInitialization(): boolean {
         const options = this.options;
 
         if (
@@ -90,7 +90,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         return false;
     }
 
-    public particlePosition(position?: ICoordinates): ICoordinates | undefined {
+    particlePosition(position?: ICoordinates): ICoordinates | undefined {
         const options = this.options;
 
         if (!(options.enable && (this.raw?.length ?? 0) > 0)) {
@@ -100,7 +100,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         return deepExtend({}, position ? position : this.randomPoint()) as ICoordinates;
     }
 
-    public particleBounce(particle: Particle): boolean {
+    particleBounce(particle: Particle): boolean {
         const options = this.options;
 
         /* check bounce against polygon boundaries */
@@ -123,7 +123,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         return false;
     }
 
-    public clickPositionValid(position: ICoordinates): boolean {
+    clickPositionValid(position: ICoordinates): boolean {
         const options = this.options;
 
         return (
@@ -134,7 +134,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         );
     }
 
-    public draw(context: CanvasRenderingContext2D): void {
+    draw(context: CanvasRenderingContext2D): void {
         if (!this.paths?.length) {
             return;
         }

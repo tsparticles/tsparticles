@@ -8,9 +8,9 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class Bubble extends BubbleBase implements IBubble, IOptionLoader<IBubble> {
-    public divs?: SingleOrMultiple<BubbleDiv>;
+    divs?: SingleOrMultiple<BubbleDiv>;
 
-    public load(data?: RecursivePartial<IBubble>): void {
+    load(data?: RecursivePartial<IBubble>): void {
         super.load(data);
 
         if (!(data !== undefined && data.divs !== undefined)) {

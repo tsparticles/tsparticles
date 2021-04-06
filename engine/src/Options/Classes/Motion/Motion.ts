@@ -11,20 +11,20 @@ export class Motion implements IMotion, IOptionLoader<IMotion> {
     /**
      * Disables motions for users with `prefer-reduced-motion` enabled
      */
-    public disable;
+    disable;
 
     /**
      * Reduce motion settings for users with `prefer-reduced-motion` enabled
      * If [[disable]] is `true` these values will be ignored
      */
-    public reduce;
+    reduce;
 
     constructor() {
         this.disable = false;
         this.reduce = new MotionReduce();
     }
 
-    public load(data?: RecursivePartial<IMotion>): void {
+    load(data?: RecursivePartial<IMotion>): void {
         if (!data) {
             return;
         }

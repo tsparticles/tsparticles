@@ -17,7 +17,7 @@ export abstract class RepulseBase implements IRepulseBase {
         this.speed = 1;
     }
 
-    public load(data?: RecursivePartial<IRepulseBase>): void {
+    load(data?: RecursivePartial<IRepulseBase>): void {
         if (data === undefined) {
             return;
         }

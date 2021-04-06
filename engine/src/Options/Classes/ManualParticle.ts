@@ -6,10 +6,10 @@ import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import { deepExtend } from "../../Utils";
 
 export class ManualParticle implements IManualParticle, IOptionLoader<IManualParticle> {
-    public options?: RecursivePartial<IParticles>;
-    public position?: ICoordinates;
+    options?: RecursivePartial<IParticles>;
+    position?: ICoordinates;
 
-    public load(data?: RecursivePartial<IManualParticle>): void {
+    load(data?: RecursivePartial<IManualParticle>): void {
         if (!data) {
             return;
         }

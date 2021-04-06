@@ -26,10 +26,9 @@
       "split": {
         "count": 1,
         "factor": {
-          "value": 9,
-          "random": {
-            "enable": true,
-            "minimumValue": 4
+          "value": {
+            "min": 4,
+            "max": 9
           }
         },
         "particles": {

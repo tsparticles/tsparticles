@@ -11,25 +11,19 @@ export class BubbleDiv extends BubbleBase implements IBubbleDiv, IOptionLoader<I
      * @deprecated This property is deprecated, please use the new selectors property
      */
     get ids(): SingleOrMultiple<string> {
-        if (this.selectors instanceof Array) {
-            return this.selectors.map((t) => t.replace("#", ""));
-        } else {
-            return this.selectors.replace("#", "");
-        }
+        return this.selectors instanceof Array
+            ? this.selectors.map((t) => t.replace("#", ""))
+            : this.selectors.replace("#", "");
     }
 
     /**
      * @deprecated This property is deprecated, please use the new selectors property
      */
     set ids(value: SingleOrMultiple<string>) {
-        if (value instanceof Array) {
-            this.selectors = value.map((t) => `#${t}`);
-        } else {
-            this.selectors = `#${value}`;
-        }
+        this.selectors = value instanceof Array ? value.map((t) => `#${t}`) : `#${value}`;
     }
 
-    public selectors: SingleOrMultiple<string>;
+    selectors: SingleOrMultiple<string>;
 
     constructor() {
         super();
@@ -37,7 +31,7 @@ export class BubbleDiv extends BubbleBase implements IBubbleDiv, IOptionLoader<I
         this.selectors = [];
     }
 
-    public load(data?: RecursivePartial<IBubbleDiv>): void {
+    load(data?: RecursivePartial<IBubbleDiv>): void {
         super.load(data);
 
         if (data === undefined) {

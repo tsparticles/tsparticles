@@ -18,7 +18,7 @@ export class Attract implements IAttract, IOptionLoader<IAttract> {
         this.speed = 1;
     }
 
-    public load(data?: RecursivePartial<IAttract>): void {
+    load(data?: RecursivePartial<IAttract>): void {
         if (data === undefined) {
             return;
         }

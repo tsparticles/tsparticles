@@ -4,15 +4,15 @@ import { LightGradient } from "./LightGradient";
 import type { RecursivePartial } from "../../../../Types";
 
 export class LightArea implements ILightArea, IOptionLoader<ILightArea> {
-    public gradient;
-    public radius;
+    gradient;
+    radius;
 
     constructor() {
         this.gradient = new LightGradient();
         this.radius = 1000;
     }
 
-    public load(data?: RecursivePartial<ILightArea>): void {
+    load(data?: RecursivePartial<ILightArea>): void {
         if (data === undefined) {
             return;
         }

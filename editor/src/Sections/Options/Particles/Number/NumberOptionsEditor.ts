@@ -4,14 +4,14 @@ import type { IParticlesNumber } from "tsparticles-engine/Options/Interfaces/Par
 import { EditorBase } from "../../../../EditorBase";
 
 export class NumberOptionsEditor extends EditorBase {
-    public group!: EditorGroup;
+    group!: EditorGroup;
     private options!: IParticlesNumber;
 
     constructor(particles: Container) {
         super(particles);
     }
 
-    public addToGroup(parent: EditorGroup): void {
+    addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("number", "Number");
         this.options = this.group.data as IParticlesNumber;
 

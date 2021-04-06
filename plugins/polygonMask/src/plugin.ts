@@ -15,7 +15,7 @@ class Plugin implements IPlugin {
         this.id = "polygonMask";
     }
 
-    public getPlugin(container: Container): PolygonMaskInstance {
+    getPlugin(container: Container): PolygonMaskInstance {
         return new PolygonMaskInstance(container);
     }
 

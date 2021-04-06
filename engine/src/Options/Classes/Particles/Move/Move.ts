@@ -60,7 +60,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
      *
      * @deprecated this property is obsolete, please use the new outMode
      */
-    public get out_mode(): OutMode | keyof typeof OutMode | OutModeAlt {
+    get out_mode(): OutMode | keyof typeof OutMode | OutModeAlt {
         return this.outMode;
     }
 
@@ -69,7 +69,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
      * @deprecated this property is obsolete, please use the new outMode
      * @param value
      */
-    public set out_mode(value: OutMode | keyof typeof OutMode | OutModeAlt) {
+    set out_mode(value: OutMode | keyof typeof OutMode | OutModeAlt) {
         this.outMode = value;
     }
 
@@ -77,7 +77,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
      *
      * @deprecated this property is obsolete, please use the new outMode
      */
-    public get outMode(): OutMode | keyof typeof OutMode | OutModeAlt {
+    get outMode(): OutMode | keyof typeof OutMode | OutModeAlt {
         return this.outModes.default;
     }
 
@@ -86,7 +86,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
      * @deprecated this property is obsolete, please use the new outMode
      * @param value
      */
-    public set outMode(value: OutMode | keyof typeof OutMode | OutModeAlt) {
+    set outMode(value: OutMode | keyof typeof OutMode | OutModeAlt) {
         this.outModes.default = value;
     }
 
@@ -130,7 +130,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.warp = false;
     }
 
-    public load(data?: RecursivePartial<IMove>): void {
+    load(data?: RecursivePartial<IMove>): void {
         if (data === undefined) {
             return;
         }

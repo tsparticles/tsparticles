@@ -28,7 +28,7 @@ export class Retina {
     /**
      * Initializes all the values needing a pixel ratio factor (sizes, widths, distances)
      */
-    public init(): void {
+    init(): void {
         const container = this.container;
         const options = container.actualOptions;
 

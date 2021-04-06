@@ -35,7 +35,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
         this.spin = new EmitterSpin();
     }
 
-    public load(data?: RecursivePartial<IEmitter>): void {
+    load(data?: RecursivePartial<IEmitter>): void {
         if (data === undefined) {
             return;
         }

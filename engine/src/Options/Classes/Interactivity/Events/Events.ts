@@ -14,7 +14,7 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
      *
      * @deprecated this property is obsolete, please use the new onClick
      */
-    public get onclick(): ClickEvent {
+    get onclick(): ClickEvent {
         return this.onClick;
     }
 
@@ -23,7 +23,7 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
      * @deprecated this property is obsolete, please use the new onClick
      * @param value
      */
-    public set onclick(value: ClickEvent) {
+    set onclick(value: ClickEvent) {
         this.onClick = value;
     }
 
@@ -31,7 +31,7 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
      *
      * @deprecated this property is obsolete, please use the new onDiv
      */
-    public get ondiv(): SingleOrMultiple<DivEvent> {
+    get ondiv(): SingleOrMultiple<DivEvent> {
         return this.onDiv;
     }
 
@@ -40,7 +40,7 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
      * @deprecated this property is obsolete, please use the new onDiv
      * @param value
      */
-    public set ondiv(value: SingleOrMultiple<DivEvent>) {
+    set ondiv(value: SingleOrMultiple<DivEvent>) {
         this.onDiv = value;
     }
 
@@ -48,7 +48,7 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
      *
      * @deprecated this property is obsolete, please use the new onHover
      */
-    public get onhover(): HoverEvent {
+    get onhover(): HoverEvent {
         return this.onHover;
     }
 
@@ -57,14 +57,14 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
      * @deprecated this property is obsolete, please use the new onHover
      * @param value
      */
-    public set onhover(value: HoverEvent) {
+    set onhover(value: HoverEvent) {
         this.onHover = value;
     }
 
-    public onClick;
-    public onDiv: SingleOrMultiple<DivEvent>;
-    public onHover;
-    public resize;
+    onClick;
+    onDiv: SingleOrMultiple<DivEvent>;
+    onHover;
+    resize;
 
     constructor() {
         this.onClick = new ClickEvent();
@@ -73,7 +73,7 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
         this.resize = true;
     }
 
-    public load(data?: RecursivePartial<IEvents>): void {
+    load(data?: RecursivePartial<IEvents>): void {
         if (data === undefined) {
             return;
         }

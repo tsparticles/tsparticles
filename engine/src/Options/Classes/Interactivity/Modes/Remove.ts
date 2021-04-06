@@ -10,7 +10,7 @@ export class Remove implements IRemove, IOptionLoader<IRemove> {
      *
      * @deprecated this property is obsolete, please use the new quantity
      */
-    public get particles_nb(): number {
+    get particles_nb(): number {
         return this.quantity;
     }
 
@@ -19,7 +19,7 @@ export class Remove implements IRemove, IOptionLoader<IRemove> {
      * @deprecated this property is obsolete, please use the new quantity
      * @param value
      */
-    public set particles_nb(value: number) {
+    set particles_nb(value: number) {
         this.quantity = value;
     }
 
@@ -33,7 +33,7 @@ export class Remove implements IRemove, IOptionLoader<IRemove> {
         this.quantity = 2;
     }
 
-    public load(data?: RecursivePartial<IRemove>): void {
+    load(data?: RecursivePartial<IRemove>): void {
         if (data === undefined) {
             return;
         }

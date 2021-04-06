@@ -10,10 +10,10 @@ import { CollisionsOverlap } from "./CollisionsOverlap";
  * [[include:Collisions.md]]
  */
 export class Collisions implements ICollisions, IOptionLoader<ICollisions> {
-    public bounce: Bounce;
-    public enable;
-    public mode: CollisionMode | keyof typeof CollisionMode;
-    public overlap;
+    bounce: Bounce;
+    enable;
+    mode: CollisionMode | keyof typeof CollisionMode;
+    overlap;
 
     constructor() {
         this.bounce = new Bounce();
@@ -22,7 +22,7 @@ export class Collisions implements ICollisions, IOptionLoader<ICollisions> {
         this.overlap = new CollisionsOverlap();
     }
 
-    public load(data?: RecursivePartial<ICollisions>): void {
+    load(data?: RecursivePartial<ICollisions>): void {
         if (data === undefined) {
             return;
         }

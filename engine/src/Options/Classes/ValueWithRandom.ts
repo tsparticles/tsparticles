@@ -16,7 +16,7 @@ export abstract class ValueWithRandom implements IValueWithRandom, IOptionLoader
         this.value = 0;
     }
 
-    public load(data?: RecursivePartial<IValueWithRandom>): void {
+    load(data?: RecursivePartial<IValueWithRandom>): void {
         if (!data) {
             return;
         }

@@ -8,12 +8,12 @@ import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class Background implements IBackground, IOptionLoader<IBackground> {
-    public color;
-    public image;
-    public position;
-    public repeat;
-    public size;
-    public opacity;
+    color;
+    image;
+    position;
+    repeat;
+    size;
+    opacity;
 
     constructor() {
         this.color = new OptionsColor();
@@ -25,7 +25,7 @@ export class Background implements IBackground, IOptionLoader<IBackground> {
         this.opacity = 1;
     }
 
-    public load(data?: RecursivePartial<IBackground>): void {
+    load(data?: RecursivePartial<IBackground>): void {
         if (data === undefined) {
             return;
         }

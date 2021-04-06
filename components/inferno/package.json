@@ -11,15 +11,19 @@
 		}
 	},
 	"scripts": {
-		"build": "webpack --mode production",
-		"check": "tsc"
+		"build": "yarn prettify:src && yarn lint && webpack --mode production && yarn prettify:readme",
+		"check": "tsc",
+		"lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
+		"prettify:src": "prettier --write ./src/",
+		"prettify:readme": "prettier --write ./README.md",
+		"prepack": "yarn build"
 	},
 	"bugs": {
 		"url": "https://github.com/matteobruni/tsparticles/issues"
 	},
 	"repository": {
 		"url": "https://github.com/matteobruni/tsparticles",
-		"directory": "components/preact",
+		"directory": "components/inferno",
 		"type": "git"
 	},
 	"keywords": [

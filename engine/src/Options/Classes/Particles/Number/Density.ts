@@ -10,7 +10,7 @@ export class Density implements IDensity, IOptionLoader<IDensity> {
      *
      * @deprecated this property is obsolete, please use the new area
      */
-    public get value_area(): number {
+    get value_area(): number {
         return this.area;
     }
 
@@ -19,13 +19,13 @@ export class Density implements IDensity, IOptionLoader<IDensity> {
      * @deprecated this property is obsolete, please use the new area
      * @param value
      */
-    public set value_area(value: number) {
+    set value_area(value: number) {
         this.area = value;
     }
 
-    public area;
-    public enable;
-    public factor;
+    area;
+    enable;
+    factor;
 
     constructor() {
         this.enable = false;
@@ -33,7 +33,7 @@ export class Density implements IDensity, IOptionLoader<IDensity> {
         this.factor = 1000;
     }
 
-    public load(data?: RecursivePartial<IDensity>): void {
+    load(data?: RecursivePartial<IDensity>): void {
         if (data === undefined) {
             return;
         }

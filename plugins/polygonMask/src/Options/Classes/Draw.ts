@@ -36,15 +36,15 @@ export class Draw implements IDraw, IOptionLoader<IDraw> {
         this.stroke.color = OptionsColor.create(this.stroke.color, value);
     }
 
-    public enable;
-    public stroke;
+    enable;
+    stroke;
 
     constructor() {
         this.enable = false;
         this.stroke = new DrawStroke();
     }
 
-    public load(data?: RecursivePartial<IDraw>): void {
+    load(data?: RecursivePartial<IDraw>): void {
         if (data !== undefined) {
             if (data.enable !== undefined) {
                 this.enable = data.enable;

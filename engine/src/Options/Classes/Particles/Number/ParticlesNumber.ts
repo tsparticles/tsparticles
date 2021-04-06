@@ -22,9 +22,9 @@ export class ParticlesNumber implements IParticlesNumber, IOptionLoader<IParticl
         this.limit = value;
     }
 
-    public density;
-    public limit;
-    public value;
+    density;
+    limit;
+    value;
 
     constructor() {
         this.density = new Density();
@@ -32,7 +32,7 @@ export class ParticlesNumber implements IParticlesNumber, IOptionLoader<IParticl
         this.value = 0;
     }
 
-    public load(data?: RecursivePartial<IParticlesNumber>): void {
+    load(data?: RecursivePartial<IParticlesNumber>): void {
         if (data === undefined) {
             return;
         }

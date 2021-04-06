@@ -8,15 +8,15 @@ import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class Stroke implements IStroke, IOptionLoader<IStroke> {
-    public color?: AnimatableColor;
-    public width;
-    public opacity?: number;
+    color?: AnimatableColor;
+    width;
+    opacity?: number;
 
     constructor() {
         this.width = 0;
     }
 
-    public load(data?: RecursivePartial<IStroke>): void {
+    load(data?: RecursivePartial<IStroke>): void {
         if (data === undefined) {
             return;
         }

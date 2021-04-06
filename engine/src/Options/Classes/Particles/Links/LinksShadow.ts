@@ -7,9 +7,9 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class LinksShadow implements ILinksShadow, IOptionLoader<ILinksShadow> {
-    public blur;
-    public color;
-    public enable;
+    blur;
+    color;
+    enable;
 
     constructor() {
         this.blur = 5;
@@ -19,7 +19,7 @@ export class LinksShadow implements ILinksShadow, IOptionLoader<ILinksShadow> {
         this.color.value = "#00ff00";
     }
 
-    public load(data?: RecursivePartial<ILinksShadow>): void {
+    load(data?: RecursivePartial<ILinksShadow>): void {
         if (data === undefined) {
             return;
         }

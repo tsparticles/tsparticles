@@ -7,15 +7,15 @@ import type { IOptionLoader } from "tsparticles-engine/Options/Interfaces/IOptio
  * @category Polygon Mask Plugin
  */
 export class Move implements IMove, IOptionLoader<IMove> {
-    public radius;
-    public type: MoveType | keyof typeof MoveType;
+    radius;
+    type: MoveType | keyof typeof MoveType;
 
     constructor() {
         this.radius = 10;
         this.type = MoveType.path;
     }
 
-    public load(data?: RecursivePartial<IMove>): void {
+    load(data?: RecursivePartial<IMove>): void {
         if (data !== undefined) {
             if (data.radius !== undefined) {
                 this.radius = data.radius;

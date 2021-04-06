@@ -4,7 +4,7 @@ import type { IParticle, IShapeDrawer } from "tsparticles-engine";
  * @category Shape Drawers
  */
 export class SquareDrawer implements IShapeDrawer {
-    public getSidesCount(): number {
+    getSidesCount(): number {
         return 4;
     }
 
