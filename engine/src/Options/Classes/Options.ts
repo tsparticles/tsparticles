@@ -1,6 +1,6 @@
 import type { IOptions } from "../Interfaces/IOptions";
 import { Interactivity } from "./Interactivity/Interactivity";
-import { ParticlesOptions } from "./Particles/ParticlesOptions";
+import { Particles } from "./Particles/Particles";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
 import type { RecursivePartial } from "../../Types";
 import { Background } from "./Background/Background";
@@ -21,7 +21,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     /**
      * @deprecated this property is obsolete, please use the new fullScreen
      */
-    public get backgroundMode(): FullScreen {
+    get backgroundMode(): FullScreen {
         return this.fullScreen;
     }
 
@@ -30,7 +30,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
      * @deprecated this property is obsolete, please use the new fullScreen
      * @param value
      */
-    public set backgroundMode(value: FullScreen) {
+    set backgroundMode(value: FullScreen) {
         this.fullScreen = value;
     }
 
@@ -65,21 +65,21 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.detectRetina = value;
     }
 
-    public autoPlay;
-    public background;
-    public backgroundMask;
-    public fullScreen;
-    public detectRetina;
-    public fpsLimit;
-    public interactivity;
-    public manualParticles: ManualParticle[];
-    public motion;
-    public particles;
-    public pauseOnBlur;
-    public pauseOnOutsideViewport;
-    public preset?: string | string[];
-    public responsive: Responsive[];
-    public themes: Theme[];
+    autoPlay;
+    background;
+    backgroundMask;
+    fullScreen;
+    detectRetina;
+    fpsLimit;
+    interactivity;
+    manualParticles: ManualParticle[];
+    motion;
+    particles;
+    pauseOnBlur;
+    pauseOnOutsideViewport;
+    preset?: string | string[];
+    responsive: Responsive[];
+    themes: Theme[];
 
     [name: string]: unknown;
 
@@ -93,7 +93,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.interactivity = new Interactivity();
         this.manualParticles = [];
         this.motion = new Motion();
-        this.particles = new ParticlesOptions();
+        this.particles = new Particles();
         this.pauseOnBlur = true;
         this.pauseOnOutsideViewport = true;
         this.responsive = [];
@@ -214,7 +214,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
     }
 
-    public setResponsive(width: number, pxRatio: number, defaultOptions: IOptions): void {
+    setResponsive(width: number, pxRatio: number, defaultOptions: IOptions): void {
         this.load(defaultOptions);
         this.load(this.responsive.find((t) => t.maxWidth * pxRatio > width)?.options);
     }

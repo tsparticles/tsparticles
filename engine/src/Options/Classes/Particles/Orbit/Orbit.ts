@@ -11,13 +11,13 @@ import type { IAnimatable } from "../../../Interfaces/IAnimatable";
  * @category Options
  */
 export class Orbit implements IOrbit, IOptionLoader<IOrbit>, IAnimatable<AnimationOptions> {
-    public animation;
-    public enable: boolean;
-    public opacity: number;
-    public width: number;
-    public color?: OptionsColor;
-    public radius?: number;
-    public rotation;
+    animation;
+    enable: boolean;
+    opacity: number;
+    width: number;
+    color?: OptionsColor;
+    radius?: number;
+    rotation;
 
     constructor() {
         this.animation = new AnimationOptions();
@@ -27,7 +27,7 @@ export class Orbit implements IOrbit, IOptionLoader<IOrbit>, IAnimatable<Animati
         this.width = 1;
     }
 
-    public load(data?: RecursivePartial<IOrbit>): void {
+    load(data?: RecursivePartial<IOrbit>): void {
         if (data === undefined) {
             return;
         }

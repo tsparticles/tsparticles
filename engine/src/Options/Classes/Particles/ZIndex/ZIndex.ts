@@ -7,9 +7,9 @@ import { ValueWithRandom } from "../../ValueWithRandom";
  * @category Options
  */
 export class ZIndex extends ValueWithRandom implements IZIndex, IOptionLoader<IZIndex> {
-    public opacityRate;
-    public sizeRate;
-    public velocityRate;
+    opacityRate;
+    sizeRate;
+    velocityRate;
 
     constructor() {
         super();
@@ -18,7 +18,7 @@ export class ZIndex extends ValueWithRandom implements IZIndex, IOptionLoader<IZ
         this.velocityRate = 1;
     }
 
-    public load(data?: RecursivePartial<IZIndex>): void {
+    load(data?: RecursivePartial<IZIndex>): void {
         super.load(data);
 
         if (!data) {

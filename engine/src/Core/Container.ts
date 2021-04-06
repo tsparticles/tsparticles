@@ -39,14 +39,14 @@ export class Container {
      */
     destroyed;
 
-    public pageHidden;
-    public lastFrameTime;
-    public fpsLimit;
-    public interactivity: IContainerInteractivity;
-    public bubble: IBubble;
-    public repulse: IRepulse;
-    public attract: IAttract;
-    public readonly zLayers = 10000;
+    pageHidden;
+    lastFrameTime;
+    fpsLimit;
+    interactivity: IContainerInteractivity;
+    bubble: IBubble;
+    repulse: IRepulse;
+    attract: IAttract;
+    readonly zLayers = 10000;
 
     /**
      * All the options loaded into the container, it's a full [[Options]] object
@@ -233,7 +233,7 @@ export class Container {
     /**
      * Draws a frame
      */
-    public draw(): void {
+    draw(): void {
         this.drawAnimationFrame = animate()((timestamp) => this.drawer.nextFrame(timestamp));
     }
 

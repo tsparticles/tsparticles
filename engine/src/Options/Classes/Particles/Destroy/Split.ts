@@ -7,10 +7,10 @@ import { IParticles } from "../../../Interfaces/Particles/IParticles";
 import { deepExtend } from "../../../../Utils";
 
 export class Split implements ISplit, IOptionLoader<ISplit> {
-    public count: number;
-    public factor: SplitFactor;
-    public rate: SplitRate;
-    public particles?: RecursivePartial<IParticles>;
+    count: number;
+    factor: SplitFactor;
+    rate: SplitRate;
+    particles?: RecursivePartial<IParticles>;
 
     constructor() {
         this.count = 1;
@@ -18,7 +18,7 @@ export class Split implements ISplit, IOptionLoader<ISplit> {
         this.rate = new SplitRate();
     }
 
-    public load(data?: RecursivePartial<ISplit>): void {
+    load(data?: RecursivePartial<ISplit>): void {
         if (!data) {
             return;
         }

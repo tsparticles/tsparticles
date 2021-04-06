@@ -142,7 +142,7 @@ export class Main {
      * @param preset the preset name
      * @param options the options to add to the preset
      */
-    public addPreset<T extends IOptions>(preset: string, options: RecursivePartial<T>): void {
+    addPreset<T extends IOptions>(preset: string, options: RecursivePartial<T>): void {
         Plugins.addPreset(preset, options);
     }
 
@@ -168,7 +168,7 @@ export class Main {
      * @param name
      * @param interactorInitializer
      */
-    public addInteractor(name: string, interactorInitializer: (container: Container) => IInteractor): void {
+    addInteractor(name: string, interactorInitializer: (container: Container) => IInteractor): void {
         Plugins.addInteractor(name, interactorInitializer);
     }
 
@@ -177,7 +177,7 @@ export class Main {
      * @param name
      * @param updaterInitializer
      */
-    public addParticleUpdater(name: string, updaterInitializer: (container: Container) => IParticleUpdater): void {
+    addParticleUpdater(name: string, updaterInitializer: (container: Container) => IParticleUpdater): void {
         Plugins.addParticleUpdater(name, updaterInitializer);
     }
 }

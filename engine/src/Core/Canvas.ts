@@ -29,14 +29,14 @@ export class Canvas {
     /**
      * The particles canvas
      */
-    public element?: HTMLCanvasElement;
+    element?: HTMLCanvasElement;
 
     /**
      * The particles canvas dimension
      */
-    public readonly size: IDimension;
+    readonly size: IDimension;
 
-    public resizeFactor?: IDimension;
+    resizeFactor?: IDimension;
 
     /**
      * The particles canvas context
@@ -65,7 +65,7 @@ export class Canvas {
     /**
      * Initializes the canvas element
      */
-    public init(): void {
+    init(): void {
         this.resize();
         this.initStyle();
         this.initCover();
@@ -74,7 +74,7 @@ export class Canvas {
         this.paint();
     }
 
-    public loadCanvas(canvas: HTMLCanvasElement, generatedCanvas?: boolean): void {
+    loadCanvas(canvas: HTMLCanvasElement, generatedCanvas?: boolean): void {
         if (!canvas.className) {
             canvas.className = Constants.canvasClass;
         }
@@ -95,7 +95,7 @@ export class Canvas {
         this.initBackground();
     }
 
-    public destroy(): void {
+    destroy(): void {
         if (this.generatedCanvas) {
             this.element?.remove();
         }
@@ -108,7 +108,7 @@ export class Canvas {
     /**
      * Paints the canvas background
      */
-    public paint(): void {
+    paint(): void {
         this.draw((ctx) => {
             const options = this.container.actualOptions;
 
@@ -125,7 +125,7 @@ export class Canvas {
     /**
      * Clears the canvas content
      */
-    public clear(): void {
+    clear(): void {
         const options = this.container.actualOptions;
         const trail = options.particles.move.trail;
 
@@ -140,7 +140,7 @@ export class Canvas {
         }
     }
 
-    public windowResize(): void {
+    windowResize(): void {
         if (!this.element) {
             return;
         }
@@ -158,7 +158,7 @@ export class Canvas {
         }
     }
 
-    public resize(): void {
+    resize(): void {
         if (!this.element) {
             return;
         }
@@ -183,7 +183,7 @@ export class Canvas {
         };
     }
 
-    public drawConnectLine(p1: IParticle, p2: IParticle): void {
+    drawConnectLine(p1: IParticle, p2: IParticle): void {
         this.draw((ctx) => {
             const lineStyle = this.lineStyle(p1, p2);
 
@@ -198,7 +198,7 @@ export class Canvas {
         });
     }
 
-    public drawGrabLine(particle: IParticle, lineColor: IRgb, opacity: number, mousePos: ICoordinates): void {
+    drawGrabLine(particle: IParticle, lineColor: IRgb, opacity: number, mousePos: ICoordinates): void {
         this.draw((ctx) => {
             const beginPos = particle.getPosition();
 
@@ -213,7 +213,7 @@ export class Canvas {
         });
     }
 
-    public drawParticle(particle: Particle, delta: IDelta): void {
+    drawParticle(particle: Particle, delta: IDelta): void {
         if (particle.spawning || particle.destroyed) {
             return;
         }
@@ -293,7 +293,7 @@ export class Canvas {
         });
     }
 
-    public drawOrbit(particle: IParticle, type: string): void {
+    drawOrbit(particle: IParticle, type: string): void {
         const container = this.container;
         const orbitOptions = particle.options.orbit;
 
@@ -326,7 +326,7 @@ export class Canvas {
         });
     }
 
-    public draw(fn: (context: CanvasRenderingContext2D) => void) {
+    draw(fn: (context: CanvasRenderingContext2D) => void) {
         if (!this.context) {
             return;
         }
@@ -334,13 +334,13 @@ export class Canvas {
         fn(this.context);
     }
 
-    public drawPlugin(plugin: IContainerPlugin, delta: IDelta): void {
+    drawPlugin(plugin: IContainerPlugin, delta: IDelta): void {
         this.draw((ctx) => {
             drawPlugin(ctx, plugin, delta);
         });
     }
 
-    public drawParticlePlugin(plugin: IContainerPlugin, particle: Particle, delta: IDelta): void {
+    drawParticlePlugin(plugin: IContainerPlugin, particle: Particle, delta: IDelta): void {
         this.draw((ctx) => {
             drawParticlePlugin(ctx, plugin, particle, delta);
         });

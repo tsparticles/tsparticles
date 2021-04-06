@@ -7,7 +7,7 @@ import { Range3d } from "./Range3d";
  * @category Utils
  */
 export class Parallelepiped extends Range3d {
-    public readonly size: IDimension3d;
+    readonly size: IDimension3d;
 
     constructor(x: number, y: number, z: number, width: number, height: number, depth: number) {
         super(x, y, z);
@@ -19,7 +19,7 @@ export class Parallelepiped extends Range3d {
         };
     }
 
-    public contains(point: ICoordinates3d): boolean {
+    contains(point: ICoordinates3d): boolean {
         const w = this.size.width;
         const h = this.size.height;
         const pos = this.position;
@@ -27,7 +27,7 @@ export class Parallelepiped extends Range3d {
         return point.x >= pos.x && point.x <= pos.x + w && point.y >= pos.y && point.y <= pos.y + h;
     }
 
-    public intersects(range: Range3d): boolean {
+    intersects(range: Range3d): boolean {
         const parallelepiped = range as Parallelepiped;
         const sphere = range as Sphere;
         const w = this.size.width;

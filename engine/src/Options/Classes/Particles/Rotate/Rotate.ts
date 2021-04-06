@@ -11,9 +11,9 @@ import { IAnimatable } from "../../../Interfaces/IAnimatable";
  * @category Options
  */
 export class Rotate extends ValueWithRandom implements IAnimatable<AnimationOptions>, IRotate, IOptionLoader<IRotate> {
-    public animation;
-    public direction: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
-    public path;
+    animation;
+    direction: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
+    path;
 
     constructor() {
         super();

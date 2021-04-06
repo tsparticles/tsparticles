@@ -23,9 +23,9 @@ export class Remove implements IRemove, IOptionLoader<IRemove> {
         this.quantity = value;
     }
 
-    public default;
-    public groups: string[];
-    public quantity;
+    default;
+    groups: string[];
+    quantity;
 
     constructor() {
         this.default = true;

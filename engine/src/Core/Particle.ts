@@ -58,56 +58,56 @@ import { Vector3d } from "./Particle/Vector3d";
  * @category Core
  */
 export class Particle implements IParticle {
-    public attractDistance?: number;
-    public close: boolean;
-    public destroyed;
-    public fill: boolean;
-    public linksDistance?: number;
-    public linksWidth?: number;
-    public moveDrift?: number;
-    public moveSpeed: number;
-    public misplaced;
-    public orbitRadius?: number;
-    public orbitRotation?: number;
-    public randomIndexData?: number;
-    public sizeAnimationSpeed?: number;
-    public spawning;
-    public splitCount;
-    public unbreakable;
-    public zIndexFactor;
+    attractDistance?: number;
+    close: boolean;
+    destroyed;
+    fill: boolean;
+    linksDistance?: number;
+    linksWidth?: number;
+    moveDrift?: number;
+    moveSpeed: number;
+    misplaced;
+    orbitRadius?: number;
+    orbitRotation?: number;
+    randomIndexData?: number;
+    sizeAnimationSpeed?: number;
+    spawning;
+    splitCount;
+    unbreakable;
+    zIndexFactor;
 
-    public readonly pathDelay;
-    public readonly sides;
-    public readonly strokeWidth;
-    public readonly options;
-    public readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
-    public readonly life: IParticleLife;
-    public readonly loops: IParticleLoops;
-    public readonly spin?: IParticleSpin;
-    public readonly stroke: Stroke;
-    public readonly position: Vector3d;
-    public readonly offset: Vector;
-    public readonly shadowColor: IRgb | undefined;
-    public readonly color?: IParticleHslAnimation;
-    public readonly maxDistance: Partial<IDistance>;
-    public readonly opacity: IParticleValueAnimation<number>;
-    public readonly rotate: IParticleValueAnimation<number>;
-    public readonly size: IParticleValueAnimation<number>;
-    public readonly strokeColor?: IParticleHslAnimation;
-    public readonly orbitColor?: IHsl;
-    public readonly velocity: Vector;
-    public readonly shape: string;
-    public readonly initialPosition: Vector3d;
-    public readonly initialVelocity: Vector;
-    public readonly shapeData?: IShapeValues;
-    public readonly bubble: IBubbleParticleData;
+    readonly pathDelay;
+    readonly sides;
+    readonly strokeWidth;
+    readonly options;
+    readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
+    readonly life: IParticleLife;
+    readonly loops: IParticleLoops;
+    readonly spin?: IParticleSpin;
+    readonly stroke: Stroke;
+    readonly position: Vector3d;
+    readonly offset: Vector;
+    readonly shadowColor: IRgb | undefined;
+    readonly color?: IParticleHslAnimation;
+    readonly maxDistance: Partial<IDistance>;
+    readonly opacity: IParticleValueAnimation<number>;
+    readonly rotate: IParticleValueAnimation<number>;
+    readonly size: IParticleValueAnimation<number>;
+    readonly strokeColor?: IParticleHslAnimation;
+    readonly orbitColor?: IHsl;
+    readonly velocity: Vector;
+    readonly shape: string;
+    readonly initialPosition: Vector3d;
+    readonly initialVelocity: Vector;
+    readonly shapeData?: IShapeValues;
+    readonly bubble: IBubbleParticleData;
 
     constructor(
-        public readonly id: number,
-        public readonly container: Container,
+        readonly id: number,
+        readonly container: Container,
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticles>,
-        public readonly group?: string
+        readonly group?: string
     ) {
         this.fill = true;
         this.close = true;
@@ -319,7 +319,7 @@ export class Particle implements IParticle {
         }
     }
 
-    public draw(delta: IDelta): void {
+    draw(delta: IDelta): void {
         const container = this.container;
 
         for (const [, plugin] of container.plugins) {
@@ -329,7 +329,7 @@ export class Particle implements IParticle {
         this.container.canvas.drawParticle(this, delta);
     }
 
-    public getPosition(): ICoordinates3d {
+    getPosition(): ICoordinates3d {
         return {
             x: this.position.x + this.offset.x,
             y: this.position.y + this.offset.y,
@@ -337,28 +337,28 @@ export class Particle implements IParticle {
         };
     }
 
-    public getRadius(): number {
+    getRadius(): number {
         return this.bubble.radius || this.size.value;
     }
 
-    public getMass(): number {
+    getMass(): number {
         const radius = this.getRadius();
 
         return (radius ** 2 * Math.PI) / 2;
     }
 
-    public getFillColor(): IHsl | undefined {
+    getFillColor(): IHsl | undefined {
         return this.bubble.color ?? getHslFromAnimation(this.color);
     }
 
-    public getStrokeColor(): IHsl | undefined {
+    getStrokeColor(): IHsl | undefined {
         return this.bubble.color ?? getHslFromAnimation(this.strokeColor) ?? this.getFillColor();
     }
 
     /**
      * This destroys the particle just before it's been removed from the canvas and the container
      */
-    public destroy(override?: boolean): void {
+    destroy(override?: boolean): void {
         if (this.unbreakable) {
             return;
         }
@@ -386,7 +386,7 @@ export class Particle implements IParticle {
     /**
      * This method is used when the particle has lost a life and needs some value resets
      */
-    public reset(): void {
+    reset(): void {
         this.loops.opacity = 0;
         this.loops.size = 0;
     }
@@ -429,7 +429,7 @@ export class Particle implements IParticle {
         );
     }
 
-    public fixPosition(tryCount = 0): void {
+    fixPosition(tryCount = 0): void {
         this.fixPositionInCanvas(this.position);
 
         if (this.checkOverlap(this.position, tryCount)) {
@@ -439,7 +439,7 @@ export class Particle implements IParticle {
         }
     }
 
-    public fixPositionInCanvas(pos: ICoordinates3d): void {
+    fixPositionInCanvas(pos: ICoordinates3d): void {
         /* check position  - into the canvas */
         const container = this.container;
         const outMode = this.options.move.outModes;

@@ -15,37 +15,17 @@ import { AnimatableColor } from "../AnimatableColor";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import { Life } from "./Life/Life";
 import { Bounce } from "./Bounce/Bounce";
-<<<<<<< HEAD:engine/src/Options/Classes/Particles/Particles.ts
 import { deepExtend } from "../../../Utils";
 import { Orbit } from "./Orbit/Orbit";
 import { ZIndex } from "./ZIndex/ZIndex";
 import { Repulse } from "./Repulse/Repulse";
-=======
->>>>>>> v1:engine/src/Options/Classes/ParticlesOptions.ts
 import { Destroy } from "./Destroy/Destroy";
 
 /**
  * [[include:Options/Particles.md]]
  * @category Options
  */
-export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
-    bounce;
-    collisions;
-    color;
-    destroy;
-    life;
-    links;
-    move;
-    number;
-    opacity;
-    reduceDuplicates;
-    rotate;
-    shape;
-    size;
-    shadow;
-    stroke: SingleOrMultiple<Stroke>;
-    twinkle;
-
+export class Particles implements IParticles, IOptionLoader<IParticles> {
     /**
      *
      * @deprecated this property is obsolete, please use the new links
@@ -80,39 +60,33 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
         this.links = value;
     }
 
-<<<<<<< HEAD:engine/src/Options/Classes/Particles/Particles.ts
-    public bounce;
-    public collisions;
-    public color;
-    public destroy;
-    public groups: ParticlesGroups;
-    public life;
-    public links;
-    public move;
-    public number;
-    public opacity;
-    public orbit;
-    public reduceDuplicates;
-    public repulse;
-    public rotate;
-    public shadow;
-    public shape;
-    public size;
-    public stroke: SingleOrMultiple<Stroke>;
-    public twinkle;
-    public zIndex;
+    bounce;
+    collisions;
+    color;
+    destroy;
+    groups: ParticlesGroups;
+    life;
+    links;
+    move;
+    number;
+    opacity;
+    orbit;
+    reduceDuplicates;
+    repulse;
+    rotate;
+    shadow;
+    shape;
+    size;
+    stroke: SingleOrMultiple<Stroke>;
+    twinkle;
+    zIndex;
 
-=======
->>>>>>> v1:engine/src/Options/Classes/ParticlesOptions.ts
     constructor() {
         this.bounce = new Bounce();
         this.collisions = new Collisions();
         this.color = new AnimatableColor();
         this.destroy = new Destroy();
-<<<<<<< HEAD:engine/src/Options/Classes/Particles/Particles.ts
         this.groups = {};
-=======
->>>>>>> v1:engine/src/Options/Classes/ParticlesOptions.ts
         this.life = new Life();
         this.links = new Links();
         this.move = new Move();
@@ -130,13 +104,8 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
         this.zIndex = new ZIndex();
     }
 
-<<<<<<< HEAD:engine/src/Options/Classes/Particles/Particles.ts
-    public load(data?: RecursivePartial<IParticles>): void {
-        if (!data) {
-=======
     load(data?: RecursivePartial<IParticles>): void {
-        if (data === undefined) {
->>>>>>> v1:engine/src/Options/Classes/ParticlesOptions.ts
+        if (!data) {
             return;
         }
 

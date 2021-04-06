@@ -90,24 +90,24 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.outModes.default = value;
     }
 
-    public angle;
-    public attract;
-    public decay;
-    public direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
-    public distance: Partial<IDistance>;
-    public drift: RangeValue;
-    public enable;
-    public gravity;
-    public outModes: OutModes;
-    public path;
-    public random;
-    public size;
-    public speed: RangeValue;
-    public spin;
-    public straight;
-    public trail;
-    public vibrate;
-    public warp;
+    angle;
+    attract;
+    decay;
+    direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
+    distance: Partial<IDistance>;
+    drift: RangeValue;
+    enable;
+    gravity;
+    outModes: OutModes;
+    path;
+    random;
+    size;
+    speed: RangeValue;
+    spin;
+    straight;
+    trail;
+    vibrate;
+    warp;
 
     constructor() {
         this.angle = new MoveAngle();

@@ -14,7 +14,7 @@ export class OrbitRotation extends ValueWithRandom {
         this.random.minimumValue = 0;
     }
 
-    public load(data?: RecursivePartial<IValueWithRandom>): void {
+    load(data?: RecursivePartial<IValueWithRandom>): void {
         if (data === undefined) {
             return;
         }

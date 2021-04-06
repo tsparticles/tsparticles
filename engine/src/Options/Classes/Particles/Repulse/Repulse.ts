@@ -7,11 +7,11 @@ import { ValueWithRandom } from "../../ValueWithRandom";
  * @category Options
  */
 export class Repulse extends ValueWithRandom implements IRepulse, IOptionLoader<IRepulse> {
-    public enabled;
-    public distance;
-    public duration;
-    public factor;
-    public speed;
+    enabled;
+    distance;
+    duration;
+    factor;
+    speed;
 
     constructor() {
         super();
@@ -22,7 +22,7 @@ export class Repulse extends ValueWithRandom implements IRepulse, IOptionLoader<
         this.speed = 1;
     }
 
-    public load(data?: RecursivePartial<IRepulse>): void {
+    load(data?: RecursivePartial<IRepulse>): void {
         super.load(data);
 
         if (!data) {

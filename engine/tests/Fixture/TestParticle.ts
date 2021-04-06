@@ -22,7 +22,7 @@ export class TestParticle {
      *
      * @param container
      */
-    public randomPositionInCanvas(container?: Container): ICoordinates3d {
+    randomPositionInCanvas(container?: Container): ICoordinates3d {
         if (container === undefined) {
             container = this.container;
         }

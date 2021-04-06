@@ -8,8 +8,8 @@ export abstract class ValueWithRandom implements IValueWithRandom, IOptionLoader
     /**
      * @deprecated use the new [[RangeValue]] type instead
      */
-    public random: Random;
-    public value: RangeValue;
+    random: Random;
+    value: RangeValue;
 
     protected constructor() {
         this.random = new Random();

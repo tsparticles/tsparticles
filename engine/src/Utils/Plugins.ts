@@ -90,7 +90,7 @@ export class Plugins {
         }
     }
 
-    public static getInteractors(container: Container): IInteractor[] {
+    static getInteractors(container: Container): IInteractor[] {
         let res = interactors.get(container);
 
         if (!res) {
@@ -102,11 +102,11 @@ export class Plugins {
         return res;
     }
 
-    public static addInteractor(name: string, initInteractor: (container: Container) => IInteractor): void {
+    static addInteractor(name: string, initInteractor: (container: Container) => IInteractor): void {
         interactorsInitializers.set(name, initInteractor);
     }
 
-    public static getUpdaters(container: Container): IParticleUpdater[] {
+    static getUpdaters(container: Container): IParticleUpdater[] {
         let res = updaters.get(container);
 
         if (!res) {
@@ -118,7 +118,7 @@ export class Plugins {
         return res;
     }
 
-    public static addParticleUpdater(name: string, initUpdater: (container: Container) => IParticleUpdater): void {
+    static addParticleUpdater(name: string, initUpdater: (container: Container) => IParticleUpdater): void {
         updatersInitializers.set(name, initUpdater);
     }
 }

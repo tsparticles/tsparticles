@@ -6,17 +6,17 @@ import { Range3d } from "./Range3d";
  * @category Utils
  */
 export class Sphere extends Range3d {
-    constructor(x: number, y: number, z: number, public readonly radius: number) {
+    constructor(x: number, y: number, z: number, readonly radius: number) {
         super(x, y, z);
     }
 
-    public contains(point: ICoordinates3d): boolean {
+    contains(point: ICoordinates3d): boolean {
         const d = Math.pow(point.x - this.position.x, 2) + Math.pow(point.y - this.position.y, 2);
 
         return d <= this.radius ** 2;
     }
 
-    public intersects(range: Range3d): boolean {
+    intersects(range: Range3d): boolean {
         const parallelepiped = range as Parallelepiped;
         const sphere = range as Sphere;
         const pos1 = this.position;
