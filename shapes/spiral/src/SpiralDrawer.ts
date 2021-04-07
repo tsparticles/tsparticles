@@ -16,16 +16,11 @@ interface ISpiralParticle extends IParticle {
 export class SpiralDrawer implements IShapeDrawer {
     particleInit(container: Container, particle: IParticle): void {
         const pixelRatio = container.retina.pixelRatio,
-            shapeData = particle.shapeData as ISpiralData;
+            shapeData = particle.shapeData as ISpiralData,
+            spiral = particle as ISpiralParticle;
 
-        if (shapeData?.innerRadius === undefined || shapeData.lineSpacing === undefined) {
-            return;
-        }
-
-        const spiral = particle as ISpiralParticle;
-
-        spiral.spiralInnerRadius = shapeData.innerRadius * pixelRatio;
-        spiral.spiralLineSpacing = shapeData.lineSpacing * pixelRatio;
+        spiral.spiralInnerRadius = (shapeData.innerRadius ?? 1) * pixelRatio;
+        spiral.spiralLineSpacing = (shapeData.lineSpacing ?? 1) * pixelRatio;
     }
 
     draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number) {
