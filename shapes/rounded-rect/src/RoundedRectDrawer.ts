@@ -1,8 +1,7 @@
 import type { IParticle } from "tsparticles";
 import type { IShapeValues } from "tsparticles/dist/Options/Interfaces/Particles/Shape/IShapeValues";
-import type { IDelta } from "tsparticles/dist/Core/Interfaces/IDelta";
 import type { IShapeDrawer } from "tsparticles/dist/Core/Interfaces/IShapeDrawer";
-import { Container } from "tsparticles";
+import type { Container } from "tsparticles";
 
 type RectInfo = {
     x: number;
