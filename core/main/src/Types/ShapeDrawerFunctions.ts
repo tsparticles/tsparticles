@@ -22,6 +22,11 @@ export type ShapeDrawerInitFunction = (container: Container) => Promise<void>;
 /**
  * @category Types
  */
+export type ShapeDrawerParticleInitFunction = (container: Container, particle: IParticle) => void;
+
+/**
+ * @category Types
+ */
 export type ShapeDrawerAfterEffectFunction = (
     context: CanvasRenderingContext2D,
     particle: IParticle,

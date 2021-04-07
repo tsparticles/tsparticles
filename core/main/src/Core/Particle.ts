@@ -426,6 +426,10 @@ export class Particle implements IParticle {
         this.updater = new Updater(container, this);
         this.infecter = new Infecter(container);
         this.mover = new Mover(container, this);
+
+        if (drawer && drawer.particleInit) {
+            drawer.particleInit(container, this);
+        }
     }
 
     move(delta: IDelta): void {
