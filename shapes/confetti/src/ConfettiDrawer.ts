@@ -4,7 +4,10 @@ import { Container, Utils, Vector } from "tsparticles";
 import type { IShapeValues } from "tsparticles/dist/Options/Interfaces/Particles/Shape/IShapeValues";
 import type { IDelta } from "tsparticles/dist/Core/Interfaces/IDelta";
 
-type ConfettiType = "circle" | "square";
+const enum ConfettiType {
+    circle = "circle",
+    square = "square",
+}
 
 const ovalScalar = 0.6;
 
@@ -21,11 +24,13 @@ interface IConfettiParticle extends IParticle {
     tiltSpeed: number;
 }
 
-const types: ConfettiType[] = ["square", "circle"];
+const types: ConfettiType[] = [ConfettiType.square, ConfettiType.circle];
 
 export class ConfettiDrawer implements IShapeDrawer {
-    getSidesCount(): number {
-        return 12;
+    getSidesCount(particle: IParticle): number {
+        const confetti = particle as IConfettiParticle;
+
+        return confetti.confettiType === ConfettiType.square ? 4 : 12;
     }
 
     particleInit(container: Container, particle: IParticle): void {
@@ -39,7 +44,6 @@ export class ConfettiDrawer implements IShapeDrawer {
         }
 
         confetti.confettiType = shapeData.type;
-
         confetti.wobble = Vector.create(0, 0);
         confetti.wobble.length = particle.size.value * 2;
         confetti.wobble.angle = Math.random() * 10;
@@ -51,14 +55,7 @@ export class ConfettiDrawer implements IShapeDrawer {
         confetti.tiltSpeed = Math.min(0.11, Math.random() * 0.1 + 0.05) * container.retina.pixelRatio;
     }
 
-    draw(
-        context: CanvasRenderingContext2D,
-        particle: IParticle,
-        radius: number,
-        opacity: number,
-        delta: IDelta,
-        pixelRatio: number
-    ): void {
+    draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number, opacity: number, delta: IDelta): void {
         const confetti = particle as IConfettiParticle;
 
         confetti.wobble.angle += confetti.wobbleSpeed * delta.factor;
@@ -72,7 +69,7 @@ export class ConfettiDrawer implements IShapeDrawer {
             x2 = confetti.wobble.x + random * confetti.tilt.x,
             y2 = confetti.wobble.y + random * confetti.tilt.y;
 
-        if (confetti.confettiType === "circle") {
+        if (confetti.confettiType === ConfettiType.circle) {
             context.ellipse(
                 0,
                 0,
