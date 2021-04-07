@@ -25,7 +25,7 @@
     "@angular/router": "~11.2.8",
     "ng-particles": "^3.0.0-alpha.6",
     "rxjs": "~6.6.7",
-    "tslib": "~2.1.0",
+    "tslib": "~2.2.0",
     "tsparticles": "^2.0.0-alpha.6",
     "tsparticles-engine": "^2.0.0-alpha.6",
     "tsparticles-slim": "^2.0.0-alpha.6",
