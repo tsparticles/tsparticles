@@ -39,7 +39,6 @@ const drawRoundedRect = (
     const r = x + width;
     const b = y + height;
 
-    ctx.beginPath();
     ctx.moveTo(x + radius.topLeft, y);
     ctx.lineTo(r - radius.topRight, y);
     ctx.quadraticCurveTo(r, y, r, y + radius.topRight);
@@ -49,9 +48,6 @@ const drawRoundedRect = (
     ctx.quadraticCurveTo(x, b, x, b - radius.bottomLeft);
     ctx.lineTo(x, y + radius.topLeft);
     ctx.quadraticCurveTo(x, y, x + radius.topLeft, y);
-    ctx.stroke();
-    ctx.fill();
-    ctx.closePath();
 };
 
 export class RoundedRectDrawer implements IShapeDrawer {
