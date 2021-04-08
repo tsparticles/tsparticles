@@ -28,9 +28,9 @@
     "minify": "^7.0.0",
     "rimraf": "^3.0.2",
     "sass": "^1.32.5",
-    "tsparticles": "^1.25.0",
-    "tsparticles-editor": "^1.25.0",
-    "tsparticles-preset-basic": "^1.10.0",
-    "tsparticles-shape-confetti": "^1.10.0"
+    "tsparticles": "^1.26.0",
+    "tsparticles-editor": "^1.26.0",
+    "tsparticles-preset-basic": "^1.11.0",
+    "tsparticles-shape-confetti": "^1.11.0"
   }
 }
