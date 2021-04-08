@@ -17,6 +17,7 @@ import { EditorBase } from "../../../EditorBase";
 import { LifeOptionsEditor } from "./Life/LifeOptionsEditor";
 import { BounceOptionsEditor } from "./Bounce/BounceOptionsEditor";
 import { EditorType } from "object-gui";
+import { DestroyOptionsEditor } from "./Destroy/DestroyOptionsEditor";
 
 export class ParticlesOptionsEditor extends EditorBase {
     group!: EditorGroup;
@@ -33,6 +34,7 @@ export class ParticlesOptionsEditor extends EditorBase {
         this.addBounce();
         this.addCollisions();
         this.addColor();
+        this.addDestroy();
         this.addLife();
         this.addLinks();
         this.addMove();
@@ -61,6 +63,12 @@ export class ParticlesOptionsEditor extends EditorBase {
 
     private addColor(): void {
         const options = new ColorOptionsEditor(this.particles);
+
+        options.addToGroup(this.group);
+    }
+
+    private addDestroy(): void {
+        const options = new DestroyOptionsEditor(this.particles);
 
         options.addToGroup(this.group);
     }
