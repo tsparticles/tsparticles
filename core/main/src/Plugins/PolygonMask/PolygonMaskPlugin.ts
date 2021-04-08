@@ -12,21 +12,21 @@ import { Type } from "./Enums";
  * @category Polygon Mask Plugin
  */
 class PolygonMaskPlugin implements IPlugin {
-    public readonly id;
+    readonly id;
 
     constructor() {
         this.id = "polygonMask";
     }
 
-    public getPlugin(container: Container): PolygonMaskInstance {
+    getPlugin(container: Container): PolygonMaskInstance {
         return new PolygonMaskInstance(container);
     }
 
-    public needsPlugin(options?: RecursivePartial<IOptions & IPolygonMaskOptions>): boolean {
+    needsPlugin(options?: RecursivePartial<IOptions & IPolygonMaskOptions>): boolean {
         return options?.polygon?.enable ?? (options?.polygon?.type !== undefined && options.polygon.type !== Type.none);
     }
 
-    public loadOptions(options: Options, source?: RecursivePartial<IOptions & IPolygonMaskOptions>): void {
+    loadOptions(options: Options, source?: RecursivePartial<IOptions & IPolygonMaskOptions>): void {
         if (!this.needsPlugin(source)) {
             return;
         }

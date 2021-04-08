@@ -30,18 +30,18 @@ function drawTriangle(context: CanvasRenderingContext2D, p1: ICoordinates, p2: I
  * @category Utils
  */
 export class CanvasUtils {
-    public static paintBase(context: CanvasRenderingContext2D, dimension: IDimension, baseColor?: string): void {
+    static paintBase(context: CanvasRenderingContext2D, dimension: IDimension, baseColor?: string): void {
         context.save();
         context.fillStyle = baseColor ?? "rgba(0,0,0,0)";
         context.fillRect(0, 0, dimension.width, dimension.height);
         context.restore();
     }
 
-    public static clear(context: CanvasRenderingContext2D, dimension: IDimension): void {
+    static clear(context: CanvasRenderingContext2D, dimension: IDimension): void {
         context.clearRect(0, 0, dimension.width, dimension.height);
     }
 
-    public static drawLinkLine(
+    static drawLinkLine(
         context: CanvasRenderingContext2D,
         width: number,
         begin: ICoordinates,
@@ -144,7 +144,7 @@ export class CanvasUtils {
         context.stroke();
     }
 
-    public static drawLinkTriangle(
+    static drawLinkTriangle(
         context: CanvasRenderingContext2D,
         pos1: ICoordinates,
         pos2: ICoordinates,
@@ -168,7 +168,7 @@ export class CanvasUtils {
         context.fill();
     }
 
-    public static drawConnectLine(
+    static drawConnectLine(
         context: CanvasRenderingContext2D,
         width: number,
         lineStyle: CanvasGradient,
@@ -185,7 +185,7 @@ export class CanvasUtils {
         context.restore();
     }
 
-    public static gradient(
+    static gradient(
         context: CanvasRenderingContext2D,
         p1: IParticle,
         p2: IParticle,
@@ -211,7 +211,7 @@ export class CanvasUtils {
         return grad;
     }
 
-    public static drawGrabLine(
+    static drawGrabLine(
         context: CanvasRenderingContext2D,
         width: number,
         begin: ICoordinates,
@@ -229,7 +229,7 @@ export class CanvasUtils {
         context.restore();
     }
 
-    public static drawLight(container: Container, context: CanvasRenderingContext2D, mousePos: ICoordinates): void {
+    static drawLight(container: Container, context: CanvasRenderingContext2D, mousePos: ICoordinates): void {
         const lightOptions = container.actualOptions.interactivity.modes.light.area;
 
         context.beginPath();
@@ -260,7 +260,7 @@ export class CanvasUtils {
         context.fill();
     }
 
-    public static drawParticleShadow(
+    static drawParticleShadow(
         container: Container,
         context: CanvasRenderingContext2D,
         particle: Particle,
@@ -329,7 +329,7 @@ export class CanvasUtils {
         context.restore();
     }
 
-    public static drawParticle(
+    static drawParticle(
         container: Container,
         context: CanvasRenderingContext2D,
         particle: IParticle,
@@ -411,7 +411,7 @@ export class CanvasUtils {
         context.restore();
     }
 
-    public static drawShape(
+    static drawShape(
         container: Container,
         context: CanvasRenderingContext2D,
         particle: IParticle,
@@ -432,7 +432,7 @@ export class CanvasUtils {
         drawer.draw(context, particle, radius, opacity, delta, container.retina.pixelRatio);
     }
 
-    public static drawShapeAfterEffect(
+    static drawShapeAfterEffect(
         container: Container,
         context: CanvasRenderingContext2D,
         particle: IParticle,
@@ -453,7 +453,7 @@ export class CanvasUtils {
         drawer.afterEffect(context, particle, radius, opacity, delta, container.retina.pixelRatio);
     }
 
-    public static drawPlugin(context: CanvasRenderingContext2D, plugin: IContainerPlugin, delta: IDelta): void {
+    static drawPlugin(context: CanvasRenderingContext2D, plugin: IContainerPlugin, delta: IDelta): void {
         if (plugin.draw !== undefined) {
             context.save();
             plugin.draw(context, delta);

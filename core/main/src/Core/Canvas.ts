@@ -17,14 +17,14 @@ export class Canvas {
     /**
      * The particles canvas
      */
-    public element?: HTMLCanvasElement;
+    element?: HTMLCanvasElement;
 
     /**
      * The particles canvas dimension
      */
-    public readonly size: IDimension;
+    readonly size: IDimension;
 
-    public resizeFactor?: IDimension;
+    resizeFactor?: IDimension;
 
     /**
      * The particles canvas context
@@ -53,7 +53,7 @@ export class Canvas {
     /**
      * Initializes the canvas element
      */
-    public init(): void {
+    init(): void {
         this.resize();
 
         const options = this.container.actualOptions;
@@ -100,7 +100,7 @@ export class Canvas {
         this.paint();
     }
 
-    public loadCanvas(canvas: HTMLCanvasElement, generatedCanvas?: boolean): void {
+    loadCanvas(canvas: HTMLCanvasElement, generatedCanvas?: boolean): void {
         if (!canvas.className) {
             canvas.className = Constants.canvasClass;
         }
@@ -120,7 +120,7 @@ export class Canvas {
         this.initBackground();
     }
 
-    public destroy(): void {
+    destroy(): void {
         if (this.generatedCanvas) {
             this.element?.remove();
         }
@@ -133,7 +133,7 @@ export class Canvas {
     /**
      * Paints the canvas background
      */
-    public paint(): void {
+    paint(): void {
         const options = this.container.actualOptions;
 
         if (!this.context) {
@@ -151,7 +151,7 @@ export class Canvas {
     /**
      * Clears the canvas content
      */
-    public clear(): void {
+    clear(): void {
         const options = this.container.actualOptions;
         const trail = options.particles.move.trail;
 
@@ -164,7 +164,7 @@ export class Canvas {
         }
     }
 
-    public windowResize(): void {
+    windowResize(): void {
         if (!this.element) {
             return;
         }
@@ -187,7 +187,7 @@ export class Canvas {
     /**
      * Calculates the size of the canvas
      */
-    public resize(): void {
+    resize(): void {
         if (!this.element) {
             return;
         }
@@ -212,7 +212,7 @@ export class Canvas {
         };
     }
 
-    public drawConnectLine(p1: IParticle, p2: IParticle): void {
+    drawConnectLine(p1: IParticle, p2: IParticle): void {
         const ctx = this.context;
 
         if (!ctx) {
@@ -231,7 +231,7 @@ export class Canvas {
         CanvasUtils.drawConnectLine(ctx, p1.linksWidth ?? this.container.retina.linksWidth, lineStyle, pos1, pos2);
     }
 
-    public drawGrabLine(particle: IParticle, lineColor: IRgb, opacity: number, mousePos: ICoordinates): void {
+    drawGrabLine(particle: IParticle, lineColor: IRgb, opacity: number, mousePos: ICoordinates): void {
         const container = this.container;
         const ctx = container.canvas.context;
 
@@ -251,7 +251,7 @@ export class Canvas {
         );
     }
 
-    public drawParticleShadow(particle: Particle, mousePos: ICoordinates): void {
+    drawParticleShadow(particle: Particle, mousePos: ICoordinates): void {
         if (!this.context) {
             return;
         }
@@ -259,7 +259,7 @@ export class Canvas {
         CanvasUtils.drawParticleShadow(this.container, this.context, particle, mousePos);
     }
 
-    public drawLinkTriangle(p1: IParticle, link1: ILink, link2: ILink): void {
+    drawLinkTriangle(p1: IParticle, link1: ILink, link2: ILink): void {
         const container = this.container;
         const options = container.actualOptions;
         const p2 = link1.destination;
@@ -317,7 +317,7 @@ export class Canvas {
         );
     }
 
-    public drawLinkLine(p1: IParticle, link: ILink): void {
+    drawLinkLine(p1: IParticle, link: ILink): void {
         const container = this.container;
         const options = container.actualOptions;
         const p2 = link.destination;
@@ -388,7 +388,7 @@ export class Canvas {
         );
     }
 
-    public drawParticle(particle: Particle, delta: IDelta): void {
+    drawParticle(particle: Particle, delta: IDelta): void {
         if (particle.image?.loaded === false || particle.spawning || particle.destroyed) {
             return;
         }
@@ -452,7 +452,7 @@ export class Canvas {
         }
     }
 
-    public drawParticleLinks(particle: Particle): void {
+    drawParticleLinks(particle: Particle): void {
         if (!this.context) {
             return;
         }
@@ -503,7 +503,7 @@ export class Canvas {
         }
     }
 
-    public drawPlugin(plugin: IContainerPlugin, delta: IDelta): void {
+    drawPlugin(plugin: IContainerPlugin, delta: IDelta): void {
         if (!this.context) {
             return;
         }
@@ -511,7 +511,7 @@ export class Canvas {
         CanvasUtils.drawPlugin(this.context, plugin, delta);
     }
 
-    public drawLight(mousePos: ICoordinates): void {
+    drawLight(mousePos: ICoordinates): void {
         if (!this.context) {
             return;
         }
@@ -551,11 +551,7 @@ export class Canvas {
         if (background.color) {
             const color = ColorUtils.colorToRgb(background.color);
 
-            if (color) {
-                elementStyle.backgroundColor = ColorUtils.getStyleFromRgb(color, background.opacity);
-            } else {
-                elementStyle.backgroundColor = "";
-            }
+            elementStyle.backgroundColor = color ? ColorUtils.getStyleFromRgb(color, background.opacity) : "";
         } else {
             elementStyle.backgroundColor = "";
         }

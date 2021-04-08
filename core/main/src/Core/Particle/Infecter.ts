@@ -4,14 +4,14 @@ import type { Container } from "../Container";
  * @category Core
  */
 export class Infecter {
-    public infectionStage?: number;
-    public infectionTime?: number;
-    public infectionDelay?: number;
-    public infectionDelayStage?: number;
+    infectionStage?: number;
+    infectionTime?: number;
+    infectionDelay?: number;
+    infectionDelayStage?: number;
 
     constructor(private readonly container: Container) {}
 
-    public startInfection(stage: number): void {
+    startInfection(stage: number): void {
         const options = this.container.actualOptions;
         const stages = options.infection.stages;
         const stagesCount = stages.length;
@@ -24,7 +24,7 @@ export class Infecter {
         this.infectionDelayStage = stage;
     }
 
-    public updateInfectionStage(stage: number): void {
+    updateInfectionStage(stage: number): void {
         const options = this.container.actualOptions;
         const stagesCount = options.infection.stages.length;
 
@@ -36,7 +36,7 @@ export class Infecter {
         this.infectionTime = 0;
     }
 
-    public updateInfection(delta: number): void {
+    updateInfection(delta: number): void {
         const options = this.container.actualOptions;
         const infection = options.infection;
         const stages = options.infection.stages;

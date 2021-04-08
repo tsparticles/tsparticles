@@ -18,6 +18,7 @@ export interface IContainerPlugin {
     play?: () => void;
     pause?: () => void;
     particleBounce?: (particle: Particle, delta: IDelta, direction: OutModeDirection) => boolean;
+    particleDestroyed?: (particle: Particle, override?: boolean) => void;
     particlePosition?: (position?: ICoordinates, particle?: Particle) => ICoordinates | undefined;
     particleUpdate?: (particle: Particle, delta: IDelta) => void;
     particlesInitialization?: () => boolean;

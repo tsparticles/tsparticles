@@ -10,9 +10,9 @@ import {
     OutMode,
     RotateDirection,
     ShapeType,
-} from "../src/Enums";
-import { Particles } from "../src/Options/Classes/Particles/Particles";
-import { RecursivePartial } from "../src/Types";
+} from "../src";
+import { ParticlesOptions } from "../src/Options/Classes/Particles/ParticlesOptions";
+import type { RecursivePartial } from "../src";
 import { IParticles } from "../src/Options/Interfaces/Particles/IParticles";
 
 describe("Options tests", () => {
@@ -536,7 +536,7 @@ describe("Options tests", () => {
     });
 
     it("check particlesOptions override", () => {
-        const particlesOptions = new Particles();
+        const particlesOptions = new ParticlesOptions();
 
         const generalOptions: RecursivePartial<IParticles> = {
             number: {

@@ -10,7 +10,7 @@ import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInterac
 export class Connector implements IExternalInteractor {
     constructor(private readonly container: Container) {}
 
-    public isEnabled(): boolean {
+    isEnabled(): boolean {
         const container = this.container;
         const mouse = container.interactivity.mouse;
         const events = container.actualOptions.interactivity.events;
@@ -24,14 +24,14 @@ export class Connector implements IExternalInteractor {
         return Utils.isInArray(HoverMode.connect, hoverMode);
     }
 
-    public reset(): void {
+    reset(): void {
         // do nothing
     }
 
     /**
      * Connecting particles on hover interactivity
      */
-    public interact(): void {
+    interact(): void {
         const container = this.container;
         const options = container.actualOptions;
 

@@ -8,9 +8,9 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class Repulse extends RepulseBase implements IRepulse, IOptionLoader<IRepulse> {
-    public divs?: SingleOrMultiple<RepulseDiv>;
+    divs?: SingleOrMultiple<RepulseDiv>;
 
-    public load(data?: RecursivePartial<IRepulse>): void {
+    load(data?: RecursivePartial<IRepulse>): void {
         super.load(data);
 
         if (data?.divs === undefined) {

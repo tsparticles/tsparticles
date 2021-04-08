@@ -12,7 +12,7 @@ import type { IDimension } from "../Core/Interfaces/IDimension";
  * @category Utils
  */
 export class QuadTree {
-    public readonly points: Point[];
+    readonly points: Point[];
 
     private northEast?: QuadTree;
     private northWest?: QuadTree;
@@ -21,12 +21,12 @@ export class QuadTree {
 
     private divided;
 
-    constructor(public readonly rectangle: Rectangle, public readonly capacity: number) {
+    constructor(readonly rectangle: Rectangle, readonly capacity: number) {
         this.points = [];
         this.divided = false;
     }
 
-    public subdivide(): void {
+    subdivide(): void {
         const x = this.rectangle.position.x;
         const y = this.rectangle.position.y;
         const w = this.rectangle.size.width;
@@ -40,7 +40,7 @@ export class QuadTree {
         this.divided = true;
     }
 
-    public insert(point: Point): boolean {
+    insert(point: Point): boolean {
         if (!this.rectangle.contains(point.position)) {
             return false;
         }
@@ -64,15 +64,11 @@ export class QuadTree {
         );
     }
 
-    public queryCircle(position: ICoordinates, radius: number): Particle[] {
+    queryCircle(position: ICoordinates, radius: number): Particle[] {
         return this.query(new Circle(position.x, position.y, radius));
     }
 
-    public queryCircleWarp(
-        position: ICoordinates,
-        radius: number,
-        containerOrSize: Container | IDimension
-    ): Particle[] {
+    queryCircleWarp(position: ICoordinates, radius: number, containerOrSize: Container | IDimension): Particle[] {
         const container = containerOrSize as Container;
         const size = containerOrSize as IDimension;
 
@@ -86,11 +82,11 @@ export class QuadTree {
         );
     }
 
-    public queryRectangle(position: ICoordinates, size: IDimension): Particle[] {
+    queryRectangle(position: ICoordinates, size: IDimension): Particle[] {
         return this.query(new Rectangle(position.x, position.y, size.width, size.height));
     }
 
-    public query(range: Range, found?: Particle[]): Particle[] {
+    query(range: Range, found?: Particle[]): Particle[] {
         const res = found ?? [];
 
         if (!range.intersects(this.rectangle)) {

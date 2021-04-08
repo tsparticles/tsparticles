@@ -11,19 +11,19 @@ export class ClickEvent implements IClickEvent, IOptionLoader<IClickEvent> {
     /**
      * The click event handler enabling setting
      */
-    public enable;
+    enable;
 
     /**
      * Click mode values described in [[ClickMode]], an array of these values is also valid
      */
-    public mode: SingleOrMultiple<ClickMode | keyof typeof ClickMode | string>;
+    mode: SingleOrMultiple<ClickMode | keyof typeof ClickMode | string>;
 
     constructor() {
         this.enable = false;
         this.mode = [];
     }
 
-    public load(data?: RecursivePartial<IClickEvent>): void {
+    load(data?: RecursivePartial<IClickEvent>): void {
         if (data === undefined) {
             return;
         }

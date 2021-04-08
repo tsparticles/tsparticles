@@ -9,7 +9,7 @@ import { Vector } from "../../Core/Particle/Vector";
 export class Bouncer implements IExternalInteractor {
     constructor(private readonly container: Container) {}
 
-    public isEnabled(): boolean {
+    isEnabled(): boolean {
         const container = this.container;
         const options = container.actualOptions;
         const mouse = container.interactivity.mouse;
@@ -21,7 +21,7 @@ export class Bouncer implements IExternalInteractor {
         );
     }
 
-    public interact(): void {
+    interact(): void {
         const container = this.container;
         const options = container.actualOptions;
         const events = options.interactivity.events;
@@ -39,7 +39,7 @@ export class Bouncer implements IExternalInteractor {
         }
     }
 
-    public reset(): void {
+    reset(): void {
         // do nothing
     }
 

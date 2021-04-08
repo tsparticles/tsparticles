@@ -26,7 +26,8 @@ function bounceHorizontal(data: IBounceData): void {
     if (
         data.outMode === OutMode.bounce ||
         data.outMode === OutMode.bounceHorizontal ||
-        data.outMode === "bounceHorizontal"
+        data.outMode === "bounceHorizontal" ||
+        data.outMode === OutMode.split
     ) {
         const velocity = data.particle.velocity.x;
         let bounced = false;
@@ -42,14 +43,20 @@ function bounceHorizontal(data: IBounceData): void {
             bounced = true;
         }
 
-        if (bounced) {
-            const minPos = data.offset.x + data.size;
+        if (!bounced) {
+            return;
+        }
 
-            if (data.bounds.right >= data.canvasSize.width) {
-                data.particle.position.x = data.canvasSize.width - minPos;
-            } else if (data.bounds.left <= 0) {
-                data.particle.position.x = minPos;
-            }
+        const minPos = data.offset.x + data.size;
+
+        if (data.bounds.right >= data.canvasSize.width) {
+            data.particle.position.x = data.canvasSize.width - minPos;
+        } else if (data.bounds.left <= 0) {
+            data.particle.position.x = minPos;
+        }
+
+        if (data.outMode === OutMode.split) {
+            data.particle.destroy();
         }
     }
 }
@@ -58,7 +65,8 @@ function bounceVertical(data: IBounceData): void {
     if (
         data.outMode === OutMode.bounce ||
         data.outMode === OutMode.bounceVertical ||
-        data.outMode === "bounceVertical"
+        data.outMode === "bounceVertical" ||
+        data.outMode === OutMode.split
     ) {
         const velocity = data.particle.velocity.y;
         let bounced = false;
@@ -76,14 +84,20 @@ function bounceVertical(data: IBounceData): void {
             bounced = true;
         }
 
-        if (bounced) {
-            const minPos = data.offset.y + data.size;
+        if (!bounced) {
+            return;
+        }
 
-            if (data.bounds.bottom >= data.canvasSize.height) {
-                data.particle.position.y = data.canvasSize.height - minPos;
-            } else if (data.bounds.top <= 0) {
-                data.particle.position.y = minPos;
-            }
+        const minPos = data.offset.y + data.size;
+
+        if (data.bounds.bottom >= data.canvasSize.height) {
+            data.particle.position.y = data.canvasSize.height - minPos;
+        } else if (data.bounds.top <= 0) {
+            data.particle.position.y = minPos;
+        }
+
+        if (data.outMode === OutMode.split) {
+            data.particle.destroy();
         }
     }
 }
@@ -116,7 +130,7 @@ function checkDestroy(
 export class Updater {
     constructor(private readonly container: Container, private readonly particle: Particle) {}
 
-    public update(delta: IDelta): void {
+    update(delta: IDelta): void {
         if (this.particle.destroyed) {
             return;
         }
@@ -361,7 +375,7 @@ export class Updater {
         }
     }
 
-    public updateColorValue(
+    updateColorValue(
         particle: Particle,
         delta: IDelta,
         value: IParticleValueAnimation<number>,
@@ -422,13 +436,15 @@ export class Updater {
             case OutMode.bounceHorizontal:
             case "bounceVertical":
             case "bounceHorizontal":
+            case OutMode.split:
                 this.updateBounce(delta, direction, outMode);
 
                 break;
             case OutMode.destroy:
                 if (!Utils.isPointInside(particle.position, container.canvas.size, particle.getRadius(), direction)) {
-                    container.particles.remove(particle);
+                    container.particles.remove(particle, true);
                 }
+
                 break;
             case OutMode.out:
                 if (!Utils.isPointInside(particle.position, container.canvas.size, particle.getRadius(), direction)) {

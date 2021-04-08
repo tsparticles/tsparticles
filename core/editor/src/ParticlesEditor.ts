@@ -4,7 +4,7 @@ import { Editor, EditorType } from "object-gui";
 import { EditorInputBase } from "object-gui/dist/js/Editors/EditorInputBase";
 
 export class ParticlesEditor extends Editor {
-    constructor(public readonly particles: Container) {
+    constructor(readonly particles: Container) {
         super(particles.id, "tsParticles", particles);
     }
 
@@ -19,7 +19,7 @@ export class ParticlesEditor extends Editor {
         this.addPresets();
     }
 
-    public addPreset(text: string, file: string) {
+    addPreset(text: string, file: string) {
         if (!this._presets) {
             return;
         }

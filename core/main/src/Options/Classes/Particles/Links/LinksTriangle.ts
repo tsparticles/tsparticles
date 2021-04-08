@@ -7,17 +7,17 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class LinksTriangle implements ILinksTriangle, IOptionLoader<ILinksTriangle> {
-    public color?: OptionsColor;
-    public enable;
-    public frequency;
-    public opacity?: number;
+    color?: OptionsColor;
+    enable;
+    frequency;
+    opacity?: number;
 
     constructor() {
         this.enable = false;
         this.frequency = 1;
     }
 
-    public load(data?: RecursivePartial<ILinksTriangle>): void {
+    load(data?: RecursivePartial<ILinksTriangle>): void {
         if (data === undefined) {
             return;
         }

@@ -3,9 +3,9 @@ import { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { RecursivePartial } from "../../../../Types";
 
 export class MoveGravity implements IMoveGravity, IOptionLoader<IMoveGravity> {
-    public acceleration;
-    public enable;
-    public maxSpeed;
+    acceleration;
+    enable;
+    maxSpeed;
 
     constructor() {
         this.acceleration = 9.81;
@@ -13,7 +13,7 @@ export class MoveGravity implements IMoveGravity, IOptionLoader<IMoveGravity> {
         this.maxSpeed = 50;
     }
 
-    public load(data?: RecursivePartial<IMoveGravity>): void {
+    load(data?: RecursivePartial<IMoveGravity>): void {
         if (!data) {
             return;
         }

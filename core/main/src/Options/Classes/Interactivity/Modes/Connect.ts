@@ -11,7 +11,7 @@ export class Connect implements IConnect, IOptionLoader<IConnect> {
      *
      * @deprecated this property is obsolete, please use the new links
      */
-    public get line_linked(): ConnectLinks {
+    get line_linked(): ConnectLinks {
         return this.links;
     }
 
@@ -20,7 +20,7 @@ export class Connect implements IConnect, IOptionLoader<IConnect> {
      * @deprecated this property is obsolete, please use the new links
      * @param value
      */
-    public set line_linked(value: ConnectLinks) {
+    set line_linked(value: ConnectLinks) {
         this.links = value;
     }
 
@@ -28,7 +28,7 @@ export class Connect implements IConnect, IOptionLoader<IConnect> {
      *
      * @deprecated this property is obsolete, please use the new links
      */
-    public get lineLinked(): ConnectLinks {
+    get lineLinked(): ConnectLinks {
         return this.links;
     }
 
@@ -37,13 +37,13 @@ export class Connect implements IConnect, IOptionLoader<IConnect> {
      * @deprecated this property is obsolete, please use the new links
      * @param value
      */
-    public set lineLinked(value: ConnectLinks) {
+    set lineLinked(value: ConnectLinks) {
         this.links = value;
     }
 
-    public distance;
-    public links;
-    public radius;
+    distance;
+    links;
+    radius;
 
     constructor() {
         this.distance = 80;
@@ -51,7 +51,7 @@ export class Connect implements IConnect, IOptionLoader<IConnect> {
         this.radius = 60;
     }
 
-    public load(data?: RecursivePartial<IConnect>): void {
+    load(data?: RecursivePartial<IConnect>): void {
         if (data === undefined) {
             return;
         }

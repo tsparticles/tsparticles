@@ -14,7 +14,7 @@ export class TrailMaker implements IExternalInteractor {
         this.delay = 0;
     }
 
-    public interact(delta: IDelta): void {
+    interact(delta: IDelta): void {
         if (!this.container.retina.reduceFactor) {
             return;
         }
@@ -36,7 +36,7 @@ export class TrailMaker implements IExternalInteractor {
         }
     }
 
-    public isEnabled(): boolean {
+    isEnabled(): boolean {
         const container = this.container;
         const options = container.actualOptions;
 
@@ -52,7 +52,7 @@ export class TrailMaker implements IExternalInteractor {
         );
     }
 
-    public reset(): void {
+    reset(): void {
         // nothing to do
     }
 }

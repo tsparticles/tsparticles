@@ -17,13 +17,13 @@ export interface ISide {
  * @category Shape Drawers
  */
 export abstract class PolygonDrawerBase implements IShapeDrawer {
-    public getSidesCount(particle: IParticle): number {
+    getSidesCount(particle: IParticle): number {
         const polygon = particle.shapeData as IPolygonShape;
 
         return polygon?.sides ?? polygon?.nb_sides ?? 5;
     }
 
-    public draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
+    draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
         const start = this.getCenter(particle, radius);
         const side = this.getSidesData(particle, radius);
 

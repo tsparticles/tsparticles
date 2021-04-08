@@ -5,15 +5,15 @@ import { LightArea } from "./LightArea";
 import { LightShadow } from "./LightShadow";
 
 export class Light implements ILight, IOptionLoader<ILight> {
-    public area;
-    public shadow;
+    area;
+    shadow;
 
     constructor() {
         this.area = new LightArea();
         this.shadow = new LightShadow();
     }
 
-    public load(data?: RecursivePartial<ILight>): void {
+    load(data?: RecursivePartial<ILight>): void {
         if (data === undefined) {
             return;
         }

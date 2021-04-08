@@ -10,14 +10,14 @@ import { FullScreenOptionsEditor } from "./FullScreen/FullScreenOptionsEditor";
 import { MotionOptionsEditor } from "./Motion/MotionOptionsEditor";
 
 export class OptionsEditor extends EditorBase {
-    public group!: EditorGroup;
+    group!: EditorGroup;
     private options!: IOptions;
 
     constructor(particles: Container) {
         super(particles);
     }
 
-    public addToGroup(parent: EditorGroup | Editor): void {
+    addToGroup(parent: EditorGroup | Editor): void {
         this.group = parent.addGroup("options", "Options", true);
         this.options = this.group.data as IOptions;
 

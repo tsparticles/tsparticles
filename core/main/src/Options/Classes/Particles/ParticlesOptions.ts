@@ -16,17 +16,35 @@ import { AnimatableColor } from "./AnimatableColor";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import { Life } from "./Life/Life";
 import { Bounce } from "./Bounce/Bounce";
+import { Destroy } from "./Destroy/Destroy";
 
 /**
  * [[include:Options/Particles.md]]
  * @category Options
  */
-export class Particles implements IParticles, IOptionLoader<IParticles> {
+export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
+    bounce;
+    collisions;
+    color;
+    destroy;
+    life;
+    links;
+    move;
+    number;
+    opacity;
+    reduceDuplicates;
+    rotate;
+    shape;
+    size;
+    shadow;
+    stroke: SingleOrMultiple<Stroke>;
+    twinkle;
+
     /**
      *
      * @deprecated this property is obsolete, please use the new links
      */
-    public get line_linked(): Links {
+    get line_linked(): Links {
         return this.links;
     }
 
@@ -35,7 +53,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
      * @deprecated this property is obsolete, please use the new links
      * @param value
      */
-    public set line_linked(value: Links) {
+    set line_linked(value: Links) {
         this.links = value;
     }
 
@@ -43,7 +61,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
      *
      * @deprecated this property is obsolete, please use the new lineLinked
      */
-    public get lineLinked(): Links {
+    get lineLinked(): Links {
         return this.links;
     }
 
@@ -52,30 +70,15 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
      * @deprecated this property is obsolete, please use the new lineLinked
      * @param value
      */
-    public set lineLinked(value: Links) {
+    set lineLinked(value: Links) {
         this.links = value;
     }
-
-    public bounce;
-    public collisions;
-    public color;
-    public life;
-    public links;
-    public move;
-    public number;
-    public opacity;
-    public reduceDuplicates;
-    public rotate;
-    public shape;
-    public size;
-    public shadow;
-    public stroke: SingleOrMultiple<Stroke>;
-    public twinkle;
 
     constructor() {
         this.bounce = new Bounce();
         this.collisions = new Collisions();
         this.color = new AnimatableColor();
+        this.destroy = new Destroy();
         this.life = new Life();
         this.links = new Links();
         this.move = new Move();
@@ -90,7 +93,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         this.twinkle = new Twinkle();
     }
 
-    public load(data?: RecursivePartial<IParticles>): void {
+    load(data?: RecursivePartial<IParticles>): void {
         if (data === undefined) {
             return;
         }
@@ -98,6 +101,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         this.bounce.load(data.bounce);
         this.color = AnimatableColor.create(this.color, data.color);
 
+        this.destroy.load(data.destroy);
         this.life.load(data.life);
 
         const links = data.links ?? data.lineLinked ?? data.line_linked;

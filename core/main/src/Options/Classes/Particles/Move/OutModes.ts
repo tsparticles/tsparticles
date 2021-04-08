@@ -4,17 +4,17 @@ import { OutMode, OutModeAlt } from "../../../../Enums/Modes";
 import type { RecursivePartial } from "../../../../Types";
 
 export class OutModes implements IOutModes, IOptionLoader<IOutModes> {
-    public bottom?: OutMode | keyof typeof OutMode | OutModeAlt;
-    public default: OutMode | keyof typeof OutMode | OutModeAlt;
-    public left?: OutMode | keyof typeof OutMode | OutModeAlt;
-    public right?: OutMode | keyof typeof OutMode | OutModeAlt;
-    public top?: OutMode | keyof typeof OutMode | OutModeAlt;
+    bottom?: OutMode | keyof typeof OutMode | OutModeAlt;
+    default: OutMode | keyof typeof OutMode | OutModeAlt;
+    left?: OutMode | keyof typeof OutMode | OutModeAlt;
+    right?: OutMode | keyof typeof OutMode | OutModeAlt;
+    top?: OutMode | keyof typeof OutMode | OutModeAlt;
 
     constructor() {
         this.default = OutMode.out;
     }
 
-    public load(data?: RecursivePartial<IOutModes>): void {
+    load(data?: RecursivePartial<IOutModes>): void {
         if (!data) {
             return;
         }

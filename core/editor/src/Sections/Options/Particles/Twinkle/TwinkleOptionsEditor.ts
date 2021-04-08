@@ -5,14 +5,14 @@ import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
 
 export class TwinkleOptionsEditor extends EditorBase {
-    public group!: EditorGroup;
+    group!: EditorGroup;
     private options!: ITwinkle;
 
     constructor(particles: Container) {
         super(particles);
     }
 
-    public addToGroup(parent: EditorGroup, options?: unknown): void {
+    addToGroup(parent: EditorGroup, options?: unknown): void {
         this.group = parent.addGroup("twinkle", "Twinkle", true, options);
         this.options = this.group.data as ITwinkle;
 

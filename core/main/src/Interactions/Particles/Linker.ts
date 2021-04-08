@@ -7,15 +7,15 @@ import { IParticle } from "../../Core/Interfaces/IParticle";
 export class Linker implements IParticlesInteractor {
     constructor(private readonly container: Container) {}
 
-    public isEnabled(particle: Particle): boolean {
+    isEnabled(particle: Particle): boolean {
         return particle.options.links.enable;
     }
 
-    public reset(): void {
+    reset(): void {
         // do nothing
     }
 
-    public interact(p1: IParticle): void {
+    interact(p1: IParticle): void {
         const container = this.container;
         const linkOpt1 = p1.options.links;
         const optOpacity = linkOpt1.opacity;

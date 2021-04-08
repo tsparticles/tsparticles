@@ -6,11 +6,11 @@ import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader
  * @category Emitters Plugin
  */
 export class EmitterLife implements IEmitterLife, IOptionLoader<IEmitterLife> {
-    public count?: number;
-    public delay?: number;
-    public duration?: number;
+    count?: number;
+    delay?: number;
+    duration?: number;
 
-    public load(data?: RecursivePartial<IEmitterLife>): void {
+    load(data?: RecursivePartial<IEmitterLife>): void {
         if (data === undefined) {
             return;
         }

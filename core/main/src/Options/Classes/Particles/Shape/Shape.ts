@@ -103,15 +103,15 @@ export class Shape implements IShape, IOptionLoader<IShape> {
         this.options[ShapeType.star] = value;
     }
 
-    public type: SingleOrMultiple<ShapeType | keyof typeof ShapeType | string>;
-    public options: ShapeData;
+    type: SingleOrMultiple<ShapeType | keyof typeof ShapeType | string>;
+    options: ShapeData;
 
     constructor() {
         this.options = {};
         this.type = ShapeType.circle;
     }
 
-    public load(data?: RecursivePartial<IShape>): void {
+    load(data?: RecursivePartial<IShape>): void {
         if (data === undefined) {
             return;
         }

@@ -14,7 +14,7 @@ export class Opacity extends ValueWithRandom implements IOpacity, IOptionLoader<
      *
      * @deprecated this property is obsolete, please use the new animation
      */
-    public get anim(): OpacityAnimation {
+    get anim(): OpacityAnimation {
         return this.animation;
     }
 
@@ -23,11 +23,11 @@ export class Opacity extends ValueWithRandom implements IOpacity, IOptionLoader<
      * @deprecated this property is obsolete, please use the new animation
      * @param value
      */
-    public set anim(value: OpacityAnimation) {
+    set anim(value: OpacityAnimation) {
         this.animation = value;
     }
 
-    public animation;
+    animation;
 
     constructor() {
         super();
@@ -36,7 +36,7 @@ export class Opacity extends ValueWithRandom implements IOpacity, IOptionLoader<
         this.value = 1;
     }
 
-    public load(data?: RecursivePartial<IOpacity>): void {
+    load(data?: RecursivePartial<IOpacity>): void {
         if (!data) {
             return;
         }

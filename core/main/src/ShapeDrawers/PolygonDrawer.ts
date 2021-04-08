@@ -7,7 +7,7 @@ import type { IPolygonShape } from "../Options/Interfaces/Particles/Shape/IPolyg
  * @category Shape Drawers
  */
 export class PolygonDrawer extends PolygonDrawerBase {
-    public getSidesData(particle: IParticle, radius: number): ISide {
+    getSidesData(particle: IParticle, radius: number): ISide {
         const polygon = particle.shapeData as IPolygonShape;
         const sides = polygon?.sides ?? polygon?.nb_sides ?? 5;
 
@@ -20,7 +20,7 @@ export class PolygonDrawer extends PolygonDrawerBase {
         };
     }
 
-    public getCenter(particle: IParticle, radius: number): ICoordinates {
+    getCenter(particle: IParticle, radius: number): ICoordinates {
         const sides = this.getSidesCount(particle);
 
         return {

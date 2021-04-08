@@ -7,17 +7,17 @@ import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader
  * @category Emitters Plugin
  */
 export class EmitterSize implements IEmitterSize, IOptionLoader<IEmitterSize> {
-    public mode: SizeMode | keyof typeof SizeMode;
-    public height;
-    public width;
+    mode: SizeMode | keyof typeof SizeMode;
+    height;
+    width;
 
-    public constructor() {
+    constructor() {
         this.mode = SizeMode.percent;
         this.height = 0;
         this.width = 0;
     }
 
-    public load(data?: RecursivePartial<IEmitterSize>): void {
+    load(data?: RecursivePartial<IEmitterSize>): void {
         if (data === undefined) {
             return;
         }

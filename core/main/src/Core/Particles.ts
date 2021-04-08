@@ -3,38 +3,39 @@ import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IMouseData } from "./Interfaces/IMouseData";
 import type { IRgb } from "./Interfaces/Colors";
 import { Particle } from "./Particle";
-import { Point, QuadTree, Rectangle, Utils } from "../Utils";
+import { NumberUtils, Point, QuadTree, Rectangle, Utils } from "../Utils";
 import type { RecursivePartial } from "../Types";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { InteractionManager } from "./Particle/InteractionManager";
 import type { IDelta } from "./Interfaces/IDelta";
 import type { IParticle } from "./Interfaces/IParticle";
 import { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";
+import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
 
 /**
  * Particles manager object
  * @category Core
  */
 export class Particles {
-    public get count(): number {
+    get count(): number {
         return this.array.length;
     }
 
     /**
      * The quad tree used to search particles withing ranges
      */
-    public quadTree;
-    public linksColors;
-    public limit;
+    quadTree;
+    linksColors;
+    limit;
 
     /**
      * All the particles used in canvas
      */
-    public array: Particle[];
+    array: Particle[];
 
-    public pushing?: boolean;
-    public linksColor?: IRgb | string;
-    public grabLineColor?: IRgb | string;
+    pushing?: boolean;
+    linksColor?: IRgb | string;
+    grabLineColor?: IRgb | string;
 
     private interactionManager;
     private nextId;
@@ -64,7 +65,7 @@ export class Particles {
     }
 
     /* --------- tsParticles functions - particles ----------- */
-    public init(): void {
+    init(): void {
         const container = this.container;
         const options = container.actualOptions;
 
@@ -114,25 +115,25 @@ export class Particles {
         container.pathGenerator.init();
     }
 
-    public redraw(): void {
+    redraw(): void {
         this.clear();
         this.init();
         this.draw({ value: 0, factor: 0 });
     }
 
-    public removeAt(index: number, quantity?: number): void {
+    removeAt(index: number, quantity?: number, override?: boolean): void {
         if (index >= 0 && index <= this.count) {
             for (const particle of this.array.splice(index, quantity ?? 1)) {
-                particle.destroy();
+                particle.destroy(override);
             }
         }
     }
 
-    public remove(particle: Particle): void {
-        this.removeAt(this.array.indexOf(particle));
+    remove(particle: Particle, override?: boolean): void {
+        this.removeAt(this.array.indexOf(particle), undefined, override);
     }
 
-    public update(delta: IDelta): void {
+    update(delta: IDelta): void {
         const container = this.container;
         const particlesToDelete = [];
 
@@ -189,7 +190,7 @@ export class Particles {
         delete container.canvas.resizeFactor;
     }
 
-    public draw(delta: IDelta): void {
+    draw(delta: IDelta): void {
         const container = this.container;
 
         /* clear canvas */
@@ -228,12 +229,12 @@ export class Particles {
     /**
      * Removes all particles from the array
      */
-    public clear(): void {
+    clear(): void {
         this.array = [];
     }
 
     /* ---------- tsParticles functions - modes events ------------ */
-    public push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticles>): void {
+    push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticles>): void {
         const container = this.container;
         const options = container.actualOptions;
         const limit = options.particles.number.limit * container.density;
@@ -255,27 +256,64 @@ export class Particles {
         this.pushing = false;
     }
 
-    public addParticle(position?: ICoordinates, overrideOptions?: RecursivePartial<IParticles>): Particle | undefined {
-        try {
-            const particle = new Particle(this.nextId, this.container, position, overrideOptions);
-
-            this.array.push(particle);
-
-            this.nextId++;
-
-            return particle;
-        } catch {
-            console.warn("error adding particle");
-
-            return;
-        }
+    addParticle(position?: ICoordinates, overrideOptions?: RecursivePartial<IParticles>): Particle | undefined {
+        return this.pushParticle(position, overrideOptions);
     }
 
-    public removeQuantity(quantity: number): void {
+    addSplitParticle(parent: Particle): Particle | undefined {
+        const splitOptions = parent.options.destroy.split;
+        const options = new ParticlesOptions();
+
+        options.load(parent.options);
+
+        const factor = NumberUtils.getRangeValue(splitOptions.factor.value);
+
+        options.color.load({
+            value: {
+                hsl: parent.getFillColor(),
+            },
+        });
+
+        if (typeof options.size.value === "number") {
+            options.size.value /= factor;
+        } else {
+            options.size.value.min /= factor;
+            options.size.value.max /= factor;
+        }
+
+        options.load(splitOptions.particles);
+
+        const offset = NumberUtils.setRangeValue(-parent.size.value, parent.size.value);
+
+        const position = {
+            x: parent.position.x + NumberUtils.randomInRange(offset),
+            y: parent.position.y + NumberUtils.randomInRange(offset),
+        };
+
+        return this.pushParticle(position, options, (particle) => {
+            if (particle.size.value < 0.5) {
+                return false;
+            }
+
+            particle.velocity.length = NumberUtils.randomInRange(
+                NumberUtils.setRangeValue(parent.velocity.length, particle.velocity.length)
+            );
+            particle.splitCount = parent.splitCount + 1;
+            particle.unbreakable = true;
+
+            setTimeout(() => {
+                particle.unbreakable = false;
+            }, 500);
+
+            return true;
+        });
+    }
+
+    removeQuantity(quantity: number): void {
         this.removeAt(0, quantity);
     }
 
-    public getLinkFrequency(p1: IParticle, p2: IParticle): number {
+    getLinkFrequency(p1: IParticle, p2: IParticle): number {
         const key = `${Math.min(p1.id, p2.id)}_${Math.max(p1.id, p2.id)}`;
 
         let res = this.linksFreq.get(key);
@@ -289,7 +327,7 @@ export class Particles {
         return res;
     }
 
-    public getTriangleFrequency(p1: IParticle, p2: IParticle, p3: IParticle): number {
+    getTriangleFrequency(p1: IParticle, p2: IParticle, p3: IParticle): number {
         let [id1, id2, id3] = [p1.id, p2.id, p3.id];
 
         if (id1 > id2) {
@@ -317,7 +355,7 @@ export class Particles {
         return res;
     }
 
-    public setDensity(): void {
+    setDensity(): void {
         const options = this.container.actualOptions;
 
         this.applyDensity(options.particles);
@@ -355,5 +393,35 @@ export class Particles {
         const pxRatio = container.retina.pixelRatio;
 
         return (canvas.width * canvas.height) / (densityOptions.factor * pxRatio * pxRatio * densityOptions.area);
+    }
+
+    private pushParticle(
+        position?: ICoordinates,
+        overrideOptions?: RecursivePartial<IParticles>,
+        initializer?: (particle: Particle) => boolean
+    ): Particle | undefined {
+        try {
+            const particle = new Particle(this.nextId, this.container, position, overrideOptions);
+
+            let canAdd = true;
+
+            if (initializer) {
+                canAdd = initializer(particle);
+            }
+
+            if (!canAdd) {
+                return;
+            }
+
+            this.array.push(particle);
+
+            this.nextId++;
+
+            return particle;
+        } catch (e) {
+            console.warn(`error adding particle: ${e}`);
+
+            return;
+        }
     }
 }

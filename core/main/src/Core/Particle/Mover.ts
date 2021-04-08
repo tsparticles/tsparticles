@@ -10,7 +10,7 @@ import type { IDelta } from "../Interfaces/IDelta";
 export class Mover {
     constructor(private readonly container: Container, private readonly particle: Particle) {}
 
-    public move(delta: IDelta): void {
+    move(delta: IDelta): void {
         const particle = this.particle;
 
         particle.bubble.inRange = false;

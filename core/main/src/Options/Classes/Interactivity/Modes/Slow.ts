@@ -20,15 +20,15 @@ export class Slow implements ISlow, IOptionLoader<ISlow> {
         // deprecated
     }
 
-    public factor;
-    public radius;
+    factor;
+    radius;
 
     constructor() {
         this.factor = 3;
         this.radius = 200;
     }
 
-    public load(data?: RecursivePartial<ISlow>): void {
+    load(data?: RecursivePartial<ISlow>): void {
         if (data === undefined) {
             return;
         }

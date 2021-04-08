@@ -1,6 +1,6 @@
 {
   "name": "jquery-particles",
-  "version": "1.25.0",
+  "version": "1.26.0",
   "description": "Official tsParticles jQuery Plugin - Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, Preact, Inferno.",
   "main": "dist/jquery.particles.min.js",
   "scripts": {
@@ -71,25 +71,25 @@
     "url": "https://github.com/sponsors/matteobruni"
   },
   "dependencies": {
-    "jquery": "^3.5.1",
-    "tsparticles": "^1.25.0"
+    "jquery": ">=1",
+    "tsparticles": "^1.26.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.3",
-    "@babel/preset-env": "^7.13.5",
-    "@types/jquery": "^3.5.3",
-    "@types/node": "^14.11.10",
-    "@types/webpack-env": "^1.15.3",
-    "@typescript-eslint/eslint-plugin": "^4.5.0",
-    "@typescript-eslint/parser": "^4.5.0",
+    "@babel/core": "^7.13.14",
+    "@babel/preset-env": "^7.13.12",
+    "@types/jquery": "^3.5.5",
+    "@types/node": "^14.14.37",
+    "@types/webpack-env": "^1.16.0",
+    "@typescript-eslint/eslint-plugin": "^4.21.0",
+    "@typescript-eslint/parser": "^4.21.0",
     "babel-preset-env": "^1.7.0",
-    "eslint": "^7.11.0",
-    "eslint-config-prettier": "^6.13.0",
-    "prettier": "^2.1.2",
-    "rollup": "^2.32.0",
+    "eslint": "^7.23.0",
+    "eslint-config-prettier": "^8.1.0",
+    "prettier": "^2.2.1",
+    "rollup": "^2.44.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-sourcemaps": "^0.6.3",
     "typescript": "^4.2.3",
-    "uglify-js": "^3.11.3"
+    "uglify-js": "^3.13.3"
   }
 }

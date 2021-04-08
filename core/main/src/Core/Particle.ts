@@ -8,10 +8,11 @@ import type { IShapeValues } from "../Options/Interfaces/Particles/Shape/IShapeV
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
 import type { IParticle } from "./Interfaces/IParticle";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
-import { Particles } from "../Options/Classes/Particles/Particles";
+import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import {
     AnimationStatus,
+    DestroyMode,
     MoveDirection,
     MoveDirectionAlt,
     OutMode,
@@ -39,56 +40,58 @@ import { Vector } from "./Particle/Vector";
  * @category Core
  */
 export class Particle implements IParticle {
-    public destroyed;
-    public lifeDelay;
-    public lifeDelayTime;
-    public lifeDuration;
-    public lifeTime;
-    public livesRemaining;
-    public misplaced;
-    public spawning;
-    public lastPathTime;
+    destroyed;
+    lastPathTime;
+    lifeDelay;
+    lifeDelayTime;
+    lifeDuration;
+    lifeTime;
+    livesRemaining;
+    misplaced;
+    spawning;
+    splitCount;
+    unbreakable;
 
-    public readonly pathDelay;
-    public readonly updater;
-    public readonly infecter;
-    public readonly mover;
-    public readonly sides;
-    public readonly strokeWidth;
-    public readonly options;
-    public readonly loops: IParticleLoops;
+    readonly pathDelay;
+    readonly updater;
+    readonly infecter;
+    readonly mover;
+    readonly sides;
+    readonly strokeWidth;
+    readonly options;
+    readonly loops: IParticleLoops;
 
-    public links: ILink[];
-    public randomIndexData?: number;
-    public linksDistance?: number;
-    public linksWidth?: number;
-    public maxDistance?: number;
-    public moveDrift?: number;
-    public moveSpeed?: number;
-    public sizeAnimationSpeed?: number;
+    links: ILink[];
+    randomIndexData?: number;
+    linksDistance?: number;
+    linksWidth?: number;
+    maxDistance?: number;
+    moveDrift?: number;
+    moveSpeed?: number;
+    sizeAnimationSpeed?: number;
 
-    public readonly close: boolean;
-    public readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
-    public readonly fill: boolean;
-    public readonly stroke: Stroke;
-    public readonly position: Vector;
-    public readonly offset: Vector;
-    public readonly shadowColor: IRgb | undefined;
-    public readonly color?: IParticleHslAnimation;
-    public readonly opacity: IParticleValueAnimation<number>;
-    public readonly rotate: IParticleValueAnimation<number>;
-    public readonly size: IParticleValueAnimation<number>;
-    public readonly strokeColor?: IParticleHslAnimation;
-    public readonly velocity: Vector;
-    public readonly shape: ShapeType | string;
-    public readonly image?: IParticleImage;
-    public readonly initialPosition: Vector;
-    public readonly initialVelocity: Vector;
-    public readonly shapeData?: IShapeValues;
-    public readonly bubble: IBubbleParticleData;
+    readonly close: boolean;
+    readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
+    readonly fill: boolean;
+    readonly stroke: Stroke;
+    readonly position: Vector;
+    readonly offset: Vector;
+    readonly shadowColor: IRgb | undefined;
+    readonly color?: IParticleHslAnimation;
+    readonly opacity: IParticleValueAnimation<number>;
+    readonly rotate: IParticleValueAnimation<number>;
+    readonly size: IParticleValueAnimation<number>;
+    readonly strokeColor?: IParticleHslAnimation;
+    readonly velocity: Vector;
+    readonly shape: ShapeType | string;
+    readonly image?: IParticleImage;
+    readonly initialPosition: Vector;
+    readonly initialVelocity: Vector;
+    readonly shapeData?: IShapeValues;
+    readonly bubble: IBubbleParticleData;
 
     constructor(
-        public readonly id: number,
+        readonly id: number,
         private readonly container: Container,
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticles>
@@ -98,6 +101,8 @@ export class Particle implements IParticle {
         this.close = true;
         this.lastPathTime = 0;
         this.destroyed = false;
+        this.unbreakable = false;
+        this.splitCount = 0;
         this.misplaced = false;
         this.loops = {
             opacity: 0,
@@ -106,7 +111,7 @@ export class Particle implements IParticle {
 
         const pxRatio = container.retina.pixelRatio;
         const options = container.actualOptions;
-        const particlesOptions = new Particles();
+        const particlesOptions = new ParticlesOptions();
 
         particlesOptions.load(options.particles);
 
@@ -421,55 +426,96 @@ export class Particle implements IParticle {
         this.updater = new Updater(container, this);
         this.infecter = new Infecter(container);
         this.mover = new Mover(container, this);
+
+        if (drawer && drawer.particleInit) {
+            drawer.particleInit(container, this);
+        }
     }
 
-    public move(delta: IDelta): void {
+    move(delta: IDelta): void {
         /* move the particle */
         this.mover.move(delta);
     }
 
-    public update(delta: IDelta): void {
+    update(delta: IDelta): void {
         this.updater.update(delta);
     }
 
-    public draw(delta: IDelta): void {
+    draw(delta: IDelta): void {
         this.container.canvas.drawParticle(this, delta);
     }
 
-    public getPosition(): ICoordinates {
+    getPosition(): ICoordinates {
         return this.position.add(this.offset);
     }
 
-    public getRadius(): number {
+    getRadius(): number {
         return this.bubble.radius || this.size.value;
     }
 
-    public getMass(): number {
+    getMass(): number {
         const radius = this.getRadius();
 
         return (radius ** 2 * Math.PI) / 2;
     }
 
-    public getFillColor(): IHsl | undefined {
+    getFillColor(): IHsl | undefined {
         return this.bubble.color ?? ColorUtils.getHslFromAnimation(this.color);
     }
 
-    public getStrokeColor(): IHsl | undefined {
+    getStrokeColor(): IHsl | undefined {
         return this.bubble.color ?? ColorUtils.getHslFromAnimation(this.strokeColor) ?? this.getFillColor();
     }
 
-    public destroy(): void {
+    destroy(override?: boolean): void {
         this.destroyed = true;
         this.bubble.inRange = false;
         this.links = [];
+
+        if (this.unbreakable) {
+            return;
+        }
+
+        this.destroyed = true;
+        this.bubble.inRange = false;
+
+        for (const [, plugin] of this.container.plugins) {
+            if (plugin.particleDestroyed) {
+                plugin.particleDestroyed(this, override);
+            }
+        }
+
+        if (override) {
+            return;
+        }
+
+        const destroyOptions = this.options.destroy;
+
+        if (destroyOptions.mode === DestroyMode.split) {
+            this.split();
+        }
     }
 
     /**
      * This method is used when the particle has lost a life and needs some value resets
      */
-    public reset(): void {
+    reset(): void {
         this.loops.opacity = 0;
         this.loops.size = 0;
+    }
+
+    private split(): void {
+        const splitOptions = this.options.destroy.split;
+
+        if (splitOptions.count >= 0 && this.splitCount++ > splitOptions.count) {
+            return;
+        }
+
+        const rate = NumberUtils.getRangeValue(splitOptions.rate.value);
+
+        for (let i = 0; i < rate; i++) {
+            this.container.particles.addSplitParticle(this);
+        }
     }
 
     private setColorAnimation(colorAnimation: IColorAnimation, colorValue: IParticleValueAnimation<number>): void {

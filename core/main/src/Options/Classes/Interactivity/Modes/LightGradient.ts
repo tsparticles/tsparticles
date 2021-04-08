@@ -4,8 +4,8 @@ import { OptionsColor } from "../../OptionsColor";
 import type { RecursivePartial } from "../../../../Types";
 
 export class LightGradient implements ILightGradient, IOptionLoader<ILightGradient> {
-    public start;
-    public stop;
+    start;
+    stop;
 
     constructor() {
         this.start = new OptionsColor();
@@ -15,7 +15,7 @@ export class LightGradient implements ILightGradient, IOptionLoader<ILightGradie
         this.stop.value = "#000000";
     }
 
-    public load(data?: RecursivePartial<ILightGradient>): void {
+    load(data?: RecursivePartial<ILightGradient>): void {
         if (data === undefined) {
             return;
         }

@@ -12,7 +12,7 @@ export class NumberUtils {
      * @param min the minimum value
      * @param max the maximum value
      */
-    public static clamp(num: number, min: number, max: number): number {
+    static clamp(num: number, min: number, max: number): number {
         return Math.min(Math.max(num, min), max);
     }
 
@@ -23,11 +23,11 @@ export class NumberUtils {
      * @param weight1
      * @param weight2
      */
-    public static mix(comp1: number, comp2: number, weight1: number, weight2: number): number {
+    static mix(comp1: number, comp2: number, weight1: number, weight2: number): number {
         return Math.floor((comp1 * weight1 + comp2 * weight2) / (weight1 + weight2));
     }
 
-    public static randomInRange(r: RangeValue): number {
+    static randomInRange(r: RangeValue): number {
         const max = NumberUtils.getRangeMax(r);
         let min = NumberUtils.getRangeMin(r);
 
@@ -38,19 +38,19 @@ export class NumberUtils {
         return Math.random() * (max - min) + min;
     }
 
-    public static getRangeValue(value: RangeValue): number {
+    static getRangeValue(value: RangeValue): number {
         return typeof value === "number" ? value : NumberUtils.randomInRange(value);
     }
 
-    public static getRangeMin(value: RangeValue): number {
+    static getRangeMin(value: RangeValue): number {
         return typeof value === "number" ? value : value.min;
     }
 
-    public static getRangeMax(value: RangeValue): number {
+    static getRangeMax(value: RangeValue): number {
         return typeof value === "number" ? value : value.max;
     }
 
-    public static setRangeValue(source: RangeValue, value?: number): RangeValue {
+    static setRangeValue(source: RangeValue, value?: number): RangeValue {
         if (source === value || (value === undefined && typeof source === "number")) {
             return source;
         }
@@ -66,7 +66,7 @@ export class NumberUtils {
             : NumberUtils.setRangeValue(min, max);
     }
 
-    public static getValue(options: IValueWithRandom): number {
+    static getValue(options: IValueWithRandom): number {
         const random = options.random;
         const { enable, minimumValue } = typeof random === "boolean" ? { enable: random, minimumValue: 0 } : random;
 
@@ -80,10 +80,7 @@ export class NumberUtils {
      * @param pointA the first coordinate
      * @param pointB the second coordinate
      */
-    public static getDistances(
-        pointA: ICoordinates,
-        pointB: ICoordinates
-    ): { dx: number; dy: number; distance: number } {
+    static getDistances(pointA: ICoordinates, pointB: ICoordinates): { dx: number; dy: number; distance: number } {
         const dx = pointA.x - pointB.x;
         const dy = pointA.y - pointB.y;
         return { dx: dx, dy: dy, distance: Math.sqrt(dx * dx + dy * dy) };
@@ -94,7 +91,7 @@ export class NumberUtils {
      * @param pointA the first coordinate
      * @param pointB the second coordinate
      */
-    public static getDistance(pointA: ICoordinates, pointB: ICoordinates): number {
+    static getDistance(pointA: ICoordinates, pointB: ICoordinates): number {
         return NumberUtils.getDistances(pointA, pointB).distance;
     }
 
@@ -102,9 +99,7 @@ export class NumberUtils {
      * Get Particle base velocity
      * @param particle the particle to use for calculating the velocity
      */
-    public static getParticleBaseVelocity(
-        direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt
-    ): Vector {
+    static getParticleBaseVelocity(direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt): Vector {
         const baseVelocity = Vector.origin;
 
         baseVelocity.length = 1;
@@ -143,14 +138,14 @@ export class NumberUtils {
         return baseVelocity;
     }
 
-    public static rotateVelocity(velocity: IVelocity, angle: number): IVelocity {
+    static rotateVelocity(velocity: IVelocity, angle: number): IVelocity {
         return {
             horizontal: velocity.horizontal * Math.cos(angle) - velocity.vertical * Math.sin(angle),
             vertical: velocity.horizontal * Math.sin(angle) + velocity.vertical * Math.cos(angle),
         };
     }
 
-    public static collisionVelocity(v1: Vector, v2: Vector, m1: number, m2: number): Vector {
+    static collisionVelocity(v1: Vector, v2: Vector, m1: number, m2: number): Vector {
         return Vector.create((v1.x * (m1 - m2)) / (m1 + m2) + (v2.x * 2 * m2) / (m1 + m2), v1.y);
     }
 }

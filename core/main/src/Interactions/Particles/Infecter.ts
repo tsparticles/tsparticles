@@ -9,15 +9,15 @@ import type { IDelta } from "../../Core/Interfaces/IDelta";
 export class Infecter implements IParticlesInteractor {
     constructor(private readonly container: Container) {}
 
-    public isEnabled(): boolean {
+    isEnabled(): boolean {
         return this.container.actualOptions.infection.enable;
     }
 
-    public reset(): void {
+    reset(): void {
         // do nothing
     }
 
-    public interact(p1: Particle, delta: IDelta): void {
+    interact(p1: Particle, delta: IDelta): void {
         const infecter1 = p1.infecter;
 
         infecter1.updateInfection(delta.value);

@@ -49,7 +49,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
      *
      * @deprecated this property is obsolete, please use the new outMode
      */
-    public get out_mode(): OutMode | keyof typeof OutMode | OutModeAlt {
+    get out_mode(): OutMode | keyof typeof OutMode | OutModeAlt {
         return this.outMode;
     }
 
@@ -58,7 +58,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
      * @deprecated this property is obsolete, please use the new outMode
      * @param value
      */
-    public set out_mode(value: OutMode | keyof typeof OutMode | OutModeAlt) {
+    set out_mode(value: OutMode | keyof typeof OutMode | OutModeAlt) {
         this.outMode = value;
     }
 
@@ -66,7 +66,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
      *
      * @deprecated this property is obsolete, please use the new outMode
      */
-    public get outMode(): OutMode | keyof typeof OutMode | OutModeAlt {
+    get outMode(): OutMode | keyof typeof OutMode | OutModeAlt {
         return this.outModes.default;
     }
 
@@ -75,41 +75,41 @@ export class Move implements IMove, IOptionLoader<IMove> {
      * @deprecated this property is obsolete, please use the new outMode
      * @param value
      */
-    public set outMode(value: OutMode | keyof typeof OutMode | OutModeAlt) {
+    set outMode(value: OutMode | keyof typeof OutMode | OutModeAlt) {
         this.outModes.default = value;
     }
 
     /**
      * @deprecated use the new [[path]] property instead
      */
-    public get noise(): Path {
+    get noise(): Path {
         return this.path;
     }
 
     /**
      * @deprecated use the new [[path]] property instead
      */
-    public set noise(value: Path) {
+    set noise(value: Path) {
         this.path = value;
     }
 
-    public angle;
-    public attract;
-    public direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
-    public distance;
-    public decay;
-    public drift: RangeValue;
-    public enable;
-    public gravity;
-    public path;
-    public outModes: OutModes;
-    public random;
-    public size;
-    public speed: RangeValue;
-    public straight;
-    public trail;
-    public vibrate;
-    public warp;
+    angle;
+    attract;
+    direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
+    distance;
+    decay;
+    drift: RangeValue;
+    enable;
+    gravity;
+    path;
+    outModes: OutModes;
+    random;
+    size;
+    speed: RangeValue;
+    straight;
+    trail;
+    vibrate;
+    warp;
 
     constructor() {
         this.angle = new MoveAngle();
@@ -131,7 +131,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.warp = false;
     }
 
-    public load(data?: RecursivePartial<IMove>): void {
+    load(data?: RecursivePartial<IMove>): void {
         if (data === undefined) {
             return;
         }

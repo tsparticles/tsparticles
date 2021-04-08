@@ -8,8 +8,8 @@ import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader
  * @category Polygon Mask Plugin
  */
 export class LocalSvg implements ILocalSvg, IOptionLoader<ILocalSvg> {
-    public path: SingleOrMultiple<string>;
-    public size: IDimension;
+    path: SingleOrMultiple<string>;
+    size: IDimension;
 
     constructor() {
         this.path = [];
@@ -19,7 +19,7 @@ export class LocalSvg implements ILocalSvg, IOptionLoader<ILocalSvg> {
         };
     }
 
-    public load(data?: RecursivePartial<ILocalSvg>): void {
+    load(data?: RecursivePartial<ILocalSvg>): void {
         if (data !== undefined) {
             if (data.path !== undefined) {
                 this.path = data.path;

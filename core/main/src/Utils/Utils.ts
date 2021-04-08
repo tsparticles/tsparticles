@@ -110,11 +110,11 @@ function checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>
  * @category Utils
  */
 export class Utils {
-    public static isSsr(): boolean {
+    static isSsr(): boolean {
         return typeof window === "undefined" || !window;
     }
 
-    public static get animate(): (callback: FrameRequestCallback) => number {
+    static get animate(): (callback: FrameRequestCallback) => number {
         return Utils.isSsr()
             ? (callback: FrameRequestCallback): number => setTimeout(callback)
             : (callback: FrameRequestCallback): number =>
@@ -128,7 +128,7 @@ export class Utils {
                   )(callback);
     }
 
-    public static get cancelAnimation(): (handle: number) => void {
+    static get cancelAnimation(): (handle: number) => void {
         return Utils.isSsr()
             ? (handle: number): void => clearTimeout(handle)
             : (handle: number): void =>
@@ -147,11 +147,11 @@ export class Utils {
      * @param value the value to check
      * @param array the data array or single value
      */
-    public static isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
+    static isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
         return value === array || (array instanceof Array && array.indexOf(value) > -1);
     }
 
-    public static async loadFont(character: ICharacterShape): Promise<void> {
+    static async loadFont(character: ICharacterShape): Promise<void> {
         try {
             await document.fonts.load(`${character.weight} 36px '${character.font}'`);
         } catch {
@@ -159,17 +159,17 @@ export class Utils {
         }
     }
 
-    public static arrayRandomIndex<T>(array: T[]): number {
+    static arrayRandomIndex<T>(array: T[]): number {
         return Math.floor(Math.random() * array.length);
     }
 
-    public static itemFromArray<T>(array: T[], index?: number, useIndex = true): T {
+    static itemFromArray<T>(array: T[], index?: number, useIndex = true): T {
         const fixedIndex = index !== undefined && useIndex ? index % array.length : Utils.arrayRandomIndex(array);
 
         return array[fixedIndex];
     }
 
-    public static isPointInside(
+    static isPointInside(
         point: ICoordinates,
         size: IDimension,
         radius?: number,
@@ -178,7 +178,7 @@ export class Utils {
         return Utils.areBoundsInside(Utils.calculateBounds(point, radius ?? 0), size, direction);
     }
 
-    public static areBoundsInside(bounds: IBounds, size: IDimension, direction?: OutModeDirection): boolean {
+    static areBoundsInside(bounds: IBounds, size: IDimension, direction?: OutModeDirection): boolean {
         let inside = true;
 
         if (!direction || direction === OutModeDirection.bottom) {
@@ -200,7 +200,7 @@ export class Utils {
         return inside;
     }
 
-    public static calculateBounds(point: ICoordinates, radius: number): IBounds {
+    static calculateBounds(point: ICoordinates, radius: number): IBounds {
         return {
             bottom: point.y + radius,
             left: point.x - radius,
@@ -209,7 +209,7 @@ export class Utils {
         };
     }
 
-    public static loadImage(source: string): Promise<IImage | undefined> {
+    static loadImage(source: string): Promise<IImage | undefined> {
         return new Promise(
             (
                 resolve: (value?: IImage | PromiseLike<IImage> | undefined) => void,
@@ -242,7 +242,7 @@ export class Utils {
         );
     }
 
-    public static async downloadSvgImage(source: string): Promise<IImage | undefined> {
+    static async downloadSvgImage(source: string): Promise<IImage | undefined> {
         if (!source) {
             throw new Error("Error tsParticles - No image.src");
         }
@@ -267,7 +267,7 @@ export class Utils {
         return image;
     }
 
-    public static deepExtend(destination: unknown, ...sources: unknown[]): unknown {
+    static deepExtend(destination: unknown, ...sources: unknown[]): unknown {
         for (const source of sources) {
             if (source === undefined || source === null) {
                 continue;
@@ -309,13 +309,13 @@ export class Utils {
         return destination;
     }
 
-    public static isDivModeEnabled(mode: DivMode, divs: SingleOrMultiple<DivEvent>): boolean {
+    static isDivModeEnabled(mode: DivMode, divs: SingleOrMultiple<DivEvent>): boolean {
         return divs instanceof Array
             ? !!divs.find((t) => t.enable && Utils.isInArray(mode, t.mode))
             : Utils.isInArray(mode, divs.mode);
     }
 
-    public static divModeExecute(
+    static divModeExecute(
         mode: DivMode,
         divs: SingleOrMultiple<DivEvent>,
         callback: (id: string, div: DivEvent) => void
@@ -339,7 +339,7 @@ export class Utils {
         }
     }
 
-    public static singleDivModeExecute(div: DivEvent, callback: (selector: string, div: DivEvent) => void): void {
+    static singleDivModeExecute(div: DivEvent, callback: (selector: string, div: DivEvent) => void): void {
         const selectors = div.selectors;
 
         if (selectors instanceof Array) {
@@ -351,7 +351,7 @@ export class Utils {
         }
     }
 
-    public static divMode<T extends IModeDiv>(divs?: SingleOrMultiple<T>, element?: HTMLElement): T | undefined {
+    static divMode<T extends IModeDiv>(divs?: SingleOrMultiple<T>, element?: HTMLElement): T | undefined {
         if (!element || !divs) {
             return;
         }
@@ -363,7 +363,7 @@ export class Utils {
         }
     }
 
-    public static circleBounceDataFromParticle(p: IParticle): ICircleBouncer {
+    static circleBounceDataFromParticle(p: IParticle): ICircleBouncer {
         return {
             position: p.getPosition(),
             radius: p.getRadius(),
@@ -376,7 +376,7 @@ export class Utils {
         };
     }
 
-    public static circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
+    static circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
         const xVelocityDiff = p1.velocity.x;
         const yVelocityDiff = p1.velocity.y;
 
@@ -416,7 +416,7 @@ export class Utils {
         }
     }
 
-    public static rectBounce(particle: IParticle, divBounds: IBounds): void {
+    static rectBounce(particle: IParticle, divBounds: IBounds): void {
         const pPos = particle.getPosition();
         const size = particle.getRadius();
         const bounds = Utils.calculateBounds(pPos, size);

@@ -7,7 +7,7 @@ import { Particle } from "../../Core/Particle";
 export class Lighter implements IParticlesInteractor {
     constructor(private readonly container: Container) {}
 
-    public interact(particle: Particle): void {
+    interact(particle: Particle): void {
         const container = this.container;
         const options = container.actualOptions;
 
@@ -20,7 +20,7 @@ export class Lighter implements IParticlesInteractor {
         }
     }
 
-    public isEnabled(): boolean {
+    isEnabled(): boolean {
         const container = this.container;
         const mouse = container.interactivity.mouse;
         const events = container.actualOptions.interactivity.events;
@@ -34,7 +34,7 @@ export class Lighter implements IParticlesInteractor {
         return Utils.isInArray(HoverMode.light, hoverMode);
     }
 
-    public reset(): void {
+    reset(): void {
         // do nothing
     }
 }

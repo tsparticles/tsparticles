@@ -7,14 +7,14 @@ import { DivsEventsOptionsEditor } from "./DivsEventsOptionsEditor";
 import { EditorBase } from "../../../../EditorBase";
 
 export class EventsOptionsEditor extends EditorBase {
-    public group!: EditorGroup;
+    group!: EditorGroup;
     private options!: IEvents;
 
     constructor(particles: Container) {
         super(particles);
     }
 
-    public addToGroup(parent: EditorGroup): void {
+    addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("events", "Events");
         this.options = this.group.data as IEvents;
 

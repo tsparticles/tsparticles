@@ -6,13 +6,13 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class ConnectLinks implements IConnectLinks, IOptionLoader<IConnectLinks> {
-    public opacity;
+    opacity;
 
     constructor() {
         this.opacity = 0.5;
     }
 
-    public load(data?: RecursivePartial<IConnectLinks>): void {
+    load(data?: RecursivePartial<IConnectLinks>): void {
         if (!(data !== undefined && data.opacity !== undefined)) {
             return;
         }

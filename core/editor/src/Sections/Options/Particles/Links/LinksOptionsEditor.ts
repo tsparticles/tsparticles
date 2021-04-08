@@ -5,14 +5,14 @@ import { EditorBase } from "../../../../EditorBase";
 import { ILinksShadow } from "tsparticles/dist/Options/Interfaces/Particles/Links/ILinksShadow";
 
 export class LinksOptionsEditor extends EditorBase {
-    public group!: EditorGroup;
+    group!: EditorGroup;
     private options!: ILinks;
 
     constructor(particles: Container) {
         super(particles);
     }
 
-    public addToGroup(parent: EditorGroup): void {
+    addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("links", "Links");
         this.options = this.group.data as ILinks;
 

@@ -28,15 +28,15 @@ function destroy(p1: Particle, p2: Particle): void {
 export class Collider implements IParticlesInteractor {
     constructor(private readonly container: Container) {}
 
-    public isEnabled(particle: Particle): boolean {
+    isEnabled(particle: Particle): boolean {
         return particle.options.collisions.enable;
     }
 
-    public reset(): void {
+    reset(): void {
         // do nothing
     }
 
-    public interact(p1: Particle): void {
+    interact(p1: Particle): void {
         const container = this.container;
         const pos1 = p1.getPosition();
 

@@ -5,15 +5,15 @@ import type { IOptions } from "../Interfaces/IOptions";
 import { Utils } from "../../Utils";
 
 export class Responsive implements IResponsive, IOptionLoader<IResponsive> {
-    public maxWidth: number;
-    public options: RecursivePartial<IOptions>;
+    maxWidth: number;
+    options: RecursivePartial<IOptions>;
 
     constructor() {
         this.maxWidth = Infinity;
         this.options = {};
     }
 
-    public load(data?: RecursivePartial<IResponsive>): void {
+    load(data?: RecursivePartial<IResponsive>): void {
         if (!data) {
             return;
         }

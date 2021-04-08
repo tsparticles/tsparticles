@@ -4,8 +4,8 @@ import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader
 import { ValueWithRandom } from "../../../../Options/Classes/ValueWithRandom";
 
 export class AbsorberSize extends ValueWithRandom implements IAbsorberSize, IOptionLoader<IAbsorberSize> {
-    public density;
-    public limit?: number;
+    density;
+    limit?: number;
 
     constructor() {
         super();
@@ -14,7 +14,7 @@ export class AbsorberSize extends ValueWithRandom implements IAbsorberSize, IOpt
         this.value = 50;
     }
 
-    public load(data?: RecursivePartial<IAbsorberSize>): void {
+    load(data?: RecursivePartial<IAbsorberSize>): void {
         if (!data) {
             return;
         }
