@@ -1,0 +1,62 @@
+# --------------------
+# OSX Files
+# --------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+# --------------------
+# Windows Files
+# --------------------
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
+
+# --------------------
+# Sublime Text Files
+# --------------------
+*.sublime-project
+*.sublime-workspace
+
+# --------------------
+# IntelliJ Files
+# --------------------
+*.iml
+*.ipr
+*.iws
+.idea/
+out/
+
+# --------------------
+# Eclipse Files
+# --------------------
+.project
+.metadata
+*.bak
+.classpath
+.settings/
+
+# --------------------
+# App Files
+# --------------------
+node_modules
+npm-debug.log
+.nyc_output
+coverage
+generated
+/dist
+
+# these files are generated anyway
+.nycrc
+!.gitmodules
+!.travis.yml

@@ -1,0 +1,16 @@
+<riot-particles>
+    <script>
+        import {tsParticles} from "tsparticles";
+
+        export default {
+            onMounted(props) {
+                if (props.url) {
+                    tsParticles.loadJSON(props.id, props.url);
+                } else if (props.options) {
+                    tsParticles.load(props.id, props.options);
+                }
+            }
+        }
+    </script>
+    <div id="{props.id}"></div>
+</riot-particles>

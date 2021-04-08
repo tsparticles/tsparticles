@@ -1,0 +1,29 @@
+{
+  "name": "riot-particles",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run build && nyc --require esm --require jsdom-global/register mocha test.js",
+    "cov": "nyc report --reporter=text-lcov | coveralls",
+    "cov-html": "nyc report --reporter=html",
+    "build": "riot -c riot.config riot-particles.riot",
+    "prepublishOnly": "npm test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tsparticles": "^1.26.0",
+    "riot": ">=5"
+  },
+  "devDependencies": {
+    "@riotjs/compiler": "^5.0.0",
+    "chai": "^4.2.0",
+    "esm": "^3.2.25",
+    "jsdom": "^16.4.0",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^8.2.1",
+    "nyc": "^15.1.0",
+    "@riotjs/cli": "^5.0.0"
+  }
+}
