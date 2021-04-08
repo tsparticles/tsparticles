@@ -48,7 +48,7 @@ class App extends Component{
 | canvasClassName | string | the class name of the canvas. |
 | particlesRef | object | The instance of the [particles container](https://github.com/matteobruni/tsparticles/wiki/Particles-Container-class) |
 
-Find your parameters configuration [here](https://particles.matteobruni.it).
+Find your parameters configuration [here](https://particles.js.org).
 
 ---
 
