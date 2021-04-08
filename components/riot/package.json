@@ -8,7 +8,8 @@
     "cov": "nyc report --reporter=text-lcov | coveralls",
     "cov-html": "nyc report --reporter=html",
     "build": "riot -c riot.config riot-particles.riot",
-    "prepublishOnly": "npm test"
+    "prepublishOnly": "npm test",
+    "prepack": "yarn build"
   },
   "author": "",
   "license": "ISC",
