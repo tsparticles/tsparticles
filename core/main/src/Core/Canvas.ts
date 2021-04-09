@@ -171,7 +171,7 @@ export class Canvas {
 
         const container = this.container;
 
-        container.canvas.resize();
+        this.resize();
         container.actualOptions.setResponsive(this.size.width, container.retina.pixelRatio, container.options);
 
         /* density particles enabled */
@@ -206,10 +206,12 @@ export class Canvas {
         this.element.width = size.width;
         this.element.height = size.height;
 
-        this.resizeFactor = {
-            width: size.width / oldSize.width,
-            height: size.height / oldSize.height,
-        };
+        if (this.container.started) {
+            this.resizeFactor = {
+                width: size.width / oldSize.width,
+                height: size.height / oldSize.height,
+            };
+        }
     }
 
     drawConnectLine(p1: IParticle, p2: IParticle): void {
