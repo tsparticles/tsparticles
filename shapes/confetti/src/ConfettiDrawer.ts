@@ -1,8 +1,8 @@
-import type { IShapeDrawer } from "tsparticles/dist/Core/Interfaces/IShapeDrawer";
-import type { IParticle, SingleOrMultiple } from "tsparticles";
-import { Container, Utils, Vector } from "tsparticles";
-import type { IShapeValues } from "tsparticles/dist/Options/Interfaces/Particles/Shape/IShapeValues";
-import type { IDelta } from "tsparticles/dist/Core/Interfaces/IDelta";
+import type { IShapeDrawer } from "tsparticles-engine/Core/Interfaces/IShapeDrawer";
+import type { IParticle, SingleOrMultiple } from "tsparticles-engine";
+import { Container, itemFromArray, Vector } from "tsparticles-engine";
+import type { IShapeValues } from "tsparticles-engine/Options/Interfaces/Particles/Shape/IShapeValues";
+import type { IDelta } from "tsparticles-engine/Core/Interfaces/IDelta";
 
 const enum ConfettiType {
     circle = "circle",
@@ -38,9 +38,9 @@ export class ConfettiDrawer implements IShapeDrawer {
         const shapeData = (confetti.shapeData ?? {}) as IConfettiData;
 
         if (shapeData.type === undefined) {
-            shapeData.type = Utils.itemFromArray(types);
+            shapeData.type = itemFromArray(types);
         } else if (shapeData.type instanceof Array) {
-            shapeData.type = Utils.itemFromArray(shapeData.type);
+            shapeData.type = itemFromArray(shapeData.type);
         }
 
         confetti.confettiType = shapeData.type;
