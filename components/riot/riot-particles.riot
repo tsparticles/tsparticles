@@ -22,8 +22,8 @@
 
                 if (props.id) {
                     const cb = (container) => {
-                        if (props.particlesLoadedEvent) {
-                            props.particlesLoadedEvent(container);
+                        if (props.particlesLoaded) {
+                            props.particlesLoaded(container);
                         }
 
                         oldId = props.id;
@@ -35,8 +35,8 @@
                         tsParticles.load(props.id, props.options).then(cb);
                     }
                 } else {
-                    if (props.particlesLoadedEvent) {
-                        props.particlesLoadedEvent(container);
+                    if (props.particlesLoaded) {
+                        props.particlesLoaded(container);
                     }
                 }
             }
