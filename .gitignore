@@ -379,3 +379,5 @@ components/react/umd/
 size-plugin.json
 size-plugin-ssr.json
 demo/main/views/index.html
+
+options.schema.json
