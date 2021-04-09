@@ -14,17 +14,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "tsparticles": "^1.26.0",
-    "riot": ">=5"
+    "riot": ">=5",
+    "tsparticles": "^1.26.1"
   },
   "devDependencies": {
+    "@riotjs/cli": "^5.0.0",
     "@riotjs/compiler": "^5.0.0",
     "chai": "^4.2.0",
     "esm": "^3.2.25",
     "jsdom": "^16.4.0",
     "jsdom-global": "^3.0.2",
     "mocha": "^8.2.1",
-    "nyc": "^15.1.0",
-    "@riotjs/cli": "^5.0.0"
+    "nyc": "^15.1.0"
   }
 }
