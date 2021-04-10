@@ -381,3 +381,6 @@ size-plugin-ssr.json
 demo/main/views/index.html
 
 options.schema.json
+
+website/js/404.min.js
+website/js/demo.min.js
