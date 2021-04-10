@@ -32,6 +32,8 @@
     "@riotjs/hot-reload": "^5.0.0",
     "riot": "^5.0.0",
     "riot-particles": "^1.0.0",
-    "tsparticles": "^1.26.1"
+    "tsparticles-engine": "^2.0.0-alpha.6",
+    "tsparticles-slim": "^2.0.0-alpha.6",
+    "tsparticles": "^2.0.0-alpha.6"
   }
 }

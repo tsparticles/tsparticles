@@ -1766,7 +1766,7 @@ rimraf@^3.0.0:
   dependencies:
     glob "^7.1.3"
 
-riot@^5.0.0:
+riot@>=5:
   version "5.3.3"
   resolved "https://registry.yarnpkg.com/riot/-/riot-5.3.3.tgz#9e9a07154e282292ce3bc0be49891d80fddde979"
   integrity sha512-f0yVZ3BjGGMl+JpSiyuIUfwWlIdBGMSmciFdbXKC4oCavUJkSmqFJIEMqxFcKDzvfNOEPtNFeTB45UJorHg6Kg==

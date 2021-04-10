@@ -16,10 +16,14 @@
                 enable: true
             }
         }
-    }}' particlesInit='{(main) => console.log(main)}' particlesLoaded='{(container) => console.log(container)}'/>
+    }}' particlesInit='{(main) => {
+        loadFull(main);
+        console.log(main);
+    }}' particlesLoaded='{(container) => console.log(container)}'/>
 
     <script>
         import RiotParticles from 'riot-particles';
+        import { loadFull } from 'tsparticles';
 
         export default {
             components: {

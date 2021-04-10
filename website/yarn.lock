@@ -655,32 +655,32 @@ tslib@^2.0.3:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.1.0.tgz#da60860f1c2ecaa5703ab7d39bc05b6bf988b97a"
   integrity sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==
 
-tsparticles-editor@^1.26.0:
-  version "1.26.0"
-  resolved "https://registry.yarnpkg.com/tsparticles-editor/-/tsparticles-editor-1.26.0.tgz#d94e7fd4458e5a7f627085e08a4b250f7f6d7066"
-  integrity sha512-MeTrepieZ1uh40Uu23iwD6R+Bs/y5pFOUlmdNe4mWGzs/mO8xfPE9kQnPSlqsNLHRhzP3Oh5p5ZEFTLAfxwUyg==
+tsparticles-editor@^1.26.1:
+  version "1.26.1"
+  resolved "https://registry.yarnpkg.com/tsparticles-editor/-/tsparticles-editor-1.26.1.tgz#39db9864b6b22ea965ca9c7871341cc86becc66d"
+  integrity sha512-+aJAMnZky7wvVK39HGdz7HCn+BZE4a6JVqIBhx4vQlI2T0FJZXWeBrrvQ/Q2sr70vYtdJhS8EfIR1v7UkwaiPA==
   dependencies:
     object-gui "^1.1.1"
-    tsparticles "^1.26.0"
+    tsparticles "^1.26.1"
 
-tsparticles-preset-basic@^1.11.0:
-  version "1.11.0"
-  resolved "https://registry.yarnpkg.com/tsparticles-preset-basic/-/tsparticles-preset-basic-1.11.0.tgz#33576884aa3b32634c7d6319e04ad73279d6c6f6"
-  integrity sha512-/mLJLRwGzm/yUrmlx6aBAb1LHZfgXIib/nSEol0mlFrYdy7SAIzQjmky+amYaNOJwgmGhaHyrrzJfcFYVK7/dg==
+tsparticles-preset-basic@^1.11.1:
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/tsparticles-preset-basic/-/tsparticles-preset-basic-1.11.1.tgz#5f34c315631dcc140e0261e9c173e255b291a34d"
+  integrity sha512-eobaPGzP5NLbNravIZI8Q57j/8OBoF6C2aCFgbho9jtM/pfK+m7yQf1ERiEpOzajtqf7hVDukgTH4CX0SCfuTA==
   dependencies:
-    tsparticles "^1.26.0"
+    tsparticles "^1.26.1"
 
-tsparticles-shape-confetti@^1.11.0:
-  version "1.11.0"
-  resolved "https://registry.yarnpkg.com/tsparticles-shape-confetti/-/tsparticles-shape-confetti-1.11.0.tgz#ce8320f1bf252a3871691f3c84bf54648b2787e5"
-  integrity sha512-Rx6tejzzE2hDMfFPKf0zV+IQn3NVMJTcdjKo5MJSP190Pkc7jy3ViifJOk7Z1WFBtafXnzkt8GMZycRg54JC0w==
+tsparticles-shape-confetti@^1.11.1:
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/tsparticles-shape-confetti/-/tsparticles-shape-confetti-1.11.1.tgz#0e1e53bcadd220c5b7c1b65f5714eb2f73f17b6f"
+  integrity sha512-/Iks8KoD4sNdu44klFDmSvFjadK/e88kZi6TyF/R4RDSQln3Uy/XvEi3t5V/74/LM184hkxRnHMkglDKfCST2Q==
   dependencies:
-    tsparticles "^1.26.0"
+    tsparticles "^1.26.1"
 
-tsparticles@^1.26.0:
-  version "1.26.0"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.26.0.tgz#12469eb8e26a17aad2aa01b6c796fec26415508c"
-  integrity sha512-W2VAz1n1ffF/JqWiC54+R8DrH8Ar+GKoAkAJPIKHRV5lQZVqF7qhkSmRyXenzkfJ6P847Dj7LZG4NjRYGr0Ipg==
+tsparticles@^1.26.1:
+  version "1.26.1"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.26.1.tgz#1e127677579d5f26760031cd48201cb4831e0b4b"
+  integrity sha512-x1SX+RO6BKmAZGnFTZKHrropbQTGeHogtBE+nFzO0iMFKFmErZHxxHjOcAoaqv41rVlQuFhsmF9bBGLNTOpv1g==
   optionalDependencies:
     pathseg "^1.2.0"
 

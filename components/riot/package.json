@@ -59,7 +59,7 @@
   "license": "MIT",
   "dependencies": {
     "riot": ">=5",
-    "tsparticles": "^1.26.1"
+		"tsparticles-engine": "^2.0.0-alpha.6"
   },
   "devDependencies": {
     "@riotjs/cli": "^5.0.0",
