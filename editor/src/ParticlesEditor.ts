@@ -19,7 +19,7 @@ export class ParticlesEditor extends Editor {
         this.addPresets();
     }
 
-    addPreset(text: string, file: string) {
+    addPreset(text: string, file: string): void {
         if (!this._presets) {
             return;
         }

@@ -104,6 +104,9 @@ export class MoveOptionsEditor extends EditorBase {
                 value: OutMode.none,
             },
             {
+                value: OutMode.split,
+            },
+            {
                 value: OutMode.out,
             },
         ];
