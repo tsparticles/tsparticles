@@ -14,7 +14,7 @@ import {
     getStyleFromRgb,
     gradient,
     hslToRgb,
-    paintBase,
+    paintBase
 } from "../Utils";
 import type { Particle } from "./Particle";
 import { OrbitType } from "../Enums/Types/OrbitType";
@@ -54,7 +54,7 @@ export class Canvas {
     constructor(private readonly container: Container) {
         this.size = {
             height: 0,
-            width: 0,
+            width: 0
         };
 
         this.context = null;
@@ -151,7 +151,7 @@ export class Canvas {
         container.actualOptions.setResponsive(this.size.width, container.retina.pixelRatio, container.options);
         container.particles.setDensity();
 
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             if (plugin.resize !== undefined) {
                 plugin.resize();
             }
@@ -168,7 +168,7 @@ export class Canvas {
         const size = container.canvas.size;
         const oldSize = {
             width: size.width,
-            height: size.height,
+            height: size.height
         };
 
         size.width = this.element.offsetWidth * pxRatio;
@@ -177,10 +177,12 @@ export class Canvas {
         this.element.width = size.width;
         this.element.height = size.height;
 
-        this.resizeFactor = {
-            width: size.width / oldSize.width,
-            height: size.height / oldSize.height,
-        };
+        if (this.container.started) {
+            this.resizeFactor = {
+                width: size.width / oldSize.width,
+                height: size.height / oldSize.height
+            };
+        }
     }
 
     drawConnectLine(p1: IParticle, p2: IParticle): void {
@@ -227,7 +229,7 @@ export class Canvas {
 
         const container = this.container;
 
-        let [fColor, sColor] = this.getPluginParticleColors(particle);
+        let [ fColor, sColor ] = this.getPluginParticleColors(particle);
 
         const pOptions = particle.options;
         const twinkle = pOptions.twinkle.particles;
@@ -394,7 +396,7 @@ export class Canvas {
                 r: coverRgb.r,
                 g: coverRgb.g,
                 b: coverRgb.b,
-                a: cover.opacity,
+                a: cover.opacity
             };
         }
     }
@@ -411,7 +413,7 @@ export class Canvas {
                 r: fillColor.r,
                 g: fillColor.g,
                 b: fillColor.b,
-                a: 1 / trail.length,
+                a: 1 / trail.length
             };
         }
     }
@@ -420,7 +422,7 @@ export class Canvas {
         let fColor: IRgb | undefined;
         let sColor: IRgb | undefined;
 
-        for (const [, plugin] of this.container.plugins) {
+        for (const [ , plugin ] of this.container.plugins) {
             if (!fColor && plugin.particleFillColor) {
                 fColor = colorToRgb(plugin.particleFillColor(particle));
             }
@@ -434,7 +436,7 @@ export class Canvas {
             }
         }
 
-        return [fColor, sColor];
+        return [ fColor, sColor ];
     }
 
     private initStyle(): void {
