@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-interaction-external-connect",
-  "version": "2.0.0-alpha.6",
+  "version": "2.0.0-alpha.7",
   "description": "tsParticles Connect external interaction",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -74,6 +74,6 @@
     "webpack-cli": "^4.6.0"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.0.0-alpha.6"
+    "tsparticles-engine": "^2.0.0-alpha.7"
   }
 }

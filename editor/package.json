@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-editor",
-  "version": "2.0.0-alpha.6",
+  "version": "2.0.0-alpha.7",
   "description": "tsParticles Configuration Editor",
   "keywords": [
     "tsparticles",
@@ -45,13 +45,13 @@
   },
   "dependencies": {
     "object-gui": "^1.1.1",
-    "tsparticles": "^2.0.0-alpha.6",
-    "tsparticles-engine": "^2.0.0-alpha.6",
-    "tsparticles-plugin-absorbers": "^2.0.0-alpha.6",
-    "tsparticles-plugin-emitters": "^2.0.0-alpha.6",
-    "tsparticles-plugin-infection": "^2.0.0-alpha.6",
-    "tsparticles-plugin-polygon-mask": "^2.0.0-alpha.6",
-    "tsparticles-slim": "^2.0.0-alpha.6"
+    "tsparticles": "^2.0.0-alpha.7",
+    "tsparticles-engine": "^2.0.0-alpha.7",
+    "tsparticles-plugin-absorbers": "^2.0.0-alpha.7",
+    "tsparticles-plugin-emitters": "^2.0.0-alpha.7",
+    "tsparticles-plugin-infection": "^2.0.0-alpha.7",
+    "tsparticles-plugin-polygon-mask": "^2.0.0-alpha.7",
+    "tsparticles-slim": "^2.0.0-alpha.7"
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",

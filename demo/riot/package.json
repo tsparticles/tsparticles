@@ -1,7 +1,7 @@
 {
   "name": "riot-particles-demo",
   "private": true,
-  "version": "2.0.0-alpha.6",
+  "version": "2.0.0-alpha.7",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -31,9 +31,9 @@
   "dependencies": {
     "@riotjs/hot-reload": "^5.0.0",
     "riot": "^5.0.0",
-    "riot-particles": "^2.0.0-alpha.6",
-    "tsparticles-engine": "^2.0.0-alpha.6",
-    "tsparticles-slim": "^2.0.0-alpha.6",
-    "tsparticles": "^2.0.0-alpha.6"
+    "riot-particles": "^2.0.0-alpha.7",
+    "tsparticles": "^2.0.0-alpha.7",
+    "tsparticles-engine": "^2.0.0-alpha.7",
+    "tsparticles-slim": "^2.0.0-alpha.7"
   }
 }
