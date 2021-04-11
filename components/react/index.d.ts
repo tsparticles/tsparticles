@@ -4,17 +4,34 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 /// <reference types="react" />
-import { ComponentClass } from "react";
-import type { IParticlesProps, IParticlesState, ParticlesProps } from "./src/";
-import type { ISourceOptions } from "tsparticles";
+import type { Container, ISourceOptions, Main } from "tsparticles";
+
+export interface IParticlesState {
+    library?: Container;
+}
+
+export interface IParticlesProps {
+    id?: string;
+    width?: string;
+    height?: string;
+    options?: ISourceOptions;
+    params?: ISourceOptions;
+    url?: string;
+    style?: React.CSSProperties;
+    className?: string;
+    canvasClassName?: string;
+    container?: React.RefObject<Container>;
+    init?: (tsParticles: Main) => void;
+    loaded?: (container: Container) => void;
+}
+
 
 export type IParticlesParams = IParticlesProps;
+export type ParticlesProps = IParticlesProps;
 
-export * from "tsparticles/dist/Enums";
+export * from "tsparticles";
 
-export { ISourceOptions, IParticlesProps, ParticlesProps };
-
-type Particles = ComponentClass<IParticlesProps, IParticlesState>;
+type Particles = React.ComponentClass<IParticlesProps, IParticlesState>;
 
 declare const Particles: Particles;
 

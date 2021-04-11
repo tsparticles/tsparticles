@@ -3,14 +3,33 @@
 // Definitions by: Matteo Bruni <https://github.com/matteobruni>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
-import type { IParticlesProps, IParticlesState, ParticlesProps } from "./src/";
-import type { ISourceOptions } from "tsparticles";
 import type { ComponentClass } from "react";
+import { CSSProperties, RefObject } from "react";
+import type { Container, ISourceOptions, Main } from "tsparticles";
 
-export * from "tsparticles/dist/Enums";
+export interface IParticlesProps {
+    id?: string;
+    width?: string;
+    height?: string;
+    options?: ISourceOptions;
+    url?: string;
+    params?: ISourceOptions;
+    style?: CSSProperties;
+    className?: string;
+    canvasClassName?: string;
+    container?: RefObject<Container>;
+    init?: (tsParticles: Main) => void;
+    loaded?: (container: Container) => void;
+}
+
+export interface IParticlesState {
+    library?: Container;
+}
+
+export * from "tsparticles";
 
 export type IParticlesParams = IParticlesProps;
-export type { ISourceOptions, IParticlesProps, ParticlesProps };
+export type ParticleProps = IParticlesProps;
 
 type Particles = ComponentClass<IParticlesProps, IParticlesState>;
 
