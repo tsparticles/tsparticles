@@ -19,9 +19,9 @@ import type { EmitterContainer } from "./EmitterContainer";
  * @category Emitters Plugin
  */
 export class Emitters implements IContainerPlugin {
-    public array: EmitterInstance[];
-    public emitters: SingleOrMultiple<Emitter>;
-    public interactivityEmitters: SingleOrMultiple<Emitter>;
+    array: EmitterInstance[];
+    emitters: SingleOrMultiple<Emitter>;
+    interactivityEmitters: SingleOrMultiple<Emitter>;
 
     constructor(private readonly container: Container) {
         this.array = [];
@@ -56,7 +56,7 @@ export class Emitters implements IContainerPlugin {
         };
     }
 
-    public init(options?: RecursivePartial<IOptions & IEmitterOptions>): void {
+    init(options?: RecursivePartial<IOptions & IEmitterOptions>): void {
         if (!options) {
             return;
         }
@@ -108,29 +108,29 @@ export class Emitters implements IContainerPlugin {
         }
     }
 
-    public play(): void {
+    play(): void {
         for (const emitter of this.array) {
             emitter.play();
         }
     }
 
-    public pause(): void {
+    pause(): void {
         for (const emitter of this.array) {
             emitter.pause();
         }
     }
 
-    public stop(): void {
+    stop(): void {
         this.array = [];
     }
 
-    public update(delta: IDelta): void {
+    update(delta: IDelta): void {
         for (const emitter of this.array) {
             emitter.update(delta);
         }
     }
 
-    public handleClickMode(mode: string): void {
+    handleClickMode(mode: string): void {
         const container = this.container;
         const emitterOptions = this.emitters;
         const modeEmitters = this.interactivityEmitters;
@@ -155,13 +155,13 @@ export class Emitters implements IContainerPlugin {
         }
     }
 
-    public resize(): void {
+    resize(): void {
         for (const emitter of this.array) {
             emitter.resize();
         }
     }
 
-    public addEmitter(options: IEmitter, position?: ICoordinates): EmitterInstance {
+    addEmitter(options: IEmitter, position?: ICoordinates): EmitterInstance {
         const emitter = new EmitterInstance(this, this.container, options, position);
 
         this.array.push(emitter);
@@ -169,7 +169,7 @@ export class Emitters implements IContainerPlugin {
         return emitter;
     }
 
-    public removeEmitter(emitter: EmitterInstance): void {
+    removeEmitter(emitter: EmitterInstance): void {
         const index = this.array.indexOf(emitter);
 
         if (index >= 0) {

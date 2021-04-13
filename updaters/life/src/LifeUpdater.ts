@@ -4,11 +4,11 @@ import { getRangeValue, randomInRange, setRangeValue } from "tsparticles-engine"
 export class LifeUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
 
-    public isEnabled(particle: Particle): boolean {
+    isEnabled(particle: Particle): boolean {
         return !particle.destroyed;
     }
 
-    public update(particle: Particle, delta: IDelta): void {
+    update(particle: Particle, delta: IDelta): void {
         if (!this.isEnabled(particle)) {
             return;
         }

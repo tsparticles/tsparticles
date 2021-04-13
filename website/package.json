@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-website",
-  "version": "2.0.0-alpha.5",
+  "version": "2.0.0-alpha.7",
   "private": true,
   "description": "tsParticles Official Website",
   "main": "index.html",
@@ -9,8 +9,8 @@
     "clear:docs": "rimraf -f ./docs",
     "build:js": "minify ./js/demo.js > ./js/demo.min.js && minify ./js/404.js > ./js/404.min.js",
     "build:css": "sass ./css/main.scss ./css/main.css && minify ./css/main.css > ./css/main.min.css && sass ./css/404.scss ./css/404.css && minify ./css/404.css > ./css/404.min.css",
-    "build": "yarn build:css && yarn build:js",
-    "deploy": "yarn build && yarn clear:docs && lerna run build:docs && yarn clear:cache && node deploy.js"
+    "build": " yarn clear:cache && yarn build:css && yarn build:js",
+    "deploy": "yarn build && yarn clear:docs && lerna run build:docs && node deploy.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,10 @@
     "gh-pages": "^3.1.0",
     "minify": "^7.0.0",
     "rimraf": "^3.0.2",
-    "sass": "^1.32.5"
+    "sass": "^1.32.5",
+    "tsparticles": "^2.0.0-alpha.7",
+    "tsparticles-editor": "^2.0.0-alpha.7",
+    "tsparticles-preset-links": "^2.0.0-alpha.7",
+    "tsparticles-shape-confetti": "^2.0.0-alpha.7"
   }
 }

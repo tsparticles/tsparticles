@@ -6,14 +6,14 @@ import { DestroyMode } from "tsparticles-engine";
 import { IDestroy } from "tsparticles-engine/Options/Interfaces/Particles/Destroy/IDestroy";
 
 export class DestroyOptionsEditor extends EditorBase {
-    public group!: EditorGroup;
+    group!: EditorGroup;
     private options!: IDestroy;
 
     constructor(particles: Container) {
         super(particles);
     }
 
-    public addToGroup(parent: EditorGroup): void {
+    addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("destroy", "Destroy");
         this.options = this.group.data as IDestroy;
 

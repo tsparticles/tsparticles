@@ -14,17 +14,17 @@ import { Main } from "tsparticles-engine";
  * @category Emitters Plugin
  */
 class Plugin implements IPlugin {
-    public readonly id;
+    readonly id;
 
     constructor() {
         this.id = "emitters";
     }
 
-    public getPlugin(container: Container): Emitters {
+    getPlugin(container: Container): Emitters {
         return new Emitters(container);
     }
 
-    public needsPlugin(options?: RecursivePartial<IOptions & IEmitterOptions>): boolean {
+    needsPlugin(options?: RecursivePartial<IOptions & IEmitterOptions>): boolean {
         if (options === undefined) {
             return false;
         }
@@ -48,7 +48,7 @@ class Plugin implements IPlugin {
         return loadEmitters;
     }
 
-    public loadOptions(options: Options, source?: RecursivePartial<IOptions & IEmitterOptions>): void {
+    loadOptions(options: Options, source?: RecursivePartial<IOptions & IEmitterOptions>): void {
         if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
             return;
         }

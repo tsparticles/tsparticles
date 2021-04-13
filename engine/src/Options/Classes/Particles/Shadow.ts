@@ -9,10 +9,10 @@ import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
  * [[include:Shadow.md]]
  */
 export class Shadow implements IShadow, IOptionLoader<IShadow> {
-    public blur;
-    public color;
-    public enable;
-    public offset: ICoordinates;
+    blur;
+    color;
+    enable;
+    offset: ICoordinates;
 
     constructor() {
         this.blur = 0;
@@ -26,7 +26,7 @@ export class Shadow implements IShadow, IOptionLoader<IShadow> {
         this.color.value = "#000000";
     }
 
-    public load(data?: RecursivePartial<IShadow>): void {
+    load(data?: RecursivePartial<IShadow>): void {
         if (data === undefined) {
             return;
         }

@@ -19,36 +19,35 @@ export class Attractor extends ExternalInteractorBase {
         super(container);
     }
 
-    public isEnabled(): boolean {
-        const container = this.container;
-        const options = container.actualOptions;
+    isEnabled(): boolean {
+        const container = this.container,
+            options = container.actualOptions,
+            mouse = container.interactivity.mouse,
+            events = options.interactivity.events;
 
-        const mouse = container.interactivity.mouse;
-        const events = options.interactivity.events;
-
-        if (!((events.onHover.enable && mouse.position) || (events.onClick.enable && mouse.clickPosition))) {
+        if ((!mouse.position || !events.onHover.enable) && (!mouse.clickPosition || !events.onClick.enable)) {
             return false;
         }
 
-        const hoverMode = events.onHover.mode;
-        const clickMode = events.onClick.mode;
+        const hoverMode = events.onHover.mode,
+            clickMode = events.onClick.mode;
 
         return isInArray(HoverMode.attract, hoverMode) || isInArray(ClickMode.attract, clickMode);
     }
 
-    public reset(): void {
+    reset(): void {
         // do nothing
     }
 
-    public interact(): void {
-        const container = this.container;
-        const options = container.actualOptions;
-        const mouseMoveStatus = container.interactivity.status === Constants.mouseMoveEvent;
-        const events = options.interactivity.events;
-        const hoverEnabled = events.onHover.enable;
-        const hoverMode = events.onHover.mode;
-        const clickEnabled = events.onClick.enable;
-        const clickMode = events.onClick.mode;
+    interact(): void {
+        const container = this.container,
+            options = container.actualOptions,
+            mouseMoveStatus = container.interactivity.status === Constants.mouseMoveEvent,
+            events = options.interactivity.events,
+            hoverEnabled = events.onHover.enable,
+            hoverMode = events.onHover.mode,
+            clickEnabled = events.onClick.enable,
+            clickMode = events.onClick.mode;
 
         if (mouseMoveStatus && hoverEnabled && isInArray(HoverMode.attract, hoverMode)) {
             this.hoverAttract();

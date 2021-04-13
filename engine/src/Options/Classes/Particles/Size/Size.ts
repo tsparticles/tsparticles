@@ -15,7 +15,7 @@ export class Size extends ValueWithRandom implements IAnimatable<SizeAnimation>,
      *
      * @deprecated this property is obsolete, please use the new animation
      */
-    public get anim(): SizeAnimation {
+    get anim(): SizeAnimation {
         return this.animation;
     }
 
@@ -24,11 +24,11 @@ export class Size extends ValueWithRandom implements IAnimatable<SizeAnimation>,
      * @deprecated this property is obsolete, please use the new animation
      * @param value
      */
-    public set anim(value: SizeAnimation) {
+    set anim(value: SizeAnimation) {
         this.animation = value;
     }
 
-    public animation;
+    animation;
 
     constructor() {
         super();
@@ -37,7 +37,7 @@ export class Size extends ValueWithRandom implements IAnimatable<SizeAnimation>,
         this.value = 3;
     }
 
-    public load(data?: RecursivePartial<ISize>): void {
+    load(data?: RecursivePartial<ISize>): void {
         if (!data) {
             return;
         }

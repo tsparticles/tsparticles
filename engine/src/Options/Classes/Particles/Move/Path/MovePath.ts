@@ -7,10 +7,10 @@ import type { IOptionLoader } from "../../../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class MovePath implements IMovePath, IOptionLoader<IMovePath> {
-    public clamp;
-    public delay;
-    public enable;
-    public generator?: string;
+    clamp;
+    delay;
+    enable;
+    generator?: string;
 
     constructor() {
         this.clamp = true;
@@ -18,7 +18,7 @@ export class MovePath implements IMovePath, IOptionLoader<IMovePath> {
         this.enable = false;
     }
 
-    public load(data?: RecursivePartial<IMovePath>): void {
+    load(data?: RecursivePartial<IMovePath>): void {
         if (data === undefined) {
             return;
         }

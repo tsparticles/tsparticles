@@ -7,11 +7,11 @@ import type { IOptionLoader } from "tsparticles-engine/Options/Interfaces/IOptio
  * @category Options
  */
 export class InfectionStage implements IInfectionStage, IOptionLoader<IInfectionStage> {
-    public color;
-    public duration?: number;
-    public infectedStage?: number;
-    public radius;
-    public rate;
+    color;
+    duration?: number;
+    infectedStage?: number;
+    radius;
+    rate;
 
     constructor() {
         this.color = new OptionsColor();
@@ -20,7 +20,7 @@ export class InfectionStage implements IInfectionStage, IOptionLoader<IInfection
         this.rate = 1;
     }
 
-    public load(data?: RecursivePartial<IInfectionStage>): void {
+    load(data?: RecursivePartial<IInfectionStage>): void {
         if (data === undefined) {
             return;
         }

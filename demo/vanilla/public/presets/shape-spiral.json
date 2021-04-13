@@ -23,8 +23,8 @@
       "type": "spiral",
       "options": {
         "spiral": {
-          "innerRadius": 1,
-          "lineSpacing": 1,
+          "innerRadius": 0.5,
+          "lineSpacing": 0.5,
           "fill": false,
           "close": false
         }

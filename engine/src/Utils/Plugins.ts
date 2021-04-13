@@ -27,17 +27,17 @@ const pathGenerators: Map<string, IMovePathGenerator> = new Map<string, IMovePat
  * @category Utils
  */
 export class Plugins {
-    public static getPlugin(plugin: string): IPlugin | undefined {
+    static getPlugin(plugin: string): IPlugin | undefined {
         return plugins.find((t) => t.id === plugin);
     }
 
-    public static addPlugin(plugin: IPlugin): void {
+    static addPlugin(plugin: IPlugin): void {
         if (!Plugins.getPlugin(plugin.id)) {
             plugins.push(plugin);
         }
     }
 
-    public static getAvailablePlugins(container: Container): Map<string, IContainerPlugin> {
+    static getAvailablePlugins(container: Container): Map<string, IContainerPlugin> {
         const res = new Map<string, IContainerPlugin>();
 
         for (const plugin of plugins) {
@@ -50,47 +50,47 @@ export class Plugins {
         return res;
     }
 
-    public static loadOptions(options: Options, sourceOptions: RecursivePartial<IOptions>): void {
+    static loadOptions(options: Options, sourceOptions: RecursivePartial<IOptions>): void {
         for (const plugin of plugins) {
             plugin.loadOptions(options, sourceOptions);
         }
     }
 
-    public static getPreset(preset: string): RecursivePartial<IOptions> | undefined {
+    static getPreset(preset: string): RecursivePartial<IOptions> | undefined {
         return presets.get(preset);
     }
 
-    public static addPreset(presetKey: string, options: RecursivePartial<IOptions>): void {
+    static addPreset(presetKey: string, options: RecursivePartial<IOptions>): void {
         if (!Plugins.getPreset(presetKey)) {
             presets.set(presetKey, options);
         }
     }
 
-    public static addShapeDrawer(type: string, drawer: IShapeDrawer): void {
+    static addShapeDrawer(type: string, drawer: IShapeDrawer): void {
         if (!Plugins.getShapeDrawer(type)) {
             drawers.set(type, drawer);
         }
     }
 
-    public static getShapeDrawer(type: string): IShapeDrawer | undefined {
+    static getShapeDrawer(type: string): IShapeDrawer | undefined {
         return drawers.get(type);
     }
 
-    public static getSupportedShapes(): IterableIterator<string> {
+    static getSupportedShapes(): IterableIterator<string> {
         return drawers.keys();
     }
 
-    public static getPathGenerator(type: string): IMovePathGenerator | undefined {
+    static getPathGenerator(type: string): IMovePathGenerator | undefined {
         return pathGenerators.get(type);
     }
 
-    public static addPathGenerator(type: string, pathGenerator: IMovePathGenerator): void {
+    static addPathGenerator(type: string, pathGenerator: IMovePathGenerator): void {
         if (!Plugins.getPathGenerator(type)) {
             pathGenerators.set(type, pathGenerator);
         }
     }
 
-    public static getInteractors(container: Container): IInteractor[] {
+    static getInteractors(container: Container): IInteractor[] {
         let res = interactors.get(container);
 
         if (!res) {
@@ -102,11 +102,11 @@ export class Plugins {
         return res;
     }
 
-    public static addInteractor(name: string, initInteractor: (container: Container) => IInteractor): void {
+    static addInteractor(name: string, initInteractor: (container: Container) => IInteractor): void {
         interactorsInitializers.set(name, initInteractor);
     }
 
-    public static getUpdaters(container: Container): IParticleUpdater[] {
+    static getUpdaters(container: Container): IParticleUpdater[] {
         let res = updaters.get(container);
 
         if (!res) {
@@ -118,7 +118,7 @@ export class Plugins {
         return res;
     }
 
-    public static addParticleUpdater(name: string, initUpdater: (container: Container) => IParticleUpdater): void {
+    static addParticleUpdater(name: string, initUpdater: (container: Container) => IParticleUpdater): void {
         updatersInitializers.set(name, initUpdater);
     }
 }

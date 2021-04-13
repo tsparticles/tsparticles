@@ -1,0 +1,34 @@
+<my-component>
+    <p>{ props.message }</p>
+
+    <riot-particles id="tsparticles" options='{{
+        background: {
+            color: "#000"
+        },
+        fullScreen: {
+            enable: true
+        },
+        particles: {
+            links: {
+                enable: true
+            },
+            move: {
+                enable: true
+            }
+        }
+    }}' particlesInit='{(main) => {
+        loadFull(main);
+        console.log(main);
+    }}' particlesLoaded='{(container) => console.log(container)}'/>
+
+    <script>
+        import RiotParticles from 'riot-particles';
+        import { loadFull } from 'tsparticles';
+
+        export default {
+            components: {
+                RiotParticles
+            }
+        }
+    </script>
+</my-component>

@@ -11,7 +11,7 @@ export class Grab implements IGrab, IOptionLoader<IGrab> {
      *
      * @deprecated this property is obsolete, please use the new links
      */
-    public get line_linked(): GrabLinks {
+    get line_linked(): GrabLinks {
         return this.links;
     }
 
@@ -20,7 +20,7 @@ export class Grab implements IGrab, IOptionLoader<IGrab> {
      * @deprecated this property is obsolete, please use the new links
      * @param value
      */
-    public set line_linked(value: GrabLinks) {
+    set line_linked(value: GrabLinks) {
         this.links = value;
     }
 
@@ -28,7 +28,7 @@ export class Grab implements IGrab, IOptionLoader<IGrab> {
      *
      * @deprecated this property is obsolete, please use the new links
      */
-    public get lineLinked(): GrabLinks {
+    get lineLinked(): GrabLinks {
         return this.links;
     }
 
@@ -37,19 +37,19 @@ export class Grab implements IGrab, IOptionLoader<IGrab> {
      * @deprecated this property is obsolete, please use the new links
      * @param value
      */
-    public set lineLinked(value: GrabLinks) {
+    set lineLinked(value: GrabLinks) {
         this.links = value;
     }
 
-    public distance;
-    public links;
+    distance;
+    links;
 
     constructor() {
         this.distance = 100;
         this.links = new GrabLinks();
     }
 
-    public load(data?: RecursivePartial<IGrab>): void {
+    load(data?: RecursivePartial<IGrab>): void {
         if (data === undefined) {
             return;
         }

@@ -1,13 +1,12 @@
 import { Range } from "./Range";
-import type { IDimension } from "../Core/Interfaces/IDimension";
-import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
+import type { ICoordinates, IDimension } from "../Core/Interfaces";
 import { Circle } from "./Circle";
 
 /**
  * @category Utils
  */
 export class Rectangle extends Range {
-    public readonly size: IDimension;
+    readonly size: IDimension;
 
     constructor(x: number, y: number, width: number, height: number) {
         super(x, y);
@@ -18,7 +17,7 @@ export class Rectangle extends Range {
         };
     }
 
-    public contains(point: ICoordinates): boolean {
+    contains(point: ICoordinates): boolean {
         const w = this.size.width;
         const h = this.size.height;
         const pos = this.position;
@@ -26,7 +25,7 @@ export class Rectangle extends Range {
         return point.x >= pos.x && point.x <= pos.x + w && point.y >= pos.y && point.y <= pos.y + h;
     }
 
-    public intersects(range: Range): boolean {
+    intersects(range: Range): boolean {
         const rect = range as Rectangle;
         const circle = range as Circle;
         const w = this.size.width;

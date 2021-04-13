@@ -11,7 +11,7 @@ import { MutableRefObject } from "react";
  * @param {{id?: string,width?: string,height?: string,options?: ISourceOptions,params?: ISourceOptions,url?: string,style?: CSSProperties,className?: string,canvasClassName?: string,container?: RefObject<Container>}}
  */
 export default class Particles extends Component<IParticlesProps, IParticlesState> {
-    public static defaultProps: IParticlesProps = {
+    static defaultProps: IParticlesProps = {
         width: "100%",
         height: "100%",
         options: {},
@@ -27,7 +27,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
         };
     }
 
-    public destroy(): void {
+    destroy(): void {
         if (!this.state.library) {
             return;
         }
@@ -39,21 +39,21 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
         });
     }
 
-    public shouldComponentUpdate(nextProps: Readonly<IParticlesProps>): boolean {
+    shouldComponentUpdate(nextProps: Readonly<IParticlesProps>): boolean {
         return !equal(nextProps, this.props);
     }
 
-    public componentDidUpdate(): void {
+    componentDidUpdate(): void {
         this.refresh();
     }
 
-    public forceUpdate(): void {
+    forceUpdate(): void {
         this.refresh();
 
         super.forceUpdate();
     }
 
-    public componentDidMount(): void {
+    componentDidMount(): void {
         if (this.props.init) {
             this.props.init(tsParticles);
         }
@@ -61,11 +61,11 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
         this.loadParticles();
     }
 
-    public componentWillUnmount(): void {
+    componentWillUnmount(): void {
         this.destroy();
     }
 
-    public render(): ComponentChild {
+    render(): ComponentChild {
         const { width, height, className, canvasClassName, id } = this.props;
 
         return (

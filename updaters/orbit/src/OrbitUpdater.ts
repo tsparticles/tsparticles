@@ -3,13 +3,13 @@ import type { Container, IDelta, IParticleUpdater, Particle } from "tsparticles-
 export class OrbitUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
 
-    public isEnabled(particle: Particle): boolean {
+    isEnabled(particle: Particle): boolean {
         const orbitAnimations = particle.options.orbit.animation;
 
         return !particle.destroyed && !particle.spawning && orbitAnimations.enable;
     }
 
-    public update(particle: Particle, delta: IDelta): void {
+    update(particle: Particle, delta: IDelta): void {
         const orbitAnimations = particle.options.orbit.animation;
 
         if (!this.isEnabled(particle)) {

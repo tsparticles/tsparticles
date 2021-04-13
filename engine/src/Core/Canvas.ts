@@ -14,7 +14,7 @@ import {
     getStyleFromRgb,
     gradient,
     hslToRgb,
-    paintBase,
+    paintBase
 } from "../Utils";
 import type { Particle } from "./Particle";
 import { OrbitType } from "../Enums/Types/OrbitType";
@@ -29,14 +29,14 @@ export class Canvas {
     /**
      * The particles canvas
      */
-    public element?: HTMLCanvasElement;
+    element?: HTMLCanvasElement;
 
     /**
      * The particles canvas dimension
      */
-    public readonly size: IDimension;
+    readonly size: IDimension;
 
-    public resizeFactor?: IDimension;
+    resizeFactor?: IDimension;
 
     /**
      * The particles canvas context
@@ -54,7 +54,7 @@ export class Canvas {
     constructor(private readonly container: Container) {
         this.size = {
             height: 0,
-            width: 0,
+            width: 0
         };
 
         this.context = null;
@@ -65,7 +65,7 @@ export class Canvas {
     /**
      * Initializes the canvas element
      */
-    public init(): void {
+    init(): void {
         this.resize();
         this.initStyle();
         this.initCover();
@@ -74,7 +74,7 @@ export class Canvas {
         this.paint();
     }
 
-    public loadCanvas(canvas: HTMLCanvasElement, generatedCanvas?: boolean): void {
+    loadCanvas(canvas: HTMLCanvasElement, generatedCanvas?: boolean): void {
         if (!canvas.className) {
             canvas.className = Constants.canvasClass;
         }
@@ -95,7 +95,7 @@ export class Canvas {
         this.initBackground();
     }
 
-    public destroy(): void {
+    destroy(): void {
         if (this.generatedCanvas) {
             this.element?.remove();
         }
@@ -108,7 +108,7 @@ export class Canvas {
     /**
      * Paints the canvas background
      */
-    public paint(): void {
+    paint(): void {
         this.draw((ctx) => {
             const options = this.container.actualOptions;
 
@@ -125,7 +125,7 @@ export class Canvas {
     /**
      * Clears the canvas content
      */
-    public clear(): void {
+    clear(): void {
         const options = this.container.actualOptions;
         const trail = options.particles.move.trail;
 
@@ -140,7 +140,7 @@ export class Canvas {
         }
     }
 
-    public windowResize(): void {
+    windowResize(): void {
         if (!this.element) {
             return;
         }
@@ -151,14 +151,14 @@ export class Canvas {
         container.actualOptions.setResponsive(this.size.width, container.retina.pixelRatio, container.options);
         container.particles.setDensity();
 
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             if (plugin.resize !== undefined) {
                 plugin.resize();
             }
         }
     }
 
-    public resize(): void {
+    resize(): void {
         if (!this.element) {
             return;
         }
@@ -168,7 +168,7 @@ export class Canvas {
         const size = container.canvas.size;
         const oldSize = {
             width: size.width,
-            height: size.height,
+            height: size.height
         };
 
         size.width = this.element.offsetWidth * pxRatio;
@@ -177,13 +177,15 @@ export class Canvas {
         this.element.width = size.width;
         this.element.height = size.height;
 
-        this.resizeFactor = {
-            width: size.width / oldSize.width,
-            height: size.height / oldSize.height,
-        };
+        if (this.container.started) {
+            this.resizeFactor = {
+                width: size.width / oldSize.width,
+                height: size.height / oldSize.height
+            };
+        }
     }
 
-    public drawConnectLine(p1: IParticle, p2: IParticle): void {
+    drawConnectLine(p1: IParticle, p2: IParticle): void {
         this.draw((ctx) => {
             const lineStyle = this.lineStyle(p1, p2);
 
@@ -198,7 +200,7 @@ export class Canvas {
         });
     }
 
-    public drawGrabLine(particle: IParticle, lineColor: IRgb, opacity: number, mousePos: ICoordinates): void {
+    drawGrabLine(particle: IParticle, lineColor: IRgb, opacity: number, mousePos: ICoordinates): void {
         this.draw((ctx) => {
             const beginPos = particle.getPosition();
 
@@ -213,7 +215,7 @@ export class Canvas {
         });
     }
 
-    public drawParticle(particle: Particle, delta: IDelta): void {
+    drawParticle(particle: Particle, delta: IDelta): void {
         if (particle.spawning || particle.destroyed) {
             return;
         }
@@ -227,7 +229,7 @@ export class Canvas {
 
         const container = this.container;
 
-        let [fColor, sColor] = this.getPluginParticleColors(particle);
+        let [ fColor, sColor ] = this.getPluginParticleColors(particle);
 
         const pOptions = particle.options;
         const twinkle = pOptions.twinkle.particles;
@@ -293,7 +295,7 @@ export class Canvas {
         });
     }
 
-    public drawOrbit(particle: IParticle, type: string): void {
+    drawOrbit(particle: IParticle, type: string): void {
         const container = this.container;
         const orbitOptions = particle.options.orbit;
 
@@ -326,7 +328,7 @@ export class Canvas {
         });
     }
 
-    public draw(fn: (context: CanvasRenderingContext2D) => void) {
+    draw(fn: (context: CanvasRenderingContext2D) => void) {
         if (!this.context) {
             return;
         }
@@ -334,13 +336,13 @@ export class Canvas {
         fn(this.context);
     }
 
-    public drawPlugin(plugin: IContainerPlugin, delta: IDelta): void {
+    drawPlugin(plugin: IContainerPlugin, delta: IDelta): void {
         this.draw((ctx) => {
             drawPlugin(ctx, plugin, delta);
         });
     }
 
-    public drawParticlePlugin(plugin: IContainerPlugin, particle: Particle, delta: IDelta): void {
+    drawParticlePlugin(plugin: IContainerPlugin, particle: Particle, delta: IDelta): void {
         this.draw((ctx) => {
             drawParticlePlugin(ctx, plugin, particle, delta);
         });
@@ -394,7 +396,7 @@ export class Canvas {
                 r: coverRgb.r,
                 g: coverRgb.g,
                 b: coverRgb.b,
-                a: cover.opacity,
+                a: cover.opacity
             };
         }
     }
@@ -411,7 +413,7 @@ export class Canvas {
                 r: fillColor.r,
                 g: fillColor.g,
                 b: fillColor.b,
-                a: 1 / trail.length,
+                a: 1 / trail.length
             };
         }
     }
@@ -420,7 +422,7 @@ export class Canvas {
         let fColor: IRgb | undefined;
         let sColor: IRgb | undefined;
 
-        for (const [, plugin] of this.container.plugins) {
+        for (const [ , plugin ] of this.container.plugins) {
             if (!fColor && plugin.particleFillColor) {
                 fColor = colorToRgb(plugin.particleFillColor(particle));
             }
@@ -434,7 +436,7 @@ export class Canvas {
             }
         }
 
-        return [fColor, sColor];
+        return [ fColor, sColor ];
     }
 
     private initStyle(): void {

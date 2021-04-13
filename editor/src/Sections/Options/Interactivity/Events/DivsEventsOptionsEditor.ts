@@ -5,14 +5,14 @@ import { EditorBase } from "../../../../EditorBase";
 import { DivMode, DivType } from "tsparticles-engine";
 
 export class DivsEventsOptionsEditor extends EditorBase {
-    public group!: EditorGroup;
+    group!: EditorGroup;
     private options!: SingleOrMultiple<IDivEvent>;
 
     constructor(particles: Container) {
         super(particles);
     }
 
-    public addToGroup(parent: EditorGroup): void {
+    addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("onDiv", "Divs Events");
         this.options = this.group.data as SingleOrMultiple<IDivEvent>;
 

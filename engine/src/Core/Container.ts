@@ -32,54 +32,62 @@ export class Container {
     /**
      * Check if the particles container is started
      */
-    public started;
+    started;
 
     /**
      * Check if the particles container is destroyed, if so it's not recommended using it
      */
-    public destroyed;
+    destroyed;
 
-    public pageHidden;
-    public lastFrameTime;
-    public fpsLimit;
-    public interactivity: IContainerInteractivity;
-    public bubble: IBubble;
-    public repulse: IRepulse;
-    public attract: IAttract;
-    public readonly zLayers = 10000;
+    pageHidden;
+    lastFrameTime;
+    fpsLimit;
+    interactivity: IContainerInteractivity;
+    bubble: IBubble;
+    repulse: IRepulse;
+    attract: IAttract;
+    readonly zLayers = 10000;
 
     /**
      * All the options loaded into the container, it's a full [[Options]] object
      */
-    public readonly options;
+    get options(): Options {
+        return this._options;
+    }
+
+    get sourceOptions(): RecursivePartial<IOptions> | undefined {
+        return this._sourceOptions;
+    }
 
     /**
      * The options currently used by the container, it's a full [[Options]] object
      */
-    public actualOptions;
+    actualOptions;
 
-    public readonly retina;
-    public readonly canvas;
+    readonly retina;
+    readonly canvas;
 
     /**
      * The particles manager
      */
-    public readonly particles;
+    readonly particles;
 
-    public readonly drawer;
+    readonly drawer;
 
     /**
      * All the shape drawers used by the container
      */
-    public readonly drawers;
+    readonly drawers;
 
     /**
      * All the plugins used by the container
      */
-    public readonly plugins;
+    readonly plugins;
 
-    public readonly pathGenerator: IMovePathGenerator;
+    readonly pathGenerator: IMovePathGenerator;
 
+    private _options;
+    private _sourceOptions;
     private paused;
     private firstStart;
     private drawAnimationFrame?: number;
@@ -94,11 +102,7 @@ export class Container {
      * @param sourceOptions the options to load
      * @param presets all the presets to load with options
      */
-    constructor(
-        public readonly id: string,
-        public readonly sourceOptions?: RecursivePartial<IOptions>,
-        ...presets: string[]
-    ) {
+    constructor(readonly id: string, sourceOptions?: RecursivePartial<IOptions>, ...presets: string[]) {
         this.fpsLimit = 60;
         this.firstStart = true;
         this.started = false;
@@ -106,6 +110,7 @@ export class Container {
         this.paused = true;
         this.lastFrameTime = 0;
         this.pageHidden = false;
+        this._sourceOptions = sourceOptions;
         this.retina = new Retina(this);
         this.canvas = new Canvas(this);
         this.particles = new Particles(this);
@@ -139,11 +144,11 @@ export class Container {
         this.drawers = new Map<string, IShapeDrawer>();
 
         /* tsParticles variables with default values */
-        this.options = new Options();
+        this._options = new Options();
         this.actualOptions = new Options();
 
         for (const preset of presets) {
-            this.options.load(Plugins.getPreset(preset));
+            this._options.load(Plugins.getPreset(preset));
         }
 
         const shapes = Plugins.getSupportedShapes();
@@ -157,8 +162,8 @@ export class Container {
         }
 
         /* options settings */
-        if (this.sourceOptions) {
-            this.options.load(this.sourceOptions);
+        if (this._options) {
+            this._options.load(this._sourceOptions);
         }
 
         this.fpsLimit = this.options.fpsLimit > 0 ? this.options.fpsLimit : 60;
@@ -175,7 +180,7 @@ export class Container {
      * Starts animations and resume from pause
      * @param force
      */
-    public play(force?: boolean): void {
+    play(force?: boolean): void {
         const needsUpdate = this.paused || force;
 
         if (this.firstStart && !this.actualOptions.autoPlay) {
@@ -203,7 +208,7 @@ export class Container {
     /**
      * Pauses animations
      */
-    public pause(): void {
+    pause(): void {
         if (this.drawAnimationFrame !== undefined) {
             cancelAnimation()(this.drawAnimationFrame);
 
@@ -228,7 +233,7 @@ export class Container {
     /**
      * Draws a frame
      */
-    public draw(): void {
+    draw(): void {
         this.drawAnimationFrame = animate()((timestamp) => this.drawer.nextFrame(timestamp));
     }
 
@@ -236,7 +241,7 @@ export class Container {
      * Gets the animation status
      * @returns `true` is playing, `false` is paused
      */
-    public getAnimationStatus(): boolean {
+    getAnimationStatus(): boolean {
         return !this.paused;
     }
 
@@ -246,7 +251,7 @@ export class Container {
      * @param init the [[IMovePathGenerator]] init function, if the first parameter is a generator function
      * @param update the [[IMovePathGenerator]] update function, if the first parameter is a generator function
      */
-    public setPath(
+    setPath(
         pathOrGenerator?: IMovePathGenerator | ((particle: Particle) => Vector),
         init?: () => void,
         update?: () => void
@@ -283,7 +288,7 @@ export class Container {
     /**
      * Destroys the current container, invalidating it
      */
-    public destroy(): void {
+    destroy(): void {
         this.stop();
 
         this.canvas.destroy();
@@ -305,7 +310,7 @@ export class Container {
      * @deprecated this method is deprecated, please use the exportImage method
      * @param callback The callback to handle the image
      */
-    public exportImg(callback: BlobCallback): void {
+    exportImg(callback: BlobCallback): void {
         this.exportImage(callback);
     }
 
@@ -315,7 +320,7 @@ export class Container {
      * @param type The exported image type
      * @param quality The exported image quality
      */
-    public exportImage(callback: BlobCallback, type?: string, quality?: number): void {
+    exportImage(callback: BlobCallback, type?: string, quality?: number): void {
         return this.canvas.element?.toBlob(callback, type ?? "image/png", quality);
     }
 
@@ -323,24 +328,29 @@ export class Container {
      * Exports the current configuration using `options` property
      * @returns a JSON string created from `options` property
      */
-    public exportConfiguration(): string {
+    exportConfiguration(): string {
         return JSON.stringify(this.actualOptions, undefined, 2);
     }
 
     /**
      * Restarts the container, just a [[stop]]/[[start]] alias
      */
-    public async refresh(): Promise<void> {
+    refresh(): Promise<void> {
         /* restart */
         this.stop();
-
         return this.start();
+    }
+
+    reset(): Promise<void> {
+        this._options = new Options();
+
+        return this.refresh();
     }
 
     /**
      * Stops the container, opposite to `start`. Clears some resources and stops events.
      */
-    public stop(): void {
+    stop(): void {
         if (!this.started) {
             return;
         }
@@ -376,7 +386,7 @@ export class Container {
      * Loads the given theme, overriding the options
      * @param name the theme name, if `undefined` resets the default options or the default theme
      */
-    public async loadTheme(name?: string): Promise<void> {
+    async loadTheme(name?: string): Promise<void> {
         this.actualOptions.setTheme(name);
 
         return this.refresh();
@@ -385,7 +395,7 @@ export class Container {
     /**
      * Starts the container, initializes what are needed to create animations and event handling
      */
-    public async start(): Promise<void> {
+    async start(): Promise<void> {
         if (this.started) {
             return;
         }
@@ -413,13 +423,14 @@ export class Container {
 
     private async init(): Promise<void> {
         this.actualOptions = new Options();
-        this.actualOptions.load(this.options);
+
+        this.actualOptions.load(this._options);
 
         /* init canvas + particles */
         this.retina.init();
         this.canvas.init();
 
-        this.actualOptions.setResponsive(this.canvas.size.width, this.retina.pixelRatio, this.options);
+        this.actualOptions.setResponsive(this.canvas.size.width, this.retina.pixelRatio, this._options);
         this.actualOptions.setTheme(undefined);
 
         /* this re-init is necessary since options could have different values */

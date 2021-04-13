@@ -10,18 +10,18 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class Links implements ILinks, IOptionLoader<ILinks> {
-    public blink;
-    public color;
-    public consent;
-    public distance;
-    public enable;
-    public frequency;
-    public id?: string;
-    public opacity;
-    public shadow;
-    public triangles;
-    public width;
-    public warp;
+    blink;
+    color;
+    consent;
+    distance;
+    enable;
+    frequency;
+    id?: string;
+    opacity;
+    shadow;
+    triangles;
+    width;
+    warp;
 
     constructor() {
         this.blink = false;
@@ -37,7 +37,7 @@ export class Links implements ILinks, IOptionLoader<ILinks> {
         this.warp = false;
     }
 
-    public load(data?: RecursivePartial<ILinks>): void {
+    load(data?: RecursivePartial<ILinks>): void {
         if (data === undefined) {
             return;
         }

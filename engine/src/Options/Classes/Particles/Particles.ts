@@ -26,11 +26,32 @@ import { Destroy } from "./Destroy/Destroy";
  * @category Options
  */
 export class Particles implements IParticles, IOptionLoader<IParticles> {
+    bounce;
+    collisions;
+    color;
+    destroy;
+    groups: ParticlesGroups;
+    life;
+    links;
+    move;
+    number;
+    opacity;
+    orbit;
+    reduceDuplicates;
+    repulse;
+    rotate;
+    shadow;
+    shape;
+    size;
+    stroke: SingleOrMultiple<Stroke>;
+    twinkle;
+    zIndex;
+
     /**
      *
      * @deprecated this property is obsolete, please use the new links
      */
-    public get line_linked(): Links {
+    get line_linked(): Links {
         return this.links;
     }
 
@@ -39,7 +60,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
      * @deprecated this property is obsolete, please use the new links
      * @param value
      */
-    public set line_linked(value: Links) {
+    set line_linked(value: Links) {
         this.links = value;
     }
 
@@ -47,7 +68,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
      *
      * @deprecated this property is obsolete, please use the new lineLinked
      */
-    public get lineLinked(): Links {
+    get lineLinked(): Links {
         return this.links;
     }
 
@@ -56,30 +77,9 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
      * @deprecated this property is obsolete, please use the new lineLinked
      * @param value
      */
-    public set lineLinked(value: Links) {
+    set lineLinked(value: Links) {
         this.links = value;
     }
-
-    public bounce;
-    public collisions;
-    public color;
-    public destroy;
-    public groups: ParticlesGroups;
-    public life;
-    public links;
-    public move;
-    public number;
-    public opacity;
-    public orbit;
-    public reduceDuplicates;
-    public repulse;
-    public rotate;
-    public shadow;
-    public shape;
-    public size;
-    public stroke: SingleOrMultiple<Stroke>;
-    public twinkle;
-    public zIndex;
 
     constructor() {
         this.bounce = new Bounce();
@@ -104,7 +104,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
         this.zIndex = new ZIndex();
     }
 
-    public load(data?: RecursivePartial<IParticles>): void {
+    load(data?: RecursivePartial<IParticles>): void {
         if (!data) {
             return;
         }
@@ -126,6 +126,7 @@ export class Particles implements IParticles, IOptionLoader<IParticles> {
             }
         }
 
+        this.destroy.load(data.destroy);
         this.life.load(data.life);
 
         const links = data.links ?? data.lineLinked ?? data.line_linked;

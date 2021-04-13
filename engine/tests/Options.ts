@@ -127,8 +127,7 @@ describe("Options tests", () => {
         expect(options.particles.rotate.animation.sync).to.be.false;
         expect(options.particles.rotate.direction).to.equal(RotateDirection.clockwise);
         expect(options.particles.rotate.random).to.be.an("object").to.have.property("enable").to.be.false;
-        expect(options.particles.rotate.value).to.be.an("object").to.have.property("min").to.be.equal(0);
-        expect(options.particles.rotate.value).to.be.an("object").to.have.property("max").to.be.equal(360);
+        expect(options.particles.rotate.value).to.be.equal(0);
 
         /* particles shadow */
         expect(options.particles.shadow.blur).to.equal(0);

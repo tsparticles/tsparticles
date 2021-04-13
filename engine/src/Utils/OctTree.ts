@@ -10,7 +10,7 @@ import { Sphere } from "./Sphere";
  * @category Utils
  */
 export class OctTree {
-    public readonly points: Point3d[];
+    readonly points: Point3d[];
 
     private northEastFront?: OctTree;
     private northEastBack?: OctTree;
@@ -23,12 +23,12 @@ export class OctTree {
 
     private divided;
 
-    constructor(public readonly parallelepiped: Parallelepiped, public readonly capacity: number) {
+    constructor(readonly parallelepiped: Parallelepiped, readonly capacity: number) {
         this.points = [];
         this.divided = false;
     }
 
-    public subdivide(): void {
+    subdivide(): void {
         const x = this.parallelepiped.position.x;
         const y = this.parallelepiped.position.y;
         const z = this.parallelepiped.position.z;
@@ -51,7 +51,7 @@ export class OctTree {
         this.divided = true;
     }
 
-    public insert(point: Point3d): boolean {
+    insert(point: Point3d): boolean {
         if (!this.parallelepiped.contains(point.position)) {
             return false;
         }
@@ -79,7 +79,7 @@ export class OctTree {
         );
     }
 
-    public queryCircle(position: ICoordinates3d, radius: number): Particle[] {
+    queryCircle(position: ICoordinates3d, radius: number): Particle[] {
         return this.query(new Sphere(position.x, position.y, position.z, radius));
     }
 
@@ -101,11 +101,11 @@ export class OctTree {
         );
     }*/
 
-    public queryParallelepiped(position: ICoordinates3d, size: IDimension3d): Particle[] {
+    queryParallelepiped(position: ICoordinates3d, size: IDimension3d): Particle[] {
         return this.query(new Parallelepiped(position.x, position.y, position.z, size.width, size.height, size.depth));
     }
 
-    public query(range: Range3d, found?: Particle[]): Particle[] {
+    query(range: Range3d, found?: Particle[]): Particle[] {
         const res = found ?? [];
 
         if (!range.intersects(this.parallelepiped)) {

@@ -4,14 +4,14 @@ import { AnimationStatus } from "tsparticles-engine";
 export class AngleUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
 
-    public isEnabled(particle: Particle): boolean {
+    isEnabled(particle: Particle): boolean {
         const rotate = particle.options.rotate;
         const rotateAnimation = rotate.animation;
 
         return !particle.destroyed && !particle.spawning && !rotate.path && rotateAnimation.enable;
     }
 
-    public update(particle: Particle, delta: IDelta): void {
+    update(particle: Particle, delta: IDelta): void {
         if (!this.isEnabled(particle)) {
             return;
         }

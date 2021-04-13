@@ -21,7 +21,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     /**
      * @deprecated this property is obsolete, please use the new fullScreen
      */
-    public get backgroundMode(): FullScreen {
+    get backgroundMode(): FullScreen {
         return this.fullScreen;
     }
 
@@ -30,14 +30,14 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
      * @deprecated this property is obsolete, please use the new fullScreen
      * @param value
      */
-    public set backgroundMode(value: FullScreen) {
+    set backgroundMode(value: FullScreen) {
         this.fullScreen = value;
     }
 
     /**
      * @deprecated this property is obsolete, please use the new fpsLimit
      */
-    public get fps_limit(): number {
+    get fps_limit(): number {
         return this.fpsLimit;
     }
 
@@ -46,14 +46,14 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
      * @deprecated this property is obsolete, please use the new fpsLimit
      * @param value
      */
-    public set fps_limit(value: number) {
+    set fps_limit(value: number) {
         this.fpsLimit = value;
     }
 
     /**
      * @deprecated this property is obsolete, please use the new retinaDetect
      */
-    public get retina_detect(): boolean {
+    get retina_detect(): boolean {
         return this.detectRetina;
     }
 
@@ -61,25 +61,25 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
      * @deprecated this property is obsolete, please use the new retinaDetect
      * @param value
      */
-    public set retina_detect(value: boolean) {
+    set retina_detect(value: boolean) {
         this.detectRetina = value;
     }
 
-    public autoPlay;
-    public background;
-    public backgroundMask;
-    public fullScreen;
-    public detectRetina;
-    public fpsLimit;
-    public interactivity;
-    public manualParticles: ManualParticle[];
-    public motion;
-    public particles;
-    public pauseOnBlur;
-    public pauseOnOutsideViewport;
-    public preset?: string | string[];
-    public responsive: Responsive[];
-    public themes: Theme[];
+    autoPlay;
+    background;
+    backgroundMask;
+    fullScreen;
+    detectRetina;
+    fpsLimit;
+    interactivity;
+    manualParticles: ManualParticle[];
+    motion;
+    particles;
+    pauseOnBlur;
+    pauseOnOutsideViewport;
+    preset?: string | string[];
+    responsive: Responsive[];
+    themes: Theme[];
 
     [name: string]: unknown;
 
@@ -106,7 +106,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
      * This methods loads the source object in the current instance
      * @param data the source data to load into the instance
      */
-    public load(data?: RecursivePartial<IOptions>): void {
+    load(data?: RecursivePartial<IOptions>): void {
         if (data === undefined) {
             return;
         }
@@ -186,7 +186,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
     }
 
-    public setTheme(name?: string): void {
+    setTheme(name?: string): void {
         if (name) {
             const chosenTheme = this.themes.find((theme) => theme.name === name);
 
@@ -214,7 +214,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
     }
 
-    public setResponsive(width: number, pxRatio: number, defaultOptions: IOptions): void {
+    setResponsive(width: number, pxRatio: number, defaultOptions: IOptions): void {
         this.load(defaultOptions);
         this.load(this.responsive.find((t) => t.maxWidth * pxRatio > width)?.options);
     }

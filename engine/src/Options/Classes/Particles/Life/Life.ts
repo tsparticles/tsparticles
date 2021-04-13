@@ -5,9 +5,9 @@ import { LifeDelay } from "./LifeDelay";
 import { LifeDuration } from "./LifeDuration";
 
 export class Life implements ILife, IOptionLoader<ILife> {
-    public count;
-    public delay;
-    public duration;
+    count;
+    delay;
+    duration;
 
     constructor() {
         this.count = 0;
@@ -15,7 +15,7 @@ export class Life implements ILife, IOptionLoader<ILife> {
         this.duration = new LifeDuration();
     }
 
-    public load(data?: RecursivePartial<ILife>): void {
+    load(data?: RecursivePartial<ILife>): void {
         if (data === undefined) {
             return;
         }

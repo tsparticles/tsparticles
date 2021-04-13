@@ -5,14 +5,14 @@ import type { IInfection } from "tsparticles-plugin-infection/Options/Interfaces
 import type { IInfectionStage } from "tsparticles-plugin-infection/Options/Interfaces/IInfectionStage";
 
 export class InfectionOptionsEditor extends EditorBase {
-    public group!: EditorGroup;
+    group!: EditorGroup;
     private options!: IInfection;
 
     constructor(particles: Container) {
         super(particles);
     }
 
-    public addToGroup(parent: EditorGroup): void {
+    addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("infection", "Infection");
         this.options = this.group.data as IInfection;
 

@@ -6,37 +6,33 @@ import { getRangeValue, isSsr } from "../Utils";
  * @category Core
  */
 export class Retina {
-    public reduceFactor!: number;
-    public bubbleModeDistance!: number;
-    public bubbleModeSize?: number;
-    public connectModeDistance!: number;
-    public connectModeRadius!: number;
-    public grabModeDistance!: number;
-    public repulseModeDistance!: number;
-    public attractModeDistance!: number;
-    public slowModeRadius!: number;
-    public attractDistance!: number;
-    public linksDistance!: number;
-    public linksWidth!: number;
-    public sizeAnimationSpeed!: number;
-    public pixelRatio!: number;
-    public bounceModeDistance!: number;
-    public orbitRadius?: number;
+    reduceFactor!: number;
+    bubbleModeDistance!: number;
+    bubbleModeSize?: number;
+    connectModeDistance!: number;
+    connectModeRadius!: number;
+    grabModeDistance!: number;
+    repulseModeDistance!: number;
+    attractModeDistance!: number;
+    slowModeRadius!: number;
+    attractDistance!: number;
+    linksDistance!: number;
+    linksWidth!: number;
+    sizeAnimationSpeed!: number;
+    pixelRatio!: number;
+    bounceModeDistance!: number;
+    orbitRadius?: number;
 
     constructor(private readonly container: Container) {}
 
     /**
      * Initializes all the values needing a pixel ratio factor (sizes, widths, distances)
      */
-    public init(): void {
+    init(): void {
         const container = this.container;
         const options = container.actualOptions;
 
-        if (options.detectRetina) {
-            this.pixelRatio = typeof devicePixelRatio === "undefined" ? 1 : devicePixelRatio;
-        } else {
-            this.pixelRatio = 1;
-        }
+        this.pixelRatio = !options.detectRetina || typeof devicePixelRatio === "undefined" ? 1 : devicePixelRatio;
 
         const motionOptions = this.container.actualOptions.motion;
 
@@ -106,7 +102,7 @@ export class Retina {
         }
     }
 
-    public initParticle(particle: Particle): void {
+    initParticle(particle: Particle): void {
         const options = particle.options;
         const ratio = this.pixelRatio;
         const orbit = options.orbit;

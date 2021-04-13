@@ -11,24 +11,24 @@ export class OpacityAnimation extends AnimationOptions implements IOpacityAnimat
     /**
      * @deprecated use the new Range syntax
      */
-    public get opacity_min(): number | undefined {
+    get opacity_min(): number | undefined {
         return this.minimumValue;
     }
 
     /**
      * @deprecated use the new Range syntax
      */
-    public set opacity_min(value: number | undefined) {
+    set opacity_min(value: number | undefined) {
         this.minimumValue = value;
     }
 
     /**
      * @deprecated use the new Range syntax
      */
-    public minimumValue?: number;
+    minimumValue?: number;
 
-    public destroy: DestroyType | keyof typeof DestroyType;
-    public startValue: StartValueType | keyof typeof StartValueType;
+    destroy: DestroyType | keyof typeof DestroyType;
+    startValue: StartValueType | keyof typeof StartValueType;
 
     constructor() {
         super();
@@ -40,7 +40,7 @@ export class OpacityAnimation extends AnimationOptions implements IOpacityAnimat
         this.sync = false;
     }
 
-    public load(data?: RecursivePartial<IOpacityAnimation>): void {
+    load(data?: RecursivePartial<IOpacityAnimation>): void {
         super.load(data);
 
         if (data === undefined) {

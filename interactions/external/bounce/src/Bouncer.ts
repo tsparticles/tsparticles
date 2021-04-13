@@ -24,44 +24,45 @@ export class Bouncer extends ExternalInteractorBase {
         super(container);
     }
 
-    public isEnabled(): boolean {
-        const container = this.container;
-        const options = container.actualOptions;
-        const mouse = container.interactivity.mouse;
-        const events = options.interactivity.events;
-        const divs = events.onDiv;
+    isEnabled(): boolean {
+        const container = this.container,
+            options = container.actualOptions,
+            mouse = container.interactivity.mouse,
+            events = options.interactivity.events,
+            divs = events.onDiv;
+
         return (
             (mouse.position && events.onHover.enable && isInArray(HoverMode.bounce, events.onHover.mode)) ||
             isDivModeEnabled(DivMode.bounce, divs)
         );
     }
 
-    public interact(): void {
-        const container = this.container;
-        const options = container.actualOptions;
-        const events = options.interactivity.events;
-        const mouseMoveStatus = container.interactivity.status === Constants.mouseMoveEvent;
-        const hoverEnabled = events.onHover.enable;
-        const hoverMode = events.onHover.mode;
-        const divs = events.onDiv;
+    interact(): void {
+        const container = this.container,
+            options = container.actualOptions,
+            events = options.interactivity.events,
+            mouseMoveStatus = container.interactivity.status === Constants.mouseMoveEvent,
+            hoverEnabled = events.onHover.enable,
+            hoverMode = events.onHover.mode,
+            divs = events.onDiv;
 
         if (mouseMoveStatus && hoverEnabled && isInArray(HoverMode.bounce, hoverMode)) {
             this.processMouseBounce();
         } else {
-            divModeExecute(DivMode.bounce, divs, (selector, div): void => this.singleSelectorBounce(selector, div));
+            divModeExecute(DivMode.bounce, divs, (selector, div) => this.singleSelectorBounce(selector, div));
         }
     }
 
-    public reset(): void {
+    reset(): void {
         // do nothing
     }
 
     private processMouseBounce(): void {
-        const container = this.container;
-        const pxRatio = container.retina.pixelRatio;
-        const tolerance = 10 * pxRatio;
-        const mousePos = container.interactivity.mouse.position;
-        const radius = container.retina.bounceModeDistance;
+        const container = this.container,
+            pxRatio = container.retina.pixelRatio,
+            tolerance = 10 * pxRatio,
+            mousePos = container.interactivity.mouse.position,
+            radius = container.retina.bounceModeDistance;
 
         if (mousePos) {
             this.processBounce(mousePos, radius, new Circle(mousePos.x, mousePos.y, radius + tolerance));
@@ -77,14 +78,14 @@ export class Bouncer extends ExternalInteractorBase {
         }
 
         query.forEach((item) => {
-            const elem = item as HTMLElement;
-            const pxRatio = container.retina.pixelRatio;
-            const pos = {
-                x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
-                y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
-            };
-            const radius = (elem.offsetWidth / 2) * pxRatio;
-            const tolerance = 10 * pxRatio;
+            const elem = item as HTMLElement,
+                pxRatio = container.retina.pixelRatio,
+                pos = {
+                    x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
+                    y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
+                },
+                radius = (elem.offsetWidth / 2) * pxRatio,
+                tolerance = 10 * pxRatio;
 
             const area =
                 div.type === DivType.circle

@@ -11,7 +11,7 @@ export class FullScreenOptionsEditor extends EditorBase {
         super(particles);
     }
 
-    public addToGroup(parent: EditorGroup): void {
+    addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("fullScreen", "Full Screen");
         this.options = this.group.data as IFullScreen;
 

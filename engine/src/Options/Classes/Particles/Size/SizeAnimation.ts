@@ -11,24 +11,24 @@ export class SizeAnimation extends AnimationOptions implements ISizeAnimation, I
     /**
      * @deprecated use the new Range syntax
      */
-    public get size_min(): number | undefined {
+    get size_min(): number | undefined {
         return this.minimumValue;
     }
 
     /**
      * @deprecated use the new Range syntax
      */
-    public set size_min(value: number | undefined) {
+    set size_min(value: number | undefined) {
         this.minimumValue = value;
     }
 
     /**
      * @deprecated use the new Range syntax
      */
-    public minimumValue?: number;
+    minimumValue?: number;
 
-    public destroy: DestroyType | keyof typeof DestroyType;
-    public startValue: StartValueType | keyof typeof StartValueType;
+    destroy: DestroyType | keyof typeof DestroyType;
+    startValue: StartValueType | keyof typeof StartValueType;
 
     constructor() {
         super();
@@ -40,7 +40,7 @@ export class SizeAnimation extends AnimationOptions implements ISizeAnimation, I
         this.sync = false;
     }
 
-    public load(data?: RecursivePartial<ISizeAnimation>): void {
+    load(data?: RecursivePartial<ISizeAnimation>): void {
         super.load(data);
 
         if (data === undefined) {

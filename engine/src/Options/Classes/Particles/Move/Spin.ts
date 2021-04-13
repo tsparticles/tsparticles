@@ -5,16 +5,16 @@ import type { RecursivePartial } from "../../../../Types";
 import { deepExtend } from "../../../../Utils";
 
 export class Spin implements ISpin, IOptionLoader<ISpin> {
-    public acceleration;
-    public enable;
-    public position?: ICoordinates;
+    acceleration;
+    enable;
+    position?: ICoordinates;
 
     constructor() {
         this.acceleration = 0;
         this.enable = false;
     }
 
-    public load(data?: RecursivePartial<ISpin>): void {
+    load(data?: RecursivePartial<ISpin>): void {
         if (!data) {
             return;
         }

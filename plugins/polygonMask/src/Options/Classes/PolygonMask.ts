@@ -28,15 +28,15 @@ export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {
         this.inline.arrangement = value;
     }
 
-    public draw;
-    public enable;
-    public inline;
-    public move;
-    public position?: ICoordinates;
-    public scale;
-    public type: Type | keyof typeof Type;
-    public url?: string;
-    public data?: string | LocalSvg;
+    draw;
+    enable;
+    inline;
+    move;
+    position?: ICoordinates;
+    scale;
+    type: Type | keyof typeof Type;
+    url?: string;
+    data?: string | LocalSvg;
 
     constructor() {
         this.draw = new Draw();
@@ -47,7 +47,7 @@ export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {
         this.type = Type.none;
     }
 
-    public load(data?: RecursivePartial<IPolygonMask>): void {
+    load(data?: RecursivePartial<IPolygonMask>): void {
         if (data !== undefined) {
             this.draw.load(data.draw);
 

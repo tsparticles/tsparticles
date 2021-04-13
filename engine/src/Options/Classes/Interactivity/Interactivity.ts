@@ -14,7 +14,7 @@ export class Interactivity implements IInteractivity, IOptionLoader<IInteractivi
      *
      * @deprecated this property is obsolete, please use the new detectsOn
      */
-    public get detect_on(): InteractivityDetect | keyof typeof InteractivityDetect {
+    get detect_on(): InteractivityDetect | keyof typeof InteractivityDetect {
         return this.detectsOn;
     }
 
@@ -23,13 +23,13 @@ export class Interactivity implements IInteractivity, IOptionLoader<IInteractivi
      * @deprecated this property is obsolete, please use the new detectsOn
      * @param value
      */
-    public set detect_on(value: InteractivityDetect | keyof typeof InteractivityDetect) {
+    set detect_on(value: InteractivityDetect | keyof typeof InteractivityDetect) {
         this.detectsOn = value;
     }
 
-    public detectsOn: InteractivityDetect | keyof typeof InteractivityDetect;
-    public events;
-    public modes;
+    detectsOn: InteractivityDetect | keyof typeof InteractivityDetect;
+    events;
+    modes;
 
     constructor() {
         this.detectsOn = InteractivityDetect.canvas;
@@ -37,7 +37,7 @@ export class Interactivity implements IInteractivity, IOptionLoader<IInteractivi
         this.modes = new Modes();
     }
 
-    public load(data?: RecursivePartial<IInteractivity>): void {
+    load(data?: RecursivePartial<IInteractivity>): void {
         if (data === undefined) {
             return;
         }

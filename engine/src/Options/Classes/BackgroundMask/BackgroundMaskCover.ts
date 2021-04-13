@@ -7,15 +7,15 @@ import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class BackgroundMaskCover implements IBackgroundMaskCover, IOptionLoader<IBackgroundMaskCover> {
-    public color;
-    public opacity;
+    color;
+    opacity;
 
     constructor() {
         this.color = new OptionsColor();
         this.opacity = 1;
     }
 
-    public load(data?: RecursivePartial<IBackgroundMaskCover> | undefined): void {
+    load(data?: RecursivePartial<IBackgroundMaskCover> | undefined): void {
         if (data === undefined) {
             return;
         }

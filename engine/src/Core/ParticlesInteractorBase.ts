@@ -6,7 +6,7 @@ import { InteractorType } from "../Enums/Types/InteractorType";
 export abstract class ParticlesInteractorBase implements IParticlesInteractor {
     protected constructor(protected readonly container: Container) {}
 
-    public type: InteractorType = InteractorType.Particles;
+    type: InteractorType = InteractorType.Particles;
 
     public abstract interact(particle: Particle, delta: IDelta): void;
 

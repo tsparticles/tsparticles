@@ -31,7 +31,7 @@ export class InteractionManager {
         }
     }
 
-    public externalInteract(delta: IDelta): void {
+    externalInteract(delta: IDelta): void {
         for (const interactor of this.externalInteractors) {
             if (interactor.isEnabled()) {
                 interactor.interact(delta);
@@ -39,7 +39,7 @@ export class InteractionManager {
         }
     }
 
-    public particlesInteract(particle: Particle, delta: IDelta): void {
+    particlesInteract(particle: Particle, delta: IDelta): void {
         for (const interactor of this.externalInteractors) {
             interactor.reset(particle);
         }

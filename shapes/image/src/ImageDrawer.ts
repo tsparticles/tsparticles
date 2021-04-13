@@ -21,11 +21,11 @@ export class ImageDrawer implements IShapeDrawer {
         this.#images = [];
     }
 
-    public getSidesCount(): number {
+    getSidesCount(): number {
         return 12;
     }
 
-    public getImages(container: Container): ContainerImage {
+    getImages(container: Container): ContainerImage {
         const containerImages = this.#images.find((t) => t.id === container.id);
 
         if (!containerImages) {
@@ -40,20 +40,20 @@ export class ImageDrawer implements IShapeDrawer {
         }
     }
 
-    public addImage(container: Container, image: IImage): void {
+    addImage(container: Container, image: IImage): void {
         const containerImages = this.getImages(container);
 
         containerImages?.images.push(image);
     }
 
-    public init(container: Container): Promise<void> {
+    init(container: Container): Promise<void> {
         const options = container.actualOptions;
         const shapeOptions = options.particles.shape;
 
         return this.initShape(container, shapeOptions);
     }
 
-    public destroy(): void {
+    destroy(): void {
         this.#images = [];
     }
 
@@ -90,7 +90,7 @@ export class ImageDrawer implements IShapeDrawer {
         }
     }
 
-    public draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number, opacity: number): void {
+    draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number, opacity: number): void {
         if (!context) {
             return;
         }
@@ -120,7 +120,7 @@ export class ImageDrawer implements IShapeDrawer {
         }
     }
 
-    public loadShape(particle: Particle): void {
+    loadShape(particle: Particle): void {
         if (particle.shape !== "image" && particle.shape !== "images") {
             return;
         }

@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-plugin-absorbers",
-  "version": "2.0.0-alpha.6",
+  "version": "2.0.0-alpha.7",
   "description": "tsParticles absorbers plugin",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -65,6 +65,6 @@
     }
   },
   "dependencies": {
-    "tsparticles-engine": "^2.0.0-alpha.6"
+    "tsparticles-engine": "^2.0.0-alpha.7"
   }
 }

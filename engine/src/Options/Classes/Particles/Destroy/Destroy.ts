@@ -5,15 +5,15 @@ import { RecursivePartial } from "../../../../Types";
 import { Split } from "./Split";
 
 export class Destroy implements IDestroy, IOptionLoader<IDestroy> {
-    public mode: DestroyMode;
-    public split: Split;
+    mode: DestroyMode;
+    split: Split;
 
     constructor() {
         this.mode = DestroyMode.none;
         this.split = new Split();
     }
 
-    public load(data?: RecursivePartial<IDestroy>): void {
+    load(data?: RecursivePartial<IDestroy>): void {
         if (!data) {
             return;
         }

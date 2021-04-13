@@ -9,21 +9,21 @@ import { PolygonMaskInstance } from "./PolygonMaskInstance";
  * @category Polygon Mask Plugin
  */
 class Plugin implements IPlugin {
-    public readonly id;
+    readonly id;
 
     constructor() {
         this.id = "polygonMask";
     }
 
-    public getPlugin(container: Container): PolygonMaskInstance {
+    getPlugin(container: Container): PolygonMaskInstance {
         return new PolygonMaskInstance(container);
     }
 
-    public needsPlugin(options?: RecursivePartial<IPolygonMaskOptions>): boolean {
+    needsPlugin(options?: RecursivePartial<IPolygonMaskOptions>): boolean {
         return options?.polygon?.enable ?? (options?.polygon?.type !== undefined && options.polygon.type !== Type.none);
     }
 
-    public loadOptions(options: Options, source?: RecursivePartial<IPolygonMaskOptions>): void {
+    loadOptions(options: Options, source?: RecursivePartial<IPolygonMaskOptions>): void {
         if (!this.needsPlugin(source)) {
             return;
         }

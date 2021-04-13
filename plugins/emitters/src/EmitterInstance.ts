@@ -28,11 +28,11 @@ function randomPosition(position: ICoordinates, offset: ICoordinates): ICoordina
  * @category Emitters Plugin
  */
 export class EmitterInstance {
-    public position: ICoordinates;
-    public size: IEmitterSize;
-    public emitterOptions: IEmitter;
-    public spawnColor?: IHsl;
-    public readonly name?: string;
+    position: ICoordinates;
+    size: IEmitterSize;
+    emitterOptions: IEmitter;
+    spawnColor?: IHsl;
+    readonly name?: string;
     private paused;
     private currentEmitDelay;
     private currentSpawnDelay;
@@ -107,19 +107,19 @@ export class EmitterInstance {
         this.play();
     }
 
-    public externalPlay(): void {
+    externalPlay(): void {
         this.paused = false;
 
         this.play();
     }
 
-    public externalPause(): void {
+    externalPause(): void {
         this.paused = true;
 
         this.pause();
     }
 
-    public play(): void {
+    play(): void {
         if (this.paused) {
             return;
         }
@@ -138,7 +138,7 @@ export class EmitterInstance {
         }
     }
 
-    public pause(): void {
+    pause(): void {
         if (this.paused) {
             return;
         }
@@ -146,7 +146,7 @@ export class EmitterInstance {
         delete this.emitDelay;
     }
 
-    public resize(): void {
+    resize(): void {
         const initialPosition = this.initialPosition;
 
         this.position =
@@ -155,7 +155,7 @@ export class EmitterInstance {
                 : this.calcPosition();
     }
 
-    public update(delta: IDelta): void {
+    update(delta: IDelta): void {
         if (this.paused) {
             return;
         }

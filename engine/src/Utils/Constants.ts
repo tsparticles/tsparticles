@@ -6,23 +6,23 @@ export class Constants {
     /**
      * Particles canvas element class name
      */
-    public static readonly canvasClass: string = "tsparticles-canvas-el";
+    static readonly canvasClass: string = "tsparticles-canvas-el";
 
-    public static readonly randomColorValue: string = "random";
-    public static readonly midColorValue: string = "mid";
+    static readonly randomColorValue: string = "random";
+    static readonly midColorValue: string = "mid";
 
-    public static readonly touchEndEvent: string = "touchend";
-    public static readonly mouseDownEvent: string = "mousedown";
-    public static readonly mouseUpEvent: string = "mouseup";
-    public static readonly mouseMoveEvent: string = "mousemove";
-    public static readonly touchStartEvent: string = "touchstart";
-    public static readonly touchMoveEvent: string = "touchmove";
-    public static readonly mouseLeaveEvent: string = "mouseleave";
-    public static readonly mouseOutEvent: string = "mouseout";
-    public static readonly touchCancelEvent: string = "touchcancel";
-    public static readonly resizeEvent: string = "resize";
-    public static readonly visibilityChangeEvent: string = "visibilitychange";
+    static readonly touchEndEvent: string = "touchend";
+    static readonly mouseDownEvent: string = "mousedown";
+    static readonly mouseUpEvent: string = "mouseup";
+    static readonly mouseMoveEvent: string = "mousemove";
+    static readonly touchStartEvent: string = "touchstart";
+    static readonly touchMoveEvent: string = "touchmove";
+    static readonly mouseLeaveEvent: string = "mouseleave";
+    static readonly mouseOutEvent: string = "mouseout";
+    static readonly touchCancelEvent: string = "touchcancel";
+    static readonly resizeEvent: string = "resize";
+    static readonly visibilityChangeEvent: string = "visibilitychange";
 
-    public static readonly noPolygonDataLoaded: string = "No polygon data loaded.";
-    public static readonly noPolygonFound: string = "No polygon found, you need to specify SVG url in config.";
+    static readonly noPolygonDataLoaded: string = "No polygon data loaded.";
+    static readonly noPolygonFound: string = "No polygon found, you need to specify SVG url in config.";
 }

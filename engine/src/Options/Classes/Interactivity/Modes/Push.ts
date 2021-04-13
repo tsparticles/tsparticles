@@ -10,7 +10,7 @@ export class Push implements IPush, IOptionLoader<IPush> {
      *
      * @deprecated this property is obsolete, please use the new quantity
      */
-    public get particles_nb(): number {
+    get particles_nb(): number {
         return this.quantity;
     }
 
@@ -19,13 +19,13 @@ export class Push implements IPush, IOptionLoader<IPush> {
      * @deprecated this property is obsolete, please use the new quantity
      * @param value
      */
-    public set particles_nb(value: number) {
+    set particles_nb(value: number) {
         this.quantity = value;
     }
 
-    public default;
-    public groups: string[];
-    public quantity;
+    default;
+    groups: string[];
+    quantity;
 
     constructor() {
         this.default = true;
@@ -33,7 +33,7 @@ export class Push implements IPush, IOptionLoader<IPush> {
         this.quantity = 4;
     }
 
-    public load(data?: RecursivePartial<IPush>): void {
+    load(data?: RecursivePartial<IPush>): void {
         if (data === undefined) {
             return;
         }

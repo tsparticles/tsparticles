@@ -95,3 +95,6 @@ demo/vanilla/views/index.html
 
 deprecate.sh
 options.schema.json
+
+website/js/404.min.js
+website/js/demo.min.js

@@ -6,10 +6,10 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class Attract implements IAttract, IOptionLoader<IAttract> {
-    public distance;
-    public duration;
-    public factor;
-    public speed;
+    distance;
+    duration;
+    factor;
+    speed;
 
     constructor() {
         this.distance = 200;
@@ -18,7 +18,7 @@ export class Attract implements IAttract, IOptionLoader<IAttract> {
         this.speed = 1;
     }
 
-    public load(data?: RecursivePartial<IAttract>): void {
+    load(data?: RecursivePartial<IAttract>): void {
         if (data === undefined) {
             return;
         }

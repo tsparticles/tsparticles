@@ -8,11 +8,11 @@ import type { IOptionLoader } from "tsparticles-engine/Options/Interfaces/IOptio
  * @category Options
  */
 export class Infection implements IInfection, IOptionLoader<IInfection> {
-    public cure;
-    public delay;
-    public enable;
-    public infections;
-    public stages: InfectionStage[];
+    cure;
+    delay;
+    enable;
+    infections;
+    stages: InfectionStage[];
 
     constructor() {
         this.cure = false;
@@ -22,7 +22,7 @@ export class Infection implements IInfection, IOptionLoader<IInfection> {
         this.stages = [];
     }
 
-    public load(data?: RecursivePartial<IInfection>): void {
+    load(data?: RecursivePartial<IInfection>): void {
         if (data === undefined) {
             return;
         }

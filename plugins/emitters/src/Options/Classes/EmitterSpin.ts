@@ -3,13 +3,13 @@ import type { IOptionLoader } from "tsparticles-engine/Options/Interfaces/IOptio
 import { RecursivePartial } from "tsparticles-engine/Types";
 
 export class EmitterSpin implements IEmitterSpin, IOptionLoader<IEmitterSpin> {
-    public enable;
+    enable;
 
     constructor() {
         this.enable = false;
     }
 
-    public load(data?: RecursivePartial<IEmitterSpin>): void {
+    load(data?: RecursivePartial<IEmitterSpin>): void {
         if (!data) {
             return;
         }

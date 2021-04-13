@@ -4,7 +4,7 @@ import type { RecursivePartial } from "../../../../Types";
 import { ValueWithRandom } from "../../ValueWithRandom";
 
 export class LifeDuration extends ValueWithRandom implements ILifeDuration, IOptionLoader<ILifeDuration> {
-    public sync;
+    sync;
 
     constructor() {
         super();
@@ -12,7 +12,7 @@ export class LifeDuration extends ValueWithRandom implements ILifeDuration, IOpt
         this.sync = false;
     }
 
-    public load(data?: RecursivePartial<ILifeDuration>): void {
+    load(data?: RecursivePartial<ILifeDuration>): void {
         if (data === undefined) {
             return;
         }

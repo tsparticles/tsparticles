@@ -5,11 +5,11 @@ import { bounceHorizontal, bounceVertical } from "./Utils";
 export class OutOfCanvasUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
 
-    public isEnabled(particle: Particle): boolean {
+    isEnabled(particle: Particle): boolean {
         return !particle.destroyed && !particle.spawning;
     }
 
-    public update(particle: Particle, delta: IDelta): void {
+    update(particle: Particle, delta: IDelta): void {
         const outModes = particle.options.move.outModes;
 
         this.updateOutMode(particle, delta, outModes.bottom ?? outModes.default, OutModeDirection.bottom);

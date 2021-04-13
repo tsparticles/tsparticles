@@ -7,14 +7,14 @@ import type { IPush } from "tsparticles-engine/Options/Interfaces/Interactivity/
 import type { IRemove } from "tsparticles-engine/Options/Interfaces/Interactivity/Modes/IRemove";
 
 export class ModesOptionsEditor extends EditorBase {
-    public group!: EditorGroup;
+    group!: EditorGroup;
     private options!: IModes;
 
     constructor(particles: Container) {
         super(particles);
     }
 
-    public addToGroup(parent: EditorGroup): void {
+    addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("modes", "Modes");
         this.options = this.group.data as IModes;
 
