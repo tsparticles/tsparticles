@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-multiline-text",
-  "version": "1.11.2",
+  "version": "1.11.3",
   "description": "tsParticles multiline text shape",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -70,6 +70,6 @@
     "webpack-cli": "^4.6.0"
   },
   "dependencies": {
-    "tsparticles": "^1.26.2"
+    "tsparticles": "^1.26.3"
   }
 }

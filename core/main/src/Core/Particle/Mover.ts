@@ -64,7 +64,9 @@ export class Mover {
             particle.velocity.y += (gravityOptions.acceleration * delta.factor) / (60 * moveSpeed);
         }
 
-        particle.velocity.x += (moveDrift * delta.factor) / (60 * moveSpeed);
+        if (moveSpeed) {
+            particle.velocity.x += (moveDrift * delta.factor) / (60 * moveSpeed);
+        }
 
         const decay = 1 - particle.options.move.decay;
 
@@ -75,7 +77,9 @@ export class Mover {
         if (gravityOptions.enable && velocity.y >= gravityOptions.maxSpeed && gravityOptions.maxSpeed > 0) {
             velocity.y = gravityOptions.maxSpeed;
 
-            particle.velocity.y = velocity.y / moveSpeed;
+            if (moveSpeed) {
+                particle.velocity.y = velocity.y / moveSpeed;
+            }
         }
 
         particle.position.addTo(velocity);

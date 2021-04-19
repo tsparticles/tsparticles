@@ -319,7 +319,7 @@ canvas {
     background-position: ${particlesContainer.style.backgroundPosition};
 }`,
                 js: `tsParticles.load("tsparticles", ${JSON.stringify(container.options)});`,
-                js_external: "https://cdn.jsdelivr.net/npm/tsparticles@1.26.2/dist/tsparticles.min.js",
+                js_external: "https://cdn.jsdelivr.net/npm/tsparticles@1.26.3/dist/tsparticles.min.js",
                 title: "tsParticles example",
                 description: "This pen was created with tsParticles from https://particles.js.org",
                 tags: "tsparticles, javascript, typescript, design, animation",
