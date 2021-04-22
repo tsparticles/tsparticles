@@ -101,7 +101,9 @@ export class Mover extends ParticlesInteractorBase {
 
         const gravityOptions = moveOptions.gravity;
 
-        particle.velocity.x += (moveDrift * delta.factor) / (60 * moveSpeed);
+        if (moveSpeed) {
+            particle.velocity.x += (moveDrift * delta.factor) / (60 * moveSpeed);
+        }
 
         particle.velocity.multTo(1 - particle.options.move.decay);
 
@@ -114,7 +116,9 @@ export class Mover extends ParticlesInteractorBase {
         if (gravityOptions.enable && velocity.y >= gravityOptions.maxSpeed && gravityOptions.maxSpeed > 0) {
             velocity.y = gravityOptions.maxSpeed;
 
-            particle.velocity.y = velocity.y / moveSpeed;
+            if (moveSpeed) {
+                particle.velocity.y = velocity.y / moveSpeed;
+            }
         }
 
         const zIndexOptions = particle.options.zIndex,
