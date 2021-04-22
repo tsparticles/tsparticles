@@ -70,7 +70,7 @@
       "color": "#ffffff",
       "consent": false,
       "distance": 30,
-      "enable": true,
+      "enable": false,
       "opacity": 0.4,
       "width": 1
     },
@@ -99,26 +99,12 @@
       "value": 80
     },
     "opacity": {
-      "animation": {
-        "enable": true,
-        "minimumValue": 0.05,
-        "speed": 2,
-        "sync": false
-      },
-      "random": false,
-      "value": 0.4
+      "value": 0.5
     },
     "shape": {
       "type": "circle"
     },
     "size": {
-      "animation": {
-        "enable": false,
-        "minimumValue": 0.1,
-        "speed": 40,
-        "sync": false
-      },
-      "random": true,
       "value": 1
     }
   },
@@ -138,7 +124,7 @@
     },
     "inlineArrangement": "equidistant",
     "scale": 2,
-    "type": "inline",
+    "type": "inside",
     "data": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" height=\"210\" width=\"400\"><path d=\"M150 0 L75 200 L225 200 Z\" /></svg>"
   },
   "background": {
