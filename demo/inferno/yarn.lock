@@ -1365,9 +1365,9 @@ babel-plugin-dynamic-import-node@^2.3.3:
     object.assign "^4.1.0"
 
 babel-plugin-inferno@^6.1.1:
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/babel-plugin-inferno/-/babel-plugin-inferno-6.1.1.tgz#15c6bfb9fff75a6669e9f6410bb36512eae8ba54"
-  integrity sha512-uyFJZ1gMRokXA2gFCQhxM9V0V9daOpgCiMj8Qp/gkJN0zW471ozPoTPppt+pmm+soxWyU7UmLMxa3/cqsBGm+Q==
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-inferno/-/babel-plugin-inferno-6.2.0.tgz#d98e4a675f72b47501a747f34b5170114da187e2"
+  integrity sha512-an1v65RWlOLqn9SxA3kgLLhgz8QIZx+Y/244JOFPNMarHgOwOnCg2knY8kA1qATFL8wiZeDRgUpiSw/nylULrw==
   dependencies:
     "@babel/plugin-syntax-jsx" "^7"
     "@babel/types" "^7"
