@@ -1544,9 +1544,9 @@ json-stable-stringify-without-jsonify@^1.0.1:
   integrity sha1-nbe1lJatPzz+8wp1FC0tkwrXJlE=
 
 jsoneditor@^9.3.0:
-  version "9.3.1"
-  resolved "https://registry.yarnpkg.com/jsoneditor/-/jsoneditor-9.3.1.tgz#d3c6cc7b5b55a4b76bc0f6d69540f5d885a6e8b5"
-  integrity sha512-/PDRTqjMQxtkuPOge1Pkch07CEms2A5IZ9d1Zl9Neks8Igd4e+RbLnpKoMJsakPeduuEzV1CQ+4NBzsLZrTS/A==
+  version "9.4.0"
+  resolved "https://registry.yarnpkg.com/jsoneditor/-/jsoneditor-9.4.0.tgz#683faa2d493d8a1c5f0484ec9ab3a4bcae2d71d8"
+  integrity sha512-wAglRYdaTCSj7XIZjYjUR1/NAp0jd8tfJMTfEMK83iJEm/g8eBtZyykaU0o4Jg/OSHffUpbfbwGmjIlhGc89FA==
   dependencies:
     ace-builds "^1.4.12"
     ajv "^6.12.6"
