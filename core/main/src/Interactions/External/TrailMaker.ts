@@ -1,14 +1,16 @@
 import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
 import type { Container } from "../../Core/Container";
 import { Utils } from "../../Utils";
-import { ClickMode, HoverMode } from "../../Enums/Modes";
+import { ClickMode, HoverMode } from "../../Enums";
 import type { IDelta } from "../../Core/Interfaces/IDelta";
+import { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 
 /**
  * @category Interactions
  */
 export class TrailMaker implements IExternalInteractor {
     private delay: number;
+    private lastPosition?: ICoordinates;
 
     constructor(private readonly container: Container) {
         this.delay = 0;
@@ -19,21 +21,45 @@ export class TrailMaker implements IExternalInteractor {
             return;
         }
 
-        const container = this.container;
-        const options = container.actualOptions;
-
-        const trailOptions = options.interactivity.modes.trail;
-        const optDelay = (trailOptions.delay * 1000) / this.container.retina.reduceFactor;
+        const container = this.container,
+            options = container.actualOptions,
+            trailOptions = options.interactivity.modes.trail,
+            optDelay = (trailOptions.delay * 1000) / this.container.retina.reduceFactor;
 
         if (this.delay < optDelay) {
             this.delay += delta.value;
         }
 
-        if (this.delay >= optDelay) {
-            container.particles.push(trailOptions.quantity, container.interactivity.mouse, trailOptions.particles);
-
-            this.delay -= optDelay;
+        if (this.delay < optDelay) {
+            return;
         }
+
+        let canEmit = true;
+
+        if (trailOptions.pauseOnStop) {
+            if (
+                container.interactivity.mouse.position === this.lastPosition ||
+                (container.interactivity.mouse.position?.x === this.lastPosition?.x &&
+                    container.interactivity.mouse.position?.y === this.lastPosition?.y)
+            ) {
+                canEmit = false;
+            }
+        }
+
+        if (container.interactivity.mouse.position) {
+            this.lastPosition = {
+                x: container.interactivity.mouse.position.x,
+                y: container.interactivity.mouse.position.y,
+            };
+        } else {
+            delete this.lastPosition;
+        }
+
+        if (canEmit) {
+            container.particles.push(trailOptions.quantity, container.interactivity.mouse, trailOptions.particles);
+        }
+
+        this.delay -= optDelay;
     }
 
     isEnabled(): boolean {
