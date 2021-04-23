@@ -34,11 +34,6 @@ type IPolygonMaskOptions = IOptions & {
     polygon: IPolygonMask;
 };
 
-function polygonBounce(particle: Particle): void {
-    particle.velocity.x = particle.velocity.y / 2 - particle.velocity.x;
-    particle.velocity.y = particle.velocity.x / 2 - particle.velocity.y;
-}
-
 function drawPolygonMask(context: CanvasRenderingContext2D, rawData: ICoordinates[], stroke: IDrawStroke): void {
     const color = ColorUtils.colorToRgb(stroke.color);
 
@@ -252,7 +247,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         /* check bounce against polygon boundaries */
         if (options.enable && options.type !== Type.none && options.type !== Type.inline) {
             if (!this.checkInsidePolygon(particle.getPosition())) {
-                polygonBounce(particle);
+                this.polygonBounce(particle);
 
                 return true;
             }
@@ -260,7 +255,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
             const dist = NumberUtils.getDistance(particle.initialPosition, particle.getPosition());
 
             if (dist > this.polygonMaskMoveRadius) {
-                polygonBounce(particle);
+                this.polygonBounce(particle);
 
                 return true;
             }
@@ -310,7 +305,38 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
     }
 
-    private checkInsidePolygon(position: ICoordinates | undefined): boolean {
+    private polygonBounce(particle: Particle): void {
+        /*if (!this.raw) {
+            return;
+        }
+
+        for (let i = 0, j = this.raw.length - 1; i < this.raw.length; j = i++) {
+            const { x, y } = particle.getPosition();
+            const pi = this.raw[i];
+            const pj = this.raw[j];
+            const { x: nearestX, y: nearestY } = this.calcClosestPtOnSegment(pi, pj, { x, y });
+            const dx = x - nearestX;
+            const dy = y - nearestY;
+            const radius = particle.getRadius();
+            const isColliding = dx ** 2 + dy ** 2 <= (radius * 2) ** 2;
+
+            if (isColliding) {
+                const { dx, dy } = NumberUtils.getDistances(pi, pj);
+                const wallAngle = Math.atan2(dy, dx);
+                const incidenceAngle = particle.velocity.angle;
+                const wallNormalAngle = wallAngle - Math.PI / 2; // assuming clockwise angle calculations
+                const differenceAngle = incidenceAngle - wallNormalAngle;
+                const reflectionAngle = incidenceAngle + 2 * differenceAngle;
+
+                particle.velocity.angle = reflectionAngle;
+            }
+        }*/
+
+        particle.velocity.x = particle.velocity.y / 2 - particle.velocity.x;
+        particle.velocity.y = particle.velocity.x / 2 - particle.velocity.y;
+    }
+
+    private checkInsidePolygon(position?: ICoordinates): boolean {
         const container = this.container;
         const options = this.options;
 
@@ -346,6 +372,33 @@ export class PolygonMaskInstance implements IContainerPlugin {
         // }
 
         return options.type === Type.inside ? inside : options.type === Type.outside ? !inside : false;
+    }
+
+    private calcClosestPtOnSegment(s1: ICoordinates, s2: ICoordinates, pos: ICoordinates) {
+        // calc delta distance: source point to line start
+        const { dx, dy } = NumberUtils.getDistances(pos, s1);
+
+        // calc delta distance: line start to end
+        const { dx: dxx, dy: dyy } = NumberUtils.getDistances(s2, s1);
+
+        // Calc position on line normalized between 0.00 & 1.00
+        // == dot product divided by delta line distances squared
+        const t = (dx * dxx + dy * dyy) / (dxx ** 2 + dyy ** 2);
+
+        // calc nearest pt on line
+        let x = s1.x + dxx * t;
+        let y = s1.y + dyy * t;
+
+        // clamp results to being on the segment
+        if (t < 0) {
+            x = s1.x;
+            y = s1.y;
+        } else if (t > 1) {
+            x = s2.x;
+            y = s2.y;
+        }
+
+        return { x: x, y: y, isOnSegment: t >= 0 && t <= 1 };
     }
 
     private parseSvgPath(xml: string, force?: boolean): ICoordinates[] | undefined {
