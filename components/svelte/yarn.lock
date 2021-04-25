@@ -592,9 +592,9 @@ supports-color@^7.0.0, supports-color@^7.1.0:
     has-flag "^4.0.0"
 
 svelte-check@^1.4.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-1.5.0.tgz#d0ee742ef9969f8b88c10919076e254802d81736"
-  integrity sha512-DdzUGxd5MLryW80sr695XIRCps8YS0E2VRJj9cXA3g/hXldozoxc/RDx0ZGV/sxoAU5nxgcH3A2kN0jJhnJKdg==
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-1.5.1.tgz#f6215a13baabd6aa58acaf92c498a33544923c3b"
+  integrity sha512-VUPqhYlTMxZs5ZHQBhMYQRSu3ClOeJt5REPOjjFutr8gsV/tPTzoIN5Z1Lt7jdONxFawsCGA30UVoqjJ/26nBw==
   dependencies:
     chalk "^4.0.0"
     chokidar "^3.4.1"
