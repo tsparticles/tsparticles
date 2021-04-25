@@ -24,7 +24,7 @@
     "jsdom-global": "^3.0.2",
     "mocha": "^8.2.1",
     "nyc": "^15.1.0",
-    "webpack": "^4.43.0",
+    "webpack": "^5.35.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
