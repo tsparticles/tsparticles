@@ -5,11 +5,25 @@ import { IParticle } from "../src/Core/Interfaces/IParticle";
 import { Particle } from "../src/Core/Particle";
 import { MoveDirection } from "../src/Enums";
 import { NumberUtils, Utils } from "../src/Utils";
+import { ICoordinates } from "../src/Core/Interfaces/ICoordinates";
+import { Vector } from "../src/Core/Particle/Vector";
 
 function buildParticleWithDirection(direction: MoveDirection): IParticle {
     const container = new Container("someid");
     const options = { move: { direction } };
     return new Particle(1, container, undefined, options);
+}
+
+function segmentBounce(start: ICoordinates, stop: ICoordinates, velocity: Vector): void {
+    const { dx, dy } = NumberUtils.getDistances(start, stop);
+    const wallAngle = Math.atan2(dy, dx) + Math.PI / 2;
+    const wallNormalX = Math.sin(wallAngle);
+    const wallNormalY = -Math.cos(wallAngle);
+
+    const d = 2 * (velocity.x * wallNormalX + velocity.y * wallNormalY);
+
+    velocity.x -= d * wallNormalX;
+    velocity.y -= d * wallNormalY;
 }
 
 describe("Utils", () => {
@@ -52,8 +66,8 @@ describe("Utils", () => {
     });
 
     describe("isInArray", () => {
-        const numericArray: number[] = [1, 2, 3, Math.PI, Math.E];
-        const stringArray: string[] = ["lorem", "ipsum", "dolor"];
+        const numericArray: number[] = [ 1, 2, 3, Math.PI, Math.E ];
+        const stringArray: string[] = [ "lorem", "ipsum", "dolor" ];
 
         // Numeric
 
@@ -113,7 +127,7 @@ describe("Utils", () => {
             const weight1 = Math.floor(Math.random() * (size - 1) + 1);
             const weight2 = 0;
 
-            expect(NumberUtils.mix(comp1, comp2, weight1, weight2), `weight 1: ${weight1}`).to.be.equal(
+            expect(NumberUtils.mix(comp1, comp2, weight1, weight2), `weight 1: ${ weight1 }`).to.be.equal(
                 Math.floor(comp1)
             );
         });
@@ -146,7 +160,7 @@ describe("Utils", () => {
 
     describe("arrayRandomIndex", () => {
         it("should always return an index that is not out of the bounds of the array", () => {
-            const array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+            const array = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
             const randomIndex = Utils.arrayRandomIndex(array);
 
             expect(randomIndex % 1).to.equal(0); // Make sure it is an integer
@@ -157,9 +171,9 @@ describe("Utils", () => {
     });
 
     describe("itemFromArray", () => {
-        const numericArray = [1, 2, 3, Math.PI, Math.E];
-        const stringArray = ["lorem", "ipsum", "dolor"];
-        const objectArray = [{ x: 1 }, { y: 2 }, { z: 3 }];
+        const numericArray = [ 1, 2, 3, Math.PI, Math.E ];
+        const stringArray = [ "lorem", "ipsum", "dolor" ];
+        const objectArray = [ { x: 1 }, { y: 2 }, { z: 3 } ];
 
         it("should always return a random item from a numeric array", () => {
             const randomItem = Utils.itemFromArray(numericArray);
@@ -484,5 +498,28 @@ describe("Utils", () => {
             const particle = buildParticleWithDirection(MoveDirection.topLeft);
             expect(NumberUtils.getParticleBaseVelocity(particle.direction).angle).to.eql((-3 * Math.PI) / 4);
         });
+    });
+
+    describe("segmentBounce", () => {
+        const start = {
+            x: 29, //Math.floor(Math.random() * 100),
+            y: 82 //Math.floor(Math.random() * 100)
+        }, stop = {
+            x: 53, //Math.floor(Math.random() * 100),
+            y: 82 //Math.floor(Math.random() * 100)
+        }, velocity = Vector.origin; // angle = 238.91568442036498 * Math.PI / 180;//Math.random() * Math.PI * 2;
+
+        velocity.length = 1;
+        velocity.angle = 238.91568442036498 * Math.PI / 180;
+
+        console.log("segment", start, stop);
+        console.log("s. angle", (Math.atan2(start.y - stop.y, start.x - stop.x) * 180 / Math.PI) % 360);
+        console.log("p. speed", velocity.length);
+        console.log("p. angle", (velocity.angle * 180 / Math.PI) % 360);
+
+        segmentBounce(start, stop, velocity);
+
+        console.log("res. speed", velocity.length);
+        console.log("res. angle", (velocity.angle * 180 / Math.PI) % 360);
     });
 });

@@ -11,6 +11,9 @@ import type { IOptions } from "../../Options/Interfaces/IOptions";
 import type { RecursivePartial } from "../../Types";
 import type { IPolygonMask } from "./Options/Interfaces/IPolygonMask";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
+import { Vector } from "../../Core/Particle/Vector";
+import { IDelta } from "../../Core/Interfaces/IDelta";
+import { OutModeDirection } from "../../Enums/Directions/OutModeDirection";
 
 type SvgAbsoluteCoordinatesTypes =
     | SVGPathSegArcAbs
@@ -152,6 +155,56 @@ function parsePaths(paths: ISvgPath[], scale: number, offset: ICoordinates): ICo
     return res;
 }
 
+function calcClosestPtOnSegment(
+    s1: ICoordinates,
+    s2: ICoordinates,
+    pos: ICoordinates
+): ICoordinates & { isOnSegment: boolean } {
+    // calc delta distance: source point to line start
+    const { dx, dy } = NumberUtils.getDistances(pos, s1);
+
+    // calc delta distance: line start to end
+    const { dx: dxx, dy: dyy } = NumberUtils.getDistances(s2, s1);
+
+    // Calc position on line normalized between 0.00 & 1.00
+    // == dot product divided by delta line distances squared
+    const t = (dx * dxx + dy * dyy) / (dxx ** 2 + dyy ** 2);
+
+    // calc nearest pt on line
+    let x = s1.x + dxx * t;
+    let y = s1.y + dyy * t;
+
+    // clamp results to being on the segment
+    if (t < 0) {
+        x = s1.x;
+        y = s1.y;
+    } else if (t > 1) {
+        x = s2.x;
+        y = s2.y;
+    }
+
+    return { x: x, y: y, isOnSegment: t >= 0 && t <= 1 };
+}
+
+function segmentBounce(start: ICoordinates, stop: ICoordinates, velocity: Vector): void {
+    const { dx, dy } = NumberUtils.getDistances(start, stop);
+    const wallAngle = Math.atan2(dy, dx); // + Math.PI / 2;
+    const wallNormalX = Math.sin(wallAngle);
+    const wallNormalY = -Math.cos(wallAngle);
+
+    console.log(">-----");
+    console.log("wall angle", ((wallAngle * 180) / Math.PI + 360) % 360);
+    console.log("particle angle", ((velocity.angle * 180) / Math.PI + 360) % 360);
+
+    const d = 2 * (velocity.x * wallNormalX + velocity.y * wallNormalY);
+
+    velocity.x -= d * wallNormalX;
+    velocity.y -= d * wallNormalY;
+
+    console.log("res angle", ((velocity.angle * 180) / Math.PI + 360) % 360);
+    console.log("-----<");
+}
+
 /**
  * Polygon Mask manager
  * @category Polygon Mask Plugin
@@ -241,27 +294,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
         return Utils.deepExtend({}, position ? position : this.randomPoint()) as ICoordinates;
     }
 
-    particleBounce(particle: Particle): boolean {
-        const options = this.options;
-
-        /* check bounce against polygon boundaries */
-        if (options.enable && options.type !== Type.none && options.type !== Type.inline) {
-            if (!this.checkInsidePolygon(particle.getPosition())) {
-                this.polygonBounce(particle);
-
-                return true;
-            }
-        } else if (options.enable && options.type === Type.inline && particle.initialPosition) {
-            const dist = NumberUtils.getDistance(particle.initialPosition, particle.getPosition());
-
-            if (dist > this.polygonMaskMoveRadius) {
-                this.polygonBounce(particle);
-
-                return true;
-            }
-        }
-
-        return false;
+    particleBounce(particle: Particle, delta: IDelta, direction: OutModeDirection): boolean {
+        return this.polygonBounce(particle, delta, direction);
     }
 
     clickPositionValid(position: ICoordinates): boolean {
@@ -305,35 +339,40 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
     }
 
-    private polygonBounce(particle: Particle): void {
-        /*if (!this.raw) {
-            return;
+    private polygonBounce(particle: Particle, delta: IDelta, direction: OutModeDirection): boolean {
+        const options = this.options;
+
+        if (!this.raw || !options.enable || direction !== OutModeDirection.top) {
+            return false;
         }
 
-        for (let i = 0, j = this.raw.length - 1; i < this.raw.length; j = i++) {
-            const { x, y } = particle.getPosition();
-            const pi = this.raw[i];
-            const pj = this.raw[j];
-            const { x: nearestX, y: nearestY } = this.calcClosestPtOnSegment(pi, pj, { x, y });
-            const dx = x - nearestX;
-            const dy = y - nearestY;
-            const radius = particle.getRadius();
-            const isColliding = dx ** 2 + dy ** 2 <= (radius * 2) ** 2;
+        if (options.type === Type.inside || options.type === Type.outside) {
+            for (let i = 0, j = this.raw.length - 1; i < this.raw.length; j = i++) {
+                const pos = particle.getPosition();
+                const pi = this.raw[i],
+                    pj = this.raw[j];
+                const closest = calcClosestPtOnSegment(pi, pj, pos);
+                const distance = NumberUtils.getDistance(pos, closest);
+                const radius = particle.getRadius();
 
-            if (isColliding) {
-                const { dx, dy } = NumberUtils.getDistances(pi, pj);
-                const wallAngle = Math.atan2(dy, dx);
-                const incidenceAngle = particle.velocity.angle;
-                const wallNormalAngle = wallAngle - Math.PI / 2; // assuming clockwise angle calculations
-                const differenceAngle = incidenceAngle - wallNormalAngle;
-                const reflectionAngle = incidenceAngle + 2 * differenceAngle;
+                if (distance < radius) {
+                    segmentBounce(pi, pj, particle.velocity);
 
-                particle.velocity.angle = reflectionAngle;
+                    return true;
+                }
             }
-        }*/
+        } else if (options.type === Type.inline && particle.initialPosition) {
+            const dist = NumberUtils.getDistance(particle.initialPosition, particle.getPosition());
 
-        particle.velocity.x = particle.velocity.y / 2 - particle.velocity.x;
-        particle.velocity.y = particle.velocity.x / 2 - particle.velocity.y;
+            if (dist > this.polygonMaskMoveRadius) {
+                particle.velocity.x = particle.velocity.y / 2 - particle.velocity.x;
+                particle.velocity.y = particle.velocity.x / 2 - particle.velocity.y;
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private checkInsidePolygon(position?: ICoordinates): boolean {
@@ -372,33 +411,6 @@ export class PolygonMaskInstance implements IContainerPlugin {
         // }
 
         return options.type === Type.inside ? inside : options.type === Type.outside ? !inside : false;
-    }
-
-    private calcClosestPtOnSegment(s1: ICoordinates, s2: ICoordinates, pos: ICoordinates) {
-        // calc delta distance: source point to line start
-        const { dx, dy } = NumberUtils.getDistances(pos, s1);
-
-        // calc delta distance: line start to end
-        const { dx: dxx, dy: dyy } = NumberUtils.getDistances(s2, s1);
-
-        // Calc position on line normalized between 0.00 & 1.00
-        // == dot product divided by delta line distances squared
-        const t = (dx * dxx + dy * dyy) / (dxx ** 2 + dyy ** 2);
-
-        // calc nearest pt on line
-        let x = s1.x + dxx * t;
-        let y = s1.y + dyy * t;
-
-        // clamp results to being on the segment
-        if (t < 0) {
-            x = s1.x;
-            y = s1.y;
-        } else if (t > 1) {
-            x = s2.x;
-            y = s2.y;
-        }
-
-        return { x: x, y: y, isOnSegment: t >= 0 && t <= 1 };
     }
 
     private parseSvgPath(xml: string, force?: boolean): ICoordinates[] | undefined {

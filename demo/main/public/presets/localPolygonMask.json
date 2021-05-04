@@ -96,7 +96,7 @@
         "area": 2000
       },
       "limit": 0,
-      "value": 80
+      "value": 1
     },
     "opacity": {
       "value": 0.5
@@ -111,8 +111,8 @@
   "polygon": {
     "draw": {
       "enable": true,
-      "lineColor": "rgba(255,255,255,0.2)",
-      "lineWidth": 0.5
+      "lineColor": "rgba(255,255,255,1)",
+      "lineWidth": 1
     },
     "enable": true,
     "move": {
@@ -123,7 +123,7 @@
       "y": 50
     },
     "inlineArrangement": "equidistant",
-    "scale": 2,
+    "scale": 3,
     "type": "inside",
     "data": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" height=\"210\" width=\"400\"><path d=\"M150 0 L75 200 L225 200 Z\" /></svg>"
   },
