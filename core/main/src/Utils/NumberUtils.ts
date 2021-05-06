@@ -60,9 +60,9 @@ export class NumberUtils {
 
         return value !== undefined
             ? {
-                min: Math.min(min, value),
-                max: Math.max(max, value),
-            }
+                  min: Math.min(min, value),
+                  max: Math.max(max, value),
+              }
             : NumberUtils.setRangeValue(min, max);
     }
 

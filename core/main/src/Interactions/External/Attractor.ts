@@ -76,7 +76,7 @@ export class Attractor implements IExternalInteractor {
 
             const velocity = attractOptions.speed * attractOptions.factor;
             const attractFactor = NumberUtils.clamp(
-                NumberUtils.calcEasing(distance / attractRadius, attractOptions.easing) * velocity,
+                NumberUtils.calcEasing(1 - distance / attractRadius, attractOptions.easing) * velocity,
                 0,
                 attractOptions.maxSpeed
             );
