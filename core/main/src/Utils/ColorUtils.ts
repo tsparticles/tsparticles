@@ -479,16 +479,24 @@ export class ColorUtils {
         };
     }
 
-    static replaceColorSvg(image: IImage, color: IHsl, opacity: number): string {
-        if (!image.svgData) {
+    static replaceColorSvg(imageShape: IImage, color: IHsl, opacity: number): string {
+        const { svgData } = imageShape;
+        if (!svgData) {
             return "";
         }
 
         /* set color to svg element */
-        const svgXml = image.svgData;
-        const rgbHex = /#([0-9A-F]{3,6})/gi;
+        if (svgData.includes("fill")) {
+            const currentColor = /(#(?:[0-9a-f]{2}){2,4}|(#[0-9a-f]{3})|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d.]+%?\))/i;
+            return svgData.replace(currentColor, () => ColorUtils.getStyleFromHsl(color, opacity));
+        }
 
-        return svgXml.replace(rgbHex, () => ColorUtils.getStyleFromHsl(color, opacity));
+        const coloredSvgData = `${svgData.substring(0, svgData.indexOf(">"))} fill="${ColorUtils.getStyleFromHsl(
+            color,
+            opacity
+        )}"${svgData.substring(svgData.indexOf(">"))}`;
+
+        return coloredSvgData;
     }
 
     static getLinkColor(p1: IParticle, p2?: IParticle, linkColor?: string | IRgb): IRgb | undefined {
