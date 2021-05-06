@@ -480,23 +480,14 @@ export class ColorUtils {
     }
 
     static replaceColorSvg(imageShape: IImage, color: IHsl, opacity: number): string {
-        if (!imageShape) {
-            throw new Error("Error tsParticles - No image provided.");
-        }
-
-        const { source, svgData } = imageShape;
-        if (!source || !svgData) {
-            throw new Error("Error tsParticles - No image.src");
-        }
-
-        const imageType = source.substr(source.length - 3);
-        if (imageType !== "svg") {
-            throw new Error("Error tsParticles - replaceColor property provided to non-.svg image.src");
+        const { svgData } = imageShape;
+        if (!svgData) {
+            return "";
         }
 
         /* set color to svg element */
         if (svgData.includes("fill")) {
-            const currentColor = /(#(?:[0-9a-f]{2}){2,4}|(#[0-9a-f]{3})|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d.]+%?\)|currentcolor)/i;
+            const currentColor = /(#(?:[0-9a-f]{2}){2,4}|(#[0-9a-f]{3})|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d.]+%?\))/i;
             return svgData.replace(currentColor, () => ColorUtils.getStyleFromHsl(color, opacity));
         }
 
