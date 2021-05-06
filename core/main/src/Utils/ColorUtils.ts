@@ -495,15 +495,15 @@ export class ColorUtils {
         }
 
         /* set color to svg element */
-        if (imageShape?.svgData?.includes("fill")) {
+        if (svgData.includes("fill")) {
             const currentColor = /(#(?:[0-9a-f]{2}){2,4}|(#[0-9a-f]{3})|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d.]+%?\)|currentcolor)/i;
             return svgData.replace(currentColor, () => ColorUtils.getStyleFromHsl(color, opacity));
         }
 
-        const coloredSvgData = `${svgData?.substring(0, svgData.indexOf(">"))} fill="${ColorUtils.getStyleFromHsl(
+        const coloredSvgData = `${svgData.substring(0, svgData.indexOf(">"))} fill="${ColorUtils.getStyleFromHsl(
             color,
             opacity
-        )}"${svgData?.substring(svgData.indexOf(">"))}`;
+        )}"${svgData.substring(svgData.indexOf(">"))}`;
 
         return coloredSvgData;
     }
