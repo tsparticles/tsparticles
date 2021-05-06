@@ -96,7 +96,7 @@
         "area": 2000
       },
       "limit": 0,
-      "value": 1
+      "value": 200
     },
     "opacity": {
       "value": 0.5
@@ -105,7 +105,7 @@
       "type": "circle"
     },
     "size": {
-      "value": 1
+      "value": 3
     }
   },
   "polygon": {

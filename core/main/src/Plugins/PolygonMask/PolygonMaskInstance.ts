@@ -191,18 +191,10 @@ function segmentBounce(start: ICoordinates, stop: ICoordinates, velocity: Vector
     const wallAngle = Math.atan2(dy, dx); // + Math.PI / 2;
     const wallNormalX = Math.sin(wallAngle);
     const wallNormalY = -Math.cos(wallAngle);
-
-    console.log(">-----");
-    console.log("wall angle", ((wallAngle * 180) / Math.PI + 360) % 360);
-    console.log("particle angle", ((velocity.angle * 180) / Math.PI + 360) % 360);
-
     const d = 2 * (velocity.x * wallNormalX + velocity.y * wallNormalY);
 
     velocity.x -= d * wallNormalX;
     velocity.y -= d * wallNormalY;
-
-    console.log("res angle", ((velocity.angle * 180) / Math.PI + 360) % 360);
-    console.log("-----<");
 }
 
 /**
@@ -347,19 +339,45 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
 
         if (options.type === Type.inside || options.type === Type.outside) {
+            let closest: ICoordinates | undefined = undefined,
+                dx: number | undefined = undefined,
+                dy: number | undefined = undefined;
+            const pos = particle.getPosition(),
+                radius = particle.getRadius();
+
             for (let i = 0, j = this.raw.length - 1; i < this.raw.length; j = i++) {
-                const pos = particle.getPosition();
                 const pi = this.raw[i],
                     pj = this.raw[j];
-                const closest = calcClosestPtOnSegment(pi, pj, pos);
-                const distance = NumberUtils.getDistance(pos, closest);
-                const radius = particle.getRadius();
+                closest = calcClosestPtOnSegment(pi, pj, pos);
 
-                if (distance < radius) {
+                const dist = NumberUtils.getDistances(pos, closest);
+
+                [dx, dy] = [dist.dx, dist.dy];
+
+                if (dist.distance < radius) {
                     segmentBounce(pi, pj, particle.velocity);
 
                     return true;
                 }
+            }
+
+            if (closest && dx !== undefined && dy !== undefined && !this.checkInsidePolygon(pos)) {
+                const factor = { x: 1, y: 1 };
+
+                if (particle.position.x >= closest.x) {
+                    factor.x = -1;
+                }
+
+                if (particle.position.y >= closest.y) {
+                    factor.y = -1;
+                }
+
+                particle.position.x = closest.x + radius * 2 * factor.x;
+                particle.position.y = closest.y + radius * 2 * factor.y;
+
+                particle.velocity.mult(-1);
+
+                return true;
             }
         } else if (options.type === Type.inline && particle.initialPosition) {
             const dist = NumberUtils.getDistance(particle.initialPosition, particle.getPosition());
