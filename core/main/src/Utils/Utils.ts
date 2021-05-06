@@ -13,7 +13,6 @@ import { IParticle } from "../Core/Interfaces/IParticle";
 import { ISideData } from "../Core/Interfaces/ISideData";
 import { IRectSideResult } from "../Core/Interfaces/IRectSideResult";
 import { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer";
-import type { IValueColor, IRgb, IHsl, IHsv } from "../Core/Interfaces/Colors";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = "unloaded" | "loading" | "loaded" | "error";
@@ -264,38 +263,6 @@ export class Utils {
         }
 
         image.svgData = await response.text();
-
-        return image;
-    }
-
-    // TODO: add RGB / HSL support
-    static async replaceSvgColor(
-        imageShape: IImage,
-        color: SingleOrMultiple<string | IValueColor | IRgb | IHsl | IHsv>
-    ): Promise<IImage> {
-        if (!imageShape) {
-            throw new Error("Error tsParticles - No image provided.");
-        }
-
-        const { source } = imageShape;
-        if (!source) {
-            throw new Error("Error tsParticles - No image.src");
-        }
-
-        const imageType = source.substr(source.length - 3);
-        if (imageType !== "svg") {
-            throw new Error("Error tsParticles - replaceColor property provided to non-.svg image.src");
-        }
-
-        const coloredSource = `${imageShape.svgData?.substring(
-            0,
-            imageShape.svgData.indexOf(">")
-        )} fill="${color}"${imageShape.svgData?.substring(imageShape.svgData.indexOf(">"))}`;
-
-        const image: IImage = {
-            ...imageShape,
-            svgData: coloredSource,
-        };
 
         return image;
     }

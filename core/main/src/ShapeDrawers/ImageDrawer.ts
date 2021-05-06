@@ -77,13 +77,8 @@ export class ImageDrawer implements IShapeDrawer {
             const image = imageShape.replaceColor
                 ? await Utils.downloadSvgImage(imageShape.src)
                 : await Utils.loadImage(imageShape.src);
+
             if (image) {
-                if (imageShape.replaceColor) {
-                    const color = container.actualOptions.particles.color.value;
-                    const coloredImage = await Utils.replaceSvgColor(image, color);
-                    this.addImage(container, coloredImage);
-                    return;
-                }
                 this.addImage(container, image);
             }
         } catch {
