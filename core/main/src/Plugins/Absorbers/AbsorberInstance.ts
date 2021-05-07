@@ -85,6 +85,7 @@ export class AbsorberInstance {
         const pos = particle.getPosition();
         const { dx, dy, distance } = NumberUtils.getDistances(this.position, pos);
         const v = Vector.create(dx, dy);
+
         v.length = (this.mass / Math.pow(distance, 2)) * this.container.retina.reduceFactor;
 
         if (distance < this.size + particle.getRadius()) {
