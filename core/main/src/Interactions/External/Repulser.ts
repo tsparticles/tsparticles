@@ -123,8 +123,6 @@ export class Repulser implements IExternalInteractor {
                 y: dy / distance,
             };
 
-            console.log(distance, repulseRadius);
-
             const velocity = (divRepulse?.speed ?? repulseOptions.speed) * repulseOptions.factor;
             const repulseFactor = NumberUtils.clamp(
                 NumberUtils.calcEasing(1 - distance / repulseRadius, repulseOptions.easing) * velocity,
