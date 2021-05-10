@@ -492,10 +492,12 @@ export class ColorUtils {
             return svgData.replace(currentColor, () => ColorUtils.getStyleFromHsl(color, opacity));
         }
 
-        return `${ svgData.substring(0, svgData.indexOf(">")) } fill="${ ColorUtils.getStyleFromHsl(
+        const preFillIndex = svgData.indexOf(">");
+
+        return `${ svgData.substring(0, preFillIndex) } fill="${ ColorUtils.getStyleFromHsl(
             color,
             opacity
-        ) }"${ svgData.substring(svgData.indexOf(">")) }`;
+        ) }"${ svgData.substring(preFillIndex) }`;
     }
 
     static getLinkColor(p1: IParticle, p2?: IParticle, linkColor?: string | IRgb): IRgb | undefined {
