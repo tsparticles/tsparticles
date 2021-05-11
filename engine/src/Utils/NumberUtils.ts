@@ -57,9 +57,9 @@ export function setRangeValue(source: RangeValue, value?: number): RangeValue {
 
     return value !== undefined
         ? {
-            min: Math.min(min, value),
-            max: Math.max(max, value)
-        }
+              min: Math.min(min, value),
+              max: Math.max(max, value),
+          }
         : setRangeValue(min, max);
 }
 

@@ -12,13 +12,11 @@ export class Trail implements ITrail, IOptionLoader<ITrail> {
     particles?: RecursivePartial<IParticles>;
     pauseOnStop;
     quantity;
-    pauseOnStop;
 
     constructor() {
         this.delay = 1;
         this.pauseOnStop = false;
         this.quantity = 1;
-        this.pauseOnStop = false;
     }
 
     load(data?: RecursivePartial<ITrail>): void {
@@ -36,10 +34,6 @@ export class Trail implements ITrail, IOptionLoader<ITrail> {
 
         if (data.particles !== undefined) {
             this.particles = deepExtend({}, data.particles) as RecursivePartial<IParticles>;
-        }
-
-        if (data.pauseOnStop !== undefined) {
-            this.pauseOnStop = data.pauseOnStop;
         }
 
         if (data.pauseOnStop !== undefined) {

@@ -8,7 +8,7 @@ import {
     isInArray,
     ExternalInteractorBase,
     ClickMode,
-    HoverMode
+    HoverMode,
 } from "tsparticles-engine";
 
 /**
@@ -78,7 +78,11 @@ export class Attractor extends ExternalInteractorBase {
         for (const particle of query) {
             const { dx, dy, distance } = getDistances(particle.position, position);
             const velocity = attractOptions.speed * attractOptions.factor;
-            const attractFactor = clamp(calcEasing(1 - distance / attractRadius, attractOptions.easing) * velocity, 0, attractOptions.maxSpeed);
+            const attractFactor = clamp(
+                calcEasing(1 - distance / attractRadius, attractOptions.easing) * velocity,
+                0,
+                attractOptions.maxSpeed
+            );
             const normVec = Vector.create(
                 distance === 0 ? velocity : (dx / distance) * attractFactor,
                 distance === 0 ? velocity : (dy / distance) * attractFactor
