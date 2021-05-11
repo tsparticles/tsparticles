@@ -3,6 +3,7 @@ import type { IModes } from "tsparticles/dist/Options/Interfaces/Interactivity/M
 import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
 import { ParticlesOptionsEditor } from "../../Particles/ParticlesOptionsEditor";
+import { EasingType } from "tsparticles";
 
 export class ModesOptionsEditor extends EditorBase {
     group!: EditorGroup;
@@ -37,6 +38,43 @@ export class ModesOptionsEditor extends EditorBase {
         });
 
         group.addProperty("duration", "Duration", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
+
+        group
+            .addProperty("easing", "Easing", EditorType.select)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .addItems([
+                {
+                    value: EasingType.easeOutBack,
+                },
+                {
+                    value: EasingType.easeOutCirc,
+                },
+                {
+                    value: EasingType.easeOutCubic,
+                },
+                {
+                    value: EasingType.easeOutExpo,
+                },
+                {
+                    value: EasingType.easeOutQuad,
+                },
+                {
+                    value: EasingType.easeOutQuint,
+                },
+                {
+                    value: EasingType.easeOutSine,
+                },
+            ]);
+
+        group.addProperty("factor", "Factor", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
+
+        group.addProperty("maxSpeed", "Max Speed", EditorType.number).change(async () => {
             await particles.refresh();
         });
 
@@ -267,6 +305,43 @@ export class ModesOptionsEditor extends EditorBase {
             await particles.refresh();
         });
 
+        group
+            .addProperty("easing", "Easing", EditorType.select)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .addItems([
+                {
+                    value: EasingType.easeOutBack,
+                },
+                {
+                    value: EasingType.easeOutCirc,
+                },
+                {
+                    value: EasingType.easeOutCubic,
+                },
+                {
+                    value: EasingType.easeOutExpo,
+                },
+                {
+                    value: EasingType.easeOutQuad,
+                },
+                {
+                    value: EasingType.easeOutQuint,
+                },
+                {
+                    value: EasingType.easeOutSine,
+                },
+            ]);
+
+        group.addProperty("factor", "Factor", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
+
+        group.addProperty("maxSpeed", "Max Speed", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
+
         group.addProperty("speed", "Speed", EditorType.number).change(async () => {
             await particles.refresh();
         });
@@ -295,6 +370,10 @@ export class ModesOptionsEditor extends EditorBase {
         particlesEditor.addToGroup(group, "particles", options);
 
         group.addProperty("delay", "Delay", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
+
+        group.addProperty("pauseOnStop", "Pause on Stop", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
 

@@ -113,6 +113,7 @@ export class Repulser implements IExternalInteractor {
 
     private processRepulse(position: ICoordinates, repulseRadius: number, area: Range, divRepulse?: RepulseDiv): void {
         const container = this.container;
+        const repulseOptions = container.actualOptions.interactivity.modes.repulse;
         const query = container.particles.quadTree.query(area);
 
         for (const particle of query) {
@@ -122,8 +123,12 @@ export class Repulser implements IExternalInteractor {
                 y: dy / distance,
             };
 
-            const velocity = (divRepulse?.speed ?? container.actualOptions.interactivity.modes.repulse.speed) * 100;
-            const repulseFactor = NumberUtils.clamp((1 - Math.pow(distance / repulseRadius, 2)) * velocity, 0, 50);
+            const velocity = (divRepulse?.speed ?? repulseOptions.speed) * repulseOptions.factor;
+            const repulseFactor = NumberUtils.clamp(
+                NumberUtils.calcEasing(1 - distance / repulseRadius, repulseOptions.easing) * velocity,
+                0,
+                repulseOptions.maxSpeed
+            );
 
             particle.position.x += normVec.x * repulseFactor;
             particle.position.y += normVec.y * repulseFactor;

@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-background-mask",
-  "version": "1.11.3",
+  "version": "1.12.0",
   "description": "tsParticles backgroundMask preset",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -70,6 +70,6 @@
     "webpack-cli": "^4.6.0"
   },
   "dependencies": {
-    "tsparticles": "^1.26.3"
+    "tsparticles": "^1.27.0"
   }
 }

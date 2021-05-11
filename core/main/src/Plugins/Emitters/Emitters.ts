@@ -27,14 +27,16 @@ export class Emitters implements IContainerPlugin {
 
         const overridableContainer = (container as unknown) as EmitterContainer;
 
+        overridableContainer.getEmitter = (idxOrName?: number | string) =>
+            idxOrName === undefined || typeof idxOrName === "number"
+                ? this.array[idxOrName || 0]
+                : this.array.find((t) => t.name === idxOrName);
+
         overridableContainer.addEmitter = (options: IEmitter, position?: ICoordinates) =>
             this.addEmitter(options, position);
 
         overridableContainer.playEmitter = (idxOrName?: number | string) => {
-            const emitter =
-                idxOrName === undefined || typeof idxOrName === "number"
-                    ? this.array[idxOrName || 0]
-                    : this.array.find((t) => t.name === idxOrName);
+            const emitter = overridableContainer.getEmitter(idxOrName);
 
             if (emitter) {
                 emitter.externalPlay();
@@ -42,10 +44,7 @@ export class Emitters implements IContainerPlugin {
         };
 
         overridableContainer.pauseEmitter = (idxOrName?: number | string) => {
-            const emitter =
-                idxOrName === undefined || typeof idxOrName === "number"
-                    ? this.array[idxOrName || 0]
-                    : this.array.find((t) => t.name === idxOrName);
+            const emitter = overridableContainer.getEmitter(idxOrName);
 
             if (emitter) {
                 emitter.externalPause();

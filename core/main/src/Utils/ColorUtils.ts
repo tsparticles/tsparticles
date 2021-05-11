@@ -1,4 +1,4 @@
-import type { IColor, IRgb, IRgba, IHsl, IHsla, IValueColor, IHsv, IHsva } from "../Core/Interfaces/Colors";
+import type { IColor, IHsl, IHsla, IHsv, IHsva, IRgb, IRgba, IValueColor } from "../Core/Interfaces/Colors";
 import { Utils } from "./Utils";
 import { Constants } from "./Constants";
 import type { IImage } from "../Core/Interfaces/IImage";
@@ -479,16 +479,25 @@ export class ColorUtils {
         };
     }
 
-    static replaceColorSvg(image: IImage, color: IHsl, opacity: number): string {
-        if (!image.svgData) {
+    static replaceColorSvg(imageShape: IImage, color: IHsl, opacity: number): string {
+        const { svgData } = imageShape;
+        if (!svgData) {
             return "";
         }
 
         /* set color to svg element */
-        const svgXml = image.svgData;
-        const rgbHex = /#([0-9A-F]{3,6})/gi;
+        if (svgData.includes("fill")) {
+            const currentColor = /(#(?:[0-9a-f]{2}){2,4}|(#[0-9a-f]{3})|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d.]+%?\))|currentcolor/gi;
 
-        return svgXml.replace(rgbHex, () => ColorUtils.getStyleFromHsl(color, opacity));
+            return svgData.replace(currentColor, () => ColorUtils.getStyleFromHsl(color, opacity));
+        }
+
+        const preFillIndex = svgData.indexOf(">");
+
+        return `${svgData.substring(0, preFillIndex)} fill="${ColorUtils.getStyleFromHsl(
+            color,
+            opacity
+        )}"${svgData.substring(preFillIndex)}`;
     }
 
     static getLinkColor(p1: IParticle, p2?: IParticle, linkColor?: string | IRgb): IRgb | undefined {

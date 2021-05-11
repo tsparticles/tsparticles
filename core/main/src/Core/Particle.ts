@@ -668,7 +668,10 @@ export class Particle implements IParticle {
             const img = new Image();
 
             imageRes = {
-                data: image,
+                data: {
+                    ...image,
+                    svgData: svgColoredData,
+                },
                 loaded: false,
                 ratio: imageData.width / imageData.height,
                 replaceColor: imageData.replaceColor ?? imageData.replace_color,
