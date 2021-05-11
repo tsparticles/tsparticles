@@ -1,13 +1,17 @@
 import type { IRepulseBase } from "../../../Interfaces/Interactivity/Modes/IRepulseBase";
 import type { RecursivePartial } from "../../../../Types";
+import { EasingType } from "../../../../Enums";
+import { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 /**
  * @category Options
  */
-export abstract class RepulseBase implements IRepulseBase {
+export abstract class RepulseBase implements IRepulseBase, IOptionLoader<IRepulseBase> {
     distance;
     duration;
+    easing;
     factor;
+    maxSpeed;
     speed;
 
     constructor() {
@@ -15,10 +19,12 @@ export abstract class RepulseBase implements IRepulseBase {
         this.duration = 0.4;
         this.factor = 100;
         this.speed = 1;
+        this.maxSpeed = 50;
+        this.easing = EasingType.easeOutQuad;
     }
 
     load(data?: RecursivePartial<IRepulseBase>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 
@@ -30,12 +36,20 @@ export abstract class RepulseBase implements IRepulseBase {
             this.duration = data.duration;
         }
 
+        if (data.easing !== undefined) {
+            this.easing = data.easing;
+        }
+
         if (data.factor !== undefined) {
             this.factor = data.factor;
         }
 
         if (data.speed !== undefined) {
             this.speed = data.speed;
+        }
+
+        if (data.maxSpeed !== undefined) {
+            this.maxSpeed = data.maxSpeed;
         }
     }
 }

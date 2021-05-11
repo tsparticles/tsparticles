@@ -9,7 +9,49 @@ import type { IContainerPlugin } from "tsparticles-engine/Core/Interfaces/IConta
 import type { RecursivePartial } from "tsparticles-engine/Types";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
 import type { IPolygonMaskOptions } from "./Options/Interfaces/IPolygonMaskOptions";
-import { drawPolygonMask, drawPolygonMaskPath, parsePaths, polygonBounce } from "./Utils";
+import { drawPolygonMask, drawPolygonMaskPath, parsePaths } from "./Utils";
+
+function calcClosestPtOnSegment(
+    s1: ICoordinates,
+    s2: ICoordinates,
+    pos: ICoordinates
+): ICoordinates & { isOnSegment: boolean } {
+    // calc delta distance: source point to line start
+    const { dx, dy } = NumberUtils.getDistances(pos, s1);
+
+    // calc delta distance: line start to end
+    const { dx: dxx, dy: dyy } = NumberUtils.getDistances(s2, s1);
+
+    // Calc position on line normalized between 0.00 & 1.00
+    // == dot product divided by delta line distances squared
+    const t = (dx * dxx + dy * dyy) / (dxx ** 2 + dyy ** 2);
+
+    // calc nearest pt on line
+    let x = s1.x + dxx * t;
+    let y = s1.y + dyy * t;
+
+    // clamp results to being on the segment
+    if (t < 0) {
+        x = s1.x;
+        y = s1.y;
+    } else if (t > 1) {
+        x = s2.x;
+        y = s2.y;
+    }
+
+    return { x: x, y: y, isOnSegment: t >= 0 && t <= 1 };
+}
+
+function segmentBounce(start: ICoordinates, stop: ICoordinates, velocity: Vector): void {
+    const { dx, dy } = NumberUtils.getDistances(start, stop);
+    const wallAngle = Math.atan2(dy, dx); // + Math.PI / 2;
+    const wallNormalX = Math.sin(wallAngle);
+    const wallNormalY = -Math.cos(wallAngle);
+    const d = 2 * (velocity.x * wallNormalX + velocity.y * wallNormalY);
+
+    velocity.x -= d * wallNormalX;
+    velocity.y -= d * wallNormalY;
+}
 
 /**
  * Polygon Mask manager
@@ -100,27 +142,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
         return deepExtend({}, position ? position : this.randomPoint()) as ICoordinates;
     }
 
-    particleBounce(particle: Particle): boolean {
-        const options = this.options;
-
-        /* check bounce against polygon boundaries */
-        if (options.enable && options.type !== Type.none && options.type !== Type.inline) {
-            if (!this.checkInsidePolygon(particle.getPosition())) {
-                polygonBounce(particle);
-
-                return true;
-            }
-        } else if (options.enable && options.type === Type.inline && particle.initialPosition) {
-            const dist = getDistance(particle.initialPosition, particle.getPosition());
-
-            if (dist > this.polygonMaskMoveRadius) {
-                polygonBounce(particle);
-
-                return true;
-            }
-        }
-
-        return false;
+    particleBounce(particle: Particle, delta: IDelta, direction: OutModeDirection): boolean {
+        return this.polygonBounce(particle, delta, direction);
     }
 
     clickPositionValid(position: ICoordinates): boolean {
@@ -164,7 +187,69 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
     }
 
-    private checkInsidePolygon(position: ICoordinates | undefined): boolean {
+    private polygonBounce(particle: Particle, delta: IDelta, direction: OutModeDirection): boolean {
+        const options = this.options;
+
+        if (!this.raw || !options.enable || direction !== OutModeDirection.top) {
+            return false;
+        }
+
+        if (options.type === Type.inside || options.type === Type.outside) {
+            let closest: ICoordinates | undefined = undefined,
+                dx: number | undefined = undefined,
+                dy: number | undefined = undefined;
+            const pos = particle.getPosition(),
+                radius = particle.getRadius();
+
+            for (let i = 0, j = this.raw.length - 1; i < this.raw.length; j = i++) {
+                const pi = this.raw[i],
+                    pj = this.raw[j];
+                closest = calcClosestPtOnSegment(pi, pj, pos);
+
+                const dist = NumberUtils.getDistances(pos, closest);
+
+                [dx, dy] = [dist.dx, dist.dy];
+
+                if (dist.distance < radius) {
+                    segmentBounce(pi, pj, particle.velocity);
+
+                    return true;
+                }
+            }
+
+            if (closest && dx !== undefined && dy !== undefined && !this.checkInsidePolygon(pos)) {
+                const factor = { x: 1, y: 1 };
+
+                if (particle.position.x >= closest.x) {
+                    factor.x = -1;
+                }
+
+                if (particle.position.y >= closest.y) {
+                    factor.y = -1;
+                }
+
+                particle.position.x = closest.x + radius * 2 * factor.x;
+                particle.position.y = closest.y + radius * 2 * factor.y;
+
+                particle.velocity.mult(-1);
+
+                return true;
+            }
+        } else if (options.type === Type.inline && particle.initialPosition) {
+            const dist = NumberUtils.getDistance(particle.initialPosition, particle.getPosition());
+
+            if (dist > this.polygonMaskMoveRadius) {
+                particle.velocity.x = particle.velocity.y / 2 - particle.velocity.x;
+                particle.velocity.y = particle.velocity.x / 2 - particle.velocity.y;
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private checkInsidePolygon(position?: ICoordinates): boolean {
         const container = this.container;
         const options = this.options;
 

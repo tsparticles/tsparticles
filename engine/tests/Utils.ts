@@ -1,6 +1,6 @@
 import { describe, it } from "mocha";
 import { expect } from "chai";
-import type { IContainerPlugin, IPlugin, IRangeValue } from "../src";
+import { IContainerPlugin, IParticle, IPlugin, IRangeValue, Particle } from "../src";
 import { Container } from "../src/Core/Container";
 import { MoveDirection } from "../src/Enums";
 import {
@@ -9,6 +9,7 @@ import {
     calculateBounds,
     clamp,
     getDistance,
+    getDistances,
     getParticleBaseVelocity,
     isInArray,
     isPointInside,
@@ -18,6 +19,8 @@ import {
     randomInRange,
     setRangeValue,
 } from "../src/Utils";
+import { ICoordinates } from "../src/Core/Interfaces/ICoordinates";
+import { Vector } from "../src/Core/Particle/Vector";
 
 function buildPluginWithId(id: string, needsPlugin: boolean): IPlugin {
     return {
@@ -32,6 +35,23 @@ function buildPluginWithId(id: string, needsPlugin: boolean): IPlugin {
             return null;
         },
     };
+
+function buildParticleWithDirection(direction: MoveDirection): IParticle {
+    const container = new Container("someid");
+    const options = { move: { direction } };
+    return new Particle(1, container, undefined, options);
+}
+
+function segmentBounce(start: ICoordinates, stop: ICoordinates, velocity: Vector): void {
+    const { dx, dy } = getDistances(start, stop);
+    const wallAngle = Math.atan2(dy, dx) + Math.PI / 2;
+    const wallNormalX = Math.sin(wallAngle);
+    const wallNormalY = -Math.cos(wallAngle);
+
+    const d = 2 * (velocity.x * wallNormalX + velocity.y * wallNormalY);
+
+    velocity.x -= d * wallNormalX;
+    velocity.y -= d * wallNormalY;
 }
 
 describe("Utils", () => {
@@ -506,5 +526,30 @@ describe("Utils", () => {
                 expect(plugins.get("some other plugin")).to.be.undefined;
             });
         });
+    });
+
+    describe("segmentBounce", () => {
+        const start = {
+                x: 29, //Math.floor(Math.random() * 100),
+                y: 82, //Math.floor(Math.random() * 100)
+            },
+            stop = {
+                x: 53, //Math.floor(Math.random() * 100),
+                y: 82, //Math.floor(Math.random() * 100)
+            },
+            velocity = Vector.origin; // angle = 238.91568442036498 * Math.PI / 180;//Math.random() * Math.PI * 2;
+
+        velocity.length = 1;
+        velocity.angle = (238.91568442036498 * Math.PI) / 180;
+
+        console.log("segment", start, stop);
+        console.log("s. angle", ((Math.atan2(start.y - stop.y, start.x - stop.x) * 180) / Math.PI) % 360);
+        console.log("p. speed", velocity.length);
+        console.log("p. angle", ((velocity.angle * 180) / Math.PI) % 360);
+
+        segmentBounce(start, stop, velocity);
+
+        console.log("res. speed", velocity.length);
+        console.log("res. angle", ((velocity.angle * 180) / Math.PI) % 360);
     });
 });

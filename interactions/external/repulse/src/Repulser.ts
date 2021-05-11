@@ -125,7 +125,7 @@ export class Repulser extends ExternalInteractorBase {
         for (const particle of query) {
             const { dx, dy, distance } = getDistances(particle.position, position),
                 velocity = (divRepulse?.speed ?? repulseOptions.speed) * repulseOptions.factor,
-                repulseFactor = clamp((1 - Math.pow(distance / repulseRadius, 2)) * velocity, 0, velocity),
+                repulseFactor = clamp(calcEasing(1 - distance / repulseRadius, repulseOptions.easing) * velocity, 0, repulseOptions.maxSpeed),
                 normVec = Vector.create(
                     distance === 0 ? velocity : (dx / distance) * repulseFactor,
                     distance === 0 ? velocity : (dy / distance) * repulseFactor
