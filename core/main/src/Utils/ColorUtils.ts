@@ -45,11 +45,11 @@ function stringToRgba(input: string): IRgba | undefined {
 
         return result
             ? {
-                a: result.length > 4 ? parseFloat(result[5]) : 1,
-                b: parseInt(result[3], 10),
-                g: parseInt(result[2], 10),
-                r: parseInt(result[1], 10),
-            }
+                  a: result.length > 4 ? parseFloat(result[5]) : 1,
+                  b: parseInt(result[3], 10),
+                  g: parseInt(result[2], 10),
+                  r: parseInt(result[1], 10),
+              }
             : undefined;
     } else if (input.startsWith("hsl")) {
         const regex = /hsla?\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([\d.]+)\s*)?\)/i;
@@ -57,11 +57,11 @@ function stringToRgba(input: string): IRgba | undefined {
 
         return result
             ? ColorUtils.hslaToRgba({
-                a: result.length > 4 ? parseFloat(result[5]) : 1,
-                h: parseInt(result[1], 10),
-                l: parseInt(result[3], 10),
-                s: parseInt(result[2], 10),
-            })
+                  a: result.length > 4 ? parseFloat(result[5]) : 1,
+                  h: parseInt(result[1], 10),
+                  l: parseInt(result[3], 10),
+                  s: parseInt(result[2], 10),
+              })
             : undefined;
     } else if (input.startsWith("hsv")) {
         const regex = /hsva?\(\s*(\d+)°\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([\d.]+)\s*)?\)/i;
@@ -69,11 +69,11 @@ function stringToRgba(input: string): IRgba | undefined {
 
         return result
             ? ColorUtils.hsvaToRgba({
-                a: result.length > 4 ? parseFloat(result[5]) : 1,
-                h: parseInt(result[1], 10),
-                s: parseInt(result[2], 10),
-                v: parseInt(result[3], 10),
-            })
+                  a: result.length > 4 ? parseFloat(result[5]) : 1,
+                  h: parseInt(result[1], 10),
+                  s: parseInt(result[2], 10),
+                  v: parseInt(result[3], 10),
+              })
             : undefined;
     } else {
         // By Tim Down - http://stackoverflow.com/a/5624139/3493650
@@ -87,11 +87,11 @@ function stringToRgba(input: string): IRgba | undefined {
 
         return result
             ? {
-                a: result[4] !== undefined ? parseInt(result[4], 16) / 0xff : 1,
-                b: parseInt(result[3], 16),
-                g: parseInt(result[2], 16),
-                r: parseInt(result[1], 16),
-            }
+                  a: result[4] !== undefined ? parseInt(result[4], 16) / 0xff : 1,
+                  b: parseInt(result[3], 16),
+                  g: parseInt(result[2], 16),
+                  r: parseInt(result[1], 16),
+              }
             : undefined;
     }
 }
@@ -439,7 +439,7 @@ export class ColorUtils {
      * @param opacity the opacity to apply to color
      */
     static getStyleFromRgb(color: IRgb, opacity?: number): string {
-        return `rgba(${ color.r }, ${ color.g }, ${ color.b }, ${ opacity ?? 1 })`;
+        return `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity ?? 1})`;
     }
 
     /**
@@ -448,7 +448,7 @@ export class ColorUtils {
      * @param opacity the opacity to apply to color
      */
     static getStyleFromHsl(color: IHsl, opacity?: number): string {
-        return `hsla(${ color.h }, ${ color.s }%, ${ color.l }%, ${ opacity ?? 1 })`;
+        return `hsla(${color.h}, ${color.s}%, ${color.l}%, ${opacity ?? 1})`;
     }
 
     /**
@@ -494,10 +494,10 @@ export class ColorUtils {
 
         const preFillIndex = svgData.indexOf(">");
 
-        return `${ svgData.substring(0, preFillIndex) } fill="${ ColorUtils.getStyleFromHsl(
+        return `${svgData.substring(0, preFillIndex)} fill="${ColorUtils.getStyleFromHsl(
             color,
             opacity
-        ) }"${ svgData.substring(preFillIndex) }`;
+        )}"${svgData.substring(preFillIndex)}`;
     }
 
     static getLinkColor(p1: IParticle, p2?: IParticle, linkColor?: string | IRgb): IRgb | undefined {
@@ -544,10 +544,10 @@ export class ColorUtils {
     static getHslFromAnimation(animation?: IParticleHslAnimation): IHsl | undefined {
         return animation !== undefined
             ? {
-                h: animation.h.value,
-                s: animation.s.value,
-                l: animation.l.value,
-            }
+                  h: animation.h.value,
+                  s: animation.s.value,
+                  l: animation.l.value,
+              }
             : undefined;
     }
 }
