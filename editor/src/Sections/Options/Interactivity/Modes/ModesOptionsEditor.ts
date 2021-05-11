@@ -5,7 +5,7 @@ import { EditorBase } from "../../../../EditorBase";
 import { ParticlesOptionsEditor } from "../../Particles/ParticlesOptionsEditor";
 import type { IPush } from "tsparticles-engine/Options/Interfaces/Interactivity/Modes/IPush";
 import type { IRemove } from "tsparticles-engine/Options/Interfaces/Interactivity/Modes/IRemove";
-import { EasingType } from "tsparticles";
+import { EasingType } from "tsparticles-engine";
 
 export class ModesOptionsEditor extends EditorBase {
     group!: EditorGroup;

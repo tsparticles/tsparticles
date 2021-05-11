@@ -15,7 +15,7 @@ import {
     getDistances,
     isDivModeEnabled,
     isInArray,
-    Vector
+    Vector,
 } from "tsparticles-engine";
 import type { DivEvent } from "tsparticles-engine/Options/Classes/Interactivity/Events/DivEvent";
 import type { RepulseDiv } from "tsparticles-engine/Options/Classes/Interactivity/Modes/RepulseDiv";
@@ -86,18 +86,18 @@ export class Repulser extends ExternalInteractorBase {
                 pxRatio = container.retina.pixelRatio,
                 pos = {
                     x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
-                    y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio
+                    y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
                 },
                 repulseRadius = (elem.offsetWidth / 2) * pxRatio,
                 area =
                     div.type === DivType.circle
                         ? new Circle(pos.x, pos.y, repulseRadius)
                         : new Rectangle(
-                        elem.offsetLeft * pxRatio,
-                        elem.offsetTop * pxRatio,
-                        elem.offsetWidth * pxRatio,
-                        elem.offsetHeight * pxRatio
-                        ),
+                              elem.offsetLeft * pxRatio,
+                              elem.offsetTop * pxRatio,
+                              elem.offsetWidth * pxRatio,
+                              elem.offsetHeight * pxRatio
+                          ),
                 divs = container.actualOptions.interactivity.modes.repulse.divs,
                 divRepulse = divMode(divs, elem);
 

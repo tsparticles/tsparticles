@@ -7,7 +7,7 @@ import {
     IImageParticle,
     IParticleImage,
     loadImage,
-    replaceColorSvg
+    replaceColorSvg,
 } from "./Utils";
 import type { Shape } from "tsparticles-engine/Options/Classes/Particles/Shape/Shape";
 
@@ -31,7 +31,7 @@ export class ImageDrawer implements IShapeDrawer {
         if (!containerImages) {
             this.#images.push({
                 id: container.id,
-                images: []
+                images: [],
             });
 
             return this.getImages(container);
@@ -106,7 +106,7 @@ export class ImageDrawer implements IShapeDrawer {
 
         const pos = {
             x: -radius,
-            y: -radius
+            y: -radius,
         };
 
         if (!image?.data.svgData || !image?.replaceColor) {
@@ -140,7 +140,7 @@ export class ImageDrawer implements IShapeDrawer {
             const svgColoredData = replaceColorSvg(image, color, particle.opacity.value);
 
             /* prepare to create img with colored svg */
-            const svg = new Blob([ svgColoredData ], { type: "image/svg+xml" });
+            const svg = new Blob([svgColoredData], { type: "image/svg+xml" });
             const domUrl = URL || window.URL || window.webkitURL || window;
             const url = domUrl.createObjectURL(svg);
 
@@ -150,11 +150,11 @@ export class ImageDrawer implements IShapeDrawer {
             imageRes = {
                 data: {
                     ...image,
-                    svgData: svgColoredData
+                    svgData: svgColoredData,
                 },
                 ratio: imageData.width / imageData.height,
                 replaceColor: imageData.replaceColor ?? imageData.replace_color,
-                source: imageData.src
+                source: imageData.src,
             };
 
             img.addEventListener("load", () => {
@@ -189,7 +189,7 @@ export class ImageDrawer implements IShapeDrawer {
                 loaded: true,
                 ratio: imageData.width / imageData.height,
                 replaceColor: imageData.replaceColor ?? imageData.replace_color,
-                source: imageData.src
+                source: imageData.src,
             };
         }
         if (!imageRes.ratio) {
@@ -201,7 +201,7 @@ export class ImageDrawer implements IShapeDrawer {
         const imageShape = {
             image: imageRes,
             fill,
-            close
+            close,
         };
 
         ((particle as unknown) as IImageParticle).image = imageShape.image;

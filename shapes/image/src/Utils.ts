@@ -36,7 +36,7 @@ export function loadImage(source: string): Promise<IImage | undefined> {
 
             const image: IImage = {
                 source: source,
-                type: source.substr(source.length - 3)
+                type: source.substr(source.length - 3),
             };
 
             const img = new Image();
@@ -63,7 +63,7 @@ export async function downloadSvgImage(source: string): Promise<IImage | undefin
 
     const image: IImage = {
         source: source,
-        type: source.substr(source.length - 3)
+        type: source.substr(source.length - 3),
     };
 
     if (image.type !== "svg") {
@@ -96,8 +96,7 @@ export function replaceColorSvg(imageShape: IImage, color: IHsl, opacity: number
 
     const preFillIndex = svgData.indexOf(">");
 
-    return `${svgData.substring(0, preFillIndex)} fill="${getStyleFromHsl(
-        color,
-        opacity
-    )}"${svgData.substring(preFillIndex)}`;
+    return `${svgData.substring(0, preFillIndex)} fill="${getStyleFromHsl(color, opacity)}"${svgData.substring(
+        preFillIndex
+    )}`;
 }
