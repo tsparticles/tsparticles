@@ -41,31 +41,34 @@ export class ModesOptionsEditor extends EditorBase {
             await particles.refresh();
         });
 
-        group.addProperty("easing", "Easing", EditorType.select).change(async () => {
-            await particles.refresh();
-        }).addItems([
-            {
-                value: EasingType.easeOutBack
-            },
-            {
-                value: EasingType.easeOutCirc
-            },
-            {
-                value: EasingType.easeOutCubic
-            },
-            {
-                value: EasingType.easeOutExpo
-            },
-            {
-                value: EasingType.easeOutQuad
-            },
-            {
-                value: EasingType.easeOutQuint
-            },
-            {
-                value: EasingType.easeOutSine
-            }
-        ]);
+        group
+            .addProperty("easing", "Easing", EditorType.select)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .addItems([
+                {
+                    value: EasingType.easeOutBack,
+                },
+                {
+                    value: EasingType.easeOutCirc,
+                },
+                {
+                    value: EasingType.easeOutCubic,
+                },
+                {
+                    value: EasingType.easeOutExpo,
+                },
+                {
+                    value: EasingType.easeOutQuad,
+                },
+                {
+                    value: EasingType.easeOutQuint,
+                },
+                {
+                    value: EasingType.easeOutSine,
+                },
+            ]);
 
         group.addProperty("factor", "Factor", EditorType.number).change(async () => {
             await particles.refresh();
@@ -114,13 +117,13 @@ export class ModesOptionsEditor extends EditorBase {
         });
 
         group
-        .addProperty("opacity", "Opacity", EditorType.number)
-        .change(async () => {
-            await particles.refresh();
-        })
-        .step(0.01)
-        .min(0)
-        .max(1);
+            .addProperty("opacity", "Opacity", EditorType.number)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .step(0.01)
+            .min(0)
+            .max(1);
 
         group.addProperty("size", "Size", EditorType.number).change(async () => {
             await particles.refresh();
@@ -134,13 +137,13 @@ export class ModesOptionsEditor extends EditorBase {
         const connectLinksGroup = group.addGroup("links", "Links");
 
         connectLinksGroup
-        .addProperty("opacity", "Opacity", EditorType.number)
-        .change(async () => {
-            await particles.refresh();
-        })
-        .step(0.01)
-        .min(0)
-        .max(1);
+            .addProperty("opacity", "Opacity", EditorType.number)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .step(0.01)
+            .min(0)
+            .max(1);
 
         group.addProperty("distance", "Distance", EditorType.number).change(async () => {
             await particles.refresh();
@@ -182,13 +185,13 @@ export class ModesOptionsEditor extends EditorBase {
         });
 
         grabLinksGroup
-        .addProperty("opacity", "Opacity", EditorType.number)
-        .change(async () => {
-            await particles.refresh();
-        })
-        .step(0.01)
-        .min(0)
-        .max(1);
+            .addProperty("opacity", "Opacity", EditorType.number)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .step(0.01)
+            .min(0)
+            .max(1);
 
         group.addProperty("distance", "Distance", EditorType.number).change(async () => {
             await particles.refresh();
@@ -208,20 +211,20 @@ export class ModesOptionsEditor extends EditorBase {
                 : options.area.gradient.start?.value;
 
         gradientGroup
-        .addProperty("start", "Start", EditorType.color, startColor, false)
-        .change(async (value: unknown) => {
-            if (typeof value === "string") {
-                if (typeof options.area.gradient.start === "string") {
-                    options.area.gradient.start = value;
-                } else {
-                    options.area.gradient.start = {
-                        value,
-                    };
+            .addProperty("start", "Start", EditorType.color, startColor, false)
+            .change(async (value: unknown) => {
+                if (typeof value === "string") {
+                    if (typeof options.area.gradient.start === "string") {
+                        options.area.gradient.start = value;
+                    } else {
+                        options.area.gradient.start = {
+                            value,
+                        };
+                    }
                 }
-            }
 
-            await particles.refresh();
-        });
+                await particles.refresh();
+            });
 
         const stopColor =
             typeof options.area.gradient.stop === "string"
@@ -252,20 +255,20 @@ export class ModesOptionsEditor extends EditorBase {
             typeof options.shadow.color === "string" ? options.shadow.color : options.shadow.color?.value;
 
         shadowGroup
-        .addProperty("color", "Color", EditorType.color, shadowColor, false)
-        .change(async (value: unknown) => {
-            if (typeof value === "string") {
-                if (typeof options.shadow.color === "string") {
-                    options.shadow.color = value;
-                } else {
-                    options.shadow.color = {
-                        value,
-                    };
+            .addProperty("color", "Color", EditorType.color, shadowColor, false)
+            .change(async (value: unknown) => {
+                if (typeof value === "string") {
+                    if (typeof options.shadow.color === "string") {
+                        options.shadow.color = value;
+                    } else {
+                        options.shadow.color = {
+                            value,
+                        };
+                    }
                 }
-            }
 
-            await particles.refresh();
-        });
+                await particles.refresh();
+            });
 
         shadowGroup.addProperty("length", "Length", EditorType.number).change(async () => {
             await particles.refresh();
@@ -302,31 +305,34 @@ export class ModesOptionsEditor extends EditorBase {
             await particles.refresh();
         });
 
-        group.addProperty("easing", "Easing", EditorType.select).change(async () => {
-            await particles.refresh();
-        }).addItems([
-            {
-                value: EasingType.easeOutBack
-            },
-            {
-                value: EasingType.easeOutCirc
-            },
-            {
-                value: EasingType.easeOutCubic
-            },
-            {
-                value: EasingType.easeOutExpo
-            },
-            {
-                value: EasingType.easeOutQuad
-            },
-            {
-                value: EasingType.easeOutQuint
-            },
-            {
-                value: EasingType.easeOutSine
-            }
-        ]);
+        group
+            .addProperty("easing", "Easing", EditorType.select)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .addItems([
+                {
+                    value: EasingType.easeOutBack,
+                },
+                {
+                    value: EasingType.easeOutCirc,
+                },
+                {
+                    value: EasingType.easeOutCubic,
+                },
+                {
+                    value: EasingType.easeOutExpo,
+                },
+                {
+                    value: EasingType.easeOutQuad,
+                },
+                {
+                    value: EasingType.easeOutQuint,
+                },
+                {
+                    value: EasingType.easeOutSine,
+                },
+            ]);
 
         group.addProperty("factor", "Factor", EditorType.number).change(async () => {
             await particles.refresh();
