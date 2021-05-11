@@ -36,7 +36,7 @@ export function loadImage(source: string): Promise<IImage | undefined> {
 
             const image: IImage = {
                 source: source,
-                type: source.substr(source.length - 3),
+                type: source.substr(source.length - 3)
             };
 
             const img = new Image();
@@ -63,7 +63,7 @@ export async function downloadSvgImage(source: string): Promise<IImage | undefin
 
     const image: IImage = {
         source: source,
-        type: source.substr(source.length - 3),
+        type: source.substr(source.length - 3)
     };
 
     if (image.type !== "svg") {
@@ -81,14 +81,23 @@ export async function downloadSvgImage(source: string): Promise<IImage | undefin
     return image;
 }
 
-export function replaceColorSvg(image: IImage, color: IHsl, opacity: number): string {
-    if (!image.svgData) {
+export function replaceColorSvg(imageShape: IImage, color: IHsl, opacity: number): string {
+    const { svgData } = imageShape;
+    if (!svgData) {
         return "";
     }
 
     /* set color to svg element */
-    const svgXml = image.svgData;
-    const rgbHex = /#([0-9A-F]{3,6})/gi;
+    if (svgData.includes("fill")) {
+        const currentColor = /(#(?:[0-9a-f]{2}){2,4}|(#[0-9a-f]{3})|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d.]+%?\))|currentcolor/gi;
 
-    return svgXml.replace(rgbHex, () => getStyleFromHsl(color, opacity));
+        return svgData.replace(currentColor, () => getStyleFromHsl(color, opacity));
+    }
+
+    const preFillIndex = svgData.indexOf(">");
+
+    return `${svgData.substring(0, preFillIndex)} fill="${getStyleFromHsl(
+        color,
+        opacity
+    )}"${svgData.substring(preFillIndex)}`;
 }

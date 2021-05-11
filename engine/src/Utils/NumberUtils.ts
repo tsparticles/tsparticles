@@ -1,5 +1,5 @@
 import type { ICoordinates } from "../Core/Interfaces";
-import { MoveDirection, MoveDirectionAlt } from "../Enums";
+import { EasingType, MoveDirection, MoveDirectionAlt } from "../Enums";
 import { Vector } from "../Core/Particle/Vector";
 import { RangeValue } from "../Types";
 
@@ -57,9 +57,9 @@ export function setRangeValue(source: RangeValue, value?: number): RangeValue {
 
     return value !== undefined
         ? {
-              min: Math.min(min, value),
-              max: Math.max(max, value),
-          }
+            min: Math.min(min, value),
+            max: Math.max(max, value)
+        }
         : setRangeValue(min, max);
 }
 
@@ -138,4 +138,31 @@ export function deg2rad(deg: number): number {
 
 export function rad2deg(rad: number): number {
     return (rad * 180) / Math.PI;
+}
+
+export function calcEasing(value: number, type: EasingType): number {
+    switch (type) {
+        case EasingType.easeOutQuad:
+            return 1 - (1 - value) ** 2;
+        case EasingType.easeOutCubic:
+            return 1 - (1 - value) ** 3;
+        case EasingType.easeOutQuart:
+            return 1 - (1 - value) ** 4;
+        case EasingType.easeOutQuint:
+            return 1 - (1 - value) ** 5;
+        case EasingType.easeOutExpo:
+            return value === 1 ? 1 : 1 - Math.pow(2, -10 * value);
+        case EasingType.easeOutSine:
+            return Math.sin((value * Math.PI) / 2);
+        case EasingType.easeOutBack: {
+            const c1 = 1.70158;
+            const c3 = c1 + 1;
+
+            return 1 + c3 * Math.pow(value - 1, 3) + c1 * Math.pow(value - 1, 2);
+        }
+        case EasingType.easeOutCirc:
+            return Math.sqrt(1 - Math.pow(value - 1, 2));
+        default:
+            return value;
+    }
 }

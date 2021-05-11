@@ -17,7 +17,7 @@ import {
     mix,
     Plugins,
     randomInRange,
-    setRangeValue,
+    setRangeValue
 } from "../src/Utils";
 import { ICoordinates } from "../src/Core/Interfaces/ICoordinates";
 import { Vector } from "../src/Core/Particle/Vector";
@@ -33,8 +33,9 @@ function buildPluginWithId(id: string, needsPlugin: boolean): IPlugin {
         },
         loadOptions() {
             return null;
-        },
+        }
     };
+}
 
 function buildParticleWithDirection(direction: MoveDirection): IParticle {
     const container = new Container("someid");
@@ -94,8 +95,8 @@ describe("Utils", () => {
     });
 
     describe("isInArray", () => {
-        const numericArray: number[] = [1, 2, 3, Math.PI, Math.E];
-        const stringArray: string[] = ["lorem", "ipsum", "dolor"];
+        const numericArray: number[] = [ 1, 2, 3, Math.PI, Math.E ];
+        const stringArray: string[] = [ "lorem", "ipsum", "dolor" ];
 
         // Numeric
 
@@ -186,7 +187,7 @@ describe("Utils", () => {
 
     describe("arrayRandomIndex", () => {
         it("should always return an index that is not out of the bounds of the array", () => {
-            const array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+            const array = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
             const randomIndex = arrayRandomIndex(array);
 
             expect(randomIndex % 1).to.equal(0); // Make sure it is an integer
@@ -197,9 +198,9 @@ describe("Utils", () => {
     });
 
     describe("itemFromArray", () => {
-        const numericArray = [1, 2, 3, Math.PI, Math.E];
-        const stringArray = ["lorem", "ipsum", "dolor"];
-        const objectArray = [{ x: 1 }, { y: 2 }, { z: 3 }];
+        const numericArray = [ 1, 2, 3, Math.PI, Math.E ];
+        const stringArray = [ "lorem", "ipsum", "dolor" ];
+        const objectArray = [ { x: 1 }, { y: 2 }, { z: 3 } ];
 
         it("should always return a random item from a numeric array", () => {
             const randomItem = itemFromArray(numericArray);
@@ -304,7 +305,7 @@ describe("Utils", () => {
                 bottom: radius, // On a display, going down the screen is actually increasing in y
                 left: -radius,
                 right: radius,
-                top: -radius, // On a display, going up the screen is actually decreasing in y
+                top: -radius // On a display, going up the screen is actually decreasing in y
             };
 
             expect(calculatedBounds).to.eql(expectedBounds);
@@ -319,7 +320,7 @@ describe("Utils", () => {
                 bottom: dimension.height,
                 top: 0,
                 left: 0,
-                right: dimension.width,
+                right: dimension.width
             };
 
             expect(areBoundsInside(bounds, dimension)).to.be.true;
@@ -330,7 +331,7 @@ describe("Utils", () => {
                 bottom: 200,
                 top: 100,
                 left: 100,
-                right: 200,
+                right: 200
             };
 
             expect(areBoundsInside(bounds, dimension)).to.be.true;
@@ -341,7 +342,7 @@ describe("Utils", () => {
                 bottom: 1,
                 top: -1,
                 left: 100,
-                right: 101,
+                right: 101
             };
 
             expect(areBoundsInside(bounds, dimension)).to.be.true;
@@ -352,7 +353,7 @@ describe("Utils", () => {
                 bottom: dimension.height + 1,
                 top: dimension.height - 1,
                 left: 100,
-                right: 101,
+                right: 101
             };
 
             expect(areBoundsInside(bounds, dimension)).to.be.true;
@@ -363,7 +364,7 @@ describe("Utils", () => {
                 bottom: 101,
                 top: 100,
                 left: -1,
-                right: 1,
+                right: 1
             };
 
             expect(areBoundsInside(bounds, dimension)).to.be.true;
@@ -374,7 +375,7 @@ describe("Utils", () => {
                 bottom: 101,
                 top: 100,
                 left: dimension.width - 1,
-                right: dimension.width + 1,
+                right: dimension.width + 1
             };
 
             expect(areBoundsInside(bounds, dimension)).to.be.true;
@@ -385,7 +386,7 @@ describe("Utils", () => {
                 bottom: -1,
                 top: -2,
                 left: 100,
-                right: 101,
+                right: 101
             };
 
             expect(areBoundsInside(bounds, dimension)).to.be.false;
@@ -396,7 +397,7 @@ describe("Utils", () => {
                 bottom: dimension.height + 2,
                 top: dimension.height + 1,
                 left: 100,
-                right: 101,
+                right: 101
             };
 
             expect(areBoundsInside(bounds, dimension)).to.be.false;
@@ -407,7 +408,7 @@ describe("Utils", () => {
                 bottom: 101,
                 top: 100,
                 left: -2,
-                right: -1,
+                right: -1
             };
 
             expect(areBoundsInside(bounds, dimension)).to.be.false;
@@ -418,7 +419,7 @@ describe("Utils", () => {
                 bottom: 101,
                 top: 100,
                 left: dimension.width + 1,
-                right: dimension.width + 2,
+                right: dimension.width + 2
             };
 
             expect(areBoundsInside(bounds, dimension)).to.be.false;
@@ -531,11 +532,11 @@ describe("Utils", () => {
     describe("segmentBounce", () => {
         const start = {
                 x: 29, //Math.floor(Math.random() * 100),
-                y: 82, //Math.floor(Math.random() * 100)
+                y: 82 //Math.floor(Math.random() * 100)
             },
             stop = {
                 x: 53, //Math.floor(Math.random() * 100),
-                y: 82, //Math.floor(Math.random() * 100)
+                y: 82 //Math.floor(Math.random() * 100)
             },
             velocity = Vector.origin; // angle = 238.91568442036498 * Math.PI / 180;//Math.random() * Math.PI * 2;
 
