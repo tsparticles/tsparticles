@@ -1,17 +1,18 @@
 import type { IRepulseBase } from "../../../Interfaces/Interactivity/Modes/IRepulseBase";
 import type { RecursivePartial } from "../../../../Types";
 import { EasingType } from "../../../../Enums";
+import { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 /**
  * @category Options
  */
-export abstract class RepulseBase implements IRepulseBase {
+export abstract class RepulseBase implements IRepulseBase, IOptionLoader<IRepulseBase> {
     distance;
     duration;
-    factor;
-    speed;
-    maxSpeed;
     easing;
+    factor;
+    maxSpeed;
+    speed;
 
     constructor() {
         this.distance = 200;
