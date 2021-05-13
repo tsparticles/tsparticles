@@ -15,37 +15,37 @@
     "url": "git+https://github.com/matteobruni/tsparticles.git"
   },
   "dependencies": {
-    "@angular/animations": "~10.2.0",
-    "@angular/common": "~10.2.0",
-    "@angular/compiler": "~10.2.0",
-    "@angular/core": "~10.2.0",
-    "@angular/forms": "~10.2.0",
-    "@angular/platform-browser": "~10.2.0",
-    "@angular/platform-browser-dynamic": "~10.2.0",
-    "@angular/router": "~10.2.0",
+    "@angular/animations": "~12.0.0",
+    "@angular/common": "~12.0.0",
+    "@angular/compiler": "~12.0.0",
+    "@angular/core": "~12.0.0",
+    "@angular/forms": "~12.0.0",
+    "@angular/platform-browser": "~12.0.0",
+    "@angular/platform-browser-dynamic": "~12.0.0",
+    "@angular/router": "~12.0.0",
     "ng-particles": "^2.10.0",
-    "rxjs": "~6.6.3",
-    "tslib": "^2.0.3",
+    "rxjs": "~7.0.1",
+    "tslib": "^2.2.0",
     "tsparticles": "^1.27.0",
-    "zone.js": "^0.11.2"
+    "zone.js": "^0.11.4"
   },
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1001.7",
-    "@angular/cli": "~10.1.7",
-    "@angular/compiler-cli": "~10.2.0",
-    "@types/node": "^14.14.2",
-    "@typescript-eslint/eslint-plugin": "^4.5.0",
-    "@typescript-eslint/parser": "^4.5.0",
-    "codelyzer": "^6.0.1",
-    "eslint": "^7.11.0",
-    "eslint-config-prettier": "^6.14.0",
-    "prettier": "^2.1.2",
+    "@angular-devkit/build-angular": "~12.0.0",
+    "@angular/cli": "~12.0.0",
+    "@angular/compiler-cli": "~12.0.0",
+    "@types/node": "^15.0.3",
+    "@typescript-eslint/eslint-plugin": "^4.23.0",
+    "@typescript-eslint/parser": "^4.23.0",
+    "codelyzer": "^6.0.2",
+    "eslint": "^7.26.0",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.3.0",
     "protractor": "~7.0.0",
-    "ts-node": "~9.0.0",
+    "ts-node": "~9.1.1",
     "tslint": "~6.1.3",
-    "typescript": "~4.0.3"
+    "typescript": "~4.2.4"
   }
 }
