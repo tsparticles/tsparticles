@@ -1,13 +1,7 @@
 {
-<<<<<<< HEAD:shapes/line/package.json
   "name": "tsparticles-shape-line",
   "version": "2.0.0-alpha.7",
   "description": "tsParticles Line shape",
-=======
-  "name": "tsparticles-preset-confetti-cannon",
-  "version": "1.12.0",
-  "description": "tsParticles confetti cannon preset",
->>>>>>> origin/v1:presets/confettiCannon/package.json
   "homepage": "https://particles.js.org/",
   "scripts": {
     "prettify:src": "prettier --write ./src",
@@ -24,11 +18,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
-<<<<<<< HEAD:shapes/line/package.json
     "directory": "shapes/line"
-=======
-    "directory": "presets/confettiCannon"
->>>>>>> origin/v1:presets/confettiCannon/package.json
   },
   "keywords": [
     "tsparticles",
@@ -66,31 +56,6 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-<<<<<<< HEAD:shapes/line/package.json
-  "devDependencies": {
-    "@babel/core": "^7.13.16",
-    "@types/webpack-env": "^1.16.0",
-    "@typescript-eslint/eslint-plugin": "^4.22.0",
-    "@typescript-eslint/parser": "^4.22.0",
-    "babel-loader": "^8.2.2",
-    "downlevel-dts": "^0.7.0",
-    "eslint": "^7.24.0",
-    "eslint-config-prettier": "^8.2.0",
-    "prettier": "^2.2.1",
-    "rimraf": "^3.0.2",
-    "terser-webpack-plugin": "^5.1.1",
-    "typescript": "^4.2.4",
-    "webpack": "^5.35.0",
-    "webpack-bundle-analyzer": "^4.4.1",
-    "webpack-cli": "^4.6.0"
-  },
-  "dependencies": {
-    "tsparticles-engine": "^2.0.0-alpha.7"
-=======
-  "main": "dist/preset.js",
-  "jsdelivr": "dist/tsparticles.preset.confetti.cannon.min.js",
-  "unpkg": "dist/tsparticles.preset.confetti.cannon.min.js",
-  "browser": "dist/preset.js",
   "devDependencies": {
     "@babel/core": "^7.14.2",
     "@types/webpack-env": "^1.16.0",
@@ -107,8 +72,6 @@
     "webpack-cli": "^4.7.0"
   },
   "dependencies": {
-    "tsparticles": "^1.27.0",
-    "tsparticles-shape-confetti": "^1.12.0"
->>>>>>> origin/v1:presets/confettiCannon/package.json
+    "tsparticles-engine": "^2.0.0-alpha.7"
   }
 }
