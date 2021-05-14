@@ -62,13 +62,13 @@
     "tsparticles-engine": "^2.0.0-alpha.7"
   },
   "devDependencies": {
-    "@riotjs/cli": "^5.0.0",
-    "@riotjs/compiler": "^5.0.0",
-    "chai": "^4.2.0",
+    "@riotjs/cli": "^5.2.1",
+    "@riotjs/compiler": "^5.4.2",
+    "chai": "^4.3.4",
     "esm": "^3.2.25",
-    "jsdom": "^16.4.0",
+    "jsdom": "^16.5.3",
     "jsdom-global": "^3.0.2",
-    "mocha": "^8.2.1",
+    "mocha": "^8.4.0",
     "nyc": "^15.1.0"
   },
   "bugs": {
