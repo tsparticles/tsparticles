@@ -1,0 +1,71 @@
+{
+  "name": "tsparticles-preset-confetti-cannon",
+  "version": "2.0.0-alpha.7",
+  "description": "tsParticles confetti cannon preset",
+  "homepage": "https://particles.js.org/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/tsparticles.git",
+    "directory": "presets/confettiCannon"
+  },
+  "keywords": [
+    "tsparticles",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles.js",
+    "particles-ts",
+    "particles.ts",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background",
+    "tsparticles-preset"
+  ],
+  "publishConfig": {
+    "directory": "dist"
+  },
+  "author": "Matteo Bruni",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles/issues"
+  },
+  "main": "index.js",
+  "jsdelivr": "tsparticles.preset.confetti.cannon.min.js",
+  "unpkg": "tsparticles.preset.confetti.cannon.min.js",
+  "browser": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "typesVersions": {
+    ">=4.0 <4.1": {
+      "*": [
+        "dist/ts4.0"
+      ]
+    },
+    ">=3.8 <4.0": {
+      "*": [
+        "dist/ts3.8"
+      ]
+    },
+    "<3.8": {
+      "*": [
+        "dist/ts3.4"
+      ]
+    }
+  },
+  "dependencies": {
+    "tsparticles-engine": "2.0.0-alpha.7",
+    "tsparticles-shape-confetti": "2.0.0-alpha.7"
+  }
+}

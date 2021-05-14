@@ -12,7 +12,8 @@ import { IAnimatable } from "../../../Interfaces/IAnimatable";
  */
 export class Opacity
     extends ValueWithRandom
-    implements IAnimatable<OpacityAnimation>, IOpacity, IOptionLoader<IOpacity> {
+    implements IAnimatable<OpacityAnimation>, IOpacity, IOptionLoader<IOpacity>
+{
     /**
      *
      * @deprecated this property is obsolete, please use the new animation

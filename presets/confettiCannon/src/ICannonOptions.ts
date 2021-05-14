@@ -1,4 +1,4 @@
-import type { ICoordinates } from "tsparticles/dist/Core/Interfaces/ICoordinates";
+import type { ICoordinates } from "tsparticles-engine";
 
 export interface ICannonOptions {
     count: number;

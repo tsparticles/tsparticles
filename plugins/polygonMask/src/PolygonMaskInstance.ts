@@ -206,9 +206,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
 
         if (options.type === Type.inside || options.type === Type.outside) {
-            let closest: ICoordinates | undefined,
-                dx: number | undefined,
-                dy: number | undefined;
+            let closest: ICoordinates | undefined, dx: number | undefined, dy: number | undefined;
             const pos = particle.getPosition(),
                 radius = particle.getRadius();
 

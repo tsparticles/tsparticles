@@ -53,7 +53,7 @@ class Plugin implements IPlugin {
             return;
         }
 
-        const optionsCast = options as unknown as IEmitterOptions;
+        const optionsCast = (options as unknown) as IEmitterOptions;
 
         if (source?.emitters) {
             if (source?.emitters instanceof Array) {

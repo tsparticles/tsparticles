@@ -1,8 +1,7 @@
-import type { ISourceOptions, Main, RecursivePartial } from "tsparticles";
+import type { ISourceOptions, Main, RecursivePartial } from "tsparticles-engine";
 import { loadConfettiShape } from "tsparticles-shape-confetti";
 import { ICannonOptions } from "./ICannonOptions";
-import { MoveDirection, tsParticles, Utils } from "tsparticles";
-import { IShapeValues } from "tsparticles/dist/Options/Interfaces/Particles/Shape/IShapeValues";
+import { MoveDirection, tsParticles, deepExtend } from "tsparticles-engine";
 
 function loadPreset(main: Main, cannonOptions: RecursivePartial<ICannonOptions>): void {
     loadConfettiShape(main);
@@ -14,7 +13,7 @@ function loadPreset(main: Main, cannonOptions: RecursivePartial<ICannonOptions>)
             y: 50,
         },
     };
-    const actualOptions = Utils.deepExtend(defaultCannonOptions, cannonOptions) as ICannonOptions;
+    const actualOptions = deepExtend(defaultCannonOptions, cannonOptions) as ICannonOptions;
     const options: ISourceOptions = {
         fpsLimit: 60,
         particles: {
@@ -29,7 +28,7 @@ function loadPreset(main: Main, cannonOptions: RecursivePartial<ICannonOptions>)
                 options: {
                     confetti: {
                         type: ["circle", "square"],
-                    } as IShapeValues,
+                    },
                 },
             },
             opacity: {

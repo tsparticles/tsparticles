@@ -50,16 +50,9 @@
   },
   "author": "Matteo Bruni",
   "license": "MIT",
-  "files": [
-    "dist/**/*"
-  ],
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "main": "dist/preset.js",
-  "jsdelivr": "dist/tsparticles.preset.confetti.cannon.min.js",
-  "unpkg": "dist/tsparticles.preset.confetti.cannon.min.js",
-  "browser": "dist/preset.js",
   "devDependencies": {
     "@babel/core": "^7.14.2",
     "@types/webpack-env": "^1.16.0",
