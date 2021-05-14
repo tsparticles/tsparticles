@@ -52,7 +52,7 @@ class AbsorbersPlugin implements IPlugin {
             return;
         }
 
-        const optionsCast = (options as unknown) as IAbsorberOptions;
+        const optionsCast = options as unknown as IAbsorberOptions;
 
         if (source?.absorbers) {
             if (source?.absorbers instanceof Array) {

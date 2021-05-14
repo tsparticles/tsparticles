@@ -3,7 +3,7 @@ import type { Main } from "tsparticles";
 export function loadBasicPreset(tsParticles: Main): void {
     tsParticles.addPreset("basic", {
         particles: {
-            lineLinked: {
+            links: {
                 enable: true,
             },
             move: {

@@ -1,10 +1,10 @@
 {
-  "name": "tsparticles-preset-background-mask",
+  "name": "tsparticles-preset-confetti-cannon",
   "version": "1.12.0",
-  "description": "tsParticles backgroundMask preset",
+  "description": "tsParticles confetti cannon preset",
   "homepage": "https://particles.js.org/",
   "scripts": {
-    "prettify:src": "prettier --write ./src/",
+    "prettify:src": "prettier --write ./src",
     "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "compile": "tsc",
@@ -15,7 +15,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
-    "directory": "presets/backgroundMask"
+    "directory": "presets/confettiCannon"
   },
   "keywords": [
     "tsparticles",
@@ -51,25 +51,26 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "main": "dist/preset.js",
-  "jsdelivr": "dist/tsparticles.preset.backgroundMask.min.js",
-  "unpkg": "dist/tsparticles.preset.backgroundMask.min.js",
+  "jsdelivr": "dist/tsparticles.preset.confetti.cannon.min.js",
+  "unpkg": "dist/tsparticles.preset.confetti.cannon.min.js",
   "browser": "dist/preset.js",
   "devDependencies": {
-    "@babel/core": "^7.13.14",
+    "@babel/core": "^7.14.2",
     "@types/webpack-env": "^1.16.0",
-    "@typescript-eslint/eslint-plugin": "^4.21.0",
-    "@typescript-eslint/parser": "^4.21.0",
+    "@typescript-eslint/eslint-plugin": "^4.23.0",
+    "@typescript-eslint/parser": "^4.23.0",
     "babel-loader": "^8.2.2",
-    "eslint": "^7.23.0",
-    "eslint-config-prettier": "^8.1.0",
-    "prettier": "^2.2.1",
-    "terser-webpack-plugin": "^5.1.1",
-    "typescript": "^4.2.3",
-    "webpack": "^5.30.0",
-    "webpack-bundle-analyzer": "^4.4.0",
-    "webpack-cli": "^4.6.0"
+    "eslint": "^7.26.0",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.3.0",
+    "terser-webpack-plugin": "^5.1.2",
+    "typescript": "^4.2.4",
+    "webpack": "^5.37.0",
+    "webpack-bundle-analyzer": "^4.4.1",
+    "webpack-cli": "^4.7.0"
   },
   "dependencies": {
-    "tsparticles": "^1.27.0"
+    "tsparticles": "^1.27.0",
+    "tsparticles-shape-confetti": "^1.12.0"
   }
 }

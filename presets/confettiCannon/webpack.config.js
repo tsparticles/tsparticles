@@ -22,7 +22,7 @@ const getConfig = (entry, bannerInput, minBannerInput) => {
             globalObject: "this"
         },
         resolve: {
-            extensions: [".js", ".json"]
+            extensions: [ ".js", ".json" ]
         },
         externals: [
             {
@@ -86,8 +86,8 @@ GitHub : https://www.github.com/matteobruni/tsparticles
 How to use? : Check the GitHub README
 v${version}`;
 
-const minBanner = `tsParticles 60fps Preset v${version} by Matteo Bruni`;
+const minBanner = `tsParticles Confetti Cannon Preset v${version} by Matteo Bruni`;
 
 module.exports = [
-    getConfig(getEntry("60fps"), banner, minBanner)
+    getConfig(getEntry("confetti.cannon"), banner, minBanner)
 ];

@@ -96,8 +96,8 @@ export default class Particles extends Component<
 	private loadParticles(): void {
 		const cb = (container?: Container) => {
 			if (this.props.container) {
-				(this.props
-					.container as MutableRefObject<Container>).current = container;
+				(this.props.container as MutableRefObject<Container>).current =
+					container;
 			}
 
 			this.setState({

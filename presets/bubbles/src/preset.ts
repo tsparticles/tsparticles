@@ -67,5 +67,5 @@ const options = {
 };
 
 export function loadBubblesPreset(tsParticles: Main): void {
-    tsParticles.addPreset("bubbles", (options as unknown) as ISourceOptions);
+    tsParticles.addPreset("bubbles", options as unknown as ISourceOptions);
 }

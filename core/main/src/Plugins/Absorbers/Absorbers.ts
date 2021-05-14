@@ -25,7 +25,7 @@ export class Absorbers implements IContainerPlugin {
         this.absorbers = [];
         this.interactivityAbsorbers = [];
 
-        const overridableContainer = (container as unknown) as AbsorberContainer;
+        const overridableContainer = container as unknown as AbsorberContainer;
 
         overridableContainer.getAbsorber = (idxOrName?: number | string) =>
             idxOrName === undefined || typeof idxOrName === "number"

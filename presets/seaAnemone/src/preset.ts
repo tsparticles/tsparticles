@@ -5,7 +5,7 @@ import { seaPathGenerator } from "./pathGen";
 export function loadSeaAnemonePreset(tsParticles: Main): void {
     const presetName = "seaAnemone";
     const pathGeneratorName = `${presetName}Path`;
-    const options = ({
+    const options = {
         fullScreen: {
             enable: true,
         },
@@ -120,7 +120,7 @@ export function loadSeaAnemonePreset(tsParticles: Main): void {
                 y: 50,
             },
         },
-    } as unknown) as ISourceOptions;
+    } as unknown as ISourceOptions;
 
     tsParticles.addPreset(presetName, options);
     tsParticles.addPathGenerator(pathGeneratorName, seaPathGenerator);

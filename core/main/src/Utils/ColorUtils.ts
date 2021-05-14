@@ -487,7 +487,8 @@ export class ColorUtils {
 
         /* set color to svg element */
         if (svgData.includes("fill")) {
-            const currentColor = /(#(?:[0-9a-f]{2}){2,4}|(#[0-9a-f]{3})|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d.]+%?\))|currentcolor/gi;
+            const currentColor =
+                /(#(?:[0-9a-f]{2}){2,4}|(#[0-9a-f]{3})|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d.]+%?\))|currentcolor/gi;
 
             return svgData.replace(currentColor, () => ColorUtils.getStyleFromHsl(color, opacity));
         }

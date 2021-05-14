@@ -31,7 +31,7 @@ class PolygonMaskPlugin implements IPlugin {
             return;
         }
 
-        const optionsCast = (options as unknown) as IPolygonMaskOptions;
+        const optionsCast = options as unknown as IPolygonMaskOptions;
         let polygonOptions = optionsCast.polygon as PolygonMask;
 
         if (polygonOptions?.load === undefined) {
