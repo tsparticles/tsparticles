@@ -10,7 +10,7 @@ export function loadFountainPreset(tsParticles: Main): void {
     loadOutModesUpdater(tsParticles);
     loadEmittersPlugin(tsParticles);
 
-    const options = ({
+    const options = {
         fullScreen: {
             enable: true,
         },
@@ -125,7 +125,7 @@ export function loadFountainPreset(tsParticles: Main): void {
                 height: 0,
             },
         },
-    } as unknown) as ISourceOptions;
+    } as unknown as ISourceOptions;
 
     tsParticles.addPreset("fountain", options);
 }
