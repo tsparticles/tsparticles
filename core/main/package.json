@@ -11,7 +11,7 @@
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix && eslint tests --ext .js,.jsx,.ts,.tsx --fix",
     "clear:dist": "rimraf -f ./dist",
     "clear:docs": "rimraf -f ./docs",
-    "slimbuild2": "esbuild ./dist/index.slim.js --bundle --outfile=./dist/tsparticles.slim.2.js && esbuild ./dist/index.slim.js --bundle --minify --outfile=./dist/tsparticles.slim.2.min.js && esbuild ./dist/index.js --bundle --outfile=./dist/tsparticles.2.js && esbuild ./dist/index.js --bundle --minify --outfile=./dist/tsparticles.2.min.js",
+    "slimbuild2": "esbuild ./dist/browser/index.slim.js --platform=browser --bundle --outfile=./dist/tsparticles.slim.2.js && esbuild ./dist/browser/index.slim.js --platform=browser --bundle --minify --outfile=./dist/tsparticles.slim.2.min.js && esbuild ./dist/browser/index.js --platform=browser --bundle --outfile=./dist/tsparticles.2.js && esbuild ./dist/browser/index.js --platform=browser --bundle --minify --outfile=./dist/tsparticles.2.min.js",
     "slimbuild": "yarn clear:dist && yarn prettify:src && yarn build:ts:check && yarn lint && yarn build:ts && webpack --mode production",
     "build": "yarn slimbuild && yarn build:schema && yarn prettify:schema && yarn prettify:tests && yarn test && yarn prettify:readme && yarn build:docs",
     "build:ts:check": "tsc --noEmit",
