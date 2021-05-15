@@ -47,4 +47,40 @@ app.get('/slim', function (req, res) {
     res.render('slim');
 });
 
+app.get("/presets", function(req, res) {
+    res.render("presets/index");
+  });
+  
+  app.get("/presets/bigCircles", function(req, res) {
+    res.render("presets/bigCircles");
+  });
+  
+  app.get("/presets/bubbles", function(req, res) {
+    res.render("presets/bubbles");
+  });
+  
+  app.get("/presets/fire", function(req, res) {
+    res.render("presets/fire");
+  });
+  
+  app.get("/presets/fountain", function(req, res) {
+    res.render("presets/fountain");
+  });
+  
+  app.get("/presets/links", function(req, res) {
+    res.render("presets/links");
+  });
+  
+  app.get("/presets/seaAnemone", function(req, res) {
+    res.render("presets/seaAnemone");
+  });
+  
+  app.get("/presets/snow", function(req, res) {
+    res.render("presets/snow");
+  });
+  
+  app.get("/presets/stars", function(req, res) {
+    res.render("presets/stars");
+  });
+
 app.listen(port, () => console.log(`Demo app listening on port ${port}!`));

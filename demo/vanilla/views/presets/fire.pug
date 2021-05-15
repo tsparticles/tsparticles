@@ -1,0 +1,26 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="utf-8")
+        meta(name="description", content= "tsParticles")
+        meta(name="author", content= "Matteo Bruni")
+        meta(name="apple-mobile-web-app-capable" content="yes")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no")
+
+        meta(name="twitter:card" content="summary_large_image")
+        meta(name="twitter:creator" content="@HollowMatt_ITA")
+        meta(name="twitter:image:src" content="https://cdn.matteobruni.it/images/particles/demo.png")
+        meta(property="og:title" content="tsParticles - A lightweight TypeScript library for creating particles")
+        meta(property="og:site_name" content="tsParticles")
+        meta(property="og:url" content="https://particles.js.org/")
+        meta(property="og:description" content="A lightweight TypeScript library for creating particles.")
+        meta(property="og:image" content="https://cdn.matteobruni.it/images/particles/demo.png")
+
+        title tsParticles
+
+    body
+        #tsparticles
+
+        script(src="/preset-fire/tsparticles.preset.fire.bundle.min.js")
+        script.
+            tsParticles.load("tsparticles", { preset: "fire" });
