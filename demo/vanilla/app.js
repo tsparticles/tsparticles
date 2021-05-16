@@ -19,13 +19,11 @@ app.use("/jquery", express.static("./node_modules/jquery/dist"));
 app.use("/popper.js", express.static("./node_modules/popper.js/dist"));
 app.use("/bootstrap", express.static("./node_modules/bootstrap/dist"));
 app.use("/tsparticles", express.static("./node_modules/tsparticles/dist"));
-app.use("/preset-60fps", express.static("./node_modules/tsparticles-preset-60fps/dist"));
-app.use("/preset-background-mask", express.static("./node_modules/tsparticles-preset-background-mask/dist"));
 app.use("/preset-basic", express.static("./node_modules/tsparticles-preset-basic/dist"));
 app.use("/preset-big-circles", express.static("./node_modules/tsparticles-preset-big-circles/dist"));
-app.use("/preset-bouncing", express.static("./node_modules/tsparticles-preset-bouncing/dist"));
+app.use("/preset-bubbles", express.static("./node_modules/tsparticles-preset-bubbles/dist"));
+app.use("/preset-confetti-cannon", express.static("./node_modules/tsparticles-preset-confetti-cannon/dist"));
 app.use("/preset-fire", express.static("./node_modules/tsparticles-preset-fire/dist"));
-app.use("/preset-font-awesome", express.static("./node_modules/tsparticles-preset-font-awesome/dist"));
 app.use("/preset-fountain", express.static("./node_modules/tsparticles-preset-fountain/dist"));
 app.use("/preset-sea-anemone", express.static("./node_modules/tsparticles-preset-sea-anemone/dist"));
 app.use("/preset-snow", express.static("./node_modules/tsparticles-preset-snow/dist"));
@@ -47,40 +45,40 @@ app.get('/slim', function (req, res) {
     res.render('slim');
 });
 
-app.get("/presets", function(req, res) {
+app.get("/presets", function (req, res) {
     res.render("presets/index");
-  });
-  
-  app.get("/presets/bigCircles", function(req, res) {
+});
+
+app.get("/presets/bigCircles", function (req, res) {
     res.render("presets/bigCircles");
-  });
-  
-  app.get("/presets/bubbles", function(req, res) {
+});
+
+app.get("/presets/bubbles", function (req, res) {
     res.render("presets/bubbles");
-  });
-  
-  app.get("/presets/fire", function(req, res) {
+});
+
+app.get("/presets/fire", function (req, res) {
     res.render("presets/fire");
-  });
-  
-  app.get("/presets/fountain", function(req, res) {
+});
+
+app.get("/presets/fountain", function (req, res) {
     res.render("presets/fountain");
-  });
-  
-  app.get("/presets/links", function(req, res) {
+});
+
+app.get("/presets/links", function (req, res) {
     res.render("presets/links");
-  });
-  
-  app.get("/presets/seaAnemone", function(req, res) {
+});
+
+app.get("/presets/seaAnemone", function (req, res) {
     res.render("presets/seaAnemone");
-  });
-  
-  app.get("/presets/snow", function(req, res) {
+});
+
+app.get("/presets/snow", function (req, res) {
     res.render("presets/snow");
-  });
-  
-  app.get("/presets/stars", function(req, res) {
+});
+
+app.get("/presets/stars", function (req, res) {
     res.render("presets/stars");
-  });
+});
 
 app.listen(port, () => console.log(`Demo app listening on port ${port}!`));
