@@ -1,7 +1,7 @@
 {
-  "name": "tsparticles-preset-basic",
+  "name": "tsparticles-preset-links",
   "version": "1.12.0",
-  "description": "tsParticles basic preset",
+  "description": "tsParticles links preset",
   "homepage": "https://particles.js.org/",
   "scripts": {
     "prettify:src": "prettier --write ./src",
@@ -15,7 +15,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
-    "directory": "presets/basic"
+    "directory": "presets/links"
   },
   "keywords": [
     "tsparticles",
@@ -51,8 +51,8 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "main": "dist/preset.js",
-  "jsdelivr": "dist/tsparticles.preset.basic.min.js",
-  "unpkg": "dist/tsparticles.preset.basic.min.js",
+  "jsdelivr": "dist/tsparticles.preset.links.min.js",
+  "unpkg": "dist/tsparticles.preset.links.min.js",
   "browser": "dist/preset.js",
   "devDependencies": {
     "@babel/core": "^7.14.2",

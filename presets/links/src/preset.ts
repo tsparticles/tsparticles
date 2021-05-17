@@ -1,7 +1,7 @@
 import type { Main } from "tsparticles";
 
-export function loadBasicPreset(tsParticles: Main): void {
-    tsParticles.addPreset("basic", {
+export function loadLinksPreset(tsParticles: Main): void {
+    tsParticles.addPreset("links", {
         particles: {
             links: {
                 enable: true,
