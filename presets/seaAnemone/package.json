@@ -50,10 +50,12 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "main": "dist/preset.js",
+  "main": "dist/index.js",
   "jsdelivr": "dist/tsparticles.preset.seaAnemone.min.js",
   "unpkg": "dist/tsparticles.preset.seaAnemone.min.js",
-  "browser": "dist/preset.js",
+  "browser": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "devDependencies": {
     "@babel/core": "^7.14.2",
     "@types/webpack-env": "^1.16.0",

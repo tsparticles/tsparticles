@@ -54,6 +54,8 @@
   "jsdelivr": "dist/tsparticles.preset.links.min.js",
   "unpkg": "dist/tsparticles.preset.links.min.js",
   "browser": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "devDependencies": {
     "@babel/core": "^7.14.2",
     "@types/webpack-env": "^1.16.0",
