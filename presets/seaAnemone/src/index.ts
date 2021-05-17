@@ -1,4 +1,3 @@
-import { InteractivityDetect, MoveDirection, OutMode, ShapeType, SizeMode, StartValueType } from "tsparticles";
 import type { Main, ISourceOptions } from "tsparticles";
 import { seaPathGenerator } from "./pathGen";
 
@@ -11,7 +10,7 @@ export function loadSeaAnemonePreset(tsParticles: Main): void {
         },
         fpsLimit: 60,
         interactivity: {
-            detectsOn: InteractivityDetect.canvas,
+            detectsOn: "canvas",
             events: {
                 resize: true,
             },
@@ -29,10 +28,10 @@ export function loadSeaAnemonePreset(tsParticles: Main): void {
                         y: 2000,
                     },
                 },
-                direction: MoveDirection.none,
+                direction: "none",
                 enable: true,
                 outModes: {
-                    default: OutMode.destroy,
+                    default: "destroy",
                 },
                 path: {
                     clamp: false,
@@ -63,13 +62,13 @@ export function loadSeaAnemonePreset(tsParticles: Main): void {
                 value: 1,
             },
             shape: {
-                type: ShapeType.circle,
+                type: "circle",
             },
             size: {
                 value: 10,
                 animation: {
                     count: 1,
-                    startValue: StartValueType.min,
+                    startValue: "min",
                     enable: true,
                     minimumValue: 1,
                     speed: 10,
@@ -82,7 +81,7 @@ export function loadSeaAnemonePreset(tsParticles: Main): void {
         },
         detectRetina: true,
         emitters: {
-            direction: MoveDirection.none,
+            direction: "none",
             rate: {
                 quantity: 10,
                 delay: 0.3,
@@ -90,7 +89,7 @@ export function loadSeaAnemonePreset(tsParticles: Main): void {
             size: {
                 width: 0,
                 height: 0,
-                mode: SizeMode.precise,
+                mode: "precise",
             },
             spawnColor: {
                 value: "#ff0000",

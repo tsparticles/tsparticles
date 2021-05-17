@@ -17,7 +17,7 @@ const options = {
             value: ["#3998D0", "#2EB6AF", "#A9BD33", "#FEC73B", "#F89930", "#F45623", "#D62E32", "#EB586E", "#9952CF"],
         },
         shape: {
-            type: ShapeType.circle,
+            type: "circle",
         },
         opacity: {
             value: 0.5,
@@ -31,7 +31,7 @@ const options = {
         },
         move: {
             enable: true,
-            speed: 10,
+            speed: 20,
             direction: MoveDirection.top,
             outMode: OutMode.destroy,
         },

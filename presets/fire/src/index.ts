@@ -3,13 +3,16 @@ import type { Main } from "tsparticles";
 
 export function loadFirePreset(tsParticles: Main): void {
     tsParticles.addPreset("fire", {
+        fullScreen: {
+            enable: true,
+        },
         fpsLimit: 40,
         particles: {
             number: {
                 value: 80,
                 density: {
                     enable: true,
-                    value_area: 800,
+                    area: 800,
                 },
             },
             color: {
@@ -31,7 +34,7 @@ export function loadFirePreset(tsParticles: Main): void {
         },
         interactivity: {
             events: {
-                onclick: {
+                onClick: {
                     enable: true,
                     mode: ClickMode.push,
                 },

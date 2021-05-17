@@ -11,7 +11,7 @@ const options = {
             value: "random",
         },
         shape: {
-            type: ShapeType.circle,
+            type: "circle",
         },
         opacity: {
             value: 0.3,

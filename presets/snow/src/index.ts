@@ -3,6 +3,12 @@ import type { Main } from "tsparticles";
 
 export function loadSnowPreset(tsParticles: Main): void {
     tsParticles.addPreset("snow", {
+        background: {
+            color: "#333",
+        },
+        fullScreen: {
+            enable: true,
+        },
         particles: {
             color: {
                 value: "#fff",

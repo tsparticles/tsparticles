@@ -3,6 +3,12 @@ import type { Main } from "tsparticles";
 
 export function loadStarsPreset(tsParticles: Main): void {
     tsParticles.addPreset("stars", {
+        background: {
+            color: "#000",
+        },
+        fullScreen: {
+            enable: true,
+        },
         particles: {
             color: {
                 value: "#ffffff",
@@ -16,11 +22,11 @@ export function loadStarsPreset(tsParticles: Main): void {
                 enable: true,
                 outMode: OutMode.out,
                 random: true,
-                speed: 0.3,
+                speed: 0.1,
                 straight: false,
             },
             opacity: {
-                anim: {
+                animation: {
                     enable: true,
                     minimumValue: 0,
                     speed: 1,
@@ -30,7 +36,7 @@ export function loadStarsPreset(tsParticles: Main): void {
                 value: 1,
             },
             shape: {
-                type: ShapeType.circle,
+                type: "circle",
             },
             size: {
                 random: true,
