@@ -21,8 +21,6 @@ html(lang="en")
     body
         #tsparticles
 
-        script(src="/preset-confettiCannon/tsparticles.preset.confetti.cannon.bundle.min.js")
+        script(src="/preset-confettiCannon/tsparticles.preset.confettiCannon.bundle.min.js")
         script.
-            loadBubblesPreset(tsParticles);
-            
-            tsParticles.load("tsparticles", { preset: "bubbles" });
+            createCannon("tsparticles", {});
