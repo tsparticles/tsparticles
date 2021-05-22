@@ -1,2 +1,2 @@
-export * from "./ICannonOptions";
+export * from "./IConfettiOptions";
 export * from "./preset";

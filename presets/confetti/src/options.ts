@@ -1,4 +1,4 @@
-import type { ISourceOptions, RecursivePartial } from "tsparticles";
+import type { ISourceOptions, RecursivePartial, ShapeData } from "tsparticles";
 import { MoveDirection, Utils } from "tsparticles";
 import { IConfettiOptions } from "./IConfettiOptions";
 
@@ -20,13 +20,13 @@ export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>)
                 value: 0,
             },
             color: {
-                value: [ "#ffffff", "#ff0000" ],
+                value: ["#ffffff", "#ff0000"],
             },
             shape: {
                 type: "confetti",
                 options: {
                     confetti: {
-                        type: [ "circle", "square" ],
+                        type: ["circle", "square"],
                     },
                 },
             },
@@ -102,5 +102,5 @@ export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>)
                 height: 0,
             },
         },
-    }
+    };
 };

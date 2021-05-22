@@ -9,4 +9,6 @@ export interface IShapeValues {
     close?: boolean;
     fill?: boolean;
     particles?: RecursivePartial<IParticles>;
+
+    [key: string]: unknown;
 }
