@@ -1,17 +1,12 @@
 import type { ISourceOptions, RecursivePartial } from "tsparticles";
 import { MoveDirection, Utils } from "tsparticles";
 import { IConfettiOptions } from "./IConfettiOptions";
-
-export const defaultCannonOptions: IConfettiOptions = {
-    count: 50,
-    position: {
-        x: 50,
-        y: 50,
-    },
-};
+import { ConfettiOptions } from "./ConfettiOptions";
 
 export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>): ISourceOptions => {
-    const actualOptions = Utils.deepExtend(defaultCannonOptions, confettiOptions) as IConfettiOptions;
+    const actualOptions = new ConfettiOptions();
+
+    actualOptions.load(confettiOptions);
 
     return {
         fpsLimit: 60,
@@ -20,13 +15,13 @@ export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>)
                 value: 0,
             },
             color: {
-                value: [ "#ffffff", "#ff0000" ],
+                value: ["#ffffff", "#ff0000"],
             },
             shape: {
                 type: "confetti",
                 options: {
                     confetti: {
-                        type: [ "circle", "square" ],
+                        type: ["circle", "square"],
                     },
                 },
             },
