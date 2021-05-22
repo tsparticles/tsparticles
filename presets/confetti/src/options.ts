@@ -1,35 +1,33 @@
-import type { ISourceOptions, Main, RecursivePartial } from "tsparticles";
-import { loadConfettiShape } from "tsparticles-shape-confetti";
-import { ICannonOptions } from "./ICannonOptions";
-import { MoveDirection, tsParticles, Utils } from "tsparticles";
-import { IShapeValues } from "tsparticles/dist/Options/Interfaces/Particles/Shape/IShapeValues";
+import type { ISourceOptions, RecursivePartial } from "tsparticles";
+import { MoveDirection, Utils } from "tsparticles";
+import { IConfettiOptions } from "./IConfettiOptions";
 
-function loadPreset(main: Main, cannonOptions: RecursivePartial<ICannonOptions>): void {
-    loadConfettiShape(main);
+export const defaultCannonOptions: IConfettiOptions = {
+    count: 50,
+    position: {
+        x: 50,
+        y: 50,
+    },
+};
 
-    const defaultCannonOptions: ICannonOptions = {
-        count: 50,
-        position: {
-            x: 50,
-            y: 50,
-        },
-    };
-    const actualOptions = Utils.deepExtend(defaultCannonOptions, cannonOptions) as ICannonOptions;
-    const options: ISourceOptions = {
+export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>): ISourceOptions => {
+    const actualOptions = Utils.deepExtend(defaultCannonOptions, confettiOptions) as IConfettiOptions;
+
+    return {
         fpsLimit: 60,
         particles: {
             number: {
                 value: 0,
             },
             color: {
-                value: ["#ffffff", "#ff0000"],
+                value: [ "#ffffff", "#ff0000" ],
             },
             shape: {
                 type: "confetti",
                 options: {
                     confetti: {
-                        type: ["circle", "square"],
-                    } as IShapeValues,
+                        type: [ "circle", "square" ],
+                    },
                 },
             },
             opacity: {
@@ -104,17 +102,5 @@ function loadPreset(main: Main, cannonOptions: RecursivePartial<ICannonOptions>)
                 height: 0,
             },
         },
-    };
-
-    main.addPreset("confetti-cannon", options);
-}
-
-export function loadConfettiCannonPreset(main: Main): void {
-    loadPreset(main, {});
-}
-
-export function createCannon(id: string, cannonOptions: RecursivePartial<ICannonOptions>): void {
-    loadPreset(tsParticles, cannonOptions);
-
-    tsParticles.load(id, { preset: "confetti-cannon" });
-}
+    }
+};

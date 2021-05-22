@@ -3,7 +3,7 @@ import { ShapeType } from "../../../../Enums";
 import type { RecursivePartial, ShapeData, SingleOrMultiple } from "../../../../Types";
 import { Stroke } from "../Stroke";
 import { Utils } from "../../../../Utils";
-import type { IShapeValues } from "../../../Interfaces/Particles/Shape/IShapeValues";
+import type { IShapeValues } from "../../../../Core/Interfaces/IShapeValues";
 import type { IPolygonShape } from "../../../Interfaces/Particles/Shape/IPolygonShape";
 import type { IImageShape } from "../../../Interfaces/Particles/Shape/IImageShape";
 import type { ICharacterShape } from "../../../Interfaces/Particles/Shape/ICharacterShape";

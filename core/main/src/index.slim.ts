@@ -17,6 +17,7 @@ export * from "./Core/Container";
 export * from "./Enums";
 export { CanvasUtils, Circle, CircleWarp, ColorUtils, Constants, Point, Rectangle, Utils, MainSlim };
 export * from "./Types";
+export * from "./Core/Interfaces/IShapeValues";
 export { tsParticles, particlesJS, pJSDom };
 export { IOptions };
 export { IParticle };

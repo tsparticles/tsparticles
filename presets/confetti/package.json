@@ -1,7 +1,7 @@
 {
-  "name": "tsparticles-preset-confetti-cannon",
+  "name": "tsparticles-preset-confetti",
   "version": "1.12.0",
-  "description": "tsParticles confetti cannon preset",
+  "description": "tsParticles confetti preset",
   "homepage": "https://particles.js.org/",
   "scripts": {
     "prettify:src": "prettier --write ./src",
@@ -15,7 +15,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
-    "directory": "presets/confettiCannon"
+    "directory": "presets/confetti"
   },
   "keywords": [
     "tsparticles",
@@ -51,8 +51,8 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "main": "dist/index.js",
-  "jsdelivr": "dist/tsparticles.preset.confettiCannon.min.js",
-  "unpkg": "dist/tsparticles.preset.confettiCannon.min.js",
+  "jsdelivr": "dist/tsparticles.preset.confetti.min.js",
+  "unpkg": "dist/tsparticles.preset.confetti.min.js",
   "browser": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",

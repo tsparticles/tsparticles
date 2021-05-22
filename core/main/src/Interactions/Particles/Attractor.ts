@@ -12,7 +12,7 @@ export class Attractor implements IParticlesInteractor {
 
     interact(p1: IParticle): void {
         const container = this.container;
-        const distance = p1.linksDistance ?? container.retina.linksDistance;
+        const distance = p1.attractDistance ?? container.retina.attractDistance;
         const pos1 = p1.getPosition();
 
         const query = container.particles.quadTree.queryCircle(pos1, distance);

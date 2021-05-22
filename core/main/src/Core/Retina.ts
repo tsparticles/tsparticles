@@ -14,6 +14,7 @@ export class Retina {
     grabModeDistance!: number;
     repulseModeDistance!: number;
     attractModeDistance!: number;
+    attractDistance!: number;
     slowModeRadius!: number;
     linksDistance!: number;
     linksWidth!: number;
@@ -76,6 +77,7 @@ export class Retina {
 
         const particles = options.particles;
 
+        this.attractDistance = particles.move.attract.distance * ratio;
         this.linksDistance = particles.links.distance * ratio;
         this.linksWidth = particles.links.width * ratio;
         this.sizeAnimationSpeed = particles.size.animation.speed * ratio;
@@ -100,6 +102,7 @@ export class Retina {
         const particlesOptions = particle.options;
         const ratio = this.pixelRatio;
 
+        particle.attractDistance = particlesOptions.move.attract.distance * ratio;
         particle.linksDistance = particlesOptions.links.distance * ratio;
         particle.linksWidth = particlesOptions.links.width * ratio;
         particle.moveDrift = NumberUtils.getRangeValue(particlesOptions.move.drift) * ratio;

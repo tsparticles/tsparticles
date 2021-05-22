@@ -1,23 +1,6 @@
 import type { Main } from "tsparticles";
+import { options } from "./options";
 
 export function loadLinksPreset(tsParticles: Main): void {
-    tsParticles.addPreset("links", {
-        background: {
-            color: "#000000",
-        },
-        fullScreen: {
-            enable: true,
-        },
-        particles: {
-            links: {
-                enable: true,
-            },
-            move: {
-                enable: true,
-            },
-            shape: {
-                type: "circle",
-            },
-        },
-    });
+    tsParticles.addPreset("links", options);
 }

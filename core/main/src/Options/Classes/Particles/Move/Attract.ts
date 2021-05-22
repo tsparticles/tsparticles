@@ -41,10 +41,12 @@ export class Attract implements IAttract, IOptionLoader<IAttract> {
         this.rotate.y = value;
     }
 
+    distance: number;
     enable;
     rotate: ICoordinates;
 
     constructor() {
+        this.distance = 200;
         this.enable = false;
         this.rotate = {
             x: 3000,
@@ -53,8 +55,12 @@ export class Attract implements IAttract, IOptionLoader<IAttract> {
     }
 
     load(data?: RecursivePartial<IAttract>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
+        }
+
+        if (data.distance !== undefined) {
+            this.distance = data.distance;
         }
 
         if (data.enable !== undefined) {

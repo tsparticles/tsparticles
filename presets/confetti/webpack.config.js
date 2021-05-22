@@ -95,9 +95,9 @@ GitHub : https://www.github.com/matteobruni/tsparticles
 How to use? : Check the GitHub README
 v${version}`;
 
-const minBanner = `tsParticles Confetti Cannon Preset v${version} by Matteo Bruni`;
+const minBanner = `tsParticles Confetti Preset v${version} by Matteo Bruni`;
 
 module.exports = [
-    getConfig(getEntry("confettiCannon", false), banner, minBanner, __dirname, false),
-    getConfig(getEntry("confettiCannon.bundle", true), banner, minBanner, __dirname, true)
+    getConfig(getEntry("confetti", false), banner, minBanner, __dirname, false),
+    getConfig(getEntry("confetti.bundle", true), banner, minBanner, __dirname, true)
 ];

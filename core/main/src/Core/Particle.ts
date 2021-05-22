@@ -61,6 +61,7 @@ export class Particle implements IParticle {
     readonly options;
     readonly loops: IParticleLoops;
 
+    attractDistance?: number;
     links: ILink[];
     randomIndexData?: number;
     linksDistance?: number;

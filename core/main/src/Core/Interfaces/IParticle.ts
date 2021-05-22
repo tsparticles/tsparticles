@@ -18,6 +18,7 @@ export interface IParticle {
     misplaced: boolean;
     randomIndexData?: number;
 
+    readonly attractDistance?: number;
     readonly bubble: IBubbleParticleData;
     readonly close: boolean;
     readonly destroyed: boolean;

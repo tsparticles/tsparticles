@@ -21,7 +21,7 @@ app.use("/bootstrap", express.static("./node_modules/bootstrap/dist"));
 app.use("/tsparticles", express.static("./node_modules/tsparticles/dist"));
 app.use("/preset-big-circles", express.static("./node_modules/tsparticles-preset-big-circles/dist"));
 app.use("/preset-bubbles", express.static("./node_modules/tsparticles-preset-bubbles/dist"));
-app.use("/preset-confetti-cannon", express.static("./node_modules/tsparticles-preset-confetti-cannon/dist"));
+app.use("/preset-confetti", express.static("./node_modules/tsparticles-preset-confetti/dist"));
 app.use("/preset-fire", express.static("./node_modules/tsparticles-preset-fire/dist"));
 app.use("/preset-fountain", express.static("./node_modules/tsparticles-preset-fountain/dist"));
 app.use("/preset-links", express.static("./node_modules/tsparticles-preset-links/dist"));
