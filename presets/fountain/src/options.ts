@@ -59,7 +59,7 @@ export const options: ISourceOptions = {
             enable: true,
             gravity: {
                 enable: true,
-                maximumSpeed: 50,
+                maxSpeed: 50,
             },
             speed: {
                 min: 10,

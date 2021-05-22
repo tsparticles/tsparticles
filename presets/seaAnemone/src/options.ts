@@ -1,7 +1,7 @@
 import type { ISourceOptions } from "tsparticles";
 
 export const presetName = "seaAnemone";
-export const pathGeneratorName = `${ presetName }Path`;
+export const pathGeneratorName = `${presetName}Path`;
 
 export const options: ISourceOptions = {
     fullScreen: {
