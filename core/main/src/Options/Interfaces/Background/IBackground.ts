@@ -7,32 +7,44 @@ import type { IColor } from "../../../Core/Interfaces/Colors";
  */
 export interface IBackground {
     /**
-     * The background color used by the canvas element, string or [[IColor]] value
+     * The `color` property can be set to a HEX string or to a {@link IColor | color object}, that is the same as the one used in `particles.color` options.
+     *
+     * This color is set to canvas style `background-color` property, if this property is not set the background will be transparent.
      */
     color: IColor | string;
 
     /**
-     * The background image used by the canvas element, its value will be used to set CSS property background-image
+     * The `image` property sets the canvas style `background-image` property.
+     *
+     * This property doesn't have a default value, anyway if you need a background image you need to specify the same CSS syntax with the `url()` function.
      */
     image: string;
 
     /**
-     * The background opacity
+     * The `opacity` property sets the `color` property opacity, so you can set a semi-transparent background.
+     *
+     * This value is by default to `1` and it accepts any value between `0` and `1` included.
      */
     opacity: number;
 
     /**
-     * The background position, it's used by the CSS property background-position
+     * The `position` property sets the canvas style `background-position` property.
+     *
+     * This [link](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position) can be useful to set the right value to this property.
      */
     position: string;
 
     /**
-     * The background position, it's used by the CSS property background-repeat
+     * The `repeat` property sets the canvas style `background-repeat` property.
+     *
+     * This [link](https://developer.mozilla.org/en-US/docs/Web/CSS/background-repeat) can be useful to set the right value to this property.
      */
     repeat: string;
 
     /**
-     * The background size, it's used by the CSS property background-size
+     * The `size` property sets the canvas style `background-size` property.
+     *
+     * This [link](https://developer.mozilla.org/en-US/docs/Web/CSS/background-size) can be useful to set the right value to this property.
      */
     size: string;
 }

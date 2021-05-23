@@ -6,76 +6,13 @@
   },
   "typedocOptions": {
     "gaID": "UA-161253125-1",
-    "ignoreCompilerErrors": true,
     "includes": "./markdown",
-    "inputFiles": [
-      "./src/index.ts"
+    "entryPoints": [
+      "./src/"
     ],
-    "mode": "library",
     "name": "tsParticles",
     "includeVersion": true,
     "hideGenerator": true,
-    "out": "./docs",
-    "theme": "./node_modules/typedoc-particles-theme/bin/",
-    "particles": {
-      "groups": [
-        {
-          "title": "Components",
-          "pages": [
-            {
-              "title": "Angular",
-              "source": "../../components/angular/README.md",
-              "output": "angular.html"
-            },
-            {
-              "title": "React",
-              "source": "../../components/react/README.md",
-              "output": "react.html"
-            },
-            {
-              "title": "Vue 2.x",
-              "source": "../../components/vue/README.md",
-              "output": "vue2.html"
-            },
-            {
-              "title": "Vue 3.x",
-              "source": "../../components/vue3/README.md",
-              "output": "vue3.html"
-            },
-            {
-              "title": "Svelte",
-              "source": "../../components/svelte/README.md",
-              "output": "svelte.html"
-            },
-            {
-              "title": "jQuery",
-              "source": "../../components/jquery/README.md",
-              "output": "jquery.html"
-            },
-            {
-              "title": "Preact",
-              "source": "../../components/preact/README.md",
-              "output": "preact.html"
-            },
-            {
-              "title": "Inferno",
-              "source": "../../components/inferno/README.md",
-              "output": "inferno.html"
-            }
-          ]
-        }
-      ],
-      "enableSearch": false,
-      "links": [
-        {
-          "label": "Official Website",
-          "url": "https://particles.js.org"
-        },
-        {
-          "label": "Repository",
-          "url": "https://github.com/matteobruni/tsparticles"
-        }
-      ]
-    }
+    "out": "./docs"
   }
 }
