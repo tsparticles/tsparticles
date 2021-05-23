@@ -1,6 +1,5 @@
 import type { ICoordinates } from "tsparticles/dist/Core/Interfaces/ICoordinates";
 import { SingleOrMultiple } from "tsparticles";
-import { IColor } from "tsparticles/dist/Core/Interfaces/Colors";
 
 export interface IConfettiOptions {
     /**
@@ -22,7 +21,7 @@ export interface IConfettiOptions {
     gravity: number;
     drift: number;
     ticks: number;
-    colors: SingleOrMultiple<IColor>;
+    colors: SingleOrMultiple<string>;
     shapes: SingleOrMultiple<string>;
     scalar: number;
     zIndex: number;

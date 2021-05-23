@@ -2,7 +2,6 @@ import type { IConfettiOptions } from "./IConfettiOptions";
 import type { IOptionLoader } from "tsparticles/dist/Options/Interfaces/IOptionLoader";
 import type { RecursivePartial, SingleOrMultiple } from "tsparticles";
 import type { ICoordinates } from "tsparticles/dist/Core/Interfaces/ICoordinates";
-import { OptionsColor } from "tsparticles/dist/Options/Classes/OptionsColor";
 
 export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfettiOptions> {
     /**
@@ -38,7 +37,7 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
     }
 
     angle: number;
-    colors: SingleOrMultiple<OptionsColor>;
+    colors: SingleOrMultiple<string>;
     count: number;
     decay: number;
     disableForReducedMotion: boolean;
@@ -65,7 +64,7 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
             x: 50,
             y: 50,
         };
-        this.colors = [];
+        this.colors = ["#ffffff", "#ff0000"];
         this.shapes = ["square", "circle"];
         this.scalar = 1;
         this.zIndex = 100;
@@ -123,22 +122,18 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
 
         if (data.colors !== undefined) {
             if (data.colors instanceof Array) {
-                this.colors = data.colors.map((t) => {
-                    const res = new OptionsColor();
-
-                    res.load(t);
-
-                    return res;
-                });
+                this.colors = [...data.colors];
             } else {
-                this.colors = new OptionsColor();
-
-                this.colors.load(data.colors);
+                this.colors = data.colors;
             }
         }
 
         if (data.shapes !== undefined) {
-            this.shapes = data.shapes;
+            if (data.shapes instanceof Array) {
+                this.shapes = [...data.shapes];
+            } else {
+                this.shapes = data.shapes;
+            }
         }
 
         if (data.scalar !== undefined) {

@@ -57,6 +57,10 @@ app.get("/presets/bubbles", function (req, res) {
     res.render("presets/bubbles");
 });
 
+app.get("/presets/confetti", function (req, res) {
+    res.render("presets/confetti");
+});
+
 app.get("/presets/fire", function (req, res) {
     res.render("presets/fire");
 });
