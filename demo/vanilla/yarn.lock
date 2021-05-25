@@ -2050,41 +2050,6 @@ tslib@^1.8.1:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tsparticles-preset-60fps@^1.12.0:
-  version "1.12.0"
-  resolved "https://registry.yarnpkg.com/tsparticles-preset-60fps/-/tsparticles-preset-60fps-1.12.0.tgz#be2abd6489b0ebcfc8be6d7f0a9f4aaf4a5d68fa"
-  integrity sha512-/D5I80BukNs5pJA+6GbJ7/NWJmyTCz6DU/LYWOA/jTtOmjxBGU5MAOTnwpAQIEA4kWLryq20YyxwnPl0pmdSZQ==
-  dependencies:
-    tsparticles "^1.27.0"
-
-tsparticles-preset-background-mask@^1.12.0:
-  version "1.12.0"
-  resolved "https://registry.yarnpkg.com/tsparticles-preset-background-mask/-/tsparticles-preset-background-mask-1.12.0.tgz#c920455acab206c7d813dd51b374d36a5b68fa6f"
-  integrity sha512-DPP18cjrpDQmiqjvNIhrPfBRuZsMGwjrIY3iUOwTg6HJgIqfoje54LZqmS8hCeGPOT49SkVUWykpMNKJvG2a/A==
-  dependencies:
-    tsparticles "^1.27.0"
-
-tsparticles-preset-bouncing@^1.12.0:
-  version "1.12.0"
-  resolved "https://registry.yarnpkg.com/tsparticles-preset-bouncing/-/tsparticles-preset-bouncing-1.12.0.tgz#cd8a885ac43af727c088fa0dc535e44b8a9d642c"
-  integrity sha512-ON7Ec0tBmQ6io7grKn3uHMtZklvIUDZoLuueEUivPh9zXVIfCpVs+MNgBsJ+1Ee5eivwtr+2/TS479xxuCbFbA==
-  dependencies:
-    tsparticles "^1.27.0"
-
-tsparticles-preset-font-awesome@^1.12.0:
-  version "1.12.0"
-  resolved "https://registry.yarnpkg.com/tsparticles-preset-font-awesome/-/tsparticles-preset-font-awesome-1.12.0.tgz#861a3cbd959840084cde93db46b743e625a8a207"
-  integrity sha512-p6wdSCLnFNTrqgxigEIeM+dWoecupINNbGxZx5dMUWzYgPJun39eMVHlrfM/xjSq3cc3L/9fX+627S6+jJ774A==
-  dependencies:
-    tsparticles "^1.27.0"
-
-tsparticles@^1.27.0:
-  version "1.27.0"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.27.0.tgz#0580fa5df6a2bf66a15eb7d944276f945e704712"
-  integrity sha512-7gBErOh21DNDbcflrxb7PT6eQPldTZURx6l099DRZbtbzzhT/N3Jyx80xsvjVPB52m30KiQswAsaMMg2lq+iFA==
-  optionalDependencies:
-    pathseg "^1.2.0"
-
 tsutils@^3.17.1:
   version "3.20.0"
   resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-3.20.0.tgz#ea03ea45462e146b53d70ce0893de453ff24f698"
