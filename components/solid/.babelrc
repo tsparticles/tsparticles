@@ -1,0 +1,33 @@
+{
+  "compact": false,
+  "presets": [
+    [
+      "@babel/preset-env",
+      "solid",
+      {
+        "loose": true,
+        "targets": {
+          "browsers": [
+            "ie >= 11",
+            "safari > 10"
+          ]
+        }
+      }
+    ],
+    [
+      "@babel/typescript",
+      {
+        "isTSX": true,
+        "allExtensions": true
+      }
+    ]
+  ],
+  "plugins": [
+    [
+      "@babel/plugin-proposal-class-properties",
+      {
+        "loose": true
+      }
+    ]
+  ]
+}
