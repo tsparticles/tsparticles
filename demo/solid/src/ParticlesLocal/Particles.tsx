@@ -1,81 +1,96 @@
 import { tsParticles, Container } from "tsparticles";
 import type { IParticlesProps } from "./IParticlesProps";
-import { createEffect, createMemo, createSignal, onCleanup } from "solid-js";
+import {
+    createEffect,
+    createMemo,
+    createSignal,
+    onCleanup,
+    JSX,
+} from "solid-js";
 
 interface MutableRefObject<T> {
-	current: T | null;
+    current: T | null;
 }
 
 /**
  * @param props IParticlesProps
  */
-const Particles = (props: IParticlesProps): Element => {
-	console.log("solid-particles");
+const Particles = (props: IParticlesProps): JSX.Element => {
+    console.log("solid-particles");
 
-	const id = props.id ?? "tsparticles";
+    try {
+        const id = props.id ?? "tsparticles";
 
-	if (props.init) {
-		props.init(tsParticles);
-	}
+        if (props.init) {
+            console.log("init");
 
-	const options = createMemo(() => props.params ?? props.options ?? {});
-	const refContainer = props.container as MutableRefObject<
-		Container | undefined
-	>;
-	const { className, canvasClassName, loaded, url, width, height } = props;
-	const [containerId, setContainerId] = createSignal(
-		undefined as string | undefined
-	);
+            props.init(tsParticles);
+        }
 
-	const cb = (container?: Container) => {
-		if (refContainer) {
-			refContainer.current = container;
-		}
+        const options = createMemo(() => props.params ?? props.options ?? {});
 
-		setContainerId(container.id);
+        console.log(options());
 
-		if (loaded && container) {
-			loaded(container);
-		}
-	};
+        const refContainer = props.container as MutableRefObject<Container | undefined>;
+        const { className, canvasClassName, loaded, url, width, height } = props;
+        const [ containerId, setContainerId ] = createSignal(
+            undefined as string | undefined
+        );
 
-	createEffect(() => {
-		console.log("effect");
+        console.log(containerId());
 
-		const container = tsParticles.dom().find((t) => t.id === containerId());
+        const cb = (container?: Container) => {
+            if (refContainer) {
+                refContainer.current = container;
+            }
 
-		container?.destroy();
+            setContainerId(container?.id);
 
-		console.log(options, options());
+            if (loaded && container) {
+                loaded(container);
+            }
+        };
 
-		if (url) {
-			tsParticles.loadJSON(id, url).then(cb);
-		} else {
-			tsParticles.load(id, options()).then(cb);
-		}
-	});
+        createEffect(() => {
+            console.log("effect");
 
-	onCleanup(() => {
-		console.log("cleanup");
+            const container = tsParticles.dom().find((t) => t.id === containerId());
 
-		const container = tsParticles.dom().find((t) => t.id === containerId());
+            container?.destroy();
 
-		container?.destroy();
-		setContainerId(undefined);
-	});
+            if (url) {
+                tsParticles.loadJSON(id, url).then(cb);
+            } else {
+                tsParticles.load(id, options()).then(cb);
+            }
+        });
 
-	return (
-		<div className={className ?? ""} id={id}>
-			<canvas
-				className={canvasClassName ?? ""}
-				style={{
-					...props.style,
-					width,
-					height,
-				}}
-			/>
-		</div>
-	);
+        onCleanup(() => {
+            console.log("cleanup");
+
+            const container = tsParticles.dom().find((t) => t.id === containerId());
+
+            container?.destroy();
+
+            setContainerId(undefined);
+        });
+
+        return (
+            <div className={ className ?? "" } id={ id }>
+                <canvas
+                    className={ canvasClassName ?? "" }
+                    style={ {
+                        ...props.style,
+                        width,
+                        height,
+                    } }
+                />
+            </div>
+        );
+    } catch (e) {
+        console.log(e);
+        return <div></div>;
+    }
 };
 
 export default Particles;

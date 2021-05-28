@@ -16,6 +16,7 @@
 			"solid-js/web"
 		],
 		"jsx": "preserve",
+		"jsxImportSource": "solid-js",
 		"noUnusedLocals": true,
 		"baseUrl": "./src",
 		"noEmit": true,
@@ -23,10 +24,13 @@
 		"noUnusedParameters": true,
 		"noImplicitReturns": true,
 		"noFallthroughCasesInSwitch": true,
-		"importHelpers": false
+		"importHelpers": false,
+		"esModuleInterop": true
 	},
+	"files": [
+		"./node_modules/solid-scripts/types/solid-app.d.ts"
+	],
 	"include": [
-		"src/**/*",
-		"node_modules/inferno/dist/index.d.ts"
+		"src"
 	]
 }
