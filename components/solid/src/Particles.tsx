@@ -13,7 +13,7 @@ interface MutableRefObject<T> {
 }
 
 /**
- * @param props IParticlesProps
+ * @param (props:IParticlesProps) Particles component properties
  */
 const Particles = (props: IParticlesProps): JSX.Element => {
 	console.log("solid-particles");
