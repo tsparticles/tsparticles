@@ -5,17 +5,15 @@ module.exports = {
 	entry: "./src/index.ts", // Point to main file
 	externals: [
 		/ts[Pp]articles/,
-		"lodash",
-		"solid-js",
-		"solid-js/web"
+		/solid-js/
 	],
 	output: {
 		path: __dirname + "/dist",
 		filename: "particles.js",
-		libraryTarget: "commonjs"
+		libraryTarget: "umd"
 	},
 	resolve: {
-		extensions: [ '.js', '.jsx', '.ts', '.tsx' ]
+		extensions: ['.js', '.jsx', '.ts', '.tsx']
 	},
 	performance: {
 		hints: false
