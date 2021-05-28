@@ -6,14 +6,8 @@ module.exports = {
 	externals: [
 		/ts[Pp]articles/,
 		"lodash",
-		{
-			"solid-js": {
-				commonjs: "solid-js",
-				commonjs2: "solid-js",
-				amd: "solid-js",
-				root: "SolidJS"
-			}
-		}
+		"solid-js",
+		"solid-js/web"
 	],
 	output: {
 		path: __dirname + "/dist",
