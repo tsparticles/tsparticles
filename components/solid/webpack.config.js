@@ -7,11 +7,11 @@ module.exports = {
 		/ts[Pp]articles/,
 		"lodash",
 		{
-			inferno: {
-				commonjs: "inferno",
-				commonjs2: "inferno",
-				amd: "inferno",
-				root: "Inferno"
+			"solid-js": {
+				commonjs: "solid-js",
+				commonjs2: "solid-js",
+				amd: "solid-js",
+				root: "SolidJS"
 			}
 		}
 	],

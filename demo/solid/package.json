@@ -8,6 +8,7 @@
     "solid-js": "^0.26.5",
     "solid-particles": "^1.10.0",
     "solid-scripts": "0.0.55",
+    "tsparticles": "^1.27.0",
     "typescript": "4.3.2"
   },
   "dependencies": {},
