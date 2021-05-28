@@ -12,7 +12,8 @@
 			"dom"
 		],
 		"types": [
-			"inferno"
+			"solid-js",
+			"solid-js/web"
 		],
 		"jsx": "preserve",
 		"noUnusedLocals": true,

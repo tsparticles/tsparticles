@@ -1,21 +1,21 @@
 [![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
 
-# inferno-particles
+# solid-particles
 
-[![npm](https://img.shields.io/npm/v/inferno-particles)](https://www.npmjs.com/package/inferno-particles) [![npm](https://img.shields.io/npm/dm/inferno-particles)](https://www.npmjs.com/package/inferno-particles)
+[![npm](https://img.shields.io/npm/v/solid-particles)](https://www.npmjs.com/package/solid-particles) [![npm](https://img.shields.io/npm/dm/solid-particles)](https://www.npmjs.com/package/solid-particles)
 
-Official [tsParticles](https://github.com/matteobruni/tsparticles) Inferno component
+Official [tsParticles](https://github.com/matteobruni/tsparticles) solid component
 
 ## Installation
 
 ```shell
-npm install inferno-particles
+npm install solid-particles
 ```
 
 or
 
 ```shell
-yarn add inferno-particles
+yarn add solid-particles
 ```
 
 ## How to use
@@ -27,7 +27,7 @@ Examples:
 _Remote url_
 
 ```javascript
-import Particles from "inferno-particles";
+import Particles from "solid-particles";
 
 class App extends Component {
   constructor(props) {
@@ -63,7 +63,7 @@ class App extends Component {
 _Options object_
 
 ```javascript
-import Particles from "inferno-particles";
+import Particles from "solid-particles";
 
 class App extends Component {
   constructor(props) {
