@@ -11,7 +11,7 @@ export interface IParticlesProps {
 	style?: JSX.CSSProperties;
 	className?: string;
 	canvasClassName?: string;
-	container?: RefObject<Container>;
+	container?: { current: Container };
 	init?: (tsParticles: Main) => void;
 	loaded?: (container: Container) => void;
 }

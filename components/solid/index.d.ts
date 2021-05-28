@@ -1,12 +1,11 @@
-// Type definitions for inferno-particles
+// Type definitions for solid-particles
 // Project: https://github.com/matteobruni/tsparticles
 // Definitions by: Matteo Bruni <https://github.com/matteobruni>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
-/// <reference types="inferno" />
+/// <reference types="solid-js" />
 import type { Container, ISourceOptions, Main } from "tsparticles";
-import type { Component } from "inferno";
-import { RefObject } from "inferno";
+import { JSX } from "solid-js";
 
 export interface IParticlesProps {
 	id?: string;
@@ -15,16 +14,16 @@ export interface IParticlesProps {
 	options?: ISourceOptions;
 	url?: string;
 	params?: ISourceOptions;
-	style?: CSSProperties;
+	style?: JSX.CSSProperties;
 	className?: string;
 	canvasClassName?: string;
-	container?: RefObject<Container>;
+	container?: { current: Container; };
 	init?: (tsParticles: Main) => void;
 	loaded?: (container: Container) => void;
 }
 
 export interface IParticlesState {
-	library?: Container;
+	containerId?: string;
 }
 
 export type IParticlesParams = IParticlesProps;
@@ -32,7 +31,7 @@ export type ParticlesProps = IParticlesProps;
 
 export * from "tsparticles";
 
-type Particles = Component<IParticlesProps, IParticlesState>;
+type Particles = (props: IParticlesProps) => Element;
 
 declare const Particles: Particles;
 

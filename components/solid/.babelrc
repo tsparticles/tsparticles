@@ -2,8 +2,10 @@
   "compact": false,
   "presets": [
     [
+      "solid"
+    ],
+    [
       "@babel/preset-env",
-      "solid",
       {
         "loose": true,
         "targets": {

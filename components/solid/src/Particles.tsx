@@ -1,117 +1,81 @@
-import { JSX } from "solid-js";
-import equal from "fast-deep-equal/react";
 import { tsParticles, Container } from "tsparticles";
 import type { IParticlesProps } from "./IParticlesProps";
-import type { IParticlesState } from "./IParticlesState";
-import type { ISourceOptions } from "tsparticles";
+import { createEffect, createMemo, createSignal, onCleanup } from "solid-js";
 
 interface MutableRefObject<T> {
 	current: T | null;
 }
 
 /**
- * @param {{id?: string,width?: string,height?: string,options?: ISourceOptions,params?: ISourceOptions,url?: string,style?: CSSProperties,className?: string,canvasClassName?: string,container?: RefObject<Container>}}
+ * @param props IParticlesProps
  */
-export default class Particles extends Component<IParticlesProps, IParticlesState> {
-	static defaultProps: IParticlesProps = {
-		width: "100%",
-		height: "100%",
-		options: {},
-		style: {},
-		id: "tsparticles",
+const Particles = (props: IParticlesProps): Element => {
+	console.log("solid-particles");
+
+	const id = props.id ?? "tsparticles";
+
+	if (props.init) {
+		props.init(tsParticles);
+	}
+
+	const options = createMemo(() => props.params ?? props.options ?? {});
+	const refContainer = props.container as MutableRefObject<
+		Container | undefined
+	>;
+	const { className, canvasClassName, loaded, url, width, height } = props;
+	const [containerId, setContainerId] = createSignal(
+		undefined as string | undefined
+	);
+
+	const cb = (container?: Container) => {
+		if (refContainer) {
+			refContainer.current = container;
+		}
+
+		setContainerId(container.id);
+
+		if (loaded && container) {
+			loaded(container);
+		}
 	};
 
-	constructor(props: IParticlesProps) {
-		super(props);
+	createEffect(() => {
+		console.log("effect");
 
-		this.state = {
-			library: undefined,
-		};
-	}
+		const container = tsParticles.dom().find((t) => t.id === containerId());
 
-	destroy(): void {
-		if (!this.state.library) {
-			return;
-		}
+		container?.destroy();
 
-		this.state.library.destroy();
+		console.log(options, options());
 
-		this.setState({
-			library: undefined,
-		});
-	}
-
-	shouldComponentUpdate(nextProps: Readonly<IParticlesProps>): boolean {
-		return !equal(nextProps, this.props);
-	}
-
-	componentDidUpdate(): void {
-		this.refresh();
-	}
-
-	forceUpdate(): void {
-		this.refresh();
-
-		super.forceUpdate();
-	}
-
-	componentDidMount(): void {
-		if (this.props.init) {
-			this.props.init(tsParticles);
-		}
-
-		this.loadParticles();
-	}
-
-	componentWillUnmount(): void {
-		this.destroy();
-	}
-
-	render(): JSX.Element {
-		const { width, height, className, canvasClassName, id } = this.props;
-
-		return (
-			<div className={ className } id={ id }>
-				<canvas
-					className={ canvasClassName }
-					style={ {
-						...this.props.style,
-						width,
-						height,
-					} }
-				/>
-			</div>
-		);
-	}
-
-	private refresh(): void {
-		this.destroy();
-
-		this.loadParticles();
-	}
-
-	private loadParticles(): void {
-		const cb = (container?: Container) => {
-			if (this.props.container) {
-				(this.props.container as MutableRefObject<Container>).current =
-					container;
-			}
-
-			this.setState({
-				library: container,
-			});
-
-			if (this.props.loaded) {
-				this.props.loaded(container);
-			}
-		};
-
-		if (this.props.url) {
-			tsParticles.loadJSON(this.props.id, this.props.url).then(cb);
+		if (url) {
+			tsParticles.loadJSON(id, url).then(cb);
 		} else {
-			tsParticles
-			.load(this.props.id, this.props.params ?? this.props.options)
-			.then(cb);
+			tsParticles.load(id, options()).then(cb);
 		}
-	}
-}
+	});
+
+	onCleanup(() => {
+		console.log("cleanup");
+
+		const container = tsParticles.dom().find((t) => t.id === containerId());
+
+		container?.destroy();
+		setContainerId(undefined);
+	});
+
+	return (
+		<div className={className ?? ""} id={id}>
+			<canvas
+				className={canvasClassName ?? ""}
+				style={{
+					...props.style,
+					width,
+					height,
+				}}
+			/>
+		</div>
+	);
+};
+
+export default Particles;
