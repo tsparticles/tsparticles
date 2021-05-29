@@ -1,12 +1,10 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
+const pkg = require("./package.json");
 
 module.exports = {
 	mode: "none",
 	entry: "./src/index.ts", // Point to main file
-	externals: [
-		/ts[Pp]articles/,
-		/solid-js/
-	],
+	externals: [...Object.keys(pkg.dependencies), 'solid-js/dom'],
 	output: {
 		path: __dirname + "/dist",
 		filename: "particles.js",
