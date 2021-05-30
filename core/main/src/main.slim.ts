@@ -109,6 +109,23 @@ export class MainSlim {
     }
 
     /**
+     * Loads the provided option to create a [[Container]] object using the element parameter as a container
+     * @param id The particles container id
+     * @param element The dom element used to contain the particles
+     * @param pathConfigJson the json path (or paths array) to use in the GET request
+     * @param index the index of the paths array, if a single path is passed this value is ignored
+     * @returns A Promise with the [[Container]] object created
+     */
+    async setJSON(
+        id: string,
+        element: HTMLElement,
+        pathConfigJson: SingleOrMultiple<string>,
+        index?: number
+    ): Promise<Container | undefined> {
+        return Loader.setJSON(id, element, pathConfigJson, index);
+    }
+
+    /**
      * Adds an additional click handler to all the loaded [[Container]] objects.
      * @param callback The function called after the click event is fired
      */
