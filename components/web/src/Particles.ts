@@ -1,5 +1,5 @@
 import type { ISourceOptions, RecursivePartial } from "tsparticles";
-import { tsParticles } from "tsparticles";
+import { Container, tsParticles } from "tsparticles";
 
 export class Particles extends HTMLElement {
     get url(): string {
@@ -9,7 +9,9 @@ export class Particles extends HTMLElement {
     set url(value: string) {
         this._url = value;
 
-        tsParticles.setJSON(this.id, this, this._url);
+        this.container.current?.destroy();
+
+        tsParticles.setJSON(this.id, this, this._url).then(container => this.notifyParticlesLoaded(container));
     }
 
     get options(): RecursivePartial<ISourceOptions> {
@@ -19,25 +21,44 @@ export class Particles extends HTMLElement {
     set options(value: RecursivePartial<ISourceOptions>) {
         this._options = value;
 
-        tsParticles.set(this.id, this, this._options);
+        this.container.current?.destroy();
+
+        tsParticles.set(this.id, this, this._options).then(container => this.notifyParticlesLoaded(container));
     }
 
     private _options: RecursivePartial<ISourceOptions>;
     private _url: string;
 
+    public container: {
+        current?: Container
+    };
+
     constructor() {
         super();
 
+        this.container = {};
         this.attachShadow({ mode: "open" });
 
         const options = this.getAttribute("options");
         const url = this.getAttribute("url");
 
+        this.dispatchEvent(new CustomEvent("particlesInit", {
+            detail: tsParticles
+        }));
+
         if (url) {
-            tsParticles.setJSON(this.id, this, url);
+            tsParticles.setJSON(this.id, this, url).then(container => this.notifyParticlesLoaded(container));
         } else if (options) {
-            tsParticles.set(this.id, this, JSON.parse(options));
+            tsParticles.set(this.id, this, JSON.parse(options)).then(container => this.notifyParticlesLoaded(container));
         }
+    }
+
+    private notifyParticlesLoaded(container?: Container): void {
+        this.container.current = container;
+
+        this.dispatchEvent(new CustomEvent("particlesLoaded", {
+            detail: container
+        }));
     }
 }
 
