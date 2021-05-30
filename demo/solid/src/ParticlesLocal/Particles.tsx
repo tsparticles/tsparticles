@@ -13,31 +13,25 @@ interface MutableRefObject<T> {
 }
 
 /**
- * @param props IParticlesProps
+ * @param (props:IParticlesProps) Particles component properties
  */
 const Particles = (props: IParticlesProps): JSX.Element => {
-    console.log("solid-particles");
-
     try {
         const id = props.id ?? "tsparticles";
 
         if (props.init) {
-            console.log("init");
-
             props.init(tsParticles);
         }
 
         const options = createMemo(() => props.params ?? props.options ?? {});
 
-        console.log(options());
-
-        const refContainer = props.container as MutableRefObject<Container | undefined>;
+        const refContainer = props.container as MutableRefObject<
+            Container | undefined
+            >;
         const { className, canvasClassName, loaded, url, width, height } = props;
-        const [ containerId, setContainerId ] = createSignal(
+        const [containerId, setContainerId] = createSignal(
             undefined as string | undefined
         );
-
-        console.log(containerId());
 
         const cb = (container?: Container) => {
             if (refContainer) {
@@ -52,8 +46,6 @@ const Particles = (props: IParticlesProps): JSX.Element => {
         };
 
         createEffect(() => {
-            console.log("effect");
-
             const container = tsParticles.dom().find((t) => t.id === containerId());
 
             container?.destroy();
@@ -66,8 +58,6 @@ const Particles = (props: IParticlesProps): JSX.Element => {
         });
 
         onCleanup(() => {
-            console.log("cleanup");
-
             const container = tsParticles.dom().find((t) => t.id === containerId());
 
             container?.destroy();
@@ -76,19 +66,18 @@ const Particles = (props: IParticlesProps): JSX.Element => {
         });
 
         return (
-            <div className={ className ?? "" } id={ id }>
+            <div className={className ?? ""} id={id}>
                 <canvas
-                    className={ canvasClassName ?? "" }
-                    style={ {
+                    className={canvasClassName ?? ""}
+                    style={{
                         ...props.style,
                         width,
                         height,
-                    } }
+                    }}
                 />
             </div>
         );
     } catch (e) {
-        console.log(e);
         return <div></div>;
     }
 };

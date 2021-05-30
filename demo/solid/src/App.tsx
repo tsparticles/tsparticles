@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import Particles from "solid-particles";
+import Particles from "./ParticlesLocal"; //"solid-particles";
 
 function App() {
     return (
