@@ -43,7 +43,6 @@ export class Particles extends HTMLElement {
         super();
 
         this.container = {};
-        this.attachShadow({ mode: "open" });
 
         const options = this.getAttribute("options");
 
@@ -58,6 +57,12 @@ export class Particles extends HTMLElement {
         this.dispatchEvent(new CustomEvent("particlesInit", {
             detail: window.tsParticles
         }));
+    }
+
+    connectedCallback() {
+        if (!this.isConnected) {
+            return;
+        }
 
         if (this._url) {
             window.tsParticles.setJSON(this.id, this, this._url).then(container => this.notifyParticlesLoaded(container));
