@@ -1,33 +1,39 @@
 import type { ISourceOptions, RecursivePartial } from "tsparticles";
-import { Container, tsParticles } from "tsparticles";
+import type { Container, Main } from "tsparticles";
+
+declare global {
+    interface Window {
+        tsParticles: Main;
+    }
+}
 
 export class Particles extends HTMLElement {
-    get url(): string {
+    get url(): string | undefined {
         return this._url;
     }
 
-    set url(value: string) {
+    set url(value: string | undefined) {
         this._url = value;
 
         this.container.current?.destroy();
 
-        tsParticles.setJSON(this.id, this, this._url).then(container => this.notifyParticlesLoaded(container));
+        window.tsParticles.setJSON(this.id, this, this._url).then(container => this.notifyParticlesLoaded(container));
     }
 
-    get options(): RecursivePartial<ISourceOptions> {
+    get options(): RecursivePartial<ISourceOptions> | undefined {
         return this._options;
     }
 
-    set options(value: RecursivePartial<ISourceOptions>) {
+    set options(value: RecursivePartial<ISourceOptions> | undefined) {
         this._options = value;
 
         this.container.current?.destroy();
 
-        tsParticles.set(this.id, this, this._options).then(container => this.notifyParticlesLoaded(container));
+        window.tsParticles.set(this.id, this, this._options).then(container => this.notifyParticlesLoaded(container));
     }
 
-    private _options: RecursivePartial<ISourceOptions>;
-    private _url: string;
+    private _options?: RecursivePartial<ISourceOptions>;
+    private _url?: string;
 
     public container: {
         current?: Container
@@ -40,16 +46,23 @@ export class Particles extends HTMLElement {
         this.attachShadow({ mode: "open" });
 
         const options = this.getAttribute("options");
-        const url = this.getAttribute("url");
+
+        if (options) {
+            try {
+                this._options = JSON.parse(options);
+            } catch {
+            }
+        }
+        this._url = this.getAttribute("url");
 
         this.dispatchEvent(new CustomEvent("particlesInit", {
-            detail: tsParticles
+            detail: window.tsParticles
         }));
 
-        if (url) {
-            tsParticles.setJSON(this.id, this, url).then(container => this.notifyParticlesLoaded(container));
-        } else if (options) {
-            tsParticles.set(this.id, this, JSON.parse(options)).then(container => this.notifyParticlesLoaded(container));
+        if (this._url) {
+            window.tsParticles.setJSON(this.id, this, this._url).then(container => this.notifyParticlesLoaded(container));
+        } else if (this._options) {
+            window.tsParticles.set(this.id, this, this._options).then(container => this.notifyParticlesLoaded(container));
         }
     }
 
@@ -62,4 +75,4 @@ export class Particles extends HTMLElement {
     }
 }
 
-customElements.define("particles", Particles);
+customElements.define("web-particles", Particles);

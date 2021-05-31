@@ -5,7 +5,7 @@ import { InputOptions, OutputOptions, rollup, RollupOutput } from 'rollup';
 const typescript2 = require('rollup-plugin-typescript2');
 const resolve = require('rollup-plugin-node-resolve');
 
-const ENTRY_FILE = `src/hello-world.ts`;
+const ENTRY_FILE = `src/Particles.ts`;
 
 const rollupConfig = {
     inputOptions: {
@@ -32,8 +32,8 @@ const rollupConfig = {
     outputOptions: {
         sourcemap: true,
         exports: 'named',
-        file: 'public/bundle.js',
-        name: 'hello-world',
+        file: 'dist/web-particles.js',
+        name: 'web-particles',
         format: 'es'
     } as OutputOptions
 }
