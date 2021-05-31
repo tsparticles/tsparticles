@@ -1,0 +1,47 @@
+{
+  "name": "web-particles-demo",
+  "private": true,
+  "version": "1.12.0",
+  "description": "> TODO: description",
+  "author": "Matteo Bruni <ar3s@icloud.com>",
+  "homepage": "https://github.com/matteobruni/tsparticles#readme",
+  "license": "MIT",
+  "main": "lib/main.js",
+  "files": [
+    "app.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/tsparticles.git"
+  },
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles/issues"
+  },
+  "scripts": {
+    "start": "yarn build && node ./app.js",
+    "build": "yarn build:style && yarn build:index",
+    "build:index": "npx pug ./views/index.pug",
+    "build:style": "npx stylus ./public/stylesheets/main.styl"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.3",
+    "@typescript-eslint/eslint-plugin": "^4.23.0",
+    "@typescript-eslint/parser": "^4.23.0",
+    "@webcomponents/webcomponentsjs": "^2.5.0",
+    "bootstrap": "^5.0.1",
+    "eslint": "^7.26.0",
+    "eslint-config-prettier": "^8.3.0",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "jquery": "^3.6.0",
+    "jsoneditor": "^9.4.1",
+    "pathseg": "^1.2.0",
+    "popper.js": "^1.16.1",
+    "prettier": "^2.3.0",
+    "pug": "^3.0.2",
+    "pug-cli": "^1.0.0-alpha6",
+    "stylus": "^0.54.8",
+    "three": "^0.128.0",
+    "tsparticles": "^1.27.0"
+  }
+}

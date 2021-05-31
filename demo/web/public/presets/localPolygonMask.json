@@ -1,0 +1,137 @@
+{
+  "detectRetina": false,
+  "fpsLimit": 30,
+  "interactivity": {
+    "detectsOn": "canvas",
+    "events": {
+      "onClick": {
+        "enable": false,
+        "mode": "push"
+      },
+      "onDiv": {
+        "elementId": "repulse-div",
+        "enable": false,
+        "mode": "repulse"
+      },
+      "onHover": {
+        "enable": true,
+        "mode": "bubble",
+        "parallax": {
+          "enable": false,
+          "force": 2,
+          "smooth": 10
+        }
+      },
+      "resize": true
+    },
+    "modes": {
+      "bubble": {
+        "distance": 40,
+        "duration": 2,
+        "opacity": 8,
+        "size": 6
+      },
+      "connect": {
+        "distance": 80,
+        "lineLinked": {
+          "opacity": 0.5
+        },
+        "radius": 60
+      },
+      "grab": {
+        "distance": 400,
+        "lineLinked": {
+          "opacity": 1
+        }
+      },
+      "push": {
+        "quantity": 4
+      },
+      "remove": {
+        "quantity": 2
+      },
+      "repulse": {
+        "distance": 200,
+        "duration": 0.4
+      },
+      "slow": {
+        "active": false,
+        "radius": 0,
+        "factor": 1
+      }
+    }
+  },
+  "particles": {
+    "color": {
+      "value": "#ffffff"
+    },
+    "lineLinked": {
+      "blink": false,
+      "color": "#ffffff",
+      "consent": false,
+      "distance": 30,
+      "enable": false,
+      "opacity": 0.4,
+      "width": 1
+    },
+    "move": {
+      "attract": {
+        "enable": false,
+        "rotate": {
+          "x": 600,
+          "y": 1200
+        }
+      },
+      "bounce": false,
+      "direction": "none",
+      "enable": true,
+      "outMode": "bounce",
+      "random": false,
+      "speed": 1,
+      "straight": false
+    },
+    "number": {
+      "density": {
+        "enable": false,
+        "area": 2000
+      },
+      "limit": 0,
+      "value": 200
+    },
+    "opacity": {
+      "value": 0.5
+    },
+    "shape": {
+      "type": "circle"
+    },
+    "size": {
+      "value": 3
+    }
+  },
+  "polygon": {
+    "draw": {
+      "enable": true,
+      "lineColor": "rgba(255,255,255,1)",
+      "lineWidth": 1
+    },
+    "enable": true,
+    "move": {
+      "radius": 10
+    },
+    "position": {
+      "x": 50,
+      "y": 50
+    },
+    "inlineArrangement": "equidistant",
+    "scale": 3,
+    "type": "inside",
+    "data": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" height=\"210\" width=\"400\"><path d=\"M150 0 L75 200 L225 200 Z\" /></svg>"
+  },
+  "background": {
+    "color": "#000000",
+    "image": "",
+    "position": "50% 50%",
+    "repeat": "no-repeat",
+    "size": "cover"
+  }
+}
