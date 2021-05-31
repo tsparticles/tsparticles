@@ -1,5 +1,4 @@
-import type { ISourceOptions, RecursivePartial } from "tsparticles";
-import type { Container, Main } from "tsparticles";
+import type { Container, ISourceOptions, Main, RecursivePartial } from "tsparticles";
 
 declare global {
     interface Window {
