@@ -43,7 +43,7 @@
   "repository": {
     "url": "https://github.com/matteobruni/tsparticles",
     "type": "git",
-    "directory": "components/vue3"
+    "directory": "components/web"
   },
   "author": "Matteo Bruni",
   "license": "MIT",
