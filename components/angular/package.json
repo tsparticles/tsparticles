@@ -62,7 +62,7 @@
     "@angular/platform-browser": ">=6",
     "@angular/platform-browser-dynamic": ">=6",
     "@angular/router": ">=6",
-    "rxjs": "~7.0.1",
+    "rxjs": "~7.1.0",
     "tslib": "~2.2.0",
     "tsparticles-engine": "^2.0.0-alpha.7",
     "zone.js": "~0.11.4"
