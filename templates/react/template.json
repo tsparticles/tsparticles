@@ -2,7 +2,7 @@
   "package": {
     "dependencies": {
       "react-tsparticles": "^1.27.0",
-      "tslib": "^2.0.3"
+      "tslib": "^2.2.0"
     }
   }
 }
