@@ -67,9 +67,11 @@
 	"author": "Matteo Bruni <matteo.bruni@me.com> (https://www.matteobruni.it)",
 	"license": "MIT",
 	"homepage": "https://particles.js.org/",
+	"peerDependencies": {
+		"solid-js": "^0.26.5"
+	},
 	"dependencies": {
 		"fast-deep-equal": "^3.1.3",
-		"solid-js": "^0.26.5",
 		"tsparticles": "^1.27.0"
 	},
 	"devDependencies": {
