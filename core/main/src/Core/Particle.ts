@@ -4,7 +4,7 @@ import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IParticleImage } from "./Interfaces/IParticleImage";
 import { Updater } from "./Particle/Updater";
 import type { IHsl, IRgb } from "./Interfaces/Colors";
-import type { IShapeValues } from "../Options/Interfaces/Particles/Shape/IShapeValues";
+import type { IShapeValues } from "./Interfaces/IShapeValues";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
 import type { IParticle } from "./Interfaces/IParticle";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
@@ -605,8 +605,6 @@ export class Particle implements IParticle {
     }
 
     private calculateVelocity(): Vector {
-        const baseVelocity = NumberUtils.getParticleBaseVelocity(this.direction);
-        const res = baseVelocity.copy();
         const moveOptions = this.options.move;
 
         let rad: number;
@@ -619,15 +617,30 @@ export class Particle implements IParticle {
             radOffset = (Math.PI / 180) * moveOptions.angle.offset;
         }
 
-        const range = {
-            left: Math.sin(radOffset + rad / 2) - Math.sin(radOffset - rad / 2),
-            right: Math.cos(radOffset + rad / 2) - Math.cos(radOffset - rad / 2),
-        };
+        console.log(">-----------");
+        console.log(rad, radOffset);
 
-        if (!moveOptions.straight || moveOptions.random) {
-            res.x += NumberUtils.randomInRange(NumberUtils.setRangeValue(range.left, range.right)) / 2;
-            res.y += NumberUtils.randomInRange(NumberUtils.setRangeValue(range.left, range.right)) / 2;
+        const range = NumberUtils.setRangeValue(rad - radOffset / 2, rad + radOffset / 2);
+
+        console.log(range);
+
+        const baseVelocity = NumberUtils.getParticleBaseVelocity(this.direction);
+        const res = baseVelocity.copy();
+
+        console.log(res.angle);
+
+        if (this.direction === MoveDirection.custom || moveOptions.random) {
+            res.angle = NumberUtils.randomInRange(range);
         }
+
+        console.log(res.angle);
+
+        if (!moveOptions.straight) {
+            res.angle += NumberUtils.randomInRange(range);
+        }
+
+        console.log(res.angle);
+        console.log("-------<");
 
         return res;
     }

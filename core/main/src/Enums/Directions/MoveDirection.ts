@@ -11,6 +11,7 @@ export enum MoveDirection {
     top = "top",
     topLeft = "top-left",
     topRight = "top-right",
+    custom = "custom",
 }
 
 export type MoveDirectionAlt = "bottom-left" | "bottom-right" | "top-left" | "top-right";

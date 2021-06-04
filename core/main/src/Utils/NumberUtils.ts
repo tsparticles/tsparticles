@@ -31,7 +31,7 @@ export class NumberUtils {
         const max = NumberUtils.getRangeMax(r);
         let min = NumberUtils.getRangeMin(r);
 
-        if (max === min) {
+        if (max === min && typeof r === "number") {
             min = 0;
         }
 
@@ -51,7 +51,7 @@ export class NumberUtils {
     }
 
     static setRangeValue(source: RangeValue, value?: number): RangeValue {
-        if (source === value || (value === undefined && typeof source === "number")) {
+        if (value === undefined && typeof source === "number") {
             return source;
         }
 
@@ -130,7 +130,6 @@ export class NumberUtils {
                 baseVelocity.angle = (-3 * Math.PI) / 4;
                 break;
             case MoveDirection.none:
-            default:
                 baseVelocity.angle = Math.random() * Math.PI * 2;
                 break;
         }
