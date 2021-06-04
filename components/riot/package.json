@@ -57,8 +57,10 @@
   ],
   "author": "Matteo Bruni <matteo.bruni@me.com> (https://www.matteobruni.it)",
   "license": "MIT",
+  "peerDependencies": {
+    "riot": ">=5"
+  },
   "dependencies": {
-    "riot": ">=5",
     "tsparticles": "^1.27.0"
   },
   "devDependencies": {
@@ -66,10 +68,11 @@
     "@riotjs/compiler": "^5.4.2",
     "chai": "^4.3.4",
     "esm": "^3.2.25",
-    "jsdom": "^16.5.3",
+    "jsdom": "^16.6.0",
     "jsdom-global": "^3.0.2",
     "mocha": "^8.4.0",
-    "nyc": "^15.1.0"
+    "nyc": "^15.1.0",
+    "riot": "^5.4.3"
   },
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
