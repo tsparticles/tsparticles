@@ -4,7 +4,7 @@ const pkg = require("./package.json");
 module.exports = {
 	mode: "none",
 	entry: "./src/index.ts", // Point to main file
-	externals: [...Object.keys(pkg.dependencies), 'solid-js/dom'],
+	externals: [...Object.keys(pkg.dependencies), "solid-js", "solid-js/dom"],
 	output: {
 		path: __dirname + "/dist",
 		filename: "particles.js",
