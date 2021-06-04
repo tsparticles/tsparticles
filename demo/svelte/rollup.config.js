@@ -1,8 +1,9 @@
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import postcss from 'rollup-plugin-postcss'
 import livereload from 'rollup-plugin-livereload';
-import { terser } from 'rollup-plugin-terser';
+import {terser} from 'rollup-plugin-terser';
 import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
 
@@ -19,14 +20,15 @@ export default {
     plugins: [
         svelte({
             // enable run-time checks when not in production
-            dev: !production,
+            //dev: !production,
             // we'll extract any component CSS out into
             // a separate file - better for performance
-            css: css => {
+            /*css: css => {
                 css.write('public/dist/bundle.css');
-            },
-			preprocess: sveltePreprocess(),
+            },*/
+            preprocess: sveltePreprocess(),
         }),
+        postcss({plugins: []}),
 
         // If you have external dependencies installed from
         // npm, you'll most likely need these plugins. In
@@ -35,10 +37,10 @@ export default {
         // https://github.com/rollup/plugins/tree/master/packages/commonjs
         resolve({
             browser: true,
-            dedupe: [ 'svelte', "svelte-particles", "tsparticles" ]
+            dedupe: ['svelte', "svelte-particles", "tsparticles"]
         }),
         commonjs(),
-		typescript({ sourceMap: !production }),
+        typescript({sourceMap: !production}),
 
         // In dev mode, call `npm run start` once
         // the bundle has been generated
@@ -65,8 +67,8 @@ function serve() {
             if (!started) {
                 started = true;
 
-                require('child_process').spawn('npm', [ 'run', 'start', '--', '--dev' ], {
-                    stdio: [ 'ignore', 'inherit', 'inherit' ],
+                require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
+                    stdio: ['ignore', 'inherit', 'inherit'],
                     shell: true
                 });
             }
