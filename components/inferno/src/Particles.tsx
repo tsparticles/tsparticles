@@ -12,10 +12,8 @@ interface MutableRefObject<T> {
 /**
  * @param {{id?: string,width?: string,height?: string,options?: ISourceOptions,params?: ISourceOptions,url?: string,style?: CSSProperties,className?: string,canvasClassName?: string,container?: RefObject<Container>}}
  */
-export default class Particles extends Component<
-	IParticlesProps,
-	IParticlesState
-> {
+export default class Particles extends Component<IParticlesProps,
+	IParticlesState> {
 	static defaultProps: IParticlesProps = {
 		width: "100%",
 		height: "100%",
@@ -74,14 +72,14 @@ export default class Particles extends Component<
 		const { width, height, className, canvasClassName, id } = this.props;
 
 		return (
-			<div className={className} id={id}>
+			<div className={ className } id={ id }>
 				<canvas
-					className={canvasClassName}
-					style={{
+					className={ canvasClassName }
+					style={ {
 						...this.props.style,
 						width,
 						height,
-					}}
+					} }
 				/>
 			</div>
 		);
@@ -113,8 +111,8 @@ export default class Particles extends Component<
 			tsParticles.loadJSON(this.props.id, this.props.url).then(cb);
 		} else {
 			tsParticles
-				.load(this.props.id, this.props.params ?? this.props.options)
-				.then(cb);
+			.load(this.props.id, this.props.params ?? this.props.options)
+			.then(cb);
 		}
 	}
 }
