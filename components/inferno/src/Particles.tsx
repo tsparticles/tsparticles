@@ -3,17 +3,18 @@ import equal from "fast-deep-equal/react";
 import { tsParticles, Container } from "tsparticles";
 import type { IParticlesProps } from "./IParticlesProps";
 import type { IParticlesState } from "./IParticlesState";
-import type { ISourceOptions } from "tsparticles";
 
 interface MutableRefObject<T> {
 	current: T | null;
 }
 
 /**
- * @param {{id?: string,width?: string,height?: string,options?: ISourceOptions,params?: ISourceOptions,url?: string,style?: CSSProperties,className?: string,canvasClassName?: string,container?: RefObject<Container>}}
+ * @param {IParticlesProps}
  */
-export default class Particles extends Component<IParticlesProps,
-	IParticlesState> {
+export default class Particles extends Component<
+	IParticlesProps,
+	IParticlesState
+> {
 	static defaultProps: IParticlesProps = {
 		width: "100%",
 		height: "100%",
@@ -72,14 +73,14 @@ export default class Particles extends Component<IParticlesProps,
 		const { width, height, className, canvasClassName, id } = this.props;
 
 		return (
-			<div className={ className } id={ id }>
+			<div className={className} id={id}>
 				<canvas
-					className={ canvasClassName }
-					style={ {
+					className={canvasClassName}
+					style={{
 						...this.props.style,
 						width,
 						height,
-					} }
+					}}
 				/>
 			</div>
 		);
@@ -111,8 +112,8 @@ export default class Particles extends Component<IParticlesProps,
 			tsParticles.loadJSON(this.props.id, this.props.url).then(cb);
 		} else {
 			tsParticles
-			.load(this.props.id, this.props.params ?? this.props.options)
-			.then(cb);
+				.load(this.props.id, this.props.params ?? this.props.options)
+				.then(cb);
 		}
 	}
 }

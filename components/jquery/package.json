@@ -70,26 +70,29 @@
     "type": "github",
     "url": "https://github.com/sponsors/matteobruni"
   },
+  "peerDependencies": {
+    "jquery": ">=1"
+  },
   "dependencies": {
-    "jquery": ">=1",
     "tsparticles": "^1.27.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.2",
-    "@babel/preset-env": "^7.14.2",
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
     "@types/jquery": "^3.5.5",
-    "@types/node": "^15.0.3",
+    "@types/node": "^15.12.0",
     "@types/webpack-env": "^1.16.0",
-    "@typescript-eslint/eslint-plugin": "^4.23.0",
-    "@typescript-eslint/parser": "^4.23.0",
+    "@typescript-eslint/eslint-plugin": "^4.26.0",
+    "@typescript-eslint/parser": "^4.26.0",
     "babel-preset-env": "^1.7.0",
-    "eslint": "^7.26.0",
+    "eslint": "^7.27.0",
     "eslint-config-prettier": "^8.3.0",
+    "jquery": "^3.6.0",
     "prettier": "^2.3.0",
-    "rollup": "^2.47.0",
+    "rollup": "^2.50.6",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-sourcemaps": "^0.6.3",
-    "typescript": "^4.2.4",
-    "uglify-js": "^3.13.6"
+    "typescript": "^4.3.2",
+    "uglify-js": "^3.13.8"
   }
 }
