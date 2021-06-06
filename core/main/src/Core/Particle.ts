@@ -4,22 +4,13 @@ import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IParticleImage } from "./Interfaces/IParticleImage";
 import { Updater } from "./Particle/Updater";
 import type { IHsl, IRgb } from "./Interfaces/Colors";
-import type { IShapeValues } from "../Options/Interfaces/Particles/Shape/IShapeValues";
+import type { IShapeValues } from "./Interfaces/IShapeValues";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
 import type { IParticle } from "./Interfaces/IParticle";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
-import {
-    AnimationStatus,
-    DestroyMode,
-    MoveDirection,
-    MoveDirectionAlt,
-    OutMode,
-    RotateDirection,
-    ShapeType,
-    StartValueType,
-} from "../Enums";
+import { AnimationStatus, DestroyMode, OutMode, RotateDirection, ShapeType, StartValueType } from "../Enums";
 import { ImageDrawer } from "../ShapeDrawers/ImageDrawer";
 import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
 import type { RecursivePartial } from "../Types";
@@ -72,7 +63,7 @@ export class Particle implements IParticle {
     sizeAnimationSpeed?: number;
 
     readonly close: boolean;
-    readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
+    readonly direction: number;
     readonly fill: boolean;
     readonly stroke: Stroke;
     readonly position: Vector;
@@ -185,7 +176,7 @@ export class Particle implements IParticle {
             value: sizeValue,
         };
 
-        this.direction = this.options.move.direction;
+        this.direction = NumberUtils.getParticleDirectionAngle(this.options.move.direction);
         this.bubble = {
             inRange: false,
         };
