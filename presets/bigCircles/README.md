@@ -20,8 +20,7 @@ vanilla javascript in the main project [here](https://github.com/matteobruni/tsp
 Once installed you need one more script to be included in your page (or you can download that
 from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-big-circles):
 
-``` html
-
+```html
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-big-circles"></script>
 ```
 
@@ -31,7 +30,7 @@ This script **MUST** be placed after the `tsParticles` one.
 
 A bundled script can also be used, this will include every needed plugin needed by the preset.
 
-``` html
+```html
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-big-circles/dist/tsparticles.preset.bigCircles.bundle.min.js"></script>
 ```
 
@@ -39,9 +38,9 @@ A bundled script can also be used, this will include every needed plugin needed 
 
 Once the scripts are loaded you can set up `tsParticles` like this:
 
-``` javascript
+```javascript
 tsParticles.load("tsparticles", {
-    preset: "bigCircles", // also "big-circles" is accepted
+  preset: "bigCircles", // also "big-circles" is accepted
 });
 ```
 
@@ -52,12 +51,12 @@ You can override all the options defining the properties like in any standard `t
 
 ```javascript
 tsParticles.load("tsparticles", {
-    particles: {
-        shape: {
-            type: "square",
-        },
+  particles: {
+    shape: {
+      type: "square",
     },
-    preset: "bigCircles", // also "big-circles" is accepted
+  },
+  preset: "bigCircles", // also "big-circles" is accepted
 });
 ```
 
@@ -69,25 +68,25 @@ _The syntax for `React.js`, `Preact` and `Inferno` is the same_.
 
 This sample uses the class component syntax, but you can use hooks as well (if the library supports it).
 
-``` javascript
+```javascript
 import Particles from "react-tsparticles";
-import {Main} from "tsparticles";
-import {loadBigCirclesPreset} from "tsparticles-preset-big-circles";
+import { Main } from "tsparticles";
+import { loadBigCirclesPreset } from "tsparticles-preset-big-circles";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
-    // this customizes the component tsParticles installation
-    customInit(main: Main) {
-        // this adds the preset to tsParticles, you can safely use the
-        loadBigCirclesPreset(main);
-    }
+  // this customizes the component tsParticles installation
+  customInit(main: Main) {
+    // this adds the preset to tsParticles, you can safely use the
+    loadBigCirclesPreset(main);
+  }
 
-    render() {
-        const options = {
-            preset: "bigCircles", // also "big-circles" is accepted
-        };
+  render() {
+    const options = {
+      preset: "bigCircles", // also "big-circles" is accepted
+    };
 
-        return <Particles options={options} init={this.customInit}/>;
-    }
+    return <Particles options={options} init={this.customInit} />;
+  }
 }
 ```
 
@@ -95,38 +94,36 @@ export class ParticlesContainer extends React.PureComponent<IProps> {
 
 _The syntax for `Vue.js 2.x` and `3.x` is the same_
 
-``` vue
-
-<Particles id="tsparticles" :particlesInit="particlesInit" url="http://foo.bar/particles.json"/>
+```vue
+<Particles id="tsparticles" :particlesInit="particlesInit" url="http://foo.bar/particles.json" />
 ```
 
-``` js
+```js
 function particlesInit(main: Main) {
-    loadBigCirclesPreset(main);
+  loadBigCirclesPreset(main);
 }
 ```
 
 ### Angular
 
-``` html
-
+```html
 <ng-particles
-        [id]="id"
-        [options]="particlesOptions"
-        (particlesLoaded)="particlesLoaded($event)"
-        (particlesInit)="particlesInit($event)"
+  [id]="id"
+  [options]="particlesOptions"
+  (particlesLoaded)="particlesLoaded($event)"
+  (particlesInit)="particlesInit($event)"
 ></ng-particles>
 ```
 
-``` ts
+```ts
 function particlesInit(main: Main): void {
-    loadBigCirclesPreset(main);
+  loadBigCirclesPreset(main);
 }
 ```
 
 ### Svelte
 
-``` sveltehtml
+```sveltehtml
 
 <Particles
         id="tsparticles"
@@ -135,8 +132,8 @@ function particlesInit(main: Main): void {
 />
 ```
 
-``` js
+```js
 let onParticlesInit = (main) => {
-    loadBigCirclesPreset(main);
+  loadBigCirclesPreset(main);
 };
 ```

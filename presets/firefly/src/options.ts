@@ -1,5 +1,5 @@
 import type { ISourceOptions } from "tsparticles";
-import { ClickMode, DestroyType, StartValueType, InteractivityDetect } from "tsparticles";
+import { ClickMode, InteractivityDetect } from "tsparticles";
 
 export const options: ISourceOptions = {
     fullScreen: {
@@ -14,14 +14,18 @@ export const options: ISourceOptions = {
         color: {
             value: "#fff",
         },
+        life: {
+            duration: {
+                value: 5,
+                sync: false,
+            },
+            count: 1,
+        },
         opacity: {
             value: 1,
             animation: {
                 enable: true,
-                startValue: StartValueType.max,
-                destroy: DestroyType.min,
-                speed: 0.3,
-                sync: true,
+                speed: 3,
             },
         },
         size: {
@@ -34,6 +38,7 @@ export const options: ISourceOptions = {
             enable: true,
             speed: 3,
             random: false,
+            size: true,
         },
     },
     interactivity: {

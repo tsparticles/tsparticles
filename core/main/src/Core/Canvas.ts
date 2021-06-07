@@ -65,8 +65,8 @@ export class Canvas {
                 element.style.zIndex = options.fullScreen.zIndex.toString(10);
                 element.style.top = "0";
                 element.style.left = "0";
-                element.style.width = "100vw";
-                element.style.height = "100vh";
+                element.style.width = "100%";
+                element.style.height = "100%";
             } else {
                 element.style.position = this.originalStyle?.position ?? "";
                 element.style.zIndex = this.originalStyle?.zIndex ?? "";
