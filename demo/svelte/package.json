@@ -13,7 +13,7 @@
     "@rollup/plugin-commonjs": "^19.0.0",
     "@rollup/plugin-node-resolve": "^13.0.0",
     "@rollup/plugin-typescript": "^8.2.1",
-    "@tsconfig/svelte": "^1.0.10",
+    "@tsconfig/svelte": "^2.0.1",
     "rollup": "^2.47.0",
     "rollup-plugin-livereload": "^2.0.0",
     "rollup-plugin-svelte": "^6.1.1",
