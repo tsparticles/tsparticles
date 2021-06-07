@@ -15,6 +15,7 @@
 
 | key        | option type | example          | notes |
 | ---------- | ----------- | ---------------- | ----- |
+| `distance` | `number`    | `200`            |       |
 | `enable`   | `boolean`   | `true` / `false` |       |
 | `rotate.x` | `number`    | `3000`           |       |
 | `rotate.y` | `number`    | `1500`           |       |
