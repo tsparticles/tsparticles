@@ -2,7 +2,7 @@ import { SquareDrawer } from "./ShapeDrawers/SquareDrawer";
 import { TextDrawer } from "./ShapeDrawers/TextDrawer";
 import { ImageDrawer } from "./ShapeDrawers/ImageDrawer";
 import { Plugins } from "./Utils";
-import { ShapeType } from "./Enums/Types";
+import { ShapeType } from "./Enums";
 import { LineDrawer } from "./ShapeDrawers/LineDrawer";
 import { CircleDrawer } from "./ShapeDrawers/CircleDrawer";
 import { TriangleDrawer } from "./ShapeDrawers/TriangleDrawer";
@@ -185,9 +185,10 @@ export class MainSlim {
      * addPreset adds preset to tsParticles, it will be available to all future instances created
      * @param preset the preset name
      * @param options the options to add to the preset
+     * @param override if true, the preset will override any existing with the same name
      */
-    addPreset(preset: string, options: RecursivePartial<IOptions>): void {
-        Plugins.addPreset(preset, options);
+    addPreset(preset: string, options: RecursivePartial<IOptions>, override = false): void {
+        Plugins.addPreset(preset, options, override);
     }
 
     /**

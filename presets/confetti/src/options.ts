@@ -53,7 +53,7 @@ export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>)
             },
             move: {
                 angle: {
-                    value: actualOptions.angle,
+                    value: 90,
                     offset: actualOptions.spread,
                 },
                 drift: {
@@ -67,7 +67,7 @@ export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>)
                 },
                 speed: actualOptions.startVelocity,
                 decay: 1 - actualOptions.decay,
-                direction: "none",
+                direction: -actualOptions.angle,
                 random: false,
                 straight: false,
                 outModes: {

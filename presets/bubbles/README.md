@@ -23,6 +23,7 @@ from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-bubbles)
 
 ```html
 
+<script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-bubbles"></script>
 ```
 

@@ -21,6 +21,8 @@ Once installed you need one more script to be included in your page (or you can 
 from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-big-circles):
 
 ```html
+
+<script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-big-circles"></script>
 ```
 
@@ -31,6 +33,7 @@ This script **MUST** be placed after the `tsParticles` one.
 A bundled script can also be used, this will include every needed plugin needed by the preset.
 
 ```html
+
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-big-circles/dist/tsparticles.preset.bigCircles.bundle.min.js"></script>
 ```
 
@@ -40,7 +43,7 @@ Once the scripts are loaded you can set up `tsParticles` like this:
 
 ```javascript
 tsParticles.load("tsparticles", {
-  preset: "bigCircles", // also "big-circles" is accepted
+    preset: "bigCircles", // also "big-circles" is accepted
 });
 ```
 
@@ -51,12 +54,12 @@ You can override all the options defining the properties like in any standard `t
 
 ```javascript
 tsParticles.load("tsparticles", {
-  particles: {
-    shape: {
-      type: "square",
+    particles: {
+        shape: {
+            type: "square",
+        },
     },
-  },
-  preset: "bigCircles", // also "big-circles" is accepted
+    preset: "bigCircles", // also "big-circles" is accepted
 });
 ```
 
@@ -70,23 +73,23 @@ This sample uses the class component syntax, but you can use hooks as well (if t
 
 ```javascript
 import Particles from "react-tsparticles";
-import { Main } from "tsparticles";
-import { loadBigCirclesPreset } from "tsparticles-preset-big-circles";
+import {Main} from "tsparticles";
+import {loadBigCirclesPreset} from "tsparticles-preset-big-circles";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
-  // this customizes the component tsParticles installation
-  customInit(main: Main) {
-    // this adds the preset to tsParticles, you can safely use the
-    loadBigCirclesPreset(main);
-  }
+    // this customizes the component tsParticles installation
+    customInit(main: Main) {
+        // this adds the preset to tsParticles, you can safely use the
+        loadBigCirclesPreset(main);
+    }
 
-  render() {
-    const options = {
-      preset: "bigCircles", // also "big-circles" is accepted
-    };
+    render() {
+        const options = {
+            preset: "bigCircles", // also "big-circles" is accepted
+        };
 
-    return <Particles options={options} init={this.customInit} />;
-  }
+        return <Particles options={options} init={this.customInit}/>;
+    }
 }
 ```
 
@@ -95,29 +98,31 @@ export class ParticlesContainer extends React.PureComponent<IProps> {
 _The syntax for `Vue.js 2.x` and `3.x` is the same_
 
 ```vue
-<Particles id="tsparticles" :particlesInit="particlesInit" url="http://foo.bar/particles.json" />
+
+<Particles id="tsparticles" :particlesInit="particlesInit" url="http://foo.bar/particles.json"/>
 ```
 
 ```js
 function particlesInit(main: Main) {
-  loadBigCirclesPreset(main);
+    loadBigCirclesPreset(main);
 }
 ```
 
 ### Angular
 
 ```html
+
 <ng-particles
-  [id]="id"
-  [options]="particlesOptions"
-  (particlesLoaded)="particlesLoaded($event)"
-  (particlesInit)="particlesInit($event)"
+        [id]="id"
+        [options]="particlesOptions"
+        (particlesLoaded)="particlesLoaded($event)"
+        (particlesInit)="particlesInit($event)"
 ></ng-particles>
 ```
 
 ```ts
 function particlesInit(main: Main): void {
-  loadBigCirclesPreset(main);
+    loadBigCirclesPreset(main);
 }
 ```
 
@@ -134,6 +139,6 @@ function particlesInit(main: Main): void {
 
 ```js
 let onParticlesInit = (main) => {
-  loadBigCirclesPreset(main);
+    loadBigCirclesPreset(main);
 };
 ```
