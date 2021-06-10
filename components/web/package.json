@@ -63,7 +63,7 @@
     "prepack": "yarn build"
   },
   "devDependencies": {
-    "rollup": "^2.50.6",
+    "rollup": "^2.51.1",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-typescript2": "^0.30.0",
     "tslib": "^2.2.0",

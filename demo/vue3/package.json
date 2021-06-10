@@ -7,17 +7,17 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "core-js": "^3.13.1",
+    "core-js": "^3.14.0",
     "particles.vue3": "^1.10.0",
     "tsparticles": "^1.27.0",
-    "vue": "^3.0.11",
+    "vue": "^3.1.1",
     "vue-class-component": "^8.0.0-rc.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.13",
-    "@vue/cli-plugin-typescript": "~4.5.13",
-    "@vue/cli-service": "~4.5.13",
-    "@vue/compiler-sfc": "^3.0.11",
+    "@vue/cli-plugin-babel": "~5.0.0-beta.2",
+    "@vue/cli-plugin-typescript": "~5.0.0-beta.2",
+    "@vue/cli-service": "~5.0.0-beta.2",
+    "@vue/compiler-sfc": "^3.1.1",
     "typescript": "~4.3.2"
   }
 }
