@@ -18,6 +18,7 @@ import {
     Plugins,
     randomInRange,
     setRangeValue,
+    getParticleDirectionAngle,
 } from "../src/Utils";
 import { ICoordinates } from "../src/Core/Interfaces/ICoordinates";
 import { Vector } from "../src/Core/Particle/Vector";
@@ -485,28 +486,38 @@ describe("Utils", () => {
 
     describe("getParticleBaseVelocity", () => {
         it("should return the proper base velocity, when it's moving top", () => {
-            expect(getParticleBaseVelocity(MoveDirection.top).angle).to.equal(-Math.PI / 2);
+            expect(getParticleBaseVelocity(getParticleDirectionAngle(MoveDirection.top)).angle).to.equal(-Math.PI / 2);
         });
         it("should return the proper base velocity, when it's moving top-right", () => {
-            expect(getParticleBaseVelocity(MoveDirection.topRight).angle).to.equal(-Math.PI / 4);
+            expect(getParticleBaseVelocity(getParticleDirectionAngle(MoveDirection.topRight)).angle).to.equal(
+                -Math.PI / 4
+            );
         });
         it("should return the proper base velocity, when it's moving right", () => {
-            expect(getParticleBaseVelocity(MoveDirection.right).angle).to.equal(0);
+            expect(getParticleBaseVelocity(getParticleDirectionAngle(MoveDirection.right)).angle).to.equal(0);
         });
         it("should return the proper base velocity, when it's moving bottom-right", () => {
-            expect(getParticleBaseVelocity(MoveDirection.bottomRight).angle).to.equal(Math.PI / 4);
+            expect(getParticleBaseVelocity(getParticleDirectionAngle(MoveDirection.bottomRight)).angle).to.equal(
+                Math.PI / 4
+            );
         });
         it("should return the proper base velocity, when it's moving bottom", () => {
-            expect(getParticleBaseVelocity(MoveDirection.bottom).angle).to.equal(Math.PI / 2);
+            expect(getParticleBaseVelocity(getParticleDirectionAngle(MoveDirection.bottom)).angle).to.equal(
+                Math.PI / 2
+            );
         });
         it("should return the proper base velocity, when it's moving bottom-left", () => {
-            expect(getParticleBaseVelocity(MoveDirection.bottomLeft).angle).to.equal((3 * Math.PI) / 4);
+            expect(getParticleBaseVelocity(getParticleDirectionAngle(MoveDirection.bottomLeft)).angle).to.equal(
+                (3 * Math.PI) / 4
+            );
         });
         it("should return the proper base velocity, when it's moving left", () => {
-            expect(getParticleBaseVelocity(MoveDirection.left).angle).to.equal(Math.PI);
+            expect(getParticleBaseVelocity(getParticleDirectionAngle(MoveDirection.left)).angle).to.equal(Math.PI);
         });
         it("should return the proper base velocity, when it's moving top-left", () => {
-            expect(getParticleBaseVelocity(MoveDirection.topLeft).angle).to.equal((-3 * Math.PI) / 4);
+            expect(getParticleBaseVelocity(getParticleDirectionAngle(MoveDirection.topLeft)).angle).to.equal(
+                (-3 * Math.PI) / 4
+            );
         });
     });
 

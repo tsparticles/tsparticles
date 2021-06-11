@@ -27,3 +27,4 @@ export * from "./IRangeValue";
 export * from "./IRectSideResult";
 export * from "./IRepulse";
 export * from "./IShapeDrawer";
+export * from "./IShapeValues";

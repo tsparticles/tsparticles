@@ -14,7 +14,7 @@ import type {
     IParticleValueAnimation,
     IRgb,
 } from "./Interfaces";
-import type { IShapeValues } from "../Options/Interfaces/Particles/Shape/IShapeValues";
+import type { IShapeValues } from "./Interfaces/IShapeValues";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { Particles } from "../Options/Classes/Particles/Particles";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
@@ -46,6 +46,7 @@ import {
     Plugins,
     randomInRange,
     setRangeValue,
+    getParticleDirectionAngle,
 } from "../Utils";
 import type { Stroke } from "../Options/Classes/Particles/Stroke";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
@@ -80,7 +81,7 @@ export class Particle implements IParticle {
     readonly sides;
     readonly strokeWidth;
     readonly options;
-    readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
+    readonly direction: number;
     readonly life: IParticleLife;
     readonly loops: IParticleLoops;
     readonly spin?: IParticleSpin;
@@ -188,7 +189,7 @@ export class Particle implements IParticle {
 
         const color = this.options.color;
 
-        this.direction = this.options.move.direction;
+        this.direction = getParticleDirectionAngle(this.options.move.direction);
         this.moveSpeed = getRangeValue(this.options.move.speed);
 
         /* animation - velocity for speed */

@@ -1,7 +1,6 @@
 import type { IShapeDrawer } from "tsparticles-engine/Core/Interfaces/IShapeDrawer";
-import type { IParticle, SingleOrMultiple } from "tsparticles-engine";
+import type { IParticle, SingleOrMultiple, IShapeValues } from "tsparticles-engine";
 import { Container, itemFromArray, Vector } from "tsparticles-engine";
-import type { IShapeValues } from "tsparticles-engine/Options/Interfaces/Particles/Shape/IShapeValues";
 import type { IDelta } from "tsparticles-engine/Core/Interfaces/IDelta";
 
 const enum ConfettiType {

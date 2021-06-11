@@ -60,7 +60,7 @@
   },
   "dependencies": {
     "tslib": "^2.2.0",
-    "tsparticles": "^1.28.0"
+    "tsparticles-engine": "^2.0.0-alpha.7"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^19.0.0",

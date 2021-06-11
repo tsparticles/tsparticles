@@ -440,7 +440,11 @@ export class Container {
                 y: pos.y * pxRatio,
             };
 
-            const particles = this.particles.quadTree.queryCircle(posRetina, this.retina.sizeValue);
+            const sizeValue = this.actualOptions.particles.size.value;
+            const particles = this.particles.quadTree.queryCircle(
+                posRetina,
+                this.retina.pixelRatio * (typeof sizeValue === "number" ? sizeValue : sizeValue.max)
+            );
 
             callback(e, particles);
         };

@@ -1,12 +1,12 @@
 {
-  "name": "tsparticles-preset-confetti-cannon",
+  "name": "tsparticles-preset-firefly",
   "version": "2.0.0-alpha.7",
-  "description": "tsParticles confetti cannon preset",
+  "description": "tsParticles firefly preset",
   "homepage": "https://particles.js.org/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
-    "directory": "presets/confettiCannon"
+    "directory": "presets/firefly"
   },
   "keywords": [
     "tsparticles",
@@ -42,8 +42,8 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "main": "index.js",
-  "jsdelivr": "tsparticles.preset.confetti.cannon.min.js",
-  "unpkg": "tsparticles.preset.confetti.cannon.min.js",
+  "jsdelivr": "tsparticles.preset.firefly.min.js",
+  "unpkg": "tsparticles.preset.firefly.min.js",
   "browser": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
@@ -65,7 +65,6 @@
     }
   },
   "dependencies": {
-    "tsparticles-engine": "2.0.0-alpha.7",
-    "tsparticles-shape-confetti": "2.0.0-alpha.7"
+    "tsparticles-engine": "2.0.0-alpha.7"
   }
 }

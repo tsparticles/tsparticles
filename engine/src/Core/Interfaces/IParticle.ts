@@ -1,7 +1,6 @@
 import type { IStroke } from "../../Options/Interfaces/Particles/IStroke";
 import type { ICoordinates } from "./ICoordinates";
 import type { IParticleValueAnimation } from "./IParticleValueAnimation";
-import type { IShapeValues } from "./IShapeValues";
 import type { IBubbleParticleData } from "./IBubbleParticleData";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
 import type { IHsl, IRgb } from "./Colors";
@@ -9,6 +8,7 @@ import type { IParticleLoops } from "./IParticleLoops";
 import type { IParticleHslAnimation } from "./IParticleHslAnimation";
 import type { Vector } from "../Particle/Vector";
 import type { Vector3d } from "../Particle/Vector3d";
+import type { IShapeValues } from "./IShapeValues";
 
 /**
  * @category Interfaces

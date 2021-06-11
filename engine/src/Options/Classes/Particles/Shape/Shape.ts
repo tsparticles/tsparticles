@@ -2,7 +2,7 @@ import type { IShape } from "../../../Interfaces/Particles/Shape/IShape";
 import type { RecursivePartial, ShapeData, ShapeDataValue, SingleOrMultiple } from "../../../../Types";
 import { Stroke } from "../Stroke";
 import { deepExtend } from "../../../../Utils";
-import type { IShapeValues } from "../../../Interfaces/Particles/Shape/IShapeValues";
+import type { IShapeValues } from "../../../../Core/Interfaces/IShapeValues";
 import type { IPolygonShape } from "../../../Interfaces/Particles/Shape/IPolygonShape";
 import type { IImageShape } from "../../../Interfaces/Particles/Shape/IImageShape";
 import type { ICharacterShape } from "../../../Interfaces/Particles/Shape/ICharacterShape";

@@ -8,7 +8,7 @@
     "solid-js": "^0.26.5",
     "solid-particles": "^1.11.0",
     "solid-scripts": "^0.0.56",
-    "tsparticles": "^1.28.0",
+    "tsparticles-engine": "^2.0.0-alpha.7",
     "typescript": "^4.3.2"
   },
   "scripts": {

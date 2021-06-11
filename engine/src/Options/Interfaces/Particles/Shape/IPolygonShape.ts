@@ -1,4 +1,4 @@
-import type { IShapeValues } from "./IShapeValues";
+import type { IShapeValues } from "../../../../Core/Interfaces/IShapeValues";
 
 /**
  * @category Options

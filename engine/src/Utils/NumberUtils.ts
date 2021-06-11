@@ -83,47 +83,45 @@ export function getDistance(pointA: ICoordinates, pointB: ICoordinates): number 
     return getDistances(pointA, pointB).distance;
 }
 
+export function getParticleDirectionAngle(
+    direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number
+): number {
+    if (typeof direction === "number") {
+        return (direction * Math.PI) / 180;
+    } else {
+        switch (direction) {
+            case MoveDirection.top:
+                return -Math.PI / 2;
+            case MoveDirection.topRight:
+                return -Math.PI / 4;
+            case MoveDirection.right:
+                return 0;
+            case MoveDirection.bottomRight:
+                return Math.PI / 4;
+            case MoveDirection.bottom:
+                return Math.PI / 2;
+            case MoveDirection.bottomLeft:
+                return (3 * Math.PI) / 4;
+            case MoveDirection.left:
+                return Math.PI;
+            case MoveDirection.topLeft:
+                return (-3 * Math.PI) / 4;
+            case MoveDirection.none:
+            default:
+                return Math.random() * Math.PI * 2;
+        }
+    }
+}
+
 /**
  * Get Particle base velocity
  * @param direction the direction to use for calculating the velocity
  */
-export function getParticleBaseVelocity(
-    direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt
-): Vector {
+export function getParticleBaseVelocity(direction: number): Vector {
     const baseVelocity = Vector.origin;
 
     baseVelocity.length = 1;
-
-    switch (direction) {
-        case MoveDirection.top:
-            baseVelocity.angle = -Math.PI / 2;
-            break;
-        case MoveDirection.topRight:
-            baseVelocity.angle = -Math.PI / 4;
-            break;
-        case MoveDirection.right:
-            baseVelocity.angle = 0;
-            break;
-        case MoveDirection.bottomRight:
-            baseVelocity.angle = Math.PI / 4;
-            break;
-        case MoveDirection.bottom:
-            baseVelocity.angle = Math.PI / 2;
-            break;
-        case MoveDirection.bottomLeft:
-            baseVelocity.angle = (3 * Math.PI) / 4;
-            break;
-        case MoveDirection.left:
-            baseVelocity.angle = Math.PI;
-            break;
-        case MoveDirection.topLeft:
-            baseVelocity.angle = (-3 * Math.PI) / 4;
-            break;
-        case MoveDirection.none:
-        default:
-            baseVelocity.angle = Math.random() * Math.PI * 2;
-            break;
-    }
+    baseVelocity.angle = direction;
 
     return baseVelocity;
 }

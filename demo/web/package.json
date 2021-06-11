@@ -37,7 +37,7 @@
     "pug": "^3.0.2",
     "pug-cli": "^1.0.0-alpha6",
     "stylus": "^0.54.8",
-    "tsparticles": "^1.28.0",
+    "tsparticles-engine": "^2.0.0-alpha.7",
     "web-particles": "^1.1.0"
   }
 }

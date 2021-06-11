@@ -74,7 +74,7 @@
     "vue-property-decorator": "<10"
   },
   "dependencies": {
-    "tsparticles": "^1.28.0"
+    "tsparticles-engine": "^2.0.0-alpha.7"
   },
   "devDependencies": {
     "@babel/core": "^7.14.5",

@@ -1,7 +1,7 @@
 {
-  "name": "tsparticles-preset-confetti-cannon",
+  "name": "tsparticles-preset-firefly",
   "version": "2.0.0-alpha.7",
-  "description": "tsParticles confetti cannon preset",
+  "description": "tsParticles firefly preset",
   "homepage": "https://particles.js.org/",
   "scripts": {
     "prettify:src": "prettier --write ./src",
@@ -69,7 +69,6 @@
     "webpack-cli": "^4.7.2"
   },
   "dependencies": {
-    "tsparticles-engine": "2.0.0-alpha.7",
-    "tsparticles-shape-confetti": "2.0.0-alpha.7"
+    "tsparticles-engine": "2.0.0-alpha.7"
   }
 }

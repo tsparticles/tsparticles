@@ -177,7 +177,7 @@ export class Loader {
         jsonUrl: SingleOrMultiple<string>,
         index?: number
     ): Promise<Container | undefined> {
-        const url = jsonUrl instanceof Array ? Utils.itemFromArray(jsonUrl, index) : jsonUrl;
+        const url = jsonUrl instanceof Array ? itemFromArray(jsonUrl, index) : jsonUrl;
 
         /* load json config */
         const response = await fetch(url);
