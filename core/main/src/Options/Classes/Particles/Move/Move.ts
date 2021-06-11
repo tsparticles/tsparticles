@@ -95,7 +95,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
     angle;
     attract;
-    direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
+    direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
     distance;
     decay;
     drift: RangeValue;

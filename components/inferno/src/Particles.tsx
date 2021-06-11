@@ -3,14 +3,13 @@ import equal from "fast-deep-equal/react";
 import { tsParticles, Container } from "tsparticles";
 import type { IParticlesProps } from "./IParticlesProps";
 import type { IParticlesState } from "./IParticlesState";
-import type { ISourceOptions } from "tsparticles";
 
 interface MutableRefObject<T> {
 	current: T | null;
 }
 
 /**
- * @param {{id?: string,width?: string,height?: string,options?: ISourceOptions,params?: ISourceOptions,url?: string,style?: CSSProperties,className?: string,canvasClassName?: string,container?: RefObject<Container>}}
+ * @param {IParticlesProps}
  */
 export default class Particles extends Component<
 	IParticlesProps,
@@ -96,8 +95,8 @@ export default class Particles extends Component<
 	private loadParticles(): void {
 		const cb = (container?: Container) => {
 			if (this.props.container) {
-				(this.props
-					.container as MutableRefObject<Container>).current = container;
+				(this.props.container as MutableRefObject<Container>).current =
+					container;
 			}
 
 			this.setState({

@@ -45,6 +45,7 @@ export class EventListeners {
     private readonly resizeHandler: EventListenerOrEventListenerObject;
 
     private canPush: boolean;
+    private resizeTimeout?: NodeJS.Timeout;
 
     /**
      * Events listener constructor
@@ -151,7 +152,13 @@ export class EventListeners {
     }
 
     private handleWindowResize(): void {
-        this.container.canvas?.windowResize();
+        if (this.resizeTimeout) {
+            clearTimeout(this.resizeTimeout);
+
+            delete this.resizeTimeout;
+        }
+
+        this.resizeTimeout = setTimeout(() => this.container.canvas?.windowResize(), 500);
     }
 
     private handleVisibilityChange(): void {

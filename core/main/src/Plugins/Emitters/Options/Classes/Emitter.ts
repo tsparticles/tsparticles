@@ -17,7 +17,7 @@ import { AnimatableColor } from "../../../../Options/Classes/Particles/Animatabl
 export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     autoPlay;
     size?: EmitterSize;
-    direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
+    direction?: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
     life;
     name?: string;
     particles?: RecursivePartial<IParticles>;
@@ -27,7 +27,6 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
 
     constructor() {
         this.autoPlay = true;
-        this.direction = MoveDirection.none;
         this.life = new EmitterLife();
         this.rate = new EmitterRate();
     }

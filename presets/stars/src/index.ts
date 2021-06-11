@@ -1,4 +1,6 @@
-import { tsParticles } from "tsparticles";
-import { loadStarsPreset } from "./preset";
+import type { Main } from "tsparticles";
+import { options } from "./options";
 
-loadStarsPreset(tsParticles);
+export function loadStarsPreset(tsParticles: Main): void {
+    tsParticles.addPreset("stars", options);
+}

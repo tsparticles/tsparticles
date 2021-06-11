@@ -1,9 +1,9 @@
 import type { IStroke } from "../../Options/Interfaces/Particles/IStroke";
 import type { ICoordinates } from "./ICoordinates";
-import type { MoveDirection, MoveDirectionAlt, ShapeType } from "../../Enums";
+import type { ShapeType } from "../../Enums";
 import type { IParticleImage } from "./IParticleImage";
 import type { IParticleValueAnimation } from "./IParticleValueAnimation";
-import type { IShapeValues } from "../../Options/Interfaces/Particles/Shape/IShapeValues";
+import type { IShapeValues } from "./IShapeValues";
 import type { IBubbleParticleData } from "./IBubbleParticleData";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
 import type { IHsl, IRgb } from "./Colors";
@@ -18,10 +18,11 @@ export interface IParticle {
     misplaced: boolean;
     randomIndexData?: number;
 
+    readonly attractDistance?: number;
     readonly bubble: IBubbleParticleData;
     readonly close: boolean;
     readonly destroyed: boolean;
-    readonly direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
+    readonly direction: number;
     readonly fill: boolean;
     readonly id: number;
     readonly image?: IParticleImage;

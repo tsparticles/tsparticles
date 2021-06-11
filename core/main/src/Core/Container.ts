@@ -20,6 +20,7 @@ import type { IRgb } from "./Interfaces/Colors";
 import type { IAttract } from "./Interfaces/IAttract";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator";
 import { Vector } from "./Particle/Vector";
+import { ICoordinates } from "./Interfaces/ICoordinates";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -430,6 +431,100 @@ export class Container {
         }
 
         this.play();
+    }
+
+    addClickHandler(callback: (evt: Event, particles?: Particle[]) => void): void {
+        const el = this.interactivity.element;
+
+        if (!el) {
+            return;
+        }
+
+        const clickOrTouchHandler = (e: Event, pos: ICoordinates) => {
+            if (this.destroyed) {
+                return;
+            }
+
+            const pxRatio = this.retina.pixelRatio;
+            const posRetina = {
+                x: pos.x * pxRatio,
+                y: pos.y * pxRatio,
+            };
+
+            const particles = this.particles.quadTree.queryCircle(posRetina, this.retina.sizeValue);
+
+            callback(e, particles);
+        };
+
+        const clickHandler = (e: Event) => {
+            if (this.destroyed) {
+                return;
+            }
+
+            const mouseEvent = e as MouseEvent;
+            const pos = {
+                x: mouseEvent.offsetX || mouseEvent.clientX,
+                y: mouseEvent.offsetY || mouseEvent.clientY,
+            };
+
+            clickOrTouchHandler(e, pos);
+        };
+
+        const touchStartHandler = () => {
+            if (this.destroyed) {
+                return;
+            }
+
+            touched = true;
+            touchMoved = false;
+        };
+
+        const touchMoveHandler = () => {
+            if (this.destroyed) {
+                return;
+            }
+
+            touchMoved = true;
+        };
+
+        const touchEndHandler = (e: Event) => {
+            if (this.destroyed) {
+                return;
+            }
+
+            if (touched && !touchMoved) {
+                const touchEvent = e as TouchEvent;
+                const lastTouch = touchEvent.touches[touchEvent.touches.length - 1];
+                const canvasRect = this.canvas.element?.getBoundingClientRect();
+                const pos = {
+                    x: lastTouch.clientX - (canvasRect?.left ?? 0),
+                    y: lastTouch.clientY - (canvasRect?.top ?? 0),
+                };
+
+                clickOrTouchHandler(e, pos);
+            }
+
+            touched = false;
+            touchMoved = false;
+        };
+
+        const touchCancelHandler = () => {
+            if (this.destroyed) {
+                return;
+            }
+
+            touched = false;
+            touchMoved = false;
+        };
+
+        let touched = false;
+        let touchMoved = false;
+
+        el.addEventListener("click", clickHandler);
+        el.addEventListener("touchstart", touchStartHandler);
+        el.addEventListener("touchmove", touchMoveHandler);
+        el.addEventListener("touchend", touchEndHandler);
+        el.addEventListener("touchcancel", touchCancelHandler);
     }
 
     private async init(): Promise<void> {

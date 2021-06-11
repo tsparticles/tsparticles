@@ -2,7 +2,7 @@ import { SquareDrawer } from "./ShapeDrawers/SquareDrawer";
 import { TextDrawer } from "./ShapeDrawers/TextDrawer";
 import { ImageDrawer } from "./ShapeDrawers/ImageDrawer";
 import { Plugins } from "./Utils";
-import { ShapeType } from "./Enums/Types";
+import { ShapeType } from "./Enums";
 import { LineDrawer } from "./ShapeDrawers/LineDrawer";
 import { CircleDrawer } from "./ShapeDrawers/CircleDrawer";
 import { TriangleDrawer } from "./ShapeDrawers/TriangleDrawer";
@@ -109,6 +109,23 @@ export class MainSlim {
     }
 
     /**
+     * Loads the provided option to create a [[Container]] object using the element parameter as a container
+     * @param id The particles container id
+     * @param element The dom element used to contain the particles
+     * @param pathConfigJson the json path (or paths array) to use in the GET request
+     * @param index the index of the paths array, if a single path is passed this value is ignored
+     * @returns A Promise with the [[Container]] object created
+     */
+    async setJSON(
+        id: string,
+        element: HTMLElement,
+        pathConfigJson: SingleOrMultiple<string>,
+        index?: number
+    ): Promise<Container | undefined> {
+        return Loader.setJSON(id, element, pathConfigJson, index);
+    }
+
+    /**
      * Adds an additional click handler to all the loaded [[Container]] objects.
      * @param callback The function called after the click event is fired
      */
@@ -168,9 +185,10 @@ export class MainSlim {
      * addPreset adds preset to tsParticles, it will be available to all future instances created
      * @param preset the preset name
      * @param options the options to add to the preset
+     * @param override if true, the preset will override any existing with the same name
      */
-    addPreset(preset: string, options: RecursivePartial<IOptions>): void {
-        Plugins.addPreset(preset, options);
+    addPreset(preset: string, options: RecursivePartial<IOptions>, override = false): void {
+        Plugins.addPreset(preset, options, override);
     }
 
     /**

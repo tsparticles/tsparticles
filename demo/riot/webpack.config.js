@@ -9,7 +9,7 @@ module.exports = {
     publicPath: '/dist/',
     filename: 'bundle.js'
   },
-  devtool: 'inline',
+  devtool: 'inline-source-map',
   devServer: {
     open: true
   },

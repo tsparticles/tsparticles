@@ -1,7 +1,23 @@
 # Interactivity
 
-| key                                       | option type             | example                                                                                                         | notes                                     |
-| ----------------------------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
-| `detectsOn`                               | `string`                | `"canvas", "window", "parent"`                                                                                  | replaces the old `detect_on` property     |
-| `events` | `object` | | See Events documentation {@link IEvents | here} |
-| `modes` | `object` | | See Modes documentation {@link IModes | here} |
+- [detectsOn](#detects-on)
+- [events](#events)
+- [modes](#modes)
+
+## Detects On
+
+This property is used to determine which HTML element should catch mouse interaction.
+
+The valid values are:
+
+- `"canvas"`: Only the particles canvas will be targeted
+- `"parent"`: Only the particles canvas parent will be targeted
+- `"window"`: The full window will be targeted, this will work perfectly with a negative z-index positioned canvas
+
+## Events
+
+See Events documentation {@link IEvents | here}
+
+## Modes
+
+See Modes documentation {@link IModes | here}

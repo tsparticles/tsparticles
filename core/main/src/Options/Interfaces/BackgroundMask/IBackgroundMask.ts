@@ -9,18 +9,23 @@ import type { IBackgroundMaskCover } from "./IBackgroundMaskCover";
  */
 export interface IBackgroundMask {
     /**
-     * Canvas composite operation
-     * values here: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation
+     * This property is used to choose the composition mode for the background mask effect.
+     *
+     * The default value is `destination-out`, which unveils the background below using drawn elements, any other valid value
+     * can be found [here](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation)
      */
     composite: string;
 
     /**
-     * The color to use as a canvas background to cover
+     * The `cover` property can be set to a HEX string or to a {@link IColor | color object}, that is the same as the one used
+     * in `particles.color` options.
+     *
+     * The `cover` can also be a {@link IBackgroundMaskCover | cover object} like the one described below.
      */
     cover: IBackgroundMaskCover | IColor | string;
 
     /**
-     * This settings enables the cover and the particles behavior as unveiling elements
+     * This property set the background mask mode, this mode enables the `composite` option to all elements drawn.
      */
     enable: boolean;
 }

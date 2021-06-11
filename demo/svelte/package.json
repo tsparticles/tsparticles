@@ -1,31 +1,33 @@
 {
   "name": "svelte-demo",
-  "version": "1.10.0",
+  "version": "1.11.0",
   "private": true,
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
+    "build": "rollup -c rollup.config.js",
+    "dev": "rollup -c rollup.config.js -w",
     "start": "sirv public",
     "validate": "svelte-check"
   },
   "license": "MIT",
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^15.1.0",
-    "@rollup/plugin-node-resolve": "^9.0.0",
-    "@rollup/plugin-typescript": "^6.0.0",
-    "@tsconfig/svelte": "^1.0.10",
-    "rollup": "^2.28.2",
+    "@rollup/plugin-commonjs": "^19.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "@rollup/plugin-typescript": "^8.2.1",
+    "@tsconfig/svelte": "^2.0.1",
+    "postcss": "^8.3.1",
+    "rollup": "^2.51.1",
     "rollup-plugin-livereload": "^2.0.0",
-    "rollup-plugin-svelte": "^6.0.1",
+    "rollup-plugin-postcss": "^4.0.0",
+    "rollup-plugin-svelte": "^7.1.0",
     "rollup-plugin-terser": "^7.0.2",
-    "svelte": "^3.29.0",
-    "svelte-check": "^1.0.55",
-    "svelte-preprocess": "^4.3.2",
-    "tslib": "^2.0.2",
-    "typescript": "^4.2.3"
+    "svelte": "^3.38.2",
+    "svelte-check": "^2.1.0",
+    "svelte-preprocess": "^4.7.3",
+    "tslib": "^2.2.0",
+    "typescript": "^4.3.2"
   },
   "dependencies": {
-    "sirv-cli": "^1.0.6",
-    "svelte-particles": "^1.10.0"
+    "sirv-cli": "^1.0.12",
+    "svelte-particles": "^1.11.0"
   }
 }

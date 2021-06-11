@@ -1,39 +1,48 @@
 const path = require("path");
 const TerserPlugin = require("terser-webpack-plugin");
 const webpack = require("webpack");
-const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const {BundleAnalyzerPlugin} = require("webpack-bundle-analyzer");
 
-const getEntry = (name) => {
+const getEntry = (name, bundle) => {
     const obj = {};
+    const fileName = bundle ? "bundle" : "index";
 
-    obj[`tsparticles.preset.${name}`] = "./dist/index.js";
-    obj[`tsparticles.preset.${name}.min`] = "./dist/index.js";
+    obj[`tsparticles.preset.${name}`] = `./dist/${fileName}.js`;
+    obj[`tsparticles.preset.${name}.min`] = `./dist/${fileName}.js`;
 
     return obj;
 }
 
-const getConfig = (entry, bannerInput, minBannerInput) => {
+const getExternals = (bundle) => {
+    if (bundle) {
+        return [];
+    }
+
+    return [
+        {
+            "tsparticles": {
+                commonjs: "tsparticles",
+                commonjs2: "tsparticles",
+                amd: "tsparticles",
+                root: "window"
+            }
+        }
+    ];
+};
+
+const getConfig = (entry, bannerInput, minBannerInput, dir, bundle) => {
     return {
         entry: entry,
         output: {
-            path: path.resolve(__dirname, "dist"),
+            path: path.resolve(dir, "dist"),
             filename: "[name].js",
             libraryTarget: "umd",
             globalObject: "this"
         },
         resolve: {
-            extensions: [ ".js", ".json" ]
+            extensions: [".js", ".json"]
         },
-        externals: [
-            {
-                tsparticles: {
-                    commonjs: "tsparticles",
-                    commonjs2: "tsparticles",
-                    amd: "tsparticles",
-                    root: "window"
-                },
-            }
-        ],
+        externals: getExternals(bundle),
         module: {
             rules: [
                 {
@@ -89,5 +98,6 @@ v${version}`;
 const minBanner = `tsParticles Fountain Preset v${version} by Matteo Bruni`;
 
 module.exports = [
-    getConfig(getEntry("fountain"), banner, minBanner)
+    getConfig(getEntry("fountain", false), banner, minBanner, __dirname, false),
+    getConfig(getEntry("fountain.bundle", true), banner, minBanner, __dirname, true)
 ];

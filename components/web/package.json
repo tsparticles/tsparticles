@@ -1,0 +1,74 @@
+{
+  "name": "web-particles",
+  "version": "1.1.0",
+  "description": "Official tsParticles Web Component - Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
+  "keywords": [
+    "tsparticles",
+    "particles.js",
+    "particlesjs",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles-bg",
+    "particles-bg-vue",
+    "particles-ts",
+    "particles.ts",
+    "react-particles-js",
+    "react",
+    "reactjs",
+    "vue",
+    "vuejs",
+    "preact",
+    "preactjs",
+    "jquery",
+    "angularjs",
+    "angular",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background"
+  ],
+  "main": "dist/web-particles.js",
+  "repository": {
+    "url": "https://github.com/matteobruni/tsparticles",
+    "type": "git",
+    "directory": "components/web"
+  },
+  "author": "Matteo Bruni",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles/issues"
+  },
+  "homepage": "https://particles.js.org",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/matteobruni"
+  },
+  "scripts": {
+    "build": "ts-node -O '{ \"module\": \"commonjs\" }' build.ts",
+    "prepack": "yarn build"
+  },
+  "devDependencies": {
+    "rollup": "^2.51.1",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "ts-node": "^10.0.0",
+    "tslib": "^2.2.0",
+    "tsparticles": "^1.28.0",
+    "typescript": "^4.3.2"
+  }
+}

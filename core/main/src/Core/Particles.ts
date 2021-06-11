@@ -356,9 +356,7 @@ export class Particles {
     }
 
     setDensity(): void {
-        const options = this.container.actualOptions;
-
-        this.applyDensity(options.particles);
+        this.applyDensity(this.container.actualOptions.particles);
     }
 
     private applyDensity(options: IParticles) {
@@ -392,7 +390,7 @@ export class Particles {
         const canvas = container.canvas.element;
         const pxRatio = container.retina.pixelRatio;
 
-        return (canvas.width * canvas.height) / (densityOptions.factor * pxRatio * pxRatio * densityOptions.area);
+        return (canvas.width * canvas.height) / (densityOptions.factor * pxRatio ** 2 * densityOptions.area);
     }
 
     private pushParticle(

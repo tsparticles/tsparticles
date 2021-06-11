@@ -1,4 +1,6 @@
-import { tsParticles } from "tsparticles";
-import { loadSnowPreset } from "./preset";
+import type { Main } from "tsparticles";
+import { options } from "./options";
 
-loadSnowPreset(tsParticles);
+export function loadSnowPreset(tsParticles: Main): void {
+    tsParticles.addPreset("snow", options);
+}

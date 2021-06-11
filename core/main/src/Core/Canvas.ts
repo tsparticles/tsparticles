@@ -54,8 +54,6 @@ export class Canvas {
      * Initializes the canvas element
      */
     init(): void {
-        this.resize();
-
         const options = this.container.actualOptions;
         const element = this.element;
 
@@ -78,6 +76,8 @@ export class Canvas {
                 element.style.height = this.originalStyle?.height ?? "";
             }
         }
+
+        this.resize();
 
         const cover = options.backgroundMask.cover;
         const color = cover.color;
@@ -172,6 +172,7 @@ export class Canvas {
         const container = this.container;
 
         this.resize();
+
         container.actualOptions.setResponsive(this.size.width, container.retina.pixelRatio, container.options);
 
         /* density particles enabled */
