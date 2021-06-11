@@ -102,7 +102,7 @@ export class MultilineTextDrawer implements IShapeDrawer {
 
                 const pos = {
                     x: -offsetX,
-                    y: radius / 2
+                    y: radius / 2,
                 };
 
                 context.fillText(line, pos.x, pos.y + radius * 2 * index);
@@ -113,7 +113,7 @@ export class MultilineTextDrawer implements IShapeDrawer {
 
                 const pos = {
                     x: -offsetX,
-                    y: radius / 2
+                    y: radius / 2,
                 };
 
                 context.strokeText(line, pos.x, pos.y + radius * 2 * index);
