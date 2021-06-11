@@ -1,13 +1,7 @@
 {
-<<<<<<< HEAD:shapes/line/package.json
   "name": "tsparticles-shape-line",
   "version": "2.0.0-alpha.7",
   "description": "tsParticles Line shape",
-=======
-  "name": "tsparticles-preset-links",
-  "version": "1.13.0",
-  "description": "tsParticles links preset",
->>>>>>> main:presets/links/package.json
   "homepage": "https://particles.js.org/",
   "scripts": {
     "prettify:src": "prettier --write ./src",
@@ -24,11 +18,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
-<<<<<<< HEAD:shapes/line/package.json
     "directory": "shapes/line"
-=======
-    "directory": "presets/links"
->>>>>>> main:presets/links/package.json
   },
   "keywords": [
     "tsparticles",
@@ -66,15 +56,6 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-<<<<<<< HEAD:shapes/line/package.json
-=======
-  "main": "dist/index.js",
-  "jsdelivr": "dist/tsparticles.preset.links.min.js",
-  "unpkg": "dist/tsparticles.preset.links.min.js",
-  "browser": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
->>>>>>> main:presets/links/package.json
   "devDependencies": {
     "@babel/core": "^7.14.5",
     "@types/webpack-env": "^1.16.0",
@@ -91,10 +72,6 @@
     "webpack-cli": "^4.7.2"
   },
   "dependencies": {
-<<<<<<< HEAD:shapes/line/package.json
     "tsparticles-engine": "^2.0.0-alpha.7"
-=======
-    "tsparticles": "^1.28.0"
->>>>>>> main:presets/links/package.json
   }
 }
