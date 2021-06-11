@@ -1,7 +1,7 @@
 import type { IConfettiOptions } from "./IConfettiOptions";
-import type { IOptionLoader } from "tsparticles/dist/Options/Interfaces/IOptionLoader";
-import type { RecursivePartial, SingleOrMultiple } from "tsparticles";
-import type { ICoordinates } from "tsparticles/dist/Core/Interfaces/ICoordinates";
+import type { IOptionLoader } from "tsparticles-engine/Options/Interfaces/IOptionLoader";
+import type { RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
+import type { ICoordinates } from "tsparticles-engine";
 
 export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfettiOptions> {
     /**
@@ -24,7 +24,7 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
     get origin(): ICoordinates {
         return {
             x: this.position.x / 100,
-            y: this.position.y / 100,
+            y: this.position.y / 100
         };
     }
 
@@ -62,10 +62,10 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
         this.ticks = 200;
         this.position = {
             x: 50,
-            y: 50,
+            y: 50
         };
-        this.colors = ["#ffffff", "#ff0000"];
-        this.shapes = ["square", "circle"];
+        this.colors = [ "#ffffff", "#ff0000" ];
+        this.shapes = [ "square", "circle" ];
         this.scalar = 1;
         this.zIndex = 100;
         this.disableForReducedMotion = true;
@@ -122,7 +122,7 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
 
         if (data.colors !== undefined) {
             if (data.colors instanceof Array) {
-                this.colors = [...data.colors];
+                this.colors = [ ...data.colors ];
             } else {
                 this.colors = data.colors;
             }
@@ -130,7 +130,7 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
 
         if (data.shapes !== undefined) {
             if (data.shapes instanceof Array) {
-                this.shapes = [...data.shapes];
+                this.shapes = [ ...data.shapes ];
             } else {
                 this.shapes = data.shapes;
             }

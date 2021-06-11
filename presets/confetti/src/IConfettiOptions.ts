@@ -1,5 +1,5 @@
-import type { ICoordinates } from "tsparticles/dist/Core/Interfaces/ICoordinates";
-import { SingleOrMultiple } from "tsparticles";
+import type { ICoordinates } from "tsparticles-engine";
+import { SingleOrMultiple } from "tsparticles-engine";
 
 export interface IConfettiOptions {
     /**
