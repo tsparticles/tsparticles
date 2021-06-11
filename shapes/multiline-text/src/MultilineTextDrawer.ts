@@ -1,7 +1,6 @@
 import type { IShapeDrawer } from "tsparticles-engine/Core/Interfaces/IShapeDrawer";
 import { loadFont, isInArray, itemFromArray } from "tsparticles-engine";
-import type { Container, SingleOrMultiple, IParticle } from "tsparticles-engine";
-import type { IShapeValues } from "tsparticles-engine/Options/Interfaces/Particles/Shape/IShapeValues";
+import type { Container, SingleOrMultiple, IParticle, IShapeValues } from "tsparticles-engine";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = "unloaded" | "loading" | "loaded" | "error";
@@ -103,7 +102,7 @@ export class MultilineTextDrawer implements IShapeDrawer {
 
                 const pos = {
                     x: -offsetX,
-                    y: radius / 2,
+                    y: radius / 2
                 };
 
                 context.fillText(line, pos.x, pos.y + radius * 2 * index);
@@ -114,7 +113,7 @@ export class MultilineTextDrawer implements IShapeDrawer {
 
                 const pos = {
                     x: -offsetX,
-                    y: radius / 2,
+                    y: radius / 2
                 };
 
                 context.strokeText(line, pos.x, pos.y + radius * 2 * index);
