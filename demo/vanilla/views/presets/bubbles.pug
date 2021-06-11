@@ -18,11 +18,10 @@ html(lang="en")
 
         title tsParticles
 
+        link(rel="stylesheet" href="/stylesheets/presets.css")
     body
         #tsparticles
 
         script(src="/preset-bubbles/tsparticles.preset.bubbles.bundle.min.js")
         script.
-            loadBubblesPreset(tsParticles);
-            
             tsParticles.load("tsparticles", { preset: "bubbles" });

@@ -209,10 +209,6 @@ class App extends Component {
 
 Find your parameters configuration [here](https://particles.js.org).
 
-### Errors
-
-If you have typescript errors `tsParticles` uses TypeScript `3.9.6` so try installing at least 3.8 for `import type` syntax.
-
 ## Demos
 
 The demo website is [here](https://particles.js.org)

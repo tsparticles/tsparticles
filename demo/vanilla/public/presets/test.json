@@ -1,67 +1,50 @@
 {
+  "fpsLimit": 60,
+  "fullScrren": {
+    "enable": true
+  },
   "background": {
     "color": "#000"
   },
-  "fpsLimit": 60,
-  "interactivity": {
-    "detectsOn": "canvas",
-    "events": {
-      "resize": true
-    }
-  },
   "particles": {
     "color": {
-      "value": "#ff0000",
-      "animation": {
-        "enable": true,
-        "speed": 5,
-        "sync": true
-      }
+      "value": "#ffffff"
+    },
+    "links": {
+      "color": "#ffffff",
+      "distance": 150,
+      "enable": true,
+      "opacity": 0.5,
+      "width": 1
+    },
+    "collisions": {
+      "enable": true
     },
     "move": {
-      "noise": {
-        "enable": true
-      },
       "direction": "none",
       "enable": true,
-      "outModes": {
-        "default": "out"
-      },
-      "random": false,
-      "speed": 1,
-      "straight": false,
-      "trail": {
-        "enable": true,
-        "length": 1000
-      },
-      "warp": true
+      "outMode": "bounce",
+      "random": true,
+      "speed": 3,
+      "straight": false
     },
     "number": {
-      "value": 0
+      "density": {
+        "enable": true,
+        "value_area": 800
+      },
+      "value": 80
     },
     "opacity": {
-      "value": 0.3
+      "value": 0.5
     },
     "shape": {
       "type": "circle"
     },
     "size": {
-      "value": 0.5
+      "random": true,
+      "value": 5
     }
   },
-  "detectRetina": true,
-  "emitters": {
-    "size": {
-      "width": 0,
-      "height": 0
-    },
-    "life": {
-      "count": 20,
-      "duration": 1
-    },
-    "rate": {
-      "delay": 0.1,
-      "quantity": 5
-    }
-  }
+  "detectRetina": true
 }

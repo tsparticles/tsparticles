@@ -5,7 +5,7 @@ import { Constants } from "./Constants";
 import { itemFromArray } from "./Utils";
 import Timeout = NodeJS.Timeout;
 
-let windowResizeTimer: Timeout;
+let windowResizeTimer: Timeout | undefined;
 
 function manageListener(
     element: HTMLElement | Node | Window,
@@ -49,6 +49,7 @@ export class EventListeners {
     private readonly resizeHandler: EventListenerOrEventListenerObject;
 
     private canPush: boolean;
+    private resizeTimeout?: NodeJS.Timeout;
 
     /**
      * Events listener constructor
@@ -158,6 +159,8 @@ export class EventListeners {
         windowResizeTimer = setTimeout(() => {
             if (windowResizeTimer) {
                 clearTimeout(windowResizeTimer);
+
+                windowResizeTimer = undefined;
             }
 
             this.container.canvas?.windowResize();

@@ -18,11 +18,10 @@ html(lang="en")
 
         title tsParticles
 
+        link(rel="stylesheet" href="/stylesheets/presets.css")
     body
         #tsparticles
 
         script(src="/preset-sea-anemone/tsparticles.preset.seaAnemone.bundle.min.js")
         script.
-            loadSeaAnemonePreset(tsParticles);
-
             tsParticles.load("tsparticles", { preset: "seaAnemone" });

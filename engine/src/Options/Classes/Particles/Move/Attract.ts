@@ -55,8 +55,12 @@ export class Attract implements IAttract, IOptionLoader<IAttract> {
     }
 
     load(data?: RecursivePartial<IAttract>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
+        }
+
+        if (data.distance !== undefined) {
+            this.distance = data.distance;
         }
 
         if (data.enable !== undefined) {

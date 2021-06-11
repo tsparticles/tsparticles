@@ -43,7 +43,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build:all": "ng build",
-    "build": "node scripts/prebuild.js && ng build ng-particles --prod",
+    "build": "node scripts/prebuild.js && ng build ng-particles --configuration production",
     "version": "yarn build && git add ./projects/ng-particles/package.json",
     "test": "ng test",
     "lint": "ng lint",

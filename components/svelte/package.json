@@ -55,6 +55,13 @@
   ],
   "main": "dist/umd/svelte-particles.js",
   "module": "dist/es/svelte-particles.js",
+  "peerDependencies": {
+    "svelte": ">=3"
+  },
+  "dependencies": {
+    "tslib": "^2.2.0",
+    "tsparticles": "^1.28.0"
+  },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^19.0.0",
     "@rollup/plugin-node-resolve": "^13.0.0",
@@ -64,7 +71,8 @@
     "rollup": "^2.47.0",
     "rollup-plugin-svelte": "^7.1.0",
     "rollup-plugin-terser": "^7.0.2",
-    "svelte-check": "^1.5.4",
+    "svelte": "^3.38.2",
+    "svelte-check": "^2.1.0",
     "svelte-preprocess": "^4.7.3",
     "typescript": "^4.2.4"
   },

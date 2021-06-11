@@ -17,7 +17,7 @@ import { EmitterSpin } from "./EmitterSpin";
  */
 export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     autoPlay;
-    direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
+    direction?: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
     life;
     name?: string;
     particles?: RecursivePartial<IParticles>;
@@ -29,7 +29,6 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
 
     constructor() {
         this.autoPlay = true;
-        this.direction = MoveDirection.none;
         this.life = new EmitterLife();
         this.rate = new EmitterRate();
         this.spin = new EmitterSpin();

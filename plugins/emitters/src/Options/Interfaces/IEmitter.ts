@@ -22,7 +22,7 @@ export interface IEmitter {
     /**
      * The direction of the emitted particles, [[MoveDirection]] is the enum used for values
      */
-    direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
+    direction?: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
 
     /**
      * The emitter life options

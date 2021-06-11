@@ -35,7 +35,7 @@
       }
     }
   },
-  "preset": "basic",
+  "preset": "links",
   "background": {
     "color": "#000000",
     "image": "",

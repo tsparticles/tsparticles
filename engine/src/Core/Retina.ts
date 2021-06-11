@@ -14,8 +14,8 @@ export class Retina {
     grabModeDistance!: number;
     repulseModeDistance!: number;
     attractModeDistance!: number;
-    slowModeRadius!: number;
     attractDistance!: number;
+    slowModeRadius!: number;
     linksDistance!: number;
     linksWidth!: number;
     sizeAnimationSpeed!: number;
@@ -124,6 +124,7 @@ export class Retina {
         maxDistance.vertical = moveDistance.vertical !== undefined ? moveDistance.vertical * ratio : undefined;
 
         particle.moveDrift = getRangeValue(options.move.drift) * ratio;
+        particle.moveSpeed = getRangeValue(options.move.speed) * ratio;
     }
 
     private handleMotionChange(mediaQuery: MediaQueryList): void {

@@ -67,17 +67,9 @@ export class EmitterInstance {
 
         let particlesOptions = deepExtend({}, this.emitterOptions.particles) as RecursivePartial<IParticles>;
 
-        if (particlesOptions === undefined) {
-            particlesOptions = {};
-        }
-
-        if (particlesOptions.move === undefined) {
-            particlesOptions.move = {};
-        }
-
-        if (particlesOptions.move.direction === undefined) {
-            particlesOptions.move.direction = this.emitterOptions.direction;
-        }
+        particlesOptions ??= {};
+        particlesOptions.move ??= {};
+        particlesOptions.move.direction ??= this.emitterOptions.direction;
 
         if (this.emitterOptions.spawnColor !== undefined) {
             this.spawnColor = colorToHsl(this.emitterOptions.spawnColor);

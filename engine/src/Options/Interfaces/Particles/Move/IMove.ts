@@ -42,7 +42,7 @@ export interface IMove {
     angle: number | IMoveAngle;
     attract: IAttract;
     decay: number;
-    direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt;
+    direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
     distance: number | Partial<IDistance>;
     drift: RangeValue;
     enable: boolean;

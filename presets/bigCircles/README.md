@@ -1,6 +1,8 @@
 [![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
 
-# tsparticles-preset-bigCircles
+# tsParticles Big Circles Preset
+
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-big-circles/badge)](https://www.jsdelivr.com/package/npm/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles-preset-big-circles.svg)](https://www.npmjs.com/package/tsparticles-preset-big-circles) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-big-circles)](https://www.npmjs.com/package/tsparticles-preset-big-circles)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) preset for big colored circles on a white background.
 
@@ -12,15 +14,28 @@
 
 ### CDN / Vanilla JS / jQuery
 
-First of all install [tsParticles](https://github.com/matteobruni/tsparticles) following the instructions for vanilla javascript in the main project [here](https://github.com/matteobruni/tsparticles)
+The first step is installing [tsParticles](https://github.com/matteobruni/tsparticles) following the instructions for
+vanilla javascript in the main project [here](https://github.com/matteobruni/tsparticles)
 
-Once installed you need one more script to be included in your page (or you can download that from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-big-circles):
+Once installed you need one more script to be included in your page (or you can download that
+from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-big-circles):
 
 ```html
+<script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-big-circles"></script>
 ```
 
 This script **MUST** be placed after the `tsParticles` one.
+
+#### Bundle
+
+A bundled script can also be used, this will include every needed plugin needed by the preset.
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-big-circles/dist/tsparticles.preset.bigCircles.bundle.min.js"></script>
+```
+
+### Usage
 
 Once the scripts are loaded you can set up `tsParticles` like this:
 
@@ -29,6 +44,8 @@ tsParticles.load("tsparticles", {
   preset: "bigCircles", // also "big-circles" is accepted
 });
 ```
+
+#### Customization
 
 **Important ⚠️**
 You can override all the options defining the properties like in any standard `tsParticles` installation.
@@ -50,18 +67,18 @@ Like in the sample above, the circles will be replaced by squares.
 
 _The syntax for `React.js`, `Preact` and `Inferno` is the same_.
 
-I'll show a simplified sample you can find in this repository; it uses class component, but you can choose any syntax you prefer.
+This sample uses the class component syntax, but you can use hooks as well (if the library supports it).
 
 ```javascript
 import Particles from "react-tsparticles";
 import { Main } from "tsparticles";
-import { loadPreset } from "tsparticles-preset-big-circles";
+import { loadBigCirclesPreset } from "tsparticles-preset-big-circles";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
   // this customizes the component tsParticles installation
-  customInit(tsParticles: Main) {
+  customInit(main: Main) {
     // this adds the preset to tsParticles, you can safely use the
-    loadPreset(tsParticles);
+    loadBigCirclesPreset(main);
   }
 
   render() {
@@ -76,6 +93,48 @@ export class ParticlesContainer extends React.PureComponent<IProps> {
 
 ### Vue (2.x and 3.x)
 
+_The syntax for `Vue.js 2.x` and `3.x` is the same_
+
+```vue
+<Particles id="tsparticles" :particlesInit="particlesInit" url="http://foo.bar/particles.json" />
+```
+
+```js
+function particlesInit(main: Main) {
+  loadBigCirclesPreset(main);
+}
+```
+
 ### Angular
 
+```html
+<ng-particles
+  [id]="id"
+  [options]="particlesOptions"
+  (particlesLoaded)="particlesLoaded($event)"
+  (particlesInit)="particlesInit($event)"
+></ng-particles>
+```
+
+```ts
+function particlesInit(main: Main): void {
+  loadBigCirclesPreset(main);
+}
+```
+
 ### Svelte
+
+```sveltehtml
+
+<Particles
+        id="tsparticles"
+        url="{particlesUrl}"
+        on:particlesInit="{onParticlesInit}"
+/>
+```
+
+```js
+let onParticlesInit = (main) => {
+  loadBigCirclesPreset(main);
+};
+```

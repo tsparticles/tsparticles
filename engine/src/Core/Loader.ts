@@ -167,11 +167,20 @@ export class Loader {
      * This method is async, so if you need a callback refer to JavaScript function `fetch`
      * @param id the particles container element id
      * @param domContainer the container used to contains the particles
-     * @param jsonUrl the json path to use in the GET request
+     * @param jsonUrl the json path (or paths array) to use in the GET request
+     * @param index the index of the paths array, if a single path is passed this value is ignored
+     * @returns A Promise with the [[Container]] object created
      */
-    static async setJSON(id: string, domContainer: HTMLElement, jsonUrl: string): Promise<Container | undefined> {
+    static async setJSON(
+        id: string,
+        domContainer: HTMLElement,
+        jsonUrl: SingleOrMultiple<string>,
+        index?: number
+    ): Promise<Container | undefined> {
+        const url = jsonUrl instanceof Array ? Utils.itemFromArray(jsonUrl, index) : jsonUrl;
+
         /* load json config */
-        const response = await fetch(jsonUrl);
+        const response = await fetch(url);
 
         if (response.ok) {
             const options = await response.json();
@@ -194,101 +203,7 @@ export class Loader {
         }
 
         for (const domItem of dom) {
-            const el = domItem.interactivity.element;
-
-            if (!el) {
-                continue;
-            }
-
-            const clickOrTouchHandler = (e: Event, pos: ICoordinates) => {
-                if (domItem.destroyed) {
-                    return;
-                }
-
-                const pxRatio = domItem.retina.pixelRatio;
-                const posRetina = {
-                    x: pos.x * pxRatio,
-                    y: pos.y * pxRatio,
-                };
-
-                const sizeValue = domItem.actualOptions.particles.size.value;
-                const particles = domItem.particles.quadTree.queryCircle(
-                    posRetina,
-                    domItem.retina.pixelRatio * (typeof sizeValue === "number" ? sizeValue : sizeValue.max)
-                );
-
-                callback(e, particles);
-            };
-
-            const clickHandler = (e: Event) => {
-                if (domItem.destroyed) {
-                    return;
-                }
-
-                const mouseEvent = e as MouseEvent;
-                const pos = {
-                    x: mouseEvent.offsetX || mouseEvent.clientX,
-                    y: mouseEvent.offsetY || mouseEvent.clientY,
-                };
-
-                clickOrTouchHandler(e, pos);
-            };
-
-            const touchStartHandler = () => {
-                if (domItem.destroyed) {
-                    return;
-                }
-
-                touched = true;
-                touchMoved = false;
-            };
-
-            const touchMoveHandler = () => {
-                if (domItem.destroyed) {
-                    return;
-                }
-
-                touchMoved = true;
-            };
-
-            const touchEndHandler = (e: Event) => {
-                if (domItem.destroyed) {
-                    return;
-                }
-
-                if (touched && !touchMoved) {
-                    const touchEvent = e as TouchEvent;
-                    const lastTouch = touchEvent.touches[touchEvent.touches.length - 1];
-                    const canvasRect = domItem.canvas.element?.getBoundingClientRect();
-                    const pos = {
-                        x: lastTouch.clientX - (canvasRect?.left ?? 0),
-                        y: lastTouch.clientY - (canvasRect?.top ?? 0),
-                    };
-
-                    clickOrTouchHandler(e, pos);
-                }
-
-                touched = false;
-                touchMoved = false;
-            };
-
-            const touchCancelHandler = () => {
-                if (domItem.destroyed) {
-                    return;
-                }
-
-                touched = false;
-                touchMoved = false;
-            };
-
-            let touched = false;
-            let touchMoved = false;
-
-            el.addEventListener("click", clickHandler);
-            el.addEventListener("touchstart", touchStartHandler);
-            el.addEventListener("touchmove", touchMoveHandler);
-            el.addEventListener("touchend", touchEndHandler);
-            el.addEventListener("touchcancel", touchCancelHandler);
+            domItem.addClickHandler(callback);
         }
     }
 }

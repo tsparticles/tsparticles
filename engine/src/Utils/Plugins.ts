@@ -60,8 +60,8 @@ export class Plugins {
         return presets.get(preset);
     }
 
-    static addPreset(presetKey: string, options: RecursivePartial<IOptions>): void {
-        if (!Plugins.getPreset(presetKey)) {
+    static addPreset(presetKey: string, options: RecursivePartial<IOptions>, override = false): void {
+        if (override || !Plugins.getPreset(presetKey)) {
             presets.set(presetKey, options);
         }
     }

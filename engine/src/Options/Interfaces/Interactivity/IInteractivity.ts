@@ -15,8 +15,8 @@ export interface IInteractivity {
 
     /**
      * Where the mouse events will be detected
-     * If set to `canvas` only the particles canvas will be target
-     * If set to `parent` only the particles canvas parent will be the target
+     * If set to `canvas` only the particles canvas will be targeted
+     * If set to `parent` only the particles canvas parent will be targeted
      * If set to `window` every area will be the target
      */
     detectsOn: InteractivityDetect | keyof typeof InteractivityDetect;

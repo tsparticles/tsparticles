@@ -1,9 +1,16 @@
 import '@riotjs/hot-reload'
-import { mount } from 'riot'
-import registerGlobalComponents from './register-global-components'
+import {mount, register} from 'riot'
+import MyComponent from "./components/global/my-component/my-component.riot";
+import Sidebar from "./components/global/sidebar/sidebar.riot";
+import User from "./components/includes/user/user.riot";
+import RiotParticles from "riot-particles";
 
 // register
-registerGlobalComponents()
+//registerGlobalComponents()
+register("my-component", MyComponent);
+register("sidebar", Sidebar);
+register("user", User);
+register("riot-particles", RiotParticles);
 
 // mount all the global components found in this page
 mount('[data-riot-component]')
