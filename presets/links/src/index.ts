@@ -3,6 +3,7 @@ import { loadCircleShape } from "tsparticles-shape-circle";
 import { loadParticlesLinksInteraction } from "tsparticles-interaction-particles-links";
 import { loadParticlesMoveInteraction } from "tsparticles-interaction-particles-move";
 import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
+import { options } from "./options";
 
 export function loadLinksPreset(tsParticles: Main): void {
     loadCircleShape(tsParticles);
@@ -10,23 +11,5 @@ export function loadLinksPreset(tsParticles: Main): void {
     loadOutModesUpdater(tsParticles);
     loadParticlesLinksInteraction(tsParticles);
 
-    tsParticles.addPreset("links", {
-        background: {
-            color: "#000000",
-        },
-        fullScreen: {
-            enable: true,
-        },
-        particles: {
-            links: {
-                enable: true,
-            },
-            move: {
-                enable: true,
-            },
-            shape: {
-                type: "circle",
-            },
-        },
-    });
+    tsParticles.addPreset("links", options);
 }

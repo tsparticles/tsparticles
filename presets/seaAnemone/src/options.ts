@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "tsparticles";
+import type { ISourceOptions } from "tsparticles-engine";
 
 export const presetName = "seaAnemone";
 export const pathGeneratorName = `${presetName}Path`;
