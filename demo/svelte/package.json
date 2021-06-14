@@ -14,7 +14,7 @@
     "@rollup/plugin-node-resolve": "^13.0.0",
     "@rollup/plugin-typescript": "^8.2.1",
     "@tsconfig/svelte": "^2.0.1",
-    "rollup": "^2.47.0",
+    "rollup": "^2.51.2",
     "rollup-plugin-livereload": "^2.0.0",
     "rollup-plugin-postcss": "^4.0.0",
     "rollup-plugin-svelte": "^7.1.0",
@@ -22,11 +22,11 @@
     "svelte": "^3.38.2",
     "svelte-check": "^2.1.0",
     "svelte-preprocess": "^4.7.3",
-    "tslib": "^2.2.0",
+    "tslib": "^2.3.0",
     "typescript": "^4.3.2"
   },
   "dependencies": {
-    "sirv-cli": "^1.0.11",
+    "sirv-cli": "^1.0.12",
     "svelte-particles": "^2.0.0-alpha.7"
   }
 }

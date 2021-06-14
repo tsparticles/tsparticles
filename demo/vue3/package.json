@@ -7,13 +7,13 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "core-js": "^3.12.1",
+    "core-js": "^3.14.0",
     "particles.vue3": "^2.0.0-alpha.7",
     "tsparticles": "^2.0.0-alpha.7",
     "tsparticles-engine": "^2.0.0-alpha.7",
     "tsparticles-preset-big-circles": "^2.0.0-alpha.7",
     "tsparticles-preset-sea-anemone": "^2.0.0-alpha.7",
-    "vue": "^3.0.11",
+    "vue": "^3.1.1",
     "vue-class-component": "^8.0.0-rc.1"
   },
   "devDependencies": {

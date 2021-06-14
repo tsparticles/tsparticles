@@ -27,7 +27,7 @@
     "gh-pages": "^3.2.0",
     "minify": "^7.0.2",
     "rimraf": "^3.0.2",
-    "sass": "^1.32.13",
+    "sass": "^1.34.1",
     "tsparticles": "^2.0.0-alpha.7",
     "tsparticles-editor": "^2.0.0-alpha.7",
     "tsparticles-preset-links": "^2.0.0-alpha.7",

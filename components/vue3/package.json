@@ -70,10 +70,8 @@
     "vue": ">=3"
   },
   "dependencies": {
-    "core-js": "^3.12.1",
-    "tslib": "^2.2.0",
+    "core-js": "^3.14.0",
     "tsparticles-engine": "^2.0.0-alpha.7",
-    "vue": ">=3",
     "vue-class-component": "^8.0.0-rc.1"
   },
   "devDependencies": {
@@ -93,10 +91,10 @@
     "@vue/eslint-config-typescript": "^7.0.0",
     "eslint": "^7.28.0",
     "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-vue": "^7.10.0",
+    "eslint-plugin-vue": "^7.11.1",
     "is-svg": "^4.3.1",
     "prettier": "^2.3.1",
-    "rollup": "^2.51.1",
+    "rollup": "^2.51.2",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript": "^1.0.1",
     "rollup-plugin-typescript2": "^0.30.0",

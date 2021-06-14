@@ -30,7 +30,7 @@
   "dependencies": {
     "@riotjs/hot-reload": "^5.0.0",
     "path": "^0.12.7",
-    "riot": "^5.4.1",
+    "riot": "^5.4.5",
     "riot-particles": "^2.0.0-alpha.7",
     "tsparticles": "^2.0.0-alpha.7",
     "tsparticles-engine": "^2.0.0-alpha.7",

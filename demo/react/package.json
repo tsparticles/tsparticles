@@ -36,7 +36,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-tsparticles": "^2.0.0-alpha.7",
-    "tslib": "^2.2.0",
+    "tslib": "^2.3.0",
     "tsparticles": "^2.0.0-alpha.7",
     "tsparticles-engine": "^2.0.0-alpha.7",
     "tsparticles-interaction-external-attract": "^2.0.0-alpha.7",
