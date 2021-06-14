@@ -36,7 +36,7 @@
     "@typescript-eslint/parser": "^4.26.1",
     "@vue/cli-plugin-babel": "~4.5.13",
     "@vue/cli-plugin-typescript": "~4.5.13",
-    "@vue/cli-service": "~4.5.13",
+    "@vue/cli-service": "~5.0.0-beta.2",
     "babel-loader": "^8.2.2",
     "eslint": "^7.28.0",
     "eslint-config-prettier": "^8.3.0",
