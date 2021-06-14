@@ -158,7 +158,7 @@ export class ImageDrawer implements IShapeDrawer {
             };
 
             img.addEventListener("load", () => {
-                const pImage = ((particle as unknown) as IImageParticle).image;
+                const pImage = (particle as unknown as IImageParticle).image;
                 if (pImage) {
                     pImage.loaded = true;
                     image.element = img;
@@ -172,7 +172,7 @@ export class ImageDrawer implements IShapeDrawer {
 
                 // deepcode ignore PromiseNotCaughtGeneral: catch can be ignored
                 loadImage(imageData.src).then((img2) => {
-                    const pImage = ((particle as unknown) as IImageParticle).image;
+                    const pImage = (particle as unknown as IImageParticle).image;
 
                     if (pImage) {
                         image.element = img2?.element;
@@ -204,7 +204,7 @@ export class ImageDrawer implements IShapeDrawer {
             close,
         };
 
-        ((particle as unknown) as IImageParticle).image = imageShape.image;
+        (particle as unknown as IImageParticle).image = imageShape.image;
         particle.fill = imageShape.fill;
         particle.close = imageShape.close;
     }

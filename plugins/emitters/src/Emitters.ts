@@ -28,7 +28,7 @@ export class Emitters implements IContainerPlugin {
         this.emitters = [];
         this.interactivityEmitters = [];
 
-        const overridableContainer = (container as unknown) as EmitterContainer;
+        const overridableContainer = container as unknown as EmitterContainer;
 
         overridableContainer.getEmitter = (idxOrName?: number | string) =>
             idxOrName === undefined || typeof idxOrName === "number"

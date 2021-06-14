@@ -17,19 +17,19 @@ export class LinkInstance implements IContainerPlugin {
     constructor(private readonly container: Container) {}
 
     particleCreated(particle: Particle): void {
-        const linkParticle = (particle as unknown) as LinkParticle;
+        const linkParticle = particle as unknown as LinkParticle;
 
         linkParticle.links = [];
     }
 
     particleDestroyed(particle: Particle, override?: boolean): void {
-        const linkParticle = (particle as unknown) as LinkParticle;
+        const linkParticle = particle as unknown as LinkParticle;
 
         linkParticle.links = [];
     }
 
     drawParticle(context: CanvasRenderingContext2D, particle: Particle, delta: IDelta): void {
-        const linkParticle = (particle as unknown) as LinkParticle;
+        const linkParticle = particle as unknown as LinkParticle;
         const container = this.container;
         const particles = container.particles;
         const pOptions = particle.options;

@@ -31,7 +31,7 @@ class Plugin implements IPlugin {
             return;
         }
 
-        const optionsCast = (options as unknown) as IInfectionOptions;
+        const optionsCast = options as unknown as IInfectionOptions;
         let infectionOptions = optionsCast.infection as Infection;
 
         if (infectionOptions?.load === undefined) {

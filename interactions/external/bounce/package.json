@@ -4,11 +4,11 @@
   "description": "tsParticles Bounce external interaction",
   "homepage": "https://particles.js.org/",
   "scripts": {
-    "prettify:src": "prettier --write ./src/",
+    "prettify:src": "prettier --write ./src",
     "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "compile": "tsc && yarn build:ts:old",
-    "build:ts:old": "npx downlevel-dts ./dist ./dist/ts4.0 --to=4.0 && npx downlevel-dts ./dist ./dist/ts3.8 --to=3.8 && npx downlevel-dts ./dist ./dist/ts3.4",
+    "build:ts:old": "npx downlevel-dts ./dist ./tmp/ts4.0 --to=4.0 && npx downlevel-dts ./dist ./tmp/ts3.8 --to=3.8 && npx downlevel-dts ./dist ./tmp/ts3.4 && copyfiles ./tmp/**/* ./dist && rimraf -f ./tmp",
     "bundle": "webpack --mode production",
     "distfiles": "node ./scripts/distfiles.js",
     "build": "yarn clear:dist && yarn prettify:src && yarn compile && yarn lint && yarn bundle && yarn prettify:readme && yarn distfiles",
@@ -57,21 +57,22 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.16",
+    "@babel/core": "^7.14.5",
     "@types/webpack-env": "^1.16.0",
-    "@typescript-eslint/eslint-plugin": "^4.22.0",
-    "@typescript-eslint/parser": "^4.22.0",
+    "@typescript-eslint/eslint-plugin": "^4.26.1",
+    "@typescript-eslint/parser": "^4.26.1",
     "babel-loader": "^8.2.2",
+    "copyfiles": "^2.4.1",
     "downlevel-dts": "^0.7.0",
-    "eslint": "^7.24.0",
-    "eslint-config-prettier": "^8.2.0",
-    "prettier": "^2.2.1",
+    "eslint": "^7.28.0",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.3.1",
     "rimraf": "^3.0.2",
-    "terser-webpack-plugin": "^5.1.1",
-    "typescript": "^4.2.4",
-    "webpack": "^5.35.0",
-    "webpack-bundle-analyzer": "^4.4.1",
-    "webpack-cli": "^4.6.0"
+    "terser-webpack-plugin": "^5.1.3",
+    "typescript": "^4.3.2",
+    "webpack": "^5.38.1",
+    "webpack-bundle-analyzer": "^4.4.2",
+    "webpack-cli": "^4.7.2"
   },
   "dependencies": {
     "tsparticles-engine": "^2.0.0-alpha.7"
