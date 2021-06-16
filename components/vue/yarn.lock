@@ -6999,9 +6999,9 @@ postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.27, postcss@^7.0.3
     supports-color "^6.1.0"
 
 postcss@^8.3.1:
-  version "8.3.2"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.3.2.tgz#ed3ec489f5428af5740cd6effcc216b4d455ee64"
-  integrity sha512-y1FK/AWdZlBF5lusS5j5l4/vF67+vQZt1SXPVJ32y1kRGDQyrs1zk32hG1cInRTu14P0V+orPz+ifwW/7rR4bg==
+  version "8.3.4"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.3.4.tgz#41ece1c43f2f7c74dc7d90144047ce052757b822"
+  integrity sha512-/tZY0PXExXXnNhKv3TOvZAOUYRyuqcCbBm2c17YMDK0PlVII3K7/LKdt3ScHL+hhouddjUWi+1sKDf9xXW+8YA==
   dependencies:
     colorette "^1.2.2"
     nanoid "^3.1.23"
@@ -8627,10 +8627,10 @@ tslint@^5.20.1:
     tslib "^1.8.0"
     tsutils "^2.29.0"
 
-tsparticles@^1.28.0:
-  version "1.28.0"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.28.0.tgz#c500f7983b913b7f35796c52b7c65e6f99b92b5e"
-  integrity sha512-JDKNxuG99J64vF6cTfQ3S+lnhwK+LKHJYn46j9SX2Mae0gog34T0fm6cM0b1CRkB/MeCJ3mF0KaLRh5OdSEV1Q==
+tsparticles@^1.28.1:
+  version "1.28.1"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.28.1.tgz#2391098ef83a1d8ee5d962aa743fcb19059fe3c9"
+  integrity sha512-zaeH2xPGax2ENltIxjYRgy3HixIKAagixHjWz5CyljsYweBO0nrjCQ6YalOHC3REJpGJAHfJsWWu02r5iYiiXA==
   optionalDependencies:
     pathseg "^1.2.0"
 
