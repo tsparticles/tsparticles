@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-website",
-  "version": "1.28.1",
+  "version": "1.28.2",
   "private": true,
   "description": "tsParticles Official Website",
   "main": "index.html",
@@ -28,9 +28,9 @@
     "minify": "^7.0.2",
     "rimraf": "^3.0.2",
     "sass": "^1.34.1",
-    "tsparticles": "^1.28.1",
-    "tsparticles-editor": "^1.28.1",
+    "tsparticles": "^1.28.2",
+    "tsparticles-editor": "^1.28.2",
     "tsparticles-preset-basic": "^1.12.0",
-    "tsparticles-shape-confetti": "^1.13.1"
+    "tsparticles-shape-confetti": "^1.13.2"
   }
 }
