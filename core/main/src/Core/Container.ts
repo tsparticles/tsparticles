@@ -89,6 +89,7 @@ export class Container {
     private _sourceOptions;
     private paused;
     private firstStart;
+    private currentTheme?: string;
     private drawAnimationFrame?: number;
 
     private readonly eventListeners;
@@ -399,7 +400,7 @@ export class Container {
      * @param name the theme name, if `undefined` resets the default options or the default theme
      */
     async loadTheme(name?: string): Promise<void> {
-        this.actualOptions.setTheme(name);
+        this.currentTheme = name;
 
         await this.refresh();
     }
@@ -537,7 +538,7 @@ export class Container {
         this.canvas.init();
 
         this.actualOptions.setResponsive(this.canvas.size.width, this.retina.pixelRatio, this._options);
-        this.actualOptions.setTheme(undefined);
+        this.actualOptions.setTheme(this.currentTheme);
 
         this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 60;
 
@@ -561,6 +562,7 @@ export class Container {
             }
         }
 
+        this.canvas.initBackground();
         this.canvas.resize();
         this.particles.init();
         this.particles.setDensity();
