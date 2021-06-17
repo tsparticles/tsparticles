@@ -4481,7 +4481,7 @@ fsevents@^1.2.7:
     bindings "^1.5.0"
     nan "^2.12.1"
 
-fsevents@~2.3.1:
+fsevents@~2.3.1, fsevents@~2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.2.tgz#8a526f78b8fdf4623b709e0b975c52c24c02fd1a"
   integrity sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==
@@ -6649,12 +6649,12 @@ parseurl@~1.3.2, parseurl@~1.3.3:
   resolved "https://registry.yarnpkg.com/parseurl/-/parseurl-1.3.3.tgz#9da19e7bee8d12dff0513ed5b76957793bc2e8d4"
   integrity sha512-CiyeOxFT/JZyN5m0z9PfXw4SCBJ6Sygz1Dpl0wqjlhDEGGBP1GnsUVEL0p63hoG1fcj3fHynXi9NYO4nWOL+qQ==
 
-particles.vue@^2.11.1:
-  version "2.11.1"
-  resolved "https://registry.yarnpkg.com/particles.vue/-/particles.vue-2.11.1.tgz#7b1dbaaa0ab3c931bf14e1b9af15e7cae7e82a1d"
-  integrity sha512-dRjDJlSmRmJtHA3hJ2w+d5G8qciZkdcdIPvxtsBSotRAKYIP37BJ66U/XjjoIYudngg9AGxNY0x5whEzNk6lwA==
+particles.vue@^2.11.2:
+  version "2.11.2"
+  resolved "https://registry.yarnpkg.com/particles.vue/-/particles.vue-2.11.2.tgz#bc9ac1fdc5718c105fad39e3a4e03563c92fcf07"
+  integrity sha512-Mzz38HbnZs974YHcHjDxQEHbUnIntxLl4tCov2c5EdSorFkrIh9BwmZ2BJSYS74JanKY6aYAxxR34RFGh7SG/Q==
   dependencies:
-    tsparticles "^1.28.1"
+    tsparticles "^1.28.2"
 
 pascalcase@^0.1.1:
   version "0.1.1"
@@ -7833,11 +7833,11 @@ rollup-pluginutils@^2.5.0, rollup-pluginutils@^2.8.2:
     estree-walker "^0.6.1"
 
 rollup@^2.51.1:
-  version "2.51.1"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.51.1.tgz#87bcd4095fe79b14c9bec0edc7ffa44e4827f793"
-  integrity sha512-8xfDbAtBleXotb6qKEHWuo/jkn94a9dVqGc7Rwl3sqspCVlnCfbRek7ldhCARSi7h32H0xR4QThm1t9zHN+3uw==
+  version "2.52.0"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.52.0.tgz#9df3de6028fae79569a985942b81110205a5a411"
+  integrity sha512-lSkBDGsVoXjqaBf7dsHwxBJz+p+hJEP72P+LOitA0yVs+Nzxj76FidkZE2thrmhjwGqLYiJo39opi7mAfaQ/Vg==
   optionalDependencies:
-    fsevents "~2.3.1"
+    fsevents "~2.3.2"
 
 run-parallel@^1.1.9:
   version "1.2.0"
@@ -8764,10 +8764,10 @@ tslint@^5.20.1:
     tslib "^1.8.0"
     tsutils "^2.29.0"
 
-tsparticles@^1.28.1:
-  version "1.28.1"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.28.1.tgz#2391098ef83a1d8ee5d962aa743fcb19059fe3c9"
-  integrity sha512-zaeH2xPGax2ENltIxjYRgy3HixIKAagixHjWz5CyljsYweBO0nrjCQ6YalOHC3REJpGJAHfJsWWu02r5iYiiXA==
+tsparticles@^1.28.2:
+  version "1.28.2"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.28.2.tgz#85f7be79ec19feb2f5af3dc52a444a085ba864da"
+  integrity sha512-Lpizb8gUaG8yA5k2FSoOOZ+MlM3539AMAdEKHWp2KQv7fLOHKgfCj0QOszneezbUMFN11pdSeV/zdTw5zDbA9Q==
   optionalDependencies:
     pathseg "^1.2.0"
 

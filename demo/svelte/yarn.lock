@@ -674,7 +674,7 @@ fs.realpath@^1.0.0:
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
   integrity sha1-FQStJSMVjKpA20onh8sBQRmU6k8=
 
-fsevents@~2.3.1:
+fsevents@~2.3.1, fsevents@~2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.2.tgz#8a526f78b8fdf4623b709e0b975c52c24c02fd1a"
   integrity sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==
@@ -1717,11 +1717,11 @@ rollup-pluginutils@^2.8.2:
     estree-walker "^0.6.1"
 
 rollup@^2.51.1:
-  version "2.51.1"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.51.1.tgz#87bcd4095fe79b14c9bec0edc7ffa44e4827f793"
-  integrity sha512-8xfDbAtBleXotb6qKEHWuo/jkn94a9dVqGc7Rwl3sqspCVlnCfbRek7ldhCARSi7h32H0xR4QThm1t9zHN+3uw==
+  version "2.52.0"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.52.0.tgz#9df3de6028fae79569a985942b81110205a5a411"
+  integrity sha512-lSkBDGsVoXjqaBf7dsHwxBJz+p+hJEP72P+LOitA0yVs+Nzxj76FidkZE2thrmhjwGqLYiJo39opi7mAfaQ/Vg==
   optionalDependencies:
-    fsevents "~2.3.1"
+    fsevents "~2.3.2"
 
 sade@^1.6.0, sade@^1.7.4:
   version "1.7.4"
@@ -1903,13 +1903,13 @@ svelte-check@^2.1.0:
     svelte-preprocess "^4.0.0"
     typescript "*"
 
-svelte-particles@^1.11.1:
-  version "1.11.1"
-  resolved "https://registry.yarnpkg.com/svelte-particles/-/svelte-particles-1.11.1.tgz#dcb5de2afa9c37a9e5e06c23a86bd5f41c3619c1"
-  integrity sha512-8tE+zEyu9P/rkGveJBL6xM4dNvdmNgZCt0sPQXPzxNXYkuLL7RigM8gJPCR/+YEUy0Ufz+H/dK2VmjUlsq3fnw==
+svelte-particles@^1.11.2:
+  version "1.11.2"
+  resolved "https://registry.yarnpkg.com/svelte-particles/-/svelte-particles-1.11.2.tgz#a54ca769414ba20ecdc584ecaf4558f646dd9487"
+  integrity sha512-cZ6sPaKea/idtJ5jgkq6Xdx+p5oNPqsK/yMBAKKccCRpbqi3UxwIuqpe6qp2/IoWnuWHLCpaVDViXDjfAUl8NQ==
   dependencies:
     tslib "^2.2.0"
-    tsparticles "^1.28.1"
+    tsparticles "^1.28.2"
 
 svelte-preprocess@^4.0.0:
   version "4.6.9"
@@ -1991,10 +1991,10 @@ tslib@^2.2.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.0.tgz#803b8cdab3e12ba581a4ca41c8839bbb0dacb09e"
   integrity sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==
 
-tsparticles@^1.28.1:
-  version "1.28.1"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.28.1.tgz#2391098ef83a1d8ee5d962aa743fcb19059fe3c9"
-  integrity sha512-zaeH2xPGax2ENltIxjYRgy3HixIKAagixHjWz5CyljsYweBO0nrjCQ6YalOHC3REJpGJAHfJsWWu02r5iYiiXA==
+tsparticles@^1.28.2:
+  version "1.28.2"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.28.2.tgz#85f7be79ec19feb2f5af3dc52a444a085ba864da"
+  integrity sha512-Lpizb8gUaG8yA5k2FSoOOZ+MlM3539AMAdEKHWp2KQv7fLOHKgfCj0QOszneezbUMFN11pdSeV/zdTw5zDbA9Q==
   optionalDependencies:
     pathseg "^1.2.0"
 
