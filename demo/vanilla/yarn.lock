@@ -127,13 +127,13 @@
     eslint-utils "^3.0.0"
 
 "@typescript-eslint/parser@^4.26.1":
-  version "4.26.1"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-4.26.1.tgz#cecfdd5eb7a5c13aabce1c1cfd7fbafb5a0f1e8e"
-  integrity sha512-q7F3zSo/nU6YJpPJvQveVlIIzx9/wu75lr6oDbDzoeIRWxpoc/HQ43G4rmMoCc5my/3uSj2VEpg/D83LYZF5HQ==
+  version "4.27.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-4.27.0.tgz#85447e573364bce4c46c7f64abaa4985aadf5a94"
+  integrity sha512-XpbxL+M+gClmJcJ5kHnUpBGmlGdgNvy6cehgR6ufyxkEJMGP25tZKCaKyC0W/JVpuhU3VU1RBn7SYUPKSMqQvQ==
   dependencies:
-    "@typescript-eslint/scope-manager" "4.26.1"
-    "@typescript-eslint/types" "4.26.1"
-    "@typescript-eslint/typescript-estree" "4.26.1"
+    "@typescript-eslint/scope-manager" "4.27.0"
+    "@typescript-eslint/types" "4.27.0"
+    "@typescript-eslint/typescript-estree" "4.27.0"
     debug "^4.3.1"
 
 "@typescript-eslint/scope-manager@4.26.1":
@@ -144,10 +144,23 @@
     "@typescript-eslint/types" "4.26.1"
     "@typescript-eslint/visitor-keys" "4.26.1"
 
+"@typescript-eslint/scope-manager@4.27.0":
+  version "4.27.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/scope-manager/-/scope-manager-4.27.0.tgz#b0b1de2b35aaf7f532e89c8e81d0fa298cae327d"
+  integrity sha512-DY73jK6SEH6UDdzc6maF19AHQJBFVRf6fgAXHPXCGEmpqD4vYgPEzqpFz1lf/daSbOcMpPPj9tyXXDPW2XReAw==
+  dependencies:
+    "@typescript-eslint/types" "4.27.0"
+    "@typescript-eslint/visitor-keys" "4.27.0"
+
 "@typescript-eslint/types@4.26.1":
   version "4.26.1"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-4.26.1.tgz#9e7c523f73c34b04a765e4167ca5650436ef1d38"
   integrity sha512-STyMPxR3cS+LaNvS8yK15rb8Y0iL0tFXq0uyl6gY45glyI7w0CsyqyEXl/Fa0JlQy+pVANeK3sbwPneCbWE7yg==
+
+"@typescript-eslint/types@4.27.0":
+  version "4.27.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-4.27.0.tgz#712b408519ed699baff69086bc59cd2fc13df8d8"
+  integrity sha512-I4ps3SCPFCKclRcvnsVA/7sWzh7naaM/b4pBO2hVxnM3wrU51Lveybdw5WoIktU/V4KfXrTt94V9b065b/0+wA==
 
 "@typescript-eslint/typescript-estree@4.26.1":
   version "4.26.1"
@@ -162,12 +175,33 @@
     semver "^7.3.5"
     tsutils "^3.21.0"
 
+"@typescript-eslint/typescript-estree@4.27.0":
+  version "4.27.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-4.27.0.tgz#189a7b9f1d0717d5cccdcc17247692dedf7a09da"
+  integrity sha512-KH03GUsUj41sRLLEy2JHstnezgpS5VNhrJouRdmh6yNdQ+yl8w5LrSwBkExM+jWwCJa7Ct2c8yl8NdtNRyQO6g==
+  dependencies:
+    "@typescript-eslint/types" "4.27.0"
+    "@typescript-eslint/visitor-keys" "4.27.0"
+    debug "^4.3.1"
+    globby "^11.0.3"
+    is-glob "^4.0.1"
+    semver "^7.3.5"
+    tsutils "^3.21.0"
+
 "@typescript-eslint/visitor-keys@4.26.1":
   version "4.26.1"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/visitor-keys/-/visitor-keys-4.26.1.tgz#0d55ea735cb0d8903b198017d6d4f518fdaac546"
   integrity sha512-IGouNSSd+6x/fHtYRyLOM6/C+QxMDzWlDtN41ea+flWuSF9g02iqcIlX8wM53JkfljoIjP0U+yp7SiTS1onEkw==
   dependencies:
     "@typescript-eslint/types" "4.26.1"
+    eslint-visitor-keys "^2.0.0"
+
+"@typescript-eslint/visitor-keys@4.27.0":
+  version "4.27.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/visitor-keys/-/visitor-keys-4.27.0.tgz#f56138b993ec822793e7ebcfac6ffdce0a60cb81"
+  integrity sha512-es0GRYNZp0ieckZ938cEANfEhsfHrzuLrePukLKtY3/KPXcq1Xd555Mno9/GOgXhKzn0QfkDLVgqWO3dGY80bg==
+  dependencies:
+    "@typescript-eslint/types" "4.27.0"
     eslint-visitor-keys "^2.0.0"
 
 accepts@~1.3.7:
@@ -2094,6 +2128,126 @@ tslib@^1.8.1:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
+
+tsparticles-preset-big-circles@^1.13.2:
+  version "1.13.2"
+  resolved "https://registry.yarnpkg.com/tsparticles-preset-big-circles/-/tsparticles-preset-big-circles-1.13.2.tgz#dea124b3f1bac36fac638cfd3031281897b54a04"
+  integrity sha512-3rSnSIj6f5nO7rY9Mb2yhP+mQuhuXu9trSS/7/J1H+45evCOa9QlYB6lFYXcQGb0SETrgaiosbsqvPVCqklVOQ==
+  dependencies:
+    tsparticles "^1.28.2"
+
+tsparticles-preset-bubbles@^1.13.2:
+  version "1.13.2"
+  resolved "https://registry.yarnpkg.com/tsparticles-preset-bubbles/-/tsparticles-preset-bubbles-1.13.2.tgz#6a5f11e8a1af35a86ccb16a8f51ba58f4076ceb8"
+  integrity sha512-bwrTZhmEzAx8LbIrxqC3NT3jmG1dtc/JKGTau7S3A3FA27TvaGxl/89C77j207OMxS3+wcFTCK3JFwh4mxkKYg==
+  dependencies:
+    tsparticles "^1.28.2"
+
+tsparticles-preset-confetti@^1.13.2:
+  version "1.13.2"
+  resolved "https://registry.yarnpkg.com/tsparticles-preset-confetti/-/tsparticles-preset-confetti-1.13.2.tgz#bcea4c43c7023b6ecc1a5350fb9d39c4aadd0e4d"
+  integrity sha512-tug6L9v++1rA1xI/O85nKYqQN2ymYpki+ITDxkhlM1FwrCwSyl95lFh2Ibe4vjGaqSUO+bmr3CkD0D5DVQWMkA==
+  dependencies:
+    tsparticles "^1.28.2"
+    tsparticles-shape-confetti "^1.13.2"
+
+tsparticles-preset-fire@^1.13.2:
+  version "1.13.2"
+  resolved "https://registry.yarnpkg.com/tsparticles-preset-fire/-/tsparticles-preset-fire-1.13.2.tgz#fcaa0cb48a8593d875e4b66fd843b047b8b91ea2"
+  integrity sha512-Z+G1yF4ftV0CZNySouuhhtqlt0tMThfpBzU1SaTOMGm6hyU6ZGVhbALbw4jsJg/+T+PXTEg2l4XphfwCR88LHA==
+  dependencies:
+    tsparticles "^1.28.2"
+
+tsparticles-preset-firefly@^1.13.2:
+  version "1.13.2"
+  resolved "https://registry.yarnpkg.com/tsparticles-preset-firefly/-/tsparticles-preset-firefly-1.13.2.tgz#728db540be00ffc5c31eadd678688bd6b4a8483f"
+  integrity sha512-rBTRytFPla0wBAEPiCdVt/4yru0SPGdlTL45f9hqUcLP+Hfnhx///OQIeYOGHwS9UdXzwXUtYQlBOo6rwCkxIg==
+  dependencies:
+    tsparticles "^1.28.2"
+
+tsparticles-preset-fountain@^1.13.2:
+  version "1.13.2"
+  resolved "https://registry.yarnpkg.com/tsparticles-preset-fountain/-/tsparticles-preset-fountain-1.13.2.tgz#c754a5f086abdd8aaef6d54b01feedd26c55dc7f"
+  integrity sha512-xZu95SfKBKcfb5RA/rKdEdHS6sRSQxHucVy8BD6ZYjQzU5PsCIKmJcUwZOC7MuB8I6H8dgiilTWYRlP8ghh/fA==
+  dependencies:
+    tsparticles "^1.28.2"
+
+tsparticles-preset-links@^1.13.2:
+  version "1.13.2"
+  resolved "https://registry.yarnpkg.com/tsparticles-preset-links/-/tsparticles-preset-links-1.13.2.tgz#fc993451c064b5d186461b66483f2565a8278a33"
+  integrity sha512-Kql645TMnY/+YdjAZVVArt5AlB9+LeOxrblFMDPXpaKtAYrcJ3emwetH7xF6BKPHAz9npOHkfEkycuGDxeDocg==
+  dependencies:
+    tsparticles "^1.28.2"
+
+tsparticles-preset-sea-anemone@^1.13.2:
+  version "1.13.2"
+  resolved "https://registry.yarnpkg.com/tsparticles-preset-sea-anemone/-/tsparticles-preset-sea-anemone-1.13.2.tgz#4bb3d193f5c1cb1adaf8f15a7bbf0e300bd76832"
+  integrity sha512-ON+qaPKE+tNntc9C0Y3TgHmpRjZwV/KvWyEWajYlM6+Nx6K6+Z9CFJ/U6TpfTSuQPMWUITwW+Wcw8oBjpvJxCQ==
+  dependencies:
+    tsparticles "^1.28.2"
+
+tsparticles-preset-snow@^1.13.2:
+  version "1.13.2"
+  resolved "https://registry.yarnpkg.com/tsparticles-preset-snow/-/tsparticles-preset-snow-1.13.2.tgz#29e02fd82b0c16c413cd4bbb4163281306f8423a"
+  integrity sha512-aUK9ZETeA7iZLHxN86h0O56neVCRB2LyrswfVjGH7O6rYyLCwwbnRTr53OaZwyuGhX3WIyYmCi8lxgdNd6Xw/g==
+  dependencies:
+    tsparticles "^1.28.2"
+
+tsparticles-preset-stars@^1.13.2:
+  version "1.13.2"
+  resolved "https://registry.yarnpkg.com/tsparticles-preset-stars/-/tsparticles-preset-stars-1.13.2.tgz#62ea4c0faf7e794ff2a70b161eff68517005bf3b"
+  integrity sha512-uJGmFWqyWQBCPGcMTZCdZtIgfjUZd/ZxLqKvTDoXFxvm/gtvsmQobNgFPSzcny3Peku01+x+BuopKcX1yeggkw==
+  dependencies:
+    tsparticles "^1.28.2"
+
+tsparticles-shape-bubble@^1.13.2:
+  version "1.13.2"
+  resolved "https://registry.yarnpkg.com/tsparticles-shape-bubble/-/tsparticles-shape-bubble-1.13.2.tgz#e61221acf821d9e36732e3c865ee6c77b9fccd75"
+  integrity sha512-/A3uMttRpwflWIKBV8sUB34LDRevOEyU184EY+qfodrlHGDhyBNvFvrQ+pD4mSW0s7JtqU+IpTwhe3Zfxc9jsQ==
+  dependencies:
+    tsparticles "^1.28.2"
+
+tsparticles-shape-confetti@^1.13.2:
+  version "1.13.2"
+  resolved "https://registry.yarnpkg.com/tsparticles-shape-confetti/-/tsparticles-shape-confetti-1.13.2.tgz#6a9e8f43b63f399a45c46409a6c173c183a496ba"
+  integrity sha512-sX7NJMQ0gLaYDxfKQjwgpfciJZPtXZWmXssaRkTmJwaJwPBGhPBp3NYR00NLkSxnf2Yn/3Re+b5bSiSCtxJgvw==
+  dependencies:
+    tsparticles "^1.28.2"
+
+tsparticles-shape-heart@^1.13.2:
+  version "1.13.2"
+  resolved "https://registry.yarnpkg.com/tsparticles-shape-heart/-/tsparticles-shape-heart-1.13.2.tgz#4d9fc0c077272b53e9af57fe5b43f5b18a4c1135"
+  integrity sha512-jhxBtfcNAyBsJrQKjbuvad8dg1urfMuF6ZHG9j5Ogay3Tvsis2fk+520tUtCnCtiPe996lAlgvTj7iHWcFsKqw==
+  dependencies:
+    tsparticles "^1.28.2"
+
+tsparticles-shape-multiline-text@^1.13.2:
+  version "1.13.2"
+  resolved "https://registry.yarnpkg.com/tsparticles-shape-multiline-text/-/tsparticles-shape-multiline-text-1.13.2.tgz#982e2df759fe561310cef5a3e0d7ab0b8a111de0"
+  integrity sha512-Yb3ZX80v1eL01bMS6IBwk1KosHPH5goAJ3q2CULKilVDUTsaoo1/3PX3m94QPB3oqvzMUez1UFryfcrC63idUQ==
+  dependencies:
+    tsparticles "^1.28.2"
+
+tsparticles-shape-rounded-rect@^1.13.2:
+  version "1.13.2"
+  resolved "https://registry.yarnpkg.com/tsparticles-shape-rounded-rect/-/tsparticles-shape-rounded-rect-1.13.2.tgz#9b8d2cd192102a7020612ef5c1256bd50354d041"
+  integrity sha512-UR6qnf0i4bN2iB2VMhfER2nJysB1E5wj5/Lcn+0OU9RUKkQzPQuo4tXhF9OUy2yyJTd77onYZiPgIHyr5fD2+w==
+  dependencies:
+    tsparticles "^1.28.2"
+
+tsparticles-shape-spiral@^1.13.2:
+  version "1.13.2"
+  resolved "https://registry.yarnpkg.com/tsparticles-shape-spiral/-/tsparticles-shape-spiral-1.13.2.tgz#0d9c12d8c75d4edabcc318d21483a6c96a6a5627"
+  integrity sha512-qMTbfqUcPqFca1ysWufe7ekb9TqXFM6T+6dcN17QbWHaxzZQgiaNGBUoQJlgFbCQRG/4O80fV0qp147dZAMY9g==
+  dependencies:
+    tsparticles "^1.28.2"
+
+tsparticles@^1.28.2:
+  version "1.28.2"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.28.2.tgz#85f7be79ec19feb2f5af3dc52a444a085ba864da"
+  integrity sha512-Lpizb8gUaG8yA5k2FSoOOZ+MlM3539AMAdEKHWp2KQv7fLOHKgfCj0QOszneezbUMFN11pdSeV/zdTw5zDbA9Q==
+  optionalDependencies:
+    pathseg "^1.2.0"
 
 tsutils@^3.21.0:
   version "3.21.0"
