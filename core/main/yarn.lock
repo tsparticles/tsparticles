@@ -3558,9 +3558,9 @@ typedoc-default-themes@^0.12.10:
   integrity sha512-fIS001cAYHkyQPidWXmHuhs8usjP5XVJjWB8oZGqkTowZaz3v7g3KDZeeqE82FBrmkAnIBOY3jgy7lnPnqATbA==
 
 typedoc@^0.21.0-beta.2:
-  version "0.21.0-beta.3"
-  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.21.0-beta.3.tgz#449e5c284b64775c910fb5cdfbed05c9179362e2"
-  integrity sha512-suE1ukTFoKybQybqILkjbKfWQEQeo9XY6c9zO8Jfw9L0GUGJo22q1+XJwdld4Ol0f5/W7DF/51Kw4jFwLvc9zg==
+  version "0.21.0-beta.4"
+  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.21.0-beta.4.tgz#85fb3f16050a3302d238c923df5efbcbb754684a"
+  integrity sha512-8V5tx+QFp8CGVjXApdnZd84OBnJEWwQNHgryMfdRp9EiXo7sqP3EmeqYeaLtjE3xlQkai7RljtDX6E7n9d6v3Q==
   dependencies:
     glob "^7.1.6"
     handlebars "^4.7.7"
