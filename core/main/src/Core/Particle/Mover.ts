@@ -59,23 +59,22 @@ export class Mover {
         this.applyPath(delta);
 
         const gravityOptions = particlesOptions.move.gravity;
+        const gravityFactor = gravityOptions.enable && gravityOptions.inverse ? -1 : 1;
 
         if (gravityOptions.enable) {
-            particle.velocity.y += (gravityOptions.acceleration * delta.factor) / (60 * moveSpeed);
+            particle.velocity.y += (gravityFactor * (gravityOptions.acceleration * delta.factor)) / (60 * moveSpeed);
         }
 
         if (moveSpeed) {
             particle.velocity.x += (moveDrift * delta.factor) / (60 * moveSpeed);
         }
 
-        const decay = 1 - particle.options.move.decay;
-
-        particle.velocity.multTo(decay);
+        particle.velocity.multTo(1 - particle.options.move.decay);
 
         const velocity = particle.velocity.mult(moveSpeed);
 
-        if (gravityOptions.enable && velocity.y >= gravityOptions.maxSpeed && gravityOptions.maxSpeed > 0) {
-            velocity.y = gravityOptions.maxSpeed;
+        if (gravityOptions.enable && Math.abs(velocity.y) >= gravityOptions.maxSpeed && gravityOptions.maxSpeed > 0) {
+            velocity.y = gravityFactor * gravityOptions.maxSpeed;
 
             if (moveSpeed) {
                 particle.velocity.y = velocity.y / moveSpeed;

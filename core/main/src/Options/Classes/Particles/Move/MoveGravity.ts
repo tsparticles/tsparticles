@@ -5,11 +5,13 @@ import { RecursivePartial } from "../../../../Types";
 export class MoveGravity implements IMoveGravity, IOptionLoader<IMoveGravity> {
     acceleration;
     enable;
+    inverse;
     maxSpeed;
 
     constructor() {
         this.acceleration = 9.81;
         this.enable = false;
+        this.inverse = false;
         this.maxSpeed = 50;
     }
 
@@ -24,6 +26,10 @@ export class MoveGravity implements IMoveGravity, IOptionLoader<IMoveGravity> {
 
         if (data.enable !== undefined) {
             this.enable = data.enable;
+        }
+
+        if (data.inverse !== undefined) {
+            this.inverse = data.inverse;
         }
 
         if (data.maxSpeed !== undefined) {

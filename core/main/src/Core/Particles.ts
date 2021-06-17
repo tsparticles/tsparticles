@@ -283,7 +283,7 @@ export class Particles {
 
         options.load(splitOptions.particles);
 
-        const offset = NumberUtils.setRangeValue(-parent.size.value, parent.size.value);
+        const offset = splitOptions.sizeOffset ? NumberUtils.setRangeValue(-parent.size.value, parent.size.value) : 0;
 
         const position = {
             x: parent.position.x + NumberUtils.randomInRange(offset),
