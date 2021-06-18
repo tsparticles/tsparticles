@@ -90,7 +90,7 @@
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.7.tgz#98a993516c859eb0d5c4c8f098317a9ea68db9ad"
   integrity sha512-cxWFQVseBm6O9Gbw1IWb8r6OS4OhSt3hPZLkFApLjM8TEXROBuQGLAH2i2gZpcXdLBIrpXuTDhH7Vbm1iXmNGA==
 
-"@typescript-eslint/eslint-plugin@^4.26.1":
+"@typescript-eslint/eslint-plugin@^4.27.0":
   version "4.27.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-4.27.0.tgz#0b7fc974e8bc9b2b5eb98ed51427b0be529b4ad0"
   integrity sha512-DsLqxeUfLVNp3AO7PC3JyaddmEHTtI9qTSAs+RB6ja27QvIM0TA8Cizn1qcS6vOu+WDLFJzkwkgweiyFhssDdQ==
@@ -116,7 +116,7 @@
     eslint-scope "^5.1.1"
     eslint-utils "^3.0.0"
 
-"@typescript-eslint/parser@^4.26.1":
+"@typescript-eslint/parser@^4.27.0":
   version "4.27.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-4.27.0.tgz#85447e573364bce4c46c7f64abaa4985aadf5a94"
   integrity sha512-XpbxL+M+gClmJcJ5kHnUpBGmlGdgNvy6cehgR6ufyxkEJMGP25tZKCaKyC0W/JVpuhU3VU1RBn7SYUPKSMqQvQ==
@@ -2012,21 +2012,6 @@ tslib@^1.8.1:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
-
-tsparticles-editor@^1.28.2:
-  version "1.28.2"
-  resolved "https://registry.yarnpkg.com/tsparticles-editor/-/tsparticles-editor-1.28.2.tgz#df6d79fd7b880187631a730e2b51b012c5069368"
-  integrity sha512-96+YVkvIhJ3aSJQsFmJIpxVE879HAboEsWXSZ+uzmYnV2O4J9q4tYXtzA2g0wDgoZi+uHdXIt1Yew/jb0BTodQ==
-  dependencies:
-    object-gui "^1.1.1"
-    tsparticles "^1.28.2"
-
-tsparticles@^1.28.2:
-  version "1.28.2"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.28.2.tgz#85f7be79ec19feb2f5af3dc52a444a085ba864da"
-  integrity sha512-Lpizb8gUaG8yA5k2FSoOOZ+MlM3539AMAdEKHWp2KQv7fLOHKgfCj0QOszneezbUMFN11pdSeV/zdTw5zDbA9Q==
-  optionalDependencies:
-    pathseg "^1.2.0"
 
 tsutils@^3.21.0:
   version "3.21.0"

@@ -19,10 +19,10 @@
   },
   "devDependencies": {
     "@types/react": "^17.0.11",
-    "@types/react-dom": "^17.0.7",
+    "@types/react-dom": "^17.0.8",
     "@types/react-syntax-highlighter": "^13.5.0",
-    "@typescript-eslint/eslint-plugin": "^4.26.1",
-    "@typescript-eslint/parser": "^4.26.1",
+    "@typescript-eslint/eslint-plugin": "^4.27.0",
+    "@typescript-eslint/parser": "^4.27.0",
     "eslint": "^7.28.0",
     "eslint-config-prettier": "^8.3.0",
     "node-sass": "^6.0.0",
@@ -30,7 +30,7 @@
     "prettier": "^2.3.1",
     "react-syntax-highlighter": "^15.4.3",
     "rxjs": "^7.1.0",
-    "typescript": "^4.3.3"
+    "typescript": "^4.3.4"
   },
   "dependencies": {
     "react": "^17.0.2",

@@ -63,7 +63,7 @@
   },
   "dependencies": {
     "react-tsparticles": "^1.28.2",
-    "tslib": "^2.2.0"
+    "tslib": "^2.3.0"
   },
   "scripts": {
     "build": "node scripts/prebuild.js",

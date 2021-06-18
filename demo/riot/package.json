@@ -22,15 +22,15 @@
     "esm": "^3.2.25",
     "jsdom": "^16.6.0",
     "jsdom-global": "^3.0.2",
-    "mocha": "^9.0.0",
+    "mocha": "^9.0.1",
     "nyc": "^15.1.0",
-    "webpack": "^5.38.1",
+    "webpack": "^5.39.1",
     "webpack-cli": "^4.7.2"
   },
   "dependencies": {
     "@riotjs/hot-reload": "^5.0.0",
     "path": "^0.12.7",
-    "riot": "^5.4.4",
+    "riot": "^5.4.5",
     "riot-particles": "^1.2.2",
     "tsparticles": "^1.28.2"
   }
