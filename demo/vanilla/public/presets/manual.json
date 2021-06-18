@@ -62,14 +62,7 @@
       }
     },
     "size": {
-      "value": 30,
-      "random": true,
-      "anim": {
-        "enable": true,
-        "speed": 20,
-        "size_min": 10,
-        "sync": false
-      }
+      "value": 30
     },
     "links": {
       "enable": true,
@@ -79,12 +72,13 @@
       "width": 1
     },
     "move": {
-      "enable": false,
-      "speed": 6,
-      "direction": "none",
+      "enable": true,
+      "speed": 2,
+      "direction": "top",
       "random": false,
-      "straight": false,
+      "straight": true,
       "out_mode": "out",
+      "warp": true,
       "attract": {
         "enable": false,
         "rotateX": 600,
