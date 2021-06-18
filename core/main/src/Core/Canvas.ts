@@ -522,26 +522,7 @@ export class Canvas {
         CanvasUtils.drawLight(this.container, this.context, mousePos);
     }
 
-    private paintBase(baseColor?: string): void {
-        if (!this.context) {
-            return;
-        }
-
-        CanvasUtils.paintBase(this.context, this.size, baseColor);
-    }
-
-    private lineStyle(p1: IParticle, p2: IParticle): CanvasGradient | undefined {
-        if (!this.context) {
-            return;
-        }
-
-        const options = this.container.actualOptions;
-        const connectOptions = options.interactivity.modes.connect;
-
-        return CanvasUtils.gradient(this.context, p1, p2, connectOptions.links.opacity);
-    }
-
-    private initBackground(): void {
+    initBackground(): void {
         const options = this.container.actualOptions;
         const background = options.background;
         const element = this.element;
@@ -563,5 +544,24 @@ export class Canvas {
         elementStyle.backgroundPosition = background.position || "";
         elementStyle.backgroundRepeat = background.repeat || "";
         elementStyle.backgroundSize = background.size || "";
+    }
+
+    private paintBase(baseColor?: string): void {
+        if (!this.context) {
+            return;
+        }
+
+        CanvasUtils.paintBase(this.context, this.size, baseColor);
+    }
+
+    private lineStyle(p1: IParticle, p2: IParticle): CanvasGradient | undefined {
+        if (!this.context) {
+            return;
+        }
+
+        const options = this.container.actualOptions;
+        const connectOptions = options.interactivity.modes.connect;
+
+        return CanvasUtils.gradient(this.context, p1, p2, connectOptions.links.opacity);
     }
 }

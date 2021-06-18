@@ -1,7 +1,7 @@
 {
   "name": "web-particles-demo",
   "private": true,
-  "version": "1.13.0",
+  "version": "1.13.2",
   "description": "> TODO: description",
   "author": "Matteo Bruni <ar3s@icloud.com>",
   "homepage": "https://github.com/matteobruni/tsparticles#readme",
@@ -25,8 +25,8 @@
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.15.3",
-    "@typescript-eslint/eslint-plugin": "^4.26.1",
-    "@typescript-eslint/parser": "^4.26.1",
+    "@typescript-eslint/eslint-plugin": "^4.27.0",
+    "@typescript-eslint/parser": "^4.27.0",
     "@webcomponents/webcomponentsjs": "^2.5.0",
     "eslint": "^7.28.0",
     "eslint-config-prettier": "^8.3.0",
@@ -37,7 +37,7 @@
     "pug": "^3.0.2",
     "pug-cli": "^1.0.0-alpha6",
     "stylus": "^0.54.8",
-    "tsparticles": "^1.28.0",
-    "web-particles": "^1.1.0"
+    "tsparticles": "^1.28.2",
+    "web-particles": "^1.1.2"
   }
 }

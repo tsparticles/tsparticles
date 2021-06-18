@@ -121,7 +121,9 @@ export class EmitterInstance {
             (this.lifeCount > 0 || this.immortal || !this.emitterOptions.life.count)
         ) {
             if (this.emitDelay === undefined) {
-                this.emitDelay = (1000 * this.emitterOptions.rate.delay) / this.container.retina.reduceFactor;
+                const delay = NumberUtils.getRangeValue(this.emitterOptions.rate.delay);
+
+                this.emitDelay = (1000 * delay) / this.container.retina.reduceFactor;
             }
 
             if (this.lifeCount > 0 || this.immortal) {
@@ -259,7 +261,9 @@ export class EmitterInstance {
                     : this.size.height,
         };
 
-        for (let i = 0; i < this.emitterOptions.rate.quantity; i++) {
+        const quantity = NumberUtils.getRangeValue(this.emitterOptions.rate.quantity);
+
+        for (let i = 0; i < quantity; i++) {
             const particlesOptions = Utils.deepExtend({}, this.particlesOptions) as RecursivePartial<IParticles>;
 
             if (this.spawnColor !== undefined) {
@@ -301,7 +305,8 @@ export class EmitterInstance {
 
         const colorOffset = NumberUtils.randomInRange(animation.offset);
 
-        const emitFactor = (1000 * this.emitterOptions.rate.delay) / container.retina.reduceFactor;
+        const delay = NumberUtils.getRangeValue(this.emitterOptions.rate.delay);
+        const emitFactor = (1000 * delay) / container.retina.reduceFactor;
         const colorSpeed = animation.speed ?? 0;
 
         return (initValue + (colorSpeed * container.fpsLimit) / emitFactor + colorOffset * 3.6) % maxValue;

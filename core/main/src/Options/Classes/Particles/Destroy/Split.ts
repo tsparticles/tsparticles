@@ -11,11 +11,13 @@ export class Split implements ISplit, IOptionLoader<ISplit> {
     factor: SplitFactor;
     rate: SplitRate;
     particles?: RecursivePartial<IParticles>;
+    sizeOffset: boolean;
 
     constructor() {
         this.count = 1;
         this.factor = new SplitFactor();
         this.rate = new SplitRate();
+        this.sizeOffset = true;
     }
 
     load(data?: RecursivePartial<ISplit>): void {
@@ -32,6 +34,10 @@ export class Split implements ISplit, IOptionLoader<ISplit> {
 
         if (data.particles !== undefined) {
             this.particles = Utils.deepExtend({}, data.particles) as RecursivePartial<IParticles>;
+        }
+
+        if (data.sizeOffset !== undefined) {
+            this.sizeOffset = data.sizeOffset;
         }
     }
 }

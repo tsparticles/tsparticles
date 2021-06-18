@@ -10,7 +10,7 @@ export class MoveAngle implements IMoveAngle, IOptionLoader<IMoveAngle> {
     value;
 
     constructor() {
-        this.offset = 45;
+        this.offset = 0; //45;
         this.value = 90;
     }
 
