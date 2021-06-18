@@ -12,7 +12,7 @@ export interface IEmitterLife {
 
     /**
      * The duration of any emitter life.
-     * If <= 0 or  not specified infinity will be the value.
+     * If <= 0 or not specified infinity will be the value.
      */
     duration?: number;
 
