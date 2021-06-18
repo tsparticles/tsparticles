@@ -7,4 +7,5 @@ export interface ISplit {
     factor: IValueWithRandom;
     particles?: RecursivePartial<IParticles>;
     rate: IValueWithRandom;
+    sizeOffset: boolean;
 }

@@ -873,12 +873,12 @@
     recast "^0.20.4"
     source-map "^0.7.3"
 
-"@riotjs/dom-bindings@5.1.2":
-  version "5.1.2"
-  resolved "https://registry.yarnpkg.com/@riotjs/dom-bindings/-/dom-bindings-5.1.2.tgz#c54b08dede900025d6dfebeada26cc1ab1ded415"
-  integrity sha512-eoKvJ0yMA2hBctNJZh6Fu7l3nCFZN6++TN/g5s9DsMNSN8X0mcb9i9Vada/MZDQTafoXVm4rfCLpHNvbTaaeTQ==
+"@riotjs/dom-bindings@5.1.3":
+  version "5.1.3"
+  resolved "https://registry.yarnpkg.com/@riotjs/dom-bindings/-/dom-bindings-5.1.3.tgz#1e02202376dabf06f7a58928710e381289529c5f"
+  integrity sha512-rQcXFzK5KveUUCVzpqU2MSjM8FydYgvQ0V0m2EJmyxGpxbiNINud0m4ffaU1+nWP9koevyjG80AX5drBkrXdyQ==
   dependencies:
-    "@riotjs/util" "^2.0.3"
+    "@riotjs/util" "^2.0.4"
 
 "@riotjs/hot-reload@^5.0.0":
   version "5.0.0"
@@ -917,11 +917,6 @@
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@riotjs/util/-/util-2.0.2.tgz#8c0313392f56d5413c9aed722bb451789639d026"
   integrity sha512-1UYavIex5+5uH7vjOZ4o8j0Hm6Mwt9p1vZfdR8Jl7y0aSEzYmWVYJCP7KfOiU4EoVNuk3tBTW6ju2Ik4sf0coA==
-
-"@riotjs/util@^2.0.3":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@riotjs/util/-/util-2.0.3.tgz#85aaeddfc9bc97deac77547ccc07e2950b7f6796"
-  integrity sha512-qNQsWWLpdRaEN8Yq2AH5limQYtf8MAI6j215P5jSTu4733dexdqdpeEA9wZwVAISqpLnY0hnNzfS3N+oLDJJbw==
 
 "@riotjs/util@^2.0.4":
   version "2.0.4"
@@ -2529,10 +2524,10 @@ minimist@^1.2.5:
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
   integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
 
-mocha@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/mocha/-/mocha-9.0.0.tgz#67ce848170cb6426f9e84c57e38376dc9017bab4"
-  integrity sha512-GRGG/q9bIaUkHJB9NL+KZNjDhMBHB30zW3bZW9qOiYr+QChyLjPzswaxFWkI1q6lGlSL28EQYzAi2vKWNkPx+g==
+mocha@^9.0.1:
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/mocha/-/mocha-9.0.1.tgz#01e66b7af0012330c0a38c4b6eaa6d92b8a81bf9"
+  integrity sha512-9zwsavlRO+5csZu6iRtl3GHImAbhERoDsZwdRkdJ/bE+eVplmoxNKE901ZJ9LdSchYBjSCPbjKc5XvcAri2ylw==
   dependencies:
     "@ungap/promise-all-settled" "1.1.2"
     ansi-colors "4.1.1"
@@ -2771,11 +2766,6 @@ path@^0.12.7:
     process "^0.11.1"
     util "^0.10.3"
 
-pathseg@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/pathseg/-/pathseg-1.2.0.tgz#22af051e28037671e7799e296fe96c5dcbe53acd"
-  integrity sha512-+pQS7lTaoVIXhaCW7R3Wd/165APzZHWzYVqe7dxzdupxQwebgpBaCmf0/XZwmoA/rkDq3qvzO0qv4d5oFVrBRw==
-
 pathval@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/pathval/-/pathval-1.1.1.tgz#8534e77a77ce7ac5a2512ea21e0fdb8fcf6c3d8d"
@@ -2950,20 +2940,13 @@ rimraf@^3.0.0:
   dependencies:
     glob "^7.1.3"
 
-riot-particles@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/riot-particles/-/riot-particles-1.2.1.tgz#782cffafcc90c3d803eb85404cfbc1b08ab2c01b"
-  integrity sha512-v47TtG/Q2fXHgwcXiIvumdJErWXPTd/W5N6l6MX/sdcn5A+R2Yj2YekwLd8VGE7Dn6N8SK5/uHJD18FXvUnBZw==
-  dependencies:
-    tsparticles "^1.28.1"
-
-riot@^5.4.4:
-  version "5.4.4"
-  resolved "https://registry.yarnpkg.com/riot/-/riot-5.4.4.tgz#3332a436d11e0572245a3bb7e2d9eb4004a3ed98"
-  integrity sha512-LpMjFs13RL0BvMPbwkznasmZNYyRrm/HmaAcYJi+7xj54V+m+luam1Qo9V7o15TcZI8MqI/+iuHUb1UgCW93yw==
+riot@^5.4.5:
+  version "5.4.5"
+  resolved "https://registry.yarnpkg.com/riot/-/riot-5.4.5.tgz#b1d7c947e42808dde6cd13a20a2ee70aedd9f5df"
+  integrity sha512-/nsRLereXUNZNuTRZyzC6/lz9FXUaEl/+d+xB0f8j1ZlDV1gkRdKo5t3Kxcg8EmRXfWFP6MIHQAtGpO2uLWN4g==
   dependencies:
     "@riotjs/compiler" "^5.4.2"
-    "@riotjs/dom-bindings" "5.1.2"
+    "@riotjs/dom-bindings" "5.1.3"
     "@riotjs/util" "^2.0.4"
     bianco.attr "^1.0.0"
     bianco.query "^1.0.0"
@@ -3232,13 +3215,6 @@ tslib@^2.0.1:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.2.0.tgz#fb2c475977e35e241311ede2693cee1ec6698f5c"
   integrity sha512-gS9GVHRU+RGn5KQM2rllAlR3dU6m7AcpJKdtH8gFvQiC4Otgk98XnmMU+nZenHt/+VhnBPWwgrJsyrdcw6i23w==
 
-tsparticles@^1.28.1:
-  version "1.28.1"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.28.1.tgz#2391098ef83a1d8ee5d962aa743fcb19059fe3c9"
-  integrity sha512-zaeH2xPGax2ENltIxjYRgy3HixIKAagixHjWz5CyljsYweBO0nrjCQ6YalOHC3REJpGJAHfJsWWu02r5iYiiXA==
-  optionalDependencies:
-    pathseg "^1.2.0"
-
 type-check@~0.3.2:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/type-check/-/type-check-0.3.2.tgz#5884cab512cf1d355e3fb784f30804b2b520db72"
@@ -3387,10 +3363,10 @@ webpack-sources@^2.3.0:
     source-list-map "^2.0.1"
     source-map "^0.6.1"
 
-webpack@^5.38.1:
-  version "5.39.0"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.39.0.tgz#37d6899f1f40c31d5901abc0f39bc8cc7224138c"
-  integrity sha512-25CHmuDj+oOTyteI13sUqNlCnjCnySuhiKWE/cRYPQYeoQ3ijHgyWX27CiyUKLNGq27v8S0mrksyTreT/xo7pg==
+webpack@^5.39.1:
+  version "5.39.1"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.39.1.tgz#d1e014b6d71e1aef385316ad528f21cd5b1f9784"
+  integrity sha512-ulOvoNCh2PvTUa+zbpRuEb1VPeQnhxpnHleMPVVCq3QqnaFogjsLyps+o42OviQFoaGtTQYrUqDXu1QNkvUPzw==
   dependencies:
     "@types/eslint-scope" "^3.7.0"
     "@types/estree" "^0.0.47"

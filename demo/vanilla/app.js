@@ -24,6 +24,7 @@ app.use("/preset-bubbles", express.static("./node_modules/tsparticles-preset-bub
 app.use("/preset-confetti", express.static("./node_modules/tsparticles-preset-confetti/dist"));
 app.use("/preset-fire", express.static("./node_modules/tsparticles-preset-fire/dist"));
 app.use("/preset-firefly", express.static("./node_modules/tsparticles-preset-firefly/dist"));
+app.use("/preset-fireworks", express.static("./node_modules/tsparticles-preset-fireworks/dist"));
 app.use("/preset-fountain", express.static("./node_modules/tsparticles-preset-fountain/dist"));
 app.use("/preset-links", express.static("./node_modules/tsparticles-preset-links/dist"));
 app.use("/preset-sea-anemone", express.static("./node_modules/tsparticles-preset-sea-anemone/dist"));
@@ -68,6 +69,10 @@ app.get("/presets/fire", function (req, res) {
 
 app.get("/presets/firefly", function (req, res) {
     res.render("presets/firefly");
+});
+
+app.get("/presets/fireworks", function (req, res) {
+    res.render("presets/fireworks");
 });
 
 app.get("/presets/fountain", function (req, res) {

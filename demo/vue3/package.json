@@ -1,6 +1,6 @@
 {
   "name": "particles.vue3-demo",
-  "version": "1.11.2",
+  "version": "1.12.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -8,8 +8,8 @@
   },
   "dependencies": {
     "core-js": "^3.14.0",
-    "particles.vue3": "^1.11.2",
-    "tsparticles": "^1.28.2",
+    "particles.vue3": "^1.12.0",
+    "tsparticles": "^1.29.0",
     "vue": "^3.1.1",
     "vue-class-component": "^8.0.0-rc.1"
   },
@@ -18,6 +18,6 @@
     "@vue/cli-plugin-typescript": "~5.0.0-beta.2",
     "@vue/cli-service": "~5.0.0-beta.2",
     "@vue/compiler-sfc": "^3.1.1",
-    "typescript": "~4.3.2"
+    "typescript": "~4.3.4"
   }
 }
