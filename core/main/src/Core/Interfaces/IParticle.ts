@@ -18,6 +18,8 @@ export interface IParticle {
     misplaced: boolean;
     randomIndexData?: number;
 
+    readonly wobbleAngle: number;
+    readonly wobbleSpeed: number;
     readonly attractDistance?: number;
     readonly bubble: IBubbleParticleData;
     readonly close: boolean;

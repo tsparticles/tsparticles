@@ -14,6 +14,7 @@ import type { IAnimatableColor } from "./IAnimatableColor";
 import type { ILife } from "./Life/ILife";
 import type { IBounce } from "./Bounce/IBounce";
 import type { IDestroy } from "./Destroy/IDestroy";
+import type { IWobble } from "./Wobble/IWobble";
 
 /**
  * [[include:Options/Particles.md]]
@@ -46,4 +47,5 @@ export interface IParticles {
     size: ISize;
     stroke: SingleOrMultiple<IStroke>;
     twinkle: ITwinkle;
+    wobble: IWobble;
 }

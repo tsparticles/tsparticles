@@ -42,6 +42,8 @@ export class Particle implements IParticle {
     spawning;
     splitCount;
     unbreakable;
+    wobbleAngle;
+    wobbleSpeed;
 
     readonly pathDelay;
     readonly updater;
@@ -161,6 +163,15 @@ export class Particle implements IParticle {
         this.close = this.shapeData?.close ?? this.close;
         this.options = particlesOptions;
         this.pathDelay = NumberUtils.getValue(this.options.move.path.delay) * 1000;
+
+        const wobbleOpt = this.options.wobble;
+        if (wobbleOpt.enable) {
+            this.wobbleAngle = Math.random() * Math.PI * 2;
+            this.wobbleSpeed = NumberUtils.getRangeValue(wobbleOpt.speed) / 360;
+        } else {
+            this.wobbleAngle = 0;
+            this.wobbleSpeed = 0;
+        }
 
         container.retina.initParticle(this);
 

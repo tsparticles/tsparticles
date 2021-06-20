@@ -343,9 +343,14 @@ export class CanvasUtils {
         shadow: IShadow
     ): void {
         const pos = particle.getPosition();
+        const wobbleOptions = particle.options.wobble;
 
         context.save();
-        context.translate(pos.x, pos.y);
+        if (wobbleOptions.enable) {
+            context.transform(1, Math.cos(particle.wobbleAngle), Math.sin(particle.wobbleAngle), 1, pos.x, pos.y);
+        } else {
+            context.translate(pos.x, pos.y);
+        }
         context.beginPath();
 
         const angle = particle.rotate.value + (particle.options.rotate.path ? particle.velocity.angle : 0);
@@ -396,7 +401,11 @@ export class CanvasUtils {
         context.restore();
 
         context.save();
-        context.translate(pos.x, pos.y);
+        if (wobbleOptions.enable) {
+            context.transform(1, Math.cos(particle.wobbleAngle), Math.sin(particle.wobbleAngle), 1, pos.x, pos.y);
+        } else {
+            context.translate(pos.x, pos.y);
+        }
 
         if (angle !== 0) {
             context.rotate(angle);

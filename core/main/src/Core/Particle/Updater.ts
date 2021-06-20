@@ -147,8 +147,11 @@ export class Updater {
         /* change size */
         this.updateSize(delta);
 
-        /* change size */
+        /* change rotation */
         this.updateAngle(delta);
+
+        /* change wobble */
+        this.updateWobble(delta);
 
         /* change color */
         this.updateColor(delta);
@@ -315,6 +318,21 @@ export class Updater {
                         particle.rotate.value += max;
                     }
                     break;
+            }
+        }
+    }
+
+    private updateWobble(delta: IDelta): void {
+        const particle = this.particle;
+        const wobble = particle.options.wobble;
+        const speed = particle.wobbleSpeed * delta.factor;
+        const max = 2 * Math.PI;
+
+        if (wobble.enable) {
+            particle.wobbleAngle += speed;
+
+            if (particle.wobbleAngle > max) {
+                particle.wobbleAngle -= max;
             }
         }
     }

@@ -1,0 +1,91 @@
+{
+  "background": {
+    "color": {
+      "value": "#000000"
+    }
+  },
+  "fullScreen": {
+    "enable": false,
+    "zIndex": -1
+  },
+  "interactivity": {
+    "detectsOn": "canvas",
+    "events": {
+      "onClick": {
+        "enable": true,
+        "mode": "push"
+      },
+      "resize": true
+    },
+    "modes": {
+      "push": {
+        "quantity": 4
+      }
+    }
+  },
+  "particles": {
+    "color": {
+      "value": "#ff0000"
+    },
+    "move": {
+      "decay": 0.1,
+      "distance": 0,
+      "direction": "top",
+      "drift": 2,
+      "enable": true,
+      "gravity": {
+        "acceleration": 9.81,
+        "enable": true,
+        "inverse": false,
+        "maxSpeed": 50
+      },
+      "outModes": {
+        "default": "out"
+      },
+      "speed": 30
+    },
+    "number": {
+      "density": {
+        "enable": true,
+        "area": 800,
+        "factor": 1000
+      },
+      "limit": 0,
+      "value": 80
+    },
+    "opacity": {
+      "value": 0.5
+    },
+    "rotate": {
+      "value": 0,
+      "animation": {
+        "enable": true,
+        "speed": 60
+      }
+    },
+    "shape": {
+      "type": [
+        "circle",
+        "square",
+        "polygon"
+      ],
+      "options": {
+        "polygon": [
+          {
+            "sides": 5
+          },
+          {
+            "sides": 6
+          }
+        ]
+      }
+    },
+    "size": {
+      "value": 5
+    },
+    "wobble": {
+      "enable": true,
+      "speed": 50
+    }
+  }
+}
