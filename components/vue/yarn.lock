@@ -6396,6 +6396,11 @@ path-type@^4.0.0:
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
+pathseg@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/pathseg/-/pathseg-1.2.0.tgz#22af051e28037671e7799e296fe96c5dcbe53acd"
+  integrity sha512-+pQS7lTaoVIXhaCW7R3Wd/165APzZHWzYVqe7dxzdupxQwebgpBaCmf0/XZwmoA/rkDq3qvzO0qv4d5oFVrBRw==
+
 pbkdf2@^3.0.3:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/pbkdf2/-/pbkdf2-3.1.1.tgz#cb8724b0fada984596856d1a6ebafd3584654b94"
@@ -7595,9 +7600,9 @@ rollup-pluginutils@^2.5.0, rollup-pluginutils@^2.8.2:
     estree-walker "^0.6.1"
 
 rollup@^2.52.1:
-  version "2.52.1"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.52.1.tgz#dd1cc178d70cf35c48d943fc06fdc32d546e6876"
-  integrity sha512-/SPqz8UGnp4P1hq6wc9gdTqA2bXQXGx13TtoL03GBm6qGRI6Hm3p4Io7GeiHNLl0BsQAne1JNYY+q/apcY933w==
+  version "2.52.2"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.52.2.tgz#a7e90d10ddae3e8472c2857bd9f44b09ef34a47a"
+  integrity sha512-4RlFC3k2BIHlUsJ9mGd8OO+9Lm2eDF5P7+6DNQOp5sx+7N/1tFM01kELfbxlMX3MxT6owvLB1ln4S3QvvQlbUA==
   optionalDependencies:
     fsevents "~2.3.2"
 
@@ -8497,6 +8502,13 @@ tslint@^5.20.1:
     semver "^5.3.0"
     tslib "^1.8.0"
     tsutils "^2.29.0"
+
+tsparticles@^1.29.0:
+  version "1.29.0"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.29.0.tgz#d11140f8b323ce1fb368a5b3b9a0bd1066dde1ff"
+  integrity sha512-LhW6KTZfUoJ6yzi0T/cCE4arhMwrdikYVn3xx7T5NE/60DzMFCQFUc41oMO419syAFTbPJRnsfiYdkXK/gayUQ==
+  optionalDependencies:
+    pathseg "^1.2.0"
 
 tsutils@^2.29.0:
   version "2.29.0"
