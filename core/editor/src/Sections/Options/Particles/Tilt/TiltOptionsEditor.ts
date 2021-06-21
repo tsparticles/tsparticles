@@ -41,21 +41,21 @@ export class TiltOptionsEditor extends EditorBase {
         const particles = this.particles;
 
         this.group
-        .addProperty("direction", "Direction", EditorType.select)
-        .change(async () => {
-            await particles.refresh();
-        })
-        .addItems([
-            {
-                value: TiltDirection.clockwise,
-            },
-            {
-                value: TiltDirection.counterClockwise,
-            },
-            {
-                value: TiltDirection.random,
-            },
-        ]);
+            .addProperty("direction", "Direction", EditorType.select)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .addItems([
+                {
+                    value: TiltDirection.clockwise,
+                },
+                {
+                    value: TiltDirection.counterClockwise,
+                },
+                {
+                    value: TiltDirection.random,
+                },
+            ]);
 
         this.group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
