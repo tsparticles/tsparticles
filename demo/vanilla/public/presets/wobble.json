@@ -107,12 +107,12 @@
       "value": 5
     },
     "wobble": {
-      "distance": {
-        "min": -30,
-        "max": 30
-      },
+      "distance": 30,
       "enable": true,
-      "speed": 15
+      "speed": {
+        "min": -15,
+        "max": 15
+      }
     }
   },
   "emitters": {

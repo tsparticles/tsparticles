@@ -347,7 +347,7 @@ export class CanvasUtils {
 
         context.save();
         if (tiltOptions.enable) {
-            context.transform(1, Math.cos(particle.tilt.value), Math.sin(particle.tilt.value), 1, pos.x, pos.y);
+            context.setTransform(1, Math.cos(particle.tilt.value), Math.sin(particle.tilt.value), 1, pos.x, pos.y);
         } else {
             context.translate(pos.x, pos.y);
         }
@@ -402,7 +402,7 @@ export class CanvasUtils {
 
         context.save();
         if (tiltOptions.enable) {
-            context.transform(1, Math.cos(particle.tilt.value), Math.sin(particle.tilt.value), 1, pos.x, pos.y);
+            context.setTransform(1, Math.cos(particle.tilt.value), Math.sin(particle.tilt.value), 1, pos.x, pos.y);
         } else {
             context.translate(pos.x, pos.y);
         }
