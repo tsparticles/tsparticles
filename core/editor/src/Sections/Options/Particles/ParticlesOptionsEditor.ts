@@ -18,6 +18,8 @@ import { LifeOptionsEditor } from "./Life/LifeOptionsEditor";
 import { BounceOptionsEditor } from "./Bounce/BounceOptionsEditor";
 import { EditorType } from "object-gui";
 import { DestroyOptionsEditor } from "./Destroy/DestroyOptionsEditor";
+import { TiltOptionsEditor } from "./Tilt/TiltOptionsEditor";
+import { WobbleOptionsEditor } from "./Wobble/WobbleOptionsEditor";
 
 export class ParticlesOptionsEditor extends EditorBase {
     group!: EditorGroup;
@@ -45,7 +47,9 @@ export class ParticlesOptionsEditor extends EditorBase {
         this.addShape();
         this.addSize();
         this.addStroke();
+        this.addTilt();
         this.addTwinkle();
+        this.addWobble();
         this.addProperties();
     }
 
@@ -133,8 +137,20 @@ export class ParticlesOptionsEditor extends EditorBase {
         options.addToGroup(this.group);
     }
 
+    private addTilt(): void {
+        const options = new TiltOptionsEditor(this.particles);
+
+        options.addToGroup(this.group);
+    }
+
     private addTwinkle(): void {
         const options = new TwinkleOptionsEditor(this.particles);
+
+        options.addToGroup(this.group);
+    }
+
+    private addWobble(): void {
+        const options = new WobbleOptionsEditor(this.particles);
 
         options.addToGroup(this.group);
     }

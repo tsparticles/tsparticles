@@ -98,39 +98,39 @@ export class MoveOptionsEditor extends EditorBase {
         ];
 
         group
-            .addProperty("bottom", "Bottom", EditorType.select)
-            .change(async () => {
-                await particles.refresh();
-            })
-            .addItems(outModesValues);
+        .addProperty("bottom", "Bottom", EditorType.select)
+        .change(async () => {
+            await particles.refresh();
+        })
+        .addItems(outModesValues);
 
         group
-            .addProperty("default", "Default", EditorType.select)
-            .change(async () => {
-                await particles.refresh();
-            })
-            .addItems(outModesValues);
+        .addProperty("default", "Default", EditorType.select)
+        .change(async () => {
+            await particles.refresh();
+        })
+        .addItems(outModesValues);
 
         group
-            .addProperty("left", "Left", EditorType.select)
-            .change(async () => {
-                await particles.refresh();
-            })
-            .addItems(outModesValues);
+        .addProperty("left", "Left", EditorType.select)
+        .change(async () => {
+            await particles.refresh();
+        })
+        .addItems(outModesValues);
 
         group
-            .addProperty("right", "Right", EditorType.select)
-            .change(async () => {
-                await particles.refresh();
-            })
-            .addItems(outModesValues);
+        .addProperty("right", "Right", EditorType.select)
+        .change(async () => {
+            await particles.refresh();
+        })
+        .addItems(outModesValues);
 
         group
-            .addProperty("top", "Top", EditorType.select)
-            .change(async () => {
-                await particles.refresh();
-            })
-            .addItems(outModesValues);
+        .addProperty("top", "Top", EditorType.select)
+        .change(async () => {
+            await particles.refresh();
+        })
+        .addItems(outModesValues);
     }
 
     private addPath(): void {
@@ -207,39 +207,43 @@ export class MoveOptionsEditor extends EditorBase {
         });
 
         group
-            .addProperty("direction", "Direction", EditorType.select)
-            .change(async () => {
-                await particles.refresh();
-            })
-            .addItems([
-                {
-                    value: MoveDirection.bottom,
-                },
-                {
-                    value: MoveDirection.bottomLeft,
-                },
-                {
-                    value: MoveDirection.bottomRight,
-                },
-                {
-                    value: MoveDirection.left,
-                },
-                {
-                    value: MoveDirection.none,
-                },
-                {
-                    value: MoveDirection.right,
-                },
-                {
-                    value: MoveDirection.top,
-                },
-                {
-                    value: MoveDirection.topLeft,
-                },
-                {
-                    value: MoveDirection.topRight,
-                },
-            ]);
+        .addProperty("direction", "Direction", EditorType.select)
+        .change(async () => {
+            await particles.refresh();
+        })
+        .addItems([
+            {
+                value: MoveDirection.bottom,
+            },
+            {
+                value: MoveDirection.bottomLeft,
+            },
+            {
+                value: MoveDirection.bottomRight,
+            },
+            {
+                value: MoveDirection.left,
+            },
+            {
+                value: MoveDirection.none,
+            },
+            {
+                value: MoveDirection.right,
+            },
+            {
+                value: MoveDirection.top,
+            },
+            {
+                value: MoveDirection.topLeft,
+            },
+            {
+                value: MoveDirection.topRight,
+            },
+        ]);
+
+        group.addProperty("drift", "Drift", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
 
         group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();
