@@ -1,9 +1,8 @@
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
 import { NumberUtils, Utils } from "../../Utils";
-import { AnimationStatus, DestroyType, OutMode, OutModeAlt } from "../../Enums";
+import { AnimationStatus, DestroyType, OutMode, OutModeDirection, OutModeAlt } from "../../Enums";
 import type { IDelta } from "../Interfaces/IDelta";
-import { OutModeDirection } from "../../Enums/Directions/OutModeDirection";
 import { IBounds } from "../Interfaces/IBounds";
 import { IDimension } from "../Interfaces/IDimension";
 import { ICoordinates } from "../Interfaces/ICoordinates";
@@ -149,6 +148,9 @@ export class Updater {
 
         /* change rotation */
         this.updateAngle(delta);
+
+        /* change tilt */
+        this.updateTilt(delta);
 
         /* change wobble */
         this.updateWobble(delta);
@@ -316,6 +318,34 @@ export class Updater {
 
                     if (particle.rotate.value < 0) {
                         particle.rotate.value += max;
+                    }
+                    break;
+            }
+        }
+    }
+
+    private updateTilt(delta: IDelta): void {
+        const particle = this.particle;
+        const tilt = particle.options.tilt;
+        const tiltAnimation = tilt.animation;
+        const speed = (particle.tilt.velocity ?? 0) * delta.factor;
+        const max = 2 * Math.PI;
+
+        if (tiltAnimation.enable) {
+            switch (particle.tilt.status) {
+                case AnimationStatus.increasing:
+                    particle.tilt.value += speed;
+
+                    if (particle.tilt.value > max) {
+                        particle.tilt.value -= max;
+                    }
+                    break;
+                case AnimationStatus.decreasing:
+                default:
+                    particle.tilt.value -= speed;
+
+                    if (particle.tilt.value < 0) {
+                        particle.tilt.value += max;
                     }
                     break;
             }

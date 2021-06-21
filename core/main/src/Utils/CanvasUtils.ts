@@ -343,11 +343,11 @@ export class CanvasUtils {
         shadow: IShadow
     ): void {
         const pos = particle.getPosition();
-        const wobbleOptions = particle.options.wobble;
+        const tiltOptions = particle.options.tilt;
 
         context.save();
-        if (wobbleOptions.enable) {
-            context.transform(1, Math.cos(particle.wobbleAngle), Math.sin(particle.wobbleAngle), 1, pos.x, pos.y);
+        if (tiltOptions.enable) {
+            context.transform(1, Math.cos(particle.tilt.value), Math.sin(particle.tilt.value), 1, pos.x, pos.y);
         } else {
             context.translate(pos.x, pos.y);
         }
@@ -401,8 +401,8 @@ export class CanvasUtils {
         context.restore();
 
         context.save();
-        if (wobbleOptions.enable) {
-            context.transform(1, Math.cos(particle.wobbleAngle), Math.sin(particle.wobbleAngle), 1, pos.x, pos.y);
+        if (tiltOptions.enable) {
+            context.transform(1, Math.cos(particle.tilt.value), Math.sin(particle.tilt.value), 1, pos.x, pos.y);
         } else {
             context.translate(pos.x, pos.y);
         }

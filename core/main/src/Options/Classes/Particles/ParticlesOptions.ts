@@ -17,6 +17,7 @@ import { Life } from "./Life/Life";
 import { Bounce } from "./Bounce/Bounce";
 import { Destroy } from "./Destroy/Destroy";
 import { Wobble } from "./Wobble/Wobble";
+import { Tilt } from "./Tilt/Tilt";
 
 /**
  * [[include:Options/Particles.md]]
@@ -38,6 +39,7 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
     size;
     shadow;
     stroke: SingleOrMultiple<Stroke>;
+    tilt;
     twinkle;
     wobble;
 
@@ -91,6 +93,7 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
         this.shape = new Shape();
         this.size = new Size();
         this.stroke = new Stroke();
+        this.tilt = new Tilt();
         this.twinkle = new Twinkle();
         this.wobble = new Wobble();
     }
@@ -124,6 +127,7 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
         this.shape.load(data.shape);
         this.size.load(data.size);
         this.shadow.load(data.shadow);
+        this.tilt.load(data.tilt);
         this.twinkle.load(data.twinkle);
         this.wobble.load(data.wobble);
 

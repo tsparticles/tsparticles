@@ -15,6 +15,7 @@ import type { ILife } from "./Life/ILife";
 import type { IBounce } from "./Bounce/IBounce";
 import type { IDestroy } from "./Destroy/IDestroy";
 import type { IWobble } from "./Wobble/IWobble";
+import { ITilt } from "./Tilt/ITilt";
 
 /**
  * [[include:Options/Particles.md]]
@@ -46,6 +47,7 @@ export interface IParticles {
     shape: IShape;
     size: ISize;
     stroke: SingleOrMultiple<IStroke>;
+    tilt: ITilt;
     twinkle: ITwinkle;
     wobble: IWobble;
 }

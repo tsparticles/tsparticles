@@ -10,7 +10,15 @@ import type { IParticle } from "./Interfaces/IParticle";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
-import { AnimationStatus, DestroyMode, OutMode, RotateDirection, ShapeType, StartValueType } from "../Enums";
+import {
+    AnimationStatus,
+    DestroyMode,
+    OutMode,
+    RotateDirection,
+    ShapeType,
+    StartValueType,
+    TiltDirection,
+} from "../Enums";
 import { ImageDrawer } from "../ShapeDrawers/ImageDrawer";
 import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
 import type { RecursivePartial } from "../Types";
@@ -75,6 +83,7 @@ export class Particle implements IParticle {
     readonly opacity: IParticleValueAnimation<number>;
     readonly rotate: IParticleValueAnimation<number>;
     readonly size: IParticleValueAnimation<number>;
+    readonly tilt: IParticleValueAnimation<number>;
     readonly strokeColor?: IParticleHslAnimation;
     readonly velocity: Vector;
     readonly shape: ShapeType | string;
@@ -227,6 +236,40 @@ export class Particle implements IParticle {
 
             if (!rotateAnimation.sync) {
                 this.rotate.velocity *= Math.random();
+            }
+        }
+
+        const tiltOptions = this.options.tilt;
+
+        this.tilt = {
+            value: (NumberUtils.getRangeValue(tiltOptions.value) * Math.PI) / 180,
+        };
+
+        let tiltDirection = tiltOptions.direction;
+
+        if (tiltDirection === TiltDirection.random) {
+            const index = Math.floor(Math.random() * 2);
+
+            tiltDirection = index > 0 ? TiltDirection.counterClockwise : TiltDirection.clockwise;
+        }
+
+        switch (tiltDirection) {
+            case TiltDirection.counterClockwise:
+            case "counterClockwise":
+                this.tilt.status = AnimationStatus.decreasing;
+                break;
+            case TiltDirection.clockwise:
+                this.tilt.status = AnimationStatus.increasing;
+                break;
+        }
+
+        const tiltAnimation = this.options.tilt.animation;
+
+        if (tiltAnimation.enable) {
+            this.tilt.velocity = (tiltAnimation.speed / 360) * container.retina.reduceFactor;
+
+            if (!tiltAnimation.sync) {
+                this.tilt.velocity *= Math.random();
             }
         }
 

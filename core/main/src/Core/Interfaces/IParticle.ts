@@ -35,6 +35,7 @@ export interface IParticle {
     readonly opacity: IParticleValueAnimation<number>;
     readonly rotate: IParticleValueAnimation<number>;
     readonly size: IParticleValueAnimation<number>;
+    readonly tilt: IParticleValueAnimation<number>;
     readonly strokeColor?: IParticleHslAnimation;
     readonly options: IParticles;
     readonly position: Vector;
