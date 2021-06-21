@@ -5310,9 +5310,9 @@ neo-async@^2.6.2:
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
 ng-packagr@~12.0.5:
-  version "12.0.5"
-  resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-12.0.5.tgz#d3dc2990a6bfa9e331c98aabdb53bc6876fce362"
-  integrity sha512-J95I45/rXgJQ0Z5neuFuGZn6PWnV1zTnaNAwloDpoU+ko8niqHL2KOaoFH0mp+a/XfxLOM1qfo0fOzrFPuqb3A==
+  version "12.0.6"
+  resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-12.0.6.tgz#f2e790a398d159ddce9199dd0acf35a78222857c"
+  integrity sha512-+EITs+See8qCDJQcX+HArC3gQvPzX5Y8/m9CWe8WdJz7kmM0LTZjw7UgKWn98+8tM5bsFRTH89qCs53XDEC6TQ==
   dependencies:
     "@rollup/plugin-commonjs" "^19.0.0"
     "@rollup/plugin-json" "^4.1.0"
