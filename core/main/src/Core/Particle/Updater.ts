@@ -356,6 +356,7 @@ export class Updater {
         const particle = this.particle;
         const wobble = particle.options.wobble;
         const speed = particle.wobbleSpeed * delta.factor;
+        const distance = (particle.wobbleDistance * delta.factor) / (1000 / 60);
         const max = 2 * Math.PI;
 
         if (wobble.enable) {
@@ -364,6 +365,9 @@ export class Updater {
             if (particle.wobbleAngle > max) {
                 particle.wobbleAngle -= max;
             }
+
+            particle.position.x += distance * Math.cos(particle.wobbleAngle);
+            particle.position.y += distance * Math.abs(Math.sin(particle.wobbleAngle));
         }
     }
 

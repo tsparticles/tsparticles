@@ -51,6 +51,7 @@ export class Particle implements IParticle {
     splitCount;
     unbreakable;
     wobbleAngle;
+    wobbleDistance;
     wobbleSpeed;
 
     readonly pathDelay;
@@ -181,6 +182,8 @@ export class Particle implements IParticle {
             this.wobbleAngle = 0;
             this.wobbleSpeed = 0;
         }
+
+        this.wobbleDistance = 0;
 
         container.retina.initParticle(this);
 

@@ -8,56 +8,49 @@
     "enable": false,
     "zIndex": -1
   },
-  "interactivity": {
-    "detectsOn": "canvas",
-    "events": {
-      "onClick": {
-        "enable": true,
-        "mode": "push"
-      },
-      "resize": true
-    },
-    "modes": {
-      "push": {
-        "quantity": 4
-      }
-    }
-  },
   "particles": {
     "color": {
-      "value": "#ff0000"
+      "value": [
+        "#1E00FF",
+        "#FF0061",
+        "#E1FF00",
+        "#00FF9E"
+      ]
     },
     "move": {
       "decay": 0.1,
       "distance": 0,
       "direction": "top",
-      "drift": {
-        "min": -2,
-        "max": 2
-      },
       "enable": true,
       "gravity": {
         "acceleration": 9.81,
         "enable": true,
-        "inverse": false,
-        "maxSpeed": 50
+        "maxSpeed": 200
       },
       "outModes": {
-        "default": "out"
+        "top": "none",
+        "default": "destroy"
       },
-      "speed": 30
+      "speed": {
+        "min": 50,
+        "max": 150
+      }
     },
     "number": {
-      "density": {
-        "enable": true,
-        "area": 800,
-        "factor": 1000
-      },
-      "limit": 0,
-      "value": 80
+      "value": 0
     },
     "opacity": {
-      "value": 0.5
+      "value": {
+        "min": 0.1,
+        "max": 1
+      },
+      "animation": {
+        "enable": true,
+        "startValue": "max",
+        "destroy": "min",
+        "speed": 0.3,
+        "sync": true
+      }
     },
     "rotate": {
       "value": 0,
@@ -80,7 +73,10 @@
       "type": [
         "circle",
         "square",
-        "polygon"
+        "polygon",
+        "character",
+        "character",
+        "character"
       ],
       "options": {
         "polygon": [
@@ -90,6 +86,20 @@
           {
             "sides": 6
           }
+        ],
+        "character": [
+          {
+            "fill": true,
+            "font": "Verdana",
+            "value": [
+              "💩",
+              "🤡",
+              "🍀",
+              "🍙"
+            ],
+            "style": "",
+            "weight": 400
+          }
         ]
       }
     },
@@ -97,8 +107,26 @@
       "value": 5
     },
     "wobble": {
+      "distance": {
+        "min": -30,
+        "max": 30
+      },
       "enable": true,
-      "speed": 50
+      "speed": 15
+    }
+  },
+  "emitters": {
+    "position": {
+      "x": 50,
+      "y": 100
+    },
+    "size": {
+      "width": 0,
+      "height": 0
+    },
+    "rate": {
+      "quantity": 10,
+      "delay": 0.1
     }
   }
 }
