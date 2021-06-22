@@ -10,7 +10,7 @@ import { ISourceOptions } from "tsparticles";
 
 type IParticlesParams = IParticlesProps
 
-export * from "tsparticles/dist/Enums";
+export * from "tsparticles";
 
 export { ISourceOptions, IParticlesProps, ParticlesProps, IParticlesParams };
 

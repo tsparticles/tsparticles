@@ -661,19 +661,15 @@ export class Particle implements IParticle {
         const radOffset = (Math.PI / 180) * moveOptions.angle.offset;
 
         const range = {
-            //left: Math.sin(radOffset + rad / 2) - Math.sin(radOffset - rad / 2),
-            //right: Math.cos(radOffset + rad / 2) - Math.cos(radOffset - rad / 2),
             left: radOffset - rad / 2,
             right: radOffset + rad / 2,
         };
 
         if (!moveOptions.straight) {
-            //res.x += NumberUtils.randomInRange(NumberUtils.setRangeValue(range.left, range.right)) / 2;
-            //res.y += NumberUtils.randomInRange(NumberUtils.setRangeValue(range.left, range.right)) / 2;
             res.angle += NumberUtils.randomInRange(NumberUtils.setRangeValue(range.left, range.right));
         }
 
-        if (moveOptions.random) {
+        if (moveOptions.random && typeof moveOptions.speed === "number") {
             res.length *= Math.random();
         }
 

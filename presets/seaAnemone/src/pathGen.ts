@@ -1,5 +1,5 @@
 import { IParticle, Vector } from "tsparticles";
-import type { IMovePathGenerator } from "tsparticles/dist/Core/Interfaces/IMovePathGenerator";
+import type { IMovePathGenerator } from "tsparticles/Core/Interfaces/IMovePathGenerator";
 
 type SeaPathParticle = IParticle & {
     pathGen?: () => number;

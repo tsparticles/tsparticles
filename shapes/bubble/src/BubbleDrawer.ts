@@ -1,4 +1,4 @@
-import type { IShapeDrawer } from "tsparticles/dist/Core/Interfaces/IShapeDrawer";
+import type { IShapeDrawer } from "tsparticles/Core/Interfaces/IShapeDrawer";
 import type { IParticle } from "tsparticles";
 
 export class BubbleDrawer implements IShapeDrawer {
