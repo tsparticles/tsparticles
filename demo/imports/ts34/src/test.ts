@@ -1,6 +1,6 @@
 import { tsParticles } from "tsparticles";
-//import { ClickMode } from "tsparticles/Enums";
+import { ClickMode } from "tsparticles/Enums";
 
-//const cm = ClickMode.attract;
+console.log(ClickMode.attract);
 
 tsParticles.init();
