@@ -2,4 +2,4 @@ import { tsParticles } from "tsparticles";
 
 tsParticles.init();
 
-//export * from "tsparticles/Enums";
+export * from "tsparticles/Enums";
