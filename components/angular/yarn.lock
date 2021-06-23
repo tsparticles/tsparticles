@@ -5310,9 +5310,9 @@ neo-async@^2.6.2:
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
 ng-packagr@~12.0.5:
-  version "12.0.6"
-  resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-12.0.6.tgz#f2e790a398d159ddce9199dd0acf35a78222857c"
-  integrity sha512-+EITs+See8qCDJQcX+HArC3gQvPzX5Y8/m9CWe8WdJz7kmM0LTZjw7UgKWn98+8tM5bsFRTH89qCs53XDEC6TQ==
+  version "12.0.8"
+  resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-12.0.8.tgz#5ce1b1b43307571060b75c9b4140634b49d5791d"
+  integrity sha512-tGT8mJ0rU1UbIkVa+tgPgQDNZHkWJyTP6H6WEElpH0FeAI+Li3CCWqbS0jtrci3SdGm0tOKbQWY5fAuD/C2Sog==
   dependencies:
     "@rollup/plugin-commonjs" "^19.0.0"
     "@rollup/plugin-json" "^4.1.0"
@@ -7796,10 +7796,10 @@ tslint@~6.1.3:
     tslib "^1.13.0"
     tsutils "^2.29.0"
 
-tsparticles@^1.29.0:
-  version "1.29.0"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.29.0.tgz#d11140f8b323ce1fb368a5b3b9a0bd1066dde1ff"
-  integrity sha512-LhW6KTZfUoJ6yzi0T/cCE4arhMwrdikYVn3xx7T5NE/60DzMFCQFUc41oMO419syAFTbPJRnsfiYdkXK/gayUQ==
+tsparticles@^1.29.2:
+  version "1.29.2"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.29.2.tgz#cec1847001578bb79b0fa06c26557e98c37a0fc5"
+  integrity sha512-/oo9B9n0A8jd0uGGlYyhzcwQyoiX5Z4X3TFBzt98B8OxEen5vogLvyD7kCswFQDfiZXvcx8lgoLtJXm96flQ5w==
   optionalDependencies:
     pathseg "^1.2.0"
 
