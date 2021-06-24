@@ -1,12 +1,9 @@
 import type { Main, RecursivePartial } from "tsparticles";
-import { loadConfettiShape } from "tsparticles-shape-confetti";
 import { IConfettiOptions } from "./IConfettiOptions";
 import { tsParticles } from "tsparticles";
 import { loadOptions } from "./options";
 
 function loadPreset(main: Main, confettiOptions: RecursivePartial<IConfettiOptions>, override = false): void {
-    loadConfettiShape(main);
-
     main.addPreset("confetti", loadOptions(confettiOptions), override);
 }
 

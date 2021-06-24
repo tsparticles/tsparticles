@@ -72,7 +72,6 @@
     "webpack-cli": "^4.7.2"
   },
   "dependencies": {
-    "tsparticles": "^1.29.2",
-    "tsparticles-shape-confetti": "^1.14.2"
+    "tsparticles": "^1.29.2"
   }
 }

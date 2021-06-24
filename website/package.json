@@ -30,7 +30,6 @@
     "sass": "^1.35.1",
     "tsparticles": "^1.29.2",
     "tsparticles-editor": "^1.29.2",
-    "tsparticles-preset-basic": "^1.12.0",
-    "tsparticles-shape-confetti": "^1.14.2"
+    "tsparticles-preset-links": "^1.14.2"
   }
 }
