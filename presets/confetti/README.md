@@ -22,7 +22,6 @@ Once added the script you need one more script to be included in your page (or y
 from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-confetti):
 
 ```html
-
 <script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-confetti"></script>
 ```
@@ -34,7 +33,6 @@ This script **MUST** be placed after the `tsParticles` one.
 A bundled script can also be used, this will include every needed plugin needed by the preset.
 
 ```html
-
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-confetti/dist/tsparticles.preset.confetti.bundle.min.js"></script>
 ```
 
@@ -46,7 +44,7 @@ Once the scripts are loaded you can set up `tsParticles` like this:
 loadConfettiPreset(tsParticles);
 
 tsParticles.load("tsparticles", {
-    preset: "confetti",
+  preset: "confetti",
 });
 ```
 
@@ -56,35 +54,35 @@ This module exports another method for using the confetti preset
 
 ```javascript
 confetti("tsparticles", {
-    /**
-     * @deprecated use count property instead
-     */
-    particleCount: 50,
-    /**
-     * @deprecated use position property instead
-     */
-    origin: {
-        x: 50,
-        y: 50,
-    },
-    //------------------------------------------
-    angle: 90,
-    count: 50,
-    position: {
-        x: 50,
-        y: 50,
-    },
-    spread: 45,
-    startVelocity: 45,
-    decay: 0.9,
-    gravity: 1,
-    drift: 0,
-    ticks: 200,
-    colors: ["#ffffff", "#ff0000"],
-    shapes: ["square", "circle"],
-    scalar: 1,
-    zIndex: 100,
-    disableForReducedMotion: true,
+  /**
+   * @deprecated use count property instead
+   */
+  particleCount: 50,
+  /**
+   * @deprecated use position property instead
+   */
+  origin: {
+    x: 50,
+    y: 50,
+  },
+  //------------------------------------------
+  angle: 90,
+  count: 50,
+  position: {
+    x: 50,
+    y: 50,
+  },
+  spread: 45,
+  startVelocity: 45,
+  decay: 0.9,
+  gravity: 1,
+  drift: 0,
+  ticks: 200,
+  colors: ["#ffffff", "#ff0000"],
+  shapes: ["square", "circle"],
+  scalar: 1,
+  zIndex: 100,
+  disableForReducedMotion: true,
 });
 ```
 
@@ -111,10 +109,10 @@ which has the following properties:
   confetti disappear too quickly for you.
 - `position` _Object_: Where to start firing confetti from. Feel free to launch off-screen if you'd like. (`origin` can
   be used too, but it's deprecated)
-    - `position.x` _Number (default: 0.5)_: The `x` position on the page, with `0` being the left edge and `1` being the
-      right edge.
-    - `position.y` _Number (default: 0.5)_: The `y` position on the page, with `0` being the top edge and `1` being the
-      bottom edge.
+  - `position.x` _Number (default: 0.5)_: The `x` position on the page, with `0` being the left edge and `1` being the
+    right edge.
+  - `position.y` _Number (default: 0.5)_: The `y` position on the page, with `0` being the top edge and `1` being the
+    bottom edge.
 - `colors` _Array&lt;String&gt;_: An array of color strings, in the HEX format... you know, like `#bada55`.
 - `shapes` _Array&lt;String&gt;_: An array of shapes for the confetti. The possible values are `square` and `circle`.
   The default is to use both shapes in an even mix. You can even change the mix by providing a value such
@@ -134,12 +132,12 @@ only with the classic `loadConfettiPreset` method, the `confetti` function has i
 
 ```javascript
 tsParticles.load("tsparticles", {
-    particles: {
-        color: {
-            value: ["#0000ff", "#00ff00"],
-        },
+  particles: {
+    color: {
+      value: ["#0000ff", "#00ff00"],
     },
-    preset: "confetti",
+  },
+  preset: "confetti",
 });
 ```
 
@@ -153,23 +151,23 @@ This sample uses the class component syntax, but you can use hooks as well (if t
 
 ```javascript
 import Particles from "react-tsparticles";
-import {Main} from "tsparticles";
-import {loadConfettiPreset} from "tsparticles-preset-confetti";
+import { Main } from "tsparticles";
+import { loadConfettiPreset } from "tsparticles-preset-confetti";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
-    // this customizes the component tsParticles installation
-    customInit(main: Main) {
-        // this adds the preset to tsParticles, you can safely use the
-        loadConfettiPreset(main);
-    }
+  // this customizes the component tsParticles installation
+  customInit(main: Main) {
+    // this adds the preset to tsParticles, you can safely use the
+    loadConfettiPreset(main);
+  }
 
-    render() {
-        const options = {
-            preset: "confetti",
-        };
+  render() {
+    const options = {
+      preset: "confetti",
+    };
 
-        return <Particles options={options} init={this.customInit}/>;
-    }
+    return <Particles options={options} init={this.customInit} />;
+  }
 }
 ```
 
@@ -178,31 +176,29 @@ export class ParticlesContainer extends React.PureComponent<IProps> {
 _The syntax for `Vue.js 2.x` and `3.x` is the same_
 
 ```vue
-
-<Particles id="tsparticles" :particlesInit="particlesInit" url="http://foo.bar/particles.json"/>
+<Particles id="tsparticles" :particlesInit="particlesInit" url="http://foo.bar/particles.json" />
 ```
 
 ```js
 function particlesInit(main: Main) {
-    loadConfettiPreset(main);
+  loadConfettiPreset(main);
 }
 ```
 
 ### Angular
 
 ```html
-
 <ng-particles
-        [id]="id"
-        [options]="particlesOptions"
-        (particlesLoaded)="particlesLoaded($event)"
-        (particlesInit)="particlesInit($event)"
+  [id]="id"
+  [options]="particlesOptions"
+  (particlesLoaded)="particlesLoaded($event)"
+  (particlesInit)="particlesInit($event)"
 ></ng-particles>
 ```
 
 ```ts
 function particlesInit(main: Main): void {
-    loadConfettiPreset(main);
+  loadConfettiPreset(main);
 }
 ```
 
@@ -219,6 +215,6 @@ function particlesInit(main: Main): void {
 
 ```js
 let onParticlesInit = (main) => {
-    loadConfettiPreset(main);
+  loadConfettiPreset(main);
 };
 ```

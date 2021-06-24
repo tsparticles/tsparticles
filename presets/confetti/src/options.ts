@@ -71,7 +71,10 @@ export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>)
                 },
             },
             rotate: {
-                value: 0,
+                value: {
+                    min: 0,
+                    max: 360,
+                },
                 direction: "random",
                 animation: {
                     enable: true,
@@ -81,7 +84,10 @@ export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>)
             tilt: {
                 direction: "random",
                 enable: true,
-                value: 0,
+                value: {
+                    min: 0,
+                    max: 360,
+                },
                 animation: {
                     enable: true,
                     speed: 60,

@@ -18,7 +18,7 @@ app.use("/jsoneditor", express.static("./node_modules/jsoneditor/dist"));
 app.use("/jquery", express.static("./node_modules/jquery/dist"));
 app.use("/popper.js", express.static("./node_modules/popper.js/dist"));
 app.use("/bootstrap", express.static("./node_modules/bootstrap/dist"));
-app.use("/tsparticles", express.static("./node_modules/tsparticles/dist"));
+app.use("/tsparticles", express.static("./node_modules/tsparticles"));
 app.use("/preset-big-circles", express.static("./node_modules/tsparticles-preset-big-circles/dist"));
 app.use("/preset-bubbles", express.static("./node_modules/tsparticles-preset-bubbles/dist"));
 app.use("/preset-confetti", express.static("./node_modules/tsparticles-preset-confetti/dist"));
