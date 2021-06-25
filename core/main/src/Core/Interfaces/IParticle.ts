@@ -2,7 +2,7 @@ import type { IStroke } from "../../Options/Interfaces/Particles/IStroke";
 import type { ICoordinates } from "./ICoordinates";
 import type { ShapeType } from "../../Enums";
 import type { IParticleImage } from "./IParticleImage";
-import type { IParticleValueAnimation } from "./IParticleValueAnimation";
+import type { IParticleTiltValueAnimation, IParticleValueAnimation } from "./IParticleValueAnimation";
 import type { IShapeValues } from "./IShapeValues";
 import type { IBubbleParticleData } from "./IBubbleParticleData";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
@@ -35,7 +35,7 @@ export interface IParticle {
     readonly opacity: IParticleValueAnimation<number>;
     readonly rotate: IParticleValueAnimation<number>;
     readonly size: IParticleValueAnimation<number>;
-    readonly tilt: IParticleValueAnimation<number>;
+    readonly tilt: IParticleTiltValueAnimation;
     readonly strokeColor?: IParticleHslAnimation;
     readonly options: IParticles;
     readonly position: Vector;

@@ -1,5 +1,5 @@
 import type { Container } from "./Container";
-import type { IParticleValueAnimation } from "./Interfaces/IParticleValueAnimation";
+import type { IParticleTiltValueAnimation, IParticleValueAnimation } from "./Interfaces/IParticleValueAnimation";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IParticleImage } from "./Interfaces/IParticleImage";
 import { Updater } from "./Particle/Updater";
@@ -84,7 +84,7 @@ export class Particle implements IParticle {
     readonly opacity: IParticleValueAnimation<number>;
     readonly rotate: IParticleValueAnimation<number>;
     readonly size: IParticleValueAnimation<number>;
-    readonly tilt: IParticleValueAnimation<number>;
+    readonly tilt: IParticleTiltValueAnimation;
     readonly strokeColor?: IParticleHslAnimation;
     readonly velocity: Vector;
     readonly shape: ShapeType | string;
@@ -246,6 +246,8 @@ export class Particle implements IParticle {
 
         this.tilt = {
             value: (NumberUtils.getRangeValue(tiltOptions.value) * Math.PI) / 180,
+            sinDirection: Math.random() >= 0.5 ? 1 : -1,
+            cosDirection: Math.random() >= 0.5 ? 1 : -1,
         };
 
         let tiltDirection = tiltOptions.direction;
