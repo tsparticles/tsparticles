@@ -54,7 +54,7 @@
     "directory": "projects/ng-particles/dist/ng-particles"
   },
   "dependencies": {
-    "@angular/animations": "~12.0.5",
+    "@angular/animations": "~12.1.0",
     "@angular/common": "~12.1.0",
     "@angular/compiler": "~12.0.5",
     "@angular/core": "~12.0.5",
