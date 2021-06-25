@@ -225,12 +225,12 @@
   resolved "https://registry.yarnpkg.com/@angular/core/-/core-9.0.0.tgz#227dc53e1ac81824f998c6e76000b7efc522641e"
   integrity sha512-6Pxgsrf0qF9iFFqmIcWmjJGkkCaCm6V5QNnxMy2KloO3SDq6QuMVRbN9RtC8Urmo25LP+eZ6ZgYqFYpdD8Hd9w==
 
-"@angular/core@~12.0.5":
-  version "12.0.5"
-  resolved "https://registry.yarnpkg.com/@angular/core/-/core-12.0.5.tgz#a91751a13f575fd893abbdee257f60d0747038e7"
-  integrity sha512-uVYsZa1VqVw8vNcjUYgfjXBc1M3WaxLXoLnCsDvutJiln4csa8Yw8p7RqQSrZ6AgQ8o2LHD2JJ5kus3EDMwfcA==
+"@angular/core@~12.1.0":
+  version "12.1.0"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-12.1.0.tgz#72b39238aa2cefe4ba41f2ae43c1e75bf8062566"
+  integrity sha512-awrCla6j4U0CU86q8nwR49GiULo3XhMcgooPgRBMjN1aHTDXKacSC9hk2nXkipC9VjuhybUVswuW4/et6d4RZQ==
   dependencies:
-    tslib "^2.1.0"
+    tslib "^2.2.0"
 
 "@angular/forms@~12.1.0":
   version "12.1.0"
