@@ -1,6 +1,6 @@
 {
   "name": "react-particles-js",
-  "version": "3.4.1",
+  "version": "3.5.0-beta1",
   "description": "Reactified particles.js",
   "main": "index.js",
   "unpkg": "umd/particles.js",
