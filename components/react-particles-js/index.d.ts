@@ -6,15 +6,14 @@
 /// <reference types="react" />
 import { ComponentClass } from "react";
 import { Container } from "tsparticles/dist/Core/Container";
-import { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
-import { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
-import { IPolygonMaskOptions } from "tsparticles/dist/Plugins/PolygonMask/PolygonMaskPlugin";
-import { IAbsorberOptions } from "tsparticles/dist/Plugins/Absorbers/AbsorbersPlugin";
-import { IEmitterOptions } from "tsparticles/dist/Plugins/Emitters/EmittersPlugin";
+import { ISourceOptions } from "tsparticles";
 
-export type IParticlesParams = RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions>;
+export type IParticlesParams = ISourceOptions;
 
 export * from 'tsparticles/dist/Enums';
+export * from "tsparticles/dist/Plugins/Absorbers/Enums";
+export * from "tsparticles/dist/Plugins/Emitters/Enums";
+export * from "tsparticles/dist/Plugins/PolygonMask/Enums";
 
 export interface ParticlesProps {
     width?: string;

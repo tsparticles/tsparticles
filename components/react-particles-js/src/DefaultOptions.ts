@@ -1,16 +1,6 @@
-import { RecursivePartial } from "tsparticles/dist/Types/RecursivePartial";
-import { ClickMode, HoverMode, InteractivityDetect, MoveDirection, OutMode, ShapeType } from "tsparticles/dist/Enums";
-import type { IOptions } from "tsparticles/dist/Options/Interfaces/IOptions";
-import {
-    InlineArrangement as PolygonMaskInlineArrangement,
-    IPolygonMaskOptions,
-    MoveType as PolygonMaskMoveType,
-    Type as PolygonMaskType
-} from "tsparticles/dist/Plugins/PolygonMask/PolygonMaskPlugin";
-import { IAbsorberOptions } from "tsparticles/dist/Plugins/Absorbers/AbsorbersPlugin";
-import { IEmitterOptions } from "tsparticles/dist/Plugins/Emitters/EmittersPlugin";
+import { ClickMode, HoverMode, InteractivityDetect, MoveDirection, OutMode, ShapeType, ISourceOptions, Type as PolygonMaskType, MoveType as PolygonMaskMoveType, InlineArrangement as PolygonMaskInlineArrangement } from "tsparticles";
 
-export const defaultParams: RecursivePartial<IOptions & IPolygonMaskOptions & IAbsorberOptions & IEmitterOptions> = {
+export const defaultParams: ISourceOptions = {
     particles: {
         number: {
             value: 40,
