@@ -1,4 +1,5 @@
-import { ClickMode, HoverMode, InteractivityDetect, MoveDirection, OutMode, ShapeType, ISourceOptions, Type as PolygonMaskType, MoveType as PolygonMaskMoveType, InlineArrangement as PolygonMaskInlineArrangement } from "tsparticles";
+import { ClickMode, HoverMode, InteractivityDetect, MoveDirection, OutMode, ShapeType, ISourceOptions, MoveType as PolygonMaskMoveType } from "tsparticles";
+import { InlineArrangement as PolygonMaskInlineArrangement, Type as PolygonMaskType } from 'tsparticles/dist/Plugins/PolygonMask/Enums';
 
 export const defaultParams: ISourceOptions = {
     particles: {
