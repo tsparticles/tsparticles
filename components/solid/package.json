@@ -82,7 +82,7 @@
 		"@typescript-eslint/eslint-plugin": "^4.27.0",
 		"@typescript-eslint/parser": "^4.27.0",
 		"babel-loader": "^8.2.2",
-		"babel-preset-solid": "^0.26.5",
+		"babel-preset-solid": "^1.0.0",
 		"clean-webpack-plugin": "^3.0.0",
 		"css-loader": "^5.2.6",
 		"eslint": "^7.28.0",
