@@ -93,6 +93,13 @@ export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>)
                     speed: 60,
                 },
             },
+            roll: {
+                enable: true,
+                speed: {
+                    min: 15,
+                    max: 25,
+                },
+            },
             wobble: {
                 distance: 30,
                 enable: true,
