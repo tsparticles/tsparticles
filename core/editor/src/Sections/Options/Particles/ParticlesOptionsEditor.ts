@@ -20,6 +20,7 @@ import { EditorType } from "object-gui";
 import { DestroyOptionsEditor } from "./Destroy/DestroyOptionsEditor";
 import { TiltOptionsEditor } from "./Tilt/TiltOptionsEditor";
 import { WobbleOptionsEditor } from "./Wobble/WobbleOptionsEditor";
+import { RollOptionsEditor } from "./Roll/RollOptionsEditor";
 
 export class ParticlesOptionsEditor extends EditorBase {
     group!: EditorGroup;
@@ -42,6 +43,7 @@ export class ParticlesOptionsEditor extends EditorBase {
         this.addMove();
         this.addNumber();
         this.addOpacity();
+        this.addRoll();
         this.addRotate();
         this.addShadow();
         this.addShape();
@@ -103,6 +105,12 @@ export class ParticlesOptionsEditor extends EditorBase {
 
     private addOpacity(): void {
         const options = new OpacityOptionsEditor(this.particles);
+
+        options.addToGroup(this.group);
+    }
+
+    private addRoll(): void {
+        const options = new RollOptionsEditor(this.particles);
 
         options.addToGroup(this.group);
     }
