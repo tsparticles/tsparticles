@@ -3,13 +3,12 @@ import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { RecursivePartial } from "../Types";
 import { Constants, Utils } from "../Utils";
 import type { Particle } from "./Particle";
-import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { SingleOrMultiple } from "../Types";
 
 const tsParticlesDom: Container[] = [];
 
 function fetchError(statusCode: number): void {
-    console.error(`Error tsParticles - fetch status: ${statusCode}`);
+    console.error(`Error tsParticles - fetch status: ${ statusCode }`);
     console.error("Error tsParticles - File config not found");
 }
 
@@ -52,10 +51,14 @@ export class Loader {
         index?: number
     ): Promise<Container | undefined> {
         /* elements */
-        const domContainer = document.getElementById(tagId);
+        let domContainer = document.getElementById(tagId);
 
         if (!domContainer) {
-            return;
+            domContainer = document.createElement("div");
+
+            domContainer.id = tagId;
+
+            document.append(domContainer);
         }
 
         return Loader.set(tagId, domContainer, options, index);

@@ -11,8 +11,22 @@ export function loadConfettiPreset(main: Main): void {
     loadPreset(main, {}, true);
 }
 
-export function confetti(id: string, confettiOptions: RecursivePartial<IConfettiOptions>): void {
-    loadPreset(tsParticles, confettiOptions, true);
+type ConfettiOptions = RecursivePartial<IConfettiOptions>;
+type ConfettiFirstParam = string | ConfettiOptions;
+
+export function confetti(idOrOptions: ConfettiFirstParam, confettiOptions?: RecursivePartial<IConfettiOptions>): void {
+    let options: ConfettiOptions;
+    let id: string;
+
+    if (typeof idOrOptions === "string") {
+        id = idOrOptions;
+        options = confettiOptions ?? {};
+    } else {
+        id = `tsparticles_${ Math.floor(Math.random() * 1000) }`;
+        options = idOrOptions;
+    }
+
+    loadPreset(tsParticles, options, true);
 
     tsParticles.load(id, { preset: "confetti" });
 }
