@@ -22,7 +22,7 @@ export function confetti(idOrOptions: ConfettiFirstParam, confettiOptions?: Recu
         id = idOrOptions;
         options = confettiOptions ?? {};
     } else {
-        id = `tsparticles_${ Math.floor(Math.random() * 1000) }`;
+        id = `tsparticles_${Math.floor(Math.random() * 1000)}`;
         options = idOrOptions;
     }
 

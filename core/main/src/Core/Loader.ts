@@ -8,7 +8,7 @@ import type { SingleOrMultiple } from "../Types";
 const tsParticlesDom: Container[] = [];
 
 function fetchError(statusCode: number): void {
-    console.error(`Error tsParticles - fetch status: ${ statusCode }`);
+    console.error(`Error tsParticles - fetch status: ${statusCode}`);
     console.error("Error tsParticles - File config not found");
 }
 
