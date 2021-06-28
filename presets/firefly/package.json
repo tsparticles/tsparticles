@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-firefly",
-  "version": "1.14.0",
+  "version": "1.14.2",
   "description": "tsParticles firefly preset",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -72,6 +72,6 @@
     "webpack-cli": "^4.7.2"
   },
   "dependencies": {
-    "tsparticles": "^1.29.0"
+    "tsparticles": "^1.29.2"
   }
 }

@@ -13,7 +13,7 @@ export interface IColor {
     /**
      * Color value, can be a single or an array of [[IValueColor]], [[IRgb]], [[IHsl]] or string
      */
-    value: SingleOrMultiple<IValueColor | IRgb | IHsl | IHsv | string>;
+    value: SingleOrMultiple<IValueColor | IRgb | IHsl | IHsv | SingleOrMultiple<string>>;
 }
 
 /**

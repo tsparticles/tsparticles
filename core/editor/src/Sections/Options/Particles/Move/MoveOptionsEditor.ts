@@ -1,9 +1,9 @@
 import { EditorGroup, EditorType } from "object-gui";
 import type { Container } from "tsparticles";
-import type { IMove } from "tsparticles/dist/Options/Interfaces/Particles/Move/IMove";
+import type { IMove } from "tsparticles/Options/Interfaces/Particles/Move/IMove";
 import { MoveDirection, OutMode } from "tsparticles";
 import { EditorBase } from "../../../../EditorBase";
-import type { ITrail } from "tsparticles/dist/Options/Interfaces/Particles/Move/ITrail";
+import type { ITrail } from "tsparticles/Options/Interfaces/Particles/Move/ITrail";
 
 export class MoveOptionsEditor extends EditorBase {
     group!: EditorGroup;
@@ -240,6 +240,10 @@ export class MoveOptionsEditor extends EditorBase {
                     value: MoveDirection.topRight,
                 },
             ]);
+
+        group.addProperty("drift", "Drift", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
 
         group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
             await particles.refresh();

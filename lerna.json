@@ -2,7 +2,7 @@
   "packages": [
     "components/*",
     "core/*",
-    "demo/*",
+    "demo/**/*",
     "presets/*",
     "shapes/*",
     "templates/*",

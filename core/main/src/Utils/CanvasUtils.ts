@@ -343,9 +343,22 @@ export class CanvasUtils {
         shadow: IShadow
     ): void {
         const pos = particle.getPosition();
+        const tiltOptions = particle.options.tilt;
+        const rollOptions = particle.options.roll;
 
         context.save();
-        context.translate(pos.x, pos.y);
+        if (tiltOptions.enable || rollOptions.enable) {
+            context.setTransform(
+                rollOptions.enable ? Math.cos(particle.rollAngle) : 1,
+                tiltOptions.enable ? Math.cos(particle.tilt.value) * particle.tilt.cosDirection : 0,
+                tiltOptions.enable ? Math.sin(particle.tilt.value) * particle.tilt.sinDirection : 0,
+                rollOptions.enable ? Math.sin(particle.rollAngle) : 1,
+                pos.x,
+                pos.y
+            );
+        } else {
+            context.translate(pos.x, pos.y);
+        }
         context.beginPath();
 
         const angle = particle.rotate.value + (particle.options.rotate.path ? particle.velocity.angle : 0);
@@ -396,7 +409,18 @@ export class CanvasUtils {
         context.restore();
 
         context.save();
-        context.translate(pos.x, pos.y);
+        if (tiltOptions.enable) {
+            context.setTransform(
+                1,
+                Math.cos(particle.tilt.value) * particle.tilt.cosDirection,
+                Math.sin(particle.tilt.value) * particle.tilt.sinDirection,
+                1,
+                pos.x,
+                pos.y
+            );
+        } else {
+            context.translate(pos.x, pos.y);
+        }
 
         if (angle !== 0) {
             context.rotate(angle);

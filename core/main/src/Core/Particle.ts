@@ -1,5 +1,5 @@
 import type { Container } from "./Container";
-import type { IParticleValueAnimation } from "./Interfaces/IParticleValueAnimation";
+import type { IParticleTiltValueAnimation, IParticleValueAnimation } from "./Interfaces/IParticleValueAnimation";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IParticleImage } from "./Interfaces/IParticleImage";
 import { Updater } from "./Particle/Updater";
@@ -10,7 +10,15 @@ import type { IParticle } from "./Interfaces/IParticle";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
-import { AnimationStatus, DestroyMode, OutMode, RotateDirection, ShapeType, StartValueType } from "../Enums";
+import {
+    AnimationStatus,
+    DestroyMode,
+    OutMode,
+    RotateDirection,
+    ShapeType,
+    StartValueType,
+    TiltDirection,
+} from "../Enums";
 import { ImageDrawer } from "../ShapeDrawers/ImageDrawer";
 import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
 import type { RecursivePartial } from "../Types";
@@ -39,9 +47,14 @@ export class Particle implements IParticle {
     lifeTime;
     livesRemaining;
     misplaced;
+    rollAngle;
+    rollSpeed;
     spawning;
     splitCount;
     unbreakable;
+    wobbleAngle;
+    wobbleDistance;
+    wobbleSpeed;
 
     readonly pathDelay;
     readonly updater;
@@ -53,6 +66,7 @@ export class Particle implements IParticle {
     readonly loops: IParticleLoops;
 
     attractDistance?: number;
+    backColor?: IHsl;
     links: ILink[];
     randomIndexData?: number;
     linksDistance?: number;
@@ -73,6 +87,7 @@ export class Particle implements IParticle {
     readonly opacity: IParticleValueAnimation<number>;
     readonly rotate: IParticleValueAnimation<number>;
     readonly size: IParticleValueAnimation<number>;
+    readonly tilt: IParticleTiltValueAnimation;
     readonly strokeColor?: IParticleHslAnimation;
     readonly velocity: Vector;
     readonly shape: ShapeType | string;
@@ -161,6 +176,7 @@ export class Particle implements IParticle {
         this.close = this.shapeData?.close ?? this.close;
         this.options = particlesOptions;
         this.pathDelay = NumberUtils.getValue(this.options.move.path.delay) * 1000;
+        this.wobbleDistance = 0;
 
         container.retina.initParticle(this);
 
@@ -216,6 +232,42 @@ export class Particle implements IParticle {
 
             if (!rotateAnimation.sync) {
                 this.rotate.velocity *= Math.random();
+            }
+        }
+
+        const tiltOptions = this.options.tilt;
+
+        this.tilt = {
+            value: (NumberUtils.getRangeValue(tiltOptions.value) * Math.PI) / 180,
+            sinDirection: Math.random() >= 0.5 ? 1 : -1,
+            cosDirection: Math.random() >= 0.5 ? 1 : -1,
+        };
+
+        let tiltDirection = tiltOptions.direction;
+
+        if (tiltDirection === TiltDirection.random) {
+            const index = Math.floor(Math.random() * 2);
+
+            tiltDirection = index > 0 ? TiltDirection.counterClockwise : TiltDirection.clockwise;
+        }
+
+        switch (tiltDirection) {
+            case TiltDirection.counterClockwise:
+            case "counterClockwise":
+                this.tilt.status = AnimationStatus.decreasing;
+                break;
+            case TiltDirection.clockwise:
+                this.tilt.status = AnimationStatus.increasing;
+                break;
+        }
+
+        const tiltAnimation = this.options.tilt.animation;
+
+        if (tiltAnimation.enable) {
+            this.tilt.velocity = (tiltAnimation.speed / 360) * container.retina.reduceFactor;
+
+            if (!tiltAnimation.sync) {
+                this.tilt.velocity *= Math.random();
             }
         }
 
@@ -277,6 +329,44 @@ export class Particle implements IParticle {
             this.setColorAnimation(colorAnimation.h, this.color.h);
             this.setColorAnimation(colorAnimation.s, this.color.s);
             this.setColorAnimation(colorAnimation.l, this.color.l);
+        }
+
+        const rollOpt = this.options.roll;
+
+        if (rollOpt.enable) {
+            if (this.color) {
+                if (rollOpt.backColor) {
+                    this.backColor = ColorUtils.colorToHsl(rollOpt.backColor);
+                } else if (rollOpt.darken.enable) {
+                    this.backColor = {
+                        h: this.color.h.value,
+                        s: this.color.s.value,
+                        l: this.color.l.value - rollOpt.darken.value,
+                    };
+                } else if (rollOpt.enlighten.enable) {
+                    this.backColor = {
+                        h: this.color.h.value,
+                        s: this.color.s.value,
+                        l: this.color.l.value + rollOpt.darken.value,
+                    };
+                }
+            }
+
+            this.rollAngle = Math.random() * Math.PI * 2;
+            this.rollSpeed = NumberUtils.getRangeValue(rollOpt.speed) / 360;
+        } else {
+            this.rollAngle = 0;
+            this.rollSpeed = 0;
+        }
+
+        const wobbleOpt = this.options.wobble;
+
+        if (wobbleOpt.enable) {
+            this.wobbleAngle = Math.random() * Math.PI * 2;
+            this.wobbleSpeed = NumberUtils.getRangeValue(wobbleOpt.speed) / 360;
+        } else {
+            this.wobbleAngle = 0;
+            this.wobbleSpeed = 0;
         }
 
         /* position */
@@ -452,7 +542,15 @@ export class Particle implements IParticle {
     }
 
     getFillColor(): IHsl | undefined {
-        return this.bubble.color ?? ColorUtils.getHslFromAnimation(this.color);
+        if (this.bubble.color) {
+            return this.bubble.color;
+        }
+
+        if (this.backColor && Math.floor(this.rollAngle / (Math.PI / 2)) % 2) {
+            return this.backColor;
+        }
+
+        return ColorUtils.getHslFromAnimation(this.color);
     }
 
     getStrokeColor(): IHsl | undefined {
@@ -604,19 +702,15 @@ export class Particle implements IParticle {
         const radOffset = (Math.PI / 180) * moveOptions.angle.offset;
 
         const range = {
-            //left: Math.sin(radOffset + rad / 2) - Math.sin(radOffset - rad / 2),
-            //right: Math.cos(radOffset + rad / 2) - Math.cos(radOffset - rad / 2),
             left: radOffset - rad / 2,
             right: radOffset + rad / 2,
         };
 
         if (!moveOptions.straight) {
-            //res.x += NumberUtils.randomInRange(NumberUtils.setRangeValue(range.left, range.right)) / 2;
-            //res.y += NumberUtils.randomInRange(NumberUtils.setRangeValue(range.left, range.right)) / 2;
             res.angle += NumberUtils.randomInRange(NumberUtils.setRangeValue(range.left, range.right));
         }
 
-        if (moveOptions.random) {
+        if (moveOptions.random && typeof moveOptions.speed === "number") {
             res.length *= Math.random();
         }
 

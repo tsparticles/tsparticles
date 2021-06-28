@@ -1,0 +1,15 @@
+{
+  "name": "imports-ts38",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tsparticles": "^1.29.2",
+    "typescript": "^3.8.3"
+  }
+}

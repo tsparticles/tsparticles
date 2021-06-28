@@ -1,7 +1,7 @@
 import { Utils } from "tsparticles";
-import type { IShapeDrawer } from "tsparticles/dist/Core/Interfaces/IShapeDrawer";
+import type { IShapeDrawer } from "tsparticles/Core/Interfaces/IShapeDrawer";
 import type { Container, SingleOrMultiple, IParticle } from "tsparticles";
-import type { IShapeValues } from "tsparticles/dist/Options/Interfaces/Particles/Shape/IShapeValues";
+import type { IShapeValues } from "tsparticles/Options/Interfaces/Particles/Shape/IShapeValues";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = "unloaded" | "loading" | "loaded" | "error";

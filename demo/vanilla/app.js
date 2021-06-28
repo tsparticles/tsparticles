@@ -18,7 +18,7 @@ app.use("/jsoneditor", express.static("./node_modules/jsoneditor/dist"));
 app.use("/jquery", express.static("./node_modules/jquery/dist"));
 app.use("/popper.js", express.static("./node_modules/popper.js/dist"));
 app.use("/bootstrap", express.static("./node_modules/bootstrap/dist"));
-app.use("/tsparticles", express.static("./node_modules/tsparticles/dist"));
+app.use("/tsparticles", express.static("./node_modules/tsparticles"));
 app.use("/preset-big-circles", express.static("./node_modules/tsparticles-preset-big-circles/dist"));
 app.use("/preset-bubbles", express.static("./node_modules/tsparticles-preset-bubbles/dist"));
 app.use("/preset-confetti", express.static("./node_modules/tsparticles-preset-confetti/dist"));
@@ -31,7 +31,6 @@ app.use("/preset-sea-anemone", express.static("./node_modules/tsparticles-preset
 app.use("/preset-snow", express.static("./node_modules/tsparticles-preset-snow/dist"));
 app.use("/preset-stars", express.static("./node_modules/tsparticles-preset-stars/dist"));
 app.use("/shape-bubble", express.static("./node_modules/tsparticles-shape-bubble/dist"));
-app.use("/shape-confetti", express.static("./node_modules/tsparticles-shape-confetti/dist"));
 app.use("/shape-heart", express.static("./node_modules/tsparticles-shape-heart/dist"));
 app.use("/shape-multiline-text", express.static("./node_modules/tsparticles-shape-multiline-text/dist"));
 app.use("/shape-rounded-rect", express.static("./node_modules/tsparticles-shape-rounded-rect/dist"));

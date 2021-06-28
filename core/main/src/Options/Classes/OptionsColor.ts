@@ -8,17 +8,24 @@ import type { IOptionLoader } from "../Interfaces/IOptionLoader";
  * @category Options
  */
 export class OptionsColor implements IOptionsColor, IOptionLoader<IOptionsColor> {
-    value: SingleOrMultiple<string | IValueColor | IRgb | IHsl | IHsv>;
+    value: SingleOrMultiple<SingleOrMultiple<string> | IValueColor | IRgb | IHsl | IHsv>;
 
     constructor() {
         this.value = "#fff";
     }
 
-    static create(source?: OptionsColor, data?: string | RecursivePartial<IOptionsColor>): OptionsColor {
+    static create(
+        source?: OptionsColor,
+        data?: SingleOrMultiple<string> | RecursivePartial<IOptionsColor>
+    ): OptionsColor {
         const color = source ?? new OptionsColor();
 
         if (data !== undefined) {
-            color.load(typeof data === "string" ? { value: data } : data);
+            if (typeof data === "string" || data instanceof Array) {
+                color.load({ value: data });
+            } else {
+                color.load(data);
+            }
         }
 
         return color;

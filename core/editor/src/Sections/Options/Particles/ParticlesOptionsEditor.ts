@@ -1,5 +1,5 @@
 import type { EditorGroup } from "object-gui";
-import type { IParticles } from "tsparticles/dist/Options/Interfaces/Particles/IParticles";
+import type { IParticles } from "tsparticles/Options/Interfaces/Particles/IParticles";
 import type { Container } from "tsparticles";
 import { LinksOptionsEditor } from "./Links/LinksOptionsEditor";
 import { OpacityOptionsEditor } from "./Opacity/OpacityOptionsEditor";
@@ -18,6 +18,9 @@ import { LifeOptionsEditor } from "./Life/LifeOptionsEditor";
 import { BounceOptionsEditor } from "./Bounce/BounceOptionsEditor";
 import { EditorType } from "object-gui";
 import { DestroyOptionsEditor } from "./Destroy/DestroyOptionsEditor";
+import { TiltOptionsEditor } from "./Tilt/TiltOptionsEditor";
+import { WobbleOptionsEditor } from "./Wobble/WobbleOptionsEditor";
+import { RollOptionsEditor } from "./Roll/RollOptionsEditor";
 
 export class ParticlesOptionsEditor extends EditorBase {
     group!: EditorGroup;
@@ -40,12 +43,15 @@ export class ParticlesOptionsEditor extends EditorBase {
         this.addMove();
         this.addNumber();
         this.addOpacity();
+        this.addRoll();
         this.addRotate();
         this.addShadow();
         this.addShape();
         this.addSize();
         this.addStroke();
+        this.addTilt();
         this.addTwinkle();
+        this.addWobble();
         this.addProperties();
     }
 
@@ -103,6 +109,12 @@ export class ParticlesOptionsEditor extends EditorBase {
         options.addToGroup(this.group);
     }
 
+    private addRoll(): void {
+        const options = new RollOptionsEditor(this.particles);
+
+        options.addToGroup(this.group);
+    }
+
     private addRotate(): void {
         const options = new RotateOptionsEditor(this.particles);
 
@@ -133,8 +145,20 @@ export class ParticlesOptionsEditor extends EditorBase {
         options.addToGroup(this.group);
     }
 
+    private addTilt(): void {
+        const options = new TiltOptionsEditor(this.particles);
+
+        options.addToGroup(this.group);
+    }
+
     private addTwinkle(): void {
         const options = new TwinkleOptionsEditor(this.particles);
+
+        options.addToGroup(this.group);
+    }
+
+    private addWobble(): void {
+        const options = new WobbleOptionsEditor(this.particles);
 
         options.addToGroup(this.group);
     }

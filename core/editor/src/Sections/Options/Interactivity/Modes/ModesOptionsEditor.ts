@@ -1,5 +1,5 @@
 import type { Container } from "tsparticles";
-import type { IModes } from "tsparticles/dist/Options/Interfaces/Interactivity/Modes/IModes";
+import type { IModes } from "tsparticles/Options/Interfaces/Interactivity/Modes/IModes";
 import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
 import { ParticlesOptionsEditor } from "../../Particles/ParticlesOptionsEditor";
