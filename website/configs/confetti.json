@@ -15,7 +15,10 @@
       ]
     },
     "shape": {
-      "type": ["square", "circle"]
+      "type": [
+        "square",
+        "circle"
+      ]
     },
     "opacity": {
       "value": 1,
@@ -65,6 +68,17 @@
       "animation": {
         "enable": true,
         "speed": 60
+      }
+    },
+    "roll": {
+      "darken": {
+        "enable": true,
+        "value": 25
+      },
+      "enable": true,
+      "speed": {
+        "min": 15,
+        "max": 25
       }
     },
     "tilt": {
