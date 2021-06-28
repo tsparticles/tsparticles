@@ -1579,10 +1579,10 @@ babel-plugin-dynamic-import-node@^2.3.3:
   dependencies:
     object.assign "^4.1.0"
 
-babel-plugin-jsx-dom-expressions@~0.26.3:
-  version "0.26.3"
-  resolved "https://registry.yarnpkg.com/babel-plugin-jsx-dom-expressions/-/babel-plugin-jsx-dom-expressions-0.26.3.tgz#3b0e5056dd03639fe6f6bc950420f59741fe450b"
-  integrity sha512-TtcqjKrCzP9m8eMKBTxwdqTK5PlySn6+mYt6vJTbgQ7cCNtnurLUqPFN+ObG1dY60D2ZgUGc86/7O6plXDjsXg==
+babel-plugin-jsx-dom-expressions@^0.29.0:
+  version "0.29.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-jsx-dom-expressions/-/babel-plugin-jsx-dom-expressions-0.29.0.tgz#385acadc398c0a1082900047f883bab35f86ceba"
+  integrity sha512-p0uI9OpgRAGvym3LLzIMMaH+ZpW0khi0JwbnZ7cARE9nOBw1dVjrtGNGt8KyYzfIg0o9nkaYZ+Jaja8SgMy3/A==
   dependencies:
     "@babel/helper-module-imports" "^7.10.4"
     "@babel/plugin-syntax-jsx" "^7.10.4"
@@ -1612,12 +1612,12 @@ babel-plugin-polyfill-regenerator@^0.2.2:
   dependencies:
     "@babel/helper-define-polyfill-provider" "^0.2.2"
 
-babel-preset-solid@^0.26.5:
-  version "0.26.5"
-  resolved "https://registry.yarnpkg.com/babel-preset-solid/-/babel-preset-solid-0.26.5.tgz#c5414af14a7ab84eb6c7a0aefbd3d8def9aff843"
-  integrity sha512-SXMSmp3iL3FTbcy2QB4poHSbsPMrNSHOk8vIgQSMI/8UwxbxjjAG1iDDcqjsgWw6DqndxM6Z6nID9+94aT8NCQ==
+babel-preset-solid@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/babel-preset-solid/-/babel-preset-solid-1.0.0.tgz#32170a230f39beb7649d84b6dc3930f691ac45db"
+  integrity sha512-fXWDS+5Mh2PgjFvIEpfztMHORd1MutUsnpLYEl40HvwbdiM8zYaLxkHlSdAoRJ8B8HuWvEjBt8y9jzChq+SRAg==
   dependencies:
-    babel-plugin-jsx-dom-expressions "~0.26.3"
+    babel-plugin-jsx-dom-expressions "^0.29.0"
 
 balanced-match@^1.0.0:
   version "1.0.2"
