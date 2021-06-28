@@ -112,6 +112,13 @@
     "size": {
       "value": 5
     },
+    "roll": {
+      "enable": true,
+      "speed": {
+        "min": 15,
+        "max": 25
+      }
+    },
     "wobble": {
       "distance": 30,
       "enable": true,

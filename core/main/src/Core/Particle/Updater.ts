@@ -152,6 +152,9 @@ export class Updater {
         /* change tilt */
         this.updateTilt(delta);
 
+        /* change roll */
+        this.updateRoll(delta);
+
         /* change wobble */
         this.updateWobble(delta);
 
@@ -348,6 +351,21 @@ export class Updater {
                         particle.tilt.value += max;
                     }
                     break;
+            }
+        }
+    }
+
+    private updateRoll(delta: IDelta): void {
+        const particle = this.particle;
+        const roll = particle.options.roll;
+        const speed = particle.rollSpeed * delta.factor;
+        const max = 2 * Math.PI;
+
+        if (roll.enable) {
+            particle.rollAngle += speed;
+
+            if (particle.rollAngle > max) {
+                particle.rollAngle -= max;
             }
         }
     }

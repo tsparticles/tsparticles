@@ -47,6 +47,8 @@ export class Particle implements IParticle {
     lifeTime;
     livesRemaining;
     misplaced;
+    rollAngle;
+    rollSpeed;
     spawning;
     splitCount;
     unbreakable;
@@ -174,7 +176,18 @@ export class Particle implements IParticle {
         this.options = particlesOptions;
         this.pathDelay = NumberUtils.getValue(this.options.move.path.delay) * 1000;
 
+        const rollOpt = this.options.roll;
+
+        if (rollOpt.enable) {
+            this.rollAngle = Math.random() * Math.PI * 2;
+            this.rollSpeed = NumberUtils.getRangeValue(rollOpt.speed) / 360;
+        } else {
+            this.rollAngle = 0;
+            this.rollSpeed = 0;
+        }
+
         const wobbleOpt = this.options.wobble;
+
         if (wobbleOpt.enable) {
             this.wobbleAngle = Math.random() * Math.PI * 2;
             this.wobbleSpeed = NumberUtils.getRangeValue(wobbleOpt.speed) / 360;

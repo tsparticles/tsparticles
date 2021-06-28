@@ -18,6 +18,7 @@ import { Bounce } from "./Bounce/Bounce";
 import { Destroy } from "./Destroy/Destroy";
 import { Wobble } from "./Wobble/Wobble";
 import { Tilt } from "./Tilt/Tilt";
+import { Roll } from "./Roll/Roll";
 
 /**
  * [[include:Options/Particles.md]]
@@ -34,6 +35,7 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
     number;
     opacity;
     reduceDuplicates;
+    roll;
     rotate;
     shape;
     size;
@@ -88,6 +90,7 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
         this.number = new ParticlesNumber();
         this.opacity = new Opacity();
         this.reduceDuplicates = false;
+        this.roll = new Roll();
         this.rotate = new Rotate();
         this.shadow = new Shadow();
         this.shape = new Shape();
@@ -123,6 +126,7 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
             this.reduceDuplicates = data.reduceDuplicates;
         }
 
+        this.roll.load(data.roll);
         this.rotate.load(data.rotate);
         this.shape.load(data.shape);
         this.size.load(data.size);

@@ -16,6 +16,7 @@ import type { IBounce } from "./Bounce/IBounce";
 import type { IDestroy } from "./Destroy/IDestroy";
 import type { IWobble } from "./Wobble/IWobble";
 import { ITilt } from "./Tilt/ITilt";
+import { IRoll } from "./Roll/IRoll";
 
 /**
  * [[include:Options/Particles.md]]
@@ -42,6 +43,7 @@ export interface IParticles {
     number: IParticlesNumber;
     opacity: IOpacity;
     reduceDuplicates: boolean;
+    roll: IRoll;
     rotate: IRotate;
     shadow: IShadow;
     shape: IShape;
