@@ -28,7 +28,7 @@ export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>)
                 animation: {
                     enable: true,
                     minimumValue: 0,
-                    speed: 2,
+                    speed: 0.5,
                     startValue: "max",
                     destroy: "min",
                 },

@@ -271,7 +271,7 @@ export class Particle implements IParticle {
             }
         }
 
-        const sizeAnimation = this.options.size.animation;
+        const sizeAnimation = sizeOptions.animation;
 
         if (sizeAnimation.enable) {
             this.size.status = AnimationStatus.increasing;
@@ -279,7 +279,8 @@ export class Particle implements IParticle {
             if (!randomSize) {
                 switch (sizeAnimation.startValue) {
                     case StartValueType.min:
-                        this.size.value = sizeAnimation.minimumValue * pxRatio;
+                        this.size.value = NumberUtils.getRangeMin(sizeOptions.value) * pxRatio;
+                        this.size.status = AnimationStatus.increasing;
 
                         break;
 
@@ -287,11 +288,14 @@ export class Particle implements IParticle {
                         this.size.value = NumberUtils.randomInRange(
                             NumberUtils.setRangeValue(sizeAnimation.minimumValue * pxRatio, this.size.value)
                         );
+                        this.size.status =
+                            Math.random() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
                         break;
 
                     case StartValueType.max:
                     default:
+                        this.size.value = NumberUtils.getRangeMax(sizeOptions.value) * pxRatio;
                         this.size.status = AnimationStatus.decreasing;
 
                         break;
@@ -393,7 +397,8 @@ export class Particle implements IParticle {
             if (!randomOpacity) {
                 switch (opacityAnimation.startValue) {
                     case StartValueType.min:
-                        this.opacity.value = opacityAnimation.minimumValue;
+                        this.opacity.value = NumberUtils.getRangeMin(this.opacity.value);
+                        this.opacity.status = AnimationStatus.increasing;
 
                         break;
 
@@ -401,11 +406,14 @@ export class Particle implements IParticle {
                         this.opacity.value = NumberUtils.randomInRange(
                             NumberUtils.setRangeValue(opacityAnimation.minimumValue, this.opacity.value)
                         );
+                        this.opacity.status =
+                            Math.random() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
                         break;
 
                     case StartValueType.max:
                     default:
+                        this.opacity.value = NumberUtils.getRangeMax(this.opacity.value);
                         this.opacity.status = AnimationStatus.decreasing;
 
                         break;
