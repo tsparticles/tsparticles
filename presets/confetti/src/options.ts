@@ -21,12 +21,7 @@ export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>)
                 value: actualOptions.colors,
             },
             shape: {
-                type: "confetti",
-                options: {
-                    confetti: {
-                        type: actualOptions.shapes,
-                    },
-                },
+                type: actualOptions.shapes,
             },
             opacity: {
                 value: 1,
@@ -39,7 +34,7 @@ export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>)
                 },
             },
             size: {
-                value: 10 * actualOptions.scalar,
+                value: 5 * actualOptions.scalar,
             },
             links: {
                 enable: false,
@@ -53,8 +48,8 @@ export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>)
             },
             move: {
                 angle: {
-                    value: 90,
-                    offset: actualOptions.spread,
+                    value: actualOptions.spread,
+                    offset: 0,
                 },
                 drift: {
                     min: -actualOptions.drift,
@@ -68,11 +63,53 @@ export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>)
                 speed: actualOptions.startVelocity,
                 decay: 1 - actualOptions.decay,
                 direction: -actualOptions.angle,
-                random: false,
+                random: true,
                 straight: false,
                 outModes: {
                     default: "none",
                     bottom: "destroy",
+                },
+            },
+            rotate: {
+                value: {
+                    min: 0,
+                    max: 360,
+                },
+                direction: "random",
+                animation: {
+                    enable: true,
+                    speed: 60,
+                },
+            },
+            tilt: {
+                direction: "random",
+                enable: true,
+                value: {
+                    min: 0,
+                    max: 360,
+                },
+                animation: {
+                    enable: true,
+                    speed: 60,
+                },
+            },
+            roll: {
+                darken: {
+                    enable: true,
+                    value: 25,
+                },
+                enable: true,
+                speed: {
+                    min: 15,
+                    max: 25,
+                },
+            },
+            wobble: {
+                distance: 30,
+                enable: true,
+                speed: {
+                    min: -15,
+                    max: 15,
                 },
             },
         },

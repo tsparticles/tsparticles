@@ -1,7 +1,7 @@
 import type { IConfettiOptions } from "./IConfettiOptions";
-import type { IOptionLoader } from "tsparticles/dist/Options/Interfaces/IOptionLoader";
+import type { IOptionLoader } from "tsparticles/Options/Interfaces/IOptionLoader";
 import type { RecursivePartial, SingleOrMultiple } from "tsparticles";
-import type { ICoordinates } from "tsparticles/dist/Core/Interfaces/ICoordinates";
+import type { ICoordinates } from "tsparticles/Core/Interfaces/ICoordinates";
 
 export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfettiOptions> {
     /**

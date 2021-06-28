@@ -18,15 +18,11 @@ center on a transparent background.
 The first step is installing [tsParticles](https://github.com/matteobruni/tsparticles) following the instructions for
 vanilla javascript in the main project [here](https://github.com/matteobruni/tsparticles)
 
-Then the confetti shape is mandatory, and it's
-available [here](https://github.com/matteobruni/tsparticles/tree/main/shapes/confetti)
-
-Once added both scripts you need one more script to be included in your page (or you can download that
+Once added the script you need one more script to be included in your page (or you can download that
 from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-confetti):
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-confetti"></script>
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-confetti"></script>
 ```
 

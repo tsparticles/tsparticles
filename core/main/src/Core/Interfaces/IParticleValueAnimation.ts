@@ -8,3 +8,8 @@ export interface IParticleValueAnimation<T> {
     velocity?: number;
     value: T;
 }
+
+export interface IParticleTiltValueAnimation extends IParticleValueAnimation<number> {
+    sinDirection: number;
+    cosDirection: number;
+}

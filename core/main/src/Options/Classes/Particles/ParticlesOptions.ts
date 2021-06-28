@@ -6,9 +6,8 @@ import { Opacity } from "./Opacity/Opacity";
 import { Shape } from "./Shape/Shape";
 import { Size } from "./Size/Size";
 import { Rotate } from "./Rotate/Rotate";
-import type { RecursivePartial } from "../../../Types";
+import type { RecursivePartial, SingleOrMultiple } from "../../../Types";
 import { Shadow } from "./Shadow";
-import type { SingleOrMultiple } from "../../../Types";
 import { Stroke } from "./Stroke";
 import { Collisions } from "./Collisions/Collisions";
 import { Twinkle } from "./Twinkle/Twinkle";
@@ -17,6 +16,9 @@ import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import { Life } from "./Life/Life";
 import { Bounce } from "./Bounce/Bounce";
 import { Destroy } from "./Destroy/Destroy";
+import { Wobble } from "./Wobble/Wobble";
+import { Tilt } from "./Tilt/Tilt";
+import { Roll } from "./Roll/Roll";
 
 /**
  * [[include:Options/Particles.md]]
@@ -33,12 +35,15 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
     number;
     opacity;
     reduceDuplicates;
+    roll;
     rotate;
     shape;
     size;
     shadow;
     stroke: SingleOrMultiple<Stroke>;
+    tilt;
     twinkle;
+    wobble;
 
     /**
      *
@@ -85,12 +90,15 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
         this.number = new ParticlesNumber();
         this.opacity = new Opacity();
         this.reduceDuplicates = false;
+        this.roll = new Roll();
         this.rotate = new Rotate();
         this.shadow = new Shadow();
         this.shape = new Shape();
         this.size = new Size();
         this.stroke = new Stroke();
+        this.tilt = new Tilt();
         this.twinkle = new Twinkle();
+        this.wobble = new Wobble();
     }
 
     load(data?: RecursivePartial<IParticles>): void {
@@ -118,11 +126,14 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
             this.reduceDuplicates = data.reduceDuplicates;
         }
 
+        this.roll.load(data.roll);
         this.rotate.load(data.rotate);
         this.shape.load(data.shape);
         this.size.load(data.size);
         this.shadow.load(data.shadow);
+        this.tilt.load(data.tilt);
         this.twinkle.load(data.twinkle);
+        this.wobble.load(data.wobble);
 
         const collisions = data.move?.collisions ?? data.move?.bounce;
 

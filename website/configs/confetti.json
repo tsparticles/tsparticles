@@ -15,7 +15,10 @@
       ]
     },
     "shape": {
-      "type": "confetti"
+      "type": [
+        "square",
+        "circle"
+      ]
     },
     "opacity": {
       "value": 1,
@@ -57,6 +60,42 @@
       "outModes": {
         "default": "destroy",
         "top": "none"
+      }
+    },
+    "rotate": {
+      "value": 0,
+      "direction": "random",
+      "animation": {
+        "enable": true,
+        "speed": 60
+      }
+    },
+    "roll": {
+      "darken": {
+        "enable": true,
+        "value": 25
+      },
+      "enable": true,
+      "speed": {
+        "min": 15,
+        "max": 25
+      }
+    },
+    "tilt": {
+      "direction": "random",
+      "enable": true,
+      "value": 0,
+      "animation": {
+        "enable": true,
+        "speed": 60
+      }
+    },
+    "wobble": {
+      "distance": 30,
+      "enable": true,
+      "speed": {
+        "min": -15,
+        "max": 15
       }
     }
   },

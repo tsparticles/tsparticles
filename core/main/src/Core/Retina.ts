@@ -109,6 +109,7 @@ export class Retina {
         particle.moveSpeed = NumberUtils.getRangeValue(particlesOptions.move.speed) * ratio;
         particle.sizeAnimationSpeed = particlesOptions.size.animation.speed * ratio;
         particle.maxDistance = particlesOptions.move.distance * ratio;
+        particle.wobbleDistance = NumberUtils.getRangeValue(particlesOptions.wobble.distance) * ratio;
     }
 
     private handleMotionChange(mediaQuery: MediaQueryList): void {
