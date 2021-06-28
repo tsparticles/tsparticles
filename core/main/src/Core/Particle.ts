@@ -546,7 +546,7 @@ export class Particle implements IParticle {
             return this.bubble.color;
         }
 
-        if (Math.floor(this.rollAngle / (Math.PI / 2)) % 2) {
+        if (this.backColor && Math.floor(this.rollAngle / (Math.PI / 2)) % 2) {
             return this.backColor;
         }
 
