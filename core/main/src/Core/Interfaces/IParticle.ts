@@ -34,6 +34,7 @@ export interface IParticle {
     readonly links: ILink[];
     readonly offset: Vector;
     readonly color?: IParticleHslAnimation;
+    readonly backColor?: IHsl;
     readonly opacity: IParticleValueAnimation<number>;
     readonly rotate: IParticleValueAnimation<number>;
     readonly size: IParticleValueAnimation<number>;

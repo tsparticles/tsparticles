@@ -347,26 +347,15 @@ export class CanvasUtils {
         const rollOptions = particle.options.roll;
 
         context.save();
-        if (tiltOptions.enable && rollOptions.enable) {
+        if (tiltOptions.enable || rollOptions.enable) {
             context.setTransform(
-                Math.cos(particle.rollAngle),
-                Math.cos(particle.tilt.value) * particle.tilt.cosDirection,
-                Math.sin(particle.tilt.value) * particle.tilt.sinDirection,
-                Math.sin(particle.rollAngle),
+                rollOptions.enable ? Math.cos(particle.rollAngle) : 1,
+                tiltOptions.enable ? Math.cos(particle.tilt.value) * particle.tilt.cosDirection : 0,
+                tiltOptions.enable ? Math.sin(particle.tilt.value) * particle.tilt.sinDirection : 0,
+                rollOptions.enable ? Math.sin(particle.rollAngle) : 1,
                 pos.x,
                 pos.y
             );
-        } else if (tiltOptions.enable) {
-            context.setTransform(
-                1,
-                Math.cos(particle.tilt.value) * particle.tilt.cosDirection,
-                Math.sin(particle.tilt.value) * particle.tilt.sinDirection,
-                1,
-                pos.x,
-                pos.y
-            );
-        } else if (rollOptions.enable) {
-            context.setTransform(Math.cos(particle.rollAngle), 0, 0, Math.sin(particle.rollAngle), pos.x, pos.y);
         } else {
             context.translate(pos.x, pos.y);
         }

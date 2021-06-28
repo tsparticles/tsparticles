@@ -66,6 +66,7 @@ export class Particle implements IParticle {
     readonly loops: IParticleLoops;
 
     attractDistance?: number;
+    backColor?: IHsl;
     links: ILink[];
     randomIndexData?: number;
     linksDistance?: number;
@@ -175,27 +176,6 @@ export class Particle implements IParticle {
         this.close = this.shapeData?.close ?? this.close;
         this.options = particlesOptions;
         this.pathDelay = NumberUtils.getValue(this.options.move.path.delay) * 1000;
-
-        const rollOpt = this.options.roll;
-
-        if (rollOpt.enable) {
-            this.rollAngle = Math.random() * Math.PI * 2;
-            this.rollSpeed = NumberUtils.getRangeValue(rollOpt.speed) / 360;
-        } else {
-            this.rollAngle = 0;
-            this.rollSpeed = 0;
-        }
-
-        const wobbleOpt = this.options.wobble;
-
-        if (wobbleOpt.enable) {
-            this.wobbleAngle = Math.random() * Math.PI * 2;
-            this.wobbleSpeed = NumberUtils.getRangeValue(wobbleOpt.speed) / 360;
-        } else {
-            this.wobbleAngle = 0;
-            this.wobbleSpeed = 0;
-        }
-
         this.wobbleDistance = 0;
 
         container.retina.initParticle(this);
@@ -349,6 +329,44 @@ export class Particle implements IParticle {
             this.setColorAnimation(colorAnimation.h, this.color.h);
             this.setColorAnimation(colorAnimation.s, this.color.s);
             this.setColorAnimation(colorAnimation.l, this.color.l);
+        }
+
+        const rollOpt = this.options.roll;
+
+        if (rollOpt.enable) {
+            if (this.color) {
+                if (rollOpt.backColor) {
+                    this.backColor = ColorUtils.colorToHsl(rollOpt.backColor);
+                } else if (rollOpt.darken.enable) {
+                    this.backColor = {
+                        h: this.color.h.value,
+                        s: this.color.s.value,
+                        l: this.color.l.value - rollOpt.darken.value,
+                    };
+                } else if (rollOpt.enlighten.enable) {
+                    this.backColor = {
+                        h: this.color.h.value,
+                        s: this.color.s.value,
+                        l: this.color.l.value + rollOpt.darken.value,
+                    };
+                }
+            }
+
+            this.rollAngle = Math.random() * Math.PI * 2;
+            this.rollSpeed = NumberUtils.getRangeValue(rollOpt.speed) / 360;
+        } else {
+            this.rollAngle = 0;
+            this.rollSpeed = 0;
+        }
+
+        const wobbleOpt = this.options.wobble;
+
+        if (wobbleOpt.enable) {
+            this.wobbleAngle = Math.random() * Math.PI * 2;
+            this.wobbleSpeed = NumberUtils.getRangeValue(wobbleOpt.speed) / 360;
+        } else {
+            this.wobbleAngle = 0;
+            this.wobbleSpeed = 0;
         }
 
         /* position */
@@ -524,7 +542,15 @@ export class Particle implements IParticle {
     }
 
     getFillColor(): IHsl | undefined {
-        return this.bubble.color ?? ColorUtils.getHslFromAnimation(this.color);
+        if (this.bubble.color) {
+            return this.bubble.color;
+        }
+
+        if (Math.floor(this.rollAngle / (Math.PI / 2)) % 2) {
+            return this.backColor;
+        }
+
+        return ColorUtils.getHslFromAnimation(this.color);
     }
 
     getStrokeColor(): IHsl | undefined {

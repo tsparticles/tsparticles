@@ -94,6 +94,10 @@ export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>)
                 },
             },
             roll: {
+                darken: {
+                    enable: true,
+                    value: 25,
+                },
                 enable: true,
                 speed: {
                     min: 15,
