@@ -5,15 +5,15 @@
 
 /// <reference types="react" />
 import { ComponentClass } from "react";
-import { Container } from "tsparticles/dist/Core/Container";
+import { Container } from "tsparticles/Core/Container";
 import { ISourceOptions } from "tsparticles";
 
 export type IParticlesParams = ISourceOptions;
 
-export * from 'tsparticles/dist/Enums';
-export * from "tsparticles/dist/Plugins/Absorbers/Enums";
-export * from "tsparticles/dist/Plugins/Emitters/Enums";
-export * from "tsparticles/dist/Plugins/PolygonMask/Enums";
+export * from 'tsparticles/Enums';
+export * from "tsparticles/Plugins/Absorbers/Enums";
+export * from "tsparticles/Plugins/Emitters/Enums";
+export * from "tsparticles/Plugins/PolygonMask/Enums";
 
 export interface ParticlesProps {
     width?: string;

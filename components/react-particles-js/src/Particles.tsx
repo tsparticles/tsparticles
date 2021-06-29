@@ -2,7 +2,7 @@ import * as React from "react";
 import { Component } from "react";
 import isEqual from "lodash/isEqual";
 import type { ISourceOptions } from "tsparticles";
-import { Options } from "tsparticles/dist/Options/Classes/Options";
+import { Options } from "tsparticles/Options/Classes/Options";
 import { Container } from "tsparticles";
 import { defaultParams } from "./DefaultOptions";
 import { tsParticles } from "tsparticles";
