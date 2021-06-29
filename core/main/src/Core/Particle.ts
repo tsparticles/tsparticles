@@ -186,8 +186,6 @@ export class Particle implements IParticle {
         const sizeOptions = this.options.size;
         const sizeValue = NumberUtils.getValue(sizeOptions) * container.retina.pixelRatio;
 
-        const randomSize = typeof sizeOptions.random === "boolean" ? sizeOptions.random : sizeOptions.random.enable;
-
         this.size = {
             value: sizeValue,
         };
@@ -276,30 +274,27 @@ export class Particle implements IParticle {
         if (sizeAnimation.enable) {
             this.size.status = AnimationStatus.increasing;
 
-            if (!randomSize) {
-                switch (sizeAnimation.startValue) {
-                    case StartValueType.min:
-                        this.size.value = NumberUtils.getRangeMin(sizeOptions.value) * pxRatio;
-                        this.size.status = AnimationStatus.increasing;
+            switch (sizeAnimation.startValue) {
+                case StartValueType.min:
+                    this.size.value = NumberUtils.getRangeMin(sizeOptions.value) * pxRatio;
+                    this.size.status = AnimationStatus.increasing;
 
-                        break;
+                    break;
 
-                    case StartValueType.random:
-                        this.size.value = NumberUtils.randomInRange(
-                            NumberUtils.setRangeValue(sizeAnimation.minimumValue * pxRatio, this.size.value)
-                        );
-                        this.size.status =
-                            Math.random() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
+                case StartValueType.random:
+                    this.size.value = NumberUtils.randomInRange(
+                        NumberUtils.setRangeValue(sizeAnimation.minimumValue * pxRatio, this.size.value)
+                    );
+                    this.size.status = Math.random() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
-                        break;
+                    break;
 
-                    case StartValueType.max:
-                    default:
-                        this.size.value = NumberUtils.getRangeMax(sizeOptions.value) * pxRatio;
-                        this.size.status = AnimationStatus.decreasing;
+                case StartValueType.max:
+                default:
+                    this.size.value = NumberUtils.getRangeMax(sizeOptions.value) * pxRatio;
+                    this.size.status = AnimationStatus.decreasing;
 
-                        break;
-                }
+                    break;
             }
 
             this.size.velocity =
@@ -382,8 +377,6 @@ export class Particle implements IParticle {
 
         /* opacity */
         const opacityOptions = this.options.opacity;
-        const randomOpacity =
-            typeof opacityOptions.random === "boolean" ? opacityOptions.random : opacityOptions.random.enable;
 
         this.opacity = {
             value: NumberUtils.getValue(opacityOptions),
@@ -394,30 +387,28 @@ export class Particle implements IParticle {
         if (opacityAnimation.enable) {
             this.opacity.status = AnimationStatus.increasing;
 
-            if (!randomOpacity) {
-                switch (opacityAnimation.startValue) {
-                    case StartValueType.min:
-                        this.opacity.value = NumberUtils.getRangeMin(this.opacity.value);
-                        this.opacity.status = AnimationStatus.increasing;
+            switch (opacityAnimation.startValue) {
+                case StartValueType.min:
+                    this.opacity.value = NumberUtils.getRangeMin(this.opacity.value);
+                    this.opacity.status = AnimationStatus.increasing;
 
-                        break;
+                    break;
 
-                    case StartValueType.random:
-                        this.opacity.value = NumberUtils.randomInRange(
-                            NumberUtils.setRangeValue(opacityAnimation.minimumValue, this.opacity.value)
-                        );
-                        this.opacity.status =
-                            Math.random() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
+                case StartValueType.random:
+                    this.opacity.value = NumberUtils.randomInRange(
+                        NumberUtils.setRangeValue(opacityAnimation.minimumValue, this.opacity.value)
+                    );
+                    this.opacity.status =
+                        Math.random() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
-                        break;
+                    break;
 
-                    case StartValueType.max:
-                    default:
-                        this.opacity.value = NumberUtils.getRangeMax(this.opacity.value);
-                        this.opacity.status = AnimationStatus.decreasing;
+                case StartValueType.max:
+                default:
+                    this.opacity.value = NumberUtils.getRangeMax(this.opacity.value);
+                    this.opacity.status = AnimationStatus.decreasing;
 
-                        break;
-                }
+                    break;
             }
 
             this.opacity.velocity = (opacityAnimation.speed / 100) * container.retina.reduceFactor;
