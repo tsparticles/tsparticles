@@ -39,6 +39,6 @@
   },
   "peerDependencies": {
     "react": "^16.0.0",
-    "tsparticles": "^1.29.2"
+    "tsparticles": "^1.30.0"
   }
 }
