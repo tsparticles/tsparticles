@@ -3,13 +3,13 @@ import type { Particle } from "../Particle";
 import { NumberUtils, Utils } from "../../Utils";
 import { AnimationStatus, DestroyType, OutMode, OutModeDirection, OutModeAlt } from "../../Enums";
 import type { IDelta } from "../Interfaces/IDelta";
-import { IBounds } from "../Interfaces/IBounds";
-import { IDimension } from "../Interfaces/IDimension";
-import { ICoordinates } from "../Interfaces/ICoordinates";
-import { IParticleValueAnimation } from "../Interfaces/IParticleValueAnimation";
-import { IColorAnimation } from "../../Options/Interfaces/IColorAnimation";
-import { IHslAnimation } from "../../Options/Interfaces/IHslAnimation";
-import { IAnimatableColor } from "../../Options/Interfaces/Particles/IAnimatableColor";
+import type { IBounds } from "../Interfaces/IBounds";
+import type { IDimension } from "../Interfaces/IDimension";
+import type { ICoordinates } from "../Interfaces/ICoordinates";
+import type { IParticleValueAnimation } from "../Interfaces/IParticleValueAnimation";
+import type { IColorAnimation } from "../../Options/Interfaces/IColorAnimation";
+import type { IHslAnimation } from "../../Options/Interfaces/IHslAnimation";
+import type { IAnimatableColor } from "../../Options/Interfaces/Particles/IAnimatableColor";
 
 interface IBounceData {
     particle: Particle;
@@ -23,81 +23,83 @@ interface IBounceData {
 
 function bounceHorizontal(data: IBounceData): void {
     if (
-        data.outMode === OutMode.bounce ||
-        data.outMode === OutMode.bounceHorizontal ||
-        data.outMode === "bounceHorizontal" ||
-        data.outMode === OutMode.split
+        !(
+            data.outMode === OutMode.bounce ||
+            data.outMode === OutMode.bounceHorizontal ||
+            data.outMode === "bounceHorizontal" ||
+            data.outMode === OutMode.split
+        )
     ) {
-        const velocity = data.particle.velocity.x;
-        let bounced = false;
+        return;
+    }
 
-        if (
+    const velocity = data.particle.velocity.x;
+
+    if (
+        !(
             (data.direction === OutModeDirection.right && data.bounds.right >= data.canvasSize.width && velocity > 0) ||
             (data.direction === OutModeDirection.left && data.bounds.left <= 0 && velocity < 0)
-        ) {
-            const newVelocity = NumberUtils.getValue(data.particle.options.bounce.horizontal);
+        )
+    ) {
+        return;
+    }
 
-            data.particle.velocity.x *= -newVelocity;
+    const newVelocity = NumberUtils.getValue(data.particle.options.bounce.horizontal);
 
-            bounced = true;
-        }
+    data.particle.velocity.x *= -newVelocity;
 
-        if (!bounced) {
-            return;
-        }
+    const minPos = data.offset.x + data.size;
 
-        const minPos = data.offset.x + data.size;
+    if (data.bounds.right >= data.canvasSize.width) {
+        data.particle.position.x = data.canvasSize.width - minPos;
+    } else if (data.bounds.left <= 0) {
+        data.particle.position.x = minPos;
+    }
 
-        if (data.bounds.right >= data.canvasSize.width) {
-            data.particle.position.x = data.canvasSize.width - minPos;
-        } else if (data.bounds.left <= 0) {
-            data.particle.position.x = minPos;
-        }
-
-        if (data.outMode === OutMode.split) {
-            data.particle.destroy();
-        }
+    if (data.outMode === OutMode.split) {
+        data.particle.destroy();
     }
 }
 
 function bounceVertical(data: IBounceData): void {
     if (
-        data.outMode === OutMode.bounce ||
-        data.outMode === OutMode.bounceVertical ||
-        data.outMode === "bounceVertical" ||
-        data.outMode === OutMode.split
+        !(
+            data.outMode === OutMode.bounce ||
+            data.outMode === OutMode.bounceVertical ||
+            data.outMode === "bounceVertical" ||
+            data.outMode === OutMode.split
+        )
     ) {
-        const velocity = data.particle.velocity.y;
-        let bounced = false;
+        return;
+    }
 
-        if (
+    const velocity = data.particle.velocity.y;
+
+    if (
+        !(
             (data.direction === OutModeDirection.bottom &&
                 data.bounds.bottom >= data.canvasSize.height &&
                 velocity > 0) ||
             (data.direction === OutModeDirection.top && data.bounds.top <= 0 && velocity < 0)
-        ) {
-            const newVelocity = NumberUtils.getValue(data.particle.options.bounce.vertical);
+        )
+    ) {
+        return;
+    }
 
-            data.particle.velocity.y *= -newVelocity;
+    const newVelocity = NumberUtils.getValue(data.particle.options.bounce.vertical);
 
-            bounced = true;
-        }
+    data.particle.velocity.y *= -newVelocity;
 
-        if (!bounced) {
-            return;
-        }
+    const minPos = data.offset.y + data.size;
 
-        const minPos = data.offset.y + data.size;
+    if (data.bounds.bottom >= data.canvasSize.height) {
+        data.particle.position.y = data.canvasSize.height - minPos;
+    } else if (data.bounds.top <= 0) {
+        data.particle.position.y = minPos;
+    }
 
-        if (data.bounds.bottom >= data.canvasSize.height) {
-            data.particle.position.y = data.canvasSize.height - minPos;
-        } else if (data.bounds.top <= 0) {
-            data.particle.position.y = minPos;
-        }
-
-        if (data.outMode === OutMode.split) {
-            data.particle.destroy();
-        }
+    if (data.outMode === OutMode.split) {
+        data.particle.destroy();
     }
 }
 
@@ -187,41 +189,44 @@ export class Updater {
             return;
         }
 
-        if (!particle.spawning) {
-            if (justSpawned) {
-                particle.lifeTime = 0;
-            } else {
-                particle.lifeTime += delta.value;
-            }
-
-            if (particle.lifeTime >= particle.lifeDuration) {
-                particle.lifeTime = 0;
-
-                if (particle.livesRemaining > 0) {
-                    particle.livesRemaining--;
-                }
-
-                if (particle.livesRemaining === 0) {
-                    particle.destroy();
-                    return;
-                }
-
-                const canvasSize = this.container.canvas.size;
-
-                particle.position.x = NumberUtils.randomInRange(NumberUtils.setRangeValue(0, canvasSize.width));
-                particle.position.y = NumberUtils.randomInRange(NumberUtils.setRangeValue(0, canvasSize.height));
-
-                particle.spawning = true;
-                particle.lifeDelayTime = 0;
-                particle.lifeTime = 0;
-                particle.reset();
-
-                const lifeOptions = particle.options.life;
-
-                particle.lifeDelay = NumberUtils.getValue(lifeOptions.delay) * 1000;
-                particle.lifeDuration = NumberUtils.getValue(lifeOptions.duration) * 1000;
-            }
+        if (particle.spawning) {
+            return;
         }
+
+        if (justSpawned) {
+            particle.lifeTime = 0;
+        } else {
+            particle.lifeTime += delta.value;
+        }
+
+        if (particle.lifeTime < particle.lifeDuration) {
+            return;
+        }
+
+        particle.lifeTime = 0;
+
+        if (particle.livesRemaining > 0) {
+            particle.livesRemaining--;
+        }
+
+        if (particle.livesRemaining === 0) {
+            particle.destroy();
+            return;
+        }
+
+        const canvasSize = this.container.canvas.size;
+
+        particle.position.x = NumberUtils.randomInRange(NumberUtils.setRangeValue(0, canvasSize.width));
+        particle.position.y = NumberUtils.randomInRange(NumberUtils.setRangeValue(0, canvasSize.height));
+        particle.spawning = true;
+        particle.lifeDelayTime = 0;
+        particle.lifeTime = 0;
+        particle.reset();
+
+        const lifeOptions = particle.options.life;
+
+        particle.lifeDelay = NumberUtils.getValue(lifeOptions.delay) * 1000;
+        particle.lifeDuration = NumberUtils.getValue(lifeOptions.duration) * 1000;
     }
 
     private updateOpacity(delta: IDelta): void {
@@ -232,34 +237,40 @@ export class Updater {
         const maxValue = NumberUtils.getRangeMax(opacityOpt.value);
 
         if (
-            !particle.destroyed &&
-            opacityAnim.enable &&
-            (opacityAnim.count <= 0 || particle.loops.size < opacityAnim.count)
+            !(
+                !particle.destroyed &&
+                opacityAnim.enable &&
+                (opacityAnim.count <= 0 || particle.loops.size < opacityAnim.count)
+            )
         ) {
-            switch (particle.opacity.status) {
-                case AnimationStatus.increasing:
-                    if (particle.opacity.value >= maxValue) {
-                        particle.opacity.status = AnimationStatus.decreasing;
-                        particle.loops.opacity++;
-                    } else {
-                        particle.opacity.value += (particle.opacity.velocity ?? 0) * delta.factor;
-                    }
-                    break;
-                case AnimationStatus.decreasing:
-                    if (particle.opacity.value <= minValue) {
-                        particle.opacity.status = AnimationStatus.increasing;
-                        particle.loops.opacity++;
-                    } else {
-                        particle.opacity.value -= (particle.opacity.velocity ?? 0) * delta.factor;
-                    }
-                    break;
-            }
+            return;
+        }
 
-            checkDestroy(particle, opacityAnim.destroy, particle.opacity.value, minValue, maxValue);
+        switch (particle.opacity.status) {
+            case AnimationStatus.increasing:
+                if (particle.opacity.value >= maxValue) {
+                    particle.opacity.status = AnimationStatus.decreasing;
+                    particle.loops.opacity++;
+                } else {
+                    particle.opacity.value += (particle.opacity.velocity ?? 0) * delta.factor;
+                }
 
-            if (!particle.destroyed) {
-                particle.opacity.value = NumberUtils.clamp(particle.opacity.value, minValue, maxValue);
-            }
+                break;
+            case AnimationStatus.decreasing:
+                if (particle.opacity.value <= minValue) {
+                    particle.opacity.status = AnimationStatus.increasing;
+                    particle.loops.opacity++;
+                } else {
+                    particle.opacity.value -= (particle.opacity.velocity ?? 0) * delta.factor;
+                }
+
+                break;
+        }
+
+        checkDestroy(particle, opacityAnim.destroy, particle.opacity.value, minValue, maxValue);
+
+        if (!particle.destroyed) {
+            particle.opacity.value = NumberUtils.clamp(particle.opacity.value, minValue, maxValue);
         }
     }
 
@@ -272,30 +283,35 @@ export class Updater {
         const minValue = NumberUtils.getRangeMin(sizeOpt.value) * container.retina.pixelRatio;
         const maxValue = NumberUtils.getRangeMax(sizeOpt.value) * container.retina.pixelRatio;
 
-        if (!particle.destroyed && sizeAnim.enable && (sizeAnim.count <= 0 || particle.loops.size < sizeAnim.count)) {
-            switch (particle.size.status) {
-                case AnimationStatus.increasing:
-                    if (particle.size.value >= maxValue) {
-                        particle.size.status = AnimationStatus.decreasing;
-                        particle.loops.size++;
-                    } else {
-                        particle.size.value += sizeVelocity;
-                    }
-                    break;
-                case AnimationStatus.decreasing:
-                    if (particle.size.value <= minValue) {
-                        particle.size.status = AnimationStatus.increasing;
-                        particle.loops.size++;
-                    } else {
-                        particle.size.value -= sizeVelocity;
-                    }
-            }
+        if (
+            !(!particle.destroyed && sizeAnim.enable && (sizeAnim.count <= 0 || particle.loops.size < sizeAnim.count))
+        ) {
+            return;
+        }
 
-            checkDestroy(particle, sizeAnim.destroy, particle.size.value, minValue, maxValue);
+        switch (particle.size.status) {
+            case AnimationStatus.increasing:
+                if (particle.size.value >= maxValue) {
+                    particle.size.status = AnimationStatus.decreasing;
+                    particle.loops.size++;
+                } else {
+                    particle.size.value += sizeVelocity;
+                }
 
-            if (!particle.destroyed) {
-                particle.size.value = NumberUtils.clamp(particle.size.value, minValue, maxValue);
-            }
+                break;
+            case AnimationStatus.decreasing:
+                if (particle.size.value <= minValue) {
+                    particle.size.status = AnimationStatus.increasing;
+                    particle.loops.size++;
+                } else {
+                    particle.size.value -= sizeVelocity;
+                }
+        }
+
+        checkDestroy(particle, sizeAnim.destroy, particle.size.value, minValue, maxValue);
+
+        if (!particle.destroyed) {
+            particle.size.value = NumberUtils.clamp(particle.size.value, minValue, maxValue);
         }
     }
 
@@ -306,24 +322,28 @@ export class Updater {
         const speed = (particle.rotate.velocity ?? 0) * delta.factor;
         const max = 2 * Math.PI;
 
-        if (rotateAnimation.enable) {
-            switch (particle.rotate.status) {
-                case AnimationStatus.increasing:
-                    particle.rotate.value += speed;
+        if (!rotateAnimation.enable) {
+            return;
+        }
 
-                    if (particle.rotate.value > max) {
-                        particle.rotate.value -= max;
-                    }
-                    break;
-                case AnimationStatus.decreasing:
-                default:
-                    particle.rotate.value -= speed;
+        switch (particle.rotate.status) {
+            case AnimationStatus.increasing:
+                particle.rotate.value += speed;
 
-                    if (particle.rotate.value < 0) {
-                        particle.rotate.value += max;
-                    }
-                    break;
-            }
+                if (particle.rotate.value > max) {
+                    particle.rotate.value -= max;
+                }
+
+                break;
+            case AnimationStatus.decreasing:
+            default:
+                particle.rotate.value -= speed;
+
+                if (particle.rotate.value < 0) {
+                    particle.rotate.value += max;
+                }
+
+                break;
         }
     }
 
@@ -334,24 +354,28 @@ export class Updater {
         const speed = (particle.tilt.velocity ?? 0) * delta.factor;
         const max = 2 * Math.PI;
 
-        if (tiltAnimation.enable) {
-            switch (particle.tilt.status) {
-                case AnimationStatus.increasing:
-                    particle.tilt.value += speed;
+        if (!tiltAnimation.enable) {
+            return;
+        }
 
-                    if (particle.tilt.value > max) {
-                        particle.tilt.value -= max;
-                    }
-                    break;
-                case AnimationStatus.decreasing:
-                default:
-                    particle.tilt.value -= speed;
+        switch (particle.tilt.status) {
+            case AnimationStatus.increasing:
+                particle.tilt.value += speed;
 
-                    if (particle.tilt.value < 0) {
-                        particle.tilt.value += max;
-                    }
-                    break;
-            }
+                if (particle.tilt.value > max) {
+                    particle.tilt.value -= max;
+                }
+
+                break;
+            case AnimationStatus.decreasing:
+            default:
+                particle.tilt.value -= speed;
+
+                if (particle.tilt.value < 0) {
+                    particle.tilt.value += max;
+                }
+
+                break;
         }
     }
 
@@ -361,12 +385,14 @@ export class Updater {
         const speed = particle.rollSpeed * delta.factor;
         const max = 2 * Math.PI;
 
-        if (roll.enable) {
-            particle.rollAngle += speed;
+        if (!roll.enable) {
+            return;
+        }
 
-            if (particle.rollAngle > max) {
-                particle.rollAngle -= max;
-            }
+        particle.rollAngle += speed;
+
+        if (particle.rollAngle > max) {
+            particle.rollAngle -= max;
         }
     }
 
@@ -377,16 +403,18 @@ export class Updater {
         const distance = (particle.wobbleDistance * delta.factor) / (1000 / 60);
         const max = 2 * Math.PI;
 
-        if (wobble.enable) {
-            particle.wobbleAngle += speed;
-
-            if (particle.wobbleAngle > max) {
-                particle.wobbleAngle -= max;
-            }
-
-            particle.position.x += distance * Math.cos(particle.wobbleAngle);
-            particle.position.y += distance * Math.abs(Math.sin(particle.wobbleAngle));
+        if (!wobble.enable) {
+            return;
         }
+
+        particle.wobbleAngle += speed;
+
+        if (particle.wobbleAngle > max) {
+            particle.wobbleAngle -= max;
+        }
+
+        particle.position.x += distance * Math.cos(particle.wobbleAngle);
+        particle.position.y += distance * Math.abs(Math.sin(particle.wobbleAngle));
     }
 
     private updateColor(delta: IDelta): void {
@@ -520,9 +548,11 @@ export class Updater {
                 if (!Utils.isPointInside(particle.position, container.canvas.size, particle.getRadius(), direction)) {
                     this.fixOutOfCanvasPosition(direction);
                 }
+
                 break;
             case OutMode.none:
                 this.bounceNone(direction);
+
                 break;
         }
     }
