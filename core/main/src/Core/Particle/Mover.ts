@@ -72,9 +72,15 @@ export class Mover {
         particle.velocity.multTo(1 - particle.options.move.decay);
 
         const velocity = particle.velocity.mult(moveSpeed);
+        const maxSpeed = particle.maxSpeed ?? container.retina.maxSpeed;
 
-        if (gravityOptions.enable && Math.abs(velocity.y) >= gravityOptions.maxSpeed && gravityOptions.maxSpeed > 0) {
-            velocity.y = gravityFactor * gravityOptions.maxSpeed;
+        if (
+            gravityOptions.enable &&
+            ((!gravityOptions.inverse && velocity.y >= 0 && velocity.y >= maxSpeed) ||
+                (gravityOptions.inverse && velocity.y <= 0 && velocity.y <= -maxSpeed)) &&
+            gravityOptions.maxSpeed > 0
+        ) {
+            velocity.y = gravityFactor * maxSpeed;
 
             if (moveSpeed) {
                 particle.velocity.y = velocity.y / moveSpeed;

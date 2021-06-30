@@ -74,6 +74,7 @@ export class Particle implements IParticle {
     maxDistance?: number;
     moveDrift?: number;
     moveSpeed?: number;
+    maxSpeed?: number;
     sizeAnimationSpeed?: number;
 
     readonly close: boolean;
