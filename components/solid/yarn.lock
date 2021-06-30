@@ -4551,6 +4551,11 @@ path-type@^4.0.0:
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
+pathseg@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/pathseg/-/pathseg-1.2.0.tgz#22af051e28037671e7799e296fe96c5dcbe53acd"
+  integrity sha512-+pQS7lTaoVIXhaCW7R3Wd/165APzZHWzYVqe7dxzdupxQwebgpBaCmf0/XZwmoA/rkDq3qvzO0qv4d5oFVrBRw==
+
 performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
@@ -5789,6 +5794,13 @@ tslib@^2.0.3:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.2.0.tgz#fb2c475977e35e241311ede2693cee1ec6698f5c"
   integrity sha512-gS9GVHRU+RGn5KQM2rllAlR3dU6m7AcpJKdtH8gFvQiC4Otgk98XnmMU+nZenHt/+VhnBPWwgrJsyrdcw6i23w==
 
+tsparticles@^1.30.1:
+  version "1.30.1"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.30.1.tgz#77462b92def50b09aee832453827deb8d6fdc057"
+  integrity sha512-0mdjTAxqhiV+aV79vzFojueUjggPnUg5x3lXjMHPD7vH6tmRuT96rQ3gNjFsJN7y5HkA5nKqTFssQGIBET0zZQ==
+  optionalDependencies:
+    pathseg "^1.2.0"
+
 tsutils@^3.21.0:
   version "3.21.0"
   resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-3.21.0.tgz#b48717d394cea6c1e096983eed58e9d61715b623"
@@ -6088,9 +6100,9 @@ webpack-sources@^2.3.0:
     source-map "^0.6.1"
 
 webpack@^5.41.0:
-  version "5.41.0"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.41.0.tgz#217daa27bdd30287c1d7f9d9e0a2304fe33c5a51"
-  integrity sha512-pCVO7hVm8XiL6DpPtXrFLS8ktmH/tpvtbEex6hn4RweTFe6z6Cugh5FlQoEPZotb15HiirjM2Kv7THTA7sKLzQ==
+  version "5.41.1"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.41.1.tgz#23fa1d82c95c222d3fc3163806b9a833fe52b253"
+  integrity sha512-AJZIIsqJ/MVTmegEq9Tlw5mk5EHdGiJbDdz9qP15vmUH+oxI1FdWcL0E9EO8K/zKaRPWqEs7G/OPxq1P61u5Ug==
   dependencies:
     "@types/eslint-scope" "^3.7.0"
     "@types/estree" "^0.0.48"
