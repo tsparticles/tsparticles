@@ -1,0 +1,209 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="utf-8")
+        meta(name="description", content= "tsParticles")
+        meta(name="author", content= "Matteo Bruni")
+        meta(name="apple-mobile-web-app-capable" content="yes")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no")
+
+        meta(name="twitter:card" content="summary_large_image")
+        meta(name="twitter:creator" content="@HollowMatt_ITA")
+        meta(name="twitter:image:src" content="https://cdn.matteobruni.it/images/particles/demo.png")
+        meta(property="og:title" content="tsParticles - A lightweight TypeScript library for creating particles")
+        meta(property="og:site_name" content="tsParticles")
+        meta(property="og:url" content="https://particles.js.org/")
+        meta(property="og:description" content="A lightweight TypeScript library for creating particles.")
+        meta(property="og:image" content="https://cdn.matteobruni.it/images/particles/demo.png")
+
+        title tsParticles
+        link(href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css")
+        link(href="/fontawesome/css/all.css" rel="stylesheet" type="text/css")
+        link(href="/jsoneditor/jsoneditor.css" rel="stylesheet" type="text/css")
+
+        style.
+            /* ---- reset ---- */
+            body {
+                margin: 0;
+                font: normal 75% Arial, Helvetica, sans-serif;
+            }
+
+            @media (prefers-color-scheme: dark) {
+                h1,
+                h2,
+                h3,
+                h4,
+                h5,
+                h6 {
+                    color: #fff;
+                }
+
+                #theme-buttons {
+                    background-color: #333333cc !important;
+                }
+            }
+
+            canvas {
+                display: block;
+                vertical-align: bottom;
+            }
+
+            /* ---- tsparticles container ---- */
+            #tsparticles {
+                position: fixed;
+                width: 100%;
+                height: 100%;
+            }
+
+            #theme-buttons {
+                position: fixed;
+                top: 10px;
+                left: 10px;
+                padding: 20px;
+                background: #cccccccc;
+                border-radius: 10px;
+            }
+
+            #theme-buttons div.row:first-child {
+                margin-top: 0px;
+            }
+
+            #theme-buttons div.row {
+                margin-top: 10px;
+            }
+
+            #theme-buttons button:first-child {
+                margin-left: 0px;
+            }
+
+            #theme-buttons button {
+                margin-left: 10px;
+            }
+    body
+
+        #tsparticles
+        #theme-buttons
+            .row
+                .col.text-center
+                    h4 Themes
+                    h6 Try changing device theme and reload the page
+            .row
+                .col
+                    button(type="button" class="btn btn-block btn-light" id="image1") Image1
+                .col
+                    button(type="button" class="btn btn-block btn-dark" id="image2") Image2
+
+        script(src="/jquery/jquery.slim.min.js")
+        script(src="/popper.js/umd/popper.min.js")
+        script(src="/bootstrap/js/bootstrap.min.js")
+        script(src="/tsparticles/tsparticles.min.js")
+        script.
+            let themeableContainer;
+
+            tsParticles
+                .load("tsparticles", {
+                    themes: [
+                        {
+                            name: "image1",
+                            default: {
+                                value: true,
+                                mode: "any"
+                            },
+                            options: {
+                                particles: {
+                                    shape: {
+                                        options: {
+                                            images: {
+                                                src: "https://particles.js.org/images/fruits/apple.png",
+                                                width: 32,
+                                                height: 32
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            name: "image2",
+                            options: {
+                                particles: {
+                                    shape: {
+                                        options: {
+                                            images: {
+                                                src: "https://particles.js.org/images/fruits/avocado.png",
+                                                width: 32,
+                                                height: 32
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    background: {
+                        color: "#ffffff"
+                    },
+                    fpsLimit: 60,
+                    particles: {
+                        number: {
+                            value: 30,
+                            density: {
+                                enable: true,
+                                value_area: 800
+                            }
+                        },
+                        shape: {
+                            type: "images"
+                        },
+                        opacity: {
+                            value: 1
+                        },
+                        size: {
+                            value: 30,
+                            random: {
+                                enable: true,
+                                minimumValue: 15
+                            }
+                        },
+                        rotate: {
+                            value: 0,
+                            direction: "random",
+                            animation: {
+                                speed: 5,
+                                enable: true
+                            }
+                        },
+                        move: {
+                            enable: true,
+                            speed: 6,
+                            direction: "none",
+                            out_mode: "out"
+                        }
+                    },
+                    interactivity: {
+                        detectsOn: "canvas",
+                        events: {
+                            onHover: {
+                                enable: true,
+                                mode: "repulse"
+                            },
+                            onClick: {
+                                enable: true,
+                                mode: "push"
+                            },
+                            resize: true
+                        }
+                    },
+                    detectRetina: true
+                })
+                .then((container) => {
+                    themeableContainer = container;
+                });
+
+            document.querySelector("#image1").addEventListener("click", () => {
+                themeableContainer.loadTheme("image1");
+            });
+
+            document.querySelector("#image2").addEventListener("click", () => {
+                themeableContainer.loadTheme("image2");
+            });
