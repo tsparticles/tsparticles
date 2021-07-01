@@ -9,6 +9,14 @@
     "zIndex": -1
   },
   "particles": {
+    "bounce": {
+      "vertical": {
+        "value": 0
+      },
+      "horizontal": {
+        "value": 0
+      }
+    },
     "color": {
       "value": [
         "#1E00FF",
@@ -29,7 +37,8 @@
       },
       "outModes": {
         "top": "none",
-        "default": "destroy"
+        "default": "destroy",
+        "bottom": "bounce"
       },
       "speed": {
         "min": 50,
@@ -37,7 +46,8 @@
       }
     },
     "number": {
-      "value": 0
+      "value": 0,
+      "limit": 300
     },
     "opacity": {
       "value": 1,
@@ -55,6 +65,7 @@
         "max": 360
       },
       "direction": "random",
+      "move": true,
       "animation": {
         "enable": true,
         "speed": 60
@@ -63,6 +74,7 @@
     "tilt": {
       "direction": "random",
       "enable": true,
+      "move": true,
       "value": {
         "min": 0,
         "max": 360
@@ -123,6 +135,7 @@
     "wobble": {
       "distance": 30,
       "enable": true,
+      "move": true,
       "speed": {
         "min": -15,
         "max": 15
