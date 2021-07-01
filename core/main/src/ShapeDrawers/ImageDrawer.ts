@@ -57,6 +57,12 @@ export class ImageDrawer implements IShapeDrawer {
             return;
         }
 
+        const idx = this.images.findIndex((t) => t.id === container.id);
+
+        if (idx >= 0) {
+            this.images.splice(idx, 1);
+        }
+
         const imageOptions = shapeOptions.options[ShapeType.images] ?? shapeOptions.options[ShapeType.image];
 
         if (imageOptions instanceof Array) {

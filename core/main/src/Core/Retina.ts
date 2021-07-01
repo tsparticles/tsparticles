@@ -22,6 +22,7 @@ export class Retina {
     sizeAnimationSpeed!: number;
     pixelRatio!: number;
     bounceModeDistance!: number;
+    maxSpeed!: number;
 
     constructor(private readonly container: Container) {}
 
@@ -81,6 +82,7 @@ export class Retina {
         this.linksDistance = particles.links.distance * ratio;
         this.linksWidth = particles.links.width * ratio;
         this.sizeAnimationSpeed = particles.size.animation.speed * ratio;
+        this.maxSpeed = particles.move.gravity.maxSpeed * ratio;
 
         const modes = options.interactivity.modes;
 
@@ -110,6 +112,7 @@ export class Retina {
         particle.sizeAnimationSpeed = particlesOptions.size.animation.speed * ratio;
         particle.maxDistance = particlesOptions.move.distance * ratio;
         particle.wobbleDistance = NumberUtils.getRangeValue(particlesOptions.wobble.distance) * ratio;
+        particle.maxSpeed = particlesOptions.move.gravity.maxSpeed * ratio;
     }
 
     private handleMotionChange(mediaQuery: MediaQueryList): void {

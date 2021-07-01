@@ -46,6 +46,10 @@ app.get('/slim', function (req, res) {
     res.render('slim');
 });
 
+app.get('/themes', function (req, res) {
+    res.render('themes');
+});
+
 app.get("/presets", function (req, res) {
     res.render("presets/index");
 });
