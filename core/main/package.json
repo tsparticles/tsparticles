@@ -24,7 +24,7 @@
     "distfiles": "node ./scripts/distfiles.js",
     "test": "nyc mocha",
     "preversion": "yarn test",
-    "version": "node ./scripts/postversion.js && git add tsParticles.nuspec",
+    "version": "node ./scripts/postversion.js && yarn distfiles && git add tsParticles.nuspec",
     "postversion": "git push && git push --tags",
     "prepack": "yarn build",
     "release:alpha": "yarn version --prerelease --preid alpha",
