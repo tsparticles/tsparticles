@@ -215,9 +215,9 @@
   integrity sha512-ctjwuntPfZZT2mNj2NDIVu51t9cvbhl/16epc5xEwyzyDt76pX9UgwvY+MbXrf/C/FWwdtmNtfP698BKI+9leQ==
 
 "@angular/compiler@~12.1.0":
-  version "12.1.0"
-  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-12.1.0.tgz#c630dd7fe26184645dd3f0f227d1b8862920919d"
-  integrity sha512-Nk9l8fWv0XrEZGpN8EftAzTC6Q2oTnDqnYQ9Ykc3rkRQs4r8MDG9cUd4z5gbEToFgX7KVQ3+wLAYVX+uB6A5hg==
+  version "12.1.1"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-12.1.1.tgz#ec8ae93fa905f6f71c748ba250be8f4d58e31605"
+  integrity sha512-QV56c+A18vdY8AB/SoWq0UkHhJxYDWY+VUY75RM2dxcsXoNeO5FTCjBRkA7yMiX6Q6cahH2ivC7tmqVU2mYHuA==
   dependencies:
     tslib "^2.2.0"
 
