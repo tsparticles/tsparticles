@@ -104,16 +104,12 @@
         ],
         "character": [
           {
-            "fill": true,
-            "font": "Verdana",
             "value": [
               "💩",
               "🤡",
               "🍀",
               "🍙"
-            ],
-            "style": "",
-            "weight": 400
+            ]
           }
         ]
       }

@@ -6,5 +6,5 @@
 | `random`           | `boolean`   | `true` / `false`                  |                  |
 | `direction`        | `string`    | `clockwise` / `counter-clockwise` |                  |
 | `animation.enable` | `boolean`   | `true` / `false`                  |                  |
-| `animation.speed`  | `number`    | `5`                               |                  |
+| `animation.speed`  | `number`    | 5                                 |                  |
 | `animation.sync`   | `boolean`   | `true` / `false`                  |                  |

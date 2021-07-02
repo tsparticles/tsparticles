@@ -8,20 +8,14 @@
 
 ## Particles Life Delay
 
-| key                   | option type          | example          | notes                                                      |
-| --------------------- | -------------------- | ---------------- | ---------------------------------------------------------- |
-| `value`               | `number`             | `0`              |                                                            |
-| `random`              | `boolean` / `object` | `true` / `false` | If boolean it randomize the life delay from `0` to `value` |
-| `random.enable`       | `boolean`            | `true` / `false` | This is the alternative to pure boolean value              |
-| `random.minimumValue` | `number`             | `0`              | This is the minimum value used in random values            |
-| `sync`                | `boolean`            | `true` / `false` |                                                            |
+| key     | option type        | example                    | notes |
+| ------- | ------------------ | -------------------------- | ----- |
+| `value` | `number` / `range` | `0` / `{ min: 1, max: 5 }` |       |
+| `sync`  | `boolean`          | `true` / `false`           |       |
 
 ## Particles Life Duration
 
-| key                   | option type          | example          | notes                                                         |
-| --------------------- | -------------------- | ---------------- | ------------------------------------------------------------- |
-| `value`               | `number`             | `0`              |                                                               |
-| `random`              | `boolean` / `object` | `true` / `false` | If boolean it randomize the life duration from `0` to `value` |
-| `random.enable`       | `boolean`            | `true` / `false` | This is the alternative to pure boolean value                 |
-| `random.minimumValue` | `number`             | `0`              | This is the minimum value used in random values               |
-| `sync`                | `boolean`            | `true` / `false` |                                                               |
+| key     | option type        | example                    | notes |
+| ------- | ------------------ | -------------------------- | ----- |
+| `value` | `number` / `range` | `0` / `{ min: 1, max: 5 }` |       |
+| `sync`  | `boolean`          | `true` / `false`           |       |
