@@ -62,6 +62,9 @@
     "build": "ts-node -O '{ \"module\": \"commonjs\" }' build.ts",
     "prepack": "yarn build"
   },
+  "peerDependencies": {
+    "tsparticles": "^1.30.2"
+  },
   "devDependencies": {
     "rollup": "^2.52.3",
     "rollup-plugin-node-resolve": "^5.2.0",

@@ -56,11 +56,11 @@
   "main": "dist/umd/svelte-particles.js",
   "module": "dist/es/svelte-particles.js",
   "peerDependencies": {
-    "svelte": ">=3"
+    "svelte": ">=3",
+    "tsparticles": "^1.30.2"
   },
   "dependencies": {
-    "tslib": "^2.3.0",
-    "tsparticles": "^1.30.2"
+    "tslib": "^2.3.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^19.0.0",
@@ -74,7 +74,8 @@
     "svelte": "^3.38.3",
     "svelte-check": "^2.2.0",
     "svelte-preprocess": "^4.7.3",
-    "typescript": "^4.3.4"
+    "typescript": "^4.3.4",
+    "tsparticles": "^1.30.2"
   },
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"

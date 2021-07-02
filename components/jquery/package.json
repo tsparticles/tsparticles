@@ -71,10 +71,10 @@
     "url": "https://github.com/sponsors/matteobruni"
   },
   "peerDependencies": {
-    "jquery": ">=1"
+    "jquery": ">=1",
+    "tsparticles": "^1.30.2"
   },
   "dependencies": {
-    "tsparticles": "^1.30.2"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
@@ -92,6 +92,7 @@
     "rollup": "^2.52.3",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-sourcemaps": "^0.6.3",
+    "tsparticles": "^1.30.2",
     "typescript": "^4.3.4",
     "uglify-js": "^3.13.10"
   }

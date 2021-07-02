@@ -77,12 +77,11 @@
   "author": "Matteo Bruni <matteo.bruni@me.com> (https://www.matteobruni.it)",
   "license": "MIT",
   "peerDependencies": {
-    "react": ">=16"
+    "react": ">=16",
+    "tsparticles": "^1.30.2"
   },
   "dependencies": {
-    "fast-deep-equal": "^3.1.3",
-    "tslib": "^2.3.0",
-    "tsparticles": "^1.30.2"
+    "fast-deep-equal": "^3.1.3"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
@@ -101,6 +100,7 @@
     "react-dom": "^17.0.2",
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",
+    "tsparticles": "^1.30.2",
     "typescript": "^4.3.4",
     "webpack": "^5.41.0",
     "webpack-bundle-analyzer": "^4.4.2",
