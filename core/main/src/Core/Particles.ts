@@ -235,19 +235,7 @@ export class Particles {
 
     /* ---------- tsParticles functions - modes events ------------ */
     push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticles>): void {
-        const container = this.container;
-        const options = container.actualOptions;
-        const limit = options.particles.number.limit * container.density;
-
         this.pushing = true;
-
-        if (limit > 0) {
-            const countToRemove = this.count + nb - limit;
-
-            if (countToRemove > 0) {
-                this.removeQuantity(countToRemove);
-            }
-        }
 
         for (let i = 0; i < nb; i++) {
             this.addParticle(mouse?.position, overrideOptions);
@@ -257,6 +245,18 @@ export class Particles {
     }
 
     addParticle(position?: ICoordinates, overrideOptions?: RecursivePartial<IParticles>): Particle | undefined {
+        const container = this.container;
+        const options = container.actualOptions;
+        const limit = options.particles.number.limit * container.density;
+
+        if (limit > 0) {
+            const countToRemove = this.count + 1 - limit;
+
+            if (countToRemove > 0) {
+                this.removeQuantity(countToRemove);
+            }
+        }
+
         return this.pushParticle(position, overrideOptions);
     }
 
