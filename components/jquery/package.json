@@ -1,6 +1,6 @@
 {
   "name": "jquery-particles",
-  "version": "1.30.2",
+  "version": "1.30.3",
   "description": "Official tsParticles jQuery Plugin - Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Angular, Svelte, Preact, Riot.js, Solid.js, Inferno.",
   "main": "dist/jquery.particles.min.js",
   "scripts": {
@@ -74,8 +74,6 @@
     "jquery": ">=1",
     "tsparticles": "^1.30.2"
   },
-  "dependencies": {
-  },
   "devDependencies": {
     "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.14.7",
@@ -92,7 +90,7 @@
     "rollup": "^2.52.3",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-sourcemaps": "^0.6.3",
-    "tsparticles": "^1.30.2",
+    "tsparticles": "^1.30.3",
     "typescript": "^4.3.4",
     "uglify-js": "^3.13.10"
   }

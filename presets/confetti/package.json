@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-confetti",
-  "version": "1.15.2",
+  "version": "1.15.3",
   "description": "tsParticles confetti preset",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -72,6 +72,6 @@
     "webpack-cli": "^4.7.2"
   },
   "dependencies": {
-    "tsparticles": "^1.30.2"
+    "tsparticles": "^1.30.3"
   }
 }
