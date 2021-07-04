@@ -207,8 +207,8 @@ export class Particle implements IParticle {
 
         this.size = {
             value: sizeValue,
-            max: NumberUtils.getRangeMax(sizeOptions.value) * pxRatio,
-            min: NumberUtils.getRangeMin(sizeOptions.value) * pxRatio,
+            max: getRangeMax(sizeOptions.value) * pxRatio,
+            min: getRangeMin(sizeOptions.value) * pxRatio,
         };
 
         const sizeAnimation = sizeOptions.animation;
@@ -216,10 +216,10 @@ export class Particle implements IParticle {
         if (sizeAnimation.enable) {
             this.size.status = AnimationStatus.increasing;
 
-            const sizeRange = NumberUtils.setRangeValue(sizeOptions.value, sizeAnimation.minimumValue * pxRatio);
+            const sizeRange = setRangeValue(sizeOptions.value, sizeAnimation.minimumValue * pxRatio);
 
-            this.size.min = NumberUtils.getRangeMin(sizeRange);
-            this.size.max = NumberUtils.getRangeMax(sizeRange);
+            this.size.min = getRangeMin(sizeRange);
+            this.size.max = getRangeMax(sizeRange);
 
             switch (sizeAnimation.startValue) {
                 case StartValueType.min:
@@ -229,7 +229,7 @@ export class Particle implements IParticle {
                     break;
 
                 case StartValueType.random:
-                    this.size.value = NumberUtils.randomInRange(this.size);
+                    this.size.value = randomInRange(this.size);
                     this.size.status = Math.random() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
                     break;
@@ -251,7 +251,7 @@ export class Particle implements IParticle {
             }
         }
 
-        this.direction = NumberUtils.getParticleDirectionAngle(this.options.move.direction);
+        this.direction = getParticleDirectionAngle(this.options.move.direction);
         this.bubble = {
             inRange: false,
         };
@@ -403,9 +403,9 @@ export class Particle implements IParticle {
         const opacityOptions = this.options.opacity;
 
         this.opacity = {
-            max: NumberUtils.getRangeMax(opacityOptions.value),
-            min: NumberUtils.getRangeMin(opacityOptions.value),
-            value: NumberUtils.getValue(opacityOptions),
+            max: getRangeMax(opacityOptions.value),
+            min: getRangeMin(opacityOptions.value),
+            value: getValue(opacityOptions),
         };
 
         const opacityAnimation = opacityOptions.animation;
@@ -413,10 +413,10 @@ export class Particle implements IParticle {
         if (opacityAnimation.enable) {
             this.opacity.status = AnimationStatus.increasing;
 
-            const opacityRange = NumberUtils.setRangeValue(opacityOptions.value, opacityAnimation.minimumValue);
+            const opacityRange = setRangeValue(opacityOptions.value, opacityAnimation.minimumValue);
 
-            this.opacity.min = NumberUtils.getRangeMin(opacityRange);
-            this.opacity.max = NumberUtils.getRangeMax(opacityRange);
+            this.opacity.min = getRangeMin(opacityRange);
+            this.opacity.max = getRangeMax(opacityRange);
 
             switch (opacityAnimation.startValue) {
                 case StartValueType.min:
@@ -426,7 +426,7 @@ export class Particle implements IParticle {
                     break;
 
                 case StartValueType.random:
-                    this.opacity.value = NumberUtils.randomInRange(this.opacity);
+                    this.opacity.value = randomInRange(this.opacity);
                     this.opacity.status =
                         Math.random() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
 

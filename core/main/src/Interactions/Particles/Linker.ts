@@ -55,7 +55,7 @@ export class Linker implements IParticlesInteractor {
                     y: pos2.y,
                 };
 
-                distance = NumberUtils.getDistance(pos1, pos2NE);
+                distance = getDistance(pos1, pos2NE);
 
                 if (distance > optDistance) {
                     const pos2SE = {
@@ -63,7 +63,7 @@ export class Linker implements IParticlesInteractor {
                         y: pos2.y - canvasSize.height,
                     };
 
-                    distance = NumberUtils.getDistance(pos1, pos2SE);
+                    distance = getDistance(pos1, pos2SE);
 
                     if (distance > optDistance) {
                         const pos2SW = {
@@ -71,7 +71,7 @@ export class Linker implements IParticlesInteractor {
                             y: pos2.y - canvasSize.height,
                         };
 
-                        distance = NumberUtils.getDistance(pos1, pos2SW);
+                        distance = getDistance(pos1, pos2SW);
                     }
                 }
             }
