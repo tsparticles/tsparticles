@@ -562,10 +562,10 @@ export class Utils {
     }
 
     static circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
-        return circleBounce(p1, p2);
+        circleBounce(p1, p2);
     }
 
     static rectBounce(particle: IParticle, divBounds: IBounds): void {
-        return rectBounce(particle, divBounds);
+        rectBounce(particle, divBounds);
     }
 }
