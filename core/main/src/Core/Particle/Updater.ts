@@ -3,8 +3,6 @@ import type { Particle } from "../Particle";
 import {
     calculateBounds,
     clamp,
-    getRangeMax,
-    getRangeMin,
     getValue,
     isPointInside,
     randomInRange,
