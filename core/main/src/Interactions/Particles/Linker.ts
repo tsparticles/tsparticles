@@ -33,7 +33,15 @@ export class Linker implements IParticlesInteractor {
         for (const p2 of query) {
             const linkOpt2 = p2.options.links;
 
-            if (p1 === p2 || !linkOpt2.enable || linkOpt1.id !== linkOpt2.id || p2.spawning || p2.destroyed) {
+            if (
+                p1 === p2 ||
+                !linkOpt2.enable ||
+                linkOpt1.id !== linkOpt2.id ||
+                p2.spawning ||
+                p2.destroyed ||
+                p1.links.map((t) => t.destination).indexOf(p2) !== -1 ||
+                p2.links.map((t) => t.destination).indexOf(p1) !== -1
+            ) {
                 continue;
             }
 
@@ -41,31 +49,29 @@ export class Linker implements IParticlesInteractor {
 
             let distance = getDistance(pos1, pos2);
 
-            if (warp) {
+            if (warp && distance > optDistance) {
+                const pos2NE = {
+                    x: pos2.x - canvasSize.width,
+                    y: pos2.y,
+                };
+
+                distance = NumberUtils.getDistance(pos1, pos2NE);
+
                 if (distance > optDistance) {
-                    const pos2NE = {
+                    const pos2SE = {
                         x: pos2.x - canvasSize.width,
-                        y: pos2.y,
+                        y: pos2.y - canvasSize.height,
                     };
 
-                    distance = getDistance(pos1, pos2NE);
+                    distance = NumberUtils.getDistance(pos1, pos2SE);
 
                     if (distance > optDistance) {
-                        const pos2SE = {
-                            x: pos2.x - canvasSize.width,
+                        const pos2SW = {
+                            x: pos2.x,
                             y: pos2.y - canvasSize.height,
                         };
 
-                        distance = getDistance(pos1, pos2SE);
-
-                        if (distance > optDistance) {
-                            const pos2SW = {
-                                x: pos2.x,
-                                y: pos2.y - canvasSize.height,
-                            };
-
-                            distance = getDistance(pos1, pos2SW);
-                        }
+                        distance = NumberUtils.getDistance(pos1, pos2SW);
                     }
                 }
             }
@@ -95,15 +101,10 @@ export class Linker implements IParticlesInteractor {
                 }
             }
 
-            if (
-                p2.links.map((t) => t.destination).indexOf(p1) === -1 &&
-                p1.links.map((t) => t.destination).indexOf(p2) === -1
-            ) {
-                p1.links.push({
-                    destination: p2,
-                    opacity: opacityLine,
-                });
-            }
+            p1.links.push({
+                destination: p2,
+                opacity: opacityLine,
+            });
         }
     }
 }

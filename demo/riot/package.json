@@ -1,7 +1,7 @@
 {
   "name": "riot-particles-demo",
   "private": true,
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -31,7 +31,7 @@
     "@riotjs/hot-reload": "^5.0.0",
     "path": "^0.12.7",
     "riot": "^5.4.5",
-    "riot-particles": "^1.4.3",
-    "tsparticles": "^1.30.3"
+    "riot-particles": "^1.4.4",
+    "tsparticles": "^1.30.4"
   }
 }

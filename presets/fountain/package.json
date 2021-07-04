@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-fountain",
-  "version": "1.15.3",
+  "version": "1.15.4",
   "description": "tsParticles fountain preset",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -72,6 +72,6 @@
     "webpack-cli": "^4.7.2"
   },
   "dependencies": {
-    "tsparticles": "^1.30.3"
+    "tsparticles": "^1.30.4"
   }
 }
