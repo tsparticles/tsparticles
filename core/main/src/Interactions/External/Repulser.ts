@@ -1,6 +1,18 @@
 import type { Container } from "../../Core/Container";
 import { ClickMode, DivMode, DivType, HoverMode } from "../../Enums";
-import { Circle, Constants, NumberUtils, Range, Rectangle, Utils } from "../../Utils";
+import {
+    calcEasing,
+    Circle,
+    clamp,
+    Constants,
+    divMode,
+    divModeExecute,
+    getDistances,
+    isDivModeEnabled,
+    isInArray,
+    Range,
+    Rectangle,
+} from "../../Utils";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
 import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
@@ -22,7 +34,7 @@ export class Repulser implements IExternalInteractor {
         const events = options.interactivity.events;
         const divs = events.onDiv;
 
-        const divRepulse = Utils.isDivModeEnabled(DivMode.repulse, divs);
+        const divRepulse = isDivModeEnabled(DivMode.repulse, divs);
 
         if (
             !(divRepulse || (events.onHover.enable && mouse.position) || (events.onClick.enable && mouse.clickPosition))
@@ -33,9 +45,7 @@ export class Repulser implements IExternalInteractor {
         const hoverMode = events.onHover.mode;
         const clickMode = events.onClick.mode;
 
-        return (
-            Utils.isInArray(HoverMode.repulse, hoverMode) || Utils.isInArray(ClickMode.repulse, clickMode) || divRepulse
-        );
+        return isInArray(HoverMode.repulse, hoverMode) || isInArray(ClickMode.repulse, clickMode) || divRepulse;
     }
 
     reset(): void {
@@ -53,14 +63,12 @@ export class Repulser implements IExternalInteractor {
         const clickMode = events.onClick.mode;
         const divs = events.onDiv;
 
-        if (mouseMoveStatus && hoverEnabled && Utils.isInArray(HoverMode.repulse, hoverMode)) {
+        if (mouseMoveStatus && hoverEnabled && isInArray(HoverMode.repulse, hoverMode)) {
             this.hoverRepulse();
-        } else if (clickEnabled && Utils.isInArray(ClickMode.repulse, clickMode)) {
+        } else if (clickEnabled && isInArray(ClickMode.repulse, clickMode)) {
             this.clickRepulse();
         } else {
-            Utils.divModeExecute(DivMode.repulse, divs, (selector, div): void =>
-                this.singleSelectorRepulse(selector, div)
-            );
+            divModeExecute(DivMode.repulse, divs, (selector, div): void => this.singleSelectorRepulse(selector, div));
         }
     }
 
@@ -92,7 +100,7 @@ export class Repulser implements IExternalInteractor {
                       );
 
             const divs = container.actualOptions.interactivity.modes.repulse.divs;
-            const divRepulse = Utils.divMode(divs, elem);
+            const divRepulse = divMode(divs, elem);
 
             this.processRepulse(pos, repulseRadius, area, divRepulse);
         });
@@ -117,15 +125,15 @@ export class Repulser implements IExternalInteractor {
         const query = container.particles.quadTree.query(area);
 
         for (const particle of query) {
-            const { dx, dy, distance } = NumberUtils.getDistances(particle.position, position);
+            const { dx, dy, distance } = getDistances(particle.position, position);
             const normVec = {
                 x: dx / distance,
                 y: dy / distance,
             };
 
             const velocity = (divRepulse?.speed ?? repulseOptions.speed) * repulseOptions.factor;
-            const repulseFactor = NumberUtils.clamp(
-                NumberUtils.calcEasing(1 - distance / repulseRadius, repulseOptions.easing) * velocity,
+            const repulseFactor = clamp(
+                calcEasing(1 - distance / repulseRadius, repulseOptions.easing) * velocity,
                 0,
                 repulseOptions.maxSpeed
             );
@@ -163,7 +171,7 @@ export class Repulser implements IExternalInteractor {
             const query = container.particles.quadTree.query(range);
 
             for (const particle of query) {
-                const { dx, dy, distance } = NumberUtils.getDistances(mouseClickPos, particle.position);
+                const { dx, dy, distance } = getDistances(mouseClickPos, particle.position);
                 const d = distance * distance;
 
                 if (d <= repulseRadius) {
@@ -198,7 +206,7 @@ export class Repulser implements IExternalInteractor {
         const events = options.interactivity.events;
         const divs = events.onDiv;
 
-        const divRepulse = Utils.isDivModeEnabled(DivMode.repulse, divs);
+        const divRepulse = isDivModeEnabled(DivMode.repulse, divs);
 
         if (
             !(divRepulse || (events.onHover.enable && mouse.position) || (events.onClick.enable && mouse.clickPosition))
@@ -210,7 +218,7 @@ export class Repulser implements IExternalInteractor {
         const clickMode = events.onClick.mode;
 
         return (
-            Utils.isInArray(HoverMode.repulse, hoverMode) || Utils.isInArray(ClickMode.repulse, clickMode) || divRepulse
+            isInArray(HoverMode.repulse, hoverMode) || isInArray(ClickMode.repulse, clickMode) || divRepulse
         );
     }
 
@@ -229,12 +237,12 @@ export class Repulser implements IExternalInteractor {
         const clickMode = events.onClick.mode;
         const divs = events.onDiv;
 
-        if (mouseMoveStatus && hoverEnabled && Utils.isInArray(HoverMode.repulse, hoverMode)) {
+        if (mouseMoveStatus && hoverEnabled && isInArray(HoverMode.repulse, hoverMode)) {
             this.hoverRepulse();
-        } else if (clickEnabled && Utils.isInArray(ClickMode.repulse, clickMode)) {
+        } else if (clickEnabled && isInArray(ClickMode.repulse, clickMode)) {
             this.clickRepulse();
         } else {
-            Utils.divModeExecute(DivMode.repulse, divs, (selector, div): void => this.singleDivRepulse(selector, div));
+            divModeExecute(DivMode.repulse, divs, (selector, div): void => this.singleDivRepulse(selector, div));
         }
     }
 
@@ -266,7 +274,7 @@ export class Repulser implements IExternalInteractor {
                     );
 
             const divs = container.options.interactivity.modes.repulse.divs;
-            const divRepulse = Utils.divMode(divs, selector);
+            const divRepulse = divMode(divs, selector);
             const velocity = (divRepulse?.speed ?? container.options.interactivity.modes.repulse.speed) * 100;
 
             this.processRepulse(pos, repulseRadius, velocity, area, divRepulse);
@@ -329,13 +337,13 @@ export class Repulser implements IExternalInteractor {
         const query = container.particles.quadTree.query(area);
 
         for (const particle of query) {
-            const { dx, dy, distance } = Utils.getDistances(particle.position, position);
+            const { dx, dy, distance } = getDistances(particle.position, position);
             const normVec = {
                 x: dx / distance,
                 y: dy / distance,
             };
 
-            const repulseFactor = Utils.clamp((1 - Math.pow(distance / repulseRadius, 2)) * velocity, 0, 50);
+            const repulseFactor = clamp((1 - Math.pow(distance / repulseRadius, 2)) * velocity, 0, 50);
 
             particle.position.x += normVec.x * repulseFactor;
             particle.position.y += normVec.y * repulseFactor;

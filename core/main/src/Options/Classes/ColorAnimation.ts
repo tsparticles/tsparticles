@@ -1,7 +1,7 @@
 import type { IColorAnimation } from "../Interfaces/IColorAnimation";
 import type { RangeValue, RecursivePartial } from "../../Types";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
-import { NumberUtils } from "../../Utils";
+import { setRangeValue } from "../../Utils";
 
 /**
  * @category Options
@@ -35,7 +35,7 @@ export class ColorAnimation implements IColorAnimation, IOptionLoader<IColorAnim
         }
 
         if (data.offset !== undefined) {
-            this.offset = NumberUtils.setRangeValue(data.offset);
+            this.offset = setRangeValue(data.offset);
         }
 
         if (data.speed !== undefined) {

@@ -3,7 +3,15 @@ import type { Container } from "../../Core/Container";
 import type { Particle } from "../../Core/Particle";
 import type { IRgb } from "../../Core/Interfaces/Colors";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
-import { ColorUtils, NumberUtils, Utils } from "../../Utils";
+import {
+    colorToRgb,
+    getDistance,
+    getDistances,
+    getRangeValue,
+    getStyleFromRgb,
+    getValue,
+    isPointInside,
+} from "../../Utils";
 import type { Absorbers } from "./Absorbers";
 import { Vector } from "../../Core/Particle/Vector";
 
@@ -42,7 +50,7 @@ export class AbsorberInstance {
 
         this.name = this.options.name;
         this.opacity = this.options.opacity;
-        this.size = NumberUtils.getValue(options.size) * container.retina.pixelRatio;
+        this.size = getValue(options.size) * container.retina.pixelRatio;
         this.mass = this.size * options.size.density * container.retina.reduceFactor;
 
         const limit = options.size.limit;
@@ -51,7 +59,7 @@ export class AbsorberInstance {
 
         const color = typeof options.color === "string" ? { value: options.color } : options.color;
 
-        this.color = ColorUtils.colorToRgb(color) ?? {
+        this.color = colorToRgb(color) ?? {
             b: 0,
             g: 0,
             r: 0,
@@ -67,7 +75,7 @@ export class AbsorberInstance {
             const mouse = this.container.interactivity.mouse;
 
             if (mouse.clicking && mouse.downPosition) {
-                const mouseDist = NumberUtils.getDistance(this.position, mouse.downPosition);
+                const mouseDist = getDistance(this.position, mouse.downPosition);
 
                 if (mouseDist <= this.size) {
                     this.dragging = true;
@@ -83,7 +91,7 @@ export class AbsorberInstance {
         }
 
         const pos = particle.getPosition();
-        const { dx, dy, distance } = NumberUtils.getDistances(this.position, pos);
+        const { dx, dy, distance } = getDistances(this.position, pos);
         const v = Vector.create(dx, dy);
         v.length = (this.mass / Math.pow(distance, 2)) * this.container.retina.reduceFactor;
 
@@ -120,7 +128,7 @@ export class AbsorberInstance {
         const initialPosition = this.initialPosition;
 
         this.position =
-            initialPosition && Utils.isPointInside(initialPosition, this.container.canvas.size)
+            initialPosition && isPointInside(initialPosition, this.container.canvas.size)
                 ? initialPosition
                 : this.calcPosition();
     }
@@ -130,7 +138,7 @@ export class AbsorberInstance {
         context.beginPath();
         context.arc(0, 0, this.size, 0, Math.PI * 2, false);
         context.closePath();
-        context.fillStyle = ColorUtils.getStyleFromRgb(this.color, this.opacity);
+        context.fillStyle = getStyleFromRgb(this.color, this.opacity);
         context.fill();
     }
 
@@ -162,7 +170,7 @@ export class AbsorberInstance {
             if (particle.orbit === undefined) {
                 particle.orbit = Vector.create(0, 0);
 
-                particle.orbit.length = NumberUtils.getDistance(particle.getPosition(), this.position);
+                particle.orbit.length = getDistance(particle.getPosition(), this.position);
                 particle.orbit.angle = Math.random() * Math.PI * 2;
             }
 
@@ -177,8 +185,7 @@ export class AbsorberInstance {
 
             particle.orbit.length -= v.length;
             particle.orbit.angle +=
-                ((particle.moveSpeed ??
-                    NumberUtils.getRangeValue(particle.options.move.speed) * this.container.retina.pixelRatio) /
+                ((particle.moveSpeed ?? getRangeValue(particle.options.move.speed) * this.container.retina.pixelRatio) /
                     100) *
                 this.container.retina.reduceFactor;
         } else {

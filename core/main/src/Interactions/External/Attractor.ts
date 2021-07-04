@@ -1,6 +1,6 @@
 import type { Container } from "../../Core/Container";
 import { ClickMode, HoverMode } from "../../Enums";
-import { Circle, Constants, Range, Utils, NumberUtils } from "../../Utils";
+import { Circle, Constants, Range, getDistances, calcEasing, clamp, isInArray } from "../../Utils";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
 
@@ -25,7 +25,7 @@ export class Attractor implements IExternalInteractor {
         const hoverMode = events.onHover.mode;
         const clickMode = events.onClick.mode;
 
-        return Utils.isInArray(HoverMode.attract, hoverMode) || Utils.isInArray(ClickMode.attract, clickMode);
+        return isInArray(HoverMode.attract, hoverMode) || isInArray(ClickMode.attract, clickMode);
     }
 
     reset(): void {
@@ -42,9 +42,9 @@ export class Attractor implements IExternalInteractor {
         const clickEnabled = events.onClick.enable;
         const clickMode = events.onClick.mode;
 
-        if (mouseMoveStatus && hoverEnabled && Utils.isInArray(HoverMode.attract, hoverMode)) {
+        if (mouseMoveStatus && hoverEnabled && isInArray(HoverMode.attract, hoverMode)) {
             this.hoverAttract();
-        } else if (clickEnabled && Utils.isInArray(ClickMode.attract, clickMode)) {
+        } else if (clickEnabled && isInArray(ClickMode.attract, clickMode)) {
             this.clickAttract();
         }
     }
@@ -68,15 +68,15 @@ export class Attractor implements IExternalInteractor {
         const query = container.particles.quadTree.query(area);
 
         for (const particle of query) {
-            const { dx, dy, distance } = NumberUtils.getDistances(particle.position, position);
+            const { dx, dy, distance } = getDistances(particle.position, position);
             const normVec = {
                 x: dx / distance,
                 y: dy / distance,
             };
 
             const velocity = attractOptions.speed * attractOptions.factor;
-            const attractFactor = NumberUtils.clamp(
-                NumberUtils.calcEasing(1 - distance / attractRadius, attractOptions.easing) * velocity,
+            const attractFactor = clamp(
+                calcEasing(1 - distance / attractRadius, attractOptions.easing) * velocity,
                 0,
                 attractOptions.maxSpeed
             );

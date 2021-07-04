@@ -1,9 +1,9 @@
 import type { IRoll } from "../../../Interfaces/Particles/Roll/IRoll";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { RangeValue, RecursivePartial } from "../../../../Types";
-import { NumberUtils } from "../../../../Utils";
 import { OptionsColor } from "../../OptionsColor";
 import { RollLight } from "./RollLight";
+import { setRangeValue } from "../../../../Utils";
 
 export class Roll implements IRoll, IOptionLoader<IRoll> {
     backColor?: OptionsColor;
@@ -37,7 +37,7 @@ export class Roll implements IRoll, IOptionLoader<IRoll> {
         this.enlighten.load(data.enlighten);
 
         if (data.speed !== undefined) {
-            this.speed = NumberUtils.setRangeValue(data.speed);
+            this.speed = setRangeValue(data.speed);
         }
     }
 }

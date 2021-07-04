@@ -2,7 +2,6 @@ import type { IContainerPlugin } from "../../Core/Interfaces/IContainerPlugin";
 import { EmitterInstance } from "./EmitterInstance";
 import type { Container } from "../../Core/Container";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
-import { Utils } from "../../Utils";
 import type { RecursivePartial, SingleOrMultiple } from "../../Types";
 import { Emitter } from "./Options/Classes/Emitter";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
@@ -10,7 +9,8 @@ import { EmitterClickMode } from "./Enums";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { EmitterContainer } from "./EmitterContainer";
-import { IDelta } from "../../Core/Interfaces/IDelta";
+import type { IDelta } from "../../Core/Interfaces/IDelta";
+import { deepExtend, itemFromArray } from "../../Utils";
 
 /**
  * @category Emitters Plugin
@@ -136,7 +136,7 @@ export class Emitters implements IContainerPlugin {
 
             if (modeEmitters instanceof Array) {
                 if (modeEmitters.length > 0) {
-                    emitterModeOptions = Utils.itemFromArray(modeEmitters);
+                    emitterModeOptions = itemFromArray(modeEmitters);
                 }
             } else {
                 emitterModeOptions = modeEmitters;
@@ -144,10 +144,10 @@ export class Emitters implements IContainerPlugin {
 
             const emittersOptions =
                 emitterModeOptions ??
-                (emitterOptions instanceof Array ? Utils.itemFromArray(emitterOptions) : emitterOptions);
+                (emitterOptions instanceof Array ? itemFromArray(emitterOptions) : emitterOptions);
             const ePosition = container.interactivity.mouse.clickPosition;
 
-            this.addEmitter(Utils.deepExtend({}, emittersOptions) as IEmitter, ePosition);
+            this.addEmitter(deepExtend({}, emittersOptions) as IEmitter, ePosition);
         }
     }
 

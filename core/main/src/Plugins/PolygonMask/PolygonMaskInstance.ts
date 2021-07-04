@@ -2,7 +2,15 @@ import type { Container } from "../../Core/Container";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import { InlineArrangement, Type } from "./Enums";
 import { Particle } from "../../Core/Particle";
-import { ColorUtils, Constants, NumberUtils, Utils } from "../../Utils";
+import {
+    colorToRgb,
+    Constants,
+    deepExtend,
+    getDistance,
+    getDistances,
+    getStyleFromRgb,
+    itemFromArray,
+} from "../../Utils";
 import type { IDimension } from "../../Core/Interfaces/IDimension";
 import type { ISvgPath } from "./Interfaces/ISvgPath";
 import type { IContainerPlugin } from "../../Core/Interfaces/IContainerPlugin";
@@ -12,8 +20,8 @@ import type { RecursivePartial } from "../../Types";
 import type { IPolygonMask } from "./Options/Interfaces/IPolygonMask";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
 import { Vector } from "../../Core/Particle/Vector";
-import { IDelta } from "../../Core/Interfaces/IDelta";
-import { OutModeDirection } from "../../Enums/Directions/OutModeDirection";
+import type { IDelta } from "../../Core/Interfaces/IDelta";
+import { OutModeDirection } from "../../Enums";
 
 type SvgAbsoluteCoordinatesTypes =
     | SVGPathSegArcAbs
@@ -38,7 +46,7 @@ type IPolygonMaskOptions = IOptions & {
 };
 
 function drawPolygonMask(context: CanvasRenderingContext2D, rawData: ICoordinates[], stroke: IDrawStroke): void {
-    const color = ColorUtils.colorToRgb(stroke.color);
+    const color = colorToRgb(stroke.color);
 
     if (!color) {
         return;
@@ -52,7 +60,7 @@ function drawPolygonMask(context: CanvasRenderingContext2D, rawData: ICoordinate
     }
 
     context.closePath();
-    context.strokeStyle = ColorUtils.getStyleFromRgb(color);
+    context.strokeStyle = getStyleFromRgb(color);
     context.lineWidth = stroke.width;
     context.stroke();
 }
@@ -65,13 +73,13 @@ function drawPolygonMaskPath(
 ): void {
     context.translate(position.x, position.y);
 
-    const color = ColorUtils.colorToRgb(stroke.color);
+    const color = colorToRgb(stroke.color);
 
     if (!color) {
         return;
     }
 
-    context.strokeStyle = ColorUtils.getStyleFromRgb(color, stroke.opacity);
+    context.strokeStyle = getStyleFromRgb(color, stroke.opacity);
     context.lineWidth = stroke.width;
     context.stroke(path);
 }
@@ -161,10 +169,10 @@ function calcClosestPtOnSegment(
     pos: ICoordinates
 ): ICoordinates & { isOnSegment: boolean } {
     // calc delta distance: source point to line start
-    const { dx, dy } = NumberUtils.getDistances(pos, s1);
+    const { dx, dy } = getDistances(pos, s1);
 
     // calc delta distance: line start to end
-    const { dx: dxx, dy: dyy } = NumberUtils.getDistances(s2, s1);
+    const { dx: dxx, dy: dyy } = getDistances(s2, s1);
 
     // Calc position on line normalized between 0.00 & 1.00
     // == dot product divided by delta line distances squared
@@ -187,7 +195,7 @@ function calcClosestPtOnSegment(
 }
 
 function segmentBounce(start: ICoordinates, stop: ICoordinates, velocity: Vector): void {
-    const { dx, dy } = NumberUtils.getDistances(start, stop);
+    const { dx, dy } = getDistances(start, stop);
     const wallAngle = Math.atan2(dy, dx); // + Math.PI / 2;
     const wallNormalX = Math.sin(wallAngle);
     const wallNormalY = -Math.cos(wallAngle);
@@ -283,7 +291,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
             return;
         }
 
-        return Utils.deepExtend({}, position ? position : this.randomPoint()) as ICoordinates;
+        return deepExtend({}, position ? position : this.randomPoint()) as ICoordinates;
     }
 
     particleBounce(particle: Particle, delta: IDelta, direction: OutModeDirection): boolean {
@@ -348,7 +356,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
                     pj = this.raw[j];
                 closest = calcClosestPtOnSegment(pi, pj, pos);
 
-                const dist = NumberUtils.getDistances(pos, closest);
+                const dist = getDistances(pos, closest);
 
                 [dx, dy] = [dist.dx, dist.dy];
 
@@ -378,7 +386,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
                 return true;
             }
         } else if (options.type === Type.inline && particle.initialPosition) {
-            const dist = NumberUtils.getDistance(particle.initialPosition, particle.getPosition());
+            const dist = getDistance(particle.initialPosition, particle.getPosition());
 
             if (dist > this.polygonMaskMoveRadius) {
                 particle.velocity.x = particle.velocity.y / 2 - particle.velocity.x;
@@ -563,7 +571,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
             throw new Error(Constants.noPolygonDataLoaded);
         }
 
-        const coords = Utils.itemFromArray(this.raw);
+        const coords = itemFromArray(this.raw);
 
         return {
             x: coords.x,
@@ -578,7 +586,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
             throw new Error(Constants.noPolygonDataLoaded);
         }
 
-        const path = Utils.itemFromArray(this.paths);
+        const path = itemFromArray(this.paths);
         const distance = Math.floor(Math.random() * path.length) + 1;
         const point = path.element.getPointAtLength(distance);
 

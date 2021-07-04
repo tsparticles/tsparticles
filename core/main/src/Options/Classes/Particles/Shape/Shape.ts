@@ -2,7 +2,7 @@ import type { IShape } from "../../../Interfaces/Particles/Shape/IShape";
 import { ShapeType } from "../../../../Enums";
 import type { RecursivePartial, ShapeData, SingleOrMultiple } from "../../../../Types";
 import { Stroke } from "../Stroke";
-import { Utils } from "../../../../Utils";
+import { deepExtend } from "../../../../Utils";
 import type { IShapeValues } from "../../../../Core/Interfaces/IShapeValues";
 import type { IPolygonShape } from "../../../Interfaces/Particles/Shape/IPolygonShape";
 import type { IImageShape } from "../../../Interfaces/Particles/Shape/IImageShape";
@@ -123,7 +123,7 @@ export class Shape implements IShape, IOptionLoader<IShape> {
                 const item = options[shape];
 
                 if (item !== undefined) {
-                    this.options[shape] = Utils.deepExtend(this.options[shape] ?? {}, item) as IShapeValues[];
+                    this.options[shape] = deepExtend(this.options[shape] ?? {}, item) as IShapeValues[];
                 }
             }
         }
@@ -156,10 +156,10 @@ export class Shape implements IShape, IOptionLoader<IShape> {
                 }
             }
 
-            this.options[mainKey] = Utils.deepExtend(this.options[mainKey] ?? [], item) as IShapeValues[];
+            this.options[mainKey] = deepExtend(this.options[mainKey] ?? [], item) as IShapeValues[];
 
             if (!this.options[altKey] || altOverride) {
-                this.options[altKey] = Utils.deepExtend(this.options[altKey] ?? [], item) as IShapeValues[];
+                this.options[altKey] = deepExtend(this.options[altKey] ?? [], item) as IShapeValues[];
             }
         } else {
             if (this.options[mainKey] instanceof Array) {
@@ -170,10 +170,10 @@ export class Shape implements IShape, IOptionLoader<IShape> {
                 }
             }
 
-            this.options[mainKey] = Utils.deepExtend(this.options[mainKey] ?? {}, item) as IShapeValues[];
+            this.options[mainKey] = deepExtend(this.options[mainKey] ?? {}, item) as IShapeValues[];
 
             if (!this.options[altKey] || altOverride) {
-                this.options[altKey] = Utils.deepExtend(this.options[altKey] ?? {}, item) as IShapeValues[];
+                this.options[altKey] = deepExtend(this.options[altKey] ?? {}, item) as IShapeValues[];
             }
         }
     }

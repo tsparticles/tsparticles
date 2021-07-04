@@ -1,4 +1,4 @@
-import { NumberUtils, Plugins, Utils } from "../../Utils";
+import { clamp, getDistance, getRangeMax, getRangeValue, isInArray, isSsr, Plugins } from "../../Utils";
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
 import { HoverMode } from "../../Enums";
@@ -47,14 +47,13 @@ export class Mover {
         const container = this.container;
         const slowFactor = this.getProximitySpeedFactor();
         const baseSpeed =
-            (particle.moveSpeed ??
-                NumberUtils.getRangeValue(particle.options.move.speed) * container.retina.pixelRatio) *
+            (particle.moveSpeed ?? getRangeValue(particle.options.move.speed) * container.retina.pixelRatio) *
             container.retina.reduceFactor;
-        const maxSize = NumberUtils.getRangeMax(particle.options.size.value) * container.retina.pixelRatio;
+        const maxSize = getRangeMax(particle.options.size.value) * container.retina.pixelRatio;
         const sizeFactor = particlesOptions.move.size ? particle.getRadius() / maxSize : 1;
         const moveSpeed = (baseSpeed / 2) * sizeFactor * slowFactor * delta.factor;
         const moveDrift =
-            particle.moveDrift ?? NumberUtils.getRangeValue(particle.options.move.drift) * container.retina.pixelRatio;
+            particle.moveDrift ?? getRangeValue(particle.options.move.drift) * container.retina.pixelRatio;
 
         this.applyPath(delta);
 
@@ -95,7 +94,7 @@ export class Mover {
         }
 
         const initialPosition = particle.initialPosition;
-        const initialDistance = NumberUtils.getDistance(initialPosition, particle.position);
+        const initialDistance = getDistance(initialPosition, particle.position);
 
         if (particle.maxDistance) {
             if (initialDistance >= particle.maxDistance && !particle.misplaced) {
@@ -155,8 +154,8 @@ export class Mover {
         particle.velocity.addTo(path);
 
         if (pathOptions.clamp) {
-            particle.velocity.x = NumberUtils.clamp(particle.velocity.x, -1, 1);
-            particle.velocity.y = NumberUtils.clamp(particle.velocity.y, -1, 1);
+            particle.velocity.x = clamp(particle.velocity.x, -1, 1);
+            particle.velocity.y = clamp(particle.velocity.y, -1, 1);
         }
 
         particle.lastPathTime -= particle.pathDelay;
@@ -166,7 +165,7 @@ export class Mover {
         const container = this.container;
         const options = container.actualOptions;
 
-        if (Utils.isSsr() || !options.interactivity.events.onHover.parallax.enable) {
+        if (isSsr() || !options.interactivity.events.onHover.parallax.enable) {
             return;
         }
 
@@ -198,7 +197,7 @@ export class Mover {
     private getProximitySpeedFactor(): number {
         const container = this.container;
         const options = container.actualOptions;
-        const active = Utils.isInArray(HoverMode.slow, options.interactivity.events.onHover.mode);
+        const active = isInArray(HoverMode.slow, options.interactivity.events.onHover.mode);
 
         if (!active) {
             return 1;
@@ -211,7 +210,7 @@ export class Mover {
         }
 
         const particlePos = this.particle.getPosition();
-        const dist = NumberUtils.getDistance(mousePos, particlePos);
+        const dist = getDistance(mousePos, particlePos);
         const radius = container.retina.slowModeRadius;
 
         if (dist > radius) {

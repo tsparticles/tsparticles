@@ -3,7 +3,6 @@ import { AbsorberInstance } from "./AbsorberInstance";
 import type { Container } from "../../Core/Container";
 import type { Particle } from "../../Core/Particle";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
-import { Utils } from "../../Utils";
 import { Absorber } from "./Options/Classes/Absorber";
 import type { SingleOrMultiple, RecursivePartial } from "../../Types";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
@@ -11,6 +10,7 @@ import { AbsorberClickMode } from "./Enums";
 import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { AbsorberContainer } from "./AbsorberContainer";
+import { itemFromArray } from "../../Utils";
 
 /**
  * @category Absorbers Plugin
@@ -126,7 +126,7 @@ export class Absorbers implements IContainerPlugin {
 
             if (modeAbsorbers instanceof Array) {
                 if (modeAbsorbers.length > 0) {
-                    absorbersModeOptions = Utils.itemFromArray(modeAbsorbers);
+                    absorbersModeOptions = itemFromArray(modeAbsorbers);
                 }
             } else {
                 absorbersModeOptions = modeAbsorbers;
@@ -134,7 +134,7 @@ export class Absorbers implements IContainerPlugin {
 
             const absorbersOptions =
                 absorbersModeOptions ??
-                (absorberOptions instanceof Array ? Utils.itemFromArray(absorberOptions) : absorberOptions);
+                (absorberOptions instanceof Array ? itemFromArray(absorberOptions) : absorberOptions);
 
             const aPosition = container.interactivity.mouse.clickPosition;
 

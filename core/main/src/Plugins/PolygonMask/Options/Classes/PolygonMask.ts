@@ -7,7 +7,7 @@ import type { RecursivePartial } from "../../../../Types";
 import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
 import { LocalSvg } from "./LocalSvg";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
-import { Utils } from "../../../../Utils";
+import { deepExtend } from "../../../../Utils";
 
 /**
  * [[include:Options/Plugins/PolygonMask.md]]
@@ -90,7 +90,7 @@ export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {
             }
 
             if (data.position !== undefined) {
-                this.position = Utils.deepExtend({}, data.position) as ICoordinates;
+                this.position = deepExtend({}, data.position) as ICoordinates;
             }
         }
     }

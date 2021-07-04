@@ -1,7 +1,7 @@
 import type { Container } from "../../Core/Container";
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
-import { ColorUtils, NumberUtils, Utils } from "../../Utils";
+import { colorToHsl, deepExtend, getRangeValue, isPointInside, randomInRange } from "../../Utils";
 import { SizeMode } from "../../Enums";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
 import type { Emitters } from "./Emitters";
@@ -60,19 +60,19 @@ export class EmitterInstance {
         this.currentEmitDelay = 0;
         this.currentSpawnDelay = 0;
         this.initialPosition = position;
-        this.emitterOptions = Utils.deepExtend({}, emitterOptions) as IEmitter;
+        this.emitterOptions = deepExtend({}, emitterOptions) as IEmitter;
         this.spawnDelay = ((this.emitterOptions.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
         this.position = this.initialPosition ?? this.calcPosition();
         this.name = emitterOptions.name;
 
-        let particlesOptions = Utils.deepExtend({}, this.emitterOptions.particles) as RecursivePartial<IParticles>;
+        let particlesOptions = deepExtend({}, this.emitterOptions.particles) as RecursivePartial<IParticles>;
 
         particlesOptions ??= {};
         particlesOptions.move ??= {};
         particlesOptions.move.direction ??= this.emitterOptions.direction;
 
         if (this.emitterOptions.spawnColor !== undefined) {
-            this.spawnColor = ColorUtils.colorToHsl(this.emitterOptions.spawnColor);
+            this.spawnColor = colorToHsl(this.emitterOptions.spawnColor);
         }
 
         this.paused = !this.emitterOptions.autoPlay;
@@ -121,7 +121,7 @@ export class EmitterInstance {
             (this.lifeCount > 0 || this.immortal || !this.emitterOptions.life.count)
         ) {
             if (this.emitDelay === undefined) {
-                const delay = NumberUtils.getRangeValue(this.emitterOptions.rate.delay);
+                const delay = getRangeValue(this.emitterOptions.rate.delay);
 
                 this.emitDelay = (1000 * delay) / this.container.retina.reduceFactor;
             }
@@ -144,7 +144,7 @@ export class EmitterInstance {
         const initialPosition = this.initialPosition;
 
         this.position =
-            initialPosition && Utils.isPointInside(initialPosition, this.container.canvas.size)
+            initialPosition && isPointInside(initialPosition, this.container.canvas.size)
                 ? initialPosition
                 : this.calcPosition();
     }
@@ -261,10 +261,10 @@ export class EmitterInstance {
                     : this.size.height,
         };
 
-        const quantity = NumberUtils.getRangeValue(this.emitterOptions.rate.quantity);
+        const quantity = getRangeValue(this.emitterOptions.rate.quantity);
 
         for (let i = 0; i < quantity; i++) {
-            const particlesOptions = Utils.deepExtend({}, this.particlesOptions) as RecursivePartial<IParticles>;
+            const particlesOptions = deepExtend({}, this.particlesOptions) as RecursivePartial<IParticles>;
 
             if (this.spawnColor !== undefined) {
                 const colorAnimation = this.emitterOptions.spawnColor?.animation;
@@ -303,9 +303,9 @@ export class EmitterInstance {
             return initValue;
         }
 
-        const colorOffset = NumberUtils.randomInRange(animation.offset);
+        const colorOffset = randomInRange(animation.offset);
 
-        const delay = NumberUtils.getRangeValue(this.emitterOptions.rate.delay);
+        const delay = getRangeValue(this.emitterOptions.rate.delay);
         const emitFactor = (1000 * delay) / container.retina.reduceFactor;
         const colorSpeed = animation.speed ?? 0;
 

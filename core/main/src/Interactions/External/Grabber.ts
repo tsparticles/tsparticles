@@ -1,6 +1,6 @@
 import type { Container } from "../../Core/Container";
-import { Constants, Utils, ColorUtils, NumberUtils } from "../../Utils";
-import { HoverMode } from "../../Enums/Modes";
+import { Constants, getLinkRandomColor, getLinkColor, getDistance, isInArray } from "../../Utils";
+import { HoverMode } from "../../Enums";
 import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
 
 /**
@@ -21,7 +21,7 @@ export class Grabber implements IExternalInteractor {
 
         const hoverMode = events.onHover.mode;
 
-        return Utils.isInArray(HoverMode.grab, hoverMode);
+        return isInArray(HoverMode.grab, hoverMode);
     }
 
     reset(): void {
@@ -49,7 +49,7 @@ export class Grabber implements IExternalInteractor {
                    if the distance between them is under the config distance
                 */
                 const pos = particle.getPosition();
-                const pointDistance = NumberUtils.getDistance(pos, mousePos);
+                const pointDistance = getDistance(pos, mousePos);
 
                 if (pointDistance <= distance) {
                     const grabLineOptions = interactivity.modes.grab.links;
@@ -63,18 +63,14 @@ export class Grabber implements IExternalInteractor {
                         if (!container.particles.grabLineColor) {
                             const linksOptions = container.actualOptions.interactivity.modes.grab.links;
 
-                            container.particles.grabLineColor = ColorUtils.getLinkRandomColor(
+                            container.particles.grabLineColor = getLinkRandomColor(
                                 optColor,
                                 linksOptions.blink,
                                 linksOptions.consent
                             );
                         }
 
-                        const colorLine = ColorUtils.getLinkColor(
-                            particle,
-                            undefined,
-                            container.particles.grabLineColor
-                        );
+                        const colorLine = getLinkColor(particle, undefined, container.particles.grabLineColor);
 
                         if (colorLine === undefined) {
                             return;

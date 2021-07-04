@@ -1,6 +1,19 @@
 import type { Container } from "../../Core/Container";
 import type { IBubblerProcessParam } from "../../Core/Interfaces/IBubblerProcessParam";
-import { Circle, ColorUtils, Constants, NumberUtils, Rectangle, Utils } from "../../Utils";
+import {
+    Circle,
+    clamp,
+    colorToHsl,
+    Constants,
+    divMode,
+    divModeExecute,
+    getDistance,
+    getRangeMax,
+    isDivModeEnabled,
+    isInArray,
+    itemFromArray,
+    Rectangle,
+} from "../../Utils";
 import { ClickMode, DivMode, DivType, HoverMode, ProcessBubbleType } from "../../Enums";
 import { Particle } from "../../Core/Particle";
 import { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
@@ -16,11 +29,11 @@ function calculateBubbleValue(
     if (modeValue > optionsValue) {
         const size = particleValue + (modeValue - optionsValue) * ratio;
 
-        return NumberUtils.clamp(size, particleValue, modeValue);
+        return clamp(size, particleValue, modeValue);
     } else if (modeValue < optionsValue) {
         const size = particleValue - (optionsValue - modeValue) * ratio;
 
-        return NumberUtils.clamp(size, modeValue, particleValue);
+        return clamp(size, modeValue, particleValue);
     }
 }
 
@@ -39,7 +52,7 @@ export class Bubbler implements IExternalInteractor {
         const events = options.interactivity.events;
         const divs = events.onDiv;
 
-        const divBubble = Utils.isDivModeEnabled(DivMode.bubble, divs);
+        const divBubble = isDivModeEnabled(DivMode.bubble, divs);
 
         if (
             !(divBubble || (events.onHover.enable && mouse.position) || (events.onClick.enable && mouse.clickPosition))
@@ -50,9 +63,7 @@ export class Bubbler implements IExternalInteractor {
         const hoverMode = events.onHover.mode;
         const clickMode = events.onClick.mode;
 
-        return (
-            Utils.isInArray(HoverMode.bubble, hoverMode) || Utils.isInArray(ClickMode.bubble, clickMode) || divBubble
-        );
+        return isInArray(HoverMode.bubble, hoverMode) || isInArray(ClickMode.bubble, clickMode) || divBubble;
     }
 
     reset(particle: Particle, force?: boolean): void {
@@ -76,14 +87,12 @@ export class Bubbler implements IExternalInteractor {
         const divs = events.onDiv;
 
         /* on hover event */
-        if (hoverEnabled && Utils.isInArray(HoverMode.bubble, hoverMode)) {
+        if (hoverEnabled && isInArray(HoverMode.bubble, hoverMode)) {
             this.hoverBubble();
-        } else if (clickEnabled && Utils.isInArray(ClickMode.bubble, clickMode)) {
+        } else if (clickEnabled && isInArray(ClickMode.bubble, clickMode)) {
             this.clickBubble();
         } else {
-            Utils.divModeExecute(DivMode.bubble, divs, (selector, div): void =>
-                this.singleSelectorHover(selector, div)
-            );
+            divModeExecute(DivMode.bubble, divs, (selector, div): void => this.singleSelectorHover(selector, div));
         }
     }
 
@@ -124,7 +133,7 @@ export class Bubbler implements IExternalInteractor {
                 particle.bubble.inRange = true;
 
                 const divs = container.actualOptions.interactivity.modes.bubble.divs;
-                const divBubble = Utils.divMode(divs, elem);
+                const divBubble = divMode(divs, elem);
 
                 if (!particle.bubble.div || particle.bubble.div !== elem) {
                     this.reset(particle, true);
@@ -219,7 +228,7 @@ export class Bubbler implements IExternalInteractor {
             particle.bubble.inRange = !container.bubble.durationEnd;
 
             const pos = particle.getPosition();
-            const distMouse = NumberUtils.getDistance(pos, mouseClickPos);
+            const distMouse = getDistance(pos, mouseClickPos);
             const timeSpent = (new Date().getTime() - (container.interactivity.mouse.clickTime || 0)) / 1000;
 
             if (timeSpent > options.interactivity.modes.bubble.duration) {
@@ -235,7 +244,7 @@ export class Bubbler implements IExternalInteractor {
                     value: particle.bubble.radius,
                 },
                 particlesObj: {
-                    optValue: NumberUtils.getRangeMax(particle.options.size.value) * container.retina.pixelRatio,
+                    optValue: getRangeMax(particle.options.size.value) * container.retina.pixelRatio,
                     value: particle.size.value,
                 },
                 type: ProcessBubbleType.size,
@@ -247,7 +256,7 @@ export class Bubbler implements IExternalInteractor {
                     value: particle.bubble.opacity,
                 },
                 particlesObj: {
-                    optValue: NumberUtils.getRangeMax(particle.options.opacity.value),
+                    optValue: getRangeMax(particle.options.opacity.value),
                     value: particle.opacity.value,
                 },
                 type: ProcessBubbleType.opacity,
@@ -281,7 +290,7 @@ export class Bubbler implements IExternalInteractor {
             particle.bubble.inRange = true;
 
             const pos = particle.getPosition();
-            const pointDistance = NumberUtils.getDistance(pos, mousePos);
+            const pointDistance = getDistance(pos, mousePos);
             const ratio = 1 - pointDistance / distance;
 
             /* mousemove - check ratio */
@@ -317,7 +326,7 @@ export class Bubbler implements IExternalInteractor {
             return;
         }
 
-        const optSize = NumberUtils.getRangeMax(particle.options.size.value) * container.retina.pixelRatio;
+        const optSize = getRangeMax(particle.options.size.value) * container.retina.pixelRatio;
         const pSize = particle.size.value;
         const size = calculateBubbleValue(pSize, modeSize, optSize, ratio);
 
@@ -336,7 +345,7 @@ export class Bubbler implements IExternalInteractor {
 
         const optOpacity = particle.options.opacity.value;
         const pOpacity = particle.opacity.value;
-        const opacity = calculateBubbleValue(pOpacity, modeOpacity, NumberUtils.getRangeMax(optOpacity), ratio);
+        const opacity = calculateBubbleValue(pOpacity, modeOpacity, getRangeMax(optOpacity), ratio);
 
         if (opacity !== undefined) {
             particle.bubble.opacity = opacity;
@@ -353,9 +362,9 @@ export class Bubbler implements IExternalInteractor {
                 return;
             }
 
-            const bubbleColor = modeColor instanceof Array ? Utils.itemFromArray(modeColor) : modeColor;
+            const bubbleColor = modeColor instanceof Array ? itemFromArray(modeColor) : modeColor;
 
-            particle.bubble.color = ColorUtils.colorToHsl(bubbleColor);
+            particle.bubble.color = colorToHsl(bubbleColor);
         }
     }
 }

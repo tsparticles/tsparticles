@@ -4,7 +4,7 @@ import { SplitFactor } from "./SplitFactor";
 import { RecursivePartial } from "../../../../Types";
 import { SplitRate } from "./SplitRate";
 import { IParticles } from "../../../Interfaces/Particles/IParticles";
-import { Utils } from "../../../../Utils";
+import { deepExtend } from "../../../../Utils";
 
 export class Split implements ISplit, IOptionLoader<ISplit> {
     count: number;
@@ -33,7 +33,7 @@ export class Split implements ISplit, IOptionLoader<ISplit> {
         this.rate.load(data.rate);
 
         if (data.particles !== undefined) {
-            this.particles = Utils.deepExtend({}, data.particles) as RecursivePartial<IParticles>;
+            this.particles = deepExtend({}, data.particles) as RecursivePartial<IParticles>;
         }
 
         if (data.sizeOffset !== undefined) {

@@ -2,7 +2,7 @@ import type { IValueWithRandom } from "../Interfaces/IValueWithRandom";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import { Random } from "./Random";
 import type { RangeValue, RecursivePartial } from "../../Types";
-import { NumberUtils } from "../../Utils";
+import { setRangeValue } from "../../Utils";
 
 export abstract class ValueWithRandom implements IValueWithRandom, IOptionLoader<IValueWithRandom> {
     /**
@@ -29,10 +29,7 @@ export abstract class ValueWithRandom implements IValueWithRandom, IOptionLoader
         }
 
         if (data.value !== undefined) {
-            this.value = NumberUtils.setRangeValue(
-                data.value,
-                this.random.enable ? this.random.minimumValue : undefined
-            );
+            this.value = setRangeValue(data.value, this.random.enable ? this.random.minimumValue : undefined);
         }
     }
 }

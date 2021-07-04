@@ -8,7 +8,7 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { MoveAngle } from "./MoveAngle";
 import { MoveGravity } from "./MoveGravity";
 import { OutModes } from "./OutModes";
-import { NumberUtils } from "../../../../Utils";
+import { setRangeValue } from "../../../../Utils";
 
 /**
  * [[include:Options/Particles/Move.md]]
@@ -159,7 +159,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
         }
 
         if (data.drift !== undefined) {
-            this.drift = NumberUtils.setRangeValue(data.drift);
+            this.drift = setRangeValue(data.drift);
         }
 
         if (data.enable !== undefined) {
@@ -191,7 +191,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
         }
 
         if (data.speed !== undefined) {
-            this.speed = NumberUtils.setRangeValue(data.speed);
+            this.speed = setRangeValue(data.speed);
         }
 
         if (data.straight !== undefined) {

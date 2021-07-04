@@ -2,10 +2,10 @@ import type { Particle } from "../../Core/Particle";
 import type { Container } from "../../Core/Container";
 import { CollisionMode } from "../../Enums";
 import type { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
-import { NumberUtils, Utils } from "../../Utils";
+import { circleBounce, circleBounceDataFromParticle, clamp, getDistance } from "../../Utils";
 
 function bounce(p1: Particle, p2: Particle): void {
-    Utils.circleBounce(Utils.circleBounceDataFromParticle(p1), Utils.circleBounceDataFromParticle(p2));
+    circleBounce(circleBounceDataFromParticle(p1), circleBounceDataFromParticle(p2));
 }
 
 function destroy(p1: Particle, p2: Particle): void {
@@ -54,7 +54,7 @@ export class Collider implements IParticlesInteractor {
             }
 
             const pos2 = p2.getPosition();
-            const dist = NumberUtils.getDistance(pos1, pos2);
+            const dist = getDistance(pos1, pos2);
             const radius1 = p1.getRadius();
             const radius2 = p2.getRadius();
             const distP = radius1 + radius2;
@@ -92,7 +92,7 @@ export class Collider implements IParticlesInteractor {
             p2.destroy();
         } else if (p1.getRadius() !== undefined && p2.getRadius() !== undefined) {
             if (p1.getRadius() >= p2.getRadius()) {
-                const factor = NumberUtils.clamp(p1.getRadius() / p2.getRadius(), 0, p2.getRadius()) * fps;
+                const factor = clamp(p1.getRadius() / p2.getRadius(), 0, p2.getRadius()) * fps;
 
                 p1.size.value += factor;
                 p2.size.value -= factor;
@@ -102,7 +102,7 @@ export class Collider implements IParticlesInteractor {
                     p2.destroy();
                 }
             } else {
-                const factor = NumberUtils.clamp(p2.getRadius() / p1.getRadius(), 0, p1.getRadius()) * fps;
+                const factor = clamp(p2.getRadius() / p1.getRadius(), 0, p1.getRadius()) * fps;
 
                 p1.size.value -= factor;
                 p2.size.value += factor;

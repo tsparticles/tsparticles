@@ -1,7 +1,7 @@
 import type { IEmitterRate } from "../Interfaces/IEmitterRate";
 import type { RangeValue, RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
-import { NumberUtils } from "../../../../Utils";
+import { setRangeValue } from "../../../../Utils";
 
 /**
  * @category Emitters Plugin
@@ -21,11 +21,11 @@ export class EmitterRate implements IEmitterRate, IOptionLoader<IEmitterRate> {
         }
 
         if (data.quantity !== undefined) {
-            this.quantity = NumberUtils.setRangeValue(data.quantity);
+            this.quantity = setRangeValue(data.quantity);
         }
 
         if (data.delay !== undefined) {
-            this.delay = NumberUtils.setRangeValue(data.delay);
+            this.delay = setRangeValue(data.delay);
         }
     }
 }

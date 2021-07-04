@@ -1,7 +1,7 @@
 import { Particle } from "../../Core/Particle";
 import type { Container } from "../../Core/Container";
 import { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
-import { Circle, CircleWarp, ColorUtils, NumberUtils } from "../../Utils";
+import { Circle, CircleWarp, getDistance, getLinkRandomColor } from "../../Utils";
 import { IParticle } from "../../Core/Interfaces/IParticle";
 
 export class Linker implements IParticlesInteractor {
@@ -39,7 +39,7 @@ export class Linker implements IParticlesInteractor {
 
             const pos2 = p2.getPosition();
 
-            let distance = NumberUtils.getDistance(pos1, pos2);
+            let distance = getDistance(pos1, pos2);
 
             if (warp) {
                 if (distance > optDistance) {
@@ -48,7 +48,7 @@ export class Linker implements IParticlesInteractor {
                         y: pos2.y,
                     };
 
-                    distance = NumberUtils.getDistance(pos1, pos2NE);
+                    distance = getDistance(pos1, pos2NE);
 
                     if (distance > optDistance) {
                         const pos2SE = {
@@ -56,7 +56,7 @@ export class Linker implements IParticlesInteractor {
                             y: pos2.y - canvasSize.height,
                         };
 
-                        distance = NumberUtils.getDistance(pos1, pos2SE);
+                        distance = getDistance(pos1, pos2SE);
 
                         if (distance > optDistance) {
                             const pos2SW = {
@@ -64,7 +64,7 @@ export class Linker implements IParticlesInteractor {
                                 y: pos2.y - canvasSize.height,
                             };
 
-                            distance = NumberUtils.getDistance(pos1, pos2SW);
+                            distance = getDistance(pos1, pos2SW);
                         }
                     }
                 }
@@ -86,7 +86,7 @@ export class Linker implements IParticlesInteractor {
             if (!linkColor) {
                 const optColor = linksOptions.color;
 
-                linkColor = ColorUtils.getLinkRandomColor(optColor, linksOptions.blink, linksOptions.consent);
+                linkColor = getLinkRandomColor(optColor, linksOptions.blink, linksOptions.consent);
 
                 if (linksOptions.id !== undefined) {
                     container.particles.linksColors.set(linksOptions.id, linkColor);

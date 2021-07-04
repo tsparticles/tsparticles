@@ -5,7 +5,7 @@ import { MoveDirection, MoveDirectionAlt } from "../../../../Enums";
 import type { IParticles } from "../../../../Options/Interfaces/Particles/IParticles";
 import { EmitterRate } from "./EmitterRate";
 import { EmitterLife } from "./EmitterLife";
-import { Utils } from "../../../../Utils";
+import { deepExtend } from "../../../../Utils";
 import { EmitterSize } from "./EmitterSize";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 import { AnimatableColor } from "../../../../Options/Classes/Particles/AnimatableColor";
@@ -57,7 +57,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
         this.name = data.name;
 
         if (data.particles !== undefined) {
-            this.particles = Utils.deepExtend({}, data.particles) as RecursivePartial<IParticles>;
+            this.particles = deepExtend({}, data.particles) as RecursivePartial<IParticles>;
         }
 
         this.rate.load(data.rate);

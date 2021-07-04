@@ -1,6 +1,15 @@
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
-import { NumberUtils, Utils } from "../../Utils";
+import {
+    calculateBounds,
+    clamp,
+    getRangeMax,
+    getRangeMin,
+    getValue,
+    isPointInside,
+    randomInRange,
+    setRangeValue,
+} from "../../Utils";
 import { AnimationStatus, DestroyType, OutMode, OutModeDirection, OutModeAlt } from "../../Enums";
 import type { IDelta } from "../Interfaces/IDelta";
 import type { IBounds } from "../Interfaces/IBounds";
@@ -44,7 +53,7 @@ function bounceHorizontal(data: IBounceData): void {
         return;
     }
 
-    const newVelocity = NumberUtils.getValue(data.particle.options.bounce.horizontal);
+    const newVelocity = getValue(data.particle.options.bounce.horizontal);
 
     data.particle.velocity.x *= -newVelocity;
 
@@ -86,7 +95,7 @@ function bounceVertical(data: IBounceData): void {
         return;
     }
 
-    const newVelocity = NumberUtils.getValue(data.particle.options.bounce.vertical);
+    const newVelocity = getValue(data.particle.options.bounce.vertical);
 
     data.particle.velocity.y *= -newVelocity;
 
@@ -216,8 +225,8 @@ export class Updater {
 
         const canvasSize = this.container.canvas.size;
 
-        particle.position.x = NumberUtils.randomInRange(NumberUtils.setRangeValue(0, canvasSize.width));
-        particle.position.y = NumberUtils.randomInRange(NumberUtils.setRangeValue(0, canvasSize.height));
+        particle.position.x = randomInRange(setRangeValue(0, canvasSize.width));
+        particle.position.y = randomInRange(setRangeValue(0, canvasSize.height));
         particle.spawning = true;
         particle.lifeDelayTime = 0;
         particle.lifeTime = 0;
@@ -225,22 +234,22 @@ export class Updater {
 
         const lifeOptions = particle.options.life;
 
-        particle.lifeDelay = NumberUtils.getValue(lifeOptions.delay) * 1000;
-        particle.lifeDuration = NumberUtils.getValue(lifeOptions.duration) * 1000;
+        particle.lifeDelay = getValue(lifeOptions.delay) * 1000;
+        particle.lifeDuration = getValue(lifeOptions.duration) * 1000;
     }
 
     private updateOpacity(delta: IDelta): void {
         const particle = this.particle;
         const opacityOpt = particle.options.opacity;
         const opacityAnim = opacityOpt.animation;
-        const minValue = NumberUtils.getRangeMin(opacityOpt.value);
-        const maxValue = NumberUtils.getRangeMax(opacityOpt.value);
+        const minValue = getRangeMin(opacityOpt.value);
+        const maxValue = getRangeMax(opacityOpt.value);
 
         if (
             !(
                 !particle.destroyed &&
                 opacityAnim.enable &&
-                (opacityAnim.count <= 0 || particle.loops.size < opacityAnim.count)
+                (opacityAnim.count <= 0 || particle.loops.opacity < opacityAnim.count)
             )
         ) {
             return;
@@ -270,7 +279,7 @@ export class Updater {
         checkDestroy(particle, opacityAnim.destroy, particle.opacity.value, minValue, maxValue);
 
         if (!particle.destroyed) {
-            particle.opacity.value = NumberUtils.clamp(particle.opacity.value, minValue, maxValue);
+            particle.opacity.value = clamp(particle.opacity.value, minValue, maxValue);
         }
     }
 
@@ -280,8 +289,8 @@ export class Updater {
         const sizeOpt = particle.options.size;
         const sizeAnim = sizeOpt.animation;
         const sizeVelocity = (particle.size.velocity ?? 0) * delta.factor;
-        const minValue = NumberUtils.getRangeMin(sizeOpt.value) * container.retina.pixelRatio;
-        const maxValue = NumberUtils.getRangeMax(sizeOpt.value) * container.retina.pixelRatio;
+        const minValue = getRangeMin(sizeOpt.value) * container.retina.pixelRatio;
+        const maxValue = getRangeMax(sizeOpt.value) * container.retina.pixelRatio;
 
         if (
             !(!particle.destroyed && sizeAnim.enable && (sizeAnim.count <= 0 || particle.loops.size < sizeAnim.count))
@@ -311,7 +320,7 @@ export class Updater {
         checkDestroy(particle, sizeAnim.destroy, particle.size.value, minValue, maxValue);
 
         if (!particle.destroyed) {
-            particle.size.value = NumberUtils.clamp(particle.size.value, minValue, maxValue);
+            particle.size.value = clamp(particle.size.value, minValue, maxValue);
         }
     }
 
@@ -487,7 +496,7 @@ export class Updater {
             return;
         }
 
-        const offset = NumberUtils.randomInRange(valueAnimation.offset);
+        const offset = randomInRange(valueAnimation.offset);
         const velocity = (value.velocity ?? 0) * delta.factor + offset * 3.6;
 
         if (!decrease || colorValue.status === AnimationStatus.increasing) {
@@ -539,13 +548,13 @@ export class Updater {
 
                 break;
             case OutMode.destroy:
-                if (!Utils.isPointInside(particle.position, container.canvas.size, particle.getRadius(), direction)) {
+                if (!isPointInside(particle.position, container.canvas.size, particle.getRadius(), direction)) {
                     container.particles.remove(particle, true);
                 }
 
                 break;
             case OutMode.out:
-                if (!Utils.isPointInside(particle.position, container.canvas.size, particle.getRadius(), direction)) {
+                if (!isPointInside(particle.position, container.canvas.size, particle.getRadius(), direction)) {
                     this.fixOutOfCanvasPosition(direction);
                 }
 
@@ -570,7 +579,7 @@ export class Updater {
         };
 
         const sizeValue = particle.getRadius();
-        const nextBounds = Utils.calculateBounds(particle.position, sizeValue);
+        const nextBounds = calculateBounds(particle.position, sizeValue);
 
         if (direction === OutModeDirection.right && nextBounds.left > canvasSize.width - particle.offset.x) {
             particle.position.x = newPos.left;
@@ -627,7 +636,7 @@ export class Updater {
         const pos = particle.getPosition(),
             offset = particle.offset,
             size = particle.getRadius(),
-            bounds = Utils.calculateBounds(pos, size),
+            bounds = calculateBounds(pos, size),
             canvasSize = container.canvas.size;
 
         bounceHorizontal({ particle, outMode, direction, bounds, canvasSize, offset, size });
@@ -645,7 +654,7 @@ export class Updater {
         const container = this.container;
 
         if (!gravityOptions.enable) {
-            if (!Utils.isPointInside(particle.position, container.canvas.size, particle.getRadius(), direction)) {
+            if (!isPointInside(particle.position, container.canvas.size, particle.getRadius(), direction)) {
                 container.particles.remove(particle);
             }
         } else {

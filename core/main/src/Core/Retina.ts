@@ -1,6 +1,6 @@
 import type { Container } from "./Container";
 import type { Particle } from "./Particle";
-import { NumberUtils, Utils } from "../Utils";
+import { getRangeValue, isSsr } from "../Utils";
 
 /**
  * @category Core
@@ -33,12 +33,12 @@ export class Retina {
         const container = this.container;
         const options = container.actualOptions;
 
-        this.pixelRatio = !options.detectRetina || Utils.isSsr() ? 1 : window.devicePixelRatio;
+        this.pixelRatio = !options.detectRetina || isSsr() ? 1 : window.devicePixelRatio;
 
         const motionOptions = this.container.actualOptions.motion;
 
         if (motionOptions && (motionOptions.disable || motionOptions.reduce.value)) {
-            if (Utils.isSsr() || typeof matchMedia === "undefined" || !matchMedia) {
+            if (isSsr() || typeof matchMedia === "undefined" || !matchMedia) {
                 this.reduceFactor = 1;
             } else {
                 const mediaQuery = matchMedia("(prefers-reduced-motion: reduce)");
@@ -107,11 +107,11 @@ export class Retina {
         particle.attractDistance = particlesOptions.move.attract.distance * ratio;
         particle.linksDistance = particlesOptions.links.distance * ratio;
         particle.linksWidth = particlesOptions.links.width * ratio;
-        particle.moveDrift = NumberUtils.getRangeValue(particlesOptions.move.drift) * ratio;
-        particle.moveSpeed = NumberUtils.getRangeValue(particlesOptions.move.speed) * ratio;
+        particle.moveDrift = getRangeValue(particlesOptions.move.drift) * ratio;
+        particle.moveSpeed = getRangeValue(particlesOptions.move.speed) * ratio;
         particle.sizeAnimationSpeed = particlesOptions.size.animation.speed * ratio;
         particle.maxDistance = particlesOptions.move.distance * ratio;
-        particle.wobbleDistance = NumberUtils.getRangeValue(particlesOptions.wobble.distance) * ratio;
+        particle.wobbleDistance = getRangeValue(particlesOptions.wobble.distance) * ratio;
         particle.maxSpeed = particlesOptions.move.gravity.maxSpeed * ratio;
     }
 

@@ -1,6 +1,6 @@
 import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
 import type { Container } from "../../Core/Container";
-import { Utils } from "../../Utils";
+import { isInArray } from "../../Utils";
 import { ClickMode, HoverMode } from "../../Enums";
 import type { IDelta } from "../../Core/Interfaces/IDelta";
 import { ICoordinates } from "../../Core/Interfaces/ICoordinates";
@@ -70,11 +70,8 @@ export class TrailMaker implements IExternalInteractor {
         const events = options.interactivity.events;
 
         return (
-            (mouse.clicking &&
-                mouse.inside &&
-                !!mouse.position &&
-                Utils.isInArray(ClickMode.trail, events.onClick.mode)) ||
-            (mouse.inside && !!mouse.position && Utils.isInArray(HoverMode.trail, events.onHover.mode))
+            (mouse.clicking && mouse.inside && !!mouse.position && isInArray(ClickMode.trail, events.onClick.mode)) ||
+            (mouse.inside && !!mouse.position && isInArray(HoverMode.trail, events.onHover.mode))
         );
     }
 

@@ -3,7 +3,7 @@ import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IMouseData } from "./Interfaces/IMouseData";
 import type { IRgb } from "./Interfaces/Colors";
 import { Particle } from "./Particle";
-import { NumberUtils, Point, QuadTree, Rectangle, Utils } from "../Utils";
+import { getRangeValue, itemFromArray, Point, QuadTree, randomInRange, Rectangle, setRangeValue } from "../Utils";
 import type { RecursivePartial } from "../Types";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { InteractionManager } from "./Particle/InteractionManager";
@@ -104,7 +104,7 @@ export class Particles {
         if (options.infection.enable) {
             for (let i = 0; i < options.infection.infections; i++) {
                 const notInfected = this.array.filter((p) => p.infecter.infectionStage === undefined);
-                const infected = Utils.itemFromArray(notInfected);
+                const infected = itemFromArray(notInfected);
 
                 infected.infecter.startInfection(0);
             }
@@ -266,7 +266,7 @@ export class Particles {
 
         options.load(parent.options);
 
-        const factor = NumberUtils.getRangeValue(splitOptions.factor.value);
+        const factor = getRangeValue(splitOptions.factor.value);
 
         options.color.load({
             value: {
@@ -283,11 +283,11 @@ export class Particles {
 
         options.load(splitOptions.particles);
 
-        const offset = splitOptions.sizeOffset ? NumberUtils.setRangeValue(-parent.size.value, parent.size.value) : 0;
+        const offset = splitOptions.sizeOffset ? setRangeValue(-parent.size.value, parent.size.value) : 0;
 
         const position = {
-            x: parent.position.x + NumberUtils.randomInRange(offset),
-            y: parent.position.y + NumberUtils.randomInRange(offset),
+            x: parent.position.x + randomInRange(offset),
+            y: parent.position.y + randomInRange(offset),
         };
 
         return this.pushParticle(position, options, (particle) => {
@@ -295,9 +295,7 @@ export class Particles {
                 return false;
             }
 
-            particle.velocity.length = NumberUtils.randomInRange(
-                NumberUtils.setRangeValue(parent.velocity.length, particle.velocity.length)
-            );
+            particle.velocity.length = randomInRange(setRangeValue(parent.velocity.length, particle.velocity.length));
             particle.splitCount = parent.splitCount + 1;
             particle.unbreakable = true;
 

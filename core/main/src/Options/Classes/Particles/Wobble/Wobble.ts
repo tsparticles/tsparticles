@@ -1,7 +1,7 @@
 import type { IWobble } from "../../../Interfaces/Particles/Wobble/IWobble";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { RangeValue, RecursivePartial } from "../../../../Types";
-import { NumberUtils } from "../../../../Utils";
+import { setRangeValue } from "../../../../Utils";
 
 export class Wobble implements IWobble, IOptionLoader<IWobble> {
     distance: RangeValue;
@@ -20,7 +20,7 @@ export class Wobble implements IWobble, IOptionLoader<IWobble> {
         }
 
         if (data.distance !== undefined) {
-            this.distance = NumberUtils.setRangeValue(data.distance);
+            this.distance = setRangeValue(data.distance);
         }
 
         if (data.enable !== undefined) {
@@ -28,7 +28,7 @@ export class Wobble implements IWobble, IOptionLoader<IWobble> {
         }
 
         if (data.speed !== undefined) {
-            this.speed = NumberUtils.setRangeValue(data.speed);
+            this.speed = setRangeValue(data.speed);
         }
     }
 }

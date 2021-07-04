@@ -14,7 +14,7 @@ import type { RecursivePartial } from "../Types";
 import { Options } from "../Options/Classes/Options";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
-import { EventListeners, Plugins, Utils } from "../Utils";
+import { animate, cancelAnimation, EventListeners, Plugins } from "../Utils";
 import { Particle } from "./Particle";
 import type { IRgb } from "./Interfaces/Colors";
 import type { IAttract } from "./Interfaces/IAttract";
@@ -208,7 +208,7 @@ export class Container {
      */
     pause(): void {
         if (this.drawAnimationFrame !== undefined) {
-            Utils.cancelAnimation(this.drawAnimationFrame);
+            cancelAnimation()(this.drawAnimationFrame);
 
             delete this.drawAnimationFrame;
         }
@@ -232,7 +232,7 @@ export class Container {
      * Draws a frame
      */
     draw(): void {
-        this.drawAnimationFrame = Utils.animate((timestamp) => this.drawer.nextFrame(timestamp));
+        this.drawAnimationFrame = animate()((timestamp) => this.drawer.nextFrame(timestamp));
     }
 
     /**
