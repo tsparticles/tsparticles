@@ -33,6 +33,7 @@ import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 import type { Stroke } from "../Options/Classes/Particles/Stroke";
 import type { IParticleLoops } from "./Interfaces/IParticleLoops";
 import { Vector } from "./Particle/Vector";
+import { IParticleNumericValueAnimation } from "./Interfaces/IParticleValueAnimation";
 
 /**
  * The single particle object
@@ -85,9 +86,9 @@ export class Particle implements IParticle {
     readonly offset: Vector;
     readonly shadowColor: IRgb | undefined;
     readonly color?: IParticleHslAnimation;
-    readonly opacity: IParticleValueAnimation<number>;
+    readonly opacity: IParticleNumericValueAnimation;
     readonly rotate: IParticleValueAnimation<number>;
-    readonly size: IParticleValueAnimation<number>;
+    readonly size: IParticleNumericValueAnimation;
     readonly tilt: IParticleTiltValueAnimation;
     readonly strokeColor?: IParticleHslAnimation;
     readonly velocity: Vector;
@@ -189,7 +190,49 @@ export class Particle implements IParticle {
 
         this.size = {
             value: sizeValue,
+            max: NumberUtils.getRangeMax(sizeOptions.value) * pxRatio,
+            min: NumberUtils.getRangeMin(sizeOptions.value) * pxRatio,
         };
+
+        const sizeAnimation = sizeOptions.animation;
+
+        if (sizeAnimation.enable) {
+            this.size.status = AnimationStatus.increasing;
+
+            const sizeRange = NumberUtils.setRangeValue(sizeOptions.value, sizeAnimation.minimumValue * pxRatio);
+
+            this.size.min = NumberUtils.getRangeMin(sizeRange);
+            this.size.max = NumberUtils.getRangeMax(sizeRange);
+
+            switch (sizeAnimation.startValue) {
+                case StartValueType.min:
+                    this.size.value = this.size.min;
+                    this.size.status = AnimationStatus.increasing;
+
+                    break;
+
+                case StartValueType.random:
+                    this.size.value = NumberUtils.randomInRange(this.size);
+                    this.size.status = Math.random() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
+
+                    break;
+
+                case StartValueType.max:
+                default:
+                    this.size.value = this.size.max;
+                    this.size.status = AnimationStatus.decreasing;
+
+                    break;
+            }
+
+            this.size.velocity =
+                ((this.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100) *
+                container.retina.reduceFactor;
+
+            if (!sizeAnimation.sync) {
+                this.size.velocity *= Math.random();
+            }
+        }
 
         this.direction = NumberUtils.getParticleDirectionAngle(this.options.move.direction);
         this.bubble = {
@@ -270,43 +313,6 @@ export class Particle implements IParticle {
             }
         }
 
-        const sizeAnimation = sizeOptions.animation;
-
-        if (sizeAnimation.enable) {
-            this.size.status = AnimationStatus.increasing;
-
-            switch (sizeAnimation.startValue) {
-                case StartValueType.min:
-                    this.size.value = NumberUtils.getRangeMin(sizeOptions.value) * pxRatio;
-                    this.size.status = AnimationStatus.increasing;
-
-                    break;
-
-                case StartValueType.random:
-                    this.size.value = NumberUtils.randomInRange(
-                        NumberUtils.setRangeValue(sizeAnimation.minimumValue * pxRatio, this.size.value)
-                    );
-                    this.size.status = Math.random() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
-
-                    break;
-
-                case StartValueType.max:
-                default:
-                    this.size.value = NumberUtils.getRangeMax(sizeOptions.value) * pxRatio;
-                    this.size.status = AnimationStatus.decreasing;
-
-                    break;
-            }
-
-            this.size.velocity =
-                ((this.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100) *
-                container.retina.reduceFactor;
-
-            if (!sizeAnimation.sync) {
-                this.size.velocity *= Math.random();
-            }
-        }
-
         /* color */
         const hslColor = ColorUtils.colorToHsl(color, this.id, reduceDuplicates);
 
@@ -380,6 +386,8 @@ export class Particle implements IParticle {
         const opacityOptions = this.options.opacity;
 
         this.opacity = {
+            max: NumberUtils.getRangeMax(opacityOptions.value),
+            min: NumberUtils.getRangeMin(opacityOptions.value),
             value: NumberUtils.getValue(opacityOptions),
         };
 
@@ -388,17 +396,20 @@ export class Particle implements IParticle {
         if (opacityAnimation.enable) {
             this.opacity.status = AnimationStatus.increasing;
 
+            const opacityRange = NumberUtils.setRangeValue(opacityOptions.value, opacityAnimation.minimumValue);
+
+            this.opacity.min = NumberUtils.getRangeMin(opacityRange);
+            this.opacity.max = NumberUtils.getRangeMax(opacityRange);
+
             switch (opacityAnimation.startValue) {
                 case StartValueType.min:
-                    this.opacity.value = NumberUtils.getRangeMin(this.opacity.value);
+                    this.opacity.value = this.opacity.min;
                     this.opacity.status = AnimationStatus.increasing;
 
                     break;
 
                 case StartValueType.random:
-                    this.opacity.value = NumberUtils.randomInRange(
-                        NumberUtils.setRangeValue(opacityAnimation.minimumValue, this.opacity.value)
-                    );
+                    this.opacity.value = NumberUtils.randomInRange(this.opacity);
                     this.opacity.status =
                         Math.random() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
@@ -406,7 +417,7 @@ export class Particle implements IParticle {
 
                 case StartValueType.max:
                 default:
-                    this.opacity.value = NumberUtils.getRangeMax(this.opacity.value);
+                    this.opacity.value = this.opacity.max;
                     this.opacity.status = AnimationStatus.decreasing;
 
                     break;
@@ -483,14 +494,14 @@ export class Particle implements IParticle {
 
         this.lifeDelay = container.retina.reduceFactor
             ? ((NumberUtils.getValue(lifeOptions.delay) * (lifeOptions.delay.sync ? 1 : Math.random())) /
-                  container.retina.reduceFactor) *
-              1000
+            container.retina.reduceFactor) *
+            1000
             : 0;
         this.lifeDelayTime = 0;
         this.lifeDuration = container.retina.reduceFactor
             ? ((NumberUtils.getValue(lifeOptions.duration) * (lifeOptions.duration.sync ? 1 : Math.random())) /
-                  container.retina.reduceFactor) *
-              1000
+            container.retina.reduceFactor) *
+            1000
             : 0;
         this.lifeTime = 0;
         this.livesRemaining = particlesOptions.life.count;
@@ -569,7 +580,7 @@ export class Particle implements IParticle {
         this.destroyed = true;
         this.bubble.inRange = false;
 
-        for (const [, plugin] of this.container.plugins) {
+        for (const [ , plugin ] of this.container.plugins) {
             if (plugin.particleDestroyed) {
                 plugin.particleDestroyed(this, override);
             }
@@ -628,7 +639,7 @@ export class Particle implements IParticle {
     }
 
     private calcPosition(container: Container, position: ICoordinates | undefined, tryCount = 0): Vector {
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
@@ -722,10 +733,10 @@ export class Particle implements IParticle {
         drawer?: IShapeDrawer
     ):
         | {
-              image: IParticleImage | undefined;
-              fill: boolean;
-              close: boolean;
-          }
+        image: IParticleImage | undefined;
+        fill: boolean;
+        close: boolean;
+    }
         | undefined {
         if (!(this.shape === ShapeType.image || this.shape === ShapeType.images)) {
             return;
@@ -746,7 +757,7 @@ export class Particle implements IParticle {
             const svgColoredData = ColorUtils.replaceColorSvg(image, color, this.opacity.value);
 
             /* prepare to create img with colored svg */
-            const svg = new Blob([svgColoredData], { type: "image/svg+xml" });
+            const svg = new Blob([ svgColoredData ], { type: "image/svg+xml" });
             const domUrl = URL || window.URL || window.webkitURL || window;
             const url = domUrl.createObjectURL(svg);
 
