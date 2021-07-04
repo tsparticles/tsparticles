@@ -494,14 +494,14 @@ export class Particle implements IParticle {
 
         this.lifeDelay = container.retina.reduceFactor
             ? ((NumberUtils.getValue(lifeOptions.delay) * (lifeOptions.delay.sync ? 1 : Math.random())) /
-            container.retina.reduceFactor) *
-            1000
+                  container.retina.reduceFactor) *
+              1000
             : 0;
         this.lifeDelayTime = 0;
         this.lifeDuration = container.retina.reduceFactor
             ? ((NumberUtils.getValue(lifeOptions.duration) * (lifeOptions.duration.sync ? 1 : Math.random())) /
-            container.retina.reduceFactor) *
-            1000
+                  container.retina.reduceFactor) *
+              1000
             : 0;
         this.lifeTime = 0;
         this.livesRemaining = particlesOptions.life.count;
@@ -580,7 +580,7 @@ export class Particle implements IParticle {
         this.destroyed = true;
         this.bubble.inRange = false;
 
-        for (const [ , plugin ] of this.container.plugins) {
+        for (const [, plugin] of this.container.plugins) {
             if (plugin.particleDestroyed) {
                 plugin.particleDestroyed(this, override);
             }
@@ -639,7 +639,7 @@ export class Particle implements IParticle {
     }
 
     private calcPosition(container: Container, position: ICoordinates | undefined, tryCount = 0): Vector {
-        for (const [ , plugin ] of container.plugins) {
+        for (const [, plugin] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
@@ -733,10 +733,10 @@ export class Particle implements IParticle {
         drawer?: IShapeDrawer
     ):
         | {
-        image: IParticleImage | undefined;
-        fill: boolean;
-        close: boolean;
-    }
+              image: IParticleImage | undefined;
+              fill: boolean;
+              close: boolean;
+          }
         | undefined {
         if (!(this.shape === ShapeType.image || this.shape === ShapeType.images)) {
             return;
@@ -757,7 +757,7 @@ export class Particle implements IParticle {
             const svgColoredData = ColorUtils.replaceColorSvg(image, color, this.opacity.value);
 
             /* prepare to create img with colored svg */
-            const svg = new Blob([ svgColoredData ], { type: "image/svg+xml" });
+            const svg = new Blob([svgColoredData], { type: "image/svg+xml" });
             const domUrl = URL || window.URL || window.webkitURL || window;
             const url = domUrl.createObjectURL(svg);
 
