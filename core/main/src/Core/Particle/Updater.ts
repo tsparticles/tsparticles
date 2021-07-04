@@ -240,7 +240,7 @@ export class Updater {
             !(
                 !particle.destroyed &&
                 opacityAnim.enable &&
-                (opacityAnim.count <= 0 || particle.loops.size < opacityAnim.count)
+                (opacityAnim.count <= 0 || particle.loops.opacity < opacityAnim.count)
             )
         ) {
             return;
