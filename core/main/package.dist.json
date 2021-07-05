@@ -72,12 +72,5 @@
   "jsdelivr": "tsparticles.min.js",
   "unpkg": "tsparticles.min.js",
   "browser": "index.js",
-  "types": "index.d.ts",
-  "typesVersions": {
-    "<3.8": {
-      "*": [
-        "ts3.4/*"
-      ]
-    }
-  }
+  "types": "index.d.ts"
 }
