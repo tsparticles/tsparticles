@@ -1,11 +1,13 @@
 import { isInArray } from "../../Utils";
 import { HoverMode } from "../../Enums";
 import type { Container } from "../../Core/Container";
-import type { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
 import { Particle } from "../../Core/Particle";
+import { ParticlesInteractorBase } from "../../Core/ParticlesInteractorBase";
 
-export class Lighter implements IParticlesInteractor {
-    constructor(private readonly container: Container) {}
+export class Lighter extends ParticlesInteractorBase {
+    constructor(container: Container) {
+        super(container);
+    }
 
     interact(particle: Particle): void {
         const container = this.container;

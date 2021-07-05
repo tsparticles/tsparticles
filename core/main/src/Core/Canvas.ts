@@ -1,9 +1,4 @@
 import type { Container } from "./Container";
-import type { IDimension } from "./Interfaces/IDimension";
-import type { IRgb, IRgba } from "./Interfaces/Colors";
-import type { ICoordinates } from "./Interfaces/ICoordinates";
-import type { IParticle } from "./Interfaces/IParticle";
-import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { ILink } from "./Interfaces/ILink";
 import {
     colorToHsl,
@@ -26,8 +21,8 @@ import {
     paintBase,
 } from "../Utils";
 import type { Particle } from "./Particle";
-import type { IDelta } from "./Interfaces/IDelta";
 import { clear } from "../Utils";
+import type { IContainerPlugin, ICoordinates, IDelta, IDimension, IHsl, IParticle, IRgb, IRgba } from "./Interfaces";
 
 /**
  * Canvas manager
@@ -52,7 +47,7 @@ export class Canvas {
     private context: CanvasRenderingContext2D | null;
     private generatedCanvas;
     private coverColor?: IRgba;
-    private trailFillColor?: IRgb;
+    private trailFillColor?: IRgba;
     private originalStyle?: CSSStyleDeclaration;
 
     /**
@@ -74,48 +69,10 @@ export class Canvas {
      * Initializes the canvas element
      */
     init(): void {
-        const options = this.container.actualOptions;
-        const element = this.element;
-
-        if (element) {
-            if (options.fullScreen.enable) {
-                this.originalStyle = deepExtend({}, element.style) as CSSStyleDeclaration;
-
-                element.style.position = "fixed";
-                element.style.zIndex = options.fullScreen.zIndex.toString(10);
-                element.style.top = "0";
-                element.style.left = "0";
-                element.style.width = "100%";
-                element.style.height = "100%";
-            } else {
-                element.style.position = this.originalStyle?.position ?? "";
-                element.style.zIndex = this.originalStyle?.zIndex ?? "";
-                element.style.top = this.originalStyle?.top ?? "";
-                element.style.left = this.originalStyle?.left ?? "";
-                element.style.width = this.originalStyle?.width ?? "";
-                element.style.height = this.originalStyle?.height ?? "";
-            }
-        }
-
         this.resize();
-
-        const cover = options.backgroundMask.cover;
-        const color = cover.color;
-        const trail = options.particles.move.trail;
-
-        const coverRgb = colorToRgb(color);
-
-        this.coverColor =
-            coverRgb !== undefined
-                ? {
-                      r: coverRgb.r,
-                      g: coverRgb.g,
-                      b: coverRgb.b,
-                      a: cover.opacity,
-                  }
-                : undefined;
-        this.trailFillColor = colorToRgb(trail.fillColor);
-
+        this.initStyle();
+        this.initCover();
+        this.initTrail();
         this.initBackground();
         this.paint();
     }
@@ -407,21 +364,27 @@ export class Canvas {
             return;
         }
 
-        const options = this.container.actualOptions;
+        let [fColor, sColor] = this.getPluginParticleColors(particle);
+
         const pOptions = particle.options;
         const twinkle = pOptions.twinkle.particles;
-        const twinkleFreq = twinkle.frequency;
-        const twinkleRgb = colorToHsl(twinkle.color);
-        const twinkling = twinkle.enable && Math.random() < twinkleFreq;
+        const twinkling = twinkle.enable && Math.random() < twinkle.frequency;
+
+        if (!fColor || !sColor) {
+            const twinkleRgb = colorToHsl(twinkle.color);
+
+            if (!fColor) {
+                fColor = twinkling && twinkleRgb !== undefined ? twinkleRgb : pfColor ? pfColor : undefined;
+            }
+
+            if (!sColor) {
+                sColor = twinkling && twinkleRgb !== undefined ? twinkleRgb : psColor ? psColor : undefined;
+            }
+        }
+
+        const options = this.container.actualOptions;
         const radius = particle.getRadius();
         const opacity = twinkling ? twinkle.opacity : particle.bubble.opacity ?? particle.opacity.value;
-        const infectionStage = particle.infecter.infectionStage;
-        const infection = options.infection;
-        const infectionStages = infection.stages;
-        const infectionColor = infectionStage !== undefined ? infectionStages[infectionStage].color : undefined;
-        const infectionRgb = colorToHsl(infectionColor);
-        const fColor = twinkling && twinkleRgb ? twinkleRgb : infectionRgb ?? pfColor;
-        const sColor = twinkling && twinkleRgb ? twinkleRgb : infectionRgb ?? psColor;
 
         const fillColorValue = fColor ? getStyleFromHsl(fColor, opacity) : undefined;
 
@@ -537,6 +500,89 @@ export class Canvas {
         elementStyle.backgroundPosition = background.position || "";
         elementStyle.backgroundRepeat = background.repeat || "";
         elementStyle.backgroundSize = background.size || "";
+    }
+
+    private initCover(): void {
+        const options = this.container.actualOptions;
+        const cover = options.backgroundMask.cover;
+        const color = cover.color;
+        const coverRgb = colorToRgb(color);
+
+        if (coverRgb) {
+            this.coverColor = {
+                r: coverRgb.r,
+                g: coverRgb.g,
+                b: coverRgb.b,
+                a: cover.opacity,
+            };
+        }
+    }
+
+    private initTrail(): void {
+        const options = this.container.actualOptions;
+        const trail = options.particles.move.trail;
+        const fillColor = colorToRgb(trail.fillColor);
+
+        if (fillColor) {
+            const trail = options.particles.move.trail;
+
+            this.trailFillColor = {
+                r: fillColor.r,
+                g: fillColor.g,
+                b: fillColor.b,
+                a: 1 / trail.length,
+            };
+        }
+    }
+
+    private getPluginParticleColors(particle: Particle): (IHsl | undefined)[] {
+        let fColor: IHsl | undefined;
+        let sColor: IHsl | undefined;
+
+        for (const [, plugin] of this.container.plugins) {
+            if (!fColor && plugin.particleFillColor) {
+                fColor = colorToHsl(plugin.particleFillColor(particle));
+            }
+
+            if (!sColor && plugin.particleStrokeColor) {
+                sColor = colorToHsl(plugin.particleStrokeColor(particle));
+            }
+
+            if (fColor && sColor) {
+                break;
+            }
+        }
+
+        return [fColor, sColor];
+    }
+
+    private initStyle(): void {
+        const element = this.element,
+            options = this.container.actualOptions;
+
+        if (!element) {
+            return;
+        }
+
+        const originalStyle = this.originalStyle;
+
+        if (options.fullScreen.enable) {
+            this.originalStyle = deepExtend({}, element.style) as CSSStyleDeclaration;
+
+            element.style.position = "fixed";
+            element.style.zIndex = options.fullScreen.zIndex.toString(10);
+            element.style.top = "0";
+            element.style.left = "0";
+            element.style.width = "100%";
+            element.style.height = "100%";
+        } else if (originalStyle) {
+            element.style.position = originalStyle.position;
+            element.style.zIndex = originalStyle.zIndex;
+            element.style.top = originalStyle.top;
+            element.style.left = originalStyle.left;
+            element.style.width = originalStyle.width;
+            element.style.height = originalStyle.height;
+        }
     }
 
     private paintBase(baseColor?: string): void {

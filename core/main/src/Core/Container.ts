@@ -3,24 +3,26 @@
  * @packageDocumentation
  */
 import { Canvas } from "./Canvas";
-import type { IRepulse } from "./Interfaces/IRepulse";
-import type { IBubble } from "./Interfaces/IBubble";
-import type { IContainerInteractivity } from "./Interfaces/IContainerInteractivity";
 import { Particles } from "./Particles";
 import { Retina } from "./Retina";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import { FrameManager } from "./FrameManager";
 import type { RecursivePartial } from "../Types";
 import { Options } from "../Options/Classes/Options";
-import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
-import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import { animate, cancelAnimation, EventListeners, Plugins } from "../Utils";
 import { Particle } from "./Particle";
-import type { IRgb } from "./Interfaces/Colors";
-import type { IAttract } from "./Interfaces/IAttract";
-import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator";
 import { Vector } from "./Particle/Vector";
-import { ICoordinates } from "./Interfaces/ICoordinates";
+import {
+    IAttract,
+    IBubble,
+    IContainerInteractivity,
+    IContainerPlugin,
+    ICoordinates,
+    IMovePathGenerator,
+    IRepulse,
+    IRgb,
+    IShapeDrawer,
+} from "./Interfaces";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -540,6 +542,9 @@ export class Container {
         this.actualOptions.setResponsive(this.canvas.size.width, this.retina.pixelRatio, this._options);
         this.actualOptions.setTheme(this.currentTheme);
 
+        this.canvas.initBackground();
+        this.canvas.resize();
+
         this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 60;
 
         const availablePlugins = Plugins.getAvailablePlugins(this);
@@ -562,10 +567,14 @@ export class Container {
             }
         }
 
-        this.canvas.initBackground();
-        this.canvas.resize();
         this.particles.init();
         this.particles.setDensity();
+
+        for (const [, plugin] of this.plugins) {
+            if (plugin.particlesSetup !== undefined) {
+                plugin.particlesSetup();
+            }
+        }
     }
 
     private intersectionManager(entries: IntersectionObserverEntry[]) {

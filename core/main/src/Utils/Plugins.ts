@@ -8,7 +8,7 @@ import type {
     IMovePathGenerator,
     IParticleUpdater,
     IPlugin,
-    IShapeDrawer
+    IShapeDrawer,
 } from "../Core/Interfaces";
 
 type InteractorInitializer = (container: Container) => IInteractor;
@@ -94,7 +94,7 @@ export class Plugins {
         let res = interactors.get(container);
 
         if (!res) {
-            res = [ ...interactorsInitializers.values() ].map((t) => t(container));
+            res = [...interactorsInitializers.values()].map((t) => t(container));
 
             interactors.set(container, res);
         }
@@ -110,7 +110,7 @@ export class Plugins {
         let res = updaters.get(container);
 
         if (!res) {
-            res = [ ...updatersInitializers.values() ].map((t) => t(container));
+            res = [...updatersInitializers.values()].map((t) => t(container));
 
             updaters.set(container, res);
         }

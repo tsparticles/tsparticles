@@ -1,4 +1,3 @@
-import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
 import {
     calculateBounds,
     Circle,
@@ -15,11 +14,14 @@ import {
 import type { Container } from "../../Core/Container";
 import { DivMode, DivType, HoverMode } from "../../Enums";
 import { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
-import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
+import type { ICoordinates } from "../../Core/Interfaces";
 import { Vector } from "../../Core/Particle/Vector";
+import { ExternalInteractorBase } from "../../Core/ExternalInteractorBase";
 
-export class Bouncer implements IExternalInteractor {
-    constructor(private readonly container: Container) {}
+export class Bouncer extends ExternalInteractorBase {
+    constructor(container: Container) {
+        super(container);
+    }
 
     isEnabled(): boolean {
         const container = this.container;

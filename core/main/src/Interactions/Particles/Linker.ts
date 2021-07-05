@@ -1,11 +1,13 @@
 import { Particle } from "../../Core/Particle";
 import type { Container } from "../../Core/Container";
-import { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
 import { Circle, CircleWarp, getDistance, getLinkRandomColor } from "../../Utils";
-import { IParticle } from "../../Core/Interfaces/IParticle";
+import { IParticle } from "../../Core/Interfaces";
+import { ParticlesInteractorBase } from "../../Core/ParticlesInteractorBase";
 
-export class Linker implements IParticlesInteractor {
-    constructor(private readonly container: Container) {}
+export class Linker extends ParticlesInteractorBase {
+    constructor(container: Container) {
+        super(container);
+    }
 
     isEnabled(particle: Particle): boolean {
         return particle.options.links.enable;

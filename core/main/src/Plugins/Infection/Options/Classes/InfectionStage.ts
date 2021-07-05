@@ -1,7 +1,7 @@
-import type { IInfectionStage } from "../../Interfaces/Infection/IInfectionStage";
-import { OptionsColor } from "../OptionsColor";
-import type { RecursivePartial } from "../../../Types";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
+import type { IInfectionStage } from "../Interfaces/IInfectionStage";
+import type { RecursivePartial } from "../../../../Types";
+import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
+import { OptionsColor } from "../../../../Options/Classes/OptionsColor";
 
 /**
  * @category Options

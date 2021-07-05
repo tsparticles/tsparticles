@@ -1,4 +1,5 @@
-import type { IPlugin } from "../../Core/Interfaces/IPlugin";
+import type { MainSlim } from "../../main.slim";
+import type { IPlugin } from "../../Core/Interfaces";
 import type { Container } from "../../Core/Container";
 import { isInArray } from "../../Utils";
 import { Emitters } from "./Emitters";
@@ -103,3 +104,9 @@ const plugin = new EmittersPlugin();
 export type { IEmitterOptions };
 export { plugin as EmittersPlugin };
 export * from "./Enums";
+
+export function loadEmittersPlugin(tsParticles: MainSlim) {
+    const plugin = new EmittersPlugin();
+
+    tsParticles.addPlugin(plugin);
+}

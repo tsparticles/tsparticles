@@ -1,8 +1,8 @@
 import type { Particle } from "../../Core/Particle";
 import type { Container } from "../../Core/Container";
 import { CollisionMode } from "../../Enums";
-import type { IParticlesInteractor } from "../../Core/Interfaces/IParticlesInteractor";
 import { circleBounce, circleBounceDataFromParticle, clamp, getDistance } from "../../Utils";
+import { ParticlesInteractorBase } from "../../Core/ParticlesInteractorBase";
 
 function bounce(p1: Particle, p2: Particle): void {
     circleBounce(circleBounceDataFromParticle(p1), circleBounceDataFromParticle(p2));
@@ -25,8 +25,10 @@ function destroy(p1: Particle, p2: Particle): void {
 /**
  * @category Interactions
  */
-export class Collider implements IParticlesInteractor {
-    constructor(private readonly container: Container) {}
+export class Collider extends ParticlesInteractorBase {
+    constructor(container: Container) {
+        super(container);
+    }
 
     isEnabled(particle: Particle): boolean {
         return particle.options.collisions.enable;

@@ -11,7 +11,6 @@ import { PolygonDrawer } from "./ShapeDrawers/PolygonDrawer";
 import type { IOptions } from "./Options/Interfaces/IOptions";
 import type { Container } from "./Core/Container";
 import { Loader } from "./Core/Loader";
-import type { IShapeDrawer } from "./Core/Interfaces/IShapeDrawer";
 import type {
     ShapeDrawerAfterEffectFunction,
     ShapeDrawerDestroyFunction,
@@ -20,9 +19,8 @@ import type {
     RecursivePartial,
     SingleOrMultiple,
 } from "./Types";
-import type { IPlugin } from "./Core/Interfaces/IPlugin";
 import type { Particle } from "./Core/Particle";
-import type { IMovePathGenerator } from "./Core/Interfaces/IMovePathGenerator";
+import type { IInteractor, IMovePathGenerator, IParticleUpdater, IPlugin, IShapeDrawer } from "./Core/Interfaces";
 
 /**
  * Main class for creating the singleton on window.
@@ -206,5 +204,23 @@ export class MainSlim {
      */
     addPathGenerator(name: string, generator: IMovePathGenerator): void {
         Plugins.addPathGenerator(name, generator);
+    }
+
+    /**
+     *
+     * @param name
+     * @param interactorInitializer
+     */
+    addInteractor(name: string, interactorInitializer: (container: Container) => IInteractor): void {
+        Plugins.addInteractor(name, interactorInitializer);
+    }
+
+    /**
+     *
+     * @param name
+     * @param updaterInitializer
+     */
+    addParticleUpdater(name: string, updaterInitializer: (container: Container) => IParticleUpdater): void {
+        Plugins.addParticleUpdater(name, updaterInitializer);
     }
 }

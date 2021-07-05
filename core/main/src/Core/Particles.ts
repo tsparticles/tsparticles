@@ -1,16 +1,12 @@
 import type { Container } from "./Container";
-import type { ICoordinates } from "./Interfaces/ICoordinates";
-import type { IMouseData } from "./Interfaces/IMouseData";
-import type { IRgb } from "./Interfaces/Colors";
 import { Particle } from "./Particle";
-import { getRangeValue, itemFromArray, Point, QuadTree, randomInRange, Rectangle, setRangeValue } from "../Utils";
+import { getRangeValue, Point, QuadTree, randomInRange, Rectangle, setRangeValue } from "../Utils";
 import type { RecursivePartial } from "../Types";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
-import { InteractionManager } from "./Particle/InteractionManager";
-import type { IDelta } from "./Interfaces/IDelta";
-import type { IParticle } from "./Interfaces/IParticle";
+import { InteractionManager } from "./InteractionManager";
 import { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";
 import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
+import { ICoordinates, IDelta, IMouseData, IParticle, IRgb } from "./Interfaces";
 
 /**
  * Particles manager object
@@ -101,17 +97,6 @@ export class Particles {
             }
         }
 
-        if (options.infection.enable) {
-            for (let i = 0; i < options.infection.infections; i++) {
-                const notInfected = this.array.filter((p) => p.infecter.infectionStage === undefined);
-                const infected = itemFromArray(notInfected);
-
-                infected.infecter.startInfection(0);
-            }
-        }
-
-        this.interactionManager.init();
-
         container.pathGenerator.init();
     }
 
@@ -160,6 +145,16 @@ export class Particles {
             if (resizeFactor) {
                 particle.position.x *= resizeFactor.width;
                 particle.position.y *= resizeFactor.height;
+            }
+
+            for (const [, plugin] of this.container.plugins) {
+                if (particle.destroyed) {
+                    break;
+                }
+
+                if (plugin.particleUpdate) {
+                    plugin.particleUpdate(particle, delta);
+                }
             }
 
             particle.move(delta);

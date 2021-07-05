@@ -36,7 +36,6 @@ import {
     replaceColorSvg,
     setRangeValue,
 } from "../Utils";
-import { Infecter } from "./Particle/Infecter";
 import { Mover } from "./Particle/Mover";
 import type { ILink } from "./Interfaces/ILink";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
@@ -78,7 +77,6 @@ export class Particle implements IParticle {
 
     readonly pathDelay;
     readonly updater;
-    readonly infecter;
     readonly mover;
     readonly sides;
     readonly strokeWidth;
@@ -513,7 +511,6 @@ export class Particle implements IParticle {
 
         this.shadowColor = colorToRgb(this.options.shadow.color);
         this.updater = new Updater(container, this);
-        this.infecter = new Infecter(container);
         this.mover = new Mover(container, this);
 
         if (drawer && drawer.particleInit) {

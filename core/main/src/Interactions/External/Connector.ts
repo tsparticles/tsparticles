@@ -1,14 +1,16 @@
 import type { Container } from "../../Core/Container";
 import { isInArray } from "../../Utils";
 import { HoverMode } from "../../Enums";
-import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
+import { ExternalInteractorBase } from "../../Core/ExternalInteractorBase";
 
 /**
  * Particle connection manager
  * @category Interactions
  */
-export class Connector implements IExternalInteractor {
-    constructor(private readonly container: Container) {}
+export class Connector extends ExternalInteractorBase {
+    constructor(container: Container) {
+        super(container);
+    }
 
     isEnabled(): boolean {
         const container = this.container;

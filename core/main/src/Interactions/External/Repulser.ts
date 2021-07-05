@@ -13,18 +13,20 @@ import {
     Range,
     Rectangle,
 } from "../../Utils";
-import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
+import type { ICoordinates } from "../../Core/Interfaces";
 import type { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
-import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
 import type { RepulseDiv } from "../../Options/Classes/Interactivity/Modes/RepulseDiv";
 import { Vector } from "../../Core/Particle/Vector";
+import { ExternalInteractorBase } from "../../Core/ExternalInteractorBase";
 
 /**
  * Particle repulse manager
  * @category Interactions
  */
-export class Repulser implements IExternalInteractor {
-    constructor(private readonly container: Container) {}
+export class Repulser extends ExternalInteractorBase {
+    constructor(container: Container) {
+        super(container);
+    }
 
     isEnabled(): boolean {
         const container = this.container;

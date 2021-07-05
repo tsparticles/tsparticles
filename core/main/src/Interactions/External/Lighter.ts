@@ -1,10 +1,12 @@
 import { isInArray } from "../../Utils";
 import { HoverMode } from "../../Enums";
 import type { Container } from "../../Core/Container";
-import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
+import { ExternalInteractorBase } from "../../Core/ExternalInteractorBase";
 
-export class Lighter implements IExternalInteractor {
-    constructor(private readonly container: Container) {}
+export class Lighter extends ExternalInteractorBase {
+    constructor(container: Container) {
+        super(container);
+    }
 
     interact(): void {
         const container = this.container;

@@ -1,14 +1,16 @@
 import type { Container } from "../../Core/Container";
 import { Constants, getLinkRandomColor, getLinkColor, getDistance, isInArray } from "../../Utils";
 import { HoverMode } from "../../Enums";
-import type { IExternalInteractor } from "../../Core/Interfaces/IExternalInteractor";
+import { ExternalInteractorBase } from "../../Core/ExternalInteractorBase";
 
 /**
  * Particle grab manager
  * @category Interactions
  */
-export class Grabber implements IExternalInteractor {
-    constructor(private readonly container: Container) {}
+export class Grabber extends ExternalInteractorBase {
+    constructor(container: Container) {
+        super(container);
+    }
 
     isEnabled(): boolean {
         const container = this.container;
