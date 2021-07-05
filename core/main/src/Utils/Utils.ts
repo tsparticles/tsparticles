@@ -113,28 +113,28 @@ export function animate(): (callback: FrameRequestCallback) => number {
     return isSsr()
         ? (callback: FrameRequestCallback): number => setTimeout(callback)
         : (callback: FrameRequestCallback): number =>
-            (
-                window.requestAnimationFrame ||
-                window.webkitRequestAnimationFrame ||
-                window.mozRequestAnimationFrame ||
-                window.oRequestAnimationFrame ||
-                window.msRequestAnimationFrame ||
-                window.setTimeout
-            )(callback);
+              (
+                  window.requestAnimationFrame ||
+                  window.webkitRequestAnimationFrame ||
+                  window.mozRequestAnimationFrame ||
+                  window.oRequestAnimationFrame ||
+                  window.msRequestAnimationFrame ||
+                  window.setTimeout
+              )(callback);
 }
 
 export function cancelAnimation(): (handle: number) => void {
     return isSsr()
         ? (handle: number): void => clearTimeout(handle)
         : (handle: number): void =>
-            (
-                window.cancelAnimationFrame ||
-                window.webkitCancelRequestAnimationFrame ||
-                window.mozCancelRequestAnimationFrame ||
-                window.oCancelRequestAnimationFrame ||
-                window.msCancelRequestAnimationFrame ||
-                window.clearTimeout
-            )(handle);
+              (
+                  window.cancelAnimationFrame ||
+                  window.webkitCancelRequestAnimationFrame ||
+                  window.mozCancelRequestAnimationFrame ||
+                  window.oCancelRequestAnimationFrame ||
+                  window.msCancelRequestAnimationFrame ||
+                  window.clearTimeout
+              )(handle);
 }
 
 /**
@@ -148,7 +148,7 @@ export function isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
 
 export async function loadFont(character: ICharacterShape): Promise<void> {
     try {
-        await document.fonts.load(`${ character.weight ?? "400" } 36px '${ character.font ?? "Verdana" }'`);
+        await document.fonts.load(`${character.weight ?? "400"} 36px '${character.font ?? "Verdana"}'`);
     } catch {
         // ignores any error
     }
@@ -226,7 +226,7 @@ export function loadImage(source: string): Promise<IImage | undefined> {
             });
 
             img.addEventListener("error", () => {
-                reject(`Error tsParticles - loading image: ${ source }`);
+                reject(`Error tsParticles - loading image: ${source}`);
             });
 
             img.src = source;

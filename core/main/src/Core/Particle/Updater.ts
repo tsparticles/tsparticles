@@ -1,13 +1,6 @@
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
-import {
-    calculateBounds,
-    clamp,
-    getValue,
-    isPointInside,
-    randomInRange,
-    setRangeValue,
-} from "../../Utils";
+import { calculateBounds, clamp, getValue, isPointInside, randomInRange, setRangeValue } from "../../Utils";
 import { AnimationStatus, DestroyType, OutMode, OutModeDirection, OutModeAlt } from "../../Enums";
 import type { IDelta } from "../Interfaces/IDelta";
 import type { IBounds } from "../Interfaces/IBounds";
