@@ -1,4 +1,4 @@
-import type { IPlugin } from "../../Core/Interfaces/IPlugin";
+import type { IPlugin } from "../../Core/Interfaces";
 import type { Container } from "../../Core/Container";
 import { Absorbers } from "./Absorbers";
 import type { RecursivePartial } from "../../Types";
@@ -8,11 +8,12 @@ import type { IOptions } from "../../Options/Interfaces/IOptions";
 import { Options } from "../../Options/Classes/Options";
 import { Absorber } from "./Options/Classes/Absorber";
 import { isInArray } from "../../Utils";
+import { MainSlim } from "../../main.slim";
 
 /**
  * @category Absorbers Plugin
  */
-class AbsorbersPlugin implements IPlugin {
+class Plugin implements IPlugin {
     readonly id;
 
     constructor() {
@@ -98,8 +99,8 @@ class AbsorbersPlugin implements IPlugin {
     }
 }
 
-const plugin = new AbsorbersPlugin();
+export function loadAbsorbersPlugin(tsParticles: MainSlim): void {
+    const plugin = new Plugin();
 
-export type { IAbsorberOptions };
-export { plugin as AbsorbersPlugin };
-export * from "./Enums";
+    tsParticles.addPlugin(plugin);
+}

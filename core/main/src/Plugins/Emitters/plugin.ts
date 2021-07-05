@@ -99,12 +99,6 @@ class EmittersPlugin implements IPlugin {
     }
 }
 
-const plugin = new EmittersPlugin();
-
-export type { IEmitterOptions };
-export { plugin as EmittersPlugin };
-export * from "./Enums";
-
 export function loadEmittersPlugin(tsParticles: MainSlim) {
     const plugin = new EmittersPlugin();
 

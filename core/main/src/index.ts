@@ -6,7 +6,7 @@ import type { IAbsorberOptions } from "./Plugins/Absorbers/Options/Interfaces/IA
 import type { IEmitterOptions } from "./Plugins/Emitters/Options/Interfaces/IEmitterOptions";
 import type { IPolygonMaskOptions } from "./Plugins/PolygonMask/Options/Interfaces/IPolygonMaskOptions";
 import type { RecursivePartial } from "./Types";
-import type { IParticle } from "./Core/Interfaces/IParticle";
+import type { IParticle } from "./Core/Interfaces";
 
 const tsParticles = new Main();
 

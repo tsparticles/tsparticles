@@ -1,4 +1,4 @@
-import type { IPlugin } from "../../Core/Interfaces/IPlugin";
+import type { IPlugin } from "../../Core/Interfaces";
 import { PolygonMaskInstance } from "./PolygonMaskInstance";
 import type { Container } from "../../Core/Container";
 import type { RecursivePartial } from "../../Types";
@@ -7,11 +7,12 @@ import type { IPolygonMaskOptions } from "./Options/Interfaces/IPolygonMaskOptio
 import { Options } from "../../Options/Classes/Options";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
 import { Type } from "./Enums";
+import { MainSlim } from "../../main.slim";
 
 /**
  * @category Polygon Mask Plugin
  */
-class PolygonMaskPlugin implements IPlugin {
+class Plugin implements IPlugin {
     readonly id;
 
     constructor() {
@@ -42,8 +43,8 @@ class PolygonMaskPlugin implements IPlugin {
     }
 }
 
-const plugin = new PolygonMaskPlugin();
+export function loadPolygonMaskPlugin(tsParticles: MainSlim): void {
+    const plugin = new Plugin();
 
-export type { IPolygonMaskOptions };
-export { plugin as PolygonMaskPlugin };
-export * from "./Enums";
+    tsParticles.addPlugin(plugin);
+}

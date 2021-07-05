@@ -1,8 +1,8 @@
 import { MainSlim } from "./main.slim";
-import { AbsorbersPlugin } from "./Plugins/Absorbers/AbsorbersPlugin";
-import { PolygonMaskPlugin } from "./Plugins/PolygonMask/PolygonMaskPlugin";
 import { loadInfectionPlugin } from "./Plugins/Infection/plugin";
 import { loadEmittersPlugin } from "./Plugins/Emitters/plugin";
+import { loadPolygonMaskPlugin } from "./Plugins/PolygonMask/plugin";
+import { loadAbsorbersPlugin } from "./Plugins/Absorbers/plugin";
 
 /**
  * Main class for creating the singleton on window.
@@ -13,9 +13,9 @@ export class Main extends MainSlim {
     constructor() {
         super();
 
-        this.addPlugin(AbsorbersPlugin);
+        loadAbsorbersPlugin(this);
         loadEmittersPlugin(this);
-        this.addPlugin(PolygonMaskPlugin);
         loadInfectionPlugin(this);
+        loadPolygonMaskPlugin(this);
     }
 }
