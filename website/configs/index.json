@@ -19,6 +19,7 @@
             "trail": {
                 "delay": 0.005,
                 "quantity": 5,
+                "pauseOnStop": true,
                 "particles": {
                     "color": {
                         "value": "#ff0000",
