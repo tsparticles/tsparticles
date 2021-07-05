@@ -3,7 +3,7 @@ import { ParticlesOptionsEditor } from "./Particles/ParticlesOptionsEditor";
 import type { Container, IOptions } from "tsparticles";
 import { InteractivityOptionsEditor } from "./Interactivity/InteractivityOptionsEditor";
 import { BackgroundMaskOptionsEditor } from "./BackgroundMask/BackgroundMaskOptionsEditor";
-import { InfectionOptionsEditor } from "./Infection/InfectionOptionsEditor";
+//import { InfectionOptionsEditor } from "./Infection/InfectionOptionsEditor";
 import { Editor, EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../EditorBase";
 import { FullScreenOptionsEditor } from "./FullScreen/FullScreenOptionsEditor";
@@ -77,9 +77,8 @@ export class OptionsEditor extends EditorBase {
     }
 
     private addInfection(): void {
-        const options = new InfectionOptionsEditor(this.particles);
-
-        options.addToGroup(this.group);
+        //const options = new InfectionOptionsEditor(this.particles);
+        //options.addToGroup(this.group);
     }
 
     private addInteractivity(): void {

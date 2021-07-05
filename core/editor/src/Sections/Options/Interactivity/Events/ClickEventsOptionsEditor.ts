@@ -2,8 +2,8 @@ import type { Container } from "tsparticles";
 import type { IClickEvent } from "tsparticles/Options/Interfaces/Interactivity/Events/IClickEvent";
 import { EditorGroup, EditorType } from "object-gui";
 import { AbsorberClickMode, ClickMode, EmitterClickMode } from "tsparticles";
-import { EmittersPlugin } from "tsparticles/Plugins/Emitters/EmittersPlugin";
-import { AbsorbersPlugin } from "tsparticles/Plugins/Absorbers/AbsorbersPlugin";
+//import { EmittersPlugin } from "tsparticles/Plugins/Emitters/EmittersPlugin";
+//import { AbsorbersPlugin } from "tsparticles/Plugins/Absorbers/AbsorbersPlugin";
 import { EditorBase } from "../../../../EditorBase";
 
 export class ClickEventsOptionsEditor extends EditorBase {
@@ -57,18 +57,18 @@ export class ClickEventsOptionsEditor extends EditorBase {
                 },
             ]);
 
-        if (typeof AbsorbersPlugin !== "undefined") {
-            const absorbersGroup = "Absorbers";
-
-            modeSelectInput.addItemGroup(absorbersGroup);
-            modeSelectInput.addItem(AbsorberClickMode.absorber, undefined, absorbersGroup);
-        }
-
-        if (typeof EmittersPlugin !== "undefined") {
-            const emittersGroup = "Emitters";
-
-            modeSelectInput.addItemGroup(emittersGroup);
-            modeSelectInput.addItem(EmitterClickMode.emitter, undefined, emittersGroup);
-        }
+        // if (typeof AbsorbersPlugin !== "undefined") {
+        //     const absorbersGroup = "Absorbers";
+        //
+        //     modeSelectInput.addItemGroup(absorbersGroup);
+        //     modeSelectInput.addItem(AbsorberClickMode.absorber, undefined, absorbersGroup);
+        // }
+        //
+        // if (typeof EmittersPlugin !== "undefined") {
+        //     const emittersGroup = "Emitters";
+        //
+        //     modeSelectInput.addItemGroup(emittersGroup);
+        //     modeSelectInput.addItem(EmitterClickMode.emitter, undefined, emittersGroup);
+        // }
     }
 }
