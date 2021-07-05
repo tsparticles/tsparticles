@@ -535,7 +535,7 @@ export class Updater {
                 break;
             case OutMode.destroy:
                 if (!isPointInside(particle.position, container.canvas.size, particle.getRadius(), direction)) {
-                    container.particles.remove(particle, true);
+                    container.particles.remove(particle, undefined, true);
                 }
 
                 break;

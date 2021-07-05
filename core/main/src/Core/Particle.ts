@@ -17,6 +17,7 @@ import { ImageDrawer } from "../ShapeDrawers/ImageDrawer";
 import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
 import type { RecursivePartial } from "../Types";
 import {
+    clamp,
     colorToHsl,
     colorToRgb,
     deepExtend,
@@ -57,6 +58,7 @@ import type {
     IShapeDrawer,
     IShapeValues,
 } from "./Interfaces";
+import { Vector3d } from "./Particle/Vector3d";
 
 /**
  * The single particle object
@@ -100,7 +102,7 @@ export class Particle implements IParticle {
     readonly direction: number;
     readonly fill: boolean;
     readonly stroke: Stroke;
-    readonly position: Vector;
+    readonly position: Vector3d;
     readonly offset: Vector;
     readonly shadowColor: IRgb | undefined;
     readonly color?: IParticleHslAnimation;
@@ -116,12 +118,14 @@ export class Particle implements IParticle {
     readonly initialVelocity: Vector;
     readonly shapeData?: IShapeValues;
     readonly bubble: IBubbleParticleData;
+    readonly zIndexFactor: number;
 
     constructor(
         readonly id: number,
         private readonly container: Container,
         position?: ICoordinates,
-        overrideOptions?: RecursivePartial<IParticles>
+        overrideOptions?: RecursivePartial<IParticles>,
+        readonly group?: string
     ) {
         this.links = [];
         this.fill = true;
@@ -193,6 +197,9 @@ export class Particle implements IParticle {
         this.fill = this.shapeData?.fill ?? this.fill;
         this.close = this.shapeData?.close ?? this.close;
         this.options = particlesOptions;
+
+        const zIndexValue = getRangeValue(this.options.zIndex.value);
+
         this.pathDelay = getValue(this.options.move.path.delay) * 1000;
         this.wobbleDistance = 0;
 
@@ -392,11 +399,19 @@ export class Particle implements IParticle {
         }
 
         /* position */
-        this.position = this.calcPosition(this.container, position);
+        this.position = this.calcPosition(this.container, position, clamp(zIndexValue, 0, container.zLayers));
         this.initialPosition = this.position.copy();
 
         /* parallax */
-        this.offset = Vector.create(0, 0);
+        this.offset = Vector.origin;
+
+        const particles = this.container.particles;
+
+        particles.needsSort = particles.needsSort || particles.lastZIndex < this.position.z;
+        particles.lastZIndex = this.position.z;
+
+        // Scale z-index factor to be between 0 and 2
+        this.zIndexFactor = this.position.z / container.zLayers;
 
         /* opacity */
         const opacityOptions = this.options.opacity;
@@ -631,20 +646,26 @@ export class Particle implements IParticle {
         }
     }
 
-    private calcPosition(container: Container, position: ICoordinates | undefined, tryCount = 0): Vector {
+    private calcPosition(
+        container: Container,
+        position: ICoordinates | undefined,
+        zIndex: number,
+        tryCount = 0
+    ): Vector3d {
         for (const [, plugin] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
             if (pluginPos !== undefined) {
-                return Vector.create(pluginPos.x, pluginPos.y);
+                return Vector3d.create(pluginPos.x, pluginPos.y, zIndex);
             }
         }
 
         const canvasSize = container.canvas.size;
-        const pos = Vector.create(
+        const pos = Vector3d.create(
             position?.x ?? Math.random() * canvasSize.width,
-            position?.y ?? Math.random() * canvasSize.height
+            position?.y ?? Math.random() * canvasSize.height,
+            zIndex
         );
 
         /* check position  - into the canvas */
@@ -667,7 +688,7 @@ export class Particle implements IParticle {
         }
 
         if (this.checkOverlap(pos, tryCount)) {
-            return this.calcPosition(container, undefined, tryCount + 1);
+            return this.calcPosition(container, undefined, zIndex, tryCount + 1);
         }
 
         return pos;

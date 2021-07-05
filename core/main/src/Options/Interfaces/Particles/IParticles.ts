@@ -15,8 +15,10 @@ import type { ILife } from "./Life/ILife";
 import type { IBounce } from "./Bounce/IBounce";
 import type { IDestroy } from "./Destroy/IDestroy";
 import type { IWobble } from "./Wobble/IWobble";
-import { ITilt } from "./Tilt/ITilt";
-import { IRoll } from "./Roll/IRoll";
+import type { ITilt } from "./Tilt/ITilt";
+import type { IRoll } from "./Roll/IRoll";
+import type { IZIndex } from "./ZIndex/IZIndex";
+import type { ParticlesGroups } from "../../../Types/ParticlesGroups";
 
 /**
  * [[include:Options/Particles.md]]
@@ -37,6 +39,7 @@ export interface IParticles {
     collisions: ICollisions;
     color: IAnimatableColor;
     destroy: IDestroy;
+    groups: ParticlesGroups;
     life: ILife;
     links: ILinks;
     move: IMove;
@@ -52,4 +55,5 @@ export interface IParticles {
     tilt: ITilt;
     twinkle: ITwinkle;
     wobble: IWobble;
+    zIndex: IZIndex;
 }

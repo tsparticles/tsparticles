@@ -2,13 +2,14 @@ import { clamp, getDistance, getRangeMax, getRangeValue, isInArray, isSsr, Plugi
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
 import { HoverMode } from "../../Enums";
-import type { IDelta } from "../Interfaces/IDelta";
+import type { IDelta } from "../Interfaces";
 
 /**
  * @category Core
  */
 export class Mover {
-    constructor(private readonly container: Container, private readonly particle: Particle) {}
+    constructor(private readonly container: Container, private readonly particle: Particle) {
+    }
 
     move(delta: IDelta): void {
         const particle = this.particle;
@@ -16,7 +17,7 @@ export class Mover {
         particle.bubble.inRange = false;
         particle.links = [];
 
-        for (const [, plugin] of this.container.plugins) {
+        for (const [ , plugin ] of this.container.plugins) {
             if (particle.destroyed) {
                 break;
             }
@@ -85,6 +86,11 @@ export class Mover {
                 particle.velocity.y = velocity.y / moveSpeed;
             }
         }
+
+        const zIndexOptions = particle.options.zIndex,
+            zVelocityFactor = 1 - zIndexOptions.velocityRate * particle.zIndexFactor;
+
+        velocity.multTo(zVelocityFactor);
 
         particle.position.addTo(velocity);
 

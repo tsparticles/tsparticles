@@ -383,19 +383,23 @@ export class Canvas {
         }
 
         const options = this.container.actualOptions;
+        const zIndexOptions = particle.options.zIndex;
+        const zOpacityFactor = 1 - zIndexOptions.opacityRate * particle.zIndexFactor;
         const radius = particle.getRadius();
         const opacity = twinkling ? twinkle.opacity : particle.bubble.opacity ?? particle.opacity.value;
-
-        const fillColorValue = fColor ? getStyleFromHsl(fColor, opacity) : undefined;
+        const strokeOpacity = particle.stroke.opacity ?? opacity;
+        const zOpacity = opacity * zOpacityFactor;
+        const fillColorValue = fColor ? getStyleFromHsl(fColor, zOpacity) : undefined;
 
         if (!fillColorValue && !sColor) {
             return;
         }
 
         this.safePaint((ctx) => {
-            const strokeColorValue = sColor
-                ? getStyleFromHsl(sColor, particle.stroke.opacity ?? opacity)
-                : fillColorValue;
+            const zSizeFactor = 1 - zIndexOptions.sizeRate * particle.zIndexFactor;
+
+            const zStrokeOpacity = strokeOpacity * zOpacityFactor;
+            const strokeColorValue = sColor ? getStyleFromHsl(sColor, zStrokeOpacity) : fillColorValue;
 
             this.drawParticleLinks(particle);
 
@@ -409,8 +413,8 @@ export class Canvas {
                     strokeColorValue,
                     options.backgroundMask.enable,
                     options.backgroundMask.composite,
-                    radius,
-                    opacity,
+                    radius * zSizeFactor,
+                    zOpacity,
                     particle.options.shadow
                 );
             }

@@ -23,15 +23,31 @@ export class Push implements IPush, IOptionLoader<IPush> {
         this.quantity = value;
     }
 
+    default;
+    groups: string[];
     quantity;
 
     constructor() {
+        this.default = true;
+        this.groups = [];
         this.quantity = 4;
     }
 
     load(data?: RecursivePartial<IPush>): void {
         if (data === undefined) {
             return;
+        }
+
+        if (data.default !== undefined) {
+            this.default = data.default;
+        }
+
+        if (data.groups !== undefined) {
+            this.groups = data.groups.map((t) => t);
+        }
+
+        if (!this.groups.length) {
+            this.default = true;
         }
 
         const quantity = data.quantity ?? data.particles_nb;

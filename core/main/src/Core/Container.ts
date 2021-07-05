@@ -48,6 +48,7 @@ export class Container {
     bubble: IBubble;
     repulse: IRepulse;
     attract: IAttract;
+    readonly zLayers = 10000;
 
     /**
      * The options used by the container, it's a full [[Options]] object

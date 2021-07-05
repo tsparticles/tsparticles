@@ -1,8 +1,9 @@
 import { expect } from "chai";
-import { ICoordinates } from "../src/Core/Interfaces/ICoordinates";
+import { ICoordinates3d } from "../src/Core/Interfaces";
 import { TestCanvas } from "./Fixture/TestCanvas";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticles } from "./Fixture/TestParticles";
+
 const Window = require("window");
 
 describe("Particles", () => {
@@ -143,7 +144,7 @@ describe("Particles", () => {
         testCanvas.reset(1920, 1080, testContainer.container);
         testParticles.reset(testContainer.container);
 
-        const position: ICoordinates = { x: 100, y: 100 };
+        const position: ICoordinates3d = { x: 100, y: 100, z: 0 };
         testParticles.particles.push(numParticles, { position, clicking: false, inside: false });
         expect(testParticles.particles.count).to.equal(5);
 

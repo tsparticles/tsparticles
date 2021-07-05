@@ -2,6 +2,7 @@ import type { Container } from "../Core/Container";
 import { ClickMode, InteractivityDetect } from "../Enums";
 import type { ICoordinates } from "../Core/Interfaces";
 import { Constants } from "./Constants";
+import { itemFromArray } from "./Utils";
 
 function manageListener(
     element: HTMLElement | Node | Window,
@@ -384,7 +385,12 @@ export class EventListeners {
         switch (mode) {
             case ClickMode.push: {
                 if (pushNb > 0) {
-                    container.particles.push(pushNb, container.interactivity.mouse);
+                    const pushOptions = options.interactivity.modes.push;
+                    const group = itemFromArray([undefined, ...pushOptions.groups]);
+                    const groupOptions =
+                        group !== undefined ? container.actualOptions.particles.groups[group] : undefined;
+
+                    container.particles.push(pushNb, container.interactivity.mouse, groupOptions, group);
                 }
 
                 break;

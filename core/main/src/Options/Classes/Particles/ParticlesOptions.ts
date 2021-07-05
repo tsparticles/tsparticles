@@ -19,6 +19,9 @@ import { Destroy } from "./Destroy/Destroy";
 import { Wobble } from "./Wobble/Wobble";
 import { Tilt } from "./Tilt/Tilt";
 import { Roll } from "./Roll/Roll";
+import { ZIndex } from "./ZIndex/ZIndex";
+import type { ParticlesGroups } from "../../../Types/ParticlesGroups";
+import { deepExtend } from "../../../Utils";
 
 /**
  * [[include:Options/Particles.md]]
@@ -29,6 +32,7 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
     collisions;
     color;
     destroy;
+    groups: ParticlesGroups;
     life;
     links;
     move;
@@ -44,6 +48,7 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
     tilt;
     twinkle;
     wobble;
+    zIndex;
 
     /**
      *
@@ -84,6 +89,7 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
         this.collisions = new Collisions();
         this.color = new AnimatableColor();
         this.destroy = new Destroy();
+        this.groups = {};
         this.life = new Life();
         this.links = new Links();
         this.move = new Move();
@@ -99,6 +105,7 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
         this.tilt = new Tilt();
         this.twinkle = new Twinkle();
         this.wobble = new Wobble();
+        this.zIndex = new ZIndex();
     }
 
     load(data?: RecursivePartial<IParticles>): void {
@@ -118,6 +125,16 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
             this.links.load(links);
         }
 
+        if (data.groups !== undefined) {
+            for (const group in data.groups) {
+                const item = data.groups[group];
+
+                if (item !== undefined) {
+                    this.groups[group] = deepExtend(this.groups[group] ?? {}, item) as IParticles;
+                }
+            }
+        }
+
         this.move.load(data.move);
         this.number.load(data.number);
         this.opacity.load(data.opacity);
@@ -134,6 +151,7 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
         this.tilt.load(data.tilt);
         this.twinkle.load(data.twinkle);
         this.wobble.load(data.wobble);
+        this.zIndex.load(data.zIndex);
 
         const collisions = data.move?.collisions ?? data.move?.bounce;
 
