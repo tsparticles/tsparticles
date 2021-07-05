@@ -1,13 +1,24 @@
-import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
-import type { IPlugin } from "../Core/Interfaces/IPlugin";
 import type { Container } from "../Core/Container";
 import type { RecursivePartial } from "../Types";
 import type { IOptions } from "../Options/Interfaces/IOptions";
-import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
 import type { Options } from "../Options/Classes/Options";
-import type { IMovePathGenerator } from "../Core/Interfaces/IMovePathGenerator";
+import type {
+    IContainerPlugin,
+    IInteractor,
+    IMovePathGenerator,
+    IParticleUpdater,
+    IPlugin,
+    IShapeDrawer
+} from "../Core/Interfaces";
+
+type InteractorInitializer = (container: Container) => IInteractor;
+type UpdaterInitializer = (container: Container) => IParticleUpdater;
 
 const plugins: IPlugin[] = [];
+const interactorsInitializers: Map<string, InteractorInitializer> = new Map<string, InteractorInitializer>();
+const updatersInitializers: Map<string, UpdaterInitializer> = new Map<string, UpdaterInitializer>();
+const interactors: Map<Container, IInteractor[]> = new Map<Container, IInteractor[]>();
+const updaters: Map<Container, IParticleUpdater[]> = new Map<Container, IParticleUpdater[]>();
 const presets: Map<string, RecursivePartial<IOptions>> = new Map<string, RecursivePartial<IOptions>>();
 const drawers: Map<string, IShapeDrawer> = new Map<string, IShapeDrawer>();
 const pathGenerators: Map<string, IMovePathGenerator> = new Map<string, IMovePathGenerator>();
@@ -77,5 +88,37 @@ export class Plugins {
         if (!Plugins.getPathGenerator(type)) {
             pathGenerators.set(type, pathGenerator);
         }
+    }
+
+    static getInteractors(container: Container): IInteractor[] {
+        let res = interactors.get(container);
+
+        if (!res) {
+            res = [ ...interactorsInitializers.values() ].map((t) => t(container));
+
+            interactors.set(container, res);
+        }
+
+        return res;
+    }
+
+    static addInteractor(name: string, initInteractor: (container: Container) => IInteractor): void {
+        interactorsInitializers.set(name, initInteractor);
+    }
+
+    static getUpdaters(container: Container): IParticleUpdater[] {
+        let res = updaters.get(container);
+
+        if (!res) {
+            res = [ ...updatersInitializers.values() ].map((t) => t(container));
+
+            updaters.set(container, res);
+        }
+
+        return res;
+    }
+
+    static addParticleUpdater(name: string, initUpdater: (container: Container) => IParticleUpdater): void {
+        updatersInitializers.set(name, initUpdater);
     }
 }

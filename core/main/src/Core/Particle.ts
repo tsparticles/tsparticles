@@ -1,12 +1,6 @@
 import type { Container } from "./Container";
-import type { IParticleTiltValueAnimation, IParticleValueAnimation } from "./Interfaces/IParticleValueAnimation";
-import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IParticleImage } from "./Interfaces/IParticleImage";
 import { Updater } from "./Particle/Updater";
-import type { IHsl, IRgb } from "./Interfaces/Colors";
-import type { IShapeValues } from "./Interfaces/IShapeValues";
-import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
-import type { IParticle } from "./Interfaces/IParticle";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
@@ -42,17 +36,28 @@ import {
     replaceColorSvg,
     setRangeValue,
 } from "../Utils";
-import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import { Infecter } from "./Particle/Infecter";
-import type { IDelta } from "./Interfaces/IDelta";
 import { Mover } from "./Particle/Mover";
 import type { ILink } from "./Interfaces/ILink";
-import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 import type { Stroke } from "../Options/Classes/Particles/Stroke";
-import type { IParticleLoops } from "./Interfaces/IParticleLoops";
 import { Vector } from "./Particle/Vector";
-import { IParticleNumericValueAnimation } from "./Interfaces/IParticleValueAnimation";
+import type {
+    IBubbleParticleData,
+    ICoordinates,
+    IDelta,
+    IHsl,
+    IParticle,
+    IParticleHslAnimation,
+    IParticleLife,
+    IParticleLoops,
+    IParticleNumericValueAnimation,
+    IParticleTiltValueAnimation,
+    IParticleValueAnimation,
+    IRgb,
+    IShapeDrawer,
+    IShapeValues,
+} from "./Interfaces";
 
 /**
  * The single particle object
@@ -61,11 +66,6 @@ import { IParticleNumericValueAnimation } from "./Interfaces/IParticleValueAnima
 export class Particle implements IParticle {
     destroyed;
     lastPathTime;
-    lifeDelay;
-    lifeDelayTime;
-    lifeDuration;
-    lifeTime;
-    livesRemaining;
     misplaced;
     rollAngle;
     rollSpeed;
@@ -83,6 +83,7 @@ export class Particle implements IParticle {
     readonly sides;
     readonly strokeWidth;
     readonly options;
+    readonly life: IParticleLife;
     readonly loops: IParticleLoops;
 
     attractDistance?: number;
@@ -507,30 +508,8 @@ export class Particle implements IParticle {
             }
         }
 
-        const lifeOptions = particlesOptions.life;
-
-        this.lifeDelay = container.retina.reduceFactor
-            ? ((getValue(lifeOptions.delay) * (lifeOptions.delay.sync ? 1 : Math.random())) /
-                  container.retina.reduceFactor) *
-              1000
-            : 0;
-        this.lifeDelayTime = 0;
-        this.lifeDuration = container.retina.reduceFactor
-            ? ((getValue(lifeOptions.duration) * (lifeOptions.duration.sync ? 1 : Math.random())) /
-                  container.retina.reduceFactor) *
-              1000
-            : 0;
-        this.lifeTime = 0;
-        this.livesRemaining = particlesOptions.life.count;
-        this.spawning = this.lifeDelay > 0;
-
-        if (this.lifeDuration <= 0) {
-            this.lifeDuration = -1;
-        }
-
-        if (this.livesRemaining <= 0) {
-            this.livesRemaining = -1;
-        }
+        this.life = this.loadLife();
+        this.spawning = this.life.delay > 0;
 
         this.shadowColor = colorToRgb(this.options.shadow.color);
         this.updater = new Updater(container, this);
@@ -834,5 +813,37 @@ export class Particle implements IParticle {
             fill,
             close,
         };
+    }
+
+    private loadLife(): IParticleLife {
+        const container = this.container;
+        const particlesOptions = this.options;
+        const lifeOptions = particlesOptions.life;
+
+        const life = {
+            delay: container.retina.reduceFactor
+                ? ((getRangeValue(lifeOptions.delay.value) * (lifeOptions.delay.sync ? 1 : Math.random())) /
+                      container.retina.reduceFactor) *
+                  1000
+                : 0,
+            delayTime: 0,
+            duration: container.retina.reduceFactor
+                ? ((getRangeValue(lifeOptions.duration.value) * (lifeOptions.duration.sync ? 1 : Math.random())) /
+                      container.retina.reduceFactor) *
+                  1000
+                : 0,
+            time: 0,
+            count: particlesOptions.life.count,
+        };
+
+        if (life.duration <= 0) {
+            life.duration = -1;
+        }
+
+        if (life.count <= 0) {
+            life.count = -1;
+        }
+
+        return life;
     }
 }

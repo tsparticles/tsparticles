@@ -2,14 +2,10 @@ import type { Container } from "../Container";
 import type { Particle } from "../Particle";
 import { calculateBounds, clamp, getValue, isPointInside, randomInRange, setRangeValue } from "../../Utils";
 import { AnimationStatus, DestroyType, OutMode, OutModeDirection, OutModeAlt } from "../../Enums";
-import type { IDelta } from "../Interfaces/IDelta";
-import type { IBounds } from "../Interfaces/IBounds";
-import type { IDimension } from "../Interfaces/IDimension";
-import type { ICoordinates } from "../Interfaces/ICoordinates";
-import type { IParticleValueAnimation } from "../Interfaces/IParticleValueAnimation";
 import type { IColorAnimation } from "../../Options/Interfaces/IColorAnimation";
 import type { IHslAnimation } from "../../Options/Interfaces/IHslAnimation";
 import type { IAnimatableColor } from "../../Options/Interfaces/Particles/IAnimatableColor";
+import { IBounds, ICoordinates, IDelta, IDimension, IParticleValueAnimation } from "../Interfaces";
 
 interface IBounceData {
     particle: Particle;
@@ -175,17 +171,17 @@ export class Updater {
         let justSpawned = false;
 
         if (particle.spawning) {
-            particle.lifeDelayTime += delta.value;
+            particle.life.delayTime += delta.value;
 
-            if (particle.lifeDelayTime >= particle.lifeDelay) {
+            if (particle.life.delayTime >= particle.life.delay) {
                 justSpawned = true;
                 particle.spawning = false;
-                particle.lifeDelayTime = 0;
-                particle.lifeTime = 0;
+                particle.life.delayTime = 0;
+                particle.life.time = 0;
             }
         }
 
-        if (particle.lifeDuration === -1) {
+        if (particle.life.duration === -1) {
             return;
         }
 
@@ -194,22 +190,22 @@ export class Updater {
         }
 
         if (justSpawned) {
-            particle.lifeTime = 0;
+            particle.life.time = 0;
         } else {
-            particle.lifeTime += delta.value;
+            particle.life.time += delta.value;
         }
 
-        if (particle.lifeTime < particle.lifeDuration) {
+        if (particle.life.time < particle.life.duration) {
             return;
         }
 
-        particle.lifeTime = 0;
+        particle.life.time = 0;
 
-        if (particle.livesRemaining > 0) {
-            particle.livesRemaining--;
+        if (particle.life.count > 0) {
+            particle.life.count--;
         }
 
-        if (particle.livesRemaining === 0) {
+        if (particle.life.count === 0) {
             particle.destroy();
             return;
         }
@@ -219,14 +215,14 @@ export class Updater {
         particle.position.x = randomInRange(setRangeValue(0, canvasSize.width));
         particle.position.y = randomInRange(setRangeValue(0, canvasSize.height));
         particle.spawning = true;
-        particle.lifeDelayTime = 0;
-        particle.lifeTime = 0;
+        particle.life.delayTime = 0;
+        particle.life.time = 0;
         particle.reset();
 
         const lifeOptions = particle.options.life;
 
-        particle.lifeDelay = getValue(lifeOptions.delay) * 1000;
-        particle.lifeDuration = getValue(lifeOptions.duration) * 1000;
+        particle.life.delay = getValue(lifeOptions.delay) * 1000;
+        particle.life.duration = getValue(lifeOptions.duration) * 1000;
     }
 
     private updateOpacity(delta: IDelta): void {
