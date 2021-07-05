@@ -11,7 +11,7 @@
       "react-tsparticles": "^1.30.4",
       "tsparticles": "^1.30.4",
       "tslib": "^2.3.0",
-      "typescript": "^4.3.4",
+      "typescript": "^4.3.5",
       "web-vitals": "^2.0.1"
     }
   }

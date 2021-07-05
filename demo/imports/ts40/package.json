@@ -11,6 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "tsparticles": "^1.30.4",
-    "typescript": "^4.0.8"
+    "typescript": "~4.0.8"
   }
 }
