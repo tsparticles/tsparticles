@@ -30,6 +30,7 @@ export class Particles {
      * All the particles used in canvas
      */
     array: Particle[];
+    zArray: Particle[];
 
     pushing?: boolean;
     linksColor?: IRgb | string;
@@ -43,6 +44,7 @@ export class Particles {
     constructor(private readonly container: Container) {
         this.nextId = 0;
         this.array = [];
+        this.zArray = [];
         this.limit = 0;
         this.needsSort = false;
         this.lastZIndex = 0;
@@ -132,6 +134,8 @@ export class Particles {
             particle.destroy(override);
 
             this.array.splice(i--, 1);
+            const zIdx = this.zArray.indexOf(particle);
+            this.zArray.splice(zIdx, 1);
 
             deleted++;
         }
@@ -230,8 +234,8 @@ export class Particles {
         this.update(delta);
 
         if (this.needsSort) {
-            this.array.sort((a, b) => b.position.z - a.position.z || a.id - b.id);
-            this.lastZIndex = this.array[this.array.length - 1].position.z;
+            this.zArray.sort((a, b) => b.position.z - a.position.z || a.id - b.id);
+            this.lastZIndex = this.zArray[this.zArray.length - 1].position.z;
             this.needsSort = false;
         }
 
@@ -245,7 +249,7 @@ export class Particles {
         }*/
 
         /* draw each particle */
-        for (const p of this.array) {
+        for (const p of this.zArray) {
             p.draw(delta);
         }
     }
@@ -255,6 +259,7 @@ export class Particles {
      */
     clear(): void {
         this.array = [];
+        this.zArray = [];
     }
 
     /* ---------- tsParticles functions - modes events ------------ */
@@ -461,6 +466,7 @@ export class Particles {
             }
 
             this.array.push(particle);
+            this.zArray.push(particle);
 
             this.nextId++;
 

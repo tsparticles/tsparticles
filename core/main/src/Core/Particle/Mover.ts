@@ -8,8 +8,7 @@ import type { IDelta } from "../Interfaces";
  * @category Core
  */
 export class Mover {
-    constructor(private readonly container: Container, private readonly particle: Particle) {
-    }
+    constructor(private readonly container: Container, private readonly particle: Particle) {}
 
     move(delta: IDelta): void {
         const particle = this.particle;
@@ -17,7 +16,7 @@ export class Mover {
         particle.bubble.inRange = false;
         particle.links = [];
 
-        for (const [ , plugin ] of this.container.plugins) {
+        for (const [, plugin] of this.container.plugins) {
             if (particle.destroyed) {
                 break;
             }
