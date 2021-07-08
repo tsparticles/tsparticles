@@ -7,7 +7,7 @@
   "scripts": {
     "clear:cache": "rimraf -f ./node_modules/.cache",
     "clear:docs": "rimraf -f ./docs",
-    "build:js": "minify ./js/demo.js > ./js/demo.min.js && minify ./js/404.js > ./js/404.min.js",
+    "build:js": "minify ./js/404.js > ./js/404.min.js && copyfiles -u 2 ./node_modules/tsparticles/tsparticles.min.js ./js && copyfiles -u 3 ./node_modules/tsparticles-preset-links/dist/tsparticles.preset.links.min.js ./js",
     "build:css": "sass ./css/main.scss ./css/main.css && minify ./css/main.css > ./css/main.min.css && sass ./css/404.scss ./css/404.css && minify ./css/404.css > ./css/404.min.css",
     "build": " yarn clear:cache && yarn build:css && yarn build:js",
     "deploy": "yarn build && yarn clear:docs && lerna run build:docs && node deploy.js"
