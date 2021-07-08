@@ -357,10 +357,10 @@ dist/
 build/
 docs/
 core/main/typedoc/themes/particles/assets/js/tsparticles.min.js
-demo/main/report.html
-demo/main/report.htm
-demo/main/report.*.html
-demo/main/report.*.htm
+demo/vanilla/report.html
+demo/vanilla/report.htm
+demo/vanilla/report.*.html
+demo/vanilla/report.*.htm
 components/preact/report.html
 components/react/report.html
 
@@ -384,3 +384,6 @@ options.schema.json
 
 website/js/404.min.js
 website/js/demo.min.js
+
+demo/vanilla_new/js/tsparticles.min.js
+demo/vanilla_new/js/tsparticles-preset-links.min.js
