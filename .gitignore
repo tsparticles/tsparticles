@@ -386,4 +386,4 @@ website/js/404.min.js
 website/js/demo.min.js
 
 demo/vanilla_new/js/tsparticles.min.js
-demo/vanilla_new/js/tsparticles-preset-links.min.js
+demo/vanilla_new/js/tsparticles.preset.links.min.js
