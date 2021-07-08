@@ -34,38 +34,32 @@ jobs:
       #    project-token: ${{ secrets.CodacyCoverageToken }}
       #    coverage-reports: coverage/lcov.info
       - uses: FirebaseExtended/action-hosting-deploy@v0
-        if: github.ref == 'ref/head/main'
-          steps:
-              with:
-                repoToken: '${{ secrets.GITHUB_TOKEN }}'
-                firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
-                projectId: tsparticles
-                channelId: live
+        with:
+          cond: ${{github.ref == 'ref/head/main'}}
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
+          projectId: tsparticles
+          channelId: live
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
-        if: github.ref == 'ref/head/staging'
-          steps:
-            - uses: FirebaseExtended/action-hosting-deploy@v0
-              with:
-                repoToken: '${{ secrets.GITHUB_TOKEN }}'
-                firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
-                projectId: tsparticles
-                channelId: next
+        with:
+          cond: ${{github.ref == 'ref/head/staging'}}
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
+          projectId: tsparticles
+          channelId: next
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
-        if: github.ref == 'ref/head/dev'
-          steps:
-              with:
-                repoToken: '${{ secrets.GITHUB_TOKEN }}'
-                firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
-                projectId: tsparticles
-                channelId: dev
+        with:
+          cond: ${{github.ref == 'ref/head/dev'}}
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
+          projectId: tsparticles
+          channelId: dev
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
-        if: github.base_ref != null
-          steps:
-            - uses: FirebaseExtended/action-hosting-deploy@v0
-              with:
-                repoToken: '${{ secrets.GITHUB_TOKEN }}'
-                firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
-                projectId: tsparticles
+        with:
+          cond: ${{github.base_ref != null}}
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
+          projectId: tsparticles
