@@ -9,7 +9,7 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) Web Component
 ## Installation
 
 ```shell script
-yarn add web-particles
+yarn add web-particles tsparticles
 ```
 
 ## Usage

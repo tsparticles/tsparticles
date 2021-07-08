@@ -9,13 +9,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) RiotJS compon
 ## Installation
 
 ```shell
-npm install riot-particles
+npm install riot-particles tsparticles
 ```
 
 or
 
 ```shell
-yarn add riot-particles
+yarn add riot-particles tsparticles
 ```
 
 ## Usage
