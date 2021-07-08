@@ -33,7 +33,7 @@ jobs:
       #  with:
       #    project-token: ${{ secrets.CodacyCoverageToken }}
       #    coverage-reports: coverage/lcov.info
-      - if: github.ref == 'ref/heads/main'
+      - if: github.ref == 'refs/heads/main'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -41,7 +41,7 @@ jobs:
           projectId: tsparticles
           channelId: live
 
-      - if: github.ref == 'ref/heads/staging'
+      - if: github.ref == 'refs/heads/staging'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -49,7 +49,7 @@ jobs:
           projectId: tsparticles
           channelId: next
 
-      - if: github.ref == 'ref/heads/dev'
+      - if: github.ref == 'refs/heads/dev'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
