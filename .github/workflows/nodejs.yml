@@ -33,8 +33,34 @@ jobs:
       #  with:
       #    project-token: ${{ secrets.CodacyCoverageToken }}
       #    coverage-reports: coverage/lcov.info
-      - uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
-          projectId: tsparticles
+      - if: { { github.ref == 'ref/head/main' } }
+          steps:
+            - uses: FirebaseExtended/action-hosting-deploy@v0
+              with:
+                repoToken: '${{ secrets.GITHUB_TOKEN }}'
+                firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
+                projectId: tsparticles
+                channelId: live
+        else if: { { github.ref == 'ref/head/staging' } }
+          steps:
+            - uses: FirebaseExtended/action-hosting-deploy@v0
+              with:
+                repoToken: '${{ secrets.GITHUB_TOKEN }}'
+                firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
+                projectId: tsparticles
+                channelId: next
+        else if: { { github.ref == 'ref/head/dev' } }
+          steps:
+            - uses: FirebaseExtended/action-hosting-deploy@v0
+              with:
+                repoToken: '${{ secrets.GITHUB_TOKEN }}'
+                firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
+                projectId: tsparticles
+                channelId: dev
+        else:
+          steps:
+            - uses: FirebaseExtended/action-hosting-deploy@v0
+              with:
+                repoToken: '${{ secrets.GITHUB_TOKEN }}'
+                firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
+                projectId: tsparticles
