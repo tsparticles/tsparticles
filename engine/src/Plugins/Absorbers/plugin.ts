@@ -31,10 +31,12 @@ class Plugin implements IPlugin {
 
         const absorbers = options.absorbers;
 
-        return ((absorbers instanceof Array && !!absorbers.length) || (absorbers !== undefined) || (
-            !!options.interactivity?.events?.onClick?.mode &&
-            isInArray(AbsorberClickMode.absorber, options.interactivity.events.onClick.mode)
-        ));
+        return (
+            (absorbers instanceof Array && !!absorbers.length) ||
+            absorbers !== undefined ||
+            (!!options.interactivity?.events?.onClick?.mode &&
+                isInArray(AbsorberClickMode.absorber, options.interactivity.events.onClick.mode))
+        );
     }
 
     loadOptions(options: Options, source?: RecursivePartial<IOptions & IAbsorberOptions>): void {

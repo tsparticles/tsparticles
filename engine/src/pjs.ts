@@ -59,13 +59,15 @@ const initPjs = (main: MainSlim): { particlesJS: IParticlesJS; pJSDom: Container
      * @param callback called after the [[Container]] is loaded and it will be passed as a parameter
      */
     particlesJS.load = (tagId: string, pathConfigJson: string, callback: (container?: Container) => void): void => {
-        main.loadJSON(tagId, pathConfigJson).then((container) => {
-            if (container) {
-                callback(container);
-            }
-        }).catch(() => {
-            callback(undefined);
-        });
+        main.loadJSON(tagId, pathConfigJson)
+            .then((container) => {
+                if (container) {
+                    callback(container);
+                }
+            })
+            .catch(() => {
+                callback(undefined);
+            });
     };
 
     /**

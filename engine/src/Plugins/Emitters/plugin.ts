@@ -31,9 +31,11 @@ class EmittersPlugin implements IPlugin {
 
         const emitters = options.emitters;
 
-        return (emitters instanceof Array && !!emitters.length) || (emitters !== undefined) || (
-            !!options.interactivity?.events?.onClick?.mode &&
-            isInArray(EmitterClickMode.emitter, options.interactivity.events.onClick.mode)
+        return (
+            (emitters instanceof Array && !!emitters.length) ||
+            emitters !== undefined ||
+            (!!options.interactivity?.events?.onClick?.mode &&
+                isInArray(EmitterClickMode.emitter, options.interactivity.events.onClick.mode))
         );
     }
 
