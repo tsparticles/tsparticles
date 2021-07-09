@@ -596,13 +596,6 @@ tsparticles-editor@^1.30.4:
     object-gui "^1.1.1"
     tsparticles "^1.30.4"
 
-tsparticles-preset-links@^1.15.4:
-  version "1.15.4"
-  resolved "https://registry.yarnpkg.com/tsparticles-preset-links/-/tsparticles-preset-links-1.15.4.tgz#5bbc674bddc23574f66b5e09e4b73c51e7906015"
-  integrity sha512-NXYxJI//ABJWdU8j4Dau7opQHZO1sxxlrEWTbEyWou8EQwyvWCuliLBnctIXhn/AYu1ZUKQ7SNHALk5VKPCESA==
-  dependencies:
-    tsparticles "^1.30.4"
-
 tsparticles@^1.30.4:
   version "1.30.4"
   resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.30.4.tgz#a6ba747bcf1ca9e6147074c8a7fabf79e93a0a69"

@@ -2,8 +2,8 @@
   "packages": [
     "components/*",
     "demo/**/*",
-    "editor/*",
-    "engine/*",
+    "editor",
+    "engine",
     "presets/*",
     "shapes/*",
     "templates/*",
