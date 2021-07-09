@@ -64,17 +64,7 @@
       }
     },
     "size": {
-      "value": 14,
-      "random": {
-        "enable": false,
-        "minimumValue": 7
-      },
-      "animation": {
-        "enable": false,
-        "speed": 20,
-        "minimumValue": 0.1,
-        "sync": false
-      }
+      "value": 3
     },
     "links": {
       "enable": false,
@@ -89,7 +79,7 @@
         "offset": 0
       },
       "enable": true,
-      "speed": 7,
+      "speed": 5,
       "direction": "right",
       "random": false,
       "straight": false,
@@ -103,7 +93,8 @@
       }
     },
     "zIndex": {
-      "value": 500
+      "value": 500,
+      "opacityRate": 0.5
     }
   },
   "interactivity": {
