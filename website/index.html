@@ -294,14 +294,14 @@
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"
         integrity="sha256-ur/YlHMU96MxHEsy3fHGszZHas7NzH4RQlD4tDVvFhw=" crossorigin="anonymous"></script>
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.30.4/tsparticles.min.js"
-        integrity="sha256-ONv46+01AdrEJhbe7VrJF5XklEqVB+zwhZDbOAWHxKk=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-links@1.15.4/dist/tsparticles.preset.links.min.js"
-        integrity="sha256-IvO2YEFfDHEvRr1j7mvB1PhbktrsHoG4FyLALGjCdPg=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.31.0/tsparticles.min.js"
+        integrity="sha256-1CTLPNbqfgj4EyDwDkSDcBlyN7DVNf0FVoP2SSjHsjA=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-links@1.16.0/tsparticles.preset.links.min.js"
+        integrity="sha256-v5SK4fglJGRLUvOm+3Ei4Cru62Fekp/+jdTb0yXjky8=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/object-gui@1.1.1/dist/js/object-gui.min.js"
         integrity="sha256-M0fXnWoixeosDqA5oLRKEpnTFLQWqUG3xlHN2GmbpGw=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-editor@1.30.4/dist/tsparticles.editor.min.js"
-        integrity="sha256-DmKCN8+7naoPeTkpxl4tP1SyNowOUVXKE6ZXvei7ERc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-editor@1.31.0/dist/tsparticles.editor.min.js"
+        integrity="sha256-HNe5PhrfhA/g/zSG4Uyn8UOMzGE3LcriKXMbeQTKJIE=" crossorigin="anonymous"></script>
 <script type="text/javascript">
     hljs.initHighlightingOnLoad();
 </script>
@@ -331,9 +331,10 @@
         const configsUrl = "/configs";
 
         editor.addPreset("Default", `${configsUrl}/index.json`);
-        editor.addPreset("Starry", `${configsUrl}/starry.json`);
+        editor.addPreset("Among Us", `${configsUrl}/amongUs.json`);
         editor.addPreset("Confetti", `${configsUrl}/confetti.json`);
         editor.addPreset("Fireworks", `${configsUrl}/fireworks.json`);
+        editor.addPreset("Starry", `${configsUrl}/starry.json`);
         editor.addPreset("Tunnel", `${configsUrl}/tunnel.json`);
 
         editor.top().right().theme("neu-dark");

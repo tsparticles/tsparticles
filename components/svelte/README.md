@@ -9,13 +9,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) SvelteJS comp
 ## Installation
 
 ```shell
-npm install svelte-particles
+npm install svelte-particles tsparticles
 ```
 
 or
 
 ```shell
-yarn add svelte-particles
+yarn add svelte-particles tsparticles
 ```
 
 ## Usage

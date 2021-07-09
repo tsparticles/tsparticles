@@ -1,0 +1,50 @@
+{
+  "name": "tsparticles-shape-rounded-rect",
+  "version": "1.16.0",
+  "description": "tsParticles rounded rect shape",
+  "homepage": "https://particles.js.org/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/tsparticles.git",
+    "directory": "shapes/rounded-rect"
+  },
+  "keywords": [
+    "tsparticles",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles.js",
+    "particles-ts",
+    "particles.ts",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background",
+    "tsparticles-shape"
+  ],
+  "author": "Matteo Bruni",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles/issues"
+  },
+  "main": "shape.js",
+  "jsdelivr": "tsparticles.shape.rounded-rect.min.js",
+  "unpkg": "tsparticles.shape.rounded-rect.min.js",
+  "browser": "shape.js",
+  "module": "shape.js",
+  "types": "shape.d.ts",
+  "dependencies": {
+    "tsparticles": "^1.31.0"
+  }
+}
