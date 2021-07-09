@@ -29,33 +29,33 @@ export class ClickEventsOptionsEditor extends EditorBase {
         });
 
         const modeSelectInput = this.group
-        .addProperty("mode", "Mode", EditorType.select)
-        .change(async () => {
-            await particles.refresh();
-        })
-        .addItems([
-            {
-                value: ClickMode.attract,
-            },
-            {
-                value: ClickMode.bubble,
-            },
-            {
-                value: ClickMode.pause,
-            },
-            {
-                value: ClickMode.push,
-            },
-            {
-                value: ClickMode.remove,
-            },
-            {
-                value: ClickMode.repulse,
-            },
-            {
-                value: ClickMode.trail,
-            },
-        ]);
+            .addProperty("mode", "Mode", EditorType.select)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .addItems([
+                {
+                    value: ClickMode.attract,
+                },
+                {
+                    value: ClickMode.bubble,
+                },
+                {
+                    value: ClickMode.pause,
+                },
+                {
+                    value: ClickMode.push,
+                },
+                {
+                    value: ClickMode.remove,
+                },
+                {
+                    value: ClickMode.repulse,
+                },
+                {
+                    value: ClickMode.trail,
+                },
+            ]);
 
         if (typeof loadAbsorbersPlugin !== "undefined") {
             const absorbersGroup = "Absorbers";
