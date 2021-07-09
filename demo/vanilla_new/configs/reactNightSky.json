@@ -1,4 +1,8 @@
 {
+  "fullScreen": {
+    "enable": true,
+    "zIndex": 0
+  },
   "detectRetina": true,
   "fpsLimit": 999,
   "interactivity": {

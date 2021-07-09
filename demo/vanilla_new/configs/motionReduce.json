@@ -1,4 +1,8 @@
 {
+  "fullScreen": {
+    "enable": true,
+    "zIndex": 0
+  },
   "fpsLimit": 60,
   "motion": {
     "disable": false,

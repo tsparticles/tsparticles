@@ -1,4 +1,8 @@
 {
+  "fullScreen": {
+    "enable": true,
+    "zIndex": 0
+  },
   "fps_limit": 60,
   "background": {
     "color": "#0d47a1"
