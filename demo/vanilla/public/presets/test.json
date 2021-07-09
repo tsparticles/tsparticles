@@ -290,7 +290,6 @@
         }
       },
       "decay": 0,
-      "distance": 0,
       "direction": "none",
       "drift": 0,
       "enable": false,

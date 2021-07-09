@@ -101,18 +101,22 @@ export class Retina {
     }
 
     initParticle(particle: Particle): void {
-        const particlesOptions = particle.options;
+        const options = particle.options;
         const ratio = this.pixelRatio;
+        const moveDistance = options.move.distance;
 
-        particle.attractDistance = particlesOptions.move.attract.distance * ratio;
-        particle.linksDistance = particlesOptions.links.distance * ratio;
-        particle.linksWidth = particlesOptions.links.width * ratio;
-        particle.moveDrift = getRangeValue(particlesOptions.move.drift) * ratio;
-        particle.moveSpeed = getRangeValue(particlesOptions.move.speed) * ratio;
-        particle.sizeAnimationSpeed = particlesOptions.size.animation.speed * ratio;
-        particle.maxDistance = particlesOptions.move.distance * ratio;
-        particle.wobbleDistance = getRangeValue(particlesOptions.wobble.distance) * ratio;
-        particle.maxSpeed = particlesOptions.move.gravity.maxSpeed * ratio;
+        particle.attractDistance = options.move.attract.distance * ratio;
+        particle.linksDistance = options.links.distance * ratio;
+        particle.linksWidth = options.links.width * ratio;
+        particle.moveDrift = getRangeValue(options.move.drift) * ratio;
+        particle.moveSpeed = getRangeValue(options.move.speed) * ratio;
+        particle.sizeAnimationSpeed = options.size.animation.speed * ratio;
+        const maxDistance = particle.maxDistance;
+
+        maxDistance.horizontal = moveDistance.horizontal !== undefined ? moveDistance.horizontal * ratio : undefined;
+        maxDistance.vertical = moveDistance.vertical !== undefined ? moveDistance.vertical * ratio : undefined;
+        particle.wobbleDistance = getRangeValue(options.wobble.distance) * ratio;
+        particle.maxSpeed = options.move.gravity.maxSpeed * ratio;
     }
 
     private handleMotionChange(mediaQuery: MediaQueryList): void {

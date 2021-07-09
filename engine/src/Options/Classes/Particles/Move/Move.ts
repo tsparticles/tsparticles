@@ -8,7 +8,8 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { MoveAngle } from "./MoveAngle";
 import { MoveGravity } from "./MoveGravity";
 import { OutModes } from "./OutModes";
-import { setRangeValue } from "../../../../Utils";
+import { deepExtend, setRangeValue } from "../../../../Utils";
+import { IDistance } from "../../../../Core/Interfaces";
 
 /**
  * [[include:Options/Particles/Move.md]]
@@ -96,7 +97,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
     angle;
     attract;
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
-    distance;
+    distance: Partial<IDistance>;
     decay;
     drift: RangeValue;
     enable;
@@ -115,7 +116,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.angle = new MoveAngle();
         this.attract = new Attract();
         this.decay = 0;
-        this.distance = 0;
+        this.distance = {};
         this.direction = MoveDirection.none;
         this.drift = 0;
         this.enable = false;
@@ -155,7 +156,13 @@ export class Move implements IMove, IOptionLoader<IMove> {
         }
 
         if (data.distance !== undefined) {
-            this.distance = data.distance;
+            this.distance =
+                typeof data.distance === "number"
+                    ? {
+                          horizontal: data.distance,
+                          vertical: data.distance,
+                      }
+                    : (deepExtend({}, data.distance) as IDistance);
         }
 
         if (data.drift !== undefined) {

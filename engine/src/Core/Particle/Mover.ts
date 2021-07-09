@@ -1,8 +1,47 @@
-import { clamp, getDistance, getRangeMax, getRangeValue, isInArray, isSsr, Plugins } from "../../Utils";
+import { clamp, getDistance, getDistances, getRangeMax, getRangeValue, isInArray, isSsr, Plugins } from "../../Utils";
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
 import { HoverMode } from "../../Enums";
 import type { IDelta } from "../Interfaces";
+
+function applyDistance(particle: Particle): void {
+    const initialPosition = particle.initialPosition;
+    const { dx, dy } = getDistances(initialPosition, particle.position);
+    const dxFixed = Math.abs(dx),
+        dyFixed = Math.abs(dy);
+
+    const hDistance = particle.maxDistance.horizontal;
+    const vDistance = particle.maxDistance.vertical;
+
+    if (!hDistance && !vDistance) {
+        return;
+    }
+
+    if (((hDistance && dxFixed >= hDistance) || (vDistance && dyFixed >= vDistance)) && !particle.misplaced) {
+        particle.misplaced = (!!hDistance && dxFixed > hDistance) || (!!vDistance && dyFixed > vDistance);
+
+        if (hDistance) {
+            particle.velocity.x = particle.velocity.y / 2 - particle.velocity.x;
+        }
+
+        if (vDistance) {
+            particle.velocity.y = particle.velocity.x / 2 - particle.velocity.y;
+        }
+    } else if ((!hDistance || dxFixed < hDistance) && (!vDistance || dyFixed < vDistance) && particle.misplaced) {
+        particle.misplaced = false;
+    } else if (particle.misplaced) {
+        const pos = particle.position,
+            vel = particle.velocity;
+
+        if (hDistance && ((pos.x < initialPosition.x && vel.x < 0) || (pos.x > initialPosition.x && vel.x > 0))) {
+            vel.x *= -Math.random();
+        }
+
+        if (vDistance && ((pos.y < initialPosition.y && vel.y < 0) || (pos.y > initialPosition.y && vel.y > 0))) {
+            vel.y *= -Math.random();
+        }
+    }
+}
 
 /**
  * @category Core
@@ -124,6 +163,8 @@ export class Mover {
                 }
             }
         }
+
+        applyDistance(particle);
     }
 
     private applyPath(delta: IDelta): void {

@@ -6,6 +6,7 @@ import type { IMoveAngle } from "./IMoveAngle";
 import type { IMoveGravity } from "./IMoveGravity";
 import type { IOutModes } from "./IOutModes";
 import type { RangeValue } from "../../../../Types";
+import { IDistance } from "../../../../Core/Interfaces";
 
 /**
  * [[include:Options/Particles/Move.md]]
@@ -41,7 +42,7 @@ export interface IMove {
     attract: IAttract;
     decay: number;
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
-    distance: number;
+    distance: number | Partial<IDistance>;
     drift: RangeValue;
     enable: boolean;
     gravity: IMoveGravity;

@@ -27,7 +27,6 @@
     },
     "move": {
       "decay": 0.1,
-      "distance": 0,
       "direction": "top",
       "enable": true,
       "gravity": {

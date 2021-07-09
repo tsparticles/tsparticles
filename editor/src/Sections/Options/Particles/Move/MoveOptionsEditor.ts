@@ -19,6 +19,7 @@ export class MoveOptionsEditor extends EditorBase {
 
         this.addAngle();
         this.addAttract();
+        this.addDistance();
         this.addGravity();
         this.addOutModes();
         this.addPath();
@@ -54,6 +55,19 @@ export class MoveOptionsEditor extends EditorBase {
         });
 
         group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
+            await particles.refresh();
+        });
+    }
+
+    private addDistance(): void {
+        const particles = this.particles;
+        const group = this.group.addGroup("distance", "Distance");
+
+        group.addProperty("horizontal", "Horizontal", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
+
+        group.addProperty("vertical", "Vertical", EditorType.number).change(async () => {
             await particles.refresh();
         });
     }
@@ -201,10 +215,6 @@ export class MoveOptionsEditor extends EditorBase {
     private addProperties(): void {
         const particles = this.particles;
         const group = this.group;
-
-        group.addProperty("distance", "Distance", EditorType.number).change(async () => {
-            await particles.refresh();
-        });
 
         group
             .addProperty("direction", "Direction", EditorType.select)

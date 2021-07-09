@@ -46,6 +46,7 @@ import type {
     IBubbleParticleData,
     ICoordinates,
     IDelta,
+    IDistance,
     IHsl,
     IParticle,
     IParticleHslAnimation,
@@ -85,6 +86,7 @@ export class Particle implements IParticle {
     readonly options;
     readonly life: IParticleLife;
     readonly loops: IParticleLoops;
+    readonly maxDistance: Partial<IDistance>;
 
     attractDistance?: number;
     backColor?: IHsl;
@@ -92,7 +94,6 @@ export class Particle implements IParticle {
     randomIndexData?: number;
     linksDistance?: number;
     linksWidth?: number;
-    maxDistance?: number;
     moveDrift?: number;
     moveSpeed?: number;
     maxSpeed?: number;
@@ -139,6 +140,7 @@ export class Particle implements IParticle {
             opacity: 0,
             size: 0,
         };
+        this.maxDistance = {};
 
         const pxRatio = container.retina.pixelRatio;
         const options = container.actualOptions;

@@ -9,6 +9,7 @@ export * from "./IContainerPlugin";
 export * from "./ICoordinates";
 export * from "./IDelta";
 export * from "./IDimension";
+export * from "./IDistance";
 export * from "./IExternalInteractor";
 export * from "./IInteractor";
 export * from "./IMouseData";
