@@ -30,22 +30,11 @@ class EmittersPlugin implements IPlugin {
         }
 
         const emitters = options.emitters;
-        let loadEmitters = false;
 
-        if (emitters instanceof Array) {
-            if (emitters.length) {
-                loadEmitters = true;
-            }
-        } else if (emitters !== undefined) {
-            loadEmitters = true;
-        } else if (
-            options.interactivity?.events?.onClick?.mode &&
+        return (emitters instanceof Array && !!emitters.length) || (emitters !== undefined) || (
+            !!options.interactivity?.events?.onClick?.mode &&
             isInArray(EmitterClickMode.emitter, options.interactivity.events.onClick.mode)
-        ) {
-            loadEmitters = true;
-        }
-
-        return loadEmitters;
+        );
     }
 
     loadOptions(options: Options, source?: RecursivePartial<IOptions & IEmitterOptions>): void {
