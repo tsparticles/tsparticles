@@ -1,7 +1,7 @@
 const fs = require("fs-extra");
 const ghpages = require("gh-pages");
 
-fs.copy("../core/main/docs", "./docs", (copyErr) => {
+fs.copy("../engine/docs", "./docs", (copyErr) => {
   if (copyErr) {
     console.log(`Error copying docs: ${copyErr}`);
     return;
