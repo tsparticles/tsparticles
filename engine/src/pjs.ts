@@ -29,7 +29,7 @@ export interface IParticlesJS {
      * @param pathConfigJson the json path to use in the GET request
      * @param callback called after the [[Container]] is loaded and it will be passed as a parameter
      */
-    load(tagId: string, pathConfigJson: string, callback: (container: Container) => void): void;
+    load(tagId: string, pathConfigJson: string, callback: (container?: Container) => void): void;
 
     /**
      * Adds an additional click handler to all the loaded [[Container]] objects.
@@ -58,11 +58,13 @@ const initPjs = (main: MainSlim): { particlesJS: IParticlesJS; pJSDom: Container
      * @param pathConfigJson the json path to use in the GET request
      * @param callback called after the [[Container]] is loaded and it will be passed as a parameter
      */
-    particlesJS.load = (tagId: string, pathConfigJson: string, callback: (container: Container) => void): void => {
+    particlesJS.load = (tagId: string, pathConfigJson: string, callback: (container?: Container) => void): void => {
         main.loadJSON(tagId, pathConfigJson).then((container) => {
             if (container) {
                 callback(container);
             }
+        }).catch(() => {
+            callback(undefined);
         });
     };
 
