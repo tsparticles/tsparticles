@@ -125,8 +125,7 @@ function checkDestroy(
  * @category Core
  */
 export class Updater {
-    constructor(private readonly container: Container, private readonly particle: Particle) {
-    }
+    constructor(private readonly container: Container, private readonly particle: Particle) {}
 
     update(delta: IDelta): void {
         if (this.particle.destroyed) {
@@ -606,7 +605,7 @@ export class Updater {
         const particle = this.particle;
         let handled = false;
 
-        for (const [ , plugin ] of container.plugins) {
+        for (const [, plugin] of container.plugins) {
             if (plugin.particleBounce !== undefined) {
                 handled = plugin.particleBounce(particle, delta, direction);
             }
@@ -633,8 +632,12 @@ export class Updater {
     private bounceNone(direction: OutModeDirection): void {
         const particle = this.particle;
 
-        if ((particle.options.move.distance.horizontal && (direction === OutModeDirection.left || direction === OutModeDirection.right)) ||
-            (particle.options.move.distance.vertical && (direction === OutModeDirection.top || direction === OutModeDirection.bottom))) {
+        if (
+            (particle.options.move.distance.horizontal &&
+                (direction === OutModeDirection.left || direction === OutModeDirection.right)) ||
+            (particle.options.move.distance.vertical &&
+                (direction === OutModeDirection.top || direction === OutModeDirection.bottom))
+        ) {
             return;
         }
 
