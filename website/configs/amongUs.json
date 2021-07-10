@@ -150,5 +150,56 @@
     "position": "50% 50%",
     "repeat": "no-repeat",
     "size": "cover"
+  },
+  "emitters": {
+    "position": {
+      "y": 55,
+      "x": 0
+    },
+    "rate": {
+      "delay": 7,
+      "quantity": 1
+    },
+    "size": {
+      "width": 0,
+      "height": 0
+    },
+    "particles": {
+      "shape": {
+        "type": "images",
+        "options": {
+          "images": {
+            "src": "https://particles.js.org/images/cyan_amongus.png",
+            "width": 500,
+            "height": 634
+          }
+        }
+      },
+      "size": {
+        "value": 40
+      },
+      "move": {
+        "speed": 10,
+        "outModes": {
+          "default": "destroy",
+          "left": "none"
+        },
+        "straight": true
+      },
+      "zIndex": {
+        "value": 0
+      },
+      "rotate": {
+        "value": {
+          "min": 0,
+          "max": 360
+        },
+        "animation": {
+          "enable": true,
+          "speed": 10,
+          "sync": true
+        }
+      }
+    }
   }
 }

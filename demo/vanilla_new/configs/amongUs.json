@@ -151,13 +151,13 @@
     "repeat": "no-repeat",
     "size": "cover"
   },
-  "emitter": {
+  "emitters": {
     "position": {
-      "y": 50,
+      "y": 55,
       "x": 0
     },
     "rate": {
-      "delay": 10,
+      "delay": 7,
       "quantity": 1
     },
     "size": {
@@ -166,22 +166,28 @@
     },
     "particles": {
       "shape": {
-        "type": "image",
+        "type": "images",
         "options": {
           "images": {
-            "src": "https://particles.js.org/images/blue_amongus.png",
-            "width": 109,
-            "height": 109
+            "src": "https://particles.js.org/images/cyan_amongus.png",
+            "width": 500,
+            "height": 634
           }
         }
       },
       "size": {
-        "value": 80
+        "value": 40
       },
       "move": {
+        "speed": 10,
         "outModes": {
-          "default": "destroy"
-        }
+          "default": "destroy",
+          "left": "none"
+        },
+        "straight": true
+      },
+      "zIndex": {
+        "value": 0
       },
       "rotate": {
         "value": {
@@ -190,7 +196,8 @@
         },
         "animation": {
           "enable": true,
-          "speed": 30
+          "speed": 10,
+          "sync": true
         }
       }
     }
