@@ -1,7 +1,7 @@
 {
   "name": "tsparticles-demo-new",
   "private": true,
-  "version": "1.16.0",
+  "version": "1.16.1",
   "description": "tsParticles Demo Website",
   "main": "index.html",
   "scripts": {
@@ -28,7 +28,7 @@
     "minify": "^7.0.2",
     "rimraf": "^3.0.2",
     "sass": "^1.35.1",
-    "tsparticles": "^1.31.0",
-    "tsparticles-preset-links": "^1.16.0"
+    "tsparticles": "^1.31.1",
+    "tsparticles-preset-links": "^1.16.1"
   }
 }
