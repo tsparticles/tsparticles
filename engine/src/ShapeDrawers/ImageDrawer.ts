@@ -1,10 +1,12 @@
-import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
-import type { IParticle } from "../Core/Interfaces/IParticle";
+import type { IParticle, IShapeDrawer } from "../Core/Interfaces";
 import { downloadSvgImage, isInArray, loadImage } from "../Utils";
 import { ShapeType } from "../Enums";
 import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
 import type { IImage } from "../Core/Interfaces/IImage";
 import type { Container } from "../Core/Container";
+import type { IEmitterOptions } from "../Plugins/Emitters/Options/Interfaces/IEmitterOptions";
+import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
+import type { RecursivePartial } from "../Types";
 
 interface ContainerImage {
     id: string;
@@ -47,10 +49,54 @@ export class ImageDrawer implements IShapeDrawer {
     }
 
     async init(container: Container): Promise<void> {
-        const options = container.actualOptions;
-        const shapeOptions = options.particles.shape;
+        await this.loadImagesFromParticlesOptions(container, container.actualOptions.particles);
 
-        if (!isInArray(ShapeType.image, shapeOptions.type) && !isInArray(ShapeType.images, shapeOptions.type)) {
+        await this.loadImagesFromParticlesOptions(
+            container,
+            container.actualOptions.interactivity.modes.trail.particles
+        );
+
+        for (const manualParticle of container.actualOptions.manualParticles) {
+            await this.loadImagesFromParticlesOptions(container, manualParticle.options);
+        }
+
+        const emitterOptions = container.actualOptions as unknown as IEmitterOptions;
+
+        if (emitterOptions.emitters) {
+            if (emitterOptions.emitters instanceof Array) {
+                for (const emitter of emitterOptions.emitters) {
+                    await this.loadImagesFromParticlesOptions(container, emitter.particles);
+                }
+            } else {
+                await this.loadImagesFromParticlesOptions(container, emitterOptions.emitters.particles);
+            }
+        }
+
+        const interactiveEmitters = emitterOptions.interactivity.modes.emitters;
+
+        if (interactiveEmitters) {
+            if (interactiveEmitters instanceof Array) {
+                for (const emitter of interactiveEmitters) {
+                    await this.loadImagesFromParticlesOptions(container, emitter.particles);
+                }
+            } else {
+                await this.loadImagesFromParticlesOptions(container, interactiveEmitters.particles);
+            }
+        }
+    }
+
+    destroy(): void {
+        this.images = [];
+    }
+
+    private async loadImagesFromParticlesOptions(container: Container, options?: RecursivePartial<IParticles>) {
+        const shapeOptions = options?.shape;
+
+        if (
+            !shapeOptions?.type ||
+            !shapeOptions.options ||
+            (!isInArray(ShapeType.image, shapeOptions.type) && !isInArray(ShapeType.images, shapeOptions.type))
+        ) {
             return;
         }
 
@@ -69,10 +115,18 @@ export class ImageDrawer implements IShapeDrawer {
         } else {
             await this.loadImageShape(container, imageOptions as IImageShape);
         }
-    }
 
-    destroy(): void {
-        this.images = [];
+        if (options?.groups) {
+            for (const groupName in options.groups) {
+                const group = options.groups[groupName];
+
+                await this.loadImagesFromParticlesOptions(container, group);
+            }
+        }
+
+        if (options?.destroy?.split?.particles) {
+            await this.loadImagesFromParticlesOptions(container, options?.destroy.split.particles);
+        }
     }
 
     private async loadImageShape(container: Container, imageShape: IImageShape): Promise<void> {

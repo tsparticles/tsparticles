@@ -1,7 +1,7 @@
 {
   "name": "web-particles-demo",
   "private": true,
-  "version": "1.16.0",
+  "version": "1.16.1",
   "description": "> TODO: description",
   "author": "Matteo Bruni <ar3s@icloud.com>",
   "homepage": "https://github.com/matteobruni/tsparticles#readme",
@@ -37,7 +37,7 @@
     "pug": "^3.0.2",
     "pug-cli": "^1.0.0-alpha6",
     "stylus": "^0.54.8",
-    "tsparticles": "^1.31.0",
-    "web-particles": "^1.4.0"
+    "tsparticles": "^1.31.1",
+    "web-particles": "^1.4.1"
   }
 }
