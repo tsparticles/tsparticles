@@ -9,13 +9,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) Inferno compo
 ## Installation
 
 ```shell
-npm install inferno-particles tsparticles
+npm install inferno-particles inferno
 ```
 
 or
 
 ```shell
-yarn add inferno-particles tsparticles
+yarn add inferno-particles inferno
 ```
 
 ## How to use

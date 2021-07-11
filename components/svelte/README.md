@@ -9,64 +9,65 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) SvelteJS comp
 ## Installation
 
 ```shell
-npm install svelte-particles tsparticles
+npm install svelte-particles svelte
 ```
 
 or
 
 ```shell
-yarn add svelte-particles tsparticles
+yarn add svelte-particles svelte
 ```
 
 ## Usage
 
 ```html
+
 <script>
-  import Particles from "svelte-particles";
+    import Particles from "svelte-particles";
 
-  let particlesUrl = "http://foo.bar/particles.json";
+    let particlesUrl = "http://foo.bar/particles.json";
 
-  let particlesConfig = {
-    particles: {
-      color: {
-        value: "#000",
-      },
-      links: {
-        enable: true,
-        color: "#000",
-      },
-      move: {
-        enable: true,
-      },
-    },
-  };
+    let particlesConfig = {
+        particles: {
+            color: {
+                value: "#000",
+            },
+            links: {
+                enable: true,
+                color: "#000",
+            },
+            move: {
+                enable: true,
+            },
+        },
+    };
 
-  let onParticlesLoaded = (event) => {
-    const particlesContainer = event.detail.particles;
+    let onParticlesLoaded = (event) => {
+        const particlesContainer = event.detail.particles;
 
-    // you can use particlesContainer to call all the Container class
-    // (from the core library) methods like play, pause, refresh, start, stop
-  };
+        // you can use particlesContainer to call all the Container class
+        // (from the core library) methods like play, pause, refresh, start, stop
+    };
 
-  let onParticlesInit = (main) => {
-    // you can use main to customize the tsParticles instance adding presets or custom shapes
-  };
+    let onParticlesInit = (main) => {
+        // you can use main to customize the tsParticles instance adding presets or custom shapes
+    };
 </script>
 
 <Particles
-  id="tsparticles"
-  options="{particlesConfig}"
-  on:particlesLoaded="{onParticlesLoaded}"
-  on:particlesInit="{onParticlesInit}"
+        id="tsparticles"
+        options="{particlesConfig}"
+        on:particlesLoaded="{onParticlesLoaded}"
+        on:particlesInit="{onParticlesInit}"
 />
 
 <!-- or -->
 
 <Particles
-  id="tsparticles"
-  url="{particlesUrl}"
-  on:particlesLoaded="{onParticlesLoaded}"
-  on:particlesInit="{onParticlesInit}"
+        id="tsparticles"
+        url="{particlesUrl}"
+        on:particlesLoaded="{onParticlesLoaded}"
+        on:particlesInit="{onParticlesInit}"
 />
 ```
 
@@ -78,62 +79,63 @@ with `async import`.
 You can see a sample below:
 
 ```html
+
 <script>
-  import { onMount } from "svelte";
+    import {onMount} from "svelte";
 
-  let ParticlesComponent;
+    let ParticlesComponent;
 
-  onMount(async () => {
-    const module = await import("svelte-particles");
+    onMount(async () => {
+        const module = await import("svelte-particles");
 
-    ParticlesComponent = module.default;
-  });
+        ParticlesComponent = module.default;
+    });
 
-  let particlesUrl = "http://foo.bar/particles.json";
+    let particlesUrl = "http://foo.bar/particles.json";
 
-  let particlesConfig = {
-    particles: {
-      color: {
-        value: "#000",
-      },
-      links: {
-        enable: true,
-        color: "#000",
-      },
-      move: {
-        enable: true,
-      },
-    },
-  };
+    let particlesConfig = {
+        particles: {
+            color: {
+                value: "#000",
+            },
+            links: {
+                enable: true,
+                color: "#000",
+            },
+            move: {
+                enable: true,
+            },
+        },
+    };
 
-  let onParticlesLoaded = (event) => {
-    const particlesContainer = event.detail.particles;
+    let onParticlesLoaded = (event) => {
+        const particlesContainer = event.detail.particles;
 
-    // you can use particlesContainer to call all the Container class
-    // (from the core library) methods like play, pause, refresh, start, stop
-  };
+        // you can use particlesContainer to call all the Container class
+        // (from the core library) methods like play, pause, refresh, start, stop
+    };
 
-  let onParticlesInit = (main) => {
-    // you can use main to customize the tsParticles instance adding presets or custom shapes
-  };
+    let onParticlesInit = (main) => {
+        // you can use main to customize the tsParticles instance adding presets or custom shapes
+    };
 </script>
 
 <svelte:component
-  this="{ParticlesComponent}"
-  id="tsparticles"
-  options="{particlesConfig}"
-  on:particlesLoaded="{onParticlesLoaded}"
-  on:particlesInit="{onParticlesInit}"
+        this="{ParticlesComponent}"
+        id="tsparticles"
+        options="{particlesConfig}"
+        on:particlesLoaded="{onParticlesLoaded}"
+        on:particlesInit="{onParticlesInit}"
 />
 
 <!-- or -->
 
 <svelte:component
-  this="{ParticlesComponent}"
-  id="tsparticles"
-  url="{particlesUrl}"
-  on:particlesLoaded="{onParticlesLoaded}"
-  on:particlesInit="{onParticlesInit}"
+        this="{ParticlesComponent}"
+        id="tsparticles"
+        url="{particlesUrl}"
+        on:particlesLoaded="{onParticlesLoaded}"
+        on:particlesInit="{onParticlesInit}"
 />
 ```
 

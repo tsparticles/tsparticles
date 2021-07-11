@@ -9,13 +9,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) ReactJS compo
 ## Installation
 
 ```shell
-npm install react-tsparticles tsparticles
+npm install react-tsparticles react
 ```
 
 or
 
 ```shell
-yarn add react-tsparticles tsparticles
+yarn add react-tsparticles react
 ```
 
 #### create-react-app

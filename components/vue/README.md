@@ -9,7 +9,7 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) VueJS compone
 ## Installation
 
 ```shell script
-yarn add particles.vue tsparticles
+yarn add particles.vue vue@2
 ```
 
 ## Usage
