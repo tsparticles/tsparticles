@@ -1,7 +1,7 @@
 {
   "name": "tsparticles-demo-new",
   "private": true,
-  "version": "1.16.1",
+  "version": "1.16.2",
   "description": "tsParticles Demo Website",
   "main": "index.html",
   "scripts": {
