@@ -1,7 +1,8 @@
 {
   "name": "imports-ts38",
-  "version": "1.1.0",
+  "version": "1.2.1",
   "description": "",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "build": "tsc"
@@ -9,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "tsparticles": "^1.30.0",
-    "typescript": "^3.8.3"
+    "tsparticles": "^1.31.1",
+    "typescript": "~3.8.3"
   }
 }

@@ -1,0 +1,76 @@
+{
+  "name": "tsparticles",
+  "version": "1.31.1",
+  "description": "Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
+  "homepage": "https://particles.js.org/",
+  "scripts": {
+    "install": "node ./scripts/install.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/tsparticles.git",
+    "directory": "core/main"
+  },
+  "keywords": [
+    "tsparticles",
+    "particles.js",
+    "particlesjs",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles-bg",
+    "particles-bg-vue",
+    "particles-ts",
+    "particles.ts",
+    "react-particles-js",
+    "react-particles.js",
+    "react-particles",
+    "react",
+    "reactjs",
+    "vue",
+    "vuejs",
+    "preact",
+    "preactjs",
+    "jquery",
+    "angularjs",
+    "angular",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background"
+  ],
+  "author": "Matteo Bruni <matteo.bruni@me.com> (https://www.matteobruni.it)",
+  "contributors": [
+    "Gabriel Barker (https://github.com/gabrielbarker)",
+    "Tyler Burnett (https://github.com/TylerBurnett)",
+    "Jonathan Adams (https://github.com/PieceMaker)"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles/issues"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/matteobruni"
+  },
+  "optionalDependencies": {
+    "pathseg": "^1.2.0"
+  },
+  "main": "index.js",
+  "module": "esm/index.js",
+  "jsdelivr": "tsparticles.min.js",
+  "unpkg": "tsparticles.min.js",
+  "browser": "index.js",
+  "types": "index.d.ts"
+}

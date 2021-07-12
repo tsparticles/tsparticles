@@ -115,8 +115,17 @@
                                    href="https://github.com/matteobruni/tsparticles/tree/main/components/preact"
                                    target="_blank">Preact</a>
                                 <a class="dropdown-item"
+                                   href="https://github.com/matteobruni/tsparticles/tree/main/components/riot"
+                                   target="_blank">Riot.js</a>
+                                <a class="dropdown-item"
+                                   href="https://github.com/matteobruni/tsparticles/tree/main/components/solid"
+                                   target="_blank">Solid.js</a>
+                                <a class="dropdown-item"
                                    href="https://github.com/matteobruni/tsparticles/tree/main/components/svelte"
                                    target="_blank">Svelte</a>
+                                <a class="dropdown-item"
+                                   href="https://github.com/matteobruni/tsparticles/tree/main/components/web"
+                                   target="_blank">Web Components</a>
                             </div>
                         </li>
                     </ul>
@@ -248,12 +257,20 @@
                            target="_blank" class="btn btn-block btn-sm btn-light m-1">Preact</a>
                     </div>
                     <div class="col-md-6 col-lg-3">
+                        <a href="https://github.com/matteobruni/tsparticles/tree/main/components/riot"
+                           target="_blank" class="btn btn-block btn-sm btn-light m-1">Riot.js</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <a href="https://github.com/matteobruni/tsparticles/tree/main/components/solid"
+                           target="_blank" class="btn btn-block btn-sm btn-light m-1">Solid.js</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
                         <a href="https://github.com/matteobruni/tsparticles/tree/main/components/svelte"
                            target="_blank" class="btn btn-block btn-sm btn-light m-1">Svelte</a>
                     </div>
                     <div class="col-md-6 col-lg-3">
-                        <a href="https://github.com/matteobruni/tsparticles/tree/main/components/riot"
-                           target="_blank" class="btn btn-block btn-sm btn-light m-1">Riot.js</a>
+                        <a href="https://github.com/matteobruni/tsparticles/tree/main/components/web"
+                           target="_blank" class="btn btn-block btn-sm btn-light m-1">Web Components</a>
                     </div>
                 </div>
             </div>
@@ -277,14 +294,14 @@
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"
         integrity="sha256-ur/YlHMU96MxHEsy3fHGszZHas7NzH4RQlD4tDVvFhw=" crossorigin="anonymous"></script>
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.30.0/tsparticles.min.js"
-        integrity="sha256-TEafsP/e6a4bXWS7uUVyRwuUh2ZUaNy2WKRR91AP/XE=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-links@1.15.0/dist/tsparticles.preset.links.min.js"
-        integrity="sha256-2YG+wzyCifz+Ya5xM48A1Yk/Bw6MCiiImxgnvvgFPgw=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.31.1/tsparticles.min.js"
+        integrity="sha256-R5u1Aodw+TG6fAqHYIMbDXVmWGMy7AP5A04Pzn+Rf+g=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-links@1.16.1/tsparticles.preset.links.min.js"
+        integrity="sha256-SoZK8ZwlWzz0Z8Cnh8I5dCqYkF/USe3KVuWKSHKMsCw=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/object-gui@1.1.1/dist/js/object-gui.min.js"
         integrity="sha256-M0fXnWoixeosDqA5oLRKEpnTFLQWqUG3xlHN2GmbpGw=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-editor@1.30.0/dist/tsparticles.editor.min.js"
-        integrity="sha256-D4e5kHgj2EtlmZ8pSLMQCdyb8Gg0sXF6MbA+k58qWg0=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-editor@1.31.1/dist/tsparticles.editor.min.js"
+        integrity="sha256-VxV65bJMq9r+VAMlMztmv18TQFWg1kabqGjg3oRpUsA=" crossorigin="anonymous"></script>
 <script type="text/javascript">
     hljs.initHighlightingOnLoad();
 </script>
@@ -314,8 +331,11 @@
         const configsUrl = "/configs";
 
         editor.addPreset("Default", `${configsUrl}/index.json`);
-        editor.addPreset("Starry", `${configsUrl}/starry.json`);
+        editor.addPreset("Among Us", `${configsUrl}/amongUs.json`);
         editor.addPreset("Confetti", `${configsUrl}/confetti.json`);
+        editor.addPreset("Fireworks", `${configsUrl}/fireworks.json`);
+        editor.addPreset("Starry", `${configsUrl}/starry.json`);
+        editor.addPreset("Tunnel", `${configsUrl}/tunnel.json`);
 
         editor.top().right().theme("neu-dark");
 

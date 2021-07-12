@@ -9,13 +9,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) solid compone
 ## Installation
 
 ```shell
-npm install solid-particles
+npm install solid-particles solid-js
 ```
 
 or
 
 ```shell
-yarn add solid-particles
+yarn add solid-particles solid-js
 ```
 
 ## How to use
@@ -29,34 +29,22 @@ _Remote url_
 ```javascript
 import Particles from "solid-particles";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.particlesInit = this.particlesInit.bind(this);
-    this.particlesLoaded = this.particlesLoaded.bind(this);
-  }
-
-  particlesInit(main) {
-    console.log(main);
-
-    // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
-  }
-
-  particlesLoaded(container) {
-    console.log(container);
-  }
-
-  render() {
-    return (
+function App() {
+  return (
+    <div class="App">
       <Particles
         id="tsparticles"
-        url="http://foo.bar/particles.json"
-        init={this.particlesInit}
-        loaded={this.particlesLoaded}
+        options={{
+          background: {
+            color: "#000",
+          },
+          fullScreen: {
+            enable: true,
+          },
+        }}
       />
-    );
-  }
+    </div>
+  );
 }
 ```
 

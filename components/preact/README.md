@@ -9,13 +9,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) Preact compon
 ## Installation
 
 ```shell
-npm install preact-particles
+npm install preact-particles preact
 ```
 
 or
 
 ```shell
-yarn add preact-particles
+yarn add preact-particles preact
 ```
 
 ## How to use

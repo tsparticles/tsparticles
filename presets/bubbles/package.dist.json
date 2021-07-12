@@ -1,0 +1,50 @@
+{
+  "name": "tsparticles-preset-bubbles",
+  "version": "1.16.1",
+  "description": "tsParticles bubbles preset",
+  "homepage": "https://particles.js.org/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/tsparticles.git",
+    "directory": "presets/bubbles"
+  },
+  "keywords": [
+    "tsparticles",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles.js",
+    "particles-ts",
+    "particles.ts",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background",
+    "tsparticles-preset"
+  ],
+  "author": "Matteo Bruni",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles/issues"
+  },
+  "main": "index.js",
+  "jsdelivr": "tsparticles.preset.bubbles.min.js",
+  "unpkg": "tsparticles.preset.bubbles.min.js",
+  "browser": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "dependencies": {
+    "tsparticles": "^1.31.1"
+  }
+}

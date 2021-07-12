@@ -7,7 +7,7 @@ on:
   push:
     branches: [ main, staging, dev ]
   pull_request:
-    branches: [ main, staging, dev  ]
+    branches: [ main, staging, dev ]
 
 jobs:
   build:
@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [ 14.x ]
 
     steps:
       - uses: actions/checkout@v2
@@ -33,3 +33,33 @@ jobs:
       #  with:
       #    project-token: ${{ secrets.CodacyCoverageToken }}
       #    coverage-reports: coverage/lcov.info
+      - if: github.ref == 'refs/heads/main'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
+          projectId: tsparticles
+          channelId: live
+
+      - if: github.ref == 'refs/heads/staging'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
+          projectId: tsparticles
+          channelId: next
+
+      - if: github.ref == 'refs/heads/dev'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
+          projectId: tsparticles
+          channelId: dev
+
+      - if: contains(github.ref, 'refs/pull')
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
+          projectId: tsparticles

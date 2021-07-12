@@ -4,8 +4,15 @@ module.exports = {
 	mode: "none",
 	entry: "./src/index.ts", // Point to main file
 	externals: [
-		/ts[Pp]articles/,
-		"lodash",
+		{
+			tsparticles: {
+				commonjs: "tsparticles",
+				commonjs2: "tsparticles",
+				amd: "tsparticles",
+				root: "window"
+			}
+		},
+		"fast-deep-equal",
 		{
 			inferno: {
 				commonjs: "inferno",
@@ -21,7 +28,7 @@ module.exports = {
 		libraryTarget: "commonjs"
 	},
 	resolve: {
-		extensions: [ '.js', '.jsx', '.ts', '.tsx' ]
+		extensions: ['.js', '.jsx', '.ts', '.tsx']
 	},
 	performance: {
 		hints: false

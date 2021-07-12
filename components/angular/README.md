@@ -11,13 +11,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) Angular compo
 ### Install
 
 ```shell script
-npm install ng-particles
+npm install ng-particles tsparticles
 ```
 
 or
 
 ```shell script
-yarn add ng-particles
+yarn add ng-particles tsparticles
 ```
 
 ### Usage

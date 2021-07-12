@@ -1,4 +1,5 @@
 import type { ISourceOptions, RecursivePartial } from "tsparticles";
+import { InteractivityDetect } from "tsparticles";
 import { IConfettiOptions } from "./IConfettiOptions";
 import { ConfettiOptions } from "./ConfettiOptions";
 
@@ -28,7 +29,7 @@ export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>)
                 animation: {
                     enable: true,
                     minimumValue: 0,
-                    speed: 2,
+                    speed: 0.5,
                     startValue: "max",
                     destroy: "min",
                 },
@@ -114,7 +115,7 @@ export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>)
             },
         },
         interactivity: {
-            detectsOn: "canvas",
+            detectsOn: InteractivityDetect.window,
             events: {
                 resize: true,
             },
