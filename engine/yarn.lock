@@ -370,9 +370,9 @@
   integrity sha512-ekGvFhFgrc2zYQoX4JeZPmVzZxw6Dtllga7iGHzfbYIYkAMUx/sAFP2GdFpLff+vdHXu5fl7WX9AT+TtqYcsyw==
 
 "@types/node@*", "@types/node@^16.0.0":
-  version "16.0.3"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.0.3.tgz#f99794f182a9ffeaf6a0b589e3d3dc652a623ad5"
-  integrity sha512-QhhSbE1wJMbh+lDsb9G6UFmyojhEgoO7dFVDBkli80sp3sPFojGh6TJXsht9Qbe2VWi91pbj08+1Kvue61RwsQ==
+  version "16.3.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.3.1.tgz#24691fa2b0c3ec8c0d34bfcfd495edac5593ebb4"
+  integrity sha512-N87VuQi7HEeRJkhzovao/JviiqKjDKMVKxKMfUvSKw+MbkbW8R0nA3fi/MQhhlxV2fQ+2ReM+/Nt4efdrJx3zA==
 
 "@types/node@^14.14.33":
   version "14.14.37"
@@ -2330,7 +2330,7 @@ lodash.truncate@^4.4.2:
   resolved "https://registry.yarnpkg.com/lodash.truncate/-/lodash.truncate-4.4.2.tgz#5a350da0b1113b837ecfffd5812cbe58d6eae193"
   integrity sha1-WjUNoLERO4N+z//VgSy+WNbq4ZM=
 
-lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17.21:
+lodash@^4.17.19, lodash@^4.17.20:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -3519,13 +3519,12 @@ typedoc-default-themes@^0.12.10:
   integrity sha512-fIS001cAYHkyQPidWXmHuhs8usjP5XVJjWB8oZGqkTowZaz3v7g3KDZeeqE82FBrmkAnIBOY3jgy7lnPnqATbA==
 
 typedoc@^0.21.2:
-  version "0.21.2"
-  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.21.2.tgz#cf5094314d3d63e95a8ef052ceff06a6cafd509d"
-  integrity sha512-SR1ByJB3USg+jxoxwzMRP07g/0f/cQUE5t7gOh1iTUyjTPyJohu9YSKRlK+MSXXqlhIq+m0jkEHEG5HoY7/Adg==
+  version "0.21.4"
+  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.21.4.tgz#fced3cffdc30180db60a5dbfec9dbbb273cb5b31"
+  integrity sha512-slZQhvD9U0d9KacktYAyuNMMOXJRFNHy+Gd8xY2Qrqq3eTTTv3frv3N4au/cFnab9t3T5WA0Orb6QUjMc+1bDA==
   dependencies:
     glob "^7.1.7"
     handlebars "^4.7.7"
-    lodash "^4.17.21"
     lunr "^2.3.9"
     marked "^2.1.1"
     minimatch "^3.0.0"
