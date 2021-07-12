@@ -1,4 +1,3 @@
-import type { MainSlim } from "../../main.slim";
 import type { IPlugin } from "../../Core/Interfaces";
 import type { Container } from "../../Core/Container";
 import { isInArray } from "../../Utils";
@@ -9,6 +8,7 @@ import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 import { EmitterClickMode } from "./Enums";
 import { Options } from "../../Options/Classes/Options";
 import { Emitter } from "./Options/Classes/Emitter";
+import type { Main } from "../../main";
 
 /**
  * @category Emitters Plugin
@@ -90,7 +90,7 @@ class EmittersPlugin implements IPlugin {
     }
 }
 
-export function loadEmittersPlugin(tsParticles: MainSlim) {
+export function loadEmittersPlugin(tsParticles: Main) {
     const plugin = new EmittersPlugin();
 
     tsParticles.addPlugin(plugin);

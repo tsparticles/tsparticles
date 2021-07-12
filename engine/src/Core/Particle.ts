@@ -1,6 +1,5 @@
 import type { Container } from "./Container";
 import type { IParticleImage } from "./Interfaces/IParticleImage";
-import { Updater } from "./Particle/Updater";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
@@ -37,7 +36,6 @@ import {
     replaceColorSvg,
     setRangeValue,
 } from "../Utils";
-import { Mover } from "./Particle/Mover";
 import type { ILink } from "./Interfaces/ILink";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 import type { Stroke } from "../Options/Classes/Particles/Stroke";
@@ -79,8 +77,6 @@ export class Particle implements IParticle {
     wobbleSpeed;
 
     readonly pathDelay;
-    readonly updater;
-    readonly mover;
     readonly sides;
     readonly strokeWidth;
     readonly options;
@@ -527,21 +523,10 @@ export class Particle implements IParticle {
         this.spawning = this.life.delay > 0;
 
         this.shadowColor = colorToRgb(this.options.shadow.color);
-        this.updater = new Updater(container, this);
-        this.mover = new Mover(container, this);
 
         if (drawer && drawer.particleInit) {
             drawer.particleInit(container, this);
         }
-    }
-
-    move(delta: IDelta): void {
-        /* move the particle */
-        this.mover.move(delta);
-    }
-
-    update(delta: IDelta): void {
-        this.updater.update(delta);
     }
 
     draw(delta: IDelta): void {

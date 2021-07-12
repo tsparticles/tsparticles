@@ -7,10 +7,13 @@ import type { IEmitterOptions } from "./Plugins/Emitters/Options/Interfaces/IEmi
 import type { IPolygonMaskOptions } from "./Plugins/PolygonMask/Options/Interfaces/IPolygonMaskOptions";
 import type { RecursivePartial } from "./Types";
 import type { IParticle } from "./Core/Interfaces";
+import { loadFull } from "./full";
 
 const tsParticles = new Main();
 
 tsParticles.init();
+
+loadFull(tsParticles);
 
 const { particlesJS, pJSDom } = initPjs(tsParticles);
 
@@ -20,7 +23,7 @@ export * from "./Enums";
 export * from "./Plugins/Absorbers/Enums";
 export * from "./Plugins/Emitters/Enums";
 export * from "./Plugins/PolygonMask/Enums";
-export { CanvasUtils, ColorUtils, Constants, Utils, Main };
+export { CanvasUtils, ColorUtils, Constants, Utils, Main, loadFull };
 export * from "./Types";
 export * from "./Core/Interfaces/IShapeValues";
 export { particlesJS, pJSDom, tsParticles };

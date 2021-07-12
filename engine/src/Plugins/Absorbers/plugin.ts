@@ -8,7 +8,7 @@ import type { IOptions } from "../../Options/Interfaces/IOptions";
 import { Options } from "../../Options/Classes/Options";
 import { Absorber } from "./Options/Classes/Absorber";
 import { isInArray } from "../../Utils";
-import { MainSlim } from "../../main.slim";
+import type { Main } from "../../main";
 
 /**
  * @category Absorbers Plugin
@@ -90,7 +90,7 @@ class Plugin implements IPlugin {
     }
 }
 
-export function loadAbsorbersPlugin(tsParticles: MainSlim): void {
+export function loadAbsorbersPlugin(tsParticles: Main): void {
     const plugin = new Plugin();
 
     tsParticles.addPlugin(plugin);

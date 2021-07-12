@@ -47,11 +47,9 @@ function applyDistance(particle: Particle): void {
  * @category Core
  */
 export class Mover {
-    constructor(private readonly container: Container, private readonly particle: Particle) {}
+    constructor(private readonly container: Container) {}
 
-    move(delta: IDelta): void {
-        const particle = this.particle;
-
+    move(particle: Particle, delta: IDelta): void {
         particle.bubble.inRange = false;
         particle.links = [];
 
@@ -69,14 +67,13 @@ export class Mover {
             return;
         }
 
-        this.moveParticle(delta);
+        this.moveParticle(particle, delta);
 
         /* parallax */
-        this.moveParallax();
+        this.moveParallax(particle);
     }
 
-    private moveParticle(delta: IDelta): void {
-        const particle = this.particle;
+    private moveParticle(particle: Particle, delta: IDelta): void {
         const particlesOptions = particle.options;
 
         if (!particlesOptions.move.enable) {
@@ -84,7 +81,7 @@ export class Mover {
         }
 
         const container = this.container;
-        const slowFactor = this.getProximitySpeedFactor();
+        const slowFactor = this.getProximitySpeedFactor(particle);
         const baseSpeed =
             (particle.moveSpeed ?? getRangeValue(particle.options.move.speed) * container.retina.pixelRatio) *
             container.retina.reduceFactor;
@@ -94,7 +91,7 @@ export class Mover {
         const moveDrift =
             particle.moveDrift ?? getRangeValue(particle.options.move.drift) * container.retina.pixelRatio;
 
-        this.applyPath(delta);
+        this.applyPath(particle, delta);
 
         const gravityOptions = particlesOptions.move.gravity;
         const gravityFactor = gravityOptions.enable && gravityOptions.inverse ? -1 : 1;
@@ -167,8 +164,7 @@ export class Mover {
         applyDistance(particle);
     }
 
-    private applyPath(delta: IDelta): void {
-        const particle = this.particle;
+    private applyPath(particle: Particle, delta: IDelta): void {
         const particlesOptions = particle.options;
         const pathOptions = particlesOptions.move.path;
         const pathEnabled = pathOptions.enable;
@@ -207,7 +203,7 @@ export class Mover {
         particle.lastPathTime -= particle.pathDelay;
     }
 
-    private moveParallax(): void {
+    private moveParallax(particle: Particle): void {
         const container = this.container;
         const options = container.actualOptions;
 
@@ -215,7 +211,6 @@ export class Mover {
             return;
         }
 
-        const particle = this.particle;
         const parallaxForce = options.interactivity.events.onHover.parallax.force;
         const mousePos = container.interactivity.mouse.position;
 
@@ -240,7 +235,7 @@ export class Mover {
         particle.offset.y += (tmp.y - particle.offset.y) / parallaxSmooth; // Easing equation
     }
 
-    private getProximitySpeedFactor(): number {
+    private getProximitySpeedFactor(particle: Particle): number {
         const container = this.container;
         const options = container.actualOptions;
         const active = isInArray(HoverMode.slow, options.interactivity.events.onHover.mode);
@@ -255,7 +250,7 @@ export class Mover {
             return 1;
         }
 
-        const particlePos = this.particle.getPosition();
+        const particlePos = particle.getPosition();
         const dist = getDistance(mousePos, particlePos);
         const radius = container.retina.slowModeRadius;
 

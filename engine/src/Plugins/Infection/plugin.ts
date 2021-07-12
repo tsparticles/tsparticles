@@ -6,7 +6,7 @@ import type { RecursivePartial } from "../../Types";
 import { Container } from "../../Core/Container";
 import type { IPlugin } from "../../Core/Interfaces";
 import { Options } from "../../Options/Classes/Options";
-import { MainSlim } from "../../main.slim";
+import type { Main } from "../../main";
 
 /**
  * @category Infection Plugin
@@ -42,7 +42,7 @@ class Plugin implements IPlugin {
     }
 }
 
-export function loadInfectionPlugin(tsParticles: MainSlim): void {
+export function loadInfectionPlugin(tsParticles: Main): void {
     const plugin = new Plugin();
 
     tsParticles.addPlugin(plugin);
