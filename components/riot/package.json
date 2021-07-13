@@ -68,7 +68,7 @@
     "jsdom-global": "^3.0.2",
     "mocha": "^9.0.1",
     "nyc": "^15.1.0",
-    "riot": "^5.4.5"
+    "riot": "^6.0.0"
   },
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
