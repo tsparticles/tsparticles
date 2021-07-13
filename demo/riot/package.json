@@ -15,9 +15,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@riotjs/compiler": "^5.4.2",
+    "@riotjs/compiler": "^6.0.0",
     "@riotjs/register": "^5.0.0",
-    "@riotjs/webpack-loader": "^5.0.0",
+    "@riotjs/webpack-loader": "^6.0.0",
     "chai": "^4.3.4",
     "esm": "^3.2.25",
     "jsdom": "^16.6.0",
@@ -28,9 +28,9 @@
     "webpack-cli": "^4.7.2"
   },
   "dependencies": {
-    "@riotjs/hot-reload": "^5.0.0",
+    "@riotjs/hot-reload": "^6.0.0",
     "path": "^0.12.7",
-    "riot": "^5.4.5",
+    "riot": "^6.0.0",
     "riot-particles": "^1.5.2",
     "tsparticles": "^1.31.1"
   }
