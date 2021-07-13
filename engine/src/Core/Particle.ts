@@ -4,6 +4,7 @@ import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import {
+    AlterType,
     AnimationStatus,
     DestroyMode,
     OutMode,
@@ -86,6 +87,8 @@ export class Particle implements IParticle {
 
     attractDistance?: number;
     backColor?: IHsl;
+    alterValue?: number;
+    alterType?: AlterType;
     links: ILink[];
     randomIndexData?: number;
     linksDistance?: number;
@@ -364,18 +367,16 @@ export class Particle implements IParticle {
             if (this.color) {
                 if (rollOpt.backColor) {
                     this.backColor = colorToHsl(rollOpt.backColor);
+                } else if (rollOpt.darken.enable && rollOpt.enlighten.enable) {
+                    this.alterType = Math.random() >= 0.5 ? AlterType.darken : AlterType.enlighten;
+                    this.alterValue =
+                        this.alterType === AlterType.darken ? rollOpt.darken.value : rollOpt.enlighten.value;
                 } else if (rollOpt.darken.enable) {
-                    this.backColor = {
-                        h: this.color.h.value,
-                        s: this.color.s.value,
-                        l: this.color.l.value - rollOpt.darken.value,
-                    };
+                    this.alterType = AlterType.darken;
+                    this.alterValue = rollOpt.darken.value;
                 } else if (rollOpt.enlighten.enable) {
-                    this.backColor = {
-                        h: this.color.h.value,
-                        s: this.color.s.value,
-                        l: this.color.l.value + rollOpt.darken.value,
-                    };
+                    this.alterType = AlterType.enlighten;
+                    this.alterValue = rollOpt.enlighten.value;
                 }
             }
 
@@ -552,11 +553,25 @@ export class Particle implements IParticle {
             return this.bubble.color;
         }
 
-        if (this.backColor && Math.floor(this.rollAngle / (Math.PI / 2)) % 2) {
-            return this.backColor;
+        const color = getHslFromAnimation(this.color);
+
+        if (color && (this.backColor || (this.alterType && this.alterValue !== undefined))) {
+            const rolled = Math.floor(this.rollAngle / (Math.PI / 2)) % 2;
+
+            if (rolled) {
+                if (this.backColor) {
+                    return this.backColor;
+                } else if (this.alterType && this.alterValue !== undefined) {
+                    return {
+                        h: color.h,
+                        s: color.s,
+                        l: color.l + (this.alterType === AlterType.darken ? -1 : 1) * this.alterValue,
+                    };
+                }
+            }
         }
 
-        return getHslFromAnimation(this.color);
+        return color;
     }
 
     getStrokeColor(): IHsl | undefined {

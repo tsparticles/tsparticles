@@ -1,3 +1,4 @@
+export * from "./AlterType";
 export * from "./DestroyType";
 export * from "./InteractorType";
 export * from "./ProcessBubbleType";
