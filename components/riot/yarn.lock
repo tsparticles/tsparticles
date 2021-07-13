@@ -157,7 +157,7 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@babel/parser@^7.12.13", "@babel/parser@^7.13.15", "@babel/parser@^7.14.1", "@babel/parser@^7.14.7":
+"@babel/parser@^7.12.13", "@babel/parser@^7.13.15", "@babel/parser@^7.14.7":
   version "7.14.7"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.14.7.tgz#6099720c8839ca865a2637e6c85852ead0bdb595"
   integrity sha512-X67Z5y+VBJuHB/RjwECp8kSl5uYi0BvRbNeWqkaJCVh+LiTPl19WBUfG627psSgp9rSf6ojuXghQM3ha6qHHdA==
@@ -219,22 +219,6 @@
     glob "^7.1.7"
     rollup "^2.53.1"
 
-"@riotjs/compiler@^5.4.2":
-  version "5.4.2"
-  resolved "https://registry.yarnpkg.com/@riotjs/compiler/-/compiler-5.4.2.tgz#b2619b63c2f4289b78b3d89fe845e4d5a03115b0"
-  integrity sha512-TFeSdF3WeEqpXf/Cy7dw3SjNmczKTqF4lBWfb1Fb2PJ/uSyxpFbxLI0+0LgHn6+EtqlqNhSvxsiKXEB26iwDsQ==
-  dependencies:
-    "@babel/parser" "^7.14.1"
-    "@riotjs/parser" "^4.3.1"
-    "@riotjs/util" "2.0.2"
-    cssesc "^3.0.0"
-    cumpa "^1.0.1"
-    curri "^1.0.1"
-    dom-nodes "^1.1.3"
-    globals "^13.8.0"
-    recast "^0.20.4"
-    source-map "^0.7.3"
-
 "@riotjs/compiler@^6.0.0":
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/@riotjs/compiler/-/compiler-6.0.0.tgz#da9db6ed4c5a8af88c7be1563f8c6cc48606cc4f"
@@ -265,11 +249,6 @@
   dependencies:
     curri "^1.0.1"
     dom-nodes "^1.1.3"
-
-"@riotjs/util@2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@riotjs/util/-/util-2.0.2.tgz#8c0313392f56d5413c9aed722bb451789639d026"
-  integrity sha512-1UYavIex5+5uH7vjOZ4o8j0Hm6Mwt9p1vZfdR8Jl7y0aSEzYmWVYJCP7KfOiU4EoVNuk3tBTW6ju2Ik4sf0coA==
 
 "@riotjs/util@2.0.4", "@riotjs/util@^2.0.4":
   version "2.0.4"
@@ -920,7 +899,7 @@ globals@^11.1.0:
   resolved "https://registry.yarnpkg.com/globals/-/globals-11.12.0.tgz#ab8795338868a0babd8525758018c2a7eb95c42e"
   integrity sha512-WOBp/EEGUiIsJSp7wcv/y6MO+lV9UoncWqxuFfm8eBwzWNgyfBd6Gz+IeKQ9jCmyhoH99g15M3T+QaVHFjizVA==
 
-globals@^13.10.0, globals@^13.8.0:
+globals@^13.10.0:
   version "13.10.0"
   resolved "https://registry.yarnpkg.com/globals/-/globals-13.10.0.tgz#60ba56c3ac2ca845cfbf4faeca727ad9dd204676"
   integrity sha512-piHC3blgLGFjvOuMmWZX60f+na1lXFDhQXBf1UYp2fXPXqvEUbOhNwi6BsQ0bQishwedgnjkwv1d9zKf+MWw3g==
