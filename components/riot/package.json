@@ -61,7 +61,7 @@
   },
   "devDependencies": {
     "@riotjs/cli": "^6.0.4",
-    "@riotjs/compiler": "^5.4.2",
+    "@riotjs/compiler": "^6.0.0",
     "chai": "^4.3.4",
     "esm": "^3.2.25",
     "jsdom": "^16.6.0",
