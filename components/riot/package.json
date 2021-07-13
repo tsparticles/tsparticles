@@ -60,7 +60,7 @@
     "tsparticles": "^1.31.1"
   },
   "devDependencies": {
-    "@riotjs/cli": "^5.3.0",
+    "@riotjs/cli": "^6.0.4",
     "@riotjs/compiler": "^5.4.2",
     "chai": "^4.3.4",
     "esm": "^3.2.25",
