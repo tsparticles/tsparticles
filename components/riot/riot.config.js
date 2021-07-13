@@ -1,4 +1,4 @@
-export default {
-  input: 'riot-particles.riot',
-  output: 'index.js'
+module.exports = {
+    input: 'riot-particles.riot',
+    output: 'index.js'
 }

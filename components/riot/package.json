@@ -60,6 +60,7 @@
     "tsparticles": "^1.31.1"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.14.5",
     "@riotjs/cli": "^6.0.4",
     "@riotjs/compiler": "^6.0.0",
     "chai": "^4.3.4",
