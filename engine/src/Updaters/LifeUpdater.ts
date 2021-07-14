@@ -15,20 +15,24 @@ export class LifeUpdater implements IParticleUpdater {
             return;
         }
 
+        const life = particle.life;
+
         let justSpawned = false;
 
         if (particle.spawning) {
-            particle.life.delayTime += delta.value;
+            life.delayTime += delta.value;
 
-            if (particle.life.delayTime >= particle.life.delay) {
+            if (life.delayTime >= particle.life.delay) {
                 justSpawned = true;
                 particle.spawning = false;
-                particle.life.delayTime = 0;
-                particle.life.time = 0;
+                life.delayTime = 0;
+                life.time = 0;
+            } else {
+                return;
             }
         }
 
-        if (particle.life.duration === -1) {
+        if (life.duration === -1) {
             return;
         }
 
@@ -37,16 +41,16 @@ export class LifeUpdater implements IParticleUpdater {
         }
 
         if (justSpawned) {
-            particle.life.time = 0;
+            life.time = 0;
         } else {
-            particle.life.time += delta.value;
+            life.time += delta.value;
         }
 
-        if (particle.life.time < particle.life.duration) {
+        if (life.time < life.duration) {
             return;
         }
 
-        particle.life.time = 0;
+        life.time = 0;
 
         if (particle.life.count > 0) {
             particle.life.count--;
@@ -54,21 +58,24 @@ export class LifeUpdater implements IParticleUpdater {
 
         if (particle.life.count === 0) {
             particle.destroy();
+
             return;
         }
 
-        const canvasSize = this.container.canvas.size;
+        const canvasSize = this.container.canvas.size,
+            widthRange = setRangeValue(0, canvasSize.width),
+            heightRange = setRangeValue(0, canvasSize.width);
 
-        particle.position.x = randomInRange(setRangeValue(0, canvasSize.width));
-        particle.position.y = randomInRange(setRangeValue(0, canvasSize.height));
+        particle.position.x = randomInRange(widthRange);
+        particle.position.y = randomInRange(heightRange);
         particle.spawning = true;
-        particle.life.delayTime = 0;
-        particle.life.time = 0;
+        life.delayTime = 0;
+        life.time = 0;
         particle.reset();
 
         const lifeOptions = particle.options.life;
 
-        particle.life.delay = getRangeValue(lifeOptions.delay.value) * 1000;
-        particle.life.duration = getRangeValue(lifeOptions.duration.value) * 1000;
+        life.delay = getRangeValue(lifeOptions.delay.value) * 1000;
+        life.duration = getRangeValue(lifeOptions.duration.value) * 1000;
     }
 }
