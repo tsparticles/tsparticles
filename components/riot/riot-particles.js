@@ -48,8 +48,8 @@ var riotParticles = {
       'expressions': [{
         'type': expressionTypes.ATTRIBUTE,
         'name': 'id',
-        'evaluate': function (scope) {
-          return scope.props.id;
+        'evaluate': function (_scope) {
+          return _scope.props.id;
         }
       }]
     }]);
