@@ -28,7 +28,7 @@ export class LifeUpdater implements IParticleUpdater {
                 life.delayTime = 0;
                 life.time = 0;
             } else {
-            	return;
+                return;
             }
         }
 
