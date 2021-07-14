@@ -61,7 +61,7 @@
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.14.5",
-    "@riotjs/cli": "^6.0.4",
+    "@riotjs/cli": "^6.0.5",
     "@riotjs/compiler": "^6.0.0",
     "chai": "^4.3.4",
     "esm": "^3.2.25",
