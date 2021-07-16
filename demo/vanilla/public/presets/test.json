@@ -2,7 +2,7 @@
   "autoPlay": true,
   "background": {
     "color": {
-      "value": "#0d47a1"
+      "value": "#15171e"
     },
     "image": "",
     "position": "50% 50%",
@@ -10,29 +10,12 @@
     "size": "cover",
     "opacity": 1
   },
-  "backgroundMask": {
-    "composite": "destination-out",
-    "cover": {
-      "color": {
-        "value": "#fff"
-      },
-      "opacity": 1
-    },
-    "enable": false
-  },
-  "fullScreen": {
+  "backgroundMode": {
     "enable": true,
-    "zIndex": 1
+    "zIndex": 0
   },
   "detectRetina": true,
   "fpsLimit": 60,
-  "infection": {
-    "cure": false,
-    "delay": 0,
-    "enable": false,
-    "infections": 0,
-    "stages": []
-  },
   "interactivity": {
     "detectsOn": "canvas",
     "events": {
@@ -40,106 +23,19 @@
         "enable": true,
         "mode": "push"
       },
-      "onDiv": {
-        "selectors": "#repulse-div",
-        "enable": false,
-        "mode": "repulse",
-        "type": "circle"
-      },
-      "onHover": {
-        "enable": true,
-        "mode": "repulse",
-        "parallax": {
-          "enable": false,
-          "force": 60,
-          "smooth": 10
-        }
-      },
       "resize": true
     },
     "modes": {
-      "attract": {
-        "distance": 200,
-        "duration": 0.4,
-        "easing": "ease-out-quad",
-        "factor": 1,
-        "maxSpeed": 50,
-        "speed": 1
-      },
-      "bounce": {
-        "distance": 200
-      },
-      "bubble": {
-        "distance": 400,
-        "duration": 2,
-        "opacity": 0.8,
-        "size": 40
-      },
-      "connect": {
-        "distance": 80,
-        "links": {
-          "opacity": 0.5
-        },
-        "radius": 60
-      },
-      "grab": {
-        "distance": 400,
-        "links": {
-          "blink": false,
-          "consent": false,
-          "opacity": 1
-        }
-      },
-      "light": {
-        "area": {
-          "gradient": {
-            "start": {
-              "value": "#ffffff"
-            },
-            "stop": {
-              "value": "#000000"
-            }
-          },
-          "radius": 1000
-        },
-        "shadow": {
-          "color": {
-            "value": "#000000"
-          },
-          "length": 2000
-        }
-      },
       "push": {
         "quantity": 4
-      },
-      "remove": {
-        "quantity": 2
-      },
-      "repulse": {
-        "distance": 200,
-        "duration": 0.4,
-        "factor": 100,
-        "speed": 1,
-        "maxSpeed": 50,
-        "easing": "ease-out-quad"
-      },
-      "slow": {
-        "factor": 1,
-        "radius": 0
-      },
-      "trail": {
-        "delay": 1,
-        "pauseOnStop": false,
-        "quantity": 1
       }
     }
   },
-  "manualParticles": [],
   "motion": {
     "disable": false,
     "reduce": {
-      "factor": 4,
-      "value": true
+      "factor": 1,
+      "value": false
     }
   },
   "particles": {
@@ -176,61 +72,15 @@
           "value": 1
         }
       },
-      "enable": false,
-      "mode": "bounce",
-      "overlap": {
-        "enable": true,
-        "retries": 0
-      }
+      "enable": true,
+      "mode": "bounce"
     },
     "color": {
-      "value": "#ffffff",
+      "value": "#4b5680",
       "animation": {
-        "h": {
-          "count": 0,
-          "enable": false,
-          "offset": 0,
-          "speed": 1,
-          "sync": true
-        },
-        "s": {
-          "count": 0,
-          "enable": false,
-          "offset": 0,
-          "speed": 1,
-          "sync": true
-        },
-        "l": {
-          "count": 0,
-          "enable": false,
-          "offset": 0,
-          "speed": 1,
-          "sync": true
-        }
-      }
-    },
-    "destroy": {
-      "mode": "none",
-      "split": {
-        "count": 1,
-        "factor": {
-          "random": {
-            "enable": false,
-            "minimumValue": 0
-          },
-          "value": 3
-        },
-        "rate": {
-          "random": {
-            "enable": false,
-            "minimumValue": 0
-          },
-          "value": {
-            "min": 4,
-            "max": 9
-          }
-        },
-        "sizeOffset": true
+        "enable": true,
+        "speed": 1,
+        "sync": true
       }
     },
     "life": {
@@ -246,61 +96,60 @@
       "duration": {
         "random": {
           "enable": false,
-          "minimumValue": 1
+          "minimumValue": 0.0001
         },
         "value": 0,
         "sync": false
       }
     },
     "links": {
-      "blink": false,
+      "blink": true,
       "color": {
-        "value": "#ffffff"
+        "value": "#39254c"
       },
-      "consent": false,
-      "distance": 150,
+      "consent": true,
+      "distance": 100,
       "enable": true,
       "frequency": 1,
-      "opacity": 0.4,
+      "opacity": 0.61,
       "shadow": {
         "blur": 5,
         "color": {
-          "value": "lime"
+          "value": "#00ff00"
         },
         "enable": false
       },
       "triangles": {
-        "enable": false,
-        "frequency": 1
+        "enable": true,
+        "frequency": 0.62,
+        "color": {
+          "value": "#4a3a56"
+        }
       },
       "width": 1,
       "warp": false
     },
     "move": {
       "angle": {
-        "offset": 0,
+        "offset": 45,
         "value": 90
       },
       "attract": {
-        "distance": 200,
         "enable": false,
         "rotate": {
           "x": 600,
           "y": 1200
         }
       },
-      "decay": 0,
       "direction": "none",
-      "drift": 0,
-      "enable": false,
+      "distance": 0,
+      "enable": true,
       "gravity": {
         "acceleration": 9.81,
         "enable": false,
-        "inverse": false,
         "maxSpeed": 50
       },
-      "path": {
-        "clamp": true,
+      "noise": {
         "delay": {
           "random": {
             "enable": false,
@@ -319,8 +168,8 @@
       },
       "random": false,
       "size": false,
-      "speed": 1,
-      "straight": true,
+      "speed": 0.6,
+      "straight": false,
       "trail": {
         "enable": false,
         "length": 10,
@@ -345,33 +194,15 @@
         "enable": false,
         "minimumValue": 0.1
       },
-      "value": {
-        "min": 0,
-        "max": 1
-      },
+      "value": 0.5,
       "animation": {
-        "count": 1,
-        "enable": true,
-        "speed": 1,
-        "sync": true,
-        "destroy": "none",
-        "minimumValue": 0,
-        "startValue": "min"
+        "enable": false,
+        "minimumValue": 0.1,
+        "speed": 2.98,
+        "sync": false
       }
     },
     "reduceDuplicates": false,
-    "roll": {
-      "darken": {
-        "enable": false,
-        "value": 0
-      },
-      "enable": false,
-      "enlighten": {
-        "enable": false,
-        "value": 0
-      },
-      "speed": 25
-    },
     "rotate": {
       "random": {
         "enable": false,
@@ -399,132 +230,41 @@
     },
     "shape": {
       "options": {
-        "character": [
-          {
-            "fill": true,
-            "font": "Font Awesome 5 Brands",
-            "style": "",
-            "value": [
-              ""
-            ],
-            "weight": "400"
-          },
-          {
-            "fill": true,
-            "font": "Font Awesome 5 Free",
-            "style": "",
-            "value": [
-              ""
-            ],
-            "weight": "900"
-          }
-        ],
-        "char": [
-          {
-            "fill": true,
-            "font": "Font Awesome 5 Brands",
-            "style": "",
-            "value": [
-              ""
-            ],
-            "weight": "400"
-          },
-          {
-            "fill": true,
-            "font": "Font Awesome 5 Free",
-            "style": "",
-            "value": [
-              ""
-            ],
-            "weight": "900"
-          }
-        ],
         "polygon": {
           "sides": 5
         },
-        "star": {
-          "sides": 5
-        },
         "image": {
-          "height": 100,
-          "replaceColor": true,
-          "src": "https://particles.js.org/images/github.svg",
-          "width": 100
-        },
-        "images": {
-          "height": 100,
-          "replaceColor": true,
-          "src": "https://particles.js.org/images/github.svg",
-          "width": 100
+          "src": "https://cdn.matteobruni.it/images/particles/github.svg",
+          "width": 100,
+          "height": 100
         }
       },
       "type": "circle"
     },
     "size": {
       "random": {
-        "enable": false,
-        "minimumValue": 0
-      },
-      "value": {
-        "min": 1,
-        "max": 25
-      },
-      "animation": {
-        "count": 1,
         "enable": true,
-        "speed": 5,
-        "sync": true,
-        "destroy": "none",
-        "minimumValue": 1,
-        "startValue": "min"
+        "minimumValue": 1
+      },
+      "value": 1,
+      "animation": {
+        "destroy": "min",
+        "enable": false,
+        "minimumValue": 0.1,
+        "speed": 1,
+        "startValue": "max",
+        "sync": false
       }
     },
     "stroke": {
-      "width": 1,
+      "width": 0,
       "color": {
-        "value": "#ffffff",
-        "animation": {
-          "h": {
-            "count": 0,
-            "enable": false,
-            "offset": 0,
-            "speed": 1,
-            "sync": true
-          },
-          "s": {
-            "count": 0,
-            "enable": false,
-            "offset": 0,
-            "speed": 1,
-            "sync": true
-          },
-          "l": {
-            "count": 0,
-            "enable": false,
-            "offset": 0,
-            "speed": 1,
-            "sync": true
-          }
-        }
+        "value": ""
       }
-    },
-    "tilt": {
-      "random": {
-        "enable": false,
-        "minimumValue": 0
-      },
-      "value": 0,
-      "animation": {
-        "enable": false,
-        "speed": 0,
-        "sync": false
-      },
-      "direction": "clockwise",
-      "enable": false
     },
     "twinkle": {
       "lines": {
-        "enable": false,
+        "enable": true,
         "frequency": 0.05,
         "opacity": 1
       },
@@ -533,15 +273,6 @@
         "frequency": 0.05,
         "opacity": 1
       }
-    },
-    "wobble": {
-      "distance": 5,
-      "enable": false,
-      "speed": 50
     }
-  },
-  "pauseOnBlur": true,
-  "pauseOnOutsideViewport": true,
-  "responsive": [],
-  "themes": []
+  }
 }

@@ -26,6 +26,10 @@ export class Linker extends ParticlesInteractorBase {
         const warp = linkOpt1.warp;
         const pos1 = p1.getPosition();
 
+        if (pos1.x < 0 || pos1.y < 0 || pos1.x > canvasSize.width || pos1.y > canvasSize.height) {
+            return;
+        }
+
         const range = warp
             ? new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize)
             : new Circle(pos1.x, pos1.y, optDistance);
@@ -48,6 +52,10 @@ export class Linker extends ParticlesInteractorBase {
             }
 
             const pos2 = p2.getPosition();
+
+            if (pos2.x < 0 || pos2.y < 0 || pos2.x > canvasSize.width || pos2.y > canvasSize.height) {
+                continue;
+            }
 
             let distance = getDistance(pos1, pos2);
 
