@@ -18,7 +18,7 @@ export class Grabber extends ExternalInteractorBase {
         super(container);
     }
 
-    public isEnabled(): boolean {
+    isEnabled(): boolean {
         const container = this.container,
             mouse = container.interactivity.mouse,
             events = container.actualOptions.interactivity.events;
@@ -26,11 +26,11 @@ export class Grabber extends ExternalInteractorBase {
         return events.onHover.enable && !!mouse.position && isInArray(HoverMode.grab, events.onHover.mode);
     }
 
-    public reset(): void {
+    reset(): void {
         // do nothing
     }
 
-    public interact(): void {
+    interact(): void {
         const container = this.container,
             options = container.actualOptions,
             interactivity = options.interactivity;

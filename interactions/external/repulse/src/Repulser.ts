@@ -29,7 +29,7 @@ export class Repulser extends ExternalInteractorBase {
         super(container);
     }
 
-    public isEnabled(): boolean {
+    isEnabled(): boolean {
         const container = this.container,
             options = container.actualOptions,
             mouse = container.interactivity.mouse,
@@ -53,7 +53,7 @@ export class Repulser extends ExternalInteractorBase {
         // do nothing
     }
 
-    public interact(): void {
+    interact(): void {
         const container = this.container,
             options = container.actualOptions,
             mouseMoveStatus = container.interactivity.status === Constants.mouseMoveEvent,
@@ -343,8 +343,8 @@ export class Repulser implements IExternalInteractor {
 
             const repulseFactor = clamp((1 - Math.pow(distance / repulseRadius, 2)) * velocity, 0, 50);
 
-            particle.position.x = particle.position.x + normVec.x * repulseFactor;
-            particle.position.y = particle.position.y + normVec.y * repulseFactor;
+            particle.position.x += normVec.x * repulseFactor;
+            particle.position.y += normVec.y * repulseFactor;
         }
     }
 }

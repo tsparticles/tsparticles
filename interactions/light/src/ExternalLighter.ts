@@ -7,7 +7,7 @@ export class ExternalLighter extends ExternalInteractorBase {
         super(container);
     }
 
-    public interact(): void {
+    interact(): void {
         const container = this.container,
             options = container.actualOptions;
 
@@ -24,7 +24,7 @@ export class ExternalLighter extends ExternalInteractorBase {
         }
     }
 
-    public isEnabled(): boolean {
+    isEnabled(): boolean {
         const container = this.container,
             mouse = container.interactivity.mouse,
             events = container.actualOptions.interactivity.events;
@@ -36,7 +36,7 @@ export class ExternalLighter extends ExternalInteractorBase {
         return isInArray(HoverMode.light, events.onHover.mode);
     }
 
-    public reset(): void {
+    reset(): void {
         // do nothing
     }
 }

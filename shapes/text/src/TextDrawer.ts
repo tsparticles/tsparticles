@@ -38,7 +38,7 @@ export class TextDrawer implements IShapeDrawer {
         }
     }
 
-    draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
+    draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number, opacity: number): void {
         const character = particle.shapeData as ICharacterShape;
 
         if (character === undefined) {
@@ -60,9 +60,9 @@ export class TextDrawer implements IShapeDrawer {
 
         const text = textParticle.text;
         const style = character.style ?? "";
-        const weight = character.weight ?? "";
+        const weight = character.weight ?? "400";
         const size = Math.round(radius) * 2;
-        const font = character.font ?? "";
+        const font = character.font ?? "Verdana";
         const fill = particle.fill;
         const offsetX = (text.length * radius) / 2;
 
@@ -73,10 +73,14 @@ export class TextDrawer implements IShapeDrawer {
             y: radius / 2,
         };
 
+        context.globalAlpha = opacity;
+
         if (fill) {
             context.fillText(text, pos.x, pos.y);
         } else {
             context.strokeText(text, pos.x, pos.y);
         }
+
+        context.globalAlpha = 1;
     }
 }
