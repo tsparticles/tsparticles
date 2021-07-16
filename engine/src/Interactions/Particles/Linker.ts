@@ -4,6 +4,51 @@ import { Circle, CircleWarp, getDistance, getLinkRandomColor } from "../../Utils
 import { IParticle } from "../../Core/Interfaces";
 import { ParticlesInteractorBase } from "../../Core/ParticlesInteractorBase";
 
+function getLinkDistance(
+    pos1: ICoordinates,
+    pos2: ICoordinates,
+    optDistance: number,
+    canvasSize: IDimension,
+    warp: boolean
+): number {
+    let distance = getDistance(pos1, pos2);
+
+    if (!warp || distance <= optDistance) {
+        return distance;
+    }
+
+    const pos2NE = {
+        x: pos2.x - canvasSize.width,
+        y: pos2.y,
+    };
+
+    distance = getDistance(pos1, pos2NE);
+
+    if (distance <= optDistance) {
+        return distance;
+    }
+
+    const pos2SE = {
+        x: pos2.x - canvasSize.width,
+        y: pos2.y - canvasSize.height,
+    };
+
+    distance = getDistance(pos1, pos2SE);
+
+    if (distance <= optDistance) {
+        return distance;
+    }
+
+    const pos2SW = {
+        x: pos2.x,
+        y: pos2.y - canvasSize.height,
+    };
+
+    distance = getDistance(pos1, pos2SW);
+
+    return distance;
+}
+
 export class Linker extends ParticlesInteractorBase {
     constructor(container: Container) {
         super(container);
@@ -18,18 +63,20 @@ export class Linker extends ParticlesInteractorBase {
     }
 
     interact(p1: IParticle): void {
-        const container = this.container;
-        const linkOpt1 = p1.options.links;
-        const optOpacity = linkOpt1.opacity;
-        const optDistance = p1.linksDistance ?? container.retina.linksDistance;
-        const canvasSize = container.canvas.size;
-        const warp = linkOpt1.warp;
+        p1.links = [];
+
         const pos1 = p1.getPosition();
+        const container = this.container;
+        const canvasSize = container.canvas.size;
 
         if (pos1.x < 0 || pos1.y < 0 || pos1.x > canvasSize.width || pos1.y > canvasSize.height) {
             return;
         }
 
+        const linkOpt1 = p1.options.links;
+        const optOpacity = linkOpt1.opacity;
+        const optDistance = p1.linksDistance ?? container.retina.linksDistance;
+        const warp = linkOpt1.warp;
         const range = warp
             ? new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize)
             : new Circle(pos1.x, pos1.y, optDistance);
@@ -57,64 +104,43 @@ export class Linker extends ParticlesInteractorBase {
                 continue;
             }
 
-            let distance = getDistance(pos1, pos2);
-
-            if (warp && distance > optDistance) {
-                const pos2NE = {
-                    x: pos2.x - canvasSize.width,
-                    y: pos2.y,
-                };
-
-                distance = getDistance(pos1, pos2NE);
+            const distance = getLinkDistance(pos1, pos2, optDistance, canvasSize, warp && linkOpt2.warp);
 
                 if (distance > optDistance) {
-                    const pos2SE = {
-                        x: pos2.x - canvasSize.width,
-                        y: pos2.y - canvasSize.height,
-                    };
-
-                    distance = getDistance(pos1, pos2SE);
-
-                    if (distance > optDistance) {
-                        const pos2SW = {
-                            x: pos2.x,
-                            y: pos2.y - canvasSize.height,
-                        };
-
-                        distance = getDistance(pos1, pos2SW);
-                    }
-                }
-            }
-
-            if (distance > optDistance) {
                 return;
             }
 
             /* draw a line between p1 and p2 */
             const opacityLine = (1 - distance / optDistance) * optOpacity;
+
+            this.setColor(p1);
+
+                p1.links.push({
+                    destination: p2,
+                    opacity: opacityLine,
+                });
+                    }
+                }
+
+    private setColor(p1: IParticle): void {
+        const container = this.container;
             const linksOptions = p1.options.links;
 
             let linkColor =
-                linksOptions.id !== undefined
-                    ? container.particles.linksColors.get(linksOptions.id)
-                    : container.particles.linksColor;
+            linksOptions.id === undefined
+                ? container.particles.linksColor
+                : container.particles.linksColors.get(linksOptions.id);
 
             if (!linkColor) {
                 const optColor = linksOptions.color;
 
                 linkColor = getLinkRandomColor(optColor, linksOptions.blink, linksOptions.consent);
 
-                if (linksOptions.id !== undefined) {
-                    container.particles.linksColors.set(linksOptions.id, linkColor);
-                } else {
+            if (linksOptions.id === undefined) {
                     container.particles.linksColor = linkColor;
+            } else {
+                container.particles.linksColors.set(linksOptions.id, linkColor);
                 }
-            }
-
-            p1.links.push({
-                destination: p2,
-                opacity: opacityLine,
-            });
         }
     }
 }

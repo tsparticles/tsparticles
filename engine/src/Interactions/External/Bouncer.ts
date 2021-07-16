@@ -24,11 +24,12 @@ export class Bouncer extends ExternalInteractorBase {
     }
 
     isEnabled(): boolean {
-        const container = this.container;
-        const options = container.actualOptions;
-        const mouse = container.interactivity.mouse;
-        const events = options.interactivity.events;
-        const divs = events.onDiv;
+        const container = this.container,
+            options = container.actualOptions,
+            mouse = container.interactivity.mouse,
+            events = options.interactivity.events,
+            divs = events.onDiv;
+
         return (
             (mouse.position && events.onHover.enable && isInArray(HoverMode.bounce, events.onHover.mode)) ||
             isDivModeEnabled(DivMode.bounce, divs)
@@ -36,13 +37,13 @@ export class Bouncer extends ExternalInteractorBase {
     }
 
     interact(): void {
-        const container = this.container;
-        const options = container.actualOptions;
-        const events = options.interactivity.events;
-        const mouseMoveStatus = container.interactivity.status === Constants.mouseMoveEvent;
-        const hoverEnabled = events.onHover.enable;
-        const hoverMode = events.onHover.mode;
-        const divs = events.onDiv;
+        const container = this.container,
+            options = container.actualOptions,
+            events = options.interactivity.events,
+            mouseMoveStatus = container.interactivity.status === Constants.mouseMoveEvent,
+            hoverEnabled = events.onHover.enable,
+            hoverMode = events.onHover.mode,
+            divs = events.onDiv;
 
         if (mouseMoveStatus && hoverEnabled && isInArray(HoverMode.bounce, hoverMode)) {
             this.processMouseBounce();
@@ -56,11 +57,11 @@ export class Bouncer extends ExternalInteractorBase {
     }
 
     private processMouseBounce(): void {
-        const container = this.container;
-        const pxRatio = container.retina.pixelRatio;
-        const tolerance = 10 * pxRatio;
-        const mousePos = container.interactivity.mouse.position;
-        const radius = container.retina.bounceModeDistance;
+        const container = this.container,
+            pxRatio = container.retina.pixelRatio,
+            tolerance = 10 * pxRatio,
+            mousePos = container.interactivity.mouse.position,
+            radius = container.retina.bounceModeDistance;
 
         if (mousePos) {
             this.processBounce(mousePos, radius, new Circle(mousePos.x, mousePos.y, radius + tolerance));
@@ -76,14 +77,14 @@ export class Bouncer extends ExternalInteractorBase {
         }
 
         query.forEach((item) => {
-            const elem = item as HTMLElement;
-            const pxRatio = container.retina.pixelRatio;
-            const pos = {
+            const elem = item as HTMLElement,
+                pxRatio = container.retina.pixelRatio,
+                pos = {
                 x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
                 y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
-            };
-            const radius = (elem.offsetWidth / 2) * pxRatio;
-            const tolerance = 10 * pxRatio;
+                },
+                radius = (elem.offsetWidth / 2) * pxRatio,
+                tolerance = 10 * pxRatio;
 
             const area =
                 div.type === DivType.circle
@@ -108,11 +109,8 @@ export class Bouncer extends ExternalInteractorBase {
                     position,
                     radius,
                     mass: (radius ** 2 * Math.PI) / 2,
-                    velocity: Vector.create(0, 0),
-                    factor: {
-                        horizontal: 0,
-                        vertical: 0,
-                    },
+                    velocity: Vector.origin,
+                    factor: Vector.origin,
                 });
             } else if (area instanceof Rectangle) {
                 rectBounce(particle, calculateBounds(position, radius));

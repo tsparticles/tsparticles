@@ -6,6 +6,8 @@ import { ShapeType } from "../Enums";
 import type { Container } from "../Core/Container";
 import type { SingleOrMultiple } from "../Types";
 
+export const validTypes = ["text", "character", "char"];
+
 interface TextParticle extends IParticle {
     text?: string;
 }
@@ -21,19 +23,20 @@ export class TextDrawer implements IShapeDrawer {
     async init(container: Container): Promise<void> {
         const options = container.actualOptions;
 
-        if (
-            isInArray(ShapeType.char, options.particles.shape.type) ||
-            isInArray(ShapeType.character, options.particles.shape.type)
-        ) {
-            const shapeOptions = (options.particles.shape.options[ShapeType.character] ??
-                options.particles.shape.options[ShapeType.char]) as SingleOrMultiple<ICharacterShape>;
+        if (validTypes.find((t) => isInArray(t, options.particles.shape.type))) {
+            const shapeOptions = validTypes.map((t) => options.particles.shape.options[t]).find((t) => !!t);
+
             if (shapeOptions instanceof Array) {
+                const promises: Promise<void>[] = [];
+
                 for (const character of shapeOptions) {
-                    await loadFont(character);
+                    promises.push(loadFont(character as ICharacterShape));
                 }
+
+                await Promise.allSettled(promises);
             } else {
                 if (shapeOptions !== undefined) {
-                    await loadFont(shapeOptions);
+                    await loadFont(shapeOptions as ICharacterShape);
                 }
             }
         }

@@ -17,10 +17,10 @@ interface ContainerImage {
  * @category Shape Drawers
  */
 export class ImageDrawer implements IShapeDrawer {
-    images: ContainerImage[];
+    #images: ContainerImage[];
 
     constructor() {
-        this.images = [];
+        this.#images = [];
     }
 
     getSidesCount(): number {
@@ -28,18 +28,18 @@ export class ImageDrawer implements IShapeDrawer {
     }
 
     getImages(container: Container): ContainerImage {
-        const containerImages = this.images.filter((t) => t.id === container.id);
+        const containerImages = this.#images.find((t) => t.id === container.id);
 
-        if (!containerImages.length) {
-            this.images.push({
+        if (!containerImages) {
+            this.#images.push({
                 id: container.id,
                 images: [],
             });
 
             return this.getImages(container);
+        } else {
+            return containerImages;
         }
-
-        return containerImages[0];
     }
 
     addImage(container: Container, image: IImage): void {
@@ -86,7 +86,7 @@ export class ImageDrawer implements IShapeDrawer {
     }
 
     destroy(): void {
-        this.images = [];
+        this.#images = [];
     }
 
     private async loadImagesFromParticlesOptions(container: Container, options?: RecursivePartial<IParticles>) {
@@ -131,9 +131,8 @@ export class ImageDrawer implements IShapeDrawer {
 
     private async loadImageShape(container: Container, imageShape: IImageShape): Promise<void> {
         try {
-            const image = imageShape.replaceColor
-                ? await downloadSvgImage(imageShape.src)
-                : await loadImage(imageShape.src);
+            const imageFunc = imageShape.replaceColor ? downloadSvgImage : loadImage;
+            const image = await imageFunc(imageShape.src);
 
             if (image) {
                 this.addImage(container, image);

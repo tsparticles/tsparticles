@@ -10,30 +10,30 @@ export class Lighter extends ParticlesInteractorBase {
     }
 
     interact(particle: Particle): void {
-        const container = this.container;
-        const options = container.actualOptions;
+        const container = this.container,
+            options = container.actualOptions;
 
         if (options.interactivity.events.onHover.enable && container.interactivity.status === "mousemove") {
             const mousePos = this.container.interactivity.mouse.position;
 
             if (mousePos) {
-                container.canvas.drawParticleShadow(particle, mousePos);
+                container.canvas.draw((ctx) => {
+                    drawParticleShadow(container, ctx, particle, mousePos);
+                });
             }
         }
     }
 
     isEnabled(): boolean {
-        const container = this.container;
-        const mouse = container.interactivity.mouse;
-        const events = container.actualOptions.interactivity.events;
+        const container = this.container,
+            mouse = container.interactivity.mouse,
+            events = container.actualOptions.interactivity.events;
 
         if (!(events.onHover.enable && mouse.position)) {
             return false;
         }
 
-        const hoverMode = events.onHover.mode;
-
-        return isInArray(HoverMode.light, hoverMode);
+        return isInArray(HoverMode.light, events.onHover.mode);
     }
 
     reset(): void {

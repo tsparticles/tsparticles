@@ -64,11 +64,10 @@ export class TrailMaker extends ExternalInteractorBase {
     }
 
     isEnabled(): boolean {
-        const container = this.container;
-        const options = container.actualOptions;
-
-        const mouse = container.interactivity.mouse;
-        const events = options.interactivity.events;
+        const container = this.container,
+            options = container.actualOptions,
+            mouse = container.interactivity.mouse,
+            events = options.interactivity.events;
 
         return (
             (mouse.clicking && mouse.inside && !!mouse.position && isInArray(ClickMode.trail, events.onClick.mode)) ||

@@ -9,6 +9,10 @@ function bounce(p1: Particle, p2: Particle): void {
 }
 
 function destroy(p1: Particle, p2: Particle): void {
+    if (!p1.unbreakable && !p2.unbreakable) {
+        bounce(p1, p2);
+    }
+
     if (p1.getRadius() === undefined && p2.getRadius() !== undefined) {
         p1.destroy();
     } else if (p1.getRadius() !== undefined && p2.getRadius() === undefined) {
@@ -42,7 +46,9 @@ export class Collider extends ParticlesInteractorBase {
         const container = this.container;
         const pos1 = p1.getPosition();
 
-        const query = container.particles.quadTree.queryCircle(pos1, p1.getRadius() * 2);
+        const radius1 = p1.getRadius();
+
+        const query = container.particles.quadTree.queryCircle(pos1, radius1 * 2);
 
         for (const p2 of query) {
             if (
@@ -56,8 +62,12 @@ export class Collider extends ParticlesInteractorBase {
             }
 
             const pos2 = p2.getPosition();
+
+            if (Math.round(pos1.z) !== Math.round(pos2.z)) {
+                continue;
+            }
+
             const dist = getDistance(pos1, pos2);
-            const radius1 = p1.getRadius();
             const radius2 = p2.getRadius();
             const distP = radius1 + radius2;
 
@@ -86,7 +96,7 @@ export class Collider extends ParticlesInteractorBase {
 
     private absorb(p1: Particle, p2: Particle): void {
         const container = this.container;
-        const fps = container.actualOptions.fpsLimit / 1000;
+        const fps = container.fpsLimit / 1000;
 
         if (p1.getRadius() === undefined && p2.getRadius() !== undefined) {
             p1.destroy();
