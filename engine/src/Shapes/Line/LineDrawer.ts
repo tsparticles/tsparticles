@@ -1,5 +1,4 @@
-import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer";
-import type { IParticle } from "../Core/Interfaces/IParticle";
+import { IParticle, IShapeDrawer } from "../../Core/Interfaces";
 
 /**
  * @category Shape Drawers

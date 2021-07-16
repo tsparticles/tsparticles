@@ -1,11 +1,4 @@
 import type { Main } from "./main";
-import { SquareDrawer } from "./Shapes/SquareDrawer";
-import { TextDrawer } from "./Shapes/TextDrawer";
-import { ShapeType } from "./Enums";
-import { LineDrawer } from "./Shapes/LineDrawer";
-import { TriangleDrawer } from "./Shapes/TriangleDrawer";
-import { StarDrawer } from "./Shapes/StarDrawer";
-import { PolygonDrawer } from "./Shapes/PolygonDrawer";
 import { LifeUpdater } from "./Updaters/LifeUpdater";
 import { OpacityUpdater } from "./Updaters/OpacityUpdater";
 import { SizeUpdater } from "./Updaters/SizeUpdater";
@@ -18,22 +11,20 @@ import { StrokeColorUpdater } from "./Updaters/StrokeColorUpdater";
 import { OutOfCanvasUpdater } from "./Updaters/OutOfCanvasUpdater";
 import { loadCircleShape } from "./Shapes/Circle";
 import { loadImageShape } from "./Shapes/Image";
+import { loadLineShape } from "./Shapes/Line";
+import { loadPolygonShape } from "./Shapes/Polygon";
+import { loadSquareShape } from "./Shapes/Square";
+import { loadStarShape } from "./Shapes/Star";
+import { loadTextShape } from "./Shapes/Text";
 
 export function loadSlim(tsParticles: Main): void {
-    const squareDrawer = new SquareDrawer();
-    const textDrawer = new TextDrawer();
-
     loadCircleShape(tsParticles);
     loadImageShape(tsParticles);
-
-    tsParticles.addShape(ShapeType.line, new LineDrawer());
-    tsParticles.addShape(ShapeType.edge, squareDrawer);
-    tsParticles.addShape(ShapeType.square, squareDrawer);
-    tsParticles.addShape(ShapeType.triangle, new TriangleDrawer());
-    tsParticles.addShape(ShapeType.star, new StarDrawer());
-    tsParticles.addShape(ShapeType.polygon, new PolygonDrawer());
-    tsParticles.addShape(ShapeType.char, textDrawer);
-    tsParticles.addShape(ShapeType.character, textDrawer);
+    loadLineShape(tsParticles);
+    loadPolygonShape(tsParticles);
+    loadSquareShape(tsParticles);
+    loadStarShape(tsParticles);
+    loadTextShape(tsParticles);
 
     tsParticles.addParticleUpdater("life", (container) => new LifeUpdater(container));
     tsParticles.addParticleUpdater("opacity", () => new OpacityUpdater());

@@ -166,15 +166,15 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
         const wrap = particle.options.move.warp,
             canvasSize = container.canvas.size,
             newPos = {
-                bottom: canvasSize.height + particle.getRadius() - particle.offset.y,
-                left: -particle.getRadius() - particle.offset.x,
+                bottom: canvasSize.height + particle.getRadius() + particle.offset.y,
+                left: /*-particle.getRadius()*/ -particle.offset.x,
                 right: canvasSize.width + particle.getRadius() + particle.offset.x,
-                top: -particle.getRadius() - particle.offset.y,
+                top: /*-particle.getRadius()*/ -particle.offset.y,
             },
             sizeValue = particle.getRadius(),
             nextBounds = calculateBounds(particle.position, sizeValue);
 
-        if (direction === OutModeDirection.right && nextBounds.left > canvasSize.width - particle.offset.x) {
+        if (direction === OutModeDirection.right && nextBounds.left > canvasSize.width + particle.offset.x) {
             particle.position.x = newPos.left;
             particle.initialPosition.x = particle.position.x;
 
@@ -192,7 +192,7 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
             }
         }
 
-        if (direction === OutModeDirection.bottom && nextBounds.top > canvasSize.height - particle.offset.y) {
+        if (direction === OutModeDirection.bottom && nextBounds.top > canvasSize.height + particle.offset.y) {
             if (!wrap) {
                 particle.position.x = Math.random() * canvasSize.width;
                 particle.initialPosition.x = particle.position.x;

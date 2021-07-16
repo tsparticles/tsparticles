@@ -51,7 +51,6 @@ import type {
     IParticleTiltValueAnimation,
     IParticleValueAnimation,
     IRgb,
-    IShapeDrawer,
     IShapeValues,
 } from "./Interfaces";
 import { Vector3d } from "./Particle/Vector3d";

@@ -1,7 +1,6 @@
 import type { IValueWithRandom } from "../Options/Interfaces/IValueWithRandom";
-import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
+import type { ICoordinates } from "../Core/Interfaces";
 import { EasingType, MoveDirection, MoveDirectionAlt } from "../Enums";
-import type { IVelocity } from "../Core/Interfaces/IVelocity";
 import { RangeValue } from "../Types";
 import { Vector } from "../Core/Particle/Vector";
 
@@ -135,13 +134,6 @@ export function getParticleBaseVelocity(direction: number): Vector {
     return baseVelocity;
 }
 
-export function rotateVelocity(velocity: IVelocity, angle: number): IVelocity {
-    return {
-        horizontal: velocity.horizontal * Math.cos(angle) - velocity.vertical * Math.sin(angle),
-        vertical: velocity.horizontal * Math.sin(angle) + velocity.vertical * Math.cos(angle),
-    };
-}
-
 export function collisionVelocity(v1: Vector, v2: Vector, m1: number, m2: number): Vector {
     return Vector.create((v1.x * (m1 - m2)) / (m1 + m2) + (v2.x * 2 * m2) / (m1 + m2), v1.y);
 }
@@ -249,10 +241,6 @@ export class NumberUtils {
      */
     static getParticleBaseVelocity(direction: number): Vector {
         return getParticleBaseVelocity(direction);
-    }
-
-    static rotateVelocity(velocity: IVelocity, angle: number): IVelocity {
-        return rotateVelocity(velocity, angle);
     }
 
     static collisionVelocity(v1: Vector, v2: Vector, m1: number, m2: number): Vector {
