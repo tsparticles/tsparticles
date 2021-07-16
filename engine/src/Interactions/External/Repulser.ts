@@ -84,18 +84,18 @@ export class Repulser extends ExternalInteractorBase {
             const elem = item as HTMLElement,
                 pxRatio = container.retina.pixelRatio,
                 pos = {
-                x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
-                y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
+                    x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
+                    y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
                 },
                 repulseRadius = (elem.offsetWidth / 2) * pxRatio,
                 area =
-                div.type === DivType.circle
-                    ? new Circle(pos.x, pos.y, repulseRadius)
-                    : new Rectangle(
-                          elem.offsetLeft * pxRatio,
-                          elem.offsetTop * pxRatio,
-                          elem.offsetWidth * pxRatio,
-                          elem.offsetHeight * pxRatio
+                    div.type === DivType.circle
+                        ? new Circle(pos.x, pos.y, repulseRadius)
+                        : new Rectangle(
+                              elem.offsetLeft * pxRatio,
+                              elem.offsetTop * pxRatio,
+                              elem.offsetWidth * pxRatio,
+                              elem.offsetHeight * pxRatio
                           ),
                 divs = container.actualOptions.interactivity.modes.repulse.divs,
                 divRepulse = divMode(divs, elem);
@@ -126,14 +126,14 @@ export class Repulser extends ExternalInteractorBase {
             const { dx, dy, distance } = getDistances(particle.position, position),
                 velocity = (divRepulse?.speed ?? repulseOptions.speed) * repulseOptions.factor,
                 repulseFactor = clamp(
-                calcEasing(1 - distance / repulseRadius, repulseOptions.easing) * velocity,
-                0,
-                repulseOptions.maxSpeed
+                    calcEasing(1 - distance / repulseRadius, repulseOptions.easing) * velocity,
+                    0,
+                    repulseOptions.maxSpeed
                 ),
                 normVec = Vector.create(
                     distance === 0 ? velocity : (dx / distance) * repulseFactor,
                     distance === 0 ? velocity : (dy / distance) * repulseFactor
-            );
+                );
 
             particle.position.addTo(normVec);
         }

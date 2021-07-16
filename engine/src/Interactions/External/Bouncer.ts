@@ -80,8 +80,8 @@ export class Bouncer extends ExternalInteractorBase {
             const elem = item as HTMLElement,
                 pxRatio = container.retina.pixelRatio,
                 pos = {
-                x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
-                y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
+                    x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
+                    y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
                 },
                 radius = (elem.offsetWidth / 2) * pxRatio,
                 tolerance = 10 * pxRatio;

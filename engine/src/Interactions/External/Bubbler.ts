@@ -71,11 +71,11 @@ export class Bubbler extends ExternalInteractorBase {
             return;
         }
 
-            delete particle.bubble.div;
-            delete particle.bubble.opacity;
-            delete particle.bubble.radius;
-            delete particle.bubble.color;
-        }
+        delete particle.bubble.div;
+        delete particle.bubble.opacity;
+        delete particle.bubble.radius;
+        delete particle.bubble.color;
+    }
 
     interact(): void {
         const options = this.container.actualOptions,
@@ -110,18 +110,18 @@ export class Bubbler extends ExternalInteractorBase {
             const elem = item as HTMLElement,
                 pxRatio = container.retina.pixelRatio,
                 pos = {
-                x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
-                y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
+                    x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
+                    y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
                 },
                 repulseRadius = (elem.offsetWidth / 2) * pxRatio,
                 area =
-                div.type === DivType.circle
-                    ? new Circle(pos.x, pos.y, repulseRadius)
-                    : new Rectangle(
-                          elem.offsetLeft * pxRatio,
-                          elem.offsetTop * pxRatio,
-                          elem.offsetWidth * pxRatio,
-                          elem.offsetHeight * pxRatio
+                    div.type === DivType.circle
+                        ? new Circle(pos.x, pos.y, repulseRadius)
+                        : new Rectangle(
+                              elem.offsetLeft * pxRatio,
+                              elem.offsetTop * pxRatio,
+                              elem.offsetWidth * pxRatio,
+                              elem.offsetHeight * pxRatio
                           ),
                 query = container.particles.quadTree.query(area);
 
@@ -173,31 +173,22 @@ export class Bubbler extends ExternalInteractorBase {
             return;
         }
 
-            if (!container.bubble.durationEnd) {
-                if (distMouse <= bubbleDistance) {
-                    const obj = pObjBubble ?? pObj;
+        if (!container.bubble.durationEnd) {
+            if (distMouse <= bubbleDistance) {
+                const obj = pObjBubble ?? pObj;
 
-                    if (obj !== bubbleParam) {
-                        const value = pObj - (timeSpent * (pObj - bubbleParam)) / bubbleDuration;
+                if (obj !== bubbleParam) {
+                    const value = pObj - (timeSpent * (pObj - bubbleParam)) / bubbleDuration;
 
-                        if (type === ProcessBubbleType.size) {
-                            particle.bubble.radius = value;
-                        }
-
-                        if (type === ProcessBubbleType.opacity) {
-                            particle.bubble.opacity = value;
-                        }
-                    }
-                } else {
                     if (type === ProcessBubbleType.size) {
-                        delete particle.bubble.radius;
+                        particle.bubble.radius = value;
                     }
 
                     if (type === ProcessBubbleType.opacity) {
-                        delete particle.bubble.opacity;
+                        particle.bubble.opacity = value;
                     }
                 }
-            } else if (pObjBubble) {
+            } else {
                 if (type === ProcessBubbleType.size) {
                     delete particle.bubble.radius;
                 }
@@ -206,7 +197,16 @@ export class Bubbler extends ExternalInteractorBase {
                     delete particle.bubble.opacity;
                 }
             }
+        } else if (pObjBubble) {
+            if (type === ProcessBubbleType.size) {
+                delete particle.bubble.radius;
+            }
+
+            if (type === ProcessBubbleType.opacity) {
+                delete particle.bubble.opacity;
+            }
         }
+    }
 
     private clickBubble(): void {
         const container = this.container,
@@ -361,14 +361,14 @@ export class Bubbler extends ExternalInteractorBase {
             return;
         }
 
-            const modeColor = divBubble?.color ?? options.interactivity.modes.bubble.color;
+        const modeColor = divBubble?.color ?? options.interactivity.modes.bubble.color;
 
         if (!modeColor) {
-                return;
-            }
+            return;
+        }
 
-            const bubbleColor = modeColor instanceof Array ? itemFromArray(modeColor) : modeColor;
+        const bubbleColor = modeColor instanceof Array ? itemFromArray(modeColor) : modeColor;
 
-            particle.bubble.color = colorToHsl(bubbleColor);
+        particle.bubble.color = colorToHsl(bubbleColor);
     }
 }

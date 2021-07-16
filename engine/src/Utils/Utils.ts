@@ -1,18 +1,14 @@
-import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
+import type { IBounds, ICircleBouncer, ICoordinates, IDimension, IParticle, IRectSideResult } from "../Core/Interfaces";
 import { DivMode } from "../Enums";
 import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICharacterShape";
-import type { IBounds } from "../Core/Interfaces/IBounds";
-import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { IImage } from "../Core/Interfaces/IImage";
 import type { SingleOrMultiple } from "../Types";
 import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
 import { OutModeDirection } from "../Enums";
-import { IParticle } from "../Core/Interfaces/IParticle";
 import { ISideData } from "../Core/Interfaces/ISideData";
-import { IRectSideResult } from "../Core/Interfaces/IRectSideResult";
-import { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer";
 import { collisionVelocity, getValue } from "./NumberUtils";
+import { Vector } from "../Core/Particle/Vector";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = "unloaded" | "loading" | "loaded" | "error";
@@ -356,10 +352,7 @@ export function circleBounceDataFromParticle(p: IParticle): ICircleBouncer {
         radius: p.getRadius(),
         mass: p.getMass(),
         velocity: p.velocity,
-        factor: {
-            horizontal: getValue(p.options.bounce.horizontal),
-            vertical: getValue(p.options.bounce.vertical),
-        },
+        factor: Vector.create(getValue(p.options.bounce.horizontal), getValue(p.options.bounce.vertical)),
     };
 }
 
@@ -395,11 +388,11 @@ export function circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
         const vFinal2 = v2.rotate(-angle);
 
         // Swap particle velocities for realistic bounce effect
-        p1.velocity.x = vFinal1.x * p1.factor.horizontal;
-        p1.velocity.y = vFinal1.y * p1.factor.vertical;
+        p1.velocity.x = vFinal1.x * p1.factor.x;
+        p1.velocity.y = vFinal1.y * p1.factor.y;
 
-        p2.velocity.x = vFinal2.x * p2.factor.horizontal;
-        p2.velocity.y = vFinal2.y * p2.factor.vertical;
+        p2.velocity.x = vFinal2.x * p2.factor.x;
+        p2.velocity.y = vFinal2.y * p2.factor.y;
     }
 }
 

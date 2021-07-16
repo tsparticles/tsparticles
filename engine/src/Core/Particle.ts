@@ -44,6 +44,7 @@ import { Vector } from "./Particle/Vector";
 import type {
     IBubbleParticleData,
     ICoordinates,
+    ICoordinates3d,
     IDelta,
     IDistance,
     IHsl,
@@ -534,8 +535,12 @@ export class Particle implements IParticle {
         this.container.canvas.drawParticle(this, delta);
     }
 
-    getPosition(): ICoordinates {
-        return this.position.add(this.offset);
+    getPosition(): ICoordinates3d {
+        return {
+            x: this.position.x + this.offset.x,
+            y: this.position.y + this.offset.y,
+            z: this.position.z,
+        };
     }
 
     getRadius(): number {

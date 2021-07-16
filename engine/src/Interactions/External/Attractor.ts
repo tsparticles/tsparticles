@@ -3,6 +3,7 @@ import { ClickMode, HoverMode } from "../../Enums";
 import { Circle, Constants, Range, getDistances, calcEasing, clamp, isInArray } from "../../Utils";
 import type { ICoordinates } from "../../Core/Interfaces";
 import { ExternalInteractorBase } from "../../Core/ExternalInteractorBase";
+import { Vector } from "../../Core/Particle/Vector";
 
 /**
  * Particle attract manager

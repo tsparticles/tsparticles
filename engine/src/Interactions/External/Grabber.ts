@@ -18,7 +18,7 @@ export class Grabber extends ExternalInteractorBase {
             events = container.actualOptions.interactivity.events;
 
         return events.onHover.enable && !!mouse.position && isInArray(HoverMode.grab, events.onHover.mode);
-        }
+    }
 
     reset(): void {
         // do nothing
@@ -56,25 +56,25 @@ export class Grabber extends ExternalInteractorBase {
                         continue;
                     }
 
-                        const optColor = grabLineOptions.color ?? particle.options.links.color;
+                    const optColor = grabLineOptions.color ?? particle.options.links.color;
 
-                        if (!container.particles.grabLineColor) {
+                    if (!container.particles.grabLineColor) {
                         const linksOptions = options.interactivity.modes.grab.links;
 
-                            container.particles.grabLineColor = getLinkRandomColor(
-                                optColor,
-                                linksOptions.blink,
-                                linksOptions.consent
-                            );
-                        }
+                        container.particles.grabLineColor = getLinkRandomColor(
+                            optColor,
+                            linksOptions.blink,
+                            linksOptions.consent
+                        );
+                    }
 
-                        const colorLine = getLinkColor(particle, undefined, container.particles.grabLineColor);
+                    const colorLine = getLinkColor(particle, undefined, container.particles.grabLineColor);
 
                     if (!colorLine) {
-                            return;
-                        }
+                        return;
+                    }
 
-                        container.canvas.drawGrabLine(particle, colorLine, opacityLine, mousePos);
+                    container.canvas.drawGrabLine(particle, colorLine, opacityLine, mousePos);
                 }
             }
         }

@@ -1,4 +1,4 @@
-import { isInArray } from "../../Utils";
+import { drawLight, isInArray } from "../../Utils";
 import { HoverMode } from "../../Enums";
 import type { Container } from "../../Core/Container";
 import { ExternalInteractorBase } from "../../Core/ExternalInteractorBase";

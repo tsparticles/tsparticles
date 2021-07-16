@@ -1,7 +1,7 @@
 import { Particle } from "../../Core/Particle";
 import type { Container } from "../../Core/Container";
 import { Circle, CircleWarp, getDistance, getLinkRandomColor } from "../../Utils";
-import { IParticle } from "../../Core/Interfaces";
+import { ICoordinates, IDimension, IParticle } from "../../Core/Interfaces";
 import { ParticlesInteractorBase } from "../../Core/ParticlesInteractorBase";
 
 function getLinkDistance(
@@ -62,7 +62,7 @@ export class Linker extends ParticlesInteractorBase {
         // do nothing
     }
 
-    interact(p1: IParticle): void {
+    interact(p1: Particle): void {
         p1.links = [];
 
         const pos1 = p1.getPosition();
@@ -106,7 +106,7 @@ export class Linker extends ParticlesInteractorBase {
 
             const distance = getLinkDistance(pos1, pos2, optDistance, canvasSize, warp && linkOpt2.warp);
 
-                if (distance > optDistance) {
+            if (distance > optDistance) {
                 return;
             }
 
@@ -115,32 +115,32 @@ export class Linker extends ParticlesInteractorBase {
 
             this.setColor(p1);
 
-                p1.links.push({
-                    destination: p2,
-                    opacity: opacityLine,
-                });
-                    }
-                }
+            p1.links.push({
+                destination: p2,
+                opacity: opacityLine,
+            });
+        }
+    }
 
     private setColor(p1: IParticle): void {
         const container = this.container;
-            const linksOptions = p1.options.links;
+        const linksOptions = p1.options.links;
 
-            let linkColor =
+        let linkColor =
             linksOptions.id === undefined
                 ? container.particles.linksColor
                 : container.particles.linksColors.get(linksOptions.id);
 
-            if (!linkColor) {
-                const optColor = linksOptions.color;
+        if (!linkColor) {
+            const optColor = linksOptions.color;
 
-                linkColor = getLinkRandomColor(optColor, linksOptions.blink, linksOptions.consent);
+            linkColor = getLinkRandomColor(optColor, linksOptions.blink, linksOptions.consent);
 
             if (linksOptions.id === undefined) {
-                    container.particles.linksColor = linkColor;
+                container.particles.linksColor = linkColor;
             } else {
                 container.particles.linksColors.set(linksOptions.id, linkColor);
-                }
+            }
         }
     }
 }

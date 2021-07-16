@@ -102,7 +102,7 @@ export class Canvas {
             this.element?.remove();
         }
 
-        this.safePaint((ctx) => {
+        this.draw((ctx) => {
             clear(ctx, this.size);
         });
     }
@@ -113,7 +113,7 @@ export class Canvas {
     paint(): void {
         const options = this.container.actualOptions;
 
-        this.safePaint((ctx) => {
+        this.draw((ctx) => {
             if (options.backgroundMask.enable && options.backgroundMask.cover && this.coverColor) {
                 clear(ctx, this.size);
 
@@ -136,7 +136,7 @@ export class Canvas {
         } else if (trail.enable && trail.length > 0 && this.trailFillColor) {
             this.paintBase(getStyleFromRgb(this.trailFillColor, 1 / trail.length));
         } else {
-            this.safePaint((ctx) => {
+            this.draw((ctx) => {
                 clear(ctx, this.size);
             });
         }
@@ -194,7 +194,7 @@ export class Canvas {
     }
 
     drawConnectLine(p1: IParticle, p2: IParticle): void {
-        this.safePaint((ctx) => {
+        this.draw((ctx) => {
             const lineStyle = this.lineStyle(p1, p2);
 
             if (!lineStyle) {
@@ -211,7 +211,7 @@ export class Canvas {
     drawGrabLine(particle: IParticle, lineColor: IRgb, opacity: number, mousePos: ICoordinates): void {
         const container = this.container;
 
-        this.safePaint((ctx) => {
+        this.draw((ctx) => {
             const beginPos = particle.getPosition();
 
             drawGrabLine(
@@ -226,7 +226,7 @@ export class Canvas {
     }
 
     drawParticleShadow(particle: Particle, mousePos: ICoordinates): void {
-        this.safePaint((ctx) => {
+        this.draw((ctx) => {
             drawParticleShadow(this.container, ctx, particle, mousePos);
         });
     }
@@ -243,7 +243,7 @@ export class Canvas {
             return;
         }
 
-        this.safePaint((ctx) => {
+        this.draw((ctx) => {
             const pos1 = p1.getPosition();
             const pos2 = p2.getPosition();
             const pos3 = p3.getPosition();
@@ -293,7 +293,7 @@ export class Canvas {
         const pos1 = p1.getPosition();
         const pos2 = p2.getPosition();
 
-        this.safePaint((ctx) => {
+        this.draw((ctx) => {
             let colorLine: IRgb | undefined;
 
             /*
@@ -395,7 +395,7 @@ export class Canvas {
             return;
         }
 
-        this.safePaint((ctx) => {
+        this.draw((ctx) => {
             const zSizeFactor = 1 - zIndexOptions.sizeRate * particle.zIndexFactor;
 
             const zStrokeOpacity = strokeOpacity * zOpacityFactor;
@@ -422,7 +422,7 @@ export class Canvas {
     }
 
     drawParticleLinks(particle: Particle): void {
-        this.safePaint((ctx) => {
+        this.draw((ctx) => {
             const container = this.container;
             const particles = container.particles;
             const pOptions = particle.options;
@@ -471,13 +471,13 @@ export class Canvas {
     }
 
     drawPlugin(plugin: IContainerPlugin, delta: IDelta): void {
-        this.safePaint((ctx) => {
+        this.draw((ctx) => {
             drawPlugin(ctx, plugin, delta);
         });
     }
 
     drawLight(mousePos: ICoordinates): void {
-        this.safePaint((ctx) => {
+        this.draw((ctx) => {
             drawLight(this.container, ctx, mousePos);
         });
     }
@@ -504,6 +504,14 @@ export class Canvas {
         elementStyle.backgroundPosition = background.position || "";
         elementStyle.backgroundRepeat = background.repeat || "";
         elementStyle.backgroundSize = background.size || "";
+    }
+
+    draw<T>(cb: (context: CanvasRenderingContext2D) => T) {
+        if (!this.context) {
+            return;
+        }
+
+        return cb(this.context);
     }
 
     private initCover(): void {
@@ -590,25 +598,17 @@ export class Canvas {
     }
 
     private paintBase(baseColor?: string): void {
-        this.safePaint((ctx) => {
+        this.draw((ctx) => {
             paintBase(ctx, this.size, baseColor);
         });
     }
 
     private lineStyle(p1: IParticle, p2: IParticle): CanvasGradient | undefined {
-        return this.safePaint((ctx) => {
+        return this.draw((ctx) => {
             const options = this.container.actualOptions;
             const connectOptions = options.interactivity.modes.connect;
 
             return gradient(ctx, p1, p2, connectOptions.links.opacity);
         });
-    }
-
-    private safePaint<T>(cb: (context: CanvasRenderingContext2D) => T) {
-        if (!this.context) {
-            return;
-        }
-
-        return cb(this.context);
     }
 }

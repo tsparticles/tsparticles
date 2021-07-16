@@ -1,5 +1,5 @@
 import type { IStroke } from "../../Options/Interfaces/Particles/IStroke";
-import type { ICoordinates } from "./ICoordinates";
+import type { ICoordinates, ICoordinates3d } from "./ICoordinates";
 import type { ShapeType } from "../../Enums";
 import type { IParticleImage } from "./IParticleImage";
 import type { IParticleTiltValueAnimation, IParticleValueAnimation } from "./IParticleValueAnimation";
@@ -55,7 +55,7 @@ export interface IParticle {
     readonly sizeValue?: number;
     readonly sizeAnimationSpeed?: number;
 
-    getPosition(): ICoordinates;
+    getPosition(): ICoordinates3d;
 
     getRadius(): number;
 

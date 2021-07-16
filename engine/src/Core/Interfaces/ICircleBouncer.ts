@@ -7,5 +7,5 @@ export interface ICircleBouncer {
     velocity: Vector;
     radius: number;
     mass: number;
-    factor: IVelocity;
+    factor: Vector;
 }

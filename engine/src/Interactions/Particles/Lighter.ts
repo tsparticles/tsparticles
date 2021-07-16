@@ -1,4 +1,4 @@
-import { isInArray } from "../../Utils";
+import { drawParticleShadow, isInArray } from "../../Utils";
 import { HoverMode } from "../../Enums";
 import type { Container } from "../../Core/Container";
 import { Particle } from "../../Core/Particle";
