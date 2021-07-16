@@ -1,7 +1,6 @@
 import type { IBounds, ICircleBouncer, ICoordinates, IDimension, IParticle, IRectSideResult } from "../Core/Interfaces";
 import { DivMode } from "../Enums";
 import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICharacterShape";
-import type { IImage } from "../Core/Interfaces/IImage";
 import type { SingleOrMultiple } from "../Types";
 import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
@@ -198,61 +197,6 @@ export function calculateBounds(point: ICoordinates, radius: number): IBounds {
         right: point.x + radius,
         top: point.y - radius,
     };
-}
-
-export function loadImage(source: string): Promise<IImage | undefined> {
-    return new Promise(
-        (resolve: (value?: IImage | PromiseLike<IImage> | undefined) => void, reject: (reason?: string) => void) => {
-            if (!source) {
-                reject("Error tsParticles - No image.src");
-                return;
-            }
-
-            const image: IImage = {
-                source: source,
-                type: source.substr(source.length - 3),
-            };
-
-            const img = new Image();
-
-            img.addEventListener("load", () => {
-                image.element = img;
-
-                resolve(image);
-            });
-
-            img.addEventListener("error", () => {
-                reject(`Error tsParticles - loading image: ${source}`);
-            });
-
-            img.src = source;
-        }
-    );
-}
-
-export async function downloadSvgImage(source: string): Promise<IImage | undefined> {
-    if (!source) {
-        throw new Error("Error tsParticles - No image.src");
-    }
-
-    const image: IImage = {
-        source: source,
-        type: source.substr(source.length - 3),
-    };
-
-    if (image.type !== "svg") {
-        return loadImage(source);
-    }
-
-    const response = await fetch(image.source);
-
-    if (!response.ok) {
-        throw new Error("Error tsParticles - Image not found");
-    }
-
-    image.svgData = await response.text();
-
-    return image;
 }
 
 export function deepExtend(destination: unknown, ...sources: unknown[]): unknown {
@@ -516,14 +460,6 @@ export class Utils {
 
     static calculateBounds(point: ICoordinates, radius: number): IBounds {
         return calculateBounds(point, radius);
-    }
-
-    static loadImage(source: string): Promise<IImage | undefined> {
-        return loadImage(source);
-    }
-
-    static async downloadSvgImage(source: string): Promise<IImage | undefined> {
-        return downloadSvgImage(source);
     }
 
     static deepExtend(destination: unknown, ...sources: unknown[]): unknown {

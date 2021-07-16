@@ -1,12 +1,14 @@
-import type { IParticle, IShapeDrawer } from "../Core/Interfaces";
-import { downloadSvgImage, isInArray, loadImage } from "../Utils";
-import { ShapeType } from "../Enums";
-import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
-import type { IImage } from "../Core/Interfaces/IImage";
-import type { Container } from "../Core/Container";
-import type { IEmitterOptions } from "../Plugins/Emitters/Options/Interfaces/IEmitterOptions";
-import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
-import type { RecursivePartial } from "../Types";
+import type { IParticle, IShapeDrawer } from "../../Core/Interfaces";
+import { isInArray } from "../../Utils";
+import { ShapeType } from "../../Enums";
+import type { IImageShape } from "../../Options/Interfaces/Particles/Shape/IImageShape";
+import type { Container } from "../../Core/Container";
+import type { IEmitterOptions } from "../../Plugins/Emitters/Options/Interfaces/IEmitterOptions";
+import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
+import type { RecursivePartial } from "../../Types";
+import type { IImage, IImageParticle, IParticleImage } from "./Utils";
+import { downloadSvgImage, loadImage, replaceColorSvg } from "./Utils";
+import { Particle } from "../../Core/Particle";
 
 interface ContainerImage {
     id: string;
@@ -147,7 +149,7 @@ export class ImageDrawer implements IShapeDrawer {
             return;
         }
 
-        const image = particle.image;
+        const image = (particle as IImageParticle).image;
         const element = image?.data?.element;
 
         if (!element) {
@@ -170,5 +172,94 @@ export class ImageDrawer implements IShapeDrawer {
         if (!image?.data.svgData || !image?.replaceColor) {
             context.globalAlpha = 1;
         }
+    }
+
+    loadShape(particle: Particle): void {
+        if (particle.shape !== "image" && particle.shape !== "images") {
+            return;
+        }
+
+        const container = particle.container;
+        const images = this.getImages(container).images;
+        const imageData = particle.shapeData as IImageShape;
+        const image = images.find((t) => t.source === imageData.src) ?? images[0];
+        const color = particle.getFillColor();
+        let imageRes: IParticleImage;
+
+        if (!image) {
+            return;
+        }
+
+        if (image.svgData !== undefined && imageData.replaceColor && color) {
+            const svgColoredData = replaceColorSvg(image, color, particle.opacity.value);
+
+            /* prepare to create img with colored svg */
+            const svg = new Blob([svgColoredData], { type: "image/svg+xml" });
+            const domUrl = URL || window.URL || window.webkitURL || window;
+            const url = domUrl.createObjectURL(svg);
+
+            /* create particle img obj */
+            const img = new Image();
+
+            imageRes = {
+                data: {
+                    ...image,
+                    svgData: svgColoredData,
+                },
+                ratio: imageData.width / imageData.height,
+                replaceColor: imageData.replaceColor ?? imageData.replace_color,
+                source: imageData.src,
+            };
+
+            img.addEventListener("load", () => {
+                const pImage = (particle as unknown as IImageParticle).image;
+                if (pImage) {
+                    pImage.loaded = true;
+                    image.element = img;
+                }
+
+                domUrl.revokeObjectURL(url);
+            });
+
+            img.addEventListener("error", () => {
+                domUrl.revokeObjectURL(url);
+
+                // deepcode ignore PromiseNotCaughtGeneral: catch can be ignored
+                loadImage(imageData.src).then((img2) => {
+                    const pImage = (particle as unknown as IImageParticle).image;
+
+                    if (pImage) {
+                        image.element = img2?.element;
+
+                        pImage.loaded = true;
+                    }
+                });
+            });
+
+            img.src = url;
+        } else {
+            imageRes = {
+                data: image,
+                loaded: true,
+                ratio: imageData.width / imageData.height,
+                replaceColor: imageData.replaceColor ?? imageData.replace_color,
+                source: imageData.src,
+            };
+        }
+        if (!imageRes.ratio) {
+            imageRes.ratio = 1;
+        }
+        const fill = imageData.fill ?? particle.fill;
+        const close = imageData.close ?? particle.close;
+
+        const imageShape = {
+            image: imageRes,
+            fill,
+            close,
+        };
+
+        (particle as unknown as IImageParticle).image = imageShape.image;
+        particle.fill = imageShape.fill;
+        particle.close = imageShape.close;
     }
 }

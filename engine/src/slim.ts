@@ -1,13 +1,11 @@
 import type { Main } from "./main";
-import { SquareDrawer } from "./ShapeDrawers/SquareDrawer";
-import { TextDrawer } from "./ShapeDrawers/TextDrawer";
-import { ImageDrawer } from "./ShapeDrawers/ImageDrawer";
+import { SquareDrawer } from "./Shapes/SquareDrawer";
+import { TextDrawer } from "./Shapes/TextDrawer";
 import { ShapeType } from "./Enums";
-import { LineDrawer } from "./ShapeDrawers/LineDrawer";
-import { CircleDrawer } from "./ShapeDrawers/CircleDrawer";
-import { TriangleDrawer } from "./ShapeDrawers/TriangleDrawer";
-import { StarDrawer } from "./ShapeDrawers/StarDrawer";
-import { PolygonDrawer } from "./ShapeDrawers/PolygonDrawer";
+import { LineDrawer } from "./Shapes/LineDrawer";
+import { TriangleDrawer } from "./Shapes/TriangleDrawer";
+import { StarDrawer } from "./Shapes/StarDrawer";
+import { PolygonDrawer } from "./Shapes/PolygonDrawer";
 import { LifeUpdater } from "./Updaters/LifeUpdater";
 import { OpacityUpdater } from "./Updaters/OpacityUpdater";
 import { SizeUpdater } from "./Updaters/SizeUpdater";
@@ -18,14 +16,17 @@ import { WobbleUpdater } from "./Updaters/WobbleUpdater";
 import { ColorUpdater } from "./Updaters/ColorUpdater";
 import { StrokeColorUpdater } from "./Updaters/StrokeColorUpdater";
 import { OutOfCanvasUpdater } from "./Updaters/OutOfCanvasUpdater";
+import { loadCircleShape } from "./Shapes/Circle";
+import { loadImageShape } from "./Shapes/Image";
 
 export function loadSlim(tsParticles: Main): void {
     const squareDrawer = new SquareDrawer();
     const textDrawer = new TextDrawer();
-    const imageDrawer = new ImageDrawer();
+
+    loadCircleShape(tsParticles);
+    loadImageShape(tsParticles);
 
     tsParticles.addShape(ShapeType.line, new LineDrawer());
-    tsParticles.addShape(ShapeType.circle, new CircleDrawer());
     tsParticles.addShape(ShapeType.edge, squareDrawer);
     tsParticles.addShape(ShapeType.square, squareDrawer);
     tsParticles.addShape(ShapeType.triangle, new TriangleDrawer());
@@ -33,8 +34,6 @@ export function loadSlim(tsParticles: Main): void {
     tsParticles.addShape(ShapeType.polygon, new PolygonDrawer());
     tsParticles.addShape(ShapeType.char, textDrawer);
     tsParticles.addShape(ShapeType.character, textDrawer);
-    tsParticles.addShape(ShapeType.image, imageDrawer);
-    tsParticles.addShape(ShapeType.images, imageDrawer);
 
     tsParticles.addParticleUpdater("life", (container) => new LifeUpdater(container));
     tsParticles.addParticleUpdater("opacity", () => new OpacityUpdater());

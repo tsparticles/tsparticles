@@ -1,10 +1,18 @@
-import type { IColor, IHsl, IHsla, IHsv, IHsva, IRgb, IRgba, IValueColor } from "../Core/Interfaces/Colors";
+import type {
+    IColor,
+    IHsl,
+    IHsla,
+    IHsv,
+    IHsva,
+    IParticle,
+    IParticleHslAnimation,
+    IRgb,
+    IRgba,
+    IValueColor,
+} from "../Core/Interfaces";
 import { itemFromArray } from "./Utils";
 import { Constants } from "./Constants";
-import type { IImage } from "../Core/Interfaces/IImage";
 import { mix, randomInRange, setRangeValue } from "./NumberUtils";
-import type { IParticle } from "../Core/Interfaces/IParticle";
-import type { IParticleHslAnimation } from "../Core/Interfaces/IParticleHslAnimation";
 
 /**
  *
@@ -456,27 +464,6 @@ export function colorMix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number
     };
 }
 
-export function replaceColorSvg(imageShape: IImage, color: IHsl, opacity: number): string {
-    const { svgData } = imageShape;
-    if (!svgData) {
-        return "";
-    }
-
-    /* set color to svg element */
-    if (svgData.includes("fill")) {
-        const currentColor =
-            /(#(?:[0-9a-f]{2}){2,4}|(#[0-9a-f]{3})|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d.]+%?\))|currentcolor/gi;
-
-        return svgData.replace(currentColor, () => getStyleFromHsl(color, opacity));
-    }
-
-    const preFillIndex = svgData.indexOf(">");
-
-    return `${svgData.substring(0, preFillIndex)} fill="${getStyleFromHsl(color, opacity)}"${svgData.substring(
-        preFillIndex
-    )}`;
-}
-
 export function getLinkColor(p1: IParticle, p2?: IParticle, linkColor?: string | IRgb): IRgb | undefined {
     if (linkColor === Constants.randomColorValue) {
         return getRandomRgbColor();
@@ -653,10 +640,6 @@ export class ColorUtils {
 
     static mix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number, size2: number): IRgb {
         return colorMix(color1, color2, size1, size2);
-    }
-
-    static replaceColorSvg(imageShape: IImage, color: IHsl, opacity: number): string {
-        return replaceColorSvg(imageShape, color, opacity);
     }
 
     static getLinkColor(p1: IParticle, p2?: IParticle, linkColor?: string | IRgb): IRgb | undefined {

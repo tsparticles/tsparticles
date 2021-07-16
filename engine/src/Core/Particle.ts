@@ -1,5 +1,4 @@
 import type { Container } from "./Container";
-import type { IParticleImage } from "./Interfaces/IParticleImage";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
@@ -13,8 +12,6 @@ import {
     StartValueType,
     TiltDirection,
 } from "../Enums";
-import { ImageDrawer } from "../ShapeDrawers/ImageDrawer";
-import type { IImageShape } from "../Options/Interfaces/Particles/Shape/IImageShape";
 import type { RecursivePartial } from "../Types";
 import {
     clamp,
@@ -31,10 +28,8 @@ import {
     getValue,
     isInArray,
     itemFromArray,
-    loadImage,
     Plugins,
     randomInRange,
-    replaceColorSvg,
     setRangeValue,
 } from "../Utils";
 import type { ILink } from "./Interfaces/ILink";
@@ -60,6 +55,7 @@ import type {
     IShapeValues,
 } from "./Interfaces";
 import { Vector3d } from "./Particle/Vector3d";
+import { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
 
 /**
  * The single particle object
@@ -86,10 +82,12 @@ export class Particle implements IParticle {
     readonly loops: IParticleLoops;
     readonly maxDistance: Partial<IDistance>;
 
-    attractDistance?: number;
-    backColor?: IHsl;
     alterValue?: number;
     alterType?: AlterType;
+    attractDistance?: number;
+    backColor?: IHsl;
+    close: boolean;
+    fill: boolean;
     links: ILink[];
     randomIndexData?: number;
     linksDistance?: number;
@@ -99,9 +97,7 @@ export class Particle implements IParticle {
     maxSpeed?: number;
     sizeAnimationSpeed?: number;
 
-    readonly close: boolean;
     readonly direction: number;
-    readonly fill: boolean;
     readonly stroke: Stroke;
     readonly position: Vector3d;
     readonly offset: Vector;
@@ -114,7 +110,6 @@ export class Particle implements IParticle {
     readonly strokeColor?: IParticleHslAnimation;
     readonly velocity: Vector;
     readonly shape: ShapeType | string;
-    readonly image?: IParticleImage;
     readonly initialPosition: Vector;
     readonly initialVelocity: Vector;
     readonly shapeData?: IShapeValues;
@@ -123,7 +118,7 @@ export class Particle implements IParticle {
 
     constructor(
         readonly id: number,
-        private readonly container: Container,
+        readonly container: Container,
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticles>,
         readonly group?: string
@@ -168,24 +163,10 @@ export class Particle implements IParticle {
             shapeOptions.load(overrideOptions.shape);
 
             if (this.shape) {
-                const shapeData = shapeOptions.options[this.shape];
-
-                if (shapeData) {
-                    this.shapeData = deepExtend(
-                        {},
-                        shapeData instanceof Array ? itemFromArray(shapeData, this.id, reduceDuplicates) : shapeData
-                    ) as IShapeValues;
-                }
+                this.shapeData = this.loadShapeData(shapeOptions, reduceDuplicates);
             }
         } else {
-            const shapeData = particlesOptions.shape.options[this.shape];
-
-            if (shapeData) {
-                this.shapeData = deepExtend(
-                    {},
-                    shapeData instanceof Array ? itemFromArray(shapeData, this.id, reduceDuplicates) : shapeData
-                ) as IShapeValues;
-            }
+            this.shapeData = this.loadShapeData(particlesOptions.shape, reduceDuplicates);
         }
 
         if (overrideOptions !== undefined) {
@@ -473,19 +454,14 @@ export class Particle implements IParticle {
             }
         }
 
+        if (drawer?.loadShape) {
+            drawer?.loadShape(this);
+        }
+
         const sideCountFunc = drawer?.getSidesCount;
 
         if (sideCountFunc) {
             this.sides = sideCountFunc(this);
-        }
-
-        /* if shape is image */
-        const imageShape = this.loadImageShape(container, drawer);
-
-        if (imageShape) {
-            this.image = imageShape.image;
-            this.fill = imageShape.fill;
-            this.close = imageShape.close;
         }
 
         this.stroke =
@@ -749,95 +725,15 @@ export class Particle implements IParticle {
         return res;
     }
 
-    private loadImageShape(
-        container: Container,
-        drawer?: IShapeDrawer
-    ):
-        | {
-              image: IParticleImage | undefined;
-              fill: boolean;
-              close: boolean;
-          }
-        | undefined {
-        if (!(this.shape === ShapeType.image || this.shape === ShapeType.images)) {
-            return;
+    private loadShapeData(shapeOptions: IShape, reduceDuplicates: boolean): IShapeValues | undefined {
+        const shapeData = shapeOptions.options[this.shape];
+
+        if (shapeData) {
+            return deepExtend(
+                {},
+                shapeData instanceof Array ? itemFromArray(shapeData, this.id, reduceDuplicates) : shapeData
+            ) as IShapeValues;
         }
-
-        const imageDrawer = drawer as ImageDrawer;
-        const images = imageDrawer.getImages(container).images;
-        const imageData = this.shapeData as IImageShape;
-        const image = images.find((t) => t.source === imageData.src) ?? images[0];
-        const color = this.getFillColor();
-        let imageRes: IParticleImage;
-
-        if (!image) {
-            return;
-        }
-
-        if (image.svgData !== undefined && imageData.replaceColor && color) {
-            const svgColoredData = replaceColorSvg(image, color, this.opacity.value);
-
-            /* prepare to create img with colored svg */
-            const svg = new Blob([svgColoredData], { type: "image/svg+xml" });
-            const domUrl = URL || window.URL || window.webkitURL || window;
-            const url = domUrl.createObjectURL(svg);
-
-            /* create particle img obj */
-            const img = new Image();
-
-            imageRes = {
-                data: {
-                    ...image,
-                    svgData: svgColoredData,
-                },
-                loaded: false,
-                ratio: imageData.width / imageData.height,
-                replaceColor: imageData.replaceColor ?? imageData.replace_color,
-                source: imageData.src,
-            };
-
-            img.addEventListener("load", () => {
-                if (this.image) {
-                    this.image.loaded = true;
-                    image.element = img;
-                }
-
-                domUrl.revokeObjectURL(url);
-            });
-
-            img.addEventListener("error", () => {
-                domUrl.revokeObjectURL(url);
-
-                // deepcode ignore PromiseNotCaughtGeneral: catch can be ignored
-                loadImage(imageData.src).then((img2) => {
-                    if (this.image && img2) {
-                        image.element = img2.element;
-                        this.image.loaded = true;
-                    }
-                });
-            });
-
-            img.src = url;
-        } else {
-            imageRes = {
-                data: image,
-                loaded: true,
-                ratio: imageData.width / imageData.height,
-                replaceColor: imageData.replaceColor ?? imageData.replace_color,
-                source: imageData.src,
-            };
-        }
-        if (!imageRes.ratio) {
-            imageRes.ratio = 1;
-        }
-        const fill = imageData.fill ?? this.fill;
-        const close = imageData.close ?? this.close;
-
-        return {
-            image: imageRes,
-            fill,
-            close,
-        };
     }
 
     private loadLife(): IParticleLife {
