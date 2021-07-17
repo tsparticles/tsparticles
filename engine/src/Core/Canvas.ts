@@ -322,7 +322,7 @@ export class Canvas {
         elementStyle.backgroundSize = background.size || "";
     }
 
-    draw<T>(cb: (context: CanvasRenderingContext2D) => T) {
+    draw<T>(cb: (context: CanvasRenderingContext2D) => T): T | undefined {
         if (!this.context) {
             return;
         }

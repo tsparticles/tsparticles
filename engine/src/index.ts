@@ -1,6 +1,9 @@
 import { initPjs } from "./pjs";
 import { Main } from "./main";
-import { CanvasUtils, ColorUtils, Constants, Utils } from "./Utils";
+import * as CanvasUtils from "./Utils/CanvasUtils";
+import * as ColorUtils from "./Utils/ColorUtils";
+import * as Utils from "./Utils/Utils";
+import { Constants } from "./Utils";
 import type { IOptions as ISlimOptions } from "./Options/Interfaces/IOptions";
 import type { IAbsorberOptions } from "./Plugins/Absorbers/Options/Interfaces/IAbsorberOptions";
 import type { IEmitterOptions } from "./Plugins/Emitters/Options/Interfaces/IEmitterOptions";

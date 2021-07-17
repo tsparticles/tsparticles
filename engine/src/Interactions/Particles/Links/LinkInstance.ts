@@ -6,8 +6,7 @@ import type { LinkParticle } from "./LinkParticle";
 import type { ILink } from "./ILink";
 
 export class LinkInstance implements IContainerPlugin {
-    constructor(private readonly container: Container) {
-    }
+    constructor(private readonly container: Container) {}
 
     particleCreated(particle: Particle): void {
         const linkParticle = particle as unknown as LinkParticle;

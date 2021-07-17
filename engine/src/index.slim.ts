@@ -1,5 +1,8 @@
 import { initPjs } from "./pjs";
-import { CanvasUtils, Circle, CircleWarp, ColorUtils, Constants, Point, Rectangle, Utils } from "./Utils";
+import * as CanvasUtils from "./Utils/CanvasUtils";
+import * as ColorUtils from "./Utils/ColorUtils";
+import * as Utils from "./Utils/Utils";
+import { Circle, CircleWarp, Constants, Point, Rectangle } from "./Utils";
 import type { IOptions } from "./Options/Interfaces/IOptions";
 import type { RecursivePartial } from "./Types";
 import type { IParticle } from "./Core/Interfaces";
