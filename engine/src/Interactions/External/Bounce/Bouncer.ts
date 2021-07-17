@@ -10,13 +10,13 @@ import {
     Range,
     Rectangle,
     rectBounce,
-} from "../../Utils";
-import type { Container } from "../../Core/Container";
-import { DivMode, DivType, HoverMode } from "../../Enums";
-import { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
-import type { ICoordinates } from "../../Core/Interfaces";
-import { Vector } from "../../Core/Particle/Vector";
-import { ExternalInteractorBase } from "../../Core/ExternalInteractorBase";
+} from "../../../Utils";
+import type { Container } from "../../../Core/Container";
+import { DivMode, DivType, HoverMode } from "../../../Enums";
+import { DivEvent } from "../../../Options/Classes/Interactivity/Events/DivEvent";
+import type { ICoordinates } from "../../../Core/Interfaces";
+import { Vector } from "../../../Core/Particle/Vector";
+import { ExternalInteractorBase } from "../../../Core/ExternalInteractorBase";
 
 export class Bouncer extends ExternalInteractorBase {
     constructor(container: Container) {

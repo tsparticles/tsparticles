@@ -7,11 +7,9 @@ import {
     deepExtend,
     drawConnectLine,
     drawGrabLine,
-    drawLight,
     drawLinkLine,
     drawLinkTriangle,
     drawParticle,
-    drawParticleShadow,
     drawPlugin,
     getDistance,
     getLinkColor,
@@ -222,12 +220,6 @@ export class Canvas {
                 lineColor,
                 opacity
             );
-        });
-    }
-
-    drawParticleShadow(particle: Particle, mousePos: ICoordinates): void {
-        this.draw((ctx) => {
-            drawParticleShadow(this.container, ctx, particle, mousePos);
         });
     }
 
@@ -473,12 +465,6 @@ export class Canvas {
     drawPlugin(plugin: IContainerPlugin, delta: IDelta): void {
         this.draw((ctx) => {
             drawPlugin(ctx, plugin, delta);
-        });
-    }
-
-    drawLight(mousePos: ICoordinates): void {
-        this.draw((ctx) => {
-            drawLight(this.container, ctx, mousePos);
         });
     }
 

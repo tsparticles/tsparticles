@@ -1,5 +1,5 @@
-import type { IDelta, IParticleUpdater } from "../Core/Interfaces";
-import { Particle } from "../Core/Particle";
+import type { IDelta, IParticleUpdater } from "../../Core/Interfaces";
+import type { Particle } from "../../Core/Particle";
 
 function updateWobble(particle: Particle, delta: IDelta): void {
     const wobble = particle.options.wobble;

@@ -1,9 +1,10 @@
-import { drawLight, isInArray } from "../../Utils";
+import { isInArray } from "../../Utils";
 import { HoverMode } from "../../Enums";
 import type { Container } from "../../Core/Container";
 import { ExternalInteractorBase } from "../../Core/ExternalInteractorBase";
+import { drawLight } from "./Utils";
 
-export class Lighter extends ExternalInteractorBase {
+export class ExternalLighter extends ExternalInteractorBase {
     constructor(container: Container) {
         super(container);
     }

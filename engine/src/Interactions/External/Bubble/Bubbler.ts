@@ -1,5 +1,4 @@
-import type { Container } from "../../Core/Container";
-import type { IBubblerProcessParam } from "../../Core/Interfaces/IBubblerProcessParam";
+import type { Container } from "../../../Core/Container";
 import {
     Circle,
     clamp,
@@ -13,12 +12,14 @@ import {
     isInArray,
     itemFromArray,
     Rectangle,
-} from "../../Utils";
-import { ClickMode, DivMode, DivType, HoverMode, ProcessBubbleType } from "../../Enums";
-import { Particle } from "../../Core/Particle";
-import { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
-import { BubbleDiv } from "../../Options/Classes/Interactivity/Modes/BubbleDiv";
-import { ExternalInteractorBase } from "../../Core/ExternalInteractorBase";
+} from "../../../Utils";
+import { ClickMode, DivMode, DivType, HoverMode } from "../../../Enums";
+import { Particle } from "../../../Core/Particle";
+import { DivEvent } from "../../../Options/Classes/Interactivity/Events/DivEvent";
+import { BubbleDiv } from "../../../Options/Classes/Interactivity/Modes/BubbleDiv";
+import { ExternalInteractorBase } from "../../../Core/ExternalInteractorBase";
+import { ProcessBubbleType } from "./ProcessBubbleType";
+import type { IBubblerProcessParam } from "./IBubblerProcessParam";
 
 function calculateBubbleValue(
     particleValue: number,

@@ -1,6 +1,6 @@
-import type { IDelta, IParticleUpdater } from "../Core/Interfaces";
-import { Particle } from "../Core/Particle";
-import { AnimationStatus } from "../Enums";
+import type { IDelta, IParticleUpdater } from "../../Core/Interfaces";
+import { Particle } from "../../Core/Particle";
+import { AnimationStatus } from "../../Enums";
 
 function updateAngle(particle: Particle, delta: IDelta): void {
     const rotate = particle.options.rotate;

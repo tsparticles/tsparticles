@@ -1,10 +1,10 @@
-import { Particle } from "../Core/Particle";
-import type { IDelta, IParticleUpdater, IParticleValueAnimation } from "../Core/Interfaces";
-import { randomInRange } from "../Utils";
-import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
-import type { IHslAnimation } from "../Options/Interfaces/IHslAnimation";
-import type { IAnimatableColor } from "../Options/Interfaces/Particles/IAnimatableColor";
-import { AnimationStatus } from "../Enums";
+import { Particle } from "../../Core/Particle";
+import type { IDelta, IParticleUpdater, IParticleValueAnimation } from "../../Core/Interfaces";
+import { randomInRange } from "../../Utils";
+import type { IColorAnimation } from "../../Options/Interfaces/IColorAnimation";
+import type { IHslAnimation } from "../../Options/Interfaces/IHslAnimation";
+import type { IAnimatableColor } from "../../Options/Interfaces/Particles/IAnimatableColor";
+import { AnimationStatus } from "../../Enums";
 
 function updateColorValue(
     delta: IDelta,

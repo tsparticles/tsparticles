@@ -1,7 +1,7 @@
-import { Particle } from "../Core/Particle";
-import { IDelta, IParticleUpdater } from "../Core/Interfaces";
-import { AnimationStatus, DestroyType } from "../Enums";
-import { clamp } from "../Utils";
+import type { Particle } from "../../Core/Particle";
+import type { IDelta, IParticleUpdater } from "../../Core/Interfaces";
+import { AnimationStatus, DestroyType } from "../../Enums";
+import { clamp } from "../../Utils";
 
 function checkDestroy(
     particle: Particle,

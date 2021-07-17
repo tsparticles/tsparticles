@@ -1,8 +1,8 @@
-import { Particle } from "../Core/Particle";
-import type { IDelta, IParticleUpdater, IParticleValueAnimation } from "../Core/Interfaces";
-import { AnimationStatus } from "../Enums";
-import { randomInRange } from "../Utils";
-import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
+import { Particle } from "../../Core/Particle";
+import type { IDelta, IParticleUpdater, IParticleValueAnimation } from "../../Core/Interfaces";
+import { AnimationStatus } from "../../Enums";
+import { randomInRange } from "../../Utils";
+import type { IColorAnimation } from "../../Options/Interfaces/IColorAnimation";
 
 function updateColorValue(
     delta: IDelta,

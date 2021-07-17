@@ -1,10 +1,11 @@
-import { drawParticleShadow, isInArray } from "../../Utils";
+import { isInArray } from "../../Utils";
 import { HoverMode } from "../../Enums";
 import type { Container } from "../../Core/Container";
 import { Particle } from "../../Core/Particle";
 import { ParticlesInteractorBase } from "../../Core/ParticlesInteractorBase";
+import { drawParticleShadow } from "./Utils";
 
-export class Lighter extends ParticlesInteractorBase {
+export class ParticlesLighter extends ParticlesInteractorBase {
     constructor(container: Container) {
         super(container);
     }
