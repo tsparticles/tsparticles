@@ -1,8 +1,9 @@
-import { Particle } from "../../Core/Particle";
-import type { Container } from "../../Core/Container";
-import { Circle, CircleWarp, getDistance, getLinkRandomColor } from "../../Utils";
-import { ICoordinates, IDimension, IParticle } from "../../Core/Interfaces";
-import { ParticlesInteractorBase } from "../../Core/ParticlesInteractorBase";
+import { Particle } from "../../../Core/Particle";
+import type { Container } from "../../../Core/Container";
+import { Circle, CircleWarp, getDistance, getLinkRandomColor } from "../../../Utils";
+import { ICoordinates, IDimension, IParticle } from "../../../Core/Interfaces";
+import { ParticlesInteractorBase } from "../../../Core/ParticlesInteractorBase";
+import { LinkParticle } from "./LinkParticle";
 
 function getLinkDistance(
     pos1: ICoordinates,
@@ -62,7 +63,7 @@ export class Linker extends ParticlesInteractorBase {
         // do nothing
     }
 
-    interact(p1: Particle): void {
+    interact(p1: LinkParticle): void {
         p1.links = [];
 
         const pos1 = p1.getPosition();
@@ -81,7 +82,7 @@ export class Linker extends ParticlesInteractorBase {
             ? new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize)
             : new Circle(pos1.x, pos1.y, optDistance);
 
-        const query = container.particles.quadTree.query(range);
+        const query = container.particles.quadTree.query(range) as LinkParticle[];
 
         for (const p2 of query) {
             const linkOpt2 = p2.options.links;

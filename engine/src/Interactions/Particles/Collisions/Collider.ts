@@ -1,8 +1,8 @@
-import type { Particle } from "../../Core/Particle";
-import type { Container } from "../../Core/Container";
-import { CollisionMode } from "../../Enums";
-import { circleBounce, circleBounceDataFromParticle, clamp, getDistance } from "../../Utils";
-import { ParticlesInteractorBase } from "../../Core/ParticlesInteractorBase";
+import type { Particle } from "../../../Core/Particle";
+import type { Container } from "../../../Core/Container";
+import { CollisionMode } from "../../../Enums";
+import { circleBounce, circleBounceDataFromParticle, clamp, getDistance } from "../../../Utils";
+import { ParticlesInteractorBase } from "../../../Core/ParticlesInteractorBase";
 
 function bounce(p1: Particle, p2: Particle): void {
     circleBounce(circleBounceDataFromParticle(p1), circleBounceDataFromParticle(p2));

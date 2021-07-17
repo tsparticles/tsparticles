@@ -3,12 +3,6 @@ import type { Particle } from "./Particle";
 import type { IDelta, IExternalInteractor, IParticlesInteractor } from "./Interfaces";
 import { Plugins } from "../Utils";
 import { InteractorType } from "../Enums";
-import { Grabber } from "../Interactions/External/Grabber";
-import { Repulser } from "../Interactions/External/Repulser";
-import { TrailMaker } from "../Interactions/External/TrailMaker";
-import { Attractor as ParticlesAttractor } from "../Interactions/Particles/Attractor";
-import { Collider } from "../Interactions/Particles/Collider";
-import { Linker } from "../Interactions/Particles/Linker";
 
 /**
  * @category Core
@@ -20,9 +14,8 @@ export class InteractionManager {
     constructor(private readonly container: Container) {
         const interactors = Plugins.getInteractors(container);
 
-        this.externalInteractors = [new Grabber(container), new Repulser(container), new TrailMaker(container)];
-
-        this.particleInteractors = [new ParticlesAttractor(container), new Collider(container), new Linker(container)];
+        this.externalInteractors = [];
+        this.particleInteractors = [];
 
         for (const interactor of interactors) {
             switch (interactor.type) {

@@ -1,5 +1,5 @@
-import type { Container } from "../../Core/Container";
-import { ClickMode, DivMode, DivType, HoverMode } from "../../Enums";
+import type { Container } from "../../../Core/Container";
+import { ClickMode, DivMode, DivType, HoverMode } from "../../../Enums";
 import {
     calcEasing,
     Circle,
@@ -12,12 +12,12 @@ import {
     isInArray,
     Range,
     Rectangle,
-} from "../../Utils";
-import type { ICoordinates } from "../../Core/Interfaces";
-import type { DivEvent } from "../../Options/Classes/Interactivity/Events/DivEvent";
-import type { RepulseDiv } from "../../Options/Classes/Interactivity/Modes/RepulseDiv";
-import { Vector } from "../../Core/Particle/Vector";
-import { ExternalInteractorBase } from "../../Core/ExternalInteractorBase";
+} from "../../../Utils";
+import type { ICoordinates } from "../../../Core/Interfaces";
+import type { DivEvent } from "../../../Options/Classes/Interactivity/Events/DivEvent";
+import type { RepulseDiv } from "../../../Options/Classes/Interactivity/Modes/RepulseDiv";
+import { Vector } from "../../../Core/Particle/Vector";
+import { ExternalInteractorBase } from "../../../Core/ExternalInteractorBase";
 
 /**
  * Particle repulse manager

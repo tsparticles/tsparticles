@@ -51,7 +51,6 @@ export class Mover {
 
     move(particle: Particle, delta: IDelta): void {
         particle.bubble.inRange = false;
-        particle.links = [];
 
         for (const [, plugin] of this.container.plugins) {
             if (particle.destroyed) {

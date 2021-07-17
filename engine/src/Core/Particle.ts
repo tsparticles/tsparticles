@@ -32,7 +32,6 @@ import {
     randomInRange,
     setRangeValue,
 } from "../Utils";
-import type { ILink } from "./Interfaces/ILink";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 import type { Stroke } from "../Options/Classes/Particles/Stroke";
 import { Vector } from "./Particle/Vector";
@@ -87,7 +86,6 @@ export class Particle implements IParticle {
     backColor?: IHsl;
     close: boolean;
     fill: boolean;
-    links: ILink[];
     randomIndexData?: number;
     linksDistance?: number;
     linksWidth?: number;
@@ -122,7 +120,6 @@ export class Particle implements IParticle {
         overrideOptions?: RecursivePartial<IParticles>,
         readonly group?: string
     ) {
-        this.links = [];
         this.fill = true;
         this.close = true;
         this.lastPathTime = 0;
@@ -504,9 +501,21 @@ export class Particle implements IParticle {
         if (drawer && drawer.particleInit) {
             drawer.particleInit(container, this);
         }
+
+        for (const [, plugin] of container.plugins) {
+            if (plugin.particleCreated) {
+                plugin.particleCreated(this);
+            }
+        }
     }
 
     draw(delta: IDelta): void {
+        const container = this.container;
+
+        for (const [, plugin] of container.plugins) {
+            container.canvas.drawParticlePlugin(plugin, this, delta);
+        }
+
         this.container.canvas.drawParticle(this, delta);
     }
 
@@ -561,7 +570,6 @@ export class Particle implements IParticle {
     destroy(override?: boolean): void {
         this.destroyed = true;
         this.bubble.inRange = false;
-        this.links = [];
 
         if (this.unbreakable) {
             return;

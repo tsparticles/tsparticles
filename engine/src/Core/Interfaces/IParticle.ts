@@ -6,7 +6,6 @@ import type { IShapeValues } from "./IShapeValues";
 import type { IBubbleParticleData } from "./IBubbleParticleData";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
 import type { IHsl, IRgb } from "./Colors";
-import type { ILink } from "./ILink";
 import type { IParticleHslAnimation } from "./IParticleHslAnimation";
 import type { Vector } from "../Particle/Vector";
 
@@ -29,7 +28,6 @@ export interface IParticle {
     readonly fill: boolean;
     readonly id: number;
     readonly initialVelocity: Vector;
-    readonly links: ILink[];
     readonly offset: Vector;
     readonly color?: IParticleHslAnimation;
     readonly backColor?: IHsl;

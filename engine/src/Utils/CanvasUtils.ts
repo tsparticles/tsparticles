@@ -4,6 +4,7 @@ import type { Container } from "../Core/Container";
 import { getDistance, getDistances } from "./NumberUtils";
 import { colorMix, colorToRgb, getStyleFromHsl, getStyleFromRgb } from "./ColorUtils";
 import { IContainerPlugin, ICoordinates, IDelta, IDimension, IParticle, IRgb } from "../Core/Interfaces";
+import type { Particle } from "../Core/Particle";
 
 function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
     context.beginPath();
@@ -375,6 +376,19 @@ export function drawPlugin(context: CanvasRenderingContext2D, plugin: IContainer
     context.save();
     plugin.draw(context, delta);
     context.restore();
+}
+
+export function drawParticlePlugin(
+    context: CanvasRenderingContext2D,
+    plugin: IContainerPlugin,
+    particle: Particle,
+    delta: IDelta
+): void {
+    if (plugin.drawParticle !== undefined) {
+        context.save();
+        plugin.drawParticle(context, particle, delta);
+        context.restore();
+    }
 }
 
 /**

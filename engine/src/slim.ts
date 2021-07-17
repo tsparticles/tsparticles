@@ -20,12 +20,25 @@ import { loadExternalAttractInteraction } from "./Interactions/External/Attract"
 import { loadExternalBounceInteraction } from "./Interactions/External/Bounce";
 import { loadExternalBubbleInteraction } from "./Interactions/External/Bubble";
 import { loadExternalConnectInteraction } from "./Interactions/External/Connect";
+import { loadExternalGrabInteraction } from "./Interactions/External/Grab";
+import { loadExternalRepulseInteraction } from "./Interactions/External/Repulse";
+import { loadExternalTrailInteraction } from "./Interactions/External/Trail";
+import { loadParticlesAttractInteraction } from "./Interactions/Particles/Attract";
+import { loadParticlesCollisionsInteraction } from "./Interactions/Particles/Collisions";
+import { loadParticlesLinksInteraction } from "./Interactions/Particles/Links";
 
 export function loadSlim(tsParticles: Main): void {
     loadExternalAttractInteraction(tsParticles);
     loadExternalBounceInteraction(tsParticles);
     loadExternalBubbleInteraction(tsParticles);
     loadExternalConnectInteraction(tsParticles);
+    loadExternalGrabInteraction(tsParticles);
+    loadExternalRepulseInteraction(tsParticles);
+    loadExternalTrailInteraction(tsParticles);
+
+    loadParticlesAttractInteraction(tsParticles);
+    loadParticlesCollisionsInteraction(tsParticles);
+    loadParticlesLinksInteraction(tsParticles);
 
     loadCircleShape(tsParticles);
     loadImageShape(tsParticles);
