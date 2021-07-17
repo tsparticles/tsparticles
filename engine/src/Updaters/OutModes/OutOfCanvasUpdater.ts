@@ -73,9 +73,9 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
         const wrap = particle.options.move.warp,
             canvasSize = container.canvas.size,
             newPos = {
-                bottom: canvasSize.height + particle.getRadius() + particle.offset.y,
+                bottom: canvasSize.height + /*particle.getRadius() +*/ particle.offset.y,
                 left: /*-particle.getRadius()*/ -particle.offset.x,
-                right: canvasSize.width + particle.getRadius() + particle.offset.x,
+                right: canvasSize.width + /*particle.getRadius() +*/ particle.offset.x,
                 top: /*-particle.getRadius()*/ -particle.offset.y,
             },
             sizeValue = particle.getRadius(),
