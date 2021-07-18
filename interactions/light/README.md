@@ -1,5 +1,5 @@
-[![banner](https://cdn.matteobruni.it/images/particles/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
 
-# tsparticles-shape-bubble
+# tsparticles-interaction-light
 
-tsParticles bubble shape
+tsParticles interaction light
