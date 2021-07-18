@@ -1,5 +1,6 @@
-import { ColorUtils } from "../src/Utils";
+import { describe, it } from "mocha";
 import { expect } from "chai";
+import * as ColorUtils from "../src/Utils/ColorUtils";
 import { IColor, IRgb, IHsl, IHsla, IHsv } from "../src/Core/Interfaces/Colors";
 
 describe("ColorUtils", () => {
