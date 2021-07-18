@@ -4,6 +4,7 @@
     "demo/**/*",
     "editor",
     "engine",
+    "interactions/*",
     "plugins/*",
     "presets/*",
     "shapes/*",

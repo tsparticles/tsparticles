@@ -43,6 +43,7 @@
     "stylus": "^0.54.8",
     "three": "^0.129.0",
     "tsparticles": "^1.31.1",
+    "tsparticles-interaction-light": "^1.31.1",
     "tsparticles-plugin-infection": "^1.31.1",
     "tsparticles-preset-big-circles": "^1.16.1",
     "tsparticles-preset-bubbles": "^1.16.1",

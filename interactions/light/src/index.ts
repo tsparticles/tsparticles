@@ -1,4 +1,4 @@
-import type { Main } from "../../main";
+import type { Main } from "tsparticles";
 import { ExternalLighter } from "./ExternalLighter";
 import { ParticlesLighter } from "./ParticlesLighter";
 

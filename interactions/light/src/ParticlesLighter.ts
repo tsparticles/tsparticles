@@ -1,8 +1,5 @@
-import { isInArray } from "../../Utils";
-import { HoverMode } from "../../Enums";
-import type { Container } from "../../Core/Container";
-import { Particle } from "../../Core/Particle";
-import { ParticlesInteractorBase } from "../../Core/ParticlesInteractorBase";
+import { HoverMode, ParticlesInteractorBase, Utils } from "tsparticles";
+import type { Container, Particle } from "tsparticles";
 import { drawParticleShadow } from "./Utils";
 
 export class ParticlesLighter extends ParticlesInteractorBase {
@@ -34,7 +31,7 @@ export class ParticlesLighter extends ParticlesInteractorBase {
             return false;
         }
 
-        return isInArray(HoverMode.light, events.onHover.mode);
+        return Utils.isInArray(HoverMode.light, events.onHover.mode);
     }
 
     reset(): void {

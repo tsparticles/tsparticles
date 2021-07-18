@@ -1,7 +1,4 @@
-import type { Container } from "../../Core/Container";
-import type { Particle } from "../../Core/Particle";
-import type { ICoordinates } from "../../Core/Interfaces";
-import { colorToRgb, getStyleFromRgb } from "../../Utils";
+import { ColorUtils, Container, ICoordinates, Particle } from "tsparticles";
 
 export function drawLight(container: Container, context: CanvasRenderingContext2D, mousePos: ICoordinates): void {
     const lightOptions = container.actualOptions.interactivity.modes.light.area;
@@ -18,18 +15,18 @@ export function drawLight(container: Container, context: CanvasRenderingContext2
         lightOptions.radius
     );
 
-    const gradient = lightOptions.gradient;
+    const lightGradient = lightOptions.gradient;
     const gradientRgb = {
-        start: colorToRgb(gradient.start),
-        stop: colorToRgb(gradient.stop),
+        start: ColorUtils.colorToRgb(lightGradient.start),
+        stop: ColorUtils.colorToRgb(lightGradient.stop),
     };
 
     if (!gradientRgb.start || !gradientRgb.stop) {
         return;
     }
 
-    gradientAmbientLight.addColorStop(0, getStyleFromRgb(gradientRgb.start));
-    gradientAmbientLight.addColorStop(1, getStyleFromRgb(gradientRgb.stop));
+    gradientAmbientLight.addColorStop(0, ColorUtils.getStyleFromRgb(gradientRgb.start));
+    gradientAmbientLight.addColorStop(1, ColorUtils.getStyleFromRgb(gradientRgb.stop));
     context.fillStyle = gradientAmbientLight;
     context.fill();
 }
@@ -76,13 +73,13 @@ export function drawParticleShadow(
         });
     }
 
-    const shadowRgb = colorToRgb(shadowOptions.color);
+    const shadowRgb = ColorUtils.colorToRgb(shadowOptions.color);
 
     if (!shadowRgb) {
         return;
     }
 
-    const shadowColor = getStyleFromRgb(shadowRgb);
+    const shadowColor = ColorUtils.getStyleFromRgb(shadowRgb);
 
     for (let i = points.length - 1; i >= 0; i--) {
         const n = i == points.length - 1 ? 0 : i + 1;
