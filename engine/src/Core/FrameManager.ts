@@ -31,9 +31,15 @@ export class FrameManager {
                 factor: (60 * deltaValue) / 1000,
             };
 
+            container.lifeTime += delta.value;
             container.lastFrameTime = timestamp;
 
             container.particles.draw(delta);
+
+            if (container.duration > 0 && container.lifeTime > container.duration) {
+                container.destroy();
+                return;
+            }
 
             if (container.getAnimationStatus()) {
                 container.draw();

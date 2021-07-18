@@ -2,7 +2,7 @@ import type { IOptions } from "../Interfaces/IOptions";
 import { Interactivity } from "./Interactivity/Interactivity";
 import { ParticlesOptions } from "./Particles/ParticlesOptions";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
-import type { RecursivePartial } from "../../Types";
+import type { RangeValue, RecursivePartial } from "../../Types";
 import { Background } from "./Background/Background";
 import { Plugins } from "../../Utils";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
@@ -68,6 +68,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     background;
     backgroundMask;
     detectRetina;
+    duration: RangeValue;
     fpsLimit;
     fullScreen;
     interactivity;
@@ -88,6 +89,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.backgroundMask = new BackgroundMask();
         this.fullScreen = new FullScreen();
         this.detectRetina = true;
+        this.duration = 0;
         this.fpsLimit = 60;
         this.interactivity = new Interactivity();
         this.manualParticles = [];
@@ -126,6 +128,10 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
         if (detectRetina !== undefined) {
             this.detectRetina = detectRetina;
+        }
+
+        if (data.duration !== undefined) {
+            this.duration = data.duration;
         }
 
         const fpsLimit = data.fpsLimit ?? data.fps_limit;
