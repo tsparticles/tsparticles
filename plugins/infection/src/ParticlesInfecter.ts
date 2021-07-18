@@ -1,7 +1,7 @@
+import type { IDelta } from "tsparticles";
+import { ParticlesInteractorBase } from "tsparticles";
 import type { InfectableContainer, InfectableParticle } from "./Types";
 import type { IInfectionOptions } from "./Options/Interfaces/IInfectionOptions";
-import type { IDelta } from "../../Core/Interfaces";
-import { ParticlesInteractorBase } from "../../Core/ParticlesInteractorBase";
 
 /**
  * @category Interactions

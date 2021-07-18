@@ -1,12 +1,9 @@
+import type { Container, IPlugin, Main, RecursivePartial } from "tsparticles";
+import { Options } from "tsparticles/Options/Classes/Options";
 import { InfectionInstance } from "./InfectionInstance";
 import { ParticlesInfecter } from "./ParticlesInfecter";
 import type { IInfectionOptions } from "./Options/Interfaces/IInfectionOptions";
 import { Infection } from "./Options/Classes/Infection";
-import type { RecursivePartial } from "../../Types";
-import { Container } from "../../Core/Container";
-import type { IPlugin } from "../../Core/Interfaces";
-import { Options } from "../../Options/Classes/Options";
-import type { Main } from "../../main";
 
 /**
  * @category Infection Plugin

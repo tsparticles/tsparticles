@@ -1,7 +1,5 @@
-import type { Infecter } from "./Infecter";
-import type { Particle } from "../../Core/Particle";
-import type { Container } from "../../Core/Container";
-import type { IParticle } from "../../Core/Interfaces";
+import type { Container, IParticle, Particle } from "tsparticles";
+import { Infecter } from "./Infecter";
 
 export interface IParticleInfection {
     stage?: number;

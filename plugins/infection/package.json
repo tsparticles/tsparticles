@@ -1,7 +1,7 @@
 {
-  "name": "tsparticles-shape-multiline-text",
-  "version": "1.16.1",
-  "description": "tsParticles multiline text shape",
+  "name": "tsparticles-plugin-infection",
+  "version": "1.31.1",
+  "description": "tsParticles infection plugin",
   "homepage": "https://particles.js.org/",
   "scripts": {
     "prettify:src": "prettier --write ./src",
@@ -18,7 +18,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
-    "directory": "shapes/multiline-text"
+    "directory": "plugins/infection"
   },
   "keywords": [
     "tsparticles",
@@ -43,7 +43,7 @@
     "css3",
     "animated",
     "background",
-    "tsparticles-shape"
+    "tsparticles-preset"
   ],
   "publishConfig": {
     "directory": "dist"
