@@ -7,7 +7,11 @@
   "scripts": {
     "clear:cache": "rimraf -f ./node_modules/.cache",
     "clear:docs": "rimraf -f ./docs",
-    "build:js": "minify ./js/404.js > ./js/404.min.js && copyfiles -u 2 ./node_modules/tsparticles/tsparticles.min.js ./js && copyfiles -u 2 ./node_modules/tsparticles-preset-links/tsparticles.preset.links.min.js ./js",
+    "build:js": "minify ./js/404.js > ./js/404.min.js && yarn copy:engine && yarn copy:links && yarn copy:infection && yarn copy:light",
+    "copy:engine": "copyfiles -u 2 ./node_modules/tsparticles/tsparticles.min.js ./js",
+    "copy:infection": "copyfiles -u 2 ./node_modules/tsparticles-plugin-infection/tsparticles.plugin.infection.min.js ./js",
+    "copy:links": "copyfiles -u 2 ./node_modules/tsparticles-preset-links/tsparticles.preset.links.min.js ./js",
+    "copy:light": "copyfiles -u 2 ./node_modules/tsparticles-interaction-light/tsparticles.interaction.light.min.js ./js",
     "build:css": "sass ./css/main.scss ./css/main.css && minify ./css/main.css > ./css/main.min.css && sass ./css/404.scss ./css/404.css && minify ./css/404.css > ./css/404.min.css",
     "build": " yarn clear:cache && yarn build:css && yarn build:js",
     "deploy": "yarn build && yarn clear:docs && lerna run build:docs && node deploy.js"
@@ -29,6 +33,8 @@
     "rimraf": "^3.0.2",
     "sass": "^1.35.1",
     "tsparticles": "^1.31.1",
+    "tsparticles-interaction-light": "^1.31.1",
+    "tsparticles-plugin-infection": "^1.31.1",
     "tsparticles-preset-links": "^1.16.1"
   }
 }
