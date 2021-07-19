@@ -1,14 +1,30 @@
 # Theme Options
 
-| key       | option type | example   | notes                                                       |
-| --------- | ----------- | --------- | ----------------------------------------------------------- |
-| `default` | `object`    |           | Checkout the default options documentation below            |
-| `name`    | `string`    | `"theme"` |                                                             |
-| `options` | `object`    |           | This object is the entire {@link Options | options } object |
+- [default](#default)
+- [name](#name)
+- [options](#options)
 
-## Theme Default Options
+## Default
 
-| key     | option type | example                                  | notes |
-| ------- | ----------- | ---------------------------------------- | ----- |
-| `mode`  | `string`    | `"any"` <br /> `"dark"` <br /> `"light"` |       |
-| `value` | `boolean`   | `true` / `false`                         |       |
+- [mode](#mode)
+- [value](#value)
+
+### Mode
+
+Values accepted
+
+- `"any"`
+- `"dark"`
+- `"light"`
+
+### Value
+
+If set to `true` this theme will be the default one for the specified mode, the last one set to default will be used if more than one are set. 
+
+## Name
+
+The theme name used to change the theme using the {@link setTheme} function
+
+## Options
+
+This object is the entire {@link Options | options } object
