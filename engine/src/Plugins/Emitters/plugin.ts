@@ -90,7 +90,7 @@ class EmittersPlugin implements IPlugin {
     }
 }
 
-export function loadEmittersPlugin(tsParticles: Main) {
+export function loadEmittersPlugin(tsParticles: Main): void {
     const plugin = new EmittersPlugin();
 
     tsParticles.addPlugin(plugin);
