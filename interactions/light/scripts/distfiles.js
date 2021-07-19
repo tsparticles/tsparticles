@@ -3,7 +3,7 @@ const mainInfo = require("../package.json");
 
 const libPackage = "./package.dist.json";
 
-fs.readFile(libPackage, function(error, data) {
+fs.readFile(libPackage, function (error, data) {
   if (error) {
     throw error;
   }
@@ -14,7 +14,7 @@ fs.readFile(libPackage, function(error, data) {
   libObj.version = mainInfo.version;
   libObj.dependencies = JSON.parse(JSON.stringify(mainInfo.dependencies));
 
-  fs.writeFileSync(libPackage, JSON.stringify(libObj, undefined, 2), "utf-8");
+  fs.writeFileSync(libPackage, JSON.stringify(libObj, undefined, 2), "utf8");
 
   console.log(`package.dist.json updated successfully to version ${mainInfo.version}`);
 
