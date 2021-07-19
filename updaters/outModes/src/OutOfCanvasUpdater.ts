@@ -148,7 +148,7 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
     }
 
     private none(particle: Particle, direction: OutModeDirection): void {
-        if (particle.options.move.distance) {
+        if (particle.options.move.distance.horizontal || particle.options.move.distance.vertical) {
             return;
         }
 
