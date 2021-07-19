@@ -14,7 +14,7 @@ export class TrailMaker extends ExternalInteractorBase {
         this.delay = 0;
     }
 
-    public interact(delta: IDelta): void {
+    interact(delta: IDelta): void {
         if (!this.container.retina.reduceFactor) {
             return;
         }
@@ -60,7 +60,7 @@ export class TrailMaker extends ExternalInteractorBase {
         this.delay -= optDelay;
     }
 
-    public isEnabled(): boolean {
+    isEnabled(): boolean {
         const container = this.container,
             options = container.actualOptions,
             mouse = container.interactivity.mouse,
@@ -72,7 +72,7 @@ export class TrailMaker extends ExternalInteractorBase {
         );
     }
 
-    public reset(): void {
+    reset(): void {
         // nothing to do
     }
 }

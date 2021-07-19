@@ -9,7 +9,7 @@ export class Attractor extends ParticlesInteractorBase {
         super(container);
     }
 
-    public interact(p1: IParticle): void {
+    interact(p1: IParticle): void {
         const container = this.container,
             distance = p1.attractDistance ?? container.retina.attractDistance,
             pos1 = p1.getPosition(),
@@ -35,11 +35,11 @@ export class Attractor extends ParticlesInteractorBase {
         }
     }
 
-    public isEnabled(particle: Particle): boolean {
+    isEnabled(particle: Particle): boolean {
         return particle.options.move.attract.enable;
     }
 
-    public reset(): void {
+    reset(): void {
         // do nothing
     }
 }

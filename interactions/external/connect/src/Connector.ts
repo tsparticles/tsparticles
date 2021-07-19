@@ -10,7 +10,7 @@ export class Connector extends ExternalInteractorBase {
         super(container);
     }
 
-    public isEnabled(): boolean {
+    isEnabled(): boolean {
         const container = this.container,
             mouse = container.interactivity.mouse,
             events = container.actualOptions.interactivity.events;
@@ -22,14 +22,14 @@ export class Connector extends ExternalInteractorBase {
         return isInArray(HoverMode.connect, events.onHover.mode);
     }
 
-    public reset(): void {
+    reset(): void {
         // do nothing
     }
 
     /**
      * Connecting particles on hover interactivity
      */
-    public interact(): void {
+    interact(): void {
         const container = this.container,
             options = container.actualOptions;
 

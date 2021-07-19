@@ -255,7 +255,7 @@ export class Bubbler extends ExternalInteractorBase {
 
             const opacityValue = particle.options.opacity.value,
                 opacityMaxValue =
-                    (typeof opacityValue === "number" ? opacityValue : opacityValue.max) * container.retina.pixelRatio,
+                    (typeof opacityValue === "number" ? opacityValue : opacityValue.max),
                 opacityData: IBubblerProcessParam = {
                     bubbleObj: {
                         optValue: options.interactivity.modes.bubble.opacity,
@@ -353,7 +353,7 @@ export class Bubbler extends ExternalInteractorBase {
 
         const opacityValue = particle.options.opacity.value,
             opacityMaxValue =
-                (typeof opacityValue === "number" ? opacityValue : opacityValue.max) * container.retina.pixelRatio,
+                (typeof opacityValue === "number" ? opacityValue : opacityValue.max),
             pOpacity = particle.opacity.value,
             opacity = calculateBubbleValue(pOpacity, modeOpacity, opacityMaxValue, ratio);
 

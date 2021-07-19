@@ -52,15 +52,15 @@ export class Linker extends ParticlesInteractorBase {
         super(container);
     }
 
-    public isEnabled(particle: IParticle): boolean {
+    isEnabled(particle: IParticle): boolean {
         return particle.options.links.enable;
     }
 
-    public reset(): void {
+    reset(): void {
         // do nothing
     }
 
-    public interact(p1: LinkParticle): void {
+    interact(p1: LinkParticle): void {
         p1.links = [];
 
         const pos1 = p1.getPosition();
@@ -84,7 +84,15 @@ export class Linker extends ParticlesInteractorBase {
         for (const p2 of query) {
             const linkOpt2 = p2.options.links;
 
-            if (p1 === p2 || p2.spawning || p2.destroyed || !linkOpt2.enable || linkOpt1.id !== linkOpt2.id) {
+            if (
+            	p1 === p2 ||
+            	!linkOpt2.enable ||
+            	linkOpt1.id !== linkOpt2.id ||
+            	p2.spawning ||
+                p2.destroyed ||
+                p1.links.map((t) => t.destination).indexOf(p2) !== -1 ||
+                p2.links.map((t) => t.destination).indexOf(p1) !== -1
+            ) {
                 continue;
             }
 
@@ -105,15 +113,10 @@ export class Linker extends ParticlesInteractorBase {
 
             this.setColor(p1);
 
-            if (
-                p2.links.map((t) => t.destination).indexOf(p1) === -1 &&
-                p1.links.map((t) => t.destination).indexOf(p2) === -1
-            ) {
                 p1.links.push({
                     destination: p2,
                     opacity: opacityLine,
                 });
-            }
         }
     }
 

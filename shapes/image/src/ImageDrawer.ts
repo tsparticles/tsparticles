@@ -46,34 +46,84 @@ export class ImageDrawer implements IShapeDrawer {
         containerImages?.images.push(image);
     }
 
-    init(container: Container): Promise<void> {
-        const options = container.actualOptions;
-        const shapeOptions = options.particles.shape;
+    async init(container: Container): Promise<void> {
+        await this.loadImagesFromParticlesOptions(container, container.actualOptions.particles);
 
-        return this.initShape(container, shapeOptions);
+        await this.loadImagesFromParticlesOptions(
+            container,
+            container.actualOptions.interactivity.modes.trail.particles
+        );
+
+        for (const manualParticle of container.actualOptions.manualParticles) {
+            await this.loadImagesFromParticlesOptions(container, manualParticle.options);
+        }
+
+        const emitterOptions = container.actualOptions as unknown as IEmitterOptions;
+
+        if (emitterOptions.emitters) {
+            if (emitterOptions.emitters instanceof Array) {
+                for (const emitter of emitterOptions.emitters) {
+                    await this.loadImagesFromParticlesOptions(container, emitter.particles);
+                }
+            } else {
+                await this.loadImagesFromParticlesOptions(container, emitterOptions.emitters.particles);
+            }
+        }
+
+        const interactiveEmitters = emitterOptions.interactivity.modes.emitters;
+
+        if (interactiveEmitters) {
+            if (interactiveEmitters instanceof Array) {
+                for (const emitter of interactiveEmitters) {
+                    await this.loadImagesFromParticlesOptions(container, emitter.particles);
+                }
+            } else {
+                await this.loadImagesFromParticlesOptions(container, interactiveEmitters.particles);
+            }
+        }
     }
 
     destroy(): void {
         this.#images = [];
     }
 
-    private async initShape(container: Container, shapeOptions: Shape): Promise<void> {
-        /*if (!isInArray("image", shapeOptions.type) && !isInArray("images", shapeOptions.type)) {
-            return;
-        }*/
+	private async loadImagesFromParticlesOptions(container: Container, options?: RecursivePartial<IParticles>) {
+        const shapeOptions = options?.shape;
 
-        const imageOptions = shapeOptions.options["image"] ?? shapeOptions.options["images"];
+        if (
+            !shapeOptions?.type ||
+            !shapeOptions.options ||
+            (!isInArray(ShapeType.image, shapeOptions.type) && !isInArray(ShapeType.images, shapeOptions.type))
+        ) {
+            return;
+        }
+
+        const idx = this.images.findIndex((t) => t.id === container.id);
+
+        if (idx >= 0) {
+            this.images.splice(idx, 1);
+        }
+
+        const imageOptions = shapeOptions.options[ShapeType.images] ?? shapeOptions.options[ShapeType.image];
 
         if (imageOptions instanceof Array) {
-            const promises: Promise<void>[] = [];
-
             for (const optionsImage of imageOptions) {
-                promises.push(this.loadImageShape(container, optionsImage as IImageShape));
+                await this.loadImageShape(container, optionsImage as IImageShape);
             }
-
-            await Promise.allSettled(promises);
         } else {
             await this.loadImageShape(container, imageOptions as IImageShape);
+        }
+
+        if (options?.groups) {
+            for (const groupName in options.groups) {
+                const group = options.groups[groupName];
+
+                await this.loadImagesFromParticlesOptions(container, group);
+            }
+        }
+
+        if (options?.destroy?.split?.particles) {
+            await this.loadImagesFromParticlesOptions(container, options?.destroy.split.particles);
         }
     }
 

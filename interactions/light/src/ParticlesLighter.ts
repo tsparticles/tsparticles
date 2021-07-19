@@ -7,7 +7,7 @@ export class ParticlesLighter extends ParticlesInteractorBase {
         super(container);
     }
 
-    public interact(particle: Particle): void {
+    interact(particle: Particle): void {
         const container = this.container,
             options = container.actualOptions;
 
@@ -22,7 +22,7 @@ export class ParticlesLighter extends ParticlesInteractorBase {
         }
     }
 
-    public isEnabled(): boolean {
+    isEnabled(): boolean {
         const container = this.container,
             mouse = container.interactivity.mouse,
             events = container.actualOptions.interactivity.events;
@@ -34,7 +34,7 @@ export class ParticlesLighter extends ParticlesInteractorBase {
         return isInArray(HoverMode.light, events.onHover.mode);
     }
 
-    public reset(): void {
+    reset(): void {
         // do nothing
     }
 }
