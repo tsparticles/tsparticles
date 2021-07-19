@@ -92,6 +92,8 @@ export class Particle implements IParticle {
     moveDrift?: number;
     moveSpeed?: number;
     maxSpeed?: number;
+    orbitRadius?: number;
+    orbitRotation?: number;
     sizeAnimationSpeed?: number;
 
     readonly direction: number;
@@ -105,6 +107,7 @@ export class Particle implements IParticle {
     readonly size: IParticleNumericValueAnimation;
     readonly tilt: IParticleTiltValueAnimation;
     readonly strokeColor?: IParticleHslAnimation;
+    readonly orbitColor?: IHsl;
     readonly velocity: Vector;
     readonly shape: ShapeType | string;
     readonly initialPosition: Vector;
@@ -313,6 +316,15 @@ export class Particle implements IParticle {
             if (!tiltAnimation.sync) {
                 this.tilt.velocity *= Math.random();
             }
+        }
+
+        /* orbit */
+        const orbitOptions = particlesOptions.orbit;
+
+        if (orbitOptions.enable) {
+            this.orbitRotation = getRangeValue(orbitOptions.rotation.value);
+
+            this.orbitColor = colorToHsl(orbitOptions.color);
         }
 
         /* color */

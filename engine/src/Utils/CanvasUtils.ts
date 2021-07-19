@@ -3,7 +3,7 @@ import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
 import type { Container } from "../Core/Container";
 import { getDistance, getDistances } from "./NumberUtils";
 import { colorMix, colorToRgb, getStyleFromHsl, getStyleFromRgb } from "./ColorUtils";
-import { IContainerPlugin, ICoordinates, IDelta, IDimension, IParticle, IRgb } from "../Core/Interfaces";
+import type { IContainerPlugin, ICoordinates, IDelta, IDimension, IHsl, IParticle, IRgb } from "../Core/Interfaces";
 import type { Particle } from "../Core/Particle";
 
 function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
@@ -389,4 +389,35 @@ export function drawParticlePlugin(
         plugin.drawParticle(context, particle, delta);
         context.restore();
     }
+}
+
+export function drawEllipse(
+    context: CanvasRenderingContext2D,
+    particle: IParticle,
+    fillColorValue: IHsl | undefined,
+    radius: number,
+    opacity: number,
+    width: number,
+    rotation: number,
+    start: number,
+    end: number
+): void {
+    const pos = particle.getPosition();
+    context.beginPath();
+
+    if (fillColorValue) {
+        context.strokeStyle = getStyleFromHsl(fillColorValue, opacity);
+    }
+
+    if (width === 0) {
+        return;
+    }
+
+    context.lineWidth = width;
+
+    const rotationRadian = (rotation * Math.PI) / 180;
+
+    context.ellipse(pos.x, pos.y, radius / 2, radius * 2, rotationRadian, start, end);
+
+    context.stroke();
 }

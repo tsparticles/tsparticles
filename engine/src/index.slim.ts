@@ -1,6 +1,7 @@
 import { initPjs } from "./pjs";
 import * as CanvasUtils from "./Utils/CanvasUtils";
 import * as ColorUtils from "./Utils/ColorUtils";
+import * as NumberUtils from "./Utils/NumberUtils";
 import * as Utils from "./Utils/Utils";
 import { Circle, CircleWarp, Constants, Point, Rectangle } from "./Utils";
 import type { IOptions } from "./Options/Interfaces/IOptions";
@@ -21,7 +22,7 @@ const { particlesJS, pJSDom } = initPjs(tsParticles);
 export * from "./Core/Particle/Vector";
 export * from "./Core/Container";
 export * from "./Enums";
-export { CanvasUtils, Circle, CircleWarp, ColorUtils, Constants, Point, Rectangle, Utils, Main, loadSlim };
+export { CanvasUtils, Circle, CircleWarp, ColorUtils, Constants, NumberUtils, Point, Rectangle, Utils, Main, loadSlim };
 export * from "./Types";
 export * from "./Core/Interfaces";
 export * from "./Core/Particle";

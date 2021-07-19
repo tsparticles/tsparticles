@@ -19,6 +19,8 @@ import type { ITilt } from "./Tilt/ITilt";
 import type { IRoll } from "./Roll/IRoll";
 import type { IZIndex } from "./ZIndex/IZIndex";
 import type { ParticlesGroups } from "../../../Types/ParticlesGroups";
+import type { IOrbit } from "./Orbit/IOrbit";
+import type { IRepulse } from "./Repulse/IRepulse";
 
 /**
  * [[include:Options/Particles.md]]
@@ -45,7 +47,9 @@ export interface IParticles {
     move: IMove;
     number: IParticlesNumber;
     opacity: IOpacity;
+    orbit: IOrbit;
     reduceDuplicates: boolean;
+    repulse: IRepulse;
     roll: IRoll;
     rotate: IRotate;
     shadow: IShadow;

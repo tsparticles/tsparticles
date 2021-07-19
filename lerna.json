@@ -5,10 +5,13 @@
     "editor",
     "engine",
     "interactions/*",
+    "interactions/external/*",
+    "interactions/particles/*",
     "plugins/*",
     "presets/*",
     "shapes/*",
     "templates/*",
+    "updaters/*",
     "website"
   ],
   "version": "independent",

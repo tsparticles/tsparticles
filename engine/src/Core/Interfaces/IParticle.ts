@@ -49,6 +49,9 @@ export interface IParticle {
     readonly linksWidth?: number;
     readonly moveSpeed?: number;
     readonly sizeAnimationSpeed?: number;
+    readonly orbitRadius?: number;
+    readonly orbitRotation?: number;
+    readonly orbitColor?: IHsl;
 
     getPosition(): ICoordinates3d;
 

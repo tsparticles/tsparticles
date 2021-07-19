@@ -22,6 +22,8 @@ import { Roll } from "./Roll/Roll";
 import { ZIndex } from "./ZIndex/ZIndex";
 import type { ParticlesGroups } from "../../../Types/ParticlesGroups";
 import { deepExtend } from "../../../Utils";
+import { Orbit } from "./Orbit/Orbit";
+import { Repulse } from "./Repulse/Repulse";
 
 /**
  * [[include:Options/Particles.md]]
@@ -38,7 +40,9 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
     move;
     number;
     opacity;
+    orbit;
     reduceDuplicates;
+    repulse;
     roll;
     rotate;
     shape;
@@ -95,7 +99,9 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
         this.move = new Move();
         this.number = new ParticlesNumber();
         this.opacity = new Opacity();
+        this.orbit = new Orbit();
         this.reduceDuplicates = false;
+        this.repulse = new Repulse();
         this.roll = new Roll();
         this.rotate = new Rotate();
         this.shadow = new Shadow();
@@ -138,11 +144,13 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
         this.move.load(data.move);
         this.number.load(data.number);
         this.opacity.load(data.opacity);
+        this.orbit.load(data.orbit);
 
         if (data.reduceDuplicates !== undefined) {
             this.reduceDuplicates = data.reduceDuplicates;
         }
 
+        this.repulse.load(data.repulse);
         this.roll.load(data.roll);
         this.rotate.load(data.rotate);
         this.shape.load(data.shape);
