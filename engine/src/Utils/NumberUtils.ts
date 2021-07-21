@@ -1,7 +1,6 @@
 import type { IValueWithRandom } from "../Options/Interfaces/IValueWithRandom";
-import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
+import type { ICoordinates } from "../Core/Interfaces";
 import { EasingType, MoveDirection, MoveDirectionAlt } from "../Enums";
-import type { IVelocity } from "../Core/Interfaces/IVelocity";
 import { RangeValue } from "../Types";
 import { Vector } from "../Core/Particle/Vector";
 
@@ -135,13 +134,6 @@ export function getParticleBaseVelocity(direction: number): Vector {
     return baseVelocity;
 }
 
-export function rotateVelocity(velocity: IVelocity, angle: number): IVelocity {
-    return {
-        horizontal: velocity.horizontal * Math.cos(angle) - velocity.vertical * Math.sin(angle),
-        vertical: velocity.horizontal * Math.sin(angle) + velocity.vertical * Math.cos(angle),
-    };
-}
-
 export function collisionVelocity(v1: Vector, v2: Vector, m1: number, m2: number): Vector {
     return Vector.create((v1.x * (m1 - m2)) / (m1 + m2) + (v2.x * 2 * m2) / (m1 + m2), v1.y);
 }
@@ -170,96 +162,5 @@ export function calcEasing(value: number, type: EasingType): number {
             return Math.sqrt(1 - Math.pow(value - 1, 2));
         default:
             return value;
-    }
-}
-
-export class NumberUtils {
-    /**
-     * Clamps a number between a minimum and maximum value
-     * @param num the source number
-     * @param min the minimum value
-     * @param max the maximum value
-     */
-    static clamp(num: number, min: number, max: number): number {
-        return clamp(num, min, max);
-    }
-
-    /**
-     *
-     * @param comp1
-     * @param comp2
-     * @param weight1
-     * @param weight2
-     */
-    static mix(comp1: number, comp2: number, weight1: number, weight2: number): number {
-        return mix(comp1, comp2, weight1, weight2);
-    }
-
-    static randomInRange(r: RangeValue): number {
-        return randomInRange(r);
-    }
-
-    static getRangeValue(value: RangeValue): number {
-        return getRangeValue(value);
-    }
-
-    static getRangeMin(value: RangeValue): number {
-        return getRangeMin(value);
-    }
-
-    static getRangeMax(value: RangeValue): number {
-        return getRangeMax(value);
-    }
-
-    static setRangeValue(source: RangeValue, value?: number): RangeValue {
-        return setRangeValue(source, value);
-    }
-
-    static getValue(options: IValueWithRandom): number {
-        return getValue(options);
-    }
-
-    /**
-     * Gets the distance between two coordinates
-     * @param pointA the first coordinate
-     * @param pointB the second coordinate
-     */
-    static getDistances(pointA: ICoordinates, pointB: ICoordinates): { dx: number; dy: number; distance: number } {
-        return getDistances(pointA, pointB);
-    }
-
-    /**
-     * Gets the distance between two coordinates
-     * @param pointA the first coordinate
-     * @param pointB the second coordinate
-     */
-    static getDistance(pointA: ICoordinates, pointB: ICoordinates): number {
-        return getDistance(pointA, pointB);
-    }
-
-    static getParticleDirectionAngle(
-        direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number
-    ): number {
-        return getParticleDirectionAngle(direction);
-    }
-
-    /**
-     * Get Particle base velocity
-     * @param direction the direction to use for calculating the velocity
-     */
-    static getParticleBaseVelocity(direction: number): Vector {
-        return getParticleBaseVelocity(direction);
-    }
-
-    static rotateVelocity(velocity: IVelocity, angle: number): IVelocity {
-        return rotateVelocity(velocity, angle);
-    }
-
-    static collisionVelocity(v1: Vector, v2: Vector, m1: number, m2: number): Vector {
-        return collisionVelocity(v1, v2, m1, m2);
-    }
-
-    static calcEasing(value: number, type: EasingType): number {
-        return calcEasing(value, type);
     }
 }

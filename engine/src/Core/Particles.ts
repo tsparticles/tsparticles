@@ -1,12 +1,13 @@
 import type { Container } from "./Container";
 import { Particle } from "./Particle";
-import { getRangeValue, Point, QuadTree, randomInRange, Rectangle, setRangeValue } from "../Utils";
+import { getRangeValue, Plugins, Point, QuadTree, randomInRange, Rectangle, setRangeValue } from "../Utils";
 import type { RecursivePartial } from "../Types";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { InteractionManager } from "./InteractionManager";
-import { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";
+import type { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";
 import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
-import { ICoordinates, IDelta, IMouseData, IParticle, IRgb } from "./Interfaces";
+import type { ICoordinates, IDelta, IMouseData, IParticle, IRgb } from "./Interfaces";
+import { Mover } from "./Particle/Mover";
 
 /**
  * Particles manager object
@@ -40,11 +41,14 @@ export class Particles {
     private nextId;
     private linksFreq;
     private trianglesFreq;
+    private readonly mover;
+    private readonly updaters;
 
     constructor(private readonly container: Container) {
         this.nextId = 0;
         this.array = [];
         this.zArray = [];
+        this.mover = new Mover(container);
         this.limit = 0;
         this.needsSort = false;
         this.lastZIndex = 0;
@@ -64,6 +68,8 @@ export class Particles {
             ),
             4
         );
+
+        this.updaters = Plugins.getUpdaters(container);
     }
 
     /* --------- tsParticles functions - particles ----------- */
@@ -184,7 +190,7 @@ export class Particles {
                 }
             }
 
-            particle.move(delta);
+            this.mover.move(particle, delta);
 
             if (particle.destroyed) {
                 particlesToDelete.push(particle);
@@ -202,7 +208,9 @@ export class Particles {
 
         // this loop is required to be done after mouse interactions
         for (const particle of this.container.particles.array) {
-            particle.update(delta);
+            for (const updater of this.updaters) {
+                updater.update(particle, delta);
+            }
 
             if (!particle.destroyed && !particle.spawning) {
                 this.interactionManager.particlesInteract(particle, delta);

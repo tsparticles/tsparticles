@@ -1,18 +1,20 @@
-import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
+import type {
+    IBounds,
+    ICircleBouncer,
+    ICoordinates,
+    IDimension,
+    IParticle,
+    IRangeValue,
+    IRectSideResult,
+} from "../Core/Interfaces";
 import { DivMode } from "../Enums";
 import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICharacterShape";
-import type { IBounds } from "../Core/Interfaces/IBounds";
-import type { IDimension } from "../Core/Interfaces/IDimension";
-import type { IImage } from "../Core/Interfaces/IImage";
 import type { SingleOrMultiple } from "../Types";
 import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
 import { OutModeDirection } from "../Enums";
-import { IParticle } from "../Core/Interfaces/IParticle";
-import { ISideData } from "../Core/Interfaces/ISideData";
-import { IRectSideResult } from "../Core/Interfaces/IRectSideResult";
-import { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer";
 import { collisionVelocity, getValue } from "./NumberUtils";
+import { Vector } from "../Core/Particle/Vector";
 
 type CSSOMString = string;
 type FontFaceLoadStatus = "unloaded" | "loading" | "loaded" | "error";
@@ -62,10 +64,10 @@ declare global {
 }
 
 function rectSideBounce(
-    pSide: ISideData,
-    pOtherSide: ISideData,
-    rectSide: ISideData,
-    rectOtherSide: ISideData,
+    pSide: IRangeValue,
+    pOtherSide: IRangeValue,
+    rectSide: IRangeValue,
+    rectOtherSide: IRangeValue,
     velocity: number,
     factor: number
 ): IRectSideResult {
@@ -204,61 +206,6 @@ export function calculateBounds(point: ICoordinates, radius: number): IBounds {
     };
 }
 
-export function loadImage(source: string): Promise<IImage | undefined> {
-    return new Promise(
-        (resolve: (value?: IImage | PromiseLike<IImage> | undefined) => void, reject: (reason?: string) => void) => {
-            if (!source) {
-                reject("Error tsParticles - No image.src");
-                return;
-            }
-
-            const image: IImage = {
-                source: source,
-                type: source.substr(source.length - 3),
-            };
-
-            const img = new Image();
-
-            img.addEventListener("load", () => {
-                image.element = img;
-
-                resolve(image);
-            });
-
-            img.addEventListener("error", () => {
-                reject(`Error tsParticles - loading image: ${source}`);
-            });
-
-            img.src = source;
-        }
-    );
-}
-
-export async function downloadSvgImage(source: string): Promise<IImage | undefined> {
-    if (!source) {
-        throw new Error("Error tsParticles - No image.src");
-    }
-
-    const image: IImage = {
-        source: source,
-        type: source.substr(source.length - 3),
-    };
-
-    if (image.type !== "svg") {
-        return loadImage(source);
-    }
-
-    const response = await fetch(image.source);
-
-    if (!response.ok) {
-        throw new Error("Error tsParticles - Image not found");
-    }
-
-    image.svgData = await response.text();
-
-    return image;
-}
-
 export function deepExtend(destination: unknown, ...sources: unknown[]): unknown {
     for (const source of sources) {
         if (source === undefined || source === null) {
@@ -356,10 +303,7 @@ export function circleBounceDataFromParticle(p: IParticle): ICircleBouncer {
         radius: p.getRadius(),
         mass: p.getMass(),
         velocity: p.velocity,
-        factor: {
-            horizontal: getValue(p.options.bounce.horizontal),
-            vertical: getValue(p.options.bounce.vertical),
-        },
+        factor: Vector.create(getValue(p.options.bounce.horizontal), getValue(p.options.bounce.vertical)),
     };
 }
 
@@ -395,11 +339,11 @@ export function circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
         const vFinal2 = v2.rotate(-angle);
 
         // Swap particle velocities for realistic bounce effect
-        p1.velocity.x = vFinal1.x * p1.factor.horizontal;
-        p1.velocity.y = vFinal1.y * p1.factor.vertical;
+        p1.velocity.x = vFinal1.x * p1.factor.x;
+        p1.velocity.y = vFinal1.y * p1.factor.y;
 
-        p2.velocity.x = vFinal2.x * p2.factor.horizontal;
-        p2.velocity.y = vFinal2.y * p2.factor.vertical;
+        p2.velocity.x = vFinal2.x * p2.factor.x;
+        p2.velocity.y = vFinal2.y * p2.factor.y;
     }
 }
 
@@ -468,104 +412,5 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
         if (resV.position !== undefined) {
             particle.position.y = resV.position;
         }
-    }
-}
-
-/**
- * @category Utils
- */
-export class Utils {
-    static isSsr(): boolean {
-        return isSsr();
-    }
-
-    static get animate(): (callback: FrameRequestCallback) => number {
-        return animate();
-    }
-
-    static get cancelAnimation(): (handle: number) => void {
-        return cancelAnimation();
-    }
-
-    /**
-     * Check if a value is equal to the destination, if same type, or is in the provided array
-     * @param value the value to check
-     * @param array the data array or single value
-     */
-    static isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
-        return isInArray(value, array);
-    }
-
-    static async loadFont(character: ICharacterShape): Promise<void> {
-        return loadFont(character);
-    }
-
-    static arrayRandomIndex<T>(array: T[]): number {
-        return arrayRandomIndex(array);
-    }
-
-    static itemFromArray<T>(array: T[], index?: number, useIndex = true): T {
-        return itemFromArray(array, index, useIndex);
-    }
-
-    static isPointInside(
-        point: ICoordinates,
-        size: IDimension,
-        radius?: number,
-        direction?: OutModeDirection
-    ): boolean {
-        return isPointInside(point, size, radius, direction);
-    }
-
-    static areBoundsInside(bounds: IBounds, size: IDimension, direction?: OutModeDirection): boolean {
-        return areBoundsInside(bounds, size, direction);
-    }
-
-    static calculateBounds(point: ICoordinates, radius: number): IBounds {
-        return calculateBounds(point, radius);
-    }
-
-    static loadImage(source: string): Promise<IImage | undefined> {
-        return loadImage(source);
-    }
-
-    static async downloadSvgImage(source: string): Promise<IImage | undefined> {
-        return downloadSvgImage(source);
-    }
-
-    static deepExtend(destination: unknown, ...sources: unknown[]): unknown {
-        return deepExtend(destination, sources);
-    }
-
-    static isDivModeEnabled(mode: DivMode, divs: SingleOrMultiple<DivEvent>): boolean {
-        return isDivModeEnabled(mode, divs);
-    }
-
-    static divModeExecute(
-        mode: DivMode,
-        divs: SingleOrMultiple<DivEvent>,
-        callback: (id: string, div: DivEvent) => void
-    ): void {
-        divModeExecute(mode, divs, callback);
-    }
-
-    static singleDivModeExecute(div: DivEvent, callback: (selector: string, div: DivEvent) => void): void {
-        singleDivModeExecute(div, callback);
-    }
-
-    static divMode<T extends IModeDiv>(divs?: SingleOrMultiple<T>, element?: HTMLElement): T | undefined {
-        return divMode(divs, element);
-    }
-
-    static circleBounceDataFromParticle(p: IParticle): ICircleBouncer {
-        return circleBounceDataFromParticle(p);
-    }
-
-    static circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
-        circleBounce(p1, p2);
-    }
-
-    static rectBounce(particle: IParticle, divBounds: IBounds): void {
-        rectBounce(particle, divBounds);
     }
 }

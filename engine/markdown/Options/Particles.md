@@ -1,20 +1,115 @@
 # Particles
 
-| key                | option type | example          | notes                                                                                                                                                                                                                        |
-| ------------------ | ----------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `bounce`           | `object`    |                  | See Particles Bounce documentation {@link IBounce | here}                                                                                                                                                                    |
-| `collisions`       | `object`    |                  | See Particles Collisions documentation {@link ICollisions | here}                                                                                                                                                            |
-| `color`            | `object`    |                  | See Particles Color documentation {@link IAnimatableColor | here}                                                                                                                                                            |
-| `destroy`          | `object`    |                  | See Particles Destroy documentation {@link IDestroy | here }                                                                                                                                                                 | 
-| `life`             | `object`    |                  | See Particles Life documentation {@link ILife | here}                                                                                                                                                                        |
-| `links`            | `object`    |                  | See Particles Links documentation {@link ILinks | here}                                                                                                                                                                      |
-| `move`             | `object`    |                  | See Particles Move documentation {@link IMove | here}                                                                                                                                                                        |
-| `number`           | `object`    |                  | See Particles Number documentation {@link IParticlesNumber | here}                                                                                                                                                           |
-| `opacity`          | `object`    |                  | See Particles Opacity documentation {@link IOpacity | here}                                                                                                                                                                  |
-| `reduceDuplicates` | `boolean`   | `true` / `false` | Reduces particles duplicates, picking particles configuration sequentially                                                                                                                                                   |
-| `rotate`           | `object`    |                  | See Particles Rotate documentation {@link IRotate | here}                                                                                                                                                                    |
-| `shadow`           | `object`    |                  | See Shape documentation {@link IShadow | here}                                                                                                                                                                               |
-| `shape`            | `object`    |                  | See Shape documentation {@link IShape | here}                                                                                                                                                                                |
-| `size`             | `object`    |                  | See Particles Size documentation {@link ISize | here}                                                                                                                                                                        |
-| `stroke`           | `object`    |                  | See Particles Stroke documentation {@link IStroke | here}                                                                                                                                                                    |
-| `twinkle`          | `object`    |                  | See Particles Twinkle documentation {@link ITwinkle | here}                                                                                                                                                                  |
+- [bounce](#bounce)
+- [collisions](#collisions)
+- [color](#color)
+- [destroy](#destroy)
+- [groups](#groups)
+- [life](#life)
+- [links](#links)
+- [move](#move)
+- [number](#number)
+- [opacity](#opacity)
+- [orbit](#orbit)
+- [reduceDuplicates](#reduce-duplicates)
+- [repulse](#repulse)
+- [roll](#roll)
+- [rotate](#rotate)
+- [shadow](#shadow)
+- [shape](#shape)
+- [size](#size)
+- [stroke](#stroke)
+- [tilt](#tilt)
+- [twinkle](#twinkle)
+- [wobble](#wobble)
+- [zIndex](#z-index)
+
+## Bounce
+
+See Particles Bounce documentation {@link IBounce | here}
+
+## Collisions
+
+See Particles Collisions documentation {@link ICollisions | here}
+
+## Color
+
+See Particles Color documentation {@link IAnimatableColor | here}
+
+## Destroy
+
+See Particles Destroy documentation {@link IDestroy | here}
+
+## Groups
+
+## Life
+
+See Particles Life documentation {@link ILife | here}
+
+## Links
+
+See Particles Links documentation {@link ILinks | here}
+
+## Move
+
+See Particles Move documentation {@link IMove | here}
+
+## Number
+
+See Particles Number documentation {@link IParticlesNumber | here}
+
+## Opacity
+
+See Particles Opacity documentation {@link IOpacity | here}
+
+## Orbit
+
+See Particles Orbit documentation {@link IOrbit | here}
+
+## Reduce Duplicates
+
+If set to `true` it reduces particles duplicates, picking particles configuration sequentially
+
+## Repulse
+
+See Particles Repulse documentation {@link IRepulse | here}
+
+## Roll
+
+See Particles Roll documentation {@link IRoll | here}
+
+## Rotate
+
+See Particles Rotate documentation {@link IRotate | here}
+
+## Shadow
+
+See Shadow documentation {@link IShadow | here}
+
+## Shape
+
+See Shape documentation {@link IShape | here}
+
+## Size
+
+See Particles Size documentation {@link ISize | here}
+
+## Stroke
+
+See Particles Stroke documentation {@link IStroke | here}
+
+## Tilt
+
+See Particles Tilt documentation {@link ITilt | here}
+
+## Twinkle
+
+See Particles Twinkle documentation {@link ITwinkle | here}
+
+## Wobble
+
+See Particles Wobble documentation {@link IWobble | here}
+
+## Z Index
+
+See Particles Z Index documentation {@link IZIndex | here}

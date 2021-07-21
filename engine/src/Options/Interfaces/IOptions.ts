@@ -2,7 +2,7 @@ import type { IInteractivity } from "./Interactivity/IInteractivity";
 import type { IParticles } from "./Particles/IParticles";
 import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask";
 import type { IBackground } from "./Background/IBackground";
-import type { SingleOrMultiple } from "../../Types";
+import type { RangeValue, SingleOrMultiple } from "../../Types";
 import type { ITheme } from "./Theme/ITheme";
 import type { IFullScreen } from "./FullScreen/IFullScreen";
 import type { IMotion } from "./Motion/IMotion";
@@ -40,6 +40,11 @@ export interface IOptions {
      * Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.
      */
     detectRetina: boolean;
+
+    /**
+     * The Particles effect duration in seconds, then the container will be destroyed
+     */
+    duration: RangeValue;
 
     /**
      * The Frame Per Second limit applied to all particles animations.

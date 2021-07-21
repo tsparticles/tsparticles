@@ -23,7 +23,11 @@
         "#FF0061",
         "#E1FF00",
         "#00FF9E"
-      ]
+      ],
+      "animation": {
+        "enable": true,
+        "speed": 30
+      }
     },
     "move": {
       "decay": 0.1,
@@ -114,12 +118,16 @@
       }
     },
     "size": {
-      "value": 5
+      "value": 3
     },
     "roll": {
       "darken": {
         "enable": true,
-        "value": 25
+        "value": 30
+      },
+      "enlighten": {
+        "enable": true,
+        "value": 30
       },
       "enable": true,
       "speed": {

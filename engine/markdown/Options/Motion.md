@@ -1,7 +1,21 @@
 # Motion
 
-| key             | option type    | example          | notes                                                                       |
-| --------------- | -------------- | ---------------- | --------------------------------------------------------------------------- |
-| `disable`       | `boolean`      | `true` / `false` | Disable animations for who uses `prefer-reduced-motion`                     |
-| `reduce.factor` | `number`       |                  | This value will be used inverse, so a higher value will reduce motion a lot |
-| `reduce.value`  | `boolean`      | `true` / `false` | Reduces animations for who uses `prefer-reduced-motion`                     |
+- [disable](#disable)
+- [reduce](#reduce)
+
+## Disable
+
+If set to `true`, disables animations for users with `prefer-reduced-motion` enabled
+
+## Reduce
+
+- [factor](#factor)
+- [value](#value)
+
+### Factor
+
+This value will be used inverse, so a higher value will reduce motion a lot
+
+### Value
+
+If set to `true`, reduces animations for users with `prefer-reduced-motion` enabled

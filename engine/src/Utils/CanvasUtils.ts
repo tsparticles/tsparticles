@@ -1,15 +1,10 @@
-import type { IDimension } from "../Core/Interfaces/IDimension";
-import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import type { IRgb } from "../Core/Interfaces/Colors";
 import type { ILinksShadow } from "../Options/Interfaces/Particles/Links/ILinksShadow";
-import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
 import type { Container } from "../Core/Container";
-import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
-import type { IDelta } from "../Core/Interfaces/IDelta";
-import { Particle } from "../Core/Particle";
 import { getDistance, getDistances } from "./NumberUtils";
 import { colorMix, colorToRgb, getStyleFromHsl, getStyleFromRgb } from "./ColorUtils";
+import type { IContainerPlugin, ICoordinates, IDelta, IDimension, IHsl, IParticle, IRgb } from "../Core/Interfaces";
+import type { Particle } from "../Core/Particle";
 
 function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
     context.beginPath();
@@ -225,106 +220,6 @@ export function drawGrabLine(
     context.restore();
 }
 
-export function drawLight(container: Container, context: CanvasRenderingContext2D, mousePos: ICoordinates): void {
-    const lightOptions = container.actualOptions.interactivity.modes.light.area;
-
-    context.beginPath();
-    context.arc(mousePos.x, mousePos.y, lightOptions.radius, 0, 2 * Math.PI);
-
-    const gradientAmbientLight = context.createRadialGradient(
-        mousePos.x,
-        mousePos.y,
-        0,
-        mousePos.x,
-        mousePos.y,
-        lightOptions.radius
-    );
-
-    const gradient = lightOptions.gradient;
-    const gradientRgb = {
-        start: colorToRgb(gradient.start),
-        stop: colorToRgb(gradient.stop),
-    };
-
-    if (!gradientRgb.start || !gradientRgb.stop) {
-        return;
-    }
-
-    gradientAmbientLight.addColorStop(0, getStyleFromRgb(gradientRgb.start));
-    gradientAmbientLight.addColorStop(1, getStyleFromRgb(gradientRgb.stop));
-    context.fillStyle = gradientAmbientLight;
-    context.fill();
-}
-
-export function drawParticleShadow(
-    container: Container,
-    context: CanvasRenderingContext2D,
-    particle: Particle,
-    mousePos: ICoordinates
-): void {
-    const pos = particle.getPosition();
-    const shadowOptions = container.actualOptions.interactivity.modes.light.shadow;
-
-    context.save();
-
-    const radius = particle.getRadius();
-    const sides = particle.sides;
-    const full = (Math.PI * 2) / sides;
-    const angle = -particle.rotate.value + Math.PI / 4;
-    const factor = 1; //Math.sqrt(2);
-    const dots = [];
-
-    for (let i = 0; i < sides; i++) {
-        dots.push({
-            x: pos.x + radius * Math.sin(angle + full * i) * factor,
-            y: pos.y + radius * Math.cos(angle + full * i) * factor,
-        });
-    }
-
-    const points = [];
-
-    const shadowLength = shadowOptions.length;
-
-    for (const dot of dots) {
-        const dotAngle = Math.atan2(mousePos.y - dot.y, mousePos.x - dot.x);
-        const endX = dot.x + shadowLength * Math.sin(-dotAngle - Math.PI / 2);
-        const endY = dot.y + shadowLength * Math.cos(-dotAngle - Math.PI / 2);
-
-        points.push({
-            endX: endX,
-            endY: endY,
-            startX: dot.x,
-            startY: dot.y,
-        });
-    }
-
-    const shadowRgb = colorToRgb(shadowOptions.color);
-
-    if (!shadowRgb) {
-        return;
-    }
-
-    const shadowColor = getStyleFromRgb(shadowRgb);
-
-    for (let i = points.length - 1; i >= 0; i--) {
-        const n = i == points.length - 1 ? 0 : i + 1;
-
-        context.beginPath();
-
-        context.moveTo(points[i].startX, points[i].startY);
-
-        context.lineTo(points[n].startX, points[n].startY);
-        context.lineTo(points[n].endX, points[n].endY);
-        context.lineTo(points[i].endX, points[i].endY);
-
-        context.fillStyle = shadowColor;
-
-        context.fill();
-    }
-
-    context.restore();
-}
-
 export function drawParticle(
     container: Container,
     context: CanvasRenderingContext2D,
@@ -483,155 +378,46 @@ export function drawPlugin(context: CanvasRenderingContext2D, plugin: IContainer
     context.restore();
 }
 
-/**
- * @category Utils
- */
-export class CanvasUtils {
-    static paintBase(context: CanvasRenderingContext2D, dimension: IDimension, baseColor?: string): void {
-        paintBase(context, dimension, baseColor);
+export function drawParticlePlugin(
+    context: CanvasRenderingContext2D,
+    plugin: IContainerPlugin,
+    particle: Particle,
+    delta: IDelta
+): void {
+    if (plugin.drawParticle !== undefined) {
+        context.save();
+        plugin.drawParticle(context, particle, delta);
+        context.restore();
+    }
+}
+
+export function drawEllipse(
+    context: CanvasRenderingContext2D,
+    particle: IParticle,
+    fillColorValue: IHsl | undefined,
+    radius: number,
+    opacity: number,
+    width: number,
+    rotation: number,
+    start: number,
+    end: number
+): void {
+    const pos = particle.getPosition();
+    context.beginPath();
+
+    if (fillColorValue) {
+        context.strokeStyle = getStyleFromHsl(fillColorValue, opacity);
     }
 
-    static clear(context: CanvasRenderingContext2D, dimension: IDimension): void {
-        clear(context, dimension);
+    if (width === 0) {
+        return;
     }
 
-    static drawLinkLine(
-        context: CanvasRenderingContext2D,
-        width: number,
-        begin: ICoordinates,
-        end: ICoordinates,
-        maxDistance: number,
-        canvasSize: IDimension,
-        warp: boolean,
-        backgroundMask: boolean,
-        composite: string,
-        colorLine: IRgb,
-        opacity: number,
-        shadow: ILinksShadow
-    ): void {
-        drawLinkLine(
-            context,
-            width,
-            begin,
-            end,
-            maxDistance,
-            canvasSize,
-            warp,
-            backgroundMask,
-            composite,
-            colorLine,
-            opacity,
-            shadow
-        );
-    }
+    context.lineWidth = width;
 
-    static drawLinkTriangle(
-        context: CanvasRenderingContext2D,
-        pos1: ICoordinates,
-        pos2: ICoordinates,
-        pos3: ICoordinates,
-        backgroundMask: boolean,
-        composite: string,
-        colorTriangle: IRgb,
-        opacityTriangle: number
-    ): void {
-        drawLinkTriangle(context, pos1, pos2, pos3, backgroundMask, composite, colorTriangle, opacityTriangle);
-    }
+    const rotationRadian = (rotation * Math.PI) / 180;
 
-    static drawConnectLine(
-        context: CanvasRenderingContext2D,
-        width: number,
-        lineStyle: CanvasGradient,
-        begin: ICoordinates,
-        end: ICoordinates
-    ): void {
-        drawConnectLine(context, width, lineStyle, begin, end);
-    }
+    context.ellipse(pos.x, pos.y, radius / 2, radius * 2, rotationRadian, start, end);
 
-    static gradient(
-        context: CanvasRenderingContext2D,
-        p1: IParticle,
-        p2: IParticle,
-        opacity: number
-    ): CanvasGradient | undefined {
-        return gradient(context, p1, p2, opacity);
-    }
-
-    static drawGrabLine(
-        context: CanvasRenderingContext2D,
-        width: number,
-        begin: ICoordinates,
-        end: ICoordinates,
-        colorLine: IRgb,
-        opacity: number
-    ): void {
-        drawGrabLine(context, width, begin, end, colorLine, opacity);
-    }
-
-    static drawLight(container: Container, context: CanvasRenderingContext2D, mousePos: ICoordinates): void {
-        drawLight(container, context, mousePos);
-    }
-
-    static drawParticleShadow(
-        container: Container,
-        context: CanvasRenderingContext2D,
-        particle: Particle,
-        mousePos: ICoordinates
-    ): void {
-        drawParticleShadow(container, context, particle, mousePos);
-    }
-
-    static drawParticle(
-        container: Container,
-        context: CanvasRenderingContext2D,
-        particle: IParticle,
-        delta: IDelta,
-        fillColorValue: string | undefined,
-        strokeColorValue: string | undefined,
-        backgroundMask: boolean,
-        composite: string,
-        radius: number,
-        opacity: number,
-        shadow: IShadow
-    ): void {
-        drawParticle(
-            container,
-            context,
-            particle,
-            delta,
-            fillColorValue,
-            strokeColorValue,
-            backgroundMask,
-            composite,
-            radius,
-            opacity,
-            shadow
-        );
-    }
-
-    static drawShape(
-        container: Container,
-        context: CanvasRenderingContext2D,
-        particle: IParticle,
-        radius: number,
-        opacity: number,
-        delta: IDelta
-    ): void {
-        drawShape(container, context, particle, radius, opacity, delta);
-    }
-
-    static drawShapeAfterEffect(
-        container: Container,
-        context: CanvasRenderingContext2D,
-        particle: IParticle,
-        radius: number,
-        opacity: number,
-        delta: IDelta
-    ): void {
-        drawShapeAfterEffect(container, context, particle, radius, opacity, delta);
-    }
-
-    static drawPlugin(context: CanvasRenderingContext2D, plugin: IContainerPlugin, delta: IDelta): void {
-        drawPlugin(context, plugin, delta);
-    }
+    context.stroke();
 }

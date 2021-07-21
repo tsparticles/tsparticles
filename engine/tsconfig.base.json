@@ -2,6 +2,12 @@
   "compilerOptions": {
     "target": "es2015",
     "lib": [
+      "ESNext",
+      "ES2020",
+      "ES2019",
+      "ES2018",
+      "ES2017",
+      "ES2016",
       "ES2015",
       "DOM"
     ],

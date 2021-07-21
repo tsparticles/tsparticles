@@ -4,7 +4,8 @@ import { Container } from "../src/Core/Container";
 import { IParticle } from "../src/Core/Interfaces/IParticle";
 import { Particle } from "../src/Core/Particle";
 import { MoveDirection } from "../src/Enums";
-import { NumberUtils, Utils } from "../src/Utils";
+import * as NumberUtils from "../src/Utils/NumberUtils";
+import * as Utils from "../src/Utils/Utils";
 import { ICoordinates } from "../src/Core/Interfaces/ICoordinates";
 import { Vector } from "../src/Core/Particle/Vector";
 

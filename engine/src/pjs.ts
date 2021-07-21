@@ -4,7 +4,7 @@
  */
 import type { IOptions } from "./Options/Interfaces/IOptions";
 import type { Container } from "./Core/Container";
-import type { MainSlim } from "./main.slim";
+import type { Main } from "./main";
 import type { Particle } from "./Core/Particle";
 import type { RecursivePartial } from "./Types";
 
@@ -39,7 +39,7 @@ export interface IParticlesJS {
     setOnClickHandler(callback: EventListenerOrEventListenerObject): void;
 }
 
-const initPjs = (main: MainSlim): { particlesJS: IParticlesJS; pJSDom: Container[] } => {
+const initPjs = (main: Main): { particlesJS: IParticlesJS; pJSDom: Container[] } => {
     /**
      * Loads the provided options to create a [[Container]] object.
      * @deprecated this method is obsolete, please use the new tsParticles.load
