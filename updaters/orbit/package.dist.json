@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-updater-orbit",
-  "version": "1.31.1",
+  "version": "1.32.0",
   "description": "tsParticles particles orbit updater",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -45,6 +45,6 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles": "^1.31.1"
+    "tsparticles": "^1.32.0"
   }
 }
