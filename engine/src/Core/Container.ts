@@ -9,7 +9,7 @@ import type { IOptions } from "../Options/Interfaces/IOptions";
 import { FrameManager } from "./FrameManager";
 import type { RecursivePartial } from "../Types";
 import { Options } from "../Options/Classes/Options";
-import { animate, cancelAnimation, EventListeners, Plugins } from "../Utils";
+import { animate, cancelAnimation, EventListeners, getRangeValue, Plugins } from "../Utils";
 import { Particle } from "./Particle";
 import { Vector } from "./Particle/Vector";
 import {
@@ -41,8 +41,10 @@ export class Container {
     destroyed;
 
     density;
+    duration;
     pageHidden;
     lastFrameTime;
+    lifeTime;
     fpsLimit;
     interactivity: IContainerInteractivity;
     bubble: IBubble;
@@ -107,6 +109,8 @@ export class Container {
      */
     constructor(readonly id: string, sourceOptions?: RecursivePartial<IOptions>, ...presets: string[]) {
         this.fpsLimit = 60;
+        this.duration = 0;
+        this.lifeTime = 0;
         this.firstStart = true;
         this.started = false;
         this.destroyed = false;
@@ -546,6 +550,8 @@ export class Container {
         this.canvas.initBackground();
         this.canvas.resize();
 
+        this.duration = getRangeValue(this.actualOptions.duration);
+        this.lifeTime = 0;
         this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 60;
 
         const availablePlugins = Plugins.getAvailablePlugins(this);

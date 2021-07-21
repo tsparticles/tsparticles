@@ -2,11 +2,11 @@ import { Vector } from "./Vector";
 import type { ICoordinates3d } from "../Interfaces";
 
 export class Vector3d extends Vector implements ICoordinates3d {
-    static clone(source: Vector3d) {
+    static clone(source: Vector3d): Vector3d {
         return Vector3d.create(source.x, source.y, source.z);
     }
 
-    static create(x: number | ICoordinates3d, y?: number, z?: number) {
+    static create(x: number | ICoordinates3d, y?: number, z?: number): Vector3d {
         return new Vector3d(x, y, z);
     }
 

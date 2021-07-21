@@ -387,3 +387,5 @@ website/js/demo.min.js
 
 demo/vanilla_new/js/tsparticles.min.js
 demo/vanilla_new/js/tsparticles.preset.links.min.js
+/demo/vanilla_new/js/tsparticles.interaction.light.min.js
+/demo/vanilla_new/js/tsparticles.plugin.infection.min.js

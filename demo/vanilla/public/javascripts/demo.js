@@ -340,11 +340,14 @@ canvas {
                     .replace(/"/g, "&quot;")
                     .replace(/'/g, "&apos;");
 
-                form.submit()
+                form.submit();
             }
         });
 
         initSidebar();
         initStats();
+
+        loadInfectionPlugin(tsParticles);
+        loadLightInteraction(tsParticles);
     });
 })();

@@ -294,14 +294,13 @@
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"
         integrity="sha256-ur/YlHMU96MxHEsy3fHGszZHas7NzH4RQlD4tDVvFhw=" crossorigin="anonymous"></script>
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.31.1/tsparticles.min.js"
-        integrity="sha256-R5u1Aodw+TG6fAqHYIMbDXVmWGMy7AP5A04Pzn+Rf+g=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-links@1.16.1/tsparticles.preset.links.min.js"
-        integrity="sha256-SoZK8ZwlWzz0Z8Cnh8I5dCqYkF/USe3KVuWKSHKMsCw=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.32.0/tsparticles.min.js" integrity="sha256-UNxa5MsT8XOmux6zRZ65c7J0KThmtseYJbtoPuqn5X4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-infection@1.32.0/tsparticles.plugin.infection.min.js" integrity="sha256-c/k3Sbqhb6pbyvy5t2WV4v636AEFo+7/mVBkR2r5yd4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-light@1.32.0/tsparticles.interaction.light.min.js" integrity="sha256-5rPMQLGNDyBCQjKPw+v8pWPFwKQULLcjZXviTkfeCOM=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-links@1.17.0/tsparticles.preset.links.min.js" integrity="sha256-WoaCuYmL0dV0PamCTSgfwMs/wlW3+VxSSZrAwpeK72M=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/object-gui@1.1.1/dist/js/object-gui.min.js"
         integrity="sha256-M0fXnWoixeosDqA5oLRKEpnTFLQWqUG3xlHN2GmbpGw=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-editor@1.31.1/dist/tsparticles.editor.min.js"
-        integrity="sha256-VxV65bJMq9r+VAMlMztmv18TQFWg1kabqGjg3oRpUsA=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-editor@1.32.0/dist/tsparticles.editor.min.js" integrity="sha256-eNb+sA0pUi0y5r73FZegQoIM4L50/JUgk5NmAd8KnlY=" crossorigin="anonymous"></script>
 <script type="text/javascript">
     hljs.initHighlightingOnLoad();
 </script>
@@ -326,6 +325,9 @@
         src="https://connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v10.0&appId=130672560341873&autoLogAppEvents=1"
         nonce="jC6Fjy00"></script>
 <script type="text/javascript">
+    loadInfectionPlugin(tsParticles);
+    loadLightInteraction(tsParticles);
+
     tsParticles.loadJSON("tsparticles", "/configs/index.json").then((container) => {
         const editor = showEditor(container);
         const configsUrl = "/configs";

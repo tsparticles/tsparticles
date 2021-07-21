@@ -1,5 +1,4 @@
 import type { Container } from "../../Core/Container";
-import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
 import { colorToHsl, deepExtend, getRangeValue, isPointInside, randomInRange } from "../../Utils";
 import { SizeMode } from "../../Enums";
@@ -8,10 +7,9 @@ import type { Emitters } from "./Emitters";
 import type { RecursivePartial } from "../../Types";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
 import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
-import { IDelta } from "../../Core/Interfaces/IDelta";
-import { IHsl } from "../../Core/Interfaces/Colors";
-import { IColorAnimation } from "../../Options/Interfaces/IColorAnimation";
-import { IHslAnimation } from "../../Options/Interfaces/IHslAnimation";
+import type { ICoordinates, IDelta, IHsl } from "../../Core/Interfaces";
+import type { IColorAnimation } from "../../Options/Interfaces/IColorAnimation";
+import type { IHslAnimation } from "../../Options/Interfaces/IHslAnimation";
 
 function randomCoordinate(position: number, offset: number): number {
     return position + offset * (Math.random() - 0.5);

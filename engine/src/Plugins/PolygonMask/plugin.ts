@@ -7,7 +7,7 @@ import type { IPolygonMaskOptions } from "./Options/Interfaces/IPolygonMaskOptio
 import { Options } from "../../Options/Classes/Options";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
 import { Type } from "./Enums";
-import { MainSlim } from "../../main.slim";
+import type { Main } from "../../main";
 
 /**
  * @category Polygon Mask Plugin
@@ -43,7 +43,7 @@ class Plugin implements IPlugin {
     }
 }
 
-export function loadPolygonMaskPlugin(tsParticles: MainSlim): void {
+export function loadPolygonMaskPlugin(tsParticles: Main): void {
     const plugin = new Plugin();
 
     tsParticles.addPlugin(plugin);

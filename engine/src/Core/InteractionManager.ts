@@ -1,20 +1,8 @@
 import type { Container } from "./Container";
-import { Particle } from "./Particle";
+import type { Particle } from "./Particle";
+import type { IDelta, IExternalInteractor, IParticlesInteractor } from "./Interfaces";
 import { Plugins } from "../Utils";
-import { IDelta, IExternalInteractor, IParticlesInteractor } from "./Interfaces";
 import { InteractorType } from "../Enums";
-import { Bouncer } from "../Interactions/External/Bouncer";
-import { Bubbler } from "../Interactions/External/Bubbler";
-import { Connector } from "../Interactions/External/Connector";
-import { Grabber } from "../Interactions/External/Grabber";
-import { Lighter as MouseLighter } from "../Interactions/External/Lighter";
-import { Attractor as MouseAttractor } from "../Interactions/External/Attractor";
-import { Repulser } from "../Interactions/External/Repulser";
-import { TrailMaker } from "../Interactions/External/TrailMaker";
-import { Attractor as ParticlesAttractor } from "../Interactions/Particles/Attractor";
-import { Lighter as ParticlesLighter } from "../Interactions/Particles/Lighter";
-import { Collider } from "../Interactions/Particles/Collider";
-import { Linker } from "../Interactions/Particles/Linker";
 
 /**
  * @category Core
@@ -26,23 +14,8 @@ export class InteractionManager {
     constructor(private readonly container: Container) {
         const interactors = Plugins.getInteractors(container);
 
-        this.externalInteractors = [
-            new Bouncer(container),
-            new Bubbler(container),
-            new Connector(container),
-            new Grabber(container),
-            new MouseLighter(container),
-            new MouseAttractor(container),
-            new Repulser(container),
-            new TrailMaker(container),
-        ];
-
-        this.particleInteractors = [
-            new ParticlesAttractor(container),
-            new ParticlesLighter(container),
-            new Collider(container),
-            new Linker(container),
-        ];
+        this.externalInteractors = [];
+        this.particleInteractors = [];
 
         for (const interactor of interactors) {
             switch (interactor.type) {
