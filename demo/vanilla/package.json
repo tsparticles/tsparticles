@@ -44,6 +44,7 @@
     "three": "^0.129.0",
     "tsparticles": "^1.32.0",
     "tsparticles-interaction-light": "^1.32.0",
+    "tsparticles-interaction-particles-repulse": "^1.32.0",
     "tsparticles-plugin-infection": "^1.32.0",
     "tsparticles-preset-big-circles": "^1.17.0",
     "tsparticles-preset-bubbles": "^1.17.0",
