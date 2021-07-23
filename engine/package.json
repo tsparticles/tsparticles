@@ -91,7 +91,7 @@
   "devDependencies": {
     "@babel/core": "^7.14.6",
     "@types/chai": "^4.2.19",
-    "@types/mocha": "^8.2.2",
+    "@types/mocha": "^9.0.0",
     "@types/node": "^16.0.0",
     "@types/webpack-env": "^1.16.0",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
