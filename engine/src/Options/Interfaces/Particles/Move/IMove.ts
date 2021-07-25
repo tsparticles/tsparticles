@@ -7,6 +7,7 @@ import type { IMoveGravity } from "./IMoveGravity";
 import type { IOutModes } from "./IOutModes";
 import type { RangeValue } from "../../../../Types";
 import { IDistance } from "../../../../Core/Interfaces";
+import { ISpin } from "./ISpin";
 
 /**
  * [[include:Options/Particles/Move.md]]
@@ -51,6 +52,7 @@ export interface IMove {
     random: boolean;
     size: boolean;
     speed: RangeValue;
+    spin: ISpin;
     straight: boolean;
     trail: ITrail;
     vibrate: boolean;
