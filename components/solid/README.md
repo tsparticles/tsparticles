@@ -180,6 +180,8 @@ Find your parameters configuration [here](https://particles.js.org).
 
 ## Demos
 
+You can see the official sample created using CodeSandbox [here](https://codesandbox.io/s/condescending-dan-7e0r9)
+
 The demo website is [here](https://particles.js.org)
 
 <https://particles.js.org>

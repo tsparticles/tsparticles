@@ -349,5 +349,6 @@ canvas {
 
         loadInfectionPlugin(tsParticles);
         loadLightInteraction(tsParticles);
+        loadParticlesRepulseInteraction(tsParticles);
     });
 })();
