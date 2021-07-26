@@ -399,6 +399,11 @@ object-assign@^4.0.1:
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
   integrity sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=
 
+object-gui@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/object-gui/-/object-gui-1.1.1.tgz#f205a44e3a808d087faedebe2d87c78e24e23f21"
+  integrity sha512-ahXwt0G7vZmUNtMCWTcJbzRybj3bMx4xTTmLas6y6BsfZwlyMjIURIksFGNnER9jih6PHa8gs50lj5cefZeWaA==
+
 once@^1.3.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/once/-/once-1.4.0.tgz#583b1aa775961d4b113ac17d9c50baef9dd76bd1"
@@ -451,6 +456,11 @@ path-is-absolute@^1.0.0:
   resolved "https://registry.yarnpkg.com/path-is-absolute/-/path-is-absolute-1.0.1.tgz#174b9268735534ffbc7ace6bf53a5a9e1b5c5f5f"
   integrity sha1-F0uSaHNVNP+8es5r9TpanhtcX18=
 
+pathseg@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/pathseg/-/pathseg-1.2.0.tgz#22af051e28037671e7799e296fe96c5dcbe53acd"
+  integrity sha512-+pQS7lTaoVIXhaCW7R3Wd/165APzZHWzYVqe7dxzdupxQwebgpBaCmf0/XZwmoA/rkDq3qvzO0qv4d5oFVrBRw==
+
 picomatch@^2.0.4, picomatch@^2.2.1:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.0.tgz#f1f061de8f6a4bf022892e2d128234fb98302972"
@@ -500,9 +510,9 @@ rimraf@^3.0.2:
     glob "^7.1.3"
 
 sass@^1.35.1:
-  version "1.35.2"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.35.2.tgz#b732314fcdaf7ef8d0f1698698adc378043cb821"
-  integrity sha512-jhO5KAR+AMxCEwIH3v+4zbB2WB0z67V1X0jbapfVwQQdjHZUGUyukpnoM6+iCMfsIUC016w9OPKQ5jrNOS9uXw==
+  version "1.36.0"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.36.0.tgz#5912ef9d5d16714171ba11cb17edb274c4bbc07e"
+  integrity sha512-fQzEjipfOv5kh930nu3Imzq3ie/sGDc/4KtQMJlt7RRdrkQSfe37Bwi/Rf/gfuYHsIuE1fIlDMvpyMcEwjnPvg==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
 
@@ -577,6 +587,36 @@ tslib@^2.0.3:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.0.tgz#803b8cdab3e12ba581a4ca41c8839bbb0dacb09e"
   integrity sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==
+
+tsparticles-editor@^1.32.0:
+  version "1.32.0"
+  resolved "https://registry.yarnpkg.com/tsparticles-editor/-/tsparticles-editor-1.32.0.tgz#f64e27bcc6b9ac3d5054b74146b6bef644f8a6be"
+  integrity sha512-DES8BVRPhvToOCizxbRZyMm/T1wqBkkTfmVY/SI94iVyFQLShu2Ao6CMUYM4dCWC/1giHll46jIk7GZx7cQWSg==
+  dependencies:
+    object-gui "^1.1.1"
+    tsparticles "^1.32.0"
+    tsparticles-plugin-infection "^1.32.0"
+
+tsparticles-plugin-infection@^1.32.0:
+  version "1.32.0"
+  resolved "https://registry.yarnpkg.com/tsparticles-plugin-infection/-/tsparticles-plugin-infection-1.32.0.tgz#943cf885b081c95ca293cdfbde8f8e840dcf8b6f"
+  integrity sha512-rkd4Jk8KWduqBVWEkvZ8fFXlt3qemz72T3CRohWibYUXieAt0iK+km4cWF2gjVGONcWFX6MUZXf1gfWROp/qMQ==
+  dependencies:
+    tsparticles "^1.32.0"
+
+tsparticles-preset-links@^1.17.0:
+  version "1.17.0"
+  resolved "https://registry.yarnpkg.com/tsparticles-preset-links/-/tsparticles-preset-links-1.17.0.tgz#ab5f063a3f84ae34f9b6e920bf84b27563bab06c"
+  integrity sha512-IQgB7VSGCqJHx/CIQdwhKX183P1WeE4fsCWl/W8kVivrIU9sXNz2sBH00m27s41eenMhNkP9Ae4t9Z0FrCddcw==
+  dependencies:
+    tsparticles "^1.32.0"
+
+tsparticles@^1.32.0:
+  version "1.32.0"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.32.0.tgz#426ab3752ccebacab9ef3926b0d30d221fb61682"
+  integrity sha512-sz614zmnfi1D6iPmu6YIEeKWAPUP/Q8KLFcMUrtBFsTJFkSJvk4imtfYDG0M1krE8TKlm1bRrYp/xegInSuzoQ==
+  optionalDependencies:
+    pathseg "^1.2.0"
 
 universalify@^0.1.0:
   version "0.1.2"
