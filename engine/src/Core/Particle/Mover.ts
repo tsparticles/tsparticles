@@ -50,18 +50,6 @@ export class Mover {
     constructor(private readonly container: Container) {}
 
     move(particle: Particle, delta: IDelta): void {
-        particle.bubble.inRange = false;
-
-        for (const [, plugin] of this.container.plugins) {
-            if (particle.destroyed) {
-                break;
-            }
-
-            if (plugin.particleUpdate) {
-                plugin.particleUpdate(particle, delta);
-            }
-        }
-
         if (particle.destroyed) {
             return;
         }

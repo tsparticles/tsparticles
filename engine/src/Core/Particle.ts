@@ -390,13 +390,13 @@ export class Particle implements IParticle {
         }
 
         /* position */
-        this.position = this.calcPosition(this.container, position, clamp(zIndexValue, 0, container.zLayers));
+        this.position = this.calcPosition(container, position, clamp(zIndexValue, 0, container.zLayers));
         this.initialPosition = this.position.copy();
 
         /* parallax */
         this.offset = Vector.origin;
 
-        const particles = this.container.particles;
+        const particles = container.particles;
 
         particles.needsSort = particles.needsSort || particles.lastZIndex < this.position.z;
         particles.lastZIndex = this.position.z;
@@ -514,8 +514,8 @@ export class Particle implements IParticle {
             const spinPos = this.options.move.spin.position ?? { x: 50, y: 50 };
 
             const spinCenter = {
-                x: (spinPos.x / 100) * this.container.canvas.size.width,
-                y: (spinPos.y / 100) * this.container.canvas.size.height,
+                x: (spinPos.x / 100) * container.canvas.size.width,
+                y: (spinPos.y / 100) * container.canvas.size.height,
             };
 
             const pos = this.getPosition();
@@ -550,7 +550,7 @@ export class Particle implements IParticle {
             container.canvas.drawParticlePlugin(plugin, this, delta);
         }
 
-        this.container.canvas.drawParticle(this, delta);
+        container.canvas.drawParticle(this, delta);
     }
 
     getPosition(): ICoordinates3d {

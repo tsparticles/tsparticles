@@ -173,12 +173,14 @@ export class Particles {
             //     p.vy = f * Math.sin(t);
             // }
 
-            const resizeFactor = this.container.canvas.resizeFactor;
+            const resizeFactor = container.canvas.resizeFactor;
 
             if (resizeFactor) {
                 particle.position.x *= resizeFactor.width;
                 particle.position.y *= resizeFactor.height;
             }
+
+            particle.bubble.inRange = false;
 
             for (const [, plugin] of this.container.plugins) {
                 if (particle.destroyed) {
@@ -207,7 +209,7 @@ export class Particles {
         this.interactionManager.externalInteract(delta);
 
         // this loop is required to be done after mouse interactions
-        for (const particle of this.container.particles.array) {
+        for (const particle of container.particles.array) {
             for (const updater of this.updaters) {
                 updater.update(particle, delta);
             }
