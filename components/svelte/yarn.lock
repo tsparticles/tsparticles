@@ -24,9 +24,9 @@
     js-tokens "^4.0.0"
 
 "@rollup/plugin-commonjs@^19.0.0":
-  version "19.0.1"
-  resolved "https://registry.yarnpkg.com/@rollup/plugin-commonjs/-/plugin-commonjs-19.0.1.tgz#94a2c103d675523d3ab1c60bfbec567b3eb70410"
-  integrity sha512-bRrPTIAsWw2LmEspEMvV9f+7N7CEQgZCj2Zi1F0e0P3+/tbjQaSNNVVRSRWVhuDagp8yjK5kbIut8KTPsseRhg==
+  version "19.0.2"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-commonjs/-/plugin-commonjs-19.0.2.tgz#1ccc3d63878d1bc9846f8969f09dd3b3e4ecc244"
+  integrity sha512-gBjarfqlC7qs0AutpRW/hrFNm+cd2/QKxhwyFa+srbg1oX7rDsEU3l+W7LAUhsAp9mPJMAkXDhLbQaVwEaE8bA==
   dependencies:
     "@rollup/pluginutils" "^3.1.0"
     commondir "^1.0.1"
@@ -634,9 +634,9 @@ svelte-preprocess@^4.0.0, svelte-preprocess@^4.7.3:
     strip-indent "^3.0.0"
 
 svelte@^3.38.3:
-  version "3.40.2"
-  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.40.2.tgz#93ab56e9ba45ed8647a19ebdc242a31939ae0134"
-  integrity sha512-FrxVBISeRK0fEeg17D5TftKpaFTLPS7S1C+hf21w5gzzi11MlkJZdqJ9XYmPkAeLGeVpQSQDyWET65NVJjTJ4A==
+  version "3.40.3"
+  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.40.3.tgz#f7ac3a159f3e4a5a55c6a710e69c0313ef33b414"
+  integrity sha512-aSZcouFacOKL/lOTzOOtDJcMbgkjaRvRptWJb0XcyFg2qYvO3IwcYeqtW5BuCJzYciiXKmNsqrp1CzsPt09xbA==
 
 terser@^5.0.0:
   version "5.6.0"
