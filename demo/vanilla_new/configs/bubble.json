@@ -93,7 +93,8 @@
         "duration": 2,
         "size": 40,
         "opacity": 0.8,
-        "color": "#ff0000"
+        "color": "#ff0000",
+        "mix": true
       },
       "repulse": {
         "distance": 200

@@ -8,5 +8,6 @@ export interface IBubbleParticleData {
     opacity?: number;
     radius?: number;
     color?: IHsl;
+    finalColor?: IHsl;
     div?: HTMLElement;
 }
