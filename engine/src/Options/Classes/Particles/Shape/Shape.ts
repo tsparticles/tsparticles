@@ -3,7 +3,7 @@ import { ShapeType } from "../../../../Enums";
 import type { RecursivePartial, ShapeData, SingleOrMultiple } from "../../../../Types";
 import { Stroke } from "../Stroke";
 import { deepExtend } from "../../../../Utils";
-import type { IShapeValues } from "../../../../Core/Interfaces/IShapeValues";
+import type { IShapeValues } from "../../../../Core/Interfaces";
 import type { IPolygonShape } from "../../../Interfaces/Particles/Shape/IPolygonShape";
 import type { IImageShape } from "../../../Interfaces/Particles/Shape/IImageShape";
 import type { ICharacterShape } from "../../../Interfaces/Particles/Shape/ICharacterShape";
@@ -48,14 +48,14 @@ export class Shape implements IShape, IOptionLoader<IShape> {
     /**
      * @deprecated the property images is deprecated, please use the image property, it works with one and many
      */
-    get images(): IImageShape[] {
-        return this.image instanceof Array ? this.image : [this.image];
+    get images(): SingleOrMultiple<IImageShape> {
+        return this.image;
     }
 
     /**
      * @deprecated the property images is deprecated, please use the image property, it works with one and many
      */
-    set images(value: IImageShape[]) {
+    set images(value: SingleOrMultiple<IImageShape>) {
         this.image = value;
     }
 
@@ -128,9 +128,13 @@ export class Shape implements IShape, IOptionLoader<IShape> {
             }
         }
 
+        console.log(data);
+
         this.loadShape(data.character, ShapeType.character, ShapeType.char, true);
         this.loadShape(data.polygon, ShapeType.polygon, ShapeType.star, false);
         this.loadShape(data.image ?? data.images, ShapeType.image, ShapeType.images, true);
+
+        console.log(this);
 
         if (data.type !== undefined) {
             this.type = data.type;
