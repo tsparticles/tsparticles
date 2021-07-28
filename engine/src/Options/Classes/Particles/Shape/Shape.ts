@@ -128,13 +128,9 @@ export class Shape implements IShape, IOptionLoader<IShape> {
             }
         }
 
-        console.log(data);
-
         this.loadShape(data.character, ShapeType.character, ShapeType.char, true);
         this.loadShape(data.polygon, ShapeType.polygon, ShapeType.star, false);
         this.loadShape(data.image ?? data.images, ShapeType.image, ShapeType.images, true);
-
-        console.log(this);
 
         if (data.type !== undefined) {
             this.type = data.type;
