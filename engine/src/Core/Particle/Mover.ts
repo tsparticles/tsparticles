@@ -47,7 +47,7 @@ function applyDistance(particle: Particle): void {
  * @category Core
  */
 export class Mover {
-    constructor(private readonly container: Container) { }
+    constructor(private readonly container: Container) {}
 
     move(particle: Particle, delta: IDelta): void {
         if (particle.destroyed) {
@@ -71,7 +71,7 @@ export class Mover {
         const container = this.container,
             slowFactor = this.getProximitySpeedFactor(particle),
             baseSpeed =
-                (particle.moveSpeed ??= (getRangeValue(moveOptions.speed) * container.retina.pixelRatio)) *
+                (particle.moveSpeed ??= getRangeValue(moveOptions.speed) * container.retina.pixelRatio) *
                 container.retina.reduceFactor,
             moveDrift = (particle.moveDrift ??=
                 getRangeValue(particle.options.move.drift) * container.retina.pixelRatio),
@@ -212,6 +212,8 @@ export class Mover {
         if (isSsr() || !options.interactivity.events.onHover.parallax.enable) {
             return;
         }
+
+        console.log("parallax");
 
         const parallaxForce = options.interactivity.events.onHover.parallax.force;
         const mousePos = container.interactivity.mouse.position;
