@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-heart",
-  "version": "1.17.0",
+  "version": "1.18.0",
   "description": "tsParticles heart shape",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -70,6 +70,6 @@
     "webpack-cli": "^4.7.2"
   },
   "dependencies": {
-    "tsparticles": "^1.32.0"
+    "tsparticles": "^1.33.0"
   }
 }
