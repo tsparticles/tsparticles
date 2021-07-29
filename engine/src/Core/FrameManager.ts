@@ -20,10 +20,12 @@ export class FrameManager {
                 container.lastFrameTime !== undefined &&
                 timestamp < container.lastFrameTime + 1000 / container.fpsLimit
             ) {
-                container.draw();
+                container.draw(false);
 
                 return;
             }
+
+            container.lastFrameTime ??= timestamp;
 
             const deltaValue = timestamp - container.lastFrameTime;
             const delta = {
@@ -42,7 +44,7 @@ export class FrameManager {
             }
 
             if (container.getAnimationStatus()) {
-                container.draw();
+                container.draw(false);
             }
         } catch (e) {
             console.error("tsParticles error in animation loop", e);

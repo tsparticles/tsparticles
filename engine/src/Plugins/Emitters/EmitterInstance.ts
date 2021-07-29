@@ -157,6 +157,7 @@ export class EmitterInstance {
 
             this.currentSpawnDelay = this.spawnDelay ?? 0;
             this.currentEmitDelay = this.emitDelay ?? 0;
+
             delta.value = 0;
         }
 

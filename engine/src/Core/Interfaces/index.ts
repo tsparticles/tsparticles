@@ -20,6 +20,7 @@ export * from "./IParticleLife";
 export * from "./IParticleLoops";
 export * from "./IParticlesInteractor";
 export * from "./IParticleUpdater";
+export * from "./IParticleSpin";
 export * from "./IParticleValueAnimation";
 export * from "./IPlugin";
 export * from "./IRangeValue";

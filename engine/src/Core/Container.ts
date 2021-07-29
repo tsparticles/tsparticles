@@ -43,7 +43,7 @@ export class Container {
     density;
     duration;
     pageHidden;
-    lastFrameTime;
+    lastFrameTime?: number;
     lifeTime;
     fpsLimit;
     interactivity: IContainerInteractivity;
@@ -203,11 +203,9 @@ export class Container {
                     plugin.play();
                 }
             }
-
-            this.lastFrameTime = performance.now();
         }
 
-        this.draw();
+        this.draw(needsUpdate || false);
     }
 
     /**
@@ -238,8 +236,18 @@ export class Container {
     /**
      * Draws a frame
      */
-    draw(): void {
-        this.drawAnimationFrame = animate()((timestamp) => this.drawer.nextFrame(timestamp));
+    draw(force: boolean): void {
+        let refreshTime = force;
+
+        this.drawAnimationFrame = animate()((timestamp) => {
+            if (refreshTime) {
+                this.lastFrameTime = undefined;
+
+                refreshTime = false;
+            }
+
+            this.drawer.nextFrame(timestamp);
+        });
     }
 
     /**
@@ -247,7 +255,7 @@ export class Container {
      * @returns `true` is playing, `false` is paused
      */
     getAnimationStatus(): boolean {
-        return !this.paused;
+        return !this.paused && !this.pageHidden;
     }
 
     /**
