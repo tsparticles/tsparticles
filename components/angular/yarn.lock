@@ -171,9 +171,9 @@
     rxjs "6.6.7"
 
 "@angular/animations@~12.1.0":
-  version "12.1.3"
-  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-12.1.3.tgz#a3f5006458b28c121962947700d9e3cd77f6fbfb"
-  integrity sha512-6W4PBopTJEA9o0J9D+pk4KFLAtyUGsjo8nGP3GTtp1T7Gss7Dv6XWCndrtAHpm9q1py9XrSCAgZMMsjVJjGW+g==
+  version "12.1.4"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-12.1.4.tgz#c12fc0e2df6042e518710edcedea2913d69073b9"
+  integrity sha512-6PkVF2HGwmNdG0IUUyXkxwnLdX7xVUCFldKNFap90lWTEPumO7+zcmzP4JELE6jkmHSykTZjPwlWXvuxdP+YJg==
   dependencies:
     tslib "^2.2.0"
 
@@ -203,9 +203,9 @@
     uuid "8.3.2"
 
 "@angular/common@~12.1.0":
-  version "12.1.3"
-  resolved "https://registry.yarnpkg.com/@angular/common/-/common-12.1.3.tgz#b3daf7d4c74932845730d8a0cd17210095ca949d"
-  integrity sha512-u2z76HY5V2k31uEAZI6sxKUaviV/ggkeUtRwzkVQCVrvB8p7e5f/BXpdV8Jb8WM60Lz48brXGsATt++ar0mDtg==
+  version "12.1.4"
+  resolved "https://registry.yarnpkg.com/@angular/common/-/common-12.1.4.tgz#099d89c1629d14e45e176a033f33ae2344c972bc"
+  integrity sha512-cyh2m5veGgWRFsrmPnwB/Ised90bFNZAjZepvW8WXrpEUa/tmi1yWU9+8ayRG7ztE08lyXncJSSut2Ss2PEhTA==
   dependencies:
     tslib "^2.2.0"
 
@@ -235,9 +235,9 @@
   integrity sha512-ctjwuntPfZZT2mNj2NDIVu51t9cvbhl/16epc5xEwyzyDt76pX9UgwvY+MbXrf/C/FWwdtmNtfP698BKI+9leQ==
 
 "@angular/compiler@~12.1.0":
-  version "12.1.3"
-  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-12.1.3.tgz#a750ba76d7def23ff79e799adf43a1cd5c5e304f"
-  integrity sha512-4SnZRqLiH5i15rpSfv2ShqmJ6Yx5HccQeq5yHZGnpRRh7pZld2ozKK0VQAKRmi4j4u9FiaoRno1SgSIp9Wx/ZA==
+  version "12.1.4"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-12.1.4.tgz#a29dd3e049baf4b3d5ce1049db1a0f82d7280f0a"
+  integrity sha512-csei4YTsdwYCWhr94AtW/Q3YyILLhjGVuV/zDZKQx5kB/3ukpUD+DppbblTo+NsLSk2BfsOepGUeCDMkIl9p3w==
   dependencies:
     tslib "^2.2.0"
 
@@ -261,9 +261,9 @@
     tslib "^2.2.0"
 
 "@angular/platform-browser-dynamic@~12.1.0":
-  version "12.1.3"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-12.1.3.tgz#f4359b8c811035770a0f204cf94d2ce9bb19f741"
-  integrity sha512-n0RDSFfYjrTgp87RP/Dy0EmPLiH0AF8XMlnPZQ8aIdZ9pJqmXJTyc7tjuhWHdF4qEKJduylGh5PgMCYVamRT0A==
+  version "12.1.4"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-12.1.4.tgz#2d020ae400918c776843b760abb13476b324a41b"
+  integrity sha512-gEE7F45y+mExb9Bib9SQkWQICHHxbo884AhCw4ZcHWWv2aJl1Y09Rhp+ZE542wjoFFpB2o+BXguc3PcnXB/3Ww==
   dependencies:
     tslib "^2.2.0"
 
