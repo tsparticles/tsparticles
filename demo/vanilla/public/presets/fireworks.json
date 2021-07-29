@@ -15,7 +15,7 @@
       "delay": 0.1
     },
     "rate": {
-      "delay": 0.15,
+      "delay": 0.5,
       "quantity": 1
     },
     "size": {

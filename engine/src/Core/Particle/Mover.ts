@@ -47,7 +47,7 @@ function applyDistance(particle: Particle): void {
  * @category Core
  */
 export class Mover {
-    constructor(private readonly container: Container) {}
+    constructor(private readonly container: Container) { }
 
     move(particle: Particle, delta: IDelta): void {
         if (particle.destroyed) {
@@ -71,9 +71,10 @@ export class Mover {
         const container = this.container,
             slowFactor = this.getProximitySpeedFactor(particle),
             baseSpeed =
-                (particle.moveSpeed ?? getRangeValue(moveOptions.speed) * container.retina.pixelRatio) *
+                (particle.moveSpeed ??= (getRangeValue(moveOptions.speed) * container.retina.pixelRatio)) *
                 container.retina.reduceFactor,
-            moveDrift = particle.moveDrift ?? getRangeValue(particle.options.move.drift) * container.retina.pixelRatio,
+            moveDrift = (particle.moveDrift ??=
+                getRangeValue(particle.options.move.drift) * container.retina.pixelRatio),
             maxSize = getRangeMax(particleOptions.size.value) * container.retina.pixelRatio,
             sizeFactor = moveOptions.size ? particle.getRadius() / maxSize : 1,
             diffFactor = 2,
@@ -89,20 +90,24 @@ export class Mover {
             particle.velocity.y += (gravityFactor * (gravityOptions.acceleration * delta.factor)) / (60 * moveSpeed);
         }
 
-        if (moveSpeed) {
+        if (moveDrift && moveSpeed) {
             particle.velocity.x += (moveDrift * delta.factor) / (60 * moveSpeed);
         }
 
-        particle.velocity.multTo(1 - particle.options.move.decay);
+        const decay = 1 - particle.options.move.decay;
+
+        if (decay != 1) {
+            particle.velocity.multTo(decay);
+        }
 
         const velocity = particle.velocity.mult(moveSpeed);
         const maxSpeed = particle.maxSpeed ?? container.retina.maxSpeed;
 
         if (
             gravityOptions.enable &&
+            gravityOptions.maxSpeed > 0 &&
             ((!gravityOptions.inverse && velocity.y >= 0 && velocity.y >= maxSpeed) ||
-                (gravityOptions.inverse && velocity.y <= 0 && velocity.y <= -maxSpeed)) &&
-            gravityOptions.maxSpeed > 0
+                (gravityOptions.inverse && velocity.y <= 0 && velocity.y <= -maxSpeed))
         ) {
             velocity.y = gravityFactor * maxSpeed;
 
@@ -117,40 +122,15 @@ export class Mover {
         if (moveOptions.spin.enable) {
             this.spin(particle, moveSpeed);
         } else {
-            velocity.multTo(zVelocityFactor);
+            if (zVelocityFactor != 1) {
+                velocity.multTo(zVelocityFactor);
+            }
 
             particle.position.addTo(velocity);
 
             if (moveOptions.vibrate) {
                 particle.position.x += Math.sin(particle.position.x * Math.cos(particle.position.y));
                 particle.position.y += Math.cos(particle.position.y * Math.sin(particle.position.x));
-            }
-
-            const initialPosition = particle.initialPosition;
-            const initialDistance = getDistance(initialPosition, particle.position);
-
-            if (particle.maxDistance) {
-                if (initialDistance >= particle.maxDistance && !particle.misplaced) {
-                    particle.misplaced = initialDistance > particle.maxDistance;
-                    particle.velocity.x = particle.velocity.y / 2 - particle.velocity.x;
-                    particle.velocity.y = particle.velocity.x / 2 - particle.velocity.y;
-                } else if (initialDistance < particle.maxDistance && particle.misplaced) {
-                    particle.misplaced = false;
-                } else if (particle.misplaced) {
-                    if (
-                        (particle.position.x < initialPosition.x && particle.velocity.x < 0) ||
-                        (particle.position.x > initialPosition.x && particle.velocity.x > 0)
-                    ) {
-                        particle.velocity.x *= -Math.random();
-                    }
-
-                    if (
-                        (particle.position.y < initialPosition.y && particle.velocity.y < 0) ||
-                        (particle.position.y > initialPosition.y && particle.velocity.y > 0)
-                    ) {
-                        particle.velocity.y *= -Math.random();
-                    }
-                }
             }
         }
 

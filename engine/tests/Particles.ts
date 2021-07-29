@@ -153,4 +153,52 @@ describe("Particles", () => {
             expect(testParticles.particles.array[i].position).to.eql(position);
         }
     });
+
+    it("should move particles", () => {
+        testContainer.reset(enableParticleMoveOptions);
+        testCanvas.reset(1920, 1080, testContainer.container);
+        testParticles.reset(testContainer.container);
+
+        const position: ICoordinates3d = { x: 100, y: 100, z: 0 };
+        testParticles.particles.push(numParticles, { position, clicking: false, inside: false });
+        expect(testParticles.particles.count).to.equal(5);
+
+        let ts = Math.random() * 16.66667;
+        const logP = testParticles.particles.array[0];
+
+        console.log(logP.id);
+
+        testParticles.particles.update({
+            value: ts,
+            factor: (60 * ts) / 1000
+        });
+
+        ts = Math.random() * 16.66667;
+
+        testParticles.particles.update({
+            value: ts,
+            factor: (60 * ts) / 1000
+        });
+
+        ts = Math.random() * 16.66667;
+
+        testParticles.particles.update({
+            value: ts,
+            factor: (60 * ts) / 1000
+        });
+
+        ts = Math.random() * 16.66667;
+
+        testParticles.particles.update({
+            value: ts,
+            factor: (60 * ts) / 1000
+        });
+
+        ts = Math.random() * 16.66667;
+
+        testParticles.particles.update({
+            value: ts,
+            factor: (60 * ts) / 1000
+        });
+    });
 });
