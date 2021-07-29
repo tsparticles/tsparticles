@@ -244,8 +244,6 @@ export class Particles {
         this.update(delta);
 
         if (this.needsSort) {
-            console.log("sort");
-
             this.zArray.sort((a, b) => b.position.z - a.position.z || a.id - b.id);
             this.lastZIndex = this.zArray[this.zArray.length - 1].position.z;
             this.needsSort = false;
