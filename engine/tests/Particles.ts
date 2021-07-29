@@ -170,35 +170,35 @@ describe("Particles", () => {
 
         testParticles.particles.update({
             value: ts,
-            factor: (60 * ts) / 1000
+            factor: (60 * ts) / 1000,
         });
 
         ts = Math.random() * 16.66667;
 
         testParticles.particles.update({
             value: ts,
-            factor: (60 * ts) / 1000
+            factor: (60 * ts) / 1000,
         });
 
         ts = Math.random() * 16.66667;
 
         testParticles.particles.update({
             value: ts,
-            factor: (60 * ts) / 1000
+            factor: (60 * ts) / 1000,
         });
 
         ts = Math.random() * 16.66667;
 
         testParticles.particles.update({
             value: ts,
-            factor: (60 * ts) / 1000
+            factor: (60 * ts) / 1000,
         });
 
         ts = Math.random() * 16.66667;
 
         testParticles.particles.update({
             value: ts,
-            factor: (60 * ts) / 1000
+            factor: (60 * ts) / 1000,
         });
     });
 });
