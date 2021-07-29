@@ -13,6 +13,7 @@
     "distfiles": "node ./scripts/distfiles.js",
     "build": "yarn clear:dist && yarn prettify:src && yarn compile && yarn lint && yarn bundle && yarn prettify:readme && yarn distfiles",
     "clear:dist": "rimraf -f ./dist",
+    "version": "yarn distfiles && git add package.dist.json",
     "prepack": "yarn build"
   },
   "repository": {
