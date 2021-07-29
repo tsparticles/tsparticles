@@ -1,7 +1,7 @@
 {
   "name": "tsparticles-demo-new",
   "private": true,
-  "version": "1.18.0",
+  "version": "1.18.1",
   "description": "tsParticles Demo Website",
   "main": "index.html",
   "scripts": {
@@ -32,9 +32,9 @@
     "minify": "^7.0.2",
     "rimraf": "^3.0.2",
     "sass": "^1.35.1",
-    "tsparticles": "^1.33.0",
-    "tsparticles-interaction-light": "^1.33.0",
-    "tsparticles-plugin-infection": "^1.33.0",
-    "tsparticles-preset-links": "^1.18.0"
+    "tsparticles": "^1.33.1",
+    "tsparticles-interaction-light": "^1.33.1",
+    "tsparticles-plugin-infection": "^1.33.1",
+    "tsparticles-preset-links": "^1.18.1"
   }
 }
