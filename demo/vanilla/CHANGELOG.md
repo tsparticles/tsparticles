@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.17.0...tsparticles-demo@1.18.0) (2021-07-29)
+
+
+### Bug Fixes
+
+* fixed broken movement in 1.31 ([6787035](https://github.com/matteobruni/tsparticles/commit/6787035c746bdc11055d00ca83869ed837258ec8))
+* fixed images shape options ([8964fe6](https://github.com/matteobruni/tsparticles/commit/8964fe6dd3b2556de47ba307fe87306764672bcc))
+* fixed line shape ([5c1c612](https://github.com/matteobruni/tsparticles/commit/5c1c6120af7e10abf26252c3c1be632675bfd3a5))
+* fixed pause on blur ([a7bd28f](https://github.com/matteobruni/tsparticles/commit/a7bd28f547a02434c188cdee4aa035424996559e))
+
+
+### Features
+
+* bubble color can now be mixed with the original one to have a smoother effect ([df11d66](https://github.com/matteobruni/tsparticles/commit/df11d66ee94fb9594805a5dfb7d4c776a93c4532))
+* spin movement enabled from v2 ([240a38f](https://github.com/matteobruni/tsparticles/commit/240a38f9a8c78e5b683d655d5f94476e396a5076))
+
+
+
+
+
 ## [1.3.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.3.0...tsparticles-demo@1.3.1) (2020-10-06)
 
 **Note:** Version bump only for package tsparticles-demo

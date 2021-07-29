@@ -1,7 +1,7 @@
 {
   "name": "jquery-particles-demo",
   "private": true,
-  "version": "1.17.0",
+  "version": "1.18.0",
   "description": "> TODO: description",
   "author": "Matteo Bruni <ar3s@icloud.com>",
   "homepage": "https://github.com/matteobruni/tsparticles#readme",
@@ -21,9 +21,9 @@
   },
   "dependencies": {
     "jquery": "^3.6.0",
-    "jquery-particles": "^1.32.0",
-    "tsparticles": "^1.32.0",
-    "tsparticles-preset-links": "^1.17.0"
+    "jquery-particles": "^1.33.0",
+    "tsparticles": "^1.33.0",
+    "tsparticles-preset-links": "^1.18.0"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.15.3",
