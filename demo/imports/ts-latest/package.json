@@ -1,6 +1,6 @@
 {
   "name": "imports-ts-latest",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "",
   "private": true,
   "main": "index.js",
@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "tsparticles": "^1.33.0",
+    "tsparticles": "^1.33.1",
     "typescript": "^4.3.5"
   }
 }

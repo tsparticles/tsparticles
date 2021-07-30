@@ -213,8 +213,6 @@ export class Mover {
             return;
         }
 
-        console.log("parallax");
-
         const parallaxForce = options.interactivity.events.onHover.parallax.force;
         const mousePos = container.interactivity.mouse.position;
 

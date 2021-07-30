@@ -1,5 +1,5 @@
 import type { ISourceOptions } from "tsparticles";
-import { DestroyMode, DestroyType, MoveDirection, OutMode, StartValueType } from "tsparticles";
+import { DestroyMode, DestroyType, MoveDirection, OutMode, ShapeType, StartValueType } from "tsparticles";
 
 export const options: ISourceOptions = {
     fullScreen: {
@@ -18,7 +18,7 @@ export const options: ISourceOptions = {
             delay: 0.1,
         },
         rate: {
-            delay: 0.15,
+            delay: 0.5,
             quantity: 1,
         },
         size: {
@@ -39,12 +39,11 @@ export const options: ISourceOptions = {
             split: {
                 count: 1,
                 factor: {
-                    value: 1 / 3,
+                    value: 0.333333,
                 },
                 rate: {
                     value: 100,
                 },
-                sizeOffset: false,
                 particles: {
                     stroke: {
                         color: {
@@ -59,61 +58,64 @@ export const options: ISourceOptions = {
                         enable: false,
                     },
                     opacity: {
-                        value: 0.8,
+                        value: 1,
                         animation: {
                             enable: true,
-                            speed: 1,
+                            speed: 0.7,
                             minimumValue: 0.1,
-                            sync: true,
-                            startValue: "max",
-                            destroy: "min",
+                            sync: false,
+                            startValue: StartValueType.max,
+                            destroy: DestroyType.min,
                         },
                     },
+                    shape: {
+                        type: ShapeType.circle,
+                    },
                     size: {
-                        value: 75,
+                        value: 1,
                         animation: {
-                            enable: true,
-                            speed: 150,
-                            minimumValue: 1,
-                            destroy: DestroyType.max,
-                            startValue: StartValueType.min,
-                            sync: true,
+                            enable: false,
                         },
                     },
                     life: {
                         count: 1,
+                        duration: {
+                            value: {
+                                min: 1,
+                                max: 2,
+                            },
+                        },
                     },
                     move: {
                         enable: true,
                         gravity: {
                             enable: false,
                         },
-                        speed: 10,
+                        speed: 2,
                         direction: MoveDirection.none,
-                        random: false,
+                        random: true,
                         straight: false,
-                        outMode: OutMode.destroy,
+                        outModes: {
+                            default: OutMode.destroy,
+                        },
                     },
                 },
             },
         },
         life: {
             count: 1,
-            duration: {
-                value: 1.25,
-            },
         },
         shape: {
-            type: "line",
+            type: ShapeType.line,
         },
         size: {
             value: 50,
             animation: {
                 enable: true,
-                minimumValue: 1,
+                sync: true,
                 speed: 150,
                 startValue: StartValueType.max,
-                count: 1,
+                destroy: DestroyType.min,
             },
         },
         stroke: {
@@ -129,11 +131,14 @@ export const options: ISourceOptions = {
             enable: true,
             gravity: {
                 acceleration: 15,
-                enable: false,
-                maxSpeed: 50,
+                enable: true,
                 inverse: true,
+                maxSpeed: 100,
             },
-            speed: 15,
+            speed: {
+                min: 10,
+                max: 20,
+            },
             outModes: {
                 default: OutMode.destroy,
                 top: OutMode.none,
@@ -141,7 +146,7 @@ export const options: ISourceOptions = {
             trail: {
                 fillColor: "#000",
                 enable: true,
-                length: 4,
+                length: 10,
             },
         },
     },

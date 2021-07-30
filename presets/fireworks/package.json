@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-fireworks",
-  "version": "1.18.0",
+  "version": "1.18.1",
   "description": "tsParticles fireworks preset",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -70,6 +70,6 @@
     "webpack-cli": "^4.7.2"
   },
   "dependencies": {
-    "tsparticles": "^1.33.0"
+    "tsparticles": "^1.33.1"
   }
 }
