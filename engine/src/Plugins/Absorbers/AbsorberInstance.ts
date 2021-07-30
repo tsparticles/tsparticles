@@ -15,7 +15,8 @@ import type { Absorbers } from "./Absorbers";
 import { Vector } from "../../Core/Particle/Vector";
 
 type OrbitingParticle = Particle & {
-    orbit?: Vector;
+    absorberOrbit?: Vector;
+    absorberOrbitDirection?: RotateDirection;
     needsNewPosition?: boolean;
 };
 
@@ -49,7 +50,7 @@ export class AbsorberInstance {
 
         this.name = this.options.name;
         this.opacity = this.options.opacity;
-        this.size = getValue(options.size) * container.retina.pixelRatio;
+        this.size = getRangeValue(options.size.value) * container.retina.pixelRatio;
         this.mass = this.size * options.size.density * container.retina.reduceFactor;
 
         const limit = options.size.limit;
@@ -68,10 +69,11 @@ export class AbsorberInstance {
     }
 
     attract(particle: OrbitingParticle): void {
+        const container = this.container;
         const options = this.options;
 
         if (options.draggable) {
-            const mouse = this.container.interactivity.mouse;
+            const mouse = container.interactivity.mouse;
 
             if (mouse.clicking && mouse.downPosition) {
                 const mouseDist = getDistance(this.position, mouse.downPosition);
@@ -92,12 +94,16 @@ export class AbsorberInstance {
         const pos = particle.getPosition();
         const { dx, dy, distance } = getDistances(this.position, pos);
         const v = Vector.create(dx, dy);
-        v.length = (this.mass / Math.pow(distance, 2)) * this.container.retina.reduceFactor;
+
+        v.length = (this.mass / Math.pow(distance, 2)) * container.retina.reduceFactor;
 
         if (distance < this.size + particle.getRadius()) {
-            const sizeFactor = particle.getRadius() * 0.033 * this.container.retina.pixelRatio;
+            const sizeFactor = particle.getRadius() * 0.033 * container.retina.pixelRatio;
 
-            if (this.size > particle.getRadius() && distance < this.size - particle.getRadius()) {
+            if (
+                (this.size > particle.getRadius() && distance < this.size - particle.getRadius()) ||
+                (particle.absorberOrbit !== undefined && particle.absorberOrbit.length < 0)
+            ) {
                 if (options.destroy) {
                     particle.destroy();
                 } else {
@@ -117,7 +123,7 @@ export class AbsorberInstance {
                 this.size += sizeFactor;
             }
 
-            this.mass += sizeFactor * this.options.size.density * this.container.retina.reduceFactor;
+            this.mass += sizeFactor * this.options.size.density * container.retina.reduceFactor;
         } else {
             this.updateParticlePosition(particle, v);
         }
@@ -143,6 +149,7 @@ export class AbsorberInstance {
 
     private calcPosition(): Vector {
         const container = this.container;
+
         const percentPosition = this.options.position;
 
         return Vector.create(
@@ -156,39 +163,59 @@ export class AbsorberInstance {
             return;
         }
 
-        const canvasSize = this.container.canvas.size;
+        const container = this.container;
+        const canvasSize = container.canvas.size;
 
         if (particle.needsNewPosition) {
             const pSize = particle.getRadius();
-            particle.position.x = Math.random() * (canvasSize.width - pSize * 2) + pSize;
-            particle.position.y = Math.random() * (canvasSize.height - pSize * 2) + pSize;
+            particle.position.x = (canvasSize.width - pSize * 2) * (1 + (Math.random() * 0.2 - 0.1)) + pSize;
+            particle.position.y = (canvasSize.height - pSize * 2) * (1 + (Math.random() * 0.2 - 0.1)) + pSize;
             particle.needsNewPosition = false;
         }
 
         if (this.options.orbits) {
-            if (particle.orbit === undefined) {
-                particle.orbit = Vector.create(0, 0);
-
-                particle.orbit.length = getDistance(particle.getPosition(), this.position);
-                particle.orbit.angle = Math.random() * Math.PI * 2;
+            if (particle.absorberOrbit === undefined) {
+                particle.absorberOrbit = Vector.create(0, 0);
+                particle.absorberOrbit.length = getDistance(particle.getPosition(), this.position);
+                particle.absorberOrbit.angle = Math.random() * Math.PI * 2;
             }
 
-            if (particle.orbit.length <= this.size && !this.options.destroy) {
-                particle.orbit.length = Math.random() * Math.max(canvasSize.width, canvasSize.height);
+            if (particle.absorberOrbit.length <= this.size && !this.options.destroy) {
+                const minSize = Math.min(canvasSize.width, canvasSize.height);
+
+                particle.absorberOrbit.length = minSize * (1 + (Math.random() * 0.2 - 0.1));
             }
+
+            if (particle.absorberOrbitDirection === undefined) {
+                particle.absorberOrbitDirection =
+                    particle.velocity.x >= 0 ? RotateDirection.clockwise : RotateDirection.counterClockwise;
+            }
+
+            const orbitRadius = particle.absorberOrbit.length;
+            const orbitAngle = particle.absorberOrbit.angle;
+            const orbitDirection = particle.absorberOrbitDirection;
 
             particle.velocity.x = 0;
             particle.velocity.y = 0;
 
-            particle.position.setTo(particle.orbit.add(this.position));
+            const updateFunc = {
+                x: orbitDirection === RotateDirection.clockwise ? Math.cos : Math.sin,
+                y: orbitDirection === RotateDirection.clockwise ? Math.sin : Math.cos,
+            };
 
-            particle.orbit.length -= v.length;
-            particle.orbit.angle +=
-                ((particle.moveSpeed ?? getRangeValue(particle.options.move.speed) * this.container.retina.pixelRatio) /
-                    100) *
-                this.container.retina.reduceFactor;
+            particle.position.x = this.position.x + orbitRadius * updateFunc.x(orbitAngle);
+            particle.position.y = this.position.y + orbitRadius * updateFunc.y(orbitAngle);
+
+            particle.absorberOrbit.length -= v.length;
+            particle.absorberOrbit.angle +=
+                ((particle.moveSpeed * container.retina.pixelRatio) / 100) * container.retina.reduceFactor;
         } else {
-            particle.velocity.addTo(v);
+            const addV = Vector.origin;
+
+            addV.length = v.length;
+            addV.angle = v.angle;
+
+            particle.velocity.addTo(addV);
         }
     }
 }
