@@ -45,6 +45,7 @@
     "tsparticles": "^1.33.1",
     "tsparticles-interaction-light": "^1.33.1",
     "tsparticles-interaction-particles-repulse": "^1.33.1",
+    "tsparticles-updater-orbit": "^1.33.1",
     "tsparticles-plugin-infection": "^1.33.1",
     "tsparticles-preset-big-circles": "^1.18.1",
     "tsparticles-preset-bubbles": "^1.18.1",

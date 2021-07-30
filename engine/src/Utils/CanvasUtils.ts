@@ -403,7 +403,6 @@ export function drawEllipse(
     end: number
 ): void {
     const pos = particle.getPosition();
-    context.beginPath();
 
     if (fillColorValue) {
         context.strokeStyle = getStyleFromHsl(fillColorValue, opacity);
@@ -417,7 +416,7 @@ export function drawEllipse(
 
     const rotationRadian = (rotation * Math.PI) / 180;
 
+    context.beginPath();
     context.ellipse(pos.x, pos.y, radius / 2, radius * 2, rotationRadian, start, end);
-
     context.stroke();
 }
