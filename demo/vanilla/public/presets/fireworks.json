@@ -45,12 +45,11 @@
           "stroke": {
             "color": {
               "value": [
-                "#ffffff",
-                "#b22234",
-                "#b22234",
-                "#3c3bfe",
-                "#3c3bfe",
-                "#3c3bfe"
+                "#5bc0eb",
+                "#fde74c",
+                "#9bc53d",
+                "#e55934",
+                "#fa7921"
               ]
             },
             "width": 1
