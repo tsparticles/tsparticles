@@ -43,7 +43,7 @@ class Plugin implements IPlugin {
             isInArray(AbsorberClickMode.absorber, options.interactivity.events.onClick.mode)
         ) {
             loadAbsorbers = true;
-    }
+        }
 
         return loadAbsorbers;
     }

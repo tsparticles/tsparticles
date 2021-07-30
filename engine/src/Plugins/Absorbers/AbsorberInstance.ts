@@ -2,17 +2,10 @@ import type { ICoordinates, IRgb } from "../../Core/Interfaces";
 import type { Container } from "../../Core/Container";
 import type { Particle } from "../../Core/Particle";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
-import {
-    colorToRgb,
-    getDistance,
-    getDistances,
-    getRangeValue,
-    getStyleFromRgb,
-    getValue,
-    isPointInside,
-} from "../../Utils";
+import { colorToRgb, getDistance, getDistances, getRangeValue, getStyleFromRgb, isPointInside } from "../../Utils";
 import type { Absorbers } from "./Absorbers";
 import { Vector } from "../../Core/Particle/Vector";
+import { RotateDirection } from "../../Enums";
 
 type OrbitingParticle = Particle & {
     absorberOrbit?: Vector;
@@ -208,7 +201,7 @@ export class AbsorberInstance {
 
             particle.absorberOrbit.length -= v.length;
             particle.absorberOrbit.angle +=
-                ((particle.moveSpeed * container.retina.pixelRatio) / 100) * container.retina.reduceFactor;
+                (((particle.moveSpeed ?? 0) * container.retina.pixelRatio) / 100) * container.retina.reduceFactor;
         } else {
             const addV = Vector.origin;
 
