@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-snow",
-  "version": "1.18.1",
+  "version": "1.18.2",
   "description": "tsParticles snow preset",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -70,6 +70,6 @@
     "webpack-cli": "^4.7.2"
   },
   "dependencies": {
-    "tsparticles": "^1.33.1"
+    "tsparticles": "^1.33.2"
   }
 }

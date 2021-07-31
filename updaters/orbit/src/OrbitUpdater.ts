@@ -18,6 +18,6 @@ export class OrbitUpdater implements IParticleUpdater {
             particle.orbitRotation = 0;
         }
 
-        particle.orbitRotation += orbitAnimations.speed * delta.factor;
+        particle.orbitRotation += (orbitAnimations.speed / (Math.PI * 2)) * delta.factor;
     }
 }

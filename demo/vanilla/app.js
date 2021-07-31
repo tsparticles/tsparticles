@@ -28,6 +28,7 @@ app.use("/bootstrap", express.static("./node_modules/bootstrap/dist"));
 app.use("/tsparticles", express.static("./node_modules/tsparticles"));
 app.use("/interaction-light", express.static("./node_modules/tsparticles-interaction-light"));
 app.use("/interaction-particles-repulse", express.static("./node_modules/tsparticles-interaction-particles-repulse"));
+app.use("/updater-orbit", express.static("./node_modules/tsparticles-updater-orbit"));
 app.use("/plugin-infection", express.static("./node_modules/tsparticles-plugin-infection"));
 app.use("/preset-big-circles", express.static("./node_modules/tsparticles-preset-big-circles"));
 app.use("/preset-bubbles", express.static("./node_modules/tsparticles-preset-bubbles"));

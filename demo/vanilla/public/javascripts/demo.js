@@ -350,5 +350,6 @@ canvas {
         loadInfectionPlugin(tsParticles);
         loadLightInteraction(tsParticles);
         loadParticlesRepulseInteraction(tsParticles);
+        loadOrbitUpdater(tsParticles);
     });
 })();
