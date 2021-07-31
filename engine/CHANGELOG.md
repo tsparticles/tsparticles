@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.33.2](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.33.1...tsparticles@1.33.2) (2021-07-31)
+
+
+### Bug Fixes
+
+* brought v2 changes to absorbers ([cbad5c2](https://github.com/matteobruni/tsparticles/commit/cbad5c2651058eeac7bda0fc79e498e3b4126232))
+
+
+
+
+
 ## [1.33.1](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.33.0...tsparticles@1.33.1) (2021-07-29)
 
 

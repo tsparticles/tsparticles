@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-interaction-light",
-  "version": "1.33.1",
+  "version": "1.33.2",
   "description": "tsParticles Light interaction",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -45,6 +45,6 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles": "^1.33.1"
+    "tsparticles": "^1.33.2"
   }
 }
