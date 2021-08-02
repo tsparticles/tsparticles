@@ -1812,9 +1812,9 @@ sass-loader@^12.1.0:
     neo-async "^2.6.2"
 
 sass@^1.35.1:
-  version "1.36.0"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.36.0.tgz#5912ef9d5d16714171ba11cb17edb274c4bbc07e"
-  integrity sha512-fQzEjipfOv5kh930nu3Imzq3ie/sGDc/4KtQMJlt7RRdrkQSfe37Bwi/Rf/gfuYHsIuE1fIlDMvpyMcEwjnPvg==
+  version "1.37.0"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.37.0.tgz#f1b03a9d072ee9053a29d125c8130c78e92827c2"
+  integrity sha512-B+Tu6cSAG8ffs/cqsZl/bgSH2pCmavDaPTYAoW8QA1qNHh/RqndNfVKuABKYkLjUQ5aq/BnCENVpE80cqdSM1w==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
 
@@ -2042,17 +2042,17 @@ tslib@^1.8.1, tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tsparticles-plugin-infection@^1.33.1:
-  version "1.33.1"
-  resolved "https://registry.yarnpkg.com/tsparticles-plugin-infection/-/tsparticles-plugin-infection-1.33.1.tgz#7ab15aee55b230023806a9820b0ad7a19b7090d5"
-  integrity sha512-Z0EZyUYr0Pzg049NhPlR285s6y+iJR+atZnpL7Cv3HmVFgm/Vl4rwPl4UPkMR91q9zyKJqL4RyBMRjIBQcdSzg==
+tsparticles-plugin-infection@^1.33.2:
+  version "1.33.2"
+  resolved "https://registry.yarnpkg.com/tsparticles-plugin-infection/-/tsparticles-plugin-infection-1.33.2.tgz#9fcde9d2125a8ccb49c5ea432be9d25b375b7db4"
+  integrity sha512-irgamd2FPtNfDZzw+/tBUUKRKFyFmvibaykrwXhby0dJogTTBV5HTV+l6ld85B9FsxB+nMcQILuwvFfLIi338g==
   dependencies:
-    tsparticles "^1.33.1"
+    tsparticles "^1.33.2"
 
-tsparticles@^1.33.1:
-  version "1.33.1"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.33.1.tgz#43c590d09f41034a81556cd1fa1c57c8f8d89d98"
-  integrity sha512-uhxkNCKLfbR3a9kyCd8gMZwCvH4fbqUE/hSOLBN3ABuBP2hN5hC2dm5AgGEp7jC4KMjaDFmh9s08CgjGvgIDFw==
+tsparticles@^1.33.2:
+  version "1.33.2"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.33.2.tgz#956d7a08c026585a9d5cfe86b9834bbbdb82bf0c"
+  integrity sha512-/oLQWdwyaz9GXTl9j/xckdcIerVlbSlGVd6jT8h8QKPkkkMaqcLlVtVBMLF3542FaH2RUevceTIS7O2JncVdUA==
   optionalDependencies:
     pathseg "^1.2.0"
 
