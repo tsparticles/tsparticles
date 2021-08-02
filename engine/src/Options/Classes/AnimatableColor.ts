@@ -1,9 +1,9 @@
-import type { IAnimatableColor } from "../../Interfaces/IAnimatableColor";
-import { OptionsColor } from "../OptionsColor";
-import type { RecursivePartial } from "../../../Types";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
-import { IColorAnimation } from "../../Interfaces/IColorAnimation";
-import type { IHslAnimation } from "../../Interfaces/IHslAnimation";
+import type { IAnimatableColor } from "../Interfaces/IAnimatableColor";
+import { OptionsColor } from "./OptionsColor";
+import type { RecursivePartial } from "../../Types";
+import type { IOptionLoader } from "../Interfaces/IOptionLoader";
+import { IColorAnimation } from "../Interfaces/IColorAnimation";
+import type { IHslAnimation } from "../Interfaces/IHslAnimation";
 import { HslAnimation } from "./HslAnimation";
 
 /**

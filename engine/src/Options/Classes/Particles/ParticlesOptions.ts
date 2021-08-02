@@ -11,7 +11,7 @@ import { Shadow } from "./Shadow";
 import { Stroke } from "./Stroke";
 import { Collisions } from "./Collisions/Collisions";
 import { Twinkle } from "./Twinkle/Twinkle";
-import { AnimatableColor } from "./AnimatableColor";
+import { AnimatableColor } from "../AnimatableColor";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import { Life } from "./Life/Life";
 import { Bounce } from "./Bounce/Bounce";
@@ -24,7 +24,7 @@ import type { ParticlesGroups } from "../../../Types/ParticlesGroups";
 import { deepExtend } from "../../../Utils";
 import { Orbit } from "./Orbit/Orbit";
 import { Repulse } from "./Repulse/Repulse";
-import { IAnimatableGradient } from "../../Interfaces/IAnimatableGradient";
+import type { IAnimatableGradient } from "../../Interfaces/IAnimatableGradient";
 
 /**
  * [[include:Options/Particles.md]]

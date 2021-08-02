@@ -43,6 +43,7 @@ import type {
     IDistance,
     IHsl,
     IParticle,
+    IParticleGradientAnimation,
     IParticleHslAnimation,
     IParticleLife,
     IParticleLoops,
@@ -103,6 +104,7 @@ export class Particle implements IParticle {
     readonly offset: Vector;
     readonly shadowColor: IRgb | undefined;
     readonly color?: IParticleHslAnimation;
+    readonly gradient?: IParticleGradientAnimation;
     readonly opacity: IParticleNumericValueAnimation;
     readonly rotate: IParticleValueAnimation<number>;
     readonly size: IParticleNumericValueAnimation;

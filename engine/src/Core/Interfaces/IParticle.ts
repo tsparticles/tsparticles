@@ -8,6 +8,7 @@ import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
 import type { IHsl, IRgb } from "./Colors";
 import type { IParticleHslAnimation } from "./IParticleHslAnimation";
 import type { Vector } from "../Particle/Vector";
+import { IParticleGradientAnimation } from "./IParticleGradientAnimation";
 
 /**
  * @category Interfaces
@@ -30,6 +31,7 @@ export interface IParticle {
     readonly initialVelocity: Vector;
     readonly offset: Vector;
     readonly color?: IParticleHslAnimation;
+    readonly gradient?: IParticleGradientAnimation;
     readonly backColor?: IHsl;
     readonly opacity: IParticleValueAnimation<number>;
     readonly rotate: IParticleValueAnimation<number>;

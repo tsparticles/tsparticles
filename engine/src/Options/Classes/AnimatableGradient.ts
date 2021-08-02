@@ -1,11 +1,11 @@
-import type { IAnimatableGradient } from "../../Interfaces/IAnimatableGradient";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
-import { GradientType } from "../../../Core/Interfaces";
-import type { IGradientAngle } from "../../../Core/Interfaces";
-import type { IAnimatable } from "../../Interfaces/IAnimatable";
-import type { IAnimation } from "../../Interfaces/IAnimation";
-import type { RecursivePartial, SingleOrMultiple } from "../../../Types";
-import type { IAnimatableGradientColor } from "../../Interfaces/IOptionsGradient";
+import type { IAnimatableGradient } from "../Interfaces/IAnimatableGradient";
+import type { IOptionLoader } from "../Interfaces/IOptionLoader";
+import { GradientType } from "../../Enums";
+import type { IGradientAngle } from "../../Core/Interfaces";
+import type { IAnimatable } from "../Interfaces/IAnimatable";
+import type { IAnimation } from "../Interfaces/IAnimation";
+import type { RecursivePartial, SingleOrMultiple } from "../../Types";
+import type { IAnimatableGradientColor } from "../Interfaces/IOptionsGradient";
 import { AnimatableColor } from "./AnimatableColor";
 
 export class AnimatableGradient implements IAnimatableGradient, IOptionLoader<IAnimatableGradient> {
@@ -26,8 +26,10 @@ export class AnimatableGradient implements IAnimatableGradient, IOptionLoader<IA
 
         this.angle.load(data.angle);
 
-        if (data.colors instanceof Array) {
-            this.colors = data.colors.map((s) => {
+        const colors = data.colors as SingleOrMultiple<IAnimatableGradientColor>;
+
+        if (colors !== undefined && colors instanceof Array) {
+            this.colors = colors.map((s) => {
                 const tmp = new AnimatableGradientColor();
 
                 tmp.load(s);
@@ -39,7 +41,7 @@ export class AnimatableGradient implements IAnimatableGradient, IOptionLoader<IA
                 this.colors = new AnimatableGradientColor();
             }
 
-            this.colors.load(data.colors as RecursivePartial<IAnimatableGradientColor | undefined> | undefined);
+            this.colors.load(colors);
         }
 
         if (data.type !== undefined) {
@@ -49,8 +51,7 @@ export class AnimatableGradient implements IAnimatableGradient, IOptionLoader<IA
 }
 
 export class GradientAngle
-    implements IGradientAngle, IAnimatable<IAnimation>, IOptionLoader<IGradientAngle & IAnimatable<IAnimation>>
-{
+    implements IGradientAngle, IAnimatable<IAnimation>, IOptionLoader<IGradientAngle & IAnimatable<IAnimation>> {
     animation;
     value;
 

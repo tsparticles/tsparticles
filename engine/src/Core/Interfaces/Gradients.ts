@@ -1,6 +1,6 @@
 import type { SingleOrMultiple } from "../../Types";
 import type { IColor } from "./Colors";
-import type { GradientType } from "../../Enums/Types/GradientType";
+import type { GradientType } from "../../Enums";
 
 export interface IGradientColor {
     value: IColor;
