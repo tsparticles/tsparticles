@@ -1,6 +1,6 @@
 name: Feature Request
 description: Tell us more about your feature request
-title: ""
+title: "Feature Request"
 labels: [feature_request, triage]
 assignees:
   - matteobruni
@@ -32,7 +32,6 @@ body:
       label: Version
       description: What version of our software are you running?
       placeholder: Version (eg. 1.0.0)
-      value: ""
     validations:
       required: true
   - type: dropdown
