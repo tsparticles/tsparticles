@@ -1,14 +1,14 @@
-name: Bug Report
-description: File a bug report
-title: "[Bug]: "
-labels: [bug, triage]
+name: Feature Request
+description: Tell us more about your feature request
+title: ""
+labels: [feature_request, triage]
 assignees:
-  - octocat
+  - matteobruni
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out this bug report!
+        Thanks for taking the time to fill out this feature request!
   - type: input
     id: contact
     attributes:
@@ -26,16 +26,33 @@ body:
       value: "A bug happened!"
     validations:
       required: true
-  - type: dropdown
+  - type: input
     id: version
     attributes:
       label: Version
       description: What version of our software are you running?
-      options:
-        - 1.0.2 (Default)
-        - 1.0.3 (Edge)
+      placeholder: Version (eg. 1.0.0)
+      value: ""
     validations:
       required: true
+  - type: dropdown
+    id: library
+    attributes:
+      label: Which library are you using?
+      multiple: true
+      options:
+        - Vanilla (tsparticles)
+        - React.js (react-particles-js)
+        - Vue.js 2.x (particles.vue)
+        - Vue.js 3.x (particles.vue3)
+        - Angular (ng-particles)
+        - Svelte (svelte-particles)
+        - jQuery (jquery-particles)
+        - Preact (preact-particles)
+        - Solid (solid-particles)
+        - Riot.js (riot-particles)
+        - Inferno (inferno-particles)
+        - Web Components (web-particles)
   - type: dropdown
     id: browsers
     attributes:
@@ -56,7 +73,7 @@ body:
     id: terms
     attributes:
       label: Code of Conduct
-      description: By submitting this issue, you agree to follow our [Code of Conduct](https://example.com)
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/matteobruni/tsparticles/blob/main/CODE_OF_CONDUCT.md)
       options:
         - label: I agree to follow this project's Code of Conduct
           required: true
