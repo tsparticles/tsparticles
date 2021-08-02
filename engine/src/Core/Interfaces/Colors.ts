@@ -13,7 +13,7 @@ export interface IColor {
     /**
      * Color value, can be a single or an array of [[IValueColor]], [[IRgb]], [[IHsl]] or string
      */
-    value: SingleOrMultiple<IValueColor | IRgb | IHsl | IHsv | SingleOrMultiple<string>>;
+    value?: SingleOrMultiple<IValueColor | IRgb | IHsl | IHsv | SingleOrMultiple<string>>;
 }
 
 /**
@@ -59,4 +59,25 @@ export interface IValueColor {
     rgb?: IRgb;
     hsl?: IHsl;
     hsv?: IHsv;
+}
+
+export enum GradientType {
+    linear = "linear",
+    radial = "radial",
+    random = "random",
+}
+
+export interface IGradientColor {
+    value: IColor;
+    stop: number;
+}
+
+export interface IGradientAngle {
+    value: number;
+}
+
+export interface IGradient {
+    angle?: IGradientAngle;
+    type: GradientType;
+    colors: SingleOrMultiple<IGradientColor>;
 }

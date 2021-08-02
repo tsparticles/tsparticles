@@ -1,4 +1,4 @@
-import type { IAnimatableColor } from "../../Interfaces/Particles/IAnimatableColor";
+import type { IAnimatableColor } from "../../Interfaces/IAnimatableColor";
 import { OptionsColor } from "../OptionsColor";
 import type { RecursivePartial } from "../../../Types";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";

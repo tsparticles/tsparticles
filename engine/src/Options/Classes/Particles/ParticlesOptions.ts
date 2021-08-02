@@ -24,6 +24,7 @@ import type { ParticlesGroups } from "../../../Types/ParticlesGroups";
 import { deepExtend } from "../../../Utils";
 import { Orbit } from "./Orbit/Orbit";
 import { Repulse } from "./Repulse/Repulse";
+import { IAnimatableGradient } from "../../Interfaces/IAnimatableGradient";
 
 /**
  * [[include:Options/Particles.md]]
@@ -34,6 +35,7 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
     collisions;
     color;
     destroy;
+    gradient: SingleOrMultiple<IAnimatableGradient>;
     groups: ParticlesGroups;
     life;
     links;
@@ -93,6 +95,7 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
         this.collisions = new Collisions();
         this.color = new AnimatableColor();
         this.destroy = new Destroy();
+        this.gradient = [];
         this.groups = {};
         this.life = new Life();
         this.links = new Links();
