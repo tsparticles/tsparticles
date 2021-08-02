@@ -54,6 +54,15 @@ body:
         - Web Components (web-particles)
     validations:
       required: true
+  - type: textarea
+    id: configuration
+    attributes:
+      label: tsParticles Configuration
+      description: Paste here your configuration to help us reproducing the issue
+      placeholder: Paste here your tsParticles configuration!
+      render: json
+    validations:
+      required: true
   - type: dropdown
     id: browsers
     attributes:
