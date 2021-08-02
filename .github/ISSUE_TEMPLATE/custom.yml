@@ -1,6 +1,6 @@
 name: Custom Issue
 description: Open custom issue
-title: ""
+title: "Custom Issue"
 labels: [triage]
 assignees:
   - matteobruni
