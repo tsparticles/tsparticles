@@ -41,7 +41,7 @@ body:
       multiple: true
       options:
         - Vanilla (tsparticles)
-        - React.js (react-particles-js)
+        - React.js (react-tsparticles, react-particles-js)
         - Vue.js 2.x (particles.vue)
         - Vue.js 3.x (particles.vue3)
         - Angular (ng-particles)
