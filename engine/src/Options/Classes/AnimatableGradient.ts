@@ -51,7 +51,8 @@ export class AnimatableGradient implements IAnimatableGradient, IOptionLoader<IA
 }
 
 export class GradientAngle
-    implements IGradientAngle, IAnimatable<IAnimation>, IOptionLoader<IGradientAngle & IAnimatable<IAnimation>> {
+    implements IGradientAngle, IAnimatable<IAnimation>, IOptionLoader<IGradientAngle & IAnimatable<IAnimation>>
+{
     animation;
     value;
 
