@@ -60,24 +60,3 @@ export interface IValueColor {
     hsl?: IHsl;
     hsv?: IHsv;
 }
-
-export enum GradientType {
-    linear = "linear",
-    radial = "radial",
-    random = "random",
-}
-
-export interface IGradientColor {
-    value: IColor;
-    stop: number;
-}
-
-export interface IGradientAngle {
-    value: number;
-}
-
-export interface IGradient {
-    angle?: IGradientAngle;
-    type: GradientType;
-    colors: SingleOrMultiple<IGradientColor>;
-}
