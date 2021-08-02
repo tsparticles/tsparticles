@@ -18,12 +18,12 @@ body:
     validations:
       required: false
   - type: textarea
-    id: what-happened
+    id: custom-request
     attributes:
-      label: What happened?
-      description: Also tell us, what did you expect to happen?
-      placeholder: Tell us what you see!
-      value: "A bug happened!"
+      label: What do you need?
+      description: Also tell us, do you have some issues?
+      placeholder: Tell us everything we can to do help you!
+      value: "I need help!"
     validations:
       required: true
   - type: input
@@ -54,22 +54,6 @@ body:
         - Web Components (web-particles)
     validations:
       required: true
-  - type: dropdown
-    id: browsers
-    attributes:
-      label: What browsers are you seeing the problem on?
-      multiple: true
-      options:
-        - Firefox
-        - Chrome
-        - Safari
-        - Microsoft Edge
-  - type: textarea
-    id: logs
-    attributes:
-      label: Relevant log output
-      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
-      render: shell
   - type: checkboxes
     id: terms
     attributes:
