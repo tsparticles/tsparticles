@@ -52,6 +52,8 @@ body:
         - Riot.js (riot-particles)
         - Inferno (inferno-particles)
         - Web Components (web-particles)
+    validations:
+      required: true
   - type: dropdown
     id: browsers
     attributes:
