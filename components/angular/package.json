@@ -56,7 +56,7 @@
   "dependencies": {
     "@angular/animations": "~12.1.0",
     "@angular/common": "~12.1.0",
-    "@angular/compiler": "~12.1.0",
+    "@angular/compiler": "~12.2.0",
     "@angular/core": "~12.1.0",
     "@angular/forms": "~12.1.0",
     "@angular/platform-browser": "~12.2.0",
