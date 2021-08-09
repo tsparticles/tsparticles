@@ -1,4 +1,4 @@
-import type { ICoordinates } from "../Interfaces/ICoordinates";
+import type { ICoordinates } from "../Interfaces";
 
 export class Vector implements ICoordinates {
     static clone(source: Vector): Vector {

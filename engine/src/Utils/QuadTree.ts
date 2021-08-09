@@ -3,10 +3,10 @@ import type { Range } from "./Range";
 import type { Point } from "./Point";
 import { Rectangle } from "./Rectangle";
 import { Circle } from "./Circle";
-import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
+import type { ICoordinates, IDimension } from "../Core/Interfaces";
 import { CircleWarp } from "./CircleWarp";
 import type { Container } from "../Core/Container";
-import type { IDimension } from "../Core/Interfaces/IDimension";
+import { getDistance } from "./NumberUtils";
 
 /**
  * @category Utils
@@ -93,7 +93,7 @@ export class QuadTree {
             return [];
         } else {
             for (const p of this.points) {
-                if (!range.contains(p.position)) {
+                if (!range.contains(p.position) && getDistance(range.position, p.position) > p.particle.getRadius()) {
                     continue;
                 }
 

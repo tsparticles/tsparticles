@@ -1,6 +1,7 @@
 import { Range } from "./Range";
-import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
+import type { ICoordinates } from "../Core/Interfaces";
 import { Rectangle } from "./Rectangle";
+import { getDistance } from "./NumberUtils";
 
 /**
  * @category Utils
@@ -11,9 +12,7 @@ export class Circle extends Range {
     }
 
     contains(point: ICoordinates): boolean {
-        const d = Math.pow(point.x - this.position.x, 2) + Math.pow(point.y - this.position.y, 2);
-
-        return d <= this.radius * this.radius;
+        return getDistance(point, this.position) <= this.radius;
     }
 
     intersects(range: Range): boolean {

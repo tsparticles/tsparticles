@@ -18,7 +18,6 @@ export class Retina {
     slowModeRadius!: number;
     linksDistance!: number;
     linksWidth!: number;
-    sizeValue!: number;
     sizeAnimationSpeed!: number;
     pixelRatio!: number;
     bounceModeDistance!: number;
