@@ -401,7 +401,7 @@ export class Particle implements IParticle {
         particles.needsSort = particles.needsSort || particles.lastZIndex < this.position.z;
         particles.lastZIndex = this.position.z;
 
-        // Scale z-index factor to be between 0 and 2
+        // Scale z-index factor
         this.zIndexFactor = this.position.z / container.zLayers;
 
         /* opacity */

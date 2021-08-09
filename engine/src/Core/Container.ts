@@ -461,13 +461,12 @@ export class Container {
                 return;
             }
 
-            const pxRatio = this.retina.pixelRatio;
-            const posRetina = {
-                x: pos.x * pxRatio,
-                y: pos.y * pxRatio,
-            };
-
-            const particles = this.particles.quadTree.queryCircle(posRetina, this.retina.sizeValue);
+            const pxRatio = this.retina.pixelRatio,
+                posRetina = {
+                    x: pos.x * pxRatio,
+                    y: pos.y * pxRatio,
+                },
+                particles = this.particles.quadTree.queryCircle(posRetina, pxRatio);
 
             callback(e, particles);
         };

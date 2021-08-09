@@ -117,7 +117,7 @@ export class Mover {
         }
 
         const zIndexOptions = particle.options.zIndex,
-            zVelocityFactor = 1 - zIndexOptions.velocityRate * particle.zIndexFactor;
+            zVelocityFactor = (1 - particle.zIndexFactor) ** zIndexOptions.velocityRate;
 
         if (moveOptions.spin.enable) {
             this.spin(particle, moveSpeed);

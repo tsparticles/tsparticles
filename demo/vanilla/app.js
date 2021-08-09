@@ -61,6 +61,10 @@ app.get('/themes', function (req, res) {
     res.render('themes');
 });
 
+app.get('/click', function (req, res) {
+    res.render('click');
+});
+
 app.get("/presets", function (req, res) {
     res.render("presets/index");
 });
