@@ -1,6 +1,7 @@
 import { Container } from "../../src";
 import type { ICoordinates, ICoordinates3d } from "../../src/Core/Interfaces";
 import { Particle } from "../../src/Core/Particle";
+import { getRangeValue } from "../../src/Utils";
 
 export class TestParticle {
     private container: Container;
@@ -26,7 +27,8 @@ export class TestParticle {
         if (container === undefined) {
             container = this.container;
         }
-        const sizeValue = container.retina.sizeValue;
+
+        const sizeValue = getRangeValue(container.actualOptions.particles.size.value) * container.retina.pixelRatio;
         const width = container.canvas.size.width;
         const height = container.canvas.size.height;
         let x = width * Math.random();

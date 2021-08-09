@@ -55,12 +55,12 @@
   },
   "dependencies": {
     "@angular/animations": "~12.1.0",
-    "@angular/common": "~12.1.0",
-    "@angular/compiler": "~12.1.0",
+    "@angular/common": "~12.2.0",
+    "@angular/compiler": "~12.2.0",
     "@angular/core": "~12.1.0",
     "@angular/forms": "~12.1.0",
-    "@angular/platform-browser": "~12.1.0",
-    "@angular/platform-browser-dynamic": "~12.1.0",
+    "@angular/platform-browser": "~12.2.0",
+    "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.1.0",
     "rxjs": "~7.3.0",
     "tslib": "^2.3.0",
@@ -68,7 +68,7 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~12.1.0",
+    "@angular-devkit/build-angular": "~12.2.0",
     "@angular-devkit/build-ng-packagr": "~0.1002.0",
     "@angular/cli": "~12.1.0",
     "@angular/compiler-cli": "~12.1.0",
