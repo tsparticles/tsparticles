@@ -545,6 +545,22 @@ export class Particle implements IParticle {
         }
     }
 
+    isVisible(): boolean {
+        return !this.destroyed && !this.spawning && this.isInsideCanvas();
+    }
+
+    isInsideCanvas(): boolean {
+        const radius = this.getRadius();
+        const canvasSize = this.container.canvas.size;
+
+        return (
+            this.position.x >= -radius &&
+            this.position.y >= -radius &&
+            this.position.y <= canvasSize.height + radius &&
+            this.position.x <= canvasSize.width + radius
+        );
+    }
+
     draw(delta: IDelta): void {
         const container = this.container;
 

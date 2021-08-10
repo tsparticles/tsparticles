@@ -456,7 +456,7 @@ export class Container {
             return;
         }
 
-        const clickOrTouchHandler = (e: Event, pos: ICoordinates) => {
+        const clickOrTouchHandler = (e: Event, pos: ICoordinates, radius: number) => {
             if (this.destroyed) {
                 return;
             }
@@ -466,7 +466,7 @@ export class Container {
                     x: pos.x * pxRatio,
                     y: pos.y * pxRatio,
                 },
-                particles = this.particles.quadTree.queryCircle(posRetina, pxRatio);
+                particles = this.particles.quadTree.queryCircle(posRetina, radius * pxRatio);
 
             callback(e, particles);
         };
@@ -482,7 +482,7 @@ export class Container {
                 y: mouseEvent.offsetY || mouseEvent.clientY,
             };
 
-            clickOrTouchHandler(e, pos);
+            clickOrTouchHandler(e, pos, 1);
         };
 
         const touchStartHandler = () => {
@@ -509,14 +509,23 @@ export class Container {
 
             if (touched && !touchMoved) {
                 const touchEvent = e as TouchEvent;
-                const lastTouch = touchEvent.touches[touchEvent.touches.length - 1];
+                let lastTouch = touchEvent.touches[touchEvent.touches.length - 1];
+
+                if (!lastTouch) {
+                    lastTouch = touchEvent.changedTouches[touchEvent.changedTouches.length - 1];
+
+                    if (!lastTouch) {
+                        return;
+                    }
+                }
+
                 const canvasRect = this.canvas.element?.getBoundingClientRect();
                 const pos = {
                     x: lastTouch.clientX - (canvasRect?.left ?? 0),
                     y: lastTouch.clientY - (canvasRect?.top ?? 0),
                 };
 
-                clickOrTouchHandler(e, pos);
+                clickOrTouchHandler(e, pos, Math.max(lastTouch.radiusX, lastTouch.radiusY));
             }
 
             touched = false;

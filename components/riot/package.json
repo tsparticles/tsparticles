@@ -1,6 +1,6 @@
 {
   "name": "riot-particles",
-  "version": "1.7.2",
+  "version": "1.7.3",
   "description": "Official tsParticles Riot Component - Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno.",
   "main": "riot-particles.js",
   "scripts": {
@@ -57,7 +57,7 @@
     "riot": ">=5"
   },
   "dependencies": {
-    "tsparticles": "^1.33.2"
+    "tsparticles": "^1.33.3"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.14.5",

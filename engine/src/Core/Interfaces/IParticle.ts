@@ -64,4 +64,8 @@ export interface IParticle {
     getFillColor(): IHsl | undefined;
 
     getStrokeColor(): IHsl | undefined;
+
+    isVisible(): boolean;
+
+    isInsideCanvas(): boolean;
 }
