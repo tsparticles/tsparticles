@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.16.3](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.16.2...svelte-demo@1.16.3) (2021-08-10)
+
+
+### Bug Fixes
+
+* fixed issues with svelte 3.41.0 ([113c1c9](https://github.com/matteobruni/tsparticles/commit/113c1c9675eb365dedbedbc8ea39a8116ef66da8))
+
+
+
+
+
 ## [1.16.2](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.16.1...svelte-demo@1.16.2) (2021-07-31)
 
 

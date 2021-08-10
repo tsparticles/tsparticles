@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.18.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.18.2...tsparticles-demo@1.18.3) (2021-08-10)
+
+
+### Bug Fixes
+
+* fixed click handler with touch events ([ad4bf8a](https://github.com/matteobruni/tsparticles/commit/ad4bf8a56cb7e110114c8ec25dab1151c440f212))
+* fixed click handler, it wasn't working fine ([fd9873b](https://github.com/matteobruni/tsparticles/commit/fd9873b250d236b196cc7ff952d237f2768fb26b))
+* improved out modes and spin movement ([1c811cf](https://github.com/matteobruni/tsparticles/commit/1c811cfefe0b004857b3174e766a34d9bf614361))
+
+
+
+
+
 ## [1.18.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.18.1...tsparticles-demo@1.18.2) (2021-07-31)
 
 **Note:** Version bump only for package tsparticles-demo

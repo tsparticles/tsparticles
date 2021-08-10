@@ -401,7 +401,7 @@ export class Particle implements IParticle {
         particles.needsSort = particles.needsSort || particles.lastZIndex < this.position.z;
         particles.lastZIndex = this.position.z;
 
-        // Scale z-index factor to be between 0 and 2
+        // Scale z-index factor
         this.zIndexFactor = this.position.z / container.zLayers;
 
         /* opacity */
@@ -541,6 +541,22 @@ export class Particle implements IParticle {
                 plugin.particleCreated(this);
             }
         }
+    }
+
+    isVisible(): boolean {
+        return !this.destroyed && !this.spawning && this.isInsideCanvas();
+    }
+
+    isInsideCanvas(): boolean {
+        const radius = this.getRadius();
+        const canvasSize = this.container.canvas.size;
+
+        return (
+            this.position.x >= -radius &&
+            this.position.y >= -radius &&
+            this.position.y <= canvasSize.height + radius &&
+            this.position.x <= canvasSize.width + radius
+        );
     }
 
     draw(delta: IDelta): void {

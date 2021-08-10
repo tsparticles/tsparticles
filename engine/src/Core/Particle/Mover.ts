@@ -117,7 +117,7 @@ export class Mover {
         }
 
         const zIndexOptions = particle.options.zIndex,
-            zVelocityFactor = 1 - zIndexOptions.velocityRate * particle.zIndexFactor;
+            zVelocityFactor = (1 - particle.zIndexFactor) ** zIndexOptions.velocityRate;
 
         if (moveOptions.spin.enable) {
             this.spin(particle, moveSpeed);
@@ -153,7 +153,7 @@ export class Mover {
         particle.position.y = particle.spin.center.y + particle.spin.radius * updateFunc.y(particle.spin.angle);
         particle.spin.radius += particle.spin.acceleration;
 
-        const maxCanvasSize = Math.min(container.canvas.size.width, container.canvas.size.height);
+        const maxCanvasSize = Math.max(container.canvas.size.width, container.canvas.size.height);
 
         if (particle.spin.radius > maxCanvasSize / 2) {
             particle.spin.radius = maxCanvasSize / 2;

@@ -10,9 +10,9 @@ body {
   background: #000;
 }
 
-.floating-container {
+#floating-container {
   right: 20px;
   top: 20px;
   position: fixed;
-  z-index: 40;
+  z-index: 4000;
 }

@@ -253,7 +253,7 @@ export class Canvas {
 
         const options = this.container.actualOptions;
         const zIndexOptions = particle.options.zIndex;
-        const zOpacityFactor = 1 - zIndexOptions.opacityRate * particle.zIndexFactor;
+        const zOpacityFactor = (1 - particle.zIndexFactor) ** zIndexOptions.opacityRate;
         const radius = particle.getRadius();
         const opacity = twinkling ? twinkle.opacity : particle.bubble.opacity ?? particle.opacity.value;
         const strokeOpacity = particle.stroke.opacity ?? opacity;
@@ -267,7 +267,7 @@ export class Canvas {
         const orbitOptions = particle.options.orbit;
 
         this.draw((ctx) => {
-            const zSizeFactor = 1 - zIndexOptions.sizeRate * particle.zIndexFactor;
+            const zSizeFactor = (1 - particle.zIndexFactor) ** zIndexOptions.sizeRate;
 
             const zStrokeOpacity = strokeOpacity * zOpacityFactor;
             const strokeColorValue = sColor ? getStyleFromHsl(sColor, zStrokeOpacity) : fillColorValue;

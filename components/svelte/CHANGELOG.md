@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.16.3](https://github.com/matteobruni/tsparticles/compare/svelte-particles@1.16.2...svelte-particles@1.16.3) (2021-08-10)
+
+
+### Bug Fixes
+
+* fixed issues with svelte 3.41.0 ([113c1c9](https://github.com/matteobruni/tsparticles/commit/113c1c9675eb365dedbedbc8ea39a8116ef66da8))
+
+
+### Features
+
+* added new methods to particle class ([5743453](https://github.com/matteobruni/tsparticles/commit/5743453906001569f262888aa54539ad4e1463ac))
+
+
+
+
+
 ## [1.16.2](https://github.com/matteobruni/tsparticles/compare/svelte-particles@1.16.1...svelte-particles@1.16.2) (2021-07-31)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "particles.vue3-demo",
-  "version": "1.16.2",
+  "version": "1.16.3",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -8,8 +8,8 @@
   },
   "dependencies": {
     "core-js": "^3.15.1",
-    "particles.vue3": "^1.16.2",
-    "tsparticles": "^1.33.2",
+    "particles.vue3": "^1.16.3",
+    "tsparticles": "^1.33.3",
     "vue": "^3.1.5",
     "vue-class-component": "^8.0.0-rc.1"
   },

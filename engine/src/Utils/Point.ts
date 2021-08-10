@@ -1,4 +1,4 @@
-import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
+import type { ICoordinates } from "../Core/Interfaces";
 import type { Particle } from "../Core/Particle";
 
 /**
