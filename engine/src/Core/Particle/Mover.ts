@@ -153,7 +153,7 @@ export class Mover {
         particle.position.y = particle.spin.center.y + particle.spin.radius * updateFunc.y(particle.spin.angle);
         particle.spin.radius += particle.spin.acceleration;
 
-        const maxCanvasSize = Math.min(container.canvas.size.width, container.canvas.size.height);
+        const maxCanvasSize = Math.max(container.canvas.size.width, container.canvas.size.height);
 
         if (particle.spin.radius > maxCanvasSize / 2) {
             particle.spin.radius = maxCanvasSize / 2;
