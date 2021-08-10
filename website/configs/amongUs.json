@@ -154,7 +154,7 @@
   "emitters": {
     "position": {
       "y": 55,
-      "x": 0
+      "x": -5
     },
     "rate": {
       "delay": 7,
@@ -181,8 +181,8 @@
       "move": {
         "speed": 10,
         "outModes": {
-          "default": "destroy",
-          "left": "none"
+          "default": "none",
+          "right": "destroy"
         },
         "straight": true
       },
