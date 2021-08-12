@@ -8,6 +8,7 @@ let field: number[][][];
 const options: {
     draw: boolean;
     size: number;
+    increment: number;
     columns: number;
     rows: number;
     width: number;
@@ -15,6 +16,7 @@ const options: {
 } = {
     draw: false,
     size: 20,
+    increment: 0.004,
     columns: 0,
     rows: 0,
     width: 0,
@@ -57,6 +59,7 @@ function reset(container: Container) {
     const sourceOptions = container.actualOptions.particles.move.path.options;
 
     options.size = (sourceOptions.size as number) || 20;
+    options.increment = (sourceOptions.increment as number) || 0.004;
     options.draw = !!sourceOptions.draw;
     options.width = container.canvas.size.width;
     options.height = container.canvas.size.height;
@@ -104,7 +107,7 @@ class PerlinNoiseGenerator implements IMovePathGenerator {
 
         calculateField();
 
-        noiseZ += 0.004;
+        noiseZ += options.increment;
 
         if (options.draw) {
             this.container.canvas.draw((ctx) => drawField(ctx));
