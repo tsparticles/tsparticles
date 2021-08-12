@@ -1,4 +1,5 @@
 import type { ISourceOptions } from "tsparticles";
+import { curvesPathName } from "tsparticles-path-curves";
 
 export const presetName = "seaAnemone";
 export const pathGeneratorName = `${presetName}Path`;
@@ -37,7 +38,7 @@ export const options: ISourceOptions = {
                 delay: {
                     value: 0,
                 },
-                generator: pathGeneratorName,
+                generator: curvesPathName,
             },
             random: false,
             speed: 2,

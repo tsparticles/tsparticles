@@ -183,17 +183,7 @@ export class Mover {
             return;
         }
 
-        let generator = container.pathGenerator;
-
-        if (pathOptions.generator) {
-            const customGenerator = Plugins.getPathGenerator(pathOptions.generator);
-
-            if (customGenerator) {
-                generator = customGenerator;
-            }
-        }
-
-        const path = generator.generate(particle);
+        const path = container.pathGenerator.generate(particle);
 
         particle.velocity.addTo(path);
 

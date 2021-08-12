@@ -79,7 +79,7 @@ const getConfig = (entry, bannerInput, minBannerInput) => {
 
 const version = require("./package.json").version;
 
-const banner = `Author : Matteo Bruni - https://www.matteobruni.it
+const banner = `Author : Matteo Bruni
 MIT license: https://opensource.org/licenses/MIT
 Demo / Generator : https://particles.js.org/
 GitHub : https://www.github.com/matteobruni/tsparticles

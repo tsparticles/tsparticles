@@ -1,7 +1,7 @@
 const path = require("path");
 const TerserPlugin = require("terser-webpack-plugin");
 const webpack = require("webpack");
-const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const {BundleAnalyzerPlugin} = require("webpack-bundle-analyzer");
 
 const getEntry = (name, bundle) => {
     const obj = {};
@@ -24,6 +24,14 @@ const getExternals = (bundle) => {
                 commonjs: "tsparticles",
                 commonjs2: "tsparticles",
                 amd: "tsparticles",
+                root: "window"
+            }
+        },
+        {
+            "tsparticles-path-curves": {
+                commonjs: "tsparticles-path-curves",
+                commonjs2: "tsparticles-path-curves",
+                amd: "tsparticles-path-curves",
                 root: "window"
             }
         }
@@ -88,7 +96,7 @@ const getConfig = (entry, bannerInput, minBannerInput, dir, bundle) => {
 
 const version = require("./package.json").version;
 
-const banner = `Author : Matteo Bruni - https://www.matteobruni.it
+const banner = `Author : Matteo Bruni
 MIT license: https://opensource.org/licenses/MIT
 Demo / Generator : https://particles.js.org/
 GitHub : https://www.github.com/matteobruni/tsparticles

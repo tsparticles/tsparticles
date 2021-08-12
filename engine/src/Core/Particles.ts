@@ -114,7 +114,7 @@ export class Particles {
             }
         }
 
-        container.pathGenerator.init();
+        container.pathGenerator.init(container);
     }
 
     redraw(): void {

@@ -77,7 +77,12 @@
         "enable": true,
         "delay": {
           "value": 0.1
-        }
+        },
+        "options": {
+          "size": 20,
+          "draw": false
+        },
+        "generator": "simplexNoise"
       },
       "trail": {
         "enable": true,

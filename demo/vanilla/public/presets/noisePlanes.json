@@ -55,7 +55,12 @@
         "rotateY": 1200
       },
       "path": {
-        "enable": true
+        "enable": true,
+        "options": {
+          "size": 20,
+          "draw": false
+        },
+        "generator": "perlinNoise"
       },
       "bounce": false,
       "direction": "none",

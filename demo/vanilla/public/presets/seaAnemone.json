@@ -29,7 +29,8 @@
           "enable": true,
           "delay": {
             "value": 0
-          }
+          },
+          "generator": "curvesPathGenerator"
         },
         "random": false,
         "speed": 1,
