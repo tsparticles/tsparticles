@@ -65,7 +65,7 @@
     "url": "https://github.com/sponsors/matteobruni"
   },
   "optionalDependencies": {
-    "pathseg": "^1.2.0"
+    "pathseg": "^1.2.1"
   },
   "main": "index.js",
   "module": "esm/index.js",
