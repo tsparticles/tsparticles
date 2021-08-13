@@ -1,7 +1,8 @@
 import type { IPath } from "../../../../Interfaces/Particles/Move/Path/iPath";
-import type { RecursivePartial } from "../../../../../Types";
+import type { RecursivePartial, PathOptions } from "../../../../../Types";
 import { PathDelay } from "./PathDelay";
 import type { IOptionLoader } from "../../../../Interfaces/IOptionLoader";
+import { deepExtend } from "../../../../../Utils";
 
 /**
  * @category Options
@@ -10,12 +11,14 @@ export class Path implements IPath, IOptionLoader<IPath> {
     clamp;
     delay;
     enable;
+    options: PathOptions;
     generator?: string;
 
     constructor() {
         this.clamp = true;
         this.delay = new PathDelay();
         this.enable = false;
+        this.options = {};
     }
 
     load(data?: RecursivePartial<IPath>): void {
@@ -34,5 +37,9 @@ export class Path implements IPath, IOptionLoader<IPath> {
         }
 
         this.generator = data.generator;
+
+        if (data.options) {
+            this.options = deepExtend(this.options, data.options) as PathOptions;
+        }
     }
 }

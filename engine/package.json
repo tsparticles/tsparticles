@@ -75,7 +75,7 @@
     "animated",
     "background"
   ],
-  "author": "Matteo Bruni <matteo.bruni@me.com> (https://www.matteobruni.it)",
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
   "contributors": [
     "Gabriel Barker (https://github.com/gabrielbarker)",
     "Tyler Burnett (https://github.com/TylerBurnett)",
@@ -90,40 +90,40 @@
     "url": "https://github.com/sponsors/matteobruni"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.6",
-    "@types/chai": "^4.2.19",
+    "@babel/core": "^7.15.0",
+    "@types/chai": "^4.2.21",
     "@types/mocha": "^9.0.0",
-    "@types/node": "^16.0.0",
-    "@types/webpack-env": "^1.16.0",
-    "@typescript-eslint/eslint-plugin": "^4.28.1",
-    "@typescript-eslint/parser": "^4.28.1",
+    "@types/node": "^16.6.1",
+    "@types/webpack-env": "^1.16.2",
+    "@typescript-eslint/eslint-plugin": "^4.29.1",
+    "@typescript-eslint/parser": "^4.29.1",
     "babel-loader": "^8.2.2",
     "canvas": "^2.8.0",
     "chai": "^4.3.4",
     "compare-versions": "^3.6.0",
     "copyfiles": "^2.4.1",
     "downlevel-dts": "^0.7.0",
-    "eslint": "^7.29.0",
+    "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "install": "^0.13.0",
-    "mocha": "^9.0.1",
+    "mocha": "^9.0.3",
     "nyc": "^15.1.0",
     "prettier": "^2.3.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "source-map-support": "^0.5.19",
     "terser-webpack-plugin": "^5.1.4",
-    "ts-node": "^10.0.0",
-    "typedoc": "^0.21.2",
+    "ts-node": "^10.2.0",
+    "typedoc": "^0.21.5",
     "typescript": "^4.3.5",
     "typescript-json-schema": "^0.50.1",
-    "webpack": "^5.41.0",
+    "webpack": "^5.50.0",
     "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^4.7.2",
     "window": "^4.2.7"
   },
   "optionalDependencies": {
-    "pathseg": "^1.2.0"
+    "pathseg": "^1.2.1"
   },
   "publishConfig": {
     "directory": "dist"

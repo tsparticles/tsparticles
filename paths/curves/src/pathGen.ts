@@ -1,10 +1,6 @@
-import { IParticle, Vector } from "tsparticles";
-import type { IMovePathGenerator } from "tsparticles/Core/Interfaces/IMovePathGenerator";
-
-type SeaPathParticle = IParticle & {
-    pathGen?: () => number;
-    seaVelocity?: Vector;
-};
+import type { IMovePathGenerator } from "tsparticles";
+import { CurvesPathParticle } from "./CurvesPathParticle";
+import { Vector } from "tsparticles";
 
 function pathGen(
     rndFunc: (() => number) | null,
@@ -60,33 +56,31 @@ function pathGen(
     }; // returned function
 } // PathGen
 
-const seaPathGenerator: IMovePathGenerator = {
+export const curvesPathGenerator: IMovePathGenerator = {
+    generate: (p: CurvesPathParticle) => {
+        if (p.pathGen === undefined) {
+            p.pathGen = pathGen(null, 100, 2, 0.8, -0.03, 0.03);
+        }
+
+        if (p.curveVelocity === undefined) {
+            p.curveVelocity = Vector.origin;
+
+            p.curveVelocity.length = Math.random() * 0.6 + 0.8;
+            p.curveVelocity.angle = Math.random() * Math.PI * 2;
+        } else {
+            p.curveVelocity.length += 0.01;
+            p.curveVelocity.angle = (p.curveVelocity.angle + p.pathGen()) % (Math.PI * 2);
+        }
+
+        p.velocity.x = 0;
+        p.velocity.y = 0;
+
+        return p.curveVelocity;
+    },
     init: () => {
         // do nothing
     },
     update: () => {
         // do nothing
     },
-    generate: (p: SeaPathParticle) => {
-        if (p.pathGen === undefined) {
-            p.pathGen = pathGen(null, 100, 2, 0.8, -0.03, 0.03);
-        }
-
-        if (p.seaVelocity === undefined) {
-            p.seaVelocity = Vector.create(0, 0);
-
-            p.seaVelocity.length = Math.random() * 0.6 + 0.8;
-            p.seaVelocity.angle = Math.random() * Math.PI * 2;
-        } else {
-            p.seaVelocity.length += 0.01;
-            p.seaVelocity.angle = (p.seaVelocity.angle + p.pathGen()) % (Math.PI * 2);
-        }
-
-        p.velocity.x = 0;
-        p.velocity.y = 0;
-
-        return p.seaVelocity;
-    },
 };
-
-export { seaPathGenerator };

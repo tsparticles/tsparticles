@@ -70,6 +70,7 @@
     "webpack-cli": "^4.7.2"
   },
   "dependencies": {
-    "tsparticles": "^1.33.3"
+    "tsparticles": "^1.33.3",
+    "tsparticles-path-curves": "^1.33.3"
   }
 }

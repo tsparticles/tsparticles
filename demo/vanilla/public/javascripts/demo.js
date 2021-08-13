@@ -1,48 +1,4 @@
 (function () {
-    let noiseZ;
-    let size;
-    let columns;
-    let rows;
-    let w;
-    let h;
-    let field;
-
-    function setup(container) {
-        size = 20;
-        noiseZ = 0;
-        reset(container);
-    }
-
-    function initField() {
-        field = new Array(columns);
-        for (let x = 0; x < columns; x++) {
-            field[x] = new Array(columns);
-            for (let y = 0; y < rows; y++) {
-                field[x][y] = [0, 0];
-            }
-        }
-    }
-
-    function calculateField() {
-        for (let x = 0; x < columns; x++) {
-            for (let y = 0; y < rows; y++) {
-                let angle = noise.perlin3(x / 50, y / 50, noiseZ) * Math.PI * 2;
-                let length = noise.perlin3(x / 100 + 40000, y / 100 + 40000, noiseZ);
-                field[x][y][0] = angle;
-                field[x][y][1] = length;
-            }
-        }
-    }
-
-    function reset(container) {
-        w = container.canvas.size.width;
-        h = container.canvas.size.height;
-        noise.seed(Math.random());
-        columns = Math.floor(w / size) + 1;
-        rows = Math.floor(h / size) + 1;
-        initField();
-    }
-
     let schema = {};
     const stats = new Stats();
 
@@ -111,50 +67,6 @@
             localStorage.presetId = presetId;
             editor.set(particles.options);
             editor.expandAll();
-
-            if (particles.options.particles.move.path.enable) {
-                particles.setPath({
-                    init: function () {
-                        setup(particles);
-                    },
-                    update: function () {
-                        calculateField();
-
-                        const mousePos = particles.interactivity.mouse.position;
-
-                        let sumZ;
-
-                        if (mousePos) {
-                            sumZ =
-                                (mousePos.x * mousePos.y) /
-                                (25 * particles.canvas.size.width * particles.canvas.size.height);
-                        } else {
-                            sumZ = 0.004;
-                        }
-
-                        noiseZ += sumZ;
-                    },
-                    generate: function (p) {
-                        const pos = p.getPosition();
-
-                        const px = Math.max(Math.floor(pos.x / size), 0);
-                        const py = Math.max(Math.floor(pos.y / size), 0);
-
-                        const v = Vector.create(0, 0);
-
-                        if (!field || !field[px] || !field[px][py]) {
-                            return v;
-                        }
-
-                        v.length = field[px][py][1];
-                        v.angle = field[px][py][0];
-
-                        return v;
-                    }
-                });
-
-                particles.refresh();
-            }
         });
     };
 
@@ -351,5 +263,8 @@ canvas {
         loadLightInteraction(tsParticles);
         loadParticlesRepulseInteraction(tsParticles);
         loadOrbitUpdater(tsParticles);
+        loadCurvesPath(tsParticles);
+        loadPerlinNoisePath(tsParticles);
+        loadSimplexNoisePath(tsParticles);
     });
 })();

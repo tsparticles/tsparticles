@@ -590,6 +590,26 @@ export class Container {
             }
         }
 
+        const pathOptions = this.actualOptions.particles.move.path;
+
+        if (pathOptions.generator) {
+            const customGenerator = Plugins.getPathGenerator(pathOptions.generator);
+
+            if (customGenerator) {
+                if (customGenerator.init) {
+                    this.pathGenerator.init = customGenerator.init;
+                }
+
+                if (customGenerator.generate) {
+                    this.pathGenerator.generate = customGenerator.generate;
+                }
+
+                if (customGenerator.update) {
+                    this.pathGenerator.update = customGenerator.update;
+                }
+            }
+        }
+
         this.particles.init();
         this.particles.setDensity();
 
