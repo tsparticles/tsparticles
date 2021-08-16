@@ -3,7 +3,7 @@ import type { IDelta, IParticleUpdater, IParticleValueAnimation } from "../../Co
 import { randomInRange } from "../../Utils";
 import type { IColorAnimation } from "../../Options/Interfaces/IColorAnimation";
 import type { IHslAnimation } from "../../Options/Interfaces/IHslAnimation";
-import type { IAnimatableColor } from "../../Options/Interfaces/Particles/IAnimatableColor";
+import type { IAnimatableColor } from "../../Options/Interfaces/IAnimatableColor";
 import { AnimationStatus } from "../../Enums";
 
 function updateColorValue(

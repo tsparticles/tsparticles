@@ -10,7 +10,7 @@ import type { SingleOrMultiple } from "../../../Types";
 import type { IStroke } from "./IStroke";
 import type { ICollisions } from "./Collisions/ICollisions";
 import type { ITwinkle } from "./Twinkle/ITwinkle";
-import type { IAnimatableColor } from "./IAnimatableColor";
+import type { IAnimatableColor } from "../IAnimatableColor";
 import type { ILife } from "./Life/ILife";
 import type { IBounce } from "./Bounce/IBounce";
 import type { IDestroy } from "./Destroy/IDestroy";
