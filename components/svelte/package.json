@@ -61,7 +61,7 @@
     "svelte": ">=3"
   },
   "dependencies": {
-    "tslib": "^2.3.0",
+    "tslib": "^2.3.1",
     "tsparticles": "^1.33.3"
   },
   "devDependencies": {
@@ -70,11 +70,11 @@
     "@rollup/plugin-typescript": "^8.2.5",
     "@tsconfig/svelte": "^2.0.1",
     "prettier": "^2.3.2",
-    "rollup": "^2.55.1",
+    "rollup": "^2.56.2",
     "rollup-plugin-svelte": "^7.1.0",
     "rollup-plugin-terser": "^7.0.2",
-    "svelte": "^3.41.0",
-    "svelte-check": "^2.2.3",
+    "svelte": "^3.42.1",
+    "svelte-check": "^2.2.4",
     "svelte-preprocess": "^4.7.4",
     "typescript": "^4.3.5"
   },

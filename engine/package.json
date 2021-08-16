@@ -119,7 +119,7 @@
     "typescript-json-schema": "^0.50.1",
     "webpack": "^5.50.0",
     "webpack-bundle-analyzer": "^4.4.2",
-    "webpack-cli": "^4.7.2",
+    "webpack-cli": "^4.8.0",
     "window": "^4.2.7"
   },
   "optionalDependencies": {
