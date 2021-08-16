@@ -8,7 +8,7 @@ import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
 import type { IHsl, IRgb } from "./Colors";
 import type { IParticleHslAnimation } from "./IParticleHslAnimation";
 import type { Vector } from "../Particle/Vector";
-import { IParticleGradientAnimation } from "./IParticleGradientAnimation";
+import type { IParticleGradientAnimation } from "./IParticleGradientAnimation";
 
 /**
  * @category Interfaces
