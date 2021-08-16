@@ -164,6 +164,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
 
         this.motion.load(data.motion);
+
         this.particles.load(data.particles);
 
         Plugins.loadOptions(this, data);

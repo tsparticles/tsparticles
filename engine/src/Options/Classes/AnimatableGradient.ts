@@ -4,13 +4,13 @@ import { GradientType } from "../../Enums";
 import type { IGradientAngle } from "../../Core/Interfaces";
 import type { IAnimatable } from "../Interfaces/IAnimatable";
 import type { IAnimation } from "../Interfaces/IAnimation";
-import type { RecursivePartial, SingleOrMultiple } from "../../Types";
+import type { RecursivePartial } from "../../Types";
 import type { IAnimatableGradientColor } from "../Interfaces/IOptionsGradient";
 import { AnimatableColor } from "./AnimatableColor";
 
 export class AnimatableGradient implements IAnimatableGradient, IOptionLoader<IAnimatableGradient> {
     angle: GradientAngle;
-    colors: SingleOrMultiple<AnimatableGradientColor>;
+    colors: AnimatableGradientColor[];
     type: GradientType;
 
     constructor() {
@@ -26,22 +26,14 @@ export class AnimatableGradient implements IAnimatableGradient, IOptionLoader<IA
 
         this.angle.load(data.angle);
 
-        const colors = data.colors as SingleOrMultiple<IAnimatableGradientColor>;
-
-        if (colors !== undefined && colors instanceof Array) {
-            this.colors = colors.map((s) => {
+        if (data.colors !== undefined) {
+            this.colors = data.colors.map((s) => {
                 const tmp = new AnimatableGradientColor();
 
                 tmp.load(s);
 
                 return tmp;
             });
-        } else {
-            if (this.colors instanceof Array) {
-                this.colors = new AnimatableGradientColor();
-            }
-
-            this.colors.load(colors);
         }
 
         if (data.type !== undefined) {
@@ -77,6 +69,7 @@ export class GradientAngle
 export class AnimatableGradientColor implements IAnimatableGradientColor, IOptionLoader<IAnimatableGradientColor> {
     stop;
     value;
+    opacity?: number;
 
     constructor() {
         this.stop = 0;
@@ -93,6 +86,8 @@ export class AnimatableGradientColor implements IAnimatableGradientColor, IOptio
         }
 
         this.value = AnimatableColor.create(this.value, data.value);
+
+        this.opacity = data.opacity;
     }
 }
 

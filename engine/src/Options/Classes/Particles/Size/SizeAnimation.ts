@@ -12,7 +12,7 @@ export class SizeAnimation extends AnimationOptions implements ISizeAnimation, I
      *
      * @deprecated this property is obsolete, please use the new minimumValue
      */
-    get size_min(): number {
+    get size_min(): number | undefined {
         return this.minimumValue;
     }
 
@@ -21,12 +21,17 @@ export class SizeAnimation extends AnimationOptions implements ISizeAnimation, I
      * @deprecated this property is obsolete, please use the new minimumValue
      * @param value
      */
-    set size_min(value: number) {
+    set size_min(value: number | undefined) {
         this.minimumValue = value;
     }
 
     destroy: DestroyType | keyof typeof DestroyType;
-    minimumValue;
+
+    /**
+     * @deprecated this property is obsolete, please use the new min/max object in the size value
+     */
+    minimumValue?: number;
+
     startValue: StartValueType | keyof typeof StartValueType;
 
     constructor() {
@@ -34,7 +39,6 @@ export class SizeAnimation extends AnimationOptions implements ISizeAnimation, I
 
         this.destroy = DestroyType.none;
         this.enable = false;
-        this.minimumValue = 0;
         this.speed = 5;
         this.startValue = StartValueType.random;
         this.sync = false;
@@ -55,11 +59,7 @@ export class SizeAnimation extends AnimationOptions implements ISizeAnimation, I
             this.enable = data.enable;
         }
 
-        const minimumValue = data.minimumValue ?? data.size_min;
-
-        if (minimumValue !== undefined) {
-            this.minimumValue = minimumValue;
-        }
+        this.minimumValue = data.minimumValue ?? data.size_min;
 
         if (data.speed !== undefined) {
             this.speed = data.speed;

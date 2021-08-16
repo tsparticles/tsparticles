@@ -5,5 +5,5 @@ import { IParticleGradientColorAnimation } from "./IParticleGradientColorAnimati
 export interface IParticleGradientAnimation {
     angle: IParticleValueAnimation<number>;
     type: GradientType;
-    colors: IParticleGradientColorAnimation;
+    colors: IParticleGradientColorAnimation[];
 }

@@ -19,6 +19,7 @@ import {
     colorToRgb,
     deepExtend,
     getDistance,
+    getHslAnimationFromHsl,
     getHslFromAnimation,
     getParticleBaseVelocity,
     getParticleDirectionAngle,
@@ -191,8 +192,6 @@ export class Particle implements IParticle {
 
         container.retina.initParticle(this);
 
-        const color = this.options.color;
-
         /* size */
         const sizeOptions = this.options.size;
         const sizeValue = getValue(sizeOptions) * container.retina.pixelRatio;
@@ -208,10 +207,10 @@ export class Particle implements IParticle {
         if (sizeAnimation.enable) {
             this.size.status = AnimationStatus.increasing;
 
-            const sizeRange = setRangeValue(sizeOptions.value, sizeAnimation.minimumValue * pxRatio);
+            const sizeRange = sizeOptions.value;
 
-            this.size.min = getRangeMin(sizeRange);
-            this.size.max = getRangeMax(sizeRange);
+            this.size.min = getRangeMin(sizeRange) * pxRatio;
+            this.size.max = getRangeMax(sizeRange) * pxRatio;
 
             switch (sizeAnimation.startValue) {
                 case StartValueType.min:
@@ -221,7 +220,7 @@ export class Particle implements IParticle {
                     break;
 
                 case StartValueType.random:
-                    this.size.value = randomInRange(this.size);
+                    this.size.value = randomInRange(this.size) * pxRatio;
                     this.size.status = Math.random() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
                     break;
@@ -332,27 +331,39 @@ export class Particle implements IParticle {
         }
 
         /* color */
-        const hslColor = colorToHsl(color, this.id, reduceDuplicates);
+        const hslColor = colorToHsl(this.options.color, this.id, reduceDuplicates);
 
         if (hslColor) {
-            /* color */
-            this.color = {
-                h: {
-                    value: hslColor.h,
-                },
-                s: {
-                    value: hslColor.s,
-                },
-                l: {
-                    value: hslColor.l,
-                },
+            this.color = getHslAnimationFromHsl(hslColor, this.options.color.animation, container.retina.reduceFactor);
+        }
+
+        const gradient =
+            this.options.gradient instanceof Array ? itemFromArray(this.options.gradient) : this.options.gradient;
+
+        if (gradient) {
+            this.gradient = {
+                angle: gradient.angle,
+                type: gradient.type,
+                colors: [],
             };
 
-            const colorAnimation = this.options.color.animation;
+            for (const grColor of gradient.colors) {
+                const grHslColor = colorToHsl(grColor.value, this.id, reduceDuplicates);
 
-            this.setColorAnimation(colorAnimation.h, this.color.h);
-            this.setColorAnimation(colorAnimation.s, this.color.s);
-            this.setColorAnimation(colorAnimation.l, this.color.l);
+                if (grHslColor) {
+                    const grHslAnimation = getHslAnimationFromHsl(
+                        grHslColor,
+                        grColor.value.animation,
+                        container.retina.reduceFactor
+                    );
+
+                    this.gradient.colors.push({
+                        stop: grColor.stop,
+                        value: grHslAnimation,
+                        opacity: grColor.opacity,
+                    });
+                }
+            }
         }
 
         const rollOpt = this.options.roll;
@@ -420,7 +431,7 @@ export class Particle implements IParticle {
         if (opacityAnimation.enable) {
             this.opacity.status = AnimationStatus.increasing;
 
-            const opacityRange = setRangeValue(opacityOptions.value, opacityAnimation.minimumValue);
+            const opacityRange = opacityOptions.value;
 
             this.opacity.min = getRangeMin(opacityRange);
             this.opacity.max = getRangeMax(opacityRange);
