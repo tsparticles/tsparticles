@@ -28,6 +28,7 @@ app.use("/bootstrap", express.static("./node_modules/bootstrap/dist"));
 app.use("/tsparticles", express.static("./node_modules/tsparticles"));
 app.use("/interaction-light", express.static("./node_modules/tsparticles-interaction-light"));
 app.use("/interaction-particles-repulse", express.static("./node_modules/tsparticles-interaction-particles-repulse"));
+app.use("/updater-gradient", express.static("./node_modules/tsparticles-updater-gradient"));
 app.use("/updater-orbit", express.static("./node_modules/tsparticles-updater-orbit"));
 app.use("/path-curves", express.static("./node_modules/tsparticles-path-curves"));
 app.use("/path-perlin-noise", express.static("./node_modules/tsparticles-path-perlin-noise"));

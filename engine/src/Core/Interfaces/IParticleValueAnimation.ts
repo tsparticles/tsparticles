@@ -4,6 +4,7 @@ import type { AnimationStatus } from "../../Enums";
  * @category Interfaces
  */
 export interface IParticleValueAnimation<T> {
+    enable: boolean;
     status?: AnimationStatus;
     velocity?: number;
     value: T;

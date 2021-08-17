@@ -525,25 +525,30 @@ export function getHslFromAnimation(animation?: IParticleHslAnimation): IHsl | u
 
 export function getHslAnimationFromHsl(
     hsl: IHsl,
-    animationOptions: HslAnimation,
+    animationOptions: HslAnimation | undefined,
     reduceFactor: number
 ): IParticleHslAnimation {
     /* color */
     const resColor: IParticleHslAnimation = {
         h: {
+            enable: false,
             value: hsl.h,
         },
         s: {
+            enable: false,
             value: hsl.s,
         },
         l: {
+            enable: false,
             value: hsl.l,
         },
     };
 
-    setColorAnimation(resColor.h, animationOptions.h, reduceFactor);
-    setColorAnimation(resColor.s, animationOptions.s, reduceFactor);
-    setColorAnimation(resColor.l, animationOptions.l, reduceFactor);
+    if (animationOptions) {
+        setColorAnimation(resColor.h, animationOptions.h, reduceFactor);
+        setColorAnimation(resColor.s, animationOptions.s, reduceFactor);
+        setColorAnimation(resColor.l, animationOptions.l, reduceFactor);
+    }
 
     return resColor;
 }
@@ -553,7 +558,9 @@ function setColorAnimation(
     colorAnimation: IColorAnimation,
     reduceFactor: number
 ): void {
-    if (colorAnimation.enable) {
+    colorValue.enable = colorAnimation.enable;
+
+    if (colorValue.enable) {
         colorValue.velocity = (colorAnimation.speed / 100) * reduceFactor;
 
         if (colorAnimation.sync) {

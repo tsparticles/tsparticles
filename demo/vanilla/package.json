@@ -65,6 +65,7 @@
     "tsparticles-shape-multiline-text": "^1.18.3",
     "tsparticles-shape-rounded-rect": "^1.18.3",
     "tsparticles-shape-spiral": "^1.18.3",
+    "tsparticles-updater-gradient": "^1.33.3",
     "tsparticles-updater-orbit": "^1.33.3"
   }
 }

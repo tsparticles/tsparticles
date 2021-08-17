@@ -1,5 +1,5 @@
 [![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
 
-# tsparticles-updater-orbit
+# tsparticles-updater-gradient
 
-tsParticles updater orbit
+tsParticles updater gradient

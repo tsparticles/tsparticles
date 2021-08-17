@@ -2,8 +2,6 @@ import { Particle } from "../../Core/Particle";
 import type { IDelta, IParticleUpdater, IParticleValueAnimation } from "../../Core/Interfaces";
 import { randomInRange } from "../../Utils";
 import type { IColorAnimation } from "../../Options/Interfaces/IColorAnimation";
-import type { IHslAnimation } from "../../Options/Interfaces/IHslAnimation";
-import type { IAnimatableColor } from "../../Options/Interfaces/IAnimatableColor";
 import { AnimationStatus } from "../../Enums";
 
 function updateColorValue(
@@ -15,7 +13,7 @@ function updateColorValue(
 ): void {
     const colorValue = value;
 
-    if (!colorValue || !valueAnimation.enable) {
+    if (!colorValue || !colorValue.enable) {
         return;
     }
 
@@ -48,35 +46,23 @@ function updateStrokeColor(particle: Particle, delta: IDelta): void {
         return;
     }
 
-    const animationOptions = (particle.stroke.color as IAnimatableColor).animation;
-    const valueAnimations = animationOptions as IColorAnimation;
+    const animationOptions = particle.stroke.color.animation;
+    const h = particle.strokeColor?.h ?? particle.color?.h;
 
-    if (valueAnimations.enable !== undefined) {
-        const hue = particle.strokeColor?.h ?? particle.color?.h;
+    if (h) {
+        updateColorValue(delta, h, animationOptions.h, 360, false);
+    }
 
-        if (hue) {
-            updateColorValue(delta, hue, valueAnimations, 360, false);
-        }
-    } else {
-        const hslAnimations = animationOptions as IHslAnimation;
+    const s = particle.strokeColor?.s ?? particle.color?.s;
 
-        const h = particle.strokeColor?.h ?? particle.color?.h;
+    if (s) {
+        updateColorValue(delta, s, animationOptions.s, 100, true);
+    }
 
-        if (h) {
-            updateColorValue(delta, h, hslAnimations.h, 360, false);
-        }
+    const l = particle.strokeColor?.l ?? particle.color?.l;
 
-        const s = particle.strokeColor?.s ?? particle.color?.s;
-
-        if (s) {
-            updateColorValue(delta, s, hslAnimations.s, 100, true);
-        }
-
-        const l = particle.strokeColor?.l ?? particle.color?.l;
-
-        if (l) {
-            updateColorValue(delta, l, hslAnimations.l, 100, true);
-        }
+    if (l) {
+        updateColorValue(delta, l, animationOptions.l, 100, true);
     }
 }
 

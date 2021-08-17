@@ -33,7 +33,6 @@ import {
     randomInRange,
     setRangeValue,
 } from "../Utils";
-import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 import type { Stroke } from "../Options/Classes/Particles/Stroke";
 import { Vector } from "./Particle/Vector";
 import type {
@@ -197,6 +196,7 @@ export class Particle implements IParticle {
         const sizeValue = getValue(sizeOptions) * container.retina.pixelRatio;
 
         this.size = {
+            enable: sizeOptions.animation.enable,
             value: sizeValue,
             max: getRangeMax(sizeOptions.value) * pxRatio,
             min: getRangeMin(sizeOptions.value) * pxRatio,
@@ -254,6 +254,7 @@ export class Particle implements IParticle {
         const rotateOptions = this.options.rotate;
 
         this.rotate = {
+            enable: rotateOptions.animation.enable,
             value: (getRangeValue(rotateOptions.value) * Math.PI) / 180,
         };
 
@@ -288,6 +289,7 @@ export class Particle implements IParticle {
         const tiltOptions = this.options.tilt;
 
         this.tilt = {
+            enable: tiltOptions.enable,
             value: (getRangeValue(tiltOptions.value) * Math.PI) / 180,
             sinDirection: Math.random() >= 0.5 ? 1 : -1,
             cosDirection: Math.random() >= 0.5 ? 1 : -1,
@@ -342,7 +344,11 @@ export class Particle implements IParticle {
 
         if (gradient) {
             this.gradient = {
-                angle: gradient.angle,
+                angle: {
+                    value: gradient.angle.value,
+                    enable: gradient.angle.animation.enable,
+                    velocity: gradient.angle.animation.speed,
+                },
                 type: gradient.type,
                 colors: [],
             };
@@ -421,6 +427,7 @@ export class Particle implements IParticle {
         const opacityOptions = this.options.opacity;
 
         this.opacity = {
+            enable: opacityOptions.animation.enable,
             max: getRangeMax(opacityOptions.value),
             min: getRangeMin(opacityOptions.value),
             value: getValue(opacityOptions),
@@ -498,26 +505,11 @@ export class Particle implements IParticle {
         const strokeHslColor = colorToHsl(this.stroke.color) ?? this.getFillColor();
 
         if (strokeHslColor) {
-            /* strokeColor */
-            this.strokeColor = {
-                h: {
-                    value: strokeHslColor.h,
-                },
-                s: {
-                    value: strokeHslColor.s,
-                },
-                l: {
-                    value: strokeHslColor.l,
-                },
-            };
-
-            const strokeColorAnimation = this.stroke.color?.animation;
-
-            if (strokeColorAnimation && this.strokeColor) {
-                this.setColorAnimation(strokeColorAnimation.h, this.strokeColor.h);
-                this.setColorAnimation(strokeColorAnimation.s, this.strokeColor.s);
-                this.setColorAnimation(strokeColorAnimation.l, this.strokeColor.l);
-            }
+            this.strokeColor = getHslAnimationFromHsl(
+                strokeHslColor,
+                this.stroke.color?.animation,
+                container.retina.reduceFactor
+            );
         }
 
         this.life = this.loadLife();
@@ -677,25 +669,6 @@ export class Particle implements IParticle {
 
         for (let i = 0; i < rate; i++) {
             this.container.particles.addSplitParticle(this);
-        }
-    }
-
-    private setColorAnimation(colorAnimation: IColorAnimation, colorValue: IParticleValueAnimation<number>): void {
-        if (colorAnimation.enable) {
-            colorValue.velocity = (colorAnimation.speed / 100) * this.container.retina.reduceFactor;
-
-            if (colorAnimation.sync) {
-                return;
-            }
-
-            colorValue.status = AnimationStatus.increasing;
-            colorValue.velocity *= Math.random();
-
-            if (colorValue.value) {
-                colorValue.value *= Math.random();
-            }
-        } else {
-            colorValue.velocity = 0;
         }
     }
 
