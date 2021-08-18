@@ -45,6 +45,7 @@ app.use("/preset-links", express.static("./node_modules/tsparticles-preset-links
 app.use("/preset-sea-anemone", express.static("./node_modules/tsparticles-preset-sea-anemone"));
 app.use("/preset-snow", express.static("./node_modules/tsparticles-preset-snow"));
 app.use("/preset-stars", express.static("./node_modules/tsparticles-preset-stars"));
+app.use("/preset-triangles", express.static("./node_modules/tsparticles-preset-triangles"));
 app.use("/shape-bubble", express.static("./node_modules/tsparticles-shape-bubble"));
 app.use("/shape-heart", express.static("./node_modules/tsparticles-shape-heart"));
 app.use("/shape-multiline-text", express.static("./node_modules/tsparticles-shape-multiline-text"));
@@ -115,6 +116,10 @@ app.get("/presets/snow", function (req, res) {
 
 app.get("/presets/stars", function (req, res) {
     res.render("presets/stars");
+});
+
+app.get("/presets/triangles", function (req, res) {
+    res.render("presets/triangles");
 });
 
 app.listen(port, () => console.log(`Demo app listening on port ${port}!`));

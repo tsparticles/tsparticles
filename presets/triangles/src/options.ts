@@ -1,4 +1,6 @@
-export const options = {
+import type { ISourceOptions } from "tsparticles";
+
+export const options: ISourceOptions = {
     background: {
         color: "#000000",
     },
@@ -7,11 +9,16 @@ export const options = {
     },
     particles: {
         links: {
-            distance: 150,
+            distance: 125,
             enable: true,
+            triangles: {
+                enable: true,
+                opacity: 0.1,
+            },
         },
         move: {
             enable: true,
+            speed: 5,
         },
         size: {
             value: 1,
