@@ -32,12 +32,45 @@ function updateColorValue(delta: IDelta, value: IParticleValueAnimation<number>,
     }
 }
 
-function updateGradient(particle: Particle, delta: IDelta): void {
-    if (!particle.gradient) {
+function updateAngle(delta: IDelta, angle: IParticleValueAnimation<number>): void {
+    const speed = (angle.velocity ?? 0) * delta.factor;
+    const max = 2 * Math.PI;
+
+    if (!angle.enable) {
         return;
     }
 
-    for (const color of particle.gradient.colors) {
+    switch (angle.status) {
+        case AnimationStatus.increasing:
+            angle.value += speed;
+
+            if (angle.value > max) {
+                angle.value -= max;
+            }
+
+            break;
+        case AnimationStatus.decreasing:
+        default:
+            angle.value -= speed;
+
+            if (angle.value < 0) {
+                angle.value += max;
+            }
+
+            break;
+    }
+}
+
+function updateGradient(particle: Particle, delta: IDelta): void {
+    const gradient = particle.gradient;
+
+    if (!gradient) {
+        return;
+    }
+
+    updateAngle(delta, gradient.angle);
+
+    for (const color of gradient.colors) {
         ///*const animationOptions = particle.options.gradient.animation;
 
         if (particle.color?.h !== undefined) {
@@ -59,10 +92,9 @@ export class GradientUpdater implements IParticleUpdater {
         return (
             !particle.destroyed &&
             !particle.spawning &&
-            (particle.gradient?.colors.some(
-                (c) => c.value.h.value !== undefined || c.value.s.value !== undefined || c.value.l.value !== undefined
-            ) ??
-                false)
+            (particle.gradient?.angle.enable ||
+                (particle.gradient?.colors.some((c) => c.value.h.enable || c.value.s.enable || c.value.l.enable) ??
+                    false))
         );
     }
 

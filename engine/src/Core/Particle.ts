@@ -347,7 +347,7 @@ export class Particle implements IParticle {
                 angle: {
                     value: gradient.angle.value,
                     enable: gradient.angle.animation.enable,
-                    velocity: gradient.angle.animation.speed,
+                    velocity: (gradient.angle.animation.speed / 360) * container.retina.reduceFactor,
                 },
                 type: gradient.type,
                 colors: [],
