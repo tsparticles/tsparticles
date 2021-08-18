@@ -169,9 +169,7 @@ export class Container {
         }
 
         /* options settings */
-        if (this._options) {
-            this._options.load(this._sourceOptions);
-        }
+        this._options.load(this._sourceOptions);
 
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);

@@ -291,7 +291,8 @@ export class Canvas {
                 options.backgroundMask.composite,
                 radius * zSizeFactor,
                 zOpacity,
-                particle.options.shadow
+                particle.options.shadow,
+                particle.gradient
             );
 
             if (orbitOptions.enable) {

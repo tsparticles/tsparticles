@@ -21,6 +21,7 @@ import type { IZIndex } from "./ZIndex/IZIndex";
 import type { ParticlesGroups } from "../../../Types/ParticlesGroups";
 import type { IOrbit } from "./Orbit/IOrbit";
 import type { IRepulse } from "./Repulse/IRepulse";
+import type { IAnimatableGradient } from "../IAnimatableGradient";
 
 /**
  * [[include:Options/Particles.md]]
@@ -41,6 +42,7 @@ export interface IParticles {
     collisions: ICollisions;
     color: IAnimatableColor;
     destroy: IDestroy;
+    gradient: SingleOrMultiple<IAnimatableGradient>;
     groups: ParticlesGroups;
     life: ILife;
     links: ILinks;

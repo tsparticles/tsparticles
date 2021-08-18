@@ -1,4 +1,5 @@
 export * from "./Colors";
+export * from "./Gradients";
 export * from "./IAttract";
 export * from "./IBounds";
 export * from "./IBubble";
@@ -15,6 +16,8 @@ export * from "./IInteractor";
 export * from "./IMouseData";
 export * from "./IMovePathGenerator";
 export * from "./IParticle";
+export * from "./IParticleGradientAnimation";
+export * from "./IParticleGradientColorAnimation";
 export * from "./IParticleHslAnimation";
 export * from "./IParticleLife";
 export * from "./IParticleLoops";

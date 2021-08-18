@@ -262,6 +262,7 @@ canvas {
         loadInfectionPlugin(tsParticles);
         loadLightInteraction(tsParticles);
         loadParticlesRepulseInteraction(tsParticles);
+        loadGradientUpdater(tsParticles);
         loadOrbitUpdater(tsParticles);
         loadCurvesPath(tsParticles);
         loadPerlinNoisePath(tsParticles);

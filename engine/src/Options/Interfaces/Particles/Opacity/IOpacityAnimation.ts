@@ -1,4 +1,4 @@
-import type { DestroyType, StartValueType } from "../../../../Enums/Types";
+import type { DestroyType, StartValueType } from "../../../../Enums";
 import type { IAnimation } from "../../IAnimation";
 
 /**
@@ -8,9 +8,13 @@ export interface IOpacityAnimation extends IAnimation {
     /**
      * @deprecated use the new minimumValue instead
      */
-    opacity_min: number;
+    opacity_min?: number;
+
+    /**
+     * @deprecated use the new min/max object in opacity value
+     */
+    minimumValue?: number;
 
     destroy: DestroyType | keyof typeof DestroyType;
-    minimumValue: number;
     startValue: StartValueType | keyof typeof StartValueType;
 }

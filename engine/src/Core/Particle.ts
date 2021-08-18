@@ -19,6 +19,7 @@ import {
     colorToRgb,
     deepExtend,
     getDistance,
+    getHslAnimationFromHsl,
     getHslFromAnimation,
     getParticleBaseVelocity,
     getParticleDirectionAngle,
@@ -32,7 +33,6 @@ import {
     randomInRange,
     setRangeValue,
 } from "../Utils";
-import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 import type { Stroke } from "../Options/Classes/Particles/Stroke";
 import { Vector } from "./Particle/Vector";
 import type {
@@ -43,6 +43,7 @@ import type {
     IDistance,
     IHsl,
     IParticle,
+    IParticleGradientAnimation,
     IParticleHslAnimation,
     IParticleLife,
     IParticleLoops,
@@ -103,6 +104,7 @@ export class Particle implements IParticle {
     readonly offset: Vector;
     readonly shadowColor: IRgb | undefined;
     readonly color?: IParticleHslAnimation;
+    readonly gradient?: IParticleGradientAnimation;
     readonly opacity: IParticleNumericValueAnimation;
     readonly rotate: IParticleValueAnimation<number>;
     readonly size: IParticleNumericValueAnimation;
@@ -189,13 +191,12 @@ export class Particle implements IParticle {
 
         container.retina.initParticle(this);
 
-        const color = this.options.color;
-
         /* size */
         const sizeOptions = this.options.size;
         const sizeValue = getValue(sizeOptions) * container.retina.pixelRatio;
 
         this.size = {
+            enable: sizeOptions.animation.enable,
             value: sizeValue,
             max: getRangeMax(sizeOptions.value) * pxRatio,
             min: getRangeMin(sizeOptions.value) * pxRatio,
@@ -206,10 +207,10 @@ export class Particle implements IParticle {
         if (sizeAnimation.enable) {
             this.size.status = AnimationStatus.increasing;
 
-            const sizeRange = setRangeValue(sizeOptions.value, sizeAnimation.minimumValue * pxRatio);
+            const sizeRange = sizeOptions.value;
 
-            this.size.min = getRangeMin(sizeRange);
-            this.size.max = getRangeMax(sizeRange);
+            this.size.min = getRangeMin(sizeRange) * pxRatio;
+            this.size.max = getRangeMax(sizeRange) * pxRatio;
 
             switch (sizeAnimation.startValue) {
                 case StartValueType.min:
@@ -219,7 +220,7 @@ export class Particle implements IParticle {
                     break;
 
                 case StartValueType.random:
-                    this.size.value = randomInRange(this.size);
+                    this.size.value = randomInRange(this.size) * pxRatio;
                     this.size.status = Math.random() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
                     break;
@@ -253,6 +254,7 @@ export class Particle implements IParticle {
         const rotateOptions = this.options.rotate;
 
         this.rotate = {
+            enable: rotateOptions.animation.enable,
             value: (getRangeValue(rotateOptions.value) * Math.PI) / 180,
         };
 
@@ -287,6 +289,7 @@ export class Particle implements IParticle {
         const tiltOptions = this.options.tilt;
 
         this.tilt = {
+            enable: tiltOptions.enable,
             value: (getRangeValue(tiltOptions.value) * Math.PI) / 180,
             sinDirection: Math.random() >= 0.5 ? 1 : -1,
             cosDirection: Math.random() >= 0.5 ? 1 : -1,
@@ -330,27 +333,43 @@ export class Particle implements IParticle {
         }
 
         /* color */
-        const hslColor = colorToHsl(color, this.id, reduceDuplicates);
+        const hslColor = colorToHsl(this.options.color, this.id, reduceDuplicates);
 
         if (hslColor) {
-            /* color */
-            this.color = {
-                h: {
-                    value: hslColor.h,
+            this.color = getHslAnimationFromHsl(hslColor, this.options.color.animation, container.retina.reduceFactor);
+        }
+
+        const gradient =
+            this.options.gradient instanceof Array ? itemFromArray(this.options.gradient) : this.options.gradient;
+
+        if (gradient) {
+            this.gradient = {
+                angle: {
+                    value: gradient.angle.value,
+                    enable: gradient.angle.animation.enable,
+                    velocity: (gradient.angle.animation.speed / 360) * container.retina.reduceFactor,
                 },
-                s: {
-                    value: hslColor.s,
-                },
-                l: {
-                    value: hslColor.l,
-                },
+                type: gradient.type,
+                colors: [],
             };
 
-            const colorAnimation = this.options.color.animation;
+            for (const grColor of gradient.colors) {
+                const grHslColor = colorToHsl(grColor.value, this.id, reduceDuplicates);
 
-            this.setColorAnimation(colorAnimation.h, this.color.h);
-            this.setColorAnimation(colorAnimation.s, this.color.s);
-            this.setColorAnimation(colorAnimation.l, this.color.l);
+                if (grHslColor) {
+                    const grHslAnimation = getHslAnimationFromHsl(
+                        grHslColor,
+                        grColor.value.animation,
+                        container.retina.reduceFactor
+                    );
+
+                    this.gradient.colors.push({
+                        stop: grColor.stop,
+                        value: grHslAnimation,
+                        opacity: grColor.opacity,
+                    });
+                }
+            }
         }
 
         const rollOpt = this.options.roll;
@@ -408,6 +427,7 @@ export class Particle implements IParticle {
         const opacityOptions = this.options.opacity;
 
         this.opacity = {
+            enable: opacityOptions.animation.enable,
             max: getRangeMax(opacityOptions.value),
             min: getRangeMin(opacityOptions.value),
             value: getValue(opacityOptions),
@@ -418,7 +438,7 @@ export class Particle implements IParticle {
         if (opacityAnimation.enable) {
             this.opacity.status = AnimationStatus.increasing;
 
-            const opacityRange = setRangeValue(opacityOptions.value, opacityAnimation.minimumValue);
+            const opacityRange = opacityOptions.value;
 
             this.opacity.min = getRangeMin(opacityRange);
             this.opacity.max = getRangeMax(opacityRange);
@@ -485,26 +505,11 @@ export class Particle implements IParticle {
         const strokeHslColor = colorToHsl(this.stroke.color) ?? this.getFillColor();
 
         if (strokeHslColor) {
-            /* strokeColor */
-            this.strokeColor = {
-                h: {
-                    value: strokeHslColor.h,
-                },
-                s: {
-                    value: strokeHslColor.s,
-                },
-                l: {
-                    value: strokeHslColor.l,
-                },
-            };
-
-            const strokeColorAnimation = this.stroke.color?.animation;
-
-            if (strokeColorAnimation && this.strokeColor) {
-                this.setColorAnimation(strokeColorAnimation.h, this.strokeColor.h);
-                this.setColorAnimation(strokeColorAnimation.s, this.strokeColor.s);
-                this.setColorAnimation(strokeColorAnimation.l, this.strokeColor.l);
-            }
+            this.strokeColor = getHslAnimationFromHsl(
+                strokeHslColor,
+                this.stroke.color?.animation,
+                container.retina.reduceFactor
+            );
         }
 
         this.life = this.loadLife();
@@ -664,25 +669,6 @@ export class Particle implements IParticle {
 
         for (let i = 0; i < rate; i++) {
             this.container.particles.addSplitParticle(this);
-        }
-    }
-
-    private setColorAnimation(colorAnimation: IColorAnimation, colorValue: IParticleValueAnimation<number>): void {
-        if (colorAnimation.enable) {
-            colorValue.velocity = (colorAnimation.speed / 100) * this.container.retina.reduceFactor;
-
-            if (colorAnimation.sync) {
-                return;
-            }
-
-            colorValue.status = AnimationStatus.increasing;
-            colorValue.velocity *= Math.random();
-
-            if (colorValue.value) {
-                colorValue.value *= Math.random();
-            }
-        } else {
-            colorValue.velocity = 0;
         }
     }
 

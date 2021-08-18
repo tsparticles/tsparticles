@@ -24,6 +24,7 @@ import type { ParticlesGroups } from "../../../Types/ParticlesGroups";
 import { deepExtend } from "../../../Utils";
 import { Orbit } from "./Orbit/Orbit";
 import { Repulse } from "./Repulse/Repulse";
+import { AnimatableGradient } from "../AnimatableGradient";
 
 /**
  * [[include:Options/Particles.md]]
@@ -34,6 +35,7 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
     collisions;
     color;
     destroy;
+    gradient: SingleOrMultiple<AnimatableGradient>;
     groups: ParticlesGroups;
     life;
     links;
@@ -93,6 +95,7 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
         this.collisions = new Collisions();
         this.color = new AnimatableColor();
         this.destroy = new Destroy();
+        this.gradient = [];
         this.groups = {};
         this.life = new Life();
         this.links = new Links();
@@ -171,24 +174,42 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
 
         const strokeToLoad = data.stroke ?? data.shape?.stroke;
 
-        if (strokeToLoad === undefined) {
-            return;
+        if (strokeToLoad) {
+            if (strokeToLoad instanceof Array) {
+                this.stroke = strokeToLoad.map((s) => {
+                    const tmp = new Stroke();
+
+                    tmp.load(s);
+
+                    return tmp;
+                });
+            } else {
+                if (this.stroke instanceof Array) {
+                    this.stroke = new Stroke();
+                }
+
+                this.stroke.load(strokeToLoad);
+            }
         }
 
-        if (strokeToLoad instanceof Array) {
-            this.stroke = strokeToLoad.map((s) => {
-                const tmp = new Stroke();
+        const gradientToLoad = data.gradient;
 
-                tmp.load(s);
+        if (gradientToLoad) {
+            if (gradientToLoad instanceof Array) {
+                this.gradient = gradientToLoad.map((s) => {
+                    const tmp = new AnimatableGradient();
 
-                return tmp;
-            });
-        } else {
-            if (this.stroke instanceof Array) {
-                this.stroke = new Stroke();
+                    tmp.load(s);
+
+                    return tmp;
+                });
+            } else {
+                if (this.gradient instanceof Array) {
+                    this.gradient = new AnimatableGradient();
+                }
+
+                this.gradient.load(gradientToLoad);
             }
-
-            this.stroke.load(strokeToLoad);
         }
     }
 }
