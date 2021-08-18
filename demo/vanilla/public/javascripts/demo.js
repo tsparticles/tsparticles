@@ -265,6 +265,7 @@ canvas {
         loadGradientUpdater(tsParticles);
         loadOrbitUpdater(tsParticles);
         loadCurvesPath(tsParticles);
+        loadPolygonPath(tsParticles);
         loadPerlinNoisePath(tsParticles);
         loadSimplexNoisePath(tsParticles);
     });
