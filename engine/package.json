@@ -20,7 +20,7 @@
     "build:ts:cjs": "tsc",
     "build:ts:esm": "tsc -b tsconfig.module.json",
     "build:ts:old": "npx downlevel-dts ./dist ./tmp/ts4.0 --to=4.0 && npx downlevel-dts ./dist ./tmp/ts3.8 --to=3.8 && npx downlevel-dts ./dist ./tmp/ts3.4 && copyfiles --up 1 \"./tmp/**/*.d.ts\" ./dist/ && rimraf -f ./tmp",
-    "build:docs": "yarn clear:docs && typedoc && copyfiles -f ../../CNAME ./docs",
+    "build:docs": "yarn clear:docs && typedoc --theme ./typedoc-theme && copyfiles -f ../../CNAME ./docs",
     "build:schema": "typescript-json-schema tsconfig.schema.json IOptions --out ./schema/options.schema.json",
     "distfiles": "node ./scripts/distfiles.js",
     "test": "nyc mocha",
