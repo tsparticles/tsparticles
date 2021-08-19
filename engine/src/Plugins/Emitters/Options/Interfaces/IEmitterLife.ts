@@ -20,4 +20,9 @@ export interface IEmitterLife {
      * The delay between any spawn, except first.
      */
     delay?: number;
+
+    /**
+     * If enabled the first delay will be applied
+     */
+    wait: boolean;
 }

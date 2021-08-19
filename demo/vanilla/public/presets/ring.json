@@ -1,0 +1,90 @@
+{
+  "fpsLimit": 30,
+  "particles": {
+    "number": {
+      "value": 0,
+      "limit": 1000
+    },
+    "color": {
+      "value": "#ffffff"
+    },
+    "move": {
+      "enable": true,
+      "outModes": {
+        "default": "destroy"
+      },
+      "speed": 1,
+      "path": {
+        "enable": true,
+        "delay": {
+          "value": 0.1
+        }
+      },
+      "trail": {
+        "enable": true,
+        "fillColor": "#031927",
+        "length": 1000
+      }
+    },
+    "shape": {
+      "type": "circle"
+    },
+    "opacity": {
+      "value": 0.05
+    },
+    "size": {
+      "value": 1
+    }
+  },
+  "interactivity": {
+    "detectsOn": "canvas",
+    "events": {
+      "resize": true
+    }
+  },
+  "detectRetina": true,
+  "background": {
+    "color": "#031927"
+  },
+  "emitters": [{
+    "fill": false,
+    "shape": "circle",
+    "position": {
+      "x": 50,
+      "y": 50
+    },
+    "size": {
+      "width": 250,
+      "height": 250,
+      "mode": "precise"
+    },
+    "life": {
+      "duration": 1,
+      "count": 1
+    },
+    "rate": {
+      "delay": 0.1,
+      "quantity": 100
+    }
+  },{
+    "fill": false,
+    "shape": "circle",
+    "position": {
+      "x": 50,
+      "y": 50
+    },
+    "size": {
+      "width": 250,
+      "height": 250,
+      "mode": "precise"
+    },
+    "life": {
+      "delay": 5,
+      "wait": true
+    },
+    "rate": {
+      "delay": 0.1,
+      "quantity": 5
+    }
+  }]
+}

@@ -6,6 +6,7 @@ import type { IEmitterLife } from "./IEmitterLife";
 import type { RecursivePartial } from "../../../../Types";
 import type { IEmitterSize } from "./IEmitterSize";
 import type { IAnimatableColor } from "../../../../Options/Interfaces/IAnimatableColor";
+import type { EmitterShapeType } from "../../Enums/EmitterShapeType";
 
 /**
  * Particles emitter object options
@@ -27,6 +28,11 @@ export interface IEmitter {
      * The direction of the emitted particles, [[MoveDirection]] is the enum used for values
      */
     direction?: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
+
+    /**
+     * Sets if the particles will spawn at the emitter perimeter or inside the area
+     */
+    fill: boolean;
 
     /**
      * The emitter life options
@@ -55,6 +61,11 @@ export interface IEmitter {
      * The particles emitting rate options
      */
     rate: IEmitterRate;
+
+    /**
+     * The emitter shape type (circle or square)
+     */
+    shape: EmitterShapeType | keyof typeof EmitterShapeType;
 
     /**
      * The particle spawn color
