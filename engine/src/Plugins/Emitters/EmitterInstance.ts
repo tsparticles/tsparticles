@@ -197,7 +197,8 @@ export class EmitterInstance {
 
         if (
             this.container.retina.reduceFactor &&
-            (this.lifeCount > 0 || this.immortal || !this.emitterOptions.life.count)
+            (this.lifeCount > 0 || this.immortal || !this.emitterOptions.life.count) &&
+            (this.firstSpawn || this.currentSpawnDelay >= (this.spawnDelay ?? 0))
         ) {
             if (this.emitDelay === undefined) {
                 const delay = getRangeValue(this.emitterOptions.rate.delay);

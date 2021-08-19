@@ -17,7 +17,7 @@
       "path": {
         "enable": true,
         "delay": {
-          "value": 0.1
+          "value": 0.75
         }
       },
       "trail": {
@@ -46,45 +46,48 @@
   "background": {
     "color": "#031927"
   },
-  "emitters": [{
-    "fill": false,
-    "shape": "circle",
-    "position": {
-      "x": 50,
-      "y": 50
+  "emitters": [
+    {
+      "fill": false,
+      "shape": "circle",
+      "position": {
+        "x": 50,
+        "y": 50
+      },
+      "size": {
+        "width": 250,
+        "height": 250,
+        "mode": "precise"
+      },
+      "life": {
+        "duration": 1,
+        "count": 1
+      },
+      "rate": {
+        "delay": 0.1,
+        "quantity": 100
+      }
     },
-    "size": {
-      "width": 250,
-      "height": 250,
-      "mode": "precise"
-    },
-    "life": {
-      "duration": 1,
-      "count": 1
-    },
-    "rate": {
-      "delay": 0.1,
-      "quantity": 100
+    {
+      "fill": false,
+      "shape": "circle",
+      "position": {
+        "x": 50,
+        "y": 50
+      },
+      "size": {
+        "width": 250,
+        "height": 250,
+        "mode": "precise"
+      },
+      "life": {
+        "delay": 10,
+        "wait": true
+      },
+      "rate": {
+        "delay": 0.1,
+        "quantity": 10
+      }
     }
-  },{
-    "fill": false,
-    "shape": "circle",
-    "position": {
-      "x": 50,
-      "y": 50
-    },
-    "size": {
-      "width": 250,
-      "height": 250,
-      "mode": "precise"
-    },
-    "life": {
-      "delay": 5,
-      "wait": true
-    },
-    "rate": {
-      "delay": 0.1,
-      "quantity": 5
-    }
-  }]
+  ]
 }
