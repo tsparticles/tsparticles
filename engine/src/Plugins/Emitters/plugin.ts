@@ -5,10 +5,14 @@ import { Emitters } from "./Emitters";
 import type { RecursivePartial } from "../../Types";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
-import { EmitterClickMode } from "./Enums";
+import { EmitterClickMode, EmitterShapeType } from "./Enums";
 import { Options } from "../../Options/Classes/Options";
 import { Emitter } from "./Options/Classes/Emitter";
-import type { Main } from "../../main";
+import { IEmitterShape } from "./IEmitterShape";
+import { EmittersMain } from "./EmittersMain";
+import { ShapeManager } from "./ShapeManager";
+import { CircleShape } from "./Shapes/Circle/CircleShape";
+import { SquareShape } from "./Shapes/Square/SquareShape";
 
 /**
  * @category Emitters Plugin
@@ -90,8 +94,19 @@ class EmittersPlugin implements IPlugin {
     }
 }
 
-export function loadEmittersPlugin(tsParticles: Main): void {
+export function loadEmittersPlugin(tsParticles: EmittersMain): void {
     const plugin = new EmittersPlugin();
 
     tsParticles.addPlugin(plugin);
+
+    if (!tsParticles.addEmitterShape) {
+        tsParticles.addEmitterShape = (name: string, shape: IEmitterShape) => {
+            ShapeManager.addShape(name, shape);
+        };
+    }
+
+    tsParticles.addEmitterShape(EmitterShapeType.circle, new CircleShape());
+    tsParticles.addEmitterShape(EmitterShapeType.square, new SquareShape());
 }
+
+export * from "./EmittersMain";

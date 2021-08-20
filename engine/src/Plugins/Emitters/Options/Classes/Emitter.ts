@@ -9,7 +9,7 @@ import { deepExtend } from "../../../../Utils";
 import { EmitterSize } from "./EmitterSize";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 import { AnimatableColor } from "../../../../Options/Classes/AnimatableColor";
-import { EmitterShapeType } from "../../Enums/EmitterShapeType";
+import { EmitterShapeType } from "../../Enums";
 
 /**
  * [[include:Options/Plugins/Emitters.md]]

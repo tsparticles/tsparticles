@@ -10,94 +10,8 @@ import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
 import type { ICoordinates, IDelta, IHsl } from "../../Core/Interfaces";
 import type { IColorAnimation } from "../../Options/Interfaces/IColorAnimation";
 import type { IHslAnimation } from "../../Options/Interfaces/IHslAnimation";
-import { EmitterShapeType } from "./Enums/EmitterShapeType";
-
-function randomSquareCoordinate(position: number, offset: number): number {
-    return position + offset * (Math.random() - 0.5);
-}
-
-function randomPosition(
-    position: ICoordinates,
-    offset: ICoordinates,
-    fill: boolean,
-    shape: EmitterShapeType | keyof typeof EmitterShapeType
-): ICoordinates {
-    switch (shape) {
-        case EmitterShapeType.circle: {
-            const generateTheta = (x: number, y: number): number => {
-                const u = Math.random() / 4.0;
-                const theta = Math.atan((y / x) * Math.tan(2 * Math.PI * u));
-
-                const v = Math.random();
-
-                if (v < 0.25) {
-                    return theta;
-                } else if (v < 0.5) {
-                    return Math.PI - theta;
-                } else if (v < 0.75) {
-                    return Math.PI + theta;
-                } else {
-                    return -theta;
-                }
-            };
-
-            const radius = (x: number, y: number, theta: number): number =>
-                (x * y) / Math.sqrt((y * Math.cos(theta)) ** 2 + (x * Math.sin(theta)) ** 2);
-
-            const [a, b] = [offset.x / 2, offset.y / 2];
-
-            const randomTheta = generateTheta(a, b),
-                maxRadius = radius(a, b, randomTheta),
-                randomRadius = fill ? maxRadius * Math.sqrt(Math.random()) : maxRadius;
-
-            return {
-                x: position.x + randomRadius * Math.cos(randomTheta),
-                y: position.y + randomRadius * Math.sin(randomTheta),
-            };
-        }
-        case EmitterShapeType.square:
-        default:
-            if (fill) {
-                return {
-                    x: randomSquareCoordinate(position.x, offset.x),
-                    y: randomSquareCoordinate(position.y, offset.y),
-                };
-            } else {
-                const halfW = offset.x / 2,
-                    halfH = offset.y / 2,
-                    side = Math.floor(Math.random() * 4),
-                    v = (Math.random() - 0.5) * 2;
-
-                switch (side) {
-                    case 0:
-                        // top-left
-                        return {
-                            x: position.x + v * halfW,
-                            y: position.y - halfH,
-                        };
-                    case 1:
-                        // top-right
-                        return {
-                            x: position.x - halfW,
-                            y: position.y + v * halfH,
-                        };
-                    case 2:
-                        // bottom-right
-                        return {
-                            x: position.x + v * halfW,
-                            y: position.y + halfH,
-                        };
-                    case 3:
-                    default:
-                        // bottom-left
-                        return {
-                            x: position.x + halfW,
-                            y: position.y + v * halfH,
-                        };
-                }
-            }
-    }
-}
+import { ShapeManager } from "./ShapeManager";
+import type { IEmitterShape } from "./IEmitterShape";
 
 /**
  * @category Emitters Plugin
@@ -107,7 +21,6 @@ export class EmitterInstance {
     size: IEmitterSize;
     emitterOptions: IEmitter;
     spawnColor?: IHsl;
-    shape;
     fill;
 
     #firstSpawn: boolean;
@@ -126,6 +39,7 @@ export class EmitterInstance {
 
     private readonly immortal;
 
+    private readonly shape?: IEmitterShape;
     private readonly initialPosition?: ICoordinates;
     private readonly particlesOptions: RecursivePartial<IParticles>;
 
@@ -143,7 +57,7 @@ export class EmitterInstance {
         this.spawnDelay = ((this.emitterOptions.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
         this.position = this.initialPosition ?? this.calcPosition();
         this.name = emitterOptions.name;
-        this.shape = emitterOptions.shape;
+        this.shape = ShapeManager.getShape(emitterOptions.shape);
         this.fill = emitterOptions.fill;
         this.#firstSpawn = !this.emitterOptions.life.wait;
         this.#startParticlesAdded = false;
@@ -387,7 +301,10 @@ export class EmitterInstance {
                 }
             }
 
-            container.particles.addParticle(randomPosition(position, offset, this.fill, this.shape), particlesOptions);
+            container.particles.addParticle(
+                this.shape?.randomPosition(position, offset, this.fill) ?? position,
+                particlesOptions
+            );
         }
     }
 
