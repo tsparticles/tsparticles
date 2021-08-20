@@ -12,7 +12,11 @@
   },
   "particles": {
     "color": {
-      "value": "#FF0000"
+      "value": "#FF0000",
+      "animation": {
+        "enable": true,
+        "speed": 10
+      }
     },
     "move": {
       "attract": {
@@ -34,14 +38,19 @@
         "delay": {
           "value": 0
         },
-        "generator": "curvesPathGenerator"
+        "generator": "polygonPathGenerator",
+        "options": {
+          "sides": 6,
+          "turnSteps": 30,
+          "angle": 30
+        }
       },
       "random": false,
-      "speed": 1,
+      "speed": 3,
       "straight": false,
       "trail": {
         "fillColor": "#000",
-        "length": 30,
+        "length": 20,
         "enable": true
       }
     },
@@ -59,15 +68,7 @@
       "type": "circle"
     },
     "size": {
-      "value": 10,
-      "animation": {
-        "count": 1,
-        "startValue": "min",
-        "enable": true,
-        "minimumValue": 1,
-        "speed": 10,
-        "sync": true
-      }
+      "value": 2
     }
   },
   "background": {
@@ -77,19 +78,12 @@
   "emitters": {
     "direction": "none",
     "rate": {
-      "quantity": 5,
-      "delay": 0.3
+      "quantity": 1,
+      "delay": 0.25
     },
     "size": {
       "width": 0,
       "height": 0
-    },
-    "spawnColor": {
-      "value": "#ff0000",
-      "animation": {
-        "enable": true,
-        "speed": 10
-      }
     },
     "position": {
       "x": 50,

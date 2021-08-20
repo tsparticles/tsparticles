@@ -1,24 +1,14 @@
 {
-  "fullScreen": {
-    "enable": true,
-    "zIndex": 0
+  "background": {
+    "color": "#000"
   },
   "fpsLimit": 60,
   "interactivity": {
-    "detect_on": "canvas",
+    "detectsOn": "canvas",
     "events": {
-      "onclick": {
+      "onClick": {
         "enable": true,
         "mode": "push"
-      },
-      "onhover": {
-        "enable": false,
-        "mode": "repulse",
-        "parallax": {
-          "enable": false,
-          "force": 60,
-          "smooth": 10
-        }
       },
       "resize": true
     },
@@ -32,15 +22,15 @@
       },
       "grab": {
         "distance": 400,
-        "line_linked": {
+        "links": {
           "opacity": 1
         }
       },
       "push": {
-        "particles_nb": 4
+        "quantity": 4
       },
       "remove": {
-        "particles_nb": 2
+        "quantity": 2
       },
       "repulse": {
         "distance": 200,
@@ -49,30 +39,27 @@
     }
   },
   "particles": {
-    "color": {
-      "value": "#ffffff"
-    },
     "move": {
-      "attract": {
-        "enable": false,
-        "rotateX": 600,
-        "rotateY": 1200
-      },
       "path": {
-        "enable": true
+        "enable": true,
+        "options": {
+          "size": 20,
+          "draw": false,
+          "increment": 0.004
+        },
+        "generator": "perlinNoise"
       },
-      "bounce": false,
       "direction": "none",
       "enable": true,
-      "out_mode": "out",
-      "random": false,
-      "speed": 6,
-      "straight": false
+      "outModes": {
+        "default": "out"
+      },
+      "speed": 6
     },
     "number": {
       "density": {
         "enable": true,
-        "value_area": 800
+        "area": 800
       },
       "value": 80
     },
@@ -81,13 +68,6 @@
       "path": true
     },
     "opacity": {
-      "anim": {
-        "enable": false,
-        "opacity_min": 0.1,
-        "speed": 1,
-        "sync": false
-      },
-      "random": false,
       "value": 1
     },
     "shape": {
@@ -99,31 +79,17 @@
       "type": "image"
     },
     "size": {
-      "anim": {
-        "enable": false,
-        "size_min": 0.1,
-        "speed": 40,
-        "sync": false
-      },
-      "random": {
-        "enable": true,
-        "minimumValue": 16
-      },
       "value": 32
+    },
+    "zIndex": {
+      "value": {
+        "min": 0,
+        "max": 10000
+      },
+      "opacityRate": 2,
+      "sizeRate": 2,
+      "velocityRate": 2
     }
   },
-  "polygon": {
-    "draw": {
-      "enable": false,
-      "lineColor": "#ffffff",
-      "lineWidth": 0.5
-    },
-    "move": {
-      "radius": 10
-    },
-    "scale": 1,
-    "type": "none",
-    "url": ""
-  },
-  "retina_detect": true
+  "detectRetina": true
 }
