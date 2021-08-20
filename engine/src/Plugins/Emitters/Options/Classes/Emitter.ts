@@ -27,6 +27,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     rate;
     shape: EmitterShapeType | keyof typeof EmitterShapeType;
     spawnColor?: AnimatableColor;
+    startCount;
 
     constructor() {
         this.autoPlay = true;
@@ -34,6 +35,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
         this.life = new EmitterLife();
         this.rate = new EmitterRate();
         this.shape = EmitterShapeType.square;
+        this.startCount = 0;
     }
 
     load(data?: RecursivePartial<IEmitter>): void {
@@ -88,6 +90,10 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
             }
 
             this.spawnColor.load(data.spawnColor);
+        }
+
+        if (data.startCount !== undefined) {
+            this.startCount = data.startCount;
         }
     }
 }

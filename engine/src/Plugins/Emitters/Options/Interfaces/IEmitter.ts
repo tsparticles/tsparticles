@@ -71,4 +71,9 @@ export interface IEmitter {
      * The particle spawn color
      */
     spawnColor?: IAnimatableColor;
+
+    /**
+     * The number of starting particles of the emitter
+     */
+    startCount: number;
 }

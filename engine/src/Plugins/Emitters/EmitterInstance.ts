@@ -109,13 +109,16 @@ export class EmitterInstance {
     spawnColor?: IHsl;
     shape;
     fill;
+
+    #firstSpawn: boolean;
+    #startParticlesAdded: boolean;
+
     readonly name?: string;
     private paused;
     private currentEmitDelay;
     private currentSpawnDelay;
     private currentDuration;
     private lifeCount;
-    private firstSpawn: boolean;
 
     private duration?: number;
     private emitDelay?: number;
@@ -142,7 +145,8 @@ export class EmitterInstance {
         this.name = emitterOptions.name;
         this.shape = emitterOptions.shape;
         this.fill = emitterOptions.fill;
-        this.firstSpawn = !this.emitterOptions.life.wait;
+        this.#firstSpawn = !this.emitterOptions.life.wait;
+        this.#startParticlesAdded = false;
 
         let particlesOptions = deepExtend({}, this.emitterOptions.particles) as RecursivePartial<IParticles>;
 
@@ -198,7 +202,7 @@ export class EmitterInstance {
         if (
             this.container.retina.reduceFactor &&
             (this.lifeCount > 0 || this.immortal || !this.emitterOptions.life.count) &&
-            (this.firstSpawn || this.currentSpawnDelay >= (this.spawnDelay ?? 0))
+            (this.#firstSpawn || this.currentSpawnDelay >= (this.spawnDelay ?? 0))
         ) {
             if (this.emitDelay === undefined) {
                 const delay = getRangeValue(this.emitterOptions.rate.delay);
@@ -234,13 +238,19 @@ export class EmitterInstance {
             return;
         }
 
-        if (this.firstSpawn) {
-            this.firstSpawn = false;
+        if (this.#firstSpawn) {
+            this.#firstSpawn = false;
 
             this.currentSpawnDelay = this.spawnDelay ?? 0;
             this.currentEmitDelay = this.emitDelay ?? 0;
 
             delta.value = 0;
+        }
+
+        if (!this.#startParticlesAdded) {
+            this.#startParticlesAdded = true;
+
+            this.emitParticles(this.emitterOptions.startCount);
         }
 
         if (this.duration !== undefined) {
@@ -329,6 +339,12 @@ export class EmitterInstance {
             return;
         }
 
+        const quantity = getRangeValue(this.emitterOptions.rate.quantity);
+
+        this.emitParticles(quantity);
+    }
+
+    private emitParticles(quantity: number): void {
         const container = this.container;
         const position = this.position;
         const offset = {
@@ -341,8 +357,6 @@ export class EmitterInstance {
                     ? (container.canvas.size.height * this.size.height) / 100
                     : this.size.height,
         };
-
-        const quantity = getRangeValue(this.emitterOptions.rate.quantity);
 
         for (let i = 0; i < quantity; i++) {
             const particlesOptions = deepExtend({}, this.particlesOptions) as RecursivePartial<IParticles>;
