@@ -157,8 +157,6 @@ export class EmitterInstance {
 
             this.currentSpawnDelay = this.spawnDelay ?? 0;
             this.currentEmitDelay = this.emitDelay ?? 0;
-
-            delta.value = 0;
         }
 
         if (!this.#startParticlesAdded) {
@@ -301,10 +299,9 @@ export class EmitterInstance {
                 }
             }
 
-            container.particles.addParticle(
-                this.shape?.randomPosition(position, offset, this.fill) ?? position,
-                particlesOptions
-            );
+            const pPosition = this.shape?.randomPosition(position, offset, this.fill) ?? position;
+
+            container.particles.addParticle(pPosition, particlesOptions);
         }
     }
 

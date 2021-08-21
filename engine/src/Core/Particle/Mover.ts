@@ -78,7 +78,7 @@ export class Mover {
             maxSize = getRangeMax(particleOptions.size.value) * container.retina.pixelRatio,
             sizeFactor = moveOptions.size ? particle.getRadius() / maxSize : 1,
             diffFactor = 2,
-            speedFactor = (sizeFactor * slowFactor * delta.factor) / diffFactor,
+            speedFactor = (sizeFactor * slowFactor * (delta.factor || 1)) / diffFactor,
             moveSpeed = baseSpeed * speedFactor;
 
         this.applyPath(particle, delta);
@@ -86,7 +86,7 @@ export class Mover {
         const gravityOptions = moveOptions.gravity;
         const gravityFactor = gravityOptions.enable && gravityOptions.inverse ? -1 : 1;
 
-        if (gravityOptions.enable) {
+        if (gravityOptions.enable && moveSpeed) {
             particle.velocity.y += (gravityFactor * (gravityOptions.acceleration * delta.factor)) / (60 * moveSpeed);
         }
 

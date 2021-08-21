@@ -7,6 +7,7 @@ import {
     AnimationStatus,
     DestroyMode,
     OutMode,
+    OutModeAlt,
     RotateDirection,
     ShapeType,
     StartValueType,
@@ -541,7 +542,7 @@ export class Particle implements IParticle {
             drawer.particleInit(container, this);
         }
 
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             if (plugin.particleCreated) {
                 plugin.particleCreated(this);
             }
@@ -567,7 +568,7 @@ export class Particle implements IParticle {
     draw(delta: IDelta): void {
         const container = this.container;
 
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             container.canvas.drawParticlePlugin(plugin, this, delta);
         }
 
@@ -633,7 +634,7 @@ export class Particle implements IParticle {
         this.destroyed = true;
         this.bubble.inRange = false;
 
-        for (const [, plugin] of this.container.plugins) {
+        for (const [ , plugin ] of this.container.plugins) {
             if (plugin.particleDestroyed) {
                 plugin.particleDestroyed(this, override);
             }
@@ -678,7 +679,7 @@ export class Particle implements IParticle {
         zIndex: number,
         tryCount = 0
     ): Vector3d {
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
@@ -695,23 +696,32 @@ export class Particle implements IParticle {
         );
 
         /* check position  - into the canvas */
-        const outMode = this.options.move.outMode;
+        const outModes = this.options.move.outModes;
 
-        if (isInArray(outMode, OutMode.bounce) || isInArray(outMode, OutMode.bounceHorizontal)) {
-            if (pos.x > container.canvas.size.width - this.size.value * 2) {
-                pos.x -= this.size.value;
-            } else if (pos.x < this.size.value * 2) {
-                pos.x += this.size.value;
+        const fixHorizontal = (outMode: OutMode | keyof typeof OutMode | OutModeAlt) => {
+            if (isInArray(outMode, OutMode.bounce) || isInArray(outMode, OutMode.bounceHorizontal)) {
+                if (pos.x > container.canvas.size.width - this.size.value * 2) {
+                    pos.x -= this.size.value;
+                } else if (pos.x < this.size.value * 2) {
+                    pos.x += this.size.value;
+                }
             }
-        }
+        };
 
-        if (isInArray(outMode, OutMode.bounce) || isInArray(outMode, OutMode.bounceVertical)) {
-            if (pos.y > container.canvas.size.height - this.size.value * 2) {
-                pos.y -= this.size.value;
-            } else if (pos.y < this.size.value * 2) {
-                pos.y += this.size.value;
+        const fixVertical = (outMode: OutMode | keyof typeof OutMode | OutModeAlt) => {
+            if (isInArray(outMode, OutMode.bounce) || isInArray(outMode, OutMode.bounceVertical)) {
+                if (pos.y > container.canvas.size.height - this.size.value * 2) {
+                    pos.y -= this.size.value;
+                } else if (pos.y < this.size.value * 2) {
+                    pos.y += this.size.value;
+                }
             }
-        }
+        };
+
+        fixHorizontal(outModes.left ?? outModes.default);
+        fixHorizontal(outModes.right ?? outModes.default);
+        fixVertical(outModes.top ?? outModes.default);
+        fixVertical(outModes.bottom ?? outModes.default);
 
         if (this.checkOverlap(pos, tryCount)) {
             return this.calcPosition(container, undefined, zIndex, tryCount + 1);
@@ -721,28 +731,34 @@ export class Particle implements IParticle {
     }
 
     private checkOverlap(pos: ICoordinates, tryCount = 0): boolean {
-        const overlapOptions = this.options.collisions.overlap;
+        const collisionsOptions = this.options.collisions;
 
-        if (!overlapOptions.enable) {
-            const retries = overlapOptions.retries;
-
-            if (retries >= 0 && tryCount > retries) {
-                throw new Error("Particle is overlapping and can't be placed");
-            }
-
-            let overlaps = false;
-
-            for (const particle of this.container.particles.array) {
-                if (getDistance(pos, particle.position) < this.size.value + particle.size.value) {
-                    overlaps = true;
-                    break;
-                }
-            }
-
-            return overlaps;
+        if (!collisionsOptions.enable) {
+            return false;
         }
 
-        return false;
+        const overlapOptions = collisionsOptions.overlap;
+
+        if (overlapOptions.enable) {
+            return false;
+        }
+
+        const retries = overlapOptions.retries;
+
+        if (retries >= 0 && tryCount > retries) {
+            throw new Error("Particle is overlapping and can't be placed");
+        }
+
+        let overlaps = false;
+
+        for (const particle of this.container.particles.array) {
+            if (getDistance(pos, particle.position) < this.size.value + particle.size.value) {
+                overlaps = true;
+                break;
+            }
+        }
+
+        return overlaps;
     }
 
     private calculateVelocity(): Vector {
@@ -787,14 +803,14 @@ export class Particle implements IParticle {
         const life = {
             delay: container.retina.reduceFactor
                 ? ((getRangeValue(lifeOptions.delay.value) * (lifeOptions.delay.sync ? 1 : Math.random())) /
-                      container.retina.reduceFactor) *
-                  1000
+                    container.retina.reduceFactor) *
+                1000
                 : 0,
             delayTime: 0,
             duration: container.retina.reduceFactor
                 ? ((getRangeValue(lifeOptions.duration.value) * (lifeOptions.duration.sync ? 1 : Math.random())) /
-                      container.retina.reduceFactor) *
-                  1000
+                    container.retina.reduceFactor) *
+                1000
                 : 0,
             time: 0,
             count: particlesOptions.life.count,
