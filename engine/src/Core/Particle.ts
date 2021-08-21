@@ -196,22 +196,19 @@ export class Particle implements IParticle {
         const sizeOptions = this.options.size;
         const sizeValue = getValue(sizeOptions) * container.retina.pixelRatio;
 
+        const sizeRange = sizeOptions.value;
+
         this.size = {
             enable: sizeOptions.animation.enable,
             value: sizeValue,
-            max: getRangeMax(sizeOptions.value) * pxRatio,
-            min: getRangeMin(sizeOptions.value) * pxRatio,
+            max: getRangeMax(sizeRange) * pxRatio,
+            min: getRangeMin(sizeRange) * pxRatio,
         };
 
         const sizeAnimation = sizeOptions.animation;
 
         if (sizeAnimation.enable) {
             this.size.status = AnimationStatus.increasing;
-
-            const sizeRange = sizeOptions.value;
-
-            this.size.min = getRangeMin(sizeRange) * pxRatio;
-            this.size.max = getRangeMax(sizeRange) * pxRatio;
 
             switch (sizeAnimation.startValue) {
                 case StartValueType.min:
