@@ -80,6 +80,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     preset?: string | string[];
     responsive: Responsive[];
     themes: Theme[];
+    zLayers;
 
     [name: string]: unknown;
 
@@ -99,6 +100,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.pauseOnOutsideViewport = true;
         this.responsive = [];
         this.themes = [];
+        this.zLayers = 100;
     }
 
     /**
@@ -146,6 +148,10 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
         if (data.pauseOnOutsideViewport !== undefined) {
             this.pauseOnOutsideViewport = data.pauseOnOutsideViewport;
+        }
+
+        if (data.zLayers !== undefined) {
+            this.zLayers = data.zLayers;
         }
 
         this.background.load(data.background);

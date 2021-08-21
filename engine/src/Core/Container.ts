@@ -50,7 +50,7 @@ export class Container {
     bubble: IBubble;
     repulse: IRepulse;
     attract: IAttract;
-    readonly zLayers = 10000;
+    zLayers;
 
     /**
      * The options used by the container, it's a full [[Options]] object
@@ -116,6 +116,7 @@ export class Container {
         this.destroyed = false;
         this.paused = true;
         this.lastFrameTime = 0;
+        this.zLayers = 100;
         this.pageHidden = false;
         this._sourceOptions = sourceOptions;
         this.retina = new Retina(this);
@@ -563,6 +564,8 @@ export class Container {
 
         this.canvas.initBackground();
         this.canvas.resize();
+
+        this.zLayers = this.actualOptions.zLayers;
 
         this.duration = getRangeValue(this.actualOptions.duration);
         this.lifeTime = 0;

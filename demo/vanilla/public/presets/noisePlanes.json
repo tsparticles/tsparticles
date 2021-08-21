@@ -43,11 +43,11 @@
       "path": {
         "enable": true,
         "options": {
-          "size": 20,
+          "size": 32,
           "draw": false,
           "increment": 0.004
         },
-        "generator": "perlinNoise"
+        "generator": "simplexNoise"
       },
       "direction": "none",
       "enable": true,
@@ -84,9 +84,9 @@
     "zIndex": {
       "value": {
         "min": 0,
-        "max": 10000
+        "max": 100
       },
-      "opacityRate": 2,
+      "opacityRate": 0,
       "sizeRate": 2,
       "velocityRate": 2
     }

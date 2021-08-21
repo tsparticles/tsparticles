@@ -68,7 +68,7 @@
           "draw": false,
           "increment": 0.001
         },
-        "generator": "simplexNoise"
+        "generator": "perlinNoise"
       },
       "trail": {
         "enable": true,

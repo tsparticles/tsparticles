@@ -114,6 +114,11 @@ export interface IOptions {
     themes: ITheme[];
 
     /**
+     * The maximum layers used in the z-axis
+     */
+    zLayers: number;
+
+    /**
      * More custom options for external plugins or customizations
      */
     [name: string]: unknown;

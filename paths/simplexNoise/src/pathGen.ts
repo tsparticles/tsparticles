@@ -1,30 +1,31 @@
 import type { Container, IMovePathGenerator, Particle } from "tsparticles";
 import { Vector } from "tsparticles";
-import { noiseGen } from "./simplex";
+import { makeNoise4D, Noise4D } from "./simplex";
 
-let noiseZ: number;
-let field: number[][][];
+let noiseW: number;
+let field: number[][][][];
+let noiseFunc: Noise4D;
 
 const options: {
-    draw: boolean;
     size: number;
     increment: number;
     columns: number;
     rows: number;
+    layers: number;
     width: number;
     height: number;
 } = {
-    draw: false,
     size: 20,
     increment: 0.004,
     columns: 0,
     rows: 0,
+    layers: 0,
     width: 0,
     height: 0,
 };
 
 function setup(container: Container) {
-    noiseZ = 0;
+    noiseW = 0;
 
     reset(container);
 
@@ -38,7 +39,11 @@ function initField(): void {
         field[x] = new Array(options.rows);
 
         for (let y = 0; y < options.rows; y++) {
-            field[x][y] = [0, 0];
+            field[x][y] = new Array(options.layers);
+
+            for (let z = 0; z < options.layers; z++) {
+                field[x][y][z] = [0, 0];
+            }
         }
     }
 }
@@ -46,11 +51,13 @@ function initField(): void {
 function calculateField(): void {
     for (let x = 0; x < options.columns; x++) {
         for (let y = 0; y < options.rows; y++) {
-            const angle = noiseGen.noise(x / 50, y / 50, noiseZ) * Math.PI * 2;
-            const length = noiseGen.noise(x / 100 + 40000, y / 100 + 40000, noiseZ);
+            for (let z = 0; z < options.layers; z++) {
+                const angle = noiseFunc(x / 50, y / 50, z / 50, noiseW) * Math.PI * 2;
+                const length = noiseFunc(x / 100 + 40000, y / 100 + 40000, z / 100 + 40000, noiseW);
 
-            field[x][y][0] = angle;
-            field[x][y][1] = length;
+                field[x][y][z][0] = angle;
+                field[x][y][z][1] = length;
+            }
         }
     }
 }
@@ -60,35 +67,16 @@ function reset(container: Container): void {
 
     options.size = (sourceOptions.size as number) || 20;
     options.increment = (sourceOptions.increment as number) || 0.004;
-    options.draw = !!sourceOptions.draw;
     options.width = container.canvas.size.width;
     options.height = container.canvas.size.height;
 
-    noiseGen.seed(Math.random);
+    noiseFunc = makeNoise4D(Math.random());
 
     options.columns = Math.floor(options.width / options.size) + 1;
     options.rows = Math.floor(options.height / options.size) + 1;
+    options.layers = Math.floor(container.zLayers / options.size) + 1;
 
     initField();
-}
-
-function drawField(ctx: CanvasRenderingContext2D) {
-    for (let x = 0; x < options.columns; x++) {
-        for (let y = 0; y < options.rows; y++) {
-            const angle = field[x][y][0];
-            const length = field[x][y][1];
-
-            ctx.save();
-            ctx.translate(x * options.size, y * options.size);
-            ctx.rotate(angle);
-            ctx.strokeStyle = "white";
-            ctx.beginPath();
-            ctx.moveTo(0, 0);
-            ctx.lineTo(0, options.size * length);
-            ctx.stroke();
-            ctx.restore();
-        }
-    }
 }
 
 class SimplexNoiseGenerator implements IMovePathGenerator {
@@ -107,11 +95,7 @@ class SimplexNoiseGenerator implements IMovePathGenerator {
 
         calculateField();
 
-        noiseZ += options.increment;
-
-        if (options.draw) {
-            this.container.canvas.draw((ctx) => drawField(ctx));
-        }
+        noiseW += options.increment;
     }
 
     generate(p: Particle): Vector {
@@ -119,15 +103,16 @@ class SimplexNoiseGenerator implements IMovePathGenerator {
 
         const px = Math.max(Math.floor(pos.x / options.size), 0);
         const py = Math.max(Math.floor(pos.y / options.size), 0);
+        const pz = Math.max(Math.floor(pos.z / options.size), 0);
 
         const v = Vector.origin;
 
-        if (!field || !field[px] || !field[px][py]) {
+        if (!field || !field[px] || !field[px][py] || !field[px][py][pz]) {
             return v;
         }
 
-        v.length = field[px][py][1];
-        v.angle = field[px][py][0];
+        v.length = field[px][py][pz][1];
+        v.angle = field[px][py][pz][0];
 
         return v;
     }
