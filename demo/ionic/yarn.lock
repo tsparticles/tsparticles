@@ -10,7 +10,7 @@
     "@angular-devkit/core" "12.0.5"
     rxjs "6.6.7"
 
-"@angular-devkit/build-angular@~12.0.1":
+"@angular-devkit/build-angular@12.0.5":
   version "12.0.5"
   resolved "https://registry.yarnpkg.com/@angular-devkit/build-angular/-/build-angular-12.0.5.tgz#053616eac6315562e0261130ae37c59c4a2b192b"
   integrity sha512-rFbaAQPeuWM9KE9lK3J0sF6GB9nKF/s2Z7rtzKux7whGTF3Tlj8NHrcSxZTf4eBm3cnEpaiod1uPBQg8fUWD4w==
@@ -170,7 +170,7 @@
   dependencies:
     eslint-scope "^5.1.0"
 
-"@angular/cli@~12.0.1":
+"@angular/cli@12.0.5":
   version "12.0.5"
   resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-12.0.5.tgz#0b1c77fd1516743f2609ebe8036d3da7379607b2"
   integrity sha512-MdgJ9DY3bWYsMFr9Xa+60gtVaYErhAE8ULGnUyI8zLMhWqrV1ZpJJ1WfP8pMQYx4HaKJIgx7wd8az7ZXAcF8hg==
