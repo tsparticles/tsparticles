@@ -77,14 +77,14 @@
     "tsparticles": "^1.33.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.6",
-    "@babel/preset-env": "^7.14.7",
+    "@babel/core": "7.14.8",
+    "@babel/preset-env": "7.14.9",
     "@types/jquery": "^3.5.5",
     "@types/node": "^16.0.0",
     "@types/webpack-env": "^1.16.0",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "@typescript-eslint/parser": "^4.28.1",
-    "babel-preset-env": "^1.7.0",
+    "babel-preset-env": "1.7.0",
     "eslint": "^7.29.0",
     "eslint-config-prettier": "^8.3.0",
     "jquery": "^3.6.0",
