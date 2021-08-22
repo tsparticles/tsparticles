@@ -1306,7 +1306,7 @@
   dependencies:
     "@types/istanbul-lib-report" "*"
 
-"@types/jest@^27.0.1":
+"@types/jest@27.0.1":
   version "27.0.1"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-27.0.1.tgz#fafcc997da0135865311bb1215ba16dba6bdf4ca"
   integrity sha512-HTLpVXHrY69556ozYkcq47TtQJXpcWAWfkoqz+ZGz2JnmZhzlRjprCIyFnetSy8gpDWwTTGBcRVv1J1I1vBrHw==
@@ -1329,7 +1329,7 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-15.12.4.tgz#e1cf817d70a1e118e81922c4ff6683ce9d422e26"
   integrity sha512-zrNj1+yqYF4WskCMOHwN+w9iuD12+dGm0rQ35HLl9/Ouuq52cEtd0CH9qMgrdNmi5ejC1/V7vKEXYubB+65DkA==
 
-"@types/node@^16.6.1":
+"@types/node@16.6.1":
   version "16.6.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-16.6.1.tgz#aee62c7b966f55fc66c7b6dfa1d58db2a616da61"
   integrity sha512-Sr7BhXEAer9xyGuCN3Ek9eg9xPviCF2gfu9kTfuU2HkTVAMYSDeX40fvpmo72n5nansg3nsBjuQBrsS28r+NUw==
@@ -8289,12 +8289,12 @@ sockjs@^0.3.21:
     uuid "^3.4.0"
     websocket-driver "^0.7.4"
 
-solid-js@^1.1.0:
+solid-js@1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/solid-js/-/solid-js-1.1.0.tgz#fe53d3c128832131ed41ee3a44df7e1d2b69378f"
   integrity sha512-QcYxp0AnJW3luQKRF/vOhEC5G0ao/f5OqkRuY4JOEmSjWcl4fh8UGiaEOYnri+uJmfGo7KehTKC/+Se40Qh+Lg==
 
-solid-scripts@^0.0.59:
+solid-scripts@0.0.59:
   version "0.0.59"
   resolved "https://registry.yarnpkg.com/solid-scripts/-/solid-scripts-0.0.59.tgz#b01b65b83271611948d94c9ccaccc57112b60994"
   integrity sha512-Nf701MH1IHsRfjqZnkVbpXS5GsZ6MFIsIy9svKVIMRhT9ZvSm8N0jqzuc8kQDkVcd0MAJ4gUhqBlwhKHstKsZw==
@@ -8973,7 +8973,7 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^4.3.5:
+typescript@4.3.5:
   version "4.3.5"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.3.5.tgz#4d1c37cc16e893973c45a06886b7113234f119f4"
   integrity sha512-DqQgihaQ9cUrskJo9kIyW/+g0Vxsk8cDtZ52a3NGh0YNTfpUSArXSohyUGnvbPazEPLu398C0UxmKSOrPumUzA==
