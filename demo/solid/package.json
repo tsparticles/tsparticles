@@ -5,7 +5,7 @@
   "devDependencies": {
     "@types/jest": "27.0.1",
     "@types/node": "16.6.1",
-    "solid-js": "1.1.0",
+    "solid-js": "1.1.1",
     "solid-particles": "^1.16.3",
     "solid-scripts": "0.0.59",
     "tsparticles": "^1.33.3",

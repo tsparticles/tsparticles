@@ -37,7 +37,7 @@
     "fs-extra": "10.0.0",
     "minify": "7.0.2",
     "rimraf": "3.0.2",
-    "sass": "1.37.5",
+    "sass": "1.38.0",
     "tsparticles": "^1.33.3",
     "tsparticles-interaction-light": "^1.33.3",
     "tsparticles-interaction-particles-repulse": "^1.33.3",

@@ -16,7 +16,7 @@
 	"author": "Matteo Bruni <ar3s@icloud.com>",
 	"license": "MIT",
 	"dependencies": {
-		"inferno": "7.4.8",
+		"inferno": "7.4.9",
 		"inferno-particles": "^1.16.3",
 		"tsparticles": "^1.33.3"
 	},
@@ -35,7 +35,7 @@
 		"source-map-loader": "3.0.0",
 		"style-loader": "3.2.1",
 		"typescript": "4.3.5",
-		"webpack": "5.50.0",
+		"webpack": "5.51.1",
 		"webpack-cli": "4.8.0",
 		"webpack-dev-server": "3.11.2"
 	}
