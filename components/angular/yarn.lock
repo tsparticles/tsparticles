@@ -26,7 +26,7 @@
     "@angular-devkit/core" "12.2.2"
     rxjs "6.6.7"
 
-"@angular-devkit/build-angular@~12.2.1":
+"@angular-devkit/build-angular@12.2.2":
   version "12.2.2"
   resolved "https://registry.yarnpkg.com/@angular-devkit/build-angular/-/build-angular-12.2.2.tgz#0089b9a3a8a5a9d290140e7e6069c0839d8a77cc"
   integrity sha512-/KBz8YlujmRZwWqk3fjV5S4IWKEfDE6Vhpr2uo1GC6KtdK7/tA9usvm3ZGAFMu3DXn3eJwe2StgUnegPg3gqxA==
@@ -101,7 +101,7 @@
     webpack-merge "5.8.0"
     webpack-subresource-integrity "1.5.2"
 
-"@angular-devkit/build-ng-packagr@~0.1002.0":
+"@angular-devkit/build-ng-packagr@0.1002.0":
   version "0.1002.0"
   resolved "https://registry.yarnpkg.com/@angular-devkit/build-ng-packagr/-/build-ng-packagr-0.1002.0.tgz#07fd264f98f0084c2897925e094cb9bd002d34e8"
   integrity sha512-JngcuLuPpu2oOhi1qBPzco+ETjDbv90zyWZELO3qXeCelug1z83E0Qi2sLgnNYayzSHfrivrRamL8CbYYT+M9Q==
@@ -165,7 +165,7 @@
   dependencies:
     tslib "^2.2.0"
 
-"@angular/cli@~12.2.1":
+"@angular/cli@12.2.2":
   version "12.2.2"
   resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-12.2.2.tgz#8900cf22e946a9be667044ba13856e9b065f85a5"
   integrity sha512-pk+UR8m0paDb1FaED6122JpN3ky+g4c/ccJx7vHZXnXa0/H76cXNoifxkZiGySjxyQyQxUCOuQwgc2cCaX8OPQ==
