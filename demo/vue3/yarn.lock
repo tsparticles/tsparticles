@@ -1471,7 +1471,7 @@
   resolved "https://registry.yarnpkg.com/@vue/cli-overlay/-/cli-overlay-5.0.0-beta.3.tgz#e22abc680113b86fa6ee7621c967b0b2daaa9f62"
   integrity sha512-XBkb+b1DQbHAS3EsfSUX1CiKEhHZN42Aa/ur4keqjayg/SN1FeBWT68LQjuOVliicHQwR7IOm5sszwrOyYvrVQ==
 
-"@vue/cli-plugin-babel@~5.0.0-beta.3":
+"@vue/cli-plugin-babel@5.0.0-beta.3":
   version "5.0.0-beta.3"
   resolved "https://registry.yarnpkg.com/@vue/cli-plugin-babel/-/cli-plugin-babel-5.0.0-beta.3.tgz#7c75e747dd7beecf68ee94c2f8f433b676130b91"
   integrity sha512-1FZROjhXk3VQFyafqoJmiI+ncAzAqHFoJpxCSghZuETG+IElqQND4eHHN6OFH5tkTxtsyKxW49D2xOKJrcWVeA==
@@ -1490,7 +1490,7 @@
   dependencies:
     "@vue/cli-shared-utils" "^5.0.0-beta.3"
 
-"@vue/cli-plugin-typescript@~5.0.0-beta.3":
+"@vue/cli-plugin-typescript@5.0.0-beta.3":
   version "5.0.0-beta.3"
   resolved "https://registry.yarnpkg.com/@vue/cli-plugin-typescript/-/cli-plugin-typescript-5.0.0-beta.3.tgz#a84e3d25986548fb073571052b3ca1e6e84652b0"
   integrity sha512-OaFJmA2Qf+KEAOFvqh7E4jUMKFRTQYPKgL++7LiqJcrtqTw2aIr7axU4aAPqimDfrapcZ0Ppe3izHIZ/SV2S1w==
@@ -1512,7 +1512,7 @@
   resolved "https://registry.yarnpkg.com/@vue/cli-plugin-vuex/-/cli-plugin-vuex-5.0.0-beta.3.tgz#c131d381b47e8b32837b91f6249a2f7402b4f101"
   integrity sha512-kjpPpIhXMkXtCds0CMEOn4+P5rL8k0PYzWFRIA1DUIaB5lBlmT4v0Gw/XWdtVeMjh6zUvAOA3WjfOchQVd8cWg==
 
-"@vue/cli-service@~5.0.0-beta.3":
+"@vue/cli-service@5.0.0-beta.3":
   version "5.0.0-beta.3"
   resolved "https://registry.yarnpkg.com/@vue/cli-service/-/cli-service-5.0.0-beta.3.tgz#67f79938e4b4da205f4480b87d59886724cf793b"
   integrity sha512-IadsdFqL/aiLNhiXdm69cnvFCn1uKsQGOIL0AdU41MHi6BtlDNqw3t+9xYYPxiqkUwcMANheBWb2N52d26kKwg==
@@ -1612,7 +1612,7 @@
     "@vue/compiler-core" "3.2.2"
     "@vue/shared" "3.2.2"
 
-"@vue/compiler-sfc@^3.2.2":
+"@vue/compiler-sfc@3.2.2":
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/@vue/compiler-sfc/-/compiler-sfc-3.2.2.tgz#5b7b13b07689be8e4880d856f72d1be500785be9"
   integrity sha512-hrtqpQ5L6IPn5v7yVRo7uvLcQxv0z1+KBjZBWMBOcrXz4t+PKUxU/SWd6Tl9T8FDmYlunzKUh6lcx+2CLo6f5A==
@@ -6864,7 +6864,7 @@ vendors@^1.0.3:
   resolved "https://registry.yarnpkg.com/vendors/-/vendors-1.0.4.tgz#e2b800a53e7a29b93506c3cf41100d16c4c4ad8e"
   integrity sha512-/juG65kTL4Cy2su4P8HjtkTxk6VmJDiOPBufWniqQ6wknac6jNiXS9vU+hO3wgusiyqWlzTbVHi0dyJqRONg3w==
 
-vue-class-component@^8.0.0-rc.1:
+vue-class-component@8.0.0-rc.1:
   version "8.0.0-rc.1"
   resolved "https://registry.yarnpkg.com/vue-class-component/-/vue-class-component-8.0.0-rc.1.tgz#db692cd97656eb9a08206c03d0b7398cdb1d9420"
   integrity sha512-w1nMzsT/UdbDAXKqhwTmSoyuJzUXKrxLE77PCFVuC6syr8acdFDAq116xgvZh9UCuV0h+rlCtxXolr3Hi3HyPQ==
@@ -6896,7 +6896,7 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
-vue@^3.2.2:
+vue@3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.2.2.tgz#11715cb71a02baefd0f6e6552dc623680eb1bf32"
   integrity sha512-D/LuzAV30CgNJYGyNheE/VUs5N4toL2IgmS6c9qeOxvyh0xyn4exyRqizpXIrsvfx34zG9x5gCI2tdRHCGvF9w==
