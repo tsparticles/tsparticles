@@ -90,14 +90,14 @@
     "url": "https://github.com/sponsors/matteobruni"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.6",
+    "@babel/core": "7.14.8",
     "@types/chai": "^4.2.19",
     "@types/mocha": "^9.0.0",
     "@types/node": "^16.0.0",
     "@types/webpack-env": "^1.16.0",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "@typescript-eslint/parser": "^4.28.1",
-    "babel-loader": "^8.2.2",
+    "babel-loader": "8.2.2",
     "canvas": "^2.8.0",
     "chai": "^4.3.4",
     "compare-versions": "^3.6.0",
