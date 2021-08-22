@@ -26,7 +26,7 @@
     "tsparticles-preset-links": "^1.18.3"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.4",
+    "@fortawesome/fontawesome-free": "5.15.4",
     "@typescript-eslint/eslint-plugin": "4.29.1",
     "@typescript-eslint/parser": "4.29.1",
     "babel-preset-env": "1.7.0",

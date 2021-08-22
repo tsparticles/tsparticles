@@ -24,7 +24,7 @@
     "build:style": "npx stylus ./public/stylesheets/main.styl"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.4",
+    "@fortawesome/fontawesome-free": "5.15.4",
     "@typescript-eslint/eslint-plugin": "4.29.1",
     "@typescript-eslint/parser": "4.29.1",
     "@webcomponents/webcomponentsjs": "^2.6.0",
