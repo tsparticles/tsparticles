@@ -539,7 +539,7 @@ export class Particle implements IParticle {
             drawer.particleInit(container, this);
         }
 
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             if (plugin.particleCreated) {
                 plugin.particleCreated(this);
             }
@@ -565,7 +565,7 @@ export class Particle implements IParticle {
     draw(delta: IDelta): void {
         const container = this.container;
 
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             container.canvas.drawParticlePlugin(plugin, this, delta);
         }
 
@@ -631,7 +631,7 @@ export class Particle implements IParticle {
         this.destroyed = true;
         this.bubble.inRange = false;
 
-        for (const [, plugin] of this.container.plugins) {
+        for (const [ , plugin ] of this.container.plugins) {
             if (plugin.particleDestroyed) {
                 plugin.particleDestroyed(this, override);
             }
@@ -676,7 +676,7 @@ export class Particle implements IParticle {
         zIndex: number,
         tryCount = 0
     ): Vector3d {
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
@@ -691,26 +691,27 @@ export class Particle implements IParticle {
             position?.y ?? Math.random() * canvasSize.height,
             zIndex
         );
+        const radius = this.getRadius();
 
         /* check position  - into the canvas */
         const outModes = this.options.move.outModes;
 
         const fixHorizontal = (outMode: OutMode | keyof typeof OutMode | OutModeAlt) => {
             if (isInArray(outMode, OutMode.bounce) || isInArray(outMode, OutMode.bounceHorizontal)) {
-                if (pos.x > container.canvas.size.width - this.size.value * 2) {
-                    pos.x -= this.size.value;
-                } else if (pos.x < this.size.value * 2) {
-                    pos.x += this.size.value;
+                if (pos.x > container.canvas.size.width - radius * 2) {
+                    pos.x -= radius;
+                } else if (pos.x < radius * 2) {
+                    pos.x += radius;
                 }
             }
         };
 
         const fixVertical = (outMode: OutMode | keyof typeof OutMode | OutModeAlt) => {
             if (isInArray(outMode, OutMode.bounce) || isInArray(outMode, OutMode.bounceVertical)) {
-                if (pos.y > container.canvas.size.height - this.size.value * 2) {
-                    pos.y -= this.size.value;
-                } else if (pos.y < this.size.value * 2) {
-                    pos.y += this.size.value;
+                if (pos.y > container.canvas.size.height - radius * 2) {
+                    pos.y -= radius;
+                } else if (pos.y < radius * 2) {
+                    pos.y += radius;
                 }
             }
         };
@@ -729,6 +730,7 @@ export class Particle implements IParticle {
 
     private checkOverlap(pos: ICoordinates, tryCount = 0): boolean {
         const collisionsOptions = this.options.collisions;
+        const radius = this.getRadius();
 
         if (!collisionsOptions.enable) {
             return false;
@@ -749,7 +751,7 @@ export class Particle implements IParticle {
         let overlaps = false;
 
         for (const particle of this.container.particles.array) {
-            if (getDistance(pos, particle.position) < this.size.value + particle.size.value) {
+            if (getDistance(pos, particle.position) < radius + particle.getRadius()) {
                 overlaps = true;
                 break;
             }
@@ -800,14 +802,14 @@ export class Particle implements IParticle {
         const life = {
             delay: container.retina.reduceFactor
                 ? ((getRangeValue(lifeOptions.delay.value) * (lifeOptions.delay.sync ? 1 : Math.random())) /
-                      container.retina.reduceFactor) *
-                  1000
+                    container.retina.reduceFactor) *
+                1000
                 : 0,
             delayTime: 0,
             duration: container.retina.reduceFactor
                 ? ((getRangeValue(lifeOptions.duration.value) * (lifeOptions.duration.sync ? 1 : Math.random())) /
-                      container.retina.reduceFactor) *
-                  1000
+                    container.retina.reduceFactor) *
+                1000
                 : 0,
             time: 0,
             count: particlesOptions.life.count,
