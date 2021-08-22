@@ -23,11 +23,11 @@
   },
   "homepage": "https://github.com/matteobruni/tsparticles#readme",
   "dependencies": {
-    "fs-extra": "^10.0.0",
-    "gh-pages": "^3.2.3",
-    "minify": "^7.0.2",
-    "rimraf": "^3.0.2",
-    "sass": "^1.37.5",
+    "fs-extra": "10.0.0",
+    "gh-pages": "3.2.3",
+    "minify": "7.0.2",
+    "rimraf": "3.0.2",
+    "sass": "1.38.0",
     "tsparticles": "^1.33.3",
     "tsparticles-editor": "^1.33.3",
     "tsparticles-preset-links": "^1.18.3"
