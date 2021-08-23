@@ -10,14 +10,14 @@
     "core-js": "3.16.2",
     "particles.vue3": "^1.16.3",
     "tsparticles": "^1.33.3",
-    "vue": "3.2.2",
+    "vue": "3.2.4",
     "vue-class-component": "8.0.0-rc.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "5.0.0-beta.3",
     "@vue/cli-plugin-typescript": "5.0.0-beta.3",
     "@vue/cli-service": "5.0.0-beta.3",
-    "@vue/compiler-sfc": "3.2.2",
+    "@vue/compiler-sfc": "3.2.4",
     "typescript": "4.3.5"
   }
 }
