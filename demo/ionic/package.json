@@ -49,7 +49,7 @@
     "@typescript-eslint/eslint-plugin": "4.29.1",
     "@typescript-eslint/parser": "4.29.1",
     "eslint": "^7.32.0",
-    "eslint-plugin-import": "2.24.0",
+    "eslint-plugin-import": "2.24.1",
     "eslint-plugin-jsdoc": "36.0.7",
     "eslint-plugin-prefer-arrow": "1.2.3",
     "jasmine-core": "~3.8.0",
