@@ -1,6 +1,5 @@
 {
   "baseBranches": ["dev"],
-  "groupName": "all",
   "extends": [
     "config:base"
   ]
