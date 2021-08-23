@@ -94,7 +94,7 @@
     "eslint-plugin-vue": "7.16.0",
     "is-svg": "4.3.1",
     "prettier": "2.3.2",
-    "rollup": "2.56.2",
+    "rollup": "2.56.3",
     "rollup-plugin-terser": "7.0.2",
     "rollup-plugin-typescript": "1.0.1",
     "rollup-plugin-typescript2": "0.30.0",
