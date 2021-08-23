@@ -1,5 +1,30 @@
 import type { IDelta, IParticleUpdater, IParticleValueAnimation, Particle } from "tsparticles";
-import { AnimationStatus } from "tsparticles";
+import { AnimationStatus, IParticleNumericValueAnimation } from "tsparticles";
+
+function updateColorOpacity(delta: IDelta, value: IParticleNumericValueAnimation) {
+    if (!value.enable) {
+        return;
+    }
+
+    switch (value.status) {
+        case AnimationStatus.increasing:
+            if (value.value >= value.max) {
+                value.status = AnimationStatus.decreasing;
+            } else {
+                value.value += (value.velocity ?? 0) * delta.factor;
+            }
+
+            break;
+        case AnimationStatus.decreasing:
+            if (value.value <= value.min) {
+                value.status = AnimationStatus.increasing;
+            } else {
+                value.value -= (value.velocity ?? 0) * delta.factor;
+            }
+
+            break;
+    }
+}
 
 function updateColorValue(delta: IDelta, value: IParticleValueAnimation<number>, max: number, decrease: boolean): void {
     const colorValue = value;
@@ -71,18 +96,20 @@ function updateGradient(particle: Particle, delta: IDelta): void {
     updateAngle(delta, gradient.angle);
 
     for (const color of gradient.colors) {
-        ///*const animationOptions = particle.options.gradient.animation;
-
         if (particle.color?.h !== undefined) {
-            updateColorValue(delta, color.value.h, /*animationOptions.h,*/ 360, false);
+            updateColorValue(delta, color.value.h, 360, false);
         }
 
         if (particle.color?.s !== undefined) {
-            updateColorValue(delta, color.value.s, /*animationOptions.s,*/ 100, true);
+            updateColorValue(delta, color.value.s, 100, true);
         }
 
         if (particle.color?.l !== undefined) {
-            updateColorValue(delta, color.value.l, /*animationOptions.l,*/ 100, true);
+            updateColorValue(delta, color.value.l, 100, true);
+        }
+
+        if (color.opacity) {
+            updateColorOpacity(delta, color.opacity);
         }
     }
 }

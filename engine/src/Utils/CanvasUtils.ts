@@ -303,7 +303,7 @@ export function drawParticle(
                         s: color.value.s.value,
                         l: color.value.l.value,
                     },
-                    color.opacity ?? opacity
+                    color.opacity?.value ?? opacity
                 )
             );
         }

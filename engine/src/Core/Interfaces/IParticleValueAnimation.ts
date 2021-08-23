@@ -8,6 +8,8 @@ export interface IParticleValueAnimation<T> {
     status?: AnimationStatus;
     velocity?: number;
     value: T;
+    loops?: number;
+    maxLoops?: number;
 }
 
 export interface IParticleNumericValueAnimation extends IParticleValueAnimation<number> {

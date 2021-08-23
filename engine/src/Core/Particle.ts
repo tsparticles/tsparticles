@@ -47,7 +47,6 @@ import type {
     IParticleGradientAnimation,
     IParticleHslAnimation,
     IParticleLife,
-    IParticleLoops,
     IParticleNumericValueAnimation,
     IParticleSpin,
     IParticleTiltValueAnimation,
@@ -80,7 +79,6 @@ export class Particle implements IParticle {
     readonly strokeWidth;
     readonly options;
     readonly life: IParticleLife;
-    readonly loops: IParticleLoops;
     readonly maxDistance: Partial<IDistance>;
 
     alterValue?: number;
@@ -135,10 +133,6 @@ export class Particle implements IParticle {
         this.unbreakable = false;
         this.splitCount = 0;
         this.misplaced = false;
-        this.loops = {
-            opacity: 0,
-            size: 0,
-        };
         this.maxDistance = {};
 
         const pxRatio = container.retina.pixelRatio;
@@ -203,6 +197,8 @@ export class Particle implements IParticle {
             value: sizeValue,
             max: getRangeMax(sizeRange) * pxRatio,
             min: getRangeMin(sizeRange) * pxRatio,
+            loops: 0,
+            maxLoops: sizeOptions.animation.count,
         };
 
         const sizeAnimation = sizeOptions.animation;
@@ -351,6 +347,24 @@ export class Particle implements IParticle {
                 colors: [],
             };
 
+            let rotateDirection = gradient.angle.direction;
+
+            if (rotateDirection === RotateDirection.random) {
+                const index = Math.floor(Math.random() * 2);
+
+                rotateDirection = index > 0 ? RotateDirection.counterClockwise : RotateDirection.clockwise;
+            }
+
+            switch (rotateDirection) {
+                case RotateDirection.counterClockwise:
+                case "counterClockwise":
+                    this.gradient.angle.status = AnimationStatus.decreasing;
+                    break;
+                case RotateDirection.clockwise:
+                    this.gradient.angle.status = AnimationStatus.increasing;
+                    break;
+            }
+
             for (const grColor of gradient.colors) {
                 const grHslColor = colorToHsl(grColor.value, this.id, reduceDuplicates);
 
@@ -361,11 +375,53 @@ export class Particle implements IParticle {
                         container.retina.reduceFactor
                     );
 
-                    this.gradient.colors.push({
+                    const addColor = {
                         stop: grColor.stop,
                         value: grHslAnimation,
-                        opacity: grColor.opacity,
-                    });
+                        opacity: grColor.opacity
+                            ? {
+                                  enable: grColor.opacity.animation.enable,
+                                  max: getRangeMax(grColor.opacity.value),
+                                  min: getRangeMin(grColor.opacity.value),
+                                  status: AnimationStatus.increasing,
+                                  value: getRangeValue(grColor.opacity.value),
+                                  velocity: (grColor.opacity.animation.speed / 100) * container.retina.reduceFactor,
+                              }
+                            : undefined,
+                    };
+
+                    if (grColor.opacity && addColor.opacity) {
+                        const opacityRange = grColor.opacity.value;
+
+                        addColor.opacity.min = getRangeMin(opacityRange);
+                        addColor.opacity.max = getRangeMax(opacityRange);
+
+                        const opacityAnimation = grColor.opacity.animation;
+
+                        switch (opacityAnimation.startValue) {
+                            case StartValueType.min:
+                                addColor.opacity.value = addColor.opacity.min;
+                                addColor.opacity.status = AnimationStatus.increasing;
+
+                                break;
+
+                            case StartValueType.random:
+                                addColor.opacity.value = randomInRange(addColor.opacity);
+                                addColor.opacity.status =
+                                    Math.random() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
+
+                                break;
+
+                            case StartValueType.max:
+                            default:
+                                addColor.opacity.value = addColor.opacity.max;
+                                addColor.opacity.status = AnimationStatus.decreasing;
+
+                                break;
+                        }
+                    }
+
+                    this.gradient.colors.push(addColor);
                 }
             }
         }
@@ -428,7 +484,9 @@ export class Particle implements IParticle {
             enable: opacityOptions.animation.enable,
             max: getRangeMax(opacityOptions.value),
             min: getRangeMin(opacityOptions.value),
-            value: getValue(opacityOptions),
+            value: getRangeValue(opacityOptions.value),
+            loops: 0,
+            maxLoops: opacityOptions.animation.count,
         };
 
         const opacityAnimation = opacityOptions.animation;
@@ -539,7 +597,7 @@ export class Particle implements IParticle {
             drawer.particleInit(container, this);
         }
 
-        for (const [ , plugin ] of container.plugins) {
+        for (const [, plugin] of container.plugins) {
             if (plugin.particleCreated) {
                 plugin.particleCreated(this);
             }
@@ -565,7 +623,7 @@ export class Particle implements IParticle {
     draw(delta: IDelta): void {
         const container = this.container;
 
-        for (const [ , plugin ] of container.plugins) {
+        for (const [, plugin] of container.plugins) {
             container.canvas.drawParticlePlugin(plugin, this, delta);
         }
 
@@ -631,7 +689,7 @@ export class Particle implements IParticle {
         this.destroyed = true;
         this.bubble.inRange = false;
 
-        for (const [ , plugin ] of this.container.plugins) {
+        for (const [, plugin] of this.container.plugins) {
             if (plugin.particleDestroyed) {
                 plugin.particleDestroyed(this, override);
             }
@@ -652,8 +710,8 @@ export class Particle implements IParticle {
      * This method is used when the particle has lost a life and needs some value resets
      */
     reset(): void {
-        this.loops.opacity = 0;
-        this.loops.size = 0;
+        this.opacity.loops = 0;
+        this.size.loops = 0;
     }
 
     private split(): void {
@@ -676,7 +734,7 @@ export class Particle implements IParticle {
         zIndex: number,
         tryCount = 0
     ): Vector3d {
-        for (const [ , plugin ] of container.plugins) {
+        for (const [, plugin] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
@@ -802,14 +860,14 @@ export class Particle implements IParticle {
         const life = {
             delay: container.retina.reduceFactor
                 ? ((getRangeValue(lifeOptions.delay.value) * (lifeOptions.delay.sync ? 1 : Math.random())) /
-                    container.retina.reduceFactor) *
-                1000
+                      container.retina.reduceFactor) *
+                  1000
                 : 0,
             delayTime: 0,
             duration: container.retina.reduceFactor
                 ? ((getRangeValue(lifeOptions.duration.value) * (lifeOptions.duration.sync ? 1 : Math.random())) /
-                    container.retina.reduceFactor) *
-                1000
+                      container.retina.reduceFactor) *
+                  1000
                 : 0,
             time: 0,
             count: particlesOptions.life.count,
