@@ -61,15 +61,15 @@
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.15.0",
-    "@riotjs/cli": "^6.0.5",
-    "@riotjs/compiler": "^6.0.3",
-    "chai": "^4.3.4",
-    "esm": "^3.2.25",
-    "jsdom": "^17.0.0",
-    "jsdom-global": "^3.0.2",
-    "mocha": "^9.0.3",
-    "nyc": "^15.1.0",
-    "riot": "^6.0.3"
+    "@riotjs/cli": "6.0.5",
+    "@riotjs/compiler": "6.0.3",
+    "chai": "4.3.4",
+    "esm": "3.2.25",
+    "jsdom": "17.0.0",
+    "jsdom-global": "3.0.2",
+    "mocha": "9.1.0",
+    "nyc": "15.1.0",
+    "riot": "6.0.3"
   },
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
