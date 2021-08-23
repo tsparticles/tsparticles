@@ -7,7 +7,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "core-js": "3.16.1",
+    "core-js": "3.16.2",
     "particles.vue3": "^1.16.3",
     "tsparticles": "^1.33.3",
     "vue": "3.2.2",

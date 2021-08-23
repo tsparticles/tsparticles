@@ -3080,23 +3080,23 @@ indexes-of@^1.0.1:
   resolved "https://registry.yarnpkg.com/indexes-of/-/indexes-of-1.0.1.tgz#f30f716c8e2bd346c7b67d3df3915566a7c05607"
   integrity sha1-8w9xbI4r00bHtn0985FVZqfAVgc=
 
-inferno-shared@7.4.8:
-  version "7.4.8"
-  resolved "https://registry.yarnpkg.com/inferno-shared/-/inferno-shared-7.4.8.tgz#2b554a36683b770339008749096d9704846dd337"
-  integrity sha512-I0jnqsBcQvGJ7hqZF3vEzspQ80evViCe8joP3snWkPXPElk9WBVGLBHX5tHwuFuXv6wW4zeVVA4kBRAs47B+NQ==
+inferno-shared@7.4.9:
+  version "7.4.9"
+  resolved "https://registry.yarnpkg.com/inferno-shared/-/inferno-shared-7.4.9.tgz#f3cc5e85adadd7471a5e1c72da7df93a0bb98340"
+  integrity sha512-WNBz7OJ1DiVN+NeHgflwBHqvD589B9xMPkFGTj6mNs1cQCxYIZtslp5cqpkEo5TnA8O3FgEF00LMaLfc/i8fyw==
 
-inferno-vnode-flags@7.4.8:
-  version "7.4.8"
-  resolved "https://registry.yarnpkg.com/inferno-vnode-flags/-/inferno-vnode-flags-7.4.8.tgz#275d70e3c8b2b3f4eb56041cc9b8c832ce1fb26d"
-  integrity sha512-wOUeO7Aho8VH+s2V2K/53KwS0DtQFgT7TdzPE/s6P26ZIxQj+vt7oTJqzXn+xjRIjnfkTLm2eQ8qfInOWCu1rw==
+inferno-vnode-flags@7.4.9:
+  version "7.4.9"
+  resolved "https://registry.yarnpkg.com/inferno-vnode-flags/-/inferno-vnode-flags-7.4.9.tgz#26fe1a40f00de2ebc05b9e7543c8577c674c074b"
+  integrity sha512-pIGvc1MRSRrvjAOpARRz9OCyGrODKYfhw02ctWTIt3Jtn8dyqsjV0ZIaXOQEjpCi5ii7yfE5xwI+ZRI/g3pviQ==
 
-inferno@7.4.8:
-  version "7.4.8"
-  resolved "https://registry.yarnpkg.com/inferno/-/inferno-7.4.8.tgz#0d5504753e79903b0e4bbeff76fc11fd0b9ffe92"
-  integrity sha512-4XwGe5Kd0QkSaM/jqAQWjM0GfDLv+KujcWm5zbIow80G1tOEnZurQqhyF8u6m/HX3SnrCi+njlVdtPKDJXQiDw==
+inferno@7.4.9:
+  version "7.4.9"
+  resolved "https://registry.yarnpkg.com/inferno/-/inferno-7.4.9.tgz#3722319b53b7e902ab194ad26fa6e80332d85c47"
+  integrity sha512-YxUYo3CyFGRkeSne87DacSAV1yXOp6dAu0toaEkwxb4dIIMilxDmJ8ap0EKxr3ZnQpX7EKmGrLBXrkYQVcmfvg==
   dependencies:
-    inferno-shared "7.4.8"
-    inferno-vnode-flags "7.4.8"
+    inferno-shared "7.4.9"
+    inferno-vnode-flags "7.4.9"
     opencollective-postinstall "^2.0.3"
 
 inflight@^1.0.4:
@@ -5594,10 +5594,10 @@ webpack-sources@^3.2.0:
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-3.2.0.tgz#b16973bcf844ebcdb3afde32eda1c04d0b90f89d"
   integrity sha512-fahN08Et7P9trej8xz/Z7eRu8ltyiygEo/hnRi9KqBUs80KeDcnf96ZJo++ewWd84fEf3xSX9bp4ZS9hbw0OBw==
 
-webpack@5.50.0:
-  version "5.50.0"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.50.0.tgz#5562d75902a749eb4d75131f5627eac3a3192527"
-  integrity sha512-hqxI7t/KVygs0WRv/kTgUW8Kl3YC81uyWQSo/7WUs5LsuRw0htH/fCwbVBGCuiX/t4s7qzjXFcf41O8Reiypag==
+webpack@5.51.1:
+  version "5.51.1"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.51.1.tgz#41bebf38dccab9a89487b16dbe95c22e147aac57"
+  integrity sha512-xsn3lwqEKoFvqn4JQggPSRxE4dhsRcysWTqYABAZlmavcoTmwlOb9b1N36Inbt/eIispSkuHa80/FJkDTPos1A==
   dependencies:
     "@types/eslint-scope" "^3.7.0"
     "@types/estree" "^0.0.50"
