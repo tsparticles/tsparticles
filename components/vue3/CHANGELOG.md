@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/matteobruni/tsparticles/compare/particles.vue3@1.16.3...particles.vue3@1.17.0) (2021-08-23)
+
+
+### Bug Fixes
+
+* **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
+
+
+
+
+
 ## [1.16.3](https://github.com/matteobruni/tsparticles/compare/particles.vue3@1.16.2...particles.vue3@1.16.3) (2021-08-10)
 
 

@@ -1,7 +1,7 @@
 {
   "name": "editor-demo",
   "private": true,
-  "version": "1.18.3",
+  "version": "1.19.0",
   "description": "> TODO: description",
   "author": "Matteo Bruni <ar3s@icloud.com>",
   "homepage": "https://github.com/matteobruni/tsparticles#readme",
@@ -33,7 +33,7 @@
     "pug": "^3.0.2",
     "pug-cli": "^1.0.0-alpha6",
     "stylus": "^0.54.8",
-    "tsparticles": "^1.33.3",
-    "tsparticles-editor": "^1.33.3"
+    "tsparticles": "^1.34.0",
+    "tsparticles-editor": "^1.34.0"
   }
 }
