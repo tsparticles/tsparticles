@@ -316,18 +316,32 @@
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"
         integrity="sha256-ur/YlHMU96MxHEsy3fHGszZHas7NzH4RQlD4tDVvFhw=" crossorigin="anonymous"></script>
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.33.3/tsparticles.min.js"
-        integrity="sha256-wsUm1BF01ySDiNvl+eqWnUYtqNA7HmMjuwSMB47696k=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-infection@1.33.3/tsparticles.plugin.infection.min.js"
-        integrity="sha256-kDHJGUg2L4o6yl+sSi+yLCJ1/0fAmMEkJXyzHNB5PTI=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-light@1.33.3/tsparticles.interaction.light.min.js"
-        integrity="sha256-v24SacgSVT/eEer1/4g1v0Py6fq9lwByBQCUMgRlHvg=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-links@1.18.3/tsparticles.preset.links.min.js"
-        integrity="sha256-evM587wC8/83Yz29vA4NfoiSWeJApx9mG0YF7o488Xc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.34.0/tsparticles.min.js"
+        integrity="sha256-Q+igCSWU3LYGWo5H+pJr7+2y/08i7WJiYv9rGZkdyxA=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-infection@1.34.0/tsparticles.plugin.infection.min.js"
+        integrity="sha256-oR7tBoBwLfrzzQLH8WuNv0xOo6m0Ee4Ho2gJSI0w15k=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-light@1.34.0/tsparticles.interaction.light.min.js"
+        integrity="sha256-GzFlJhFJC8DZaLQCir8nl3xK9Das2GbmvArI2WiOl80=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-particles-repulse@1.34.0/tsparticles.interaction.particles.repulse.min.js"
+        integrity="sha256-6bTwPk9qRfP6pI6zarNBtO6ZuNJrld3yTXqoqdNhpuk=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-gradient@1.34.0/tsparticles.updater.gradient.min.js"
+        integrity="sha256-a0qLkg7h887aFoA6dLYrwIUJuyfJiv2VOLg4I1ocTDQ=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-orbit@1.34.0/tsparticles.updater.orbit.min.js"
+        integrity="sha256-t+zWpfDrrlhLpk168V4KDV6fIhrXId0SJToEgvfDVOs=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-curves@1.34.0/tsparticles.path.curves.min.js"
+        integrity="sha256-x2h+OTzwP/FfMseruJL4N7qt40drZf4OMTLG7LKFja4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-polygon@1.34.0/tsparticles.path.polygon.min.js"
+        integrity="sha256-Rfv8DOUHuXjONL6qmY2kpc9/ormdESsT6hwO2kp4Wb8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-perlin-noise@1.34.0/tsparticles.path.perlin.noise.min.js"
+        integrity="sha256-vAnSJSzHeU3IcVIcww2bGfQOiRiRtPHZfAeBYRFm2ow=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-simplex-noise@1.34.0/tsparticles.path.simplex.noise.min.js"
+        integrity="sha256-ttXjYdm/g4Rq34UnuGMrC9W6QwqiUJ9wklsFLqHwHh0=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-links@1.19.0/tsparticles.preset.links.min.js"
+        integrity="sha256-S7tlOP5vSEClpfJfLBZPYNyxoXc418kMeB8eiOf3B6k=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/object-gui@1.1.1/dist/js/object-gui.min.js"
         integrity="sha256-M0fXnWoixeosDqA5oLRKEpnTFLQWqUG3xlHN2GmbpGw=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-editor@1.33.3/dist/tsparticles.editor.min.js"
-        integrity="sha256-M9HnQK/vs4+77hxjqdUUtFjc7plOMFuWKrNS3QVkaLc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-editor@1.34.0/dist/tsparticles.editor.min.js"
+        integrity="sha256-ccPg+ed0+5qli+l9XV/E0iWw0ye7YuBsloLqIXIbv0g=" crossorigin="anonymous"></script>
 <script type="text/javascript">
     hljs.initHighlightingOnLoad();
 </script>
@@ -354,15 +368,24 @@
 <script type="text/javascript">
     loadInfectionPlugin(tsParticles);
     loadLightInteraction(tsParticles);
+    loadParticlesRepulseInteraction(tsParticles);
+    loadGradientUpdater(tsParticles);
+    loadOrbitUpdater(tsParticles);
+    loadCurvesPath(tsParticles);
+    loadPolygonPath(tsParticles);
+    loadPerlinNoisePath(tsParticles);
+    loadSimplexNoisePath(tsParticles);
 
-    tsParticles.loadJSON("tsparticles", "/configs/index.json").then((container) => {
+    const configsUrl = "/configs";
+
+    tsParticles.loadJSON("tsparticles", `${configsUrl}/index.json`).then((container) => {
         const editor = showEditor(container);
-        const configsUrl = "/configs";
 
         editor.addPreset("Default", `${configsUrl}/index.json`);
         editor.addPreset("Among Us", `${configsUrl}/amongUs.json`);
         editor.addPreset("Confetti", `${configsUrl}/confetti.json`);
         editor.addPreset("Fireworks", `${configsUrl}/fireworks.json`);
+        editor.addPreset("Hexagons", `${configsUrl}/hexagonPath.json`);
         editor.addPreset("Starry", `${configsUrl}/starry.json`);
         editor.addPreset("Tunnel", `${configsUrl}/tunnel.json`);
 
