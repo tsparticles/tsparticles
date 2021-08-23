@@ -35,10 +35,10 @@ function updateTilt(particle: Particle, delta: IDelta): void {
 
 export class TiltUpdater implements IParticleUpdater {
     isEnabled(particle: Particle): boolean {
-        const rotate = particle.options.rotate;
-        const rotateAnimation = rotate.animation;
+        const tilt = particle.options.tilt;
+        const tiltAnimation = tilt.animation;
 
-        return !particle.destroyed && !particle.spawning && !rotate.path && rotateAnimation.enable;
+        return !particle.destroyed && !particle.spawning && tiltAnimation.enable;
     }
 
     update(particle: Particle, delta: IDelta): void {

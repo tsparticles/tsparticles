@@ -61,13 +61,16 @@
         <option value="emitter">Emitter</option>
         <option value="emitterAngled">Emitter Angled</option>
         <option value="emitterAbsorber">Emitter and Absorber</option>
+        <option value="emitterShapes">Emitter Shapes</option>
         <option value="fireworks">Fireworks</option>
         <option value="fireworks_2">Fireworks 2</option>
         <option value="forward">Forward</option>
         <option value="grabRandomColor">Grab Random Color</option>
+        <option value="gradients">Gradients</option>
         <option value="gravity">Gravity</option>
         <option value="growing">Growing</option>
         <option value="fontawesome">Font Awesome</option>
+        <option value="hexagonPath">Hexagon Path</option>
         <option value="hollowknight">Hollow Knight</option>
         <option value="hyperspace">Hyperspace</option>
         <option value="images">Images</option>
@@ -93,6 +96,7 @@
         <option value="noisePlanes">Noise Planes</option>
         <option value="nyancat">Nyan Cat</option>
         <option value="nyancat2">Nyan Cat 2</option>
+        <option value="orbit">Orbit</option>
         <option value="parallax">Parallax</option>
         <option value="pathPolygonMask">Path Polygon Mask</option>
         <option value="planes">Planes</option>
@@ -100,13 +104,7 @@
         <option value="polygonMask">Polygon Mask</option>
         <option value="polygons">Polygon Shape</option>
         <option value="random">Random Colors</option>
-        <option value="reactBubbles">React Bubbles</option>
-        <option value="reactDefaults">React Defaults</option>
-        <option value="reactMultipleImages">React Multiple Images</option>
-        <option value="reactNightSky">React Night Sky</option>
-        <option value="reactPolygonMask">React Polygon Mask</option>
-        <option value="reactSimple">React Simple</option>
-        <option value="reactSnow">React Snow</option>
+        <option value="repulse">Repulse</option>
         <option value="repulseBack">Repulse Back</option>
         <option value="repulseCirc">Repulse Circ</option>
         <option value="repulseCubic">Repulse Cubic</option>
@@ -115,13 +113,9 @@
         <option value="repulseQuint">Repulse Quint</option>
         <option value="repulseSine">Repulse Sine</option>
         <option value="responsive">Responsive</option>
+        <option value="ring">Ring</option>
         <option value="seaAnemone">Sea Anemone</option>
         <option value="shadow">Shadow</option>
-        <option value="shape-bubble">Shape Bubble</option>
-        <option value="shape-heart">Shape Heart</option>
-        <option value="shape-multiline-text">Shape Multiline Text</option>
-        <option value="shape-rounded-rect">Shape Rounded Rect</option>
-        <option value="shape-spiral">Shape Spiral</option>
         <option value="slow">Slow on Hover</option>
         <option value="snow">Snow</option>
         <option value="speedDecay">Speed Decay</option>
@@ -150,10 +144,30 @@
         integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
         crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/pathseg@1.2.0/pathseg.min.js"></script>
+
 <script src="js/tsparticles.min.js"></script>
-<script src="js/tsparticles.preset.links.min.js"></script>
+<script src="js/tsparticles.interaction.light.min.js"></script>
+<script src="js/tsparticles.interaction.particles.repulse.min.js"></script>
+<script src="js/tsparticles.path.curves.min.js"></script>
+<script src="js/tsparticles.path.polygon.min.js"></script>
+<script src="js/tsparticles.path.perlin.noise.min.js"></script>
+<script src="js/tsparticles.path.simplex.noise.min.js"></script>
+<script src="js/tsparticles.plugin.infection.min.js"></script>
+<script src="js/tsparticles.updater.gradient.min.js"></script>
+<script src="js/tsparticles.updater.orbit.min.js"></script>
+
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", () => {
+        loadInfectionPlugin(tsParticles);
+        loadLightInteraction(tsParticles);
+        loadParticlesRepulseInteraction(tsParticles);
+        loadGradientUpdater(tsParticles);
+        loadOrbitUpdater(tsParticles);
+        loadCurvesPath(tsParticles);
+        loadPolygonPath(tsParticles);
+        loadPerlinNoisePath(tsParticles);
+        loadSimplexNoisePath(tsParticles);
+
         const loadPreset = (preset) => {
             tsParticles.loadJSON("tsparticles", `/configs/${preset}.json`);
         }

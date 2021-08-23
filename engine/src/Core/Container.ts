@@ -50,7 +50,7 @@ export class Container {
     bubble: IBubble;
     repulse: IRepulse;
     attract: IAttract;
-    readonly zLayers = 10000;
+    zLayers;
 
     /**
      * The options used by the container, it's a full [[Options]] object
@@ -116,6 +116,7 @@ export class Container {
         this.destroyed = false;
         this.paused = true;
         this.lastFrameTime = 0;
+        this.zLayers = 100;
         this.pageHidden = false;
         this._sourceOptions = sourceOptions;
         this.retina = new Retina(this);
@@ -169,9 +170,7 @@ export class Container {
         }
 
         /* options settings */
-        if (this._options) {
-            this._options.load(this._sourceOptions);
-        }
+        this._options.load(this._sourceOptions);
 
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);
@@ -566,6 +565,8 @@ export class Container {
         this.canvas.initBackground();
         this.canvas.resize();
 
+        this.zLayers = this.actualOptions.zLayers;
+
         this.duration = getRangeValue(this.actualOptions.duration);
         this.lifeTime = 0;
         this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 60;
@@ -587,6 +588,26 @@ export class Container {
                 plugin.init(this.actualOptions);
             } else if (plugin.initAsync !== undefined) {
                 await plugin.initAsync(this.actualOptions);
+            }
+        }
+
+        const pathOptions = this.actualOptions.particles.move.path;
+
+        if (pathOptions.generator) {
+            const customGenerator = Plugins.getPathGenerator(pathOptions.generator);
+
+            if (customGenerator) {
+                if (customGenerator.init) {
+                    this.pathGenerator.init = customGenerator.init;
+                }
+
+                if (customGenerator.generate) {
+                    this.pathGenerator.generate = customGenerator.generate;
+                }
+
+                if (customGenerator.update) {
+                    this.pathGenerator.update = customGenerator.update;
+                }
             }
         }
 

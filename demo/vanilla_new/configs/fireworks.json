@@ -36,7 +36,7 @@
       "split": {
         "count": 1,
         "factor": {
-          "value": 0.333333333
+          "value": 0.333333
         },
         "rate": {
           "value": 100
@@ -45,11 +45,11 @@
           "stroke": {
             "color": {
               "value": [
-                "#5bc0eb",
-                "#fde74c",
-                "#9bc53d",
-                "#e55934",
-                "#fa7921"
+                "#ff595e",
+                "#ffca3a",
+                "#8ac926",
+                "#1982c4",
+                "#6a4c93"
               ]
             },
             "width": 1
@@ -61,12 +61,14 @@
             "enable": false
           },
           "opacity": {
-            "value": 0.8,
+            "value": {
+              "min": 0.1,
+              "max": 1
+            },
             "animation": {
               "enable": true,
-              "speed": 0.3,
-              "minimumValue": 0.1,
-              "sync": true,
+              "speed": 0.7,
+              "sync": false,
               "startValue": "max",
               "destroy": "min"
             }
@@ -77,27 +79,26 @@
           "size": {
             "value": 1,
             "animation": {
-              "enable": false,
-              "speed": 150,
-              "minimumValue": 1,
-              "destroy": "max",
-              "startValue": "min",
-              "sync": true
+              "enable": false
             }
           },
           "life": {
-            "count": 1
+            "count": 1,
+            "duration": {
+              "value": {
+                "min": 1,
+                "max": 2
+              }
+            }
           },
           "move": {
             "enable": true,
             "gravity": {
-              "enable": true,
-              "inverse": false,
-              "acceleration": 1
+              "enable": false
             },
-            "speed": 1,
+            "speed": 2,
             "direction": "none",
-            "random": false,
+            "random": true,
             "straight": false,
             "outMode": "destroy"
           }
@@ -111,11 +112,14 @@
       "type": "line"
     },
     "size": {
-      "value": 50,
+      "value": {
+        "min": 0.1,
+        "max": 50
+      },
       "animation": {
         "enable": true,
         "sync": true,
-        "speed": 100,
+        "speed": 90,
         "startValue": "max",
         "destroy": "min"
       }

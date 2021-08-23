@@ -3,8 +3,18 @@ import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
 import type { Container } from "../Core/Container";
 import { getDistance, getDistances } from "./NumberUtils";
 import { colorMix, colorToRgb, getStyleFromHsl, getStyleFromRgb } from "./ColorUtils";
-import type { IContainerPlugin, ICoordinates, IDelta, IDimension, IHsl, IParticle, IRgb } from "../Core/Interfaces";
+import type {
+    IContainerPlugin,
+    ICoordinates,
+    IDelta,
+    IDimension,
+    IHsl,
+    IParticle,
+    IParticleGradientAnimation,
+    IRgb,
+} from "../Core/Interfaces";
 import type { Particle } from "../Core/Particle";
+import { GradientType } from "../Enums";
 
 function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
     context.beginPath();
@@ -231,7 +241,8 @@ export function drawParticle(
     composite: string,
     radius: number,
     opacity: number,
-    shadow: IShadow
+    shadow: IShadow,
+    gradient?: IParticleGradientAnimation
 ): void {
     const pos = particle.getPosition();
     const tiltOptions = particle.options.tilt;
@@ -271,8 +282,37 @@ export function drawParticle(
         context.shadowOffsetY = shadow.offset.y;
     }
 
-    if (fillColorValue) {
-        context.fillStyle = fillColorValue;
+    if (gradient) {
+        const gradientAngle = gradient.angle.value;
+        const fillGradient =
+            gradient.type === GradientType.radial
+                ? context.createRadialGradient(0, 0, 0, 0, 0, radius)
+                : context.createLinearGradient(
+                      Math.cos(gradientAngle) * -radius,
+                      Math.sin(gradientAngle) * -radius,
+                      Math.cos(gradientAngle) * radius,
+                      Math.sin(gradientAngle) * radius
+                  );
+
+        for (const color of gradient.colors) {
+            fillGradient.addColorStop(
+                color.stop,
+                getStyleFromHsl(
+                    {
+                        h: color.value.h.value,
+                        s: color.value.s.value,
+                        l: color.value.l.value,
+                    },
+                    color.opacity?.value ?? opacity
+                )
+            );
+        }
+
+        context.fillStyle = fillGradient;
+    } else {
+        if (fillColorValue) {
+            context.fillStyle = fillColorValue;
+        }
     }
 
     const stroke = particle.stroke;

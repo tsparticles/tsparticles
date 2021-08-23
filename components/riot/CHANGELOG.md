@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.7.3...riot-particles@1.8.0) (2021-08-23)
+
+
+### Bug Fixes
+
+* **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
+
+
+### Features
+
+* improved move path generators ([9b67377](https://github.com/matteobruni/tsparticles/commit/9b67377f9208a005b122e312ad4ad3c95a50deb7))
+
+
+
+
+
 ## [1.7.3](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.7.2...riot-particles@1.7.3) (2021-08-10)
 
 

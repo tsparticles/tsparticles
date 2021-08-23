@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-editor",
-  "version": "1.33.3",
+  "version": "1.34.0",
   "description": "tsParticles Configuration Editor",
   "keywords": [
     "tsparticles",
@@ -49,25 +49,25 @@
   },
   "dependencies": {
     "object-gui": "^1.1.1",
-    "tsparticles": "^1.33.3",
-    "tsparticles-plugin-infection": "^1.33.3"
+    "tsparticles": "^1.34.0",
+    "tsparticles-plugin-infection": "^1.34.0"
   },
   "devDependencies": {
-    "@babel/core": "7.14.8",
-    "@typescript-eslint/eslint-plugin": "^4.28.1",
-    "@typescript-eslint/parser": "^4.28.1",
-    "babel-loader": "8.2.2",
-    "eslint": "^7.29.0",
+    "@babel/core": "^7.15.0",
+    "@typescript-eslint/eslint-plugin": "^4.29.1",
+    "@typescript-eslint/parser": "^4.29.1",
+    "babel-loader": "^8.2.2",
+    "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "fibers": "^5.0.0",
     "prettier": "^2.3.2",
     "rimraf": "^3.0.2",
-    "sass": "^1.35.1",
+    "sass": "^1.37.5",
     "sass-loader": "^12.1.0",
     "terser-webpack-plugin": "^5.1.4",
     "typescript": "^4.3.5",
-    "webpack": "^5.41.0",
+    "webpack": "^5.50.0",
     "webpack-bundle-analyzer": "^4.4.2",
-    "webpack-cli": "^4.7.2"
+    "webpack-cli": "^4.8.0"
   }
 }

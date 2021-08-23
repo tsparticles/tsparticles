@@ -385,7 +385,13 @@ options.schema.json
 website/js/404.min.js
 website/js/demo.min.js
 
-demo/vanilla_new/js/tsparticles.min.js
-demo/vanilla_new/js/tsparticles.preset.links.min.js
+/demo/vanilla_new/js/tsparticles.min.js
 /demo/vanilla_new/js/tsparticles.interaction.light.min.js
+/demo/vanilla_new/js/tsparticles.interaction.particles.repulse.min.js
+/demo/vanilla_new/js/tsparticles.path.curves.min.js
+/demo/vanilla_new/js/tsparticles.path.perlin.noise.min.js
+/demo/vanilla_new/js/tsparticles.path.polygon.min.js
+/demo/vanilla_new/js/tsparticles.path.simplex.noise.min.js
 /demo/vanilla_new/js/tsparticles.plugin.infection.min.js
+/demo/vanilla_new/js/tsparticles.updater.gradient.min.js
+/demo/vanilla_new/js/tsparticles.updater.orbit.min.js

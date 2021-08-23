@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.16.3...ng-particles@2.17.0) (2021-08-23)
+
+
+### Bug Fixes
+
+* **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
+* **deps:** pin dependencies ([3dac0d0](https://github.com/matteobruni/tsparticles/commit/3dac0d0a594092707ddd31a70b09cdb7238d5eba))
+
+
+### Features
+
+* improved move path generators ([9b67377](https://github.com/matteobruni/tsparticles/commit/9b67377f9208a005b122e312ad4ad3c95a50deb7))
+
+
+
+
+
 ## [2.16.3](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.16.2...ng-particles@2.16.3) (2021-08-10)
 
 

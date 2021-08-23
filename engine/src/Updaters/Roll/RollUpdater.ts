@@ -19,10 +19,9 @@ function updateRoll(particle: Particle, delta: IDelta): void {
 
 export class RollUpdater implements IParticleUpdater {
     isEnabled(particle: Particle): boolean {
-        const rotate = particle.options.rotate;
-        const rotateAnimation = rotate.animation;
+        const roll = particle.options.roll;
 
-        return !particle.destroyed && !particle.spawning && !rotate.path && rotateAnimation.enable;
+        return !particle.destroyed && !particle.spawning && roll.enable;
     }
 
     update(particle: Particle, delta: IDelta): void {

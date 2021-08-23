@@ -1,7 +1,7 @@
 {
   "name": "editor-demo",
   "private": true,
-  "version": "1.18.3",
+  "version": "1.19.0",
   "description": "> TODO: description",
   "author": "Matteo Bruni <ar3s@icloud.com>",
   "homepage": "https://github.com/matteobruni/tsparticles#readme",
@@ -20,20 +20,20 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.28.1",
-    "@typescript-eslint/parser": "^4.28.1",
-    "eslint": "^7.29.0",
+    "@typescript-eslint/eslint-plugin": "^4.29.1",
+    "@typescript-eslint/parser": "^4.29.1",
+    "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "express": "^4.17.1",
     "express-rate-limit": "^5.3.0",
     "helmet": "^4.6.0",
     "object-gui": "^1.1.1",
-    "pathseg": "^1.2.0",
+    "pathseg": "^1.2.1",
     "prettier": "^2.3.2",
     "pug": "^3.0.2",
     "pug-cli": "^1.0.0-alpha6",
     "stylus": "^0.54.8",
-    "tsparticles": "^1.33.3",
-    "tsparticles-editor": "^1.33.3"
+    "tsparticles": "^1.34.0",
+    "tsparticles-editor": "^1.34.0"
   }
 }

@@ -125,18 +125,19 @@ export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>)
             disable: actualOptions.disableForReducedMotion,
         },
         emitters: {
-            rate: {
-                delay: 0.1,
-                quantity: actualOptions.count,
-            },
+            startCount: actualOptions.count,
             position: actualOptions.position,
             size: {
                 width: 0,
                 height: 0,
             },
+            rate: {
+                delay: 0,
+                quantity: 0,
+            },
             life: {
+                duration: 0.1,
                 count: 1,
-                duration: actualOptions.ticks / 60,
             },
         },
     };

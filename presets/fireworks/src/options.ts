@@ -47,7 +47,7 @@ export const options: ISourceOptions = {
                 particles: {
                     stroke: {
                         color: {
-                            value: ["#5bc0eb", "#fde74c", "#9bc53d", "#e55934", "#fa7921"],
+                            value: ["#ff595e", "#ffca3a", "#8ac926", "#1982c4", "#6a4c93"],
                         },
                         width: 1,
                     },
@@ -58,11 +58,13 @@ export const options: ISourceOptions = {
                         enable: false,
                     },
                     opacity: {
-                        value: 1,
+                        value: {
+                            min: 0.1,
+                            max: 1,
+                        },
                         animation: {
                             enable: true,
                             speed: 0.7,
-                            minimumValue: 0.1,
                             sync: false,
                             startValue: StartValueType.max,
                             destroy: DestroyType.min,
@@ -92,12 +94,10 @@ export const options: ISourceOptions = {
                             enable: false,
                         },
                         speed: 2,
-                        direction: MoveDirection.none,
+                        direction: "none",
                         random: true,
                         straight: false,
-                        outModes: {
-                            default: OutMode.destroy,
-                        },
+                        outMode: OutMode.destroy,
                     },
                 },
             },
@@ -106,14 +106,17 @@ export const options: ISourceOptions = {
             count: 1,
         },
         shape: {
-            type: ShapeType.line,
+            type: "line",
         },
         size: {
-            value: 50,
+            value: {
+                min: 0.1,
+                max: 50,
+            },
             animation: {
                 enable: true,
                 sync: true,
-                speed: 150,
+                speed: 90,
                 startValue: StartValueType.max,
                 destroy: DestroyType.min,
             },

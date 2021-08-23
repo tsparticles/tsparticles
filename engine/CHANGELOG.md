@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.34.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.33.3...tsparticles@1.34.0) (2021-08-23)
+
+
+### Bug Fixes
+
+* **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
+* **deps:** update all ([d9f0ff2](https://github.com/matteobruni/tsparticles/commit/d9f0ff2f8c4ac269aaad5077492746e3da8fb422))
+* fixed click handler, it wasn't working fine ([f0a8170](https://github.com/matteobruni/tsparticles/commit/f0a81705f0f7a0ef51fc21344a7d35a02b11ad22))
+* fixed issue with size and opacity range ([84e9c16](https://github.com/matteobruni/tsparticles/commit/84e9c16ce0e0ea194cb82bdd1c62839809ee621b))
+* fixed issues with moveSpeed 0 ([6c9dd6e](https://github.com/matteobruni/tsparticles/commit/6c9dd6e1490e8d6f49188e1b2d4cff92d7a9c610))
+* fixed roll and tilt updaters ([d4a7df3](https://github.com/matteobruni/tsparticles/commit/d4a7df3c982dc0332890d16244d7df320cd5fd11))
+* fixed wobble updater ([cd13fca](https://github.com/matteobruni/tsparticles/commit/cd13fca6bad6611926e5f01a43ba6412b79fb608))
+
+
+### Features
+
+* added gradient angle animated rotation support ([de8f0a4](https://github.com/matteobruni/tsparticles/commit/de8f0a46436601aeb580651b1f87741fd9fc3c79))
+* added gradient options for particles ([c8ecec7](https://github.com/matteobruni/tsparticles/commit/c8ecec7eeda3ecedcdda3bf21eb8fa71c2a276ef))
+* added shapes and fill options to emitters ([e8b32a3](https://github.com/matteobruni/tsparticles/commit/e8b32a372190511c3350f6ddb112d0ff8f736c27))
+* added start count to emitters ([5403426](https://github.com/matteobruni/tsparticles/commit/540342630e67baf665f114f9667001638cf5dc3d))
+* added triangles preset ([2a7aa6a](https://github.com/matteobruni/tsparticles/commit/2a7aa6a98666defea5ecc2bc42aed44d6257a70e))
+* created gradient updater library, only colors for now ([7d31c62](https://github.com/matteobruni/tsparticles/commit/7d31c62ecb8f023234514b5ef46f0de55f75c283))
+* fixed new wait life emitter option ([ae88774](https://github.com/matteobruni/tsparticles/commit/ae88774239060da6d7b9e98029bf1819511202d6))
+* improved move path generators ([9b67377](https://github.com/matteobruni/tsparticles/commit/9b67377f9208a005b122e312ad4ad3c95a50deb7))
+* moved emitter shapes to a plugin system, so they can be customized by users ([5bec360](https://github.com/matteobruni/tsparticles/commit/5bec36067804b425af12766275da74fbfe89d20c))
+
+
+
+
+
 ## [1.33.3](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.33.2...tsparticles@1.33.3) (2021-08-10)
 
 

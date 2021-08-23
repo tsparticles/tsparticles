@@ -13,6 +13,10 @@ import type {
 import { itemFromArray } from "./Utils";
 import { Constants } from "./Constants";
 import { mix, randomInRange, setRangeValue } from "./NumberUtils";
+import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
+import type { IParticleValueAnimation } from "../Core/Interfaces";
+import { AnimationStatus } from "../Enums";
+import type { HslAnimation } from "../Options/Classes/HslAnimation";
 
 /**
  *
@@ -517,4 +521,59 @@ export function getHslFromAnimation(animation?: IParticleHslAnimation): IHsl | u
               l: animation.l.value,
           }
         : undefined;
+}
+
+export function getHslAnimationFromHsl(
+    hsl: IHsl,
+    animationOptions: HslAnimation | undefined,
+    reduceFactor: number
+): IParticleHslAnimation {
+    /* color */
+    const resColor: IParticleHslAnimation = {
+        h: {
+            enable: false,
+            value: hsl.h,
+        },
+        s: {
+            enable: false,
+            value: hsl.s,
+        },
+        l: {
+            enable: false,
+            value: hsl.l,
+        },
+    };
+
+    if (animationOptions) {
+        setColorAnimation(resColor.h, animationOptions.h, reduceFactor);
+        setColorAnimation(resColor.s, animationOptions.s, reduceFactor);
+        setColorAnimation(resColor.l, animationOptions.l, reduceFactor);
+    }
+
+    return resColor;
+}
+
+function setColorAnimation(
+    colorValue: IParticleValueAnimation<number>,
+    colorAnimation: IColorAnimation,
+    reduceFactor: number
+): void {
+    colorValue.enable = colorAnimation.enable;
+
+    if (colorValue.enable) {
+        colorValue.velocity = (colorAnimation.speed / 100) * reduceFactor;
+
+        if (colorAnimation.sync) {
+            return;
+        }
+
+        colorValue.status = AnimationStatus.increasing;
+        colorValue.velocity *= Math.random();
+
+        if (colorValue.value) {
+            colorValue.value *= Math.random();
+        }
+    } else {
+        colorValue.velocity = 0;
+    }
 }

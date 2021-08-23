@@ -1,6 +1,6 @@
 {
   "name": "tsparticles",
-  "version": "1.33.3",
+  "version": "1.34.0",
   "description": "Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -50,7 +50,7 @@
     "animated",
     "background"
   ],
-  "author": "Matteo Bruni <matteo.bruni@me.com> (https://www.matteobruni.it)",
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
   "contributors": [
     "Gabriel Barker (https://github.com/gabrielbarker)",
     "Tyler Burnett (https://github.com/TylerBurnett)",
@@ -65,7 +65,7 @@
     "url": "https://github.com/sponsors/matteobruni"
   },
   "optionalDependencies": {
-    "pathseg": "^1.2.0"
+    "pathseg": "^1.2.1"
   },
   "main": "index.js",
   "module": "esm/index.js",

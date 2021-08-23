@@ -1,7 +1,7 @@
 import type { IOpacityAnimation } from "../../../Interfaces/Particles/Opacity/IOpacityAnimation";
 import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import { DestroyType, StartValueType } from "../../../../Enums/Types";
+import { DestroyType, StartValueType } from "../../../../Enums";
 import { AnimationOptions } from "../../AnimationOptions";
 
 /**
@@ -12,7 +12,7 @@ export class OpacityAnimation extends AnimationOptions implements IOpacityAnimat
      *
      * @deprecated this property is obsolete, please use the new minimumValue
      */
-    get opacity_min(): number {
+    get opacity_min(): number | undefined {
         return this.minimumValue;
     }
 
@@ -21,19 +21,22 @@ export class OpacityAnimation extends AnimationOptions implements IOpacityAnimat
      * @deprecated this property is obsolete, please use the new minimumValue
      * @param value
      */
-    set opacity_min(value: number) {
+    set opacity_min(value: number | undefined) {
         this.minimumValue = value;
     }
 
+    /**
+     * @deprecated this property is obsolete, please use the new min/max object in the opacity value
+     */
+    minimumValue?: number;
+
     destroy: DestroyType | keyof typeof DestroyType;
-    minimumValue;
     startValue: StartValueType | keyof typeof StartValueType;
 
     constructor() {
         super();
         this.destroy = DestroyType.none;
         this.enable = false;
-        this.minimumValue = 0;
         this.speed = 2;
         this.startValue = StartValueType.random;
         this.sync = false;
@@ -54,11 +57,7 @@ export class OpacityAnimation extends AnimationOptions implements IOpacityAnimat
             this.enable = data.enable;
         }
 
-        const minimumValue = data.minimumValue ?? data.opacity_min;
-
-        if (minimumValue !== undefined) {
-            this.minimumValue = minimumValue;
-        }
+        this.minimumValue = data.minimumValue ?? data.opacity_min;
 
         if (data.speed !== undefined) {
             this.speed = data.speed;
