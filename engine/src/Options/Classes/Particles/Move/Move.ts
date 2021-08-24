@@ -9,7 +9,8 @@ import { MoveAngle } from "./MoveAngle";
 import { MoveGravity } from "./MoveGravity";
 import { OutModes } from "./OutModes";
 import { deepExtend, setRangeValue } from "../../../../Utils";
-import { IDistance } from "../../../../Core/Interfaces";
+import type { IDistance } from "../../../../Core/Interfaces";
+import { Spin } from "./Spin";
 
 /**
  * [[include:Options/Particles/Move.md]]
@@ -107,6 +108,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
     random;
     size;
     speed: RangeValue;
+    spin;
     straight;
     trail;
     vibrate;
@@ -126,6 +128,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.random = false;
         this.size = false;
         this.speed = 2;
+        this.spin = new Spin();
         this.straight = false;
         this.trail = new Trail();
         this.vibrate = false;
@@ -200,6 +203,8 @@ export class Move implements IMove, IOptionLoader<IMove> {
         if (data.speed !== undefined) {
             this.speed = setRangeValue(data.speed);
         }
+
+        this.spin.load(data.spin);
 
         if (data.straight !== undefined) {
             this.straight = data.straight;

@@ -15,7 +15,7 @@
       "delay": 0.1
     },
     "rate": {
-      "delay": 0.15,
+      "delay": 0.5,
       "quantity": 1
     },
     "size": {
@@ -41,16 +41,15 @@
         "rate": {
           "value": 100
         },
-        "sizeOffset": false,
         "particles": {
           "stroke": {
             "color": {
               "value": [
-                "#5bc0eb",
-                "#fde74c",
-                "#9bc53d",
-                "#e55934",
-                "#fa7921"
+                "#ff595e",
+                "#ffca3a",
+                "#8ac926",
+                "#1982c4",
+                "#6a4c93"
               ]
             },
             "width": 1
@@ -62,38 +61,44 @@
             "enable": false
           },
           "opacity": {
-            "value": 0.8,
+            "value": {
+              "min": 0.1,
+              "max": 1
+            },
             "animation": {
               "enable": true,
-              "speed": 1,
-              "minimumValue": 0.1,
-              "sync": true,
+              "speed": 0.7,
+              "sync": false,
               "startValue": "max",
               "destroy": "min"
             }
           },
+          "shape": {
+            "type": "circle"
+          },
           "size": {
-            "value": 75,
+            "value": 1,
             "animation": {
-              "enable": true,
-              "speed": 150,
-              "minimumValue": 1,
-              "destroy": "max",
-              "startValue": "min",
-              "sync": true
+              "enable": false
             }
           },
           "life": {
-            "count": 1
+            "count": 1,
+            "duration": {
+              "value": {
+                "min": 1,
+                "max": 2
+              }
+            }
           },
           "move": {
             "enable": true,
             "gravity": {
               "enable": false
             },
-            "speed": 10,
+            "speed": 2,
             "direction": "none",
-            "random": false,
+            "random": true,
             "straight": false,
             "outMode": "destroy"
           }
@@ -101,22 +106,22 @@
       }
     },
     "life": {
-      "count": 1,
-      "duration": {
-        "value": 1.25
-      }
+      "count": 1
     },
     "shape": {
       "type": "line"
     },
     "size": {
-      "value": 50,
+      "value": {
+        "min": 0.1,
+        "max": 50
+      },
       "animation": {
         "enable": true,
-        "minimumValue": 1,
-        "speed": 150,
+        "sync": true,
+        "speed": 90,
         "startValue": "max",
-        "count": 1
+        "destroy": "min"
       }
     },
     "stroke": {
@@ -132,11 +137,14 @@
       "enable": true,
       "gravity": {
         "acceleration": 15,
-        "enable": false,
-        "maxSpeed": 50,
-        "inverse": true
+        "enable": true,
+        "inverse": true,
+        "maxSpeed": 100
       },
-      "speed": 15,
+      "speed": {
+        "min": 10,
+        "max": 20
+      },
       "outModes": {
         "default": "destroy",
         "top": "none"
@@ -144,7 +152,7 @@
       "trail": {
         "fillColor": "#000",
         "enable": true,
-        "length": 4
+        "length": 10
       }
     }
   }

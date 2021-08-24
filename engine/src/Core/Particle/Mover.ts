@@ -1,7 +1,7 @@
-import { clamp, getDistance, getDistances, getRangeMax, getRangeValue, isInArray, isSsr, Plugins } from "../../Utils";
+import { clamp, getDistance, getDistances, getRangeMax, getRangeValue, isInArray, isSsr } from "../../Utils";
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
-import { HoverMode } from "../../Enums";
+import { HoverMode, RotateDirection } from "../../Enums";
 import type { IDelta } from "../Interfaces";
 
 function applyDistance(particle: Particle): void {
@@ -50,18 +50,6 @@ export class Mover {
     constructor(private readonly container: Container) {}
 
     move(particle: Particle, delta: IDelta): void {
-        particle.bubble.inRange = false;
-
-        for (const [, plugin] of this.container.plugins) {
-            if (particle.destroyed) {
-                break;
-            }
-
-            if (plugin.particleUpdate) {
-                plugin.particleUpdate(particle, delta);
-            }
-        }
-
         if (particle.destroyed) {
             return;
         }
@@ -73,46 +61,53 @@ export class Mover {
     }
 
     private moveParticle(particle: Particle, delta: IDelta): void {
-        const particlesOptions = particle.options;
+        const particleOptions = particle.options;
+        const moveOptions = particleOptions.move;
 
-        if (!particlesOptions.move.enable) {
+        if (!moveOptions.enable) {
             return;
         }
 
-        const container = this.container;
-        const slowFactor = this.getProximitySpeedFactor(particle);
-        const baseSpeed =
-            (particle.moveSpeed ?? getRangeValue(particle.options.move.speed) * container.retina.pixelRatio) *
-            container.retina.reduceFactor;
-        const maxSize = getRangeMax(particle.options.size.value) * container.retina.pixelRatio;
-        const sizeFactor = particlesOptions.move.size ? particle.getRadius() / maxSize : 1;
-        const moveSpeed = (baseSpeed / 2) * sizeFactor * slowFactor * delta.factor;
-        const moveDrift =
-            particle.moveDrift ?? getRangeValue(particle.options.move.drift) * container.retina.pixelRatio;
+        const container = this.container,
+            slowFactor = this.getProximitySpeedFactor(particle),
+            baseSpeed =
+                (particle.moveSpeed ??= getRangeValue(moveOptions.speed) * container.retina.pixelRatio) *
+                container.retina.reduceFactor,
+            moveDrift = (particle.moveDrift ??=
+                getRangeValue(particle.options.move.drift) * container.retina.pixelRatio),
+            maxSize = getRangeMax(particleOptions.size.value) * container.retina.pixelRatio,
+            sizeFactor = moveOptions.size ? particle.getRadius() / maxSize : 1,
+            diffFactor = 2,
+            speedFactor = (sizeFactor * slowFactor * (delta.factor || 1)) / diffFactor,
+            moveSpeed = baseSpeed * speedFactor;
 
         this.applyPath(particle, delta);
 
-        const gravityOptions = particlesOptions.move.gravity;
+        const gravityOptions = moveOptions.gravity;
         const gravityFactor = gravityOptions.enable && gravityOptions.inverse ? -1 : 1;
 
-        if (gravityOptions.enable) {
+        if (gravityOptions.enable && moveSpeed) {
             particle.velocity.y += (gravityFactor * (gravityOptions.acceleration * delta.factor)) / (60 * moveSpeed);
         }
 
-        if (moveSpeed) {
+        if (moveDrift && moveSpeed) {
             particle.velocity.x += (moveDrift * delta.factor) / (60 * moveSpeed);
         }
 
-        particle.velocity.multTo(1 - particle.options.move.decay);
+        const decay = 1 - particle.options.move.decay;
+
+        if (decay != 1) {
+            particle.velocity.multTo(decay);
+        }
 
         const velocity = particle.velocity.mult(moveSpeed);
         const maxSpeed = particle.maxSpeed ?? container.retina.maxSpeed;
 
         if (
             gravityOptions.enable &&
+            gravityOptions.maxSpeed > 0 &&
             ((!gravityOptions.inverse && velocity.y >= 0 && velocity.y >= maxSpeed) ||
-                (gravityOptions.inverse && velocity.y <= 0 && velocity.y <= -maxSpeed)) &&
-            gravityOptions.maxSpeed > 0
+                (gravityOptions.inverse && velocity.y <= 0 && velocity.y <= -maxSpeed))
         ) {
             velocity.y = gravityFactor * maxSpeed;
 
@@ -122,45 +117,53 @@ export class Mover {
         }
 
         const zIndexOptions = particle.options.zIndex,
-            zVelocityFactor = 1 - zIndexOptions.velocityRate * particle.zIndexFactor;
+            zVelocityFactor = (1 - particle.zIndexFactor) ** zIndexOptions.velocityRate;
 
-        velocity.multTo(zVelocityFactor);
+        if (moveOptions.spin.enable) {
+            this.spin(particle, moveSpeed);
+        } else {
+            if (zVelocityFactor != 1) {
+                velocity.multTo(zVelocityFactor);
+            }
 
-        particle.position.addTo(velocity);
+            particle.position.addTo(velocity);
 
-        if (particlesOptions.move.vibrate) {
-            particle.position.x += Math.sin(particle.position.x * Math.cos(particle.position.y));
-            particle.position.y += Math.cos(particle.position.y * Math.sin(particle.position.x));
-        }
-
-        const initialPosition = particle.initialPosition;
-        const initialDistance = getDistance(initialPosition, particle.position);
-
-        if (particle.maxDistance) {
-            if (initialDistance >= particle.maxDistance && !particle.misplaced) {
-                particle.misplaced = initialDistance > particle.maxDistance;
-                particle.velocity.x = particle.velocity.y / 2 - particle.velocity.x;
-                particle.velocity.y = particle.velocity.x / 2 - particle.velocity.y;
-            } else if (initialDistance < particle.maxDistance && particle.misplaced) {
-                particle.misplaced = false;
-            } else if (particle.misplaced) {
-                if (
-                    (particle.position.x < initialPosition.x && particle.velocity.x < 0) ||
-                    (particle.position.x > initialPosition.x && particle.velocity.x > 0)
-                ) {
-                    particle.velocity.x *= -Math.random();
-                }
-
-                if (
-                    (particle.position.y < initialPosition.y && particle.velocity.y < 0) ||
-                    (particle.position.y > initialPosition.y && particle.velocity.y > 0)
-                ) {
-                    particle.velocity.y *= -Math.random();
-                }
+            if (moveOptions.vibrate) {
+                particle.position.x += Math.sin(particle.position.x * Math.cos(particle.position.y));
+                particle.position.y += Math.cos(particle.position.y * Math.sin(particle.position.x));
             }
         }
 
         applyDistance(particle);
+    }
+
+    private spin(particle: Particle, moveSpeed: number): void {
+        const container = this.container;
+
+        if (!particle.spin) {
+            return;
+        }
+
+        const updateFunc = {
+            x: particle.spin.direction === RotateDirection.clockwise ? Math.cos : Math.sin,
+            y: particle.spin.direction === RotateDirection.clockwise ? Math.sin : Math.cos,
+        };
+
+        particle.position.x = particle.spin.center.x + particle.spin.radius * updateFunc.x(particle.spin.angle);
+        particle.position.y = particle.spin.center.y + particle.spin.radius * updateFunc.y(particle.spin.angle);
+        particle.spin.radius += particle.spin.acceleration;
+
+        const maxCanvasSize = Math.max(container.canvas.size.width, container.canvas.size.height);
+
+        if (particle.spin.radius > maxCanvasSize / 2) {
+            particle.spin.radius = maxCanvasSize / 2;
+            particle.spin.acceleration *= -1;
+        } else if (particle.spin.radius < 0) {
+            particle.spin.radius = 0;
+            particle.spin.acceleration *= -1;
+        }
+
+        particle.spin.angle += (moveSpeed / 100) * (1 - particle.spin.radius / maxCanvasSize);
     }
 
     private applyPath(particle: Particle, delta: IDelta): void {
@@ -180,17 +183,7 @@ export class Mover {
             return;
         }
 
-        let generator = container.pathGenerator;
-
-        if (pathOptions.generator) {
-            const customGenerator = Plugins.getPathGenerator(pathOptions.generator);
-
-            if (customGenerator) {
-                generator = customGenerator;
-            }
-        }
-
-        const path = generator.generate(particle);
+        const path = container.pathGenerator.generate(particle);
 
         particle.velocity.addTo(path);
 

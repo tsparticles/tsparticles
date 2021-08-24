@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-website",
-  "version": "1.32.0",
+  "version": "1.34.0",
   "private": true,
   "description": "tsParticles Official Website",
   "main": "index.html",
@@ -8,7 +8,7 @@
     "clear:cache": "rimraf -f ./node_modules/.cache",
     "clear:docs": "rimraf -f ./docs",
     "build:js": "minify ./js/demo.js > ./js/demo.min.js && minify ./js/404.js > ./js/404.min.js",
-    "build:css": "sass ./css/main.scss ./css/main.css && minify ./css/main.css > ./css/main.min.css && sass ./css/404.scss ./css/404.css && minify ./css/404.css > ./css/404.min.css",
+    "build:css": "sass ./css/main.scss ./css/main.css && minify ./css/main.css > ./css/main.min.css && sass ./css/presets.scss ./css/presets.css && minify ./css/presets.css > ./css/presets.min.css && sass ./css/404.scss ./css/404.css && minify ./css/404.css > ./css/404.min.css",
     "build": " yarn clear:cache && yarn build:css && yarn build:js",
     "deploy": "yarn build && yarn clear:docs && lerna run build:docs && node deploy.js"
   },
@@ -24,12 +24,12 @@
   "homepage": "https://github.com/matteobruni/tsparticles#readme",
   "dependencies": {
     "fs-extra": "^10.0.0",
-    "gh-pages": "^3.2.2",
+    "gh-pages": "^3.2.3",
     "minify": "^7.0.2",
     "rimraf": "^3.0.2",
-    "sass": "^1.35.1",
-    "tsparticles": "^1.32.0",
-    "tsparticles-editor": "^1.32.0",
-    "tsparticles-preset-links": "^1.17.0"
+    "sass": "^1.37.5",
+    "tsparticles": "^1.34.0",
+    "tsparticles-editor": "^1.34.0",
+    "tsparticles-preset-links": "^1.19.0"
   }
 }

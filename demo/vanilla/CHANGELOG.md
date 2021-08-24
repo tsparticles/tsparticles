@@ -3,6 +3,80 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.19.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.18.3...tsparticles-demo@1.19.0) (2021-08-23)
+
+
+### Bug Fixes
+
+* **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
+* fixed issue with size and opacity range ([84e9c16](https://github.com/matteobruni/tsparticles/commit/84e9c16ce0e0ea194cb82bdd1c62839809ee621b))
+* fixed wobble updater ([cd13fca](https://github.com/matteobruni/tsparticles/commit/cd13fca6bad6611926e5f01a43ba6412b79fb608))
+
+
+### Features
+
+* added gradient options for particles ([c8ecec7](https://github.com/matteobruni/tsparticles/commit/c8ecec7eeda3ecedcdda3bf21eb8fa71c2a276ef))
+* added polygon path plugin ([623b62d](https://github.com/matteobruni/tsparticles/commit/623b62d14636a50082fc3709f299bc4c7d5c44cb))
+* added shapes and fill options to emitters ([e8b32a3](https://github.com/matteobruni/tsparticles/commit/e8b32a372190511c3350f6ddb112d0ff8f736c27))
+* added start count to emitters ([5403426](https://github.com/matteobruni/tsparticles/commit/540342630e67baf665f114f9667001638cf5dc3d))
+* added triangles preset ([2a7aa6a](https://github.com/matteobruni/tsparticles/commit/2a7aa6a98666defea5ecc2bc42aed44d6257a70e))
+* created gradient updater library, only colors for now ([7d31c62](https://github.com/matteobruni/tsparticles/commit/7d31c62ecb8f023234514b5ef46f0de55f75c283))
+* fixed new wait life emitter option ([ae88774](https://github.com/matteobruni/tsparticles/commit/ae88774239060da6d7b9e98029bf1819511202d6))
+* improved move path generators ([9b67377](https://github.com/matteobruni/tsparticles/commit/9b67377f9208a005b122e312ad4ad3c95a50deb7))
+
+
+
+
+
+## [1.18.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.18.2...tsparticles-demo@1.18.3) (2021-08-10)
+
+
+### Bug Fixes
+
+* fixed click handler with touch events ([ad4bf8a](https://github.com/matteobruni/tsparticles/commit/ad4bf8a56cb7e110114c8ec25dab1151c440f212))
+* fixed click handler, it wasn't working fine ([fd9873b](https://github.com/matteobruni/tsparticles/commit/fd9873b250d236b196cc7ff952d237f2768fb26b))
+* improved out modes and spin movement ([1c811cf](https://github.com/matteobruni/tsparticles/commit/1c811cfefe0b004857b3174e766a34d9bf614361))
+
+
+
+
+
+## [1.18.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.18.1...tsparticles-demo@1.18.2) (2021-07-31)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+## [1.18.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.18.0...tsparticles-demo@1.18.1) (2021-07-29)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+# [1.18.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.17.0...tsparticles-demo@1.18.0) (2021-07-29)
+
+
+### Bug Fixes
+
+* fixed broken movement in 1.31 ([6787035](https://github.com/matteobruni/tsparticles/commit/6787035c746bdc11055d00ca83869ed837258ec8))
+* fixed images shape options ([8964fe6](https://github.com/matteobruni/tsparticles/commit/8964fe6dd3b2556de47ba307fe87306764672bcc))
+* fixed line shape ([5c1c612](https://github.com/matteobruni/tsparticles/commit/5c1c6120af7e10abf26252c3c1be632675bfd3a5))
+* fixed pause on blur ([a7bd28f](https://github.com/matteobruni/tsparticles/commit/a7bd28f547a02434c188cdee4aa035424996559e))
+
+
+### Features
+
+* bubble color can now be mixed with the original one to have a smoother effect ([df11d66](https://github.com/matteobruni/tsparticles/commit/df11d66ee94fb9594805a5dfb7d4c776a93c4532))
+* spin movement enabled from v2 ([240a38f](https://github.com/matteobruni/tsparticles/commit/240a38f9a8c78e5b683d655d5f94476e396a5076))
+
+
+
+
+
 ## [1.3.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.3.0...tsparticles-demo@1.3.1) (2020-10-06)
 
 **Note:** Version bump only for package tsparticles-demo

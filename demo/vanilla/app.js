@@ -27,6 +27,13 @@ app.use("/popper.js", express.static("./node_modules/popper.js/dist"));
 app.use("/bootstrap", express.static("./node_modules/bootstrap/dist"));
 app.use("/tsparticles", express.static("./node_modules/tsparticles"));
 app.use("/interaction-light", express.static("./node_modules/tsparticles-interaction-light"));
+app.use("/interaction-particles-repulse", express.static("./node_modules/tsparticles-interaction-particles-repulse"));
+app.use("/updater-gradient", express.static("./node_modules/tsparticles-updater-gradient"));
+app.use("/updater-orbit", express.static("./node_modules/tsparticles-updater-orbit"));
+app.use("/path-curves", express.static("./node_modules/tsparticles-path-curves"));
+app.use("/path-polygon", express.static("./node_modules/tsparticles-path-polygon"));
+app.use("/path-perlin-noise", express.static("./node_modules/tsparticles-path-perlin-noise"));
+app.use("/path-simplex-noise", express.static("./node_modules/tsparticles-path-simplex-noise"));
 app.use("/plugin-infection", express.static("./node_modules/tsparticles-plugin-infection"));
 app.use("/preset-big-circles", express.static("./node_modules/tsparticles-preset-big-circles"));
 app.use("/preset-bubbles", express.static("./node_modules/tsparticles-preset-bubbles"));
@@ -39,6 +46,7 @@ app.use("/preset-links", express.static("./node_modules/tsparticles-preset-links
 app.use("/preset-sea-anemone", express.static("./node_modules/tsparticles-preset-sea-anemone"));
 app.use("/preset-snow", express.static("./node_modules/tsparticles-preset-snow"));
 app.use("/preset-stars", express.static("./node_modules/tsparticles-preset-stars"));
+app.use("/preset-triangles", express.static("./node_modules/tsparticles-preset-triangles"));
 app.use("/shape-bubble", express.static("./node_modules/tsparticles-shape-bubble"));
 app.use("/shape-heart", express.static("./node_modules/tsparticles-shape-heart"));
 app.use("/shape-multiline-text", express.static("./node_modules/tsparticles-shape-multiline-text"));
@@ -57,6 +65,10 @@ app.get('/slim', function (req, res) {
 
 app.get('/themes', function (req, res) {
     res.render('themes');
+});
+
+app.get('/click', function (req, res) {
+    res.render('click');
 });
 
 app.get("/presets", function (req, res) {
@@ -105,6 +117,10 @@ app.get("/presets/snow", function (req, res) {
 
 app.get("/presets/stars", function (req, res) {
     res.render("presets/stars");
+});
+
+app.get("/presets/triangles", function (req, res) {
+    res.render("presets/triangles");
 });
 
 app.listen(port, () => console.log(`Demo app listening on port ${port}!`));

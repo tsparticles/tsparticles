@@ -1,11 +1,12 @@
-import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
+import type { ICoordinates } from "../../../../Core/Interfaces";
 import type { MoveDirection, MoveDirectionAlt } from "../../../../Enums";
 import type { IParticles } from "../../../../Options/Interfaces/Particles/IParticles";
 import type { IEmitterRate } from "./IEmitterRate";
 import type { IEmitterLife } from "./IEmitterLife";
 import type { RecursivePartial } from "../../../../Types";
 import type { IEmitterSize } from "./IEmitterSize";
-import type { IAnimatableColor } from "../../../../Options/Interfaces/Particles/IAnimatableColor";
+import type { IAnimatableColor } from "../../../../Options/Interfaces/IAnimatableColor";
+import type { EmitterShapeType } from "../../Enums/EmitterShapeType";
 
 /**
  * Particles emitter object options
@@ -27,6 +28,11 @@ export interface IEmitter {
      * The direction of the emitted particles, [[MoveDirection]] is the enum used for values
      */
     direction?: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
+
+    /**
+     * Sets if the particles will spawn at the emitter perimeter or inside the area
+     */
+    fill: boolean;
 
     /**
      * The emitter life options
@@ -57,7 +63,17 @@ export interface IEmitter {
     rate: IEmitterRate;
 
     /**
+     * The emitter shape type (circle or square)
+     */
+    shape: EmitterShapeType | keyof typeof EmitterShapeType;
+
+    /**
      * The particle spawn color
      */
     spawnColor?: IAnimatableColor;
+
+    /**
+     * The number of starting particles of the emitter
+     */
+    startCount: number;
 }

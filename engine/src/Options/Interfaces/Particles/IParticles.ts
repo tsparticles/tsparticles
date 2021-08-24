@@ -10,7 +10,7 @@ import type { SingleOrMultiple } from "../../../Types";
 import type { IStroke } from "./IStroke";
 import type { ICollisions } from "./Collisions/ICollisions";
 import type { ITwinkle } from "./Twinkle/ITwinkle";
-import type { IAnimatableColor } from "./IAnimatableColor";
+import type { IAnimatableColor } from "../IAnimatableColor";
 import type { ILife } from "./Life/ILife";
 import type { IBounce } from "./Bounce/IBounce";
 import type { IDestroy } from "./Destroy/IDestroy";
@@ -21,6 +21,7 @@ import type { IZIndex } from "./ZIndex/IZIndex";
 import type { ParticlesGroups } from "../../../Types/ParticlesGroups";
 import type { IOrbit } from "./Orbit/IOrbit";
 import type { IRepulse } from "./Repulse/IRepulse";
+import type { IAnimatableGradient } from "../IAnimatableGradient";
 
 /**
  * [[include:Options/Particles.md]]
@@ -41,6 +42,7 @@ export interface IParticles {
     collisions: ICollisions;
     color: IAnimatableColor;
     destroy: IDestroy;
+    gradient: SingleOrMultiple<IAnimatableGradient>;
     groups: ParticlesGroups;
     life: ILife;
     links: ILinks;

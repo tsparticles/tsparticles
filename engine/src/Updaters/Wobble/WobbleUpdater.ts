@@ -23,10 +23,9 @@ function updateWobble(particle: Particle, delta: IDelta): void {
 
 export class WobbleUpdater implements IParticleUpdater {
     isEnabled(particle: Particle): boolean {
-        const rotate = particle.options.rotate;
-        const rotateAnimation = rotate.animation;
+        const wobble = particle.options.wobble;
 
-        return !particle.destroyed && !particle.spawning && !rotate.path && rotateAnimation.enable;
+        return !particle.destroyed && !particle.spawning && wobble.enable;
     }
 
     update(particle: Particle, delta: IDelta): void {

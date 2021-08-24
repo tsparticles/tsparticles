@@ -1,4 +1,4 @@
-import type { ICoordinates } from "../Interfaces/ICoordinates";
+import type { ICoordinates } from "../Interfaces";
 
 export class Vector implements ICoordinates {
     static clone(source: Vector): Vector {
@@ -9,7 +9,9 @@ export class Vector implements ICoordinates {
         return new Vector(x, y);
     }
 
-    static readonly origin = Vector.create(0, 0);
+    static get origin(): Vector {
+        return Vector.create(0, 0);
+    }
 
     get angle(): number {
         return Math.atan2(this.y, this.x);

@@ -9,6 +9,11 @@ export class EmitterLife implements IEmitterLife, IOptionLoader<IEmitterLife> {
     count?: number;
     delay?: number;
     duration?: number;
+    wait;
+
+    constructor() {
+        this.wait = false;
+    }
 
     load(data?: RecursivePartial<IEmitterLife>): void {
         if (data === undefined) {
@@ -25,6 +30,10 @@ export class EmitterLife implements IEmitterLife, IOptionLoader<IEmitterLife> {
 
         if (data.duration !== undefined) {
             this.duration = data.duration;
+        }
+
+        if (data.wait !== undefined) {
+            this.wait = data.wait;
         }
     }
 }

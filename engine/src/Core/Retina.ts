@@ -18,7 +18,6 @@ export class Retina {
     slowModeRadius!: number;
     linksDistance!: number;
     linksWidth!: number;
-    sizeValue!: number;
     sizeAnimationSpeed!: number;
     pixelRatio!: number;
     bounceModeDistance!: number;
@@ -118,6 +117,10 @@ export class Retina {
         particle.moveSpeed = getRangeValue(options.move.speed) * ratio;
         particle.sizeAnimationSpeed = options.size.animation.speed * ratio;
         particle.orbitRadius = orbit?.radius !== undefined ? orbit.radius * ratio : undefined;
+
+        if (particle.spin) {
+            particle.spin.acceleration = getRangeValue(options.move.spin.acceleration) * ratio;
+        }
 
         const maxDistance = particle.maxDistance;
 

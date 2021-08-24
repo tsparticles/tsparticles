@@ -10,7 +10,7 @@
           "value": 70
         },
         "zIndex": {
-          "value": 5000
+          "value": 50
         }
       },
       "z7500": {
@@ -18,7 +18,7 @@
           "value": 30
         },
         "zIndex": {
-          "value": 7500
+          "value": 75
         }
       },
       "z2500": {
@@ -26,7 +26,7 @@
           "value": 50
         },
         "zIndex": {
-          "value": 2500
+          "value": 25
         }
       },
       "z1000": {
@@ -34,16 +34,12 @@
           "value": 40
         },
         "zIndex": {
-          "value": 1000
+          "value": 10
         }
       }
     },
     "number": {
-      "value": 200,
-      "density": {
-        "enable": false,
-        "value_area": 800
-      }
+      "value": 200
     },
     "color": {
       "value": "#fff",
@@ -69,13 +65,6 @@
     "size": {
       "value": 3
     },
-    "links": {
-      "enable": false,
-      "distance": 100,
-      "color": "#ffffff",
-      "opacity": 0.4,
-      "width": 1
-    },
     "move": {
       "angle": {
         "value": 10,
@@ -96,7 +85,7 @@
       }
     },
     "zIndex": {
-      "value": 500,
+      "value": 5,
       "opacityRate": 0.5
     }
   },
@@ -154,7 +143,7 @@
   "emitters": {
     "position": {
       "y": 55,
-      "x": 0
+      "x": -5
     },
     "rate": {
       "delay": 7,
@@ -181,8 +170,8 @@
       "move": {
         "speed": 10,
         "outModes": {
-          "default": "destroy",
-          "left": "none"
+          "default": "none",
+          "right": "destroy"
         },
         "straight": true
       },

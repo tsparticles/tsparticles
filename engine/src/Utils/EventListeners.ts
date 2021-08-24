@@ -47,6 +47,7 @@ export class EventListeners {
 
     private canPush: boolean;
     private resizeTimeout?: NodeJS.Timeout;
+    private resizeObserver?: ResizeObserver;
 
     /**
      * Events listener constructor
@@ -144,7 +145,31 @@ export class EventListeners {
         }
 
         if (options.interactivity.events.resize) {
-            manageListener(window, Constants.resizeEvent, this.resizeHandler, add);
+            if (typeof ResizeObserver !== "undefined") {
+                if (this.resizeObserver && !add) {
+                    if (container.canvas.element) {
+                        this.resizeObserver.unobserve(container.canvas.element);
+                    }
+
+                    this.resizeObserver.disconnect();
+
+                    delete this.resizeObserver;
+                } else if (!this.resizeObserver && add && container.canvas.element) {
+                    this.resizeObserver = new ResizeObserver((entries) => {
+                        const entry = entries.find((e) => e.target === container.canvas.element);
+
+                        if (!entry) {
+                            return;
+                        }
+
+                        this.handleWindowResize();
+                    });
+
+                    this.resizeObserver.observe(container.canvas.element);
+                }
+            } else {
+                manageListener(window, Constants.resizeEvent, this.resizeHandler, add);
+            }
         }
 
         if (document) {
@@ -182,7 +207,7 @@ export class EventListeners {
             if (container.getAnimationStatus()) {
                 container.play(true);
             } else {
-                container.draw();
+                container.draw(true);
             }
         }
     }

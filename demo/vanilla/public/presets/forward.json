@@ -27,7 +27,7 @@
       "type": "image",
       "options": {
         "image": {
-          "src": "images/arrow.svg",
+          "src": "images/arrow.png",
           "width": 512,
           "height": 512,
           "replaceColor": true

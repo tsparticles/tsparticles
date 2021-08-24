@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/matteobruni/tsparticles/compare/particles.vue3@1.16.3...particles.vue3@1.17.0) (2021-08-23)
+
+
+### Bug Fixes
+
+* **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
+
+
+
+
+
+## [1.16.3](https://github.com/matteobruni/tsparticles/compare/particles.vue3@1.16.2...particles.vue3@1.16.3) (2021-08-10)
+
+
+### Features
+
+* added new methods to particle class ([5743453](https://github.com/matteobruni/tsparticles/commit/5743453906001569f262888aa54539ad4e1463ac))
+
+
+
+
+
+## [1.16.2](https://github.com/matteobruni/tsparticles/compare/particles.vue3@1.16.1...particles.vue3@1.16.2) (2021-07-31)
+
+**Note:** Version bump only for package particles.vue3
+
+
+
+
+
+## [1.16.1](https://github.com/matteobruni/tsparticles/compare/particles.vue3@1.16.0...particles.vue3@1.16.1) (2021-07-29)
+
+**Note:** Version bump only for package particles.vue3
+
+
+
+
+
+# [1.16.0](https://github.com/matteobruni/tsparticles/compare/particles.vue3@1.15.0...particles.vue3@1.16.0) (2021-07-29)
+
+**Note:** Version bump only for package particles.vue3
+
+
+
+
+
 ## [1.1.1](https://github.com/matteobruni/tsparticles/compare/particles.vue3@1.1.0...particles.vue3@1.1.1) (2020-10-06)
 
 **Note:** Version bump only for package particles.vue3
