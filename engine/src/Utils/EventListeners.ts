@@ -487,11 +487,12 @@ export class EventListeners {
     private handleWheel(e: Event): void {
         const event = e as WheelEvent;
         const container = this.container;
+        const scaleFactor = 8;
 
         event.preventDefault();
 
         container.retina.scale += event.deltaY * -0.01;
 
-        container.retina.scale = clamp(container.retina.scale, 0.125, 4);
+        container.retina.scale = clamp(container.retina.scale, 1 / scaleFactor, scaleFactor);
     }
 }
