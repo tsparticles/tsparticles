@@ -23,8 +23,11 @@ export class Retina {
     bounceModeDistance!: number;
     maxSpeed!: number;
     orbitRadius?: number;
+    scale: number;
 
-    constructor(private readonly container: Container) {}
+    constructor(private readonly container: Container) {
+        this.scale = 1;
+    }
 
     /**
      * Initializes all the values needing a pixel ratio factor (sizes, widths, distances)

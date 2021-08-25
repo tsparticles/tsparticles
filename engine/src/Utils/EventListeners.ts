@@ -3,6 +3,7 @@ import { ClickMode, InteractivityDetect } from "../Enums";
 import type { ICoordinates } from "../Core/Interfaces";
 import { Constants } from "./Constants";
 import { itemFromArray } from "./Utils";
+import { clamp } from "./NumberUtils";
 
 function manageListener(
     element: HTMLElement | Node | Window,
@@ -44,6 +45,7 @@ export class EventListeners {
     private readonly mouseUpHandler: EventListenerOrEventListenerObject;
     private readonly visibilityChangeHandler: EventListenerOrEventListenerObject;
     private readonly resizeHandler: EventListenerOrEventListenerObject;
+    private readonly wheelHandler: EventListenerOrEventListenerObject;
 
     private canPush: boolean;
     private resizeTimeout?: NodeJS.Timeout;
@@ -67,6 +69,7 @@ export class EventListeners {
         this.mouseDownHandler = (): void => this.mouseDown();
         this.visibilityChangeHandler = (): void => this.handleVisibilityChange();
         this.resizeHandler = (): void => this.handleWindowResize();
+        this.wheelHandler = (e: Event): void => this.handleWheel(e);
     }
 
     /**
@@ -113,6 +116,8 @@ export class EventListeners {
         }
 
         const html = interactivityEl as HTMLElement;
+
+        manageListener(interactivityEl, Constants.wheelEvent, this.wheelHandler, add);
 
         if (options.interactivity.events.onHover.enable || options.interactivity.events.onClick.enable) {
             /* el on mousemove */
@@ -477,5 +482,16 @@ export class EventListeners {
                 plugin.handleClickMode(mode);
             }
         }
+    }
+
+    private handleWheel(e: Event): void {
+        const event = e as WheelEvent;
+        const container = this.container;
+
+        event.preventDefault();
+
+        container.retina.scale += event.deltaY * -0.01;
+
+        container.retina.scale = clamp(container.retina.scale, 0.125, 4);
     }
 }

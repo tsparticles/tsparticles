@@ -200,7 +200,13 @@ export class Canvas {
             const pos1 = p1.getPosition();
             const pos2 = p2.getPosition();
 
-            drawConnectLine(ctx, p1.linksWidth ?? this.container.retina.linksWidth, lineStyle, pos1, pos2);
+            drawConnectLine(
+                ctx,
+                (p1.linksWidth ?? this.container.retina.linksWidth) * this.container.retina.scale,
+                lineStyle,
+                pos1,
+                pos2
+            );
         });
     }
 
@@ -212,7 +218,7 @@ export class Canvas {
 
             drawGrabLine(
                 ctx,
-                particle.linksWidth ?? container.retina.linksWidth,
+                (particle.linksWidth ?? container.retina.linksWidth) * container.retina.scale,
                 beginPos,
                 mousePos,
                 lineColor,
@@ -324,10 +330,10 @@ export class Canvas {
                 ctx,
                 particle,
                 particle.orbitColor ?? particle.getFillColor(),
-                particle.orbitRadius ?? container.retina.orbitRadius ?? particle.getRadius(),
+                particle.orbitRadius ?? container.retina.orbitRadius ?? particle.getRadius() * container.retina.scale,
                 orbitOptions.opacity,
-                orbitOptions.width,
-                (particle.orbitRotation ?? 0) * container.retina.pixelRatio,
+                orbitOptions.width * container.retina.scale,
+                (particle.orbitRotation ?? 0) * container.retina.pixelRatio * container.retina.scale,
                 start,
                 end
             );

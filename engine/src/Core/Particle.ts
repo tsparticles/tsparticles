@@ -632,14 +632,14 @@ export class Particle implements IParticle {
 
     getPosition(): ICoordinates3d {
         return {
-            x: this.position.x + this.offset.x,
-            y: this.position.y + this.offset.y,
-            z: this.position.z,
+            x: (this.position.x + this.offset.x) * this.container.retina.scale,
+            y: (this.position.y + this.offset.y) * this.container.retina.scale,
+            z: this.position.z * this.container.retina.scale,
         };
     }
 
     getRadius(): number {
-        return this.bubble.radius || this.size.value;
+        return (this.bubble.radius || this.size.value) * this.container.retina.scale;
     }
 
     getMass(): number {
