@@ -41,7 +41,7 @@
     "pug": "^3.0.2",
     "pug-cli": "^1.0.0-alpha6",
     "stylus": "^0.54.8",
-    "three": "^0.131.3",
+    "three": "^0.132.0",
     "tsparticles": "^1.34.0",
     "tsparticles-interaction-light": "^1.34.0",
     "tsparticles-interaction-particles-repulse": "^1.34.0",
