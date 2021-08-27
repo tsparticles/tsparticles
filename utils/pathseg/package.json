@@ -25,7 +25,7 @@
   ],
   "types": "pathseg.d.ts",
   "typesVersions": {
-    "<3.8": {
+    "<4.4": {
       "*": [
         "ts4.3"
       ]
