@@ -140,10 +140,10 @@
     "scale": 2,
     "type": "inline",
     "data": {
-      "path": "M150 0 L75 200 L225 200 Z",
+      "path": "M 75,0 0,200 h 150 z",
       "size": {
-        "width": 400,
-        "height": 210
+        "width": 150,
+        "height": 200
       }
     }
   },

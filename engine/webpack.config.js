@@ -33,6 +33,16 @@ const getConfig = (entry) => {
         resolve: {
             extensions: [ ".js", ".json" ]
         },
+        externals: [
+            {
+              pathseg: {
+                commonjs: "pathseg",
+                commonjs2: "pathseg",
+                amd: "pathseg",
+                root: "window"
+              }
+            }
+          ],
         module: {
             rules: [
                 {
