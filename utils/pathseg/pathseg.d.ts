@@ -6,6 +6,7 @@ export interface SVGElementInstance extends EventTarget {
 interface SVGElementInstanceList {
     /** @deprecated */
     readonly length: number;
+
     /** @deprecated */
     item(index: number): SVGElementInstance;
 }
@@ -252,12 +253,19 @@ declare var SVGPathSegLinetoVerticalRel: {
 
 interface SVGPathSegList {
     readonly numberOfItems: number;
+
     appendItem(newItem: SVGPathSeg): SVGPathSeg;
+
     clear(): void;
+
     getItem(index: number): SVGPathSeg;
+
     initialize(newItem: SVGPathSeg): SVGPathSeg;
+
     insertItemBefore(newItem: SVGPathSeg, index: number): SVGPathSeg;
+
     removeItem(index: number): SVGPathSeg;
+
     replaceItem(newItem: SVGPathSeg, index: number): SVGPathSeg;
 }
 
@@ -309,7 +317,9 @@ declare var SVGZoomEvent: {
 interface SVGPathElement extends SVGGraphicsElement {
     /** @deprecated */
     readonly pathSegList?: SVGPathSegList;
+
     getPointAtLength(distance: number): SVGPoint;
+
     getTotalLength(): number;
 }
 
@@ -317,3 +327,9 @@ declare var SVGPathElement: {
     prototype: SVGPathElement;
     new(): SVGPathElement;
 };
+
+declare global {
+    interface Window {
+        SVGPathSeg: SVGPathSeg;
+    }
+}

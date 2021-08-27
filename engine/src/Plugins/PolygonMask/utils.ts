@@ -4,7 +4,7 @@ import { colorToRgb, getDistances, getStyleFromRgb } from "../../Utils";
 import type { ISvgPath } from "./Interfaces/ISvgPath";
 import type { SvgAbsoluteCoordinatesTypes, SvgRelativeCoordinatesTypes } from "./types";
 import { Vector } from "../../Core/Particle/Vector";
-import {
+import type {
     SVGPathSeg,
     SVGPathSegLinetoHorizontalAbs,
     SVGPathSegLinetoVerticalAbs,
@@ -64,7 +64,7 @@ export function parsePaths(paths: ISvgPath[], scale: number, offset: ICoordinate
 
         for (let i = 0; i < len; i++) {
             const segment: SVGPathSeg | undefined = segments?.getItem(i);
-            const svgPathSeg = SVGPathSeg;
+            const svgPathSeg = window.SVGPathSeg;
 
             switch (segment?.pathSegType) {
                 //
