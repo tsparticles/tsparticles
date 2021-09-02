@@ -223,9 +223,9 @@
   integrity sha512-ctjwuntPfZZT2mNj2NDIVu51t9cvbhl/16epc5xEwyzyDt76pX9UgwvY+MbXrf/C/FWwdtmNtfP698BKI+9leQ==
 
 "@angular/compiler@~12.2.2":
-  version "12.2.3"
-  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-12.2.3.tgz#a528dcda48c17c9b844caba5b61cfd119e515d17"
-  integrity sha512-jlS7XUokGb4eH6aYEIanrq6a7ZxcMI9GmMr5tBAdIHusH3b40dcMpZVXIxoGzv1Ws47m2izDCrjWjkFKeXPavQ==
+  version "12.2.4"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-12.2.4.tgz#8451b8f5d0326ad69cd93e6c8ff2be1f54410834"
+  integrity sha512-aqX9SgUIOYwWeD9xGlyGgFRmgvebw9EE8U5Y3Dcrhui1XvxWKnmuozs3w5JVhmEn5f42XDdOas5gkI/E7+hasA==
   dependencies:
     tslib "^2.2.0"
 
@@ -5776,6 +5776,11 @@ path-type@^4.0.0:
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
+pathseg@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/pathseg/-/pathseg-1.2.1.tgz#50b3fc4fc05c64f4a52f8c04156f6f3975b0df3c"
+  integrity sha512-LtvemzPvcGamWBbNWJaIrgfUzpynXfwYrP6SSFVRhNHVcCaq6SVm4kRGJNuIV8qzBKgCN3fEXFZZ16YETFIXoA==
+
 performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
@@ -7712,6 +7717,13 @@ tslint@~6.1.3:
     semver "^5.3.0"
     tslib "^1.13.0"
     tsutils "^2.29.0"
+
+tsparticles@^1.34.0:
+  version "1.34.0"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.34.0.tgz#1f87dea56f4abc44ab9286132162103899df99f4"
+  integrity sha512-7EIyI0339EZEzoUggqKBxkUDCvsM/YT89GyrPTSVcrHNd47SZ9bzTZFAWuTbhQrEiyJEL/np61t2BGOhJJK1Mg==
+  optionalDependencies:
+    pathseg "^1.2.1"
 
 tsutils@^2.29.0:
   version "2.29.0"
