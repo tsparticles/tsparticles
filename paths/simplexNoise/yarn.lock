@@ -1892,10 +1892,10 @@ tapable@^2.1.1, tapable@^2.2.0:
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-2.2.0.tgz#5c373d281d9c672848213d0e037d1c4165ab426b"
   integrity sha512-FBk4IesMV1rBxX2tfiK8RAmogtWn53puLOQlvO8XuwlgxcYbP4mVPS9Ph4aeamSyyVjOl24aYWAuc8U5kCVwMw==
 
-terser-webpack-plugin@5.2.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/terser-webpack-plugin/-/terser-webpack-plugin-5.2.0.tgz#694c54fcdfa5f5cb2ceaf31929e7535b32a8a50c"
-  integrity sha512-FpR4Qe0Yt4knSQ5u2bA1wkM0R8VlVsvhyfSHvomXRivS4vPLk0dJV2IhRBIHRABh7AFutdMeElIA5y1dETwMBg==
+terser-webpack-plugin@5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/terser-webpack-plugin/-/terser-webpack-plugin-5.2.1.tgz#7baa96287ca8f29d22814d57c809cbae6be4de3c"
+  integrity sha512-mUAWsS2RDNL3rEr0ZTr7hm/R1DDxNwrED7Kf59F2rgFTfy+LrnciwA51MNWhGGQcqHnqvbPHgkW9LYr5HGBhfw==
   dependencies:
     jest-worker "^27.0.6"
     p-limit "^3.1.0"
