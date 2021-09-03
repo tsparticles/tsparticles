@@ -6578,11 +6578,6 @@ path-type@^4.0.0:
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
-pathseg@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/pathseg/-/pathseg-1.2.1.tgz#50b3fc4fc05c64f4a52f8c04156f6f3975b0df3c"
-  integrity sha512-LtvemzPvcGamWBbNWJaIrgfUzpynXfwYrP6SSFVRhNHVcCaq6SVm4kRGJNuIV8qzBKgCN3fEXFZZ16YETFIXoA==
-
 pbkdf2@^3.0.3:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/pbkdf2/-/pbkdf2-3.1.1.tgz#cb8724b0fada984596856d1a6ebafd3584654b94"
@@ -8684,13 +8679,6 @@ tslint@^5.20.1:
     semver "^5.3.0"
     tslib "^1.8.0"
     tsutils "^2.29.0"
-
-tsparticles@^1.34.0:
-  version "1.34.0"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.34.0.tgz#1f87dea56f4abc44ab9286132162103899df99f4"
-  integrity sha512-7EIyI0339EZEzoUggqKBxkUDCvsM/YT89GyrPTSVcrHNd47SZ9bzTZFAWuTbhQrEiyJEL/np61t2BGOhJJK1Mg==
-  optionalDependencies:
-    pathseg "^1.2.1"
 
 tsutils@^2.29.0:
   version "2.29.0"
