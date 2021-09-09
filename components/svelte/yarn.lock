@@ -685,9 +685,9 @@ svelte-check@^2.2.4:
     typescript "*"
 
 svelte-preprocess@^4.0.0, svelte-preprocess@^4.7.4:
-  version "4.9.2"
-  resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-4.9.2.tgz#ba4a14023e95dd549cd564ac14459aa3c026f549"
-  integrity sha512-Eu/09bEpcBD8a9pGxcILEAZssXifnWoi5ad5GgUAgoT4alblNikOIpKrWDFkepMqjgioXciWbIZOROoTX3ZLdA==
+  version "4.9.3"
+  resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-4.9.3.tgz#d6ff1f0d0cb6cfdce403493b4b7ac08b8834e987"
+  integrity sha512-dLwYFDCqTXoNr4sh2qGNPo9UxdJgIEK4qZHRz++Rh+9JQ/IAGMQwyS9qQCLBm6GYNPSMbWZaV6Hf+gknqkXWXw==
   dependencies:
     "@types/pug" "^2.0.4"
     "@types/sass" "^1.16.0"
