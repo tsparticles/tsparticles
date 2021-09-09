@@ -283,9 +283,9 @@
     tslib "^2.2.0"
 
 "@angular/router@~12.2.2":
-  version "12.2.4"
-  resolved "https://registry.yarnpkg.com/@angular/router/-/router-12.2.4.tgz#3b8f30b1d690d3438c66720a573d4cc5275871a8"
-  integrity sha512-IkSLzXw23CCFQyBdwoouvGj/u2bxs9d4Ba7i+g/aDKrxeUVBZ7XSfks5OhCJe9F/o93rnfnSiBXvgx51olQ5CQ==
+  version "12.2.5"
+  resolved "https://registry.yarnpkg.com/@angular/router/-/router-12.2.5.tgz#532930124fe15263bcc976dcef9d3f9a771ebd73"
+  integrity sha512-rfaHzi6ZrLFqdebEQTMPxVEwLuA8MBGOUzyekhLjGTvKwc7L2/m303LPIDECRFyCSik3EIxGLvzPET0l+DVgAw==
   dependencies:
     tslib "^2.2.0"
 
