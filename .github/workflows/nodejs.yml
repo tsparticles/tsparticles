@@ -26,7 +26,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn install
       - run: npx lerna bootstrap
-      - run: npx lerna run --no-bail build
+      - run: npx lerna run
       - run: echo ${{ github.repository_owner }}
       - run: echo ${{ github.actor }}
       #- run: lerna test
