@@ -1,5 +1,11 @@
-import type { IDelta, IParticleUpdater, IParticleValueAnimation, Particle } from "tsparticles";
-import { AnimationStatus, IParticleNumericValueAnimation } from "tsparticles";
+import type {
+    IDelta,
+    IParticleUpdater,
+    IParticleValueAnimation,
+    Particle,
+    IParticleNumericValueAnimation,
+} from "tsparticles";
+import { AnimationStatus, RotateDirection, StartValueType, Utils, ColorUtils, NumberUtils } from "tsparticles";
 
 function updateColorOpacity(delta: IDelta, value: IParticleNumericValueAnimation) {
     if (!value.enable) {
@@ -116,7 +122,103 @@ function updateGradient(particle: Particle, delta: IDelta): void {
 
 export class GradientUpdater implements IParticleUpdater {
     init(particle: Particle): void {
-        // nothing
+        const gradient =
+            particle.options.gradient instanceof Array
+                ? Utils.itemFromArray(particle.options.gradient)
+                : particle.options.gradient;
+
+        if (gradient) {
+            particle.gradient = {
+                angle: {
+                    value: gradient.angle.value,
+                    enable: gradient.angle.animation.enable,
+                    velocity: (gradient.angle.animation.speed / 360) * particle.container.retina.reduceFactor,
+                },
+                type: gradient.type,
+                colors: [],
+            };
+
+            let rotateDirection = gradient.angle.direction;
+
+            if (rotateDirection === RotateDirection.random) {
+                const index = Math.floor(Math.random() * 2);
+
+                rotateDirection = index > 0 ? RotateDirection.counterClockwise : RotateDirection.clockwise;
+            }
+
+            switch (rotateDirection) {
+                case RotateDirection.counterClockwise:
+                case "counterClockwise":
+                    particle.gradient.angle.status = AnimationStatus.decreasing;
+                    break;
+                case RotateDirection.clockwise:
+                    particle.gradient.angle.status = AnimationStatus.increasing;
+                    break;
+            }
+
+            const reduceDuplicates = particle.options.reduceDuplicates;
+
+            for (const grColor of gradient.colors) {
+                const grHslColor = ColorUtils.colorToHsl(grColor.value, particle.id, reduceDuplicates);
+
+                if (grHslColor) {
+                    const grHslAnimation = ColorUtils.getHslAnimationFromHsl(
+                        grHslColor,
+                        grColor.value.animation,
+                        particle.container.retina.reduceFactor
+                    );
+
+                    const addColor = {
+                        stop: grColor.stop,
+                        value: grHslAnimation,
+                        opacity: grColor.opacity
+                            ? {
+                                  enable: grColor.opacity.animation.enable,
+                                  max: NumberUtils.getRangeMax(grColor.opacity.value),
+                                  min: NumberUtils.getRangeMin(grColor.opacity.value),
+                                  status: AnimationStatus.increasing,
+                                  value: NumberUtils.getRangeValue(grColor.opacity.value),
+                                  velocity:
+                                      (grColor.opacity.animation.speed / 100) * particle.container.retina.reduceFactor,
+                              }
+                            : undefined,
+                    };
+
+                    if (grColor.opacity && addColor.opacity) {
+                        const opacityRange = grColor.opacity.value;
+
+                        addColor.opacity.min = NumberUtils.getRangeMin(opacityRange);
+                        addColor.opacity.max = NumberUtils.getRangeMax(opacityRange);
+
+                        const opacityAnimation = grColor.opacity.animation;
+
+                        switch (opacityAnimation.startValue) {
+                            case StartValueType.min:
+                                addColor.opacity.value = addColor.opacity.min;
+                                addColor.opacity.status = AnimationStatus.increasing;
+
+                                break;
+
+                            case StartValueType.random:
+                                addColor.opacity.value = NumberUtils.randomInRange(addColor.opacity);
+                                addColor.opacity.status =
+                                    Math.random() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
+
+                                break;
+
+                            case StartValueType.max:
+                            default:
+                                addColor.opacity.value = addColor.opacity.max;
+                                addColor.opacity.status = AnimationStatus.decreasing;
+
+                                break;
+                        }
+                    }
+
+                    particle.gradient.colors.push(addColor);
+                }
+            }
+        }
     }
 
     isEnabled(particle: Particle): boolean {

@@ -1,8 +1,17 @@
 import type { IDelta, IParticleUpdater, Particle } from "tsparticles";
+import { ColorUtils, NumberUtils } from "tsparticles";
 
 export class OrbitUpdater implements IParticleUpdater {
     init(particle: Particle): void {
-        // nothing
+        /* orbit */
+        const particlesOptions = particle.options;
+        const orbitOptions = particlesOptions.orbit;
+
+        if (orbitOptions.enable) {
+            particle.orbitRotation = NumberUtils.getRangeValue(orbitOptions.rotation.value);
+
+            particle.orbitColor = ColorUtils.colorToHsl(orbitOptions.color);
+        }
     }
 
     isEnabled(particle: Particle): boolean {
