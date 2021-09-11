@@ -4,7 +4,7 @@ import { TestCanvas } from "./Fixture/TestCanvas";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticle } from "./Fixture/TestParticle";
 import { ShapeType } from "../src/Enums";
-import { ICoordinates } from "../src/Core/Interfaces/ICoordinates";
+import { ICoordinates } from "../src/Core/Interfaces";
 
 const Window = require("window");
 
@@ -116,8 +116,8 @@ describe("Particle", () => {
 
         it("should always set an angle in range [0,360]", () => {
             // Note, the real range should be [0,360) but the function includes 360 and it won't hurt anything
-            expect(testParticle.particle?.rotate.value).to.be.at.least(-2 * Math.PI);
-            expect(testParticle.particle?.rotate.value).to.be.at.most(2 * Math.PI);
+            expect(testParticle.particle?.rotate?.value).to.be.at.least(-2 * Math.PI);
+            expect(testParticle.particle?.rotate?.value).to.be.at.most(2 * Math.PI);
         });
     });
 

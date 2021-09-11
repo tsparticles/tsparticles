@@ -4,7 +4,7 @@ import type { Particle } from "../../Core/Particle";
 function updateWobble(particle: Particle, delta: IDelta): void {
     const wobble = particle.options.wobble;
     const speed = particle.wobbleSpeed * delta.factor;
-    const distance = (particle.wobbleDistance * delta.factor) / (1000 / 60);
+    const distance = ((particle.retina.wobbleDistance ?? 0) * delta.factor) / (1000 / 60);
     const max = 2 * Math.PI;
 
     if (!wobble.enable) {
@@ -22,6 +22,10 @@ function updateWobble(particle: Particle, delta: IDelta): void {
 }
 
 export class WobbleUpdater implements IParticleUpdater {
+    init(particle: Particle): void {
+        // nothing
+    }
+
     isEnabled(particle: Particle): boolean {
         const wobble = particle.options.wobble;
 

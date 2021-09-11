@@ -58,6 +58,10 @@ function updateColor(particle: Particle, delta: IDelta): void {
 }
 
 export class ColorUpdater implements IParticleUpdater {
+    init(particle: Particle): void {
+        // nothing
+    }
+
     isEnabled(particle: Particle): boolean {
         const animationOptions = particle.options.color.animation;
 

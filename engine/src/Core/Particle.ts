@@ -53,6 +53,7 @@ import type {
     IParticleValueAnimation,
     IRgb,
     IShapeValues,
+    IParticleRetinaProps,
 } from "./Interfaces";
 import { Vector3d } from "./Particle/Vector3d";
 import { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
@@ -71,7 +72,6 @@ export class Particle implements IParticle {
     splitCount;
     unbreakable;
     wobbleAngle;
-    wobbleDistance;
     wobbleSpeed;
 
     readonly pathDelay;
@@ -79,23 +79,15 @@ export class Particle implements IParticle {
     readonly strokeWidth;
     readonly options;
     readonly life: IParticleLife;
-    readonly maxDistance: Partial<IDistance>;
 
     alterValue?: number;
     alterType?: AlterType;
-    attractDistance?: number;
     backColor?: IHsl;
     close: boolean;
     fill: boolean;
     randomIndexData?: number;
-    linksDistance?: number;
-    linksWidth?: number;
-    moveDrift?: number;
-    moveSpeed?: number;
-    maxSpeed?: number;
-    orbitRadius?: number;
     orbitRotation?: number;
-    sizeAnimationSpeed?: number;
+    rotate?: IParticleValueAnimation<number>;
 
     readonly direction: number;
     readonly stroke: Stroke;
@@ -105,7 +97,6 @@ export class Particle implements IParticle {
     readonly color?: IParticleHslAnimation;
     readonly gradient?: IParticleGradientAnimation;
     readonly opacity: IParticleNumericValueAnimation;
-    readonly rotate: IParticleValueAnimation<number>;
     readonly size: IParticleNumericValueAnimation;
     readonly tilt: IParticleTiltValueAnimation;
     readonly strokeColor?: IParticleHslAnimation;
@@ -118,6 +109,7 @@ export class Particle implements IParticle {
     readonly shapeData?: IShapeValues;
     readonly bubble: IBubbleParticleData;
     readonly zIndexFactor: number;
+    readonly retina: IParticleRetinaProps;
 
     constructor(
         readonly id: number,
@@ -133,7 +125,9 @@ export class Particle implements IParticle {
         this.unbreakable = false;
         this.splitCount = 0;
         this.misplaced = false;
-        this.maxDistance = {};
+        this.retina = {
+            maxDistance: {},
+        };
 
         const pxRatio = container.retina.pixelRatio;
         const options = container.actualOptions;
@@ -182,7 +176,7 @@ export class Particle implements IParticle {
         const zIndexValue = getRangeValue(this.options.zIndex.value);
 
         this.pathDelay = getValue(this.options.move.path.delay) * 1000;
-        this.wobbleDistance = 0;
+        this.retina.wobbleDistance = 0;
 
         container.retina.initParticle(this);
 
@@ -228,7 +222,7 @@ export class Particle implements IParticle {
             }
 
             this.size.velocity =
-                ((this.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100) *
+                ((this.retina.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100) *
                 container.retina.reduceFactor;
 
             if (!sizeAnimation.sync) {
@@ -244,41 +238,6 @@ export class Particle implements IParticle {
         /* animation - velocity for speed */
         this.initialVelocity = this.calculateVelocity();
         this.velocity = this.initialVelocity.copy();
-
-        const rotateOptions = this.options.rotate;
-
-        this.rotate = {
-            enable: rotateOptions.animation.enable,
-            value: (getRangeValue(rotateOptions.value) * Math.PI) / 180,
-        };
-
-        let rotateDirection = rotateOptions.direction;
-
-        if (rotateDirection === RotateDirection.random) {
-            const index = Math.floor(Math.random() * 2);
-
-            rotateDirection = index > 0 ? RotateDirection.counterClockwise : RotateDirection.clockwise;
-        }
-
-        switch (rotateDirection) {
-            case RotateDirection.counterClockwise:
-            case "counterClockwise":
-                this.rotate.status = AnimationStatus.decreasing;
-                break;
-            case RotateDirection.clockwise:
-                this.rotate.status = AnimationStatus.increasing;
-                break;
-        }
-
-        const rotateAnimation = this.options.rotate.animation;
-
-        if (rotateAnimation.enable) {
-            this.rotate.velocity = (rotateAnimation.speed / 360) * container.retina.reduceFactor;
-
-            if (!rotateAnimation.sync) {
-                this.rotate.velocity *= Math.random();
-            }
-        }
 
         const tiltOptions = this.options.tilt;
 
@@ -587,11 +546,17 @@ export class Particle implements IParticle {
                 direction: this.velocity.x >= 0 ? RotateDirection.clockwise : RotateDirection.counterClockwise,
                 angle: this.velocity.angle,
                 radius: distance,
-                acceleration: getRangeValue(this.options.move.spin.acceleration),
+                acceleration: this.retina.spinAcceleration ?? getRangeValue(this.options.move.spin.acceleration),
             };
         }
 
         this.shadowColor = colorToRgb(this.options.shadow.color);
+
+        for (const updater of container.particles.updaters) {
+            if (updater.init) {
+                updater.init(this);
+            }
+        }
 
         if (drawer && drawer.particleInit) {
             drawer.particleInit(container, this);

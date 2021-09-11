@@ -70,6 +70,10 @@ function updateSize(particle: Particle, delta: IDelta): void {
 }
 
 export class SizeUpdater implements IParticleUpdater {
+    init(particle: Particle): void {
+        // nothing
+    }
+
     isEnabled(particle: Particle): boolean {
         return (
             !particle.destroyed &&

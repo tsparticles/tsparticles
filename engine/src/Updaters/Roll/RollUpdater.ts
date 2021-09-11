@@ -18,6 +18,10 @@ function updateRoll(particle: Particle, delta: IDelta): void {
 }
 
 export class RollUpdater implements IParticleUpdater {
+    init(particle: Particle): void {
+        // nothing
+    }
+
     isEnabled(particle: Particle): boolean {
         const roll = particle.options.roll;
 

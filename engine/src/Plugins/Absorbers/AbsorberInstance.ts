@@ -201,7 +201,8 @@ export class AbsorberInstance {
 
             particle.absorberOrbit.length -= v.length;
             particle.absorberOrbit.angle +=
-                (((particle.moveSpeed ?? 0) * container.retina.pixelRatio) / 100) * container.retina.reduceFactor;
+                (((particle.retina.moveSpeed ?? 0) * container.retina.pixelRatio) / 100) *
+                container.retina.reduceFactor;
         } else {
             const addV = Vector.origin;
 

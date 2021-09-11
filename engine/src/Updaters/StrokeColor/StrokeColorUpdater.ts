@@ -67,6 +67,10 @@ function updateStrokeColor(particle: Particle, delta: IDelta): void {
 }
 
 export class StrokeColorUpdater implements IParticleUpdater {
+    init(particle: Particle): void {
+        // nothing
+    }
+
     isEnabled(particle: Particle): boolean {
         const color = particle.stroke.color;
 

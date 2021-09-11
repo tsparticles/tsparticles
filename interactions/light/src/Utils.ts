@@ -45,7 +45,7 @@ export function drawParticleShadow(
     const radius = particle.getRadius();
     const sides = particle.sides;
     const full = (Math.PI * 2) / sides;
-    const angle = -particle.rotate.value + Math.PI / 4;
+    const angle = -(particle.rotate?.value ?? 0) + Math.PI / 4;
     const factor = 1; //Math.sqrt(2);
     const dots = [];
 

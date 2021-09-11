@@ -10,8 +10,8 @@ function applyDistance(particle: Particle): void {
     const dxFixed = Math.abs(dx),
         dyFixed = Math.abs(dy);
 
-    const hDistance = particle.maxDistance.horizontal;
-    const vDistance = particle.maxDistance.vertical;
+    const hDistance = particle.retina.maxDistance.horizontal;
+    const vDistance = particle.retina.maxDistance.vertical;
 
     if (!hDistance && !vDistance) {
         return;
@@ -71,9 +71,9 @@ export class Mover {
         const container = this.container,
             slowFactor = this.getProximitySpeedFactor(particle),
             baseSpeed =
-                (particle.moveSpeed ??= getRangeValue(moveOptions.speed) * container.retina.pixelRatio) *
+                (particle.retina.moveSpeed ??= getRangeValue(moveOptions.speed) * container.retina.pixelRatio) *
                 container.retina.reduceFactor,
-            moveDrift = (particle.moveDrift ??=
+            moveDrift = (particle.retina.moveDrift ??=
                 getRangeValue(particle.options.move.drift) * container.retina.pixelRatio),
             maxSize = getRangeMax(particleOptions.size.value) * container.retina.pixelRatio,
             sizeFactor = moveOptions.size ? particle.getRadius() / maxSize : 1,
@@ -101,7 +101,7 @@ export class Mover {
         }
 
         const velocity = particle.velocity.mult(moveSpeed);
-        const maxSpeed = particle.maxSpeed ?? container.retina.maxSpeed;
+        const maxSpeed = particle.retina.maxSpeed ?? container.retina.maxSpeed;
 
         if (
             gravityOptions.enable &&

@@ -6,6 +6,10 @@ import { getRangeValue, randomInRange, setRangeValue } from "../../Utils";
 export class LifeUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
 
+    init(particle: Particle): void {
+        // nothing
+    }
+
     isEnabled(particle: Particle): boolean {
         return !particle.destroyed;
     }

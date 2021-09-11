@@ -34,6 +34,10 @@ function updateTilt(particle: Particle, delta: IDelta): void {
 }
 
 export class TiltUpdater implements IParticleUpdater {
+    init(particle: Particle): void {
+        // nothing
+    }
+
     isEnabled(particle: Particle): boolean {
         const tilt = particle.options.tilt;
         const tiltAnimation = tilt.animation;

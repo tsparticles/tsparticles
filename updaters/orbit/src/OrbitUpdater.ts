@@ -1,6 +1,10 @@
 import type { IDelta, IParticleUpdater, Particle } from "tsparticles";
 
 export class OrbitUpdater implements IParticleUpdater {
+    init(particle: Particle): void {
+        // nothing
+    }
+
     isEnabled(particle: Particle): boolean {
         const orbitAnimations = particle.options.orbit.animation;
 

@@ -71,6 +71,10 @@ function updateOpacity(particle: Particle, delta: IDelta): void {
 }
 
 export class OpacityUpdater implements IParticleUpdater {
+    init(particle: Particle): void {
+        // nothing
+    }
+
     isEnabled(particle: Particle): boolean {
         return (
             !particle.destroyed &&

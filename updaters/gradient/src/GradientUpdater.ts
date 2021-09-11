@@ -115,6 +115,10 @@ function updateGradient(particle: Particle, delta: IDelta): void {
 }
 
 export class GradientUpdater implements IParticleUpdater {
+    init(particle: Particle): void {
+        // nothing
+    }
+
     isEnabled(particle: Particle): boolean {
         return (
             !particle.destroyed &&

@@ -9,6 +9,7 @@ import type { IHsl, IRgb } from "./Colors";
 import type { IParticleHslAnimation } from "./IParticleHslAnimation";
 import type { Vector } from "../Particle/Vector";
 import type { IParticleGradientAnimation } from "./IParticleGradientAnimation";
+import { IParticleRetinaProps } from "./IParticleRetinaProps";
 
 /**
  * @category Interfaces
@@ -21,7 +22,6 @@ export interface IParticle {
     readonly rollSpeed: number;
     readonly wobbleAngle: number;
     readonly wobbleSpeed: number;
-    readonly attractDistance?: number;
     readonly bubble: IBubbleParticleData;
     readonly close: boolean;
     readonly destroyed: boolean;
@@ -34,7 +34,7 @@ export interface IParticle {
     readonly gradient?: IParticleGradientAnimation;
     readonly backColor?: IHsl;
     readonly opacity: IParticleValueAnimation<number>;
-    readonly rotate: IParticleValueAnimation<number>;
+    readonly rotate?: IParticleValueAnimation<number>;
     readonly size: IParticleValueAnimation<number>;
     readonly tilt: IParticleTiltValueAnimation;
     readonly strokeColor?: IParticleHslAnimation;
@@ -47,13 +47,9 @@ export interface IParticle {
     readonly stroke: IStroke;
     readonly strokeWidth: number;
     readonly velocity: Vector;
-    readonly linksDistance?: number;
-    readonly linksWidth?: number;
-    readonly moveSpeed?: number;
-    readonly sizeAnimationSpeed?: number;
-    readonly orbitRadius?: number;
     readonly orbitRotation?: number;
     readonly orbitColor?: IHsl;
+    readonly retina: IParticleRetinaProps;
 
     getPosition(): ICoordinates3d;
 
