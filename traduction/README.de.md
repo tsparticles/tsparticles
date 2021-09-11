@@ -2,23 +2,31 @@
 
 # tsParticles - Partikel-Simulation in TypeScript
 
-**Eine schlanke TypeScript-Bibliothek zum Erstellen von Partikeln. Frei von Abhängigkeiten ([\*](#dependencies)) und sofort im Browser einsatzbereit!**
+**Eine schlanke TypeScript-Bibliothek zum Erstellen von Partikeln. Frei von Abhängigkeiten ([\*](#dependencies)) und
+sofort im Browser einsatzbereit!**
 
-_[Particles.js](https://github.com/VincentGarreau/particles.js) ist in TypeScript geschrieben, frei von Abhängigkeiten ([\*](#dependencies)), verbessert mit neuen coolen 😎 Funktionen und von Fehlern bereinigt und **wird aktiv betreut und weiterentwickelt**!_
+_[Particles.js](https://github.com/VincentGarreau/particles.js) ist in TypeScript geschrieben, frei von
+Abhängigkeiten ([\*](#dependencies)), verbessert mit neuen coolen 😎 Funktionen und von Fehlern bereinigt und **wird
+aktiv betreut und weiterentwickelt**!_
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge?style=rounded)](https://www.jsdelivr.com/package/npm/tsparticles) [![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) [![npm](https://img.shields.io/npm/dm/tsparticles)](https://www.npmjs.com/package/tsparticles) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/) [![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Grade) [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/matteobruni/tsparticles)
 
 ## Du möchtest es auf deiner Webseite benutzen?
 
-**Diese Bibliothek ist auf den beiden populärsten CDNs verfügbar, einfach zu bedienen und fertig für den sofortigen Einsatz. Wenn du particles.js verwendest, ist es sogar noch einfacher**.
+**Diese Bibliothek ist auf den beiden populärsten CDNs verfügbar, einfach zu bedienen und fertig für den sofortigen
+Einsatz. Wenn du particles.js verwendest, ist es sogar noch einfacher**.
 
-Hier findest du die Anleitung [unten](https://github.com/matteobruni/tsparticles/blob/main/README.md#library-installation), mit allen notwendigen Links, und*lass dich nicht von **TypeScript** abschrecken, es ist nur die Ausgangssprache*.
+Hier findest du die
+Anleitung [unten](https://github.com/matteobruni/tsparticles/blob/main/README.md#library-installation), mit allen
+notwendigen Links, und*lass dich nicht von **TypeScript** abschrecken, es ist nur die Ausgangssprache*.
 
 **Die End-Datei ist in purem JavaScript**. 🤩
 
-CDNs und `npm`beinhalten alle Quellen und Pakete, die du benötigst, in **JavaScript**, eine gebündelte minimierte Browser Datei (tsparticles.min.js) und alle Dateien einzeln für die `import` Syntax.
+CDNs und `npm`beinhalten alle Quellen und Pakete, die du benötigst, in **JavaScript**, eine gebündelte minimierte
+Browser Datei (tsparticles.min.js) und alle Dateien einzeln für die `import` Syntax.
 
-**Wenn du noch mehr wissen möchtest** - weiter unten findest du eine Anleitung von der Migration der alten particle.js Bibliothek.
+**Wenn du noch mehr wissen möchtest** - weiter unten findest du eine Anleitung von der Migration der alten particle.js
+Bibliothek.
 
 ## **_Installation der Bibliothek_**
 
@@ -69,7 +77,7 @@ const tsParticles = require('tsparticles');
 
 // oder
 
-import { tsParticles } from 'tsparticles';
+import {tsParticles} from 'tsparticles';
 ```
 
 Die importierte `tsParticles` ist die gleiche Instanz, die du bekommst, wenn du das Skript einbindest.
@@ -91,6 +99,7 @@ Lade tsParticles und konfiguriere die Partikel:
 **index.html**
 
 ```html
+
 <div id="tsparticles"></div>
 
 <script src="tsparticles.min.js"></script>
@@ -105,22 +114,22 @@ Lade tsParticles und konfiguriere die Partikel:
 
 tsParticles
 
-  .loadJSON('tsparticles', 'presets/default.json')
+    .loadJSON('tsparticles', 'presets/default.json')
 
-  .then(container => {
-    console.log('callback - tsparticles config loaded');
-  })
+    .then(container => {
+        console.log('callback - tsparticles config loaded');
+    })
 
-  .catch(error => {
-    console.error(error);
-  });
+    .catch(error => {
+        console.error(error);
+    });
 
 //oder
 
 /* tsParticles.load(@dom-id, @options); */
 
 tsParticles.load('tsparticles', {
-  /* Optionen hier */
+    /* Optionen hier */
 });
 
 //oder
@@ -128,31 +137,31 @@ tsParticles.load('tsparticles', {
 /* tsParticles.loadFromArray(@dom-id, @options, @index (optional)); */
 
 tsParticles.loadFromArray('tsparticles', [
-  {
-    /* Optionen hier */
-  },
+    {
+        /* Optionen hier */
+    },
 
-  {
-    /* andere Optionen hier */
-  },
+    {
+        /* andere Optionen hier */
+    },
 ]);
 
 //zufälliges Objekt
 
 tsParticles.loadFromArray(
-  'tsparticles',
+    'tsparticles',
 
-  [
-    {
-      /* Optionen hier */
-    },
+    [
+        {
+            /* Optionen hier */
+        },
 
-    {
-      /* andere Optionen hier */
-    },
-  ],
+        {
+            /* andere Optionen hier */
+        },
+    ],
 
-  1
+    1
 ); //das Zweite
 
 // Wichtig! Wenn der Index nicht zwischen 0...<array.length liegt, wird der Index ignoriert.
@@ -164,7 +173,7 @@ tsParticles.loadFromArray(
 /* dieses Event wird von allen geladenen Teilchen abgefeuert */
 
 tsParticles.setOnClickHandler((event, particles) => {
-  /* benutzerdefinierter Klick-Handler */
+    /* benutzerdefinierter Klick-Handler */
 });
 
 // jetzt können auch die Animationen kontrolliert werden, es ist möglich diese anzuhalten und wieder fortzusetzen
@@ -248,11 +257,14 @@ particles.pause();
 
 ## Vorlagen und Ressourcen
 
-[Hier](https://github.com/tsparticles/templates) findest du einige Vorlagen zu tsParticles. Die Vorlagen wurden für _Vanilla Javascript_, _ReactJS_, _VueJS_, _Angular_, _SvelteJS_ und andere Frameworks erstellt.
+[Hier](https://github.com/tsparticles/templates) findest du einige Vorlagen zu tsParticles. Die Vorlagen wurden für _
+Vanilla Javascript_, _ReactJS_, _VueJS_, _Angular_, _SvelteJS_ und andere Frameworks erstellt.
 
-Die Vorlagen können variieren, neue Templates werden erstellt und alte mit den neuesten Funktionen ausgestattet oder durch ein neues Design verbessert. Deswegen schau von Zeit zu Zeit wieder vorbei.
+Die Vorlagen können variieren, neue Templates werden erstellt und alte mit den neuesten Funktionen ausgestattet oder
+durch ein neues Design verbessert. Deswegen schau von Zeit zu Zeit wieder vorbei.
 
-Solltest du selbst ein gutes Design mit _tsParticles_ entwerfen, zögere nicht eine Pull-Anfrage mit deinem Template einzureichen. Wir führen dich dann als Vorlagen-Autor an.
+Solltest du selbst ein gutes Design mit _tsParticles_ entwerfen, zögere nicht eine Pull-Anfrage mit deinem Template
+einzureichen. Wir führen dich dann als Vorlagen-Autor an.
 
 <https://github.com/tsparticles/templates>
 
@@ -326,14 +338,16 @@ _Nicht klicken! NICHT KLICKEN! OH NEIN, ES BREITET SICH AUS!!!!_
 
 ## **_Optionen_**
 
-Alle verfügbaren Optionen findest du [hier](https://particles.js.org/docs/interfaces/_options_interfaces_ioptions_.ioptions.html) 📖
+Alle verfügbaren Optionen findest
+du [hier](https://particles.js.org/docs/interfaces/_options_interfaces_ioptions_.ioptions.html) 📖
 
 ## Möchtest du es in Aktion sehen und ausprobieren?
 
-Ich habe eine tsParticles-Sammlung auf [CodePen](https://codepen.io/collection/DPOage) erstellt 😮 oder du gehst auf mein [Profil](https://codepen.io/matteobruni)
+Ich habe eine tsParticles-Sammlung auf [CodePen](https://codepen.io/collection/DPOage) erstellt 😮 oder du gehst auf
+mein [Profil](https://codepen.io/matteobruni)
 
-Ansonsten gibt es unten den Link zur Demo-Seite.
-Klicke auf das Fenster mit dem Coronavirus unten. Hab keine Angst, **es ist sicher** 😷.
+Ansonsten gibt es unten den Link zur Demo-Seite. Klicke auf das Fenster mit dem Coronavirus unten. Hab keine Angst, **es
+ist sicher** 😷.
 
 [![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/#virus)
 
@@ -351,7 +365,10 @@ _Wenn du mutig genug bist,_ wechsle zum `dev` branch um die neuen Funktionen in 
 
 ## Abhängigkeiten (Dependencies)
 
-Möglicherweise hast du das \* neben "frei von Abhängigkeiten" bemerkt. Fast alle Features funktionieren ohne jegliche Abhängigkeit, außer die **Polygon-Maske**. Diese benötigt [`pathseg`](https://github.com/progers/pathseg) um in manchen Browsern einwandfrei zu funktionieren und natürlich müssen die Icon-Fonts (wie `FontAwesome`) in deine Seite eingebunden werden.
+Möglicherweise hast du das \* neben "frei von Abhängigkeiten" bemerkt. Fast alle Features funktionieren ohne jegliche
+Abhängigkeit, außer die **Polygon-Maske**. Diese
+benötigt [`@tsparticles/pathseg`](https://npmjs.com/package/@tsparticles/pathseg) um in manchen Browsern einwandfrei zu
+funktionieren und natürlich müssen die Icon-Fonts (wie `FontAwesome`) in deine Seite eingebunden werden.
 
 ---
 
@@ -363,7 +380,8 @@ Ernsthaft, du musst nur die Skriptquelle ändern und voilà, **du bist startbere
 
 Mehr dazu kannst du **[hier](https://dev.to/matteobruni/migrating-from-particles-js-to-tsparticles-2a6m)** lesen.
 
-Du möchtest die 5 Gründe für einen Wechsel wissen? [Lies hier](https://dev.to/matteobruni/5-reasons-to-use-tsparticles-and-not-particles-js-1gbe)
+Du möchtest die 5 Gründe für einen Wechsel
+wissen? [Lies hier](https://dev.to/matteobruni/5-reasons-to-use-tsparticles-and-not-particles-js-1gbe)
 
 _Unten findest du alle Informationen, die du zur Installation von tsParticles und der neuen Syntax benötigst._
 
@@ -407,7 +425,8 @@ Referenzen zu Dokumentation und Entwicklung [hier](https://particles.js.org/docs
 
 ### Vielen Dank an [JetBrains](https://www.jetbrains.com/?from=tsParticles) für die 2020 Open Source License!
 
-[JetBrains WebStorm](https://www.jetbrains.com/webstorm/?from=tsParticles) wird zur Aufrechterhaltung dieses Projekts verwendet.
+[JetBrains WebStorm](https://www.jetbrains.com/webstorm/?from=tsParticles) wird zur Aufrechterhaltung dieses Projekts
+verwendet.
 
 ### Vielen Dank an [SauceLabs](https://saucelabs.com) für die Open Source License!
 

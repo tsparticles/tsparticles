@@ -340,7 +340,7 @@ _If you are brave enough_ you can switch to the `dev` branch for trying the feat
 ## Dependencies
 
 You may have notices the \* near dependency free. Well almost all features works without any dependency, but... Well
-there's a little but. The **Polygon Mask** feature requires `[pathseg](https://github.com/progers/pathseg)` for some
+there's a little but. The **Polygon Mask** feature requires [`@tsparticles/pathseg`](https://npmjs.com/package/@tsparticles/pathseg) for some
 browsers to work fine, and obviously the Icon Fonts (like `FontAwesome` ) must be included in your page.
 
 ---

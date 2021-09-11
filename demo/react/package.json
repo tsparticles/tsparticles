@@ -18,6 +18,7 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "devDependencies": {
+    "@tsparticles/pathseg": "^1.2.1",
     "@types/react": "^17.0.18",
     "@types/react-dom": "^17.0.9",
     "@types/react-syntax-highlighter": "^13.5.2",

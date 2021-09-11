@@ -4,10 +4,8 @@ export interface SVGElementInstance extends EventTarget {
 }
 
 interface SVGElementInstanceList {
-    /** @deprecated */
     readonly length: number;
 
-    /** @deprecated */
     item(index: number): SVGElementInstance;
 }
 
@@ -315,7 +313,6 @@ declare var SVGZoomEvent: {
 };
 
 interface SVGPathElement extends SVGGraphicsElement {
-    /** @deprecated */
     readonly pathSegList?: SVGPathSegList;
 
     getPointAtLength(distance: number): SVGPoint;

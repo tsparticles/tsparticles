@@ -155,7 +155,15 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
 
         this.background.load(data.background);
-        this.fullScreen.load(data.fullScreen ?? data.backgroundMode);
+
+        const fullScreen = data.fullScreen ?? data.backgroundMode;
+
+        if (typeof fullScreen === "boolean") {
+            this.fullScreen.enable = fullScreen;
+        } else {
+            this.fullScreen.load(fullScreen);
+        }
+
         this.backgroundMask.load(data.backgroundMask);
         this.interactivity.load(data.interactivity);
 
@@ -170,7 +178,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
 
         this.motion.load(data.motion);
-
         this.particles.load(data.particles);
 
         Plugins.loadOptions(this, data);

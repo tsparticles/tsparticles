@@ -15,7 +15,7 @@ import type {
     SVGPathSegCurvetoQuadraticSmoothRel,
     SVGPathSegLinetoRel,
     SVGPathSegMovetoRel,
-} from "pathseg";
+} from "@tsparticles/pathseg";
 
 export type SvgAbsoluteCoordinatesTypes =
     | SVGPathSegArcAbs

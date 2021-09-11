@@ -108,7 +108,7 @@
     "install": "^0.13.0",
     "mocha": "^9.0.3",
     "nyc": "^15.1.0",
-    "pathseg": "^1.3.0",
+    "@tsparticles/pathseg": "^1.2.1",
     "prettier": "^2.3.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
@@ -124,7 +124,7 @@
     "window": "^4.2.7"
   },
   "optionalDependencies": {
-    "pathseg": "^1.3.0"
+    "@tsparticles/pathseg": "^1.2.1"
   },
   "publishConfig": {
     "directory": "dist"
