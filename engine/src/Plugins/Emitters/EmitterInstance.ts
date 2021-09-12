@@ -237,7 +237,6 @@ export class EmitterInstance {
 
     private calcPosition(): ICoordinates {
         const container = this.container;
-
         const percentPosition = this.emitterOptions.position;
 
         return {

@@ -262,7 +262,7 @@ export class Bubbler extends ExternalInteractorBase {
                 },
                 particlesObj: {
                     optValue: getRangeMax(particle.options.opacity.value),
-                    value: particle.opacity.value,
+                    value: particle.opacity?.value ?? 1,
                 },
                 type: ProcessBubbleType.opacity,
             };
@@ -350,7 +350,7 @@ export class Bubbler extends ExternalInteractorBase {
         }
 
         const optOpacity = particle.options.opacity.value;
-        const pOpacity = particle.opacity.value;
+        const pOpacity = particle.opacity?.value ?? 1;
         const opacity = calculateBubbleValue(pOpacity, modeOpacity, getRangeMax(optOpacity), ratio);
 
         if (opacity !== undefined) {

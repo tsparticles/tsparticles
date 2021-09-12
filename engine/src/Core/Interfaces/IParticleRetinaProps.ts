@@ -8,7 +8,6 @@ export interface IParticleRetinaProps {
     maxSpeed?: number;
     moveDrift?: number;
     moveSpeed?: number;
-    orbitRadius?: number;
     sizeAnimationSpeed?: number;
     spinAcceleration?: number;
     wobbleDistance?: number;

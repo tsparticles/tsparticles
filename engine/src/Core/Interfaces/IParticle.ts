@@ -9,7 +9,9 @@ import type { IHsl, IRgb } from "./Colors";
 import type { IParticleHslAnimation } from "./IParticleHslAnimation";
 import type { Vector } from "../Particle/Vector";
 import type { IParticleGradientAnimation } from "./IParticleGradientAnimation";
-import { IParticleRetinaProps } from "./IParticleRetinaProps";
+import type { IParticleRetinaProps } from "./IParticleRetinaProps";
+import type { IParticleRoll } from "./IParticleRoll";
+import type { IParticleWobble } from "./IParticleWobble";
 
 /**
  * @category Interfaces
@@ -18,10 +20,8 @@ export interface IParticle {
     misplaced: boolean;
     randomIndexData?: number;
 
-    readonly rollAngle: number;
-    readonly rollSpeed: number;
-    readonly wobbleAngle: number;
-    readonly wobbleSpeed: number;
+    readonly roll?: IParticleRoll;
+    readonly wobble?: IParticleWobble;
     readonly bubble: IBubbleParticleData;
     readonly close: boolean;
     readonly destroyed: boolean;
@@ -33,10 +33,10 @@ export interface IParticle {
     readonly color?: IParticleHslAnimation;
     readonly gradient?: IParticleGradientAnimation;
     readonly backColor?: IHsl;
-    readonly opacity: IParticleValueAnimation<number>;
+    readonly opacity?: IParticleValueAnimation<number>;
     readonly rotate?: IParticleValueAnimation<number>;
     readonly size: IParticleValueAnimation<number>;
-    readonly tilt: IParticleTiltValueAnimation;
+    readonly tilt?: IParticleTiltValueAnimation;
     readonly strokeColor?: IParticleHslAnimation;
     readonly options: IParticles;
     readonly position: Vector;
@@ -44,8 +44,8 @@ export interface IParticle {
     readonly shape?: ShapeType | string;
     readonly shapeData?: IShapeValues;
     readonly sides: number;
-    readonly stroke: IStroke;
-    readonly strokeWidth: number;
+    readonly stroke?: IStroke;
+    readonly strokeWidth?: number;
     readonly velocity: Vector;
     readonly orbitRotation?: number;
     readonly orbitColor?: IHsl;

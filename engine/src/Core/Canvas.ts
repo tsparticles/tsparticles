@@ -5,7 +5,6 @@ import {
     Constants,
     deepExtend,
     drawConnectLine,
-    drawEllipse,
     drawGrabLine,
     drawParticle,
     drawParticlePlugin,
@@ -18,7 +17,6 @@ import {
 import type { Particle } from "./Particle";
 import { clear } from "../Utils";
 import type { IContainerPlugin, ICoordinates, IDelta, IDimension, IHsl, IParticle, IRgb, IRgba } from "./Interfaces";
-import { OrbitType } from "../Enums";
 
 /**
  * Canvas manager
@@ -255,16 +253,14 @@ export class Canvas {
         const zIndexOptions = particle.options.zIndex;
         const zOpacityFactor = (1 - particle.zIndexFactor) ** zIndexOptions.opacityRate;
         const radius = particle.getRadius();
-        const opacity = twinkling ? twinkle.opacity : particle.bubble.opacity ?? particle.opacity.value;
-        const strokeOpacity = particle.stroke.opacity ?? opacity;
+        const opacity = twinkling ? twinkle.opacity : particle.bubble.opacity ?? particle.opacity?.value ?? 1;
+        const strokeOpacity = particle.stroke?.opacity ?? opacity;
         const zOpacity = opacity * zOpacityFactor;
         const fillColorValue = fColor ? getStyleFromHsl(fColor, zOpacity) : undefined;
 
         if (!fillColorValue && !sColor) {
             return;
         }
-
-        const orbitOptions = particle.options.orbit;
 
         this.draw((ctx) => {
             const zSizeFactor = (1 - particle.zIndexFactor) ** zIndexOptions.sizeRate;
@@ -276,8 +272,12 @@ export class Canvas {
                 return;
             }
 
-            if (orbitOptions.enable) {
-                this.drawOrbit(particle, OrbitType.back);
+            const container = this.container;
+
+            for (const updater of container.particles.updaters) {
+                if (updater.beforeDraw) {
+                    updater.beforeDraw(particle);
+                }
             }
 
             drawParticle(
@@ -295,42 +295,11 @@ export class Canvas {
                 particle.gradient
             );
 
-            if (orbitOptions.enable) {
-                this.drawOrbit(particle, OrbitType.front);
+            for (const updater of container.particles.updaters) {
+                if (updater.afterDraw) {
+                    updater.afterDraw(particle);
+                }
             }
-        });
-    }
-
-    drawOrbit(particle: IParticle, type: string): void {
-        const container = this.container;
-        const orbitOptions = particle.options.orbit;
-
-        let start: number;
-        let end: number;
-
-        if (type === OrbitType.back) {
-            start = Math.PI / 2;
-            end = (Math.PI * 3) / 2;
-        } else if (type === OrbitType.front) {
-            start = (Math.PI * 3) / 2;
-            end = Math.PI / 2;
-        } else {
-            start = 0;
-            end = 2 * Math.PI;
-        }
-
-        this.draw((ctx) => {
-            drawEllipse(
-                ctx,
-                particle,
-                particle.orbitColor ?? particle.getFillColor(),
-                particle.retina.orbitRadius ?? container.retina.orbitRadius ?? particle.getRadius(),
-                orbitOptions.opacity,
-                orbitOptions.width,
-                (particle.orbitRotation ?? 0) * container.retina.pixelRatio,
-                start,
-                end
-            );
         });
     }
 

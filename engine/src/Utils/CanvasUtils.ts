@@ -14,7 +14,7 @@ import type {
     IRgb,
 } from "../Core/Interfaces";
 import type { Particle } from "../Core/Particle";
-import { GradientType } from "../Enums";
+import { GradientType, RollMode } from "../Enums";
 
 function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
     context.beginPath();
@@ -249,18 +249,25 @@ export function drawParticle(
     const rollOptions = particle.options.roll;
 
     context.save();
+
     if (tiltOptions.enable || rollOptions.enable) {
+        const roll = rollOptions.enable && particle.roll;
+        const tilt = tiltOptions.enable && particle.tilt;
+        const rollHorizontal = roll && (rollOptions.mode === RollMode.horizontal || rollOptions.mode === RollMode.both);
+        const rollVertical = roll && (rollOptions.mode === RollMode.vertical || rollOptions.mode === RollMode.both);
+
         context.setTransform(
-            rollOptions.enable ? Math.cos(particle.rollAngle) : 1,
-            tiltOptions.enable ? Math.cos(particle.tilt.value) * particle.tilt.cosDirection : 0,
-            tiltOptions.enable ? Math.sin(particle.tilt.value) * particle.tilt.sinDirection : 0,
-            rollOptions.enable ? Math.sin(particle.rollAngle) : 1,
+            rollHorizontal ? Math.cos(particle.roll.angle) : 1,
+            tilt ? Math.cos(particle.tilt.value) * particle.tilt.cosDirection : 0,
+            tilt ? Math.sin(particle.tilt.value) * particle.tilt.sinDirection : 0,
+            rollVertical ? Math.sin(particle.roll.angle) : 1,
             pos.x,
             pos.y
         );
     } else {
         context.translate(pos.x, pos.y);
     }
+
     context.beginPath();
 
     const angle = (particle.rotate?.value ?? 0) + (particle.options.rotate.path ? particle.velocity.angle : 0);
@@ -317,7 +324,7 @@ export function drawParticle(
 
     const stroke = particle.stroke;
 
-    context.lineWidth = particle.strokeWidth;
+    context.lineWidth = particle.strokeWidth ?? 0;
 
     if (strokeColorValue) {
         context.strokeStyle = strokeColorValue;
@@ -325,7 +332,7 @@ export function drawParticle(
 
     drawShape(container, context, particle, radius, opacity, delta);
 
-    if (stroke.width > 0) {
+    if ((stroke?.width ?? 0) > 0) {
         context.stroke();
     }
 
@@ -340,7 +347,7 @@ export function drawParticle(
     context.restore();
 
     context.save();
-    if (tiltOptions.enable) {
+    if (tiltOptions.enable && particle.tilt) {
         context.setTransform(
             1,
             Math.cos(particle.tilt.value) * particle.tilt.cosDirection,

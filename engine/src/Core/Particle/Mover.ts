@@ -94,7 +94,7 @@ export class Mover {
             particle.velocity.x += (moveDrift * delta.factor) / (60 * moveSpeed);
         }
 
-        const decay = 1 - particle.options.move.decay;
+        const decay = particle.moveDecay;
 
         if (decay != 1) {
             particle.velocity.multTo(decay);

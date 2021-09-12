@@ -108,7 +108,6 @@ export class Retina {
         const options = particle.options;
         const ratio = this.pixelRatio;
         const moveDistance = options.move.distance;
-        const orbit = options.orbit;
         const props = particle.retina;
 
         props.attractDistance = options.move.attract.distance * ratio;
@@ -117,7 +116,6 @@ export class Retina {
         props.moveDrift = getRangeValue(options.move.drift) * ratio;
         props.moveSpeed = getRangeValue(options.move.speed) * ratio;
         props.sizeAnimationSpeed = options.size.animation.speed * ratio;
-        props.orbitRadius = orbit?.radius !== undefined ? orbit.radius * ratio : undefined;
 
         if (particle.spin) {
             props.spinAcceleration = getRangeValue(options.move.spin.acceleration) * ratio;

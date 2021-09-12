@@ -1,8 +1,14 @@
 import type { IDelta, IParticleUpdater } from "../../Core/Interfaces";
 import type { Particle } from "../../Core/Particle";
-import { AnimationStatus } from "../../Enums";
+import { AnimationStatus, TiltDirection } from "../../Enums";
+import { getRangeValue } from "../../Utils";
+import { Container } from "../../Core/Container";
 
 function updateTilt(particle: Particle, delta: IDelta): void {
+    if (!particle.tilt) {
+        return;
+    }
+
     const tilt = particle.options.tilt;
     const tiltAnimation = tilt.animation;
     const speed = (particle.tilt.velocity ?? 0) * delta.factor;
@@ -34,8 +40,45 @@ function updateTilt(particle: Particle, delta: IDelta): void {
 }
 
 export class TiltUpdater implements IParticleUpdater {
+    constructor(private readonly container: Container) {}
+
     init(particle: Particle): void {
-        // nothing
+        const tiltOptions = particle.options.tilt;
+
+        particle.tilt = {
+            enable: tiltOptions.enable,
+            value: (getRangeValue(tiltOptions.value) * Math.PI) / 180,
+            sinDirection: Math.random() >= 0.5 ? 1 : -1,
+            cosDirection: Math.random() >= 0.5 ? 1 : -1,
+        };
+
+        let tiltDirection = tiltOptions.direction;
+
+        if (tiltDirection === TiltDirection.random) {
+            const index = Math.floor(Math.random() * 2);
+
+            tiltDirection = index > 0 ? TiltDirection.counterClockwise : TiltDirection.clockwise;
+        }
+
+        switch (tiltDirection) {
+            case TiltDirection.counterClockwise:
+            case "counterClockwise":
+                particle.tilt.status = AnimationStatus.decreasing;
+                break;
+            case TiltDirection.clockwise:
+                particle.tilt.status = AnimationStatus.increasing;
+                break;
+        }
+
+        const tiltAnimation = particle.options.tilt.animation;
+
+        if (tiltAnimation.enable) {
+            particle.tilt.velocity = (tiltAnimation.speed / 360) * this.container.retina.reduceFactor;
+
+            if (!tiltAnimation.sync) {
+                particle.tilt.velocity *= Math.random();
+            }
+        }
     }
 
     isEnabled(particle: Particle): boolean {
