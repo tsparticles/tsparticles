@@ -6,12 +6,11 @@ type OrbitParticle = Particle & {
     orbitRotation?: number;
     retina: IParticleRetinaProps & {
         orbitRadius?: number;
-    }
-}
+    };
+};
 
 export class OrbitUpdater implements IParticleUpdater {
-    constructor(private readonly container: Container) {
-    }
+    constructor(private readonly container: Container) {}
 
     init(particle: OrbitParticle): void {
         /* orbit */
@@ -23,7 +22,8 @@ export class OrbitUpdater implements IParticleUpdater {
 
             particle.orbitColor = ColorUtils.colorToHsl(orbitOptions.color);
 
-            particle.retina.orbitRadius = orbitOptions?.radius !== undefined ? orbitOptions.radius * this.container.retina.pixelRatio : undefined;
+            particle.retina.orbitRadius =
+                orbitOptions?.radius !== undefined ? orbitOptions.radius * this.container.retina.pixelRatio : undefined;
         }
     }
 
