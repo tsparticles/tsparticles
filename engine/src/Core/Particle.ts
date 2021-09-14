@@ -3,7 +3,6 @@ import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import {
-    AlterType,
     AnimationStatus,
     DestroyMode,
     OutMode,
@@ -14,6 +13,7 @@ import {
 } from "../Enums";
 import type { RecursivePartial } from "../Types";
 import {
+    alterHsl,
     clamp,
     colorToRgb,
     deepExtend,
@@ -55,6 +55,23 @@ import { Vector3d } from "./Particle/Vector3d";
 import { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
 import { IParticleRoll } from "./Interfaces/IParticleRoll";
 import { IParticleWobble } from "./Interfaces/IParticleWobble";
+
+const fixOutMode = (data: {
+    outMode: OutMode | keyof typeof OutMode | OutModeAlt;
+    checkModes: (OutMode | keyof typeof OutMode | OutModeAlt)[];
+    coord: number;
+    maxCoord: number;
+    setCb: (value: number) => void;
+    radius: number;
+}) => {
+    if (isInArray(data.outMode, data.checkModes) || isInArray(data.outMode, data.checkModes)) {
+        if (data.coord > data.maxCoord - data.radius * 2) {
+            data.setCb(-data.radius);
+        } else if (data.coord < data.radius * 2) {
+            data.setCb(data.radius);
+        }
+    }
+};
 
 /**
  * The single particle object
@@ -165,23 +182,19 @@ export class Particle implements IParticle {
         this.fill = this.shapeData?.fill ?? this.fill;
         this.close = this.shapeData?.close ?? this.close;
         this.options = particlesOptions;
+        this.pathDelay = getValue(this.options.move.path.delay) * 1000;
 
         const zIndexValue = getRangeValue(this.options.zIndex.value);
-
-        this.pathDelay = getValue(this.options.move.path.delay) * 1000;
-        this.retina.wobbleDistance = 0;
 
         container.retina.initParticle(this);
 
         /* size */
-        const sizeOptions = this.options.size;
-        const sizeValue = getValue(sizeOptions) * container.retina.pixelRatio;
-
-        const sizeRange = sizeOptions.value;
+        const sizeOptions = this.options.size,
+            sizeRange = sizeOptions.value;
 
         this.size = {
             enable: sizeOptions.animation.enable,
-            value: sizeValue,
+            value: getValue(sizeOptions) * container.retina.pixelRatio,
             max: getRangeMax(sizeRange) * pxRatio,
             min: getRangeMin(sizeRange) * pxRatio,
             loops: 0,
@@ -362,12 +375,10 @@ export class Particle implements IParticle {
             if (rolled) {
                 if (this.backColor) {
                     return this.backColor;
-                } else if (this.roll.alter) {
-                    return {
-                        h: color.h,
-                        s: color.s,
-                        l: color.l + (this.roll.alter.type === AlterType.darken ? -1 : 1) * this.roll.alter.value,
-                    };
+                }
+
+                if (this.roll.alter) {
+                    return alterHsl(color, this.roll.alter.type, this.roll.alter.value);
                 }
             }
         }
@@ -456,27 +467,27 @@ export class Particle implements IParticle {
         const radius = this.getRadius();
 
         /* check position  - into the canvas */
-        const outModes = this.options.move.outModes;
-
-        const fixHorizontal = (outMode: OutMode | keyof typeof OutMode | OutModeAlt) => {
-            if (isInArray(outMode, OutMode.bounce) || isInArray(outMode, OutMode.bounceHorizontal)) {
-                if (pos.x > container.canvas.size.width - radius * 2) {
-                    pos.x -= radius;
-                } else if (pos.x < radius * 2) {
-                    pos.x += radius;
-                }
-            }
-        };
-
-        const fixVertical = (outMode: OutMode | keyof typeof OutMode | OutModeAlt) => {
-            if (isInArray(outMode, OutMode.bounce) || isInArray(outMode, OutMode.bounceVertical)) {
-                if (pos.y > container.canvas.size.height - radius * 2) {
-                    pos.y -= radius;
-                } else if (pos.y < radius * 2) {
-                    pos.y += radius;
-                }
-            }
-        };
+        const outModes = this.options.move.outModes,
+            fixHorizontal = (outMode: OutMode | keyof typeof OutMode | OutModeAlt) => {
+                fixOutMode({
+                    outMode,
+                    checkModes: [OutMode.bounce, OutMode.bounceHorizontal],
+                    coord: pos.x,
+                    maxCoord: container.canvas.size.width,
+                    setCb: (value: number) => (pos.x += value),
+                    radius,
+                });
+            },
+            fixVertical = (outMode: OutMode | keyof typeof OutMode | OutModeAlt) => {
+                fixOutMode({
+                    outMode,
+                    checkModes: [OutMode.bounce, OutMode.bounceVertical],
+                    coord: pos.y,
+                    maxCoord: container.canvas.size.height,
+                    setCb: (value: number) => (pos.y += value),
+                    radius,
+                });
+            };
 
         fixHorizontal(outModes.left ?? outModes.default);
         fixHorizontal(outModes.right ?? outModes.default);

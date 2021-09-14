@@ -14,7 +14,7 @@ import type {
     IRgb,
 } from "../Core/Interfaces";
 import type { Particle } from "../Core/Particle";
-import { GradientType, RollMode } from "../Enums";
+import { AlterType, GradientType, RollMode } from "../Enums";
 
 function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
     context.beginPath();
@@ -466,4 +466,12 @@ export function drawEllipse(
     context.beginPath();
     context.ellipse(pos.x, pos.y, radius / 2, radius * 2, rotationRadian, start, end);
     context.stroke();
+}
+
+export function alterHsl(color: IHsl, type: AlterType, value: number) {
+    return {
+        h: color.h,
+        s: color.s,
+        l: color.l + (type === AlterType.darken ? -1 : 1) * value,
+    };
 }

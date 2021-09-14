@@ -1,8 +1,15 @@
 import type { IDelta, IParticleUpdater } from "../../Core/Interfaces";
 import type { Particle } from "../../Core/Particle";
 import { getRangeValue } from "../../Utils";
+import type { Container } from "../../Core/Container";
 
-function updateWobble(particle: Particle, delta: IDelta): void {
+type WobbleParticle = Particle & {
+    retina: {
+        wobbleDistance?: number;
+    };
+};
+
+function updateWobble(particle: WobbleParticle, delta: IDelta): void {
     const wobble = particle.options.wobble;
 
     if (!wobble.enable || !particle.wobble) {
@@ -24,7 +31,9 @@ function updateWobble(particle: Particle, delta: IDelta): void {
 }
 
 export class WobbleUpdater implements IParticleUpdater {
-    init(particle: Particle): void {
+    constructor(private readonly container: Container) {}
+
+    init(particle: WobbleParticle): void {
         const wobbleOpt = particle.options.wobble;
 
         if (wobbleOpt.enable) {
@@ -38,15 +47,15 @@ export class WobbleUpdater implements IParticleUpdater {
                 speed: 0,
             };
         }
+
+        particle.retina.wobbleDistance = getRangeValue(wobbleOpt.distance) * this.container.retina.pixelRatio;
     }
 
-    isEnabled(particle: Particle): boolean {
-        const wobble = particle.options.wobble;
-
-        return !particle.destroyed && !particle.spawning && wobble.enable;
+    isEnabled(particle: WobbleParticle): boolean {
+        return !particle.destroyed && !particle.spawning && particle.options.wobble.enable;
     }
 
-    update(particle: Particle, delta: IDelta): void {
+    update(particle: WobbleParticle, delta: IDelta): void {
         if (!this.isEnabled(particle)) {
             return;
         }

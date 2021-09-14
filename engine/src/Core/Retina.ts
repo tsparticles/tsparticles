@@ -126,7 +126,6 @@ export class Retina {
         maxDistance.horizontal = moveDistance.horizontal !== undefined ? moveDistance.horizontal * ratio : undefined;
         maxDistance.vertical = moveDistance.vertical !== undefined ? moveDistance.vertical * ratio : undefined;
 
-        props.wobbleDistance = getRangeValue(options.wobble.distance) * ratio;
         props.maxSpeed = options.move.gravity.maxSpeed * ratio;
     }
 
