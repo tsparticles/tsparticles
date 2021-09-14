@@ -1,4 +1,4 @@
-import { HoverMode, ParticlesInteractorBase, Utils } from "tsparticles";
+import { HoverMode, ParticlesInteractorBase, isInArray } from "tsparticles";
 import type { Container, Particle } from "tsparticles";
 import { drawParticleShadow } from "./Utils";
 
@@ -31,7 +31,7 @@ export class ParticlesLighter extends ParticlesInteractorBase {
             return false;
         }
 
-        return Utils.isInArray(HoverMode.light, events.onHover.mode);
+        return isInArray(HoverMode.light, events.onHover.mode);
     }
 
     reset(): void {

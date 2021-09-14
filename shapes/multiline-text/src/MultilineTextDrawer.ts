@@ -1,4 +1,4 @@
-import { Utils } from "tsparticles";
+import { isInArray, itemFromArray, loadFont } from "tsparticles";
 import type { IShapeDrawer } from "tsparticles/Core/Interfaces/IShapeDrawer";
 import type { Container, SingleOrMultiple, IParticle } from "tsparticles";
 import type { IShapeValues } from "tsparticles/Options/Interfaces/Particles/Shape/IShapeValues";
@@ -19,15 +19,15 @@ export class MultilineTextDrawer implements IShapeDrawer {
         const options = container.options;
         const shapeType = "multiline-text";
 
-        if (Utils.isInArray(shapeType, options.particles.shape.type)) {
+        if (isInArray(shapeType, options.particles.shape.type)) {
             const shapeOptions = options.particles.shape.options[shapeType] as SingleOrMultiple<IMultilineTextShape>;
             if (shapeOptions instanceof Array) {
                 for (const character of shapeOptions) {
-                    await Utils.loadFont(character);
+                    await loadFont(character);
                 }
             } else {
                 if (shapeOptions !== undefined) {
-                    await Utils.loadFont(shapeOptions);
+                    await loadFont(shapeOptions);
                 }
             }
         }
@@ -50,7 +50,7 @@ export class MultilineTextDrawer implements IShapeDrawer {
 
         if (textParticle.text === undefined) {
             textParticle.text =
-                textData instanceof Array ? Utils.itemFromArray(textData, particle.randomIndexData) : textData;
+                textData instanceof Array ? itemFromArray(textData, particle.randomIndexData) : textData;
         }
 
         const text = textParticle.text;

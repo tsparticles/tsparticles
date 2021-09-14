@@ -1,6 +1,6 @@
 import type { IColor, IContainerPlugin, Particle } from "tsparticles";
 import { Infecter } from "./Infecter";
-import { Utils } from "tsparticles";
+import { itemFromArray } from "tsparticles";
 import type { InfectableContainer, InfectableParticle } from "./Types";
 import type { IInfectionOptions } from "./Options/Interfaces/IInfectionOptions";
 
@@ -23,7 +23,7 @@ export class InfectionInstance implements IContainerPlugin {
                 return infP.infection.stage === undefined;
             });
 
-            const infected = Utils.itemFromArray(notInfected) as InfectableParticle;
+            const infected = itemFromArray(notInfected) as InfectableParticle;
 
             this.container.infecter?.startInfection(infected, 0);
         }

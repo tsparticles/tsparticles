@@ -5,7 +5,18 @@ import type {
     Particle,
     IParticleNumericValueAnimation,
 } from "tsparticles";
-import { AnimationStatus, RotateDirection, StartValueType, Utils, ColorUtils, NumberUtils } from "tsparticles";
+import {
+    AnimationStatus,
+    RotateDirection,
+    StartValueType,
+    colorToHsl,
+    getHslAnimationFromHsl,
+    getRangeMax,
+    getRangeMin,
+    getRangeValue,
+    itemFromArray,
+    randomInRange,
+} from "tsparticles";
 
 function updateColorOpacity(delta: IDelta, value: IParticleNumericValueAnimation) {
     if (!value.enable) {
@@ -124,7 +135,7 @@ export class GradientUpdater implements IParticleUpdater {
     init(particle: Particle): void {
         const gradient =
             particle.options.gradient instanceof Array
-                ? Utils.itemFromArray(particle.options.gradient)
+                ? itemFromArray(particle.options.gradient)
                 : particle.options.gradient;
 
         if (gradient) {
@@ -159,10 +170,10 @@ export class GradientUpdater implements IParticleUpdater {
             const reduceDuplicates = particle.options.reduceDuplicates;
 
             for (const grColor of gradient.colors) {
-                const grHslColor = ColorUtils.colorToHsl(grColor.value, particle.id, reduceDuplicates);
+                const grHslColor = colorToHsl(grColor.value, particle.id, reduceDuplicates);
 
                 if (grHslColor) {
-                    const grHslAnimation = ColorUtils.getHslAnimationFromHsl(
+                    const grHslAnimation = getHslAnimationFromHsl(
                         grHslColor,
                         grColor.value.animation,
                         particle.container.retina.reduceFactor
@@ -174,10 +185,10 @@ export class GradientUpdater implements IParticleUpdater {
                         opacity: grColor.opacity
                             ? {
                                   enable: grColor.opacity.animation.enable,
-                                  max: NumberUtils.getRangeMax(grColor.opacity.value),
-                                  min: NumberUtils.getRangeMin(grColor.opacity.value),
+                                  max: getRangeMax(grColor.opacity.value),
+                                  min: getRangeMin(grColor.opacity.value),
                                   status: AnimationStatus.increasing,
-                                  value: NumberUtils.getRangeValue(grColor.opacity.value),
+                                  value: getRangeValue(grColor.opacity.value),
                                   velocity:
                                       (grColor.opacity.animation.speed / 100) * particle.container.retina.reduceFactor,
                               }
@@ -187,8 +198,8 @@ export class GradientUpdater implements IParticleUpdater {
                     if (grColor.opacity && addColor.opacity) {
                         const opacityRange = grColor.opacity.value;
 
-                        addColor.opacity.min = NumberUtils.getRangeMin(opacityRange);
-                        addColor.opacity.max = NumberUtils.getRangeMax(opacityRange);
+                        addColor.opacity.min = getRangeMin(opacityRange);
+                        addColor.opacity.max = getRangeMax(opacityRange);
 
                         const opacityAnimation = grColor.opacity.animation;
 
@@ -200,7 +211,7 @@ export class GradientUpdater implements IParticleUpdater {
                                 break;
 
                             case StartValueType.random:
-                                addColor.opacity.value = NumberUtils.randomInRange(addColor.opacity);
+                                addColor.opacity.value = randomInRange(addColor.opacity);
                                 addColor.opacity.status =
                                     Math.random() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
 

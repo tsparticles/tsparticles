@@ -8,7 +8,7 @@ import { bounceHorizontal, bounceVertical } from "./Utils";
 export class OutOfCanvasUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
 
-    init(particle: Particle): void {
+    init(): void {
         // nothing
     }
 

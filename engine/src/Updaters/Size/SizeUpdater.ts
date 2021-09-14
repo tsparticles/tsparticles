@@ -70,7 +70,7 @@ function updateSize(particle: Particle, delta: IDelta): void {
 }
 
 export class SizeUpdater implements IParticleUpdater {
-    init(particle: Particle): void {
+    init(): void {
         // nothing
     }
 

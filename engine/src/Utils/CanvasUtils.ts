@@ -468,7 +468,7 @@ export function drawEllipse(
     context.stroke();
 }
 
-export function alterHsl(color: IHsl, type: AlterType, value: number) {
+export function alterHsl(color: IHsl, type: AlterType, value: number): IHsl {
     return {
         h: color.h,
         s: color.s,

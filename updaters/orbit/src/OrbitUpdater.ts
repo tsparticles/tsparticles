@@ -1,5 +1,5 @@
 import type { Container, IDelta, IParticleUpdater, Particle, IHsl, IParticleRetinaProps } from "tsparticles";
-import { CanvasUtils, ColorUtils, NumberUtils, OrbitType } from "tsparticles";
+import { colorToHsl, drawEllipse, getRangeValue, OrbitType } from "tsparticles";
 
 type OrbitParticle = Particle & {
     orbitColor?: IHsl;
@@ -18,9 +18,9 @@ export class OrbitUpdater implements IParticleUpdater {
         const orbitOptions = particlesOptions.orbit;
 
         if (orbitOptions.enable) {
-            particle.orbitRotation = NumberUtils.getRangeValue(orbitOptions.rotation.value);
+            particle.orbitRotation = getRangeValue(orbitOptions.rotation.value);
 
-            particle.orbitColor = ColorUtils.colorToHsl(orbitOptions.color);
+            particle.orbitColor = colorToHsl(orbitOptions.color);
 
             particle.retina.orbitRadius =
                 orbitOptions?.radius !== undefined ? orbitOptions.radius * this.container.retina.pixelRatio : undefined;
@@ -85,7 +85,7 @@ export class OrbitUpdater implements IParticleUpdater {
         }
 
         container.canvas.draw((ctx) => {
-            CanvasUtils.drawEllipse(
+            drawEllipse(
                 ctx,
                 particle,
                 particle.orbitColor ?? particle.getFillColor(),
