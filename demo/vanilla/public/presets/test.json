@@ -2,7 +2,7 @@
   "fpsLimit": 60,
   "particles": {
     "number": {
-      "value": 0
+      "value": 50
     },
     "shape": {
       "type": "circle"
@@ -92,8 +92,8 @@
       "y": 120
     },
     "rate": {
-      "delay": 1,
-      "quantity": 1
+      "delay": 0.2,
+      "quantity": 2
     },
     "size": {
       "width": 100,
