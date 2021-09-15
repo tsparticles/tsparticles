@@ -30,11 +30,11 @@ describe("Options tests", () => {
 
         /* background mask */
         expect(options.backgroundMask.cover)
-        .to.be.an("object")
-        .to.have.property("color")
-        .to.be.an("object")
-        .to.have.property("value")
-        .to.equal("#fff");
+            .to.be.an("object")
+            .to.have.property("color")
+            .to.be.an("object")
+            .to.have.property("value")
+            .to.equal("#fff");
         expect(options.backgroundMask.cover).to.be.an("object").to.have.property("opacity").to.equal(1);
         expect(options.backgroundMask.enable).to.be.false;
 
@@ -620,13 +620,7 @@ describe("Options tests", () => {
         const colorOptions = new OptionsColor();
 
         colorOptions.load({
-            "value": [
-                "#5bc0eb",
-                "#fde74c",
-                "#9bc53d",
-                "#e55934",
-                "#fa7921"
-            ]
+            value: ["#5bc0eb", "#fde74c", "#9bc53d", "#e55934", "#fa7921"],
         });
 
         const otherOptions = new OptionsColor();
