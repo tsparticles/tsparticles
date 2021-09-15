@@ -1,31 +1,8 @@
 {
   "fpsLimit": 60,
-  "emitters": {
-    "position": {
-      "x": 50,
-      "y": 50
-    },
-    "size": {
-      "width": 0,
-      "height": 0
-    },
-    "rate": {
-      "delay": 0.1,
-      "quantity": 1
-    }
-  },
   "particles": {
     "number": {
-      "value": 0
-    },
-    "color": {
-      "value": [
-        "#5bc0eb",
-        "#fde74c",
-        "#9bc53d",
-        "#e55934",
-        "#fa7921"
-      ]
+      "value": 50
     },
     "shape": {
       "type": "circle"
@@ -34,29 +11,93 @@
       "value": 0.5
     },
     "size": {
-      "value": {
-        "min": 4,
-        "max": 7
+      "value": 400,
+      "random": {
+        "enable": true,
+        "minimumValue": 200
       }
     },
     "move": {
       "enable": true,
-      "speed": 4,
-      "direction": "none",
-      "outModes": {
-        "default": "destroy"
-      },
-      "trail": {
-        "enable": true,
-        "fillColor": "#000000",
-        "length": 20
-      },
-      "attract": {
-        "enable": false,
-        "rotateX": 600,
-        "rotateY": 1200
-      }
+      "speed": 10,
+      "direction": "top",
+      "outMode": "destroy"
     }
   },
-  "detectRetina": true
+  "interactivity": {
+    "detectsOn": "canvas",
+    "events": {
+      "resize": true
+    }
+  },
+  "detectRetina": true,
+  "background": {
+    "image": "",
+    "position": "50% 50%",
+    "repeat": "no-repeat",
+    "size": "cover"
+  },
+  "themes": [
+    {
+      "name": "light",
+      "default": {
+        "value": true,
+        "mode": "light"
+      },
+      "options": {
+        "background": {
+          "color": "#fff"
+        },
+        "particles": {
+          "color": {
+            "value": [
+              "#5bc0eb",
+              "#fde74c",
+              "#9bc53d",
+              "#e55934",
+              "#fa7921"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "dark",
+      "default": {
+        "value": true,
+        "mode": "dark"
+      },
+      "options": {
+        "background": {
+          "color": "#000"
+        },
+        "particles": {
+          "color": {
+            "value": [
+              "#004f74",
+              "#5f5800",
+              "#245100",
+              "#7d0000",
+              "#810c00"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "emitters": {
+    "direction": "top",
+    "position": {
+      "x": 50,
+      "y": 120
+    },
+    "rate": {
+      "delay": 0.2,
+      "quantity": 2
+    },
+    "size": {
+      "width": 100,
+      "height": 0
+    }
+  }
 }
