@@ -1,5 +1,5 @@
 import type { IOptionsColor } from "../Interfaces/IOptionsColor";
-import type { IRgb, IHsl, IHsv, IValueColor } from "../../Core/Interfaces/Colors";
+import type { IRgb, IHsl, IHsv, IValueColor } from "../../Core/Interfaces";
 import type { RecursivePartial, SingleOrMultiple } from "../../Types";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 
@@ -18,7 +18,9 @@ export class OptionsColor implements IOptionsColor, IOptionLoader<IOptionsColor>
         source?: OptionsColor,
         data?: SingleOrMultiple<string> | RecursivePartial<IOptionsColor>
     ): OptionsColor {
-        const color = source ?? new OptionsColor();
+        const color = new OptionsColor();
+
+        color.load(source);
 
         if (data !== undefined) {
             if (typeof data === "string" || data instanceof Array) {

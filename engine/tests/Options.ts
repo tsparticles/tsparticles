@@ -14,6 +14,7 @@ import {
 import { ParticlesOptions } from "../src/Options/Classes/Particles/ParticlesOptions";
 import type { RecursivePartial } from "../src";
 import { IParticles } from "../src/Options/Interfaces/Particles/IParticles";
+import { OptionsColor } from "../src/Options/Classes/OptionsColor";
 
 describe("Options tests", () => {
     it("checking default options", () => {
@@ -29,11 +30,11 @@ describe("Options tests", () => {
 
         /* background mask */
         expect(options.backgroundMask.cover)
-            .to.be.an("object")
-            .to.have.property("color")
-            .to.be.an("object")
-            .to.have.property("value")
-            .to.equal("#fff");
+        .to.be.an("object")
+        .to.have.property("color")
+        .to.be.an("object")
+        .to.have.property("value")
+        .to.equal("#fff");
         expect(options.backgroundMask.cover).to.be.an("object").to.have.property("opacity").to.equal(1);
         expect(options.backgroundMask.enable).to.be.false;
 
@@ -613,5 +614,29 @@ describe("Options tests", () => {
         particlesOptions.load(emitterOptions);
 
         expect(particlesOptions).to.not.include(generalOptions).and.include(emitterOptions);
+    });
+
+    it("check color options override", () => {
+        const colorOptions = new OptionsColor();
+
+        colorOptions.load({
+            "value": [
+                "#5bc0eb",
+                "#fde74c",
+                "#9bc53d",
+                "#e55934",
+                "#fa7921"
+            ]
+        });
+
+        const otherOptions = new OptionsColor();
+
+        const copyOptions = OptionsColor.create(otherOptions, colorOptions);
+
+        const copyOptions2 = OptionsColor.create(otherOptions, copyOptions);
+
+        expect(colorOptions.value).to.be.an("array");
+        expect(copyOptions.value).to.be.an("array");
+        expect(copyOptions2.value).to.be.an("array");
     });
 });

@@ -123,7 +123,7 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
         }
 
         this.bounce.load(data.bounce);
-        this.color = AnimatableColor.create(this.color, data.color);
+        this.color.load(AnimatableColor.create(this.color, data.color));
 
         this.destroy.load(data.destroy);
         this.life.load(data.life);
