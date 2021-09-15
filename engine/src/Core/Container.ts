@@ -549,6 +549,11 @@ export class Container {
         el.addEventListener("touchend", touchEndHandler);
         el.addEventListener("touchcancel", touchCancelHandler);
     }
+    
+    updateActualOptions(): void {
+        this.actualOptions.setResponsive(this.canvas.size.width, this.retina.pixelRatio, this._options);
+        this.actualOptions.setTheme(this.currentTheme);
+    }
 
     private async init(): Promise<void> {
         this.actualOptions = new Options();
@@ -558,10 +563,9 @@ export class Container {
         /* init canvas + particles */
         this.retina.init();
         this.canvas.init();
-
-        this.actualOptions.setResponsive(this.canvas.size.width, this.retina.pixelRatio, this._options);
-        this.actualOptions.setTheme(this.currentTheme);
-
+        
+        this.updateActualOptions();
+        
         this.canvas.initBackground();
         this.canvas.resize();
 
