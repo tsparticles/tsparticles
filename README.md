@@ -29,7 +29,7 @@ links you need, and _don't be scared by **TypeScript**, it's just the source lan
 CDNs and `npm` have all the sources you need in **Javascript**, a bundle browser ready (tsparticles.min.js) and all
 files splitted for `import` syntax.
 
-**If you are still interested** some lines below there are some instructions for migrating from the old particles.js
+**If you are interested** there are some _simple instructions_ just [below](https://github.com/matteobruni/tsparticles/blob/main/README.md#library-installation) to guide you to migrate from the old particles.js
 library.
 
 ## **_Library installation_**
