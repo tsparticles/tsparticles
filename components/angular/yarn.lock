@@ -159,9 +159,9 @@
     rxjs "6.6.7"
 
 "@angular/animations@~12.2.2":
-  version "12.2.5"
-  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-12.2.5.tgz#b5b534f9f6ba65d1249d937bbad01de6cc9adcac"
-  integrity sha512-a8jRimgrATq2CS95SO5yjsZo2d4FbfmN2SrPu6lZjWIdstXm4KQSJFslyxovhoUjGNu5cZgzfXTvWkXRxJYCxA==
+  version "12.2.6"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-12.2.6.tgz#6d544ec7ff0b5f149021d82a92060d3e2a6959c9"
+  integrity sha512-YVAaQvhNHyeRhHRnBofuLMtpmArv01Dyo5poc1VOBNdr+0AVGo+NIFM0nbXSMscxdeVTedgPdZK88knsIojlag==
   dependencies:
     tslib "^2.2.0"
 
@@ -198,9 +198,9 @@
     tslib "^2.2.0"
 
 "@angular/compiler-cli@~12.2.2":
-  version "12.2.5"
-  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-12.2.5.tgz#4d5221d8131cffadb50e038e76f6d2b7f65a59ef"
-  integrity sha512-KVpgkWUGZYRPvmJOqY1CZwjvc7VE0DYDPxmvXH/S1C6rzpl/UOTxYtDynxiNzuvLeV0oOnlcOGd4/BmMZJPh/A==
+  version "12.2.6"
+  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-12.2.6.tgz#d83e39110f94c2f68cc0f947c6f3840f9969bbd6"
+  integrity sha512-1W7LYqSHJjXO12tR7yUA3TspXXAbTE595Hz2bUCbHISaOUOqVlN6kCd9ccNQUrRL/GEaskAgIK9tNhngMD3LOA==
   dependencies:
     "@babel/core" "^7.8.6"
     "@babel/types" "^7.8.6"
@@ -223,9 +223,9 @@
   integrity sha512-ctjwuntPfZZT2mNj2NDIVu51t9cvbhl/16epc5xEwyzyDt76pX9UgwvY+MbXrf/C/FWwdtmNtfP698BKI+9leQ==
 
 "@angular/compiler@~12.2.2":
-  version "12.2.5"
-  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-12.2.5.tgz#6e5b583b316fb99d8ed49ba817c031c1846b9d03"
-  integrity sha512-J73E3hao95T8+/+hWuCqGyXs9QCPoSsCTXmSPayFlYJW3QF5SG2vhjnf4SAgtNbUBHQWAIwGKxQTqD3VbtvP1A==
+  version "12.2.6"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-12.2.6.tgz#6fe022ee7f6c35fb208cb834e02c4c133f3ef0a6"
+  integrity sha512-EhY5xuH0SNTdSDEaw6iD6R9nOb2c3W5baYnn3cSahggvXHlG1dEA7QQ4FS1SJFg32TP4IXHn21XU7KHRzaDx0w==
   dependencies:
     tslib "^2.2.0"
 
@@ -242,16 +242,16 @@
     tslib "^2.2.0"
 
 "@angular/forms@~12.2.2":
-  version "12.2.5"
-  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-12.2.5.tgz#c190c1873ba856101323037147a0be906817bc82"
-  integrity sha512-Sty4MMrmUrm7KYbYYAkA6egwIMFJ8D8G6ds5W79fN7K3B3LGYtMTRuMIBYQeSvdk8AN5+Evt6BUwlL8PMYq9Rg==
+  version "12.2.6"
+  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-12.2.6.tgz#89bb8084f15d699ddd26ba45e6feb9eb8745e8ca"
+  integrity sha512-lY+A1q63C+ZIpbeVp9JP921lLawn7zELslV+DMd0hix7AXCG175OayeQPLXGFbHfYDRHL8QHTT+7X99k7sd3UA==
   dependencies:
     tslib "^2.2.0"
 
 "@angular/platform-browser-dynamic@~12.2.2":
-  version "12.2.5"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-12.2.5.tgz#afce4e8d4127a3f9762ee09dc1774662d35732ad"
-  integrity sha512-GIAMw+KFYVFFtyvC3Z6znxLCJdZx/IvpfHQVekpQumiv291cng2jSamU3FZjV3xZKXfccS4I4hIXFX85EBMRWA==
+  version "12.2.6"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-12.2.6.tgz#534d7e16d41a938b868a322806975950867bd5ed"
+  integrity sha512-ZS/ZZJOr7D9tycw6tFsvBHDZ/PDrGS6N+LBfKwLq8gvyK0LGJ4fk2auoRrO4Y6hmGL6GeJC8BdKtrn40jt2FBQ==
   dependencies:
     tslib "^2.2.0"
 
@@ -5776,6 +5776,11 @@ path-type@^4.0.0:
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
+pathseg@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/pathseg/-/pathseg-1.2.1.tgz#50b3fc4fc05c64f4a52f8c04156f6f3975b0df3c"
+  integrity sha512-LtvemzPvcGamWBbNWJaIrgfUzpynXfwYrP6SSFVRhNHVcCaq6SVm4kRGJNuIV8qzBKgCN3fEXFZZ16YETFIXoA==
+
 performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
@@ -7712,6 +7717,13 @@ tslint@~6.1.3:
     semver "^5.3.0"
     tslib "^1.13.0"
     tsutils "^2.29.0"
+
+tsparticles@^1.34.1:
+  version "1.34.1"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.34.1.tgz#07a614ca3414b954d0f7193916cd1e9bdf0333cd"
+  integrity sha512-SsmgNOBGOrPa7kcEGJV8CRAuCqsBStQyKRwYR5RJS/7T+gnl3e+Nl+euufjAMQAA4Ww9mNaedpmtRFf98ox7GQ==
+  optionalDependencies:
+    pathseg "^1.2.1"
 
 tsutils@^2.29.0:
   version "2.29.0"
