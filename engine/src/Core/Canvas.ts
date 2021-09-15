@@ -146,7 +146,7 @@ export class Canvas {
         const container = this.container;
 
         this.resize();
-        
+
         if (this.resizeFactor?.width === 1 && this.resizeFactor.height === 1) {
             delete this.resizeFactor;
 
