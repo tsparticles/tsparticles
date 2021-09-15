@@ -1228,10 +1228,10 @@
   resolved "https://registry.yarnpkg.com/@capacitor/app/-/app-1.0.3.tgz#d9c7f774a1b3a93786c64477cb9adfb9d00a66bb"
   integrity sha512-kilAdWODV5p32wz0jVGdSoQTEx4Q0TM/xYj9w3iYYNI24v1WIRnEs04TaGTG8JFYIUksJaOqGC3PoZddfZ1POA==
 
-"@capacitor/cli@3.2.2":
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/@capacitor/cli/-/cli-3.2.2.tgz#791c04a562584820b1bf76b9b6bc4d8bcdbd6c01"
-  integrity sha512-/yradyGNGxO+Dj1ppzty3ReK+/Ukmnz0GdAE5nX3zySGSQg0ebZs81gKYDKJaXknQhx1ZZJGlT9D9ORiN3sbhw==
+"@capacitor/cli@3.2.3":
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/@capacitor/cli/-/cli-3.2.3.tgz#7f7592c6fe5f933fdb8a14a466fbfd3c61a45897"
+  integrity sha512-vEinN2Q4ZSosPIRnNdRSAOA+zIjBhVxZOg5n0OKY/QkqENTemIT7mhAfoOgTdSu1iwrqJGf+Tt34cOkCo0a+0A==
   dependencies:
     "@ionic/cli-framework-output" "^2.2.1"
     "@ionic/utils-fs" "^3.1.5"
@@ -1242,18 +1242,18 @@
     env-paths "^2.2.0"
     kleur "^4.1.1"
     native-run "^1.4.0"
-    open "^7.1.0"
+    open "^7.4.2"
     plist "^3.0.2"
     prompts "^2.3.2"
     semver "^7.3.2"
-    tar "^6.0.5"
+    tar "^6.1.11"
     tslib "^2.1.0"
     xml2js "^0.4.23"
 
-"@capacitor/core@3.2.2":
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/@capacitor/core/-/core-3.2.2.tgz#5926788920ba9117aa735d2941f5b2bdc4a6889a"
-  integrity sha512-xY3VyLbF0vSxQmQto6cI1PqP8idbwmfEAeaj248uuSrIYHeMc1L3RS6UN/yNBDPYPeAfNUwBhVqSTCtuZkEIcg==
+"@capacitor/core@3.2.3":
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/@capacitor/core/-/core-3.2.3.tgz#84535e0adc6f0b99fcbfb2f67578b1b8e7f379c2"
+  integrity sha512-6oIi9EXgTRI8Xg3Gg8IWSQcddshb6lNtywkQA+QWoTL/6qV/l519tBcZHV9cu6BA7GT3qm2WcX9yQjwDq5iKpw==
   dependencies:
     tslib "^2.1.0"
 
@@ -6708,7 +6708,7 @@ open@8.2.1:
     is-docker "^2.1.1"
     is-wsl "^2.2.0"
 
-open@^7.1.0:
+open@^7.4.2:
   version "7.4.2"
   resolved "https://registry.yarnpkg.com/open/-/open-7.4.2.tgz#b8147e26dcf3e426316c730089fd71edd29c2321"
   integrity sha512-MVHddDVweXZF3awtlAS+6pgKLlm/JgxZ90+/NBurBoQctVOOB/zDdVjcyPzQ+0laDGbsWgrRkflI65sQeOgT9Q==
@@ -8967,10 +8967,22 @@ tapable@^2.1.1, tapable@^2.2.0:
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-2.2.0.tgz#5c373d281d9c672848213d0e037d1c4165ab426b"
   integrity sha512-FBk4IesMV1rBxX2tfiK8RAmogtWn53puLOQlvO8XuwlgxcYbP4mVPS9Ph4aeamSyyVjOl24aYWAuc8U5kCVwMw==
 
-tar@^6.0.2, tar@^6.0.5, tar@^6.1.0:
+tar@^6.0.2, tar@^6.1.0:
   version "6.1.7"
   resolved "https://registry.yarnpkg.com/tar/-/tar-6.1.7.tgz#c566d1107d38b09e92983a68db5534fc7f6cab42"
   integrity sha512-PBoRkOJU0X3lejJ8GaRCsobjXTgFofRDSPdSUhRSdlwJfifRlQBwGXitDItdGFu0/h0XDMCkig0RN1iT7DBxhA==
+  dependencies:
+    chownr "^2.0.0"
+    fs-minipass "^2.0.0"
+    minipass "^3.0.0"
+    minizlib "^2.1.1"
+    mkdirp "^1.0.3"
+    yallist "^4.0.0"
+
+tar@^6.1.11:
+  version "6.1.11"
+  resolved "https://registry.yarnpkg.com/tar/-/tar-6.1.11.tgz#6760a38f003afa1b2ffd0ffe9e9abbd0eab3d621"
+  integrity sha512-an/KZQzQUkZCkuoAA64hM92X0Urb6VpRhAFllDzz44U2mcD5scmT3zBc4VgVpkugF580+DQn8eAFSyoQt0tznA==
   dependencies:
     chownr "^2.0.0"
     fs-minipass "^2.0.0"
