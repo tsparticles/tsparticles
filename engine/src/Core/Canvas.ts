@@ -146,8 +146,14 @@ export class Canvas {
         const container = this.container;
 
         this.resize();
+        
+        if (this.resizeFactor?.width === 1 && this.resizeFactor.height === 1) {
+            delete this.resizeFactor;
 
-        container.actualOptions.setResponsive(this.size.width, container.retina.pixelRatio, container.options);
+            return;
+        }
+
+        container.updateActualOptions();
 
         /* density particles enabled */
         container.particles.setDensity();
