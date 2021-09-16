@@ -10,7 +10,7 @@ import type {
     SVGPathSegLinetoVerticalAbs,
     SVGPathSegLinetoHorizontalRel,
     SVGPathSegLinetoVerticalRel,
-} from "@tsparticles/pathseg";
+} from "./pathseg";
 
 export function drawPolygonMask(context: CanvasRenderingContext2D, rawData: ICoordinates[], stroke: IDrawStroke): void {
     const color = colorToRgb(stroke.color);

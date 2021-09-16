@@ -108,7 +108,6 @@
     "install": "^0.13.0",
     "mocha": "^9.1.1",
     "nyc": "^15.1.0",
-    "@tsparticles/pathseg": "^1.2.1",
     "prettier": "^2.4.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
@@ -122,9 +121,6 @@
     "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^4.8.0",
     "window": "^4.2.7"
-  },
-  "optionalDependencies": {
-    "@tsparticles/pathseg": "^1.2.1"
   },
   "publishConfig": {
     "directory": "dist"

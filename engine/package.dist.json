@@ -64,9 +64,6 @@
     "type": "github",
     "url": "https://github.com/sponsors/matteobruni"
   },
-  "optionalDependencies": {
-    "@tsparticles/pathseg": "^1.2.1"
-  },
   "main": "index.js",
   "module": "esm/index.js",
   "jsdelivr": "tsparticles.min.js",

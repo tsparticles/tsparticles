@@ -1,4 +1,4 @@
-import type { SVGPathElement } from "@tsparticles/pathseg";
+import type { SVGPathElement } from "../pathseg";
 
 export interface ISvgPath {
     element: SVGPathElement;

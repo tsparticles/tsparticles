@@ -45,7 +45,7 @@ class Plugin implements IPlugin {
 
 export async function loadPolygonMaskPlugin(tsParticles: Main): Promise<void> {
     if (!window.SVGPathSeg) {
-        await import("@tsparticles/pathseg");
+        await import("./pathseg");
     }
 
     const plugin = new Plugin();

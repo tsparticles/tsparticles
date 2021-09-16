@@ -36,7 +36,7 @@ interface SVGPathSeg {
 
 declare var SVGPathSeg: {
     prototype: SVGPathSeg;
-    new(): SVGPathSeg;
+    new (): SVGPathSeg;
     readonly PATHSEG_ARC_ABS: number;
     readonly PATHSEG_ARC_REL: number;
     readonly PATHSEG_CLOSEPATH: number;
@@ -71,7 +71,7 @@ interface SVGPathSegArcAbs extends SVGPathSeg {
 
 declare var SVGPathSegArcAbs: {
     prototype: SVGPathSegArcAbs;
-    new(): SVGPathSegArcAbs;
+    new (): SVGPathSegArcAbs;
 };
 
 interface SVGPathSegArcRel extends SVGPathSeg {
@@ -86,15 +86,14 @@ interface SVGPathSegArcRel extends SVGPathSeg {
 
 declare var SVGPathSegArcRel: {
     prototype: SVGPathSegArcRel;
-    new(): SVGPathSegArcRel;
+    new (): SVGPathSegArcRel;
 };
 
-interface SVGPathSegClosePath extends SVGPathSeg {
-}
+type SVGPathSegClosePath = SVGPathSeg;
 
 declare var SVGPathSegClosePath: {
     prototype: SVGPathSegClosePath;
-    new(): SVGPathSegClosePath;
+    new (): SVGPathSegClosePath;
 };
 
 interface SVGPathSegCurvetoCubicAbs extends SVGPathSeg {
@@ -108,7 +107,7 @@ interface SVGPathSegCurvetoCubicAbs extends SVGPathSeg {
 
 declare var SVGPathSegCurvetoCubicAbs: {
     prototype: SVGPathSegCurvetoCubicAbs;
-    new(): SVGPathSegCurvetoCubicAbs;
+    new (): SVGPathSegCurvetoCubicAbs;
 };
 
 interface SVGPathSegCurvetoCubicRel extends SVGPathSeg {
@@ -122,7 +121,7 @@ interface SVGPathSegCurvetoCubicRel extends SVGPathSeg {
 
 declare var SVGPathSegCurvetoCubicRel: {
     prototype: SVGPathSegCurvetoCubicRel;
-    new(): SVGPathSegCurvetoCubicRel;
+    new (): SVGPathSegCurvetoCubicRel;
 };
 
 interface SVGPathSegCurvetoCubicSmoothAbs extends SVGPathSeg {
@@ -134,7 +133,7 @@ interface SVGPathSegCurvetoCubicSmoothAbs extends SVGPathSeg {
 
 declare var SVGPathSegCurvetoCubicSmoothAbs: {
     prototype: SVGPathSegCurvetoCubicSmoothAbs;
-    new(): SVGPathSegCurvetoCubicSmoothAbs;
+    new (): SVGPathSegCurvetoCubicSmoothAbs;
 };
 
 interface SVGPathSegCurvetoCubicSmoothRel extends SVGPathSeg {
@@ -146,7 +145,7 @@ interface SVGPathSegCurvetoCubicSmoothRel extends SVGPathSeg {
 
 declare var SVGPathSegCurvetoCubicSmoothRel: {
     prototype: SVGPathSegCurvetoCubicSmoothRel;
-    new(): SVGPathSegCurvetoCubicSmoothRel;
+    new (): SVGPathSegCurvetoCubicSmoothRel;
 };
 
 interface SVGPathSegCurvetoQuadraticAbs extends SVGPathSeg {
@@ -158,7 +157,7 @@ interface SVGPathSegCurvetoQuadraticAbs extends SVGPathSeg {
 
 declare var SVGPathSegCurvetoQuadraticAbs: {
     prototype: SVGPathSegCurvetoQuadraticAbs;
-    new(): SVGPathSegCurvetoQuadraticAbs;
+    new (): SVGPathSegCurvetoQuadraticAbs;
 };
 
 interface SVGPathSegCurvetoQuadraticRel extends SVGPathSeg {
@@ -170,7 +169,7 @@ interface SVGPathSegCurvetoQuadraticRel extends SVGPathSeg {
 
 declare var SVGPathSegCurvetoQuadraticRel: {
     prototype: SVGPathSegCurvetoQuadraticRel;
-    new(): SVGPathSegCurvetoQuadraticRel;
+    new (): SVGPathSegCurvetoQuadraticRel;
 };
 
 interface SVGPathSegCurvetoQuadraticSmoothAbs extends SVGPathSeg {
@@ -180,7 +179,7 @@ interface SVGPathSegCurvetoQuadraticSmoothAbs extends SVGPathSeg {
 
 declare var SVGPathSegCurvetoQuadraticSmoothAbs: {
     prototype: SVGPathSegCurvetoQuadraticSmoothAbs;
-    new(): SVGPathSegCurvetoQuadraticSmoothAbs;
+    new (): SVGPathSegCurvetoQuadraticSmoothAbs;
 };
 
 interface SVGPathSegCurvetoQuadraticSmoothRel extends SVGPathSeg {
@@ -190,7 +189,7 @@ interface SVGPathSegCurvetoQuadraticSmoothRel extends SVGPathSeg {
 
 declare var SVGPathSegCurvetoQuadraticSmoothRel: {
     prototype: SVGPathSegCurvetoQuadraticSmoothRel;
-    new(): SVGPathSegCurvetoQuadraticSmoothRel;
+    new (): SVGPathSegCurvetoQuadraticSmoothRel;
 };
 
 interface SVGPathSegLinetoAbs extends SVGPathSeg {
@@ -200,7 +199,7 @@ interface SVGPathSegLinetoAbs extends SVGPathSeg {
 
 declare var SVGPathSegLinetoAbs: {
     prototype: SVGPathSegLinetoAbs;
-    new(): SVGPathSegLinetoAbs;
+    new (): SVGPathSegLinetoAbs;
 };
 
 interface SVGPathSegLinetoHorizontalAbs extends SVGPathSeg {
@@ -209,7 +208,7 @@ interface SVGPathSegLinetoHorizontalAbs extends SVGPathSeg {
 
 declare var SVGPathSegLinetoHorizontalAbs: {
     prototype: SVGPathSegLinetoHorizontalAbs;
-    new(): SVGPathSegLinetoHorizontalAbs;
+    new (): SVGPathSegLinetoHorizontalAbs;
 };
 
 interface SVGPathSegLinetoHorizontalRel extends SVGPathSeg {
@@ -218,7 +217,7 @@ interface SVGPathSegLinetoHorizontalRel extends SVGPathSeg {
 
 declare var SVGPathSegLinetoHorizontalRel: {
     prototype: SVGPathSegLinetoHorizontalRel;
-    new(): SVGPathSegLinetoHorizontalRel;
+    new (): SVGPathSegLinetoHorizontalRel;
 };
 
 interface SVGPathSegLinetoRel extends SVGPathSeg {
@@ -228,7 +227,7 @@ interface SVGPathSegLinetoRel extends SVGPathSeg {
 
 declare var SVGPathSegLinetoRel: {
     prototype: SVGPathSegLinetoRel;
-    new(): SVGPathSegLinetoRel;
+    new (): SVGPathSegLinetoRel;
 };
 
 interface SVGPathSegLinetoVerticalAbs extends SVGPathSeg {
@@ -237,7 +236,7 @@ interface SVGPathSegLinetoVerticalAbs extends SVGPathSeg {
 
 declare var SVGPathSegLinetoVerticalAbs: {
     prototype: SVGPathSegLinetoVerticalAbs;
-    new(): SVGPathSegLinetoVerticalAbs;
+    new (): SVGPathSegLinetoVerticalAbs;
 };
 
 interface SVGPathSegLinetoVerticalRel extends SVGPathSeg {
@@ -246,7 +245,7 @@ interface SVGPathSegLinetoVerticalRel extends SVGPathSeg {
 
 declare var SVGPathSegLinetoVerticalRel: {
     prototype: SVGPathSegLinetoVerticalRel;
-    new(): SVGPathSegLinetoVerticalRel;
+    new (): SVGPathSegLinetoVerticalRel;
 };
 
 interface SVGPathSegList {
@@ -269,7 +268,7 @@ interface SVGPathSegList {
 
 declare var SVGPathSegList: {
     prototype: SVGPathSegList;
-    new(): SVGPathSegList;
+    new (): SVGPathSegList;
 };
 
 interface SVGPathSegMovetoAbs extends SVGPathSeg {
@@ -279,7 +278,7 @@ interface SVGPathSegMovetoAbs extends SVGPathSeg {
 
 declare var SVGPathSegMovetoAbs: {
     prototype: SVGPathSegMovetoAbs;
-    new(): SVGPathSegMovetoAbs;
+    new (): SVGPathSegMovetoAbs;
 };
 
 interface SVGPathSegMovetoRel extends SVGPathSeg {
@@ -289,7 +288,7 @@ interface SVGPathSegMovetoRel extends SVGPathSeg {
 
 declare var SVGPathSegMovetoRel: {
     prototype: SVGPathSegMovetoRel;
-    new(): SVGPathSegMovetoRel;
+    new (): SVGPathSegMovetoRel;
 };
 
 interface SVGZoomAndPan {
@@ -309,7 +308,7 @@ interface SVGZoomEvent extends UIEvent {
 
 declare var SVGZoomEvent: {
     prototype: SVGZoomEvent;
-    new(): SVGZoomEvent;
+    new (): SVGZoomEvent;
 };
 
 interface SVGPathElement extends SVGGraphicsElement {
@@ -322,7 +321,7 @@ interface SVGPathElement extends SVGGraphicsElement {
 
 declare var SVGPathElement: {
     prototype: SVGPathElement;
-    new(): SVGPathElement;
+    new (): SVGPathElement;
 };
 
 declare global {

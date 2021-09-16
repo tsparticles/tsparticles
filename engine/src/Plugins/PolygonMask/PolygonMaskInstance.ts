@@ -295,7 +295,6 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
 
     /**
-     * Depends on SVGPathSeg API polyfill https://npmjs.com/package/@tsparticles/pathseg for Chrome
      * Deprecate SVGPathElement.getPathSegAtLength removed in:
      * Chrome for desktop release 62
      * Chrome for Android release 62
