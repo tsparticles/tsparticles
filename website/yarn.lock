@@ -415,11 +415,6 @@ object-assign@^4.0.1:
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
   integrity sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=
 
-object-gui@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/object-gui/-/object-gui-1.1.1.tgz#f205a44e3a808d087faedebe2d87c78e24e23f21"
-  integrity sha512-ahXwt0G7vZmUNtMCWTcJbzRybj3bMx4xTTmLas6y6BsfZwlyMjIURIksFGNnER9jih6PHa8gs50lj5cefZeWaA==
-
 once@^1.3.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/once/-/once-1.4.0.tgz#583b1aa775961d4b113ac17d9c50baef9dd76bd1"
@@ -485,11 +480,6 @@ path-is-absolute@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/path-is-absolute/-/path-is-absolute-1.0.1.tgz#174b9268735534ffbc7ace6bf53a5a9e1b5c5f5f"
   integrity sha1-F0uSaHNVNP+8es5r9TpanhtcX18=
-
-pathseg@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/pathseg/-/pathseg-1.2.1.tgz#50b3fc4fc05c64f4a52f8c04156f6f3975b0df3c"
-  integrity sha512-LtvemzPvcGamWBbNWJaIrgfUzpynXfwYrP6SSFVRhNHVcCaq6SVm4kRGJNuIV8qzBKgCN3fEXFZZ16YETFIXoA==
 
 picomatch@^2.0.4, picomatch@^2.2.1:
   version "2.3.0"
@@ -617,36 +607,6 @@ tslib@^2.0.3:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
   integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
-
-tsparticles-editor@^1.34.1:
-  version "1.34.1"
-  resolved "https://registry.yarnpkg.com/tsparticles-editor/-/tsparticles-editor-1.34.1.tgz#a4035ef777d7f4dd32c14a129ed0839c7f8dfc99"
-  integrity sha512-FZUaJY0X43FE8d4aUHGpqTUvzgq8pw9ILwy60J8Wf4e0WlWyq/Tuea1t6rK5WbhNUpC4q5fpNQjXiwake1vBmQ==
-  dependencies:
-    object-gui "^1.1.1"
-    tsparticles "^1.34.1"
-    tsparticles-plugin-infection "^1.34.1"
-
-tsparticles-plugin-infection@^1.34.1:
-  version "1.34.1"
-  resolved "https://registry.yarnpkg.com/tsparticles-plugin-infection/-/tsparticles-plugin-infection-1.34.1.tgz#c51a49dd267df6aa01ede997ca719c62da1c931f"
-  integrity sha512-XPidFXRLRWK9hpdZicOZpPujael7ysdz9LyPI+ra2vI2JHK+ajp9Yzacst9Ur9MatE1ggP9e/TzEJTfsjSiL9g==
-  dependencies:
-    tsparticles "^1.34.1"
-
-tsparticles-preset-links@^1.19.1:
-  version "1.19.1"
-  resolved "https://registry.yarnpkg.com/tsparticles-preset-links/-/tsparticles-preset-links-1.19.1.tgz#155c1fe283b62dde1cb2d1dfe6494cf3696bcb52"
-  integrity sha512-n2ro9S7IhXc2W/i7dlKLglAWlwIWaoAk6RbcKS+UF4L//rjUf0PG7rVO0aBCv5UK2cuCy2lz/amEFZwked6ZIQ==
-  dependencies:
-    tsparticles "^1.34.1"
-
-tsparticles@^1.34.1:
-  version "1.34.1"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.34.1.tgz#07a614ca3414b954d0f7193916cd1e9bdf0333cd"
-  integrity sha512-SsmgNOBGOrPa7kcEGJV8CRAuCqsBStQyKRwYR5RJS/7T+gnl3e+Nl+euufjAMQAA4Ww9mNaedpmtRFf98ox7GQ==
-  optionalDependencies:
-    pathseg "^1.2.1"
 
 universalify@^0.1.0:
   version "0.1.2"
