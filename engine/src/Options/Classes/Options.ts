@@ -81,6 +81,8 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     responsive: Responsive[];
     themes: Theme[];
     zLayers;
+    defaultDarkTheme?: string;
+    defaultLightTheme?: string;
 
     [name: string]: unknown;
 
@@ -201,6 +203,9 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
                 this.themes.push(optTheme);
             }
         }
+
+        this.defaultDarkTheme = this.#findDefaultTheme(ThemeMode.dark)?.name;
+        this.defaultLightTheme = this.#findDefaultTheme(ThemeMode.light)?.name;
     }
 
     setTheme(name?: string): void {
@@ -211,19 +216,9 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
                 this.load(chosenTheme.options);
             }
         } else {
-            const clientDarkMode =
-                typeof matchMedia !== "undefined" && matchMedia("(prefers-color-scheme: dark)").matches;
-
-            let defaultTheme = this.themes.find(
-                (theme) =>
-                    theme.default.value &&
-                    ((theme.default.mode === ThemeMode.dark && clientDarkMode) ||
-                        (theme.default.mode === ThemeMode.light && !clientDarkMode))
-            );
-
-            if (!defaultTheme) {
-                defaultTheme = this.themes.find((theme) => theme.default.value && theme.default.mode === ThemeMode.any);
-            }
+            const mediaMatch = typeof matchMedia !== "undefined" && matchMedia("(prefers-color-scheme: dark)"),
+                clientDarkMode = mediaMatch && mediaMatch.matches,
+                defaultTheme = this.#findDefaultTheme(clientDarkMode ? ThemeMode.dark : ThemeMode.light);
 
             if (defaultTheme) {
                 this.load(defaultTheme.options);
@@ -231,12 +226,19 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
     }
 
+    setResponsive(width: number, pxRatio: number, defaultOptions: IOptions): void {
+        this.load(defaultOptions);
+        this.load(this.responsive.find((t) => t.maxWidth * pxRatio > width)?.options);
+    }
+
     private importPreset(preset: string): void {
         this.load(Plugins.getPreset(preset));
     }
 
-    setResponsive(width: number, pxRatio: number, defaultOptions: IOptions): void {
-        this.load(defaultOptions);
-        this.load(this.responsive.find((t) => t.maxWidth * pxRatio > width)?.options);
+    #findDefaultTheme(mode: ThemeMode): Theme | undefined {
+        return (
+            this.themes.find((theme) => theme.default.value && theme.default.mode === mode) ??
+            this.themes.find((theme) => theme.default.value && theme.default.mode === ThemeMode.any)
+        );
     }
 }

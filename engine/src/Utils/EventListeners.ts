@@ -5,7 +5,7 @@ import { Constants } from "./Constants";
 import { itemFromArray } from "./Utils";
 
 function manageListener(
-    element: HTMLElement | Node | Window,
+    element: HTMLElement | Node | Window | MediaQueryList,
     event: string,
     handler: EventListenerOrEventListenerObject,
     add: boolean,
@@ -43,6 +43,7 @@ export class EventListeners {
     private readonly mouseDownHandler: EventListenerOrEventListenerObject;
     private readonly mouseUpHandler: EventListenerOrEventListenerObject;
     private readonly visibilityChangeHandler: EventListenerOrEventListenerObject;
+    private readonly themeChangeHandler: EventListenerOrEventListenerObject;
     private readonly resizeHandler: EventListenerOrEventListenerObject;
 
     private canPush: boolean;
@@ -66,6 +67,7 @@ export class EventListeners {
         this.mouseUpHandler = (e: Event): void => this.mouseTouchClick(e);
         this.mouseDownHandler = (): void => this.mouseDown();
         this.visibilityChangeHandler = (): void => this.handleVisibilityChange();
+        this.themeChangeHandler = (e): void => this.handleThemeChange(e);
         this.resizeHandler = (): void => this.handleWindowResize();
     }
 
@@ -103,6 +105,12 @@ export class EventListeners {
             container.interactivity.element = canvasEl.parentElement ?? canvasEl.parentNode;
         } else {
             container.interactivity.element = container.canvas.element;
+        }
+
+        const mediaMatch = typeof matchMedia !== "undefined" && matchMedia("(prefers-color-scheme: dark)");
+
+        if (mediaMatch) {
+            manageListener(mediaMatch, "change", this.themeChangeHandler, add);
         }
 
         const interactivityEl = container.interactivity.element;
@@ -398,6 +406,18 @@ export class EventListeners {
 
         if (e.type === "touchend") {
             setTimeout(() => this.mouseTouchFinish(), 500);
+        }
+    }
+
+    private handleThemeChange(e: Event): void {
+        const mediaEvent = e as MediaQueryListEvent;
+        const themeName = mediaEvent.matches
+            ? this.container.options.defaultDarkTheme
+            : this.container.options.defaultLightTheme;
+        const theme = this.container.options.themes.find((theme) => theme.name === themeName);
+
+        if (theme && theme.default.auto) {
+            this.container.loadTheme(themeName);
         }
     }
 

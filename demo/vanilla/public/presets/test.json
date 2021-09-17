@@ -41,6 +41,7 @@
     {
       "name": "light",
       "default": {
+        "auto": true,
         "value": true,
         "mode": "light"
       },
@@ -64,6 +65,7 @@
     {
       "name": "dark",
       "default": {
+        "auto": true,
         "value": true,
         "mode": "dark"
       },
