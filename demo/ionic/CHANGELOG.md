@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/matteobruni/tsparticles/compare/ionic@0.3.1...ionic@0.4.0) (2021-09-18)
+
+
+### Bug Fixes
+
+* **deps:** update capacitor monorepo ([628db0f](https://github.com/matteobruni/tsparticles/commit/628db0f31e93f6e035b8bf0a96ef48c391afefc9))
+
+
+
+
+
 ## [0.3.1](https://github.com/matteobruni/tsparticles/compare/ionic@0.3.0...ionic@0.3.1) (2021-09-15)
 
 **Note:** Version bump only for package ionic
