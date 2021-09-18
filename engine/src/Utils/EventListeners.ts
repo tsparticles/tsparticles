@@ -64,7 +64,7 @@ export class EventListeners {
         this.mouseLeaveHandler = (): void => this.mouseTouchFinish();
         this.touchCancelHandler = (): void => this.mouseTouchFinish();
         this.touchEndClickHandler = (e: Event): void => this.mouseTouchClick(e);
-        this.mouseUpHandler = (e: Event): void => this.mouseTouchClick(e);
+        this.mouseUpHandler = (e): void => this.mouseTouchClick(e);
         this.mouseDownHandler = (): void => this.mouseDown();
         this.visibilityChangeHandler = (): void => this.handleVisibilityChange();
         this.themeChangeHandler = (e): void => this.handleThemeChange(e);
