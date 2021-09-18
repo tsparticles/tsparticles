@@ -57,13 +57,13 @@ export class EventListeners {
     constructor(private readonly container: Container) {
         this.canPush = true;
 
-        this.mouseMoveHandler = (e: Event): void => this.mouseTouchMove(e);
-        this.touchStartHandler = (e: Event): void => this.mouseTouchMove(e);
-        this.touchMoveHandler = (e: Event): void => this.mouseTouchMove(e);
+        this.mouseMoveHandler = (e): void => this.mouseTouchMove(e);
+        this.touchStartHandler = (e): void => this.mouseTouchMove(e);
+        this.touchMoveHandler = (e): void => this.mouseTouchMove(e);
         this.touchEndHandler = (): void => this.mouseTouchFinish();
         this.mouseLeaveHandler = (): void => this.mouseTouchFinish();
         this.touchCancelHandler = (): void => this.mouseTouchFinish();
-        this.touchEndClickHandler = (e: Event): void => this.mouseTouchClick(e);
+        this.touchEndClickHandler = (e): void => this.mouseTouchClick(e);
         this.mouseUpHandler = (e): void => this.mouseTouchClick(e);
         this.mouseDownHandler = (): void => this.mouseDown();
         this.visibilityChangeHandler = (): void => this.handleVisibilityChange();
