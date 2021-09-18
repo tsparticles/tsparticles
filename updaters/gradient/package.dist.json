@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-updater-gradient",
-  "version": "1.34.0",
+  "version": "1.34.1",
   "description": "tsParticles particles gradient updater",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -45,6 +45,6 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles": "^1.34.0"
+    "tsparticles": "^1.34.1"
   }
 }

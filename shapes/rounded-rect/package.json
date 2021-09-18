@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-rounded-rect",
-  "version": "1.19.0",
+  "version": "1.19.1",
   "description": "tsParticles rounded rect shape",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -72,6 +72,6 @@
     "webpack-cli": "^4.8.0"
   },
   "dependencies": {
-    "tsparticles": "^1.34.0"
+    "tsparticles": "^1.34.1"
   }
 }
