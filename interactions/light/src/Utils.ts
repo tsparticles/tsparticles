@@ -1,4 +1,4 @@
-import { ColorUtils, Container, ICoordinates, Particle } from "tsparticles";
+import { Container, ICoordinates, Particle, colorToRgb, getStyleFromRgb } from "tsparticles";
 
 export function drawLight(container: Container, context: CanvasRenderingContext2D, mousePos: ICoordinates): void {
     const lightOptions = container.actualOptions.interactivity.modes.light.area;
@@ -17,16 +17,16 @@ export function drawLight(container: Container, context: CanvasRenderingContext2
 
     const lightGradient = lightOptions.gradient;
     const gradientRgb = {
-        start: ColorUtils.colorToRgb(lightGradient.start),
-        stop: ColorUtils.colorToRgb(lightGradient.stop),
+        start: colorToRgb(lightGradient.start),
+        stop: colorToRgb(lightGradient.stop),
     };
 
     if (!gradientRgb.start || !gradientRgb.stop) {
         return;
     }
 
-    gradientAmbientLight.addColorStop(0, ColorUtils.getStyleFromRgb(gradientRgb.start));
-    gradientAmbientLight.addColorStop(1, ColorUtils.getStyleFromRgb(gradientRgb.stop));
+    gradientAmbientLight.addColorStop(0, getStyleFromRgb(gradientRgb.start));
+    gradientAmbientLight.addColorStop(1, getStyleFromRgb(gradientRgb.stop));
     context.fillStyle = gradientAmbientLight;
     context.fill();
 }
@@ -45,7 +45,7 @@ export function drawParticleShadow(
     const radius = particle.getRadius();
     const sides = particle.sides;
     const full = (Math.PI * 2) / sides;
-    const angle = -particle.rotate.value + Math.PI / 4;
+    const angle = -(particle.rotate?.value ?? 0) + Math.PI / 4;
     const factor = 1; //Math.sqrt(2);
     const dots = [];
 
@@ -73,13 +73,13 @@ export function drawParticleShadow(
         });
     }
 
-    const shadowRgb = ColorUtils.colorToRgb(shadowOptions.color);
+    const shadowRgb = colorToRgb(shadowOptions.color);
 
     if (!shadowRgb) {
         return;
     }
 
-    const shadowColor = ColorUtils.getStyleFromRgb(shadowRgb);
+    const shadowColor = getStyleFromRgb(shadowRgb);
 
     for (let i = points.length - 1; i >= 0; i--) {
         const n = i == points.length - 1 ? 0 : i + 1;

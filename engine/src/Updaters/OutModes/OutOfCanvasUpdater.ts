@@ -8,6 +8,10 @@ import { bounceHorizontal, bounceVertical } from "./Utils";
 export class OutOfCanvasUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
 
+    init(): void {
+        // nothing
+    }
+
     isEnabled(particle: Particle): boolean {
         return !particle.destroyed && !particle.spawning;
     }
@@ -73,10 +77,10 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
         const wrap = particle.options.move.warp,
             canvasSize = container.canvas.size,
             newPos = {
-                bottom: canvasSize.height + /*particle.getRadius() +*/ particle.offset.y,
-                left: /*-particle.getRadius()*/ -particle.offset.x,
-                right: canvasSize.width + /*particle.getRadius() +*/ particle.offset.x,
-                top: /*-particle.getRadius()*/ -particle.offset.y,
+                bottom: canvasSize.height + particle.getRadius() + particle.offset.y,
+                left: -particle.getRadius() - particle.offset.x,
+                right: canvasSize.width + particle.getRadius() + particle.offset.x,
+                top: -particle.getRadius() - particle.offset.y,
             },
             sizeValue = particle.getRadius(),
             nextBounds = calculateBounds(particle.position, sizeValue);
@@ -164,8 +168,20 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
         const gravityOptions = particle.options.move.gravity,
             container = this.container;
 
+        const canvasSize = container.canvas.size;
+        const pRadius = particle.getRadius();
+
         if (!gravityOptions.enable) {
-            if (!isPointInside(particle.position, container.canvas.size, particle.getRadius(), direction)) {
+            if (
+                (particle.velocity.y > 0 && particle.position.y <= canvasSize.height + pRadius) ||
+                (particle.velocity.y < 0 && particle.position.y >= -pRadius) ||
+                (particle.velocity.x > 0 && particle.position.x <= canvasSize.width + pRadius) ||
+                (particle.velocity.x < 0 && particle.position.x >= -pRadius)
+            ) {
+                return;
+            }
+
+            if (!isPointInside(particle.position, container.canvas.size, pRadius, direction)) {
                 container.particles.remove(particle);
             }
         } else {
@@ -173,9 +189,9 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
 
             if (
                 (!gravityOptions.inverse &&
-                    position.y > container.canvas.size.height &&
+                    position.y > canvasSize.height + pRadius &&
                     direction === OutModeDirection.bottom) ||
-                (gravityOptions.inverse && position.y < 0 && direction === OutModeDirection.top)
+                (gravityOptions.inverse && position.y < -pRadius && direction === OutModeDirection.top)
             ) {
                 container.particles.remove(particle);
             }

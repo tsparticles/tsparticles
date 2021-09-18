@@ -21,12 +21,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn install
       - run: npx lerna bootstrap
       - run: npx lerna run build
+      - run: echo ${{ github.repository_owner }}
+      - run: echo ${{ github.actor }}
       #- run: lerna test
       #- name: Codacy Coverage Reporter
       #  uses: codacy/codacy-coverage-reporter-action@0.2.0
@@ -57,7 +59,7 @@ jobs:
           projectId: tsparticles
           channelId: dev
 
-      - if: contains(github.ref, 'refs/pull')
+      - if: contains(github.ref, 'refs/pull') && github.repository_owner == github.actor
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'

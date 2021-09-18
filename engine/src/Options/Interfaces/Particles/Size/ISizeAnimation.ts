@@ -8,9 +8,13 @@ export interface ISizeAnimation extends IAnimation {
     /**
      * @deprecated use the new minimumValue instead
      */
-    size_min: number;
+    size_min?: number;
+
+    /**
+     * @deprecated use the new min/max object in the size value
+     */
+    minimumValue?: number;
 
     destroy: DestroyType | keyof typeof DestroyType;
-    minimumValue: number;
     startValue: StartValueType | keyof typeof StartValueType;
 }

@@ -36,7 +36,7 @@
       "split": {
         "count": 1,
         "factor": {
-          "value": 0.333333333
+          "value": 0.333333
         },
         "rate": {
           "value": 100
@@ -61,12 +61,12 @@
             "enable": false
           },
           "opacity": {
-            "value": 0.8,
+            "value": 1,
             "animation": {
               "enable": true,
-              "speed": 0.3,
+              "speed": 0.7,
               "minimumValue": 0.1,
-              "sync": true,
+              "sync": false,
               "startValue": "max",
               "destroy": "min"
             }
@@ -77,27 +77,26 @@
           "size": {
             "value": 1,
             "animation": {
-              "enable": false,
-              "speed": 150,
-              "minimumValue": 1,
-              "destroy": "max",
-              "startValue": "min",
-              "sync": true
+              "enable": false
             }
           },
           "life": {
-            "count": 1
+            "count": 1,
+            "duration": {
+              "value": {
+                "min": 1,
+                "max": 2
+              }
+            }
           },
           "move": {
             "enable": true,
             "gravity": {
-              "enable": true,
-              "inverse": false,
-              "acceleration": 1
+              "enable": false
             },
-            "speed": 1,
+            "speed": 2,
             "direction": "none",
-            "random": false,
+            "random": true,
             "straight": false,
             "outMode": "destroy"
           }
@@ -115,7 +114,7 @@
       "animation": {
         "enable": true,
         "sync": true,
-        "speed": 100,
+        "speed": 150,
         "startValue": "max",
         "destroy": "min"
       }

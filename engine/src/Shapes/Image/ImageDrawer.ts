@@ -127,7 +127,10 @@ export class ImageDrawer implements IShapeDrawer {
         }
 
         if (options?.destroy?.split?.particles) {
-            await this.loadImagesFromParticlesOptions(container, options?.destroy.split.particles);
+            await this.loadImagesFromParticlesOptions(
+                container,
+                options?.destroy.split.particles as RecursivePartial<IParticles>
+            );
         }
     }
 
@@ -179,8 +182,7 @@ export class ImageDrawer implements IShapeDrawer {
             return;
         }
 
-        const container = particle.container;
-        const images = this.getImages(container).images;
+        const images = this.getImages(particle.container).images;
         const imageData = particle.shapeData as IImageShape;
         const image = images.find((t) => t.source === imageData.src) ?? images[0];
         const color = particle.getFillColor();
@@ -191,7 +193,7 @@ export class ImageDrawer implements IShapeDrawer {
         }
 
         if (image.svgData !== undefined && imageData.replaceColor && color) {
-            const svgColoredData = replaceColorSvg(image, color, particle.opacity.value);
+            const svgColoredData = replaceColorSvg(image, color, particle.opacity?.value ?? 1);
 
             /* prepare to create img with colored svg */
             const svg = new Blob([svgColoredData], { type: "image/svg+xml" });

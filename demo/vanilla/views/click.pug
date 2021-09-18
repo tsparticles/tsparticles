@@ -1,0 +1,94 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="utf-8")
+        meta(name="description", content= "tsParticles")
+        meta(name="author", content= "Matteo Bruni")
+        meta(name="apple-mobile-web-app-capable" content="yes")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no")
+
+        meta(name="twitter:card" content="summary_large_image")
+        meta(name="twitter:creator" content="@HollowMatt_ITA")
+        meta(name="twitter:image:src" content="https://particles.js.org/images/demo.png")
+        meta(property="og:title" content="tsParticles - A lightweight TypeScript library for creating particles")
+        meta(property="og:site_name" content="tsParticles")
+        meta(property="og:url" content="https://particles.js.org/")
+        meta(property="og:description" content="A lightweight TypeScript library for creating particles.")
+        meta(property="og:image" content="https://particles.js.org/images/demo.png")
+
+        title tsParticles
+        link(href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css")
+        link(href="/fontawesome/css/all.css" rel="stylesheet" type="text/css")
+        link(href="/jsoneditor/jsoneditor.css" rel="stylesheet" type="text/css")
+
+        style.
+            /* ---- reset ---- */
+            body {
+                margin: 0;
+                font: normal 75% Arial, Helvetica, sans-serif;
+            }
+
+            canvas {
+                display: block;
+                vertical-align: bottom;
+            }
+    body
+        #tsparticles
+
+        script(src="/jquery/jquery.slim.min.js")
+        script(src="/popper.js/umd/popper.min.js")
+        script(src="/bootstrap/js/bootstrap.min.js")
+        script(src="/tsparticles/tsparticles.min.js")
+        script.
+            tsParticles
+                .load("tsparticles", {
+                    background: {
+                        color: "#000"
+                    },
+                    fullScreen: {
+                        enable: true,
+                        zIndex: 0
+                    },
+                    particles: {
+                        number: {
+                            value: 300,
+                            density: {
+                                enable: true
+                            }
+                        },
+                        size: {
+                            value: 5
+                        },
+                        move: {
+                            enable: true
+                        }
+                    }
+                }).then(container => {
+                container.addClickHandler((event, particles) => {
+                    for (const particle of particles) {
+                        if (particle.customClicked) {
+                            continue;
+                        }
+
+                        particle.customClicked = true;
+
+                        const oldColor = {
+                            h: particle.color.h.value,
+                            s: particle.color.s.value,
+                            l: particle.color.l.value,
+                        };
+
+                        particle.color.h.value = 0;
+                        particle.color.s.value = 100;
+                        particle.color.l.value = 50;
+
+                        setTimeout(() => {
+                            particle.color.h.value = oldColor.h;
+                            particle.color.s.value = oldColor.s;
+                            particle.color.l.value = oldColor.l;
+
+                            delete particle.customClicked;
+                        }, 1000);
+                    }
+                });
+            });

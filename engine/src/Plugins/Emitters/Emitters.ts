@@ -1,4 +1,4 @@
-import type { IContainerPlugin } from "../../Core/Interfaces/IContainerPlugin";
+import type { IContainerPlugin, ICoordinates, IDelta } from "../../Core/Interfaces";
 import { EmitterInstance } from "./EmitterInstance";
 import type { Container } from "../../Core/Container";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
@@ -7,9 +7,7 @@ import { Emitter } from "./Options/Classes/Emitter";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
 import { EmitterClickMode } from "./Enums";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
-import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { EmitterContainer } from "./EmitterContainer";
-import type { IDelta } from "../../Core/Interfaces/IDelta";
 import { deepExtend, itemFromArray } from "../../Utils";
 
 /**

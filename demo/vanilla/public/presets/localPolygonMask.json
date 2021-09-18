@@ -125,7 +125,7 @@
     "inlineArrangement": "equidistant",
     "scale": 3,
     "type": "inside",
-    "data": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" height=\"210\" width=\"400\"><path d=\"M150 0 L75 200 L225 200 Z\" /></svg>"
+    "data": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" height=\"200\" width=\"150\"><path d=\"M 75,0 0,200 h 150 z\" /></svg>"
   },
   "background": {
     "color": "#000000",

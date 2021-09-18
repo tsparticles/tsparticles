@@ -50,7 +50,7 @@ export class Container {
     bubble: IBubble;
     repulse: IRepulse;
     attract: IAttract;
-    readonly zLayers = 10000;
+    zLayers;
 
     /**
      * The options used by the container, it's a full [[Options]] object
@@ -116,6 +116,7 @@ export class Container {
         this.destroyed = false;
         this.paused = true;
         this.lastFrameTime = 0;
+        this.zLayers = 100;
         this.pageHidden = false;
         this._sourceOptions = sourceOptions;
         this.retina = new Retina(this);
@@ -169,9 +170,7 @@ export class Container {
         }
 
         /* options settings */
-        if (this._options) {
-            this._options.load(this._sourceOptions);
-        }
+        this._options.load(this._sourceOptions);
 
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);
@@ -456,18 +455,17 @@ export class Container {
             return;
         }
 
-        const clickOrTouchHandler = (e: Event, pos: ICoordinates) => {
+        const clickOrTouchHandler = (e: Event, pos: ICoordinates, radius: number) => {
             if (this.destroyed) {
                 return;
             }
 
-            const pxRatio = this.retina.pixelRatio;
-            const posRetina = {
-                x: pos.x * pxRatio,
-                y: pos.y * pxRatio,
-            };
-
-            const particles = this.particles.quadTree.queryCircle(posRetina, this.retina.sizeValue);
+            const pxRatio = this.retina.pixelRatio,
+                posRetina = {
+                    x: pos.x * pxRatio,
+                    y: pos.y * pxRatio,
+                },
+                particles = this.particles.quadTree.queryCircle(posRetina, radius * pxRatio);
 
             callback(e, particles);
         };
@@ -483,7 +481,7 @@ export class Container {
                 y: mouseEvent.offsetY || mouseEvent.clientY,
             };
 
-            clickOrTouchHandler(e, pos);
+            clickOrTouchHandler(e, pos, 1);
         };
 
         const touchStartHandler = () => {
@@ -510,14 +508,23 @@ export class Container {
 
             if (touched && !touchMoved) {
                 const touchEvent = e as TouchEvent;
-                const lastTouch = touchEvent.touches[touchEvent.touches.length - 1];
+                let lastTouch = touchEvent.touches[touchEvent.touches.length - 1];
+
+                if (!lastTouch) {
+                    lastTouch = touchEvent.changedTouches[touchEvent.changedTouches.length - 1];
+
+                    if (!lastTouch) {
+                        return;
+                    }
+                }
+
                 const canvasRect = this.canvas.element?.getBoundingClientRect();
                 const pos = {
                     x: lastTouch.clientX - (canvasRect?.left ?? 0),
                     y: lastTouch.clientY - (canvasRect?.top ?? 0),
                 };
 
-                clickOrTouchHandler(e, pos);
+                clickOrTouchHandler(e, pos, Math.max(lastTouch.radiusX, lastTouch.radiusY));
             }
 
             touched = false;
@@ -543,6 +550,11 @@ export class Container {
         el.addEventListener("touchcancel", touchCancelHandler);
     }
 
+    updateActualOptions(): void {
+        this.actualOptions.setResponsive(this.canvas.size.width, this.retina.pixelRatio, this._options);
+        this.actualOptions.setTheme(this.currentTheme);
+    }
+
     private async init(): Promise<void> {
         this.actualOptions = new Options();
 
@@ -552,11 +564,12 @@ export class Container {
         this.retina.init();
         this.canvas.init();
 
-        this.actualOptions.setResponsive(this.canvas.size.width, this.retina.pixelRatio, this._options);
-        this.actualOptions.setTheme(this.currentTheme);
+        this.updateActualOptions();
 
         this.canvas.initBackground();
         this.canvas.resize();
+
+        this.zLayers = this.actualOptions.zLayers;
 
         this.duration = getRangeValue(this.actualOptions.duration);
         this.lifeTime = 0;
@@ -579,6 +592,26 @@ export class Container {
                 plugin.init(this.actualOptions);
             } else if (plugin.initAsync !== undefined) {
                 await plugin.initAsync(this.actualOptions);
+            }
+        }
+
+        const pathOptions = this.actualOptions.particles.move.path;
+
+        if (pathOptions.generator) {
+            const customGenerator = Plugins.getPathGenerator(pathOptions.generator);
+
+            if (customGenerator) {
+                if (customGenerator.init) {
+                    this.pathGenerator.init = customGenerator.init;
+                }
+
+                if (customGenerator.generate) {
+                    this.pathGenerator.generate = customGenerator.generate;
+                }
+
+                if (customGenerator.update) {
+                    this.pathGenerator.update = customGenerator.update;
+                }
             }
         }
 

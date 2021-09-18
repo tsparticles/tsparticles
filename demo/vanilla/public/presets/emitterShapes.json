@@ -1,0 +1,102 @@
+{
+  "fpsLimit": 60,
+  "particles": {
+    "number": {
+      "value": 0
+    },
+    "color": {
+      "value": "#000000"
+    },
+    "shape": {
+      "type": "circle"
+    },
+    "opacity": {
+      "value": 1
+    },
+    "size": {
+      "value": 1
+    }
+  },
+  "interactivity": {
+    "detectsOn": "canvas",
+    "events": {
+      "resize": true
+    }
+  },
+  "detectRetina": true,
+  "background": {
+    "color": "#fff"
+  },
+  "emitters": [
+    {
+      "shape": "square",
+      "position": {
+        "x": 33,
+        "y": 33
+      },
+      "size": {
+        "width": 200,
+        "height": 200,
+        "mode": "precise"
+      },
+      "life": {
+        "duration": 10,
+        "delay": 0.5,
+        "count": 1
+      }
+    },
+    {
+      "shape": "circle",
+      "position": {
+        "x": 67,
+        "y": 33
+      },
+      "size": {
+        "width": 200,
+        "height": 200,
+        "mode": "precise"
+      },
+      "life": {
+        "duration": 10,
+        "delay": 0.5,
+        "count": 1
+      }
+    },
+    {
+      "fill": false,
+      "shape": "square",
+      "position": {
+        "x": 33,
+        "y": 67
+      },
+      "size": {
+        "width": 200,
+        "height": 200,
+        "mode": "precise"
+      },
+      "life": {
+        "duration": 10,
+        "delay": 0.5,
+        "count": 1
+      }
+    },
+    {
+      "fill": false,
+      "shape": "circle",
+      "position": {
+        "x": 67,
+        "y": 67
+      },
+      "size": {
+        "width": 200,
+        "height": 200,
+        "mode": "precise"
+      },
+      "life": {
+        "duration": 10,
+        "delay": 0.5,
+        "count": 1
+      }
+    }
+  ]
+}

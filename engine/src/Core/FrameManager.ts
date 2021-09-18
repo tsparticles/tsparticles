@@ -36,6 +36,11 @@ export class FrameManager {
             container.lifeTime += delta.value;
             container.lastFrameTime = timestamp;
 
+            if (deltaValue > 1000) {
+                container.draw(false);
+                return;
+            }
+
             container.particles.draw(delta);
 
             if (container.duration > 0 && container.lifeTime > container.duration) {

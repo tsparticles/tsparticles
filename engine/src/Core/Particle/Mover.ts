@@ -1,4 +1,4 @@
-import { clamp, getDistance, getDistances, getRangeMax, getRangeValue, isInArray, isSsr, Plugins } from "../../Utils";
+import { clamp, getDistance, getDistances, getRangeMax, getRangeValue, isInArray, isSsr } from "../../Utils";
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
 import { HoverMode, RotateDirection } from "../../Enums";
@@ -10,8 +10,8 @@ function applyDistance(particle: Particle): void {
     const dxFixed = Math.abs(dx),
         dyFixed = Math.abs(dy);
 
-    const hDistance = particle.maxDistance.horizontal;
-    const vDistance = particle.maxDistance.vertical;
+    const hDistance = particle.retina.maxDistance.horizontal;
+    const vDistance = particle.retina.maxDistance.vertical;
 
     if (!hDistance && !vDistance) {
         return;
@@ -71,14 +71,14 @@ export class Mover {
         const container = this.container,
             slowFactor = this.getProximitySpeedFactor(particle),
             baseSpeed =
-                (particle.moveSpeed ??= getRangeValue(moveOptions.speed) * container.retina.pixelRatio) *
+                (particle.retina.moveSpeed ??= getRangeValue(moveOptions.speed) * container.retina.pixelRatio) *
                 container.retina.reduceFactor,
-            moveDrift = (particle.moveDrift ??=
+            moveDrift = (particle.retina.moveDrift ??=
                 getRangeValue(particle.options.move.drift) * container.retina.pixelRatio),
             maxSize = getRangeMax(particleOptions.size.value) * container.retina.pixelRatio,
             sizeFactor = moveOptions.size ? particle.getRadius() / maxSize : 1,
             diffFactor = 2,
-            speedFactor = (sizeFactor * slowFactor * delta.factor) / diffFactor,
+            speedFactor = (sizeFactor * slowFactor * (delta.factor || 1)) / diffFactor,
             moveSpeed = baseSpeed * speedFactor;
 
         this.applyPath(particle, delta);
@@ -86,7 +86,7 @@ export class Mover {
         const gravityOptions = moveOptions.gravity;
         const gravityFactor = gravityOptions.enable && gravityOptions.inverse ? -1 : 1;
 
-        if (gravityOptions.enable) {
+        if (gravityOptions.enable && moveSpeed) {
             particle.velocity.y += (gravityFactor * (gravityOptions.acceleration * delta.factor)) / (60 * moveSpeed);
         }
 
@@ -94,14 +94,14 @@ export class Mover {
             particle.velocity.x += (moveDrift * delta.factor) / (60 * moveSpeed);
         }
 
-        const decay = 1 - particle.options.move.decay;
+        const decay = particle.moveDecay;
 
         if (decay != 1) {
             particle.velocity.multTo(decay);
         }
 
         const velocity = particle.velocity.mult(moveSpeed);
-        const maxSpeed = particle.maxSpeed ?? container.retina.maxSpeed;
+        const maxSpeed = particle.retina.maxSpeed ?? container.retina.maxSpeed;
 
         if (
             gravityOptions.enable &&
@@ -117,7 +117,7 @@ export class Mover {
         }
 
         const zIndexOptions = particle.options.zIndex,
-            zVelocityFactor = 1 - zIndexOptions.velocityRate * particle.zIndexFactor;
+            zVelocityFactor = (1 - particle.zIndexFactor) ** zIndexOptions.velocityRate;
 
         if (moveOptions.spin.enable) {
             this.spin(particle, moveSpeed);
@@ -153,7 +153,7 @@ export class Mover {
         particle.position.y = particle.spin.center.y + particle.spin.radius * updateFunc.y(particle.spin.angle);
         particle.spin.radius += particle.spin.acceleration;
 
-        const maxCanvasSize = Math.min(container.canvas.size.width, container.canvas.size.height);
+        const maxCanvasSize = Math.max(container.canvas.size.width, container.canvas.size.height);
 
         if (particle.spin.radius > maxCanvasSize / 2) {
             particle.spin.radius = maxCanvasSize / 2;
@@ -183,17 +183,7 @@ export class Mover {
             return;
         }
 
-        let generator = container.pathGenerator;
-
-        if (pathOptions.generator) {
-            const customGenerator = Plugins.getPathGenerator(pathOptions.generator);
-
-            if (customGenerator) {
-                generator = customGenerator;
-            }
-        }
-
-        const path = generator.generate(particle);
+        const path = container.pathGenerator.generate(particle);
 
         particle.velocity.addTo(path);
 
@@ -212,8 +202,6 @@ export class Mover {
         if (isSsr() || !options.interactivity.events.onHover.parallax.enable) {
             return;
         }
-
-        console.log("parallax");
 
         const parallaxForce = options.interactivity.events.onHover.parallax.force;
         const mousePos = container.interactivity.mouse.position;

@@ -4,19 +4,25 @@
 
 **Library TypeScript ringan untuk membuat partikel. Bebas dependensi ([\*](#dependencies)) dan tersedia untuk browser!**
 
-_Konversi dari [Particles.js](https://github.com/VincentGarreau/particles.js) ke dalam TypeScript, bebas dependensi ([\*](#dependencies)), ditingkatkan dengan fitur baru yang keren 😎, berbagai perbaikan bug dan **masih aktif ter maintenance**!_
+_Konversi dari [Particles.js](https://github.com/VincentGarreau/particles.js) ke dalam TypeScript, bebas
+dependensi ([\*](#dependencies)), ditingkatkan dengan fitur baru yang keren 😎, berbagai perbaikan bug dan **masih aktif
+ter maintenance**!_
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge?style=rounded)](https://www.jsdelivr.com/package/npm/tsparticles) [![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) [![npm](https://img.shields.io/npm/dm/tsparticles)](https://www.npmjs.com/package/tsparticles) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/) [![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Grade) [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/matteobruni/tsparticles)
 
 ## Ingin menggunakanya di website mu?
 
-**Library ini tersedia pada dua layanan CDN populer yang mudah dan siap untuk digunakan, jika kamu pernah menggunakan particles.js ini akan lebih mudah**.
+**Library ini tersedia pada dua layanan CDN populer yang mudah dan siap untuk digunakan, jika kamu pernah menggunakan
+particles.js ini akan lebih mudah**.
 
-Temukan Instruksi penggunaan [dibawah](https://github.com/matteobruni/tsparticles/blob/main/README.md#library-installation), dengan semua tautan yang dibutuhkan, dan _jangan takut dengan **TypeScript**, itu hanya bahasa sumber_.
+Temukan Instruksi
+penggunaan [dibawah](https://github.com/matteobruni/tsparticles/blob/main/README.md#library-installation), dengan semua
+tautan yang dibutuhkan, dan _jangan takut dengan **TypeScript**, itu hanya bahasa sumber_.
 
 **Output file nya akan tetap JavaScript**. 🤩
 
-Kedua CDN dan `npm` punya semua hal yang kamu butuhkan dalam **Javascript**, sebuah bundle browser yang siap digunakan (tsparticles.min.js) , dan semua file terpisah untuk sintaks `import` .
+Kedua CDN dan `npm` punya semua hal yang kamu butuhkan dalam **Javascript**, sebuah bundle browser yang siap digunakan (
+tsparticles.min.js) , dan semua file terpisah untuk sintaks `import` .
 
 **Jika kamu tertarik** beberapa baris instruksi dibawah ini untuk berpindah dari library particles.js yang lama.
 
@@ -69,7 +75,7 @@ const tsParticles = require("tsparticles");
 
 // atau
 
-import { tsParticles } from "tsparticles";
+import {tsParticles} from "tsparticles";
 ```
 
 `tsParticles` yang di muat berasal dari instance yang sama ketika kamu memanggil script nya.
@@ -91,6 +97,7 @@ Muat dan konfigurasi _particles_ nya:
 **index.html**
 
 ```html
+
 <div id="tsparticles"></div>
 
 <script src="tsparticles.min.js"></script>
@@ -103,20 +110,20 @@ Muat dan konfigurasi _particles_ nya:
 /* tsParticles.loadJSON(@dom-id, @path-json, @callback (opsional)); */
 
 tsParticles
-	.loadJSON("tsparticles", "presets/default.json")
-	.then((container) => {
-		console.log("callback - tsparticles config loaded");
-	})
-	.catch((error) => {
-		console.error(error);
-	});
+    .loadJSON("tsparticles", "presets/default.json")
+    .then((container) => {
+        console.log("callback - tsparticles config loaded");
+    })
+    .catch((error) => {
+        console.error(error);
+    });
 
 //atau
 
 /* tsParticles.load(@dom-id, @options); */
 
 tsParticles.load("tsparticles", {
-	/* pengaturan disini */
+    /* pengaturan disini */
 });
 
 //atau
@@ -124,26 +131,26 @@ tsParticles.load("tsparticles", {
 /* tsParticles.loadFromArray(@dom-id, @options, @index (opsional)); */
 
 tsParticles.loadFromArray("tsparticles", [
-	{
-		/* pengaturan disini */
-	},
-	{
-		/* pengaturan lain disini */
-	},
+    {
+        /* pengaturan disini */
+    },
+    {
+        /* pengaturan lain disini */
+    },
 ]);
 //random object
 
 tsParticles.loadFromArray(
-	"tsparticles",
-	[
-		{
-			/* pengaturan disini */
-		},
-		{
-			/* pengaturan lain disini */
-		},
-	],
-	1
+    "tsparticles",
+    [
+        {
+            /* pengaturan disini */
+        },
+        {
+            /* pengaturan lain disini */
+        },
+    ],
+    1
 ); //yang ke-dua
 // Penting! Jika index tidak diantara 0...<array.length, maka index akan diabaikan.
 
@@ -154,7 +161,7 @@ tsParticles.loadFromArray(
 /* ini akan dilakukan oleh semua partikel yang dimuat*/
 
 tsParticles.setOnClickHandler((event, particles) => {
-	/* kustomisasi pada penangan klik */
+    /* kustomisasi pada penangan klik */
 });
 
 // sekarang kamu dapat mengendalikan animasinya juga, sangat memungkinkan untuk menunda dan melanjutkan animasi.
@@ -179,7 +186,8 @@ particles.pause();
 
 [![npm](https://img.shields.io/npm/v/ng-particles)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/ng-particles)](https://www.npmjs.com/package/ng-particles)
 
-Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/tsparticles/blob/main/components/angular/README.md)
+Kamu dapat menemukan instruksi
+lengkap [disini](https://github.com/matteobruni/tsparticles/blob/main/components/angular/README.md)
 
 ### Inferno
 
@@ -187,7 +195,8 @@ Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/t
 
 [![npm](https://img.shields.io/npm/v/inferno-particles)](https://www.npmjs.com/package/inferno-particles) [![npm](https://img.shields.io/npm/dm/inferno-particles)](https://www.npmjs.com/package/inferno-particles)
 
-Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/tsparticles/blob/main/components/inferno/README.md)
+Kamu dapat menemukan instruksi
+lengkap [disini](https://github.com/matteobruni/tsparticles/blob/main/components/inferno/README.md)
 
 ### jQuery
 
@@ -195,7 +204,8 @@ Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/t
 
 [![npm](https://img.shields.io/npm/v/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles)](https://www.npmjs.com/package/jquery-particles)
 
-Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/tsparticles/blob/main/components/jquery/README.md)
+Kamu dapat menemukan instruksi
+lengkap [disini](https://github.com/matteobruni/tsparticles/blob/main/components/jquery/README.md)
 
 ### Preact
 
@@ -203,7 +213,8 @@ Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/t
 
 [![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles)
 
-Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/tsparticles/blob/main/components/preact/README.md)
+Kamu dapat menemukan instruksi
+lengkap [disini](https://github.com/matteobruni/tsparticles/blob/main/components/preact/README.md)
 
 ### ReactJS
 
@@ -211,7 +222,8 @@ Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/t
 
 [![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
 
-Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md)
+Kamu dapat menemukan instruksi
+lengkap [disini](https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md)
 
 ### Svelte
 
@@ -219,7 +231,8 @@ Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/t
 
 [![npm](https://img.shields.io/npm/v/svelte-particles)](https://www.npmjs.com/package/svelte-particles) [![npm downloads](https://img.shields.io/npm/dm/svelte-particles)](https://www.npmjs.com/package/svelte-particles)
 
-Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/tsparticles/blob/main/components/svelte/README.md)
+Kamu dapat menemukan instruksi
+lengkap [disini](https://github.com/matteobruni/tsparticles/blob/main/components/svelte/README.md)
 
 ### VueJS
 
@@ -227,17 +240,21 @@ Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/t
 
 [![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue)
 
-Kamu dapat menemukan instruksi lengkap [disini](https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md)
+Kamu dapat menemukan instruksi
+lengkap [disini](https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md)
 
 ---
 
 ## Template dan Resource
 
-Kamu dapat menemukan beberapa template terkait tsParticles [disini](https://github.com/tsparticles/templates). template yang dibuat untuk _Vanilla Javascript_, _ReactJS_, _VueJS_, _Angular_, _SvelteJS_ dan banyak _framework_ lainya.
+Kamu dapat menemukan beberapa template terkait tsParticles [disini](https://github.com/tsparticles/templates). template
+yang dibuat untuk _Vanilla Javascript_, _ReactJS_, _VueJS_, _Angular_, _SvelteJS_ dan banyak _framework_ lainya.
 
-Template akan bervariasi, akan ada template baru atau template lama yang diperbarui dengan fitur terbaru atau diubah ke gaya yang lebih baik. Coba periksa sesekali.
+Template akan bervariasi, akan ada template baru atau template lama yang diperbarui dengan fitur terbaru atau diubah ke
+gaya yang lebih baik. Coba periksa sesekali.
 
-Jika Kamu membuat beberapa desain template bagus dengan _ tsParticles _ jangan ragu untuk mengirimkan _pull request_ dengan template keren mu, Kamu akan dikreditkan sebagai pembuat template!
+Jika Kamu membuat beberapa desain template bagus dengan _ tsParticles _ jangan ragu untuk mengirimkan _pull request_
+dengan template keren mu, Kamu akan dikreditkan sebagai pembuat template!
 
 <https://github.com/tsparticles/templates>
 
@@ -311,13 +328,16 @@ Temukan contoh kode di [disini](https://github.com/matteobruni/tsparticles/tree/
 
 ## **Pengaturan/Konfigurasi**
 
-Kamu dapat menemukan semua konfigurasi [disini](https://particles.js.org/docs/interfaces/_options_interfaces_ioptions_.ioptions.html) 📖
+Kamu dapat menemukan semua
+konfigurasi [disini](https://particles.js.org/docs/interfaces/_options_interfaces_ioptions_.ioptions.html) 📖
 
 ## Ingin melihat dan mencobanya langsung?
 
-Saya sedah membuat sebuah koleksi di [CodePen](https://codepen.io/collection/DPOage) 😮 untuk tsParticles atau kamu bisa cek ke [profil ku](https://codepen.io/matteobruni).
+Saya sedah membuat sebuah koleksi di [CodePen](https://codepen.io/collection/DPOage) 😮 untuk tsParticles atau kamu bisa
+cek ke [profil ku](https://codepen.io/matteobruni).
 
-Jika tidak, ada tautan halaman demo di bawah ini. Cukup klik / tap Coronavirus di bawah ini, jangan takut. **Ini aman** 😷.
+Jika tidak, ada tautan halaman demo di bawah ini. Cukup klik / tap Coronavirus di bawah ini, jangan takut. **Ini aman**
+😷.
 
 [![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/#virus)
 
@@ -333,7 +353,10 @@ _Jika kamu cukup pemberani_ kamu bisa berpindah ke _branch_ `dev` untuk mencoba 
 
 ## Dependencies
 
-Kamu mungkin menyadari \* hampir bebas _dependency_. Ya, hampir semua fitur dapat berfungsi tanpa _dependency_, tapi... ya, ada sedikit pengecualian. misal fitur **Polygon Mask** memerlukan [`pathseg`](https://github.com/progers/pathseg) agar bekerja dengan baik di beberapa browser, dan Jelas Ikon Font (seperti `FontAwesome` ) pasti ditambahkan di halamanmu.
+Kamu mungkin menyadari \* hampir bebas _dependency_. Ya, hampir semua fitur dapat berfungsi tanpa _dependency_, tapi...
+ya, ada sedikit pengecualian. misal fitur **Polygon Mask**
+memerlukan [`@tsparticles/pathseg`](https://npmjs.com/package/@tsparticles/pathseg) agar bekerja dengan baik di beberapa
+browser, dan Jelas Ikon Font (seperti `FontAwesome` ) pasti ditambahkan di halamanmu.
 
 ---
 
@@ -345,7 +368,8 @@ Seriusan, Kamu cuma perlu mengganti sumber kode et-voilà, **siap digunakan** �
 
 Kamu bisa membaca lebih lanjut **[disini](https://dev.to/matteobruni/migrating-from-particles-js-to-tsparticles-2a6m)**
 
-Ingin tau 5 alasan kenapa haru pindah? [baca disini](https://dev.to/matteobruni/5-reasons-to-use-tsparticles-and-not-particles-js-1gbe)
+Ingin tau 5 alasan kenapa haru
+pindah? [baca disini](https://dev.to/matteobruni/5-reasons-to-use-tsparticles-and-not-particles-js-1gbe)
 
 _Dibawah ini kamu bisa menemukan semua informasi yang kamu butuhkan untuk menginstal tsParticles dan sintak baru nya._
 

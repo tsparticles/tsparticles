@@ -3,8 +3,18 @@ import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
 import type { Container } from "../Core/Container";
 import { getDistance, getDistances } from "./NumberUtils";
 import { colorMix, colorToRgb, getStyleFromHsl, getStyleFromRgb } from "./ColorUtils";
-import type { IContainerPlugin, ICoordinates, IDelta, IDimension, IHsl, IParticle, IRgb } from "../Core/Interfaces";
+import type {
+    IContainerPlugin,
+    ICoordinates,
+    IDelta,
+    IDimension,
+    IHsl,
+    IParticle,
+    IParticleGradientAnimation,
+    IRgb,
+} from "../Core/Interfaces";
 import type { Particle } from "../Core/Particle";
+import { AlterType, GradientType, RollMode } from "../Enums";
 
 function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
     context.beginPath();
@@ -231,28 +241,36 @@ export function drawParticle(
     composite: string,
     radius: number,
     opacity: number,
-    shadow: IShadow
+    shadow: IShadow,
+    gradient?: IParticleGradientAnimation
 ): void {
     const pos = particle.getPosition();
     const tiltOptions = particle.options.tilt;
     const rollOptions = particle.options.roll;
 
     context.save();
+
     if (tiltOptions.enable || rollOptions.enable) {
+        const roll = rollOptions.enable && particle.roll;
+        const tilt = tiltOptions.enable && particle.tilt;
+        const rollHorizontal = roll && (rollOptions.mode === RollMode.horizontal || rollOptions.mode === RollMode.both);
+        const rollVertical = roll && (rollOptions.mode === RollMode.vertical || rollOptions.mode === RollMode.both);
+
         context.setTransform(
-            rollOptions.enable ? Math.cos(particle.rollAngle) : 1,
-            tiltOptions.enable ? Math.cos(particle.tilt.value) * particle.tilt.cosDirection : 0,
-            tiltOptions.enable ? Math.sin(particle.tilt.value) * particle.tilt.sinDirection : 0,
-            rollOptions.enable ? Math.sin(particle.rollAngle) : 1,
+            rollHorizontal ? Math.cos(particle.roll.angle) : 1,
+            tilt ? Math.cos(particle.tilt.value) * particle.tilt.cosDirection : 0,
+            tilt ? Math.sin(particle.tilt.value) * particle.tilt.sinDirection : 0,
+            rollVertical ? Math.sin(particle.roll.angle) : 1,
             pos.x,
             pos.y
         );
     } else {
         context.translate(pos.x, pos.y);
     }
+
     context.beginPath();
 
-    const angle = particle.rotate.value + (particle.options.rotate.path ? particle.velocity.angle : 0);
+    const angle = (particle.rotate?.value ?? 0) + (particle.options.rotate.path ? particle.velocity.angle : 0);
 
     if (angle !== 0) {
         context.rotate(angle);
@@ -271,13 +289,42 @@ export function drawParticle(
         context.shadowOffsetY = shadow.offset.y;
     }
 
-    if (fillColorValue) {
-        context.fillStyle = fillColorValue;
+    if (gradient) {
+        const gradientAngle = gradient.angle.value;
+        const fillGradient =
+            gradient.type === GradientType.radial
+                ? context.createRadialGradient(0, 0, 0, 0, 0, radius)
+                : context.createLinearGradient(
+                      Math.cos(gradientAngle) * -radius,
+                      Math.sin(gradientAngle) * -radius,
+                      Math.cos(gradientAngle) * radius,
+                      Math.sin(gradientAngle) * radius
+                  );
+
+        for (const color of gradient.colors) {
+            fillGradient.addColorStop(
+                color.stop,
+                getStyleFromHsl(
+                    {
+                        h: color.value.h.value,
+                        s: color.value.s.value,
+                        l: color.value.l.value,
+                    },
+                    color.opacity?.value ?? opacity
+                )
+            );
+        }
+
+        context.fillStyle = fillGradient;
+    } else {
+        if (fillColorValue) {
+            context.fillStyle = fillColorValue;
+        }
     }
 
     const stroke = particle.stroke;
 
-    context.lineWidth = particle.strokeWidth;
+    context.lineWidth = particle.strokeWidth ?? 0;
 
     if (strokeColorValue) {
         context.strokeStyle = strokeColorValue;
@@ -285,7 +332,7 @@ export function drawParticle(
 
     drawShape(container, context, particle, radius, opacity, delta);
 
-    if (stroke.width > 0) {
+    if ((stroke?.width ?? 0) > 0) {
         context.stroke();
     }
 
@@ -300,7 +347,7 @@ export function drawParticle(
     context.restore();
 
     context.save();
-    if (tiltOptions.enable) {
+    if (tiltOptions.enable && particle.tilt) {
         context.setTransform(
             1,
             Math.cos(particle.tilt.value) * particle.tilt.cosDirection,
@@ -403,7 +450,6 @@ export function drawEllipse(
     end: number
 ): void {
     const pos = particle.getPosition();
-    context.beginPath();
 
     if (fillColorValue) {
         context.strokeStyle = getStyleFromHsl(fillColorValue, opacity);
@@ -417,7 +463,15 @@ export function drawEllipse(
 
     const rotationRadian = (rotation * Math.PI) / 180;
 
+    context.beginPath();
     context.ellipse(pos.x, pos.y, radius / 2, radius * 2, rotationRadian, start, end);
-
     context.stroke();
+}
+
+export function alterHsl(color: IHsl, type: AlterType, value: number): IHsl {
+    return {
+        h: color.h,
+        s: color.s,
+        l: color.l + (type === AlterType.darken ? -1 : 1) * value,
+    };
 }

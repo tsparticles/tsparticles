@@ -3,6 +3,71 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.18.0](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.17.1...ng-particles@2.18.0) (2021-09-18)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+## [2.17.1](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.17.0...ng-particles@2.17.1) (2021-09-15)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+# [2.17.0](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.16.3...ng-particles@2.17.0) (2021-08-23)
+
+
+### Bug Fixes
+
+* **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
+* **deps:** pin dependencies ([3dac0d0](https://github.com/matteobruni/tsparticles/commit/3dac0d0a594092707ddd31a70b09cdb7238d5eba))
+
+
+### Features
+
+* improved move path generators ([9b67377](https://github.com/matteobruni/tsparticles/commit/9b67377f9208a005b122e312ad4ad3c95a50deb7))
+
+
+
+
+
+## [2.16.3](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.16.2...ng-particles@2.16.3) (2021-08-10)
+
+
+### Bug Fixes
+
+* fixed click handler, it wasn't working fine ([fd9873b](https://github.com/matteobruni/tsparticles/commit/fd9873b250d236b196cc7ff952d237f2768fb26b))
+
+
+### Features
+
+* added new methods to particle class ([5743453](https://github.com/matteobruni/tsparticles/commit/5743453906001569f262888aa54539ad4e1463ac))
+
+
+
+
+
+## [2.16.2](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.16.1...ng-particles@2.16.2) (2021-07-31)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+## [2.16.1](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.16.0...ng-particles@2.16.1) (2021-07-29)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
 # [2.16.0](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.15.0...ng-particles@2.16.0) (2021-07-29)
 
 **Note:** Version bump only for package ng-particles
