@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "tsparticles";
+import type { ISourceOptions } from "tsparticles-engine";
 import { curvesPathName } from "tsparticles-path-curves";
 
 export const presetName = "seaAnemone";

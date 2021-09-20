@@ -26,6 +26,22 @@ const getExternals = (bundle) => {
                 amd: "tsparticles",
                 root: "window"
             }
+        },
+        {
+            "tsparticles-slim": {
+                commonjs: "tsparticles-slim",
+                commonjs2: "tsparticles-slim",
+                amd: "tsparticles-slim",
+                root: "window"
+            }
+        },
+        {
+            "tsparticles-engine": {
+                commonjs: "tsparticles-engine",
+                commonjs2: "tsparticles-engine",
+                amd: "tsparticles-engine",
+                root: "window"
+            }
         }
     ];
 };

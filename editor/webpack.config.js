@@ -2,7 +2,7 @@ const path = require("path");
 const TerserPlugin = require("terser-webpack-plugin");
 const webpack = require("webpack");
 const version = require("./package.json").version;
-const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const {BundleAnalyzerPlugin} = require("webpack-bundle-analyzer");
 
 const banner = `Author : Matteo Bruni
 MIT license: https://opensource.org/licenses/MIT
@@ -25,7 +25,7 @@ const getJsConfig = (entry) => {
             globalObject: "this"
         },
         resolve: {
-            extensions: [ ".js", ".json" ]
+            extensions: [".js", ".json"]
         },
         module: {
             rules: [
@@ -39,12 +39,29 @@ const getJsConfig = (entry) => {
         },
         externals: [
             {
-                tsparticles: {
+                "tsparticles": {
                     commonjs: "tsparticles",
                     commonjs2: "tsparticles",
                     amd: "tsparticles",
                     root: "window"
-                },
+                }
+            },
+            {
+                "tsparticles-slim": {
+                    commonjs: "tsparticles-slim",
+                    commonjs2: "tsparticles-slim",
+                    amd: "tsparticles-slim",
+                    root: "window"
+                }
+            },
+            {
+                "tsparticles-engine": {
+                    commonjs: "tsparticles-engine",
+                    commonjs2: "tsparticles-engine",
+                    amd: "tsparticles-engine",
+                    root: "window"
+                }
+            }, {
                 "object-gui": {
                     commonjs: "object-gui",
                     commonjs2: "object-gui",

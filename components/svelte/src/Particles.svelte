@@ -1,6 +1,6 @@
 <script lang="ts">
   import { afterUpdate, createEventDispatcher } from "svelte";
-  import { Container, tsParticles } from "tsparticles";
+  import { Container, tsParticles } from "tsparticles-engine";
 
   export let options = {};
   export let url = "";

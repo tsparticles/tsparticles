@@ -38,7 +38,7 @@
     "minify": "^7.0.2",
     "rimraf": "^3.0.2",
     "sass": "^1.37.5",
-    "tsparticles": "^1.35.0",
+    "tsparticles-engine": "^1.35.0",
     "tsparticles-interaction-light": "^1.35.0",
     "tsparticles-interaction-particles-repulse": "^1.35.0",
     "tsparticles-path-curves": "^1.35.0",

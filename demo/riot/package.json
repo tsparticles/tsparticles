@@ -32,6 +32,6 @@
     "path": "^0.12.7",
     "riot": "^6.0.3",
     "riot-particles": "^1.9.0",
-    "tsparticles": "^1.35.0"
+    "tsparticles-engine": "^1.35.0"
   }
 }

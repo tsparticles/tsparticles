@@ -45,7 +45,7 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles": "^1.35.0",
+    "tsparticles-engine": "^1.35.0",
     "tsparticles-path-curves": "^1.35.0"
   }
 }

@@ -6,11 +6,11 @@
 /// <reference types="react" />
 import { ComponentClass } from "react";
 import { IParticlesProps, IParticlesState, ParticlesProps } from "../src";
-import { ISourceOptions } from "tsparticles";
+import { ISourceOptions } from "tsparticles-engine";
 
 type IParticlesParams = IParticlesProps
 
-export * from "tsparticles";
+export * from "tsparticles-engine";
 
 export { ISourceOptions, IParticlesProps, ParticlesProps, IParticlesParams };
 

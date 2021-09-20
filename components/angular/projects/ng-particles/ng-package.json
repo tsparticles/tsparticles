@@ -4,7 +4,7 @@
   "lib": {
     "entryFile": "src/public-api.ts",
     "umdModuleIds": {
-      "tsparticles": "tsparticles"
+      "tsparticles-engine": "tsparticles-engine"
     }
   }
 }

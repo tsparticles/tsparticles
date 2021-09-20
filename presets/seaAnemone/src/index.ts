@@ -1,4 +1,4 @@
-import type { Main } from "tsparticles";
+import type { Main } from "tsparticles-engine";
 import { options, presetName } from "./options";
 import { loadCurvesPath } from "tsparticles-path-curves";
 

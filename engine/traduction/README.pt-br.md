@@ -69,7 +69,7 @@ const tsParticles = require("tsparticles");
 
 // ou
 
-import {tsParticles} from "tsparticles";
+import {tsParticles} from "tsparticles-engine";
 ```
 
 O `tsParticles` importado é a mesma instância que você tem quando está incluindo o script.

@@ -1,7 +1,7 @@
 import Particles from "./Particles";
 import type { IParticlesProps } from "./IParticlesProps";
 
-export * from "tsparticles";
+export * from "tsparticles-engine";
 
 export type { IParticlesProps };
 export type ParticlesProps = IParticlesProps;

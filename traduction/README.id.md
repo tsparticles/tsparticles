@@ -75,7 +75,7 @@ const tsParticles = require("tsparticles");
 
 // atau
 
-import {tsParticles} from "tsparticles";
+import {tsParticles} from "tsparticles-engine";
 ```
 
 `tsParticles` yang di muat berasal dari instance yang sama ketika kamu memanggil script nya.

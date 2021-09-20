@@ -1,5 +1,5 @@
-import type { ISourceOptions, RecursivePartial } from "tsparticles";
-import { InteractivityDetect } from "tsparticles";
+import type { ISourceOptions, RecursivePartial } from "tsparticles-engine";
+import { InteractivityDetect } from "tsparticles-engine";
 import { IConfettiOptions } from "./IConfettiOptions";
 import { ConfettiOptions } from "./ConfettiOptions";
 

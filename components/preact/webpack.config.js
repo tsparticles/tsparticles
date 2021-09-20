@@ -49,10 +49,26 @@ const getExternals = (target = "cjs") => {
         /[Pp]react/,
         /[Pp]react\/compat/,
         {
-            tsparticles: {
+            "tsparticles": {
                 commonjs: "tsparticles",
                 commonjs2: "tsparticles",
                 amd: "tsparticles",
+                root: "window"
+            }
+        },
+        {
+            "tsparticles-slim": {
+                commonjs: "tsparticles-slim",
+                commonjs2: "tsparticles-slim",
+                amd: "tsparticles-slim",
+                root: "window"
+            }
+        },
+        {
+            "tsparticles-engine": {
+                commonjs: "tsparticles-engine",
+                commonjs2: "tsparticles-engine",
+                amd: "tsparticles-engine",
                 root: "window"
             }
         },

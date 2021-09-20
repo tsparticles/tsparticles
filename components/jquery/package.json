@@ -74,7 +74,7 @@
     "jquery": ">=1"
   },
   "dependencies": {
-    "tsparticles": "^1.35.0"
+    "tsparticles-engine": "^1.35.0"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",

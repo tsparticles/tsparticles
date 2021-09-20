@@ -1,5 +1,5 @@
-import type { ISourceOptions } from "tsparticles";
-import { DestroyMode, DestroyType, MoveDirection, OutMode, ShapeType, StartValueType } from "tsparticles";
+import type { ISourceOptions } from "tsparticles-engine";
+import { DestroyMode, DestroyType, MoveDirection, OutMode, ShapeType, StartValueType } from "tsparticles-engine";
 
 export const options: ISourceOptions = {
     fullScreen: {

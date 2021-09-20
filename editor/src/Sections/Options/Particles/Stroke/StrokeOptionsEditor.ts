@@ -1,4 +1,4 @@
-import type { Container } from "tsparticles";
+import type { Container } from "tsparticles-engine";
 import type { IStroke } from "tsparticles/Options/Interfaces/Particles/IStroke";
 import { ColorOptionsEditor } from "../Color/ColorOptionsEditor";
 import { EditorGroup, SingleOrMultiple, EditorType } from "object-gui";

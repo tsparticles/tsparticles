@@ -70,7 +70,7 @@
     "vue": "<3"
   },
   "dependencies": {
-    "tsparticles": "^1.35.0",
+    "tsparticles-engine": "^1.35.0",
     "vue-class-component": "<8",
     "vue-property-decorator": "<10"
   },

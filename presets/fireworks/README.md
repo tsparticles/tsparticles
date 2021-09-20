@@ -73,7 +73,7 @@ This sample uses the class component syntax, but you can use hooks as well (if t
 
 ```javascript
 import Particles from "react-tsparticles";
-import { Main } from "tsparticles";
+import { Main } from "tsparticles-engine";
 import { loadFirePreset } from "tsparticles-preset-fire";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {

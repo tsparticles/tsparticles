@@ -3,7 +3,7 @@ import Particles from "react-tsparticles";
 import logo from './logo.svg';
 import './App.css';
 import particlesOptions from "./particles.json";
-import { ISourceOptions } from "tsparticles";
+import { ISourceOptions } from "tsparticles-engine";
 
 function App() {
     return (

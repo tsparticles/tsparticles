@@ -1,4 +1,4 @@
-import type { Main } from "tsparticles";
+import type { Main } from "tsparticles-engine";
 import { perlinNoiseGenerator } from "./pathGen";
 
 export const perlinNoisePathName = "perlinNoise";

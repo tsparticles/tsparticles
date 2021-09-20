@@ -1,6 +1,6 @@
-import type { Container, ICoordinates, IMovePathGenerator } from "tsparticles";
+import type { Container, ICoordinates, IMovePathGenerator } from "tsparticles-engine";
 import type { PolygonPathParticle } from "./PolygonPathParticle";
-import { Vector } from "tsparticles";
+import { Vector } from "tsparticles-engine";
 
 const dirsList: ICoordinates[] = [];
 

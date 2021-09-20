@@ -71,7 +71,7 @@
   },
   "dependencies": {
     "core-js": "^3.16.1",
-    "tsparticles": "^1.35.0",
+    "tsparticles-engine": "^1.35.0",
     "vue-class-component": "^8.0.0-rc.1"
   },
   "devDependencies": {

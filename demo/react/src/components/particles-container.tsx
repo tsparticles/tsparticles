@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Particles from 'react-tsparticles';
-import { IOptions, RecursivePartial } from "tsparticles";
+import { IOptions, RecursivePartial } from "tsparticles-engine";
 
 interface IProps {
     options: RecursivePartial<IOptions>;

@@ -1,5 +1,5 @@
 import { EditorGroup, EditorType } from "object-gui";
-import type { Container } from "tsparticles";
+import type { Container } from "tsparticles-engine";
 import { EditorBase } from "../../../../EditorBase";
 import type { IBounce } from "tsparticles/Options/Interfaces/Particles/Bounce/IBounce";
 

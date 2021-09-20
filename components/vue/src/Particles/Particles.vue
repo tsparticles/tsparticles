@@ -4,8 +4,8 @@
 
 <script lang="ts">
 import { Component, Prop } from "vue-property-decorator";
-import { tsParticles } from "tsparticles";
-import type { Container, ISourceOptions, Main } from "tsparticles";
+import { tsParticles } from "tsparticles-engine";
+import type { Container, ISourceOptions, Main } from "tsparticles-engine";
 import Vue from "vue";
 
 export type IParticlesProps = ISourceOptions;

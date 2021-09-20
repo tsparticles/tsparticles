@@ -7,7 +7,7 @@ import {
     Type as PolygonMaskType,
     InlineArrangement as PolygonMaskInlineArrangement
 } from "tsparticles/Plugins/PolygonMask/Enums";
-import type { ISourceOptions } from "tsparticles";
+import type { ISourceOptions } from "tsparticles-engine";
 
 export type TFrame = {
     backgroundColor: string;

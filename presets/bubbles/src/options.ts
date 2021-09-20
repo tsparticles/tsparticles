@@ -1,5 +1,5 @@
-import type { ISourceOptions } from "tsparticles";
-import { InteractivityDetect, MoveDirection, OutMode } from "tsparticles";
+import type { ISourceOptions } from "tsparticles-engine";
+import { InteractivityDetect, MoveDirection, OutMode } from "tsparticles-engine";
 
 export const options: ISourceOptions = {
     fpsLimit: 60,

@@ -29,7 +29,7 @@
     "ng-particles": "^2.18.0",
     "rxjs": "~7.3.0",
     "tslib": "^2.3.1",
-    "tsparticles": "^1.35.0",
+    "tsparticles-engine": "^1.35.0",
     "zone.js": "^0.11.4"
   },
   "devDependencies": {

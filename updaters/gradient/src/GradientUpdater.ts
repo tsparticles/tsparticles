@@ -4,7 +4,7 @@ import type {
     IParticleValueAnimation,
     Particle,
     IParticleNumericValueAnimation,
-} from "tsparticles";
+} from "tsparticles-engine";
 import {
     AnimationStatus,
     RotateDirection,
@@ -16,7 +16,7 @@ import {
     getRangeValue,
     itemFromArray,
     randomInRange,
-} from "tsparticles";
+} from "tsparticles-engine";
 
 function updateColorOpacity(delta: IDelta, value: IParticleNumericValueAnimation) {
     if (!value.enable) {

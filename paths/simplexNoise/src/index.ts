@@ -1,4 +1,4 @@
-import type { Main } from "tsparticles";
+import type { Main } from "tsparticles-engine";
 import { simplexNoiseGenerator } from "./pathGen";
 
 export const simplexNoisePathName = "simplexNoise";

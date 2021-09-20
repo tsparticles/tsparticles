@@ -72,7 +72,7 @@
     "webpack-cli": "^4.8.0"
   },
   "dependencies": {
-    "tsparticles": "^1.35.0",
+    "tsparticles-engine": "^1.35.0",
     "tsparticles-path-curves": "^1.35.0"
   }
 }

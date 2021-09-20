@@ -1,4 +1,4 @@
-import type { Main } from "tsparticles";
+import type { Main } from "tsparticles-engine";
 import { GradientUpdater } from "./GradientUpdater";
 
 export function loadGradientUpdater(tsParticles: Main): void {

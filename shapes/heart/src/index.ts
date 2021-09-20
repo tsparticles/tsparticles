@@ -1,4 +1,4 @@
-import { tsParticles } from "tsparticles";
+import { tsParticles } from "tsparticles-engine";
 import { loadHeartShape } from "./shape";
 
 loadHeartShape(tsParticles);

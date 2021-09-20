@@ -1,4 +1,4 @@
-import type { Container } from "tsparticles";
+import type { Container } from "tsparticles-engine";
 import { EditorGroup, EditorType } from "object-gui";
 import type { ILinks } from "tsparticles/Options/Interfaces/Particles/Links/ILinks";
 import { EditorBase } from "../../../../EditorBase";

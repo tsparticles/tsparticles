@@ -1,6 +1,6 @@
-import type { Main, RecursivePartial } from "tsparticles";
+import type { Main, RecursivePartial } from "tsparticles-engine";
 import { IConfettiOptions } from "./IConfettiOptions";
-import { tsParticles } from "tsparticles";
+import { tsParticles } from "tsparticles-engine";
 import { loadOptions } from "./options";
 
 function loadPreset(main: Main, confettiOptions: RecursivePartial<IConfettiOptions>, override = false): void {

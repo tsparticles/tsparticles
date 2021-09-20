@@ -5,7 +5,7 @@
 
 import type { ComponentClass } from "react";
 import { CSSProperties, RefObject } from "react";
-import type { Container, ISourceOptions, Main } from "tsparticles";
+import type { Container, ISourceOptions, Main } from "tsparticles-engine";
 
 export interface IParticlesProps {
     id?: string;
@@ -26,7 +26,7 @@ export interface IParticlesState {
     library?: Container;
 }
 
-export * from "tsparticles";
+export * from "tsparticles-engine";
 
 export type IParticlesParams = IParticlesProps;
 export type ParticleProps = IParticlesProps;

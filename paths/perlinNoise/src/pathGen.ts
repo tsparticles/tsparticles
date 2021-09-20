@@ -1,5 +1,5 @@
-import type { IMovePathGenerator, Container, Particle } from "tsparticles";
-import { Vector } from "tsparticles";
+import type { IMovePathGenerator, Container, Particle } from "tsparticles-engine";
+import { Vector } from "tsparticles-engine";
 import { noiseGen } from "./perlin";
 
 let noiseZ: number;

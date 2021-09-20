@@ -1,4 +1,4 @@
-import type { Container, IParticle, Particle } from "tsparticles";
+import type { Container, IParticle, Particle } from "tsparticles-engine";
 import { Infecter } from "./Infecter";
 
 export interface IParticleInfection {

@@ -1,6 +1,6 @@
 import type { IInfectionStage } from "../Interfaces/IInfectionStage";
 import { OptionsColor } from "tsparticles/Options/Classes/OptionsColor";
-import type { RecursivePartial } from "tsparticles";
+import type { RecursivePartial } from "tsparticles-engine";
 import type { IOptionLoader } from "tsparticles/Options/Interfaces/IOptionLoader";
 
 /**

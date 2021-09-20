@@ -70,7 +70,7 @@ const tsParticles = require("tsparticles");
 
 // или
 
-import {tsParticles} from "tsparticles";
+import {tsParticles} from "tsparticles-engine";
 ```
 
 Загруженная сущность `tsParticles` является абсолютной копией кода, вызываемого при включении через скрипт.
