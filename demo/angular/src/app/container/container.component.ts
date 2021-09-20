@@ -7,7 +7,7 @@ import type { Container } from "tsparticles-engine";
     styleUrls: [ './container.component.css' ]
 })
 export class ContainerComponent implements OnInit {
-    id = 'tsparticles';
+    id = 'tsparticles-engine';
     options = {
         background: {
             color: {
