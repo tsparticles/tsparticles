@@ -23,17 +23,16 @@ export const options: ISourceOptions = {
             value: 0.5,
         },
         size: {
-            value: 400,
-            random: {
-                enable: true,
-                minimumValue: 200,
-            },
+            value: { min: 200, max: 400 },
         },
         move: {
             enable: true,
-            speed: 20,
+            speed: 10,
             direction: MoveDirection.top,
-            outMode: OutMode.destroy,
+            outModes: {
+                top: OutMode.destroy,
+                default: OutMode.out,
+            },
         },
     },
     interactivity: {
@@ -44,10 +43,9 @@ export const options: ISourceOptions = {
     },
     detectRetina: true,
     emitters: {
-        direction: MoveDirection.top,
         position: {
             x: 50,
-            y: 120,
+            y: 130,
         },
         rate: {
             delay: 0.2,
