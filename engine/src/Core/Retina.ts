@@ -108,26 +108,25 @@ export class Retina {
         const options = particle.options;
         const ratio = this.pixelRatio;
         const moveDistance = options.move.distance;
-        const orbit = options.orbit;
+        const props = particle.retina;
 
-        particle.attractDistance = options.move.attract.distance * ratio;
-        particle.linksDistance = options.links.distance * ratio;
-        particle.linksWidth = options.links.width * ratio;
-        particle.moveDrift = getRangeValue(options.move.drift) * ratio;
-        particle.moveSpeed = getRangeValue(options.move.speed) * ratio;
-        particle.sizeAnimationSpeed = options.size.animation.speed * ratio;
-        particle.orbitRadius = orbit?.radius !== undefined ? orbit.radius * ratio : undefined;
+        props.attractDistance = options.move.attract.distance * ratio;
+        props.linksDistance = options.links.distance * ratio;
+        props.linksWidth = options.links.width * ratio;
+        props.moveDrift = getRangeValue(options.move.drift) * ratio;
+        props.moveSpeed = getRangeValue(options.move.speed) * ratio;
+        props.sizeAnimationSpeed = options.size.animation.speed * ratio;
 
         if (particle.spin) {
-            particle.spin.acceleration = getRangeValue(options.move.spin.acceleration) * ratio;
+            props.spinAcceleration = getRangeValue(options.move.spin.acceleration) * ratio;
         }
 
-        const maxDistance = particle.maxDistance;
+        const maxDistance = props.maxDistance;
 
         maxDistance.horizontal = moveDistance.horizontal !== undefined ? moveDistance.horizontal * ratio : undefined;
         maxDistance.vertical = moveDistance.vertical !== undefined ? moveDistance.vertical * ratio : undefined;
-        particle.wobbleDistance = getRangeValue(options.wobble.distance) * ratio;
-        particle.maxSpeed = options.move.gravity.maxSpeed * ratio;
+
+        props.maxSpeed = options.move.gravity.maxSpeed * ratio;
     }
 
     private handleMotionChange(mediaQuery: MediaQueryList): void {

@@ -1,8 +1,9 @@
-import { Particle } from "../../Core/Particle";
+import type { Particle } from "../../Core/Particle";
 import type { IDelta, IParticleUpdater, IParticleValueAnimation } from "../../Core/Interfaces";
-import { randomInRange } from "../../Utils";
+import { colorToHsl, getHslAnimationFromHsl, itemFromArray, randomInRange } from "../../Utils";
 import type { IColorAnimation } from "../../Options/Interfaces/IColorAnimation";
 import { AnimationStatus } from "../../Enums";
+import type { Container } from "../../Core/Container";
 
 function updateColorValue(
     delta: IDelta,
@@ -42,7 +43,7 @@ function updateColorValue(
 }
 
 function updateStrokeColor(particle: Particle, delta: IDelta): void {
-    if (!particle.stroke.color) {
+    if (!particle.stroke?.color) {
         return;
     }
 
@@ -67,13 +68,37 @@ function updateStrokeColor(particle: Particle, delta: IDelta): void {
 }
 
 export class StrokeColorUpdater implements IParticleUpdater {
+    constructor(private readonly container: Container) {}
+
+    init(particle: Particle): void {
+        const container = this.container;
+
+        /* strokeColor */
+        particle.stroke =
+            particle.options.stroke instanceof Array
+                ? itemFromArray(particle.options.stroke, particle.id, particle.options.reduceDuplicates)
+                : particle.options.stroke;
+
+        particle.strokeWidth = particle.stroke.width * container.retina.pixelRatio;
+
+        const strokeHslColor = colorToHsl(particle.stroke.color) ?? particle.getFillColor();
+
+        if (strokeHslColor) {
+            particle.strokeColor = getHslAnimationFromHsl(
+                strokeHslColor,
+                particle.stroke.color?.animation,
+                container.retina.reduceFactor
+            );
+        }
+    }
+
     isEnabled(particle: Particle): boolean {
-        const color = particle.stroke.color;
+        const color = particle.stroke?.color;
 
         return (
             !particle.destroyed &&
             !particle.spawning &&
-            color !== undefined &&
+            !!color &&
             ((particle.strokeColor?.h.value !== undefined && color.animation.h.enable) ||
                 (particle.strokeColor?.s.value !== undefined && color.animation.s.enable) ||
                 (particle.strokeColor?.l.value !== undefined && color.animation.l.enable))

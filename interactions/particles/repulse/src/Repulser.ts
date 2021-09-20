@@ -1,5 +1,5 @@
 import type { Container, IParticle } from "tsparticles";
-import { NumberUtils, Particle, ParticlesInteractorBase, Vector } from "tsparticles";
+import { Particle, ParticlesInteractorBase, Vector, getDistances, clamp } from "tsparticles";
 
 export class Repulser extends ParticlesInteractorBase {
     constructor(container: Container) {
@@ -27,14 +27,10 @@ export class Repulser extends ParticlesInteractorBase {
             }
 
             const pos2 = p2.getPosition();
-            const { dx, dy, distance } = NumberUtils.getDistances(pos2, pos1);
+            const { dx, dy, distance } = getDistances(pos2, pos1);
             const velocity = repulseOpt1.speed * repulseOpt1.factor;
             if (distance > 0) {
-                const repulseFactor = NumberUtils.clamp(
-                    (1 - Math.pow(distance / repulseOpt1.distance, 2)) * velocity,
-                    0,
-                    velocity
-                );
+                const repulseFactor = clamp((1 - Math.pow(distance / repulseOpt1.distance, 2)) * velocity, 0, velocity);
                 const normVec = Vector.create((dx / distance) * repulseFactor, (dy / distance) * repulseFactor);
 
                 p2.position.addTo(normVec);

@@ -2,7 +2,7 @@ import type { IInteractivity } from "./Interactivity/IInteractivity";
 import type { IParticles } from "./Particles/IParticles";
 import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask";
 import type { IBackground } from "./Background/IBackground";
-import type { RangeValue, SingleOrMultiple } from "../../Types";
+import type { RangeValue, RecursivePartial, SingleOrMultiple } from "../../Types";
 import type { ITheme } from "./Theme/ITheme";
 import type { IFullScreen } from "./FullScreen/IFullScreen";
 import type { IMotion } from "./Motion/IMotion";
@@ -34,7 +34,7 @@ export interface IOptions {
      * Sets the animated background mode for particles canvas bringing it to the back
      * @deprecated use the new fullScreen instead
      */
-    backgroundMode: IFullScreen;
+    backgroundMode: RecursivePartial<IFullScreen> | boolean;
 
     /**
      * Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.
@@ -60,7 +60,7 @@ export interface IOptions {
     /**
      * Sets the animated background mode for particles canvas bringing it to the back
      */
-    fullScreen: IFullScreen;
+    fullScreen: RecursivePartial<IFullScreen> | boolean;
 
     /**
      * The particles interaction options

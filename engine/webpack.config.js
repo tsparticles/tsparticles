@@ -2,7 +2,7 @@ const path = require("path");
 const TerserPlugin = require("terser-webpack-plugin");
 const webpack = require("webpack");
 const version = require("./package.json").version;
-const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const {BundleAnalyzerPlugin} = require("webpack-bundle-analyzer");
 
 const banner = `Author : Matteo Bruni
 MIT license: https://opensource.org/licenses/MIT
@@ -31,7 +31,7 @@ const getConfig = (entry) => {
             globalObject: "this"
         },
         resolve: {
-            extensions: [ ".js", ".json" ]
+            extensions: [".js", ".json"]
         },
         module: {
             rules: [

@@ -7,21 +7,40 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>React tsParticles - Demo</title>
     <link rel="stylesheet" href="../src/style/global.scss">
-    <script src="https://cdn.rawgit.com/progers/pathseg/master/pathseg.js"></script>
 </head>
 
 <body>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124567862-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'UA-124567862-1');
-    </script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-161253125-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
 
-    <div id="app"></div>
-    <script src="../src/index.tsx"></script>
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag("js", new Date());
+
+    gtag("config", "UA-161253125-1", {
+        "custom_map": {
+            "dimension1": "dimension_codepen_data",
+            "dimension2": "dimension_editor_data",
+            "dimension3": "dimension_editor_error",
+            "dimension4": "dimension_editor_mode",
+            "dimension5": "dimension_particles_export_config",
+            "dimension6": "dimension_new_preset",
+            "dimension7": "dimension_old_preset",
+            "dimension8": "dimension_status",
+            "dimension9": "dimension_particles_options"
+        }
+    });
+
+    gtag("config", "AW-1021008757");
+    gtag("event", "conversion", {"send_to": "AW-1021008757/3t7QCNqulswBEPW27eYD"});
+</script>
+
+<div id="app"></div>
+<script src="../src/index.tsx"></script>
 </body>
 
 </html>

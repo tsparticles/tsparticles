@@ -2,7 +2,7 @@ import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import pkg from './package.json';
-import { terser } from 'rollup-plugin-terser';
+import {terser} from 'rollup-plugin-terser';
 import typescript from '@rollup/plugin-typescript';
 
 const name = pkg.name
@@ -13,14 +13,14 @@ const name = pkg.name
 export default {
     input: 'src/index.ts',
     output: [
-        { file: pkg.module, 'format': 'es' },
-        { file: pkg.main, 'format': 'umd', name }
+        {file: pkg.module, 'format': 'es', inlineDynamicImports: true},
+        {file: pkg.main, 'format': 'umd', name, inlineDynamicImports: true}
     ],
     plugins: [
         svelte(),
         resolve(),
         commonjs(),
-        typescript({ sourceMap: false }),
+        typescript({sourceMap: false}),
         terser()
     ]
 };
