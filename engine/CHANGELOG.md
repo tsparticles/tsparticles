@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.35.1](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.35.0...tsparticles@1.35.1) (2021-09-20)
+
+
+### Bug Fixes
+
+* fixes [#2241](https://github.com/matteobruni/tsparticles/issues/2241) ([b5802df](https://github.com/matteobruni/tsparticles/commit/b5802dfcbf61f7d236cecc60e141ddd77d4a3d06))
+
+
+
+
+
 # [1.35.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.34.1...tsparticles@1.35.0) (2021-09-18)
 
 
