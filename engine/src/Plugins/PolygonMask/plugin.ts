@@ -8,6 +8,7 @@ import { Options } from "../../Options/Classes/Options";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
 import { Type } from "./Enums";
 import type { Main } from "../../main";
+import { isSsr } from "../../Utils";
 
 /**
  * @category Polygon Mask Plugin
@@ -44,8 +45,10 @@ class Plugin implements IPlugin {
 }
 
 export async function loadPolygonMaskPlugin(tsParticles: Main): Promise<void> {
-    if (!window.SVGPathSeg) {
-        await import("./pathseg");
+    if (!isSsr()) {
+        if (!window.SVGPathSeg) {
+            await import("./pathseg");
+        }
     }
 
     const plugin = new Plugin();
