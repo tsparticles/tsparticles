@@ -7,3 +7,12 @@ body {
   height: 100%;
   overflow: hidden;
 }
+#stats {
+  -webkit-user-select: none;
+}
+#stats {
+  overflow: hidden;
+}
+#stats-graph canvas {
+  border-radius: 3px 3px 0 0;
+}
