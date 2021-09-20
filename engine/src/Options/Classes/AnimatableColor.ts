@@ -1,6 +1,6 @@
 import type { IAnimatableColor } from "../Interfaces/IAnimatableColor";
 import { OptionsColor } from "./OptionsColor";
-import type { RecursivePartial } from "../../Types";
+import type { RecursivePartial, SingleOrMultiple } from "../../Types";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import { IColorAnimation } from "../Interfaces/IColorAnimation";
 import type { IHslAnimation } from "../Interfaces/IHslAnimation";
@@ -19,11 +19,20 @@ export class AnimatableColor extends OptionsColor implements IAnimatableColor, I
         this.animation = new HslAnimation();
     }
 
-    static create(source?: AnimatableColor, data?: string | RecursivePartial<IAnimatableColor>): AnimatableColor {
-        const color = source ?? new AnimatableColor();
+    static create(
+        source?: AnimatableColor,
+        data?: SingleOrMultiple<string> | RecursivePartial<IAnimatableColor>
+    ): AnimatableColor {
+        const color = new AnimatableColor();
+
+        color.load(source);
 
         if (data !== undefined) {
-            color.load(typeof data === "string" ? { value: data } : data);
+            if (typeof data === "string" || data instanceof Array) {
+                color.load({ value: data });
+            } else {
+                color.load(data);
+            }
         }
 
         return color;

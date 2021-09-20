@@ -1,7 +1,7 @@
 {
   "name": "react-tsparticles-demo",
   "private": true,
-  "version": "1.19.1",
+  "version": "1.20.0",
   "description": "> TODO: description",
   "author": "Matteo Bruni <ar3s@icloud.com>",
   "homepage": "https://github.com/matteobruni/tsparticles#readme",
@@ -30,12 +30,12 @@
     "prettier": "^2.3.2",
     "react-syntax-highlighter": "^15.4.4",
     "rxjs": "^7.3.0",
-    "typescript": "^4.3.5"
+    "typescript": "^4.4.2"
   },
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-tsparticles": "^1.34.1",
-    "tsparticles": "^1.34.1"
+    "react-tsparticles": "^1.35.0",
+    "tsparticles": "^1.35.0"
   }
 }

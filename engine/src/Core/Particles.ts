@@ -8,6 +8,7 @@ import type { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";
 import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
 import type { ICoordinates, IDelta, IMouseData, IParticle, IRgb } from "./Interfaces";
 import { Mover } from "./Particle/Mover";
+import { IParticlesFrequencies } from "./Interfaces/IParticlesFrequencies";
 
 /**
  * Particles manager object
@@ -37,12 +38,12 @@ export class Particles {
     linksColor?: IRgb | string;
     grabLineColor?: IRgb | string;
 
+    readonly updaters;
+
     private interactionManager;
     private nextId;
-    private linksFreq;
-    private trianglesFreq;
+    private readonly freqs: IParticlesFrequencies;
     private readonly mover;
-    private readonly updaters;
 
     constructor(private readonly container: Container) {
         this.nextId = 0;
@@ -52,8 +53,10 @@ export class Particles {
         this.limit = 0;
         this.needsSort = false;
         this.lastZIndex = 0;
-        this.linksFreq = new Map<string, number>();
-        this.trianglesFreq = new Map<string, number>();
+        this.freqs = {
+            links: new Map<string, number>(),
+            triangles: new Map<string, number>(),
+        };
         this.interactionManager = new InteractionManager(container);
 
         const canvasSize = this.container.canvas.size;
@@ -79,8 +82,8 @@ export class Particles {
 
         this.lastZIndex = 0;
         this.needsSort = false;
-        this.linksFreq = new Map<string, number>();
-        this.trianglesFreq = new Map<string, number>();
+        this.freqs.links = new Map<string, number>();
+        this.freqs.triangles = new Map<string, number>();
 
         let handled = false;
 
@@ -357,12 +360,12 @@ export class Particles {
     getLinkFrequency(p1: IParticle, p2: IParticle): number {
         const key = `${Math.min(p1.id, p2.id)}_${Math.max(p1.id, p2.id)}`;
 
-        let res = this.linksFreq.get(key);
+        let res = this.freqs.links.get(key);
 
         if (res === undefined) {
             res = Math.random();
 
-            this.linksFreq.set(key, res);
+            this.freqs.links.set(key, res);
         }
 
         return res;
@@ -385,12 +388,12 @@ export class Particles {
 
         const key = `${id1}_${id2}_${id3}`;
 
-        let res = this.trianglesFreq.get(key);
+        let res = this.freqs.triangles.get(key);
 
         if (res === undefined) {
             res = Math.random();
 
-            this.trianglesFreq.set(key, res);
+            this.freqs.triangles.set(key, res);
         }
 
         return res;

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.20.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.19.1...tsparticles-demo@1.20.0) (2021-09-18)
+
+
+### Bug Fixes
+
+* fixed issue with emitters and themes, they weren't applied correctly ([3a9dcae](https://github.com/matteobruni/tsparticles/commit/3a9dcaebed687277db76f7f1016e3835284b0d48))
+
+
+### Features
+
+* auto themes ([d80b78c](https://github.com/matteobruni/tsparticles/commit/d80b78cb49ae04796473bd06f827d5d5a29a3e35))
+
+
+
+
+
 ## [1.19.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.19.0...tsparticles-demo@1.19.1) (2021-09-15)
 
 **Note:** Version bump only for package tsparticles-demo

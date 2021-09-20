@@ -14,7 +14,7 @@ export class Attractor extends ParticlesInteractorBase {
 
     interact(p1: IParticle): void {
         const container = this.container,
-            distance = p1.attractDistance ?? container.retina.attractDistance,
+            distance = p1.retina.attractDistance ?? container.retina.attractDistance,
             pos1 = p1.getPosition(),
             query = container.particles.quadTree.queryCircle(pos1, distance);
 

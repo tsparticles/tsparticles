@@ -4,21 +4,27 @@
 
 **Uma biblioteca TypeScript leve para criação de partículas. Livre de dependências (\*) e pronto para o navegador!**
 
-_[Particles.js](https://github.com/VincentGarreau/particles.js) convertida em TypeScript, livre de dependências (\*), melhorada com novas features legais 😎 e correção de vários bugs e **é ativamente mantida**!_
+_[Particles.js](https://github.com/VincentGarreau/particles.js) convertida em TypeScript, livre de dependências (\*),
+melhorada com novas features legais 😎 e correção de vários bugs e **é ativamente mantida**!_
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge?style=rounded)](https://www.jsdelivr.com/package/npm/tsparticles) [![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) [![npm](https://img.shields.io/npm/dm/tsparticles)](https://www.npmjs.com/package/tsparticles) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/) [![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Grade) [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/matteobruni/tsparticles) [![Run on Repl.it](https://repl.it/badge/github/matteobruni/tsparticles)](https://repl.it/github/matteobruni/tsparticles)
 
 ## Você quer usá-la no seu website?
 
-**Essa biblioteca está disponível em dois dos CDNs mais populares e é fácil e está pronta para usar, se você estava usando particle.js é ainda mais fácil**.
+**Essa biblioteca está disponível em dois dos CDNs mais populares e é fácil e está pronta para usar, se você estava
+usando particle.js é ainda mais fácil**.
 
-Você encontrará as instruções [abaixo](https://github.com/matteobruni/tsparticles/blob/main/traduction/README.pt-br.md#instala%C3%A7%C3%A3o-da-biblioteca), com todos os links que você precisa, e _não se assuste com o **TypeScript**, é apenas a linguagem base_.
+Você encontrará as
+instruções [abaixo](https://github.com/matteobruni/tsparticles/blob/main/traduction/README.pt-br.md#instala%C3%A7%C3%A3o-da-biblioteca)
+, com todos os links que você precisa, e _não se assuste com o **TypeScript**, é apenas a linguagem base_.
 
 **Os arquivos de saída são JavaScript puro**. 🤩
 
-CDNs e `npm` tem todas as fontes que você precisa em **Javascript**, um pacote pronto pro navegador (tsparticles.min.js) e todos os arquivos separados para uso do `import`.
+CDNs e `npm` tem todas as fontes que você precisa em **Javascript**, um pacote pronto pro navegador (tsparticles.min.js)
+e todos os arquivos separados para uso do `import`.
 
-**Se você ainda está interessado** algumas linhas abaixo tem algumas instruções para a migrar da antiga biblioteca particles.js
+**Se você ainda está interessado** algumas linhas abaixo tem algumas instruções para a migrar da antiga biblioteca
+particles.js
 
 ## **_Instalação da Biblioteca_**
 
@@ -65,7 +71,7 @@ const tsParticles = require("tsparticles");
 
 // ou
 
-import { tsParticles } from "tsparticles";
+import {tsParticles} from "tsparticles";
 ```
 
 O `tsParticles` importado é a mesma instância que você tem quando está incluindo o script.
@@ -87,6 +93,7 @@ Carregue tsParticles e configure as partículas:
 **index.html**
 
 ```html
+
 <div id="tsparticles"></div>
 
 <script src="tsparticles.min.js"></script>
@@ -99,20 +106,20 @@ Carregue tsParticles e configure as partículas:
 /* tsParticles.loadJSON(@dom-id, @path-json, @callback (opcional)); */
 
 tsParticles
-  .loadJSON("tsparticles", "presets/default.json")
-  .then((container) => {
-    console.log("callback - configuração do tsparticles carregada");
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+    .loadJSON("tsparticles", "presets/default.json")
+    .then((container) => {
+        console.log("callback - configuração do tsparticles carregada");
+    })
+    .catch((error) => {
+        console.error(error);
+    });
 
 //ou
 
 /* tsParticles.load(@dom-id, @options); */
 
 tsParticles.load("tsparticles", {
-  /* options aqui */
+    /* options aqui */
 });
 
 //ou
@@ -120,26 +127,26 @@ tsParticles.load("tsparticles", {
 /* tsParticles.loadFromArray(@dom-id, @options, @index (opcional)); */
 
 tsParticles.loadFromArray("tsparticles", [
-  {
-    /* options aqui */
-  },
-  {
-    /* outras options aqui */
-  },
+    {
+        /* options aqui */
+    },
+    {
+        /* outras options aqui */
+    },
 ]);
 //objeto aleatório
 
 tsParticles.loadFromArray(
-  "tsparticles",
-  [
-    {
-      /* options aqui */
-    },
-    {
-      /* outras options aqui */
-    },
-  ],
-  1
+    "tsparticles",
+    [
+        {
+            /* options aqui */
+        },
+        {
+            /* outras options aqui */
+        },
+    ],
+    1
 ); //o segundo
 // Importante! Se o index não está na faixa entre 0...<array.length, o index vai ser ignorado.
 
@@ -150,7 +157,7 @@ tsParticles.loadFromArray(
 /* isso vai ser disparado por todas as partículas carregadas */
 
 tsParticles.setOnClickHandler((event, particles) => {
-  /* tratamento customizado de clique */
+    /* tratamento customizado de clique */
 });
 
 // agora você pode controlar as animações também, é possível pausar e resumir as animações
@@ -175,7 +182,8 @@ particles.pause();
 
 [![npm](https://img.shields.io/npm/v/ng-particles)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/ng-particles)](https://www.npmjs.com/package/ng-particles)
 
-Você pode encontrar as instruções [aqui](https://github.com/matteobruni/tsparticles/blob/main/components/angular/README.md)
+Você pode encontrar as
+instruções [aqui](https://github.com/matteobruni/tsparticles/blob/main/components/angular/README.md)
 
 ### Inferno
 
@@ -183,7 +191,8 @@ Você pode encontrar as instruções [aqui](https://github.com/matteobruni/tspar
 
 [![npm](https://img.shields.io/npm/v/inferno-particles)](https://www.npmjs.com/package/inferno-particles) [![npm](https://img.shields.io/npm/dm/inferno-particles)](https://www.npmjs.com/package/inferno-particles)
 
-Você pode encontrar as instruções [aqui](https://github.com/matteobruni/tsparticles/blob/main/components/inferno/README.md)
+Você pode encontrar as
+instruções [aqui](https://github.com/matteobruni/tsparticles/blob/main/components/inferno/README.md)
 
 ### jQuery
 
@@ -191,7 +200,8 @@ Você pode encontrar as instruções [aqui](https://github.com/matteobruni/tspar
 
 [![npm](https://img.shields.io/npm/v/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles)](https://www.npmjs.com/package/jquery-particles)
 
-Você pode encontrar as instruções [aqui](https://github.com/matteobruni/tsparticles/blob/main/components/jquery/README.md)
+Você pode encontrar as
+instruções [aqui](https://github.com/matteobruni/tsparticles/blob/main/components/jquery/README.md)
 
 ### Preact
 
@@ -199,7 +209,8 @@ Você pode encontrar as instruções [aqui](https://github.com/matteobruni/tspar
 
 [![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles)
 
-Você pode encontrar as instruções [aqui](https://github.com/matteobruni/tsparticles/blob/main/components/preact/README.md)
+Você pode encontrar as
+instruções [aqui](https://github.com/matteobruni/tsparticles/blob/main/components/preact/README.md)
 
 ### ReactJS
 
@@ -207,7 +218,8 @@ Você pode encontrar as instruções [aqui](https://github.com/matteobruni/tspar
 
 [![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
 
-Você pode encontrar as instruções [aqui](https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md)
+Você pode encontrar as
+instruções [aqui](https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md)
 
 ### Svelte
 
@@ -215,7 +227,8 @@ Você pode encontrar as instruções [aqui](https://github.com/matteobruni/tspar
 
 [![npm](https://img.shields.io/npm/v/svelte-particles)](https://www.npmjs.com/package/svelte-particles) [![npm downloads](https://img.shields.io/npm/dm/svelte-particles)](https://www.npmjs.com/package/svelte-particles)
 
-Você pode encontrar as instruções [aqui](https://github.com/matteobruni/tsparticles/blob/main/components/svelte/README.md)
+Você pode encontrar as
+instruções [aqui](https://github.com/matteobruni/tsparticles/blob/main/components/svelte/README.md)
 
 ### VueJS
 
@@ -229,11 +242,14 @@ Você pode encontrar as instruções [aqui](https://github.com/matteobruni/tspar
 
 ## Templates e Recursos
 
-Você pode encontar alguns templates relacionados a tsParticles [aqui](https://github.com/tsparticles/templates). Os templates são criados para *Vanilla Javascript*, *ReactJS*, *VueJS*, *Angular*, *SvelteJS* e outros frameworks.
+Você pode encontar alguns templates relacionados a tsParticles [aqui](https://github.com/tsparticles/templates). Os
+templates são criados para *Vanilla Javascript*, *ReactJS*, *VueJS*, *Angular*, *SvelteJS* e outros frameworks.
 
-Os templates podem variar, novos podem ser criados ou antigos atualizados com as últimas features ou modificados para um estilo melhor. Dê uma olhada neles de vez em quando.
+Os templates podem variar, novos podem ser criados ou antigos atualizados com as últimas features ou modificados para um
+estilo melhor. Dê uma olhada neles de vez em quando.
 
-Se você criou um bom design com *tsParticles* sinta-se livre para enviar um pull request com seu template legal, você será creditado como autor do template!
+Se você criou um bom design com *tsParticles* sinta-se livre para enviar um pull request com seu template legal, você
+será creditado como autor do template!
 
 <https://github.com/tsparticles/templates>
 
@@ -301,19 +317,23 @@ _Não clique! Não clique! OH NÃO ESTÁ SE ESPALHANDO!!!!_
 
 **particles.json**
 
-Você pode encontrar uma config de exemplo [aqui](https://github.com/matteobruni/tsparticles/tree/main/website/presets) 📖
+Você pode encontrar uma config de exemplo [aqui](https://github.com/matteobruni/tsparticles/tree/main/website/presets)
+📖
 
 ---
 
 ## **_Opções_**
 
-Você pode encontrar todas as opções disponíveis [aqui](https://particles.js.org/docs/interfaces/_options_interfaces_ioptions_.ioptions.html) 📖
+Você pode encontrar todas as opções
+disponíveis [aqui](https://particles.js.org/docs/interfaces/_options_interfaces_ioptions_.ioptions.html) 📖
 
 ## Quer ver em ação e testar?
 
-Eu criei uma coleção do tsParticles no [CodePen](https://codepen.io/collection/DPOage) 😮 ou você pode conferir no meu [perfil](https://codepen.io/matteobruni)
+Eu criei uma coleção do tsParticles no [CodePen](https://codepen.io/collection/DPOage) 😮 ou você pode conferir no
+meu [perfil](https://codepen.io/matteobruni)
 
-De outra maneira tem o link da página da demo abaixo. Apenas clique/toque o Coronavirus abaixo, não tenha medo. **É seguro** 😷.
+De outra maneira tem o link da página da demo abaixo. Apenas clique/toque o Coronavirus abaixo, não tenha medo. **É
+seguro** 😷.
 
 [![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/#virus)
 
@@ -329,7 +349,10 @@ _Se você é valente o suficiente_ você pode trocar para a branch `dev` para te
 
 ## Dependências
 
-Você deve ter reparado o \* perto de "livre de dependências". Bem quase todas features funcionam sem nenhuma dependência, mas... Bem tem um pequeno porém. A feature **Máscara Poligonal** exige [`pathseg`](https://github.com/progers/pathseg) para funcionar corretamente em alguns navegadores, e obviamente as Icon Fonts (tipo `FontAwesome` ) tem que ser incluído na sua página.
+Você deve ter reparado o \* perto de "livre de dependências". Bem quase todas features funcionam sem nenhuma
+dependência, mas... Bem tem um pequeno porém. A feature **Máscara Poligonal**
+exige [`@tsparticles/pathseg`](https://npmjs.com/package/@tsparticles/pathseg) para funcionar corretamente em alguns
+navegadores, e obviamente as Icon Fonts (tipo `FontAwesome` ) tem que ser incluído na sua página.
 
 ---
 
@@ -341,7 +364,8 @@ Sério, você só precisa mudar o script source et-voilà, **você está pronto*
 
 Você pode ler mais **[aqui](https://dev.to/matteobruni/migrating-from-particles-js-to-tsparticles-2a6m)**
 
-Quer saber 5 razões para fazer a troca? [Leia aqui](https://dev.to/matteobruni/5-reasons-to-use-tsparticles-and-not-particles-js-1gbe)
+Quer saber 5 razões para fazer a
+troca? [Leia aqui](https://dev.to/matteobruni/5-reasons-to-use-tsparticles-and-not-particles-js-1gbe)
 
 _Abaixo você pode encontrar toda informação que precisa para instalar tsParticles e sua nova sintaxe._
 

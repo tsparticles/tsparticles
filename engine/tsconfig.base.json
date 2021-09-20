@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2015",
+    "target": "es2017",
     "lib": [
       "ESNext",
       "ES2020",
@@ -11,6 +11,7 @@
       "ES2015",
       "DOM"
     ],
+    "allowJs": true,
     "rootDir": "./src",
     "declaration": true,
     "removeComments": true,
@@ -26,6 +27,9 @@
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true
   },
+  "include": [
+    "./src"
+  ],
   "exclude": [
     "./tests/",
     "./node_modules/**/*",

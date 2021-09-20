@@ -1,4 +1,4 @@
-import { ExternalInteractorBase, HoverMode, Utils } from "tsparticles";
+import { ExternalInteractorBase, HoverMode, isInArray } from "tsparticles";
 import type { Container } from "tsparticles";
 import { drawLight } from "./Utils";
 
@@ -33,7 +33,7 @@ export class ExternalLighter extends ExternalInteractorBase {
             return false;
         }
 
-        return Utils.isInArray(HoverMode.light, events.onHover.mode);
+        return isInArray(HoverMode.light, events.onHover.mode);
     }
 
     reset(): void {

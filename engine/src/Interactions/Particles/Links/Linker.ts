@@ -76,7 +76,7 @@ export class Linker extends ParticlesInteractorBase {
 
         const linkOpt1 = p1.options.links;
         const optOpacity = linkOpt1.opacity;
-        const optDistance = p1.linksDistance ?? container.retina.linksDistance;
+        const optDistance = p1.retina.linksDistance ?? container.retina.linksDistance;
         const warp = linkOpt1.warp;
         const range = warp
             ? new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize)

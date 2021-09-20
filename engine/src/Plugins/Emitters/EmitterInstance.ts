@@ -73,9 +73,7 @@ export class EmitterInstance {
         }
 
         this.paused = !this.emitterOptions.autoPlay;
-
         this.particlesOptions = particlesOptions;
-
         this.size =
             this.emitterOptions.size ??
             ((): IEmitterSize => {
@@ -89,7 +87,6 @@ export class EmitterInstance {
 
                 return size;
             })();
-
         this.lifeCount = this.emitterOptions.life.count ?? -1;
         this.immortal = this.lifeCount <= 0;
 
@@ -237,7 +234,6 @@ export class EmitterInstance {
 
     private calcPosition(): ICoordinates {
         const container = this.container;
-
         const percentPosition = this.emitterOptions.position;
 
         return {
@@ -273,7 +269,7 @@ export class EmitterInstance {
         for (let i = 0; i < quantity; i++) {
             const particlesOptions = deepExtend({}, this.particlesOptions) as RecursivePartial<IParticles>;
 
-            if (this.spawnColor !== undefined) {
+            if (this.spawnColor) {
                 const colorAnimation = this.emitterOptions.spawnColor?.animation;
 
                 if (colorAnimation) {

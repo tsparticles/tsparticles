@@ -169,8 +169,8 @@ export class LinkInstance implements IContainerPlugin {
                 return;
             }
 
-            const width = p1.linksWidth ?? container.retina.linksWidth;
-            const maxDistance = p1.linksDistance ?? container.retina.linksDistance;
+            const width = p1.retina.linksWidth ?? container.retina.linksWidth;
+            const maxDistance = p1.retina.linksDistance ?? container.retina.linksDistance;
 
             drawLinkLine(
                 ctx,

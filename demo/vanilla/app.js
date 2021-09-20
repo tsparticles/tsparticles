@@ -53,7 +53,6 @@ app.use("/shape-multiline-text", express.static("./node_modules/tsparticles-shap
 app.use("/shape-rounded-rect", express.static("./node_modules/tsparticles-shape-rounded-rect"));
 app.use("/shape-spiral", express.static("./node_modules/tsparticles-shape-spiral"));
 app.use("/three", express.static("./node_modules/three/"));
-app.use("/pathseg", express.static("./node_modules/pathseg/"));
 
 app.get('/', function (req, res) {
     res.render('index');

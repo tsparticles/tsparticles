@@ -346,7 +346,7 @@ You can find some config samples [here](https://github.com/matteobruni/tsparticl
 ## **_Options_**
 
 You can find all options
-available [here](https://particles.js.org/docs/interfaces/_options_interfaces_ioptions_.ioptions.html) 📖
+available [here](https://particles.js.org/docs/interfaces/Options_Interfaces_IOptions.IOptions.html) 📖
 
 ## Want to see it in action and try it?
 
@@ -366,12 +366,6 @@ yarn install && yarn start
 **Boom! 💥** <http://localhost:3000> and you can checkout other demos.
 
 _If you are brave enough_ you can switch to the `dev` branch for trying the features under development.
-
-## Dependencies
-
-You may have notices the \* near dependency free. Well almost all features works without any dependency, but... Well
-there's a little but. The **Polygon Mask** feature requires [`pathseg`](https://github.com/progers/pathseg) for some
-browsers to work fine, and obviously the Icon Fonts (like `FontAwesome` ) must be included in your page.
 
 ---
 
@@ -396,7 +390,7 @@ tsParticles now supports some customizations 🥳.
 
 **You can create your own plugins**
 
-_Read more [here](https://particles.js.org/docs/modules/_core_interfaces_iplugin_.html)..._
+_Read more [here](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.html)..._
 
 ---
 
