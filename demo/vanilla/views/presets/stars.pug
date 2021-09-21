@@ -23,5 +23,29 @@ html(lang="en")
         #tsparticles
 
         script(src="/preset-stars/tsparticles.preset.stars.bundle.min.js")
+        script(src="/three/examples/js/libs/stats.min.js")
         script.
             tsParticles.load("tsparticles", {preset: "stars"});
+
+            const stats = new Stats();
+
+            stats.setMode(0);
+            stats.domElement.style.position = "absolute";
+            stats.domElement.style.left = "3px";
+            stats.domElement.style.top = "3px";
+            stats.domElement.id = "stats-graph";
+
+            const initStats = function () {
+                const update = function () {
+                    stats.begin();
+                    stats.end();
+
+                    requestAnimationFrame(update);
+                };
+
+                requestAnimationFrame(update);
+            };
+
+            document.body.querySelector('#stats').appendChild(stats.domElement);
+
+            initStats();
