@@ -19,8 +19,6 @@ const getExternals = (bundle) => {
     }
 
     return [
-        /*
- */
         {
             "tsparticles-engine/Updaters/Color": {
                 commonjs: "tsparticles-engine/Updaters/Color",
