@@ -23,12 +23,8 @@ const getConfig = (entry) => {
             path: path.resolve(__dirname, "dist"),
             filename: "[name].js",
             libraryTarget: "umd",
-            /*library: {
-                root: "tsparticles",
-                commonjs: "tsparticles",
-                amd: "tsparticles",
-            },*/
-            globalObject: "this"
+            globalObject: "this",
+            chunkFilename: '[name].js',
         },
         resolve: {
             extensions: [".js", ".json"]

@@ -1,12 +1,12 @@
-import type { Container } from "../../Core/Container";
-import type { IContainerPlugin, ICoordinates, IDelta, IDimension } from "../../Core/Interfaces";
+import type { Container } from "tsparticles-engine";
+import type { IContainerPlugin, ICoordinates, IDelta, IDimension } from "tsparticles-engine";
 import { InlineArrangement, Type } from "./Enums";
-import { Particle } from "../../Core/Particle";
-import { Constants, deepExtend, getDistance, getDistances, itemFromArray } from "../../Utils";
+import { Particle } from "tsparticles-engine";
+import { Constants, deepExtend, getDistance, getDistances, itemFromArray } from "tsparticles-engine";
 import type { ISvgPath } from "./Interfaces/ISvgPath";
-import type { RecursivePartial } from "../../Types";
+import type { RecursivePartial } from "tsparticles-engine";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
-import { OutModeDirection } from "../../Enums";
+import { OutModeDirection } from "tsparticles-engine";
 import type { IPolygonMaskOptions } from "./types";
 import { calcClosestPtOnSegment, drawPolygonMask, drawPolygonMaskPath, parsePaths, segmentBounce } from "./utils";
 

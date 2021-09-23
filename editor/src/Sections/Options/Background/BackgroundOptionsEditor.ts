@@ -1,5 +1,5 @@
-import type { IBackground } from "tsparticles/Options/Interfaces/Background/IBackground";
-import type { IColor } from "tsparticles/Core/Interfaces/Colors";
+import type { IBackground } from "tsparticles-engine/Options/Interfaces/Background/IBackground";
+import type { IColor } from "tsparticles-engine/Core/Interfaces/Colors";
 import type { Container } from "tsparticles-engine";
 import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../EditorBase";

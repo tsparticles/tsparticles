@@ -3,11 +3,11 @@ import { InlineArrangement, InlineArrangementAlt, Type } from "../../Enums";
 import { Draw } from "./Draw";
 import { Move } from "./Move";
 import { Inline } from "./Inline";
-import type { RecursivePartial } from "../../../../Types";
-import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
+import type { RecursivePartial } from "tsparticles-engine";
+import type { ICoordinates } from "tsparticles-engine";
 import { LocalSvg } from "./LocalSvg";
-import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
-import { deepExtend } from "../../../../Utils";
+import type { IOptionLoader } from "tsparticles-engine/Options/Interfaces/IOptionLoader";
+import { deepExtend } from "tsparticles-engine";
 
 /**
  * [[include:Options/Plugins/PolygonMask.md]]

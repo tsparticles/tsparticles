@@ -72,6 +72,7 @@
   "types": "index.d.ts",
   "dependencies": {
     "tsparticles-engine": "^1.35.1",
-    "tsparticles-slim": "^1.35.1"
+    "tsparticles-slim": "^1.35.1",
+    "tsparticles-plugin-polygon-mask": "^1.35.1"
   }
 }

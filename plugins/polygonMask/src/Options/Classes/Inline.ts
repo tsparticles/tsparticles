@@ -1,7 +1,7 @@
 import type { IInline } from "../Interfaces/IInline";
 import { InlineArrangement, InlineArrangementAlt } from "../../Enums";
-import type { RecursivePartial } from "../../../../Types";
-import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
+import type { RecursivePartial } from "tsparticles-engine";
+import type { IOptionLoader } from "tsparticles-engine/Options/Interfaces/IOptionLoader";
 
 /**
  * @category Polygon Mask Plugin

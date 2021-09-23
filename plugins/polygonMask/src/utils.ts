@@ -1,9 +1,9 @@
-import type { ICoordinates } from "../../Core/Interfaces";
+import type { ICoordinates } from "tsparticles-engine";
 import type { IDrawStroke } from "./Options/Interfaces/IDrawStroke";
-import { colorToRgb, getDistances, getStyleFromRgb } from "../../Utils";
+import { colorToRgb, getDistances, getStyleFromRgb } from "tsparticles-engine";
 import type { ISvgPath } from "./Interfaces/ISvgPath";
 import type { SvgAbsoluteCoordinatesTypes, SvgRelativeCoordinatesTypes } from "./types";
-import { Vector } from "../../Core/Particle/Vector";
+import { Vector } from "tsparticles-engine";
 import type {
     SVGPathSeg,
     SVGPathSegLinetoHorizontalAbs,

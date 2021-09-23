@@ -2,7 +2,7 @@ import type { IDraw } from "./IDraw";
 import type { IMove } from "./IMove";
 import type { InlineArrangement, InlineArrangementAlt } from "../../Enums";
 import type { IInline } from "./IInline";
-import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
+import type { ICoordinates } from "tsparticles-engine/Core/Interfaces/ICoordinates";
 import type { ILocalSvg } from "./ILocalSvg";
 import { Type } from "../../Enums";
 

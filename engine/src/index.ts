@@ -1,6 +1,5 @@
 import { initPjs } from "./pjs";
 import { Main } from "./main";
-import { Circle, CircleWarp, Constants, Point, Rectangle } from "./Utils";
 import type { IOptions } from "./Options/Interfaces/IOptions";
 import type { RecursivePartial } from "./Types";
 import type { IParticle } from "./Core/Interfaces";

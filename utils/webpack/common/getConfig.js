@@ -11,7 +11,8 @@ const getConfig = (entry, bannerInput, minBannerInput, dir, bundle) => {
             path: path.resolve(dir, "dist"),
             filename: "[name].js",
             libraryTarget: "umd",
-            globalObject: "this"
+            globalObject: "this",
+            chunkFilename: '[name].js',
         },
         resolve: {
             extensions: [".js", ".json"]

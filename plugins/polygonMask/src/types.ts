@@ -1,4 +1,4 @@
-import type { IOptions } from "../../Options/Interfaces/IOptions";
+import type { IOptions } from "tsparticles-engine/Options/Interfaces/IOptions";
 import type { IPolygonMask } from "./Options/Interfaces/IPolygonMask";
 import type {
     SVGPathSegArcAbs,

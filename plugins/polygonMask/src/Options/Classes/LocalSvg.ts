@@ -1,8 +1,8 @@
 import type { ILocalSvg } from "../Interfaces/ILocalSvg";
-import type { SingleOrMultiple } from "../../../../Types";
-import type { IDimension } from "../../../../Core/Interfaces/IDimension";
-import type { RecursivePartial } from "../../../../Types";
-import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
+import type { SingleOrMultiple } from "tsparticles-engine";
+import type { IDimension } from "tsparticles-engine";
+import type { RecursivePartial } from "tsparticles-engine";
+import type { IOptionLoader } from "tsparticles-engine/Options/Interfaces/IOptionLoader";
 
 /**
  * @category Polygon Mask Plugin

@@ -1,6 +1,6 @@
 import { EditorGroup, EditorType } from "object-gui";
 import type { Container, SingleOrMultiple } from "tsparticles-engine";
-import type { IDivEvent } from "tsparticles/Options/Interfaces/Interactivity/Events/IDivEvent";
+import type { IDivEvent } from "tsparticles-engine/Options/Interfaces/Interactivity/Events/IDivEvent";
 import { EditorBase } from "../../../../EditorBase";
 import { DivMode, DivType } from "tsparticles-engine";
 

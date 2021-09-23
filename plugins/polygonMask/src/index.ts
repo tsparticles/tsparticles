@@ -1,14 +1,14 @@
-import type { IPlugin } from "../../Core/Interfaces";
+import type { IPlugin } from "tsparticles-engine";
 import { PolygonMaskInstance } from "./PolygonMaskInstance";
-import type { Container } from "../../Core/Container";
-import type { RecursivePartial } from "../../Types";
-import type { IOptions } from "../../Options/Interfaces/IOptions";
+import type { Container } from "tsparticles-engine";
+import type { RecursivePartial } from "tsparticles-engine";
+import type { IOptions } from "tsparticles-engine/Options/Interfaces/IOptions";
 import type { IPolygonMaskOptions } from "./Options/Interfaces/IPolygonMaskOptions";
-import { Options } from "../../Options/Classes/Options";
+import { Options } from "tsparticles-engine/Options/Classes/Options";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
 import { Type } from "./Enums";
-import type { Main } from "../../main";
-import { isSsr } from "../../Utils";
+import type { Main } from "tsparticles-engine";
+import { isSsr } from "tsparticles-engine";
 
 /**
  * @category Polygon Mask Plugin
@@ -55,3 +55,5 @@ export async function loadPolygonMaskPlugin(tsParticles: Main): Promise<void> {
 
     tsParticles.addPlugin(plugin);
 }
+
+export * from "./Enums";
