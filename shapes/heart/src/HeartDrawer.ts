@@ -1,4 +1,4 @@
-import type { IShapeDrawer } from "tsparticles/Core/Interfaces/IShapeDrawer";
+import type { IShapeDrawer } from "tsparticles-engine/Core/Interfaces/IShapeDrawer";
 import type { IParticle } from "tsparticles-engine";
 
 export class HeartDrawer implements IShapeDrawer {

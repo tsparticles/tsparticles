@@ -1,6 +1,6 @@
 const {getEntry} = require("../common/getEntry");
 
-getPresetEntry = (name, bundle) => {
+const getPresetEntry = (name, bundle) => {
     return getEntry("preset", name, bundle);
 }
 

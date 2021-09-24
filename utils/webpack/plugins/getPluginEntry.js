@@ -1,6 +1,6 @@
 const {getEntry} = require("../common/getEntry");
 
-getPluginEntry = (name, bundle) => {
+const getPluginEntry = (name, bundle) => {
     return getEntry("plugin", name, bundle);
 }
 

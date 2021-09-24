@@ -1,5 +1,5 @@
 import type { Container, IPlugin, Main, RecursivePartial } from "tsparticles-engine";
-import { Options } from "tsparticles/Options/Classes/Options";
+import { Options } from "tsparticles-engine/Options/Classes/Options";
 import { InfectionInstance } from "./InfectionInstance";
 import { ParticlesInfecter } from "./ParticlesInfecter";
 import type { IInfectionOptions } from "./Options/Interfaces/IInfectionOptions";
