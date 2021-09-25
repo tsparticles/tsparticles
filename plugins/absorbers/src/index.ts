@@ -1,19 +1,19 @@
-import type { IPlugin } from "../../Core/Interfaces";
-import type { Container } from "../../Core/Container";
+import type { IPlugin } from "tsparticles-engine";
+import type { Container } from "tsparticles-engine";
 import { Absorbers } from "./Absorbers";
-import type { RecursivePartial } from "../../Types";
+import type { RecursivePartial } from "tsparticles-engine";
 import { AbsorberClickMode } from "./Enums";
 import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
-import type { IOptions } from "../../Options/Interfaces/IOptions";
-import { Options } from "../../Options/Classes/Options";
+import type { IOptions } from "tsparticles-engine/Options/Interfaces/IOptions";
+import { Options } from "tsparticles-engine/Options/Classes/Options";
 import { Absorber } from "./Options/Classes/Absorber";
-import { isInArray } from "../../Utils";
-import type { Main } from "../../main";
+import { isInArray } from "tsparticles-engine";
+import type { Main } from "tsparticles-engine";
 
 /**
  * @category Absorbers Plugin
  */
-class Plugin implements IPlugin {
+class Index implements IPlugin {
     readonly id;
 
     constructor() {
@@ -100,7 +100,7 @@ class Plugin implements IPlugin {
 }
 
 export function loadAbsorbersPlugin(tsParticles: Main): void {
-    const plugin = new Plugin();
+    const plugin = new Index();
 
     tsParticles.addPlugin(plugin);
 }

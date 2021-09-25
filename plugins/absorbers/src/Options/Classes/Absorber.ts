@@ -1,9 +1,9 @@
 import type { IAbsorber } from "../Interfaces/IAbsorber";
-import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
-import type { RecursivePartial } from "../../../../Types";
+import type { ICoordinates } from "tsparticles-engine";
+import type { RecursivePartial } from "tsparticles-engine";
 import { AbsorberSize } from "./AbsorberSize";
-import { OptionsColor } from "../../../../Options/Classes/OptionsColor";
-import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
+import { OptionsColor } from "tsparticles-engine/Options/Classes/OptionsColor";
+import type { IOptionLoader } from "tsparticles-engine/Options/Interfaces/IOptionLoader";
 
 /**
  * [[include:Options/Plugins/Absorbers.md]]

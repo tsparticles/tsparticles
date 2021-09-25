@@ -1,6 +1,6 @@
 import type { Main } from "tsparticles-engine";
 import { loadSlim } from "tsparticles-slim";
-import { loadAbsorbersPlugin } from "tsparticles-engine/Plugins/Absorbers/plugin";
+import { loadAbsorbersPlugin } from "tsparticles-plugin-absorbers";
 import { loadEmittersPlugin } from "tsparticles-engine/Plugins/Emitters/plugin";
 import { loadPolygonMaskPlugin } from "tsparticles-plugin-polygon-mask";
 

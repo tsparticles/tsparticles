@@ -3,7 +3,7 @@ import type { IClickEvent } from "tsparticles-engine/Options/Interfaces/Interact
 import { EditorGroup, EditorType } from "object-gui";
 import { ClickMode } from "tsparticles-engine";
 import { EditorBase } from "../../../../EditorBase";
-import { loadAbsorbersPlugin } from "tsparticles-engine/Plugins/Absorbers/plugin";
+import { loadAbsorbersPlugin } from "tsparticles-plugin-absorbers";
 import { loadEmittersPlugin } from "tsparticles-engine/Plugins/Emitters/plugin";
 
 export class ClickEventsOptionsEditor extends EditorBase {

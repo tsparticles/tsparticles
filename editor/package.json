@@ -50,7 +50,8 @@
   "dependencies": {
     "object-gui": "^1.1.1",
     "tsparticles-engine": "^1.35.1",
-    "tsparticles-plugin-infection": "^1.35.1"
+    "tsparticles-plugin-infection": "^1.35.1",
+    "tsparticles-plugin-absorbers": "^1.35.1"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
