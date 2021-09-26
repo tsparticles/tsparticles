@@ -1,6 +1,6 @@
 import type { Main } from "tsparticles-engine";
 import { options } from "./options";
-import { loadCircleShape } from "tsparticles-engine/Shapes/Circle";
+import { loadCircleShape } from "tsparticles-shape-circle";
 import { loadColorUpdater } from "tsparticles-engine/Updaters/Color";
 import { loadOpacityUpdater } from "tsparticles-engine/Updaters/Opacity";
 import { loadOutModesUpdater } from "tsparticles-engine/Updaters/OutModes";

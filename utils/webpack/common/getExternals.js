@@ -20,8 +20,19 @@ const getExternals = (bundle) => {
         return [];
     }
 
-    return getParticleExternals("tsparticles-engine/Updaters/Color",
-        "tsparticles-engine/Shapes/Circle",
+    return getParticleExternals("tsparticles-shape-bubble",
+        "tsparticles-shape-circle",
+        "tsparticles-shape-heart",
+        "tsparticles-shape-image",
+        "tsparticles-shape-line",
+        "tsparticles-shape-multiline-text",
+        "tsparticles-shape-polygon",
+        "tsparticles-shape-rounded-rect",
+        "tsparticles-shape-spiral",
+        "tsparticles-shape-square",
+        "tsparticles-shape-star",
+        "tsparticles-shape-text",
+        "tsparticles-engine/Updaters/Color",
         "tsparticles-engine/Updaters/Size",
         "tsparticles-engine/Updaters/Opacity",
         "tsparticles-engine/Updaters/OutModes",
@@ -30,7 +41,6 @@ const getExternals = (bundle) => {
         "tsparticles-engine/Updaters/Roll",
         "tsparticles-engine/Updaters/Angle",
         "tsparticles-engine/Updaters/Tilt",
-        "tsparticles-engine/Shapes/Square",
         "tsparticles-engine/Updaters/Life",
         "tsparticles",
         "tsparticles-slim",
@@ -38,7 +48,9 @@ const getExternals = (bundle) => {
         "tsparticles-plugin-absorbers",
         "tsparticles-plugin-emitters",
         "tsparticles-plugin-infection",
-        "tsparticles-plugin-polygon-mask");
+        "tsparticles-plugin-polygon-mask"
+    )
+        ;
 };
 
 module.exports = {

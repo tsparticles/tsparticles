@@ -1,5 +1,4 @@
-import type { IShapeDrawer } from "tsparticles-engine/Core/Interfaces/IShapeDrawer";
-import type { IParticle } from "tsparticles-engine";
+import type { IParticle, IShapeDrawer } from "tsparticles-engine";
 
 export class BubbleDrawer implements IShapeDrawer {
     draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {

@@ -2,7 +2,7 @@ import type { Main, RecursivePartial } from "tsparticles-engine";
 import { IConfettiOptions } from "./IConfettiOptions";
 import { tsParticles } from "tsparticles-engine";
 import { loadOptions } from "./options";
-import { loadCircleShape } from "tsparticles-engine/Shapes/Circle";
+import { loadCircleShape } from "tsparticles-shape-circle";
 import { loadColorUpdater } from "tsparticles-engine/Updaters/Color";
 import { loadOpacityUpdater } from "tsparticles-engine/Updaters/Opacity";
 import { loadOutModesUpdater } from "tsparticles-engine/Updaters/OutModes";
@@ -12,7 +12,7 @@ import { loadWobbleUpdater } from "tsparticles-engine/Updaters/Wobble";
 import { loadRollUpdater } from "tsparticles-engine/Updaters/Roll";
 import { loadAngleUpdater } from "tsparticles-engine/Updaters/Angle";
 import { loadTiltUpdater } from "tsparticles-engine/Updaters/Tilt";
-import { loadSquareShape } from "tsparticles-engine/Shapes/Square";
+import { loadSquareShape } from "tsparticles-shape-square";
 import { loadLifeUpdater } from "tsparticles-engine/Updaters/Life";
 
 function loadPreset(main: Main, confettiOptions: RecursivePartial<IConfettiOptions>, override = false): void {

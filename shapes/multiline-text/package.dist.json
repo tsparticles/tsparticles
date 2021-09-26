@@ -38,12 +38,12 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "main": "shape.js",
+  "main": "index.js",
   "jsdelivr": "tsparticles.shape.multiline-text.min.js",
   "unpkg": "tsparticles.shape.multiline-text.min.js",
-  "browser": "shape.js",
-  "module": "shape.js",
-  "types": "shape.d.ts",
+  "browser": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
   "dependencies": {
     "tsparticles-engine": "^1.35.1"
   }

@@ -1,4 +1,6 @@
-import { tsParticles } from "tsparticles-engine";
-import { loadRoundedRectShape } from "./shape";
+import type { Main } from "tsparticles-engine";
+import { RoundedRectDrawer } from "./RoundedRectDrawer";
 
-loadRoundedRectShape(tsParticles);
+export function loadRoundedRectShape(tsParticles: Main): void {
+    tsParticles.addShape("rounded-rect", new RoundedRectDrawer());
+}

@@ -65,7 +65,14 @@
     "url": "https://github.com/sponsors/matteobruni"
   },
   "dependencies": {
-    "tsparticles-engine": "^1.35.1"
+    "tsparticles-engine": "^1.35.1",
+    "tsparticles-shape-circle": "^1.20.1",
+    "tsparticles-shape-image": "^1.20.1",
+    "tsparticles-shape-line": "^1.20.1",
+    "tsparticles-shape-polygon": "^1.20.1",
+    "tsparticles-shape-square": "^1.20.1",
+    "tsparticles-shape-star": "^1.20.1",
+    "tsparticles-shape-text": "^1.20.1"
   },
   "main": "index.js",
   "module": "esm/index.js",

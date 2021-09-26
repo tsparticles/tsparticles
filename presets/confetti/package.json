@@ -72,6 +72,8 @@
   },
   "dependencies": {
     "tsparticles-engine": "^1.35.1",
-    "tsparticles-plugin-emitters": "^1.35.1"
+    "tsparticles-plugin-emitters": "^1.35.1",
+    "tsparticles-shape-circle": "^1.20.1",
+    "tsparticles-shape-square": "^1.20.1"
   }
 }
