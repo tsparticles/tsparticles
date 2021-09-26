@@ -1,0 +1,80 @@
+{
+  "name": "tsparticles-updater-color",
+  "version": "1.35.1",
+  "description": "tsParticles particles color updater",
+  "homepage": "https://particles.js.org/",
+  "scripts": {
+    "prettify:src": "prettier --write ./src",
+    "prettify:readme": "prettier --write ./README.md",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
+    "compile": "tsc && yarn build:ts:old",
+    "build:ts:old": "npx downlevel-dts ./dist ./tmp/ts4.0 --to=4.0 && npx downlevel-dts ./dist ./tmp/ts3.8 --to=3.8 && npx downlevel-dts ./dist ./tmp/ts3.4 && copyfiles ./tmp/**/* ./dist && rimraf -f ./tmp",
+    "bundle": "webpack --mode production",
+    "distfiles": "node ./scripts/distfiles.js",
+    "build": "yarn clear:dist && yarn prettify:src && yarn compile && yarn lint && yarn bundle && yarn prettify:readme && yarn distfiles",
+    "clear:dist": "rimraf -f ./dist",
+    "version": "yarn distfiles && git add package.dist.json",
+    "prepack": "yarn build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/tsparticles.git",
+    "directory": "updaters/color"
+  },
+  "keywords": [
+    "tsparticles",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles.js",
+    "particles-ts",
+    "particles.ts",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background",
+    "tsparticles-shape"
+  ],
+  "publishConfig": {
+    "directory": "dist"
+  },
+  "author": "Matteo Bruni",
+  "license": "MIT",
+  "files": [
+    "dist/**/*"
+  ],
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles/issues"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@types/webpack-env": "^1.16.2",
+    "@typescript-eslint/eslint-plugin": "^4.31.2",
+    "@typescript-eslint/parser": "^4.31.2",
+    "babel-loader": "^8.2.2",
+    "copyfiles": "^2.4.1",
+    "downlevel-dts": "^0.7.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.4.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.4.3",
+    "webpack": "^5.53.0",
+    "webpack-cli": "^4.8.0",
+    "webpack-tsparticles-plugin": "^1.0.0"
+  },
+  "dependencies": {
+    "tsparticles-engine": "^1.35.1"
+  }
+}

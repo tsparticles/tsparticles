@@ -72,7 +72,17 @@
     "tsparticles-shape-polygon": "^1.20.1",
     "tsparticles-shape-square": "^1.20.1",
     "tsparticles-shape-star": "^1.20.1",
-    "tsparticles-shape-text": "^1.20.1"
+    "tsparticles-shape-text": "^1.20.1",
+    "tsparticles-updater-angle": "^1.35.1",
+    "tsparticles-updater-color": "^1.35.1",
+    "tsparticles-updater-life": "^1.35.1",
+    "tsparticles-updater-opacity": "^1.35.1",
+    "tsparticles-updater-out-modes": "^1.35.1",
+    "tsparticles-updater-roll": "^1.35.1",
+    "tsparticles-updater-size": "^1.35.1",
+    "tsparticles-updater-stroke-color": "^1.35.1",
+    "tsparticles-updater-tilt": "^1.35.1",
+    "tsparticles-updater-wobble": "^1.35.1"
   },
   "main": "index.js",
   "module": "esm/index.js",

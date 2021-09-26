@@ -16,16 +16,16 @@ import { loadPolygonShape } from "tsparticles-shape-polygon";
 import { loadSquareShape } from "tsparticles-shape-square";
 import { loadStarShape } from "tsparticles-shape-star";
 import { loadTextShape } from "tsparticles-shape-text";
-import { loadLifeUpdater } from "tsparticles-engine/Updaters/Life";
-import { loadOpacityUpdater } from "tsparticles-engine/Updaters/Opacity";
-import { loadSizeUpdater } from "tsparticles-engine/Updaters/Size";
-import { loadAngleUpdater } from "tsparticles-engine/Updaters/Angle";
-import { loadTiltUpdater } from "tsparticles-engine/Updaters/Tilt";
-import { loadRollUpdater } from "tsparticles-engine/Updaters/Roll";
-import { loadWobbleUpdater } from "tsparticles-engine/Updaters/Wobble";
-import { loadColorUpdater } from "tsparticles-engine/Updaters/Color";
-import { loadStrokeColorUpdater } from "tsparticles-engine/Updaters/StrokeColor";
-import { loadOutModesUpdater } from "tsparticles-engine/Updaters/OutModes";
+import { loadLifeUpdater } from "tsparticles-updater-life";
+import { loadOpacityUpdater } from "tsparticles-updater-opacity";
+import { loadSizeUpdater } from "tsparticles-updater-size";
+import { loadAngleUpdater } from "tsparticles-updater-angle";
+import { loadTiltUpdater } from "tsparticles-updater-tilt";
+import { loadRollUpdater } from "tsparticles-updater-roll";
+import { loadWobbleUpdater } from "tsparticles-updater-wobble";
+import { loadColorUpdater } from "tsparticles-updater-color";
+import { loadStrokeColorUpdater } from "tsparticles-updater-stroke-color";
+import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
 
 export function loadSlim(tsParticles: Main): void {
     loadExternalAttractInteraction(tsParticles);

@@ -1,11 +1,11 @@
 import type { Main } from "tsparticles-engine";
 import { options } from "./options";
 import { loadCircleShape } from "tsparticles-shape-circle";
-import { loadColorUpdater } from "tsparticles-engine/Updaters/Color";
-import { loadOpacityUpdater } from "tsparticles-engine/Updaters/Opacity";
-import { loadOutModesUpdater } from "tsparticles-engine/Updaters/OutModes";
+import { loadColorUpdater } from "tsparticles-updater-color";
+import { loadOpacityUpdater } from "tsparticles-updater-opacity";
+import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
 import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
-import { loadSizeUpdater } from "tsparticles-engine/Updaters/Size";
+import { loadSizeUpdater } from "tsparticles-updater-size";
 
 export function loadBubblesPreset(tsParticles: Main): void {
     loadCircleShape(tsParticles);
