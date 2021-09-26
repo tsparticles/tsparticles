@@ -20,7 +20,26 @@ const getExternals = (bundle) => {
         return [];
     }
 
-    return getParticleExternals("tsparticles-shape-bubble",
+    return getParticleExternals("tsparticles",
+        "tsparticles-slim",
+        "tsparticles-engine",
+        "tsparticles-interaction-external-attract",
+        "tsparticles-interaction-external-bounce",
+        "tsparticles-interaction-external-bubble",
+        "tsparticles-interaction-external-connect",
+        "tsparticles-interaction-external-grab",
+        "tsparticles-interaction-external-repulse",
+        "tsparticles-interaction-external-trail",
+        "tsparticles-interaction-light",
+        "tsparticles-interaction-particles-attract",
+        "tsparticles-interaction-particles-collisions",
+        "tsparticles-interaction-particles-links",
+        "tsparticles-interaction-particles-repulse",
+        "tsparticles-plugin-absorbers",
+        "tsparticles-plugin-emitters",
+        "tsparticles-plugin-infection",
+        "tsparticles-plugin-polygon-mask",
+        "tsparticles-shape-bubble",
         "tsparticles-shape-circle",
         "tsparticles-shape-heart",
         "tsparticles-shape-image",
@@ -32,25 +51,16 @@ const getExternals = (bundle) => {
         "tsparticles-shape-square",
         "tsparticles-shape-star",
         "tsparticles-shape-text",
-        "tsparticles-engine/Updaters/Color",
-        "tsparticles-engine/Updaters/Size",
-        "tsparticles-engine/Updaters/Opacity",
-        "tsparticles-engine/Updaters/OutModes",
-        "tsparticles-engine/Updaters/Size",
-        "tsparticles-engine/Updaters/Wobble",
-        "tsparticles-engine/Updaters/Roll",
-        "tsparticles-engine/Updaters/Angle",
-        "tsparticles-engine/Updaters/Tilt",
-        "tsparticles-engine/Updaters/Life",
-        "tsparticles",
-        "tsparticles-slim",
-        "tsparticles-engine",
-        "tsparticles-plugin-absorbers",
-        "tsparticles-plugin-emitters",
-        "tsparticles-plugin-infection",
-        "tsparticles-plugin-polygon-mask"
-    )
-        ;
+        "tsparticles-updater-color",
+        "tsparticles-updater-size",
+        "tsparticles-updater-opacity",
+        "tsparticles-updater-out-modes",
+        "tsparticles-updater-size",
+        "tsparticles-updater-wobble",
+        "tsparticles-updater-roll",
+        "tsparticles-updater-angle",
+        "tsparticles-updater-tilt",
+        "tsparticles-updater-life");
 };
 
 module.exports = {

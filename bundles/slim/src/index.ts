@@ -1,14 +1,13 @@
 import type { Main } from "tsparticles-engine";
-import { loadExternalAttractInteraction } from "tsparticles-engine/Interactions/External/Attract";
-import { loadExternalBounceInteraction } from "tsparticles-engine/Interactions/External/Bounce";
-import { loadExternalBubbleInteraction } from "tsparticles-engine/Interactions/External/Bubble";
-import { loadExternalConnectInteraction } from "tsparticles-engine/Interactions/External/Connect";
-import { loadExternalGrabInteraction } from "tsparticles-engine/Interactions/External/Grab";
-import { loadExternalRepulseInteraction } from "tsparticles-engine/Interactions/External/Repulse";
-import { loadExternalTrailInteraction } from "tsparticles-engine/Interactions/External/Trail";
-import { loadParticlesAttractInteraction } from "tsparticles-engine/Interactions/Particles/Attract";
-import { loadParticlesCollisionsInteraction } from "tsparticles-engine/Interactions/Particles/Collisions";
-import { loadParticlesLinksInteraction } from "tsparticles-engine/Interactions/Particles/Links";
+import { loadExternalAttractInteraction } from "tsparticles-interaction-external-attract";
+import { loadExternalBounceInteraction } from "tsparticles-interaction-external-bounce";
+import { loadExternalBubbleInteraction } from "tsparticles-interaction-external-bubble";
+import { loadExternalConnectInteraction } from "tsparticles-interaction-external-connect";
+import { loadExternalGrabInteraction } from "tsparticles-interaction-external-grab";
+import { loadExternalRepulseInteraction } from "tsparticles-interaction-external-repulse";
+import { loadParticlesAttractInteraction } from "tsparticles-interaction-particles-attract";
+import { loadParticlesCollisionsInteraction } from "tsparticles-interaction-particles-collisions";
+import { loadParticlesLinksInteraction } from "tsparticles-interaction-particles-links";
 import { loadCircleShape } from "tsparticles-shape-circle";
 import { loadImageShape } from "tsparticles-shape-image";
 import { loadLineShape } from "tsparticles-shape-line";
@@ -34,7 +33,6 @@ export function loadSlim(tsParticles: Main): void {
     loadExternalConnectInteraction(tsParticles);
     loadExternalGrabInteraction(tsParticles);
     loadExternalRepulseInteraction(tsParticles);
-    loadExternalTrailInteraction(tsParticles);
 
     loadParticlesAttractInteraction(tsParticles);
     loadParticlesCollisionsInteraction(tsParticles);

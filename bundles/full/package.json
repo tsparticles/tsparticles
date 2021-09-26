@@ -93,6 +93,7 @@
   "dependencies": {
     "tsparticles-engine": "^1.35.1",
     "tsparticles-slim": "^1.35.1",
+    "tsparticles-interaction-external-trail": "^1.35.1",
     "tsparticles-plugin-absorbers": "^1.35.1",
     "tsparticles-plugin-emitters": "^1.35.1",
     "tsparticles-plugin-polygon-mask": "^1.35.1"
