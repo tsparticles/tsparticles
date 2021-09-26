@@ -1,14 +1,14 @@
-import type { IContainerPlugin, ICoordinates, IDelta } from "../../Core/Interfaces";
+import type { IContainerPlugin, ICoordinates, IDelta } from "tsparticles-engine";
 import { EmitterInstance } from "./EmitterInstance";
-import type { Container } from "../../Core/Container";
+import type { Container } from "tsparticles-engine";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
-import type { RecursivePartial, SingleOrMultiple } from "../../Types";
+import type { RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
 import { Emitter } from "./Options/Classes/Emitter";
-import type { IOptions } from "../../Options/Interfaces/IOptions";
+import type { IOptions } from "tsparticles-engine/Options/Interfaces/IOptions";
 import { EmitterClickMode } from "./Enums";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 import type { EmitterContainer } from "./EmitterContainer";
-import { deepExtend, itemFromArray } from "../../Utils";
+import { deepExtend, itemFromArray } from "tsparticles-engine";
 
 /**
  * @category Emitters Plugin

@@ -45,6 +45,7 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^1.35.1"
+    "tsparticles-engine": "^1.35.1",
+    "tsparticles-plugin-emitters": "^1.35.1"
   }
 }

@@ -3,16 +3,30 @@ import { isInArray } from "../../Utils";
 import { ShapeType } from "../../Enums";
 import type { IImageShape } from "../../Options/Interfaces/Particles/Shape/IImageShape";
 import type { Container } from "../../Core/Container";
-import type { IEmitterOptions } from "../../Plugins/Emitters/Options/Interfaces/IEmitterOptions";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
-import type { RecursivePartial } from "../../Types";
+import type { RecursivePartial, SingleOrMultiple } from "../../Types";
 import type { IImage, IImageParticle, IParticleImage } from "./Utils";
 import { downloadSvgImage, loadImage, replaceColorSvg } from "./Utils";
-import { Particle } from "../../Core/Particle";
+import type { Particle } from "../../Core/Particle";
+import type { IInteractivity } from "../../Options/Interfaces/Interactivity/IInteractivity";
+import type { IModes } from "../../Options/Interfaces/Interactivity/Modes/IModes";
 
 interface ContainerImage {
     id: string;
     images: IImage[];
+}
+
+interface IEmitter {
+    particles?: RecursivePartial<IParticles>;
+}
+
+interface IEmitterOptions {
+    emitters: SingleOrMultiple<IEmitter>;
+    interactivity: IInteractivity & {
+        modes: IModes & {
+            emitters: SingleOrMultiple<IEmitter>;
+        };
+    };
 }
 
 /**

@@ -21,7 +21,6 @@ const getExternals = (bundle) => {
     }
 
     return getParticleExternals("tsparticles-engine/Updaters/Color",
-        "tsparticles-engine/Plugins/Emitters/plugin",
         "tsparticles-engine/Shapes/Circle",
         "tsparticles-engine/Updaters/Size",
         "tsparticles-engine/Updaters/Opacity",
@@ -36,6 +35,9 @@ const getExternals = (bundle) => {
         "tsparticles",
         "tsparticles-slim",
         "tsparticles-engine",
+        "tsparticles-plugin-absorbers",
+        "tsparticles-plugin-emitters",
+        "tsparticles-plugin-infection",
         "tsparticles-plugin-polygon-mask");
 };
 

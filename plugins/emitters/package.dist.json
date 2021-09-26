@@ -1,12 +1,12 @@
 {
-  "name": "tsparticles-preset-confetti",
-  "version": "1.20.1",
-  "description": "tsParticles confetti preset",
+  "name": "tsparticles-plugin-emitters",
+  "version": "1.35.1",
+  "description": "tsParticles emitters plugin",
   "homepage": "https://particles.js.org/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
-    "directory": "presets/confetti"
+    "directory": "plugins/emitters"
   },
   "keywords": [
     "tsparticles",
@@ -33,19 +33,21 @@
     "background",
     "tsparticles-preset"
   ],
+  "publishConfig": {
+    "directory": "dist"
+  },
   "author": "Matteo Bruni",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "main": "index.js",
-  "jsdelivr": "tsparticles.preset.confetti.min.js",
-  "unpkg": "tsparticles.preset.confetti.min.js",
+  "jsdelivr": "tsparticles.plugin.emitters.min.js",
+  "unpkg": "tsparticles.plugin.emitters.min.js",
   "browser": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^1.35.1",
-    "tsparticles-plugin-emitters": "^1.35.1"
+    "tsparticles-engine": "^1.35.1"
   }
 }

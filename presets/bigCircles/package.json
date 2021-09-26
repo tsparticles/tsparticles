@@ -71,6 +71,7 @@
     "webpack-tsparticles-plugin": "^1.0.0"
   },
   "dependencies": {
-    "tsparticles-engine": "^1.35.1"
+    "tsparticles-engine": "^1.35.1",
+    "tsparticles-plugin-emitters": "^1.35.1"
   }
 }

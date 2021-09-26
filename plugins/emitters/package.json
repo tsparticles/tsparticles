@@ -1,7 +1,7 @@
 {
-  "name": "tsparticles-preset-bubbles",
-  "version": "1.20.1",
-  "description": "tsParticles bubbles preset",
+  "name": "tsparticles-plugin-emitters",
+  "version": "1.35.1",
+  "description": "tsParticles emitters plugin",
   "homepage": "https://particles.js.org/",
   "scripts": {
     "prettify:src": "prettier --write ./src",
@@ -18,7 +18,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
-    "directory": "presets/bubbles"
+    "directory": "plugins/emitters"
   },
   "keywords": [
     "tsparticles",
@@ -71,7 +71,6 @@
     "webpack-tsparticles-plugin": "^1.0.0"
   },
   "dependencies": {
-    "tsparticles-engine": "^1.35.1",
-    "tsparticles-plugin-emitters": "^1.35.1"
+    "tsparticles-engine": "^1.35.1"
   }
 }

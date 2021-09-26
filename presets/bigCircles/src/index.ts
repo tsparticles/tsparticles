@@ -1,7 +1,7 @@
 import type { Main } from "tsparticles-engine";
 import { options } from "./options";
 import { loadColorUpdater } from "tsparticles-engine/Updaters/Color";
-import { loadEmittersPlugin } from "tsparticles-engine/Plugins/Emitters/plugin";
+import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
 import { loadCircleShape } from "tsparticles-engine/Shapes/Circle";
 import { loadSizeUpdater } from "tsparticles-engine/Updaters/Size";
 import { loadOpacityUpdater } from "tsparticles-engine/Updaters/Opacity";

@@ -1,12 +1,12 @@
-import type { ICoordinates } from "../../../../Core/Interfaces";
-import type { MoveDirection, MoveDirectionAlt } from "../../../../Enums";
-import type { IParticles } from "../../../../Options/Interfaces/Particles/IParticles";
+import type { ICoordinates } from "tsparticles-engine";
+import type { MoveDirection, MoveDirectionAlt } from "tsparticles-engine";
+import type { IParticles } from "tsparticles-engine/Options/Interfaces/Particles/IParticles";
 import type { IEmitterRate } from "./IEmitterRate";
 import type { IEmitterLife } from "./IEmitterLife";
-import type { RecursivePartial } from "../../../../Types";
+import type { RecursivePartial } from "tsparticles-engine";
 import type { IEmitterSize } from "./IEmitterSize";
-import type { IAnimatableColor } from "../../../../Options/Interfaces/IAnimatableColor";
-import type { EmitterShapeType } from "../../Enums/EmitterShapeType";
+import type { IAnimatableColor } from "tsparticles-engine/Options/Interfaces/IAnimatableColor";
+import type { EmitterShapeType } from "../../Enums";
 
 /**
  * Particles emitter object options

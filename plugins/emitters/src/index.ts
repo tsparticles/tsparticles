@@ -1,12 +1,12 @@
-import type { IPlugin } from "../../Core/Interfaces";
-import type { Container } from "../../Core/Container";
-import { isInArray } from "../../Utils";
+import type { IPlugin } from "tsparticles-engine";
+import type { Container } from "tsparticles-engine";
+import { isInArray } from "tsparticles-engine";
 import { Emitters } from "./Emitters";
-import type { RecursivePartial } from "../../Types";
-import type { IOptions } from "../../Options/Interfaces/IOptions";
+import type { RecursivePartial } from "tsparticles-engine";
+import type { IOptions } from "tsparticles-engine/Options/Interfaces/IOptions";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 import { EmitterClickMode, EmitterShapeType } from "./Enums";
-import { Options } from "../../Options/Classes/Options";
+import { Options } from "tsparticles-engine/Options/Classes/Options";
 import { Emitter } from "./Options/Classes/Emitter";
 import { IEmitterShape } from "./IEmitterShape";
 import { EmittersMain } from "./EmittersMain";

@@ -1,15 +1,15 @@
-import type { Container } from "../../Core/Container";
+import type { Container } from "tsparticles-engine";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
-import { colorToHsl, deepExtend, getRangeValue, isPointInside, randomInRange } from "../../Utils";
-import { SizeMode } from "../../Enums";
+import { colorToHsl, deepExtend, getRangeValue, isPointInside, randomInRange } from "tsparticles-engine";
+import { SizeMode } from "tsparticles-engine";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
 import type { Emitters } from "./Emitters";
-import type { RecursivePartial } from "../../Types";
-import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
+import type { RecursivePartial } from "tsparticles-engine";
+import type { IParticles } from "tsparticles-engine/Options/Interfaces/Particles/IParticles";
 import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
-import type { ICoordinates, IDelta, IHsl } from "../../Core/Interfaces";
-import type { IColorAnimation } from "../../Options/Interfaces/IColorAnimation";
-import type { IHslAnimation } from "../../Options/Interfaces/IHslAnimation";
+import type { ICoordinates, IDelta, IHsl } from "tsparticles-engine";
+import type { IColorAnimation } from "tsparticles-engine/Options/Interfaces/IColorAnimation";
+import type { IHslAnimation } from "tsparticles-engine/Options/Interfaces/IHslAnimation";
 import { ShapeManager } from "./ShapeManager";
 import type { IEmitterShape } from "./IEmitterShape";
 

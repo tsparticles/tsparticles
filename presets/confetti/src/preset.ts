@@ -6,7 +6,7 @@ import { loadCircleShape } from "tsparticles-engine/Shapes/Circle";
 import { loadColorUpdater } from "tsparticles-engine/Updaters/Color";
 import { loadOpacityUpdater } from "tsparticles-engine/Updaters/Opacity";
 import { loadOutModesUpdater } from "tsparticles-engine/Updaters/OutModes";
-import { loadEmittersPlugin } from "tsparticles-engine/Plugins/Emitters/plugin";
+import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
 import { loadSizeUpdater } from "tsparticles-engine/Updaters/Size";
 import { loadWobbleUpdater } from "tsparticles-engine/Updaters/Wobble";
 import { loadRollUpdater } from "tsparticles-engine/Updaters/Roll";
