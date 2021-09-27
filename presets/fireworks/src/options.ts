@@ -45,11 +45,11 @@ export const options: ISourceOptions = {
                     value: 100,
                 },
                 particles: {
+                    color: {
+                        value: ["#ff595e", "#ffca3a", "#8ac926", "#1982c4", "#6a4c93"],
+                    },
                     stroke: {
-                        color: {
-                            value: ["#ff595e", "#ffca3a", "#8ac926", "#1982c4", "#6a4c93"],
-                        },
-                        width: 1,
+                        width: 0,
                     },
                     number: {
                         value: 0,

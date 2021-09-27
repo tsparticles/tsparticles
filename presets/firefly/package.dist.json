@@ -45,6 +45,12 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^1.35.2"
+    "tsparticles-engine": "^1.35.2",
+    "tsparticles-interaction-external-trail": "^1.35.2",
+    "tsparticles-shape-circle": "^1.20.1",
+    "tsparticles-updater-color": "1.35.2",
+    "tsparticles-updater-life": "1.35.2",
+    "tsparticles-updater-opacity": "1.35.2",
+    "tsparticles-updater-size": "1.35.2"
   }
 }
