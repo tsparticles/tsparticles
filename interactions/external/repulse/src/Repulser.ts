@@ -26,8 +26,34 @@ import type { RepulseDiv } from "tsparticles-engine/Options/Classes/Interactivit
  * @category Interactions
  */
 export class Repulser extends ExternalInteractorBase {
+    handleClickMode: (mode: string) => void;
+
     constructor(container: Container) {
         super(container);
+
+        this.handleClickMode = (mode) => {
+            const options = this.container.actualOptions;
+
+            if (mode !== ClickMode.repulse) {
+                return;
+            }
+
+            container.repulse.clicking = true;
+            container.repulse.count = 0;
+
+            for (const particle of container.repulse.particles) {
+                particle.velocity.setTo(particle.initialVelocity);
+            }
+
+            container.repulse.particles = [];
+            container.repulse.finish = false;
+
+            setTimeout(() => {
+                if (!container.destroyed) {
+                    container.repulse.clicking = false;
+                }
+            }, options.interactivity.modes.repulse.duration * 1000);
+        };
     }
 
     isEnabled(): boolean {

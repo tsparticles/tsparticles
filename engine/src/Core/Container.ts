@@ -23,6 +23,7 @@ import {
     IRgb,
     IShapeDrawer,
 } from "./Interfaces";
+import { ClickMode } from "../Enums";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -548,6 +549,16 @@ export class Container {
         el.addEventListener("touchmove", touchMoveHandler);
         el.addEventListener("touchend", touchEndHandler);
         el.addEventListener("touchcancel", touchCancelHandler);
+    }
+
+    handleClickMode(mode: ClickMode | string) {
+        this.particles.handleClickMode(mode);
+
+        for (const [, plugin] of this.plugins) {
+            if (plugin.handleClickMode) {
+                plugin.handleClickMode(mode);
+            }
+        }
     }
 
     updateActualOptions(): void {

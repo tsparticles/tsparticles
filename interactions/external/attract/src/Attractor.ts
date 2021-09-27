@@ -18,8 +18,34 @@ import {
  * @category Interactions
  */
 export class Attractor extends ExternalInteractorBase {
+    handleClickMode: (mode: string) => void;
+
     constructor(container: Container) {
         super(container);
+
+        this.handleClickMode = (mode) => {
+            const options = this.container.actualOptions;
+
+            if (mode !== ClickMode.attract) {
+                return;
+            }
+
+            container.attract.clicking = true;
+            container.attract.count = 0;
+
+            for (const particle of container.attract.particles) {
+                particle.velocity.setTo(particle.initialVelocity);
+            }
+
+            container.attract.particles = [];
+            container.attract.finish = false;
+
+            setTimeout(() => {
+                if (!container.destroyed) {
+                    container.attract.clicking = false;
+                }
+            }, options.interactivity.modes.attract.duration * 1000);
+        };
     }
 
     isEnabled(): boolean {

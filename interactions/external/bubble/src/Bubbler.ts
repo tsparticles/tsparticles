@@ -47,8 +47,18 @@ function calculateBubbleValue(
  * @category Interactions
  */
 export class Bubbler extends ExternalInteractorBase {
+    handleClickMode: (mode: ClickMode | string) => void;
+
     constructor(container: Container) {
         super(container);
+
+        this.handleClickMode = (mode) => {
+            if (mode !== ClickMode.bubble) {
+                return;
+            }
+
+            container.bubble.clicking = true;
+        };
     }
 
     isEnabled(): boolean {

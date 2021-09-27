@@ -1,12 +1,12 @@
 {
-  "name": "tsparticles-preset-fire",
-  "version": "1.20.1",
-  "description": "tsParticles fire preset",
+  "name": "tsparticles-interaction-external-pause",
+  "version": "1.35.1",
+  "description": "tsParticles pause external interaction",
   "homepage": "https://particles.js.org/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
-    "directory": "presets/fire"
+    "directory": "interactions/external/pause"
   },
   "keywords": [
     "tsparticles",
@@ -31,7 +31,7 @@
     "css3",
     "animated",
     "background",
-    "tsparticles-preset"
+    "tsparticles-shape"
   ],
   "author": "Matteo Bruni",
   "license": "MIT",
@@ -39,18 +39,29 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "main": "index.js",
-  "jsdelivr": "tsparticles.preset.fire.min.js",
-  "unpkg": "tsparticles.preset.fire.min.js",
+  "jsdelivr": "tsparticles.interaction.particles.pause.min.js",
+  "unpkg": "tsparticles.interaction.particles.pause.min.js",
   "browser": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
+  "typesVersions": {
+    ">=4.0 <4.1": {
+      "*": [
+        "dist/ts4.0"
+      ]
+    },
+    ">=3.8 <4.0": {
+      "*": [
+        "dist/ts3.8"
+      ]
+    },
+    "<3.8": {
+      "*": [
+        "dist/ts3.4"
+      ]
+    }
+  },
   "dependencies": {
-    "tsparticles-engine": "^1.35.1",
-    "tsparticles-interaction-external-push": "^1.35.1",
-    "tsparticles-shape-circle": "^1.20.1",
-    "tsparticles-updater-color": "^1.35.1",
-    "tsparticles-updater-opacity": "^1.35.1",
-    "tsparticles-updater-out-modes": "^1.35.1",
-    "tsparticles-updater-size": "^1.35.1"
+    "tsparticles-engine": "^1.35.1"
   }
 }

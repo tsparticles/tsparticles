@@ -4,6 +4,9 @@ import { loadExternalBounceInteraction } from "tsparticles-interaction-external-
 import { loadExternalBubbleInteraction } from "tsparticles-interaction-external-bubble";
 import { loadExternalConnectInteraction } from "tsparticles-interaction-external-connect";
 import { loadExternalGrabInteraction } from "tsparticles-interaction-external-grab";
+import { loadExternalPauseInteraction } from "tsparticles-interaction-external-pause";
+import { loadExternalPushInteraction } from "tsparticles-interaction-external-push";
+import { loadExternalRemoveInteraction } from "tsparticles-interaction-external-remove";
 import { loadExternalRepulseInteraction } from "tsparticles-interaction-external-repulse";
 import { loadParticlesAttractInteraction } from "tsparticles-interaction-particles-attract";
 import { loadParticlesCollisionsInteraction } from "tsparticles-interaction-particles-collisions";
@@ -32,6 +35,9 @@ export function loadSlim(tsParticles: Main): void {
     loadExternalBubbleInteraction(tsParticles);
     loadExternalConnectInteraction(tsParticles);
     loadExternalGrabInteraction(tsParticles);
+    loadExternalPauseInteraction(tsParticles);
+    loadExternalPushInteraction(tsParticles);
+    loadExternalRemoveInteraction(tsParticles);
     loadExternalRepulseInteraction(tsParticles);
 
     loadParticlesAttractInteraction(tsParticles);

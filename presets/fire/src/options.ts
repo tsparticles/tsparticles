@@ -32,6 +32,7 @@ export const options: ISourceOptions = {
         },
     },
     interactivity: {
+        detectsOn: "window",
         events: {
             onClick: {
                 enable: true,

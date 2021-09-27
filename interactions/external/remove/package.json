@@ -1,13 +1,14 @@
 {
-  "name": "tsparticles-preset-fire",
-  "version": "1.20.1",
-  "description": "tsParticles fire preset",
+  "name": "tsparticles-interaction-external-remove",
+  "version": "1.35.1",
+  "description": "tsParticles remove external interaction",
   "homepage": "https://particles.js.org/",
   "scripts": {
     "prettify:src": "prettier --write ./src",
     "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
-    "compile": "tsc",
+    "compile": "tsc && yarn build:ts:old",
+    "build:ts:old": "npx downlevel-dts ./dist ./tmp/ts4.0 --to=4.0 && npx downlevel-dts ./dist ./tmp/ts3.8 --to=3.8 && npx downlevel-dts ./dist ./tmp/ts3.4 && copyfiles ./tmp/**/* ./dist && rimraf -f ./tmp",
     "bundle": "webpack --mode production",
     "distfiles": "node ./scripts/distfiles.js",
     "build": "yarn clear:dist && yarn prettify:src && yarn compile && yarn lint && yarn bundle && yarn prettify:readme && yarn distfiles",
@@ -18,7 +19,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
-    "directory": "presets/fire"
+    "directory": "interactions/external/remove"
   },
   "keywords": [
     "tsparticles",
@@ -43,13 +44,16 @@
     "css3",
     "animated",
     "background",
-    "tsparticles-preset"
+    "tsparticles-shape"
   ],
   "publishConfig": {
     "directory": "dist"
   },
   "author": "Matteo Bruni",
   "license": "MIT",
+  "files": [
+    "dist/**/*"
+  ],
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
@@ -71,12 +75,6 @@
     "webpack-tsparticles-plugin": "^1.0.0"
   },
   "dependencies": {
-    "tsparticles-engine": "^1.35.1",
-    "tsparticles-interaction-external-push": "^1.35.1",
-    "tsparticles-shape-circle": "^1.20.1",
-    "tsparticles-updater-color": "^1.35.1",
-    "tsparticles-updater-opacity": "^1.35.1",
-    "tsparticles-updater-out-modes": "^1.35.1",
-    "tsparticles-updater-size": "^1.35.1"
+    "tsparticles-engine": "^1.35.1"
   }
 }
