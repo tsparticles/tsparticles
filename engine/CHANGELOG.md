@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.35.2](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.35.1...tsparticles@1.35.2) (2021-09-27)
+
+
+### Bug Fixes
+
+* added try catch in pathseg polyfill, fixes [#2264](https://github.com/matteobruni/tsparticles/issues/2264) ([6b849f2](https://github.com/matteobruni/tsparticles/commit/6b849f2455371946ab6949385de5b3b6699cae70))
+
+
+
+
+
 ## [1.35.1](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.35.0...tsparticles@1.35.1) (2021-09-20)
 
 
