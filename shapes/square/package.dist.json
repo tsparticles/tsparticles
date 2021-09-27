@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-square",
-  "version": "1.20.1",
+  "version": "1.20.2",
   "description": "tsParticles square shape",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -45,6 +45,6 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^1.35.1"
+    "tsparticles-engine": "^1.35.2"
   }
 }
