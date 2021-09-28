@@ -20,13 +20,6 @@ export const options: ISourceOptions = {
             value: "#FF0000",
         },
         move: {
-            attract: {
-                enable: false,
-                rotate: {
-                    x: 2000,
-                    y: 2000,
-                },
-            },
             direction: "none",
             enable: true,
             outModes: {
