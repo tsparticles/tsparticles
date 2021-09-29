@@ -8,17 +8,12 @@ export const options = {
         enable: true,
     },
     particles: {
-        color: {
-            value: "#ffffff",
-        },
-        lineLinked: {
-            enable: false,
-        },
         move: {
-            bounce: false,
             direction: MoveDirection.none,
             enable: true,
-            outMode: OutMode.out,
+            outModes: {
+                default: OutMode.out,
+            },
             random: true,
             speed: 0.1,
             straight: false,
@@ -32,9 +27,6 @@ export const options = {
             },
             random: true,
             value: 1,
-        },
-        shape: {
-            type: "circle",
         },
         size: {
             random: true,

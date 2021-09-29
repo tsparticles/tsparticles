@@ -8,9 +8,6 @@ export const options = {
         enable: true,
     },
     particles: {
-        color: {
-            value: "#fff",
-        },
         move: {
             direction: MoveDirection.bottom,
             enable: true,

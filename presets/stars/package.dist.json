@@ -45,6 +45,11 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^1.35.2"
+    "tsparticles-engine": "^1.35.2",
+    "tsparticles-shape-circle": "^1.20.2",
+    "tsparticles-updater-out-modes": "^1.35.2",
+    "tsparticles-updater-color": "^1.35.2",
+    "tsparticles-updater-opacity": "^1.35.2",
+    "tsparticles-updater-size": "^1.35.2"
   }
 }
