@@ -38,6 +38,10 @@ const getExternals = (bundle) => {
         "tsparticles-interaction-particles-collisions",
         "tsparticles-interaction-particles-links",
         "tsparticles-interaction-particles-repulse",
+        "tsparticles-path-curves",
+        "tsparticles-path-perlin-noise",
+        "tsparticles-path-polygon",
+        "tsparticles-path-simplex-noise",
         "tsparticles-plugin-absorbers",
         "tsparticles-plugin-emitters",
         "tsparticles-plugin-infection",
@@ -54,16 +58,17 @@ const getExternals = (bundle) => {
         "tsparticles-shape-square",
         "tsparticles-shape-star",
         "tsparticles-shape-text",
-        "tsparticles-updater-color",
-        "tsparticles-updater-size",
-        "tsparticles-updater-opacity",
-        "tsparticles-updater-out-modes",
-        "tsparticles-updater-size",
-        "tsparticles-updater-wobble",
-        "tsparticles-updater-roll",
         "tsparticles-updater-angle",
+        "tsparticles-updater-color",
+        "tsparticles-updater-gradient",
+        "tsparticles-updater-life",
+        "tsparticles-updater-opacity",
+        "tsparticles-updater-orbit",
+        "tsparticles-updater-out-modes",
+        "tsparticles-updater-roll",
+        "tsparticles-updater-size",
         "tsparticles-updater-tilt",
-        "tsparticles-updater-life");
+        "tsparticles-updater-wobble");
 };
 
 module.exports = {

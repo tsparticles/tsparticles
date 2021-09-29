@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import type { Container } from "tsparticles-engine";
+import type { Container, Main } from "tsparticles-engine";
+import { loadFull } from "tsparticles";
 
 @Component({
     selector: 'app-container',
@@ -7,7 +8,7 @@ import type { Container } from "tsparticles-engine";
     styleUrls: [ './container.component.css' ]
 })
 export class ContainerComponent implements OnInit {
-    id = 'tsparticles-engine';
+    id = 'tsparticles';
     options = {
         background: {
             color: {
@@ -94,7 +95,13 @@ export class ContainerComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    public particlesLoaded(container: Container): void {
+    particlesInit(main: Main): void {
+        loadFull(main);
+
+        console.log(loadFull);
+    }
+
+    particlesLoaded(container: Container): void {
         console.log(container);
     }
 }

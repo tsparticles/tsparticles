@@ -14,7 +14,9 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": [
-              "tsparticles-engine"
+              "tsparticles-engine",
+              "tsparticles-slim",
+              "tsparticles"
             ],
             "outputPath": "dist/ng-particles-demo",
             "index": "src/index.html",
