@@ -2019,10 +2019,10 @@ text-table@^0.2.0:
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
 
-three@^0.132.0:
-  version "0.132.0"
-  resolved "https://registry.yarnpkg.com/three/-/three-0.132.0.tgz#7c3197608c8ba1e9570ed078e1060f45e48d7fd3"
-  integrity sha512-kv4WeP3O5/8mcHyuGYnqBQYdEfzSz9kEkq4H/9J966epNlGSVJ8gYC3SwT9qIITdgC0OvLr3zPltCS4dUyg2eg==
+three@^0.133.0:
+  version "0.133.0"
+  resolved "https://registry.yarnpkg.com/three/-/three-0.133.0.tgz#41427306c731a89407221b7be48c7a63580400e7"
+  integrity sha512-1p8xTXnJD4hMM2Ktm7+FqOOBoImBoftKnKtAZT/b9AQeL3LhRkVu/HnIJhWA69qIMvUYpjfnunNsO4WdObw1ZQ==
 
 to-fast-properties@^1.0.3:
   version "1.0.3"
