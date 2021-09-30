@@ -25,7 +25,7 @@
   "dependencies": {
     "fs-extra": "^10.0.0",
     "gh-pages": "^3.2.3",
-    "minify": "^7.0.2",
+    "minify": "^8.0.0",
     "rimraf": "^3.0.2",
     "sass": "^1.37.5",
     "tsparticles-engine": "^1.35.2",
