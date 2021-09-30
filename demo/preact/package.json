@@ -45,6 +45,8 @@
     "preact": "^10.5.14",
     "preact-particles": "^1.35.2",
     "preact-render-to-string": "^5.1.19",
-    "preact-router": "^3.2.1"
+    "preact-router": "^3.2.1",
+    "tsparticles": "^1.35.2",
+    "tsparticles-engine": "^1.35.2"
   }
 }
