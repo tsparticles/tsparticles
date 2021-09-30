@@ -9,7 +9,7 @@ module.exports = {
 		filename: "bundle.js"
 	},
 	resolve: {
-		extensions: [ '.js', '.jsx', '.ts', '.tsx' ]
+		extensions: ['.js', '.jsx', '.ts', '.tsx']
 	},
 	performance: {
 		hints: false
@@ -39,7 +39,7 @@ module.exports = {
 		]
 	},
 	devServer: {
-		contentBase: "src/",
+		static: "src/",
 		historyApiFallback: true
 	},
 	plugins: [
