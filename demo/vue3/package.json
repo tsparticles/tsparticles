@@ -10,6 +10,7 @@
     "core-js": "^3.16.1",
     "particles.vue3": "^1.18.2",
     "tsparticles-engine": "^1.35.2",
+    "tsparticles": "^1.35.2",
     "vue": "^3.2.2",
     "vue-class-component": "^8.0.0-rc.1"
   },

@@ -79,13 +79,15 @@
                                              }
                                            },
                                            detectRetina: true
-                                         }"/>
+                                         }" :particlesInit="particlesInit"/>
 
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import HelloWorld from "./components/HelloWorld.vue";
+import type { Main } from "tsparticles-engine";
+import { loadFull } from "tsparticles";
 
 @Options({
   components: {
@@ -93,6 +95,9 @@ import HelloWorld from "./components/HelloWorld.vue";
   }
 })
 export default class App extends Vue {
+  particlesInit(main: Main) {
+    loadFull(main);
+  }
 }
 </script>
 
