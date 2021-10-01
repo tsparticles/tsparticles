@@ -46,10 +46,10 @@ export const options: ISourceOptions = {
                 },
                 particles: {
                     stroke: {
-                        color: {
-                            value: ["#ff595e", "#ffca3a", "#8ac926", "#1982c4", "#6a4c93"],
-                        },
-                        width: 1,
+                        width: 0,
+                    },
+                    color: {
+                        value: ["#ff595e", "#ffca3a", "#8ac926", "#1982c4", "#6a4c93"],
                     },
                     number: {
                         value: 0,
@@ -74,7 +74,7 @@ export const options: ISourceOptions = {
                         type: ShapeType.circle,
                     },
                     size: {
-                        value: 1,
+                        value: 2,
                         animation: {
                             enable: false,
                         },
