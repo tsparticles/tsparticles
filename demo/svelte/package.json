@@ -10,7 +10,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^20.0.0",
+    "@rollup/plugin-commonjs": "^21.0.0",
     "@rollup/plugin-node-resolve": "^13.0.4",
     "@rollup/plugin-typescript": "^8.2.5",
     "@tsconfig/svelte": "^2.0.1",
