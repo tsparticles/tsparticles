@@ -12,6 +12,12 @@ function fetchError(statusCode: number): void {
     console.error("Error tsParticles - File config not found");
 }
 
+interface LoaderParams {
+    tagId?: string;
+    options?: SingleOrMultiple<RecursivePartial<IOptions>>;
+    index?: number;
+}
+
 /**
  * Main class for creating the [[Container]] objects
  * @category Core
@@ -39,17 +45,12 @@ export class Loader {
         dom.splice(index, 1);
     }
 
-    /**
-     * Loads the provided options to create a [[Container]] object.
-     * @param tagId the particles container element id
-     * @param options the options object to initialize the [[Container]]
-     * @param index if an options array is provided, this will retrieve the exact index of that array
-     */
-    static async load(
-        tagId: string,
-        options?: SingleOrMultiple<RecursivePartial<IOptions>>,
-        index?: number
-    ): Promise<Container | undefined> {
+    static async loadOptions(params: LoaderParams): Promise<Container | undefined> {
+        console.log(params);
+
+        const tagId = params.tagId ?? `tsparticles${Math.floor(Math.random() * 10000)}`;
+        const { options, index } = params;
+
         /* elements */
         let domContainer = document.getElementById(tagId);
 
@@ -58,10 +59,38 @@ export class Loader {
 
             domContainer.id = tagId;
 
-            document.append(domContainer);
+            document.querySelector("body")?.append(domContainer);
         }
 
         return Loader.set(tagId, domContainer, options, index);
+    }
+
+    /**
+     * Loads the provided options to create a [[Container]] object.
+     * @param tagId the particles container element id
+     * @param options the options object to initialize the [[Container]]
+     * @param index if an options array is provided, this will retrieve the exact index of that array
+     */
+    static load(
+        tagId: string | SingleOrMultiple<RecursivePartial<IOptions>>,
+        options?: SingleOrMultiple<RecursivePartial<IOptions>> | number,
+        index?: number
+    ): Promise<Container | undefined> {
+        const params: LoaderParams = { index };
+
+        if (typeof tagId === "string") {
+            params.tagId = tagId;
+        } else {
+            params.options = tagId;
+        }
+
+        if (typeof options === "number") {
+            params.index = options ?? params.index;
+        } else {
+            params.options = options ?? params.options;
+        }
+
+        return this.loadOptions(params);
     }
 
     /**
@@ -72,14 +101,19 @@ export class Loader {
      * @param index if an options array is provided, this will retrieve the exact index of that array
      */
     static async set(
-        id: string,
-        domContainer: HTMLElement,
-        options?: SingleOrMultiple<RecursivePartial<IOptions>>,
+        id: string | HTMLElement,
+        domContainer: HTMLElement | SingleOrMultiple<RecursivePartial<IOptions>>,
+        options?: SingleOrMultiple<RecursivePartial<IOptions>> | number,
         index?: number
     ): Promise<Container | undefined> {
-        const currentOptions = options instanceof Array ? itemFromArray(options, index) : options;
+        const hasId = typeof id === "string";
+        const domEl = (!hasId ? id : domContainer) as HTMLElement;
+        const newOptions = (
+            typeof options === "number" || options === undefined ? domContainer : options
+        ) as SingleOrMultiple<RecursivePartial<IOptions>>;
+        const currentOptions = newOptions instanceof Array ? itemFromArray(newOptions, index) : newOptions;
         const dom = Loader.dom();
-        const oldIndex = dom.findIndex((v) => v.id === id);
+        const oldIndex = hasId ? dom.findIndex((v) => v.id === id) : -1;
 
         if (oldIndex >= 0) {
             const old = Loader.domItem(oldIndex);
@@ -93,11 +127,11 @@ export class Loader {
         let canvasEl: HTMLCanvasElement;
         let generatedCanvas: boolean;
 
-        if (domContainer.tagName.toLowerCase() === "canvas") {
-            canvasEl = domContainer as HTMLCanvasElement;
+        if (domEl.tagName.toLowerCase() === "canvas") {
+            canvasEl = domEl as HTMLCanvasElement;
             generatedCanvas = false;
         } else {
-            const existingCanvases = domContainer.getElementsByTagName("canvas");
+            const existingCanvases = domEl.getElementsByTagName("canvas");
 
             /* get existing canvas if present, otherwise a new one will be created */
             if (existingCanvases.length) {
@@ -120,12 +154,15 @@ export class Loader {
                 canvasEl.style.height = "100%";
 
                 /* append canvas */
-                domContainer.appendChild(canvasEl);
+                domEl.appendChild(canvasEl);
             }
         }
 
         /* launch tsParticles */
-        const newItem = new Container(id, currentOptions);
+        const newItem = new Container(
+            (id as string) ?? `tsparticles${Math.floor(Math.random() * 10000)}`,
+            currentOptions
+        );
 
         if (oldIndex >= 0) {
             dom.splice(oldIndex, 0, newItem);
@@ -149,17 +186,26 @@ export class Loader {
      * @returns A Promise with the [[Container]] object created
      */
     static async loadJSON(
-        tagId: string,
-        jsonUrl: SingleOrMultiple<string>,
+        tagId: string | SingleOrMultiple<string>,
+        jsonUrl?: SingleOrMultiple<string> | number,
         index?: number
     ): Promise<Container | undefined> {
-        const url = jsonUrl instanceof Array ? itemFromArray(jsonUrl, index) : jsonUrl;
+        let url: string, id: string | undefined;
+
+        if (typeof jsonUrl === "number" || jsonUrl === undefined) {
+            url = tagId instanceof Array ? itemFromArray(tagId, jsonUrl) : tagId;
+        } else {
+            id = tagId as string;
+            url = jsonUrl instanceof Array ? itemFromArray(jsonUrl, index) : jsonUrl;
+        }
 
         /* load json config */
         const response = await fetch(url);
 
         if (response.ok) {
-            return Loader.load(tagId, await response.json());
+            const data = await response.json();
+
+            return await Loader.load(id ?? data, id ? data : index, index);
         } else {
             fetchError(response.status);
         }
@@ -175,12 +221,19 @@ export class Loader {
      * @returns A Promise with the [[Container]] object created
      */
     static async setJSON(
-        id: string,
-        domContainer: HTMLElement,
-        jsonUrl: SingleOrMultiple<string>,
+        id: string | HTMLElement,
+        domContainer: HTMLElement | SingleOrMultiple<string>,
+        jsonUrl?: SingleOrMultiple<string> | number,
         index?: number
     ): Promise<Container | undefined> {
-        const url = jsonUrl instanceof Array ? itemFromArray(jsonUrl, index) : jsonUrl;
+        let url: string, newId: string | undefined;
+
+        if (typeof jsonUrl === "number" || jsonUrl === undefined) {
+            url = (domContainer instanceof Array ? itemFromArray(domContainer, jsonUrl) : domContainer) as string;
+        } else {
+            newId = id as string;
+            url = jsonUrl instanceof Array ? itemFromArray(jsonUrl, index) : jsonUrl;
+        }
 
         /* load json config */
         const response = await fetch(url);
@@ -188,7 +241,12 @@ export class Loader {
         if (response.ok) {
             const options = await response.json();
 
-            return Loader.set(id, domContainer, options);
+            return Loader.set(
+                newId ?? (domContainer as HTMLElement),
+                (domContainer as HTMLElement) ?? options,
+                options ?? index,
+                index
+            );
         } else {
             fetchError(response.status);
         }
