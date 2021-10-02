@@ -195,6 +195,6 @@ const App = () => {
 
 <https://particles.js.org>
 
-CodePen ий байнга шинэчлэгдэж байдаг цуглуулга [энд](https://codepen.io/collection/DPOage)
+CodePen -ий байнга шинэчлэгдэж байдаг цуглуулга [энд](https://codepen.io/collection/DPOage)
 
 <https://codepen.io/collection/DPOage>
