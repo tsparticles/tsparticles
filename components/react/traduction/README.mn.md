@@ -4,15 +4,15 @@
 
 [![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
 
-Official [tsParticles](https://github.com/matteobruni/tsparticles) ReactJS component
+Албан ёсны [tsParticles](https://github.com/matteobruni/tsparticles) ReactJS компонэнт
 
-## Installation
+## Татах
 
 ```shell
 npm install react-tsparticles react
 ```
 
-or
+эсвэл
 
 ```shell
 yarn add react-tsparticles react
@@ -77,6 +77,7 @@ import Particles from "react-tsparticles";
 const App = () => {
   const particlesInit = (main) => {
     console.log(main);
+    // та энд tsParticles instance (main) ийг эхлүүлэн дурын дүрс нэмж болно
   }
   
   const particlesLoaded = (container) => {
@@ -185,14 +186,14 @@ const App = () => {
 | init            | функц | tsParticles instance эхэлсний дараа дуудагддаг функц|
 | loaded          | функц | Канвас бүрэн зөв ажилсан бол дуудагддаг функц|
 
-Утгийн тохиргоогоо эндээс олно уу [here](https://particles.js.org).
+Утгийн тохиргоогоо эндээс олно уу [энд](https://particles.js.org).
 
 ## Жишээ
 
-Жишээ [here](https://particles.js.org)
+Жишээ [энд](https://particles.js.org)
 
 <https://particles.js.org>
 
-CodePen ий байнга шинэчлэгдэж байдаг цуглуулга [here](https://codepen.io/collection/DPOage)
+CodePen ий байнга шинэчлэгдэж байдаг цуглуулга [энд](https://codepen.io/collection/DPOage)
 
 <https://codepen.io/collection/DPOage>
