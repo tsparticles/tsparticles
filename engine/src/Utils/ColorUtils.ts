@@ -14,6 +14,7 @@ import { itemFromArray } from "./Utils";
 import { Constants } from "./Constants";
 import { mix, randomInRange, setRangeValue } from "./NumberUtils";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
+import type { IParticleValueAnimation } from "../Core/Interfaces";
 import { AnimationStatus } from "../Enums";
 import type { HslAnimation } from "../Options/Classes/HslAnimation";
 
