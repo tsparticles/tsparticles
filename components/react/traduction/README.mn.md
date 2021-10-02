@@ -77,6 +77,7 @@ import Particles from "react-tsparticles";
 const App = () => {
   const particlesInit = (main) => {
     console.log(main);
+    
     // та энд tsParticles instance (main) ийг эхлүүлэн дурын дүрс нэмж болно
   }
   
@@ -194,6 +195,6 @@ const App = () => {
 
 <https://particles.js.org>
 
-CodePen ий байнга шинэчлэгдэж байдаг цуглуулга [энд](https://codepen.io/collection/DPOage)
+CodePen -ий байнга шинэчлэгдэж байдаг цуглуулга [энд](https://codepen.io/collection/DPOage)
 
 <https://codepen.io/collection/DPOage>

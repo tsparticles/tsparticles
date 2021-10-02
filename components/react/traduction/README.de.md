@@ -56,9 +56,20 @@ Beispiel:
 import Particles from "react-tsparticles";
 
 const App = () => {
+  const particlesInit = (main) => {
+    console.log(main);
+
+    // Sie können die tsParticles-Instanz (main) hier initialisieren und benutzerdefinierte Formen oder Voreinstellungen hinzufügen
+  }
+  
+  const particlesLoaded = (container) => {
+    console.log(container);
+  }
   return (
     <Particles
       id="tsparticles"
+      init={particlesInit}
+      loaded={particlesLoaded}
       options={{
         background: {
           color: {

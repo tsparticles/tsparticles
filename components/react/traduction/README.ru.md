@@ -47,9 +47,20 @@ create-react-app your_app --template particles-typescript
 import Particles from "react-tsparticles";
 
 const App = () => {
+  const particlesInit = (main) => {
+    console.log(main);
+
+    // вы можете инициализировать экземпляр tsParticles (main) здесь, добавляя пользовательские формы или предустановки
+  }
+  
+  const particlesLoaded = (container) => {
+    console.log(container);
+  }
   return (
     <Particles
       id="tsparticles"
+      init={particlesInit}
+      loaded={particlesLoaded}
       options={{
         background: {
           color: {
