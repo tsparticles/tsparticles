@@ -88,17 +88,17 @@ describe("ColorUtils", () => {
 
             expect(ColorUtils.colorToRgb(color)).to.be.undefined;
         });
-        
+
         it("input undefined", () => {
             const color = undefined;
 
             expect(ColorUtils.colorToRgb(color)).to.be.undefined;
         });
-        
+
         it("random value", () => {
             const color = "random";
 
-            expect(ColorUtils.colorToRgb(color)).not.be.undefined.and.not.be.null
+            expect(ColorUtils.colorToRgb(color)).not.be.undefined.and.not.be.null;
         });
     });
 
@@ -146,7 +146,7 @@ describe("ColorUtils", () => {
 
             expect(ColorUtils.hslToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
         });
-        
+
         it("hsl value zero saturation", () => {
             const color: IHsl = {
                 h: 180,
@@ -257,7 +257,7 @@ describe("ColorUtils", () => {
         it("IRgb to rgba string", () => {
             expect(ColorUtils.getStyleFromRgb(red)).to.equal("rgba(255, 0, 0, 1)");
         });
-        
+
         it("IHsl to hsla string", () => {
             const color: IHsl = {
                 h: 0,
@@ -267,7 +267,7 @@ describe("ColorUtils", () => {
 
             expect(ColorUtils.getStyleFromHsl(color)).to.equal("hsla(0, 100%, 50%, 1)");
         });
-        
+
         it("IHsv to hsla string", () => {
             const color: IHsv = {
                 h: 0,
