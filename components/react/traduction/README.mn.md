@@ -4,15 +4,15 @@
 
 [![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
 
-Official [tsParticles](https://github.com/matteobruni/tsparticles) ReactJS component
+Албан ёсны [tsParticles](https://github.com/matteobruni/tsparticles) ReactJS компонэнт
 
-## Installation
+## Татах
 
 ```shell
 npm install react-tsparticles react
 ```
 
-or
+эсвэл
 
 ```shell
 yarn add react-tsparticles react
@@ -20,12 +20,12 @@ yarn add react-tsparticles react
 
 #### create-react-app
 
-Starting from version 1.17.0 there are two official `create-react-app` templates:
+Хувилбар 1.17.0 ээс эхлэн хоёр албан ёсны `create-react-app` загвар гарсан:
 
-- `cra-template-particles`: Simple ReactJS template with full screen particles, using JavaScript
-- `cra-template-particles-typescript`: Simple ReactJS template with full screen particles, using TypeScript
+- `cra-template-particles`: JavaScript-ээр үүсгэсэн бүтэн дэлгэцийн жижиг хэсгүүдээс бүтсэн энгийн ReactJS загвар
+- `cra-template-particles-typescript`: TypeScript-ээр үүсгэсэн бүтэн дэлгэцийн жижиг хэсгүүдээс бүтсэн энгийн ReactJS загвар
 
-You can simply install them using the `create-react-app` command like this:
+Та ингэж `create-react-app` комманд ашиглан татаж болно:
 
 ```shell script
 create-react-app your_app --template particles
@@ -37,11 +37,11 @@ or
 create-react-app your_app --template particles-typescript
 ```
 
-## How to use
+## Хэрхэн ашиглах
 
-### Code
+### Код
 
-Examples:
+Жишээнүүд:
 
 _Remote url_
 
@@ -51,8 +51,7 @@ import Particles from "react-tsparticles";
 const App = () => {
   const particlesInit = (main) => {
     console.log(main);
-
-    // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+    // та энд tsParticles instance (main) ийг эхлүүлэн дурын дүрс нэмж болно
   }
   
   const particlesLoaded = (container) => {
@@ -78,8 +77,7 @@ import Particles from "react-tsparticles";
 const App = () => {
   const particlesInit = (main) => {
     console.log(main);
-
-    // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+    // та энд tsParticles instance (main) ийг эхлүүлэн дурын дүрс нэмж болно
   }
   
   const particlesLoaded = (container) => {
@@ -175,27 +173,27 @@ const App = () => {
 
 ### Props
 
-| Prop            | Type     | Definition                                                                                                                                          |
+| Prop    | Утга     |  Тайлбар    |
 | --------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| width           | string   | The width of the canvas.                                                                                                                            |
-| height          | string   | The height of the canvas.                                                                                                                           |
-| options         | object   | The options of the particles instance.                                                                                                              |
-| url             | string   | The remote options url, called using an AJAX request                                                                                                |
-| style           | object   | The style of the canvas element.                                                                                                                    |
-| className       | string   | The class name of the canvas wrapper.                                                                                                               |
-| canvasClassName | string   | the class name of the canvas.                                                                                                                       |
-| container       | object   | The instance of the [particles container](https://particles.js.org/docs/modules/_core_container_.html)                                              |
-| init            | function | This function is called after the tsParticles instance initialization, the instance is the parameter and you can load custom presets or shapes here |
-| loaded          | function | This function is called when particles are correctly loaded in canvas, the current container is the parameter and you can customize it here         |
+| width           | мөр   | Канвасын өргөн|
+| height          | мөр   | Канвасын өндөр|
+| options         | обжект   | The options of the particles instance.|
+| url             | мөр   | The remote options url, called using an AJAX request                                                                                                |
+| style           | обжект   | Канвасын стилл|
+| className       | мөр   | Канвас агуулагчын класс|
+| canvasClassName | мөр   | Канвасын класс|
+| container       | обжект   | Жишээ [particles container](https://particles.js.org/docs/modules/_core_container_.html)                                              |
+| init            | функц | tsParticles instance эхэлсний дараа дуудагддаг функц|
+| loaded          | функц | Канвас бүрэн зөв ажилсан бол дуудагддаг функц|
 
-Find your parameters configuration [here](https://particles.js.org).
+Утгийн тохиргоогоо эндээс олно уу [энд](https://particles.js.org).
 
-## Demos
+## Жишээ
 
-The demo website is [here](https://particles.js.org)
+Жишээ [энд](https://particles.js.org)
 
 <https://particles.js.org>
 
-There's also a CodePen collection actively maintained and updated [here](https://codepen.io/collection/DPOage)
+CodePen ий байнга шинэчлэгдэж байдаг цуглуулга [энд](https://codepen.io/collection/DPOage)
 
 <https://codepen.io/collection/DPOage>
