@@ -77,6 +77,7 @@ import Particles from "react-tsparticles";
 const App = () => {
   const particlesInit = (main) => {
     console.log(main);
+    
     // та энд tsParticles instance (main) ийг эхлүүлэн дурын дүрс нэмж болно
   }
   
