@@ -135,4 +135,14 @@ body {
   border-radius: 0 0 3px 3px;
 }
 
+.btn-group .preset-menu.dropdown-menu.show {
+  max-height: 100vh;
+  overflow: auto;
+}
+
+.navbar .preset-menu.dropdown-menu.show {
+  max-height: 60vh;
+  overflow: auto;
+}
+
 /*# sourceMappingURL=main.css.map */
