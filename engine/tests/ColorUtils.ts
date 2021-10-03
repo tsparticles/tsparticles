@@ -19,7 +19,7 @@ describe("ColorUtils", () => {
             expect(ColorUtils.colorToRgb(color)).include(red).and.not.be.undefined.and.not.be.null;
         });
 
-        it("string value", () => {
+        it("array string value", () => {
             const color: IColor = {
                 value: ["#ff0000", "#00ff00", "#0000ff"],
             };
@@ -88,6 +88,18 @@ describe("ColorUtils", () => {
 
             expect(ColorUtils.colorToRgb(color)).to.be.undefined;
         });
+
+        it("input undefined", () => {
+            const color = undefined;
+
+            expect(ColorUtils.colorToRgb(color)).to.be.undefined;
+        });
+
+        it("random value", () => {
+            const color = "random";
+
+            expect(ColorUtils.colorToRgb(color)).not.be.undefined.and.not.be.null;
+        });
     });
 
     describe("stringToAlpha", () => {
@@ -133,6 +145,22 @@ describe("ColorUtils", () => {
             };
 
             expect(ColorUtils.hslToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
+        });
+
+        it("hsl value zero saturation", () => {
+            const color: IHsl = {
+                h: 180,
+                l: 50,
+                s: 0,
+            };
+
+            const grey: IRgb = {
+                b: 127,
+                g: 127,
+                r: 127,
+            };
+
+            expect(ColorUtils.hslToRgb(color)).to.include(grey).and.not.be.undefined.and.not.be.null;
         });
     });
 
@@ -228,6 +256,26 @@ describe("ColorUtils", () => {
     describe("getStyleFromColor", () => {
         it("IRgb to rgba string", () => {
             expect(ColorUtils.getStyleFromRgb(red)).to.equal("rgba(255, 0, 0, 1)");
+        });
+
+        it("IHsl to hsla string", () => {
+            const color: IHsl = {
+                h: 0,
+                l: 50,
+                s: 100,
+            };
+
+            expect(ColorUtils.getStyleFromHsl(color)).to.equal("hsla(0, 100%, 50%, 1)");
+        });
+
+        it("IHsv to hsla string", () => {
+            const color: IHsv = {
+                h: 0,
+                s: 100,
+                v: 100,
+            };
+
+            expect(ColorUtils.getStyleFromHsv(color)).to.equal("hsla(0, 100%, 50%, 1)");
         });
     });
 });

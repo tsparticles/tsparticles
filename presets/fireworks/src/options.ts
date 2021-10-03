@@ -74,7 +74,7 @@ export const options: ISourceOptions = {
                         type: ShapeType.circle,
                     },
                     size: {
-                        value: 1,
+                        value: 2,
                         animation: {
                             enable: false,
                         },

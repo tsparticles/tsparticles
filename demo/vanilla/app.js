@@ -72,6 +72,10 @@ app.get('/click', function (req, res) {
     res.render('click');
 });
 
+app.get('/noid', function (req, res) {
+    res.render('noid');
+});
+
 app.get("/presets", function (req, res) {
     res.render("presets/index");
 });
