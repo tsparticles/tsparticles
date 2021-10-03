@@ -13,9 +13,17 @@ function fetchError(statusCode: number): void {
 }
 
 interface LoaderParams {
-    tagId?: string;
-    options?: SingleOrMultiple<RecursivePartial<IOptions>>;
+    element?: HTMLElement;
     index?: number;
+    options?: SingleOrMultiple<RecursivePartial<IOptions>>;
+    tagId?: string;
+}
+
+interface RemoteLoaderParams {
+    element?: HTMLElement;
+    index?: number;
+    tagId?: string;
+    url?: SingleOrMultiple<string>;
 }
 
 /**
@@ -46,13 +54,11 @@ export class Loader {
     }
 
     static async loadOptions(params: LoaderParams): Promise<Container | undefined> {
-        console.log(params);
-
         const tagId = params.tagId ?? `tsparticles${Math.floor(Math.random() * 10000)}`;
         const { options, index } = params;
 
         /* elements */
-        let domContainer = document.getElementById(tagId);
+        let domContainer = params.element ?? document.getElementById(tagId);
 
         if (!domContainer) {
             domContainer = document.createElement("div");
@@ -62,7 +68,93 @@ export class Loader {
             document.querySelector("body")?.append(domContainer);
         }
 
-        return Loader.set(tagId, domContainer, options, index);
+        const currentOptions = options instanceof Array ? itemFromArray(options, index) : options;
+        const dom = Loader.dom();
+        const oldIndex = dom.findIndex((v) => v.id === tagId);
+
+        if (oldIndex >= 0) {
+            const old = Loader.domItem(oldIndex);
+
+            if (old && !old.destroyed) {
+                old.destroy();
+                dom.splice(oldIndex, 1);
+            }
+        }
+
+        let canvasEl: HTMLCanvasElement;
+        let generatedCanvas: boolean;
+
+        if (domContainer.tagName.toLowerCase() === "canvas") {
+            canvasEl = domContainer as HTMLCanvasElement;
+            generatedCanvas = false;
+        } else {
+            const existingCanvases = domContainer.getElementsByTagName("canvas");
+
+            /* get existing canvas if present, otherwise a new one will be created */
+            if (existingCanvases.length) {
+                canvasEl = existingCanvases[0];
+
+                if (!canvasEl.className) {
+                    canvasEl.className = Constants.canvasClass;
+                }
+
+                generatedCanvas = false;
+            } else {
+                generatedCanvas = true;
+                /* create canvas element */
+                canvasEl = document.createElement("canvas");
+
+                canvasEl.className = Constants.canvasClass;
+
+                /* set size canvas */
+                canvasEl.style.width = "100%";
+                canvasEl.style.height = "100%";
+
+                /* append canvas */
+                domContainer.appendChild(canvasEl);
+            }
+        }
+
+        /* launch tsParticles */
+        const newItem = new Container(tagId, currentOptions);
+
+        if (oldIndex >= 0) {
+            dom.splice(oldIndex, 0, newItem);
+        } else {
+            dom.push(newItem);
+        }
+
+        newItem.canvas.loadCanvas(canvasEl, generatedCanvas);
+
+        await newItem.start();
+
+        return newItem;
+    }
+
+    static async loadRemoteOptions(params: RemoteLoaderParams): Promise<Container | undefined> {
+        const { url: jsonUrl, index } = params;
+        const url = jsonUrl instanceof Array ? itemFromArray(jsonUrl, index) : jsonUrl;
+
+        if (!url) {
+            return;
+        }
+
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            fetchError(response.status);
+
+            return;
+        }
+
+        const data = await response.json();
+
+        return await Loader.loadOptions({
+            tagId: params.tagId,
+            element: params.element,
+            index,
+            options: data,
+        });
     }
 
     /**
@@ -106,75 +198,27 @@ export class Loader {
         options?: SingleOrMultiple<RecursivePartial<IOptions>> | number,
         index?: number
     ): Promise<Container | undefined> {
-        const hasId = typeof id === "string";
-        const domEl = (!hasId ? id : domContainer) as HTMLElement;
-        const newOptions = (
-            typeof options === "number" || options === undefined ? domContainer : options
-        ) as SingleOrMultiple<RecursivePartial<IOptions>>;
-        const currentOptions = newOptions instanceof Array ? itemFromArray(newOptions, index) : newOptions;
-        const dom = Loader.dom();
-        const oldIndex = hasId ? dom.findIndex((v) => v.id === id) : -1;
+        const params: LoaderParams = { index };
 
-        if (oldIndex >= 0) {
-            const old = Loader.domItem(oldIndex);
-
-            if (old && !old.destroyed) {
-                old.destroy();
-                dom.splice(oldIndex, 1);
-            }
-        }
-
-        let canvasEl: HTMLCanvasElement;
-        let generatedCanvas: boolean;
-
-        if (domEl.tagName.toLowerCase() === "canvas") {
-            canvasEl = domEl as HTMLCanvasElement;
-            generatedCanvas = false;
+        if (typeof id === "string") {
+            params.tagId = id;
         } else {
-            const existingCanvases = domEl.getElementsByTagName("canvas");
-
-            /* get existing canvas if present, otherwise a new one will be created */
-            if (existingCanvases.length) {
-                canvasEl = existingCanvases[0];
-
-                if (!canvasEl.className) {
-                    canvasEl.className = Constants.canvasClass;
-                }
-
-                generatedCanvas = false;
-            } else {
-                generatedCanvas = true;
-                /* create canvas element */
-                canvasEl = document.createElement("canvas");
-
-                canvasEl.className = Constants.canvasClass;
-
-                /* set size canvas */
-                canvasEl.style.width = "100%";
-                canvasEl.style.height = "100%";
-
-                /* append canvas */
-                domEl.appendChild(canvasEl);
-            }
+            params.element = id;
         }
 
-        /* launch tsParticles */
-        const newItem = new Container(
-            (id as string) ?? `tsparticles${Math.floor(Math.random() * 10000)}`,
-            currentOptions
-        );
-
-        if (oldIndex >= 0) {
-            dom.splice(oldIndex, 0, newItem);
+        if (domContainer instanceof HTMLElement) {
+            params.element = domContainer;
         } else {
-            dom.push(newItem);
+            params.options = domContainer;
         }
 
-        newItem.canvas.loadCanvas(canvasEl, generatedCanvas);
+        if (typeof options === "number") {
+            params.index = options;
+        } else {
+            params.options = options ?? params.options;
+        }
 
-        await newItem.start();
-
-        return newItem;
+        return this.loadOptions(params);
     }
 
     /**
@@ -190,25 +234,16 @@ export class Loader {
         jsonUrl?: SingleOrMultiple<string> | number,
         index?: number
     ): Promise<Container | undefined> {
-        let url: string, id: string | undefined;
+        let url: SingleOrMultiple<string>, id: string | undefined;
 
         if (typeof jsonUrl === "number" || jsonUrl === undefined) {
-            url = tagId instanceof Array ? itemFromArray(tagId, jsonUrl) : tagId;
+            url = tagId;
         } else {
             id = tagId as string;
-            url = jsonUrl instanceof Array ? itemFromArray(jsonUrl, index) : jsonUrl;
+            url = jsonUrl;
         }
 
-        /* load json config */
-        const response = await fetch(url);
-
-        if (response.ok) {
-            const data = await response.json();
-
-            return await Loader.load(id ?? data, id ? data : index, index);
-        } else {
-            fetchError(response.status);
-        }
+        return await Loader.loadRemoteOptions({ tagId: id, url, index });
     }
 
     /**
@@ -223,33 +258,26 @@ export class Loader {
     static async setJSON(
         id: string | HTMLElement,
         domContainer: HTMLElement | SingleOrMultiple<string>,
-        jsonUrl?: SingleOrMultiple<string> | number,
+        jsonUrl: SingleOrMultiple<string> | (number | undefined),
         index?: number
     ): Promise<Container | undefined> {
-        let url: string, newId: string | undefined;
+        let url: SingleOrMultiple<string>,
+            newId: string | undefined,
+            newIndex: number | undefined,
+            element: HTMLElement;
 
-        if (typeof jsonUrl === "number" || jsonUrl === undefined) {
-            url = (domContainer instanceof Array ? itemFromArray(domContainer, jsonUrl) : domContainer) as string;
+        if (id instanceof HTMLElement) {
+            element = id;
+            url = domContainer as SingleOrMultiple<string>;
+            newIndex = jsonUrl as number;
         } else {
             newId = id as string;
-            url = jsonUrl instanceof Array ? itemFromArray(jsonUrl, index) : jsonUrl;
+            element = domContainer as HTMLElement;
+            url = jsonUrl as SingleOrMultiple<string>;
+            newIndex = index;
         }
 
-        /* load json config */
-        const response = await fetch(url);
-
-        if (response.ok) {
-            const options = await response.json();
-
-            return Loader.set(
-                newId ?? (domContainer as HTMLElement),
-                (domContainer as HTMLElement) ?? options,
-                options ?? index,
-                index
-            );
-        } else {
-            fetchError(response.status);
-        }
+        return await Loader.loadRemoteOptions({ tagId: newId, url, index: newIndex, element });
     }
 
     /**
