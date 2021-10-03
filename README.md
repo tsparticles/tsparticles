@@ -12,7 +12,30 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 [![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles")
 
 ---
+## Table of Contents
 
+* [Use for your website](##-Do-you-want-to-use-it-on-your-website?)
+  * [Library installation](#Library-installation)
+* [Official components for some of the most used frameworks](##-Official-components-for-some-of-the-most-used-frameworks)
+  * [Angular](###Angular)
+  * [Inferno](###-Inferno)
+  * [jQuery](###-jQuery)
+  * [Preact](###Preact)
+  * [ReactJS](###-ReactJS)
+  * [Svelte](###-Svelte)
+  * [VueJS 2.x](###-VueJS-2.x)
+  * [VueJS 3.x](###-VueJS-3.x)
+  * [WordPress](###-WordPress)
+* [Templates and Resources](##-Templates-and-Resources)
+* [Demo / Generator](##-**_Demo-/*Generator_**)
+  * [Characters as particles](###-Characters-as-particles)
+  * [Mouse hover connections](###-Mouse-hover-connections)
+  * [Polygon mask](###-Polygon-mask)
+  * [Animated stars](###-Animated-stars)
+  * [Nyan cat flying on scrolling stars](###-Nyan-cat-flying-on-scrolling-stars)
+  * [Background Mask particles](###-Background-Mask-particles)
+
+* [Plugins/Customizations](##-Plugins/Customizations)
 ## Do you want to use it on your website?
 
 *Documentation and Development references [here](https://particles.js.org/docs/) 📖*
