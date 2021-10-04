@@ -35,7 +35,7 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
   * [Nyan cat flying on scrolling stars](#Nyan-cat-flying-on-scrolling-stars)
   * [Background Mask particles](#Background-Mask-particles)
 
-* [Plugins/Customizations](#Plugins/Customizations)
+* [Plugins/Customizations](#Plugins-Customizations)
 ## Do you want to use it on your website?
 
 *Documentation and Development references [here](https://particles.js.org/docs/) 📖*
