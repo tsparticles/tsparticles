@@ -24,7 +24,7 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
   * [ReactJS](#ReactJS)
   * [Svelte](#Svelte)
   * [VueJS 2.x](#VueJS-2x)
-  * [VueJS 3.x](#VueJS-3.x)
+  * [VueJS 3.x](#VueJS-3x)
   * [WordPress](#WordPress)
 * [Templates and Resources](#Templates-and-Resources)
 * [Demo / Generator](#-**_Demo-/*Generator_**)
