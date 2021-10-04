@@ -23,6 +23,7 @@
     "jquery": "^3.6.0",
     "jquery-particles": "^1.35.3",
     "tsparticles-engine": "^1.35.3",
+    "tsparticles": "^1.35.3",
     "tsparticles-preset-links": "^1.20.3"
   },
   "devDependencies": {

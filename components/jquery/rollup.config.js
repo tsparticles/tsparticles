@@ -9,12 +9,12 @@ export default {
         sourcemap: true,
         globals: {
             jquery: 'jQuery',
-            tsparticles: 'window'
+            'tsparticles-engine': 'window'
         }
     },
     external: [
         'jquery',
-        'tsparticles'
+        'tsparticles-engine'
     ],
     plugins: [
         babel({
