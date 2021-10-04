@@ -28,14 +28,14 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
   * [WordPress](#WordPress)
 * [Templates and Resources](#Templates-and-Resources)
 * [Demo / Generator](#Demo-/-Generator)
-  * [Characters as particles](#-Characters-as-particles)
-  * [Mouse hover connections](#-Mouse-hover-connections)
-  * [Polygon mask](#-Polygon-mask)
-  * [Animated stars](#-Animated-stars)
-  * [Nyan cat flying on scrolling stars]##-Nyan-cat-flying-on-scrolling-stars)
-  * [Background Mask particles](#-Background-Mask-particles)
+  * [Characters as particles](#Characters-as-particles)
+  * [Mouse hover connections](#Mouse-hover-connections)
+  * [Polygon mask](#Polygon-mask)
+  * [Animated stars](#Animated-stars)
+  * [Nyan cat flying on scrolling stars](#Nyan-cat-flying-on-scrolling-stars)
+  * [Background Mask particles](#Background-Mask-particles)
 
-* [Plugins/Customizations](##-Plugins/Customizations)
+* [Plugins/Customizations](#Plugins/Customizations)
 ## Do you want to use it on your website?
 
 *Documentation and Development references [here](https://particles.js.org/docs/) 📖*
