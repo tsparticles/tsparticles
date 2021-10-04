@@ -23,7 +23,7 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
   * [Preact](#Preact)
   * [ReactJS](#ReactJS)
   * [Svelte](#Svelte)
-  * [VueJS 2.x](#VueJS-2.x)
+  * [VueJS 2.x](#VueJS-2x)
   * [VueJS 3.x](#VueJS-3.x)
   * [WordPress](#WordPress)
 * [Templates and Resources](#Templates-and-Resources)
