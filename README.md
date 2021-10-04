@@ -18,7 +18,7 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
   * [Library installation](#Library-installation)
 * [Official components for some of the most used frameworks](#Official-components-for-some-of-the-most-used-frameworks)
   * [Angular](#Angular)
-  * [Inferno](-Inferno)
+  * [Inferno](#Inferno)
   * [jQuery](#jQuery)
   * [Preact](#Preact)
   * [ReactJS](#ReactJS)
