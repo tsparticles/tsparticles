@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-interaction-external-remove",
-  "version": "1.35.2",
+  "version": "1.35.3",
   "description": "tsParticles remove external interaction",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -75,6 +75,6 @@
     "webpack-tsparticles-plugin": "^1.0.0"
   },
   "dependencies": {
-    "tsparticles-engine": "^1.35.2"
+    "tsparticles-engine": "^1.35.3"
   }
 }

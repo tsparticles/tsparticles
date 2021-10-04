@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-star",
-  "version": "1.20.2",
+  "version": "1.20.3",
   "description": "tsParticles star shape",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -71,6 +71,6 @@
     "webpack-tsparticles-plugin": "^1.0.0"
   },
   "dependencies": {
-    "tsparticles-engine": "^1.35.2"
+    "tsparticles-engine": "^1.35.3"
   }
 }

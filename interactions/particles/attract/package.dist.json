@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-interaction-particles-attract",
-  "version": "1.35.2",
+  "version": "1.35.3",
   "description": "tsParticles attract particles interaction",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -62,6 +62,6 @@
     }
   },
   "dependencies": {
-    "tsparticles-engine": "^1.35.2"
+    "tsparticles-engine": "^1.35.3"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-updater-color",
-  "version": "1.35.2",
+  "version": "1.35.3",
   "description": "tsParticles particles color updater",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -45,6 +45,6 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^1.35.2"
+    "tsparticles-engine": "^1.35.3"
   }
 }
