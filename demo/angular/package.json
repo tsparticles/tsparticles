@@ -27,7 +27,7 @@
     "@angular/platform-browser-dynamic": "~12.2.1",
     "@angular/router": "~12.2.1",
     "ng-particles": "^3.0.0-beta.2",
-    "rxjs": "~7.3.0",
+    "rxjs": "~7.4.0",
     "tslib": "^2.3.1",
     "tsparticles": "^2.0.0-beta.2",
     "tsparticles-engine": "^2.0.0-beta.1",
