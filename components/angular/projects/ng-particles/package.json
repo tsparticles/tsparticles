@@ -58,6 +58,6 @@
   "peerDependencies": {
     "@angular/common": ">=2.0.0",
     "@angular/core": ">=2.0.0",
-    "tsparticles-engine": "^1.35.3"
+    "tsparticles-engine": "^2.0.0-beta.0"
   }
 }

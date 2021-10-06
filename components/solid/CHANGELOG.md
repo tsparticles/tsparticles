@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # [2.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/solid-particles@2.0.0-beta.0...solid-particles@2.0.0-beta.1) (2021-10-06)
+## [1.18.4](https://github.com/matteobruni/tsparticles/compare/solid-particles@1.18.3...solid-particles@1.18.4) (2021-10-06)
 
 **Note:** Version bump only for package solid-particles
 
