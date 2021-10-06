@@ -1141,9 +1141,9 @@
     "@types/react" "*"
 
 "@types/react@*", "@types/react@^17.0.18":
-  version "17.0.21"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.21.tgz#069c43177cd419afaab5ce26bb4e9056549f7ea6"
-  integrity sha512-GzzXCpOthOjXvrAUFQwU/svyxu658cwu00Q9ugujS4qc1zXgLFaO0kS2SLOaMWLt2Jik781yuHCWB7UcYdGAeQ==
+  version "17.0.27"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.27.tgz#6498ed9b3ad117e818deb5525fa1946c09f2e0e6"
+  integrity sha512-zgiJwtsggVGtr53MndV7jfiUESTqrbxOcBvwfe6KS/9bzaVPCTDieTWnFNecVNx6EAaapg5xsLLWFfHHR437AA==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -2994,6 +2994,11 @@ tslib@^1.8.1, tslib@^1.9.0:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
+
+tsparticles-engine@^2.0.0-beta.0:
+  version "2.0.0-beta.0"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.0-beta.0.tgz#2080cb76b0c1c4d144fbbd3b9be21d384e3b38a2"
+  integrity sha512-2EyqeA5RhsIlp214RxzRtsvoo+E4RiKnwkEaogc8VOnNRIAutunH9I+Ql7pucjJxQRTBC3/lU/QZrbNnCUQrvA==
 
 tsutils@^3.21.0:
   version "3.21.0"
