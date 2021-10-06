@@ -3256,6 +3256,11 @@ es6-promisify@^5.0.0:
   dependencies:
     es6-promise "^4.0.3"
 
+esbuild-wasm@^0.12.15:
+  version "0.12.29"
+  resolved "https://registry.yarnpkg.com/esbuild-wasm/-/esbuild-wasm-0.12.29.tgz#1d210bb7d463b2ca51c54d69bb4192d9709f6100"
+  integrity sha512-amSuB/qOGnTFYLOxGHDGosQbOKZnrinniPHFf6ZxzeNH7WAjLkjXluKyKAtX2YuhTkUXm9XV9igl13iqYZ44fQ==
+
 esbuild@0.12.24, esbuild@^0.12.15:
   version "0.12.24"
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.12.24.tgz#21966fad25a80f368ed308101e88102bce0dc68f"
@@ -5235,9 +5240,9 @@ neo-async@^2.6.2:
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
 ng-packagr@~12.2.0:
-  version "12.2.1"
-  resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-12.2.1.tgz#4a68f4bbee3394d7afcdd9fdf06794b219915bb1"
-  integrity sha512-awX/sRmURikw6YjcDzrz2+/SJ4yOr1MTgv4OitSeMXfwBlG5zJLN36mLQn49fYBFecBV+lcAosh0OYJuAueU5g==
+  version "12.2.2"
+  resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-12.2.2.tgz#201ca02e96d05fc600082d775bfad07c0706f23c"
+  integrity sha512-b5P5ZAdiXqUbmuBfNzqXVo/myynOiV13ryxEvv4TMLkiY7nPCP4yFz5A9v0aauC4VqIPzsYDNikcfmuZeOO0Sg==
   dependencies:
     "@rollup/plugin-commonjs" "^20.0.0"
     "@rollup/plugin-json" "^4.1.0"
@@ -5249,7 +5254,7 @@ ng-packagr@~12.2.0:
     chokidar "^3.5.1"
     commander "^8.0.0"
     dependency-graph "^0.11.0"
-    esbuild "^0.12.15"
+    esbuild-wasm "^0.12.15"
     find-cache-dir "^3.3.1"
     glob "^7.1.6"
     injection-js "^2.4.0"
@@ -5265,6 +5270,8 @@ ng-packagr@~12.2.0:
     rxjs "^6.5.0"
     sass "^1.32.8"
     stylus "^0.54.8"
+  optionalDependencies:
+    esbuild "^0.12.15"
 
 nice-napi@^1.0.2:
   version "1.0.2"
