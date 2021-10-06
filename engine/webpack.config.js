@@ -23,12 +23,8 @@ const getConfig = (entry) => {
             path: path.resolve(__dirname, "dist"),
             filename: "[name].js",
             libraryTarget: "umd",
-            /*library: {
-                root: "tsparticles",
-                commonjs: "tsparticles",
-                amd: "tsparticles",
-            },*/
-            globalObject: "this"
+            globalObject: "this",
+            chunkFilename: '[name].js',
         },
         resolve: {
             extensions: [".js", ".json"]
@@ -78,11 +74,7 @@ const getConfig = (entry) => {
 
 module.exports = [
     getConfig({
-        "tsparticles.slim": "./dist/browser/index.slim.js",
-        "tsparticles.slim.min": "./dist/browser/index.slim.js"
-    }),
-    getConfig({
-        tsparticles: "./dist/browser/index.js",
-        "tsparticles.min": "./dist/browser/index.js"
+        "tsparticles.engine": "./dist/browser/index.js",
+        "tsparticles.engine.min": "./dist/browser/index.js"
     })
 ];

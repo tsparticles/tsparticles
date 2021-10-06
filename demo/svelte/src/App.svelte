@@ -1,5 +1,6 @@
 <script lang="ts">
     import Particles from "svelte-particles";
+    import { loadFull } from "tsparticles";
 
     export let name: string;
 
@@ -27,12 +28,23 @@
 
         // use container to call it's methods
     }
+
+    let handleParticlesInit = (e) => {
+        console.log(e);
+
+        const main = e.detail;
+
+        loadFull(main);
+
+        // use container to call it's methods
+    }
 </script>
 
 <main>
     <h1>Hello {name}!</h1>
     <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-    <Particles id="tsparticles" options={particlesConfig} on:particlesLoaded={handleParticlesLoaded}/>
+    <Particles id="tsparticles" options={particlesConfig} on:particlesLoaded={handleParticlesLoaded}
+               on:particlesInit={handleParticlesInit}/>
 </main>
 
 <style>

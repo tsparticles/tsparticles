@@ -1,4 +1,6 @@
-import { loadBubbleShape } from "./shape";
-import { tsParticles } from "tsparticles";
+import type { Main } from "tsparticles-engine";
+import { BubbleDrawer } from "./BubbleDrawer";
 
-loadBubbleShape(tsParticles);
+export function loadBubbleShape(tsParticles: Main): void {
+    tsParticles.addShape("bubble", new BubbleDrawer());
+}

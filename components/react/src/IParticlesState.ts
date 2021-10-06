@@ -1,4 +1,4 @@
-import type { Container } from "tsparticles";
+import type { Container } from "tsparticles-engine";
 
 export interface IParticlesState {
     library?: Container;

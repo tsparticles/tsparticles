@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-path-curves",
-  "version": "1.35.0",
+  "version": "2.0.0-beta.0",
   "description": "tsParticles curves path",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -48,6 +48,6 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles": "^1.35.0"
+    "tsparticles-engine": "^2.0.0-beta.0"
   }
 }

@@ -10,4 +10,3 @@ schema
 scripts
 typedoc
 deploy.docs.js
-src/Plugins/PolygonMask/pathseg.*

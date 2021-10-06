@@ -1,5 +1,5 @@
-import type { Container, IParticle } from "tsparticles";
-import { Particle, ParticlesInteractorBase, Vector, getDistances, clamp } from "tsparticles";
+import type { Container, IParticle } from "tsparticles-engine";
+import { Particle, ParticlesInteractorBase, Vector, getDistances, clamp } from "tsparticles-engine";
 
 export class Repulser extends ParticlesInteractorBase {
     constructor(container: Container) {

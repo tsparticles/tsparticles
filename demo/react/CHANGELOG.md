@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.0](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.20.3...react-tsparticles-demo@2.0.0-beta.0) (2021-10-06)
+
+
+### Features
+
+* moved polygon mask to external plugin (breaking) ([abdfe37](https://github.com/matteobruni/tsparticles/commit/abdfe37f250a4f357f4491bb7ff0e54da6a7303e))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+## [1.20.3](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.20.2...react-tsparticles-demo@1.20.3) (2021-10-03)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
+## [1.20.2](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.20.1...react-tsparticles-demo@1.20.2) (2021-09-27)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
+## [1.20.1](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.20.0...react-tsparticles-demo@1.20.1) (2021-09-20)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
 # [1.20.0](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.19.1...react-tsparticles-demo@1.20.0) (2021-09-18)
 
 **Note:** Version bump only for package react-tsparticles-demo

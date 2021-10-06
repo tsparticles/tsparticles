@@ -1,0 +1,67 @@
+{
+  "name": "tsparticles-interaction-external-trail",
+  "version": "2.0.0-beta.0",
+  "description": "tsParticles trail external interaction",
+  "homepage": "https://particles.js.org/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/tsparticles.git",
+    "directory": "interactions/external/trail"
+  },
+  "keywords": [
+    "tsparticles",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles.js",
+    "particles-ts",
+    "particles.ts",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background",
+    "tsparticles-shape"
+  ],
+  "author": "Matteo Bruni",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles/issues"
+  },
+  "main": "index.js",
+  "jsdelivr": "tsparticles.interaction.particles.trail.min.js",
+  "unpkg": "tsparticles.interaction.particles.trail.min.js",
+  "browser": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "typesVersions": {
+    ">=4.0 <4.1": {
+      "*": [
+        "dist/ts4.0"
+      ]
+    },
+    ">=3.8 <4.0": {
+      "*": [
+        "dist/ts3.8"
+      ]
+    },
+    "<3.8": {
+      "*": [
+        "dist/ts3.4"
+      ]
+    }
+  },
+  "dependencies": {
+    "tsparticles-engine": "^2.0.0-beta.0"
+  }
+}

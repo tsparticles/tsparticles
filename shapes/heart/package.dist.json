@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-heart",
-  "version": "1.20.0",
+  "version": "2.0.0-beta.0",
   "description": "tsParticles heart shape",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -38,13 +38,13 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "main": "shape.js",
+  "main": "index.js",
   "jsdelivr": "tsparticles.shape.heart.min.js",
   "unpkg": "tsparticles.shape.heart.min.js",
-  "browser": "shape.js",
-  "module": "shape.js",
-  "types": "shape.d.ts",
+  "browser": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
   "dependencies": {
-    "tsparticles": "^1.35.0"
+    "tsparticles-engine": "^2.0.0-beta.0"
   }
 }

@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.20.3...tsparticles-demo@2.0.0-beta.0) (2021-10-06)
+
+
+### Features
+
+* fixed firefly and fireworks presets ([ec952c9](https://github.com/matteobruni/tsparticles/commit/ec952c9ac0b42dc1c5350279a44a1255ca1f4fca))
+* fixed fountain presets ([3b47867](https://github.com/matteobruni/tsparticles/commit/3b478673153181396446f510d7ca5ad09abfcd4f))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+## [1.20.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.20.2...tsparticles-demo@1.20.3) (2021-10-03)
+
+
+### Bug Fixes
+
+* fixed fireworks presets ([3402e46](https://github.com/matteobruni/tsparticles/commit/3402e46c7a6c945c481b563fa633fd6095f9b377))
+* improved new methods without id ([9b7a106](https://github.com/matteobruni/tsparticles/commit/9b7a106acd4c3225aa001f12ab25e4c2b89dde66))
+
+
+### Features
+
+* removing the id constraint, a random one will be generated ([3b6b48e](https://github.com/matteobruni/tsparticles/commit/3b6b48efd8962ccc11549339b38888808da2a657))
+
+
+
+
+
+## [1.20.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.20.1...tsparticles-demo@1.20.2) (2021-09-27)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+## [1.20.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.20.0...tsparticles-demo@1.20.1) (2021-09-20)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
 # [1.20.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.19.1...tsparticles-demo@1.20.0) (2021-09-18)
 
 

@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-big-circles@1.20.3...tsparticles-preset-big-circles@2.0.0-beta.0) (2021-10-06)
+
+
+### Features
+
+* moved all plugins to external packages, breaking ([a3edcec](https://github.com/matteobruni/tsparticles/commit/a3edcecd129009e7d9af138dd9a1285360e7003d))
+* moved all shapes to external packages, breaking ([77e4113](https://github.com/matteobruni/tsparticles/commit/77e411338f65ab076fe85c0f143c13417147d4b5))
+* moving all updaters to external packages, breaking ([94bdde6](https://github.com/matteobruni/tsparticles/commit/94bdde67d0b546c22b7841ff8e969d15ddef3430))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+## [1.20.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-big-circles@1.20.2...tsparticles-preset-big-circles@1.20.3) (2021-10-03)
+
+**Note:** Version bump only for package tsparticles-preset-big-circles
+
+
+
+
+
+## [1.20.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-big-circles@1.20.1...tsparticles-preset-big-circles@1.20.2) (2021-09-27)
+
+**Note:** Version bump only for package tsparticles-preset-big-circles
+
+
+
+
+
+## [1.20.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-big-circles@1.20.0...tsparticles-preset-big-circles@1.20.1) (2021-09-20)
+
+**Note:** Version bump only for package tsparticles-preset-big-circles
+
+
+
+
+
 # [1.20.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-big-circles@1.19.1...tsparticles-preset-big-circles@1.20.0) (2021-09-18)
 
 **Note:** Version bump only for package tsparticles-preset-big-circles

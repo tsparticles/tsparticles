@@ -1,6 +1,6 @@
-import type { IColor, IContainerPlugin, Particle } from "tsparticles";
+import type { IColor, IContainerPlugin, Particle } from "tsparticles-engine";
 import { Infecter } from "./Infecter";
-import { itemFromArray } from "tsparticles";
+import { itemFromArray } from "tsparticles-engine";
 import type { InfectableContainer, InfectableParticle } from "./Types";
 import type { IInfectionOptions } from "./Options/Interfaces/IInfectionOptions";
 

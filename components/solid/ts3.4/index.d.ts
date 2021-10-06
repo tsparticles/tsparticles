@@ -4,7 +4,7 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 /// <reference types="solid-js" />
-import { Container, ISourceOptions, Main } from "tsparticles";
+import { Container, ISourceOptions, Main } from "tsparticles-engine";
 import { JSX } from "solid-js";
 
 export interface IParticlesProps {
@@ -29,7 +29,7 @@ export interface IParticlesState {
 export type IParticlesParams = IParticlesProps;
 export type ParticlesProps = IParticlesProps;
 
-export * from "tsparticles";
+export * from "tsparticles-engine";
 
 type Particles = (props: IParticlesProps) => Element;
 

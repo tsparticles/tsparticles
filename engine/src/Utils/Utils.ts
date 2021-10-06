@@ -76,7 +76,7 @@ function checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>
 
 /* ---------- global functions - vendors ------------ */
 export function isSsr(): boolean {
-    return typeof window === "undefined" || !window;
+    return typeof window === "undefined" || !window || typeof window.document === "undefined" || !window.document;
 }
 
 export function animate(): (callback: FrameRequestCallback) => number {

@@ -15,5 +15,5 @@
 
   <app-explore-container name="Tab 1 page"></app-explore-container>
   <ng-particles [id]="particlesId" [options]="particlesOptions"
-                (particlesLoaded)="particlesLoaded($event)"></ng-particles>
+                (particlesLoaded)="particlesLoaded($event)" (particlesInit)="particlesInit($event)"></ng-particles>
 </ion-content>

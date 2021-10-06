@@ -1,5 +1,6 @@
 {
   "packages": [
+    "bundles/*",
     "components/*",
     "demo/**/*",
     "editor",

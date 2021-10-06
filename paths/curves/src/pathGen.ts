@@ -1,6 +1,6 @@
-import type { IMovePathGenerator } from "tsparticles";
+import type { IMovePathGenerator } from "tsparticles-engine";
 import { CurvesPathParticle } from "./CurvesPathParticle";
-import { Vector } from "tsparticles";
+import { Vector } from "tsparticles-engine";
 
 function pathGen(
     rndFunc: (() => number) | null,

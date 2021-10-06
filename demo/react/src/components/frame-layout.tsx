@@ -4,7 +4,7 @@ import { FrameThumbsContainer } from './frame-thumbs-container';
 import { ParticlesContainer } from './particles-container';
 import { Subscription } from 'rxjs';
 import { onKeyPressed } from '../streams/key-pressed';
-import type { ISourceOptions } from "tsparticles";
+import type { ISourceOptions } from "tsparticles-engine";
 
 
 const getFrameCode = (options: ISourceOptions) => {

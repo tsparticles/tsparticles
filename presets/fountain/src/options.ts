@@ -1,5 +1,5 @@
-import type { ISourceOptions } from "tsparticles";
-import { DestroyMode, InteractivityDetect, MoveDirection, OutMode } from "tsparticles";
+import type { ISourceOptions } from "tsparticles-engine";
+import { DestroyMode, InteractivityDetect, MoveDirection, OutMode } from "tsparticles-engine";
 
 export const options: ISourceOptions = {
     fullScreen: {
@@ -41,9 +41,6 @@ export const options: ISourceOptions = {
                     },
                 },
             },
-        },
-        shape: {
-            type: "circle",
         },
         opacity: {
             value: 0.5,

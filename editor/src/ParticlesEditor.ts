@@ -1,4 +1,4 @@
-import type { Container } from "tsparticles";
+import type { Container } from "tsparticles-engine";
 import { OptionsEditor } from "./Sections/Options/OptionsEditor";
 import { Editor, EditorType } from "object-gui";
 import { EditorInputBase } from "object-gui/dist/js/Editors/EditorInputBase";

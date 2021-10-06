@@ -1,5 +1,5 @@
-import type { Container, IMovePathGenerator, Particle } from "tsparticles";
-import { Vector } from "tsparticles";
+import type { Container, IMovePathGenerator, Particle } from "tsparticles-engine";
+import { Vector } from "tsparticles-engine";
 import { makeNoise4D, Noise4D } from "./simplex";
 
 let noiseW: number;

@@ -1,5 +1,5 @@
-import { HoverMode, ParticlesInteractorBase, isInArray } from "tsparticles";
-import type { Container, Particle } from "tsparticles";
+import { HoverMode, ParticlesInteractorBase, isInArray } from "tsparticles-engine";
+import type { Container, Particle } from "tsparticles-engine";
 import { drawParticleShadow } from "./Utils";
 
 export class ParticlesLighter extends ParticlesInteractorBase {

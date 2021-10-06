@@ -1,7 +1,5 @@
-import type { IParticle } from "tsparticles";
-import type { IShapeValues } from "tsparticles/Options/Interfaces/Particles/Shape/IShapeValues";
-import type { IShapeDrawer } from "tsparticles/Core/Interfaces/IShapeDrawer";
-import type { Container } from "tsparticles";
+import type { IShapeValues } from "tsparticles-engine/Options/Interfaces/Particles/Shape/IShapeValues";
+import type { Container, IParticle, IShapeDrawer } from "tsparticles-engine";
 
 interface ISpiralData extends IShapeValues {
     innerRadius: number;

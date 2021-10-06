@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
-import { tsParticles } from 'tsparticles';
-import type { Container, Main } from 'tsparticles';
+import { tsParticles } from 'tsparticles-engine';
+import type { Container, Main } from 'tsparticles-engine';
 import { IParticlesProps } from './ng-particles.module';
 
 @Component({

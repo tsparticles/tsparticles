@@ -1,14 +1,14 @@
 {
   "name": "tsparticles-demo-new",
   "private": true,
-  "version": "1.20.0",
+  "version": "2.0.0-beta.0",
   "description": "tsParticles Demo Website",
   "main": "index.html",
   "scripts": {
     "clear:cache": "rimraf -f ./node_modules/.cache",
     "clear:docs": "rimraf -f ./docs",
     "build:js": "minify ./js/404.js > ./js/404.min.js && yarn copy:engine && yarn copy:light && yarn copy:p-repulse && yarn copy:curves && yarn copy:polygon && yarn copy:perlin && yarn copy:simplex && yarn copy:infection && yarn copy:gradient && yarn copy:orbit",
-    "copy:engine": "copyfiles -u 2 ./node_modules/tsparticles/tsparticles.min.js ./js",
+    "copy:engine": "copyfiles -u 2 ./node_modules/tsparticles/tsparticles.bundle.min.js ./js",
     "copy:light": "copyfiles -u 2 ./node_modules/tsparticles-interaction-light/tsparticles.interaction.light.min.js ./js",
     "copy:p-repulse": "copyfiles -u 2 ./node_modules/tsparticles-interaction-particles-repulse/tsparticles.interaction.particles.repulse.min.js ./js",
     "copy:curves": "copyfiles -u 2 ./node_modules/tsparticles-path-curves/tsparticles.path.curves.min.js ./js",
@@ -35,18 +35,19 @@
   "dependencies": {
     "copyfiles": "^2.4.1",
     "fs-extra": "^10.0.0",
-    "minify": "^7.0.2",
+    "minify": "^8.0.0",
     "rimraf": "^3.0.2",
     "sass": "^1.37.5",
-    "tsparticles": "^1.35.0",
-    "tsparticles-interaction-light": "^1.35.0",
-    "tsparticles-interaction-particles-repulse": "^1.35.0",
-    "tsparticles-path-curves": "^1.35.0",
-    "tsparticles-path-perlin-noise": "^1.35.0",
-    "tsparticles-path-polygon": "^1.35.0",
-    "tsparticles-path-simplex-noise": "^1.35.0",
-    "tsparticles-plugin-infection": "^1.35.0",
-    "tsparticles-updater-gradient": "^1.35.0",
-    "tsparticles-updater-orbit": "^1.35.0"
+    "tsparticles": "^2.0.0-beta.0",
+    "tsparticles-engine": "^2.0.0-beta.0",
+    "tsparticles-interaction-light": "^2.0.0-beta.0",
+    "tsparticles-interaction-particles-repulse": "^2.0.0-beta.0",
+    "tsparticles-path-curves": "^2.0.0-beta.0",
+    "tsparticles-path-perlin-noise": "^2.0.0-beta.0",
+    "tsparticles-path-polygon": "^2.0.0-beta.0",
+    "tsparticles-path-simplex-noise": "^2.0.0-beta.0",
+    "tsparticles-plugin-infection": "^2.0.0-beta.0",
+    "tsparticles-updater-gradient": "^2.0.0-beta.0",
+    "tsparticles-updater-orbit": "^2.0.0-beta.0"
   }
 }

@@ -6,8 +6,8 @@ import { MoveDirection, OutMode, HoverMode, ClickMode, ShapeType } from "react-t
 import {
     Type as PolygonMaskType,
     InlineArrangement as PolygonMaskInlineArrangement
-} from "tsparticles/Plugins/PolygonMask/Enums";
-import type { ISourceOptions } from "tsparticles";
+} from "tsparticles-plugin-polygon-mask";
+import type { ISourceOptions } from "tsparticles-engine";
 
 export type TFrame = {
     backgroundColor: string;

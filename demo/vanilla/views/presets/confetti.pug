@@ -20,8 +20,33 @@ html(lang="en")
 
         link(rel="stylesheet" href="/stylesheets/presets.css")
     body
+        #stats
         #tsparticles(style="background: #000; position: fixed; width: 100%; height: 100%; left: 0; top: 0;")
 
         script(src="/preset-confetti/tsparticles.preset.confetti.bundle.min.js")
+        script(src="/three/examples/js/libs/stats.min.js")
         script.
             confetti("tsparticles", {});
+
+            const stats = new Stats();
+
+            stats.setMode(0);
+            stats.domElement.style.position = "absolute";
+            stats.domElement.style.left = "3px";
+            stats.domElement.style.top = "3px";
+            stats.domElement.id = "stats-graph";
+
+            const initStats = function () {
+                const update = function () {
+                    stats.begin();
+                    stats.end();
+
+                    requestAnimationFrame(update);
+                };
+
+                requestAnimationFrame(update);
+            };
+
+            document.body.querySelector('#stats').appendChild(stats.domElement);
+
+            initStats();

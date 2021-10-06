@@ -79,12 +79,14 @@
                                              }
                                            },
                                            detectRetina: true
-                                         }"/>
+                                         }" :particlesInit="particlesInit"/>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue } from "vue-property-decorator";
+import type { Main } from "tsparticles-engine";
+import { loadFull } from "tsparticles";
 
 declare module 'particles.vue';
 import Particles from "particles.vue";
@@ -92,6 +94,9 @@ import Particles from "particles.vue";
 Vue.use(Particles);
 
 export default class App extends Vue {
+  particlesInit(main: Main) {
+    loadFull(main);
+  }
 }
 </script>
 

@@ -12,6 +12,20 @@ function fetchError(statusCode: number): void {
     console.error("Error tsParticles - File config not found");
 }
 
+interface LoaderParams {
+    element?: HTMLElement;
+    index?: number;
+    options?: SingleOrMultiple<RecursivePartial<IOptions>>;
+    tagId?: string;
+}
+
+interface RemoteLoaderParams {
+    element?: HTMLElement;
+    index?: number;
+    tagId?: string;
+    url?: SingleOrMultiple<string>;
+}
+
 /**
  * Main class for creating the [[Container]] objects
  * @category Core
@@ -39,47 +53,24 @@ export class Loader {
         dom.splice(index, 1);
     }
 
-    /**
-     * Loads the provided options to create a [[Container]] object.
-     * @param tagId the particles container element id
-     * @param options the options object to initialize the [[Container]]
-     * @param index if an options array is provided, this will retrieve the exact index of that array
-     */
-    static async load(
-        tagId: string,
-        options?: SingleOrMultiple<RecursivePartial<IOptions>>,
-        index?: number
-    ): Promise<Container | undefined> {
+    static async loadOptions(params: LoaderParams): Promise<Container | undefined> {
+        const tagId = params.tagId ?? `tsparticles${Math.floor(Math.random() * 10000)}`;
+        const { options, index } = params;
+
         /* elements */
-        let domContainer = document.getElementById(tagId);
+        let domContainer = params.element ?? document.getElementById(tagId);
 
         if (!domContainer) {
             domContainer = document.createElement("div");
 
             domContainer.id = tagId;
 
-            document.append(domContainer);
+            document.querySelector("body")?.append(domContainer);
         }
 
-        return Loader.set(tagId, domContainer, options, index);
-    }
-
-    /**
-     * Loads the provided options to create a [[Container]] object.
-     * @param id the particles container element id
-     * @param domContainer the dom container
-     * @param options the options object to initialize the [[Container]]
-     * @param index if an options array is provided, this will retrieve the exact index of that array
-     */
-    static async set(
-        id: string,
-        domContainer: HTMLElement,
-        options?: SingleOrMultiple<RecursivePartial<IOptions>>,
-        index?: number
-    ): Promise<Container | undefined> {
         const currentOptions = options instanceof Array ? itemFromArray(options, index) : options;
         const dom = Loader.dom();
-        const oldIndex = dom.findIndex((v) => v.id === id);
+        const oldIndex = dom.findIndex((v) => v.id === tagId);
 
         if (oldIndex >= 0) {
             const old = Loader.domItem(oldIndex);
@@ -125,7 +116,7 @@ export class Loader {
         }
 
         /* launch tsParticles */
-        const newItem = new Container(id, currentOptions);
+        const newItem = new Container(tagId, currentOptions);
 
         if (oldIndex >= 0) {
             dom.splice(oldIndex, 0, newItem);
@@ -140,6 +131,96 @@ export class Loader {
         return newItem;
     }
 
+    static async loadRemoteOptions(params: RemoteLoaderParams): Promise<Container | undefined> {
+        const { url: jsonUrl, index } = params;
+        const url = jsonUrl instanceof Array ? itemFromArray(jsonUrl, index) : jsonUrl;
+
+        if (!url) {
+            return;
+        }
+
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            fetchError(response.status);
+
+            return;
+        }
+
+        const data = await response.json();
+
+        return await Loader.loadOptions({
+            tagId: params.tagId,
+            element: params.element,
+            index,
+            options: data,
+        });
+    }
+
+    /**
+     * Loads the provided options to create a [[Container]] object.
+     * @param tagId the particles container element id
+     * @param options the options object to initialize the [[Container]]
+     * @param index if an options array is provided, this will retrieve the exact index of that array
+     */
+    static load(
+        tagId: string | SingleOrMultiple<RecursivePartial<IOptions>>,
+        options?: SingleOrMultiple<RecursivePartial<IOptions>> | number,
+        index?: number
+    ): Promise<Container | undefined> {
+        const params: LoaderParams = { index };
+
+        if (typeof tagId === "string") {
+            params.tagId = tagId;
+        } else {
+            params.options = tagId;
+        }
+
+        if (typeof options === "number") {
+            params.index = options ?? params.index;
+        } else {
+            params.options = options ?? params.options;
+        }
+
+        return this.loadOptions(params);
+    }
+
+    /**
+     * Loads the provided options to create a [[Container]] object.
+     * @param id the particles container element id
+     * @param domContainer the dom container
+     * @param options the options object to initialize the [[Container]]
+     * @param index if an options array is provided, this will retrieve the exact index of that array
+     */
+    static async set(
+        id: string | HTMLElement,
+        domContainer: HTMLElement | SingleOrMultiple<RecursivePartial<IOptions>>,
+        options?: SingleOrMultiple<RecursivePartial<IOptions>> | number,
+        index?: number
+    ): Promise<Container | undefined> {
+        const params: LoaderParams = { index };
+
+        if (typeof id === "string") {
+            params.tagId = id;
+        } else {
+            params.element = id;
+        }
+
+        if (domContainer instanceof HTMLElement) {
+            params.element = domContainer;
+        } else {
+            params.options = domContainer;
+        }
+
+        if (typeof options === "number") {
+            params.index = options;
+        } else {
+            params.options = options ?? params.options;
+        }
+
+        return this.loadOptions(params);
+    }
+
     /**
      * Loads the provided json with a GET request. The content will be used to create a [[Container]] object.
      * This method is async, so if you need a callback refer to JavaScript function `fetch`
@@ -149,20 +230,20 @@ export class Loader {
      * @returns A Promise with the [[Container]] object created
      */
     static async loadJSON(
-        tagId: string,
-        jsonUrl: SingleOrMultiple<string>,
+        tagId: string | SingleOrMultiple<string>,
+        jsonUrl?: SingleOrMultiple<string> | number,
         index?: number
     ): Promise<Container | undefined> {
-        const url = jsonUrl instanceof Array ? itemFromArray(jsonUrl, index) : jsonUrl;
+        let url: SingleOrMultiple<string>, id: string | undefined;
 
-        /* load json config */
-        const response = await fetch(url);
-
-        if (response.ok) {
-            return Loader.load(tagId, await response.json());
+        if (typeof jsonUrl === "number" || jsonUrl === undefined) {
+            url = tagId;
         } else {
-            fetchError(response.status);
+            id = tagId as string;
+            url = jsonUrl;
         }
+
+        return await Loader.loadRemoteOptions({ tagId: id, url, index });
     }
 
     /**
@@ -175,23 +256,28 @@ export class Loader {
      * @returns A Promise with the [[Container]] object created
      */
     static async setJSON(
-        id: string,
-        domContainer: HTMLElement,
-        jsonUrl: SingleOrMultiple<string>,
+        id: string | HTMLElement,
+        domContainer: HTMLElement | SingleOrMultiple<string>,
+        jsonUrl: SingleOrMultiple<string> | (number | undefined),
         index?: number
     ): Promise<Container | undefined> {
-        const url = jsonUrl instanceof Array ? itemFromArray(jsonUrl, index) : jsonUrl;
+        let url: SingleOrMultiple<string>,
+            newId: string | undefined,
+            newIndex: number | undefined,
+            element: HTMLElement;
 
-        /* load json config */
-        const response = await fetch(url);
-
-        if (response.ok) {
-            const options = await response.json();
-
-            return Loader.set(id, domContainer, options);
+        if (id instanceof HTMLElement) {
+            element = id;
+            url = domContainer as SingleOrMultiple<string>;
+            newIndex = jsonUrl as number;
         } else {
-            fetchError(response.status);
+            newId = id as string;
+            element = domContainer as HTMLElement;
+            url = jsonUrl as SingleOrMultiple<string>;
+            newIndex = index;
         }
+
+        return await Loader.loadRemoteOptions({ tagId: newId, url, index: newIndex, element });
     }
 
     /**

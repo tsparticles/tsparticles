@@ -5,12 +5,12 @@
 
 /// <reference types="inferno" />
 import { IParticlesProps, IParticlesState, ParticlesProps } from "../src/";
-import { ISourceOptions } from "tsparticles";
+import { ISourceOptions } from "tsparticles-engine";
 import { Component } from "inferno";
 
 type IParticlesParams = IParticlesProps;
 
-export * from "tsparticles";
+export * from "tsparticles-engine";
 export { ISourceOptions, IParticlesProps, ParticlesProps, IParticlesParams };
 
 type Particles = Component<IParticlesProps, IParticlesState>;

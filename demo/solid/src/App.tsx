@@ -1,6 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
 import Particles from "solid-particles";
+import type { Main } from "tsparticles-engine";
+import { loadFull } from "tsparticles";
+
+function particlesInit(main: Main): void {
+    loadFull(main);
+}
 
 function App() {
     return (
@@ -25,8 +31,16 @@ function App() {
                 },
                 fullScreen: {
                     enable: true
+                },
+                particles: {
+                    links: {
+                        enable: true
+                    },
+                    move: {
+                        enable: true
+                    }
                 }
-            } }/>
+            } } init={ particlesInit }/>
         </div>
     );
 }

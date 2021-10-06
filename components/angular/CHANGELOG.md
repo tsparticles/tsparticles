@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.0](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.18.3...ng-particles@3.0.0-beta.0) (2021-10-06)
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+## [2.18.3](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.18.2...ng-particles@2.18.3) (2021-10-03)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+## [2.18.2](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.18.1...ng-particles@2.18.2) (2021-09-27)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+## [2.18.1](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.18.0...ng-particles@2.18.1) (2021-09-20)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
 # [2.18.0](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.17.1...ng-particles@2.18.0) (2021-09-18)
 
 **Note:** Version bump only for package ng-particles

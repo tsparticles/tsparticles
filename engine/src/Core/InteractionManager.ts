@@ -1,6 +1,7 @@
 import type { Container } from "./Container";
 import type { Particle } from "./Particle";
 import type { IDelta, IExternalInteractor, IParticlesInteractor } from "./Interfaces";
+import type { ClickMode } from "../Enums";
 import { Plugins } from "../Utils";
 import { InteractorType } from "../Enums";
 
@@ -46,6 +47,14 @@ export class InteractionManager {
         for (const interactor of this.particleInteractors) {
             if (interactor.isEnabled(particle)) {
                 interactor.interact(particle, delta);
+            }
+        }
+    }
+
+    handleClickMode(mode: ClickMode | string): void {
+        for (const interactor of this.externalInteractors) {
+            if (interactor.handleClickMode) {
+                interactor.handleClickMode(mode);
             }
         }
     }

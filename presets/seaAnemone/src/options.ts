@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "tsparticles";
+import type { ISourceOptions } from "tsparticles-engine";
 import { curvesPathName } from "tsparticles-path-curves";
 
 export const presetName = "seaAnemone";
@@ -20,13 +20,6 @@ export const options: ISourceOptions = {
             value: "#FF0000",
         },
         move: {
-            attract: {
-                enable: false,
-                rotate: {
-                    x: 2000,
-                    y: 2000,
-                },
-            },
             direction: "none",
             enable: true,
             outModes: {

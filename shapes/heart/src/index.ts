@@ -1,4 +1,6 @@
-import { tsParticles } from "tsparticles";
-import { loadHeartShape } from "./shape";
+import { Main } from "tsparticles-engine";
+import { HeartDrawer } from "./HeartDrawer";
 
-loadHeartShape(tsParticles);
+export function loadHeartShape(tsParticles: Main): void {
+    tsParticles.addShape("heart", new HeartDrawer());
+}
