@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.18.4](https://github.com/matteobruni/tsparticles/compare/inferno-particles-demo@1.18.3...inferno-particles-demo@1.18.4) (2021-10-06)
+
+**Note:** Version bump only for package inferno-particles-demo
+
+
+
+
+
 ## [1.18.3](https://github.com/matteobruni/tsparticles/compare/inferno-particles-demo@1.18.2...inferno-particles-demo@1.18.3) (2021-10-03)
 
 **Note:** Version bump only for package inferno-particles-demo
