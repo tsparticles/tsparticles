@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fire@1.20.3...tsparticles-preset-fire@2.0.0-beta.0) (2021-10-06)
+
+
+### Features
+
+* moved out click interactions to external packages, breaking ([466973d](https://github.com/matteobruni/tsparticles/commit/466973ddbcc382c27c03f7b3518dea99c5e1949c))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 ## [1.20.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fire@1.20.2...tsparticles-preset-fire@1.20.3) (2021-10-03)
 
 **Note:** Version bump only for package tsparticles-preset-fire

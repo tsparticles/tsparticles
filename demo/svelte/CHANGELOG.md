@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.0](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.18.3...svelte-demo@2.0.0-beta.0) (2021-10-06)
+
+**Note:** Version bump only for package svelte-demo
+
+
+
+
+
 ## [1.18.3](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.18.2...svelte-demo@1.18.3) (2021-10-03)
 
 **Note:** Version bump only for package svelte-demo

@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-interaction-external-push",
-  "version": "1.35.3",
+  "version": "2.0.0-beta.0",
   "description": "tsParticles push external interaction",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -62,6 +62,6 @@
     }
   },
   "dependencies": {
-    "tsparticles-engine": "^1.35.3"
+    "tsparticles-engine": "^2.0.0-beta.0"
   }
 }

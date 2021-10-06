@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-sea-anemone",
-  "version": "1.20.3",
+  "version": "2.0.0-beta.0",
   "description": "tsParticles sea anemone preset",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -45,13 +45,13 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^1.35.3",
-    "tsparticles-path-curves": "^1.35.3",
-    "tsparticles-shape-circle": "^1.20.3",
-    "tsparticles-updater-color": "^1.35.3",
-    "tsparticles-updater-out-modes": "^1.35.3",
-    "tsparticles-updater-opacity": "^1.35.3",
-    "tsparticles-updater-size": "^1.35.3",
-    "tsparticles-plugin-emitters": "^1.35.3"
+    "tsparticles-engine": "^2.0.0-beta.0",
+    "tsparticles-path-curves": "^2.0.0-beta.0",
+    "tsparticles-plugin-emitters": "^2.0.0-beta.0",
+    "tsparticles-shape-circle": "^2.0.0-beta.0",
+    "tsparticles-updater-color": "^2.0.0-beta.0",
+    "tsparticles-updater-opacity": "^2.0.0-beta.0",
+    "tsparticles-updater-out-modes": "^2.0.0-beta.0",
+    "tsparticles-updater-size": "^2.0.0-beta.0"
   }
 }

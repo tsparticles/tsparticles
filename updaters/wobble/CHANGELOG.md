@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0-beta.0 (2021-10-06)
+
+
+### Features
+
+* moving all updaters to external packages, breaking ([94bdde6](https://github.com/matteobruni/tsparticles/commit/94bdde67d0b546c22b7841ff8e969d15ddef3430))
+
+
+
+
+
 ## [1.35.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-updater-wobble@1.35.0...tsparticles-updater-wobble@1.35.1) (2021-09-20)
 
 **Note:** Version bump only for package tsparticles-updater-wobble

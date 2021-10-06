@@ -3,6 +3,69 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0-beta.0 (2021-10-06)
+
+
+### Bug Fixes
+
+* added try catch in pathseg polyfill, fixes [#2264](https://github.com/matteobruni/tsparticles/issues/2264) ([6b849f2](https://github.com/matteobruni/tsparticles/commit/6b849f2455371946ab6949385de5b3b6699cae70))
+* brought v2 changes to absorbers ([cbad5c2](https://github.com/matteobruni/tsparticles/commit/cbad5c2651058eeac7bda0fc79e498e3b4126232))
+* **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
+* **deps:** update all ([d9f0ff2](https://github.com/matteobruni/tsparticles/commit/d9f0ff2f8c4ac269aaad5077492746e3da8fb422))
+* fixed broken movement in 1.31 ([6787035](https://github.com/matteobruni/tsparticles/commit/6787035c746bdc11055d00ca83869ed837258ec8))
+* fixed click handler with touch events ([ad4bf8a](https://github.com/matteobruni/tsparticles/commit/ad4bf8a56cb7e110114c8ec25dab1151c440f212))
+* fixed click handler, it wasn't working fine ([fd9873b](https://github.com/matteobruni/tsparticles/commit/fd9873b250d236b196cc7ff952d237f2768fb26b))
+* fixed click handler, it wasn't working fine ([f0a8170](https://github.com/matteobruni/tsparticles/commit/f0a81705f0f7a0ef51fc21344a7d35a02b11ad22))
+* fixed frozen frames (more than 1 seconds), this will fix the issue with pause on blur ([5a933c1](https://github.com/matteobruni/tsparticles/commit/5a933c130d85593e9d0772bb9eb2b7a61f643712))
+* fixed images shape options ([8964fe6](https://github.com/matteobruni/tsparticles/commit/8964fe6dd3b2556de47ba307fe87306764672bcc))
+* fixed issue with emitters and themes, they weren't applied correctly ([3a9dcae](https://github.com/matteobruni/tsparticles/commit/3a9dcaebed687277db76f7f1016e3835284b0d48))
+* fixed issue with size and opacity range ([84e9c16](https://github.com/matteobruni/tsparticles/commit/84e9c16ce0e0ea194cb82bdd1c62839809ee621b))
+* fixed issues with moveSpeed 0 ([6c9dd6e](https://github.com/matteobruni/tsparticles/commit/6c9dd6e1490e8d6f49188e1b2d4cff92d7a9c610))
+* fixed line shape ([5c1c612](https://github.com/matteobruni/tsparticles/commit/5c1c6120af7e10abf26252c3c1be632675bfd3a5))
+* fixed out of canvas out mode ([1f17c60](https://github.com/matteobruni/tsparticles/commit/1f17c60587c81ca8a556dcd6eb6168da32f15371))
+* fixed pause on blur ([a7bd28f](https://github.com/matteobruni/tsparticles/commit/a7bd28f547a02434c188cdee4aa035424996559e))
+* fixed roll and tilt updaters ([d4a7df3](https://github.com/matteobruni/tsparticles/commit/d4a7df3c982dc0332890d16244d7df320cd5fd11))
+* fixed typings for tsParticles load methods ([847bbbe](https://github.com/matteobruni/tsparticles/commit/847bbbef680d72c50db6dc6ef4d3b297c9b82355))
+* fixed wobble updater ([cd13fca](https://github.com/matteobruni/tsparticles/commit/cd13fca6bad6611926e5f01a43ba6412b79fb608))
+* fixes [#2241](https://github.com/matteobruni/tsparticles/issues/2241) ([b5802df](https://github.com/matteobruni/tsparticles/commit/b5802dfcbf61f7d236cecc60e141ddd77d4a3d06))
+* improved images loading ([2690f4a](https://github.com/matteobruni/tsparticles/commit/2690f4a33eeb5950af13ded2cd3be18ecae66984))
+* improved new methods without id ([9b7a106](https://github.com/matteobruni/tsparticles/commit/9b7a106acd4c3225aa001f12ab25e4c2b89dde66))
+* improved out modes and spin movement ([1c811cf](https://github.com/matteobruni/tsparticles/commit/1c811cfefe0b004857b3174e766a34d9bf614361))
+
+
+### Features
+
+* added duration to options ([d4c0a8d](https://github.com/matteobruni/tsparticles/commit/d4c0a8ddb88d3699a1d3974db9bda38f4c47dd79))
+* added gradient angle animated rotation support ([de8f0a4](https://github.com/matteobruni/tsparticles/commit/de8f0a46436601aeb580651b1f87741fd9fc3c79))
+* added gradient options for particles ([c8ecec7](https://github.com/matteobruni/tsparticles/commit/c8ecec7eeda3ecedcdda3bf21eb8fa71c2a276ef))
+* added new methods to particle class ([5743453](https://github.com/matteobruni/tsparticles/commit/5743453906001569f262888aa54539ad4e1463ac))
+* added orbits as a plugin from v2, closes [#188](https://github.com/matteobruni/tsparticles/issues/188) ([a78aaac](https://github.com/matteobruni/tsparticles/commit/a78aaac436e14a196031c4a0fe3da16a65b91ad1)), closes [#609](https://github.com/matteobruni/tsparticles/issues/609)
+* added resize observer, this will replace window.resize if available ([4197f26](https://github.com/matteobruni/tsparticles/commit/4197f2654e8767039dbfd66eca34f261ee3d88c8))
+* added shapes and fill options to emitters ([e8b32a3](https://github.com/matteobruni/tsparticles/commit/e8b32a372190511c3350f6ddb112d0ff8f736c27))
+* added start count to emitters ([5403426](https://github.com/matteobruni/tsparticles/commit/540342630e67baf665f114f9667001638cf5dc3d))
+* added triangles preset ([2a7aa6a](https://github.com/matteobruni/tsparticles/commit/2a7aa6a98666defea5ecc2bc42aed44d6257a70e))
+* auto themes ([d80b78c](https://github.com/matteobruni/tsparticles/commit/d80b78cb49ae04796473bd06f827d5d5a29a3e35))
+* bubble color can now be mixed with the original one to have a smoother effect ([df11d66](https://github.com/matteobruni/tsparticles/commit/df11d66ee94fb9594805a5dfb7d4c776a93c4532))
+* changed particles move distance to an horizontal/vertical object, single number still valid ([a0b16ed](https://github.com/matteobruni/tsparticles/commit/a0b16ed6df01371d8f00f29047efc04aad10bdbe))
+* created gradient updater library, only colors for now ([7d31c62](https://github.com/matteobruni/tsparticles/commit/7d31c62ecb8f023234514b5ef46f0de55f75c283))
+* fixed new wait life emitter option ([ae88774](https://github.com/matteobruni/tsparticles/commit/ae88774239060da6d7b9e98029bf1819511202d6))
+* improved move path generators ([9b67377](https://github.com/matteobruni/tsparticles/commit/9b67377f9208a005b122e312ad4ad3c95a50deb7))
+* moved absorbers to an external plugin, breaking ([5e7223f](https://github.com/matteobruni/tsparticles/commit/5e7223fb6b505260eb72899ec1e9762d96a5c4d7))
+* moved all interactions in external packages, breaking ([76c44df](https://github.com/matteobruni/tsparticles/commit/76c44dfa64cae994ddb1a004e7ff6cdbe3a4b5a9))
+* moved all plugins to external packages, breaking ([a3edcec](https://github.com/matteobruni/tsparticles/commit/a3edcecd129009e7d9af138dd9a1285360e7003d))
+* moved all shapes to external packages, breaking ([77e4113](https://github.com/matteobruni/tsparticles/commit/77e411338f65ab076fe85c0f143c13417147d4b5))
+* moved emitter shapes to a plugin system, so they can be customized by users ([5bec360](https://github.com/matteobruni/tsparticles/commit/5bec36067804b425af12766275da74fbfe89d20c))
+* moved out click interactions to external packages, breaking ([466973d](https://github.com/matteobruni/tsparticles/commit/466973ddbcc382c27c03f7b3518dea99c5e1949c))
+* moved polygon mask to external plugin (breaking) ([abdfe37](https://github.com/matteobruni/tsparticles/commit/abdfe37f250a4f357f4491bb7ff0e54da6a7303e))
+* moving all updaters to external packages, breaking ([94bdde6](https://github.com/matteobruni/tsparticles/commit/94bdde67d0b546c22b7841ff8e969d15ddef3430))
+* removing the id constraint, a random one will be generated ([3b6b48e](https://github.com/matteobruni/tsparticles/commit/3b6b48efd8962ccc11549339b38888808da2a657))
+* spin movement enabled from v2 ([240a38f](https://github.com/matteobruni/tsparticles/commit/240a38f9a8c78e5b683d655d5f94476e396a5076))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 ## [1.35.3](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.35.2...tsparticles@1.35.3) (2021-10-03)
 
 
