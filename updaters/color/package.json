@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-updater-color",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0-beta.2",
   "description": "tsParticles particles color updater",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -75,6 +75,6 @@
     "webpack-tsparticles-plugin": "^1.0.0-beta.0"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.0.0-beta.0"
+    "tsparticles-engine": "^2.0.0-beta.1"
   }
 }
