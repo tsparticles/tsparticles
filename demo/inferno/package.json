@@ -1,6 +1,6 @@
 {
 	"name": "inferno-particles-demo",
-	"version": "2.0.0-beta.0",
+	"version": "2.0.0-beta.1",
 	"private": true,
 	"description": "> TODO: description",
 	"main": "index.js",
@@ -18,7 +18,7 @@
 	"dependencies": {
 		"inferno": "^7.4.8",
 		"inferno-particles": "^2.0.0-beta.0",
-		"tsparticles": "^2.0.0-beta.0",
+		"tsparticles": "^2.0.0-beta.1",
 		"tsparticles-engine": "^2.0.0-beta.0"
 	},
 	"devDependencies": {

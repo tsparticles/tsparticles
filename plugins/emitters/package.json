@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-plugin-emitters",
-  "version": "2.0.0-beta.0",
+  "version": "2.0.0-beta.1",
   "description": "tsParticles emitters plugin",
   "homepage": "https://particles.js.org/",
   "scripts": {
