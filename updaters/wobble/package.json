@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-updater-wobble",
-  "version": "2.0.0-beta.0",
+  "version": "2.0.0-beta.1",
   "description": "tsParticles particles wobble updater",
   "homepage": "https://particles.js.org/",
   "scripts": {

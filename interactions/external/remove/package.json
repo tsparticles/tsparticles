@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-interaction-external-remove",
-  "version": "2.0.0-beta.0",
+  "version": "2.0.0-beta.1",
   "description": "tsParticles remove external interaction",
   "homepage": "https://particles.js.org/",
   "scripts": {

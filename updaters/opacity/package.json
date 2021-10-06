@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-updater-opacity",
-  "version": "2.0.0-beta.0",
+  "version": "2.0.0-beta.1",
   "description": "tsParticles particles opacity updater",
   "homepage": "https://particles.js.org/",
   "scripts": {

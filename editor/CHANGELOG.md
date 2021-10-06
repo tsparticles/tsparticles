@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@2.0.0-beta.0...tsparticles-editor@2.0.0-beta.1) (2021-10-06)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
 # [2.0.0-beta.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.35.3...tsparticles-editor@2.0.0-beta.0) (2021-10-06)
 
 
