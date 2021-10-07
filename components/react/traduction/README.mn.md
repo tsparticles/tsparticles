@@ -31,7 +31,7 @@ yarn add react-tsparticles react
 create-react-app your_app --template particles
 ```
 
-or
+эсвэл
 
 ```shell script
 create-react-app your_app --template particles-typescript
