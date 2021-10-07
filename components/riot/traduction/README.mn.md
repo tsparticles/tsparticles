@@ -4,21 +4,21 @@
 
 [![npm](https://img.shields.io/npm/v/riot-particles)](https://www.npmjs.com/package/riot-particles) [![npm downloads](https://img.shields.io/npm/dm/riot-particles)](https://www.npmjs.com/package/riot-particles)
 
-Official [tsParticles](https://github.com/matteobruni/tsparticles) RiotJS component
+Албан ёсны [tsParticles](https://github.com/matteobruni/tsparticles) RiotJS компонэнт
 
-## Installation
+## Татах
 
 ```shell
 npm install riot-particles riot
 ```
 
-or
+эсвэл
 
 ```shell
 yarn add riot-particles riot
 ```
 
-## Usage
+## Хэрхэн ашиглах
 
 ```html
 
@@ -49,7 +49,7 @@ yarn add riot-particles riot
     }
 </script>
 
-<!-- or -->
+<!-- эсвэл -->
 
 <riot-particles
         id="tsparticles"
@@ -58,12 +58,12 @@ yarn add riot-particles riot
 />
 ```
 
-## Demos
+## Жишээ
 
-The demo website is [here](https://particles.js.org)
+Жишээ [энд](https://particles.js.org)
 
 <https://particles.js.org>
 
-There's also a CodePen collection actively maintained and updated [here](https://codepen.io/collection/DPOage)
+CodePen -ий байнга шинэчлэгдэж байдаг цуглуулга [энд](https://codepen.io/collection/DPOage)
 
 <https://codepen.io/collection/DPOage>
