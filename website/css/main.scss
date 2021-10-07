@@ -145,3 +145,16 @@ body {
 .count-particles {
   border-radius: 0 0 3px 3px;
 }
+
+
+// Fix Presets not scrollable in the side menu #2283
+.btn-group .preset-menu.dropdown-menu.show {
+  max-height: 100vh;
+  overflow: auto;
+}
+
+// Fix Presets not scrollable in the fixed navbar #2283
+.navbar .preset-menu.dropdown-menu.show {
+  max-height: 60vh;
+  overflow: auto;
+}

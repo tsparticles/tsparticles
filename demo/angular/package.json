@@ -1,6 +1,6 @@
 {
   "name": "ng-particles-demo",
-  "version": "1.20.2",
+  "version": "1.20.4",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -26,10 +26,10 @@
     "@angular/platform-browser": "~12.2.1",
     "@angular/platform-browser-dynamic": "~12.2.1",
     "@angular/router": "~12.2.1",
-    "ng-particles": "^2.18.2",
+    "ng-particles": "^2.18.4",
     "rxjs": "~7.3.0",
     "tslib": "^2.3.1",
-    "tsparticles": "^1.35.2",
+    "tsparticles": "^1.35.4",
     "zone.js": "^0.11.4"
   },
   "devDependencies": {

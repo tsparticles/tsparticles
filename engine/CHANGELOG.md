@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.35.4](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.35.3...tsparticles@1.35.4) (2021-10-06)
+
+**Note:** Version bump only for package tsparticles
+
+
+
+
+
+## [1.35.3](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.35.2...tsparticles@1.35.3) (2021-10-03)
+
+
+### Bug Fixes
+
+* fixed typings for tsParticles load methods ([847bbbe](https://github.com/matteobruni/tsparticles/commit/847bbbef680d72c50db6dc6ef4d3b297c9b82355))
+* improved new methods without id ([9b7a106](https://github.com/matteobruni/tsparticles/commit/9b7a106acd4c3225aa001f12ab25e4c2b89dde66))
+
+
+### Features
+
+* removing the id constraint, a random one will be generated ([3b6b48e](https://github.com/matteobruni/tsparticles/commit/3b6b48efd8962ccc11549339b38888808da2a657))
+
+
+
+
+
 ## [1.35.2](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.35.1...tsparticles@1.35.2) (2021-09-27)
 
 

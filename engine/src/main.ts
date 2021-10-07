@@ -55,7 +55,10 @@ export class Main {
      * @param options The options object to initialize the [[Container]]
      * @returns A Promise with the [[Container]] object created
      */
-    async load(tagId: string, options: SingleOrMultiple<RecursivePartial<IOptions>>): Promise<Container | undefined> {
+    async load(
+        tagId: string | SingleOrMultiple<RecursivePartial<IOptions>>,
+        options?: SingleOrMultiple<RecursivePartial<IOptions>>
+    ): Promise<Container | undefined> {
         return Loader.load(tagId, options);
     }
 
@@ -65,7 +68,11 @@ export class Main {
      * @param element The dom element used to contain the particles
      * @param options The options object to initialize the [[Container]]
      */
-    async set(id: string, element: HTMLElement, options: RecursivePartial<IOptions>): Promise<Container | undefined> {
+    async set(
+        id: string | HTMLElement,
+        element: HTMLElement | RecursivePartial<IOptions>,
+        options?: RecursivePartial<IOptions>
+    ): Promise<Container | undefined> {
         return Loader.set(id, element, options);
     }
 
@@ -77,7 +84,11 @@ export class Main {
      * @param index the index of the paths array, if a single path is passed this value is ignored
      * @returns A Promise with the [[Container]] object created
      */
-    loadJSON(tagId: string, pathConfigJson: SingleOrMultiple<string>, index?: number): Promise<Container | undefined> {
+    loadJSON(
+        tagId: string | SingleOrMultiple<string>,
+        pathConfigJson?: SingleOrMultiple<string> | number,
+        index?: number
+    ): Promise<Container | undefined> {
         return Loader.loadJSON(tagId, pathConfigJson, index);
     }
 
@@ -90,9 +101,9 @@ export class Main {
      * @returns A Promise with the [[Container]] object created
      */
     async setJSON(
-        id: string,
-        element: HTMLElement,
-        pathConfigJson: SingleOrMultiple<string>,
+        id: string | HTMLElement,
+        element: HTMLElement | SingleOrMultiple<string>,
+        pathConfigJson?: SingleOrMultiple<string> | number,
         index?: number
     ): Promise<Container | undefined> {
         return Loader.setJSON(id, element, pathConfigJson, index);
