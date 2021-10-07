@@ -27,7 +27,7 @@ _template.html_
 ```html
 <ng-particles [id]="id" [options]="particlesOptions" (particlesLoaded)="particlesLoaded($event)" (particlesInit)="particlesInit($event)"></ng-particles>
 
-<!-- or -->
+<!-- эсвэл -->
 
 <ng-particles [id]="id" [url]="particlesUrl" (particlesLoaded)="particlesLoaded($event)" (particlesInit)="particlesInit($event)"></ng-particles>
 ```
