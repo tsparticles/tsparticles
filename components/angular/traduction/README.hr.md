@@ -38,7 +38,7 @@ _app.ts_
 export class AppComponent {
     id = "tsparticles";
     
-    /* Počevši od 1.19.0 možete koristiti remote url (AJAX request) za JSON sa konfiguracijom  */
+    /* Počevši od 1.19.0 možete koristiti remote url (AJAX request) sa JSON konfiguracijom  */
     particlesUrl = "http://foo.bar/particles.json";
     
     /* ili standardni JavaScript objekt */
