@@ -4,30 +4,30 @@
 
 [![npm](https://img.shields.io/npm/v/ng-particles)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/ng-particles)](https://www.npmjs.com/package/ng-particles)
 
-Албан ёсны [tsParticles](https://github.com/matteobruni/tsparticles) Angular компонэнт
+Službena [tsParticles](https://github.com/matteobruni/tsparticles) Angular komponenta
 
-## Хэрхэн хэрэглэх вэ?
+## Kako koristiti
 
-### Татах
+### Instalacija
 
 ```shell script
 npm install ng-particles tsparticles
 ```
 
-or
+ili
 
 ```shell script
 yarn add ng-particles tsparticles
 ```
 
-### Ашиглалт 
+### Upotreba
 
 _template.html_
 
 ```html
 <ng-particles [id]="id" [options]="particlesOptions" (particlesLoaded)="particlesLoaded($event)" (particlesInit)="particlesInit($event)"></ng-particles>
 
-<!-- эсвэл -->
+<!-- ili -->
 
 <ng-particles [id]="id" [url]="particlesUrl" (particlesLoaded)="particlesLoaded($event)" (particlesInit)="particlesInit($event)"></ng-particles>
 ```
@@ -37,10 +37,11 @@ _app.ts_
 ```typescript
 export class AppComponent {
     id = "tsparticles";
-    /* 1.19.0 ээс эхлэн та remote url (AJAX хүсэлт) ээс JSON руу тохиргоо хийж болно*/
+    
+    /* Počevši od 1.19.0 možete koristiti remote url (AJAX request) sa JSON konfiguracijom  */
     particlesUrl = "http://foo.bar/particles.json";
     
-    /* эсвэл сонгодог Javascript обьект*/
+    /* ili standardni JavaScript objekt */
     particlesOptions = {
         background: {
             color: {
@@ -127,7 +128,7 @@ export class AppComponent {
     particlesInit(main: Main): void {
         console.log(main);
         
-        // 1.19.0 ээс эхлэн та одоогийн tsParticles instance (main) ашиглан дурын дүрсээ нэмж болно
+        // Počevši od 1.19.0 možete dodati custom postavke ili oblike, koristeći trenutnu verziju tsParticles-a (main)
     }
 }
 ```
@@ -140,26 +141,26 @@ import {NgModule} from "@angular/core";
 
 @NgModule({
     declarations: [
-        /* АппКомпонэнт */
+        /* AppComponent */
     ],
     imports: [
-        /* бусад импортууд */ NgParticlesModule /* NgParticlesModule зайлшгүй хэрэгтэй*/
+        /* ostali importi */ NgParticlesModule /* NgParticlesModule je obvezan*/
     ],
     providers: [],
     bootstrap: [
-        /* АппКомпонэнт */
+        /* AppComponent */
     ]
 })
 export class AppModule {
 }
 ```
 
-## Demos
+## Demo
 
-Үзүүлэн вэбсайт [энд](https://particles.js.org)
+Demo website [ovdje](https://particles.js.org)
 
 <https://particles.js.org>
 
-CodePen -ий байнга шинэчлэгдэж байдаг цуглуулга [энд](https://codepen.io/collection/DPOage)
+Tu je i kolekcija CodePen-a koja se aktivno održava i ažurira [ovdje](https://codepen.io/collection/DPOage)
 
 <https://codepen.io/collection/DPOage>
