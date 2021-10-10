@@ -1,15 +1,6 @@
 import type { Container } from "./Container";
 import { Particle } from "./Particle";
-import {
-    getRangeValue,
-    itemFromArray,
-    Plugins,
-    Point,
-    QuadTree,
-    randomInRange,
-    Rectangle,
-    setRangeValue,
-} from "../Utils";
+import { getRangeValue, Plugins, Point, QuadTree, randomInRange, Rectangle, setRangeValue } from "../Utils";
 import type { RecursivePartial } from "../Types";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { InteractionManager } from "./InteractionManager";
@@ -435,7 +426,7 @@ export class Particles {
         this.applyDensity(options.particles, options.manualParticles.length);
     }
 
-    handleClickMode(mode: ClickMode | string) {
+    handleClickMode(mode: ClickMode | string): void {
         this.interactionManager.handleClickMode(mode);
     }
 

@@ -551,7 +551,7 @@ export class Container {
         el.addEventListener("touchcancel", touchCancelHandler);
     }
 
-    handleClickMode(mode: ClickMode | string) {
+    handleClickMode(mode: ClickMode | string): void {
         this.particles.handleClickMode(mode);
 
         for (const [, plugin] of this.plugins) {

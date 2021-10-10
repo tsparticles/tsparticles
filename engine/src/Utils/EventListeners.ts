@@ -2,7 +2,6 @@ import type { Container } from "../Core/Container";
 import { ClickMode, InteractivityDetect } from "../Enums";
 import type { ICoordinates } from "../Core/Interfaces";
 import { Constants } from "./Constants";
-import { itemFromArray } from "./Utils";
 
 function manageListener(
     element: HTMLElement | Node | Window | MediaQueryList,
