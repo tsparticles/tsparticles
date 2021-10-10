@@ -13,7 +13,7 @@ export abstract class Range {
         };
     }
 
-    public abstract contains(point: ICoordinates): boolean;
+    abstract contains(point: ICoordinates): boolean;
 
-    public abstract intersects(range: Range): boolean;
+    abstract intersects(range: Range): boolean;
 }

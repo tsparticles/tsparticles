@@ -8,9 +8,9 @@ export abstract class ParticlesInteractorBase implements IParticlesInteractor {
 
     type: InteractorType = InteractorType.Particles;
 
-    public abstract interact(particle: Particle, delta: IDelta): void;
+    abstract interact(particle: Particle, delta: IDelta): void;
 
-    public abstract isEnabled(particle: Particle): boolean;
+    abstract isEnabled(particle: Particle): boolean;
 
-    public abstract reset(particle: Particle): void;
+    abstract reset(particle: Particle): void;
 }
