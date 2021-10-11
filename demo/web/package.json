@@ -26,7 +26,7 @@
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^4.29.1",
+    "@typescript-eslint/parser": "^5.0.0",
     "@webcomponents/webcomponentsjs": "^2.6.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",

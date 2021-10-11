@@ -79,7 +79,7 @@
 		"@babel/preset-env": "^7.15.0",
 		"@babel/preset-typescript": "^7.15.0",
 		"@typescript-eslint/eslint-plugin": "^5.0.0",
-		"@typescript-eslint/parser": "^4.29.1",
+		"@typescript-eslint/parser": "^5.0.0",
 		"babel-loader": "^8.2.2",
 		"babel-plugin-inferno": "^6.3.0",
 		"clean-webpack-plugin": "^4.0.0",
