@@ -4,11 +4,13 @@
 
 Before you can start making changes, it's mandatory to run a `lerna bootstrap` for installing all the dependencies.
 
-After that, you can start coding. The source folder is `plugins`.
+After that, you can start coding. The source folders are `components` and `plugins`.
+
+The `components` folder contains all javascript frameworks components built around tsParticles: Angular, jQuery, Preact, React, Vue.
 
 The `plugins` folder contains all external presets and shapes.
 
-Once done editing, you can check if everything builds running `lerna run build.`
+Once done editing, you can check if everything builds running `lerna run build`.
 
 The difference is the first does not create the docs folder, and it can be unnecessary while coding.
 
@@ -38,14 +40,17 @@ yarn start
 
 or
 
+```bash
 yarn serve
+```
+
 where the start commands returns an error (this could be another improvement)
 
 ## Testing
 
-`plugins` don't have a demo app inside the repository for now.
+The `components` and `plugins` don't have a demo app inside the repository for now.
 
-A demo folder will probably be created in the near future with all the demo apps needed.
+A demo folder has been created with all the demo apps needed.
 
 ---
 
