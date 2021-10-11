@@ -7,20 +7,19 @@ import type { IEmitterOptions } from "./Plugins/Emitters/Options/Interfaces/IEmi
 import type { IPolygonMaskOptions } from "./Plugins/PolygonMask/Options/Interfaces/IPolygonMaskOptions";
 import type { RecursivePartial } from "./Types";
 import type { IParticle } from "./Core/Interfaces";
-//import { loadFull } from "./full";
 
 const tsParticles = new Main();
-
-tsParticles.init();
 
 (async () => {
     const { loadFull } = await import(
         /* webpackChunkName: "tsparticles.bundle.full" */
-        /* webpackMode: "lazy" */
+        /* webpackMode: "lazy-once" */
         "./full"
     );
 
     await loadFull(tsParticles);
+
+    tsParticles.init();
 })();
 
 const { particlesJS, pJSDom } = initPjs(tsParticles);

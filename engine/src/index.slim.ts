@@ -8,16 +8,16 @@ import { Main } from "./main";
 /* ---------- tsParticles functions - start ------------ */
 const tsParticles = new Main();
 
-tsParticles.init();
-
 (async () => {
     const { loadSlim } = await import(
         /* webpackChunkName: "tsparticles.bundle.slim" */
-        /* webpackMode: "lazy" */
+        /* webpackMode: "lazy-once" */
         "./slim"
     );
 
     await loadSlim(tsParticles);
+
+    tsParticles.init();
 })();
 
 const { particlesJS, pJSDom } = initPjs(tsParticles);

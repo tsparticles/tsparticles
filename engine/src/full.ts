@@ -3,7 +3,7 @@ import type { Main } from "./main";
 export async function loadFull(tsParticles: Main): Promise<void> {
     const { loadSlim } = await import(
         /* webpackChunkName: "tsparticles.bundle.slim" */
-        /* webpackMode: "lazy" */
+        /* webpackMode: "lazy-once" */
         "./slim"
     );
 
@@ -11,7 +11,7 @@ export async function loadFull(tsParticles: Main): Promise<void> {
 
     const { loadExternalTrailInteraction } = await import(
         /* webpackChunkName: "tsparticles.interaction.external.trail" */
-        /* webpackMode: "lazy" */
+        /* webpackMode: "lazy-once" */
         "./Interactions/External/Trail"
     );
 
@@ -19,17 +19,17 @@ export async function loadFull(tsParticles: Main): Promise<void> {
 
     const { loadRollUpdater } = await import(
         /* webpackChunkName: "tsparticles.updater.roll" */
-        /* webpackMode: "lazy" */
+        /* webpackMode: "lazy-once" */
         "./Updaters/Roll"
     );
     const { loadTiltUpdater } = await import(
         /* webpackChunkName: "tsparticles.updater.tilt" */
-        /* webpackMode: "lazy" */
+        /* webpackMode: "lazy-once" */
         "./Updaters/Tilt"
     );
     const { loadWobbleUpdater } = await import(
         /* webpackChunkName: "tsparticles.updater.wobble" */
-        /* webpackMode: "lazy" */
+        /* webpackMode: "lazy-once" */
         "./Updaters/Wobble"
     );
 
@@ -39,17 +39,17 @@ export async function loadFull(tsParticles: Main): Promise<void> {
 
     const { loadAbsorbersPlugin } = await import(
         /* webpackChunkName: "tsparticles.plugin.absorbers" */
-        /* webpackMode: "lazy" */
+        /* webpackMode: "lazy-once" */
         "./Plugins/Absorbers/plugin"
     );
     const { loadEmittersPlugin } = await import(
         /* webpackChunkName: "tsparticles.plugin.emitters" */
-        /* webpackMode: "lazy" */
+        /* webpackMode: "lazy-once" */
         "./Plugins/Emitters/plugin"
     );
     const { loadPolygonMaskPlugin } = await import(
         /* webpackChunkName: "tsparticles.plugin.polygon.mask" */
-        /* webpackMode: "lazy" */
+        /* webpackMode: "lazy-once" */
         "./Plugins/PolygonMask/plugin"
     );
 

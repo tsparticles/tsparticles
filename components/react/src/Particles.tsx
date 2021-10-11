@@ -57,7 +57,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
             this.props.init(tsParticles);
         }
 
-        this.loadParticles();
+        setTimeout(() => this.loadParticles());
     }
 
     componentWillUnmount(): void {

@@ -26,8 +26,6 @@ export default class Particles extends Vue {
         throw new Error("Prop 'id' is required!")
       }
 
-      tsParticles.init();
-
       if (this.particlesInit) {
         this.particlesInit(tsParticles);
       }
