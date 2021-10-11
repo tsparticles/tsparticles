@@ -41,7 +41,7 @@
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "codelyzer": "^6.0.2",
-    "eslint": "^7.32.0",
+    "eslint": "^8.0.0",
     "eslint-config-prettier": "^8.3.0",
     "prettier": "^2.3.2",
     "protractor": "~7.0.0",
