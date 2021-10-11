@@ -23,11 +23,6 @@ const getConfig = (entry) => {
             path: path.resolve(__dirname, "dist"),
             filename: "[name].js",
             libraryTarget: "umd",
-            /*library: {
-                root: "tsparticles",
-                commonjs: "tsparticles",
-                amd: "tsparticles",
-            },*/
             globalObject: "this"
         },
         resolve: {
@@ -68,6 +63,22 @@ const getConfig = (entry) => {
                         output: {
                             comments: minBanner
                         }
+                    },
+                    extractComments: false
+                }),
+                new TerserPlugin({
+                    exclude: /\.min\.js$/,
+                    terserOptions: {
+                        compress: false,
+                        format: {
+                            beautify: true,
+                            indent_level: 2,
+                            semicolons: false,
+                            comments: banner
+                        },
+                        mangle: false,
+                        keep_classnames: true,
+                        keep_fnames: true,
                     },
                     extractComments: false
                 })
