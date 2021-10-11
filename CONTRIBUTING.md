@@ -4,11 +4,7 @@
 
 Before you can start making changes, it's mandatory to run a `lerna bootstrap` for installing all the dependencies.
 
-After that, you can start coding. The source folders are `core,` `wrappers,` and `plugins.`
-
-The `core` folder contains tsParticles library, the main library.
-
-The `wrappers` folder contains all javascript frameworks wrappers built around tsParticles: Angular, jQuery, Preact, React, Vue.
+After that, you can start coding. The source folder is `plugins`.
 
 The `plugins` folder contains all external presets and shapes.
 
@@ -19,9 +15,11 @@ The difference is the first does not create the docs folder, and it can be unnec
 For building the first time:
 
 Unix
+
 ```bash
 yarn && npx lerna bootstrap && npx lerna run build
 ```
+
 Windows
 
 ```bash
@@ -30,17 +28,14 @@ npx lerna bootstrap
 npx lerna run build
 ```
 
-For building local packages it's possible to run only
-```bash
-yarn build
-```
-in every folder with a package.json file
-
+For building local packages it's possible to run only `yarn build` in every folder with a package.json file
 
 For running demos
+
 ```bash
 yarn start
 ```
+
 or
 
 yarn serve
@@ -48,9 +43,7 @@ where the start commands returns an error (this could be another improvement)
 
 ## Testing
 
-There's a small demo app inside the repository in the `core` folder, just run `yarn start` and go to http://localhost:3000.
-
-The `wrappers` and `plugins` don't have a demo app inside the repository for now.
+`plugins` don't have a demo app inside the repository for now.
 
 A demo folder will probably be created in the near future with all the demo apps needed.
 
