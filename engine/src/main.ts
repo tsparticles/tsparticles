@@ -70,7 +70,7 @@ export class Main {
         if (!this.#initialized) {
             return await new Promise((resolve) => {
                 setTimeout(() => {
-                    resolve(Loader.load(tagId, options));
+                    resolve(this.load(tagId, options));
                 }, 100);
             });
         }
@@ -97,7 +97,7 @@ export class Main {
             });
         }
 
-        return this.set(id, element, options);
+        return Loader.set(id, element, options);
     }
 
     /**
@@ -116,7 +116,7 @@ export class Main {
         if (!this.#initialized) {
             return await new Promise((resolve) => {
                 setTimeout(() => {
-                    resolve(Loader.loadJSON(tagId, pathConfigJson, index));
+                    resolve(this.loadJSON(tagId, pathConfigJson, index));
                 }, 100);
             });
         }
@@ -141,7 +141,7 @@ export class Main {
         if (!this.#initialized) {
             return await new Promise((resolve) => {
                 setTimeout(() => {
-                    resolve(Loader.setJSON(id, element, pathConfigJson, index));
+                    resolve(this.setJSON(id, element, pathConfigJson, index));
                 }, 100);
             });
         }
