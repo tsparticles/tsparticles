@@ -26,7 +26,7 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.29.1",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^4.29.1",
     "copyfiles": "^2.4.1",
     "enzyme": "^3.11.0",
