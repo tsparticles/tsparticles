@@ -60,7 +60,7 @@ where the start commands returns an error (this could be another improvement)
 
 ## Testing
 
-The `components` and `plugins` don't have a demo app inside the repository for now.
+The `components` and `plugins` all plugins, components and engines have a demo app or page.
 
 A demo folder has been created with all the demo apps needed.
 
