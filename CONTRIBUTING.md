@@ -4,7 +4,19 @@
 
 Before you can start making changes, it's mandatory to run a `lerna bootstrap` for installing all the dependencies.
 
-After that, you can start coding. The source folders are `components` and `plugins`.
+After that, you can start coding. Here is the folder layout
+
+- `components` is where all third parties components are (React, Vue, etc.)
+- `demo` where all the demos apps are
+- `editor` is the source of the GUI editor
+- `engine` is the main source folder
+- `interactions` contains some additional interaction plugins
+- `paths` contains some additional path plugins
+- `plugins` contains some additional plugins (for now just infection, but more will come)
+- `presets` contains some options presets with their bundle, ready to be used
+- `shapes` contains some additional shape plugins
+- `updaters` contains some additional updater plugins
+- `website` contains the website source
 
 The `components` folder contains all javascript frameworks components built around tsParticles: Angular, jQuery, Preact, React, Vue.
 
