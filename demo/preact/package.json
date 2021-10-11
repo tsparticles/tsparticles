@@ -31,7 +31,7 @@
     "copyfiles": "^2.4.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-preact-pure": "^3.1.0",
-    "eslint": "^7.32.0",
+    "eslint": "^8.0.0",
     "eslint-config-preact": "^1.1.4",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-react-hooks": "^4.2.0",
