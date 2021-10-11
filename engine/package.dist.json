@@ -9,7 +9,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
-    "directory": "core/main"
+    "directory": "engine"
   },
   "keywords": [
     "tsparticles",
@@ -51,11 +51,6 @@
     "background"
   ],
   "author": "Matteo Bruni <matteo.bruni@me.com>",
-  "contributors": [
-    "Gabriel Barker (https://github.com/gabrielbarker)",
-    "Tyler Burnett (https://github.com/TylerBurnett)",
-    "Jonathan Adams (https://github.com/PieceMaker)"
-  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"

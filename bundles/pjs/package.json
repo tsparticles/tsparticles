@@ -1,5 +1,5 @@
 {
-  "name": "tsparticles",
+  "name": "tsparticles-particles.js",
   "version": "2.0.0-beta.2",
   "description": "Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
   "homepage": "https://particles.js.org/",
@@ -18,7 +18,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
-    "directory": "bundles/full"
+    "directory": "bundles/pjs"
   },
   "keywords": [
     "tsparticles",
@@ -86,14 +86,26 @@
     "webpack-tsparticles-plugin": "^1.0.0-beta.0"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.0.0-beta.1",
-    "tsparticles-interaction-external-trail": "^2.0.0-beta.2",
-    "tsparticles-plugin-absorbers": "^2.0.0-beta.2",
-    "tsparticles-plugin-emitters": "^2.0.0-beta.2",
-    "tsparticles-plugin-polygon-mask": "^2.0.0-beta.2",
-    "tsparticles-slim": "^2.0.0-beta.2"
+    "tsparticles-engine": "^2.0.0-beta.1"
   },
   "publishConfig": {
     "directory": "dist"
+  },
+  "nyc": {
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "include": [
+      "src/**/*.ts"
+    ],
+    "exclude": [
+      "**/*.d.ts"
+    ],
+    "reporter": [
+      "lcov",
+      "html"
+    ],
+    "all": true
   }
 }
