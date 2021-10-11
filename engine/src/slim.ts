@@ -1,44 +1,99 @@
 import type { Main } from "./main";
-import { loadCircleShape } from "./Shapes/Circle";
-import { loadImageShape } from "./Shapes/Image";
-import { loadLineShape } from "./Shapes/Line";
-import { loadPolygonShape } from "./Shapes/Polygon";
-import { loadSquareShape } from "./Shapes/Square";
-import { loadStarShape } from "./Shapes/Star";
-import { loadTextShape } from "./Shapes/Text";
-import { loadAngleUpdater } from "./Updaters/Angle";
-import { loadColorUpdater } from "./Updaters/Color";
-import { loadLifeUpdater } from "./Updaters/Life";
-import { loadOpacityUpdater } from "./Updaters/Opacity";
-import { loadSizeUpdater } from "./Updaters/Size";
-import { loadStrokeColorUpdater } from "./Updaters/StrokeColor";
-import { loadOutModesUpdater } from "./Updaters/OutModes";
-import { loadRollUpdater } from "./Updaters/Roll";
-import { loadTiltUpdater } from "./Updaters/Tilt";
-import { loadWobbleUpdater } from "./Updaters/Wobble";
-import { loadExternalAttractInteraction } from "./Interactions/External/Attract";
-import { loadExternalBounceInteraction } from "./Interactions/External/Bounce";
-import { loadExternalBubbleInteraction } from "./Interactions/External/Bubble";
-import { loadExternalConnectInteraction } from "./Interactions/External/Connect";
-import { loadExternalGrabInteraction } from "./Interactions/External/Grab";
-import { loadExternalRepulseInteraction } from "./Interactions/External/Repulse";
-import { loadExternalTrailInteraction } from "./Interactions/External/Trail";
-import { loadParticlesAttractInteraction } from "./Interactions/Particles/Attract";
-import { loadParticlesCollisionsInteraction } from "./Interactions/Particles/Collisions";
-import { loadParticlesLinksInteraction } from "./Interactions/Particles/Links";
 
-export function loadSlim(tsParticles: Main): void {
+export async function loadSlim(tsParticles: Main): Promise<void> {
+    const { loadExternalAttractInteraction } = await import(
+        /* webpackChunkName: "tsparticles.interaction.external.attract" */
+        /* webpackMode: "lazy" */
+        "./Interactions/External/Attract"
+    );
+    const { loadExternalBounceInteraction } = await import(
+        /* webpackChunkName: "tsparticles.interaction.external.bounce" */
+        /* webpackMode: "lazy" */
+        "./Interactions/External/Bounce"
+    );
+    const { loadExternalBubbleInteraction } = await import(
+        /* webpackChunkName: "tsparticles.interaction.external.bubble" */
+        /* webpackMode: "lazy" */
+        "./Interactions/External/Bubble"
+    );
+    const { loadExternalConnectInteraction } = await import(
+        /* webpackChunkName: "tsparticles.interaction.external.connect" */
+        /* webpackMode: "lazy" */
+        "./Interactions/External/Connect"
+    );
+    const { loadExternalGrabInteraction } = await import(
+        /* webpackChunkName: "tsparticles.interaction.external.grab" */
+        /* webpackMode: "lazy" */
+        "./Interactions/External/Grab"
+    );
+    const { loadExternalRepulseInteraction } = await import(
+        /* webpackChunkName: "tsparticles.interaction.external.repulse" */
+        /* webpackMode: "lazy" */
+        "./Interactions/External/Repulse"
+    );
+
     loadExternalAttractInteraction(tsParticles);
     loadExternalBounceInteraction(tsParticles);
     loadExternalBubbleInteraction(tsParticles);
     loadExternalConnectInteraction(tsParticles);
     loadExternalGrabInteraction(tsParticles);
     loadExternalRepulseInteraction(tsParticles);
-    loadExternalTrailInteraction(tsParticles);
+
+    const { loadParticlesAttractInteraction } = await import(
+        /* webpackChunkName: "tsparticles.interaction.particles.repulse" */
+        /* webpackMode: "lazy" */
+        "./Interactions/Particles/Attract"
+    );
+    const { loadParticlesCollisionsInteraction } = await import(
+        /* webpackChunkName: "tsparticles.interaction.particles.collisions" */
+        /* webpackMode: "lazy" */
+        "./Interactions/Particles/Collisions"
+    );
+    const { loadParticlesLinksInteraction } = await import(
+        /* webpackChunkName: "tsparticles.interaction.particles.links" */
+        /* webpackMode: "lazy" */
+        "./Interactions/Particles/Links"
+    );
 
     loadParticlesAttractInteraction(tsParticles);
     loadParticlesCollisionsInteraction(tsParticles);
     loadParticlesLinksInteraction(tsParticles);
+
+    const { loadCircleShape } = await import(
+        /* webpackChunkName: "tsparticles.shape.circle" */
+        /* webpackMode: "lazy" */
+        "./Shapes/Circle"
+    );
+    const { loadImageShape } = await import(
+        /* webpackChunkName: "tsparticles.shape.image" */
+        /* webpackMode: "lazy" */
+        "./Shapes/Image"
+    );
+    const { loadLineShape } = await import(
+        /* webpackChunkName: "tsparticles.shape.line" */
+        /* webpackMode: "lazy" */
+        "./Shapes/Line"
+    );
+    const { loadPolygonShape } = await import(
+        /* webpackChunkName: "tsparticles.shape.polygon" */
+        /* webpackMode: "lazy" */
+        "./Shapes/Polygon"
+    );
+    const { loadSquareShape } = await import(
+        /* webpackChunkName: "tsparticles.shape.square" */
+        /* webpackMode: "lazy" */
+        "./Shapes/Square"
+    );
+    const { loadStarShape } = await import(
+        /* webpackChunkName: "tsparticles.shape.star" */
+        /* webpackMode: "lazy" */
+        "./Shapes/Star"
+    );
+    const { loadTextShape } = await import(
+        /* webpackChunkName: "tsparticles.shape.text" */
+        /* webpackMode: "lazy" */
+        "./Shapes/Text"
+    );
 
     loadCircleShape(tsParticles);
     loadImageShape(tsParticles);
@@ -48,13 +103,46 @@ export function loadSlim(tsParticles: Main): void {
     loadStarShape(tsParticles);
     loadTextShape(tsParticles);
 
+    const { loadAngleUpdater } = await import(
+        /* webpackChunkName: "tsparticles.updater.angle" */
+        /* webpackMode: "lazy" */
+        "./Updaters/Angle"
+    );
+    const { loadColorUpdater } = await import(
+        /* webpackChunkName: "tsparticles.updater.color" */
+        /* webpackMode: "lazy" */
+        "./Updaters/Color"
+    );
+    const { loadLifeUpdater } = await import(
+        /* webpackChunkName: "tsparticles.updater.life" */
+        /* webpackMode: "lazy" */
+        "./Updaters/Life"
+    );
+    const { loadOpacityUpdater } = await import(
+        /* webpackChunkName: "tsparticles.updater.opacity" */
+        /* webpackMode: "lazy" */
+        "./Updaters/Opacity"
+    );
+    const { loadSizeUpdater } = await import(
+        /* webpackChunkName: "tsparticles.updater.size" */
+        /* webpackMode: "lazy" */
+        "./Updaters/Size"
+    );
+    const { loadStrokeColorUpdater } = await import(
+        /* webpackChunkName: "tsparticles.updater.stroke.color" */
+        /* webpackMode: "lazy" */
+        "./Updaters/StrokeColor"
+    );
+    const { loadOutModesUpdater } = await import(
+        /* webpackChunkName: "tsparticles.updater.out.modes" */
+        /* webpackMode: "lazy" */
+        "./Updaters/OutModes"
+    );
+
     loadLifeUpdater(tsParticles);
     loadOpacityUpdater(tsParticles);
     loadSizeUpdater(tsParticles);
     loadAngleUpdater(tsParticles);
-    loadTiltUpdater(tsParticles);
-    loadRollUpdater(tsParticles);
-    loadWobbleUpdater(tsParticles);
     loadColorUpdater(tsParticles);
     loadStrokeColorUpdater(tsParticles);
     loadOutModesUpdater(tsParticles);

@@ -7,13 +7,21 @@ import type { IEmitterOptions } from "./Plugins/Emitters/Options/Interfaces/IEmi
 import type { IPolygonMaskOptions } from "./Plugins/PolygonMask/Options/Interfaces/IPolygonMaskOptions";
 import type { RecursivePartial } from "./Types";
 import type { IParticle } from "./Core/Interfaces";
-import { loadFull } from "./full";
+//import { loadFull } from "./full";
 
 const tsParticles = new Main();
 
 tsParticles.init();
 
-loadFull(tsParticles);
+(async () => {
+    const { loadFull } = await import(
+        /* webpackChunkName: "tsparticles.bundle.full" */
+        /* webpackMode: "lazy" */
+        "./full"
+    );
+
+    await loadFull(tsParticles);
+})();
 
 const { particlesJS, pJSDom } = initPjs(tsParticles);
 
@@ -23,7 +31,7 @@ export * from "./Enums";
 export * from "./Plugins/Absorbers/Enums";
 export * from "./Plugins/Emitters/Enums";
 export * from "./Plugins/PolygonMask/Enums";
-export { Circle, CircleWarp, Constants, Point, Rectangle, Main, loadFull };
+export { Circle, CircleWarp, Constants, Point, Rectangle, Main };
 export * from "./Utils/CanvasUtils";
 export * from "./Utils/ColorUtils";
 export * from "./Utils/NumberUtils";
