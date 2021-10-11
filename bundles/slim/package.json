@@ -111,11 +111,8 @@
     "tsparticles-updater-life": "^2.0.0-beta.2",
     "tsparticles-updater-opacity": "^2.0.0-beta.2",
     "tsparticles-updater-out-modes": "^2.0.0-beta.2",
-    "tsparticles-updater-roll": "^2.0.0-beta.2",
     "tsparticles-updater-size": "^2.0.0-beta.2",
-    "tsparticles-updater-stroke-color": "^2.0.0-beta.2",
-    "tsparticles-updater-tilt": "^2.0.0-beta.2",
-    "tsparticles-updater-wobble": "^2.0.0-beta.2"
+    "tsparticles-updater-stroke-color": "^2.0.0-beta.2"
   },
   "publishConfig": {
     "directory": "dist"

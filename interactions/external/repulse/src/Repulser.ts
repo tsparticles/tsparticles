@@ -3,7 +3,6 @@ import {
     calcEasing,
     Circle,
     clamp,
-    Constants,
     divMode,
     divModeExecute,
     ExternalInteractorBase,
@@ -17,6 +16,7 @@ import {
     DivType,
     HoverMode,
     Vector,
+    mouseMoveEvent,
 } from "tsparticles-engine";
 import type { DivEvent } from "tsparticles-engine/Options/Classes/Interactivity/Events/DivEvent";
 import type { RepulseDiv } from "tsparticles-engine/Options/Classes/Interactivity/Modes/RepulseDiv";
@@ -83,7 +83,7 @@ export class Repulser extends ExternalInteractorBase {
     interact(): void {
         const container = this.container,
             options = container.actualOptions,
-            mouseMoveStatus = container.interactivity.status === Constants.mouseMoveEvent,
+            mouseMoveStatus = container.interactivity.status === mouseMoveEvent,
             events = options.interactivity.events,
             hoverEnabled = events.onHover.enable,
             hoverMode = events.onHover.mode,
@@ -254,7 +254,7 @@ export class Repulser implements IExternalInteractor {
     public interact(): void {
         const container = this.container;
         const options = container.options;
-        const mouseMoveStatus = container.interactivity.status === Constants.mouseMoveEvent;
+        const mouseMoveStatus = container.interactivity.status === mouseMoveEvent;
         const events = options.interactivity.events;
         const hoverEnabled = events.onHover.enable;
         const hoverMode = events.onHover.mode;

@@ -2,7 +2,14 @@ import type { Container } from "tsparticles-engine";
 import type { IContainerPlugin, ICoordinates, IDelta, IDimension } from "tsparticles-engine";
 import { InlineArrangement, Type } from "./Enums";
 import { Particle } from "tsparticles-engine";
-import { Constants, deepExtend, getDistance, getDistances, itemFromArray } from "tsparticles-engine";
+import {
+    deepExtend,
+    getDistance,
+    getDistances,
+    itemFromArray,
+    noPolygonFound,
+    noPolygonDataLoaded,
+} from "tsparticles-engine";
 import type { ISvgPath } from "./Interfaces/ISvgPath";
 import type { RecursivePartial } from "tsparticles-engine";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
@@ -216,7 +223,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         // ray-casting algorithm based on
         // http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
         if (!this.raw) {
-            throw new Error(Constants.noPolygonFound);
+            throw new Error(noPolygonFound);
         }
 
         const canvasSize = container.canvas.size;
@@ -372,7 +379,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
     private getRandomPoint(): ICoordinates {
         if (!this.raw || !this.raw.length) {
-            throw new Error(Constants.noPolygonDataLoaded);
+            throw new Error(noPolygonDataLoaded);
         }
 
         const coords = itemFromArray(this.raw);
@@ -387,7 +394,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         const options = this.options;
 
         if (!this.raw || !this.raw.length || !this.paths?.length) {
-            throw new Error(Constants.noPolygonDataLoaded);
+            throw new Error(noPolygonDataLoaded);
         }
 
         const path = itemFromArray(this.paths);
@@ -404,7 +411,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         const options = this.container.actualOptions;
         const polygonMaskOptions = this.options;
 
-        if (!this.raw || !this.raw.length || !this.paths?.length) throw new Error(Constants.noPolygonDataLoaded);
+        if (!this.raw || !this.raw.length || !this.paths?.length) throw new Error(noPolygonDataLoaded);
 
         let offset = 0;
         let point: DOMPoint | undefined;
@@ -432,7 +439,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
     private getPointByIndex(index: number): ICoordinates {
         if (!this.raw || !this.raw.length) {
-            throw new Error(Constants.noPolygonDataLoaded);
+            throw new Error(noPolygonDataLoaded);
         }
 
         const coords = this.raw[index % this.raw.length];

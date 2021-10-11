@@ -71,6 +71,9 @@
     "tsparticles-plugin-absorbers": "^2.0.0-beta.2",
     "tsparticles-plugin-emitters": "^2.0.0-beta.2",
     "tsparticles-plugin-polygon-mask": "^2.0.0-beta.2",
-    "tsparticles-slim": "^2.0.0-beta.2"
+    "tsparticles-slim": "^2.0.0-beta.2",
+    "tsparticles-updater-roll": "^2.0.0-beta.2",
+    "tsparticles-updater-tilt": "^2.0.0-beta.2",
+    "tsparticles-updater-wobble": "^2.0.0-beta.2"
   }
 }

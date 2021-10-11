@@ -4,7 +4,6 @@ import {
     clamp,
     colorMix,
     colorToHsl,
-    Constants,
     divMode,
     divModeExecute,
     getDistance,
@@ -19,6 +18,8 @@ import {
     DivType,
     HoverMode,
     ExternalInteractorBase,
+    mouseMoveEvent,
+    mouseLeaveEvent,
 } from "tsparticles-engine";
 import type { DivEvent } from "tsparticles-engine/Options/Classes/Interactivity/Events/DivEvent";
 import type { BubbleDiv } from "tsparticles-engine/Options/Classes/Interactivity/Modes/BubbleDiv";
@@ -314,7 +315,7 @@ export class Bubbler extends ExternalInteractorBase {
 
             /* mousemove - check ratio */
             if (pointDistance <= distance) {
-                if (ratio >= 0 && container.interactivity.status === Constants.mouseMoveEvent) {
+                if (ratio >= 0 && container.interactivity.status === mouseMoveEvent) {
                     /* size */
                     this.hoverBubbleSize(particle, ratio);
 
@@ -329,7 +330,7 @@ export class Bubbler extends ExternalInteractorBase {
             }
 
             /* mouseleave */
-            if (container.interactivity.status === Constants.mouseLeaveEvent) {
+            if (container.interactivity.status === mouseLeaveEvent) {
                 this.reset(particle);
             }
         }

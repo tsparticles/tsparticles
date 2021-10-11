@@ -3,7 +3,6 @@ import {
     Circle,
     circleBounce,
     circleBounceDataFromParticle,
-    Constants,
     divModeExecute,
     isDivModeEnabled,
     isInArray,
@@ -15,6 +14,7 @@ import {
     ExternalInteractorBase,
     HoverMode,
     Vector,
+    mouseMoveEvent,
 } from "tsparticles-engine";
 import type { Container, ICoordinates } from "tsparticles-engine";
 import type { DivEvent } from "tsparticles-engine/Options/Classes/Interactivity/Events/DivEvent";
@@ -41,7 +41,7 @@ export class Bouncer extends ExternalInteractorBase {
         const container = this.container,
             options = container.actualOptions,
             events = options.interactivity.events,
-            mouseMoveStatus = container.interactivity.status === Constants.mouseMoveEvent,
+            mouseMoveStatus = container.interactivity.status === mouseMoveEvent,
             hoverEnabled = events.onHover.enable,
             hoverMode = events.onHover.mode,
             divs = events.onDiv;

@@ -1,12 +1,12 @@
 import type { Container } from "tsparticles-engine";
 import {
-    Constants,
     ExternalInteractorBase,
     getLinkRandomColor,
     getLinkColor,
     getDistance,
     HoverMode,
     isInArray,
+    mouseMoveEvent,
 } from "tsparticles-engine";
 
 /**
@@ -35,7 +35,7 @@ export class Grabber extends ExternalInteractorBase {
             options = container.actualOptions,
             interactivity = options.interactivity;
 
-        if (interactivity.events.onHover.enable && container.interactivity.status === Constants.mouseMoveEvent) {
+        if (interactivity.events.onHover.enable && container.interactivity.status === mouseMoveEvent) {
             const mousePos = container.interactivity.mouse.position;
 
             if (!mousePos) {

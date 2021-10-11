@@ -1,7 +1,6 @@
 import type { Container, ICoordinates } from "tsparticles-engine";
 import {
     Circle,
-    Constants,
     ExternalInteractorBase,
     Range,
     getDistances,
@@ -11,6 +10,7 @@ import {
     ClickMode,
     HoverMode,
     Vector,
+    mouseMoveEvent,
 } from "tsparticles-engine";
 
 /**
@@ -71,7 +71,7 @@ export class Attractor extends ExternalInteractorBase {
     interact(): void {
         const container = this.container,
             options = container.actualOptions,
-            mouseMoveStatus = container.interactivity.status === Constants.mouseMoveEvent,
+            mouseMoveStatus = container.interactivity.status === mouseMoveEvent,
             events = options.interactivity.events,
             hoverEnabled = events.onHover.enable,
             hoverMode = events.onHover.mode,

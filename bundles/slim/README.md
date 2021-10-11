@@ -34,11 +34,8 @@ a `tsparticles-engine` instance.
 - tsparticles-updater-life
 - tsparticles-updater-opacity
 - tsparticles-updater-out-modes
-- tsparticles-updater-roll
 - tsparticles-updater-size
 - tsparticles-updater-stroke-color
-- tsparticles-updater-tilt
-- tsparticles-updater-wobble
 
 ## How to use it
 

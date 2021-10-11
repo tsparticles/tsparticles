@@ -2,27 +2,22 @@
  * Project's constants
  * @category Utils
  */
-export class Constants {
-    /**
-     * Particles canvas element class name
-     */
-    static readonly canvasClass: string = "tsparticles-canvas-el";
+export const canvasClass = "tsparticles-canvas-el";
 
-    static readonly randomColorValue: string = "random";
-    static readonly midColorValue: string = "mid";
+export const randomColorValue = "random";
+export const midColorValue = "mid";
 
-    static readonly touchEndEvent: string = "touchend";
-    static readonly mouseDownEvent: string = "mousedown";
-    static readonly mouseUpEvent: string = "mouseup";
-    static readonly mouseMoveEvent: string = "mousemove";
-    static readonly touchStartEvent: string = "touchstart";
-    static readonly touchMoveEvent: string = "touchmove";
-    static readonly mouseLeaveEvent: string = "mouseleave";
-    static readonly mouseOutEvent: string = "mouseout";
-    static readonly touchCancelEvent: string = "touchcancel";
-    static readonly resizeEvent: string = "resize";
-    static readonly visibilityChangeEvent: string = "visibilitychange";
+export const touchEndEvent = "touchend";
+export const mouseDownEvent = "mousedown";
+export const mouseUpEvent = "mouseup";
+export const mouseMoveEvent = "mousemove";
+export const touchStartEvent = "touchstart";
+export const touchMoveEvent = "touchmove";
+export const mouseLeaveEvent = "mouseleave";
+export const mouseOutEvent = "mouseout";
+export const touchCancelEvent = "touchcancel";
+export const resizeEvent = "resize";
+export const visibilityChangeEvent = "visibilitychange";
 
-    static readonly noPolygonDataLoaded: string = "No polygon data loaded.";
-    static readonly noPolygonFound: string = "No polygon found, you need to specify SVG url in config.";
-}
+export const noPolygonDataLoaded = "No polygon data loaded.";
+export const noPolygonFound = "No polygon found, you need to specify SVG url in config.";

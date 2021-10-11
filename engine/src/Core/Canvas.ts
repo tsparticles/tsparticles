@@ -2,7 +2,7 @@ import type { Container } from "./Container";
 import {
     colorToHsl,
     colorToRgb,
-    Constants,
+    canvasClass,
     deepExtend,
     drawConnectLine,
     drawGrabLine,
@@ -73,7 +73,7 @@ export class Canvas {
 
     loadCanvas(canvas: HTMLCanvasElement, generatedCanvas?: boolean): void {
         if (!canvas.className) {
-            canvas.className = Constants.canvasClass;
+            canvas.className = canvasClass;
         }
 
         if (this.generatedCanvas) {

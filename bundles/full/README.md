@@ -15,6 +15,9 @@ a `tsparticles-engine` instance.
 - tsparticles-plugin-absorbers
 - tsparticles-plugin-emitters
 - tsparticles-plugin-polygon-mask
+- tsparticles-updater-roll
+- tsparticles-updater-tilt
+- tsparticles-updater-wobble
 
 ## How to use it
 

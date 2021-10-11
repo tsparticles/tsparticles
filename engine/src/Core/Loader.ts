@@ -1,7 +1,7 @@
 import { Container } from "./Container";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { RecursivePartial } from "../Types";
-import { Constants, itemFromArray } from "../Utils";
+import { canvasClass, itemFromArray } from "../Utils";
 import type { Particle } from "./Particle";
 import type { SingleOrMultiple } from "../Types";
 
@@ -95,7 +95,7 @@ export class Loader {
                 canvasEl = existingCanvases[0];
 
                 if (!canvasEl.className) {
-                    canvasEl.className = Constants.canvasClass;
+                    canvasEl.className = canvasClass;
                 }
 
                 generatedCanvas = false;
@@ -104,7 +104,7 @@ export class Loader {
                 /* create canvas element */
                 canvasEl = document.createElement("canvas");
 
-                canvasEl.className = Constants.canvasClass;
+                canvasEl.className = canvasClass;
 
                 /* set size canvas */
                 canvasEl.style.width = "100%";
