@@ -1,5 +1,6 @@
 import Particles from "react-tsparticles";
-import Login from "./Login";
+import Landingpage from "./Landingpage";
+
 import "./App.css";
 const App = () => {
   const particlesInit = (main) => {
@@ -13,14 +14,15 @@ const App = () => {
   };
   return (
 
-    <><Particles
+    <>
+    <Particles
           id="tsparticles"
           init={particlesInit}
           loaded={particlesLoaded}
           options={{
               background: {
                   color: {
-                      value: "#000",
+                      value: "#0000",
                   },
               },
               fpsLimit: 60,
@@ -95,7 +97,7 @@ const App = () => {
               },
               detectRetina: true,
           }} />
-          <Login />
+           <Landingpage/>
           </>
     
   );
