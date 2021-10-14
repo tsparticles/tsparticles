@@ -137,8 +137,6 @@ export class Canvas {
     }
 
     windowResize(): void {
-        console.log("resize");
-
         if (!this.element) {
             return;
         }
@@ -146,14 +144,6 @@ export class Canvas {
         const container = this.container;
 
         this.resize();
-
-        /*if (this.resizeFactor?.width === 1 && this.resizeFactor.height === 1) {
-            delete this.resizeFactor;
-
-            return;
-        }*/
-
-        console.log(this.size);
 
         const needsRefresh = container.updateActualOptions();
 
