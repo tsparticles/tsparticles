@@ -1,31 +1,27 @@
 import type { Main } from "./main";
 import { loadCircleShape } from "./Shapes/Circle";
-import { loadImageShape } from "./Shapes/Image";
-import { loadLineShape } from "./Shapes/Line";
-import { loadPolygonShape } from "./Shapes/Polygon";
-import { loadSquareShape } from "./Shapes/Square";
-import { loadStarShape } from "./Shapes/Star";
-import { loadTextShape } from "./Shapes/Text";
-import { loadAngleUpdater } from "./Updaters/Angle";
-import { loadColorUpdater } from "./Updaters/Color";
 import { loadLifeUpdater } from "./Updaters/Life";
-import { loadOpacityUpdater } from "./Updaters/Opacity";
-import { loadSizeUpdater } from "./Updaters/Size";
-import { loadStrokeColorUpdater } from "./Updaters/StrokeColor";
-import { loadOutModesUpdater } from "./Updaters/OutModes";
-import { loadRollUpdater } from "./Updaters/Roll";
-import { loadTiltUpdater } from "./Updaters/Tilt";
-import { loadWobbleUpdater } from "./Updaters/Wobble";
-import { loadExternalAttractInteraction } from "./Interactions/External/Attract";
-import { loadExternalBounceInteraction } from "./Interactions/External/Bounce";
-import { loadExternalBubbleInteraction } from "./Interactions/External/Bubble";
 import { loadExternalConnectInteraction } from "./Interactions/External/Connect";
+import { loadOpacityUpdater } from "./Updaters/Opacity";
+import { loadImageShape } from "./Shapes/Image";
+import { loadPolygonShape } from "./Shapes/Polygon";
+import { loadExternalBubbleInteraction } from "./Interactions/External/Bubble";
+import { loadExternalAttractInteraction } from "./Interactions/External/Attract";
 import { loadExternalGrabInteraction } from "./Interactions/External/Grab";
-import { loadExternalRepulseInteraction } from "./Interactions/External/Repulse";
-import { loadExternalTrailInteraction } from "./Interactions/External/Trail";
+import { loadStarShape } from "./Shapes/Star";
 import { loadParticlesAttractInteraction } from "./Interactions/Particles/Attract";
+import { loadSquareShape } from "./Shapes/Square";
+import { loadStrokeColorUpdater } from "./Updaters/StrokeColor";
+import { loadColorUpdater } from "./Updaters/Color";
 import { loadParticlesCollisionsInteraction } from "./Interactions/Particles/Collisions";
+import { loadAngleUpdater } from "./Updaters/Angle";
+import { loadOutModesUpdater } from "./Updaters/OutModes";
+import { loadExternalRepulseInteraction } from "./Interactions/External/Repulse";
+import { loadLineShape } from "./Shapes/Line";
+import { loadExternalBounceInteraction } from "./Interactions/External/Bounce";
+import { loadTextShape } from "./Shapes/Text";
 import { loadParticlesLinksInteraction } from "./Interactions/Particles/Links";
+import { loadSizeUpdater } from "./Updaters/Size";
 
 export function loadSlim(tsParticles: Main): void {
     loadExternalAttractInteraction(tsParticles);
@@ -34,7 +30,6 @@ export function loadSlim(tsParticles: Main): void {
     loadExternalConnectInteraction(tsParticles);
     loadExternalGrabInteraction(tsParticles);
     loadExternalRepulseInteraction(tsParticles);
-    loadExternalTrailInteraction(tsParticles);
 
     loadParticlesAttractInteraction(tsParticles);
     loadParticlesCollisionsInteraction(tsParticles);
@@ -52,9 +47,6 @@ export function loadSlim(tsParticles: Main): void {
     loadOpacityUpdater(tsParticles);
     loadSizeUpdater(tsParticles);
     loadAngleUpdater(tsParticles);
-    loadTiltUpdater(tsParticles);
-    loadRollUpdater(tsParticles);
-    loadWobbleUpdater(tsParticles);
     loadColorUpdater(tsParticles);
     loadStrokeColorUpdater(tsParticles);
     loadOutModesUpdater(tsParticles);

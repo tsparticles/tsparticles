@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.21.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.20.4...tsparticles-demo@1.21.0) (2021-10-14)
+
+
+### Bug Fixes
+
+* fixes issue with responsive not refreshing when changing options ([f54cefa](https://github.com/matteobruni/tsparticles/commit/f54cefac475599e7717c125490e81e2b17e89c3f))
+
+
+
+
+
 ## [1.20.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.20.3...tsparticles-demo@1.20.4) (2021-10-06)
 
 **Note:** Version bump only for package tsparticles-demo

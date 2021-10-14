@@ -226,9 +226,14 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
     }
 
-    setResponsive(width: number, pxRatio: number, defaultOptions: IOptions): void {
+    setResponsive(width: number, pxRatio: number, defaultOptions: IOptions): number | undefined {
         this.load(defaultOptions);
-        this.load(this.responsive.find((t) => t.maxWidth * pxRatio > width)?.options);
+
+        const responsiveOptions = this.responsive.find((t) => t.maxWidth * pxRatio > width);
+
+        this.load(responsiveOptions?.options);
+
+        return responsiveOptions?.maxWidth;
     }
 
     private importPreset(preset: string): void {

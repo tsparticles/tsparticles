@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.36.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-perlin-noise@1.35.4...tsparticles-path-perlin-noise@1.36.0) (2021-10-14)
+
+**Note:** Version bump only for package tsparticles-path-perlin-noise
+
+
+
+
+
 ## [1.35.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-perlin-noise@1.35.3...tsparticles-path-perlin-noise@1.35.4) (2021-10-06)
 
 **Note:** Version bump only for package tsparticles-path-perlin-noise

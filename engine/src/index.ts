@@ -23,7 +23,7 @@ export * from "./Enums";
 export * from "./Plugins/Absorbers/Enums";
 export * from "./Plugins/Emitters/Enums";
 export * from "./Plugins/PolygonMask/Enums";
-export { Circle, CircleWarp, Constants, Point, Rectangle, Main, loadFull };
+export { Circle, CircleWarp, Constants, Point, Rectangle, Main };
 export * from "./Utils/CanvasUtils";
 export * from "./Utils/ColorUtils";
 export * from "./Utils/NumberUtils";
