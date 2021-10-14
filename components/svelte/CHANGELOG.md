@@ -20,6 +20,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+# [1.19.0](https://github.com/matteobruni/tsparticles/compare/svelte-particles@1.18.4...svelte-particles@1.19.0) (2021-10-14)
+
+**Note:** Version bump only for package svelte-particles
+
+
+
+
+
 ## [1.18.4](https://github.com/matteobruni/tsparticles/compare/svelte-particles@1.18.3...svelte-particles@1.18.4) (2021-10-06)
 
 **Note:** Version bump only for package svelte-particles

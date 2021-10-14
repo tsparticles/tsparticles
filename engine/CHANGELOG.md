@@ -69,6 +69,25 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * removing the id constraint, a random one will be generated ([3b6b48e](https://github.com/matteobruni/tsparticles/commit/3b6b48efd8962ccc11549339b38888808da2a657))
 * spin movement enabled from v2 ([240a38f](https://github.com/matteobruni/tsparticles/commit/240a38f9a8c78e5b683d655d5f94476e396a5076))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+# [1.36.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.35.4...tsparticles@1.36.0) (2021-10-14)
+
+
+### Bug Fixes
+
+* fixes [#2329](https://github.com/matteobruni/tsparticles/issues/2329) ([1982442](https://github.com/matteobruni/tsparticles/commit/1982442b6084f15ce40559c9391f097563728ff2))
+* fixes issue with responsive not refreshing when changing options ([f54cefa](https://github.com/matteobruni/tsparticles/commit/f54cefac475599e7717c125490e81e2b17e89c3f))
+
+
+### Features
+
+* fixed lazy loading ([0f774ef](https://github.com/matteobruni/tsparticles/commit/0f774ef3d837f41b872bf866c4f4a87e4bafed6e))
+* fixed lazy loading ([60f9689](https://github.com/matteobruni/tsparticles/commit/60f96899bc564e547a49a5e17be4f40fe12288ba))
+* migrated to chunks ([58b69c1](https://github.com/matteobruni/tsparticles/commit/58b69c130d1e768c0dc0a1b61e904c23408e6ec5))
+
+
+
+
+
 ## [1.35.4](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.35.3...tsparticles@1.35.4) (2021-10-06)
 
 **Note:** Version bump only for package tsparticles

@@ -17,8 +17,6 @@ export class NgParticlesComponent implements AfterViewInit {
     @Output() particlesInit: EventEmitter<Main> = new EventEmitter<Main>();
 
     public ngAfterViewInit(): void {
-        tsParticles.init();
-
         this.particlesInit.emit(tsParticles);
 
         const cb = (container?: Container) => {

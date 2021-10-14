@@ -1,10 +1,6 @@
 {
   "name": "tsparticles-interaction-particles-repulse",
-  "version": "2.0.0-beta.2",
   "description": "tsParticles repulse particles interaction",
-  "homepage": "https://particles.js.org/",
-  "scripts": {
-    "prettify:src": "prettier --write ./src",
     "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "compile": "tsc && yarn build:ts:old",

@@ -16,6 +16,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [2.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-bubble@2.0.0-beta.0...tsparticles-shape-bubble@2.0.0-beta.1) (2021-10-06)
+# [1.21.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-bubble@1.20.4...tsparticles-shape-bubble@1.21.0) (2021-10-14)
+
+**Note:** Version bump only for package tsparticles-shape-bubble
+
+
+
+
+
 ## [1.20.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-bubble@1.20.3...tsparticles-shape-bubble@1.20.4) (2021-10-06)
 
 **Note:** Version bump only for package tsparticles-shape-bubble

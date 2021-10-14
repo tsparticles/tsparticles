@@ -15,6 +15,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [2.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@2.0.0-beta.0...particles.vue3-demo@2.0.0-beta.1) (2021-10-06)
+# [1.19.0](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.18.4...particles.vue3-demo@1.19.0) (2021-10-14)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
 ## [1.18.4](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.18.3...particles.vue3-demo@1.18.4) (2021-10-06)
 
 **Note:** Version bump only for package particles.vue3-demo
