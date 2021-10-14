@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.19.0](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.18.4...particles.vue@2.19.0) (2021-10-14)
+
+
+### Features
+
+* fixed lazy loading ([60f9689](https://github.com/matteobruni/tsparticles/commit/60f96899bc564e547a49a5e17be4f40fe12288ba))
+
+
+
+
+
 ## [2.18.4](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.18.3...particles.vue@2.18.4) (2021-10-06)
 
 **Note:** Version bump only for package particles.vue

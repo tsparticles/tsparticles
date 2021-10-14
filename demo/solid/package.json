@@ -1,14 +1,14 @@
 {
   "name": "solid-particles-demo",
-  "version": "1.18.4",
+  "version": "1.19.0",
   "private": true,
   "devDependencies": {
     "@types/jest": "^27.0.1",
     "@types/node": "^16.6.1",
     "solid-js": "^1.1.0",
-    "solid-particles": "^1.18.4",
+    "solid-particles": "^1.19.0",
     "solid-scripts": "^0.0.59",
-    "tsparticles": "^1.35.4",
+    "tsparticles": "^1.36.0",
     "typescript": "^4.4.2"
   },
   "scripts": {
