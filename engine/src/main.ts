@@ -46,14 +46,6 @@ export class Main {
         options: RecursivePartial<IOptions>[],
         index?: number
     ): Promise<Container | undefined> {
-        if (!this.#initialized) {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve(this.loadFromArray(tagId, options, index));
-                }, 100);
-            });
-        }
-
         return Loader.load(tagId, options, index);
     }
 
@@ -67,14 +59,6 @@ export class Main {
         tagId: string | SingleOrMultiple<RecursivePartial<IOptions>>,
         options?: SingleOrMultiple<RecursivePartial<IOptions>>
     ): Promise<Container | undefined> {
-        if (!this.#initialized) {
-            return await new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve(this.load(tagId, options));
-                }, 100);
-            });
-        }
-
         return Loader.load(tagId, options);
     }
 
@@ -89,14 +73,6 @@ export class Main {
         element: HTMLElement | RecursivePartial<IOptions>,
         options?: RecursivePartial<IOptions>
     ): Promise<Container | undefined> {
-        if (!this.#initialized) {
-            return await new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve(this.set(id, element, options));
-                }, 100);
-            });
-        }
-
         return Loader.set(id, element, options);
     }
 
@@ -113,14 +89,6 @@ export class Main {
         pathConfigJson?: SingleOrMultiple<string> | number,
         index?: number
     ): Promise<Container | undefined> {
-        if (!this.#initialized) {
-            return await new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve(this.loadJSON(tagId, pathConfigJson, index));
-                }, 100);
-            });
-        }
-
         return Loader.loadJSON(tagId, pathConfigJson, index);
     }
 
@@ -138,14 +106,6 @@ export class Main {
         pathConfigJson?: SingleOrMultiple<string> | number,
         index?: number
     ): Promise<Container | undefined> {
-        if (!this.#initialized) {
-            return await new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve(this.setJSON(id, element, pathConfigJson, index));
-                }, 100);
-            });
-        }
-
         return Loader.setJSON(id, element, pathConfigJson, index);
     }
 

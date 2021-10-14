@@ -137,6 +137,8 @@ export class Canvas {
     }
 
     windowResize(): void {
+        console.log("resize");
+
         if (!this.element) {
             return;
         }
@@ -145,13 +147,15 @@ export class Canvas {
 
         this.resize();
 
-        if (this.resizeFactor?.width === 1 && this.resizeFactor.height === 1) {
+        /*if (this.resizeFactor?.width === 1 && this.resizeFactor.height === 1) {
             delete this.resizeFactor;
 
             return;
-        }
+        }*/
 
-        container.updateActualOptions();
+        console.log(this.size);
+
+        const needsRefresh = container.updateActualOptions();
 
         /* density particles enabled */
         container.particles.setDensity();
@@ -160,6 +164,10 @@ export class Canvas {
             if (plugin.resize !== undefined) {
                 plugin.resize();
             }
+        }
+
+        if (needsRefresh) {
+            container.refresh();
         }
     }
 

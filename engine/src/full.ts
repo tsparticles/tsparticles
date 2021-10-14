@@ -1,57 +1,21 @@
 import type { Main } from "./main";
+import { loadSlim } from "./slim";
+import { loadExternalTrailInteraction } from "./Interactions/External/Trail";
+import { loadTiltUpdater } from "./Updaters/Tilt";
+import { loadWobbleUpdater } from "./Updaters/Wobble";
+import { loadAbsorbersPlugin } from "./Plugins/Absorbers/plugin";
+import { loadEmittersPlugin } from "./Plugins/Emitters/plugin";
+import { loadPolygonMaskPlugin } from "./Plugins/PolygonMask/plugin";
+import { loadRollUpdater } from "./Updaters/Roll";
 
-export async function loadFull(tsParticles: Main): Promise<void> {
-    const { loadSlim } = await import(
-        /* webpackChunkName: "tsparticles.bundle.slim" */
-        /* webpackMode: "lazy-once" */
-        "./slim"
-    );
-
-    await loadSlim(tsParticles);
-
-    const { loadExternalTrailInteraction } = await import(
-        /* webpackChunkName: "tsparticles.interaction.external.trail" */
-        /* webpackMode: "lazy-once" */
-        "./Interactions/External/Trail"
-    );
+export function loadFull(tsParticles: Main): void {
+    loadSlim(tsParticles);
 
     loadExternalTrailInteraction(tsParticles);
-
-    const { loadRollUpdater } = await import(
-        /* webpackChunkName: "tsparticles.updater.roll" */
-        /* webpackMode: "lazy-once" */
-        "./Updaters/Roll"
-    );
-    const { loadTiltUpdater } = await import(
-        /* webpackChunkName: "tsparticles.updater.tilt" */
-        /* webpackMode: "lazy-once" */
-        "./Updaters/Tilt"
-    );
-    const { loadWobbleUpdater } = await import(
-        /* webpackChunkName: "tsparticles.updater.wobble" */
-        /* webpackMode: "lazy-once" */
-        "./Updaters/Wobble"
-    );
 
     loadRollUpdater(tsParticles);
     loadTiltUpdater(tsParticles);
     loadWobbleUpdater(tsParticles);
-
-    const { loadAbsorbersPlugin } = await import(
-        /* webpackChunkName: "tsparticles.plugin.absorbers" */
-        /* webpackMode: "lazy-once" */
-        "./Plugins/Absorbers/plugin"
-    );
-    const { loadEmittersPlugin } = await import(
-        /* webpackChunkName: "tsparticles.plugin.emitters" */
-        /* webpackMode: "lazy-once" */
-        "./Plugins/Emitters/plugin"
-    );
-    const { loadPolygonMaskPlugin } = await import(
-        /* webpackChunkName: "tsparticles.plugin.polygon.mask" */
-        /* webpackMode: "lazy-once" */
-        "./Plugins/PolygonMask/plugin"
-    );
 
     loadAbsorbersPlugin(tsParticles);
     loadEmittersPlugin(tsParticles);

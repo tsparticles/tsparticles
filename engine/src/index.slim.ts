@@ -4,21 +4,14 @@ import type { IOptions } from "./Options/Interfaces/IOptions";
 import type { RecursivePartial } from "./Types";
 import type { IParticle } from "./Core/Interfaces";
 import { Main } from "./main";
+import { loadSlim } from "./slim";
 
 /* ---------- tsParticles functions - start ------------ */
 const tsParticles = new Main();
 
-(async () => {
-    const { loadSlim } = await import(
-        /* webpackChunkName: "tsparticles.bundle.slim" */
-        /* webpackMode: "lazy-once" */
-        "./slim"
-    );
+tsParticles.init();
 
-    await loadSlim(tsParticles);
-
-    tsParticles.init();
-})();
+loadSlim(tsParticles);
 
 const { particlesJS, pJSDom } = initPjs(tsParticles);
 
