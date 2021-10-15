@@ -7,13 +7,17 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@highlightjs/vue-plugin": "^2.1.0",
     "core-js": "^3.16.1",
+    "highlight.js": "^11.2.0",
     "particles.vue3": "^1.19.0",
+    "stringify-object": "^4.0.0",
     "tsparticles": "^1.36.0",
     "vue": "^3.2.2",
     "vue-class-component": "^8.0.0-rc.1"
   },
   "devDependencies": {
+    "@types/stringify-object": "^4.0.0",
     "@vue/cli-plugin-babel": "~5.0.0-beta.3",
     "@vue/cli-plugin-typescript": "~5.0.0-beta.3",
     "@vue/cli-service": "~5.0.0-beta.3",
