@@ -6,7 +6,7 @@ import type { IMoveAngle } from "./IMoveAngle";
 import type { IMoveGravity } from "./IMoveGravity";
 import type { IOutModes } from "./IOutModes";
 import type { RangeValue } from "../../../../Types";
-import { IDistance } from "../../../../Core/Interfaces";
+import { ICoordinates, IDistance } from "../../../../Core/Interfaces";
 import { ISpin } from "./ISpin";
 
 /**
@@ -41,6 +41,7 @@ export interface IMove {
 
     angle: number | IMoveAngle;
     attract: IAttract;
+    center: Partial<ICoordinates>;
     decay: number;
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
     distance: number | Partial<IDistance>;

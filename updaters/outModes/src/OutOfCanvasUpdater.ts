@@ -1,9 +1,18 @@
 import type { Container, IDelta, IParticleUpdater, Particle } from "tsparticles-engine";
-import { calculateBounds, isPointInside, OutMode, OutModeAlt, OutModeDirection } from "tsparticles-engine";
+import {
+    calculateBounds,
+    isPointInside,
+    OutMode,
+    OutModeAlt,
+    OutModeDirection,
+    ParticleOutType,
+    Vector,
+} from "tsparticles-engine";
 import { bounceHorizontal, bounceVertical } from "./Utils";
 
 export class OutOfCanvasUpdater implements IParticleUpdater {
-    constructor(private readonly container: Container) {}
+    constructor(private readonly container: Container) {
+    }
 
     init(): void {
         // nothing
@@ -57,65 +66,125 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
     private destroy(particle: Particle, direction: OutModeDirection): void {
         const container = this.container;
 
-        if (isPointInside(particle.position, container.canvas.size, particle.getRadius(), direction)) {
-            return;
+        switch (particle.outType) {
+            case ParticleOutType.normal:
+            case ParticleOutType.outside:
+                if (
+                    isPointInside(
+                        particle.position,
+                        container.canvas.size,
+                        Vector.origin,
+                        particle.getRadius(),
+                        direction
+                    )
+                ) {
+                    return;
+                }
+
+                break;
+            case ParticleOutType.inside:
+                if (
+                    !isPointInside(
+                        particle.position,
+                        {
+                            width: 1,
+                            height: 1,
+                        },
+                        particle.moveCenter,
+                        particle.getRadius(),
+                        direction
+                    )
+                ) {
+                    return;
+                }
+
+                break;
         }
 
         container.particles.remove(particle, undefined, true);
     }
 
     private out(particle: Particle, direction: OutModeDirection): void {
-        const container = this.container;
+        switch (particle.outType) {
+            case ParticleOutType.inside:
 
-        if (isPointInside(particle.position, container.canvas.size, particle.getRadius(), direction)) {
-            return;
-        }
+                break;
+            case ParticleOutType.normal:
+            case ParticleOutType.outside: {
+                const container = this.container;
 
-        const wrap = particle.options.move.warp,
-            canvasSize = container.canvas.size,
-            newPos = {
-                bottom: canvasSize.height + particle.getRadius() + particle.offset.y,
-                left: -particle.getRadius() - particle.offset.x,
-                right: canvasSize.width + particle.getRadius() + particle.offset.x,
-                top: -particle.getRadius() - particle.offset.y,
-            },
-            sizeValue = particle.getRadius(),
-            nextBounds = calculateBounds(particle.position, sizeValue);
+                if (
+                    isPointInside(
+                        particle.position,
+                        container.canvas.size,
+                        Vector.origin,
+                        particle.getRadius(),
+                        direction
+                    )
+                ) {
+                    return;
+                }
 
-        if (direction === OutModeDirection.right && nextBounds.left > canvasSize.width + particle.offset.x) {
-            particle.position.x = newPos.left;
-            particle.initialPosition.x = particle.position.x;
+                if (particle.outType === ParticleOutType.outside) {
+                    particle.position.x = particle.moveCenter.x;
+                    particle.position.y = particle.moveCenter.y;
+                } else {
+                    const wrap = particle.options.move.warp,
+                        canvasSize = container.canvas.size,
+                        newPos = {
+                            bottom: canvasSize.height + particle.getRadius() + particle.offset.y,
+                            left: -particle.getRadius() - particle.offset.x,
+                            right: canvasSize.width + particle.getRadius() + particle.offset.x,
+                            top: -particle.getRadius() - particle.offset.y,
+                        },
+                        sizeValue = particle.getRadius(),
+                        nextBounds = calculateBounds(particle.position, sizeValue);
 
-            if (!wrap) {
-                particle.position.y = Math.random() * canvasSize.height;
-                particle.initialPosition.y = particle.position.y;
+                    if (
+                        direction === OutModeDirection.right &&
+                        nextBounds.left > canvasSize.width + particle.offset.x
+                    ) {
+                        particle.position.x = newPos.left;
+                        particle.initialPosition.x = particle.position.x;
+
+                        if (!wrap) {
+                            particle.position.y = Math.random() * canvasSize.height;
+                            particle.initialPosition.y = particle.position.y;
+                        }
+                    } else if (direction === OutModeDirection.left && nextBounds.right < -particle.offset.x) {
+                        particle.position.x = newPos.right;
+                        particle.initialPosition.x = particle.position.x;
+
+                        if (!wrap) {
+                            particle.position.y = Math.random() * canvasSize.height;
+                            particle.initialPosition.y = particle.position.y;
+                        }
+                    }
+
+                    if (
+                        direction === OutModeDirection.bottom &&
+                        nextBounds.top > canvasSize.height + particle.offset.y
+                    ) {
+                        if (!wrap) {
+                            particle.position.x = Math.random() * canvasSize.width;
+                            particle.initialPosition.x = particle.position.x;
+                        }
+
+                        particle.position.y = newPos.top;
+                        particle.initialPosition.y = particle.position.y;
+                    } else if (direction === OutModeDirection.top && nextBounds.bottom < -particle.offset.y) {
+                        if (!wrap) {
+                            particle.position.x = Math.random() * canvasSize.width;
+                            particle.initialPosition.x = particle.position.x;
+                        }
+
+                        particle.position.y = newPos.bottom;
+                        particle.initialPosition.y = particle.position.y;
+                    }
+                }
+
+                break;
             }
-        } else if (direction === OutModeDirection.left && nextBounds.right < -particle.offset.x) {
-            particle.position.x = newPos.right;
-            particle.initialPosition.x = particle.position.x;
-
-            if (!wrap) {
-                particle.position.y = Math.random() * canvasSize.height;
-                particle.initialPosition.y = particle.position.y;
-            }
-        }
-
-        if (direction === OutModeDirection.bottom && nextBounds.top > canvasSize.height + particle.offset.y) {
-            if (!wrap) {
-                particle.position.x = Math.random() * canvasSize.width;
-                particle.initialPosition.x = particle.position.x;
-            }
-
-            particle.position.y = newPos.top;
-            particle.initialPosition.y = particle.position.y;
-        } else if (direction === OutModeDirection.top && nextBounds.bottom < -particle.offset.y) {
-            if (!wrap) {
-                particle.position.x = Math.random() * canvasSize.width;
-                particle.initialPosition.x = particle.position.x;
-            }
-
-            particle.position.y = newPos.bottom;
-            particle.initialPosition.y = particle.position.y;
         }
     }
 
@@ -128,7 +197,7 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
         const container = this.container;
         let handled = false;
 
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             if (plugin.particleBounce !== undefined) {
                 handled = plugin.particleBounce(particle, delta, direction);
             }
@@ -178,7 +247,7 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
                 return;
             }
 
-            if (!isPointInside(particle.position, container.canvas.size, pRadius, direction)) {
+            if (!isPointInside(particle.position, container.canvas.size, Vector.origin, pRadius, direction)) {
                 container.particles.remove(particle);
             }
         } else {

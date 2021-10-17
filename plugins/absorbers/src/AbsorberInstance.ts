@@ -1,6 +1,4 @@
-import type { ICoordinates, IRgb } from "tsparticles-engine";
-import type { Container } from "tsparticles-engine";
-import type { Particle } from "tsparticles-engine";
+import type { Container, ICoordinates, IRgb, Particle } from "tsparticles-engine";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
 import {
     colorToRgb,
@@ -11,8 +9,7 @@ import {
     isPointInside,
 } from "tsparticles-engine";
 import type { Absorbers } from "./Absorbers";
-import { Vector } from "tsparticles-engine";
-import { RotateDirection } from "tsparticles-engine";
+import { RotateDirection, Vector } from "tsparticles-engine";
 
 type OrbitingParticle = Particle & {
     absorberOrbit?: Vector;
@@ -133,7 +130,7 @@ export class AbsorberInstance {
         const initialPosition = this.initialPosition;
 
         this.position =
-            initialPosition && isPointInside(initialPosition, this.container.canvas.size)
+            initialPosition && isPointInside(initialPosition, this.container.canvas.size, Vector.origin)
                 ? initialPosition
                 : this.calcPosition();
     }

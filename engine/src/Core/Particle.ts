@@ -5,6 +5,7 @@ import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import {
     AnimationStatus,
     DestroyMode,
+    MoveDirection,
     OutMode,
     OutModeAlt,
     RotateDirection,
@@ -44,17 +45,18 @@ import type {
     IParticleHslAnimation,
     IParticleLife,
     IParticleNumericValueAnimation,
+    IParticleRetinaProps,
     IParticleSpin,
     IParticleTiltValueAnimation,
     IParticleValueAnimation,
     IRgb,
     IShapeValues,
-    IParticleRetinaProps,
 } from "./Interfaces";
 import { Vector3d } from "./Particle/Vector3d";
 import { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
 import { IParticleRoll } from "./Interfaces/IParticleRoll";
 import { IParticleWobble } from "./Interfaces/IParticleWobble";
+import { ParticleOutType } from "../Enums/Types/ParticleOutType";
 
 const fixOutMode = (data: {
     outMode: OutMode | keyof typeof OutMode | OutModeAlt;
@@ -105,7 +107,9 @@ export class Particle implements IParticle {
     stroke?: Stroke;
     strokeColor?: IParticleHslAnimation;
 
+    readonly moveCenter: ICoordinates;
     readonly moveDecay: number;
+    readonly outType: ParticleOutType;
     readonly direction: number;
     readonly position: Vector3d;
     readonly offset: Vector;
@@ -138,6 +142,7 @@ export class Particle implements IParticle {
         this.retina = {
             maxDistance: {},
         };
+        this.outType = ParticleOutType.normal;
 
         const pxRatio = container.retina.pixelRatio;
         const mainOptions = container.actualOptions;
@@ -236,19 +241,34 @@ export class Particle implements IParticle {
             }
         }
 
-        this.direction = getParticleDirectionAngle(this.options.move.direction);
+        /* position */
         this.bubble = {
             inRange: false,
         };
+        this.position = this.calcPosition(container, position, clamp(zIndexValue, 0, container.zLayers));
+        this.initialPosition = this.position.copy();
+
+        const canvasSize = container.canvas.size;
+
+        this.moveCenter = {
+            x: (canvasSize.width * this.options.move.center.x) / 100,
+            y: (canvasSize.height * this.options.move.center.y) / 100,
+        };
+        this.direction = getParticleDirectionAngle(this.options.move.direction, this.position, this.moveCenter);
+
+        switch (this.options.move.direction) {
+            case MoveDirection.inside:
+                this.outType = ParticleOutType.inside;
+                break;
+            case MoveDirection.outside:
+                this.outType = ParticleOutType.outside;
+                break;
+        }
 
         /* animation - velocity for speed */
         this.initialVelocity = this.calculateVelocity();
         this.velocity = this.initialVelocity.copy();
         this.moveDecay = 1 - getRangeValue(this.options.move.decay);
-
-        /* position */
-        this.position = this.calcPosition(container, position, clamp(zIndexValue, 0, container.zLayers));
-        this.initialPosition = this.position.copy();
 
         /* parallax */
         this.offset = Vector.origin;

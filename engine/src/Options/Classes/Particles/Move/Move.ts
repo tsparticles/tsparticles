@@ -9,7 +9,7 @@ import { MoveAngle } from "./MoveAngle";
 import { MoveGravity } from "./MoveGravity";
 import { OutModes } from "./OutModes";
 import { deepExtend, setRangeValue } from "../../../../Utils";
-import type { IDistance } from "../../../../Core/Interfaces";
+import type { ICoordinates, IDistance } from "../../../../Core/Interfaces";
 import { Spin } from "./Spin";
 
 /**
@@ -97,6 +97,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
     angle;
     attract;
+    center: ICoordinates;
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
     distance: Partial<IDistance>;
     decay;
@@ -117,6 +118,10 @@ export class Move implements IMove, IOptionLoader<IMove> {
     constructor() {
         this.angle = new MoveAngle();
         this.attract = new Attract();
+        this.center = {
+            x: 50,
+            y: 50,
+        };
         this.decay = 0;
         this.distance = {};
         this.direction = MoveDirection.none;
@@ -150,6 +155,14 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
         this.attract.load(data.attract);
 
+        if (data.center?.x !== undefined) {
+            this.center.x = data.center.x;
+        }
+
+        if (data.center?.y !== undefined) {
+            this.center.y = data.center.y;
+        }
+
         if (data.decay !== undefined) {
             this.decay = data.decay;
         }
@@ -180,8 +193,8 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
         const outMode = data.outMode ?? data.out_mode;
 
-        if (data.outModes !== undefined || outMode !== undefined) {
-            if (typeof data.outModes === "string" || (data.outModes === undefined && outMode !== undefined)) {
+        if (data.outModes || outMode) {
+            if (typeof data.outModes === "string" || (!data.outModes && outMode)) {
                 this.outModes.load({
                     default: data.outModes ?? outMode,
                 });

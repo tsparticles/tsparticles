@@ -306,7 +306,7 @@ describe("Utils", () => {
                 right: dimension.width,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension)).to.be.true;
+            expect(Utils.areBoundsInside(bounds, dimension, Vector.origin)).to.be.true;
         });
 
         it("should return true when the bounds are completely inside the screen", () => {
@@ -317,7 +317,7 @@ describe("Utils", () => {
                 right: 200,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension)).to.be.true;
+            expect(Utils.areBoundsInside(bounds, dimension, Vector.origin)).to.be.true;
         });
 
         it("should return true when the bounds overlap top of the screen", () => {
@@ -328,7 +328,7 @@ describe("Utils", () => {
                 right: 101,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension)).to.be.true;
+            expect(Utils.areBoundsInside(bounds, dimension, Vector.origin)).to.be.true;
         });
 
         it("should return true when the bounds overlap bottom of the screen", () => {
@@ -339,7 +339,7 @@ describe("Utils", () => {
                 right: 101,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension)).to.be.true;
+            expect(Utils.areBoundsInside(bounds, dimension, Vector.origin)).to.be.true;
         });
 
         it("should return true when the bounds overlap the left of the screen", () => {
@@ -350,7 +350,7 @@ describe("Utils", () => {
                 right: 1,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension)).to.be.true;
+            expect(Utils.areBoundsInside(bounds, dimension, Vector.origin)).to.be.true;
         });
 
         it("should return true when the bounds overlap the right of the screen", () => {
@@ -361,7 +361,7 @@ describe("Utils", () => {
                 right: dimension.width + 1,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension)).to.be.true;
+            expect(Utils.areBoundsInside(bounds, dimension, Vector.origin)).to.be.true;
         });
 
         it("should return false when the bounds do not intersect the screen and are above", () => {
@@ -372,7 +372,7 @@ describe("Utils", () => {
                 right: 101,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension)).to.be.false;
+            expect(Utils.areBoundsInside(bounds, dimension, Vector.origin)).to.be.false;
         });
 
         it("should return false when the bounds do not intersect the screen and are below", () => {
@@ -383,7 +383,7 @@ describe("Utils", () => {
                 right: 101,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension)).to.be.false;
+            expect(Utils.areBoundsInside(bounds, dimension, Vector.origin)).to.be.false;
         });
 
         it("should return false when the bounds do not intersect the screen and are to the left", () => {
@@ -394,7 +394,7 @@ describe("Utils", () => {
                 right: -1,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension)).to.be.false;
+            expect(Utils.areBoundsInside(bounds, dimension, Vector.origin)).to.be.false;
         });
 
         it("should return false when the bounds do not intersect the screen and are to the right", () => {
@@ -405,7 +405,7 @@ describe("Utils", () => {
                 right: dimension.width + 2,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension)).to.be.false;
+            expect(Utils.areBoundsInside(bounds, dimension, Vector.origin)).to.be.false;
         });
     });
 
@@ -418,51 +418,51 @@ describe("Utils", () => {
         const rightPoint = { x: dimension.width, y: dimension.height / 2 };
 
         it("should return true when the point lies inside the screen, no radius", () => {
-            expect(Utils.isPointInside(centerPoint, dimension)).to.be.true;
+            expect(Utils.isPointInside(centerPoint, dimension, Vector.origin)).to.be.true;
         });
 
         it("should return true when the point lies inside the screen, radius inside dimensions", () => {
-            expect(Utils.isPointInside(centerPoint, dimension, 100)).to.be.true;
+            expect(Utils.isPointInside(centerPoint, dimension, Vector.origin, 100)).to.be.true;
         });
 
         it("should return true when the point overlaps top and bottom but not left and right", () => {
-            expect(Utils.isPointInside(centerPoint, dimension, 1000)).to.be.true;
+            expect(Utils.isPointInside(centerPoint, dimension, Vector.origin, 1000)).to.be.true;
         });
 
         it("should return true when the point overlaps all sides of the screen", () => {
-            expect(Utils.isPointInside(centerPoint, dimension, 10000)).to.be.true;
+            expect(Utils.isPointInside(centerPoint, dimension, Vector.origin, 10000)).to.be.true;
         });
 
         it("should return false when point lies on top boundry of screen with no radius", () => {
-            expect(Utils.isPointInside(topPoint, dimension)).to.be.false;
+            expect(Utils.isPointInside(topPoint, dimension, Vector.origin)).to.be.false;
         });
 
         it("should return true when point lies on top boundry of screen with non-zero radius", () => {
-            expect(Utils.isPointInside(topPoint, dimension, Math.random())).to.be.true;
+            expect(Utils.isPointInside(topPoint, dimension, Vector.origin, Math.random())).to.be.true;
         });
 
         it("should return false when point lies on bottom boundry of screen with no radius", () => {
-            expect(Utils.isPointInside(bottomPoint, dimension)).to.be.false;
+            expect(Utils.isPointInside(bottomPoint, dimension, Vector.origin)).to.be.false;
         });
 
         it("should return true when point lies on bottom boundry of screen with non-zero radius", () => {
-            expect(Utils.isPointInside(bottomPoint, dimension, Math.random())).to.be.true;
+            expect(Utils.isPointInside(bottomPoint, dimension, Vector.origin, Math.random())).to.be.true;
         });
 
         it("should return false when point lies on left boundry of screen with no radius", () => {
-            expect(Utils.isPointInside(leftPoint, dimension)).to.be.false;
+            expect(Utils.isPointInside(leftPoint, dimension, Vector.origin)).to.be.false;
         });
 
         it("should return true when point lies on left boundry of screen with non-zero radius", () => {
-            expect(Utils.isPointInside(leftPoint, dimension, Math.random())).to.be.true;
+            expect(Utils.isPointInside(leftPoint, dimension, Vector.origin, Math.random())).to.be.true;
         });
 
         it("should return false when point lies on right boundry of screen with no radius", () => {
-            expect(Utils.isPointInside(rightPoint, dimension)).to.be.false;
+            expect(Utils.isPointInside(rightPoint, dimension, Vector.origin)).to.be.false;
         });
 
         it("should return true when point lies on right boundry of screen with non-zero radius", () => {
-            expect(Utils.isPointInside(rightPoint, dimension, Math.random())).to.be.true;
+            expect(Utils.isPointInside(rightPoint, dimension, Vector.origin, Math.random())).to.be.true;
         });
     });
 
