@@ -1,102 +1,65 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png"/>
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-  <Particles id="tsparticles" :options="{
-                                           background: {
-                                             color: {
-                                               value: '#0d47a1'
-                                             }
-                                           },
-                                           fpsLimit: 60,
-                                           interactivity: {
-                                             detectsOn: 'window',
-                                             events: {
-                                               onClick: {
-                                                 enable: true,
-                                                 mode: 'push'
-                                               },
-                                               onHover: {
-                                                 enable: true,
-                                                 mode: 'repulse'
-                                               },
-                                               resize: true
-                                             },
-                                             modes: {
-                                               bubble: {
-                                                 distance: 400,
-                                                 duration: 2,
-                                                 opacity: 0.8,
-                                                 size: 40,
-                                                 speed: 3
-                                               },
-                                               push: {
-                                                 quantity: 4
-                                               },
-                                               repulse: {
-                                                 distance: 200,
-                                                 duration: 0.4
-                                               }
-                                             }
-                                           },
-                                           particles: {
-                                             color: {
-                                               value: '#ffffff'
-                                             },
-                                             links: {
-                                               color: '#ffffff',
-                                               distance: 150,
-                                               enable: true,
-                                               opacity: 0.5,
-                                               width: 1
-                                             },
-                                             collisions: {
-                                               enable: true
-                                             },
-                                             move: {
-                                               direction: 'none',
-                                               enable: true,
-                                               outMode: 'bounce',
-                                               random: false,
-                                               speed: 6,
-                                               straight: false
-                                             },
-                                             number: {
-                                               density: {
-                                                 enable: true,
-                                                 value_area: 800
-                                               },
-                                               value: 80
-                                             },
-                                             opacity: {
-                                               value: 0.5
-                                             },
-                                             shape: {
-                                               type: 'circle'
-                                             },
-                                             size: {
-                                               random: true,
-                                               value: 5
-                                             }
-                                           },
-                                           detectRetina: true
-                                         }" :particlesInit="particlesInit"/>
+  <div>
+    <h1
+      class="app__title" 
+      align="center"
+    >
+      Welcome to tsParticles Vue3 Demo
+    </h1>
 
+    <CodeViewer
+      :code="codeStringified"
+      :optionSelected="optionSelected"
+      :optionsList="optionsList"
+      @change-option="changeOption"
+    />
+    
+    <Particles
+      id="tsparticles"
+      :options="options"
+      :key="optionSelected"
+      :particlesInit="particlesInit"
+    />
+  </div>
 </template>
 
 <script lang="ts">
+import CodeViewer from './components/code-viewer.vue';
+import stringifyObject from 'stringify-object';
 import { Options, Vue } from "vue-class-component";
-import HelloWorld from "./components/HelloWorld.vue";
+import { optionsMap } from './map-options';
 import type { Main } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 
 @Options({
   components: {
-    HelloWorld
-  }
+    CodeViewer,
+  },
 })
 export default class App extends Vue {
   particlesInit(main: Main) {
     loadFull(main);
+  }
+  
+  optionSelected = 'crazyParticles'
+
+  changeOption(newValue: string) {
+    this.optionSelected = newValue;
+  }
+
+  get codeStringified() {
+    return stringifyObject(optionsMap[this.optionSelected], {
+      indent: '  ',
+    	singleQuotes: false,
+    });
+  }
+
+  get options() {
+    return optionsMap[this.optionSelected];
+  }
+
+  get optionsList() {
+    return Object.keys(optionsMap);
   }
 }
 </script>
@@ -106,9 +69,12 @@ export default class App extends Vue {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.app__title {
+  color: #2c3e50;
 }
 
 #tsparticles {
@@ -117,8 +83,7 @@ export default class App extends Vue {
   left: 0;
   width: 100%;
   height: 100%;
-  background: #000000;
+  background: white;
   z-index: -10;
 }
-
 </style>
