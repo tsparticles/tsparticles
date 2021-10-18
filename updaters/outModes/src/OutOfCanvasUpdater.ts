@@ -11,8 +11,7 @@ import {
 import { bounceHorizontal, bounceVertical } from "./Utils";
 
 export class OutOfCanvasUpdater implements IParticleUpdater {
-    constructor(private readonly container: Container) {
-    }
+    constructor(private readonly container: Container) {}
 
     init(): void {
         // nothing
@@ -107,7 +106,6 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
     private out(particle: Particle, direction: OutModeDirection): void {
         switch (particle.outType) {
             case ParticleOutType.inside:
-
                 break;
             case ParticleOutType.normal:
             case ParticleOutType.outside: {
@@ -197,7 +195,7 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
         const container = this.container;
         let handled = false;
 
-        for (const [ , plugin ] of container.plugins) {
+        for (const [, plugin] of container.plugins) {
             if (plugin.particleBounce !== undefined) {
                 handled = plugin.particleBounce(particle, delta, direction);
             }
