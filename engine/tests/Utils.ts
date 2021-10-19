@@ -428,7 +428,7 @@ describe("Utils", () => {
             expect(Utils.areBoundsInside(bounds, dimension, direction)).to.be.true;
         });
         
-        it("should return false when direction is top and the bounds do not intersect the screen and are top", () => {
+        it("should return false when direction is top and the bounds do not intersect the screen and are above", () => {
             const bounds = {
                 bottom: -1,
                 top: -2,
