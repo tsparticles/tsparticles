@@ -7,12 +7,11 @@ import type {
     IRangeValue,
     IRectSideResult,
 } from "../Core/Interfaces";
-import { DivMode } from "../Enums";
+import { DivMode, OutModeDirection } from "../Enums";
 import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICharacterShape";
 import type { SingleOrMultiple } from "../Types";
 import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
-import { OutModeDirection } from "../Enums";
 import { collisionVelocity, getValue } from "./NumberUtils";
 import { Vector } from "../Core/Particle/Vector";
 
