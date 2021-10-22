@@ -12,7 +12,7 @@
   },
   "scripts": {
     "start": "parcel serve public/index.html --no-cache --open",
-    "build": "parcel build -t browser -d dist public/index.html --no-source-maps"
+    "build": "parcel build --target browser --dist-dir dist public/index.html --no-source-maps"
   },
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
