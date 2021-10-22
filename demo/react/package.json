@@ -26,7 +26,7 @@
     "eslint": "^8.0.0",
     "eslint-config-prettier": "^8.3.0",
     "node-sass": "^6.0.1",
-    "parcel": "^1.12.4",
+    "parcel": "^2.0.0",
     "prettier": "^2.3.2",
     "react-syntax-highlighter": "^15.4.4",
     "rxjs": "^7.3.0",
