@@ -96,6 +96,7 @@ export class Particle implements IParticle {
     wobble?: IParticleWobble;
     backColor?: IHsl;
     close: boolean;
+    direction: number;
     fill: boolean;
     randomIndexData?: number;
     gradient?: IParticleGradientAnimation;
@@ -107,10 +108,9 @@ export class Particle implements IParticle {
     stroke?: Stroke;
     strokeColor?: IParticleHslAnimation;
 
-    readonly moveCenter: ICoordinates;
+    readonly moveCenter: ICoordinates & { radius: number };
     readonly moveDecay: number;
     readonly outType: ParticleOutType;
-    readonly direction: number;
     readonly position: Vector3d;
     readonly offset: Vector;
     readonly shadowColor: IRgb | undefined;
@@ -253,6 +253,7 @@ export class Particle implements IParticle {
         this.moveCenter = {
             x: (canvasSize.width * this.options.move.center.x) / 100,
             y: (canvasSize.height * this.options.move.center.y) / 100,
+            radius: this.options.move.center.radius,
         };
         this.direction = getParticleDirectionAngle(this.options.move.direction, this.position, this.moveCenter);
 

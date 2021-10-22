@@ -97,7 +97,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
     angle;
     attract;
-    center: ICoordinates;
+    center: ICoordinates & { radius: number };
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
     distance: Partial<IDistance>;
     decay;
@@ -121,6 +121,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.center = {
             x: 50,
             y: 50,
+            radius: 0,
         };
         this.decay = 0;
         this.distance = {};
@@ -161,6 +162,10 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
         if (data.center?.y !== undefined) {
             this.center.y = data.center.y;
+        }
+
+        if (data.center?.radius !== undefined) {
+            this.center.radius = data.center.radius;
         }
 
         if (data.decay !== undefined) {

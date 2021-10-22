@@ -41,7 +41,7 @@ export interface IMove {
 
     angle: number | IMoveAngle;
     attract: IAttract;
-    center: Partial<ICoordinates>;
+    center: Partial<ICoordinates & { radius: number }>;
     decay: number;
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
     distance: number | Partial<IDistance>;

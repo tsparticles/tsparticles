@@ -7,6 +7,8 @@ import {
     OutModeDirection,
     ParticleOutType,
     Vector,
+    getDistances,
+    randomInRange,
 } from "tsparticles-engine";
 import { bounceHorizontal, bounceVertical } from "./Utils";
 
@@ -124,8 +126,28 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
                 }
 
                 if (particle.outType === ParticleOutType.outside) {
-                    particle.position.x = particle.moveCenter.x;
-                    particle.position.y = particle.moveCenter.y;
+                    particle.position.x =
+                        Math.floor(
+                            randomInRange({
+                                min: -particle.moveCenter.radius,
+                                max: particle.moveCenter.radius,
+                            })
+                        ) + particle.moveCenter.x;
+                    particle.position.y =
+                        Math.floor(
+                            randomInRange({
+                                min: -particle.moveCenter.radius,
+                                max: particle.moveCenter.radius,
+                            })
+                        ) + particle.moveCenter.y;
+
+                    const { dx, dy } = getDistances(particle.position, particle.moveCenter);
+
+                    if (dx && dy) {
+                        particle.direction = Math.atan2(dy, dx);
+
+                        particle.velocity.angle = particle.direction;
+                    }
                 } else {
                     const wrap = particle.options.move.warp,
                         canvasSize = container.canvas.size,
