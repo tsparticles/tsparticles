@@ -1,5 +1,5 @@
+import { ResponsiveMode } from "../../Enums";
 import type { RecursivePartial } from "../../Types";
-import { ResponsiveMode } from "../../Types/ResponsiveMode";
 import type { IOptions } from "./IOptions";
 
 export interface IResponsive {
