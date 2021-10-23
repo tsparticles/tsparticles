@@ -7,12 +7,12 @@ import { deepExtend } from "../../Utils";
 export class Responsive implements IResponsive, IOptionLoader<IResponsive> {
     maxWidth: number;
     options: RecursivePartial<IOptions>;
-    mode: ResponsiveMode
+    mode: ResponsiveMode;
 
     constructor() {
         this.maxWidth = Infinity;
         this.options = {};
-        this.mode = 'canvas';
+        this.mode = "canvas";
     }
 
     load(data?: RecursivePartial<IResponsive>): void {
@@ -26,7 +26,7 @@ export class Responsive implements IResponsive, IOptionLoader<IResponsive> {
 
         if (data.mode !== undefined) {
             // not enforcing an error here as this should largely be an optin setting
-            if (['canvas', 'screen'].includes(data.mode)) {
+            if (["canvas", "screen"].includes(data.mode)) {
                 this.mode = data.mode;
             }
         }

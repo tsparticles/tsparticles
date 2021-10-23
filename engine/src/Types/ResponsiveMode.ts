@@ -1,1 +1,1 @@
-export type ResponsiveMode = 'canvas' | 'screen';
+export type ResponsiveMode = "canvas" | "screen";
