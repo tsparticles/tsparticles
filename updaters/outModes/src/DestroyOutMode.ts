@@ -1,5 +1,5 @@
-import type { Container, IDelta, OutModeAlt, Particle, OutModeDirection } from "tsparticles-engine";
-import { OutMode, ParticleOutType, isPointInside, Vector } from "tsparticles-engine";
+import type { Container, IDelta, OutModeAlt, Particle } from "tsparticles-engine";
+import { getDistances, OutMode, ParticleOutType, isPointInside, OutModeDirection, Vector } from "tsparticles-engine";
 import type { IOutModeManager } from "./IOutModeManager";
 
 export class DestroyOutMode implements IOutModeManager {
@@ -37,23 +37,21 @@ export class DestroyOutMode implements IOutModeManager {
                 }
 
                 break;
-            case ParticleOutType.inside:
+            case ParticleOutType.inside: {
+                const { dx, dy } = getDistances(particle.position, particle.moveCenter);
+                const { x: vx, y: vy } = particle.velocity;
+
                 if (
-                    !isPointInside(
-                        particle.position,
-                        {
-                            width: 1,
-                            height: 1,
-                        },
-                        particle.moveCenter,
-                        particle.getRadius(),
-                        direction
-                    )
+                    (vx < 0 && dx > particle.moveCenter.radius) ||
+                    (vy < 0 && dy > particle.moveCenter.radius) ||
+                    (vx >= 0 && dx < -particle.moveCenter.radius) ||
+                    (vy >= 0 && dy < -particle.moveCenter.radius)
                 ) {
                     return;
                 }
 
                 break;
+            }
         }
 
         container.particles.remove(particle, undefined, true);

@@ -6,7 +6,7 @@ export class NoneOutMode implements IOutModeManager {
     modes: (OutMode | OutModeAlt | keyof typeof OutMode)[];
 
     constructor(private readonly container: Container) {
-        this.modes = [OutMode.destroy];
+        this.modes = [OutMode.none];
     }
 
     update(
