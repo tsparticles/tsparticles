@@ -6,8 +6,13 @@ const importsNames = files.map(t => `import ${toCamelCase(t.substring(0, t.lengt
 const exportsNames = files.map(t => `    ${toCamelCase(t.substring(0, t.length - 5))}`)
 
 const text = `${importsNames.join("\n")}
+import { tsParticles } from "tsparticles-engine";
 
-export {
+const mainConfigs = tsParticles as unknown as {
+    configs: unknown
+};
+
+mainConfigs.configs = {
 ${exportsNames.join(",\n")}
 }
 `;

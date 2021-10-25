@@ -102,8 +102,13 @@ import virus from "./virus.json";
 import warp from "./warp.json";
 import wobble from "./wobble.json";
 import zindex from "./zindex.json";
+import { tsParticles } from "tsparticles-engine";
 
-export {
+const mainConfigs = tsParticles as unknown as {
+    configs: unknown;
+};
+
+mainConfigs.configs = {
     absorbers,
     amongUs,
     background,

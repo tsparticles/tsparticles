@@ -1,5 +1,4 @@
 const {loadParticlesBundle} = require("./bundles/buildBundle");
-const {loadParticlesConfigs} = require("./configs/buildConfigs");
 const {loadParticlesInteraction} = require("./interactions/buildInteraction");
 const {loadParticlesInteractionExternal} = require("./interactions/external/buildInteractionExternal");
 const {loadParticlesInteractionParticles} = require("./interactions/particles/buildInteractionParticles");
@@ -11,7 +10,6 @@ const {loadParticlesUpdater} = require("./updaters/buildUpdater")
 
 module.exports = {
     loadParticlesBundle,
-    loadParticlesConfigs,
     loadParticlesInteraction,
     loadParticlesInteractionExternal,
     loadParticlesInteractionParticles,
