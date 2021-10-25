@@ -181,6 +181,10 @@ export class Main {
      */
     addPlugin(plugin: IPlugin): void {
         Plugins.addPlugin(plugin);
+
+        for (const instance of this.dom()) {
+            instance.refresh();
+        }
     }
 
     /**

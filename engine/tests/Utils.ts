@@ -240,7 +240,7 @@ describe("Utils", () => {
 
             expect(randomNumber).to.be.within(min, max);
         });
-        
+
         it("should set min as 0 when max equals to min", () => {
             const min = 10;
             const max = 10;
@@ -427,7 +427,7 @@ describe("Utils", () => {
 
             expect(Utils.areBoundsInside(bounds, dimension, direction)).to.be.true;
         });
-        
+
         it("should return false when direction is top and the bounds do not intersect the screen and are above", () => {
             const bounds = {
                 bottom: -1,
@@ -439,7 +439,7 @@ describe("Utils", () => {
 
             expect(Utils.areBoundsInside(bounds, dimension, direction)).to.be.false;
         });
-        
+
         it("should return true when direction is bottom and the bounds do not intersect the screen and are above", () => {
             const bounds = {
                 bottom: -1,
@@ -451,7 +451,7 @@ describe("Utils", () => {
 
             expect(Utils.areBoundsInside(bounds, dimension, direction)).to.be.true;
         });
-        
+
         it("should return false when direction is bottom and the bounds do not intersect the screen and are below", () => {
             const bounds = {
                 bottom: dimension.height + 2,
@@ -475,7 +475,7 @@ describe("Utils", () => {
 
             expect(Utils.areBoundsInside(bounds, dimension, direction)).to.be.true;
         });
-        
+
         it("should return false when direction is left and the bounds do not intersect the screen and are to the left", () => {
             const bounds = {
                 bottom: 101,
@@ -499,7 +499,7 @@ describe("Utils", () => {
 
             expect(Utils.areBoundsInside(bounds, dimension, direction)).to.be.true;
         });
-        
+
         it("should return false when direction is right and the bounds do not intersect the screen and are to the right", () => {
             const bounds = {
                 bottom: 101,
