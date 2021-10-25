@@ -558,6 +558,11 @@ export class Particle implements IParticle {
         const baseVelocity = getParticleBaseVelocity(this.direction);
         const res = baseVelocity.copy();
         const moveOptions = this.options.move;
+
+        if (moveOptions.direction === MoveDirection.inside || moveOptions.direction === MoveDirection.outside) {
+            return res;
+        }
+
         const rad = (Math.PI / 180) * moveOptions.angle.value;
         const radOffset = (Math.PI / 180) * moveOptions.angle.offset;
 
