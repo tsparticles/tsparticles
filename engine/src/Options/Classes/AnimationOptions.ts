@@ -2,6 +2,11 @@ import { RecursivePartial } from "../../Types";
 import { IOptionLoader } from "../Interfaces/IOptionLoader";
 import { IAnimation } from "../Interfaces/IAnimation";
 
+/**
+ * [[include:engine\markdown\Sync.md]]
+ * @category Sync
+ */
+
 export class AnimationOptions implements IAnimation, IOptionLoader<IAnimation> {
     count: number;
     enable: boolean;

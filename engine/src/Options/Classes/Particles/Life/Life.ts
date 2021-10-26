@@ -4,6 +4,11 @@ import type { RecursivePartial } from "../../../../Types";
 import { LifeDelay } from "./LifeDelay";
 import { LifeDuration } from "./LifeDuration";
 
+/**
+ * [[include:engine\markdown\Sync.md]]
+ * @category Sync
+ */
+
 export class Life implements ILife, IOptionLoader<ILife> {
     count;
     delay;
