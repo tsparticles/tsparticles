@@ -24,7 +24,7 @@ export class FullScreen implements IFullScreen, IOptionLoader<IFullScreen> {
     zIndex;
 
     constructor() {
-        this.enable = false;
+        this.enable = true;
         this.zIndex = -1;
     }
 
