@@ -11,9 +11,9 @@ const tsParticles = new Main();
 
 tsParticles.init();
 
-loadSlim(tsParticles);
-
 const { particlesJS, pJSDom } = initPjs(tsParticles);
+
+loadSlim(tsParticles);
 
 export * from "./Core/Particle/Vector";
 export * from "./Core/Container";

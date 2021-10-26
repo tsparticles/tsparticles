@@ -25,7 +25,7 @@ export class FullScreen implements IFullScreen, IOptionLoader<IFullScreen> {
 
     constructor() {
         this.enable = true;
-        this.zIndex = -1;
+        this.zIndex = 0;
     }
 
     load(data?: RecursivePartial<IFullScreen>): void {

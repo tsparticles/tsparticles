@@ -114,12 +114,6 @@ export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>)
                 },
             },
         },
-        interactivity: {
-            detectsOn: InteractivityDetect.window,
-            events: {
-                resize: true,
-            },
-        },
         detectRetina: true,
         motion: {
             disable: actualOptions.disableForReducedMotion,

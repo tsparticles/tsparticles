@@ -80,12 +80,6 @@ export const options: ISourceOptions = {
             },
         },
     },
-    interactivity: {
-        detectsOn: InteractivityDetect.canvas,
-        events: {
-            resize: true,
-        },
-    },
     detectRetina: true,
     background: {
         color: "#fff",

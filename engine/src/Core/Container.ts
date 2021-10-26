@@ -393,6 +393,8 @@ export class Container {
 
         delete this.particles.grabLineColor;
         delete this.particles.linksColor;
+
+        this._sourceOptions = this._options;
     }
 
     /**
@@ -555,6 +557,8 @@ export class Container {
     }
 
     async init(): Promise<void> {
+        this._options = new Options();
+
         for (const preset of this.presets) {
             this._options.load(Plugins.getPreset(preset));
         }

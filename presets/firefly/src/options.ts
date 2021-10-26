@@ -42,7 +42,6 @@ export const options: ISourceOptions = {
         },
     },
     interactivity: {
-        detectsOn: InteractivityDetect.window,
         events: {
             onHover: {
                 enable: true,

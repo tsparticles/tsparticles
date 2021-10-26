@@ -10,7 +10,6 @@ export const options: ISourceOptions = {
     },
     fpsLimit: 60,
     interactivity: {
-        detectsOn: "canvas",
         events: {
             resize: true,
         },

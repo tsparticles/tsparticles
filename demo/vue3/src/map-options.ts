@@ -6,7 +6,6 @@ const crazyParticles = {
   },
   fpsLimit: 60,
   interactivity: {
-    detectsOn: 'window',
     events: {
       onClick: {
         enable: true,
@@ -108,7 +107,6 @@ const deerParticle = {
   duration: 0,
   fpsLimit: 30,
   interactivity: {
-    detectsOn: "canvas",
     events: {
       onClick: {
         enable: false,

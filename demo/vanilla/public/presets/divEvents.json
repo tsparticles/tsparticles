@@ -4,7 +4,6 @@
     "color": "#0d47a1"
   },
   "interactivity": {
-    "detect_on": "canvas",
     "events": {
       "ondiv": [
         {

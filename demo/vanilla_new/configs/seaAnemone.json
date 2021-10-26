@@ -4,12 +4,6 @@
     "zIndex": 0
   },
   "fpsLimit": 60,
-  "interactivity": {
-    "detectsOn": "canvas",
-    "events": {
-      "resize": true
-    }
-  },
   "particles": {
     "color": {
       "value": "#FF0000"

@@ -36,12 +36,6 @@ export const options: ISourceOptions = {
             outMode: OutMode.destroy,
         },
     },
-    interactivity: {
-        detectsOn: InteractivityDetect.canvas,
-        events: {
-            resize: true,
-        },
-    },
     detectRetina: true,
     emitters: {
         direction: MoveDirection.top,

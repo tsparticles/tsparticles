@@ -23,8 +23,8 @@ class Plugin implements IPlugin {
     }
 }
 
-export function loadPlugin(tsParticles: Main): void {
+export async function loadPlugin(tsParticles: Main): Promise<void> {
     const plugin = new Plugin();
 
-    tsParticles.addPlugin(plugin);
+    await tsParticles.addPlugin(plugin);
 }
