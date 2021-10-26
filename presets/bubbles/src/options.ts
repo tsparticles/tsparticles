@@ -1,5 +1,5 @@
 import type { ISourceOptions } from "tsparticles";
-import { InteractivityDetect, MoveDirection, OutMode } from "tsparticles";
+import { MoveDirection, OutMode } from "tsparticles";
 
 export const options: ISourceOptions = {
     fpsLimit: 60,
@@ -41,9 +41,6 @@ export const options: ISourceOptions = {
     detectRetina: true,
     background: {
         color: "#fff",
-    },
-    fullScreen: {
-        enable: true,
     },
     emitters: [
         {

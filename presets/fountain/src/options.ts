@@ -1,10 +1,7 @@
 import type { ISourceOptions } from "tsparticles";
-import { DestroyMode, InteractivityDetect, MoveDirection, OutMode } from "tsparticles";
+import { DestroyMode, MoveDirection, OutMode } from "tsparticles";
 
 export const options: ISourceOptions = {
-    fullScreen: {
-        enable: true,
-    },
     fpsLimit: 60,
     particles: {
         bounce: {

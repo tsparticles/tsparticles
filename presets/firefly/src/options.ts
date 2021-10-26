@@ -1,5 +1,5 @@
 import type { ISourceOptions } from "tsparticles";
-import { ClickMode, InteractivityDetect } from "tsparticles";
+import { ClickMode } from "tsparticles";
 
 export const options: ISourceOptions = {
     fullScreen: {
