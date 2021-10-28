@@ -1,6 +1,6 @@
 import type { Main } from "../../main";
 import { AngleUpdater } from "./AngleUpdater";
 
-export function loadAngleUpdater(tsParticles: Main): void {
-    tsParticles.addParticleUpdater("angle", (container) => new AngleUpdater(container));
+export async function loadAngleUpdater(tsParticles: Main): Promise<void> {
+    await tsParticles.addParticleUpdater("angle", (container) => new AngleUpdater(container));
 }

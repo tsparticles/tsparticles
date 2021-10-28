@@ -1,6 +1,5 @@
 import type { ISourceOptions, RecursivePartial } from "tsparticles";
-import { InteractivityDetect } from "tsparticles";
-import { IConfettiOptions } from "./IConfettiOptions";
+import type { IConfettiOptions } from "./IConfettiOptions";
 import { ConfettiOptions } from "./ConfettiOptions";
 
 export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>): ISourceOptions => {
@@ -112,12 +111,6 @@ export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>)
                     min: -15,
                     max: 15,
                 },
-            },
-        },
-        interactivity: {
-            detectsOn: InteractivityDetect.window,
-            events: {
-                resize: true,
             },
         },
         detectRetina: true,

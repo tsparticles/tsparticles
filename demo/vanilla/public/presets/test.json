@@ -24,12 +24,6 @@
       "outMode": "destroy"
     }
   },
-  "interactivity": {
-    "detectsOn": "canvas",
-    "events": {
-      "resize": true
-    }
-  },
   "detectRetina": true,
   "background": {
     "image": "",

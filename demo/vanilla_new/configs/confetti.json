@@ -99,12 +99,6 @@
       }
     }
   },
-  "interactivity": {
-    "detectsOn": "canvas",
-    "events": {
-      "resize": true
-    }
-  },
   "detectRetina": true,
   "background": {
     "color": "#000"

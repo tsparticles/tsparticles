@@ -103,7 +103,6 @@
     }
   },
   "interactivity": {
-    "detect_on": "canvas",
     "events": {
       "onHover": {
         "enable": false,

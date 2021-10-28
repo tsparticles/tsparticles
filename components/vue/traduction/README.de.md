@@ -25,11 +25,12 @@ Vue.use(Particles);
 ### Demo config
 
 ```html
+
 <template>
-  <div id="app">
-    <Particles
-      id="tsparticles"
-      :options="{
+    <div id="app">
+        <Particles
+                id="tsparticles"
+                :options="{
 
 background: {
 
@@ -44,8 +45,6 @@ value: '#0d47a1'
 fpsLimit: 60,
 
 interactivity: {
-
-detectsOn: 'canvas',
 
 events: {
 
@@ -184,14 +183,15 @@ value: 5
 detectRetina: true
 
 }"
-    />
-  </div>
+        />
+    </div>
 </template>
 ```
 
 ### TypeScript errors
 
-Wenn TypeScript beim Importieren/Benutzen des Particles-Plugins einen Fehler zurückgibt, versuche die folgende Zeile vor dem vorherigen Code einzufügen.
+Wenn TypeScript beim Importieren/Benutzen des Particles-Plugins einen Fehler zurückgibt, versuche die folgende Zeile vor
+dem vorherigen Code einzufügen.
 
 ```typescript
 declare module 'particles.vue';

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.37.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.36.0...tsparticles-website@1.37.0) (2021-10-28)
+
+**Note:** Version bump only for package tsparticles-website
+
+
+
+
+
 # [1.36.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.35.4...tsparticles-website@1.36.0) (2021-10-14)
 
 **Note:** Version bump only for package tsparticles-website

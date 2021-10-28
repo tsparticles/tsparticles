@@ -19,7 +19,6 @@ export class Tab1Page {
     },
     fpsLimit: 60,
     interactivity: {
-      detectsOn: 'window',
       events: {
         onClick: {
           enable: true,

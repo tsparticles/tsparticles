@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.37.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.36.0...tsparticles@1.37.0) (2021-10-28)
+
+
+### Features
+
+* enabled full screen by default, window is now the default interacitivity target ([e205e4c](https://github.com/matteobruni/tsparticles/commit/e205e4c9811b73c53ece9bb53a8a541c88afc017))
+
+
+
+
+
 # [1.36.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.35.4...tsparticles@1.36.0) (2021-10-14)
 
 

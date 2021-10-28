@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-stars",
-  "version": "1.21.0",
+  "version": "1.22.0",
   "description": "tsParticles stars preset",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -72,6 +72,6 @@
     "webpack-cli": "^4.8.0"
   },
   "dependencies": {
-    "tsparticles": "^1.36.0"
+    "tsparticles": "^1.37.0"
   }
 }
