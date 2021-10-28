@@ -1,70 +1,77 @@
 [![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
 
-# tsParticles Bubbles Preset
+# tsParticles Slim Bundle
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-bubbles/badge)](https://www.jsdelivr.com/package/npm/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles-preset-bubbles.svg)](https://www.npmjs.com/package/tsparticles-preset-bubbles) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-bubbles)](https://www.npmjs.com/package/tsparticles-preset-bubbles)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-slim/badge)](https://www.jsdelivr.com/package/npm/tsparticles-slim) [![npmjs](https://badge.fury.io/js/tsparticles-slim.svg)](https://www.npmjs.com/package/tsparticles-slim) [![npmjs](https://img.shields.io/npm/dt/tsparticles-slim)](https://www.npmjs.com/package/tsparticles-slim)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) preset for colored bubbles coming from the bottom of the
-screen on a white background.
+[tsParticles](https://github.com/matteobruni/tsparticles) slim bundle loads some of the most used features to
+a `tsparticles-engine` instance.
 
-## Sample
+**Included Packages**
 
-![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/v1/presets/bubbles/images/sample.png)
+- tsparticles-engine
+- tsparticles-interaction-external-attract
+- tsparticles-interaction-external-bounce
+- tsparticles-interaction-external-bubble
+- tsparticles-interaction-external-connect
+- tsparticles-interaction-external-grab
+- tsparticles-interaction-external-pause
+- tsparticles-interaction-external-push
+- tsparticles-interaction-external-remove
+- tsparticles-interaction-external-repulse
+- tsparticles-interaction-particles-attract
+- tsparticles-interaction-particles-collisions
+- tsparticles-interaction-particles-links
+- tsparticles-shape-circle
+- tsparticles-shape-image
+- tsparticles-shape-line
+- tsparticles-shape-polygon
+- tsparticles-shape-square
+- tsparticles-shape-star
+- tsparticles-shape-text
+- tsparticles-updater-angle
+- tsparticles-updater-color
+- tsparticles-updater-life
+- tsparticles-updater-opacity
+- tsparticles-updater-out-modes
+- tsparticles-updater-size
+- tsparticles-updater-stroke-color
 
 ## How to use it
 
 ### CDN / Vanilla JS / jQuery
 
-The first step is installing [tsParticles](https://github.com/matteobruni/tsparticles) following the instructions for
-vanilla javascript in the main project [here](https://github.com/matteobruni/tsparticles)
+The CDN/Vanilla version JS has two different files:
 
-Once installed you need one more script to be included in your page (or you can download that
-from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-bubbles):
-
-```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-bubbles"></script>
-```
-
-This script **MUST** be placed after the `tsParticles` one.
+- One is a bundle file with all the scripts included in a single file
+- One is a file including just the `loadSlim` function to load the tsParticles slim preset, all dependencies must be
+  included manually
 
 #### Bundle
 
-A bundled script can also be used, this will include every needed plugin needed by the preset.
+Including the `tsparticles.slim.bundle.min.js` file will work exactly like `v1`, you can start using the `tsParticles`
+instance in the same way.
 
-```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-bubbles/dist/tsparticles.preset.bubbles.bundle.min.js"></script>
-```
+This is the easiest usage, since it's a single file with the some of the `v1` features.
+
+All new features will be added as external packages, this bundle is recommended for migrating from `v1` easily.
+
+#### Not Bundle
+
+This installation requires more work since all dependencies must be included in the page. Some lines above are all
+specified in the **Included Packages** section.
 
 ### Usage
 
 Once the scripts are loaded you can set up `tsParticles` like this:
 
 ```javascript
-loadBubblesPreset(tsParticles);
+loadSlim(tsParticles); // not needed if using the bundle script, required for any other installation
 
 tsParticles.load("tsparticles", {
-  preset: "bubbles",
+  /* options */
 });
 ```
-
-#### Customization
-
-**Important ⚠️**
-You can override all the options defining the properties like in any standard `tsParticles` installation.
-
-```javascript
-tsParticles.load("tsparticles", {
-  particles: {
-    shape: {
-      type: "square",
-    },
-  },
-  preset: "bubbles",
-});
-```
-
-Like in the sample above, the circles will be replaced by squares.
 
 ### React.js / Preact / Inferno
 
@@ -75,18 +82,18 @@ This sample uses the class component syntax, but you can use hooks as well (if t
 ```javascript
 import Particles from "react-tsparticles";
 import { Main } from "tsparticles-engine";
-import { loadBubblesPreset } from "tsparticles-preset-bubbles";
+import { loadSlim } from "tsparticles-slim";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
   // this customizes the component tsParticles installation
   customInit(main: Main) {
-    // this adds the preset to tsParticles, you can safely use the
-    loadBubblesPreset(main);
+    // this adds the bundle to tsParticles
+    loadSlim(main);
   }
 
   render() {
     const options = {
-      preset: "bubbles",
+      /* custom options */
     };
 
     return <Particles options={options} init={this.customInit} />;
@@ -104,7 +111,7 @@ _The syntax for `Vue.js 2.x` and `3.x` is the same_
 
 ```js
 function particlesInit(main: Main) {
-  loadBubblesPreset(main);
+  loadSlim(main);
 }
 ```
 
@@ -121,7 +128,7 @@ function particlesInit(main: Main) {
 
 ```ts
 function particlesInit(main: Main): void {
-  loadBubblesPreset(main);
+  loadSlim(main);
 }
 ```
 
@@ -138,6 +145,6 @@ function particlesInit(main: Main): void {
 
 ```js
 let onParticlesInit = (main) => {
-  loadBubblesPreset(main);
+  loadSlim(main);
 };
 ```

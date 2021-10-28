@@ -3,7 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-links@1.20.4...tsparticles-preset-links@2.0.0-beta.2) (2021-10-06)
+
+
+### Features
+
+* fixed links and triangles presets ([fdd4d8b](https://github.com/matteobruni/tsparticles/commit/fdd4d8b13ae7c23a5bafd001d2f0169193804f12))
+* fixed links presets ([9812393](https://github.com/matteobruni/tsparticles/commit/9812393eafea002d7d68dc5b302c5c56346e3319))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [2.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-links@2.0.0-beta.0...tsparticles-preset-links@2.0.0-beta.1) (2021-10-06)
+# [1.21.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-links@1.20.4...tsparticles-preset-links@1.21.0) (2021-10-14)
+
+**Note:** Version bump only for package tsparticles-preset-links
+
+
+
+
+
+## [1.20.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-links@1.20.3...tsparticles-preset-links@1.20.4) (2021-10-06)
 
 **Note:** Version bump only for package tsparticles-preset-links
 

@@ -23,6 +23,7 @@ const getExternals = (bundle) => {
     return getParticleExternals("tsparticles",
         "tsparticles-slim",
         "tsparticles-engine",
+        "tsparticles-particles.js",
         "tsparticles-interaction-external-attract",
         "tsparticles-interaction-external-bounce",
         "tsparticles-interaction-external-bubble",

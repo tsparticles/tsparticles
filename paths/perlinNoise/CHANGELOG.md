@@ -3,7 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-perlin-noise@1.35.4...tsparticles-path-perlin-noise@2.0.0-beta.2) (2021-10-06)
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [2.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-perlin-noise@2.0.0-beta.0...tsparticles-path-perlin-noise@2.0.0-beta.1) (2021-10-06)
+# [1.36.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-perlin-noise@1.35.4...tsparticles-path-perlin-noise@1.36.0) (2021-10-14)
+
+**Note:** Version bump only for package tsparticles-path-perlin-noise
+
+
+
+
+
+## [1.35.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-perlin-noise@1.35.3...tsparticles-path-perlin-noise@1.35.4) (2021-10-06)
 
 **Note:** Version bump only for package tsparticles-path-perlin-noise
 

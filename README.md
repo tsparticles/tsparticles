@@ -12,30 +12,32 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 [![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles")
 
 ---
+
 ## Table of Contents
 
-* [Use for your website](##-Do-you-want-to-use-it-on-your-website?)
-  * [Library installation](#Library-installation)
-* [Official components for some of the most used frameworks](##-Official-components-for-some-of-the-most-used-frameworks)
-  * [Angular](###Angular)
-  * [Inferno](###-Inferno)
-  * [jQuery](###-jQuery)
-  * [Preact](###Preact)
-  * [ReactJS](###-ReactJS)
-  * [Svelte](###-Svelte)
-  * [VueJS 2.x](###-VueJS-2.x)
-  * [VueJS 3.x](###-VueJS-3.x)
-  * [WordPress](###-WordPress)
-* [Templates and Resources](##-Templates-and-Resources)
-* [Demo / Generator](##-**_Demo-/*Generator_**)
-  * [Characters as particles](###-Characters-as-particles)
-  * [Mouse hover connections](###-Mouse-hover-connections)
-  * [Polygon mask](###-Polygon-mask)
-  * [Animated stars](###-Animated-stars)
-  * [Nyan cat flying on scrolling stars](###-Nyan-cat-flying-on-scrolling-stars)
-  * [Background Mask particles](###-Background-Mask-particles)
+* [Use for your website](#Do-you-want-to-use-it-on-your-website)
+    * [Library installation](#Library-installation)
+* [Official components for some of the most used frameworks](#Official-components-for-some-of-the-most-used-frameworks)
+    * [Angular](#Angular)
+    * [Inferno](#Inferno)
+    * [jQuery](#jQuery)
+    * [Preact](#Preact)
+    * [ReactJS](#ReactJS)
+    * [Svelte](#Svelte)
+    * [VueJS 2.x](#VueJS-2x)
+    * [VueJS 3.x](#VueJS-3x)
+    * [WordPress](#WordPress)
+* [Templates and Resources](#Templates-and-Resources)
+* [Demo / Generator](#Demo--Generator)
+    * [Characters as particles](#Characters-as-particles)
+    * [Mouse hover connections](#Mouse-hover-connections)
+    * [Polygon mask](#Polygon-mask)
+    * [Animated stars](#Animated-stars)
+    * [Nyan cat flying on scrolling stars](#Nyan-cat-flying-on-scrolling-stars)
+    * [Background Mask particles](#Background-Mask-particles)
+* [Migrating from Particles.js](#Migrating-from-Particlesjs)
+* [Plugins/Customizations](#PluginsCustomizations)
 
-* [Plugins/Customizations](##-Plugins/Customizations)
 ## Do you want to use it on your website?
 
 *Documentation and Development references [here](https://particles.js.org/docs/) 📖*
@@ -52,8 +54,9 @@ links you need, and _don't be scared by **TypeScript**, it's just the source lan
 CDNs and `npm` have all the sources you need in **Javascript**, a bundle browser ready (tsparticles.min.js) and all
 files splitted for `import` syntax.
 
-**If you are interested** there are some _simple instructions_ just [below](https://github.com/matteobruni/tsparticles/blob/main/README.md#library-installation) to guide you to migrate from the old particles.js
-library.
+**If you are interested** there are some _simple instructions_
+just [below](https://github.com/matteobruni/tsparticles/blob/main/README.md#library-installation) to guide you to
+migrate from the old particles.js library.
 
 ## **_Library installation_**
 
@@ -63,6 +66,8 @@ library.
 
 #### jsDelivr
 
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-engine/badge)](https://www.jsdelivr.com/package/npm/tsparticles-engine)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-slim/badge)](https://www.jsdelivr.com/package/npm/tsparticles-slim)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge)](https://www.jsdelivr.com/package/npm/tsparticles)
 
 #### cdnjs
@@ -71,22 +76,24 @@ library.
 
 #### unpkg
 
-<https://unpkg.com/tsparticles/>
+<https://unpkg.com/tsparticles-engine/> <https://unpkg.com/tsparticles-slim/> <https://unpkg.com/tsparticles/>
 
 ---
 
 ### **_npm_**
 
+[![npmjs](https://badge.fury.io/js/tsparticles-engine.svg)](https://www.npmjs.com/package/tsparticles-engine) [![npmjs](https://img.shields.io/npm/dt/tsparticles-engine)](https://www.npmjs.com/package/tsparticles-engine)
+[![npmjs](https://badge.fury.io/js/tsparticles-slim.svg)](https://www.npmjs.com/package/tsparticles-slim) [![npmjs](https://img.shields.io/npm/dt/tsparticles-slim)](https://www.npmjs.com/package/tsparticles-slim)
 [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) [![npmjs](https://img.shields.io/npm/dt/tsparticles)](https://www.npmjs.com/package/tsparticles)
 
 ```shell
-npm install tsparticles
+npm install tsparticles-engine
 ```
 
 ### **_yarn_**
 
 ```shell
-yarn add tsparticles
+yarn add tsparticles-engine
 ```
 
 #### Import and require
@@ -96,7 +103,7 @@ Starting from version 1.12.11 `import` and `require` can be used to import `tsPa
 Now you can write something like this
 
 ```javascript
-const tsParticles = require("tsparticles");
+const tsParticles = require("tsparticles-engine");
 
 // or
 
@@ -125,7 +132,7 @@ Load tsParticles and configure the particles:
 
 <div id="tsparticles"></div>
 
-<script src="tsparticles.min.js"></script>
+<script src="tsparticles.engine.min.js"></script>
 ```
 
 **app.js**

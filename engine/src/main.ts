@@ -84,7 +84,7 @@ export class Main {
      * @param index the index of the paths array, if a single path is passed this value is ignored
      * @returns A Promise with the [[Container]] object created
      */
-    loadJSON(
+    async loadJSON(
         tagId: string | SingleOrMultiple<string>,
         pathConfigJson?: SingleOrMultiple<string> | number,
         index?: number

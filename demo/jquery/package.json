@@ -1,7 +1,7 @@
 {
   "name": "jquery-particles-demo",
   "private": true,
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0-beta.2",
   "description": "> TODO: description",
   "author": "Matteo Bruni <ar3s@icloud.com>",
   "homepage": "https://github.com/matteobruni/tsparticles#readme",
@@ -21,17 +21,17 @@
   },
   "dependencies": {
     "jquery": "^3.6.0",
-    "jquery-particles": "^2.0.0-beta.0",
-    "tsparticles": "^2.0.0-beta.1",
-    "tsparticles-engine": "^2.0.0-beta.0",
-    "tsparticles-preset-links": "^2.0.0-beta.1"
+    "jquery-particles": "^2.0.0-beta.1",
+    "tsparticles": "^2.0.0-beta.2",
+    "tsparticles-engine": "^2.0.0-beta.1",
+    "tsparticles-preset-links": "^2.0.0-beta.2"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
-    "@typescript-eslint/eslint-plugin": "^4.29.1",
-    "@typescript-eslint/parser": "^4.29.1",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
     "babel-preset-env": "^1.7.0",
-    "eslint": "^7.32.0",
+    "eslint": "^8.0.0",
     "eslint-config-prettier": "^8.3.0",
     "express": "^4.17.1",
     "express-rate-limit": "^5.3.0",

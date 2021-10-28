@@ -7,12 +7,11 @@ import { Background } from "./Background/Background";
 import { Plugins } from "../../Utils";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import { Theme } from "./Theme/Theme";
-import { ThemeMode } from "../../Enums";
+import { ResponsiveMode, ThemeMode } from "../../Enums";
 import { FullScreen } from "./FullScreen/FullScreen";
 import { Motion } from "./Motion/Motion";
 import { ManualParticle } from "./ManualParticle";
 import { Responsive } from "./Responsive";
-
 /**
  * [[include:Options.md]]
  * @category Options
@@ -226,9 +225,18 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
     }
 
-    setResponsive(width: number, pxRatio: number, defaultOptions: IOptions): void {
+    setResponsive(width: number, pxRatio: number, defaultOptions: IOptions): number | undefined {
         this.load(defaultOptions);
-        this.load(this.responsive.find((t) => t.maxWidth * pxRatio > width)?.options);
+
+        const responsiveOptions = this.responsive.find((t) =>
+            t.mode === ResponsiveMode.screen && screen
+                ? t.maxWidth * pxRatio > screen.availWidth
+                : t.maxWidth * pxRatio > width
+        );
+
+        this.load(responsiveOptions?.options);
+
+        return responsiveOptions?.maxWidth;
     }
 
     private importPreset(preset: string): void {

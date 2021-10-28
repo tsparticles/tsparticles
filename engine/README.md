@@ -341,9 +341,11 @@ _If you are brave enough_ you can switch to the `dev` branch for trying the feat
 
 ## Migrating from Particles.js
 
-**tsParticles** library is fully compatible with the _particles.js_ configuration.
+**tsParticles** has a package that makes this library 100% compatible with the _particles.js_ configuration.
 
-Seriously, you just need to change the script source et-voilà, **you're ready** 🧙!
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-particles.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/tsparticles-particles.js) [![npmjs](https://badge.fury.io/js/tsparticles-particles.js.svg)](https://www.npmjs.com/package/tsparticles-particles.js) [![npm](https://img.shields.io/npm/dm/tsparticles-particles.js)](https://www.npmjs.com/package/tsparticles-particles.js)
+
+Seriously, you just need to change the script from particles.js to the bundled compatibility package, et-voilà, **you're ready** 🧙!
 
 You can read more **[here](https://dev.to/matteobruni/migrating-from-particles-js-to-tsparticles-2a6m)**
 

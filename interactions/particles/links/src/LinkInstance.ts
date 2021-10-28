@@ -1,7 +1,8 @@
 import type { Container, IContainerPlugin, IRgb, Particle } from "tsparticles-engine";
-import { colorToRgb, drawLinkLine, drawLinkTriangle, getDistance, getLinkColor } from "tsparticles-engine";
+import { colorToRgb, getDistance, getLinkColor } from "tsparticles-engine";
 import type { LinkParticle } from "./LinkParticle";
 import type { ILink } from "./ILink";
+import { drawLinkLine, drawLinkTriangle } from "./Utils";
 
 export class LinkInstance implements IContainerPlugin {
     constructor(private readonly container: Container) {}
@@ -78,11 +79,11 @@ export class LinkInstance implements IContainerPlugin {
             return;
         }
 
-        const pos1 = p1.getPosition();
-        const pos2 = p2.getPosition();
-        const pos3 = p3.getPosition();
-
         container.canvas.draw((ctx) => {
+            const pos1 = p1.getPosition();
+            const pos2 = p2.getPosition();
+            const pos3 = p3.getPosition();
+
             if (
                 getDistance(pos1, pos2) > container.retina.linksDistance ||
                 getDistance(pos3, pos2) > container.retina.linksDistance ||

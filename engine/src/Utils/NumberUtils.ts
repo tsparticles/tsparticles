@@ -92,7 +92,9 @@ export function getDistance(pointA: ICoordinates, pointB: ICoordinates): number 
 }
 
 export function getParticleDirectionAngle(
-    direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number
+    direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number,
+    position: ICoordinates,
+    center: ICoordinates
 ): number {
     if (typeof direction === "number") {
         return (direction * Math.PI) / 180;
@@ -114,6 +116,10 @@ export function getParticleDirectionAngle(
                 return Math.PI;
             case MoveDirection.topLeft:
                 return (-3 * Math.PI) / 4;
+            case MoveDirection.inside:
+                return Math.atan2(center.y - position.y, center.x - position.x);
+            case MoveDirection.outside:
+                return Math.atan2(position.y - center.y, position.x - center.x);
             case MoveDirection.none:
             default:
                 return Math.random() * Math.PI * 2;

@@ -20,8 +20,6 @@ yarn add riot-particles riot
 
 ## Usage
 
-## Usage
-
 ```html
 
 <riot-particles id="tsparticles" options='{{

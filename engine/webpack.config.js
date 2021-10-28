@@ -66,6 +66,22 @@ const getConfig = (entry) => {
                         }
                     },
                     extractComments: false
+                }),
+                new TerserPlugin({
+                    exclude: /\.min\.js$/,
+                    terserOptions: {
+                        compress: false,
+                        format: {
+                            beautify: true,
+                            indent_level: 2,
+                            semicolons: false,
+                            comments: banner
+                        },
+                        mangle: false,
+                        keep_classnames: true,
+                        keep_fnames: true,
+                    },
+                    extractComments: false
                 })
             ]
         }

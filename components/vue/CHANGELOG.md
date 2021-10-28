@@ -3,12 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.18.4...particles.vue@3.0.0-beta.1) (2021-10-06)
+# [2.19.0](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.18.4...particles.vue@2.19.0) (2021-10-14)
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+* fixed lazy loading ([60f9689](https://github.com/matteobruni/tsparticles/commit/60f96899bc564e547a49a5e17be4f40fe12288ba))
+
+
+
+
+
 # [3.0.0-beta.0](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.18.3...particles.vue@3.0.0-beta.0) (2021-10-06)
 
 
 ### Features
 
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [2.18.4](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.18.3...particles.vue@2.18.4) (2021-10-06)
+
+**Note:** Version bump only for package particles.vue
 
 
 

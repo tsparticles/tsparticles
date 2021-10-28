@@ -5,11 +5,13 @@ import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import {
     AnimationStatus,
     DestroyMode,
+    MoveDirection,
     OutMode,
     OutModeAlt,
     RotateDirection,
     ShapeType,
     StartValueType,
+    ParticleOutType
 } from "../Enums";
 import type { RecursivePartial } from "../Types";
 import {
@@ -44,17 +46,17 @@ import type {
     IParticleHslAnimation,
     IParticleLife,
     IParticleNumericValueAnimation,
+    IParticleRetinaProps,
     IParticleSpin,
     IParticleTiltValueAnimation,
     IParticleValueAnimation,
     IRgb,
     IShapeValues,
-    IParticleRetinaProps,
 } from "./Interfaces";
 import { Vector3d } from "./Particle/Vector3d";
-import { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
-import { IParticleRoll } from "./Interfaces/IParticleRoll";
-import { IParticleWobble } from "./Interfaces/IParticleWobble";
+import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
+import type { IParticleRoll } from "./Interfaces/IParticleRoll";
+import type { IParticleWobble } from "./Interfaces/IParticleWobble";
 
 const fixOutMode = (data: {
     outMode: OutMode | keyof typeof OutMode | OutModeAlt;
@@ -94,6 +96,7 @@ export class Particle implements IParticle {
     wobble?: IParticleWobble;
     backColor?: IHsl;
     close: boolean;
+    direction: number;
     fill: boolean;
     randomIndexData?: number;
     gradient?: IParticleGradientAnimation;
@@ -105,8 +108,9 @@ export class Particle implements IParticle {
     stroke?: Stroke;
     strokeColor?: IParticleHslAnimation;
 
+    readonly moveCenter: ICoordinates & { radius: number };
     readonly moveDecay: number;
-    readonly direction: number;
+    readonly outType: ParticleOutType;
     readonly position: Vector3d;
     readonly offset: Vector;
     readonly shadowColor: IRgb | undefined;
@@ -138,6 +142,7 @@ export class Particle implements IParticle {
         this.retina = {
             maxDistance: {},
         };
+        this.outType = ParticleOutType.normal;
 
         const pxRatio = container.retina.pixelRatio;
         const mainOptions = container.actualOptions;
@@ -236,19 +241,35 @@ export class Particle implements IParticle {
             }
         }
 
-        this.direction = getParticleDirectionAngle(this.options.move.direction);
+        /* position */
         this.bubble = {
             inRange: false,
         };
+        this.position = this.calcPosition(container, position, clamp(zIndexValue, 0, container.zLayers));
+        this.initialPosition = this.position.copy();
+
+        const canvasSize = container.canvas.size;
+
+        this.moveCenter = {
+            x: (canvasSize.width * this.options.move.center.x) / 100,
+            y: (canvasSize.height * this.options.move.center.y) / 100,
+            radius: this.options.move.center.radius,
+        };
+        this.direction = getParticleDirectionAngle(this.options.move.direction, this.position, this.moveCenter);
+
+        switch (this.options.move.direction) {
+            case MoveDirection.inside:
+                this.outType = ParticleOutType.inside;
+                break;
+            case MoveDirection.outside:
+                this.outType = ParticleOutType.outside;
+                break;
+        }
 
         /* animation - velocity for speed */
         this.initialVelocity = this.calculateVelocity();
         this.velocity = this.initialVelocity.copy();
         this.moveDecay = 1 - getRangeValue(this.options.move.decay);
-
-        /* position */
-        this.position = this.calcPosition(container, position, clamp(zIndexValue, 0, container.zLayers));
-        this.initialPosition = this.position.copy();
 
         /* parallax */
         this.offset = Vector.origin;
@@ -317,7 +338,7 @@ export class Particle implements IParticle {
             drawer.particleInit(container, this);
         }
 
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             if (plugin.particleCreated) {
                 plugin.particleCreated(this);
             }
@@ -343,7 +364,7 @@ export class Particle implements IParticle {
     draw(delta: IDelta): void {
         const container = this.container;
 
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             container.canvas.drawParticlePlugin(plugin, this, delta);
         }
 
@@ -401,7 +422,7 @@ export class Particle implements IParticle {
         this.destroyed = true;
         this.bubble.inRange = false;
 
-        for (const [, plugin] of this.container.plugins) {
+        for (const [ , plugin ] of this.container.plugins) {
             if (plugin.particleDestroyed) {
                 plugin.particleDestroyed(this, override);
             }
@@ -449,7 +470,7 @@ export class Particle implements IParticle {
         zIndex: number,
         tryCount = 0
     ): Vector3d {
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
@@ -471,7 +492,7 @@ export class Particle implements IParticle {
             fixHorizontal = (outMode: OutMode | keyof typeof OutMode | OutModeAlt) => {
                 fixOutMode({
                     outMode,
-                    checkModes: [OutMode.bounce, OutMode.bounceHorizontal],
+                    checkModes: [ OutMode.bounce, OutMode.bounceHorizontal ],
                     coord: pos.x,
                     maxCoord: container.canvas.size.width,
                     setCb: (value: number) => (pos.x += value),
@@ -481,7 +502,7 @@ export class Particle implements IParticle {
             fixVertical = (outMode: OutMode | keyof typeof OutMode | OutModeAlt) => {
                 fixOutMode({
                     outMode,
-                    checkModes: [OutMode.bounce, OutMode.bounceVertical],
+                    checkModes: [ OutMode.bounce, OutMode.bounceVertical ],
                     coord: pos.y,
                     maxCoord: container.canvas.size.height,
                     setCb: (value: number) => (pos.y += value),
@@ -537,6 +558,11 @@ export class Particle implements IParticle {
         const baseVelocity = getParticleBaseVelocity(this.direction);
         const res = baseVelocity.copy();
         const moveOptions = this.options.move;
+
+        if (moveOptions.direction === MoveDirection.inside || moveOptions.direction === MoveDirection.outside) {
+            return res;
+        }
+
         const rad = (Math.PI / 180) * moveOptions.angle.value;
         const radOffset = (Math.PI / 180) * moveOptions.angle.offset;
 
@@ -575,14 +601,14 @@ export class Particle implements IParticle {
         const life = {
             delay: container.retina.reduceFactor
                 ? ((getRangeValue(lifeOptions.delay.value) * (lifeOptions.delay.sync ? 1 : Math.random())) /
-                      container.retina.reduceFactor) *
-                  1000
+                    container.retina.reduceFactor) *
+                1000
                 : 0,
             delayTime: 0,
             duration: container.retina.reduceFactor
                 ? ((getRangeValue(lifeOptions.duration.value) * (lifeOptions.duration.sync ? 1 : Math.random())) /
-                      container.retina.reduceFactor) *
-                  1000
+                    container.retina.reduceFactor) *
+                1000
                 : 0,
             time: 0,
             count: particlesOptions.life.count,

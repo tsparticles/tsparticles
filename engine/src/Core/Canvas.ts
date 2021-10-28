@@ -2,7 +2,7 @@ import type { Container } from "./Container";
 import {
     colorToHsl,
     colorToRgb,
-    Constants,
+    canvasClass,
     deepExtend,
     drawConnectLine,
     drawGrabLine,
@@ -73,7 +73,7 @@ export class Canvas {
 
     loadCanvas(canvas: HTMLCanvasElement, generatedCanvas?: boolean): void {
         if (!canvas.className) {
-            canvas.className = Constants.canvasClass;
+            canvas.className = canvasClass;
         }
 
         if (this.generatedCanvas) {
@@ -145,13 +145,7 @@ export class Canvas {
 
         this.resize();
 
-        if (this.resizeFactor?.width === 1 && this.resizeFactor.height === 1) {
-            delete this.resizeFactor;
-
-            return;
-        }
-
-        container.updateActualOptions();
+        const needsRefresh = container.updateActualOptions();
 
         /* density particles enabled */
         container.particles.setDensity();
@@ -160,6 +154,10 @@ export class Canvas {
             if (plugin.resize !== undefined) {
                 plugin.resize();
             }
+        }
+
+        if (needsRefresh) {
+            container.refresh();
         }
     }
 

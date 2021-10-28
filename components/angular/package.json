@@ -1,6 +1,6 @@
 {
   "name": "ng-particles",
-  "version": "3.0.0-beta.1",
+  "version": "3.0.0-beta.2",
   "description": "Official tsParticles Angular Component - Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Svelte, jQuery, Preact, Riot.js, Solid.js, Inferno.",
   "keywords": [
     "tsparticles",
@@ -62,9 +62,9 @@
     "@angular/platform-browser": "~12.2.2",
     "@angular/platform-browser-dynamic": "~12.2.2",
     "@angular/router": "~12.2.2",
-    "rxjs": "~7.3.0",
+    "rxjs": "~7.4.0",
     "tslib": "^2.3.1",
-    "tsparticles-engine": "^2.0.0-beta.0",
+    "tsparticles-engine": "^2.0.0-beta.1",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
@@ -80,7 +80,7 @@
     "object-path": "^0.11.6",
     "protractor": "~7.0.0",
     "ssri": "^8.0.1",
-    "ts-node": "~10.2.1",
+    "ts-node": "~10.4.0",
     "tslint": "~6.1.3",
     "typescript": "~4.3.5",
     "webpack-subresource-integrity": "^5.0.0"

@@ -3,7 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-firefly@1.20.4...tsparticles-preset-firefly@2.0.0-beta.2) (2021-10-06)
+
+
+### Features
+
+* fixed firefly and fireworks presets ([ec952c9](https://github.com/matteobruni/tsparticles/commit/ec952c9ac0b42dc1c5350279a44a1255ca1f4fca))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [2.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-firefly@2.0.0-beta.0...tsparticles-preset-firefly@2.0.0-beta.1) (2021-10-06)
+# [1.21.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-firefly@1.20.4...tsparticles-preset-firefly@1.21.0) (2021-10-14)
+
+**Note:** Version bump only for package tsparticles-preset-firefly
+
+
+
+
+
+## [1.20.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-firefly@1.20.3...tsparticles-preset-firefly@1.20.4) (2021-10-06)
 
 **Note:** Version bump only for package tsparticles-preset-firefly
 

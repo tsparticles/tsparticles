@@ -137,29 +137,35 @@ export function itemFromArray<T>(array: T[], index?: number, useIndex = true): T
 export function isPointInside(
     point: ICoordinates,
     size: IDimension,
+    offset: ICoordinates,
     radius?: number,
     direction?: OutModeDirection
 ): boolean {
-    return areBoundsInside(calculateBounds(point, radius ?? 0), size, direction);
+    return areBoundsInside(calculateBounds(point, radius ?? 0), size, offset, direction);
 }
 
-export function areBoundsInside(bounds: IBounds, size: IDimension, direction?: OutModeDirection): boolean {
+export function areBoundsInside(
+    bounds: IBounds,
+    size: IDimension,
+    offset: ICoordinates,
+    direction?: OutModeDirection
+): boolean {
     let inside = true;
 
     if (!direction || direction === OutModeDirection.bottom) {
-        inside = bounds.top < size.height;
+        inside = bounds.top < size.height + offset.x;
     }
 
     if (inside && (!direction || direction === OutModeDirection.left)) {
-        inside = bounds.right > 0;
+        inside = bounds.right > offset.x;
     }
 
     if (inside && (!direction || direction === OutModeDirection.right)) {
-        inside = bounds.left < size.width;
+        inside = bounds.left < size.width + offset.y;
     }
 
     if (inside && (!direction || direction === OutModeDirection.top)) {
-        inside = bounds.bottom > 0;
+        inside = bounds.bottom > offset.y;
     }
 
     return inside;

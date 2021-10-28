@@ -1,0 +1,95 @@
+{
+  "background": {
+    "color": "#000"
+  },
+  "fpsLimit": 60,
+  "interactivity": {
+    "detectsOn": "canvas",
+    "events": {
+      "onClick": {
+        "enable": true,
+        "mode": "push"
+      },
+      "resize": true
+    },
+    "modes": {
+      "bubble": {
+        "distance": 400,
+        "duration": 2,
+        "opacity": 0.8,
+        "size": 40,
+        "speed": 3
+      },
+      "grab": {
+        "distance": 400,
+        "links": {
+          "opacity": 1
+        }
+      },
+      "push": {
+        "quantity": 4
+      },
+      "remove": {
+        "quantity": 2
+      },
+      "repulse": {
+        "distance": 200,
+        "duration": 0.4
+      }
+    }
+  },
+  "particles": {
+    "move": {
+      "path": {
+        "enable": true,
+        "options": {
+          "size": 32,
+          "draw": false,
+          "increment": 0.004
+        },
+        "generator": "simplexNoise"
+      },
+      "direction": "none",
+      "enable": true,
+      "outModes": {
+        "default": "out"
+      },
+      "speed": 6
+    },
+    "number": {
+      "density": {
+        "enable": true,
+        "area": 800
+      },
+      "value": 80
+    },
+    "rotate": {
+      "value": 45,
+      "path": true
+    },
+    "opacity": {
+      "value": 1
+    },
+    "shape": {
+      "image": {
+        "height": 128,
+        "src": "https://particles.js.org/images/plane_alt.png",
+        "width": 128
+      },
+      "type": "image"
+    },
+    "size": {
+      "value": 32
+    },
+    "zIndex": {
+      "value": {
+        "min": 0,
+        "max": 100
+      },
+      "opacityRate": 0,
+      "sizeRate": 2,
+      "velocityRate": 2
+    }
+  },
+  "detectRetina": true
+}

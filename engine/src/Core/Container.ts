@@ -52,6 +52,7 @@ export class Container {
     repulse: IRepulse;
     attract: IAttract;
     zLayers;
+    responsiveMaxWidth?: number;
 
     /**
      * The options used by the container, it's a full [[Options]] object
@@ -551,7 +552,7 @@ export class Container {
         el.addEventListener("touchcancel", touchCancelHandler);
     }
 
-    handleClickMode(mode: ClickMode | string) {
+    handleClickMode(mode: ClickMode | string): void {
         this.particles.handleClickMode(mode);
 
         for (const [, plugin] of this.plugins) {
@@ -561,9 +562,22 @@ export class Container {
         }
     }
 
-    updateActualOptions(): void {
-        this.actualOptions.setResponsive(this.canvas.size.width, this.retina.pixelRatio, this._options);
+    updateActualOptions(): boolean {
+        this.actualOptions.responsive = [];
+        const newMaxWidth = this.actualOptions.setResponsive(
+            this.canvas.size.width,
+            this.retina.pixelRatio,
+            this._options
+        );
         this.actualOptions.setTheme(this.currentTheme);
+
+        if (this.responsiveMaxWidth != newMaxWidth) {
+            this.responsiveMaxWidth = newMaxWidth;
+
+            return true;
+        }
+
+        return false;
     }
 
     private async init(): Promise<void> {

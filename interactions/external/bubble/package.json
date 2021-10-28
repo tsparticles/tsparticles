@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-interaction-external-bubble",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0-beta.2",
   "description": "tsParticles bubble external interaction",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -60,12 +60,12 @@
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@types/webpack-env": "^1.16.2",
-    "@typescript-eslint/eslint-plugin": "^4.31.2",
-    "@typescript-eslint/parser": "^4.31.2",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
     "babel-loader": "^8.2.2",
     "copyfiles": "^2.4.1",
     "downlevel-dts": "^0.7.0",
-    "eslint": "^7.32.0",
+    "eslint": "^8.0.0",
     "eslint-config-prettier": "^8.3.0",
     "prettier": "^2.4.1",
     "rimraf": "^3.0.2",
@@ -75,6 +75,6 @@
     "webpack-tsparticles-plugin": "^1.0.0-beta.0"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.0.0-beta.0"
+    "tsparticles-engine": "^2.0.0-beta.1"
   }
 }

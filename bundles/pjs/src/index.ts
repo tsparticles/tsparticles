@@ -2,11 +2,7 @@
  * [[include:pjsMigration.md]]
  * @packageDocumentation
  */
-import type { IOptions } from "./Options/Interfaces/IOptions";
-import type { Container } from "./Core/Container";
-import type { Main } from "./main";
-import type { Particle } from "./Core/Particle";
-import type { RecursivePartial } from "./Types";
+import type { Container, ISourceOptions, Main, Particle } from "tsparticles-engine";
 
 /**
  * [[include:pjsMigration.md]]
@@ -19,7 +15,7 @@ export interface IParticlesJS {
      * @param tagId the particles container element id
      * @param options the options object to initialize the [[Container]]
      */
-    (tagId: string, options: RecursivePartial<IOptions>): Promise<Container | undefined>;
+    (tagId: string, options: ISourceOptions): Promise<Container | undefined>;
 
     /**
      * Loads the provided json with a GET request.
@@ -46,7 +42,7 @@ const initPjs = (main: Main): { particlesJS: IParticlesJS; pJSDom: Container[] }
      * @param tagId the particles container element id
      * @param options the options object to initialize the [[Container]]
      */
-    const particlesJS = (tagId: string, options: RecursivePartial<IOptions>): Promise<Container | undefined> => {
+    const particlesJS = (tagId: string, options: ISourceOptions): Promise<Container | undefined> => {
         return main.load(tagId, options);
     };
 

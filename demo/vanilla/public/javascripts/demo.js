@@ -262,6 +262,8 @@ canvas {
         initSidebar();
         initStats();
 
+        loadFull(tsParticles);
+
         loadInfectionPlugin(tsParticles);
         loadLightInteraction(tsParticles);
         loadParticlesRepulseInteraction(tsParticles);

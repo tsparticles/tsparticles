@@ -1,6 +1,6 @@
 {
   "name": "tsparticles",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0-beta.2",
   "description": "Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -9,7 +9,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
-    "directory": "core/main"
+    "directory": "bundles/full"
   },
   "keywords": [
     "tsparticles",
@@ -51,11 +51,6 @@
     "background"
   ],
   "author": "Matteo Bruni <matteo.bruni@me.com>",
-  "contributors": [
-    "Gabriel Barker (https://github.com/gabrielbarker)",
-    "Tyler Burnett (https://github.com/TylerBurnett)",
-    "Jonathan Adams (https://github.com/PieceMaker)"
-  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
@@ -71,11 +66,14 @@
   "browser": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.0.0-beta.0",
-    "tsparticles-interaction-external-trail": "^2.0.0-beta.1",
-    "tsparticles-plugin-absorbers": "^2.0.0-beta.1",
-    "tsparticles-plugin-emitters": "^2.0.0-beta.1",
-    "tsparticles-plugin-polygon-mask": "^2.0.0-beta.1",
-    "tsparticles-slim": "^2.0.0-beta.1"
+    "tsparticles-engine": "^2.0.0-beta.1",
+    "tsparticles-interaction-external-trail": "^2.0.0-beta.2",
+    "tsparticles-plugin-absorbers": "^2.0.0-beta.2",
+    "tsparticles-plugin-emitters": "^2.0.0-beta.2",
+    "tsparticles-plugin-polygon-mask": "^2.0.0-beta.2",
+    "tsparticles-slim": "^2.0.0-beta.2",
+    "tsparticles-updater-roll": "^2.0.0-beta.2",
+    "tsparticles-updater-tilt": "^2.0.0-beta.2",
+    "tsparticles-updater-wobble": "^2.0.0-beta.2"
   }
 }

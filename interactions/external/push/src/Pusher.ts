@@ -1,17 +1,5 @@
 import type { Container } from "tsparticles-engine";
-import {
-    Circle,
-    Constants,
-    ExternalInteractorBase,
-    Range,
-    getDistances,
-    calcEasing,
-    clamp,
-    isInArray,
-    ClickMode,
-    HoverMode,
-    Vector,
-} from "tsparticles-engine";
+import { ExternalInteractorBase, ClickMode } from "tsparticles-engine";
 import { itemFromArray } from "tsparticles-engine";
 
 /**
