@@ -285,9 +285,9 @@
     tslib "^2.2.0"
 
 "@angular/router@~12.2.2":
-  version "12.2.9"
-  resolved "https://registry.yarnpkg.com/@angular/router/-/router-12.2.9.tgz#765d02fd5b8206ba50a296700cc69b0068f6f908"
-  integrity sha512-Qh7Ugh6N7PIK4+ydRPHiKy8Q3wlB/ieXVyqYgkNfGFZ+QtNHpWgWBUXJuGPnmKk0Yn02EwSPOuPWEHV92rayhw==
+  version "12.2.12"
+  resolved "https://registry.yarnpkg.com/@angular/router/-/router-12.2.12.tgz#a8c69905f46012df3b0580642df08fb52d66589c"
+  integrity sha512-unuUJyj3CHj29jmyCaluou1sajZDnZgDJ/3vNCif4md1sC5MuY/XkqecTgvSwze17kkpxCGjjn2dlWFRp+yExw==
   dependencies:
     tslib "^2.2.0"
 
@@ -7848,6 +7848,11 @@ tslint@~6.1.3:
     semver "^5.3.0"
     tslib "^1.13.0"
     tsutils "^2.29.0"
+
+tsparticles-engine@^2.0.0-beta.1:
+  version "2.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.0-beta.1.tgz#4e60294b162a3ddda0ba55319239a9eabb5a8ca9"
+  integrity sha512-Bq/KyKBdxUZ7zcMrZPgoHgJReHqiGn/QTFLu4JXApKNI58me5oKyArZ9iNm0vv5jedENd9k4dFJMsHP1kQPk8w==
 
 tsutils@^2.29.0:
   version "2.29.0"
