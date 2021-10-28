@@ -2,9 +2,6 @@ import type { ISourceOptions } from "tsparticles-engine";
 import { DestroyMode, DestroyType, MoveDirection, OutMode, ShapeType, StartValueType } from "tsparticles-engine";
 
 export const options: ISourceOptions = {
-    fullScreen: {
-        enable: true,
-    },
     detectRetina: true,
     background: {
         color: "#000",

@@ -2,9 +2,6 @@ import type { ISourceOptions } from "tsparticles-engine";
 import { ClickMode } from "tsparticles-engine";
 
 export const options: ISourceOptions = {
-    fullScreen: {
-        enable: true,
-    },
     fpsLimit: 40,
     particles: {
         number: {

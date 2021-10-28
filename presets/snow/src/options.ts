@@ -4,9 +4,6 @@ export const options = {
     background: {
         color: "#333",
     },
-    fullScreen: {
-        enable: true,
-    },
     particles: {
         move: {
             direction: MoveDirection.bottom,

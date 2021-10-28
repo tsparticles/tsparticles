@@ -43,7 +43,7 @@ describe("Particle", () => {
         };
 
         describe("shape - no emitter", () => {
-            it("should set the shape property to circle when default Particles options are used", () => {
+            it("should set the shape property to circle when default Particles options are used", async () => {
                 expect(testParticle.particle?.shape).to.equal(ShapeType.circle);
             });
 

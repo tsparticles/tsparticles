@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.20.4...preact-particles-demo@2.0.0-beta.2) (2021-10-06)
+# [1.22.0](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.21.0...preact-particles-demo@1.22.0) (2021-10-28)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
 # [1.21.0](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.20.4...preact-particles-demo@1.21.0) (2021-10-14)
 
 **Note:** Version bump only for package preact-particles-demo

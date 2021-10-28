@@ -1,5 +1,5 @@
 import type { ISourceOptions } from "tsparticles-engine";
-import { HoverMode, InteractivityDetect } from "tsparticles-engine";
+import { HoverMode } from "tsparticles-engine";
 
 export const options: ISourceOptions = {
     fullScreen: {
@@ -42,7 +42,6 @@ export const options: ISourceOptions = {
         },
     },
     interactivity: {
-        detectsOn: InteractivityDetect.window,
         events: {
             onHover: {
                 enable: true,

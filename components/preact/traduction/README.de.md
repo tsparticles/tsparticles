@@ -46,8 +46,6 @@ class App extends Component {
           fpsLimit: 60,
 
           interactivity: {
-            detectsOn: "canvas",
-
             events: {
               onClick: {
                 enable: true,

@@ -2,11 +2,11 @@ import type { Main } from "tsparticles-engine";
 import { Linker } from "./Linker";
 import { loadPlugin } from "./plugin";
 
-export function loadInteraction(tsParticles: Main): void {
-    tsParticles.addInteractor("particlesLinks", (container) => new Linker(container));
+export async function loadInteraction(tsParticles: Main): Promise<void> {
+    await tsParticles.addInteractor("particlesLinks", (container) => new Linker(container));
 }
 
-export function loadParticlesLinksInteraction(tsParticles: Main): void {
-    loadInteraction(tsParticles);
-    loadPlugin(tsParticles);
+export async function loadParticlesLinksInteraction(tsParticles: Main): Promise<void> {
+    await loadInteraction(tsParticles);
+    await loadPlugin(tsParticles);
 }
