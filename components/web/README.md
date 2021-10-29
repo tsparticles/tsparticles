@@ -33,7 +33,6 @@ yarn add web-particles
             },
             fpsLimit: 60,
             interactivity: {
-                detectsOn: 'canvas',
                 events: {
                     onClick: {
                         enable: true,

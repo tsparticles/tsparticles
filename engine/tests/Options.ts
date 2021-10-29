@@ -45,7 +45,7 @@ describe("Options tests", () => {
         expect(options.fpsLimit).to.equal(60);
 
         /* interactivity */
-        expect(options.interactivity.detectsOn).to.equal(InteractivityDetect.canvas);
+        expect(options.interactivity.detectsOn).to.equal(InteractivityDetect.window);
 
         /* interactivity events */
         expect(options.interactivity.events.onClick.enable).to.be.false;

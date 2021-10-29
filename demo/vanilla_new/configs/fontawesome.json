@@ -6,7 +6,6 @@
   "fpsLimit": 60,
   "detectRetina": true,
   "interactivity": {
-    "detectsOn": "canvas",
     "events": {
       "onClick": {
         "enable": true,

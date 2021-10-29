@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.20.0](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.19.0...particles.vue3-demo@1.20.0) (2021-10-28)
+
+
+### Features
+
+* optmize demo of vue3 ([88664ef](https://github.com/matteobruni/tsparticles/commit/88664ef4dea5a9bd42c12a8cc2975b4fea78d4a4))
+* optmize demo of vue3 ([6618f5d](https://github.com/matteobruni/tsparticles/commit/6618f5ddd384fa4b3ca3e984033e45691a1ed986))
+
+
+
+
+
 # [1.19.0](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.18.4...particles.vue3-demo@1.19.0) (2021-10-14)
 
 **Note:** Version bump only for package particles.vue3-demo

@@ -7,3 +7,4 @@ export * from "./OutMode";
 export * from "./RollMode";
 export * from "./SizeMode";
 export * from "./ThemeMode";
+export * from "./ResponsiveMode";

@@ -34,7 +34,6 @@
     "stages": []
   },
   "interactivity": {
-    "detectsOn": "canvas",
     "events": {
       "onClick": {
         "enable": true,

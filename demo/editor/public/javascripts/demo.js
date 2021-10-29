@@ -68,7 +68,6 @@ tsParticles.load("particles", {
         }
     },
     interactivity: {
-        detectsOn: "canvas",
         events: {
             onHover: {
                 enable: true,
