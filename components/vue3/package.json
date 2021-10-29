@@ -88,7 +88,7 @@
     "@vue/cli-service": "~5.0.0-beta.4",
     "@vue/compiler-sfc": "^3.2.2",
     "@vue/eslint-config-prettier": "^6.0.0",
-    "@vue/eslint-config-typescript": "^8.0.0",
+    "@vue/eslint-config-typescript": "^9.0.0",
     "eslint": "^8.0.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.0.0",
