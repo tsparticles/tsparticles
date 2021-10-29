@@ -2,9 +2,6 @@ export const options = {
     background: {
         color: "#000000",
     },
-    fullScreen: {
-        enable: true,
-    },
     particles: {
         links: {
             distance: 150,

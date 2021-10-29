@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.22.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fireworks@1.21.0...tsparticles-preset-fireworks@1.22.0) (2021-10-28)
+
+**Note:** Version bump only for package tsparticles-preset-fireworks
+
+
+
+
+
 # [1.21.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fireworks@1.20.4...tsparticles-preset-fireworks@1.21.0) (2021-10-14)
 
 **Note:** Version bump only for package tsparticles-preset-fireworks

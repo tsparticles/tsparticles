@@ -55,5 +55,5 @@ export async function loadPolygonMaskPlugin(tsParticles: Main): Promise<void> {
 
     const plugin = new Plugin();
 
-    tsParticles.addPlugin(plugin);
+    await tsParticles.addPlugin(plugin);
 }

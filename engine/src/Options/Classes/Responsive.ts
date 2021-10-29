@@ -3,14 +3,17 @@ import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import type { RecursivePartial } from "../../Types";
 import type { IOptions } from "../Interfaces/IOptions";
 import { deepExtend } from "../../Utils";
+import { ResponsiveMode } from "../../Enums";
 
 export class Responsive implements IResponsive, IOptionLoader<IResponsive> {
     maxWidth: number;
     options: RecursivePartial<IOptions>;
+    mode: ResponsiveMode;
 
     constructor() {
         this.maxWidth = Infinity;
         this.options = {};
+        this.mode = ResponsiveMode.canvas;
     }
 
     load(data?: RecursivePartial<IResponsive>): void {
@@ -20,6 +23,15 @@ export class Responsive implements IResponsive, IOptionLoader<IResponsive> {
 
         if (data.maxWidth !== undefined) {
             this.maxWidth = data.maxWidth;
+        }
+
+        if (data.mode !== undefined) {
+            // not enforcing an error here as this should largely be an opt-in setting
+            if (data.mode === ResponsiveMode.screen) {
+                this.mode = ResponsiveMode.screen;
+            } else {
+                this.mode = ResponsiveMode.canvas;
+            }
         }
 
         if (data.options !== undefined) {

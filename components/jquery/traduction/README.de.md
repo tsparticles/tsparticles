@@ -51,8 +51,6 @@ $("#tsparticles")
       fpsLimit: 60,
 
       interactivity: {
-        detectsOn: "canvas",
-
         events: {
           onClick: {
             enable: true,
