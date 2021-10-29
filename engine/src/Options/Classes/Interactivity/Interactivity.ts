@@ -32,7 +32,7 @@ export class Interactivity implements IInteractivity, IOptionLoader<IInteractivi
     modes;
 
     constructor() {
-        this.detectsOn = InteractivityDetect.canvas;
+        this.detectsOn = InteractivityDetect.window;
         this.events = new Events();
         this.modes = new Modes();
     }

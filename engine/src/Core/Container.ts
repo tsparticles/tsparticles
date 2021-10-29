@@ -98,6 +98,7 @@ export class Container {
     private firstStart;
     private currentTheme?: string;
     private drawAnimationFrame?: number;
+    private readonly presets;
 
     private readonly eventListeners;
     private readonly intersectionObserver?;
@@ -125,6 +126,7 @@ export class Container {
         this.canvas = new Canvas(this);
         this.particles = new Particles(this);
         this.drawer = new FrameManager(this);
+        this.presets = presets;
         this.pathGenerator = {
             generate: (): Vector => {
                 const v = Vector.create(0, 0);
@@ -156,23 +158,6 @@ export class Container {
         /* tsParticles variables with default values */
         this._options = new Options();
         this.actualOptions = new Options();
-
-        for (const preset of presets) {
-            this._options.load(Plugins.getPreset(preset));
-        }
-
-        const shapes = Plugins.getSupportedShapes();
-
-        for (const type of shapes) {
-            const drawer = Plugins.getShapeDrawer(type);
-
-            if (drawer) {
-                this.drawers.set(type, drawer);
-            }
-        }
-
-        /* options settings */
-        this._options.load(this._sourceOptions);
 
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);
@@ -409,6 +394,8 @@ export class Container {
 
         delete this.particles.grabLineColor;
         delete this.particles.linksColor;
+
+        this._sourceOptions = this._options;
     }
 
     /**
@@ -580,7 +567,26 @@ export class Container {
         return false;
     }
 
-    private async init(): Promise<void> {
+    async init(): Promise<void> {
+        this._options = new Options();
+
+        for (const preset of this.presets) {
+            this._options.load(Plugins.getPreset(preset));
+        }
+
+        const shapes = Plugins.getSupportedShapes();
+
+        for (const type of shapes) {
+            const drawer = Plugins.getShapeDrawer(type);
+
+            if (drawer) {
+                this.drawers.set(type, drawer);
+            }
+        }
+
+        /* options settings */
+        this._options.load(this._sourceOptions);
+
         this.actualOptions = new Options();
 
         this.actualOptions.load(this._options);

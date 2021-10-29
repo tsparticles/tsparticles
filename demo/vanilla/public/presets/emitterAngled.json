@@ -36,7 +36,6 @@
     }
   },
   "interactivity": {
-    "detectsOn": "canvas",
     "events": {
       "resize": true
     }

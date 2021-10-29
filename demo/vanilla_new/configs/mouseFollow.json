@@ -8,7 +8,6 @@
     "color": "#000000"
   },
   "interactivity": {
-    "detect_on": "window",
     "events": {
       "onHover": {
         "enable": true,

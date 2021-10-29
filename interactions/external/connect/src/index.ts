@@ -1,6 +1,6 @@
 import type { Main } from "tsparticles-engine";
 import { Connector } from "./Connector";
 
-export function loadExternalConnectInteraction(tsParticles: Main): void {
-    tsParticles.addInteractor("externalConnect", (container) => new Connector(container));
+export async function loadExternalConnectInteraction(tsParticles: Main): Promise<void> {
+    await tsParticles.addInteractor("externalConnect", (container) => new Connector(container));
 }

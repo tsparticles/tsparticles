@@ -135,6 +135,15 @@ export class Main {
     }
 
     /**
+     * Reloads all existing tsParticles loaded instances
+     */
+    async refresh(): Promise<void> {
+        for (const instance of this.dom()) {
+            await instance.refresh();
+        }
+    }
+
+    /**
      * addShape adds shape to tsParticles, it will be available to all future instances created
      * @param shape the shape name
      * @param drawer the shape drawer function or class instance that draws the shape in the canvas
@@ -142,13 +151,13 @@ export class Main {
      * @param afterEffect Optional: the shape drawer after effect function, used only if the drawer parameter is a function
      * @param destroy Optional: the shape drawer destroy function, used only if the drawer parameter is a function
      */
-    addShape(
+    async addShape(
         shape: string,
         drawer: IShapeDrawer | ShapeDrawerDrawFunction,
         init?: ShapeDrawerInitFunction,
         afterEffect?: ShapeDrawerAfterEffectFunction,
         destroy?: ShapeDrawerDestroyFunction
-    ): void {
+    ): Promise<void> {
         let customDrawer: IShapeDrawer;
 
         if (typeof drawer === "function") {
@@ -163,6 +172,8 @@ export class Main {
         }
 
         Plugins.addShapeDrawer(shape, customDrawer);
+
+        await this.refresh();
     }
 
     /**
@@ -171,16 +182,20 @@ export class Main {
      * @param options the options to add to the preset
      * @param override if true, the preset will override any existing with the same name
      */
-    addPreset(preset: string, options: RecursivePartial<IOptions>, override = false): void {
+    async addPreset(preset: string, options: RecursivePartial<IOptions>, override = false): Promise<void> {
         Plugins.addPreset(preset, options, override);
+
+        await this.refresh();
     }
 
     /**
      * addPlugin adds plugin to tsParticles, if an instance needs it it will be loaded
      * @param plugin the plugin implementation of [[IPlugin]]
      */
-    addPlugin(plugin: IPlugin): void {
+    async addPlugin(plugin: IPlugin): Promise<void> {
         Plugins.addPlugin(plugin);
+
+        await this.refresh();
     }
 
     /**
@@ -188,8 +203,10 @@ export class Main {
      * @param name the path generator name
      * @param generator the path generator object
      */
-    addPathGenerator(name: string, generator: IMovePathGenerator): void {
+    async addPathGenerator(name: string, generator: IMovePathGenerator): Promise<void> {
         Plugins.addPathGenerator(name, generator);
+
+        await this.refresh();
     }
 
     /**
@@ -197,8 +214,10 @@ export class Main {
      * @param name
      * @param interactorInitializer
      */
-    addInteractor(name: string, interactorInitializer: (container: Container) => IInteractor): void {
+    async addInteractor(name: string, interactorInitializer: (container: Container) => IInteractor): Promise<void> {
         Plugins.addInteractor(name, interactorInitializer);
+
+        await this.refresh();
     }
 
     /**
@@ -206,7 +225,12 @@ export class Main {
      * @param name
      * @param updaterInitializer
      */
-    addParticleUpdater(name: string, updaterInitializer: (container: Container) => IParticleUpdater): void {
+    async addParticleUpdater(
+        name: string,
+        updaterInitializer: (container: Container) => IParticleUpdater
+    ): Promise<void> {
         Plugins.addParticleUpdater(name, updaterInitializer);
+
+        await this.refresh();
     }
 }

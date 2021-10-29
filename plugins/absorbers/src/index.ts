@@ -99,8 +99,8 @@ class Index implements IPlugin {
     }
 }
 
-export function loadAbsorbersPlugin(tsParticles: Main): void {
+export async function loadAbsorbersPlugin(tsParticles: Main): Promise<void> {
     const plugin = new Index();
 
-    tsParticles.addPlugin(plugin);
+    await tsParticles.addPlugin(plugin);
 }
