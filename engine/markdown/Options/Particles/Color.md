@@ -15,4 +15,4 @@
 | `offset.max` | `number`    | `60`             |       |
 | `offset.min` | `number`    | `20`             |       |
 | `speed`      | `number`    | `40`             |       |
-| `sync`       | `boolean`   | `true` / `false` |       |
+| `sync`       | `boolean`   | `true` / `false` | When `sync` is toggled `true`, particles generated will change color in <br> time with each other for their entire duration. However, when `sync` is <br> toggled `false`, particles generated begin changing color at the set speed from <br> their time of appearance, but independently of one another. |
