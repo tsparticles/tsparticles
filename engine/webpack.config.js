@@ -19,7 +19,6 @@ const getConfig = (entry) => {
 
     return {
         entry: entry,
-        target: "browserslist",
         output: {
             path: path.resolve(__dirname, "dist"),
             filename: "[name].js",
