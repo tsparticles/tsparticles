@@ -8,4 +8,4 @@
 | `enable`           | `boolean`          | `true` / `false`           |                                                                    |
 | `enlighten.enable` | `boolean`          | `true` / `false`           |                                                                    |
 | `enlighten.value`  | `number`           | `5`                        | The percent value added to the particle fill color luminosity      |
-| `speed`            | `number` / `range` | `0` / `{ min: 1, max: 5 }` |                                                                    |
+| `speed`            | `number` / `range` | `0` / `{ min: 1, max: 5 }` | Describes the rate of travel of a particle progressing along the <br> curve defined by other values in this property. |
