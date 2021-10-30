@@ -1,0 +1,4 @@
+defaults
+not IE 11
+not dead
+> 2%

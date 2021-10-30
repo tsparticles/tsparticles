@@ -98,6 +98,7 @@
     "@typescript-eslint/eslint-plugin": "^4.31.0",
     "@typescript-eslint/parser": "^4.31.0",
     "babel-loader": "^8.2.2",
+    "browserslist": "^4.17.5",
     "canvas": "^2.8.0",
     "chai": "^4.3.4",
     "compare-versions": "^3.6.0",
@@ -141,5 +142,6 @@
       "html"
     ],
     "all": true
-  }
+  },
+  "dependencies": {}
 }

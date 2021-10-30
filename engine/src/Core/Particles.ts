@@ -38,7 +38,7 @@ export class Particles {
     linksColor?: IRgb | string;
     grabLineColor?: IRgb | string;
 
-    readonly updaters;
+    updaters;
 
     private interactionManager;
     private nextId;
@@ -72,7 +72,7 @@ export class Particles {
             4
         );
 
-        this.updaters = Plugins.getUpdaters(container);
+        this.updaters = Plugins.getUpdaters(container, true);
     }
 
     /* --------- tsParticles functions - particles ----------- */
@@ -86,6 +86,9 @@ export class Particles {
         this.freqs.triangles = new Map<string, number>();
 
         let handled = false;
+
+        this.updaters = Plugins.getUpdaters(container, true);
+        this.interactionManager.init();
 
         for (const [, plugin] of container.plugins) {
             if (plugin.particlesInitialization !== undefined) {
