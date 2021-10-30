@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-updater-gradient",
-  "version": "1.37.0",
+  "version": "1.37.1",
   "description": "tsParticles particles gradient updater",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -63,6 +63,7 @@
     "@typescript-eslint/eslint-plugin": "^4.29.1",
     "@typescript-eslint/parser": "^4.29.1",
     "babel-loader": "^8.2.2",
+    "browserslist": "^4.17.5",
     "copyfiles": "^2.4.1",
     "downlevel-dts": "^0.7.0",
     "eslint": "^7.32.0",
@@ -76,6 +77,6 @@
     "webpack-cli": "^4.8.0"
   },
   "dependencies": {
-    "tsparticles": "^1.37.0"
+    "tsparticles": "^1.37.1"
   }
 }

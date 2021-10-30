@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.22.1](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.22.0...react-tsparticles-demo@1.22.1) (2021-10-30)
+
+
+### Bug Fixes
+
+* fixed issue with dynamic imports and async loading ([b7f444b](https://github.com/matteobruni/tsparticles/commit/b7f444b1ef279083572e3a52f341d39091c885e6))
+
+
+
+
+
 # [1.22.0](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.21.0...react-tsparticles-demo@1.22.0) (2021-10-28)
 
 **Note:** Version bump only for package react-tsparticles-demo
