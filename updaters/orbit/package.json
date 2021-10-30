@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-updater-orbit",
-  "version": "1.37.0",
+  "version": "1.37.1",
   "description": "tsParticles particles orbit updater",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -77,6 +77,6 @@
     "webpack-cli": "^4.8.0"
   },
   "dependencies": {
-    "tsparticles": "^1.37.0"
+    "tsparticles": "^1.37.1"
   }
 }
