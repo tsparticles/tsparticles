@@ -8,8 +8,8 @@
 | `life.delay`    | `number`    | `0.1`                                                                                                                                                              | The emitter delay between any appearance                                                       |
 | `particles`     | `object`    |                                                                                                                                                                    | See Particles options {@link IParticles | here}                                                                    |
 | `position`      | `object`    | `{ "x": 50, "y": 50 }`                                                                                                                                             | The position specified is not absolute, it will be used as a percent value of the canvas size. |
-| `size.width`    | `number`    | `10`                                       | |
-| `size.height`   | `number`    | `10`                                       | |
+| `size.width`    | `number`    | `10`                                       | Width of the generated particles in the unit specified in `size.mode` |
+| `size.height`   | `number`    | `10`                                       | Height of the generated particles in the unit specified in `size.mode` |
 | `size.mode`     | `string`    | `"precise"` / `"percent"` | Specify how to use the size values, `precise` uses pixels, `percent` will be calculated on canvas size |
 | `rate.quantity` | `number`    | `1`                                                                                                                                                                | The particles generated everytime the rate event occurs                                        |
 | `rate.delay`    | `number`    | `0.1`                                                                                                                                                              | The rate event event delay time, in seconds                                                    |
