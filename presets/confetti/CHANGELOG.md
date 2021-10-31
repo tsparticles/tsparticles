@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.22.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-confetti@1.22.1...tsparticles-preset-confetti@1.22.2) (2021-10-31)
+
+**Note:** Version bump only for package tsparticles-preset-confetti
+
+
+
+
+
 ## [1.22.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-confetti@1.22.0...tsparticles-preset-confetti@1.22.1) (2021-10-30)
 
 

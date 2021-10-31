@@ -1,13 +1,17 @@
 import * as React from 'react';
 import Particles from 'react-tsparticles';
-import { IOptions, RecursivePartial } from "tsparticles";
+import type { Container, IOptions, RecursivePartial } from "tsparticles";
 
 interface IProps {
     options: RecursivePartial<IOptions>;
 }
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
+    particlesLoaded(container: Container): void {
+        console.log(container);
+    }
+
     render() {
-        return <Particles options={this.props.options} className="frame-layout__particles"/>
+        return <Particles options={this.props.options} className="frame-layout__particles" loaded={this.particlesLoaded.bind(this)}/>
     }
 }
