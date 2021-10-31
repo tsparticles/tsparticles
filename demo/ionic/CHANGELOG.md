@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.2](https://github.com/matteobruni/tsparticles/compare/ionic@0.6.1...ionic@0.6.2) (2021-10-31)
+
+**Note:** Version bump only for package ionic
+
+
+
+
+
 ## [0.6.1](https://github.com/matteobruni/tsparticles/compare/ionic@0.6.0...ionic@0.6.1) (2021-10-30)
 
 **Note:** Version bump only for package ionic

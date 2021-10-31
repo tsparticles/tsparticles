@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-triangles",
-  "version": "1.22.1",
+  "version": "1.22.2",
   "description": "tsParticles triangles preset",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -45,6 +45,6 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles": "^1.37.1"
+    "tsparticles": "^1.37.2"
   }
 }
