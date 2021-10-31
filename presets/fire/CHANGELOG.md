@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.22.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fire@1.22.1...tsparticles-preset-fire@1.22.2) (2021-10-31)
+
+**Note:** Version bump only for package tsparticles-preset-fire
+
+
+
+
+
+## [1.22.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fire@1.22.0...tsparticles-preset-fire@1.22.1) (2021-10-30)
+
+
+### Bug Fixes
+
+* added browserslist to fix some issues with older browsers ([24d8f52](https://github.com/matteobruni/tsparticles/commit/24d8f520ee6934bd967d63612c828705e1dc09e2))
+
+
+
+
+
 # [1.22.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fire@1.21.0...tsparticles-preset-fire@1.22.0) (2021-10-28)
 
 **Note:** Version bump only for package tsparticles-preset-fire

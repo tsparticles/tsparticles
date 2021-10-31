@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.20.2](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.20.1...particles.vue@2.20.2) (2021-10-31)
+
+**Note:** Version bump only for package particles.vue
+
+
+
+
+
+## [2.20.1](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.20.0...particles.vue@2.20.1) (2021-10-30)
+
+**Note:** Version bump only for package particles.vue
+
+
+
+
+
 # [2.20.0](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.19.0...particles.vue@2.20.0) (2021-10-28)
 
 **Note:** Version bump only for package particles.vue
