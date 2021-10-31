@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * moved out click interactions to external packages, breaking ([466973d](https://github.com/matteobruni/tsparticles/commit/466973ddbcc382c27c03f7b3518dea99c5e1949c))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.22.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fire@1.22.0...tsparticles-preset-fire@1.22.1) (2021-10-30)
+
+
+### Bug Fixes
+
+* added browserslist to fix some issues with older browsers ([24d8f52](https://github.com/matteobruni/tsparticles/commit/24d8f520ee6934bd967d63612c828705e1dc09e2))
 
 
 

@@ -20,6 +20,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [2.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@2.0.0-beta.0...tsparticles-demo-new@2.0.0-beta.1) (2021-10-06)
+## [1.22.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@1.22.0...tsparticles-demo-new@1.22.1) (2021-10-30)
+
+**Note:** Version bump only for package tsparticles-demo-new
+
+
+
+
+
 # [1.22.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@1.21.0...tsparticles-demo-new@1.22.0) (2021-10-28)
 
 **Note:** Version bump only for package tsparticles-demo-new

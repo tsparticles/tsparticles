@@ -11,6 +11,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * fixed snow preset ([38cba58](https://github.com/matteobruni/tsparticles/commit/38cba5884e01be5721395e5f084eb24ac15806de))
 * fixed stars preset ([04e7f4c](https://github.com/matteobruni/tsparticles/commit/04e7f4cd9bda078410940c561a20d57a5502f6e1))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.22.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-snow@1.22.0...tsparticles-preset-snow@1.22.1) (2021-10-30)
+
+
+### Bug Fixes
+
+* added browserslist to fix some issues with older browsers ([24d8f52](https://github.com/matteobruni/tsparticles/commit/24d8f520ee6934bd967d63612c828705e1dc09e2))
 
 
 

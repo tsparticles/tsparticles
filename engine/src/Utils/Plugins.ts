@@ -90,10 +90,10 @@ export class Plugins {
         }
     }
 
-    static getInteractors(container: Container): IInteractor[] {
+    static getInteractors(container: Container, force = false): IInteractor[] {
         let res = interactors.get(container);
 
-        if (!res) {
+        if (!res || force) {
             res = [...interactorsInitializers.values()].map((t) => t(container));
 
             interactors.set(container, res);
@@ -106,10 +106,10 @@ export class Plugins {
         interactorsInitializers.set(name, initInteractor);
     }
 
-    static getUpdaters(container: Container): IParticleUpdater[] {
+    static getUpdaters(container: Container, force = false): IParticleUpdater[] {
         let res = updaters.get(container);
 
-        if (!res) {
+        if (!res || force) {
             res = [...updatersInitializers.values()].map((t) => t(container));
 
             updaters.set(container, res);
