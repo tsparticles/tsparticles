@@ -48,7 +48,9 @@ export async function loadPolygonMaskPlugin(tsParticles: Main): Promise<void> {
     if (!isSsr() && !window.SVGPathSeg) {
         await import(
             /* webpackChunkName: "tsparticles.pathseg" */
-            /* webpackMode: "weak" */
+            /* webpackMode: "lazy" */
+            /* webpackPrefetch: true */
+            /* webpackPreload: true */
             "./pathseg"
         );
     }

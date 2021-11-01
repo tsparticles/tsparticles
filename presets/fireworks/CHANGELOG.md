@@ -10,6 +10,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * fixed firefly and fireworks presets ([ec952c9](https://github.com/matteobruni/tsparticles/commit/ec952c9ac0b42dc1c5350279a44a1255ca1f4fca))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.22.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fireworks@1.22.1...tsparticles-preset-fireworks@1.22.2) (2021-10-31)
+
+**Note:** Version bump only for package tsparticles-preset-fireworks
+
+
+
+
+
 ## [1.22.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fireworks@1.22.0...tsparticles-preset-fireworks@1.22.1) (2021-10-30)
 
 

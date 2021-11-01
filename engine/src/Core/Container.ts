@@ -94,6 +94,7 @@ export class Container {
 
     private _options;
     private _sourceOptions;
+    private readonly _initialSourceOptions;
     private paused;
     private firstStart;
     private currentTheme?: string;
@@ -122,6 +123,7 @@ export class Container {
         this.zLayers = 100;
         this.pageHidden = false;
         this._sourceOptions = sourceOptions;
+        this._initialSourceOptions = sourceOptions;
         this.retina = new Retina(this);
         this.canvas = new Canvas(this);
         this.particles = new Particles(this);
@@ -585,6 +587,7 @@ export class Container {
         }
 
         /* options settings */
+        this._options.load(this._initialSourceOptions);
         this._options.load(this._sourceOptions);
 
         this.actualOptions = new Options();

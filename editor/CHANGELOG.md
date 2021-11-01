@@ -12,6 +12,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * moved all plugins to external packages, breaking ([a3edcec](https://github.com/matteobruni/tsparticles/commit/a3edcecd129009e7d9af138dd9a1285360e7003d))
 * moved polygon mask to external plugin (breaking) ([abdfe37](https://github.com/matteobruni/tsparticles/commit/abdfe37f250a4f357f4491bb7ff0e54da6a7303e))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.37.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.37.1...tsparticles-editor@1.37.2) (2021-10-31)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
 ## [1.37.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.37.0...tsparticles-editor@1.37.1) (2021-10-30)
 
 

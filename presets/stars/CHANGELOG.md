@@ -10,6 +10,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * fixed stars preset ([04e7f4c](https://github.com/matteobruni/tsparticles/commit/04e7f4cd9bda078410940c561a20d57a5502f6e1))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.22.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-stars@1.22.1...tsparticles-preset-stars@1.22.2) (2021-10-31)
+
+**Note:** Version bump only for package tsparticles-preset-stars
+
+
+
+
+
 ## [1.22.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-stars@1.22.0...tsparticles-preset-stars@1.22.1) (2021-10-30)
 
 

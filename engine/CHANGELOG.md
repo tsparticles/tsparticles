@@ -69,6 +69,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * removing the id constraint, a random one will be generated ([3b6b48e](https://github.com/matteobruni/tsparticles/commit/3b6b48efd8962ccc11549339b38888808da2a657))
 * spin movement enabled from v2 ([240a38f](https://github.com/matteobruni/tsparticles/commit/240a38f9a8c78e5b683d655d5f94476e396a5076))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.37.2](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.37.1...tsparticles@1.37.2) (2021-10-31)
+
+
+### Bug Fixes
+
+* fixes some dynamic import issues ([8ba2415](https://github.com/matteobruni/tsparticles/commit/8ba2415d52384fd4ce722110cda02c8c0db92674))
+
+
+
+
+
 ## [1.37.1](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.37.0...tsparticles@1.37.1) (2021-10-30)
 
 

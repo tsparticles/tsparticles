@@ -10,6 +10,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * moved polygon mask to external plugin (breaking) ([abdfe37](https://github.com/matteobruni/tsparticles/commit/abdfe37f250a4f357f4491bb7ff0e54da6a7303e))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.22.2](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.22.1...react-tsparticles-demo@1.22.2) (2021-10-31)
+
+
+### Bug Fixes
+
+* fixes some dynamic import issues ([8ba2415](https://github.com/matteobruni/tsparticles/commit/8ba2415d52384fd4ce722110cda02c8c0db92674))
+
+
+
+
+
 ## [1.22.1](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.22.0...react-tsparticles-demo@1.22.1) (2021-10-30)
 
 
