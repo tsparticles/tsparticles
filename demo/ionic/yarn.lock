@@ -1232,10 +1232,10 @@
     "@babel/helper-validator-identifier" "^7.14.9"
     to-fast-properties "^2.0.0"
 
-"@capacitor/app@1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@capacitor/app/-/app-1.0.5.tgz#9512235d0b686edf2f32d75b32abecbe383aa633"
-  integrity sha512-U0dAw1CAjKyguSRxKDabszsQ4dj679RnxaUZrSHDR5Jnt5x308oQuKXFP++wnMBbw72D02iqjG0a+/Ujye7C9g==
+"@capacitor/app@1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@capacitor/app/-/app-1.0.6.tgz#8ae8271c7ee0cb8ff7578d1135846759adff153f"
+  integrity sha512-NjHIs6f4WJQuhabnCkcE6YLyIIn+t4Al5etB/SJGZJwUYRe1yJYtZ4T/KobDIzwwZn9I9de7QbEA5947lGttBQ==
 
 "@capacitor/cli@3.3.0":
   version "3.3.0"
@@ -1266,20 +1266,20 @@
   dependencies:
     tslib "^2.1.0"
 
-"@capacitor/haptics@1.1.2":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@capacitor/haptics/-/haptics-1.1.2.tgz#abd26a2b148740ad3e2af1a9ee61c08bfa67a6ab"
-  integrity sha512-h7uAK/iTSDYfvMY2aaZJ5tlGyIOOdH17mzHHED4jgP3TSXbsmeYU839u56hNGi9vb4Q00Jsb0YzsDMzSjv4Nag==
+"@capacitor/haptics@1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@capacitor/haptics/-/haptics-1.1.3.tgz#54e25344d799b9bd7152246c57b5f56c142f225e"
+  integrity sha512-ui2mY/riK1Y4bxnJKJfclWO61obZ0RHmtErPhpmt4wIEVjG1segYdFop45R2PxyEwoUJgzEsAxnviM/T6k8seQ==
 
-"@capacitor/keyboard@1.1.2":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@capacitor/keyboard/-/keyboard-1.1.2.tgz#bd225ef9fe490e223d5861ab52cde0d38c5dc9e2"
-  integrity sha512-EUduhQzrHma4PlGfdSxVeGIwxR2+/xLRDbjQH5Q4cXqrlYssIX2UyQrL4wNpDaAOg1Z4VD8EzzVolC81LG6Q+A==
+"@capacitor/keyboard@1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@capacitor/keyboard/-/keyboard-1.1.3.tgz#18bed4b5320ffedc51b8bec04e6be7cd37af6617"
+  integrity sha512-WpD1f/3HH6IpADiRaFTDGdhrqYhZDikybXXhUdGAEEwHbErHt9zS5RQgbeROjGmkXcurVvQsalQ59YuKU0VzwA==
 
-"@capacitor/status-bar@1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@capacitor/status-bar/-/status-bar-1.0.5.tgz#a3b2a00944b70ab8ef167a5ff33e3f90c021bb28"
-  integrity sha512-SZuxjaN5Nr8FKUVlkVH3l0X2JWey0yVMfMhyE3RG7ryUSAesgs3bvkAEXSfjphsHOpt4A/rEeCJb2ZbeCBwroA==
+"@capacitor/status-bar@1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@capacitor/status-bar/-/status-bar-1.0.6.tgz#d58c9087cfc7c7377e8009bea86152e4fdd2939e"
+  integrity sha512-5MGWFq76iiKvHpbZ/Xc0Zig3WZyzWZ62wvC4qxak8OuVHBNG4fA1p/XXY9teQPaU3SupEJHnLkw6Gn1LuDp+ew==
 
 "@cspotcode/source-map-consumer@0.8.0":
   version "0.8.0"
