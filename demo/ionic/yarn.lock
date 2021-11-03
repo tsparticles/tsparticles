@@ -1237,10 +1237,10 @@
   resolved "https://registry.yarnpkg.com/@capacitor/app/-/app-1.0.5.tgz#9512235d0b686edf2f32d75b32abecbe383aa633"
   integrity sha512-U0dAw1CAjKyguSRxKDabszsQ4dj679RnxaUZrSHDR5Jnt5x308oQuKXFP++wnMBbw72D02iqjG0a+/Ujye7C9g==
 
-"@capacitor/cli@3.2.5":
-  version "3.2.5"
-  resolved "https://registry.yarnpkg.com/@capacitor/cli/-/cli-3.2.5.tgz#df2305f529480ec761bebd63be54679016a16223"
-  integrity sha512-UyBYwclNpRlf5FV3fawRc0ZxmlhNzlUe7ugiKkHnNn0REPLU0egHKHWfaQ0hLWWTpA6V7H089AiZM5Pda5Zk9A==
+"@capacitor/cli@3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@capacitor/cli/-/cli-3.3.0.tgz#28b1bf808d2144d2777eaa2d46da6cc7cba50033"
+  integrity sha512-BkxagJhHG11+0ivFwUOnAhhdwQ1WXoX0WEzqzzGVL9k63hStuIOvPUusp34+G4EcNU01BAJlBt+dgefSvDhOFw==
   dependencies:
     "@ionic/cli-framework-output" "^2.2.1"
     "@ionic/utils-fs" "^3.1.5"
@@ -1259,10 +1259,10 @@
     tslib "^2.1.0"
     xml2js "^0.4.23"
 
-"@capacitor/core@3.2.5":
-  version "3.2.5"
-  resolved "https://registry.yarnpkg.com/@capacitor/core/-/core-3.2.5.tgz#3aee6d68d113f5c043593c2327b0fc827f64e1f4"
-  integrity sha512-sr5ZhbdCUL6FAiyNEDpSKDEzjHCOsCA5R32inRergcPFRpOArsQi/NfhoMLHaZwZ78HAn9bfFV7JkoSr46NDDw==
+"@capacitor/core@3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@capacitor/core/-/core-3.3.0.tgz#dd266b1ea5956a059c6fe3496fe156c419f184e3"
+  integrity sha512-bKkg/IGALz5OKJPGwtGXoqi4JUXWbuILnZ9J12Mv21fPMFBoszYOiMfm7FqdcCwqcyJWCdG3SQDxCz0Q3e2y8Q==
   dependencies:
     tslib "^2.1.0"
 
