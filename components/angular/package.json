@@ -51,7 +51,7 @@
     "prepack": "yarn build"
   },
   "publishConfig": {
-    "directory": "projects/ng-particles/dist/ng-particles"
+    "directory": "./dist/ng-particles"
   },
   "dependencies": {
     "@angular/animations": "~13.0.0",
@@ -64,7 +64,7 @@
     "@angular/router": "~13.0.0",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
-    "tsparticles-engine":"^2.0.0-beta.1",
+    "tsparticles-engine": "^2.0.0-beta.1",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

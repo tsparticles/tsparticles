@@ -21,18 +21,7 @@
     "lib": [
       "es2020",
       "dom"
-    ],
-    "paths": {
-      "@angular/*": [
-        "./node_modules/@angular/*"
-      ],
-      "ng-particles": [
-        "../../components/angular/projects/ng-particles/src/public-api"
-      ],
-      "tsparticles-engine": [
-        "../../engine/dist"
-      ]
-    }
+    ]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
