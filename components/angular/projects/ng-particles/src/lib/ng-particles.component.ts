@@ -12,7 +12,7 @@ import { IParticlesProps } from './ng-particles.module';
 export class NgParticlesComponent implements AfterViewInit {
     @Input() options?: IParticlesProps;
     @Input() url?: string;
-    @Input() id: string;
+    @Input() id?: string;
     @Output() particlesLoaded: EventEmitter<Container> = new EventEmitter<Container>();
     @Output() particlesInit: EventEmitter<Main> = new EventEmitter<Main>();
 
@@ -24,9 +24,17 @@ export class NgParticlesComponent implements AfterViewInit {
         };
 
         if (this.url) {
-            tsParticles.loadJSON(this.id, this.url).then(cb);
+            if (this.id) {
+                tsParticles.loadJSON(this.id, this.url).then(cb);
+            } else {
+                tsParticles.loadJSON(this.url).then(cb);
+            }
         } else if (this.options) {
-            tsParticles.load(this.id, this.options).then(cb);
+            if (this.id) {
+                tsParticles.load(this.id, this.options).then(cb);
+            } else {
+                tsParticles.load(this.options).then(cb);
+            }
         } else {
             console.error('You must specify options or url to load tsParticles');
         }
@@ -40,9 +48,9 @@ export class NgParticlesComponent implements AfterViewInit {
     styles: []
 })
 export class ParticlesComponent extends NgParticlesComponent {
-    @Input() options?: IParticlesProps;
-    @Input() url?: string;
-    @Input() id: string;
-    @Output() particlesLoaded: EventEmitter<Container> = new EventEmitter<Container>();
-    @Output() particlesInit: EventEmitter<Main> = new EventEmitter<Main>();
+    @Input() override options?: IParticlesProps;
+    @Input() override url?: string;
+    @Input() override id?: string;
+    @Output() override particlesLoaded: EventEmitter<Container> = new EventEmitter<Container>();
+    @Output() override particlesInit: EventEmitter<Main> = new EventEmitter<Main>();
 }

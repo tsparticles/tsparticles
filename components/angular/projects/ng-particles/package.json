@@ -56,8 +56,11 @@
     "url": "https://github.com/sponsors/matteobruni"
   },
   "peerDependencies": {
-    "@angular/common": ">=2.0.0",
-    "@angular/core": ">=2.0.0",
+    "@angular/common": ">=13.0.0",
+    "@angular/core": ">=13.0.0",
     "tsparticles-engine": "^2.0.0-beta.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
   }
 }

@@ -19,8 +19,8 @@
       "@angular/*": [
         "./node_modules/@angular/*"
       ],
-      "ng-particles": [
-        "../../components/angular/projects/ng-particles/src/public-api"
+      "ng-particles-old": [
+        "../../components/angular12/projects/ng-particles/src/public-api"
       ]/*,
       "tsparticles": [
         "../../core/main/dist"
