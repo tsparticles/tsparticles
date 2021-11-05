@@ -12,10 +12,17 @@
   },
   "scripts": {
     "start": "parcel serve public/index.html --no-cache --open",
-    "build": "parcel build -t browser -d dist public/index.html --no-source-maps"
+    "build": "parcel build --target browser"
   },
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
+  },
+  "targets": {
+    "browser": {
+      "source": "./public/index.html",
+      "distDir": "./dist",
+      "sourceMap": false
+    }
   },
   "devDependencies": {
     "@types/react": "^17.0.18",
@@ -27,16 +34,16 @@
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "node-sass": "^6.0.1",
-    "parcel": "^1.12.4",
+    "parcel": "^2.0.0",
     "prettier": "^2.3.2",
     "react-syntax-highlighter": "^15.4.4",
-    "rxjs": "^7.3.0",
     "typescript": "^4.4.2"
   },
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-tsparticles": "^1.37.2",
+    "rxjs": "^7.3.0",
     "tsparticles": "^1.37.2"
   }
 }
