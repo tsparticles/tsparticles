@@ -6,6 +6,7 @@ import { colorToRgb, getDistance, getDistances, getRangeValue, getStyleFromRgb, 
 import type { Absorbers } from "./Absorbers";
 import { Vector } from "../../Core/Particle/Vector";
 import { RotateDirection } from "../../Enums";
+import { IAbsorberSizeLimit } from "./Options/Interfaces/IAbsorberSizeLimit";
 
 type OrbitingParticle = Particle & {
     absorberOrbit?: Vector;
@@ -22,7 +23,7 @@ export class AbsorberInstance {
     size;
 
     color: IRgb;
-    limit?: number;
+    limit: IAbsorberSizeLimit;
     readonly name?: string;
     position: Vector;
 
@@ -48,7 +49,16 @@ export class AbsorberInstance {
 
         const limit = options.size.limit;
 
-        this.limit = limit !== undefined ? limit * container.retina.pixelRatio * container.retina.reduceFactor : limit;
+        this.limit =
+            typeof limit === "number"
+                ? {
+                      radius: limit * container.retina.pixelRatio * container.retina.reduceFactor,
+                      mass: 0,
+                  }
+                : {
+                      radius: (limit?.radius ?? 0) * container.retina.pixelRatio * container.retina.reduceFactor,
+                      mass: limit?.mass ?? 0,
+                  };
 
         const color = typeof options.color === "string" ? { value: options.color } : options.color;
 
@@ -112,11 +122,13 @@ export class AbsorberInstance {
                 this.updateParticlePosition(particle, v);
             }
 
-            if (this.limit === undefined || this.size < this.limit) {
+            if (this.limit.radius <= 0 || this.size < this.limit.radius) {
                 this.size += sizeFactor;
             }
 
-            this.mass += sizeFactor * this.options.size.density * container.retina.reduceFactor;
+            if (this.limit.mass <= 0 || this.mass < this.limit.mass) {
+                this.mass += sizeFactor * this.options.size.density * container.retina.reduceFactor;
+            }
         } else {
             this.updateParticlePosition(particle, v);
         }
@@ -160,9 +172,10 @@ export class AbsorberInstance {
         const canvasSize = container.canvas.size;
 
         if (particle.needsNewPosition) {
-            const pSize = particle.getRadius();
-            particle.position.x = (canvasSize.width - pSize * 2) * (1 + (Math.random() * 0.2 - 0.1)) + pSize;
-            particle.position.y = (canvasSize.height - pSize * 2) * (1 + (Math.random() * 0.2 - 0.1)) + pSize;
+            particle.position.x = Math.floor(Math.random() * canvasSize.width);
+            particle.position.y = Math.floor(Math.random() * canvasSize.height);
+            particle.velocity.setTo(particle.initialVelocity);
+            particle.absorberOrbit = undefined;
             particle.needsNewPosition = false;
         }
 
