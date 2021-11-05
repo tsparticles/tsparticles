@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.37.3](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.37.2...tsparticles@1.37.3) (2021-11-05)
+
+
+### Features
+
+* added more absorber size limit options ([f2d0493](https://github.com/matteobruni/tsparticles/commit/f2d0493f34bc373846d8a8ae78e36dd56816308e))
+
+
+
+
+
 ## [1.37.2](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.37.1...tsparticles@1.37.2) (2021-10-31)
 
 

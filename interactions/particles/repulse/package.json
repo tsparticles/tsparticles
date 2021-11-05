@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-interaction-particles-repulse",
-  "version": "1.37.2",
+  "version": "1.37.3",
   "description": "tsParticles repulse particles interaction",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -77,6 +77,6 @@
     "webpack-cli": "^4.8.0"
   },
   "dependencies": {
-    "tsparticles": "^1.37.2"
+    "tsparticles": "^1.37.3"
   }
 }
