@@ -398,3 +398,9 @@ website/js/demo.min.js
 /demo/vanilla_new/js/tsparticles.bundle.min.js
 .parcel-cache
 demo/vanilla/views/index.html
+demo/vanilla_new/css/main.min.css
+demo/vanilla_new/css/404.min.css
+website/css/main.min.css
+website/css/presets.min.css
+website/css/404.min.css
+demo/vanilla_new/js/404.min.js
