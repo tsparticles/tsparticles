@@ -35,7 +35,7 @@
   "dependencies": {
     "copyfiles": "^2.4.1",
     "fs-extra": "^10.0.0",
-    "minify": "^8.0.0",
+    "minify": "^8.0.3",
     "rimraf": "^3.0.2",
     "sass": "^1.37.5",
     "tsparticles": "^2.0.0-beta.2",
