@@ -1,4 +1,4 @@
-import type { Container } from "tsparticles-engine";
+import { Container, tsParticles } from "tsparticles-engine";
 import type { IContainerPlugin, ICoordinates, IDelta, IDimension } from "tsparticles-engine";
 import { InlineArrangement, Type } from "./Enums";
 import { Particle } from "tsparticles-engine";
@@ -519,5 +519,9 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
 
         this.createPath2D();
+
+        tsParticles.dispatchEvent("polygonMaskLoaded", {
+            container: this.container
+        });
     }
 }

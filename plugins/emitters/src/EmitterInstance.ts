@@ -96,6 +96,13 @@ export class EmitterInstance {
         this.lifeCount = this.emitterOptions.life.count ?? -1;
         this.immortal = this.lifeCount <= 0;
 
+        tsParticles.dispatchEvent("emitterCreated", {
+            container,
+            data: {
+                emitter: this
+            }
+        });
+
         this.play();
     }
 
@@ -242,6 +249,13 @@ export class EmitterInstance {
 
     private destroy(): void {
         this.emitters.removeEmitter(this);
+
+        tsParticles.dispatchEvent("emitterDestroyed", {
+            container: this.container,
+            data: {
+                emitter: this
+            }
+        });
     }
 
     private calcPosition(): ICoordinates {
