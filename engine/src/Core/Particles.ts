@@ -9,7 +9,8 @@ import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions"
 import type { ICoordinates, IDelta, IMouseData, IParticle, IRgb } from "./Interfaces";
 import { Mover } from "./Particle/Mover";
 import { IParticlesFrequencies } from "./Interfaces/IParticlesFrequencies";
-import { ClickMode } from "../Enums";
+import { ClickMode, EventType } from "../Enums";
+import { Loader } from "./Loader";
 
 /**
  * Particles manager object
@@ -151,6 +152,13 @@ export class Particles {
             this.zArray.splice(zIdx, 1);
 
             deleted++;
+
+            Loader.dispatchEvent(EventType.particleRemoved, {
+                container: this.container,
+                data: {
+                    particle,
+                },
+            });
         }
     }
 
@@ -490,6 +498,13 @@ export class Particles {
             this.zArray.push(particle);
 
             this.nextId++;
+
+            Loader.dispatchEvent(EventType.particleAdded, {
+                container: this.container,
+                data: {
+                    particle,
+                },
+            });
 
             return particle;
         } catch (e) {

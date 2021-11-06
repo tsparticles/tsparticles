@@ -1,3 +1,5 @@
+export * from "./CustomEventArgs";
+export * from "./CustomEventListener";
 export * from "./RangeValue";
 export * from "./RecursivePartial";
 export * from "./ShapeData";

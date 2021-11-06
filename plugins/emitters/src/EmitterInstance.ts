@@ -6,6 +6,7 @@ import {
     isPointInside,
     randomInRange,
     SizeMode,
+    tsParticles,
     Vector,
 } from "tsparticles-engine";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
@@ -200,8 +201,14 @@ export class EmitterInstance {
             this.currentSpawnDelay += delta.value;
 
             if (this.currentSpawnDelay >= this.spawnDelay) {
+                tsParticles.dispatchEvent("emitterPlay", {
+                    container: this.container,
+                });
+
                 this.play();
+
                 this.currentSpawnDelay -= this.currentSpawnDelay;
+
                 delete this.spawnDelay;
             }
         }

@@ -23,7 +23,8 @@ import {
     IRgb,
     IShapeDrawer,
 } from "./Interfaces";
-import { ClickMode } from "../Enums";
+import { ClickMode, EventType } from "../Enums";
+import { Loader } from "./Loader";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -167,6 +168,8 @@ export class Container {
         if (typeof IntersectionObserver !== "undefined" && IntersectionObserver) {
             this.intersectionObserver = new IntersectionObserver((entries) => this.intersectionManager(entries));
         }
+
+        Loader.dispatchEvent(EventType.containerBuilt, { container: this });
     }
 
     /**
@@ -192,6 +195,8 @@ export class Container {
                 }
             }
         }
+
+        Loader.dispatchEvent(EventType.containerPlay, { container: this });
 
         this.draw(needsUpdate || false);
     }
@@ -219,6 +224,8 @@ export class Container {
         if (!this.pageHidden) {
             this.paused = true;
         }
+
+        Loader.dispatchEvent(EventType.containerPaused, { container: this });
     }
 
     /**
@@ -320,6 +327,8 @@ export class Container {
         }
 
         this.destroyed = true;
+
+        Loader.dispatchEvent(EventType.containerDestroyed, { container: this });
     }
 
     /**
@@ -398,6 +407,8 @@ export class Container {
         delete this.particles.linksColor;
 
         this._sourceOptions = this._options;
+
+        Loader.dispatchEvent(EventType.containerStopped, { container: this });
     }
 
     /**
@@ -435,6 +446,8 @@ export class Container {
                 plugin.start();
             }
         }
+
+        Loader.dispatchEvent(EventType.containerStarted, { container: this });
 
         this.play();
     }
@@ -649,6 +662,8 @@ export class Container {
             }
         }
 
+        Loader.dispatchEvent(EventType.containerInit, { container: this });
+
         this.particles.init();
         this.particles.setDensity();
 
@@ -657,6 +672,8 @@ export class Container {
                 plugin.particlesSetup();
             }
         }
+
+        Loader.dispatchEvent(EventType.particlesSetup, { container: this });
     }
 
     private intersectionManager(entries: IntersectionObserverEntry[]) {

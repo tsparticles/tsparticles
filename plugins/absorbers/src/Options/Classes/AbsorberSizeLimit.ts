@@ -1,5 +1,5 @@
-import type { RecursivePartial } from "../../../../Types";
-import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
+import type { RecursivePartial } from "tsparticles-engine";
+import type { IOptionLoader } from "tsparticles-engine/Options/Interfaces/IOptionLoader";
 import type { IAbsorberSizeLimit } from "../Interfaces/IAbsorberSizeLimit";
 
 export class AbsorberSizeLimit implements IAbsorberSizeLimit, IOptionLoader<IAbsorberSizeLimit> {
