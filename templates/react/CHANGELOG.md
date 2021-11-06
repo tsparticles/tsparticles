@@ -15,6 +15,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [2.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/cra-template-particles@2.0.0-beta.0...cra-template-particles@2.0.0-beta.1) (2021-10-06)
+## [1.20.3](https://github.com/matteobruni/tsparticles/compare/cra-template-particles@1.20.2...cra-template-particles@1.20.3) (2021-11-05)
+
+**Note:** Version bump only for package cra-template-particles
+
+
+
+
+
 ## [1.20.2](https://github.com/matteobruni/tsparticles/compare/cra-template-particles@1.20.1...cra-template-particles@1.20.2) (2021-10-31)
 
 **Note:** Version bump only for package cra-template-particles

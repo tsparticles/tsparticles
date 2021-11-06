@@ -15,6 +15,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [2.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/jquery-particles-demo@2.0.0-beta.0...jquery-particles-demo@2.0.0-beta.1) (2021-10-06)
+## [1.22.3](https://github.com/matteobruni/tsparticles/compare/jquery-particles-demo@1.22.2...jquery-particles-demo@1.22.3) (2021-11-05)
+
+**Note:** Version bump only for package jquery-particles-demo
+
+
+
+
+
 ## [1.22.2](https://github.com/matteobruni/tsparticles/compare/jquery-particles-demo@1.22.1...jquery-particles-demo@1.22.2) (2021-10-31)
 
 **Note:** Version bump only for package jquery-particles-demo

@@ -9,6 +9,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.37.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-polygon@1.37.2...tsparticles-path-polygon@1.37.3) (2021-11-05)
+
+**Note:** Version bump only for package tsparticles-path-polygon
+
+
+
+
+
 ## [1.37.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-polygon@1.37.1...tsparticles-path-polygon@1.37.2) (2021-10-31)
 
 **Note:** Version bump only for package tsparticles-path-polygon

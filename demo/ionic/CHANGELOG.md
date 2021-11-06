@@ -15,6 +15,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [1.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/ionic@1.0.0-beta.0...ionic@1.0.0-beta.1) (2021-10-06)
+## [0.6.3](https://github.com/matteobruni/tsparticles/compare/ionic@0.6.2...ionic@0.6.3) (2021-11-05)
+
+**Note:** Version bump only for package ionic
+
+
+
+
+
 ## [0.6.2](https://github.com/matteobruni/tsparticles/compare/ionic@0.6.1...ionic@0.6.2) (2021-10-31)
 
 **Note:** Version bump only for package ionic
