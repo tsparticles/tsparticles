@@ -131,11 +131,10 @@ export class Container {
         this.drawer = new FrameManager(this);
         this.presets = presets;
         this.pathGenerator = {
-            generate: (): Vector => {
-                const v = Vector.create(0, 0);
+            generate: (p: Particle): Vector => {
+                const v = p.velocity.copy();
 
-                v.length = Math.random();
-                v.angle = Math.random() * Math.PI * 2;
+                v.angle += v.length * Math.PI / 180;
 
                 return v;
             },
