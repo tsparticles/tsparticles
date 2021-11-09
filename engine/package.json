@@ -116,7 +116,6 @@
     "terser-webpack-plugin": "^5.2.4",
     "ts-node": "^10.2.1",
     "typedoc": "^0.22.8",
-    "typedoc-plugin-missing-exports": "^0.22.4",
     "tsparticles-typedoc-theme": "^1.0.0",
     "typescript": "^4.4.4",
     "typescript-json-schema": "^0.51.0",
