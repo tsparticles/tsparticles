@@ -5,6 +5,15 @@
   "main": "index.js",
   "author": "Matteo Bruni",
   "license": "MIT",
+  "keywords": [
+    "typedoc",
+    "plugin",
+    "theme",
+    "typedocplugin",
+    "typedoc-plugin",
+    "typedoctheme",
+    "typedoc-theme"
+  ],
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
