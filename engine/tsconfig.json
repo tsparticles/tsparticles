@@ -6,13 +6,16 @@
   },
   "typedocOptions": {
     "gaID": "UA-161253125-1",
+    "githubPages": true,
     "includes": "./markdown",
     "entryPoints": [
       "./src/"
     ],
+    "entryPointStrategy": "expand",
     "name": "tsParticles",
     "includeVersion": true,
     "hideGenerator": true,
-    "out": "./docs"
+    "out": "./docs",
+    "theme": "tsparticles-docs"
   }
 }
