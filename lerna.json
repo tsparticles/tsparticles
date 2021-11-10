@@ -9,12 +9,12 @@
     "interactions/external/*",
     "interactions/particles/*",
     "paths/*",
-    "utils/*",
     "plugins/*",
     "presets/*",
     "shapes/*",
     "templates/*",
     "updaters/*",
+    "utils/*",
     "website"
   ],
   "version": "independent",

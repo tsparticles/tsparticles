@@ -1,0 +1,32 @@
+{
+  "name": "tsparticles-typedoc-theme",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "author": "Matteo Bruni",
+  "license": "MIT",
+  "keywords": [
+    "typedoc",
+    "plugin",
+    "theme",
+    "typedocplugin",
+    "typedoc-plugin",
+    "typedoctheme",
+    "typedoc-theme"
+  ],
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles/issues"
+  },
+  "files": [
+    "./**/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/tsparticles.git",
+    "directory": "utils/typedoc-theme"
+  },
+  "dependencies": {
+    "typedoc": "^0.22.8",
+    "typescript": "^4.4.4"
+  }
+}
