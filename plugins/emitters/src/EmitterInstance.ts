@@ -99,8 +99,8 @@ export class EmitterInstance {
         tsParticles.dispatchEvent("emitterCreated", {
             container,
             data: {
-                emitter: this
-            }
+                emitter: this,
+            },
         });
 
         this.play();
@@ -253,8 +253,8 @@ export class EmitterInstance {
         tsParticles.dispatchEvent("emitterDestroyed", {
             container: this.container,
             data: {
-                emitter: this
-            }
+                emitter: this,
+            },
         });
     }
 

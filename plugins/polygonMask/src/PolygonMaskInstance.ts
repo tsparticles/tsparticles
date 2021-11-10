@@ -521,7 +521,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         this.createPath2D();
 
         tsParticles.dispatchEvent("polygonMaskLoaded", {
-            container: this.container
+            container: this.container,
         });
     }
 }
