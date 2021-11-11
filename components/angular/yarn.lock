@@ -3882,9 +3882,9 @@ karma-source-map-support@1.4.0:
     source-map-support "^0.5.5"
 
 karma@~6.3.0:
-  version "6.3.7"
-  resolved "https://registry.yarnpkg.com/karma/-/karma-6.3.7.tgz#35d7c7ff46d7cc21633075a9fdafcb495546bf9a"
-  integrity sha512-EEkswZhOx3EFt1ELlVECeOXHONbHSGw6fkbeMxvCSkLD77X38Kb1d/Oup2Re9ep/tSoa1He3YIBf3Hp+9EsKtg==
+  version "6.3.8"
+  resolved "https://registry.yarnpkg.com/karma/-/karma-6.3.8.tgz#6a192f24b7dddf45fad564ce2e52673aec4f746e"
+  integrity sha512-10wBBU9S0lBHhbCNfmmbWQaY5C1bXlKdnvzN2QKThujCI/+DKaezrI08l6bfTlpJ92VsEboq3zYKpXwK6DOi3A==
   dependencies:
     body-parser "^1.19.0"
     braces "^3.0.2"
