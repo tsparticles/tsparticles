@@ -59,7 +59,7 @@
     "@angular/compiler": "~12.2.2",
     "@angular/core": "~12.2.2",
     "@angular/forms": "~12.2.2",
-    "@angular/platform-browser": "~12.2.2",
+    "@angular/platform-browser": "~13.0.1",
     "@angular/platform-browser-dynamic": "~12.2.2",
     "@angular/router": "~12.2.2",
     "rxjs": "~7.4.0",
