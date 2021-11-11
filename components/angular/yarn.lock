@@ -3031,11 +3031,6 @@ find-cache-dir@^3.3.1:
     make-dir "^3.0.2"
     pkg-dir "^4.1.0"
 
-find-parent-dir@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/find-parent-dir/-/find-parent-dir-0.3.1.tgz#c5c385b96858c3351f95d446cab866cbf9f11125"
-  integrity sha512-o4UcykWV/XN9wm+jMEtWLPlV8RXCZnMhQI6F6OdHeSez7iiJWePw8ijOlskJZMsaQoGR/b7dH6lO02HhaTN7+A==
-
 find-up@^4.0.0, find-up@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/find-up/-/find-up-4.1.0.tgz#97afe7d6cdc0bc5928584b7c8d7b16e8a9aa5d19"
@@ -3867,9 +3862,9 @@ karma-source-map-support@1.4.0:
     source-map-support "^0.5.5"
 
 karma@~6.3.0:
-  version "6.3.7"
-  resolved "https://registry.yarnpkg.com/karma/-/karma-6.3.7.tgz#35d7c7ff46d7cc21633075a9fdafcb495546bf9a"
-  integrity sha512-EEkswZhOx3EFt1ELlVECeOXHONbHSGw6fkbeMxvCSkLD77X38Kb1d/Oup2Re9ep/tSoa1He3YIBf3Hp+9EsKtg==
+  version "6.3.8"
+  resolved "https://registry.yarnpkg.com/karma/-/karma-6.3.8.tgz#6a192f24b7dddf45fad564ce2e52673aec4f746e"
+  integrity sha512-10wBBU9S0lBHhbCNfmmbWQaY5C1bXlKdnvzN2QKThujCI/+DKaezrI08l6bfTlpJ92VsEboq3zYKpXwK6DOi3A==
   dependencies:
     body-parser "^1.19.0"
     braces "^3.0.2"
@@ -4289,9 +4284,9 @@ neo-async@^2.6.2:
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
 ng-packagr@^13.0.0:
-  version "13.0.2"
-  resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-13.0.2.tgz#b0055bd65aa727a0aab04a8980578db9d4040629"
-  integrity sha512-Li48Hs7CEIedXNJmhwnVgg6mJkTAdG+6DxX0BpR4veKYg8Ms2b1nSVC3S4yR9MfOW2ADrJZHBZ26of4K3+Csbw==
+  version "13.0.3"
+  resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-13.0.3.tgz#f205efa728789dd92239eb86cec66756f2aca069"
+  integrity sha512-DbkCLtuOi4mizeKpYMvUt0RzOMGnqZiI84jP9+8oFdoix5I6CdKnZQWnmFl+7DVj4ACo4ukU3kfF9aJSp8YBLg==
   dependencies:
     "@rollup/plugin-json" "^4.1.0"
     "@rollup/plugin-node-resolve" "^13.0.0"
@@ -4304,7 +4299,6 @@ ng-packagr@^13.0.0:
     dependency-graph "^0.11.0"
     esbuild-wasm "^0.13.0"
     find-cache-dir "^3.3.1"
-    find-parent-dir "^0.3.1"
     glob "^7.1.6"
     injection-js "^2.4.0"
     jsonc-parser "^3.0.0"
