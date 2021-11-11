@@ -185,9 +185,9 @@
     tslib "^2.3.0"
 
 "@angular/core@~13.0.0":
-  version "13.0.0"
-  resolved "https://registry.yarnpkg.com/@angular/core/-/core-13.0.0.tgz#55528b74afe49e6c0f822050c092c24ca012fabf"
-  integrity sha512-OU7VDJR4pN0yUUbhlLiHgkTK8kcJFccHMBEtx3TKenBMkFU3CRynSzz67M4zBmXHR15729/UloL/8xuvxKQsGQ==
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-13.0.1.tgz#901837868bfb9b36ca4ee5fdc72ccc7222ec1c9d"
+  integrity sha512-5VAeafT+ro2PHGEjmeg6mJhQO+R7w16c1i8EGa7iN9vBn8uYwJ9aF+/ycZruq/MKoUhQhZlwk0yoBBqqq8A7oA==
   dependencies:
     tslib "^2.3.0"
 
