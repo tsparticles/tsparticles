@@ -264,9 +264,9 @@ rollup-pluginutils@^2.8.1:
     estree-walker "^0.6.1"
 
 rollup@^2.56.2:
-  version "2.56.3"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.56.3.tgz#b63edadd9851b0d618a6d0e6af8201955a77aeff"
-  integrity sha512-Au92NuznFklgQCUcV96iXlxUbHuB1vQMaH76DHl5M11TotjOHwqk9CwcrT78+Tnv4FN9uTBxq6p4EJoYkpyekg==
+  version "2.59.0"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.59.0.tgz#108c61b0fa0a37ebc8d1f164f281622056f0db59"
+  integrity sha512-l7s90JQhCQ6JyZjKgo7Lq1dKh2RxatOM+Jr6a9F7WbS9WgKbocyUSeLmZl8evAse7y96Ae98L2k1cBOwWD8nHw==
   optionalDependencies:
     fsevents "~2.3.2"
 
@@ -302,6 +302,11 @@ tslib@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
   integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
+
+tsparticles-engine@^2.0.0-beta.1:
+  version "2.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.0-beta.1.tgz#4e60294b162a3ddda0ba55319239a9eabb5a8ca9"
+  integrity sha512-Bq/KyKBdxUZ7zcMrZPgoHgJReHqiGn/QTFLu4JXApKNI58me5oKyArZ9iNm0vv5jedENd9k4dFJMsHP1kQPk8w==
 
 typescript@^4.4.2:
   version "4.4.2"
