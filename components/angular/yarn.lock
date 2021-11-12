@@ -161,9 +161,9 @@
     tslib "^2.3.0"
 
 "@angular/compiler-cli@~13.0.0":
-  version "13.0.0"
-  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-13.0.0.tgz#1847bca54be89fa8317b9d7a5a30f127bb29e1f7"
-  integrity sha512-t0ayzBT2QIKehqNaCfO2wS+WBU0PyzV2eiOnNu7rKTLrw5wlamq5nWGeT5P9yuLjjiVHYl96QyydoY1L938OeQ==
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-13.0.1.tgz#94895d1982ca1d3f14284b63c3ed4f1726f3d776"
+  integrity sha512-YmX+8rspvfzhTi5ildkIVidd9xmmdGyI8Zo2u0qUCuHx6dtEr/s7M6H2h0FRK9Inc4Icl72dJ6erD1CanEEYpg==
   dependencies:
     "@babel/core" "^7.8.6"
     canonical-path "1.0.0"
