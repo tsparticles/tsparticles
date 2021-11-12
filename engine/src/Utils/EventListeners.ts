@@ -2,7 +2,7 @@ import type { Container } from "../Core/Container";
 import { ClickMode, InteractivityDetect } from "../Enums";
 import type { ICoordinates } from "../Core/Interfaces";
 import { Constants } from "./Constants";
-import { itemFromArray } from "./Utils";
+import { isSsr, itemFromArray } from "./Utils";
 
 function manageListener(
     element: HTMLElement | Node | Window | MediaQueryList,
@@ -44,6 +44,7 @@ export class EventListeners {
     private readonly mouseUpHandler: EventListenerOrEventListenerObject;
     private readonly visibilityChangeHandler: EventListenerOrEventListenerObject;
     private readonly themeChangeHandler: EventListenerOrEventListenerObject;
+    private readonly oldThemeChangeHandler: (this: MediaQueryList, ev: MediaQueryListEvent) => unknown;
     private readonly resizeHandler: EventListenerOrEventListenerObject;
 
     private canPush: boolean;
@@ -68,6 +69,7 @@ export class EventListeners {
         this.mouseDownHandler = (): void => this.mouseDown();
         this.visibilityChangeHandler = (): void => this.handleVisibilityChange();
         this.themeChangeHandler = (e): void => this.handleThemeChange(e);
+        this.oldThemeChangeHandler = (e): void => this.handleThemeChange(e);
         this.resizeHandler = (): void => this.handleWindowResize();
     }
 
@@ -107,10 +109,18 @@ export class EventListeners {
             container.interactivity.element = container.canvas.element;
         }
 
-        const mediaMatch = typeof matchMedia !== "undefined" && matchMedia("(prefers-color-scheme: dark)");
+        const mediaMatch = !isSsr() && typeof matchMedia !== "undefined" && matchMedia("(prefers-color-scheme: dark)");
 
         if (mediaMatch) {
-            manageListener(mediaMatch, "change", this.themeChangeHandler, add);
+            if (mediaMatch.addEventListener !== undefined) {
+                manageListener(mediaMatch, "change", this.themeChangeHandler, add);
+            } else if (mediaMatch.addListener !== undefined) {
+                if (add) {
+                    mediaMatch.addListener(this.oldThemeChangeHandler);
+                } else {
+                    mediaMatch.removeListener(this.oldThemeChangeHandler);
+                }
+            }
         }
 
         const interactivityEl = container.interactivity.element;
