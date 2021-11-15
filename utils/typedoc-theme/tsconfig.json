@@ -3,6 +3,7 @@
       "outDir": "./dist",
       "declaration": true,
       "experimentalDecorators": true,
+      "forceConsistentCasingInFileNames": true,
       "lib": ["es2018", "dom"],
       "module": "commonjs",
       "moduleResolution": "node",
