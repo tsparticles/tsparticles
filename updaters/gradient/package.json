@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-updater-gradient",
-  "version": "1.37.3",
+  "version": "1.37.4",
   "description": "tsParticles particles gradient updater",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -77,6 +77,6 @@
     "webpack-cli": "^4.8.0"
   },
   "dependencies": {
-    "tsparticles": "^1.37.3"
+    "tsparticles": "^1.37.4"
   }
 }

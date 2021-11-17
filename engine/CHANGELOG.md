@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.37.4](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.37.3...tsparticles@1.37.4) (2021-11-17)
+
+**Note:** Version bump only for package tsparticles
+
+
+
+
+
 ## [1.37.3](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.37.2...tsparticles@1.37.3) (2021-11-05)
 
 

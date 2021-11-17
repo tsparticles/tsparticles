@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-links",
-  "version": "1.22.3",
+  "version": "1.22.4",
   "description": "tsParticles links preset",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -45,6 +45,6 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles": "^1.37.3"
+    "tsparticles": "^1.37.4"
   }
 }
