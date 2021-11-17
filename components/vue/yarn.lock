@@ -1535,10 +1535,10 @@
     lodash.kebabcase "^4.1.1"
     svg-tags "^1.0.0"
 
-"@vue/babel-preset-app@^5.0.0-rc.0":
-  version "5.0.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@vue/babel-preset-app/-/babel-preset-app-5.0.0-rc.0.tgz#54644a87c0c55d91e5cd724c7b151de15d1dbe4e"
-  integrity sha512-44+ibKgrKH/gCKq13Yo6CVDRnuFkUEXN6LVoKQPHL9d4bs/3MEnOdG+Rz9PzMJjB2hgLVqf2nlfbpmNmtaMh7A==
+"@vue/babel-preset-app@^5.0.0-rc.1":
+  version "5.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/@vue/babel-preset-app/-/babel-preset-app-5.0.0-rc.1.tgz#bcf3667fbd4967d39495f4025a093859c6174363"
+  integrity sha512-inJV1lxC+dUvqwPy9gbEjELX+Vk/Ys961S61aIn52gSCZBLHfk8/7mM7B3PamgHSG8yQmgrd3BOZsKSSsAMNJQ==
   dependencies:
     "@babel/core" "^7.12.16"
     "@babel/helper-compilation-targets" "^7.12.16"
@@ -1626,16 +1626,16 @@
   integrity sha512-jzgGinruzu3fRGIi1MtPwld2VkG1tQn7DVjBYo9WKp1CBUuTwwasJoevHnoRLc7c/TK+erCX2M6exCHhJbfPAA==
 
 "@vue/cli-plugin-babel@~5.0.0-beta.4":
-  version "5.0.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-babel/-/cli-plugin-babel-5.0.0-rc.0.tgz#288520e83aa2d3a19bb80dd9e9c5d1d3482b8757"
-  integrity sha512-hYwR/1iAKR/s0PHE8s1IxrA1YyZBGrcGXke4eSx2iwDLodUUq/ZXPRKOeWkiJ8aBMJq3yoQdERTA795SoSzSnA==
+  version "5.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-babel/-/cli-plugin-babel-5.0.0-rc.1.tgz#9fd1f7e71240ec15c921e7680558c23920d04bd0"
+  integrity sha512-ldVuIkPDAuW831l4u7QMkqEhn4/Gil5Wv617i6h4rwDYAAXPgdf8Ce6b7jH4XEyQ2HCu93TzAK1i2njkWV1wrw==
   dependencies:
     "@babel/core" "^7.12.16"
-    "@vue/babel-preset-app" "^5.0.0-rc.0"
-    "@vue/cli-shared-utils" "^5.0.0-rc.0"
+    "@vue/babel-preset-app" "^5.0.0-rc.1"
+    "@vue/cli-shared-utils" "^5.0.0-rc.1"
     babel-loader "^8.2.2"
     thread-loader "^3.0.0"
-    webpack "^5.22.0"
+    webpack "^5.54.0"
 
 "@vue/cli-plugin-router@^5.0.0-rc.0":
   version "5.0.0-rc.0"
@@ -1729,10 +1729,10 @@
     webpack-virtual-modules "^0.4.2"
     whatwg-fetch "^3.6.2"
 
-"@vue/cli-shared-utils@^5.0.0-rc.0":
-  version "5.0.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-5.0.0-rc.0.tgz#62429b8baaec3a9c9afe49bb14ea1cdd237c7a8b"
-  integrity sha512-pcNDDXSP4PXO3EZCBmOGKH8xeqkcgglsNV91/f6IwjGYCCcnA2RpS79Ev+jTBUe+n4WmShndcHg7R9jCFzR8cg==
+"@vue/cli-shared-utils@^5.0.0-rc.0", "@vue/cli-shared-utils@^5.0.0-rc.1":
+  version "5.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-5.0.0-rc.1.tgz#0587c663775e666227d896ebbb365ea9909047d8"
+  integrity sha512-rZVTGfSQ0Sqw76BD/Z6iARfnO2r5ICSxt0iIpzjM8w9ohpRtI2B45NrngF0rILwy9d8we4A/n7gQQ0rqwkAX7g==
   dependencies:
     chalk "^4.1.2"
     execa "^1.0.0"
@@ -3252,18 +3252,10 @@ end-of-stream@^1.1.0:
   dependencies:
     once "^1.4.0"
 
-enhanced-resolve@^5.0.0:
+enhanced-resolve@^5.0.0, enhanced-resolve@^5.8.3:
   version "5.8.3"
   resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-5.8.3.tgz#6d552d465cce0423f5b3d718511ea53826a7b2f0"
   integrity sha512-EGAbGvH7j7Xt2nc0E7D99La1OiEs8LnyimkRgwExpUMScN6O+3x9tIWs7PLQZVNx4YD+00skHXPXi1yQHpAmZA==
-  dependencies:
-    graceful-fs "^4.2.4"
-    tapable "^2.2.0"
-
-enhanced-resolve@^5.8.0:
-  version "5.8.2"
-  resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-5.8.2.tgz#15ddc779345cbb73e97c611cd00c01c1e7bf4d8b"
-  integrity sha512-F27oB3WuHDzvR2DOGNTaYy0D5o0cnrv8TeI482VM4kYgQd/FT9lUQwuNsJ0oOHtBUq7eiW5ytqzp7nBFknL+GA==
   dependencies:
     graceful-fs "^4.2.4"
     tapable "^2.2.0"
@@ -3294,10 +3286,10 @@ error-stack-parser@^2.0.2:
   dependencies:
     stackframe "^1.1.1"
 
-es-module-lexer@^0.7.1:
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/es-module-lexer/-/es-module-lexer-0.7.1.tgz#c2c8e0f46f2df06274cdaf0dd3f3b33e0a0b267d"
-  integrity sha512-MgtWFl5No+4S3TmhDmCz2ObFGm6lEpTnzbQi+Dd+pw4mlTIZTmM2iAs5gRlmx5zS9luzobCSBSI90JM/1/JgOw==
+es-module-lexer@^0.9.0:
+  version "0.9.3"
+  resolved "https://registry.yarnpkg.com/es-module-lexer/-/es-module-lexer-0.9.3.tgz#6f13db00cc38417137daf74366f535c8eb438f19"
+  integrity sha512-1HQ2M2sPtxwnvOvT1ZClHyQDiggdNjURWpY2we6aMKCQiUVxTmVs2UYPLIrD84sS+kMdUwfBSylbJPwNnBrnHQ==
 
 escalade@^3.1.1:
   version "3.1.1"
@@ -7100,20 +7092,20 @@ webpack-merge@^5.7.3:
     clone-deep "^4.0.1"
     wildcard "^2.0.0"
 
-webpack-sources@^3.2.0:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-3.2.1.tgz#251a7d9720d75ada1469ca07dbb62f3641a05b6d"
-  integrity sha512-t6BMVLQ0AkjBOoRTZgqrWm7xbXMBzD+XDq2EZ96+vMfn3qKgsvdXZhbPZ4ElUOpdv4u+iiGe+w3+J75iy/bYGA==
+webpack-sources@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-3.2.2.tgz#d88e3741833efec57c4c789b6010db9977545260"
+  integrity sha512-cp5qdmHnu5T8wRg2G3vZZHoJPN14aqQ89SyQ11NpGH5zEMDCclt49rzo+MaRazk7/UeILhAI+/sEtcM+7Fr0nw==
 
 webpack-virtual-modules@^0.4.2:
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/webpack-virtual-modules/-/webpack-virtual-modules-0.4.3.tgz#cd597c6d51d5a5ecb473eea1983a58fa8a17ded9"
   integrity sha512-5NUqC2JquIL2pBAAo/VfBP6KuGkHIZQXW/lNKupLPfhViwh8wNsu0BObtl09yuKZszeEUfbXz8xhrHvSG16Nqw==
 
-webpack@^5.22.0, webpack@^5.38.1:
-  version "5.53.0"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.53.0.tgz#f463cd9c6fc1356ae4b9b7ac911fd1f5b2df86af"
-  integrity sha512-RZ1Z3z3ni44snoWjfWeHFyzvd9HMVYDYC5VXmlYUT6NWgEOWdCNpad5Fve2CzzHoRED7WtsKe+FCyP5Vk4pWiQ==
+webpack@^5.22.0, webpack@^5.38.1, webpack@^5.54.0:
+  version "5.64.1"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.64.1.tgz#fd59840c16f04fe315f2b2598a85026f12dfa1bb"
+  integrity sha512-b4FHmRgaaAjP+aVOVz41a9Qa5SmkUPQ+u8FntTQ1roPHahSComB6rXnLwc976VhUY4CqTaLu5mCswuHiNhOfVw==
   dependencies:
     "@types/eslint-scope" "^3.7.0"
     "@types/estree" "^0.0.50"
@@ -7124,8 +7116,8 @@ webpack@^5.22.0, webpack@^5.38.1:
     acorn-import-assertions "^1.7.6"
     browserslist "^4.14.5"
     chrome-trace-event "^1.0.2"
-    enhanced-resolve "^5.8.0"
-    es-module-lexer "^0.7.1"
+    enhanced-resolve "^5.8.3"
+    es-module-lexer "^0.9.0"
     eslint-scope "5.1.1"
     events "^3.2.0"
     glob-to-regexp "^0.4.1"
@@ -7138,7 +7130,7 @@ webpack@^5.22.0, webpack@^5.38.1:
     tapable "^2.1.1"
     terser-webpack-plugin "^5.1.3"
     watchpack "^2.2.0"
-    webpack-sources "^3.2.0"
+    webpack-sources "^3.2.2"
 
 websocket-driver@>=0.5.1, websocket-driver@^0.7.4:
   version "0.7.4"
