@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-path-simplex-noise",
-  "version": "1.37.3",
+  "version": "1.37.4",
   "description": "tsParticles simplex noise path",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -71,6 +71,6 @@
     "webpack-cli": "4.8.0"
   },
   "dependencies": {
-    "tsparticles": "^1.37.3"
+    "tsparticles": "^1.37.4"
   }
 }
