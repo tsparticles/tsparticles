@@ -54,7 +54,7 @@ Once the scripts are loaded you can set up `tsParticles` like this:
 loadFull(tsParticles); // not needed if using the bundle script, required for any other installation
 
 tsParticles.load("tsparticles", {
-  /* options */
+    /* options */
 });
 ```
 
@@ -64,25 +64,51 @@ _The syntax for `React.js`, `Preact` and `Inferno` is the same_.
 
 This sample uses the class component syntax, but you can use hooks as well (if the library supports it).
 
-```javascript
+*Class Components*
+
+```typescript jsx
+import React from "react";
 import Particles from "react-tsparticles";
-import { Main } from "tsparticles-engine";
+import type { Main } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 
-export class ParticlesContainer extends React.PureComponent<IProps> {
-  // this customizes the component tsParticles installation
-  customInit(main: Main) {
-    // this adds the bundle to tsParticles
-    loadFull(main);
-  }
+export class ParticlesContainer extends PureComponent<unknown> {
+    // this customizes the component tsParticles installation
+    customInit(main: Main) {
+        // this adds the bundle to tsParticles
+        loadFull(main);
+    }
 
-  render() {
+    render() {
+        const options = {
+            /* custom options */
+        };
+
+        return <Particles options={options} init={this.customInit}/>;
+    }
+}
+```
+
+*Hooks / Functional Components*
+
+```typescript jsx
+import React, { useCallback } from "react";
+import Particles from "react-tsparticles";
+import type { Main } from "tsparticles-engine";
+import { loadFull } from "tsparticles";
+
+export function ParticlesContainer(props: unknown) {
+    // this customizes the component tsParticles installation
+    const customInit = useCallback((main: Main) => {
+        // this adds the bundle to tsParticles
+        loadFull(main);
+    });
+
     const options = {
-      /* custom options */
+        /* custom options */
     };
 
-    return <Particles options={options} init={this.customInit} />;
-  }
+    return <Particles options={options} init={this.customInit}/>;
 }
 ```
 
@@ -91,29 +117,31 @@ export class ParticlesContainer extends React.PureComponent<IProps> {
 _The syntax for `Vue.js 2.x` and `3.x` is the same_
 
 ```vue
-<Particles id="tsparticles" :particlesInit="particlesInit" url="http://foo.bar/particles.json" />
+
+<Particles id="tsparticles" :particlesInit="particlesInit" url="http://foo.bar/particles.json"/>
 ```
 
 ```js
 function particlesInit(main: Main) {
-  loadFull(main);
+    loadFull(main);
 }
 ```
 
 ### Angular
 
 ```html
+
 <ng-particles
-  [id]="id"
-  [options]="particlesOptions"
-  (particlesLoaded)="particlesLoaded($event)"
-  (particlesInit)="particlesInit($event)"
+        [id]="id"
+        [options]="particlesOptions"
+        (particlesLoaded)="particlesLoaded($event)"
+        (particlesInit)="particlesInit($event)"
 ></ng-particles>
 ```
 
 ```ts
 function particlesInit(main: Main): void {
-  loadFull(main);
+    loadFull(main);
 }
 ```
 
@@ -130,6 +158,6 @@ function particlesInit(main: Main): void {
 
 ```js
 let onParticlesInit = (main) => {
-  loadFull(main);
+    loadFull(main);
 };
 ```
