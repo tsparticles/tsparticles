@@ -2128,6 +2128,18 @@ tslib@^1.8.1, tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
+tsparticles-plugin-infection@^1.37.4:
+  version "1.37.4"
+  resolved "https://registry.yarnpkg.com/tsparticles-plugin-infection/-/tsparticles-plugin-infection-1.37.4.tgz#953acb391b936dd7651e7aa9adb67a71149921e5"
+  integrity sha512-C8wo5VSSnbiw887SYilajIvcyXZl2cvrfuU/+Oe0GfQMEp/g/3+z3QwEYmDwvVvcGuiPWUSd6yF/czoV1YNMag==
+  dependencies:
+    tsparticles "^1.37.4"
+
+tsparticles@^1.37.4:
+  version "1.37.4"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.37.4.tgz#51aa177a74a0312e76703041d6a9099bd04bbd65"
+  integrity sha512-ttfQX26U1WgeoRWqXv3sucVlYZJxcpKzi75rTvMOSZhtQ1FretywWc2ajM6SFygqV0ZRndE4cYlrKh71zeb6mQ==
+
 tsutils@^3.21.0:
   version "3.21.0"
   resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-3.21.0.tgz#b48717d394cea6c1e096983eed58e9d61715b623"
@@ -2290,9 +2302,9 @@ wrappy@1:
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
 
 ws@^7.3.1:
-  version "7.4.4"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-7.4.4.tgz#383bc9742cb202292c9077ceab6f6047b17f2d59"
-  integrity sha512-Qm8k8ojNQIMx7S+Zp8u/uHOx7Qazv3Yv4q68MiWWWOJhiwG5W3x7iqmRtJo8xxrciZUY4vRxUTJCKuRnF28ZZw==
+  version "7.5.5"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-7.5.5.tgz#8b4bc4af518cfabd0473ae4f99144287b33eb881"
+  integrity sha512-BAkMFcAzl8as1G/hArkxOxq3G7pjUqQ3gzYbLL0/5zNkph70e+lCoxBGnm6AW1+/aiNeV4fnKqZ8m4GZewmH2w==
 
 xtend@~4.0.1:
   version "4.0.2"
