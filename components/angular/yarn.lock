@@ -10,14 +10,6 @@
     "@jridgewell/resolve-uri" "1.0.0"
     sourcemap-codec "1.4.8"
 
-"@angular-devkit/architect@0.1300.2":
-  version "0.1300.2"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.1300.2.tgz#3de9c667d2a83e0e40056daf7dc0c27f4d3dddb1"
-  integrity sha512-cCTPFKZlR+Szt+X/l/eo4KBYnRba2NiCpFNPVsujitm7JqCXkjab7NDlf+2XMVD8vZl/kR1hfyF6O9ywYmhEFA==
-  dependencies:
-    "@angular-devkit/core" "13.0.2"
-    rxjs "6.6.7"
-
 "@angular-devkit/architect@0.1300.3":
   version "0.1300.3"
   resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.1300.3.tgz#8d74a0f3cc3a0e4ecb0c6723e13fc0fee4790363"
@@ -106,18 +98,6 @@
     "@angular-devkit/architect" "0.1300.3"
     rxjs "6.6.7"
 
-"@angular-devkit/core@13.0.2":
-  version "13.0.2"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-13.0.2.tgz#1ef92388464ca86d22b21c6ebcb9fc3b6a16c374"
-  integrity sha512-I4co4GH+iu0tns+UXfMtjJISO+cLpaUuiEH6kf0wF5cqjaIeluA9UjIRnxuNbdTW8iE2xVj/UWhQfHe/Ncp76w==
-  dependencies:
-    ajv "8.6.3"
-    ajv-formats "2.1.1"
-    fast-json-stable-stringify "2.1.0"
-    magic-string "0.25.7"
-    rxjs "6.6.7"
-    source-map "0.7.3"
-
 "@angular-devkit/core@13.0.3":
   version "13.0.3"
   resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-13.0.3.tgz#05911ab964f8cbd5cade9bd48215424836ab9c87"
@@ -130,12 +110,12 @@
     rxjs "6.6.7"
     source-map "0.7.3"
 
-"@angular-devkit/schematics@13.0.2":
-  version "13.0.2"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-13.0.2.tgz#975e5e1494261d5efac2848f42e83c7cc25a32ed"
-  integrity sha512-qrTe1teQptgP8gmVy6QX0T4dNfnNipEv+cM2cr7JXOmkPpwF+6oBDrTRIJ55t6rziqrXHJ3rxjKm1aHAxFrIEQ==
+"@angular-devkit/schematics@13.0.3":
+  version "13.0.3"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-13.0.3.tgz#255895e10c2b025df8ee4ff93428cb2249ae5fc0"
+  integrity sha512-+Va1E0zJBCg5jqSfITusghoMJgPAwlU+WUs49fuGVCzfJPwfSjTKSrsbhanahMd27+Ys3rovGZq0F2JUdL801A==
   dependencies:
-    "@angular-devkit/core" "13.0.2"
+    "@angular-devkit/core" "13.0.3"
     jsonc-parser "3.0.0"
     magic-string "0.25.7"
     ora "5.4.1"
@@ -149,14 +129,14 @@
     tslib "^2.3.0"
 
 "@angular/cli@~13.0.1":
-  version "13.0.2"
-  resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-13.0.2.tgz#b3a922adae67ce5f0584df5bbee3195a902e7b20"
-  integrity sha512-eFEVZR56q1zCCBfp7e7sqmrqbHhdDd/1QGv9FYD+2HoC1VHYQf5w+NyWofQhx7a+tnGGqoR28LYzSsL7fFW8pw==
+  version "13.0.3"
+  resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-13.0.3.tgz#7d357a80dc612421115b1288291ce6278720d0a4"
+  integrity sha512-LDXDXDbQ1MBHVUstu4aNjFbyg5f9hLP52gEKB8Z6fQlf5CB1X5zD6UPcR4IvoYt03EFxg3DHco+ueJQ20oZUWQ==
   dependencies:
-    "@angular-devkit/architect" "0.1300.2"
-    "@angular-devkit/core" "13.0.2"
-    "@angular-devkit/schematics" "13.0.2"
-    "@schematics/angular" "13.0.2"
+    "@angular-devkit/architect" "0.1300.3"
+    "@angular-devkit/core" "13.0.3"
+    "@angular-devkit/schematics" "13.0.3"
+    "@schematics/angular" "13.0.3"
     "@yarnpkg/lockfile" "1.1.0"
     ansi-colors "4.1.1"
     debug "4.3.2"
@@ -1348,13 +1328,13 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
-"@schematics/angular@13.0.2":
-  version "13.0.2"
-  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-13.0.2.tgz#82e2726ecadb61715214072896e12c5733c77595"
-  integrity sha512-qdzgd/CT6Y3U/98f/n66pnIMY5RuLW7WAmz+KQiuqaLgYWZNUbqYtAoxFI5ABTSKQoZSjjfescWL2R3XN9g3Xw==
+"@schematics/angular@13.0.3":
+  version "13.0.3"
+  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-13.0.3.tgz#08c5511b0e72a9934ac84545d3e49e05bd0dbf6c"
+  integrity sha512-qH6mnmGaDCuG1FM3vLdvSFDG394TeZO0ZvRDrw3iCYlX5Nkbz0Kvt0MPtWNZmlohwFhGlbXKVQiR++1dxa6eEA==
   dependencies:
-    "@angular-devkit/core" "13.0.2"
-    "@angular-devkit/schematics" "13.0.2"
+    "@angular-devkit/core" "13.0.3"
+    "@angular-devkit/schematics" "13.0.3"
     jsonc-parser "3.0.0"
 
 "@tootallnate/once@1":
@@ -6317,6 +6297,11 @@ tslib@~2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.1.0.tgz#da60860f1c2ecaa5703ab7d39bc05b6bf988b97a"
   integrity sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==
+
+tsparticles-engine@^2.0.0-beta.1:
+  version "2.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.0-beta.1.tgz#4e60294b162a3ddda0ba55319239a9eabb5a8ca9"
+  integrity sha512-Bq/KyKBdxUZ7zcMrZPgoHgJReHqiGn/QTFLu4JXApKNI58me5oKyArZ9iNm0vv5jedENd9k4dFJMsHP1kQPk8w==
 
 type-fest@^0.21.3:
   version "0.21.3"
