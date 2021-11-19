@@ -15,6 +15,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [2.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/cra-template-particles-typescript@2.0.0-beta.0...cra-template-particles-typescript@2.0.0-beta.1) (2021-10-06)
+## [1.20.4](https://github.com/matteobruni/tsparticles/compare/cra-template-particles-typescript@1.20.3...cra-template-particles-typescript@1.20.4) (2021-11-17)
+
+**Note:** Version bump only for package cra-template-particles-typescript
+
+
+
+
+
 ## [1.20.3](https://github.com/matteobruni/tsparticles/compare/cra-template-particles-typescript@1.20.2...cra-template-particles-typescript@1.20.3) (2021-11-05)
 
 **Note:** Version bump only for package cra-template-particles-typescript

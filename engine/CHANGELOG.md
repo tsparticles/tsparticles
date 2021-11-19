@@ -6,6 +6,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [2.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.0.0-beta.0...tsparticles-engine@2.0.0-beta.1) (2021-10-06)
 
 **Note:** Version bump only for package tsparticles-engine
+## [1.37.4](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.37.3...tsparticles@1.37.4) (2021-11-17)
+
+**Note:** Version bump only for package tsparticles
 
 
 

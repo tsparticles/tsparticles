@@ -12,6 +12,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * moved all shapes to external packages, breaking ([77e4113](https://github.com/matteobruni/tsparticles/commit/77e411338f65ab076fe85c0f143c13417147d4b5))
 * moving all updaters to external packages, breaking ([94bdde6](https://github.com/matteobruni/tsparticles/commit/94bdde67d0b546c22b7841ff8e969d15ddef3430))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.22.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-bubbles@1.22.3...tsparticles-preset-bubbles@1.22.4) (2021-11-17)
+
+**Note:** Version bump only for package tsparticles-preset-bubbles
+
+
+
+
+
 ## [1.22.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-bubbles@1.22.2...tsparticles-preset-bubbles@1.22.3) (2021-11-05)
 
 **Note:** Version bump only for package tsparticles-preset-bubbles

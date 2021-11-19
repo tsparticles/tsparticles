@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.35.4...react-tsparticles@2.0.0-beta.2) (2021-10-06)
+## [1.37.4](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.37.3...react-tsparticles@1.37.4) (2021-11-17)
+
+**Note:** Version bump only for package react-tsparticles
+
+
+
+
+
 ## [1.37.3](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.37.2...react-tsparticles@1.37.3) (2021-11-05)
 
 **Note:** Version bump only for package react-tsparticles

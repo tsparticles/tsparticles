@@ -10,6 +10,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * fixed sea anemone presets ([0df846d](https://github.com/matteobruni/tsparticles/commit/0df846d81b736b38f8e920b207ab973811695622))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.22.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-sea-anemone@1.22.3...tsparticles-preset-sea-anemone@1.22.4) (2021-11-17)
+
+**Note:** Version bump only for package tsparticles-preset-sea-anemone
+
+
+
+
+
 ## [1.22.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-sea-anemone@1.22.2...tsparticles-preset-sea-anemone@1.22.3) (2021-11-05)
 
 **Note:** Version bump only for package tsparticles-preset-sea-anemone

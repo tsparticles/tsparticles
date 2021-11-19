@@ -10,6 +10,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * moved out click interactions to external packages, breaking ([466973d](https://github.com/matteobruni/tsparticles/commit/466973ddbcc382c27c03f7b3518dea99c5e1949c))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.22.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fire@1.22.3...tsparticles-preset-fire@1.22.4) (2021-11-17)
+
+**Note:** Version bump only for package tsparticles-preset-fire
+
+
+
+
+
 ## [1.22.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fire@1.22.2...tsparticles-preset-fire@1.22.3) (2021-11-05)
 
 **Note:** Version bump only for package tsparticles-preset-fire
