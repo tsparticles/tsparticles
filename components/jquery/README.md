@@ -8,8 +8,14 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) jQuery plugin
 
 ## Installation
 
-```shell script
-npm install jquery-particles jquery
+```shell
+$ npm install jquery-particles jquery
+```
+
+or
+
+```shell
+$ yarn add jquery-particles jquery
 ```
 
 or from jsDelivr
@@ -17,8 +23,11 @@ or from jsDelivr
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/jquery-particles/badge)](https://www.jsdelivr.com/package/npm/jquery-particles)
 
 ```html
-<!-- first include tsParticles -->
-<script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
+<!-- first include tsParticles engine -->
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-engine"></script>
+
+<!-- then include any tsParticles plugin needed -->
+<script src="https://cdn.jsdelivr.net/npm/tsparticles/tsparticles.bundle.min.js"></script>
 
 <!-- then include jquery wrapper -->
 <script src="https://cdn.jsdelivr.net/npm/jquery-particles"></script>
@@ -33,6 +42,9 @@ HTML
 ```
 
 ```javascript
+// load here the plugins like loadFull from the tsparticles bundle
+loadFull(tsParticles);
+
 $("#tsparticles")
   .particles()
   .init(
@@ -56,12 +68,6 @@ $("#tsparticles")
           resize: true,
         },
         modes: {
-          bubble: {
-            distance: 400,
-            duration: 2,
-            opacity: 0.8,
-            size: 40,
-          },
           push: {
             quantity: 4,
           },
@@ -88,7 +94,9 @@ $("#tsparticles")
         move: {
           direction: "none",
           enable: true,
-          outMode: "bounce",
+          outModes: {
+            default: "bounce",
+          },
           random: false,
           speed: 6,
           straight: false,
@@ -96,7 +104,7 @@ $("#tsparticles")
         number: {
           density: {
             enable: true,
-            value_area: 800,
+            area: 800,
           },
           value: 80,
         },

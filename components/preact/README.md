@@ -9,13 +9,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) Preact compon
 ## Installation
 
 ```shell
-npm install preact-particles preact
+$ npm install preact-particles preact
 ```
 
 or
 
 ```shell
-yarn add preact-particles preact
+$ yarn add preact-particles preact
 ```
 
 ## How to use
@@ -28,6 +28,7 @@ _Remote url_
 
 ```javascript
 import Particles from "preact-particles";
+import { loadFull } from "tsparticles";
 
 class App extends Component {
   constructor(props) {
@@ -41,6 +42,7 @@ class App extends Component {
     console.log(main);
 
     // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+    loadFull(main);
   }
 
   particlesLoaded(container) {
@@ -64,6 +66,7 @@ _Options object_
 
 ```javascript
 import Particles from "preact-particles";
+import { loadFull } from "tsparticles";
 
 class App extends Component {
   constructor(props) {
@@ -77,6 +80,7 @@ class App extends Component {
     console.log(main);
 
     // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+    loadFull(main);
   }
 
   particlesLoaded(container) {
@@ -109,12 +113,6 @@ class App extends Component {
               resize: true,
             },
             modes: {
-              bubble: {
-                distance: 400,
-                duration: 2,
-                opacity: 0.8,
-                size: 40,
-              },
               push: {
                 quantity: 4,
               },
@@ -141,7 +139,9 @@ class App extends Component {
             move: {
               direction: "none",
               enable: true,
-              outMode: "bounce",
+              outModes: {
+                default: "bounce",
+              },
               random: false,
               speed: 6,
               straight: false,
@@ -149,7 +149,7 @@ class App extends Component {
             number: {
               density: {
                 enable: true,
-                value_area: 800,
+                area: 800,
               },
               value: 80,
             },

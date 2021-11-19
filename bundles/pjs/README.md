@@ -37,12 +37,12 @@ Once the scripts are loaded you can set up `tsParticles` or `particlesJS` like t
 const { particlesJS } = initPjs(tsParticles); // not needed if using the bundle script, required for any other installation
 
 particlesJS("tsparticles", {
-    /* options */
+  /* options */
 });
 
 // or
 
 tsParticles.load("tsparticles", {
-    /* options */
+  /* options */
 });
 ```
