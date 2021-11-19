@@ -11,13 +11,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) Angular compo
 ### Install
 
 ```shell script
-npm install ng-particles tsparticles
+npm install ng-particles tsparticles-engine
 ```
 
 or
 
 ```shell script
-yarn add ng-particles tsparticles
+yarn add ng-particles tsparticles-engine
 ```
 
 ### Usage
@@ -25,130 +25,131 @@ yarn add ng-particles tsparticles
 _template.html_
 
 ```html
-<ng-particles [id]="id" [options]="particlesOptions" (particlesLoaded)="particlesLoaded($event)" (particlesInit)="particlesInit($event)"></ng-particles>
+
+<ng-particles [id]="id" [options]="particlesOptions" (particlesLoaded)="particlesLoaded($event)"
+              (particlesInit)="particlesInit($event)"></ng-particles>
 
 <!-- or -->
 
-<ng-particles [id]="id" [url]="particlesUrl" (particlesLoaded)="particlesLoaded($event)" (particlesInit)="particlesInit($event)"></ng-particles>
+<ng-particles [id]="id" [url]="particlesUrl" (particlesLoaded)="particlesLoaded($event)"
+              (particlesInit)="particlesInit($event)"></ng-particles>
 ```
 
 _app.ts_
 
 ```typescript
-export class AppComponent {
-    id = "tsparticles";
-    
-    /* Starting from 1.19.0 you can use a remote url (AJAX request) to a JSON with the configuration */
-    particlesUrl = "http://foo.bar/particles.json";
-    
-    /* or the classic JavaScript object */
-    particlesOptions = {
-        background: {
-            color: {
-                value: "#0d47a1"
-            }
-        },
-        fpsLimit: 60,
-        interactivity: {
-            events: {
-                onClick: {
-                    enable: true,
-                    mode: "push"
-                },
-                onHover: {
-                    enable: true,
-                    mode: "repulse"
-                },
-                resize: true
-            },
-            modes: {
-                bubble: {
-                    distance: 400,
-                    duration: 2,
-                    opacity: 0.8,
-                    size: 40
-                },
-                push: {
-                    quantity: 4
-                },
-                repulse: {
-                    distance: 200,
-                    duration: 0.4
-                }
-            }
-        },
-        particles: {
-            color: {
-                value: "#ffffff"
-            },
-            links: {
-                color: "#ffffff",
-                distance: 150,
-                enable: true,
-                opacity: 0.5,
-                width: 1
-            },
-            collisions: {
-                enable: true
-            },
-            move: {
-                direction: "none",
-                enable: true,
-                outMode: "bounce",
-                random: false,
-                speed: 6,
-                straight: false
-            },
-            number: {
-                density: {
-                    enable: true,
-                    value_area: 800
-                },
-                value: 80
-            },
-            opacity: {
-                value: 0.5
-            },
-            shape: {
-                type: "circle"
-            },
-            size: {
-                random: true,
-                value: 5
-            }
-        },
-        detectRetina: true
-    };
+import { MoveDirection, ClickMode, HoverMode, OutMode } from "tsparticles-engine";
 
-    particlesLoaded(container: Container): void {
-        console.log(container);
-    }
-    
-    particlesInit(main: Main): void {
-        console.log(main);
-        
-        // Starting from 1.19.0 you can add custom presets or shape here, using the current tsParticles instance (main)
-    }
+export class AppComponent {
+  id = "tsparticles";
+
+  /* Starting from 1.19.0 you can use a remote url (AJAX request) to a JSON with the configuration */
+  particlesUrl = "http://foo.bar/particles.json";
+
+  /* or the classic JavaScript object */
+  particlesOptions = {
+    background: {
+      color: {
+        value: "#0d47a1"
+      }
+    },
+    fpsLimit: 60,
+    interactivity: {
+      events: {
+        onClick: {
+          enable: true,
+          mode: ClickMode.push
+        },
+        onHover: {
+          enable: true,
+          mode: HoverMode.repulse
+        },
+        resize: true
+      },
+      modes: {
+        push: {
+          quantity: 4
+        },
+        repulse: {
+          distance: 200,
+          duration: 0.4
+        }
+      }
+    },
+    particles: {
+      color: {
+        value: "#ffffff"
+      },
+      links: {
+        color: "#ffffff",
+        distance: 150,
+        enable: true,
+        opacity: 0.5,
+        width: 1
+      },
+      collisions: {
+        enable: true
+      },
+      move: {
+        direction: MoveDirection.none,
+        enable: true,
+        outModes: {
+            default: OutMode.bounce
+        },
+        random: false,
+        speed: 6,
+        straight: false
+      },
+      number: {
+        density: {
+          enable: true,
+          area: 800
+        },
+        value: 80
+      },
+      opacity: {
+        value: 0.5
+      },
+      shape: {
+        type: "circle"
+      },
+      size: {
+        random: true,
+        value: 5
+      }
+    },
+    detectRetina: true
+  };
+
+  particlesLoaded(container: Container): void {
+    console.log(container);
+  }
+
+  particlesInit(main: Main): void {
+    console.log(main);
+
+    // Starting from 1.19.0 you can add custom presets or shape here, using the current tsParticles instance (main)
+  }
 }
 ```
 
 _app.module.ts_
 
 ```typescript
-import {NgParticlesModule} from "ng-particles";
-import {NgModule} from "@angular/core";
+import { NgParticlesModule } from "ng-particles";
+import { NgModule } from "@angular/core";
 
 @NgModule({
-    declarations: [
-        /* AppComponent */
-    ],
-    imports: [
-        /* other imports */ NgParticlesModule /* NgParticlesModule is required*/
-    ],
-    providers: [],
-    bootstrap: [
-        /* AppComponent */
-    ]
+  declarations: [
+    /* AppComponent */
+  ],
+  imports: [
+    /* other imports */ NgParticlesModule /* NgParticlesModule is required*/
+  ],
+  providers: [],
+  bootstrap: [
+    /* AppComponent */
+  ]
 })
 export class AppModule {
 }

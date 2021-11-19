@@ -1,24 +1,166 @@
-# NgParticles
+[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.0.
+# ng-particles
 
-## Code scaffolding
+[![npm](https://img.shields.io/npm/v/ng-particles)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/ng-particles)](https://www.npmjs.com/package/ng-particles)
 
-Run `ng generate component component-name --project ng-particles` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ng-particles`.
-> Note: Don't forget to add `--project ng-particles` or else it will be added to the default project in your `angular.json` file. 
+Official [tsParticles](https://github.com/matteobruni/tsparticles) Angular component
 
-## Build
+## How to use it
 
-Run `ng build ng-particles` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Install
 
-## Publishing
+```shell script
+npm install ng-particles tsparticles-engine
+```
 
-After building your library with `ng build ng-particles`, go to the dist folder `cd dist/ng-particles` and run `npm publish`.
+or
 
-## Running unit tests
+```shell script
+yarn add ng-particles tsparticles-engine
+```
 
-Run `ng test ng-particles` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Usage
 
-## Further help
+_template.html_
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```html
+
+<ng-particles [id]="id" [options]="particlesOptions" (particlesLoaded)="particlesLoaded($event)"
+              (particlesInit)="particlesInit($event)"></ng-particles>
+
+<!-- or -->
+
+<ng-particles [id]="id" [url]="particlesUrl" (particlesLoaded)="particlesLoaded($event)"
+              (particlesInit)="particlesInit($event)"></ng-particles>
+```
+
+_app.ts_
+
+```typescript
+import { MoveDirection, ClickMode, HoverMode, OutMode } from "tsparticles-engine";
+
+export class AppComponent {
+  id = "tsparticles";
+
+  /* Starting from 1.19.0 you can use a remote url (AJAX request) to a JSON with the configuration */
+  particlesUrl = "http://foo.bar/particles.json";
+
+  /* or the classic JavaScript object */
+  particlesOptions = {
+    background: {
+      color: {
+        value: "#0d47a1"
+      }
+    },
+    fpsLimit: 60,
+    interactivity: {
+      events: {
+        onClick: {
+          enable: true,
+          mode: ClickMode.push
+        },
+        onHover: {
+          enable: true,
+          mode: HoverMode.repulse
+        },
+        resize: true
+      },
+      modes: {
+        push: {
+          quantity: 4
+        },
+        repulse: {
+          distance: 200,
+          duration: 0.4
+        }
+      }
+    },
+    particles: {
+      color: {
+        value: "#ffffff"
+      },
+      links: {
+        color: "#ffffff",
+        distance: 150,
+        enable: true,
+        opacity: 0.5,
+        width: 1
+      },
+      collisions: {
+        enable: true
+      },
+      move: {
+        direction: MoveDirection.none,
+        enable: true,
+        outModes: {
+            default: OutMode.bounce
+        },
+        random: false,
+        speed: 6,
+        straight: false
+      },
+      number: {
+        density: {
+          enable: true,
+          area: 800
+        },
+        value: 80
+      },
+      opacity: {
+        value: 0.5
+      },
+      shape: {
+        type: "circle"
+      },
+      size: {
+        random: true,
+        value: 5
+      }
+    },
+    detectRetina: true
+  };
+
+  particlesLoaded(container: Container): void {
+    console.log(container);
+  }
+
+  particlesInit(main: Main): void {
+    console.log(main);
+
+    // Starting from 1.19.0 you can add custom presets or shape here, using the current tsParticles instance (main)
+  }
+}
+```
+
+_app.module.ts_
+
+```typescript
+import { NgParticlesModule } from "ng-particles";
+import { NgModule } from "@angular/core";
+
+@NgModule({
+  declarations: [
+    /* AppComponent */
+  ],
+  imports: [
+    /* other imports */ NgParticlesModule /* NgParticlesModule is required*/
+  ],
+  providers: [],
+  bootstrap: [
+    /* AppComponent */
+  ]
+})
+export class AppModule {
+}
+```
+
+## Demos
+
+The demo website is [here](https://particles.js.org)
+
+<https://particles.js.org>
+
+There's also a CodePen collection actively maintained and updated [here](https://codepen.io/collection/DPOage)
+
+<https://codepen.io/collection/DPOage>
