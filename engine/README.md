@@ -5,17 +5,42 @@
 **A lightweight TypeScript library for creating particles. Dependency free (\*), browser ready and compatible with
 React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.js, Solid.js, and Web Components**
 
-[![Rate on Openbase](https://badges.openbase.com/js/rating/tsparticles.svg)](https://openbase.com/js/tsparticles?utm_source=embedded&utm_medium=badge&utm_campaign=rate-badge) [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge?style=rounded)](https://www.jsdelivr.com/package/npm/tsparticles) [![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) [![npm](https://img.shields.io/npm/dm/tsparticles)](https://www.npmjs.com/package/tsparticles) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/) [![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Grade)
+[![Rate on Openbase](https://badges.openbase.com/js/rating/tsparticles.svg)](https://openbase.com/js/tsparticles?utm_source=embedded&utm_medium=badge&utm_campaign=rate-badge) [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge?style=rounded)](https://www.jsdelivr.com/package/npm/tsparticles) [![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) [![npm](https://img.shields.io/npm/dm/tsparticles)](https://www.npmjs.com/package/tsparticles) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/) [![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Grade) [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/matteobruni/tsparticles) [![Run on Repl.it](https://repl.it/badge/github/matteobruni/tsparticles)](https://repl.it/github/matteobruni/tsparticles)
 
-[![Slack](https://particles.js.org/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI) [![Discord](https://particles.js.org/images/discord.png)](https://discord.gg/hACwv45Hme) [![Telegram](https://particles.js.org/images/telegram.png)](https://t.me/tsparticles)
+<a href = "https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI"> <img src = "https://particles.js.org/images/slack.png"> </a> <a href = "https://discord.gg/hACwv45Hme"> <img src = "https://particles.js.org/images/discord.png" height = "38px"> </a> <a href = "https://t.me/tsparticles"> <img src = "https://particles.js.org/images/telegram.png" width = "41px" height = "41px"> </a>
 
 [![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles")
 
 ---
 
+## Table of Contents
+
+* [Use for your website](#Do-you-want-to-use-it-on-your-website)
+    * [Library installation](#Library-installation)
+* [Official components for some of the most used frameworks](#Official-components-for-some-of-the-most-used-frameworks)
+    * [Angular](#Angular)
+    * [Inferno](#Inferno)
+    * [jQuery](#jQuery)
+    * [Preact](#Preact)
+    * [ReactJS](#ReactJS)
+    * [Svelte](#Svelte)
+    * [VueJS 2.x](#VueJS-2x)
+    * [VueJS 3.x](#VueJS-3x)
+    * [WordPress](#WordPress)
+* [Templates and Resources](#Templates-and-Resources)
+* [Demo / Generator](#Demo--Generator)
+    * [Characters as particles](#Characters-as-particles)
+    * [Mouse hover connections](#Mouse-hover-connections)
+    * [Polygon mask](#Polygon-mask)
+    * [Animated stars](#Animated-stars)
+    * [Nyan cat flying on scrolling stars](#Nyan-cat-flying-on-scrolling-stars)
+    * [Background Mask particles](#Background-Mask-particles)
+* [Migrating from Particles.js](#Migrating-from-Particlesjs)
+* [Plugins/Customizations](#PluginsCustomizations)
+
 ## Do you want to use it on your website?
 
-_Documentation and Development references [here](https://particles.js.org/docs/) 📖_
+*Documentation and Development references [here](https://particles.js.org/docs/) 📖*
 
 **This library is available on the two most popular CDNs and it's easy and ready to use, if you were using particles.js
 it's even easier**.
@@ -29,17 +54,20 @@ links you need, and _don't be scared by **TypeScript**, it's just the source lan
 CDNs and `npm` have all the sources you need in **Javascript**, a bundle browser ready (tsparticles.min.js) and all
 files splitted for `import` syntax.
 
-**If you are still interested** some lines below there are some instructions for migrating from the old particles.js
-library.
+**If you are interested** there are some _simple instructions_
+just [below](https://github.com/matteobruni/tsparticles/blob/main/README.md#library-installation) to guide you to
+migrate from the old particles.js library.
 
 ## **_Library installation_**
 
 ### **_Hosting / CDN_**
 
-**_Please use this hosts or your own to load tsParticles on your projects_**
+**_Please use these hosts or your own to load tsParticles on your projects_**
 
 #### jsDelivr
 
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-engine/badge)](https://www.jsdelivr.com/package/npm/tsparticles-engine)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-slim/badge)](https://www.jsdelivr.com/package/npm/tsparticles-slim)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge)](https://www.jsdelivr.com/package/npm/tsparticles)
 
 #### cdnjs
@@ -48,22 +76,24 @@ library.
 
 #### unpkg
 
-<https://unpkg.com/tsparticles/>
+<https://unpkg.com/tsparticles-engine/> <https://unpkg.com/tsparticles-slim/> <https://unpkg.com/tsparticles/>
 
 ---
 
 ### **_npm_**
 
+[![npmjs](https://badge.fury.io/js/tsparticles-engine.svg)](https://www.npmjs.com/package/tsparticles-engine) [![npmjs](https://img.shields.io/npm/dt/tsparticles-engine)](https://www.npmjs.com/package/tsparticles-engine)
+[![npmjs](https://badge.fury.io/js/tsparticles-slim.svg)](https://www.npmjs.com/package/tsparticles-slim) [![npmjs](https://img.shields.io/npm/dt/tsparticles-slim)](https://www.npmjs.com/package/tsparticles-slim)
 [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) [![npmjs](https://img.shields.io/npm/dt/tsparticles)](https://www.npmjs.com/package/tsparticles)
 
 ```shell
-npm install tsparticles
+npm install tsparticles-engine
 ```
 
 ### **_yarn_**
 
 ```shell
-yarn add tsparticles
+yarn add tsparticles-engine
 ```
 
 #### Import and require
@@ -102,7 +132,7 @@ Load tsParticles and configure the particles:
 
 <div id="tsparticles"></div>
 
-<script src="tsparticles.min.js"></script>
+<script src="tsparticles.engine.min.js"></script>
 ```
 
 **app.js**
@@ -244,15 +274,44 @@ Instructions available [here](https://github.com/matteobruni/tsparticles/blob/ma
 
 [![npm](https://img.shields.io/npm/v/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![npm](https://img.shields.io/npm/dm/particles.vue3)](https://www.npmjs.com/package/particles.vue3)
 
-Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/vue3/README.md)
+Instruction available [here](https://github.com/matteobruni/tsparticles/blob/main/components/vue3/README.md)
+
+### WordPress
+
+Actually an official tsParticles plugin isn't existing, but I have a collaboration with
+the `Premium Addons for Elementor` plugin collection.
+
+<div style="float: left; margin-right: 10px;">
+    <img width="64" alt="Premium Addons for Elementor" src="https://particles.js.org/images/premium-addons-wordpress-plugin.png" />
+</div>
+<div>
+    Premium Addons for Elementor is one of the most common plugins for Elementor that offers more than 55 highly customizable Elementor Widgets and Section Add-ons. tsParticles is exclusively included in Premium Particles Section Add-on for Elementor Page Builder. <a href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/" target="_blank">Check It Now</a>.<br />
+    Use Premium Addons for Elementor Page Builder and get the chance to include tsParticles in your next WordPress website without the need to write a single line of code. <a href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/" target="_blank">See a Live Example</a>.
+</div>
+<div style="clear: both;"></div>
+
+---
+
+## Templates and Resources
+
+You can find some tsParticles related templates [here](https://github.com/tsparticles/templates). The templates are
+created for *Vanilla Javascript*, *ReactJS*, *VueJS*, *Angular*, *SvelteJS* and other frameworks.
+
+The templates will vary, new ones can be created or older ones updated with latest features or changed to a better
+style. Check them out once in a while.
+
+If you created some good design with *tsParticles* feel free to submit a pull request with your cool template, you'll be
+credited as the template author!
+
+<https://github.com/tsparticles/templates>
 
 ---
 
 ## **_Demo / Generator_**
 
-<https://particles.js.org/>
+<https://particles.js.org/samples>
 
-[![Particles demo](https://particles.js.org/images/demo.png?v=1.8.1)](https://particles.js.org/)
+[![Particles demo](https://particles.js.org/images/demo.png?v=1.8.1)](https://particles.js.org/samples)
 
 ---
 
@@ -294,14 +353,14 @@ Instructions available [here](https://github.com/matteobruni/tsparticles/blob/ma
 
 **particles.json**
 
-You can find a sample config [here](https://particles.js.org/docs/modules/_core_container_.html) 📖
+You can find some config samples [here](https://github.com/matteobruni/tsparticles/tree/main/website/presets) 📖
 
 ---
 
 ## **_Options_**
 
 You can find all options
-available [here](https://particles.js.org/docs/interfaces/_options_interfaces_ioptions_.ioptions.html) 📖
+available [here](https://particles.js.org/docs/interfaces/Options_Interfaces_IOptions.IOptions.html) 📖
 
 ## Want to see it in action and try it?
 
@@ -352,4 +411,19 @@ tsParticles now supports some customizations 🥳.
 
 **You can create your own plugins**
 
-_Read more [here](https://particles.js.org/docs/modules/_core_interfaces_iplugin_.html)...\_
+_Read more [here](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.html)..._
+
+---
+
+<p>  
+    <a href="https://www.jetbrains.com/?from=tsParticles">  
+        <img src="https://raw.githubusercontent.com/matteobruni/tsparticles/gh-pages/images/jetbrains-logos/jetbrains-variant-4.png" height="150" alt="JetBrains" />  
+    </a>  
+    <a href="https://www.jetbrains.com/webstorm/?from=tsParticles">  
+        <img src="https://raw.githubusercontent.com/matteobruni/tsparticles/gh-pages/images/jetbrains-logos/logo.png" height="150" alt="JetBrains" />  
+    </a>  
+</p>
+
+### Huge thanks to [JetBrains](https://www.jetbrains.com/?from=tsParticles) for the 2020-2021 Open Source Licenses!
+
+[JetBrains WebStorm](https://www.jetbrains.com/webstorm/?from=tsParticles) is used to maintain this project.

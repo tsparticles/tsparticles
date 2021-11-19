@@ -107,7 +107,7 @@ const tsParticles = require("tsparticles-engine");
 
 // or
 
-import {tsParticles} from "tsparticles-engine";
+import { tsParticles } from "tsparticles-engine";
 ```
 
 The imported `tsParticles` is the same instance you have when including the script.
@@ -214,67 +214,67 @@ particles.pause();
 
 ### Angular
 
-#### `ng-particles`
+`ng-particles`
 
 [![npm](https://img.shields.io/npm/v/ng-particles)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/ng-particles)](https://www.npmjs.com/package/ng-particles)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/components/angular/README.md)
+Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/angular/README.md)
 
 ### Inferno
 
-#### `inferno-particles`
+`inferno-particles`
 
 [![npm](https://img.shields.io/npm/v/inferno-particles)](https://www.npmjs.com/package/inferno-particles) [![npm](https://img.shields.io/npm/dm/inferno-particles)](https://www.npmjs.com/package/inferno-particles)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/components/inferno/README.md)
+Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/inferno/README.md)
 
 ### jQuery
 
-#### `jquery-particles`
+`jquery-particles`
 
 [![npm](https://img.shields.io/npm/v/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles)](https://www.npmjs.com/package/jquery-particles)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/components/jquery/README.md)
+Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/jquery/README.md)
 
 ### Preact
 
-#### `preact-particles`
+`preact-particles`
 
 [![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/components/preact/README.md)
+Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/preact/README.md)
 
 ### ReactJS
 
-#### `react-tsparticles`
+`react-tsparticles`
 
 [![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md)
+Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md)
 
 ### Svelte
 
-#### `svelte-particles`
+`svelte-particles`
 
 [![npm](https://img.shields.io/npm/v/svelte-particles)](https://www.npmjs.com/package/svelte-particles) [![npm downloads](https://img.shields.io/npm/dm/svelte-particles)](https://www.npmjs.com/package/svelte-particles)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/components/svelte/README.md)
+Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/svelte/README.md)
 
 ### VueJS 2.x
 
-#### `particles.vue`
+`particles.vue`
 
 [![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md)
+Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md)
 
 ### VueJS 3.x
 
-#### `particles.vue3`
+`particles.vue3`
 
 [![npm](https://img.shields.io/npm/v/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![npm](https://img.shields.io/npm/dm/particles.vue3)](https://www.npmjs.com/package/particles.vue3)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/components/vue3/README.md)
+Instruction available [here](https://github.com/matteobruni/tsparticles/blob/main/components/vue3/README.md)
 
 ### WordPress
 
@@ -317,53 +317,37 @@ credited as the template author!
 
 ### Characters as particles
 
-[![Particles chars demo](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.js.org/samples#chars)
-
----
-
-### Mouse hover connections
-
-[![Particles mouse connections demo](https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)](https://particles.js.org/samples#connect)
+[![Particles chars demo](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.js.org/samples/#chars)
 
 ---
 
 ### Polygon mask
 
-[![tsParticles Polygon Mask demo](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.js.org/samples#polygonMask)
+[![tsParticles Polygon Mask demo](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.js.org/samples/#polygonMask)
 
 ---
 
 ### Animated stars
 
-[![Particles NASA demo](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.js.org/samples#nasa)
+[![Particles NASA demo](https://media.giphy.com/media/cLqGsnh7FKRVMgPIWE/giphy.gif)](https://particles.js.org/samples/#nasa)
 
 ---
 
 ### Nyan cat flying on scrolling stars
 
-[![Particles Nyan Cat demo](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.js.org/samples#nyancat2)
+[![Particles Nyan Cat demo](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.js.org/samples/#nyancat2)
 
 ---
 
 ### Snow particles
 
-[![tsParticles Snow demo](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.js.org/samples#snow)
+[![tsParticles Snow demo](https://media.giphy.com/media/gihwUFbmiubbkdzEMX/giphy.gif)](https://particles.js.org/samples/#snow)
 
 ---
 
 ### Background Mask particles
 
-[![tsParticles Background Mask demo](https://media.giphy.com/media/dWraWgqInWFGWiOyRu/giphy.gif)](https://particles.js.org/samples#background)
-
----
-
-#### COVID-19 SARS-CoV-2 particles
-
-[![tsParticles COVID-19 demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/samples#virus)
-
-_Don't click! DON'T CLICK! OH NO IT'S SPREADING!!!!_
-
-**COVID-19 is a serious disease. Please stay at home, wear a mask and stay safe!**
+[![tsParticles Background Mask demo](https://media.giphy.com/media/dWraWgqInWFGWiOyRu/giphy.gif)](https://particles.js.org/samples/#background)
 
 ---
 
@@ -383,14 +367,18 @@ available [here](https://particles.js.org/docs/interfaces/Options_Interfaces_IOp
 I've created a tsParticles collection on [CodePen](https://codepen.io/collection/DPOage) 😮 or you can checkout
 my [profile](https://codepen.io/matteobruni)
 
-Otherwise there's the demo page link below. Just click/tap the Coronavirus below, don't be scared. **It's safe** 😷.
+Otherwise, there's the demo page link below. Just click/tap the Coronavirus below, don't be scared. **It's safe** 😷.
 
-[![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/#virus)
+[![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/samples/#virus)
 
 Want to see ever more demos? Clone the repository on your computer and follow these instructions
 
 ```shell
-yarn install && yarn start
+$ yarn
+$ npx lerna bootstrap
+$ npx lerna run build
+$ cd demo/vanilla
+$ yarn start
 ```
 
 **Boom! 💥** <http://localhost:3000> and you can checkout other demos.
@@ -401,9 +389,12 @@ _If you are brave enough_ you can switch to the `dev` branch for trying the feat
 
 ## Migrating from Particles.js
 
-**tsParticles** library is fully compatible with the _particles.js_ configuration.
+**tsParticles** has a package that makes this library 100% compatible with the _particles.js_ configuration.
 
-Seriously, you just need to change the script source et-voilà, **you're ready** 🧙!
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-particles.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/tsparticles-particles.js) [![npmjs](https://badge.fury.io/js/tsparticles-particles.js.svg)](https://www.npmjs.com/package/tsparticles-particles.js) [![npm](https://img.shields.io/npm/dm/tsparticles-particles.js)](https://www.npmjs.com/package/tsparticles-particles.js)
+
+Seriously, you just need to change the script from particles.js to the bundled compatibility package, et-voilà, **you're
+ready** 🧙!
 
 You can read more **[here](https://dev.to/matteobruni/migrating-from-particles-js-to-tsparticles-2a6m)**
 
