@@ -9,13 +9,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) ReactJS compo
 ## Installation
 
 ```shell
-npm install react-tsparticles react
+$ npm install react-tsparticles react
 ```
 
 or
 
 ```shell
-yarn add react-tsparticles react
+$ yarn add react-tsparticles react
 ```
 
 #### create-react-app
@@ -27,14 +27,14 @@ Starting from version 1.17.0 there are two official `create-react-app` templates
 
 You can simply install them using the `create-react-app` command like this:
 
-```shell script
-create-react-app your_app --template particles
+```shell
+$ create-react-app your_app --template particles
 ```
 
 or
 
-```shell script
-create-react-app your_app --template particles-typescript
+```shell
+$ create-react-app your_app --template particles-typescript
 ```
 
 ## How to use
@@ -47,12 +47,16 @@ _Remote url_
 
 ```javascript
 import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
 
 const App = () => {
   const particlesInit = (main) => {
     console.log(main);
 
     // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+    // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+    // starting from v2 you can add only the features you need reducing the bundle size
+    loadFull(tsParticles);
   };
 
   const particlesLoaded = (container) => {
@@ -69,12 +73,16 @@ _Options object_
 
 ```javascript
 import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
 
 const App = () => {
   const particlesInit = (main) => {
     console.log(main);
 
     // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+    // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+    // starting from v2 you can add only the features you need reducing the bundle size
+    loadFull(main);
   };
 
   const particlesLoaded = (container) => {
@@ -105,12 +113,6 @@ const App = () => {
             resize: true,
           },
           modes: {
-            bubble: {
-              distance: 400,
-              duration: 2,
-              opacity: 0.8,
-              size: 40,
-            },
             push: {
               quantity: 4,
             },
@@ -145,7 +147,7 @@ const App = () => {
           number: {
             density: {
               enable: true,
-              value_area: 800,
+              area: 800,
             },
             value: 80,
           },

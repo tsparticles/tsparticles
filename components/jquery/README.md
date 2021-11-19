@@ -42,7 +42,8 @@ HTML
 ```
 
 ```javascript
-// load here the plugins like loadFull from the tsparticles bundle
+// this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+// starting from v2 you can add only the features you need reducing the bundle size
 loadFull(tsParticles);
 
 $("#tsparticles")

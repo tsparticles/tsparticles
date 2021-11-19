@@ -39,6 +39,7 @@ _app.ts_
 
 ```typescript
 import { MoveDirection, ClickMode, HoverMode, OutMode } from "tsparticles-engine";
+import { loadFull } from "tsparticles";
 
 export class AppComponent {
   id = "tsparticles";
@@ -94,7 +95,7 @@ export class AppComponent {
         direction: MoveDirection.none,
         enable: true,
         outModes: {
-            default: OutMode.bounce
+          default: OutMode.bounce
         },
         random: false,
         speed: 6,
@@ -129,6 +130,9 @@ export class AppComponent {
     console.log(main);
 
     // Starting from 1.19.0 you can add custom presets or shape here, using the current tsParticles instance (main)
+    // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+    // starting from v2 you can add only the features you need reducing the bundle size
+    loadFull(main);
   }
 }
 ```

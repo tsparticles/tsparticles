@@ -9,13 +9,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) RiotJS compon
 ## Installation
 
 ```shell
-npm install riot-particles riot
+$ npm install riot-particles riot
 ```
 
 or
 
 ```shell
-yarn add riot-particles riot
+$ yarn add riot-particles riot
 ```
 
 ## Usage
@@ -37,10 +37,17 @@ yarn add riot-particles riot
                 enable: true
             }
         }
-    }}' particlesInit='{(main) => console.log(main)}' particlesLoaded='{(container) => console.log(container)}'/>
+    }}' particlesInit='{(main) => {
+        console.log(main);
+        
+        // this loads the tsparticles package bundle, it is the easiest method for getting everything ready
+        // starting from v2 you can add only the features you need reducing the bundle size
+        loadFull(main); 
+    }}' particlesLoaded='{(container) => console.log(container)}'/>
 
 <script>
-    import RiotParticles from 'riot-particles';
+    import RiotParticles from "riot-particles";
+    import { loadFull } from "tsparticles";
 
     export default {
         components: {
@@ -54,7 +61,13 @@ yarn add riot-particles riot
 <riot-particles
         id="tsparticles"
         url="https://foo.bar/particles.json"
-        particlesInit='{(main) => console.log(main)}' particlesLoaded='{(container) => console.log(container)}'/>
+        particlesInit='{(main) => {
+        console.log(main);
+        
+        // this loads the tsparticles package bundle, it is the easiest method for getting everything ready
+        // starting from v2 you can add only the features you need reducing the bundle size
+        loadFull(main); 
+    }}' particlesLoaded='{(container) => console.log(container)}'/>
 />
 ```
 
