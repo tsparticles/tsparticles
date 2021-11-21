@@ -122,9 +122,9 @@
     rxjs "6.6.7"
 
 "@angular/animations@~13.0.0":
-  version "13.0.1"
-  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-13.0.1.tgz#5af75e9659167c6ab886af644e45aa4f531d15c6"
-  integrity sha512-tT/aWbfMs4QpqA/nblLJYTb1sF/FAS2y4rGjtQ5D/tAwyIdIqLS3PKrE7eL3vdcRs9cEa94ZWnNiTkRMviP84w==
+  version "13.0.2"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-13.0.2.tgz#afa38f32bfa40be94730905e187279e6af69999d"
+  integrity sha512-ROR70rM6E13pIJzaYf0Su/ALSoBm5fIMjozey636pAq21TxTy5IfhgaBjv/vflC9psbpaySGw2H5XnwejP0gSw==
   dependencies:
     tslib "^2.3.0"
 
@@ -192,9 +192,9 @@
     tslib "^2.3.0"
 
 "@angular/forms@~13.0.0":
-  version "13.0.1"
-  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-13.0.1.tgz#4e6ddbc2ebe76d3b9d662d01bbd73942e7b524ab"
-  integrity sha512-O0N7fkVz+2rld2O/1R7rLWwjs4yu5VgQUznH/OJSiL4sBUj977yCXrjfU7w3IWaDTsWRuUXopqnR8Gym6xIcVQ==
+  version "13.0.2"
+  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-13.0.2.tgz#c4779636639b9a3c7166b223f3d5c39149b7c72d"
+  integrity sha512-JGgEOTH/OYr7/RlqJUPSzKQF/a55UM5PD6CgpUjAXKrCV18+zhofO05g+ibIZH3OfONntthcbKEXxMTX2EEQqg==
   dependencies:
     tslib "^2.3.0"
 
@@ -206,9 +206,9 @@
     tslib "^2.3.0"
 
 "@angular/platform-browser@~13.0.0":
-  version "13.0.1"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-13.0.1.tgz#77cd7f69ba160de29f3a034fbd359861c0f7a34c"
-  integrity sha512-j/4o5Y4zY06K5fEwXsT79NKygSzn8dP9mrnqOqJXK+3qgfqY3DlpVPV8h54JRz1Ru48RsKrvej/a1rPn9/6GAg==
+  version "13.0.2"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-13.0.2.tgz#b4fd97e67321e15a4b6d3f0dcb10b11e8f024cb5"
+  integrity sha512-fkLGr9Vj2cvFzXefyhNaqwXX90+WbpYj5cCii7S1HcbJ9qSM5ZenLp1t8mGRhmWI7odY4BrFskWOChlWFrLEkA==
   dependencies:
     tslib "^2.3.0"
 
@@ -6297,6 +6297,11 @@ tslib@~2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.1.0.tgz#da60860f1c2ecaa5703ab7d39bc05b6bf988b97a"
   integrity sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==
+
+tsparticles-engine@^2.0.0-beta.1:
+  version "2.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.0-beta.1.tgz#4e60294b162a3ddda0ba55319239a9eabb5a8ca9"
+  integrity sha512-Bq/KyKBdxUZ7zcMrZPgoHgJReHqiGn/QTFLu4JXApKNI58me5oKyArZ9iNm0vv5jedENd9k4dFJMsHP1kQPk8w==
 
 type-fest@^0.21.3:
   version "0.21.3"
