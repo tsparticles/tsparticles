@@ -18,7 +18,7 @@ Including the `tsparticles.interaction.particles.attract.min.js` file will expor
 plugin:
 
 ```javascript
-loadParticlesAttractInteraction
+loadParticlesAttractInteraction;
 ```
 
 ### Usage
@@ -29,7 +29,7 @@ Once the scripts are loaded you can set up `tsParticles` and the interaction plu
 loadParticlesAttractInteraction(tsParticles);
 
 tsParticles.load("tsparticles", {
-    /* options */
+  /* options */
 });
 ```
 

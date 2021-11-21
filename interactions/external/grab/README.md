@@ -19,7 +19,7 @@ Including the `tsparticles.interaction.external.grab.min.js` file will export th
 plugin:
 
 ```javascript
-loadExternalGrabInteraction
+loadExternalGrabInteraction;
 ```
 
 ### Usage
@@ -30,7 +30,7 @@ Once the scripts are loaded you can set up `tsParticles` and the interaction plu
 loadExternalGrabInteraction(tsParticles);
 
 tsParticles.load("tsparticles", {
-    /* options */
+  /* options */
 });
 ```
 

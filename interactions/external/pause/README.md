@@ -19,7 +19,7 @@ Including the `tsparticles.interaction.external.pause.min.js` file will export t
 plugin:
 
 ```javascript
-loadExternalPauseInteraction
+loadExternalPauseInteraction;
 ```
 
 ### Usage
@@ -30,7 +30,7 @@ Once the scripts are loaded you can set up `tsParticles` and the interaction plu
 loadExternalPauseInteraction(tsParticles);
 
 tsParticles.load("tsparticles", {
-    /* options */
+  /* options */
 });
 ```
 

@@ -19,7 +19,7 @@ Including the `tsparticles.interaction.light.min.js` file will export the functi
 plugin:
 
 ```javascript
-loadLightInteraction
+loadLightInteraction;
 ```
 
 ### Usage
@@ -30,7 +30,7 @@ Once the scripts are loaded you can set up `tsParticles` and the interaction plu
 loadLightInteraction(tsParticles);
 
 tsParticles.load("tsparticles", {
-    /* options */
+  /* options */
 });
 ```
 

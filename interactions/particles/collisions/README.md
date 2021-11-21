@@ -18,7 +18,7 @@ Including the `tsparticles.interaction.particles.collisions.min.js` file will ex
 plugin:
 
 ```javascript
-loadParticlesCollisionsInteraction
+loadParticlesCollisionsInteraction;
 ```
 
 ### Usage
@@ -29,7 +29,7 @@ Once the scripts are loaded you can set up `tsParticles` and the interaction plu
 loadParticlesCollisionsInteraction(tsParticles);
 
 tsParticles.load("tsparticles", {
-    /* options */
+  /* options */
 });
 ```
 

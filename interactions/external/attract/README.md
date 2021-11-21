@@ -18,7 +18,7 @@ Including the `tsparticles.interaction.external.attract.min.js` file will export
 plugin:
 
 ```javascript
-loadExternalAttractInteraction
+loadExternalAttractInteraction;
 ```
 
 ### Usage
@@ -29,7 +29,7 @@ Once the scripts are loaded you can set up `tsParticles` and the interaction plu
 loadExternalAttractInteraction(tsParticles);
 
 tsParticles.load("tsparticles", {
-    /* options */
+  /* options */
 });
 ```
 

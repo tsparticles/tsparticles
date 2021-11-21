@@ -19,7 +19,7 @@ Including the `tsparticles.interaction.external.trail.min.js` file will export t
 plugin:
 
 ```javascript
-loadExternalTrailInteraction
+loadExternalTrailInteraction;
 ```
 
 ### Usage
@@ -30,7 +30,7 @@ Once the scripts are loaded you can set up `tsParticles` and the interaction plu
 loadExternalTrailInteraction(tsParticles);
 
 tsParticles.load("tsparticles", {
-    /* options */
+  /* options */
 });
 ```
 

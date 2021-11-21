@@ -18,7 +18,7 @@ Including the `tsparticles.interaction.particles.links.min.js` file will export 
 plugin:
 
 ```javascript
-loadParticlesLinksInteraction
+loadParticlesLinksInteraction;
 ```
 
 ### Usage
@@ -29,7 +29,7 @@ Once the scripts are loaded you can set up `tsParticles` and the interaction plu
 loadParticlesLinksInteraction(tsParticles);
 
 tsParticles.load("tsparticles", {
-    /* options */
+  /* options */
 });
 ```
 

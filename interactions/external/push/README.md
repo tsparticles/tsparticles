@@ -19,7 +19,7 @@ Including the `tsparticles.interaction.external.push.min.js` file will export th
 plugin:
 
 ```javascript
-loadExternalPushInteraction
+loadExternalPushInteraction;
 ```
 
 ### Usage
@@ -30,7 +30,7 @@ Once the scripts are loaded you can set up `tsParticles` and the interaction plu
 loadExternalPushInteraction(tsParticles);
 
 tsParticles.load("tsparticles", {
-    /* options */
+  /* options */
 });
 ```
 

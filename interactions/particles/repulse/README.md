@@ -18,7 +18,7 @@ Including the `tsparticles.interaction.particles.repulse.min.js` file will expor
 plugin:
 
 ```javascript
-loadParticlesRepulseInteraction
+loadParticlesRepulseInteraction;
 ```
 
 ### Usage
@@ -29,7 +29,7 @@ Once the scripts are loaded you can set up `tsParticles` and the interaction plu
 loadParticlesRepulseInteraction(tsParticles);
 
 tsParticles.load("tsparticles", {
-    /* options */
+  /* options */
 });
 ```
 

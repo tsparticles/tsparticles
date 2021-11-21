@@ -19,7 +19,7 @@ Including the `tsparticles.interaction.external.remove.min.js` file will export 
 plugin:
 
 ```javascript
-loadExternalRemoveInteraction
+loadExternalRemoveInteraction;
 ```
 
 ### Usage
@@ -30,7 +30,7 @@ Once the scripts are loaded you can set up `tsParticles` and the interaction plu
 loadExternalRemoveInteraction(tsParticles);
 
 tsParticles.load("tsparticles", {
-    /* options */
+  /* options */
 });
 ```
 

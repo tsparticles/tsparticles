@@ -19,7 +19,7 @@ Including the `tsparticles.interaction.external.connect.min.js` file will export
 plugin:
 
 ```javascript
-loadExternalConnectInteraction
+loadExternalConnectInteraction;
 ```
 
 ### Usage
@@ -30,7 +30,7 @@ Once the scripts are loaded you can set up `tsParticles` and the interaction plu
 loadExternalConnectInteraction(tsParticles);
 
 tsParticles.load("tsparticles", {
-    /* options */
+  /* options */
 });
 ```
 

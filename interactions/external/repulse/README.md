@@ -19,7 +19,7 @@ Including the `tsparticles.interaction.external.repulse.min.js` file will export
 plugin:
 
 ```javascript
-loadExternalRepulseInteraction
+loadExternalRepulseInteraction;
 ```
 
 ### Usage
@@ -30,7 +30,7 @@ Once the scripts are loaded you can set up `tsParticles` and the interaction plu
 loadExternalRepulseInteraction(tsParticles);
 
 tsParticles.load("tsparticles", {
-    /* options */
+  /* options */
 });
 ```
 
