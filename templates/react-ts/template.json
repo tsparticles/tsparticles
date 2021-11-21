@@ -12,7 +12,8 @@
       "tsparticles-engine": "^2.0.0-beta.1",
       "tslib": "^2.3.0",
       "typescript": "^4.3.5",
-      "web-vitals": "^2.0.1"
+      "web-vitals": "^2.0.1",
+      "tsparticles": "^2.0.0-beta.2"
     }
   }
 }

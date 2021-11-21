@@ -64,7 +64,8 @@
   "dependencies": {
     "react-tsparticles": "^2.0.0-beta.2",
     "tslib": "^2.3.0",
-    "tsparticles-engine": "^2.0.0-beta.1"
+    "tsparticles-engine": "^2.0.0-beta.1",
+    "tsparticles": "^2.0.0-beta.2"
   },
   "scripts": {
     "build": "node scripts/prebuild.js",

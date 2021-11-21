@@ -18,12 +18,6 @@
       "resize": true
     },
     "modes": {
-      "bubble": {
-        "distance": 400,
-        "duration": 2,
-        "opacity": 0.8,
-        "size": 40
-      },
       "push": {
         "quantity": 4
       },
@@ -50,7 +44,9 @@
     "move": {
       "direction": "none",
       "enable": true,
-      "outMode": "bounce",
+      "outModes": {
+        "default": "bounce"
+      },
       "random": false,
       "speed": 6,
       "straight": false

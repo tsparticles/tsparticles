@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useCallback } from "react";
 import Particles from "react-tsparticles";
-import logo from './logo.svg';
+import type { Main } from "tsparticles-engine";
+import { loadFull } from "tsparticles";
+import logo from "./logo.svg";
 import './App.css';
 import particlesOptions from "./particles.json";
 import { ISourceOptions } from "tsparticles-engine";
 
 function App() {
+    const particlesInit = useCallback((main: Main) => {
+        loadFull(main);
+    }, []);
+
     return (
         <div className="App">
-            <Particles options={particlesOptions as ISourceOptions}/>
+            <Particles options={particlesOptions as ISourceOptions} init={particlesInit}/>
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo"/>
                 <p>
