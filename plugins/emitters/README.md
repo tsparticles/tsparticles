@@ -28,7 +28,7 @@ Once the scripts are loaded you can set up `tsParticles` and the plugin like thi
 loadEmittersPlugin(tsParticles);
 
 tsParticles.load("tsparticles", {
-    /* options */
+  /* options */
 });
 ```
 

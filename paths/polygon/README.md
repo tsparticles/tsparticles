@@ -28,7 +28,7 @@ Once the scripts are loaded you can set up `tsParticles` and the path plugin lik
 loadPolygonPath(tsParticles);
 
 tsParticles.load("tsparticles", {
-    /* options */
+  /* options */
 });
 ```
 
