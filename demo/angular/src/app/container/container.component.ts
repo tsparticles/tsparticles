@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import type { Container } from "tsparticles";
+import type { Container, ISourceOptions } from "tsparticles";
 
 @Component({
     selector: 'app-container',
@@ -8,7 +8,7 @@ import type { Container } from "tsparticles";
 })
 export class ContainerComponent implements OnInit {
     id = 'tsparticles';
-    options = {
+    options: ISourceOptions = {
         background: {
             color: {
                 value: '#0d47a1'
@@ -28,13 +28,6 @@ export class ContainerComponent implements OnInit {
                 resize: true
             },
             modes: {
-                bubble: {
-                    distance: 400,
-                    duration: 2,
-                    opacity: 0.8,
-                    size: 40,
-                    speed: 3
-                },
                 push: {
                     quantity: 4
                 },
@@ -69,7 +62,7 @@ export class ContainerComponent implements OnInit {
             number: {
                 density: {
                     enable: true,
-                    value_area: 800
+                    area: 800
                 },
                 value: 80
             },
