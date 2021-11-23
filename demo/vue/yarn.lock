@@ -8079,10 +8079,10 @@ rollup-plugin-terser@7.0.2:
     serialize-javascript "^4.0.0"
     terser "^5.0.0"
 
-rollup-plugin-typescript2@0.31.0:
-  version "0.31.0"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-typescript2/-/rollup-plugin-typescript2-0.31.0.tgz#7d08ad0cac52d1f4b1ebc6f655e4f1e6f838a7de"
-  integrity sha512-lA0KSTaaekrxcyd3MlUzD1QWt6IJEUBMV1KAKMiAm9UrWrmh4xAnANaOWGISEB6lNyVsPhkITmRCbZYVxpp1KA==
+rollup-plugin-typescript2@0.31.1:
+  version "0.31.1"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-typescript2/-/rollup-plugin-typescript2-0.31.1.tgz#3b3a0e29b29b2ed8244b1a78fd8e2cac93ab79a4"
+  integrity sha512-sklqXuQwQX+stKi4kDfEkneVESPi3YM/2S899vfRdF9Yi40vcC50Oq4A4cSZJNXsAQE/UsBZl5fAOsBLziKmjw==
   dependencies:
     "@rollup/pluginutils" "^4.1.0"
     "@yarn-tool/resolve-package" "^1.0.36"
