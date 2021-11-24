@@ -154,9 +154,9 @@
     uuid "8.3.2"
 
 "@angular/common@~13.0.0":
-  version "13.0.1"
-  resolved "https://registry.yarnpkg.com/@angular/common/-/common-13.0.1.tgz#64e5ee6ab3c9a409e85ec00c30fb8af700ad1676"
-  integrity sha512-uFSYJ3Z+3ZotFZIpMlECOipOD9M6h7Y2743AMPBfi2cuLO5Ap9iqbHzInvZwO2ysGv/ZNn3lUXBXLGTkbM5HCQ==
+  version "13.0.2"
+  resolved "https://registry.yarnpkg.com/@angular/common/-/common-13.0.2.tgz#794cea4e1e626012e69ca5fc6ddb78d613b8004f"
+  integrity sha512-UxWzNAU/o9pP02AYB5MrnIlShirfO631NolmvP0jTSEmym1nAeDOwZIYlkgfcJMHFXFc7DBnE2XOGaTZ8if3kw==
   dependencies:
     tslib "^2.3.0"
 
@@ -185,9 +185,9 @@
     tslib "^2.3.0"
 
 "@angular/core@~13.0.0":
-  version "13.0.1"
-  resolved "https://registry.yarnpkg.com/@angular/core/-/core-13.0.1.tgz#901837868bfb9b36ca4ee5fdc72ccc7222ec1c9d"
-  integrity sha512-5VAeafT+ro2PHGEjmeg6mJhQO+R7w16c1i8EGa7iN9vBn8uYwJ9aF+/ycZruq/MKoUhQhZlwk0yoBBqqq8A7oA==
+  version "13.0.2"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-13.0.2.tgz#786bb1242d69e8b7a2cbae224448c27e2f1fc064"
+  integrity sha512-6Jbct50lncMqzwLILzfmwQRK8eOEMv0quCL3pQptEpYPSlPqKz6QRxD76BykSUOs7XYJ/KdZmu3uGcT2Q/DUVg==
   dependencies:
     tslib "^2.3.0"
 
