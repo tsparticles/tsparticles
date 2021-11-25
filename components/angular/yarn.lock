@@ -4286,9 +4286,9 @@ neo-async@^2.6.2:
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
 ng-packagr@^13.0.0:
-  version "13.0.7"
-  resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-13.0.7.tgz#ad6f8138d2ba7855a6862c2aaa5568d170599daf"
-  integrity sha512-AzKNRZO0RIkpCFY9uYFYwlmlyEonhy99VW93Z9Dt0dDJNja7Wmy1aqd6voblK5Oa6lzvWIZcAmxBM3je/8lIeg==
+  version "13.0.8"
+  resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-13.0.8.tgz#0e3b52b59729b4c2898f559ef6418824a89232e4"
+  integrity sha512-m2YhziyqntCsBxZFjqlaoA7Q4eY8yvZzGiTypkIFkG4ORqGb6dXt8WTUu2p+b7vx02bIqTa+1O+1T9KnyDqdiw==
   dependencies:
     "@rollup/plugin-json" "^4.1.0"
     "@rollup/plugin-node-resolve" "^13.0.0"
