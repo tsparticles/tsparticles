@@ -2693,9 +2693,9 @@ pkg-dir@^4.1.0, pkg-dir@^4.2.0:
     find-up "^4.0.0"
 
 preact@^10.5.14:
-  version "10.6.0"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.6.0.tgz#803e59c8670fb56f26e0a2a262fbaeafbfaa944e"
-  integrity sha512-5gpdQkPsfl8ycSQSLSZxSvkifZ9FM4Zqc1OSToSpgygvgmXjcj6Q5jNRt86ote8dn0RkdOaKv9UAZTU7a6wP+g==
+  version "10.6.1"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.6.1.tgz#e14de611b65aea5e656249d19582c457fb0aa255"
+  integrity sha512-ydCg+ISIq70vqiThvNWStZWLRjR9U2awP/JAmGdWUKm9+Tyuy+MqVdAIyEByeIspAVtD4GWC/SJtxO8XD4knVA==
 
 prelude-ls@^1.2.1:
   version "1.2.1"
