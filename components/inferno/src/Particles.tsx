@@ -27,6 +27,7 @@ export default class Particles extends Component<
 		super(props);
 
 		this.state = {
+			init: false,
 			library: undefined,
 		};
 	}
@@ -63,7 +64,14 @@ export default class Particles extends Component<
 				await this.props.init(tsParticles);
 			}
 
-			this.loadParticles();
+			this.setState(
+				{
+					init: true,
+				},
+				() => {
+					this.loadParticles();
+				}
+			);
 		})();
 	}
 
@@ -95,6 +103,10 @@ export default class Particles extends Component<
 	}
 
 	private loadParticles(): void {
+		if (!this.state.init) {
+			return;
+		}
+
 		const cb = async (container?: Container) => {
 			if (this.props.container) {
 				(this.props.container as MutableRefObject<Container>).current =

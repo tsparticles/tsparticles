@@ -2,6 +2,7 @@
   "name": "preact-particles-demo",
   "private": true,
   "version": "2.0.0-beta.2",
+  "type": "module",
   "description": "> TODO: description",
   "author": "Matteo Bruni <ar3s@icloud.com>",
   "homepage": "https://github.com/matteobruni/tsparticles#readme",
