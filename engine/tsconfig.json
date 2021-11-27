@@ -14,7 +14,7 @@
     "name": "tsParticles",
     "includeVersion": true,
     "hideGenerator": true,
-    "out": "./docs"//,
-    //"theme": "tsparticles-docs"
+    "out": "./docs",
+    "theme": "tsparticles-docs"
   }
 }
