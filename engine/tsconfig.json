@@ -5,7 +5,7 @@
     "outDir": "./dist"
   },
   "typedocOptions": {
-    //"gaID": "UA-161253125-1",
+    "gaID": "UA-161253125-1",
     "includes": "./markdown",
     "entryPoints": [
       "./src/"
