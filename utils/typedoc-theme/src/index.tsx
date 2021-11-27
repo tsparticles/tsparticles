@@ -2,8 +2,8 @@ import type { Application /*, JSX*/ } from "typedoc";
 import { CustomTheme } from "./theme";
 
 export function load(app: Application): void {
-    app.renderer.defineTheme("tsparticles-docs", CustomTheme);
-    /*app.renderer.hooks.on("head.end", () => {
+  app.renderer.defineTheme("tsparticles-docs", CustomTheme);
+  /*app.renderer.hooks.on("head.end", () => {
         const gaHtml = `window.dataLayer = window.dataLayer || [];
 
             function gtag() {
