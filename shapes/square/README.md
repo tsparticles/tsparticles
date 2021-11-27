@@ -28,8 +28,8 @@ Once the scripts are loaded you can set up `tsParticles` and the shape like this
 loadSquareShape(tsParticles);
 
 tsParticles.load("tsparticles", {
-    /* options */
-    /* here you can use particles.shape.type: "square" */
+  /* options */
+  /* here you can use particles.shape.type: "square" */
 });
 ```
 

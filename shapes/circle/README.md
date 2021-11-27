@@ -28,8 +28,8 @@ Once the scripts are loaded you can set up `tsParticles` and the shape like this
 loadCircleShape(tsParticles);
 
 tsParticles.load("tsparticles", {
-    /* options */
-    /* here you can use particles.shape.type: "circle" */
+  /* options */
+  /* here you can use particles.shape.type: "circle" */
 });
 ```
 

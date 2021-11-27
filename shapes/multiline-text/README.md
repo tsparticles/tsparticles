@@ -28,8 +28,8 @@ Once the scripts are loaded you can set up `tsParticles` and the shape like this
 loadMultilineTextShape(tsParticles);
 
 tsParticles.load("tsparticles", {
-    /* options */
-    /* here you can use particles.shape.type: "multiline-text" */
+  /* options */
+  /* here you can use particles.shape.type: "multiline-text" */
 });
 ```
 

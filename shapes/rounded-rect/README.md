@@ -28,8 +28,8 @@ Once the scripts are loaded you can set up `tsParticles` and the shape like this
 loadRoundedRectShape(tsParticles);
 
 tsParticles.load("tsparticles", {
-    /* options */
-    /* here you can use particles.shape.type: "rounded-rect" */
+  /* options */
+  /* here you can use particles.shape.type: "rounded-rect" */
 });
 ```
 
