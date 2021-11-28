@@ -12,7 +12,7 @@ import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICha
 import type { SingleOrMultiple } from "../Types";
 import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
-import { collisionVelocity, getValue } from "./NumberUtils";
+import { collisionVelocity, getValue, getDistances } from "./NumberUtils";
 import { Vector } from "../Core/Particle/Vector";
 
 declare global {
@@ -275,19 +275,15 @@ export function circleBounceDataFromParticle(p: IParticle): ICircleBouncer {
 }
 
 export function circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
-    const xVelocityDiff = p1.velocity.x;
-    const yVelocityDiff = p1.velocity.y;
+    const { x: xVelocityDiff, y: yVelocityDiff } = p1.velocity.sub(p2.velocity);
 
-    const pos1 = p1.position;
-    const pos2 = p2.position;
-
-    const xDist = pos2.x - pos1.x;
-    const yDist = pos2.y - pos1.y;
+    const [pos1, pos2] = [p1.position, p2.position];
+    const { dx: xDist, dy: yDist } = getDistances(pos2, pos1);
 
     // Prevent accidental overlap of particles
     if (xVelocityDiff * xDist + yVelocityDiff * yDist >= 0) {
         // Grab angle between the two colliding particles
-        const angle = -Math.atan2(pos2.y - pos1.y, pos2.x - pos1.x);
+        const angle = -Math.atan2(yDist, xDist);
 
         // Store mass in var for better readability in collision equation
         const m1 = p1.mass;
