@@ -1,111 +1,109 @@
 import { Component, OnInit } from '@angular/core';
-import { Container, Main, MoveDirection, OutMode } from "tsparticles-engine";
+import type { Container, Main } from "tsparticles-engine";
+import { MoveDirection, OutMode } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 
 @Component({
-    selector: 'app-container',
-    templateUrl: './container.component.html',
-    styleUrls: ['./container.component.css']
+  selector: 'app-container',
+  templateUrl: './container.component.html',
+  styleUrls: [ './container.component.css' ]
 })
 export class ContainerComponent implements OnInit {
-    id = 'tsparticles';
-    options = {
-        background: {
-            color: {
-                value: '#0d47a1'
-            }
+  id = 'tsparticles';
+  options = {
+    background: {
+      color: {
+        value: '#0d47a1'
+      }
+    },
+    fullScreen: {
+      zIndex: -1
+    },
+    fpsLimit: 60,
+    interactivity: {
+      events: {
+        onClick: {
+          enable: true,
+          mode: 'push'
         },
-        fullScreen: {
-            zIndex: -1
+        onHover: {
+          enable: true,
+          mode: 'repulse'
         },
-        fpsLimit: 60,
-        interactivity: {
-            events: {
-                onClick: {
-                    enable: true,
-                    mode: 'push'
-                },
-                onHover: {
-                    enable: true,
-                    mode: 'repulse'
-                },
-                resize: true
-            },
-            modes: {
-                bubble: {
-                    distance: 400,
-                    duration: 2,
-                    opacity: 0.8,
-                    size: 40,
-                    speed: 3
-                },
-                push: {
-                    quantity: 4
-                },
-                repulse: {
-                    distance: 200,
-                    duration: 0.4
-                }
-            }
+        resize: true
+      },
+      modes: {
+        bubble: {
+          distance: 400,
+          duration: 2,
+          opacity: 0.8,
+          size: 40,
+          speed: 3
         },
-        particles: {
-            color: {
-                value: '#ffffff'
-            },
-            links: {
-                color: '#ffffff',
-                distance: 150,
-                enable: true,
-                opacity: 0.5,
-                width: 1
-            },
-            collisions: {
-                enable: true
-            },
-            move: {
-                direction: MoveDirection.none,
-                enable: true,
-                outModes: {
-                    default: OutMode.bounce
-                },
-                random: false,
-                speed: 6,
-                straight: false
-            },
-            number: {
-                density: {
-                    enable: true,
-                    value_area: 800
-                },
-                value: 80
-            },
-            opacity: {
-                value: 0.5
-            },
-            shape: {
-                type: 'circle'
-            },
-            size: {
-                random: true,
-                value: 5
-            }
+        push: {
+          quantity: 4
         },
-        detectRetina: true
-    };
+        repulse: {
+          distance: 200,
+          duration: 0.4
+        }
+      }
+    },
+    particles: {
+      color: {
+        value: '#ffffff'
+      },
+      links: {
+        color: '#ffffff',
+        distance: 150,
+        enable: true,
+        opacity: 0.5,
+        width: 1
+      },
+      move: {
+        direction: MoveDirection.none,
+        enable: true,
+        outModes: {
+          default: OutMode.bounce
+        },
+        random: false,
+        speed: 6,
+        straight: false
+      },
+      number: {
+        density: {
+          enable: true,
+          value_area: 800
+        },
+        value: 80
+      },
+      opacity: {
+        value: 0.5
+      },
+      shape: {
+        type: 'circle'
+      },
+      size: {
+        random: true,
+        value: 5
+      }
+    },
+    detectRetina: true
+  };
 
-    constructor() {
-    }
+  constructor() {
+  }
 
-    ngOnInit(): void {
-    }
+  ngOnInit(): void {
+  }
 
-    particlesInit(main: Main): void {
-        loadFull(main);
+  async particlesInit(main: Main): Promise<void> {
+    await loadFull(main);
 
-        console.log(loadFull);
-    }
+    console.log(loadFull);
+  }
 
-    particlesLoaded(container: Container): void {
-        console.log(container);
-    }
+  particlesLoaded(container: Container): void {
+    console.log(container);
+  }
 }

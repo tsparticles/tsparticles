@@ -1,2 +1,3 @@
 <p>container works!</p>
-<ng-particles id="tsparticles" [options]="options" (particlesLoaded)="particlesLoaded($event)" (particlesInit)="particlesInit($event)"></ng-particles>
+<ng-particles id="tsparticles" [options]="options" [particlesInit]="particlesInit"
+              (particlesLoaded)="particlesLoaded($event)"></ng-particles>

@@ -26,13 +26,13 @@ _template.html_
 
 ```html
 
-<ng-particles [id]="id" [options]="particlesOptions" (particlesLoaded)="particlesLoaded($event)"
-              (particlesInit)="particlesInit($event)"></ng-particles>
+<ng-particles [id]="id" [options]="particlesOptions" [particlesInit]="particlesInit"
+              (particlesLoaded)="particlesLoaded($event)"></ng-particles>
 
 <!-- or -->
 
-<ng-particles [id]="id" [url]="particlesUrl" (particlesLoaded)="particlesLoaded($event)"
-              (particlesInit)="particlesInit($event)"></ng-particles>
+<ng-particles [id]="id" [url]="particlesUrl" [particlesInit]="particlesInit"
+              (particlesLoaded)="particlesLoaded($event)"></ng-particles>
 ```
 
 _app.ts_
@@ -126,13 +126,13 @@ export class AppComponent {
     console.log(container);
   }
 
-  particlesInit(main: Main): void {
+  async particlesInit(main: Main): Promise<void> {
     console.log(main);
 
     // Starting from 1.19.0 you can add custom presets or shape here, using the current tsParticles instance (main)
     // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
     // starting from v2 you can add only the features you need reducing the bundle size
-    loadFull(main);
+    await loadFull(main);
   }
 }
 ```
