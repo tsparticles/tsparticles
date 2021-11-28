@@ -24,9 +24,9 @@
     "directory": "utils/typedoc-theme"
   },
   "peerDependencies": {
-    "typedoc": "^0.22.9"
+    "typedoc": "^0.22.10"
   },
   "dependencies": {
-    "typescript": "^4.4.4"
+    "typescript": "^4.5.2"
   }
 }

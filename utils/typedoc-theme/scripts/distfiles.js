@@ -13,6 +13,7 @@ fs.readFile(libPackage, function (error, data) {
 
     libObj.version = mainInfo.version;
     libObj.dependencies = JSON.parse(JSON.stringify(mainInfo.dependencies));
+    libObj.peerDependencies["typedoc"] = mainInfo.devDependencies["typedoc"];
 
     fs.writeFileSync(libPackage, JSON.stringify(libObj, undefined, 2), "utf8");
 
