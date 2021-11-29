@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.37.5](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.37.4...tsparticles@1.37.5) (2021-11-28)
+
+
+### Bug Fixes
+
+* fixed issue with collisions, fixes [#2586](https://github.com/matteobruni/tsparticles/issues/2586), fixes [#2380](https://github.com/matteobruni/tsparticles/issues/2380) ([204cb8d](https://github.com/matteobruni/tsparticles/commit/204cb8dc188cf2c37d746652d4ea3effde2a5b9b))
+
+
+
+
+
 ## [1.37.4](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.37.3...tsparticles@1.37.4) (2021-11-17)
 
 **Note:** Version bump only for package tsparticles
