@@ -20,6 +20,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.10.5](https://github.com/matteobruni/tsparticles/compare/web-particles@1.10.4...web-particles@1.10.5) (2021-11-28)
+
+**Note:** Version bump only for package web-particles
+
+
+
+
+
 ## [1.10.4](https://github.com/matteobruni/tsparticles/compare/web-particles@1.10.3...web-particles@1.10.4) (2021-11-17)
 
 **Note:** Version bump only for package web-particles

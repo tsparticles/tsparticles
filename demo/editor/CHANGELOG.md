@@ -15,6 +15,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [2.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/editor-demo@2.0.0-beta.0...editor-demo@2.0.0-beta.1) (2021-10-06)
+## [1.22.5](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.22.4...editor-demo@1.22.5) (2021-11-28)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
 ## [1.22.4](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.22.3...editor-demo@1.22.4) (2021-11-17)
 
 **Note:** Version bump only for package editor-demo

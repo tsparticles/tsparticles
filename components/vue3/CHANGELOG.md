@@ -20,6 +20,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.20.5](https://github.com/matteobruni/tsparticles/compare/particles.vue3@1.20.4...particles.vue3@1.20.5) (2021-11-28)
+
+**Note:** Version bump only for package particles.vue3
+
+
+
+
+
 ## [1.20.4](https://github.com/matteobruni/tsparticles/compare/particles.vue3@1.20.3...particles.vue3@1.20.4) (2021-11-17)
 
 **Note:** Version bump only for package particles.vue3
