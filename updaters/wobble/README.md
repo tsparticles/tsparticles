@@ -28,7 +28,7 @@ Once the scripts are loaded you can set up `tsParticles` and the updater plugin 
 loadWobbleUpdater(tsParticles);
 
 tsParticles.load("tsparticles", {
-    /* options */
+  /* options */
 });
 ```
 
