@@ -18,15 +18,18 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 * [Use for your website](#Do-you-want-to-use-it-on-your-website)
     * [Library installation](#Library-installation)
 * [Official components for some of the most used frameworks](#Official-components-for-some-of-the-most-used-frameworks)
-    * [Angular](#Angular)
-    * [Inferno](#Inferno)
-    * [jQuery](#jQuery)
-    * [Preact](#Preact)
-    * [ReactJS](#ReactJS)
-    * [Svelte](#Svelte)
-    * [VueJS 2.x](#VueJS-2x)
-    * [VueJS 3.x](#VueJS-3x)
-    * [WordPress](#WordPress)
+  * [Angular](#Angular)
+  * [Inferno](#Inferno)
+  * [jQuery](#jQuery)
+  * [Preact](#Preact)
+  * [ReactJS](#ReactJS)
+  * [RiotJS](#RiotJS)
+  * [SolidJS](#SolidJS)
+  * [Svelte](#Svelte)
+  * [VueJS 2.x](#VueJS-2x)
+  * [VueJS 3.x](#VueJS-3x)
+  * [Web Components](#Web-Components)
+  * [WordPress](#WordPress)
 * [Templates and Resources](#Templates-and-Resources)
 * [Demo / Generator](#Demo--Generator)
     * [Characters as particles](#Characters-as-particles)
@@ -252,6 +255,22 @@ Instructions available [here](https://github.com/matteobruni/tsparticles/blob/ma
 
 Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md)
 
+### RiotJS
+
+#### `riot-particles`
+
+[![npm](https://img.shields.io/npm/v/riot-particles)](https://www.npmjs.com/package/riot-particles) [![npm](https://img.shields.io/npm/dm/riot-particles)](https://www.npmjs.com/package/riot-particles)
+
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/components/riot/README.md)
+
+### SolidJS
+
+#### `solid-particles`
+
+[![npm](https://img.shields.io/npm/v/solid-particles)](https://www.npmjs.com/package/solid-particles) [![npm](https://img.shields.io/npm/dm/solid-particles)](https://www.npmjs.com/package/solid-particles)
+
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/components/solid/README.md)
+
 ### Svelte
 
 `svelte-particles`
@@ -275,6 +294,14 @@ Instructions available [here](https://github.com/matteobruni/tsparticles/blob/ma
 [![npm](https://img.shields.io/npm/v/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![npm](https://img.shields.io/npm/dm/particles.vue3)](https://www.npmjs.com/package/particles.vue3)
 
 Instruction available [here](https://github.com/matteobruni/tsparticles/blob/main/components/vue3/README.md)
+
+### Web Components
+
+#### `web-particles`
+
+[![npm](https://img.shields.io/npm/v/web-particles)](https://www.npmjs.com/package/web-particles) [![npm](https://img.shields.io/npm/dm/web-particles)](https://www.npmjs.com/package/web-particles)
+
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/components/web/README.md)
 
 ### WordPress
 
