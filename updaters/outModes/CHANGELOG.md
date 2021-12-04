@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-updater-out-modes@2.0.0-beta.2...tsparticles-updater-out-modes@2.0.0-beta.3) (2021-12-04)
+
+
+### Features
+
+* added new move direction: inside and outside, out modes needs more fixes ([32a70a6](https://github.com/matteobruni/tsparticles/commit/32a70a68a155db1ed796519addd7298e33a39094))
+* added outside and inside movement to out modes ([8d648e2](https://github.com/matteobruni/tsparticles/commit/8d648e2876249d8acd6b5e5a56455200ab03f117))
+
+
+
+
+
 # [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-updater-out-modes@2.0.0-beta.1...tsparticles-updater-out-modes@2.0.0-beta.2) (2021-10-06)
 
 **Note:** Version bump only for package tsparticles-updater-out-modes

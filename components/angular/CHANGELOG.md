@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.20.5...ng-particles@3.0.0-beta.3) (2021-12-04)
+
+
+### Bug Fixes
+
+* **deps:** update dependency rxjs to ~7.4.0 ([048238b](https://github.com/matteobruni/tsparticles/commit/048238b7b14b1ee49356afa47e5c7aa0ab4ac1f0))
+
+
+### Features
+
+* changed particlesInit on angular, is a property now and not an event ([38f6219](https://github.com/matteobruni/tsparticles/commit/38f62190549bb194e6ab542ba834ae2118f99ba6))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [3.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.18.4...ng-particles@3.0.0-beta.2) (2021-10-06)
 ## [2.20.5](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.20.4...ng-particles@2.20.5) (2021-11-28)
 

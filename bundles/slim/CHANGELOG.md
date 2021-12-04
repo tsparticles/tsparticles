@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-slim@2.0.0-beta.2...tsparticles-slim@2.0.0-beta.3) (2021-12-04)
+
+
+### Features
+
+* moved particles.js compatibility to another package ([70404b7](https://github.com/matteobruni/tsparticles/commit/70404b74b26da4b9a28b5d6d646cd9ed6c0635f1))
+
+
+
+
+
 # [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-slim@2.0.0-beta.1...tsparticles-slim@2.0.0-beta.2) (2021-10-06)
 
 **Note:** Version bump only for package tsparticles-slim

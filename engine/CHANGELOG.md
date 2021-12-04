@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.0.0-beta.1...tsparticles-engine@2.0.0-beta.2) (2021-12-04)
+
+
+### Bug Fixes
+
+* added browserslist to fix some issues with older browsers ([24d8f52](https://github.com/matteobruni/tsparticles/commit/24d8f520ee6934bd967d63612c828705e1dc09e2))
+* fixed issue with collisions, fixes [#2586](https://github.com/matteobruni/tsparticles/issues/2586), fixes [#2380](https://github.com/matteobruni/tsparticles/issues/2380) ([204cb8d](https://github.com/matteobruni/tsparticles/commit/204cb8dc188cf2c37d746652d4ea3effde2a5b9b))
+* fixed issue with dynamic imports and async loading ([b7f444b](https://github.com/matteobruni/tsparticles/commit/b7f444b1ef279083572e3a52f341d39091c885e6))
+* fixes [#2329](https://github.com/matteobruni/tsparticles/issues/2329) ([1982442](https://github.com/matteobruni/tsparticles/commit/1982442b6084f15ce40559c9391f097563728ff2))
+* fixes issue with responsive not refreshing when changing options ([f54cefa](https://github.com/matteobruni/tsparticles/commit/f54cefac475599e7717c125490e81e2b17e89c3f))
+* fixes some dynamic import issues ([8ba2415](https://github.com/matteobruni/tsparticles/commit/8ba2415d52384fd4ce722110cda02c8c0db92674))
+
+
+### Features
+
+* added custom events ([13fe1fe](https://github.com/matteobruni/tsparticles/commit/13fe1fe9d1a81db22a55c9a11adc706643a60d50))
+* added more absorber size limit options ([f2d0493](https://github.com/matteobruni/tsparticles/commit/f2d0493f34bc373846d8a8ae78e36dd56816308e))
+* added new move direction: inside and outside, out modes needs more fixes ([32a70a6](https://github.com/matteobruni/tsparticles/commit/32a70a68a155db1ed796519addd7298e33a39094))
+* enabled full screen by default, window is now the default interacitivity target ([e205e4c](https://github.com/matteobruni/tsparticles/commit/e205e4c9811b73c53ece9bb53a8a541c88afc017))
+* fixed lazy loading ([0f774ef](https://github.com/matteobruni/tsparticles/commit/0f774ef3d837f41b872bf866c4f4a87e4bafed6e))
+* fixed lazy loading ([60f9689](https://github.com/matteobruni/tsparticles/commit/60f96899bc564e547a49a5e17be4f40fe12288ba))
+* migrated to chunks ([58b69c1](https://github.com/matteobruni/tsparticles/commit/58b69c130d1e768c0dc0a1b61e904c23408e6ec5))
+* moved particles.js compatibility to another package ([70404b7](https://github.com/matteobruni/tsparticles/commit/70404b74b26da4b9a28b5d6d646cd9ed6c0635f1))
+
+
+
+
+
 # [2.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.0.0-beta.0...tsparticles-engine@2.0.0-beta.1) (2021-10-06)
 
 **Note:** Version bump only for package tsparticles-engine

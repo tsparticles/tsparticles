@@ -1,7 +1,7 @@
 {
   "name": "tsparticles-demo-new",
   "private": true,
-  "version": "2.0.0-beta.2",
+  "version": "2.0.0-beta.3",
   "description": "tsParticles Demo Website",
   "main": "index.html",
   "scripts": {
@@ -38,16 +38,16 @@
     "minify": "^8.0.3",
     "rimraf": "^3.0.2",
     "sass": "^1.37.5",
-    "tsparticles": "^2.0.0-beta.2",
-    "tsparticles-engine": "^2.0.0-beta.1",
-    "tsparticles-interaction-light": "^2.0.0-beta.2",
-    "tsparticles-interaction-particles-repulse": "^2.0.0-beta.2",
-    "tsparticles-path-curves": "^2.0.0-beta.2",
-    "tsparticles-path-perlin-noise": "^2.0.0-beta.2",
-    "tsparticles-path-polygon": "^2.0.0-beta.2",
-    "tsparticles-path-simplex-noise": "^2.0.0-beta.2",
-    "tsparticles-plugin-infection": "^2.0.0-beta.2",
-    "tsparticles-updater-gradient": "^2.0.0-beta.2",
-    "tsparticles-updater-orbit": "^2.0.0-beta.2"
+    "tsparticles": "^2.0.0-beta.3",
+    "tsparticles-engine": "^2.0.0-beta.2",
+    "tsparticles-interaction-light": "^2.0.0-beta.3",
+    "tsparticles-interaction-particles-repulse": "^2.0.0-beta.3",
+    "tsparticles-path-curves": "^2.0.0-beta.3",
+    "tsparticles-path-perlin-noise": "^2.0.0-beta.3",
+    "tsparticles-path-polygon": "^2.0.0-beta.3",
+    "tsparticles-path-simplex-noise": "^2.0.0-beta.3",
+    "tsparticles-plugin-infection": "^2.0.0-beta.3",
+    "tsparticles-updater-gradient": "^2.0.0-beta.3",
+    "tsparticles-updater-orbit": "^2.0.0-beta.3"
   }
 }
