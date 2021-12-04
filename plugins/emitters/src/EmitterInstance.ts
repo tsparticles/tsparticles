@@ -6,6 +6,7 @@ import {
     isPointInside,
     randomInRange,
     SizeMode,
+    tsParticles,
     Vector,
 } from "tsparticles-engine";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
@@ -94,6 +95,13 @@ export class EmitterInstance {
             })();
         this.lifeCount = this.emitterOptions.life.count ?? -1;
         this.immortal = this.lifeCount <= 0;
+
+        tsParticles.dispatchEvent("emitterCreated", {
+            container,
+            data: {
+                emitter: this,
+            },
+        });
 
         this.play();
     }
@@ -200,8 +208,14 @@ export class EmitterInstance {
             this.currentSpawnDelay += delta.value;
 
             if (this.currentSpawnDelay >= this.spawnDelay) {
+                tsParticles.dispatchEvent("emitterPlay", {
+                    container: this.container,
+                });
+
                 this.play();
+
                 this.currentSpawnDelay -= this.currentSpawnDelay;
+
                 delete this.spawnDelay;
             }
         }
@@ -235,6 +249,13 @@ export class EmitterInstance {
 
     private destroy(): void {
         this.emitters.removeEmitter(this);
+
+        tsParticles.dispatchEvent("emitterDestroyed", {
+            container: this.container,
+            data: {
+                emitter: this,
+            },
+        });
     }
 
     private calcPosition(): ICoordinates {

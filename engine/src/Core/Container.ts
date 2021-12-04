@@ -23,7 +23,8 @@ import {
     IRgb,
     IShapeDrawer,
 } from "./Interfaces";
-import { ClickMode } from "../Enums";
+import { ClickMode, EventType } from "../Enums";
+import { Loader } from "./Loader";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -94,6 +95,7 @@ export class Container {
 
     private _options;
     private _sourceOptions;
+    private readonly _initialSourceOptions;
     private paused;
     private firstStart;
     private currentTheme?: string;
@@ -122,17 +124,17 @@ export class Container {
         this.zLayers = 100;
         this.pageHidden = false;
         this._sourceOptions = sourceOptions;
+        this._initialSourceOptions = sourceOptions;
         this.retina = new Retina(this);
         this.canvas = new Canvas(this);
         this.particles = new Particles(this);
         this.drawer = new FrameManager(this);
         this.presets = presets;
         this.pathGenerator = {
-            generate: (): Vector => {
-                const v = Vector.create(0, 0);
+            generate: (p: Particle): Vector => {
+                const v = p.velocity.copy();
 
-                v.length = Math.random();
-                v.angle = Math.random() * Math.PI * 2;
+                v.angle += (v.length * Math.PI) / 180;
 
                 return v;
             },
@@ -165,6 +167,8 @@ export class Container {
         if (typeof IntersectionObserver !== "undefined" && IntersectionObserver) {
             this.intersectionObserver = new IntersectionObserver((entries) => this.intersectionManager(entries));
         }
+
+        Loader.dispatchEvent(EventType.containerBuilt, { container: this });
     }
 
     /**
@@ -190,6 +194,8 @@ export class Container {
                 }
             }
         }
+
+        Loader.dispatchEvent(EventType.containerPlay, { container: this });
 
         this.draw(needsUpdate || false);
     }
@@ -217,6 +223,8 @@ export class Container {
         if (!this.pageHidden) {
             this.paused = true;
         }
+
+        Loader.dispatchEvent(EventType.containerPaused, { container: this });
     }
 
     /**
@@ -318,6 +326,8 @@ export class Container {
         }
 
         this.destroyed = true;
+
+        Loader.dispatchEvent(EventType.containerDestroyed, { container: this });
     }
 
     /**
@@ -396,6 +406,8 @@ export class Container {
         delete this.particles.linksColor;
 
         this._sourceOptions = this._options;
+
+        Loader.dispatchEvent(EventType.containerStopped, { container: this });
     }
 
     /**
@@ -433,6 +445,8 @@ export class Container {
                 plugin.start();
             }
         }
+
+        Loader.dispatchEvent(EventType.containerStarted, { container: this });
 
         this.play();
     }
@@ -585,6 +599,7 @@ export class Container {
         }
 
         /* options settings */
+        this._options.load(this._initialSourceOptions);
         this._options.load(this._sourceOptions);
 
         this.actualOptions = new Options();
@@ -646,6 +661,8 @@ export class Container {
             }
         }
 
+        Loader.dispatchEvent(EventType.containerInit, { container: this });
+
         this.particles.init();
         this.particles.setDensity();
 
@@ -654,6 +671,8 @@ export class Container {
                 plugin.particlesSetup();
             }
         }
+
+        Loader.dispatchEvent(EventType.particlesSetup, { container: this });
     }
 
     private intersectionManager(entries: IntersectionObserverEntry[]) {

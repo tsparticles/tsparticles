@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.22.5...react-tsparticles-demo@2.0.0-beta.3) (2021-12-04)
+
+
+### Features
+
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+* moved polygon mask to external plugin (breaking) ([abdfe37](https://github.com/matteobruni/tsparticles/commit/abdfe37f250a4f357f4491bb7ff0e54da6a7303e))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.20.4...react-tsparticles-demo@2.0.0-beta.2) (2021-10-06)
 
 
@@ -10,6 +23,47 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * moved polygon mask to external plugin (breaking) ([abdfe37](https://github.com/matteobruni/tsparticles/commit/abdfe37f250a4f357f4491bb7ff0e54da6a7303e))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.22.5](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.22.4...react-tsparticles-demo@1.22.5) (2021-11-28)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
+## [1.22.4](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.22.3...react-tsparticles-demo@1.22.4) (2021-11-17)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
+## [1.22.3](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.22.2...react-tsparticles-demo@1.22.3) (2021-11-05)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
+## [1.22.2](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.22.1...react-tsparticles-demo@1.22.2) (2021-10-31)
+
+
+### Bug Fixes
+
+* fixes some dynamic import issues ([8ba2415](https://github.com/matteobruni/tsparticles/commit/8ba2415d52384fd4ce722110cda02c8c0db92674))
+
+
+
+
+
+## [1.22.1](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.22.0...react-tsparticles-demo@1.22.1) (2021-10-30)
+
+
+### Bug Fixes
+
+* fixed issue with dynamic imports and async loading ([b7f444b](https://github.com/matteobruni/tsparticles/commit/b7f444b1ef279083572e3a52f341d39091c885e6))
 
 
 

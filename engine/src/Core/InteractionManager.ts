@@ -13,10 +13,14 @@ export class InteractionManager {
     private readonly particleInteractors: IParticlesInteractor[];
 
     constructor(private readonly container: Container) {
-        const interactors = Plugins.getInteractors(container);
-
         this.externalInteractors = [];
         this.particleInteractors = [];
+
+        this.init();
+    }
+
+    init(): void {
+        const interactors = Plugins.getInteractors(this.container, true);
 
         for (const interactor of interactors) {
             switch (interactor.type) {

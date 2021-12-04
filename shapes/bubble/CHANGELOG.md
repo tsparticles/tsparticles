@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-bubble@1.22.5...tsparticles-shape-bubble@2.0.0-beta.3) (2021-12-04)
+
+
+### Features
+
+* moved all shapes to external packages, breaking ([77e4113](https://github.com/matteobruni/tsparticles/commit/77e411338f65ab076fe85c0f143c13417147d4b5))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-bubble@1.20.4...tsparticles-shape-bubble@2.0.0-beta.2) (2021-10-06)
 
 
@@ -10,6 +22,44 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * moved all shapes to external packages, breaking ([77e4113](https://github.com/matteobruni/tsparticles/commit/77e411338f65ab076fe85c0f143c13417147d4b5))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.22.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-bubble@1.22.4...tsparticles-shape-bubble@1.22.5) (2021-11-28)
+
+**Note:** Version bump only for package tsparticles-shape-bubble
+
+
+
+
+
+## [1.22.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-bubble@1.22.3...tsparticles-shape-bubble@1.22.4) (2021-11-17)
+
+**Note:** Version bump only for package tsparticles-shape-bubble
+
+
+
+
+
+## [1.22.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-bubble@1.22.2...tsparticles-shape-bubble@1.22.3) (2021-11-05)
+
+**Note:** Version bump only for package tsparticles-shape-bubble
+
+
+
+
+
+## [1.22.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-bubble@1.22.1...tsparticles-shape-bubble@1.22.2) (2021-10-31)
+
+**Note:** Version bump only for package tsparticles-shape-bubble
+
+
+
+
+
+## [1.22.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-bubble@1.22.0...tsparticles-shape-bubble@1.22.1) (2021-10-30)
+
+
+### Bug Fixes
+
+* added browserslist to fix some issues with older browsers ([24d8f52](https://github.com/matteobruni/tsparticles/commit/24d8f520ee6934bd967d63612c828705e1dc09e2))
 
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-stars@1.22.5...tsparticles-preset-stars@2.0.0-beta.3) (2021-12-04)
+
+
+### Features
+
+* fixed stars preset ([04e7f4c](https://github.com/matteobruni/tsparticles/commit/04e7f4cd9bda078410940c561a20d57a5502f6e1))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-stars@1.20.4...tsparticles-preset-stars@2.0.0-beta.2) (2021-10-06)
 
 
@@ -10,6 +22,44 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * fixed stars preset ([04e7f4c](https://github.com/matteobruni/tsparticles/commit/04e7f4cd9bda078410940c561a20d57a5502f6e1))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.22.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-stars@1.22.4...tsparticles-preset-stars@1.22.5) (2021-11-28)
+
+**Note:** Version bump only for package tsparticles-preset-stars
+
+
+
+
+
+## [1.22.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-stars@1.22.3...tsparticles-preset-stars@1.22.4) (2021-11-17)
+
+**Note:** Version bump only for package tsparticles-preset-stars
+
+
+
+
+
+## [1.22.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-stars@1.22.2...tsparticles-preset-stars@1.22.3) (2021-11-05)
+
+**Note:** Version bump only for package tsparticles-preset-stars
+
+
+
+
+
+## [1.22.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-stars@1.22.1...tsparticles-preset-stars@1.22.2) (2021-10-31)
+
+**Note:** Version bump only for package tsparticles-preset-stars
+
+
+
+
+
+## [1.22.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-stars@1.22.0...tsparticles-preset-stars@1.22.1) (2021-10-30)
+
+
+### Bug Fixes
+
+* added browserslist to fix some issues with older browsers ([24d8f52](https://github.com/matteobruni/tsparticles/commit/24d8f520ee6934bd967d63612c828705e1dc09e2))
 
 
 

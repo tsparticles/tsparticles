@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/webpack-tsparticles-plugin@1.0.0-beta.0...webpack-tsparticles-plugin@1.0.0-beta.1) (2021-12-04)
+
+
+### Features
+
+* added a configs package, this will contains all the presets used in demos ([92fc41b](https://github.com/matteobruni/tsparticles/commit/92fc41b77a35295aee787b72952134d25899f251))
+* moved particles.js compatibility to another package ([70404b7](https://github.com/matteobruni/tsparticles/commit/70404b74b26da4b9a28b5d6d646cd9ed6c0635f1))
+
+
+
+
+
 # 1.0.0-beta.0 (2021-10-06)
 
 

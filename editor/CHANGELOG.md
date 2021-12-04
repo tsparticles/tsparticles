@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.37.5...tsparticles-editor@2.0.0-beta.3) (2021-12-04)
+
+
+### Features
+
+* added new move direction: inside and outside, out modes needs more fixes ([32a70a6](https://github.com/matteobruni/tsparticles/commit/32a70a68a155db1ed796519addd7298e33a39094))
+* moved absorbers to an external plugin, breaking ([5e7223f](https://github.com/matteobruni/tsparticles/commit/5e7223fb6b505260eb72899ec1e9762d96a5c4d7))
+* moved all plugins to external packages, breaking ([a3edcec](https://github.com/matteobruni/tsparticles/commit/a3edcecd129009e7d9af138dd9a1285360e7003d))
+* moved polygon mask to external plugin (breaking) ([abdfe37](https://github.com/matteobruni/tsparticles/commit/abdfe37f250a4f357f4491bb7ff0e54da6a7303e))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.35.4...tsparticles-editor@2.0.0-beta.2) (2021-10-06)
 
 
@@ -12,6 +27,44 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * moved all plugins to external packages, breaking ([a3edcec](https://github.com/matteobruni/tsparticles/commit/a3edcecd129009e7d9af138dd9a1285360e7003d))
 * moved polygon mask to external plugin (breaking) ([abdfe37](https://github.com/matteobruni/tsparticles/commit/abdfe37f250a4f357f4491bb7ff0e54da6a7303e))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.37.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.37.4...tsparticles-editor@1.37.5) (2021-11-28)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
+## [1.37.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.37.3...tsparticles-editor@1.37.4) (2021-11-17)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
+## [1.37.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.37.2...tsparticles-editor@1.37.3) (2021-11-05)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
+## [1.37.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.37.1...tsparticles-editor@1.37.2) (2021-10-31)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
+## [1.37.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.37.0...tsparticles-editor@1.37.1) (2021-10-30)
+
+
+### Bug Fixes
+
+* added browserslist to fix some issues with older browsers ([24d8f52](https://github.com/matteobruni/tsparticles/commit/24d8f520ee6934bd967d63612c828705e1dc09e2))
 
 
 

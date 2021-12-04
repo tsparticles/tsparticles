@@ -1,11 +1,13 @@
 import { Container } from "./Container";
 import type { IOptions } from "../Options/Interfaces/IOptions";
-import type { RecursivePartial } from "../Types";
+import type { CustomEventArgs, CustomEventListener, RecursivePartial } from "../Types";
 import { canvasClass, itemFromArray } from "../Utils";
 import type { Particle } from "./Particle";
 import type { SingleOrMultiple } from "../Types";
+import { EventDispatcher } from "../Utils/EventDispatcher";
 
 const tsParticlesDom: Container[] = [];
+const eventDispatcher = new EventDispatcher();
 
 function fetchError(statusCode: number): void {
     console.error(`Error tsParticles - fetch status: ${statusCode}`);
@@ -294,5 +296,32 @@ export class Loader {
         for (const domItem of dom) {
             domItem.addClickHandler(callback);
         }
+    }
+
+    /**
+     * Adds a listener to the specified event
+     * @param type The event to listen to
+     * @param listener The listener of the specified event
+     */
+    static addEventListener(type: string, listener: CustomEventListener): void {
+        eventDispatcher.addEventListener(type, listener);
+    }
+
+    /**
+     * Removes a listener from the specified event
+     * @param type The event to stop listening to
+     * @param listener The listener of the specified event
+     */
+    static removeEventListener(type: string, listener: CustomEventListener): void {
+        eventDispatcher.removeEventListener(type, listener);
+    }
+
+    /**
+     * Dispatches an event that will be listened from listeners
+     * @param type The event to dispatch
+     * @param args The event parameters
+     */
+    static dispatchEvent(type: string, args: CustomEventArgs): void {
+        eventDispatcher.dispatchEvent(type, args);
     }
 }

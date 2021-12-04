@@ -22,6 +22,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
         super(props);
 
         this.state = {
+            init: false,
             library: undefined,
         };
     }
@@ -53,11 +54,20 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
     }
 
     componentDidMount(): void {
-        if (this.props.init) {
-            this.props.init(tsParticles);
-        }
+        (async () => {
+            if (this.props.init) {
+                await this.props.init(tsParticles);
+            }
 
-        this.loadParticles();
+            this.setState(
+                {
+                    init: true,
+                },
+                () => {
+                    this.loadParticles();
+                }
+            );
+        })();
     }
 
     componentWillUnmount(): void {
@@ -88,7 +98,11 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
     }
 
     private loadParticles(): void {
-        const cb = (container?: Container) => {
+        if (!this.state.init) {
+            return;
+        }
+
+        const cb = async (container?: Container) => {
             if (this.props.container) {
                 (this.props.container as MutableRefObject<Container>).current = container;
             }
@@ -98,7 +112,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
             });
 
             if (this.props.loaded) {
-                this.props.loaded(container);
+                await this.props.loaded(container);
             }
         };
 

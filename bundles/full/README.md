@@ -64,12 +64,15 @@ _The syntax for `React.js`, `Preact` and `Inferno` is the same_.
 
 This sample uses the class component syntax, but you can use hooks as well (if the library supports it).
 
-```javascript
+_Class Components_
+
+```typescript jsx
+import React from "react";
 import Particles from "react-tsparticles";
-import { Main } from "tsparticles-engine";
+import type { Main } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 
-export class ParticlesContainer extends React.PureComponent<IProps> {
+export class ParticlesContainer extends PureComponent<unknown> {
   // this customizes the component tsParticles installation
   customInit(main: Main) {
     // this adds the bundle to tsParticles
@@ -83,6 +86,29 @@ export class ParticlesContainer extends React.PureComponent<IProps> {
 
     return <Particles options={options} init={this.customInit} />;
   }
+}
+```
+
+_Hooks / Functional Components_
+
+```typescript jsx
+import React, { useCallback } from "react";
+import Particles from "react-tsparticles";
+import type { Main } from "tsparticles-engine";
+import { loadFull } from "tsparticles";
+
+export function ParticlesContainer(props: unknown) {
+  // this customizes the component tsParticles installation
+  const customInit = useCallback((main: Main) => {
+    // this adds the bundle to tsParticles
+    loadFull(main);
+  });
+
+  const options = {
+    /* custom options */
+  };
+
+  return <Particles options={options} init={this.customInit} />;
 }
 ```
 

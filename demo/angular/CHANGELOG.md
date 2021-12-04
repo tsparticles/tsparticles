@@ -3,18 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@1.20.4...ng-particles-demo@2.0.0-beta.2) (2021-10-06)
+# [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@1.22.5...ng-particles-demo@2.0.0-beta.3) (2021-12-04)
+
+
+### Bug Fixes
+
+* **deps:** update dependency rxjs to ~7.4.0 ([048238b](https://github.com/matteobruni/tsparticles/commit/048238b7b14b1ee49356afa47e5c7aa0ab4ac1f0))
 
 
 ### Features
 
+* changed particlesInit on angular, is a property now and not an event ([38f6219](https://github.com/matteobruni/tsparticles/commit/38f62190549bb194e6ab542ba834ae2118f99ba6))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 
 
 
 
-# [2.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@2.0.0-beta.0...ng-particles-demo@2.0.0-beta.1) (2021-10-06)
+## [1.22.5](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@1.22.4...ng-particles-demo@1.22.5) (2021-11-28)
+
+**Note:** Version bump only for package ng-particles-demo
+
+
+
+
+
+## [1.22.4](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@1.22.3...ng-particles-demo@1.22.4) (2021-11-17)
+
+**Note:** Version bump only for package ng-particles-demo
+
+
+
+
+
+## [1.22.3](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@1.22.2...ng-particles-demo@1.22.3) (2021-11-05)
+
+**Note:** Version bump only for package ng-particles-demo
+
+
+
+
+
+## [1.22.2](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@1.22.1...ng-particles-demo@1.22.2) (2021-10-31)
+
+**Note:** Version bump only for package ng-particles-demo
+
+
+
+
+
+## [1.22.1](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@1.22.0...ng-particles-demo@1.22.1) (2021-10-30)
+
+**Note:** Version bump only for package ng-particles-demo
+
+
+
+
+
 # [1.22.0](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@1.21.0...ng-particles-demo@1.22.0) (2021-10-28)
 
 **Note:** Version bump only for package ng-particles-demo
@@ -34,17 +79,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ## [1.20.4](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@1.20.3...ng-particles-demo@1.20.4) (2021-10-06)
 
 **Note:** Version bump only for package ng-particles-demo
-
-
-
-
-
-# [2.0.0-beta.0](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@1.20.3...ng-particles-demo@2.0.0-beta.0) (2021-10-06)
-
-
-### Features
-
-* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 
 

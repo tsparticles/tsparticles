@@ -1,33 +1,66 @@
 [![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
 
-# tsparticles-shape-spiral
+# tsParticles Spiral Shape
 
-Spiral shape for [tsParticles](https://github.com/matteobruni/tsparticles)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-shape-spiral/badge)](https://www.jsdelivr.com/package/npm/tsparticles-shape-spiral)
+[![npmjs](https://badge.fury.io/js/tsparticles-shape-spiral.svg)](https://www.npmjs.com/package/tsparticles-shape-spiral)
+[![npmjs](https://img.shields.io/npm/dt/tsparticles-shape-spiral)](https://www.npmjs.com/package/tsparticles-shape-spiral)
 
-## Usage
+[tsParticles](https://github.com/matteobruni/tsparticles) additional spiral shape.
 
-Add the script after the `tsParticles` one. The shape is ready to work.
+## How to use it
 
-After that, in your `tsParticles` config you must add this to the `particles` section.
+### CDN / Vanilla JS / jQuery
 
-```json
-"shape": {
-    "type": "spiral",
-    "custom": {
-        "spiral": {
-            "innerRadius": 1,
-            "lineSpacing": 1,
-            "fill": false,
-            "close": false
-        }
-    }
-},
+The CDN/Vanilla version JS has one required file in vanilla configuration:
+
+Including the `tsparticles.shape.spiral.min.js` file will export the function to load the shape:
+
+```javascript
+loadSpiralShape;
 ```
 
-If you already have a shape you can set type as an array like this
+### Usage
 
-```json
-"type": ["circle", "spiral"]
+Once the scripts are loaded you can set up `tsParticles` and the shape like this:
+
+```javascript
+loadSpiralShape(tsParticles);
+
+tsParticles.load("tsparticles", {
+  /* options */
+  /* here you can use particles.shape.type: "spiral" */
+});
 ```
 
-The `custom` section can stay anywhere in the `shape` section.
+### ESM / CommonJS
+
+This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
+
+```shell
+$ npm install tsparticles-shape-spiral
+```
+
+or
+
+```shell
+$ yarn add tsparticles-shape-spiral
+```
+
+Then you need to import it in the app, like this:
+
+```javascript
+const { tsParticles } = require("tsparticles-engine");
+const { loadSpiralShape } = require("tsparticles-shape-spiral");
+
+loadSpiralShape(tsParticles);
+```
+
+or
+
+```javascript
+import { tsParticles } from "tsparticles-engine";
+import { loadSpiralShape } from "tsparticles-shape-spiral";
+
+loadSpiralShape(tsParticles);
+```

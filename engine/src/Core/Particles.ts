@@ -9,7 +9,8 @@ import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions"
 import type { ICoordinates, IDelta, IMouseData, IParticle, IRgb } from "./Interfaces";
 import { Mover } from "./Particle/Mover";
 import { IParticlesFrequencies } from "./Interfaces/IParticlesFrequencies";
-import { ClickMode } from "../Enums";
+import { ClickMode, EventType } from "../Enums";
+import { Loader } from "./Loader";
 
 /**
  * Particles manager object
@@ -39,7 +40,7 @@ export class Particles {
     linksColor?: IRgb | string;
     grabLineColor?: IRgb | string;
 
-    readonly updaters;
+    updaters;
 
     private interactionManager;
     private nextId;
@@ -73,7 +74,7 @@ export class Particles {
             4
         );
 
-        this.updaters = Plugins.getUpdaters(container);
+        this.updaters = Plugins.getUpdaters(container, true);
     }
 
     /* --------- tsParticles functions - particles ----------- */
@@ -87,6 +88,9 @@ export class Particles {
         this.freqs.triangles = new Map<string, number>();
 
         let handled = false;
+
+        this.updaters = Plugins.getUpdaters(container, true);
+        this.interactionManager.init();
 
         for (const [, plugin] of container.plugins) {
             if (plugin.particlesInitialization !== undefined) {
@@ -148,6 +152,13 @@ export class Particles {
             this.zArray.splice(zIdx, 1);
 
             deleted++;
+
+            Loader.dispatchEvent(EventType.particleRemoved, {
+                container: this.container,
+                data: {
+                    particle,
+                },
+            });
         }
     }
 
@@ -487,6 +498,13 @@ export class Particles {
             this.zArray.push(particle);
 
             this.nextId++;
+
+            Loader.dispatchEvent(EventType.particleAdded, {
+                container: this.container,
+                data: {
+                    particle,
+                },
+            });
 
             return particle;
         } catch (e) {

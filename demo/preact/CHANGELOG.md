@@ -3,7 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.22.5...preact-particles-demo@2.0.0-beta.3) (2021-12-04)
+
+
+### Features
+
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+
+
+
+
+
 # [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.20.4...preact-particles-demo@2.0.0-beta.2) (2021-10-06)
+## [1.22.5](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.22.4...preact-particles-demo@1.22.5) (2021-11-28)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.22.4](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.22.3...preact-particles-demo@1.22.4) (2021-11-17)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.22.3](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.22.2...preact-particles-demo@1.22.3) (2021-11-05)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.22.2](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.22.1...preact-particles-demo@1.22.2) (2021-10-31)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.22.1](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.22.0...preact-particles-demo@1.22.1) (2021-10-30)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
 # [1.22.0](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.21.0...preact-particles-demo@1.22.0) (2021-10-28)
 
 **Note:** Version bump only for package preact-particles-demo

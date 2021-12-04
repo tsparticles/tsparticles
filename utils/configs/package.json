@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-demo-configs",
-  "version": "1.0.0-beta.0",
+  "version": "1.0.0-beta.1",
   "description": "tsParticles demo configurations",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -65,13 +65,13 @@
     "eslint-config-prettier": "^8.3.0",
     "prettier": "^2.4.1",
     "rimraf": "^3.0.2",
-    "typescript": "^4.4.3",
     "terser-webpack-plugin": "^5.2.4",
+    "typescript": "^4.4.3",
     "webpack": "^5.53.0",
     "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^4.8.0"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.0.0-beta.1"
+    "tsparticles-engine": "^2.0.0-beta.2"
   }
 }

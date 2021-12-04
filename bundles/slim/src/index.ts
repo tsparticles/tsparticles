@@ -26,28 +26,28 @@ import { loadColorUpdater } from "tsparticles-updater-color";
 import { loadStrokeColorUpdater } from "tsparticles-updater-stroke-color";
 import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
 
-export function loadSlim(tsParticles: Main): void {
-    loadExternalAttractInteraction(tsParticles);
-    loadExternalBounceInteraction(tsParticles);
-    loadExternalBubbleInteraction(tsParticles);
-    loadExternalConnectInteraction(tsParticles);
-    loadExternalGrabInteraction(tsParticles);
-    loadExternalPauseInteraction(tsParticles);
-    loadExternalPushInteraction(tsParticles);
-    loadExternalRemoveInteraction(tsParticles);
-    loadExternalRepulseInteraction(tsParticles);
+export async function loadSlim(tsParticles: Main): Promise<void> {
+    await loadExternalAttractInteraction(tsParticles);
+    await loadExternalBounceInteraction(tsParticles);
+    await loadExternalBubbleInteraction(tsParticles);
+    await loadExternalConnectInteraction(tsParticles);
+    await loadExternalGrabInteraction(tsParticles);
+    await loadExternalPauseInteraction(tsParticles);
+    await loadExternalPushInteraction(tsParticles);
+    await loadExternalRemoveInteraction(tsParticles);
+    await loadExternalRepulseInteraction(tsParticles);
 
-    loadParticlesAttractInteraction(tsParticles);
-    loadParticlesCollisionsInteraction(tsParticles);
-    loadParticlesLinksInteraction(tsParticles);
+    await loadParticlesAttractInteraction(tsParticles);
+    await loadParticlesCollisionsInteraction(tsParticles);
+    await loadParticlesLinksInteraction(tsParticles);
 
-    loadCircleShape(tsParticles);
-    loadImageShape(tsParticles);
-    loadLineShape(tsParticles);
-    loadPolygonShape(tsParticles);
-    loadSquareShape(tsParticles);
-    loadStarShape(tsParticles);
-    loadTextShape(tsParticles);
+    await loadCircleShape(tsParticles);
+    await loadImageShape(tsParticles);
+    await loadLineShape(tsParticles);
+    await loadPolygonShape(tsParticles);
+    await loadSquareShape(tsParticles);
+    await loadStarShape(tsParticles);
+    await loadTextShape(tsParticles);
 
     loadLifeUpdater(tsParticles);
     loadOpacityUpdater(tsParticles);

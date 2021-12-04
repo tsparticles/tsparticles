@@ -3,7 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.20.5...particles.vue@3.0.0-beta.2) (2021-12-04)
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [3.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.18.4...particles.vue@3.0.0-beta.1) (2021-10-06)
+## [2.20.5](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.20.4...particles.vue@2.20.5) (2021-11-28)
+
+**Note:** Version bump only for package particles.vue
+
+
+
+
+
+## [2.20.4](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.20.3...particles.vue@2.20.4) (2021-11-17)
+
+**Note:** Version bump only for package particles.vue
+
+
+
+
+
+## [2.20.3](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.20.2...particles.vue@2.20.3) (2021-11-05)
+
+**Note:** Version bump only for package particles.vue
+
+
+
+
+
+## [2.20.2](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.20.1...particles.vue@2.20.2) (2021-10-31)
+
+**Note:** Version bump only for package particles.vue
+
+
+
+
+
+## [2.20.1](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.20.0...particles.vue@2.20.1) (2021-10-30)
+
+**Note:** Version bump only for package particles.vue
+
+
+
+
+
 # [2.20.0](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.19.0...particles.vue@2.20.0) (2021-10-28)
 
 **Note:** Version bump only for package particles.vue

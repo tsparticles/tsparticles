@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-editor",
-  "version": "2.0.0-beta.2",
+  "version": "2.0.0-beta.3",
   "description": "tsParticles Configuration Editor",
   "keywords": [
     "tsparticles",
@@ -49,10 +49,10 @@
   },
   "dependencies": {
     "object-gui": "^1.1.1",
-    "tsparticles-engine": "^2.0.0-beta.1",
-    "tsparticles-plugin-absorbers": "^2.0.0-beta.2",
-    "tsparticles-plugin-emitters": "^2.0.0-beta.2",
-    "tsparticles-plugin-infection": "^2.0.0-beta.2"
+    "tsparticles-engine": "^2.0.0-beta.2",
+    "tsparticles-plugin-absorbers": "^2.0.0-beta.3",
+    "tsparticles-plugin-emitters": "^2.0.0-beta.3",
+    "tsparticles-plugin-infection": "^2.0.0-beta.3"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
@@ -60,6 +60,7 @@
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "babel-loader": "^8.2.2",
+    "browserslist": "^4.17.5",
     "copyfiles": "^2.4.1",
     "downlevel-dts": "^0.7.0",
     "eslint": "^8.0.0",
@@ -71,6 +72,6 @@
     "webpack": "^5.53.0",
     "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^4.8.0",
-    "webpack-tsparticles-plugin": "^1.0.0-beta.0"
+    "webpack-tsparticles-plugin": "^1.0.0-beta.1"
   }
 }

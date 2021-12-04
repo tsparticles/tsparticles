@@ -30,10 +30,17 @@ _Remote url_
 import Particles from "solid-particles";
 
 function App() {
+  const particlesInit = (main) => {
+    // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+    // starting from v2 you can add only the features you need reducing the bundle size
+    loadFull(main);
+  };
+
   return (
     <div class="App">
       <Particles
         id="tsparticles"
+        init={particlesInit}
         options={{
           background: {
             color: "#000",
@@ -52,6 +59,7 @@ _Options object_
 
 ```javascript
 import Particles from "solid-particles";
+import { loadFull } from "tsparticles";
 
 class App extends Component {
   constructor(props) {
@@ -65,6 +73,9 @@ class App extends Component {
     console.log(main);
 
     // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+    // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+    // starting from v2 you can add only the features you need reducing the bundle size
+    loadFull(main);
   }
 
   particlesLoaded(container) {

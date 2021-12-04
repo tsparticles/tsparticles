@@ -8,16 +8,16 @@ import { loadAbsorbersPlugin } from "tsparticles-plugin-absorbers";
 import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
 import { loadPolygonMaskPlugin } from "tsparticles-plugin-polygon-mask";
 
-export function loadFull(tsParticles: Main): void {
-    loadSlim(tsParticles);
+export async function loadFull(tsParticles: Main): Promise<void> {
+    await loadSlim(tsParticles);
 
-    loadTiltUpdater(tsParticles);
-    loadRollUpdater(tsParticles);
-    loadWobbleUpdater(tsParticles);
+    await loadTiltUpdater(tsParticles);
+    await loadRollUpdater(tsParticles);
+    await loadWobbleUpdater(tsParticles);
 
-    loadExternalTrailInteraction(tsParticles);
+    await loadExternalTrailInteraction(tsParticles);
 
-    loadAbsorbersPlugin(tsParticles);
-    loadEmittersPlugin(tsParticles);
-    loadPolygonMaskPlugin(tsParticles);
+    await loadAbsorbersPlugin(tsParticles);
+    await loadEmittersPlugin(tsParticles);
+    await loadPolygonMaskPlugin(tsParticles);
 }

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/ionic@0.6.5...ionic@1.0.0-beta.3) (2021-12-04)
+
+
+### Bug Fixes
+
+* **deps:** update capacitor monorepo ([eaeea3b](https://github.com/matteobruni/tsparticles/commit/eaeea3b5cc7a0589d2883d371aa756104c1bace8))
+* **deps:** update capacitor monorepo ([f501b7e](https://github.com/matteobruni/tsparticles/commit/f501b7e93bb14fd04dfabea7e54948dca9e5219a))
+* **deps:** update capacitor monorepo ([5bf40c2](https://github.com/matteobruni/tsparticles/commit/5bf40c2b300f67244341589dd5cb8671005f6921))
+* **deps:** update dependency rxjs to ~7.4.0 ([048238b](https://github.com/matteobruni/tsparticles/commit/048238b7b14b1ee49356afa47e5c7aa0ab4ac1f0))
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [1.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/ionic@0.4.4...ionic@1.0.0-beta.2) (2021-10-06)
 
 
@@ -15,6 +34,46 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [1.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/ionic@1.0.0-beta.0...ionic@1.0.0-beta.1) (2021-10-06)
+## [0.6.5](https://github.com/matteobruni/tsparticles/compare/ionic@0.6.4...ionic@0.6.5) (2021-11-28)
+
+**Note:** Version bump only for package ionic
+
+
+
+
+
+## [0.6.4](https://github.com/matteobruni/tsparticles/compare/ionic@0.6.3...ionic@0.6.4) (2021-11-17)
+
+**Note:** Version bump only for package ionic
+
+
+
+
+
+## [0.6.3](https://github.com/matteobruni/tsparticles/compare/ionic@0.6.2...ionic@0.6.3) (2021-11-05)
+
+**Note:** Version bump only for package ionic
+
+
+
+
+
+## [0.6.2](https://github.com/matteobruni/tsparticles/compare/ionic@0.6.1...ionic@0.6.2) (2021-10-31)
+
+**Note:** Version bump only for package ionic
+
+
+
+
+
+## [0.6.1](https://github.com/matteobruni/tsparticles/compare/ionic@0.6.0...ionic@0.6.1) (2021-10-30)
+
+**Note:** Version bump only for package ionic
+
+
+
+
+
 # [0.6.0](https://github.com/matteobruni/tsparticles/compare/ionic@0.5.0...ionic@0.6.0) (2021-10-28)
 
 **Note:** Version bump only for package ionic

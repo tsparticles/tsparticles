@@ -1,10 +1,10 @@
-import {Component} from 'preact';
-import {Router} from 'preact-router';
+import { Component } from 'preact';
+import { Router } from 'preact-router';
 import Particles from 'preact-particles';
 import Header from './header';
 import Home from '../routes/home';
 import Profile from '../routes/profile';
-import {loadFull} from "tsparticles";
+import { loadFull } from "tsparticles";
 
 export default class App extends Component {
     key = "simple1";
@@ -14,11 +14,11 @@ export default class App extends Component {
                 color: "#000000",
             },
             particles: {
-                number: {value: 100},
+                number: { value: 100 },
                 links: {
                     enable: true,
                 },
-                move: {enable: true}
+                move: { enable: true }
             }
         },
         simple2: {
@@ -26,8 +26,8 @@ export default class App extends Component {
                 color: "#000000",
             },
             particles: {
-                number: {value: 100},
-                move: {enable: true},
+                number: { value: 100 },
+                move: { enable: true },
                 links: {
                     enable: true,
                 },
@@ -59,8 +59,8 @@ export default class App extends Component {
         }, () => document.location.hash = `#${frames[key]}`);
     }
 
-    particlesInit(main) {
-        loadFull(main);
+    async particlesInit(main) {
+        await loadFull(main);
     }
 
     render() {

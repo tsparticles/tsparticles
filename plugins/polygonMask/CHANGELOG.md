@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-polygon-mask@2.0.0-beta.2...tsparticles-plugin-polygon-mask@2.0.0-beta.3) (2021-12-04)
+
+
+### Features
+
+* added more events to emitters and polygon mask ([cea5ed6](https://github.com/matteobruni/tsparticles/commit/cea5ed6cb778dfba07316673311a794585993760))
+
+
+
+
+
 # [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-polygon-mask@2.0.0-beta.1...tsparticles-plugin-polygon-mask@2.0.0-beta.2) (2021-10-06)
 
 **Note:** Version bump only for package tsparticles-plugin-polygon-mask

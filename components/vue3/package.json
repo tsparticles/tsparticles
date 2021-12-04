@@ -1,6 +1,6 @@
 {
   "name": "particles.vue3",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0-beta.2",
   "description": "Official tsParticles Vue.js 3.x Component - Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js 2.x, Angular, Svelte, jQuery, Preact, Riot.js, Solid.js, Inferno.",
   "scripts": {
     "clean": "rm -rf dist/*",
@@ -71,7 +71,7 @@
   },
   "dependencies": {
     "core-js": "^3.16.1",
-    "tsparticles-engine": "^2.0.0-beta.1",
+    "tsparticles-engine": "^2.0.0-beta.2",
     "vue-class-component": "^8.0.0-rc.1"
   },
   "devDependencies": {
@@ -88,16 +88,16 @@
     "@vue/cli-service": "~5.0.0-beta.4",
     "@vue/compiler-sfc": "^3.2.2",
     "@vue/eslint-config-prettier": "^6.0.0",
-    "@vue/eslint-config-typescript": "^8.0.0",
+    "@vue/eslint-config-typescript": "^9.0.0",
     "eslint": "^8.0.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-vue": "^7.16.0",
+    "eslint-plugin-vue": "^8.0.0",
     "is-svg": "^4.3.1",
     "prettier": "^2.3.2",
     "rollup": "^2.56.2",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript": "^1.0.1",
-    "rollup-plugin-typescript2": "^0.30.0",
+    "rollup-plugin-typescript2": "^0.31.0",
     "rollup-plugin-vue": "^6.0.0",
     "ssri": "^8.0.1",
     "typescript": "~4.4.2",

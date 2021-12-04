@@ -1,5 +1,6 @@
 export * from "./AlterType";
 export * from "./DestroyType";
+export * from "./EventType";
 export * from "./GradientType";
 export * from "./InteractorType";
 export * from "./ShapeType";

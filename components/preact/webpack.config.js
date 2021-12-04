@@ -26,7 +26,10 @@ const typescriptLoader = {
         {
             loader: "babel-loader",
             options: {
-                presets: ["@babel/preset-env"]
+                presets: ["@babel/preset-env"],
+                plugins: [
+                    [ "@babel/transform-runtime" ]
+                ]
             }
         }, {
             loader: "ts-loader"
@@ -81,7 +84,8 @@ const getExternals = (target = "cjs") => {
 };
 
 const getLibraryTarget = (target = "cjs") => {
-    let libraryTarget = "";
+    let libraryTarget;
+
     switch (target) {
         case "umd":
             libraryTarget = "umd";
@@ -92,6 +96,7 @@ const getLibraryTarget = (target = "cjs") => {
         default:
             libraryTarget = target;
     }
+
     return libraryTarget;
 };
 

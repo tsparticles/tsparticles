@@ -23,7 +23,7 @@ const getConfig = (entry) => {
             path: path.resolve(__dirname, "dist"),
             filename: "[name].js",
             libraryTarget: "umd",
-            globalObject: "this",
+            globalObject: "window",
             chunkFilename: '[name].js',
         },
         resolve: {

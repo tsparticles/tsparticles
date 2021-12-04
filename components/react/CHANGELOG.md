@@ -3,7 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.37.5...react-tsparticles@2.0.0-beta.3) (2021-12-04)
+
+
+### Features
+
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.35.4...react-tsparticles@2.0.0-beta.2) (2021-10-06)
+## [1.37.5](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.37.4...react-tsparticles@1.37.5) (2021-11-28)
+
+**Note:** Version bump only for package react-tsparticles
+
+
+
+
+
+## [1.37.4](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.37.3...react-tsparticles@1.37.4) (2021-11-17)
+
+**Note:** Version bump only for package react-tsparticles
+
+
+
+
+
+## [1.37.3](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.37.2...react-tsparticles@1.37.3) (2021-11-05)
+
+**Note:** Version bump only for package react-tsparticles
+
+
+
+
+
+## [1.37.2](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.37.1...react-tsparticles@1.37.2) (2021-10-31)
+
+**Note:** Version bump only for package react-tsparticles
+
+
+
+
+
+## [1.37.1](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.37.0...react-tsparticles@1.37.1) (2021-10-30)
+
+**Note:** Version bump only for package react-tsparticles
+
+
+
+
+
 # [1.37.0](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.36.0...react-tsparticles@1.37.0) (2021-10-28)
 
 **Note:** Version bump only for package react-tsparticles

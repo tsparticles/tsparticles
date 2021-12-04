@@ -334,10 +334,10 @@ lower-case@^2.0.2:
   dependencies:
     tslib "^2.0.3"
 
-minify@^8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/minify/-/minify-8.0.0.tgz#08b5231662374fcf467da4c66e4a4b2d2880a60c"
-  integrity sha512-lO36ik7dEmc5FG7Cyl3uhEX12KYFh8tgjntKj/Krt1LDfVEvctf7QuilmdV0lTrYFNR4N6rf5mQvv4sQOCv5Og==
+minify@^8.0.3:
+  version "8.0.3"
+  resolved "https://registry.yarnpkg.com/minify/-/minify-8.0.3.tgz#3c763c2d8f6c990f1f2d5b6a5802fba1add59457"
+  integrity sha512-ULGYQLO0YmRzVsJEN5sMd6/VFTOWXFjk64DEPMgoItjFBglgosL1fT/9OrSNMQDB2Zz/fHOeip/eH84gK4Xr+w==
   dependencies:
     clean-css "^5.0.1"
     css-b64-images "~0.2.5"

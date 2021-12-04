@@ -1,20 +1,34 @@
-const fs = require('fs');
-const mainPackage = require('../package.json');
-const libPackage = './projects/ng-particles/package.json';
+const fs = require("fs");
+const mainPackage = require("../package.json");
+const libPackage = "./projects/ng-particles/package.json";
+const libReadme = "./projects/ng-particles/README.md";
+const sourceReadme = "./README.md";
 
 fs.readFile(libPackage, function (error, data) {
-    if (error) {
-        throw error;
+  if (error) {
+    throw error;
+  }
+
+  const text = data.toString();
+
+  const libObj = JSON.parse(text);
+
+  libObj.version = mainPackage.version;
+  libObj.peerDependencies.tsparticles = mainPackage.dependencies.tsparticles;
+  libObj.peerDependencies["tsparticles-engine"] = mainPackage.dependencies["tsparticles-engine"];
+  libObj.peerDependencies["tsparticles-slim"] = mainPackage.dependencies["tsparticles-slim"];
+
+  fs.writeFile(libPackage, JSON.stringify(libObj, undefined, 2), 'utf-8', function () {
+    console.log(`lib package.json updated successfully to version ${mainPackage.version}`);
+  });
+
+  fs.readFile(sourceReadme, function (readmeError, readmeData) {
+    if (readmeError) {
+      throw readmeError;
     }
 
-    const text = data.toString();
-
-    const libObj = JSON.parse(text);
-
-    libObj.version = mainPackage.version;
-    libObj.peerDependencies.tsparticles = mainPackage.dependencies.tsparticles;
-
-    fs.writeFile(libPackage, JSON.stringify(libObj, undefined, 2), 'utf-8', function () {
-        console.log(`lib package.json updated successfully to version ${mainPackage.version}`);
+    fs.writeFile(libReadme, readmeData.toString(), "utf-8", function () {
+      console.log("README.md updated successfully");
     });
+  });
 });

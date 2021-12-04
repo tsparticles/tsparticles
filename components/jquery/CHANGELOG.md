@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/jquery-particles@1.37.5...jquery-particles@2.0.0-beta.2) (2021-12-04)
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [2.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/jquery-particles@1.35.4...jquery-particles@2.0.0-beta.1) (2021-10-06)
 
 
@@ -20,6 +31,46 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.37.5](https://github.com/matteobruni/tsparticles/compare/jquery-particles@1.37.4...jquery-particles@1.37.5) (2021-11-28)
+
+**Note:** Version bump only for package jquery-particles
+
+
+
+
+
+## [1.37.4](https://github.com/matteobruni/tsparticles/compare/jquery-particles@1.37.3...jquery-particles@1.37.4) (2021-11-17)
+
+**Note:** Version bump only for package jquery-particles
+
+
+
+
+
+## [1.37.3](https://github.com/matteobruni/tsparticles/compare/jquery-particles@1.37.2...jquery-particles@1.37.3) (2021-11-05)
+
+**Note:** Version bump only for package jquery-particles
+
+
+
+
+
+## [1.37.2](https://github.com/matteobruni/tsparticles/compare/jquery-particles@1.37.1...jquery-particles@1.37.2) (2021-10-31)
+
+**Note:** Version bump only for package jquery-particles
+
+
+
+
+
+## [1.37.1](https://github.com/matteobruni/tsparticles/compare/jquery-particles@1.37.0...jquery-particles@1.37.1) (2021-10-30)
+
+**Note:** Version bump only for package jquery-particles
+
+
+
+
+
 # [1.37.0](https://github.com/matteobruni/tsparticles/compare/jquery-particles@1.36.0...jquery-particles@1.37.0) (2021-10-28)
 
 **Note:** Version bump only for package jquery-particles
