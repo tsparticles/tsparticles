@@ -1,14 +1,14 @@
 [![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
 
-# tsParticles Fire Preset
+# tsParticles Fireworks Preset
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-fire/badge)](https://www.jsdelivr.com/package/npm/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles-preset-fire.svg)](https://www.npmjs.com/package/tsparticles-preset-fire) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-fire)](https://www.npmjs.com/package/tsparticles-preset-fire)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-fireworks/badge)](https://www.jsdelivr.com/package/npm/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles-preset-fireworks.svg)](https://www.npmjs.com/package/tsparticles-preset-fireworks) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-fireworks)](https://www.npmjs.com/package/tsparticles-preset-fireworks)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) preset for a faded red to black background with particles colored like fire and ash sparks.
+[tsParticles](https://github.com/matteobruni/tsparticles) preset for fireworks effect.
 
 ## Sample
 
-![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/v1/presets/fire/images/sample.png)
+![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/v1/presets/fireworks/images/sample.png)
 
 ## How to use it
 
@@ -18,11 +18,11 @@ The first step is installing [tsParticles](https://github.com/matteobruni/tspart
 vanilla javascript in the main project [here](https://github.com/matteobruni/tsparticles)
 
 Once installed you need one more script to be included in your page (or you can download that
-from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-fire):
+from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-fireworks):
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-fire"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-fireworks"></script>
 ```
 
 This script **MUST** be placed after the `tsParticles` one.
@@ -32,7 +32,7 @@ This script **MUST** be placed after the `tsParticles` one.
 A bundled script can also be used, this will include every needed plugin needed by the preset.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-fire/dist/tsparticles.preset.fire.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-fireworks/tsparticles.preset.fireworks.bundle.min.js"></script>
 ```
 
 ### Usage
@@ -40,10 +40,10 @@ A bundled script can also be used, this will include every needed plugin needed 
 Once the scripts are loaded you can set up `tsParticles` like this:
 
 ```javascript
-loadFirePreset(tsParticles);
+loadFireworksPreset(tsParticles);
 
 tsParticles.load("tsparticles", {
-  preset: "fire",
+  preset: "fireworks",
 });
 ```
 
@@ -59,7 +59,7 @@ tsParticles.load("tsparticles", {
       type: "square",
     },
   },
-  preset: "fire",
+  preset: "fireworks",
 });
 ```
 
@@ -74,18 +74,18 @@ This sample uses the class component syntax, but you can use hooks as well (if t
 ```javascript
 import Particles from "react-tsparticles";
 import { Main } from "tsparticles-engine";
-import { loadFirePreset } from "tsparticles-preset-fire";
+import { loadFireworksPreset } from "tsparticles-preset-fireworks";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
   // this customizes the component tsParticles installation
   customInit(main: Main) {
     // this adds the preset to tsParticles, you can safely use the
-    loadFirePreset(main);
+    loadFireworksPreset(main);
   }
 
   render() {
     const options = {
-      preset: "fire",
+      preset: "fireworks",
     };
 
     return <Particles options={options} init={this.customInit} />;
@@ -103,7 +103,7 @@ _The syntax for `Vue.js 2.x` and `3.x` is the same_
 
 ```js
 function particlesInit(main: Main) {
-  loadFirePreset(main);
+  loadFireworksPreset(main);
 }
 ```
 
@@ -120,7 +120,7 @@ function particlesInit(main: Main) {
 
 ```ts
 function particlesInit(main: Main): void {
-  loadFirePreset(main);
+  loadFireworksPreset(main);
 }
 ```
 
@@ -137,6 +137,6 @@ function particlesInit(main: Main): void {
 
 ```js
 let onParticlesInit = (main) => {
-  loadFirePreset(main);
+  loadFireworksPreset(main);
 };
 ```

@@ -4,15 +4,15 @@ import Particles from "solid-particles";
 import type { Main } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 
-function particlesInit(main: Main): void {
-    loadFull(main);
+async function particlesInit(main: Main): Promise<void> {
+    await loadFull(main);
 }
 
 function App() {
     return (
         <div class="App">
             <header class="App-header">
-                <img src={ logo } class="App-logo" alt="logo"/>
+                <img src={logo} class="App-logo" alt="logo"/>
                 <p>
                     Edit <code>src/App.tsx</code> and save to reload.
                 </p>
@@ -25,7 +25,7 @@ function App() {
                     Learn Solid
                 </a>
             </header>
-            <Particles id="tsparticles" options={ {
+            <Particles id="tsparticles" options={{
                 background: {
                     color: "#000"
                 },
@@ -40,7 +40,7 @@ function App() {
                         enable: true
                     }
                 }
-            } } init={ particlesInit }/>
+            }} init={particlesInit}/>
         </div>
     );
 }

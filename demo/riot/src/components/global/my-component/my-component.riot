@@ -20,14 +20,14 @@
 
     <script>
         import RiotParticles from "riot-particles";
-        import {loadFull} from "tsparticles";
+        import { loadFull } from "tsparticles";
 
         export default {
             components: {
                 RiotParticles
             },
-            particlesInit: (main) => {
-                loadFull(main);
+            particlesInit: async (main) => {
+                await loadFull(main);
             }
         }
     </script>

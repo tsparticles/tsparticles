@@ -32,7 +32,7 @@ This script **MUST** be placed after the `tsParticles` one.
 A bundled script can also be used, this will include every needed plugin needed by the preset.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-big-circles/dist/tsparticles.preset.bigCircles.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-big-circles/tsparticles.preset.bigCircles.bundle.min.js"></script>
 ```
 
 ### Usage
@@ -76,9 +76,9 @@ import { loadBigCirclesPreset } from "tsparticles-preset-big-circles";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
   // this customizes the component tsParticles installation
-  customInit(main: Main) {
+  async customInit(main: Main) {
     // this adds the preset to tsParticles, you can safely use the
-    loadBigCirclesPreset(main);
+    await loadBigCirclesPreset(main);
   }
 
   render() {
@@ -100,8 +100,8 @@ _The syntax for `Vue.js 2.x` and `3.x` is the same_
 ```
 
 ```js
-function particlesInit(main: Main) {
-  loadBigCirclesPreset(main);
+async function particlesInit(main: Main) {
+  await loadBigCirclesPreset(main);
 }
 ```
 
@@ -112,13 +112,13 @@ function particlesInit(main: Main) {
   [id]="id"
   [options]="particlesOptions"
   (particlesLoaded)="particlesLoaded($event)"
-  (particlesInit)="particlesInit($event)"
+  [particlesInit]="particlesInit"
 ></ng-particles>
 ```
 
 ```ts
-function particlesInit(main: Main): void {
-  loadBigCirclesPreset(main);
+async function particlesInit(main: Main): void {
+  await loadBigCirclesPreset(main);
 }
 ```
 
@@ -134,7 +134,7 @@ function particlesInit(main: Main): void {
 ```
 
 ```js
-let onParticlesInit = (main) => {
-  loadBigCirclesPreset(main);
+let onParticlesInit = async (main) => {
+  await loadBigCirclesPreset(main);
 };
 ```

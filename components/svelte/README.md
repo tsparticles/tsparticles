@@ -49,11 +49,11 @@ yarn add svelte-particles svelte
     // (from the core library) methods like play, pause, refresh, start, stop
   };
 
-  let onParticlesInit = (main) => {
+  let particlesInit = async (main) => {
     // you can use main to customize the tsParticles instance adding presets or custom shapes
     // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
     // starting from v2 you can add only the features you need reducing the bundle size
-    loadFull(main);
+    await loadFull(main);
   };
 </script>
 
@@ -61,7 +61,7 @@ yarn add svelte-particles svelte
   id="tsparticles"
   options="{particlesConfig}"
   on:particlesLoaded="{onParticlesLoaded}"
-  on:particlesInit="{onParticlesInit}"
+  particlesInit="{particlesInit}"
 />
 
 <!-- or -->
@@ -70,7 +70,7 @@ yarn add svelte-particles svelte
   id="tsparticles"
   url="{particlesUrl}"
   on:particlesLoaded="{onParticlesLoaded}"
-  on:particlesInit="{onParticlesInit}"
+  particlesInit="{particlesInit}"
 />
 ```
 
@@ -118,11 +118,11 @@ You can see a sample below:
     // (from the core library) methods like play, pause, refresh, start, stop
   };
 
-  let onParticlesInit = (main) => {
+  let particlesInit = async (main) => {
     // you can use main to customize the tsParticles instance adding presets or custom shapes
     // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
     // starting from v2 you can add only the features you need reducing the bundle size
-    loadFull(main);
+    await loadFull(main);
   };
 </script>
 
@@ -131,7 +131,7 @@ You can see a sample below:
   id="tsparticles"
   options="{particlesConfig}"
   on:particlesLoaded="{onParticlesLoaded}"
-  on:particlesInit="{onParticlesInit}"
+  particlesInit="{particlesInit}"
 />
 
 <!-- or -->
@@ -141,7 +141,7 @@ You can see a sample below:
   id="tsparticles"
   url="{particlesUrl}"
   on:particlesLoaded="{onParticlesLoaded}"
-  on:particlesInit="{onParticlesInit}"
+  particlesInit="{particlesInit}"
 />
 ```
 

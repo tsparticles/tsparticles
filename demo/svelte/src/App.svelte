@@ -26,17 +26,11 @@
 
         console.log(container);
 
-        // use container to call it's methods
+        // use container to call its methods
     }
 
-    let handleParticlesInit = (e) => {
-        console.log(e);
-
-        const main = e.detail;
-
-        loadFull(main);
-
-        // use container to call it's methods
+    let particlesInit = async (main) => {
+        await loadFull(main);
     }
 </script>
 
@@ -44,7 +38,7 @@
     <h1>Hello {name}!</h1>
     <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
     <Particles id="tsparticles" options={particlesConfig} on:particlesLoaded={handleParticlesLoaded}
-               on:particlesInit={handleParticlesInit}/>
+               particlesInit={particlesInit}/>
 </main>
 
 <style>

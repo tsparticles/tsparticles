@@ -5,7 +5,7 @@
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "dev": "rollup -c rollup.config.js -w",
-    "start": "sirv public",
+    "start": "sirv public --host 127.0.0.1",
     "validate": "svelte-check"
   },
   "license": "MIT",

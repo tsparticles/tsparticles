@@ -32,7 +32,7 @@ This script **MUST** be placed after the `tsParticles` one.
 A bundled script can also be used, this will include every needed plugin needed by the preset.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-snow/dist/tsparticles.preset.snow.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-snow/tsparticles.preset.snow.bundle.min.js"></script>
 ```
 
 ### Usage
@@ -40,7 +40,7 @@ A bundled script can also be used, this will include every needed plugin needed 
 Once the scripts are loaded you can set up `tsParticles` like this:
 
 ```javascript
-loadFirePreset(tsParticles);
+loadSnowPreset(tsParticles);
 
 tsParticles.load("tsparticles", {
   preset: "snow",
@@ -74,13 +74,13 @@ This sample uses the class component syntax, but you can use hooks as well (if t
 ```javascript
 import Particles from "react-tsparticles";
 import { Main } from "tsparticles-engine";
-import { loadFirePreset } from "tsparticles-preset-snow";
+import { loadSnowPreset } from "tsparticles-preset-snow";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
   // this customizes the component tsParticles installation
   customInit(main: Main) {
     // this adds the preset to tsParticles, you can safely use the
-    loadFirePreset(main);
+    loadSnowPreset(main);
   }
 
   render() {
@@ -103,7 +103,7 @@ _The syntax for `Vue.js 2.x` and `3.x` is the same_
 
 ```js
 function particlesInit(main: Main) {
-  loadFirePreset(main);
+  loadSnowPreset(main);
 }
 ```
 
@@ -120,7 +120,7 @@ function particlesInit(main: Main) {
 
 ```ts
 function particlesInit(main: Main): void {
-  loadFirePreset(main);
+  loadSnowPreset(main);
 }
 ```
 
@@ -137,6 +137,6 @@ function particlesInit(main: Main): void {
 
 ```js
 let onParticlesInit = (main) => {
-  loadFirePreset(main);
+  loadSnowPreset(main);
 };
 ```
