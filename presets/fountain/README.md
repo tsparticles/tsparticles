@@ -4,7 +4,8 @@
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-fountain/badge)](https://www.jsdelivr.com/package/npm/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles-preset-fountain.svg)](https://www.npmjs.com/package/tsparticles-preset-fountain) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-fountain)](https://www.npmjs.com/package/tsparticles-preset-fountain)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) preset creating random positioned falling colored particles that break when hitting the ground.
+[tsParticles](https://github.com/matteobruni/tsparticles) preset creating random positioned falling colored particles
+that break when hitting the ground.
 
 ## Sample
 
@@ -21,6 +22,7 @@ Once installed you need one more script to be included in your page (or you can 
 from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-fountain):
 
 ```html
+
 <script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-fountain"></script>
 ```
@@ -32,6 +34,7 @@ This script **MUST** be placed after the `tsParticles` one.
 A bundled script can also be used, this will include every needed plugin needed by the preset.
 
 ```html
+
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-fountain/dist/tsparticles.preset.fountain.bundle.min.js"></script>
 ```
 
@@ -40,10 +43,10 @@ A bundled script can also be used, this will include every needed plugin needed 
 Once the scripts are loaded you can set up `tsParticles` like this:
 
 ```javascript
-loadFirePreset(tsParticles);
+loadFountainPreset(tsParticles);
 
 tsParticles.load("tsparticles", {
-  preset: "fountain",
+    preset: "fountain",
 });
 ```
 
@@ -54,12 +57,12 @@ You can override all the options defining the properties like in any standard `t
 
 ```javascript
 tsParticles.load("tsparticles", {
-  particles: {
-    shape: {
-      type: "square",
+    particles: {
+        shape: {
+            type: "square",
+        },
     },
-  },
-  preset: "fountain",
+    preset: "fountain",
 });
 ```
 
@@ -74,22 +77,22 @@ This sample uses the class component syntax, but you can use hooks as well (if t
 ```javascript
 import Particles from "react-tsparticles";
 import { Main } from "tsparticles";
-import { loadFirePreset } from "tsparticles-preset-fountain";
+import { loadFountainPreset } from "tsparticles-preset-fountain";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
-  // this customizes the component tsParticles installation
-  customInit(main: Main) {
-    // this adds the preset to tsParticles, you can safely use the
-    loadFirePreset(main);
-  }
+    // this customizes the component tsParticles installation
+    customInit(main: Main) {
+        // this adds the preset to tsParticles, you can safely use the
+        loadFountainPreset(main);
+    }
 
-  render() {
-    const options = {
-      preset: "fountain",
-    };
+    render() {
+        const options = {
+            preset: "fountain",
+        };
 
-    return <Particles options={options} init={this.customInit} />;
-  }
+        return <Particles options={options} init={this.customInit}/>;
+    }
 }
 ```
 
@@ -98,29 +101,31 @@ export class ParticlesContainer extends React.PureComponent<IProps> {
 _The syntax for `Vue.js 2.x` and `3.x` is the same_
 
 ```vue
-<Particles id="tsparticles" :particlesInit="particlesInit" url="http://foo.bar/particles.json" />
+
+<Particles id="tsparticles" :particlesInit="particlesInit" url="http://foo.bar/particles.json"/>
 ```
 
 ```js
 function particlesInit(main: Main) {
-  loadFirePreset(main);
+    loadFountainPreset(main);
 }
 ```
 
 ### Angular
 
 ```html
+
 <ng-particles
-  [id]="id"
-  [options]="particlesOptions"
-  (particlesLoaded)="particlesLoaded($event)"
-  (particlesInit)="particlesInit($event)"
+        [id]="id"
+        [options]="particlesOptions"
+        (particlesLoaded)="particlesLoaded($event)"
+        (particlesInit)="particlesInit($event)"
 ></ng-particles>
 ```
 
 ```ts
 function particlesInit(main: Main): void {
-  loadFirePreset(main);
+    loadFountainPreset(main);
 }
 ```
 
@@ -137,6 +142,6 @@ function particlesInit(main: Main): void {
 
 ```js
 let onParticlesInit = (main) => {
-  loadFirePreset(main);
+    loadFountainPreset(main);
 };
 ```

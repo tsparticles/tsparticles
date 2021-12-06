@@ -22,6 +22,7 @@ Once installed you need one more script to be included in your page (or you can 
 from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-seaAnemone):
 
 ```html
+
 <script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-seaAnemone"></script>
 ```
@@ -33,6 +34,7 @@ This script **MUST** be placed after the `tsParticles` one.
 A bundled script can also be used, this will include every needed plugin needed by the preset.
 
 ```html
+
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-seaAnemone/dist/tsparticles.preset.seaAnemone.bundle.min.js"></script>
 ```
 
@@ -41,10 +43,10 @@ A bundled script can also be used, this will include every needed plugin needed 
 Once the scripts are loaded you can set up `tsParticles` like this:
 
 ```javascript
-loadFirePreset(tsParticles);
+loadSeaAnemonePreset(tsParticles);
 
 tsParticles.load("tsparticles", {
-  preset: "seaAnemone",
+    preset: "seaAnemone",
 });
 ```
 
@@ -55,12 +57,12 @@ You can override all the options defining the properties like in any standard `t
 
 ```javascript
 tsParticles.load("tsparticles", {
-  particles: {
-    shape: {
-      type: "square",
+    particles: {
+        shape: {
+            type: "square",
+        },
     },
-  },
-  preset: "seaAnemone",
+    preset: "seaAnemone",
 });
 ```
 
@@ -75,22 +77,22 @@ This sample uses the class component syntax, but you can use hooks as well (if t
 ```javascript
 import Particles from "react-tsparticles";
 import { Main } from "tsparticles";
-import { loadFirePreset } from "tsparticles-preset-seaAnemone";
+import { loadSeaAnemonePreset } from "tsparticles-preset-seaAnemone";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
-  // this customizes the component tsParticles installation
-  customInit(main: Main) {
-    // this adds the preset to tsParticles, you can safely use the
-    loadFirePreset(main);
-  }
+    // this customizes the component tsParticles installation
+    customInit(main: Main) {
+        // this adds the preset to tsParticles, you can safely use the
+        loadSeaAnemonePreset(main);
+    }
 
-  render() {
-    const options = {
-      preset: "seaAnemone",
-    };
+    render() {
+        const options = {
+            preset: "seaAnemone",
+        };
 
-    return <Particles options={options} init={this.customInit} />;
-  }
+        return <Particles options={options} init={this.customInit}/>;
+    }
 }
 ```
 
@@ -99,29 +101,31 @@ export class ParticlesContainer extends React.PureComponent<IProps> {
 _The syntax for `Vue.js 2.x` and `3.x` is the same_
 
 ```vue
-<Particles id="tsparticles" :particlesInit="particlesInit" url="http://foo.bar/particles.json" />
+
+<Particles id="tsparticles" :particlesInit="particlesInit" url="http://foo.bar/particles.json"/>
 ```
 
 ```js
 function particlesInit(main: Main) {
-  loadFirePreset(main);
+    loadSeaAnemonePreset(main);
 }
 ```
 
 ### Angular
 
 ```html
+
 <ng-particles
-  [id]="id"
-  [options]="particlesOptions"
-  (particlesLoaded)="particlesLoaded($event)"
-  (particlesInit)="particlesInit($event)"
+        [id]="id"
+        [options]="particlesOptions"
+        (particlesLoaded)="particlesLoaded($event)"
+        (particlesInit)="particlesInit($event)"
 ></ng-particles>
 ```
 
 ```ts
 function particlesInit(main: Main): void {
-  loadFirePreset(main);
+    loadSeaAnemonePreset(main);
 }
 ```
 
@@ -138,6 +142,6 @@ function particlesInit(main: Main): void {
 
 ```js
 let onParticlesInit = (main) => {
-  loadFirePreset(main);
+    loadSeaAnemonePreset(main);
 };
 ```
