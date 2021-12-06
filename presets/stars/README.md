@@ -80,7 +80,7 @@ export class ParticlesContainer extends React.PureComponent<IProps> {
   // this customizes the component tsParticles installation
   customInit(main: Main) {
     // this adds the preset to tsParticles, you can safely use the
-      loadStarsPreset(main);
+    loadStarsPreset(main);
   }
 
   render() {
@@ -103,7 +103,7 @@ _The syntax for `Vue.js 2.x` and `3.x` is the same_
 
 ```js
 function particlesInit(main: Main) {
-    loadStarsPreset(main);
+  loadStarsPreset(main);
 }
 ```
 
@@ -120,7 +120,7 @@ function particlesInit(main: Main) {
 
 ```ts
 function particlesInit(main: Main): void {
-    loadStarsPreset(main);
+  loadStarsPreset(main);
 }
 ```
 
@@ -137,6 +137,6 @@ function particlesInit(main: Main): void {
 
 ```js
 let onParticlesInit = (main) => {
-    loadStarsPreset(main);
+  loadStarsPreset(main);
 };
 ```

@@ -22,7 +22,6 @@ Once installed you need one more script to be included in your page (or you can 
 from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-firefly):
 
 ```html
-
 <script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-firefly"></script>
 ```
@@ -34,7 +33,6 @@ This script **MUST** be placed after the `tsParticles` one.
 A bundled script can also be used, this will include every needed plugin needed by the preset.
 
 ```html
-
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-firefly/dist/tsparticles.preset.firefly.bundle.min.js"></script>
 ```
 
@@ -46,7 +44,7 @@ Once the scripts are loaded you can set up `tsParticles` like this:
 loadFireflyPreset(tsParticles);
 
 tsParticles.load("tsparticles", {
-    preset: "firefly",
+  preset: "firefly",
 });
 ```
 
@@ -57,12 +55,12 @@ You can override all the options defining the properties like in any standard `t
 
 ```javascript
 tsParticles.load("tsparticles", {
-    particles: {
-        shape: {
-            type: "square",
-        },
+  particles: {
+    shape: {
+      type: "square",
     },
-    preset: "firefly",
+  },
+  preset: "firefly",
 });
 ```
 
@@ -80,19 +78,19 @@ import { Main } from "tsparticles";
 import { loadFireflyPreset } from "tsparticles-preset-firefly";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
-    // this customizes the component tsParticles installation
-    customInit(main: Main) {
-        // this adds the preset to tsParticles, you can safely use the
-        loadFireflyPreset(main);
-    }
+  // this customizes the component tsParticles installation
+  customInit(main: Main) {
+    // this adds the preset to tsParticles, you can safely use the
+    loadFireflyPreset(main);
+  }
 
-    render() {
-        const options = {
-            preset: "firefly",
-        };
+  render() {
+    const options = {
+      preset: "firefly",
+    };
 
-        return <Particles options={options} init={this.customInit}/>;
-    }
+    return <Particles options={options} init={this.customInit} />;
+  }
 }
 ```
 
@@ -101,31 +99,29 @@ export class ParticlesContainer extends React.PureComponent<IProps> {
 _The syntax for `Vue.js 2.x` and `3.x` is the same_
 
 ```vue
-
-<Particles id="tsparticles" :particlesInit="particlesInit" url="http://foo.bar/particles.json"/>
+<Particles id="tsparticles" :particlesInit="particlesInit" url="http://foo.bar/particles.json" />
 ```
 
 ```js
 function particlesInit(main: Main) {
-    loadFireflyPreset(main);
+  loadFireflyPreset(main);
 }
 ```
 
 ### Angular
 
 ```html
-
 <ng-particles
-        [id]="id"
-        [options]="particlesOptions"
-        (particlesLoaded)="particlesLoaded($event)"
-        (particlesInit)="particlesInit($event)"
+  [id]="id"
+  [options]="particlesOptions"
+  (particlesLoaded)="particlesLoaded($event)"
+  (particlesInit)="particlesInit($event)"
 ></ng-particles>
 ```
 
 ```ts
 function particlesInit(main: Main): void {
-    loadFireflyPreset(main);
+  loadFireflyPreset(main);
 }
 ```
 
@@ -142,6 +138,6 @@ function particlesInit(main: Main): void {
 
 ```js
 let onParticlesInit = (main) => {
-    loadFireflyPreset(main);
+  loadFireflyPreset(main);
 };
 ```
