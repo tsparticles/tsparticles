@@ -12,6 +12,7 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 [![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles")
 
 ---
+
 ## Table of Contents
 
 * [Use for your website](#Do-you-want-to-use-it-on-your-website)
@@ -37,10 +38,11 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
   * [Animated stars](#Animated-stars)
   * [Nyan cat flying on scrolling stars](#Nyan-cat-flying-on-scrolling-stars)
   * [Background Mask particles](#Background-Mask-particles)
-
 * [Migrating from Particles.js](#Migrating-from-Particlesjs)
-
 * [Plugins/Customizations](#PluginsCustomizations)
+
+---
+
 ## Do you want to use it on your website?
 
 *Documentation and Development references [here](https://particles.js.org/docs/) 📖*
