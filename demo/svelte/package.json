@@ -1,11 +1,11 @@
 {
   "name": "svelte-demo",
-  "version": "2.0.0-beta.3",
+  "version": "2.0.0-beta.4",
   "private": true,
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "dev": "rollup -c rollup.config.js -w",
-    "start": "sirv public",
+    "start": "sirv public --host 127.0.0.1",
     "validate": "svelte-check"
   },
   "license": "MIT",
@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "sirv-cli": "^1.0.14",
-    "svelte-particles": "^2.0.0-beta.2",
-    "tsparticles": "^2.0.0-beta.3"
+    "svelte-particles": "^2.0.0-beta.3",
+    "tsparticles": "^2.0.0-beta.4"
   }
 }

@@ -36,11 +36,11 @@ export default class Particles extends Vue {
   private options?: IParticlesProps;
   private url?: string;
   private particlesLoaded?: (container: Container) => void;
-  private particlesInit?: (tsParticles: Main) => void;
+  private particlesInit?: (tsParticles: Main) => Promise<void>;
   private container?: Container;
 
   public mounted(): void {
-    nextTick(() => {
+    nextTick(async () => {
       if (!this.id) {
         throw new Error("Prop 'id' is required!");
       }
@@ -48,7 +48,7 @@ export default class Particles extends Vue {
       tsParticles.init();
 
       if (this.particlesInit) {
-        this.particlesInit(tsParticles);
+        await this.particlesInit(tsParticles);
       }
 
       const cb = (container?: Container) => {
@@ -59,15 +59,9 @@ export default class Particles extends Vue {
         }
       };
 
-      if (this.url) {
-        tsParticles
-            .loadJSON(this.id, this.url)
-            .then(cb);
-      } else {
-        tsParticles
-            .load(this.id, this.options ?? {})
-            .then(cb);
-      }
+      const container = await (this.url ? tsParticles.loadJSON(this.id, this.url) : tsParticles.load(this.id, this.options ?? {}));
+
+      cb(container);
     });
   }
 

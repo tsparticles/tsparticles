@@ -93,8 +93,8 @@ import Particles from "particles.vue";
 Vue.use(Particles);
 
 export default class App extends Vue {
-  particlesInit(main: Main) {
-    loadFull(main);
+  async particlesInit(main: Main) {
+    await loadFull(main);
   }
 }
 </script>

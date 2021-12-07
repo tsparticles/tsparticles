@@ -1,24 +1,24 @@
 <template>
   <div>
     <h1
-      class="app__title" 
-      align="center"
+        class="app__title"
+        align="center"
     >
       Welcome to tsParticles Vue3 Demo
     </h1>
 
     <CodeViewer
-      :code="codeStringified"
-      :optionSelected="optionSelected"
-      :optionsList="optionsList"
-      @change-option="changeOption"
+        :code="codeStringified"
+        :optionSelected="optionSelected"
+        :optionsList="optionsList"
+        @change-option="changeOption"
     />
-    
+
     <Particles
-      id="tsparticles"
-      :options="options"
-      :key="optionSelected"
-      :particlesInit="particlesInit"
+        id="tsparticles"
+        :options="options"
+        :key="optionSelected"
+        :particlesInit="particlesInit"
     />
   </div>
 </template>
@@ -37,10 +37,10 @@ import { loadFull } from "tsparticles";
   },
 })
 export default class App extends Vue {
-  particlesInit(main: Main) {
-    loadFull(main);
+  async particlesInit(main: Main) {
+    await loadFull(main);
   }
-  
+
   optionSelected = 'crazyParticles'
 
   changeOption(newValue: string) {
@@ -50,7 +50,7 @@ export default class App extends Vue {
   get codeStringified() {
     return stringifyObject(optionsMap[this.optionSelected], {
       indent: '  ',
-    	singleQuotes: false,
+      singleQuotes: false,
     });
   }
 

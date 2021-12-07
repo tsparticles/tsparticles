@@ -1,6 +1,6 @@
 {
 	"name": "inferno-particles-demo",
-	"version": "2.0.0-beta.3",
+	"version": "2.0.0-beta.4",
 	"private": true,
 	"description": "> TODO: description",
 	"main": "index.js",
@@ -17,9 +17,9 @@
 	"license": "MIT",
 	"dependencies": {
 		"inferno": "^7.4.8",
-		"inferno-particles": "^2.0.0-beta.2",
-		"tsparticles": "^2.0.0-beta.3",
-		"tsparticles-engine": "^2.0.0-beta.2"
+		"inferno-particles": "^2.0.0-beta.3",
+		"tsparticles": "^2.0.0-beta.4",
+		"tsparticles-engine": "^2.0.0-beta.3"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.15.0",
@@ -31,7 +31,7 @@
 		"clean-webpack-plugin": "^4.0.0",
 		"css-loader": "^6.2.0",
 		"html-webpack-plugin": "^5.3.2",
-		"node-sass": "^6.0.1",
+		"node-sass": "^7.0.0",
 		"sass-loader": "^12.1.0",
 		"source-map-loader": "^3.0.0",
 		"style-loader": "^3.2.1",
