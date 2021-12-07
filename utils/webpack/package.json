@@ -1,6 +1,6 @@
 {
   "name": "webpack-tsparticles-plugin",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "main": "webpack-tsparticles.js",
   "license": "MIT",
   "dependencies": {

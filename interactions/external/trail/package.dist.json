@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-interaction-external-trail",
-  "version": "2.0.0-beta.3",
+  "version": "2.0.0-beta.4",
   "description": "tsParticles trail external interaction",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -62,6 +62,6 @@
     }
   },
   "dependencies": {
-    "tsparticles-engine": "^2.0.0-beta.2"
+    "tsparticles-engine": "^2.0.0-beta.3"
   }
 }

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/particles.vue@3.0.0-beta.2...particles.vue@3.0.0-beta.3) (2021-12-07)
+
+
+### Features
+
+* async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+
+
+
+
+
 # [3.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.20.5...particles.vue@3.0.0-beta.2) (2021-12-04)
 
 

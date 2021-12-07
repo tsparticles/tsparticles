@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@2.0.0-beta.3...solid-particles-demo@2.0.0-beta.4) (2021-12-07)
+
+
+### Features
+
+* async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+
+
+
+
+
 # [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.20.5...solid-particles-demo@2.0.0-beta.3) (2021-12-04)
 
 
