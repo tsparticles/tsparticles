@@ -1232,15 +1232,15 @@
     "@babel/helper-validator-identifier" "^7.14.9"
     to-fast-properties "^2.0.0"
 
-"@capacitor/app@1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@capacitor/app/-/app-1.0.6.tgz#8ae8271c7ee0cb8ff7578d1135846759adff153f"
-  integrity sha512-NjHIs6f4WJQuhabnCkcE6YLyIIn+t4Al5etB/SJGZJwUYRe1yJYtZ4T/KobDIzwwZn9I9de7QbEA5947lGttBQ==
+"@capacitor/app@1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@capacitor/app/-/app-1.0.7.tgz#60e5b33299138b100910fdeb18a2cbc48beb53bd"
+  integrity sha512-7CcMGp9yshBR0fkmNPVsYmUUhlAQnJFCeJGJIF3862D5l+drBjEOE+QoGjiKtaqPriadkGCsoYVrX10yGULDpA==
 
-"@capacitor/cli@3.3.2":
-  version "3.3.2"
-  resolved "https://registry.yarnpkg.com/@capacitor/cli/-/cli-3.3.2.tgz#3b78c735935cde30677af282ba63ed51f5f69b0e"
-  integrity sha512-LmH3DzuwNL3k995CgAs20KXjQhDWrQCQgur3M8nqIKecZk0xCoSGghht+rEK8/Gqn0XqdBGdgUgop+nep17edg==
+"@capacitor/cli@3.3.3":
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/@capacitor/cli/-/cli-3.3.3.tgz#07a146615a9723e89879a8e4847be3e57a0cbc5d"
+  integrity sha512-dRwBnHuc6UzXfQX3nvfMR70hG59CpXumqIXNtl+bZqoGWRUafJiGSY5KJJYOqk5xslQDA2VdBLkq39+wslQGAg==
   dependencies:
     "@ionic/cli-framework-output" "^2.2.1"
     "@ionic/utils-fs" "^3.1.5"
@@ -1259,10 +1259,10 @@
     tslib "^2.1.0"
     xml2js "^0.4.23"
 
-"@capacitor/core@3.3.2":
-  version "3.3.2"
-  resolved "https://registry.yarnpkg.com/@capacitor/core/-/core-3.3.2.tgz#dde52353ad5d261635ef0ec38401e70ffb9722de"
-  integrity sha512-pyI3dQdQjA1L5iEw0jkeKCogx9t5d5kIFTB5M3CJRg9Uj5MIpU2J5CRj+74A7BflvZJo8IBd6IfMJaOArRumaw==
+"@capacitor/core@3.3.3":
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/@capacitor/core/-/core-3.3.3.tgz#a1868a536a0b82381c2eaeb9aeca424ffbc5bca3"
+  integrity sha512-5oN3dUxdVXSvrTvTkmKBoBh7qISi+PVrsxHyjqq7Kr573dQnm8LsZ0/24PpJsGp08lD/+nFtFzOtPODJvYLVgg==
   dependencies:
     tslib "^2.1.0"
 
@@ -1271,10 +1271,10 @@
   resolved "https://registry.yarnpkg.com/@capacitor/haptics/-/haptics-1.1.3.tgz#54e25344d799b9bd7152246c57b5f56c142f225e"
   integrity sha512-ui2mY/riK1Y4bxnJKJfclWO61obZ0RHmtErPhpmt4wIEVjG1segYdFop45R2PxyEwoUJgzEsAxnviM/T6k8seQ==
 
-"@capacitor/keyboard@1.1.3":
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/@capacitor/keyboard/-/keyboard-1.1.3.tgz#18bed4b5320ffedc51b8bec04e6be7cd37af6617"
-  integrity sha512-WpD1f/3HH6IpADiRaFTDGdhrqYhZDikybXXhUdGAEEwHbErHt9zS5RQgbeROjGmkXcurVvQsalQ59YuKU0VzwA==
+"@capacitor/keyboard@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@capacitor/keyboard/-/keyboard-1.2.0.tgz#bb3e8fa0cfb7c80338494b29a81158f893b000d3"
+  integrity sha512-FgtMAdNRtVarSo0P99UnkM+WcKCmWevUSccBVRqoGYnJOXkvByY8UtZcDe4YI0/uTTA4TiQKt/epuGHHUTaVSw==
 
 "@capacitor/status-bar@1.0.6":
   version "1.0.6"
