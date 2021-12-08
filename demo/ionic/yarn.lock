@@ -1354,13 +1354,14 @@
     tslib "^2.0.3"
     ws "^7.0.1"
 
-"@ionic/angular@^5.6.13":
-  version "5.6.14"
-  resolved "https://registry.yarnpkg.com/@ionic/angular/-/angular-5.6.14.tgz#ba62fed61c8ad5c9afbd8d4b7f3358a507128379"
-  integrity sha512-yEmsn1oOFuypcn/TQkH5q3ulbR4Jng9dgQxYm0pFhuYU8LiOFt1cdKeKh1FZTOx9YaPS5BNU4AdhhRia1bK0QQ==
+"@ionic/angular@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@ionic/angular/-/angular-6.0.0.tgz#c96cd17b100b0a2b8b9ca7e5594bcad763e138ff"
+  integrity sha512-BCbPMLHsZCGxNij/b6JDFDWXZNKi47VWK3XEH72nkE8xGJ47RXGjDXeVrtc+2TM1TxSm+J8tL+P3hnSgoBgyMQ==
   dependencies:
-    "@ionic/core" "5.6.14"
-    tslib "^1.9.3"
+    "@ionic/core" "6.0.0"
+    jsonc-parser "^3.0.0"
+    tslib "^2.0.0"
 
 "@ionic/cli-framework-output@^2.2.1":
   version "2.2.2"
@@ -1371,13 +1372,13 @@
     debug "^4.0.0"
     tslib "^2.0.1"
 
-"@ionic/core@5.6.14":
-  version "5.6.14"
-  resolved "https://registry.yarnpkg.com/@ionic/core/-/core-5.6.14.tgz#f7e8691e3744d6e468cf58cadd05d111bbe6240a"
-  integrity sha512-0LrEofgfA91aqDlXgnOIfC3QrRxazSA4Zu6StQ1ksQqzkYsJLmceaTowl/b72Yt4eaNHUQIVvUvazpoDNp+zRQ==
+"@ionic/core@6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@ionic/core/-/core-6.0.0.tgz#9c95513fc7fff79a0113f540da754b4a16910f99"
+  integrity sha512-3e5EJhDebK4pCiFREpNB95o2kBSAdhRb3eMsBDOCYWYuFlcZEOGOpiGx+kYF/klYVQnB45UXAmR8nCX1indmHQ==
   dependencies:
-    "@stencil/core" "^2.4.0"
-    ionicons "^5.5.3"
+    "@stencil/core" "~2.11.0-0"
+    ionicons "^6.0.0"
     tslib "^2.1.0"
 
 "@ionic/utils-array@2.1.5":
@@ -1629,10 +1630,15 @@
     "@angular-devkit/schematics" "12.2.12"
     jsonc-parser "3.0.0"
 
-"@stencil/core@^2.4.0", "@stencil/core@^2.5.0":
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.6.0.tgz#29da96d8b6fc83e689b9f297ef3e8b59b90a676a"
-  integrity sha512-QsxWayZyusnqSZrlCl81R71rA3KqFjVVQSH4E0rGN15F1GdQaFonKlHLyCOLKLig1zzC+DQkLLiUuocexuvdeQ==
+"@stencil/core@~2.10.0":
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.10.0.tgz#acf44b9ae6578a20f0d09bf94296e833beadc885"
+  integrity sha512-15rWMTPQ/sp0lSV82HVCXkIya3QLN+uBl7pqK4JnTrp4HiLrzLmNbWjbvgCs55gw0lULbCIGbRIEsFz+Pe/Q+A==
+
+"@stencil/core@~2.11.0-0":
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.11.0.tgz#8accc2791e2c34cce2d2aa8b40864dd40be4e10c"
+  integrity sha512-/IubCWhVXCguyMUp/3zGrg3c882+RJNg/zpiKfyfJL3kRCOwe+/MD8OoAXVGdd+xAohZKIi1Ik+EHFlsptsjLg==
 
 "@tootallnate/once@1":
   version "1.1.2"
@@ -5098,12 +5104,12 @@ internal-slot@^1.0.3:
     has "^1.0.3"
     side-channel "^1.0.4"
 
-ionicons@^5.5.3:
-  version "5.5.3"
-  resolved "https://registry.yarnpkg.com/ionicons/-/ionicons-5.5.3.tgz#33cfc4c8a590ac45895f2b10309ef4586ed244c1"
-  integrity sha512-L71djrMi8pAad66tpwdnO1vwcyluCFvehzxU1PpH1k/HpYBZhZ5IaYhqXipmqUvu5aEbd4cbRguYyI5Fd4bxTw==
+ionicons@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/ionicons/-/ionicons-6.0.0.tgz#c7c0d253d62b33ba3fa47568ff58586a5d8bdcd1"
+  integrity sha512-p83W1T8jZUlllHAjuIWaDQbI36OYqdrwcf8MhYbKW7+9rjGlCMP9+5OaR0W7tl0QfM004uAiy/zkc7HTpDNKgA==
   dependencies:
-    "@stencil/core" "^2.5.0"
+    "@stencil/core" "~2.10.0"
 
 ip-regex@^2.1.0:
   version "2.1.0"
@@ -5720,7 +5726,7 @@ json5@^2.1.2:
   dependencies:
     minimist "^1.2.5"
 
-jsonc-parser@3.0.0:
+jsonc-parser@3.0.0, jsonc-parser@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/jsonc-parser/-/jsonc-parser-3.0.0.tgz#abdd785701c7e7eaca8a9ec8cf070ca51a745a22"
   integrity sha512-fQzRfAbIBnR0IQvftw9FJveWiHp72Fg20giDrHz6TdfB12UH/uue0D3hm57UB5KgAVuniLMCaS8P1IMj9NR7cA==
@@ -9119,7 +9125,7 @@ tslib@2.3.0, tslib@^2.0.0, tslib@^2.0.1, tslib@^2.0.3, tslib@^2.1.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.0.tgz#803b8cdab3e12ba581a4ca41c8839bbb0dacb09e"
   integrity sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==
 
-tslib@^1.10.0, tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.3:
+tslib@^1.10.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
