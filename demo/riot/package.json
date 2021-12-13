@@ -15,7 +15,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@riotjs/compiler": "^6.0.3",
+    "@riotjs/compiler": "^6.1.2",
     "@riotjs/register": "^5.0.0",
     "@riotjs/webpack-loader": "^6.0.0",
     "chai": "^4.3.4",
@@ -31,7 +31,7 @@
   "dependencies": {
     "@riotjs/hot-reload": "^6.0.0",
     "path": "^0.12.7",
-    "riot": "^6.0.3",
+    "riot": "^6.1.0",
     "riot-particles": "^2.0.0-beta.3",
     "tsparticles": "^2.0.0-beta.4",
     "tsparticles-engine": "^2.0.0-beta.3"
