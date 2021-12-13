@@ -5481,9 +5481,9 @@ postcss@^7.0.36:
     source-map "^0.6.1"
 
 postcss@^8.2.15, postcss@^8.2.6, postcss@^8.3.5, postcss@^8.3.6:
-  version "8.4.4"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.4.tgz#d53d4ec6a75fd62557a66bb41978bf47ff0c2869"
-  integrity sha512-joU6fBsN6EIer28Lj6GDFoC/5yOZzLCfn0zHAn/MYXI7aPt4m4hK5KC5ovEZXy+lnCjmYIbQWngvju2ddyEr8Q==
+  version "8.4.5"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.5.tgz#bae665764dfd4c6fcc24dc0fdf7e7aa00cc77f95"
+  integrity sha512-jBDboWM8qpaqwkMwItqTQTiFikhs/67OYVvblFFTM7MrZjt6yMKd6r2kgXizEbTTljacm4NldIlZnhbjr84QYg==
   dependencies:
     nanoid "^3.1.30"
     picocolors "^1.0.0"
@@ -6743,6 +6743,11 @@ tslib@^2.0.3, tslib@^2.3.0, tslib@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
   integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
+
+tsparticles-engine@^2.0.0-beta.3:
+  version "2.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.0-beta.3.tgz#02a117b8ecce5f4a07a1409434acf7503e317f36"
+  integrity sha512-vePzn/pI8dYOukHND34ttGyMicKdGsmabvqJpFA2Q91PcMhu9z1C8v9EH80MGkcf4DdjxyaHnZFdo7P3NiBOrA==
 
 type-fest@^0.6.0:
   version "0.6.0"
