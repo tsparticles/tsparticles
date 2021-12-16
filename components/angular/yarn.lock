@@ -18,15 +18,23 @@
     "@angular-devkit/core" "13.1.1"
     rxjs "6.6.7"
 
+"@angular-devkit/architect@0.1301.2":
+  version "0.1301.2"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.1301.2.tgz#a646862b7ef388e4912473c14d336dde94cfc517"
+  integrity sha512-v8e6OF80Ezo5MTHtFcq1AZJH+Wq+hN9pMZ1iLGkODIfKIW9zx6aPhx0JY0b7sZkfNVL8ay8JA8f339eBMnOE9A==
+  dependencies:
+    "@angular-devkit/core" "13.1.2"
+    rxjs "6.6.7"
+
 "@angular-devkit/build-angular@~13.1.0":
-  version "13.1.1"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/build-angular/-/build-angular-13.1.1.tgz#9d60fcc87dffbe0d927af7b9b4c68e4187301657"
-  integrity sha512-9+Ql4+rIt5CFfxLCZntCUdcVGl7mOi43/jpmYd31DKEUt4OPrqLoR5LsYepy3UR0+B0kNP6/PEOvaRiCb4t2GQ==
+  version "13.1.2"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/build-angular/-/build-angular-13.1.2.tgz#77004c925aced5ff9993c42cc098aaf47e06ec76"
+  integrity sha512-0FeDqfjWJjgIU42T3136RNYb7Yv2as6Z8rAnfUlX6RjRGZf98+6ZQZ80yREgrLkm7L8G1qWJc1sn3NyVMDwf9A==
   dependencies:
     "@ampproject/remapping" "1.0.2"
-    "@angular-devkit/architect" "0.1301.1"
-    "@angular-devkit/build-webpack" "0.1301.1"
-    "@angular-devkit/core" "13.1.1"
+    "@angular-devkit/architect" "0.1301.2"
+    "@angular-devkit/build-webpack" "0.1301.2"
+    "@angular-devkit/core" "13.1.2"
     "@babel/core" "7.16.0"
     "@babel/generator" "7.16.0"
     "@babel/helper-annotate-as-pure" "7.16.0"
@@ -37,7 +45,7 @@
     "@babel/runtime" "7.16.3"
     "@babel/template" "7.16.0"
     "@discoveryjs/json-ext" "0.5.6"
-    "@ngtools/webpack" "13.1.1"
+    "@ngtools/webpack" "13.1.2"
     ansi-colors "4.1.1"
     babel-loader "8.2.3"
     babel-plugin-istanbul "6.1.1"
@@ -90,18 +98,30 @@
   optionalDependencies:
     esbuild "0.14.2"
 
-"@angular-devkit/build-webpack@0.1301.1":
-  version "0.1301.1"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/build-webpack/-/build-webpack-0.1301.1.tgz#e41bca2ba399935cd3538e15536820f872b80ef2"
-  integrity sha512-drXKdqsM3uB4nII0pU8FtAI6cd96sza3r1mWl8mqJEkzgkYIGVK/2CekKdVe1AXAvEeQFVRDRMYXraMNpli/QQ==
+"@angular-devkit/build-webpack@0.1301.2":
+  version "0.1301.2"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/build-webpack/-/build-webpack-0.1301.2.tgz#e1035aefc696232497d5c3024308b3b0175be109"
+  integrity sha512-Xk0k0tMcLOy2HI1/YrfWeLUrtKvk7/E7fhG3XoozT/pXBQgiZGoPuCt34HNPDkx3WNSedzvh5DNv8kPlILfjIw==
   dependencies:
-    "@angular-devkit/architect" "0.1301.1"
+    "@angular-devkit/architect" "0.1301.2"
     rxjs "6.6.7"
 
 "@angular-devkit/core@13.1.1":
   version "13.1.1"
   resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-13.1.1.tgz#ecf14453a0cdcb5b153f84fb1713e2deccadbfb4"
   integrity sha512-tpOOzdrbrXG+BiJ/iKUX5VU5vBXN/n+H1EMThTwjgT11mqw2uvMj4sSRPvHUrrfxbLE9deuCDQEzmci71enn2w==
+  dependencies:
+    ajv "8.8.2"
+    ajv-formats "2.1.1"
+    fast-json-stable-stringify "2.1.0"
+    magic-string "0.25.7"
+    rxjs "6.6.7"
+    source-map "0.7.3"
+
+"@angular-devkit/core@13.1.2":
+  version "13.1.2"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-13.1.2.tgz#7ff959aaff4206daa141d6139aed06947bf74ad1"
+  integrity sha512-uXVesIRiCL/Nv+RSV8JM4j8IoZiGCGnqV2FOJ1hvH7DPxIjhjPMdG/B54xMydZpeASW3ofuxeORyAXxFIBm8Zg==
   dependencies:
     ajv "8.8.2"
     ajv-formats "2.1.1"
@@ -1177,10 +1197,10 @@
   resolved "https://registry.yarnpkg.com/@jridgewell/resolve-uri/-/resolve-uri-1.0.0.tgz#3fdf5798f0b49e90155896f6291df186eac06c83"
   integrity sha512-9oLAnygRMi8Q5QkYEU4XWK04B+nuoXoxjRvRxgjuChkLZFBja0YPSgdZ7dZtwhncLBcQe/I/E+fLuk5qxcYVJA==
 
-"@ngtools/webpack@13.1.1":
-  version "13.1.1"
-  resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-13.1.1.tgz#736988cda569b9b1eb925908ebe9ccf3faa095eb"
-  integrity sha512-TGCuscGFNHPoXScswuj9UxNv8E+A/PXs5XH8cyTtbkmlpBec1EShnaUTdDP5nhykjjaWzd3TLChlp9DinE+Ctg==
+"@ngtools/webpack@13.1.2":
+  version "13.1.2"
+  resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-13.1.2.tgz#58d8bfe8b3d4ee3b5aa1ceb3f7911b77410c6c6b"
+  integrity sha512-F/KraxCCUjSn5nWVEQSuyVfnoE9j/bTcpIb+6e38/Hq/saPfsUoNiRjWlTAxCD44vHbMuVkJ/ZRZT6hdICAslw==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
