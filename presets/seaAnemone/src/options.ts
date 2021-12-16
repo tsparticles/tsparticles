@@ -48,12 +48,11 @@ export const options: ISourceOptions = {
             type: "circle",
         },
         size: {
-            value: 10,
+            value: { min: 1, max: 10 },
             animation: {
                 count: 1,
                 startValue: "min",
                 enable: true,
-                minimumValue: 1,
                 speed: 10,
                 sync: true,
             },

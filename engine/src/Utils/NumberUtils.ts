@@ -65,10 +65,7 @@ export function setRangeValue(source: RangeValue, value?: number): RangeValue {
 }
 
 export function getValue(options: IValueWithRandom): number {
-    const random = options.random;
-    const { enable, minimumValue } = typeof random === "boolean" ? { enable: random, minimumValue: 0 } : random;
-
-    return enable ? getRangeValue(setRangeValue(options.value, minimumValue)) : getRangeValue(options.value);
+    return getRangeValue(options.value);
 }
 
 /**

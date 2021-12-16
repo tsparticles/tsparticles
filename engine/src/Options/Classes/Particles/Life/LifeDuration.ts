@@ -8,7 +8,6 @@ export class LifeDuration extends ValueWithRandom implements ILifeDuration, IOpt
 
     constructor() {
         super();
-        this.random.minimumValue = 0.0001;
         this.sync = false;
     }
 

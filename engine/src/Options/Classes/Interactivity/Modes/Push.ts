@@ -6,23 +6,6 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class Push implements IPush, IOptionLoader<IPush> {
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new quantity
-     */
-    get particles_nb(): number {
-        return this.quantity;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new quantity
-     * @param value
-     */
-    set particles_nb(value: number) {
-        this.quantity = value;
-    }
-
     default;
     groups: string[];
     quantity;
@@ -50,10 +33,8 @@ export class Push implements IPush, IOptionLoader<IPush> {
             this.default = true;
         }
 
-        const quantity = data.quantity ?? data.particles_nb;
-
-        if (quantity !== undefined) {
-            this.quantity = quantity;
+        if (data.quantity !== undefined) {
+            this.quantity = data.quantity;
         }
     }
 }

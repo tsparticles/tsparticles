@@ -24,10 +24,9 @@ export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>)
                 type: actualOptions.shapes,
             },
             opacity: {
-                value: 1,
+                value: { min: 0, max: 1 },
                 animation: {
                     enable: true,
-                    minimumValue: 0,
                     speed: 0.5,
                     startValue: "max",
                     destroy: "min",

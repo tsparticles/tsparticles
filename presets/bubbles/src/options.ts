@@ -17,11 +17,7 @@ export const options: ISourceOptions = {
             value: 0.3,
         },
         size: {
-            value: 10,
-            random: {
-                enable: true,
-                minimumValue: 5,
-            },
+            value: { min: 5, max: 10 },
         },
         move: {
             angle: {

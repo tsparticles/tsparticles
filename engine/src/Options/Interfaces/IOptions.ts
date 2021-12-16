@@ -31,12 +31,6 @@ export interface IOptions {
     backgroundMask: IBackgroundMask;
 
     /**
-     * Sets the animated background mode for particles canvas bringing it to the back
-     * @deprecated use the new fullScreen instead
-     */
-    backgroundMode: RecursivePartial<IFullScreen> | boolean;
-
-    /**
      * Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.
      */
     detectRetina: boolean;
@@ -45,12 +39,6 @@ export interface IOptions {
      * The Particles effect duration in seconds, then the container will be destroyed
      */
     duration: RangeValue;
-
-    /**
-     * The Frame Per Second limit applied to all particles animations.
-     * @deprecated use the new fpsLimit instead
-     */
-    fps_limit: number;
 
     /**
      * The FPS (Frame Per Second) limit applied to all particles animations.
@@ -101,12 +89,6 @@ export interface IOptions {
      * This sets custom options based on canvas size
      */
     responsive: IResponsive[];
-
-    /**
-     * Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.
-     * @deprecated use the new detectRetina instead
-     */
-    retina_detect: boolean;
 
     /**
      * User-defined themes that can be retrieved by the particles [[Container]]

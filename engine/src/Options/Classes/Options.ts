@@ -12,57 +12,12 @@ import { FullScreen } from "./FullScreen/FullScreen";
 import { Motion } from "./Motion/Motion";
 import { ManualParticle } from "./ManualParticle";
 import { Responsive } from "./Responsive";
+
 /**
  * [[include:Options.md]]
  * @category Options
  */
 export class Options implements IOptions, IOptionLoader<IOptions> {
-    /**
-     * @deprecated this property is obsolete, please use the new fpsLimit
-     */
-    get fps_limit(): number {
-        return this.fpsLimit;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new fpsLimit
-     * @param value
-     */
-    set fps_limit(value: number) {
-        this.fpsLimit = value;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new retinaDetect
-     */
-    get retina_detect(): boolean {
-        return this.detectRetina;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new retinaDetect
-     * @param value
-     */
-    set retina_detect(value: boolean) {
-        this.detectRetina = value;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new fullScreen
-     */
-    get backgroundMode(): FullScreen {
-        return this.fullScreen;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new fullScreen
-     * @param value
-     */
-    set backgroundMode(value: FullScreen) {
-        this.fullScreen.load(value);
-    }
-
     autoPlay;
     background;
     backgroundMask;
@@ -127,20 +82,16 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
             this.autoPlay = data.autoPlay;
         }
 
-        const detectRetina = data.detectRetina ?? data.retina_detect;
-
-        if (detectRetina !== undefined) {
-            this.detectRetina = detectRetina;
+        if (data.detectRetina !== undefined) {
+            this.detectRetina = data.detectRetina;
         }
 
         if (data.duration !== undefined) {
             this.duration = data.duration;
         }
 
-        const fpsLimit = data.fpsLimit ?? data.fps_limit;
-
-        if (fpsLimit !== undefined) {
-            this.fpsLimit = fpsLimit;
+        if (data.fpsLimit !== undefined) {
+            this.fpsLimit = data.fpsLimit;
         }
 
         if (data.pauseOnBlur !== undefined) {
@@ -157,12 +108,10 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
         this.background.load(data.background);
 
-        const fullScreen = data.fullScreen ?? data.backgroundMode;
-
-        if (typeof fullScreen === "boolean") {
-            this.fullScreen.enable = fullScreen;
+        if (typeof data.fullScreen === "boolean") {
+            this.fullScreen.enable = data.fullScreen;
         } else {
-            this.fullScreen.load(fullScreen);
+            this.fullScreen.load(data.fullScreen);
         }
 
         this.backgroundMask.load(data.backgroundMask);

@@ -101,7 +101,7 @@ describe("Options tests", () => {
         expect(options.particles.move.attract.rotate.y).to.equal(3000);
         expect(options.particles.move.direction).to.equal(MoveDirection.none);
         expect(options.particles.move.enable).to.be.false;
-        expect(options.particles.move.outMode).to.equal(OutMode.out);
+        expect(options.particles.move.outModes.default).to.equal(OutMode.out);
         expect(options.particles.move.random).to.be.false;
         expect(options.particles.move.speed).to.equal(2);
         expect(options.particles.move.straight).to.be.false;
@@ -117,11 +117,8 @@ describe("Options tests", () => {
 
         /* particles opacity */
         expect(options.particles.opacity.animation.enable).to.be.false;
-        expect(options.particles.opacity.animation.minimumValue).to.be.undefined;
         expect(options.particles.opacity.animation.speed).to.equal(2);
         expect(options.particles.opacity.animation.sync).to.be.false;
-        expect(options.particles.opacity.random).to.be.an("object").to.have.property("enable").to.be.false;
-        expect(options.particles.opacity.random).to.be.an("object").to.have.property("minimumValue").to.equal(0.1);
         expect(options.particles.opacity.value).to.equal(1);
 
         /* particles rotate */
@@ -129,7 +126,6 @@ describe("Options tests", () => {
         expect(options.particles.rotate.animation.speed).to.equal(0);
         expect(options.particles.rotate.animation.sync).to.be.false;
         expect(options.particles.rotate.direction).to.equal(RotateDirection.clockwise);
-        expect(options.particles.rotate.random).to.be.an("object").to.have.property("enable").to.be.false;
         expect(options.particles.rotate.value).to.be.equal(0);
 
         /* particles shadow */
@@ -144,11 +140,8 @@ describe("Options tests", () => {
 
         /* particles size */
         expect(options.particles.size.animation.enable).to.be.false;
-        expect(options.particles.size.animation.minimumValue).to.be.undefined;
         expect(options.particles.size.animation.speed).to.equal(5);
         expect(options.particles.size.animation.sync).to.be.false;
-        expect(options.particles.size.random).to.be.an("object").to.have.property("enable").to.be.false;
-        expect(options.particles.size.random).to.be.an("object").to.have.property("minimumValue").to.equal(1);
         expect(options.particles.size.value).to.equal(3);
 
         /* particles stroke */
@@ -168,13 +161,13 @@ describe("Options tests", () => {
                 color: "#0d47a1",
             },
             interactivity: {
-                detect_on: InteractivityDetect.canvas,
+                detectsOn: InteractivityDetect.canvas,
                 events: {
-                    onclick: {
+                    onClick: {
                         enable: true,
                         mode: ClickMode.push,
                     },
-                    onhover: {
+                    onHover: {
                         enable: true,
                         mode: HoverMode.repulse,
                     },
@@ -189,15 +182,15 @@ describe("Options tests", () => {
                     },
                     grab: {
                         distance: 400,
-                        line_linked: {
+                        links: {
                             opacity: 1,
                         },
                     },
                     push: {
-                        particles_nb: 4,
+                        quantity: 4,
                     },
                     remove: {
-                        particles_nb: 2,
+                        quantity: 2,
                     },
                     repulse: {
                         distance: 200,
@@ -208,7 +201,7 @@ describe("Options tests", () => {
                 color: {
                     value: "#ffffff",
                 },
-                line_linked: {
+                links: {
                     enable: true,
                     distance: 150,
                     color: "#ffffff",
@@ -221,45 +214,44 @@ describe("Options tests", () => {
                     direction: MoveDirection.none,
                     random: false,
                     straight: false,
-                    out_mode: OutMode.out,
+                    outModes: OutMode.out,
                     attract: {
                         enable: false,
-                        rotateX: 600,
-                        rotateY: 1200,
+                        rotate: {
+                            x: 600,
+                            y: 1200,
+                        },
                     },
                 },
                 number: {
                     value: 80,
                     density: {
                         enable: true,
-                        value_area: 800,
+                        area: 800,
                     },
                 },
                 shape: {
                     type: "circle",
                 },
                 opacity: {
-                    value: 0.5,
-                    random: true,
-                    anim: {
+                    value: { min: 0.1, max: 0.5 },
+                    animation: {
                         enable: true,
                         speed: 3,
-                        opacity_min: 0.1,
                         sync: false,
                     },
                 },
                 size: {
-                    value: 5,
+                    value: { min: 0.1, max: 5 },
                     random: true,
-                    anim: {
+                    animation: {
                         enable: true,
                         speed: 20,
-                        size_min: 0.1,
                         sync: false,
                     },
                 },
             },
-            retina_detect: true,
+            detectRetina: true,
         };
 
         options.load(preset);
@@ -308,7 +300,7 @@ describe("Options tests", () => {
         expect(options.particles.move.attract.rotate.y).to.equal(1200);
         expect(options.particles.move.direction).to.equal(MoveDirection.none);
         expect(options.particles.move.enable).to.be.true;
-        expect(options.particles.move.outMode).to.equal(OutMode.out);
+        expect(options.particles.move.outModes.default).to.equal(OutMode.out);
         expect(options.particles.move.random).to.be.false;
         expect(options.particles.move.speed).to.equal(2);
         expect(options.particles.move.straight).to.be.false;
@@ -320,10 +312,8 @@ describe("Options tests", () => {
 
         /* particles opacity */
         expect(options.particles.opacity.animation.enable).to.be.true;
-        expect(options.particles.opacity.animation.minimumValue).to.equal(0.1);
         expect(options.particles.opacity.animation.speed).to.equal(3);
         expect(options.particles.opacity.animation.sync).to.be.false;
-        expect(options.particles.opacity.random).to.be.an("object").to.have.property("enable").to.be.true;
         expect(options.particles.opacity.value).to.be.an("object").to.have.property("max").to.be.equal(0.5);
         expect(options.particles.opacity.value).to.be.an("object").and.to.have.property("min").to.be.equal(0.1);
 
@@ -332,10 +322,8 @@ describe("Options tests", () => {
 
         /* particles size */
         expect(options.particles.size.animation.enable).to.be.true;
-        expect(options.particles.size.animation.minimumValue).to.equal(0.1);
         expect(options.particles.size.animation.speed).to.equal(20);
         expect(options.particles.size.animation.sync).to.be.false;
-        expect(options.particles.size.random).to.be.an("object").to.have.property("enable").to.be.true;
         expect(options.particles.size.value).to.be.an("object").to.have.property("max").to.be.equal(5);
         expect(options.particles.size.value).to.be.an("object").and.to.have.property("min").to.be.equal(0.1);
     });
@@ -347,13 +335,13 @@ describe("Options tests", () => {
                 color: "#0d47a1",
             },
             interactivity: {
-                detect_on: InteractivityDetect.canvas,
+                detectsOn: InteractivityDetect.canvas,
                 events: {
-                    onclick: {
+                    onClick: {
                         enable: true,
                         mode: ClickMode.repulse,
                     },
-                    onhover: {
+                    onHover: {
                         enable: false,
                         mode: HoverMode.grab,
                     },
@@ -368,7 +356,7 @@ describe("Options tests", () => {
                     },
                     grab: {
                         distance: 200,
-                        line_linked: {
+                        links: {
                             opacity: 1,
                         },
                     },
@@ -376,10 +364,10 @@ describe("Options tests", () => {
                         distance: 200,
                     },
                     push: {
-                        particles_nb: 4,
+                        quantity: 4,
                     },
                     remove: {
-                        particles_nb: 2,
+                        quantity: 2,
                     },
                 },
             },
@@ -387,7 +375,7 @@ describe("Options tests", () => {
                 color: {
                     value: "#ffffff",
                 },
-                line_linked: {
+                links: {
                     enable: false,
                     distance: 150,
                     color: "#ffffff",
@@ -400,19 +388,21 @@ describe("Options tests", () => {
                     direction: MoveDirection.none,
                     random: false,
                     straight: false,
-                    out_mode: OutMode.bounce,
+                    outModes: OutMode.bounce,
                     bounce: false,
                     attract: {
                         enable: false,
-                        rotateX: 600,
-                        rotateY: 1200,
+                        rotate: {
+                            x: 600,
+                            y: 1200,
+                        },
                     },
                 },
                 number: {
                     value: 100,
                     density: {
                         enable: false,
-                        value_area: 800,
+                        area: 800,
                     },
                 },
                 shape: {
@@ -421,7 +411,7 @@ describe("Options tests", () => {
                 opacity: {
                     value: 0.5,
                     random: false,
-                    anim: {
+                    animation: {
                         enable: false,
                         speed: 1,
                         opacity_min: 0.1,
@@ -429,17 +419,15 @@ describe("Options tests", () => {
                     },
                 },
                 size: {
-                    value: 4,
-                    random: true,
-                    anim: {
+                    value: { min: 1, max: 4 },
+                    animation: {
                         enable: false,
                         speed: 40,
-                        size_min: 0.1,
                         sync: false,
                     },
                 },
             },
-            retina_detect: true,
+            detectRetina: true,
         };
 
         options.load(preset);
@@ -492,7 +480,7 @@ describe("Options tests", () => {
         expect(options.particles.move.attract.rotate.y).to.equal(1200);
         expect(options.particles.move.direction).to.equal(MoveDirection.none);
         expect(options.particles.move.enable).to.be.true;
-        expect(options.particles.move.outMode).to.equal(OutMode.bounce);
+        expect(options.particles.move.outModes.default).to.equal(OutMode.bounce);
         expect(options.particles.move.random).to.be.false;
         expect(options.particles.move.speed).to.equal(2);
         expect(options.particles.move.straight).to.be.false;
@@ -507,10 +495,8 @@ describe("Options tests", () => {
 
         /* particles opacity */
         expect(options.particles.opacity.animation.enable).to.be.false;
-        expect(options.particles.opacity.animation.minimumValue).to.equal(0.1);
         expect(options.particles.opacity.animation.speed).to.equal(1);
         expect(options.particles.opacity.animation.sync).to.be.false;
-        expect(options.particles.opacity.random).to.be.an("object").to.have.property("enable").to.be.false;
         expect(options.particles.opacity.value).to.equal(0.5);
 
         /* particles shape */
@@ -518,10 +504,8 @@ describe("Options tests", () => {
 
         /* particles size */
         expect(options.particles.size.animation.enable).to.be.false;
-        expect(options.particles.size.animation.minimumValue).to.equal(0.1);
         expect(options.particles.size.animation.speed).to.equal(40);
         expect(options.particles.size.animation.sync).to.be.false;
-        expect(options.particles.size.random).to.be.an("object").to.have.property("enable").to.be.true;
         expect(options.particles.size.value).to.be.an("object").to.have.property("max").to.be.equal(4);
         expect(options.particles.size.value).to.be.an("object").and.to.have.property("min").to.be.equal(1);
 
@@ -543,7 +527,7 @@ describe("Options tests", () => {
                 value: 100,
                 density: {
                     enable: false,
-                    value_area: 800,
+                    area: 800,
                 },
             },
             color: {
@@ -554,21 +538,17 @@ describe("Options tests", () => {
             },
             opacity: {
                 value: 0.5,
-                random: false,
-                anim: {
+                animation: {
                     enable: false,
                     speed: 1,
-                    opacity_min: 0.1,
                     sync: false,
                 },
             },
             size: {
-                value: 5,
-                random: true,
-                anim: {
+                value: { min: 0.1, max: 5 },
+                animation: {
                     enable: false,
                     speed: 40,
-                    size_min: 0.1,
                     sync: false,
                 },
             },
@@ -585,11 +565,13 @@ describe("Options tests", () => {
                 direction: MoveDirection.none,
                 random: false,
                 straight: false,
-                out_mode: OutMode.out,
+                outModes: OutMode.out,
                 attract: {
                     enable: false,
-                    rotateX: 600,
-                    rotateY: 1200,
+                    rotate: {
+                        x: 600,
+                        y: 1200,
+                    },
                 },
             },
         };
@@ -599,16 +581,15 @@ describe("Options tests", () => {
         const emitterOptions: RecursivePartial<IParticles> = {
             color: { value: "#f0f" },
             links: { enable: false },
-            move: { speed: 20, random: false, outMode: OutMode.destroy },
+            move: { speed: 20, random: false, outModes: OutMode.destroy },
             opacity: { value: 1 },
             rotate: {
-                value: 0,
-                random: true,
+                value: { min: 0, max: 360 },
                 direction: RotateDirection.clockwise,
                 animation: { enable: true, speed: 15, sync: false },
             },
-            shape: { type: "star", polygon: { sides: 7 } },
-            size: { value: 15, random: false },
+            shape: { type: "star", options: { star: { sides: 7 } } },
+            size: { value: 15 },
         };
 
         particlesOptions.load(emitterOptions);

@@ -28,16 +28,6 @@ import type { IAnimatableGradient } from "../IAnimatableGradient";
  * @category Options
  */
 export interface IParticles {
-    /**
-     * @deprecated use the new links instead
-     */
-    line_linked: ILinks;
-
-    /**
-     * @deprecated use the new links instead
-     */
-    lineLinked: ILinks;
-
     bounce: IBounce;
     collisions: ICollisions;
     color: IAnimatableColor;

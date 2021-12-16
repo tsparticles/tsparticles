@@ -1,6 +1,6 @@
 import type { IMove } from "../../../Interfaces/Particles/Move/IMove";
 import { Attract } from "./Attract";
-import { MoveDirection, MoveDirectionAlt, OutMode, OutModeAlt } from "../../../../Enums";
+import { MoveDirection, MoveDirectionAlt } from "../../../../Enums";
 import { Trail } from "./Trail";
 import type { RangeValue, RecursivePartial } from "../../../../Types";
 import { Path } from "./Path/Path";
@@ -17,84 +17,6 @@ import { Spin } from "./Spin";
  * @category Options
  */
 export class Move implements IMove, IOptionLoader<IMove> {
-    /**
-     * @deprecated this property is obsolete, please use the new collisions object on particles options
-     */
-    get collisions(): boolean {
-        return false;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new collisions object on particles options
-     * @param value
-     */
-    set collisions(value: boolean) {
-        // deprecated
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new collisions object on particles options
-     */
-    get bounce(): boolean {
-        return this.collisions;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new collisions object on particles options
-     * @param value
-     */
-    set bounce(value: boolean) {
-        this.collisions = value;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new outMode
-     */
-    get out_mode(): OutMode | keyof typeof OutMode | OutModeAlt {
-        return this.outMode;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new outMode
-     * @param value
-     */
-    set out_mode(value: OutMode | keyof typeof OutMode | OutModeAlt) {
-        this.outMode = value;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new outMode
-     */
-    get outMode(): OutMode | keyof typeof OutMode | OutModeAlt {
-        return this.outModes.default;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new outMode
-     * @param value
-     */
-    set outMode(value: OutMode | keyof typeof OutMode | OutModeAlt) {
-        this.outModes.default = value;
-    }
-
-    /**
-     * @deprecated use the new [[path]] property instead
-     */
-    get noise(): Path {
-        return this.path;
-    }
-
-    /**
-     * @deprecated use the new [[path]] property instead
-     */
-    set noise(value: Path) {
-        this.path = value;
-    }
-
     angle;
     attract;
     center: ICoordinates & { radius: number };
@@ -196,19 +118,17 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
         this.gravity.load(data.gravity);
 
-        const outMode = data.outMode ?? data.out_mode;
-
-        if (data.outModes || outMode) {
-            if (typeof data.outModes === "string" || (!data.outModes && outMode)) {
+        if (data.outModes) {
+            if (typeof data.outModes === "string") {
                 this.outModes.load({
-                    default: data.outModes ?? outMode,
+                    default: data.outModes,
                 });
             } else {
                 this.outModes.load(data.outModes);
             }
         }
 
-        this.path.load(data.path ?? data.noise);
+        this.path.load(data.path);
 
         if (data.random !== undefined) {
             this.random = data.random;

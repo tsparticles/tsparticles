@@ -10,57 +10,6 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class Events implements IEvents, IOptionLoader<IEvents> {
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new onClick
-     */
-    get onclick(): ClickEvent {
-        return this.onClick;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new onClick
-     * @param value
-     */
-    set onclick(value: ClickEvent) {
-        this.onClick = value;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new onDiv
-     */
-    get ondiv(): SingleOrMultiple<DivEvent> {
-        return this.onDiv;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new onDiv
-     * @param value
-     */
-    set ondiv(value: SingleOrMultiple<DivEvent>) {
-        this.onDiv = value;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new onHover
-     */
-    get onhover(): HoverEvent {
-        return this.onHover;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new onHover
-     * @param value
-     */
-    set onhover(value: HoverEvent) {
-        this.onHover = value;
-    }
-
     onClick;
     onDiv: SingleOrMultiple<DivEvent>;
     onHover;
@@ -78,9 +27,9 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
             return;
         }
 
-        this.onClick.load(data.onClick ?? data.onclick);
+        this.onClick.load(data.onClick);
 
-        const onDiv = data.onDiv ?? data.ondiv;
+        const onDiv = data.onDiv;
 
         if (onDiv !== undefined) {
             if (onDiv instanceof Array) {
@@ -98,7 +47,7 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
             }
         }
 
-        this.onHover.load(data.onHover ?? data.onhover);
+        this.onHover.load(data.onHover);
 
         if (data.resize !== undefined) {
             this.resize = data.resize;

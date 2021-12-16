@@ -11,7 +11,6 @@ export class AbsorberSize extends ValueWithRandom implements IAbsorberSize, IOpt
     constructor() {
         super();
         this.density = 5;
-        this.random.minimumValue = 1;
         this.value = 50;
         this.limit = new AbsorberSizeLimit();
     }

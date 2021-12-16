@@ -14,31 +14,6 @@ import { ISpin } from "./ISpin";
  * @category Options
  */
 export interface IMove {
-    /**
-     * @deprecated use the new collisions property on particles instead
-     */
-    bounce: boolean;
-
-    /**
-     * @deprecated use the new collisions property on particles instead
-     */
-    collisions: boolean;
-
-    /**
-     * @deprecated use the new outModes instead
-     */
-    out_mode: OutMode | keyof typeof OutMode | OutModeAlt;
-
-    /**
-     * @deprecated use the new outModes instead
-     */
-    outMode: OutMode | keyof typeof OutMode | OutModeAlt;
-
-    /**
-     * @deprecated use the new [[path]] property instead
-     */
-    noise: IPath;
-
     angle: number | IMoveAngle;
     attract: IAttract;
     center: Partial<ICoordinates & { radius: number }>;

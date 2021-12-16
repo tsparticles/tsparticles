@@ -94,7 +94,7 @@ export const options: ISourceOptions = {
                         direction: "none",
                         random: true,
                         straight: false,
-                        outMode: OutMode.destroy,
+                        outModes: OutMode.destroy,
                     },
                 },
             },

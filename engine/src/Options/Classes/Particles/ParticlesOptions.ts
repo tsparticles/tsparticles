@@ -56,40 +56,6 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
     wobble;
     zIndex;
 
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new links
-     */
-    get line_linked(): Links {
-        return this.links;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new links
-     * @param value
-     */
-    set line_linked(value: Links) {
-        this.links = value;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new lineLinked
-     */
-    get lineLinked(): Links {
-        return this.links;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new lineLinked
-     * @param value
-     */
-    set lineLinked(value: Links) {
-        this.links = value;
-    }
-
     constructor() {
         this.bounce = new Bounce();
         this.collisions = new Collisions();
@@ -124,15 +90,9 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
 
         this.bounce.load(data.bounce);
         this.color.load(AnimatableColor.create(this.color, data.color));
-
         this.destroy.load(data.destroy);
         this.life.load(data.life);
-
-        const links = data.links ?? data.lineLinked ?? data.line_linked;
-
-        if (links !== undefined) {
-            this.links.load(links);
-        }
+        this.links.load(data.links);
 
         if (data.groups !== undefined) {
             for (const group in data.groups) {
@@ -163,16 +123,9 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
         this.twinkle.load(data.twinkle);
         this.wobble.load(data.wobble);
         this.zIndex.load(data.zIndex);
-
-        const collisions = data.move?.collisions ?? data.move?.bounce;
-
-        if (collisions !== undefined) {
-            this.collisions.enable = collisions;
-        }
-
         this.collisions.load(data.collisions);
 
-        const strokeToLoad = data.stroke ?? data.shape?.stroke;
+        const strokeToLoad = data.stroke;
 
         if (strokeToLoad) {
             if (strokeToLoad instanceof Array) {

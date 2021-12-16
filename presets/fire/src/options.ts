@@ -15,12 +15,10 @@ export const options: ISourceOptions = {
             value: ["#fdcf58", "#757676", "#f27d0c", "#800909", "#f07f13"],
         },
         opacity: {
-            value: 0.5,
-            random: true,
+            value: { min: 0.1, max: 0.5 },
         },
         size: {
-            value: 3,
-            random: true,
+            value: { min: 1, max: 3 },
         },
         move: {
             enable: true,
