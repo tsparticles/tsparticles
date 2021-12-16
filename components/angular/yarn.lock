@@ -233,9 +233,9 @@
     tslib "^2.3.0"
 
 "@angular/router@~13.1.0":
-  version "13.1.0"
-  resolved "https://registry.yarnpkg.com/@angular/router/-/router-13.1.0.tgz#eddb9ab5a8c97fff66fff8a984bb5e4829ba0d32"
-  integrity sha512-A/8O0GGLKENg5wxP7TFTPWmDtyMOL9qq65uxYQCyv46/2ra76FKteFg9UzcuuXPBiCAxD1wbL5kRF2MZlfrQ3Q==
+  version "13.1.1"
+  resolved "https://registry.yarnpkg.com/@angular/router/-/router-13.1.1.tgz#656919d3c186f46310a0825d62bbc712c20890d7"
+  integrity sha512-rlz5BBgNX+G2vVu2Gb5avx3LL08i7R/xZO7zPwh0HhXz/Vp8XFlWwaqAGb6Hgat772K2uCxF1/JBLQCUBY2MNQ==
   dependencies:
     tslib "^2.3.0"
 
