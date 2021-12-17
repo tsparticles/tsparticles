@@ -2,7 +2,14 @@
  * [[include:pjsMigration.md]]
  * @packageDocumentation
  */
-import type { Container, ISourceOptions, Main, Particle } from "tsparticles-engine";
+import type {
+    Container,
+    Main,
+    Particle,
+    RecursivePartial
+} from "tsparticles-engine";
+import type { IParticlesJSOptions } from "./IParticlesJSOptions";
+import { fixOptions } from "./fixOptions";
 
 /**
  * [[include:pjsMigration.md]]
@@ -15,7 +22,7 @@ export interface IParticlesJS {
      * @param tagId the particles container element id
      * @param options the options object to initialize the [[Container]]
      */
-    (tagId: string, options: ISourceOptions): Promise<Container | undefined>;
+    (tagId: string, options: IParticlesJSOptions): Promise<Container | undefined>;
 
     /**
      * Loads the provided json with a GET request.
@@ -35,6 +42,11 @@ export interface IParticlesJS {
     setOnClickHandler(callback: EventListenerOrEventListenerObject): void;
 }
 
+function fetchError(statusCode: number): void {
+    console.error(`Error tsParticles - fetch status: ${statusCode}`);
+    console.error("Error tsParticles - File config not found");
+}
+
 const initPjs = (main: Main): { particlesJS: IParticlesJS; pJSDom: Container[] } => {
     /**
      * Loads the provided options to create a [[Container]] object.
@@ -42,8 +54,8 @@ const initPjs = (main: Main): { particlesJS: IParticlesJS; pJSDom: Container[] }
      * @param tagId the particles container element id
      * @param options the options object to initialize the [[Container]]
      */
-    const particlesJS = (tagId: string, options: ISourceOptions): Promise<Container | undefined> => {
-        return main.load(tagId, options);
+    const particlesJS = (tagId: string, options: RecursivePartial<IParticlesJSOptions>): Promise<Container | undefined> => {
+        return main.load(tagId, fixOptions(options));
     };
 
     /**
@@ -55,15 +67,19 @@ const initPjs = (main: Main): { particlesJS: IParticlesJS; pJSDom: Container[] }
      * @param callback called after the [[Container]] is loaded and it will be passed as a parameter
      */
     particlesJS.load = (tagId: string, pathConfigJson: string, callback: (container?: Container) => void): void => {
-        main.loadJSON(tagId, pathConfigJson)
-            .then((container) => {
-                if (container) {
-                    callback(container);
-                }
-            })
-            .catch(() => {
-                callback(undefined);
-            });
+        (async () => {
+            const response = await fetch(pathConfigJson);
+
+            if (!response.ok) {
+                fetchError(response.status);
+
+                return;
+            }
+
+            const data = await response.json();
+
+            callback(await particlesJS(tagId, data));
+        })();
     };
 
     /**
