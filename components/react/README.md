@@ -139,7 +139,9 @@ const App = () => {
           move: {
             direction: "none",
             enable: true,
-            outMode: "bounce",
+            outModes: {
+              default: "bounce",
+            },
             random: false,
             speed: 6,
             straight: false,
@@ -158,8 +160,7 @@ const App = () => {
             type: "circle",
           },
           size: {
-            random: true,
-            value: 5,
+            value: { min: 1, max: 5 },
           },
         },
         detectRetina: true,

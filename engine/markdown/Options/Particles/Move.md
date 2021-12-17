@@ -50,14 +50,12 @@
 
 ## Particles Move Noise
 
-| key                         | option type | example            | notes |
-| --------------------------- | ----------- | ------------------ | ----- |
-| `clamp`                     | `boolean`   | `true` / `false`   |       |
-| `delay.value`               | `number`    | `1`                |       |
-| `delay.random.enable`       | `number`    | `true` / `false`   |       |
-| `delay.random.minimumValue` | `number`    | `0`                |       |
-| `enable`                    | `boolean`   | `true` / `false`   |       |
-| `generator`                 | `string`    | `"generator name"` |       |
+| key                         | option type          | example                        | notes |
+| --------------------------- |----------------------|--------------------------------| ----- |
+| `clamp`                     | `boolean`            | `true` / `false`               |       |
+| `delay.value`               | `number` / `object`  | `1` / `{ min: 0.5, max: 1.5 }` |       |
+| `enable`                    | `boolean`            | `true` / `false`               |       |
+| `generator`                 | `string`             | `"generator name"`             |       |
 
 ## Particles Move Out Modes
 

@@ -45,12 +45,6 @@ yarn add web-particles
                     resize: true
                 },
                 modes: {
-                    bubble: {
-                        distance: 400,
-                        duration: 2,
-                        opacity: 0.8,
-                        size: 40
-                    },
                     push: {
                         quantity: 4
                     },
@@ -85,7 +79,7 @@ yarn add web-particles
                 number: {
                     density: {
                         enable: true,
-                        value_area: 800
+                        area: 800
                     },
                     value: 80
                 },
@@ -96,8 +90,7 @@ yarn add web-particles
                     type: 'circle'
                 },
                 size: {
-                    random: true,
-                    value: 5
+                    value: { min: 1, max: 5 },
                 }
             },
             detectRetina: true
