@@ -1,8 +1,4 @@
-import type {
-    ISourceOptions,
-    SingleOrMultiple,
-    RecursivePartial
-} from "tsparticles-engine";
+import type { ISourceOptions, SingleOrMultiple, RecursivePartial } from "tsparticles-engine";
 import type { IStroke } from "tsparticles-engine/Options/Interfaces/Particles/IStroke";
 import type { IShapeValues } from "tsparticles-engine/Options/Interfaces/Particles/Shape/IShapeValues";
 import type { IOpacityAnimation } from "tsparticles-engine/Options/Interfaces/Particles/Opacity/IOpacityAnimation";
@@ -43,7 +39,7 @@ const fixOptions = (options: RecursivePartial<IParticlesJSOptions>): ISourceOpti
 
             if (moveOptions.out_mode !== undefined) {
                 if (!moveOptions.outModes) {
-                    moveOptions.outModes = { default: moveOptions.out_mode }
+                    moveOptions.outModes = { default: moveOptions.out_mode };
                 } else {
                     if (typeof moveOptions.outModes === "object") {
                         moveOptions.outModes.default = moveOptions.out_mode;
@@ -66,16 +62,25 @@ const fixOptions = (options: RecursivePartial<IParticlesJSOptions>): ISourceOpti
             }
 
             if (opacityOptions.anim) {
-                opacityOptions.animation = deepExtend(opacityOptions.animation, opacityOptions.anim) as IOpacityAnimation;
+                opacityOptions.animation = deepExtend(
+                    opacityOptions.animation,
+                    opacityOptions.anim
+                ) as IOpacityAnimation;
 
                 if (opacityOptions.anim.enable && opacityOptions.anim.opacity_min !== undefined) {
-                    opacityOptions.value = setRangeValue(opacityOptions.value ?? opacityOptions.anim.opacity_min, opacityOptions.anim.opacity_min);
+                    opacityOptions.value = setRangeValue(
+                        opacityOptions.value ?? opacityOptions.anim.opacity_min,
+                        opacityOptions.anim.opacity_min
+                    );
                 }
             }
         }
 
         if (particlesOptions?.shape?.stroke) {
-            particlesOptions.stroke = deepExtend(particlesOptions.stroke, particlesOptions.shape.stroke) as SingleOrMultiple<IStroke>;
+            particlesOptions.stroke = deepExtend(
+                particlesOptions.stroke,
+                particlesOptions.shape.stroke
+            ) as SingleOrMultiple<IStroke>;
         }
 
         if (particlesOptions?.shape?.polygon) {
@@ -83,7 +88,10 @@ const fixOptions = (options: RecursivePartial<IParticlesJSOptions>): ISourceOpti
                 particlesOptions.shape.options = {};
             }
 
-            particlesOptions.shape.options.polygon = deepExtend(particlesOptions.shape.options.polygon, particlesOptions.shape.polygon) as SingleOrMultiple<IShapeValues>;
+            particlesOptions.shape.options.polygon = deepExtend(
+                particlesOptions.shape.options.polygon,
+                particlesOptions.shape.polygon
+            ) as SingleOrMultiple<IShapeValues>;
         }
 
         if (particlesOptions?.shape?.image) {
@@ -91,8 +99,10 @@ const fixOptions = (options: RecursivePartial<IParticlesJSOptions>): ISourceOpti
                 particlesOptions.shape.options = {};
             }
 
-
-            particlesOptions.shape.options.image = deepExtend(particlesOptions.shape.options.image, particlesOptions.shape.image) as SingleOrMultiple<IShapeValues>;
+            particlesOptions.shape.options.image = deepExtend(
+                particlesOptions.shape.options.image,
+                particlesOptions.shape.image
+            ) as SingleOrMultiple<IShapeValues>;
         }
 
         const sizeOptions = particlesOptions.size;
@@ -106,7 +116,10 @@ const fixOptions = (options: RecursivePartial<IParticlesJSOptions>): ISourceOpti
                 sizeOptions.animation = deepExtend(sizeOptions.animation, sizeOptions.anim) as ISizeAnimation;
 
                 if (sizeOptions.anim.enable && sizeOptions.anim.size_min !== undefined) {
-                    sizeOptions.value = setRangeValue(sizeOptions.value ?? sizeOptions.anim.size_min, sizeOptions.anim.size_min);
+                    sizeOptions.value = setRangeValue(
+                        sizeOptions.value ?? sizeOptions.anim.size_min,
+                        sizeOptions.anim.size_min
+                    );
                 }
             }
         }
@@ -135,7 +148,10 @@ const fixOptions = (options: RecursivePartial<IParticlesJSOptions>): ISourceOpti
 
         if (modesOptions) {
             if (modesOptions.grab?.line_linked) {
-                modesOptions.grab.links = deepExtend(modesOptions.grab.links, modesOptions.grab.line_linked) as IGrabLinks;
+                modesOptions.grab.links = deepExtend(
+                    modesOptions.grab.links,
+                    modesOptions.grab.line_linked
+                ) as IGrabLinks;
             }
 
             if (modesOptions.push?.particles_nb !== undefined) {

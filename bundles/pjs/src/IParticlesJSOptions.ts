@@ -1,7 +1,4 @@
-import type {
-    IOptions,
-    InteractivityDetect
-} from "tsparticles-engine";
+import type { IOptions, InteractivityDetect } from "tsparticles-engine";
 import type { IStroke } from "tsparticles-engine/Options/Interfaces/Particles/IStroke";
 import type { IShapeValues } from "tsparticles-engine/Options/Interfaces/Particles/Shape/IShapeValues";
 import type { ILinks } from "tsparticles-engine/Options/Interfaces/Particles/Links/ILinks";
@@ -34,8 +31,8 @@ export type IParticlesJSOptions = IOptions & {
             remove: {
                 particles_nb?: number;
             };
-        }
-    },
+        };
+    };
     particles: IParticles & {
         line_linked?: ILinks;
         move: {
@@ -43,18 +40,18 @@ export type IParticlesJSOptions = IOptions & {
             attract: {
                 rotateX?: number;
                 rotateY?: number;
-            }
+            };
         };
         number: {
             density: {
                 value_area?: number;
-            }
+            };
         };
         opacity: {
             random?: boolean;
             anim?: IOpacityAnimation & {
                 opacity_min?: number;
-            }
+            };
         };
         shape: {
             stroke?: IStroke;
@@ -65,7 +62,7 @@ export type IParticlesJSOptions = IOptions & {
             random?: boolean;
             anim?: ISizeAnimation & {
                 size_min?: number;
-            }
+            };
         };
-    }
-}
+    };
+};
