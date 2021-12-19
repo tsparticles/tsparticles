@@ -1,5 +1,4 @@
-import type { IShapeValues } from "./IShapeValues";
-import type { SingleOrMultiple } from "../../../../Types";
+import type { IShapeValues, SingleOrMultiple } from "tsparticles-engine";
 
 /**
  * @category Options

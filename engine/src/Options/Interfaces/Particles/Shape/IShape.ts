@@ -1,8 +1,4 @@
 import type { ShapeType } from "../../../../Enums";
-import type { IImageShape } from "./IImageShape";
-import type { ICharacterShape } from "./ICharacterShape";
-import type { IPolygonShape } from "./IPolygonShape";
-import type { IStroke } from "../IStroke";
 import type { ShapeData, SingleOrMultiple } from "../../../../Types";
 
 /**

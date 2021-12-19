@@ -1,10 +1,17 @@
-import type { IParticle, IShapeDrawer } from "tsparticles-engine";
-import type { IStarShape } from "tsparticles-engine/Options/Interfaces/Particles/Shape/IStarShape";
+import type { IParticle, IShapeDrawer, IShapeValues } from "tsparticles-engine";
+
+/**
+ * @category Options
+ */
+export interface IStarShape extends IShapeValues {
+    sides: number;
+
+    inset: number;
+}
 
 /**
  * @category Shape Drawers
  */
-
 export class StarDrawer implements IShapeDrawer {
     getSidesCount(particle: IParticle): number {
         const star = particle.shapeData as IStarShape;

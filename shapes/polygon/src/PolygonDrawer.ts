@@ -1,7 +1,10 @@
 import type { ISide } from "./PolygonDrawerBase";
 import { PolygonDrawerBase } from "./PolygonDrawerBase";
-import type { ICoordinates, IParticle } from "tsparticles-engine";
-import type { IPolygonShape } from "tsparticles-engine/Options/Interfaces/Particles/Shape/IPolygonShape";
+import type { ICoordinates, IParticle, IShapeValues } from "tsparticles-engine";
+
+export interface IPolygonShape extends IShapeValues {
+    sides: number;
+}
 
 /**
  * @category Shape Drawers
