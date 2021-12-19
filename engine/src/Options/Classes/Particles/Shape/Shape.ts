@@ -1,5 +1,4 @@
 import type { IShape } from "../../../Interfaces/Particles/Shape/IShape";
-import { ShapeType } from "../../../../Enums";
 import type { RecursivePartial, ShapeData, SingleOrMultiple } from "../../../../Types";
 import { deepExtend } from "../../../../Utils";
 import type { IShapeValues } from "../../../../Core/Interfaces";
@@ -10,12 +9,12 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
  * @category Options
  */
 export class Shape implements IShape, IOptionLoader<IShape> {
-    type: SingleOrMultiple<ShapeType | keyof typeof ShapeType | string>;
+    type: SingleOrMultiple<string>;
     options: ShapeData;
 
     constructor() {
         this.options = {};
-        this.type = ShapeType.circle;
+        this.type = "circle";
     }
 
     load(data?: RecursivePartial<IShape>): void {

@@ -6,7 +6,7 @@ import type {
     RecursivePartial,
     SingleOrMultiple,
 } from "tsparticles-engine";
-import { isInArray, ShapeType } from "tsparticles-engine";
+import { isInArray } from "tsparticles-engine";
 import type { IParticles } from "tsparticles-engine/Options/Interfaces/Particles/IParticles";
 import type { IImage, IImageParticle, IParticleImage } from "./Utils";
 import { downloadSvgImage, loadImage, replaceColorSvg } from "./Utils";
@@ -30,6 +30,11 @@ interface IEmitterOptions {
             emitters: SingleOrMultiple<IEmitter>;
         };
     };
+}
+
+const enum ShapeImageType {
+    image = "image",
+    images = "images",
 }
 
 /**
@@ -114,7 +119,8 @@ export class ImageDrawer implements IShapeDrawer {
         if (
             !shapeOptions?.type ||
             !shapeOptions.options ||
-            (!isInArray(ShapeType.image, shapeOptions.type) && !isInArray(ShapeType.images, shapeOptions.type))
+            (!isInArray(ShapeImageType.image, shapeOptions.type) &&
+                !isInArray(ShapeImageType.images, shapeOptions.type))
         ) {
             return;
         }
@@ -125,7 +131,7 @@ export class ImageDrawer implements IShapeDrawer {
             this.#images.splice(idx, 1);
         }
 
-        const imageOptions = shapeOptions.options[ShapeType.images] ?? shapeOptions.options[ShapeType.image];
+        const imageOptions = shapeOptions.options[ShapeImageType.images] ?? shapeOptions.options[ShapeImageType.image];
 
         if (imageOptions instanceof Array) {
             for (const optionsImage of imageOptions) {

@@ -3,7 +3,6 @@ import { expect } from "chai";
 import { TestCanvas } from "./Fixture/TestCanvas";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticle } from "./Fixture/TestParticle";
-import { ShapeType } from "../src/Enums";
 import type { ICoordinates } from "../src/Core/Interfaces";
 
 const Window = require("window");
@@ -19,7 +18,7 @@ describe("Particle", () => {
         const squareShapeOptions = {
             particles: {
                 shape: {
-                    type: ShapeType.square,
+                    type: "square",
                     options: {
                         square: { close: true, fill: false },
                         circle: { close: false, fill: true },
@@ -27,7 +26,7 @@ describe("Particle", () => {
                 },
             },
         };
-        const shapeTypes = [ShapeType.char, ShapeType.edge, ShapeType.image, ShapeType.polygon];
+        const shapeTypes = ["char", "edge", "image", "polygon"];
         const multipleShapeTypeOptions = {
             particles: {
                 shape: {
@@ -44,14 +43,14 @@ describe("Particle", () => {
 
         describe("shape - no emitter", () => {
             it("should set the shape property to circle when default Particles options are used", async () => {
-                expect(testParticle.particle?.shape).to.equal(ShapeType.circle);
+                expect(testParticle.particle?.shape).to.equal("circle");
             });
 
             it("should set the shape property to square when container Particles options specifies a shape type of square", () => {
                 testContainer.reset(squareShapeOptions);
                 testParticle.reset(testContainer.container);
 
-                expect(testParticle.particle?.shape).to.equal(ShapeType.square);
+                expect(testParticle.particle?.shape).to.equal("square");
             });
 
             it("should choose a single shape from the specified array when container Particles options specifies an array os shape types", () => {
@@ -88,17 +87,17 @@ describe("Particle", () => {
                 expect(testParticle.particle?.shape).to.be.a("string");
                 let expectedShapeData;
                 switch (testParticle.particle?.shape) {
-                    case ShapeType.char:
-                        expectedShapeData = multipleShapeTypeOptions.particles.shape.options[ShapeType.char];
+                    case "char":
+                        expectedShapeData = multipleShapeTypeOptions.particles.shape.options["char"];
                         break;
-                    case ShapeType.edge:
-                        expectedShapeData = multipleShapeTypeOptions.particles.shape.options[ShapeType.edge];
+                    case "edge":
+                        expectedShapeData = multipleShapeTypeOptions.particles.shape.options["edge"];
                         break;
-                    case ShapeType.image:
-                        expectedShapeData = multipleShapeTypeOptions.particles.shape.options[ShapeType.image];
+                    case "image":
+                        expectedShapeData = multipleShapeTypeOptions.particles.shape.options["image"];
                         break;
-                    case ShapeType.polygon:
-                        expectedShapeData = multipleShapeTypeOptions.particles.shape.options[ShapeType.polygon];
+                    case "polygon":
+                        expectedShapeData = multipleShapeTypeOptions.particles.shape.options["polygon"];
                         break;
                     default:
                         throw new Error(`Unexpected shape type "${testParticle.particle?.shape}"`);

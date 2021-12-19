@@ -2,10 +2,10 @@ import react from "../public/assets/react.svg";
 import k8s from "../public/assets/k8s.svg";
 import code from "../public/assets/code.png";
 import smallDeer from "../public/assets/small-deer.svg";
-import { MoveDirection, OutMode, HoverMode, ClickMode, ShapeType } from "react-tsparticles";
+import { MoveDirection, OutMode, HoverMode, ClickMode } from "react-tsparticles";
 import {
-    Type as PolygonMaskType,
-    InlineArrangement as PolygonMaskInlineArrangement
+    PolygonMaskType,
+    PolygonMaskInlineArrangement
 } from "tsparticles-plugin-polygon-mask";
 import type { ISourceOptions } from "tsparticles-engine";
 
@@ -32,13 +32,13 @@ export const frames: TFrame[] = [
                 move: {
                     enable: true
                 },
-                lineLinked: {
+                links: {
                     enable: true
                 }
             },
             interactivity: {
                 events: {
-                    onhover: {
+                    onHover: {
                         enable: true,
                         mode: HoverMode.repulse
                     }
@@ -60,14 +60,12 @@ export const frames: TFrame[] = [
                     }
                 },
                 size: {
-                    value: 3,
-                    random: true,
-                    anim: {
+                    value: { min: .3, max: 3 },
+                    animation: {
                         speed: 4,
-                        size_min: .3
                     }
                 },
-                line_linked: {
+                links: {
                     enable: false
                 },
                 move: {
@@ -75,16 +73,16 @@ export const frames: TFrame[] = [
                     random: true,
                     speed: 1,
                     direction: MoveDirection.top,
-                    out_mode: OutMode.out
+                    outModes: OutMode.out
                 }
             },
             interactivity: {
                 events: {
-                    onhover: {
+                    onHover: {
                         enable: true,
                         mode: HoverMode.bubble
                     },
-                    onclick: {
+                    onClick: {
                         enable: true,
                         mode: ClickMode.repulse
                     },
@@ -118,28 +116,27 @@ export const frames: TFrame[] = [
                     }
                 },
                 size: {
-                    value: 10,
-                    random: true
+                    value: { min: 1, max: 10 }
                 },
                 move: {
                     enable: true,
                     direction: MoveDirection.bottom,
-                    out_mode: OutMode.out
+                    outModes: OutMode.out
                 },
-                line_linked: {
+                links: {
                     enable: false
                 }
             },
             interactivity: {
                 events: {
-                    onclick: {
+                    onClick: {
                         enable: true,
                         mode: ClickMode.remove
                     }
                 },
                 modes: {
                     remove: {
-                        particles_nb: 10
+                        quantity: 10
                     }
                 }
             }
@@ -156,10 +153,10 @@ export const frames: TFrame[] = [
                     value: 60,
                     density: {
                         enable: true,
-                        value_area: 1500
+                        area: 1500
                     }
                 },
-                lineLinked: {
+                links: {
                     enable: true,
                     opacity: .02
                 },
@@ -172,23 +169,23 @@ export const frames: TFrame[] = [
                     value: 1
                 },
                 opacity: {
-                    anim: {
+                    value: { min: .05, max: 1 },
+                    animation: {
                         enable: true,
-                        speed: 1,
-                        opacity_min: .05
+                        speed: 1
                     }
                 }
             },
             interactivity: {
                 events: {
-                    onclick: {
+                    onClick: {
                         enable: true,
                         mode: ClickMode.push
                     }
                 },
                 modes: {
                     push: {
-                        particles_nb: 1
+                        quantity: 1
                     }
                 }
             },
@@ -206,47 +203,47 @@ export const frames: TFrame[] = [
                     value: 8,
                     density: {
                         enable: true,
-                        value_area: 800
+                        area: 800
                     }
                 },
-                lineLinked: {
+                links: {
                     enable: false
                 },
                 move: {
                     enable: true,
                     speed: 1,
-                    out_mode: OutMode.out
+                    outModes: OutMode.out
                 },
                 shape: {
-                    type: [ ShapeType.image, ShapeType.circle ],
-                    image: [
-                        {
-                            src: react,
-                            height: 20,
-                            width: 23
-                        },
-                        {
-                            src: k8s,
-                            height: 20,
-                            width: 20
-                        },
-                        {
-                            src: code,
-                            height: 20,
-                            width: 20
-                        }
-                    ]
+                    type: [ "image", "circle" ],
+                    options: {
+                        image: [
+                            {
+                                src: react,
+                                height: 20,
+                                width: 23
+                            },
+                            {
+                                src: k8s,
+                                height: 20,
+                                width: 20
+                            },
+                            {
+                                src: code,
+                                height: 20,
+                                width: 20
+                            }
+                        ]
+                    }
                 },
                 color: {
                     value: '#CCC'
                 },
                 size: {
-                    value: 30,
-                    random: false,
-                    anim: {
+                    value: { min: 10, max: 30 },
+                    animation: {
                         enable: true,
                         speed: 4,
-                        size_min: 10,
                         sync: false
                     }
                 }
@@ -267,7 +264,7 @@ export const frames: TFrame[] = [
                         enable: false
                     }
                 },
-                lineLinked: {
+                links: {
                     enable: true,
                     distance: 30,
                     opacity: .4
@@ -275,17 +272,15 @@ export const frames: TFrame[] = [
                 move: {
                     enable: true,
                     speed: 1,
-                    bounce: false,
-                    outMode: OutMode.bounce
+                    outModes: OutMode.bounce
                 },
                 opacity: {
-                    anim: {
+                    animation: {
                         enable: true,
-                        opacity_min: .05,
                         speed: 2,
                         sync: false,
                     },
-                    value: .4
+                    value: { min: .05, max: .4 }
                 },
                 size: {
                     value: 1
@@ -312,7 +307,7 @@ export const frames: TFrame[] = [
             retina_detect: false,
             interactivity: {
                 events: {
-                    onhover: {
+                    onHover: {
                         enable: true,
                         mode: HoverMode.bubble
                     }

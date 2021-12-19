@@ -76,14 +76,14 @@ const fixOptions = (options: RecursivePartial<IParticlesJSOptions>): ISourceOpti
             }
         }
 
-        if (particlesOptions?.shape?.stroke) {
+        if (particlesOptions.shape?.stroke) {
             particlesOptions.stroke = deepExtend(
                 particlesOptions.stroke,
                 particlesOptions.shape.stroke
             ) as SingleOrMultiple<IStroke>;
         }
 
-        if (particlesOptions?.shape?.polygon) {
+        if (particlesOptions.shape?.polygon) {
             if (!particlesOptions.shape.options) {
                 particlesOptions.shape.options = {};
             }
@@ -94,7 +94,7 @@ const fixOptions = (options: RecursivePartial<IParticlesJSOptions>): ISourceOpti
             ) as SingleOrMultiple<IShapeValues>;
         }
 
-        if (particlesOptions?.shape?.image) {
+        if (particlesOptions.shape?.image) {
             if (!particlesOptions.shape.options) {
                 particlesOptions.shape.options = {};
             }

@@ -9,7 +9,6 @@ import {
     OutMode,
     OutModeAlt,
     RotateDirection,
-    ShapeType,
     StartValueType,
     ParticleOutType,
 } from "../Enums";
@@ -116,7 +115,7 @@ export class Particle implements IParticle {
     readonly shadowColor: IRgb | undefined;
     readonly size: IParticleNumericValueAnimation;
     readonly velocity: Vector;
-    readonly shape: ShapeType | string;
+    readonly shape: string;
     readonly spin?: IParticleSpin;
     readonly initialPosition: Vector;
     readonly initialVelocity: Vector;

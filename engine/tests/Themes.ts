@@ -1,6 +1,6 @@
 import { describe, it } from "mocha";
 import { Options } from "../src/Options/Classes/Options";
-import { RotateDirection, MoveDirection, ShapeType, ClickMode, HoverMode, OutMode, ThemeMode } from "../src/Enums";
+import { RotateDirection, MoveDirection, ClickMode, HoverMode, OutMode, ThemeMode } from "../src/Enums";
 import { expect } from "chai";
 
 describe("Themes", () => {
@@ -51,7 +51,7 @@ describe("Themes", () => {
                 },
             },
             shape: {
-                type: [ShapeType.circle, ShapeType.square],
+                type: ["circle", "square"],
             },
             opacity: {
                 value: 1,

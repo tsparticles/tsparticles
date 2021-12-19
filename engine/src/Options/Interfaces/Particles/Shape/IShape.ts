@@ -1,4 +1,3 @@
-import type { ShapeType } from "../../../../Enums";
 import type { ShapeData, SingleOrMultiple } from "../../../../Types";
 
 /**
@@ -6,7 +5,7 @@ import type { ShapeData, SingleOrMultiple } from "../../../../Types";
  * @category Options
  */
 export interface IShape {
-    type: SingleOrMultiple<ShapeType | keyof typeof ShapeType | string>;
+    type: SingleOrMultiple<string>;
 
     options: ShapeData;
 }

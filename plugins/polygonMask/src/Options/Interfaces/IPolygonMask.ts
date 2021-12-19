@@ -1,29 +1,22 @@
-import type { IDraw } from "./IDraw";
-import type { IMove } from "./IMove";
-import type { InlineArrangement, InlineArrangementAlt } from "../../Enums";
-import type { IInline } from "./IInline";
+import type { IPolygonMaskDraw } from "./IPolygonMaskDraw";
+import type { IPolygonMaskMove } from "./IPolygonMaskMove";
+import type { IPolygonMaskInline } from "./IPolygonMaskInline";
 import type { ICoordinates } from "tsparticles-engine/Core/Interfaces/ICoordinates";
-import type { ILocalSvg } from "./ILocalSvg";
-import { Type } from "../../Enums";
+import type { IPolygonMaskLocalSvg } from "./IPolygonMaskLocalSvg";
+import type { PolygonMaskType } from "../../Enums";
 
 /**
  * [[include:Options/Plugins/PolygonMask.md]]
  * @category Polygon Mask Plugin
  */
 export interface IPolygonMask {
-    draw: IDraw;
+    draw: IPolygonMaskDraw;
     enable: boolean;
-    inline: IInline;
-
-    /**
-     * @deprecated the inlineArrangement is deprecated, please use the new inline.arrangement property
-     */
-    inlineArrangement: InlineArrangement | keyof typeof InlineArrangement | InlineArrangementAlt;
-
-    move: IMove;
+    inline: IPolygonMaskInline;
+    move: IPolygonMaskMove;
     position?: ICoordinates;
     scale: number;
-    type: Type;
+    type: PolygonMaskType;
     url?: string;
-    data?: string | ILocalSvg;
+    data?: string | IPolygonMaskLocalSvg;
 }

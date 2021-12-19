@@ -1,6 +1,5 @@
 import type { IStroke } from "../../Options/Interfaces/Particles/IStroke";
 import type { ICoordinates3d } from "./ICoordinates";
-import type { ShapeType } from "../../Enums";
 import type { IParticleTiltValueAnimation, IParticleValueAnimation } from "./IParticleValueAnimation";
 import type { IShapeValues } from "./IShapeValues";
 import type { IBubbleParticleData } from "./IBubbleParticleData";
@@ -41,7 +40,7 @@ export interface IParticle {
     readonly options: IParticles;
     readonly position: Vector;
     readonly shadowColor: IRgb | undefined;
-    readonly shape?: ShapeType | string;
+    readonly shape?: string;
     readonly shapeData?: IShapeValues;
     readonly sides: number;
     readonly stroke?: IStroke;

@@ -1,5 +1,5 @@
 import type { ISourceOptions } from "tsparticles-engine";
-import { DestroyMode, DestroyType, MoveDirection, OutMode, ShapeType, StartValueType } from "tsparticles-engine";
+import { DestroyMode, DestroyType, MoveDirection, OutMode, StartValueType } from "tsparticles-engine";
 
 export const options: ISourceOptions = {
     detectRetina: true,
@@ -68,7 +68,7 @@ export const options: ISourceOptions = {
                         },
                     },
                     shape: {
-                        type: ShapeType.circle,
+                        type: "circle",
                     },
                     size: {
                         value: 2,

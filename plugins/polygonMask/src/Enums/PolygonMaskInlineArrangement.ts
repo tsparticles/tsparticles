@@ -1,4 +1,4 @@
-export enum InlineArrangement {
+export const enum PolygonMaskInlineArrangement {
     equidistant = "equidistant",
     onePerPoint = "one-per-point",
     perPoint = "per-point",
@@ -6,4 +6,4 @@ export enum InlineArrangement {
     randomPoint = "random-point",
 }
 
-export type InlineArrangementAlt = "one-per-point" | "per-point" | "random-length" | "random-point";
+export type PolygonMaskInlineArrangementAlt = "one-per-point" | "per-point" | "random-length" | "random-point";

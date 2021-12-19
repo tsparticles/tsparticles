@@ -1,5 +1,5 @@
 import type { ICoordinates } from "tsparticles-engine";
-import type { IDrawStroke } from "./Options/Interfaces/IDrawStroke";
+import type { IPolygonMaskDrawStroke } from "./Options/Interfaces/IPolygonMaskDrawStroke";
 import { colorToRgb, getDistances, getStyleFromRgb } from "tsparticles-engine";
 import type { ISvgPath } from "./Interfaces/ISvgPath";
 import type { SvgAbsoluteCoordinatesTypes, SvgRelativeCoordinatesTypes } from "./types";
@@ -12,7 +12,11 @@ import type {
     SVGPathSegLinetoVerticalRel,
 } from "./pathseg";
 
-export function drawPolygonMask(context: CanvasRenderingContext2D, rawData: ICoordinates[], stroke: IDrawStroke): void {
+export function drawPolygonMask(
+    context: CanvasRenderingContext2D,
+    rawData: ICoordinates[],
+    stroke: IPolygonMaskDrawStroke
+): void {
     const color = colorToRgb(stroke.color);
 
     if (!color) {
@@ -35,7 +39,7 @@ export function drawPolygonMask(context: CanvasRenderingContext2D, rawData: ICoo
 export function drawPolygonMaskPath(
     context: CanvasRenderingContext2D,
     path: Path2D,
-    stroke: IDrawStroke,
+    stroke: IPolygonMaskDrawStroke,
     position: ICoordinates
 ): void {
     context.translate(position.x, position.y);

@@ -9,7 +9,6 @@ import {
     MoveDirection,
     OutMode,
     RotateDirection,
-    ShapeType,
 } from "../src";
 import { ParticlesOptions } from "../src/Options/Classes/Particles/ParticlesOptions";
 import type { RecursivePartial } from "../src";
@@ -136,7 +135,7 @@ describe("Options tests", () => {
         expect(options.particles.shadow.offset.y).to.equal(0);
 
         /* particles shape */
-        expect(options.particles.shape.type).to.equal(ShapeType.circle);
+        expect(options.particles.shape.type).to.equal("circle");
 
         /* particles size */
         expect(options.particles.size.animation.enable).to.be.false;
@@ -318,7 +317,7 @@ describe("Options tests", () => {
         expect(options.particles.opacity.value).to.be.an("object").and.to.have.property("min").to.be.equal(0.1);
 
         /* particles shape */
-        expect(options.particles.shape.type).to.equal(ShapeType.circle);
+        expect(options.particles.shape.type).to.equal("circle");
 
         /* particles size */
         expect(options.particles.size.animation.enable).to.be.true;
@@ -406,7 +405,7 @@ describe("Options tests", () => {
                     },
                 },
                 shape: {
-                    type: ShapeType.circle,
+                    type: "circle",
                 },
                 opacity: {
                     value: 0.5,
@@ -500,7 +499,7 @@ describe("Options tests", () => {
         expect(options.particles.opacity.value).to.equal(0.5);
 
         /* particles shape */
-        expect(options.particles.shape.type).to.equal(ShapeType.circle);
+        expect(options.particles.shape.type).to.equal("circle");
 
         /* particles size */
         expect(options.particles.size.animation.enable).to.be.false;

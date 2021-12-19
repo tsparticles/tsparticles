@@ -6,7 +6,7 @@ import type { IOptions } from "tsparticles-engine/Options/Interfaces/IOptions";
 import type { IPolygonMaskOptions } from "./Options/Interfaces/IPolygonMaskOptions";
 import { Options } from "tsparticles-engine/Options/Classes/Options";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
-import { Type } from "./Enums";
+import { PolygonMaskType } from "./Enums";
 import type { Main } from "tsparticles-engine";
 import { isSsr } from "tsparticles-engine";
 
@@ -25,7 +25,10 @@ class Plugin implements IPlugin {
     }
 
     needsPlugin(options?: RecursivePartial<IOptions & IPolygonMaskOptions>): boolean {
-        return options?.polygon?.enable ?? (options?.polygon?.type !== undefined && options.polygon.type !== Type.none);
+        return (
+            options?.polygon?.enable ??
+            (options?.polygon?.type !== undefined && options.polygon.type !== PolygonMaskType.none)
+        );
     }
 
     loadOptions(options: Options, source?: RecursivePartial<IOptions & IPolygonMaskOptions>): void {
