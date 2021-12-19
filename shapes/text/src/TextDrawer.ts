@@ -1,12 +1,9 @@
-import type { Container, IParticle, IShapeDrawer } from "tsparticles-engine";
+import type { Container, IParticle, IShapeDrawer, SingleOrMultiple } from "tsparticles-engine";
 import { isInArray, itemFromArray, loadFont } from "tsparticles-engine";
-import { ICharacterShape } from "./ICharacterShape";
+import type { ICharacterShape } from "./ICharacterShape";
+import type { TextParticle } from "./TextParticle";
 
 export const validTypes = ["text", "character", "char"];
-
-interface TextParticle extends IParticle {
-    text?: string;
-}
 
 /**
  * @category Shape Drawers
@@ -20,19 +17,25 @@ export class TextDrawer implements IShapeDrawer {
         const options = container.actualOptions;
 
         if (validTypes.find((t) => isInArray(t, options.particles.shape.type))) {
-            const shapeOptions = validTypes.map((t) => options.particles.shape.options[t]).find((t) => !!t);
+            const shapeOptions = validTypes
+                .map((t) => options.particles.shape.options[t])
+                .find((t) => !!t) as SingleOrMultiple<ICharacterShape>;
 
             if (shapeOptions instanceof Array) {
                 const promises: Promise<void>[] = [];
 
                 for (const character of shapeOptions) {
-                    promises.push(loadFont(character as ICharacterShape));
+                    const charShape = character;
+
+                    promises.push(loadFont(charShape.font, charShape.weight));
                 }
 
                 await Promise.allSettled(promises);
             } else {
                 if (shapeOptions !== undefined) {
-                    await loadFont(shapeOptions as ICharacterShape);
+                    const charShape = shapeOptions as ICharacterShape;
+
+                    await loadFont(charShape.font, charShape.weight);
                 }
             }
         }

@@ -114,9 +114,9 @@ export function isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
     return value === array || (array instanceof Array && array.indexOf(value) > -1);
 }
 
-export async function loadFont(character: { weight: string; font: string }): Promise<void> {
+export async function loadFont(font?: string, weight?: string): Promise<void> {
     try {
-        await document.fonts.load(`${character.weight ?? "400"} 36px '${character.font ?? "Verdana"}'`);
+        await document.fonts.load(`${weight ?? "400"} 36px '${font ?? "Verdana"}'`);
     } catch {
         // ignores any error
     }

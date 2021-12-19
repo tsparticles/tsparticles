@@ -1,15 +1,6 @@
-import type { IShapeValues } from "tsparticles-engine/Options/Interfaces/Particles/Shape/IShapeValues";
 import type { Container, IParticle, IShapeDrawer } from "tsparticles-engine";
-
-interface ISpiralData extends IShapeValues {
-    innerRadius: number;
-    lineSpacing: number;
-}
-
-interface ISpiralParticle extends IParticle {
-    spiralInnerRadius: number;
-    spiralLineSpacing: number;
-}
+import type { ISpiralData } from "./ISpiralData";
+import type { ISpiralParticle } from "./ISpiralParticle";
 
 export class SpiralDrawer implements IShapeDrawer {
     particleInit(container: Container, particle: IParticle): void {

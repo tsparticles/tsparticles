@@ -1,13 +1,5 @@
-import type { IParticle, IShapeDrawer, IShapeValues } from "tsparticles-engine";
-
-/**
- * @category Options
- */
-export interface IStarShape extends IShapeValues {
-    sides: number;
-
-    inset: number;
-}
+import type { IParticle, IShapeDrawer } from "tsparticles-engine";
+import type { IStarShape } from "./IStarShape";
 
 /**
  * @category Shape Drawers

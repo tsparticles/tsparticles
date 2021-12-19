@@ -5,7 +5,6 @@ import type {
     Particle,
     RecursivePartial,
     SingleOrMultiple,
-    IShapeValues,
 } from "tsparticles-engine";
 import { isInArray, ShapeType } from "tsparticles-engine";
 import type { IParticles } from "tsparticles-engine/Options/Interfaces/Particles/IParticles";
@@ -13,13 +12,7 @@ import type { IImage, IImageParticle, IParticleImage } from "./Utils";
 import { downloadSvgImage, loadImage, replaceColorSvg } from "./Utils";
 import type { IInteractivity } from "tsparticles-engine/Options/Interfaces/Interactivity/IInteractivity";
 import type { IModes } from "tsparticles-engine/Options/Interfaces/Interactivity/Modes/IModes";
-
-export interface IImageShape extends IShapeValues {
-    replaceColor: boolean;
-    src: string;
-    width: number;
-    height: number;
-}
+import type { IImageShape } from "./IImageShape";
 
 interface ContainerImage {
     id: string;
