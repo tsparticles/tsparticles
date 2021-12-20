@@ -1,22 +1,21 @@
 import type { IPath } from "../../../../Interfaces/Particles/Move/Path/iPath";
-import type { RecursivePartial, PathOptions } from "../../../../../Types";
-import { PathDelay } from "./PathDelay";
+import type { RecursivePartial, PathOptions, RangeValue } from "../../../../../Types";
 import type { IOptionLoader } from "../../../../Interfaces/IOptionLoader";
-import { deepExtend } from "../../../../../Utils";
+import { deepExtend, setRangeValue } from "../../../../../Utils";
 
 /**
  * @category Options
  */
 export class Path implements IPath, IOptionLoader<IPath> {
     clamp;
-    delay;
+    delay: RangeValue;
     enable;
     options: PathOptions;
     generator?: string;
 
     constructor() {
         this.clamp = true;
-        this.delay = new PathDelay();
+        this.delay = 0;
         this.enable = false;
         this.options = {};
     }
@@ -30,7 +29,9 @@ export class Path implements IPath, IOptionLoader<IPath> {
             this.clamp = data.clamp;
         }
 
-        this.delay.load(data.delay);
+        if (data.delay !== undefined) {
+            this.delay = setRangeValue(data.delay);
+        }
 
         if (data.enable !== undefined) {
             this.enable = data.enable;

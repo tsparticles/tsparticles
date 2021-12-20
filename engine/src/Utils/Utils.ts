@@ -11,7 +11,7 @@ import { DivMode, OutModeDirection } from "../Enums";
 import type { SingleOrMultiple } from "../Types";
 import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
-import { collisionVelocity, getDistances, getValue } from "./NumberUtils";
+import { collisionVelocity, getDistances, getRangeValue } from "./NumberUtils";
 import { Vector } from "../Core/Particle/Vector";
 
 declare global {
@@ -275,7 +275,7 @@ export function circleBounceDataFromParticle(p: IParticle): ICircleBouncer {
         radius: p.getRadius(),
         mass: p.getMass(),
         velocity: p.velocity,
-        factor: Vector.create(getValue(p.options.bounce.horizontal), getValue(p.options.bounce.vertical)),
+        factor: Vector.create(getRangeValue(p.options.bounce.horizontal), getRangeValue(p.options.bounce.vertical)),
     };
 }
 
@@ -338,7 +338,7 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
             max: divBounds.bottom,
         },
         particle.velocity.x,
-        getValue(particle.options.bounce.horizontal)
+        getRangeValue(particle.options.bounce.horizontal)
     );
 
     if (resH.bounced) {
@@ -369,7 +369,7 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
             max: divBounds.right,
         },
         particle.velocity.y,
-        getValue(particle.options.bounce.vertical)
+        getRangeValue(particle.options.bounce.vertical)
     );
 
     if (resV.bounced) {

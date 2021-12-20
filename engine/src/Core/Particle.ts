@@ -25,7 +25,6 @@ import {
     getRangeMax,
     getRangeMin,
     getRangeValue,
-    getValue,
     isInArray,
     itemFromArray,
     Plugins,
@@ -186,7 +185,7 @@ export class Particle implements IParticle {
         this.fill = this.shapeData?.fill ?? this.fill;
         this.close = this.shapeData?.close ?? this.close;
         this.options = particlesOptions;
-        this.pathDelay = getValue(this.options.move.path.delay) * 1000;
+        this.pathDelay = getRangeValue(this.options.move.path.delay) * 1000;
 
         const zIndexValue = getRangeValue(this.options.zIndex.value);
 
@@ -198,7 +197,7 @@ export class Particle implements IParticle {
 
         this.size = {
             enable: sizeOptions.animation.enable,
-            value: getValue(sizeOptions) * container.retina.pixelRatio,
+            value: getRangeValue(sizeOptions.value) * container.retina.pixelRatio,
             max: getRangeMax(sizeRange) * pxRatio,
             min: getRangeMin(sizeRange) * pxRatio,
             loops: 0,
@@ -456,7 +455,7 @@ export class Particle implements IParticle {
             return;
         }
 
-        const rate = getRangeValue(splitOptions.rate.value);
+        const rate = getRangeValue(splitOptions.rate);
 
         for (let i = 0; i < rate; i++) {
             this.container.particles.addSplitParticle(this);

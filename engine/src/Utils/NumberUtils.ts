@@ -1,7 +1,6 @@
-import type { IValueWithRandom } from "../Options/Interfaces/IValueWithRandom";
 import type { ICoordinates } from "../Core/Interfaces";
 import { EasingType, MoveDirection, MoveDirectionAlt } from "../Enums";
-import { RangeValue } from "../Types";
+import type { RangeValue } from "../Types";
 import { Vector } from "../Core/Particle/Vector";
 
 /**
@@ -62,10 +61,6 @@ export function setRangeValue(source: RangeValue, value?: number): RangeValue {
               max: Math.max(max, value),
           }
         : setRangeValue(min, max);
-}
-
-export function getValue(options: IValueWithRandom): number {
-    return getRangeValue(options.value);
 }
 
 /**

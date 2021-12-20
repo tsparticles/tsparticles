@@ -324,7 +324,7 @@ export class Particles {
 
         options.load(parent.options);
 
-        const factor = getRangeValue(splitOptions.factor.value);
+        const factor = getRangeValue(splitOptions.factor);
 
         options.color.load({
             value: {

@@ -8,6 +8,7 @@ import type { ISlow } from "./ISlow";
 import type { ITrail } from "./ITrail";
 import type { IAttract } from "./IAttract";
 import type { ILight } from "./ILight";
+import type { IBounce } from "./IBounce";
 
 /**
  * [[include:Options/Interactivity/Modes.md]]
@@ -15,6 +16,7 @@ import type { ILight } from "./ILight";
  */
 export interface IModes {
     attract: IAttract;
+    bounce: IBounce;
     bubble: IBubble;
     connect: IConnect;
     grab: IGrab;

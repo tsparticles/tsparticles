@@ -53,14 +53,7 @@
       "type": "circle"
     },
     "opacity": {
-      "value": 1,
-      "random": false,
-      "animation": {
-        "enable": false,
-        "speed": 3,
-        "minimumValue": 0.1,
-        "sync": false
-      }
+      "value": 1
     },
     "size": {
       "value": 3
@@ -75,14 +68,7 @@
       "direction": "right",
       "random": false,
       "straight": false,
-      "outModes": {
-        "default": "out"
-      },
-      "attract": {
-        "enable": false,
-        "rotateX": 600,
-        "rotateY": 1200
-      }
+      "outModes": "out"
     },
     "zIndex": {
       "value": 5,
@@ -120,7 +106,12 @@
       },
       "push": {
         "quantity": 4,
-        "groups": ["z5000", "z7500", "z2500", "z1000"]
+        "groups": [
+          "z5000",
+          "z7500",
+          "z2500",
+          "z1000"
+        ]
       },
       "remove": {
         "quantity": 2

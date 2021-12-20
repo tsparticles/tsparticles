@@ -5,7 +5,7 @@
       "value": 300,
       "density": {
         "enable": false,
-        "value_area": 800
+        "area": 800
       }
     },
     "color": {
@@ -28,24 +28,19 @@
       "direction": "top",
       "random": false,
       "straight": true,
-      "out_mode": "out",
+      "outModes": "out",
       "bounce": true,
-      "warp": true,
-      "attract": {
-        "enable": false,
-        "rotateX": 600,
-        "rotateY": 1200
-      }
+      "warp": true
     }
   },
   "interactivity": {
-    "detect_on": "canvas",
+    "detectsOn": "canvas",
     "events": {
-      "onhover": {
+      "onHover": {
         "enable": false,
         "mode": "repulse"
       },
-      "onclick": {
+      "onClick": {
         "enable": true,
         "mode": "push"
       },
@@ -54,7 +49,7 @@
     "modes": {
       "grab": {
         "distance": 400,
-        "line_linked": {
+        "links": {
           "opacity": 1
         }
       },
@@ -62,13 +57,12 @@
         "color": "#ff0000",
         "draggable": true,
         "size": {
-          "value": 10,
+          "value": {
+            "min": 5,
+            "max": 10
+          },
           "limit": 50,
-          "density": 50,
-          "random": {
-            "enable": true,
-            "minimumValue": 5
-          }
+          "density": 50
         }
       },
       "bubble": {
@@ -81,23 +75,22 @@
         "distance": 200
       },
       "push": {
-        "particles_nb": 10
+        "quantity": 10
       },
       "remove": {
-        "particles_nb": 2
+        "quantity": 2
       }
     }
   },
-  "retina_detect": true,
+  "detectRetina": true,
   "absorbers": {
     "draggable": true,
     "size": {
-      "value": 10,
-      "limit": 10,
-      "random": {
-        "enable": true,
-        "minimumValue": 5
-      }
+      "value": {
+        "min": 5,
+        "max": 10
+      },
+      "limit": 10
     },
     "position": {
       "x": 50,

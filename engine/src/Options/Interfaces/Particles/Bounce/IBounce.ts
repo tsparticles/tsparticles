@@ -1,6 +1,6 @@
-import type { IValueWithRandom } from "../../IValueWithRandom";
+import type { RangeValue } from "../../../../Types";
 
 export interface IBounce {
-    horizontal: IValueWithRandom;
-    vertical: IValueWithRandom;
+    horizontal: RangeValue;
+    vertical: RangeValue;
 }

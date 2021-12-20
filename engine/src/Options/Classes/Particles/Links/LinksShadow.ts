@@ -15,8 +15,6 @@ export class LinksShadow implements ILinksShadow, IOptionLoader<ILinksShadow> {
         this.blur = 5;
         this.color = new OptionsColor();
         this.enable = false;
-
-        this.color.value = "#00ff00";
     }
 
     load(data?: RecursivePartial<ILinksShadow>): void {

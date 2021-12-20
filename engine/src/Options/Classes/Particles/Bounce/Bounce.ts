@@ -1,15 +1,15 @@
 import type { IBounce } from "../../../Interfaces/Particles/Bounce/IBounce";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { RecursivePartial } from "../../../../Types";
-import { BounceFactor } from "./BounceFactor";
+import type { RangeValue, RecursivePartial } from "../../../../Types";
+import { setRangeValue } from "../../../../Utils";
 
 export class Bounce implements IBounce, IOptionLoader<IBounce> {
-    horizontal;
-    vertical;
+    horizontal: RangeValue;
+    vertical: RangeValue;
 
     constructor() {
-        this.horizontal = new BounceFactor();
-        this.vertical = new BounceFactor();
+        this.horizontal = 1;
+        this.vertical = 1;
     }
 
     load(data?: RecursivePartial<IBounce>): void {
@@ -17,7 +17,12 @@ export class Bounce implements IBounce, IOptionLoader<IBounce> {
             return;
         }
 
-        this.horizontal.load(data.horizontal);
-        this.vertical.load(data.vertical);
+        if (data.horizontal !== undefined) {
+            this.horizontal = setRangeValue(data.horizontal);
+        }
+
+        if (data.vertical !== undefined) {
+            this.vertical = setRangeValue(data.vertical);
+        }
     }
 }

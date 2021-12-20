@@ -90,7 +90,7 @@ describe("Options tests", () => {
         expect(options.particles.links.enable).to.be.false;
         expect(options.particles.links.opacity).to.equal(1);
         expect(options.particles.links.shadow.blur).to.equal(5);
-        expect(options.particles.links.shadow.color).to.be.an("object").to.have.property("value").to.equal("#00ff00");
+        expect(options.particles.links.shadow.color).to.be.an("object").to.have.property("value").to.equal("#fff");
         expect(options.particles.links.shadow.enable).to.be.false;
         expect(options.particles.links.width).to.equal(1);
 

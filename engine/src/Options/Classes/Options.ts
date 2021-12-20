@@ -2,7 +2,7 @@ import type { IOptions } from "../Interfaces/IOptions";
 import { Interactivity } from "./Interactivity/Interactivity";
 import { ParticlesOptions } from "./Particles/ParticlesOptions";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
-import type { RangeValue, RecursivePartial } from "../../Types";
+import type { RangeValue, RecursivePartial, SingleOrMultiple } from "../../Types";
 import { Background } from "./Background/Background";
 import { Plugins } from "../../Utils";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
@@ -31,7 +31,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     particles;
     pauseOnBlur;
     pauseOnOutsideViewport;
-    preset?: string | string[];
+    preset?: SingleOrMultiple<string>;
     responsive: Responsive[];
     themes: Theme[];
     zLayers;
