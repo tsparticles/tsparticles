@@ -19,9 +19,7 @@ export const options: ISourceOptions = {
             path: {
                 clamp: false,
                 enable: true,
-                delay: {
-                    value: 0,
-                },
+                delay: 0,
                 generator: curvesPathName,
             },
             random: false,

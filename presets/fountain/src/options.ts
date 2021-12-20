@@ -6,7 +6,8 @@ export const options: ISourceOptions = {
     particles: {
         bounce: {
             vertical: {
-                value: { min: 0.75, max: 0.85 },
+                min: 0.75,
+                max: 0.85,
             },
         },
         color: {
@@ -20,10 +21,12 @@ export const options: ISourceOptions = {
             split: {
                 count: 2,
                 factor: {
-                    value: { min: 1.1, max: 2 },
+                    min: 1.1,
+                    max: 2,
                 },
                 rate: {
-                    value: { min: 2, max: 3 },
+                    min: 2,
+                    max: 3,
                 },
             },
         },

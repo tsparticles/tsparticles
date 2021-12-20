@@ -20,7 +20,7 @@ export function bounceHorizontal(data: IBounceData): void {
         (data.direction === OutModeDirection.right && data.bounds.right >= data.canvasSize.width && velocity > 0) ||
         (data.direction === OutModeDirection.left && data.bounds.left <= 0 && velocity < 0)
     ) {
-        const newVelocity = getRangeValue(data.particle.options.bounce.horizontal.value);
+        const newVelocity = getRangeValue(data.particle.options.bounce.horizontal);
 
         data.particle.velocity.x *= -newVelocity;
 
@@ -60,7 +60,7 @@ export function bounceVertical(data: IBounceData): void {
                 velocity > 0) ||
             (data.direction === OutModeDirection.top && data.bounds.top <= 0 && velocity < 0)
         ) {
-            const newVelocity = getRangeValue(data.particle.options.bounce.vertical.value);
+            const newVelocity = getRangeValue(data.particle.options.bounce.vertical);
 
             data.particle.velocity.y *= -newVelocity;
 

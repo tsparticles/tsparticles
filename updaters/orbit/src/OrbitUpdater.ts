@@ -18,7 +18,7 @@ export class OrbitUpdater implements IParticleUpdater {
         const orbitOptions = particlesOptions.orbit;
 
         if (orbitOptions.enable) {
-            particle.orbitRotation = getRangeValue(orbitOptions.rotation.value);
+            particle.orbitRotation = getRangeValue(orbitOptions.rotation);
 
             particle.orbitColor = colorToHsl(orbitOptions.color);
 

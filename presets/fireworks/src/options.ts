@@ -35,12 +35,8 @@ export const options: ISourceOptions = {
             mode: DestroyMode.split,
             split: {
                 count: 1,
-                factor: {
-                    value: 0.333333,
-                },
-                rate: {
-                    value: 100,
-                },
+                factor: 0.333333,
+                rate: 100,
                 particles: {
                     color: {
                         value: ["#ff595e", "#ffca3a", "#8ac926", "#1982c4", "#6a4c93"],
