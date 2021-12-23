@@ -334,7 +334,7 @@ export class Particle implements IParticle {
             drawer.particleInit(container, this);
         }
 
-        for (const [ , plugin ] of container.plugins) {
+        for (const [, plugin] of container.plugins) {
             if (plugin.particleCreated) {
                 plugin.particleCreated(this);
             }
@@ -360,7 +360,7 @@ export class Particle implements IParticle {
     draw(delta: IDelta): void {
         const container = this.container;
 
-        for (const [ , plugin ] of container.plugins) {
+        for (const [, plugin] of container.plugins) {
             container.canvas.drawParticlePlugin(plugin, this, delta);
         }
 
@@ -418,7 +418,7 @@ export class Particle implements IParticle {
         this.destroyed = true;
         this.bubble.inRange = false;
 
-        for (const [ , plugin ] of this.container.plugins) {
+        for (const [, plugin] of this.container.plugins) {
             if (plugin.particleDestroyed) {
                 plugin.particleDestroyed(this, override);
             }
@@ -466,7 +466,7 @@ export class Particle implements IParticle {
         zIndex: number,
         tryCount = 0
     ): Vector3d {
-        for (const [ , plugin ] of container.plugins) {
+        for (const [, plugin] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
@@ -488,7 +488,7 @@ export class Particle implements IParticle {
             fixHorizontal = (outMode: OutMode | keyof typeof OutMode | OutModeAlt) => {
                 fixOutMode({
                     outMode,
-                    checkModes: [ OutMode.bounce, OutMode.bounceHorizontal ],
+                    checkModes: [OutMode.bounce, OutMode.bounceHorizontal],
                     coord: pos.x,
                     maxCoord: container.canvas.size.width,
                     setCb: (value: number) => (pos.x += value),
@@ -498,7 +498,7 @@ export class Particle implements IParticle {
             fixVertical = (outMode: OutMode | keyof typeof OutMode | OutModeAlt) => {
                 fixOutMode({
                     outMode,
-                    checkModes: [ OutMode.bounce, OutMode.bounceVertical ],
+                    checkModes: [OutMode.bounce, OutMode.bounceVertical],
                     coord: pos.y,
                     maxCoord: container.canvas.size.height,
                     setCb: (value: number) => (pos.y += value),
@@ -597,14 +597,14 @@ export class Particle implements IParticle {
         const life = {
             delay: container.retina.reduceFactor
                 ? ((getRangeValue(lifeOptions.delay.value) * (lifeOptions.delay.sync ? 1 : Math.random())) /
-                    container.retina.reduceFactor) *
-                1000
+                      container.retina.reduceFactor) *
+                  1000
                 : 0,
             delayTime: 0,
             duration: container.retina.reduceFactor
                 ? ((getRangeValue(lifeOptions.duration.value) * (lifeOptions.duration.sync ? 1 : Math.random())) /
-                    container.retina.reduceFactor) *
-                1000
+                      container.retina.reduceFactor) *
+                  1000
                 : 0,
             time: 0,
             count: particlesOptions.life.count,
