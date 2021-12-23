@@ -8,11 +8,16 @@ import type {
     IRectSideResult,
 } from "../Core/Interfaces";
 import { DivMode, OutModeDirection } from "../Enums";
-import type { SingleOrMultiple } from "../Types";
+import type { RecursivePartial, SingleOrMultiple } from "../Types";
 import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
 import { collisionVelocity, getDistances, getRangeValue } from "./NumberUtils";
 import { Vector } from "../Core/Particle/Vector";
+import { Options } from "../Options/Classes/Options";
+import type { IOptions } from "../Options/Interfaces/IOptions";
+import { IParticles } from "../Options/Interfaces/Particles/IParticles";
+import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
+import { IOptionLoader } from "../Options/Interfaces/IOptionLoader";
 
 declare global {
     interface Window {
@@ -381,4 +386,32 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
             particle.position.y = resV.position;
         }
     }
+}
+
+function loadOptions<T>(options: IOptionLoader<T>, ...sourceOptionsArr: RecursivePartial<T | undefined>[]) {
+    if (!sourceOptionsArr) {
+        return;
+    }
+
+    for (const sourceOptions of sourceOptionsArr) {
+        options.load(sourceOptions);
+    }
+}
+
+export function loadContainerOptions(...sourceOptionsArr: RecursivePartial<IOptions | undefined>[]): Options {
+    const options = new Options();
+
+    loadOptions(options, ...sourceOptionsArr);
+
+    return options;
+}
+
+export function loadParticlesOptions(
+    ...sourceOptionsArr: RecursivePartial<IParticles | undefined>[]
+): ParticlesOptions {
+    const options = new ParticlesOptions();
+
+    loadOptions(options, ...sourceOptionsArr);
+
+    return options;
 }

@@ -8,9 +8,9 @@ import { Retina } from "./Retina";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import { FrameManager } from "./FrameManager";
 import type { RecursivePartial } from "../Types";
-import { Options } from "../Options/Classes/Options";
-import { animate, cancelAnimation, EventListeners, getRangeValue, Plugins } from "../Utils";
-import { Particle } from "./Particle";
+import type { Options } from "../Options/Classes/Options";
+import { animate, cancelAnimation, EventListeners, getRangeValue, loadContainerOptions, Plugins } from "../Utils";
+import type { Particle } from "./Particle";
 import { Vector } from "./Particle/Vector";
 import {
     IAttract,
@@ -100,7 +100,6 @@ export class Container {
     private firstStart;
     private currentTheme?: string;
     private drawAnimationFrame?: number;
-    private readonly presets;
 
     private readonly eventListeners;
     private readonly intersectionObserver?;
@@ -110,9 +109,8 @@ export class Container {
      * @constructor
      * @param id the id to identify this instance
      * @param sourceOptions the options to load
-     * @param presets all the presets to load with options
      */
-    constructor(readonly id: string, sourceOptions?: RecursivePartial<IOptions>, ...presets: string[]) {
+    constructor(readonly id: string, sourceOptions?: RecursivePartial<IOptions>) {
         this.fpsLimit = 60;
         this.duration = 0;
         this.lifeTime = 0;
@@ -129,7 +127,6 @@ export class Container {
         this.canvas = new Canvas(this);
         this.particles = new Particles(this);
         this.drawer = new FrameManager(this);
-        this.presets = presets;
         this.pathGenerator = {
             generate: (p: Particle): Vector => {
                 const v = p.velocity.copy();
@@ -158,8 +155,8 @@ export class Container {
         this.drawers = new Map<string, IShapeDrawer>();
         this.density = 1;
         /* tsParticles variables with default values */
-        this._options = new Options();
-        this.actualOptions = new Options();
+        this._options = loadContainerOptions();
+        this.actualOptions = loadContainerOptions();
 
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);
@@ -366,7 +363,7 @@ export class Container {
     }
 
     reset(): Promise<void> {
-        this._options = new Options();
+        this._options = loadContainerOptions();
 
         return this.refresh();
     }
@@ -582,12 +579,6 @@ export class Container {
     }
 
     async init(): Promise<void> {
-        this._options = new Options();
-
-        for (const preset of this.presets) {
-            this._options.load(Plugins.getPreset(preset));
-        }
-
         const shapes = Plugins.getSupportedShapes();
 
         for (const type of shapes) {
@@ -599,12 +590,8 @@ export class Container {
         }
 
         /* options settings */
-        this._options.load(this._initialSourceOptions);
-        this._options.load(this._sourceOptions);
-
-        this.actualOptions = new Options();
-
-        this.actualOptions.load(this._options);
+        this._options = loadContainerOptions(this._initialSourceOptions, this.sourceOptions);
+        this.actualOptions = loadContainerOptions(this._options);
 
         /* init canvas + particles */
         this.retina.init();

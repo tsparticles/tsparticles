@@ -1,11 +1,19 @@
 import type { Container } from "./Container";
 import { Particle } from "./Particle";
-import { getRangeValue, Plugins, Point, QuadTree, randomInRange, Rectangle, setRangeValue } from "../Utils";
+import {
+    getRangeValue,
+    loadParticlesOptions,
+    Plugins,
+    Point,
+    QuadTree,
+    randomInRange,
+    Rectangle,
+    setRangeValue,
+} from "../Utils";
 import type { RecursivePartial } from "../Types";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { InteractionManager } from "./InteractionManager";
 import type { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";
-import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
 import type { ICoordinates, IDelta, IMouseData, IParticle, IRgb } from "./Interfaces";
 import { Mover } from "./Particle/Mover";
 import { IParticlesFrequencies } from "./Interfaces/IParticlesFrequencies";
@@ -320,10 +328,7 @@ export class Particles {
 
     addSplitParticle(parent: Particle): Particle | undefined {
         const splitOptions = parent.options.destroy.split;
-        const options = new ParticlesOptions();
-
-        options.load(parent.options);
-
+        const options = loadParticlesOptions(parent.options);
         const factor = getRangeValue(splitOptions.factor);
 
         options.color.load({
