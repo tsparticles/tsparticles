@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-path-curves",
-  "version": "1.37.5",
+  "version": "1.37.6",
   "description": "tsParticles curves path",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -73,6 +73,6 @@
     "webpack-cli": "4.8.0"
   },
   "dependencies": {
-    "tsparticles": "^1.37.5"
+    "tsparticles": "^1.37.6"
   }
 }

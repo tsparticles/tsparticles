@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.6](https://github.com/matteobruni/tsparticles/compare/web-particles@1.10.5...web-particles@1.10.6) (2021-12-24)
+
+
+### Bug Fixes
+
+* fixed some readmes ([93f371a](https://github.com/matteobruni/tsparticles/commit/93f371ab82a5074d34ec7632ade41edc3dbf0ec7))
+
+
+
+
+
 ## [1.10.5](https://github.com/matteobruni/tsparticles/compare/web-particles@1.10.4...web-particles@1.10.5) (2021-11-28)
 
 **Note:** Version bump only for package web-particles
