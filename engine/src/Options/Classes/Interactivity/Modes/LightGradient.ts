@@ -16,7 +16,7 @@ export class LightGradient implements ILightGradient, IOptionLoader<ILightGradie
     }
 
     load(data?: RecursivePartial<ILightGradient>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

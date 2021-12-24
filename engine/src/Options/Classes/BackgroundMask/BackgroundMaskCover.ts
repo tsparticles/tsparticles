@@ -12,11 +12,12 @@ export class BackgroundMaskCover implements IBackgroundMaskCover, IOptionLoader<
 
     constructor() {
         this.color = new OptionsColor();
+        this.color.value = "#fff";
         this.opacity = 1;
     }
 
     load(data?: RecursivePartial<IBackgroundMaskCover> | undefined): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

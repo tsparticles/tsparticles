@@ -23,11 +23,11 @@ export class SizeAnimation extends AnimationOptions implements ISizeAnimation, I
     }
 
     load(data?: RecursivePartial<ISizeAnimation>): void {
-        if (data === undefined) {
+        super.load(data);
+
+        if (!data) {
             return;
         }
-
-        super.load(data);
 
         if (data.destroy !== undefined) {
             this.destroy = data.destroy;

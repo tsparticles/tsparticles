@@ -11,7 +11,7 @@ export class OptionsColor implements IOptionsColor, IOptionLoader<IOptionsColor>
     value: SingleOrMultiple<SingleOrMultiple<string> | IValueColor | IRgb | IHsl | IHsv>;
 
     constructor() {
-        this.value = "#fff";
+        this.value = "";
     }
 
     static create(

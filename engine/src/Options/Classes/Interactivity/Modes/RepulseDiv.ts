@@ -18,7 +18,7 @@ export class RepulseDiv extends RepulseBase implements IRepulseDiv, IOptionLoade
     load(data?: RecursivePartial<IRepulseDiv>): void {
         super.load(data);
 
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

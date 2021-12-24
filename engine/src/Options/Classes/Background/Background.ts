@@ -26,7 +26,7 @@ export class Background implements IBackground, IOptionLoader<IBackground> {
     }
 
     load(data?: RecursivePartial<IBackground>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

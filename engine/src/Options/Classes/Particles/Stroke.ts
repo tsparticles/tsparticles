@@ -17,13 +17,11 @@ export class Stroke implements IStroke, IOptionLoader<IStroke> {
     }
 
     load(data?: RecursivePartial<IStroke>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 
-        if (data.color !== undefined) {
-            this.color = AnimatableColor.create(this.color, data.color);
-        }
+        this.color = AnimatableColor.create(this.color, data.color);
 
         if (data.width !== undefined) {
             this.width = data.width;

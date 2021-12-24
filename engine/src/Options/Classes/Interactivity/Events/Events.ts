@@ -23,7 +23,7 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
     }
 
     load(data?: RecursivePartial<IEvents>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 
@@ -31,20 +31,18 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
 
         const onDiv = data.onDiv;
 
-        if (onDiv !== undefined) {
-            if (onDiv instanceof Array) {
-                this.onDiv = onDiv.map((div) => {
-                    const tmp = new DivEvent();
+        if (onDiv instanceof Array) {
+            this.onDiv = onDiv.map((div) => {
+                const tmp = new DivEvent();
 
-                    tmp.load(div);
+                tmp.load(div);
 
-                    return tmp;
-                });
-            } else {
-                this.onDiv = new DivEvent();
+                return tmp;
+            });
+        } else {
+            this.onDiv = new DivEvent();
 
-                this.onDiv.load(onDiv);
-            }
+            this.onDiv.load(onDiv);
         }
 
         this.onHover.load(data.onHover);

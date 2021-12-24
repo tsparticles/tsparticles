@@ -23,11 +23,11 @@ export class Shadow implements IShadow, IOptionLoader<IShadow> {
             y: 0,
         };
 
-        this.color.value = "#000000";
+        this.color.value = "#000";
     }
 
     load(data?: RecursivePartial<IShadow>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

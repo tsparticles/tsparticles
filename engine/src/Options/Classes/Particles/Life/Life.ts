@@ -16,7 +16,7 @@ export class Life implements ILife, IOptionLoader<ILife> {
     }
 
     load(data?: RecursivePartial<ILife>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

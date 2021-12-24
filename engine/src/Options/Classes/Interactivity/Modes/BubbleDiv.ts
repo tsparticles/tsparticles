@@ -18,7 +18,7 @@ export class BubbleDiv extends BubbleBase implements IBubbleDiv, IOptionLoader<I
     load(data?: RecursivePartial<IBubbleDiv>): void {
         super.load(data);
 
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

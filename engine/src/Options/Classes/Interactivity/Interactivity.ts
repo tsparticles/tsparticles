@@ -21,7 +21,7 @@ export class Interactivity implements IInteractivity, IOptionLoader<IInteractivi
     }
 
     load(data?: RecursivePartial<IInteractivity>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

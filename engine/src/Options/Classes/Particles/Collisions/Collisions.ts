@@ -23,7 +23,7 @@ export class Collisions implements ICollisions, IOptionLoader<ICollisions> {
     }
 
     load(data?: RecursivePartial<ICollisions>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

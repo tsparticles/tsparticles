@@ -26,6 +26,7 @@ export class Links implements ILinks, IOptionLoader<ILinks> {
     constructor() {
         this.blink = false;
         this.color = new OptionsColor();
+        this.color.value = "#fff";
         this.consent = false;
         this.distance = 100;
         this.enable = false;
@@ -38,7 +39,7 @@ export class Links implements ILinks, IOptionLoader<ILinks> {
     }
 
     load(data?: RecursivePartial<ILinks>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

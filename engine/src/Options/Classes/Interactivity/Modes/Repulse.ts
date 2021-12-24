@@ -13,7 +13,7 @@ export class Repulse extends RepulseBase implements IRepulse, IOptionLoader<IRep
     load(data?: RecursivePartial<IRepulse>): void {
         super.load(data);
 
-        if (data?.divs === undefined) {
+        if (!data) {
             return;
         }
 

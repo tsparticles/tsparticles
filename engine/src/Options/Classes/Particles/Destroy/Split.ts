@@ -35,9 +35,7 @@ export class Split implements ISplit, IOptionLoader<ISplit> {
             this.rate = setRangeValue(data.rate);
         }
 
-        if (data.particles !== undefined) {
-            this.particles = deepExtend({}, data.particles) as RecursivePartial<IParticles>;
-        }
+        this.particles = deepExtend({}, data.particles) as RecursivePartial<IParticles>;
 
         if (data.sizeOffset !== undefined) {
             this.sizeOffset = data.sizeOffset;

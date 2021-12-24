@@ -63,7 +63,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
      * @param data the source data to load into the instance
      */
     load(data?: RecursivePartial<IOptions>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

@@ -17,7 +17,7 @@ export class RotateAnimation implements IRotateAnimation, IOptionLoader<IRotateA
     }
 
     load(data?: RecursivePartial<IRotateAnimation>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

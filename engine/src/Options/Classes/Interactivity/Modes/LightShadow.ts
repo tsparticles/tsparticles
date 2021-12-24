@@ -15,7 +15,7 @@ export class LightShadow implements ILightShadow, IOptionLoader<ILightShadow> {
     }
 
     load(data?: RecursivePartial<ILightShadow>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

@@ -21,7 +21,7 @@ export class OpacityAnimation extends AnimationOptions implements IOpacityAnimat
     }
 
     load(data?: RecursivePartial<IOpacityAnimation>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

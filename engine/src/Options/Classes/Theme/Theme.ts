@@ -16,7 +16,7 @@ export class Theme implements ITheme, IOptionLoader<ITheme> {
     }
 
     load(data?: RecursivePartial<ITheme>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 
@@ -26,8 +26,6 @@ export class Theme implements ITheme, IOptionLoader<ITheme> {
 
         this.default.load(data.default);
 
-        if (data.options !== undefined) {
-            this.options = deepExtend({}, data.options) as RecursivePartial<IOptions>;
-        }
+        this.options = deepExtend({}, data.options) as RecursivePartial<IOptions>;
     }
 }

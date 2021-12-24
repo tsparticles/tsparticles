@@ -17,7 +17,7 @@ export class TiltAnimation implements ITiltAnimation, IOptionLoader<ITiltAnimati
     }
 
     load(data?: RecursivePartial<ITiltAnimation>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

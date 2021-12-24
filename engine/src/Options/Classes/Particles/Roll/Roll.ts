@@ -27,10 +27,7 @@ export class Roll implements IRoll, IOptionLoader<IRoll> {
             return;
         }
 
-        if (data.backColor !== undefined) {
-            this.backColor = OptionsColor.create(this.backColor, data.backColor);
-        }
-
+        this.backColor = OptionsColor.create(this.backColor, data.backColor);
         this.darken.load(data.darken);
 
         if (data.enable !== undefined) {

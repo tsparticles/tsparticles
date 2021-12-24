@@ -18,13 +18,13 @@ export class Shape implements IShape, IOptionLoader<IShape> {
     }
 
     load(data?: RecursivePartial<IShape>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 
         const options = data.options;
 
-        if (options !== undefined) {
+        if (options) {
             for (const shape in options) {
                 const item = options[shape];
 

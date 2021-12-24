@@ -23,11 +23,11 @@ export class Tilt extends ValueWithRandom implements ITilt, IOptionLoader<ITilt>
     }
 
     load(data?: RecursivePartial<ITilt>): void {
+        super.load(data);
+
         if (!data) {
             return;
         }
-
-        super.load(data);
 
         this.animation.load(data.animation);
 

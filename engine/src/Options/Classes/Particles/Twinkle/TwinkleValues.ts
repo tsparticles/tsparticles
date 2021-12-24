@@ -19,13 +19,11 @@ export class TwinkleValues implements ITwinkleValues, IOptionLoader<ITwinkleValu
     }
 
     load(data?: RecursivePartial<ITwinkleValues>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 
-        if (data.color !== undefined) {
-            this.color = OptionsColor.create(this.color, data.color);
-        }
+        this.color = OptionsColor.create(this.color, data.color);
 
         if (data.enable !== undefined) {
             this.enable = data.enable;

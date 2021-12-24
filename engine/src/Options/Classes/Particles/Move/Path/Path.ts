@@ -21,7 +21,7 @@ export class Path implements IPath, IOptionLoader<IPath> {
     }
 
     load(data?: RecursivePartial<IPath>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 
@@ -38,9 +38,6 @@ export class Path implements IPath, IOptionLoader<IPath> {
         }
 
         this.generator = data.generator;
-
-        if (data.options) {
-            this.options = deepExtend(this.options, data.options) as PathOptions;
-        }
+        this.options = deepExtend(this.options, data.options) as PathOptions;
     }
 }

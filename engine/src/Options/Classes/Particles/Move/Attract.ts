@@ -2,6 +2,7 @@ import type { IAttract } from "../../../Interfaces/Particles/Move/IAttract";
 import type { ICoordinates } from "../../../../Core/Interfaces";
 import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import { deepExtend } from "../../../../Utils";
 
 /**
  * @category Options
@@ -33,16 +34,6 @@ export class Attract implements IAttract, IOptionLoader<IAttract> {
             this.enable = data.enable;
         }
 
-        const rotateX = data.rotate?.x;
-
-        if (rotateX !== undefined) {
-            this.rotate.x = rotateX;
-        }
-
-        const rotateY = data.rotate?.y;
-
-        if (rotateY !== undefined) {
-            this.rotate.y = rotateY;
-        }
+        this.rotate = deepExtend(this.rotate, data.rotate) as ICoordinates;
     }
 }

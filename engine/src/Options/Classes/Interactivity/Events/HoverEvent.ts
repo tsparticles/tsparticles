@@ -20,7 +20,7 @@ export class HoverEvent implements IHoverEvent, IOptionLoader<IHoverEvent> {
     }
 
     load(data?: RecursivePartial<IHoverEvent>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

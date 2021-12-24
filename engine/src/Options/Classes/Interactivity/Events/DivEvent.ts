@@ -30,7 +30,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
     }
 
     load(data?: RecursivePartial<IDivEvent>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

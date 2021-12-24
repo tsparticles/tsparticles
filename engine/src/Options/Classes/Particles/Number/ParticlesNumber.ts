@@ -19,7 +19,7 @@ export class ParticlesNumber implements IParticlesNumber, IOptionLoader<IParticl
     }
 
     load(data?: RecursivePartial<IParticlesNumber>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

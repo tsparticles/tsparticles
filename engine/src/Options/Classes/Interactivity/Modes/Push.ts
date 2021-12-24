@@ -17,7 +17,7 @@ export class Push implements IPush, IOptionLoader<IPush> {
     }
 
     load(data?: RecursivePartial<IPush>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

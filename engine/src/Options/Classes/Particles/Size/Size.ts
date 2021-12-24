@@ -18,11 +18,11 @@ export class Size extends ValueWithRandom implements ISize, IOptionLoader<ISize>
     }
 
     load(data?: RecursivePartial<ISize>): void {
+        super.load(data);
+
         if (!data) {
             return;
         }
-
-        super.load(data);
 
         this.animation.load(data.animation);
     }

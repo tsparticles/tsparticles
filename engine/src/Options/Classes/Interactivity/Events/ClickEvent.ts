@@ -24,7 +24,7 @@ export class ClickEvent implements IClickEvent, IOptionLoader<IClickEvent> {
     }
 
     load(data?: RecursivePartial<IClickEvent>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

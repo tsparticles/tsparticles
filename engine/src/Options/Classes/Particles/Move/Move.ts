@@ -64,31 +64,19 @@ export class Move implements IMove, IOptionLoader<IMove> {
     }
 
     load(data?: RecursivePartial<IMove>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 
-        if (data.angle !== undefined) {
-            if (typeof data.angle === "number") {
-                this.angle.value = data.angle;
-            } else {
-                this.angle.load(data.angle);
-            }
+        if (typeof data.angle === "number") {
+            this.angle.value = data.angle;
+        } else {
+            this.angle.load(data.angle);
         }
 
         this.attract.load(data.attract);
 
-        if (data.center?.x !== undefined) {
-            this.center.x = data.center.x;
-        }
-
-        if (data.center?.y !== undefined) {
-            this.center.y = data.center.y;
-        }
-
-        if (data.center?.radius !== undefined) {
-            this.center.radius = data.center.radius;
-        }
+        this.center = deepExtend(this.center, data.center) as ICoordinates & { radius: number };
 
         if (data.decay !== undefined) {
             this.decay = data.decay;

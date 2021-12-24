@@ -15,7 +15,7 @@ export class Slow implements ISlow, IOptionLoader<ISlow> {
     }
 
     load(data?: RecursivePartial<ISlow>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

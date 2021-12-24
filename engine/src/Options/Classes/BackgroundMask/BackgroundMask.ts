@@ -33,7 +33,7 @@ export class BackgroundMask implements IBackgroundMask, IOptionLoader<IBackgroun
     }
 
     load(data?: RecursivePartial<IBackgroundMask>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

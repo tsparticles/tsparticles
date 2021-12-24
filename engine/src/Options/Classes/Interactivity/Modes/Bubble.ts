@@ -13,7 +13,7 @@ export class Bubble extends BubbleBase implements IBubble, IOptionLoader<IBubble
     load(data?: RecursivePartial<IBubble>): void {
         super.load(data);
 
-        if (!(data !== undefined && data.divs !== undefined)) {
+        if (!data) {
             return;
         }
 

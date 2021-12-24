@@ -22,7 +22,7 @@ export class ColorAnimation implements IColorAnimation, IOptionLoader<IColorAnim
     }
 
     load(data?: RecursivePartial<IColorAnimation>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

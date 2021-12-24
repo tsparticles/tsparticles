@@ -28,7 +28,7 @@ export class Orbit implements IOrbit, IOptionLoader<IOrbit>, IAnimatable<Animati
     }
 
     load(data?: RecursivePartial<IOrbit>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

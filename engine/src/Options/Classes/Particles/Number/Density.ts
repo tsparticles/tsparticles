@@ -17,7 +17,7 @@ export class Density implements IDensity, IOptionLoader<IDensity> {
     }
 
     load(data?: RecursivePartial<IDensity>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

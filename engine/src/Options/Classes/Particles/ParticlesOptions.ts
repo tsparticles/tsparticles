@@ -60,6 +60,7 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
         this.bounce = new Bounce();
         this.collisions = new Collisions();
         this.color = new AnimatableColor();
+        this.color.value = "#fff";
         this.destroy = new Destroy();
         this.gradient = [];
         this.groups = {};
@@ -84,7 +85,7 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
     }
 
     load(data?: RecursivePartial<IParticles>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

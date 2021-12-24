@@ -20,7 +20,7 @@ export class Trail implements ITrail, IOptionLoader<ITrail> {
     }
 
     load(data?: RecursivePartial<ITrail>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 
