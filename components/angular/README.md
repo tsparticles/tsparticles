@@ -25,11 +25,14 @@ yarn add ng-particles tsparticles
 _template.html_
 
 ```html
-<ng-particles [id]="id" [options]="particlesOptions" (particlesLoaded)="particlesLoaded($event)" (particlesInit)="particlesInit($event)"></ng-particles>
+
+<ng-particles [id]="id" [options]="particlesOptions" (particlesLoaded)="particlesLoaded($event)"
+              (particlesInit)="particlesInit($event)"></ng-particles>
 
 <!-- or -->
 
-<ng-particles [id]="id" [url]="particlesUrl" (particlesLoaded)="particlesLoaded($event)" (particlesInit)="particlesInit($event)"></ng-particles>
+<ng-particles [id]="id" [url]="particlesUrl" (particlesLoaded)="particlesLoaded($event)"
+              (particlesInit)="particlesInit($event)"></ng-particles>
 ```
 
 _app.ts_
@@ -37,10 +40,10 @@ _app.ts_
 ```typescript
 export class AppComponent {
     id = "tsparticles";
-    
+
     /* Starting from 1.19.0 you can use a remote url (AJAX request) to a JSON with the configuration */
     particlesUrl = "http://foo.bar/particles.json";
-    
+
     /* or the classic JavaScript object */
     particlesOptions = {
         background: {
@@ -88,13 +91,10 @@ export class AppComponent {
                 opacity: 0.5,
                 width: 1
             },
-            collisions: {
-                enable: true
-            },
             move: {
                 direction: "none",
                 enable: true,
-                outMode: "bounce",
+                outModes: "bounce",
                 random: false,
                 speed: 6,
                 straight: false
@@ -102,7 +102,7 @@ export class AppComponent {
             number: {
                 density: {
                     enable: true,
-                    value_area: 800
+                    area: 800
                 },
                 value: 80
             },
@@ -113,8 +113,7 @@ export class AppComponent {
                 type: "circle"
             },
             size: {
-                random: true,
-                value: 5
+                value: { min: 1, max: 5 }
             }
         },
         detectRetina: true
@@ -123,10 +122,10 @@ export class AppComponent {
     particlesLoaded(container: Container): void {
         console.log(container);
     }
-    
+
     particlesInit(main: Main): void {
         console.log(main);
-        
+
         // Starting from 1.19.0 you can add custom presets or shape here, using the current tsParticles instance (main)
     }
 }
@@ -135,8 +134,8 @@ export class AppComponent {
 _app.module.ts_
 
 ```typescript
-import {NgParticlesModule} from "ng-particles";
-import {NgModule} from "@angular/core";
+import { NgParticlesModule } from "ng-particles";
+import { NgModule } from "@angular/core";
 
 @NgModule({
     declarations: [
