@@ -732,10 +732,10 @@ etag@~1.8.1:
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
   integrity sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
 
-express-rate-limit@^5.3.0:
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/express-rate-limit/-/express-rate-limit-5.3.0.tgz#e7b9d3c2e09ece6e0406a869b2ce00d03fe48aea"
-  integrity sha512-qJhfEgCnmteSeZAeuOKQ2WEIFTX5ajrzE0xS6gCOBCoRQcU+xEzQmgYQQTpzCcqUAAzTEtu4YEih4pnLfvNtew==
+express-rate-limit@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/express-rate-limit/-/express-rate-limit-6.0.0.tgz#6afdb010d07d5e0ec2639fde25f742a4c77c7a0a"
+  integrity sha512-QlBnH0mWYYA6H5voSdpsKWNKtG4LTYOn9PPFkI/p56Xynns4ouGXFa2N6JhkWSfEov8pHUJhDuQFVid2o2T7Rw==
 
 express@^4.17.1:
   version "4.17.1"
