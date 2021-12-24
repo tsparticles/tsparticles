@@ -40,7 +40,7 @@
     "pug": "^3.0.2",
     "pug-cli": "^1.0.0-alpha6",
     "stylus": "^0.56.0",
-    "three": "^0.135.0",
+    "three": "^0.136.0",
     "tsparticles": "^2.0.0-beta.4",
     "tsparticles-engine": "^2.0.0-beta.3",
     "tsparticles-interaction-external-attract": "^2.0.0-beta.4",
