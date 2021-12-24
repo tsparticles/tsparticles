@@ -1,11 +1,11 @@
-import type { IColor } from "../../../../Core/Interfaces/Colors";
+import type { IColor } from "../../../../Core/Interfaces";
 
 /**
  * @category Options
  */
 export interface IGrabLinks {
     blink: boolean;
-    color?: string | IColor;
+    color?: IColor | string;
     consent: boolean;
     opacity: number;
 }

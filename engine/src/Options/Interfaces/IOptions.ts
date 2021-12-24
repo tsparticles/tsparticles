@@ -8,6 +8,7 @@ import type { IFullScreen } from "./FullScreen/IFullScreen";
 import type { IMotion } from "./Motion/IMotion";
 import type { IManualParticle } from "./IManualParticle";
 import type { IResponsive } from "./IResponsive";
+import type { IColor } from "../../Core/Interfaces";
 
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`
@@ -104,4 +105,37 @@ export interface IOptions {
      * More custom options for external plugins or customizations
      */
     [name: string]: unknown;
+}
+
+export interface IAltOptions {
+    background: {
+        color: string;
+    };
+    backgroundMask: {
+        cover: IColor | string;
+    };
+    interactivity: {
+        modes: {
+            bubble: {
+                color?: SingleOrMultiple<IColor | string>;
+            };
+            grab: {
+                links: {
+                    color?: IColor | string;
+                };
+            };
+            light: {
+                shadow: {
+                    color: IColor | string;
+                };
+                area: {
+                    gradient: {
+                        start: string | IColor;
+                        stop: string | IColor;
+                    };
+                };
+            };
+        };
+    };
+    fullScreen: RecursivePartial<IFullScreen> | boolean;
 }

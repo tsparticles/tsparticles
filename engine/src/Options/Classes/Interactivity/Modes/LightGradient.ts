@@ -1,7 +1,7 @@
-import type { ILightGradient } from "../../../Interfaces/Interactivity/Modes/ILightArea";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { OptionsColor } from "../../OptionsColor";
 import type { RecursivePartial } from "../../../../Types";
+import type { ILightGradient } from "../../../Interfaces/Interactivity/Modes/ILightGradient";
 
 export class LightGradient implements ILightGradient, IOptionLoader<ILightGradient> {
     start;
