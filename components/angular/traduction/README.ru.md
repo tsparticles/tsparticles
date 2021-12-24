@@ -90,7 +90,7 @@ export class AppComponent {
       move: {
         direction: "none",
         enable: true,
-        outMode: "bounce",
+        outModes: "bounce",
         random: false,
         speed: 6,
         straight: false,
@@ -98,7 +98,7 @@ export class AppComponent {
       number: {
         density: {
           enable: true,
-          value_area: 800,
+          area: 800,
         },
         value: 80,
       },
