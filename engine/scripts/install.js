@@ -91,4 +91,6 @@ try {
     if (error.message === reactParticlesJsFoundError) {
         throw error;
     }
+
+    console.log(error);
 }
