@@ -14,6 +14,7 @@
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^15.0.0",
     "@parcel/transformer-sass": "^2.0.1",
+    "npm-packlist": "^3.0.0",
     "parcel": "^2.0.1",
     "husky": "^7.0.1",
     "ini": "^2.0.0",
