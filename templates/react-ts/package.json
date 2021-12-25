@@ -1,6 +1,6 @@
 {
   "name": "cra-template-particles-typescript",
-  "version": "1.20.5",
+  "version": "1.20.6",
   "description": "Official TypeScript React tsParticles template",
   "keywords": [
     "tsparticles",
@@ -62,13 +62,14 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "dependencies": {
-    "react-tsparticles": "^1.37.5",
+    "react-tsparticles": "^1.37.6",
     "tslib": "^2.3.0",
-    "tsparticles": "^1.37.5"
+    "tsparticles": "^1.37.6"
   },
   "scripts": {
     "build": "node scripts/prebuild.js",
     "version": "yarn build && git add ./template.json",
     "prepack": "yarn build"
-  }
+  },
+  "gitHead": "266ca3b5c6072c67e757e17e5144be0ea06cd78d"
 }

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.20.6](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.20.5...ng-particles@2.20.6) (2021-12-24)
+
+
+### Bug Fixes
+
+* fixed angular readme, closes [#2297](https://github.com/matteobruni/tsparticles/issues/2297) ([5f51b87](https://github.com/matteobruni/tsparticles/commit/5f51b87a6fca58ee88ae51a17dbd5e0d1911b3c6))
+* fixed some readmes ([93f371a](https://github.com/matteobruni/tsparticles/commit/93f371ab82a5074d34ec7632ade41edc3dbf0ec7))
+
+
+
+
+
 ## [2.20.5](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.20.4...ng-particles@2.20.5) (2021-11-28)
 
 **Note:** Version bump only for package ng-particles

@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-bubbles",
-  "version": "1.22.5",
+  "version": "1.22.6",
   "description": "tsParticles bubbles preset",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -45,6 +45,6 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles": "^1.37.5"
+    "tsparticles": "^1.37.6"
   }
 }

@@ -4,7 +4,8 @@
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-firefly/badge)](https://www.jsdelivr.com/package/npm/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles-preset-firefly.svg)](https://www.npmjs.com/package/tsparticles-preset-firefly) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-firefly)](https://www.npmjs.com/package/tsparticles-preset-firefly)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) preset for a mouse trail made with small fading particles like little fireflies.
+[tsParticles](https://github.com/matteobruni/tsparticles) preset for a mouse trail made with small fading particles like
+little fireflies.
 
 ## Sample
 
@@ -40,7 +41,7 @@ A bundled script can also be used, this will include every needed plugin needed 
 Once the scripts are loaded you can set up `tsParticles` like this:
 
 ```javascript
-loadFirePreset(tsParticles);
+loadFireflyPreset(tsParticles);
 
 tsParticles.load("tsparticles", {
   preset: "firefly",
@@ -74,13 +75,13 @@ This sample uses the class component syntax, but you can use hooks as well (if t
 ```javascript
 import Particles from "react-tsparticles";
 import { Main } from "tsparticles";
-import { loadFirePreset } from "tsparticles-preset-firefly";
+import { loadFireflyPreset } from "tsparticles-preset-firefly";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
   // this customizes the component tsParticles installation
   customInit(main: Main) {
     // this adds the preset to tsParticles, you can safely use the
-    loadFirePreset(main);
+    loadFireflyPreset(main);
   }
 
   render() {
@@ -103,7 +104,7 @@ _The syntax for `Vue.js 2.x` and `3.x` is the same_
 
 ```js
 function particlesInit(main: Main) {
-  loadFirePreset(main);
+  loadFireflyPreset(main);
 }
 ```
 
@@ -120,7 +121,7 @@ function particlesInit(main: Main) {
 
 ```ts
 function particlesInit(main: Main): void {
-  loadFirePreset(main);
+  loadFireflyPreset(main);
 }
 ```
 
@@ -137,6 +138,6 @@ function particlesInit(main: Main): void {
 
 ```js
 let onParticlesInit = (main) => {
-  loadFirePreset(main);
+  loadFireflyPreset(main);
 };
 ```

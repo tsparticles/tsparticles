@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-links",
-  "version": "1.22.5",
+  "version": "1.22.6",
   "description": "tsParticles links preset",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -73,6 +73,7 @@
     "webpack-cli": "^4.8.0"
   },
   "dependencies": {
-    "tsparticles": "^1.37.5"
-  }
+    "tsparticles": "^1.37.6"
+  },
+  "gitHead": "266ca3b5c6072c67e757e17e5144be0ea06cd78d"
 }
