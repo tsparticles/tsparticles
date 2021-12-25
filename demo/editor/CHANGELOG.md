@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # [2.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/editor-demo@2.0.0-beta.3...editor-demo@2.0.0-beta.4) (2021-12-07)
+## [1.22.6](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.22.5...editor-demo@1.22.6) (2021-12-24)
 
 **Note:** Version bump only for package editor-demo
 

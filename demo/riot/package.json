@@ -6,11 +6,11 @@
   "main": "index.js",
   "scripts": {
     "test": "nyc --require esm --require jsdom-global/register --require @riotjs/register mocha src/**/*.spec.js",
-    "cov": "nyc report --reporter=text-lcov | coveralls",
+    "cov": "nyc report --reporter=text-lcov",
     "cov-html": "nyc report --reporter=html",
     "build": "webpack --mode production",
     "prepublishOnly": "npm test",
-    "start": "webpack serve --mode development --open"
+    "start": "webpack serve --mode development --hot --port 3000"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +19,7 @@
     "@riotjs/register": "^5.0.0",
     "@riotjs/webpack-loader": "^6.0.0",
     "chai": "^4.3.4",
+    "css-loader": "^6.5.1",
     "esm": "^3.2.25",
     "jsdom": "^19.0.0",
     "jsdom-global": "^3.0.2",
@@ -30,6 +31,8 @@
   },
   "dependencies": {
     "@riotjs/hot-reload": "^6.0.0",
+    "@riotjs/lazy": "^2.0.1",
+    "@riotjs/route": "^8.0.1",
     "path": "^0.12.7",
     "riot": "^6.1.1",
     "riot-particles": "^2.0.0-beta.3",

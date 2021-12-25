@@ -12,6 +12,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.0.0-beta.1...tsparticles-engine@2.0.0-beta.2) (2021-12-04)
+## [1.37.6](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.37.5...tsparticles@1.37.6) (2021-12-24)
 
 
 ### Bug Fixes
@@ -35,6 +36,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * migrated to chunks ([58b69c1](https://github.com/matteobruni/tsparticles/commit/58b69c130d1e768c0dc0a1b61e904c23408e6ec5))
 * moved particles.js compatibility to another package ([70404b7](https://github.com/matteobruni/tsparticles/commit/70404b74b26da4b9a28b5d6d646cd9ed6c0635f1))
 
+* fixed some readmes ([93f371a](https://github.com/matteobruni/tsparticles/commit/93f371ab82a5074d34ec7632ade41edc3dbf0ec7))
 
 
 
@@ -42,6 +44,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [2.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.0.0-beta.0...tsparticles-engine@2.0.0-beta.1) (2021-10-06)
 
 **Note:** Version bump only for package tsparticles-engine
+
 ## [1.37.5](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.37.4...tsparticles@1.37.5) (2021-11-28)
 
 

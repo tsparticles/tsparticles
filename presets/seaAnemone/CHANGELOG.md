@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # [2.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-sea-anemone@2.0.0-beta.3...tsparticles-preset-sea-anemone@2.0.0-beta.4) (2021-12-07)
+## [1.22.6](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-sea-anemone@1.22.5...tsparticles-preset-sea-anemone@1.22.6) (2021-12-24)
+
+**Note:** Version bump only for package tsparticles-preset-sea-anemone
+
+
+
+
+
+## [1.22.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-sea-anemone@1.22.4...tsparticles-preset-sea-anemone@1.22.5) (2021-11-28)
 
 
 ### Features

@@ -40,6 +40,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.20.6](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.20.5...inferno-particles@1.20.6) (2021-12-24)
+
+
+### Bug Fixes
+
+* fixed some readmes ([93f371a](https://github.com/matteobruni/tsparticles/commit/93f371ab82a5074d34ec7632ade41edc3dbf0ec7))
+
+
+
+
+
 ## [1.20.5](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.20.4...inferno-particles@1.20.5) (2021-11-28)
 
 **Note:** Version bump only for package inferno-particles

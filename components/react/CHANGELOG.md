@@ -24,6 +24,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.35.4...react-tsparticles@2.0.0-beta.2) (2021-10-06)
+## [1.37.6](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.37.5...react-tsparticles@1.37.6) (2021-12-24)
+
+
+### Bug Fixes
+
+* fixed some readmes ([93f371a](https://github.com/matteobruni/tsparticles/commit/93f371ab82a5074d34ec7632ade41edc3dbf0ec7))
+
+
+
+
+
 ## [1.37.5](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.37.4...react-tsparticles@1.37.5) (2021-11-28)
 
 **Note:** Version bump only for package react-tsparticles

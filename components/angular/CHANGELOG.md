@@ -12,6 +12,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [3.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.20.5...ng-particles@3.0.0-beta.3) (2021-12-04)
+## [2.20.6](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.20.5...ng-particles@2.20.6) (2021-12-24)
 
 
 ### Bug Fixes
@@ -23,6 +24,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * changed particlesInit on angular, is a property now and not an event ([38f6219](https://github.com/matteobruni/tsparticles/commit/38f62190549bb194e6ab542ba834ae2118f99ba6))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+* fixed angular readme, closes [#2297](https://github.com/matteobruni/tsparticles/issues/2297) ([5f51b87](https://github.com/matteobruni/tsparticles/commit/5f51b87a6fca58ee88ae51a17dbd5e0d1911b3c6))
+* fixed some readmes ([93f371a](https://github.com/matteobruni/tsparticles/commit/93f371ab82a5074d34ec7632ade41edc3dbf0ec7))
 
 
 

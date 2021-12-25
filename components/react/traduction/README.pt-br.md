@@ -121,7 +121,7 @@ const App = () => {
                     number: {
                         density: {
                             enable: true,
-                            value_area: 800,
+                            area: 800,
                         },
                         value: 80,
                     },
