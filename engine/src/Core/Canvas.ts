@@ -431,6 +431,20 @@ export class Canvas {
             element.style.width = originalStyle.width;
             element.style.height = originalStyle.height;
         }
+
+        for (const key in options.style) {
+            if (!key || !options.style) {
+                continue;
+            }
+
+            const value = options.style[key];
+
+            if (!value) {
+                continue;
+            }
+
+            element.style[key] = value;
+        }
     }
 
     private paintBase(baseColor?: string): void {

@@ -78,6 +78,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     pauseOnBlur;
     pauseOnOutsideViewport;
     preset?: string | string[];
+    style: RecursivePartial<CSSStyleDeclaration>;
     responsive: Responsive[];
     themes: Theme[];
     zLayers;
@@ -101,6 +102,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.pauseOnBlur = true;
         this.pauseOnOutsideViewport = true;
         this.responsive = [];
+        this.style = {};
         this.themes = [];
         this.zLayers = 100;
     }
