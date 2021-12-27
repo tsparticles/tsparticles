@@ -3,10 +3,7 @@
  * @category Utils
  */
 export class Constants {
-    /**
-     * Particles canvas element class name
-     */
-    static readonly canvasClass: string = "tsparticles-canvas-el";
+    static readonly generatedAttribute: string = "generated";
 
     static readonly randomColorValue: string = "random";
     static readonly midColorValue: string = "mid";

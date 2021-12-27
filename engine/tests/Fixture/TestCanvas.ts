@@ -9,6 +9,7 @@ export class TestCanvas {
 
     constructor(container: Container, width: number, height: number) {
         const newCanvas = createCanvas(width, height) as any;
+        newCanvas.dataset = {};
         newCanvas.offsetHeight = newCanvas.height;
         newCanvas.offsetWidth = newCanvas.width;
         this.container = container;
