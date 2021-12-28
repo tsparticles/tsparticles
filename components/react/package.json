@@ -19,7 +19,8 @@
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "build:debug": "webpack",
     "build": "yarn prettify:src && yarn lint && cross-env NODE_ENV=production webpack && yarn prettify:readme",
-    "prepack": "yarn build"
+    "prepack": "yarn build",
+    "install": "node ./scripts/install.js"
   },
   "repository": {
     "url": "https://github.com/matteobruni/tsparticles",
