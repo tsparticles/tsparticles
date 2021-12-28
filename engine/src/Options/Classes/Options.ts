@@ -4,7 +4,7 @@ import { ParticlesOptions } from "./Particles/ParticlesOptions";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
 import type { RangeValue, RecursivePartial } from "../../Types";
 import { Background } from "./Background/Background";
-import { Plugins } from "../../Utils";
+import { deepExtend, Plugins } from "../../Utils";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import { Theme } from "./Theme/Theme";
 import { ResponsiveMode, ThemeMode } from "../../Enums";
@@ -183,6 +183,8 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
         this.motion.load(data.motion);
         this.particles.load(data.particles);
+
+        this.style = deepExtend(this.style, data.style) as RecursivePartial<CSSStyleDeclaration>;
 
         Plugins.loadOptions(this, data);
 
