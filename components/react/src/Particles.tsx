@@ -53,11 +53,13 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
     }
 
     componentDidMount(): void {
-        if (this.props.init) {
-            this.props.init(tsParticles);
-        }
+        (async () => {
+            if (this.props.init) {
+                await this.props.init(tsParticles);
+            }
 
-        this.loadParticles();
+            await this.loadParticles();
+        })();
     }
 
     componentWillUnmount(): void {
@@ -88,7 +90,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
     }
 
     private async loadParticles(): Promise<void> {
-        const cb = (container?: Container) => {
+        const cb = async (container?: Container) => {
             if (this.props.container) {
                 (this.props.container as MutableRefObject<Container>).current = container;
             }
@@ -98,18 +100,14 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
             });
 
             if (this.props.loaded) {
-                this.props.loaded(container);
+                await this.props.loaded(container);
             }
         };
 
-        let container: Container;
+        const container = this.props.url
+            ? await tsParticles.loadJSON(this.props.id, this.props.url)
+            : await tsParticles.load(this.props.id, this.props.params ?? this.props.options);
 
-        if (this.props.url) {
-            container = await tsParticles.loadJSON(this.props.id, this.props.url);
-        } else {
-            container = await tsParticles.load(this.props.id, this.props.params ?? this.props.options);
-        }
-
-        cb(container);
+        await cb(container);
     }
 }

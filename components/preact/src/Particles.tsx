@@ -112,13 +112,9 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
             }
         };
 
-        let container: Container;
-
-        if (this.props.url) {
-            await tsParticles.loadJSON(this.props.id, this.props.url);
-        } else {
-            await tsParticles.load(this.props.id, this.props.params ?? this.props.options);
-        }
+        const container = await (this.props.url
+            ? tsParticles.loadJSON(this.props.id, this.props.url)
+            : tsParticles.load(this.props.id, this.props.params ?? this.props.options));
 
         await cb(container);
     }
