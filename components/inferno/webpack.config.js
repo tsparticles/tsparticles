@@ -28,7 +28,7 @@ module.exports = {
 		libraryTarget: "commonjs"
 	},
 	resolve: {
-		extensions: ['.js', '.jsx', '.ts', '.tsx']
+		extensions: [ '.js', '.jsx', '.ts', '.tsx' ]
 	},
 	performance: {
 		hints: false
@@ -38,6 +38,12 @@ module.exports = {
 			{
 				test: /\.(js|jsx|tsx|ts)$/,   // All ts and tsx files will be process by
 				loader: 'babel-loader',			// first babel-loader, then ts-loader
+				options: {
+					presets: [ "@babel/preset-env" ],
+					plugins: [
+						[ "@babel/transform-runtime" ]
+					]
+				},
 				exclude: /node_modules/				// ignore node_modules
 			}
 		]
