@@ -9,7 +9,7 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) jQuery plugin
 ## Installation
 
 ```shell script
-npm install jquery-particles jquery
+npm install jquery-particles
 ```
 
 or from jsDelivr
