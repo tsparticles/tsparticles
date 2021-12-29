@@ -202,7 +202,7 @@ export class EventListeners {
             delete this.resizeTimeout;
         }
 
-        this.resizeTimeout = setTimeout(() => this.container.canvas?.windowResize(), 500);
+        this.resizeTimeout = setTimeout(async () => await this.container.canvas?.windowResize(), 500);
     }
 
     private handleVisibilityChange(): void {

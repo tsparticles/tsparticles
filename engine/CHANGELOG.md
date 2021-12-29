@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.38.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.37.6...tsparticles@1.38.0) (2021-12-29)
+
+
+### Features
+
+* added style options ([12045cd](https://github.com/matteobruni/tsparticles/commit/12045cdfe3111e018258a7bc1c88974e28b6f31e))
+
+
+
+
+
 ## [1.37.6](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.37.5...tsparticles@1.37.6) (2021-12-24)
 
 

@@ -71,16 +71,15 @@ export class Canvas {
         this.paint();
     }
 
-    loadCanvas(canvas: HTMLCanvasElement, generatedCanvas?: boolean): void {
-        if (!canvas.className) {
-            canvas.className = Constants.canvasClass;
-        }
-
+    loadCanvas(canvas: HTMLCanvasElement): void {
         if (this.generatedCanvas) {
             this.element?.remove();
         }
 
-        this.generatedCanvas = generatedCanvas ?? this.generatedCanvas;
+        this.generatedCanvas =
+            canvas.dataset && Constants.generatedAttribute in canvas.dataset
+                ? canvas.dataset[Constants.generatedAttribute] === "true"
+                : this.generatedCanvas;
         this.element = canvas;
         this.originalStyle = deepExtend({}, this.element.style) as CSSStyleDeclaration;
         this.size.height = canvas.offsetHeight;
@@ -136,7 +135,7 @@ export class Canvas {
         }
     }
 
-    windowResize(): void {
+    async windowResize(): Promise<void> {
         if (!this.element) {
             return;
         }
@@ -157,7 +156,7 @@ export class Canvas {
         }
 
         if (needsRefresh) {
-            container.refresh();
+            await container.refresh();
         }
     }
 
@@ -431,6 +430,20 @@ export class Canvas {
             element.style.left = originalStyle.left;
             element.style.width = originalStyle.width;
             element.style.height = originalStyle.height;
+        }
+
+        for (const key in options.style) {
+            if (!key || !options.style) {
+                continue;
+            }
+
+            const value = options.style[key];
+
+            if (!value) {
+                continue;
+            }
+
+            element.style[key] = value;
         }
     }
 

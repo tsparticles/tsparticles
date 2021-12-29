@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-editor",
-  "version": "1.37.6",
+  "version": "1.38.0",
   "description": "tsParticles Configuration Editor",
   "keywords": [
     "tsparticles",
@@ -49,8 +49,8 @@
   },
   "dependencies": {
     "object-gui": "^1.1.1",
-    "tsparticles": "^1.37.6",
-    "tsparticles-plugin-infection": "^1.37.6"
+    "tsparticles": "^1.38.0",
+    "tsparticles-plugin-infection": "^1.38.0"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",

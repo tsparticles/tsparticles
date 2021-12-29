@@ -108,6 +108,8 @@ export interface IOptions {
      */
     retina_detect: boolean;
 
+    style: RecursivePartial<CSSStyleDeclaration>;
+
     /**
      * User-defined themes that can be retrieved by the particles [[Container]]
      */

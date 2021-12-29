@@ -10,6 +10,7 @@ export class TestContainer {
     container: Container;
 
     constructor(options?: RecursivePartial<IOptions>) {
+        window.SVGPathSeg = {} as any;
         tsParticles.init();
 
         const defaultOptions: RecursivePartial<IOptions> = { particles: { size: { value: 0 } } };

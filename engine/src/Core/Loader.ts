@@ -82,11 +82,11 @@ export class Loader {
         }
 
         let canvasEl: HTMLCanvasElement;
-        let generatedCanvas: boolean;
 
         if (domContainer.tagName.toLowerCase() === "canvas") {
             canvasEl = domContainer as HTMLCanvasElement;
-            generatedCanvas = false;
+
+            canvasEl.dataset[Constants.generatedAttribute] = "false";
         } else {
             const existingCanvases = domContainer.getElementsByTagName("canvas");
 
@@ -94,17 +94,12 @@ export class Loader {
             if (existingCanvases.length) {
                 canvasEl = existingCanvases[0];
 
-                if (!canvasEl.className) {
-                    canvasEl.className = Constants.canvasClass;
-                }
-
-                generatedCanvas = false;
+                canvasEl.dataset[Constants.generatedAttribute] = "false";
             } else {
-                generatedCanvas = true;
                 /* create canvas element */
                 canvasEl = document.createElement("canvas");
 
-                canvasEl.className = Constants.canvasClass;
+                canvasEl.dataset[Constants.generatedAttribute] = "true";
 
                 /* set size canvas */
                 canvasEl.style.width = "100%";
@@ -124,7 +119,7 @@ export class Loader {
             dom.push(newItem);
         }
 
-        newItem.canvas.loadCanvas(canvasEl, generatedCanvas);
+        newItem.canvas.loadCanvas(canvasEl);
 
         await newItem.start();
 
