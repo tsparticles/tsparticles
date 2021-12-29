@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.23.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-rounded-rect@1.22.6...tsparticles-shape-rounded-rect@1.23.0) (2021-12-29)
+
+**Note:** Version bump only for package tsparticles-shape-rounded-rect
+
+
+
+
+
 ## [1.22.6](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-rounded-rect@1.22.5...tsparticles-shape-rounded-rect@1.22.6) (2021-12-24)
 
 **Note:** Version bump only for package tsparticles-shape-rounded-rect
