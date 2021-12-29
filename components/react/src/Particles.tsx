@@ -47,9 +47,9 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
     }
 
     forceUpdate(): void {
-        this.refresh();
-
-        super.forceUpdate();
+        this.refresh().then(() => {
+            super.forceUpdate();
+        });
     }
 
     componentDidMount(): void {
@@ -81,13 +81,13 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
         );
     }
 
-    private refresh(): void {
+    private async refresh(): Promise<void> {
         this.destroy();
 
-        this.loadParticles();
+        await this.loadParticles();
     }
 
-    private loadParticles(): void {
+    private async loadParticles(): Promise<void> {
         const cb = (container?: Container) => {
             if (this.props.container) {
                 (this.props.container as MutableRefObject<Container>).current = container;
@@ -102,10 +102,14 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
             }
         };
 
+        let container: Container;
+
         if (this.props.url) {
-            tsParticles.loadJSON(this.props.id, this.props.url).then(cb);
+            container = await tsParticles.loadJSON(this.props.id, this.props.url);
         } else {
-            tsParticles.load(this.props.id, this.props.params ?? this.props.options).then(cb);
+            container = await tsParticles.load(this.props.id, this.props.params ?? this.props.options);
         }
+
+        cb(container);
     }
 }
