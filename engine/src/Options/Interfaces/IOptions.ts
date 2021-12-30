@@ -91,6 +91,8 @@ export interface IOptions {
      */
     responsive: IResponsive[];
 
+    style: RecursivePartial<CSSStyleDeclaration>;
+
     /**
      * User-defined themes that can be retrieved by the particles [[Container]]
      */

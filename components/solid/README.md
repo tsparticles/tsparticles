@@ -9,13 +9,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) solid compone
 ## Installation
 
 ```shell
-npm install solid-particles solid-js
+npm install solid-particles
 ```
 
 or
 
 ```shell
-yarn add solid-particles solid-js
+yarn add solid-particles
 ```
 
 ## How to use

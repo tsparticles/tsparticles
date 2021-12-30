@@ -2,7 +2,7 @@
  * Project's constants
  * @category Utils
  */
-export const canvasClass = "tsparticles-canvas-el";
+export const generatedAttribute = "generated";
 
 export const randomColorValue = "random";
 export const midColorValue = "mid";

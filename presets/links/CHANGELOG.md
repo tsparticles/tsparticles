@@ -35,6 +35,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * fixed links and triangles presets ([fdd4d8b](https://github.com/matteobruni/tsparticles/commit/fdd4d8b13ae7c23a5bafd001d2f0169193804f12))
 * fixed links presets ([9812393](https://github.com/matteobruni/tsparticles/commit/9812393eafea002d7d68dc5b302c5c56346e3319))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+# [1.23.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-links@1.22.6...tsparticles-preset-links@1.23.0) (2021-12-29)
+
+**Note:** Version bump only for package tsparticles-preset-links
+
+
+
+
+
 ## [1.22.6](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-links@1.22.5...tsparticles-preset-links@1.22.6) (2021-12-24)
 
 **Note:** Version bump only for package tsparticles-preset-links

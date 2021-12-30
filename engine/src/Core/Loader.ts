@@ -1,7 +1,7 @@
 import { Container } from "./Container";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { CustomEventArgs, CustomEventListener, RecursivePartial } from "../Types";
-import { canvasClass, itemFromArray } from "../Utils";
+import { generatedAttribute, itemFromArray } from "../Utils";
 import type { Particle } from "./Particle";
 import type { SingleOrMultiple } from "../Types";
 import { EventDispatcher } from "../Utils/EventDispatcher";
@@ -84,11 +84,11 @@ export class Loader {
         }
 
         let canvasEl: HTMLCanvasElement;
-        let generatedCanvas: boolean;
 
         if (domContainer.tagName.toLowerCase() === "canvas") {
             canvasEl = domContainer as HTMLCanvasElement;
-            generatedCanvas = false;
+
+            canvasEl.dataset[generatedAttribute] = "false";
         } else {
             const existingCanvases = domContainer.getElementsByTagName("canvas");
 
@@ -96,17 +96,12 @@ export class Loader {
             if (existingCanvases.length) {
                 canvasEl = existingCanvases[0];
 
-                if (!canvasEl.className) {
-                    canvasEl.className = canvasClass;
-                }
-
-                generatedCanvas = false;
+                canvasEl.dataset[generatedAttribute] = "false";
             } else {
-                generatedCanvas = true;
                 /* create canvas element */
                 canvasEl = document.createElement("canvas");
 
-                canvasEl.className = canvasClass;
+                canvasEl.dataset[generatedAttribute] = "true";
 
                 /* set size canvas */
                 canvasEl.style.width = "100%";
@@ -126,7 +121,7 @@ export class Loader {
             dom.push(newItem);
         }
 
-        newItem.canvas.loadCanvas(canvasEl, generatedCanvas);
+        newItem.canvas.loadCanvas(canvasEl);
 
         await newItem.start();
 

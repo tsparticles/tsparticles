@@ -9,13 +9,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) jQuery plugin
 ## Installation
 
 ```shell
-$ npm install jquery-particles jquery
+$ npm install jquery-particles
 ```
 
 or
 
 ```shell
-$ yarn add jquery-particles jquery
+$ yarn add jquery-particles
 ```
 
 or from jsDelivr

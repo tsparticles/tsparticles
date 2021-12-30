@@ -3,7 +3,7 @@ import { Interactivity } from "./Interactivity/Interactivity";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
 import type { RangeValue, RecursivePartial, SingleOrMultiple } from "../../Types";
 import { Background } from "./Background/Background";
-import { loadParticlesOptions, Plugins } from "../../Utils";
+import { loadParticlesOptions, deepExtend, Plugins } from "../../Utils";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import { Theme } from "./Theme/Theme";
 import { ResponsiveMode, ThemeMode } from "../../Enums";
@@ -31,6 +31,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     pauseOnBlur;
     pauseOnOutsideViewport;
     preset?: SingleOrMultiple<string>;
+    style: RecursivePartial<CSSStyleDeclaration>;
     responsive: Responsive[];
     themes: Theme[];
     zLayers;
@@ -54,6 +55,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.pauseOnBlur = true;
         this.pauseOnOutsideViewport = true;
         this.responsive = [];
+        this.style = {};
         this.themes = [];
         this.zLayers = 100;
     }
@@ -128,6 +130,8 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
         this.motion.load(data.motion);
         this.particles.load(data.particles);
+
+        this.style = deepExtend(this.style, data.style) as RecursivePartial<CSSStyleDeclaration>;
 
         Plugins.loadOptions(this, data);
 

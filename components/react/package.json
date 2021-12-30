@@ -20,7 +20,8 @@
     "prebuild": "yarn prettify:src && yarn lint",
     "build:debug": "yarn prebuild && webpack",
     "build": "yarn prebuild && cross-env NODE_ENV=production webpack && yarn prettify:readme",
-    "prepack": "yarn build"
+    "prepack": "yarn build",
+    "install": "node ./scripts/install.js"
   },
   "repository": {
     "url": "https://github.com/matteobruni/tsparticles",
@@ -108,6 +109,5 @@
     "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^4.8.0",
     "webpack-node-externals": "^3.0.0"
-  },
-  "gitHead": "266ca3b5c6072c67e757e17e5144be0ea06cd78d"
+  }
 }
