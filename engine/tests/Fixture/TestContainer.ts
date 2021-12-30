@@ -4,6 +4,12 @@ import { Options } from "../../src/Options/Classes/Options";
 import type { IOptions } from "../../src/Options/Interfaces/IOptions";
 import { RecursivePartial } from "../../src/Types";
 
+declare global {
+    interface Window {
+        SVGPathSeg: unknown;
+    }
+}
+
 export class TestContainer {
     private readonly id: string;
     private options: RecursivePartial<IOptions> | undefined;
