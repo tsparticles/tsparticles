@@ -27,7 +27,7 @@
     "typescript": "~4.5.0"
   },
   "dependencies": {
-    "sirv-cli": "^1.0.14",
+    "sirv-cli": "^2.0.0",
     "svelte-particles": "^2.0.0-beta.3",
     "tsparticles": "^2.0.0-beta.4"
   }
