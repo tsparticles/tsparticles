@@ -22,15 +22,15 @@ html(lang="en")
         link(href="/stylesheets/main.css", rel="stylesheet", type="text/css")
 
     body
-        div#header
+        #header
             // stats - count particles
-            div#filler
-            div#docs
+            #filler
+            #docs
                 a(href="/docs") API Documentation
 
-        div#container
-            div#editor-container
-                div#inputs
+        #container
+            #editor-container
+                #inputs
                     button#btnUpdate(type="button") Refresh Particles
                     select#presets
                         option(value="background") Background Mask
@@ -56,18 +56,15 @@ html(lang="en")
                         option(value="trail") Trails
                         option(value="virus") Virus
 
-                div#editor
-            div#tsparticles-container
-                div#tsparticles
-                div.count-particles
-                    |
-                    span.js-count-particles --
-                    | particles
+                #editor
+            #tsparticles-container
+                #tsparticles
+                #stats(hidden)
 
         script(src="/fontawesome/js/all.js")
         script(src="/jsoneditor/jsoneditor.js")
-        script(src="/three/examples/js/libs/stats.min.js")
+        script(src="/stats.ts/dist/stats.min.js")
         script(src="/jquery/jquery.js")
-        script(src="/tsparticles/tsparticles.js")
+        script(src="/tsparticles/tsparticles.min.js")
         script(src="/jquery-particles/jquery.particles.js")
         script(src="/javascripts/demo.js")

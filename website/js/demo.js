@@ -221,7 +221,9 @@
                     event_label: "Image Export"
                 });
 
-                $("#exportModal").modal("show");
+                const exportModal = new bootstrap.Modal(document.getElementById('exportModal'));
+
+                exportModal.show();
             });
         }
     };
@@ -282,7 +284,9 @@
                     event_label: "Config Export"
                 });
 
-                $("#exportModal").modal("show");
+                const exportModal = new bootstrap.Modal(document.getElementById('exportModal'));
+
+                exportModal.show();
             });
         }
     };
@@ -412,7 +416,7 @@ canvas {
         const element = document.getElementById("editor");
         const options = {
             mode: "form",
-            modes: ["form", "view", "preview"], // allowed modes
+            modes: ["code", "form", "view", "preview", "text"], // allowed modes
             autocomplete: {
                 filter: "contain",
                 trigger: "focus",

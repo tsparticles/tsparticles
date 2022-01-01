@@ -6,6 +6,8 @@ body {
   line-height: 1;
   height: 100%;
   overflow: auto;
+  padding: 0;
+  margin: 0;
 }
 #container {
   display: flex;
@@ -43,7 +45,6 @@ body {
   height: 100%;
 }
 #header {
-  margin-bottom: 10px;
   display: flex;
 }
 #filler {
