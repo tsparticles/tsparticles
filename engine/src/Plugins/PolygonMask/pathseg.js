@@ -1,5 +1,4 @@
 // SVGPathSeg API polyfill
-// https://github.com/progers/pathseg
 //
 // This is a drop-in replacement for the SVGPathSeg and SVGPathSegList APIs that were removed from
 // SVG2 (https://lists.w3.org/Archives/Public/www-svg/2015Jun/0044.html), including the latest spec
