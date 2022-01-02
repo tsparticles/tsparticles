@@ -32,7 +32,7 @@
     "eslint-config-prettier": "^8.3.0",
     "express": "^4.17.1",
     "express-rate-limit": "^6.0.0",
-    "helmet": "^4.6.0",
+    "helmet": "^5.0.0",
     "jquery": "^3.6.0",
     "jsoneditor": "^9.5.3",
     "popper.js": "^1.16.1",
