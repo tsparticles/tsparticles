@@ -27,16 +27,6 @@ body {
   background-size: cover;
   background-position: 50% 50%;
 }
-#tsparticles .tsparticles-canvas-el {
-  -ms-transform: scale(1);
-  -webkit-transform: scale(1);
-  transform: scale(1);
-  opacity: 1;
-  -webkit-animation: appear 1.4s 1;
-  animation: appear 1.4s 1;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-}
 #editor-container {
   flex: 1;
   width: 100%;
