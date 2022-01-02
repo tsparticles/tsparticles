@@ -6,7 +6,7 @@
 /// <reference types="inferno" />
 import type { Container, ISourceOptions, Main } from "tsparticles";
 import type { Component } from "inferno";
-import { RefObject } from "inferno";
+import type { RefObject } from "inferno";
 
 export interface IParticlesProps {
 	id?: string;
@@ -29,8 +29,6 @@ export interface IParticlesState {
 
 export type IParticlesParams = IParticlesProps;
 export type ParticlesProps = IParticlesProps;
-
-export * from "tsparticles";
 
 type Particles = Component<IParticlesProps, IParticlesState>;
 

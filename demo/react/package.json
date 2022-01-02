@@ -11,7 +11,7 @@
     "url": "git+https://github.com/matteobruni/tsparticles.git"
   },
   "scripts": {
-    "start": "parcel serve public/index.html --no-cache --open",
+    "start": "tsc && parcel serve public/index.html --no-cache --open",
     "build": "parcel build --target browser"
   },
   "bugs": {

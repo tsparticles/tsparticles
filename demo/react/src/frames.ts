@@ -2,10 +2,10 @@ import react from "../public/assets/react.svg";
 import k8s from "../public/assets/k8s.svg";
 import code from "../public/assets/code.png";
 import smallDeer from "../public/assets/small-deer.svg";
-import { MoveDirection, OutMode, HoverMode, ClickMode, ShapeType } from "react-tsparticles";
+import { MoveDirection, OutMode, HoverMode, ClickMode, ShapeType } from "tsparticles";
 import {
-    Type as PolygonMaskType,
-    InlineArrangement as PolygonMaskInlineArrangement
+    PolygonMaskType,
+    PolygonMaskInlineArrangement
 } from "tsparticles/Plugins/PolygonMask/Enums";
 import type { ISourceOptions } from "tsparticles";
 

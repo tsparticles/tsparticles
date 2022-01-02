@@ -29,8 +29,6 @@ export interface IParticlesProps {
 export type IParticlesParams = IParticlesProps;
 export type ParticlesProps = IParticlesProps;
 
-export * from "tsparticles";
-
 type Particles = React.ComponentClass<IParticlesProps, IParticlesState>;
 
 declare const Particles: Particles;

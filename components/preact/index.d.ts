@@ -4,7 +4,7 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 import type { ComponentClass } from "react";
-import { CSSProperties, RefObject } from "react";
+import type { CSSProperties, RefObject } from "react";
 import type { Container, ISourceOptions, Main } from "tsparticles";
 
 export interface IParticlesProps {
@@ -25,8 +25,6 @@ export interface IParticlesProps {
 export interface IParticlesState {
     library?: Container;
 }
-
-export * from "tsparticles";
 
 export type IParticlesParams = IParticlesProps;
 export type ParticleProps = IParticlesProps;
