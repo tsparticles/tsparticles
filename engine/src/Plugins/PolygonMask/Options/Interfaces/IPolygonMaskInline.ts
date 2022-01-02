@@ -3,7 +3,7 @@ import type { PolygonMaskInlineArrangement, PolygonMaskInlineArrangementAlt } fr
 /**
  * @category Polygon Mask Plugin
  */
-export interface IInline {
+export interface IPolygonMaskInline {
     arrangement:
         | PolygonMaskInlineArrangement
         | keyof typeof PolygonMaskInlineArrangement

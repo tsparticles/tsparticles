@@ -1,10 +1,10 @@
-import type { IDrawStroke } from "./IDrawStroke";
-import type { IColor } from "../../../../Core/Interfaces/Colors";
+import type { IPolygonMaskDrawStroke } from "./IPolygonMaskDrawStroke";
+import type { IColor } from "../../../../Core/Interfaces";
 
 /**
  * @category Polygon Mask Plugin
  */
-export interface IDraw {
+export interface IPolygonMaskDraw {
     enable: boolean;
 
     /**
@@ -17,5 +17,5 @@ export interface IDraw {
      */
     lineWidth: number;
 
-    stroke: IDrawStroke;
+    stroke: IPolygonMaskDrawStroke;
 }

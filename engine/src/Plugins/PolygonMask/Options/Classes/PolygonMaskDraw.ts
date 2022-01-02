@@ -1,5 +1,5 @@
-import type { IDraw } from "../Interfaces/IDraw";
-import { DrawStroke } from "./DrawStroke";
+import type { IPolygonMaskDraw } from "../Interfaces/IPolygonMaskDraw";
+import { PolygonMaskDrawStroke } from "./PolygonMaskDrawStroke";
 import type { RecursivePartial } from "../../../../Types";
 import { OptionsColor } from "../../../../Options/Classes/OptionsColor";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
@@ -7,7 +7,7 @@ import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader
 /**
  * @category Polygon Mask Plugin
  */
-export class Draw implements IDraw, IOptionLoader<IDraw> {
+export class PolygonMaskDraw implements IPolygonMaskDraw, IOptionLoader<IPolygonMaskDraw> {
     /**
      * @deprecated the property lineWidth is deprecated, please use the new stroke.width
      */
@@ -41,21 +41,23 @@ export class Draw implements IDraw, IOptionLoader<IDraw> {
 
     constructor() {
         this.enable = false;
-        this.stroke = new DrawStroke();
+        this.stroke = new PolygonMaskDrawStroke();
     }
 
-    load(data?: RecursivePartial<IDraw>): void {
-        if (data !== undefined) {
-            if (data.enable !== undefined) {
-                this.enable = data.enable;
-            }
-
-            const stroke = data.stroke ?? {
-                color: data.lineColor,
-                width: data.lineWidth,
-            };
-
-            this.stroke.load(stroke);
+    load(data?: RecursivePartial<IPolygonMaskDraw>): void {
+        if (!data) {
+            return;
         }
+
+        if (data.enable !== undefined) {
+            this.enable = data.enable;
+        }
+
+        const stroke = data.stroke ?? {
+            color: data.lineColor,
+            width: data.lineWidth,
+        };
+
+        this.stroke.load(stroke);
     }
 }

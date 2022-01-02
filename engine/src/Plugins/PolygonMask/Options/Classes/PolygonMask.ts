@@ -1,11 +1,11 @@
 import type { IPolygonMask } from "../Interfaces/IPolygonMask";
 import { PolygonMaskInlineArrangement, PolygonMaskInlineArrangementAlt, PolygonMaskType } from "../../Enums";
-import { Draw } from "./Draw";
-import { Move } from "./Move";
-import { Inline } from "./Inline";
+import { PolygonMaskDraw } from "./PolygonMaskDraw";
+import { PolygonMaskMove } from "./PolygonMaskMove";
+import { PolygonMaskInline } from "./PolygonMaskInline";
 import type { RecursivePartial } from "../../../../Types";
 import type { ICoordinates } from "../../../../Core/Interfaces";
-import { LocalSvg } from "./LocalSvg";
+import { PolygonMaskLocalSvg } from "./PolygonMaskLocalSvg";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 import { deepExtend } from "../../../../Utils";
 
@@ -44,62 +44,64 @@ export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {
     scale;
     type;
     url?: string;
-    data?: string | LocalSvg;
+    data?: string | PolygonMaskLocalSvg;
 
     constructor() {
-        this.draw = new Draw();
+        this.draw = new PolygonMaskDraw();
         this.enable = false;
-        this.inline = new Inline();
-        this.move = new Move();
+        this.inline = new PolygonMaskInline();
+        this.move = new PolygonMaskMove();
         this.scale = 1;
         this.type = PolygonMaskType.none;
     }
 
     load(data?: RecursivePartial<IPolygonMask>): void {
-        if (data !== undefined) {
-            this.draw.load(data.draw);
+        if (!data) {
+            return;
+        }
 
-            const inline = data.inline ?? {
-                arrangement: data.inlineArrangement,
-            };
+        this.draw.load(data.draw);
 
-            if (inline !== undefined) {
-                this.inline.load(inline);
-            }
+        const inline = data.inline ?? {
+            arrangement: data.inlineArrangement,
+        };
 
-            this.move.load(data.move);
+        if (inline !== undefined) {
+            this.inline.load(inline);
+        }
 
-            if (data.scale !== undefined) {
-                this.scale = data.scale;
-            }
+        this.move.load(data.move);
 
-            if (data.type !== undefined) {
-                this.type = data.type;
-            }
+        if (data.scale !== undefined) {
+            this.scale = data.scale;
+        }
 
-            if (data.enable !== undefined) {
-                this.enable = data.enable;
+        if (data.type !== undefined) {
+            this.type = data.type;
+        }
+
+        if (data.enable !== undefined) {
+            this.enable = data.enable;
+        } else {
+            this.enable = this.type !== PolygonMaskType.none;
+        }
+
+        if (data.url !== undefined) {
+            this.url = data.url;
+        }
+
+        if (data.data !== undefined) {
+            if (typeof data.data === "string") {
+                this.data = data.data;
             } else {
-                this.enable = this.type !== PolygonMaskType.none;
-            }
+                this.data = new PolygonMaskLocalSvg();
 
-            if (data.url !== undefined) {
-                this.url = data.url;
+                this.data.load(data.data);
             }
+        }
 
-            if (data.data !== undefined) {
-                if (typeof data.data === "string") {
-                    this.data = data.data;
-                } else {
-                    this.data = new LocalSvg();
-
-                    this.data.load(data.data);
-                }
-            }
-
-            if (data.position !== undefined) {
-                this.position = deepExtend({}, data.position) as ICoordinates;
-            }
+        if (data.position !== undefined) {
+            this.position = deepExtend({}, data.position) as ICoordinates;
         }
     }
 }

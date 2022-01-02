@@ -1,4 +1,4 @@
-import type { IInline } from "../Interfaces/IInline";
+import type { IPolygonMaskInline } from "../Interfaces/IPolygonMaskInline";
 import { PolygonMaskInlineArrangement, PolygonMaskInlineArrangementAlt } from "../../Enums";
 import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
@@ -6,7 +6,7 @@ import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader
 /**
  * @category Polygon Mask Plugin
  */
-export class Inline implements IInline, IOptionLoader<IInline> {
+export class PolygonMaskInline implements IPolygonMaskInline, IOptionLoader<IPolygonMaskInline> {
     arrangement:
         | PolygonMaskInlineArrangement
         | keyof typeof PolygonMaskInlineArrangement
@@ -16,11 +16,13 @@ export class Inline implements IInline, IOptionLoader<IInline> {
         this.arrangement = PolygonMaskInlineArrangement.onePerPoint;
     }
 
-    load(data?: RecursivePartial<IInline>): void {
-        if (data !== undefined) {
-            if (data.arrangement !== undefined) {
-                this.arrangement = data.arrangement;
-            }
+    load(data?: RecursivePartial<IPolygonMaskInline>): void {
+        if (!data) {
+            return;
+        }
+
+        if (data.arrangement !== undefined) {
+            this.arrangement = data.arrangement;
         }
     }
 }

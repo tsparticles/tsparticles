@@ -1,9 +1,9 @@
-import type { IColor } from "../../../../Core/Interfaces/Colors";
+import type { IColor } from "../../../../Core/Interfaces";
 
 /**
  * @category Polygon Mask Plugin
  */
-export interface IDrawStroke {
+export interface IPolygonMaskDrawStroke {
     color: string | IColor;
     width: number;
     opacity: number;
