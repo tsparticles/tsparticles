@@ -153,7 +153,7 @@ export function calcClosestPtOnSegment(
     const res = {
         x: s1.x + dxx * t,
         y: s1.x + dyy * t,
-        isOnSegment: t >= 0 && t <= 1
+        isOnSegment: t >= 0 && t <= 1,
     };
 
     // clamp results to being on the segment
