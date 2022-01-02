@@ -1,4 +1,4 @@
-export enum EasingType {
+export const enum EasingType {
     easeOutBack = "ease-out-back",
     easeOutCirc = "ease-out-circ",
     easeOutCubic = "ease-out-cubic",

@@ -1,5 +1,5 @@
 import type { IInline } from "../Interfaces/IInline";
-import { InlineArrangement, InlineArrangementAlt } from "../../Enums";
+import { PolygonMaskInlineArrangement, PolygonMaskInlineArrangementAlt } from "../../Enums";
 import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
@@ -7,10 +7,13 @@ import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader
  * @category Polygon Mask Plugin
  */
 export class Inline implements IInline, IOptionLoader<IInline> {
-    arrangement: InlineArrangement | keyof typeof InlineArrangement | InlineArrangementAlt;
+    arrangement:
+        | PolygonMaskInlineArrangement
+        | keyof typeof PolygonMaskInlineArrangement
+        | PolygonMaskInlineArrangementAlt;
 
     constructor() {
-        this.arrangement = InlineArrangement.onePerPoint;
+        this.arrangement = PolygonMaskInlineArrangement.onePerPoint;
     }
 
     load(data?: RecursivePartial<IInline>): void {

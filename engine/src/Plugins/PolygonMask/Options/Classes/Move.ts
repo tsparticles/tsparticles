@@ -1,6 +1,6 @@
 import type { IMove } from "../Interfaces/IMove";
 import type { RecursivePartial } from "../../../../Types";
-import { MoveType } from "../../Enums";
+import { PolygonMaskMoveType } from "../../Enums";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
 /**
@@ -8,11 +8,11 @@ import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader
  */
 export class Move implements IMove, IOptionLoader<IMove> {
     radius;
-    type: MoveType | keyof typeof MoveType;
+    type: PolygonMaskMoveType | keyof typeof PolygonMaskMoveType;
 
     constructor() {
         this.radius = 10;
-        this.type = MoveType.path;
+        this.type = PolygonMaskMoveType.path;
     }
 
     load(data?: RecursivePartial<IMove>): void {

@@ -1,8 +1,11 @@
-import type { InlineArrangement, InlineArrangementAlt } from "../../Enums";
+import type { PolygonMaskInlineArrangement, PolygonMaskInlineArrangementAlt } from "../../Enums";
 
 /**
  * @category Polygon Mask Plugin
  */
 export interface IInline {
-    arrangement: InlineArrangement | keyof typeof InlineArrangement | InlineArrangementAlt;
+    arrangement:
+        | PolygonMaskInlineArrangement
+        | keyof typeof PolygonMaskInlineArrangement
+        | PolygonMaskInlineArrangementAlt;
 }

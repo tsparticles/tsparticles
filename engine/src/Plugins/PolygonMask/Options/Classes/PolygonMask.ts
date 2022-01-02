@@ -1,10 +1,10 @@
 import type { IPolygonMask } from "../Interfaces/IPolygonMask";
-import { InlineArrangement, InlineArrangementAlt, Type } from "../../Enums";
+import { PolygonMaskInlineArrangement, PolygonMaskInlineArrangementAlt, PolygonMaskType } from "../../Enums";
 import { Draw } from "./Draw";
 import { Move } from "./Move";
 import { Inline } from "./Inline";
 import type { RecursivePartial } from "../../../../Types";
-import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
+import type { ICoordinates } from "../../../../Core/Interfaces";
 import { LocalSvg } from "./LocalSvg";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 import { deepExtend } from "../../../../Utils";
@@ -17,14 +17,22 @@ export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {
     /**
      * @deprecated the property inlineArrangement is deprecated, please use the new inline.arrangement
      */
-    get inlineArrangement(): InlineArrangement | keyof typeof InlineArrangement | InlineArrangementAlt {
+    get inlineArrangement():
+        | PolygonMaskInlineArrangement
+        | keyof typeof PolygonMaskInlineArrangement
+        | PolygonMaskInlineArrangementAlt {
         return this.inline.arrangement;
     }
 
     /**
      * @deprecated the property inlineArrangement is deprecated, please use the new inline.arrangement
      */
-    set inlineArrangement(value: InlineArrangement | keyof typeof InlineArrangement | InlineArrangementAlt) {
+    set inlineArrangement(
+        value:
+            | PolygonMaskInlineArrangement
+            | keyof typeof PolygonMaskInlineArrangement
+            | PolygonMaskInlineArrangementAlt
+    ) {
         this.inline.arrangement = value;
     }
 
@@ -44,7 +52,7 @@ export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {
         this.inline = new Inline();
         this.move = new Move();
         this.scale = 1;
-        this.type = Type.none;
+        this.type = PolygonMaskType.none;
     }
 
     load(data?: RecursivePartial<IPolygonMask>): void {
@@ -72,7 +80,7 @@ export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {
             if (data.enable !== undefined) {
                 this.enable = data.enable;
             } else {
-                this.enable = this.type !== Type.none;
+                this.enable = this.type !== PolygonMaskType.none;
             }
 
             if (data.url !== undefined) {

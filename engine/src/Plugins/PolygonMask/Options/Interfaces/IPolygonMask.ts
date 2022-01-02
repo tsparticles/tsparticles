@@ -1,10 +1,9 @@
 import type { IDraw } from "./IDraw";
 import type { IMove } from "./IMove";
-import type { InlineArrangement, InlineArrangementAlt } from "../../Enums";
+import type { PolygonMaskType, PolygonMaskInlineArrangement, PolygonMaskInlineArrangementAlt } from "../../Enums";
 import type { IInline } from "./IInline";
-import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
+import type { ICoordinates } from "../../../../Core/Interfaces";
 import type { ILocalSvg } from "./ILocalSvg";
-import { Type } from "../../Enums";
 
 /**
  * [[include:Options/Plugins/PolygonMask.md]]
@@ -18,12 +17,15 @@ export interface IPolygonMask {
     /**
      * @deprecated the inlineArrangement is deprecated, please use the new inline.arrangement property
      */
-    inlineArrangement: InlineArrangement | keyof typeof InlineArrangement | InlineArrangementAlt;
+    inlineArrangement:
+        | PolygonMaskInlineArrangement
+        | keyof typeof PolygonMaskInlineArrangement
+        | PolygonMaskInlineArrangementAlt;
 
     move: IMove;
     position?: ICoordinates;
     scale: number;
-    type: Type;
+    type: PolygonMaskType;
     url?: string;
     data?: string | ILocalSvg;
 }
