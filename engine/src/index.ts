@@ -1,5 +1,5 @@
 import { initPjs } from "./pjs";
-import { Main } from "./main";
+import { Engine } from "./engine";
 import { Circle, CircleWarp, Constants, Point, Rectangle } from "./Utils";
 import type { IOptions as ISlimOptions } from "./Options/Interfaces/IOptions";
 import type { IAbsorberOptions } from "./Plugins/Absorbers/Options/Interfaces/IAbsorberOptions";
@@ -9,7 +9,7 @@ import type { RecursivePartial } from "./Types";
 import type { IParticle } from "./Core/Interfaces";
 import { loadFull } from "./full";
 
-const tsParticles = new Main();
+const tsParticles = new Engine();
 
 tsParticles.init();
 
@@ -23,7 +23,7 @@ export * from "./Enums";
 export * from "./Plugins/Absorbers/Enums";
 export * from "./Plugins/Emitters/Enums";
 export * from "./Plugins/PolygonMask/Enums";
-export { Circle, CircleWarp, Constants, Point, Rectangle, Main };
+export { Circle, CircleWarp, Constants, Point, Rectangle, Engine, Engine as Main };
 export * from "./Utils/CanvasUtils";
 export * from "./Utils/ColorUtils";
 export * from "./Utils/NumberUtils";

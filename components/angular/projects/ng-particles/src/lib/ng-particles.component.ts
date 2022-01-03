@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
 import { tsParticles } from 'tsparticles';
-import type { Container, Main } from 'tsparticles';
+import type { Container, Engine } from 'tsparticles';
 import { IParticlesProps } from './ng-particles.module';
 
 @Component({
@@ -14,7 +14,7 @@ export class NgParticlesComponent implements AfterViewInit {
     @Input() url?: string;
     @Input() id: string;
     @Output() particlesLoaded: EventEmitter<Container> = new EventEmitter<Container>();
-    @Output() particlesInit: EventEmitter<Main> = new EventEmitter<Main>();
+    @Output() particlesInit: EventEmitter<Engine> = new EventEmitter<Engine>();
 
     public ngAfterViewInit(): void {
         this.particlesInit.emit(tsParticles);
@@ -44,5 +44,5 @@ export class ParticlesComponent extends NgParticlesComponent {
     @Input() url?: string;
     @Input() id: string;
     @Output() particlesLoaded: EventEmitter<Container> = new EventEmitter<Container>();
-    @Output() particlesInit: EventEmitter<Main> = new EventEmitter<Main>();
+    @Output() particlesInit: EventEmitter<Engine> = new EventEmitter<Engine>();
 }

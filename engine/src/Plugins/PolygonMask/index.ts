@@ -7,7 +7,7 @@ import type { IPolygonMaskOptions } from "./Options/Interfaces/IPolygonMaskOptio
 import { Options } from "../../Options/Classes/Options";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
 import { PolygonMaskType } from "./Enums";
-import type { Main } from "../../main";
+import type { Engine } from "../../engine";
 import { isSsr } from "../../Utils";
 
 /**
@@ -47,7 +47,7 @@ class PolygonMaskPlugin implements IPlugin {
     }
 }
 
-export async function loadPolygonMaskPlugin(tsParticles: Main): Promise<void> {
+export async function loadPolygonMaskPlugin(tsParticles: Engine): Promise<void> {
     if (!isSsr() && !("SVGPathSeg" in window)) {
         await import(
             /* webpackChunkName: "tsparticles.pathseg.min" */

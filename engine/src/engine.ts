@@ -14,11 +14,11 @@ import type { Particle } from "./Core/Particle";
 import type { IInteractor, IMovePathGenerator, IParticleUpdater, IPlugin, IShapeDrawer } from "./Core/Interfaces";
 
 /**
- * Main class for creating the singleton on window.
+ * Engine class for creating the singleton on window.
  * It's a singleton proxy to the static [[Loader]] class for initializing [[Container]] instances
- * @category Main
+ * @category Engine
  */
-export class Main {
+export class Engine {
     #initialized: boolean;
 
     constructor() {

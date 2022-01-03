@@ -4,7 +4,7 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 /// <reference types="inferno" />
-import type { Container, ISourceOptions, Main } from "tsparticles";
+import type { Container, ISourceOptions, Engine } from "tsparticles";
 import type { Component } from "inferno";
 import type { RefObject } from "inferno";
 
@@ -19,8 +19,8 @@ export interface IParticlesProps {
 	className?: string;
 	canvasClassName?: string;
 	container?: RefObject<Container>;
-	init?: (tsParticles: Main) => void;
-	loaded?: (container: Container) => void;
+	init?: (tsParticles: Engine) => Promise<void>;
+	loaded?: (container: Container) => Promise<void>;
 }
 
 export interface IParticlesState {

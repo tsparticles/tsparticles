@@ -5,7 +5,7 @@
 
 import type { ComponentClass } from "react";
 import type { CSSProperties, RefObject } from "react";
-import type { Container, ISourceOptions, Main } from "tsparticles";
+import type { Container, ISourceOptions, Engine } from "tsparticles";
 
 export interface IParticlesProps {
     id?: string;
@@ -18,8 +18,8 @@ export interface IParticlesProps {
     className?: string;
     canvasClassName?: string;
     container?: RefObject<Container>;
-    init?: (tsParticles: Main) => void;
-    loaded?: (container: Container) => void;
+    init?: (tsParticles: Engine) => Promise<void>;
+    loaded?: (container: Container) => Promise<void>;
 }
 
 export interface IParticlesState {

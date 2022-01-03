@@ -3,10 +3,10 @@ import { Circle, CircleWarp, Constants, Point, Rectangle } from "./Utils";
 import type { IOptions } from "./Options/Interfaces/IOptions";
 import type { RecursivePartial } from "./Types";
 import type { IParticle } from "./Core/Interfaces";
-import { Main } from "./main";
+import { Engine } from "./engine";
 
 /* ---------- tsParticles functions - start ------------ */
-const tsParticles = new Main();
+const tsParticles = new Engine();
 
 tsParticles.init();
 
@@ -15,7 +15,7 @@ const { particlesJS, pJSDom } = initPjs(tsParticles);
 export * from "./Core/Particle/Vector";
 export * from "./Core/Container";
 export * from "./Enums";
-export { Circle, CircleWarp, Constants, Point, Rectangle, Main };
+export { Circle, CircleWarp, Constants, Point, Rectangle, Engine, Engine as Main };
 export * from "./Utils/CanvasUtils";
 export * from "./Utils/ColorUtils";
 export * from "./Utils/NumberUtils";

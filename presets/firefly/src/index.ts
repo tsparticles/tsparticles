@@ -1,6 +1,6 @@
-import type { Main } from "tsparticles";
+import type { Engine } from "tsparticles";
 import { options } from "./options";
 
-export function loadFireflyPreset(tsParticles: Main): void {
+export function loadFireflyPreset(tsParticles: Engine): void {
     tsParticles.addPreset("firefly", options);
 }

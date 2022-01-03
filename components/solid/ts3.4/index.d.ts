@@ -4,7 +4,7 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 /// <reference types="solid-js" />
-import { Container, ISourceOptions, Main } from "tsparticles";
+import { Container, ISourceOptions, Engine } from "tsparticles";
 import { JSX } from "solid-js";
 
 export interface IParticlesProps {
@@ -18,8 +18,8 @@ export interface IParticlesProps {
 	className?: string;
 	canvasClassName?: string;
 	container?: { current: Container; };
-	init?: (tsParticles: Main) => void;
-	loaded?: (container: Container) => void;
+	init?: (tsParticles: Engine) => Promise<void>;
+	loaded?: (container: Container) => Promise<void>;
 }
 
 export interface IParticlesState {
@@ -28,8 +28,6 @@ export interface IParticlesState {
 
 export type IParticlesParams = IParticlesProps;
 export type ParticlesProps = IParticlesProps;
-
-export * from "tsparticles";
 
 type Particles = (props: IParticlesProps) => Element;
 

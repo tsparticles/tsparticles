@@ -8,7 +8,7 @@ import type { IOptions } from "../../Options/Interfaces/IOptions";
 import { Options } from "../../Options/Classes/Options";
 import { Absorber } from "./Options/Classes/Absorber";
 import { isInArray } from "../../Utils";
-import type { Main } from "../../main";
+import type { Engine } from "../../engine";
 
 /**
  * @category Absorbers Plugin
@@ -99,7 +99,7 @@ class AbsorbersPlugin implements IPlugin {
     }
 }
 
-export async function loadAbsorbersPlugin(tsParticles: Main): Promise<void> {
+export async function loadAbsorbersPlugin(tsParticles: Engine): Promise<void> {
     const plugin = new AbsorbersPlugin();
 
     await tsParticles.addPlugin(plugin);

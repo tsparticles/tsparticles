@@ -4,7 +4,7 @@
  */
 import type { IOptions } from "./Options/Interfaces/IOptions";
 import type { Container } from "./Core/Container";
-import type { Main } from "./main";
+import type { Engine } from "./engine";
 import type { Particle } from "./Core/Particle";
 import type { RecursivePartial } from "./Types";
 
@@ -39,7 +39,7 @@ export interface IParticlesJS {
     setOnClickHandler(callback: EventListenerOrEventListenerObject): void;
 }
 
-const initPjs = (main: Main): { particlesJS: IParticlesJS; pJSDom: Container[] } => {
+const initPjs = (engine: Engine): { particlesJS: IParticlesJS; pJSDom: Container[] } => {
     /**
      * Loads the provided options to create a [[Container]] object.
      * @deprecated this method is obsolete, please use the new tsParticles.load
@@ -47,7 +47,7 @@ const initPjs = (main: Main): { particlesJS: IParticlesJS; pJSDom: Container[] }
      * @param options the options object to initialize the [[Container]]
      */
     const particlesJS = (tagId: string, options: RecursivePartial<IOptions>): Promise<Container | undefined> => {
-        return main.load(tagId, options);
+        return engine.load(tagId, options);
     };
 
     /**
@@ -59,7 +59,8 @@ const initPjs = (main: Main): { particlesJS: IParticlesJS; pJSDom: Container[] }
      * @param callback called after the [[Container]] is loaded and it will be passed as a parameter
      */
     particlesJS.load = (tagId: string, pathConfigJson: string, callback: (container?: Container) => void): void => {
-        main.loadJSON(tagId, pathConfigJson)
+        engine
+            .loadJSON(tagId, pathConfigJson)
             .then((container) => {
                 if (container) {
                     callback(container);
@@ -76,14 +77,14 @@ const initPjs = (main: Main): { particlesJS: IParticlesJS; pJSDom: Container[] }
      * @param callback the function called after the click event is fired
      */
     particlesJS.setOnClickHandler = (callback: (e: Event, particles?: Particle[]) => void): void => {
-        main.setOnClickHandler(callback);
+        engine.setOnClickHandler(callback);
     };
 
     /**
      * All the [[Container]] objects loaded
      * @deprecated this method is obsolete, please use the new tsParticles.dom
      */
-    const pJSDom = main.dom();
+    const pJSDom = engine.dom();
 
     return { particlesJS, pJSDom };
 };
