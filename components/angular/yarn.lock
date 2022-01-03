@@ -1354,9 +1354,9 @@
     "@types/node" "*"
 
 "@types/jasmine@~3.10.2":
-  version "3.10.2"
-  resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-3.10.2.tgz#1b9f9ba9ad7bfd7d322f7ed9d8753220b1c84b52"
-  integrity sha512-qs4xjVm4V/XjM6owGm/x6TNmhGl5iKX8dkTdsgdgl9oFnqgzxLepnS7rN9Tdo7kDmnFD/VEqKrW57cGD2odbEg==
+  version "3.10.3"
+  resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-3.10.3.tgz#a89798b3d5a8bd23ca56e855a9aee3e5a93bdaaa"
+  integrity sha512-SWyMrjgdAUHNQmutvDcKablrJhkDLy4wunTme8oYLjKp41GnHGxMRXr2MQMvy/qy8H3LdzwQk9gH4hZ6T++H8g==
 
 "@types/json-schema@*", "@types/json-schema@^7.0.5", "@types/json-schema@^7.0.8", "@types/json-schema@^7.0.9":
   version "7.0.9"
@@ -5998,6 +5998,11 @@ tslib@^1.9.0:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
+
+tsparticles-engine@^2.0.0-beta.3:
+  version "2.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.0-beta.3.tgz#02a117b8ecce5f4a07a1409434acf7503e317f36"
+  integrity sha512-vePzn/pI8dYOukHND34ttGyMicKdGsmabvqJpFA2Q91PcMhu9z1C8v9EH80MGkcf4DdjxyaHnZFdo7P3NiBOrA==
 
 type-fest@^0.21.3:
   version "0.21.3"
