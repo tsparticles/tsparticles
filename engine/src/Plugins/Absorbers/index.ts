@@ -13,7 +13,7 @@ import type { Main } from "../../main";
 /**
  * @category Absorbers Plugin
  */
-class Plugin implements IPlugin {
+class AbsorbersPlugin implements IPlugin {
     readonly id;
 
     constructor() {
@@ -100,7 +100,7 @@ class Plugin implements IPlugin {
 }
 
 export async function loadAbsorbersPlugin(tsParticles: Main): Promise<void> {
-    const plugin = new Plugin();
+    const plugin = new AbsorbersPlugin();
 
     await tsParticles.addPlugin(plugin);
 }

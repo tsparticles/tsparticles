@@ -1179,7 +1179,7 @@
                 this._list = this._parsePath(this._pathElement.getAttribute("d"));
 
                 // Use a MutationObserver to catch changes to the path's "d" attribute.
-                this._mutationObserverConfig = { attributes: true, attributeFilter: [ "d" ] };
+                this._mutationObserverConfig = { attributes: true, attributeFilter: ["d"] };
                 this._pathElementMutationObserver = new MutationObserver(this._updateListFromPathMutations.bind(this));
                 this._pathElementMutationObserver.observe(this._pathElement, this._mutationObserverConfig);
             };
@@ -1273,7 +1273,7 @@
             window.SVGPathSegList.prototype.initialize = function (newItem) {
                 this._checkPathSynchronizedToList();
 
-                this._list = [ newItem ];
+                this._list = [newItem];
                 newItem._owningPathSegList = this;
                 this._writeListToPath();
                 return newItem;
@@ -1522,7 +1522,7 @@
                     if (
                         this._currentIndex == this._endIndex ||
                         ((this._string.charAt(this._currentIndex) < "0" ||
-                                this._string.charAt(this._currentIndex) > "9") &&
+                            this._string.charAt(this._currentIndex) > "9") &&
                             this._string.charAt(this._currentIndex) != ".")
                     )
                         // The first character of a number must be one of [0-9+-.].
@@ -1534,7 +1534,7 @@
                         this._currentIndex < this._endIndex &&
                         this._string.charAt(this._currentIndex) >= "0" &&
                         this._string.charAt(this._currentIndex) <= "9"
-                        )
+                    )
                         this._currentIndex++; // Advance to first non-digit.
 
                     if (this._currentIndex != startIntPartIndex) {
@@ -1561,7 +1561,7 @@
                             this._currentIndex < this._endIndex &&
                             this._string.charAt(this._currentIndex) >= "0" &&
                             this._string.charAt(this._currentIndex) <= "9"
-                            ) {
+                        ) {
                             frac *= 10;
                             decimal += (this._string.charAt(this._currentIndex) - "0") / frac;
                             this._currentIndex += 1;
@@ -1599,7 +1599,7 @@
                             this._currentIndex < this._endIndex &&
                             this._string.charAt(this._currentIndex) >= "0" &&
                             this._string.charAt(this._currentIndex) <= "9"
-                            ) {
+                        ) {
                             exponent *= 10;
                             exponent += this._string.charAt(this._currentIndex) - "0";
                             this._currentIndex++;

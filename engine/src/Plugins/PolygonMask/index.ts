@@ -13,7 +13,7 @@ import { isSsr } from "../../Utils";
 /**
  * @category Polygon Mask Plugin
  */
-class Plugin implements IPlugin {
+class PolygonMaskPlugin implements IPlugin {
     readonly id;
 
     constructor() {
@@ -58,7 +58,7 @@ export async function loadPolygonMaskPlugin(tsParticles: Main): Promise<void> {
         );
     }
 
-    const plugin = new Plugin();
+    const plugin = new PolygonMaskPlugin();
 
     await tsParticles.addPlugin(plugin);
 }
