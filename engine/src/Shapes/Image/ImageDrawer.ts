@@ -51,15 +51,16 @@ export class ImageDrawer implements IShapeDrawer {
     }
 
     async init(container: Container): Promise<void> {
-        await this.loadImagesFromParticlesOptions(container, container.actualOptions.particles);
+        const promises: Promise<void>[] = [];
 
-        await this.loadImagesFromParticlesOptions(
-            container,
-            container.actualOptions.interactivity.modes.trail.particles
+        promises.push(this.loadImagesFromParticlesOptions(container, container.actualOptions.particles));
+
+        promises.push(
+            this.loadImagesFromParticlesOptions(container, container.actualOptions.interactivity.modes.trail.particles)
         );
 
         for (const manualParticle of container.actualOptions.manualParticles) {
-            await this.loadImagesFromParticlesOptions(container, manualParticle.options);
+            promises.push(this.loadImagesFromParticlesOptions(container, manualParticle.options));
         }
 
         const emitterOptions = container.actualOptions as unknown as IEmitterOptions;
@@ -67,10 +68,10 @@ export class ImageDrawer implements IShapeDrawer {
         if (emitterOptions.emitters) {
             if (emitterOptions.emitters instanceof Array) {
                 for (const emitter of emitterOptions.emitters) {
-                    await this.loadImagesFromParticlesOptions(container, emitter.particles);
+                    promises.push(this.loadImagesFromParticlesOptions(container, emitter.particles));
                 }
             } else {
-                await this.loadImagesFromParticlesOptions(container, emitterOptions.emitters.particles);
+                promises.push(this.loadImagesFromParticlesOptions(container, emitterOptions.emitters.particles));
             }
         }
 
@@ -79,12 +80,14 @@ export class ImageDrawer implements IShapeDrawer {
         if (interactiveEmitters) {
             if (interactiveEmitters instanceof Array) {
                 for (const emitter of interactiveEmitters) {
-                    await this.loadImagesFromParticlesOptions(container, emitter.particles);
+                    promises.push(this.loadImagesFromParticlesOptions(container, emitter.particles));
                 }
             } else {
-                await this.loadImagesFromParticlesOptions(container, interactiveEmitters.particles);
+                promises.push(this.loadImagesFromParticlesOptions(container, interactiveEmitters.particles));
             }
         }
+
+        await Promise.all(promises);
     }
 
     destroy(): void {
@@ -109,29 +112,34 @@ export class ImageDrawer implements IShapeDrawer {
         }
 
         const imageOptions = shapeOptions.options[ShapeType.images] ?? shapeOptions.options[ShapeType.image];
+        const promises: Promise<void>[] = [];
 
         if (imageOptions instanceof Array) {
             for (const optionsImage of imageOptions) {
-                await this.loadImageShape(container, optionsImage as IImageShape);
+                promises.push(this.loadImageShape(container, optionsImage as IImageShape));
             }
         } else {
-            await this.loadImageShape(container, imageOptions as IImageShape);
+            promises.push(this.loadImageShape(container, imageOptions as IImageShape));
         }
 
         if (options?.groups) {
             for (const groupName in options.groups) {
                 const group = options.groups[groupName];
 
-                await this.loadImagesFromParticlesOptions(container, group);
+                promises.push(this.loadImagesFromParticlesOptions(container, group));
             }
         }
 
         if (options?.destroy?.split?.particles) {
-            await this.loadImagesFromParticlesOptions(
-                container,
-                options?.destroy.split.particles as RecursivePartial<IParticles>
+            promises.push(
+                this.loadImagesFromParticlesOptions(
+                    container,
+                    options?.destroy.split.particles as RecursivePartial<IParticles>
+                )
             );
         }
+
+        await Promise.all(promises);
     }
 
     private async loadImageShape(container: Container, imageShape: IImageShape): Promise<void> {
