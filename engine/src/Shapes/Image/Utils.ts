@@ -3,6 +3,8 @@
  */
 import type { IHsl, IParticle } from "../../Core/Interfaces";
 import { getStyleFromHsl } from "../../Utils";
+import { IImageShape } from "../../Options/Interfaces/Particles/Shape/IImageShape";
+import { Particle } from "../../Core/Particle";
 
 export interface IImage {
     source: string;
@@ -30,6 +32,27 @@ export interface ContainerImage {
 export type IImageParticle = IParticle & {
     image: IParticleImage;
 };
+
+function replaceColorSvg(imageShape: IImage, color: IHsl, opacity: number): string {
+    const { svgData } = imageShape;
+    if (!svgData) {
+        return "";
+    }
+
+    /* set color to svg element */
+    if (svgData.includes("fill")) {
+        const currentColor =
+            /(#(?:[0-9a-f]{2}){2,4}|(#[0-9a-f]{3})|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d.]+%?\))|currentcolor/gi;
+
+        return svgData.replace(currentColor, () => getStyleFromHsl(color, opacity));
+    }
+
+    const preFillIndex = svgData.indexOf(">");
+
+    return `${svgData.substring(0, preFillIndex)} fill="${getStyleFromHsl(color, opacity)}"${svgData.substring(
+        preFillIndex
+    )}`;
+}
 
 export async function loadImage(image: IImage): Promise<void> {
     return new Promise((resolve: () => void) => {
@@ -81,23 +104,59 @@ export async function downloadSvgImage(image: IImage): Promise<void> {
     }
 }
 
-export function replaceColorSvg(imageShape: IImage, color: IHsl, opacity: number): string {
-    const { svgData } = imageShape;
-    if (!svgData) {
-        return "";
-    }
+export function replaceImageColor(image: IImage, imageData: IImageShape, color: IHsl, particle: Particle): IParticleImage {
+    const svgColoredData = replaceColorSvg(image, color, particle.opacity?.value ?? 1);
 
-    /* set color to svg element */
-    if (svgData.includes("fill")) {
-        const currentColor =
-            /(#(?:[0-9a-f]{2}){2,4}|(#[0-9a-f]{3})|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d.]+%?\))|currentcolor/gi;
+    /* prepare to create img with colored svg */
+    const svg = new Blob([ svgColoredData ], { type: "image/svg+xml" });
+    const domUrl = URL || window.URL || window.webkitURL || window;
+    const url = domUrl.createObjectURL(svg);
 
-        return svgData.replace(currentColor, () => getStyleFromHsl(color, opacity));
-    }
+    /* create particle img obj */
+    const img = new Image();
 
-    const preFillIndex = svgData.indexOf(">");
+    const imageRes: IParticleImage = {
+        data: {
+            ...image,
+            svgData: svgColoredData,
+        },
+        ratio: imageData.width / imageData.height,
+        replaceColor: imageData.replaceColor ?? imageData.replace_color,
+        source: imageData.src,
+    };
 
-    return `${svgData.substring(0, preFillIndex)} fill="${getStyleFromHsl(color, opacity)}"${svgData.substring(
-        preFillIndex
-    )}`;
+    img.addEventListener("load", () => {
+        const pImage = (particle as unknown as IImageParticle).image;
+        if (pImage) {
+            pImage.loaded = true;
+            image.element = img;
+        }
+
+        domUrl.revokeObjectURL(url);
+    });
+
+    img.addEventListener("error", () => {
+        domUrl.revokeObjectURL(url);
+
+        const img2 = {
+            ...image,
+            error: false,
+            loading: true,
+        };
+
+        // deepcode ignore PromiseNotCaughtGeneral: catch can be ignored
+        loadImage(img2).then(() => {
+            const pImage = (particle as unknown as IImageParticle).image;
+
+            if (pImage) {
+                image.element = img2.element;
+
+                pImage.loaded = true;
+            }
+        });
+    });
+
+    img.src = url;
+
+    return imageRes;
 }
