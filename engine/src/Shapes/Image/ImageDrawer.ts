@@ -3,7 +3,6 @@ import { isInArray } from "../../Utils";
 import { ShapeType } from "../../Enums";
 import type { IImageShape } from "../../Options/Interfaces/Particles/Shape/IImageShape";
 import type { Container } from "../../Core/Container";
-import type { IEmitterOptions } from "../../Plugins/Emitters/Options/Interfaces/IEmitterOptions";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
 import type { RecursivePartial } from "../../Types";
 import type { IImage, IImageParticle, IParticleImage } from "./Utils";
@@ -51,8 +50,6 @@ export class ImageDrawer implements IShapeDrawer {
     }
 
     async init(container: Container): Promise<void> {
-        return;
-
         const promises: Promise<void>[] = [];
 
         promises.push(this.loadImagesFromParticlesOptions(container, container.actualOptions.particles));
@@ -201,7 +198,7 @@ export class ImageDrawer implements IShapeDrawer {
             const svgColoredData = replaceColorSvg(image, color, particle.opacity?.value ?? 1);
 
             /* prepare to create img with colored svg */
-            const svg = new Blob([svgColoredData], { type: "image/svg+xml" });
+            const svg = new Blob([ svgColoredData ], { type: "image/svg+xml" });
             const domUrl = URL || window.URL || window.webkitURL || window;
             const url = domUrl.createObjectURL(svg);
 
@@ -242,7 +239,7 @@ export class ImageDrawer implements IShapeDrawer {
                     const pImage = (particle as unknown as IImageParticle).image;
 
                     if (pImage) {
-                        image.element = img2?.element;
+                        image.element = img2.element;
 
                         pImage.loaded = true;
                     }
