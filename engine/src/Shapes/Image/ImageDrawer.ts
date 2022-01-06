@@ -1,4 +1,4 @@
-import type { IParticle, IShapeDrawer } from "../../Core/Interfaces";
+import type { IShapeDrawer } from "../../Core/Interfaces";
 import type { IImageShape } from "../../Options/Interfaces/Particles/Shape/IImageShape";
 import type { Container } from "../../Core/Container";
 import type { IImage, IImageParticle, IParticleImage } from "./Utils";
@@ -73,12 +73,8 @@ export class ImageDrawer implements IShapeDrawer {
         }
     }
 
-    draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number, opacity: number): void {
-        if (!context) {
-            return;
-        }
-
-        const image = (particle as IImageParticle).image;
+    draw(context: CanvasRenderingContext2D, particle: IImageParticle, radius: number, opacity: number): void {
+        const image = particle.image;
         const element = image?.data?.element;
 
         if (!element) {
