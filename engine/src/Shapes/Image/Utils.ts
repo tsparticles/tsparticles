@@ -9,6 +9,8 @@ export interface IImage {
     type: string;
     element?: HTMLImageElement;
     svgData?: string;
+    error: boolean;
+    loading: boolean;
 }
 
 export interface IParticleImage {
@@ -29,59 +31,54 @@ export type IImageParticle = IParticle & {
     image: IParticleImage;
 };
 
-export function loadImage(source: string): Promise<IImage | undefined> {
-    return new Promise(
-        (resolve: (value?: IImage | PromiseLike<IImage> | undefined) => void, reject: (reason?: string) => void) => {
-            if (!source) {
-                reject("Error tsParticles - No image.src");
-                return;
-            }
+export async function loadImage(image: IImage): Promise<void> {
+    return new Promise((resolve: () => void) => {
+        image.loading = true;
 
-            const image: IImage = {
-                source: source,
-                type: source.substr(source.length - 3),
-            };
+        const img = new Image();
 
-            const img = new Image();
+        img.addEventListener("load", () => {
+            image.element = img;
+            image.loading = false;
 
-            img.addEventListener("load", () => {
-                image.element = img;
+            resolve();
+        });
 
-                resolve(image);
-            });
+        img.addEventListener("error", () => {
+            image.error = true;
+            image.loading = false;
 
-            img.addEventListener("error", () => {
-                reject(`Error tsParticles - loading image: ${source}`);
-            });
+            console.error(`Error tsParticles - loading image: ${image.source}`);
 
-            img.src = source;
-        }
-    );
+            resolve();
+        });
+
+        img.src = image.source;
+    });
 }
 
-export async function downloadSvgImage(source: string): Promise<IImage | undefined> {
-    if (!source) {
-        throw new Error("Error tsParticles - No image.src");
-    }
-
-    const image: IImage = {
-        source: source,
-        type: source.substr(source.length - 3),
-    };
-
+export async function downloadSvgImage(image: IImage): Promise<void> {
     if (image.type !== "svg") {
-        return loadImage(source);
+        await loadImage(image);
+
+        return;
     }
+
+    image.loading = true;
 
     const response = await fetch(image.source);
 
+    image.loading = false;
+
     if (!response.ok) {
-        throw new Error("Error tsParticles - Image not found");
+        console.error("Error tsParticles - Image not found");
+
+        image.error = true;
     }
 
-    image.svgData = await response.text();
-
-    return image;
+    if (!image.error) {
+        image.svgData = await response.text();
+    }
 }
 
 export function replaceColorSvg(imageShape: IImage, color: IHsl, opacity: number): string {

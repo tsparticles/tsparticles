@@ -51,6 +51,8 @@ export class ImageDrawer implements IShapeDrawer {
     }
 
     async init(container: Container): Promise<void> {
+        return;
+
         const promises: Promise<void>[] = [];
 
         promises.push(this.loadImagesFromParticlesOptions(container, container.actualOptions.particles));
@@ -61,30 +63,6 @@ export class ImageDrawer implements IShapeDrawer {
 
         for (const manualParticle of container.actualOptions.manualParticles) {
             promises.push(this.loadImagesFromParticlesOptions(container, manualParticle.options));
-        }
-
-        const emitterOptions = container.actualOptions as unknown as IEmitterOptions;
-
-        if (emitterOptions.emitters) {
-            if (emitterOptions.emitters instanceof Array) {
-                for (const emitter of emitterOptions.emitters) {
-                    promises.push(this.loadImagesFromParticlesOptions(container, emitter.particles));
-                }
-            } else {
-                promises.push(this.loadImagesFromParticlesOptions(container, emitterOptions.emitters.particles));
-            }
-        }
-
-        const interactiveEmitters = emitterOptions.interactivity.modes.emitters;
-
-        if (interactiveEmitters) {
-            if (interactiveEmitters instanceof Array) {
-                for (const emitter of interactiveEmitters) {
-                    promises.push(this.loadImagesFromParticlesOptions(container, emitter.particles));
-                }
-            } else {
-                promises.push(this.loadImagesFromParticlesOptions(container, interactiveEmitters.particles));
-            }
         }
 
         await Promise.all(promises);
@@ -143,15 +121,26 @@ export class ImageDrawer implements IShapeDrawer {
     }
 
     private async loadImageShape(container: Container, imageShape: IImageShape): Promise<void> {
-        try {
-            const imageFunc = imageShape.replaceColor ? downloadSvgImage : loadImage;
-            const image = await imageFunc(imageShape.src);
+        const source = imageShape.src;
 
-            if (image) {
-                this.addImage(container, image);
-            }
+        if (!source) {
+            throw new Error("Error tsParticles - No image.src");
+        }
+
+        try {
+            const image: IImage = {
+                source: source,
+                type: source.substr(source.length - 3),
+                error: false,
+                loading: true,
+            };
+
+            this.addImage(container, image);
+
+            const imageFunc = imageShape.replaceColor ? downloadSvgImage : loadImage;
+            await imageFunc(image);
         } catch {
-            console.warn(`tsParticles error - ${imageShape.src} not found`);
+            throw new Error(`tsParticles error - ${imageShape.src} not found`);
         }
     }
 
@@ -192,11 +181,19 @@ export class ImageDrawer implements IShapeDrawer {
 
         const images = this.getImages(particle.container).images;
         const imageData = particle.shapeData as IImageShape;
-        const image = images.find((t) => t.source === imageData.src) ?? images[0];
+        const image = images.find((t) => t.source === imageData.src);
         const color = particle.getFillColor();
         let imageRes: IParticleImage;
 
         if (!image) {
+            this.loadImageShape(particle.container, imageData).then(() => {
+                this.loadShape(particle);
+            });
+
+            return;
+        }
+
+        if (image.error) {
             return;
         }
 
@@ -234,8 +231,14 @@ export class ImageDrawer implements IShapeDrawer {
             img.addEventListener("error", () => {
                 domUrl.revokeObjectURL(url);
 
+                const img2 = {
+                    ...image,
+                    error: false,
+                    loading: true,
+                };
+
                 // deepcode ignore PromiseNotCaughtGeneral: catch can be ignored
-                loadImage(imageData.src).then((img2) => {
+                loadImage(img2).then(() => {
                     const pImage = (particle as unknown as IImageParticle).image;
 
                     if (pImage) {
