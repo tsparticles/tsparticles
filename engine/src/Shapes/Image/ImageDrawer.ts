@@ -3,7 +3,7 @@ import type { IImageShape } from "../../Options/Interfaces/Particles/Shape/IImag
 import type { Container } from "../../Core/Container";
 import type { IImage, IImageParticle, IParticleImage } from "./Utils";
 import { downloadSvgImage, loadImage, replaceImageColor } from "./Utils";
-import { Particle } from "../../Core/Particle";
+import type { Particle } from "../../Core/Particle";
 
 interface ContainerImage {
     id: string;
@@ -152,7 +152,7 @@ export class ImageDrawer implements IShapeDrawer {
             close,
         };
 
-        (particle as unknown as IImageParticle).image = imageShape.image;
+        (particle as IImageParticle).image = imageShape.image;
 
         particle.fill = imageShape.fill;
         particle.close = imageShape.close;
