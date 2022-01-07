@@ -1,6 +1,16 @@
 import type { Container } from "./Container";
 import { Particle } from "./Particle";
-import { getRangeValue, Plugins, Point, QuadTree, randomInRange, Rectangle, setRangeValue } from "../Utils";
+import {
+    getRangeMax,
+    getRangeMin,
+    getRangeValue,
+    Plugins,
+    Point,
+    QuadTree,
+    randomInRange,
+    Rectangle,
+    setRangeValue
+} from "../Utils";
 import type { RecursivePartial } from "../Types";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { InteractionManager } from "./InteractionManager";
@@ -90,7 +100,7 @@ export class Particles {
         this.updaters = Plugins.getUpdaters(container, true);
         this.interactionManager.init();
 
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             if (plugin.particlesInitialization !== undefined) {
                 handled = plugin.particlesInitialization();
             }
@@ -163,7 +173,7 @@ export class Particles {
 
         container.pathGenerator.update();
 
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             if (plugin.update !== undefined) {
                 plugin.update(delta);
             }
@@ -188,7 +198,7 @@ export class Particles {
 
             particle.bubble.inRange = false;
 
-            for (const [, plugin] of this.container.plugins) {
+            for (const [ , plugin ] of this.container.plugins) {
                 if (particle.destroyed) {
                     break;
                 }
@@ -256,7 +266,7 @@ export class Particles {
         }
 
         /* draw polygon shape in debug mode */
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             container.canvas.drawPlugin(plugin, delta);
         }
 
@@ -294,9 +304,8 @@ export class Particles {
         overrideOptions?: RecursivePartial<IParticles>,
         group?: string
     ): Particle | undefined {
-        const container = this.container;
-        const options = container.actualOptions;
-        const limit = options.particles.number.limit * container.density;
+        const container = this.container, options = container.actualOptions,
+            limit = options.particles.number.limit * container.density;
 
         if (limit > 0) {
             const countToRemove = this.count + 1 - limit;
@@ -310,8 +319,7 @@ export class Particles {
     }
 
     addSplitParticle(parent: Particle): Particle | undefined {
-        const splitOptions = parent.options.destroy.split;
-        const options = new ParticlesOptions();
+        const splitOptions = parent.options.destroy.split, options = new ParticlesOptions();
 
         options.load(parent.options);
 
@@ -361,7 +369,8 @@ export class Particles {
     }
 
     getLinkFrequency(p1: IParticle, p2: IParticle): number {
-        const key = `${Math.min(p1.id, p2.id)}_${Math.max(p1.id, p2.id)}`;
+        const range = setRangeValue(p1.id, p2.id),
+            key = `${getRangeMin(range)}_${getRangeMax(range)}`;
 
         let res = this.freqs.links.get(key);
 
@@ -375,18 +384,18 @@ export class Particles {
     }
 
     getTriangleFrequency(p1: IParticle, p2: IParticle, p3: IParticle): number {
-        let [id1, id2, id3] = [p1.id, p2.id, p3.id];
+        let [ id1, id2, id3 ] = [ p1.id, p2.id, p3.id ];
 
         if (id1 > id2) {
-            [id2, id1] = [id1, id2];
+            [ id2, id1 ] = [ id1, id2 ];
         }
 
         if (id2 > id3) {
-            [id3, id2] = [id2, id3];
+            [ id3, id2 ] = [ id2, id3 ];
         }
 
         if (id1 > id3) {
-            [id3, id1] = [id1, id3];
+            [ id3, id1 ] = [ id1, id3 ];
         }
 
         const key = `${id1}_${id2}_${id3}`;
@@ -403,15 +412,14 @@ export class Particles {
     }
 
     addManualParticles(): void {
-        const container = this.container;
-        const options = container.actualOptions;
+        const container = this.container, options = container.actualOptions;
 
         for (const particle of options.manualParticles) {
             const pos = particle.position
                 ? {
-                      x: (particle.position.x * container.canvas.size.width) / 100,
-                      y: (particle.position.y * container.canvas.size.height) / 100,
-                  }
+                    x: (particle.position.x * container.canvas.size.width) / 100,
+                    y: (particle.position.y * container.canvas.size.height) / 100,
+                }
                 : undefined;
 
             this.addParticle(pos, particle.options);
@@ -456,8 +464,7 @@ export class Particles {
             return 1;
         }
 
-        const canvas = container.canvas.element;
-        const pxRatio = container.retina.pixelRatio;
+        const canvas = container.canvas.element, pxRatio = container.retina.pixelRatio;
 
         return (canvas.width * canvas.height) / (densityOptions.factor * pxRatio ** 2 * densityOptions.area);
     }
