@@ -1,5 +1,4 @@
-import type { Particle } from "../../Core/Particle";
-import type { IDelta, IParticleUpdater } from "../../Core/Interfaces";
+import type { IDelta, IParticleUpdater, Particle } from "../../Core";
 import { AnimationStatus, DestroyType } from "../../Enums";
 import { clamp } from "../../Utils";
 

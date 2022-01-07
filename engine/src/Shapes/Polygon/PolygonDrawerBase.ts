@@ -1,4 +1,4 @@
-import type { ICoordinates, IParticle, IShapeDrawer } from "../../Core/Interfaces";
+import type { ICoordinates, IParticle, IShapeDrawer } from "../../Core";
 import type { IPolygonShape } from "../../Options/Interfaces/Particles/Shape/IPolygonShape";
 
 export interface ISideCount {

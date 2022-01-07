@@ -1,6 +1,6 @@
 import { describe, it } from "mocha";
 import { expect } from "chai";
-import { ICoordinates3d } from "../src/Core/Interfaces";
+import type { ICoordinates3d } from "../src";
 import { TestCanvas } from "./Fixture/TestCanvas";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticles } from "./Fixture/TestParticles";
@@ -49,15 +49,15 @@ describe("Particles", () => {
 
         const particle1 = testParticles.particles.addParticle({ x: 1, y: 1 });
         expect(testParticles.particles.count).to.equal(1);
-        expect(testParticles.particles.array).to.eql([particle1]);
+        expect(testParticles.particles.array).to.eql([ particle1 ]);
 
         const particle2 = testParticles.particles.addParticle({ x: 2, y: 2 });
         expect(testParticles.particles.count).to.equal(2);
-        expect(testParticles.particles.array).to.eql([particle1, particle2]);
+        expect(testParticles.particles.array).to.eql([ particle1, particle2 ]);
 
         const particle3 = testParticles.particles.addParticle({ x: 3, y: 3 });
         expect(testParticles.particles.count).to.equal(3);
-        expect(testParticles.particles.array).to.eql([particle1, particle2, particle3]);
+        expect(testParticles.particles.array).to.eql([ particle1, particle2, particle3 ]);
     });
 
     it("should remove particles at specified indices", () => {
@@ -71,12 +71,12 @@ describe("Particles", () => {
         const particle5 = testParticles.particles.array[4];
 
         testParticles.particles.removeAt(1);
-        expect(testParticles.particles.array).to.eql([particle1, particle3, particle4, particle5]);
-        expect(testParticles.particles.array).to.not.eql([particle5, particle4, particle3, particle1]);
+        expect(testParticles.particles.array).to.eql([ particle1, particle3, particle4, particle5 ]);
+        expect(testParticles.particles.array).to.not.eql([ particle5, particle4, particle3, particle1 ]);
 
         testParticles.particles.removeAt(2);
-        expect(testParticles.particles.array).to.eql([particle1, particle3, particle5]);
-        expect(testParticles.particles.array).to.not.eql([particle5, particle3, particle1]);
+        expect(testParticles.particles.array).to.eql([ particle1, particle3, particle5 ]);
+        expect(testParticles.particles.array).to.not.eql([ particle5, particle3, particle1 ]);
     });
 
     it("should remove specified quantity of indices, starting at the specified index", () => {
@@ -89,11 +89,11 @@ describe("Particles", () => {
         const particle5 = testParticles.particles.array[4];
 
         testParticles.particles.removeAt(1, 2);
-        expect(testParticles.particles.array).to.eql([particle1, particle4, particle5]);
-        expect(testParticles.particles.array).to.not.eql([particle5, particle4, particle1]);
+        expect(testParticles.particles.array).to.eql([ particle1, particle4, particle5 ]);
+        expect(testParticles.particles.array).to.not.eql([ particle5, particle4, particle1 ]);
 
         testParticles.particles.removeAt(0, 2);
-        expect(testParticles.particles.array).to.eql([particle5]);
+        expect(testParticles.particles.array).to.eql([ particle5 ]);
     });
 
     it("should remove specified number of particles", () => {
@@ -121,12 +121,12 @@ describe("Particles", () => {
         const particle5 = testParticles.particles.array[4];
 
         testParticles.particles.remove(particle4);
-        expect(testParticles.particles.array).to.eql([particle1, particle2, particle3, particle5]);
-        expect(testParticles.particles.array).to.not.eql([particle5, particle3, particle2, particle1]);
+        expect(testParticles.particles.array).to.eql([ particle1, particle2, particle3, particle5 ]);
+        expect(testParticles.particles.array).to.not.eql([ particle5, particle3, particle2, particle1 ]);
 
         testParticles.particles.remove(particle1);
-        expect(testParticles.particles.array).to.eql([particle2, particle3, particle5]);
-        expect(testParticles.particles.array).to.not.eql([particle5, particle3, particle2]);
+        expect(testParticles.particles.array).to.eql([ particle2, particle3, particle5 ]);
+        expect(testParticles.particles.array).to.not.eql([ particle5, particle3, particle2 ]);
     });
 
     it("should remove all particles when calling clear", () => {

@@ -6,14 +6,14 @@ import type {
     IParticle,
     IRangeValue,
     IRectSideResult,
-} from "../Core/Interfaces";
+} from "../Core";
 import { DivMode, OutModeDirection } from "../Enums";
 import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICharacterShape";
 import type { SingleOrMultiple } from "../Types";
 import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
 import { collisionVelocity, getValue, getDistances } from "./NumberUtils";
-import { Vector } from "../Core/Particle/Vector";
+import { Vector } from "../Core";
 
 declare global {
     interface Window {

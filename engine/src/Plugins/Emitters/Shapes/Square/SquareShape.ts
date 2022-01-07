@@ -1,5 +1,5 @@
 import type { IEmitterShape } from "../../IEmitterShape";
-import type { ICoordinates } from "../../../../Core/Interfaces";
+import type { ICoordinates } from "../../../../Core";
 
 function randomSquareCoordinate(position: number, offset: number): number {
     return position + offset * (Math.random() - 0.5);

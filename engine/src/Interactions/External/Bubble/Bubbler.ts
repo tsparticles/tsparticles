@@ -1,10 +1,8 @@
-import type { Container } from "../../../Core/Container";
+import type { Container } from "../../../Core";
 import {
-    Circle,
     clamp,
     colorMix,
     colorToHsl,
-    Constants,
     divMode,
     divModeExecute,
     getDistance,
@@ -12,14 +10,13 @@ import {
     isDivModeEnabled,
     isInArray,
     itemFromArray,
-    Rectangle,
     rgbToHsl,
 } from "../../../Utils";
 import { ClickMode, DivMode, DivType, HoverMode } from "../../../Enums";
-import { Particle } from "../../../Core/Particle";
+import type { Particle } from "../../../Core";
 import { DivEvent } from "../../../Options/Classes/Interactivity/Events/DivEvent";
 import { BubbleDiv } from "../../../Options/Classes/Interactivity/Modes/BubbleDiv";
-import { ExternalInteractorBase } from "../../../Core/ExternalInteractorBase";
+import { ExternalInteractorBase, Circle, Constants, Rectangle } from "../../../Core";
 import { ProcessBubbleType } from "./ProcessBubbleType";
 import type { IBubblerProcessParam } from "./IBubblerProcessParam";
 

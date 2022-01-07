@@ -1,8 +1,6 @@
-import type { IDelta, IParticleUpdater } from "../../Core/Interfaces";
+import type { Container, IDelta, IParticleUpdater, Particle } from "../../Core";
 import { calculateBounds, isPointInside } from "../../Utils";
 import { OutMode, OutModeAlt, OutModeDirection } from "../../Enums";
-import type { Particle } from "../../Core/Particle";
-import type { Container } from "../../Core/Container";
 import { bounceHorizontal, bounceVertical } from "./Utils";
 
 export class OutOfCanvasUpdater implements IParticleUpdater {

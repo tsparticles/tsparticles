@@ -1,8 +1,8 @@
-import type { Container } from "../Core/Container";
-import { ClickMode, InteractivityDetect } from "../Enums";
-import type { ICoordinates } from "../Core/Interfaces";
+import type { Container } from "../Container";
+import { ClickMode, InteractivityDetect } from "../../Enums";
+import type { ICoordinates } from "../Interfaces";
 import { Constants } from "./Constants";
-import { isSsr, itemFromArray } from "./Utils";
+import { isSsr, itemFromArray } from "../../Utils";
 
 function manageListener(
     element: HTMLElement | Node | Window | MediaQueryList,

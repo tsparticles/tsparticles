@@ -1,5 +1,5 @@
-import type { ICoordinates } from "../Core/Interfaces";
-import type { Particle } from "../Core/Particle";
+import type { ICoordinates } from "../Interfaces";
+import type { Particle } from "../Particle";
 
 /**
  * @category Utils

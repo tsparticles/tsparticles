@@ -1,14 +1,13 @@
-import type { Container } from "../../Core/Container";
-import type { IContainerPlugin, ICoordinates, IDelta, IDimension } from "../../Core/Interfaces";
+import type { Container, IContainerPlugin, ICoordinates, IDelta, IDimension, Particle } from "../../Core";
 import { PolygonMaskInlineArrangement, PolygonMaskType } from "./Enums";
-import { Particle } from "../../Core/Particle";
-import { Constants, deepExtend, getDistance, getDistances, itemFromArray } from "../../Utils";
+import { Constants } from "../../Core";
+import { deepExtend, getDistance, getDistances, itemFromArray } from "../../Utils";
 import type { ISvgPath } from "./Interfaces/ISvgPath";
 import type { RecursivePartial } from "../../Types";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
 import { OutModeDirection } from "../../Enums";
-import type { IPolygonMaskOptions } from "./types";
-import { calcClosestPtOnSegment, drawPolygonMask, drawPolygonMaskPath, parsePaths, segmentBounce } from "./utils";
+import type { IPolygonMaskOptions } from "./Types";
+import { calcClosestPtOnSegment, drawPolygonMask, drawPolygonMaskPath, parsePaths, segmentBounce } from "./Utils";
 
 /**
  * Polygon Mask manager

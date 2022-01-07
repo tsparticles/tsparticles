@@ -1,10 +1,9 @@
 /**
  * @category Interfaces
  */
-import type { IHsl, IParticle } from "../../Core/Interfaces";
+import type { IHsl, IParticle, Particle } from "../../Core";
 import { getStyleFromHsl } from "../../Utils";
 import type { IImageShape } from "../../Options/Interfaces/Particles/Shape/IImageShape";
-import type { Particle } from "../../Core/Particle";
 
 export interface IImage {
     source: string;

@@ -27,12 +27,11 @@ import {
     getValue,
     isInArray,
     itemFromArray,
-    Plugins,
     randomInRange,
     setRangeValue,
 } from "../Utils";
 import type { Stroke } from "../Options/Classes/Particles/Stroke";
-import { Vector } from "./Particle/Vector";
+import { Plugins, Vector, Vector3d } from "./Utils";
 import type {
     IBubbleParticleData,
     ICoordinates,
@@ -50,11 +49,10 @@ import type {
     IRgb,
     IShapeValues,
     IParticleRetinaProps,
+    IParticleRoll,
+    IParticleWobble,
 } from "./Interfaces";
-import { Vector3d } from "./Particle/Vector3d";
-import { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
-import { IParticleRoll } from "./Interfaces/IParticleRoll";
-import { IParticleWobble } from "./Interfaces/IParticleWobble";
+import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
 
 const fixOutMode = (data: {
     outMode: OutMode | keyof typeof OutMode | OutModeAlt;

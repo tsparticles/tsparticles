@@ -1,7 +1,7 @@
 import { Range } from "./Range";
-import type { ICoordinates } from "../Core/Interfaces";
+import type { ICoordinates } from "../Interfaces";
 import { Rectangle } from "./Rectangle";
-import { getDistance } from "./NumberUtils";
+import { getDistance } from "../../Utils";
 
 /**
  * @category Utils

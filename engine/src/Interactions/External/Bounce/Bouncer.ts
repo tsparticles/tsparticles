@@ -1,22 +1,17 @@
 import {
     calculateBounds,
-    Circle,
     circleBounce,
     circleBounceDataFromParticle,
-    Constants,
     divModeExecute,
     isDivModeEnabled,
     isInArray,
-    Range,
-    Rectangle,
     rectBounce,
 } from "../../../Utils";
-import type { Container } from "../../../Core/Container";
+import type { Container } from "../../../Core";
 import { DivMode, DivType, HoverMode } from "../../../Enums";
 import { DivEvent } from "../../../Options/Classes/Interactivity/Events/DivEvent";
-import type { ICoordinates } from "../../../Core/Interfaces";
-import { Vector } from "../../../Core/Particle/Vector";
-import { ExternalInteractorBase } from "../../../Core/ExternalInteractorBase";
+import type { ICoordinates } from "../../../Core";
+import { Circle, Constants, ExternalInteractorBase, Range, Rectangle, Vector } from "../../../Core";
 
 export class Bouncer extends ExternalInteractorBase {
     constructor(container: Container) {

@@ -1,9 +1,7 @@
-import { Particle } from "../../../Core/Particle";
-import type { Container } from "../../../Core/Container";
-import { Circle, CircleWarp, getDistance, getLinkRandomColor } from "../../../Utils";
-import { ICoordinates, IDimension, IParticle } from "../../../Core/Interfaces";
-import { ParticlesInteractorBase } from "../../../Core/ParticlesInteractorBase";
-import { LinkParticle } from "./LinkParticle";
+import type { Container, ICoordinates, IDimension, IParticle, Particle } from "../../../Core";
+import { getDistance, getLinkRandomColor } from "../../../Utils";
+import { Circle, CircleWarp, ParticlesInteractorBase } from "../../../Core";
+import type { LinkParticle } from "./LinkParticle";
 
 function getLinkDistance(
     pos1: ICoordinates,

@@ -4,7 +4,7 @@ import { PolygonMaskDraw } from "./PolygonMaskDraw";
 import { PolygonMaskMove } from "./PolygonMaskMove";
 import { PolygonMaskInline } from "./PolygonMaskInline";
 import type { RecursivePartial } from "../../../../Types";
-import type { ICoordinates } from "../../../../Core/Interfaces";
+import type { ICoordinates } from "../../../../Core";
 import { PolygonMaskLocalSvg } from "./PolygonMaskLocalSvg";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 import { deepExtend } from "../../../../Utils";

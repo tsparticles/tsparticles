@@ -1,6 +1,5 @@
-import type { Particle } from "../../Core/Particle";
 import type { OutMode, OutModeAlt, OutModeDirection } from "../../Enums";
-import type { IBounds, ICoordinates, IDimension } from "../../Core/Interfaces";
+import type { IBounds, ICoordinates, IDimension, Particle } from "../../Core";
 
 export interface IBounceData {
     particle: Particle;

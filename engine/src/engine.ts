@@ -1,7 +1,14 @@
-import { Plugins } from "./Utils";
 import type { IOptions } from "./Options/Interfaces/IOptions";
-import type { Container } from "./Core/Container";
-import { Loader } from "./Core/Loader";
+import type {
+    Container,
+    IInteractor,
+    IMovePathGenerator,
+    IParticleUpdater,
+    IPlugin,
+    IShapeDrawer,
+    Particle,
+} from "./Core";
+import { Loader, Plugins } from "./Core";
 import type {
     ShapeDrawerAfterEffectFunction,
     ShapeDrawerDestroyFunction,
@@ -10,8 +17,6 @@ import type {
     RecursivePartial,
     SingleOrMultiple,
 } from "./Types";
-import type { Particle } from "./Core/Particle";
-import type { IInteractor, IMovePathGenerator, IParticleUpdater, IPlugin, IShapeDrawer } from "./Core/Interfaces";
 
 /**
  * Engine class for creating the singleton on window.

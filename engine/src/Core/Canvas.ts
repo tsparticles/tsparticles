@@ -1,8 +1,9 @@
 import type { Container } from "./Container";
+import { Constants } from "./Utils";
 import {
+    clear,
     colorToHsl,
     colorToRgb,
-    Constants,
     deepExtend,
     drawConnectLine,
     drawGrabLine,
@@ -15,7 +16,6 @@ import {
     paintBase,
 } from "../Utils";
 import type { Particle } from "./Particle";
-import { clear } from "../Utils";
 import type { IContainerPlugin, ICoordinates, IDelta, IDimension, IHsl, IParticle, IRgb, IRgba } from "./Interfaces";
 
 /**

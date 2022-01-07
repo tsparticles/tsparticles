@@ -1,9 +1,9 @@
-import type { ICoordinates } from "../../Core/Interfaces";
+import type { ICoordinates } from "../../Core";
 import type { IPolygonMaskDrawStroke } from "./Options/Interfaces/IPolygonMaskDrawStroke";
 import { colorToRgb, getDistances, getStyleFromRgb } from "../../Utils";
 import type { ISvgPath } from "./Interfaces/ISvgPath";
-import type { SvgAbsoluteCoordinatesTypes, SvgRelativeCoordinatesTypes } from "./types";
-import { Vector } from "../../Core/Particle/Vector";
+import type { SvgAbsoluteCoordinatesTypes, SvgRelativeCoordinatesTypes } from "./Types";
+import { Vector } from "../../Core";
 import type {
     SVGPathSeg,
     SVGPathSegLinetoHorizontalAbs,

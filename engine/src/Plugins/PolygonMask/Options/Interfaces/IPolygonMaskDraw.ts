@@ -1,5 +1,5 @@
 import type { IPolygonMaskDrawStroke } from "./IPolygonMaskDrawStroke";
-import type { IColor } from "../../../../Core/Interfaces";
+import type { IColor } from "../../../../Core";
 
 /**
  * @category Polygon Mask Plugin

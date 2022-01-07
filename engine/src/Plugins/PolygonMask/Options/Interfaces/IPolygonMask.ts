@@ -2,7 +2,7 @@ import type { IPolygonMaskDraw } from "./IPolygonMaskDraw";
 import type { IPolygonMaskMove } from "./IPolygonMaskMove";
 import type { PolygonMaskType, PolygonMaskInlineArrangement, PolygonMaskInlineArrangementAlt } from "../../Enums";
 import type { IPolygonMaskInline } from "./IPolygonMaskInline";
-import type { ICoordinates } from "../../../../Core/Interfaces";
+import type { ICoordinates } from "../../../../Core";
 import type { IPolygonMaskLocalSvg } from "./IPolygonMaskLocalSvg";
 
 /**

@@ -1,7 +1,6 @@
 import { LinkInstance } from "./LinkInstance";
-import type { Container } from "../../../Core/Container";
+import type { Container, IPlugin } from "../../../Core";
 import type { Engine } from "../../../engine";
-import type { IPlugin } from "../../../Core/Interfaces";
 
 class LinksPlugin implements IPlugin {
     readonly id;

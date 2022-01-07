@@ -1,6 +1,6 @@
 import type { ILinksShadow } from "../Options/Interfaces/Particles/Links/ILinksShadow";
 import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
-import type { Container } from "../Core/Container";
+import type { Container } from "../Core";
 import { getDistance, getDistances } from "./NumberUtils";
 import { colorMix, colorToRgb, getStyleFromHsl, getStyleFromRgb } from "./ColorUtils";
 import type {
@@ -12,8 +12,8 @@ import type {
     IParticle,
     IParticleGradientAnimation,
     IRgb,
-} from "../Core/Interfaces";
-import type { Particle } from "../Core/Particle";
+} from "../Core";
+import type { Particle } from "../Core";
 import { AlterType, GradientType, RollMode } from "../Enums";
 
 function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {

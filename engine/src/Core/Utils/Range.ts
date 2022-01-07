@@ -1,4 +1,4 @@
-import type { ICoordinates } from "../Core/Interfaces";
+import type { ICoordinates } from "../Interfaces";
 
 /**
  * @category Utils

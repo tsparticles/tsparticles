@@ -3,9 +3,8 @@
  * @packageDocumentation
  */
 import type { IOptions } from "./Options/Interfaces/IOptions";
-import type { Container } from "./Core/Container";
+import type { Container, Particle } from "./Core";
 import type { Engine } from "./engine";
-import type { Particle } from "./Core/Particle";
 import type { RecursivePartial } from "./Types";
 
 /**

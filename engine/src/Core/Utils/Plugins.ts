@@ -1,7 +1,4 @@
-import type { Container } from "../Core/Container";
-import type { RecursivePartial } from "../Types";
-import type { IOptions } from "../Options/Interfaces/IOptions";
-import type { Options } from "../Options/Classes/Options";
+import type { RecursivePartial } from "../../Types";
 import type {
     IContainerPlugin,
     IInteractor,
@@ -9,7 +6,10 @@ import type {
     IParticleUpdater,
     IPlugin,
     IShapeDrawer,
-} from "../Core/Interfaces";
+} from "../Interfaces";
+import type { Container } from "../Container";
+import type { IOptions } from "../../Options/Interfaces/IOptions";
+import type { Options } from "../../Options/Classes/Options";
 
 type InteractorInitializer = (container: Container) => IInteractor;
 type UpdaterInitializer = (container: Container) => IParticleUpdater;

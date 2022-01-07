@@ -1,7 +1,7 @@
-import type { IDelta, IParticlesInteractor } from "./Interfaces";
-import type { Particle } from "./Particle";
-import type { Container } from "./Container";
-import { InteractorType } from "../Enums";
+import type { IDelta, IParticlesInteractor } from "../Interfaces";
+import type { Particle } from "../Particle";
+import type { Container } from "../Container";
+import { InteractorType } from "../../Enums";
 
 export abstract class ParticlesInteractorBase implements IParticlesInteractor {
     protected constructor(protected readonly container: Container) {}
