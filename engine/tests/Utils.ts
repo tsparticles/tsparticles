@@ -64,8 +64,8 @@ describe("Utils", () => {
     });
 
     describe("isInArray", () => {
-        const numericArray: number[] = [ 1, 2, 3, Math.PI, Math.E ];
-        const stringArray: string[] = [ "lorem", "ipsum", "dolor" ];
+        const numericArray: number[] = [1, 2, 3, Math.PI, Math.E];
+        const stringArray: string[] = ["lorem", "ipsum", "dolor"];
 
         // Numeric
 
@@ -158,7 +158,7 @@ describe("Utils", () => {
 
     describe("arrayRandomIndex", () => {
         it("should always return an index that is not out of the bounds of the array", () => {
-            const array = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
+            const array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
             const randomIndex = Utils.arrayRandomIndex(array);
 
             expect(randomIndex % 1).to.equal(0); // Make sure it is an integer
@@ -169,9 +169,9 @@ describe("Utils", () => {
     });
 
     describe("itemFromArray", () => {
-        const numericArray = [ 1, 2, 3, Math.PI, Math.E ];
-        const stringArray = [ "lorem", "ipsum", "dolor" ];
-        const objectArray = [ { x: 1 }, { y: 2 }, { z: 3 } ];
+        const numericArray = [1, 2, 3, Math.PI, Math.E];
+        const stringArray = ["lorem", "ipsum", "dolor"];
+        const objectArray = [{ x: 1 }, { y: 2 }, { z: 3 }];
 
         it("should always return a random item from a numeric array", () => {
             const randomItem = Utils.itemFromArray(numericArray);
