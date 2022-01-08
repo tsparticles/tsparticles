@@ -1,9 +1,7 @@
-import type { Particle } from "../../Core/Particle";
-import type { IDelta, IParticleUpdater, IParticleValueAnimation } from "../../Core/Interfaces";
+import type { Container, IDelta, IParticleUpdater, IParticleValueAnimation, Particle } from "../../Core";
 import { colorToHsl, getHslAnimationFromHsl, itemFromArray, randomInRange } from "../../Utils";
 import type { IColorAnimation } from "../../Options/Interfaces/IColorAnimation";
 import { AnimationStatus } from "../../Enums";
-import type { Container } from "../../Core/Container";
 
 function updateColorValue(
     delta: IDelta,

@@ -1,6 +1,5 @@
-import type { IContainerPlugin, ICoordinates, IDelta } from "../../Core/Interfaces";
+import type { Container, IContainerPlugin, ICoordinates, IDelta } from "../../Core";
 import { EmitterInstance } from "./EmitterInstance";
-import type { Container } from "../../Core/Container";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
 import type { RecursivePartial, SingleOrMultiple } from "../../Types";
 import { Emitter } from "./Options/Classes/Emitter";

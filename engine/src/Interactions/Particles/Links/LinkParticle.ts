@@ -1,4 +1,4 @@
-import type { Particle } from "../../../Core/Particle";
+import type { Particle } from "../../../Core";
 import type { ILink } from "./ILink";
 
 export type LinkParticle = Particle & {

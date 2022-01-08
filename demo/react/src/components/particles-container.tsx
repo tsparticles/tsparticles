@@ -7,11 +7,12 @@ interface IProps {
 }
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
-    particlesLoaded(container: Container): void {
+    async particlesLoaded(container: Container): Promise<void> {
         console.log(container);
     }
 
     render() {
-        return <Particles options={this.props.options} className="frame-layout__particles" loaded={this.particlesLoaded.bind(this)}/>
+        return <Particles options={this.props.options} className="frame-layout__particles"
+                          loaded={this.particlesLoaded.bind(this)}/>
     }
 }

@@ -6,7 +6,7 @@ function App() {
     return (
         <div class="App">
             <header class="App-header">
-                <img src={ logo } class="App-logo" alt="logo"/>
+                <img src={logo} class="App-logo" alt="logo"/>
                 <p>
                     Edit <code>src/App.tsx</code> and save to reload.
                 </p>
@@ -19,14 +19,14 @@ function App() {
                     Learn Solid
                 </a>
             </header>
-            <Particles id="tsparticles" options={ {
+            <Particles id="tsparticles" options={{
                 background: {
                     color: "#000"
                 },
                 fullScreen: {
                     enable: true
                 }
-            } }/>
+            }} init={async () => console.log("init")}/>
         </div>
     );
 }

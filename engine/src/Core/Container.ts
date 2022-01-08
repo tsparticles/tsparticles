@@ -6,13 +6,12 @@ import { Canvas } from "./Canvas";
 import { Particles } from "./Particles";
 import { Retina } from "./Retina";
 import type { IOptions } from "../Options/Interfaces/IOptions";
-import { FrameManager } from "./FrameManager";
+import { EventListeners, FrameManager, Plugins, Vector } from "./Utils";
 import type { RecursivePartial } from "../Types";
 import { Options } from "../Options/Classes/Options";
-import { animate, cancelAnimation, EventListeners, getRangeValue, Plugins } from "../Utils";
+import { animate, cancelAnimation, getRangeValue } from "../Utils";
 import { Particle } from "./Particle";
-import { Vector } from "./Particle/Vector";
-import {
+import type {
     IAttract,
     IBubble,
     IContainerInteractivity,

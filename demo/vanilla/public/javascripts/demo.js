@@ -2,25 +2,29 @@
     let schema = {};
     const stats = new Stats();
 
-    stats.setMode(0);
-    stats.domElement.style.position = "absolute";
-    stats.domElement.style.left = "3px";
-    stats.domElement.style.top = "3px";
-    stats.domElement.id = "stats-graph";
+    stats.addPanel('count', '#ff8', 0, () => {
+        const container = tsParticles.domItem(0);
+        if (container) {
+            maxParticles = Math.max(container.particles.count, maxParticles);
+
+            return {
+                value: container.particles.count,
+                maxValue: maxParticles
+            };
+        }
+    });
+
+    let maxParticles = 0;
+    stats.showPanel(0);
+    stats.dom.style.position = "absolute";
+    stats.dom.style.left = "3px";
+    stats.dom.style.top = "3px";
+    stats.dom.id = "stats-graph";
 
     let initStats = function () {
-        const count_particles = document.querySelector(".js-count-particles");
         const update = function () {
             stats.begin();
             stats.end();
-
-            const container = tsParticles.domItem(0);
-
-            if (container) {
-                count_particles.innerText = container.particles.count;
-            } else {
-                count_particles.innerText = 0;
-            }
 
             requestAnimationFrame(update);
         };
@@ -108,7 +112,7 @@
         const element = document.getElementById('editor');
         const options = {
             mode: 'form',
-            modes: ['form', 'view', 'preview'], // allowed modes
+            modes: [ 'code', 'form', 'view', 'preview', 'text' ], // allowed modes
             autocomplete: {
                 filter: 'contain',
                 trigger: 'focus'
@@ -154,7 +158,7 @@
             });
         };
 
-        document.body.querySelector('#stats').appendChild(stats.domElement);
+        document.body.querySelector('#stats').appendChild(stats.dom);
 
         const statsToggler = document.body.querySelector('#toggle-stats');
 
@@ -195,7 +199,9 @@
 
                     modalBody.appendChild(image);
 
-                    $('#exportModal').modal('show');
+                    const exportModal = new bootstrap.Modal(document.getElementById('exportModal'));
+
+                    exportModal.show();
                 });
             }
         });
@@ -208,7 +214,9 @@
 
                 modalBody.innerHTML = `<pre>${container.exportConfiguration()}</pre>`;
 
-                $('#exportModal').modal('show');
+                const exportModal = new bootstrap.Modal(document.getElementById('exportModal'));
+
+                exportModal.show();
             }
         });
 

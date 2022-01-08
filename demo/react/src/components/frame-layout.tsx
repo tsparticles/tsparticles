@@ -1,5 +1,4 @@
-import * as React from 'react';
-import * as pkgInfo from '../../package.json';
+import React from 'react';
 import { FrameThumbsContainer } from './frame-thumbs-container';
 import { ParticlesContainer } from './particles-container';
 import { Subscription } from 'rxjs';
@@ -44,7 +43,7 @@ export class FrameLayout extends React.Component<IProps, IState> {
         this.onCodeContainerClick = this.onCodeContainerClick.bind(this);
         this.state = {
             codeVisible: false,
-            version: pkgInfo.version
+            version: ""
         };
     }
 
@@ -55,6 +54,13 @@ export class FrameLayout extends React.Component<IProps, IState> {
                     codeVisible: false
                 });
             }
+        });
+
+        // @ts-ignore
+        import("../../package.json").then(pkgInfo => {
+            this.setState({
+                version: pkgInfo.version
+            })
         });
     }
 

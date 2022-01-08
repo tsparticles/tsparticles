@@ -1,4 +1,4 @@
-import type { Main } from "./main";
+import type { Engine } from "./engine";
 import { loadCircleShape } from "./Shapes/Circle";
 import { loadLifeUpdater } from "./Updaters/Life";
 import { loadExternalConnectInteraction } from "./Interactions/External/Connect";
@@ -23,7 +23,7 @@ import { loadTextShape } from "./Shapes/Text";
 import { loadParticlesLinksInteraction } from "./Interactions/Particles/Links";
 import { loadSizeUpdater } from "./Updaters/Size";
 
-export async function loadSlim(tsParticles: Main): Promise<void> {
+export async function loadSlim(tsParticles: Engine): Promise<void> {
     await loadExternalAttractInteraction(tsParticles);
     await loadExternalBounceInteraction(tsParticles);
     await loadExternalBubbleInteraction(tsParticles);

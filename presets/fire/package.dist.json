@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-fire",
-  "version": "1.23.0",
+  "version": "1.24.0",
   "description": "tsParticles fire preset",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -45,6 +45,6 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles": "^1.38.0"
+    "tsparticles": "^1.39.0"
   }
 }

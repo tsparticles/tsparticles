@@ -1,6 +1,6 @@
-import type { Main } from "tsparticles";
+import type { Engine } from "tsparticles";
 import { options } from "./options";
 
-export function loadTrianglesPreset(tsParticles: Main): void {
+export function loadTrianglesPreset(tsParticles: Engine): void {
     tsParticles.addPreset("triangles", options);
 }

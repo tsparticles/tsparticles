@@ -1,4 +1,4 @@
-import type { Vector } from "../Particle/Vector";
+import type { Vector } from "../Utils";
 import type { ICoordinates } from "./ICoordinates";
 
 export interface ICircleBouncer {

@@ -1,4 +1,4 @@
-import type { Container, IPlugin, Main, RecursivePartial } from "tsparticles";
+import type { Container, IPlugin, Engine, RecursivePartial } from "tsparticles";
 import { Options } from "tsparticles/Options/Classes/Options";
 import { InfectionInstance } from "./InfectionInstance";
 import { ParticlesInfecter } from "./ParticlesInfecter";
@@ -39,7 +39,7 @@ class Plugin implements IPlugin {
     }
 }
 
-export function loadInfectionPlugin(tsParticles: Main): void {
+export function loadInfectionPlugin(tsParticles: Engine): void {
     const plugin = new Plugin();
 
     tsParticles.addPlugin(plugin);

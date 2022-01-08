@@ -1,18 +1,28 @@
 const stats = new Stats();
 
-stats.setMode(0);
-stats.domElement.style.position = "absolute";
-stats.domElement.style.left = "0px";
-stats.domElement.style.top = "0px";
+stats.addPanel('count', '#ff8', 0, () => {
+    const container = tsParticles.domItem(0);
+    if (container) {
+        maxParticles = Math.max(container.particles.count, maxParticles);
+
+        return {
+            value: container.particles.count,
+            maxValue: maxParticles
+        };
+    }
+});
+
+let maxParticles = 0;
+stats.showPanel(0);
+stats.dom.style.position = "absolute";
+stats.dom.style.left = "0px";
+stats.dom.style.top = "0px";
 
 let updateStats = function () {
-    const count_particles = document.querySelector(".js-count-particles");
     const update = function () {
         stats.begin();
         stats.end();
-        if (tsParticles.domItem(0).particles.array) {
-            count_particles.innerText = tsParticles.domItem(0).particles.array.length;
-        }
+
         requestAnimationFrame(update);
     };
 
@@ -60,7 +70,7 @@ $(document).ready(function () {
     const element = document.getElementById('editor');
     const options = {
         mode: 'tree',
-        modes: ['code', 'form', 'text', 'tree', 'view', 'preview'], // allowed modes
+        modes: [ 'code', 'form', 'text', 'tree', 'view', 'preview' ], // allowed modes
         onError: function (err) {
             alert(err.toString())
         },
@@ -97,5 +107,5 @@ $(document).ready(function () {
         updateBackground();
     });
 
-    document.body.querySelector('#tsparticles-container').appendChild(stats.domElement);
+    document.body.querySelector('#tsparticles-container').appendChild(stats.dom);
 });

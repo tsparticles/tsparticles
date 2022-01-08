@@ -1,6 +1,6 @@
-import type { Main } from "tsparticles";
+import type { Engine } from "tsparticles";
 import { SpiralDrawer } from "./SpiralDrawer";
 
-export function loadSpiralShape(tsParticles: Main): void {
+export function loadSpiralShape(tsParticles: Engine): void {
     tsParticles.addShape("spiral", new SpiralDrawer());
 }

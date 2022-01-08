@@ -1,7 +1,5 @@
-import type { IDelta, IParticleUpdater } from "../../Core/Interfaces";
-import type { Particle } from "../../Core/Particle";
+import type { Container, IDelta, IParticleUpdater, Particle } from "../../Core";
 import { getRangeValue } from "../../Utils";
-import type { Container } from "../../Core/Container";
 
 type WobbleParticle = Particle & {
     retina: {

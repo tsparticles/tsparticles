@@ -1,7 +1,5 @@
-import type { IContainerPlugin, IRgb } from "../../../Core/Interfaces";
-import type { Particle } from "../../../Core/Particle";
+import type { Container, IContainerPlugin, IRgb, Particle } from "../../../Core";
 import { colorToRgb, drawLinkLine, drawLinkTriangle, getDistance, getLinkColor } from "../../../Utils";
-import type { Container } from "../../../Core/Container";
 import type { LinkParticle } from "./LinkParticle";
 import type { ILink } from "./ILink";
 

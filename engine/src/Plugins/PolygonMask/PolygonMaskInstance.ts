@@ -1,14 +1,13 @@
-import type { Container } from "../../Core/Container";
-import type { IContainerPlugin, ICoordinates, IDelta, IDimension } from "../../Core/Interfaces";
-import { InlineArrangement, Type } from "./Enums";
-import { Particle } from "../../Core/Particle";
-import { Constants, deepExtend, getDistance, getDistances, itemFromArray } from "../../Utils";
+import type { Container, IContainerPlugin, ICoordinates, IDelta, IDimension, Particle } from "../../Core";
+import { PolygonMaskInlineArrangement, PolygonMaskType } from "./Enums";
+import { Constants } from "../../Core";
+import { deepExtend, getDistance, getDistances, itemFromArray } from "../../Utils";
 import type { ISvgPath } from "./Interfaces/ISvgPath";
 import type { RecursivePartial } from "../../Types";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
 import { OutModeDirection } from "../../Enums";
-import type { IPolygonMaskOptions } from "./types";
-import { calcClosestPtOnSegment, drawPolygonMask, drawPolygonMaskPath, parsePaths, segmentBounce } from "./utils";
+import type { IPolygonMaskOptions } from "./Types";
+import { calcClosestPtOnSegment, drawPolygonMask, drawPolygonMaskPath, parsePaths, segmentBounce } from "./Utils";
 
 /**
  * Polygon Mask manager
@@ -52,7 +51,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         const container = this.container;
         const options = this.options;
 
-        if (!(options.enable && options.type !== Type.none)) {
+        if (!(options.enable && options.type !== PolygonMaskType.none)) {
             return;
         }
 
@@ -77,9 +76,9 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
         if (
             options.enable &&
-            options.type === Type.inline &&
-            (options.inline.arrangement === InlineArrangement.onePerPoint ||
-                options.inline.arrangement === InlineArrangement.perPoint)
+            options.type === PolygonMaskType.inline &&
+            (options.inline.arrangement === PolygonMaskInlineArrangement.onePerPoint ||
+                options.inline.arrangement === PolygonMaskInlineArrangement.perPoint)
         ) {
             this.drawPoints();
 
@@ -108,8 +107,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
         return (
             options.enable &&
-            options.type !== Type.none &&
-            options.type !== Type.inline &&
+            options.type !== PolygonMaskType.none &&
+            options.type !== PolygonMaskType.inline &&
             this.checkInsidePolygon(position)
         );
     }
@@ -151,7 +150,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
             return false;
         }
 
-        if (options.type === Type.inside || options.type === Type.outside) {
+        if (options.type === PolygonMaskType.inside || options.type === PolygonMaskType.outside) {
             let closest: ICoordinates | undefined, dx: number | undefined, dy: number | undefined;
             const pos = particle.getPosition(),
                 radius = particle.getRadius();
@@ -190,7 +189,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
                 return true;
             }
-        } else if (options.type === Type.inline && particle.initialPosition) {
+        } else if (options.type === PolygonMaskType.inline && particle.initialPosition) {
             const dist = getDistance(particle.initialPosition, particle.getPosition());
 
             if (dist > this.polygonMaskMoveRadius) {
@@ -208,7 +207,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         const container = this.container;
         const options = this.options;
 
-        if (!options.enable || options.type === Type.none || options.type === Type.inline) {
+        if (!options.enable || options.type === PolygonMaskType.none || options.type === PolygonMaskType.inline) {
             return true;
         }
 
@@ -239,7 +238,11 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
         // }
 
-        return options.type === Type.inside ? inside : options.type === Type.outside ? !inside : false;
+        return options.type === PolygonMaskType.inside
+            ? inside
+            : options.type === PolygonMaskType.outside
+            ? !inside
+            : false;
     }
 
     private parseSvgPath(xml: string, force?: boolean): ICoordinates[] | undefined {
@@ -340,19 +343,19 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
         let position: ICoordinates;
 
-        if (options.type === Type.inline) {
+        if (options.type === PolygonMaskType.inline) {
             switch (options.inline.arrangement) {
-                case InlineArrangement.randomPoint:
+                case PolygonMaskInlineArrangement.randomPoint:
                     position = this.getRandomPoint();
                     break;
-                case InlineArrangement.randomLength:
+                case PolygonMaskInlineArrangement.randomLength:
                     position = this.getRandomPointByLength();
                     break;
-                case InlineArrangement.equidistant:
+                case PolygonMaskInlineArrangement.equidistant:
                     position = this.getEquidistantPointByIndex(container.particles.count);
                     break;
-                case InlineArrangement.onePerPoint:
-                case InlineArrangement.perPoint:
+                case PolygonMaskInlineArrangement.onePerPoint:
+                case PolygonMaskInlineArrangement.perPoint:
                 default:
                     position = this.getPointByIndex(container.particles.count);
             }

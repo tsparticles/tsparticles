@@ -1,8 +1,9 @@
 import type { Container } from "./Container";
+import { Constants } from "./Utils";
 import {
+    clear,
     colorToHsl,
     colorToRgb,
-    Constants,
     deepExtend,
     drawConnectLine,
     drawGrabLine,
@@ -15,7 +16,6 @@ import {
     paintBase,
 } from "../Utils";
 import type { Particle } from "./Particle";
-import { clear } from "../Utils";
 import type { IContainerPlugin, ICoordinates, IDelta, IDimension, IHsl, IParticle, IRgb, IRgba } from "./Interfaces";
 
 /**
@@ -417,12 +417,12 @@ export class Canvas {
         if (options.fullScreen.enable) {
             this.originalStyle = deepExtend({}, element.style) as CSSStyleDeclaration;
 
-            element.style.position = "fixed";
-            element.style.zIndex = options.fullScreen.zIndex.toString(10);
-            element.style.top = "0";
-            element.style.left = "0";
-            element.style.width = "100%";
-            element.style.height = "100%";
+            element.style.setProperty("position", "fixed", "important");
+            element.style.setProperty("z-index", options.fullScreen.zIndex.toString(10), "important");
+            element.style.setProperty("top", "0", "important");
+            element.style.setProperty("left", "0", "important");
+            element.style.setProperty("width", "100%", "important");
+            element.style.setProperty("height", "100%", "important");
         } else if (originalStyle) {
             element.style.position = originalStyle.position;
             element.style.zIndex = originalStyle.zIndex;
@@ -443,7 +443,7 @@ export class Canvas {
                 continue;
             }
 
-            element.style[key] = value;
+            element.style.setProperty(key, value, "important");
         }
     }
 

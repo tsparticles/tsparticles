@@ -1,8 +1,6 @@
-import type { IParticle } from "../../../Core/Interfaces";
-import type { Container } from "../../../Core/Container";
-import { Particle } from "../../../Core/Particle";
+import type { Container, IParticle, Particle } from "../../../Core";
 import { getDistances } from "../../../Utils";
-import { ParticlesInteractorBase } from "../../../Core/ParticlesInteractorBase";
+import { ParticlesInteractorBase } from "../../../Core";
 
 /**
  * @category Interactions

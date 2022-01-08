@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.24.0](https://github.com/matteobruni/tsparticles/compare/web-particles-demo@1.23.0...web-particles-demo@1.24.0) (2022-01-08)
+
+**Note:** Version bump only for package web-particles-demo
+
+
+
+
+
 # [1.23.0](https://github.com/matteobruni/tsparticles/compare/web-particles-demo@1.22.6...web-particles-demo@1.23.0) (2021-12-29)
 
 **Note:** Version bump only for package web-particles-demo

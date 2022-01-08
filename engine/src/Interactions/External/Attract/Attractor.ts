@@ -1,9 +1,7 @@
-import type { Container } from "../../../Core/Container";
+import type { Container, ICoordinates } from "../../../Core";
 import { ClickMode, HoverMode } from "../../../Enums";
-import { Circle, Constants, Range, getDistances, calcEasing, clamp, isInArray } from "../../../Utils";
-import type { ICoordinates } from "../../../Core/Interfaces";
-import { ExternalInteractorBase } from "../../../Core/ExternalInteractorBase";
-import { Vector } from "../../../Core/Particle/Vector";
+import { getDistances, calcEasing, clamp, isInArray } from "../../../Utils";
+import { Circle, Constants, Range, ExternalInteractorBase, Vector } from "../../../Core";
 
 /**
  * Particle attract manager
