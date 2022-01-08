@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/matteobruni/tsparticles/compare/ionic@0.7.0...ionic@0.8.0) (2022-01-08)
+
+**Note:** Version bump only for package ionic
+
+
+
+
+
 # [0.7.0](https://github.com/matteobruni/tsparticles/compare/ionic@0.6.6...ionic@0.7.0) (2021-12-29)
 
 **Note:** Version bump only for package ionic
