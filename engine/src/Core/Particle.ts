@@ -50,7 +50,7 @@ import type {
     IRgb,
     IShapeValues,
     IParticleRoll,
-    IParticleWobble
+    IParticleWobble,
 } from "./Interfaces";
 import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
 

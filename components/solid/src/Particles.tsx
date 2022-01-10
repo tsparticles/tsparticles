@@ -62,7 +62,9 @@ const Particles = (props: IParticlesProps): JSX.Element => {
 
 			container?.destroy();
 
-			container = await (url ? tsParticles.loadJSON(id, url) : tsParticles.load(id, options()));
+			container = await (url
+				? tsParticles.loadJSON(id, url)
+				: tsParticles.load(id, options()));
 
 			await cb(container);
 		});
