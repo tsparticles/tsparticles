@@ -1,32 +1,11 @@
-import type { Container, IShapeDrawer, Particle, RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
-import type { IParticles } from "tsparticles-engine/Options/Interfaces/Particles/IParticles";
-import { IImage, IImageParticle, IParticleImage, replaceImageColor } from "./Utils";
-import { downloadSvgImage, loadImage } from "./Utils";
-import type { IInteractivity } from "tsparticles-engine/Options/Interfaces/Interactivity/IInteractivity";
-import type { IModes } from "tsparticles-engine/Options/Interfaces/Interactivity/Modes/IModes";
+import type { Container, IShapeDrawer, Particle } from "tsparticles-engine";
+import type { IImage, IImageParticle, IParticleImage } from "./Utils";
 import type { IImageShape } from "./IImageShape";
+import { downloadSvgImage, loadImage, replaceImageColor } from "./Utils";
 
 interface ContainerImage {
     id: string;
     images: IImage[];
-}
-
-interface IEmitter {
-    particles?: RecursivePartial<IParticles>;
-}
-
-interface IEmitterOptions {
-    emitters: SingleOrMultiple<IEmitter>;
-    interactivity: IInteractivity & {
-        modes: IModes & {
-            emitters: SingleOrMultiple<IEmitter>;
-        };
-    };
-}
-
-const enum ShapeImageType {
-    image = "image",
-    images = "images",
 }
 
 /**
@@ -86,6 +65,7 @@ export class ImageDrawer implements IShapeDrawer {
             this.addImage(container, image);
 
             const imageFunc = imageShape.replaceColor ? downloadSvgImage : loadImage;
+
             await imageFunc(image);
         } catch {
             throw new Error(`tsParticles error - ${imageShape.src} not found`);

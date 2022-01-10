@@ -3,7 +3,7 @@
  */
 import type { IHsl, IParticle, Particle } from "tsparticles-engine";
 import { getStyleFromHsl } from "tsparticles-engine";
-import { IImageShape } from "./IImageShape";
+import type { IImageShape } from "./IImageShape";
 
 export interface IImage {
     source: string;
@@ -113,7 +113,7 @@ export function replaceImageColor(
     const svgColoredData = replaceColorSvg(image, color, particle.opacity?.value ?? 1);
 
     /* prepare to create img with colored svg */
-    const svg = new Blob([svgColoredData], { type: "image/svg+xml" });
+    const svg = new Blob([ svgColoredData ], { type: "image/svg+xml" });
     const domUrl = URL || window.URL || window.webkitURL || window;
     const url = domUrl.createObjectURL(svg);
 

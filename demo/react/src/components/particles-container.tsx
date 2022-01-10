@@ -15,8 +15,8 @@ export class ParticlesContainer extends React.PureComponent<IProps> {
         this.particlesLoaded = this.particlesLoaded.bind(this);
     }
 
-    async particlesInit(main: Engine): Promise<void> {
-        await loadFull(main);
+    async particlesInit(engine: Engine): Promise<void> {
+        await loadFull(engine);
     }
 
     async particlesLoaded(container: Container): Promise<void> {

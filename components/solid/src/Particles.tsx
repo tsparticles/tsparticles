@@ -17,7 +17,7 @@ interface MutableRefObject<T> {
  * @param (props:IParticlesProps) Particles component properties
  */
 const Particles = (props: IParticlesProps): JSX.Element => {
-	const [init, setInit] = createSignal(false);
+	const [init, setInit] = createSignal(!props.init);
 
 	try {
 		const id = props.id ?? "tsparticles";
@@ -44,16 +44,10 @@ const Particles = (props: IParticlesProps): JSX.Element => {
 		};
 
 		onMount(() => {
-			if (props.init) {
-				console.log("props.init present");
-
+			if (props.init && !init()) {
 				props.init(tsParticles).then(() => {
-					console.log("then init");
-
 					setInit(true);
 				});
-			} else {
-				setInit(true);
 			}
 		});
 
@@ -68,13 +62,9 @@ const Particles = (props: IParticlesProps): JSX.Element => {
 
 			container?.destroy();
 
-			if (url) {
-				container = await tsParticles.loadJSON(id, url);
-			} else {
-				container = await tsParticles.load(id, options());
-			}
+			container = await (url ? tsParticles.loadJSON(id, url) : tsParticles.load(id, options()));
 
-			cb(container);
+			await cb(container);
 		});
 
 		onCleanup(() => {

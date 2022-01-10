@@ -4,9 +4,8 @@ import { getRangeMax, getRangeMin, getRangeValue, loadParticlesOptions, randomIn
 import type { RecursivePartial } from "../Types";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import type { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";
-import type { ICoordinates, IDelta, IMouseData, IParticle, IRgb } from "./Interfaces";
+import type { ICoordinates, IDelta, IMouseData, IParticle, IParticlesFrequencies, IRgb } from "./Interfaces";
 import { InteractionManager, ParticlesMover, Plugins, Point, QuadTree, Rectangle } from "./Utils";
-import { IParticlesFrequencies } from "./Interfaces/IParticlesFrequencies";
 import { ClickMode, EventType } from "../Enums";
 import { Loader } from "./Loader";
 

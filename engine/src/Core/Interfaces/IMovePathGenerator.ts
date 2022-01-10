@@ -1,6 +1,6 @@
 import type { Container } from "../Container";
 import type { Particle } from "../Particle";
-import { Vector } from "../Utils";
+import type { Vector } from "../Utils";
 
 /**
  * @category Interfaces

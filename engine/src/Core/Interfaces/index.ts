@@ -28,6 +28,7 @@ export * from "./IParticleSpin";
 export * from "./IParticleUpdater";
 export * from "./IParticleValueAnimation";
 export * from "./IParticleWobble";
+export * from "./IParticlesFrequencies";
 export * from "./IPlugin";
 export * from "./IRangeValue";
 export * from "./IRectSideResult";

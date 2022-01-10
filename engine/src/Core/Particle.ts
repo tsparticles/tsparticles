@@ -49,10 +49,10 @@ import type {
     IParticleValueAnimation,
     IRgb,
     IShapeValues,
+    IParticleRoll,
+    IParticleWobble
 } from "./Interfaces";
 import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
-import type { IParticleRoll } from "./Interfaces/IParticleRoll";
-import type { IParticleWobble } from "./Interfaces/IParticleWobble";
 
 const fixOutMode = (data: {
     outMode: OutMode | keyof typeof OutMode | OutModeAlt;

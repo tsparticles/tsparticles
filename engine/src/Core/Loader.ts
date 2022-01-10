@@ -1,11 +1,10 @@
 import { Container } from "./Container";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { CustomEventArgs, CustomEventListener, RecursivePartial } from "../Types";
-import { itemFromArray } from "../Utils";
+import { EventDispatcher, itemFromArray } from "../Utils";
 import type { Particle } from "./Particle";
 import { generatedAttribute } from "./Utils";
 import type { SingleOrMultiple } from "../Types";
-import { EventDispatcher } from "../Utils/EventDispatcher";
 
 const tsParticlesDom: Container[] = [];
 const eventDispatcher = new EventDispatcher();
