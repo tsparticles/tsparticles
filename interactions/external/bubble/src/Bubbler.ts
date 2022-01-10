@@ -19,7 +19,7 @@ import {
     mouseMoveEvent,
     mouseLeaveEvent,
     Circle,
-    Rectangle
+    Rectangle,
 } from "tsparticles-engine";
 import type { DivEvent } from "tsparticles-engine/Options/Classes/Interactivity/Events/DivEvent";
 import type { BubbleDiv } from "tsparticles-engine/Options/Classes/Interactivity/Modes/BubbleDiv";

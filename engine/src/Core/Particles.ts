@@ -1,11 +1,6 @@
 import type { Container } from "./Container";
 import { Particle } from "./Particle";
-import {
-    getRangeValue,
-    loadParticlesOptions,
-    randomInRange,
-    setRangeValue,
-} from "../Utils";
+import { getRangeMax, getRangeMin, getRangeValue, loadParticlesOptions, randomInRange, setRangeValue } from "../Utils";
 import type { RecursivePartial } from "../Types";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import type { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";

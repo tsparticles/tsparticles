@@ -1,5 +1,4 @@
-import type { SingleOrMultiple } from "../../../../Types";
-import type { IDimension } from "../../../../Core";
+import type { IDimension, SingleOrMultiple } from "tsparticles-engine";
 
 /**
  * @category Polygon Mask Plugin

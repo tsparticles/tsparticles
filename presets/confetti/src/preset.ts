@@ -14,7 +14,11 @@ import { loadAngleUpdater } from "tsparticles-updater-angle";
 import { loadTiltUpdater } from "tsparticles-updater-tilt";
 import { loadLifeUpdater } from "tsparticles-updater-life";
 
-async function loadPreset(engine: Engine, confettiOptions: RecursivePartial<IConfettiOptions>, override = false): Promise<void> {
+async function loadPreset(
+    engine: Engine,
+    confettiOptions: RecursivePartial<IConfettiOptions>,
+    override = false
+): Promise<void> {
     await loadCircleShape(engine);
     await loadSquareShape(engine);
     await loadColorUpdater(engine);

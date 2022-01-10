@@ -12,7 +12,7 @@ import type {
     IParticleValueAnimation,
 } from "../Core";
 import { itemFromArray } from "./Utils";
-import { randomColorValue, midColorValue } from "./Core";
+import { randomColorValue, midColorValue } from "../Core";
 import { mix, randomInRange, setRangeValue } from "./NumberUtils";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 import { AnimationStatus } from "../Enums";

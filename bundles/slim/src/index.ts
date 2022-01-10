@@ -1,4 +1,4 @@
-import type { Main } from "tsparticles-engine";
+import type { Engine } from "tsparticles-engine";
 import { loadExternalAttractInteraction } from "tsparticles-interaction-external-attract";
 import { loadExternalBounceInteraction } from "tsparticles-interaction-external-bounce";
 import { loadExternalBubbleInteraction } from "tsparticles-interaction-external-bubble";
@@ -26,34 +26,34 @@ import { loadColorUpdater } from "tsparticles-updater-color";
 import { loadStrokeColorUpdater } from "tsparticles-updater-stroke-color";
 import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
 
-export async function loadSlim(tsParticles: Main): Promise<void> {
-    await loadExternalAttractInteraction(tsParticles);
-    await loadExternalBounceInteraction(tsParticles);
-    await loadExternalBubbleInteraction(tsParticles);
-    await loadExternalConnectInteraction(tsParticles);
-    await loadExternalGrabInteraction(tsParticles);
-    await loadExternalPauseInteraction(tsParticles);
-    await loadExternalPushInteraction(tsParticles);
-    await loadExternalRemoveInteraction(tsParticles);
-    await loadExternalRepulseInteraction(tsParticles);
+export async function loadSlim(engine: Engine): Promise<void> {
+    await loadExternalAttractInteraction(engine);
+    await loadExternalBounceInteraction(engine);
+    await loadExternalBubbleInteraction(engine);
+    await loadExternalConnectInteraction(engine);
+    await loadExternalGrabInteraction(engine);
+    await loadExternalPauseInteraction(engine);
+    await loadExternalPushInteraction(engine);
+    await loadExternalRemoveInteraction(engine);
+    await loadExternalRepulseInteraction(engine);
 
-    await loadParticlesAttractInteraction(tsParticles);
-    await loadParticlesCollisionsInteraction(tsParticles);
-    await loadParticlesLinksInteraction(tsParticles);
+    await loadParticlesAttractInteraction(engine);
+    await loadParticlesCollisionsInteraction(engine);
+    await loadParticlesLinksInteraction(engine);
 
-    await loadCircleShape(tsParticles);
-    await loadImageShape(tsParticles);
-    await loadLineShape(tsParticles);
-    await loadPolygonShape(tsParticles);
-    await loadSquareShape(tsParticles);
-    await loadStarShape(tsParticles);
-    await loadTextShape(tsParticles);
+    await loadCircleShape(engine);
+    await loadImageShape(engine);
+    await loadLineShape(engine);
+    await loadPolygonShape(engine);
+    await loadSquareShape(engine);
+    await loadStarShape(engine);
+    await loadTextShape(engine);
 
-    loadLifeUpdater(tsParticles);
-    loadOpacityUpdater(tsParticles);
-    loadSizeUpdater(tsParticles);
-    loadAngleUpdater(tsParticles);
-    loadColorUpdater(tsParticles);
-    loadStrokeColorUpdater(tsParticles);
-    loadOutModesUpdater(tsParticles);
+    await loadLifeUpdater(engine);
+    await loadOpacityUpdater(engine);
+    await loadSizeUpdater(engine);
+    await loadAngleUpdater(engine);
+    await loadColorUpdater(engine);
+    await loadStrokeColorUpdater(engine);
+    await loadOutModesUpdater(engine);
 }

@@ -13,7 +13,8 @@ import {
     Vector,
     mouseMoveEvent,
     Circle,
-    Rectangle
+    Rectangle,
+    Range,
 } from "tsparticles-engine";
 import type { Container, ICoordinates } from "tsparticles-engine";
 import type { DivEvent } from "tsparticles-engine/Options/Classes/Interactivity/Events/DivEvent";

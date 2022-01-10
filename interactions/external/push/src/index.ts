@@ -1,6 +1,6 @@
-import type { Main } from "tsparticles-engine";
+import type { Engine } from "tsparticles-engine";
 import { Pusher } from "./Pusher";
 
-export function loadExternalPushInteraction(tsParticles: Main): void {
-    tsParticles.addInteractor("externalPush", (container) => new Pusher(container));
+export async function loadExternalPushInteraction(engine: Engine): Promise<void> {
+    await engine.addInteractor("externalPush", (container) => new Pusher(container));
 }

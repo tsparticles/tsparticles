@@ -1,7 +1,7 @@
 import { describe, it } from "mocha";
 import { expect } from "chai";
-import { Container, Particle, Vector } from "../src";
-import type { ICoordinates, IParticle } from "../src";
+import { Container, Particle, Vector } from "../src/Core";
+import type { ICoordinates, IParticle } from "../src/Core";
 import { MoveDirection, OutModeDirection } from "../src";
 import * as NumberUtils from "../src/Utils/NumberUtils";
 import * as Utils from "../src/Utils/Utils";

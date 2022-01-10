@@ -4,7 +4,8 @@
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-fire/badge)](https://www.jsdelivr.com/package/npm/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles-preset-fire.svg)](https://www.npmjs.com/package/tsparticles-preset-fire) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-fire)](https://www.npmjs.com/package/tsparticles-preset-fire)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) preset for a faded red to black background with particles colored like fire and ash sparks.
+[tsParticles](https://github.com/matteobruni/tsparticles) preset for a faded red to black background with particles
+colored like fire and ash sparks.
 
 ## Sample
 
@@ -73,14 +74,14 @@ This sample uses the class component syntax, but you can use hooks as well (if t
 
 ```javascript
 import Particles from "react-tsparticles";
-import { Main } from "tsparticles-engine";
+import { Engine } from "tsparticles-engine";
 import { loadFirePreset } from "tsparticles-preset-fire";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
   // this customizes the component tsParticles installation
-  customInit(main: Main) {
+  async customInit(engine: Engine): Promise<void> {
     // this adds the preset to tsParticles, you can safely use the
-    loadFirePreset(main);
+    await loadFirePreset(engine);
   }
 
   render() {
@@ -102,8 +103,8 @@ _The syntax for `Vue.js 2.x` and `3.x` is the same_
 ```
 
 ```js
-function particlesInit(main: Main) {
-  loadFirePreset(main);
+async function particlesInit(engine: Engine): Promise<void> {
+  await loadFirePreset(engine);
 }
 ```
 
@@ -119,8 +120,8 @@ function particlesInit(main: Main) {
 ```
 
 ```ts
-function particlesInit(main: Main): void {
-  loadFirePreset(main);
+async function particlesInit(engine: Engine): Promise<void> {
+  await loadFirePreset(engine);
 }
 ```
 
@@ -136,7 +137,7 @@ function particlesInit(main: Main): void {
 ```
 
 ```js
-let onParticlesInit = (main) => {
-  loadFirePreset(main);
-};
+async function onParticlesInit(engine) {
+  await loadFirePreset(engine);
+}
 ```

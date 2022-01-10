@@ -1,10 +1,4 @@
-import type {
-    Container,
-    IShapeDrawer,
-    Particle,
-    RecursivePartial,
-    SingleOrMultiple
-} from "tsparticles-engine";
+import type { Container, IShapeDrawer, Particle, RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
 import type { IParticles } from "tsparticles-engine/Options/Interfaces/Particles/IParticles";
 import { IImage, IImageParticle, IParticleImage, replaceImageColor } from "./Utils";
 import { downloadSvgImage, loadImage } from "./Utils";

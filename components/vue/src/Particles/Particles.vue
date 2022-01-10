@@ -5,7 +5,7 @@
 <script lang="ts">
 import { Component, Prop } from "vue-property-decorator";
 import { tsParticles } from "tsparticles-engine";
-import type { Container, ISourceOptions, Main } from "tsparticles-engine";
+import type { Container, ISourceOptions, Engine } from "tsparticles-engine";
 import Vue from "vue";
 
 export type IParticlesProps = ISourceOptions;
@@ -17,7 +17,7 @@ export default class Particles extends Vue {
   @Prop() private options?: IParticlesProps;
   @Prop() private url?: string;
   @Prop() private particlesLoaded?: (container: Container) => void;
-  @Prop() private particlesInit?: (tsParticles: Main) => Promise<void>;
+  @Prop() private particlesInit?: (engine: Engine) => Promise<void>;
   private container?: Container;
 
   private mounted(): void {

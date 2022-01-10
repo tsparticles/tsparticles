@@ -74,14 +74,14 @@ This sample uses the class component syntax, but you can use hooks as well (if t
 
 ```javascript
 import Particles from "react-tsparticles";
-import { Main } from "tsparticles-engine";
+import { Engine } from "tsparticles-engine";
 import { loadBubblesPreset } from "tsparticles-preset-bubbles";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
   // this customizes the component tsParticles installation
-  customInit(main: Main) {
+  async customInit(engine: Engine): Promise<void> {
     // this adds the preset to tsParticles, you can safely use the
-    loadBubblesPreset(main);
+    await loadBubblesPreset(engine);
   }
 
   render() {
@@ -103,8 +103,8 @@ _The syntax for `Vue.js 2.x` and `3.x` is the same_
 ```
 
 ```js
-function particlesInit(main: Main) {
-  loadBubblesPreset(main);
+async function particlesInit(engine: Engine): Promise<void> {
+  await loadBubblesPreset(engine);
 }
 ```
 
@@ -120,8 +120,8 @@ function particlesInit(main: Main) {
 ```
 
 ```ts
-function particlesInit(main: Main): void {
-  loadBubblesPreset(main);
+async function particlesInit(engine: Engine): Promise<void> {
+  await loadBubblesPreset(engine);
 }
 ```
 
@@ -137,7 +137,7 @@ function particlesInit(main: Main): void {
 ```
 
 ```js
-let onParticlesInit = (main) => {
-  loadBubblesPreset(main);
+let onParticlesInit = async (engine) => {
+  await loadBubblesPreset(engine);
 };
 ```

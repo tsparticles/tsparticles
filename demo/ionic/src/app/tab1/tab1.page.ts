@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import type { Container } from 'ng-particles';
-import type { Main } from "tsparticles-engine";
+import type { Engine } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 
 @Component({
@@ -74,7 +74,7 @@ export class Tab1Page {
       number: {
         density: {
           enable: true,
-          value_area: 800
+          area: 800
         },
         value: 80
       },
@@ -102,7 +102,7 @@ export class Tab1Page {
     }, 500);
   }
 
-  particlesInit(main: Main): void {
+  particlesInit(main: Engine): void {
     loadFull(main);
   }
 }

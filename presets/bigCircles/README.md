@@ -71,14 +71,14 @@ This sample uses the class component syntax, but you can use hooks as well (if t
 
 ```javascript
 import Particles from "react-tsparticles";
-import { Main } from "tsparticles-engine";
+import { Engine } from "tsparticles-engine";
 import { loadBigCirclesPreset } from "tsparticles-preset-big-circles";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
   // this customizes the component tsParticles installation
-  async customInit(main: Main) {
+  async customInit(engine: Engine): Promise<void> {
     // this adds the preset to tsParticles, you can safely use the
-    await loadBigCirclesPreset(main);
+    await loadBigCirclesPreset(engine);
   }
 
   render() {
@@ -100,8 +100,8 @@ _The syntax for `Vue.js 2.x` and `3.x` is the same_
 ```
 
 ```js
-async function particlesInit(main: Main) {
-  await loadBigCirclesPreset(main);
+async function particlesInit(engine: Engine): Promise<void> {
+  await loadBigCirclesPreset(engine);
 }
 ```
 
@@ -117,8 +117,8 @@ async function particlesInit(main: Main) {
 ```
 
 ```ts
-async function particlesInit(main: Main): void {
-  await loadBigCirclesPreset(main);
+async function particlesInit(engine: Engine): Promise<void> {
+  await loadBigCirclesPreset(engine);
 }
 ```
 
@@ -134,7 +134,7 @@ async function particlesInit(main: Main): void {
 ```
 
 ```js
-let onParticlesInit = async (main) => {
-  await loadBigCirclesPreset(main);
-};
+async function onParticlesInit(engine: Engine): Promise<void> {
+  await loadBigCirclesPreset(engine);
+}
 ```
