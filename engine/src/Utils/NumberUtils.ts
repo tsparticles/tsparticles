@@ -1,7 +1,7 @@
 import type { ICoordinates } from "../Core/Interfaces";
 import { EasingType, MoveDirection, MoveDirectionAlt } from "../Enums";
 import type { RangeValue } from "../Types";
-import { Vector } from "../Core/Particle/Vector";
+import { Vector } from "../Core";
 
 /**
  * Clamps a number between a minimum and maximum value

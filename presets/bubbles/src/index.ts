@@ -1,4 +1,4 @@
-import type { Main } from "tsparticles-engine";
+import type { Engine } from "tsparticles-engine";
 import { options } from "./options";
 import { loadCircleShape } from "tsparticles-shape-circle";
 import { loadColorUpdater } from "tsparticles-updater-color";
@@ -7,13 +7,13 @@ import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
 import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
 import { loadSizeUpdater } from "tsparticles-updater-size";
 
-export function loadBubblesPreset(tsParticles: Main): void {
-    loadCircleShape(tsParticles);
-    loadColorUpdater(tsParticles);
-    loadSizeUpdater(tsParticles);
-    loadOpacityUpdater(tsParticles);
-    loadOutModesUpdater(tsParticles);
-    loadEmittersPlugin(tsParticles);
+export async function loadBubblesPreset(tsParticles: Engine): Promise<void> {
+    await loadCircleShape(tsParticles);
+    await loadColorUpdater(tsParticles);
+    await loadSizeUpdater(tsParticles);
+    await loadOpacityUpdater(tsParticles);
+    await loadOutModesUpdater(tsParticles);
+    await loadEmittersPlugin(tsParticles);
 
-    tsParticles.addPreset("bubbles", options);
+    await tsParticles.addPreset("bubbles", options);
 }

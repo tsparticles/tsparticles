@@ -1,12 +1,8 @@
-import type { Main } from "tsparticles-engine";
-import { Linker } from "./Linker";
+import type { Engine } from "tsparticles-engine";
 import { loadPlugin } from "./plugin";
+import { loadInteraction } from "./interaction";
 
-export async function loadInteraction(tsParticles: Main): Promise<void> {
-    await tsParticles.addInteractor("particlesLinks", (container) => new Linker(container));
-}
-
-export async function loadParticlesLinksInteraction(tsParticles: Main): Promise<void> {
+export async function loadParticlesLinksInteraction(tsParticles: Engine): Promise<void> {
     await loadInteraction(tsParticles);
     await loadPlugin(tsParticles);
 }

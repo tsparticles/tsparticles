@@ -1,4 +1,4 @@
-import type { Main } from "tsparticles-engine";
+import type { Engine } from "tsparticles-engine";
 import { options } from "./options";
 import { loadColorUpdater } from "tsparticles-updater-color";
 import { loadOpacityUpdater } from "tsparticles-updater-opacity";
@@ -7,13 +7,13 @@ import { loadExternalPushInteraction } from "tsparticles-interaction-external-pu
 import { loadCircleShape } from "tsparticles-shape-circle";
 import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
 
-export function loadFirePreset(tsParticles: Main): void {
-    loadExternalPushInteraction(tsParticles);
-    loadCircleShape(tsParticles);
-    loadColorUpdater(tsParticles);
-    loadOpacityUpdater(tsParticles);
-    loadOutModesUpdater(tsParticles);
-    loadSizeUpdater(tsParticles);
+export async function loadFirePreset(tsParticles: Engine): Promise<void> {
+    await loadExternalPushInteraction(tsParticles);
+    await loadCircleShape(tsParticles);
+    await loadColorUpdater(tsParticles);
+    await loadOpacityUpdater(tsParticles);
+    await loadOutModesUpdater(tsParticles);
+    await loadSizeUpdater(tsParticles);
 
-    tsParticles.addPreset("fire", options);
+    await tsParticles.addPreset("fire", options);
 }

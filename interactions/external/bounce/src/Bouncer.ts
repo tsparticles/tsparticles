@@ -1,13 +1,10 @@
 import {
     calculateBounds,
-    Circle,
     circleBounce,
     circleBounceDataFromParticle,
     divModeExecute,
     isDivModeEnabled,
     isInArray,
-    Range,
-    Rectangle,
     rectBounce,
     DivMode,
     DivType,
@@ -15,6 +12,8 @@ import {
     HoverMode,
     Vector,
     mouseMoveEvent,
+    Circle,
+    Rectangle
 } from "tsparticles-engine";
 import type { Container, ICoordinates } from "tsparticles-engine";
 import type { DivEvent } from "tsparticles-engine/Options/Classes/Interactivity/Events/DivEvent";

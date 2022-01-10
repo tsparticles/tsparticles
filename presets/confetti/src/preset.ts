@@ -1,6 +1,5 @@
-import type { Main, RecursivePartial } from "tsparticles-engine";
+import { Engine, RecursivePartial, tsParticles } from "tsparticles-engine";
 import { IConfettiOptions } from "./IConfettiOptions";
-import { tsParticles } from "tsparticles-engine";
 import { loadOptions } from "./options";
 import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
 import { loadCircleShape } from "tsparticles-shape-circle";
@@ -15,24 +14,24 @@ import { loadAngleUpdater } from "tsparticles-updater-angle";
 import { loadTiltUpdater } from "tsparticles-updater-tilt";
 import { loadLifeUpdater } from "tsparticles-updater-life";
 
-function loadPreset(main: Main, confettiOptions: RecursivePartial<IConfettiOptions>, override = false): void {
-    loadCircleShape(tsParticles);
-    loadSquareShape(tsParticles);
-    loadColorUpdater(tsParticles);
-    loadSizeUpdater(tsParticles);
-    loadOpacityUpdater(tsParticles);
-    loadOutModesUpdater(tsParticles);
-    loadEmittersPlugin(tsParticles);
-    loadWobbleUpdater(tsParticles);
-    loadRollUpdater(tsParticles);
-    loadAngleUpdater(tsParticles);
-    loadTiltUpdater(tsParticles);
-    loadLifeUpdater(tsParticles);
+async function loadPreset(engine: Engine, confettiOptions: RecursivePartial<IConfettiOptions>, override = false): Promise<void> {
+    await loadCircleShape(engine);
+    await loadSquareShape(engine);
+    await loadColorUpdater(engine);
+    await loadSizeUpdater(engine);
+    await loadOpacityUpdater(engine);
+    await loadOutModesUpdater(engine);
+    await loadEmittersPlugin(engine);
+    await loadWobbleUpdater(engine);
+    await loadRollUpdater(engine);
+    await loadAngleUpdater(engine);
+    await loadTiltUpdater(engine);
+    await loadLifeUpdater(engine);
 
-    main.addPreset("confetti", loadOptions(confettiOptions), override);
+    await engine.addPreset("confetti", loadOptions(confettiOptions), override);
 }
 
-export function loadConfettiPreset(main: Main): void {
+export function loadConfettiPreset(main: Engine): void {
     loadPreset(main, {}, true);
 }
 

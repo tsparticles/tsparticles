@@ -31,7 +31,7 @@ const Particles = (props: IParticlesProps): JSX.Element => {
 			undefined as string | undefined
 		);
 
-		const cb = (container?: Container) => {
+		const cb = async (container?: Container) => {
 			if (refContainer) {
 				refContainer.current = container;
 			}
@@ -39,7 +39,7 @@ const Particles = (props: IParticlesProps): JSX.Element => {
 			setContainerId(container?.id);
 
 			if (loaded && container) {
-				loaded(container);
+				await loaded(container);
 			}
 		};
 
@@ -78,6 +78,10 @@ const Particles = (props: IParticlesProps): JSX.Element => {
 		});
 
 		onCleanup(() => {
+			if (!init()) {
+				return;
+			}
+
 			const container = tsParticles.dom().find((t) => t.id === containerId());
 
 			container?.destroy();
@@ -100,7 +104,7 @@ const Particles = (props: IParticlesProps): JSX.Element => {
 	} catch (e) {
 		console.log(e);
 
-		return <div></div>;
+		return <div />;
 	}
 };
 

@@ -1,8 +1,9 @@
 import { Container } from "./Container";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { CustomEventArgs, CustomEventListener, RecursivePartial } from "../Types";
-import { generatedAttribute, itemFromArray } from "../Utils";
+import { itemFromArray } from "../Utils";
 import type { Particle } from "./Particle";
+import { generatedAttribute } from "./Utils";
 import type { SingleOrMultiple } from "../Types";
 import { EventDispatcher } from "../Utils/EventDispatcher";
 

@@ -1,4 +1,4 @@
-import type { Main } from "tsparticles-engine";
+import type { Engine } from "tsparticles-engine";
 import { options, presetName } from "./options";
 import { loadCurvesPath } from "tsparticles-path-curves";
 import { loadCircleShape } from "tsparticles-shape-circle";
@@ -8,14 +8,14 @@ import { loadSizeUpdater } from "tsparticles-updater-size";
 import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
 import { loadColorUpdater } from "tsparticles-updater-color";
 
-export function loadSeaAnemonePreset(tsParticles: Main): void {
-    loadCircleShape(tsParticles);
-    loadColorUpdater(tsParticles);
-    loadOpacityUpdater(tsParticles);
-    loadOutModesUpdater(tsParticles);
-    loadSizeUpdater(tsParticles);
-    loadEmittersPlugin(tsParticles);
-    loadCurvesPath(tsParticles);
+export async function loadSeaAnemonePreset(tsParticles: Engine): Promise<void> {
+    await loadCircleShape(tsParticles);
+    await loadColorUpdater(tsParticles);
+    await loadOpacityUpdater(tsParticles);
+    await loadOutModesUpdater(tsParticles);
+    await loadSizeUpdater(tsParticles);
+    await loadEmittersPlugin(tsParticles);
+    await loadCurvesPath(tsParticles);
 
-    tsParticles.addPreset(presetName, options);
+    await tsParticles.addPreset(presetName, options);
 }

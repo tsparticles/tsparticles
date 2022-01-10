@@ -52,6 +52,7 @@ html(lang="en")
                                     option(value="emitter") Emitter
                                     option(value="emitterAngled") Emitter Angled
                                     option(value="emitterAbsorber") Emitter and Absorber
+                                    option(value="emitterImages") Emitter Images
                                     option(value="emitterShapes") Emitter Shapes
                                     option(value="fireworks") Fireworks
                                     option(value="forward") Forward
@@ -176,10 +177,6 @@ html(lang="en")
                         span.caret-left
                             i.fas.fa-caret-left
                     #stats(hidden)
-                        .count-particles
-                            |
-                            span.js-count-particles --
-                            | particles
 
         #exportModal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="exportModalLabel" aria-hidden="true")
             .modal-dialog.modal-lg(role="document")
@@ -202,7 +199,7 @@ html(lang="en")
         script(src="/bootstrap/js/bootstrap.min.js")
         script(src="/fontawesome/js/all.js")
         script(src="/jsoneditor/jsoneditor.js")
-        script(src="/three/examples/js/libs/stats.min.js")
+        script(src="/stats.ts/dist/stats.min.js")
         script(src="/tsparticles-engine/tsparticles.engine.min.js")
         script(src="/tsparticles-slim/tsparticles.slim.min.js")
         script(src="/tsparticles/tsparticles.min.js")

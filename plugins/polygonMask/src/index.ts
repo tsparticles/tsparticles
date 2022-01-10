@@ -7,13 +7,13 @@ import type { IPolygonMaskOptions } from "./Options/Interfaces/IPolygonMaskOptio
 import { Options } from "tsparticles-engine/Options/Classes/Options";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
 import { PolygonMaskType } from "./Enums";
-import type { Main } from "tsparticles-engine";
+import type { Engine } from "tsparticles-engine";
 import { isSsr } from "tsparticles-engine";
 
 /**
  * @category Polygon Mask Plugin
  */
-class Plugin implements IPlugin {
+class PolygonMaskPlugin implements IPlugin {
     readonly id;
 
     constructor() {
@@ -47,10 +47,10 @@ class Plugin implements IPlugin {
     }
 }
 
-export async function loadPolygonMaskPlugin(tsParticles: Main): Promise<void> {
-    if (!isSsr() && !window.SVGPathSeg) {
+export async function loadPolygonMaskPlugin(tsParticles: Engine): Promise<void> {
+    if (!isSsr() && !("SVGPathSeg" in window)) {
         await import(
-            /* webpackChunkName: "tsparticles.pathseg" */
+            /* webpackChunkName: "tsparticles.pathseg.min" */
             /* webpackMode: "lazy" */
             /* webpackPrefetch: true */
             /* webpackPreload: true */
@@ -58,7 +58,7 @@ export async function loadPolygonMaskPlugin(tsParticles: Main): Promise<void> {
         );
     }
 
-    const plugin = new Plugin();
+    const plugin = new PolygonMaskPlugin();
 
     await tsParticles.addPlugin(plugin);
 }

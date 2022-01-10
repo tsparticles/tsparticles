@@ -33,6 +33,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * fixed fountain presets ([3b47867](https://github.com/matteobruni/tsparticles/commit/3b478673153181396446f510d7ca5ad09abfcd4f))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+# [1.24.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fountain@1.23.0...tsparticles-preset-fountain@1.24.0) (2022-01-08)
+
+**Note:** Version bump only for package tsparticles-preset-fountain
+
+
+
+
+
 # [1.23.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fountain@1.22.6...tsparticles-preset-fountain@1.23.0) (2021-12-29)
 
 **Note:** Version bump only for package tsparticles-preset-fountain

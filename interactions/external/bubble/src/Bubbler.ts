@@ -1,6 +1,5 @@
 import type { Container, Particle } from "tsparticles-engine";
 import {
-    Circle,
     clamp,
     colorMix,
     colorToHsl,
@@ -11,7 +10,6 @@ import {
     isDivModeEnabled,
     isInArray,
     itemFromArray,
-    Rectangle,
     rgbToHsl,
     ClickMode,
     DivMode,
@@ -20,6 +18,8 @@ import {
     ExternalInteractorBase,
     mouseMoveEvent,
     mouseLeaveEvent,
+    Circle,
+    Rectangle
 } from "tsparticles-engine";
 import type { DivEvent } from "tsparticles-engine/Options/Classes/Interactivity/Events/DivEvent";
 import type { BubbleDiv } from "tsparticles-engine/Options/Classes/Interactivity/Modes/BubbleDiv";

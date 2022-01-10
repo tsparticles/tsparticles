@@ -6,7 +6,7 @@ import type { IBubbleParticleData } from "./IBubbleParticleData";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
 import type { IHsl, IRgb } from "./Colors";
 import type { IParticleHslAnimation } from "./IParticleHslAnimation";
-import type { Vector } from "../Particle/Vector";
+import type { Vector } from "../Utils";
 import type { IParticleGradientAnimation } from "./IParticleGradientAnimation";
 import type { IParticleRetinaProps } from "./IParticleRetinaProps";
 import type { IParticleRoll } from "./IParticleRoll";

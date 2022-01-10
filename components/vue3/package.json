@@ -103,6 +103,5 @@
     "typescript": "~4.5.0",
     "vue": "^2.6.14",
     "vue-template-compiler": "^2.6.14"
-  },
-  "gitHead": "266ca3b5c6072c67e757e17e5144be0ea06cd78d"
+  }
 }

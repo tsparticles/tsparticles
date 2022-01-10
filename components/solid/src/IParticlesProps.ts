@@ -1,4 +1,4 @@
-import type { Container, ISourceOptions, Main } from "tsparticles-engine";
+import type { Container, ISourceOptions, Engine } from "tsparticles-engine";
 import { JSX } from "solid-js";
 
 export interface IParticlesProps {
@@ -12,6 +12,6 @@ export interface IParticlesProps {
 	className?: string;
 	canvasClassName?: string;
 	container?: { current: Container };
-	init?: (tsParticles: Main) => Promise<void>;
+	init?: (tsParticles: Engine) => Promise<void>;
 	loaded?: (container: Container) => void;
 }

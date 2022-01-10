@@ -1,7 +1,7 @@
 import { LinkInstance } from "./LinkInstance";
-import type { Container, IPlugin, Main } from "tsparticles-engine";
+import type { Container, IPlugin, Engine } from "tsparticles-engine";
 
-class Index implements IPlugin {
+class LinksPlugin implements IPlugin {
     readonly id;
 
     constructor() {
@@ -21,8 +21,8 @@ class Index implements IPlugin {
     }
 }
 
-export async function loadPlugin(tsParticles: Main): Promise<void> {
-    const plugin = new Index();
+export async function loadPlugin(tsParticles: Engine): Promise<void> {
+    const plugin = new LinksPlugin();
 
     await tsParticles.addPlugin(plugin);
 }

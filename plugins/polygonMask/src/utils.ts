@@ -150,28 +150,30 @@ export function calcClosestPtOnSegment(
     const t = (dx * dxx + dy * dyy) / (dxx ** 2 + dyy ** 2);
 
     // calc nearest pt on line
-    let x = s1.x + dxx * t;
-    let y = s1.y + dyy * t;
+    const res = {
+        x: s1.x + dxx * t,
+        y: s1.x + dyy * t,
+        isOnSegment: t >= 0 && t <= 1,
+    };
 
     // clamp results to being on the segment
     if (t < 0) {
-        x = s1.x;
-        y = s1.y;
+        res.x = s1.x;
+        res.y = s1.y;
     } else if (t > 1) {
-        x = s2.x;
-        y = s2.y;
+        res.x = s2.x;
+        res.y = s2.y;
     }
 
-    return { x: x, y: y, isOnSegment: t >= 0 && t <= 1 };
+    return res;
 }
 
 export function segmentBounce(start: ICoordinates, stop: ICoordinates, velocity: Vector): void {
     const { dx, dy } = getDistances(start, stop);
     const wallAngle = Math.atan2(dy, dx); // + Math.PI / 2;
-    const wallNormalX = Math.sin(wallAngle);
-    const wallNormalY = -Math.cos(wallAngle);
-    const d = 2 * (velocity.x * wallNormalX + velocity.y * wallNormalY);
+    const wallNormal = Vector.create(Math.sin(wallAngle), -Math.cos(wallAngle));
+    const d = 2 * (velocity.x * wallNormal.x + velocity.y * wallNormal.y);
 
-    velocity.x -= d * wallNormalX;
-    velocity.y -= d * wallNormalY;
+    wallNormal.multTo(d);
+    velocity.subFrom(wallNormal);
 }

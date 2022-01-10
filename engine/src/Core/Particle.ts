@@ -27,12 +27,11 @@ import {
     isInArray,
     itemFromArray,
     loadParticlesOptions,
-    Plugins,
     randomInRange,
     setRangeValue,
 } from "../Utils";
 import type { Stroke } from "../Options/Classes/Particles/Stroke";
-import { Vector } from "./Particle/Vector";
+import { Plugins, Vector, Vector3d } from "./Utils";
 import type {
     IBubbleParticleData,
     ICoordinates,
@@ -51,7 +50,6 @@ import type {
     IRgb,
     IShapeValues,
 } from "./Interfaces";
-import { Vector3d } from "./Particle/Vector3d";
 import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
 import type { IParticleRoll } from "./Interfaces/IParticleRoll";
 import type { IParticleWobble } from "./Interfaces/IParticleWobble";

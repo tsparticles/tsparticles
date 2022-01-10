@@ -1,7 +1,7 @@
-import type { Main } from "tsparticles-engine";
+import type { Engine } from "tsparticles-engine";
 import { validTypes, TextDrawer } from "./TextDrawer";
 
-export async function loadTextShape(tsParticles: Main): Promise<void> {
+export async function loadTextShape(tsParticles: Engine): Promise<void> {
     const drawer = new TextDrawer();
 
     for (const type of validTypes) {

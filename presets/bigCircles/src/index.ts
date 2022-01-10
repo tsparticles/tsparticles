@@ -1,4 +1,4 @@
-import type { Main } from "tsparticles-engine";
+import type { Engine } from "tsparticles-engine";
 import { options } from "./options";
 import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
 import { loadCircleShape } from "tsparticles-shape-circle";
@@ -7,7 +7,7 @@ import { loadOpacityUpdater } from "tsparticles-updater-opacity";
 import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
 import { loadSizeUpdater } from "tsparticles-updater-size";
 
-export async function loadBigCirclesPreset(tsParticles: Main): Promise<void> {
+export async function loadBigCirclesPreset(tsParticles: Engine): Promise<void> {
     await loadCircleShape(tsParticles);
     await loadColorUpdater(tsParticles);
     await loadSizeUpdater(tsParticles);
@@ -15,6 +15,6 @@ export async function loadBigCirclesPreset(tsParticles: Main): Promise<void> {
     await loadOutModesUpdater(tsParticles);
     await loadEmittersPlugin(tsParticles);
 
-    tsParticles.addPreset("bigCircles", options);
-    tsParticles.addPreset("big-circles", options);
+    await tsParticles.addPreset("bigCircles", options);
+    await tsParticles.addPreset("big-circles", options);
 }

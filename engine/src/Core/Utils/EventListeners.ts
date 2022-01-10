@@ -1,6 +1,6 @@
-import type { Container } from "../Core/Container";
-import { ClickMode, InteractivityDetect } from "../Enums";
-import type { ICoordinates } from "../Core/Interfaces";
+import type { Container } from "../Container";
+import { ClickMode, InteractivityDetect } from "../../Enums";
+import type { ICoordinates } from "../Interfaces";
 import {
     mouseLeaveEvent,
     mouseOutEvent,
@@ -14,7 +14,7 @@ import {
     resizeEvent,
     visibilityChangeEvent,
 } from "./Constants";
-import { isSsr } from "./Utils";
+import { isSsr } from "../../Utils";
 
 function manageListener(
     element: HTMLElement | Node | Window | MediaQueryList,

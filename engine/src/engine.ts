@@ -1,7 +1,14 @@
-import { Plugins } from "./Utils";
 import type { IOptions } from "./Options/Interfaces/IOptions";
-import type { Container } from "./Core/Container";
-import { Loader } from "./Core/Loader";
+import type {
+    Container,
+    IInteractor,
+    IMovePathGenerator,
+    IParticleUpdater,
+    IPlugin,
+    IShapeDrawer,
+    Particle,
+} from "./Core";
+import { Loader, Plugins } from "./Core";
 import type {
     ShapeDrawerAfterEffectFunction,
     ShapeDrawerDestroyFunction,
@@ -12,15 +19,13 @@ import type {
     CustomEventListener,
     CustomEventArgs,
 } from "./Types";
-import type { Particle } from "./Core/Particle";
-import type { IInteractor, IMovePathGenerator, IParticleUpdater, IPlugin, IShapeDrawer } from "./Core/Interfaces";
 
 /**
- * Main class for creating the singleton on window.
+ * Engine class for creating the singleton on window.
  * It's a singleton proxy to the static [[Loader]] class for initializing [[Container]] instances
- * @category Main
+ * @category Engine
  */
-export class Main {
+export class Engine {
     #initialized: boolean;
 
     constructor() {

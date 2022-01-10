@@ -1,4 +1,4 @@
-import type { Main } from "tsparticles-engine";
+import type { Engine } from "tsparticles-engine";
 import { options } from "./options";
 import { loadExternalTrailInteraction } from "tsparticles-interaction-external-trail";
 import { loadColorUpdater } from "tsparticles-updater-color";
@@ -7,13 +7,13 @@ import { loadOpacityUpdater } from "tsparticles-updater-opacity";
 import { loadSizeUpdater } from "tsparticles-updater-size";
 import { loadCircleShape } from "tsparticles-shape-circle";
 
-export function loadFireflyPreset(tsParticles: Main): void {
-    loadExternalTrailInteraction(tsParticles);
-    loadCircleShape(tsParticles);
-    loadColorUpdater(tsParticles);
-    loadLifeUpdater(tsParticles);
-    loadOpacityUpdater(tsParticles);
-    loadSizeUpdater(tsParticles);
+export async function loadFireflyPreset(tsParticles: Engine): Promise<void> {
+    await loadExternalTrailInteraction(tsParticles);
+    await loadCircleShape(tsParticles);
+    await loadColorUpdater(tsParticles);
+    await loadLifeUpdater(tsParticles);
+    await loadOpacityUpdater(tsParticles);
+    await loadSizeUpdater(tsParticles);
 
-    tsParticles.addPreset("firefly", options);
+    await tsParticles.addPreset("firefly", options);
 }

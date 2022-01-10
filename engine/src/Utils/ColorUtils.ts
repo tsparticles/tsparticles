@@ -10,9 +10,9 @@ import type {
     IRgba,
     IValueColor,
     IParticleValueAnimation,
-} from "../Core/Interfaces";
+} from "../Core";
 import { itemFromArray } from "./Utils";
-import { randomColorValue, midColorValue } from "./Constants";
+import { randomColorValue, midColorValue } from "./Core";
 import { mix, randomInRange, setRangeValue } from "./NumberUtils";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 import { AnimationStatus } from "../Enums";

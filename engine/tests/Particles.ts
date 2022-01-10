@@ -1,6 +1,6 @@
 import { describe, it } from "mocha";
 import { expect } from "chai";
-import { ICoordinates3d } from "../src/Core/Interfaces";
+import type { ICoordinates3d } from "../src";
 import { TestCanvas } from "./Fixture/TestCanvas";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticles } from "./Fixture/TestParticles";

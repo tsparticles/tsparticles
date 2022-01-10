@@ -1,13 +1,10 @@
 import { describe, it } from "mocha";
 import { expect } from "chai";
-import { Container } from "../src/Core/Container";
-import { IParticle } from "../src/Core/Interfaces/IParticle";
-import { Particle } from "../src/Core/Particle";
-import { MoveDirection, OutModeDirection } from "../src/Enums";
+import { Container, Particle, Vector } from "../src";
+import type { ICoordinates, IParticle } from "../src";
+import { MoveDirection, OutModeDirection } from "../src";
 import * as NumberUtils from "../src/Utils/NumberUtils";
 import * as Utils from "../src/Utils/Utils";
-import { ICoordinates } from "../src/Core/Interfaces/ICoordinates";
-import { Vector } from "../src/Core/Particle/Vector";
 
 function buildParticleWithDirection(direction: MoveDirection): IParticle {
     const container = new Container("someid");

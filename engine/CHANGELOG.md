@@ -6,6 +6,33 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.0.0-beta.2...tsparticles-engine@2.0.0-beta.3) (2021-12-07)
 
 **Note:** Version bump only for package tsparticles-engine
+# [1.39.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.38.0...tsparticles@1.39.0) (2022-01-08)
+
+
+### Bug Fixes
+
+* fixed priority on canvas styles ([3cc3d97](https://github.com/matteobruni/tsparticles/commit/3cc3d97bb01ee9ae265b33fdba636dde9c696355))
+
+
+### Code Refactoring
+
+* **engine:** changed all enums to const, smaller output size ([9536087](https://github.com/matteobruni/tsparticles/commit/953608731be325c0c6b5f6811eb58f8898a1e353))
+
+
+### Features
+
+* added all files for supporting the smaller engine, preparing for v2 incoming changes ([4d90c83](https://github.com/matteobruni/tsparticles/commit/4d90c83867b4801eeebd86651381ecf8e8ce5cec))
+* improved image loading, now if an image is missing it will be loaded at runtime ([5155bef](https://github.com/matteobruni/tsparticles/commit/5155bef24ef3e3fa5ba4654361aabaab074c9957))
+
+
+### BREAKING CHANGES
+
+* **engine:** enums are not exported anymore, this could break javascript usages
+
+
+
+
+
 # [1.38.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.37.6...tsparticles@1.38.0) (2021-12-29)
 
 

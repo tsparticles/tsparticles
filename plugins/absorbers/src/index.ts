@@ -13,7 +13,7 @@ import type { Main } from "tsparticles-engine";
 /**
  * @category Absorbers Plugin
  */
-class Index implements IPlugin {
+class AbsorbersPlugin implements IPlugin {
     readonly id;
 
     constructor() {
@@ -100,7 +100,7 @@ class Index implements IPlugin {
 }
 
 export async function loadAbsorbersPlugin(tsParticles: Main): Promise<void> {
-    const plugin = new Index();
+    const plugin = new AbsorbersPlugin();
 
     await tsParticles.addPlugin(plugin);
 }

@@ -1,4 +1,4 @@
-import type { Main } from "tsparticles-engine";
+import type { Engine } from "tsparticles-engine";
 import { options } from "./options";
 import { loadCircleShape } from "tsparticles-shape-circle";
 import { loadOpacityUpdater } from "tsparticles-updater-opacity";
@@ -7,13 +7,13 @@ import { loadSizeUpdater } from "tsparticles-updater-size";
 import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
 import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
 
-export function loadFountainPreset(tsParticles: Main): void {
-    loadCircleShape(tsParticles);
-    loadEmittersPlugin(tsParticles);
-    loadColorUpdater(tsParticles);
-    loadOpacityUpdater(tsParticles);
-    loadOutModesUpdater(tsParticles);
-    loadSizeUpdater(tsParticles);
+export async function loadFountainPreset(tsParticles: Engine): Promise<void> {
+    await loadCircleShape(tsParticles);
+    await loadEmittersPlugin(tsParticles);
+    await loadColorUpdater(tsParticles);
+    await loadOpacityUpdater(tsParticles);
+    await loadOutModesUpdater(tsParticles);
+    await loadSizeUpdater(tsParticles);
 
-    tsParticles.addPreset("fountain", options);
+    await tsParticles.addPreset("fountain", options);
 }

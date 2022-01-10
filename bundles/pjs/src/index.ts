@@ -2,13 +2,13 @@
  * [[include:pjsMigration.md]]
  * @packageDocumentation
  */
-import type { Container, Main, Particle, RecursivePartial } from "tsparticles-engine";
+import type { Container, Engine, Particle, RecursivePartial } from "tsparticles-engine";
 import type { IParticlesJSOptions } from "./IParticlesJSOptions";
 import type { IParticlesJS } from "./IParticlesJS";
 import { ParticlesJSPlugin } from "./particlesJSPlugin";
 
-const initPjs = (main: Main): { particlesJS: IParticlesJS; pJSDom: Container[] } => {
-    main.addPlugin(new ParticlesJSPlugin());
+const initPjs = (engine: Engine): { particlesJS: IParticlesJS; pJSDom: Container[] } => {
+    engine.addPlugin(new ParticlesJSPlugin());
 
     /**
      * Loads the provided options to create a [[Container]] object.
@@ -20,7 +20,7 @@ const initPjs = (main: Main): { particlesJS: IParticlesJS; pJSDom: Container[] }
         tagId: string,
         options: RecursivePartial<IParticlesJSOptions>
     ): Promise<Container | undefined> => {
-        return main.load(tagId, options);
+        return engine.load(tagId, options);
     };
 
     /**
@@ -32,7 +32,8 @@ const initPjs = (main: Main): { particlesJS: IParticlesJS; pJSDom: Container[] }
      * @param callback called after the [[Container]] is loaded and it will be passed as a parameter
      */
     particlesJS.load = (tagId: string, pathConfigJson: string, callback: (container?: Container) => void): void => {
-        main.loadJSON(tagId, pathConfigJson)
+        engine
+            .loadJSON(tagId, pathConfigJson)
             .then((container) => {
                 if (container) {
                     callback(container);
@@ -49,14 +50,14 @@ const initPjs = (main: Main): { particlesJS: IParticlesJS; pJSDom: Container[] }
      * @param callback the function called after the click event is fired
      */
     particlesJS.setOnClickHandler = (callback: (e: Event, particles?: Particle[]) => void): void => {
-        main.setOnClickHandler(callback);
+        engine.setOnClickHandler(callback);
     };
 
     /**
      * All the [[Container]] objects loaded
      * @deprecated this method is obsolete, please use the new tsParticles.dom
      */
-    const pJSDom = main.dom();
+    const pJSDom = engine.dom();
 
     return { particlesJS, pJSDom };
 };

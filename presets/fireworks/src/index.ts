@@ -1,4 +1,4 @@
-import type { Main } from "tsparticles-engine";
+import type { Engine } from "tsparticles-engine";
 import { options } from "./options";
 import { loadCircleShape } from "tsparticles-shape-circle";
 import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
@@ -11,17 +11,17 @@ import { loadAngleUpdater } from "tsparticles-updater-angle";
 import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
 import { loadColorUpdater } from "tsparticles-updater-color";
 
-export function loadFireworksPreset(tsParticles: Main): void {
-    loadEmittersPlugin(tsParticles);
-    loadCircleShape(tsParticles);
-    loadLineShape(tsParticles);
-    loadAngleUpdater(tsParticles);
-    loadColorUpdater(tsParticles);
-    loadLifeUpdater(tsParticles);
-    loadOpacityUpdater(tsParticles);
-    loadOutModesUpdater(tsParticles);
-    loadSizeUpdater(tsParticles);
-    loadStrokeColorUpdater(tsParticles);
+export async function loadFireworksPreset(tsParticles: Engine): Promise<void> {
+    await loadEmittersPlugin(tsParticles);
+    await loadCircleShape(tsParticles);
+    await loadLineShape(tsParticles);
+    await loadAngleUpdater(tsParticles);
+    await loadColorUpdater(tsParticles);
+    await loadLifeUpdater(tsParticles);
+    await loadOpacityUpdater(tsParticles);
+    await loadOutModesUpdater(tsParticles);
+    await loadSizeUpdater(tsParticles);
+    await loadStrokeColorUpdater(tsParticles);
 
-    tsParticles.addPreset("fireworks", options);
+    await tsParticles.addPreset("fireworks", options);
 }

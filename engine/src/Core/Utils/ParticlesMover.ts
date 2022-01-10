@@ -46,7 +46,7 @@ function applyDistance(particle: Particle): void {
 /**
  * @category Core
  */
-export class Mover {
+export class ParticlesMover {
     constructor(private readonly container: Container) {}
 
     move(particle: Particle, delta: IDelta): void {
