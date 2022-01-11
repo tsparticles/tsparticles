@@ -1,6 +1,5 @@
-import type { IContainerPlugin, ICoordinates, IDelta } from "tsparticles-engine";
+import type { Container, Engine, IContainerPlugin, ICoordinates, IDelta } from "tsparticles-engine";
 import { EmitterInstance } from "./EmitterInstance";
-import type { Container } from "tsparticles-engine";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
 import type { RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
 import { Emitter } from "./Options/Classes/Emitter";
@@ -17,11 +16,13 @@ export class Emitters implements IContainerPlugin {
     array: EmitterInstance[];
     emitters: SingleOrMultiple<Emitter>;
     interactivityEmitters: SingleOrMultiple<Emitter>;
+    #engine;
 
-    constructor(private readonly container: Container) {
+    constructor(private readonly container: Container, engine: Engine) {
         this.array = [];
         this.emitters = [];
         this.interactivityEmitters = [];
+        this.#engine = engine;
 
         const overridableContainer = container as unknown as EmitterContainer;
 
@@ -156,7 +157,7 @@ export class Emitters implements IContainerPlugin {
     }
 
     addEmitter(options: IEmitter, position?: ICoordinates): EmitterInstance {
-        const emitter = new EmitterInstance(this, this.container, options, position);
+        const emitter = new EmitterInstance(this, this.container, this.#engine, options, position);
 
         this.array.push(emitter);
 

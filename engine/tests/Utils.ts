@@ -2,12 +2,12 @@ import { describe, it } from "mocha";
 import { expect } from "chai";
 import { Container, Particle, Vector } from "../src/Core";
 import type { ICoordinates, IParticle } from "../src/Core";
-import { MoveDirection, OutModeDirection } from "../src";
+import { MoveDirection, OutModeDirection, tsParticles } from "../src";
 import * as NumberUtils from "../src/Utils/NumberUtils";
 import * as Utils from "../src/Utils/Utils";
 
 function buildParticleWithDirection(direction: MoveDirection): IParticle {
-    const container = new Container("someid");
+    const container = new Container(tsParticles, "someid");
     const options = { move: { direction } };
     return new Particle(1, container, undefined, options);
 }

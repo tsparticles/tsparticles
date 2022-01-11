@@ -19,17 +19,25 @@ import type {
     CustomEventListener,
     CustomEventArgs,
 } from "./Types";
+import { EventDispatcher } from "./Utils";
 
 /**
  * Engine class for creating the singleton on window.
- * It's a singleton proxy to the static [[Loader]] class for initializing [[Container]] instances
+ * It's a singleton proxy to the static [[this.#loader]] class for initializing [[Container]] instances
  * @category Engine
  */
 export class Engine {
-    #initialized: boolean;
+    readonly domArray: Container[];
+    readonly eventDispatcher;
+
+    #initialized;
+    #loader;
 
     constructor() {
+        this.domArray = [];
+        this.eventDispatcher = new EventDispatcher();
         this.#initialized = false;
+        this.#loader = new Loader(this);
     }
 
     /**
@@ -53,7 +61,7 @@ export class Engine {
         options: RecursivePartial<IOptions>[],
         index?: number
     ): Promise<Container | undefined> {
-        return Loader.load(tagId, options, index);
+        return this.#loader.load(tagId, options, index);
     }
 
     /**
@@ -66,7 +74,7 @@ export class Engine {
         tagId: string | SingleOrMultiple<RecursivePartial<IOptions>>,
         options?: SingleOrMultiple<RecursivePartial<IOptions>>
     ): Promise<Container | undefined> {
-        return Loader.load(tagId, options);
+        return this.#loader.load(tagId, options);
     }
 
     /**
@@ -80,7 +88,7 @@ export class Engine {
         element: HTMLElement | RecursivePartial<IOptions>,
         options?: RecursivePartial<IOptions>
     ): Promise<Container | undefined> {
-        return Loader.set(id, element, options);
+        return this.#loader.set(id, element, options);
     }
 
     /**
@@ -96,7 +104,7 @@ export class Engine {
         pathConfigJson?: SingleOrMultiple<string> | number,
         index?: number
     ): Promise<Container | undefined> {
-        return Loader.loadJSON(tagId, pathConfigJson, index);
+        return this.#loader.loadJSON(tagId, pathConfigJson, index);
     }
 
     /**
@@ -113,7 +121,7 @@ export class Engine {
         pathConfigJson?: SingleOrMultiple<string> | number,
         index?: number
     ): Promise<Container | undefined> {
-        return Loader.setJSON(id, element, pathConfigJson, index);
+        return this.#loader.setJSON(id, element, pathConfigJson, index);
     }
 
     /**
@@ -121,7 +129,7 @@ export class Engine {
      * @param callback The function called after the click event is fired
      */
     setOnClickHandler(callback: (e: Event, particles?: Particle[]) => void): void {
-        Loader.setOnClickHandler(callback);
+        this.#loader.setOnClickHandler(callback);
     }
 
     /**
@@ -129,7 +137,7 @@ export class Engine {
      * @returns All the [[Container]] objects loaded
      */
     dom(): Container[] {
-        return Loader.dom();
+        return this.#loader.dom();
     }
 
     /**
@@ -138,7 +146,7 @@ export class Engine {
      * @returns The [[Container]] object at specified index, if present or not destroyed, otherwise undefined
      */
     domItem(index: number): Container | undefined {
-        return Loader.domItem(index);
+        return this.#loader.domItem(index);
     }
 
     /**
@@ -247,7 +255,7 @@ export class Engine {
      * @param listener The listener of the specified event
      */
     addEventListener(type: string, listener: CustomEventListener): void {
-        Loader.addEventListener(type, listener);
+        this.#loader.addEventListener(type, listener);
     }
 
     /**
@@ -256,7 +264,7 @@ export class Engine {
      * @param listener The listener of the specified event
      */
     removeEventListener(type: string, listener: CustomEventListener): void {
-        Loader.removeEventListener(type, listener);
+        this.#loader.removeEventListener(type, listener);
     }
 
     /**
@@ -265,6 +273,6 @@ export class Engine {
      * @param args The event parameters
      */
     dispatchEvent(type: string, args: CustomEventArgs): void {
-        Loader.dispatchEvent(type, args);
+        this.#loader.dispatchEvent(type, args);
     }
 }

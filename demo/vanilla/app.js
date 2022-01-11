@@ -1,16 +1,16 @@
 const express = require('express');
 const helmet = require('helmet');
 const stylus = require('stylus');
-const rateLimit = require("express-rate-limit");
+//const rateLimit = require("express-rate-limit");
 
 const app = express();
 
-const limiter = rateLimit({
+/*const limiter = rateLimit({
     windowMs: 1000, // 15 minutes
     max: 100 // limit each IP to 100 requests per windowMs
 });
 
-app.use(limiter);
+app.use(limiter);*/
 // app.use(helmet()); // Safari requires https, probably a bug
 
 const port = 3000;

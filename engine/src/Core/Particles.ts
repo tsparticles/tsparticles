@@ -7,7 +7,7 @@ import type { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";
 import type { ICoordinates, IDelta, IMouseData, IParticle, IParticlesFrequencies, IRgb } from "./Interfaces";
 import { InteractionManager, ParticlesMover, Plugins, Point, QuadTree, Rectangle } from "./Utils";
 import { ClickMode, EventType } from "../Enums";
-import { Loader } from "./Loader";
+import { Engine } from "../engine";
 
 /**
  * Particles manager object
@@ -44,7 +44,10 @@ export class Particles {
     private readonly freqs: IParticlesFrequencies;
     private readonly mover;
 
-    constructor(private readonly container: Container) {
+    #engine;
+
+    constructor(engine: Engine, private readonly container: Container) {
+        this.#engine = engine;
         this.nextId = 0;
         this.array = [];
         this.zArray = [];
@@ -150,7 +153,7 @@ export class Particles {
 
             deleted++;
 
-            Loader.dispatchEvent(EventType.particleRemoved, {
+            this.#engine.dispatchEvent(EventType.particleRemoved, {
                 container: this.container,
                 data: {
                     particle,
@@ -494,7 +497,7 @@ export class Particles {
 
             this.nextId++;
 
-            Loader.dispatchEvent(EventType.particleAdded, {
+            this.#engine.dispatchEvent(EventType.particleAdded, {
                 container: this.container,
                 data: {
                     particle,

@@ -23,7 +23,7 @@ import type {
     IShapeDrawer,
 } from "./Interfaces";
 import { ClickMode, EventType } from "../Enums";
-import { Loader } from "./Loader";
+import { Engine } from "../engine";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -53,6 +53,8 @@ export class Container {
     attract: IAttract;
     zLayers;
     responsiveMaxWidth?: number;
+
+    #engine;
 
     /**
      * The options used by the container, it's a full [[Options]] object
@@ -106,10 +108,12 @@ export class Container {
     /**
      * This is the core class, create an instance to have a new working particles manager
      * @constructor
+     * @param engine the current engine instance
      * @param id the id to identify this instance
      * @param sourceOptions the options to load
      */
-    constructor(readonly id: string, sourceOptions?: RecursivePartial<IOptions>) {
+    constructor(engine: Engine, readonly id: string, sourceOptions?: RecursivePartial<IOptions>) {
+        this.#engine = engine;
         this.fpsLimit = 60;
         this.duration = 0;
         this.lifeTime = 0;
@@ -124,7 +128,7 @@ export class Container {
         this._initialSourceOptions = sourceOptions;
         this.retina = new Retina(this);
         this.canvas = new Canvas(this);
-        this.particles = new Particles(this);
+        this.particles = new Particles(this.#engine, this);
         this.drawer = new FrameManager(this);
         this.pathGenerator = {
             generate: (p: Particle): Vector => {
@@ -164,7 +168,7 @@ export class Container {
             this.intersectionObserver = new IntersectionObserver((entries) => this.intersectionManager(entries));
         }
 
-        Loader.dispatchEvent(EventType.containerBuilt, { container: this });
+        this.#engine.dispatchEvent(EventType.containerBuilt, { container: this });
     }
 
     /**
@@ -191,7 +195,7 @@ export class Container {
             }
         }
 
-        Loader.dispatchEvent(EventType.containerPlay, { container: this });
+        this.#engine.dispatchEvent(EventType.containerPlay, { container: this });
 
         this.draw(needsUpdate || false);
     }
@@ -220,7 +224,7 @@ export class Container {
             this.paused = true;
         }
 
-        Loader.dispatchEvent(EventType.containerPaused, { container: this });
+        this.#engine.dispatchEvent(EventType.containerPaused, { container: this });
     }
 
     /**
@@ -323,7 +327,7 @@ export class Container {
 
         this.destroyed = true;
 
-        Loader.dispatchEvent(EventType.containerDestroyed, { container: this });
+        this.#engine.dispatchEvent(EventType.containerDestroyed, { container: this });
     }
 
     /**
@@ -403,7 +407,7 @@ export class Container {
 
         this._sourceOptions = this._options;
 
-        Loader.dispatchEvent(EventType.containerStopped, { container: this });
+        this.#engine.dispatchEvent(EventType.containerStopped, { container: this });
     }
 
     /**
@@ -442,7 +446,7 @@ export class Container {
             }
         }
 
-        Loader.dispatchEvent(EventType.containerStarted, { container: this });
+        this.#engine.dispatchEvent(EventType.containerStarted, { container: this });
 
         this.play();
     }
@@ -647,7 +651,7 @@ export class Container {
             }
         }
 
-        Loader.dispatchEvent(EventType.containerInit, { container: this });
+        this.#engine.dispatchEvent(EventType.containerInit, { container: this });
 
         this.particles.init();
         this.particles.setDensity();
@@ -658,7 +662,7 @@ export class Container {
             }
         }
 
-        Loader.dispatchEvent(EventType.particlesSetup, { container: this });
+        this.#engine.dispatchEvent(EventType.particlesSetup, { container: this });
     }
 
     private intersectionManager(entries: IntersectionObserverEntry[]) {

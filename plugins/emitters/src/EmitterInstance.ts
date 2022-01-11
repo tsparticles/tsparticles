@@ -6,9 +6,9 @@ import {
     isPointInside,
     randomInRange,
     SizeMode,
-    tsParticles,
     Vector,
 } from "tsparticles-engine";
+import type { Engine } from "tsparticles-engine";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
 import type { Emitters } from "./Emitters";
 import type { IParticles } from "tsparticles-engine/Options/Interfaces/Particles/IParticles";
@@ -29,8 +29,9 @@ export class EmitterInstance {
     spawnColor?: IHsl;
     fill;
 
-    #firstSpawn: boolean;
-    #startParticlesAdded: boolean;
+    #engine;
+    #firstSpawn;
+    #startParticlesAdded;
 
     readonly name?: string;
     private paused;
@@ -52,9 +53,11 @@ export class EmitterInstance {
     constructor(
         private readonly emitters: Emitters,
         private readonly container: Container,
+        engine: Engine,
         emitterOptions: IEmitter,
         position?: ICoordinates
     ) {
+        this.#engine = engine;
         this.currentDuration = 0;
         this.currentEmitDelay = 0;
         this.currentSpawnDelay = 0;
@@ -96,7 +99,7 @@ export class EmitterInstance {
         this.lifeCount = this.emitterOptions.life.count ?? -1;
         this.immortal = this.lifeCount <= 0;
 
-        tsParticles.dispatchEvent("emitterCreated", {
+        this.#engine.dispatchEvent("emitterCreated", {
             container,
             data: {
                 emitter: this,
@@ -208,7 +211,7 @@ export class EmitterInstance {
             this.currentSpawnDelay += delta.value;
 
             if (this.currentSpawnDelay >= this.spawnDelay) {
-                tsParticles.dispatchEvent("emitterPlay", {
+                this.#engine.dispatchEvent("emitterPlay", {
                     container: this.container,
                 });
 
@@ -250,7 +253,7 @@ export class EmitterInstance {
     private destroy(): void {
         this.emitters.removeEmitter(this);
 
-        tsParticles.dispatchEvent("emitterDestroyed", {
+        this.#engine.dispatchEvent("emitterDestroyed", {
             container: this.container,
             data: {
                 emitter: this,

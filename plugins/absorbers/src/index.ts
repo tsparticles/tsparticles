@@ -1,14 +1,11 @@
-import type { IPlugin } from "tsparticles-engine";
-import type { Container } from "tsparticles-engine";
+import type { Container, Engine, IPlugin, RecursivePartial } from "tsparticles-engine";
 import { Absorbers } from "./Absorbers";
-import type { RecursivePartial } from "tsparticles-engine";
 import { AbsorberClickMode } from "./Enums";
 import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
 import type { IOptions } from "tsparticles-engine/Options/Interfaces/IOptions";
-import { Options } from "tsparticles-engine/Options/Classes/Options";
+import type { Options } from "tsparticles-engine/Options/Classes/Options";
 import { Absorber } from "./Options/Classes/Absorber";
 import { isInArray } from "tsparticles-engine";
-import type { Engine } from "tsparticles-engine";
 
 /**
  * @category Absorbers Plugin
@@ -25,7 +22,7 @@ class AbsorbersPlugin implements IPlugin {
     }
 
     needsPlugin(options?: RecursivePartial<IOptions & IAbsorberOptions>): boolean {
-        if (options === undefined) {
+        if (!options) {
             return false;
         }
 

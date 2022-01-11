@@ -24,7 +24,7 @@ export class TestContainer {
         this.id = "test-container";
 
         this.options = options ?? defaultOptions; // This keeps new Particle from offsetting position by 3
-        this.container = new Container(this.id, this.options);
+        this.container = new Container(tsParticles, this.id, this.options);
         this.container.init();
     }
 
@@ -39,7 +39,7 @@ export class TestContainer {
             this.options = options;
         }
 
-        this.container = new Container(this.id, this.options);
+        this.container = new Container(tsParticles, this.id, this.options);
         this.container.actualOptions = new Options();
         this.container.actualOptions.load(this.container.options);
         this.container.init();
