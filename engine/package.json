@@ -98,7 +98,7 @@
     "chai": "^4.3.4",
     "compare-versions": "^4.1.1",
     "copyfiles": "^2.4.1",
-    "downlevel-dts": "^0.7.0",
+    "downlevel-dts": "^0.8.0",
     "eslint": "^8.3.0",
     "eslint-config-prettier": "^8.3.0",
     "install": "^0.13.0",
