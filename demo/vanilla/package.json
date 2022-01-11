@@ -27,7 +27,7 @@
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
-    "bootstrap": "^4.6.0",
+    "bootstrap": "^5.0.0",
     "eslint": "^8.0.0",
     "eslint-config-prettier": "^8.3.0",
     "express": "^4.17.1",
