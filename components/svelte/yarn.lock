@@ -754,9 +754,9 @@ svelte-preprocess@^4.0.0, svelte-preprocess@^4.7.4:
     strip-indent "^3.0.0"
 
 svelte@^3.42.1:
-  version "3.45.0"
-  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.45.0.tgz#bcb90a72e984f809c419529f8cf9100ad9937a4b"
-  integrity sha512-6AWftH2eqqKLYH1HvKpuUWe8OfjflarhegN57P/Cqwc2Rb2F5oIdDtANU/jMscyZMzG0v6nTQox0siZR9cmRVQ==
+  version "3.46.1"
+  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.46.1.tgz#8ea23595824a39d47d04c16c217000fbc4c52c49"
+  integrity sha512-Ue8ivq+G45AfZZL4Z93xNFiC352wPkyGiY9QSuWjxXh6jiaZMrpthinjc1rz0OSTceuST7Pxr1HDBj2KioliZg==
 
 terser@^5.0.0:
   version "5.6.0"
@@ -778,6 +778,11 @@ tslib@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
   integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
+
+tsparticles-engine@^2.0.0-beta.3:
+  version "2.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.0-beta.3.tgz#02a117b8ecce5f4a07a1409434acf7503e317f36"
+  integrity sha512-vePzn/pI8dYOukHND34ttGyMicKdGsmabvqJpFA2Q91PcMhu9z1C8v9EH80MGkcf4DdjxyaHnZFdo7P3NiBOrA==
 
 typescript@*, typescript@~4.5.0:
   version "4.5.4"
