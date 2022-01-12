@@ -1,7 +1,7 @@
-import type { IPolygonMaskMove } from "../Interfaces/IPolygonMaskMove";
-import type { RecursivePartial } from "../../../../Types";
-import { PolygonMaskMoveType } from "../../Enums";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
+import type { IPolygonMaskMove } from "../Interfaces/IPolygonMaskMove";
+import { PolygonMaskMoveType } from "../../Enums";
+import type { RecursivePartial } from "../../../../Types";
 
 /**
  * @category Polygon Mask Plugin

@@ -1,8 +1,8 @@
+import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 import type { IPolygonMaskDraw } from "../Interfaces/IPolygonMaskDraw";
+import { OptionsColor } from "../../../../Options/Classes/OptionsColor";
 import { PolygonMaskDrawStroke } from "./PolygonMaskDrawStroke";
 import type { RecursivePartial } from "../../../../Types";
-import { OptionsColor } from "../../../../Options/Classes/OptionsColor";
-import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 
 /**
  * @category Polygon Mask Plugin

@@ -1,6 +1,6 @@
+import { ClickMode, HoverMode, MoveDirection, OutMode, RotateDirection, ShapeType, ThemeMode } from "../src/Enums";
 import { describe, it } from "mocha";
 import { Options } from "../src/Options/Classes/Options";
-import { RotateDirection, MoveDirection, ShapeType, ClickMode, HoverMode, OutMode, ThemeMode } from "../src/Enums";
 import { expect } from "chai";
 
 describe("Themes", () => {

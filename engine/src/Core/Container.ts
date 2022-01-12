@@ -2,15 +2,7 @@
  * [[include:Container.md]]
  * @packageDocumentation
  */
-import { Canvas } from "./Canvas";
-import { Particles } from "./Particles";
-import { Retina } from "./Retina";
-import type { IOptions } from "../Options/Interfaces/IOptions";
 import { EventListeners, FrameManager, Plugins, Vector } from "./Utils";
-import type { RecursivePartial } from "../Types";
-import { Options } from "../Options/Classes/Options";
-import { animate, cancelAnimation, getRangeValue } from "../Utils";
-import { Particle } from "./Particle";
 import type {
     IAttract,
     IBubble,
@@ -22,6 +14,14 @@ import type {
     IRgb,
     IShapeDrawer,
 } from "./Interfaces";
+import { animate, cancelAnimation, getRangeValue } from "../Utils";
+import { Canvas } from "./Canvas";
+import type { IOptions } from "../Options/Interfaces/IOptions";
+import { Options } from "../Options/Classes/Options";
+import { Particle } from "./Particle";
+import { Particles } from "./Particles";
+import type { RecursivePartial } from "../Types";
+import { Retina } from "./Retina";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working

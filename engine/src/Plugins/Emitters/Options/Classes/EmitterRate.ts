@@ -1,5 +1,5 @@
-import type { IEmitterRate } from "../Interfaces/IEmitterRate";
 import type { RangeValue, RecursivePartial } from "../../../../Types";
+import type { IEmitterRate } from "../Interfaces/IEmitterRate";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 import { setRangeValue } from "../../../../Utils";
 

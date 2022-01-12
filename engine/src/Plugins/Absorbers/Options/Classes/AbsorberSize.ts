@@ -1,8 +1,8 @@
-import type { IAbsorberSize } from "../Interfaces/IAbsorberSize";
-import type { RecursivePartial } from "../../../../Types";
-import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
-import { ValueWithRandom } from "../../../../Options/Classes/ValueWithRandom";
 import { AbsorberSizeLimit } from "./AbsorberSizeLimit";
+import type { IAbsorberSize } from "../Interfaces/IAbsorberSize";
+import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
+import type { RecursivePartial } from "../../../../Types";
+import { ValueWithRandom } from "../../../../Options/Classes/ValueWithRandom";
 
 export class AbsorberSize extends ValueWithRandom implements IAbsorberSize, IOptionLoader<IAbsorberSize> {
     density;

@@ -1,9 +1,9 @@
-import type { Container, ICoordinates } from "../../../Core";
+import { Circle, Constants, ExternalInteractorBase, Range, Rectangle, Vector } from "../../../Core";
 import { ClickMode, DivMode, DivType, HoverMode } from "../../../Enums";
+import type { Container, ICoordinates } from "../../../Core";
 import { calcEasing, clamp, divMode, divModeExecute, getDistances, isDivModeEnabled, isInArray } from "../../../Utils";
 import type { DivEvent } from "../../../Options/Classes/Interactivity/Events/DivEvent";
 import type { RepulseDiv } from "../../../Options/Classes/Interactivity/Modes/RepulseDiv";
-import { Circle, Constants, ExternalInteractorBase, Range, Rectangle, Vector } from "../../../Core";
 
 /**
  * Particle repulse manager

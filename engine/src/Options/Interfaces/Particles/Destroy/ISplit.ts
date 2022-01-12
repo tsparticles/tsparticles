@@ -1,6 +1,6 @@
+import type { IParticles } from "../IParticles";
 import type { IValueWithRandom } from "../../IValueWithRandom";
 import type { RecursivePartial } from "../../../../Types";
-import type { IParticles } from "../IParticles";
 
 export interface ISplit {
     count: number;

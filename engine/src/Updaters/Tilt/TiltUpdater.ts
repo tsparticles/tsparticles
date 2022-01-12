@@ -1,5 +1,5 @@
-import type { Container, IDelta, IParticleUpdater, Particle } from "../../Core";
 import { AnimationStatus, TiltDirection } from "../../Enums";
+import type { Container, IDelta, IParticleUpdater, Particle } from "../../Core";
 import { getRangeValue } from "../../Utils";
 
 function updateTilt(particle: Particle, delta: IDelta): void {

@@ -1,7 +1,7 @@
 import type { Container, IDelta, IParticleUpdater, Particle } from "../../Core";
-import { calculateBounds, isPointInside } from "../../Utils";
 import { OutMode, OutModeAlt, OutModeDirection } from "../../Enums";
 import { bounceHorizontal, bounceVertical } from "./Utils";
+import { calculateBounds, isPointInside } from "../../Utils";
 
 export class OutOfCanvasUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}

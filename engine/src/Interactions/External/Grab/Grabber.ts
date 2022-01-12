@@ -1,7 +1,7 @@
-import type { Container } from "../../../Core";
-import { getLinkRandomColor, getLinkColor, getDistance, isInArray } from "../../../Utils";
-import { HoverMode } from "../../../Enums";
 import { Constants, ExternalInteractorBase } from "../../../Core";
+import { getDistance, getLinkColor, getLinkRandomColor, isInArray } from "../../../Utils";
+import type { Container } from "../../../Core";
+import { HoverMode } from "../../../Enums";
 
 /**
  * Particle grab manager

@@ -1,10 +1,10 @@
 import { describe, it } from "mocha";
-import { expect } from "chai";
+import type { ICoordinates } from "../src";
+import { ShapeType } from "../src";
 import { TestCanvas } from "./Fixture/TestCanvas";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticle } from "./Fixture/TestParticle";
-import { ShapeType } from "../src/Enums";
-import type { ICoordinates } from "../src/Core/Interfaces";
+import { expect } from "chai";
 
 const Window = require("window");
 

@@ -1,7 +1,7 @@
-import type { ISide } from "./PolygonDrawerBase";
-import { PolygonDrawerBase } from "./PolygonDrawerBase";
 import type { ICoordinates, IParticle } from "../../Core";
 import type { IPolygonShape } from "../../Options/Interfaces/Particles/Shape/IPolygonShape";
+import type { ISide } from "./PolygonDrawerBase";
+import { PolygonDrawerBase } from "./PolygonDrawerBase";
 
 /**
  * @category Shape Drawers

@@ -1,10 +1,10 @@
-import type { IOrbit } from "../../../Interfaces/Particles/Orbit/IOrbit";
-import type { RecursivePartial } from "../../../../Types";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import { OrbitRotation } from "./OrbitRotation";
-import { OptionsColor } from "../../OptionsColor";
 import { AnimationOptions } from "../../AnimationOptions";
 import type { IAnimatable } from "../../../Interfaces/IAnimatable";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { IOrbit } from "../../../Interfaces/Particles/Orbit/IOrbit";
+import { OptionsColor } from "../../OptionsColor";
+import { OrbitRotation } from "./OrbitRotation";
+import type { RecursivePartial } from "../../../../Types";
 
 /**
  * [[include:Options/Particles/Orbit.md]]

@@ -1,30 +1,30 @@
+import type { RecursivePartial, SingleOrMultiple } from "../../../Types";
+import { AnimatableColor } from "../AnimatableColor";
+import { AnimatableGradient } from "../AnimatableGradient";
+import { Bounce } from "./Bounce/Bounce";
+import { Collisions } from "./Collisions/Collisions";
+import { Destroy } from "./Destroy/Destroy";
+import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import type { IParticles } from "../../Interfaces/Particles/IParticles";
+import { Life } from "./Life/Life";
 import { Links } from "./Links/Links";
 import { Move } from "./Move/Move";
-import { ParticlesNumber } from "./Number/ParticlesNumber";
 import { Opacity } from "./Opacity/Opacity";
+import { Orbit } from "./Orbit/Orbit";
+import type { ParticlesGroups } from "../../../Types/ParticlesGroups";
+import { ParticlesNumber } from "./Number/ParticlesNumber";
+import { Repulse } from "./Repulse/Repulse";
+import { Roll } from "./Roll/Roll";
+import { Rotate } from "./Rotate/Rotate";
+import { Shadow } from "./Shadow";
 import { Shape } from "./Shape/Shape";
 import { Size } from "./Size/Size";
-import { Rotate } from "./Rotate/Rotate";
-import type { RecursivePartial, SingleOrMultiple } from "../../../Types";
-import { Shadow } from "./Shadow";
 import { Stroke } from "./Stroke";
-import { Collisions } from "./Collisions/Collisions";
-import { Twinkle } from "./Twinkle/Twinkle";
-import { AnimatableColor } from "../AnimatableColor";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
-import { Life } from "./Life/Life";
-import { Bounce } from "./Bounce/Bounce";
-import { Destroy } from "./Destroy/Destroy";
-import { Wobble } from "./Wobble/Wobble";
 import { Tilt } from "./Tilt/Tilt";
-import { Roll } from "./Roll/Roll";
+import { Twinkle } from "./Twinkle/Twinkle";
+import { Wobble } from "./Wobble/Wobble";
 import { ZIndex } from "./ZIndex/ZIndex";
-import type { ParticlesGroups } from "../../../Types/ParticlesGroups";
 import { deepExtend } from "../../../Utils";
-import { Orbit } from "./Orbit/Orbit";
-import { Repulse } from "./Repulse/Repulse";
-import { AnimatableGradient } from "../AnimatableGradient";
 
 /**
  * [[include:Options/Particles.md]]

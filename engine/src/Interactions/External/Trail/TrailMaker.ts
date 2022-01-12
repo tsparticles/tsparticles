@@ -1,7 +1,7 @@
-import { isInArray } from "../../../Utils";
 import { ClickMode, HoverMode } from "../../../Enums";
 import type { Container, ICoordinates, IDelta } from "../../../Core";
 import { ExternalInteractorBase } from "../../../Core";
+import { isInArray } from "../../../Utils";
 
 /**
  * @category Interactions

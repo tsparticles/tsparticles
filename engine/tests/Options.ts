@@ -1,6 +1,3 @@
-import { describe, it } from "mocha";
-import { Options } from "../src/Options/Classes/Options";
-import { expect } from "chai";
 import {
     ClickMode,
     CollisionMode,
@@ -11,10 +8,13 @@ import {
     RotateDirection,
     ShapeType,
 } from "../src";
+import { describe, it } from "mocha";
+import { IParticles } from "../src/Options/Interfaces/Particles/IParticles";
+import { Options } from "../src/Options/Classes/Options";
+import { OptionsColor } from "../src/Options/Classes/OptionsColor";
 import { ParticlesOptions } from "../src/Options/Classes/Particles/ParticlesOptions";
 import type { RecursivePartial } from "../src";
-import { IParticles } from "../src/Options/Interfaces/Particles/IParticles";
-import { OptionsColor } from "../src/Options/Classes/OptionsColor";
+import { expect } from "chai";
 
 describe("Options tests", () => {
     it("checking default options", () => {

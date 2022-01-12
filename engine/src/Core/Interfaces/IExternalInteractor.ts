@@ -1,5 +1,5 @@
-import type { IInteractor } from "./IInteractor";
 import type { IDelta } from "./IDelta";
+import type { IInteractor } from "./IInteractor";
 
 /**
  * @category Interfaces

@@ -1,6 +1,6 @@
-import type { Engine } from "../../../engine";
 import { Bouncer } from "./Bouncer";
+import type { Engine } from "../../../engine";
 
-export async function loadExternalBounceInteraction(tsParticles: Engine): Promise<void> {
-    await tsParticles.addInteractor("externalBounce", (container) => new Bouncer(container));
+export async function loadExternalBounceInteraction(engine: Engine): Promise<void> {
+    await engine.addInteractor("externalBounce", (container) => new Bouncer(container));
 }

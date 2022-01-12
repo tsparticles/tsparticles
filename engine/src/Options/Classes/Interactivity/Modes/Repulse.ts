@@ -1,8 +1,8 @@
-import type { IRepulse } from "../../../Interfaces/Interactivity/Modes/IRepulse";
 import type { RecursivePartial, SingleOrMultiple } from "../../../../Types";
-import { RepulseDiv } from "./RepulseDiv";
-import { RepulseBase } from "./RepulseBase";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { IRepulse } from "../../../Interfaces/Interactivity/Modes/IRepulse";
+import { RepulseBase } from "./RepulseBase";
+import { RepulseDiv } from "./RepulseDiv";
 
 /**
  * @category Options

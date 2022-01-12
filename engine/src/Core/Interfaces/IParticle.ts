@@ -1,17 +1,17 @@
-import type { IStroke } from "../../Options/Interfaces/Particles/IStroke";
-import type { ICoordinates3d } from "./ICoordinates";
-import type { ShapeType } from "../../Enums";
-import type { IParticleTiltValueAnimation, IParticleValueAnimation } from "./IParticleValueAnimation";
-import type { IShapeValues } from "./IShapeValues";
-import type { IBubbleParticleData } from "./IBubbleParticleData";
-import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
 import type { IHsl, IRgb } from "./Colors";
-import type { IParticleHslAnimation } from "./IParticleHslAnimation";
-import type { Vector } from "../Utils";
+import type { IParticleTiltValueAnimation, IParticleValueAnimation } from "./IParticleValueAnimation";
+import type { IBubbleParticleData } from "./IBubbleParticleData";
+import type { ICoordinates3d } from "./ICoordinates";
 import type { IParticleGradientAnimation } from "./IParticleGradientAnimation";
+import type { IParticleHslAnimation } from "./IParticleHslAnimation";
 import type { IParticleRetinaProps } from "./IParticleRetinaProps";
 import type { IParticleRoll } from "./IParticleRoll";
 import type { IParticleWobble } from "./IParticleWobble";
+import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
+import type { IShapeValues } from "./IShapeValues";
+import type { IStroke } from "../../Options/Interfaces/Particles/IStroke";
+import type { ShapeType } from "../../Enums";
+import type { Vector } from "../Utils";
 
 /**
  * @category Interfaces

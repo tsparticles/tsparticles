@@ -1,12 +1,12 @@
-import type { ICoordinates } from "../../../../Core/Interfaces";
 import type { MoveDirection, MoveDirectionAlt } from "../../../../Enums";
-import type { IParticles } from "../../../../Options/Interfaces/Particles/IParticles";
-import type { IEmitterRate } from "./IEmitterRate";
-import type { IEmitterLife } from "./IEmitterLife";
-import type { RecursivePartial } from "../../../../Types";
-import type { IEmitterSize } from "./IEmitterSize";
+import type { EmitterShapeType } from "../../Enums";
 import type { IAnimatableColor } from "../../../../Options/Interfaces/IAnimatableColor";
-import type { EmitterShapeType } from "../../Enums/EmitterShapeType";
+import type { ICoordinates } from "../../../../Core";
+import type { IEmitterLife } from "./IEmitterLife";
+import type { IEmitterRate } from "./IEmitterRate";
+import type { IEmitterSize } from "./IEmitterSize";
+import type { IParticles } from "../../../../Options/Interfaces/Particles/IParticles";
+import type { RecursivePartial } from "../../../../Types";
 
 /**
  * Particles emitter object options

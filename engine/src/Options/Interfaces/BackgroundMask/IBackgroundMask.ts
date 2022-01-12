@@ -1,5 +1,5 @@
-import type { IColor } from "../../../Core/Interfaces/Colors";
 import type { IBackgroundMaskCover } from "./IBackgroundMaskCover";
+import type { IColor } from "../../../Core";
 
 /**
  * The options to apply a base color to canvas to cover what's behind

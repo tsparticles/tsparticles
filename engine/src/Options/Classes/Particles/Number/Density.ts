@@ -1,6 +1,6 @@
 import type { IDensity } from "../../../Interfaces/Particles/Number/IDensity";
-import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { RecursivePartial } from "../../../../Types";
 
 /**
  * @category Options

@@ -1,18 +1,18 @@
+import type { RangeValue, RecursivePartial } from "../../Types";
+import { ResponsiveMode, ThemeMode } from "../../Enums";
+import { Background } from "./Background/Background";
+import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
+import { FullScreen } from "./FullScreen/FullScreen";
+import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import type { IOptions } from "../Interfaces/IOptions";
 import { Interactivity } from "./Interactivity/Interactivity";
-import { ParticlesOptions } from "./Particles/ParticlesOptions";
-import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
-import type { RangeValue, RecursivePartial } from "../../Types";
-import { Background } from "./Background/Background";
-import { deepExtend } from "../../Utils";
-import type { IOptionLoader } from "../Interfaces/IOptionLoader";
-import { Theme } from "./Theme/Theme";
-import { ResponsiveMode, ThemeMode } from "../../Enums";
-import { FullScreen } from "./FullScreen/FullScreen";
-import { Motion } from "./Motion/Motion";
 import { ManualParticle } from "./ManualParticle";
-import { Responsive } from "./Responsive";
+import { Motion } from "./Motion/Motion";
+import { ParticlesOptions } from "./Particles/ParticlesOptions";
 import { Plugins } from "../../Core";
+import { Responsive } from "./Responsive";
+import { Theme } from "./Theme/Theme";
+import { deepExtend } from "../../Utils";
 
 /**
  * [[include:Options.md]]

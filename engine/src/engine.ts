@@ -1,4 +1,3 @@
-import type { IOptions } from "./Options/Interfaces/IOptions";
 import type {
     Container,
     IInteractor,
@@ -10,13 +9,14 @@ import type {
 } from "./Core";
 import { Loader, Plugins } from "./Core";
 import type {
+    RecursivePartial,
     ShapeDrawerAfterEffectFunction,
     ShapeDrawerDestroyFunction,
     ShapeDrawerDrawFunction,
     ShapeDrawerInitFunction,
-    RecursivePartial,
     SingleOrMultiple,
 } from "./Types";
+import type { IOptions } from "./Options/Interfaces/IOptions";
 
 /**
  * Engine class for creating the singleton on window.

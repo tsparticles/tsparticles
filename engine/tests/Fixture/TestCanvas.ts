@@ -1,7 +1,6 @@
+import { Canvas } from "../../src";
+import { Container } from "../../src";
 import { createCanvas } from "canvas";
-
-import { Container } from "../../src/Core/Container";
-import { Canvas } from "../../src/Core/Canvas";
 
 export class TestCanvas {
     canvas: Canvas;

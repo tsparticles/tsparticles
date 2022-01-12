@@ -1,15 +1,15 @@
-import type { IEmitter } from "../Interfaces/IEmitter";
-import type { RecursivePartial } from "../../../../Types";
-import type { ICoordinates } from "../../../../Core/Interfaces";
 import { MoveDirection, MoveDirectionAlt } from "../../../../Enums";
-import type { IParticles } from "../../../../Options/Interfaces/Particles/IParticles";
-import { EmitterRate } from "./EmitterRate";
-import { EmitterLife } from "./EmitterLife";
-import { deepExtend } from "../../../../Utils";
-import { EmitterSize } from "./EmitterSize";
-import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 import { AnimatableColor } from "../../../../Options/Classes/AnimatableColor";
+import { EmitterLife } from "./EmitterLife";
+import { EmitterRate } from "./EmitterRate";
 import { EmitterShapeType } from "../../Enums";
+import { EmitterSize } from "./EmitterSize";
+import type { ICoordinates } from "../../../../Core";
+import type { IEmitter } from "../Interfaces/IEmitter";
+import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
+import type { IParticles } from "../../../../Options/Interfaces/Particles/IParticles";
+import type { RecursivePartial } from "../../../../Types";
+import { deepExtend } from "../../../../Utils";
 
 /**
  * [[include:Options/Plugins/Emitters.md]]

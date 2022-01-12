@@ -1,4 +1,5 @@
-import type { Container } from "../../../Core";
+import { Circle, Constants, ExternalInteractorBase, Rectangle } from "../../../Core";
+import { ClickMode, DivMode, DivType, HoverMode } from "../../../Enums";
 import {
     clamp,
     colorMix,
@@ -12,13 +13,12 @@ import {
     itemFromArray,
     rgbToHsl,
 } from "../../../Utils";
-import { ClickMode, DivMode, DivType, HoverMode } from "../../../Enums";
-import type { Particle } from "../../../Core";
-import { DivEvent } from "../../../Options/Classes/Interactivity/Events/DivEvent";
 import { BubbleDiv } from "../../../Options/Classes/Interactivity/Modes/BubbleDiv";
-import { ExternalInteractorBase, Circle, Constants, Rectangle } from "../../../Core";
-import { ProcessBubbleType } from "./ProcessBubbleType";
+import type { Container } from "../../../Core";
+import { DivEvent } from "../../../Options/Classes/Interactivity/Events/DivEvent";
 import type { IBubblerProcessParam } from "./IBubblerProcessParam";
+import type { Particle } from "../../../Core";
+import { ProcessBubbleType } from "./ProcessBubbleType";
 
 function calculateBubbleValue(
     particleValue: number,

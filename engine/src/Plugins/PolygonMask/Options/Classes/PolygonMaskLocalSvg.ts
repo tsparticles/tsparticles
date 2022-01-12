@@ -1,8 +1,8 @@
-import type { IPolygonMaskLocalSvg } from "../Interfaces/IPolygonMaskLocalSvg";
-import type { SingleOrMultiple } from "../../../../Types";
 import type { IDimension } from "../../../../Core";
-import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
+import type { IPolygonMaskLocalSvg } from "../Interfaces/IPolygonMaskLocalSvg";
+import type { RecursivePartial } from "../../../../Types";
+import type { SingleOrMultiple } from "../../../../Types";
 
 /**
  * @category Polygon Mask Plugin
