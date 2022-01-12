@@ -1,8 +1,7 @@
-import type { IShape } from "../../../Interfaces/Particles/Shape/IShape";
+import type { IOptionLoader, IShape } from "../../../Interfaces";
 import type { RecursivePartial, ShapeData, SingleOrMultiple } from "../../../../Types";
 import { deepExtend } from "../../../../Utils";
-import type { IShapeValues } from "../../../../Core/Interfaces";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { IShapeValues } from "../../../../Core";
 
 /**
  * [[include:Options/Particles/Shape.md]]
@@ -25,10 +24,10 @@ export class Shape implements IShape, IOptionLoader<IShape> {
         const options = data.options;
 
         if (options) {
-            for (const shape in options) {
+            for (const shape of Object.keys(options)) {
                 const item = options[shape];
 
-                if (item !== undefined) {
+                if (item) {
                     this.options[shape] = deepExtend(this.options[shape] ?? {}, item) as IShapeValues[];
                 }
             }
