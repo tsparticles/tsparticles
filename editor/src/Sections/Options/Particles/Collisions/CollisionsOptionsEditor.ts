@@ -1,6 +1,5 @@
 import { EditorGroup, EditorType } from "object-gui";
-import type { Container } from "tsparticles-engine";
-import type { ICollisions } from "tsparticles-engine/Options/Interfaces/Particles/Collisions/ICollisions";
+import type { Container, ICollisions } from "tsparticles-engine";
 import { CollisionMode } from "tsparticles-engine";
 import { EditorBase } from "../../../../EditorBase";
 

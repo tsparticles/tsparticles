@@ -1,10 +1,10 @@
 import type { RangeValue, RecursivePartial } from "../../../../Types";
-import type { IParticles } from "../IParticles";
+import type { IParticlesOptions } from "../IParticlesOptions";
 
 export interface ISplit {
     count: number;
     factor: RangeValue;
-    particles?: RecursivePartial<IParticles>;
+    particles?: RecursivePartial<IParticlesOptions>;
     rate: RangeValue;
     sizeOffset: boolean;
 }

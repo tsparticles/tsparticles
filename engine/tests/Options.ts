@@ -1,5 +1,4 @@
 import { describe, it } from "mocha";
-import { Options } from "../src/Options/Classes/Options";
 import { expect } from "chai";
 import {
     ClickMode,
@@ -9,11 +8,11 @@ import {
     MoveDirection,
     OutMode,
     RotateDirection,
+    Options,
+    OptionsColor,
+    ParticlesOptions,
 } from "../src";
-import { ParticlesOptions } from "../src/Options/Classes/Particles/ParticlesOptions";
-import type { RecursivePartial } from "../src";
-import { IParticles } from "../src/Options/Interfaces/Particles/IParticles";
-import { OptionsColor } from "../src/Options/Classes/OptionsColor";
+import type { IParticlesOptions, RecursivePartial } from "../src";
 
 describe("Options tests", () => {
     it("checking default options", () => {
@@ -521,7 +520,7 @@ describe("Options tests", () => {
     it("check particlesOptions override", () => {
         const particlesOptions = new ParticlesOptions();
 
-        const generalOptions: RecursivePartial<IParticles> = {
+        const generalOptions: RecursivePartial<IParticlesOptions> = {
             number: {
                 value: 100,
                 density: {
@@ -577,7 +576,7 @@ describe("Options tests", () => {
 
         particlesOptions.load(generalOptions);
 
-        const emitterOptions: RecursivePartial<IParticles> = {
+        const emitterOptions: RecursivePartial<IParticlesOptions> = {
             color: { value: "#f0f" },
             links: { enable: false },
             move: { speed: 20, random: false, outModes: OutMode.destroy },

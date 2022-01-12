@@ -1,9 +1,7 @@
 import { EditorGroup, EditorType } from "object-gui";
-import type { Container } from "tsparticles-engine";
-import type { IMove } from "tsparticles-engine/Options/Interfaces/Particles/Move/IMove";
+import type { Container, IMove, IMoveTrail } from "tsparticles-engine";
 import { MoveDirection, OutMode } from "tsparticles-engine";
 import { EditorBase } from "../../../../EditorBase";
-import type { ITrail } from "tsparticles-engine/Options/Interfaces/Particles/Move/ITrail";
 
 export class MoveOptionsEditor extends EditorBase {
     group!: EditorGroup;
@@ -182,7 +180,7 @@ export class MoveOptionsEditor extends EditorBase {
     private addTrail(): void {
         const particles = this.particles;
         const group = this.group.addGroup("trail", "Trail");
-        const options = group.data as ITrail;
+        const options = group.data as IMoveTrail;
         const color = typeof options.fillColor === "string" ? options.fillColor : options.fillColor?.value;
 
         group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {

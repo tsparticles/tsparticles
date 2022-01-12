@@ -1,7 +1,6 @@
-import type { IParticlesNumber } from "../../../Interfaces/Particles/Number/IParticlesNumber";
-import { Density } from "./Density";
+import type { IParticlesNumber, IOptionLoader } from "../../../Interfaces";
+import { ParticlesDensity } from "./ParticlesDensity";
 import type { RecursivePartial } from "../../../../Types";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 /**
  * [[include:Options/Particles/Number.md]]
@@ -13,7 +12,7 @@ export class ParticlesNumber implements IParticlesNumber, IOptionLoader<IParticl
     value;
 
     constructor() {
-        this.density = new Density();
+        this.density = new ParticlesDensity();
         this.limit = 0;
         this.value = 100;
     }

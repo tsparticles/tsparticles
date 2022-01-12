@@ -1,7 +1,7 @@
 /**
  * @category Options
  */
-export interface IDensity {
+export interface IParticlesDensity {
     area: number;
     enable: boolean;
     factor: number;

@@ -9,7 +9,7 @@ import {
     drawLine,
     drawTriangle,
 } from "tsparticles-engine";
-import type { ILinksShadow } from "tsparticles-engine/Options/Interfaces/Particles/Links/ILinksShadow";
+import type { ILinksShadow } from "tsparticles-engine";
 
 export function drawLinkLine(
     context: CanvasRenderingContext2D,

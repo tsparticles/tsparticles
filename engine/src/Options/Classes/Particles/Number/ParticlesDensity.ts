@@ -1,11 +1,10 @@
-import type { IDensity } from "../../../Interfaces/Particles/Number/IDensity";
+import type { IParticlesDensity, IOptionLoader } from "../../../Interfaces";
 import type { RecursivePartial } from "../../../../Types";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 /**
  * @category Options
  */
-export class Density implements IDensity, IOptionLoader<IDensity> {
+export class ParticlesDensity implements IParticlesDensity, IOptionLoader<IParticlesDensity> {
     area;
     enable;
     factor;
@@ -16,7 +15,7 @@ export class Density implements IDensity, IOptionLoader<IDensity> {
         this.factor = 1000;
     }
 
-    load(data?: RecursivePartial<IDensity>): void {
+    load(data?: RecursivePartial<IParticlesDensity>): void {
         if (!data) {
             return;
         }

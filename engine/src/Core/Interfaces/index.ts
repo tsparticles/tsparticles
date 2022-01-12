@@ -1,8 +1,6 @@
 export * from "./Colors";
 export * from "./Gradients";
-export * from "./IAttract";
 export * from "./IBounds";
-export * from "./IBubble";
 export * from "./IBubbleParticleData";
 export * from "./ICircleBouncer";
 export * from "./IContainerInteractivity";
@@ -32,6 +30,5 @@ export * from "./IParticlesFrequencies";
 export * from "./IPlugin";
 export * from "./IRangeValue";
 export * from "./IRectSideResult";
-export * from "./IRepulse";
 export * from "./IShapeDrawer";
 export * from "./IShapeValues";

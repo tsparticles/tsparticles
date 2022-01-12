@@ -1,6 +1,5 @@
-import type { IPath } from "../../../../Interfaces/Particles/Move/Path/iPath";
+import type { IPath, IOptionLoader } from "../../../../Interfaces";
 import type { RecursivePartial, PathOptions, RangeValue } from "../../../../../Types";
-import type { IOptionLoader } from "../../../../Interfaces/IOptionLoader";
 import { deepExtend, setRangeValue } from "../../../../../Utils";
 
 /**

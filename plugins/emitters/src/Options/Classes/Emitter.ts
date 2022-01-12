@@ -1,14 +1,9 @@
 import type { IEmitter } from "../Interfaces/IEmitter";
-import type { RecursivePartial } from "tsparticles-engine";
-import type { ICoordinates } from "tsparticles-engine";
-import { MoveDirection, MoveDirectionAlt } from "tsparticles-engine";
-import type { IParticles } from "tsparticles-engine/Options/Interfaces/Particles/IParticles";
+import { AnimatableColor, MoveDirection, MoveDirectionAlt, deepExtend } from "tsparticles-engine";
+import type { ICoordinates, IParticlesOptions, IOptionLoader, RecursivePartial } from "tsparticles-engine";
 import { EmitterRate } from "./EmitterRate";
 import { EmitterLife } from "./EmitterLife";
-import { deepExtend } from "tsparticles-engine";
 import { EmitterSize } from "./EmitterSize";
-import type { IOptionLoader } from "tsparticles-engine/Options/Interfaces/IOptionLoader";
-import { AnimatableColor } from "tsparticles-engine/Options/Classes/AnimatableColor";
 import { EmitterShapeType } from "../../Enums";
 
 /**
@@ -22,7 +17,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     fill;
     life;
     name?: string;
-    particles?: RecursivePartial<IParticles>;
+    particles?: RecursivePartial<IParticlesOptions>;
     position?: RecursivePartial<ICoordinates>;
     rate;
     shape: EmitterShapeType | keyof typeof EmitterShapeType;
@@ -68,7 +63,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
         this.name = data.name;
 
         if (data.particles !== undefined) {
-            this.particles = deepExtend({}, data.particles) as RecursivePartial<IParticles>;
+            this.particles = deepExtend({}, data.particles) as RecursivePartial<IParticlesOptions>;
         }
 
         this.rate.load(data.rate);

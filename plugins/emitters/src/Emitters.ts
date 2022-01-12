@@ -1,9 +1,8 @@
 import type { Container, Engine, IContainerPlugin, ICoordinates, IDelta } from "tsparticles-engine";
 import { EmitterInstance } from "./EmitterInstance";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
-import type { RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
+import type { IOptions, RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
 import { Emitter } from "./Options/Classes/Emitter";
-import type { IOptions } from "tsparticles-engine/Options/Interfaces/IOptions";
 import { EmitterClickMode } from "./Enums";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 import type { EmitterContainer } from "./EmitterContainer";

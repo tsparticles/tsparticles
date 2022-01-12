@@ -1,12 +1,11 @@
-import type { ITrail } from "../../../Interfaces/Particles/Move/ITrail";
+import type { IMoveTrail, IOptionLoader } from "../../../Interfaces";
 import type { RecursivePartial } from "../../../../Types";
 import { OptionsColor } from "../../OptionsColor";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 /**
  * @category Options
  */
-export class Trail implements ITrail, IOptionLoader<ITrail> {
+export class MoveTrail implements IMoveTrail, IOptionLoader<IMoveTrail> {
     enable;
     length;
     fillColor;
@@ -19,7 +18,7 @@ export class Trail implements ITrail, IOptionLoader<ITrail> {
         this.fillColor.value = "#000000";
     }
 
-    load(data?: RecursivePartial<ITrail>): void {
+    load(data?: RecursivePartial<IMoveTrail>): void {
         if (!data) {
             return;
         }

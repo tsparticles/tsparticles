@@ -1,15 +1,14 @@
-import type { IMove } from "../../../Interfaces/Particles/Move/IMove";
-import { Attract } from "./Attract";
+import type { IMove, IOptionLoader } from "../../../Interfaces";
+import { MoveAttract } from "./MoveAttract";
 import { MoveDirection, MoveDirectionAlt } from "../../../../Enums";
-import { Trail } from "./Trail";
+import { MoveTrail } from "./MoveTrail";
 import type { RangeValue, RecursivePartial } from "../../../../Types";
-import { Path } from "./Path/Path";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import { Path } from "./Path";
 import { MoveAngle } from "./MoveAngle";
 import { MoveGravity } from "./MoveGravity";
 import { OutModes } from "./OutModes";
 import { deepExtend, setRangeValue } from "../../../../Utils";
-import type { ICoordinates, IDistance } from "../../../../Core/Interfaces";
+import type { ICoordinates, IDistance } from "../../../../Core";
 import { Spin } from "./Spin";
 
 /**
@@ -39,7 +38,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
     constructor() {
         this.angle = new MoveAngle();
-        this.attract = new Attract();
+        this.attract = new MoveAttract();
         this.center = {
             x: 50,
             y: 50,
@@ -58,7 +57,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.speed = 2;
         this.spin = new Spin();
         this.straight = false;
-        this.trail = new Trail();
+        this.trail = new MoveTrail();
         this.vibrate = false;
         this.warp = false;
     }

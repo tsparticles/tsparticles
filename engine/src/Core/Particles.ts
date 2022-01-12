@@ -2,8 +2,7 @@ import type { Container } from "./Container";
 import { Particle } from "./Particle";
 import { getRangeMax, getRangeMin, getRangeValue, loadParticlesOptions, randomInRange, setRangeValue } from "../Utils";
 import type { RecursivePartial } from "../Types";
-import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
-import type { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";
+import type { IParticlesOptions, IParticlesDensity } from "../Options";
 import type { ICoordinates, IDelta, IMouseData, IParticle, IParticlesFrequencies, IRgb } from "./Interfaces";
 import { InteractionManager, ParticlesMover, Plugins, Point, QuadTree, Rectangle } from "./Utils";
 import { ClickMode, EventType } from "../Enums";
@@ -288,7 +287,7 @@ export class Particles {
     }
 
     /* ---------- tsParticles functions - modes events ------------ */
-    push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticles>, group?: string): void {
+    push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticlesOptions>, group?: string): void {
         this.pushing = true;
 
         for (let i = 0; i < nb; i++) {
@@ -300,7 +299,7 @@ export class Particles {
 
     addParticle(
         position?: ICoordinates,
-        overrideOptions?: RecursivePartial<IParticles>,
+        overrideOptions?: RecursivePartial<IParticlesOptions>,
         group?: string
     ): Particle | undefined {
         const container = this.container,
@@ -439,7 +438,7 @@ export class Particles {
         this.interactionManager.handleClickMode(mode);
     }
 
-    private applyDensity(options: IParticles, manualCount: number, group?: string) {
+    private applyDensity(options: IParticlesOptions, manualCount: number, group?: string) {
         if (!options.number.density?.enable) {
             return;
         }
@@ -460,7 +459,7 @@ export class Particles {
         }
     }
 
-    private initDensityFactor(densityOptions: IDensity): number {
+    private initDensityFactor(densityOptions: IParticlesDensity): number {
         const container = this.container;
 
         if (!container.canvas.element || !densityOptions.enable) {
@@ -475,7 +474,7 @@ export class Particles {
 
     private pushParticle(
         position?: ICoordinates,
-        overrideOptions?: RecursivePartial<IParticles>,
+        overrideOptions?: RecursivePartial<IParticlesOptions>,
         group?: string,
         initializer?: (particle: Particle) => boolean
     ): Particle | undefined {

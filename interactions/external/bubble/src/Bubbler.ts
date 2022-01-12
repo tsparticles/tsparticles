@@ -1,4 +1,4 @@
-import type { Container, Particle } from "tsparticles-engine";
+import type { BubbleDiv, DivEvent, Container, Particle } from "tsparticles-engine";
 import {
     clamp,
     colorMix,
@@ -21,10 +21,17 @@ import {
     Circle,
     Rectangle,
 } from "tsparticles-engine";
-import type { DivEvent } from "tsparticles-engine/Options/Classes/Interactivity/Events/DivEvent";
-import type { BubbleDiv } from "tsparticles-engine/Options/Classes/Interactivity/Modes/BubbleDiv";
 import { ProcessBubbleType } from "./ProcessBubbleType";
 import type { IBubblerProcessParam } from "./IBubblerProcessParam";
+
+interface IContainerBubble {
+    clicking?: boolean;
+    durationEnd?: boolean;
+}
+
+type ContainerBubbler = Container & {
+    bubble?: IContainerBubble;
+};
 
 function calculateBubbleValue(
     particleValue: number,
@@ -50,12 +57,20 @@ function calculateBubbleValue(
 export class Bubbler extends ExternalInteractorBase {
     handleClickMode: (mode: ClickMode | string) => void;
 
-    constructor(container: Container) {
+    constructor(container: ContainerBubbler) {
         super(container);
+
+        if (!container.bubble) {
+            container.bubble = {};
+        }
 
         this.handleClickMode = (mode) => {
             if (mode !== ClickMode.bubble) {
                 return;
+            }
+
+            if (!container.bubble) {
+                container.bubble = {};
             }
 
             container.bubble.clicking = true;
@@ -170,7 +185,7 @@ export class Bubbler extends ExternalInteractorBase {
     }
 
     private process(particle: Particle, distMouse: number, timeSpent: number, data: IBubblerProcessParam): void {
-        const container = this.container,
+        const container = this.container as ContainerBubbler,
             bubbleParam = data.bubbleObj.optValue;
 
         if (bubbleParam === undefined) {
@@ -187,6 +202,10 @@ export class Bubbler extends ExternalInteractorBase {
 
         if (bubbleParam === particlesParam) {
             return;
+        }
+
+        if (!container.bubble) {
+            container.bubble = {};
         }
 
         if (!container.bubble.durationEnd) {
@@ -225,12 +244,16 @@ export class Bubbler extends ExternalInteractorBase {
     }
 
     private clickBubble(): void {
-        const container = this.container,
+        const container = this.container as ContainerBubbler,
             options = container.actualOptions,
             mouseClickPos = container.interactivity.mouse.clickPosition;
 
         if (!mouseClickPos) {
             return;
+        }
+
+        if (!container.bubble) {
+            container.bubble = {};
         }
 
         const distance = container.retina.bubbleModeDistance,

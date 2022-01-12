@@ -5,20 +5,16 @@
 import { Canvas } from "./Canvas";
 import { Particles } from "./Particles";
 import { Retina } from "./Retina";
-import type { IOptions } from "../Options/Interfaces/IOptions";
+import type { IOptions, Options } from "../Options";
 import type { RecursivePartial } from "../Types";
-import type { Options } from "../Options/Classes/Options";
 import { animate, cancelAnimation, getRangeValue, loadContainerOptions } from "../Utils";
 import type { Particle } from "./Particle";
 import { EventListeners, FrameManager, Plugins, Vector } from "./Utils";
 import type {
-    IAttract,
-    IBubble,
     IContainerInteractivity,
     IContainerPlugin,
     ICoordinates,
     IMovePathGenerator,
-    IRepulse,
     IRgb,
     IShapeDrawer,
 } from "./Interfaces";
@@ -48,9 +44,6 @@ export class Container {
     lifeTime;
     fpsLimit;
     interactivity: IContainerInteractivity;
-    bubble: IBubble;
-    repulse: IRepulse;
-    attract: IAttract;
     zLayers;
     responsiveMaxWidth?: number;
 
@@ -151,9 +144,6 @@ export class Container {
                 inside: false,
             },
         };
-        this.bubble = {};
-        this.repulse = { particles: [] };
-        this.attract = { particles: [] };
         this.plugins = new Map<string, IContainerPlugin>();
         this.drawers = new Map<string, IShapeDrawer>();
         this.density = 1;

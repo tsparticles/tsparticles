@@ -1,14 +1,14 @@
-import type { IInteractivity } from "./Interactivity/IInteractivity";
-import type { IParticles } from "./Particles/IParticles";
-import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask";
-import type { IBackground } from "./Background/IBackground";
+import type { IInteractivity } from "./Interactivity";
+import type { IParticlesOptions } from "./Particles";
+import type { IBackgroundMask } from "./BackgroundMask";
+import type { IBackground } from "./Background";
 import type { RangeValue, RecursivePartial, SingleOrMultiple } from "../../Types";
-import type { ITheme } from "./Theme/ITheme";
-import type { IFullScreen } from "./FullScreen/IFullScreen";
-import type { IMotion } from "./Motion/IMotion";
+import type { ITheme } from "./Theme";
+import type { IFullScreen } from "./FullScreen";
+import type { IMotion } from "./Motion";
 import type { IManualParticle } from "./IManualParticle";
 import type { IResponsive } from "./IResponsive";
-import type { IColor } from "../../Core/Interfaces";
+import type { IColor } from "../../Core";
 
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`
@@ -69,7 +69,7 @@ export interface IOptions {
     /**
      * The particles options
      */
-    particles: IParticles;
+    particles: IParticlesOptions;
 
     /**
      * Enables or disabled the animation on window blur

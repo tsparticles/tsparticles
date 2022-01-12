@@ -1,4 +1,4 @@
-import type { IValueWithRandom } from "tsparticles-engine/Options/Interfaces/IValueWithRandom";
+import type { IValueWithRandom } from "tsparticles-engine";
 import type { IAbsorberSizeLimit } from "./IAbsorberSizeLimit";
 
 export interface IAbsorberSize extends IValueWithRandom {

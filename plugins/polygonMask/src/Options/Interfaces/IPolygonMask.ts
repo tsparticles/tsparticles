@@ -1,7 +1,7 @@
 import type { IPolygonMaskDraw } from "./IPolygonMaskDraw";
 import type { IPolygonMaskMove } from "./IPolygonMaskMove";
 import type { IPolygonMaskInline } from "./IPolygonMaskInline";
-import type { ICoordinates } from "tsparticles-engine/Core/Interfaces/ICoordinates";
+import type { ICoordinates } from "tsparticles-engine";
 import type { IPolygonMaskLocalSvg } from "./IPolygonMaskLocalSvg";
 import type { PolygonMaskType } from "../../Enums";
 

@@ -1,8 +1,7 @@
 import type { IPolygonMaskDraw } from "../Interfaces/IPolygonMaskDraw";
 import { PolygonMaskDrawStroke } from "./PolygonMaskDrawStroke";
-import type { RecursivePartial } from "tsparticles-engine";
-import { OptionsColor } from "tsparticles-engine/Options/Classes/OptionsColor";
-import type { IOptionLoader } from "tsparticles-engine/Options/Interfaces/IOptionLoader";
+import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import { OptionsColor } from "tsparticles-engine";
 
 /**
  * @category Polygon Mask Plugin

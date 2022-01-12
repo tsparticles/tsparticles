@@ -1,9 +1,9 @@
-import type { IBounce } from "../../../Interfaces/Particles/Bounce/IBounce";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { IParticlesBounce } from "../../../Interfaces";
+import type { IOptionLoader } from "../../../Interfaces";
 import type { RangeValue, RecursivePartial } from "../../../../Types";
 import { setRangeValue } from "../../../../Utils";
 
-export class Bounce implements IBounce, IOptionLoader<IBounce> {
+export class ParticlesBounce implements IParticlesBounce, IOptionLoader<IParticlesBounce> {
     horizontal: RangeValue;
     vertical: RangeValue;
 
@@ -12,7 +12,7 @@ export class Bounce implements IBounce, IOptionLoader<IBounce> {
         this.vertical = 1;
     }
 
-    load(data?: RecursivePartial<IBounce>): void {
+    load(data?: RecursivePartial<IParticlesBounce>): void {
         if (!data) {
             return;
         }

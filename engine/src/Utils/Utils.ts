@@ -9,15 +9,10 @@ import type {
 } from "../Core";
 import { DivMode, OutModeDirection } from "../Enums";
 import type { RecursivePartial, SingleOrMultiple } from "../Types";
-import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
-import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
+import { DivEvent, Options, ParticlesOptions } from "../Options";
+import type { IModeDiv, IOptionLoader, IOptions, IParticlesOptions } from "../Options";
 import { collisionVelocity, getDistances, getRangeValue } from "./NumberUtils";
 import { Vector } from "../Core";
-import { Options } from "../Options/Classes/Options";
-import type { IOptions } from "../Options/Interfaces/IOptions";
-import { IParticles } from "../Options/Interfaces/Particles/IParticles";
-import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
-import { IOptionLoader } from "../Options/Interfaces/IOptionLoader";
 
 declare global {
     interface Window {
@@ -407,7 +402,7 @@ export function loadContainerOptions(...sourceOptionsArr: RecursivePartial<IOpti
 }
 
 export function loadParticlesOptions(
-    ...sourceOptionsArr: RecursivePartial<IParticles | undefined>[]
+    ...sourceOptionsArr: RecursivePartial<IParticlesOptions | undefined>[]
 ): ParticlesOptions {
     const options = new ParticlesOptions();
 

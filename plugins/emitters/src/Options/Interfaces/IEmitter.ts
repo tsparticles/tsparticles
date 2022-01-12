@@ -1,11 +1,14 @@
-import type { ICoordinates } from "tsparticles-engine";
-import type { MoveDirection, MoveDirectionAlt } from "tsparticles-engine";
-import type { IParticles } from "tsparticles-engine/Options/Interfaces/Particles/IParticles";
+import type {
+    ICoordinates,
+    MoveDirection,
+    MoveDirectionAlt,
+    IParticlesOptions,
+    RecursivePartial,
+    IAnimatableColor,
+} from "tsparticles-engine";
 import type { IEmitterRate } from "./IEmitterRate";
 import type { IEmitterLife } from "./IEmitterLife";
-import type { RecursivePartial } from "tsparticles-engine";
 import type { IEmitterSize } from "./IEmitterSize";
-import type { IAnimatableColor } from "tsparticles-engine/Options/Interfaces/IAnimatableColor";
 import type { EmitterShapeType } from "../../Enums";
 
 /**
@@ -49,7 +52,7 @@ export interface IEmitter {
      * These settings will overrides other particles settings for the particles emitted by this emitter
      * Particles number options won't override anything, they will be ignored completely
      */
-    particles?: RecursivePartial<IParticles>;
+    particles?: RecursivePartial<IParticlesOptions>;
 
     /**
      * The relative position (in percent) of the emitter, where particles spawns.

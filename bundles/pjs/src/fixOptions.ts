@@ -1,12 +1,16 @@
-import type { ISourceOptions, SingleOrMultiple, RecursivePartial } from "tsparticles-engine";
-import type { IStroke } from "tsparticles-engine/Options/Interfaces/Particles/IStroke";
-import type { IShapeValues } from "tsparticles-engine/Options/Interfaces/Particles/Shape/IShapeValues";
-import type { IOpacityAnimation } from "tsparticles-engine/Options/Interfaces/Particles/Opacity/IOpacityAnimation";
-import type { ISizeAnimation } from "tsparticles-engine/Options/Interfaces/Particles/Size/ISizeAnimation";
-import type { ILinks } from "tsparticles-engine/Options/Interfaces/Particles/Links/ILinks";
-import type { IClickEvent } from "tsparticles-engine/Options/Interfaces/Interactivity/Events/IClickEvent";
-import type { IHoverEvent } from "tsparticles-engine/Options/Interfaces/Interactivity/Events/IHoverEvent";
-import type { IGrabLinks } from "tsparticles-engine/Options/Interfaces/Interactivity/Modes/IGrabLinks";
+import type {
+    IClickEvent,
+    IGrabLinks,
+    IHoverEvent,
+    ILinks,
+    IOpacityAnimation,
+    IShapeValues,
+    ISizeAnimation,
+    ISourceOptions,
+    IStroke,
+    SingleOrMultiple,
+    RecursivePartial,
+} from "tsparticles-engine";
 import { deepExtend, setRangeValue } from "tsparticles-engine";
 import type { IParticlesJSOptions } from "./IParticlesJSOptions";
 

@@ -1,5 +1,5 @@
 import type { CollisionMode } from "../../../../Enums";
-import type { IBounce } from "../Bounce/IBounce";
+import type { IParticlesBounce } from "../Bounce";
 import type { ICollisionsOverlap } from "./ICollisionsOverlap";
 
 /**
@@ -7,7 +7,7 @@ import type { ICollisionsOverlap } from "./ICollisionsOverlap";
  * [[include:Collisions.md]]
  */
 export interface ICollisions {
-    bounce: IBounce;
+    bounce: IParticlesBounce;
     enable: boolean;
     mode: CollisionMode | keyof typeof CollisionMode;
     overlap: ICollisionsOverlap;

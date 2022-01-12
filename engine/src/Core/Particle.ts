@@ -1,6 +1,6 @@
 import type { Container } from "./Container";
-import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
-import { Shape } from "../Options/Classes/Particles/Shape/Shape";
+import type { IParticlesOptions } from "../Options";
+import { Shape } from "../Options";
 import {
     AnimationStatus,
     DestroyMode,
@@ -125,7 +125,7 @@ export class Particle implements IParticle {
         readonly id: number,
         readonly container: Container,
         position?: ICoordinates,
-        overrideOptions?: RecursivePartial<IParticles>,
+        overrideOptions?: RecursivePartial<IParticlesOptions>,
         readonly group?: string
     ) {
         this.fill = true;

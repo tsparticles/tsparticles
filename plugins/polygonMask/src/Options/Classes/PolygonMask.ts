@@ -3,10 +3,8 @@ import { PolygonMaskInlineArrangement, PolygonMaskInlineArrangementAlt, PolygonM
 import { PolygonMaskDraw } from "./PolygonMaskDraw";
 import { PolygonMaskMove } from "./PolygonMaskMove";
 import { PolygonMaskInline } from "./PolygonMaskInline";
-import type { RecursivePartial } from "tsparticles-engine";
-import type { ICoordinates } from "tsparticles-engine";
+import type { ICoordinates, IOptionLoader, RecursivePartial } from "tsparticles-engine";
 import { PolygonMaskLocalSvg } from "./PolygonMaskLocalSvg";
-import type { IOptionLoader } from "tsparticles-engine/Options/Interfaces/IOptionLoader";
 import { deepExtend } from "tsparticles-engine";
 
 /**

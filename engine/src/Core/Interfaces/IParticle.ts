@@ -1,9 +1,9 @@
-import type { IStroke } from "../../Options/Interfaces/Particles/IStroke";
+import type { IStroke } from "../../Options";
 import type { ICoordinates3d } from "./ICoordinates";
 import type { IParticleTiltValueAnimation, IParticleValueAnimation } from "./IParticleValueAnimation";
 import type { IShapeValues } from "./IShapeValues";
 import type { IBubbleParticleData } from "./IBubbleParticleData";
-import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
+import type { IParticlesOptions } from "../../Options/";
 import type { IHsl, IRgb } from "./Colors";
 import type { IParticleHslAnimation } from "./IParticleHslAnimation";
 import type { Vector } from "../Utils";
@@ -37,7 +37,7 @@ export interface IParticle {
     readonly size: IParticleValueAnimation<number>;
     readonly tilt?: IParticleTiltValueAnimation;
     readonly strokeColor?: IParticleHslAnimation;
-    readonly options: IParticles;
+    readonly options: IParticlesOptions;
     readonly position: Vector;
     readonly shadowColor: IRgb | undefined;
     readonly shape?: string;

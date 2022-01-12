@@ -1,4 +1,4 @@
-import type { Container, ICoordinates } from "tsparticles-engine";
+import type { Container, ICoordinates, IParticle } from "tsparticles-engine";
 import {
     Circle,
     ExternalInteractorBase,
@@ -13,6 +13,17 @@ import {
     mouseMoveEvent,
 } from "tsparticles-engine";
 
+interface IContainerAttract {
+    particles: IParticle[];
+    finish?: boolean;
+    count?: number;
+    clicking?: boolean;
+}
+
+type ContainerAttractor = Container & {
+    attract?: IContainerAttract;
+};
+
 /**
  * Particle attract manager
  * @category Interactions
@@ -20,14 +31,22 @@ import {
 export class Attractor extends ExternalInteractorBase {
     handleClickMode: (mode: string) => void;
 
-    constructor(container: Container) {
+    constructor(container: ContainerAttractor) {
         super(container);
+
+        if (!container.attract) {
+            container.attract = { particles: [] };
+        }
 
         this.handleClickMode = (mode) => {
             const options = this.container.actualOptions;
 
             if (mode !== ClickMode.attract) {
                 return;
+            }
+
+            if (!container.attract) {
+                container.attract = { particles: [] };
             }
 
             container.attract.clicking = true;
@@ -42,6 +61,10 @@ export class Attractor extends ExternalInteractorBase {
 
             setTimeout(() => {
                 if (!container.destroyed) {
+                    if (!container.attract) {
+                        container.attract = { particles: [] };
+                    }
+
                     container.attract.clicking = false;
                 }
             }, options.interactivity.modes.attract.duration * 1000);
@@ -121,7 +144,11 @@ export class Attractor extends ExternalInteractorBase {
     }
 
     private clickAttract(): void {
-        const container = this.container;
+        const container = this.container as ContainerAttractor;
+
+        if (!container.attract) {
+            container.attract = { particles: [] };
+        }
 
         if (!container.attract.finish) {
             if (!container.attract.count) {

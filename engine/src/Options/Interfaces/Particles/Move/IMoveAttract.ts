@@ -1,9 +1,9 @@
-import type { ICoordinates } from "../../../../Core/Interfaces";
+import type { ICoordinates } from "../../../../Core";
 
 /**
  * @category Options
  */
-export interface IAttract {
+export interface IMoveAttract {
     distance: number;
 
     enable: boolean;

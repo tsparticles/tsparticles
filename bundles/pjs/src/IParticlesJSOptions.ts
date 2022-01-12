@@ -1,14 +1,18 @@
-import type { IOptions, InteractivityDetect } from "tsparticles-engine";
-import type { IStroke } from "tsparticles-engine/Options/Interfaces/Particles/IStroke";
-import type { IShapeValues } from "tsparticles-engine/Options/Interfaces/Particles/Shape/IShapeValues";
-import type { ILinks } from "tsparticles-engine/Options/Interfaces/Particles/Links/ILinks";
-import type { IParticles } from "tsparticles-engine/Options/Interfaces/Particles/IParticles";
-import type { IHoverEvent } from "tsparticles-engine/Options/Interfaces/Interactivity/Events/IHoverEvent";
-import type { IClickEvent } from "tsparticles-engine/Options/Interfaces/Interactivity/Events/IClickEvent";
-import type { IGrabLinks } from "tsparticles-engine/Options/Interfaces/Interactivity/Modes/IGrabLinks";
-import type { IOpacityAnimation } from "tsparticles-engine/Options/Interfaces/Particles/Opacity/IOpacityAnimation";
-import type { ISizeAnimation } from "tsparticles-engine/Options/Interfaces/Particles/Size/ISizeAnimation";
-import type { OutMode, OutModeAlt } from "tsparticles-engine";
+import type {
+    IOptions,
+    InteractivityDetect,
+    IStroke,
+    IShapeValues,
+    ILinks,
+    IParticlesOptions,
+    IHoverEvent,
+    IClickEvent,
+    IGrabLinks,
+    IOpacityAnimation,
+    ISizeAnimation,
+    OutMode,
+    OutModeAlt,
+} from "tsparticles-engine";
 
 export type IParticlesJSOptions = IOptions & {
     retina_detect?: boolean;
@@ -33,7 +37,7 @@ export type IParticlesJSOptions = IOptions & {
             };
         };
     };
-    particles: IParticles & {
+    particles: IParticlesOptions & {
         line_linked?: ILinks;
         move: {
             out_mode?: OutMode | keyof typeof OutMode | OutModeAlt;

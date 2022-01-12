@@ -1,12 +1,12 @@
-import type { IAttract } from "./IAttract";
+import type { IMoveAttract } from "./IMoveAttract";
 import type { MoveDirection, MoveDirectionAlt, OutMode, OutModeAlt } from "../../../../Enums";
-import type { ITrail } from "./ITrail";
-import type { IPath } from "./Path/iPath";
+import type { IMoveTrail } from "./IMoveTrail";
+import type { IPath } from "./Path";
 import type { IMoveAngle } from "./IMoveAngle";
 import type { IMoveGravity } from "./IMoveGravity";
 import type { IOutModes } from "./IOutModes";
 import type { RangeValue } from "../../../../Types";
-import { ICoordinates, IDistance } from "../../../../Core/Interfaces";
+import { ICoordinates, IDistance } from "../../../../Core";
 import { ISpin } from "./ISpin";
 
 /**
@@ -15,7 +15,7 @@ import { ISpin } from "./ISpin";
  */
 export interface IMove {
     angle: number | IMoveAngle;
-    attract: IAttract;
+    attract: IMoveAttract;
     center: Partial<ICoordinates & { radius: number }>;
     decay: number;
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
@@ -30,7 +30,7 @@ export interface IMove {
     speed: RangeValue;
     spin: ISpin;
     straight: boolean;
-    trail: ITrail;
+    trail: IMoveTrail;
     vibrate: boolean;
     warp: boolean;
 }

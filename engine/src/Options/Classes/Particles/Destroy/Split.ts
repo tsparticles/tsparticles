@@ -1,14 +1,13 @@
-import type { ISplit } from "../../../Interfaces/Particles/Destroy/ISplit";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { ISplit } from "../../../Interfaces";
+import type { IOptionLoader, IParticlesOptions } from "../../../Interfaces";
 import type { RangeValue, RecursivePartial } from "../../../../Types";
-import type { IParticles } from "../../../Interfaces/Particles/IParticles";
 import { deepExtend, setRangeValue } from "../../../../Utils";
 
 export class Split implements ISplit, IOptionLoader<ISplit> {
     count: number;
     factor: RangeValue;
     rate: RangeValue;
-    particles?: RecursivePartial<IParticles>;
+    particles?: RecursivePartial<IParticlesOptions>;
     sizeOffset: boolean;
 
     constructor() {
@@ -35,7 +34,7 @@ export class Split implements ISplit, IOptionLoader<ISplit> {
             this.rate = setRangeValue(data.rate);
         }
 
-        this.particles = deepExtend({}, data.particles) as RecursivePartial<IParticles>;
+        this.particles = deepExtend({}, data.particles) as RecursivePartial<IParticlesOptions>;
 
         if (data.sizeOffset !== undefined) {
             this.sizeOffset = data.sizeOffset;

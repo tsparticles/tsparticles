@@ -1,7 +1,6 @@
 import type { IEmitterSize } from "../Interfaces/IEmitterSize";
-import type { RecursivePartial } from "tsparticles-engine/Types";
+import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
 import { SizeMode } from "tsparticles-engine";
-import type { IOptionLoader } from "tsparticles-engine/Options/Interfaces/IOptionLoader";
 
 /**
  * @category Emitters Plugin

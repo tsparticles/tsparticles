@@ -1,4 +1,4 @@
-import type { IOptions } from "./Options/Interfaces/IOptions";
+import type { IOptions } from "./Options";
 import type {
     Container,
     IInteractor,

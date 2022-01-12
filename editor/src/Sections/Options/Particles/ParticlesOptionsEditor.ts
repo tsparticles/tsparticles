@@ -1,6 +1,5 @@
 import type { EditorGroup } from "object-gui";
-import type { IParticles } from "tsparticles-engine/Options/Interfaces/Particles/IParticles";
-import type { Container } from "tsparticles-engine";
+import type { Container, IParticlesOptions } from "tsparticles-engine";
 import { LinksOptionsEditor } from "./Links/LinksOptionsEditor";
 import { OpacityOptionsEditor } from "./Opacity/OpacityOptionsEditor";
 import { ColorOptionsEditor } from "./Color/ColorOptionsEditor";
@@ -24,7 +23,7 @@ import { RollOptionsEditor } from "./Roll/RollOptionsEditor";
 
 export class ParticlesOptionsEditor extends EditorBase {
     group!: EditorGroup;
-    private options!: IParticles;
+    private options!: IParticlesOptions;
 
     constructor(particles: Container) {
         super(particles);
@@ -32,7 +31,7 @@ export class ParticlesOptionsEditor extends EditorBase {
 
     addToGroup(parent: EditorGroup, customName?: string, parentData?: unknown): void {
         this.group = parent.addGroup(customName ?? "particles", "Particles", true, parentData);
-        this.options = this.group.data as IParticles;
+        this.options = this.group.data as IParticlesOptions;
 
         this.addBounce();
         this.addCollisions();

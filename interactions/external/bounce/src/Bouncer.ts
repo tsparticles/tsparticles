@@ -16,8 +16,7 @@ import {
     Rectangle,
     Range,
 } from "tsparticles-engine";
-import type { Container, ICoordinates } from "tsparticles-engine";
-import type { DivEvent } from "tsparticles-engine/Options/Classes/Interactivity/Events/DivEvent";
+import type { Container, DivEvent, ICoordinates } from "tsparticles-engine";
 
 export class Bouncer extends ExternalInteractorBase {
     constructor(container: Container) {

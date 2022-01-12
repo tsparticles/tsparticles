@@ -1,12 +1,11 @@
-import type { IManualParticle } from "../Interfaces/IManualParticle";
-import type { IOptionLoader } from "../Interfaces/IOptionLoader";
+import type { IManualParticle, IOptionLoader, IParticlesOptions } from "../Interfaces";
+import type {} from "../Interfaces";
 import type { RecursivePartial } from "../../Types";
-import type { IParticles } from "../Interfaces/Particles/IParticles";
-import type { ICoordinates } from "../../Core/Interfaces";
+import type { ICoordinates } from "../../Core";
 import { deepExtend } from "../../Utils";
 
 export class ManualParticle implements IManualParticle, IOptionLoader<IManualParticle> {
-    options?: RecursivePartial<IParticles>;
+    options?: RecursivePartial<IParticlesOptions>;
     position?: ICoordinates;
 
     load(data?: RecursivePartial<IManualParticle>): void {
@@ -22,7 +21,7 @@ export class ManualParticle implements IManualParticle, IOptionLoader<IManualPar
         }
 
         if (data.options !== undefined) {
-            this.options = deepExtend({}, data.options) as RecursivePartial<IParticles>;
+            this.options = deepExtend({}, data.options) as RecursivePartial<IParticlesOptions>;
         }
     }
 }

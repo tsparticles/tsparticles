@@ -1,6 +1,5 @@
 import { EditorGroup, EditorType } from "object-gui";
-import type { Container } from "tsparticles-engine";
-import type { IParticlesNumber } from "tsparticles-engine/Options/Interfaces/Particles/Number/IParticlesNumber";
+import type { Container, IParticlesNumber } from "tsparticles-engine";
 import { EditorBase } from "../../../../EditorBase";
 
 export class NumberOptionsEditor extends EditorBase {

@@ -1,13 +1,12 @@
-import type { IAttract } from "../../../Interfaces/Particles/Move/IAttract";
-import type { ICoordinates } from "../../../../Core/Interfaces";
+import type { IMoveAttract, IOptionLoader } from "../../../Interfaces";
+import type { ICoordinates } from "../../../../Core";
 import type { RecursivePartial } from "../../../../Types";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { deepExtend } from "../../../../Utils";
 
 /**
  * @category Options
  */
-export class Attract implements IAttract, IOptionLoader<IAttract> {
+export class MoveAttract implements IMoveAttract, IOptionLoader<IMoveAttract> {
     distance: number;
     enable;
     rotate: ICoordinates;
@@ -21,7 +20,7 @@ export class Attract implements IAttract, IOptionLoader<IAttract> {
         };
     }
 
-    load(data?: RecursivePartial<IAttract>): void {
+    load(data?: RecursivePartial<IMoveAttract>): void {
         if (!data) {
             return;
         }

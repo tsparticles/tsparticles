@@ -8,14 +8,20 @@ import {
     SizeMode,
     Vector,
 } from "tsparticles-engine";
-import type { Engine } from "tsparticles-engine";
+import type {
+    Container,
+    ICoordinates,
+    IDelta,
+    IHsl,
+    RecursivePartial,
+    Engine,
+    IParticlesOptions,
+    IColorAnimation,
+    IHslAnimation,
+} from "tsparticles-engine";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
 import type { Emitters } from "./Emitters";
-import type { IParticles } from "tsparticles-engine/Options/Interfaces/Particles/IParticles";
 import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
-import type { Container, ICoordinates, IDelta, IHsl, RecursivePartial } from "tsparticles-engine";
-import type { IColorAnimation } from "tsparticles-engine/Options/Interfaces/IColorAnimation";
-import type { IHslAnimation } from "tsparticles-engine/Options/Interfaces/IHslAnimation";
 import { ShapeManager } from "./ShapeManager";
 import type { IEmitterShape } from "./IEmitterShape";
 
@@ -48,7 +54,7 @@ export class EmitterInstance {
 
     private readonly shape?: IEmitterShape;
     private readonly initialPosition?: ICoordinates;
-    private readonly particlesOptions: RecursivePartial<IParticles>;
+    private readonly particlesOptions: RecursivePartial<IParticlesOptions>;
 
     constructor(
         private readonly emitters: Emitters,
@@ -71,7 +77,7 @@ export class EmitterInstance {
         this.#firstSpawn = !this.emitterOptions.life.wait;
         this.#startParticlesAdded = false;
 
-        let particlesOptions = deepExtend({}, this.emitterOptions.particles) as RecursivePartial<IParticles>;
+        let particlesOptions = deepExtend({}, this.emitterOptions.particles) as RecursivePartial<IParticlesOptions>;
 
         particlesOptions ??= {};
         particlesOptions.move ??= {};
@@ -296,7 +302,7 @@ export class EmitterInstance {
         };
 
         for (let i = 0; i < quantity; i++) {
-            const particlesOptions = deepExtend({}, this.particlesOptions) as RecursivePartial<IParticles>;
+            const particlesOptions = deepExtend({}, this.particlesOptions) as RecursivePartial<IParticlesOptions>;
 
             if (this.spawnColor) {
                 const colorAnimation = this.emitterOptions.spawnColor?.animation;

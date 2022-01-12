@@ -1,11 +1,11 @@
-import type { IDensity } from "./IDensity";
+import type { IParticlesDensity } from "./IParticlesDensity";
 
 /**
  * [[include:Options/Particles/Number.md]]
  * @category Options
  */
 export interface IParticlesNumber {
-    density: IDensity;
+    density: IParticlesDensity;
     limit: number;
     value: number;
 }

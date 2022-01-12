@@ -1,6 +1,6 @@
 import type { RangeValue } from "../../../../Types";
 
-export interface IBounce {
+export interface IParticlesBounce {
     horizontal: RangeValue;
     vertical: RangeValue;
 }

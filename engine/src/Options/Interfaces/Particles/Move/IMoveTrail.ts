@@ -1,9 +1,9 @@
-import type { IColor } from "../../../../Core/Interfaces/Colors";
+import type { IColor } from "../../../../Core";
 
 /**
  * @category Options
  */
-export interface ITrail {
+export interface IMoveTrail {
     fillColor: string | IColor;
     enable: boolean;
     length: number;
