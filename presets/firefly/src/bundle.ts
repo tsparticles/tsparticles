@@ -1,5 +1,5 @@
-import { tsParticles } from "tsparticles";
 import { loadFireflyPreset } from ".";
+import { tsParticles } from "tsparticles";
 
 loadFireflyPreset(tsParticles);
 

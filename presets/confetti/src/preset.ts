@@ -1,10 +1,10 @@
 import type { Engine, RecursivePartial } from "tsparticles";
 import { IConfettiOptions } from "./IConfettiOptions";
-import { tsParticles } from "tsparticles";
 import { loadOptions } from "./options";
+import { tsParticles } from "tsparticles";
 
-function loadPreset(main: Engine, confettiOptions: RecursivePartial<IConfettiOptions>, override = false): void {
-    main.addPreset("confetti", loadOptions(confettiOptions), override);
+function loadPreset(engine: Engine, confettiOptions: RecursivePartial<IConfettiOptions>, override = false): void {
+    engine.addPreset("confetti", loadOptions(confettiOptions), override);
 }
 
 export function loadConfettiPreset(main: Engine): void {

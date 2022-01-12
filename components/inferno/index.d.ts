@@ -19,7 +19,7 @@ export interface IParticlesProps {
 	className?: string;
 	canvasClassName?: string;
 	container?: RefObject<Container>;
-	init?: (tsParticles: Engine) => Promise<void>;
+	init?: (engine: Engine) => Promise<void>;
 	loaded?: (container: Container) => Promise<void>;
 }
 

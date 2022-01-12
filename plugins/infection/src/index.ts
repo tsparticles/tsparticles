@@ -39,9 +39,9 @@ class Plugin implements IPlugin {
     }
 }
 
-export function loadInfectionPlugin(tsParticles: Engine): void {
+export function loadInfectionPlugin(engine: Engine): void {
     const plugin = new Plugin();
 
-    tsParticles.addPlugin(plugin);
-    tsParticles.addInteractor("particlesInfection", (container) => new ParticlesInfecter(container));
+    engine.addPlugin(plugin);
+    engine.addInteractor("particlesInfection", (container) => new ParticlesInfecter(container));
 }

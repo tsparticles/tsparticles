@@ -93,19 +93,19 @@ class EmittersPlugin implements IPlugin {
     }
 }
 
-export async function loadEmittersPlugin(tsParticles: EmittersMain): Promise<void> {
+export async function loadEmittersPlugin(engine: EmittersMain): Promise<void> {
     const plugin = new EmittersPlugin();
 
-    await tsParticles.addPlugin(plugin);
+    await engine.addPlugin(plugin);
 
-    if (!tsParticles.addEmitterShape) {
-        tsParticles.addEmitterShape = (name: string, shape: IEmitterShape) => {
+    if (!engine.addEmitterShape) {
+        engine.addEmitterShape = (name: string, shape: IEmitterShape) => {
             ShapeManager.addShape(name, shape);
         };
     }
 
-    tsParticles.addEmitterShape(EmitterShapeType.circle, new CircleShape());
-    tsParticles.addEmitterShape(EmitterShapeType.square, new SquareShape());
+    engine.addEmitterShape(EmitterShapeType.circle, new CircleShape());
+    engine.addEmitterShape(EmitterShapeType.square, new SquareShape());
 }
 
 export * from "./EmittersMain";

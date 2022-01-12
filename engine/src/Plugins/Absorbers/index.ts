@@ -98,8 +98,8 @@ class AbsorbersPlugin implements IPlugin {
     }
 }
 
-export async function loadAbsorbersPlugin(tsParticles: Engine): Promise<void> {
+export async function loadAbsorbersPlugin(engine: Engine): Promise<void> {
     const plugin = new AbsorbersPlugin();
 
-    await tsParticles.addPlugin(plugin);
+    await engine.addPlugin(plugin);
 }

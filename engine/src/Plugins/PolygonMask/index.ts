@@ -46,7 +46,7 @@ class PolygonMaskPlugin implements IPlugin {
     }
 }
 
-export async function loadPolygonMaskPlugin(tsParticles: Engine): Promise<void> {
+export async function loadPolygonMaskPlugin(engine: Engine): Promise<void> {
     if (!isSsr() && !("SVGPathSeg" in window)) {
         await import(
             /* webpackChunkName: "tsparticles.pathseg.min" */
@@ -59,5 +59,5 @@ export async function loadPolygonMaskPlugin(tsParticles: Engine): Promise<void> 
 
     const plugin = new PolygonMaskPlugin();
 
-    await tsParticles.addPlugin(plugin);
+    await engine.addPlugin(plugin);
 }

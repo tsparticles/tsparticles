@@ -22,8 +22,8 @@ class LinksPlugin implements IPlugin {
     }
 }
 
-export async function loadPlugin(tsParticles: Engine): Promise<void> {
+export async function loadPlugin(engine: Engine): Promise<void> {
     const plugin = new LinksPlugin();
 
-    await tsParticles.addPlugin(plugin);
+    await engine.addPlugin(plugin);
 }
