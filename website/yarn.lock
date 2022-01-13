@@ -421,6 +421,11 @@ object-assign@^4.0.1:
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
   integrity sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=
 
+object-gui@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/object-gui/-/object-gui-1.1.1.tgz#f205a44e3a808d087faedebe2d87c78e24e23f21"
+  integrity sha512-ahXwt0G7vZmUNtMCWTcJbzRybj3bMx4xTTmLas6y6BsfZwlyMjIURIksFGNnER9jih6PHa8gs50lj5cefZeWaA==
+
 once@^1.3.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/once/-/once-1.4.0.tgz#583b1aa775961d4b113ac17d9c50baef9dd76bd1"
@@ -549,9 +554,9 @@ rimraf@^3.0.2:
     glob "^7.1.3"
 
 sass@^1.37.5:
-  version "1.47.0"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.47.0.tgz#c22dd0eed2e4a991430dae0b03c8e694bc41c2b4"
-  integrity sha512-GtXwvwgD7/6MLUZPnlA5/8cdRgC9SzT5kAnnJMRmEZQFRE3J56Foswig4NyyyQGsnmNvg6EUM/FP0Pe9Y2zywQ==
+  version "1.48.0"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.48.0.tgz#b53cfccc1b8ab4be375cc54f306fda9d4711162c"
+  integrity sha512-hQi5g4DcfjcipotoHZ80l7GNJHGqQS5LwMBjVYB/TaT0vcSSpbgM8Ad7cgfsB2M0MinbkEQQPO9+sjjSiwxqmw==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
     immutable "^4.0.0"
@@ -637,6 +642,98 @@ tslib@^2.0.3:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
   integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
+
+tsparticles-editor@^2.0.0-beta.4:
+  version "2.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/tsparticles-editor/-/tsparticles-editor-2.0.0-beta.4.tgz#60f3a3a42ea185dd71b2db8d4d39988462e50a4a"
+  integrity sha512-lSaetnuq4285L+iiBerdl2MhCnS5nsJ7pymffBoriD4U/su/yyHq45ux4f4+LarIwFOlJLmhhtKoNxAEaNtCQg==
+  dependencies:
+    object-gui "^1.1.1"
+    tsparticles-engine "^2.0.0-beta.3"
+    tsparticles-plugin-absorbers "^2.0.0-beta.4"
+    tsparticles-plugin-emitters "^2.0.0-beta.4"
+    tsparticles-plugin-infection "^2.0.0-beta.4"
+
+tsparticles-engine@^2.0.0-beta.3:
+  version "2.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.0-beta.3.tgz#02a117b8ecce5f4a07a1409434acf7503e317f36"
+  integrity sha512-vePzn/pI8dYOukHND34ttGyMicKdGsmabvqJpFA2Q91PcMhu9z1C8v9EH80MGkcf4DdjxyaHnZFdo7P3NiBOrA==
+
+tsparticles-interaction-particles-links@^2.0.0-beta.4:
+  version "2.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/tsparticles-interaction-particles-links/-/tsparticles-interaction-particles-links-2.0.0-beta.4.tgz#adea61f495fee1fd84d76e0828db10f97fdc67a9"
+  integrity sha512-QNBcGF3rnsQX7PbH4/U3ituvwS9MpcGwnVoLXydMUROGuE/G5p6f+TiBP+s+KSf4MJ+6iFE07fbZHLHymKiPTg==
+  dependencies:
+    tsparticles-engine "^2.0.0-beta.3"
+
+tsparticles-plugin-absorbers@^2.0.0-beta.4:
+  version "2.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/tsparticles-plugin-absorbers/-/tsparticles-plugin-absorbers-2.0.0-beta.4.tgz#bb0b44b861fb3d4b431fbedb5363a0c65019e4be"
+  integrity sha512-RDD2TUYJMKYf3JK8Rsw0WMGOjLS/Z3JyJsQFYv2RWI0b8IVnfO/jYbQQoPq5rnnkwRd8MMZIzBbp0XPNAu5uNg==
+  dependencies:
+    tsparticles-engine "^2.0.0-beta.3"
+
+tsparticles-plugin-emitters@^2.0.0-beta.4:
+  version "2.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/tsparticles-plugin-emitters/-/tsparticles-plugin-emitters-2.0.0-beta.4.tgz#27fde100973d6db824c77439a9c2ac56190683e1"
+  integrity sha512-IFQFeD+ANIBYQBtyZl2d08AWu6i3CiTeYo0q9U6PMaBjh8RYu66J7HMAXAkGY8glXiQaNU3oI2Z69/6QFULWOA==
+  dependencies:
+    tsparticles-engine "^2.0.0-beta.3"
+
+tsparticles-plugin-infection@^2.0.0-beta.4:
+  version "2.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/tsparticles-plugin-infection/-/tsparticles-plugin-infection-2.0.0-beta.4.tgz#9359c77f110de2a586513c4ee2d8d5ef95bed69f"
+  integrity sha512-4lOJLSAlSo6MDcZ0VSs3mM3irjAG9P/2twLrK0FT76+UbIu9mWkfxb1a//gbPpmWv9TFpLSdVfgwFYT9pQImVw==
+  dependencies:
+    tsparticles-engine "^2.0.0-beta.3"
+
+tsparticles-preset-links@^2.0.0-beta.4:
+  version "2.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/tsparticles-preset-links/-/tsparticles-preset-links-2.0.0-beta.4.tgz#46cbd7d5b23af1987cbfd811c387b289a914d07d"
+  integrity sha512-o8zogNY8YCniRLmlEgHOSG2usMtNZPWZGgeFlBwXp+QM3cCm3ELu79vQPUxH6+CwXOt5z4upZHIl3QANhuhIRQ==
+  dependencies:
+    tsparticles-engine "^2.0.0-beta.3"
+    tsparticles-interaction-particles-links "^2.0.0-beta.4"
+    tsparticles-shape-circle "^2.0.0-beta.4"
+    tsparticles-updater-color "^2.0.0-beta.4"
+    tsparticles-updater-opacity "^2.0.0-beta.4"
+    tsparticles-updater-out-modes "^2.0.0-beta.4"
+    tsparticles-updater-size "^2.0.0-beta.4"
+
+tsparticles-shape-circle@^2.0.0-beta.4:
+  version "2.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/tsparticles-shape-circle/-/tsparticles-shape-circle-2.0.0-beta.4.tgz#13c773c127b4300da2e5795b06d4d618b6e19783"
+  integrity sha512-FpX5fonm6r9JZQo2rpzp17AzJg1Vx5+9WgTEWKP2+YSpaVwCe+QmJwCE9KKJ7KtTqYOC4rZUZiTEzV88nRei2Q==
+  dependencies:
+    tsparticles-engine "^2.0.0-beta.3"
+
+tsparticles-updater-color@^2.0.0-beta.4:
+  version "2.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/tsparticles-updater-color/-/tsparticles-updater-color-2.0.0-beta.4.tgz#ff4a8eb22aae91b73f28f51bd7d808e923decf65"
+  integrity sha512-jFgb2rnIlMQZPMZuxQQdBZ88Cv1YBIe+q591Tgxv/erjjDMW+GnU5pr1/mUG1Tqc846ubRRI2oUYiKZ4H6VgMw==
+  dependencies:
+    tsparticles-engine "^2.0.0-beta.3"
+
+tsparticles-updater-opacity@^2.0.0-beta.4:
+  version "2.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/tsparticles-updater-opacity/-/tsparticles-updater-opacity-2.0.0-beta.4.tgz#da7b35cb65cb99dd54525b17679ccbd9ebecf116"
+  integrity sha512-3TjbB7zE+iNpefH7fgxgAXbSM9IRDHyCne8fF+fegL13qqWIdn5sBWtqVUOtb1rRj8S6/HlD7LRQBBrGiXOOdQ==
+  dependencies:
+    tsparticles-engine "^2.0.0-beta.3"
+
+tsparticles-updater-out-modes@^2.0.0-beta.4:
+  version "2.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/tsparticles-updater-out-modes/-/tsparticles-updater-out-modes-2.0.0-beta.4.tgz#66460aac776f48885ea802c2fd81577df3551992"
+  integrity sha512-C2Y+YI4ooUxnJh9vy4L1fjFTyDdKK+hj+RiRpytoLIUG3Srtcnl84u+oLeoOFeW/q503sqLxPEL/R8o+mrfhAg==
+  dependencies:
+    tsparticles-engine "^2.0.0-beta.3"
+
+tsparticles-updater-size@^2.0.0-beta.4:
+  version "2.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/tsparticles-updater-size/-/tsparticles-updater-size-2.0.0-beta.4.tgz#70ec09caccc734bef542a0e469ea8689c92d2de0"
+  integrity sha512-YC1dvDLrfWAtEfP7Z9f9IuVF3FVAKRRJ+TiFlsPLnJWM/2G/SqL9+nwwWcnWcmd5cATiBjjCFwUP5ejUikQQQg==
+  dependencies:
+    tsparticles-engine "^2.0.0-beta.3"
 
 universalify@^0.1.0:
   version "0.1.2"
