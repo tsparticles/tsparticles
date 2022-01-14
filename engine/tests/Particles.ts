@@ -1,9 +1,9 @@
 import { describe, it } from "mocha";
-import { expect } from "chai";
 import type { ICoordinates3d } from "../src";
 import { TestCanvas } from "./Fixture/TestCanvas";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticles } from "./Fixture/TestParticles";
+import { expect } from "chai";
 
 const Window = require("window");
 

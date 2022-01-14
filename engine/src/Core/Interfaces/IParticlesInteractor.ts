@@ -1,6 +1,6 @@
-import type { Particle } from "../Particle";
-import type { IInteractor } from "./IInteractor";
 import type { IDelta } from "./IDelta";
+import type { IInteractor } from "./IInteractor";
+import type { Particle } from "../Particle";
 
 /**
  * @category Interfaces

@@ -1,25 +1,4 @@
-import type { IOptions } from "./Options";
-import type {
-    Container,
-    IInteractor,
-    IMovePathGenerator,
-    IParticleUpdater,
-    IPlugin,
-    IShapeDrawer,
-    Particle,
-} from "./Core";
-import { Loader, Plugins } from "./Core";
-import type {
-    ShapeDrawerAfterEffectFunction,
-    ShapeDrawerDestroyFunction,
-    ShapeDrawerDrawFunction,
-    ShapeDrawerInitFunction,
-    RecursivePartial,
-    SingleOrMultiple,
-    CustomEventListener,
-    CustomEventArgs,
-} from "./Types";
-import { EventDispatcher } from "./Utils";
+import { Container, EventDispatcher, Loader, RecursivePartial, IOptions, SingleOrMultiple, Particle, IShapeDrawer, ShapeDrawerDrawFunction, ShapeDrawerInitFunction, ShapeDrawerAfterEffectFunction, ShapeDrawerDestroyFunction, Plugins, IPlugin, IMovePathGenerator, IInteractor, IParticleUpdater, CustomEventListener, CustomEventArgs } from ".";
 
 /**
  * Engine class for creating the singleton on window.

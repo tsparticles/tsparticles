@@ -1,5 +1,4 @@
 import type { IManualParticle, IOptionLoader, IParticlesOptions } from "../Interfaces";
-import type {} from "../Interfaces";
 import type { RecursivePartial } from "../../Types";
 import type { ICoordinates } from "../../Core";
 import { deepExtend } from "../../Utils";

@@ -3,11 +3,14 @@ import { Links } from "./Links";
 import { Move } from "./Move";
 import { ParticlesNumber } from "./Number/ParticlesNumber";
 import { Opacity } from "./Opacity/Opacity";
+import { Orbit } from "./Orbit/Orbit";
+import type { ParticlesGroups } from "../../../Types/ParticlesGroups";
+import { Repulse } from "./Repulse/Repulse";
+import { Roll } from "./Roll/Roll";
+import { Rotate } from "./Rotate/Rotate";
+import { Shadow } from "./Shadow";
 import { Shape } from "./Shape/Shape";
 import { Size } from "./Size/Size";
-import { Rotate } from "./Rotate/Rotate";
-import type { RecursivePartial, SingleOrMultiple } from "../../../Types";
-import { Shadow } from "./Shadow";
 import { Stroke } from "./Stroke";
 import { Collisions } from "./Collisions";
 import { Twinkle } from "./Twinkle/Twinkle";
@@ -16,14 +19,11 @@ import { Life } from "./Life";
 import { ParticlesBounce } from "./Bounce";
 import { Destroy } from "./Destroy";
 import { Wobble } from "./Wobble/Wobble";
-import { Tilt } from "./Tilt/Tilt";
-import { Roll } from "./Roll/Roll";
 import { ZIndex } from "./ZIndex/ZIndex";
-import type { ParticlesGroups } from "../../../Types/ParticlesGroups";
 import { deepExtend } from "../../../Utils";
-import { Orbit } from "./Orbit/Orbit";
-import { Repulse } from "./Repulse/Repulse";
-import { AnimatableGradient } from "../AnimatableGradient";
+import { Tilt } from ".";
+import { AnimatableGradient } from "..";
+import { SingleOrMultiple, RecursivePartial } from "../../..";
 
 /**
  * [[include:Options/Particles.md]]

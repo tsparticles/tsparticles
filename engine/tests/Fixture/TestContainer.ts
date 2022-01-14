@@ -1,8 +1,8 @@
-import { tsParticles } from "../../src";
-import { Container } from "../../src/Core/Container";
-import { Options } from "../../src/Options/Classes/Options";
+import { Container } from "../../src";
 import type { IOptions } from "../../src/Options/Interfaces/IOptions";
-import { RecursivePartial } from "../../src/Types";
+import { Options } from "../../src/Options/Classes/Options";
+import { RecursivePartial } from "../../src";
+import { tsParticles } from "../../src";
 
 declare global {
     interface Window {

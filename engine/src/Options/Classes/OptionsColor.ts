@@ -1,7 +1,7 @@
-import type { IOptionsColor } from "../Interfaces/IOptionsColor";
-import type { IRgb, IHsl, IHsv, IValueColor } from "../../Core/Interfaces";
+import type { IHsl, IHsv, IRgb, IValueColor } from "../../Core/Interfaces";
 import type { RecursivePartial, SingleOrMultiple } from "../../Types";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
+import type { IOptionsColor } from "../Interfaces/IOptionsColor";
 
 /**
  * [[include:Color.md]]

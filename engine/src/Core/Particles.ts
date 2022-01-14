@@ -1,12 +1,31 @@
-import type { Container } from "./Container";
-import { Particle } from "./Particle";
-import { getRangeMax, getRangeMin, getRangeValue, loadParticlesOptions, randomInRange, setRangeValue } from "../Utils";
-import type { RecursivePartial } from "../Types";
-import type { IParticlesOptions, IParticlesDensity } from "../Options";
-import type { ICoordinates, IDelta, IMouseData, IParticle, IParticlesFrequencies, IRgb } from "./Interfaces";
-import { InteractionManager, ParticlesMover, Plugins, Point, QuadTree, Rectangle } from "./Utils";
-import { ClickMode, EventType } from "../Enums";
-import { Engine } from "../engine";
+import {
+    Particle,
+    IRgb,
+    IParticlesFrequencies,
+    Engine,
+    Container,
+    ParticlesMover,
+    InteractionManager,
+    QuadTree,
+    Rectangle,
+    Plugins,
+    EventType,
+    IDelta,
+    Point,
+    IMouseData,
+    RecursivePartial,
+    IParticlesOptions,
+    ICoordinates,
+    loadParticlesOptions,
+    getRangeValue,
+    setRangeValue,
+    randomInRange,
+    IParticle,
+    getRangeMin,
+    getRangeMax,
+    ClickMode,
+    IParticlesDensity,
+} from "..";
 
 /**
  * Particles manager object

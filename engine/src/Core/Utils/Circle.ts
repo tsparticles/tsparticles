@@ -1,5 +1,5 @@
-import { Range } from "./Range";
 import type { ICoordinates } from "../Interfaces";
+import { Range } from "./Range";
 import { Rectangle } from "./Rectangle";
 import { getDistance } from "../../Utils";
 

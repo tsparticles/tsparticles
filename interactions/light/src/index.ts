@@ -2,7 +2,7 @@ import type { Engine } from "tsparticles-engine";
 import { ExternalLighter } from "./ExternalLighter";
 import { ParticlesLighter } from "./ParticlesLighter";
 
-export function loadLightInteraction(tsParticles: Engine): void {
-    tsParticles.addInteractor("externalLight", (container) => new ExternalLighter(container));
-    tsParticles.addInteractor("particlesLight", (container) => new ParticlesLighter(container));
+export function loadLightInteraction(engine: Engine): void {
+    engine.addInteractor("externalLight", (container) => new ExternalLighter(container));
+    engine.addInteractor("particlesLight", (container) => new ParticlesLighter(container));
 }

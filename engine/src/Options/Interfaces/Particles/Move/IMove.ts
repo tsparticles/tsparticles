@@ -5,9 +5,9 @@ import type { IPath } from "./Path";
 import type { IMoveAngle } from "./IMoveAngle";
 import type { IMoveGravity } from "./IMoveGravity";
 import type { IOutModes } from "./IOutModes";
+import type { ISpin } from "./ISpin";
 import type { RangeValue } from "../../../../Types";
-import { ICoordinates, IDistance } from "../../../../Core";
-import { ISpin } from "./ISpin";
+import type { ICoordinates, IDistance } from "../../../../Core";
 
 /**
  * [[include:Options/Particles/Move.md]]

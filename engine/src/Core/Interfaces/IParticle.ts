@@ -1,16 +1,19 @@
-import type { IStroke } from "../../Options";
-import type { ICoordinates3d } from "./ICoordinates";
-import type { IParticleTiltValueAnimation, IParticleValueAnimation } from "./IParticleValueAnimation";
-import type { IShapeValues } from "./IShapeValues";
-import type { IBubbleParticleData } from "./IBubbleParticleData";
-import type { IParticlesOptions } from "../../Options/";
-import type { IHsl, IRgb } from "./Colors";
-import type { IParticleHslAnimation } from "./IParticleHslAnimation";
-import type { Vector } from "../Utils";
-import type { IParticleGradientAnimation } from "./IParticleGradientAnimation";
-import type { IParticleRetinaProps } from "./IParticleRetinaProps";
-import type { IParticleRoll } from "./IParticleRoll";
-import type { IParticleWobble } from "./IParticleWobble";
+import type {
+    IParticleRoll,
+    IParticleWobble,
+    IBubbleParticleData,
+    Vector,
+    IParticleHslAnimation,
+    IParticleGradientAnimation,
+    IHsl,
+    IParticleValueAnimation,
+    IParticleTiltValueAnimation,
+    IRgb,
+    IShapeValues,
+    IParticleRetinaProps,
+    ICoordinates3d,
+} from "..";
+import type { IParticlesOptions, IStroke } from "../..";
 
 /**
  * @category Interfaces

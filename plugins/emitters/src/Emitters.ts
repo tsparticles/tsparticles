@@ -4,7 +4,6 @@ import type { IEmitter } from "./Options/Interfaces/IEmitter";
 import type { IOptions, RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
 import { Emitter } from "./Options/Classes/Emitter";
 import { EmitterClickMode } from "./Enums";
-import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 import type { EmitterContainer } from "./EmitterContainer";
 import { deepExtend, itemFromArray } from "tsparticles-engine";
 

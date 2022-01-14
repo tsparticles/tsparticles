@@ -11,7 +11,6 @@ import { AbsorberInstance } from "./AbsorberInstance";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
 import { Absorber } from "./Options/Classes/Absorber";
 import { AbsorberClickMode } from "./Enums";
-import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
 import type { AbsorberContainer } from "./AbsorberContainer";
 import { itemFromArray } from "tsparticles-engine";
 

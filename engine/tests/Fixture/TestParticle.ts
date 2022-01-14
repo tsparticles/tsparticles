@@ -1,7 +1,7 @@
+import type { ICoordinates, ICoordinates3d } from "../../src";
 import { Container } from "../../src";
-import type { ICoordinates, ICoordinates3d } from "../../src/Core/Interfaces";
-import { Particle } from "../../src/Core/Particle";
-import { getRangeValue } from "../../src/Utils";
+import { Particle } from "../../src";
+import { getRangeValue } from "../../src";
 
 export class TestParticle {
     private container: Container;

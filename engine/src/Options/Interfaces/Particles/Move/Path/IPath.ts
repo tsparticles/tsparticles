@@ -1,11 +1,12 @@
-import type { PathOptions, RangeValue } from "../../../../../Types";
+import type { IValueWithRandom } from "../../../IValueWithRandom";
+import type { PathOptions } from "../../../../../Types";
 
 /**
  * @category Options
  */
 export interface IPath {
     clamp: boolean;
-    delay: RangeValue;
+    delay: IValueWithRandom;
     enable: boolean;
     options: PathOptions;
     generator?: string;

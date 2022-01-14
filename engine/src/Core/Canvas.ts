@@ -15,8 +15,8 @@ import {
     gradient,
     paintBase,
 } from "../Utils";
+import type { IDimension, IRgba, IParticle, IDelta, IRgb, ICoordinates, IContainerPlugin, IHsl } from "./Interfaces";
 import type { Particle } from "./Particle";
-import type { IContainerPlugin, ICoordinates, IDelta, IDimension, IHsl, IParticle, IRgb, IRgba } from "./Interfaces";
 
 /**
  * Canvas manager

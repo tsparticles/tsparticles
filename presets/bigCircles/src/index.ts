@@ -7,14 +7,14 @@ import { loadOpacityUpdater } from "tsparticles-updater-opacity";
 import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
 import { loadSizeUpdater } from "tsparticles-updater-size";
 
-export async function loadBigCirclesPreset(tsParticles: Engine): Promise<void> {
-    await loadCircleShape(tsParticles);
-    await loadColorUpdater(tsParticles);
-    await loadSizeUpdater(tsParticles);
-    await loadOpacityUpdater(tsParticles);
-    await loadOutModesUpdater(tsParticles);
-    await loadEmittersPlugin(tsParticles);
+export async function loadBigCirclesPreset(engine: Engine): Promise<void> {
+    await loadCircleShape(engine);
+    await loadColorUpdater(engine);
+    await loadSizeUpdater(engine);
+    await loadOpacityUpdater(engine);
+    await loadOutModesUpdater(engine);
+    await loadEmittersPlugin(engine);
 
-    await tsParticles.addPreset("bigCircles", options);
-    await tsParticles.addPreset("big-circles", options);
+    await engine.addPreset("bigCircles", options);
+    await engine.addPreset("big-circles", options);
 }

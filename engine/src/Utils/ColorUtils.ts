@@ -6,17 +6,17 @@ import type {
     IHsva,
     IParticle,
     IParticleHslAnimation,
+    IParticleValueAnimation,
     IRgb,
     IRgba,
     IValueColor,
-    IParticleValueAnimation,
 } from "../Core";
 import { itemFromArray } from "./Utils";
 import { randomColorValue, midColorValue } from "../Core";
 import { mix, randomInRange, setRangeValue } from "./NumberUtils";
-import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 import { AnimationStatus } from "../Enums";
 import type { HslAnimation } from "../Options/Classes/HslAnimation";
+import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 
 /**
  *

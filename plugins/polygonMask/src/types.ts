@@ -1,21 +1,21 @@
 import type { IOptions } from "tsparticles-engine";
-import type { IPolygonMask } from "./Options/Interfaces/IPolygonMask";
 import type {
     SVGPathSegArcAbs,
-    SVGPathSegCurvetoCubicAbs,
-    SVGPathSegCurvetoCubicSmoothAbs,
-    SVGPathSegCurvetoQuadraticAbs,
-    SVGPathSegCurvetoQuadraticSmoothAbs,
-    SVGPathSegLinetoAbs,
-    SVGPathSegMovetoAbs,
     SVGPathSegArcRel,
+    SVGPathSegCurvetoCubicAbs,
     SVGPathSegCurvetoCubicRel,
+    SVGPathSegCurvetoCubicSmoothAbs,
     SVGPathSegCurvetoCubicSmoothRel,
+    SVGPathSegCurvetoQuadraticAbs,
     SVGPathSegCurvetoQuadraticRel,
+    SVGPathSegCurvetoQuadraticSmoothAbs,
     SVGPathSegCurvetoQuadraticSmoothRel,
+    SVGPathSegLinetoAbs,
     SVGPathSegLinetoRel,
+    SVGPathSegMovetoAbs,
     SVGPathSegMovetoRel,
 } from "./pathseg";
+import type { IPolygonMask } from "./Options/Interfaces/IPolygonMask";
 
 export type SvgAbsoluteCoordinatesTypes =
     | SVGPathSegArcAbs

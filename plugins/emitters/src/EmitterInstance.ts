@@ -23,7 +23,6 @@ import { EmitterSize } from "./Options/Classes/EmitterSize";
 import type { Emitters } from "./Emitters";
 import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
 import { ShapeManager } from "./ShapeManager";
-import type { IEmitterShape } from "./IEmitterShape";
 
 /**
  * @category Emitters Plugin

@@ -39,9 +39,9 @@ class Plugin implements IPlugin {
     }
 }
 
-export async function loadInfectionPlugin(tsParticles: Engine): Promise<void> {
+export async function loadInfectionPlugin(engine: Engine): Promise<void> {
     const plugin = new Plugin();
 
-    await tsParticles.addPlugin(plugin);
-    await tsParticles.addInteractor("particlesInfection", (container) => new ParticlesInfecter(container));
+    await engine.addPlugin(plugin);
+    await engine.addInteractor("particlesInfection", (container) => new ParticlesInfecter(container));
 }

@@ -1,3 +1,4 @@
+import { DivMode, OutModeDirection } from "../Enums";
 import type {
     IBounds,
     ICircleBouncer,
@@ -7,7 +8,6 @@ import type {
     IRangeValue,
     IRectSideResult,
 } from "../Core";
-import { DivMode, OutModeDirection } from "../Enums";
 import type { RecursivePartial, SingleOrMultiple } from "../Types";
 import { DivEvent, Options, ParticlesOptions } from "../Options";
 import type { IModeDiv, IOptionLoader, IOptions, IParticlesOptions } from "../Options";

@@ -1,7 +1,6 @@
 import type { Container, IShapeDrawer, Particle } from "tsparticles-engine";
-import type { IImage, IImageParticle, IParticleImage } from "./Utils";
-import type { IImageShape } from "./IImageShape";
-import { downloadSvgImage, loadImage, replaceImageColor } from "./Utils";
+import { IImageShape } from "./IImageShape";
+import { IImage, downloadSvgImage, loadImage, IImageParticle, IParticleImage, replaceImageColor } from "./Utils";
 
 interface ContainerImage {
     id: string;
