@@ -1,7 +1,6 @@
 import { DivMode, DivType } from "../../../../Enums";
+import type { IDivEvent, IOptionLoader } from "../../../Interfaces";
 import type { RecursivePartial, SingleOrMultiple } from "../../../../Types";
-import type { IDivEvent } from "../../../Interfaces/Interactivity/Events/IDivEvent";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 /**
  * [[include:Options/Interactivity/Div.md]]

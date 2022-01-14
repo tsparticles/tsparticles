@@ -1,6 +1,6 @@
+import type { Container, ICoordinates } from "tsparticles-engine";
 import {
     ExternalInteractorBase,
-    Container,
     isInArray,
     HoverMode,
     isDivModeEnabled,
@@ -10,8 +10,8 @@ import {
     Circle,
     DivEvent,
     DivType,
+    Range,
     Rectangle,
-    ICoordinates,
     circleBounce,
     circleBounceDataFromParticle,
     Vector,

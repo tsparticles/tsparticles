@@ -1,11 +1,11 @@
+import type { IBubbleBase, IOptionLoader } from "../../../Interfaces";
 import type { RecursivePartial, SingleOrMultiple } from "../../../../Types";
-import type { IBubbleBase } from "../../../Interfaces/Interactivity/Modes/IBubbleBase";
 import { OptionsColor } from "../../OptionsColor";
 
 /**
  * @category Options
  */
-export abstract class BubbleBase implements IBubbleBase {
+export abstract class BubbleBase implements IBubbleBase, IOptionLoader<IBubbleBase> {
     distance;
     duration;
     mix;

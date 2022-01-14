@@ -1,5 +1,4 @@
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
-import type { IThemeDefault } from "../../Interfaces/Theme/IThemeDefault";
+import type { IOptionLoader, IThemeDefault } from "../../Interfaces";
 import type { RecursivePartial } from "../../../Types";
 import { ThemeMode } from "../../../Enums";
 

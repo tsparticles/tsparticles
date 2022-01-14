@@ -1,9 +1,12 @@
-import { IExternalInteractor, IParticlesInteractor, Container, Plugins, IDelta, Particle } from "..";
-import { InteractorType, ClickMode } from "../..";
-
 /**
  * @category Core
  */
+import { ClickMode, InteractorType } from "../../Enums";
+import type { IDelta, IExternalInteractor, IParticlesInteractor } from "../Interfaces";
+import type { Container } from "../Container";
+import type { Particle } from "../Particle";
+import { Plugins } from "./Plugins";
+
 export class InteractionManager {
     private readonly externalInteractors: IExternalInteractor[];
     private readonly particleInteractors: IParticlesInteractor[];

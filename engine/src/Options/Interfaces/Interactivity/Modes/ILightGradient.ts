@@ -1,4 +1,4 @@
-import type { IColor } from "../../../../Core/Interfaces";
+import type { IColor } from "../../../../Core";
 
 export interface ILightGradient {
     start: IColor | string;

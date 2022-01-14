@@ -4,7 +4,7 @@ import type { IValueWithRandom } from "../../IValueWithRandom";
  * @category Options
  * [[include:Options/Particles/Repulse.md]]
  */
-export interface IRepulse extends IValueWithRandom {
+export interface IParticlesRepulse extends IValueWithRandom {
     enabled: boolean;
     distance: number;
     duration: number;

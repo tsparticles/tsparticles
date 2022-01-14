@@ -1,1 +1,1 @@
-export * from "./Repulse";
+export * from "./ParticlesRepulse";

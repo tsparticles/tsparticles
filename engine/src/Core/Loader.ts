@@ -1,5 +1,10 @@
-import { Container, generatedAttribute, Particle } from ".";
-import { SingleOrMultiple, RecursivePartial, IOptions, Engine, itemFromArray, CustomEventListener, CustomEventArgs } from "..";
+import { CustomEventArgs, CustomEventListener, RecursivePartial, SingleOrMultiple } from "../Types";
+import { Container } from "./Container";
+import { Engine } from "../engine";
+import { IOptions } from "../Options";
+import { Particle } from "./Particle";
+import { generatedAttribute } from "./Utils";
+import { itemFromArray } from "../Utils";
 
 function fetchError(statusCode: number): void {
     console.error(`Error tsParticles - fetch status: ${statusCode}`);

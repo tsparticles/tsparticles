@@ -1,6 +1,6 @@
 import { Container } from "../../src";
-import type { IOptions } from "../../src/Options/Interfaces/IOptions";
-import { Options } from "../../src/Options/Classes/Options";
+import type { IOptions } from "../../src";
+import { Options } from "../../src";
 import { RecursivePartial } from "../../src";
 import { tsParticles } from "../../src";
 

@@ -1,18 +1,18 @@
-import type { IMoveAttract } from "./IMoveAttract";
-import type { MoveDirection, MoveDirectionAlt, OutMode, OutModeAlt } from "../../../../Enums";
-import type { IMoveTrail } from "./IMoveTrail";
-import type { IPath } from "./Path";
-import type { IMoveAngle } from "./IMoveAngle";
-import type { IMoveGravity } from "./IMoveGravity";
-import type { IOutModes } from "./IOutModes";
-import type { ISpin } from "./ISpin";
-import type { RangeValue } from "../../../../Types";
-import type { ICoordinates, IDistance } from "../../../../Core";
-
 /**
  * [[include:Options/Particles/Move.md]]
  * @category Options
  */
+import type { ICoordinates, IDistance } from "../../../../Core";
+import type { MoveDirection, MoveDirectionAlt, OutMode, OutModeAlt } from "../../../../Enums";
+import type { IMoveAngle } from "./IMoveAngle";
+import type { IMoveAttract } from "./IMoveAttract";
+import type { IMoveGravity } from "./IMoveGravity";
+import type { IMovePath } from "./IMovePath";
+import type { IMoveTrail } from "./IMoveTrail";
+import type { IOutModes } from "./IOutModes";
+import type { ISpin } from "./ISpin";
+import type { RangeValue } from "../../../../Types";
+
 export interface IMove {
     angle: number | IMoveAngle;
     attract: IMoveAttract;
@@ -24,7 +24,7 @@ export interface IMove {
     enable: boolean;
     gravity: IMoveGravity;
     outModes: IOutModes | OutMode | keyof typeof OutMode | OutModeAlt;
-    path: IPath;
+    path: IMovePath;
     random: boolean;
     size: boolean;
     speed: RangeValue;

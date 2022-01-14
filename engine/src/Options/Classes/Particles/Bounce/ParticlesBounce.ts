@@ -1,5 +1,4 @@
-import type { IParticlesBounce } from "../../../Interfaces";
-import type { IOptionLoader } from "../../../Interfaces";
+import type { IOptionLoader, IParticlesBounce } from "../../../Interfaces";
 import type { RangeValue, RecursivePartial } from "../../../../Types";
 import { setRangeValue } from "../../../../Utils";
 

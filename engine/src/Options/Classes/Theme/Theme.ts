@@ -1,6 +1,4 @@
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
-import type { IOptions } from "../../Interfaces/IOptions";
-import type { ITheme } from "../../Interfaces/Theme/ITheme";
+import type { IOptionLoader, IOptions, ITheme } from "../../Interfaces";
 import type { RecursivePartial } from "../../../Types";
 import { ThemeDefault } from "./ThemeDefault";
 import { deepExtend } from "../../../Utils";

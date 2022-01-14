@@ -1,10 +1,31 @@
-import { Container, EventDispatcher, Loader, RecursivePartial, IOptions, SingleOrMultiple, Particle, IShapeDrawer, ShapeDrawerDrawFunction, ShapeDrawerInitFunction, ShapeDrawerAfterEffectFunction, ShapeDrawerDestroyFunction, Plugins, IPlugin, IMovePathGenerator, IInteractor, IParticleUpdater, CustomEventListener, CustomEventArgs } from ".";
-
 /**
  * Engine class for creating the singleton on window.
  * It's a singleton proxy to the static [[this.#loader]] class for initializing [[Container]] instances
  * @category Engine
  */
+import type {
+    Container,
+    IInteractor,
+    IMovePathGenerator,
+    IParticleUpdater,
+    IPlugin,
+    IShapeDrawer,
+    Particle,
+} from "./Core";
+import type {
+    CustomEventArgs,
+    CustomEventListener,
+    RecursivePartial,
+    ShapeDrawerAfterEffectFunction,
+    ShapeDrawerDestroyFunction,
+    ShapeDrawerDrawFunction,
+    ShapeDrawerInitFunction,
+    SingleOrMultiple,
+} from "./Types";
+import { Loader, Plugins } from "./Core";
+import { EventDispatcher } from "./Utils";
+import type { IOptions } from "./Options";
+
 export class Engine {
     readonly domArray: Container[];
     readonly eventDispatcher;

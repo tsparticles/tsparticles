@@ -2,7 +2,7 @@ import type { ClickMode, OutModeDirection } from "../../Enums";
 import type { IColor } from "./Colors";
 import type { ICoordinates } from "./ICoordinates";
 import type { IDelta } from "./IDelta";
-import type { IOptions } from "../../Options/Interfaces/IOptions";
+import type { IOptions } from "../../Options";
 import type { Particle } from "../Particle";
 import type { RecursivePartial } from "../../Types";
 

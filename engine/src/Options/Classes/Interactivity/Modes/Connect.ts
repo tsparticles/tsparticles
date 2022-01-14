@@ -1,6 +1,5 @@
+import type { IConnect, IOptionLoader } from "../../../Interfaces";
 import { ConnectLinks } from "./ConnectLinks";
-import type { IConnect } from "../../../Interfaces/Interactivity/Modes/IConnect";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { RecursivePartial } from "../../../../Types";
 
 /**

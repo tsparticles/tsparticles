@@ -1,5 +1,4 @@
-import type { IMoveAngle } from "../../../Interfaces/Particles/Move/IMoveAngle";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { IMoveAngle, IOptionLoader } from "../../../Interfaces";
 import type { RecursivePartial } from "../../../../Types";
 
 /**

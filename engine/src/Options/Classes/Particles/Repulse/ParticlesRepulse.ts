@@ -1,12 +1,11 @@
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { IRepulse } from "../../../Interfaces/Particles/Repulse/IRepulse";
+import type { IOptionLoader, IParticlesRepulse } from "../../../Interfaces";
 import type { RecursivePartial } from "../../../../Types";
 import { ValueWithRandom } from "../../ValueWithRandom";
 
 /**
  * @category Options
  */
-export class Repulse extends ValueWithRandom implements IRepulse, IOptionLoader<IRepulse> {
+export class ParticlesRepulse extends ValueWithRandom implements IParticlesRepulse, IOptionLoader<IParticlesRepulse> {
     enabled;
     distance;
     duration;
@@ -22,7 +21,7 @@ export class Repulse extends ValueWithRandom implements IRepulse, IOptionLoader<
         this.speed = 1;
     }
 
-    load(data?: RecursivePartial<IRepulse>): void {
+    load(data?: RecursivePartial<IParticlesRepulse>): void {
         super.load(data);
 
         if (!data) {

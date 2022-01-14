@@ -1,8 +1,7 @@
+import type { IOptionLoader, ISpin } from "../../../Interfaces";
 import type { RangeValue, RecursivePartial } from "../../../../Types";
 import { deepExtend, setRangeValue } from "../../../../Utils";
 import type { ICoordinates } from "../../../../Core";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { ISpin } from "../../../Interfaces/Particles/Move/ISpin";
 
 export class Spin implements ISpin, IOptionLoader<ISpin> {
     acceleration: RangeValue;

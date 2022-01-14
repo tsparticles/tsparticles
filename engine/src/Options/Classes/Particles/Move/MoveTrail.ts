@@ -1,6 +1,6 @@
 import type { IMoveTrail, IOptionLoader } from "../../../Interfaces";
-import type { RecursivePartial } from "../../../../Types";
 import { OptionsColor } from "../../OptionsColor";
+import type { RecursivePartial } from "../../../../Types";
 
 /**
  * @category Options

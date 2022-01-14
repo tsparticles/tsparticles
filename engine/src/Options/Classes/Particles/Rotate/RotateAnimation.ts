@@ -1,5 +1,4 @@
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { IRotateAnimation } from "../../../Interfaces/Particles/Rotate/IRotateAnimation";
+import type { IOptionLoader, IRotateAnimation } from "../../../Interfaces";
 import type { RecursivePartial } from "../../../../Types";
 
 /**

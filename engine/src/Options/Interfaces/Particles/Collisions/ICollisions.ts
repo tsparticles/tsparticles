@@ -1,6 +1,6 @@
 import type { CollisionMode } from "../../../../Enums";
-import type { IParticlesBounce } from "../Bounce";
 import type { ICollisionsOverlap } from "./ICollisionsOverlap";
+import type { IParticlesBounce } from "../Bounce";
 
 /**
  * @category Options

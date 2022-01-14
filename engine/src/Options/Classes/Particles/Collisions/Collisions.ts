@@ -1,8 +1,8 @@
 import type { ICollisions, IOptionLoader } from "../../../Interfaces";
 import { CollisionMode } from "../../../../Enums";
-import type { RecursivePartial } from "../../../../Types";
-import { ParticlesBounce } from "../Bounce";
 import { CollisionsOverlap } from "./CollisionsOverlap";
+import { ParticlesBounce } from "../Bounce";
+import type { RecursivePartial } from "../../../../Types";
 
 /**
  * @category Options

@@ -1,5 +1,4 @@
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { ITwinkle } from "../../../Interfaces/Particles/Twinkle/ITwinkle";
+import type { IOptionLoader, ITwinkle } from "../../../Interfaces";
 import type { RecursivePartial } from "../../../../Types";
 import { TwinkleValues } from "./TwinkleValues";
 

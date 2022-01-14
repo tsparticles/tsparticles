@@ -1,18 +1,18 @@
 import { Engine, RecursivePartial, tsParticles } from "tsparticles-engine";
 import { IConfettiOptions } from "./IConfettiOptions";
-import { loadOptions } from "./options";
-import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
-import { loadCircleShape } from "tsparticles-shape-circle";
-import { loadSquareShape } from "tsparticles-shape-square";
-import { loadColorUpdater } from "tsparticles-updater-color";
-import { loadOpacityUpdater } from "tsparticles-updater-opacity";
-import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
-import { loadSizeUpdater } from "tsparticles-updater-size";
-import { loadWobbleUpdater } from "tsparticles-updater-wobble";
-import { loadRollUpdater } from "tsparticles-updater-roll";
 import { loadAngleUpdater } from "tsparticles-updater-angle";
-import { loadTiltUpdater } from "tsparticles-updater-tilt";
+import { loadCircleShape } from "tsparticles-shape-circle";
+import { loadColorUpdater } from "tsparticles-updater-color";
+import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
 import { loadLifeUpdater } from "tsparticles-updater-life";
+import { loadOpacityUpdater } from "tsparticles-updater-opacity";
+import { loadOptions } from "./options";
+import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
+import { loadRollUpdater } from "tsparticles-updater-roll";
+import { loadSizeUpdater } from "tsparticles-updater-size";
+import { loadSquareShape } from "tsparticles-shape-square";
+import { loadTiltUpdater } from "tsparticles-updater-tilt";
+import { loadWobbleUpdater } from "tsparticles-updater-wobble";
 
 async function loadPreset(
     engine: Engine,

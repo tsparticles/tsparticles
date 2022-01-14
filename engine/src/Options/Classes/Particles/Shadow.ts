@@ -1,7 +1,7 @@
-import type { IShadow, IOptionLoader } from "../../Interfaces";
+import type { IOptionLoader, IShadow } from "../../Interfaces";
 import type { ICoordinates } from "../../../Core";
-import type { RecursivePartial } from "../../../Types";
 import { OptionsColor } from "../OptionsColor";
+import type { RecursivePartial } from "../../../Types";
 
 /**
  * @category Options

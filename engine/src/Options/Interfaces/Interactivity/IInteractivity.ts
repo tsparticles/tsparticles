@@ -1,5 +1,5 @@
-import type { IEvents } from "./Events/IEvents";
-import type { IModes } from "./Modes/IModes";
+import type { IEvents } from "./Events";
+import type { IModes } from "./Modes";
 import type { InteractivityDetect } from "../../../Enums";
 
 /**

@@ -1,6 +1,5 @@
+import type { IOptionLoader, ITilt } from "../../../Interfaces";
 import { TiltDirection, TiltDirectionAlt } from "../../../../Enums";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { ITilt } from "../../../Interfaces/Particles/Tilt/ITilt";
 import type { RecursivePartial } from "../../../../Types";
 import { TiltAnimation } from "./TiltAnimation";
 import { ValueWithRandom } from "../../ValueWithRandom";

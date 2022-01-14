@@ -1,34 +1,34 @@
-import type { IOptionLoader, IParticlesOptions } from "../../Interfaces";
-import { Links } from "./Links";
-import { Move } from "./Move";
-import { ParticlesNumber } from "./Number/ParticlesNumber";
-import { Opacity } from "./Opacity/Opacity";
-import { Orbit } from "./Orbit/Orbit";
-import type { ParticlesGroups } from "../../../Types/ParticlesGroups";
-import { Repulse } from "./Repulse/Repulse";
-import { Roll } from "./Roll/Roll";
-import { Rotate } from "./Rotate/Rotate";
-import { Shadow } from "./Shadow";
-import { Shape } from "./Shape/Shape";
-import { Size } from "./Size/Size";
-import { Stroke } from "./Stroke";
-import { Collisions } from "./Collisions";
-import { Twinkle } from "./Twinkle/Twinkle";
-import { AnimatableColor } from "../AnimatableColor";
-import { Life } from "./Life";
-import { ParticlesBounce } from "./Bounce";
-import { Destroy } from "./Destroy";
-import { Wobble } from "./Wobble/Wobble";
-import { ZIndex } from "./ZIndex/ZIndex";
-import { deepExtend } from "../../../Utils";
-import { Tilt } from ".";
-import { AnimatableGradient } from "..";
-import { SingleOrMultiple, RecursivePartial } from "../../..";
-
 /**
  * [[include:Options/Particles.md]]
  * @category Options
  */
+import type { IOptionLoader, IParticlesOptions } from "../../Interfaces";
+import type { RecursivePartial, SingleOrMultiple } from "../../../Types";
+import { AnimatableColor } from "../AnimatableColor";
+import { AnimatableGradient } from "../AnimatableGradient";
+import { Collisions } from "./Collisions";
+import { Destroy } from "./Destroy";
+import { Life } from "./Life";
+import { Links } from "./Links";
+import { Move } from "./Move";
+import { Opacity } from "./Opacity";
+import { Orbit } from "./Orbit";
+import { ParticlesBounce } from "./Bounce";
+import { ParticlesGroups } from "../../../Types/ParticlesGroups";
+import { ParticlesNumber } from "./Number";
+import { ParticlesRepulse } from "./Repulse";
+import { Roll } from "./Roll";
+import { Rotate } from "./Rotate";
+import { Shadow } from "./Shadow";
+import { Shape } from "./Shape";
+import { Size } from "./Size";
+import { Stroke } from "./Stroke";
+import { Tilt } from "./Tilt";
+import { Twinkle } from "./Twinkle";
+import { Wobble } from "./Wobble";
+import { ZIndex } from "./ZIndex";
+import { deepExtend } from "../../../Utils";
+
 export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParticlesOptions> {
     bounce;
     collisions;
@@ -70,7 +70,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.opacity = new Opacity();
         this.orbit = new Orbit();
         this.reduceDuplicates = false;
-        this.repulse = new Repulse();
+        this.repulse = new ParticlesRepulse();
         this.roll = new Roll();
         this.rotate = new Rotate();
         this.shadow = new Shadow();

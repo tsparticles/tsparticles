@@ -1,6 +1,16 @@
-import { ManualParticle, Responsive, Theme, Background, BackgroundMask, FullScreen, Interactivity, Motion } from ".";
-import { IOptions, IOptionLoader } from "..";
-import { RangeValue, SingleOrMultiple, RecursivePartial, loadParticlesOptions, deepExtend, Plugins, ThemeMode, ResponsiveMode } from "../..";
+import type { IOptionLoader, IOptions } from "../Interfaces";
+import type { RangeValue, RecursivePartial, SingleOrMultiple } from "../../Types";
+import { ResponsiveMode, ThemeMode } from "../../Enums";
+import { deepExtend, loadParticlesOptions } from "../../Utils";
+import { Background } from "./Background";
+import { BackgroundMask } from "./BackgroundMask";
+import { FullScreen } from "./FullScreen";
+import { Interactivity } from "./Interactivity";
+import { ManualParticle } from "./ManualParticle";
+import { Motion } from "./Motion";
+import { Plugins } from "../../Core";
+import { Responsive } from "./Responsive";
+import { Theme } from "./Theme";
 
 /**
  * [[include:Options.md]]

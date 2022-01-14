@@ -1,6 +1,6 @@
 import type { ICoordinates } from "../../Core";
-import type { RecursivePartial } from "../../Types";
 import type { IParticlesOptions } from "./Particles";
+import type { RecursivePartial } from "../../Types";
 
 /**
  * Manual particles options

@@ -1,4 +1,55 @@
-import { OutMode, OutModeAlt, isInArray, IParticle, IParticleLife, IParticleRoll, IParticleWobble, IHsl, IParticleGradientAnimation, IParticleValueAnimation, IParticleTiltValueAnimation, IParticleHslAnimation, IParticleNumericValueAnimation, Stroke, ICoordinates, ParticleOutType, Vector3d, Vector, IRgb, IParticleSpin, IShapeValues, IBubbleParticleData, IParticleRetinaProps, Container, RecursivePartial, IParticlesOptions, loadParticlesOptions, itemFromArray, Shape, getRangeValue, getRangeMax, getRangeMin, AnimationStatus, StartValueType, randomInRange, clamp, getParticleDirectionAngle, MoveDirection, Plugins, getDistance, RotateDirection, colorToRgb, IDelta, ICoordinates3d, getHslFromAnimation, alterHsl, DestroyMode, getParticleBaseVelocity, setRangeValue, IShape, deepExtend } from "..";
+import {
+    AnimationStatus,
+    DestroyMode,
+    MoveDirection,
+    OutMode,
+    OutModeAlt,
+    ParticleOutType,
+    RotateDirection,
+    StartValueType,
+} from "../Enums";
+import {
+    IBubbleParticleData,
+    ICoordinates,
+    ICoordinates3d,
+    IDelta,
+    IHsl,
+    IParticle,
+    IParticleGradientAnimation,
+    IParticleHslAnimation,
+    IParticleLife,
+    IParticleNumericValueAnimation,
+    IParticleRetinaProps,
+    IParticleRoll,
+    IParticleSpin,
+    IParticleTiltValueAnimation,
+    IParticleValueAnimation,
+    IParticleWobble,
+    IRgb,
+    IShapeValues,
+} from "./Interfaces";
+import { IParticlesOptions, IShape, Shape, Stroke } from "../Options";
+import { Plugins, Vector, Vector3d } from "./Utils";
+import {
+    alterHsl,
+    clamp,
+    colorToRgb,
+    deepExtend,
+    getDistance,
+    getHslFromAnimation,
+    getParticleBaseVelocity,
+    getParticleDirectionAngle,
+    getRangeMax,
+    getRangeMin,
+    getRangeValue,
+    isInArray,
+    itemFromArray,
+    loadParticlesOptions,
+    randomInRange,
+    setRangeValue,
+} from "../Utils";
+import { Container } from "./Container";
+import { RecursivePartial } from "../Types";
 
 const fixOutMode = (data: {
     outMode: OutMode | keyof typeof OutMode | OutModeAlt;

@@ -1,8 +1,7 @@
-import type { IInteractivity } from "../../Interfaces/Interactivity/IInteractivity";
+import type { IInteractivity, IOptionLoader } from "../../Interfaces";
+import { Events } from "./Events";
 import { InteractivityDetect } from "../../../Enums";
-import { Events } from "./Events/Events";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
-import { Modes } from "./Modes/Modes";
+import { Modes } from "./Modes";
 import type { RecursivePartial } from "../../../Types";
 
 /**

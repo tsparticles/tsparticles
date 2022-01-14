@@ -6,9 +6,8 @@ import type {
     IPlugin,
     IShapeDrawer,
 } from "../Interfaces";
+import type { IOptions, Options } from "../../Options";
 import type { Container } from "../Container";
-import type { IOptions } from "../../Options/Interfaces/IOptions";
-import type { Options } from "../../Options/Classes/Options";
 import type { RecursivePartial } from "../../Types";
 
 type InteractorInitializer = (container: Container) => IInteractor;

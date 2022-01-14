@@ -1,5 +1,5 @@
+import type { ClickMode } from "../../Enums";
 import type { IDelta } from "./IDelta";
-import { ClickMode } from "../../Enums";
 import type { IInteractor } from "./IInteractor";
 
 /**

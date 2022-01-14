@@ -10,6 +10,7 @@ export * from "./Move";
 export * from "./Number";
 export * from "./Opacity";
 export * from "./Orbit";
+export * from "./Repulse";
 export * from "./Roll";
 export * from "./Rotate";
 export * from "./Shape";

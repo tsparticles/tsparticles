@@ -1,6 +1,5 @@
+import type { IOptionLoader, IRepulse } from "../../../Interfaces";
 import type { RecursivePartial, SingleOrMultiple } from "../../../../Types";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { IRepulse } from "../../../Interfaces/Interactivity/Modes/IRepulse";
 import { RepulseBase } from "./RepulseBase";
 import { RepulseDiv } from "./RepulseDiv";
 

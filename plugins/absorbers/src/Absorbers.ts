@@ -7,11 +7,12 @@ import type {
     SingleOrMultiple,
     RecursivePartial,
 } from "tsparticles-engine";
-import { AbsorberInstance } from "./AbsorberInstance";
-import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
 import { Absorber } from "./Options/Classes/Absorber";
 import { AbsorberClickMode } from "./Enums";
+import { AbsorberInstance } from "./AbsorberInstance";
 import type { AbsorberContainer } from "./AbsorberContainer";
+import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
+import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
 import { itemFromArray } from "tsparticles-engine";
 
 /**

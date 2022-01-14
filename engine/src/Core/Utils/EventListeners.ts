@@ -1,5 +1,20 @@
-import { Container, mouseLeaveEvent, mouseOutEvent, mouseMoveEvent, touchStartEvent, touchMoveEvent, touchEndEvent, mouseUpEvent, mouseDownEvent, touchCancelEvent, resizeEvent, visibilityChangeEvent, ICoordinates } from "..";
-import { InteractivityDetect, isSsr, ClickMode } from "../..";
+import { ClickMode, InteractivityDetect } from "../../Enums";
+import {
+    mouseDownEvent,
+    mouseLeaveEvent,
+    mouseMoveEvent,
+    mouseOutEvent,
+    mouseUpEvent,
+    resizeEvent,
+    touchCancelEvent,
+    touchEndEvent,
+    touchMoveEvent,
+    touchStartEvent,
+    visibilityChangeEvent,
+} from "./Constants";
+import type { Container } from "../Container";
+import type { ICoordinates } from "../Interfaces";
+import { isSsr } from "../../Utils";
 
 function manageListener(
     element: HTMLElement | Node | Window | MediaQueryList,

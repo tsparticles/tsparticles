@@ -1,23 +1,18 @@
-import type {
-    IParticleRoll,
-    IParticleWobble,
-    IBubbleParticleData,
-    Vector,
-    IParticleHslAnimation,
-    IParticleGradientAnimation,
-    IHsl,
-    IParticleValueAnimation,
-    IParticleTiltValueAnimation,
-    IRgb,
-    IShapeValues,
-    IParticleRetinaProps,
-    ICoordinates3d,
-} from "..";
-import type { IParticlesOptions, IStroke } from "../..";
-
 /**
  * @category Interfaces
  */
+import type { IHsl, IRgb } from "./Colors";
+import type { IParticleTiltValueAnimation, IParticleValueAnimation } from "./IParticleValueAnimation";
+import type { IParticlesOptions, IShapeValues, IStroke } from "../../Options";
+import type { IBubbleParticleData } from "./IBubbleParticleData";
+import type { ICoordinates3d } from "./ICoordinates";
+import type { IParticleGradientAnimation } from "./IParticleGradientAnimation";
+import type { IParticleHslAnimation } from "./IParticleHslAnimation";
+import type { IParticleRetinaProps } from "./IParticleRetinaProps";
+import type { IParticleRoll } from "./IParticleRoll";
+import type { IParticleWobble } from "./IParticleWobble";
+import type { Vector } from "../Utils";
+
 export interface IParticle {
     misplaced: boolean;
     randomIndexData?: number;

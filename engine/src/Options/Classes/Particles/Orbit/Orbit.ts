@@ -1,9 +1,8 @@
-import type { IOrbit } from "../../../Interfaces/Particles/Orbit/IOrbit";
+import type { IOptionLoader, IOrbit } from "../../../Interfaces";
 import type { RangeValue, RecursivePartial } from "../../../../Types";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import { OptionsColor } from "../../OptionsColor";
 import { AnimationOptions } from "../../AnimationOptions";
-import type { IAnimatable } from "../../../Interfaces/IAnimatable";
+import type { IAnimatable } from "../../../Interfaces";
+import { OptionsColor } from "../../OptionsColor";
 import { setRangeValue } from "../../../../Utils";
 
 /**

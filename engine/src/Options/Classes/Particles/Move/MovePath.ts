@@ -1,11 +1,11 @@
-import type { IPath, IOptionLoader } from "../../../../Interfaces";
-import type { RecursivePartial, PathOptions, RangeValue } from "../../../../../Types";
-import { deepExtend, setRangeValue } from "../../../../../Utils";
-
 /**
  * @category Options
  */
-export class Path implements IPath, IOptionLoader<IPath> {
+import type { IMovePath, IOptionLoader } from "../../../Interfaces";
+import type { PathOptions, RangeValue, RecursivePartial } from "../../../../Types";
+import { deepExtend, setRangeValue } from "../../../../Utils";
+
+export class MovePath implements IMovePath, IOptionLoader<IMovePath> {
     clamp;
     delay: RangeValue;
     enable;
@@ -19,7 +19,7 @@ export class Path implements IPath, IOptionLoader<IPath> {
         this.options = {};
     }
 
-    load(data?: RecursivePartial<IPath>): void {
+    load(data?: RecursivePartial<IMovePath>): void {
         if (!data) {
             return;
         }

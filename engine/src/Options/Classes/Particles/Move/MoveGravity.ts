@@ -1,5 +1,4 @@
-import { IMoveGravity } from "../../../Interfaces/Particles/Move/IMoveGravity";
-import { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import { IMoveGravity, IOptionLoader } from "../../../Interfaces";
 import { RecursivePartial } from "../../../../Types";
 
 export class MoveGravity implements IMoveGravity, IOptionLoader<IMoveGravity> {

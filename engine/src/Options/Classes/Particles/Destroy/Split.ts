@@ -1,7 +1,7 @@
-import type { ISplit } from "../../../Interfaces";
 import type { IOptionLoader, IParticlesOptions } from "../../../Interfaces";
 import type { RangeValue, RecursivePartial } from "../../../../Types";
 import { deepExtend, setRangeValue } from "../../../../Utils";
+import type { ISplit } from "../../../Interfaces";
 
 export class Split implements ISplit, IOptionLoader<ISplit> {
     count: number;

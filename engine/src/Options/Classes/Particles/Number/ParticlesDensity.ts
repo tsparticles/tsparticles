@@ -1,4 +1,4 @@
-import type { IParticlesDensity, IOptionLoader } from "../../../Interfaces";
+import type { IOptionLoader, IParticlesDensity } from "../../../Interfaces";
 import type { RecursivePartial } from "../../../../Types";
 
 /**

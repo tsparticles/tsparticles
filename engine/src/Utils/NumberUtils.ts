@@ -1,5 +1,5 @@
-import type { ICoordinates } from "../Core/Interfaces";
 import { EasingType, MoveDirection, MoveDirectionAlt } from "../Enums";
+import type { ICoordinates } from "../Core";
 import type { RangeValue } from "../Types";
 import { Vector } from "../Core";
 

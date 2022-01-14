@@ -1,19 +1,19 @@
 import type { Engine } from "tsparticles-engine";
-import { options } from "./options";
-import { loadColorUpdater } from "tsparticles-updater-color";
-import { loadOpacityUpdater } from "tsparticles-updater-opacity";
-import { loadSizeUpdater } from "tsparticles-updater-size";
-import { loadExternalPushInteraction } from "tsparticles-interaction-external-push";
 import { loadCircleShape } from "tsparticles-shape-circle";
+import { loadColorUpdater } from "tsparticles-updater-color";
+import { loadExternalPushInteraction } from "tsparticles-interaction-external-push";
+import { loadOpacityUpdater } from "tsparticles-updater-opacity";
 import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
+import { loadSizeUpdater } from "tsparticles-updater-size";
+import { options } from "./options";
 
-export async function loadFirePreset(tsParticles: Engine): Promise<void> {
-    await loadExternalPushInteraction(tsParticles);
-    await loadCircleShape(tsParticles);
-    await loadColorUpdater(tsParticles);
-    await loadOpacityUpdater(tsParticles);
-    await loadOutModesUpdater(tsParticles);
-    await loadSizeUpdater(tsParticles);
+export async function loadFirePreset(engine: Engine): Promise<void> {
+    await loadExternalPushInteraction(engine);
+    await loadCircleShape(engine);
+    await loadColorUpdater(engine);
+    await loadOpacityUpdater(engine);
+    await loadOutModesUpdater(engine);
+    await loadSizeUpdater(engine);
 
-    await tsParticles.addPreset("fire", options);
+    await engine.addPreset("fire", options);
 }

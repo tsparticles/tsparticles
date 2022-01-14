@@ -1,7 +1,7 @@
 import type { IOptionLoader, IShape } from "../../../Interfaces";
 import type { RecursivePartial, ShapeData, SingleOrMultiple } from "../../../../Types";
-import { deepExtend } from "../../../../Utils";
 import type { IShapeValues } from "../../../../Core";
+import { deepExtend } from "../../../../Utils";
 
 /**
  * [[include:Options/Particles/Shape.md]]

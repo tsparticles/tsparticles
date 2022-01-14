@@ -1,18 +1,18 @@
-import { describe, it } from "mocha";
-import { expect } from "chai";
 import {
     ClickMode,
     CollisionMode,
     HoverMode,
     InteractivityDetect,
     MoveDirection,
-    OutMode,
-    RotateDirection,
     Options,
     OptionsColor,
+    OutMode,
     ParticlesOptions,
+    RotateDirection,
 } from "../src";
 import type { IParticlesOptions, RecursivePartial } from "../src";
+import { describe, it } from "mocha";
+import { expect } from "chai";
 
 describe("Options tests", () => {
     it("checking default options", () => {

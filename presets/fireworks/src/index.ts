@@ -1,27 +1,27 @@
 import type { Engine } from "tsparticles-engine";
-import { options } from "./options";
+import { loadAngleUpdater } from "tsparticles-updater-angle";
 import { loadCircleShape } from "tsparticles-shape-circle";
+import { loadColorUpdater } from "tsparticles-updater-color";
 import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
 import { loadLifeUpdater } from "tsparticles-updater-life";
-import { loadStrokeColorUpdater } from "tsparticles-updater-stroke-color";
-import { loadOpacityUpdater } from "tsparticles-updater-opacity";
-import { loadSizeUpdater } from "tsparticles-updater-size";
 import { loadLineShape } from "tsparticles-shape-line";
-import { loadAngleUpdater } from "tsparticles-updater-angle";
+import { loadOpacityUpdater } from "tsparticles-updater-opacity";
 import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
-import { loadColorUpdater } from "tsparticles-updater-color";
+import { loadSizeUpdater } from "tsparticles-updater-size";
+import { loadStrokeColorUpdater } from "tsparticles-updater-stroke-color";
+import { options } from "./options";
 
-export async function loadFireworksPreset(tsParticles: Engine): Promise<void> {
-    await loadEmittersPlugin(tsParticles);
-    await loadCircleShape(tsParticles);
-    await loadLineShape(tsParticles);
-    await loadAngleUpdater(tsParticles);
-    await loadColorUpdater(tsParticles);
-    await loadLifeUpdater(tsParticles);
-    await loadOpacityUpdater(tsParticles);
-    await loadOutModesUpdater(tsParticles);
-    await loadSizeUpdater(tsParticles);
-    await loadStrokeColorUpdater(tsParticles);
+export async function loadFireworksPreset(engine: Engine): Promise<void> {
+    await loadEmittersPlugin(engine);
+    await loadCircleShape(engine);
+    await loadLineShape(engine);
+    await loadAngleUpdater(engine);
+    await loadColorUpdater(engine);
+    await loadLifeUpdater(engine);
+    await loadOpacityUpdater(engine);
+    await loadOutModesUpdater(engine);
+    await loadSizeUpdater(engine);
+    await loadStrokeColorUpdater(engine);
 
-    await tsParticles.addPreset("fireworks", options);
+    await engine.addPreset("fireworks", options);
 }

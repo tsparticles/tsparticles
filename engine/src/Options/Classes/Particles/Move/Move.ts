@@ -1,20 +1,20 @@
-import type { IMove, IOptionLoader } from "../../../Interfaces";
-import { MoveAttract } from "./MoveAttract";
-import { MoveDirection, MoveDirectionAlt } from "../../../../Enums";
-import { MoveTrail } from "./MoveTrail";
-import type { RangeValue, RecursivePartial } from "../../../../Types";
-import { Path } from "./Path";
-import { MoveAngle } from "./MoveAngle";
-import { MoveGravity } from "./MoveGravity";
-import { OutModes } from "./OutModes";
-import { deepExtend, setRangeValue } from "../../../../Utils";
-import type { ICoordinates, IDistance } from "../../../../Core";
-import { Spin } from "./Spin";
-
 /**
  * [[include:Options/Particles/Move.md]]
  * @category Options
  */
+import type { ICoordinates, IDistance } from "../../../../Core";
+import type { IMove, IOptionLoader } from "../../../Interfaces";
+import { MoveDirection, MoveDirectionAlt } from "../../../../Enums";
+import { RangeValue, RecursivePartial } from "../../../../Types";
+import { deepExtend, setRangeValue } from "../../../../Utils";
+import { MoveAngle } from "./MoveAngle";
+import { MoveAttract } from "./MoveAttract";
+import { MoveGravity } from "./MoveGravity";
+import { MovePath } from "./MovePath";
+import { MoveTrail } from "./MoveTrail";
+import { OutModes } from "./OutModes";
+import { Spin } from "./Spin";
+
 export class Move implements IMove, IOptionLoader<IMove> {
     angle;
     attract;
@@ -50,7 +50,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.drift = 0;
         this.enable = false;
         this.gravity = new MoveGravity();
-        this.path = new Path();
+        this.path = new MovePath();
         this.outModes = new OutModes();
         this.random = false;
         this.size = false;

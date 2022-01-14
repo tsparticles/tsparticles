@@ -1,4 +1,5 @@
 import type { IAttract } from "./IAttract";
+import type { IBounce } from "./IBounce";
 import type { IBubble } from "./IBubble";
 import type { IConnect } from "./IConnect";
 import type { IGrab } from "./IGrab";
@@ -8,7 +9,6 @@ import type { IRemove } from "./IRemove";
 import type { IRepulse } from "./IRepulse";
 import type { ISlow } from "./ISlow";
 import type { ITrail } from "./ITrail";
-import type { IBounce } from "./IBounce";
 
 /**
  * [[include:Options/Interactivity/Modes.md]]

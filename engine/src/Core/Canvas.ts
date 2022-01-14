@@ -1,5 +1,4 @@
-import type { Container } from "./Container";
-import { generatedAttribute } from "./Utils";
+import type { IContainerPlugin, ICoordinates, IDelta, IDimension, IHsl, IParticle, IRgb, IRgba } from "./Interfaces";
 import {
     clear,
     colorToHsl,
@@ -15,8 +14,9 @@ import {
     gradient,
     paintBase,
 } from "../Utils";
-import type { IDimension, IRgba, IParticle, IDelta, IRgb, ICoordinates, IContainerPlugin, IHsl } from "./Interfaces";
+import type { Container } from "./Container";
 import type { Particle } from "./Particle";
+import { generatedAttribute } from "./Utils";
 
 /**
  * Canvas manager

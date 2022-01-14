@@ -1,13 +1,3 @@
-import type { IEmitter } from "./Options/Interfaces/IEmitter";
-import {
-    colorToHsl,
-    deepExtend,
-    getRangeValue,
-    isPointInside,
-    randomInRange,
-    SizeMode,
-    Vector,
-} from "tsparticles-engine";
 import type {
     Container,
     ICoordinates,
@@ -19,8 +9,19 @@ import type {
     IColorAnimation,
     IHslAnimation,
 } from "tsparticles-engine";
+import {
+    colorToHsl,
+    deepExtend,
+    getRangeValue,
+    isPointInside,
+    randomInRange,
+    SizeMode,
+    Vector,
+} from "tsparticles-engine";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
 import type { Emitters } from "./Emitters";
+import type { IEmitter } from "./Options/Interfaces/IEmitter";
+import type { IEmitterShape } from "./IEmitterShape";
 import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
 import { ShapeManager } from "./ShapeManager";
 

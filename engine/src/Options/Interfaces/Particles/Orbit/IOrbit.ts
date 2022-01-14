@@ -1,6 +1,6 @@
-import type { IColor } from "../../../../Core/Interfaces";
-import type { IAnimation } from "../../IAnimation";
 import type { IAnimatable } from "../../IAnimatable";
+import type { IAnimation } from "../../IAnimation";
+import type { IColor } from "../../../../Core";
 import type { RangeValue } from "../../../../Types";
 
 /**

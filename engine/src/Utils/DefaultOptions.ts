@@ -1,4 +1,8 @@
-export const DefaultOptions = {
+import { DestroyMode, DivType, EasingType } from "../Enums";
+import type { IOptions } from "../Options";
+import { RecursivePartial } from "../Types";
+
+export const DefaultOptions: RecursivePartial<IOptions> = {
     autoPlay: true,
     background: {
         color: {
@@ -38,7 +42,7 @@ export const DefaultOptions = {
                 selectors: [],
                 enable: false,
                 mode: [],
-                type: "circle",
+                type: DivType.circle,
             },
             onHover: {
                 enable: false,
@@ -55,7 +59,7 @@ export const DefaultOptions = {
             attract: {
                 distance: 200,
                 duration: 0.4,
-                easing: "ease-out-quad",
+                easing: EasingType.easeOutQuad,
                 factor: 1,
                 maxSpeed: 50,
                 speed: 1,
@@ -116,7 +120,7 @@ export const DefaultOptions = {
                 factor: 100,
                 speed: 1,
                 maxSpeed: 50,
-                easing: "ease-out-quad",
+                easing: EasingType.easeOutQuad,
             },
             slow: {
                 factor: 3,
@@ -163,7 +167,7 @@ export const DefaultOptions = {
             },
         },
         destroy: {
-            mode: "none",
+            mode: DestroyMode.none,
             split: {
                 count: 1,
                 factor: 3,

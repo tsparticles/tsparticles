@@ -1,5 +1,4 @@
-import type { IFullScreen } from "../../Interfaces/FullScreen/IFullScreen";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
+import type { IFullScreen, IOptionLoader } from "../../Interfaces";
 import type { RecursivePartial } from "../../../Types";
 
 /**

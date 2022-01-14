@@ -1,6 +1,5 @@
+import type { IOptionLoader, IWobble } from "../../../Interfaces";
 import type { RangeValue, RecursivePartial } from "../../../../Types";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { IWobble } from "../../../Interfaces/Particles/Wobble/IWobble";
 import { setRangeValue } from "../../../../Utils";
 
 export class Wobble implements IWobble, IOptionLoader<IWobble> {

@@ -1,3 +1,4 @@
+import { DivEvent, Options, ParticlesOptions } from "../Options";
 import { DivMode, OutModeDirection } from "../Enums";
 import type {
     IBounds,
@@ -8,9 +9,8 @@ import type {
     IRangeValue,
     IRectSideResult,
 } from "../Core";
-import type { RecursivePartial, SingleOrMultiple } from "../Types";
-import { DivEvent, Options, ParticlesOptions } from "../Options";
 import type { IModeDiv, IOptionLoader, IOptions, IParticlesOptions } from "../Options";
+import type { RecursivePartial, SingleOrMultiple } from "../Types";
 import { collisionVelocity, getDistances, getRangeValue } from "./NumberUtils";
 import { Vector } from "../Core";
 

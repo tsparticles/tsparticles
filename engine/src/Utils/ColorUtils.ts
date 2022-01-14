@@ -1,3 +1,4 @@
+import type { HslAnimation, IColorAnimation } from "../Options";
 import type {
     IColor,
     IHsl,
@@ -11,12 +12,10 @@ import type {
     IRgba,
     IValueColor,
 } from "../Core";
-import { itemFromArray } from "./Utils";
-import { randomColorValue, midColorValue } from "../Core";
+import { midColorValue, randomColorValue } from "../Core";
 import { mix, randomInRange, setRangeValue } from "./NumberUtils";
 import { AnimationStatus } from "../Enums";
-import type { HslAnimation } from "../Options/Classes/HslAnimation";
-import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
+import { itemFromArray } from "./Utils";
 
 /**
  *

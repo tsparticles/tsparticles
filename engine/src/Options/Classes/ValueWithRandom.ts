@@ -1,7 +1,6 @@
+import type { IOptionLoader, IValueWithRandom } from "../Interfaces";
 import type { RangeValue, RecursivePartial } from "../../Types";
-import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import { setRangeValue } from "../../Utils";
-import { IValueWithRandom } from "..";
 
 export abstract class ValueWithRandom implements IValueWithRandom, IOptionLoader<IValueWithRandom> {
     value: RangeValue;

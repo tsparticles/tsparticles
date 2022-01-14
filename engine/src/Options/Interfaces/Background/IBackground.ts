@@ -1,4 +1,4 @@
-import type { IColor } from "../../../Core/Interfaces";
+import type { IColor } from "../../../Core";
 
 /**
  * The background options used by the canvas element, it's not drawn, it's applied in the style

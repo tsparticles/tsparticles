@@ -1,6 +1,6 @@
 import type { RangeValue, RecursivePartial } from "../../../../Types";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { IRoll } from "../../../Interfaces/Particles/Roll/IRoll";
+import type { IOptionLoader } from "../../../Interfaces";
+import type { IRoll } from "../../../Interfaces";
 import { OptionsColor } from "../../OptionsColor";
 import { RollLight } from "./RollLight";
 import { RollMode } from "../../../../Enums";

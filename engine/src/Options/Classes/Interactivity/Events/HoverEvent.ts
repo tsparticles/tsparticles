@@ -1,7 +1,6 @@
+import type { IHoverEvent, IOptionLoader } from "../../../Interfaces";
 import type { RecursivePartial, SingleOrMultiple } from "../../../../Types";
 import { HoverMode } from "../../../../Enums";
-import type { IHoverEvent } from "../../../Interfaces/Interactivity/Events/IHoverEvent";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { Parallax } from "./Parallax";
 
 /**

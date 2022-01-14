@@ -1,17 +1,17 @@
 import type { Engine } from "tsparticles-engine";
-import { options } from "./options";
 import { loadCircleShape } from "tsparticles-shape-circle";
-import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
 import { loadColorUpdater } from "tsparticles-updater-color";
 import { loadOpacityUpdater } from "tsparticles-updater-opacity";
+import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
 import { loadSizeUpdater } from "tsparticles-updater-size";
+import { options } from "./options";
 
-export async function loadStarsPreset(tsParticles: Engine): Promise<void> {
-    await loadCircleShape(tsParticles);
-    await loadColorUpdater(tsParticles);
-    await loadOpacityUpdater(tsParticles);
-    await loadOutModesUpdater(tsParticles);
-    await loadSizeUpdater(tsParticles);
+export async function loadStarsPreset(engine: Engine): Promise<void> {
+    await loadCircleShape(engine);
+    await loadColorUpdater(engine);
+    await loadOpacityUpdater(engine);
+    await loadOutModesUpdater(engine);
+    await loadSizeUpdater(engine);
 
-    await tsParticles.addPreset("stars", options);
+    await engine.addPreset("stars", options);
 }

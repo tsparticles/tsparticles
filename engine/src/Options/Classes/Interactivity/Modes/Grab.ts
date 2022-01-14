@@ -1,6 +1,5 @@
+import type { IGrab, IOptionLoader } from "../../../Interfaces";
 import { GrabLinks } from "./GrabLinks";
-import type { IGrab } from "../../../Interfaces/Interactivity/Modes/IGrab";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { RecursivePartial } from "../../../../Types";
 
 /**

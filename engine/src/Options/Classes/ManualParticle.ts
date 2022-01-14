@@ -1,6 +1,6 @@
 import type { IManualParticle, IOptionLoader, IParticlesOptions } from "../Interfaces";
-import type { RecursivePartial } from "../../Types";
 import type { ICoordinates } from "../../Core";
+import type { RecursivePartial } from "../../Types";
 import { deepExtend } from "../../Utils";
 
 export class ManualParticle implements IManualParticle, IOptionLoader<IManualParticle> {

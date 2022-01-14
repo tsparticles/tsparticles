@@ -1,1 +1,1 @@
-export * from "./IRepulse";
+export * from "./IParticlesRepulse";

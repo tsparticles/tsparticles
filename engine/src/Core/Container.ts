@@ -2,13 +2,7 @@
  * [[include:Container.md]]
  * @packageDocumentation
  */
-import { Canvas } from "./Canvas";
-import { Particles } from "./Particles";
-import { Retina } from "./Retina";
-import type { IOptions, Options } from "../Options";
-import type { RecursivePartial } from "../Types";
-import { animate, cancelAnimation, getRangeValue, loadContainerOptions } from "../Utils";
-import type { Particle } from "./Particle";
+import { ClickMode, EventType } from "../Enums";
 import { EventListeners, FrameManager, Plugins, Vector } from "./Utils";
 import type {
     IContainerInteractivity,
@@ -18,8 +12,14 @@ import type {
     IRgb,
     IShapeDrawer,
 } from "./Interfaces";
-import { ClickMode, EventType } from "../Enums";
+import type { IOptions, Options } from "../Options";
+import { animate, cancelAnimation, getRangeValue, loadContainerOptions } from "../Utils";
+import { Canvas } from "./Canvas";
 import { Engine } from "../engine";
+import type { Particle } from "./Particle";
+import { Particles } from "./Particles";
+import type { RecursivePartial } from "../Types";
+import { Retina } from "./Retina";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
