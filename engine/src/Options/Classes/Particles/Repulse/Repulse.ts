@@ -1,6 +1,6 @@
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { IRepulse } from "../../../Interfaces/Particles/Repulse/IRepulse";
 import type { RecursivePartial } from "../../../../Types";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { ValueWithRandom } from "../../ValueWithRandom";
 
 /**

@@ -1,5 +1,5 @@
-import { tsParticles } from "tsparticles";
 import { loadFireworksPreset } from ".";
+import { tsParticles } from "tsparticles";
 
 loadFireworksPreset(tsParticles);
 

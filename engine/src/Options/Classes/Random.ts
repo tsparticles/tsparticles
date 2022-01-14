@@ -1,5 +1,5 @@
-import type { IRandom } from "../Interfaces/IRandom";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
+import type { IRandom } from "../Interfaces/IRandom";
 import type { RecursivePartial } from "../../Types";
 
 export class Random implements IRandom, IOptionLoader<IRandom> {

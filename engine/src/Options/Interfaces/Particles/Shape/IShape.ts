@@ -1,9 +1,9 @@
-import type { ShapeType } from "../../../../Enums";
-import type { IImageShape } from "./IImageShape";
+import type { ShapeData, SingleOrMultiple } from "../../../../Types";
 import type { ICharacterShape } from "./ICharacterShape";
+import type { IImageShape } from "./IImageShape";
 import type { IPolygonShape } from "./IPolygonShape";
 import type { IStroke } from "../IStroke";
-import type { ShapeData, SingleOrMultiple } from "../../../../Types";
+import type { ShapeType } from "../../../../Enums";
 
 /**
  * [[include:Options/Particles/Shape.md]]

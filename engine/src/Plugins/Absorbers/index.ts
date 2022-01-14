@@ -1,14 +1,13 @@
-import type { IPlugin } from "../../Core/Interfaces";
-import type { Container } from "../../Core/Container";
-import { Absorbers } from "./Absorbers";
-import type { RecursivePartial } from "../../Types";
+import type { Container, IPlugin } from "../../Core";
+import { Absorber } from "./Options/Classes/Absorber";
 import { AbsorberClickMode } from "./Enums";
+import { Absorbers } from "./Absorbers";
+import type { Engine } from "../../engine";
 import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
 import { Options } from "../../Options/Classes/Options";
-import { Absorber } from "./Options/Classes/Absorber";
+import type { RecursivePartial } from "../../Types";
 import { isInArray } from "../../Utils";
-import type { Engine } from "../../engine";
 
 /**
  * @category Absorbers Plugin
@@ -99,8 +98,8 @@ class AbsorbersPlugin implements IPlugin {
     }
 }
 
-export async function loadAbsorbersPlugin(tsParticles: Engine): Promise<void> {
+export async function loadAbsorbersPlugin(engine: Engine): Promise<void> {
     const plugin = new AbsorbersPlugin();
 
-    await tsParticles.addPlugin(plugin);
+    await engine.addPlugin(plugin);
 }

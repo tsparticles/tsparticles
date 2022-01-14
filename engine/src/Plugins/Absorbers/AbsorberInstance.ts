@@ -1,10 +1,10 @@
 import type { Container, ICoordinates, IRgb, Particle } from "../../Core";
-import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
 import { colorToRgb, getDistance, getDistances, getRangeValue, getStyleFromRgb, isPointInside } from "../../Utils";
 import type { Absorbers } from "./Absorbers";
-import { Vector } from "../../Core";
-import { RotateDirection } from "../../Enums";
+import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
 import { IAbsorberSizeLimit } from "./Options/Interfaces/IAbsorberSizeLimit";
+import { RotateDirection } from "../../Enums";
+import { Vector } from "../../Core";
 
 type OrbitingParticle = Particle & {
     absorberOrbit?: Vector;

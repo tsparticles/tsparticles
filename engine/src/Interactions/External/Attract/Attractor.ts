@@ -1,7 +1,7 @@
-import type { Container, ICoordinates } from "../../../Core";
+import { Circle, Constants, ExternalInteractorBase, Range, Vector } from "../../../Core";
 import { ClickMode, HoverMode } from "../../../Enums";
-import { getDistances, calcEasing, clamp, isInArray } from "../../../Utils";
-import { Circle, Constants, Range, ExternalInteractorBase, Vector } from "../../../Core";
+import type { Container, ICoordinates } from "../../../Core";
+import { calcEasing, clamp, getDistances, isInArray } from "../../../Utils";
 
 /**
  * Particle attract manager

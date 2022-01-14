@@ -1,13 +1,12 @@
-import type { IPlugin } from "../../Core/Interfaces";
-import { PolygonMaskInstance } from "./PolygonMaskInstance";
-import type { Container } from "../../Core/Container";
-import type { RecursivePartial } from "../../Types";
+import type { Container, IPlugin } from "../../Core";
+import type { Engine } from "../../engine";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
 import type { IPolygonMaskOptions } from "./Options/Interfaces/IPolygonMaskOptions";
 import { Options } from "../../Options/Classes/Options";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
+import { PolygonMaskInstance } from "./PolygonMaskInstance";
 import { PolygonMaskType } from "./Enums";
-import type { Engine } from "../../engine";
+import type { RecursivePartial } from "../../Types";
 import { isSsr } from "../../Utils";
 
 /**
@@ -47,7 +46,7 @@ class PolygonMaskPlugin implements IPlugin {
     }
 }
 
-export async function loadPolygonMaskPlugin(tsParticles: Engine): Promise<void> {
+export async function loadPolygonMaskPlugin(engine: Engine): Promise<void> {
     if (!isSsr() && !("SVGPathSeg" in window)) {
         await import(
             /* webpackChunkName: "tsparticles.pathseg.min" */
@@ -60,5 +59,5 @@ export async function loadPolygonMaskPlugin(tsParticles: Engine): Promise<void> 
 
     const plugin = new PolygonMaskPlugin();
 
-    await tsParticles.addPlugin(plugin);
+    await engine.addPlugin(plugin);
 }

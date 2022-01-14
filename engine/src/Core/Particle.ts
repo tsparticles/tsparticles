@@ -1,7 +1,3 @@
-import type { Container } from "./Container";
-import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
-import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
-import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import {
     AnimationStatus,
     DestroyMode,
@@ -11,7 +7,27 @@ import {
     ShapeType,
     StartValueType,
 } from "../Enums";
-import type { RecursivePartial } from "../Types";
+import type {
+    IBubbleParticleData,
+    ICoordinates,
+    ICoordinates3d,
+    IDelta,
+    IHsl,
+    IParticle,
+    IParticleGradientAnimation,
+    IParticleHslAnimation,
+    IParticleLife,
+    IParticleNumericValueAnimation,
+    IParticleRetinaProps,
+    IParticleRoll,
+    IParticleSpin,
+    IParticleTiltValueAnimation,
+    IParticleValueAnimation,
+    IParticleWobble,
+    IRgb,
+    IShapeValues,
+} from "./Interfaces";
+import { Plugins, Vector, Vector3d } from "./Utils";
 import {
     alterHsl,
     clamp,
@@ -30,29 +46,13 @@ import {
     randomInRange,
     setRangeValue,
 } from "../Utils";
-import type { Stroke } from "../Options/Classes/Particles/Stroke";
-import { Plugins, Vector, Vector3d } from "./Utils";
-import type {
-    IBubbleParticleData,
-    ICoordinates,
-    ICoordinates3d,
-    IDelta,
-    IHsl,
-    IParticle,
-    IParticleGradientAnimation,
-    IParticleHslAnimation,
-    IParticleLife,
-    IParticleNumericValueAnimation,
-    IParticleSpin,
-    IParticleTiltValueAnimation,
-    IParticleValueAnimation,
-    IRgb,
-    IShapeValues,
-    IParticleRetinaProps,
-    IParticleRoll,
-    IParticleWobble,
-} from "./Interfaces";
+import type { Container } from "./Container";
+import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
+import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
+import type { RecursivePartial } from "../Types";
+import { Shape } from "../Options/Classes/Particles/Shape/Shape";
+import type { Stroke } from "../Options/Classes/Particles/Stroke";
 
 const fixOutMode = (data: {
     outMode: OutMode | keyof typeof OutMode | OutModeAlt;

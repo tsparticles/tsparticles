@@ -1,6 +1,6 @@
+import { Circle, CircleWarp, ParticlesInteractorBase } from "../../../Core";
 import type { Container, ICoordinates, IDimension, IParticle, Particle } from "../../../Core";
 import { getDistance, getLinkRandomColor } from "../../../Utils";
-import { Circle, CircleWarp, ParticlesInteractorBase } from "../../../Core";
 import type { LinkParticle } from "./LinkParticle";
 
 function getLinkDistance(

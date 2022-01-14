@@ -1,6 +1,6 @@
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { IZIndex } from "../../../Interfaces/Particles/ZIndex/IZIndex";
 import type { RecursivePartial } from "../../../../Types";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { ValueWithRandom } from "../../ValueWithRandom";
 
 /**

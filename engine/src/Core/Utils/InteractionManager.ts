@@ -1,8 +1,8 @@
-import type { Container } from "../Container";
-import type { Particle } from "../Particle";
 import type { IDelta, IExternalInteractor, IParticlesInteractor } from "../Interfaces";
-import { Plugins } from "../Utils";
+import type { Container } from "../Container";
 import { InteractorType } from "../../Enums";
+import type { Particle } from "../Particle";
+import { Plugins } from "../Utils";
 
 /**
  * @category Core

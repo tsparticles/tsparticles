@@ -1,5 +1,5 @@
 import type { RangeValue, SingleOrMultiple } from "../../../../Types";
-import type { IColor } from "../../../../Core/Interfaces";
+import type { IColor } from "../../../../Core";
 import type { IRollLight } from "./IRollLight";
 import type { RollMode } from "../../../../Enums";
 

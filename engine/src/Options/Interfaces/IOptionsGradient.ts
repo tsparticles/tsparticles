@@ -1,6 +1,6 @@
-import type { IGradient, IGradientColor, IGradientColorOpacity } from "../../Core/Interfaces";
-import type { IAnimatableColor } from "./IAnimatableColor";
+import type { IGradient, IGradientColor, IGradientColorOpacity } from "../../Core";
 import type { IAnimatable } from "./IAnimatable";
+import type { IAnimatableColor } from "./IAnimatableColor";
 import type { IAnimation } from "./IAnimation";
 import type { StartValueType } from "../../Enums";
 

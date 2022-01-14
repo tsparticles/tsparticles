@@ -1,6 +1,6 @@
 import type { ISourceOptions, RecursivePartial } from "tsparticles";
-import type { IConfettiOptions } from "./IConfettiOptions";
 import { ConfettiOptions } from "./ConfettiOptions";
+import type { IConfettiOptions } from "./IConfettiOptions";
 
 export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>): ISourceOptions => {
     const actualOptions = new ConfettiOptions();

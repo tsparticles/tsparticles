@@ -1,5 +1,4 @@
-import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
-import type { IColor } from "../../../../Core/Interfaces/Colors";
+import type { IColor, ICoordinates } from "../../../../Core";
 import type { IAbsorberSize } from "./IAbsorberSize";
 import { RecursivePartial } from "../../../../Types";
 

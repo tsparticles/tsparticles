@@ -1,5 +1,5 @@
-import type { RangeValue } from "../../Types";
 import type { IRandom } from "./IRandom";
+import type { RangeValue } from "../../Types";
 
 export interface IValueWithRandom {
     /**

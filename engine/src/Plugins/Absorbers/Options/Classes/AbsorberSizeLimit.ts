@@ -1,6 +1,6 @@
-import type { RecursivePartial } from "../../../../Types";
-import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 import type { IAbsorberSizeLimit } from "../Interfaces/IAbsorberSizeLimit";
+import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
+import type { RecursivePartial } from "../../../../Types";
 
 export class AbsorberSizeLimit implements IAbsorberSizeLimit, IOptionLoader<IAbsorberSizeLimit> {
     radius: number;

@@ -3,6 +3,6 @@ import { polygonPathGenerator } from "./pathGen";
 
 export const polygonPathName = "polygonPathGenerator";
 
-export function loadPolygonPath(tsParticles: Engine): void {
-    tsParticles.addPathGenerator(polygonPathName, polygonPathGenerator);
+export function loadPolygonPath(engine: Engine): void {
+    engine.addPathGenerator(polygonPathName, polygonPathGenerator);
 }

@@ -1,5 +1,5 @@
-import type { IDelta, IParticleUpdater, Particle } from "../../Core";
 import { AnimationStatus, DestroyType } from "../../Enums";
+import type { IDelta, IParticleUpdater, Particle } from "../../Core";
 import { clamp } from "../../Utils";
 
 function checkDestroy(particle: Particle, value: number, minValue: number, maxValue: number): void {

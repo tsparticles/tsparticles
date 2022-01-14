@@ -1,10 +1,10 @@
-import { initPjs } from "./pjs";
 import { Engine } from "./engine";
-import type { IOptions as ISlimOptions } from "./Options/Interfaces/IOptions";
 import type { IAbsorberOptions } from "./Plugins/Absorbers/Options/Interfaces/IAbsorberOptions";
 import type { IEmitterOptions } from "./Plugins/Emitters/Options/Interfaces/IEmitterOptions";
 import type { IPolygonMaskOptions } from "./Plugins/PolygonMask/Options/Interfaces/IPolygonMaskOptions";
+import type { IOptions as ISlimOptions } from "./Options/Interfaces/IOptions";
 import type { RecursivePartial } from "./Types";
+import { initPjs } from "./pjs";
 import { loadFull } from "./full";
 
 const tsParticles = new Engine();

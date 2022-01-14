@@ -1,8 +1,8 @@
+import { HoverMode, RotateDirection } from "../../Enums";
 import { clamp, getDistance, getDistances, getRangeMax, getRangeValue, isInArray, isSsr } from "../../Utils";
 import type { Container } from "../Container";
-import type { Particle } from "../Particle";
-import { HoverMode, RotateDirection } from "../../Enums";
 import type { IDelta } from "../Interfaces";
+import type { Particle } from "../Particle";
 
 function applyDistance(particle: Particle): void {
     const initialPosition = particle.initialPosition;

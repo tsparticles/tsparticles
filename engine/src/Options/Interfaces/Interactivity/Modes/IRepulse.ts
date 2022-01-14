@@ -1,6 +1,6 @@
-import type { SingleOrMultiple } from "../../../../Types";
-import type { IRepulseDiv } from "./IRepulseDiv";
 import type { IRepulseBase } from "./IRepulseBase";
+import type { IRepulseDiv } from "./IRepulseDiv";
+import type { SingleOrMultiple } from "../../../../Types";
 
 /**
  * @category Options

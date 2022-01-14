@@ -1,7 +1,7 @@
 import type { Container } from "../../../Core";
-import { isInArray } from "../../../Utils";
-import { HoverMode } from "../../../Enums";
 import { ExternalInteractorBase } from "../../../Core";
+import { HoverMode } from "../../../Enums";
+import { isInArray } from "../../../Utils";
 
 /**
  * Particle connection manager

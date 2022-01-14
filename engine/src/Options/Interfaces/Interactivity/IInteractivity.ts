@@ -1,6 +1,6 @@
-import type { InteractivityDetect } from "../../../Enums";
 import type { IEvents } from "./Events/IEvents";
 import type { IModes } from "./Modes/IModes";
+import type { InteractivityDetect } from "../../../Enums";
 
 /**
  * Particles interactivity options

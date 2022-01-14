@@ -1,10 +1,10 @@
+import { Constants } from "./Utils";
 import { Container } from "./Container";
 import type { IOptions } from "../Options/Interfaces/IOptions";
-import type { RecursivePartial } from "../Types";
-import { itemFromArray } from "../Utils";
 import type { Particle } from "./Particle";
-import { Constants } from "./Utils";
+import type { RecursivePartial } from "../Types";
 import type { SingleOrMultiple } from "../Types";
+import { itemFromArray } from "../Utils";
 
 const tsParticlesDom: Container[] = [];
 

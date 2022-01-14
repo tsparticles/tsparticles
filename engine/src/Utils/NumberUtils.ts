@@ -1,6 +1,6 @@
-import type { IValueWithRandom } from "../Options/Interfaces/IValueWithRandom";
-import type { ICoordinates } from "../Core";
 import { EasingType, MoveDirection, MoveDirectionAlt } from "../Enums";
+import type { ICoordinates } from "../Core";
+import type { IValueWithRandom } from "../Options/Interfaces/IValueWithRandom";
 import { RangeValue } from "../Types";
 import { Vector } from "../Core";
 

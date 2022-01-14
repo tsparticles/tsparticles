@@ -1,7 +1,7 @@
 import type { IBackground } from "../../Interfaces/Background/IBackground";
-import type { RecursivePartial } from "../../../Types";
-import { OptionsColor } from "../OptionsColor";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
+import { OptionsColor } from "../OptionsColor";
+import type { RecursivePartial } from "../../../Types";
 
 /**
  * [[include:Options/Background.md]]

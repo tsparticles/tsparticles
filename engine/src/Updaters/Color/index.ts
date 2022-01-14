@@ -1,6 +1,6 @@
-import type { Engine } from "../../engine";
 import { ColorUpdater } from "./ColorUpdater";
+import type { Engine } from "../../engine";
 
-export async function loadColorUpdater(tsParticles: Engine): Promise<void> {
-    await tsParticles.addParticleUpdater("color", (container) => new ColorUpdater(container));
+export async function loadColorUpdater(engine: Engine): Promise<void> {
+    await engine.addParticleUpdater("color", (container) => new ColorUpdater(container));
 }

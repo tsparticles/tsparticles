@@ -1,10 +1,10 @@
-import type { ICoordinates } from "./ICoordinates";
-import type { Particle } from "../Particle";
 import type { ClickMode, OutModeDirection } from "../../Enums";
-import type { RecursivePartial } from "../../Types";
-import type { IOptions } from "../../Options/Interfaces/IOptions";
-import type { IDelta } from "./IDelta";
 import type { IColor } from "./Colors";
+import type { ICoordinates } from "./ICoordinates";
+import type { IDelta } from "./IDelta";
+import type { IOptions } from "../../Options/Interfaces/IOptions";
+import type { Particle } from "../Particle";
+import type { RecursivePartial } from "../../Types";
 
 /**
  * @category Interfaces

@@ -1,5 +1,5 @@
-import type { ITiltAnimation } from "./ITiltAnimation";
 import type { TiltDirection, TiltDirectionAlt } from "../../../../Enums";
+import type { ITiltAnimation } from "./ITiltAnimation";
 import type { IValueWithRandom } from "../../IValueWithRandom";
 
 /**

@@ -1,5 +1,5 @@
-import type { Vector } from "../Utils";
 import type { ICoordinates } from "./ICoordinates";
+import type { Vector } from "../Utils";
 
 export interface ICircleBouncer {
     position: ICoordinates;

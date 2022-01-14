@@ -1,6 +1,6 @@
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { ISlow } from "../../../Interfaces/Interactivity/Modes/ISlow";
 import type { RecursivePartial } from "../../../../Types";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 /**
  * @category Options

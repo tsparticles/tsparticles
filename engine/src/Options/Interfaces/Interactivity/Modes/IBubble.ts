@@ -1,6 +1,6 @@
-import type { SingleOrMultiple } from "../../../../Types";
-import type { IBubbleDiv } from "./IBubbleDiv";
 import type { IBubbleBase } from "./IBubbleBase";
+import type { IBubbleDiv } from "./IBubbleDiv";
+import type { SingleOrMultiple } from "../../../../Types";
 
 /**
  * @category Options

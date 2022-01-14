@@ -1,6 +1,6 @@
-import type { Engine } from "../../../engine";
 import { Bubbler } from "./Bubbler";
+import type { Engine } from "../../../engine";
 
-export async function loadExternalBubbleInteraction(tsParticles: Engine): Promise<void> {
-    await tsParticles.addInteractor("externalBubble", (container) => new Bubbler(container));
+export async function loadExternalBubbleInteraction(engine: Engine): Promise<void> {
+    await engine.addInteractor("externalBubble", (container) => new Bubbler(container));
 }

@@ -1,5 +1,5 @@
-import type { ISourceOptions } from "tsparticles";
 import { DestroyMode, DestroyType, MoveDirection, OutMode, ShapeType, StartValueType } from "tsparticles";
+import type { ISourceOptions } from "tsparticles";
 
 export const options: ISourceOptions = {
     detectRetina: true,

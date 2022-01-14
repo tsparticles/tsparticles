@@ -1,9 +1,9 @@
-import type { IAbsorber } from "../Interfaces/IAbsorber";
-import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
-import type { RecursivePartial } from "../../../../Types";
 import { AbsorberSize } from "./AbsorberSize";
-import { OptionsColor } from "../../../../Options/Classes/OptionsColor";
+import type { IAbsorber } from "../Interfaces/IAbsorber";
+import type { ICoordinates } from "../../../../Core";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
+import { OptionsColor } from "../../../../Options/Classes/OptionsColor";
+import type { RecursivePartial } from "../../../../Types";
 
 /**
  * [[include:Options/Plugins/Absorbers.md]]

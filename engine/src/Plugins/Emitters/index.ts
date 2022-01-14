@@ -1,18 +1,17 @@
-import type { IPlugin } from "../../Core/Interfaces";
-import type { Container } from "../../Core/Container";
-import { isInArray } from "../../Utils";
-import { Emitters } from "./Emitters";
-import type { RecursivePartial } from "../../Types";
-import type { IOptions } from "../../Options/Interfaces/IOptions";
-import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
+import type { Container, IPlugin } from "../../Core";
 import { EmitterClickMode, EmitterShapeType } from "./Enums";
-import { Options } from "../../Options/Classes/Options";
-import { Emitter } from "./Options/Classes/Emitter";
-import { IEmitterShape } from "./IEmitterShape";
-import { EmittersMain } from "./EmittersMain";
-import { ShapeManager } from "./ShapeManager";
 import { CircleShape } from "./Shapes/Circle/CircleShape";
+import { Emitter } from "./Options/Classes/Emitter";
+import { Emitters } from "./Emitters";
+import { EmittersMain } from "./EmittersMain";
+import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
+import { IEmitterShape } from "./IEmitterShape";
+import type { IOptions } from "../../Options/Interfaces/IOptions";
+import { Options } from "../../Options/Classes/Options";
+import type { RecursivePartial } from "../../Types";
+import { ShapeManager } from "./ShapeManager";
 import { SquareShape } from "./Shapes/Square/SquareShape";
+import { isInArray } from "../../Utils";
 
 /**
  * @category Emitters Plugin
@@ -94,19 +93,19 @@ class EmittersPlugin implements IPlugin {
     }
 }
 
-export async function loadEmittersPlugin(tsParticles: EmittersMain): Promise<void> {
+export async function loadEmittersPlugin(engine: EmittersMain): Promise<void> {
     const plugin = new EmittersPlugin();
 
-    await tsParticles.addPlugin(plugin);
+    await engine.addPlugin(plugin);
 
-    if (!tsParticles.addEmitterShape) {
-        tsParticles.addEmitterShape = (name: string, shape: IEmitterShape) => {
+    if (!engine.addEmitterShape) {
+        engine.addEmitterShape = (name: string, shape: IEmitterShape) => {
             ShapeManager.addShape(name, shape);
         };
     }
 
-    tsParticles.addEmitterShape(EmitterShapeType.circle, new CircleShape());
-    tsParticles.addEmitterShape(EmitterShapeType.square, new SquareShape());
+    engine.addEmitterShape(EmitterShapeType.circle, new CircleShape());
+    engine.addEmitterShape(EmitterShapeType.square, new SquareShape());
 }
 
 export * from "./EmittersMain";

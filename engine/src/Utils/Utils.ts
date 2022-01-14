@@ -1,3 +1,4 @@
+import { DivMode, OutModeDirection } from "../Enums";
 import type {
     IBounds,
     ICircleBouncer,
@@ -7,12 +8,11 @@ import type {
     IRangeValue,
     IRectSideResult,
 } from "../Core";
-import { DivMode, OutModeDirection } from "../Enums";
-import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICharacterShape";
-import type { SingleOrMultiple } from "../Types";
+import { collisionVelocity, getDistances, getValue } from "./NumberUtils";
 import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
+import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICharacterShape";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
-import { collisionVelocity, getValue, getDistances } from "./NumberUtils";
+import type { SingleOrMultiple } from "../Types";
 import { Vector } from "../Core";
 
 declare global {

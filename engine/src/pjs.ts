@@ -2,9 +2,9 @@
  * [[include:pjsMigration.md]]
  * @packageDocumentation
  */
-import type { IOptions } from "./Options/Interfaces/IOptions";
 import type { Container, Particle } from "./Core";
 import type { Engine } from "./engine";
+import type { IOptions } from "./Options/Interfaces/IOptions";
 import type { RecursivePartial } from "./Types";
 
 /**

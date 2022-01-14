@@ -1,6 +1,6 @@
-import { LinkInstance } from "./LinkInstance";
 import type { Container, IPlugin } from "../../../Core";
 import type { Engine } from "../../../engine";
+import { LinkInstance } from "./LinkInstance";
 
 class LinksPlugin implements IPlugin {
     readonly id;
@@ -22,8 +22,8 @@ class LinksPlugin implements IPlugin {
     }
 }
 
-export async function loadPlugin(tsParticles: Engine): Promise<void> {
+export async function loadPlugin(engine: Engine): Promise<void> {
     const plugin = new LinksPlugin();
 
-    await tsParticles.addPlugin(plugin);
+    await engine.addPlugin(plugin);
 }

@@ -1,16 +1,16 @@
 import type { Container, ICoordinates, IDelta, IHsl } from "../../Core";
-import type { IEmitter } from "./Options/Interfaces/IEmitter";
 import { colorToHsl, deepExtend, getRangeValue, isPointInside, randomInRange } from "../../Utils";
-import { SizeMode } from "../../Enums";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
 import type { Emitters } from "./Emitters";
-import type { RecursivePartial } from "../../Types";
-import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
-import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
 import type { IColorAnimation } from "../../Options/Interfaces/IColorAnimation";
-import type { IHslAnimation } from "../../Options/Interfaces/IHslAnimation";
-import { ShapeManager } from "./ShapeManager";
+import type { IEmitter } from "./Options/Interfaces/IEmitter";
 import type { IEmitterShape } from "./IEmitterShape";
+import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
+import type { IHslAnimation } from "../../Options/Interfaces/IHslAnimation";
+import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
+import type { RecursivePartial } from "../../Types";
+import { ShapeManager } from "./ShapeManager";
+import { SizeMode } from "../../Enums";
 
 /**
  * @category Emitters Plugin

@@ -1,9 +1,9 @@
-import type { IInteractivity } from "../../Interfaces/Interactivity/IInteractivity";
 import { HoverMode, InteractivityDetect } from "../../../Enums";
 import { Events } from "./Events/Events";
+import type { IInteractivity } from "../../Interfaces/Interactivity/IInteractivity";
+import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import { Modes } from "./Modes/Modes";
 import type { RecursivePartial } from "../../../Types";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 
 /**
  * [[include:Options/Interactivity.md]]

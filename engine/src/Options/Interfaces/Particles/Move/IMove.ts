@@ -1,13 +1,13 @@
-import type { IAttract } from "./IAttract";
 import type { MoveDirection, MoveDirectionAlt, OutMode, OutModeAlt } from "../../../../Enums";
-import type { ITrail } from "./ITrail";
-import type { IPath } from "./Path/iPath";
+import type { IAttract } from "./IAttract";
+import type { IDistance } from "../../../../Core";
 import type { IMoveAngle } from "./IMoveAngle";
 import type { IMoveGravity } from "./IMoveGravity";
 import type { IOutModes } from "./IOutModes";
+import type { IPath } from "./Path/IPath";
+import type { ISpin } from "./ISpin";
+import type { ITrail } from "./ITrail";
 import type { RangeValue } from "../../../../Types";
-import { IDistance } from "../../../../Core/Interfaces";
-import { ISpin } from "./ISpin";
 
 /**
  * [[include:Options/Particles/Move.md]]

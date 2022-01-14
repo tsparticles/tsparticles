@@ -1,16 +1,16 @@
-import type { ICoordinates } from "../../Core";
-import type { IPolygonMaskDrawStroke } from "./Options/Interfaces/IPolygonMaskDrawStroke";
-import { colorToRgb, getDistances, getStyleFromRgb } from "../../Utils";
-import type { ISvgPath } from "./Interfaces/ISvgPath";
-import type { SvgAbsoluteCoordinatesTypes, SvgRelativeCoordinatesTypes } from "./Types";
-import { Vector } from "../../Core";
 import type {
     SVGPathSeg,
     SVGPathSegLinetoHorizontalAbs,
-    SVGPathSegLinetoVerticalAbs,
     SVGPathSegLinetoHorizontalRel,
+    SVGPathSegLinetoVerticalAbs,
     SVGPathSegLinetoVerticalRel,
 } from "./pathseg";
+import type { SvgAbsoluteCoordinatesTypes, SvgRelativeCoordinatesTypes } from "./Types";
+import { colorToRgb, getDistances, getStyleFromRgb } from "../../Utils";
+import type { ICoordinates } from "../../Core";
+import type { IPolygonMaskDrawStroke } from "./Options/Interfaces/IPolygonMaskDrawStroke";
+import type { ISvgPath } from "./Interfaces/ISvgPath";
+import { Vector } from "../../Core";
 
 export function drawPolygonMask(
     context: CanvasRenderingContext2D,
