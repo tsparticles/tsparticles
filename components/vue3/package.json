@@ -70,7 +70,7 @@
     "vue": ">=3"
   },
   "dependencies": {
-    "core-js": "^3.16.1",
+    "core-js": "^3.20.1",
     "tsparticles": "^1.39.0",
     "vue-class-component": "^8.0.0-rc.1"
   },
