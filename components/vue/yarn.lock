@@ -1495,10 +1495,10 @@
     lodash.kebabcase "^4.1.1"
     svg-tags "^1.0.0"
 
-"@vue/babel-preset-app@^5.0.0-rc.1":
-  version "5.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/@vue/babel-preset-app/-/babel-preset-app-5.0.0-rc.1.tgz#bcf3667fbd4967d39495f4025a093859c6174363"
-  integrity sha512-inJV1lxC+dUvqwPy9gbEjELX+Vk/Ys961S61aIn52gSCZBLHfk8/7mM7B3PamgHSG8yQmgrd3BOZsKSSsAMNJQ==
+"@vue/babel-preset-app@^5.0.0-rc.2":
+  version "5.0.0-rc.2"
+  resolved "https://registry.yarnpkg.com/@vue/babel-preset-app/-/babel-preset-app-5.0.0-rc.2.tgz#0909581d3d572e4f554780d5b376fef67b2604f3"
+  integrity sha512-EqOuXInrc36XwHBb+XsY4yBnrIXHbxqYQNvm57QErW3uv5sSfTvJpWAdnVFuJs8tnP4m00fHiuQKK6gP34dvqQ==
   dependencies:
     "@babel/core" "^7.12.16"
     "@babel/helper-compilation-targets" "^7.12.16"
@@ -1586,13 +1586,13 @@
   integrity sha512-pJ8DxDlFiM73FaNlpKqOi3haG15c/6jPLiFZKIGJDoMxLLufSxEZ8aSfvbFRjqwGy/o3I4jzg086Yy+3ZhdG1g==
 
 "@vue/cli-plugin-babel@~5.0.0-beta.4":
-  version "5.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-babel/-/cli-plugin-babel-5.0.0-rc.1.tgz#9fd1f7e71240ec15c921e7680558c23920d04bd0"
-  integrity sha512-ldVuIkPDAuW831l4u7QMkqEhn4/Gil5Wv617i6h4rwDYAAXPgdf8Ce6b7jH4XEyQ2HCu93TzAK1i2njkWV1wrw==
+  version "5.0.0-rc.2"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-babel/-/cli-plugin-babel-5.0.0-rc.2.tgz#fc6776fe2a7694092fe9f35e431e6c5ae8b3465c"
+  integrity sha512-r00Oc9qvp1WB0/pvwJ3sIRgMa0Dtha6Z1X1pf7cGCryP9Eh/bAWv4nbOnSwLYSlt8pclNQfoIeYsG9vOjDicvg==
   dependencies:
     "@babel/core" "^7.12.16"
-    "@vue/babel-preset-app" "^5.0.0-rc.1"
-    "@vue/cli-shared-utils" "^5.0.0-rc.1"
+    "@vue/babel-preset-app" "^5.0.0-rc.2"
+    "@vue/cli-shared-utils" "^5.0.0-rc.2"
     babel-loader "^8.2.2"
     thread-loader "^3.0.0"
     webpack "^5.54.0"
@@ -1689,10 +1689,10 @@
     webpack-virtual-modules "^0.4.2"
     whatwg-fetch "^3.6.2"
 
-"@vue/cli-shared-utils@^5.0.0-rc.1":
-  version "5.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-5.0.0-rc.1.tgz#0587c663775e666227d896ebbb365ea9909047d8"
-  integrity sha512-rZVTGfSQ0Sqw76BD/Z6iARfnO2r5ICSxt0iIpzjM8w9ohpRtI2B45NrngF0rILwy9d8we4A/n7gQQ0rqwkAX7g==
+"@vue/cli-shared-utils@^5.0.0-rc.1", "@vue/cli-shared-utils@^5.0.0-rc.2":
+  version "5.0.0-rc.2"
+  resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-5.0.0-rc.2.tgz#6f21858524cdc78e645d848a5b7dacbb7c994a99"
+  integrity sha512-jzSZPj92T3i23XrbCW2HNmsI6LG4P5kmerneUtTF8uwMMi540PQePA+clxUmRyNnhVJN9KnWQc10Y2+jwfXkKA==
   dependencies:
     chalk "^4.1.2"
     execa "^1.0.0"
