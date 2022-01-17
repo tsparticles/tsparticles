@@ -2,13 +2,13 @@
 
 # tsParticles Big Circles Preset
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-big-circles/badge)](https://www.jsdelivr.com/package/npm/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles-preset-big-circles.svg)](https://www.npmjs.com/package/tsparticles-preset-big-circles) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-big-circles)](https://www.npmjs.com/package/tsparticles-preset-big-circles)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-big-circles/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-big-circles) [![npmjs](https://badge.fury.io/js/tsparticles-preset-big-circles.svg)](https://www.npmjs.com/package/tsparticles-preset-big-circles) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-big-circles)](https://www.npmjs.com/package/tsparticles-preset-big-circles)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) preset for big colored circles on a white background.
 
 ## Sample
 
-![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/v1/presets/bigCircles/images/sample.png)
+![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/bigCircles/images/sample.png)
 
 ## How to use it
 

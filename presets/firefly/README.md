@@ -9,7 +9,7 @@ little fireflies.
 
 ## Sample
 
-![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/v1/presets/firefly/images/sample.png)
+![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/firefly/images/sample.png)
 
 ## How to use it
 

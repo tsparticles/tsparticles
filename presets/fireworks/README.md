@@ -8,7 +8,7 @@
 
 ## Sample
 
-![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/v1/presets/fireworks/images/sample.png)
+![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/fireworks/images/sample.png)
 
 ## How to use it
 

@@ -2,14 +2,14 @@
 
 # tsParticles Bubbles Preset
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-bubbles/badge)](https://www.jsdelivr.com/package/npm/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles-preset-bubbles.svg)](https://www.npmjs.com/package/tsparticles-preset-bubbles) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-bubbles)](https://www.npmjs.com/package/tsparticles-preset-bubbles)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-bubbles/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-bubbles) [![npmjs](https://badge.fury.io/js/tsparticles-preset-bubbles.svg)](https://www.npmjs.com/package/tsparticles-preset-bubbles) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-bubbles)](https://www.npmjs.com/package/tsparticles-preset-bubbles)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) preset for colored bubbles coming from the bottom of the
 screen on a white background.
 
 ## Sample
 
-![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/v1/presets/bubbles/images/sample.png)
+![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/bubbles/images/sample.png)
 
 ## How to use it
 

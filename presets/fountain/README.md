@@ -9,7 +9,7 @@ that break when hitting the ground.
 
 ## Sample
 
-![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/v1/presets/fountain/images/sample.png)
+![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/fountain/images/sample.png)
 
 ## How to use it
 

@@ -9,7 +9,7 @@ between them.
 
 ## Sample
 
-![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/v1/presets/triangles/images/sample.png)
+![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/triangles/images/sample.png)
 
 ## How to use it
 
