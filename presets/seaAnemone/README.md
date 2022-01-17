@@ -9,7 +9,7 @@ particles spawned in the canvas center.
 
 ## Sample
 
-![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/v1/presets/seaAnemone/images/sample.png)
+![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/seaAnemone/images/sample.png)
 
 ## How to use it
 

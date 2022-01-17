@@ -9,7 +9,7 @@ between them.
 
 ## Sample
 
-![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/v1/presets/links/images/sample.png)
+![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/links/images/sample.png)
 
 ## How to use it
 
