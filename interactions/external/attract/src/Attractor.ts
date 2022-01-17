@@ -1,18 +1,17 @@
-import type { Container, ICoordinates, IParticle } from "tsparticles-engine";
 import {
     Circle,
+    ClickMode,
     ExternalInteractorBase,
+    HoverMode,
     Range,
-    getDistances,
+    Vector,
     calcEasing,
     clamp,
+    getDistances,
     isInArray,
-    ClickMode,
-    HoverMode,
-    Vector,
     mouseMoveEvent,
 } from "tsparticles-engine";
-
+import type { Container, ICoordinates, IParticle } from "tsparticles-engine";
 interface IContainerAttract {
     particles: IParticle[];
     finish?: boolean;

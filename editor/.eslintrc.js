@@ -18,6 +18,13 @@ module.exports = {
             "accessibility": "no-public"
         }],
         "@typescript-eslint/no-unused-vars": "warn",
-        "@typescript-eslint/no-empty-function": "warn"
+        "@typescript-eslint/no-empty-function": "warn",
+        "sort-imports": ["error", {
+            "ignoreCase": false,
+            "ignoreDeclarationSort": false,
+            "ignoreMemberSort": false,
+            "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
+            "allowSeparatedGroups": false
+        }]
     }
 };

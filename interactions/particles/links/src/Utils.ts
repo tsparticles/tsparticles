@@ -1,13 +1,13 @@
 import {
-    colorToRgb,
-    getDistance,
-    getDistances,
-    getStyleFromRgb,
     ICoordinates,
     IDimension,
     IRgb,
+    colorToRgb,
     drawLine,
     drawTriangle,
+    getDistance,
+    getDistances,
+    getStyleFromRgb,
 } from "tsparticles-engine";
 import type { ILinksShadow } from "tsparticles-engine";
 

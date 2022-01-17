@@ -1,5 +1,5 @@
-import type { IEmitterSize } from "../Interfaces/IEmitterSize";
 import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import type { IEmitterSize } from "../Interfaces/IEmitterSize";
 import { SizeMode } from "tsparticles-engine";
 
 /**

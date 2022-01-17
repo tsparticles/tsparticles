@@ -1,5 +1,5 @@
-import { tsParticles } from "tsparticles-engine";
 import { loadSlim } from ".";
+import { tsParticles } from "tsparticles-engine";
 
 loadSlim(tsParticles);
 

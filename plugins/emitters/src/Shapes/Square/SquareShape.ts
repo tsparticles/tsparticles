@@ -1,5 +1,5 @@
-import type { IEmitterShape } from "../../IEmitterShape";
 import type { ICoordinates } from "tsparticles-engine";
+import type { IEmitterShape } from "../../IEmitterShape";
 
 function randomSquareCoordinate(position: number, offset: number): number {
     return position + offset * (Math.random() - 0.5);

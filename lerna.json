@@ -8,6 +8,7 @@
     "interactions/*",
     "interactions/external/*",
     "interactions/particles/*",
+    "move/*",
     "paths/*",
     "plugins/*",
     "presets/*",

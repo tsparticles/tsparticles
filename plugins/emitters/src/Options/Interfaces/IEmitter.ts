@@ -1,15 +1,15 @@
 import type {
+    IAnimatableColor,
     ICoordinates,
+    IParticlesOptions,
     MoveDirection,
     MoveDirectionAlt,
-    IParticlesOptions,
     RecursivePartial,
-    IAnimatableColor,
 } from "tsparticles-engine";
-import type { IEmitterRate } from "./IEmitterRate";
-import type { IEmitterLife } from "./IEmitterLife";
-import type { IEmitterSize } from "./IEmitterSize";
 import type { EmitterShapeType } from "../../Enums";
+import type { IEmitterLife } from "./IEmitterLife";
+import type { IEmitterRate } from "./IEmitterRate";
+import type { IEmitterSize } from "./IEmitterSize";
 
 /**
  * Particles emitter object options

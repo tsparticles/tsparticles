@@ -1,20 +1,20 @@
 import type { Container, IParticle } from "tsparticles-engine";
-import { Particle, ParticlesInteractorBase, Vector, getDistances, clamp } from "tsparticles-engine";
+import { Particle, ParticlesInteractorBase, Vector, clamp, getDistances } from "tsparticles-engine";
 
 export class Repulser extends ParticlesInteractorBase {
     constructor(container: Container) {
         super(container);
     }
 
-    public isEnabled(particle: Particle): boolean {
+    isEnabled(particle: Particle): boolean {
         return particle.options.repulse.enabled;
     }
 
-    public reset(): void {
+    reset(): void {
         // do nothing
     }
 
-    public interact(p1: IParticle): void {
+    interact(p1: IParticle): void {
         const container = this.container;
         const repulseOpt1 = p1.options.repulse;
         const pos1 = p1.getPosition();

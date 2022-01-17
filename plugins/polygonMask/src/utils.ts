@@ -1,14 +1,14 @@
-import { ICoordinates, colorToRgb, getStyleFromRgb, getDistances, Vector } from "tsparticles-engine";
-import { ISvgPath } from "./Interfaces/ISvgPath";
-import { IPolygonMaskDrawStroke } from "./Options/Interfaces/IPolygonMaskDrawStroke";
+import { ICoordinates, Vector, colorToRgb, getDistances, getStyleFromRgb } from "tsparticles-engine";
 import {
     SVGPathSeg,
     SVGPathSegLinetoHorizontalAbs,
-    SVGPathSegLinetoVerticalAbs,
     SVGPathSegLinetoHorizontalRel,
+    SVGPathSegLinetoVerticalAbs,
     SVGPathSegLinetoVerticalRel,
 } from "./pathseg";
 import { SvgAbsoluteCoordinatesTypes, SvgRelativeCoordinatesTypes } from "./types";
+import { IPolygonMaskDrawStroke } from "./Options/Interfaces/IPolygonMaskDrawStroke";
+import { ISvgPath } from "./Interfaces/ISvgPath";
 
 export function drawPolygonMask(
     context: CanvasRenderingContext2D,

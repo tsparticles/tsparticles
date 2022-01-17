@@ -1,4 +1,4 @@
-import type { IPlugin, IContainerPlugin, Options } from "tsparticles-engine";
+import type { IContainerPlugin, IPlugin, Options } from "tsparticles-engine";
 import { fixOptions } from "./fixOptions";
 
 export class ParticlesJSPlugin implements IPlugin {

@@ -3,8 +3,8 @@
  * @packageDocumentation
  */
 import type { Container, Engine, Particle, RecursivePartial } from "tsparticles-engine";
-import type { IParticlesJSOptions } from "./IParticlesJSOptions";
 import type { IParticlesJS } from "./IParticlesJS";
+import type { IParticlesJSOptions } from "./IParticlesJSOptions";
 import { ParticlesJSPlugin } from "./particlesJSPlugin";
 
 const initPjs = (engine: Engine): { particlesJS: IParticlesJS; pJSDom: Container[] } => {

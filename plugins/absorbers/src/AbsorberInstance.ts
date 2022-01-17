@@ -1,6 +1,7 @@
 import type { Container, ICoordinates, IRgb, Particle } from "tsparticles-engine";
-import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
 import {
+    RotateDirection,
+    Vector,
     colorToRgb,
     getDistance,
     getDistances,
@@ -9,7 +10,7 @@ import {
     isPointInside,
 } from "tsparticles-engine";
 import type { Absorbers } from "./Absorbers";
-import { RotateDirection, Vector } from "tsparticles-engine";
+import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
 import type { IAbsorberSizeLimit } from "./Options/Interfaces/IAbsorberSizeLimit";
 
 type OrbitingParticle = Particle & {

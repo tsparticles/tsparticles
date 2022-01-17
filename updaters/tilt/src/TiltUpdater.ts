@@ -1,5 +1,5 @@
-import type { Container, IDelta, IParticleUpdater, Particle } from "tsparticles-engine";
 import { AnimationStatus, TiltDirection, getRangeValue } from "tsparticles-engine";
+import type { Container, IDelta, IParticleUpdater, Particle } from "tsparticles-engine";
 
 function updateTilt(particle: Particle, delta: IDelta): void {
     if (!particle.tilt) {

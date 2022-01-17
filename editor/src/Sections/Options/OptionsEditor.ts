@@ -1,13 +1,13 @@
-import { BackgroundOptionsEditor } from "./Background/BackgroundOptionsEditor";
-import { ParticlesOptionsEditor } from "./Particles/ParticlesOptionsEditor";
 import type { Container, IOptions } from "tsparticles-engine";
-import { InteractivityOptionsEditor } from "./Interactivity/InteractivityOptionsEditor";
-import { BackgroundMaskOptionsEditor } from "./BackgroundMask/BackgroundMaskOptionsEditor";
-import { InfectionOptionsEditor } from "./Infection/InfectionOptionsEditor";
 import { Editor, EditorGroup, EditorType } from "object-gui";
+import { BackgroundMaskOptionsEditor } from "./BackgroundMask/BackgroundMaskOptionsEditor";
+import { BackgroundOptionsEditor } from "./Background/BackgroundOptionsEditor";
 import { EditorBase } from "../../EditorBase";
 import { FullScreenOptionsEditor } from "./FullScreen/FullScreenOptionsEditor";
+import { InfectionOptionsEditor } from "./Infection/InfectionOptionsEditor";
+import { InteractivityOptionsEditor } from "./Interactivity/InteractivityOptionsEditor";
 import { MotionOptionsEditor } from "./Motion/MotionOptionsEditor";
+import { ParticlesOptionsEditor } from "./Particles/ParticlesOptionsEditor";
 
 export class OptionsEditor extends EditorBase {
     group!: EditorGroup;

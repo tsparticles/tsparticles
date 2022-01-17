@@ -1,5 +1,5 @@
-import type { IPolygonMaskDrawStroke } from "./IPolygonMaskDrawStroke";
 import type { IColor } from "tsparticles-engine";
+import type { IPolygonMaskDrawStroke } from "./IPolygonMaskDrawStroke";
 
 /**
  * @category Polygon Mask Plugin

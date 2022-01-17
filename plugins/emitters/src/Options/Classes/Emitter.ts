@@ -1,10 +1,10 @@
-import type { IEmitter } from "../Interfaces/IEmitter";
 import { AnimatableColor, MoveDirection, MoveDirectionAlt, deepExtend } from "tsparticles-engine";
-import type { ICoordinates, IParticlesOptions, IOptionLoader, RecursivePartial } from "tsparticles-engine";
-import { EmitterRate } from "./EmitterRate";
+import type { ICoordinates, IOptionLoader, IParticlesOptions, RecursivePartial } from "tsparticles-engine";
 import { EmitterLife } from "./EmitterLife";
-import { EmitterSize } from "./EmitterSize";
+import { EmitterRate } from "./EmitterRate";
 import { EmitterShapeType } from "../../Enums";
+import { EmitterSize } from "./EmitterSize";
+import type { IEmitter } from "../Interfaces/IEmitter";
 
 /**
  * [[include:Options/Plugins/Emitters.md]]

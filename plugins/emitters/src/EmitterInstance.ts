@@ -1,22 +1,22 @@
 import type {
     Container,
+    Engine,
+    IColorAnimation,
     ICoordinates,
     IDelta,
     IHsl,
-    RecursivePartial,
-    Engine,
-    IParticlesOptions,
-    IColorAnimation,
     IHslAnimation,
+    IParticlesOptions,
+    RecursivePartial,
 } from "tsparticles-engine";
 import {
+    SizeMode,
+    Vector,
     colorToHsl,
     deepExtend,
     getRangeValue,
     isPointInside,
     randomInRange,
-    SizeMode,
-    Vector,
 } from "tsparticles-engine";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
 import type { Emitters } from "./Emitters";

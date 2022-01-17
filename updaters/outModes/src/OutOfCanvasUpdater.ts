@@ -1,10 +1,10 @@
 import type { Container, IDelta, IParticleUpdater, OutMode, OutModeAlt, Particle } from "tsparticles-engine";
-import { OutModeDirection } from "tsparticles-engine";
-import type { IOutModeManager } from "./IOutModeManager";
 import { BounceOutMode } from "./BounceOutMode";
 import { DestroyOutMode } from "./DestroyOutMode";
-import { OutOutMode } from "./OutOutMode";
+import type { IOutModeManager } from "./IOutModeManager";
 import { NoneOutMode } from "./NoneOutMode";
+import { OutModeDirection } from "tsparticles-engine";
+import { OutOutMode } from "./OutOutMode";
 
 export class OutOfCanvasUpdater implements IParticleUpdater {
     updaters: IOutModeManager[];

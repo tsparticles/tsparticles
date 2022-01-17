@@ -1,22 +1,25 @@
-import type { Container, Engine, IOptions, IPlugin, RecursivePartial } from "tsparticles-engine";
+import type { Container, Engine, IOptions, IPlugin, Options, RecursivePartial } from "tsparticles-engine";
 import type { IPolygonMaskOptions } from "./Options/Interfaces/IPolygonMaskOptions";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
 import { PolygonMaskInstance } from "./PolygonMaskInstance";
 import { PolygonMaskType } from "./Enums";
-import { Options, isSsr } from "tsparticles-engine";
+import { isSsr } from "tsparticles-engine";
 
 /**
  * @category Polygon Mask Plugin
  */
 class PolygonMaskPlugin implements IPlugin {
     readonly id;
+    readonly #engine;
 
-    constructor() {
+    constructor(engine: Engine) {
         this.id = "polygonMask";
+
+        this.#engine = engine;
     }
 
     getPlugin(container: Container): PolygonMaskInstance {
-        return new PolygonMaskInstance(container);
+        return new PolygonMaskInstance(container, this.#engine);
     }
 
     needsPlugin(options?: RecursivePartial<IOptions & IPolygonMaskOptions>): boolean {
@@ -53,7 +56,7 @@ export async function loadPolygonMaskPlugin(engine: Engine): Promise<void> {
         );
     }
 
-    const plugin = new PolygonMaskPlugin();
+    const plugin = new PolygonMaskPlugin(engine);
 
     await engine.addPlugin(plugin);
 }

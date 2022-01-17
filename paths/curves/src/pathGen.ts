@@ -1,5 +1,5 @@
-import type { IMovePathGenerator } from "tsparticles-engine";
 import { CurvesPathParticle } from "./CurvesPathParticle";
+import type { IMovePathGenerator } from "tsparticles-engine";
 import { Vector } from "tsparticles-engine";
 
 function pathGen(

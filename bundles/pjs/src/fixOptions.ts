@@ -8,8 +8,8 @@ import type {
     ISizeAnimation,
     ISourceOptions,
     IStroke,
-    SingleOrMultiple,
     RecursivePartial,
+    SingleOrMultiple,
 } from "tsparticles-engine";
 import { deepExtend, setRangeValue } from "tsparticles-engine";
 import type { IParticlesJSOptions } from "./IParticlesJSOptions";

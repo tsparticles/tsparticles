@@ -1,5 +1,5 @@
 import type { Container, Particle } from "tsparticles-engine";
-import { getDistance, ParticlesInteractorBase } from "tsparticles-engine";
+import { ParticlesInteractorBase, getDistance } from "tsparticles-engine";
 import { resolveCollision } from "./ResolveCollision";
 
 /**

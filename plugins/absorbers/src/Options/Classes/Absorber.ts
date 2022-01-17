@@ -1,6 +1,6 @@
-import type { IAbsorber } from "../Interfaces/IAbsorber";
 import type { ICoordinates, IOptionLoader, RecursivePartial } from "tsparticles-engine";
 import { AbsorberSize } from "./AbsorberSize";
+import type { IAbsorber } from "../Interfaces/IAbsorber";
 import { OptionsColor } from "tsparticles-engine";
 
 /**

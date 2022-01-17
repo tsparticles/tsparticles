@@ -1,5 +1,5 @@
-import type { IInfection } from "../Interfaces/IInfection";
 import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import type { IInfection } from "../Interfaces/IInfection";
 import { InfectionStage } from "./InfectionStage";
 
 /**

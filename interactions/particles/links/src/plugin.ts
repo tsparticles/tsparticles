@@ -1,5 +1,5 @@
+import type { Container, Engine, IPlugin } from "tsparticles-engine";
 import { LinkInstance } from "./LinkInstance";
-import type { Container, IPlugin, Engine } from "tsparticles-engine";
 
 class LinksPlugin implements IPlugin {
     readonly id;

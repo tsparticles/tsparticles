@@ -1,12 +1,12 @@
 import type { Engine } from "tsparticles-engine";
-import { loadSlim } from "tsparticles-slim";
-import { loadTiltUpdater } from "tsparticles-updater-tilt";
-import { loadRollUpdater } from "tsparticles-updater-roll";
-import { loadWobbleUpdater } from "tsparticles-updater-wobble";
-import { loadExternalTrailInteraction } from "tsparticles-interaction-external-trail";
 import { loadAbsorbersPlugin } from "tsparticles-plugin-absorbers";
 import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
+import { loadExternalTrailInteraction } from "tsparticles-interaction-external-trail";
 import { loadPolygonMaskPlugin } from "tsparticles-plugin-polygon-mask";
+import { loadRollUpdater } from "tsparticles-updater-roll";
+import { loadSlim } from "tsparticles-slim";
+import { loadTiltUpdater } from "tsparticles-updater-tilt";
+import { loadWobbleUpdater } from "tsparticles-updater-wobble";
 
 export async function loadFull(engine: Engine): Promise<void> {
     await loadSlim(engine);

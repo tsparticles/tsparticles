@@ -1,13 +1,13 @@
-import type { Container } from "tsparticles-engine";
 import {
     ExternalInteractorBase,
-    getLinkRandomColor,
-    getLinkColor,
-    getDistance,
     HoverMode,
+    getDistance,
+    getLinkColor,
+    getLinkRandomColor,
     isInArray,
     mouseMoveEvent,
 } from "tsparticles-engine";
+import type { Container } from "tsparticles-engine";
 
 /**
  * Particle grab manager

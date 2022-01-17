@@ -1,21 +1,20 @@
-import { Container, tsParticles } from "tsparticles-engine";
-import type { IContainerPlugin, ICoordinates, IDelta, IDimension } from "tsparticles-engine";
+import type { Container, Engine, IContainerPlugin, ICoordinates, IDelta, IDimension } from "tsparticles-engine";
 import { PolygonMaskInlineArrangement, PolygonMaskType } from "./Enums";
-import { Particle } from "tsparticles-engine";
+import { calcClosestPtOnSegment, drawPolygonMask, drawPolygonMaskPath, parsePaths, segmentBounce } from "./utils";
 import {
     deepExtend,
     getDistance,
     getDistances,
     itemFromArray,
-    noPolygonFound,
     noPolygonDataLoaded,
+    noPolygonFound,
 } from "tsparticles-engine";
-import type { ISvgPath } from "./Interfaces/ISvgPath";
-import type { RecursivePartial } from "tsparticles-engine";
-import { PolygonMask } from "./Options/Classes/PolygonMask";
-import { OutModeDirection } from "tsparticles-engine";
 import type { IPolygonMaskOptions } from "./types";
-import { calcClosestPtOnSegment, drawPolygonMask, drawPolygonMaskPath, parsePaths, segmentBounce } from "./utils";
+import type { ISvgPath } from "./Interfaces/ISvgPath";
+import { OutModeDirection } from "tsparticles-engine";
+import { Particle } from "tsparticles-engine";
+import { PolygonMask } from "./Options/Classes/PolygonMask";
+import type { RecursivePartial } from "tsparticles-engine";
 
 /**
  * Polygon Mask manager
@@ -32,7 +31,10 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
     private polygonMaskMoveRadius;
 
-    constructor(private readonly container: Container) {
+    #engine;
+
+    constructor(private readonly container: Container, engine: Engine) {
+        this.#engine = engine;
         this.dimension = {
             height: 0,
             width: 0,
@@ -524,7 +526,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
         this.createPath2D();
 
-        tsParticles.dispatchEvent("polygonMaskLoaded", {
+        this.#engine.dispatchEvent("polygonMaskLoaded", {
             container: this.container,
         });
     }

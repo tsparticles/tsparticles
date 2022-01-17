@@ -77,9 +77,9 @@ export class ParticlesMover {
                 getRangeValue(particle.options.move.drift) * container.retina.pixelRatio),
             maxSize = getRangeMax(particleOptions.size.value) * container.retina.pixelRatio,
             sizeFactor = moveOptions.size ? particle.getRadius() / maxSize : 1,
+            speedFactor = sizeFactor * slowFactor * (delta.factor || 1),
             diffFactor = 2,
-            speedFactor = (sizeFactor * slowFactor * (delta.factor || 1)) / diffFactor,
-            moveSpeed = baseSpeed * speedFactor;
+            moveSpeed = (baseSpeed * speedFactor) / diffFactor;
 
         this.applyPath(particle, delta);
 

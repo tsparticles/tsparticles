@@ -2,8 +2,8 @@
  * @category Interfaces
  */
 import type { IHsl, IParticle, Particle } from "tsparticles-engine";
-import { getStyleFromHsl } from "tsparticles-engine";
 import type { IImageShape } from "./IImageShape";
+import { getStyleFromHsl } from "tsparticles-engine";
 
 export interface IImage {
     source: string;

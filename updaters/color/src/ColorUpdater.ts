@@ -1,3 +1,4 @@
+import { AnimationStatus, colorToHsl, getHslAnimationFromHsl, randomInRange } from "tsparticles-engine";
 import type {
     Container,
     IColorAnimation,
@@ -6,7 +7,6 @@ import type {
     IParticleValueAnimation,
     Particle,
 } from "tsparticles-engine";
-import { AnimationStatus, colorToHsl, getHslAnimationFromHsl, randomInRange } from "tsparticles-engine";
 
 function updateColorValue(
     delta: IDelta,

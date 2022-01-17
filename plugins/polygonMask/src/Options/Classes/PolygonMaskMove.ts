@@ -1,5 +1,5 @@
-import type { IPolygonMaskMove } from "../Interfaces/IPolygonMaskMove";
 import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import type { IPolygonMaskMove } from "../Interfaces/IPolygonMaskMove";
 import { PolygonMaskMoveType } from "../../Enums";
 
 /**

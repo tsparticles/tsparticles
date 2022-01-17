@@ -1,24 +1,24 @@
-import type { Container, DivEvent, RepulseDiv, ICoordinates } from "tsparticles-engine";
 import {
-    calcEasing,
     Circle,
-    clamp,
-    divMode,
-    divModeExecute,
-    ExternalInteractorBase,
-    getDistances,
-    isDivModeEnabled,
-    isInArray,
-    IParticle,
-    Range,
-    Rectangle,
     ClickMode,
     DivMode,
     DivType,
+    ExternalInteractorBase,
     HoverMode,
+    IParticle,
+    Range,
+    Rectangle,
     Vector,
+    calcEasing,
+    clamp,
+    divMode,
+    divModeExecute,
+    getDistances,
+    isDivModeEnabled,
+    isInArray,
     mouseMoveEvent,
 } from "tsparticles-engine";
+import type { Container, DivEvent, ICoordinates, RepulseDiv } from "tsparticles-engine";
 
 interface IContainerRepulse {
     particles: IParticle[];

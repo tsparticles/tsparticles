@@ -1,10 +1,3 @@
-import type {
-    IDelta,
-    IParticleUpdater,
-    IParticleValueAnimation,
-    Particle,
-    IParticleNumericValueAnimation,
-} from "tsparticles-engine";
 import {
     AnimationStatus,
     RotateDirection,
@@ -16,6 +9,13 @@ import {
     getRangeValue,
     itemFromArray,
     randomInRange,
+} from "tsparticles-engine";
+import type {
+    IDelta,
+    IParticleNumericValueAnimation,
+    IParticleUpdater,
+    IParticleValueAnimation,
+    Particle,
 } from "tsparticles-engine";
 
 function updateColorOpacity(delta: IDelta, value: IParticleNumericValueAnimation) {

@@ -1,4 +1,4 @@
-import type { IMovePathGenerator, Container, Particle } from "tsparticles-engine";
+import type { Container, IMovePathGenerator, Particle } from "tsparticles-engine";
 import { Vector } from "tsparticles-engine";
 import { noiseGen } from "./perlin";
 

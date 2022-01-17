@@ -1,5 +1,5 @@
+import { AnimationStatus, RotateDirection, getRangeValue } from "tsparticles-engine";
 import type { Container, IDelta, IParticleUpdater, Particle } from "tsparticles-engine";
-import { AnimationStatus, getRangeValue, RotateDirection } from "tsparticles-engine";
 
 function updateAngle(particle: Particle, delta: IDelta): void {
     const rotate = particle.rotate;

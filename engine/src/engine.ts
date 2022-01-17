@@ -235,6 +235,10 @@ export class Engine {
         await this.refresh();
     }
 
+    async addMover(name: string, moverInitializer: (container: Container) => unknown): Promise<void> {
+        await this.refresh();
+    }
+
     /**
      *
      * @param name

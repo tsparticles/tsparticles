@@ -1,5 +1,5 @@
-import type { IDelta, IParticleUpdater, Particle } from "tsparticles-engine";
 import { AlterType, colorToHsl, getRangeValue } from "tsparticles-engine";
+import type { IDelta, IParticleUpdater, Particle } from "tsparticles-engine";
 
 function updateRoll(particle: Particle, delta: IDelta): void {
     const roll = particle.options.roll;

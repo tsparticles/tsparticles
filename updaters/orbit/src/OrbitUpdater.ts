@@ -1,5 +1,5 @@
-import type { Container, IDelta, IParticleUpdater, Particle, IHsl, IParticleRetinaProps } from "tsparticles-engine";
-import { colorToHsl, drawEllipse, getRangeValue, OrbitType } from "tsparticles-engine";
+import type { Container, IDelta, IHsl, IParticleRetinaProps, IParticleUpdater, Particle } from "tsparticles-engine";
+import { OrbitType, colorToHsl, drawEllipse, getRangeValue } from "tsparticles-engine";
 
 type OrbitParticle = Particle & {
     orbitColor?: IHsl;

@@ -1,5 +1,5 @@
 import type { Container, IDelta, OutModeAlt, Particle } from "tsparticles-engine";
-import { OutMode, OutModeDirection, isPointInside, Vector } from "tsparticles-engine";
+import { OutMode, OutModeDirection, Vector, isPointInside } from "tsparticles-engine";
 import type { IOutModeManager } from "./IOutModeManager";
 
 export class NoneOutMode implements IOutModeManager {

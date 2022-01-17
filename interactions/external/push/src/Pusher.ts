@@ -1,5 +1,5 @@
+import { ClickMode, ExternalInteractorBase } from "tsparticles-engine";
 import type { Container } from "tsparticles-engine";
-import { ExternalInteractorBase, ClickMode } from "tsparticles-engine";
 import { itemFromArray } from "tsparticles-engine";
 
 /**

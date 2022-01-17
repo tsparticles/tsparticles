@@ -1,8 +1,8 @@
 import type { Container, IModes } from "tsparticles-engine";
 import { EditorGroup, EditorType } from "object-gui";
+import { EasingType } from "tsparticles-engine";
 import { EditorBase } from "../../../../EditorBase";
 import { ParticlesOptionsEditor } from "../../Particles/ParticlesOptionsEditor";
-import { EasingType } from "tsparticles-engine";
 
 export class ModesOptionsEditor extends EditorBase {
     group!: EditorGroup;

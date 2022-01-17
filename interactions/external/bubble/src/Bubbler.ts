@@ -1,5 +1,12 @@
-import type { BubbleDiv, DivEvent, Container, Particle } from "tsparticles-engine";
+import type { BubbleDiv, Container, DivEvent, Particle } from "tsparticles-engine";
 import {
+    Circle,
+    ClickMode,
+    DivMode,
+    DivType,
+    ExternalInteractorBase,
+    HoverMode,
+    Rectangle,
     clamp,
     colorMix,
     colorToHsl,
@@ -10,19 +17,12 @@ import {
     isDivModeEnabled,
     isInArray,
     itemFromArray,
-    rgbToHsl,
-    ClickMode,
-    DivMode,
-    DivType,
-    HoverMode,
-    ExternalInteractorBase,
-    mouseMoveEvent,
     mouseLeaveEvent,
-    Circle,
-    Rectangle,
+    mouseMoveEvent,
+    rgbToHsl,
 } from "tsparticles-engine";
-import { ProcessBubbleType } from "./ProcessBubbleType";
 import type { IBubblerProcessParam } from "./IBubblerProcessParam";
+import { ProcessBubbleType } from "./ProcessBubbleType";
 
 interface IContainerBubble {
     clicking?: boolean;
