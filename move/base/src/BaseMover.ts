@@ -1,17 +1,43 @@
 import type { IDelta, IParticleMover, Particle } from "tsparticles-engine";
+import { RotateDirection, getDistance, getRangeMax, getRangeValue } from "tsparticles-engine";
 import { applyDistance, applyPath, getProximitySpeedFactor, spin } from "./Utils";
-import { getRangeMax, getRangeValue } from "tsparticles-engine";
+import type { SpinParticle } from "./Types";
 
 export class BaseMover implements IParticleMover {
-    init(): void {
-        // nothing to do
+    init(particle: SpinParticle): void {
+        const container = particle.container,
+            options = particle.options,
+            spinOptions = options.move.spin;
+
+        if (spinOptions.enable) {
+            const spinPos = spinOptions.position ?? { x: 50, y: 50 };
+
+            const spinCenter = {
+                x: (spinPos.x / 100) * container.canvas.size.width,
+                y: (spinPos.y / 100) * container.canvas.size.height,
+            };
+
+            const pos = particle.getPosition();
+            const distance = getDistance(pos, spinCenter);
+            const spinAcceleration = getRangeValue(spinOptions.acceleration);
+
+            particle.retina.spinAcceleration = spinAcceleration * container.retina.pixelRatio;
+
+            particle.spin = {
+                center: spinCenter,
+                direction: particle.velocity.x >= 0 ? RotateDirection.clockwise : RotateDirection.counterClockwise,
+                angle: particle.velocity.angle,
+                radius: distance,
+                acceleration: particle.retina.spinAcceleration,
+            };
+        }
     }
 
     isEnabled(particle: Particle): boolean {
         return !particle.destroyed && particle.options.move.enable;
     }
 
-    move(particle: Particle, delta: IDelta): void {
+    move(particle: SpinParticle, delta: IDelta): void {
         const particleOptions = particle.options,
             moveOptions = particleOptions.move;
 

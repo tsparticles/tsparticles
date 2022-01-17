@@ -23,7 +23,6 @@ export * from "./IParticleLoops";
 export * from "./IParticleMover";
 export * from "./IParticleRetinaProps";
 export * from "./IParticleRoll";
-export * from "./IParticleSpin";
 export * from "./IParticleUpdater";
 export * from "./IParticleValueAnimation";
 export * from "./IParticleWobble";

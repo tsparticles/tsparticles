@@ -117,10 +117,6 @@ export class Retina {
         props.moveSpeed = getRangeValue(options.move.speed) * ratio;
         props.sizeAnimationSpeed = options.size.animation.speed * ratio;
 
-        if (particle.spin) {
-            props.spinAcceleration = getRangeValue(options.move.spin.acceleration) * ratio;
-        }
-
         const maxDistance = props.maxDistance;
 
         maxDistance.horizontal = moveDistance.horizontal !== undefined ? moveDistance.horizontal * ratio : undefined;

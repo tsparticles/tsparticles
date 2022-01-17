@@ -9,5 +9,4 @@ export interface IParticleRetinaProps {
     moveDrift?: number;
     moveSpeed?: number;
     sizeAnimationSpeed?: number;
-    spinAcceleration?: number;
 }

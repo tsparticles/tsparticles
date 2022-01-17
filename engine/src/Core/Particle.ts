@@ -5,7 +5,6 @@ import {
     OutMode,
     OutModeAlt,
     ParticleOutType,
-    RotateDirection,
     StartValueType,
 } from "../Enums";
 import {
@@ -21,7 +20,6 @@ import {
     IParticleNumericValueAnimation,
     IParticleRetinaProps,
     IParticleRoll,
-    IParticleSpin,
     IParticleTiltValueAnimation,
     IParticleValueAnimation,
     IParticleWobble,
@@ -113,7 +111,6 @@ export class Particle implements IParticle {
     readonly size: IParticleNumericValueAnimation;
     readonly velocity: Vector;
     readonly shape: string;
-    readonly spin?: IParticleSpin;
     readonly initialPosition: Vector;
     readonly initialVelocity: Vector;
     readonly shapeData?: IShapeValues;
@@ -244,11 +241,12 @@ export class Particle implements IParticle {
         this.position = this.calcPosition(container, position, clamp(zIndexValue, 0, container.zLayers));
         this.initialPosition = this.position.copy();
 
-        const canvasSize = container.canvas.size;
+        const canvasSize = container.canvas.size,
+            moveCenterPerc = this.options.move.center;
 
         this.moveCenter = {
-            x: (canvasSize.width * this.options.move.center.x) / 100,
-            y: (canvasSize.height * this.options.move.center.y) / 100,
+            x: (canvasSize.width * moveCenterPerc.x) / 100,
+            y: (canvasSize.height * moveCenterPerc.y) / 100,
             radius: this.options.move.center.radius,
         };
         this.direction = getParticleDirectionAngle(this.options.move.direction, this.position, this.moveCenter);
@@ -301,27 +299,6 @@ export class Particle implements IParticle {
 
         this.life = this.loadLife();
         this.spawning = this.life.delay > 0;
-
-        if (this.options.move.spin.enable) {
-            const spinPos = this.options.move.spin.position ?? { x: 50, y: 50 };
-
-            const spinCenter = {
-                x: (spinPos.x / 100) * container.canvas.size.width,
-                y: (spinPos.y / 100) * container.canvas.size.height,
-            };
-
-            const pos = this.getPosition();
-            const distance = getDistance(pos, spinCenter);
-
-            this.spin = {
-                center: spinCenter,
-                direction: this.velocity.x >= 0 ? RotateDirection.clockwise : RotateDirection.counterClockwise,
-                angle: this.velocity.angle,
-                radius: distance,
-                acceleration: this.retina.spinAcceleration ?? getRangeValue(this.options.move.spin.acceleration),
-            };
-        }
-
         this.shadowColor = colorToRgb(this.options.shadow.color);
 
         for (const updater of container.particles.updaters) {

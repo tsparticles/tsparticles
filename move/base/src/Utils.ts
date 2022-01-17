@@ -1,7 +1,8 @@
 import { HoverMode, RotateDirection, clamp, getDistance, getDistances, isInArray } from "tsparticles-engine";
 import type { IDelta, Particle } from "tsparticles-engine";
+import type { SpinParticle } from "./Types";
 
-export function applyDistance(particle: Particle): void {
+export function applyDistance(particle: SpinParticle): void {
     const initialPosition = particle.initialPosition;
     const { dx, dy } = getDistances(initialPosition, particle.position);
     const dxFixed = Math.abs(dx),
@@ -40,7 +41,7 @@ export function applyDistance(particle: Particle): void {
     }
 }
 
-export function spin(particle: Particle, moveSpeed: number): void {
+export function spin(particle: SpinParticle, moveSpeed: number): void {
     const container = particle.container;
 
     if (!particle.spin) {
