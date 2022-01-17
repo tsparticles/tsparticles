@@ -4,11 +4,11 @@ import { ResponsiveMode, ThemeMode } from "../../Enums";
 import { deepExtend, loadParticlesOptions } from "../../Utils";
 import { Background } from "./Background";
 import { BackgroundMask } from "./BackgroundMask";
+import { Engine } from "../../engine";
 import { FullScreen } from "./FullScreen";
 import { Interactivity } from "./Interactivity";
 import { ManualParticle } from "./ManualParticle";
 import { Motion } from "./Motion";
-import { Plugins } from "../../Core";
 import { Responsive } from "./Responsive";
 import { Theme } from "./Theme";
 
@@ -17,6 +17,8 @@ import { Theme } from "./Theme";
  * @category Options
  */
 export class Options implements IOptions, IOptionLoader<IOptions> {
+    readonly #engine;
+
     autoPlay;
     background;
     backgroundMask;
@@ -40,7 +42,8 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
     [name: string]: unknown;
 
-    constructor() {
+    constructor(engine: Engine) {
+        this.#engine = engine;
         this.autoPlay = true;
         this.background = new Background();
         this.backgroundMask = new BackgroundMask();
@@ -133,7 +136,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
         this.style = deepExtend(this.style, data.style) as RecursivePartial<CSSStyleDeclaration>;
 
-        Plugins.loadOptions(this, data);
+        this.#engine.plugins.loadOptions(this, data);
 
         if (data.responsive !== undefined) {
             for (const responsive of data.responsive) {
@@ -192,7 +195,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     }
 
     private importPreset(preset: string): void {
-        this.load(Plugins.getPreset(preset));
+        this.load(this.#engine.plugins.getPreset(preset));
     }
 
     #findDefaultTheme(mode: ThemeMode): Theme | undefined {

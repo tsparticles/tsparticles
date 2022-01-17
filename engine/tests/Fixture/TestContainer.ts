@@ -40,7 +40,7 @@ export class TestContainer {
         }
 
         this.container = new Container(tsParticles, this.id, this.options);
-        this.container.actualOptions = new Options();
+        this.container.actualOptions = new Options(tsParticles);
         this.container.actualOptions.load(this.container.options);
         this.container.init();
     }

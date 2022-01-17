@@ -7,6 +7,7 @@ import type {
     Container,
     IInteractor,
     IMovePathGenerator,
+    IParticleMover,
     IParticleUpdater,
     IPlugin,
     IShapeDrawer,
@@ -29,15 +30,18 @@ import type { IOptions } from "./Options";
 export class Engine {
     readonly domArray: Container[];
     readonly eventDispatcher;
+    readonly plugins;
 
     #initialized;
-    #loader;
+
+    readonly #loader;
 
     constructor() {
         this.domArray = [];
         this.eventDispatcher = new EventDispatcher();
         this.#initialized = false;
         this.#loader = new Loader(this);
+        this.plugins = new Plugins(this);
     }
 
     /**
@@ -186,7 +190,7 @@ export class Engine {
             customDrawer = drawer;
         }
 
-        Plugins.addShapeDrawer(shape, customDrawer);
+        this.plugins.addShapeDrawer(shape, customDrawer);
 
         await this.refresh();
     }
@@ -198,7 +202,7 @@ export class Engine {
      * @param override if true, the preset will override any existing with the same name
      */
     async addPreset(preset: string, options: RecursivePartial<IOptions>, override = false): Promise<void> {
-        Plugins.addPreset(preset, options, override);
+        this.plugins.addPreset(preset, options, override);
 
         await this.refresh();
     }
@@ -208,7 +212,7 @@ export class Engine {
      * @param plugin the plugin implementation of [[IPlugin]]
      */
     async addPlugin(plugin: IPlugin): Promise<void> {
-        Plugins.addPlugin(plugin);
+        this.plugins.addPlugin(plugin);
 
         await this.refresh();
     }
@@ -219,7 +223,7 @@ export class Engine {
      * @param generator the path generator object
      */
     async addPathGenerator(name: string, generator: IMovePathGenerator): Promise<void> {
-        Plugins.addPathGenerator(name, generator);
+        this.plugins.addPathGenerator(name, generator);
 
         await this.refresh();
     }
@@ -230,12 +234,14 @@ export class Engine {
      * @param interactorInitializer
      */
     async addInteractor(name: string, interactorInitializer: (container: Container) => IInteractor): Promise<void> {
-        Plugins.addInteractor(name, interactorInitializer);
+        this.plugins.addInteractor(name, interactorInitializer);
 
         await this.refresh();
     }
 
-    async addMover(name: string, moverInitializer: (container: Container) => unknown): Promise<void> {
+    async addMover(name: string, moverInitializer: (container: Container) => IParticleMover): Promise<void> {
+        this.plugins.addParticleMover(name, moverInitializer);
+
         await this.refresh();
     }
 
@@ -248,7 +254,7 @@ export class Engine {
         name: string,
         updaterInitializer: (container: Container) => IParticleUpdater
     ): Promise<void> {
-        Plugins.addParticleUpdater(name, updaterInitializer);
+        this.plugins.addParticleUpdater(name, updaterInitializer);
 
         await this.refresh();
     }

@@ -1,6 +1,7 @@
 import { Engine, RecursivePartial, tsParticles } from "tsparticles-engine";
 import { IConfettiOptions } from "./IConfettiOptions";
 import { loadAngleUpdater } from "tsparticles-updater-angle";
+import { loadBaseMover } from "tsparticles-move-base";
 import { loadCircleShape } from "tsparticles-shape-circle";
 import { loadColorUpdater } from "tsparticles-updater-color";
 import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
@@ -19,6 +20,7 @@ async function loadPreset(
     confettiOptions: RecursivePartial<IConfettiOptions>,
     override = false
 ): Promise<void> {
+    await loadBaseMover(engine);
     await loadCircleShape(engine);
     await loadSquareShape(engine);
     await loadColorUpdater(engine);

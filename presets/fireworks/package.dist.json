@@ -46,6 +46,7 @@
   "types": "index.d.ts",
   "dependencies": {
     "tsparticles-engine": "^2.0.0-beta.3",
+    "tsparticles-move-base": "^2.0.0-beta.4",
     "tsparticles-plugin-emitters": "^2.0.0-beta.4",
     "tsparticles-shape-circle": "^2.0.0-beta.4",
     "tsparticles-shape-line": "^2.0.0-beta.4",

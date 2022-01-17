@@ -65,6 +65,8 @@ app.use("/interaction-light", express.static("./node_modules/tsparticles-interac
 app.use("/interaction-particles-repulse", express.static("./node_modules/tsparticles-interaction-particles-repulse"));
 app.use("/updater-gradient", express.static("./node_modules/tsparticles-updater-gradient"));
 app.use("/updater-orbit", express.static("./node_modules/tsparticles-updater-orbit"));
+app.use("/move-base", express.static("./node_modules/tsparticles-move-base"));
+app.use("/move-parallax", express.static("./node_modules/tsparticles-move-parallax"));
 app.use("/path-curves", express.static("./node_modules/tsparticles-path-curves"));
 app.use("/path-polygon", express.static("./node_modules/tsparticles-path-polygon"));
 app.use("/path-perlin-noise", express.static("./node_modules/tsparticles-path-perlin-noise"));

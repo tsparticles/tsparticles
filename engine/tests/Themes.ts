@@ -1,4 +1,4 @@
-import { ClickMode, HoverMode, MoveDirection, Options, OutMode, RotateDirection, ThemeMode } from "../src";
+import { ClickMode, HoverMode, MoveDirection, Options, OutMode, RotateDirection, ThemeMode, tsParticles } from "../src";
 import { describe, it } from "mocha";
 import { expect } from "chai";
 
@@ -93,7 +93,7 @@ describe("Themes", () => {
         detectRetina: true,
     };
 
-    const options = new Options();
+    const options = new Options(tsParticles);
 
     options.load(sourceOptions);
 

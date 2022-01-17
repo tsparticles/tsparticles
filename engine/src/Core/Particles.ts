@@ -1,7 +1,7 @@
 import { ClickMode, EventType } from "../Enums";
 import { ICoordinates, IDelta, IMouseData, IParticle, IParticlesFrequencies, IRgb } from "./Interfaces";
 import { IParticlesDensity, IParticlesOptions } from "../Options";
-import { InteractionManager, ParticlesMover, Plugins, Point, QuadTree, Rectangle } from "./Utils";
+import { InteractionManager, Point, QuadTree, Rectangle } from "./Utils";
 import { getRangeMax, getRangeMin, getRangeValue, loadParticlesOptions, randomInRange, setRangeValue } from "../Utils";
 import { Container } from "./Container";
 import { Engine } from "../engine";
@@ -36,21 +36,20 @@ export class Particles {
     linksColor?: IRgb | string;
     grabLineColor?: IRgb | string;
 
+    movers;
     updaters;
 
     private interactionManager;
     private nextId;
     private readonly freqs: IParticlesFrequencies;
-    private readonly mover;
 
-    #engine;
+    readonly #engine;
 
     constructor(engine: Engine, private readonly container: Container) {
         this.#engine = engine;
         this.nextId = 0;
         this.array = [];
         this.zArray = [];
-        this.mover = new ParticlesMover(container);
         this.limit = 0;
         this.needsSort = false;
         this.lastZIndex = 0;
@@ -58,7 +57,7 @@ export class Particles {
             links: new Map<string, number>(),
             triangles: new Map<string, number>(),
         };
-        this.interactionManager = new InteractionManager(container);
+        this.interactionManager = new InteractionManager(container, this.#engine);
 
         const canvasSize = this.container.canvas.size;
 
@@ -73,7 +72,8 @@ export class Particles {
             4
         );
 
-        this.updaters = Plugins.getUpdaters(container, true);
+        this.movers = this.#engine.plugins.getMovers(container, true);
+        this.updaters = this.#engine.plugins.getUpdaters(container, true);
     }
 
     /* --------- tsParticles functions - particles ----------- */
@@ -88,7 +88,7 @@ export class Particles {
 
         let handled = false;
 
-        this.updaters = Plugins.getUpdaters(container, true);
+        this.updaters = this.#engine.plugins.getUpdaters(container, true);
         this.interactionManager.init();
 
         for (const [, plugin] of container.plugins) {
@@ -206,7 +206,11 @@ export class Particles {
                 }
             }
 
-            this.mover.move(particle, delta);
+            for (const mover of this.movers) {
+                if (mover.isEnabled(particle)) {
+                    mover.move(particle, delta);
+                }
+            }
 
             if (particle.destroyed) {
                 particlesToDelete.push(particle);
@@ -479,7 +483,7 @@ export class Particles {
         initializer?: (particle: Particle) => boolean
     ): Particle | undefined {
         try {
-            const particle = new Particle(this.nextId, this.container, position, overrideOptions, group);
+            const particle = new Particle(this.nextId, this.container, this.#engine, position, overrideOptions, group);
 
             let canAdd = true;
 

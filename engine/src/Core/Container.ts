@@ -3,7 +3,7 @@
  * @packageDocumentation
  */
 import { ClickMode, EventType } from "../Enums";
-import { EventListeners, FrameManager, Plugins, Vector } from "./Utils";
+import { EventListeners, FrameManager, Vector } from "./Utils";
 import type {
     IContainerInteractivity,
     IContainerPlugin,
@@ -148,8 +148,8 @@ export class Container {
         this.drawers = new Map<string, IShapeDrawer>();
         this.density = 1;
         /* tsParticles variables with default values */
-        this._options = loadContainerOptions();
-        this.actualOptions = loadContainerOptions();
+        this._options = loadContainerOptions(this.#engine);
+        this.actualOptions = loadContainerOptions(this.#engine);
 
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);
@@ -356,7 +356,7 @@ export class Container {
     }
 
     reset(): Promise<void> {
-        this._options = loadContainerOptions();
+        this._options = loadContainerOptions(this.#engine);
 
         return this.refresh();
     }
@@ -572,10 +572,10 @@ export class Container {
     }
 
     async init(): Promise<void> {
-        const shapes = Plugins.getSupportedShapes();
+        const shapes = this.#engine.plugins.getSupportedShapes();
 
         for (const type of shapes) {
-            const drawer = Plugins.getShapeDrawer(type);
+            const drawer = this.#engine.plugins.getShapeDrawer(type);
 
             if (drawer) {
                 this.drawers.set(type, drawer);
@@ -583,8 +583,8 @@ export class Container {
         }
 
         /* options settings */
-        this._options = loadContainerOptions(this._initialSourceOptions, this.sourceOptions);
-        this.actualOptions = loadContainerOptions(this._options);
+        this._options = loadContainerOptions(this.#engine, this._initialSourceOptions, this.sourceOptions);
+        this.actualOptions = loadContainerOptions(this.#engine, this._options);
 
         /* init canvas + particles */
         this.retina.init();
@@ -601,7 +601,7 @@ export class Container {
         this.lifeTime = 0;
         this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 60;
 
-        const availablePlugins = Plugins.getAvailablePlugins(this);
+        const availablePlugins = this.#engine.plugins.getAvailablePlugins(this);
 
         for (const [id, plugin] of availablePlugins) {
             this.plugins.set(id, plugin);
@@ -624,7 +624,7 @@ export class Container {
         const pathOptions = this.actualOptions.particles.move.path;
 
         if (pathOptions.generator) {
-            const customGenerator = Plugins.getPathGenerator(pathOptions.generator);
+            const customGenerator = this.#engine.plugins.getPathGenerator(pathOptions.generator);
 
             if (customGenerator) {
                 if (customGenerator.init) {

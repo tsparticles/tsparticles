@@ -12,6 +12,7 @@ import type {
 import type { IModeDiv, IOptionLoader, IOptions, IParticlesOptions } from "../Options";
 import type { RecursivePartial, SingleOrMultiple } from "../Types";
 import { collisionVelocity, getDistances, getRangeValue } from "./NumberUtils";
+import type { Engine } from "../engine";
 import { Vector } from "../Core";
 
 declare global {
@@ -393,8 +394,11 @@ function loadOptions<T>(options: IOptionLoader<T>, ...sourceOptionsArr: Recursiv
     }
 }
 
-export function loadContainerOptions(...sourceOptionsArr: RecursivePartial<IOptions | undefined>[]): Options {
-    const options = new Options();
+export function loadContainerOptions(
+    engine: Engine,
+    ...sourceOptionsArr: RecursivePartial<IOptions | undefined>[]
+): Options {
+    const options = new Options(engine);
 
     loadOptions(options, ...sourceOptionsArr);
 

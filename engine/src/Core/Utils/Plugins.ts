@@ -2,44 +2,66 @@ import type {
     IContainerPlugin,
     IInteractor,
     IMovePathGenerator,
+    IParticleMover,
     IParticleUpdater,
     IPlugin,
     IShapeDrawer,
 } from "../Interfaces";
 import type { IOptions, Options } from "../../Options";
 import type { Container } from "../Container";
+import { Engine } from "../../engine";
 import type { RecursivePartial } from "../../Types";
 
 type InteractorInitializer = (container: Container) => IInteractor;
+type MoverInitializer = (container: Container) => IParticleMover;
 type UpdaterInitializer = (container: Container) => IParticleUpdater;
-
-const plugins: IPlugin[] = [];
-const interactorsInitializers: Map<string, InteractorInitializer> = new Map<string, InteractorInitializer>();
-const updatersInitializers: Map<string, UpdaterInitializer> = new Map<string, UpdaterInitializer>();
-const interactors: Map<Container, IInteractor[]> = new Map<Container, IInteractor[]>();
-const updaters: Map<Container, IParticleUpdater[]> = new Map<Container, IParticleUpdater[]>();
-const presets: Map<string, RecursivePartial<IOptions>> = new Map<string, RecursivePartial<IOptions>>();
-const drawers: Map<string, IShapeDrawer> = new Map<string, IShapeDrawer>();
-const pathGenerators: Map<string, IMovePathGenerator> = new Map<string, IMovePathGenerator>();
 
 /**
  * @category Utils
  */
 export class Plugins {
-    static getPlugin(plugin: string): IPlugin | undefined {
-        return plugins.find((t) => t.id === plugin);
+    readonly #engine;
+
+    readonly plugins: IPlugin[];
+    readonly interactorsInitializers;
+    readonly moversInitializers;
+    readonly updatersInitializers;
+    readonly interactors;
+    readonly movers;
+    readonly updaters;
+    readonly presets;
+    readonly drawers;
+    readonly pathGenerators;
+
+    constructor(engine: Engine) {
+        this.#engine = engine;
+
+        this.plugins = [];
+        this.interactorsInitializers = new Map<string, InteractorInitializer>();
+        this.moversInitializers = new Map<string, MoverInitializer>();
+        this.updatersInitializers = new Map<string, UpdaterInitializer>();
+        this.interactors = new Map<Container, IInteractor[]>();
+        this.movers = new Map<Container, IParticleMover[]>();
+        this.updaters = new Map<Container, IParticleUpdater[]>();
+        this.presets = new Map<string, RecursivePartial<IOptions>>();
+        this.drawers = new Map<string, IShapeDrawer>();
+        this.pathGenerators = new Map<string, IMovePathGenerator>();
     }
 
-    static addPlugin(plugin: IPlugin): void {
-        if (!Plugins.getPlugin(plugin.id)) {
-            plugins.push(plugin);
+    getPlugin(plugin: string): IPlugin | undefined {
+        return this.plugins.find((t) => t.id === plugin);
+    }
+
+    addPlugin(plugin: IPlugin): void {
+        if (!this.getPlugin(plugin.id)) {
+            this.plugins.push(plugin);
         }
     }
 
-    static getAvailablePlugins(container: Container): Map<string, IContainerPlugin> {
+    getAvailablePlugins(container: Container): Map<string, IContainerPlugin> {
         const res = new Map<string, IContainerPlugin>();
 
-        for (const plugin of plugins) {
+        for (const plugin of this.plugins) {
             if (!plugin.needsPlugin(container.actualOptions)) {
                 continue;
             }
@@ -49,75 +71,91 @@ export class Plugins {
         return res;
     }
 
-    static loadOptions(options: Options, sourceOptions: RecursivePartial<IOptions>): void {
-        for (const plugin of plugins) {
+    loadOptions(options: Options, sourceOptions: RecursivePartial<IOptions>): void {
+        for (const plugin of this.plugins) {
             plugin.loadOptions(options, sourceOptions);
         }
     }
 
-    static getPreset(preset: string): RecursivePartial<IOptions> | undefined {
-        return presets.get(preset);
+    getPreset(preset: string): RecursivePartial<IOptions> | undefined {
+        return this.presets.get(preset);
     }
 
-    static addPreset(presetKey: string, options: RecursivePartial<IOptions>, override = false): void {
-        if (override || !Plugins.getPreset(presetKey)) {
-            presets.set(presetKey, options);
+    addPreset(presetKey: string, options: RecursivePartial<IOptions>, override = false): void {
+        if (override || !this.getPreset(presetKey)) {
+            this.presets.set(presetKey, options);
         }
     }
 
-    static addShapeDrawer(type: string, drawer: IShapeDrawer): void {
-        if (!Plugins.getShapeDrawer(type)) {
-            drawers.set(type, drawer);
+    addShapeDrawer(type: string, drawer: IShapeDrawer): void {
+        if (!this.getShapeDrawer(type)) {
+            this.drawers.set(type, drawer);
         }
     }
 
-    static getShapeDrawer(type: string): IShapeDrawer | undefined {
-        return drawers.get(type);
+    getShapeDrawer(type: string): IShapeDrawer | undefined {
+        return this.drawers.get(type);
     }
 
-    static getSupportedShapes(): IterableIterator<string> {
-        return drawers.keys();
+    getSupportedShapes(): IterableIterator<string> {
+        return this.drawers.keys();
     }
 
-    static getPathGenerator(type: string): IMovePathGenerator | undefined {
-        return pathGenerators.get(type);
+    getPathGenerator(type: string): IMovePathGenerator | undefined {
+        return this.pathGenerators.get(type);
     }
 
-    static addPathGenerator(type: string, pathGenerator: IMovePathGenerator): void {
-        if (!Plugins.getPathGenerator(type)) {
-            pathGenerators.set(type, pathGenerator);
+    addPathGenerator(type: string, pathGenerator: IMovePathGenerator): void {
+        if (!this.getPathGenerator(type)) {
+            this.pathGenerators.set(type, pathGenerator);
         }
     }
 
-    static getInteractors(container: Container, force = false): IInteractor[] {
-        let res = interactors.get(container);
+    getInteractors(container: Container, force = false): IInteractor[] {
+        let res = this.interactors.get(container);
 
         if (!res || force) {
-            res = [...interactorsInitializers.values()].map((t) => t(container));
+            res = [...this.interactorsInitializers.values()].map((t) => t(container));
 
-            interactors.set(container, res);
+            this.interactors.set(container, res);
         }
 
         return res;
     }
 
-    static addInteractor(name: string, initInteractor: (container: Container) => IInteractor): void {
-        interactorsInitializers.set(name, initInteractor);
+    addInteractor(name: string, initInteractor: (container: Container) => IInteractor): void {
+        this.interactorsInitializers.set(name, initInteractor);
     }
 
-    static getUpdaters(container: Container, force = false): IParticleUpdater[] {
-        let res = updaters.get(container);
+    getUpdaters(container: Container, force = false): IParticleUpdater[] {
+        let res = this.updaters.get(container);
 
         if (!res || force) {
-            res = [...updatersInitializers.values()].map((t) => t(container));
+            res = [...this.updatersInitializers.values()].map((t) => t(container));
 
-            updaters.set(container, res);
+            this.updaters.set(container, res);
         }
 
         return res;
     }
 
-    static addParticleUpdater(name: string, initUpdater: (container: Container) => IParticleUpdater): void {
-        updatersInitializers.set(name, initUpdater);
+    addParticleUpdater(name: string, initUpdater: (container: Container) => IParticleUpdater): void {
+        this.updatersInitializers.set(name, initUpdater);
+    }
+
+    getMovers(container: Container, force = false): IParticleMover[] {
+        let res = this.movers.get(container);
+
+        if (!res || force) {
+            res = [...this.moversInitializers.values()].map((t) => t(container));
+
+            this.movers.set(container, res);
+        }
+
+        return res;
+    }
+
+    addParticleMover(name: string, initMover: (container: Container) => IParticleMover): void {
+        this.moversInitializers.set(name, initMover);
     }
 }

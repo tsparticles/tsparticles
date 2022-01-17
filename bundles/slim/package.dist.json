@@ -73,6 +73,8 @@
     "tsparticles-interaction-particles-attract": "^2.0.0-beta.4",
     "tsparticles-interaction-particles-collisions": "^2.0.0-beta.4",
     "tsparticles-interaction-particles-links": "^2.0.0-beta.4",
+    "tsparticles-move-base": "^2.0.0-beta.4",
+    "tsparticles-move-parallax": "^2.0.0-beta.4",
     "tsparticles-shape-circle": "^2.0.0-beta.4",
     "tsparticles-shape-image": "^2.0.0-beta.4",
     "tsparticles-shape-line": "^2.0.0-beta.4",

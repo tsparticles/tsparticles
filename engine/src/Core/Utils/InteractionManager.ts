@@ -4,22 +4,25 @@
 import { ClickMode, InteractorType } from "../../Enums";
 import type { IDelta, IExternalInteractor, IParticlesInteractor } from "../Interfaces";
 import type { Container } from "../Container";
+import { Engine } from "../../engine";
 import type { Particle } from "../Particle";
-import { Plugins } from "./Plugins";
 
 export class InteractionManager {
     private readonly externalInteractors: IExternalInteractor[];
     private readonly particleInteractors: IParticlesInteractor[];
 
-    constructor(private readonly container: Container) {
+    readonly #engine;
+
+    constructor(private readonly container: Container, engine: Engine) {
         this.externalInteractors = [];
         this.particleInteractors = [];
+        this.#engine = engine;
 
         this.init();
     }
 
     init(): void {
-        const interactors = Plugins.getInteractors(this.container, true);
+        const interactors = this.#engine.plugins.getInteractors(this.container, true);
 
         for (const interactor of interactors) {
             switch (interactor.type) {

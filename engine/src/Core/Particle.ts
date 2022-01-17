@@ -29,7 +29,7 @@ import {
     IShapeValues,
 } from "./Interfaces";
 import { IParticlesOptions, IShape, Shape, Stroke } from "../Options";
-import { Plugins, Vector, Vector3d } from "./Utils";
+import { Vector, Vector3d } from "./Utils";
 import {
     alterHsl,
     clamp,
@@ -49,6 +49,7 @@ import {
     setRangeValue,
 } from "../Utils";
 import { Container } from "./Container";
+import { Engine } from "../engine";
 import { RecursivePartial } from "../Types";
 
 const fixOutMode = (data: {
@@ -73,6 +74,8 @@ const fixOutMode = (data: {
  * @category Core
  */
 export class Particle implements IParticle {
+    #engine;
+
     destroyed;
     lastPathTime;
     misplaced;
@@ -121,10 +124,12 @@ export class Particle implements IParticle {
     constructor(
         readonly id: number,
         readonly container: Container,
+        engine: Engine,
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticlesOptions>,
         readonly group?: string
     ) {
+        this.#engine = engine;
         this.fill = true;
         this.close = true;
         this.lastPathTime = 0;
@@ -277,7 +282,7 @@ export class Particle implements IParticle {
         let drawer = container.drawers.get(this.shape);
 
         if (!drawer) {
-            drawer = Plugins.getShapeDrawer(this.shape);
+            drawer = this.#engine.plugins.getShapeDrawer(this.shape);
 
             if (drawer) {
                 container.drawers.set(this.shape, drawer);
@@ -322,6 +327,12 @@ export class Particle implements IParticle {
         for (const updater of container.particles.updaters) {
             if (updater.init) {
                 updater.init(this);
+            }
+        }
+
+        for (const mover of container.particles.movers) {
+            if (mover.init) {
+                mover.init(this);
             }
         }
 

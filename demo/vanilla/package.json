@@ -58,6 +58,8 @@
     "tsparticles-interaction-particles-collisions": "^2.0.0-beta.4",
     "tsparticles-interaction-particles-links": "^2.0.0-beta.4",
     "tsparticles-interaction-particles-repulse": "^2.0.0-beta.4",
+    "tsparticles-move-base": "^2.0.0-beta.4",
+    "tsparticles-move-parallax": "^2.0.0-beta.4",
     "tsparticles-path-curves": "^2.0.0-beta.4",
     "tsparticles-path-perlin-noise": "^2.0.0-beta.4",
     "tsparticles-path-polygon": "^2.0.0-beta.4",

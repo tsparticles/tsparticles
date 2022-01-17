@@ -1,5 +1,6 @@
 import type { Engine } from "tsparticles-engine";
 import { loadAngleUpdater } from "tsparticles-updater-angle";
+import { loadBaseMover } from "tsparticles-move-base";
 import { loadCircleShape } from "tsparticles-shape-circle";
 import { loadColorUpdater } from "tsparticles-updater-color";
 import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
@@ -12,6 +13,7 @@ import { loadStrokeColorUpdater } from "tsparticles-updater-stroke-color";
 import { options } from "./options";
 
 export async function loadFireworksPreset(engine: Engine): Promise<void> {
+    await loadBaseMover(engine);
     await loadEmittersPlugin(engine);
     await loadCircleShape(engine);
     await loadLineShape(engine);

@@ -9,7 +9,7 @@ import { expect } from "chai";
 function buildParticleWithDirection(direction: MoveDirection): IParticle {
     const container = new Container(tsParticles, "someid");
     const options = { move: { direction } };
-    return new Particle(1, container, undefined, options);
+    return new Particle(1, container, tsParticles, undefined, options);
 }
 
 function segmentBounce(start: ICoordinates, stop: ICoordinates, velocity: Vector): void {

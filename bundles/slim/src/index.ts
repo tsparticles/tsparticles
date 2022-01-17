@@ -1,5 +1,6 @@
 import type { Engine } from "tsparticles-engine";
 import { loadAngleUpdater } from "tsparticles-updater-angle";
+import { loadBaseMover } from "tsparticles-move-base";
 import { loadCircleShape } from "tsparticles-shape-circle";
 import { loadColorUpdater } from "tsparticles-updater-color";
 import { loadExternalAttractInteraction } from "tsparticles-interaction-external-attract";
@@ -16,6 +17,7 @@ import { loadLifeUpdater } from "tsparticles-updater-life";
 import { loadLineShape } from "tsparticles-shape-line";
 import { loadOpacityUpdater } from "tsparticles-updater-opacity";
 import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
+import { loadParallaxMover } from "tsparticles-move-parallax";
 import { loadParticlesAttractInteraction } from "tsparticles-interaction-particles-attract";
 import { loadParticlesCollisionsInteraction } from "tsparticles-interaction-particles-collisions";
 import { loadParticlesLinksInteraction } from "tsparticles-interaction-particles-links";
@@ -27,6 +29,9 @@ import { loadStrokeColorUpdater } from "tsparticles-updater-stroke-color";
 import { loadTextShape } from "tsparticles-shape-text";
 
 export async function loadSlim(engine: Engine): Promise<void> {
+    await loadBaseMover(engine);
+    await loadParallaxMover(engine);
+
     await loadExternalAttractInteraction(engine);
     await loadExternalBounceInteraction(engine);
     await loadExternalBubbleInteraction(engine);

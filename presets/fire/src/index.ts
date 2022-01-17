@@ -1,4 +1,5 @@
 import type { Engine } from "tsparticles-engine";
+import { loadBaseMover } from "tsparticles-move-base";
 import { loadCircleShape } from "tsparticles-shape-circle";
 import { loadColorUpdater } from "tsparticles-updater-color";
 import { loadExternalPushInteraction } from "tsparticles-interaction-external-push";
@@ -8,6 +9,7 @@ import { loadSizeUpdater } from "tsparticles-updater-size";
 import { options } from "./options";
 
 export async function loadFirePreset(engine: Engine): Promise<void> {
+    await loadBaseMover(engine);
     await loadExternalPushInteraction(engine);
     await loadCircleShape(engine);
     await loadColorUpdater(engine);
