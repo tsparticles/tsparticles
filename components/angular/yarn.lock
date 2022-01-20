@@ -142,9 +142,9 @@
     rxjs "6.6.7"
 
 "@angular/animations@~13.1.0":
-  version "13.1.2"
-  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-13.1.2.tgz#fdf0776eaf053b14a4118c682a62f24e4192609a"
-  integrity sha512-k1eQ8YZq3eelLhJDQjkRCt/4MXxwK2TFeGdtcYJF0G7vFOppE8hlI4PT7Bvmk08lTqvgiqtTI3ZaYmIINLfUMg==
+  version "13.1.3"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-13.1.3.tgz#2da6ad99602bfb450624a7499d6f81366c3a4519"
+  integrity sha512-OwsVQsNHubIgRcxnjti4CU3QJnqd7Z2b+2iu3M349Oxyqxz4DNCqKXalDuJZt/b0yNfirvYO3kCgBfj4PF43QQ==
   dependencies:
     tslib "^2.3.0"
 
@@ -174,9 +174,9 @@
     uuid "8.3.2"
 
 "@angular/common@~13.1.0":
-  version "13.1.2"
-  resolved "https://registry.yarnpkg.com/@angular/common/-/common-13.1.2.tgz#6a4abe30b1cc42702452bfd2214e482675f5d889"
-  integrity sha512-/8RWYQkZ1KPNvu2FANJM44wXlOMjMyxZVOEIn3llMRgxV2iiYtmluAOJNafTAbKedAuD6wiSpbi++QbioqCyyA==
+  version "13.1.3"
+  resolved "https://registry.yarnpkg.com/@angular/common/-/common-13.1.3.tgz#4c80f45cfd00a17543559c5fbebe0a7a7cf403ed"
+  integrity sha512-8qf5syeXUogf3+GSu6IRJjrk46UKh9L0QuLx+OSIl/df0y1ewx7e28q3BAUEEnOnKrLzpPNxWs2iwModc4KYfg==
   dependencies:
     tslib "^2.3.0"
 
