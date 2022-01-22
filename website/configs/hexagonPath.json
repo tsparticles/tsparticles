@@ -64,6 +64,9 @@
   "background": {
     "color": "#000"
   },
+  "fullScreen": {
+    "zIndex": -1
+  },
   "detectRetina": true,
   "emitters": {
     "direction": "none",
