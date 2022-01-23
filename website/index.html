@@ -1,408 +1,683 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link
+      rel="shortcut icon"
+      href="https://particles.js.org/tsParticles-64.png"
+    />
+    <meta
+      name="description"
+      content="tsParticles - Easily create highly customizable particles animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno."
+    />
+    <meta name="author" content="Matteo Bruni" />
+    <meta
+      name="keyword"
+      content="HTML, CSS, JavaScript, Particles, Particles.js, Animations, React, Vue, Angular, Vue.js, Svelte"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
 
-<head>
-    <meta charset="utf-8"/>
-    <link rel="shortcut icon" href="https://particles.js.org/tsParticles-64.png"/>
-    <meta name="description"
-          content="tsParticles - Easily create highly customizable particles animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno."/>
-    <meta name="author" content="Matteo Bruni"/>
-    <meta name="keyword"
-          content="HTML, CSS, JavaScript, Particles, Particles.js, Animations, React, Vue, Angular, Vue.js, Svelte"/>
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@HollowMatt_ITA" />
+    <meta
+      name="twitter:image:src"
+      content="https://particles.js.org/images/demo.png"
+    />
 
-    <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:creator" content="@HollowMatt_ITA"/>
-    <meta name="twitter:image:src" content="https://particles.js.org/images/demo.png"/>
+    <meta
+      property="og:title"
+      content="tsParticles - JavaScript Particles animations for your website"
+    />
+    <meta property="og:site_name" content="tsParticles" />
+    <meta property="og:url" content="https://particles.js.org/" />
+    <meta
+      property="og:description"
+      content="Easily create highly customizable particles animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno."
+    />
+    <meta
+      property="og:image"
+      content="https://particles.js.org/images/demo.png"
+    />
 
-    <meta property="og:title" content="tsParticles - JavaScript Particles animations for your website"/>
-    <meta property="og:site_name" content="tsParticles"/>
-    <meta property="og:url" content="https://particles.js.org/"/>
-    <meta property="og:description"
-          content="Easily create highly customizable particles animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno."/>
-    <meta property="og:image" content="https://particles.js.org/images/demo.png"/>
+    <title>
+      tsParticles | JavaScript Particles animations for your website
+    </title>
 
-    <title>tsParticles | JavaScript Particles animations for your website</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.3.1/build/styles/ir-black.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"
+      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/jsoneditor@8.6.3/dist/jsoneditor.min.css"
+      integrity="sha256-thQmdfrg82/N5u9ybMxam1RKdSfaxOPCgl5q9AI/mDI="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/object-gui@1.1.1/dist/css/object-gui.min.css"
+      integrity="sha256-bbnJT+fmdVzxd2E534DrkiufGKNabF3bbEc8WHEFug4="
+      crossorigin="anonymous"
+    />
 
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.3.1/build/styles/ir-black.min.css"/>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"
-          integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsoneditor@8.6.3/dist/jsoneditor.min.css"
-          integrity="sha256-thQmdfrg82/N5u9ybMxam1RKdSfaxOPCgl5q9AI/mDI=" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/object-gui@1.1.1/dist/css/object-gui.min.css"
-          integrity="sha256-bbnJT+fmdVzxd2E534DrkiufGKNabF3bbEc8WHEFug4=" crossorigin="anonymous">
-
-    <link href="css/main.min.css" rel="stylesheet" type="text/css"/>
+    <link href="css/main.min.css" rel="stylesheet" type="text/css" />
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161253125-1"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-161253125-1"
+    ></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
+      window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
+      function gtag() {
+        dataLayer.push(arguments);
+      }
 
-        gtag("js", new Date());
+      gtag("js", new Date());
 
-        gtag("config", "UA-161253125-1", {
-            "custom_map": {
-                "dimension1": "dimension_codepen_data",
-                "dimension2": "dimension_editor_data",
-                "dimension3": "dimension_editor_error",
-                "dimension4": "dimension_editor_mode",
-                "dimension5": "dimension_particles_export_config",
-                "dimension6": "dimension_new_preset",
-                "dimension7": "dimension_old_preset",
-                "dimension8": "dimension_status",
-                "dimension9": "dimension_particles_options"
-            }
-        });
+      gtag("config", "UA-161253125-1", {
+        custom_map: {
+          dimension1: "dimension_codepen_data",
+          dimension2: "dimension_editor_data",
+          dimension3: "dimension_editor_error",
+          dimension4: "dimension_editor_mode",
+          dimension5: "dimension_particles_export_config",
+          dimension6: "dimension_new_preset",
+          dimension7: "dimension_old_preset",
+          dimension8: "dimension_status",
+          dimension9: "dimension_particles_options",
+        },
+      });
 
-        gtag("config", "AW-1021008757");
-        gtag("event", "conversion", { "send_to": "AW-1021008757/3t7QCNqulswBEPW27eYD" });
+      gtag("config", "AW-1021008757");
+      gtag("event", "conversion", {
+        send_to: "AW-1021008757/3t7QCNqulswBEPW27eYD",
+      });
     </script>
-</head>
+  </head>
 
-<body>
-<div class="container h-100 text-white" style="overflow: auto;">
-    <div class="row align-items-center h-100">
+  <body>
+    <div class="container h-100 text-white" style="overflow: auto">
+      <div class="row align-items-center h-100">
         <header class="d-md-none d-block">
-            <!-- Fixed navbar -->
-            <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
-                <img src="https://particles.js.org/images/tsParticles-60.png" width="30" height="30"
-                     class="d-inline-block align-top" alt=""/>
-                <a class="navbar-brand" href="#">tsParticles</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-                        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarFrameworksDropdown" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Frameworks
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarFrameworksDropdown">
-                                <a class="dropdown-item" href="https://github.com/matteobruni/tsparticles/"
-                                   target="_blank"><i class="fab fa-js fa-fw"></i> No Framework</a>
-                                <a class="dropdown-item"
-                                   href="https://github.com/matteobruni/tsparticles/tree/main/components/angular"
-                                   target="_blank"><i class="fab fa-angular fa-fw"></i> Angular</a>
-                                <a class="dropdown-item"
-                                   href="https://github.com/matteobruni/tsparticles/tree/main/components/react"
-                                   target="_blank"><i class="fab fa-react fa-fw"></i> React</a>
-                                <a class="dropdown-item"
-                                   href="https://github.com/matteobruni/tsparticles/tree/main/components/vue"
-                                   target="_blank"><i class="fab fa-vuejs fa-fw"></i> Vue 2.x</a>
-                                <a class="dropdown-item"
-                                   href="https://github.com/matteobruni/tsparticles/tree/main/components/vue3"
-                                   target="_blank"><i class="fab fa-vuejs fa-fw"></i> Vue 3.x</a>
-                                <a class="dropdown-item"
-                                   href="https://github.com/matteobruni/tsparticles/tree/main/components/inferno"
-                                   target="_blank">Inferno</a>
-                                <a class="dropdown-item"
-                                   href="https://github.com/matteobruni/tsparticles/tree/main/components/jquery"
-                                   target="_blank">jQuery</a>
-                                <a class="dropdown-item"
-                                   href="https://github.com/matteobruni/tsparticles/tree/main/components/preact"
-                                   target="_blank">Preact</a>
-                                <a class="dropdown-item"
-                                   href="https://github.com/matteobruni/tsparticles/tree/main/components/riot"
-                                   target="_blank">Riot.js</a>
-                                <a class="dropdown-item"
-                                   href="https://github.com/matteobruni/tsparticles/tree/main/components/solid"
-                                   target="_blank">Solid.js</a>
-                                <a class="dropdown-item"
-                                   href="https://github.com/matteobruni/tsparticles/tree/main/components/svelte"
-                                   target="_blank">Svelte</a>
-                                <a class="dropdown-item"
-                                   href="https://github.com/matteobruni/tsparticles/tree/main/components/web"
-                                   target="_blank">Web Components</a>
-                                <a class="dropdown-item"
-                                   href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/"
-                                   target="_blank"><i class="fab fa-elementor fa-fw"></i> Elementor</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+          <!-- Fixed navbar -->
+          <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+            <img
+              src="https://particles.js.org/images/tsParticles-60.png"
+              width="30"
+              height="30"
+              class="d-inline-block align-top"
+              alt=""
+            />
+            <a class="navbar-brand" href="#">tsParticles</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarCollapse"
+              aria-controls="navbarCollapse"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="navbarFrameworksDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Frameworks
+                  </a>
+                  <div
+                    class="dropdown-menu"
+                    aria-labelledby="navbarFrameworksDropdown"
+                  >
+                    <a
+                      class="dropdown-item"
+                      href="https://github.com/matteobruni/tsparticles/"
+                      target="_blank"
+                      ><i class="fab fa-js fa-fw"></i> No Framework</a
+                    >
+                    <a
+                      class="dropdown-item"
+                      href="https://github.com/matteobruni/tsparticles/tree/main/components/angular"
+                      target="_blank"
+                      ><i class="fab fa-angular fa-fw"></i> Angular</a
+                    >
+                    <a
+                      class="dropdown-item"
+                      href="https://github.com/matteobruni/tsparticles/tree/main/components/react"
+                      target="_blank"
+                      ><i class="fab fa-react fa-fw"></i> React</a
+                    >
+                    <a
+                      class="dropdown-item"
+                      href="https://github.com/matteobruni/tsparticles/tree/main/components/vue"
+                      target="_blank"
+                      ><i class="fab fa-vuejs fa-fw"></i> Vue 2.x</a
+                    >
+                    <a
+                      class="dropdown-item"
+                      href="https://github.com/matteobruni/tsparticles/tree/main/components/vue3"
+                      target="_blank"
+                      ><i class="fab fa-vuejs fa-fw"></i> Vue 3.x</a
+                    >
+                    <a
+                      class="dropdown-item"
+                      href="https://github.com/matteobruni/tsparticles/tree/main/components/inferno"
+                      target="_blank"
+                      >Inferno</a
+                    >
+                    <a
+                      class="dropdown-item"
+                      href="https://github.com/matteobruni/tsparticles/tree/main/components/jquery"
+                      target="_blank"
+                      >jQuery</a
+                    >
+                    <a
+                      class="dropdown-item"
+                      href="https://github.com/matteobruni/tsparticles/tree/main/components/preact"
+                      target="_blank"
+                      >Preact</a
+                    >
+                    <a
+                      class="dropdown-item"
+                      href="https://github.com/matteobruni/tsparticles/tree/main/components/riot"
+                      target="_blank"
+                      >Riot.js</a
+                    >
+                    <a
+                      class="dropdown-item"
+                      href="https://github.com/matteobruni/tsparticles/tree/main/components/solid"
+                      target="_blank"
+                      >Solid.js</a
+                    >
+                    <a
+                      class="dropdown-item"
+                      href="https://github.com/matteobruni/tsparticles/tree/main/components/svelte"
+                      target="_blank"
+                      >Svelte</a
+                    >
+                    <a
+                      class="dropdown-item"
+                      href="https://github.com/matteobruni/tsparticles/tree/main/components/web"
+                      target="_blank"
+                      >Web Components</a
+                    >
+                    <a
+                      class="dropdown-item"
+                      href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/"
+                      target="_blank"
+                      ><i class="fab fa-elementor fa-fw"></i> Elementor</a
+                    >
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </nav>
         </header>
-        <div class="col" style="background: rgba(0,0,0, 0); border-radius: 20px;">
-            <div class="row mb-4">
-                <div class="col text-center">
-                    <h1 style="font-family: Polya; font-size: 6vmin; white-space: nowrap;">ts <span
-                            style="font-size: 3em;">P</span><span style="font-size: 2em;">articles</span></h1>
-                    <a class="github-button" href="https://github.com/matteobruni/tsparticles/subscription"
-                       data-icon="octicon-eye" data-size="large" data-show-count="true"
-                       aria-label="Watch matteobruni/tsparticles on GitHub">Watch</a>
-                    <a class="github-button" href="https://github.com/matteobruni/tsparticles"
-                       data-icon="octicon-star" data-size="large" data-show-count="true"
-                       aria-label="Star matteobruni/tsparticles on GitHub">Star</a>
-                    <a class="github-button" href="https://github.com/matteobruni/tsparticles/fork"
-                       data-icon="octicon-repo-forked" data-size="large" data-show-count="true"
-                       aria-label="Fork matteobruni/tsparticles on GitHub">Fork</a>
-                    <a class="twitter-share-button" data-size="large"
-                       href="https://twitter.com/intent/tweet?text=tsParticles%20-%20A%20lightweight%20TypeScript%20library%20for%20creating%20particles&amp;url=https://particles.js.org&amp;hashtags=typescript,particles,html5,webdesign&amp;via=HollowMatt_ITA">
-                        Tweet
-                    </a>
-                    <div class="fb-share-button" data-href="https://particles.js.org" data-layout="button"
-                         data-size="large">
-                        <a target="_blank"
-                           href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fparticles.js.org%2F&amp;src=sdkpreparse"
-                           class="fb-xfbml-parse-ignore">
-                            Share
-                        </a>
-                    </div>
-                </div>
+        <div
+          class="col"
+          style="background: rgba(0, 0, 0, 0); border-radius: 20px"
+        >
+          <div class="row mb-4">
+            <div class="col text-center">
+              <h1
+                style="
+                  font-family: Polya;
+                  font-size: 6vmin;
+                  white-space: nowrap;
+                "
+              >
+                ts <span style="font-size: 3em">P</span
+                ><span style="font-size: 2em">articles</span>
+              </h1>
+              <a
+                class="github-button"
+                href="https://github.com/matteobruni/tsparticles/subscription"
+                data-icon="octicon-eye"
+                data-size="large"
+                data-show-count="true"
+                aria-label="Watch matteobruni/tsparticles on GitHub"
+                >Watch</a
+              >
+              <a
+                class="github-button"
+                href="https://github.com/matteobruni/tsparticles"
+                data-icon="octicon-star"
+                data-size="large"
+                data-show-count="true"
+                aria-label="Star matteobruni/tsparticles on GitHub"
+                >Star</a
+              >
+              <a
+                class="github-button"
+                href="https://github.com/matteobruni/tsparticles/fork"
+                data-icon="octicon-repo-forked"
+                data-size="large"
+                data-show-count="true"
+                aria-label="Fork matteobruni/tsparticles on GitHub"
+                >Fork</a
+              >
+              <a
+                class="twitter-share-button"
+                data-size="large"
+                href="https://twitter.com/intent/tweet?text=tsParticles%20-%20A%20lightweight%20TypeScript%20library%20for%20creating%20particles&amp;url=https://particles.js.org&amp;hashtags=typescript,particles,html5,webdesign&amp;via=HollowMatt_ITA"
+              >
+                Tweet
+              </a>
+              <div
+                class="fb-share-button"
+                data-href="https://particles.js.org"
+                data-layout="button"
+                data-size="large"
+              >
+                <a
+                  target="_blank"
+                  href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fparticles.js.org%2F&amp;src=sdkpreparse"
+                  class="fb-xfbml-parse-ignore"
+                >
+                  Share
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col text-center">
+              <h2>Samples</h2>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-md-6 col-lg-3 d-grid">
+              <a href="samples/index.html" class="btn btn-primary">
+                <i class="far fa-folder-open fa-fw"></i> Demos
+              </a>
+            </div>
+            <div class="col-md-6 col-lg-3 d-grid">
+              <a href="samples/presets/index.html" class="btn btn-secondary">
+                <i class="fas fa-vial fa-fw"></i> Presets
+              </a>
+            </div>
+            <div class="col-md-6 col-lg-3 d-grid">
+              <a href="docs/index.html" class="btn btn-info">
+                <i class="fas fa-book fa-fw"></i> API Docs
+              </a>
+            </div>
+            <div class="col-md-6 col-lg-3 d-grid">
+              <a
+                href="https://codepen.io/collection/DPOage"
+                target="_blank"
+                class="btn btn-secondary"
+              >
+                <i class="fab fa-codepen fa-fw"></i> CodePen
+              </a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col text-center">
+              <h2>Discussions</h2>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-md-6 col-lg-3 d-grid">
+              <a
+                class="btn btn-secondary"
+                href="https://github.com/matteobruni/tsparticles/discussions?discussions_q=category%3AGeneral"
+                target="_blank"
+                ><i class="fas fa-comments fa-fw"></i> General</a
+              >
+            </div>
+            <div class="col-md-6 col-lg-3 d-grid">
+              <a
+                class="btn btn-secondary"
+                href="https://github.com/matteobruni/tsparticles/discussions?discussions_q=category%3A%22Show+and+tell%22"
+                target="_blank"
+                ><i class="fas fa-chalkboard-teacher fa-fw"></i> Show &amp;
+                Tell</a
+              >
+            </div>
+            <div class="col-md-6 col-lg-3 d-grid">
+              <a
+                class="btn btn-secondary"
+                href="https://github.com/matteobruni/tsparticles/discussions?discussions_q=category%3AQ%26A"
+                target="_blank"
+                ><i class="fas fa-question-circle fa-fw"></i> Q/A - Help</a
+              >
+            </div>
+            <div class="col-md-6 col-lg-3 d-grid">
+              <a
+                class="btn btn-secondary"
+                href="https://github.com/matteobruni/tsparticles/discussions?discussions_q=category%3AIdeas"
+                target="_blank"
+                ><i class="far fa-lightbulb fa-fw"></i> New Ideas</a
+              >
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4 d-grid">
+              <a
+                class="btn btn-secondary"
+                href="https://github.com/matteobruni/tsparticles/discussions/new"
+                target="_blank"
+                ><i class="fas fa-plus-circle fa-fw"></i> Create New</a
+              >
+            </div>
+          </div>
+          <div class="d-none d-md-block d-lg-block d-xl-block">
+            <div class="row">
+              <div class="col text-center">
+                <h2>Which framework are you using?</h2>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-md-6 col-lg-4 offset-lg-4 offset-md-3 d-grid">
+                <a
+                  href="https://github.com/matteobruni/tsparticles/"
+                  target="_blank"
+                  class="btn btn-lg btn-warning m-1"
+                  ><i class="fab fa-js fa-fw"></i> No Framework</a
+                >
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-md-3 d-grid">
+                <a
+                  href="https://github.com/matteobruni/tsparticles/tree/main/components/angular"
+                  target="_blank"
+                  class="btn btn-danger m-1"
+                  ><i class="fab fa-angular fa-fw"></i> Angular</a
+                >
+              </div>
+              <div class="col-md-3 d-grid">
+                <a
+                  href="https://github.com/matteobruni/tsparticles/tree/main/components/react"
+                  target="_blank"
+                  class="btn btn-info m-1"
+                  ><i class="fab fa-react fa-fw"></i> React</a
+                >
+              </div>
+              <div class="col-md-3 d-grid">
+                <a
+                  href="https://github.com/matteobruni/tsparticles/tree/main/components/vue"
+                  target="_blank"
+                  class="btn btn-success m-1"
+                  ><i class="fab fa-vuejs fa-fw"></i> Vue 2.x</a
+                >
+              </div>
+              <div class="col-md-3 d-grid">
+                <a
+                  href="https://github.com/matteobruni/tsparticles/tree/main/components/vue3"
+                  target="_blank"
+                  class="btn btn-success m-1"
+                  ><i class="fab fa-vuejs fa-fw"></i> Vue 3.x</a
+                >
+              </div>
             </div>
             <div class="row">
-                <div class="col text-center">
-                    <h2>Samples</h2>
-                </div>
+              <div class="col-md-6 col-lg-3 d-grid">
+                <a
+                  href="https://github.com/matteobruni/tsparticles/tree/main/components/inferno"
+                  target="_blank"
+                  class="btn btn-sm btn-light m-1"
+                  >Inferno</a
+                >
+              </div>
+              <div class="col-md-6 col-lg-3 d-grid">
+                <a
+                  href="https://github.com/matteobruni/tsparticles/tree/main/components/jquery"
+                  target="_blank"
+                  class="btn btn-sm btn-light m-1"
+                  >jQuery</a
+                >
+              </div>
+              <div class="col-md-6 col-lg-3 d-grid">
+                <a
+                  href="https://github.com/matteobruni/tsparticles/tree/main/components/preact"
+                  target="_blank"
+                  class="btn btn-sm btn-light m-1"
+                  >Preact</a
+                >
+              </div>
+              <div class="col-md-6 col-lg-3 d-grid">
+                <a
+                  href="https://github.com/matteobruni/tsparticles/tree/main/components/riot"
+                  target="_blank"
+                  class="btn btn-sm btn-light m-1"
+                  >Riot.js</a
+                >
+              </div>
+              <div class="col-md-6 col-lg-3 d-grid">
+                <a
+                  href="https://github.com/matteobruni/tsparticles/tree/main/components/solid"
+                  target="_blank"
+                  class="btn btn-sm btn-light m-1"
+                  >Solid.js</a
+                >
+              </div>
+              <div class="col-md-6 col-lg-3 d-grid">
+                <a
+                  href="https://github.com/matteobruni/tsparticles/tree/main/components/svelte"
+                  target="_blank"
+                  class="btn btn-sm btn-light m-1"
+                  >Svelte</a
+                >
+              </div>
+              <div class="col-md-6 col-lg-3 d-grid">
+                <a
+                  href="https://github.com/matteobruni/tsparticles/tree/main/components/web"
+                  target="_blank"
+                  class="btn btn-sm btn-light m-1"
+                  >Web Components</a
+                >
+              </div>
+              <div class="col-md-6 col-lg-3 d-grid">
+                <a
+                  href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/"
+                  target="_blank"
+                  class="btn btn-sm btn-light m-1"
+                  ><i class="fab fa-elementor fa-fw"></i> Elementor</a
+                >
+              </div>
             </div>
-            <div class="row mb-4">
-                <div class="col-md-6 col-lg-3 d-grid">
-                    <a href="samples/index.html" class="btn btn-primary">
-                        <i class="far fa-folder-open fa-fw"></i> Demos
-                    </a>
-                </div>
-                <div class="col-md-6 col-lg-3 d-grid">
-                    <a href="samples/presets/index.html" class="btn btn-secondary">
-                        <i class="fas fa-vial fa-fw"></i> Presets
-                    </a>
-                </div>
-                <div class="col-md-6 col-lg-3 d-grid">
-                    <a href="docs/index.html" class="btn btn-info">
-                        <i class="fas fa-book fa-fw"></i> API Docs
-                    </a>
-                </div>
-                <div class="col-md-6 col-lg-3 d-grid">
-                    <a href="https://codepen.io/collection/DPOage" target="_blank"
-                       class="btn btn-secondary">
-                        <i class="fab fa-codepen fa-fw"></i> CodePen
-                    </a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col text-center">
-                    <h2>Discussions</h2>
-                </div>
-            </div>
-            <div class="row mb-4">
-                <div class="col-md-6 col-lg-3 d-grid"><a class="btn btn-secondary"
-                                                  href="https://github.com/matteobruni/tsparticles/discussions?discussions_q=category%3AGeneral"
-                                                  target="_blank"><i class="fas fa-comments fa-fw"></i> General</a>
-                </div>
-                <div class="col-md-6 col-lg-3 d-grid"><a class="btn btn-secondary"
-                                                  href="https://github.com/matteobruni/tsparticles/discussions?discussions_q=category%3A%22Show+and+tell%22"
-                                                  target="_blank"><i class="fas fa-chalkboard-teacher fa-fw"></i> Show
-                    &amp; Tell</a></div>
-                <div class="col-md-6 col-lg-3 d-grid"><a class="btn btn-secondary"
-                                                  href="https://github.com/matteobruni/tsparticles/discussions?discussions_q=category%3AQ%26A"
-                                                  target="_blank"><i class="fas fa-question-circle fa-fw"></i> Q/A -
-                    Help</a></div>
-                <div class="col-md-6 col-lg-3 d-grid"><a class="btn btn-secondary"
-                                                  href="https://github.com/matteobruni/tsparticles/discussions?discussions_q=category%3AIdeas"
-                                                  target="_blank"><i class="far fa-lightbulb fa-fw"></i> New Ideas</a>
-                </div>
-            </div>
-            <div class="row mb-4">
-                <div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4 d-grid"><a class="btn btn-secondary"
-                                                                          href="https://github.com/matteobruni/tsparticles/discussions/new"
-                                                                          target="_blank"><i
-                        class="fas fa-plus-circle fa-fw"></i> Create New</a></div>
-            </div>
-            <div class="d-none d-md-block d-lg-block d-xl-block">
-                <div class="row">
-                    <div class="col text-center">
-                        <h2>Which framework are you using?</h2>
-                    </div>
-                </div>
-                <div class="row mb-2">
-                    <div class="col-md-6 col-lg-4 offset-lg-4 offset-md-3 d-grid">
-                        <a href="https://github.com/matteobruni/tsparticles/" target="_blank"
-                           class="btn btn-lg btn-warning m-1"><i class="fab fa-js fa-fw"></i> No
-                            Framework</a>
-                    </div>
-                </div>
-                <div class="row mb-2">
-                    <div class="col-md-3 d-grid">
-                        <a href="https://github.com/matteobruni/tsparticles/tree/main/components/angular"
-                           target="_blank" class="btn btn-danger m-1"><i
-                                class="fab fa-angular fa-fw"></i>
-                            Angular</a>
-                    </div>
-                    <div class="col-md-3 d-grid">
-                        <a href="https://github.com/matteobruni/tsparticles/tree/main/components/react"
-                           target="_blank" class="btn btn-info m-1"><i class="fab fa-react fa-fw"></i>
-                            React</a>
-                    </div>
-                    <div class="col-md-3 d-grid">
-                        <a href="https://github.com/matteobruni/tsparticles/tree/main/components/vue"
-                           target="_blank" class="btn btn-success m-1"><i class="fab fa-vuejs fa-fw"></i>
-                            Vue 2.x</a>
-                    </div>
-                    <div class="col-md-3 d-grid">
-                        <a href="https://github.com/matteobruni/tsparticles/tree/main/components/vue3"
-                           target="_blank" class="btn btn-success m-1"><i class="fab fa-vuejs fa-fw"></i>
-                            Vue 3.x</a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 col-lg-3 d-grid">
-                        <a href="https://github.com/matteobruni/tsparticles/tree/main/components/inferno"
-                           target="_blank" class="btn btn-sm btn-light m-1">Inferno</a>
-                    </div>
-                    <div class="col-md-6 col-lg-3 d-grid">
-                        <a href="https://github.com/matteobruni/tsparticles/tree/main/components/jquery"
-                           target="_blank" class="btn btn-sm btn-light m-1">jQuery</a>
-                    </div>
-                    <div class="col-md-6 col-lg-3 d-grid">
-                        <a href="https://github.com/matteobruni/tsparticles/tree/main/components/preact"
-                           target="_blank" class="btn btn-sm btn-light m-1">Preact</a>
-                    </div>
-                    <div class="col-md-6 col-lg-3 d-grid">
-                        <a href="https://github.com/matteobruni/tsparticles/tree/main/components/riot"
-                           target="_blank" class="btn btn-sm btn-light m-1">Riot.js</a>
-                    </div>
-                    <div class="col-md-6 col-lg-3 d-grid">
-                        <a href="https://github.com/matteobruni/tsparticles/tree/main/components/solid"
-                           target="_blank" class="btn btn-sm btn-light m-1">Solid.js</a>
-                    </div>
-                    <div class="col-md-6 col-lg-3 d-grid">
-                        <a href="https://github.com/matteobruni/tsparticles/tree/main/components/svelte"
-                           target="_blank" class="btn btn-sm btn-light m-1">Svelte</a>
-                    </div>
-                    <div class="col-md-6 col-lg-3 d-grid">
-                        <a href="https://github.com/matteobruni/tsparticles/tree/main/components/web"
-                           target="_blank" class="btn btn-sm btn-light m-1">Web Components</a>
-                    </div>
-                    <div class="col-md-6 col-lg-3 d-grid">
-                        <a href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/"
-                           target="_blank" class="btn btn-sm btn-light m-1"><i
-                                class="fab fa-elementor fa-fw"></i> Elementor</a>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-<div id="tsparticles"></div>
+    <div id="tsparticles"></div>
 
-<script type="text/javascript">
-    (function (c, l, a, r, i, t, y) {
-        c[a] = c[a] || function () {
-            (c[a].q = c[a].q || []).push(arguments)
-        };
+    <script type="text/javascript">
+      (function (c, l, a, r, i, t, y) {
+        c[a] =
+          c[a] ||
+          function () {
+            (c[a].q = c[a].q || []).push(arguments);
+          };
         t = l.createElement(r);
         t.async = 1;
         t.src = "https://www.clarity.ms/tag/" + i;
         y = l.getElementsByTagName(r)[0];
         y.parentNode.insertBefore(t, y);
-    })(window, document, "clarity", "script", "8q4bxin4tm");
-</script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1784552607103901"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.3.1/build/highlight.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/js/fontawesome.min.js"
-        integrity="sha256-NP9NujdEzS5m4ZxvNqkcbxyHB0dTRy9hG13RwTVBGwo=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"
-        integrity="sha256-ur/YlHMU96MxHEsy3fHGszZHas7NzH4RQlD4tDVvFhw=" crossorigin="anonymous"></script>
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.37.5/tsparticles.min.js"
-        integrity="sha256-vrg2swRnXDq+IRB+eBS+eYV6HqDUTfn6w3yEa+H6f4M=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-infection@1.37.5/tsparticles.plugin.infection.min.js"
-        integrity="sha256-hNVxtQhuFRvXEd3YqCsbbKOwGcXvUEEvASw9bYJCK4w=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-light@1.37.5/tsparticles.interaction.light.min.js"
-        integrity="sha256-zAplvZZlRoXzeva/+ZDnCCLbbY5KZ/Ctdb71HYDzbV4=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-particles-repulse@1.37.5/tsparticles.interaction.particles.repulse.min.js"
-        integrity="sha256-BXNPFsyEeu+HIABkqPU1vqDn0WcRVyiifbanLlP1DW8=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-gradient@1.37.5/tsparticles.updater.gradient.min.js"
-        integrity="sha256-lb5I2c6iURkIHw2AajpwnS8MRGj1y1rQdTrLAmljKWU=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-orbit@1.37.5/tsparticles.updater.orbit.min.js"
-        integrity="sha256-BPRcSo9h4PDdJNpackS8Qrzaw9Z0cua+ZVd7apWR/VE=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-curves@1.37.5/tsparticles.path.curves.min.js"
-        integrity="sha256-8xGrWmT0NMerhx3RHwsqA+S8PtafyqSJ7L9dU55XHO8=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-polygon@1.37.5/tsparticles.path.polygon.min.js"
-        integrity="sha256-jmz7/wTtRv2K2rllJeZbyxFylwRC7/14Cl8GnPgqvEg=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-perlin-noise@1.37.5/tsparticles.path.perlin.noise.min.js"
-        integrity="sha256-WGouNVoyl2w4gS6RPy0TaB6PKxH7JbImdui8b/Y0DbE=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-simplex-noise@1.37.5/tsparticles.path.simplex.noise.min.js"
-        integrity="sha256-grsVMB65God/cwqVRuBFW9Ti15Xevaf2rhNewITFXBo=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-links@1.22.5/tsparticles.preset.links.min.js"
-        integrity="sha256-vXPS6FnVDRa21hZVAISYTnpgA9Yb5sR5d54Mp34pSK4=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/object-gui@1.1.1/dist/js/object-gui.min.js"
-        integrity="sha256-M0fXnWoixeosDqA5oLRKEpnTFLQWqUG3xlHN2GmbpGw=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-editor@1.37.5/dist/tsparticles.editor.min.js"
-        integrity="sha256-lbxEOuxCzlwrjt2KX5h0GL55bynGjaMgRZWUEyOe0Rg=" crossorigin="anonymous"></script>
-<script type="text/javascript">
-    hljs.initHighlightingOnLoad();
-</script>
-<script>window.twttr = (function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0],
-        t = window.twttr || {};
-    if (d.getElementById(id)) return t;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "https://platform.twitter.com/widgets.js";
-    fjs.parentNode.insertBefore(js, fjs);
+      })(window, document, "clarity", "script", "8q4bxin4tm");
+    </script>
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1784552607103901"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.3.1/build/highlight.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+      integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+      integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/js/fontawesome.min.js"
+      integrity="sha256-NP9NujdEzS5m4ZxvNqkcbxyHB0dTRy9hG13RwTVBGwo="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"
+      integrity="sha256-ur/YlHMU96MxHEsy3fHGszZHas7NzH4RQlD4tDVvFhw="
+      crossorigin="anonymous"
+    ></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/tsparticles@1.37.5/tsparticles.min.js"
+      integrity="sha256-vrg2swRnXDq+IRB+eBS+eYV6HqDUTfn6w3yEa+H6f4M="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-infection@1.37.5/tsparticles.plugin.infection.min.js"
+      integrity="sha256-hNVxtQhuFRvXEd3YqCsbbKOwGcXvUEEvASw9bYJCK4w="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-light@1.37.5/tsparticles.interaction.light.min.js"
+      integrity="sha256-zAplvZZlRoXzeva/+ZDnCCLbbY5KZ/Ctdb71HYDzbV4="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-particles-repulse@1.37.5/tsparticles.interaction.particles.repulse.min.js"
+      integrity="sha256-BXNPFsyEeu+HIABkqPU1vqDn0WcRVyiifbanLlP1DW8="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/tsparticles-updater-gradient@1.37.5/tsparticles.updater.gradient.min.js"
+      integrity="sha256-lb5I2c6iURkIHw2AajpwnS8MRGj1y1rQdTrLAmljKWU="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/tsparticles-updater-orbit@1.37.5/tsparticles.updater.orbit.min.js"
+      integrity="sha256-BPRcSo9h4PDdJNpackS8Qrzaw9Z0cua+ZVd7apWR/VE="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/tsparticles-path-curves@1.37.5/tsparticles.path.curves.min.js"
+      integrity="sha256-8xGrWmT0NMerhx3RHwsqA+S8PtafyqSJ7L9dU55XHO8="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/tsparticles-path-polygon@1.37.5/tsparticles.path.polygon.min.js"
+      integrity="sha256-jmz7/wTtRv2K2rllJeZbyxFylwRC7/14Cl8GnPgqvEg="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/tsparticles-path-perlin-noise@1.37.5/tsparticles.path.perlin.noise.min.js"
+      integrity="sha256-WGouNVoyl2w4gS6RPy0TaB6PKxH7JbImdui8b/Y0DbE="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/tsparticles-path-simplex-noise@1.37.5/tsparticles.path.simplex.noise.min.js"
+      integrity="sha256-grsVMB65God/cwqVRuBFW9Ti15Xevaf2rhNewITFXBo="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/tsparticles-preset-links@1.22.5/tsparticles.preset.links.min.js"
+      integrity="sha256-vXPS6FnVDRa21hZVAISYTnpgA9Yb5sR5d54Mp34pSK4="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/object-gui@1.1.1/dist/js/object-gui.min.js"
+      integrity="sha256-M0fXnWoixeosDqA5oLRKEpnTFLQWqUG3xlHN2GmbpGw="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/tsparticles-editor@1.37.5/dist/tsparticles.editor.min.js"
+      integrity="sha256-lbxEOuxCzlwrjt2KX5h0GL55bynGjaMgRZWUEyOe0Rg="
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+    </script>
+    <script>
+      window.twttr = (function (d, s, id) {
+        var js,
+          fjs = d.getElementsByTagName(s)[0],
+          t = window.twttr || {};
+        if (d.getElementById(id)) return t;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
 
-    t._e = [];
-    t.ready = function (f) {
-        t._e.push(f);
-    };
+        t._e = [];
+        t.ready = function (f) {
+          t._e.push(f);
+        };
 
-    return t;
-}(document, "script", "twitter-wjs"));</script>
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous"
-        src="https://connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v10.0&appId=130672560341873&autoLogAppEvents=1"
-        nonce="jC6Fjy00"></script>
-<script type="text/javascript">
-    loadInfectionPlugin(tsParticles);
-    loadLightInteraction(tsParticles);
-    loadParticlesRepulseInteraction(tsParticles);
-    loadGradientUpdater(tsParticles);
-    loadOrbitUpdater(tsParticles);
-    loadCurvesPath(tsParticles);
-    loadPolygonPath(tsParticles);
-    loadPerlinNoisePath(tsParticles);
-    loadSimplexNoisePath(tsParticles);
+        return t;
+      })(document, "script", "twitter-wjs");
+    </script>
+    <div id="fb-root"></div>
+    <script
+      async
+      defer
+      crossorigin="anonymous"
+      src="https://connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v10.0&appId=130672560341873&autoLogAppEvents=1"
+      nonce="jC6Fjy00"
+    ></script>
+    <script type="text/javascript">
+      loadInfectionPlugin(tsParticles);
+      loadLightInteraction(tsParticles);
+      loadParticlesRepulseInteraction(tsParticles);
+      loadGradientUpdater(tsParticles);
+      loadOrbitUpdater(tsParticles);
+      loadCurvesPath(tsParticles);
+      loadPolygonPath(tsParticles);
+      loadPerlinNoisePath(tsParticles);
+      loadSimplexNoisePath(tsParticles);
 
-    const configsUrl = "/configs";
+      const configsUrl = "/configs";
 
-    tsParticles.loadJSON("tsparticles", `${configsUrl}/index.json`).then((container) => {
-        const editor = showEditor(container);
+      tsParticles
+        .loadJSON("tsparticles", `${configsUrl}/index.json`)
+        .then((container) => {
+          const editor = showEditor(container);
 
-        editor.addPreset("Default", `${configsUrl}/index.json`);
-        editor.addPreset("Among Us", `${configsUrl}/amongUs.json`);
-        editor.addPreset("Confetti", `${configsUrl}/confetti.json`);
-        editor.addPreset("Fireworks", `${configsUrl}/fireworks.json`);
-        editor.addPreset("Hexagons", `${configsUrl}/hexagonPath.json`);
-        editor.addPreset("Starry", `${configsUrl}/starry.json`);
-        editor.addPreset("Tunnel", `${configsUrl}/tunnel.json`);
+          editor.addPreset("Default", `${configsUrl}/index.json`);
+          editor.addPreset("Among Us", `${configsUrl}/amongUs.json`);
+          editor.addPreset("Confetti", `${configsUrl}/confetti.json`);
+          editor.addPreset("Fireworks", `${configsUrl}/fireworks.json`);
+          editor.addPreset("Hexagons", `${configsUrl}/hexagonPath.json`);
+          editor.addPreset("Starry", `${configsUrl}/starry.json`);
+          editor.addPreset("Tunnel", `${configsUrl}/tunnel.json`);
 
-        editor.top().right().theme("neu-dark");
+          editor.top().right().theme("neu-dark");
 
-        const editorEl = document.querySelector("#m_tsparticles_editor");
+          const editorEl = document.querySelector("#m_tsparticles_editor");
 
-        editorEl.classList.add("d-md-block");
-        editorEl.classList.add("d-none");
-    });
-</script>
-</body>
-
+          editorEl.classList.add("d-md-block");
+          editorEl.classList.add("d-none");
+        });
+    </script>
+  </body>
 </html>
