@@ -1,0 +1,10 @@
+{
+  "name": "@tsparticles/cli",
+  "version": "1.0.0",
+  "description": "tsParticles CLI utilities",
+  "main": "index.js",
+  "bin": "cli.js",
+  "repository": "https://github.com/tsparticles/cli.git",
+  "author": "Matteo Bruni <176620+matteobruni@users.noreply.github.com>",
+  "license": "MIT"
+}

@@ -1,0 +1,10 @@
+dist
+node_modules
+.eslintignore
+.eslintrc.js
+webpack.config.js
+tsparticles.preset.template.bundle.js
+tsparticles.preset.template.bundle.min.js
+tsparticles.preset.template.js
+tsparticles.preset.template.min.js
+report.html

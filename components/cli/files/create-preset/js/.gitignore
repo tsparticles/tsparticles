@@ -349,4 +349,8 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
-.DS_Store
+tsparticles.preset.template.bundle.js
+tsparticles.preset.template.bundle.min.js
+tsparticles.preset.template.js
+tsparticles.preset.template.min.js
+report.html
