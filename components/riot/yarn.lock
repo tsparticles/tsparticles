@@ -448,10 +448,10 @@
     recast "^0.20.5"
     source-map "^0.7.3"
 
-"@riotjs/dom-bindings@6.0.2":
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/@riotjs/dom-bindings/-/dom-bindings-6.0.2.tgz#86352cc489a5737c4e35701fd5809af28354f358"
-  integrity sha512-eTle5JooLr8gfTyYsZdkca3Glfx1Jf0XajzICIQO1nWKLvHqlTgvZfIB+OJ62z0Pufx8xRlE/H5FKJvcNB64/A==
+"@riotjs/dom-bindings@6.0.3":
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/@riotjs/dom-bindings/-/dom-bindings-6.0.3.tgz#741c0340b3a27351357ce2bb1001e5b2708d1640"
+  integrity sha512-ajBgXquwkj8ZaGDhGWJc8n74dCZxvxzoE2hT26T+aAfHVAz5Nhk6jWjmggZ42nN4AX9CQJUMEGY9KJeHDj1ABg==
   dependencies:
     "@riotjs/util" "^2.0.4"
 
@@ -1811,12 +1811,12 @@ rimraf@^3.0.0:
     glob "^7.1.3"
 
 riot@^6.1.1:
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/riot/-/riot-6.1.1.tgz#00cdb86d65e7561c0691392a51632ff9fbd42444"
-  integrity sha512-uumTLv76/xxWYWpQ6jYuCCh1cz+CVt6cmEoBDKRplrjXaabdFI7khHysNJYZ6WnWdqqOgs2EPYaZ1Eal0eWNjQ==
+  version "6.1.2"
+  resolved "https://registry.yarnpkg.com/riot/-/riot-6.1.2.tgz#439049b611fdd71191dc3ea2a96b6bea3db52a48"
+  integrity sha512-JYGKN6D2FwNP+eH2suh13jhQPXnaAeXdwCIWH0vz2UvhLBY9mTFZv6/dPAyEluHTf9bjAJOriFc4PDXox5Fjqw==
   dependencies:
     "@riotjs/compiler" "^6.1.3"
-    "@riotjs/dom-bindings" "6.0.2"
+    "@riotjs/dom-bindings" "6.0.3"
     "@riotjs/util" "^2.0.4"
     bianco.attr "^1.0.0"
     bianco.query "^1.0.0"
