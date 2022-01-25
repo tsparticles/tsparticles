@@ -3,11 +3,13 @@ const { notFound } = require("./notFound");
 /**
  * @callback CommandCallback
  * @param {...string} args
+ * @returns {Promise<void>}
  */
 
 /**
  * @callback CommandHelpCallback
  * @param {...string} args
+ * @returns {Promise<void>}
  */
 
 /**
@@ -109,11 +111,11 @@ function addCommand(command) {
  * @param {string} commandName
  * @param  {...string} args
  */
-function handleCommand(commandName, ...args) {
+async function handleCommand(commandName, ...args) {
   const command = getCommand(commandName);
 
   if (command) {
-    command.callback(...args);
+    await command.callback(...args);
   }
 }
 

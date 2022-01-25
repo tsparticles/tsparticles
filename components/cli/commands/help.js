@@ -4,7 +4,7 @@ const { addCommand, getCommand, getCommands } = require("../utils/commands");
  *
  * @param {...string} args
  */
-function helpCb(...args) {
+async function helpCb(...args) {
   if (!args || !args.length) {
     console.log("List of commands\n");
 
@@ -17,7 +17,7 @@ function helpCb(...args) {
     const command = getCommand(args[0]);
 
     if (command) {
-      command.help(...args.splice(1));
+      await command.help(...args.splice(1));
     }
   }
 }

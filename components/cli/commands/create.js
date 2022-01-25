@@ -6,14 +6,14 @@ const { addCommand, getCommand, getCommands } = require("../utils/commands");
  *
  * @param {...string} args
  */
-function createCb(...args) {
+async function createCb(...args) {
   if (!args || !args.length) {
-    helpCb(...args.splice(1));
+    await helpCb(...args.splice(1));
   } else {
     const command = getCommand(args[0]);
 
     if (command) {
-      command.callback(...args.splice(1));
+      await command.callback(...args.splice(1));
     }
   }
 }
@@ -22,7 +22,7 @@ function createCb(...args) {
  *
  * @param  {...string} args
  */
-function helpCb(...args) {
+async function helpCb(...args) {
   if (!args || !args.length) {
     console.log("List of Create commands\n");
 
@@ -35,7 +35,7 @@ function helpCb(...args) {
     const command = getCommand(args[0]);
 
     if (command) {
-      command.help(...args.splice(1));
+      await command.help(...args.splice(1));
     }
   }
 }
