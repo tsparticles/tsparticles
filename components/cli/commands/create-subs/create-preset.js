@@ -91,8 +91,10 @@ async function createTypeScriptTemplate() {
     "../..",
     "files",
     "create-preset",
-    "ts"
+    "js"
   );
+
+  await fs.copy(sourcePath, destPath);
 }
 
 /**
