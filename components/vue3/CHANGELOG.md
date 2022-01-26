@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.22.1](https://github.com/matteobruni/tsparticles/compare/particles.vue3@1.22.0...particles.vue3@1.22.1) (2022-01-26)
+
+
+### Bug Fixes
+
+* upgrade core-js from 3.17.3 to 3.20.1 ([bb54ae4](https://github.com/matteobruni/tsparticles/commit/bb54ae4727875006def6ebacdec1d904707c7440))
+
+
+
+
+
 # [1.22.0](https://github.com/matteobruni/tsparticles/compare/particles.vue3@1.21.0...particles.vue3@1.22.0) (2022-01-08)
 
 **Note:** Version bump only for package particles.vue3

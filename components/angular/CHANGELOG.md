@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.22.1](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.22.0...ng-particles@2.22.1) (2022-01-26)
+
+
+### Bug Fixes
+
+* fixed issues with absorbers and emitters plugins Container extension methods ([ce196be](https://github.com/matteobruni/tsparticles/commit/ce196bebd035281c08b5c77c5301ba1ebd7e734f))
+* upgrade multiple dependencies with Snyk ([0667f67](https://github.com/matteobruni/tsparticles/commit/0667f67e403d331684cf5fb85036a0a76fc426d5))
+* upgrade rxjs from 7.3.0 to 7.4.0 ([5579eff](https://github.com/matteobruni/tsparticles/commit/5579eff8393a8685f038a94de42f7bf057f73a79))
+* upgrade rxjs from 7.4.0 to 7.5.1 ([edf9c98](https://github.com/matteobruni/tsparticles/commit/edf9c98613fdf7c080275eecfcffac0c7048af46))
+
+
+
+
+
 # [2.22.0](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.21.0...ng-particles@2.22.0) (2022-01-08)
 
 **Note:** Version bump only for package ng-particles

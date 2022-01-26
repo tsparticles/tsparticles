@@ -1,8 +1,8 @@
 {
   "package": {
     "dependencies": {
-      "react-tsparticles": "^1.39.0",
-      "tsparticles": "^1.39.0",
+      "react-tsparticles": "^1.39.1",
+      "tsparticles": "^1.39.1",
       "tslib": "^2.3.0"
     }
   }
