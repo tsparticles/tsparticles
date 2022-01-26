@@ -1,4 +1,6 @@
 const { addCommand } = require("../../utils/commands");
+const { createJavaScriptTemplate } = require("./create-preset-js");
+const { createTypeScriptTemplate } = require("./create-preset-ts");
 const fs = require("fs-extra");
 const path = require("path");
 
@@ -19,8 +21,9 @@ async function createPresetCb(...args) {
     }
 
     const typeIdx = args.indexOf("-type");
+    const hasType = typeIdx >= 0;
 
-    if (args.length < 3 && typeIdx >= 0) {
+    if (args.length < 3 && hasType) {
       console.log("Not enough parameters");
 
       await helpPresetCb(...args);
@@ -28,7 +31,8 @@ async function createPresetCb(...args) {
       return;
     }
 
-    const type = typeIdx < 0 ? "js" : args[typeIdx + 1];
+    const type = hasType ? args[typeIdx + 1] : "js";
+    const name = hasType ? args[typeIdx === 0 ? args[2] : args[0]] : args[0];
 
     if (!type) {
       console.log("Invalid type parameter");
@@ -44,7 +48,7 @@ async function createPresetCb(...args) {
           "Creating new tsParticles preset using JavaScript template"
         );
 
-        await createJavaScriptTemplate();
+        await createJavaScriptTemplate(name);
 
         break;
       case "ts":
@@ -52,7 +56,7 @@ async function createPresetCb(...args) {
           "Creating new tsParticles preset using TypeScript template"
         );
 
-        await createTypeScriptTemplate();
+        await createTypeScriptTemplate(name);
 
         break;
       default:
@@ -63,38 +67,6 @@ async function createPresetCb(...args) {
         return;
     }
   }
-}
-
-/**
- *
- */
-async function createJavaScriptTemplate() {
-  const destPath = path.resolve(".");
-  const sourcePath = path.resolve(
-    __dirname,
-    "../..",
-    "files",
-    "create-preset",
-    "js"
-  );
-
-  await fs.copy(sourcePath, destPath);
-}
-
-/**
- *
- */
-async function createTypeScriptTemplate() {
-  const destPath = path.resolve(".");
-  const sourcePath = path.resolve(
-    __dirname,
-    "../..",
-    "files",
-    "create-preset",
-    "js"
-  );
-
-  await fs.copy(sourcePath, destPath);
 }
 
 /**

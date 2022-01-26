@@ -3,7 +3,7 @@
   "endOfLine": "lf",
   "overrides": [
     {
-      "files": "*.ts",
+      "files": "*.js",
       "options": {
         "tabWidth": 4
       }
