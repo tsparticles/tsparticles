@@ -55,11 +55,10 @@ export class AbsorberInstance {
 
         const limit = this.options.size.limit;
 
-        this.limit =
-            {
-                radius: limit.radius * container.retina.pixelRatio * container.retina.reduceFactor,
-                mass: limit.mass,
-            };
+        this.limit = {
+            radius: limit.radius * container.retina.pixelRatio * container.retina.reduceFactor,
+            mass: limit.mass,
+        };
 
         this.color = colorToRgb(this.options.color) ?? {
             b: 0,
