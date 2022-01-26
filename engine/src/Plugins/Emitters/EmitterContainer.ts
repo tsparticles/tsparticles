@@ -7,4 +7,5 @@ export interface EmitterContainer {
     getEmitter: (idxOrName?: number | string) => EmitterInstance | undefined;
     playEmitter: (idxOrName?: number | string) => void;
     pauseEmitter: (idxOrName?: number | string) => void;
+    removeEmitter: (idxOrName?: number | string) => void;
 }

@@ -32,6 +32,14 @@ export class Emitters implements IContainerPlugin {
         overridableContainer.addEmitter = (options: IEmitter, position?: ICoordinates) =>
             this.addEmitter(options, position);
 
+        overridableContainer.removeEmitter = (idxOrName?: number | string) => {
+            const emitter = overridableContainer.getEmitter(idxOrName);
+
+            if (emitter) {
+                this.removeEmitter(emitter);
+            }
+        };
+
         overridableContainer.playEmitter = (idxOrName?: number | string) => {
             const emitter = overridableContainer.getEmitter(idxOrName);
 
@@ -155,7 +163,11 @@ export class Emitters implements IContainerPlugin {
     }
 
     addEmitter(options: IEmitter, position?: ICoordinates): EmitterInstance {
-        const emitter = new EmitterInstance(this, this.container, options, position);
+        const emitterOptions = new Emitter();
+
+        emitterOptions.load(options);
+
+        const emitter = new EmitterInstance(this, this.container, emitterOptions, position);
 
         this.array.push(emitter);
 
