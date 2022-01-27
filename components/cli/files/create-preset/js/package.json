@@ -1,5 +1,5 @@
 {
-  "name": "@tsparticles/preset-template",
+  "name": "tsparticles-preset-template",
   "version": "1.0.0",
   "description": "tsParticles template preset",
   "homepage": "https://particles.js.org/",

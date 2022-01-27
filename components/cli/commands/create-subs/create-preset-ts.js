@@ -1,9 +1,13 @@
+const path = require("path");
+const fs = require("fs-extra");
+
 /**
  *
  * @param {string} name
  * @param {string} description
+ * @param {string} repoUrl
  */
-async function createTypeScriptTemplate(name, description) {
+async function createTypeScriptTemplate(name, description, repoUrl) {
   const destPath = path.resolve(".");
   const sourcePath = path.resolve(
     __dirname,

@@ -83,7 +83,7 @@ export class ParticlesContainer extends React.PureComponent<IProps> {
 
   render() {
     const options = {
-      preset: "template", // also "template" is accepted
+      preset: "template",
     };
 
     return <Particles options={options} init={this.customInit} />;

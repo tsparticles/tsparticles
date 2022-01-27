@@ -1,8 +1,7 @@
+const { execSync } = require("child_process");
 const { addCommand } = require("../../utils/commands");
 const { createJavaScriptTemplate } = require("./create-preset-js");
 const { createTypeScriptTemplate } = require("./create-preset-ts");
-const fs = require("fs-extra");
-const path = require("path");
 
 /**
  *
@@ -32,7 +31,17 @@ async function createPresetCb(...args) {
     }
 
     const type = hasType ? args[typeIdx + 1] : "js";
-    const name = hasType ? args[typeIdx === 0 ? args[2] : args[0]] : args[0];
+    const nameIdx = typeIdx === 0 ? 2 : 0;
+    const name = args[nameIdx];
+    const descriptionIdx = typeIdx < 2 && typeIdx >= 0 ? 3 : 1;
+    const description = args[descriptionIdx];
+    let repoUrl;
+    
+    try {
+      repoUrl = execSync("git config --get remote.origin.url");
+    } catch {
+      repoUrl = "";
+    }
 
     if (!type) {
       console.log("Invalid type parameter");
@@ -48,7 +57,7 @@ async function createPresetCb(...args) {
           "Creating new tsParticles preset using JavaScript template"
         );
 
-        await createJavaScriptTemplate(name);
+        await createJavaScriptTemplate(name, description, repoUrl);
 
         break;
       case "ts":
@@ -56,7 +65,7 @@ async function createPresetCb(...args) {
           "Creating new tsParticles preset using TypeScript template"
         );
 
-        await createTypeScriptTemplate(name);
+        await createTypeScriptTemplate(name, description, repoUrl);
 
         break;
       default:
