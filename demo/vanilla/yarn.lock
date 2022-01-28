@@ -1170,9 +1170,7 @@ json-stable-stringify-without-jsonify@^1.0.1:
   integrity sha1-nbe1lJatPzz+8wp1FC0tkwrXJlE=
 
 jsoneditor@^9.5.3:
-  version "9.5.3"
-  resolved "https://registry.yarnpkg.com/jsoneditor/-/jsoneditor-9.5.3.tgz#a44cce2556a21e13db360865ed4d4224908df3da"
-  integrity sha512-KW893jRnh/s41n7Is4aNFg5Gh2h4HhE9W8L2rP1Okue3aW5Aov9SRqXs/5rmAABmlBGx1yzyPMlj4Oqw5nXQcQ==
+  version: "9.5.6"
   dependencies:
     ace-builds "^1.4.12"
     ajv "^6.12.6"
