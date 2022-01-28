@@ -45,6 +45,18 @@ const getJsConfig = (entry) => {
                     amd: "tsparticles",
                     root: "window"
                 },
+                "tsparticles/Plugins/Absorbers": {
+                    commonjs: "tsparticles/Plugins/Absorbers",
+                    commonjs2: "tsparticles/Plugins/Absorbers",
+                    amd: "tsparticles/Plugins/Absorbers",
+                    root: "window"
+                },
+                "tsparticles/Plugins/Emitters": {
+                    commonjs: "tsparticles/Plugins/Emitters",
+                    commonjs2: "tsparticles/Plugins/Emitters",
+                    amd: "tsparticles/Plugins/Emitters",
+                    root: "window"
+                },
                 "object-gui": {
                     commonjs: "object-gui",
                     commonjs2: "object-gui",
