@@ -1,4 +1,4 @@
-[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
 # tsParticles - TypeScript Particles
 
@@ -250,7 +250,7 @@ Você pode encontrar as instruções [aqui](https://github.com/matteobruni/tspar
 
 <https://particles.js.org/>
 
-[![Particles demo](https://particles.js.org/images/demo.png?v=1.8.1)](https://particles.js.org/)
+[![Particles demo](https://particles.js.org/images/demo2.png?v=1.39.1)](https://particles.js.org/)
 
 ---
 
