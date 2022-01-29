@@ -397,3 +397,5 @@ website/js/demo.min.js
 /demo/vanilla_new/js/tsparticles.updater.orbit.min.js
 demo/vanilla/views/index.html
 .parcel-cache
+demo/jquery/views/index.html
+demo/web/views/index.html
