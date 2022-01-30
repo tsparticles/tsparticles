@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/svelte-particles@1.22.2...svelte-particles@2.0.0-beta.4) (2022-01-30)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+
+
+### Features
+
+* async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/svelte-particles@2.0.0-beta.2...svelte-particles@2.0.0-beta.3) (2021-12-07)
 
 
@@ -42,6 +59,46 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.22.2](https://github.com/matteobruni/tsparticles/compare/svelte-particles@1.22.1...svelte-particles@1.22.2) (2022-01-29)
+
+**Note:** Version bump only for package svelte-particles
+
+
+
+
+
+## [1.22.1](https://github.com/matteobruni/tsparticles/compare/svelte-particles@1.22.0...svelte-particles@1.22.1) (2022-01-26)
+
+**Note:** Version bump only for package svelte-particles
+
+
+
+
+
+# [1.22.0](https://github.com/matteobruni/tsparticles/compare/svelte-particles@1.21.0...svelte-particles@1.22.0) (2022-01-08)
+
+**Note:** Version bump only for package svelte-particles
+
+
+
+
+
+# [1.21.0](https://github.com/matteobruni/tsparticles/compare/svelte-particles@1.20.6...svelte-particles@1.21.0) (2021-12-29)
+
+**Note:** Version bump only for package svelte-particles
+
+
+
+
+
+## [1.20.6](https://github.com/matteobruni/tsparticles/compare/svelte-particles@1.20.5...svelte-particles@1.20.6) (2021-12-24)
+
+**Note:** Version bump only for package svelte-particles
+
+
+
+
+
 ## [1.20.5](https://github.com/matteobruni/tsparticles/compare/svelte-particles@1.20.4...svelte-particles@1.20.5) (2021-11-28)
 
 **Note:** Version bump only for package svelte-particles

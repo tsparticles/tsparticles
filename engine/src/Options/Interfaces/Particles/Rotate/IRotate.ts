@@ -1,5 +1,5 @@
-import type { IRotateAnimation } from "./IRotateAnimation";
 import type { RotateDirection, RotateDirectionAlt } from "../../../../Enums";
+import type { IRotateAnimation } from "./IRotateAnimation";
 import type { IValueWithRandom } from "../../IValueWithRandom";
 
 /**

@@ -1,13 +1,13 @@
 import type { Container, IDelta, OutModeAlt, Particle } from "tsparticles-engine";
 import {
+    OutMode,
+    OutModeDirection,
+    ParticleOutType,
+    Vector,
     calculateBounds,
     getDistances,
-    randomInRange,
-    OutMode,
-    ParticleOutType,
-    OutModeDirection,
     isPointInside,
-    Vector,
+    randomInRange,
 } from "tsparticles-engine";
 import type { IOutModeManager } from "./IOutModeManager";
 

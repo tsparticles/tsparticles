@@ -1,15 +1,15 @@
 import {
-    colorToRgb,
-    getDistance,
-    getDistances,
-    getStyleFromRgb,
     ICoordinates,
     IDimension,
     IRgb,
+    colorToRgb,
     drawLine,
     drawTriangle,
+    getDistance,
+    getDistances,
+    getStyleFromRgb,
 } from "tsparticles-engine";
-import type { ILinksShadow } from "tsparticles-engine/Options/Interfaces/Particles/Links/ILinksShadow";
+import type { ILinksShadow } from "tsparticles-engine";
 
 export function drawLinkLine(
     context: CanvasRenderingContext2D,

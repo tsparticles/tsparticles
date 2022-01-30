@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import Particles from "react-tsparticles";
-import type { Main } from "tsparticles-engine";
+import type { Engine } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 import logo from "./logo.svg";
 import './App.css';
@@ -8,8 +8,8 @@ import particlesOptions from "./particles.json";
 import { ISourceOptions } from "tsparticles-engine";
 
 function App() {
-    const particlesInit = useCallback((main: Main) => {
-        loadFull(main);
+    const particlesInit = useCallback((engine: Engine) => {
+        loadFull(engine);
     }, []);
 
     return (

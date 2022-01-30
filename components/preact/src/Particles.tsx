@@ -48,9 +48,9 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
     }
 
     forceUpdate(): void {
-        this.refresh();
-
-        super.forceUpdate();
+        this.refresh().then(() => {
+            super.forceUpdate();
+        });
     }
 
     componentDidMount(): void {
@@ -91,13 +91,13 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
         );
     }
 
-    private refresh(): void {
+    private async refresh(): Promise<void> {
         this.destroy();
 
-        this.loadParticles();
+        await this.loadParticles();
     }
 
-    private loadParticles(): void {
+    private async loadParticles(): Promise<void> {
         if (!this.state.init) {
             return;
         }
@@ -116,10 +116,10 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
             }
         };
 
-        if (this.props.url) {
-            tsParticles.loadJSON(this.props.id, this.props.url).then(cb);
-        } else {
-            tsParticles.load(this.props.id, this.props.params ?? this.props.options).then(cb);
-        }
+        const container = await (this.props.url
+            ? tsParticles.loadJSON(this.props.id, this.props.url)
+            : tsParticles.load(this.props.id, this.props.params ?? this.props.options));
+
+        await cb(container);
     }
 }

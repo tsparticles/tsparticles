@@ -1,4 +1,4 @@
-import { InfectableContainer, InfectableParticle } from "./Types";
+import type { InfectableContainer, InfectableParticle } from "./Types";
 import type { IInfectionOptions } from "./Options/Interfaces/IInfectionOptions";
 
 /**

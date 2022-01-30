@@ -1,4 +1,4 @@
-[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
 # ng-particles
 
@@ -86,7 +86,7 @@ export class AppComponent {
       move: {
         direction: "none",
         enable: true,
-        outMode: "bounce",
+        outModes: "bounce",
         random: false,
         speed: 6,
         straight: false
@@ -94,7 +94,7 @@ export class AppComponent {
       number: {
         density: {
           enable: true,
-          value_area: 800
+          area: 800
         },
         value: 80
       },

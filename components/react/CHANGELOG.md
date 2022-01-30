@@ -3,7 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.39.2...react-tsparticles@2.0.0-beta.5) (2022-01-30)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+* removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
+
+
+### Features
+
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [2.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@2.0.0-beta.3...react-tsparticles@2.0.0-beta.4) (2021-12-07)
+## [1.39.2](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.39.1...react-tsparticles@1.39.2) (2022-01-29)
+
+**Note:** Version bump only for package react-tsparticles
+
+
+
+
+
+## [1.39.1](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.39.0...react-tsparticles@1.39.1) (2022-01-26)
+
+**Note:** Version bump only for package react-tsparticles
+
+
+
+
+
+# [1.39.0](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.38.0...react-tsparticles@1.39.0) (2022-01-08)
+
+**Note:** Version bump only for package react-tsparticles
+
+
+
+
+
+# [1.38.0](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.37.6...react-tsparticles@1.38.0) (2021-12-29)
 
 **Note:** Version bump only for package react-tsparticles
 
@@ -24,6 +67,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.35.4...react-tsparticles@2.0.0-beta.2) (2021-10-06)
+## [1.37.6](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.37.5...react-tsparticles@1.37.6) (2021-12-24)
+
+
+### Bug Fixes
+
+* fixed some readmes ([93f371a](https://github.com/matteobruni/tsparticles/commit/93f371ab82a5074d34ec7632ade41edc3dbf0ec7))
+
+
+
+
+
 ## [1.37.5](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.37.4...react-tsparticles@1.37.5) (2021-11-28)
 
 **Note:** Version bump only for package react-tsparticles

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import type { Container, Main } from "tsparticles-engine";
+import type { Container, Engine } from "tsparticles-engine";
 import { MoveDirection, OutMode } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 
@@ -97,8 +97,8 @@ export class ContainerComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async particlesInit(main: Main): Promise<void> {
-    await loadFull(main);
+  async particlesInit(engine: Engine): Promise<void> {
+    await loadFull(engine);
 
     console.log(loadFull);
   }

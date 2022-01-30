@@ -1,4 +1,4 @@
-[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
 # ng-particles
 
@@ -115,8 +115,7 @@ export class AppComponent {
         type: "circle"
       },
       size: {
-        random: true,
-        value: 5
+        value: {min: 1, max: 5 },
       }
     },
     detectRetina: true
@@ -126,13 +125,13 @@ export class AppComponent {
     console.log(container);
   }
 
-  async particlesInit(main: Main): Promise<void> {
-    console.log(main);
+  async particlesInit(engine: Engine): Promise<void> {
+    console.log(engine);
 
     // Starting from 1.19.0 you can add custom presets or shape here, using the current tsParticles instance (main)
     // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
     // starting from v2 you can add only the features you need reducing the bundle size
-    await loadFull(main);
+    await loadFull(engine);
   }
 }
 ```

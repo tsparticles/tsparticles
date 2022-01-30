@@ -1,5 +1,5 @@
-import { tsParticles } from "tsparticles-engine";
 import { loadLinksPreset } from ".";
+import { tsParticles } from "tsparticles-engine";
 
 loadLinksPreset(tsParticles);
 

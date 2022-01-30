@@ -1,9 +1,9 @@
-import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
+import type { IParticlesOptions } from "../Options";
 
 /**
  * @category Types
  * [[include:Options/Particles/Group.md]]
  */
 export type ParticlesGroups = {
-    [name: string]: IParticles;
+    [name: string]: IParticlesOptions;
 };

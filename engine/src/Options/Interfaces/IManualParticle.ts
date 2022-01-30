@@ -1,5 +1,5 @@
-import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
-import type { IParticles } from "./Particles/IParticles";
+import type { ICoordinates } from "../../Core";
+import type { IParticlesOptions } from "./Particles";
 import type { RecursivePartial } from "../../Types";
 
 /**
@@ -16,5 +16,5 @@ export interface IManualParticle {
     /**
      * Particle options, this properties will override the general particles configuration
      */
-    options?: RecursivePartial<IParticles>;
+    options?: RecursivePartial<IParticlesOptions>;
 }

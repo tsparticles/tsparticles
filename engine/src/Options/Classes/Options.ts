@@ -1,67 +1,23 @@
-import type { IOptions } from "../Interfaces/IOptions";
-import { Interactivity } from "./Interactivity/Interactivity";
-import { ParticlesOptions } from "./Particles/ParticlesOptions";
-import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
-import type { RangeValue, RecursivePartial } from "../../Types";
-import { Background } from "./Background/Background";
-import { Plugins } from "../../Utils";
-import type { IOptionLoader } from "../Interfaces/IOptionLoader";
-import { Theme } from "./Theme/Theme";
+import type { IOptionLoader, IOptions } from "../Interfaces";
+import type { RangeValue, RecursivePartial, SingleOrMultiple } from "../../Types";
 import { ResponsiveMode, ThemeMode } from "../../Enums";
-import { FullScreen } from "./FullScreen/FullScreen";
-import { Motion } from "./Motion/Motion";
+import { deepExtend, loadParticlesOptions } from "../../Utils";
+import { Background } from "./Background";
+import { BackgroundMask } from "./BackgroundMask";
+import { Engine } from "../../engine";
+import { FullScreen } from "./FullScreen";
+import { Interactivity } from "./Interactivity";
 import { ManualParticle } from "./ManualParticle";
+import { Motion } from "./Motion";
 import { Responsive } from "./Responsive";
+import { Theme } from "./Theme";
+
 /**
  * [[include:Options.md]]
  * @category Options
  */
 export class Options implements IOptions, IOptionLoader<IOptions> {
-    /**
-     * @deprecated this property is obsolete, please use the new fpsLimit
-     */
-    get fps_limit(): number {
-        return this.fpsLimit;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new fpsLimit
-     * @param value
-     */
-    set fps_limit(value: number) {
-        this.fpsLimit = value;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new retinaDetect
-     */
-    get retina_detect(): boolean {
-        return this.detectRetina;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new retinaDetect
-     * @param value
-     */
-    set retina_detect(value: boolean) {
-        this.detectRetina = value;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new fullScreen
-     */
-    get backgroundMode(): FullScreen {
-        return this.fullScreen;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new fullScreen
-     * @param value
-     */
-    set backgroundMode(value: FullScreen) {
-        this.fullScreen.load(value);
-    }
+    readonly #engine;
 
     autoPlay;
     background;
@@ -76,7 +32,8 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     particles;
     pauseOnBlur;
     pauseOnOutsideViewport;
-    preset?: string | string[];
+    preset?: SingleOrMultiple<string>;
+    style: RecursivePartial<CSSStyleDeclaration>;
     responsive: Responsive[];
     themes: Theme[];
     zLayers;
@@ -85,7 +42,8 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
     [name: string]: unknown;
 
-    constructor() {
+    constructor(engine: Engine) {
+        this.#engine = engine;
         this.autoPlay = true;
         this.background = new Background();
         this.backgroundMask = new BackgroundMask();
@@ -96,10 +54,11 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.interactivity = new Interactivity();
         this.manualParticles = [];
         this.motion = new Motion();
-        this.particles = new ParticlesOptions();
+        this.particles = loadParticlesOptions();
         this.pauseOnBlur = true;
         this.pauseOnOutsideViewport = true;
         this.responsive = [];
+        this.style = {};
         this.themes = [];
         this.zLayers = 100;
     }
@@ -109,7 +68,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
      * @param data the source data to load into the instance
      */
     load(data?: RecursivePartial<IOptions>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 
@@ -127,20 +86,16 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
             this.autoPlay = data.autoPlay;
         }
 
-        const detectRetina = data.detectRetina ?? data.retina_detect;
-
-        if (detectRetina !== undefined) {
-            this.detectRetina = detectRetina;
+        if (data.detectRetina !== undefined) {
+            this.detectRetina = data.detectRetina;
         }
 
         if (data.duration !== undefined) {
             this.duration = data.duration;
         }
 
-        const fpsLimit = data.fpsLimit ?? data.fps_limit;
-
-        if (fpsLimit !== undefined) {
-            this.fpsLimit = fpsLimit;
+        if (data.fpsLimit !== undefined) {
+            this.fpsLimit = data.fpsLimit;
         }
 
         if (data.pauseOnBlur !== undefined) {
@@ -157,12 +112,10 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
         this.background.load(data.background);
 
-        const fullScreen = data.fullScreen ?? data.backgroundMode;
-
-        if (typeof fullScreen === "boolean") {
-            this.fullScreen.enable = fullScreen;
+        if (typeof data.fullScreen === "boolean") {
+            this.fullScreen.enable = data.fullScreen;
         } else {
-            this.fullScreen.load(fullScreen);
+            this.fullScreen.load(data.fullScreen);
         }
 
         this.backgroundMask.load(data.backgroundMask);
@@ -181,7 +134,9 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.motion.load(data.motion);
         this.particles.load(data.particles);
 
-        Plugins.loadOptions(this, data);
+        this.style = deepExtend(this.style, data.style) as RecursivePartial<CSSStyleDeclaration>;
+
+        this.#engine.plugins.loadOptions(this, data);
 
         if (data.responsive !== undefined) {
             for (const responsive of data.responsive) {
@@ -240,7 +195,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     }
 
     private importPreset(preset: string): void {
-        this.load(Plugins.getPreset(preset));
+        this.load(this.#engine.plugins.getPreset(preset));
     }
 
     #findDefaultTheme(mode: ThemeMode): Theme | undefined {

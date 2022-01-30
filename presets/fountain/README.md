@@ -1,15 +1,15 @@
-[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
 # tsParticles Fountain Preset
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-fountain/badge)](https://www.jsdelivr.com/package/npm/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles-preset-fountain.svg)](https://www.npmjs.com/package/tsparticles-preset-fountain) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-fountain)](https://www.npmjs.com/package/tsparticles-preset-fountain)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-fountain/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-fountain) [![npmjs](https://badge.fury.io/js/tsparticles-preset-fountain.svg)](https://www.npmjs.com/package/tsparticles-preset-fountain) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-fountain)](https://www.npmjs.com/package/tsparticles-preset-fountain)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) preset creating random positioned falling colored particles
 that break when hitting the ground.
 
 ## Sample
 
-![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/v1/presets/fountain/images/sample.png)
+[![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/fountain/images/sample.png)](https://particles.js.org/samples/presets/fountain)
 
 ## How to use it
 
@@ -22,8 +22,8 @@ Once installed you need one more script to be included in your page (or you can 
 from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-fountain):
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-fountain"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-fountain@2/tsparticles.preset.fountain.min.js"></script>
 ```
 
 This script **MUST** be placed after the `tsParticles` one.
@@ -33,7 +33,7 @@ This script **MUST** be placed after the `tsParticles` one.
 A bundled script can also be used, this will include every needed plugin needed by the preset.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-fountain/tsparticles.preset.fountain.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-fountain@2/tsparticles.preset.fountain.bundle.min.js"></script>
 ```
 
 ### Usage
@@ -74,14 +74,14 @@ This sample uses the class component syntax, but you can use hooks as well (if t
 
 ```javascript
 import Particles from "react-tsparticles";
-import { Main } from "tsparticles-engine";
+import { Engine } from "tsparticles-engine";
 import { loadFountainPreset } from "tsparticles-preset-fountain";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
   // this customizes the component tsParticles installation
-  customInit(main: Main) {
+  async customInit(engine: Engine): Promise<void> {
     // this adds the preset to tsParticles, you can safely use the
-    loadFountainPreset(main);
+    loadFountainPreset(engine);
   }
 
   render() {
@@ -103,8 +103,8 @@ _The syntax for `Vue.js 2.x` and `3.x` is the same_
 ```
 
 ```js
-function particlesInit(main: Main) {
-  loadFountainPreset(main);
+async function particlesInit(engine: Engine): Promise<void> {
+  await loadFountainPreset(engine);
 }
 ```
 
@@ -120,8 +120,8 @@ function particlesInit(main: Main) {
 ```
 
 ```ts
-function particlesInit(main: Main): void {
-  loadFountainPreset(main);
+async function particlesInit(engine: Engine): Promise<void> {
+  loadFountainPreset(engine);
 }
 ```
 
@@ -137,7 +137,7 @@ function particlesInit(main: Main): void {
 ```
 
 ```js
-let onParticlesInit = (main) => {
-  loadFountainPreset(main);
-};
+async function onParticlesInit(engine) {
+  await loadFountainPreset(engine);
+}
 ```

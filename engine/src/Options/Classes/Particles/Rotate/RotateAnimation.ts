@@ -1,6 +1,5 @@
-import type { IRotateAnimation } from "../../../Interfaces/Particles/Rotate/IRotateAnimation";
+import type { IOptionLoader, IRotateAnimation } from "../../../Interfaces";
 import type { RecursivePartial } from "../../../../Types";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 /**
  * @category Options
@@ -17,7 +16,7 @@ export class RotateAnimation implements IRotateAnimation, IOptionLoader<IRotateA
     }
 
     load(data?: RecursivePartial<IRotateAnimation>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

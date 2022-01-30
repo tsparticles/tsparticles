@@ -1,5 +1,5 @@
-import { tsParticles } from "tsparticles-engine";
 import { loadFirePreset } from ".";
+import { tsParticles } from "tsparticles-engine";
 
 loadFirePreset(tsParticles);
 

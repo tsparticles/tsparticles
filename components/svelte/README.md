@@ -1,4 +1,4 @@
-[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
 # svelte-particles
 
@@ -9,13 +9,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) SvelteJS comp
 ## Installation
 
 ```shell
-npm install svelte-particles svelte
+npm install svelte-particles
 ```
 
 or
 
 ```shell
-yarn add svelte-particles svelte
+yarn add svelte-particles
 ```
 
 ## Usage

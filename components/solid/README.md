@@ -1,4 +1,4 @@
-[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
 # solid-particles
 
@@ -9,13 +9,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) solid compone
 ## Installation
 
 ```shell
-npm install solid-particles solid-js
+npm install solid-particles
 ```
 
 or
 
 ```shell
-yarn add solid-particles solid-js
+yarn add solid-particles
 ```
 
 ## How to use
@@ -140,7 +140,9 @@ class App extends Component {
             move: {
               direction: "none",
               enable: true,
-              outMode: "bounce",
+              outModes: {
+                default: "bounce",
+              },
               random: false,
               speed: 6,
               straight: false,
@@ -148,7 +150,7 @@ class App extends Component {
             number: {
               density: {
                 enable: true,
-                value_area: 800,
+                area: 800,
               },
               value: 80,
             },
@@ -159,8 +161,7 @@ class App extends Component {
               type: "circle",
             },
             size: {
-              random: true,
-              value: 5,
+              value: { min: 1, max: 5 },
             },
           },
           detectRetina: true,

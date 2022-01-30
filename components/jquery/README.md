@@ -1,4 +1,4 @@
-[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
 # jquery-particles
 
@@ -9,13 +9,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) jQuery plugin
 ## Installation
 
 ```shell
-$ npm install jquery-particles jquery
+$ npm install jquery-particles
 ```
 
 or
 
 ```shell
-$ yarn add jquery-particles jquery
+$ yarn add jquery-particles
 ```
 
 or from jsDelivr
@@ -116,8 +116,7 @@ $("#tsparticles")
           type: "circle",
         },
         size: {
-          random: true,
-          value: 5,
+          value: { min: 1, max: 5 },
         },
       },
       detectRetina: true,

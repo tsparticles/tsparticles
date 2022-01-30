@@ -1,7 +1,7 @@
+import * as ColorUtils from "../src/Utils/ColorUtils";
+import { IColor, IHsl, IHsla, IHsv, IRgb } from "../src";
 import { describe, it } from "mocha";
 import { expect } from "chai";
-import * as ColorUtils from "../src/Utils/ColorUtils";
-import { IColor, IRgb, IHsl, IHsla, IHsv } from "../src/Core/Interfaces/Colors";
 
 describe("ColorUtils", () => {
     const red: IRgb = {

@@ -1,8 +1,8 @@
-import type { Main } from "tsparticles-engine";
+import type { Engine } from "tsparticles-engine";
 import { perlinNoiseGenerator } from "./pathGen";
 
 export const perlinNoisePathName = "perlinNoise";
 
-export function loadPerlinNoisePath(tsParticles: Main): void {
-    tsParticles.addPathGenerator(perlinNoisePathName, perlinNoiseGenerator);
+export async function loadPerlinNoisePath(engine: Engine): Promise<void> {
+    await engine.addPathGenerator(perlinNoisePathName, perlinNoiseGenerator);
 }

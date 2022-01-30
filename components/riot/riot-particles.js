@@ -2,8 +2,8 @@ import { tsParticles } from 'tsparticles-engine';
 
 let oldId;
 var riotParticles = {
-  'css': null,
-  'exports': {
+  css: null,
+  exports: {
     onMounted(props) {
       tsParticles.init();
 
@@ -41,20 +41,16 @@ var riotParticles = {
     }
 
   },
-  'template': function (template, expressionTypes, bindingTypes, getComponent) {
-    return template('<div expr0="expr0"></div>', [{
-      'redundantAttribute': 'expr0',
-      'selector': '[expr0]',
-      'expressions': [{
-        'type': expressionTypes.ATTRIBUTE,
-        'name': 'id',
-        'evaluate': function (_scope) {
-          return _scope.props.id;
-        }
-      }]
-    }]);
-  },
-  'name': 'riot-particles'
+  template: (template, expressionTypes, bindingTypes, getComponent) => template('<div expr0="expr0"></div>', [{
+    redundantAttribute: 'expr0',
+    selector: '[expr0]',
+    expressions: [{
+      type: expressionTypes.ATTRIBUTE,
+      name: 'id',
+      evaluate: _scope => _scope.props.id
+    }]
+  }]),
+  name: 'riot-particles'
 };
 
 export default riotParticles;

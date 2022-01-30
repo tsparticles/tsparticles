@@ -1,4 +1,4 @@
-import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
+import type { IParticlesOptions } from "../../Options";
 import type { RecursivePartial } from "../../Types";
 
 /**
@@ -8,7 +8,7 @@ import type { RecursivePartial } from "../../Types";
 export interface IShapeValues {
     close?: boolean;
     fill?: boolean;
-    particles?: RecursivePartial<IParticles>;
+    particles?: RecursivePartial<IParticlesOptions>;
 
     [key: string]: unknown;
 }

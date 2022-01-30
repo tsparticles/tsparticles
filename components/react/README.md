@@ -1,4 +1,4 @@
-[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
 # react-tsparticles
 
@@ -9,13 +9,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) ReactJS compo
 ## Installation
 
 ```shell
-$ npm install react-tsparticles react
+npm install react-tsparticles
 ```
 
 or
 
 ```shell
-$ yarn add react-tsparticles react
+yarn add react-tsparticles
 ```
 
 #### create-react-app
@@ -139,7 +139,9 @@ const App = () => {
           move: {
             direction: "none",
             enable: true,
-            outMode: "bounce",
+            outModes: {
+              default: "bounce",
+            },
             random: false,
             speed: 6,
             straight: false,
@@ -158,8 +160,7 @@ const App = () => {
             type: "circle",
           },
           size: {
-            random: true,
-            value: 5,
+            value: { min: 1, max: 5 },
           },
         },
         detectRetina: true,

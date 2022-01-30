@@ -1,5 +1,5 @@
-import { bounce } from "./Bounce";
 import type { Particle } from "tsparticles-engine";
+import { bounce } from "./Bounce";
 
 export function destroy(p1: Particle, p2: Particle): void {
     if (!p1.unbreakable && !p2.unbreakable) {

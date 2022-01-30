@@ -1,20 +1,22 @@
-import type { Main } from "tsparticles-engine";
-import { options } from "./options";
-import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
+import type { Engine } from "tsparticles-engine";
+import { loadBaseMover } from "tsparticles-move-base";
 import { loadCircleShape } from "tsparticles-shape-circle";
 import { loadColorUpdater } from "tsparticles-updater-color";
+import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
 import { loadOpacityUpdater } from "tsparticles-updater-opacity";
 import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
 import { loadSizeUpdater } from "tsparticles-updater-size";
+import { options } from "./options";
 
-export async function loadBigCirclesPreset(tsParticles: Main): Promise<void> {
-    await loadCircleShape(tsParticles);
-    await loadColorUpdater(tsParticles);
-    await loadSizeUpdater(tsParticles);
-    await loadOpacityUpdater(tsParticles);
-    await loadOutModesUpdater(tsParticles);
-    await loadEmittersPlugin(tsParticles);
+export async function loadBigCirclesPreset(engine: Engine): Promise<void> {
+    await loadBaseMover(engine);
+    await loadCircleShape(engine);
+    await loadColorUpdater(engine);
+    await loadSizeUpdater(engine);
+    await loadOpacityUpdater(engine);
+    await loadOutModesUpdater(engine);
+    await loadEmittersPlugin(engine);
 
-    tsParticles.addPreset("bigCircles", options);
-    tsParticles.addPreset("big-circles", options);
+    await engine.addPreset("bigCircles", options);
+    await engine.addPreset("big-circles", options);
 }

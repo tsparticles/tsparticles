@@ -1,17 +1,12 @@
-import type { IPlugin } from "tsparticles-engine";
-import type { Container } from "tsparticles-engine";
-import { isInArray } from "tsparticles-engine";
-import { Emitters } from "./Emitters";
-import type { RecursivePartial } from "tsparticles-engine";
-import type { IOptions } from "tsparticles-engine/Options/Interfaces/IOptions";
-import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
+import { Container, Engine, IOptions, IPlugin, Options, RecursivePartial, isInArray } from "tsparticles-engine";
 import { EmitterClickMode, EmitterShapeType } from "./Enums";
-import { Options } from "tsparticles-engine/Options/Classes/Options";
-import { Emitter } from "./Options/Classes/Emitter";
-import { IEmitterShape } from "./IEmitterShape";
-import { EmittersMain } from "./EmittersMain";
-import { ShapeManager } from "./ShapeManager";
 import { CircleShape } from "./Shapes/Circle/CircleShape";
+import { Emitter } from "./Options/Classes/Emitter";
+import { Emitters } from "./Emitters";
+import { EmittersMain } from "./EmittersMain";
+import { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
+import { IEmitterShape } from "./IEmitterShape";
+import { ShapeManager } from "./ShapeManager";
 import { SquareShape } from "./Shapes/Square/SquareShape";
 
 /**
@@ -19,13 +14,15 @@ import { SquareShape } from "./Shapes/Square/SquareShape";
  */
 class EmittersPlugin implements IPlugin {
     readonly id;
+    #engine;
 
-    constructor() {
+    constructor(engine: Engine) {
         this.id = "emitters";
+        this.#engine = engine;
     }
 
     getPlugin(container: Container): Emitters {
-        return new Emitters(container);
+        return new Emitters(container, this.#engine);
     }
 
     needsPlugin(options?: RecursivePartial<IOptions & IEmitterOptions>): boolean {
@@ -94,19 +91,19 @@ class EmittersPlugin implements IPlugin {
     }
 }
 
-export async function loadEmittersPlugin(tsParticles: EmittersMain): Promise<void> {
-    const plugin = new EmittersPlugin();
+export async function loadEmittersPlugin(engine: EmittersMain): Promise<void> {
+    const plugin = new EmittersPlugin(engine);
 
-    await tsParticles.addPlugin(plugin);
+    await engine.addPlugin(plugin);
 
-    if (!tsParticles.addEmitterShape) {
-        tsParticles.addEmitterShape = (name: string, shape: IEmitterShape) => {
+    if (!engine.addEmitterShape) {
+        engine.addEmitterShape = (name: string, shape: IEmitterShape) => {
             ShapeManager.addShape(name, shape);
         };
     }
 
-    tsParticles.addEmitterShape(EmitterShapeType.circle, new CircleShape());
-    tsParticles.addEmitterShape(EmitterShapeType.square, new SquareShape());
+    engine.addEmitterShape(EmitterShapeType.circle, new CircleShape());
+    engine.addEmitterShape(EmitterShapeType.square, new SquareShape());
 }
 
 export * from "./EmittersMain";

@@ -2,11 +2,10 @@
   "fpsLimit": 60,
   "particles": {
     "number": {
-      "value": 300,
-      "density": {
-        "enable": false,
-        "value_area": 800
-      }
+      "value": 300
+    },
+    "collisions": {
+      "enable": true
     },
     "color": {
       "value": "#ffffff"
@@ -15,12 +14,16 @@
       "type": "circle"
     },
     "opacity": {
-      "value": 1,
-      "random": true
+      "value": {
+        "min": 0.1,
+        "max": 1
+      }
     },
     "size": {
-      "value": 2,
-      "random": true
+      "value": {
+        "min": 1,
+        "max": 2
+      }
     },
     "move": {
       "enable": true,
@@ -28,75 +31,35 @@
       "direction": "top",
       "random": false,
       "straight": true,
-      "out_mode": "out",
-      "bounce": true,
-      "warp": true,
-      "attract": {
-        "enable": false,
-        "rotateX": 600,
-        "rotateY": 1200
-      }
+      "outModes": {
+        "default": "out"
+      },
+      "warp": true
     }
   },
   "interactivity": {
     "events": {
-      "onhover": {
-        "enable": false,
-        "mode": "repulse"
-      },
-      "onclick": {
+      "onClick": {
         "enable": true,
         "mode": "push"
       },
       "resize": true
     },
     "modes": {
-      "grab": {
-        "distance": 400,
-        "line_linked": {
-          "opacity": 1
-        }
-      },
-      "absorbers": {
-        "color": "#ff0000",
-        "draggable": true,
-        "size": {
-          "value": 10,
-          "limit": 50,
-          "density": 50,
-          "random": {
-            "enable": true,
-            "minimumValue": 5
-          }
-        }
-      },
-      "bubble": {
-        "distance": 400,
-        "size": 40,
-        "duration": 2,
-        "opacity": 0.8
-      },
-      "repulse": {
-        "distance": 200
-      },
       "push": {
-        "particles_nb": 10
-      },
-      "remove": {
-        "particles_nb": 2
+        "quantity": 10
       }
     }
   },
-  "retina_detect": true,
+  "detectRetina": true,
   "absorbers": {
     "draggable": true,
     "size": {
-      "value": 10,
-      "limit": 10,
-      "random": {
-        "enable": true,
-        "minimumValue": 5
-      }
+      "value": {
+        "min": 5,
+        "max": 10
+      },
+      "limit": 10
     },
     "position": {
       "x": 50,
@@ -104,10 +67,6 @@
     }
   },
   "background": {
-    "color": "#0d47a1",
-    "image": "",
-    "position": "50% 50%",
-    "repeat": "no-repeat",
-    "size": "cover"
+    "color": "#0d47a1"
   }
 }

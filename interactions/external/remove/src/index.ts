@@ -1,6 +1,6 @@
-import type { Main } from "tsparticles-engine";
+import type { Engine } from "tsparticles-engine";
 import { Remover } from "./Remover";
 
-export function loadExternalRemoveInteraction(tsParticles: Main): void {
-    tsParticles.addInteractor("externalRemove", (container) => new Remover(container));
+export function loadExternalRemoveInteraction(engine: Engine): void {
+    engine.addInteractor("externalRemove", (container) => new Remover(container));
 }

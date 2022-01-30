@@ -2,9 +2,8 @@
  * Color animation interface, these properties are used to animate colors
  * @category Options
  */
-
-import type { RangeValue } from "../../Types";
 import type { IAnimation } from "./IAnimation";
+import type { RangeValue } from "../../Types";
 
 export interface IColorAnimation extends IAnimation {
     /**

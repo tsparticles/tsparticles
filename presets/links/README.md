@@ -1,15 +1,15 @@
-[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
 # tsParticles Links Preset
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-links/badge)](https://www.jsdelivr.com/package/npm/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles-preset-links.svg)](https://www.npmjs.com/package/tsparticles-preset-links) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-links)](https://www.npmjs.com/package/tsparticles-preset-links)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-links/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-links) [![npmjs](https://badge.fury.io/js/tsparticles-preset-links.svg)](https://www.npmjs.com/package/tsparticles-preset-links) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-links)](https://www.npmjs.com/package/tsparticles-preset-links)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) preset for creating a particles web created by link lines
 between them.
 
 ## Sample
 
-![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/v1/presets/links/images/sample.png)
+[![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/links/images/sample.png)](https://particles.js.org/samples/presets/links)
 
 ## How to use it
 
@@ -22,8 +22,8 @@ Once installed you need one more script to be included in your page (or you can 
 from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-links):
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-links"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@1/tsparticles.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-links@1/tsparticles.preset.links.min.js"></script>
 ```
 
 This script **MUST** be placed after the `tsParticles` one.
@@ -33,7 +33,7 @@ This script **MUST** be placed after the `tsParticles` one.
 A bundled script can also be used, this will include every needed plugin needed by the preset.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-links/tsparticles.preset.links.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-links@2/tsparticles.preset.links.bundle.min.js"></script>
 ```
 
 ### Usage
@@ -74,14 +74,14 @@ This sample uses the class component syntax, but you can use hooks as well (if t
 
 ```javascript
 import Particles from "react-tsparticles";
-import { Main } from "tsparticles-engine";
+import { Engine } from "tsparticles-engine";
 import { loadLinksPreset } from "tsparticles-preset-links";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
   // this customizes the component tsParticles installation
-  customInit(main: Main) {
+  async customInit(engine: Engine): Promise<void> {
     // this adds the preset to tsParticles, you can safely use the
-    loadLinksPreset(main);
+    await loadLinksPreset(engine);
   }
 
   render() {
@@ -103,8 +103,8 @@ _The syntax for `Vue.js 2.x` and `3.x` is the same_
 ```
 
 ```js
-function particlesInit(main: Main) {
-  loadLinksPreset(main);
+async function particlesInit(engine: Engine): Promise<void> {
+  await loadLinksPreset(engine);
 }
 ```
 
@@ -120,8 +120,8 @@ function particlesInit(main: Main) {
 ```
 
 ```ts
-function particlesInit(main: Main): void {
-  loadLinksPreset(main);
+async function particlesInit(engine: Engine): Promise<void> {
+  await loadLinksPreset(engine);
 }
 ```
 
@@ -137,7 +137,7 @@ function particlesInit(main: Main): void {
 ```
 
 ```js
-let onParticlesInit = (main) => {
-  loadLinksPreset(main);
-};
+async function onParticlesInit(engine) {
+  await loadLinksPreset(engine);
+}
 ```

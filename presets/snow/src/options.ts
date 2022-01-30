@@ -12,12 +12,10 @@ export const options = {
             straight: false,
         },
         opacity: {
-            random: true,
-            value: 0.5,
+            value: { min: 0.1, max: 0.5 },
         },
         size: {
-            random: true,
-            value: 10,
+            value: { min: 1, max: 10 },
         },
     },
 };

@@ -1,5 +1,4 @@
-import type { IMoveAngle } from "../../../Interfaces/Particles/Move/IMoveAngle";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { IMoveAngle, IOptionLoader } from "../../../Interfaces";
 import type { RecursivePartial } from "../../../../Types";
 
 /**
@@ -15,7 +14,7 @@ export class MoveAngle implements IMoveAngle, IOptionLoader<IMoveAngle> {
     }
 
     load(data?: RecursivePartial<IMoveAngle>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

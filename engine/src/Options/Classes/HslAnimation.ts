@@ -1,7 +1,6 @@
-import type { RecursivePartial } from "../../Types";
+import type { IHslAnimation, IOptionLoader } from "../Interfaces";
 import { ColorAnimation } from "./ColorAnimation";
-import type { IOptionLoader } from "../Interfaces/IOptionLoader";
-import type { IHslAnimation } from "../Interfaces/IHslAnimation";
+import type { RecursivePartial } from "../../Types";
 
 export class HslAnimation implements IHslAnimation, IOptionLoader<IHslAnimation> {
     h;

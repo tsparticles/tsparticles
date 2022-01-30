@@ -1,5 +1,5 @@
-import type { ISourceOptions } from "tsparticles-engine";
 import { HoverMode } from "tsparticles-engine";
+import type { ISourceOptions } from "tsparticles-engine";
 
 export const options: ISourceOptions = {
     fullScreen: {
@@ -22,7 +22,7 @@ export const options: ISourceOptions = {
             count: 1,
         },
         opacity: {
-            value: 1,
+            value: { min: 0.1, max: 1 },
             animation: {
                 enable: true,
                 speed: 3,

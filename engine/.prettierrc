@@ -7,6 +7,12 @@
       "options": {
         "tabWidth": 4
       }
+    },
+    {
+      "files": "*.js",
+      "options": {
+        "tabWidth": 4
+      }
     }
   ]
 }

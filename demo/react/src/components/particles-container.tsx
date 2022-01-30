@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Particles from 'react-tsparticles';
-import type { Container, Main, IOptions, RecursivePartial } from "tsparticles-engine";
+import type { Container, Engine, IOptions, RecursivePartial } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 
 interface IProps {
@@ -15,8 +15,8 @@ export class ParticlesContainer extends React.PureComponent<IProps> {
         this.particlesLoaded = this.particlesLoaded.bind(this);
     }
 
-    async particlesInit(main: Main): Promise<void> {
-        await loadFull(main);
+    async particlesInit(engine: Engine): Promise<void> {
+        await loadFull(engine);
     }
 
     async particlesLoaded(container: Container): Promise<void> {

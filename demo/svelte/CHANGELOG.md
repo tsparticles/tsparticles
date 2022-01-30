@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.22.2...svelte-demo@2.0.0-beta.5) (2022-01-30)
+
+
+### Bug Fixes
+
+* **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
+
+
+### Features
+
+* async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+
+
+
+
+
 # [2.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/svelte-demo@2.0.0-beta.3...svelte-demo@2.0.0-beta.4) (2021-12-07)
 
 
@@ -15,6 +31,15 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.20.5...svelte-demo@2.0.0-beta.3) (2021-12-04)
+# [1.21.0](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.20.6...svelte-demo@1.21.0) (2021-12-29)
+
+**Note:** Version bump only for package svelte-demo
+
+
+
+
+
+## [1.20.6](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.20.5...svelte-demo@1.20.6) (2021-12-24)
 
 **Note:** Version bump only for package svelte-demo
 
@@ -339,6 +364,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [1.1.0-alpha.3](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.1.0-alpha.2...svelte-demo@1.1.0-alpha.3) (2020-08-10)
+## [1.22.2](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.22.1...svelte-demo@1.22.2) (2022-01-29)
 
 **Note:** Version bump only for package svelte-demo
 
@@ -347,6 +373,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [1.1.0-alpha.2](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.1.0-alpha.1...svelte-demo@1.1.0-alpha.2) (2020-08-09)
+## [1.22.1](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.22.0...svelte-demo@1.22.1) (2022-01-26)
 
 **Note:** Version bump only for package svelte-demo
 
@@ -355,5 +382,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [1.1.0-alpha.1](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.0.7...svelte-demo@1.1.0-alpha.1) (2020-08-08)
+# [1.22.0](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.21.0...svelte-demo@1.22.0) (2022-01-08)
 
 **Note:** Version bump only for package svelte-demo

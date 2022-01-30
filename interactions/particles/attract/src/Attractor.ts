@@ -1,5 +1,5 @@
 import type { Container, IParticle, Particle } from "tsparticles-engine";
-import { getDistances, ParticlesInteractorBase } from "tsparticles-engine";
+import { ParticlesInteractorBase, getDistances } from "tsparticles-engine";
 
 /**
  * @category Interactions

@@ -1,19 +1,21 @@
-import type { Main } from "tsparticles-engine";
-import { options } from "./options";
+import type { Engine } from "tsparticles-engine";
+import { loadBaseMover } from "tsparticles-move-base";
 import { loadCircleShape } from "tsparticles-shape-circle";
-import { loadParticlesLinksInteraction } from "tsparticles-interaction-particles-links";
-import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
-import { loadSizeUpdater } from "tsparticles-updater-size";
 import { loadColorUpdater } from "tsparticles-updater-color";
 import { loadOpacityUpdater } from "tsparticles-updater-opacity";
+import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
+import { loadParticlesLinksInteraction } from "tsparticles-interaction-particles-links";
+import { loadSizeUpdater } from "tsparticles-updater-size";
+import { options } from "./options";
 
-export function loadTrianglesPreset(tsParticles: Main): void {
-    loadCircleShape(tsParticles);
-    loadColorUpdater(tsParticles);
-    loadParticlesLinksInteraction(tsParticles);
-    loadOutModesUpdater(tsParticles);
-    loadOpacityUpdater(tsParticles);
-    loadSizeUpdater(tsParticles);
+export async function loadTrianglesPreset(engine: Engine): Promise<void> {
+    await loadBaseMover(engine);
+    await loadCircleShape(engine);
+    await loadColorUpdater(engine);
+    await loadParticlesLinksInteraction(engine);
+    await loadOutModesUpdater(engine);
+    await loadOpacityUpdater(engine);
+    await loadSizeUpdater(engine);
 
-    tsParticles.addPreset("triangles", options);
+    await engine.addPreset("triangles", options);
 }

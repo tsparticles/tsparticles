@@ -1,11 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
 import Particles from "solid-particles";
-import type { Main } from "tsparticles-engine";
+import type { Engine } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 
-async function particlesInit(main: Main): Promise<void> {
-    await loadFull(main);
+async function particlesInit(engine: Engine): Promise<void> {
+    await loadFull(engine);
 }
 
 function App() {

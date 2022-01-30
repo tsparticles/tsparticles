@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/webpack-tsparticles-plugin@1.0.0-beta.2...webpack-tsparticles-plugin@1.0.0-beta.3) (2022-01-30)
+
+
+### Features
+
+* created and implemented move plugins ([752483a](https://github.com/matteobruni/tsparticles/commit/752483aeeb94dd851dc27fe75e4c258fd87f0a90))
+
+
+
+
+
 # [1.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/webpack-tsparticles-plugin@1.0.0-beta.1...webpack-tsparticles-plugin@1.0.0-beta.2) (2021-12-07)
 
 **Note:** Version bump only for package webpack-tsparticles-plugin

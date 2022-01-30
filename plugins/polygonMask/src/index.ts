@@ -1,31 +1,32 @@
-import type { IPlugin } from "tsparticles-engine";
-import { PolygonMaskInstance } from "./PolygonMaskInstance";
-import type { Container } from "tsparticles-engine";
-import type { RecursivePartial } from "tsparticles-engine";
-import type { IOptions } from "tsparticles-engine/Options/Interfaces/IOptions";
+import type { Container, Engine, IOptions, IPlugin, Options, RecursivePartial } from "tsparticles-engine";
 import type { IPolygonMaskOptions } from "./Options/Interfaces/IPolygonMaskOptions";
-import { Options } from "tsparticles-engine/Options/Classes/Options";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
-import { Type } from "./Enums";
-import type { Main } from "tsparticles-engine";
+import { PolygonMaskInstance } from "./PolygonMaskInstance";
+import { PolygonMaskType } from "./Enums";
 import { isSsr } from "tsparticles-engine";
 
 /**
  * @category Polygon Mask Plugin
  */
-class Plugin implements IPlugin {
+class PolygonMaskPlugin implements IPlugin {
     readonly id;
+    readonly #engine;
 
-    constructor() {
+    constructor(engine: Engine) {
         this.id = "polygonMask";
+
+        this.#engine = engine;
     }
 
     getPlugin(container: Container): PolygonMaskInstance {
-        return new PolygonMaskInstance(container);
+        return new PolygonMaskInstance(container, this.#engine);
     }
 
     needsPlugin(options?: RecursivePartial<IOptions & IPolygonMaskOptions>): boolean {
-        return options?.polygon?.enable ?? (options?.polygon?.type !== undefined && options.polygon.type !== Type.none);
+        return (
+            options?.polygon?.enable ??
+            (options?.polygon?.type !== undefined && options.polygon.type !== PolygonMaskType.none)
+        );
     }
 
     loadOptions(options: Options, source?: RecursivePartial<IOptions & IPolygonMaskOptions>): void {
@@ -44,10 +45,10 @@ class Plugin implements IPlugin {
     }
 }
 
-export async function loadPolygonMaskPlugin(tsParticles: Main): Promise<void> {
-    if (!isSsr() && !window.SVGPathSeg) {
+export async function loadPolygonMaskPlugin(engine: Engine): Promise<void> {
+    if (!isSsr() && !("SVGPathSeg" in window)) {
         await import(
-            /* webpackChunkName: "tsparticles.pathseg" */
+            /* webpackChunkName: "tsparticles.pathseg.min" */
             /* webpackMode: "lazy" */
             /* webpackPrefetch: true */
             /* webpackPreload: true */
@@ -55,9 +56,9 @@ export async function loadPolygonMaskPlugin(tsParticles: Main): Promise<void> {
         );
     }
 
-    const plugin = new Plugin();
+    const plugin = new PolygonMaskPlugin(engine);
 
-    await tsParticles.addPlugin(plugin);
+    await engine.addPlugin(plugin);
 }
 
 export * from "./Enums";

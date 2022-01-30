@@ -1,6 +1,6 @@
-import type { IOptionsColor } from "./IOptionsColor";
 import type { IColorAnimation } from "./IColorAnimation";
 import type { IHslAnimation } from "./IHslAnimation";
+import type { IOptionsColor } from "./IOptionsColor";
 
 /**
  * The animatable color interface, it provides all the necessary properties to create a color animation

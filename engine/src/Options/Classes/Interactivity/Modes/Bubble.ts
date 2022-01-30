@@ -1,8 +1,7 @@
-import type { IBubble } from "../../../Interfaces/Interactivity/Modes/IBubble";
+import type { IBubble, IOptionLoader } from "../../../Interfaces";
 import type { RecursivePartial, SingleOrMultiple } from "../../../../Types";
-import { BubbleDiv } from "./BubbleDiv";
 import { BubbleBase } from "./BubbleBase";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import { BubbleDiv } from "./BubbleDiv";
 
 /**
  * @category Options
@@ -13,7 +12,7 @@ export class Bubble extends BubbleBase implements IBubble, IOptionLoader<IBubble
     load(data?: RecursivePartial<IBubble>): void {
         super.load(data);
 
-        if (!(data !== undefined && data.divs !== undefined)) {
+        if (!data) {
             return;
         }
 

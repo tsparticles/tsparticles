@@ -1,6 +1,12 @@
-import type { Container, IDelta, IParticleUpdater, IParticleValueAnimation, Particle } from "tsparticles-engine";
 import { AnimationStatus, colorToHsl, getHslAnimationFromHsl, randomInRange } from "tsparticles-engine";
-import type { IColorAnimation } from "tsparticles-engine/Options/Interfaces/IColorAnimation";
+import type {
+    Container,
+    IColorAnimation,
+    IDelta,
+    IParticleUpdater,
+    IParticleValueAnimation,
+    Particle,
+} from "tsparticles-engine";
 
 function updateColorValue(
     delta: IDelta,

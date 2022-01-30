@@ -3,15 +3,102 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.0.0-beta.3...tsparticles-engine@2.0.0-beta.4) (2022-01-30)
+
+
+### Bug Fixes
+
+* fixed issues with absorbers and emitters plugins Container extension methods ([ce196be](https://github.com/matteobruni/tsparticles/commit/ce196bebd035281c08b5c77c5301ba1ebd7e734f))
+* fixed priority on canvas styles ([3cc3d97](https://github.com/matteobruni/tsparticles/commit/3cc3d97bb01ee9ae265b33fdba636dde9c696355))
+* fixed some readmes ([93f371a](https://github.com/matteobruni/tsparticles/commit/93f371ab82a5074d34ec7632ade41edc3dbf0ec7))
+* removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
+
+
+### Code Refactoring
+
+* **engine:** changed all enums to const, smaller output size ([9536087](https://github.com/matteobruni/tsparticles/commit/953608731be325c0c6b5f6811eb58f8898a1e353))
+
+
+### Features
+
+* added all files for supporting the smaller engine, preparing for v2 incoming changes ([4d90c83](https://github.com/matteobruni/tsparticles/commit/4d90c83867b4801eeebd86651381ecf8e8ce5cec))
+* added new functions for loading options, this will be useful for removing all the classes ([89501c5](https://github.com/matteobruni/tsparticles/commit/89501c540596892109f7e9cf24bd69064a30a70d))
+* added style options ([12045cd](https://github.com/matteobruni/tsparticles/commit/12045cdfe3111e018258a7bc1c88974e28b6f31e))
+* created and implemented move plugins ([752483a](https://github.com/matteobruni/tsparticles/commit/752483aeeb94dd851dc27fe75e4c258fd87f0a90))
+* improved image loading, now if an image is missing it will be loaded at runtime ([5155bef](https://github.com/matteobruni/tsparticles/commit/5155bef24ef3e3fa5ba4654361aabaab074c9957))
+* some options refactoring (breaking) ([eff3c17](https://github.com/matteobruni/tsparticles/commit/eff3c17a81344d76b677aa5134aff0705ba57410))
+
+
+### BREAKING CHANGES
+
+* **engine:** enums are not exported anymore, this could break javascript usages
+
+
+
+
+
 # [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.0.0-beta.2...tsparticles-engine@2.0.0-beta.3) (2021-12-07)
 
 **Note:** Version bump only for package tsparticles-engine
+## [1.39.2](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.39.1...tsparticles@1.39.2) (2022-01-29)
+
+**Note:** Version bump only for package tsparticles
+
+
+
+
+
+## [1.39.1](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.39.0...tsparticles@1.39.1) (2022-01-26)
+
+
+### Bug Fixes
+
+* fixed issues with absorbers and emitters plugins Container extension methods ([ce196be](https://github.com/matteobruni/tsparticles/commit/ce196bebd035281c08b5c77c5301ba1ebd7e734f))
+
+
+
+
+
+# [1.39.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.38.0...tsparticles@1.39.0) (2022-01-08)
+
+
+### Bug Fixes
+
+* fixed priority on canvas styles ([3cc3d97](https://github.com/matteobruni/tsparticles/commit/3cc3d97bb01ee9ae265b33fdba636dde9c696355))
+
+
+### Code Refactoring
+
+* **engine:** changed all enums to const, smaller output size ([9536087](https://github.com/matteobruni/tsparticles/commit/953608731be325c0c6b5f6811eb58f8898a1e353))
+
+
+### Features
+
+* added all files for supporting the smaller engine, preparing for v2 incoming changes ([4d90c83](https://github.com/matteobruni/tsparticles/commit/4d90c83867b4801eeebd86651381ecf8e8ce5cec))
+* improved image loading, now if an image is missing it will be loaded at runtime ([5155bef](https://github.com/matteobruni/tsparticles/commit/5155bef24ef3e3fa5ba4654361aabaab074c9957))
+
+
+### BREAKING CHANGES
+
+* **engine:** enums are not exported anymore, this could break javascript usages
+
+
+
+
+
+# [1.38.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.37.6...tsparticles@1.38.0) (2021-12-29)
+
+
+### Features
+
+* added style options ([12045cd](https://github.com/matteobruni/tsparticles/commit/12045cdfe3111e018258a7bc1c88974e28b6f31e))
 
 
 
 
 
 # [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.0.0-beta.1...tsparticles-engine@2.0.0-beta.2) (2021-12-04)
+## [1.37.6](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.37.5...tsparticles@1.37.6) (2021-12-24)
 
 
 ### Bug Fixes
@@ -35,6 +122,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * migrated to chunks ([58b69c1](https://github.com/matteobruni/tsparticles/commit/58b69c130d1e768c0dc0a1b61e904c23408e6ec5))
 * moved particles.js compatibility to another package ([70404b7](https://github.com/matteobruni/tsparticles/commit/70404b74b26da4b9a28b5d6d646cd9ed6c0635f1))
 
+* fixed some readmes ([93f371a](https://github.com/matteobruni/tsparticles/commit/93f371ab82a5074d34ec7632ade41edc3dbf0ec7))
 
 
 
@@ -42,6 +130,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [2.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.0.0-beta.0...tsparticles-engine@2.0.0-beta.1) (2021-10-06)
 
 **Note:** Version bump only for package tsparticles-engine
+
 ## [1.37.5](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.37.4...tsparticles@1.37.5) (2021-11-28)
 
 

@@ -1,16 +1,16 @@
 const express = require('express');
 const helmet = require('helmet');
 const stylus = require('stylus');
-const rateLimit = require("express-rate-limit");
+//const rateLimit = require("express-rate-limit");
 
 const app = express();
 
-const limiter = rateLimit({
+/*const limiter = rateLimit({
     windowMs: 1000, // 15 minutes
     max: 100 // limit each IP to 100 requests per windowMs
 });
 
-app.use(limiter);
+app.use(limiter);*/
 // app.use(helmet()); // Safari requires https, probably a bug
 
 const port = 3000;
@@ -65,6 +65,8 @@ app.use("/interaction-light", express.static("./node_modules/tsparticles-interac
 app.use("/interaction-particles-repulse", express.static("./node_modules/tsparticles-interaction-particles-repulse"));
 app.use("/updater-gradient", express.static("./node_modules/tsparticles-updater-gradient"));
 app.use("/updater-orbit", express.static("./node_modules/tsparticles-updater-orbit"));
+app.use("/move-base", express.static("./node_modules/tsparticles-move-base"));
+app.use("/move-parallax", express.static("./node_modules/tsparticles-move-parallax"));
 app.use("/path-curves", express.static("./node_modules/tsparticles-path-curves"));
 app.use("/path-polygon", express.static("./node_modules/tsparticles-path-polygon"));
 app.use("/path-perlin-noise", express.static("./node_modules/tsparticles-path-perlin-noise"));
@@ -87,7 +89,7 @@ app.use("/shape-heart", express.static("./node_modules/tsparticles-shape-heart")
 app.use("/shape-multiline-text", express.static("./node_modules/tsparticles-shape-multiline-text"));
 app.use("/shape-rounded-rect", express.static("./node_modules/tsparticles-shape-rounded-rect"));
 app.use("/shape-spiral", express.static("./node_modules/tsparticles-shape-spiral"));
-app.use("/three", express.static("./node_modules/three/"));
+app.use("/stats.ts", express.static("./node_modules/stats.ts/"));
 
 app.get('/', function (req, res) {
     res.render('index');

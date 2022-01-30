@@ -1,7 +1,6 @@
-import type { IGrabLinks } from "../../../Interfaces/Interactivity/Modes/IGrabLinks";
-import type { RecursivePartial } from "../../../../Types";
+import type { IGrabLinks, IOptionLoader } from "../../../Interfaces";
 import { OptionsColor } from "../../OptionsColor";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { RecursivePartial } from "../../../../Types";
 
 /**
  * @category Options
@@ -19,7 +18,7 @@ export class GrabLinks implements IGrabLinks, IOptionLoader<IGrabLinks> {
     }
 
     load(data?: RecursivePartial<IGrabLinks>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 
@@ -27,9 +26,7 @@ export class GrabLinks implements IGrabLinks, IOptionLoader<IGrabLinks> {
             this.blink = data.blink;
         }
 
-        if (data.color !== undefined) {
-            this.color = OptionsColor.create(this.color, data.color);
-        }
+        this.color = OptionsColor.create(this.color, data.color);
 
         if (data.consent !== undefined) {
             this.consent = data.consent;

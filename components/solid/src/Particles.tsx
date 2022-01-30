@@ -17,7 +17,7 @@ interface MutableRefObject<T> {
  * @param (props:IParticlesProps) Particles component properties
  */
 const Particles = (props: IParticlesProps): JSX.Element => {
-	const [init, setInit] = createSignal(false);
+	const [init, setInit] = createSignal(!props.init);
 
 	try {
 		const id = props.id ?? "tsparticles";
@@ -31,7 +31,7 @@ const Particles = (props: IParticlesProps): JSX.Element => {
 			undefined as string | undefined
 		);
 
-		const cb = (container?: Container) => {
+		const cb = async (container?: Container) => {
 			if (refContainer) {
 				refContainer.current = container;
 			}
@@ -39,21 +39,15 @@ const Particles = (props: IParticlesProps): JSX.Element => {
 			setContainerId(container?.id);
 
 			if (loaded && container) {
-				loaded(container);
+				await loaded(container);
 			}
 		};
 
 		onMount(() => {
-			if (props.init) {
-				console.log("props.init present");
-
+			if (props.init && !init()) {
 				props.init(tsParticles).then(() => {
-					console.log("then init");
-
 					setInit(true);
 				});
-			} else {
-				setInit(true);
 			}
 		});
 
@@ -68,16 +62,18 @@ const Particles = (props: IParticlesProps): JSX.Element => {
 
 			container?.destroy();
 
-			if (url) {
-				container = await tsParticles.loadJSON(id, url);
-			} else {
-				container = await tsParticles.load(id, options());
-			}
+			container = await (url
+				? tsParticles.loadJSON(id, url)
+				: tsParticles.load(id, options()));
 
-			cb(container);
+			await cb(container);
 		});
 
 		onCleanup(() => {
+			if (!init()) {
+				return;
+			}
+
 			const container = tsParticles.dom().find((t) => t.id === containerId());
 
 			container?.destroy();
@@ -100,7 +96,7 @@ const Particles = (props: IParticlesProps): JSX.Element => {
 	} catch (e) {
 		console.log(e);
 
-		return <div></div>;
+		return <div />;
 	}
 };
 

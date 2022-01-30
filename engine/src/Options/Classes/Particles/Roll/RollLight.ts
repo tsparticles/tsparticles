@@ -1,5 +1,4 @@
-import type { IRollLight } from "../../../Interfaces/Particles/Roll/IRollLight";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { IOptionLoader, IRollLight } from "../../../Interfaces";
 import type { RecursivePartial } from "../../../../Types";
 
 export class RollLight implements IRollLight, IOptionLoader<IRollLight> {

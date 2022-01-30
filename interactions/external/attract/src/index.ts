@@ -1,6 +1,6 @@
-import type { Main } from "tsparticles-engine";
 import { Attractor } from "./Attractor";
+import type { Engine } from "tsparticles-engine";
 
-export async function loadExternalAttractInteraction(tsParticles: Main): Promise<void> {
-    await tsParticles.addInteractor("externalAttract", (container) => new Attractor(container));
+export async function loadExternalAttractInteraction(engine: Engine): Promise<void> {
+    await engine.addInteractor("externalAttract", (container) => new Attractor(container));
 }

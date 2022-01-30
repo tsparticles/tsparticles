@@ -6,7 +6,7 @@
 import { nextTick, PropType } from "vue";
 import { Options, Vue } from "vue-class-component";
 import { tsParticles } from "tsparticles-engine";
-import type { Container, ISourceOptions, Main } from "tsparticles-engine";
+import type { Container, ISourceOptions, Engine } from "tsparticles-engine";
 
 export type IParticlesProps = ISourceOptions;
 export type IParticlesParams = IParticlesProps;
@@ -27,7 +27,7 @@ export type IParticlesParams = IParticlesProps;
       type: Object as PropType<(container: Container) => void>
     },
     particlesInit: {
-      type: Function as PropType<(tsParticles: Main) => void>
+      type: Function as PropType<(engine: Engine) => void>
     }
   }
 })
@@ -36,7 +36,7 @@ export default class Particles extends Vue {
   private options?: IParticlesProps;
   private url?: string;
   private particlesLoaded?: (container: Container) => void;
-  private particlesInit?: (tsParticles: Main) => Promise<void>;
+  private particlesInit?: (engine: Engine) => Promise<void>;
   private container?: Container;
 
   public mounted(): void {

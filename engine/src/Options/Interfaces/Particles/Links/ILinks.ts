@@ -1,6 +1,6 @@
+import type { IColor } from "../../../../Core/Interfaces/Colors";
 import type { ILinksShadow } from "./ILinksShadow";
 import type { ILinksTriangle } from "./ILinksTriangle";
-import type { IColor } from "../../../../Core/Interfaces/Colors";
 
 /**
  * Particles Links options, this configures how the particles link together

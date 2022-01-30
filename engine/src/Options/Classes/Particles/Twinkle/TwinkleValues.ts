@@ -1,7 +1,6 @@
-import type { ITwinkleValues } from "../../../Interfaces/Particles/Twinkle/ITwinkleValues";
-import type { RecursivePartial } from "../../../../Types";
+import type { IOptionLoader, ITwinkleValues } from "../../../Interfaces";
 import { OptionsColor } from "../../OptionsColor";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { RecursivePartial } from "../../../../Types";
 
 /**
  * @category Options
@@ -19,13 +18,11 @@ export class TwinkleValues implements ITwinkleValues, IOptionLoader<ITwinkleValu
     }
 
     load(data?: RecursivePartial<ITwinkleValues>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 
-        if (data.color !== undefined) {
-            this.color = OptionsColor.create(this.color, data.color);
-        }
+        this.color = OptionsColor.create(this.color, data.color);
 
         if (data.enable !== undefined) {
             this.enable = data.enable;

@@ -3,7 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.24.2...preact-particles-demo@2.0.0-beta.5) (2022-01-30)
+
+
+### Bug Fixes
+
+* **deps:** update dependency preact-router to v4 ([46d8edb](https://github.com/matteobruni/tsparticles/commit/46d8edb1a0d5d1047ddcf4258d895756a8f9cf7a))
+* **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
+
+
+### Features
+
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+
+
+
+
+
 # [2.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@2.0.0-beta.3...preact-particles-demo@2.0.0-beta.4) (2021-12-07)
+## [1.24.2](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.24.1...preact-particles-demo@1.24.2) (2022-01-29)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.24.1](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.24.0...preact-particles-demo@1.24.1) (2022-01-26)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+# [1.24.0](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.23.0...preact-particles-demo@1.24.0) (2022-01-08)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+# [1.23.0](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.22.6...preact-particles-demo@1.23.0) (2021-12-29)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.22.6](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.22.5...preact-particles-demo@1.22.6) (2021-12-24)
 
 **Note:** Version bump only for package preact-particles-demo
 

@@ -69,14 +69,14 @@ _Class Components_
 ```typescript jsx
 import React from "react";
 import Particles from "react-tsparticles";
-import type { Main } from "tsparticles-engine";
+import type { Engine } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 
 export class ParticlesContainer extends PureComponent<unknown> {
   // this customizes the component tsParticles installation
-  customInit(main: Main) {
+  customInit(engine: Engine) {
     // this adds the bundle to tsParticles
-    loadFull(main);
+    loadFull(engine);
   }
 
   render() {
@@ -94,14 +94,14 @@ _Hooks / Functional Components_
 ```typescript jsx
 import React, { useCallback } from "react";
 import Particles from "react-tsparticles";
-import type { Main } from "tsparticles-engine";
+import type { Engine } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 
 export function ParticlesContainer(props: unknown) {
   // this customizes the component tsParticles installation
-  const customInit = useCallback((main: Main) => {
+  const customInit = useCallback((engine: Engine) => {
     // this adds the bundle to tsParticles
-    loadFull(main);
+    loadFull(engine);
   });
 
   const options = {
@@ -121,8 +121,8 @@ _The syntax for `Vue.js 2.x` and `3.x` is the same_
 ```
 
 ```js
-function particlesInit(main: Main) {
-  loadFull(main);
+function particlesInit(engine: Engine) {
+  loadFull(engine);
 }
 ```
 
@@ -138,8 +138,8 @@ function particlesInit(main: Main) {
 ```
 
 ```ts
-function particlesInit(main: Main): void {
-  loadFull(main);
+function particlesInit(engine: Engine): void {
+  loadFull(engine);
 }
 ```
 
@@ -155,7 +155,7 @@ function particlesInit(main: Main): void {
 ```
 
 ```js
-let onParticlesInit = (main) => {
-  loadFull(main);
+let onParticlesInit = (engine) => {
+  loadFull(engine);
 };
 ```

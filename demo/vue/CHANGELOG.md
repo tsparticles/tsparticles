@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.24.2...particles.vue-demo@2.0.0-beta.5) (2022-01-30)
+
+
+### Features
+
+* async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [2.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@2.0.0-beta.3...particles.vue-demo@2.0.0-beta.4) (2021-12-07)
 
 
@@ -26,6 +38,46 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.20.4...particles.vue-demo@2.0.0-beta.2) (2021-10-06)
+## [1.24.2](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.24.1...particles.vue-demo@1.24.2) (2022-01-29)
+
+**Note:** Version bump only for package particles.vue-demo
+
+
+
+
+
+## [1.24.1](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.24.0...particles.vue-demo@1.24.1) (2022-01-26)
+
+**Note:** Version bump only for package particles.vue-demo
+
+
+
+
+
+# [1.24.0](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.23.0...particles.vue-demo@1.24.0) (2022-01-08)
+
+**Note:** Version bump only for package particles.vue-demo
+
+
+
+
+
+# [1.23.0](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.22.6...particles.vue-demo@1.23.0) (2021-12-29)
+
+**Note:** Version bump only for package particles.vue-demo
+
+
+
+
+
+## [1.22.6](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.22.5...particles.vue-demo@1.22.6) (2021-12-24)
+
+**Note:** Version bump only for package particles.vue-demo
+
+
+
+
+
 ## [1.22.5](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.22.4...particles.vue-demo@1.22.5) (2021-11-28)
 
 **Note:** Version bump only for package particles.vue-demo

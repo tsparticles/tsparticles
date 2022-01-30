@@ -1,8 +1,7 @@
-import type { IRepulse } from "../../../Interfaces/Interactivity/Modes/IRepulse";
+import type { IOptionLoader, IRepulse } from "../../../Interfaces";
 import type { RecursivePartial, SingleOrMultiple } from "../../../../Types";
-import { RepulseDiv } from "./RepulseDiv";
 import { RepulseBase } from "./RepulseBase";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import { RepulseDiv } from "./RepulseDiv";
 
 /**
  * @category Options
@@ -13,7 +12,7 @@ export class Repulse extends RepulseBase implements IRepulse, IOptionLoader<IRep
     load(data?: RecursivePartial<IRepulse>): void {
         super.load(data);
 
-        if (data?.divs === undefined) {
+        if (!data) {
             return;
         }
 

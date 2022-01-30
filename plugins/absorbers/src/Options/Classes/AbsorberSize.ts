@@ -1,8 +1,7 @@
-import type { IAbsorberSize } from "../Interfaces/IAbsorberSize";
-import type { RecursivePartial } from "tsparticles-engine";
-import type { IOptionLoader } from "tsparticles-engine/Options/Interfaces/IOptionLoader";
-import { ValueWithRandom } from "tsparticles-engine/Options/Classes/ValueWithRandom";
+import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
 import { AbsorberSizeLimit } from "./AbsorberSizeLimit";
+import type { IAbsorberSize } from "../Interfaces/IAbsorberSize";
+import { ValueWithRandom } from "tsparticles-engine";
 
 export class AbsorberSize extends ValueWithRandom implements IAbsorberSize, IOptionLoader<IAbsorberSize> {
     density;
@@ -11,7 +10,6 @@ export class AbsorberSize extends ValueWithRandom implements IAbsorberSize, IOpt
     constructor() {
         super();
         this.density = 5;
-        this.random.minimumValue = 1;
         this.value = 50;
         this.limit = new AbsorberSizeLimit();
     }

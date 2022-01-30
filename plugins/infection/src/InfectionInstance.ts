@@ -1,8 +1,8 @@
 import type { IColor, IContainerPlugin, Particle } from "tsparticles-engine";
-import { Infecter } from "./Infecter";
-import { itemFromArray } from "tsparticles-engine";
 import type { InfectableContainer, InfectableParticle } from "./Types";
 import type { IInfectionOptions } from "./Options/Interfaces/IInfectionOptions";
+import { Infecter } from "./Infecter";
+import { itemFromArray } from "tsparticles-engine";
 
 export class InfectionInstance implements IContainerPlugin {
     constructor(private readonly container: InfectableContainer) {

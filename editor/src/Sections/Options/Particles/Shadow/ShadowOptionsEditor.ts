@@ -1,5 +1,4 @@
-import type { Container } from "tsparticles-engine";
-import { IShadow } from "tsparticles-engine/Options/Interfaces/Particles/IShadow";
+import type { Container, IShadow } from "tsparticles-engine";
 import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
 

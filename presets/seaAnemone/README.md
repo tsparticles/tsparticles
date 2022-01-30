@@ -1,4 +1,4 @@
-[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
 # tsParticles Sea Anemone Preset
 
@@ -9,7 +9,7 @@ particles spawned in the canvas center.
 
 ## Sample
 
-![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/v1/presets/seaAnemone/images/sample.png)
+[![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/seaAnemone/images/sample.png)](https://particles.js.org/samples/presets/seaAnemone)
 
 ## How to use it
 
@@ -22,8 +22,8 @@ Once installed you need one more script to be included in your page (or you can 
 from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-sea-anemone):
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-sea-anemone"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-sea-anemone@2/tsparticles.preset.seaAnemone.min.js"></script>
 ```
 
 This script **MUST** be placed after the `tsParticles` one.
@@ -33,7 +33,7 @@ This script **MUST** be placed after the `tsParticles` one.
 A bundled script can also be used, this will include every needed plugin needed by the preset.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-sea-anemone/tsparticles.preset.seaAnemone.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-sea-anemone@2/tsparticles.preset.seaAnemone.bundle.min.js"></script>
 ```
 
 ### Usage
@@ -74,14 +74,14 @@ This sample uses the class component syntax, but you can use hooks as well (if t
 
 ```javascript
 import Particles from "react-tsparticles";
-import { Main } from "tsparticles-engine";
+import { Engine } from "tsparticles-engine";
 import { loadSeaAnemonePreset } from "tsparticles-preset-sea-anemone";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
   // this customizes the component tsParticles installation
-  customInit(main: Main) {
+  async customInit(engine: Engine): Promise<void> {
     // this adds the preset to tsParticles, you can safely use the
-    loadSeaAnemonePreset(main);
+    await loadSeaAnemonePreset(engine);
   }
 
   render() {
@@ -103,8 +103,8 @@ _The syntax for `Vue.js 2.x` and `3.x` is the same_
 ```
 
 ```js
-function particlesInit(main: Main) {
-  loadSeaAnemonePreset(main);
+async function particlesInit(engine: Engine): Promise<void> {
+  await loadSeaAnemonePreset(engine);
 }
 ```
 
@@ -119,9 +119,9 @@ function particlesInit(main: Main) {
 ></ng-particles>
 ```
 
-```ts
-function particlesInit(main: Main): void {
-  loadSeaAnemonePreset(main);
+```typescript
+async function particlesInit(engine: Engine): Promise<void> {
+  await loadSeaAnemonePreset(engine);
 }
 ```
 
@@ -136,8 +136,8 @@ function particlesInit(main: Main): void {
 />
 ```
 
-```js
-let onParticlesInit = (main) => {
-  loadSeaAnemonePreset(main);
-};
+```javascript
+async function onParticlesInit(main) {
+  await loadSeaAnemonePreset(main);
+}
 ```

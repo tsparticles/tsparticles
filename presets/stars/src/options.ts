@@ -18,16 +18,13 @@ export const options = {
         opacity: {
             animation: {
                 enable: true,
-                minimumValue: 0,
                 speed: 1,
                 sync: false,
             },
-            random: true,
-            value: 1,
+            value: { min: 0, max: 1 },
         },
         size: {
-            random: true,
-            value: 3,
+            value: { min: 1, max: 3 },
         },
     },
 };

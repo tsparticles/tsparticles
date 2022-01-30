@@ -1,8 +1,8 @@
-import type { Container } from "./Container";
+import type { IContainerPlugin, ICoordinates, IDelta, IDimension, IHsl, IParticle, IRgb, IRgba } from "./Interfaces";
 import {
+    clear,
     colorToHsl,
     colorToRgb,
-    canvasClass,
     deepExtend,
     drawConnectLine,
     drawGrabLine,
@@ -14,9 +14,9 @@ import {
     gradient,
     paintBase,
 } from "../Utils";
+import type { Container } from "./Container";
 import type { Particle } from "./Particle";
-import { clear } from "../Utils";
-import type { IContainerPlugin, ICoordinates, IDelta, IDimension, IHsl, IParticle, IRgb, IRgba } from "./Interfaces";
+import { generatedAttribute } from "./Utils";
 
 /**
  * Canvas manager
@@ -71,16 +71,15 @@ export class Canvas {
         this.paint();
     }
 
-    loadCanvas(canvas: HTMLCanvasElement, generatedCanvas?: boolean): void {
-        if (!canvas.className) {
-            canvas.className = canvasClass;
-        }
-
+    loadCanvas(canvas: HTMLCanvasElement): void {
         if (this.generatedCanvas) {
             this.element?.remove();
         }
 
-        this.generatedCanvas = generatedCanvas ?? this.generatedCanvas;
+        this.generatedCanvas =
+            canvas.dataset && generatedAttribute in canvas.dataset
+                ? canvas.dataset[generatedAttribute] === "true"
+                : this.generatedCanvas;
         this.element = canvas;
         this.originalStyle = deepExtend({}, this.element.style) as CSSStyleDeclaration;
         this.size.height = canvas.offsetHeight;
@@ -136,7 +135,7 @@ export class Canvas {
         }
     }
 
-    windowResize(): void {
+    async windowResize(): Promise<void> {
         if (!this.element) {
             return;
         }
@@ -157,7 +156,7 @@ export class Canvas {
         }
 
         if (needsRefresh) {
-            container.refresh();
+            await container.refresh();
         }
     }
 
@@ -418,12 +417,12 @@ export class Canvas {
         if (options.fullScreen.enable) {
             this.originalStyle = deepExtend({}, element.style) as CSSStyleDeclaration;
 
-            element.style.position = "fixed";
-            element.style.zIndex = options.fullScreen.zIndex.toString(10);
-            element.style.top = "0";
-            element.style.left = "0";
-            element.style.width = "100%";
-            element.style.height = "100%";
+            element.style.setProperty("position", "fixed", "important");
+            element.style.setProperty("z-index", options.fullScreen.zIndex.toString(10), "important");
+            element.style.setProperty("top", "0", "important");
+            element.style.setProperty("left", "0", "important");
+            element.style.setProperty("width", "100%", "important");
+            element.style.setProperty("height", "100%", "important");
         } else if (originalStyle) {
             element.style.position = originalStyle.position;
             element.style.zIndex = originalStyle.zIndex;
@@ -431,6 +430,20 @@ export class Canvas {
             element.style.left = originalStyle.left;
             element.style.width = originalStyle.width;
             element.style.height = originalStyle.height;
+        }
+
+        for (const key in options.style) {
+            if (!key || !options.style) {
+                continue;
+            }
+
+            const value = options.style[key];
+
+            if (!value) {
+                continue;
+            }
+
+            element.style.setProperty(key, value, "important");
         }
     }
 

@@ -1,5 +1,5 @@
-import { tsParticles } from "tsparticles-engine";
 import { loadFull } from ".";
+import { tsParticles } from "tsparticles-engine";
 
 loadFull(tsParticles);
 

@@ -1,4 +1,4 @@
-[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
 # particles.vue
 
@@ -9,7 +9,7 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) VueJS compone
 ## Installation
 
 ```shell script
-yarn add particles.vue vue@2
+yarn add particles.vue
 ```
 
 ## Usage
@@ -91,7 +91,9 @@ Vue.use(Particles);
                         move: {
                             direction: 'none',
                             enable: true,
-                            outMode: 'bounce',
+                            outModes: {
+                                default: 'bounce'
+                            },
                             random: false,
                             speed: 6,
                             straight: false
@@ -99,7 +101,7 @@ Vue.use(Particles);
                         number: {
                             density: {
                                 enable: true,
-                                value_area: 800
+                                area: 800
                             },
                             value: 80
                         },
@@ -110,8 +112,7 @@ Vue.use(Particles);
                             type: 'circle'
                         },
                         size: {
-                            random: true,
-                            value: 5
+                            value: { min: 1, max: 5 },
                         }
                     },
                     detectRetina: true

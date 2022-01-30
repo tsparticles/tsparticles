@@ -1,23 +1,23 @@
 import {
-    calculateBounds,
     Circle,
+    DivEvent,
+    DivMode,
+    DivType,
+    ExternalInteractorBase,
+    HoverMode,
+    Range,
+    Rectangle,
+    Vector,
+    calculateBounds,
     circleBounce,
     circleBounceDataFromParticle,
     divModeExecute,
     isDivModeEnabled,
     isInArray,
-    Range,
-    Rectangle,
-    rectBounce,
-    DivMode,
-    DivType,
-    ExternalInteractorBase,
-    HoverMode,
-    Vector,
     mouseMoveEvent,
+    rectBounce,
 } from "tsparticles-engine";
 import type { Container, ICoordinates } from "tsparticles-engine";
-import type { DivEvent } from "tsparticles-engine/Options/Classes/Interactivity/Events/DivEvent";
 
 export class Bouncer extends ExternalInteractorBase {
     constructor(container: Container) {

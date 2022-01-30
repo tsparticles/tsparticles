@@ -1,7 +1,6 @@
-import type { IBackground } from "../../Interfaces/Background/IBackground";
-import type { RecursivePartial } from "../../../Types";
+import type { IBackground, IOptionLoader } from "../../Interfaces";
 import { OptionsColor } from "../OptionsColor";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
+import type { RecursivePartial } from "../../../Types";
 
 /**
  * [[include:Options/Background.md]]
@@ -26,7 +25,7 @@ export class Background implements IBackground, IOptionLoader<IBackground> {
     }
 
     load(data?: RecursivePartial<IBackground>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

@@ -3,7 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.22.2...inferno-particles@2.0.0-beta.4) (2022-01-30)
+
+
+### Bug Fixes
+
+* **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
+
+
+### Features
+
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/inferno-particles@2.0.0-beta.2...inferno-particles@2.0.0-beta.3) (2021-12-07)
+## [1.22.2](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.22.1...inferno-particles@1.22.2) (2022-01-29)
+
+**Note:** Version bump only for package inferno-particles
+
+
+
+
+
+## [1.22.1](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.22.0...inferno-particles@1.22.1) (2022-01-26)
+
+**Note:** Version bump only for package inferno-particles
+
+
+
+
+
+# [1.22.0](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.21.0...inferno-particles@1.22.0) (2022-01-08)
+
+**Note:** Version bump only for package inferno-particles
+
+
+
+
+
+# [1.21.0](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.20.6...inferno-particles@1.21.0) (2021-12-29)
 
 **Note:** Version bump only for package inferno-particles
 
@@ -40,6 +82,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.20.6](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.20.5...inferno-particles@1.20.6) (2021-12-24)
+
+
+### Bug Fixes
+
+* fixed some readmes ([93f371a](https://github.com/matteobruni/tsparticles/commit/93f371ab82a5074d34ec7632ade41edc3dbf0ec7))
+
+
+
+
+
 ## [1.20.5](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.20.4...inferno-particles@1.20.5) (2021-11-28)
 
 **Note:** Version bump only for package inferno-particles

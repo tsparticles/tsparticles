@@ -1,5 +1,5 @@
-import { tsParticles } from "tsparticles-engine";
 import { initPjs } from ".";
+import { tsParticles } from "tsparticles-engine";
 
 const { particlesJS, pJSDom } = initPjs(tsParticles);
 

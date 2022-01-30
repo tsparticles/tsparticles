@@ -2,29 +2,24 @@
  * [[include:Container.md]]
  * @packageDocumentation
  */
-import { Canvas } from "./Canvas";
-import { Particles } from "./Particles";
-import { Retina } from "./Retina";
-import type { IOptions } from "../Options/Interfaces/IOptions";
-import { FrameManager } from "./FrameManager";
-import type { RecursivePartial } from "../Types";
-import { Options } from "../Options/Classes/Options";
-import { animate, cancelAnimation, EventListeners, getRangeValue, Plugins } from "../Utils";
-import { Particle } from "./Particle";
-import { Vector } from "./Particle/Vector";
-import {
-    IAttract,
-    IBubble,
+import { ClickMode, EventType } from "../Enums";
+import { EventListeners, FrameManager, Vector } from "./Utils";
+import type {
     IContainerInteractivity,
     IContainerPlugin,
     ICoordinates,
     IMovePathGenerator,
-    IRepulse,
     IRgb,
     IShapeDrawer,
 } from "./Interfaces";
-import { ClickMode, EventType } from "../Enums";
-import { Loader } from "./Loader";
+import type { IOptions, Options } from "../Options";
+import { animate, cancelAnimation, getRangeValue, loadContainerOptions } from "../Utils";
+import { Canvas } from "./Canvas";
+import { Engine } from "../engine";
+import type { Particle } from "./Particle";
+import { Particles } from "./Particles";
+import type { RecursivePartial } from "../Types";
+import { Retina } from "./Retina";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -49,11 +44,10 @@ export class Container {
     lifeTime;
     fpsLimit;
     interactivity: IContainerInteractivity;
-    bubble: IBubble;
-    repulse: IRepulse;
-    attract: IAttract;
     zLayers;
     responsiveMaxWidth?: number;
+
+    #engine;
 
     /**
      * The options used by the container, it's a full [[Options]] object
@@ -100,7 +94,6 @@ export class Container {
     private firstStart;
     private currentTheme?: string;
     private drawAnimationFrame?: number;
-    private readonly presets;
 
     private readonly eventListeners;
     private readonly intersectionObserver?;
@@ -108,11 +101,12 @@ export class Container {
     /**
      * This is the core class, create an instance to have a new working particles manager
      * @constructor
+     * @param engine the current engine instance
      * @param id the id to identify this instance
      * @param sourceOptions the options to load
-     * @param presets all the presets to load with options
      */
-    constructor(readonly id: string, sourceOptions?: RecursivePartial<IOptions>, ...presets: string[]) {
+    constructor(engine: Engine, readonly id: string, sourceOptions?: RecursivePartial<IOptions>) {
+        this.#engine = engine;
         this.fpsLimit = 60;
         this.duration = 0;
         this.lifeTime = 0;
@@ -127,9 +121,8 @@ export class Container {
         this._initialSourceOptions = sourceOptions;
         this.retina = new Retina(this);
         this.canvas = new Canvas(this);
-        this.particles = new Particles(this);
+        this.particles = new Particles(this.#engine, this);
         this.drawer = new FrameManager(this);
-        this.presets = presets;
         this.pathGenerator = {
             generate: (p: Particle): Vector => {
                 const v = p.velocity.copy();
@@ -151,15 +144,12 @@ export class Container {
                 inside: false,
             },
         };
-        this.bubble = {};
-        this.repulse = { particles: [] };
-        this.attract = { particles: [] };
         this.plugins = new Map<string, IContainerPlugin>();
         this.drawers = new Map<string, IShapeDrawer>();
         this.density = 1;
         /* tsParticles variables with default values */
-        this._options = new Options();
-        this.actualOptions = new Options();
+        this._options = loadContainerOptions(this.#engine);
+        this.actualOptions = loadContainerOptions(this.#engine);
 
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);
@@ -168,7 +158,7 @@ export class Container {
             this.intersectionObserver = new IntersectionObserver((entries) => this.intersectionManager(entries));
         }
 
-        Loader.dispatchEvent(EventType.containerBuilt, { container: this });
+        this.#engine.dispatchEvent(EventType.containerBuilt, { container: this });
     }
 
     /**
@@ -195,7 +185,7 @@ export class Container {
             }
         }
 
-        Loader.dispatchEvent(EventType.containerPlay, { container: this });
+        this.#engine.dispatchEvent(EventType.containerPlay, { container: this });
 
         this.draw(needsUpdate || false);
     }
@@ -224,7 +214,7 @@ export class Container {
             this.paused = true;
         }
 
-        Loader.dispatchEvent(EventType.containerPaused, { container: this });
+        this.#engine.dispatchEvent(EventType.containerPaused, { container: this });
     }
 
     /**
@@ -327,7 +317,7 @@ export class Container {
 
         this.destroyed = true;
 
-        Loader.dispatchEvent(EventType.containerDestroyed, { container: this });
+        this.#engine.dispatchEvent(EventType.containerDestroyed, { container: this });
     }
 
     /**
@@ -366,7 +356,7 @@ export class Container {
     }
 
     reset(): Promise<void> {
-        this._options = new Options();
+        this._options = loadContainerOptions(this.#engine);
 
         return this.refresh();
     }
@@ -407,7 +397,7 @@ export class Container {
 
         this._sourceOptions = this._options;
 
-        Loader.dispatchEvent(EventType.containerStopped, { container: this });
+        this.#engine.dispatchEvent(EventType.containerStopped, { container: this });
     }
 
     /**
@@ -446,7 +436,7 @@ export class Container {
             }
         }
 
-        Loader.dispatchEvent(EventType.containerStarted, { container: this });
+        this.#engine.dispatchEvent(EventType.containerStarted, { container: this });
 
         this.play();
     }
@@ -582,16 +572,10 @@ export class Container {
     }
 
     async init(): Promise<void> {
-        this._options = new Options();
-
-        for (const preset of this.presets) {
-            this._options.load(Plugins.getPreset(preset));
-        }
-
-        const shapes = Plugins.getSupportedShapes();
+        const shapes = this.#engine.plugins.getSupportedShapes();
 
         for (const type of shapes) {
-            const drawer = Plugins.getShapeDrawer(type);
+            const drawer = this.#engine.plugins.getShapeDrawer(type);
 
             if (drawer) {
                 this.drawers.set(type, drawer);
@@ -599,12 +583,8 @@ export class Container {
         }
 
         /* options settings */
-        this._options.load(this._initialSourceOptions);
-        this._options.load(this._sourceOptions);
-
-        this.actualOptions = new Options();
-
-        this.actualOptions.load(this._options);
+        this._options = loadContainerOptions(this.#engine, this._initialSourceOptions, this.sourceOptions);
+        this.actualOptions = loadContainerOptions(this.#engine, this._options);
 
         /* init canvas + particles */
         this.retina.init();
@@ -621,7 +601,7 @@ export class Container {
         this.lifeTime = 0;
         this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 60;
 
-        const availablePlugins = Plugins.getAvailablePlugins(this);
+        const availablePlugins = this.#engine.plugins.getAvailablePlugins(this);
 
         for (const [id, plugin] of availablePlugins) {
             this.plugins.set(id, plugin);
@@ -644,7 +624,7 @@ export class Container {
         const pathOptions = this.actualOptions.particles.move.path;
 
         if (pathOptions.generator) {
-            const customGenerator = Plugins.getPathGenerator(pathOptions.generator);
+            const customGenerator = this.#engine.plugins.getPathGenerator(pathOptions.generator);
 
             if (customGenerator) {
                 if (customGenerator.init) {
@@ -661,7 +641,7 @@ export class Container {
             }
         }
 
-        Loader.dispatchEvent(EventType.containerInit, { container: this });
+        this.#engine.dispatchEvent(EventType.containerInit, { container: this });
 
         this.particles.init();
         this.particles.setDensity();
@@ -672,7 +652,7 @@ export class Container {
             }
         }
 
-        Loader.dispatchEvent(EventType.particlesSetup, { container: this });
+        this.#engine.dispatchEvent(EventType.particlesSetup, { container: this });
     }
 
     private intersectionManager(entries: IntersectionObserverEntry[]) {

@@ -1,9 +1,7 @@
-import type { IBackgroundMask } from "../../Interfaces/BackgroundMask/IBackgroundMask";
-import type { RecursivePartial } from "../../../Types";
-import type { IBackgroundMaskCover } from "../../Interfaces/BackgroundMask/IBackgroundMaskCover";
+import type { IBackgroundMask, IBackgroundMaskCover, IOptionLoader } from "../../Interfaces";
 import { BackgroundMaskCover } from "./BackgroundMaskCover";
-import type { IColor } from "../../../Core/Interfaces/Colors";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
+import type { IColor } from "../../../Core";
+import type { RecursivePartial } from "../../../Types";
 
 /**
  * [[include:Options/BackgroundMask.md]]
@@ -33,7 +31,7 @@ export class BackgroundMask implements IBackgroundMask, IOptionLoader<IBackgroun
     }
 
     load(data?: RecursivePartial<IBackgroundMask>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

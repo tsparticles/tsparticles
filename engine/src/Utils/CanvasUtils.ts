@@ -1,7 +1,6 @@
-import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
-import type { Container } from "../Core/Container";
-import { colorMix, getStyleFromHsl, getStyleFromRgb } from "./ColorUtils";
+import { AlterType, GradientType, RollMode } from "../Enums";
 import type {
+    Container,
     IContainerPlugin,
     ICoordinates,
     IDelta,
@@ -10,9 +9,10 @@ import type {
     IParticle,
     IParticleGradientAnimation,
     IRgb,
-} from "../Core/Interfaces";
-import type { Particle } from "../Core/Particle";
-import { AlterType, GradientType, RollMode } from "../Enums";
+} from "../Core";
+import { colorMix, getStyleFromHsl, getStyleFromRgb } from "./ColorUtils";
+import type { IShadow } from "../Options";
+import type { Particle } from "../Core";
 
 export function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
     context.beginPath();

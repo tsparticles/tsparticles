@@ -1,6 +1,5 @@
+import { ClickMode, HoverMode, MoveDirection, Options, OutMode, RotateDirection, ThemeMode, tsParticles } from "../src";
 import { describe, it } from "mocha";
-import { Options } from "../src/Options/Classes/Options";
-import { RotateDirection, MoveDirection, ShapeType, ClickMode, HoverMode, OutMode, ThemeMode } from "../src/Enums";
 import { expect } from "chai";
 
 describe("Themes", () => {
@@ -51,7 +50,7 @@ describe("Themes", () => {
                 },
             },
             shape: {
-                type: [ShapeType.circle, ShapeType.square],
+                type: ["circle", "square"],
             },
             opacity: {
                 value: 1,
@@ -94,7 +93,7 @@ describe("Themes", () => {
         detectRetina: true,
     };
 
-    const options = new Options();
+    const options = new Options(tsParticles);
 
     options.load(sourceOptions);
 

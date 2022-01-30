@@ -1,6 +1,6 @@
+import { getRangeValue, isSsr } from "../Utils";
 import type { Container } from "./Container";
 import type { Particle } from "./Particle";
-import { getRangeValue, isSsr } from "../Utils";
 
 /**
  * @category Core
@@ -116,10 +116,6 @@ export class Retina {
         props.moveDrift = getRangeValue(options.move.drift) * ratio;
         props.moveSpeed = getRangeValue(options.move.speed) * ratio;
         props.sizeAnimationSpeed = options.size.animation.speed * ratio;
-
-        if (particle.spin) {
-            props.spinAcceleration = getRangeValue(options.move.spin.acceleration) * ratio;
-        }
 
         const maxDistance = props.maxDistance;
 

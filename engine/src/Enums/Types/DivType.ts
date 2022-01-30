@@ -1,7 +1,7 @@
 /**
  * @category Enums
  */
-export enum DivType {
+export const enum DivType {
     circle = "circle",
     rectangle = "rectangle",
 }

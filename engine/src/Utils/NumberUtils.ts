@@ -1,8 +1,7 @@
-import type { IValueWithRandom } from "../Options/Interfaces/IValueWithRandom";
-import type { ICoordinates } from "../Core/Interfaces";
 import { EasingType, MoveDirection, MoveDirectionAlt } from "../Enums";
-import { RangeValue } from "../Types";
-import { Vector } from "../Core/Particle/Vector";
+import type { ICoordinates } from "../Core";
+import type { RangeValue } from "../Types";
+import { Vector } from "../Core";
 
 /**
  * Clamps a number between a minimum and maximum value
@@ -62,13 +61,6 @@ export function setRangeValue(source: RangeValue, value?: number): RangeValue {
               max: Math.max(max, value),
           }
         : setRangeValue(min, max);
-}
-
-export function getValue(options: IValueWithRandom): number {
-    const random = options.random;
-    const { enable, minimumValue } = typeof random === "boolean" ? { enable: random, minimumValue: 0 } : random;
-
-    return enable ? getRangeValue(setRangeValue(options.value, minimumValue)) : getRangeValue(options.value);
 }
 
 /**

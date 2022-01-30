@@ -1,5 +1,5 @@
 import type { ICoordinates, IParticle, IShapeDrawer } from "tsparticles-engine";
-import type { IPolygonShape } from "tsparticles-engine/Options/Interfaces/Particles/Shape/IPolygonShape";
+import type { IPolygonShape } from "./IPolygonShape";
 
 export interface ISideCount {
     numerator: number;

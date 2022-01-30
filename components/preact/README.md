@@ -1,4 +1,4 @@
-[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
 # preact-particles
 
@@ -9,13 +9,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) Preact compon
 ## Installation
 
 ```shell
-$ npm install preact-particles preact
+npm install preact-particles
 ```
 
 or
 
 ```shell
-$ yarn add preact-particles preact
+yarn add preact-particles
 ```
 
 ## How to use
@@ -164,8 +164,7 @@ class App extends Component {
               type: "circle",
             },
             size: {
-              random: true,
-              value: 5,
+              value: { min: 1, max: 5 },
             },
           },
           detectRetina: true,

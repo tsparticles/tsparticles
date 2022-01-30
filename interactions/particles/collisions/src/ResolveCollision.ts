@@ -1,5 +1,5 @@
-import type { Particle } from "tsparticles-engine";
 import { CollisionMode } from "tsparticles-engine";
+import type { Particle } from "tsparticles-engine";
 import { absorb } from "./Absorb";
 import { bounce } from "./Bounce";
 import { destroy } from "./Destroy";

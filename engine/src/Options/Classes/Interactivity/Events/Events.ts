@@ -1,66 +1,14 @@
-import type { IEvents } from "../../../Interfaces/Interactivity/Events/IEvents";
+import type { IEvents, IOptionLoader } from "../../../Interfaces";
+import type { RecursivePartial, SingleOrMultiple } from "../../../../Types";
 import { ClickEvent } from "./ClickEvent";
 import { DivEvent } from "./DivEvent";
 import { HoverEvent } from "./HoverEvent";
-import type { RecursivePartial, SingleOrMultiple } from "../../../../Types";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 /**
  * [[include:Options/Interactivity/Events.md]]
  * @category Options
  */
 export class Events implements IEvents, IOptionLoader<IEvents> {
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new onClick
-     */
-    get onclick(): ClickEvent {
-        return this.onClick;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new onClick
-     * @param value
-     */
-    set onclick(value: ClickEvent) {
-        this.onClick = value;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new onDiv
-     */
-    get ondiv(): SingleOrMultiple<DivEvent> {
-        return this.onDiv;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new onDiv
-     * @param value
-     */
-    set ondiv(value: SingleOrMultiple<DivEvent>) {
-        this.onDiv = value;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new onHover
-     */
-    get onhover(): HoverEvent {
-        return this.onHover;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new onHover
-     * @param value
-     */
-    set onhover(value: HoverEvent) {
-        this.onHover = value;
-    }
-
     onClick;
     onDiv: SingleOrMultiple<DivEvent>;
     onHover;
@@ -74,31 +22,29 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
     }
 
     load(data?: RecursivePartial<IEvents>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 
-        this.onClick.load(data.onClick ?? data.onclick);
+        this.onClick.load(data.onClick);
 
-        const onDiv = data.onDiv ?? data.ondiv;
+        const onDiv = data.onDiv;
 
-        if (onDiv !== undefined) {
-            if (onDiv instanceof Array) {
-                this.onDiv = onDiv.map((div) => {
-                    const tmp = new DivEvent();
+        if (onDiv instanceof Array) {
+            this.onDiv = onDiv.map((div) => {
+                const tmp = new DivEvent();
 
-                    tmp.load(div);
+                tmp.load(div);
 
-                    return tmp;
-                });
-            } else {
-                this.onDiv = new DivEvent();
+                return tmp;
+            });
+        } else {
+            this.onDiv = new DivEvent();
 
-                this.onDiv.load(onDiv);
-            }
+            this.onDiv.load(onDiv);
         }
 
-        this.onHover.load(data.onHover ?? data.onhover);
+        this.onHover.load(data.onHover);
 
         if (data.resize !== undefined) {
             this.resize = data.resize;

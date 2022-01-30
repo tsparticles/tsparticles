@@ -1,25 +1,35 @@
-import type { Container, ICoordinates } from "tsparticles-engine";
 import {
-    calcEasing,
     Circle,
-    clamp,
-    divMode,
-    divModeExecute,
-    ExternalInteractorBase,
-    getDistances,
-    isDivModeEnabled,
-    isInArray,
-    Range,
-    Rectangle,
     ClickMode,
     DivMode,
     DivType,
+    ExternalInteractorBase,
     HoverMode,
+    IParticle,
+    Range,
+    Rectangle,
     Vector,
+    calcEasing,
+    clamp,
+    divMode,
+    divModeExecute,
+    getDistances,
+    isDivModeEnabled,
+    isInArray,
     mouseMoveEvent,
 } from "tsparticles-engine";
-import type { DivEvent } from "tsparticles-engine/Options/Classes/Interactivity/Events/DivEvent";
-import type { RepulseDiv } from "tsparticles-engine/Options/Classes/Interactivity/Modes/RepulseDiv";
+import type { Container, DivEvent, ICoordinates, RepulseDiv } from "tsparticles-engine";
+
+interface IContainerRepulse {
+    particles: IParticle[];
+    finish?: boolean;
+    count?: number;
+    clicking?: boolean;
+}
+
+type ContainerRepulser = Container & {
+    repulse?: IContainerRepulse;
+};
 
 /**
  * Particle repulse manager
@@ -28,14 +38,22 @@ import type { RepulseDiv } from "tsparticles-engine/Options/Classes/Interactivit
 export class Repulser extends ExternalInteractorBase {
     handleClickMode: (mode: string) => void;
 
-    constructor(container: Container) {
+    constructor(container: ContainerRepulser) {
         super(container);
+
+        if (!container.repulse) {
+            container.repulse = { particles: [] };
+        }
 
         this.handleClickMode = (mode) => {
             const options = this.container.actualOptions;
 
             if (mode !== ClickMode.repulse) {
                 return;
+            }
+
+            if (!container.repulse) {
+                container.repulse = { particles: [] };
             }
 
             container.repulse.clicking = true;
@@ -50,6 +68,10 @@ export class Repulser extends ExternalInteractorBase {
 
             setTimeout(() => {
                 if (!container.destroyed) {
+                    if (!container.repulse) {
+                        container.repulse = { particles: [] };
+                    }
+
                     container.repulse.clicking = false;
                 }
             }, options.interactivity.modes.repulse.duration * 1000);
@@ -168,7 +190,11 @@ export class Repulser extends ExternalInteractorBase {
     }
 
     private clickRepulse(): void {
-        const container = this.container;
+        const container = this.container as ContainerRepulser;
+
+        if (!container.repulse) {
+            container.repulse = { particles: [] };
+        }
 
         if (!container.repulse.finish) {
             if (!container.repulse.count) {

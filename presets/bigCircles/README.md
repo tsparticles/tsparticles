@@ -1,14 +1,14 @@
-[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
 # tsParticles Big Circles Preset
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-big-circles/badge)](https://www.jsdelivr.com/package/npm/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles-preset-big-circles.svg)](https://www.npmjs.com/package/tsparticles-preset-big-circles) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-big-circles)](https://www.npmjs.com/package/tsparticles-preset-big-circles)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-big-circles/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-big-circles) [![npmjs](https://badge.fury.io/js/tsparticles-preset-big-circles.svg)](https://www.npmjs.com/package/tsparticles-preset-big-circles) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-big-circles)](https://www.npmjs.com/package/tsparticles-preset-big-circles)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) preset for big colored circles on a white background.
 
 ## Sample
 
-![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/v1/presets/bigCircles/images/sample.png)
+[![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/bigCircles/images/sample.png)](https://particles.js.org/samples/presets/bigCircles)
 
 ## How to use it
 
@@ -21,8 +21,8 @@ Once installed you need one more script to be included in your page (or you can 
 from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-big-circles):
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-big-circles"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-big-circles@2/tsparticles.preset.bigCircles.min.js"></script>
 ```
 
 This script **MUST** be placed after the `tsParticles` one.
@@ -32,7 +32,7 @@ This script **MUST** be placed after the `tsParticles` one.
 A bundled script can also be used, this will include every needed plugin needed by the preset.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-big-circles/tsparticles.preset.bigCircles.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-big-circles@2/tsparticles.preset.bigCircles.bundle.min.js"></script>
 ```
 
 ### Usage
@@ -71,14 +71,14 @@ This sample uses the class component syntax, but you can use hooks as well (if t
 
 ```javascript
 import Particles from "react-tsparticles";
-import { Main } from "tsparticles-engine";
+import { Engine } from "tsparticles-engine";
 import { loadBigCirclesPreset } from "tsparticles-preset-big-circles";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
   // this customizes the component tsParticles installation
-  async customInit(main: Main) {
+  async customInit(engine: Engine): Promise<void> {
     // this adds the preset to tsParticles, you can safely use the
-    await loadBigCirclesPreset(main);
+    await loadBigCirclesPreset(engine);
   }
 
   render() {
@@ -100,8 +100,8 @@ _The syntax for `Vue.js 2.x` and `3.x` is the same_
 ```
 
 ```js
-async function particlesInit(main: Main) {
-  await loadBigCirclesPreset(main);
+async function particlesInit(engine: Engine): Promise<void> {
+  await loadBigCirclesPreset(engine);
 }
 ```
 
@@ -117,8 +117,8 @@ async function particlesInit(main: Main) {
 ```
 
 ```ts
-async function particlesInit(main: Main): void {
-  await loadBigCirclesPreset(main);
+async function particlesInit(engine: Engine): Promise<void> {
+  await loadBigCirclesPreset(engine);
 }
 ```
 
@@ -134,7 +134,7 @@ async function particlesInit(main: Main): void {
 ```
 
 ```js
-let onParticlesInit = async (main) => {
-  await loadBigCirclesPreset(main);
-};
+async function onParticlesInit(engine: Engine): Promise<void> {
+  await loadBigCirclesPreset(engine);
+}
 ```

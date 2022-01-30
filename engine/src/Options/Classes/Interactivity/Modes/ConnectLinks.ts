@@ -1,6 +1,5 @@
-import type { IConnectLinks } from "../../../Interfaces/Interactivity/Modes/IConnectLinks";
+import type { IConnectLinks, IOptionLoader } from "../../../Interfaces";
 import type { RecursivePartial } from "../../../../Types";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 /**
  * @category Options
@@ -13,10 +12,12 @@ export class ConnectLinks implements IConnectLinks, IOptionLoader<IConnectLinks>
     }
 
     load(data?: RecursivePartial<IConnectLinks>): void {
-        if (!(data !== undefined && data.opacity !== undefined)) {
+        if (!data) {
             return;
         }
 
-        this.opacity = data.opacity;
+        if (data.opacity !== undefined) {
+            this.opacity = data.opacity;
+        }
     }
 }

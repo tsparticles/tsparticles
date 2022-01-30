@@ -39,6 +39,8 @@ const getExternals = (bundle) => {
         "tsparticles-interaction-particles-collisions",
         "tsparticles-interaction-particles-links",
         "tsparticles-interaction-particles-repulse",
+        "tsparticles-move-base",
+        "tsparticles-move-parallax",
         "tsparticles-path-curves",
         "tsparticles-path-perlin-noise",
         "tsparticles-path-polygon",

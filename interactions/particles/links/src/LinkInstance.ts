@@ -1,8 +1,8 @@
 import type { Container, IContainerPlugin, IRgb, Particle } from "tsparticles-engine";
 import { colorToRgb, getDistance, getLinkColor } from "tsparticles-engine";
-import type { LinkParticle } from "./LinkParticle";
-import type { ILink } from "./ILink";
 import { drawLinkLine, drawLinkTriangle } from "./Utils";
+import type { ILink } from "./ILink";
+import type { LinkParticle } from "./LinkParticle";
 
 export class LinkInstance implements IContainerPlugin {
     constructor(private readonly container: Container) {}

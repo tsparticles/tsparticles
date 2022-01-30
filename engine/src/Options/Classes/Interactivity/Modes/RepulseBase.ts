@@ -1,7 +1,6 @@
-import type { IRepulseBase } from "../../../Interfaces/Interactivity/Modes/IRepulseBase";
-import type { RecursivePartial } from "../../../../Types";
+import type { IOptionLoader, IRepulseBase } from "../../../Interfaces";
 import { EasingType } from "../../../../Enums";
-import { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { RecursivePartial } from "../../../../Types";
 
 /**
  * @category Options

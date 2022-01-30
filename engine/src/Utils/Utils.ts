@@ -1,3 +1,5 @@
+import { DivEvent, Options, ParticlesOptions } from "../Options";
+import { DivMode, OutModeDirection } from "../Enums";
 import type {
     IBounds,
     ICircleBouncer,
@@ -6,14 +8,12 @@ import type {
     IParticle,
     IRangeValue,
     IRectSideResult,
-} from "../Core/Interfaces";
-import { DivMode, OutModeDirection } from "../Enums";
-import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICharacterShape";
-import type { SingleOrMultiple } from "../Types";
-import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
-import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
-import { collisionVelocity, getDistances, getValue } from "./NumberUtils";
-import { Vector } from "../Core/Particle/Vector";
+} from "../Core";
+import type { IModeDiv, IOptionLoader, IOptions, IParticlesOptions } from "../Options";
+import type { RecursivePartial, SingleOrMultiple } from "../Types";
+import { collisionVelocity, getDistances, getRangeValue } from "./NumberUtils";
+import type { Engine } from "../engine";
+import { Vector } from "../Core";
 
 declare global {
     interface Window {
@@ -115,9 +115,9 @@ export function isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
     return value === array || (array instanceof Array && array.indexOf(value) > -1);
 }
 
-export async function loadFont(character: ICharacterShape): Promise<void> {
+export async function loadFont(font?: string, weight?: string): Promise<void> {
     try {
-        await document.fonts.load(`${character.weight ?? "400"} 36px '${character.font ?? "Verdana"}'`);
+        await document.fonts.load(`${weight ?? "400"} 36px '${font ?? "Verdana"}'`);
     } catch {
         // ignores any error
     }
@@ -276,7 +276,7 @@ export function circleBounceDataFromParticle(p: IParticle): ICircleBouncer {
         radius: p.getRadius(),
         mass: p.getMass(),
         velocity: p.velocity,
-        factor: Vector.create(getValue(p.options.bounce.horizontal), getValue(p.options.bounce.vertical)),
+        factor: Vector.create(getRangeValue(p.options.bounce.horizontal), getRangeValue(p.options.bounce.vertical)),
     };
 }
 
@@ -339,7 +339,7 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
             max: divBounds.bottom,
         },
         particle.velocity.x,
-        getValue(particle.options.bounce.horizontal)
+        getRangeValue(particle.options.bounce.horizontal)
     );
 
     if (resH.bounced) {
@@ -370,7 +370,7 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
             max: divBounds.right,
         },
         particle.velocity.y,
-        getValue(particle.options.bounce.vertical)
+        getRangeValue(particle.options.bounce.vertical)
     );
 
     if (resV.bounced) {
@@ -382,4 +382,35 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
             particle.position.y = resV.position;
         }
     }
+}
+
+function loadOptions<T>(options: IOptionLoader<T>, ...sourceOptionsArr: RecursivePartial<T | undefined>[]) {
+    if (!sourceOptionsArr) {
+        return;
+    }
+
+    for (const sourceOptions of sourceOptionsArr) {
+        options.load(sourceOptions);
+    }
+}
+
+export function loadContainerOptions(
+    engine: Engine,
+    ...sourceOptionsArr: RecursivePartial<IOptions | undefined>[]
+): Options {
+    const options = new Options(engine);
+
+    loadOptions(options, ...sourceOptionsArr);
+
+    return options;
+}
+
+export function loadParticlesOptions(
+    ...sourceOptionsArr: RecursivePartial<IParticlesOptions | undefined>[]
+): ParticlesOptions {
+    const options = new ParticlesOptions();
+
+    loadOptions(options, ...sourceOptionsArr);
+
+    return options;
 }

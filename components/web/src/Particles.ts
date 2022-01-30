@@ -1,8 +1,8 @@
-import type { Container, ISourceOptions, Main, RecursivePartial } from "tsparticles-engine";
+import type { Container, ISourceOptions, Engine, RecursivePartial } from "tsparticles-engine";
 
 declare global {
     interface Window {
-        tsParticles: Main;
+        tsParticles: Engine;
     }
 }
 

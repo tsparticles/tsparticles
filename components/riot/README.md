@@ -1,4 +1,4 @@
-[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
 # riot-particles
 
@@ -9,13 +9,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) RiotJS compon
 ## Installation
 
 ```shell
-$ npm install riot-particles riot
+npm install riot-particles
 ```
 
 or
 
 ```shell
-$ yarn add riot-particles riot
+yarn add riot-particles
 ```
 
 ## Usage

@@ -1,8 +1,8 @@
+import { Circle, CircleWarp, Point, QuadTree, Rectangle } from "../src";
 import { describe, it } from "mocha";
-import { expect } from "chai";
-import { Circle, CircleWarp, Point, QuadTree, Rectangle } from "../src/Utils";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticle } from "./Fixture/TestParticle";
+import { expect } from "chai";
 
 describe("QuadTree tests", () => {
     const testContainer = new TestContainer({});

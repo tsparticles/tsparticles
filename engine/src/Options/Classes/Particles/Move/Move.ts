@@ -1,100 +1,21 @@
-import type { IMove } from "../../../Interfaces/Particles/Move/IMove";
-import { Attract } from "./Attract";
-import { MoveDirection, MoveDirectionAlt, OutMode, OutModeAlt } from "../../../../Enums";
-import { Trail } from "./Trail";
-import type { RangeValue, RecursivePartial } from "../../../../Types";
-import { Path } from "./Path/Path";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import { MoveAngle } from "./MoveAngle";
-import { MoveGravity } from "./MoveGravity";
-import { OutModes } from "./OutModes";
-import { deepExtend, setRangeValue } from "../../../../Utils";
-import type { ICoordinates, IDistance } from "../../../../Core/Interfaces";
-import { Spin } from "./Spin";
-
 /**
  * [[include:Options/Particles/Move.md]]
  * @category Options
  */
+import type { ICoordinates, IDistance } from "../../../../Core";
+import type { IMove, IOptionLoader } from "../../../Interfaces";
+import { MoveDirection, MoveDirectionAlt } from "../../../../Enums";
+import { RangeValue, RecursivePartial } from "../../../../Types";
+import { deepExtend, setRangeValue } from "../../../../Utils";
+import { MoveAngle } from "./MoveAngle";
+import { MoveAttract } from "./MoveAttract";
+import { MoveGravity } from "./MoveGravity";
+import { MovePath } from "./MovePath";
+import { MoveTrail } from "./MoveTrail";
+import { OutModes } from "./OutModes";
+import { Spin } from "./Spin";
+
 export class Move implements IMove, IOptionLoader<IMove> {
-    /**
-     * @deprecated this property is obsolete, please use the new collisions object on particles options
-     */
-    get collisions(): boolean {
-        return false;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new collisions object on particles options
-     * @param value
-     */
-    set collisions(value: boolean) {
-        // deprecated
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new collisions object on particles options
-     */
-    get bounce(): boolean {
-        return this.collisions;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new collisions object on particles options
-     * @param value
-     */
-    set bounce(value: boolean) {
-        this.collisions = value;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new outMode
-     */
-    get out_mode(): OutMode | keyof typeof OutMode | OutModeAlt {
-        return this.outMode;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new outMode
-     * @param value
-     */
-    set out_mode(value: OutMode | keyof typeof OutMode | OutModeAlt) {
-        this.outMode = value;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new outMode
-     */
-    get outMode(): OutMode | keyof typeof OutMode | OutModeAlt {
-        return this.outModes.default;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new outMode
-     * @param value
-     */
-    set outMode(value: OutMode | keyof typeof OutMode | OutModeAlt) {
-        this.outModes.default = value;
-    }
-
-    /**
-     * @deprecated use the new [[path]] property instead
-     */
-    get noise(): Path {
-        return this.path;
-    }
-
-    /**
-     * @deprecated use the new [[path]] property instead
-     */
-    set noise(value: Path) {
-        this.path = value;
-    }
-
     angle;
     attract;
     center: ICoordinates & { radius: number };
@@ -117,7 +38,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
     constructor() {
         this.angle = new MoveAngle();
-        this.attract = new Attract();
+        this.attract = new MoveAttract();
         this.center = {
             x: 50,
             y: 50,
@@ -129,44 +50,32 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.drift = 0;
         this.enable = false;
         this.gravity = new MoveGravity();
-        this.path = new Path();
+        this.path = new MovePath();
         this.outModes = new OutModes();
         this.random = false;
         this.size = false;
         this.speed = 2;
         this.spin = new Spin();
         this.straight = false;
-        this.trail = new Trail();
+        this.trail = new MoveTrail();
         this.vibrate = false;
         this.warp = false;
     }
 
     load(data?: RecursivePartial<IMove>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 
-        if (data.angle !== undefined) {
-            if (typeof data.angle === "number") {
-                this.angle.value = data.angle;
-            } else {
-                this.angle.load(data.angle);
-            }
+        if (typeof data.angle === "number") {
+            this.angle.value = data.angle;
+        } else {
+            this.angle.load(data.angle);
         }
 
         this.attract.load(data.attract);
 
-        if (data.center?.x !== undefined) {
-            this.center.x = data.center.x;
-        }
-
-        if (data.center?.y !== undefined) {
-            this.center.y = data.center.y;
-        }
-
-        if (data.center?.radius !== undefined) {
-            this.center.radius = data.center.radius;
-        }
+        this.center = deepExtend(this.center, data.center) as ICoordinates & { radius: number };
 
         if (data.decay !== undefined) {
             this.decay = data.decay;
@@ -196,19 +105,17 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
         this.gravity.load(data.gravity);
 
-        const outMode = data.outMode ?? data.out_mode;
-
-        if (data.outModes || outMode) {
-            if (typeof data.outModes === "string" || (!data.outModes && outMode)) {
+        if (data.outModes) {
+            if (typeof data.outModes === "string") {
                 this.outModes.load({
-                    default: data.outModes ?? outMode,
+                    default: data.outModes,
                 });
             } else {
                 this.outModes.load(data.outModes);
             }
         }
 
-        this.path.load(data.path ?? data.noise);
+        this.path.load(data.path);
 
         if (data.random !== undefined) {
             this.random = data.random;

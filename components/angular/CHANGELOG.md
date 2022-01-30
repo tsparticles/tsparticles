@@ -3,7 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.22.2...ng-particles@3.0.0-beta.5) (2022-01-30)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to ~13.1.0 ([1f80f2b](https://github.com/matteobruni/tsparticles/commit/1f80f2b467d440ed3f2d4b4a4bd08eb561cef76f))
+* **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+* **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+* **deps:** update dependency rxjs to ~7.4.0 ([048238b](https://github.com/matteobruni/tsparticles/commit/048238b7b14b1ee49356afa47e5c7aa0ab4ac1f0))
+* **deps:** update dependency rxjs to ~7.5.0 ([f2d0505](https://github.com/matteobruni/tsparticles/commit/f2d0505863dafba475f8d6275d6474a54970a814))
+* removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
+
+
+### Features
+
+* changed particlesInit on angular, is a property now and not an event ([38f6219](https://github.com/matteobruni/tsparticles/commit/38f62190549bb194e6ab542ba834ae2118f99ba6))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [3.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/ng-particles@3.0.0-beta.3...ng-particles@3.0.0-beta.4) (2021-12-07)
+## [2.22.2](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.22.1...ng-particles@2.22.2) (2022-01-29)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+## [2.22.1](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.22.0...ng-particles@2.22.1) (2022-01-26)
+
+
+### Bug Fixes
+
+* fixed issues with absorbers and emitters plugins Container extension methods ([ce196be](https://github.com/matteobruni/tsparticles/commit/ce196bebd035281c08b5c77c5301ba1ebd7e734f))
+* upgrade multiple dependencies with Snyk ([0667f67](https://github.com/matteobruni/tsparticles/commit/0667f67e403d331684cf5fb85036a0a76fc426d5))
+* upgrade rxjs from 7.3.0 to 7.4.0 ([5579eff](https://github.com/matteobruni/tsparticles/commit/5579eff8393a8685f038a94de42f7bf057f73a79))
+* upgrade rxjs from 7.4.0 to 7.5.1 ([edf9c98](https://github.com/matteobruni/tsparticles/commit/edf9c98613fdf7c080275eecfcffac0c7048af46))
+
+
+
+
+
+# [2.22.0](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.21.0...ng-particles@2.22.0) (2022-01-08)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+# [2.21.0](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.20.6...ng-particles@2.21.0) (2021-12-29)
 
 **Note:** Version bump only for package ng-particles
 
@@ -12,6 +65,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [3.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.20.5...ng-particles@3.0.0-beta.3) (2021-12-04)
+## [2.20.6](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.20.5...ng-particles@2.20.6) (2021-12-24)
 
 
 ### Bug Fixes
@@ -23,6 +77,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * changed particlesInit on angular, is a property now and not an event ([38f6219](https://github.com/matteobruni/tsparticles/commit/38f62190549bb194e6ab542ba834ae2118f99ba6))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+* fixed angular readme, closes [#2297](https://github.com/matteobruni/tsparticles/issues/2297) ([5f51b87](https://github.com/matteobruni/tsparticles/commit/5f51b87a6fca58ee88ae51a17dbd5e0d1911b3c6))
+* fixed some readmes ([93f371a](https://github.com/matteobruni/tsparticles/commit/93f371ab82a5074d34ec7632ade41edc3dbf0ec7))
 
 
 

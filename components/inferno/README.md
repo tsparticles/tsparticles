@@ -1,4 +1,4 @@
-[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
 # inferno-particles
 
@@ -9,13 +9,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) Inferno compo
 ## Installation
 
 ```shell
-$ npm install inferno-particles inferno
+npm install inferno-particles
 ```
 
 or
 
 ```shell
-$ yarn add inferno-particles inferno
+yarn add inferno-particles
 ```
 
 ## How to use
@@ -151,7 +151,7 @@ class App extends Component {
             number: {
               density: {
                 enable: true,
-                value_area: 800,
+                area: 800,
               },
               value: 80,
             },
@@ -162,8 +162,7 @@ class App extends Component {
               type: "circle",
             },
             size: {
-              random: true,
-              value: 5,
+              value: { min: 1, max: 5 },
             },
           },
           detectRetina: true,

@@ -2,7 +2,7 @@ import { Component, render, version } from 'inferno';
 import { Incrementer } from './components/Incrementer';
 import Particles from "inferno-particles";
 import './main.css';
-import { Main } from "tsparticles-engine";
+import { Engine } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 
 const container = document.getElementById('app');
@@ -16,8 +16,8 @@ class MyComponent extends Component<any, any> {
 		this.tsxVersion = 3.21; /* This is typed value */
 	}
 
-	particlesInit = (main: Main) => {
-		loadFull(main);
+	particlesInit = (engine: Engine) => {
+		loadFull(engine);
 	}
 
 	public render() {

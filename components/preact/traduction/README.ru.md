@@ -1,4 +1,4 @@
-[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
 # preact-particles
 
@@ -92,7 +92,7 @@ class App extends Component {
             number: {
               density: {
                 enable: true,
-                value_area: 800,
+                area: 800,
               },
               value: 80,
             },

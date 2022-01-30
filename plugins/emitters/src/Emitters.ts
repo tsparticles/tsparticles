@@ -1,14 +1,20 @@
-import type { IContainerPlugin, ICoordinates, IDelta } from "tsparticles-engine";
-import { EmitterInstance } from "./EmitterInstance";
-import type { Container } from "tsparticles-engine";
-import type { IEmitter } from "./Options/Interfaces/IEmitter";
-import type { RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
-import { Emitter } from "./Options/Classes/Emitter";
-import type { IOptions } from "tsparticles-engine/Options/Interfaces/IOptions";
-import { EmitterClickMode } from "./Enums";
-import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
-import type { EmitterContainer } from "./EmitterContainer";
+import type {
+    Container,
+    Engine,
+    IContainerPlugin,
+    ICoordinates,
+    IDelta,
+    IOptions,
+    RecursivePartial,
+    SingleOrMultiple,
+} from "tsparticles-engine";
 import { deepExtend, itemFromArray } from "tsparticles-engine";
+import { Emitter } from "./Options/Classes/Emitter";
+import { EmitterClickMode } from "./Enums";
+import type { EmitterContainer } from "./EmitterContainer";
+import { EmitterInstance } from "./EmitterInstance";
+import type { IEmitter } from "./Options/Interfaces/IEmitter";
+import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 
 /**
  * @category Emitters Plugin
@@ -17,11 +23,13 @@ export class Emitters implements IContainerPlugin {
     array: EmitterInstance[];
     emitters: SingleOrMultiple<Emitter>;
     interactivityEmitters: SingleOrMultiple<Emitter>;
+    #engine;
 
-    constructor(private readonly container: Container) {
+    constructor(private readonly container: Container, engine: Engine) {
         this.array = [];
         this.emitters = [];
         this.interactivityEmitters = [];
+        this.#engine = engine;
 
         const overridableContainer = container as unknown as EmitterContainer;
 
@@ -32,6 +40,14 @@ export class Emitters implements IContainerPlugin {
 
         overridableContainer.addEmitter = (options: IEmitter, position?: ICoordinates) =>
             this.addEmitter(options, position);
+
+        overridableContainer.removeEmitter = (idxOrName?: number | string) => {
+            const emitter = overridableContainer.getEmitter(idxOrName);
+
+            if (emitter) {
+                this.removeEmitter(emitter);
+            }
+        };
 
         overridableContainer.playEmitter = (idxOrName?: number | string) => {
             const emitter = overridableContainer.getEmitter(idxOrName);
@@ -156,7 +172,11 @@ export class Emitters implements IContainerPlugin {
     }
 
     addEmitter(options: IEmitter, position?: ICoordinates): EmitterInstance {
-        const emitter = new EmitterInstance(this, this.container, options, position);
+        const emitterOptions = new Emitter();
+
+        emitterOptions.load(options);
+
+        const emitter = new EmitterInstance(this, this.container, this.#engine, emitterOptions, position);
 
         this.array.push(emitter);
 

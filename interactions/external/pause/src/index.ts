@@ -1,6 +1,6 @@
-import type { Main } from "tsparticles-engine";
+import type { Engine } from "tsparticles-engine";
 import { Pauser } from "./Pauser";
 
-export function loadExternalPauseInteraction(tsParticles: Main): void {
-    tsParticles.addInteractor("externalPause", (container) => new Pauser(container));
+export function loadExternalPauseInteraction(engine: Engine): void {
+    engine.addInteractor("externalPause", (container) => new Pauser(container));
 }

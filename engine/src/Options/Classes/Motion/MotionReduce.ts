@@ -1,5 +1,4 @@
-import type { IMotionReduce } from "../../Interfaces/Motion/IMotionReduce";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
+import type { IMotionReduce, IOptionLoader } from "../../Interfaces";
 import type { RecursivePartial } from "../../../Types";
 
 /**

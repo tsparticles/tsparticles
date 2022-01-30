@@ -1,5 +1,5 @@
+import type { IColor } from "../../../../Core";
 import type { SingleOrMultiple } from "../../../../Types";
-import type { IColor } from "../../../../Core/Interfaces";
 
 /**
  * @category Options

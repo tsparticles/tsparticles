@@ -1,7 +1,7 @@
+import type { ICoordinates, IParticle } from "tsparticles-engine";
+import type { IPolygonShape } from "./IPolygonShape";
 import type { ISide } from "./PolygonDrawerBase";
 import { PolygonDrawerBase } from "./PolygonDrawerBase";
-import type { ICoordinates, IParticle } from "tsparticles-engine";
-import type { IPolygonShape } from "tsparticles-engine/Options/Interfaces/Particles/Shape/IPolygonShape";
 
 /**
  * @category Shape Drawers

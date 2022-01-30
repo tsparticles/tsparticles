@@ -3,7 +3,56 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.13.2...riot-particles@2.0.0-beta.4) (2022-01-30)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/riot-particles@2.0.0-beta.2...riot-particles@2.0.0-beta.3) (2021-12-07)
+## [1.13.2](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.13.1...riot-particles@1.13.2) (2022-01-29)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+## [1.13.1](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.13.0...riot-particles@1.13.1) (2022-01-26)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+# [1.13.0](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.12.0...riot-particles@1.13.0) (2022-01-08)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+# [1.12.0](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.11.6...riot-particles@1.12.0) (2021-12-29)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+## [1.11.6](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.11.5...riot-particles@1.11.6) (2021-12-24)
 
 **Note:** Version bump only for package riot-particles
 

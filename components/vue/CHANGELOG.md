@@ -3,12 +3,69 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.22.2...particles.vue@3.0.0-beta.4) (2022-01-30)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+* **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+* **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
+
+
+### Features
+
+* async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [3.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/particles.vue@3.0.0-beta.2...particles.vue@3.0.0-beta.3) (2021-12-07)
 
 
 ### Features
 
 * async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+## [2.22.2](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.22.1...particles.vue@2.22.2) (2022-01-29)
+
+**Note:** Version bump only for package particles.vue
+
+
+
+
+
+## [2.22.1](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.22.0...particles.vue@2.22.1) (2022-01-26)
+
+**Note:** Version bump only for package particles.vue
+
+
+
+
+
+# [2.22.0](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.21.0...particles.vue@2.22.0) (2022-01-08)
+
+**Note:** Version bump only for package particles.vue
+
+
+
+
+
+# [2.21.0](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.20.6...particles.vue@2.21.0) (2021-12-29)
+
+**Note:** Version bump only for package particles.vue
+
+
+
+
+
+## [2.20.6](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.20.5...particles.vue@2.20.6) (2021-12-24)
+
+
+### Bug Fixes
+
+* fixed some readmes ([93f371a](https://github.com/matteobruni/tsparticles/commit/93f371ab82a5074d34ec7632ade41edc3dbf0ec7))
 
 
 

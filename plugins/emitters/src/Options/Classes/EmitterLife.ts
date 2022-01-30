@@ -1,6 +1,5 @@
+import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
 import type { IEmitterLife } from "../Interfaces/IEmitterLife";
-import type { RecursivePartial } from "tsparticles-engine";
-import type { IOptionLoader } from "tsparticles-engine/Options/Interfaces/IOptionLoader";
 
 /**
  * @category Emitters Plugin

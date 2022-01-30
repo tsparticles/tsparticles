@@ -1,7 +1,7 @@
-import type { Container, IDelta, OutModeAlt, Particle, OutModeDirection } from "tsparticles-engine";
-import { calculateBounds, OutMode } from "tsparticles-engine";
-import type { IOutModeManager } from "./IOutModeManager";
+import type { Container, IDelta, OutModeAlt, OutModeDirection, Particle } from "tsparticles-engine";
+import { OutMode, calculateBounds } from "tsparticles-engine";
 import { bounceHorizontal, bounceVertical } from "./Utils";
+import type { IOutModeManager } from "./IOutModeManager";
 
 export class BounceOutMode implements IOutModeManager {
     modes: (OutMode | OutModeAlt | keyof typeof OutMode)[];

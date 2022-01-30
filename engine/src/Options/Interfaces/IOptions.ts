@@ -1,13 +1,14 @@
-import type { IInteractivity } from "./Interactivity/IInteractivity";
-import type { IParticles } from "./Particles/IParticles";
-import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask";
-import type { IBackground } from "./Background/IBackground";
 import type { RangeValue, RecursivePartial, SingleOrMultiple } from "../../Types";
-import type { ITheme } from "./Theme/ITheme";
-import type { IFullScreen } from "./FullScreen/IFullScreen";
-import type { IMotion } from "./Motion/IMotion";
+import type { IBackground } from "./Background";
+import type { IBackgroundMask } from "./BackgroundMask";
+import type { IColor } from "../../Core";
+import type { IFullScreen } from "./FullScreen";
+import type { IInteractivity } from "./Interactivity";
 import type { IManualParticle } from "./IManualParticle";
+import type { IMotion } from "./Motion";
+import type { IParticlesOptions } from "./Particles";
 import type { IResponsive } from "./IResponsive";
+import type { ITheme } from "./Theme";
 
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`
@@ -31,12 +32,6 @@ export interface IOptions {
     backgroundMask: IBackgroundMask;
 
     /**
-     * Sets the animated background mode for particles canvas bringing it to the back
-     * @deprecated use the new fullScreen instead
-     */
-    backgroundMode: RecursivePartial<IFullScreen> | boolean;
-
-    /**
      * Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.
      */
     detectRetina: boolean;
@@ -45,12 +40,6 @@ export interface IOptions {
      * The Particles effect duration in seconds, then the container will be destroyed
      */
     duration: RangeValue;
-
-    /**
-     * The Frame Per Second limit applied to all particles animations.
-     * @deprecated use the new fpsLimit instead
-     */
-    fps_limit: number;
 
     /**
      * The FPS (Frame Per Second) limit applied to all particles animations.
@@ -80,7 +69,7 @@ export interface IOptions {
     /**
      * The particles options
      */
-    particles: IParticles;
+    particles: IParticlesOptions;
 
     /**
      * Enables or disabled the animation on window blur
@@ -102,11 +91,7 @@ export interface IOptions {
      */
     responsive: IResponsive[];
 
-    /**
-     * Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.
-     * @deprecated use the new detectRetina instead
-     */
-    retina_detect: boolean;
+    style: RecursivePartial<CSSStyleDeclaration>;
 
     /**
      * User-defined themes that can be retrieved by the particles [[Container]]
@@ -122,4 +107,37 @@ export interface IOptions {
      * More custom options for external plugins or customizations
      */
     [name: string]: unknown;
+}
+
+export interface IAltOptions {
+    background: {
+        color: string;
+    };
+    backgroundMask: {
+        cover: IColor | string;
+    };
+    interactivity: {
+        modes: {
+            bubble: {
+                color?: SingleOrMultiple<IColor | string>;
+            };
+            grab: {
+                links: {
+                    color?: IColor | string;
+                };
+            };
+            light: {
+                shadow: {
+                    color: IColor | string;
+                };
+                area: {
+                    gradient: {
+                        start: string | IColor;
+                        stop: string | IColor;
+                    };
+                };
+            };
+        };
+    };
+    fullScreen: RecursivePartial<IFullScreen> | boolean;
 }

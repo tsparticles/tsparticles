@@ -1,16 +1,12 @@
-import type { Container } from "./Container";
-import { Particle } from "./Particle";
-import { getRangeValue, Plugins, Point, QuadTree, randomInRange, Rectangle, setRangeValue } from "../Utils";
-import type { RecursivePartial } from "../Types";
-import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
-import { InteractionManager } from "./InteractionManager";
-import type { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";
-import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
-import type { ICoordinates, IDelta, IMouseData, IParticle, IRgb } from "./Interfaces";
-import { Mover } from "./Particle/Mover";
-import { IParticlesFrequencies } from "./Interfaces/IParticlesFrequencies";
 import { ClickMode, EventType } from "../Enums";
-import { Loader } from "./Loader";
+import { ICoordinates, IDelta, IMouseData, IParticle, IParticlesFrequencies, IRgb } from "./Interfaces";
+import { IParticlesDensity, IParticlesOptions } from "../Options";
+import { InteractionManager, Point, QuadTree, Rectangle } from "./Utils";
+import { getRangeMax, getRangeMin, getRangeValue, loadParticlesOptions, randomInRange, setRangeValue } from "../Utils";
+import { Container } from "./Container";
+import { Engine } from "../engine";
+import { Particle } from "./Particle";
+import { RecursivePartial } from "../Types";
 
 /**
  * Particles manager object
@@ -40,18 +36,20 @@ export class Particles {
     linksColor?: IRgb | string;
     grabLineColor?: IRgb | string;
 
+    movers;
     updaters;
 
     private interactionManager;
     private nextId;
     private readonly freqs: IParticlesFrequencies;
-    private readonly mover;
 
-    constructor(private readonly container: Container) {
+    readonly #engine;
+
+    constructor(engine: Engine, private readonly container: Container) {
+        this.#engine = engine;
         this.nextId = 0;
         this.array = [];
         this.zArray = [];
-        this.mover = new Mover(container);
         this.limit = 0;
         this.needsSort = false;
         this.lastZIndex = 0;
@@ -59,7 +57,7 @@ export class Particles {
             links: new Map<string, number>(),
             triangles: new Map<string, number>(),
         };
-        this.interactionManager = new InteractionManager(container);
+        this.interactionManager = new InteractionManager(container, this.#engine);
 
         const canvasSize = this.container.canvas.size;
 
@@ -74,7 +72,8 @@ export class Particles {
             4
         );
 
-        this.updaters = Plugins.getUpdaters(container, true);
+        this.movers = this.#engine.plugins.getMovers(container, true);
+        this.updaters = this.#engine.plugins.getUpdaters(container, true);
     }
 
     /* --------- tsParticles functions - particles ----------- */
@@ -89,7 +88,7 @@ export class Particles {
 
         let handled = false;
 
-        this.updaters = Plugins.getUpdaters(container, true);
+        this.updaters = this.#engine.plugins.getUpdaters(container, true);
         this.interactionManager.init();
 
         for (const [, plugin] of container.plugins) {
@@ -153,7 +152,7 @@ export class Particles {
 
             deleted++;
 
-            Loader.dispatchEvent(EventType.particleRemoved, {
+            this.#engine.dispatchEvent(EventType.particleRemoved, {
                 container: this.container,
                 data: {
                     particle,
@@ -207,7 +206,11 @@ export class Particles {
                 }
             }
 
-            this.mover.move(particle, delta);
+            for (const mover of this.movers) {
+                if (mover.isEnabled(particle)) {
+                    mover.move(particle, delta);
+                }
+            }
 
             if (particle.destroyed) {
                 particlesToDelete.push(particle);
@@ -288,7 +291,7 @@ export class Particles {
     }
 
     /* ---------- tsParticles functions - modes events ------------ */
-    push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticles>, group?: string): void {
+    push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticlesOptions>, group?: string): void {
         this.pushing = true;
 
         for (let i = 0; i < nb; i++) {
@@ -300,12 +303,12 @@ export class Particles {
 
     addParticle(
         position?: ICoordinates,
-        overrideOptions?: RecursivePartial<IParticles>,
+        overrideOptions?: RecursivePartial<IParticlesOptions>,
         group?: string
     ): Particle | undefined {
-        const container = this.container;
-        const options = container.actualOptions;
-        const limit = options.particles.number.limit * container.density;
+        const container = this.container,
+            options = container.actualOptions,
+            limit = options.particles.number.limit * container.density;
 
         if (limit > 0) {
             const countToRemove = this.count + 1 - limit;
@@ -320,11 +323,8 @@ export class Particles {
 
     addSplitParticle(parent: Particle): Particle | undefined {
         const splitOptions = parent.options.destroy.split;
-        const options = new ParticlesOptions();
-
-        options.load(parent.options);
-
-        const factor = getRangeValue(splitOptions.factor.value);
+        const options = loadParticlesOptions(parent.options);
+        const factor = getRangeValue(splitOptions.factor);
 
         options.color.load({
             value: {
@@ -370,7 +370,8 @@ export class Particles {
     }
 
     getLinkFrequency(p1: IParticle, p2: IParticle): number {
-        const key = `${Math.min(p1.id, p2.id)}_${Math.max(p1.id, p2.id)}`;
+        const range = setRangeValue(p1.id, p2.id),
+            key = `${getRangeMin(range)}_${getRangeMax(range)}`;
 
         let res = this.freqs.links.get(key);
 
@@ -412,8 +413,8 @@ export class Particles {
     }
 
     addManualParticles(): void {
-        const container = this.container;
-        const options = container.actualOptions;
+        const container = this.container,
+            options = container.actualOptions;
 
         for (const particle of options.manualParticles) {
             const pos = particle.position
@@ -441,7 +442,7 @@ export class Particles {
         this.interactionManager.handleClickMode(mode);
     }
 
-    private applyDensity(options: IParticles, manualCount: number, group?: string) {
+    private applyDensity(options: IParticlesOptions, manualCount: number, group?: string) {
         if (!options.number.density?.enable) {
             return;
         }
@@ -462,27 +463,27 @@ export class Particles {
         }
     }
 
-    private initDensityFactor(densityOptions: IDensity): number {
+    private initDensityFactor(densityOptions: IParticlesDensity): number {
         const container = this.container;
 
         if (!container.canvas.element || !densityOptions.enable) {
             return 1;
         }
 
-        const canvas = container.canvas.element;
-        const pxRatio = container.retina.pixelRatio;
+        const canvas = container.canvas.element,
+            pxRatio = container.retina.pixelRatio;
 
         return (canvas.width * canvas.height) / (densityOptions.factor * pxRatio ** 2 * densityOptions.area);
     }
 
     private pushParticle(
         position?: ICoordinates,
-        overrideOptions?: RecursivePartial<IParticles>,
+        overrideOptions?: RecursivePartial<IParticlesOptions>,
         group?: string,
         initializer?: (particle: Particle) => boolean
     ): Particle | undefined {
         try {
-            const particle = new Particle(this.nextId, this.container, position, overrideOptions, group);
+            const particle = new Particle(this.nextId, this.container, this.#engine, position, overrideOptions, group);
 
             let canAdd = true;
 
@@ -499,7 +500,7 @@ export class Particles {
 
             this.nextId++;
 
-            Loader.dispatchEvent(EventType.particleAdded, {
+            this.#engine.dispatchEvent(EventType.particleAdded, {
                 container: this.container,
                 data: {
                     particle,
