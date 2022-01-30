@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/cra-template-particles-typescript@1.22.2...cra-template-particles-typescript@2.0.0-beta.5) (2022-01-30)
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [2.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/cra-template-particles-typescript@2.0.0-beta.3...cra-template-particles-typescript@2.0.0-beta.4) (2021-12-07)
 ## [1.22.2](https://github.com/matteobruni/tsparticles/compare/cra-template-particles-typescript@1.22.1...cra-template-particles-typescript@1.22.2) (2022-01-29)
 

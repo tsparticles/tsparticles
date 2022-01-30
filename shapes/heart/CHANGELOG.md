@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-heart@1.24.2...tsparticles-shape-heart@2.0.0-beta.5) (2022-01-30)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+
+
+### Features
+
+* moved all shapes to external packages, breaking ([77e4113](https://github.com/matteobruni/tsparticles/commit/77e411338f65ab076fe85c0f143c13417147d4b5))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [2.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-heart@2.0.0-beta.3...tsparticles-shape-heart@2.0.0-beta.4) (2021-12-07)
 ## [1.24.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-heart@1.24.1...tsparticles-shape-heart@1.24.2) (2022-01-29)
 

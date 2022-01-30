@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-particles.js@2.0.0-beta.4...tsparticles-particles.js@2.0.0-beta.5) (2022-01-30)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+
+
+### Features
+
+* changed particles.js compatibility with a new plugin ([4b7c90b](https://github.com/matteobruni/tsparticles/commit/4b7c90bfd5d4299f828bc855d08fb1c4781cbdf2))
+* restored particles.js compatibility ([88b9dfe](https://github.com/matteobruni/tsparticles/commit/88b9dfebef79d1f826215449ddc9197692f15a2a))
+
+
+
+
+
 # [2.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-particles.js@2.0.0-beta.3...tsparticles-particles.js@2.0.0-beta.4) (2021-12-07)
 
 **Note:** Version bump only for package tsparticles-particles.js

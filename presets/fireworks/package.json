@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-fireworks",
-  "version": "2.0.0-beta.4",
+  "version": "2.0.0-beta.5",
   "description": "tsParticles fireworks preset",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -69,20 +69,20 @@
     "typescript": "^4.4.3",
     "webpack": "^5.53.0",
     "webpack-cli": "^4.8.0",
-    "webpack-tsparticles-plugin": "^1.0.0-beta.2"
+    "webpack-tsparticles-plugin": "^1.0.0-beta.3"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.0.0-beta.3",
-    "tsparticles-move-base": "^2.0.0-beta.4",
-    "tsparticles-plugin-emitters": "^2.0.0-beta.4",
-    "tsparticles-shape-circle": "^2.0.0-beta.4",
-    "tsparticles-shape-line": "^2.0.0-beta.4",
-    "tsparticles-updater-angle": "^2.0.0-beta.4",
-    "tsparticles-updater-color": "^2.0.0-beta.4",
-    "tsparticles-updater-life": "^2.0.0-beta.4",
-    "tsparticles-updater-opacity": "^2.0.0-beta.4",
-    "tsparticles-updater-out-modes": "^2.0.0-beta.4",
-    "tsparticles-updater-size": "^2.0.0-beta.4",
-    "tsparticles-updater-stroke-color": "^2.0.0-beta.4"
+    "tsparticles-engine": "^2.0.0-beta.4",
+    "tsparticles-move-base": "^2.0.0-beta.5",
+    "tsparticles-plugin-emitters": "^2.0.0-beta.5",
+    "tsparticles-shape-circle": "^2.0.0-beta.5",
+    "tsparticles-shape-line": "^2.0.0-beta.5",
+    "tsparticles-updater-angle": "^2.0.0-beta.5",
+    "tsparticles-updater-color": "^2.0.0-beta.5",
+    "tsparticles-updater-life": "^2.0.0-beta.5",
+    "tsparticles-updater-opacity": "^2.0.0-beta.5",
+    "tsparticles-updater-out-modes": "^2.0.0-beta.5",
+    "tsparticles-updater-size": "^2.0.0-beta.5",
+    "tsparticles-updater-stroke-color": "^2.0.0-beta.5"
   }
 }
