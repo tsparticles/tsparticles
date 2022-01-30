@@ -5,7 +5,6 @@ import type {
     ICoordinates,
     IDelta,
     IHsl,
-    IHslAnimation,
     IParticlesOptions,
     RecursivePartial,
 } from "tsparticles-engine";
@@ -18,13 +17,13 @@ import {
     isPointInside,
     randomInRange,
 } from "tsparticles-engine";
+import { Emitter } from "./Options/Classes/Emitter";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
 import type { Emitters } from "./Emitters";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
 import type { IEmitterShape } from "./IEmitterShape";
 import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
 import { ShapeManager } from "./ShapeManager";
-import { Emitter } from "./Options/Classes/Emitter";
 
 /**
  * @category Emitters Plugin
