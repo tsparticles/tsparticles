@@ -415,3 +415,5 @@ website/css/presets.css
 website/css/404.css
 website/css/main.css
 /demo/ionic/.angular/cache/
+demo/jquery/views/index.html
+demo/web/views/index.html

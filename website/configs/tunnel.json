@@ -1,6 +1,7 @@
 {
   "fullScreen": {
-    "enable": true
+    "enable": true,
+    "zIndex": -1
   },
   "fpsLimit": 60,
   "particles": {

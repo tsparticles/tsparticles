@@ -6,6 +6,25 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.0.0-beta.2...tsparticles-engine@2.0.0-beta.3) (2021-12-07)
 
 **Note:** Version bump only for package tsparticles-engine
+## [1.39.2](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.39.1...tsparticles@1.39.2) (2022-01-29)
+
+**Note:** Version bump only for package tsparticles
+
+
+
+
+
+## [1.39.1](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.39.0...tsparticles@1.39.1) (2022-01-26)
+
+
+### Bug Fixes
+
+* fixed issues with absorbers and emitters plugins Container extension methods ([ce196be](https://github.com/matteobruni/tsparticles/commit/ce196bebd035281c08b5c77c5301ba1ebd7e734f))
+
+
+
+
+
 # [1.39.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.38.0...tsparticles@1.39.0) (2022-01-08)
 
 

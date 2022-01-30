@@ -1,4 +1,4 @@
-import type { Container, ICoordinates, IRgb, Particle } from "tsparticles-engine";
+import type { Container, ICoordinates, IRgb, Particle, RecursivePartial } from "tsparticles-engine";
 import {
     RotateDirection,
     Vector,
@@ -9,6 +9,7 @@ import {
     getStyleFromRgb,
     isPointInside,
 } from "tsparticles-engine";
+import { Absorber } from "./Options/Classes/Absorber";
 import type { Absorbers } from "./Absorbers";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
 import type { IAbsorberSizeLimit } from "./Options/Interfaces/IAbsorberSizeLimit";
@@ -35,39 +36,37 @@ export class AbsorberInstance {
     private dragging;
 
     private readonly initialPosition?: Vector;
-    private readonly options: IAbsorber;
+    private readonly options;
 
     constructor(
         private readonly absorbers: Absorbers,
         private readonly container: Container,
-        options: IAbsorber,
+        options: RecursivePartial<IAbsorber>,
         position?: ICoordinates
     ) {
         this.initialPosition = position ? Vector.create(position.x, position.y) : undefined;
-        this.options = options;
-        this.dragging = false;
 
+        if (options instanceof Absorber) {
+            this.options = options;
+        } else {
+            this.options = new Absorber();
+            this.options.load(options);
+        }
+
+        this.dragging = false;
         this.name = this.options.name;
         this.opacity = this.options.opacity;
-        this.size = getRangeValue(options.size.value) * container.retina.pixelRatio;
-        this.mass = this.size * options.size.density * container.retina.reduceFactor;
+        this.size = getRangeValue(this.options.size.value) * container.retina.pixelRatio;
+        this.mass = this.size * this.options.size.density * container.retina.reduceFactor;
 
-        const limit = options.size.limit;
+        const limit = this.options.size.limit;
 
-        this.limit =
-            typeof limit === "number"
-                ? {
-                      radius: limit * container.retina.pixelRatio * container.retina.reduceFactor,
-                      mass: 0,
-                  }
-                : {
-                      radius: (limit?.radius ?? 0) * container.retina.pixelRatio * container.retina.reduceFactor,
-                      mass: limit?.mass ?? 0,
-                  };
+        this.limit = {
+            radius: limit.radius * container.retina.pixelRatio * container.retina.reduceFactor,
+            mass: limit.mass,
+        };
 
-        const color = typeof options.color === "string" ? { value: options.color } : options.color;
-
-        this.color = colorToRgb(color) ?? {
+        this.color = colorToRgb(this.options.color) ?? {
             b: 0,
             g: 0,
             r: 0,

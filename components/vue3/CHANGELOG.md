@@ -9,6 +9,25 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+## [1.22.2](https://github.com/matteobruni/tsparticles/compare/particles.vue3@1.22.1...particles.vue3@1.22.2) (2022-01-29)
+
+**Note:** Version bump only for package particles.vue3
+
+
+
+
+
+## [1.22.1](https://github.com/matteobruni/tsparticles/compare/particles.vue3@1.22.0...particles.vue3@1.22.1) (2022-01-26)
+
+
+### Bug Fixes
+
+* upgrade core-js from 3.17.3 to 3.20.1 ([bb54ae4](https://github.com/matteobruni/tsparticles/commit/bb54ae4727875006def6ebacdec1d904707c7440))
+
+
+
+
+
 # [1.22.0](https://github.com/matteobruni/tsparticles/compare/particles.vue3@1.21.0...particles.vue3@1.22.0) (2022-01-08)
 
 **Note:** Version bump only for package particles.vue3

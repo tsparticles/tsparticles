@@ -9,6 +9,22 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+## [2.22.2](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.22.1...particles.vue@2.22.2) (2022-01-29)
+
+**Note:** Version bump only for package particles.vue
+
+
+
+
+
+## [2.22.1](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.22.0...particles.vue@2.22.1) (2022-01-26)
+
+**Note:** Version bump only for package particles.vue
+
+
+
+
+
 # [2.22.0](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.21.0...particles.vue@2.22.0) (2022-01-08)
 
 **Note:** Version bump only for package particles.vue
