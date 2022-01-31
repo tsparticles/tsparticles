@@ -125,7 +125,13 @@ export class Bubbler extends ExternalInteractorBase {
                           ),
                 query = container.particles.quadTree.query(area);
 
-            for (const particle of query) {
+            for (const id of query) {
+                const particle = container.particles.getParticle(id);
+
+                if (!particle) {
+                    continue;
+                }
+
                 if (!area.contains(particle.getPosition())) {
                     continue;
                 }
@@ -220,7 +226,13 @@ export class Bubbler extends ExternalInteractorBase {
         const distance = container.retina.bubbleModeDistance,
             query = container.particles.quadTree.queryCircle(mouseClickPos, distance);
 
-        for (const particle of query) {
+        for (const id of query) {
+            const particle = container.particles.getParticle(id);
+
+            if (!particle) {
+                continue;
+            }
+
             if (!container.bubble.clicking) {
                 continue;
             }
@@ -290,7 +302,13 @@ export class Bubbler extends ExternalInteractorBase {
             query = container.particles.quadTree.queryCircle(mousePos, distance);
 
         //for (const { distance, particle } of query) {
-        for (const particle of query) {
+        for (const id of query) {
+            const particle = container.particles.getParticle(id);
+
+            if (!particle) {
+                continue;
+            }
+
             particle.bubble.inRange = true;
 
             const pos = particle.getPosition(),

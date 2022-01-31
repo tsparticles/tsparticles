@@ -521,7 +521,7 @@ export class Particle implements IParticle {
 
         let overlaps = false;
 
-        for (const particle of this.container.particles.array) {
+        for (const [, particle] of this.container.particles.array) {
             if (getDistance(pos, particle.position) < radius + particle.getRadius()) {
                 overlaps = true;
                 break;

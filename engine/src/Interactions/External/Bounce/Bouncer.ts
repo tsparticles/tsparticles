@@ -96,9 +96,16 @@ export class Bouncer extends ExternalInteractorBase {
     }
 
     private processBounce(position: ICoordinates, radius: number, area: Range): void {
-        const query = this.container.particles.quadTree.query(area);
+        const container = this.container,
+            query = container.particles.quadTree.query(area);
 
-        for (const particle of query) {
+        for (const id of query) {
+            const particle = container.particles.getParticle(id);
+
+            if (!particle) {
+                continue;
+            }
+
             if (area instanceof Circle) {
                 circleBounce(circleBounceDataFromParticle(particle), {
                     position,

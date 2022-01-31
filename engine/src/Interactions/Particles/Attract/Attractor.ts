@@ -16,8 +16,10 @@ export class Attractor extends ParticlesInteractorBase {
             pos1 = p1.getPosition(),
             query = container.particles.quadTree.queryCircle(pos1, distance);
 
-        for (const p2 of query) {
-            if (p1 === p2 || !p2.options.move.attract.enable || p2.destroyed || p2.spawning) {
+        for (const id of query) {
+            const p2 = container.particles.getParticle(id);
+
+            if (!p2 || p1 === p2 || !p2.options.move.attract.enable || p2.destroyed || p2.spawning) {
                 continue;
             }
 

@@ -39,7 +39,13 @@ export class Grabber extends ExternalInteractorBase {
             const distance = container.retina.grabModeDistance,
                 query = container.particles.quadTree.queryCircle(mousePos, distance);
 
-            for (const particle of query) {
+            for (const id of query) {
+                const particle = container.particles.getParticle(id);
+
+                if (!particle) {
+                    continue;
+                }
+
                 /*
                    draw a line between the cursor and the particle
                    if the distance between them is under the config distance

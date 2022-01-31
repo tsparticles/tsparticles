@@ -2,7 +2,6 @@ import type { ICoordinates, IDimension } from "../Interfaces";
 import { Circle } from "./Circle";
 import { CircleWarp } from "./CircleWarp";
 import type { Container } from "../Container";
-import type { Particle } from "../Particle";
 import type { Point } from "./Point";
 import type { Range } from "./Range";
 import { Rectangle } from "./Rectangle";
@@ -64,11 +63,11 @@ export class QuadTree {
         );
     }
 
-    queryCircle(position: ICoordinates, radius: number): Particle[] {
+    queryCircle(position: ICoordinates, radius: number): number[] {
         return this.query(new Circle(position.x, position.y, radius));
     }
 
-    queryCircleWarp(position: ICoordinates, radius: number, containerOrSize: Container | IDimension): Particle[] {
+    queryCircleWarp(position: ICoordinates, radius: number, containerOrSize: Container | IDimension): number[] {
         const container = containerOrSize as Container;
         const size = containerOrSize as IDimension;
 
@@ -82,11 +81,11 @@ export class QuadTree {
         );
     }
 
-    queryRectangle(position: ICoordinates, size: IDimension): Particle[] {
+    queryRectangle(position: ICoordinates, size: IDimension): number[] {
         return this.query(new Rectangle(position.x, position.y, size.width, size.height));
     }
 
-    query(range: Range, found?: Particle[]): Particle[] {
+    query(range: Range, found?: number[]): number[] {
         const res = found ?? [];
 
         if (!range.intersects(this.rectangle)) {
@@ -97,7 +96,7 @@ export class QuadTree {
                     continue;
                 }
 
-                res.push(p.particle);
+                res.push(p.particle.id);
             }
 
             if (this.divided) {

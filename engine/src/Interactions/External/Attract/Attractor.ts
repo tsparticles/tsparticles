@@ -67,7 +67,13 @@ export class Attractor extends ExternalInteractorBase {
         const attractOptions = container.actualOptions.interactivity.modes.attract;
         const query = container.particles.quadTree.query(area);
 
-        for (const particle of query) {
+        for (const id of query) {
+            const particle = container.particles.getParticle(id);
+
+            if (!particle) {
+                continue;
+            }
+
             const { dx, dy, distance } = getDistances(particle.position, position);
             const velocity = attractOptions.speed * attractOptions.factor;
             const attractFactor = clamp(

@@ -47,10 +47,22 @@ export class Connector extends ExternalInteractorBase {
 
             let i = 0;
 
-            for (const p1 of query) {
+            for (const id1 of query) {
+                const p1 = container.particles.getParticle(id1);
+
+                if (!p1) {
+                    continue;
+                }
+
                 const pos1 = p1.getPosition();
 
-                for (const p2 of query.slice(i + 1)) {
+                for (const id2 of query.slice(i + 1)) {
+                    const p2 = container.particles.getParticle(id2);
+
+                    if (!p2) {
+                        continue;
+                    }
+
                     const pos2 = p2.getPosition(),
                         distMax = Math.abs(container.retina.connectModeDistance),
                         xDiff = Math.abs(pos1.x - pos2.x),

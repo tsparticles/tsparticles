@@ -108,17 +108,21 @@ export class Repulser extends ExternalInteractorBase {
             query = container.particles.quadTree.query(area),
             repulseOptions = container.actualOptions.interactivity.modes.repulse;
 
-        for (const particle of query) {
+        for (const id of query) {
+            const particle = container.particles.getParticle(id);
+
+            if (!particle) {
+                continue;
+            }
+
             const { dx, dy, distance } = getDistances(particle.position, position),
                 velocity = (divRepulse?.speed ?? repulseOptions.speed) * repulseOptions.factor,
-                repulseFactor = clamp(
-                    calcEasing(1 - distance / repulseRadius, repulseOptions.easing) * velocity,
-                    0,
-                    repulseOptions.maxSpeed
-                ),
+                repulseFactor = calcEasing(1 - distance / repulseRadius, repulseOptions.easing) * velocity,
+                clamped =
+                    repulseOptions.maxSpeed > 0 ? clamp(repulseFactor, 0, repulseOptions.maxSpeed) : repulseFactor,
                 normVec = Vector.create(
-                    distance === 0 ? velocity : (dx / distance) * repulseFactor,
-                    distance === 0 ? velocity : (dy / distance) * repulseFactor
+                    !distance ? velocity : (dx / distance) * clamped,
+                    !distance ? velocity : (dy / distance) * clamped
                 );
 
             particle.position.addTo(normVec);
@@ -152,7 +156,13 @@ export class Repulser extends ExternalInteractorBase {
             const range = new Circle(mouseClickPos.x, mouseClickPos.y, repulseRadius),
                 query = container.particles.quadTree.query(range);
 
-            for (const particle of query) {
+            for (const id of query) {
+                const particle = container.particles.getParticle(id);
+
+                if (!particle) {
+                    continue;
+                }
+
                 const { dx, dy, distance } = getDistances(mouseClickPos, particle.position),
                     d = distance ** 2,
                     velocity = container.actualOptions.interactivity.modes.repulse.speed,

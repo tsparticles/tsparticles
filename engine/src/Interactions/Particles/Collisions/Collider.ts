@@ -49,8 +49,11 @@ export class Collider extends ParticlesInteractorBase {
 
         const query = container.particles.quadTree.queryCircle(pos1, radius1 * 2);
 
-        for (const p2 of query) {
+        for (const id of query) {
+            const p2 = container.particles.getParticle(id);
+
             if (
+                !p2 ||
                 p1 === p2 ||
                 !p2.options.collisions.enable ||
                 p1.options.collisions.mode !== p2.options.collisions.mode ||

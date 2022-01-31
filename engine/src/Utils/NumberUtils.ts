@@ -159,7 +159,7 @@ export function calcEasing(value: number, type: EasingType): number {
             return 1 + c3 * Math.pow(value - 1, 3) + c1 * Math.pow(value - 1, 2);
         }
         case EasingType.easeOutCirc:
-            return Math.sqrt(1 - Math.pow(value - 1, 2));
+            return Math.sqrt(Math.max(0, 1 - Math.pow(value - 1, 2)));
         default:
             return value;
     }

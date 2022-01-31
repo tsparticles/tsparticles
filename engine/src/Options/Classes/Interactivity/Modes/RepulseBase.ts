@@ -19,7 +19,7 @@ export abstract class RepulseBase implements IRepulseBase, IOptionLoader<IRepuls
         this.duration = 0.4;
         this.factor = 100;
         this.speed = 1;
-        this.maxSpeed = 50;
+        this.maxSpeed = 0;
         this.easing = EasingType.easeOutQuad;
     }
 

@@ -454,7 +454,17 @@ export class Container {
                     x: pos.x * pxRatio,
                     y: pos.y * pxRatio,
                 },
-                particles = this.particles.quadTree.queryCircle(posRetina, radius * pxRatio);
+                ids = this.particles.quadTree.queryCircle(posRetina, radius * pxRatio);
+
+            const particles: Particle[] = [];
+
+            ids.forEach((id) => {
+                const p = this.particles.getParticle(id);
+
+                if (p) {
+                    particles.push(p);
+                }
+            });
 
             callback(e, particles);
         };

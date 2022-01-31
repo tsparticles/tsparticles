@@ -15,7 +15,7 @@ import type { RecursivePartial } from "../Types";
  */
 export class Particles {
     get count(): number {
-        return this.array.length;
+        return this.array.size;
     }
 
     /**
@@ -30,7 +30,7 @@ export class Particles {
     /**
      * All the particles used in canvas
      */
-    array: Particle[];
+    array: Map<number, Particle>;
     zArray: Particle[];
 
     pushing?: boolean;
@@ -46,7 +46,7 @@ export class Particles {
 
     constructor(private readonly container: Container) {
         this.nextId = 0;
-        this.array = [];
+        this.array = new Map<number, Particle>();
         this.zArray = [];
         this.mover = new ParticlesMover(container);
         this.limit = 0;
@@ -134,26 +134,27 @@ export class Particles {
         }
 
         let deleted = 0;
+        const array = Array.from(this.array.values());
 
         for (let i = index; deleted < quantity && i < this.count; i++) {
-            const particle = this.array[i];
-
-            if (!particle || particle.group !== group) {
-                continue;
+            if (this.remove(array[i], group, override)) {
+                deleted++;
             }
-
-            particle.destroy(override);
-
-            this.array.splice(i--, 1);
-            const zIdx = this.zArray.indexOf(particle);
-            this.zArray.splice(zIdx, 1);
-
-            deleted++;
         }
     }
 
-    remove(particle: Particle, group?: string, override?: boolean): void {
-        this.removeAt(this.array.indexOf(particle), undefined, group, override);
+    remove(particle: Particle, group?: string, override?: boolean): boolean {
+        if (!particle || particle.group !== group) {
+            return false;
+        }
+
+        particle.destroy(override);
+
+        this.array.delete(particle.id);
+        const zIdx = this.zArray.indexOf(particle);
+        this.zArray.splice(zIdx, 1);
+
+        return true;
     }
 
     update(delta: IDelta): void {
@@ -168,7 +169,7 @@ export class Particles {
             }
         }
 
-        for (const particle of this.array) {
+        for (const [, particle] of this.array) {
             // let d = ( dx = container.interactivity.mouse.click_pos_x - p.x ) * dx +
             //         ( dy = container.interactivity.mouse.click_pos_y - p.y ) * dy;
             // let f = -BANG_SIZE / d;
@@ -214,7 +215,7 @@ export class Particles {
         this.interactionManager.externalInteract(delta);
 
         // this loop is required to be done after mouse interactions
-        for (const particle of container.particles.array) {
+        for (const [, particle] of container.particles.array) {
             for (const updater of this.updaters) {
                 updater.update(particle, delta);
             }
@@ -273,7 +274,7 @@ export class Particles {
      * Removes all particles from the array
      */
     clear(): void {
-        this.array = [];
+        this.array = new Map<number, Particle>();
         this.zArray = [];
     }
 
@@ -286,6 +287,10 @@ export class Particles {
         }
 
         this.pushing = false;
+    }
+
+    getParticle(id: number): Particle | undefined {
+        return this.array.get(id);
     }
 
     addParticle(
@@ -438,7 +443,10 @@ export class Particles {
         const optParticlesNumber = numberOptions.value;
         const optParticlesLimit = numberOptions.limit > 0 ? numberOptions.limit : optParticlesNumber;
         const particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + manualCount;
-        const particlesCount = Math.min(this.count, this.array.filter((t) => t.group === group).length);
+        const particlesCount = Math.min(
+            this.count,
+            Array.from(this.array.values()).filter((t) => t.group === group).length
+        );
 
         this.limit = numberOptions.limit * densityFactor;
 
@@ -481,7 +489,7 @@ export class Particles {
                 return;
             }
 
-            this.array.push(particle);
+            this.array.set(particle.id, particle);
             this.zArray.push(particle);
 
             this.nextId++;
