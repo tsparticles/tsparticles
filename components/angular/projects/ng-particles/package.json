@@ -51,10 +51,16 @@
     "**/*"
   ],
   "types": "ng-particles.d.ts",
-  "funding": {
-    "type": "github",
-    "url": "https://github.com/sponsors/matteobruni"
-  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/matteobruni"
+    },
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/matteobruni"
+    }
+  ],
   "peerDependencies": {
     "@angular/common": ">=2.0.0",
     "@angular/core": ">=2.0.0",
