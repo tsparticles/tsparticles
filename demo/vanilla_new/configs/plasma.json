@@ -8,7 +8,7 @@
       "value": "#000000"
     }
   },
-  "fpsLimit": 60,
+  "fpsLimit": 120,
   "particles": {
     "number": {
       "value": 150,

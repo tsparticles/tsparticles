@@ -110,7 +110,7 @@ export class Container {
      * @param presets all the presets to load with options
      */
     constructor(readonly id: string, sourceOptions?: RecursivePartial<IOptions>, ...presets: string[]) {
-        this.fpsLimit = 60;
+        this.fpsLimit = 120;
         this.duration = 0;
         this.lifeTime = 0;
         this.firstStart = true;
@@ -595,7 +595,7 @@ export class Container {
 
         this.duration = getRangeValue(this.actualOptions.duration);
         this.lifeTime = 0;
-        this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 60;
+        this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 120;
 
         const availablePlugins = Plugins.getAvailablePlugins(this);
 

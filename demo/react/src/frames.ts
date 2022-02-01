@@ -21,7 +21,7 @@ export const frames: TFrame[] = [
         backgroundColor: 'linear-gradient(135deg, #606c88 0%, #3f4c6b 100%)',
         name: 'Simple',
         options: {
-            fpsLimit: 60,
+            fpsLimit: 120,
             particles: {
                 number: {
                     value: 50
@@ -51,7 +51,7 @@ export const frames: TFrame[] = [
         backgroundColor: '#232741',
         name: 'Bubbles',
         options: {
-            fpsLimit: 60,
+            fpsLimit: 120,
             particles: {
                 number: {
                     value: 160,
@@ -109,7 +109,7 @@ export const frames: TFrame[] = [
         backgroundColor: 'linear-gradient(to bottom, #a90329 0%,#8f0222 44%,#6d0019 100%)',
         name: 'Snow',
         options: {
-            fpsLimit: 60,
+            fpsLimit: 120,
             particles: {
                 number: {
                     value: 160,
@@ -150,7 +150,7 @@ export const frames: TFrame[] = [
         backgroundColor: 'linear-gradient(45deg, #2d364c 0%,#252d3f 100%)',
         name: 'Night Sky',
         options: {
-            fpsLimit: 60,
+            fpsLimit: 120,
             particles: {
                 number: {
                     value: 60,
@@ -200,7 +200,7 @@ export const frames: TFrame[] = [
         backgroundColor: 'linear-gradient(45deg, #7d7e7d 0%,#0e0e0e 100%)',
         name: 'Multiple images',
         options: {
-            fpsLimit: 60,
+            fpsLimit: 120,
             particles: {
                 number: {
                     value: 8,
