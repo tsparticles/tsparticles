@@ -4,7 +4,7 @@
     "zIndex": 0
   },
   "detectRetina": true,
-  "fpsLimit": 60,
+  "fpsLimit": 120,
   "particles": {
     "color": {
       "value": [
