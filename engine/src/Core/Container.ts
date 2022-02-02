@@ -377,7 +377,7 @@ export class Container {
         this.canvas.clear();
 
         if (this.interactivity.element instanceof HTMLElement && this.intersectionObserver) {
-            this.intersectionObserver.observe(this.interactivity.element);
+            this.intersectionObserver.unobserve(this.interactivity.element);
         }
 
         for (const [, plugin] of this.plugins) {
