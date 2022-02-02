@@ -152,7 +152,7 @@ export class Loader {
 
         const data = await response.json();
 
-        return await this.loadOptions({
+        return this.loadOptions({
             tagId: params.tagId,
             element: params.element,
             index,
@@ -246,7 +246,7 @@ export class Loader {
             url = jsonUrl;
         }
 
-        return await this.loadRemoteOptions({ tagId: id, url, index });
+        return this.loadRemoteOptions({ tagId: id, url, index });
     }
 
     /**
@@ -280,7 +280,7 @@ export class Loader {
             newIndex = index;
         }
 
-        return await this.loadRemoteOptions({ tagId: newId, url, index: newIndex, element });
+        return this.loadRemoteOptions({ tagId: newId, url, index: newIndex, element });
     }
 
     /**

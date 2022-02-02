@@ -67,7 +67,7 @@ export class EventListeners {
         this.touchEndClickHandler = (e): void => this.mouseTouchClick(e);
         this.mouseUpHandler = (e): void => this.mouseTouchClick(e);
         this.mouseDownHandler = (): void => this.mouseDown();
-        this.visibilityChangeHandler = async (): Promise<void> => await this.handleVisibilityChange();
+        this.visibilityChangeHandler = async (): Promise<void> => this.handleVisibilityChange();
         this.themeChangeHandler = (e): void => this.handleThemeChange(e);
         this.oldThemeChangeHandler = (e): void => this.handleThemeChange(e);
         this.resizeHandler = (): void => this.handleWindowResize();
@@ -202,7 +202,7 @@ export class EventListeners {
             delete this.resizeTimeout;
         }
 
-        this.resizeTimeout = setTimeout(async () => await this.container.canvas?.windowResize(), 500);
+        this.resizeTimeout = setTimeout(async () => this.container.canvas?.windowResize(), 500);
     }
 
     private async handleVisibilityChange(): Promise<void> {
