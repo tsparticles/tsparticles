@@ -9,13 +9,20 @@ import type {
 } from "./Core";
 import { Loader, Plugins } from "./Core";
 import type {
+    QueryTreeCallback,
     RecursivePartial,
     ShapeDrawerAfterEffectFunction,
     ShapeDrawerDestroyFunction,
     ShapeDrawerDrawFunction,
     ShapeDrawerInitFunction,
     SingleOrMultiple,
+    WorkerAddData,
+    WorkerDestroyData,
+    WorkerInitData,
+    WorkerOutputQueryData,
+    WorkerQueryData,
 } from "./Types";
+import { WorkerInputEventType, WorkerOutputEventType } from "./Enums";
 import type { IOptions } from "./Options/Interfaces/IOptions";
 
 /**
@@ -24,10 +31,25 @@ import type { IOptions } from "./Options/Interfaces/IOptions";
  * @category Engine
  */
 export class Engine {
+    readonly domArray: Container[];
+    readonly plugins;
+
     #initialized: boolean;
+    readonly #loader;
+    #worker?: Worker;
+    #nextQueryId: number;
+    readonly #workerQueryCallbacks: Map<string, QueryTreeCallback>;
+
+    tmpCbs: Map<string, QueryTreeCallback>;
 
     constructor() {
+        this.domArray = [];
         this.#initialized = false;
+        this.#workerQueryCallbacks = new Map<string, QueryTreeCallback>();
+        this.tmpCbs = this.#workerQueryCallbacks;
+        this.#loader = new Loader(this);
+        this.plugins = new Plugins(this);
+        this.#nextQueryId = 1;
     }
 
     /**
@@ -35,6 +57,16 @@ export class Engine {
      */
     init(): void {
         if (!this.#initialized) {
+            /*try {
+                // eslint-disable-next-line
+                // @ts-ignore
+                this.#worker = new Worker(new URL("./tsparticles.worker.min.js", import.meta.url));
+            } catch {*/
+            this.#worker = new Worker("/tsparticles/tsparticles.worker.min.js");
+            //}
+
+            this.#worker.addEventListener("message", (e) => this.#handleWorkerMessage(e));
+
             this.#initialized = true;
         }
     }
@@ -51,7 +83,7 @@ export class Engine {
         options: RecursivePartial<IOptions>[],
         index?: number
     ): Promise<Container | undefined> {
-        return Loader.load(tagId, options, index);
+        return this.#loader.load(tagId, options, index);
     }
 
     /**
@@ -64,7 +96,7 @@ export class Engine {
         tagId: string | SingleOrMultiple<RecursivePartial<IOptions>>,
         options?: SingleOrMultiple<RecursivePartial<IOptions>>
     ): Promise<Container | undefined> {
-        return Loader.load(tagId, options);
+        return this.#loader.load(tagId, options);
     }
 
     /**
@@ -78,7 +110,7 @@ export class Engine {
         element: HTMLElement | RecursivePartial<IOptions>,
         options?: RecursivePartial<IOptions>
     ): Promise<Container | undefined> {
-        return Loader.set(id, element, options);
+        return this.#loader.set(id, element, options);
     }
 
     /**
@@ -94,7 +126,7 @@ export class Engine {
         pathConfigJson?: SingleOrMultiple<string> | number,
         index?: number
     ): Promise<Container | undefined> {
-        return Loader.loadJSON(tagId, pathConfigJson, index);
+        return this.#loader.loadJSON(tagId, pathConfigJson, index);
     }
 
     /**
@@ -111,7 +143,7 @@ export class Engine {
         pathConfigJson?: SingleOrMultiple<string> | number,
         index?: number
     ): Promise<Container | undefined> {
-        return Loader.setJSON(id, element, pathConfigJson, index);
+        return this.#loader.setJSON(id, element, pathConfigJson, index);
     }
 
     /**
@@ -119,7 +151,7 @@ export class Engine {
      * @param callback The function called after the click event is fired
      */
     setOnClickHandler(callback: (e: Event, particles?: Particle[]) => void): void {
-        Loader.setOnClickHandler(callback);
+        this.#loader.setOnClickHandler(callback);
     }
 
     /**
@@ -127,7 +159,7 @@ export class Engine {
      * @returns All the [[Container]] objects loaded
      */
     dom(): Container[] {
-        return Loader.dom();
+        return this.#loader.dom();
     }
 
     /**
@@ -136,7 +168,7 @@ export class Engine {
      * @returns The [[Container]] object at specified index, if present or not destroyed, otherwise undefined
      */
     domItem(index: number): Container | undefined {
-        return Loader.domItem(index);
+        return this.#loader.domItem(index);
     }
 
     /**
@@ -176,7 +208,7 @@ export class Engine {
             customDrawer = drawer;
         }
 
-        Plugins.addShapeDrawer(shape, customDrawer);
+        this.plugins.addShapeDrawer(shape, customDrawer);
 
         await this.refresh();
     }
@@ -188,7 +220,7 @@ export class Engine {
      * @param override if true, the preset will override any existing with the same name
      */
     async addPreset(preset: string, options: RecursivePartial<IOptions>, override = false): Promise<void> {
-        Plugins.addPreset(preset, options, override);
+        this.plugins.addPreset(preset, options, override);
 
         await this.refresh();
     }
@@ -198,7 +230,7 @@ export class Engine {
      * @param plugin the plugin implementation of [[IPlugin]]
      */
     async addPlugin(plugin: IPlugin): Promise<void> {
-        Plugins.addPlugin(plugin);
+        this.plugins.addPlugin(plugin);
 
         await this.refresh();
     }
@@ -209,7 +241,7 @@ export class Engine {
      * @param generator the path generator object
      */
     async addPathGenerator(name: string, generator: IMovePathGenerator): Promise<void> {
-        Plugins.addPathGenerator(name, generator);
+        this.plugins.addPathGenerator(name, generator);
 
         await this.refresh();
     }
@@ -220,7 +252,7 @@ export class Engine {
      * @param interactorInitializer
      */
     async addInteractor(name: string, interactorInitializer: (container: Container) => IInteractor): Promise<void> {
-        Plugins.addInteractor(name, interactorInitializer);
+        this.plugins.addInteractor(name, interactorInitializer);
 
         await this.refresh();
     }
@@ -234,8 +266,65 @@ export class Engine {
         name: string,
         updaterInitializer: (container: Container) => IParticleUpdater
     ): Promise<void> {
-        Plugins.addParticleUpdater(name, updaterInitializer);
+        this.plugins.addParticleUpdater(name, updaterInitializer);
 
         await this.refresh();
+    }
+
+    async initTree(data: WorkerInitData): Promise<void> {
+        this.#worker?.postMessage({
+            ...data,
+            type: WorkerInputEventType.init,
+        });
+    }
+
+    async addTree(data: WorkerAddData): Promise<void> {
+        this.#worker?.postMessage({
+            ...data,
+            type: WorkerInputEventType.add,
+        });
+    }
+
+    async destroyTree(data: WorkerDestroyData): Promise<void> {
+        this.#worker?.postMessage({
+            ...data,
+            type: WorkerInputEventType.destroy,
+        });
+    }
+
+    async queryTree(data: WorkerQueryData, callback: QueryTreeCallback): Promise<string> {
+        const queryId = `${data.queryId}_${this.#nextQueryId++}`;
+
+        this.#workerQueryCallbacks.set(queryId, callback);
+
+        data.queryId = queryId;
+
+        this.#worker?.postMessage({
+            ...data,
+            type: WorkerInputEventType.query,
+        });
+
+        return queryId;
+    }
+
+    #handleWorkerQueryMessage(data: WorkerOutputQueryData): void {
+        const { containerId, queryId, query } = data,
+            cb = this.#workerQueryCallbacks.get(queryId);
+
+        if (cb) {
+            cb(containerId, queryId, query);
+        }
+
+        this.#workerQueryCallbacks.delete(queryId);
+    }
+
+    #handleWorkerMessage(e: MessageEvent): void {
+        switch (e.data.type) {
+            case WorkerOutputEventType.query: {
+                this.#handleWorkerQueryMessage(e.data);
+
+                break;
+            }
+        }
     }
 }

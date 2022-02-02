@@ -15,6 +15,7 @@ const minBanner = `tsParticles v${version} by Matteo Bruni`;
 
 const getConfig = (entry) => {
     const isSlim = Object.keys(entry).find((t) => t.indexOf("slim") >= 0);
+    const isWorker = Object.keys(entry).find((t) => t.indexOf("worker") >= 0);
     const reportFileName = isSlim ? "report.slim" : "report";
 
     return {
@@ -23,11 +24,14 @@ const getConfig = (entry) => {
             path: path.resolve(__dirname, "dist"),
             filename: "[name].js",
             libraryTarget: "umd",
-            globalObject: "window"
+            globalObject: isWorker ? "this" : "window"
         },
         resolve: {
             extensions: [ ".js", ".json" ]
         },
+        externals: [
+            "./tsparticles.worker.min.js"
+        ],
         module: {
             rules: [
                 {
@@ -88,6 +92,10 @@ const getConfig = (entry) => {
 };
 
 module.exports = [
+    getConfig({
+        "tsparticles.worker": "./dist/browser/worker.js",
+        "tsparticles.worker.min": "./dist/browser/worker.js"
+    }),
     getConfig({
         "tsparticles.engine": "./dist/browser/index.engine.js",
         "tsparticles.engine.min": "./dist/browser/index.engine.js"

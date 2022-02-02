@@ -1,10 +1,11 @@
 import type { ICoordinates, IDelta, IMouseData, IParticle, IRgb } from "./Interfaces";
-import { InteractionManager, ParticlesMover, Plugins, Point, QuadTree, Rectangle } from "./Utils";
+import { InteractionManager, ParticlesMover } from "./Utils";
 import { getRangeMax, getRangeMin, getRangeValue, randomInRange, setRangeValue } from "../Utils";
 import type { Container } from "./Container";
+import type { Engine } from "../engine";
 import type { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
-import { IParticlesFrequencies } from "./Interfaces/IParticlesFrequencies";
+import type { IParticlesFrequencies } from "./Interfaces/IParticlesFrequencies";
 import { Particle } from "./Particle";
 import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
 import type { RecursivePartial } from "../Types";
@@ -18,10 +19,6 @@ export class Particles {
         return this.array.size;
     }
 
-    /**
-     * The quad tree used to search particles withing ranges
-     */
-    quadTree;
     linksColors;
     limit;
     needsSort;
@@ -43,8 +40,10 @@ export class Particles {
     private nextId;
     private readonly freqs: IParticlesFrequencies;
     private readonly mover;
+    readonly #engine;
 
-    constructor(private readonly container: Container) {
+    constructor(engine: Engine, private readonly container: Container) {
+        this.#engine = engine;
         this.nextId = 0;
         this.array = new Map<number, Particle>();
         this.zArray = [];
@@ -56,22 +55,24 @@ export class Particles {
             links: new Map<string, number>(),
             triangles: new Map<string, number>(),
         };
-        this.interactionManager = new InteractionManager(container);
+        this.interactionManager = new InteractionManager(this.#engine, container);
 
         const canvasSize = this.container.canvas.size;
 
         this.linksColors = new Map<string, IRgb | string | undefined>();
-        this.quadTree = new QuadTree(
-            new Rectangle(
-                -canvasSize.width / 4,
-                -canvasSize.height / 4,
-                (canvasSize.width * 3) / 2,
-                (canvasSize.height * 3) / 2
-            ),
-            4
-        );
+        this.#engine.initTree({
+            position: {
+                x: -canvasSize.width / 4,
+                y: -canvasSize.height / 4,
+            },
+            size: {
+                width: (canvasSize.width * 3) / 2,
+                height: (canvasSize.height * 3) / 2,
+            },
+            containerId: this.container.treeId,
+        });
 
-        this.updaters = Plugins.getUpdaters(container, true);
+        this.updaters = this.#engine.plugins.getUpdaters(container, true);
     }
 
     /* --------- tsParticles functions - particles ----------- */
@@ -86,7 +87,7 @@ export class Particles {
 
         let handled = false;
 
-        this.updaters = Plugins.getUpdaters(container, true);
+        this.updaters = this.#engine.plugins.getUpdaters(container, true);
         this.interactionManager.init();
 
         for (const [, plugin] of container.plugins) {
@@ -157,7 +158,7 @@ export class Particles {
         return true;
     }
 
-    update(delta: IDelta): void {
+    async update(delta: IDelta): Promise<void> {
         const container = this.container;
         const particlesToDelete = [];
 
@@ -205,30 +206,35 @@ export class Particles {
                 continue;
             }
 
-            this.quadTree.insert(new Point(particle.getPosition(), particle));
+            this.#engine.addTree({
+                containerId: this.container.treeId,
+                particleId: particle.id,
+                radius: particle.getRadius(),
+                position: particle.getPosition(),
+            });
         }
 
         for (const particle of particlesToDelete) {
             this.remove(particle);
         }
 
-        this.interactionManager.externalInteract(delta);
+        await this.interactionManager.externalInteract(delta);
 
         // this loop is required to be done after mouse interactions
         for (const [, particle] of container.particles.array) {
             for (const updater of this.updaters) {
-                updater.update(particle, delta);
+                await updater.update(particle, delta);
             }
 
             if (!particle.destroyed && !particle.spawning) {
-                this.interactionManager.particlesInteract(particle, delta);
+                await this.interactionManager.particlesInteract(particle, delta);
             }
         }
 
         delete container.canvas.resizeFactor;
     }
 
-    draw(delta: IDelta): void {
+    async draw(delta: IDelta): Promise<void> {
         const container = this.container;
 
         /* clear canvas */
@@ -236,18 +242,20 @@ export class Particles {
 
         const canvasSize = this.container.canvas.size;
 
-        this.quadTree = new QuadTree(
-            new Rectangle(
-                -canvasSize.width / 4,
-                -canvasSize.height / 4,
-                (canvasSize.width * 3) / 2,
-                (canvasSize.height * 3) / 2
-            ),
-            4
-        );
+        this.#engine.initTree({
+            position: {
+                x: -canvasSize.width / 4,
+                y: -canvasSize.height / 4,
+            },
+            size: {
+                width: (canvasSize.width * 3) / 2,
+                height: (canvasSize.height * 3) / 2,
+            },
+            containerId: this.container.treeId,
+        });
 
         /* update each particles param */
-        this.update(delta);
+        await this.update(delta);
 
         if (this.needsSort) {
             this.zArray.sort((a, b) => b.position.z - a.position.z || a.id - b.id);
@@ -477,7 +485,7 @@ export class Particles {
         initializer?: (particle: Particle) => boolean
     ): Particle | undefined {
         try {
-            const particle = new Particle(this.nextId, this.container, position, overrideOptions, group);
+            const particle = new Particle(this.#engine, this.nextId, this.container, position, overrideOptions, group);
 
             let canAdd = true;
 

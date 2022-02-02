@@ -6,7 +6,7 @@ export interface IParticleUpdater {
 
     isEnabled(particle: Particle): boolean;
 
-    update(particle: Particle, delta: IDelta): void;
+    update(particle: Particle, delta: IDelta): Promise<void>;
 
     beforeDraw?: (particle: Particle) => void;
 

@@ -2,7 +2,7 @@
  * [[include:Container.md]]
  * @packageDocumentation
  */
-import { EventListeners, FrameManager, Plugins, Vector } from "./Utils";
+import { EventListeners, FrameManager, Vector } from "./Utils";
 import type {
     IAttract,
     IBubble,
@@ -16,12 +16,14 @@ import type {
 } from "./Interfaces";
 import { animate, cancelAnimation, getRangeValue } from "../Utils";
 import { Canvas } from "./Canvas";
+import type { Engine } from "../engine";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import { Options } from "../Options/Classes/Options";
 import { Particle } from "./Particle";
 import { Particles } from "./Particles";
 import type { RecursivePartial } from "../Types";
 import { Retina } from "./Retina";
+import { WorkerQueryType } from "../Enums";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -99,17 +101,33 @@ export class Container {
     private drawAnimationFrame?: number;
     private readonly presets;
 
+    readonly #engine;
+
+    treeId: string;
+    startCount: number;
+
     private readonly eventListeners;
     private readonly intersectionObserver?;
 
     /**
      * This is the core class, create an instance to have a new working particles manager
      * @constructor
+     * @param engine the main engine related used by this container
+     * @param originalTreeId the id used in tree query requests
      * @param id the id to identify this instance
      * @param sourceOptions the options to load
      * @param presets all the presets to load with options
      */
-    constructor(readonly id: string, sourceOptions?: RecursivePartial<IOptions>, ...presets: string[]) {
+    constructor(
+        engine: Engine,
+        readonly originalTreeId: string,
+        readonly id: string,
+        sourceOptions?: RecursivePartial<IOptions>,
+        ...presets: string[]
+    ) {
+        this.#engine = engine;
+        this.startCount = 1;
+        this.treeId = `${originalTreeId}_${this.startCount}`;
         this.fpsLimit = 60;
         this.duration = 0;
         this.lifeTime = 0;
@@ -124,7 +142,7 @@ export class Container {
         this._initialSourceOptions = sourceOptions;
         this.retina = new Retina(this);
         this.canvas = new Canvas(this);
-        this.particles = new Particles(this);
+        this.particles = new Particles(this.#engine, this);
         this.drawer = new FrameManager(this);
         this.presets = presets;
         this.pathGenerator = {
@@ -156,8 +174,8 @@ export class Container {
         this.drawers = new Map<string, IShapeDrawer>();
         this.density = 1;
         /* tsParticles variables with default values */
-        this._options = new Options();
-        this.actualOptions = new Options();
+        this._options = new Options(this.#engine);
+        this.actualOptions = new Options(this.#engine);
 
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);
@@ -171,7 +189,7 @@ export class Container {
      * Starts animations and resume from pause
      * @param force
      */
-    play(force?: boolean): void {
+    async play(force?: boolean): Promise<void> {
         const needsUpdate = this.paused || force;
 
         if (this.firstStart && !this.actualOptions.autoPlay) {
@@ -191,7 +209,7 @@ export class Container {
             }
         }
 
-        this.draw(needsUpdate || false);
+        await this.draw(needsUpdate || false);
     }
 
     /**
@@ -222,23 +240,25 @@ export class Container {
     /**
      * Draws a frame
      */
-    draw(force: boolean): void {
+    async draw(force: boolean): Promise<void> {
         let refreshTime = force;
 
-        this.drawAnimationFrame = animate()((timestamp) => {
+        this.drawAnimationFrame = animate()(async (timestamp) => {
             if (refreshTime) {
                 this.lastFrameTime = undefined;
 
                 refreshTime = false;
             }
 
-            this.drawer.nextFrame(timestamp);
+            await this.drawer.nextFrame(timestamp);
         });
     }
 
     /**
      * Gets the animation status
-     * @returns `true` is playing, `false` is paused
+     * @returns `
+     true` is playing, `
+     false` is paused
      */
     getAnimationStatus(): boolean {
         return !this.paused && !this.pageHidden;
@@ -329,7 +349,9 @@ export class Container {
     }
 
     /**
-     * Exports the current canvas image, `background` property of `options` won't be rendered because it's css related
+     * Exports the current canvas image, `
+     background` property of `
+     options` won't be rendered because it's css related
      * @param callback The callback to handle the image
      * @param type The exported image type
      * @param quality The exported image quality
@@ -339,8 +361,10 @@ export class Container {
     }
 
     /**
-     * Exports the current configuration using `options` property
-     * @returns a JSON string created from `options` property
+     * Exports the current configuration using `
+     options` property
+     * @returns a JSON string created from `
+     options` property
      */
     exportConfiguration(): string {
         return JSON.stringify(this.actualOptions, undefined, 2);
@@ -356,13 +380,14 @@ export class Container {
     }
 
     reset(): Promise<void> {
-        this._options = new Options();
+        this._options = new Options(this.#engine);
 
         return this.refresh();
     }
 
     /**
-     * Stops the container, opposite to `start`. Clears some resources and stops events.
+     * Stops the container, opposite to `
+     start`. Clears some resources and stops events.
      */
     stop(): void {
         if (!this.started) {
@@ -396,11 +421,16 @@ export class Container {
         delete this.particles.linksColor;
 
         this._sourceOptions = this._options;
+
+        this.#engine.destroyTree({
+            containerId: this.id,
+        });
     }
 
     /**
      * Loads the given theme, overriding the options
-     * @param name the theme name, if `undefined` resets the default options or the default theme
+     * @param name the theme name, if `
+     undefined` resets the default options or the default theme
      */
     async loadTheme(name?: string): Promise<void> {
         this.currentTheme = name;
@@ -415,6 +445,9 @@ export class Container {
         if (this.started) {
             return;
         }
+
+        this.startCount++;
+        this.treeId = `${this.originalTreeId}_${this.startCount}`;
 
         await this.init();
 
@@ -444,7 +477,7 @@ export class Container {
             return;
         }
 
-        const clickOrTouchHandler = (e: Event, pos: ICoordinates, radius: number) => {
+        const clickOrTouchHandler = async (e: Event, pos: ICoordinates, radius: number) => {
             if (this.destroyed) {
                 return;
             }
@@ -453,20 +486,34 @@ export class Container {
                 posRetina = {
                     x: pos.x * pxRatio,
                     y: pos.y * pxRatio,
+                };
+
+            const queryId = await this.#engine.queryTree(
+                {
+                    containerId: this.id,
+                    position: posRetina,
+                    queryId: "container-click",
+                    queryType: WorkerQueryType.circle,
+                    radius: radius * pxRatio,
                 },
-                ids = this.particles.quadTree.queryCircle(posRetina, radius * pxRatio);
+                (containerId, qid, ids) => {
+                    if (this.treeId !== containerId || queryId !== qid) {
+                        return;
+                    }
 
-            const particles: Particle[] = [];
+                    const particles: Particle[] = [];
 
-            ids.forEach((id) => {
-                const p = this.particles.getParticle(id);
+                    ids.forEach((id) => {
+                        const p = this.particles.getParticle(id);
 
-                if (p) {
-                    particles.push(p);
+                        if (p) {
+                            particles.push(p);
+                        }
+                    });
+
+                    callback(e, particles);
                 }
-            });
-
-            callback(e, particles);
+            );
         };
 
         const clickHandler = (e: Event) => {
@@ -568,16 +615,16 @@ export class Container {
     }
 
     async init(): Promise<void> {
-        this._options = new Options();
+        this._options = new Options(this.#engine);
 
         for (const preset of this.presets) {
-            this._options.load(Plugins.getPreset(preset));
+            this._options.load(this.#engine.plugins.getPreset(preset));
         }
 
-        const shapes = Plugins.getSupportedShapes();
+        const shapes = this.#engine.plugins.getSupportedShapes();
 
         for (const type of shapes) {
-            const drawer = Plugins.getShapeDrawer(type);
+            const drawer = this.#engine.plugins.getShapeDrawer(type);
 
             if (drawer) {
                 this.drawers.set(type, drawer);
@@ -588,7 +635,7 @@ export class Container {
         this._options.load(this._initialSourceOptions);
         this._options.load(this._sourceOptions);
 
-        this.actualOptions = new Options();
+        this.actualOptions = new Options(this.#engine);
 
         this.actualOptions.load(this._options);
 
@@ -607,7 +654,7 @@ export class Container {
         this.lifeTime = 0;
         this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 60;
 
-        const availablePlugins = Plugins.getAvailablePlugins(this);
+        const availablePlugins = this.#engine.plugins.getAvailablePlugins(this);
 
         for (const [id, plugin] of availablePlugins) {
             this.plugins.set(id, plugin);
@@ -630,7 +677,7 @@ export class Container {
         const pathOptions = this.actualOptions.particles.move.path;
 
         if (pathOptions.generator) {
-            const customGenerator = Plugins.getPathGenerator(pathOptions.generator);
+            const customGenerator = this.#engine.plugins.getPathGenerator(pathOptions.generator);
 
             if (customGenerator) {
                 if (customGenerator.init) {

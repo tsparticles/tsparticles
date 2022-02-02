@@ -1,4 +1,4 @@
-import { Engine } from "tsparticles";
+import type { Engine } from "tsparticles";
 import { HeartDrawer } from "./HeartDrawer";
 
 export function loadHeartShape(engine: Engine): void {

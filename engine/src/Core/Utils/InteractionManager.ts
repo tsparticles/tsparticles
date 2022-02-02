@@ -1,8 +1,8 @@
 import type { IDelta, IExternalInteractor, IParticlesInteractor } from "../Interfaces";
 import type { Container } from "../Container";
+import type { Engine } from "../../engine";
 import { InteractorType } from "../../Enums";
 import type { Particle } from "../Particle";
-import { Plugins } from "../Utils";
 
 /**
  * @category Core
@@ -10,8 +10,10 @@ import { Plugins } from "../Utils";
 export class InteractionManager {
     private readonly externalInteractors: IExternalInteractor[];
     private readonly particleInteractors: IParticlesInteractor[];
+    readonly #engine;
 
-    constructor(private readonly container: Container) {
+    constructor(engine: Engine, private readonly container: Container) {
+        this.#engine = engine;
         this.externalInteractors = [];
         this.particleInteractors = [];
 
@@ -19,7 +21,7 @@ export class InteractionManager {
     }
 
     init(): void {
-        const interactors = Plugins.getInteractors(this.container, true);
+        const interactors = this.#engine.plugins.getInteractors(this.container, true);
 
         for (const interactor of interactors) {
             switch (interactor.type) {
@@ -33,15 +35,15 @@ export class InteractionManager {
         }
     }
 
-    externalInteract(delta: IDelta): void {
+    async externalInteract(delta: IDelta): Promise<void> {
         for (const interactor of this.externalInteractors) {
             if (interactor.isEnabled()) {
-                interactor.interact(delta);
+                await interactor.interact(delta);
             }
         }
     }
 
-    particlesInteract(particle: Particle, delta: IDelta): void {
+    async particlesInteract(particle: Particle, delta: IDelta): Promise<void> {
         for (const interactor of this.externalInteractors) {
             interactor.reset(particle);
         }
@@ -49,7 +51,7 @@ export class InteractionManager {
         /* interaction auto between particles */
         for (const interactor of this.particleInteractors) {
             if (interactor.isEnabled(particle)) {
-                interactor.interact(particle, delta);
+                await interactor.interact(particle, delta);
             }
         }
     }

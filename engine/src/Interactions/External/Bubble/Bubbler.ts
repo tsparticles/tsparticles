@@ -1,5 +1,6 @@
 import { Circle, Constants, ExternalInteractorBase, Rectangle } from "../../../Core";
-import { ClickMode, DivMode, DivType, HoverMode } from "../../../Enums";
+import { ClickMode, DivMode, DivType, HoverMode, WorkerQueryType } from "../../../Enums";
+import type { Container, Particle } from "../../../Core";
 import {
     clamp,
     colorMix,
@@ -14,10 +15,9 @@ import {
     rgbToHsl,
 } from "../../../Utils";
 import { BubbleDiv } from "../../../Options/Classes/Interactivity/Modes/BubbleDiv";
-import type { Container } from "../../../Core";
 import { DivEvent } from "../../../Options/Classes/Interactivity/Events/DivEvent";
+import type { Engine } from "../../../engine";
 import type { IBubblerProcessParam } from "./IBubblerProcessParam";
-import type { Particle } from "../../../Core";
 import { ProcessBubbleType } from "./ProcessBubbleType";
 
 function calculateBubbleValue(
@@ -42,8 +42,12 @@ function calculateBubbleValue(
  * @category Interactions
  */
 export class Bubbler extends ExternalInteractorBase {
-    constructor(container: Container) {
+    readonly #engine;
+
+    constructor(engine: Engine, container: Container) {
         super(container);
+
+        this.#engine = engine;
     }
 
     isEnabled(): boolean {
@@ -77,7 +81,7 @@ export class Bubbler extends ExternalInteractorBase {
         delete particle.bubble.color;
     }
 
-    interact(): void {
+    async interact(): Promise<void> {
         const options = this.container.actualOptions,
             events = options.interactivity.events,
             onHover = events.onHover,
@@ -90,9 +94,9 @@ export class Bubbler extends ExternalInteractorBase {
 
         /* on hover event */
         if (hoverEnabled && isInArray(HoverMode.bubble, hoverMode)) {
-            this.hoverBubble();
+            await this.hoverBubble();
         } else if (clickEnabled && isInArray(ClickMode.bubble, clickMode)) {
-            this.clickBubble();
+            await this.clickBubble();
         } else {
             divModeExecute(DivMode.bubble, divs, (selector, div): void => this.singleSelectorHover(selector, div));
         }
@@ -106,7 +110,7 @@ export class Bubbler extends ExternalInteractorBase {
             return;
         }
 
-        selectors.forEach((item) => {
+        selectors.forEach(async (item) => {
             const elem = item as HTMLElement,
                 pxRatio = container.retina.pixelRatio,
                 pos = {
@@ -122,40 +126,66 @@ export class Bubbler extends ExternalInteractorBase {
                               elem.offsetTop * pxRatio,
                               elem.offsetWidth * pxRatio,
                               elem.offsetHeight * pxRatio
-                          ),
-                query = container.particles.quadTree.query(area);
+                          );
 
-            for (const id of query) {
-                const particle = container.particles.getParticle(id);
+            const queryType = div.type === DivType.circle ? WorkerQueryType.circle : WorkerQueryType.rectangle,
+                queryId = await this.#engine.queryTree(
+                    {
+                        containerId: container.treeId,
+                        queryId: "external-bubbler-div",
+                        queryType: queryType,
+                        size: {
+                            width: elem.offsetWidth * pxRatio,
+                            height: elem.offsetHeight * pxRatio,
+                        },
+                        radius: repulseRadius,
+                        position:
+                            div.type === DivType.circle
+                                ? pos
+                                : {
+                                      x: elem.offsetLeft * pxRatio,
+                                      y: elem.offsetTop * pxRatio,
+                                  },
+                    },
+                    (containerId, qid, ids) => {
+                        if (container.treeId !== containerId || queryId !== qid) {
+                            return;
+                        }
+                        //ids = container.particles.quadTree.query(area);
 
-                if (!particle) {
-                    continue;
-                }
+                        for (const id of ids) {
+                            const particle = container.particles.getParticle(id);
 
-                if (!area.contains(particle.getPosition())) {
-                    continue;
-                }
+                            if (!particle) {
+                                continue;
+                            }
 
-                particle.bubble.inRange = true;
+                            if (!area.contains(particle.getPosition())) {
+                                continue;
+                            }
 
-                const divs = container.actualOptions.interactivity.modes.bubble.divs;
-                const divBubble = divMode(divs, elem);
+                            particle.bubble.inRange = true;
 
-                if (!particle.bubble.div || particle.bubble.div !== elem) {
-                    this.reset(particle, true);
+                            const divs = container.actualOptions.interactivity.modes.bubble.divs;
+                            const divBubble = divMode(divs, elem);
 
-                    particle.bubble.div = elem;
-                }
+                            if (!particle.bubble.div || particle.bubble.div !== elem) {
+                                this.reset(particle, true);
 
-                /* size */
-                this.hoverBubbleSize(particle, 1, divBubble);
+                                particle.bubble.div = elem;
+                            }
 
-                /* opacity */
-                this.hoverBubbleOpacity(particle, 1, divBubble);
+                            /* size */
+                            this.hoverBubbleSize(particle, 1, divBubble);
 
-                /* color */
-                this.hoverBubbleColor(particle, 1, divBubble);
-            }
+                            /* opacity */
+                            this.hoverBubbleOpacity(particle, 1, divBubble);
+
+                            /* color */
+                            this.hoverBubbleColor(particle, 1, divBubble);
+                        }
+                    }
+                );
         });
     }
 
@@ -214,7 +244,7 @@ export class Bubbler extends ExternalInteractorBase {
         }
     }
 
-    private clickBubble(): void {
+    private async clickBubble(): Promise<void> {
         const container = this.container,
             options = container.actualOptions,
             mouseClickPos = container.interactivity.mouse.clickPosition;
@@ -223,74 +253,88 @@ export class Bubbler extends ExternalInteractorBase {
             return;
         }
 
-        const distance = container.retina.bubbleModeDistance,
-            query = container.particles.quadTree.queryCircle(mouseClickPos, distance);
+        const distance = container.retina.bubbleModeDistance;
 
-        for (const id of query) {
-            const particle = container.particles.getParticle(id);
-
-            if (!particle) {
-                continue;
-            }
-
-            if (!container.bubble.clicking) {
-                continue;
-            }
-
-            particle.bubble.inRange = !container.bubble.durationEnd;
-
-            const pos = particle.getPosition(),
-                distMouse = getDistance(pos, mouseClickPos),
-                timeSpent = (new Date().getTime() - (container.interactivity.mouse.clickTime || 0)) / 1000;
-
-            if (timeSpent > options.interactivity.modes.bubble.duration) {
-                container.bubble.durationEnd = true;
-            }
-            if (timeSpent > options.interactivity.modes.bubble.duration * 2) {
-                container.bubble.clicking = false;
-                container.bubble.durationEnd = false;
-            }
-            const sizeData: IBubblerProcessParam = {
-                bubbleObj: {
-                    optValue: container.retina.bubbleModeSize,
-                    value: particle.bubble.radius,
-                },
-                particlesObj: {
-                    optValue: getRangeMax(particle.options.size.value) * container.retina.pixelRatio,
-                    value: particle.size.value,
-                },
-                type: ProcessBubbleType.size,
-            };
-
-            this.process(particle, distMouse, timeSpent, sizeData);
-
-            const opacityData: IBubblerProcessParam = {
-                bubbleObj: {
-                    optValue: options.interactivity.modes.bubble.opacity,
-                    value: particle.bubble.opacity,
-                },
-                particlesObj: {
-                    optValue: getRangeMax(particle.options.opacity.value),
-                    value: particle.opacity?.value ?? 1,
-                },
-                type: ProcessBubbleType.opacity,
-            };
-
-            this.process(particle, distMouse, timeSpent, opacityData);
-
-            if (!container.bubble.durationEnd) {
-                if (distMouse <= container.retina.bubbleModeDistance) {
-                    this.hoverBubbleColor(particle, distMouse);
-                } else {
-                    delete particle.bubble.color;
+        const queryId = await this.#engine.queryTree(
+            {
+                containerId: container.treeId,
+                position: mouseClickPos,
+                queryId: "external-bubble-click",
+                queryType: WorkerQueryType.circle,
+                radius: distance,
+            },
+            (containerId, qid, ids) => {
+                if (container.treeId !== containerId || queryId !== qid) {
+                    return;
                 }
-            } else {
-                delete particle.bubble.color;
+
+                for (const id of ids) {
+                    const particle = container.particles.getParticle(id);
+
+                    if (!particle) {
+                        continue;
+                    }
+
+                    if (!container.bubble.clicking) {
+                        continue;
+                    }
+
+                    particle.bubble.inRange = !container.bubble.durationEnd;
+
+                    const pos = particle.getPosition(),
+                        distMouse = getDistance(pos, mouseClickPos),
+                        timeSpent = (new Date().getTime() - (container.interactivity.mouse.clickTime || 0)) / 1000;
+
+                    if (timeSpent > options.interactivity.modes.bubble.duration) {
+                        container.bubble.durationEnd = true;
+                    }
+                    if (timeSpent > options.interactivity.modes.bubble.duration * 2) {
+                        container.bubble.clicking = false;
+                        container.bubble.durationEnd = false;
+                    }
+                    const sizeData: IBubblerProcessParam = {
+                        bubbleObj: {
+                            optValue: container.retina.bubbleModeSize,
+                            value: particle.bubble.radius,
+                        },
+                        particlesObj: {
+                            optValue: getRangeMax(particle.options.size.value) * container.retina.pixelRatio,
+                            value: particle.size.value,
+                        },
+                        type: ProcessBubbleType.size,
+                    };
+
+                    this.process(particle, distMouse, timeSpent, sizeData);
+
+                    const opacityData: IBubblerProcessParam = {
+                        bubbleObj: {
+                            optValue: options.interactivity.modes.bubble.opacity,
+                            value: particle.bubble.opacity,
+                        },
+                        particlesObj: {
+                            optValue: getRangeMax(particle.options.opacity.value),
+                            value: particle.opacity?.value ?? 1,
+                        },
+                        type: ProcessBubbleType.opacity,
+                    };
+
+                    this.process(particle, distMouse, timeSpent, opacityData);
+
+                    if (!container.bubble.durationEnd) {
+                        if (distMouse <= container.retina.bubbleModeDistance) {
+                            this.hoverBubbleColor(particle, distMouse);
+                        } else {
+                            delete particle.bubble.color;
+                        }
+                    } else {
+                        delete particle.bubble.color;
+                    }
+                }
             }
-        }
+        );
     }
 
-    private hoverBubble(): void {
+    private async hoverBubble(): Promise<void> {
         const container = this.container,
             mousePos = container.interactivity.mouse.position;
 
@@ -298,44 +342,57 @@ export class Bubbler extends ExternalInteractorBase {
             return;
         }
 
-        const distance = container.retina.bubbleModeDistance,
-            query = container.particles.quadTree.queryCircle(mousePos, distance);
+        const distance = container.retina.bubbleModeDistance;
 
-        //for (const { distance, particle } of query) {
-        for (const id of query) {
-            const particle = container.particles.getParticle(id);
-
-            if (!particle) {
-                continue;
-            }
-
-            particle.bubble.inRange = true;
-
-            const pos = particle.getPosition(),
-                pointDistance = getDistance(pos, mousePos),
-                ratio = 1 - pointDistance / distance;
-
-            /* mousemove - check ratio */
-            if (pointDistance <= distance) {
-                if (ratio >= 0 && container.interactivity.status === Constants.mouseMoveEvent) {
-                    /* size */
-                    this.hoverBubbleSize(particle, ratio);
-
-                    /* opacity */
-                    this.hoverBubbleOpacity(particle, ratio);
-
-                    /* color */
-                    this.hoverBubbleColor(particle, ratio);
+        const queryId = await this.#engine.queryTree(
+            {
+                containerId: container.treeId,
+                position: mousePos,
+                queryId: "external-bubble-hover",
+                queryType: WorkerQueryType.circle,
+                radius: distance,
+            },
+            (containerId, qid, ids) => {
+                if (container.treeId !== containerId || queryId !== qid) {
+                    return;
                 }
-            } else {
-                this.reset(particle);
-            }
 
-            /* mouseleave */
-            if (container.interactivity.status === Constants.mouseLeaveEvent) {
-                this.reset(particle);
+                for (const id of ids) {
+                    const particle = container.particles.getParticle(id);
+
+                    if (!particle) {
+                        continue;
+                    }
+
+                    particle.bubble.inRange = true;
+
+                    const pos = particle.getPosition(),
+                        pointDistance = getDistance(pos, mousePos),
+                        ratio = 1 - pointDistance / distance;
+
+                    /* mousemove - check ratio */
+                    if (pointDistance <= distance) {
+                        if (ratio >= 0 && container.interactivity.status === Constants.mouseMoveEvent) {
+                            /* size */
+                            this.hoverBubbleSize(particle, ratio);
+
+                            /* opacity */
+                            this.hoverBubbleOpacity(particle, ratio);
+
+                            /* color */
+                            this.hoverBubbleColor(particle, ratio);
+                        }
+                    } else {
+                        this.reset(particle);
+                    }
+
+                    /* mouseleave */
+                    if (container.interactivity.status === Constants.mouseLeaveEvent) {
+                        this.reset(particle);
+                    }
+                }
             }
-        }
+        );
     }
 
     private hoverBubbleSize(particle: Particle, ratio: number, divBubble?: BubbleDiv): void {

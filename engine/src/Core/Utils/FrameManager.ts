@@ -11,7 +11,7 @@ export class FrameManager {
      * limiting it if it's needed by the current configuration
      * @param timestamp
      */
-    nextFrame(timestamp: DOMHighResTimeStamp): void {
+    async nextFrame(timestamp: DOMHighResTimeStamp): Promise<void> {
         try {
             const container = this.container;
 
@@ -20,7 +20,7 @@ export class FrameManager {
                 container.lastFrameTime !== undefined &&
                 timestamp < container.lastFrameTime + 1000 / container.fpsLimit
             ) {
-                container.draw(false);
+                await container.draw(false);
 
                 return;
             }
@@ -37,11 +37,11 @@ export class FrameManager {
             container.lastFrameTime = timestamp;
 
             if (deltaValue > 1000) {
-                container.draw(false);
+                await container.draw(false);
                 return;
             }
 
-            container.particles.draw(delta);
+            await container.particles.draw(delta);
 
             if (container.duration > 0 && container.lifeTime > container.duration) {
                 container.destroy();
@@ -49,7 +49,7 @@ export class FrameManager {
             }
 
             if (container.getAnimationStatus()) {
-                container.draw(false);
+                await container.draw(false);
             }
         } catch (e) {
             console.error("tsParticles error in animation loop", e);

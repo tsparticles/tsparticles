@@ -27,7 +27,7 @@ import type {
     IRgb,
     IShapeValues,
 } from "./Interfaces";
-import { Plugins, Vector, Vector3d } from "./Utils";
+import { Vector, Vector3d } from "./Utils";
 import {
     alterHsl,
     clamp,
@@ -47,6 +47,7 @@ import {
     setRangeValue,
 } from "../Utils";
 import type { Container } from "./Container";
+import type { Engine } from "../engine";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
 import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
@@ -118,14 +119,17 @@ export class Particle implements IParticle {
     readonly bubble: IBubbleParticleData;
     readonly zIndexFactor: number;
     readonly retina: IParticleRetinaProps;
+    readonly #engine;
 
     constructor(
+        engine: Engine,
         readonly id: number,
         readonly container: Container,
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticles>,
         readonly group?: string
     ) {
+        this.#engine = engine;
         this.fill = true;
         this.close = true;
         this.lastPathTime = 0;
@@ -263,7 +267,7 @@ export class Particle implements IParticle {
         let drawer = container.drawers.get(this.shape);
 
         if (!drawer) {
-            drawer = Plugins.getShapeDrawer(this.shape);
+            drawer = this.#engine.plugins.getShapeDrawer(this.shape);
 
             if (drawer) {
                 container.drawers.set(this.shape, drawer);

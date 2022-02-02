@@ -82,7 +82,7 @@ export class SizeUpdater implements IParticleUpdater {
         );
     }
 
-    update(particle: Particle, delta: IDelta): void {
+    async update(particle: Particle, delta: IDelta): Promise<void> {
         if (!this.isEnabled(particle)) {
             return;
         }

@@ -1,8 +1,9 @@
-import { Circle, Constants, ExternalInteractorBase, Range, Rectangle, Vector } from "../../../Core";
-import { ClickMode, DivMode, DivType, HoverMode } from "../../../Enums";
+import { ClickMode, DivMode, DivType, HoverMode, WorkerQueryType } from "../../../Enums";
+import { Constants, ExternalInteractorBase, IDimension, Vector } from "../../../Core";
 import type { Container, ICoordinates } from "../../../Core";
 import { calcEasing, clamp, divMode, divModeExecute, getDistances, isDivModeEnabled, isInArray } from "../../../Utils";
 import type { DivEvent } from "../../../Options/Classes/Interactivity/Events/DivEvent";
+import type { Engine } from "../../../engine";
 import type { RepulseDiv } from "../../../Options/Classes/Interactivity/Modes/RepulseDiv";
 
 /**
@@ -10,8 +11,12 @@ import type { RepulseDiv } from "../../../Options/Classes/Interactivity/Modes/Re
  * @category Interactions
  */
 export class Repulser extends ExternalInteractorBase {
-    constructor(container: Container) {
+    readonly #engine;
+
+    constructor(engine: Engine, container: Container) {
         super(container);
+
+        this.#engine = engine;
     }
 
     isEnabled(): boolean {
@@ -38,7 +43,7 @@ export class Repulser extends ExternalInteractorBase {
         // do nothing
     }
 
-    interact(): void {
+    async interact(): Promise<void> {
         const container = this.container,
             options = container.actualOptions,
             mouseMoveStatus = container.interactivity.status === Constants.mouseMoveEvent,
@@ -50,9 +55,9 @@ export class Repulser extends ExternalInteractorBase {
             divs = events.onDiv;
 
         if (mouseMoveStatus && hoverEnabled && isInArray(HoverMode.repulse, hoverMode)) {
-            this.hoverRepulse();
+            await this.hoverRepulse();
         } else if (clickEnabled && isInArray(ClickMode.repulse, clickMode)) {
-            this.clickRepulse();
+            await this.clickRepulse();
         } else {
             divModeExecute(DivMode.repulse, divs, (selector, div): void => this.singleSelectorRepulse(selector, div));
         }
@@ -66,7 +71,7 @@ export class Repulser extends ExternalInteractorBase {
             return;
         }
 
-        query.forEach((item) => {
+        query.forEach(async (item) => {
             const elem = item as HTMLElement,
                 pxRatio = container.retina.pixelRatio,
                 pos = {
@@ -74,23 +79,30 @@ export class Repulser extends ExternalInteractorBase {
                     y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
                 },
                 repulseRadius = (elem.offsetWidth / 2) * pxRatio,
-                area =
-                    div.type === DivType.circle
-                        ? new Circle(pos.x, pos.y, repulseRadius)
-                        : new Rectangle(
-                              elem.offsetLeft * pxRatio,
-                              elem.offsetTop * pxRatio,
-                              elem.offsetWidth * pxRatio,
-                              elem.offsetHeight * pxRatio
-                          ),
                 divs = container.actualOptions.interactivity.modes.repulse.divs,
                 divRepulse = divMode(divs, elem);
 
-            this.processRepulse(pos, repulseRadius, area, divRepulse);
+            await this.processRepulse(
+                pos,
+                repulseRadius,
+                div.type === DivType.circle ? WorkerQueryType.circle : WorkerQueryType.rectangle,
+                div.type === DivType.circle
+                    ? pos
+                    : {
+                          x: elem.offsetLeft * pxRatio,
+                          y: elem.offsetTop * pxRatio,
+                      },
+                repulseRadius,
+                {
+                    width: elem.offsetWidth * pxRatio,
+                    height: elem.offsetHeight * pxRatio,
+                },
+                divRepulse
+            );
         });
     }
 
-    private hoverRepulse(): void {
+    private async hoverRepulse(): Promise<void> {
         const container = this.container,
             mousePos = container.interactivity.mouse.position;
 
@@ -100,36 +112,62 @@ export class Repulser extends ExternalInteractorBase {
 
         const repulseRadius = container.retina.repulseModeDistance;
 
-        this.processRepulse(mousePos, repulseRadius, new Circle(mousePos.x, mousePos.y, repulseRadius));
+        await this.processRepulse(mousePos, repulseRadius, WorkerQueryType.circle, mousePos, repulseRadius);
     }
 
-    private processRepulse(position: ICoordinates, repulseRadius: number, area: Range, divRepulse?: RepulseDiv): void {
+    private async processRepulse(
+        position: ICoordinates,
+        repulseRadius: number,
+        areaType: WorkerQueryType,
+        areaPosition: ICoordinates,
+        areaRadius?: number,
+        areaSize?: IDimension,
+        divRepulse?: RepulseDiv
+    ): Promise<void> {
         const container = this.container,
-            query = container.particles.quadTree.query(area),
             repulseOptions = container.actualOptions.interactivity.modes.repulse;
 
-        for (const id of query) {
-            const particle = container.particles.getParticle(id);
+        //query = container.particles.quadTree.query(area)
+        const queryId = await this.#engine.queryTree(
+            {
+                containerId: container.treeId,
+                position: areaPosition,
+                queryId: "external-repulse",
+                queryType: areaType,
+                radius: areaRadius,
+                size: areaSize,
+            },
+            (containerId, qid, ids) => {
+                if (container.treeId !== containerId || queryId !== qid) {
+                    return;
+                }
 
-            if (!particle) {
-                continue;
+                for (const id of ids) {
+                    const particle = container.particles.getParticle(id);
+
+                    if (!particle) {
+                        continue;
+                    }
+
+                    const { dx, dy, distance } = getDistances(particle.position, position),
+                        velocity = (divRepulse?.speed ?? repulseOptions.speed) * repulseOptions.factor,
+                        repulseFactor = calcEasing(1 - distance / repulseRadius, repulseOptions.easing) * velocity,
+                        clamped =
+                            repulseOptions.maxSpeed > 0
+                                ? clamp(repulseFactor, 0, repulseOptions.maxSpeed)
+                                : repulseFactor,
+                        normVec = Vector.create(
+                            !distance ? velocity : (dx / distance) * clamped,
+                            !distance ? velocity : (dy / distance) * clamped
+                        );
+
+                    particle.position.addTo(normVec);
+                }
             }
-
-            const { dx, dy, distance } = getDistances(particle.position, position),
-                velocity = (divRepulse?.speed ?? repulseOptions.speed) * repulseOptions.factor,
-                repulseFactor = calcEasing(1 - distance / repulseRadius, repulseOptions.easing) * velocity,
-                clamped =
-                    repulseOptions.maxSpeed > 0 ? clamp(repulseFactor, 0, repulseOptions.maxSpeed) : repulseFactor,
-                normVec = Vector.create(
-                    !distance ? velocity : (dx / distance) * clamped,
-                    !distance ? velocity : (dy / distance) * clamped
-                );
-
-            particle.position.addTo(normVec);
-        }
+        );
     }
 
-    private clickRepulse(): void {
+    private async clickRepulse(): Promise<void> {
         const container = this.container;
 
         if (!container.repulse.finish) {
@@ -153,31 +191,43 @@ export class Repulser extends ExternalInteractorBase {
                 return;
             }
 
-            const range = new Circle(mouseClickPos.x, mouseClickPos.y, repulseRadius),
-                query = container.particles.quadTree.query(range);
+            const queryId = await this.#engine.queryTree(
+                {
+                    containerId: container.treeId,
+                    position: mouseClickPos,
+                    queryId: "external-repulse-click",
+                    queryType: WorkerQueryType.circle,
+                    radius: repulseRadius,
+                },
+                (containerId, qid, ids) => {
+                    if (container.treeId !== containerId || queryId !== qid) {
+                        return;
+                    }
 
-            for (const id of query) {
-                const particle = container.particles.getParticle(id);
+                    for (const id of ids) {
+                        const particle = container.particles.getParticle(id);
 
-                if (!particle) {
-                    continue;
+                        if (!particle) {
+                            continue;
+                        }
+
+                        const { dx, dy, distance } = getDistances(mouseClickPos, particle.position),
+                            d = distance ** 2,
+                            velocity = container.actualOptions.interactivity.modes.repulse.speed,
+                            force = (-repulseRadius * velocity) / d;
+
+                        if (d <= repulseRadius) {
+                            container.repulse.particles.push(particle);
+
+                            const vect = Vector.create(dx, dy);
+
+                            vect.length = force;
+
+                            particle.velocity.setTo(vect);
+                        }
+                    }
                 }
-
-                const { dx, dy, distance } = getDistances(mouseClickPos, particle.position),
-                    d = distance ** 2,
-                    velocity = container.actualOptions.interactivity.modes.repulse.speed,
-                    force = (-repulseRadius * velocity) / d;
-
-                if (d <= repulseRadius) {
-                    container.repulse.particles.push(particle);
-
-                    const vect = Vector.create(dx, dy);
-
-                    vect.length = force;
-
-                    particle.velocity.setTo(vect);
-                }
-            }
+            );
         } else if (container.repulse.clicking === false) {
             for (const particle of container.repulse.particles) {
                 particle.velocity.setTo(particle.initialVelocity);

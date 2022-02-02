@@ -1,6 +1,7 @@
+import { CollisionMode, WorkerQueryType } from "../../../Enums";
 import type { Container, Particle } from "../../../Core";
 import { circleBounce, circleBounceDataFromParticle, clamp, getDistance } from "../../../Utils";
-import { CollisionMode } from "../../../Enums";
+import type { Engine } from "../../../engine";
 import { ParticlesInteractorBase } from "../../../Core";
 
 function bounce(p1: Particle, p2: Particle): void {
@@ -29,8 +30,12 @@ function destroy(p1: Particle, p2: Particle): void {
  * @category Interactions
  */
 export class Collider extends ParticlesInteractorBase {
-    constructor(container: Container) {
+    readonly #engine;
+
+    constructor(engine: Engine, container: Container) {
         super(container);
+
+        this.#engine = engine;
     }
 
     isEnabled(particle: Particle): boolean {
@@ -41,42 +46,55 @@ export class Collider extends ParticlesInteractorBase {
         // do nothing
     }
 
-    interact(p1: Particle): void {
+    async interact(p1: Particle): Promise<void> {
         const container = this.container;
         const pos1 = p1.getPosition();
 
         const radius1 = p1.getRadius();
 
-        const query = container.particles.quadTree.queryCircle(pos1, radius1 * 2);
+        const queryId = await this.#engine.queryTree(
+            {
+                containerId: container.treeId,
+                position: pos1,
+                queryId: "particles-collisions",
+                queryType: WorkerQueryType.circle,
+                radius: radius1 * 2,
+            },
+            (containerId, qid, ids) => {
+                if (container.treeId !== containerId || queryId !== qid) {
+                    return;
+                }
 
-        for (const id of query) {
-            const p2 = container.particles.getParticle(id);
+                for (const id of ids) {
+                    const p2 = container.particles.getParticle(id);
 
-            if (
-                !p2 ||
-                p1 === p2 ||
-                !p2.options.collisions.enable ||
-                p1.options.collisions.mode !== p2.options.collisions.mode ||
-                p2.destroyed ||
-                p2.spawning
-            ) {
-                continue;
+                    if (
+                        !p2 ||
+                        p1 === p2 ||
+                        !p2.options.collisions.enable ||
+                        p1.options.collisions.mode !== p2.options.collisions.mode ||
+                        p2.destroyed ||
+                        p2.spawning
+                    ) {
+                        continue;
+                    }
+
+                    const pos2 = p2.getPosition();
+
+                    if (Math.round(pos1.z) !== Math.round(pos2.z)) {
+                        continue;
+                    }
+
+                    const dist = getDistance(pos1, pos2);
+                    const radius2 = p2.getRadius();
+                    const distP = radius1 + radius2;
+
+                    if (dist <= distP) {
+                        this.resolveCollision(p1, p2);
+                    }
+                }
             }
-
-            const pos2 = p2.getPosition();
-
-            if (Math.round(pos1.z) !== Math.round(pos2.z)) {
-                continue;
-            }
-
-            const dist = getDistance(pos1, pos2);
-            const radius2 = p2.getRadius();
-            const distP = radius1 + radius2;
-
-            if (dist <= distP) {
-                this.resolveCollision(p1, p2);
-            }
-        }
+        );
     }
 
     private resolveCollision(p1: Particle, p2: Particle): void {

@@ -92,11 +92,11 @@ export class QuadTree {
             return [];
         } else {
             for (const p of this.points) {
-                if (!range.contains(p.position) && getDistance(range.position, p.position) > p.particle.getRadius()) {
+                if (!range.contains(p.position) && getDistance(range.position, p.position) > p.radius) {
                     continue;
                 }
 
-                res.push(p.particle.id);
+                res.push(p.particleId);
             }
 
             if (this.divided) {

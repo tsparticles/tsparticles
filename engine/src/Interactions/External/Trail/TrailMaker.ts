@@ -16,7 +16,7 @@ export class TrailMaker extends ExternalInteractorBase {
         this.delay = 0;
     }
 
-    interact(delta: IDelta): void {
+    async interact(delta: IDelta): Promise<void> {
         if (!this.container.retina.reduceFactor) {
             return;
         }

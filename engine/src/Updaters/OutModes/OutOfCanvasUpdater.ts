@@ -14,7 +14,7 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
         return !particle.destroyed && !particle.spawning;
     }
 
-    update(particle: Particle, delta: IDelta): void {
+    async update(particle: Particle, delta: IDelta): Promise<void> {
         const outModes = particle.options.move.outModes;
 
         this.updateOutMode(particle, delta, outModes.bottom ?? outModes.default, OutModeDirection.bottom);

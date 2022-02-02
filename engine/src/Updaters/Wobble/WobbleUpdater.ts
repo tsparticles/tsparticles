@@ -53,7 +53,7 @@ export class WobbleUpdater implements IParticleUpdater {
         return !particle.destroyed && !particle.spawning && particle.options.wobble.enable;
     }
 
-    update(particle: WobbleParticle, delta: IDelta): void {
+    async update(particle: WobbleParticle, delta: IDelta): Promise<void> {
         if (!this.isEnabled(particle)) {
             return;
         }

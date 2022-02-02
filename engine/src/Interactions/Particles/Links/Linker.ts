@@ -1,7 +1,9 @@
-import { Circle, CircleWarp, ParticlesInteractorBase } from "../../../Core";
 import type { Container, ICoordinates, IDimension, IParticle, Particle } from "../../../Core";
 import { getDistance, getLinkRandomColor } from "../../../Utils";
+import { Engine } from "../../../engine";
 import type { LinkParticle } from "./LinkParticle";
+import { ParticlesInteractorBase } from "../../../Core";
+import { WorkerQueryType } from "../../../Enums";
 
 function getLinkDistance(
     pos1: ICoordinates,
@@ -49,8 +51,12 @@ function getLinkDistance(
 }
 
 export class Linker extends ParticlesInteractorBase {
-    constructor(container: Container) {
+    readonly #engine;
+
+    constructor(engine: Engine, container: Container) {
         super(container);
+
+        this.#engine = engine;
     }
 
     isEnabled(particle: Particle): boolean {
@@ -61,69 +67,82 @@ export class Linker extends ParticlesInteractorBase {
         // do nothing
     }
 
-    interact(p1: LinkParticle): void {
-        p1.links = [];
-
+    async interact(p1: LinkParticle): Promise<void> {
         const pos1 = p1.getPosition(),
             container = this.container,
             canvasSize = container.canvas.size;
 
         if (pos1.x < 0 || pos1.y < 0 || pos1.x > canvasSize.width || pos1.y > canvasSize.height) {
+            p1.links = [];
+
             return;
         }
 
         const linkOpt1 = p1.options.links,
             optOpacity = linkOpt1.opacity,
             optDistance = p1.retina.linksDistance ?? container.retina.linksDistance,
-            warp = linkOpt1.warp,
-            range = warp
-                ? new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize)
-                : new Circle(pos1.x, pos1.y, optDistance),
-            query = container.particles.quadTree.query(range);
+            warp = linkOpt1.warp;
 
-        for (const id of query) {
-            const p2 = container.particles.getParticle(id) as LinkParticle | undefined;
+        const queryId = await this.#engine.queryTree(
+            {
+                containerId: container.treeId,
+                position: pos1,
+                queryId: "particles-attract",
+                queryType: warp ? WorkerQueryType.circleWarp : WorkerQueryType.circle,
+                radius: optDistance,
+            },
+            (containerId, qid, ids) => {
+                if (container.treeId !== containerId || queryId !== qid) {
+                    return;
+                }
 
-            if (!p2) {
-                continue;
+                p1.links = [];
+
+                for (const id of ids) {
+                    const p2 = container.particles.getParticle(id) as LinkParticle | undefined;
+
+                    if (!p2) {
+                        continue;
+                    }
+
+                    const linkOpt2 = p2.options.links;
+
+                    if (
+                        p1 === p2 ||
+                        !linkOpt2.enable ||
+                        linkOpt1.id !== linkOpt2.id ||
+                        p2.spawning ||
+                        p2.destroyed ||
+                        //p1.links.map((t) => t.destination).indexOf(p2) !== -1 ||
+                        p2.links.map((t) => t.destination).indexOf(p1) !== -1
+                    ) {
+                        continue;
+                    }
+
+                    const pos2 = p2.getPosition();
+
+                    if (pos2.x < 0 || pos2.y < 0 || pos2.x > canvasSize.width || pos2.y > canvasSize.height) {
+                        continue;
+                    }
+
+                    const distance = getLinkDistance(pos1, pos2, optDistance, canvasSize, warp && linkOpt2.warp);
+
+                    if (distance > optDistance) {
+                        return;
+                    }
+
+                    /* draw a line between p1 and p2 */
+                    const opacityLine = (1 - distance / optDistance) * optOpacity;
+
+                    this.setColor(p1);
+
+                    p1.links.push({
+                        destination: p2,
+                        opacity: opacityLine,
+                    });
+                }
             }
-
-            const linkOpt2 = p2.options.links;
-
-            if (
-                p1 === p2 ||
-                !linkOpt2.enable ||
-                linkOpt1.id !== linkOpt2.id ||
-                p2.spawning ||
-                p2.destroyed ||
-                //p1.links.map((t) => t.destination).indexOf(p2) !== -1 ||
-                p2.links.map((t) => t.destination).indexOf(p1) !== -1
-            ) {
-                continue;
-            }
-
-            const pos2 = p2.getPosition();
-
-            if (pos2.x < 0 || pos2.y < 0 || pos2.x > canvasSize.width || pos2.y > canvasSize.height) {
-                continue;
-            }
-
-            const distance = getLinkDistance(pos1, pos2, optDistance, canvasSize, warp && linkOpt2.warp);
-
-            if (distance > optDistance) {
-                return;
-            }
-
-            /* draw a line between p1 and p2 */
-            const opacityLine = (1 - distance / optDistance) * optOpacity;
-
-            this.setColor(p1);
-
-            p1.links.push({
-                destination: p2,
-                opacity: opacityLine,
-            });
-        }
+        );
     }
 
     private setColor(p1: IParticle): void {

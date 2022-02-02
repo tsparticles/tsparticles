@@ -8,7 +8,7 @@ export abstract class ExternalInteractorBase implements IExternalInteractor {
 
     type: InteractorType = InteractorType.External;
 
-    public abstract interact(delta: IDelta): void;
+    public abstract interact(delta: IDelta): Promise<void>;
 
     public abstract isEnabled(): boolean;
 

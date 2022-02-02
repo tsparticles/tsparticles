@@ -86,7 +86,7 @@ export class TiltUpdater implements IParticleUpdater {
         return !particle.destroyed && !particle.spawning && tiltAnimation.enable;
     }
 
-    update(particle: Particle, delta: IDelta): void {
+    async update(particle: Particle, delta: IDelta): Promise<void> {
         if (!this.isEnabled(particle)) {
             return;
         }

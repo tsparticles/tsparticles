@@ -67,7 +67,7 @@ export class EventListeners {
         this.touchEndClickHandler = (e): void => this.mouseTouchClick(e);
         this.mouseUpHandler = (e): void => this.mouseTouchClick(e);
         this.mouseDownHandler = (): void => this.mouseDown();
-        this.visibilityChangeHandler = (): void => this.handleVisibilityChange();
+        this.visibilityChangeHandler = async (): Promise<void> => await this.handleVisibilityChange();
         this.themeChangeHandler = (e): void => this.handleThemeChange(e);
         this.oldThemeChangeHandler = (e): void => this.handleThemeChange(e);
         this.resizeHandler = (): void => this.handleWindowResize();
@@ -205,7 +205,7 @@ export class EventListeners {
         this.resizeTimeout = setTimeout(async () => await this.container.canvas?.windowResize(), 500);
     }
 
-    private handleVisibilityChange(): void {
+    private async handleVisibilityChange(): Promise<void> {
         const container = this.container;
         const options = container.actualOptions;
 
@@ -223,9 +223,9 @@ export class EventListeners {
             container.pageHidden = false;
 
             if (container.getAnimationStatus()) {
-                container.play(true);
+                await container.play(true);
             } else {
-                container.draw(true);
+                await container.draw(true);
             }
         }
     }

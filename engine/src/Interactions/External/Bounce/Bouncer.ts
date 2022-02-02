@@ -1,5 +1,6 @@
-import { Circle, Constants, ExternalInteractorBase, Range, Rectangle, Vector } from "../../../Core";
-import { DivMode, DivType, HoverMode } from "../../../Enums";
+import { Constants, ExternalInteractorBase, IDimension, Vector } from "../../../Core";
+import type { Container, ICoordinates } from "../../../Core";
+import { DivMode, DivType, HoverMode, WorkerQueryType } from "../../../Enums";
 import {
     calculateBounds,
     circleBounce,
@@ -9,13 +10,16 @@ import {
     isInArray,
     rectBounce,
 } from "../../../Utils";
-import type { Container } from "../../../Core";
 import { DivEvent } from "../../../Options/Classes/Interactivity/Events/DivEvent";
-import type { ICoordinates } from "../../../Core";
+import type { Engine } from "../../../engine";
 
 export class Bouncer extends ExternalInteractorBase {
-    constructor(container: Container) {
+    readonly #engine;
+
+    constructor(engine: Engine, container: Container) {
         super(container);
+
+        this.#engine = engine;
     }
 
     isEnabled(): boolean {
@@ -31,7 +35,7 @@ export class Bouncer extends ExternalInteractorBase {
         );
     }
 
-    interact(): void {
+    async interact(): Promise<void> {
         const container = this.container,
             options = container.actualOptions,
             events = options.interactivity.events,
@@ -41,7 +45,7 @@ export class Bouncer extends ExternalInteractorBase {
             divs = events.onDiv;
 
         if (mouseMoveStatus && hoverEnabled && isInArray(HoverMode.bounce, hoverMode)) {
-            this.processMouseBounce();
+            await this.processMouseBounce();
         } else {
             divModeExecute(DivMode.bounce, divs, (selector, div): void => this.singleSelectorBounce(selector, div));
         }
@@ -51,7 +55,7 @@ export class Bouncer extends ExternalInteractorBase {
         // do nothing
     }
 
-    private processMouseBounce(): void {
+    private async processMouseBounce(): Promise<void> {
         const container = this.container,
             pxRatio = container.retina.pixelRatio,
             tolerance = 10 * pxRatio,
@@ -59,7 +63,7 @@ export class Bouncer extends ExternalInteractorBase {
             radius = container.retina.bounceModeDistance;
 
         if (mousePos) {
-            this.processBounce(mousePos, radius, new Circle(mousePos.x, mousePos.y, radius + tolerance));
+            await this.processBounce(mousePos, radius, WorkerQueryType.circle, mousePos, radius + tolerance);
         }
     }
 
@@ -71,7 +75,7 @@ export class Bouncer extends ExternalInteractorBase {
             return;
         }
 
-        query.forEach((item) => {
+        query.forEach(async (item) => {
             const elem = item as HTMLElement,
                 pxRatio = container.retina.pixelRatio,
                 pos = {
@@ -81,42 +85,71 @@ export class Bouncer extends ExternalInteractorBase {
                 radius = (elem.offsetWidth / 2) * pxRatio,
                 tolerance = 10 * pxRatio;
 
-            const area =
-                div.type === DivType.circle
-                    ? new Circle(pos.x, pos.y, radius + tolerance)
-                    : new Rectangle(
-                          elem.offsetLeft * pxRatio - tolerance,
-                          elem.offsetTop * pxRatio - tolerance,
-                          elem.offsetWidth * pxRatio + tolerance * 2,
-                          elem.offsetHeight * pxRatio + tolerance * 2
-                      );
-
-            this.processBounce(pos, radius, area);
+            if (div.type === DivType.circle) {
+                await this.processBounce(pos, radius, WorkerQueryType.circle, pos, radius + tolerance);
+            } else {
+                await this.processBounce(
+                    pos,
+                    radius,
+                    WorkerQueryType.rectangle,
+                    {
+                        x: elem.offsetLeft * pxRatio - tolerance,
+                        y: elem.offsetTop * pxRatio - tolerance,
+                    },
+                    undefined,
+                    {
+                        width: elem.offsetWidth * pxRatio + tolerance * 2,
+                        height: elem.offsetHeight * pxRatio + tolerance * 2,
+                    }
+                );
+            }
         });
     }
 
-    private processBounce(position: ICoordinates, radius: number, area: Range): void {
-        const container = this.container,
-            query = container.particles.quadTree.query(area);
+    private async processBounce(
+        position: ICoordinates,
+        radius: number,
+        areaType: WorkerQueryType,
+        areaPosition: ICoordinates,
+        areaRadius?: number,
+        areaSize?: IDimension
+    ): Promise<void> {
+        const container = this.container;
 
-        for (const id of query) {
-            const particle = container.particles.getParticle(id);
+        const queryId = await this.#engine.queryTree(
+            {
+                containerId: container.treeId,
+                position: areaPosition,
+                radius: areaRadius,
+                queryType: areaType,
+                queryId: "external-bouncer",
+                size: areaSize,
+            },
+            (containerId, qid, ids) => {
+                if (container.treeId !== containerId || queryId !== qid) {
+                    return;
+                }
 
-            if (!particle) {
-                continue;
+                for (const id of ids) {
+                    const particle = container.particles.getParticle(id);
+
+                    if (!particle) {
+                        continue;
+                    }
+
+                    if (areaType === WorkerQueryType.circle) {
+                        circleBounce(circleBounceDataFromParticle(particle), {
+                            position,
+                            radius,
+                            mass: (radius ** 2 * Math.PI) / 2,
+                            velocity: Vector.origin,
+                            factor: Vector.origin,
+                        });
+                    } else if (areaType === WorkerQueryType.rectangle) {
+                        rectBounce(particle, calculateBounds(position, radius));
+                    }
+                }
             }
-
-            if (area instanceof Circle) {
-                circleBounce(circleBounceDataFromParticle(particle), {
-                    position,
-                    radius,
-                    mass: (radius ** 2 * Math.PI) / 2,
-                    velocity: Vector.origin,
-                    factor: Vector.origin,
-                });
-            } else if (area instanceof Rectangle) {
-                rectBounce(particle, calculateBounds(position, radius));
-            }
-        }
+        );
     }
 }
