@@ -128,7 +128,7 @@ export class Container {
         this.#engine = engine;
         this.startCount = 1;
         this.treeId = `${originalTreeId}_${this.startCount}`;
-        this.fpsLimit = 60;
+        this.fpsLimit = 120;
         this.duration = 0;
         this.lifeTime = 0;
         this.firstStart = true;
@@ -652,7 +652,7 @@ export class Container {
 
         this.duration = getRangeValue(this.actualOptions.duration);
         this.lifeTime = 0;
-        this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 60;
+        this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 120;
 
         const availablePlugins = this.#engine.plugins.getAvailablePlugins(this);
 

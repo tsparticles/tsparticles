@@ -5,7 +5,7 @@ export const presetName = "seaAnemone";
 export const pathGeneratorName = `${presetName}Path`;
 
 export const options: ISourceOptions = {
-    fpsLimit: 60,
+    fpsLimit: 120,
     particles: {
         color: {
             value: "#FF0000",

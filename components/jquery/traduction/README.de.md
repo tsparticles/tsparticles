@@ -48,7 +48,7 @@ $("#tsparticles")
         },
       },
 
-      fpsLimit: 60,
+      fpsLimit: 120,
 
       interactivity: {
         events: {

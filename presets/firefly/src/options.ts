@@ -6,7 +6,7 @@ export const options: ISourceOptions = {
         enable: true,
         zIndex: -1,
     },
-    fpsLimit: 60,
+    fpsLimit: 120,
     particles: {
         number: {
             value: 0,
