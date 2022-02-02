@@ -43,7 +43,7 @@ class App extends Component {
             },
           },
 
-          fpsLimit: 60,
+          fpsLimit: 120,
 
           interactivity: {
             events: {

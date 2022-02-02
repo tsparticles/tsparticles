@@ -7,7 +7,7 @@
     "zIndex": -1
   },
   "detectRetina": true,
-  "fpsLimit": 60,
+  "fpsLimit": 120,
   "interactivity": {
     "events": {
       "onHover": {

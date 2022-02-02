@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-editor",
-  "version": "1.39.2",
+  "version": "1.39.3",
   "description": "tsParticles Configuration Editor",
   "keywords": [
     "tsparticles",
@@ -47,10 +47,20 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/matteobruni"
+    },
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/matteobruni"
+    }
+  ],
   "dependencies": {
     "object-gui": "^1.1.1",
-    "tsparticles": "^1.39.2",
-    "tsparticles-plugin-infection": "^1.39.2"
+    "tsparticles": "^1.39.3",
+    "tsparticles-plugin-infection": "^1.39.3"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",

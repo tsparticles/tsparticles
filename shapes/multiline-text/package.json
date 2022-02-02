@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-multiline-text",
-  "version": "1.24.2",
+  "version": "1.24.3",
   "description": "tsParticles multiline text shape",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -53,6 +53,16 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/matteobruni"
+    },
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/matteobruni"
+    }
+  ],
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@types/webpack-env": "^1.16.2",
@@ -61,7 +71,6 @@
     "babel-loader": "^8.2.2",
     "browserslist": "^4.17.5",
     "copyfiles": "^2.4.1",
-    "downlevel-dts": "^0.7.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "prettier": "^2.3.2",
@@ -73,6 +82,6 @@
     "webpack-cli": "^4.8.0"
   },
   "dependencies": {
-    "tsparticles": "^1.39.2"
+    "tsparticles": "^1.39.3"
   }
 }

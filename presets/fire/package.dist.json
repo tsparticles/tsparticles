@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-fire",
-  "version": "1.24.2",
+  "version": "1.24.3",
   "description": "tsParticles fire preset",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -38,6 +38,16 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/matteobruni"
+    },
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/matteobruni"
+    }
+  ],
   "main": "index.js",
   "jsdelivr": "tsparticles.preset.fire.min.js",
   "unpkg": "tsparticles.preset.fire.min.js",
@@ -45,6 +55,6 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles": "^1.39.2"
+    "tsparticles": "^1.39.3"
   }
 }

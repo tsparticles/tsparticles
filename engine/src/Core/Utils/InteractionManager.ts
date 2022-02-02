@@ -8,8 +8,8 @@ import { Plugins } from "../Utils";
  * @category Core
  */
 export class InteractionManager {
-    private readonly externalInteractors: IExternalInteractor[];
-    private readonly particleInteractors: IParticlesInteractor[];
+    private externalInteractors: IExternalInteractor[];
+    private particleInteractors: IParticlesInteractor[];
 
     constructor(private readonly container: Container) {
         this.externalInteractors = [];
@@ -20,6 +20,9 @@ export class InteractionManager {
 
     init(): void {
         const interactors = Plugins.getInteractors(this.container, true);
+
+        this.externalInteractors = [];
+        this.particleInteractors = [];
 
         for (const interactor of interactors) {
             switch (interactor.type) {

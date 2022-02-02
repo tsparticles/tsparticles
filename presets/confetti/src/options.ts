@@ -12,7 +12,7 @@ export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>)
             enable: true,
             zIndex: actualOptions.zIndex,
         },
-        fpsLimit: 60,
+        fpsLimit: 120,
         particles: {
             number: {
                 value: 0,

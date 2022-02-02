@@ -95,7 +95,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.fullScreen = new FullScreen();
         this.detectRetina = true;
         this.duration = 0;
-        this.fpsLimit = 60;
+        this.fpsLimit = 120;
         this.interactivity = new Interactivity();
         this.manualParticles = [];
         this.motion = new Motion();
