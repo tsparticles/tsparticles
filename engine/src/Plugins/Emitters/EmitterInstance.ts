@@ -3,13 +3,13 @@ import { colorToHsl, deepExtend, getRangeValue, isPointInside, randomInRange } f
 import { Emitter } from "./Options/Classes/Emitter";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
 import type { Emitters } from "./Emitters";
+import type { EmittersEngine } from "./EmittersEngine";
 import type { IColorAnimation } from "../../Options/Interfaces/IColorAnimation";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
 import type { IEmitterShape } from "./IEmitterShape";
 import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
 import type { RecursivePartial } from "../../Types";
-import { ShapeManager } from "./ShapeManager";
 import { SizeMode } from "../../Enums";
 
 /**
@@ -42,12 +42,16 @@ export class EmitterInstance {
     private readonly initialPosition?: ICoordinates;
     private readonly particlesOptions: RecursivePartial<IParticles>;
 
+    readonly #engine;
+
     constructor(
+        engine: EmittersEngine,
         private readonly emitters: Emitters,
         private readonly container: Container,
         options: RecursivePartial<IEmitter>,
         position?: ICoordinates
     ) {
+        this.#engine = engine;
         this.currentDuration = 0;
         this.currentEmitDelay = 0;
         this.currentSpawnDelay = 0;
@@ -62,7 +66,7 @@ export class EmitterInstance {
 
         this.spawnDelay = ((this.options.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
         this.name = this.options.name;
-        this.shape = ShapeManager.getShape(this.options.shape);
+        this.shape = this.#engine.emitterShapeManager?.getShape(this.options.shape);
         this.fill = this.options.fill;
         this.#firstSpawn = !this.options.life.wait;
         this.#startParticlesAdded = false;

@@ -20,7 +20,8 @@ import type { IOptions } from "./Options/Interfaces/IOptions";
 
 /**
  * Engine class for creating the singleton on window.
- * It's a singleton proxy to the static [[this.#loader]] class for initializing [[Container]] instances
+ * It's a singleton proxy to the Loader class for initializing [[Container]] instances,
+ * and for Plugins class responsible for every external feature
  * @category Engine
  */
 export class Engine {
