@@ -1,8 +1,8 @@
 import type { IDelta, IExternalInteractor, IParticlesInteractor } from "../Interfaces";
 import type { Container } from "../Container";
+import type { Engine } from "../../engine";
 import { InteractorType } from "../../Enums";
 import type { Particle } from "../Particle";
-import { Plugins } from "../Utils";
 
 /**
  * @category Core
@@ -11,7 +11,11 @@ export class InteractionManager {
     private externalInteractors: IExternalInteractor[];
     private particleInteractors: IParticlesInteractor[];
 
-    constructor(private readonly container: Container) {
+    readonly #engine;
+
+    constructor(engine: Engine, private readonly container: Container) {
+        this.#engine = engine;
+
         this.externalInteractors = [];
         this.particleInteractors = [];
 
@@ -19,7 +23,7 @@ export class InteractionManager {
     }
 
     init(): void {
-        const interactors = Plugins.getInteractors(this.container, true);
+        const interactors = this.#engine.plugins.getInteractors(this.container, true);
 
         this.externalInteractors = [];
         this.particleInteractors = [];

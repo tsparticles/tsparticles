@@ -7,6 +7,7 @@ import {
     OutMode,
     RotateDirection,
     ShapeType,
+    tsParticles,
 } from "../src";
 import { describe, it } from "mocha";
 import { IParticles } from "../src/Options/Interfaces/Particles/IParticles";
@@ -18,7 +19,7 @@ import { expect } from "chai";
 
 describe("Options tests", () => {
     it("checking default options", () => {
-        const options = new Options();
+        const options = new Options(tsParticles);
 
         /* background */
         expect(options.background.color).to.include({ value: "" });
@@ -162,7 +163,7 @@ describe("Options tests", () => {
     });
 
     it("check default preset options", () => {
-        const options = new Options();
+        const options = new Options(tsParticles);
         const preset = {
             background: {
                 color: "#0d47a1",
@@ -341,7 +342,7 @@ describe("Options tests", () => {
     });
 
     it("check test preset options", () => {
-        const options = new Options();
+        const options = new Options(tsParticles);
         const preset = {
             background: {
                 color: "#0d47a1",

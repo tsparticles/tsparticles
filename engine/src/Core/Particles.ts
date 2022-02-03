@@ -1,7 +1,8 @@
 import type { ICoordinates, IDelta, IMouseData, IParticle, IRgb } from "./Interfaces";
-import { InteractionManager, ParticlesMover, Plugins, Point, QuadTree, Rectangle } from "./Utils";
+import { InteractionManager, ParticlesMover, Point, QuadTree, Rectangle } from "./Utils";
 import { getRangeMax, getRangeMin, getRangeValue, randomInRange, setRangeValue } from "../Utils";
 import type { Container } from "./Container";
+import type { Engine } from "../engine";
 import type { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import { IParticlesFrequencies } from "./Interfaces/IParticlesFrequencies";
@@ -44,7 +45,11 @@ export class Particles {
     private readonly freqs: IParticlesFrequencies;
     private readonly mover;
 
-    constructor(private readonly container: Container) {
+    readonly #engine;
+
+    constructor(engine: Engine, private readonly container: Container) {
+        this.#engine = engine;
+
         this.nextId = 0;
         this.array = [];
         this.zArray = [];
@@ -56,7 +61,7 @@ export class Particles {
             links: new Map<string, number>(),
             triangles: new Map<string, number>(),
         };
-        this.interactionManager = new InteractionManager(container);
+        this.interactionManager = new InteractionManager(this.#engine, container);
 
         const canvasSize = this.container.canvas.size;
 
@@ -71,7 +76,7 @@ export class Particles {
             4
         );
 
-        this.updaters = Plugins.getUpdaters(container, true);
+        this.updaters = this.#engine.plugins.getUpdaters(container, true);
     }
 
     /* --------- tsParticles functions - particles ----------- */
@@ -86,7 +91,7 @@ export class Particles {
 
         let handled = false;
 
-        this.updaters = Plugins.getUpdaters(container, true);
+        this.updaters = this.#engine.plugins.getUpdaters(container, true);
         this.interactionManager.init();
 
         for (const [, plugin] of container.plugins) {
@@ -469,7 +474,7 @@ export class Particles {
         initializer?: (particle: Particle) => boolean
     ): Particle | undefined {
         try {
-            const particle = new Particle(this.nextId, this.container, position, overrideOptions, group);
+            const particle = new Particle(this.#engine, this.nextId, this.container, position, overrideOptions, group);
 
             let canAdd = true;
 
