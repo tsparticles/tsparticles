@@ -16,7 +16,7 @@ import { SizeMode } from "../../Enums";
  * @category Emitters Plugin
  */
 export class EmitterInstance {
-    position;
+    position?: ICoordinates;
     size;
     options;
     spawnColor?: IHsl;
@@ -61,7 +61,6 @@ export class EmitterInstance {
         }
 
         this.spawnDelay = ((this.options.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
-        this.position = this.initialPosition ?? this.calcPosition();
         this.name = this.options.name;
         this.shape = ShapeManager.getShape(this.options.shape);
         this.fill = this.options.fill;
@@ -290,6 +289,10 @@ export class EmitterInstance {
                 } else {
                     particlesOptions.color.value = this.spawnColor;
                 }
+            }
+
+            if (!position) {
+                return;
             }
 
             const pPosition = this.shape?.randomPosition(position, offset, this.fill) ?? position;
