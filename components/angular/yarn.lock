@@ -181,12 +181,11 @@
     tslib "^2.3.0"
 
 "@angular/compiler-cli@~13.2.0":
-  version "13.2.0"
-  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-13.2.0.tgz#6eee613e86ec028a4a2b88a9dce45512eef7e862"
-  integrity sha512-IDX0X3GXjhUzd/cFyNZBG3eVqh6Y2W7MYvH9tXbZHcJ6vH9RkN2+zh/XQautVWy4EP33oQoDlsydfYKqbHr9TA==
+  version "13.2.1"
+  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-13.2.1.tgz#81c24d4f359e75f1231e6b847cdb4cb5432fd3df"
+  integrity sha512-sUJVdHxX1JtUu5qsM2g+l8xtVlfTPcQiIgD3UU5iYT6Twzhs3g5iuqD+C0x5US/x45eXiL87fvs8XW/kNSDfwQ==
   dependencies:
     "@babel/core" "^7.8.6"
-    canonical-path "1.0.0"
     chokidar "^3.0.0"
     convert-source-map "^1.5.1"
     dependency-graph "^0.11.0"
@@ -233,9 +232,9 @@
     tslib "^2.3.0"
 
 "@angular/router@~13.2.0":
-  version "13.2.0"
-  resolved "https://registry.yarnpkg.com/@angular/router/-/router-13.2.0.tgz#1bde95cc05195ed2c5cb1ec4f54233e48c2f33a3"
-  integrity sha512-8fWxcWT/LpaGhmXJ8xH+E7UObzt5IMGzK1sJGRu508y5tcbuBlTJt3yV97mCeUQ0g/E+2GEv6vuxY7OcfDaZow==
+  version "13.2.1"
+  resolved "https://registry.yarnpkg.com/@angular/router/-/router-13.2.1.tgz#d0cbe8d1068330cf75d4602267d52579a708e47f"
+  integrity sha512-+UkzW1ODV8GgL2ft6eMmJKYl4rqw6iwh3y5IEenF52X8zmnjjR0/ts/86FmaCfnpaE5S6hwnsopin9LBYVbVTQ==
   dependencies:
     tslib "^2.3.0"
 
@@ -2225,11 +2224,6 @@ caniuse-lite@^1.0.30001286, caniuse-lite@^1.0.30001297, caniuse-lite@^1.0.300012
   version "1.0.30001299"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001299.tgz#d753bf6444ed401eb503cbbe17aa3e1451b5a68c"
   integrity sha512-iujN4+x7QzqA2NCSrS5VUy+4gLmRd4xv6vbBBsmfVqTx8bLAD8097euLqQgKxSVLvxjSDcvF1T/i9ocgnUFexw==
-
-canonical-path@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/canonical-path/-/canonical-path-1.0.0.tgz#fcb470c23958def85081856be7a86e904f180d1d"
-  integrity sha512-feylzsbDxi1gPZ1IjystzIQZagYYLvfKrSuygUCgf7z6x790VEzze5QEkdSV1U58RA7Hi0+v6fv4K54atOzATg==
 
 chalk@^2.0.0:
   version "2.4.2"
@@ -6303,6 +6297,11 @@ tslib@^1.9.0:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
+
+tsparticles-engine@^2.0.0-beta.4:
+  version "2.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.0-beta.4.tgz#1c4141c2dca770d71877631a8ad75a1c446117ce"
+  integrity sha512-ENyhxd9GqE5mjksQqCWVBnQz0F48Yuj0+xFKGU4Ax25q8OkpN4iXhwZaDSUCaPJ6Vlh6BWb8Hlr+LB9mYEJzYg==
 
 type-fest@^0.21.3:
   version "0.21.3"
