@@ -10,6 +10,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
 * removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
+## [1.24.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fountain@1.24.2...tsparticles-preset-fountain@1.24.3) (2022-02-02)
 
 
 ### Features
@@ -30,6 +31,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
 
+* updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
 
 
 
@@ -53,6 +55,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * fixed fountain presets ([3b47867](https://github.com/matteobruni/tsparticles/commit/3b478673153181396446f510d7ca5ad09abfcd4f))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
 ## [1.24.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fountain@1.24.1...tsparticles-preset-fountain@1.24.2) (2022-01-29)
 
 **Note:** Version bump only for package tsparticles-preset-fountain

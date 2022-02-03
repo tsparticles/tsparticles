@@ -2,7 +2,7 @@ import { DestroyMode, MoveDirection, OutMode } from "tsparticles-engine";
 import type { ISourceOptions } from "tsparticles-engine";
 
 export const options: ISourceOptions = {
-    fpsLimit: 60,
+    fpsLimit: 120,
     particles: {
         bounce: {
             vertical: {

@@ -356,6 +356,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [1.1.0-alpha.4](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.1.0-alpha.3...svelte-demo@1.1.0-alpha.4) (2020-08-11)
+## [1.22.3](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.22.2...svelte-demo@1.22.3) (2022-02-02)
 
 **Note:** Version bump only for package svelte-demo
 

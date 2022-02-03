@@ -10,6 +10,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
 * removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
+## [1.24.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-sea-anemone@1.24.2...tsparticles-preset-sea-anemone@1.24.3) (2022-02-02)
 
 
 ### Features
@@ -18,6 +19,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * created and implemented move plugins ([752483a](https://github.com/matteobruni/tsparticles/commit/752483aeeb94dd851dc27fe75e4c258fd87f0a90))
 * fixed sea anemone presets ([0df846d](https://github.com/matteobruni/tsparticles/commit/0df846d81b736b38f8e920b207ab973811695622))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+* updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
 
 
 

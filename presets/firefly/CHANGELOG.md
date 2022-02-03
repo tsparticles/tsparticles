@@ -9,6 +9,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 * **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+## [1.24.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-firefly@1.24.2...tsparticles-preset-firefly@1.24.3) (2022-02-02)
 
 
 ### Features
@@ -29,6 +30,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
 
+* updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
 
 
 
@@ -52,6 +54,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * fixed firefly and fireworks presets ([ec952c9](https://github.com/matteobruni/tsparticles/commit/ec952c9ac0b42dc1c5350279a44a1255ca1f4fca))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
 ## [1.24.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-firefly@1.24.1...tsparticles-preset-firefly@1.24.2) (2022-01-29)
 
 **Note:** Version bump only for package tsparticles-preset-firefly

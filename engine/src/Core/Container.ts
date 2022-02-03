@@ -107,7 +107,7 @@ export class Container {
      */
     constructor(engine: Engine, readonly id: string, sourceOptions?: RecursivePartial<IOptions>) {
         this.#engine = engine;
-        this.fpsLimit = 60;
+        this.fpsLimit = 120;
         this.duration = 0;
         this.lifeTime = 0;
         this.firstStart = true;
@@ -377,7 +377,7 @@ export class Container {
         this.canvas.clear();
 
         if (this.interactivity.element instanceof HTMLElement && this.intersectionObserver) {
-            this.intersectionObserver.observe(this.interactivity.element);
+            this.intersectionObserver.unobserve(this.interactivity.element);
         }
 
         for (const [, plugin] of this.plugins) {
@@ -599,7 +599,7 @@ export class Container {
 
         this.duration = getRangeValue(this.actualOptions.duration);
         this.lifeTime = 0;
-        this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 60;
+        this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 120;
 
         const availablePlugins = this.#engine.plugins.getAvailablePlugins(this);
 

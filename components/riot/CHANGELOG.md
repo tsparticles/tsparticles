@@ -20,6 +20,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/riot-particles@2.0.0-beta.2...riot-particles@2.0.0-beta.3) (2021-12-07)
+## [1.13.3](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.13.2...riot-particles@1.13.3) (2022-02-02)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
 ## [1.13.2](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.13.1...riot-particles@1.13.2) (2022-01-29)
 
 **Note:** Version bump only for package riot-particles

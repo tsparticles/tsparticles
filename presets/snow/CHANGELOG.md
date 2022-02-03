@@ -48,6 +48,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-snow@1.20.4...tsparticles-preset-snow@2.0.0-beta.2) (2021-10-06)
+## [1.24.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-snow@1.24.2...tsparticles-preset-snow@1.24.3) (2022-02-02)
+
+**Note:** Version bump only for package tsparticles-preset-snow
+
+
+
+
+
 ## [1.24.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-snow@1.24.1...tsparticles-preset-snow@1.24.2) (2022-01-29)
 
 **Note:** Version bump only for package tsparticles-preset-snow

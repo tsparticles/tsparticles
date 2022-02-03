@@ -61,6 +61,16 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/matteobruni"
+    },
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/matteobruni"
+    }
+  ],
   "dependencies": {
     "react-tsparticles": "^2.0.0-beta.5",
     "tslib": "^2.3.0",

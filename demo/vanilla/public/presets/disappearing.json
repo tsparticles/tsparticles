@@ -4,7 +4,7 @@
       "value": "#000"
     }
   },
-  "fpsLimit": 60,
+  "fpsLimit": 120,
   "emitters": {
     "direction": "random",
     "size": {

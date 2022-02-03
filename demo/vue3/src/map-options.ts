@@ -4,7 +4,7 @@ const crazyParticles = {
       value: 'white',
     },
   },
-  fpsLimit: 60,
+  fpsLimit: 120,
   interactivity: {
     events: {
       onClick: {
@@ -105,7 +105,7 @@ const deerParticle = {
   },
   detectRetina: false,
   duration: 0,
-  fpsLimit: 30,
+  fpsLimit: 120,
   interactivity: {
     events: {
       onClick: {

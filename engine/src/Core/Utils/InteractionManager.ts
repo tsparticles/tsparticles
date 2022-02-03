@@ -8,8 +8,8 @@ import { Engine } from "../../engine";
 import type { Particle } from "../Particle";
 
 export class InteractionManager {
-    private readonly externalInteractors: IExternalInteractor[];
-    private readonly particleInteractors: IParticlesInteractor[];
+    private externalInteractors: IExternalInteractor[];
+    private particleInteractors: IParticlesInteractor[];
 
     readonly #engine;
 
@@ -23,6 +23,9 @@ export class InteractionManager {
 
     init(): void {
         const interactors = this.#engine.plugins.getInteractors(this.container, true);
+
+        this.externalInteractors = [];
+        this.particleInteractors = [];
 
         for (const interactor of interactors) {
             switch (interactor.type) {

@@ -6,7 +6,7 @@ export const options: ISourceOptions = {
     background: {
         color: "#000",
     },
-    fpsLimit: 60,
+    fpsLimit: 120,
     emitters: {
         direction: MoveDirection.top,
         life: {

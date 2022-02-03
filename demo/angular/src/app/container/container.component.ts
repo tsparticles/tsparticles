@@ -19,7 +19,7 @@ export class ContainerComponent implements OnInit {
     fullScreen: {
       zIndex: -1
     },
-    fpsLimit: 60,
+    fpsLimit: 120,
     interactivity: {
       events: {
         onClick: {

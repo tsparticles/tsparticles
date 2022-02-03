@@ -40,7 +40,7 @@ describe("Themes", () => {
                 },
             },
         ],
-        fpsLimit: 60,
+        fpsLimit: 120,
         particles: {
             number: {
                 value: 30,

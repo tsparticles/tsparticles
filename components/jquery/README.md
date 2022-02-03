@@ -55,7 +55,7 @@ $("#tsparticles")
           value: "#0d47a1",
         },
       },
-      fpsLimit: 60,
+      fpsLimit: 120,
       interactivity: {
         events: {
           onClick: {

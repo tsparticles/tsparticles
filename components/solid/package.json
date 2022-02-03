@@ -67,6 +67,16 @@
 	"author": "Matteo Bruni <matteo.bruni@me.com>",
 	"license": "MIT",
 	"homepage": "https://particles.js.org/",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/matteobruni"
+		},
+		{
+			"type": "buymeacoffee",
+			"url": "https://www.buymeacoffee.com/matteobruni"
+		}
+	],
 	"peerDependencies": {
 		"solid-js": "^1.0.0"
 	},
