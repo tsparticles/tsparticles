@@ -212,9 +212,9 @@
     tslib "^2.3.0"
 
 "@angular/forms@~13.2.0":
-  version "13.2.0"
-  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-13.2.0.tgz#67d505c09175d1ba809be721303316db7b0c60d4"
-  integrity sha512-aduXLuvqynDRRdb316yY1O5rdMQ2DKeNxu5P2FG1nkLQ3hqZvpiaUMhFyXvKDG3s0rV5e/PZs1cpg0Aqdfwevw==
+  version "13.2.1"
+  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-13.2.1.tgz#3490c50e715f5e5f4ad214166aca76c9511ba0a6"
+  integrity sha512-3bTxNRmamN6+0eNdd+kYk2XDfPxXYeAIvRlm8MFM9/buP/tlcCusAvnkHABUJ9wX/2kezOXMOkWtO9LfyyNLIg==
   dependencies:
     tslib "^2.3.0"
 
@@ -233,9 +233,9 @@
     tslib "^2.3.0"
 
 "@angular/router@~13.2.0":
-  version "13.2.0"
-  resolved "https://registry.yarnpkg.com/@angular/router/-/router-13.2.0.tgz#1bde95cc05195ed2c5cb1ec4f54233e48c2f33a3"
-  integrity sha512-8fWxcWT/LpaGhmXJ8xH+E7UObzt5IMGzK1sJGRu508y5tcbuBlTJt3yV97mCeUQ0g/E+2GEv6vuxY7OcfDaZow==
+  version "13.2.1"
+  resolved "https://registry.yarnpkg.com/@angular/router/-/router-13.2.1.tgz#d0cbe8d1068330cf75d4602267d52579a708e47f"
+  integrity sha512-+UkzW1ODV8GgL2ft6eMmJKYl4rqw6iwh3y5IEenF52X8zmnjjR0/ts/86FmaCfnpaE5S6hwnsopin9LBYVbVTQ==
   dependencies:
     tslib "^2.3.0"
 
@@ -6303,6 +6303,11 @@ tslib@^1.9.0:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
+
+tsparticles-engine@^2.0.0-beta.4:
+  version "2.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.0-beta.4.tgz#1c4141c2dca770d71877631a8ad75a1c446117ce"
+  integrity sha512-ENyhxd9GqE5mjksQqCWVBnQz0F48Yuj0+xFKGU4Ax25q8OkpN4iXhwZaDSUCaPJ6Vlh6BWb8Hlr+LB9mYEJzYg==
 
 type-fest@^0.21.3:
   version "0.21.3"
