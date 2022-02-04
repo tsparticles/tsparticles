@@ -5,6 +5,7 @@ import { Emitter } from "./Options/Classes/Emitter";
 import { EmitterClickMode } from "./Enums";
 import type { EmitterContainer } from "./EmitterContainer";
 import { EmitterInstance } from "./EmitterInstance";
+import type { EmittersEngine } from "./EmittersEngine";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
@@ -17,7 +18,10 @@ export class Emitters implements IContainerPlugin {
     emitters: SingleOrMultiple<Emitter>;
     interactivityEmitters: SingleOrMultiple<Emitter>;
 
-    constructor(private readonly container: Container) {
+    readonly #engine;
+
+    constructor(engine: EmittersEngine, private readonly container: Container) {
+        this.#engine = engine;
         this.array = [];
         this.emitters = [];
         this.interactivityEmitters = [];
@@ -167,7 +171,7 @@ export class Emitters implements IContainerPlugin {
 
         emitterOptions.load(options);
 
-        const emitter = new EmitterInstance(this, this.container, emitterOptions, position);
+        const emitter = new EmitterInstance(this.#engine, this, this.container, emitterOptions, position);
 
         this.array.push(emitter);
 

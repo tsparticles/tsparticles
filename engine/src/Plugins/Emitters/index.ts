@@ -3,7 +3,7 @@ import { EmitterClickMode, EmitterShapeType } from "./Enums";
 import { CircleShape } from "./Shapes/Circle/CircleShape";
 import { Emitter } from "./Options/Classes/Emitter";
 import { Emitters } from "./Emitters";
-import { EmittersMain } from "./EmittersMain";
+import { EmittersEngine } from "./EmittersEngine";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 import { IEmitterShape } from "./IEmitterShape";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
@@ -19,12 +19,15 @@ import { isInArray } from "../../Utils";
 class EmittersPlugin implements IPlugin {
     readonly id;
 
-    constructor() {
+    readonly #engine;
+
+    constructor(engine: EmittersEngine) {
+        this.#engine = engine;
         this.id = "emitters";
     }
 
     getPlugin(container: Container): Emitters {
-        return new Emitters(container);
+        return new Emitters(this.#engine, container);
     }
 
     needsPlugin(options?: RecursivePartial<IOptions & IEmitterOptions>): boolean {
@@ -93,19 +96,23 @@ class EmittersPlugin implements IPlugin {
     }
 }
 
-export async function loadEmittersPlugin(engine: EmittersMain): Promise<void> {
-    const plugin = new EmittersPlugin();
-
-    await engine.addPlugin(plugin);
+export async function loadEmittersPlugin(engine: EmittersEngine): Promise<void> {
+    if (!engine.emitterShapeManager) {
+        engine.emitterShapeManager = new ShapeManager(engine);
+    }
 
     if (!engine.addEmitterShape) {
         engine.addEmitterShape = (name: string, shape: IEmitterShape) => {
-            ShapeManager.addShape(name, shape);
+            engine.emitterShapeManager?.addShape(name, shape);
         };
     }
+
+    const plugin = new EmittersPlugin(engine);
+
+    await engine.addPlugin(plugin);
 
     engine.addEmitterShape(EmitterShapeType.circle, new CircleShape());
     engine.addEmitterShape(EmitterShapeType.square, new SquareShape());
 }
 
-export * from "./EmittersMain";
+export * from "./EmittersEngine";

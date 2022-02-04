@@ -2,6 +2,7 @@ import type { RangeValue, RecursivePartial } from "../../Types";
 import { ResponsiveMode, ThemeMode } from "../../Enums";
 import { Background } from "./Background/Background";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
+import type { Engine } from "../../engine";
 import { FullScreen } from "./FullScreen/FullScreen";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import type { IOptions } from "../Interfaces/IOptions";
@@ -9,7 +10,6 @@ import { Interactivity } from "./Interactivity/Interactivity";
 import { ManualParticle } from "./ManualParticle";
 import { Motion } from "./Motion/Motion";
 import { ParticlesOptions } from "./Particles/ParticlesOptions";
-import { Plugins } from "../../Core";
 import { Responsive } from "./Responsive";
 import { Theme } from "./Theme/Theme";
 import { deepExtend } from "../../Utils";
@@ -88,7 +88,11 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
     [name: string]: unknown;
 
-    constructor() {
+    readonly #engine;
+
+    constructor(engine: Engine) {
+        this.#engine = engine;
+
         this.autoPlay = true;
         this.background = new Background();
         this.backgroundMask = new BackgroundMask();
@@ -187,7 +191,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
         this.style = deepExtend(this.style, data.style) as RecursivePartial<CSSStyleDeclaration>;
 
-        Plugins.loadOptions(this, data);
+        this.#engine.plugins.loadOptions(this, data);
 
         if (data.responsive !== undefined) {
             for (const responsive of data.responsive) {
@@ -246,7 +250,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     }
 
     private importPreset(preset: string): void {
-        this.load(Plugins.getPreset(preset));
+        this.load(this.#engine.plugins.getPreset(preset));
     }
 
     #findDefaultTheme(mode: ThemeMode): Theme | undefined {

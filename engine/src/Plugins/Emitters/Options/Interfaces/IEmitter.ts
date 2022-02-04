@@ -30,6 +30,11 @@ export interface IEmitter {
     direction?: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
 
     /**
+     * Using this id to link the emitter to an HTML element
+     */
+    domId?: string;
+
+    /**
      * Sets if the particles will spawn at the emitter perimeter or inside the area
      */
     fill: boolean;
