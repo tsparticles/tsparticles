@@ -58,6 +58,10 @@ app.get('/', function (req, res) {
     res.render('index');
 });
 
+app.get('/domEmitters', function (req, res) {
+    res.render('domEmitters');
+});
+
 app.get('/slim', function (req, res) {
     res.render('slim');
 });

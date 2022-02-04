@@ -1,5 +1,5 @@
-import type { ICoordinates } from "../../Core";
+import type { ICoordinates, IDimension } from "../../Core";
 
 export interface IEmitterShape {
-    randomPosition(position: ICoordinates, offset: ICoordinates, fill: boolean): ICoordinates;
+    randomPosition(position: ICoordinates, size: IDimension, fill: boolean): ICoordinates;
 }

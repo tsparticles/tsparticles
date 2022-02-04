@@ -1,4 +1,4 @@
-import type { Container, ICoordinates, IDelta, IHsl } from "../../Core";
+import type { Container, ICoordinates, IDelta, IDimension, IHsl } from "../../Core";
 import { colorToHsl, deepExtend, getRangeValue, isPointInside, randomInRange } from "../../Utils";
 import { Emitter } from "./Options/Classes/Emitter";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
@@ -219,6 +219,52 @@ export class EmitterInstance {
         }
     }
 
+    getPosition(): ICoordinates | undefined {
+        if (this.options.domId) {
+            const container = this.container,
+                element = document.getElementById(this.options.domId);
+
+            if (element) {
+                const elRect = element.getBoundingClientRect();
+
+                return {
+                    x: (elRect.x + elRect.width / 2) * container.retina.pixelRatio,
+                    y: (elRect.y + elRect.height / 2) * container.retina.pixelRatio,
+                };
+            }
+        }
+
+        return this.position;
+    }
+
+    getSize(): IDimension {
+        const container = this.container;
+
+        if (this.options.domId) {
+            const element = document.getElementById(this.options.domId);
+
+            if (element) {
+                const elRect = element.getBoundingClientRect();
+
+                return {
+                    width: elRect.width * container.retina.pixelRatio,
+                    height: elRect.height * container.retina.pixelRatio,
+                };
+            }
+        }
+
+        return {
+            width:
+                this.size.mode === SizeMode.percent
+                    ? (container.canvas.size.width * this.size.width) / 100
+                    : this.size.width,
+            height:
+                this.size.mode === SizeMode.percent
+                    ? (container.canvas.size.height * this.size.height) / 100
+                    : this.size.height,
+        };
+    }
+
     private prepareToDie(): void {
         if (this.paused) {
             return;
@@ -262,17 +308,8 @@ export class EmitterInstance {
 
     private emitParticles(quantity: number): void {
         const container = this.container;
-        const position = this.position;
-        const offset = {
-            x:
-                this.size.mode === SizeMode.percent
-                    ? (container.canvas.size.width * this.size.width) / 100
-                    : this.size.width,
-            y:
-                this.size.mode === SizeMode.percent
-                    ? (container.canvas.size.height * this.size.height) / 100
-                    : this.size.height,
-        };
+        const position = this.getPosition();
+        const size = this.getSize();
 
         for (let i = 0; i < quantity; i++) {
             const particlesOptions = deepExtend({}, this.particlesOptions) as RecursivePartial<IParticles>;
@@ -299,7 +336,7 @@ export class EmitterInstance {
                 return;
             }
 
-            const pPosition = this.shape?.randomPosition(position, offset, this.fill) ?? position;
+            const pPosition = this.shape?.randomPosition(position, size, this.fill) ?? position;
 
             container.particles.addParticle(pPosition, particlesOptions);
         }
