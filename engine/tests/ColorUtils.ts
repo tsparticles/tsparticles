@@ -1,7 +1,10 @@
 import * as ColorUtils from "../src/Utils/ColorUtils";
 import { IColor, IHsl, IHsla, IHsv, IRgb } from "../src";
 import { describe, it } from "mocha";
+import { Worker } from "./Fixture/MockWorker";
 import { expect } from "chai";
+
+globalThis.Worker = Worker as any;
 
 describe("ColorUtils", () => {
     const red: IRgb = {

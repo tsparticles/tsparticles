@@ -13,7 +13,7 @@ export class InfectionInstance implements IContainerPlugin {
         const options = this.container.actualOptions as unknown as IInfectionOptions;
 
         for (let i = 0; i < options.infection.infections; i++) {
-            const notInfected = this.container.particles.array.filter((p) => {
+            const notInfected = Array.from(this.container.particles.array.values()).filter((p) => {
                 const infP = p as InfectableParticle;
 
                 if (!infP.infection) {

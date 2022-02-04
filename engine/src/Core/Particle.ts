@@ -121,8 +121,6 @@ export class Particle implements IParticle {
     readonly retina: IParticleRetinaProps;
     readonly #engine;
 
-    readonly #engine;
-
     constructor(
         engine: Engine,
         readonly id: number,

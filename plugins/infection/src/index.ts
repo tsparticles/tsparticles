@@ -43,5 +43,5 @@ export function loadInfectionPlugin(engine: Engine): void {
     const plugin = new Plugin();
 
     engine.addPlugin(plugin);
-    engine.addInteractor("particlesInfection", (container) => new ParticlesInfecter(container));
+    engine.addInteractor("particlesInfection", (container) => new ParticlesInfecter(engine, container));
 }

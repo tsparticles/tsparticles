@@ -3,10 +3,13 @@ import * as Utils from "../src/Utils/Utils";
 import { Container, MoveDirection, OutModeDirection, Particle, Vector, tsParticles } from "../src";
 import type { ICoordinates, IParticle } from "../src";
 import { describe, it } from "mocha";
+import { Worker } from "worker_threads";
 import { expect } from "chai";
 
+globalThis.Worker = Worker as any;
+
 function buildParticleWithDirection(direction: MoveDirection): IParticle {
-    const container = new Container(tsParticles, "someid");
+    const container = new Container(tsParticles, "someid_tree", "someid");
     const options = { move: { direction } };
     return new Particle(tsParticles, 1, container, undefined, options);
 }

@@ -2,7 +2,10 @@ import { Circle, CircleWarp, Point, QuadTree, Rectangle } from "../src";
 import { describe, it } from "mocha";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticle } from "./Fixture/TestParticle";
+import { Worker } from "worker_threads";
 import { expect } from "chai";
+
+globalThis.Worker = Worker as any;
 
 describe("QuadTree tests", () => {
     const testContainer = new TestContainer({});
@@ -62,7 +65,7 @@ describe("QuadTree tests", () => {
 
             const pos1 = p1.particle.getPosition();
 
-            quadTree.insert(new Point(pos1, p1.particle));
+            quadTree.insert(new Point(pos1, p1.particle.id, p1.particle.getRadius()));
 
             it("query (radius 10) with p1 (5, 5) center should have at least p2 (10, 10)", () => {
                 const p2 = new TestParticle(testContainer.container, { x: 10, y: 10 });
@@ -75,7 +78,7 @@ describe("QuadTree tests", () => {
 
                 const pos2 = p2.particle.getPosition();
 
-                quadTree.insert(new Point(pos2, p2.particle));
+                quadTree.insert(new Point(pos2, p2.particle.id, p2.particle.getRadius()));
 
                 expect(quadTree.queryCircleWarp(pos1, 10, canvasSize)).to.be.not.empty;
             });
@@ -91,7 +94,7 @@ describe("QuadTree tests", () => {
 
                 const pos2 = p2.particle.getPosition();
 
-                quadTree.insert(new Point(pos2, p2.particle));
+                quadTree.insert(new Point(pos2, p2.particle.id, p2.particle.getRadius()));
 
                 expect(quadTree.queryCircleWarp(pos1, 10, canvasSize)).to.be.not.empty;
             });
@@ -107,7 +110,7 @@ describe("QuadTree tests", () => {
 
                 const pos2 = p2.particle.getPosition();
 
-                quadTree.insert(new Point(pos2, p2.particle));
+                quadTree.insert(new Point(pos2, p2.particle.id, p2.particle.getRadius()));
 
                 expect(quadTree.queryCircleWarp(pos1, 10, canvasSize)).to.be.not.empty;
             });
@@ -123,7 +126,7 @@ describe("QuadTree tests", () => {
 
                 const pos2 = p2.particle.getPosition();
 
-                quadTree.insert(new Point(pos2, p2.particle));
+                quadTree.insert(new Point(pos2, p2.particle.id, p2.particle.getRadius()));
 
                 expect(quadTree.queryCircleWarp(pos1, 10, canvasSize)).to.be.not.empty;
             });
@@ -141,7 +144,7 @@ describe("QuadTree tests", () => {
 
                 expect(p2.particle).to.not.be.undefined;
 
-                quadTree.insert(new Point(pos2, p2.particle));
+                quadTree.insert(new Point(pos2, p2.particle.id, p2.particle.getRadius()));
 
                 expect(quadTree.queryCircleWarp(pos1, 10, canvasSize)).to.be.not.empty;
             });
@@ -158,7 +161,7 @@ describe("QuadTree tests", () => {
 
             const pos1 = p1.particle.getPosition();
 
-            quadTree.insert(new Point(pos1, p1.particle));
+            quadTree.insert(new Point(pos1, p1.particle.id, p1.particle.getRadius()));
 
             it("query (radius 10) with p1 (100, 5) center should have at least p2 (100, 199)", () => {
                 const p2 = new TestParticle(testContainer.container, { x: 100, y: 199 });
@@ -171,7 +174,7 @@ describe("QuadTree tests", () => {
 
                 const pos2 = p2.particle.getPosition();
 
-                quadTree.insert(new Point(pos2, p2.particle));
+                quadTree.insert(new Point(pos2, p2.particle.id, p2.particle.getRadius()));
 
                 expect(quadTree.queryCircleWarp(pos1, 10, canvasSize)).to.be.not.empty;
             });
@@ -190,7 +193,7 @@ describe("QuadTree tests", () => {
 
             expect(p1.particle).to.not.be.undefined;
 
-            quadTree.insert(new Point(pos1, p1.particle));
+            quadTree.insert(new Point(pos1, p1.particle.id, p1.particle.getRadius()));
 
             it("query (radius 10) with p1 (5, 100) center should have at least p2 (199, 100)", () => {
                 const p2 = new TestParticle(testContainer.container, { x: 199, y: 100 });
@@ -203,7 +206,7 @@ describe("QuadTree tests", () => {
 
                 const pos2 = p2.particle.getPosition();
 
-                quadTree.insert(new Point(pos2, p2.particle));
+                quadTree.insert(new Point(pos2, p2.particle.id, p2.particle.getRadius()));
 
                 expect(quadTree.queryCircleWarp(pos1, 10, canvasSize)).to.be.not.empty;
             });

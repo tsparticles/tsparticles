@@ -242,7 +242,7 @@ export class GradientUpdater implements IParticleUpdater {
         );
     }
 
-    update(particle: Particle, delta: IDelta): void {
+    async update(particle: Particle, delta: IDelta): Promise<void> {
         updateGradient(particle, delta);
     }
 }

@@ -33,7 +33,7 @@ export class OrbitUpdater implements IParticleUpdater {
         return !particle.destroyed && !particle.spawning && orbitAnimations.enable;
     }
 
-    update(particle: OrbitParticle, delta: IDelta): void {
+    async update(particle: OrbitParticle, delta: IDelta): Promise<void> {
         const orbitAnimations = particle.options.orbit.animation;
 
         if (!this.isEnabled(particle)) {

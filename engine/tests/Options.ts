@@ -15,7 +15,10 @@ import { Options } from "../src/Options/Classes/Options";
 import { OptionsColor } from "../src/Options/Classes/OptionsColor";
 import { ParticlesOptions } from "../src/Options/Classes/Particles/ParticlesOptions";
 import type { RecursivePartial } from "../src";
+import { Worker } from "worker_threads";
 import { expect } from "chai";
+
+globalThis.Worker = Worker as any;
 
 describe("Options tests", () => {
     it("checking default options", () => {

@@ -4,7 +4,10 @@ import { ShapeType } from "../src";
 import { TestCanvas } from "./Fixture/TestCanvas";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticle } from "./Fixture/TestParticle";
+import { Worker } from "worker_threads";
 import { expect } from "chai";
+
+globalThis.Worker = Worker as any;
 
 const Window = require("window");
 

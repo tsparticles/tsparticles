@@ -130,14 +130,17 @@ export class Particles {
     }
 
     removeAt(index: number, quantity = 1, group?: string, override?: boolean): void {
+        console.log(index, this.count, quantity);
+
         if (!(index >= 0 && index <= this.count)) {
             return;
         }
 
         let deleted = 0;
-        const array = Array.from(this.array.values());
+        const array = Array.from(this.array.values()),
+            count = this.count;
 
-        for (let i = index; deleted < quantity && i < this.count; i++) {
+        for (let i = index; deleted < quantity && i < count; i++) {
             if (this.remove(array[i], group, override)) {
                 deleted++;
             }

@@ -10,7 +10,10 @@ import {
 } from "../src";
 import { describe, it } from "mocha";
 import { Options } from "../src/Options/Classes/Options";
+import { Worker } from "worker_threads";
 import { expect } from "chai";
+
+globalThis.Worker = Worker as any;
 
 describe("Themes", () => {
     const sourceOptions = {

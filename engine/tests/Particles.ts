@@ -3,7 +3,10 @@ import type { ICoordinates3d } from "../src";
 import { TestCanvas } from "./Fixture/TestCanvas";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticles } from "./Fixture/TestParticles";
+import { Worker } from "./Fixture/MockWorker";
 import { expect } from "chai";
+
+globalThis.Worker = Worker as any;
 
 const Window = require("window");
 
@@ -49,15 +52,15 @@ describe("Particles", () => {
 
         const particle1 = testParticles.particles.addParticle({ x: 1, y: 1 });
         expect(testParticles.particles.count).to.equal(1);
-        expect(testParticles.particles.array).to.eql([particle1]);
+        expect(Array.from(testParticles.particles.array.values())).to.eql([particle1]);
 
         const particle2 = testParticles.particles.addParticle({ x: 2, y: 2 });
         expect(testParticles.particles.count).to.equal(2);
-        expect(testParticles.particles.array).to.eql([particle1, particle2]);
+        expect(Array.from(testParticles.particles.array.values())).to.eql([particle1, particle2]);
 
         const particle3 = testParticles.particles.addParticle({ x: 3, y: 3 });
         expect(testParticles.particles.count).to.equal(3);
-        expect(testParticles.particles.array).to.eql([particle1, particle2, particle3]);
+        expect(Array.from(testParticles.particles.array.values())).to.eql([particle1, particle2, particle3]);
     });
 
     it("should remove particles at specified indices", () => {
@@ -65,18 +68,23 @@ describe("Particles", () => {
         testParticles.reset(testContainer.container);
         testParticles.particles.init();
 
-        const particle1 = testParticles.particles.array[0];
-        const particle3 = testParticles.particles.array[2];
-        const particle4 = testParticles.particles.array[3];
-        const particle5 = testParticles.particles.array[4];
+        const particle1 = testParticles.particles.array.get(0);
+        const particle3 = testParticles.particles.array.get(2);
+        const particle4 = testParticles.particles.array.get(3);
+        const particle5 = testParticles.particles.array.get(4);
 
         testParticles.particles.removeAt(1);
-        expect(testParticles.particles.array).to.eql([particle1, particle3, particle4, particle5]);
-        expect(testParticles.particles.array).to.not.eql([particle5, particle4, particle3, particle1]);
+        expect(Array.from(testParticles.particles.array.values())).to.eql([particle1, particle3, particle4, particle5]);
+        expect(Array.from(testParticles.particles.array.values())).to.not.eql([
+            particle5,
+            particle4,
+            particle3,
+            particle1,
+        ]);
 
         testParticles.particles.removeAt(2);
-        expect(testParticles.particles.array).to.eql([particle1, particle3, particle5]);
-        expect(testParticles.particles.array).to.not.eql([particle5, particle3, particle1]);
+        expect(Array.from(testParticles.particles.array.values())).to.eql([particle1, particle3, particle5]);
+        expect(Array.from(testParticles.particles.array.values())).to.not.eql([particle5, particle3, particle1]);
     });
 
     it("should remove specified quantity of indices, starting at the specified index", () => {
@@ -84,16 +92,16 @@ describe("Particles", () => {
         testParticles.reset(testContainer.container);
         testParticles.particles.init();
 
-        const particle1 = testParticles.particles.array[0];
-        const particle4 = testParticles.particles.array[3];
-        const particle5 = testParticles.particles.array[4];
+        const particle1 = testParticles.particles.array.get(0);
+        const particle4 = testParticles.particles.array.get(3);
+        const particle5 = testParticles.particles.array.get(4);
 
         testParticles.particles.removeAt(1, 2);
-        expect(testParticles.particles.array).to.eql([particle1, particle4, particle5]);
-        expect(testParticles.particles.array).to.not.eql([particle5, particle4, particle1]);
+        expect(Array.from(testParticles.particles.array.values())).to.eql([particle1, particle4, particle5]);
+        expect(Array.from(testParticles.particles.array.values())).to.not.eql([particle5, particle4, particle1]);
 
         testParticles.particles.removeAt(0, 2);
-        expect(testParticles.particles.array).to.eql([particle5]);
+        expect(Array.from(testParticles.particles.array.values())).to.eql([particle5]);
     });
 
     it("should remove specified number of particles", () => {
@@ -106,7 +114,7 @@ describe("Particles", () => {
         expect(testParticles.particles.count).to.equal(numParticles - 3);
         testParticles.particles.removeQuantity(2);
         expect(testParticles.particles.count).to.equal(numParticles - 5);
-        expect(testParticles.particles.array).to.be.empty;
+        expect(Array.from(testParticles.particles.array.values())).to.be.empty;
     });
 
     it("should remove specified particle", () => {
@@ -114,19 +122,30 @@ describe("Particles", () => {
         testParticles.reset(testContainer.container);
         testParticles.particles.init();
 
-        const particle1 = testParticles.particles.array[0];
-        const particle2 = testParticles.particles.array[1];
-        const particle3 = testParticles.particles.array[2];
-        const particle4 = testParticles.particles.array[3];
-        const particle5 = testParticles.particles.array[4];
+        const particle1 = testParticles.particles.array.get(0);
+        const particle2 = testParticles.particles.array.get(1);
+        const particle3 = testParticles.particles.array.get(2);
+        const particle4 = testParticles.particles.array.get(3);
+        const particle5 = testParticles.particles.array.get(4);
 
-        testParticles.particles.remove(particle4);
-        expect(testParticles.particles.array).to.eql([particle1, particle2, particle3, particle5]);
-        expect(testParticles.particles.array).to.not.eql([particle5, particle3, particle2, particle1]);
+        if (particle4) {
+            testParticles.particles.remove(particle4);
+        }
 
-        testParticles.particles.remove(particle1);
-        expect(testParticles.particles.array).to.eql([particle2, particle3, particle5]);
-        expect(testParticles.particles.array).to.not.eql([particle5, particle3, particle2]);
+        expect(Array.from(testParticles.particles.array.values())).to.eql([particle1, particle2, particle3, particle5]);
+        expect(Array.from(testParticles.particles.array.values())).to.not.eql([
+            particle5,
+            particle3,
+            particle2,
+            particle1,
+        ]);
+
+        if (particle1) {
+            testParticles.particles.remove(particle1);
+        }
+
+        expect(Array.from(testParticles.particles.array.values())).to.eql([particle2, particle3, particle5]);
+        expect(Array.from(testParticles.particles.array.values())).to.not.eql([particle5, particle3, particle2]);
     });
 
     it("should remove all particles when calling clear", () => {
@@ -137,7 +156,7 @@ describe("Particles", () => {
         expect(testParticles.particles.count).to.equal(numParticles);
         testParticles.particles.clear();
         expect(testParticles.particles.count).to.equal(0);
-        expect(testParticles.particles.array).to.be.empty;
+        expect(Array.from(testParticles.particles.array.values())).to.be.empty;
     });
 
     it("should push multiple particles at the specified position", () => {
@@ -150,7 +169,7 @@ describe("Particles", () => {
         expect(testParticles.particles.count).to.equal(5);
 
         for (let i = 0; i < numParticles; i++) {
-            expect(testParticles.particles.array[i].position).to.eql(position);
+            expect(testParticles.particles.array.get(i)?.position).to.eql(position);
         }
     });
 
@@ -164,9 +183,9 @@ describe("Particles", () => {
         expect(testParticles.particles.count).to.equal(5);
 
         let ts = Math.random() * 16.66667;
-        const logP = testParticles.particles.array[0];
+        const logP = testParticles.particles.array.get(0);
 
-        console.log(logP.id);
+        console.log(logP?.id);
 
         testParticles.particles.update({
             value: ts,

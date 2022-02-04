@@ -22,7 +22,7 @@
     "build:docs": "yarn clear:docs && typedoc && copyfiles -f ../../CNAME ./docs",
     "build:schema": "typescript-json-schema tsconfig.schema.json IOptions --out ./schema/options.schema.json",
     "distfiles": "node ./scripts/distfiles.js",
-    "test": "nyc mocha",
+    "test": "TS_NODE_PROJECT='./tsconfig.node.json' nyc mocha",
     "preversion": "yarn test",
     "version": "node ./scripts/postversion.js && yarn distfiles && git add tsParticles.nuspec && git add package.dist.json",
     "postversion": "git push && git push --tags",
