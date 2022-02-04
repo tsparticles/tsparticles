@@ -1,12 +1,11 @@
 import { Constants } from "./Utils";
 import { Container } from "./Container";
+import type { Engine } from "../engine";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { Particle } from "./Particle";
 import type { RecursivePartial } from "../Types";
 import type { SingleOrMultiple } from "../Types";
 import { itemFromArray } from "../Utils";
-
-const tsParticlesDom: Container[] = [];
 
 function fetchError(statusCode: number): void {
     console.error(`Error tsParticles - fetch status: ${statusCode}`);
@@ -32,19 +31,25 @@ interface RemoteLoaderParams {
  * @category Core
  */
 export class Loader {
+    readonly #engine;
+
+    constructor(engine: Engine) {
+        this.#engine = engine;
+    }
+
     /**
      * All the [[Container]] objects loaded
      */
-    static dom(): Container[] {
-        return tsParticlesDom;
+    dom(): Container[] {
+        return this.#engine.domArray;
     }
 
     /**
      * Retrieves a [[Container]] from all the objects loaded
      * @param index the object index
      */
-    static domItem(index: number): Container | undefined {
-        const dom = Loader.dom();
+    domItem(index: number): Container | undefined {
+        const dom = this.dom();
         const item = dom[index];
 
         if (item && !item.destroyed) {
@@ -54,7 +59,7 @@ export class Loader {
         dom.splice(index, 1);
     }
 
-    static async loadOptions(params: LoaderParams): Promise<Container | undefined> {
+    async loadOptions(params: LoaderParams): Promise<Container | undefined> {
         const tagId = params.tagId ?? `tsparticles${Math.floor(Math.random() * 10000)}`;
         const { options, index } = params;
 
@@ -70,11 +75,11 @@ export class Loader {
         }
 
         const currentOptions = options instanceof Array ? itemFromArray(options, index) : options;
-        const dom = Loader.dom();
+        const dom = this.dom();
         const oldIndex = dom.findIndex((v) => v.id === tagId);
 
         if (oldIndex >= 0) {
-            const old = Loader.domItem(oldIndex);
+            const old = this.domItem(oldIndex);
 
             if (old && !old.destroyed) {
                 old.destroy();
@@ -112,7 +117,7 @@ export class Loader {
         }
 
         /* launch tsParticles */
-        const newItem = new Container(tagId, currentOptions);
+        const newItem = new Container(this.#engine, tagId, currentOptions);
 
         if (oldIndex >= 0) {
             dom.splice(oldIndex, 0, newItem);
@@ -127,7 +132,7 @@ export class Loader {
         return newItem;
     }
 
-    static async loadRemoteOptions(params: RemoteLoaderParams): Promise<Container | undefined> {
+    async loadRemoteOptions(params: RemoteLoaderParams): Promise<Container | undefined> {
         const { url: jsonUrl, index } = params;
         const url = jsonUrl instanceof Array ? itemFromArray(jsonUrl, index) : jsonUrl;
 
@@ -145,7 +150,7 @@ export class Loader {
 
         const data = await response.json();
 
-        return await Loader.loadOptions({
+        return this.loadOptions({
             tagId: params.tagId,
             element: params.element,
             index,
@@ -159,7 +164,7 @@ export class Loader {
      * @param options the options object to initialize the [[Container]]
      * @param index if an options array is provided, this will retrieve the exact index of that array
      */
-    static load(
+    load(
         tagId: string | SingleOrMultiple<RecursivePartial<IOptions>>,
         options?: SingleOrMultiple<RecursivePartial<IOptions>> | number,
         index?: number
@@ -188,7 +193,7 @@ export class Loader {
      * @param options the options object to initialize the [[Container]]
      * @param index if an options array is provided, this will retrieve the exact index of that array
      */
-    static async set(
+    async set(
         id: string | HTMLElement,
         domContainer: HTMLElement | SingleOrMultiple<RecursivePartial<IOptions>>,
         options?: SingleOrMultiple<RecursivePartial<IOptions>> | number,
@@ -225,7 +230,7 @@ export class Loader {
      * @param index the index of the paths array, if a single path is passed this value is ignored
      * @returns A Promise with the [[Container]] object created
      */
-    static async loadJSON(
+    async loadJSON(
         tagId: string | SingleOrMultiple<string>,
         jsonUrl?: SingleOrMultiple<string> | number,
         index?: number
@@ -239,7 +244,7 @@ export class Loader {
             url = jsonUrl;
         }
 
-        return await Loader.loadRemoteOptions({ tagId: id, url, index });
+        return this.loadRemoteOptions({ tagId: id, url, index });
     }
 
     /**
@@ -251,7 +256,7 @@ export class Loader {
      * @param index the index of the paths array, if a single path is passed this value is ignored
      * @returns A Promise with the [[Container]] object created
      */
-    static async setJSON(
+    async setJSON(
         id: string | HTMLElement,
         domContainer: HTMLElement | SingleOrMultiple<string>,
         jsonUrl: SingleOrMultiple<string> | (number | undefined),
@@ -273,15 +278,15 @@ export class Loader {
             newIndex = index;
         }
 
-        return await Loader.loadRemoteOptions({ tagId: newId, url, index: newIndex, element });
+        return this.loadRemoteOptions({ tagId: newId, url, index: newIndex, element });
     }
 
     /**
      * Adds an additional click handler to all the loaded [[Container]] objects.
      * @param callback the function called after the click event is fired
      */
-    static setOnClickHandler(callback: (evt: Event, particles?: Particle[]) => void): void {
-        const dom = Loader.dom();
+    setOnClickHandler(callback: (evt: Event, particles?: Particle[]) => void): void {
+        const dom = this.dom();
 
         if (dom.length === 0) {
             throw new Error("Can only set click handlers after calling tsParticles.load() or tsParticles.loadJSON()");

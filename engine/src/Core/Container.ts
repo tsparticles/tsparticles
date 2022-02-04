@@ -2,7 +2,7 @@
  * [[include:Container.md]]
  * @packageDocumentation
  */
-import { EventListeners, FrameManager, Plugins, Vector } from "./Utils";
+import { EventListeners, FrameManager, Vector } from "./Utils";
 import type {
     IAttract,
     IBubble,
@@ -16,6 +16,7 @@ import type {
 } from "./Interfaces";
 import { animate, cancelAnimation, getRangeValue } from "../Utils";
 import { Canvas } from "./Canvas";
+import type { Engine } from "../engine";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import { Options } from "../Options/Classes/Options";
 import { Particle } from "./Particle";
@@ -102,14 +103,18 @@ export class Container {
     private readonly eventListeners;
     private readonly intersectionObserver?;
 
+    readonly #engine;
+
     /**
      * This is the core class, create an instance to have a new working particles manager
      * @constructor
+     * @param engine the engine used by container
      * @param id the id to identify this instance
      * @param sourceOptions the options to load
      * @param presets all the presets to load with options
      */
-    constructor(readonly id: string, sourceOptions?: RecursivePartial<IOptions>, ...presets: string[]) {
+    constructor(engine: Engine, readonly id: string, sourceOptions?: RecursivePartial<IOptions>, ...presets: string[]) {
+        this.#engine = engine;
         this.fpsLimit = 120;
         this.duration = 0;
         this.lifeTime = 0;
@@ -124,7 +129,7 @@ export class Container {
         this._initialSourceOptions = sourceOptions;
         this.retina = new Retina(this);
         this.canvas = new Canvas(this);
-        this.particles = new Particles(this);
+        this.particles = new Particles(this.#engine, this);
         this.drawer = new FrameManager(this);
         this.presets = presets;
         this.pathGenerator = {
@@ -156,8 +161,8 @@ export class Container {
         this.drawers = new Map<string, IShapeDrawer>();
         this.density = 1;
         /* tsParticles variables with default values */
-        this._options = new Options();
-        this.actualOptions = new Options();
+        this._options = new Options(this.#engine);
+        this.actualOptions = new Options(this.#engine);
 
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);
@@ -356,7 +361,7 @@ export class Container {
     }
 
     reset(): Promise<void> {
-        this._options = new Options();
+        this._options = new Options(this.#engine);
 
         return this.refresh();
     }
@@ -558,16 +563,16 @@ export class Container {
     }
 
     async init(): Promise<void> {
-        this._options = new Options();
+        this._options = new Options(this.#engine);
 
         for (const preset of this.presets) {
-            this._options.load(Plugins.getPreset(preset));
+            this._options.load(this.#engine.plugins.getPreset(preset));
         }
 
-        const shapes = Plugins.getSupportedShapes();
+        const shapes = this.#engine.plugins.getSupportedShapes();
 
         for (const type of shapes) {
-            const drawer = Plugins.getShapeDrawer(type);
+            const drawer = this.#engine.plugins.getShapeDrawer(type);
 
             if (drawer) {
                 this.drawers.set(type, drawer);
@@ -578,7 +583,7 @@ export class Container {
         this._options.load(this._initialSourceOptions);
         this._options.load(this._sourceOptions);
 
-        this.actualOptions = new Options();
+        this.actualOptions = new Options(this.#engine);
 
         this.actualOptions.load(this._options);
 
@@ -597,7 +602,7 @@ export class Container {
         this.lifeTime = 0;
         this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 120;
 
-        const availablePlugins = Plugins.getAvailablePlugins(this);
+        const availablePlugins = this.#engine.plugins.getAvailablePlugins(this);
 
         for (const [id, plugin] of availablePlugins) {
             this.plugins.set(id, plugin);
@@ -620,7 +625,7 @@ export class Container {
         const pathOptions = this.actualOptions.particles.move.path;
 
         if (pathOptions.generator) {
-            const customGenerator = Plugins.getPathGenerator(pathOptions.generator);
+            const customGenerator = this.#engine.plugins.getPathGenerator(pathOptions.generator);
 
             if (customGenerator) {
                 if (customGenerator.init) {

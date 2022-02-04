@@ -20,14 +20,22 @@ import type { IOptions } from "./Options/Interfaces/IOptions";
 
 /**
  * Engine class for creating the singleton on window.
- * It's a singleton proxy to the static [[Loader]] class for initializing [[Container]] instances
+ * It's a singleton proxy to the Loader class for initializing [[Container]] instances,
+ * and for Plugins class responsible for every external feature
  * @category Engine
  */
 export class Engine {
     #initialized: boolean;
 
+    readonly domArray: Container[];
+    readonly #loader: Loader;
+    readonly plugins: Plugins;
+
     constructor() {
         this.#initialized = false;
+        this.domArray = [];
+        this.#loader = new Loader(this);
+        this.plugins = new Plugins(this);
     }
 
     /**
@@ -51,7 +59,7 @@ export class Engine {
         options: RecursivePartial<IOptions>[],
         index?: number
     ): Promise<Container | undefined> {
-        return Loader.load(tagId, options, index);
+        return this.#loader.load(tagId, options, index);
     }
 
     /**
@@ -64,7 +72,7 @@ export class Engine {
         tagId: string | SingleOrMultiple<RecursivePartial<IOptions>>,
         options?: SingleOrMultiple<RecursivePartial<IOptions>>
     ): Promise<Container | undefined> {
-        return Loader.load(tagId, options);
+        return this.#loader.load(tagId, options);
     }
 
     /**
@@ -78,7 +86,7 @@ export class Engine {
         element: HTMLElement | RecursivePartial<IOptions>,
         options?: RecursivePartial<IOptions>
     ): Promise<Container | undefined> {
-        return Loader.set(id, element, options);
+        return this.#loader.set(id, element, options);
     }
 
     /**
@@ -94,7 +102,7 @@ export class Engine {
         pathConfigJson?: SingleOrMultiple<string> | number,
         index?: number
     ): Promise<Container | undefined> {
-        return Loader.loadJSON(tagId, pathConfigJson, index);
+        return this.#loader.loadJSON(tagId, pathConfigJson, index);
     }
 
     /**
@@ -111,7 +119,7 @@ export class Engine {
         pathConfigJson?: SingleOrMultiple<string> | number,
         index?: number
     ): Promise<Container | undefined> {
-        return Loader.setJSON(id, element, pathConfigJson, index);
+        return this.#loader.setJSON(id, element, pathConfigJson, index);
     }
 
     /**
@@ -119,7 +127,7 @@ export class Engine {
      * @param callback The function called after the click event is fired
      */
     setOnClickHandler(callback: (e: Event, particles?: Particle[]) => void): void {
-        Loader.setOnClickHandler(callback);
+        this.#loader.setOnClickHandler(callback);
     }
 
     /**
@@ -127,7 +135,7 @@ export class Engine {
      * @returns All the [[Container]] objects loaded
      */
     dom(): Container[] {
-        return Loader.dom();
+        return this.#loader.dom();
     }
 
     /**
@@ -136,7 +144,7 @@ export class Engine {
      * @returns The [[Container]] object at specified index, if present or not destroyed, otherwise undefined
      */
     domItem(index: number): Container | undefined {
-        return Loader.domItem(index);
+        return this.#loader.domItem(index);
     }
 
     /**
@@ -176,7 +184,7 @@ export class Engine {
             customDrawer = drawer;
         }
 
-        Plugins.addShapeDrawer(shape, customDrawer);
+        this.plugins.addShapeDrawer(shape, customDrawer);
 
         await this.refresh();
     }
@@ -188,7 +196,7 @@ export class Engine {
      * @param override if true, the preset will override any existing with the same name
      */
     async addPreset(preset: string, options: RecursivePartial<IOptions>, override = false): Promise<void> {
-        Plugins.addPreset(preset, options, override);
+        this.plugins.addPreset(preset, options, override);
 
         await this.refresh();
     }
@@ -198,7 +206,7 @@ export class Engine {
      * @param plugin the plugin implementation of [[IPlugin]]
      */
     async addPlugin(plugin: IPlugin): Promise<void> {
-        Plugins.addPlugin(plugin);
+        this.plugins.addPlugin(plugin);
 
         await this.refresh();
     }
@@ -209,7 +217,7 @@ export class Engine {
      * @param generator the path generator object
      */
     async addPathGenerator(name: string, generator: IMovePathGenerator): Promise<void> {
-        Plugins.addPathGenerator(name, generator);
+        this.plugins.addPathGenerator(name, generator);
 
         await this.refresh();
     }
@@ -220,7 +228,7 @@ export class Engine {
      * @param interactorInitializer
      */
     async addInteractor(name: string, interactorInitializer: (container: Container) => IInteractor): Promise<void> {
-        Plugins.addInteractor(name, interactorInitializer);
+        this.plugins.addInteractor(name, interactorInitializer);
 
         await this.refresh();
     }
@@ -234,7 +242,7 @@ export class Engine {
         name: string,
         updaterInitializer: (container: Container) => IParticleUpdater
     ): Promise<void> {
-        Plugins.addParticleUpdater(name, updaterInitializer);
+        this.plugins.addParticleUpdater(name, updaterInitializer);
 
         await this.refresh();
     }

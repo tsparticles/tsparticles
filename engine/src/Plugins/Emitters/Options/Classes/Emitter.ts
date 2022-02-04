@@ -19,6 +19,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     autoPlay;
     size?: EmitterSize;
     direction?: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
+    domId?: string;
     fill;
     life;
     name?: string;
@@ -58,6 +59,8 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
         if (data.direction !== undefined) {
             this.direction = data.direction;
         }
+
+        this.domId = data.domId;
 
         if (data.fill !== undefined) {
             this.fill = data.fill;
