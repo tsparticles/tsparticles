@@ -1,6 +1,8 @@
 import type { Engine } from "../../engine";
 import type { IEmitterShape } from "./IEmitterShape";
+import type { ShapeManager } from "./ShapeManager";
 
-export type EmittersMain = Engine & {
+export type EmittersEngine = Engine & {
+    emitterShapeManager?: ShapeManager;
     addEmitterShape?: (name: string, shape: IEmitterShape) => void;
 };

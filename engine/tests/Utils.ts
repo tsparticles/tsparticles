@@ -1,15 +1,14 @@
 import * as NumberUtils from "../src/Utils/NumberUtils";
 import * as Utils from "../src/Utils/Utils";
-import { Container, Particle, Vector } from "../src";
+import { Container, MoveDirection, OutModeDirection, Particle, Vector, tsParticles } from "../src";
 import type { ICoordinates, IParticle } from "../src";
-import { MoveDirection, OutModeDirection } from "../src";
 import { describe, it } from "mocha";
 import { expect } from "chai";
 
 function buildParticleWithDirection(direction: MoveDirection): IParticle {
-    const container = new Container("someid");
+    const container = new Container(tsParticles, "someid");
     const options = { move: { direction } };
-    return new Particle(1, container, undefined, options);
+    return new Particle(tsParticles, 1, container, undefined, options);
 }
 
 function segmentBounce(start: ICoordinates, stop: ICoordinates, velocity: Vector): void {

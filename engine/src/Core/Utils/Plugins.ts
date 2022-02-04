@@ -21,14 +21,14 @@ type UpdaterInitializer = (container: Container) => IParticleUpdater;
 export class Plugins {
     readonly #engine;
 
-    readonly plugins: IPlugin[] = [];
-    readonly interactorsInitializers: Map<string, InteractorInitializer>;
-    readonly updatersInitializers: Map<string, UpdaterInitializer>;
-    readonly interactors: Map<Container, IInteractor[]>;
-    readonly updaters: Map<Container, IParticleUpdater[]>;
-    readonly presets: Map<string, RecursivePartial<IOptions>>;
-    readonly drawers: Map<string, IShapeDrawer>;
-    readonly pathGenerators: Map<string, IMovePathGenerator>;
+    readonly plugins: IPlugin[];
+    readonly interactorsInitializers;
+    readonly updatersInitializers;
+    readonly interactors;
+    readonly updaters;
+    readonly presets;
+    readonly drawers;
+    readonly pathGenerators;
 
     constructor(engine: Engine) {
         this.#engine = engine;

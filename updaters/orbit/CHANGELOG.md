@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.40.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-updater-orbit@1.39.3...tsparticles-updater-orbit@1.40.0) (2022-02-04)
+
+**Note:** Version bump only for package tsparticles-updater-orbit
+
+
+
+
+
 ## [1.39.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-updater-orbit@1.39.2...tsparticles-updater-orbit@1.39.3) (2022-02-02)
 
 **Note:** Version bump only for package tsparticles-updater-orbit

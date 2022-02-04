@@ -1,22 +1,22 @@
-import type { Container, ICoordinates, IDelta, IHsl } from "../../Core";
+import type { Container, ICoordinates, IDelta, IDimension, IHsl } from "../../Core";
 import { colorToHsl, deepExtend, getRangeValue, isPointInside, randomInRange } from "../../Utils";
 import { Emitter } from "./Options/Classes/Emitter";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
 import type { Emitters } from "./Emitters";
+import type { EmittersEngine } from "./EmittersEngine";
 import type { IColorAnimation } from "../../Options/Interfaces/IColorAnimation";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
 import type { IEmitterShape } from "./IEmitterShape";
 import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
 import type { RecursivePartial } from "../../Types";
-import { ShapeManager } from "./ShapeManager";
 import { SizeMode } from "../../Enums";
 
 /**
  * @category Emitters Plugin
  */
 export class EmitterInstance {
-    position;
+    position?: ICoordinates;
     size;
     options;
     spawnColor?: IHsl;
@@ -42,12 +42,16 @@ export class EmitterInstance {
     private readonly initialPosition?: ICoordinates;
     private readonly particlesOptions: RecursivePartial<IParticles>;
 
+    readonly #engine;
+
     constructor(
+        engine: EmittersEngine,
         private readonly emitters: Emitters,
         private readonly container: Container,
         options: RecursivePartial<IEmitter>,
         position?: ICoordinates
     ) {
+        this.#engine = engine;
         this.currentDuration = 0;
         this.currentEmitDelay = 0;
         this.currentSpawnDelay = 0;
@@ -61,9 +65,8 @@ export class EmitterInstance {
         }
 
         this.spawnDelay = ((this.options.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
-        this.position = this.initialPosition ?? this.calcPosition();
         this.name = this.options.name;
-        this.shape = ShapeManager.getShape(this.options.shape);
+        this.shape = this.#engine.emitterShapeManager?.getShape(this.options.shape);
         this.fill = this.options.fill;
         this.#firstSpawn = !this.options.life.wait;
         this.#startParticlesAdded = false;
@@ -216,6 +219,52 @@ export class EmitterInstance {
         }
     }
 
+    getPosition(): ICoordinates | undefined {
+        if (this.options.domId) {
+            const container = this.container,
+                element = document.getElementById(this.options.domId);
+
+            if (element) {
+                const elRect = element.getBoundingClientRect();
+
+                return {
+                    x: (elRect.x + elRect.width / 2) * container.retina.pixelRatio,
+                    y: (elRect.y + elRect.height / 2) * container.retina.pixelRatio,
+                };
+            }
+        }
+
+        return this.position;
+    }
+
+    getSize(): IDimension {
+        const container = this.container;
+
+        if (this.options.domId) {
+            const element = document.getElementById(this.options.domId);
+
+            if (element) {
+                const elRect = element.getBoundingClientRect();
+
+                return {
+                    width: elRect.width * container.retina.pixelRatio,
+                    height: elRect.height * container.retina.pixelRatio,
+                };
+            }
+        }
+
+        return {
+            width:
+                this.size.mode === SizeMode.percent
+                    ? (container.canvas.size.width * this.size.width) / 100
+                    : this.size.width,
+            height:
+                this.size.mode === SizeMode.percent
+                    ? (container.canvas.size.height * this.size.height) / 100
+                    : this.size.height,
+        };
+    }
+
     private prepareToDie(): void {
         if (this.paused) {
             return;
@@ -259,17 +308,8 @@ export class EmitterInstance {
 
     private emitParticles(quantity: number): void {
         const container = this.container;
-        const position = this.position;
-        const offset = {
-            x:
-                this.size.mode === SizeMode.percent
-                    ? (container.canvas.size.width * this.size.width) / 100
-                    : this.size.width,
-            y:
-                this.size.mode === SizeMode.percent
-                    ? (container.canvas.size.height * this.size.height) / 100
-                    : this.size.height,
-        };
+        const position = this.getPosition();
+        const size = this.getSize();
 
         for (let i = 0; i < quantity; i++) {
             const particlesOptions = deepExtend({}, this.particlesOptions) as RecursivePartial<IParticles>;
@@ -292,7 +332,11 @@ export class EmitterInstance {
                 }
             }
 
-            const pPosition = this.shape?.randomPosition(position, offset, this.fill) ?? position;
+            if (!position) {
+                return;
+            }
+
+            const pPosition = this.shape?.randomPosition(position, size, this.fill) ?? position;
 
             container.particles.addParticle(pPosition, particlesOptions);
         }
