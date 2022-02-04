@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.40.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.39.3...tsparticles@1.40.0) (2022-02-04)
+
+
+### Bug Fixes
+
+* fixed emitter issue on first start, closes [#3074](https://github.com/matteobruni/tsparticles/issues/3074) ([79fe654](https://github.com/matteobruni/tsparticles/commit/79fe654b0c4707337d3ceea7509cf115feddaa05))
+
+
+### Features
+
+* added domId property to Emitters options ([9408d14](https://github.com/matteobruni/tsparticles/commit/9408d148138e0bacea6d2e426c885a66c625e1a6))
+
+
+
+
+
 ## [1.39.3](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.39.2...tsparticles@1.39.3) (2022-02-02)
 
 

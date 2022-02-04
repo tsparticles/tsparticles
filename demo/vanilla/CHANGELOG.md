@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.25.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.24.3...tsparticles-demo@1.25.0) (2022-02-04)
+
+
+### Features
+
+* added domId property to Emitters options ([9408d14](https://github.com/matteobruni/tsparticles/commit/9408d148138e0bacea6d2e426c885a66c625e1a6))
+
+
+
+
+
 ## [1.24.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.24.2...tsparticles-demo@1.24.3) (2022-02-02)
 
 
