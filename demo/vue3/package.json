@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@highlightjs/vue-plugin": "^2.1.0",
-    "core-js": "^3.16.1",
+    "core-js": "^3.20.3",
     "highlight.js": "^11.2.0",
     "particles.vue3": "^1.40.0",
     "stringify-object": "^4.0.0",
