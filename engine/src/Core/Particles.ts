@@ -130,8 +130,6 @@ export class Particles {
     }
 
     removeAt(index: number, quantity = 1, group?: string, override?: boolean): void {
-        console.log(index, this.count, quantity);
-
         if (!(index >= 0 && index <= this.count)) {
             return;
         }
