@@ -9,7 +9,7 @@
   "dependencies": {
     "@highlightjs/vue-plugin": "^2.1.0",
     "core-js": "^3.16.1",
-    "highlight.js": "^11.2.0",
+    "highlight.js": "^11.4.0",
     "particles.vue3": "^1.40.1",
     "stringify-object": "^4.0.0",
     "tsparticles": "^1.40.1",
