@@ -13,7 +13,7 @@
     "particles.vue3": "^1.40.1",
     "stringify-object": "^4.0.0",
     "tsparticles": "^1.40.1",
-    "vue": "^3.2.2",
+    "vue": "^3.2.26",
     "vue-class-component": "^8.0.0-rc.1"
   },
   "devDependencies": {
