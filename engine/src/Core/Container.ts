@@ -605,7 +605,7 @@ export class Container {
         );
         this.actualOptions.setTheme(this.currentTheme);
 
-        if (this.responsiveMaxWidth != newMaxWidth) {
+        if (this.responsiveMaxWidth !== newMaxWidth) {
             this.responsiveMaxWidth = newMaxWidth;
 
             return true;

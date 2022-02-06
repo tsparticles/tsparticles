@@ -63,8 +63,8 @@ export class Canvas {
      * Initializes the canvas element
      */
     init(): void {
-        this.resize();
         this.initStyle();
+        this.resize();
         this.initCover();
         this.initTrail();
         this.initBackground();
