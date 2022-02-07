@@ -51,7 +51,6 @@
   "main": "index.js",
   "jsdelivr": "tsparticles.preset.seaAnemone.min.js",
   "unpkg": "tsparticles.preset.seaAnemone.min.js",
-  "browser": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {

@@ -51,7 +51,6 @@
   "main": "shape.js",
   "jsdelivr": "tsparticles.shape.spiral.min.js",
   "unpkg": "tsparticles.shape.spiral.min.js",
-  "browser": "shape.js",
   "module": "shape.js",
   "types": "shape.d.ts",
   "dependencies": {

@@ -51,7 +51,6 @@
   "main": "shape.js",
   "jsdelivr": "tsparticles.shape.rounded-rect.min.js",
   "unpkg": "tsparticles.shape.rounded-rect.min.js",
-  "browser": "shape.js",
   "module": "shape.js",
   "types": "shape.d.ts",
   "dependencies": {

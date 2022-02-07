@@ -51,7 +51,6 @@
   "main": "shape.js",
   "jsdelivr": "tsparticles.shape.multiline-text.min.js",
   "unpkg": "tsparticles.shape.multiline-text.min.js",
-  "browser": "shape.js",
   "module": "shape.js",
   "types": "shape.d.ts",
   "dependencies": {

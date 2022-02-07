@@ -51,7 +51,6 @@
   "main": "index.js",
   "jsdelivr": "tsparticles.preset.bigCircles.min.js",
   "unpkg": "tsparticles.preset.bigCircles.min.js",
-  "browser": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
