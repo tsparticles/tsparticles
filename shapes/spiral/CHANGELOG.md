@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.40.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-spiral@1.40.1...tsparticles-shape-spiral@1.40.2) (2022-02-07)
+
+
+### Bug Fixes
+
+* removed all browser flags in package.json, a lot of issues with it. closes [#3094](https://github.com/matteobruni/tsparticles/issues/3094) ([1415875](https://github.com/matteobruni/tsparticles/commit/14158755ec80ace4e0c520cef407b2d7f4078568))
+
+
+
+
+
 ## [1.40.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-spiral@1.40.0...tsparticles-shape-spiral@1.40.1) (2022-02-06)
 
 **Note:** Version bump only for package tsparticles-shape-spiral
