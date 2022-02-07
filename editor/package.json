@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-editor",
-  "version": "1.40.1",
+  "version": "1.40.2",
   "description": "tsParticles Configuration Editor",
   "keywords": [
     "tsparticles",
@@ -23,7 +23,6 @@
   "main": "dist/index.js",
   "jsdelivr": "dist/tsparticles.editor.min.js",
   "unpkg": "dist/tsparticles.editor.min.js",
-  "browser": "dist/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "repository": {
@@ -59,8 +58,8 @@
   ],
   "dependencies": {
     "object-gui": "^1.1.1",
-    "tsparticles": "^1.40.1",
-    "tsparticles-plugin-infection": "^1.40.1"
+    "tsparticles": "^1.40.2",
+    "tsparticles-plugin-infection": "^1.40.2"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",

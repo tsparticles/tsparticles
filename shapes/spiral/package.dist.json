@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-spiral",
-  "version": "1.40.1",
+  "version": "1.40.2",
   "description": "tsParticles spiral shape",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -51,10 +51,9 @@
   "main": "shape.js",
   "jsdelivr": "tsparticles.shape.spiral.min.js",
   "unpkg": "tsparticles.shape.spiral.min.js",
-  "browser": "shape.js",
   "module": "shape.js",
   "types": "shape.d.ts",
   "dependencies": {
-    "tsparticles": "^1.40.1"
+    "tsparticles": "^1.40.2"
   }
 }

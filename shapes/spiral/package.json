@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-spiral",
-  "version": "1.40.1",
+  "version": "1.40.2",
   "description": "tsParticles spiral shape",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -82,6 +82,6 @@
     "webpack-cli": "^4.8.0"
   },
   "dependencies": {
-    "tsparticles": "^1.40.1"
+    "tsparticles": "^1.40.2"
   }
 }

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.40.2](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.40.1...ng-particles@2.40.2) (2022-02-07)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
 ## [2.40.1](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.40.0...ng-particles@2.40.1) (2022-02-06)
 
 **Note:** Version bump only for package ng-particles

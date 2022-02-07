@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-multiline-text",
-  "version": "1.40.1",
+  "version": "1.40.2",
   "description": "tsParticles multiline text shape",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -51,10 +51,9 @@
   "main": "shape.js",
   "jsdelivr": "tsparticles.shape.multiline-text.min.js",
   "unpkg": "tsparticles.shape.multiline-text.min.js",
-  "browser": "shape.js",
   "module": "shape.js",
   "types": "shape.d.ts",
   "dependencies": {
-    "tsparticles": "^1.40.1"
+    "tsparticles": "^1.40.2"
   }
 }
