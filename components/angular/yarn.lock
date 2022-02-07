@@ -4164,9 +4164,9 @@ karma-source-map-support@1.4.0:
     source-map-support "^0.5.5"
 
 karma@~6.3.12:
-  version "6.3.13"
-  resolved "https://registry.yarnpkg.com/karma/-/karma-6.3.13.tgz#ff58622c4f913508dbf86506a5fc614be0e98137"
-  integrity sha512-64lbtHBnM/sG7XKvitSQVlImKYNugyjw4K2e8cZYrlZm0GwoWrfsrkzgS/KWY/r3+fVM/2xvT/JN6MyfdttxLw==
+  version "6.3.15"
+  resolved "https://registry.yarnpkg.com/karma/-/karma-6.3.15.tgz#6c3beedb2440b05589a502462140afed724481e7"
+  integrity sha512-4O5X6zVFdmwo/fgjRN84fPG3IvaiOxOjIeZBwBrQYz4nIyGqlF8Wm7C1Hr7idQ9NHgnvJM+LSjZwS1C+qALMGw==
   dependencies:
     body-parser "^1.19.0"
     braces "^3.0.2"
@@ -4183,6 +4183,7 @@ karma@~6.3.12:
     log4js "^6.4.1"
     mime "^2.5.2"
     minimatch "^3.0.4"
+    mkdirp "^0.5.5"
     qjobs "^1.2.0"
     range-parser "^1.2.1"
     rimraf "^3.0.2"
