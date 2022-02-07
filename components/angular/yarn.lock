@@ -4133,9 +4133,9 @@ karma-chrome-launcher@~3.1.0:
     which "^1.2.1"
 
 karma-coverage@~2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/karma-coverage/-/karma-coverage-2.1.0.tgz#843564578d9e1fb889ec141a582c019bb6db14db"
-  integrity sha512-uIejpnArNFQIovB6EPsKO/T4XofELdJWXcA2ADXztFlKhHbr0Ws6ba7wKTMVWsIhEs4iJxdhQkCQrkkhFJSZCw==
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/karma-coverage/-/karma-coverage-2.1.1.tgz#7434f8736841e08de3e6c302632e8d239634f388"
+  integrity sha512-oxeOSBVK/jdZsiX03LhHQkO4eISSQb5GbHi6Nsw3Mw7G4u6yUgacBAftnO7q+emPBLMsrNbz1pGIrj+Jb3z17A==
   dependencies:
     istanbul-lib-coverage "^3.2.0"
     istanbul-lib-instrument "^4.0.3"
