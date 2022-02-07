@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-path-polygon",
-  "version": "1.40.1",
+  "version": "1.40.2",
   "description": "tsParticles polygon path",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -54,10 +54,9 @@
   "main": "index.js",
   "jsdelivr": "tsparticles.path.polygon.min.js",
   "unpkg": "tsparticles.path.polygon.min.js",
-  "browser": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles": "^1.40.1"
+    "tsparticles": "^1.40.2"
   }
 }

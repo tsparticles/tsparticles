@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-plugin-infection",
-  "version": "1.40.1",
+  "version": "1.40.2",
   "description": "tsParticles infection plugin",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -54,10 +54,9 @@
   "main": "index.js",
   "jsdelivr": "tsparticles.plugin.infection.min.js",
   "unpkg": "tsparticles.plugin.infection.min.js",
-  "browser": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles": "^1.40.1"
+    "tsparticles": "^1.40.2"
   }
 }
