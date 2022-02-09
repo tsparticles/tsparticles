@@ -1,7 +1,7 @@
 import type { Container, ICoordinates, IMovePathGenerator } from "tsparticles";
-import { Vector } from "tsparticles";
-import type { PolygonPathParticle } from "./PolygonPathParticle";
 import type { IPolygonPathOptions } from "./IPolygonPathOptions";
+import type { PolygonPathParticle } from "./PolygonPathParticle";
+import { Vector } from "tsparticles";
 
 export class PolygonPathGenerator implements IMovePathGenerator {
     dirsList: ICoordinates[];
