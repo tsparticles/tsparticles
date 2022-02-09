@@ -51,9 +51,9 @@ export class PolygonPathGenerator implements IMovePathGenerator {
     init(container: Container): void {
         const options = container.actualOptions.particles.move.path.options;
 
-        this.options.sides = (options.sides as number) || 6;
-        this.options.angle = (options.angle as number) || 30;
-        this.options.turnSteps = (options.turnSteps as number) || 20;
+        this.options.sides = (options.sides as number) > 0 ? (options.sides as number) : 6;
+        this.options.angle = (options.angle as number) ?? 30;
+        this.options.turnSteps = (options.turnSteps as number) >= 0 ? (options.turnSteps as number) : 20;
 
         this.createDirs();
     }
