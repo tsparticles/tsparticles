@@ -89,7 +89,7 @@ export class Container {
      */
     readonly plugins;
 
-    readonly pathGenerator: IMovePathGenerator;
+    pathGenerator: IMovePathGenerator;
 
     private _options;
     private _sourceOptions;
@@ -290,16 +290,20 @@ export class Container {
                 this.pathGenerator.update = update;
             }
         } else {
-            if (pathOrGenerator.generate) {
-                this.pathGenerator.generate = pathOrGenerator.generate;
+            const oldGenerator = this.pathGenerator;
+
+            this.pathGenerator = pathOrGenerator || {};
+
+            if (!pathOrGenerator.generate) {
+                this.pathGenerator.generate = oldGenerator.generate;
             }
 
-            if (pathOrGenerator.init) {
-                this.pathGenerator.init = pathOrGenerator.init;
+            if (!pathOrGenerator.init) {
+                this.pathGenerator.init = oldGenerator.init;
             }
 
-            if (pathOrGenerator.update) {
-                this.pathGenerator.update = pathOrGenerator.update;
+            if (!pathOrGenerator.update) {
+                this.pathGenerator.update = oldGenerator.update;
             }
         }
     }
@@ -625,21 +629,7 @@ export class Container {
         const pathOptions = this.actualOptions.particles.move.path;
 
         if (pathOptions.generator) {
-            const customGenerator = this.#engine.plugins.getPathGenerator(pathOptions.generator);
-
-            if (customGenerator) {
-                if (customGenerator.init) {
-                    this.pathGenerator.init = customGenerator.init;
-                }
-
-                if (customGenerator.generate) {
-                    this.pathGenerator.generate = customGenerator.generate;
-                }
-
-                if (customGenerator.update) {
-                    this.pathGenerator.update = customGenerator.update;
-                }
-            }
+            this.setPath(this.#engine.plugins.getPathGenerator(pathOptions.generator));
         }
 
         this.particles.init();
