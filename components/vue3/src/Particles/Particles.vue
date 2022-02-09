@@ -24,7 +24,7 @@ export type IParticlesParams = IParticlesProps;
       type: String
     },
     particlesLoaded: {
-      type: Object as PropType<(container: Container) => void>
+      type: Function as PropType<(container: Container) => void>
     },
     particlesInit: {
       type: Function as PropType<(tsParticles: Main) => void>
