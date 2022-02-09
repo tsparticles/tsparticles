@@ -65,14 +65,10 @@ export class PolygonPathGenerator implements IMovePathGenerator {
     }
 
     private createDirs(): void {
-        this.dirsList = [];
-
         for (let i = 0; i < 360; i += 360 / this.options.sides) {
-            const vec = Vector.origin;
-            vec.length = 1;
-            vec.angle = this.options.angle + i;
+            const angle = this.options.angle + i;
 
-            this.dirsList.push(vec);
+            this.dirsList.push(Vector.create(Math.cos((angle * Math.PI) / 180), Math.sin((angle * Math.PI) / 180)));
         }
     }
 }
