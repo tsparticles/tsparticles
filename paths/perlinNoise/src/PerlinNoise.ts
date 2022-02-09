@@ -1,14 +1,4 @@
-class Grad {
-    constructor(readonly x: number, readonly y: number, readonly z: number) {}
-
-    dot2(x: number, y: number): number {
-        return this.x * x + this.y * y;
-    }
-
-    dot3(x: number, y: number, z: number): number {
-        return this.dot2(x, y) + this.z * z;
-    }
-}
+import { Grad } from "./Grad";
 
 const grad3 = [
     new Grad(1, 1, 0),
@@ -50,8 +40,8 @@ function lerp(a: number, b: number, t: number): number {
     return (1 - t) * a + t * b;
 }
 
-class PerlinNoise {
-    seed(inputSeed: number) {
+export class PerlinNoise {
+    seed(inputSeed: number): void {
         let seed = inputSeed;
 
         if (seed > 0 && seed < 1) {
@@ -110,9 +100,3 @@ class PerlinNoise {
         );
     }
 }
-
-const noiseGen = new PerlinNoise();
-
-noiseGen.seed(0);
-
-export { noiseGen };

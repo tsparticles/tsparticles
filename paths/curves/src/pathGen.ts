@@ -1,65 +1,41 @@
-import type { IMovePathGenerator } from "tsparticles";
-import { CurvesPathParticle } from "./CurvesPathParticle";
+import type { Container, IMovePathGenerator } from "tsparticles";
 import { Vector } from "tsparticles";
+import type { CurvesPathParticle } from "./CurvesPathParticle";
+import { CurvesPathGen } from "./Curves";
+import { ICurvesOptions } from "./ICurvesOptions";
 
-function pathGen(
-    rndFunc: (() => number) | null,
-    period: number,
-    nbHarmonics: number,
-    attenHarmonics: number,
-    lowValue = 0,
-    highValue = 1
-): () => number {
-    const arP0: number[] = [], // 'preceding value' for each harmonic
-        arP1: number[] = [], // 'succeeding value'
-        amplitudes: number[] = [], // amplitudes oh harmonics
-        increments: number[] = [], // n / period, which will be added to phases for every point
-        phases: number[] = [],
-        randomFunc = rndFunc ?? Math.random;
+declare global {
+    interface Window {
+        [key: string]: unknown;
+    }
+}
 
-    let globAmplitude = 0;
+export class CurvesPathGenerator implements IMovePathGenerator {
+    readonly options: ICurvesOptions;
 
-    if (nbHarmonics < 1) nbHarmonics = 1;
+    constructor() {
+        this.options = {
+            rndFunc: null,
+            period: 100,
+            nbHarmonics: 2,
+            attenHarmonics: 0.8,
+            lowValue: -0.03,
+            highValue: 0.03,
+        };
+    }
 
-    for (let kh = 1; kh <= nbHarmonics; ++kh) {
-        arP0[kh] = randomFunc();
-        arP1[kh] = randomFunc();
-        amplitudes[kh] = kh === 1 ? 1 : amplitudes[kh - 1] * attenHarmonics;
-        globAmplitude += amplitudes[kh];
-        increments[kh] = kh / period;
-        phases[kh] = randomFunc();
-    } // for kh
-
-    /* normalize amplitudes */
-    amplitudes.forEach((value, kh) => (amplitudes[kh] = (value / globAmplitude) * (highValue - lowValue)));
-
-    /* returned function here */
-    return () => {
-        let pf: number,
-            pfl: number,
-            signal = 0;
-
-        for (let kh = nbHarmonics; kh >= 1; --kh) {
-            pf = phases[kh] += increments[kh];
-
-            if (phases[kh] >= 1) {
-                pf = phases[kh] -= 1;
-                arP0[kh] = arP1[kh];
-                arP1[kh] = randomFunc();
-            } // if full period reached
-
-            pfl = pf ** 2 * (3 - 2 * pf); // always 0..1, but smoother
-            signal += (arP0[kh] * (1 - pfl) + arP1[kh] * pfl) * amplitudes[kh];
-        } // for kh
-
-        return signal + lowValue;
-    }; // returned function
-} // PathGen
-
-export const curvesPathGenerator: IMovePathGenerator = {
-    generate: (p: CurvesPathParticle) => {
+    generate(p: CurvesPathParticle): Vector {
         if (p.pathGen === undefined) {
-            p.pathGen = pathGen(null, 100, 2, 0.8, -0.03, 0.03);
+            const options = this.options;
+
+            p.pathGen = CurvesPathGen(
+                options.rndFunc,
+                options.period,
+                options.nbHarmonics,
+                options.attenHarmonics,
+                options.lowValue,
+                options.highValue
+            );
         }
 
         if (p.curveVelocity === undefined) {
@@ -76,11 +52,25 @@ export const curvesPathGenerator: IMovePathGenerator = {
         p.velocity.y = 0;
 
         return p.curveVelocity;
-    },
-    init: () => {
+    }
+
+    init(container: Container): void {
+        const sourceOptions = container.actualOptions.particles.move.path.options;
+
+        if (typeof sourceOptions.rndFunc === "function") {
+            this.options.rndFunc = sourceOptions.rndFunc as () => number;
+        } else if (typeof sourceOptions.rndFunc === "string") {
+            this.options.rndFunc = (window[sourceOptions.rndFunc] as () => number) || this.options.rndFunc;
+        }
+
+        this.options.period = (sourceOptions.period as number) ?? this.options.period;
+        this.options.nbHarmonics = (sourceOptions.nbHarmonics as number) ?? this.options.nbHarmonics;
+        this.options.attenHarmonics = (sourceOptions.attenHarmonics as number) ?? this.options.attenHarmonics;
+        this.options.lowValue = (sourceOptions.lowValue as number) ?? this.options.lowValue;
+        this.options.highValue = (sourceOptions.highValue as number) ?? this.options.highValue;
+    }
+
+    update(): void {
         // do nothing
-    },
-    update: () => {
-        // do nothing
-    },
-};
+    }
+}
