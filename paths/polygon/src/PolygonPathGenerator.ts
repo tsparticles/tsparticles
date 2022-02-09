@@ -49,8 +49,6 @@ export class PolygonPathGenerator implements IMovePathGenerator {
     }
 
     init(container: Container): void {
-        this.dirsList = [];
-
         const options = container.actualOptions.particles.move.path.options;
 
         this.options.sides = (options.sides as number) || 6;
@@ -65,6 +63,8 @@ export class PolygonPathGenerator implements IMovePathGenerator {
     }
 
     private createDirs(): void {
+        this.dirsList = [];
+
         for (let i = 0; i < 360; i += 360 / this.options.sides) {
             const angle = this.options.angle + i;
 
