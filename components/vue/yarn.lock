@@ -97,10 +97,10 @@
     browserslist "^4.17.5"
     semver "^6.3.0"
 
-"@babel/helper-create-class-features-plugin@^7.14.5", "@babel/helper-create-class-features-plugin@^7.15.4", "@babel/helper-create-class-features-plugin@^7.17.0":
-  version "7.17.0"
-  resolved "https://registry.yarnpkg.com/@babel/helper-create-class-features-plugin/-/helper-create-class-features-plugin-7.17.0.tgz#3ba0eae83313d4077319d11a768c46adad026433"
-  integrity sha512-S3+IHG72pJFb0RmJgeXg/TjVKt641ZsLla028haXJjdqCf9eccE5r1JsdO//L7nzTDzXjtC+hwV/lrkEb2+t0Q==
+"@babel/helper-create-class-features-plugin@^7.14.5", "@babel/helper-create-class-features-plugin@^7.15.4", "@babel/helper-create-class-features-plugin@^7.17.1":
+  version "7.17.1"
+  resolved "https://registry.yarnpkg.com/@babel/helper-create-class-features-plugin/-/helper-create-class-features-plugin-7.17.1.tgz#9699f14a88833a7e055ce57dcd3ffdcd25186b21"
+  integrity sha512-JBdSr/LtyYIno/pNnJ75lBcqc3Z1XXujzPanHqjvvrhOA+DTceTFuJi8XjmWTZh4r3fsdfqaCMN0iZemdkxZHQ==
   dependencies:
     "@babel/helper-annotate-as-pure" "^7.16.7"
     "@babel/helper-environment-visitor" "^7.16.7"
@@ -421,11 +421,11 @@
     "@babel/plugin-syntax-class-static-block" "^7.14.5"
 
 "@babel/plugin-proposal-decorators@^7.12.13", "@babel/plugin-proposal-decorators@^7.14.5":
-  version "7.17.0"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-decorators/-/plugin-proposal-decorators-7.17.0.tgz#fc0f689fe2535075056c587bc10c176fa9990443"
-  integrity sha512-JR8HTf3T1CsdMqfENrZ9pqncwsH4sPcvsyDLpvmv8iIbpDmeyBD7HPfGAIqkQph2j5d3B84hTm+m3qHPAedaPw==
+  version "7.17.2"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-decorators/-/plugin-proposal-decorators-7.17.2.tgz#c36372ddfe0360cac1ee331a238310bddca11493"
+  integrity sha512-WH8Z95CwTq/W8rFbMqb9p3hicpt4RX4f0K659ax2VHxgOyT6qQmUaEVEjIh4WR9Eh9NymkVn5vwsrE68fAQNUw==
   dependencies:
-    "@babel/helper-create-class-features-plugin" "^7.17.0"
+    "@babel/helper-create-class-features-plugin" "^7.17.1"
     "@babel/helper-plugin-utils" "^7.16.7"
     "@babel/helper-replace-supers" "^7.16.7"
     "@babel/plugin-syntax-decorators" "^7.17.0"
@@ -6763,6 +6763,11 @@ tslib@^2.0.3, tslib@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
   integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
+
+tsparticles-engine@^2.0.0-beta.4:
+  version "2.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.0-beta.4.tgz#1c4141c2dca770d71877631a8ad75a1c446117ce"
+  integrity sha512-ENyhxd9GqE5mjksQqCWVBnQz0F48Yuj0+xFKGU4Ax25q8OkpN4iXhwZaDSUCaPJ6Vlh6BWb8Hlr+LB9mYEJzYg==
 
 type-fest@^0.6.0:
   version "0.6.0"
