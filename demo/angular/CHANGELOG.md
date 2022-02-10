@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.26.0](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@1.25.2...ng-particles-demo@1.26.0) (2022-02-10)
+
+
+### Features
+
+* updated ng-particles to Angular 13 ([802e290](https://github.com/matteobruni/tsparticles/commit/802e2904fcf01e713fe74bcdb4efb32979e27cc8))
+
+
+
+
+
 ## [1.25.2](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@1.25.1...ng-particles-demo@1.25.2) (2022-02-07)
 
 **Note:** Version bump only for package ng-particles-demo

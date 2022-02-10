@@ -1,8 +1,4 @@
-import type { IMovePathGenerator } from "tsparticles";
-import { CurvesPathParticle } from "./CurvesPathParticle";
-import { Vector } from "tsparticles";
-
-function pathGen(
+export function CurvesPathGen(
     rndFunc: (() => number) | null,
     period: number,
     nbHarmonics: number,
@@ -55,32 +51,3 @@ function pathGen(
         return signal + lowValue;
     }; // returned function
 } // PathGen
-
-export const curvesPathGenerator: IMovePathGenerator = {
-    generate: (p: CurvesPathParticle) => {
-        if (p.pathGen === undefined) {
-            p.pathGen = pathGen(null, 100, 2, 0.8, -0.03, 0.03);
-        }
-
-        if (p.curveVelocity === undefined) {
-            p.curveVelocity = Vector.origin;
-
-            p.curveVelocity.length = Math.random() * 0.6 + 0.8;
-            p.curveVelocity.angle = Math.random() * Math.PI * 2;
-        } else {
-            p.curveVelocity.length += 0.01;
-            p.curveVelocity.angle = (p.curveVelocity.angle + p.pathGen()) % (Math.PI * 2);
-        }
-
-        p.velocity.x = 0;
-        p.velocity.y = 0;
-
-        return p.curveVelocity;
-    },
-    init: () => {
-        // do nothing
-    },
-    update: () => {
-        // do nothing
-    },
-};

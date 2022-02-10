@@ -1,6 +1,10 @@
+import type { Contribution4D } from "./Contribution4D";
+
 export default function shuffleSeed(seed: Uint32Array): Uint32Array {
     const newSeed = new Uint32Array(1);
+
     newSeed[0] = seed[0] * 1664525 + 1013904223;
+
     return newSeed;
 }
 
@@ -9,18 +13,6 @@ const SQUISH_4D = (Math.sqrt(4 + 1) - 1) / 4;
 const STRETCH_4D = (1 / Math.sqrt(4 + 1) - 1) / 4;
 
 export type Noise4D = (x: number, y: number, z: number, w: number) => number;
-
-interface Contribution4D {
-    dx: number;
-    dy: number;
-    dz: number;
-    dw: number;
-    next?: Contribution4D;
-    xsb: number;
-    ysb: number;
-    zsb: number;
-    wsb: number;
-}
 
 function contribution4D(multiplier: number, xsb: number, ysb: number, zsb: number, wsb: number): Contribution4D {
     return {
@@ -39,17 +31,27 @@ export function makeNoise4D(clientSeed: number): Noise4D {
     const contributions: Contribution4D[] = [];
     for (let i = 0; i < p4D.length; i += 16) {
         const baseSet = base4D[p4D[i]];
+
         let previous: Contribution4D | null = null;
         let current: Contribution4D | null = null;
+
         for (let k = 0; k < baseSet.length; k += 5) {
             current = contribution4D(baseSet[k], baseSet[k + 1], baseSet[k + 2], baseSet[k + 3], baseSet[k + 4]);
-            if (previous === null) contributions[i / 16] = current;
-            else previous.next = current;
+
+            if (previous === null) {
+                contributions[i / 16] = current;
+            } else {
+                previous.next = current;
+            }
+
             previous = current;
         }
-        current!.next = contribution4D(p4D[i + 1], p4D[i + 2], p4D[i + 3], p4D[i + 4], p4D[i + 5]);
-        current!.next.next = contribution4D(p4D[i + 6], p4D[i + 7], p4D[i + 8], p4D[i + 9], p4D[i + 10]);
-        current!.next.next.next = contribution4D(p4D[i + 11], p4D[i + 12], p4D[i + 13], p4D[i + 14], p4D[i + 15]);
+
+        if (current) {
+            current.next = contribution4D(p4D[i + 1], p4D[i + 2], p4D[i + 3], p4D[i + 4], p4D[i + 5]);
+            current.next.next = contribution4D(p4D[i + 6], p4D[i + 7], p4D[i + 8], p4D[i + 9], p4D[i + 10]);
+            current.next.next.next = contribution4D(p4D[i + 11], p4D[i + 12], p4D[i + 13], p4D[i + 14], p4D[i + 15]);
+        }
     }
     const lookup: Contribution4D[] = [];
     for (let i = 0; i < lookupPairs4D.length; i += 2) {

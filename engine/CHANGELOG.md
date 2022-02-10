@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.41.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.40.2...tsparticles@1.41.0) (2022-02-10)
+
+
+### Bug Fixes
+
+* fixed issue with path generators ([29644fc](https://github.com/matteobruni/tsparticles/commit/29644fc7a281fae1c438dee74e43dd611ec7af07))
+
+
+
+
+
 ## [1.40.2](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.40.1...tsparticles@1.40.2) (2022-02-07)
 
 

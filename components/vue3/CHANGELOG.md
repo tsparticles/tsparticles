@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.41.0](https://github.com/matteobruni/tsparticles/compare/particles.vue3@1.40.2...particles.vue3@1.41.0) (2022-02-10)
+
+
+### Bug Fixes
+
+* fixed type of particlesLoaded in particles.vue3, thanks to [#3129](https://github.com/matteobruni/tsparticles/issues/3129) by [@zzhenryquezz](https://github.com/zzhenryquezz) ([0ad7b70](https://github.com/matteobruni/tsparticles/commit/0ad7b70129ee11cae27b02475ae9f6e03a5a800c))
+
+
+
+
+
 ## [1.40.2](https://github.com/matteobruni/tsparticles/compare/particles.vue3@1.40.1...particles.vue3@1.40.2) (2022-02-07)
 
 **Note:** Version bump only for package particles.vue3
