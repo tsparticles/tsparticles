@@ -32,6 +32,33 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+# [1.15.0](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.14.2...riot-particles-demo@1.15.0) (2022-02-10)
+
+**Note:** Version bump only for package riot-particles-demo
+
+
+
+
+
+## [1.14.2](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.14.1...riot-particles-demo@1.14.2) (2022-02-07)
+
+**Note:** Version bump only for package riot-particles-demo
+
+
+
+
+
+## [1.14.1](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.14.0...riot-particles-demo@1.14.1) (2022-02-06)
+
+**Note:** Version bump only for package riot-particles-demo
+
+
+
+
+
+# [1.14.0](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.13.3...riot-particles-demo@1.14.0) (2022-02-04)
+
+**Note:** Version bump only for package riot-particles-demo
 
 
 

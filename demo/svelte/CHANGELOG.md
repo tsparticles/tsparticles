@@ -49,6 +49,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.18.4...svelte-demo@2.0.0-beta.2) (2021-10-06)
 ## [1.20.5](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.20.4...svelte-demo@1.20.5) (2021-11-28)
+# [1.24.0](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.23.2...svelte-demo@1.24.0) (2022-02-10)
 
 **Note:** Version bump only for package svelte-demo
 
@@ -174,6 +175,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 ## [1.16.3](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.16.2...svelte-demo@1.16.3) (2021-08-10)
+## [1.23.2](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.23.1...svelte-demo@1.23.2) (2022-02-07)
 
 
 ### Bug Fixes
@@ -334,12 +336,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [1.1.0-alpha.7](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.1.0-alpha.6...svelte-demo@1.1.0-alpha.7) (2020-08-12)
 
 **Note:** Version bump only for package svelte-demo
+* removed all browser flags in package.json, a lot of issues with it. closes [#3094](https://github.com/matteobruni/tsparticles/issues/3094) ([1415875](https://github.com/matteobruni/tsparticles/commit/14158755ec80ace4e0c520cef407b2d7f4078568))
 
 
 
 
 
 # [1.1.0-alpha.6](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.1.0-alpha.5...svelte-demo@1.1.0-alpha.6) (2020-08-11)
+## [1.23.1](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.23.0...svelte-demo@1.23.1) (2022-02-06)
 
 **Note:** Version bump only for package svelte-demo
 
@@ -348,6 +352,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [1.1.0-alpha.5](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.1.0-alpha.4...svelte-demo@1.1.0-alpha.5) (2020-08-11)
+# [1.23.0](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.22.3...svelte-demo@1.23.0) (2022-02-04)
 
 **Note:** Version bump only for package svelte-demo
 

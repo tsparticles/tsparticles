@@ -15,6 +15,33 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+# [1.26.0](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.25.2...preact-particles-demo@1.26.0) (2022-02-10)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.25.2](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.25.1...preact-particles-demo@1.25.2) (2022-02-07)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.25.1](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.25.0...preact-particles-demo@1.25.1) (2022-02-06)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+# [1.25.0](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.24.3...preact-particles-demo@1.25.0) (2022-02-04)
+
+**Note:** Version bump only for package preact-particles-demo
 
 
 

@@ -51,7 +51,6 @@
   "main": "index.js",
   "jsdelivr": "tsparticles.shape.spiral.min.js",
   "unpkg": "tsparticles.shape.spiral.min.js",
-  "browser": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {

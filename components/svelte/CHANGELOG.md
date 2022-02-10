@@ -16,6 +16,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
+# [1.41.0](https://github.com/matteobruni/tsparticles/compare/svelte-particles@1.40.2...svelte-particles@1.41.0) (2022-02-10)
+
+**Note:** Version bump only for package svelte-particles
+
+
+
+
+
+## [1.40.2](https://github.com/matteobruni/tsparticles/compare/svelte-particles@1.40.1...svelte-particles@1.40.2) (2022-02-07)
+
+**Note:** Version bump only for package svelte-particles
 
 
 
@@ -26,6 +37,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+
+## [1.40.1](https://github.com/matteobruni/tsparticles/compare/svelte-particles@1.40.0...svelte-particles@1.40.1) (2022-02-06)
+
+**Note:** Version bump only for package svelte-particles
+
 
 
 
@@ -59,6 +75,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+# [1.40.0](https://github.com/matteobruni/tsparticles/compare/svelte-particles@1.22.3...svelte-particles@1.40.0) (2022-02-04)
+
+**Note:** Version bump only for package svelte-particles
+
+
+
+
+
 ## [1.22.3](https://github.com/matteobruni/tsparticles/compare/svelte-particles@1.22.2...svelte-particles@1.22.3) (2022-02-02)
 
 **Note:** Version bump only for package svelte-particles

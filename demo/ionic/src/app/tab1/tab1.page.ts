@@ -9,7 +9,7 @@ import { loadFull } from "tsparticles";
   styleUrls: [ 'tab1.page.scss' ]
 })
 export class Tab1Page {
-  particlesId = "tsparticles";
+  particlesId = 'tsparticles';
   particlesOptions = {
     fullScreen: {
       enable: true
@@ -71,6 +71,7 @@ export class Tab1Page {
         speed: 6,
         straight: false
       },
+      // eslint-disable-next-line id-blacklist
       number: {
         density: {
           enable: true,

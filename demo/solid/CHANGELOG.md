@@ -32,6 +32,33 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+# [1.24.0](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.23.2...solid-particles-demo@1.24.0) (2022-02-10)
+
+**Note:** Version bump only for package solid-particles-demo
+
+
+
+
+
+## [1.23.2](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.23.1...solid-particles-demo@1.23.2) (2022-02-07)
+
+**Note:** Version bump only for package solid-particles-demo
+
+
+
+
+
+## [1.23.1](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.23.0...solid-particles-demo@1.23.1) (2022-02-06)
+
+**Note:** Version bump only for package solid-particles-demo
+
+
+
+
+
+# [1.23.0](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.22.3...solid-particles-demo@1.23.0) (2022-02-04)
+
+**Note:** Version bump only for package solid-particles-demo
 
 
 

@@ -9,6 +9,38 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 * **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/matteobruni/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
+# [1.41.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.40.2...tsparticles-website@1.41.0) (2022-02-10)
+
+**Note:** Version bump only for package tsparticles-website
+
+
+
+
+
+## [1.40.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.40.1...tsparticles-website@1.40.2) (2022-02-07)
+
+**Note:** Version bump only for package tsparticles-website
+
+
+
+
+
+## [1.40.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.40.0...tsparticles-website@1.40.1) (2022-02-06)
+
+**Note:** Version bump only for package tsparticles-website
+
+
+
+
+
+# [1.40.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.39.3...tsparticles-website@1.40.0) (2022-02-04)
+
+**Note:** Version bump only for package tsparticles-website
+
+
+
+
+
 ## [1.39.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.39.2...tsparticles-website@1.39.3) (2022-02-02)
 
 

@@ -51,7 +51,6 @@
   "main": "index.js",
   "jsdelivr": "tsparticles.shape.heart.min.js",
   "unpkg": "tsparticles.shape.heart.min.js",
-  "browser": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {

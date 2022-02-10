@@ -10,6 +10,38 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
 * removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
+# [1.41.0](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.40.2...react-tsparticles@1.41.0) (2022-02-10)
+
+**Note:** Version bump only for package react-tsparticles
+
+
+
+
+
+## [1.40.2](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.40.1...react-tsparticles@1.40.2) (2022-02-07)
+
+**Note:** Version bump only for package react-tsparticles
+
+
+
+
+
+## [1.40.1](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.40.0...react-tsparticles@1.40.1) (2022-02-06)
+
+**Note:** Version bump only for package react-tsparticles
+
+
+
+
+
+# [1.40.0](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.39.3...react-tsparticles@1.40.0) (2022-02-04)
+
+**Note:** Version bump only for package react-tsparticles
+
+
+
+
+
 ## [1.39.3](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.39.2...react-tsparticles@1.39.3) (2022-02-02)
 
 

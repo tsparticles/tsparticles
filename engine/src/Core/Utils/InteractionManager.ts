@@ -13,7 +13,9 @@ export class InteractionManager {
 
     readonly #engine;
 
-    constructor(private readonly container: Container, engine: Engine) {
+    constructor(engine: Engine, private readonly container: Container) {
+        this.#engine = engine;
+
         this.externalInteractors = [];
         this.particleInteractors = [];
         this.#engine = engine;

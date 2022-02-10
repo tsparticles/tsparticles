@@ -10,6 +10,38 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
 * **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
+# [1.41.0](https://github.com/matteobruni/tsparticles/compare/solid-particles@1.40.2...solid-particles@1.41.0) (2022-02-10)
+
+**Note:** Version bump only for package solid-particles
+
+
+
+
+
+## [1.40.2](https://github.com/matteobruni/tsparticles/compare/solid-particles@1.40.1...solid-particles@1.40.2) (2022-02-07)
+
+**Note:** Version bump only for package solid-particles
+
+
+
+
+
+## [1.40.1](https://github.com/matteobruni/tsparticles/compare/solid-particles@1.40.0...solid-particles@1.40.1) (2022-02-06)
+
+**Note:** Version bump only for package solid-particles
+
+
+
+
+
+# [1.40.0](https://github.com/matteobruni/tsparticles/compare/solid-particles@1.22.3...solid-particles@1.40.0) (2022-02-04)
+
+**Note:** Version bump only for package solid-particles
+
+
+
+
+
 ## [1.22.3](https://github.com/matteobruni/tsparticles/compare/solid-particles@1.22.2...solid-particles@1.22.3) (2022-02-02)
 
 

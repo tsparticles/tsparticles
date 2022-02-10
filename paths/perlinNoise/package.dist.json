@@ -54,7 +54,6 @@
   "main": "index.js",
   "jsdelivr": "tsparticles.path.perlin.noise.min.js",
   "unpkg": "tsparticles.path.perlin.noise.min.js",
-  "browser": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {

@@ -54,7 +54,6 @@
   "main": "index.js",
   "jsdelivr": "tsparticles.path.simplex.noise.min.js",
   "unpkg": "tsparticles.path.simplex.noise.min.js",
-  "browser": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {

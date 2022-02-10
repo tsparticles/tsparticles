@@ -57,7 +57,7 @@ export class Particles {
             links: new Map<string, number>(),
             triangles: new Map<string, number>(),
         };
-        this.interactionManager = new InteractionManager(container, this.#engine);
+        this.interactionManager = new InteractionManager(this.#engine, container);
 
         const canvasSize = this.container.canvas.size;
 
@@ -483,7 +483,7 @@ export class Particles {
         initializer?: (particle: Particle) => boolean
     ): Particle | undefined {
         try {
-            const particle = new Particle(this.nextId, this.container, this.#engine, position, overrideOptions, group);
+            const particle = new Particle(this.#engine, this.nextId, this.container, position, overrideOptions, group);
 
             let canAdd = true;
 

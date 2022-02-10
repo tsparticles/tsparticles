@@ -4,12 +4,43 @@ All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-confetti@1.24.2...tsparticles-preset-confetti@2.0.0-beta.5) (2022-01-30)
+# [1.41.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-confetti@1.40.2...tsparticles-preset-confetti@1.41.0) (2022-02-10)
+
+**Note:** Version bump only for package tsparticles-preset-confetti
+
+
+
+
+
+## [1.40.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-confetti@1.40.1...tsparticles-preset-confetti@1.40.2) (2022-02-07)
 
 
 ### Bug Fixes
 
 * **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
 * removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
+* removed all browser flags in package.json, a lot of issues with it. closes [#3094](https://github.com/matteobruni/tsparticles/issues/3094) ([1415875](https://github.com/matteobruni/tsparticles/commit/14158755ec80ace4e0c520cef407b2d7f4078568))
+
+
+
+
+
+## [1.40.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-confetti@1.40.0...tsparticles-preset-confetti@1.40.1) (2022-02-06)
+
+**Note:** Version bump only for package tsparticles-preset-confetti
+
+
+
+
+
+# [1.40.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-confetti@1.24.3...tsparticles-preset-confetti@1.40.0) (2022-02-04)
+
+**Note:** Version bump only for package tsparticles-preset-confetti
+
+
+
+
+
 ## [1.24.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-confetti@1.24.2...tsparticles-preset-confetti@1.24.3) (2022-02-02)
 
 

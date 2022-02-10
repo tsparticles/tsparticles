@@ -23,7 +23,6 @@
   "main": "dist/index.js",
   "jsdelivr": "dist/tsparticles.editor.min.js",
   "unpkg": "dist/tsparticles.editor.min.js",
-  "browser": "dist/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "repository": {

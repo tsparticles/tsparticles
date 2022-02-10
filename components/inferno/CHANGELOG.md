@@ -9,6 +9,38 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 * **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
+# [1.41.0](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.40.2...inferno-particles@1.41.0) (2022-02-10)
+
+**Note:** Version bump only for package inferno-particles
+
+
+
+
+
+## [1.40.2](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.40.1...inferno-particles@1.40.2) (2022-02-07)
+
+**Note:** Version bump only for package inferno-particles
+
+
+
+
+
+## [1.40.1](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.40.0...inferno-particles@1.40.1) (2022-02-06)
+
+**Note:** Version bump only for package inferno-particles
+
+
+
+
+
+# [1.40.0](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.22.3...inferno-particles@1.40.0) (2022-02-04)
+
+**Note:** Version bump only for package inferno-particles
+
+
+
+
+
 ## [1.22.3](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.22.2...inferno-particles@1.22.3) (2022-02-02)
 
 
