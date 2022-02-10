@@ -17,7 +17,8 @@
     "parcel": "^2.0.1",
     "husky": "^7.0.1",
     "ini": "^2.0.0",
-    "lerna": "^4.0.0"
+    "lerna": "^4.0.0",
+    "yorkie": "^2.0.0"
   },
   "resolutions": {
     "npm-packlist": "1.1.12"
