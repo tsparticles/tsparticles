@@ -720,9 +720,9 @@ svelte-check@^2.2.4:
     typescript "*"
 
 svelte-preprocess@^4.0.0, svelte-preprocess@^4.7.4:
-  version "4.10.2"
-  resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-4.10.2.tgz#2405689e57161916947b8360679051a56eddd5c6"
-  integrity sha512-aPpkCreSo8EL/y8kJSa1trhiX0oyAtTjlNNM7BNjRAsMJ8Yy2LtqHt0zyd4pQPXt+D4PzbO3qTjjio3kwOxDlA==
+  version "4.10.3"
+  resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-4.10.3.tgz#9aac89a8abc3889fa5740fb34f7dd74f3c578e13"
+  integrity sha512-ttw17lJfb/dx2ZJT9sesaXT5l7mPQ9Apx1H496Kli3Hkk7orIRGpOw6rCPkRNzr6ueVPqb4vzodS5x7sBFhKHw==
   dependencies:
     "@types/pug" "^2.0.4"
     "@types/sass" "^1.16.0"
@@ -756,6 +756,11 @@ tslib@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
   integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
+
+tsparticles-engine@^2.0.0-beta.4:
+  version "2.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.0-beta.4.tgz#1c4141c2dca770d71877631a8ad75a1c446117ce"
+  integrity sha512-ENyhxd9GqE5mjksQqCWVBnQz0F48Yuj0+xFKGU4Ax25q8OkpN4iXhwZaDSUCaPJ6Vlh6BWb8Hlr+LB9mYEJzYg==
 
 typescript@*, typescript@~4.5.0:
   version "4.5.5"
