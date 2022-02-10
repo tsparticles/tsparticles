@@ -20,10 +20,10 @@ import {
 import { Emitter } from "./Options/Classes/Emitter";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
 import type { Emitters } from "./Emitters";
+import type { EmittersEngine } from "./EmittersEngine";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
 import type { IEmitterShape } from "./IEmitterShape";
 import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
-import type { EmittersEngine } from "./EmittersEngine";
 
 /**
  * @category Emitters Plugin

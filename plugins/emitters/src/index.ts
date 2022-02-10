@@ -1,4 +1,4 @@
-import { Container, Engine, IOptions, IPlugin, Options, RecursivePartial, isInArray } from "tsparticles-engine";
+import { Container, IOptions, IPlugin, Options, RecursivePartial, isInArray } from "tsparticles-engine";
 import { EmitterClickMode, EmitterShapeType } from "./Enums";
 import { CircleShape } from "./Shapes/Circle/CircleShape";
 import { Emitter } from "./Options/Classes/Emitter";

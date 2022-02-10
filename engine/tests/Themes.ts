@@ -1,13 +1,4 @@
-import {
-    ClickMode,
-    HoverMode,
-    MoveDirection,
-    Options,
-    OutMode,
-    RotateDirection,
-    ThemeMode,
-    tsParticles,
-} from "../src";
+import { ClickMode, HoverMode, MoveDirection, Options, OutMode, RotateDirection, ThemeMode, tsParticles } from "../src";
 import { describe, it } from "mocha";
 import { expect } from "chai";
 

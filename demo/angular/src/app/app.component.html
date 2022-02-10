@@ -539,7 +539,8 @@
     </a>
   </div>
 
-  <ng-particles [id]="id" [options]="options" (particlesLoaded)="particlesLoaded($event)"></ng-particles>
+  <ng-particles id="tsparticles" [options]="options" [particlesInit]="particlesInit"
+                (particlesLoaded)="particlesLoaded($event)"></ng-particles>˙
 
   <!-- Footer -->
   <footer>

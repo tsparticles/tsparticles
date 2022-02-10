@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import type { Container } from 'ng-particles';
-import type { Engine } from "tsparticles-engine";
+import type { Container, Engine } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 
 @Component({
@@ -103,7 +102,7 @@ export class Tab1Page {
     }, 500);
   }
 
-  particlesInit(main: Engine): void {
-    loadFull(main);
+  async particlesInit(main: Engine): Promise<void> {
+    await loadFull(main);
   }
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import type { Container, ISourceOptions } from "tsparticles-engine";
+import type { Container, Engine, ISourceOptions } from "tsparticles-engine";
+import { loadFull } from "tsparticles";
 
 @Component({
   selector: 'app-root',
@@ -84,6 +85,12 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
+  }
+
+  async particlesInit(engine: Engine): Promise<void> {
+    await loadFull(engine);
+
+    console.log(loadFull);
   }
 
   public particlesLoaded(container: Container): void {

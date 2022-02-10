@@ -1,6 +1,5 @@
 import type {
     Container,
-    Engine,
     IContainerPlugin,
     ICoordinates,
     IDelta,
