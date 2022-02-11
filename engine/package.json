@@ -125,7 +125,7 @@
     "typedoc-plugin-google-ads": "^1.0.1",
     "typedoc-plugin-missing-exports": "^0.22.6",
     "typescript": "^4.4.4",
-    "typescript-json-schema": "^0.51.0",
+    "typescript-json-schema": "^0.53.0",
     "webpack": "^5.52.1",
     "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^4.8.0",
