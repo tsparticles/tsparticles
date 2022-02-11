@@ -107,7 +107,7 @@
     "browserslist": "^4.17.5",
     "canvas": "^2.8.0",
     "chai": "^4.3.4",
-    "compare-versions": "^3.6.0",
+    "compare-versions": "^4.0.0",
     "copyfiles": "^2.4.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
