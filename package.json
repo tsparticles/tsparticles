@@ -21,7 +21,7 @@
     "yorkie": "^2.0.0"
   },
   "resolutions": {
-    "npm-packlist": "1.1.12"
+    "npm-packlist": "1.4.8"
   },
   "husky": {
     "hooks": {
