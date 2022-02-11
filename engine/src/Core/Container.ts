@@ -307,19 +307,11 @@ export class Container {
         } else {
             const oldGenerator = this.pathGenerator;
 
-            this.pathGenerator = pathOrGenerator || {};
+            this.pathGenerator = pathOrGenerator;
 
-            if (!pathOrGenerator.generate) {
-                this.pathGenerator.generate = oldGenerator.generate;
-            }
-
-            if (!pathOrGenerator.init) {
-                this.pathGenerator.init = oldGenerator.init;
-            }
-
-            if (!pathOrGenerator.update) {
-                this.pathGenerator.update = oldGenerator.update;
-            }
+            this.pathGenerator.generate ||= oldGenerator.generate;
+            this.pathGenerator.init ||= oldGenerator.init;
+            this.pathGenerator.update ||= oldGenerator.update;
         }
     }
 

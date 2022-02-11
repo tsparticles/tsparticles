@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.24.0](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.23.2...particles.vue3-demo@1.24.0) (2022-02-10)
+
+
+### Bug Fixes
+
+* upgrade core-js from 3.16.2 to 3.20.3 ([ca703e5](https://github.com/matteobruni/tsparticles/commit/ca703e5dffeb92843c2da7605f6d9af5f54d15a2))
+* upgrade highlight.js from 11.2.0 to 11.4.0 ([112a342](https://github.com/matteobruni/tsparticles/commit/112a342be47511c7ae15a788cbf377ad151f74c4))
+* upgrade vue from 3.2.4 to 3.2.26 ([c9434b6](https://github.com/matteobruni/tsparticles/commit/c9434b67c361d96e537f27251f0dbd98a1dd215d))
+
+
+
+
+
 ## [1.23.2](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.23.1...particles.vue3-demo@1.23.2) (2022-02-07)
 
 **Note:** Version bump only for package particles.vue3-demo

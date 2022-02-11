@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.41.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-polygon@1.40.2...tsparticles-path-polygon@1.41.0) (2022-02-10)
+
+
+### Bug Fixes
+
+* fixed polygon path generator ([146afb6](https://github.com/matteobruni/tsparticles/commit/146afb67dd0ced634f6c54d21c86d3b3372e87b6))
+* fixed polygon path options ([4eac27c](https://github.com/matteobruni/tsparticles/commit/4eac27c11f6d5ece392b2a75368e57a0186a57ff))
+
+
+
+
+
 ## [1.40.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-polygon@1.40.1...tsparticles-path-polygon@1.40.2) (2022-02-07)
 
 

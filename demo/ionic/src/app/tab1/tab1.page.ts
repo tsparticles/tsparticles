@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Container } from 'ng-particles';
+import type { Container } from 'tsparticles';
 
 @Component({
   selector: 'app-tab1',
@@ -7,7 +7,7 @@ import { Container } from 'ng-particles';
   styleUrls: [ 'tab1.page.scss' ]
 })
 export class Tab1Page {
-  particlesId = "tsparticles";
+  particlesId = 'tsparticles';
   particlesOptions = {
     fullScreen: {
       enable: true
@@ -69,10 +69,11 @@ export class Tab1Page {
         speed: 6,
         straight: false
       },
+      // eslint-disable-next-line id-blacklist
       number: {
         density: {
           enable: true,
-          value_area: 800
+          area: 800
         },
         value: 80
       },

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.41.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-bubble@1.40.2...tsparticles-shape-bubble@1.41.0) (2022-02-10)
+
+**Note:** Version bump only for package tsparticles-shape-bubble
+
+
+
+
+
 ## [1.40.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-bubble@1.40.1...tsparticles-shape-bubble@1.40.2) (2022-02-07)
 
 

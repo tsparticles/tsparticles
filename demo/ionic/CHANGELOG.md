@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.10.0 (2022-02-10)
+
+
+### Bug Fixes
+
+* **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
+* **deps:** pin dependencies ([3dac0d0](https://github.com/matteobruni/tsparticles/commit/3dac0d0a594092707ddd31a70b09cdb7238d5eba))
+* **deps:** update all ([d9f0ff2](https://github.com/matteobruni/tsparticles/commit/d9f0ff2f8c4ac269aaad5077492746e3da8fb422))
+* **deps:** update angular monorepo to v12.2.2 ([e4b6928](https://github.com/matteobruni/tsparticles/commit/e4b6928c5f35d5d2f8ed9609fcff8a53427f7a77))
+* **deps:** update capacitor monorepo ([628db0f](https://github.com/matteobruni/tsparticles/commit/628db0f31e93f6e035b8bf0a96ef48c391afefc9))
+
+
+### Features
+
+* added new methods to particle class ([5743453](https://github.com/matteobruni/tsparticles/commit/5743453906001569f262888aa54539ad4e1463ac))
+* updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
+* updated ng-particles to Angular 13 ([802e290](https://github.com/matteobruni/tsparticles/commit/802e2904fcf01e713fe74bcdb4efb32979e27cc8))
+
+
+
+
+
 ## [0.9.2](https://github.com/matteobruni/tsparticles/compare/ionic@0.9.1...ionic@0.9.2) (2022-02-07)
 
 **Note:** Version bump only for package ionic
