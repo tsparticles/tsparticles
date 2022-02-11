@@ -66,7 +66,7 @@
     "rimraf": "3.0.2",
     "terser-webpack-plugin": "5.3.1",
     "typescript": "4.5.5",
-    "webpack": "5.53.0",
+    "webpack": "5.68.0",
     "webpack-bundle-analyzer": "4.5.0",
     "webpack-cli": "4.8.0"
   },
