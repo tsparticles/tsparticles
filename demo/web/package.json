@@ -35,7 +35,7 @@
     "prettier": "^2.3.2",
     "pug": "^3.0.2",
     "pug-cli": "^1.0.0-alpha6",
-    "stylus": "^0.55.0",
+    "stylus": "^0.56.0",
     "tsparticles": "^1.41.0",
     "web-particles": "^1.41.0"
   }
