@@ -36,7 +36,7 @@
     "@riotjs/lazy": "^2.0.1",
     "@riotjs/route": "^8.0.1",
     "path": "^0.12.7",
-    "riot": "^6.0.4",
+    "riot": "^6.1.1",
     "riot-particles": "^1.41.0",
     "tsparticles": "^1.41.0"
   }
