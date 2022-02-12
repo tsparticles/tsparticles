@@ -2481,9 +2481,9 @@ flat@^5.0.2:
   integrity sha512-b6suED+5/3rTpUBdG1gupIl8MPFCAMA0QXwmljLhvCUKcUvdE4gWky9zpuGCcXHOsz4J9wPGNWq6OKpmIzz3hQ==
 
 follow-redirects@^1.0.0:
-  version "1.14.5"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.5.tgz#f09a5848981d3c772b5392309778523f8d85c381"
-  integrity sha512-wtphSXy7d4/OR+MvIFbCVBDzZ5520qV8XfPklSN5QtxuMUJZ+b0Wnst1e1lCDocfzuCkHqj8k0FpZqO+UIaKNA==
+  version "1.14.8"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.8.tgz#016996fb9a11a100566398b1c6839337d7bfa8fc"
+  integrity sha512-1x0S9UVJHsQprFcEC/qnNzBLcIxsjAV905f/UkQxbclCsoTWlacCNOpQa/anodLl2uaEKFhfWOvM2Qg77+15zA==
 
 foreground-child@^2.0.0:
   version "2.0.0"
@@ -4156,6 +4156,13 @@ rimraf@^3.0.0, rimraf@^3.0.2:
   dependencies:
     glob "^7.1.3"
 
+riot-particles@^1.41.0:
+  version "1.41.0"
+  resolved "https://registry.yarnpkg.com/riot-particles/-/riot-particles-1.41.0.tgz#fee6484278eb10c8e05ec3f91b7635896eaa4a71"
+  integrity sha512-+KkP1/qA80547GXbeGqVH7yN0QTSOHTRTRkjSRzhKf026wV9ZajqxToYgcJwm6877Wv84hiIv7J/yWggM6IV+g==
+  dependencies:
+    tsparticles "^1.41.0"
+
 riot@^6.0.4:
   version "6.0.4"
   resolved "https://registry.yarnpkg.com/riot/-/riot-6.0.4.tgz#7cd4d03095f4ebedcd6e7b49dc8bec7f2d68f796"
@@ -4624,6 +4631,11 @@ tslib@^2.0.3:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
   integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
+
+tsparticles@^1.41.0:
+  version "1.41.0"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.41.0.tgz#860e4778251aadfeeae184e46a31bde9eea7c3ad"
+  integrity sha512-L2+I82ge+xVuZNbKLuw1I46RXLlT5TCIf6MGQRI0H9jgqPyT668NQl/liOcCpzCZvVNzUMUXeiu5SWetd33v5Q==
 
 type-check@~0.3.2:
   version "0.3.2"
