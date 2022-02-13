@@ -24,18 +24,18 @@
     "build:style": "npx stylus ./public/stylesheets/main.styl"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.4",
-    "@typescript-eslint/eslint-plugin": "^4.29.1",
-    "@typescript-eslint/parser": "^4.29.1",
+    "@fortawesome/fontawesome-free": "^6.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
     "@webcomponents/webcomponentsjs": "^2.6.0",
-    "eslint": "^7.32.0",
+    "eslint": "^8.0.0",
     "eslint-config-prettier": "^8.3.0",
     "express": "^4.17.1",
-    "helmet": "^4.6.0",
+    "helmet": "^5.0.0",
     "prettier": "^2.3.2",
     "pug": "^3.0.2",
     "pug-cli": "^1.0.0-alpha6",
-    "stylus": "^0.55.0",
+    "stylus": "^0.56.0",
     "tsparticles": "^1.41.0",
     "web-particles": "^1.41.0"
   }

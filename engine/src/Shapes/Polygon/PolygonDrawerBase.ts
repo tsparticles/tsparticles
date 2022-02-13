@@ -46,7 +46,7 @@ export abstract class PolygonDrawerBase implements IShapeDrawer {
         }
     }
 
-    public abstract getSidesData(particle: IParticle, radius: number): ISide;
+    abstract getSidesData(particle: IParticle, radius: number): ISide;
 
-    public abstract getCenter(particle: IParticle, radius: number): ICoordinates;
+    abstract getCenter(particle: IParticle, radius: number): ICoordinates;
 }
