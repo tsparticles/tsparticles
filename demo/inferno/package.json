@@ -16,7 +16,7 @@
 	"author": "Matteo Bruni <ar3s@icloud.com>",
 	"license": "MIT",
 	"dependencies": {
-		"inferno": "^7.4.8",
+		"inferno": "^7.4.11",
 		"inferno-particles": "^2.0.0-beta.4",
 		"tsparticles": "^2.0.0-beta.5",
 		"tsparticles-engine": "^2.0.0-beta.4"

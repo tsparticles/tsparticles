@@ -19,9 +19,6 @@
     "ini": "^2.0.0",
     "lerna": "^4.0.0"
   },
-  "resolutions": {
-    "npm-packlist": "3.0.0"
-  },
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
