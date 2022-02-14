@@ -16,7 +16,7 @@ The CDN/Vanilla version JS has one required file in vanilla configuration:
 
 Including the `tsparticles.shape.rounded-rect.min.js` file will export the function to load the shape:
 
-```
+``` text
 loadRoundedRectShape
 ```
 
@@ -28,8 +28,8 @@ Once the scripts are loaded you can set up `tsParticles` and the shape like this
 loadRoundedRectShape(tsParticles);
 
 tsParticles.load("tsparticles", {
-  /* options */
-  /* here you can use particles.shape.type: "rounded-rect" */
+    /* options */
+    /* here you can use particles.shape.type: "rounded-rect" */
 });
 ```
 

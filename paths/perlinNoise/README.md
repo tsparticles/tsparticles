@@ -16,7 +16,7 @@ The CDN/Vanilla version JS has one required file in vanilla configuration:
 
 Including the `tsparticles.path.perlin.noise.min.js` file will export the function to load the path plugin:
 
-```
+``` text
 loadPerlinNoisePath
 ```
 
@@ -28,7 +28,7 @@ Once the scripts are loaded you can set up `tsParticles` and the path plugin lik
 loadPerlinNoisePath(tsParticles);
 
 tsParticles.load("tsparticles", {
-  /* options */
+    /* options */
 });
 ```
 

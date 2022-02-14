@@ -16,7 +16,7 @@ The CDN/Vanilla version JS has one required file in vanilla configuration:
 
 Including the `tsparticles.shape.multiline-text.min.js` file will export the function to load the shape:
 
-```
+``` text
 loadMultilineTextShape
 ```
 
@@ -28,8 +28,8 @@ Once the scripts are loaded you can set up `tsParticles` and the shape like this
 loadMultilineTextShape(tsParticles);
 
 tsParticles.load("tsparticles", {
-  /* options */
-  /* here you can use particles.shape.type: "multiline-text" */
+    /* options */
+    /* here you can use particles.shape.type: "multiline-text" */
 });
 ```
 

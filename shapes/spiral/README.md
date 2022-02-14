@@ -16,7 +16,7 @@ The CDN/Vanilla version JS has one required file in vanilla configuration:
 
 Including the `tsparticles.shape.spiral.min.js` file will export the function to load the shape:
 
-```
+``` text
 loadSpiralShape
 ```
 
@@ -28,8 +28,8 @@ Once the scripts are loaded you can set up `tsParticles` and the shape like this
 loadSpiralShape(tsParticles);
 
 tsParticles.load("tsparticles", {
-  /* options */
-  /* here you can use particles.shape.type: "spiral" */
+    /* options */
+    /* here you can use particles.shape.type: "spiral" */
 });
 ```
 

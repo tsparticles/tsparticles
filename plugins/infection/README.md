@@ -16,7 +16,7 @@ The CDN/Vanilla version JS has one required file in vanilla configuration:
 
 Including the `tsparticles.plugin.infection.min.js` file will export the function to load the plugin:
 
-```
+``` text
 loadInfectionPlugin
 ```
 
@@ -28,7 +28,7 @@ Once the scripts are loaded you can set up `tsParticles` and the plugin like thi
 loadInfectionPlugin(tsParticles);
 
 tsParticles.load("tsparticles", {
-  /* options */
+    /* options */
 });
 ```
 
