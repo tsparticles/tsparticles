@@ -41,15 +41,14 @@
   ],
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
     "build:all": "ng build",
     "build": "node scripts/prebuild.js && ng build ng-particles --configuration production",
     "version": "yarn build && git add ./projects/ng-particles/package.json",
+    "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
     "prepack": "yarn build"
   },
+  "private": true,
   "publishConfig": {
     "directory": "./dist/ng-particles"
   },
@@ -76,7 +75,7 @@
     "jasmine-core": "~4.0.0",
     "karma": "~6.3.12",
     "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage": "~2.1.0",
+    "karma-coverage": "~2.2.0",
     "karma-jasmine": "~4.0.1",
     "karma-jasmine-html-reporter": "~1.7.0",
     "ng-packagr": "^13.1.3",

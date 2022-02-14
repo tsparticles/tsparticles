@@ -8,21 +8,24 @@ import { Engine } from "../../engine";
 import type { Particle } from "../Particle";
 
 export class InteractionManager {
-    private readonly externalInteractors: IExternalInteractor[];
-    private readonly particleInteractors: IParticlesInteractor[];
+    private externalInteractors: IExternalInteractor[];
+    private particleInteractors: IParticlesInteractor[];
 
     readonly #engine;
 
-    constructor(private readonly container: Container, engine: Engine) {
+    constructor(engine: Engine, private readonly container: Container) {
+        this.#engine = engine;
         this.externalInteractors = [];
         this.particleInteractors = [];
-        this.#engine = engine;
 
         this.init();
     }
 
     init(): void {
         const interactors = this.#engine.plugins.getInteractors(this.container, true);
+
+        this.externalInteractors = [];
+        this.particleInteractors = [];
 
         for (const interactor of interactors) {
             switch (interactor.type) {
@@ -36,15 +39,15 @@ export class InteractionManager {
         }
     }
 
-    externalInteract(delta: IDelta): void {
+    async externalInteract(delta: IDelta): Promise<void> {
         for (const interactor of this.externalInteractors) {
             if (interactor.isEnabled()) {
-                interactor.interact(delta);
+                await interactor.interact(delta);
             }
         }
     }
 
-    particlesInteract(particle: Particle, delta: IDelta): void {
+    async particlesInteract(particle: Particle, delta: IDelta): Promise<void> {
         for (const interactor of this.externalInteractors) {
             interactor.reset(particle);
         }
@@ -52,7 +55,7 @@ export class InteractionManager {
         /* interaction auto between particles */
         for (const interactor of this.particleInteractors) {
             if (interactor.isEnabled(particle)) {
-                interactor.interact(particle, delta);
+                await interactor.interact(particle, delta);
             }
         }
     }

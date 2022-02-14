@@ -1,6 +1,5 @@
 import type {
     Container,
-    Engine,
     IContainerPlugin,
     ICoordinates,
     IDelta,
@@ -13,6 +12,7 @@ import { Emitter } from "./Options/Classes/Emitter";
 import { EmitterClickMode } from "./Enums";
 import type { EmitterContainer } from "./EmitterContainer";
 import { EmitterInstance } from "./EmitterInstance";
+import type { EmittersEngine } from "./EmittersEngine";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 
@@ -23,13 +23,14 @@ export class Emitters implements IContainerPlugin {
     array: EmitterInstance[];
     emitters: SingleOrMultiple<Emitter>;
     interactivityEmitters: SingleOrMultiple<Emitter>;
-    #engine;
 
-    constructor(private readonly container: Container, engine: Engine) {
+    readonly #engine;
+
+    constructor(engine: EmittersEngine, private readonly container: Container) {
+        this.#engine = engine;
         this.array = [];
         this.emitters = [];
         this.interactivityEmitters = [];
-        this.#engine = engine;
 
         const overridableContainer = container as unknown as EmitterContainer;
 
@@ -176,7 +177,7 @@ export class Emitters implements IContainerPlugin {
 
         emitterOptions.load(options);
 
-        const emitter = new EmitterInstance(this, this.container, this.#engine, emitterOptions, position);
+        const emitter = new EmitterInstance(this.#engine, this, this.container, emitterOptions, position);
 
         this.array.push(emitter);
 

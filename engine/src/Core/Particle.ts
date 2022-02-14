@@ -72,8 +72,6 @@ const fixOutMode = (data: {
  * @category Core
  */
 export class Particle implements IParticle {
-    #engine;
-
     destroyed;
     lastPathTime;
     misplaced;
@@ -118,10 +116,12 @@ export class Particle implements IParticle {
     readonly zIndexFactor: number;
     readonly retina: IParticleRetinaProps;
 
+    readonly #engine;
+
     constructor(
+        engine: Engine,
         readonly id: number,
         readonly container: Container,
-        engine: Engine,
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticlesOptions>,
         readonly group?: string

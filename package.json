@@ -8,6 +8,8 @@
     "version:beta": "lerna version prerelease --preid beta --conventional-commits",
     "publish:alpha": "lerna publish from-package --pre-dist-tag alpha --preid alpha",
     "publish:beta": "lerna publish from-package --pre-dist-tag beta --preid beta",
+    "publish:next": "lerna publish from-package --dist-tag next",
+    "publish:v1": "lerna publish from-package --dist-tag v1",
     "deploy:site": "lerna run deploy --scope website"
   },
   "devDependencies": {
@@ -18,9 +20,6 @@
     "husky": "^7.0.4",
     "ini": "^2.0.0",
     "lerna": "^4.0.0"
-  },
-  "resolutions": {
-    "npm-packlist": "1.1.12"
   },
   "husky": {
     "hooks": {

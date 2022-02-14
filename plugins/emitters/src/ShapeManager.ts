@@ -1,19 +1,26 @@
+import type { Engine } from "tsparticles-engine";
 import type { IEmitterShape } from "./IEmitterShape";
 
 const shapes: Map<string, IEmitterShape> = new Map<string, IEmitterShape>();
 
 export class ShapeManager {
-    static addShape(name: string, drawer: IEmitterShape): void {
-        if (!ShapeManager.getShape(name)) {
+    readonly #engine;
+
+    constructor(engine: Engine) {
+        this.#engine = engine;
+    }
+
+    addShape(name: string, drawer: IEmitterShape): void {
+        if (!this.getShape(name)) {
             shapes.set(name, drawer);
         }
     }
 
-    static getShape(name: string): IEmitterShape | undefined {
+    getShape(name: string): IEmitterShape | undefined {
         return shapes.get(name);
     }
 
-    static getSupportedShapes(): IterableIterator<string> {
+    getSupportedShapes(): IterableIterator<string> {
         return shapes.keys();
     }
 }

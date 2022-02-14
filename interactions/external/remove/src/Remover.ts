@@ -32,7 +32,7 @@ export class Remover extends ExternalInteractorBase {
         // do nothing
     }
 
-    interact(): void {
+    async interact(): Promise<void> {
         // do nothing
     }
 }

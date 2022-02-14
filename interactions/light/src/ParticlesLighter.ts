@@ -7,7 +7,7 @@ export class ParticlesLighter extends ParticlesInteractorBase {
         super(container);
     }
 
-    interact(particle: Particle): void {
+    async interact(particle: Particle): Promise<void> {
         const container = this.container,
             options = container.actualOptions;
 

@@ -326,8 +326,7 @@
     </svg>
   </a>
 </div>
-<app-container>
-</app-container>
+
 <div class="content" role="main">
 
   <!-- Highlight Card -->
@@ -539,6 +538,9 @@
       </svg>
     </a>
   </div>
+
+  <ng-particles id="tsparticles" [options]="options" [particlesInit]="particlesInit"
+                (particlesLoaded)="particlesLoaded($event)"></ng-particles>˙
 
   <!-- Footer -->
   <footer>

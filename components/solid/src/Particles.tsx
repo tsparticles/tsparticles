@@ -43,11 +43,11 @@ const Particles = (props: IParticlesProps): JSX.Element => {
 			}
 		};
 
-		onMount(() => {
+		onMount(async () => {
 			if (props.init && !init()) {
-				props.init(tsParticles).then(() => {
-					setInit(true);
-				});
+				await props.init(tsParticles);
+
+				setInit(true);
 			}
 		});
 

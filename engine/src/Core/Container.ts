@@ -47,8 +47,6 @@ export class Container {
     zLayers;
     responsiveMaxWidth?: number;
 
-    #engine;
-
     /**
      * The options used by the container, it's a full [[Options]] object
      */
@@ -85,7 +83,7 @@ export class Container {
      */
     readonly plugins;
 
-    readonly pathGenerator: IMovePathGenerator;
+    pathGenerator: IMovePathGenerator;
 
     private _options;
     private _sourceOptions;
@@ -98,16 +96,18 @@ export class Container {
     private readonly eventListeners;
     private readonly intersectionObserver?;
 
+    readonly #engine;
+
     /**
      * This is the core class, create an instance to have a new working particles manager
      * @constructor
-     * @param engine the current engine instance
+     * @param engine the engine used by container
      * @param id the id to identify this instance
      * @param sourceOptions the options to load
      */
     constructor(engine: Engine, readonly id: string, sourceOptions?: RecursivePartial<IOptions>) {
         this.#engine = engine;
-        this.fpsLimit = 60;
+        this.fpsLimit = 120;
         this.duration = 0;
         this.lifeTime = 0;
         this.firstStart = true;
@@ -223,14 +223,14 @@ export class Container {
     draw(force: boolean): void {
         let refreshTime = force;
 
-        this.drawAnimationFrame = animate()((timestamp) => {
+        this.drawAnimationFrame = animate()(async (timestamp) => {
             if (refreshTime) {
                 this.lastFrameTime = undefined;
 
                 refreshTime = false;
             }
 
-            this.drawer.nextFrame(timestamp);
+            await this.drawer.nextFrame(timestamp);
         });
     }
 
@@ -283,17 +283,13 @@ export class Container {
                 this.pathGenerator.update = update;
             }
         } else {
-            if (pathOrGenerator.generate) {
-                this.pathGenerator.generate = pathOrGenerator.generate;
-            }
+            const oldGenerator = this.pathGenerator;
 
-            if (pathOrGenerator.init) {
-                this.pathGenerator.init = pathOrGenerator.init;
-            }
+            this.pathGenerator = pathOrGenerator;
 
-            if (pathOrGenerator.update) {
-                this.pathGenerator.update = pathOrGenerator.update;
-            }
+            this.pathGenerator.generate ||= oldGenerator.generate;
+            this.pathGenerator.init ||= oldGenerator.init;
+            this.pathGenerator.update ||= oldGenerator.update;
         }
     }
 
@@ -377,7 +373,7 @@ export class Container {
         this.canvas.clear();
 
         if (this.interactivity.element instanceof HTMLElement && this.intersectionObserver) {
-            this.intersectionObserver.observe(this.interactivity.element);
+            this.intersectionObserver.unobserve(this.interactivity.element);
         }
 
         for (const [, plugin] of this.plugins) {
@@ -599,7 +595,7 @@ export class Container {
 
         this.duration = getRangeValue(this.actualOptions.duration);
         this.lifeTime = 0;
-        this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 60;
+        this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 120;
 
         const availablePlugins = this.#engine.plugins.getAvailablePlugins(this);
 
@@ -624,21 +620,7 @@ export class Container {
         const pathOptions = this.actualOptions.particles.move.path;
 
         if (pathOptions.generator) {
-            const customGenerator = this.#engine.plugins.getPathGenerator(pathOptions.generator);
-
-            if (customGenerator) {
-                if (customGenerator.init) {
-                    this.pathGenerator.init = customGenerator.init;
-                }
-
-                if (customGenerator.generate) {
-                    this.pathGenerator.generate = customGenerator.generate;
-                }
-
-                if (customGenerator.update) {
-                    this.pathGenerator.update = customGenerator.update;
-                }
-            }
+            this.setPath(this.#engine.plugins.getPathGenerator(pathOptions.generator));
         }
 
         this.#engine.dispatchEvent(EventType.containerInit, { container: this });

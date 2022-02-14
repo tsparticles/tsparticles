@@ -14,12 +14,57 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **deps:** update dependency rxjs to ~7.4.0 ([048238b](https://github.com/matteobruni/tsparticles/commit/048238b7b14b1ee49356afa47e5c7aa0ab4ac1f0))
 * **deps:** update dependency rxjs to ~7.5.0 ([f2d0505](https://github.com/matteobruni/tsparticles/commit/f2d0505863dafba475f8d6275d6474a54970a814))
 * removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
+## [2.41.1](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.41.0...ng-particles@2.41.1) (2022-02-14)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+# [2.41.0](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.40.2...ng-particles@2.41.0) (2022-02-10)
+
+
+### Features
+
+* updated ng-particles to Angular 13 ([802e290](https://github.com/matteobruni/tsparticles/commit/802e2904fcf01e713fe74bcdb4efb32979e27cc8))
+
+
+
+
+
+## [2.40.2](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.40.1...ng-particles@2.40.2) (2022-02-07)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+## [2.40.1](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.40.0...ng-particles@2.40.1) (2022-02-06)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+# [2.40.0](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.22.3...ng-particles@2.40.0) (2022-02-04)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+## [2.22.3](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.22.2...ng-particles@2.22.3) (2022-02-02)
 
 
 ### Features
 
 * changed particlesInit on angular, is a property now and not an event ([38f6219](https://github.com/matteobruni/tsparticles/commit/38f62190549bb194e6ab542ba834ae2118f99ba6))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+* updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
 
 
 

@@ -41,7 +41,7 @@ describe("Options tests", () => {
         expect(options.detectRetina).to.be.true;
 
         /* fps limit */
-        expect(options.fpsLimit).to.equal(60);
+        expect(options.fpsLimit).to.equal(120);
 
         /* interactivity */
         expect(options.interactivity.detectsOn).to.equal(InteractivityDetect.window);

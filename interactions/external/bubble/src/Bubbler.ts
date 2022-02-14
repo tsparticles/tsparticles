@@ -108,7 +108,7 @@ export class Bubbler extends ExternalInteractorBase {
         delete particle.bubble.color;
     }
 
-    interact(): void {
+    async interact(): Promise<void> {
         const options = this.container.actualOptions,
             events = options.interactivity.events,
             onHover = events.onHover,

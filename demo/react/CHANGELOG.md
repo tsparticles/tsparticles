@@ -4,6 +4,50 @@ All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.24.2...react-tsparticles-demo@2.0.0-beta.5) (2022-01-30)
+## [1.26.1](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.26.0...react-tsparticles-demo@1.26.1) (2022-02-14)
+
+
+### Bug Fixes
+
+* upgrade rxjs from 7.3.0 to 7.5.2 ([ac52db7](https://github.com/matteobruni/tsparticles/commit/ac52db7274471a02caaf10e6aa0bcd587efdae3b))
+
+
+
+
+
+# [1.26.0](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.25.2...react-tsparticles-demo@1.26.0) (2022-02-10)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
+## [1.25.2](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.25.1...react-tsparticles-demo@1.25.2) (2022-02-07)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
+## [1.25.1](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.25.0...react-tsparticles-demo@1.25.1) (2022-02-06)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
+# [1.25.0](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.24.3...react-tsparticles-demo@1.25.0) (2022-02-04)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
+## [1.24.3](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.24.2...react-tsparticles-demo@1.24.3) (2022-02-02)
 
 
 ### Features
@@ -11,6 +55,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
 * moved polygon mask to external plugin (breaking) ([abdfe37](https://github.com/matteobruni/tsparticles/commit/abdfe37f250a4f357f4491bb7ff0e54da6a7303e))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+* updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
 
 
 

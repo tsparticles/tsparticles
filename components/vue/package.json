@@ -62,10 +62,16 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "homepage": "https://particles.js.org",
-  "funding": {
-    "type": "github",
-    "url": "https://github.com/sponsors/matteobruni"
-  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/matteobruni"
+    },
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/matteobruni"
+    }
+  ],
   "peerDependencies": {
     "vue": "<3"
   },

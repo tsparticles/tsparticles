@@ -42,12 +42,58 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * fixed snow preset ([38cba58](https://github.com/matteobruni/tsparticles/commit/38cba5884e01be5721395e5f084eb24ac15806de))
 * fixed stars preset ([04e7f4c](https://github.com/matteobruni/tsparticles/commit/04e7f4cd9bda078410940c561a20d57a5502f6e1))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.41.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-snow@1.41.0...tsparticles-preset-snow@1.41.1) (2022-02-14)
+
+**Note:** Version bump only for package tsparticles-preset-snow
+
+
+
+
+
+# [1.41.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-snow@1.40.2...tsparticles-preset-snow@1.41.0) (2022-02-10)
+
+**Note:** Version bump only for package tsparticles-preset-snow
+
+
+
+
+
+## [1.40.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-snow@1.40.1...tsparticles-preset-snow@1.40.2) (2022-02-07)
+
+
+### Bug Fixes
+
+* removed all browser flags in package.json, a lot of issues with it. closes [#3094](https://github.com/matteobruni/tsparticles/issues/3094) ([1415875](https://github.com/matteobruni/tsparticles/commit/14158755ec80ace4e0c520cef407b2d7f4078568))
+
+
+
+
+
+## [1.40.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-snow@1.40.0...tsparticles-preset-snow@1.40.1) (2022-02-06)
+
+**Note:** Version bump only for package tsparticles-preset-snow
+
+
+
+
+
+# [1.40.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-snow@1.24.3...tsparticles-preset-snow@1.40.0) (2022-02-04)
+
+**Note:** Version bump only for package tsparticles-preset-snow
 
 
 
 
 
 # [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-snow@1.20.4...tsparticles-preset-snow@2.0.0-beta.2) (2021-10-06)
+## [1.24.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-snow@1.24.2...tsparticles-preset-snow@1.24.3) (2022-02-02)
+
+**Note:** Version bump only for package tsparticles-preset-snow
+
+
+
+
+
 ## [1.24.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-snow@1.24.1...tsparticles-preset-snow@1.24.2) (2022-01-29)
 
 **Note:** Version bump only for package tsparticles-preset-snow

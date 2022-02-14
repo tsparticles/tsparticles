@@ -30,7 +30,7 @@ interface RemoteLoaderParams {
  * @category Core
  */
 export class Loader {
-    #engine;
+    readonly #engine;
 
     constructor(engine: Engine) {
         this.#engine = engine;

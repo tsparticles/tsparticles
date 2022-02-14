@@ -38,10 +38,19 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/matteobruni"
+    },
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/matteobruni"
+    }
+  ],
   "main": "index.js",
   "jsdelivr": "tsparticles.preset.fire.min.js",
   "unpkg": "tsparticles.preset.fire.min.js",
-  "browser": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {

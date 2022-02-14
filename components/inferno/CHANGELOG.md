@@ -9,12 +9,54 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 * **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
+## [1.41.1](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.41.0...inferno-particles@1.41.1) (2022-02-14)
+
+**Note:** Version bump only for package inferno-particles
+
+
+
+
+
+# [1.41.0](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.40.2...inferno-particles@1.41.0) (2022-02-10)
+
+**Note:** Version bump only for package inferno-particles
+
+
+
+
+
+## [1.40.2](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.40.1...inferno-particles@1.40.2) (2022-02-07)
+
+**Note:** Version bump only for package inferno-particles
+
+
+
+
+
+## [1.40.1](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.40.0...inferno-particles@1.40.1) (2022-02-06)
+
+**Note:** Version bump only for package inferno-particles
+
+
+
+
+
+# [1.40.0](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.22.3...inferno-particles@1.40.0) (2022-02-04)
+
+**Note:** Version bump only for package inferno-particles
+
+
+
+
+
+## [1.22.3](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.22.2...inferno-particles@1.22.3) (2022-02-02)
 
 
 ### Features
 
 * added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+* updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
 
 
 
