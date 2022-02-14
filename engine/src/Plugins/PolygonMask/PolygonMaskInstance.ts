@@ -62,7 +62,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         this.redrawTimeout = window.setTimeout(async () => {
             await this.initRawData(true);
 
-            container.particles.redraw();
+            await container.particles.redraw();
         }, 250);
     }
 

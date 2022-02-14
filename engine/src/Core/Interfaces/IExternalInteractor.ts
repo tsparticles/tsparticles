@@ -5,7 +5,7 @@ import type { IInteractor } from "./IInteractor";
  * @category Interfaces
  */
 export interface IExternalInteractor extends IInteractor {
-    interact(delta: IDelta): void;
+    interact(delta: IDelta): Promise<void>;
 
     isEnabled(): boolean;
 }

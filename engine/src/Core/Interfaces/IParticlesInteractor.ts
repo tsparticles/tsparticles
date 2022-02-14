@@ -6,7 +6,7 @@ import type { Particle } from "../Particle";
  * @category Interfaces
  */
 export interface IParticlesInteractor extends IInteractor {
-    interact(particle: Particle, delta: IDelta): void;
+    interact(particle: Particle, delta: IDelta): Promise<void>;
 
     isEnabled(particle: Particle): boolean;
 }

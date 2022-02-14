@@ -123,10 +123,10 @@ export class Particles {
         container.pathGenerator.init(container);
     }
 
-    redraw(): void {
+    async redraw(): Promise<void> {
         this.clear();
         this.init();
-        this.draw({ value: 0, factor: 0 });
+        await this.draw({ value: 0, factor: 0 });
     }
 
     removeAt(index: number, quantity = 1, group?: string, override?: boolean): void {
