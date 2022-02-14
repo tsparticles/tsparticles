@@ -10,7 +10,7 @@ export abstract class ParticlesInteractorBase implements IParticlesInteractor {
 
     public abstract interact(particle: Particle, delta: IDelta): Promise<void>;
 
-    public abstract isEnabled(particle: Particle): boolean;
+    abstract isEnabled(particle: Particle): boolean;
 
-    public abstract reset(particle: Particle): void;
+    abstract reset(particle: Particle): void;
 }

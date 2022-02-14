@@ -28,10 +28,10 @@
     "@types/react": "^17.0.18",
     "@types/react-dom": "^17.0.9",
     "@types/react-syntax-highlighter": "^13.5.2",
-    "@typescript-eslint/eslint-plugin": "^4.29.1",
-    "@typescript-eslint/parser": "^4.29.1",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
     "browserslist": "^4.17.5",
-    "eslint": "^7.32.0",
+    "eslint": "^8.0.0",
     "eslint-config-prettier": "^8.3.0",
     "node-sass": "^7.0.0",
     "parcel": "^2.0.1",
@@ -43,7 +43,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-tsparticles": "^1.41.0",
-    "rxjs": "^7.3.0",
+    "rxjs": "^7.5.2",
     "tsparticles": "^1.41.0"
   }
 }
