@@ -16,7 +16,7 @@ The CDN/Vanilla version JS has one required file in vanilla configuration:
 
 Including the `tsparticles.updater.gradient.min.js` file will export the function to load the updater plugin:
 
-```
+```text
 loadGradientUpdater
 ```
 

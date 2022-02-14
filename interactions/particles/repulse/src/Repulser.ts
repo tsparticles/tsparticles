@@ -14,7 +14,7 @@ export class Repulser extends ParticlesInteractorBase {
         // do nothing
     }
 
-    interact(p1: IParticle): void {
+    async interact(p1: IParticle): Promise<void> {
         const container = this.container;
         const repulseOpt1 = p1.options.repulse;
         const pos1 = p1.getPosition();

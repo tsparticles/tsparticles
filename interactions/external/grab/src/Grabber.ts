@@ -30,7 +30,7 @@ export class Grabber extends ExternalInteractorBase {
         // do nothing
     }
 
-    interact(): void {
+    async interact(): Promise<void> {
         const container = this.container,
             options = container.actualOptions,
             interactivity = options.interactivity;

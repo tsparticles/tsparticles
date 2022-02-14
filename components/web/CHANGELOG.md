@@ -9,6 +9,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 * **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+## [1.41.1](https://github.com/matteobruni/tsparticles/compare/web-particles@1.41.0...web-particles@1.41.1) (2022-02-14)
+
+**Note:** Version bump only for package web-particles
+
+
+
+
+
 # [1.41.0](https://github.com/matteobruni/tsparticles/compare/web-particles@1.40.2...web-particles@1.41.0) (2022-02-10)
 
 **Note:** Version bump only for package web-particles

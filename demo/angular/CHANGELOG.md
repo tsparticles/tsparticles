@@ -12,6 +12,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
 * **deps:** update dependency rxjs to ~7.4.0 ([048238b](https://github.com/matteobruni/tsparticles/commit/048238b7b14b1ee49356afa47e5c7aa0ab4ac1f0))
 * **deps:** update dependency rxjs to ~7.5.0 ([f2d0505](https://github.com/matteobruni/tsparticles/commit/f2d0505863dafba475f8d6275d6474a54970a814))
+## [1.26.1](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@1.26.0...ng-particles-demo@1.26.1) (2022-02-14)
+
+**Note:** Version bump only for package ng-particles-demo
+
+
+
+
+
 # [1.26.0](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@1.25.2...ng-particles-demo@1.26.0) (2022-02-10)
 
 

@@ -9,7 +9,7 @@ export class Attractor extends ParticlesInteractorBase {
         super(container);
     }
 
-    interact(p1: IParticle): void {
+    async interact(p1: IParticle): Promise<void> {
         const container = this.container,
             distance = p1.retina.attractDistance ?? container.retina.attractDistance,
             pos1 = p1.getPosition(),

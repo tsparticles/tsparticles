@@ -21,7 +21,7 @@ export class ParticlesInfecter extends ParticlesInteractorBase {
         // do nothing
     }
 
-    interact(p1: InfectableParticle, delta: IDelta): void {
+    async interact(p1: InfectableParticle, delta: IDelta): Promise<void> {
         const infecter = (this.container as InfectableContainer).infecter;
 
         if (!infecter) {

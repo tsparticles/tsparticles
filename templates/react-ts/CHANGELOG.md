@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/cra-template-particles-typescript@1.22.2...cra-template-particles-typescript@2.0.0-beta.5) (2022-01-30)
+## [1.41.1](https://github.com/matteobruni/tsparticles/compare/cra-template-particles-typescript@1.41.0...cra-template-particles-typescript@1.41.1) (2022-02-14)
+
+**Note:** Version bump only for package cra-template-particles-typescript
+
+
+
+
+
 # [1.41.0](https://github.com/matteobruni/tsparticles/compare/cra-template-particles-typescript@1.40.2...cra-template-particles-typescript@1.41.0) (2022-02-10)
 
 **Note:** Version bump only for package cra-template-particles-typescript

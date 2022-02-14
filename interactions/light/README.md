@@ -16,7 +16,7 @@ The CDN/Vanilla version JS has one required file in vanilla configuration:
 
 Including the `tsparticles.interaction.light.min.js` file will export the function to load the interaction plugin:
 
-```
+```text
 loadLightInteraction
 ```
 

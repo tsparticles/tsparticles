@@ -16,7 +16,7 @@ The CDN/Vanilla version JS has one required file in vanilla configuration:
 
 Including the `tsparticles.shape.rounded-rect.min.js` file will export the function to load the shape:
 
-```
+```text
 loadRoundedRectShape
 ```
 
