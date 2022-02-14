@@ -16,7 +16,7 @@ The CDN/Vanilla version JS has one required file in vanilla configuration:
 
 Including the `tsparticles.updater.orbit.min.js` file will export the function to load the updater plugin:
 
-``` text
+```text
 loadOrbitUpdater
 ```
 
@@ -28,7 +28,7 @@ Once the scripts are loaded you can set up `tsParticles` and the updater plugin 
 loadOrbitUpdater(tsParticles);
 
 tsParticles.load("tsparticles", {
-    /* options */
+  /* options */
 });
 ```
 
