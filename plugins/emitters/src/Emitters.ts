@@ -31,7 +31,6 @@ export class Emitters implements IContainerPlugin {
         this.array = [];
         this.emitters = [];
         this.interactivityEmitters = [];
-        this.#engine = engine;
 
         const overridableContainer = container as unknown as EmitterContainer;
 

@@ -15,10 +15,8 @@ export class InteractionManager {
 
     constructor(engine: Engine, private readonly container: Container) {
         this.#engine = engine;
-
         this.externalInteractors = [];
         this.particleInteractors = [];
-        this.#engine = engine;
 
         this.init();
     }

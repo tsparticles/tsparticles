@@ -20,7 +20,6 @@ class EmittersPlugin implements IPlugin {
     constructor(engine: EmittersEngine) {
         this.#engine = engine;
         this.id = "emitters";
-        this.#engine = engine;
     }
 
     getPlugin(container: Container): Emitters {
