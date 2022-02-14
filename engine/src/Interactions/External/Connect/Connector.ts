@@ -31,7 +31,7 @@ export class Connector extends ExternalInteractorBase {
     /**
      * Connecting particles on hover interactivity
      */
-    interact(): void {
+    async interact(): Promise<void> {
         const container = this.container,
             options = container.actualOptions;
 

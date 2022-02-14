@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.1](https://github.com/matteobruni/tsparticles/compare/ionic-demo@0.10.0...ionic-demo@0.10.1) (2022-02-14)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to ~13.2.0 ([9467d48](https://github.com/matteobruni/tsparticles/commit/9467d483c54916099d822afef05e811dc2d6aace))
+* **deps:** update capacitor monorepo ([57a478c](https://github.com/matteobruni/tsparticles/commit/57a478c0ea1459ce310070a57dd9cbe95df69446))
+* **deps:** update dependency rxjs to v7 ([0b09194](https://github.com/matteobruni/tsparticles/commit/0b0919449fff69eec029e00dbab9f1d683f84682))
+
+
+
+
+
 # 0.10.0 (2022-02-10)
 
 

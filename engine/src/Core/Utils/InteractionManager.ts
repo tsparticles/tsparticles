@@ -40,15 +40,15 @@ export class InteractionManager {
         }
     }
 
-    externalInteract(delta: IDelta): void {
+    async externalInteract(delta: IDelta): Promise<void> {
         for (const interactor of this.externalInteractors) {
             if (interactor.isEnabled()) {
-                interactor.interact(delta);
+                await interactor.interact(delta);
             }
         }
     }
 
-    particlesInteract(particle: Particle, delta: IDelta): void {
+    async particlesInteract(particle: Particle, delta: IDelta): Promise<void> {
         for (const interactor of this.externalInteractors) {
             interactor.reset(particle);
         }
@@ -56,7 +56,7 @@ export class InteractionManager {
         /* interaction auto between particles */
         for (const interactor of this.particleInteractors) {
             if (interactor.isEnabled(particle)) {
-                interactor.interact(particle, delta);
+                await interactor.interact(particle, delta);
             }
         }
     }
