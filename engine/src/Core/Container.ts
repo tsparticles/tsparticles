@@ -230,14 +230,14 @@ export class Container {
     draw(force: boolean): void {
         let refreshTime = force;
 
-        this.drawAnimationFrame = animate()((timestamp) => {
+        this.drawAnimationFrame = animate()(async (timestamp) => {
             if (refreshTime) {
                 this.lastFrameTime = undefined;
 
                 refreshTime = false;
             }
 
-            this.drawer.nextFrame(timestamp);
+            await this.drawer.nextFrame(timestamp);
         });
     }
 

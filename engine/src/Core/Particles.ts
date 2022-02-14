@@ -127,10 +127,10 @@ export class Particles {
         container.pathGenerator.init(container);
     }
 
-    redraw(): void {
+    async redraw(): Promise<void> {
         this.clear();
         this.init();
-        this.draw({ value: 0, factor: 0 });
+        await this.draw({ value: 0, factor: 0 });
     }
 
     removeAt(index: number, quantity = 1, group?: string, override?: boolean): void {
@@ -161,7 +161,7 @@ export class Particles {
         this.removeAt(this.array.indexOf(particle), undefined, group, override);
     }
 
-    update(delta: IDelta): void {
+    async update(delta: IDelta): Promise<void> {
         const container = this.container;
         const particlesToDelete = [];
 
@@ -216,7 +216,7 @@ export class Particles {
             this.remove(particle);
         }
 
-        this.interactionManager.externalInteract(delta);
+        await this.interactionManager.externalInteract(delta);
 
         // this loop is required to be done after mouse interactions
         for (const particle of container.particles.array) {
@@ -225,14 +225,14 @@ export class Particles {
             }
 
             if (!particle.destroyed && !particle.spawning) {
-                this.interactionManager.particlesInteract(particle, delta);
+                await this.interactionManager.particlesInteract(particle, delta);
             }
         }
 
         delete container.canvas.resizeFactor;
     }
 
-    draw(delta: IDelta): void {
+    async draw(delta: IDelta): Promise<void> {
         const container = this.container;
 
         /* clear canvas */
@@ -251,7 +251,7 @@ export class Particles {
         );
 
         /* update each particles param */
-        this.update(delta);
+        await this.update(delta);
 
         if (this.needsSort) {
             this.zArray.sort((a, b) => b.position.z - a.position.z || a.id - b.id);
