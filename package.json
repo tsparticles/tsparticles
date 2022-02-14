@@ -8,6 +8,7 @@
     "version:beta": "lerna version prerelease --preid beta --conventional-commits",
     "publish:alpha": "lerna publish from-package --pre-dist-tag alpha --preid alpha",
     "publish:beta": "lerna publish from-package --pre-dist-tag beta --preid beta",
+    "publish:v1": "lerna publish from-package --dist-tag v1",
     "deploy:site": "lerna run deploy --scope website"
   },
   "devDependencies": {
