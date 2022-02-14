@@ -18,7 +18,7 @@ export class Collider extends ParticlesInteractorBase {
         // do nothing
     }
 
-    interact(p1: Particle): void {
+    async interact(p1: Particle): Promise<void> {
         const container = this.container,
             pos1 = p1.getPosition(),
             radius1 = p1.getRadius(),
