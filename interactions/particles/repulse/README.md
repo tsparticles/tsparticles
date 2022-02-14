@@ -17,8 +17,8 @@ The CDN/Vanilla version JS has one required file in vanilla configuration:
 Including the `tsparticles.interaction.particles.repulse.min.js` file will export the function to load the interaction
 plugin:
 
-```javascript
-loadParticlesRepulseInteraction;
+```
+loadParticlesRepulseInteraction
 ```
 
 ### Usage

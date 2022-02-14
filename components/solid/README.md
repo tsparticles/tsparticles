@@ -34,10 +34,10 @@ _Remote url_
 import Particles from "solid-particles";
 
 function App() {
-  const particlesInit = (main) => {
+  const particlesInit = async (main) => {
     // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
     // starting from v2 you can add only the features you need reducing the bundle size
-    loadFull(main);
+    await loadFull(main);
   };
 
   return (
@@ -73,13 +73,13 @@ class App extends Component {
     this.particlesLoaded = this.particlesLoaded.bind(this);
   }
 
-  particlesInit(main) {
+  async particlesInit(main) {
     console.log(main);
 
     // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
     // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
     // starting from v2 you can add only the features you need reducing the bundle size
-    loadFull(main);
+    await loadFull(main);
   }
 
   particlesLoaded(container) {

@@ -1,7 +1,7 @@
 <my-component>
     <p>{ props.message }</p>
 
-    <riot-particles id="tsparticles" options='{particlesOptions}' particlesInit='{particlesInit}'
+    <riot-particles id="tsparticles" options='{particlesConfig}' particlesInit='{particlesInit}'
                     particlesLoaded='{particlesLoaded}'/>
 
     <script>
@@ -9,13 +9,10 @@
         import { loadFull } from "tsparticles";
 
         export default {
-            particlesConfig,
-            particlesInit,
-            particlesLoaded,
             components: {
                 RiotParticles
             },
-            particlesOptions: {
+            particlesConfig: {
                 background: {
                     color: "#000"
                 },

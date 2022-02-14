@@ -41,12 +41,12 @@ yarn add riot-particles
                 enable: true
             }
         }
-    }}' particlesInit='{(main) => {
+    }}' particlesInit='{async (main) => {
         console.log(main);
         
         // this loads the tsparticles package bundle, it is the easiest method for getting everything ready
         // starting from v2 you can add only the features you need reducing the bundle size
-        loadFull(main); 
+        await loadFull(main); 
     }}' particlesLoaded='{(container) => console.log(container)}'/>
 
 <script>
@@ -65,12 +65,12 @@ yarn add riot-particles
 <riot-particles
         id="tsparticles"
         url="https://foo.bar/particles.json"
-        particlesInit='{(main) => {
+        particlesInit='{async (main) => {
         console.log(main);
         
         // this loads the tsparticles package bundle, it is the easiest method for getting everything ready
         // starting from v2 you can add only the features you need reducing the bundle size
-        loadFull(main); 
+        await loadFull(main); 
     }}' particlesLoaded='{(container) => console.log(container)}'/>
 />
 ```

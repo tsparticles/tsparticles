@@ -16,8 +16,8 @@ The CDN/Vanilla version JS has one required file in vanilla configuration:
 
 Including the `tsparticles.shape.spiral.min.js` file will export the function to load the shape:
 
-```javascript
-loadSpiralShape;
+```
+loadSpiralShape
 ```
 
 ### Usage
