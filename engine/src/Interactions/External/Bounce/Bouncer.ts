@@ -31,7 +31,7 @@ export class Bouncer extends ExternalInteractorBase {
         );
     }
 
-    interact(): void {
+    async interact(): Promise<void> {
         const container = this.container,
             options = container.actualOptions,
             events = options.interactivity.events,

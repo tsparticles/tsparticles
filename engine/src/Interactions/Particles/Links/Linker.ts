@@ -61,7 +61,7 @@ export class Linker extends ParticlesInteractorBase {
         // do nothing
     }
 
-    interact(p1: LinkParticle): void {
+    async interact(p1: LinkParticle): Promise<void> {
         p1.links = [];
 
         const pos1 = p1.getPosition();
