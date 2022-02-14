@@ -1,4 +1,4 @@
-import type { Engine } from "tsparticles";
+import type { Engine } from "tsparticles-engine";
 import { ExternalLighter } from "./ExternalLighter";
 import { ParticlesLighter } from "./ParticlesLighter";
 

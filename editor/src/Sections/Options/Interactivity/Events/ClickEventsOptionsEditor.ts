@@ -1,10 +1,9 @@
-import type { Container } from "tsparticles";
-import type { IClickEvent } from "tsparticles/Options/Interfaces/Interactivity/Events/IClickEvent";
+import type { Container, IClickEvent } from "tsparticles-engine";
 import { EditorGroup, EditorType } from "object-gui";
-import { AbsorberClickMode, ClickMode, EmitterClickMode } from "tsparticles";
+import { ClickMode } from "tsparticles-engine";
 import { EditorBase } from "../../../../EditorBase";
-import { loadAbsorbersPlugin } from "tsparticles/Plugins/Absorbers";
-import { loadEmittersPlugin } from "tsparticles/Plugins/Emitters";
+import { loadAbsorbersPlugin } from "tsparticles-plugin-absorbers";
+import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
 
 export class ClickEventsOptionsEditor extends EditorBase {
     group!: EditorGroup;
@@ -61,14 +60,14 @@ export class ClickEventsOptionsEditor extends EditorBase {
             const absorbersGroup = "Absorbers";
 
             modeSelectInput.addItemGroup(absorbersGroup);
-            modeSelectInput.addItem(AbsorberClickMode.absorber, undefined, absorbersGroup);
+            modeSelectInput.addItem("absorber", undefined, absorbersGroup);
         }
 
         if (typeof loadEmittersPlugin !== "undefined") {
             const emittersGroup = "Emitters";
 
             modeSelectInput.addItemGroup(emittersGroup);
-            modeSelectInput.addItem(EmitterClickMode.emitter, undefined, emittersGroup);
+            modeSelectInput.addItem("emitter", undefined, emittersGroup);
         }
     }
 }

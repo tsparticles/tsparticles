@@ -1,10 +1,9 @@
+import type { IOptionLoader, IOrbit } from "../../../Interfaces";
+import type { RangeValue, RecursivePartial } from "../../../../Types";
 import { AnimationOptions } from "../../AnimationOptions";
-import type { IAnimatable } from "../../../Interfaces/IAnimatable";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { IOrbit } from "../../../Interfaces/Particles/Orbit/IOrbit";
+import type { IAnimatable } from "../../../Interfaces";
 import { OptionsColor } from "../../OptionsColor";
-import { OrbitRotation } from "./OrbitRotation";
-import type { RecursivePartial } from "../../../../Types";
+import { setRangeValue } from "../../../../Utils";
 
 /**
  * [[include:Options/Particles/Orbit.md]]
@@ -17,24 +16,26 @@ export class Orbit implements IOrbit, IOptionLoader<IOrbit>, IAnimatable<Animati
     width: number;
     color?: OptionsColor;
     radius?: number;
-    rotation;
+    rotation: RangeValue;
 
     constructor() {
         this.animation = new AnimationOptions();
         this.enable = false;
         this.opacity = 1;
-        this.rotation = new OrbitRotation();
+        this.rotation = 0;
         this.width = 1;
     }
 
     load(data?: RecursivePartial<IOrbit>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 
         this.animation.load(data.animation);
 
-        this.rotation.load(data.rotation);
+        if (data.rotation !== undefined) {
+            this.rotation = setRangeValue(data.rotation);
+        }
 
         if (data.enable !== undefined) {
             this.enable = data.enable;

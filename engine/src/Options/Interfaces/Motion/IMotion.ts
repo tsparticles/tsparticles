@@ -1,4 +1,4 @@
-import { IMotionReduce } from "./IMotionReduce";
+import type { IMotionReduce } from "./IMotionReduce";
 
 /**
  * [[include:Options/Motion.md]]

@@ -1,5 +1,4 @@
-import type { IBounce } from "../../../Interfaces/Interactivity/Modes/IBounce";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { IBounce, IOptionLoader } from "../../../Interfaces";
 import type { RecursivePartial } from "../../../../Types";
 
 export class Bounce implements IBounce, IOptionLoader<IBounce> {

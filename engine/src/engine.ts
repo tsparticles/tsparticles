@@ -1,14 +1,21 @@
+/**
+ * Engine class for creating the singleton on window.
+ * It's a singleton proxy to the static [[this.#loader]] class for initializing [[Container]] instances
+ * @category Engine
+ */
 import type {
     Container,
     IInteractor,
     IMovePathGenerator,
+    IParticleMover,
     IParticleUpdater,
     IPlugin,
     IShapeDrawer,
     Particle,
 } from "./Core";
-import { Loader, Plugins } from "./Core";
 import type {
+    CustomEventArgs,
+    CustomEventListener,
     RecursivePartial,
     ShapeDrawerAfterEffectFunction,
     ShapeDrawerDestroyFunction,
@@ -16,7 +23,9 @@ import type {
     ShapeDrawerInitFunction,
     SingleOrMultiple,
 } from "./Types";
-import type { IOptions } from "./Options/Interfaces/IOptions";
+import { Loader, Plugins } from "./Core";
+import { EventDispatcher } from "./Utils";
+import type { IOptions } from "./Options";
 
 /**
  * Engine class for creating the singleton on window.
@@ -25,15 +34,18 @@ import type { IOptions } from "./Options/Interfaces/IOptions";
  * @category Engine
  */
 export class Engine {
-    #initialized: boolean;
-
     readonly domArray: Container[];
-    readonly #loader: Loader;
-    readonly plugins: Plugins;
+    readonly eventDispatcher;
+    readonly plugins;
+
+    #initialized;
+
+    readonly #loader;
 
     constructor() {
-        this.#initialized = false;
         this.domArray = [];
+        this.eventDispatcher = new EventDispatcher();
+        this.#initialized = false;
         this.#loader = new Loader(this);
         this.plugins = new Plugins(this);
     }
@@ -233,6 +245,12 @@ export class Engine {
         await this.refresh();
     }
 
+    async addMover(name: string, moverInitializer: (container: Container) => IParticleMover): Promise<void> {
+        this.plugins.addParticleMover(name, moverInitializer);
+
+        await this.refresh();
+    }
+
     /**
      *
      * @param name
@@ -245,5 +263,32 @@ export class Engine {
         this.plugins.addParticleUpdater(name, updaterInitializer);
 
         await this.refresh();
+    }
+
+    /**
+     * Adds a listener to the specified event
+     * @param type The event to listen to
+     * @param listener The listener of the specified event
+     */
+    addEventListener(type: string, listener: CustomEventListener): void {
+        this.#loader.addEventListener(type, listener);
+    }
+
+    /**
+     * Removes a listener from the specified event
+     * @param type The event to stop listening to
+     * @param listener The listener of the specified event
+     */
+    removeEventListener(type: string, listener: CustomEventListener): void {
+        this.#loader.removeEventListener(type, listener);
+    }
+
+    /**
+     * Dispatches an event that will be listened from listeners
+     * @param type The event to dispatch
+     * @param args The event parameters
+     */
+    dispatchEvent(type: string, args: CustomEventArgs): void {
+        this.#loader.dispatchEvent(type, args);
     }
 }

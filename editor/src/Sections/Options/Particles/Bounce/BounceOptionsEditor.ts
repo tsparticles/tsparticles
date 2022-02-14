@@ -1,11 +1,10 @@
+import type { Container, IParticlesBounce } from "tsparticles-engine";
 import { EditorGroup, EditorType } from "object-gui";
-import type { Container } from "tsparticles";
 import { EditorBase } from "../../../../EditorBase";
-import type { IBounce } from "tsparticles/Options/Interfaces/Particles/Bounce/IBounce";
 
 export class BounceOptionsEditor extends EditorBase {
     group!: EditorGroup;
-    private options!: IBounce;
+    private options!: IParticlesBounce;
 
     constructor(particles: Container) {
         super(particles);
@@ -13,7 +12,7 @@ export class BounceOptionsEditor extends EditorBase {
 
     addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("bounce", "Bounce");
-        this.options = this.group.data as IBounce;
+        this.options = this.group.data as IParticlesBounce;
 
         this.addFactors();
     }

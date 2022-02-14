@@ -41,10 +41,17 @@ yarn add riot-particles
                 enable: true
             }
         }
-    }}' particlesInit='{(main) => console.log(main)}' particlesLoaded='{(container) => console.log(container)}'/>
+    }}' particlesInit='{async (main) => {
+        console.log(main);
+        
+        // this loads the tsparticles package bundle, it is the easiest method for getting everything ready
+        // starting from v2 you can add only the features you need reducing the bundle size
+        await loadFull(main); 
+    }}' particlesLoaded='{(container) => console.log(container)}'/>
 
 <script>
-    import RiotParticles from 'riot-particles';
+    import RiotParticles from "riot-particles";
+    import { loadFull } from "tsparticles";
 
     export default {
         components: {
@@ -58,7 +65,13 @@ yarn add riot-particles
 <riot-particles
         id="tsparticles"
         url="https://foo.bar/particles.json"
-        particlesInit='{(main) => console.log(main)}' particlesLoaded='{(container) => console.log(container)}'/>
+        particlesInit='{async (main) => {
+        console.log(main);
+        
+        // this loads the tsparticles package bundle, it is the easiest method for getting everything ready
+        // starting from v2 you can add only the features you need reducing the bundle size
+        await loadFull(main); 
+    }}' particlesLoaded='{(container) => console.log(container)}'/>
 />
 ```
 

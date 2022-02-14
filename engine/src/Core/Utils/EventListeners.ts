@@ -1,8 +1,20 @@
 import { ClickMode, InteractivityDetect } from "../../Enums";
-import { isSsr, itemFromArray } from "../../Utils";
-import { Constants } from "./Constants";
+import {
+    mouseDownEvent,
+    mouseLeaveEvent,
+    mouseMoveEvent,
+    mouseOutEvent,
+    mouseUpEvent,
+    resizeEvent,
+    touchCancelEvent,
+    touchEndEvent,
+    touchMoveEvent,
+    touchStartEvent,
+    visibilityChangeEvent,
+} from "./Constants";
 import type { Container } from "../Container";
 import type { ICoordinates } from "../Interfaces";
+import { isSsr } from "../../Utils";
 
 function manageListener(
     element: HTMLElement | Node | Window | MediaQueryList,
@@ -94,13 +106,13 @@ export class EventListeners {
         const container = this.container;
         const options = container.actualOptions;
         const detectType = options.interactivity.detectsOn;
-        let mouseLeaveEvent = Constants.mouseLeaveEvent;
+        let mouseLeaveTmpEvent = mouseLeaveEvent;
 
         /* events target element */
         if (detectType === InteractivityDetect.window) {
             container.interactivity.element = window;
 
-            mouseLeaveEvent = Constants.mouseOutEvent;
+            mouseLeaveTmpEvent = mouseOutEvent;
         } else if (detectType === InteractivityDetect.parent && container.canvas.element) {
             const canvasEl = container.canvas.element;
 
@@ -134,28 +146,28 @@ export class EventListeners {
 
         if (options.interactivity.events.onHover.enable || options.interactivity.events.onClick.enable) {
             /* el on mousemove */
-            manageListener(interactivityEl, Constants.mouseMoveEvent, this.mouseMoveHandler, add);
+            manageListener(interactivityEl, mouseMoveEvent, this.mouseMoveHandler, add);
 
             /* el on touchstart */
-            manageListener(interactivityEl, Constants.touchStartEvent, this.touchStartHandler, add);
+            manageListener(interactivityEl, touchStartEvent, this.touchStartHandler, add);
 
             /* el on touchmove */
-            manageListener(interactivityEl, Constants.touchMoveEvent, this.touchMoveHandler, add);
+            manageListener(interactivityEl, touchMoveEvent, this.touchMoveHandler, add);
 
             if (!options.interactivity.events.onClick.enable) {
                 /* el on touchend */
-                manageListener(interactivityEl, Constants.touchEndEvent, this.touchEndHandler, add);
+                manageListener(interactivityEl, touchEndEvent, this.touchEndHandler, add);
             } else {
-                manageListener(interactivityEl, Constants.touchEndEvent, this.touchEndClickHandler, add);
-                manageListener(interactivityEl, Constants.mouseUpEvent, this.mouseUpHandler, add);
-                manageListener(interactivityEl, Constants.mouseDownEvent, this.mouseDownHandler, add);
+                manageListener(interactivityEl, touchEndEvent, this.touchEndClickHandler, add);
+                manageListener(interactivityEl, mouseUpEvent, this.mouseUpHandler, add);
+                manageListener(interactivityEl, mouseDownEvent, this.mouseDownHandler, add);
             }
 
             /* el on onmouseleave */
-            manageListener(interactivityEl, mouseLeaveEvent, this.mouseLeaveHandler, add);
+            manageListener(interactivityEl, mouseLeaveTmpEvent, this.mouseLeaveHandler, add);
 
             /* el on touchcancel */
-            manageListener(interactivityEl, Constants.touchCancelEvent, this.touchCancelHandler, add);
+            manageListener(interactivityEl, touchCancelEvent, this.touchCancelHandler, add);
         }
 
         if (container.canvas.element) {
@@ -186,12 +198,12 @@ export class EventListeners {
                     this.resizeObserver.observe(container.canvas.element);
                 }
             } else {
-                manageListener(window, Constants.resizeEvent, this.resizeHandler, add);
+                manageListener(window, resizeEvent, this.resizeHandler, add);
             }
         }
 
         if (document) {
-            manageListener(document, Constants.visibilityChangeEvent, this.visibilityChangeHandler, add, false);
+            manageListener(document, visibilityChangeEvent, this.visibilityChangeHandler, add, false);
         }
     }
 
@@ -202,7 +214,7 @@ export class EventListeners {
             delete this.resizeTimeout;
         }
 
-        this.resizeTimeout = setTimeout(async () => await this.container.canvas?.windowResize(), 500);
+        this.resizeTimeout = setTimeout(async () => this.container.canvas?.windowResize(), 500);
     }
 
     private handleVisibilityChange(): void {
@@ -322,7 +334,7 @@ export class EventListeners {
         }
 
         container.interactivity.mouse.position = pos;
-        container.interactivity.status = Constants.mouseMoveEvent;
+        container.interactivity.status = mouseMoveEvent;
     }
 
     /**
@@ -341,7 +353,7 @@ export class EventListeners {
         delete mouse.clickPosition;
         delete mouse.downPosition;
 
-        interactivity.status = Constants.mouseLeaveEvent;
+        interactivity.status = mouseLeaveEvent;
         mouse.inside = false;
         mouse.clicking = false;
     }
@@ -432,80 +444,6 @@ export class EventListeners {
     }
 
     private handleClickMode(mode: ClickMode | string): void {
-        const container = this.container;
-        const options = container.actualOptions;
-        const pushNb = options.interactivity.modes.push.quantity;
-        const removeNb = options.interactivity.modes.remove.quantity;
-
-        switch (mode) {
-            case ClickMode.push: {
-                if (pushNb > 0) {
-                    const pushOptions = options.interactivity.modes.push;
-                    const group = itemFromArray([undefined, ...pushOptions.groups]);
-                    const groupOptions =
-                        group !== undefined ? container.actualOptions.particles.groups[group] : undefined;
-
-                    container.particles.push(pushNb, container.interactivity.mouse, groupOptions, group);
-                }
-
-                break;
-            }
-            case ClickMode.remove:
-                container.particles.removeQuantity(removeNb);
-                break;
-            case ClickMode.bubble:
-                container.bubble.clicking = true;
-                break;
-            case ClickMode.repulse:
-                container.repulse.clicking = true;
-                container.repulse.count = 0;
-
-                for (const particle of container.repulse.particles) {
-                    particle.velocity.setTo(particle.initialVelocity);
-                }
-
-                container.repulse.particles = [];
-                container.repulse.finish = false;
-
-                setTimeout(() => {
-                    if (!container.destroyed) {
-                        container.repulse.clicking = false;
-                    }
-                }, options.interactivity.modes.repulse.duration * 1000);
-
-                break;
-            case ClickMode.attract:
-                container.attract.clicking = true;
-                container.attract.count = 0;
-
-                for (const particle of container.attract.particles) {
-                    particle.velocity.setTo(particle.initialVelocity);
-                }
-
-                container.attract.particles = [];
-                container.attract.finish = false;
-
-                setTimeout(() => {
-                    if (!container.destroyed) {
-                        container.attract.clicking = false;
-                    }
-                }, options.interactivity.modes.attract.duration * 1000);
-
-                break;
-            case ClickMode.pause:
-                if (container.getAnimationStatus()) {
-                    container.pause();
-                } else {
-                    container.play();
-                }
-
-                break;
-        }
-
-        for (const [, plugin] of container.plugins) {
-            if (plugin.handleClickMode) {
-                plugin.handleClickMode(mode);
-            }
-        }
+        this.container.handleClickMode(mode);
     }
 }

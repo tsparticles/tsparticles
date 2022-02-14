@@ -1,5 +1,5 @@
 import { loadBigCirclesPreset } from ".";
-import { tsParticles } from "tsparticles";
+import { tsParticles } from "tsparticles-engine";
 
 loadBigCirclesPreset(tsParticles);
 

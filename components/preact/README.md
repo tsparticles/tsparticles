@@ -32,6 +32,7 @@ _Remote url_
 
 ```javascript
 import Particles from "preact-particles";
+import { loadFull } from "tsparticles";
 
 class App extends Component {
   constructor(props) {
@@ -45,6 +46,9 @@ class App extends Component {
     console.log(main);
 
     // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+    // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+    // starting from v2 you can add only the features you need reducing the bundle size
+    loadFull(main);
   }
 
   particlesLoaded(container) {
@@ -68,6 +72,7 @@ _Options object_
 
 ```javascript
 import Particles from "preact-particles";
+import { loadFull } from "tsparticles";
 
 class App extends Component {
   constructor(props) {
@@ -81,6 +86,9 @@ class App extends Component {
     console.log(main);
 
     // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+    // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+    // starting from v2 you can add only the features you need reducing the bundle size
+    loadFull(main);
   }
 
   particlesLoaded(container) {
@@ -113,12 +121,6 @@ class App extends Component {
               resize: true,
             },
             modes: {
-              bubble: {
-                distance: 400,
-                duration: 2,
-                opacity: 0.8,
-                size: 40,
-              },
               push: {
                 quantity: 4,
               },
@@ -145,7 +147,9 @@ class App extends Component {
             move: {
               direction: "none",
               enable: true,
-              outMode: "bounce",
+              outModes: {
+                default: "bounce",
+              },
               random: false,
               speed: 6,
               straight: false,
@@ -164,8 +168,7 @@ class App extends Component {
               type: "circle",
             },
             size: {
-              random: true,
-              value: 5,
+              value: { min: 1, max: 5 },
             },
           },
           detectRetina: true,

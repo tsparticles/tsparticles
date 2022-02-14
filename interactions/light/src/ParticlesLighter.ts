@@ -1,5 +1,5 @@
-import { HoverMode, ParticlesInteractorBase, isInArray } from "tsparticles";
-import type { Container, Particle } from "tsparticles";
+import type { Container, Particle } from "tsparticles-engine";
+import { HoverMode, ParticlesInteractorBase, isInArray } from "tsparticles-engine";
 import { drawParticleShadow } from "./Utils";
 
 export class ParticlesLighter extends ParticlesInteractorBase {
@@ -7,7 +7,7 @@ export class ParticlesLighter extends ParticlesInteractorBase {
         super(container);
     }
 
-    interact(particle: Particle): void {
+    async interact(particle: Particle): Promise<void> {
         const container = this.container,
             options = container.actualOptions;
 

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import type { Container } from 'tsparticles';
+import type { Container, Engine } from "tsparticles-engine";
+import { loadFull } from "tsparticles";
 
 @Component({
   selector: 'app-tab1',
@@ -99,5 +100,9 @@ export class Tab1Page {
     setTimeout(async () => {
       container.refresh();
     }, 500);
+  }
+
+  async particlesInit(main: Engine): Promise<void> {
+    await loadFull(main);
   }
 }

@@ -1,7 +1,5 @@
 import Particles from "./Particles";
 
-export * from "tsparticles/Enums";
-
 export type {
 	IParticlesProps,
 	IParticlesProps as ParticlesProps,

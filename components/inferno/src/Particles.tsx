@@ -1,6 +1,6 @@
 import { Component, InfernoNode } from "inferno";
 import equal from "fast-deep-equal/react";
-import { tsParticles, Container } from "tsparticles";
+import { tsParticles, Container } from "tsparticles-engine";
 import type { IParticlesProps } from "./IParticlesProps";
 import type { IParticlesState } from "./IParticlesState";
 
@@ -27,6 +27,7 @@ export default class Particles extends Component<
 		super(props);
 
 		this.state = {
+			init: false,
 			library: undefined,
 		};
 	}
@@ -63,7 +64,14 @@ export default class Particles extends Component<
 				await this.props.init(tsParticles);
 			}
 
-			await this.loadParticles();
+			this.setState(
+				{
+					init: true,
+				},
+				async () => {
+					await this.loadParticles();
+				}
+			);
 		})();
 	}
 
@@ -95,6 +103,10 @@ export default class Particles extends Component<
 	}
 
 	private async loadParticles(): Promise<void> {
+		if (!this.state.init) {
+			return;
+		}
+
 		const cb = async (container?: Container) => {
 			if (this.props.container) {
 				(this.props.container as MutableRefObject<Container>).current =

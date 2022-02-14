@@ -73,7 +73,7 @@ const tsParticles = require("tsparticles");
 
 // of
 
-import {tsParticles} from "tsparticles";
+import {tsParticles} from "tsparticles-engine";
 ```
 
 De geïmporteerde `tsParticles` is dezelfde instantie als wanneer je het script had gebruikt van een CDN.

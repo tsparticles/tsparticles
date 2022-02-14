@@ -1,3 +1,4 @@
+import type { HslAnimation, IColorAnimation } from "../Options";
 import type {
     IColor,
     IHsl,
@@ -11,11 +12,9 @@ import type {
     IRgba,
     IValueColor,
 } from "../Core";
+import { midColorValue, randomColorValue } from "../Core";
 import { mix, randomInRange, setRangeValue } from "./NumberUtils";
 import { AnimationStatus } from "../Enums";
-import { Constants } from "../Core";
-import type { HslAnimation } from "../Options/Classes/HslAnimation";
-import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 import { itemFromArray } from "./Utils";
 
 /**
@@ -124,7 +123,7 @@ export function colorToRgb(input?: string | IColor, index?: number, useIndex = t
     let res: IRgb | undefined;
 
     if (typeof color.value === "string") {
-        if (color.value === Constants.randomColorValue) {
+        if (color.value === randomColorValue) {
             res = getRandomRgbColor();
         } else {
             res = stringToRgb(color.value);
@@ -469,7 +468,7 @@ export function colorMix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number
 }
 
 export function getLinkColor(p1: IParticle, p2?: IParticle, linkColor?: string | IRgb): IRgb | undefined {
-    if (linkColor === Constants.randomColorValue) {
+    if (linkColor === randomColorValue) {
         return getRandomRgbColor();
     } else if (linkColor === "mid") {
         const sourceColor = p1.getFillColor() ?? p1.getStrokeColor();
@@ -496,15 +495,15 @@ export function getLinkRandomColor(
 ): IRgb | string | undefined {
     const color = typeof optColor === "string" ? optColor : optColor.value;
 
-    if (color === Constants.randomColorValue) {
+    if (color === randomColorValue) {
         if (consent) {
             return colorToRgb({
                 value: color,
             });
         } else if (blink) {
-            return Constants.randomColorValue;
+            return randomColorValue;
         } else {
-            return Constants.midColorValue;
+            return midColorValue;
         }
     } else {
         return colorToRgb({

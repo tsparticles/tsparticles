@@ -37,7 +37,7 @@ This script **MUST** be placed after the `tsParticles` one.
 A bundled script can also be used, this will include every needed plugin needed by the preset.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-links@1/tsparticles.preset.links.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-links@2/tsparticles.preset.links.bundle.min.js"></script>
 ```
 
 ### Usage
@@ -78,14 +78,14 @@ This sample uses the class component syntax, but you can use hooks as well (if t
 
 ```javascript
 import Particles from "react-tsparticles";
-import { Main } from "tsparticles";
+import { Engine } from "tsparticles-engine";
 import { loadLinksPreset } from "tsparticles-preset-links";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
   // this customizes the component tsParticles installation
-  customInit(main: Main) {
+  async customInit(engine: Engine): Promise<void> {
     // this adds the preset to tsParticles, you can safely use the
-    loadLinksPreset(main);
+    await loadLinksPreset(engine);
   }
 
   render() {
@@ -107,8 +107,8 @@ _The syntax for `Vue.js 2.x` and `3.x` is the same_
 ```
 
 ```js
-function particlesInit(main: Main) {
-  loadLinksPreset(main);
+async function particlesInit(engine: Engine): Promise<void> {
+  await loadLinksPreset(engine);
 }
 ```
 
@@ -124,8 +124,8 @@ function particlesInit(main: Main) {
 ```
 
 ```ts
-function particlesInit(main: Main): void {
-  loadLinksPreset(main);
+async function particlesInit(engine: Engine): Promise<void> {
+  await loadLinksPreset(engine);
 }
 ```
 
@@ -141,7 +141,7 @@ function particlesInit(main: Main): void {
 ```
 
 ```js
-let onParticlesInit = (main) => {
-  loadLinksPreset(main);
-};
+async function onParticlesInit(engine) {
+  await loadLinksPreset(engine);
+}
 ```

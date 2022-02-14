@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'angular13'`, () => {
+  it(`should have as title 'ng-particles-demo'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('angular13');
+    expect(app.title).toEqual('ng-particles-demo');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('angular13 app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('ng-particles-demo app is running!');
   });
 });

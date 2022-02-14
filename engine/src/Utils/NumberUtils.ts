@@ -1,7 +1,6 @@
 import { EasingType, MoveDirection, MoveDirectionAlt } from "../Enums";
 import type { ICoordinates } from "../Core";
-import type { IValueWithRandom } from "../Options/Interfaces/IValueWithRandom";
-import { RangeValue } from "../Types";
+import type { RangeValue } from "../Types";
 import { Vector } from "../Core";
 
 /**
@@ -64,13 +63,6 @@ export function setRangeValue(source: RangeValue, value?: number): RangeValue {
         : setRangeValue(min, max);
 }
 
-export function getValue(options: IValueWithRandom): number {
-    const random = options.random;
-    const { enable, minimumValue } = typeof random === "boolean" ? { enable: random, minimumValue: 0 } : random;
-
-    return enable ? getRangeValue(setRangeValue(options.value, minimumValue)) : getRangeValue(options.value);
-}
-
 /**
  * Gets the distance between two coordinates
  * @param pointA the first coordinate
@@ -92,7 +84,9 @@ export function getDistance(pointA: ICoordinates, pointB: ICoordinates): number 
 }
 
 export function getParticleDirectionAngle(
-    direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number
+    direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number,
+    position: ICoordinates,
+    center: ICoordinates
 ): number {
     if (typeof direction === "number") {
         return (direction * Math.PI) / 180;
@@ -114,6 +108,10 @@ export function getParticleDirectionAngle(
                 return Math.PI;
             case MoveDirection.topLeft:
                 return (-3 * Math.PI) / 4;
+            case MoveDirection.inside:
+                return Math.atan2(center.y - position.y, center.x - position.x);
+            case MoveDirection.outside:
+                return Math.atan2(position.y - center.y, position.x - center.x);
             case MoveDirection.none:
             default:
                 return Math.random() * Math.PI * 2;

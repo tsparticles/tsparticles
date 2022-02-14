@@ -1,7 +1,7 @@
 import React, { Component } from "preact/compat";
 import type { ComponentChild } from "preact";
 import equal from "fast-deep-equal/react";
-import { tsParticles, Container } from "tsparticles";
+import { tsParticles, Container } from "tsparticles-engine";
 import type { IParticlesProps } from "./IParticlesProps";
 import type { IParticlesState } from "./IParticlesState";
 import { MutableRefObject } from "react";
@@ -98,6 +98,10 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
     }
 
     private async loadParticles(): Promise<void> {
+        if (!this.state.init) {
+            return;
+        }
+
         const cb = async (container?: Container) => {
             if (this.props.container) {
                 (this.props.container as MutableRefObject<Container>).current = container;

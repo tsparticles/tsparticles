@@ -14,93 +14,115 @@ v${version}`;
 const minBanner = `tsParticles Editor v${version} by Matteo Bruni`;
 
 const getJsConfig = (entry) => {
-    const reportFileName = "report";
+  const reportFileName = "report";
 
-    return {
-        entry: entry,
-        output: {
-            path: path.resolve(__dirname, "dist"),
-            filename: "[name].js",
-            libraryTarget: "umd",
-            globalObject: "this"
+  return {
+    entry: entry,
+    output: {
+      path: path.resolve(__dirname, "dist"),
+      filename: "[name].js",
+      libraryTarget: "umd",
+      globalObject: "this",
+    },
+    resolve: {
+      extensions: [".js", ".json"],
+    },
+    module: {
+      rules: [
+        {
+          // Include ts, tsx, js, and jsx files.
+          test: /\.js$/,
+          exclude: /node_modules/,
+          loader: "babel-loader",
         },
-        resolve: {
-            extensions: [ ".js", ".json" ]
+      ],
+    },
+    externals: [
+      {
+        tsparticles: {
+          commonjs: "tsparticles",
+          commonjs2: "tsparticles",
+          amd: "tsparticles",
+          root: "window",
         },
-        module: {
-            rules: [
-                {
-                    // Include ts, tsx, js, and jsx files.
-                    test: /\.js$/,
-                    exclude: /node_modules/,
-                    loader: "babel-loader"
-                }
-            ]
+      },
+      {
+        "tsparticles-slim": {
+          commonjs: "tsparticles-slim",
+          commonjs2: "tsparticles-slim",
+          amd: "tsparticles-slim",
+          root: "window",
         },
-        externals: [
-            {
-                tsparticles: {
-                    commonjs: "tsparticles",
-                    commonjs2: "tsparticles",
-                    amd: "tsparticles",
-                    root: "window"
-                },
-                "tsparticles/Plugins/Absorbers": {
-                    commonjs: "tsparticles/Plugins/Absorbers",
-                    commonjs2: "tsparticles/Plugins/Absorbers",
-                    amd: "tsparticles/Plugins/Absorbers",
-                    root: "window"
-                },
-                "tsparticles/Plugins/Emitters": {
-                    commonjs: "tsparticles/Plugins/Emitters",
-                    commonjs2: "tsparticles/Plugins/Emitters",
-                    amd: "tsparticles/Plugins/Emitters",
-                    root: "window"
-                },
-                "object-gui": {
-                    commonjs: "object-gui",
-                    commonjs2: "object-gui",
-                    amd: "object-gui",
-                    root: "window"
-                }
-            }
-        ],
-        plugins: [
-            new webpack.BannerPlugin({
-                banner,
-                exclude: /\.min\.js$/
-            }),
-            new webpack.BannerPlugin({
-                banner: minBanner,
-                include: /\.min\.js$/
-            }),
-            new BundleAnalyzerPlugin({
-                openAnalyzer: false,
-                analyzerMode: "static",
-                exclude: /\.min\.js$/,
-                reportFilename: `${reportFileName}.html`
-            })
-        ],
-        optimization: {
-            minimize: true,
-            minimizer: [
-                new TerserPlugin({
-                    include: /\.min\.js$/,
-                    terserOptions: {
-                        output: {
-                            comments: minBanner
-                        }
-                    },
-                    extractComments: false
-                })
-            ]
-        }
-    };
+      },
+      {
+        "tsparticles-engine": {
+          commonjs: "tsparticles-engine",
+          commonjs2: "tsparticles-engine",
+          amd: "tsparticles-engine",
+          root: "window",
+        },
+      },
+      {
+        "tsparticles/Plugins/Absorbers": {
+          commonjs: "tsparticles/Plugins/Absorbers",
+          commonjs2: "tsparticles/Plugins/Absorbers",
+          amd: "tsparticles/Plugins/Absorbers",
+          root: "window",
+        },
+      },
+      {
+        "tsparticles/Plugins/Emitters": {
+          commonjs: "tsparticles/Plugins/Emitters",
+          commonjs2: "tsparticles/Plugins/Emitters",
+          amd: "tsparticles/Plugins/Emitters",
+          root: "window",
+        },
+      },
+      {
+        "object-gui": {
+          commonjs: "object-gui",
+          commonjs2: "object-gui",
+          amd: "object-gui",
+          root: "window",
+        },
+      },
+    ],
+    plugins: [
+      new webpack.BannerPlugin({
+        banner,
+        exclude: /\.min\.js$/,
+      }),
+      new webpack.BannerPlugin({
+        banner: minBanner,
+        include: /\.min\.js$/,
+      }),
+      new BundleAnalyzerPlugin({
+        openAnalyzer: false,
+        analyzerMode: "static",
+        exclude: /\.min\.js$/,
+        reportFilename: `${reportFileName}.html`,
+      }),
+    ],
+    optimization: {
+      minimize: true,
+      minimizer: [
+        new TerserPlugin({
+          include: /\.min\.js$/,
+          terserOptions: {
+            output: {
+              comments: minBanner,
+            },
+          },
+          extractComments: false,
+        }),
+      ],
+    },
+  };
 };
 
 module.exports = [
-    getJsConfig({
-        "tsparticles.editor": "./dist/browser/index.js",
-        "tsparticles.editor.min": "./dist/browser/index.js"
-    })
+  getJsConfig({
+    "tsparticles.editor": "./dist/browser/index.js",
+    "tsparticles.editor.min": "./dist/browser/index.js",
+  }),
 ];

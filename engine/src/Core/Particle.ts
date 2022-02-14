@@ -1,13 +1,13 @@
 import {
     AnimationStatus,
     DestroyMode,
+    MoveDirection,
     OutMode,
     OutModeAlt,
-    RotateDirection,
-    ShapeType,
+    ParticleOutType,
     StartValueType,
 } from "../Enums";
-import type {
+import {
     IBubbleParticleData,
     ICoordinates,
     ICoordinates3d,
@@ -20,13 +20,13 @@ import type {
     IParticleNumericValueAnimation,
     IParticleRetinaProps,
     IParticleRoll,
-    IParticleSpin,
     IParticleTiltValueAnimation,
     IParticleValueAnimation,
     IParticleWobble,
     IRgb,
     IShapeValues,
 } from "./Interfaces";
+import { IParticlesOptions, IShape, Shape, Stroke } from "../Options";
 import { Vector, Vector3d } from "./Utils";
 import {
     alterHsl,
@@ -40,20 +40,15 @@ import {
     getRangeMax,
     getRangeMin,
     getRangeValue,
-    getValue,
     isInArray,
     itemFromArray,
+    loadParticlesOptions,
     randomInRange,
     setRangeValue,
 } from "../Utils";
-import type { Container } from "./Container";
-import type { Engine } from "../engine";
-import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
-import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
-import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
-import type { RecursivePartial } from "../Types";
-import { Shape } from "../Options/Classes/Particles/Shape/Shape";
-import type { Stroke } from "../Options/Classes/Particles/Stroke";
+import { Container } from "./Container";
+import { Engine } from "../engine";
+import { RecursivePartial } from "../Types";
 
 const fixOutMode = (data: {
     outMode: OutMode | keyof typeof OutMode | OutModeAlt;
@@ -63,7 +58,7 @@ const fixOutMode = (data: {
     setCb: (value: number) => void;
     radius: number;
 }) => {
-    if (isInArray(data.outMode, data.checkModes) || isInArray(data.outMode, data.checkModes)) {
+    if (isInArray(data.outMode, data.checkModes)) {
         if (data.coord > data.maxCoord - data.radius * 2) {
             data.setCb(-data.radius);
         } else if (data.coord < data.radius * 2) {
@@ -93,6 +88,7 @@ export class Particle implements IParticle {
     wobble?: IParticleWobble;
     backColor?: IHsl;
     close: boolean;
+    direction: number;
     fill: boolean;
     randomIndexData?: number;
     gradient?: IParticleGradientAnimation;
@@ -104,15 +100,15 @@ export class Particle implements IParticle {
     stroke?: Stroke;
     strokeColor?: IParticleHslAnimation;
 
+    readonly moveCenter: ICoordinates & { radius: number };
     readonly moveDecay: number;
-    readonly direction: number;
+    readonly outType: ParticleOutType;
     readonly position: Vector3d;
     readonly offset: Vector;
     readonly shadowColor: IRgb | undefined;
     readonly size: IParticleNumericValueAnimation;
     readonly velocity: Vector;
-    readonly shape: ShapeType | string;
-    readonly spin?: IParticleSpin;
+    readonly shape: string;
     readonly initialPosition: Vector;
     readonly initialVelocity: Vector;
     readonly shapeData?: IShapeValues;
@@ -127,7 +123,7 @@ export class Particle implements IParticle {
         readonly id: number,
         readonly container: Container,
         position?: ICoordinates,
-        overrideOptions?: RecursivePartial<IParticles>,
+        overrideOptions?: RecursivePartial<IParticlesOptions>,
         readonly group?: string
     ) {
         this.#engine = engine;
@@ -141,12 +137,11 @@ export class Particle implements IParticle {
         this.retina = {
             maxDistance: {},
         };
+        this.outType = ParticleOutType.normal;
 
         const pxRatio = container.retina.pixelRatio;
         const mainOptions = container.actualOptions;
-        const particlesOptions = new ParticlesOptions();
-
-        particlesOptions.load(mainOptions.particles);
+        const particlesOptions = loadParticlesOptions(mainOptions.particles);
 
         const shapeType = particlesOptions.shape.type;
         const reduceDuplicates = particlesOptions.reduceDuplicates;
@@ -185,7 +180,7 @@ export class Particle implements IParticle {
         this.fill = this.shapeData?.fill ?? this.fill;
         this.close = this.shapeData?.close ?? this.close;
         this.options = particlesOptions;
-        this.pathDelay = getValue(this.options.move.path.delay) * 1000;
+        this.pathDelay = getRangeValue(this.options.move.path.delay) * 1000;
 
         const zIndexValue = getRangeValue(this.options.zIndex.value);
 
@@ -197,7 +192,7 @@ export class Particle implements IParticle {
 
         this.size = {
             enable: sizeOptions.animation.enable,
-            value: getValue(sizeOptions) * container.retina.pixelRatio,
+            value: getRangeValue(sizeOptions.value) * container.retina.pixelRatio,
             max: getRangeMax(sizeRange) * pxRatio,
             min: getRangeMin(sizeRange) * pxRatio,
             loops: 0,
@@ -239,19 +234,36 @@ export class Particle implements IParticle {
             }
         }
 
-        this.direction = getParticleDirectionAngle(this.options.move.direction);
+        /* position */
         this.bubble = {
             inRange: false,
         };
+        this.position = this.calcPosition(container, position, clamp(zIndexValue, 0, container.zLayers));
+        this.initialPosition = this.position.copy();
+
+        const canvasSize = container.canvas.size,
+            moveCenterPerc = this.options.move.center;
+
+        this.moveCenter = {
+            x: (canvasSize.width * moveCenterPerc.x) / 100,
+            y: (canvasSize.height * moveCenterPerc.y) / 100,
+            radius: this.options.move.center.radius,
+        };
+        this.direction = getParticleDirectionAngle(this.options.move.direction, this.position, this.moveCenter);
+
+        switch (this.options.move.direction) {
+            case MoveDirection.inside:
+                this.outType = ParticleOutType.inside;
+                break;
+            case MoveDirection.outside:
+                this.outType = ParticleOutType.outside;
+                break;
+        }
 
         /* animation - velocity for speed */
         this.initialVelocity = this.calculateVelocity();
         this.velocity = this.initialVelocity.copy();
         this.moveDecay = 1 - getRangeValue(this.options.move.decay);
-
-        /* position */
-        this.position = this.calcPosition(container, position, clamp(zIndexValue, 0, container.zLayers));
-        this.initialPosition = this.position.copy();
 
         /* parallax */
         this.offset = Vector.origin;
@@ -287,32 +299,17 @@ export class Particle implements IParticle {
 
         this.life = this.loadLife();
         this.spawning = this.life.delay > 0;
-
-        if (this.options.move.spin.enable) {
-            const spinPos = this.options.move.spin.position ?? { x: 50, y: 50 };
-
-            const spinCenter = {
-                x: (spinPos.x / 100) * container.canvas.size.width,
-                y: (spinPos.y / 100) * container.canvas.size.height,
-            };
-
-            const pos = this.getPosition();
-            const distance = getDistance(pos, spinCenter);
-
-            this.spin = {
-                center: spinCenter,
-                direction: this.velocity.x >= 0 ? RotateDirection.clockwise : RotateDirection.counterClockwise,
-                angle: this.velocity.angle,
-                radius: distance,
-                acceleration: this.retina.spinAcceleration ?? getRangeValue(this.options.move.spin.acceleration),
-            };
-        }
-
         this.shadowColor = colorToRgb(this.options.shadow.color);
 
         for (const updater of container.particles.updaters) {
             if (updater.init) {
                 updater.init(this);
+            }
+        }
+
+        for (const mover of container.particles.movers) {
+            if (mover.init) {
+                mover.init(this);
             }
         }
 
@@ -439,7 +436,7 @@ export class Particle implements IParticle {
             return;
         }
 
-        const rate = getRangeValue(splitOptions.rate.value);
+        const rate = getRangeValue(splitOptions.rate);
 
         for (let i = 0; i < rate; i++) {
             this.container.particles.addSplitParticle(this);
@@ -540,6 +537,11 @@ export class Particle implements IParticle {
         const baseVelocity = getParticleBaseVelocity(this.direction);
         const res = baseVelocity.copy();
         const moveOptions = this.options.move;
+
+        if (moveOptions.direction === MoveDirection.inside || moveOptions.direction === MoveDirection.outside) {
+            return res;
+        }
+
         const rad = (Math.PI / 180) * moveOptions.angle.value;
         const radOffset = (Math.PI / 180) * moveOptions.angle.offset;
 

@@ -1,9 +1,9 @@
 import React, { Component, MutableRefObject, ReactNode } from "react";
-import { tsParticles, Container } from "tsparticles";
+import { tsParticles, Container } from "tsparticles-engine";
 import equal from "fast-deep-equal/react";
 import type { IParticlesProps } from "./IParticlesProps";
 import type { IParticlesState } from "./IParticlesState";
-import type { ISourceOptions } from "tsparticles";
+import type { ISourceOptions } from "tsparticles-engine";
 
 /**
  * @param {{id?: string,width?: string,height?: string,options?: ISourceOptions,params?: ISourceOptions,style?: CSSProperties,className?: string,canvasClassName?: string,container?: RefObject<Container>}}
@@ -22,6 +22,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
         super(props);
 
         this.state = {
+            init: false,
             library: undefined,
         };
     }
@@ -58,7 +59,14 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
                 await this.props.init(tsParticles);
             }
 
-            await this.loadParticles();
+            this.setState(
+                {
+                    init: true,
+                },
+                async () => {
+                    await this.loadParticles();
+                }
+            );
         })();
     }
 
@@ -90,6 +98,10 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
     }
 
     private async loadParticles(): Promise<void> {
+        if (!this.state.init) {
+            return;
+        }
+
         const cb = async (container?: Container) => {
             if (this.props.container) {
                 (this.props.container as MutableRefObject<Container>).current = container;

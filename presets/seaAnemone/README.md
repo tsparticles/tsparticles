@@ -2,7 +2,7 @@
 
 # tsParticles Sea Anemone Preset
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-sea-anemone/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-sea-anemone) [![npmjs](https://badge.fury.io/js/tsparticles-preset-sea-anemone.svg)](https://www.npmjs.com/package/tsparticles-preset-sea-anemone) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-sea-anemone)](https://www.npmjs.com/package/tsparticles-preset-sea-anemone)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-sea-anemone/badge)](https://www.jsdelivr.com/package/npm/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles-preset-sea-anemone.svg)](https://www.npmjs.com/package/tsparticles-preset-sea-anemone) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-sea-anemone)](https://www.npmjs.com/package/tsparticles-preset-sea-anemone)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) preset for creating a beautiful sea anemone like effect with
 particles spawned in the canvas center.
@@ -26,8 +26,8 @@ Once installed you need one more script to be included in your page (or you can 
 from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-sea-anemone):
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@1/tsparticles.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-sea-anemone@1/tsparticles.preset.seaAnemone.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-sea-anemone@2/tsparticles.preset.seaAnemone.min.js"></script>
 ```
 
 This script **MUST** be placed after the `tsParticles` one.
@@ -37,7 +37,7 @@ This script **MUST** be placed after the `tsParticles` one.
 A bundled script can also be used, this will include every needed plugin needed by the preset.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-sea-anemone@1/tsparticles.preset.seaAnemone.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-sea-anemone@2/tsparticles.preset.seaAnemone.bundle.min.js"></script>
 ```
 
 ### Usage
@@ -78,14 +78,14 @@ This sample uses the class component syntax, but you can use hooks as well (if t
 
 ```javascript
 import Particles from "react-tsparticles";
-import { Main } from "tsparticles";
-import { loadSeaAnemonePreset } from "tsparticles-preset-seaAnemone";
+import { Engine } from "tsparticles-engine";
+import { loadSeaAnemonePreset } from "tsparticles-preset-sea-anemone";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
   // this customizes the component tsParticles installation
-  customInit(main: Main) {
+  async customInit(engine: Engine): Promise<void> {
     // this adds the preset to tsParticles, you can safely use the
-    loadSeaAnemonePreset(main);
+    await loadSeaAnemonePreset(engine);
   }
 
   render() {
@@ -107,8 +107,8 @@ _The syntax for `Vue.js 2.x` and `3.x` is the same_
 ```
 
 ```js
-function particlesInit(main: Main) {
-  loadSeaAnemonePreset(main);
+async function particlesInit(engine: Engine): Promise<void> {
+  await loadSeaAnemonePreset(engine);
 }
 ```
 
@@ -123,9 +123,9 @@ function particlesInit(main: Main) {
 ></ng-particles>
 ```
 
-```ts
-function particlesInit(main: Main): void {
-  loadSeaAnemonePreset(main);
+```typescript
+async function particlesInit(engine: Engine): Promise<void> {
+  await loadSeaAnemonePreset(engine);
 }
 ```
 
@@ -140,8 +140,8 @@ function particlesInit(main: Main): void {
 />
 ```
 
-```js
-let onParticlesInit = (main) => {
-  loadSeaAnemonePreset(main);
-};
+```javascript
+async function onParticlesInit(main) {
+  await loadSeaAnemonePreset(main);
+}
 ```

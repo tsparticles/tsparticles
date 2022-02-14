@@ -1,4 +1,4 @@
-import type { IColor } from "../../../Core/Interfaces/Colors";
+import type { IColor } from "../../../Core";
 
 /**
  * The background cover customization

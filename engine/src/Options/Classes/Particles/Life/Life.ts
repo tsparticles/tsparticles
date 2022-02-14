@@ -1,5 +1,4 @@
-import type { ILife } from "../../../Interfaces/Particles/Life/ILife";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { ILife, IOptionLoader } from "../../../Interfaces";
 import { LifeDelay } from "./LifeDelay";
 import { LifeDuration } from "./LifeDuration";
 import type { RecursivePartial } from "../../../../Types";
@@ -16,7 +15,7 @@ export class Life implements ILife, IOptionLoader<ILife> {
     }
 
     load(data?: RecursivePartial<ILife>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

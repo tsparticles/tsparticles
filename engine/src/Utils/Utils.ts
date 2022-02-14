@@ -1,3 +1,4 @@
+import { DivEvent, Options, ParticlesOptions } from "../Options";
 import { DivMode, OutModeDirection } from "../Enums";
 import type {
     IBounds,
@@ -8,11 +9,10 @@ import type {
     IRangeValue,
     IRectSideResult,
 } from "../Core";
-import { collisionVelocity, getDistances, getValue } from "./NumberUtils";
-import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
-import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICharacterShape";
-import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
-import type { SingleOrMultiple } from "../Types";
+import type { IModeDiv, IOptionLoader, IOptions, IParticlesOptions } from "../Options";
+import type { RecursivePartial, SingleOrMultiple } from "../Types";
+import { collisionVelocity, getDistances, getRangeValue } from "./NumberUtils";
+import type { Engine } from "../engine";
 import { Vector } from "../Core";
 
 declare global {
@@ -115,9 +115,9 @@ export function isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
     return value === array || (array instanceof Array && array.indexOf(value) > -1);
 }
 
-export async function loadFont(character: ICharacterShape): Promise<void> {
+export async function loadFont(font?: string, weight?: string): Promise<void> {
     try {
-        await document.fonts.load(`${character.weight ?? "400"} 36px '${character.font ?? "Verdana"}'`);
+        await document.fonts.load(`${weight ?? "400"} 36px '${font ?? "Verdana"}'`);
     } catch {
         // ignores any error
     }
@@ -136,29 +136,35 @@ export function itemFromArray<T>(array: T[], index?: number, useIndex = true): T
 export function isPointInside(
     point: ICoordinates,
     size: IDimension,
+    offset: ICoordinates,
     radius?: number,
     direction?: OutModeDirection
 ): boolean {
-    return areBoundsInside(calculateBounds(point, radius ?? 0), size, direction);
+    return areBoundsInside(calculateBounds(point, radius ?? 0), size, offset, direction);
 }
 
-export function areBoundsInside(bounds: IBounds, size: IDimension, direction?: OutModeDirection): boolean {
+export function areBoundsInside(
+    bounds: IBounds,
+    size: IDimension,
+    offset: ICoordinates,
+    direction?: OutModeDirection
+): boolean {
     let inside = true;
 
     if (!direction || direction === OutModeDirection.bottom) {
-        inside = bounds.top < size.height;
+        inside = bounds.top < size.height + offset.x;
     }
 
     if (inside && (!direction || direction === OutModeDirection.left)) {
-        inside = bounds.right > 0;
+        inside = bounds.right > offset.x;
     }
 
     if (inside && (!direction || direction === OutModeDirection.right)) {
-        inside = bounds.left < size.width;
+        inside = bounds.left < size.width + offset.y;
     }
 
     if (inside && (!direction || direction === OutModeDirection.top)) {
-        inside = bounds.bottom > 0;
+        inside = bounds.bottom > offset.y;
     }
 
     return inside;
@@ -270,7 +276,7 @@ export function circleBounceDataFromParticle(p: IParticle): ICircleBouncer {
         radius: p.getRadius(),
         mass: p.getMass(),
         velocity: p.velocity,
-        factor: Vector.create(getValue(p.options.bounce.horizontal), getValue(p.options.bounce.vertical)),
+        factor: Vector.create(getRangeValue(p.options.bounce.horizontal), getRangeValue(p.options.bounce.vertical)),
     };
 }
 
@@ -333,7 +339,7 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
             max: divBounds.bottom,
         },
         particle.velocity.x,
-        getValue(particle.options.bounce.horizontal)
+        getRangeValue(particle.options.bounce.horizontal)
     );
 
     if (resH.bounced) {
@@ -364,7 +370,7 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
             max: divBounds.right,
         },
         particle.velocity.y,
-        getValue(particle.options.bounce.vertical)
+        getRangeValue(particle.options.bounce.vertical)
     );
 
     if (resV.bounced) {
@@ -376,4 +382,35 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
             particle.position.y = resV.position;
         }
     }
+}
+
+function loadOptions<T>(options: IOptionLoader<T>, ...sourceOptionsArr: RecursivePartial<T | undefined>[]) {
+    if (!sourceOptionsArr) {
+        return;
+    }
+
+    for (const sourceOptions of sourceOptionsArr) {
+        options.load(sourceOptions);
+    }
+}
+
+export function loadContainerOptions(
+    engine: Engine,
+    ...sourceOptionsArr: RecursivePartial<IOptions | undefined>[]
+): Options {
+    const options = new Options(engine);
+
+    loadOptions(options, ...sourceOptionsArr);
+
+    return options;
+}
+
+export function loadParticlesOptions(
+    ...sourceOptionsArr: RecursivePartial<IParticlesOptions | undefined>[]
+): ParticlesOptions {
+    const options = new ParticlesOptions();
+
+    loadOptions(options, ...sourceOptionsArr);
+
+    return options;
 }

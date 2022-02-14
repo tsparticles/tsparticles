@@ -70,7 +70,7 @@ const tsParticles = require("tsparticles");
 
 // or
 
-import {tsParticles} from "tsparticles";
+import {tsParticles} from "tsparticles-engine";
 ```
 
 आयात किया हुआ `tsParticles` स्क्रिप्ट सहित जब आपके पास वही उदाहरण है।

@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.24.2...particles.vue-demo@2.0.0-beta.5) (2022-01-30)
+## [1.26.1](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.26.0...particles.vue-demo@1.26.1) (2022-02-14)
+
+**Note:** Version bump only for package particles.vue-demo
+
+
+
+
+
 # [1.26.0](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.25.2...particles.vue-demo@1.26.0) (2022-02-10)
 
 **Note:** Version bump only for package particles.vue-demo
@@ -40,12 +49,37 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
+* async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 * updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
 
 
 
 
 
+# [2.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@2.0.0-beta.3...particles.vue-demo@2.0.0-beta.4) (2021-12-07)
+
+
+### Features
+
+* async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+
+
+
+
+
+# [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.22.5...particles.vue-demo@2.0.0-beta.3) (2021-12-04)
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+# [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.20.4...particles.vue-demo@2.0.0-beta.2) (2021-10-06)
 ## [1.24.2](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.24.1...particles.vue-demo@1.24.2) (2022-01-29)
 
 **Note:** Version bump only for package particles.vue-demo
@@ -96,12 +130,16 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.22.4](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.22.3...particles.vue-demo@1.22.4) (2021-11-17)
 
-**Note:** Version bump only for package particles.vue-demo
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 
 
 
 
+# [2.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@2.0.0-beta.0...particles.vue-demo@2.0.0-beta.1) (2021-10-06)
 ## [1.22.3](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.22.2...particles.vue-demo@1.22.3) (2021-11-05)
 
 **Note:** Version bump only for package particles.vue-demo
@@ -145,6 +183,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ## [1.20.4](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.20.3...particles.vue-demo@1.20.4) (2021-10-06)
 
 **Note:** Version bump only for package particles.vue-demo
+
+
+
+
+
+# [2.0.0-beta.0](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.20.3...particles.vue-demo@2.0.0-beta.0) (2021-10-06)
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 
 

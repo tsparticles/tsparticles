@@ -1,5 +1,4 @@
-import type { ILight } from "../../../Interfaces/Interactivity/Modes/ILight";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { ILight, IOptionLoader } from "../../../Interfaces";
 import { LightArea } from "./LightArea";
 import { LightShadow } from "./LightShadow";
 import type { RecursivePartial } from "../../../../Types";
@@ -14,7 +13,7 @@ export class Light implements ILight, IOptionLoader<ILight> {
     }
 
     load(data?: RecursivePartial<ILight>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

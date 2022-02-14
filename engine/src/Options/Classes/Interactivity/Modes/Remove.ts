@@ -1,28 +1,10 @@
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { IRemove } from "../../../Interfaces/Interactivity/Modes/IRemove";
+import type { IOptionLoader, IRemove } from "../../../Interfaces";
 import type { RecursivePartial } from "../../../../Types";
 
 /**
  * @category Options
  */
 export class Remove implements IRemove, IOptionLoader<IRemove> {
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new quantity
-     */
-    get particles_nb(): number {
-        return this.quantity;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new quantity
-     * @param value
-     */
-    set particles_nb(value: number) {
-        this.quantity = value;
-    }
-
     quantity;
 
     constructor() {
@@ -30,14 +12,12 @@ export class Remove implements IRemove, IOptionLoader<IRemove> {
     }
 
     load(data?: RecursivePartial<IRemove>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 
-        const quantity = data.quantity ?? data.particles_nb;
-
-        if (quantity !== undefined) {
-            this.quantity = quantity;
+        if (data.quantity !== undefined) {
+            this.quantity = data.quantity;
         }
     }
 }

@@ -1,10 +1,9 @@
+import type { Container, IEvents } from "tsparticles-engine";
 import { EditorGroup, EditorType } from "object-gui";
-import type { Container } from "tsparticles";
-import type { IEvents } from "tsparticles/Options/Interfaces/Interactivity/Events/IEvents";
 import { ClickEventsOptionsEditor } from "./ClickEventsOptionsEditor";
-import { HoverEventsOptionsEditor } from "./HoverEventsOptionsEditor";
 import { DivsEventsOptionsEditor } from "./DivsEventsOptionsEditor";
 import { EditorBase } from "../../../../EditorBase";
+import { HoverEventsOptionsEditor } from "./HoverEventsOptionsEditor";
 
 export class EventsOptionsEditor extends EditorBase {
     group!: EditorGroup;

@@ -3,11 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-polygon@1.39.2...tsparticles-path-polygon@2.0.0-beta.5) (2022-01-30)
+## [1.41.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-polygon@1.41.0...tsparticles-path-polygon@1.41.1) (2022-02-14)
+
+**Note:** Version bump only for package tsparticles-path-polygon
+
+
+
+
+
 # [1.41.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-polygon@1.40.2...tsparticles-path-polygon@1.41.0) (2022-02-10)
 
 
 ### Bug Fixes
 
+* **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 * fixed polygon path generator ([146afb6](https://github.com/matteobruni/tsparticles/commit/146afb67dd0ced634f6c54d21c86d3b3372e87b6))
 * fixed polygon path options ([4eac27c](https://github.com/matteobruni/tsparticles/commit/4eac27c11f6d5ece392b2a75368e57a0186a57ff))
 
@@ -42,6 +57,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [2.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-polygon@2.0.0-beta.3...tsparticles-path-polygon@2.0.0-beta.4) (2021-12-07)
 ## [1.39.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-polygon@1.39.2...tsparticles-path-polygon@1.39.3) (2022-02-02)
 
 **Note:** Version bump only for package tsparticles-path-polygon
@@ -90,6 +106,23 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-polygon@1.37.5...tsparticles-path-polygon@2.0.0-beta.3) (2021-12-04)
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+# [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-polygon@1.35.4...tsparticles-path-polygon@2.0.0-beta.2) (2021-10-06)
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 ## [1.37.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-polygon@1.37.4...tsparticles-path-polygon@1.37.5) (2021-11-28)
 
 **Note:** Version bump only for package tsparticles-path-polygon
@@ -133,6 +166,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [2.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-polygon@2.0.0-beta.0...tsparticles-path-polygon@2.0.0-beta.1) (2021-10-06)
 # [1.37.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-polygon@1.36.0...tsparticles-path-polygon@1.37.0) (2021-10-28)
 
 **Note:** Version bump only for package tsparticles-path-polygon
@@ -152,6 +186,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ## [1.35.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-polygon@1.35.3...tsparticles-path-polygon@1.35.4) (2021-10-06)
 
 **Note:** Version bump only for package tsparticles-path-polygon
+
+
+
+
+
+# [2.0.0-beta.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-polygon@1.35.3...tsparticles-path-polygon@2.0.0-beta.0) (2021-10-06)
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 
 

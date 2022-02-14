@@ -1,5 +1,4 @@
-import type { Container } from "tsparticles";
-import type { IShape } from "tsparticles/Options/Interfaces/Particles/Shape/IShape";
+import type { Container, IShape } from "tsparticles-engine";
 import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
 

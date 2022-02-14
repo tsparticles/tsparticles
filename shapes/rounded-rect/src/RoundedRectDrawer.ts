@@ -1,29 +1,8 @@
-import type { IParticle } from "tsparticles";
-import type { IShapeValues } from "tsparticles/Options/Interfaces/Particles/Shape/IShapeValues";
-import type { IShapeDrawer } from "tsparticles/Core/Interfaces/IShapeDrawer";
-import type { Container } from "tsparticles";
-
-type RectInfo = {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-};
-
-type RadiusInfo = {
-    topRight: number;
-    bottomRight: number;
-    bottomLeft: number;
-    topLeft: number;
-};
-
-interface IRoundedRectData extends IShapeValues {
-    radius: number;
-}
-
-interface IRoundedParticle extends IParticle {
-    borderRadius: number;
-}
+import type { Container, IParticle, IShapeDrawer } from "tsparticles-engine";
+import type { IRoundedParticle } from "./IRoundedParticle";
+import type { IRoundedRectData } from "./IRoundedRectData";
+import type { RadiusInfo } from "./RadiusInfo";
+import type { RectInfo } from "./RectInfo";
 
 const drawRoundedRect = (
     ctx: CanvasRenderingContext2D,

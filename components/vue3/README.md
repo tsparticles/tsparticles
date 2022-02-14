@@ -93,7 +93,9 @@ createApp(App).use(Particles)
                         move: {
                             direction: 'none',
                             enable: true,
-                            outMode: 'bounce',
+                            outModes: {
+                                default: 'bounce'
+                            },
                             random: false,
                             speed: 6,
                             straight: false
@@ -112,8 +114,7 @@ createApp(App).use(Particles)
                             type: 'circle'
                         },
                         size: {
-                            random: true,
-                            value: 5
+                            value: { min: 1, max: 5 },
                         }
                     },
                     detectRetina: true

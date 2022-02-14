@@ -1,5 +1,6 @@
 {
   "packages": [
+    "bundles/*",
     "components/*",
     "demo/**/*",
     "editor",
@@ -7,6 +8,7 @@
     "interactions/*",
     "interactions/external/*",
     "interactions/particles/*",
+    "move/*",
     "paths/*",
     "plugins/*",
     "presets/*",

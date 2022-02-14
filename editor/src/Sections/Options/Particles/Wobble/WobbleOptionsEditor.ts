@@ -1,7 +1,6 @@
-import type { Container } from "tsparticles";
+import type { Container, IWobble } from "tsparticles-engine";
 import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
-import type { IWobble } from "tsparticles/Options/Interfaces/Particles/Wobble/IWobble";
 
 export class WobbleOptionsEditor extends EditorBase {
     group!: EditorGroup;

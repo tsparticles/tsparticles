@@ -1,4 +1,4 @@
-import type { IColor } from "../../../../Core/Interfaces";
+import type { IColor } from "../../../../Core";
 import type { SingleOrMultiple } from "../../../../Types";
 
 /**

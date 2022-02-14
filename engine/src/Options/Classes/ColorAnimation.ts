@@ -1,6 +1,5 @@
+import type { IColorAnimation, IOptionLoader } from "../Interfaces";
 import type { RangeValue, RecursivePartial } from "../../Types";
-import type { IColorAnimation } from "../Interfaces/IColorAnimation";
-import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import { setRangeValue } from "../../Utils";
 
 /**
@@ -22,7 +21,7 @@ export class ColorAnimation implements IColorAnimation, IOptionLoader<IColorAnim
     }
 
     load(data?: RecursivePartial<IColorAnimation>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

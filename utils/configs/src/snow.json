@@ -1,0 +1,53 @@
+{
+  "fpsLimit": 60,
+  "particles": {
+    "number": {
+      "value": 400,
+      "density": {
+        "enable": true,
+        "area": 800
+      }
+    },
+    "color": {
+      "value": "#fff"
+    },
+    "shape": {
+      "type": "circle"
+    },
+    "opacity": {
+      "value": 1
+    },
+    "size": {
+      "value": 10
+    },
+    "move": {
+      "enable": true,
+      "speed": 2,
+      "direction": "bottom",
+      "random": false,
+      "straight": true,
+      "outModes": {
+        "default": "out"
+      }
+    },
+    "wobble": {
+      "enable": true,
+      "distance": 10,
+      "speed": 10
+    },
+    "zIndex": {
+      "enable": true,
+      "value": {
+        "min": 0,
+        "max": 100
+      },
+      "opacityRate": 10,
+      "sizeRate": 10,
+      "velocityRate": 10
+    }
+  },
+  "detectRetina": true,
+  "background": {
+    "color": "#333333"
+  }
+}

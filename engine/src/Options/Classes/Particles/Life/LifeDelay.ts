@@ -1,5 +1,4 @@
-import type { ILifeDelay } from "../../../Interfaces/Particles/Life/ILifeDelay";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { ILifeDelay, IOptionLoader } from "../../../Interfaces";
 import type { RecursivePartial } from "../../../../Types";
 import { ValueWithRandom } from "../../ValueWithRandom";
 

@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-sea-anemone@1.24.2...tsparticles-preset-sea-anemone@2.0.0-beta.5) (2022-01-30)
+## [1.41.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-sea-anemone@1.41.0...tsparticles-preset-sea-anemone@1.41.1) (2022-02-14)
+
+**Note:** Version bump only for package tsparticles-preset-sea-anemone
+
+
+
+
+
 # [1.41.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-sea-anemone@1.40.2...tsparticles-preset-sea-anemone@1.41.0) (2022-02-10)
 
 **Note:** Version bump only for package tsparticles-preset-sea-anemone
@@ -16,6 +25,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
+* **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+* removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
 * removed all browser flags in package.json, a lot of issues with it. closes [#3094](https://github.com/matteobruni/tsparticles/issues/3094) ([1415875](https://github.com/matteobruni/tsparticles/commit/14158755ec80ace4e0c520cef407b2d7f4078568))
 
 
@@ -43,12 +54,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
+* async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+* created and implemented move plugins ([752483a](https://github.com/matteobruni/tsparticles/commit/752483aeeb94dd851dc27fe75e4c258fd87f0a90))
+* fixed sea anemone presets ([0df846d](https://github.com/matteobruni/tsparticles/commit/0df846d81b736b38f8e920b207ab973811695622))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 * updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
 
 
 
 
 
+# [2.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-sea-anemone@2.0.0-beta.3...tsparticles-preset-sea-anemone@2.0.0-beta.4) (2021-12-07)
 ## [1.24.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-sea-anemone@1.24.1...tsparticles-preset-sea-anemone@1.24.2) (2022-01-29)
 
 **Note:** Version bump only for package tsparticles-preset-sea-anemone
@@ -91,12 +107,34 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.22.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-sea-anemone@1.22.4...tsparticles-preset-sea-anemone@1.22.5) (2021-11-28)
 
-**Note:** Version bump only for package tsparticles-preset-sea-anemone
+
+### Features
+
+* async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
 
 
 
 
 
+# [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-sea-anemone@1.22.5...tsparticles-preset-sea-anemone@2.0.0-beta.3) (2021-12-04)
+
+
+### Features
+
+* fixed sea anemone presets ([0df846d](https://github.com/matteobruni/tsparticles/commit/0df846d81b736b38f8e920b207ab973811695622))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+# [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-sea-anemone@1.20.4...tsparticles-preset-sea-anemone@2.0.0-beta.2) (2021-10-06)
+
+
+### Features
+
+* fixed sea anemone presets ([0df846d](https://github.com/matteobruni/tsparticles/commit/0df846d81b736b38f8e920b207ab973811695622))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 ## [1.22.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-sea-anemone@1.22.3...tsparticles-preset-sea-anemone@1.22.4) (2021-11-17)
 
 **Note:** Version bump only for package tsparticles-preset-sea-anemone
@@ -132,6 +170,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [2.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-sea-anemone@2.0.0-beta.0...tsparticles-preset-sea-anemone@2.0.0-beta.1) (2021-10-06)
 # [1.22.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-sea-anemone@1.21.0...tsparticles-preset-sea-anemone@1.22.0) (2021-10-28)
 
 **Note:** Version bump only for package tsparticles-preset-sea-anemone
@@ -151,6 +190,18 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ## [1.20.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-sea-anemone@1.20.3...tsparticles-preset-sea-anemone@1.20.4) (2021-10-06)
 
 **Note:** Version bump only for package tsparticles-preset-sea-anemone
+
+
+
+
+
+# [2.0.0-beta.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-sea-anemone@1.20.3...tsparticles-preset-sea-anemone@2.0.0-beta.0) (2021-10-06)
+
+
+### Features
+
+* fixed sea anemone presets ([0df846d](https://github.com/matteobruni/tsparticles/commit/0df846d81b736b38f8e920b207ab973811695622))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 
 

@@ -1,12 +1,12 @@
-import type { IDelta, IExternalInteractor, IParticlesInteractor } from "../Interfaces";
-import type { Container } from "../Container";
-import type { Engine } from "../../engine";
-import { InteractorType } from "../../Enums";
-import type { Particle } from "../Particle";
-
 /**
  * @category Core
  */
+import { ClickMode, InteractorType } from "../../Enums";
+import type { IDelta, IExternalInteractor, IParticlesInteractor } from "../Interfaces";
+import type { Container } from "../Container";
+import { Engine } from "../../engine";
+import type { Particle } from "../Particle";
+
 export class InteractionManager {
     private externalInteractors: IExternalInteractor[];
     private particleInteractors: IParticlesInteractor[];
@@ -15,7 +15,6 @@ export class InteractionManager {
 
     constructor(engine: Engine, private readonly container: Container) {
         this.#engine = engine;
-
         this.externalInteractors = [];
         this.particleInteractors = [];
 
@@ -40,15 +39,15 @@ export class InteractionManager {
         }
     }
 
-    externalInteract(delta: IDelta): void {
+    async externalInteract(delta: IDelta): Promise<void> {
         for (const interactor of this.externalInteractors) {
             if (interactor.isEnabled()) {
-                interactor.interact(delta);
+                await interactor.interact(delta);
             }
         }
     }
 
-    particlesInteract(particle: Particle, delta: IDelta): void {
+    async particlesInteract(particle: Particle, delta: IDelta): Promise<void> {
         for (const interactor of this.externalInteractors) {
             interactor.reset(particle);
         }
@@ -56,7 +55,15 @@ export class InteractionManager {
         /* interaction auto between particles */
         for (const interactor of this.particleInteractors) {
             if (interactor.isEnabled(particle)) {
-                interactor.interact(particle, delta);
+                await interactor.interact(particle, delta);
+            }
+        }
+    }
+
+    handleClickMode(mode: ClickMode | string): void {
+        for (const interactor of this.externalInteractors) {
+            if (interactor.handleClickMode) {
+                interactor.handleClickMode(mode);
             }
         }
     }

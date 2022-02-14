@@ -1,8 +1,6 @@
-import type { Container } from "tsparticles";
+import type { Container, ILinks, ILinksShadow } from "tsparticles-engine";
 import { EditorGroup, EditorType } from "object-gui";
-import type { ILinks } from "tsparticles/Options/Interfaces/Particles/Links/ILinks";
 import { EditorBase } from "../../../../EditorBase";
-import { ILinksShadow } from "tsparticles/Options/Interfaces/Particles/Links/ILinksShadow";
 
 export class LinksOptionsEditor extends EditorBase {
     group!: EditorGroup;

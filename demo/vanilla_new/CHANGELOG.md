@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@1.24.2...tsparticles-demo-new@2.0.0-beta.5) (2022-01-30)
+## [1.26.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@1.26.0...tsparticles-demo-new@1.26.1) (2022-02-14)
+
+
+### Bug Fixes
+
+* **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/matteobruni/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
+* **deps:** update dependency minify to v8 ([e2ffbec](https://github.com/matteobruni/tsparticles/commit/e2ffbec6b4c83a847450c1edc8b8f114f45c0eff))
+
+
+
+
+
 # [1.26.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@1.25.2...tsparticles-demo-new@1.26.0) (2022-02-10)
 
 **Note:** Version bump only for package tsparticles-demo-new
@@ -40,12 +53,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 * updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
 
 
 
 
 
+# [2.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@2.0.0-beta.3...tsparticles-demo-new@2.0.0-beta.4) (2021-12-07)
 ## [1.24.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@1.24.1...tsparticles-demo-new@1.24.2) (2022-01-29)
 
 **Note:** Version bump only for package tsparticles-demo-new
@@ -86,6 +101,39 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@1.22.5...tsparticles-demo-new@2.0.0-beta.3) (2021-12-04)
+
+
+### Bug Fixes
+
+* **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/matteobruni/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+# [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@1.20.4...tsparticles-demo-new@2.0.0-beta.2) (2021-10-06)
+
+
+### Bug Fixes
+
+* **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/matteobruni/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+# [2.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@2.0.0-beta.0...tsparticles-demo-new@2.0.0-beta.1) (2021-10-06)
 ## [1.22.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@1.22.4...tsparticles-demo-new@1.22.5) (2021-11-28)
 
 **Note:** Version bump only for package tsparticles-demo-new
@@ -145,6 +193,22 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ## [1.20.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@1.20.3...tsparticles-demo-new@1.20.4) (2021-10-06)
 
 **Note:** Version bump only for package tsparticles-demo-new
+
+
+
+
+
+# [2.0.0-beta.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@1.20.3...tsparticles-demo-new@2.0.0-beta.0) (2021-10-06)
+
+
+### Bug Fixes
+
+* **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/matteobruni/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 
 

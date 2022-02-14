@@ -1,6 +1,4 @@
-import type { IOptionLoader } from "../Interfaces/IOptionLoader";
-import type { IOptions } from "../Interfaces/IOptions";
-import type { IResponsive } from "../Interfaces/IResponsive";
+import type { IOptionLoader, IOptions, IResponsive } from "../Interfaces";
 import type { RecursivePartial } from "../../Types";
 import { ResponsiveMode } from "../../Enums";
 import { deepExtend } from "../../Utils";

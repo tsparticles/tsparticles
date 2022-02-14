@@ -1,5 +1,4 @@
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { ITiltAnimation } from "../../../Interfaces/Particles/Tilt/ITiltAnimation";
+import type { IOptionLoader, ITiltAnimation } from "../../../Interfaces";
 import type { RecursivePartial } from "../../../../Types";
 
 /**
@@ -17,7 +16,7 @@ export class TiltAnimation implements ITiltAnimation, IOptionLoader<ITiltAnimati
     }
 
     load(data?: RecursivePartial<ITiltAnimation>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

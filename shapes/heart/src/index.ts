@@ -1,4 +1,6 @@
-import { tsParticles } from "tsparticles";
-import { loadHeartShape } from "./shape";
+import type { Engine } from "tsparticles-engine";
+import { HeartDrawer } from "./HeartDrawer";
 
-loadHeartShape(tsParticles);
+export async function loadHeartShape(engine: Engine): Promise<void> {
+    await engine.addShape("heart", new HeartDrawer());
+}

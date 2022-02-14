@@ -1,7 +1,7 @@
-import type { IDelta } from "tsparticles";
-import { ParticlesInteractorBase } from "tsparticles";
 import type { InfectableContainer, InfectableParticle } from "./Types";
+import type { IDelta } from "tsparticles-engine";
 import type { IInfectionOptions } from "./Options/Interfaces/IInfectionOptions";
+import { ParticlesInteractorBase } from "tsparticles-engine";
 
 /**
  * @category Interactions
@@ -21,7 +21,7 @@ export class ParticlesInfecter extends ParticlesInteractorBase {
         // do nothing
     }
 
-    interact(p1: InfectableParticle, delta: IDelta): void {
+    async interact(p1: InfectableParticle, delta: IDelta): Promise<void> {
         const infecter = (this.container as InfectableContainer).infecter;
 
         if (!infecter) {

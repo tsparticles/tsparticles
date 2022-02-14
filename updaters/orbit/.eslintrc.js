@@ -16,6 +16,13 @@ module.exports = {
         "@typescript-eslint/ban-types": "warn",
         "@typescript-eslint/explicit-member-accessibility": ["error", {
             "accessibility": "no-public"
+        }],
+        "sort-imports": ["error", {
+            "ignoreCase": false,
+            "ignoreDeclarationSort": false,
+            "ignoreMemberSort": false,
+            "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
+            "allowSeparatedGroups": false
         }]
     }
 };

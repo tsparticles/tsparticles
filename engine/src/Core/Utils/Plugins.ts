@@ -2,17 +2,18 @@ import type {
     IContainerPlugin,
     IInteractor,
     IMovePathGenerator,
+    IParticleMover,
     IParticleUpdater,
     IPlugin,
     IShapeDrawer,
 } from "../Interfaces";
+import type { IOptions, Options } from "../../Options";
 import type { Container } from "../Container";
-import type { Engine } from "../../engine";
-import type { IOptions } from "../../Options/Interfaces/IOptions";
-import type { Options } from "../../Options/Classes/Options";
+import { Engine } from "../../engine";
 import type { RecursivePartial } from "../../Types";
 
 type InteractorInitializer = (container: Container) => IInteractor;
+type MoverInitializer = (container: Container) => IParticleMover;
 type UpdaterInitializer = (container: Container) => IParticleUpdater;
 
 /**
@@ -23,8 +24,10 @@ export class Plugins {
 
     readonly plugins: IPlugin[];
     readonly interactorsInitializers;
+    readonly moversInitializers;
     readonly updatersInitializers;
     readonly interactors;
+    readonly movers;
     readonly updaters;
     readonly presets;
     readonly drawers;
@@ -35,8 +38,10 @@ export class Plugins {
 
         this.plugins = [];
         this.interactorsInitializers = new Map<string, InteractorInitializer>();
+        this.moversInitializers = new Map<string, MoverInitializer>();
         this.updatersInitializers = new Map<string, UpdaterInitializer>();
         this.interactors = new Map<Container, IInteractor[]>();
+        this.movers = new Map<Container, IParticleMover[]>();
         this.updaters = new Map<Container, IParticleUpdater[]>();
         this.presets = new Map<string, RecursivePartial<IOptions>>();
         this.drawers = new Map<string, IShapeDrawer>();
@@ -136,5 +141,21 @@ export class Plugins {
 
     addParticleUpdater(name: string, initUpdater: (container: Container) => IParticleUpdater): void {
         this.updatersInitializers.set(name, initUpdater);
+    }
+
+    getMovers(container: Container, force = false): IParticleMover[] {
+        let res = this.movers.get(container);
+
+        if (!res || force) {
+            res = [...this.moversInitializers.values()].map((t) => t(container));
+
+            this.movers.set(container, res);
+        }
+
+        return res;
+    }
+
+    addParticleMover(name: string, initMover: (container: Container) => IParticleMover): void {
+        this.moversInitializers.set(name, initMover);
     }
 }

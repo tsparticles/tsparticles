@@ -4,7 +4,7 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 /// <reference types="react" />
-import type { Container, ISourceOptions, Engine } from "tsparticles";
+import type { Container, ISourceOptions, Engine } from "tsparticles-engine";
 
 export interface IParticlesState {
     library?: Container;

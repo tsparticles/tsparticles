@@ -1,7 +1,6 @@
-import { EditorBase } from "../../../../EditorBase";
+import type { Container, ILife } from "tsparticles-engine";
 import { EditorGroup, EditorType } from "object-gui";
-import type { Container } from "tsparticles";
-import type { ILife } from "tsparticles/Options/Interfaces/Particles/Life/ILife";
+import { EditorBase } from "../../../../EditorBase";
 
 export class LifeOptionsEditor extends EditorBase {
     group!: EditorGroup;

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import type { Container, ISourceOptions } from "tsparticles";
+import type { Container, Engine, ISourceOptions } from "tsparticles-engine";
+import { loadFull } from "tsparticles";
 
 @Component({
   selector: 'app-root',
@@ -55,7 +56,7 @@ export class AppComponent {
       move: {
         direction: 'none',
         enable: true,
-        outMode: 'bounce',
+        outModes: 'bounce',
         random: false,
         speed: 6,
         straight: false
@@ -74,8 +75,7 @@ export class AppComponent {
         type: 'circle'
       },
       size: {
-        random: true,
-        value: 5
+        value: { min: 1, max: 5 }
       }
     },
     detectRetina: true
@@ -85,6 +85,12 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
+  }
+
+  async particlesInit(engine: Engine): Promise<void> {
+    await loadFull(engine);
+
+    console.log(loadFull);
   }
 
   public particlesLoaded(container: Container): void {

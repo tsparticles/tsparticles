@@ -51,16 +51,16 @@ module.exports = {
             {
                 test: /\.riot$/,
                 exclude: /node_modules/,
-                use: [{
+                use: [ {
                     loader: '@riotjs/webpack-loader',
                     options: {
                         hot: true
                     }
-                }]
+                } ]
             },
             {
                 test: /\.css$/i,
-                use: [MiniCssExtractPlugin.loader, 'css-loader'],
+                use: [ MiniCssExtractPlugin.loader, 'css-loader' ],
             },
         ]
     },

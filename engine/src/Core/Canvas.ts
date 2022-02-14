@@ -14,9 +14,9 @@ import {
     gradient,
     paintBase,
 } from "../Utils";
-import { Constants } from "./Utils";
 import type { Container } from "./Container";
 import type { Particle } from "./Particle";
+import { generatedAttribute } from "./Utils";
 
 /**
  * Canvas manager
@@ -77,8 +77,8 @@ export class Canvas {
         }
 
         this.generatedCanvas =
-            canvas.dataset && Constants.generatedAttribute in canvas.dataset
-                ? canvas.dataset[Constants.generatedAttribute] === "true"
+            canvas.dataset && generatedAttribute in canvas.dataset
+                ? canvas.dataset[generatedAttribute] === "true"
                 : this.generatedCanvas;
         this.element = canvas;
         this.originalStyle = deepExtend({}, this.element.style) as CSSStyleDeclaration;

@@ -31,8 +31,6 @@
         "loose": true
       }
     ],
-    [
-      "@babel/transform-runtime"
-    ]
+    "@babel/transform-runtime"
   ]
 }

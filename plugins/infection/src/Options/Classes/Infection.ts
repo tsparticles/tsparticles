@@ -1,7 +1,6 @@
+import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
 import type { IInfection } from "../Interfaces/IInfection";
-import type { RecursivePartial } from "tsparticles";
 import { InfectionStage } from "./InfectionStage";
-import type { IOptionLoader } from "tsparticles/Options/Interfaces/IOptionLoader";
 
 /**
  * [[include:Options/Infection.md]]

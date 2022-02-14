@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.22.2...particles.vue@3.0.0-beta.4) (2022-01-30)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+* **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+* **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
+## [2.41.1](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.41.0...particles.vue@2.41.1) (2022-02-14)
+
+**Note:** Version bump only for package particles.vue
+
+
+
+
+
 # [2.41.0](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.40.2...particles.vue@2.41.0) (2022-02-10)
 
 **Note:** Version bump only for package particles.vue
@@ -40,11 +56,20 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
+* async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
 * updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
 
 
 
 
+# [3.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/particles.vue@3.0.0-beta.2...particles.vue@3.0.0-beta.3) (2021-12-07)
+
+
+### Features
+
+* async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
 
 ## [2.22.2](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.22.1...particles.vue@2.22.2) (2022-01-29)
 
@@ -89,6 +114,18 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [3.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.20.5...particles.vue@3.0.0-beta.2) (2021-12-04)
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+# [3.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.18.4...particles.vue@3.0.0-beta.1) (2021-10-06)
 ## [2.20.5](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.20.4...particles.vue@2.20.5) (2021-11-28)
 
 **Note:** Version bump only for package particles.vue
@@ -142,12 +179,19 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 * fixed lazy loading ([60f9689](https://github.com/matteobruni/tsparticles/commit/60f96899bc564e547a49a5e17be4f40fe12288ba))
 
 
 
 
 
+# [3.0.0-beta.0](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.18.3...particles.vue@3.0.0-beta.0) (2021-10-06)
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 ## [2.18.4](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.18.3...particles.vue@2.18.4) (2021-10-06)
 
 **Note:** Version bump only for package particles.vue

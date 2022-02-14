@@ -6,7 +6,6 @@ export * from "./ExternalInteractorBase";
 export * from "./FrameManager";
 export * from "./InteractionManager";
 export * from "./ParticlesInteractorBase";
-export * from "./ParticlesMover";
 export * from "./Plugins";
 export * from "./Point";
 export * from "./QuadTree";

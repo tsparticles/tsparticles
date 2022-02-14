@@ -4,7 +4,7 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 /// <reference types="inferno" />
-import type { Container, ISourceOptions, Engine } from "tsparticles";
+import type { Container, ISourceOptions, Engine } from "tsparticles-engine";
 import type { Component } from "inferno";
 import type { RefObject } from "inferno";
 

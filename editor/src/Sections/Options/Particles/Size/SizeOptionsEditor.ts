@@ -1,6 +1,5 @@
-import type { Container } from "tsparticles";
-import type { ISize } from "tsparticles/Options/Interfaces/Particles/Size/ISize";
-import { DestroyType, StartValueType } from "tsparticles";
+import type { Container, ISize } from "tsparticles-engine";
+import { DestroyType, StartValueType } from "tsparticles-engine";
 import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
 

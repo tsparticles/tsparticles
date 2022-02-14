@@ -2,10 +2,9 @@
  * [[include:Plugins.md]]
  * @packageDocumentation
  */
+import type { IOptions, Options } from "../../Options";
 import type { Container } from "../Container";
 import type { IContainerPlugin } from "./IContainerPlugin";
-import type { IOptions } from "../../Options/Interfaces/IOptions";
-import type { Options } from "../../Options/Classes/Options";
 import type { RecursivePartial } from "../../Types";
 
 /**

@@ -26,8 +26,8 @@ Once installed you need one more script to be included in your page (or you can 
 from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-firefly):
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@1/tsparticles.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-firefly@1/tsparticles.preset.firefly.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-firefly@2/tsparticles.preset.firefly.min.js"></script>
 ```
 
 This script **MUST** be placed after the `tsParticles` one.
@@ -37,7 +37,7 @@ This script **MUST** be placed after the `tsParticles` one.
 A bundled script can also be used, this will include every needed plugin needed by the preset.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-firefly@1/tsparticles.preset.firefly.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-firefly@2/tsparticles.preset.firefly.bundle.min.js"></script>
 ```
 
 ### Usage
@@ -78,14 +78,14 @@ This sample uses the class component syntax, but you can use hooks as well (if t
 
 ```javascript
 import Particles from "react-tsparticles";
-import { Main } from "tsparticles";
+import { Engine } from "tsparticles-engine";
 import { loadFireflyPreset } from "tsparticles-preset-firefly";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
   // this customizes the component tsParticles installation
-  customInit(main: Main) {
+  async customInit(engine: Engine): Promise<void> {
     // this adds the preset to tsParticles, you can safely use the
-    loadFireflyPreset(main);
+    await loadFireflyPreset(engine);
   }
 
   render() {
@@ -107,8 +107,8 @@ _The syntax for `Vue.js 2.x` and `3.x` is the same_
 ```
 
 ```js
-function particlesInit(main: Main) {
-  loadFireflyPreset(main);
+async function particlesInit(engine: Engine): Promise<void> {
+  await loadFireflyPreset(engine);
 }
 ```
 
@@ -124,8 +124,8 @@ function particlesInit(main: Main) {
 ```
 
 ```ts
-function particlesInit(main: Main): void {
-  loadFireflyPreset(main);
+async function particlesInit(engine: Engine): Promise<void> {
+  await loadFireflyPreset(engine);
 }
 ```
 
@@ -141,7 +141,7 @@ function particlesInit(main: Main): void {
 ```
 
 ```js
-let onParticlesInit = (main) => {
-  loadFireflyPreset(main);
-};
+async function onParticlesInit(main) {
+  await loadFireflyPreset(main);
+}
 ```

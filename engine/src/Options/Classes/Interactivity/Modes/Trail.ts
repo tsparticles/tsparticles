@@ -1,6 +1,5 @@
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { IParticles } from "../../../Interfaces/Particles/IParticles";
-import type { ITrail } from "../../../Interfaces/Interactivity/Modes/ITrail";
+import type { IOptionLoader, ITrail } from "../../../Interfaces";
+import type { IParticlesOptions } from "../../../Interfaces";
 import type { RecursivePartial } from "../../../../Types";
 import { deepExtend } from "../../../../Utils";
 
@@ -9,7 +8,7 @@ import { deepExtend } from "../../../../Utils";
  */
 export class Trail implements ITrail, IOptionLoader<ITrail> {
     delay;
-    particles?: RecursivePartial<IParticles>;
+    particles?: RecursivePartial<IParticlesOptions>;
     pauseOnStop;
     quantity;
 
@@ -20,7 +19,7 @@ export class Trail implements ITrail, IOptionLoader<ITrail> {
     }
 
     load(data?: RecursivePartial<ITrail>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 
@@ -33,7 +32,7 @@ export class Trail implements ITrail, IOptionLoader<ITrail> {
         }
 
         if (data.particles !== undefined) {
-            this.particles = deepExtend({}, data.particles) as RecursivePartial<IParticles>;
+            this.particles = deepExtend({}, data.particles) as RecursivePartial<IParticlesOptions>;
         }
 
         if (data.pauseOnStop !== undefined) {

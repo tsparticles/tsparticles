@@ -4,7 +4,7 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 import { IParticlesProps, IParticlesState, ParticlesProps } from "../src/";
-import { ISourceOptions } from "tsparticles";
+import { ISourceOptions } from "tsparticles-engine";
 import { ComponentClass } from "react";
 
 type IParticlesParams = IParticlesProps;

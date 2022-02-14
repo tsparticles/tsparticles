@@ -1,5 +1,5 @@
-import { ExternalInteractorBase, HoverMode, isInArray } from "tsparticles";
-import type { Container } from "tsparticles";
+import { ExternalInteractorBase, HoverMode, isInArray } from "tsparticles-engine";
+import type { Container } from "tsparticles-engine";
 import { drawLight } from "./Utils";
 
 export class ExternalLighter extends ExternalInteractorBase {
@@ -7,7 +7,7 @@ export class ExternalLighter extends ExternalInteractorBase {
         super(container);
     }
 
-    interact(): void {
+    async interact(): Promise<void> {
         const container = this.container,
             options = container.actualOptions;
 

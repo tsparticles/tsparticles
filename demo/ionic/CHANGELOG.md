@@ -3,11 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/ionic@0.8.2...ionic@1.0.0-beta.5) (2022-01-30)
+## [0.10.1](https://github.com/matteobruni/tsparticles/compare/ionic-demo@0.10.0...ionic-demo@0.10.1) (2022-02-14)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to ~13.2.0 ([9467d48](https://github.com/matteobruni/tsparticles/commit/9467d483c54916099d822afef05e811dc2d6aace))
+* **deps:** update capacitor monorepo ([57a478c](https://github.com/matteobruni/tsparticles/commit/57a478c0ea1459ce310070a57dd9cbe95df69446))
+* **deps:** update dependency rxjs to v7 ([0b09194](https://github.com/matteobruni/tsparticles/commit/0b0919449fff69eec029e00dbab9f1d683f84682))
+
+
+
+
+
 # 0.10.0 (2022-02-10)
 
 
 ### Bug Fixes
 
+* **deps:** update angular monorepo to ~13.1.0 ([1f80f2b](https://github.com/matteobruni/tsparticles/commit/1f80f2b467d440ed3f2d4b4a4bd08eb561cef76f))
+* **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+* **deps:** update capacitor monorepo ([405fb46](https://github.com/matteobruni/tsparticles/commit/405fb46102a790fb686f05651c6b414876a0900f))
+* **deps:** update capacitor monorepo ([eaeea3b](https://github.com/matteobruni/tsparticles/commit/eaeea3b5cc7a0589d2883d371aa756104c1bace8))
+* **deps:** update capacitor monorepo ([f501b7e](https://github.com/matteobruni/tsparticles/commit/f501b7e93bb14fd04dfabea7e54948dca9e5219a))
+* **deps:** update capacitor monorepo ([5bf40c2](https://github.com/matteobruni/tsparticles/commit/5bf40c2b300f67244341589dd5cb8671005f6921))
+* **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+* **deps:** update dependency rxjs to ~7.4.0 ([048238b](https://github.com/matteobruni/tsparticles/commit/048238b7b14b1ee49356afa47e5c7aa0ab4ac1f0))
+* **deps:** update dependency rxjs to ~7.5.0 ([f2d0505](https://github.com/matteobruni/tsparticles/commit/f2d0505863dafba475f8d6275d6474a54970a814))
 * **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
 * **deps:** pin dependencies ([3dac0d0](https://github.com/matteobruni/tsparticles/commit/3dac0d0a594092707ddd31a70b09cdb7238d5eba))
 * **deps:** update all ([d9f0ff2](https://github.com/matteobruni/tsparticles/commit/d9f0ff2f8c4ac269aaad5077492746e3da8fb422))
@@ -54,12 +77,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 * updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
 
 
 
 
 
+# [1.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/ionic@1.0.0-beta.3...ionic@1.0.0-beta.4) (2021-12-07)
 ## [0.8.2](https://github.com/matteobruni/tsparticles/compare/ionic@0.8.1...ionic@0.8.2) (2022-01-29)
 
 **Note:** Version bump only for package ionic
@@ -100,6 +125,37 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [1.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/ionic@0.6.5...ionic@1.0.0-beta.3) (2021-12-04)
+
+
+### Bug Fixes
+
+* **deps:** update capacitor monorepo ([eaeea3b](https://github.com/matteobruni/tsparticles/commit/eaeea3b5cc7a0589d2883d371aa756104c1bace8))
+* **deps:** update capacitor monorepo ([f501b7e](https://github.com/matteobruni/tsparticles/commit/f501b7e93bb14fd04dfabea7e54948dca9e5219a))
+* **deps:** update capacitor monorepo ([5bf40c2](https://github.com/matteobruni/tsparticles/commit/5bf40c2b300f67244341589dd5cb8671005f6921))
+* **deps:** update dependency rxjs to ~7.4.0 ([048238b](https://github.com/matteobruni/tsparticles/commit/048238b7b14b1ee49356afa47e5c7aa0ab4ac1f0))
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+# [1.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/ionic@0.4.4...ionic@1.0.0-beta.2) (2021-10-06)
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+# [1.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/ionic@1.0.0-beta.0...ionic@1.0.0-beta.1) (2021-10-06)
 ## [0.6.5](https://github.com/matteobruni/tsparticles/compare/ionic@0.6.4...ionic@0.6.5) (2021-11-28)
 
 **Note:** Version bump only for package ionic
@@ -159,6 +215,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ## [0.4.4](https://github.com/matteobruni/tsparticles/compare/ionic@0.4.3...ionic@0.4.4) (2021-10-06)
 
 **Note:** Version bump only for package ionic
+
+
+
+
+
+# [1.0.0-beta.0](https://github.com/matteobruni/tsparticles/compare/ionic@0.4.3...ionic@1.0.0-beta.0) (2021-10-06)
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 
 

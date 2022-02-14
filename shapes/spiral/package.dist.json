@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-spiral",
-  "version": "1.41.0",
+  "version": "2.0.0-beta.5",
   "description": "tsParticles spiral shape",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -48,12 +48,12 @@
       "url": "https://www.buymeacoffee.com/matteobruni"
     }
   ],
-  "main": "shape.js",
+  "main": "index.js",
   "jsdelivr": "tsparticles.shape.spiral.min.js",
   "unpkg": "tsparticles.shape.spiral.min.js",
-  "module": "shape.js",
-  "types": "shape.d.ts",
+  "module": "index.js",
+  "types": "index.d.ts",
   "dependencies": {
-    "tsparticles": "^1.41.0"
+    "tsparticles-engine": "^2.0.0-beta.4"
   }
 }
