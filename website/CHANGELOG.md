@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.41.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.41.0...tsparticles-website@1.41.1) (2022-02-14)
+
+
+### Bug Fixes
+
+* **deps:** update dependency minify to v8 ([e2ffbec](https://github.com/matteobruni/tsparticles/commit/e2ffbec6b4c83a847450c1edc8b8f114f45c0eff))
+
+
+
+
+
 # [1.41.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.40.2...tsparticles-website@1.41.0) (2022-02-10)
 
 **Note:** Version bump only for package tsparticles-website

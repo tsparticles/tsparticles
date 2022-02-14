@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-sea-anemone",
-  "version": "1.41.0",
+  "version": "1.41.1",
   "description": "tsParticles sea anemone preset",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -54,7 +54,7 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles": "^1.41.0",
-    "tsparticles-path-curves": "^1.41.0"
+    "tsparticles": "^1.41.1",
+    "tsparticles-path-curves": "^1.41.1"
   }
 }

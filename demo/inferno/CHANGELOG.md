@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.24.1](https://github.com/matteobruni/tsparticles/compare/inferno-particles-demo@1.24.0...inferno-particles-demo@1.24.1) (2022-02-14)
+
+
+### Bug Fixes
+
+* upgrade inferno from 7.4.9 to 7.4.11 ([29f7229](https://github.com/matteobruni/tsparticles/commit/29f7229192fc522accb8258d2b5905c90e38e421))
+
+
+
+
+
 # [1.24.0](https://github.com/matteobruni/tsparticles/compare/inferno-particles-demo@1.23.2...inferno-particles-demo@1.24.0) (2022-02-10)
 
 **Note:** Version bump only for package inferno-particles-demo
