@@ -1,4 +1,5 @@
 import type { Engine } from "tsparticles-engine";
+import { SlimV1Plugin } from "./SlimV1Plugin";
 import { loadAngleUpdater } from "tsparticles-updater-angle";
 import { loadBaseMover } from "tsparticles-move-base";
 import { loadCircleShape } from "tsparticles-shape-circle";
@@ -29,6 +30,8 @@ import { loadStrokeColorUpdater } from "tsparticles-updater-stroke-color";
 import { loadTextShape } from "tsparticles-shape-text";
 
 export async function loadSlim(engine: Engine): Promise<void> {
+    await engine.addPlugin(new SlimV1Plugin());
+
     await loadBaseMover(engine);
     await loadParallaxMover(engine);
 

@@ -14,7 +14,7 @@ import type {
 import { deepExtend, setRangeValue } from "tsparticles-engine";
 import type { IParticlesJSOptions } from "./IParticlesJSOptions";
 
-const fixOptions = (options: RecursivePartial<IParticlesJSOptions>): ISourceOptions => {
+export const fixOptions = (options: RecursivePartial<IParticlesJSOptions>): ISourceOptions => {
     if (options.retina_detect !== undefined) {
         options.detectRetina = options.retina_detect;
     }
@@ -170,5 +170,3 @@ const fixOptions = (options: RecursivePartial<IParticlesJSOptions>): ISourceOpti
 
     return options;
 };
-
-export { fixOptions };

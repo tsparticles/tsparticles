@@ -5,7 +5,7 @@
 import type { Container, Engine, Particle, RecursivePartial } from "tsparticles-engine";
 import type { IParticlesJS } from "./IParticlesJS";
 import type { IParticlesJSOptions } from "./IParticlesJSOptions";
-import { ParticlesJSPlugin } from "./particlesJSPlugin";
+import { ParticlesJSPlugin } from "./ParticlesJSPlugin";
 
 const initPjs = (engine: Engine): { particlesJS: IParticlesJS; pJSDom: Container[] } => {
     engine.addPlugin(new ParticlesJSPlugin());
