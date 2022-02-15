@@ -7,6 +7,28 @@ import type { RecursivePartial } from "../../../../Types";
  * @category Options
  */
 export class OpacityAnimation extends AnimationOptions implements IOpacityAnimation, IOptionLoader<IOpacityAnimation> {
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new minimumValue
+     */
+    get opacity_min(): number | undefined {
+        return this.minimumValue;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new minimumValue
+     * @param value
+     */
+    set opacity_min(value: number | undefined) {
+        this.minimumValue = value;
+    }
+
+    /**
+     * @deprecated this property is obsolete, please use the new min/max object in the opacity value
+     */
+    minimumValue?: number;
+
     destroy: DestroyType | keyof typeof DestroyType;
     startValue: StartValueType | keyof typeof StartValueType;
 
@@ -33,6 +55,8 @@ export class OpacityAnimation extends AnimationOptions implements IOpacityAnimat
         if (data.enable !== undefined) {
             this.enable = data.enable;
         }
+
+        this.minimumValue = data.minimumValue ?? data.opacity_min;
 
         if (data.speed !== undefined) {
             this.speed = data.speed;

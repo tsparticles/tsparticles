@@ -5,6 +5,20 @@ import type { RecursivePartial } from "../../../../Types";
  * @category Options
  */
 export class Slow implements ISlow, IOptionLoader<ISlow> {
+    /**
+     * @deprecated this property will be removed soon, please use the HoverMode.slow in the HoverEvent
+     */
+    get active(): boolean {
+        return false;
+    }
+
+    /**
+     * @deprecated this property will be removed soon, please use the HoverMode.slow in the HoverEvent
+     */
+    set active(_value: boolean) {
+        // deprecated
+    }
+
     factor;
     radius;
 

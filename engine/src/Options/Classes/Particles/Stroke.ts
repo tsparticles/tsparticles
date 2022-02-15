@@ -20,7 +20,9 @@ export class Stroke implements IStroke, IOptionLoader<IStroke> {
             return;
         }
 
-        this.color = AnimatableColor.create(this.color, data.color);
+        if (data.color !== undefined) {
+            this.color = AnimatableColor.create(this.color, data.color);
+        }
 
         if (data.width !== undefined) {
             this.width = data.width;

@@ -1,19 +1,21 @@
 import type { IOptionLoader, IParticlesOptions } from "../../../Interfaces";
-import type { RangeValue, RecursivePartial } from "../../../../Types";
-import { deepExtend, setRangeValue } from "../../../../Utils";
 import type { ISplit } from "../../../Interfaces";
+import type { RecursivePartial } from "../../../../Types";
+import { SplitFactor } from "./SplitFactor";
+import { SplitRate } from "./SplitRate";
+import { deepExtend } from "../../../../Utils";
 
 export class Split implements ISplit, IOptionLoader<ISplit> {
     count: number;
-    factor: RangeValue;
-    rate: RangeValue;
+    factor: SplitFactor;
+    rate: SplitRate;
     particles?: RecursivePartial<IParticlesOptions>;
     sizeOffset: boolean;
 
     constructor() {
         this.count = 1;
-        this.factor = 3;
-        this.rate = { min: 4, max: 9 };
+        this.factor = new SplitFactor();
+        this.rate = new SplitRate();
         this.sizeOffset = true;
     }
 
@@ -26,15 +28,12 @@ export class Split implements ISplit, IOptionLoader<ISplit> {
             this.count = data.count;
         }
 
-        if (data.factor !== undefined) {
-            this.factor = setRangeValue(data.factor);
-        }
+        this.factor.load(data.factor);
+        this.rate.load(data.rate);
 
-        if (data.rate !== undefined) {
-            this.rate = setRangeValue(data.rate);
+        if (data.particles !== undefined) {
+            this.particles = deepExtend({}, data.particles) as RecursivePartial<IParticlesOptions>;
         }
-
-        this.particles = deepExtend({}, data.particles) as RecursivePartial<IParticlesOptions>;
 
         if (data.sizeOffset !== undefined) {
             this.sizeOffset = data.sizeOffset;

@@ -1,7 +1,3 @@
-/**
- * [[include:Options/Particles.md]]
- * @category Options
- */
 import type { IOptionLoader, IParticlesOptions } from "../../Interfaces";
 import type { RecursivePartial, SingleOrMultiple } from "../../../Types";
 import { AnimatableColor } from "../AnimatableColor";
@@ -29,6 +25,10 @@ import { Wobble } from "./Wobble";
 import { ZIndex } from "./ZIndex";
 import { deepExtend } from "../../../Utils";
 
+/**
+ * [[include:Options/Particles.md]]
+ * @category Options
+ */
 export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParticlesOptions> {
     bounce;
     collisions;
@@ -54,6 +54,40 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     twinkle;
     wobble;
     zIndex;
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new links
+     */
+    get line_linked(): Links {
+        return this.links;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new links
+     * @param value
+     */
+    set line_linked(value: Links) {
+        this.links = value;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new lineLinked
+     */
+    get lineLinked(): Links {
+        return this.links;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new lineLinked
+     * @param value
+     */
+    set lineLinked(value: Links) {
+        this.links = value;
+    }
 
     constructor() {
         this.bounce = new ParticlesBounce();
@@ -90,9 +124,15 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
 
         this.bounce.load(data.bounce);
         this.color.load(AnimatableColor.create(this.color, data.color));
+
         this.destroy.load(data.destroy);
         this.life.load(data.life);
-        this.links.load(data.links);
+
+        const links = data.links ?? data.lineLinked ?? data.line_linked;
+
+        if (links !== undefined) {
+            this.links.load(links);
+        }
 
         if (data.groups !== undefined) {
             for (const group in data.groups) {
@@ -123,9 +163,16 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.twinkle.load(data.twinkle);
         this.wobble.load(data.wobble);
         this.zIndex.load(data.zIndex);
+
+        const collisions = data.move?.collisions ?? data.move?.bounce;
+
+        if (collisions !== undefined) {
+            this.collisions.enable = collisions;
+        }
+
         this.collisions.load(data.collisions);
 
-        const strokeToLoad = data.stroke;
+        const strokeToLoad = data.stroke ?? data.shape?.stroke;
 
         if (strokeToLoad) {
             if (strokeToLoad instanceof Array) {

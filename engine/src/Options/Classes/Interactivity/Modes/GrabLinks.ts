@@ -26,7 +26,9 @@ export class GrabLinks implements IGrabLinks, IOptionLoader<IGrabLinks> {
             this.blink = data.blink;
         }
 
-        this.color = OptionsColor.create(this.color, data.color);
+        if (data.color !== undefined) {
+            this.color = OptionsColor.create(this.color, data.color);
+        }
 
         if (data.consent !== undefined) {
             this.consent = data.consent;

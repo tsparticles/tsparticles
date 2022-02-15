@@ -22,7 +22,9 @@ export class TwinkleValues implements ITwinkleValues, IOptionLoader<ITwinkleValu
             return;
         }
 
-        this.color = OptionsColor.create(this.color, data.color);
+        if (data.color !== undefined) {
+            this.color = OptionsColor.create(this.color, data.color);
+        }
 
         if (data.enable !== undefined) {
             this.enable = data.enable;

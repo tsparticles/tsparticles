@@ -7,6 +7,40 @@ import { deepExtend } from "../../../../Utils";
  * @category Options
  */
 export class MoveAttract implements IMoveAttract, IOptionLoader<IMoveAttract> {
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new rotate.x
+     */
+    get rotateX(): number {
+        return this.rotate.x;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new rotate.x
+     * @param value
+     */
+    set rotateX(value: number) {
+        this.rotate.x = value;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new rotate.y
+     */
+    get rotateY(): number {
+        return this.rotate.y;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new rotate.y
+     * @param value
+     */
+    set rotateY(value: number) {
+        this.rotate.y = value;
+    }
+
     distance: number;
     enable;
     rotate: ICoordinates;
@@ -33,6 +67,16 @@ export class MoveAttract implements IMoveAttract, IOptionLoader<IMoveAttract> {
             this.enable = data.enable;
         }
 
-        this.rotate = deepExtend(this.rotate, data.rotate) as ICoordinates;
+        const rotateX = data.rotate?.x ?? data.rotateX;
+
+        if (rotateX !== undefined) {
+            this.rotate.x = rotateX;
+        }
+
+        const rotateY = data.rotate?.y ?? data.rotateY;
+
+        if (rotateY !== undefined) {
+            this.rotate.y = rotateY;
+        }
     }
 }

@@ -40,6 +40,7 @@ import {
     getRangeMax,
     getRangeMin,
     getRangeValue,
+    getValue,
     isInArray,
     itemFromArray,
     loadParticlesOptions,
@@ -180,7 +181,7 @@ export class Particle implements IParticle {
         this.fill = this.shapeData?.fill ?? this.fill;
         this.close = this.shapeData?.close ?? this.close;
         this.options = particlesOptions;
-        this.pathDelay = getRangeValue(this.options.move.path.delay) * 1000;
+        this.pathDelay = getValue(this.options.move.path.delay) * 1000;
 
         const zIndexValue = getRangeValue(this.options.zIndex.value);
 
@@ -436,7 +437,7 @@ export class Particle implements IParticle {
             return;
         }
 
-        const rate = getRangeValue(splitOptions.rate);
+        const rate = getValue(splitOptions.rate);
 
         for (let i = 0; i < rate; i++) {
             this.container.particles.addSplitParticle(this);
