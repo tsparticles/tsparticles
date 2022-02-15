@@ -61,6 +61,7 @@
   },
   "dependencies": {
     "tsparticles-engine": "^2.0.0",
+    "tsparticles-particles.js": "^2.0.0",
     "tsparticles-interaction-external-attract": "^2.0.0",
     "tsparticles-interaction-external-bounce": "^2.0.0",
     "tsparticles-interaction-external-bubble": "^2.0.0",

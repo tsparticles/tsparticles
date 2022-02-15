@@ -1,5 +1,4 @@
 import type { Engine } from "tsparticles-engine";
-import { FullV1Plugin } from "./FullV1Plugin";
 import { loadAbsorbersPlugin } from "tsparticles-plugin-absorbers";
 import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
 import { loadExternalTrailInteraction } from "tsparticles-interaction-external-trail";
@@ -10,8 +9,6 @@ import { loadTiltUpdater } from "tsparticles-updater-tilt";
 import { loadWobbleUpdater } from "tsparticles-updater-wobble";
 
 export async function loadFull(engine: Engine): Promise<void> {
-    await engine.addPlugin(new FullV1Plugin());
-
     await loadSlim(engine);
 
     await loadTiltUpdater(engine);
