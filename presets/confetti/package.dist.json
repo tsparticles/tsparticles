@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-confetti",
-  "version": "2.0.0-beta.5",
+  "version": "2.0.0",
   "description": "tsParticles confetti preset",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -54,19 +54,19 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.0.0-beta.4",
-    "tsparticles-move-base": "^2.0.0-beta.5",
-    "tsparticles-plugin-emitters": "^2.0.0-beta.5",
-    "tsparticles-shape-circle": "^2.0.0-beta.5",
-    "tsparticles-shape-square": "^2.0.0-beta.5",
-    "tsparticles-updater-angle": "^2.0.0-beta.5",
-    "tsparticles-updater-color": "^2.0.0-beta.5",
-    "tsparticles-updater-life": "^2.0.0-beta.5",
-    "tsparticles-updater-opacity": "^2.0.0-beta.5",
-    "tsparticles-updater-out-modes": "^2.0.0-beta.5",
-    "tsparticles-updater-roll": "^2.0.0-beta.5",
-    "tsparticles-updater-size": "^2.0.0-beta.5",
-    "tsparticles-updater-tilt": "^2.0.0-beta.5",
-    "tsparticles-updater-wobble": "^2.0.0-beta.5"
+    "tsparticles-engine": "^2.0.0",
+    "tsparticles-move-base": "^2.0.0",
+    "tsparticles-plugin-emitters": "^2.0.0",
+    "tsparticles-shape-circle": "^2.0.0",
+    "tsparticles-shape-square": "^2.0.0",
+    "tsparticles-updater-angle": "^2.0.0",
+    "tsparticles-updater-color": "^2.0.0",
+    "tsparticles-updater-life": "^2.0.0",
+    "tsparticles-updater-opacity": "^2.0.0",
+    "tsparticles-updater-out-modes": "^2.0.0",
+    "tsparticles-updater-roll": "^2.0.0",
+    "tsparticles-updater-size": "^2.0.0",
+    "tsparticles-updater-tilt": "^2.0.0",
+    "tsparticles-updater-wobble": "^2.0.0"
   }
 }

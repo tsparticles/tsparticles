@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-multiline-text@1.41.1...tsparticles-shape-multiline-text@2.0.0) (2022-02-15)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+* fixed some components init functions, they must be async ([0541dfa](https://github.com/matteobruni/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
+
+
+### Features
+
+* moved all shapes to external packages, breaking ([77e4113](https://github.com/matteobruni/tsparticles/commit/77e411338f65ab076fe85c0f143c13417147d4b5))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-multiline-text@1.24.2...tsparticles-shape-multiline-text@2.0.0-beta.5) (2022-01-30)
 ## [1.41.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-multiline-text@1.41.0...tsparticles-shape-multiline-text@1.41.1) (2022-02-14)
 

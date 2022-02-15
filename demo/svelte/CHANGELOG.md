@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.24.1...svelte-demo@2.0.0) (2022-02-15)
+
+
+### Bug Fixes
+
+* **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
+
+
+### Features
+
+* async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+
+
+
+
+
 # [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.22.2...svelte-demo@2.0.0-beta.5) (2022-01-30)
 
 

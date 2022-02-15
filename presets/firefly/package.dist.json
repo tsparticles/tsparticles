@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-firefly",
-  "version": "2.0.0-beta.5",
+  "version": "2.0.0",
   "description": "tsParticles firefly preset",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -54,13 +54,13 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.0.0-beta.4",
-    "tsparticles-interaction-external-trail": "^2.0.0-beta.5",
-    "tsparticles-move-base": "^2.0.0-beta.5",
-    "tsparticles-shape-circle": "^2.0.0-beta.5",
-    "tsparticles-updater-color": "^2.0.0-beta.5",
-    "tsparticles-updater-life": "^2.0.0-beta.5",
-    "tsparticles-updater-opacity": "^2.0.0-beta.5",
-    "tsparticles-updater-size": "^2.0.0-beta.5"
+    "tsparticles-engine": "^2.0.0",
+    "tsparticles-interaction-external-trail": "^2.0.0",
+    "tsparticles-move-base": "^2.0.0",
+    "tsparticles-shape-circle": "^2.0.0",
+    "tsparticles-updater-color": "^2.0.0",
+    "tsparticles-updater-life": "^2.0.0",
+    "tsparticles-updater-opacity": "^2.0.0",
+    "tsparticles-updater-size": "^2.0.0"
   }
 }

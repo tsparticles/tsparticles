@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-plugin-infection",
-  "version": "2.0.0-beta.5",
+  "version": "2.0.0",
   "description": "tsParticles infection plugin",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -57,6 +57,6 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.0.0-beta.4"
+    "tsparticles-engine": "^2.0.0"
   }
 }
