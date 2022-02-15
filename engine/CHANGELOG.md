@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.0.0...tsparticles-engine@2.0.1) (2022-02-15)
+
+
+### Features
+
+* restored options compatibility with v1 and pjs, it's easier to migrate to v2 this way ([78dd8cd](https://github.com/matteobruni/tsparticles/commit/78dd8cd49eb9d7a69d1cf2f26d727615c8cf1e15))
+
+
+
+
+
 # [2.0.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.0.0-beta.4...tsparticles-engine@2.0.0) (2022-02-15)
 
 
