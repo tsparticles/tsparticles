@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.41.2](https://github.com/matteobruni/tsparticles/compare/svelte-particles@1.41.1...svelte-particles@1.41.2) (2022-02-16)
+
+
+### Bug Fixes
+
+* fixed svelte componente, it was having issues with TypeScript syntax inside ([1a4b01d](https://github.com/matteobruni/tsparticles/commit/1a4b01d2efaff7ed848c1606fb3e53628b6ffd94))
+
+
+
+
+
 ## [1.41.1](https://github.com/matteobruni/tsparticles/compare/svelte-particles@1.41.0...svelte-particles@1.41.1) (2022-02-14)
 
 **Note:** Version bump only for package svelte-particles
