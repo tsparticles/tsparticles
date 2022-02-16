@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.41.2](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.41.1...riot-particles@1.41.2) (2022-02-16)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
 ## [1.41.1](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.41.0...riot-particles@1.41.1) (2022-02-14)
 
 **Note:** Version bump only for package riot-particles

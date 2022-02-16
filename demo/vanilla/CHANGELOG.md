@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.26.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.26.1...tsparticles-demo@1.26.2) (2022-02-16)
+
+
+### Bug Fixes
+
+* fixed tilt back/front colors ([657585f](https://github.com/matteobruni/tsparticles/commit/657585f22d7fefa95df1cde16d6c68522fcfb34b))
+
+
+
+
+
 ## [1.26.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.26.0...tsparticles-demo@1.26.1) (2022-02-14)
 
 **Note:** Version bump only for package tsparticles-demo

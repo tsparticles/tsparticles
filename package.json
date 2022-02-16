@@ -22,6 +22,9 @@
     "lerna": "^4.0.0",
     "yorkie": "^2.0.0"
   },
+  "resolutions": {
+    "npm-packlist": "1.1.12"
+  },
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
