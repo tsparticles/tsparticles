@@ -22,7 +22,7 @@
   "dependencies": {
     "particles.vue": "^2.41.2",
     "tsparticles": "^1.41.2",
-    "vue": "^2.6.14",
+    "vue": "^3.0.0",
     "vue-class-component": "^7.2.6",
     "vue-property-decorator": "^9.1.2"
   },
@@ -34,9 +34,9 @@
     "@rollup/plugin-replace": "3.1.0",
     "@typescript-eslint/eslint-plugin": "5.12.0",
     "@typescript-eslint/parser": "5.12.0",
-    "@vue/cli-plugin-babel": "4.5.15",
-    "@vue/cli-plugin-typescript": "4.5.15",
-    "@vue/cli-service": "4.5.15",
+    "@vue/cli-plugin-babel": "5.0.1",
+    "@vue/cli-plugin-typescript": "5.0.1",
+    "@vue/cli-service": "5.0.1",
     "babel-loader": "8.2.3",
     "eslint": "8.9.0",
     "eslint-config-prettier": "8.3.0",
