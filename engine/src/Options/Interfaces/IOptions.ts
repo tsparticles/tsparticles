@@ -1,7 +1,6 @@
 import type { RangeValue, RecursivePartial, SingleOrMultiple } from "../../Types";
 import type { IBackground } from "./Background";
 import type { IBackgroundMask } from "./BackgroundMask";
-import type { IColor } from "../../Core";
 import type { IFullScreen } from "./FullScreen";
 import type { IInteractivity } from "./Interactivity";
 import type { IManualParticle } from "./IManualParticle";

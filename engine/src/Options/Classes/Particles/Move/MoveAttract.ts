@@ -1,7 +1,6 @@
 import type { IMoveAttract, IOptionLoader } from "../../../Interfaces";
 import type { ICoordinates } from "../../../../Core";
 import type { RecursivePartial } from "../../../../Types";
-import { deepExtend } from "../../../../Utils";
 
 /**
  * @category Options
