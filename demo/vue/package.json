@@ -27,7 +27,7 @@
     "vue-property-decorator": "^9.1.2"
   },
   "devDependencies": {
-    "@babel/core": "7.17.4",
+    "@babel/core": "7.17.5",
     "@babel/plugin-proposal-class-properties": "7.16.7",
     "@babel/plugin-proposal-decorators": "7.17.2",
     "@rollup/plugin-node-resolve": "13.1.3",
