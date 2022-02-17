@@ -40,14 +40,16 @@ export abstract class BubbleBase implements IBubbleBase, IOptionLoader<IBubbleBa
             this.opacity = data.opacity;
         }
 
-        if (data.color instanceof Array) {
-            this.color = data.color.map((s) => OptionsColor.create(undefined, s));
-        } else {
-            if (this.color instanceof Array) {
-                this.color = new OptionsColor();
-            }
+        if (data.color !== undefined) {
+            if (data.color instanceof Array) {
+                this.color = data.color.map((s) => OptionsColor.create(undefined, s));
+            } else {
+                if (this.color instanceof Array) {
+                    this.color = new OptionsColor();
+                }
 
-            this.color = OptionsColor.create(this.color, data.color);
+                this.color = OptionsColor.create(this.color, data.color);
+            }
         }
 
         if (data.size !== undefined) {

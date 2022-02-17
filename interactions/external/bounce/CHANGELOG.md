@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-external-bounce@2.0.0...tsparticles-interaction-external-bounce@2.0.1) (2022-02-15)
+
+**Note:** Version bump only for package tsparticles-interaction-external-bounce
+
+
+
+
+
+# [2.0.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-external-bounce@2.0.0-beta.5...tsparticles-interaction-external-bounce@2.0.0) (2022-02-15)
+
+**Note:** Version bump only for package tsparticles-interaction-external-bounce
+
+
+
+
+
 # [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-external-bounce@2.0.0-beta.4...tsparticles-interaction-external-bounce@2.0.0-beta.5) (2022-01-30)
 
 

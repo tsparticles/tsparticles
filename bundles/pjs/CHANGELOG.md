@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-particles.js@2.0.0...tsparticles-particles.js@2.0.1) (2022-02-15)
+
+
+### Features
+
+* added v1 plugins to slim and full bundle, fixed some stuff in pjs plugin ([411ddce](https://github.com/matteobruni/tsparticles/commit/411ddcec5e47940546884bf3135800e06b267a21))
+
+
+
+
+
+# [2.0.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-particles.js@2.0.0-beta.5...tsparticles-particles.js@2.0.0) (2022-02-15)
+
+**Note:** Version bump only for package tsparticles-particles.js
+
+
+
+
+
 # [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-particles.js@2.0.0-beta.4...tsparticles-particles.js@2.0.0-beta.5) (2022-01-30)
 
 

@@ -1,20 +1,21 @@
 /**
  * @category Options
  */
-import type { IMovePath, IOptionLoader } from "../../../Interfaces";
-import type { PathOptions, RangeValue, RecursivePartial } from "../../../../Types";
-import { deepExtend, setRangeValue } from "../../../../Utils";
+import type { IMovePath, IOptionLoader } from "../../../../Interfaces";
+import type { PathOptions, RecursivePartial } from "../../../../../Types";
+import { MovePathDelay } from "./MovePathDelay";
+import { deepExtend } from "../../../../../Utils";
 
 export class MovePath implements IMovePath, IOptionLoader<IMovePath> {
     clamp;
-    delay: RangeValue;
+    delay;
     enable;
     options: PathOptions;
     generator?: string;
 
     constructor() {
         this.clamp = true;
-        this.delay = 0;
+        this.delay = new MovePathDelay();
         this.enable = false;
         this.options = {};
     }
@@ -28,15 +29,16 @@ export class MovePath implements IMovePath, IOptionLoader<IMovePath> {
             this.clamp = data.clamp;
         }
 
-        if (data.delay !== undefined) {
-            this.delay = setRangeValue(data.delay);
-        }
+        this.delay.load(data.delay);
 
         if (data.enable !== undefined) {
             this.enable = data.enable;
         }
 
         this.generator = data.generator;
-        this.options = deepExtend(this.options, data.options) as PathOptions;
+
+        if (data.options) {
+            this.options = deepExtend(this.options, data.options) as PathOptions;
+        }
     }
 }

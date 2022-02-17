@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@2.0.0...tsparticles-demo-new@2.0.1) (2022-02-15)
+## [1.26.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@1.26.1...tsparticles-demo-new@1.26.2) (2022-02-16)
+
+**Note:** Version bump only for package tsparticles-demo-new
+
+
+
+
+
+# [2.0.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@1.26.1...tsparticles-demo-new@2.0.0) (2022-02-15)
+
+
+### Bug Fixes
+
+* **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/matteobruni/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@1.24.2...tsparticles-demo-new@2.0.0-beta.5) (2022-01-30)
 ## [1.26.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@1.26.0...tsparticles-demo-new@1.26.1) (2022-02-14)
 

@@ -346,7 +346,7 @@ This preset loads big colored circles moving upwards on a white background.
 
 [![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/bigCircles/images/sample.png)](https://particles.js.org/samples/presets/bigCircles)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/preset/bigCircles/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/bigCircles/README.md)
 
 ### Bubbles
 
@@ -356,7 +356,7 @@ This preset loads colored bubbles coming from the bottom of the screen on a whit
 
 [![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/bubbles/images/sample.png)](https://particles.js.org/samples/presets/bubbles)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/preset/bubbles/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/bubbles/README.md)
 
 ### Confetti
 
@@ -366,7 +366,7 @@ This preset loads white and red confetti launched from the screen center on a tr
 
 [![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/confetti/images/sample.png)](https://particles.js.org/samples/presets/confetti)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/preset/confetti/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/confetti/README.md)
 
 ### Fire
 
@@ -376,7 +376,7 @@ This preset loads a faded red to black background with particles colored like fi
 
 [![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/fire/images/sample.png)](https://particles.js.org/samples/presets/fire)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/preset/fire/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/fire/README.md)
 
 ### Firefly
 
@@ -386,7 +386,7 @@ This preset loads a mouse trail made with small fading particles like little fir
 
 [![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/firefly/images/sample.png)](https://particles.js.org/samples/presets/firefly)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/preset/firefly/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/firefly/README.md)
 
 ### Fireworks
 
@@ -396,7 +396,7 @@ This preset loads a beautiful fireworks effect.
 
 [![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/fireworks/images/sample.png)](https://particles.js.org/samples/presets/fireworks)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/preset/fireworks/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/fireworks/README.md)
 
 ### Fountain
 
@@ -404,7 +404,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/fountain/images/sample.png)](https://particles.js.org/samples/presets/fountain)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/preset/fountain/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/fountain/README.md)
 
 ### Links
 
@@ -412,7 +412,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/links/images/sample.png)](https://particles.js.org/samples/presets/links)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/preset/links/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/links/README.md)
 
 ### Sea Anemone
 
@@ -420,7 +420,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/seaAnemone/images/sample.png)](https://particles.js.org/samples/presets/seaAnemone)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/preset/seaAnemone/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/seaAnemone/README.md)
 
 ### Snow
 
@@ -428,7 +428,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/snow/images/sample.png)](https://particles.js.org/samples/presets/snow)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/preset/snow/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/snow/README.md)
 
 ### Stars
 
@@ -436,7 +436,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/stars/images/sample.png)](https://particles.js.org/samples/presets/stars)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/preset/stars/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/stars/README.md)
 
 ### Triangles
 
@@ -444,7 +444,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/triangles/images/sample.png)](https://particles.js.org/samples/presets/triangles)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/preset/triangles/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/triangles/README.md)
 
 ---
 

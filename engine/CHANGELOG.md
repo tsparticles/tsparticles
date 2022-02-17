@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.0.0...tsparticles-engine@2.0.1) (2022-02-15)
+
+
+### Features
+
+* restored options compatibility with v1 and pjs, it's easier to migrate to v2 this way ([78dd8cd](https://github.com/matteobruni/tsparticles/commit/78dd8cd49eb9d7a69d1cf2f26d727615c8cf1e15))
+
+
+
+
+
+# [2.0.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.0.0-beta.4...tsparticles-engine@2.0.0) (2022-02-15)
+## [1.41.2](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.41.1...tsparticles@1.41.2) (2022-02-16)
+
+
+### Bug Fixes
+
+* fixed emitter issue on first start, closes [#3074](https://github.com/matteobruni/tsparticles/issues/3074) ([79fe654](https://github.com/matteobruni/tsparticles/commit/79fe654b0c4707337d3ceea7509cf115feddaa05))
+* fixed issue with path generators ([29644fc](https://github.com/matteobruni/tsparticles/commit/29644fc7a281fae1c438dee74e43dd611ec7af07))
+* removed all browser flags in package.json, a lot of issues with it. closes [#3094](https://github.com/matteobruni/tsparticles/issues/3094) ([1415875](https://github.com/matteobruni/tsparticles/commit/14158755ec80ace4e0c520cef407b2d7f4078568))
+* solved performance drop issue after refresh, closes [#2809](https://github.com/matteobruni/tsparticles/issues/2809), [#2815](https://github.com/matteobruni/tsparticles/issues/2815), [#2936](https://github.com/matteobruni/tsparticles/issues/2936) ([286c3e8](https://github.com/matteobruni/tsparticles/commit/286c3e867fab2fcf0660a40abda60d1e756b1fdb))
+
+
+### Features
+
+* added domId property to Emitters options ([9408d14](https://github.com/matteobruni/tsparticles/commit/9408d148138e0bacea6d2e426c885a66c625e1a6))
+* updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
+* fixed tilt back/front colors ([657585f](https://github.com/matteobruni/tsparticles/commit/657585f22d7fefa95df1cde16d6c68522fcfb34b))
+
+
+
+
+
 # [2.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.0.0-beta.3...tsparticles-engine@2.0.0-beta.4) (2022-01-30)
 ## [1.41.1](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.41.0...tsparticles@1.41.1) (2022-02-14)
 

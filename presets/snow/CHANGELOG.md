@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-snow@2.0.0...tsparticles-preset-snow@2.0.1) (2022-02-15)
+## [1.41.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-snow@1.41.1...tsparticles-preset-snow@1.41.2) (2022-02-16)
+
+**Note:** Version bump only for package tsparticles-preset-snow
+
+
+
+
+
+# [2.0.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-snow@1.41.1...tsparticles-preset-snow@2.0.0) (2022-02-15)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+
+
+### Features
+
+* async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+* created and implemented move plugins ([752483a](https://github.com/matteobruni/tsparticles/commit/752483aeeb94dd851dc27fe75e4c258fd87f0a90))
+* fixed snow preset ([38cba58](https://github.com/matteobruni/tsparticles/commit/38cba5884e01be5721395e5f084eb24ac15806de))
+* fixed stars preset ([04e7f4c](https://github.com/matteobruni/tsparticles/commit/04e7f4cd9bda078410940c561a20d57a5502f6e1))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-snow@1.24.2...tsparticles-preset-snow@2.0.0-beta.5) (2022-01-30)
 
 

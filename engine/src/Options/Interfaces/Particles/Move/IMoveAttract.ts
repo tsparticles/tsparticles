@@ -8,5 +8,15 @@ export interface IMoveAttract {
 
     enable: boolean;
 
+    /**
+     * @deprecated use the new rotate.x instead
+     */
+    rotateX: number;
+
+    /**
+     * @deprecated use the new rotate.y instead
+     */
+    rotateY: number;
+
     rotate: ICoordinates;
 }
