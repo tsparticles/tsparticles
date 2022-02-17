@@ -107,7 +107,7 @@
     "rollup-plugin-vue": "^6.0.0",
     "ssri": "^8.0.1",
     "typescript": "~4.5.0",
-    "vue": "^2.6.14",
+    "vue": "^3.0.0",
     "vue-template-compiler": "^2.6.14"
   }
 }
