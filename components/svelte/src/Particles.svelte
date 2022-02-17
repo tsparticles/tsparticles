@@ -1,8 +1,9 @@
 <script lang="ts">
     import { afterUpdate, createEventDispatcher } from "svelte";
+    import type { ISourceOptions } from "tsparticles-engine";
     import { tsParticles } from "tsparticles-engine";
 
-    export let options = {};
+    export let options: ISourceOptions = {};
     export let url = "";
     export let id = "tsparticles";
     export let particlesInit;
@@ -60,4 +61,4 @@
 
 <svelte:options accessors={true}/>
 
-<div {id}/>
+<div {id}></div>

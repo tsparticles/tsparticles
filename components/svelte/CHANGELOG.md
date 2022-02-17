@@ -12,6 +12,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [2.0.0](https://github.com/matteobruni/tsparticles/compare/svelte-particles@1.41.1...svelte-particles@2.0.0) (2022-02-15)
+## [1.41.2](https://github.com/matteobruni/tsparticles/compare/svelte-particles@1.41.1...svelte-particles@1.41.2) (2022-02-16)
 
 
 ### Bug Fixes
@@ -40,6 +41,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+* fixed svelte componente, it was having issues with TypeScript syntax inside ([1a4b01d](https://github.com/matteobruni/tsparticles/commit/1a4b01d2efaff7ed848c1606fb3e53628b6ffd94))
+
+
+
+
+
 ## [1.41.1](https://github.com/matteobruni/tsparticles/compare/svelte-particles@1.41.0...svelte-particles@1.41.1) (2022-02-14)
 
 **Note:** Version bump only for package svelte-particles

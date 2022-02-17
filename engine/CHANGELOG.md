@@ -15,6 +15,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [2.0.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.0.0-beta.4...tsparticles-engine@2.0.0) (2022-02-15)
+## [1.41.2](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.41.1...tsparticles@1.41.2) (2022-02-16)
 
 
 ### Bug Fixes
@@ -29,6 +30,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * added domId property to Emitters options ([9408d14](https://github.com/matteobruni/tsparticles/commit/9408d148138e0bacea6d2e426c885a66c625e1a6))
 * updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
+* fixed tilt back/front colors ([657585f](https://github.com/matteobruni/tsparticles/commit/657585f22d7fefa95df1cde16d6c68522fcfb34b))
 
 
 
