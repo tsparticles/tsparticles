@@ -278,14 +278,6 @@
     "@types/eslint" "*"
     "@types/estree" "*"
 
-"@types/eslint-scope@^3.7.3":
-  version "3.7.3"
-  resolved "https://registry.yarnpkg.com/@types/eslint-scope/-/eslint-scope-3.7.3.tgz#125b88504b61e3c8bc6f870882003253005c3224"
-  integrity sha512-PB3ldyrcnAicT35TWPs5IcwKD8S333HMaa2VVv4+wdvebJkjWuW/xESoB8IwRcog8HYVYamb1g/R31Qv5Bx03g==
-  dependencies:
-    "@types/eslint" "*"
-    "@types/estree" "*"
-
 "@types/eslint@*":
   version "7.2.6"
   resolved "https://registry.yarnpkg.com/@types/eslint/-/eslint-7.2.6.tgz#5e9aff555a975596c03a98b59ecd103decc70c3c"
@@ -298,11 +290,6 @@
   version "0.0.50"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.50.tgz#1e0caa9364d3fccd2931c3ed96fdbeaa5d4cca83"
   integrity sha512-C6N5s2ZFtuZRj54k2/zyRhNDjJwwcViAM3Nbm8zjBpbqAdZ00mr0CFxvSKeO8Y/e03WVFLpQMdHYVfUd6SB+Hw==
-
-"@types/estree@^0.0.51":
-  version "0.0.51"
-  resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.51.tgz#cfd70924a25a3fd32b218e5e420e6897e1ac4f40"
-  integrity sha512-CuPgU6f3eT/XgKKPqKd/gLZV1Xmvf1a2R5POBOGQa6uv82xpls89HU5zKeVoyR8XzHd1RGNOlQlvUe3CFkjWNQ==
 
 "@types/json-schema@*", "@types/json-schema@^7.0.5":
   version "7.0.7"
@@ -857,14 +844,6 @@ enhanced-resolve@^5.8.3:
   version "5.8.3"
   resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-5.8.3.tgz#6d552d465cce0423f5b3d718511ea53826a7b2f0"
   integrity sha512-EGAbGvH7j7Xt2nc0E7D99La1OiEs8LnyimkRgwExpUMScN6O+3x9tIWs7PLQZVNx4YD+00skHXPXi1yQHpAmZA==
-  dependencies:
-    graceful-fs "^4.2.4"
-    tapable "^2.2.0"
-
-enhanced-resolve@^5.9.0:
-  version "5.9.0"
-  resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-5.9.0.tgz#49ac24953ac8452ed8fed2ef1340fc8e043667ee"
-  integrity sha512-weDYmzbBygL7HzGGS26M3hGQx68vehdEg6VUmqSOaFzXExFqlnKuSvsEJCVGQHScS8CQMbrAqftT+AzzHNt/YA==
   dependencies:
     graceful-fs "^4.2.4"
     tapable "^2.2.0"
@@ -1976,7 +1955,7 @@ terser-webpack-plugin@^5.1.3:
     source-map "^0.6.1"
     terser "^5.7.2"
 
-terser-webpack-plugin@^5.2.4, terser-webpack-plugin@^5.3.1:
+terser-webpack-plugin@^5.3.1:
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/terser-webpack-plugin/-/terser-webpack-plugin-5.3.1.tgz#0320dcc270ad5372c1e8993fabbd927929773e54"
   integrity sha512-GvlZdT6wPQKbDNW/GDQzZFg/j4vKU96yl2q6mcUkzKOgW4gwf1Z8cZToUCrz31XHlPWH8MVb1r2tFtdDtTGJ7g==
@@ -2030,60 +2009,6 @@ tslib@^1.8.1, tslib@^1.9.0:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
-
-tsparticles-engine@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.1.tgz#b1415c9c4ea69fd48d3c24dd2b742d256a1a4907"
-  integrity sha512-9AMWUKVOzG7cjeEg2idMoCVOpk/myIqZR9h14p9Qse9y1ZhYsrhDtIWky1xFT6mpLJAGK9yKPTD0oYws4S8n0Q==
-
-tsparticles-interaction-external-push@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/tsparticles-interaction-external-push/-/tsparticles-interaction-external-push-2.0.1.tgz#557d1bc6546250a4a2ecd9cec9cf5f78065fa4d0"
-  integrity sha512-DjVxIWcVPKW6xNIkkBY3Av5l+V0yt3J0WtqVE2eZnKzIoxSZdnszPLRRklXs4ms8HoQfqwl/V2K+KSTq6lnMYQ==
-  dependencies:
-    tsparticles-engine "^2.0.1"
-
-tsparticles-move-base@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/tsparticles-move-base/-/tsparticles-move-base-2.0.1.tgz#75a367af7250906d370cb91cef8015a5e42de37b"
-  integrity sha512-K7ta+myrbi9czcOY6C903QSdKsRVZ+r9gQxBUcL9C4MENAoyDeCcFKC0WV1g7o67GTCl/LWZXN4snky5Hbm2EQ==
-  dependencies:
-    tsparticles-engine "^2.0.1"
-
-tsparticles-shape-circle@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/tsparticles-shape-circle/-/tsparticles-shape-circle-2.0.1.tgz#20f12317418851ed845238ba0f1b27473d2c7e40"
-  integrity sha512-4rX6KRRKQxtL+AVfmdiq9thxvUGnNyiVkniDJDW0xxqA6ULwWP9aDd+V+FIc7+M+ws3vkJxPBtrlYs4w4EE83Q==
-  dependencies:
-    tsparticles-engine "^2.0.1"
-
-tsparticles-updater-color@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/tsparticles-updater-color/-/tsparticles-updater-color-2.0.1.tgz#c03539af9c65ae4cdd2c9dbc479ada1cc9f49750"
-  integrity sha512-ad21mnb3zoU6iWozE5DIWPG/XbmYQEvT4f90GWf0tCeSXzY8OXRc6V9qJKbS17Y/cXp4R3rKIJZyGLq05MVp6g==
-  dependencies:
-    tsparticles-engine "^2.0.1"
-
-tsparticles-updater-opacity@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/tsparticles-updater-opacity/-/tsparticles-updater-opacity-2.0.1.tgz#5f2aefd9c2f4836cc00072737d4940ce9ef82d5b"
-  integrity sha512-JDC418z3cvgse+HnxgrFNEkwk3AsgijsZN9BshK0WGjLPlJxzoW9COquRp3sNGUgTGKf8T5fXHI6m19T6yafKw==
-  dependencies:
-    tsparticles-engine "^2.0.1"
-
-tsparticles-updater-out-modes@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/tsparticles-updater-out-modes/-/tsparticles-updater-out-modes-2.0.1.tgz#c88be9c6ba6f0dae47ebbd52efdb780840299105"
-  integrity sha512-QVrExSmopECogU9lhv1/D+VlOdwNCkmsPmsLSMLoO5wb0oe+QmvBxRzzT+ECaY0dFo9HxFBjaQwn8R+T4bmsHg==
-  dependencies:
-    tsparticles-engine "^2.0.1"
-
-tsparticles-updater-size@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/tsparticles-updater-size/-/tsparticles-updater-size-2.0.1.tgz#08d32f88f5f0da7bbe5e4b5d65fb5f4ff2d07d47"
-  integrity sha512-zNd/zA2XYnBpy9XvY/vvKWQlxp5I2soae9/LxhNA0Jyw0MNR0OL1BbjWav9xvthv/w/wTHPxrj1SyfQPx3uA7A==
-  dependencies:
-    tsparticles-engine "^2.0.1"
 
 tsutils@^3.21.0:
   version "3.21.0"
@@ -2139,7 +2064,7 @@ watchpack@^2.3.1:
     glob-to-regexp "^0.4.1"
     graceful-fs "^4.1.2"
 
-webpack-bundle-analyzer@^4.4.2, webpack-bundle-analyzer@^4.5.0:
+webpack-bundle-analyzer@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/webpack-bundle-analyzer/-/webpack-bundle-analyzer-4.5.0.tgz#1b0eea2947e73528754a6f9af3e91b2b6e0f79d5"
   integrity sha512-GUMZlM3SKwS8Z+CKeIFx7CVoHn3dXFcUAjT/dcZQQmfSZGvitPfMob2ipjai7ovFFqPvTqkEZ/leL4O0YOdAYQ==
@@ -2184,45 +2109,6 @@ webpack-sources@^3.2.3:
   version "3.2.3"
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-3.2.3.tgz#2d4daab8451fd4b240cc27055ff6a0c2ccea0cde"
   integrity sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==
-
-webpack-tsparticles-plugin@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/webpack-tsparticles-plugin/-/webpack-tsparticles-plugin-1.0.0.tgz#590cdf065f5f2b31d91e02d2d848c372523a6d24"
-  integrity sha512-+lFpbdGpSahd/Sa9d5USJ/KD5+7ZTae5KkK+Q7vwITqaF4sYIkllbIKOtQkWL4rGSkloEKXV144ynlJ7skIiOA==
-  dependencies:
-    terser-webpack-plugin "^5.2.4"
-    webpack "^5.53.0"
-    webpack-bundle-analyzer "^4.4.2"
-
-webpack@^5.53.0:
-  version "5.69.0"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.69.0.tgz#c9eb607d4f6c49f1e5755492323a7b055c3450e3"
-  integrity sha512-E5Fqu89Gu8fR6vejRqu26h8ld/k6/dCVbeGUcuZjc+goQHDfCPU9rER71JmdtBYGmci7Ec2aFEATQ2IVXKy2wg==
-  dependencies:
-    "@types/eslint-scope" "^3.7.3"
-    "@types/estree" "^0.0.51"
-    "@webassemblyjs/ast" "1.11.1"
-    "@webassemblyjs/wasm-edit" "1.11.1"
-    "@webassemblyjs/wasm-parser" "1.11.1"
-    acorn "^8.4.1"
-    acorn-import-assertions "^1.7.6"
-    browserslist "^4.14.5"
-    chrome-trace-event "^1.0.2"
-    enhanced-resolve "^5.9.0"
-    es-module-lexer "^0.9.0"
-    eslint-scope "5.1.1"
-    events "^3.2.0"
-    glob-to-regexp "^0.4.1"
-    graceful-fs "^4.2.9"
-    json-parse-better-errors "^1.0.2"
-    loader-runner "^4.2.0"
-    mime-types "^2.1.27"
-    neo-async "^2.6.2"
-    schema-utils "^3.1.0"
-    tapable "^2.1.1"
-    terser-webpack-plugin "^5.1.3"
-    watchpack "^2.3.1"
-    webpack-sources "^3.2.3"
 
 webpack@^5.68.0:
   version "5.68.0"
