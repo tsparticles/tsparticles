@@ -1,5 +1,6 @@
 import { EasingType, MoveDirection, MoveDirectionAlt } from "../Enums";
 import type { ICoordinates } from "../Core";
+import type { IValueWithRandom } from "../Options";
 import type { RangeValue } from "../Types";
 import { Vector } from "../Core";
 
@@ -61,6 +62,13 @@ export function setRangeValue(source: RangeValue, value?: number): RangeValue {
               max: Math.max(max, value),
           }
         : setRangeValue(min, max);
+}
+
+export function getValue(options: IValueWithRandom): number {
+    const random = options.random;
+    const { enable, minimumValue } = typeof random === "boolean" ? { enable: random, minimumValue: 0 } : random;
+
+    return enable ? getRangeValue(setRangeValue(options.value, minimumValue)) : getRangeValue(options.value);
 }
 
 /**

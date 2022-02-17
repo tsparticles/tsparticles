@@ -9,6 +9,57 @@ import { HoverEvent } from "./HoverEvent";
  * @category Options
  */
 export class Events implements IEvents, IOptionLoader<IEvents> {
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new onClick
+     */
+    get onclick(): ClickEvent {
+        return this.onClick;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new onClick
+     * @param value
+     */
+    set onclick(value: ClickEvent) {
+        this.onClick = value;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new onDiv
+     */
+    get ondiv(): SingleOrMultiple<DivEvent> {
+        return this.onDiv;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new onDiv
+     * @param value
+     */
+    set ondiv(value: SingleOrMultiple<DivEvent>) {
+        this.onDiv = value;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new onHover
+     */
+    get onhover(): HoverEvent {
+        return this.onHover;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new onHover
+     * @param value
+     */
+    set onhover(value: HoverEvent) {
+        this.onHover = value;
+    }
+
     onClick;
     onDiv: SingleOrMultiple<DivEvent>;
     onHover;
@@ -26,25 +77,27 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
             return;
         }
 
-        this.onClick.load(data.onClick);
+        this.onClick.load(data.onClick ?? data.onclick);
 
-        const onDiv = data.onDiv;
+        const onDiv = data.onDiv ?? data.ondiv;
 
-        if (onDiv instanceof Array) {
-            this.onDiv = onDiv.map((div) => {
-                const tmp = new DivEvent();
+        if (onDiv !== undefined) {
+            if (onDiv instanceof Array) {
+                this.onDiv = onDiv.map((div) => {
+                    const tmp = new DivEvent();
 
-                tmp.load(div);
+                    tmp.load(div);
 
-                return tmp;
-            });
-        } else {
-            this.onDiv = new DivEvent();
+                    return tmp;
+                });
+            } else {
+                this.onDiv = new DivEvent();
 
-            this.onDiv.load(onDiv);
+                this.onDiv.load(onDiv);
+            }
         }
 
-        this.onHover.load(data.onHover);
+        this.onHover.load(data.onHover ?? data.onhover);
 
         if (data.resize !== undefined) {
             this.resize = data.resize;

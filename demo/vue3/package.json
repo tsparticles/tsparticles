@@ -1,6 +1,6 @@
 {
   "name": "particles.vue3-demo",
-  "version": "2.0.0-beta.5",
+  "version": "2.0.1",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -10,10 +10,10 @@
     "@highlightjs/vue-plugin": "^2.1.0",
     "core-js": "^3.20.3",
     "highlight.js": "^11.4.0",
-    "particles.vue3": "^2.0.0-beta.4",
+    "particles.vue3": "^2.0.1",
     "stringify-object": "^4.0.0",
-    "tsparticles": "^2.0.0-beta.5",
-    "tsparticles-engine": "^2.0.0-beta.4",
+    "tsparticles": "^2.0.1",
+    "tsparticles-engine": "^2.0.1",
     "vue": "^3.2.26",
     "vue-class-component": "^8.0.0-rc.1"
   },

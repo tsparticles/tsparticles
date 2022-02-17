@@ -5,6 +5,7 @@ import {
     OutMode,
     OutModeAlt,
     ParticleOutType,
+    RollMode,
     StartValueType,
 } from "../Enums";
 import {
@@ -40,6 +41,7 @@ import {
     getRangeMax,
     getRangeMin,
     getRangeValue,
+    getValue,
     isInArray,
     itemFromArray,
     loadParticlesOptions,
@@ -180,7 +182,7 @@ export class Particle implements IParticle {
         this.fill = this.shapeData?.fill ?? this.fill;
         this.close = this.shapeData?.close ?? this.close;
         this.options = particlesOptions;
-        this.pathDelay = getRangeValue(this.options.move.path.delay) * 1000;
+        this.pathDelay = getValue(this.options.move.path.delay) * 1000;
 
         const zIndexValue = getRangeValue(this.options.zIndex.value);
 
@@ -370,7 +372,9 @@ export class Particle implements IParticle {
         const color = this.bubble.color ?? getHslFromAnimation(this.color);
 
         if (color && this.roll && (this.backColor || this.roll.alter)) {
-            const rolled = Math.floor((this.roll?.angle ?? 0) / (Math.PI / 2)) % 2;
+            const backFactor = this.options.roll.mode === RollMode.both ? 2 : 1,
+                backSum = this.options.roll.mode === RollMode.horizontal ? Math.PI / 2 : 0,
+                rolled = Math.floor(((this.roll.angle ?? 0) + backSum) / (Math.PI / backFactor)) % 2;
 
             if (rolled) {
                 if (this.backColor) {
@@ -436,7 +440,7 @@ export class Particle implements IParticle {
             return;
         }
 
-        const rate = getRangeValue(splitOptions.rate);
+        const rate = getValue(splitOptions.rate);
 
         for (let i = 0; i < rate; i++) {
             this.container.particles.addSplitParticle(this);

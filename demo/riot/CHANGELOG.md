@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@2.0.0...riot-particles-demo@2.0.1) (2022-02-15)
+## [1.15.2](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.15.1...riot-particles-demo@1.15.2) (2022-02-16)
+
+**Note:** Version bump only for package riot-particles-demo
+
+
+
+
+
+# [2.0.0](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.15.1...riot-particles-demo@2.0.0) (2022-02-15)
+
+
+### Bug Fixes
+
+* fixed some components init functions, they must be async ([0541dfa](https://github.com/matteobruni/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
+
+
+### Features
+
+* async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.13.2...riot-particles-demo@2.0.0-beta.5) (2022-01-30)
 
 

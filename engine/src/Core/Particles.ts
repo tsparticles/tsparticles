@@ -2,7 +2,7 @@ import { ClickMode, EventType } from "../Enums";
 import { ICoordinates, IDelta, IMouseData, IParticle, IParticlesFrequencies, IRgb } from "./Interfaces";
 import { IParticlesDensity, IParticlesOptions } from "../Options";
 import { InteractionManager, Point, QuadTree, Rectangle } from "./Utils";
-import { getRangeMax, getRangeMin, getRangeValue, loadParticlesOptions, randomInRange, setRangeValue } from "../Utils";
+import { getRangeMax, getRangeMin, getValue, loadParticlesOptions, randomInRange, setRangeValue } from "../Utils";
 import { Container } from "./Container";
 import { Engine } from "../engine";
 import { Particle } from "./Particle";
@@ -324,7 +324,7 @@ export class Particles {
     addSplitParticle(parent: Particle): Particle | undefined {
         const splitOptions = parent.options.destroy.split;
         const options = loadParticlesOptions(parent.options);
-        const factor = getRangeValue(splitOptions.factor);
+        const factor = getValue(splitOptions.factor);
 
         options.color.load({
             value: {

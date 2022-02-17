@@ -7,6 +7,20 @@ import type { RecursivePartial } from "../../../../Types";
  * @category Options
  */
 export class ParticlesNumber implements IParticlesNumber, IOptionLoader<IParticlesNumber> {
+    /**
+     * @deprecated the max property is deprecated, please use the new limit
+     */
+    get max(): number {
+        return this.limit;
+    }
+
+    /**
+     * @deprecated the max property is deprecated, please use the new limit
+     */
+    set max(value: number) {
+        this.limit = value;
+    }
+
     density;
     limit;
     value;
@@ -24,8 +38,10 @@ export class ParticlesNumber implements IParticlesNumber, IOptionLoader<IParticl
 
         this.density.load(data.density);
 
-        if (data.limit !== undefined) {
-            this.limit = data.limit;
+        const limit = data.limit ?? data.max;
+
+        if (limit !== undefined) {
+            this.limit = limit;
         }
 
         if (data.value !== undefined) {

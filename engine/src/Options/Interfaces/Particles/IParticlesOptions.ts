@@ -27,7 +27,21 @@ import type { IZIndex } from "./ZIndex";
 import type { ParticlesGroups } from "../../../Types/ParticlesGroups";
 import type { SingleOrMultiple } from "../../../Types";
 
+/**
+ * [[include:Options/Particles.md]]
+ * @category Options
+ */
 export interface IParticlesOptions {
+    /**
+     * @deprecated use the new links instead
+     */
+    line_linked: ILinks;
+
+    /**
+     * @deprecated use the new links instead
+     */
+    lineLinked: ILinks;
+
     bounce: IParticlesBounce;
     collisions: ICollisions;
     color: IAnimatableColor;

@@ -2,24 +2,17 @@
  * [[include:pjsMigration.md]]
  * @packageDocumentation
  */
-import type { Container, Engine, Particle, RecursivePartial } from "tsparticles-engine";
+import type { Container, Engine, ISourceOptions, Particle } from "tsparticles-engine";
 import type { IParticlesJS } from "./IParticlesJS";
-import type { IParticlesJSOptions } from "./IParticlesJSOptions";
-import { ParticlesJSPlugin } from "./particlesJSPlugin";
 
 const initPjs = (engine: Engine): { particlesJS: IParticlesJS; pJSDom: Container[] } => {
-    engine.addPlugin(new ParticlesJSPlugin());
-
     /**
      * Loads the provided options to create a [[Container]] object.
      * @deprecated this method is obsolete, please use the new tsParticles.load
      * @param tagId the particles container element id
      * @param options the options object to initialize the [[Container]]
      */
-    const particlesJS = (
-        tagId: string,
-        options: RecursivePartial<IParticlesJSOptions>
-    ): Promise<Container | undefined> => {
+    const particlesJS = (tagId: string, options: ISourceOptions): Promise<Container | undefined> => {
         return engine.load(tagId, options);
     };
 

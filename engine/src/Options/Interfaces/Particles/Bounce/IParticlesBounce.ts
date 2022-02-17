@@ -1,6 +1,6 @@
-import type { RangeValue } from "../../../../Types";
+import type { IValueWithRandom } from "../..";
 
 export interface IParticlesBounce {
-    horizontal: RangeValue;
-    vertical: RangeValue;
+    horizontal: IValueWithRandom;
+    vertical: IValueWithRandom;
 }

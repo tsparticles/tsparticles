@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/matteobruni/tsparticles/compare/web-particles@2.0.0...web-particles@2.0.1) (2022-02-15)
+## [1.41.2](https://github.com/matteobruni/tsparticles/compare/web-particles@1.41.1...web-particles@1.41.2) (2022-02-16)
+
+**Note:** Version bump only for package web-particles
+
+
+
+
+
+# [2.0.0](https://github.com/matteobruni/tsparticles/compare/web-particles@1.41.1...web-particles@2.0.0) (2022-02-15)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [2.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/web-particles@1.12.2...web-particles@2.0.0-beta.4) (2022-01-30)
 
 

@@ -1,5 +1,5 @@
 import type { Container, IDelta, IHsl, IParticleRetinaProps, IParticleUpdater, Particle } from "tsparticles-engine";
-import { OrbitType, colorToHsl, drawEllipse, getRangeValue } from "tsparticles-engine";
+import { OrbitType, colorToHsl, drawEllipse, getValue } from "tsparticles-engine";
 
 type OrbitParticle = Particle & {
     orbitColor?: IHsl;
@@ -18,7 +18,7 @@ export class OrbitUpdater implements IParticleUpdater {
         const orbitOptions = particlesOptions.orbit;
 
         if (orbitOptions.enable) {
-            particle.orbitRotation = getRangeValue(orbitOptions.rotation);
+            particle.orbitRotation = getValue(orbitOptions.rotation);
 
             particle.orbitColor = colorToHsl(orbitOptions.color);
 
