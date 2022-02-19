@@ -26,11 +26,9 @@ function updateOpacity(particle: Particle, delta: IDelta): void {
     const maxValue = particle.opacity.max;
 
     if (
-        !(
-            !particle.destroyed &&
-            particle.opacity.enable &&
-            ((particle.opacity.maxLoops ?? 0) <= 0 || (particle.opacity.loops ?? 0) < (particle.opacity.maxLoops ?? 0))
-        )
+        particle.destroyed ||
+        !particle.opacity.enable ||
+        ((particle.opacity.maxLoops ?? 0) > 0 && (particle.opacity.loops ?? 0) > (particle.opacity.maxLoops ?? 0))
     ) {
         return;
     }
@@ -135,7 +133,9 @@ export class OpacityUpdater implements IParticleUpdater {
             !particle.spawning &&
             !!particle.opacity &&
             particle.opacity.enable &&
-            ((particle.opacity.maxLoops ?? 0) <= 0 || (particle.opacity.loops ?? 0) < (particle.opacity.maxLoops ?? 0))
+            ((particle.opacity.maxLoops ?? 0) <= 0 ||
+                ((particle.opacity.maxLoops ?? 0) > 0 &&
+                    (particle.opacity.loops ?? 0) < (particle.opacity.maxLoops ?? 0)))
         );
     }
 
