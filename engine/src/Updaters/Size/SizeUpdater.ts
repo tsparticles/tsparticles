@@ -23,11 +23,9 @@ function updateSize(particle: Particle, delta: IDelta): void {
     const maxValue = particle.size.max;
 
     if (
-        !(
-            !particle.destroyed &&
-            particle.size.enable &&
-            ((particle.size.loops ?? 0) <= 0 || (particle.size.loops ?? 0) < (particle.size.maxLoops ?? 0))
-        )
+        particle.destroyed ||
+        !particle.size.enable ||
+        ((particle.size.maxLoops ?? 0) > 0 && (particle.size.loops ?? 0) > (particle.size.maxLoops ?? 0))
     ) {
         return;
     }
@@ -57,6 +55,7 @@ function updateSize(particle: Particle, delta: IDelta): void {
 
                 particle.size.loops++;
             } else {
+                console.log("decreasing");
                 particle.size.value -= sizeVelocity;
             }
     }
@@ -78,7 +77,8 @@ export class SizeUpdater implements IParticleUpdater {
             !particle.destroyed &&
             !particle.spawning &&
             particle.size.enable &&
-            ((particle.size.loops ?? 0) <= 0 || (particle.size.loops ?? 0) < (particle.size.maxLoops ?? 0))
+            ((particle.size.maxLoops ?? 0) <= 0 ||
+                ((particle.size.maxLoops ?? 0) > 0 && (particle.size.loops ?? 0) < (particle.size.maxLoops ?? 0)))
         );
     }
 
