@@ -40,7 +40,7 @@
     "@vue/cli-service": "4.5.15",
     "babel-loader": "8.2.3",
     "eslint": "8.9.0",
-    "eslint-config-prettier": "8.3.0",
+    "eslint-config-prettier": "8.4.0",
     "prettier": "2.5.1",
     "rollup": "2.67.3",
     "rollup-plugin-terser": "7.0.2",
