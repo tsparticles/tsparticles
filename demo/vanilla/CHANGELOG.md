@@ -27,6 +27,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.24.2...tsparticles-demo@2.0.0-beta.5) (2022-01-30)
+## [1.26.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.26.2...tsparticles-demo@1.26.3) (2022-02-19)
+
+
+### Bug Fixes
+
+* fixed issue with size and opacity updaters ([f81e228](https://github.com/matteobruni/tsparticles/commit/f81e2280e3cff3942bdd8037df658b169d07ed30))
+
+
+
+
+
 ## [1.26.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.26.1...tsparticles-demo@1.26.2) (2022-02-16)
 
 
