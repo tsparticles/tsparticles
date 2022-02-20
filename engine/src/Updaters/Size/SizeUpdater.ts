@@ -55,7 +55,6 @@ function updateSize(particle: Particle, delta: IDelta): void {
 
                 particle.size.loops++;
             } else {
-                console.log("decreasing");
                 particle.size.value -= sizeVelocity;
             }
     }
