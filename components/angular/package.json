@@ -48,7 +48,6 @@
     "test": "ng test",
     "prepack": "yarn build"
   },
-  "private": true,
   "publishConfig": {
     "directory": "dist/ng-particles"
   },
