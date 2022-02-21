@@ -5,6 +5,15 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [2.0.1](https://github.com/matteobruni/tsparticles/compare/inferno-particles-demo@2.0.0...inferno-particles-demo@2.0.1) (2022-02-15)
 ## [1.24.2](https://github.com/matteobruni/tsparticles/compare/inferno-particles-demo@1.24.1...inferno-particles-demo@1.24.2) (2022-02-16)
+## [1.24.4](https://github.com/matteobruni/tsparticles/compare/inferno-particles-demo@1.24.3...inferno-particles-demo@1.24.4) (2022-02-20)
+
+**Note:** Version bump only for package inferno-particles-demo
+
+
+
+
+
+## [1.24.3](https://github.com/matteobruni/tsparticles/compare/inferno-particles-demo@1.24.2...inferno-particles-demo@1.24.3) (2022-02-19)
 
 **Note:** Version bump only for package inferno-particles-demo
 

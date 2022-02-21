@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [2.0.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-heart@2.0.0...tsparticles-shape-heart@2.0.1) (2022-02-15)
+## [1.41.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-heart@1.41.3...tsparticles-shape-heart@1.41.4) (2022-02-20)
+
+**Note:** Version bump only for package tsparticles-shape-heart
+
+
+
+
+
 ## [1.41.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-heart@1.41.2...tsparticles-shape-heart@1.41.3) (2022-02-19)
 
 **Note:** Version bump only for package tsparticles-shape-heart

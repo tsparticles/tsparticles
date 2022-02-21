@@ -9,6 +9,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * restored options compatibility with v1 and pjs, it's easier to migrate to v2 this way ([78dd8cd](https://github.com/matteobruni/tsparticles/commit/78dd8cd49eb9d7a69d1cf2f26d727615c8cf1e15))
+## [1.41.4](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.41.3...tsparticles@1.41.4) (2022-02-20)
+
+
+### Bug Fixes
+
+* removed useless console.log (debug purposes) ([93835e7](https://github.com/matteobruni/tsparticles/commit/93835e70dfaeedc9ac926f362a3ff1d4509e31fd))
+
+
+
+
+
 ## [1.41.3](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.41.2...tsparticles@1.41.3) (2022-02-19)
 
 
