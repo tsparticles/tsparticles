@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.26.4...editor-demo@2.0.2) (2022-02-21)
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 ## [2.0.1](https://github.com/matteobruni/tsparticles/compare/editor-demo@2.0.0...editor-demo@2.0.1) (2022-02-15)
 ## [1.26.4](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.26.3...editor-demo@1.26.4) (2022-02-20)
 

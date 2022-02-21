@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fountain@1.41.4...tsparticles-preset-fountain@2.0.2) (2022-02-21)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+* removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
+
+
+### Features
+
+* async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+* created and implemented move plugins ([752483a](https://github.com/matteobruni/tsparticles/commit/752483aeeb94dd851dc27fe75e4c258fd87f0a90))
+* fixed fountain presets ([3b47867](https://github.com/matteobruni/tsparticles/commit/3b478673153181396446f510d7ca5ad09abfcd4f))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 ## [2.0.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fountain@2.0.0...tsparticles-preset-fountain@2.0.1) (2022-02-15)
 ## [1.41.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fountain@1.41.3...tsparticles-preset-fountain@1.41.4) (2022-02-20)
 

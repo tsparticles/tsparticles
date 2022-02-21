@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.0.1...tsparticles-engine@2.0.2) (2022-02-21)
+
+
+### Bug Fixes
+
+* fixed issue with size and opacity updaters ([f81e228](https://github.com/matteobruni/tsparticles/commit/f81e2280e3cff3942bdd8037df658b169d07ed30))
+* fixed tilt back/front colors ([657585f](https://github.com/matteobruni/tsparticles/commit/657585f22d7fefa95df1cde16d6c68522fcfb34b))
+* removed useless check ([edb272e](https://github.com/matteobruni/tsparticles/commit/edb272ec5683933ed6309d03dbdd109c76607a1e))
+* removed useless console.log (debug purposes) ([93835e7](https://github.com/matteobruni/tsparticles/commit/93835e70dfaeedc9ac926f362a3ff1d4509e31fd))
+
+
+
+
+
 ## [2.0.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.0.0...tsparticles-engine@2.0.1) (2022-02-15)
 
 

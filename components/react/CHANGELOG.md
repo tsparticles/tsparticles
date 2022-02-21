@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.41.4...react-tsparticles@2.0.2) (2022-02-21)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+* removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
+
+
+### Features
+
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 ## [2.0.1](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@2.0.0...react-tsparticles@2.0.1) (2022-02-15)
 ## [1.41.4](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.41.3...react-tsparticles@1.41.4) (2022-02-20)
 

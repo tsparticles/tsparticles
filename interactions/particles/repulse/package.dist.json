@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-interaction-particles-repulse",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "tsParticles repulse particles interaction",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -54,6 +54,6 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.0.1"
+    "tsparticles-engine": "^2.0.2"
   }
 }

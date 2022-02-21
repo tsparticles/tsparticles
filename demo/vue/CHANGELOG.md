@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.26.4...particles.vue-demo@2.0.2) (2022-02-21)
+
+
+### Features
+
+* async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 ## [2.0.1](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@2.0.0...particles.vue-demo@2.0.1) (2022-02-15)
 ## [1.26.4](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@1.26.3...particles.vue-demo@1.26.4) (2022-02-20)
 
