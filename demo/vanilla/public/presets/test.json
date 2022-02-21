@@ -1,73 +1,43 @@
 {
+  "fpsLimit": 60,
   "background": {
-    "color": {
-      "value": "#301A47"
-    }
+    "color": "#000"
   },
   "particles": {
     "color": {
-      "value": [
-        "#FFAEBC",
-        "#A0E7E5",
-        "#B4F8C8",
-        "#FBE7C6",
-        "#FFC9AE",
-        "#FFAEE5",
-        "#A0C6E7",
-        "#A0E7C2",
-        "#B4F8EA",
-        "#C2F8B4",
-        "#F4FBC6",
-        "#FBCDC6"
-      ]
-    },
-    "move": {
-      "angle": {
-        "offset": 0,
-        "value": 15
-      },
-      "direction": "bottom",
-      "enable": true,
-      "outModes": {
-        "default": "out"
-      },
-      "speed": 3
-    },
-    "number": {
-      "value": 300
-    },
-    "opacity": {
-      "value": 1
-    },
-    "shape": {
-      "type": "heart"
+      "value": "#ffffff"
     },
     "size": {
-      "value": 16
-    },
-    "roll": {
-      "darken": {
-        "enable": true,
-        "value": 30
-      },
-      "enlighten": {
-        "enable": true,
-        "value": 30
-      },
-      "enable": true,
-      "mode": "horizontal",
-      "speed": {
-        "min": 5,
-        "max": 15
-      }
-    },
-    "zIndex": {
       "value": {
         "min": 0,
-        "max": 100
+        "max": 6
       },
-      "opacityRate": 0,
-      "velocityRate": 2
+      "animation": {
+        "enable": true,
+        "speed": 3,
+        "sync": false,
+        "destroy": "none",
+        "startValue": "min"
+      }
+    },
+    "move": {
+      "enable": true,
+      "speed": 3,
+      "random": false,
+      "size": true
+    },
+    "number": {
+      "density": {
+        "enable": true,
+        "area": 800
+      },
+      "value": 80
+    },
+    "opacity": {
+      "value": 0.5
+    },
+    "shape": {
+      "type": "circle"
     }
   }
 }

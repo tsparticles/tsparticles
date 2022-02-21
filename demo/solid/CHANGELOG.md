@@ -3,7 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.24.4...solid-particles-demo@2.0.2) (2022-02-21)
+
+
+### Features
+
+* async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 ## [2.0.1](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@2.0.0...solid-particles-demo@2.0.1) (2022-02-15)
+## [1.24.4](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.24.3...solid-particles-demo@1.24.4) (2022-02-20)
+
+**Note:** Version bump only for package solid-particles-demo
+
+
+
+
+
+## [1.24.3](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.24.2...solid-particles-demo@1.24.3) (2022-02-19)
+
+**Note:** Version bump only for package solid-particles-demo
+
+
+
+
+
 ## [1.24.2](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.24.1...solid-particles-demo@1.24.2) (2022-02-16)
 
 **Note:** Version bump only for package solid-particles-demo

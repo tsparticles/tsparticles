@@ -3,7 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/matteobruni/tsparticles/compare/particles.vue3@1.41.4...particles.vue3@2.0.2) (2022-02-21)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+* **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+* **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
+
+
+### Features
+
+* async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 ## [2.0.1](https://github.com/matteobruni/tsparticles/compare/particles.vue3@2.0.0...particles.vue3@2.0.1) (2022-02-15)
+## [1.41.4](https://github.com/matteobruni/tsparticles/compare/particles.vue3@1.41.3...particles.vue3@1.41.4) (2022-02-20)
+
+**Note:** Version bump only for package particles.vue3
+
+
+
+
+
+## [1.41.3](https://github.com/matteobruni/tsparticles/compare/particles.vue3@1.41.2...particles.vue3@1.41.3) (2022-02-19)
+
+**Note:** Version bump only for package particles.vue3
+
+
+
+
+
 ## [1.41.2](https://github.com/matteobruni/tsparticles/compare/particles.vue3@1.41.1...particles.vue3@1.41.2) (2022-02-16)
 
 **Note:** Version bump only for package particles.vue3
