@@ -1095,10 +1095,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/eslint-scope@^3.7.0":
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/@types/eslint-scope/-/eslint-scope-3.7.0.tgz#4792816e31119ebd506902a482caec4951fabd86"
-  integrity sha512-O/ql2+rrCUe2W2rs7wMR+GqPRcgB6UiqN5RhrR5xruFlY7l9YLMn0ZkDzjoHLeiFkR8MCQZVudUuuvQ2BLC9Qw==
+"@types/eslint-scope@^3.7.3":
+  version "3.7.3"
+  resolved "https://registry.yarnpkg.com/@types/eslint-scope/-/eslint-scope-3.7.3.tgz#125b88504b61e3c8bc6f870882003253005c3224"
+  integrity sha512-PB3ldyrcnAicT35TWPs5IcwKD8S333HMaa2VVv4+wdvebJkjWuW/xESoB8IwRcog8HYVYamb1g/R31Qv5Bx03g==
   dependencies:
     "@types/eslint" "*"
     "@types/estree" "*"
@@ -1111,10 +1111,10 @@
     "@types/estree" "*"
     "@types/json-schema" "*"
 
-"@types/estree@*", "@types/estree@^0.0.50":
-  version "0.0.50"
-  resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.50.tgz#1e0caa9364d3fccd2931c3ed96fdbeaa5d4cca83"
-  integrity sha512-C6N5s2ZFtuZRj54k2/zyRhNDjJwwcViAM3Nbm8zjBpbqAdZ00mr0CFxvSKeO8Y/e03WVFLpQMdHYVfUd6SB+Hw==
+"@types/estree@*", "@types/estree@^0.0.51":
+  version "0.0.51"
+  resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.51.tgz#cfd70924a25a3fd32b218e5e420e6897e1ac4f40"
+  integrity sha512-CuPgU6f3eT/XgKKPqKd/gLZV1Xmvf1a2R5POBOGQa6uv82xpls89HU5zKeVoyR8XzHd1RGNOlQlvUe3CFkjWNQ==
 
 "@types/express-serve-static-core@*", "@types/express-serve-static-core@^4.17.18":
   version "4.17.26"
@@ -5306,6 +5306,11 @@ tslib@^2.0.3:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.2.0.tgz#fb2c475977e35e241311ede2693cee1ec6698f5c"
   integrity sha512-gS9GVHRU+RGn5KQM2rllAlR3dU6m7AcpJKdtH8gFvQiC4Otgk98XnmMU+nZenHt/+VhnBPWwgrJsyrdcw6i23w==
 
+tsparticles-engine@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.2.tgz#fcd8f34c195eefa0a142823692bfcdf07676de51"
+  integrity sha512-rFT13K8LpN8LKYDaY/JzhCuSVOqeI/AMN+zbnMhoaoepZ29EBOQFzcF65h0bd+K08RN0aFrmh8Bc2Y96tRsHVw==
+
 tsutils@^3.21.0:
   version "3.21.0"
   resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-3.21.0.tgz#b48717d394cea6c1e096983eed58e9d61715b623"
@@ -5555,12 +5560,12 @@ webpack-sources@^3.2.3:
   integrity sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==
 
 webpack@^5.50.0:
-  version "5.68.0"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.68.0.tgz#a653a58ed44280062e47257f260117e4be90d560"
-  integrity sha512-zUcqaUO0772UuuW2bzaES2Zjlm/y3kRBQDVFVCge+s2Y8mwuUTdperGaAv65/NtRL/1zanpSJOq/MD8u61vo6g==
+  version "5.69.1"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.69.1.tgz#8cfd92c192c6a52c99ab00529b5a0d33aa848dc5"
+  integrity sha512-+VyvOSJXZMT2V5vLzOnDuMz5GxEqLk7hKWQ56YxPW/PQRUuKimPqmEIJOx8jHYeyo65pKbapbW464mvsKbaj4A==
   dependencies:
-    "@types/eslint-scope" "^3.7.0"
-    "@types/estree" "^0.0.50"
+    "@types/eslint-scope" "^3.7.3"
+    "@types/estree" "^0.0.51"
     "@webassemblyjs/ast" "1.11.1"
     "@webassemblyjs/wasm-edit" "1.11.1"
     "@webassemblyjs/wasm-parser" "1.11.1"
