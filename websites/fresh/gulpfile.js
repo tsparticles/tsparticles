@@ -1,30 +1,30 @@
-const { src, dest, task, watch, series, parallel } = require('gulp');
-const del = require('del');
-const options = require("./config");
-const browserSync = require('browser-sync').create();
+import gulp from "gulp";
 
-const sass = require('gulp-sass')(require('sass'));
-const bourbon = require('node-bourbon').includePaths;
-const concat = require('gulp-concat');
-const uglify = require('gulp-uglify');
-const imagemin = require('gulp-imagemin');
-const cleanCSS = require('gulp-clean-css');
-const purgecss = require('gulp-purgecss');
-const sourcemaps = require('gulp-sourcemaps');
-const autoprefixer = require('gulp-autoprefixer');
-const panini = require('panini');
+import gulpSass from "gulp-sass";
+import bourbon from "node-bourbon";
+import concat from "gulp-concat";
+import imagemin from "gulp-imagemin";
+import sourcemaps from "gulp-sourcemaps";
+import autoprefixer from "gulp-autoprefixer";
+import panini from "panini";
+import sassCompiler from "sass";
+import del from "del";
+import browserify from "browserify";
+import babelify from "babelify";
+import source from "vinyl-source-stream";
+import logSymbols from "log-symbols";
+import BrowserSync from "browser-sync";
 
-const browserify = require("browserify");
-const babelify = require("babelify");
-const source = require("vinyl-source-stream");
-const nodepath = 'node_modules/';
+import options from "./config.js";
 
-sass.compiler = require('sass');
+const { src, dest, watch, series, parallel } = gulp;
+const browserSync = BrowserSync.create();
+const nodepath = "node_modules/";
+const sass = gulpSass(sassCompiler);
 
 //Note : Webp still not supported in major browsers including forefox
 //const webp = require('gulp-webp'); //For converting images to WebP format
 //const replace = require('gulp-replace'); //For Replacing img formats to webp in html
-const logSymbols = require('log-symbols'); //For Symbolic Console logs :) :P 
 
 //Load Previews on Browser on dev
 function livePreview(done) {
@@ -52,7 +52,7 @@ function compileSCSS() {
       outputStyle: 'compressed',
       sourceComments: 'map',
       sourceMap: 'scss',
-      includePaths: bourbon
+      includePaths: bourbon.includePaths
     }).on('error', sass.logError))
     .pipe(autoprefixer('last 2 versions'))
     .pipe(dest('dist/css'))
@@ -158,13 +158,30 @@ function devClean() {
   return del([options.paths.dist.base]);
 }
 
-
-exports.setup = series(setupBulma);
-
-exports.default = series(
+const buildTasks = [
   devClean, // Clean Dist Folder
   resetPages,
-  parallel(concatCssPlugins, compileSCSS, javascriptBuild, devImages, compileHTML),
-  livePreview, // Live Preview Build
-  watchFiles // Watch for Live Changes
-);
+  parallel(
+    copyData,
+    concatCssPlugins, 
+    compileSCSS, 
+    javascriptBuild, 
+    devImages, 
+    compileHTML
+  ),
+]
+
+export const build = (done) => {
+  series(devClean, resetPages, parallel(...buildTasks, devImages))();
+  done();
+};
+
+export default (done) => {
+  series(
+    devClean,
+    resetPages,
+    parallel(...buildTasks),
+    parallel(livePreview, watchFiles)
+  )();
+  done();
+};

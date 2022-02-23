@@ -11,9 +11,9 @@ Fresh is built with [Bulma](https://bulma.io) and [Alpine JS](https://github.com
 ## 👍 Features
 
 * Gulp 4 and nodejs 12.13.0 (minimum)
-* Bulma 0.9.1
+* Bulma 0.9.3
 * ES6 support
-* Alpine JS
+* Alpine v3
 
 ## 👌 Usage
 

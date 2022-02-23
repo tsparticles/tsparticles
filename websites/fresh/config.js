@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 	config: {
 		port: 9050
 	},
