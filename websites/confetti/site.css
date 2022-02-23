@@ -1,0 +1,21 @@
+body {
+    color: #fff;
+}
+
+h1 {
+    position: absolute;
+    left: calc(50% - 100px);
+    top: 100px;
+    width: 200px;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h2 {
+    position: absolute;
+    left: calc(50% - 200px);
+    top: 200px;
+    width: 400px;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
