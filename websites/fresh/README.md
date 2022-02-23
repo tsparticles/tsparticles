@@ -20,13 +20,13 @@ Fresh is built with [Bulma](https://bulma.io) and [Alpine JS](https://github.com
 1. Install Dev Depedencies
 
 ```sh
-npm install
+yarn install
 ```
 
 2. To start development server
 
 ```sh
-npm run dev
+yarn dev
 ```
 
 ## 🍔 Issues
