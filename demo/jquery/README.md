@@ -4,7 +4,7 @@
 
 ## Usage
 
-```
+```javascript
 const jquery = require('jquery');
 
 // TODO: DEMONSTRATE API

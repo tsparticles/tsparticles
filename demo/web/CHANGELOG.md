@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.26.5](https://github.com/matteobruni/tsparticles/compare/web-particles-demo@1.26.4...web-particles-demo@1.26.5) (2022-02-24)
+
+
+### Bug Fixes
+
+* fixed emitters issues ([c9d9a51](https://github.com/matteobruni/tsparticles/commit/c9d9a51e41fdc77a9bf544a09d979d8c2f6b10d5))
+
+
+
+
+
 ## [1.26.4](https://github.com/matteobruni/tsparticles/compare/web-particles-demo@1.26.3...web-particles-demo@1.26.4) (2022-02-20)
 
 **Note:** Version bump only for package web-particles-demo

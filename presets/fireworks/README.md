@@ -140,7 +140,8 @@ function particlesInit(main: Main): void {
 ```
 
 ```js
-let onParticlesInit = (main) => {
+let onParticlesInit = (event) => {
+  const main = event.detail;
   loadFireworksPreset(main);
 };
 ```

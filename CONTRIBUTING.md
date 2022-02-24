@@ -30,13 +30,13 @@ For building the first time:
 
 Unix
 
-```bash
+```shell
 yarn && npx lerna bootstrap && npx lerna run build
 ```
 
 Windows
 
-```bash
+```shell
 yarn
 npx lerna bootstrap
 npx lerna run build
@@ -46,13 +46,13 @@ For building local packages it's possible to run only `yarn build` in every fold
 
 For running demos
 
-```bash
+```shell
 yarn start
 ```
 
 or
 
-```bash
+```shell
 yarn serve
 ```
 

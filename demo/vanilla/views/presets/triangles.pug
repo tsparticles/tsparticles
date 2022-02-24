@@ -22,6 +22,9 @@ html(lang="en")
     body
         #tsparticles
 
-        script(src="/preset-triangles/tsparticles.preset.triangles.bundle.min.js")
+        script(src="/tsparticles/tsparticles.min.js")
+        script(src="/preset-triangles/tsparticles.preset.triangles.min.js")
         script.
+            loadTrianglesPreset(tsParticles);
+
             tsParticles.load("tsparticles", { preset: "triangles" });
