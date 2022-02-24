@@ -53,6 +53,8 @@
       integrity="sha256-YvdLHPgkqJ8DVUxjjnGVlMMJtNimJ6dYkowFFvp4kKs="
       crossorigin="anonymous"
     />
+    <link rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/styles/atom-one-dark.min.css">
     <link rel="stylesheet" href="css/main.css" />
   </head>
 
@@ -106,7 +108,7 @@
               Single Confetti Explosion
             </a>
           </li>
-        <!--<hr />
+          <!--<hr />
           <li class="nav-item">
             <a
               href="#"
@@ -157,6 +159,19 @@
               Toggle Image Shaped Confetti
             </a>
           </li>-->
+        </ul>
+        <hr />
+        <ul class="nav nav-pills flex-column">
+          <li class="nav-item">
+            <a
+              href="#"
+              id="btnToggleCode"
+              class="nav-link text-white"
+              aria-current="page"
+            >
+              Toggle Code
+            </a>
+          </li>
         </ul>
         <hr />
         <div class="dropdown">
@@ -218,15 +233,18 @@
           </ul>
         </div>
       </div>
+      <div id="tsparticles"></div>
+      <div id="code" class="d-none">
+        <pre><code id="code-text" class="language-json"></code></pre>
+      </div>
     </main>
-
-    <div id="tsparticles"></div>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
       integrity="sha256-cMPWkL3FzjuaFSfEYESYmjF25hCIL6mfRSPnW8OVvM4="
       crossorigin="anonymous"
     ></script>
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/highlight.min.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/tsparticles@1.41.4/tsparticles.min.js"
       integrity="sha256-PLeSPam4U9uBbYblON1q8LJ0jypThCVbtLSA0Ca+DVw="

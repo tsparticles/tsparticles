@@ -1,4 +1,4 @@
-import { state, stateButtons, updateState } from "./state.js";
+import { animationState, animationStateButtons, updateAnimationState } from "./state.js";
 
 const toggleFallingConfetti = (status) => {
   if (status) {
@@ -8,19 +8,19 @@ const toggleFallingConfetti = (status) => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const updateFalling = () => {
-    updateState({
+    updateAnimationState({
       bottom: false,
       explosions: false,
       side: false,
-      falling: !state.falling,
+      falling: !animationState.falling,
       singleExplosion: false,
     });
   };
 
   const btnFallingConfetti = document.getElementById("btnFallingConfetti");
 
-  stateButtons.push({
-    status: () => state.falling,
+  animationStateButtons.push({
+    status: () => animationState.falling,
     button: btnFallingConfetti,
     toggle: toggleFallingConfetti,
   });

@@ -1,4 +1,4 @@
-import { state, stateButtons, updateState } from "./state.js";
+import { animationState, animationStateButtons, updateAnimationState } from "./state.js";
 
 const toggleConfettiExplosions = (status) => {
   if (status) {
@@ -8,9 +8,9 @@ const toggleConfettiExplosions = (status) => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const updateExplosions = () => {
-    updateState({
+    updateAnimationState({
       bottom: false,
-      explosions: !state.explosions,
+      explosions: !animationState.explosions,
       side: false,
       falling: false,
       singleExplosion: false,
@@ -21,8 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
     "btnConfettiExplosions"
   );
 
-  stateButtons.push({
-    status: () => state.explosions,
+  animationStateButtons.push({
+    status: () => animationState.explosions,
     button: btnConfettiExplosions,
     toggle: toggleConfettiExplosions,
   });

@@ -1,15 +1,17 @@
-import { state, stateButtons, updateState } from "./state.js";
+import { animationState, animationStateButtons, updateAnimationState, updateCode } from "./state.js";
 
 const toggleBottomConfetti = (status) => {
   if (status) {
-    tsParticles.loadJSON("tsparticles", "configs/bottom.json");
+    tsParticles.loadJSON("tsparticles", "configs/bottom.json").then(container => {
+        updateCode(JSON.stringify(container.sourceOptions, undefined, 2));
+    });
   }
 };
 
 document.addEventListener("DOMContentLoaded", () => {
   const updateBottom = () => {
-    updateState({
-      bottom: !state.bottom,
+    updateAnimationState({
+      bottom: !animationState.bottom,
       explosions: false,
       side: false,
       falling: false,
@@ -19,8 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const btnBottomConfetti = document.getElementById("btnBottomConfetti");
 
-  stateButtons.push({
-    status: () => state.bottom,
+  animationStateButtons.push({
+    status: () => animationState.bottom,
     button: btnBottomConfetti,
     toggle: toggleBottomConfetti,
   });

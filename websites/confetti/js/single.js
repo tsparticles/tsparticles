@@ -1,4 +1,4 @@
-import { state, stateButtons, updateState } from "./state.js";
+import { animationState, animationStateButtons, updateAnimationState } from "./state.js";
 
 const toggleSingleConfetti = (status) => {
   if (status) {
@@ -8,7 +8,7 @@ const toggleSingleConfetti = (status) => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const updateSingle = (status) => {
-    updateState({
+    updateAnimationState({
       bottom: false,
       explosions: false,
       side: false,
@@ -19,8 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const btnSingleConfetti = document.getElementById("btnSingleConfetti");
 
-  stateButtons.push({
-    status: () => state.singleExplosion,
+  animationStateButtons.push({
+    status: () => animationState.singleExplosion,
     button: btnSingleConfetti,
     toggle: toggleSingleConfetti,
   });

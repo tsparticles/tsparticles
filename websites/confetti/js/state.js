@@ -1,28 +1,37 @@
-export const state = {
+export const animationState = {
   bottom: false,
   explosions: false,
   side: false,
   falling: false,
   singleExplosion: false,
-  singleTimeout: null,
 };
 
-export const stateButtons = [];
+export const appState = {
+  singleTimeout: null,
+  code: false,
+};
 
-export const updateState = (newState) => {
-  Object.assign(state, newState);
+export const animationStateButtons = [];
 
-  console.log(state);
+export const updateAnimationState = (newAnimationState) => {
+  Object.assign(animationState, newAnimationState);
 
-  if (Object.values(state).every((t) => (typeof t === "boolean" ? !t : true))) {
+  console.log(animationState);
+
+  if (
+    Object.values(animationState).every((t) =>
+      typeof t === "boolean" ? !t : true
+    )
+  ) {
     const container = tsParticles.domItem(0);
 
     if (container) {
       container.destroy();
+      updateCode("");
     }
   }
 
-  for (const stateButton of stateButtons) {
+  for (const stateButton of animationStateButtons) {
     stateButton.toggle(stateButton.status());
 
     if (stateButton.status()) {
@@ -32,15 +41,15 @@ export const updateState = (newState) => {
     }
   }
 
-  if (state.singleTimeout) {
-    clearTimeout(state.singleTimeout);
+  if (appState.singleTimeout) {
+    clearTimeout(appState.singleTimeout);
 
-    state.singleTimeout = null;
+    appState.singleTimeout = null;
   }
 
-  if (state.singleExplosion) {
-    state.singleTimeout = setTimeout(() => {
-      updateState({
+  if (animationState.singleExplosion) {
+    appState.singleTimeout = setTimeout(() => {
+      updateAnimationState({
         bottom: false,
         explosions: false,
         side: false,
@@ -49,4 +58,22 @@ export const updateState = (newState) => {
       });
     }, 5000);
   }
+};
+
+export const updateState = (newState) => {
+  Object.assign(appState, newState);
+
+  const codeEl = document.getElementById("code");
+
+  if (appState.code) {
+    codeEl.classList.remove("d-none");
+  } else {
+    codeEl.classList.add("d-none");
+  }
+};
+
+export const updateCode = (newCode) => {
+  const codeEl = document.getElementById("code-text");
+
+  codeEl.innerText = newCode;
 };
