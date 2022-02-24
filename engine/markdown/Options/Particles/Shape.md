@@ -44,7 +44,7 @@ polygon: {
 
 ### Star
 
-``` json
+```json
 {
     "star": {
         "sides": 5, // the number of sides of the star
@@ -55,7 +55,7 @@ polygon: {
 
 ### Character / Char
 
-``` json
+```json
 {
     "character": {
         "value": "*", // the text to use as particles, any string is valid, for escaping unicode char use the `\uXXXX` syntax
@@ -68,7 +68,7 @@ polygon: {
 
 ### Image
 
-``` json
+```json
 {
     "image": {
         // any path or url to your image that will be used as a particle
