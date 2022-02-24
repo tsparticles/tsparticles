@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [2.0.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.0.1...tsparticles-engine@2.0.2) (2022-02-21)
+## [1.41.5](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.41.4...tsparticles@1.41.5) (2022-02-24)
 
 
 ### Bug Fixes
@@ -12,6 +13,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * fixed tilt back/front colors ([657585f](https://github.com/matteobruni/tsparticles/commit/657585f22d7fefa95df1cde16d6c68522fcfb34b))
 * removed useless check ([edb272e](https://github.com/matteobruni/tsparticles/commit/edb272ec5683933ed6309d03dbdd109c76607a1e))
 * removed useless console.log (debug purposes) ([93835e7](https://github.com/matteobruni/tsparticles/commit/93835e70dfaeedc9ac926f362a3ff1d4509e31fd))
+* fixed emitters issues ([c9d9a51](https://github.com/matteobruni/tsparticles/commit/c9d9a51e41fdc77a9bf544a09d979d8c2f6b10d5))
 
 
 

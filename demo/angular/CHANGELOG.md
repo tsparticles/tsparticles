@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [2.0.2](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@1.26.4...ng-particles-demo@2.0.2) (2022-02-21)
+## [1.26.5](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@1.26.4...ng-particles-demo@1.26.5) (2022-02-24)
 
 
 ### Bug Fixes
@@ -24,6 +25,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 ## [2.0.1](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@2.0.0...ng-particles-demo@2.0.1) (2022-02-15)
+* fixed emitters issues ([c9d9a51](https://github.com/matteobruni/tsparticles/commit/c9d9a51e41fdc77a9bf544a09d979d8c2f6b10d5))
+
+
+
+
+
 ## [1.26.4](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@1.26.3...ng-particles-demo@1.26.4) (2022-02-20)
 
 **Note:** Version bump only for package ng-particles-demo

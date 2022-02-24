@@ -140,7 +140,8 @@ async function particlesInit(engine: Engine): Promise<void> {
 ```
 
 ```js
-async function onParticlesInit(engine) {
-  await loadStarsPreset(engine);
-}
+let onParticlesInit = (event) => {
+  const main = event.detail;
+  loadStarsPreset(main);
+};
 ```

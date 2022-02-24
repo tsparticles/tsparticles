@@ -10,7 +10,7 @@ This is a project template for [Svelte](https://svelte.dev) apps. It lives at ht
 
 To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
 
-```bash
+```shell
 npx degit sveltejs/template svelte-app
 cd svelte-app
 ```
@@ -22,14 +22,14 @@ cd svelte-app
 
 Install the dependencies...
 
-```bash
+```shell
 cd svelte-app
 npm install
 ```
 
 ...then start [Rollup](https://rollupjs.org):
 
-```bash
+```shell
 npm run dev
 ```
 
@@ -43,7 +43,7 @@ If you're using [Visual Studio Code](https://code.visualstudio.com/) we recommen
 
 To create an optimised version of the app:
 
-```bash
+```shell
 npm run build
 ```
 
@@ -64,13 +64,13 @@ If you're building a single-page app (SPA) with multiple routes, sirv needs to b
 
 This template comes with a script to set up a TypeScript development environment, you can run it immediately after cloning the template with:
 
-```bash
+```shell
 node scripts/setupTypeScript.js
 ```
 
 Or remove the script via:
 
-```bash
+```shell
 rm scripts/setupTypeScript.js
 ```
 
@@ -82,13 +82,13 @@ If you want to use `baseUrl` or `path` aliases within your `tsconfig`, you need 
 
 Install `vercel` if you haven't already:
 
-```bash
+```shell
 npm install -g vercel
 ```
 
 Then, from within your project folder:
 
-```bash
+```shell
 cd public
 vercel deploy --name my-project
 ```
@@ -97,13 +97,13 @@ vercel deploy --name my-project
 
 Install `surge` if you haven't already:
 
-```bash
+```shell
 npm install -g surge
 ```
 
 Then, from within your project folder:
 
-```bash
+```shell
 npm run build
 surge public my-project.surge.sh
 ```
