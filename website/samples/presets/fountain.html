@@ -91,14 +91,16 @@
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1784552607103901"
         crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.41.4/tsparticles.min.js"
-        integrity="sha256-PLeSPam4U9uBbYblON1q8LJ0jypThCVbtLSA0Ca+DVw=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-fountain@1.41.4/tsparticles.preset.fountain.min.js"
-        integrity="sha256-RuX/5aPw+LrVdnlO0S/ytImH5otrrA+eWb+iFnhCtIg=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.41.5/tsparticles.min.js"
+        integrity="sha256-+olOdIjXQEXPrHwiCfR3PqpRfTNaNO8zZtqDIA1atsY=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-fountain@1.41.5/tsparticles.preset.fountain.min.js"
+        integrity="sha256-crO6yfwv3G4lpM/E0ZyFte0GRU1i4WKhczhUZfIkLe4=" crossorigin="anonymous"></script>
 <script type="text/javascript">
-    loadFountainPreset(tsParticles);
+    (async () => {
+        await loadFountainPreset(tsParticles);
 
-    tsParticles.load("tsparticles", { preset: "fountain" });
+        await tsParticles.load("tsparticles", { preset: "fountain" });
+    })();
 </script>
 </body>
 

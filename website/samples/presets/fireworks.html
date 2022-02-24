@@ -91,14 +91,16 @@
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1784552607103901"
         crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.41.4/tsparticles.min.js"
-        integrity="sha256-PLeSPam4U9uBbYblON1q8LJ0jypThCVbtLSA0Ca+DVw=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-fireworks@1.41.4/tsparticles.preset.fireworks.min.js"
-        integrity="sha256-fxHNTmqPRs9ESqQkkKSCyCyWcuKiF7RJvUBmeSB9gjw=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.41.5/tsparticles.min.js"
+        integrity="sha256-+olOdIjXQEXPrHwiCfR3PqpRfTNaNO8zZtqDIA1atsY=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-fireworks@1.41.5/tsparticles.preset.fireworks.min.js"
+        integrity="sha256-vr/yllVEYzV1yVV+FIykMul8+qrxzMXGOseyKU2GZDs=" crossorigin="anonymous"></script>
 <script type="text/javascript">
-    loadFireworksPreset(tsParticles);
+    (async () => {
+        await loadFireworksPreset(tsParticles);
 
-    tsParticles.load("tsparticles", { preset: "fireworks" });
+        await tsParticles.load("tsparticles", { preset: "fireworks" });
+    })();
 </script>
 </body>
 

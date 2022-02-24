@@ -91,14 +91,16 @@
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1784552607103901"
         crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.41.4/tsparticles.min.js"
-        integrity="sha256-PLeSPam4U9uBbYblON1q8LJ0jypThCVbtLSA0Ca+DVw=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-bubbles@1.41.4/tsparticles.preset.bubbles.min.js"
-        integrity="sha256-gaKtcZCT6IwLR9Qtwo0klLqzVXi8wI9oxxITPAtVqx8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.41.5/tsparticles.min.js"
+        integrity="sha256-+olOdIjXQEXPrHwiCfR3PqpRfTNaNO8zZtqDIA1atsY=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-bubbles@1.41.5/tsparticles.preset.bubbles.min.js"
+        integrity="sha256-Sx2O/RftSy8h7i6A0ppekdMsye4zQUtESwP8UBHggM4=" crossorigin="anonymous"></script>
 <script type="text/javascript">
-    loadBubblesPreset(tsParticles);
+    (async () => {
+        await loadBubblesPreset(tsParticles);
 
-    tsParticles.load("tsparticles", { preset: "bubbles" });
+        await tsParticles.load("tsparticles", { preset: "bubbles" });
+    })();
 </script>
 </body>
 

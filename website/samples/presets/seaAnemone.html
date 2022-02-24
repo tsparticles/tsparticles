@@ -91,16 +91,18 @@
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1784552607103901"
         crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.41.4/tsparticles.min.js"
-        integrity="sha256-PLeSPam4U9uBbYblON1q8LJ0jypThCVbtLSA0Ca+DVw=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-curves@1.41.4/tsparticles.path.curves.min.js"
-        integrity="sha256-ldTUKigcNTybhkxMq54ZcsqXO18Uw54+lWs4i512v2M=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-sea-anemone@1.41.4/tsparticles.preset.seaAnemone.min.js"
-        integrity="sha256-VeEhPQj3fcdqFZr46exSsPfOQjeUJXkWi6CC+WvXWmA=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.41.5/tsparticles.min.js"
+        integrity="sha256-+olOdIjXQEXPrHwiCfR3PqpRfTNaNO8zZtqDIA1atsY=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-curves@1.41.5/tsparticles.path.curves.min.js"
+        integrity="sha256-KQHuCmomPjRlFDNJ8+eNgr8meevHQbtUaO+fp5SE92k=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-sea-anemone@1.41.5/tsparticles.preset.seaAnemone.min.js"
+        integrity="sha256-DORjh+K1W3FeEaxaWgfjFg6zd5iTsWoqosyHoGbAxzo=" crossorigin="anonymous"></script>
 <script type="text/javascript">
-    loadSeaAnemonePreset(tsParticles);
+    (async () => {
+        await loadSeaAnemonePreset(tsParticles);
 
-    tsParticles.load("tsparticles", { preset: "seaAnemone" });
+        await tsParticles.load("tsparticles", { preset: "seaAnemone" });
+    })();
 </script>
 </body>
 

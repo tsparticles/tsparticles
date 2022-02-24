@@ -93,15 +93,17 @@
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1784552607103901"
         crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.41.4/tsparticles.min.js"
-        integrity="sha256-PLeSPam4U9uBbYblON1q8LJ0jypThCVbtLSA0Ca+DVw=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-big-circles@1.41.4/tsparticles.preset.bigCircles.min.js"
-        integrity="sha256-GD0E8PzV46ydEux06rbDKhjsIyjy3PYFDMExnShYCLk=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.41.5/tsparticles.min.js"
+        integrity="sha256-+olOdIjXQEXPrHwiCfR3PqpRfTNaNO8zZtqDIA1atsY=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-big-circles@1.41.5/tsparticles.preset.bigCircles.min.js"
+        integrity="sha256-jKfCTLhFc31Qx6UUIdeGrQHifbOQqa85c1vNDQdZuQI=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.3.1/build/highlight.min.js"></script>
 <script type="text/javascript">
-    loadBigCirclesPreset(tsParticles);
+    (async () => {
+        await loadBigCirclesPreset(tsParticles);
 
-    tsParticles.load("tsparticles", { preset: "bigCircles" });
+        await tsParticles.load("tsparticles", { preset: "bigCircles" });
+    })();
 </script>
 </body>
 

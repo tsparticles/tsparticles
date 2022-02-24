@@ -91,14 +91,16 @@
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1784552607103901"
         crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.41.4/tsparticles.min.js"
-        integrity="sha256-PLeSPam4U9uBbYblON1q8LJ0jypThCVbtLSA0Ca+DVw=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-firefly@1.41.4/tsparticles.preset.firefly.min.js"
-        integrity="sha256-3oNt8oue5ok26ZgN1kPpb9MqRlU7yBrCsexahbKu/CY=" crossorigin="anonymous"></script>
-<script>
-    loadFireflyPreset(tsParticles);
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.41.5/tsparticles.min.js"
+        integrity="sha256-+olOdIjXQEXPrHwiCfR3PqpRfTNaNO8zZtqDIA1atsY=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-firefly@1.41.5/tsparticles.preset.firefly.min.js"
+        integrity="sha256-RRzq/0DB7YgHbSfXkvFY7wp3KnX5FFA28qJ5SpoQ0AM=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    (async () => {
+        await loadFireflyPreset(tsParticles);
 
-    tsParticles.load("tsparticles", { preset: "firefly" });
+        await tsParticles.load("tsparticles", { preset: "firefly" });
+    })();
 </script>
 </body>
 
