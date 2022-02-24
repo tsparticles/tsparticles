@@ -1,63 +1,183 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8"/>
-        <link
-                rel="shortcut icon"
-                href="https://particles.js.org/tsParticles-64.png"
-        />
-        <meta
-                name="description"
-                content="tsParticles - Easily create highly customizable particles, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno."
-        />
-        <meta name="author" content="Matteo Bruni"/>
-        <meta
-                name="keyword"
-                content="HTML, CSS, JavaScript, Particles, Particles.js, Canvas, Confetti, Fireworks, Animations, React, Vue, Angular, Vue.js, Svelte"
-        />
-        <meta name="apple-mobile-web-app-capable" content="yes"/>
-        <meta
-                name="viewport"
-                content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
-        />
-    
-        <meta name="twitter:card" content="summary_large_image"/>
-        <meta name="twitter:creator" content="@HollowMatt_ITA"/>
-        <meta
-                name="twitter:image:src"
-                content="https://particles.js.org/images/demo2.png"
-        />
-    
-        <meta
-                property="og:title"
-                content="tsParticles - JavaScript Particles animations for your website"
-        />
-        <meta property="og:site_name" content="tsParticles"/>
-        <meta property="og:url" content="https://confetti.js.org/"/>
-        <meta
-                property="og:description"
-                content="Easily create highly customizable particles, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno."
-        />
-        <meta
-                property="og:image"
-                content="https://particles.js.org/images/demo2.png"
-        />
-    
-        <title>
-            tsParticles | JavaScript Particles animations for your website
-        </title>
+  <head>
+    <meta charset="utf-8" />
+    <link
+      rel="shortcut icon"
+      href="https://particles.js.org/tsParticles-64.png"
+    />
+    <meta
+      name="description"
+      content="tsParticles - Easily create highly customizable particles, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno."
+    />
+    <meta name="author" content="Matteo Bruni" />
+    <meta
+      name="keyword"
+      content="HTML, CSS, JavaScript, Particles, Particles.js, Canvas, Confetti, Fireworks, Animations, React, Vue, Angular, Vue.js, Svelte"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
 
-        <link href="site.css" rel="stylesheet" />
-    </head>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@HollowMatt_ITA" />
+    <meta
+      name="twitter:image:src"
+      content="https://particles.js.org/images/demo2.png"
+    />
 
-    <body>
-        <h1>tsParticles Confetti</h1>
+    <meta
+      property="og:title"
+      content="tsParticles - JavaScript Particles animations for your website"
+    />
+    <meta property="og:site_name" content="tsParticles" />
+    <meta property="og:url" content="https://confetti.js.org/" />
+    <meta
+      property="og:description"
+      content="Easily create highly customizable particles, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno."
+    />
+    <meta
+      property="og:image"
+      content="https://particles.js.org/images/demo2.png"
+    />
 
-        <h2>Site under construction</h2>
+    <title>
+      tsParticles | JavaScript Particles animations for your website
+    </title>
 
-        <script src="https://cdn.jsdelivr.net/npm/tsparticles@1.41.4/tsparticles.min.js" integrity="sha256-PLeSPam4U9uBbYblON1q8LJ0jypThCVbtLSA0Ca+DVw=" crossorigin="anonymous"></script>
-        <script>
-            tsParticles.loadJSON("tsparticles", "confetti.json");
-        </script>
-    </body>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      integrity="sha256-YvdLHPgkqJ8DVUxjjnGVlMMJtNimJ6dYkowFFvp4kKs="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="site.css" />
+  </head>
+
+  <body>
+    <main>
+      <div
+        class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark"
+        style="width: 280px"
+      >
+        <a
+          href="/"
+          class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+        >
+          <img
+            class="bi me-2"
+            src="https://particles.js.org/tsParticles-64.png"
+            width="32"
+            height="32"
+          />
+          <span class="fs-4">tsParticles Confetti</span>
+        </a>
+        <hr />
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a
+              href="#"
+              id="btnBottomConfetti"
+              class="nav-link text-white"
+              aria-current="page"
+            >
+              <!--<svg class="bi me-2" width="16" height="16">
+                <use xlink:href="#home" />
+              </svg>-->
+              Toggle Bottom Confetti
+            </a>
+          </li>
+          <li>
+            <a href="#" id="btnConfettiExplosions" class="nav-link text-white">
+              <!--<svg class="bi me-2" width="16" height="16">
+                <use xlink:href="#speedometer2" />
+              </svg>-->
+              Toggle Confetti Explosions
+            </a>
+          </li>
+          <li>
+            <a href="#" id="btnSideConfetti" class="nav-link text-white">
+              <!--<svg class="bi me-2" width="16" height="16">
+                <use xlink:href="#table" />
+              </svg>-->
+              Toggle Side Confetti
+            </a>
+          </li>
+          <li>
+            <a href="#" id="btnFallingConfetti" class="nav-link text-white">
+              <!--<svg class="bi me-2" width="16" height="16">
+                <use xlink:href="#grid" />
+              </svg>-->
+              Toggle Falling Confetti
+            </a>
+          </li>
+          <li>
+            <a href="#" id="btnSingleConfetti" class="nav-link text-white">
+              <!--<svg class="bi me-2" width="16" height="16">
+                <use xlink:href="#people-circle" />
+              </svg>-->
+              Single Confetti Explosion
+            </a>
+          </li>
+        </ul>
+        <hr />
+        <div class="dropdown">
+          <a
+            href="#"
+            class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+            id="dropdownUser1"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              src="https://particles.js.org/tsParticles-64.png"
+              alt="tsParticles"
+              width="32"
+              height="32"
+              class="rounded-circle me-2"
+            />
+            <strong>Social</strong>
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-dark text-small shadow"
+            aria-labelledby="dropdownUser1"
+          >
+            <li>
+              <a
+                class="dropdown-item"
+                href="https://github.com/matteobruni/tsparticles"
+                >GitHub</a
+              >
+            </li>
+            <li><a class="dropdown-item" href="https://twitter.com/tsParticles">Twitter</a></li>
+            <li><a class="dropdown-item" href="https://discord.gg/hACwv45Hme">Discord</a></li>
+            <li><a class="dropdown-item" href="https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI">Slack</a></li>
+            <li><a class="dropdown-item" href="https://t.me/tsparticles">Telegram</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a class="dropdown-item" href="https://particles.js.org"
+                >Official Website</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+
+    <div id="tsparticles"></div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+      integrity="sha256-cMPWkL3FzjuaFSfEYESYmjF25hCIL6mfRSPnW8OVvM4="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/tsparticles@1.41.4/tsparticles.min.js"
+      integrity="sha256-PLeSPam4U9uBbYblON1q8LJ0jypThCVbtLSA0Ca+DVw="
+      crossorigin="anonymous"
+    ></script>
+    <script src="site.js"></script>
+  </body>
 </html>

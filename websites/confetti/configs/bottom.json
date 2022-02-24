@@ -1,12 +1,6 @@
 {
-  "background": {
-    "color": {
-      "value": "#000000"
-    }
-  },
   "fullScreen": {
-    "enable": true,
-    "zIndex": -1
+    "enable": false
   },
   "interactivity": {
     "detectsOn": "window"
@@ -18,7 +12,7 @@
     },
     "rate": {
       "quantity": 5,
-      "delay": 0.25
+      "delay": 0.15
     }
   },
   "particles": {
