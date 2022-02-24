@@ -73,5 +73,5 @@ export const updateState = (newState) => {
 export const updateCode = (newCode) => {
   const codeEl = document.getElementById("code-text");
 
-  codeEl.innerText = newCode;
+  codeEl.innerHTML = newCode;
 };

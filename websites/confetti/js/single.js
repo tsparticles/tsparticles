@@ -1,8 +1,9 @@
 import { animationState, animationStateButtons, updateAnimationState } from "./state.js";
+import { optionsToCode } from "./utils.js";
 
 const toggleSingleConfetti = (status) => {
   if (status) {
-    tsParticles.loadJSON("tsparticles", "configs/single.json");
+    tsParticles.loadJSON("tsparticles", "configs/single.json").then(optionsToCode);
   }
 };
 

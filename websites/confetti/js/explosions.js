@@ -1,8 +1,9 @@
 import { animationState, animationStateButtons, updateAnimationState } from "./state.js";
+import { optionsToCode } from "./utils.js";
 
 const toggleConfettiExplosions = (status) => {
   if (status) {
-    tsParticles.loadJSON("tsparticles", "configs/explosions.json");
+    tsParticles.loadJSON("tsparticles", "configs/explosions.json").then(optionsToCode);
   }
 };
 

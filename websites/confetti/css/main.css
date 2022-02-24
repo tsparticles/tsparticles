@@ -111,3 +111,12 @@ main {
   z-index: 10;
   overflow: auto;
 }
+
+#code pre {
+  height: 100%;
+}
+
+.hljs {
+  background: #282c34cc !important;
+  height: 100%;
+}

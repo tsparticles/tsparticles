@@ -1,10 +1,9 @@
 import { animationState, animationStateButtons, updateAnimationState, updateCode } from "./state.js";
+import { optionsToCode } from "./utils.js";
 
 const toggleBottomConfetti = (status) => {
   if (status) {
-    tsParticles.loadJSON("tsparticles", "configs/bottom.json").then(container => {
-        updateCode(JSON.stringify(container.sourceOptions, undefined, 2));
-    });
+    tsParticles.loadJSON("tsparticles", "configs/bottom.json").then(optionsToCode);
   }
 };
 

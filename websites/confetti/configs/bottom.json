@@ -2,9 +2,6 @@
   "fullScreen": {
     "enable": false
   },
-  "interactivity": {
-    "detectsOn": "window"
-  },
   "emitters": {
     "position": {
       "x": 50,
@@ -91,13 +88,7 @@
       }
     },
     "shape": {
-      "type": [
-        "circle",
-        "square",
-        "polygon",
-        "character",
-        "image"
-      ],
+      "type": ["circle", "square", "polygon", "character", "image"],
       "options": {
         "image": [
           {
@@ -277,9 +268,9 @@
             "style": "",
             "weight": 400,
             "particles": {
-                "size": {
-                    "value": { "min": 0, "max": 8 }
-                }
+              "size": {
+                "value": { "min": 0, "max": 8 }
+              }
             }
           }
         ]

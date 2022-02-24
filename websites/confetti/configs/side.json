@@ -2,48 +2,48 @@
   "fullScreen": {
     "enable": false
   },
-  "interactivity": {
-    "detectsOn": "window"
-  },
-  "emitters": [{
-    "position": {
-      "x": 0,
-      "y": 30
+  "emitters": [
+    {
+      "position": {
+        "x": 0,
+        "y": 30
+      },
+      "rate": {
+        "quantity": 5,
+        "delay": 0.15
+      },
+      "particles": {
+        "move": {
+          "direction": "top-right",
+          "outModes": {
+            "top": "none",
+            "left": "none",
+            "default": "destroy"
+          }
+        }
+      }
     },
-    "rate": {
-      "quantity": 5,
-      "delay": 0.15
-    },
-    "particles": {
-      "move": {
-        "direction": "top-right",
-        "outModes": {
-          "top": "none",
-          "left": "none",
-          "default": "destroy"
+    {
+      "position": {
+        "x": 100,
+        "y": 30
+      },
+      "rate": {
+        "quantity": 5,
+        "delay": 0.15
+      },
+      "particles": {
+        "move": {
+          "direction": "top-left",
+          "outModes": {
+            "top": "none",
+            "right": "none",
+            "default": "destroy"
+          }
         }
       }
     }
-  }, {
-    "position": {
-      "x": 100,
-      "y": 30
-    },
-    "rate": {
-      "quantity": 5,
-      "delay": 0.15
-    },
-    "particles": {
-      "move": {
-        "direction": "top-left",
-        "outModes": {
-          "top": "none",
-          "right": "none",
-          "default": "destroy"
-        }
-      }
-    }
-  }],
+  ],
   "particles": {
     "color": {
       "value": ["#ffffff", "#FF0000"]
@@ -120,11 +120,7 @@
       }
     },
     "shape": {
-      "type": [
-        "circle",
-        "square",
-        "polygon"
-      ],
+      "type": ["circle", "square", "polygon"],
       "options": {
         "polygon": [
           {

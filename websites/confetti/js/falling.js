@@ -1,8 +1,9 @@
 import { animationState, animationStateButtons, updateAnimationState } from "./state.js";
+import { optionsToCode } from "./utils.js";
 
 const toggleFallingConfetti = (status) => {
   if (status) {
-    tsParticles.loadJSON("tsparticles", "configs/falling.json");
+    tsParticles.loadJSON("tsparticles", "configs/falling.json").then(optionsToCode);
   }
 };
 
