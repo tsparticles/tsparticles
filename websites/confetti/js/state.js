@@ -16,8 +16,6 @@ export const animationStateButtons = [];
 export const updateAnimationState = (newAnimationState) => {
   Object.assign(animationState, newAnimationState);
 
-  console.log(animationState);
-
   if (
     Object.values(animationState).every((t) =>
       typeof t === "boolean" ? !t : true
