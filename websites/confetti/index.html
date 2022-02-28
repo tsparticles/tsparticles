@@ -65,190 +65,159 @@
   </head>
 
   <body>
-    <main>
-      <div
-        class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark"
-        style="width: 280px"
-      >
-        <a
-          href="/"
-          class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">tsParticles Confetti</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarCollapse"
+          aria-controls="navbarCollapse"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
-          <img
-            class="bi me-2"
-            src="https://particles.js.org/tsParticles-64.png"
-            width="32"
-            height="32"
-          />
-          <span class="fs-4">tsParticles Confetti</span>
-        </a>
-        <hr />
-        <ul class="nav nav-pills flex-column mb-auto">
-          <li class="nav-item">
-            <a
-              href="#"
-              id="btnBottomConfetti"
-              class="nav-link text-white"
-              aria-current="page"
-            >
-              Toggle Bottom Confetti
-            </a>
-          </li>
-          <li>
-            <a href="#" id="btnConfettiExplosions" class="nav-link text-white">
-              Toggle Confetti Explosions
-            </a>
-          </li>
-          <li>
-            <a href="#" id="btnSideConfetti" class="nav-link text-white">
-              Toggle Side Confetti
-            </a>
-          </li>
-          <li>
-            <a href="#" id="btnFallingConfetti" class="nav-link text-white">
-              Toggle Falling Confetti
-            </a>
-          </li>
-          <li>
-            <a href="#" id="btnSingleConfetti" class="nav-link text-white">
-              Single Confetti Explosion
-            </a>
-          </li>
-          <hr />
-          <li class="nav-item">
-            <a
-              href="#"
-              id="btnCircleConfetti"
-              class="nav-link text-white"
-              aria-current="page"
-            >
-              Toggle Circle Confetti
-            </a>
-          </li>
-          <li class="nav-item">
-            <a
-              href="#"
-              id="btnSquareConfetti"
-              class="nav-link text-white"
-              aria-current="page"
-            >
-              Toggle Square Confetti
-            </a>
-          </li>
-          <li class="nav-item">
-            <a
-              href="#"
-              id="btnTriangleConfetti"
-              class="nav-link text-white"
-              aria-current="page"
-            >
-              Toggle Triangle Confetti
-            </a>
-          </li>
-          <li class="nav-item">
-            <a
-              href="#"
-              id="btnPolygonConfetti"
-              class="nav-link text-white"
-              aria-current="page"
-            >
-              Toggle Polygon Confetti
-            </a>
-          </li>
-          <li class="nav-item">
-            <a
-              href="#"
-              id="btnFontConfetti"
-              class="nav-link text-white"
-              aria-current="page"
-            >
-              Toggle Font Confetti
-            </a>
-          </li>
-          <li class="nav-item">
-            <a
-              href="#"
-              id="btnImageConfetti"
-              class="nav-link text-white"
-              aria-current="page"
-            >
-              Toggle Image Confetti
-            </a>
-          </li>
-        </ul>
-        <hr />
-        <ul class="nav nav-pills flex-column">
-          <li class="nav-item">
-            <a
-              href="#"
-              id="btnToggleCode"
-              class="nav-link text-white"
-              aria-current="page"
-            >
-              Toggle Code
-            </a>
-          </li>
-        </ul>
-        <hr />
-        <div class="dropdown">
-          <a
-            href="#"
-            class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-            id="dropdownUser1"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <img
-              src="https://particles.js.org/tsParticles-64.png"
-              alt="tsParticles"
-              width="32"
-              height="32"
-              class="rounded-circle me-2"
-            />
-            <strong>Social</strong>
-          </a>
-          <ul
-            class="dropdown-menu dropdown-menu-dark text-small shadow"
-            aria-labelledby="dropdownUser1"
-          >
-            <li>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item dropdown">
               <a
-                class="dropdown-item"
-                href="https://github.com/matteobruni/tsparticles"
-                >GitHub</a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="dropdown01"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                >Configs</a
               >
+              <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                <li>
+                  <a class="dropdown-item" href="#" id="btnBottomConfetti"
+                    >Bottom</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#" id="btnConfettiExplosions"
+                    >Explosions</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#" id="btnSideConfetti"
+                    >Side</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#" id="btnFallingConfetti"
+                    >Falling</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#" id="btnSingleConfetti"
+                    >Single</a
+                  >
+                </li>
+              </ul>
             </li>
-            <li>
-              <a class="dropdown-item" href="https://twitter.com/tsParticles"
-                >Twitter</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" href="https://discord.gg/hACwv45Hme"
-                >Discord</a
-              >
-            </li>
-            <li>
+            <li class="nav-item dropdown">
               <a
-                class="dropdown-item"
-                href="https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI"
-                >Slack</a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="dropdown01"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                >Shapes</a
               >
+              <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                <li>
+                  <a class="dropdown-item" href="#" id="btnCircleConfetti"
+                    >Circle</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#" id="btnSquareConfetti"
+                    >Square</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#" id="btnTriangleConfetti"
+                    >Triangle</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#" id="btnPolygonConfetti"
+                    >Polygon</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#" id="btnFontConfetti"
+                    >Font</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#" id="btnImageConfetti"
+                    >Image</a
+                  >
+                </li>
+              </ul>
             </li>
-            <li>
-              <a class="dropdown-item" href="https://t.me/tsparticles"
-                >Telegram</a
-              >
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="btnToggleCode">Toggle Code</a>
             </li>
-            <li><hr class="dropdown-divider" /></li>
-            <li>
-              <a class="dropdown-item" href="https://particles.js.org"
-                >Official Website</a
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="dropdown01"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                >Social</a
               >
+              <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="https://github.com/matteobruni/tsparticles"
+                    >GitHub</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="https://twitter.com/tsParticles"
+                    >Twitter</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="https://discord.gg/hACwv45Hme"
+                    >Discord</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI"
+                    >Slack</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="https://t.me/tsparticles"
+                    >Telegram</a
+                  >
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="https://particles.js.org"
+                    >Official Website</a
+                  >
+                </li>
+              </ul>
             </li>
           </ul>
         </div>
       </div>
+    </nav>
+
+    <main>
       <div id="tsparticles"></div>
       <div id="code" class="d-none">
         <pre><code id="code-text" class="language-javascript"></code></pre>

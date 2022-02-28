@@ -8,9 +8,6 @@ import { optionsToCode } from "./utils.js";
 
 const config = () => {
   return {
-    fullScreen: {
-      enable: false,
-    },
     particles: {
       number: {
         value: 0,
@@ -107,9 +104,7 @@ const config = () => {
         },
       },
     },
-    detectRetina: true,
     emitters: {
-      direction: "none",
       life: {
         count: 0,
         duration: 0.1,

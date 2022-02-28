@@ -1,13 +1,14 @@
 body {
   min-height: 100vh;
   background: #232323;
+  padding-top: 4.5rem;
 }
 
 main {
   display: flex;
   flex-wrap: nowrap;
-  height: 100vh;
-  max-height: 100vh;
+  height: 100%;
+  max-height: 100%;
   overflow-x: auto;
   overflow-y: hidden;
 }
@@ -90,22 +91,12 @@ main {
   line-height: 1.25;
 }
 
-#tsparticles {
-    left: 280px;
-    position: fixed;
-    width: calc(100% - 280px);
-    height: 100%;
-    top: 0;
-    margin: 0;
-    padding: 0;
-}
-
 #code {
-  left: 280px;
+  left: 0;
   position: fixed;
-  width: calc(100% - 280px);
-  height: 100%;
-  top: 0;
+  width: 100%;
+  height: calc(100% - 3.5rem);
+  top: 3.5rem;
   margin: 0;
   padding: 0;
   z-index: 10;

@@ -8,9 +8,6 @@ import { optionsToCode } from "./utils.js";
 
 const config = () => {
   return {
-    fullScreen: {
-      enable: false,
-    },
     emitters: [
       {
         position: {
@@ -68,7 +65,7 @@ const config = () => {
           top: "none",
           default: "destroy",
         },
-        speed: { min: 10, max: 20 },
+        speed: { min: 10, max: 50 },
       },
       number: {
         value: 0,

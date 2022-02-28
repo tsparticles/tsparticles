@@ -8,9 +8,6 @@ import { optionsToCode } from "./utils.js";
 
 const config = () => {
   return {
-    fullScreen: {
-      enable: false,
-    },
     emitters: {
       position: {
         x: 50,

@@ -8,9 +8,6 @@ import { optionsToCode } from "./utils.js";
 
 const config = () => {
   return {
-    fullScreen: {
-      enable: true,
-    },
     particles: {
       number: {
         value: 0,
@@ -108,8 +105,6 @@ const config = () => {
       },
     },
     emitters: {
-      direction: "none",
-      domId: "btnSingleConfetti",
       life: {
         count: 1,
         duration: 0.1,

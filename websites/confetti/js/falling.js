@@ -8,17 +8,9 @@ import { optionsToCode } from "./utils.js";
 
 const config = () => {
   return {
-    fullScreen: {
-      enable: false,
-    },
     particles: {
       color: {
-        value: ["#FFFFFF", "#FF0000"],
-        animation: {
-          enable: true,
-          speed: 15,
-          sync: false,
-        },
+        value: ["#FFFFFF", "#FFd700"]
       },
       move: {
         direction: "bottom",
