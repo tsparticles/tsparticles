@@ -1,4 +1,5 @@
 import { appState, updateAnimationState, updateState } from "./state.js";
+import { initShapes } from "./shapes.js";
 import "./bottom.js";
 import "./explosions.js";
 import "./falling.js";
@@ -17,6 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
       code: !appState.code,
     });
   });
+
+  initShapes();
 
   hljs.highlightAll();
 });
