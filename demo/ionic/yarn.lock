@@ -5284,10 +5284,10 @@ karma-source-map-support@1.4.0:
   dependencies:
     source-map-support "^0.5.5"
 
-karma@~6.3.2:
-  version "6.3.15"
-  resolved "https://registry.yarnpkg.com/karma/-/karma-6.3.15.tgz#6c3beedb2440b05589a502462140afed724481e7"
-  integrity sha512-4O5X6zVFdmwo/fgjRN84fPG3IvaiOxOjIeZBwBrQYz4nIyGqlF8Wm7C1Hr7idQ9NHgnvJM+LSjZwS1C+qALMGw==
+karma@~6.3.16:
+  version "6.3.16"
+  resolved "https://registry.yarnpkg.com/karma/-/karma-6.3.16.tgz#76d1a705fd1cf864ee5ed85270b572641e0958ef"
+  integrity sha512-nEU50jLvDe5yvXqkEJRf8IuvddUkOY2x5Xc4WXHz6dxINgGDrgD2uqQWeVrJs4hbfNaotn+HQ1LZJ4yOXrL7xQ==
   dependencies:
     body-parser "^1.19.0"
     braces "^3.0.2"
@@ -5795,6 +5795,13 @@ neo-async@^2.6.2:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
+
+ng-particles@^2.41.5:
+  version "2.41.5"
+  resolved "https://registry.yarnpkg.com/ng-particles/-/ng-particles-2.41.5.tgz#d8d7b4097b8c64f2841dff930e1071108d4fc694"
+  integrity sha512-CJkzKzzPoebNNVqtJjAILKn7FEc3iH2rBc34VQCpE2SIipIIFWQ9rxRHs1/hd2dVc1vjC7vAo8H13OctZPX5JA==
+  dependencies:
+    tslib "^2.3.0"
 
 nice-napi@^1.0.2:
   version "1.0.2"
@@ -7763,6 +7770,11 @@ tslib@^1.8.1, tslib@^1.9.0:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
+
+tsparticles@^1.41.5:
+  version "1.41.5"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.41.5.tgz#4b935c3bb44c6dfc44dbbcf05fd5cb8aa3e64b09"
+  integrity sha512-USK4VZsr5HxiSyCvMuC6F7+SwOrM0zJDkPNlZXLBnf++d8xJ6P+jafEKr89JVUeYCWuDyAfS2GtYaXgOC1+bOA==
 
 tsutils@^3.21.0:
   version "3.21.0"
