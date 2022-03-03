@@ -1,9 +1,7 @@
 {
   "fullScreen": {
-    "enable": true,
     "zIndex": -1
   },
-  "fpsLimit": 120,
   "particles": {
     "groups": {
       "z5000": {

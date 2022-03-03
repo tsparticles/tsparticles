@@ -1,50 +1,63 @@
 {
   "particles": {
-    "bounce": {
-      "vertical": {
-        "value": 0
-      },
-      "horizontal": {
-        "value": 0
-      }
+    "number": {
+      "value": 0
     },
     "color": {
-      "value": "#f00",
+      "value": "#00ff00",
       "animation": {
         "enable": true,
-        "speed": 30
+        "sync": false,
+        "speed": 50
       }
     },
-    "move": {
-      "decay": 0.1,
-      "direction": "top",
-      "enable": true,
-      "gravity": {
-        "acceleration": 9.81,
-        "enable": true,
-        "maxSpeed": 200
-      },
-      "outModes": {
-        "top": "none",
-        "default": "destroy"
-      },
-      "speed": {
-        "min": 50,
-        "max": 150
-      }
-    },
-    "number": {
-      "value": 0,
-      "limit": 300
+    "shape": {
+      "type": "square",
+      "options": {}
     },
     "opacity": {
       "value": 1,
       "animation": {
-        "enable": false,
+        "enable": true,
+        "minimumValue": 0,
+        "speed": 2,
         "startValue": "max",
-        "destroy": "min",
-        "speed": 0.3,
-        "sync": true
+        "destroy": "min"
+      }
+    },
+    "size": {
+      "value": 4,
+      "random": {
+        "enable": true,
+        "minimumValue": 2
+      }
+    },
+    "links": {
+      "enable": false
+    },
+    "life": {
+      "duration": {
+        "sync": true,
+        "value": 5
+      },
+      "count": 1
+    },
+    "move": {
+      "enable": true,
+      "gravity": {
+        "enable": true,
+        "acceleration": 10
+      },
+      "speed": {
+        "min": 10,
+        "max": 20
+      },
+      "decay": 0.1,
+      "direction": "none",
+      "straight": false,
+      "outModes": {
+        "default": "destroy",
+        "top": "none"
       }
     },
     "rotate": {
@@ -72,20 +85,10 @@
         "speed": 60
       }
     },
-    "shape": {
-      "type": "circle"
-    },
-    "size": {
-      "value": 3
-    },
     "roll": {
       "darken": {
         "enable": true,
-        "value": 30
-      },
-      "enlighten": {
-        "enable": true,
-        "value": 30
+        "value": 25
       },
       "enable": true,
       "speed": {
@@ -104,17 +107,19 @@
     }
   },
   "emitters": {
-    "position": {
-      "x": 50,
-      "y": 50
+    "position": {},
+    "life": {
+      "count": 0,
+      "duration": 0.1,
+      "delay": 0.4
+    },
+    "rate": {
+      "delay": 0.1,
+      "quantity": 150
     },
     "size": {
       "width": 0,
       "height": 0
-    },
-    "rate": {
-      "quantity": 10,
-      "delay": 0.1
     }
   }
 }
