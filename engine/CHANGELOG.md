@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [2.0.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.0.1...tsparticles-engine@2.0.2) (2022-02-21)
+## [1.41.6](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.41.5...tsparticles@1.41.6) (2022-03-03)
+
+
+### Bug Fixes
+
+* fixed issue with canvas resize ([4c72a96](https://github.com/matteobruni/tsparticles/commit/4c72a96c707266da6cb1b5081bc7b504c5cfb3de))
+
+
+
+
+
 ## [1.41.5](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.41.4...tsparticles@1.41.5) (2022-02-24)
 
 

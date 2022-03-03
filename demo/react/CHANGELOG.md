@@ -11,6 +11,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
 * moved polygon mask to external plugin (breaking) ([abdfe37](https://github.com/matteobruni/tsparticles/commit/abdfe37f250a4f357f4491bb7ff0e54da6a7303e))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.26.6](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.26.5...react-tsparticles-demo@1.26.6) (2022-03-03)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
 ## [1.26.5](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.26.4...react-tsparticles-demo@1.26.5) (2022-02-24)
 
 

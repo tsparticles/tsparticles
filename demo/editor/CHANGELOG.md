@@ -9,6 +9,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.26.6](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.26.5...editor-demo@1.26.6) (2022-03-03)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
 ## [1.26.5](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.26.4...editor-demo@1.26.5) (2022-02-24)
 
 

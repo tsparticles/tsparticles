@@ -57,6 +57,7 @@
   "main": "dist/umd/svelte-particles.js",
   "module": "dist/es/svelte-particles.js",
   "svelte": "src/index.ts",
+  "types": "src/index.d.ts",
   "peerDependencies": {
     "svelte": ">=3"
   },
