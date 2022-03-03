@@ -79,6 +79,7 @@ const fixOutMode = (data: {
  */
 export class Particle implements IParticle {
     destroyed;
+    ignoresResizeRatio;
     lastPathTime;
     misplaced;
     spawning;
@@ -142,6 +143,7 @@ export class Particle implements IParticle {
         this.retina = {
             maxDistance: {},
         };
+        this.ignoresResizeRatio = true;
 
         const pxRatio = container.retina.pixelRatio;
         const mainOptions = container.actualOptions;

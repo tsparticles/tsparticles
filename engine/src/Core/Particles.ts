@@ -185,11 +185,12 @@ export class Particles {
 
             const resizeFactor = container.canvas.resizeFactor;
 
-            if (resizeFactor) {
+            if (resizeFactor && !particle.ignoresResizeRatio) {
                 particle.position.x *= resizeFactor.width;
                 particle.position.y *= resizeFactor.height;
             }
 
+            particle.ignoresResizeRatio = false;
             particle.bubble.inRange = false;
 
             for (const [, plugin] of this.container.plugins) {
