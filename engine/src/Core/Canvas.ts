@@ -171,10 +171,7 @@ export class Canvas {
         const container = this.container;
         const pxRatio = container.retina.pixelRatio;
         const size = container.canvas.size;
-        const oldSize = {
-            width: size.width,
-            height: size.height,
-        };
+        const oldSize = { ...size };
 
         size.width = this.element.offsetWidth * pxRatio;
         size.height = this.element.offsetHeight * pxRatio;
