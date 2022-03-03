@@ -46,11 +46,11 @@
     "@types/jasmine": "~3.10.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^16.0.0",
-    "@typescript-eslint/eslint-plugin": "5.12.1",
-    "@typescript-eslint/parser": "5.12.1",
+    "@typescript-eslint/eslint-plugin": "5.13.0",
+    "@typescript-eslint/parser": "5.13.0",
     "eslint": "^8.0.0",
     "eslint-plugin-import": "2.25.4",
-    "eslint-plugin-jsdoc": "37.9.4",
+    "eslint-plugin-jsdoc": "37.9.6",
     "eslint-plugin-prefer-arrow": "1.2.3",
     "jasmine-core": "~4.0.0",
     "jasmine-spec-reporter": "~7.0.0",
@@ -61,7 +61,7 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
     "protractor": "~7.0.0",
-    "ts-node": "~10.5.0",
+    "ts-node": "~10.6.0",
     "typescript": "~4.5.0"
   },
   "description": "An Ionic project"
