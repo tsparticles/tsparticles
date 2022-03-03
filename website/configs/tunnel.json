@@ -1,15 +1,10 @@
 {
   "fullScreen": {
-    "enable": true,
     "zIndex": -1
   },
-  "fpsLimit": 120,
   "particles": {
     "number": {
       "value": 0
-    },
-    "collisions": {
-      "enable": false
     },
     "color": {
       "value": "#ffffff"
@@ -44,7 +39,6 @@
       }
     }
   },
-  "detectRetina": true,
   "background": {
     "color": "#000"
   },
