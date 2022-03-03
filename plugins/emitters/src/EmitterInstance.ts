@@ -78,6 +78,7 @@ export class EmitterInstance {
         }
 
         this.spawnDelay = ((this.options.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
+        this.position = this.initialPosition ?? this.calcPosition();
         this.name = this.options.name;
         this.shape = this.#engine.emitterShapeManager?.getShape(this.options.shape);
         this.fill = this.options.fill;

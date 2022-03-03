@@ -8,12 +8,12 @@
     />
     <meta
             name="description"
-            content="tsParticles - Easily create highly customizable particles animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno."
+            content="tsParticles - Easily create highly customizable particles, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno."
     />
     <meta name="author" content="Matteo Bruni"/>
     <meta
             name="keyword"
-            content="HTML, CSS, JavaScript, Particles, Particles.js, Animations, React, Vue, Angular, Vue.js, Svelte"
+            content="HTML, CSS, JavaScript, Particles, Particles.js, Canvas, Confetti, Fireworks, Animations, React, Vue, Angular, Vue.js, Svelte"
     />
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta
@@ -36,7 +36,7 @@
     <meta property="og:url" content="https://particles.js.org/"/>
     <meta
             property="og:description"
-            content="Easily create highly customizable particles animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno."
+            content="Easily create highly customizable particles, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno."
     />
     <meta
             property="og:image"
@@ -304,6 +304,9 @@
                             Share
                         </a>
                     </div>
+                    <a href="https://twitter.com/tsParticles?ref_src=twsrc%5Etfw" class="twitter-follow-button"
+                       data-show-count="false">Follow @tsParticles</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                 </div>
             </div>
             <div class="row">
@@ -334,6 +337,17 @@
                             class="btn btn-secondary"
                     >
                         <i class="fab fa-codepen fa-fw"></i> CodePen
+                    </a>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4 d-grid">
+                    <a
+                            class="btn btn-success"
+                            href="https://confetti.js.org"
+                            target="_blank"
+                    >
+                        <i class="fas fa-asterisk fa-fw"></i> Confetti
                     </a>
                 </div>
             </div>
@@ -550,33 +564,32 @@
         crossorigin="anonymous"
 ></script>
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.41.0/tsparticles.min.js"
-        integrity="sha256-Cchmv89Mh3PdO8gPwOTpi2dT/OsZt2EsLl3FCdV1tWo=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-infection@1.41.0/tsparticles.plugin.infection.min.js"
-        integrity="sha256-voLxDHbKW7JTdBlaEKYhGBJ2+mvsCG8tMwcbnjuE+Fk=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-light@1.41.0/tsparticles.interaction.light.min.js"
-        integrity="sha256-GLVNSwRtfBhWBSQy4wZjG/gxa13wDkmL447b4AFomE4=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-particles-repulse@1.41.0/tsparticles.interaction.particles.repulse.min.js"
-        integrity="sha256-I0DhqCTde18HUwtcSbNaHcajVU3O4od+Se6p02MQPGM=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-gradient@1.41.0/tsparticles.updater.gradient.min.js"
-        integrity="sha256-eoEH78+lwAsUd6bccq1MwpCtJiypLNRG+Kb9LniB4+o=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-orbit@1.41.0/tsparticles.updater.orbit.min.js"
-        integrity="sha256-krj6mC/uU5sL60BTrA2H9esJgvTm8Met/hhW5UdG7HM=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-curves@1.41.0/tsparticles.path.curves.min.js"
-        integrity="sha256-icnNXL3orE14yRBY4qs9VNUpMno/xeYcyXkb8ISQ4Rk=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-polygon@1.41.0/tsparticles.path.polygon.min.js"
-        integrity="sha256-WEAxa22eTMXwHLQxMBWpQ0bXp+gGI5UPw1f3qsKOmpY=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-perlin-noise@1.41.0/tsparticles.path.perlin.noise.min.js"
-        integrity="sha256-6jCRO+AKjVt0zgqFZSB/rwEj3rK2/qhHnJXoYnlunlM=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-simplex-noise@1.41.0/tsparticles.path.simplex.noise.min.js"
-        integrity="sha256-R4XErZsF4W67bl9N3Zl30PANaNdsflIfiCBSFzAhxJE=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-links@1.41.0/tsparticles.preset.links.min.js"
-        integrity="sha256-mTqc0IIBXfLyjz1JxL3obg+4Twq2Xd3URPV3lFTkq7o=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.41.5/tsparticles.min.js"
+        integrity="sha256-+olOdIjXQEXPrHwiCfR3PqpRfTNaNO8zZtqDIA1atsY=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-infection@1.41.5/tsparticles.plugin.infection.min.js"
+        integrity="sha256-cFP+jb9/BYnl1vdUK4HPVxP0Uf7RqWr/G8qK2GwOSqw=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-light@1.41.5/tsparticles.interaction.light.min.js"
+        integrity="sha256-l0iLfAfOF4wBG0plJXzRf3aJeJAd7rcsq4RkfKSJMlM=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-particles-repulse@1.41.5/tsparticles.interaction.particles.repulse.min.js"
+        integrity="sha256-5Kd/4+c4vnHnM5m9wMItm7ZO7TW+yRbdEOoLASds9pc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-gradient@1.41.5/tsparticles.updater.gradient.min.js"
+        integrity="sha256-6UcI2uzw8AaJYr5kNESx1SPgcofPHfmReJpftywDewI=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-orbit@1.41.5/tsparticles.updater.orbit.min.js"
+        integrity="sha256-/IcU7By81kO8ZPMqYvSSsjer94W5CANuPRCl+Iw6CM0=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-curves@1.41.5/tsparticles.path.curves.min.js"
+        integrity="sha256-KQHuCmomPjRlFDNJ8+eNgr8meevHQbtUaO+fp5SE92k=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-polygon@1.41.5/tsparticles.path.polygon.min.js"
+        integrity="sha256-lU2w0XSohzZ2G/Q4KT0dHkIZbYhGtABeQzvoqryk0JI=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-perlin-noise@1.41.5/tsparticles.path.perlin.noise.min.js"
+        integrity="sha256-TpImrt8TOzEK8qThqiO+PmcKUIr2J518JsUfEjdW+Vg=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-simplex-noise@1.41.5/tsparticles.path.simplex.noise.min.js"
+        integrity="sha256-thpLpDfNfADMBkLJZDeEbtQP6P8NF3f2nkZT+26jSJc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-links@1.41.5/tsparticles.preset.links.min.js"
+        integrity="sha256-0+96scfCc10pdzNntz9AEvqOWyhfl5V6lXWHWhFCc64=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/object-gui@1.1.1/dist/js/object-gui.min.js"
-        integrity="sha256-M0fXnWoixeosDqA5oLRKEpnTFLQWqUG3xlHN2GmbpGw=" crossorigin="anonymous"
-></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-editor@1.41.0/dist/tsparticles.editor.min.js"
-        integrity="sha256-9PYXJIHMwQYzVvDCz3qOKJgmHcd/idz7XrA7NRBOtG4=" crossorigin="anonymous"></script>
+        integrity="sha256-M0fXnWoixeosDqA5oLRKEpnTFLQWqUG3xlHN2GmbpGw=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-editor@1.41.5/dist/tsparticles.editor.min.js"
+        integrity="sha256-8XJGV2dSkkzzeCt4gjYyupNUd0BibWWAl4eio3XcaDo=" crossorigin="anonymous"></script>
 <script type="text/javascript">
     hljs.initHighlightingOnLoad();
 </script>

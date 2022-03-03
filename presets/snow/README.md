@@ -140,7 +140,8 @@ async function particlesInit(engine: Engine): Promise<void> {
 ```
 
 ```js
-async function onParticlesInit(engine) {
-  await loadSnowPreset(engine);
-}
+let onParticlesInit = (event) => {
+  const main = event.detail;
+  loadSnowPreset(main);
+};
 ```

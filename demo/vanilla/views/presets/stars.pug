@@ -23,9 +23,12 @@ html(lang="en")
         #stats
         #tsparticles
 
-        script(src="/preset-stars/tsparticles.preset.stars.bundle.min.js")
         script(src="/three/examples/js/libs/stats.min.js")
+        script(src="/tsparticles/tsparticles.min.js")
+        script(src="/preset-stars/tsparticles.preset.stars.min.js")
         script.
+            loadStarsPreset(tsParticles);
+
             tsParticles.load("tsparticles", {preset: "stars"});
 
             const stats = new Stats();

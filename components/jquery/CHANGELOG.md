@@ -23,6 +23,22 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 ## [2.0.1](https://github.com/matteobruni/tsparticles/compare/jquery-particles@2.0.0...jquery-particles@2.0.1) (2022-02-15)
+## [1.41.6](https://github.com/matteobruni/tsparticles/compare/jquery-particles@1.41.5...jquery-particles@1.41.6) (2022-03-03)
+
+**Note:** Version bump only for package jquery-particles
+
+
+
+
+
+## [1.41.5](https://github.com/matteobruni/tsparticles/compare/jquery-particles@1.41.4...jquery-particles@1.41.5) (2022-02-24)
+
+**Note:** Version bump only for package jquery-particles
+
+
+
+
+
 ## [1.41.4](https://github.com/matteobruni/tsparticles/compare/jquery-particles@1.41.3...jquery-particles@1.41.4) (2022-02-20)
 
 **Note:** Version bump only for package jquery-particles

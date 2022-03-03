@@ -52,7 +52,9 @@ yarn add svelte-particles svelte
     // (from the core library) methods like play, pause, refresh, start, stop
   };
 
-  let onParticlesInit = (main) => {
+  let onParticlesInit = (event) => {
+    const main = event.detail;
+
     // you can use main to customize the tsParticles instance adding presets or custom shapes
   };
 </script>

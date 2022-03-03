@@ -10,6 +10,20 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.24.6](https://github.com/matteobruni/tsparticles/compare/inferno-particles-demo@1.24.5...inferno-particles-demo@1.24.6) (2022-03-03)
+
+**Note:** Version bump only for package inferno-particles-demo
+
+
+
+
+
+## [1.24.5](https://github.com/matteobruni/tsparticles/compare/inferno-particles-demo@1.24.4...inferno-particles-demo@1.24.5) (2022-02-24)
+
+
+### Bug Fixes
+
+* fixed emitters issues ([c9d9a51](https://github.com/matteobruni/tsparticles/commit/c9d9a51e41fdc77a9bf544a09d979d8c2f6b10d5))
 
 
 

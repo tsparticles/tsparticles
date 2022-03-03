@@ -138,7 +138,8 @@ async function particlesInit(engine: Engine): Promise<void> {
 ```
 
 ```js
-async function onParticlesInit(engine: Engine): Promise<void> {
-  await loadBigCirclesPreset(engine);
-}
+let onParticlesInit = (event) => {
+  const main = event.detail;
+  loadBigCirclesPreset(main);
+};
 ```
