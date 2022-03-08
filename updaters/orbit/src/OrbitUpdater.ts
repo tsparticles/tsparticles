@@ -7,6 +7,9 @@ type OrbitParticle = Particle & {
     retina: IParticleRetinaProps & {
         orbitRadius?: number;
     };
+    orbitAnimationSpeed?: number;
+    orbitOpacity?: number;
+    orbitWidth?: number;
 };
 
 export class OrbitUpdater implements IParticleUpdater {
@@ -19,11 +22,16 @@ export class OrbitUpdater implements IParticleUpdater {
 
         if (orbitOptions.enable) {
             particle.orbitRotation = getRangeValue(orbitOptions.rotation.value);
-
             particle.orbitColor = colorToHsl(orbitOptions.color);
-
             particle.retina.orbitRadius =
-                orbitOptions?.radius !== undefined ? orbitOptions.radius * this.container.retina.pixelRatio : undefined;
+                orbitOptions?.radius !== undefined
+                    ? getRangeValue(orbitOptions.radius) * this.container.retina.pixelRatio
+                    : undefined;
+            particle.orbitAnimationSpeed = orbitOptions.animation.enable
+                ? getRangeValue(orbitOptions.animation.speed)
+                : 0;
+            particle.orbitWidth = getRangeValue(orbitOptions.width);
+            particle.orbitOpacity = getRangeValue(orbitOptions.opacity);
         }
     }
 
@@ -34,8 +42,6 @@ export class OrbitUpdater implements IParticleUpdater {
     }
 
     update(particle: OrbitParticle, delta: IDelta): void {
-        const orbitAnimations = particle.options.orbit.animation;
-
         if (!this.isEnabled(particle)) {
             return;
         }
@@ -44,7 +50,7 @@ export class OrbitUpdater implements IParticleUpdater {
             particle.orbitRotation = 0;
         }
 
-        particle.orbitRotation += (orbitAnimations.speed / (Math.PI * 2)) * delta.factor;
+        particle.orbitRotation += (particle.orbitAnimationSpeed ?? 0 / (Math.PI * 2)) * delta.factor;
     }
 
     beforeDraw(particle: OrbitParticle): void {
@@ -65,7 +71,6 @@ export class OrbitUpdater implements IParticleUpdater {
 
     drawOrbit(particle: OrbitParticle, type: OrbitType): void {
         const container = this.container;
-        const orbitOptions = particle.options.orbit;
 
         let start: number;
         let end: number;
@@ -90,8 +95,8 @@ export class OrbitUpdater implements IParticleUpdater {
                 particle,
                 particle.orbitColor ?? particle.getFillColor(),
                 particle.retina.orbitRadius ?? container.retina.orbitRadius ?? particle.getRadius(),
-                orbitOptions.opacity,
-                orbitOptions.width,
+                particle.orbitOpacity ?? 1,
+                particle.orbitWidth ?? 1,
                 (particle.orbitRotation ?? 0) * container.retina.pixelRatio,
                 start,
                 end

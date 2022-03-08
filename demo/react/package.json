@@ -12,7 +12,7 @@
   },
   "scripts": {
     "start": "tsc && parcel serve public/index.html --no-cache --open",
-    "build": "tsc && parcel build --target browser"
+    "build": "tsc && parcel build --no-cache --target browser"
   },
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
