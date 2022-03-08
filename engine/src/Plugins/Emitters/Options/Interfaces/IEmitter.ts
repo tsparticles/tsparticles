@@ -1,11 +1,11 @@
 import type { MoveDirection, MoveDirectionAlt } from "../../../../Enums";
 import type { EmitterShapeType } from "../../Enums";
 import type { IAnimatableColor } from "../../../../Options/Interfaces/IAnimatableColor";
-import type { ICoordinates } from "../../../../Core";
 import type { IEmitterLife } from "./IEmitterLife";
 import type { IEmitterRate } from "./IEmitterRate";
 import type { IEmitterSize } from "./IEmitterSize";
 import type { IParticles } from "../../../../Options/Interfaces/Particles/IParticles";
+import type { IRangedCoordinates } from "../../../../Core";
 import type { RecursivePartial } from "../../../../Types";
 
 /**
@@ -60,7 +60,7 @@ export interface IEmitter {
      * The relative position (in percent) of the emitter, where particles spawns.
      * If size is specified the position will be the center of the size options
      */
-    position?: RecursivePartial<ICoordinates>;
+    position?: RecursivePartial<IRangedCoordinates>;
 
     /**
      * The particles emitting rate options

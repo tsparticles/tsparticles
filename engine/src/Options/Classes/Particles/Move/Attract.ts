@@ -1,7 +1,8 @@
+import type { RangeValue, RecursivePartial } from "../../../../Types";
 import type { IAttract } from "../../../Interfaces/Particles/Move/IAttract";
 import type { ICoordinates } from "../../../../Core";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { RecursivePartial } from "../../../../Types";
+import { setRangeValue } from "../../../../Utils";
 
 /**
  * @category Options
@@ -41,7 +42,7 @@ export class Attract implements IAttract, IOptionLoader<IAttract> {
         this.rotate.y = value;
     }
 
-    distance: number;
+    distance: RangeValue;
     enable;
     rotate: ICoordinates;
 
@@ -60,7 +61,7 @@ export class Attract implements IAttract, IOptionLoader<IAttract> {
         }
 
         if (data.distance !== undefined) {
-            this.distance = data.distance;
+            this.distance = setRangeValue(data.distance);
         }
 
         if (data.enable !== undefined) {

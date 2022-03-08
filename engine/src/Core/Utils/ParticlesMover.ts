@@ -83,7 +83,7 @@ export class ParticlesMover {
 
         this.applyPath(particle, delta);
 
-        const gravityOptions = moveOptions.gravity;
+        const gravityOptions = particle.gravity;
         const gravityFactor = gravityOptions.enable && gravityOptions.inverse ? -1 : 1;
 
         if (gravityOptions.enable && moveSpeed) {
@@ -105,7 +105,7 @@ export class ParticlesMover {
 
         if (
             gravityOptions.enable &&
-            gravityOptions.maxSpeed > 0 &&
+            maxSpeed > 0 &&
             ((!gravityOptions.inverse && velocity.y >= 0 && velocity.y >= maxSpeed) ||
                 (gravityOptions.inverse && velocity.y <= 0 && velocity.y <= -maxSpeed))
         ) {

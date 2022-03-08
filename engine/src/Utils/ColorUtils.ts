@@ -11,7 +11,7 @@ import type {
     IRgba,
     IValueColor,
 } from "../Core";
-import { mix, randomInRange, setRangeValue } from "./NumberUtils";
+import { getRangeValue, mix, randomInRange, setRangeValue } from "./NumberUtils";
 import { AnimationStatus } from "../Enums";
 import { Constants } from "../Core";
 import type { HslAnimation } from "../Options/Classes/HslAnimation";
@@ -561,7 +561,7 @@ function setColorAnimation(
     colorValue.enable = colorAnimation.enable;
 
     if (colorValue.enable) {
-        colorValue.velocity = (colorAnimation.speed / 100) * reduceFactor;
+        colorValue.velocity = (getRangeValue(colorAnimation.speed) / 100) * reduceFactor;
 
         if (colorAnimation.sync) {
             return;

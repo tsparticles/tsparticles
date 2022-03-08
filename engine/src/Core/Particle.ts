@@ -16,6 +16,7 @@ import type {
     IHsl,
     IParticle,
     IParticleGradientAnimation,
+    IParticleGravity,
     IParticleHslAnimation,
     IParticleLife,
     IParticleNumericValueAnimation,
@@ -106,6 +107,7 @@ export class Particle implements IParticle {
     stroke?: Stroke;
     strokeColor?: IParticleHslAnimation;
 
+    readonly gravity: IParticleGravity;
     readonly moveDecay: number;
     readonly direction: number;
     readonly position: Vector3d;
@@ -204,7 +206,7 @@ export class Particle implements IParticle {
             max: getRangeMax(sizeRange) * pxRatio,
             min: getRangeMin(sizeRange) * pxRatio,
             loops: 0,
-            maxLoops: sizeOptions.animation.count,
+            maxLoops: getRangeValue(sizeOptions.animation.count),
         };
 
         const sizeAnimation = sizeOptions.animation;
@@ -251,6 +253,12 @@ export class Particle implements IParticle {
         this.initialVelocity = this.calculateVelocity();
         this.velocity = this.initialVelocity.copy();
         this.moveDecay = 1 - getRangeValue(this.options.move.decay);
+        const gravityOptions = this.options.move.gravity;
+        this.gravity = {
+            enable: gravityOptions.enable,
+            acceleration: getRangeValue(gravityOptions.acceleration),
+            inverse: gravityOptions.inverse,
+        };
 
         /* position */
         this.position = this.calcPosition(container, position, clamp(zIndexValue, 0, container.zLayers));
@@ -542,16 +550,15 @@ export class Particle implements IParticle {
     }
 
     private calculateVelocity(): Vector {
-        const baseVelocity = getParticleBaseVelocity(this.direction);
-        const res = baseVelocity.copy();
-        const moveOptions = this.options.move;
-        const rad = (Math.PI / 180) * moveOptions.angle.value;
-        const radOffset = (Math.PI / 180) * moveOptions.angle.offset;
-
-        const range = {
-            left: radOffset - rad / 2,
-            right: radOffset + rad / 2,
-        };
+        const baseVelocity = getParticleBaseVelocity(this.direction),
+            res = baseVelocity.copy(),
+            moveOptions = this.options.move,
+            rad = (Math.PI / 180) * getRangeValue(moveOptions.angle.value),
+            radOffset = (Math.PI / 180) * getRangeValue(moveOptions.angle.offset),
+            range = {
+                left: radOffset - rad / 2,
+                right: radOffset + rad / 2,
+            };
 
         if (!moveOptions.straight) {
             res.angle += randomInRange(setRangeValue(range.left, range.right));

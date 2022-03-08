@@ -156,8 +156,8 @@ export class AbsorberInstance {
         const percentPosition = this.options.position;
 
         return Vector.create(
-            ((percentPosition?.x ?? Math.random() * 100) / 100) * container.canvas.size.width,
-            ((percentPosition?.y ?? Math.random() * 100) / 100) * container.canvas.size.height
+            (getRangeValue(percentPosition?.x ?? Math.random() * 100) / 100) * container.canvas.size.width,
+            (getRangeValue(percentPosition?.y ?? Math.random() * 100) / 100) * container.canvas.size.height
         );
     }
 

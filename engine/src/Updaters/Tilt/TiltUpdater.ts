@@ -71,7 +71,7 @@ export class TiltUpdater implements IParticleUpdater {
         const tiltAnimation = particle.options.tilt.animation;
 
         if (tiltAnimation.enable) {
-            particle.tilt.velocity = (tiltAnimation.speed / 360) * this.container.retina.reduceFactor;
+            particle.tilt.velocity = (getRangeValue(tiltAnimation.speed) / 360) * this.container.retina.reduceFactor;
 
             if (!tiltAnimation.sync) {
                 particle.tilt.velocity *= Math.random();

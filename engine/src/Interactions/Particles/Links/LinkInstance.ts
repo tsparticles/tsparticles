@@ -1,5 +1,5 @@
 import type { Container, IContainerPlugin, IRgb, Particle } from "../../../Core";
-import { colorToRgb, drawLinkLine, drawLinkTriangle, getDistance, getLinkColor } from "../../../Utils";
+import { colorToRgb, drawLinkLine, drawLinkTriangle, getDistance, getLinkColor, getRangeValue } from "../../../Utils";
 import type { ILink } from "./ILink";
 import type { LinkParticle } from "./LinkParticle";
 
@@ -149,7 +149,7 @@ export class LinkInstance implements IContainerPlugin {
 
                 if (twinkling && twinkleRgb !== undefined) {
                     colorLine = twinkleRgb;
-                    opacity = twinkle.opacity;
+                    opacity = getRangeValue(twinkle.opacity);
                 }
             }
 
