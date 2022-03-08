@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.25.0](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.24.6...particles.vue3-demo@1.25.0) (2022-03-08)
+
+
+### Bug Fixes
+
+* upgrade vue from 3.2.29 to 3.2.30 ([5e13e9d](https://github.com/matteobruni/tsparticles/commit/5e13e9dad9efb691570369307eef39be9bc75d92))
+
+
+
+
+
 ## [1.24.6](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.24.5...particles.vue3-demo@1.24.6) (2022-03-03)
 
 **Note:** Version bump only for package particles.vue3-demo

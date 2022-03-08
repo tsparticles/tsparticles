@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.42.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.41.6...tsparticles@1.42.0) (2022-03-08)
+
+
+### Features
+
+* more rangeable options ([a2598c0](https://github.com/matteobruni/tsparticles/commit/a2598c07e968ab383c0a1eb311e22c4a0f52d9b8))
+
+
+
+
+
 ## [1.41.6](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.41.5...tsparticles@1.41.6) (2022-03-03)
 
 

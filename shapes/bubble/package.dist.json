@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-bubble",
-  "version": "1.41.6",
+  "version": "1.42.0",
   "description": "tsParticles bubble shape",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -54,6 +54,6 @@
   "module": "shape.js",
   "types": "shape.d.ts",
   "dependencies": {
-    "tsparticles": "^1.41.6"
+    "tsparticles": "^1.42.0"
   }
 }
