@@ -1,4 +1,5 @@
 const path = require('path');
+const particlesJsFoundError = "particles.js-found";
 const reactParticlesJsFoundError = "react-particles-js-found";
 
 try {
@@ -20,8 +21,16 @@ try {
         return;
     }
 
+    if (dependencies["particles.js"]) {
+        console.error("\x1b[31m%s\x1b[0m", "The package particles.js can't be installed with tsparticles, since it can lead to unexpected behaviors, please uninstall particles.js and remove it from the package.json file.");
+
+        throw new Error(reactParticlesJsFoundError);
+    }
+
     if (dependencies["react-particles-js"]) {
-        console.error("\x1b[31m%s\x1b[0m", "The package react-particles-js has been deprecated and is not supported anymore. Please consider switching to react-tsparticles package.");
+        console.error("\x1b[31m%s\x1b[0m", "The package react-particles-js has been deprecated and is not supported anymore.");
+        console.error("\x1b[31m%s\x1b[0m", "Please consider switching to react-tsparticles package.")
+        console.error("\x1b[31m%s\x1b[0m", "This error will be fixed once react-particles-js is removed from the package.json file.");
 
         throw new Error(reactParticlesJsFoundError);
     }
@@ -88,7 +97,7 @@ try {
         }
     }
 } catch (error) {
-    if (error.message === reactParticlesJsFoundError) {
+    if (error.message === reactParticlesJsFoundError || error.message === particlesJsFoundError) {
         throw error;
     }
 

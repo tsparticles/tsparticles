@@ -292,8 +292,8 @@ export class EmitterInstance {
         const percentPosition = this.options.position;
 
         return {
-            x: ((percentPosition?.x ?? Math.random() * 100) / 100) * container.canvas.size.width,
-            y: ((percentPosition?.y ?? Math.random() * 100) / 100) * container.canvas.size.height,
+            x: (getRangeValue(percentPosition?.x ?? Math.random() * 100) / 100) * container.canvas.size.width,
+            y: (getRangeValue(percentPosition?.y ?? Math.random() * 100) / 100) * container.canvas.size.height,
         };
     }
 
@@ -354,7 +354,7 @@ export class EmitterInstance {
 
         const delay = getRangeValue(this.options.rate.delay);
         const emitFactor = (1000 * delay) / container.retina.reduceFactor;
-        const colorSpeed = animation.speed ?? 0;
+        const colorSpeed = getRangeValue(animation.speed ?? 0);
 
         return (initValue + (colorSpeed * container.fpsLimit) / emitFactor + colorOffset * 3.6) % maxValue;
     }

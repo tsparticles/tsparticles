@@ -1,15 +1,15 @@
 import { MoveDirection, MoveDirectionAlt } from "../../../../Enums";
+import { deepExtend, setRangeValue } from "../../../../Utils";
 import { AnimatableColor } from "../../../../Options/Classes/AnimatableColor";
 import { EmitterLife } from "./EmitterLife";
 import { EmitterRate } from "./EmitterRate";
 import { EmitterShapeType } from "../../Enums";
 import { EmitterSize } from "./EmitterSize";
-import type { ICoordinates } from "../../../../Core";
 import type { IEmitter } from "../Interfaces/IEmitter";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 import type { IParticles } from "../../../../Options/Interfaces/Particles/IParticles";
+import type { IRangedCoordinates } from "../../../../Core";
 import type { RecursivePartial } from "../../../../Types";
-import { deepExtend } from "../../../../Utils";
 
 /**
  * [[include:Options/Plugins/Emitters.md]]
@@ -24,7 +24,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     life;
     name?: string;
     particles?: RecursivePartial<IParticles>;
-    position?: RecursivePartial<ICoordinates>;
+    position?: RecursivePartial<IRangedCoordinates>;
     rate;
     shape: EmitterShapeType | keyof typeof EmitterShapeType;
     spawnColor?: AnimatableColor;
@@ -81,10 +81,15 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
         }
 
         if (data.position !== undefined) {
-            this.position = {
-                x: data.position.x,
-                y: data.position.y,
-            };
+            this.position = {};
+
+            if (data.position.x) {
+                this.position.x = setRangeValue(data.position.x);
+            }
+
+            if (data.position.y) {
+                this.position.y = setRangeValue(data.position.y);
+            }
         }
 
         if (data.spawnColor !== undefined) {

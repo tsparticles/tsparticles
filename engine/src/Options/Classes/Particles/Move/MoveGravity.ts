@@ -1,12 +1,13 @@
-import { IMoveGravity } from "../../../Interfaces/Particles/Move/IMoveGravity";
-import { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import { RecursivePartial } from "../../../../Types";
+import type { RangeValue, RecursivePartial } from "../../../../Types";
+import type { IMoveGravity } from "../../../Interfaces/Particles/Move/IMoveGravity";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import { setRangeValue } from "../../../../Utils";
 
 export class MoveGravity implements IMoveGravity, IOptionLoader<IMoveGravity> {
-    acceleration;
+    acceleration: RangeValue;
     enable;
     inverse;
-    maxSpeed;
+    maxSpeed: RangeValue;
 
     constructor() {
         this.acceleration = 9.81;
@@ -21,7 +22,7 @@ export class MoveGravity implements IMoveGravity, IOptionLoader<IMoveGravity> {
         }
 
         if (data.acceleration !== undefined) {
-            this.acceleration = data.acceleration;
+            this.acceleration = setRangeValue(data.acceleration);
         }
 
         if (data.enable !== undefined) {
@@ -33,7 +34,7 @@ export class MoveGravity implements IMoveGravity, IOptionLoader<IMoveGravity> {
         }
 
         if (data.maxSpeed !== undefined) {
-            this.maxSpeed = data.maxSpeed;
+            this.maxSpeed = setRangeValue(data.maxSpeed);
         }
     }
 }

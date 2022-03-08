@@ -36,17 +36,19 @@ export class RollUpdater implements IParticleUpdater {
 
                 particle.roll.alter = {
                     type: alterType,
-                    value: alterType === AlterType.darken ? rollOpt.darken.value : rollOpt.enlighten.value,
+                    value: getRangeValue(
+                        alterType === AlterType.darken ? rollOpt.darken.value : rollOpt.enlighten.value
+                    ),
                 };
             } else if (rollOpt.darken.enable) {
                 particle.roll.alter = {
                     type: AlterType.darken,
-                    value: rollOpt.darken.value,
+                    value: getRangeValue(rollOpt.darken.value),
                 };
             } else if (rollOpt.enlighten.enable) {
                 particle.roll.alter = {
                     type: AlterType.enlighten,
-                    value: rollOpt.enlighten.value,
+                    value: getRangeValue(rollOpt.enlighten.value),
                 };
             }
         } else {

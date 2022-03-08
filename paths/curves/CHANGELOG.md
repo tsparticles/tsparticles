@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.42.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-curves@1.41.6...tsparticles-path-curves@1.42.0) (2022-03-08)
+
+**Note:** Version bump only for package tsparticles-path-curves
+
+
+
+
+
 ## [1.41.6](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-curves@1.41.5...tsparticles-path-curves@1.41.6) (2022-03-03)
 
 **Note:** Version bump only for package tsparticles-path-curves

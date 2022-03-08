@@ -1,7 +1,7 @@
 {
   "name": "react-tsparticles-demo",
   "private": true,
-  "version": "1.26.6",
+  "version": "1.27.0",
   "description": "> TODO: description",
   "author": "Matteo Bruni <ar3s@icloud.com>",
   "homepage": "https://github.com/matteobruni/tsparticles#readme",
@@ -11,8 +11,8 @@
     "url": "git+https://github.com/matteobruni/tsparticles.git"
   },
   "scripts": {
-    "start": "tsc && parcel serve public/index.html --no-cache --open",
-    "build": "tsc && parcel build --target browser"
+    "start": "rimraf -f ../../.parcel-cache && tsc && parcel serve public/index.html --no-cache --open",
+    "build": "rimraf -f ../../.parcel-cache && tsc && parcel build --no-cache --target browser"
   },
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
@@ -34,16 +34,17 @@
     "eslint": "^8.0.0",
     "eslint-config-prettier": "^8.3.0",
     "node-sass": "^7.0.0",
-    "parcel": "^2.0.1",
+    "parcel": "^2.3.2",
     "prettier": "^2.3.2",
+    "rimraf": "^3.0.2",
     "react-syntax-highlighter": "^15.4.4",
     "typescript": "^4.4.2"
   },
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-tsparticles": "^1.41.6",
+    "react-tsparticles": "^1.42.0",
     "rxjs": "^7.5.2",
-    "tsparticles": "^1.41.6"
+    "tsparticles": "^1.42.0"
   }
 }

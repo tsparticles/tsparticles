@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/matteobruni/tsparticles/compare/ionic-demo@0.10.6...ionic-demo@0.11.0) (2022-03-08)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @capacitor/app to v1.1.1 ([97901cd](https://github.com/matteobruni/tsparticles/commit/97901cd59e3dd5830d9d3e864eab187980f50d8e))
+
+
+
+
+
 ## [0.10.6](https://github.com/matteobruni/tsparticles/compare/ionic-demo@0.10.5...ionic-demo@0.10.6) (2022-03-03)
 
 **Note:** Version bump only for package ionic-demo
