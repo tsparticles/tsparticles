@@ -83,11 +83,11 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
         if (data.position !== undefined) {
             this.position = {};
 
-            if (data.position.x) {
+            if (data.position.x !== undefined) {
                 this.position.x = setRangeValue(data.position.x);
             }
 
-            if (data.position.y) {
+            if (data.position.y !== undefined) {
                 this.position.y = setRangeValue(data.position.y);
             }
         }
