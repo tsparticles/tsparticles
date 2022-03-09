@@ -191,9 +191,9 @@
     tslib "^2.3.0"
 
 "@angular/forms@~13.2.0":
-  version "13.2.4"
-  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-13.2.4.tgz#fb0edb063db555191ae5ac4ed7780f44469dec17"
-  integrity sha512-XdWJZy4zfJ4ZGEhKZBceHAAozBQZPp1BRl7m2j09EV2I6l/nLdrYhgKGd4UBUtJWyXElPEuEgLiKKdmlPKF5eQ==
+  version "13.2.5"
+  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-13.2.5.tgz#64dfaf17cae034d8c256e1b3005b02271c0eb49d"
+  integrity sha512-0IOSj6OxW7fcaOLxaBydzFot3QsyQXeASXkq5xXGT10IsufVlnMS6wCULy/Ru3C1YAZZEM/z2rU+2yjjflea6A==
   dependencies:
     tslib "^2.3.0"
 
