@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-stars",
-  "version": "1.42.0",
+  "version": "1.42.1",
   "description": "tsParticles stars preset",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -54,6 +54,6 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles": "^1.42.0"
+    "tsparticles": "^1.42.1"
   }
 }

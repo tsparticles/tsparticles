@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/matteobruni/tsparticles/compare/ionic-demo@0.11.0...ionic-demo@0.11.1) (2022-03-09)
+
+**Note:** Version bump only for package ionic-demo
+
+
+
+
+
 # [0.11.0](https://github.com/matteobruni/tsparticles/compare/ionic-demo@0.10.6...ionic-demo@0.11.0) (2022-03-08)
 
 
