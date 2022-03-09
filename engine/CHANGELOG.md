@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.42.1](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.42.0...tsparticles@1.42.1) (2022-03-09)
+
+
+### Bug Fixes
+
+* fixed issue with 0 positions on x and y with emitters ([63e8a11](https://github.com/matteobruni/tsparticles/commit/63e8a115614ca106375fdae7f77cd73181ede96a))
+
+
+
+
+
 # [1.42.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.41.6...tsparticles@1.42.0) (2022-03-08)
 
 

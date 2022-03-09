@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.27.1](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.27.0...react-tsparticles-demo@1.27.1) (2022-03-09)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
 # [1.27.0](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.26.6...react-tsparticles-demo@1.27.0) (2022-03-08)
 
 
