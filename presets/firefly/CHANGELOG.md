@@ -17,6 +17,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * created and implemented move plugins ([752483a](https://github.com/matteobruni/tsparticles/commit/752483aeeb94dd851dc27fe75e4c258fd87f0a90))
 * fixed firefly and fireworks presets ([ec952c9](https://github.com/matteobruni/tsparticles/commit/ec952c9ac0b42dc1c5350279a44a1255ca1f4fca))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.42.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-firefly@1.42.0...tsparticles-preset-firefly@1.42.1) (2022-03-09)
+
+**Note:** Version bump only for package tsparticles-preset-firefly
+
+
+
+
+
+# [1.42.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-firefly@1.41.6...tsparticles-preset-firefly@1.42.0) (2022-03-08)
+
+**Note:** Version bump only for package tsparticles-preset-firefly
 
 
 

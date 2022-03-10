@@ -18,6 +18,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * created and implemented move plugins ([752483a](https://github.com/matteobruni/tsparticles/commit/752483aeeb94dd851dc27fe75e4c258fd87f0a90))
 * moved out click interactions to external packages, breaking ([466973d](https://github.com/matteobruni/tsparticles/commit/466973ddbcc382c27c03f7b3518dea99c5e1949c))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.42.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fire@1.42.0...tsparticles-preset-fire@1.42.1) (2022-03-09)
+
+**Note:** Version bump only for package tsparticles-preset-fire
+
+
+
+
+
+# [1.42.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fire@1.41.6...tsparticles-preset-fire@1.42.0) (2022-03-08)
+
+**Note:** Version bump only for package tsparticles-preset-fire
 
 
 

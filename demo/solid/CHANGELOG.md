@@ -10,6 +10,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.25.1](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.25.0...solid-particles-demo@1.25.1) (2022-03-09)
+
+**Note:** Version bump only for package solid-particles-demo
+
+
+
+
+
+# [1.25.0](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.24.6...solid-particles-demo@1.25.0) (2022-03-08)
+
+**Note:** Version bump only for package solid-particles-demo
 
 
 

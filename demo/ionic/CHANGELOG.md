@@ -22,6 +22,20 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [0.11.1](https://github.com/matteobruni/tsparticles/compare/ionic-demo@0.11.0...ionic-demo@0.11.1) (2022-03-09)
+
+**Note:** Version bump only for package ionic-demo
+
+
+
+
+
+# [0.11.0](https://github.com/matteobruni/tsparticles/compare/ionic-demo@0.10.6...ionic-demo@0.11.0) (2022-03-08)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @capacitor/app to v1.1.1 ([97901cd](https://github.com/matteobruni/tsparticles/commit/97901cd59e3dd5830d9d3e864eab187980f50d8e))
 
 
 

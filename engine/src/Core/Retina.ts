@@ -78,14 +78,14 @@ export class Retina {
 
         const particles = options.particles;
 
-        this.attractDistance = particles.move.attract.distance * ratio;
+        this.attractDistance = getRangeValue(particles.move.attract.distance) * ratio;
         this.linksDistance = particles.links.distance * ratio;
         this.linksWidth = particles.links.width * ratio;
-        this.sizeAnimationSpeed = particles.size.animation.speed * ratio;
-        this.maxSpeed = particles.move.gravity.maxSpeed * ratio;
+        this.sizeAnimationSpeed = getRangeValue(particles.size.animation.speed) * ratio;
+        this.maxSpeed = getRangeValue(particles.move.gravity.maxSpeed) * ratio;
 
         if (particles.orbit.radius !== undefined) {
-            this.orbitRadius = particles.orbit.radius * this.container.retina.pixelRatio;
+            this.orbitRadius = getRangeValue(particles.orbit.radius) * this.container.retina.pixelRatio;
         }
 
         const modes = options.interactivity.modes;
@@ -110,19 +110,19 @@ export class Retina {
         const moveDistance = options.move.distance;
         const props = particle.retina;
 
-        props.attractDistance = options.move.attract.distance * ratio;
+        props.attractDistance = getRangeValue(options.move.attract.distance) * ratio;
         props.linksDistance = options.links.distance * ratio;
         props.linksWidth = options.links.width * ratio;
         props.moveDrift = getRangeValue(options.move.drift) * ratio;
         props.moveSpeed = getRangeValue(options.move.speed) * ratio;
-        props.sizeAnimationSpeed = options.size.animation.speed * ratio;
+        props.sizeAnimationSpeed = getRangeValue(options.size.animation.speed) * ratio;
 
         const maxDistance = props.maxDistance;
 
         maxDistance.horizontal = moveDistance.horizontal !== undefined ? moveDistance.horizontal * ratio : undefined;
         maxDistance.vertical = moveDistance.vertical !== undefined ? moveDistance.vertical * ratio : undefined;
 
-        props.maxSpeed = options.move.gravity.maxSpeed * ratio;
+        props.maxSpeed = getRangeValue(options.move.gravity.maxSpeed) * ratio;
     }
 
     private handleMotionChange(mediaQuery: MediaQueryList): void {

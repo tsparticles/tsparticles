@@ -1,12 +1,13 @@
 import type { IOptionLoader, ITiltAnimation } from "../../../Interfaces";
-import type { RecursivePartial } from "../../../../Types";
+import type { RangeValue, RecursivePartial } from "../../../../Types";
+import { setRangeValue } from "../../../../Utils";
 
 /**
  * @category Options
  */
 export class TiltAnimation implements ITiltAnimation, IOptionLoader<ITiltAnimation> {
     enable;
-    speed;
+    speed: RangeValue;
     sync;
 
     constructor() {
@@ -25,7 +26,7 @@ export class TiltAnimation implements ITiltAnimation, IOptionLoader<ITiltAnimati
         }
 
         if (data.speed !== undefined) {
-            this.speed = data.speed;
+            this.speed = setRangeValue(data.speed);
         }
 
         if (data.sync !== undefined) {

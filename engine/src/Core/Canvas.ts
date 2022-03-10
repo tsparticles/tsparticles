@@ -9,6 +9,7 @@ import {
     drawParticle,
     drawParticlePlugin,
     drawPlugin,
+    getRangeValue,
     getStyleFromHsl,
     getStyleFromRgb,
     gradient,
@@ -253,7 +254,9 @@ export class Canvas {
         const zIndexOptions = particle.options.zIndex;
         const zOpacityFactor = (1 - particle.zIndexFactor) ** zIndexOptions.opacityRate;
         const radius = particle.getRadius();
-        const opacity = twinkling ? twinkle.opacity : particle.bubble.opacity ?? particle.opacity?.value ?? 1;
+        const opacity = twinkling
+            ? getRangeValue(twinkle.opacity)
+            : particle.bubble.opacity ?? particle.opacity?.value ?? 1;
         const strokeOpacity = particle.stroke?.opacity ?? opacity;
         const zOpacity = opacity * zOpacityFactor;
         const fillColorValue = fColor ? getStyleFromHsl(fColor, zOpacity) : undefined;

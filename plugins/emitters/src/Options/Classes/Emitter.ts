@@ -1,5 +1,5 @@
-import { AnimatableColor, MoveDirection, MoveDirectionAlt, deepExtend } from "tsparticles-engine";
-import type { ICoordinates, IOptionLoader, IParticlesOptions, RecursivePartial } from "tsparticles-engine";
+import { AnimatableColor, MoveDirection, MoveDirectionAlt, deepExtend, setRangeValue } from "tsparticles-engine";
+import type { IRangedCoordinates, IOptionLoader, IParticlesOptions, RecursivePartial } from "tsparticles-engine";
 import { EmitterLife } from "./EmitterLife";
 import { EmitterRate } from "./EmitterRate";
 import { EmitterShapeType } from "../../Enums";
@@ -19,7 +19,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     life;
     name?: string;
     particles?: RecursivePartial<IParticlesOptions>;
-    position?: RecursivePartial<ICoordinates>;
+    position?: RecursivePartial<IRangedCoordinates>;
     rate;
     shape: EmitterShapeType | keyof typeof EmitterShapeType;
     spawnColor?: AnimatableColor;
@@ -76,10 +76,15 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
         }
 
         if (data.position !== undefined) {
-            this.position = {
-                x: data.position.x,
-                y: data.position.y,
-            };
+            this.position = {};
+
+            if (data.position.x !== undefined) {
+                this.position.x = setRangeValue(data.position.x);
+            }
+
+            if (data.position.y !== undefined) {
+                this.position.y = setRangeValue(data.position.y);
+            }
         }
 
         if (data.spawnColor !== undefined) {

@@ -1,9 +1,10 @@
 import type { IOptionLoader, IRollLight } from "../../../Interfaces";
-import type { RecursivePartial } from "../../../../Types";
+import type { RangeValue, RecursivePartial } from "../../../../Types";
+import { setRangeValue } from "../../../../Utils";
 
 export class RollLight implements IRollLight, IOptionLoader<IRollLight> {
     enable;
-    value;
+    value: RangeValue;
 
     constructor() {
         this.enable = false;
@@ -20,7 +21,7 @@ export class RollLight implements IRollLight, IOptionLoader<IRollLight> {
         }
 
         if (data.value !== undefined) {
-            this.value = data.value;
+            this.value = setRangeValue(data.value);
         }
     }
 }

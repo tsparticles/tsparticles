@@ -92,7 +92,7 @@ export class OpacityUpdater implements IParticleUpdater {
             min: getRangeMin(opacityOptions.value),
             value: getRangeValue(opacityOptions.value),
             loops: 0,
-            maxLoops: opacityOptions.animation.count,
+            maxLoops: getRangeValue(opacityOptions.animation.count),
         };
 
         const opacityAnimation = opacityOptions.animation;
@@ -127,7 +127,8 @@ export class OpacityUpdater implements IParticleUpdater {
                     break;
             }
 
-            particle.opacity.velocity = (opacityAnimation.speed / 100) * this.container.retina.reduceFactor;
+            particle.opacity.velocity =
+                (getRangeValue(opacityAnimation.speed) / 100) * this.container.retina.reduceFactor;
 
             if (!opacityAnimation.sync) {
                 particle.opacity.velocity *= Math.random();

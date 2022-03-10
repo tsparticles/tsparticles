@@ -20,6 +20,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * changed particlesInit on angular, is a property now and not an event ([38f6219](https://github.com/matteobruni/tsparticles/commit/38f62190549bb194e6ab542ba834ae2118f99ba6))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [2.42.1](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.42.0...ng-particles@2.42.1) (2022-03-09)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+# [2.42.0](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.41.6...ng-particles@2.42.0) (2022-03-08)
+
+**Note:** Version bump only for package ng-particles
 
 
 
