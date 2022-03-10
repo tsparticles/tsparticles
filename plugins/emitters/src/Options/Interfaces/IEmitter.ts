@@ -1,7 +1,7 @@
 import type {
     IAnimatableColor,
-    IRangedCoordinates,
     IParticlesOptions,
+    IRangedCoordinates,
     MoveDirection,
     MoveDirectionAlt,
     RecursivePartial,

@@ -649,33 +649,33 @@ tslib@^2.0.3:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
   integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
 
-tsparticles-editor@^1.41.6:
-  version "1.41.6"
-  resolved "https://registry.yarnpkg.com/tsparticles-editor/-/tsparticles-editor-1.41.6.tgz#ca518e333475f04b6f004c42fb7836147543b87b"
-  integrity sha512-h7icDEcN4TJKYDbBjFPyqZxZFR669sowaSs14piKccuIM4OjCsFhp+USOe2m4lG8CkRJN+exJ8AvEZvpfks7iw==
+tsparticles-editor@^1.42.1:
+  version "1.42.1"
+  resolved "https://registry.yarnpkg.com/tsparticles-editor/-/tsparticles-editor-1.42.1.tgz#84fde25477a98531a8171a6770a5784556359d75"
+  integrity sha512-Vz8ZLeOzBUuGUuJOWLkGA35RYxbi70p4iMiJXFK81b6EkTKq7LQXc8iqNCcIHnplL2Lz10mJcqHIybdwgdJTnw==
   dependencies:
     object-gui "^1.1.1"
-    tsparticles "^1.41.6"
-    tsparticles-plugin-infection "^1.41.6"
+    tsparticles "^1.42.1"
+    tsparticles-plugin-infection "^1.42.1"
 
-tsparticles-plugin-infection@^1.41.6:
-  version "1.41.6"
-  resolved "https://registry.yarnpkg.com/tsparticles-plugin-infection/-/tsparticles-plugin-infection-1.41.6.tgz#bcbfb89193c7d81ed747c7129e7043f1b185a25f"
-  integrity sha512-60wV7auOv8mpyds4U0hrxS1H2RZ3fzrb2DVDghUDjwD3ViKp6clepOYMHt6lEQ5AXDaPG3cxq9fvrGm/wZZZUw==
+tsparticles-plugin-infection@^1.42.1:
+  version "1.42.1"
+  resolved "https://registry.yarnpkg.com/tsparticles-plugin-infection/-/tsparticles-plugin-infection-1.42.1.tgz#93079726995cb4cf8bb1c581b39d3432d102c222"
+  integrity sha512-/XaRxm3JaTcHP1m3c/ymUlKn6sT9Tf1z9Jxrqkv9gNQnaqZMoqklEsDufSRl8p5UPnU+BAqk+xFby0c69JqJrA==
   dependencies:
-    tsparticles "^1.41.6"
+    tsparticles "^1.42.1"
 
-tsparticles-preset-links@^1.41.6:
-  version "1.41.6"
-  resolved "https://registry.yarnpkg.com/tsparticles-preset-links/-/tsparticles-preset-links-1.41.6.tgz#ad0cf4eda95519fcc3446b4f52f55a94b638734d"
-  integrity sha512-r5UdTC6Md8J8ovYKISpSwbxZYrgN0CUyFelibRcyiDy8P8g6CyF/AQHldWWjBMwB6DDHsM8mrIQCEN1FnjcU9g==
+tsparticles-preset-links@^1.42.1:
+  version "1.42.1"
+  resolved "https://registry.yarnpkg.com/tsparticles-preset-links/-/tsparticles-preset-links-1.42.1.tgz#6e3e2a15c738882b651fa2901ed9e24efc29530f"
+  integrity sha512-7N1bB5dH1C8Qy4gOV/9bQ2xk9e3cESqMyodpMtUZZhQfZQXunO/f810ItZQ3Mpj1CH9FioYHE4hZj8pZnH6SjQ==
   dependencies:
-    tsparticles "^1.41.6"
+    tsparticles "^1.42.1"
 
-tsparticles@^1.41.6:
-  version "1.41.6"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.41.6.tgz#6b79491879aafc404049ff2219fbce1757ecf12b"
-  integrity sha512-LdU1eWaRdCVAvgF3UA5/qR/otWloGHAOSrzSiXx5nEnyBY6mvpLws3TMX0R5Y3xHE1JoomtxqnIsIJXL/21/pQ==
+tsparticles@^1.42.1:
+  version "1.42.1"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.42.1.tgz#5b473c9fef8eaced5f4cd6ff525a74809603bed3"
+  integrity sha512-LdFNNyecnbv3wVy+2p93SASsfDDSc3IuMPdHkKKQu0aukeZlL7apJKy53dIAjH8el4MrTYqM2Bg+Tee64MqOXA==
 
 universalify@^0.1.0:
   version "0.1.2"

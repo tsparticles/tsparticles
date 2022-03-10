@@ -12,8 +12,8 @@ import type {
     IRgba,
     IValueColor,
 } from "../Core";
-import { midColorValue, randomColorValue } from "../Core";
 import { getRangeValue, mix, randomInRange, setRangeValue } from "./NumberUtils";
+import { midColorValue, randomColorValue } from "../Core";
 import { AnimationStatus } from "../Enums";
 import { itemFromArray } from "./Utils";
 

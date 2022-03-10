@@ -11,8 +11,8 @@
     "url": "git+https://github.com/matteobruni/tsparticles.git"
   },
   "scripts": {
-    "start": "rimraf -f ../../.parcel-cache && tsc && npx parcel serve public/index.html --no-cache --open",
-    "build": "rimraf -f ../../.parcel-cache && tsc && npx parcel build --target browser"
+    "start": "rimraf -f ../../.parcel-cache && rimraf -f ./.parcel-cache && tsc && npx parcel serve public/index.html --no-cache --open",
+    "build": "rimraf -f ../../.parcel-cache && rimraf -f ./.parcel-cache && tsc && npx parcel build --no-cache --target browser"
   },
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
@@ -25,8 +25,8 @@
     }
   },
   "devDependencies": {
-    "@parcel/core": "^2.2.1",
-    "@parcel/transformer-sass": "^2.2.1",
+    "@parcel/core": "^2.3.2",
+    "@parcel/transformer-sass": "^2.3.2",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "@types/react-syntax-highlighter": "^13.5.2",

@@ -1,5 +1,5 @@
 import type { IOptionLoader, IOrbit } from "../../../Interfaces";
-import type { RecursivePartial, RangeValue } from "../../../../Types";
+import type { RangeValue, RecursivePartial } from "../../../../Types";
 import { AnimationOptions } from "../../AnimationOptions";
 import type { IAnimatable } from "../../../Interfaces";
 import { OptionsColor } from "../../OptionsColor";
