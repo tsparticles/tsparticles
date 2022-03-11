@@ -16,6 +16,7 @@ export * from "./IMovePathGenerator";
 export * from "./IParticle";
 export * from "./IParticleGradientAnimation";
 export * from "./IParticleGradientColorAnimation";
+export * from "./IParticleGravity";
 export * from "./IParticleHslAnimation";
 export * from "./IParticlesInteractor";
 export * from "./IParticleLife";

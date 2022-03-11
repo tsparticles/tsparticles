@@ -3,11 +3,8 @@
     "color": "#000"
   },
   "fullScreen": {
-    "enable": true,
     "zIndex": -1
   },
-  "detectRetina": true,
-  "fpsLimit": 120,
   "interactivity": {
     "events": {
       "onHover": {
@@ -54,12 +51,6 @@
           }
         }
       }
-    },
-    "resize": true
-  },
-  "motion": {
-    "reduce": {
-      "value": true
     }
   },
   "particles": {
@@ -69,7 +60,7 @@
         "sync": false,
         "speed": 50
       },
-      "value": "#f00"
+      "value": "#ff0000"
     },
     "links": {
       "color": "random",
@@ -110,5 +101,6 @@
         "minimumValue": 1
       }
     }
-  }
+  },
+  "emitters": []
 }

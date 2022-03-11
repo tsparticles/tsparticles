@@ -1,5 +1,5 @@
 import type { Container, IContainerPlugin, IRgb, Particle } from "tsparticles-engine";
-import { colorToRgb, getDistance, getLinkColor } from "tsparticles-engine";
+import { colorToRgb, getDistance, getLinkColor, getRangeValue } from "tsparticles-engine";
 import { drawLinkLine, drawLinkTriangle } from "./Utils";
 import type { ILink } from "./ILink";
 import type { LinkParticle } from "./LinkParticle";
@@ -150,7 +150,7 @@ export class LinkInstance implements IContainerPlugin {
 
                 if (twinkling && twinkleRgb !== undefined) {
                     colorLine = twinkleRgb;
-                    opacity = twinkle.opacity;
+                    opacity = getRangeValue(twinkle.opacity);
                 }
             }
 

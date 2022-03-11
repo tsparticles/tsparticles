@@ -70,7 +70,8 @@ export class AngleUpdater implements IParticleUpdater {
         const rotateAnimation = particle.options.rotate.animation;
 
         if (rotateAnimation.enable) {
-            particle.rotate.velocity = (rotateAnimation.speed / 360) * this.container.retina.reduceFactor;
+            particle.rotate.velocity =
+                (getRangeValue(rotateAnimation.speed) / 360) * this.container.retina.reduceFactor;
 
             if (!rotateAnimation.sync) {
                 particle.rotate.velocity *= Math.random();

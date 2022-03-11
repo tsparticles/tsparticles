@@ -3,7 +3,43 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@1.27.1...ng-particles-demo@2.0.3) (2022-03-11)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to ~13.1.0 ([1f80f2b](https://github.com/matteobruni/tsparticles/commit/1f80f2b467d440ed3f2d4b4a4bd08eb561cef76f))
+* **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+* **deps:** update dependency rxjs to ~7.4.0 ([048238b](https://github.com/matteobruni/tsparticles/commit/048238b7b14b1ee49356afa47e5c7aa0ab4ac1f0))
+* **deps:** update dependency rxjs to ~7.5.0 ([f2d0505](https://github.com/matteobruni/tsparticles/commit/f2d0505863dafba475f8d6275d6474a54970a814))
+
+
+### Features
+
+* changed particlesInit on angular, is a property now and not an event ([38f6219](https://github.com/matteobruni/tsparticles/commit/38f62190549bb194e6ab542ba834ae2118f99ba6))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 ## [2.0.2](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@1.26.4...ng-particles-demo@2.0.2) (2022-02-21)
+## [1.27.1](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@1.27.0...ng-particles-demo@1.27.1) (2022-03-09)
+
+**Note:** Version bump only for package ng-particles-demo
+
+
+
+
+
+# [1.27.0](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@1.26.6...ng-particles-demo@1.27.0) (2022-03-08)
+
+**Note:** Version bump only for package ng-particles-demo
+
+
+
+
+
 ## [1.26.6](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@1.26.5...ng-particles-demo@1.26.6) (2022-03-03)
 
 **Note:** Version bump only for package ng-particles-demo

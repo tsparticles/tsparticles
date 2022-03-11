@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-heart",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "tsParticles heart shape",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -10,15 +10,34 @@
   },
   "keywords": [
     "tsparticles",
+    "particles.js",
+    "particlesjs",
     "particles",
     "particle",
     "canvas",
     "jsparticles",
     "xparticles",
     "particles-js",
-    "particles.js",
+    "particles-bg",
+    "particles-bg-vue",
     "particles-ts",
     "particles.ts",
+    "react-particles-js",
+    "react-particles.js",
+    "react-particles",
+    "react",
+    "reactjs",
+    "vue-particles",
+    "ngx-particles",
+    "angular-particles",
+    "particleground",
+    "vue",
+    "vuejs",
+    "preact",
+    "preactjs",
+    "jquery",
+    "angularjs",
+    "angular",
     "typescript",
     "javascript",
     "animation",
@@ -31,6 +50,14 @@
     "css3",
     "animated",
     "background",
+    "confetti",
+    "canvas",
+    "fireworks",
+    "fireworks-js",
+    "confetti-js",
+    "confettijs",
+    "fireworksjs",
+    "canvas-confetti",
     "tsparticles-shape"
   ],
   "author": "Matteo Bruni",
@@ -54,6 +81,6 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.0.2"
+    "tsparticles-engine": "^2.0.3"
   }
 }

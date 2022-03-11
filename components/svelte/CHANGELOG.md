@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/matteobruni/tsparticles/compare/svelte-particles@1.42.1...svelte-particles@2.0.3) (2022-03-11)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+* **deps:** update dependency @capacitor/core to v3.4.2 ([b488e20](https://github.com/matteobruni/tsparticles/commit/b488e20ac54a48883bf7388ce33d6d71833cdec9))
+
+
+### Features
+
+* async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 ## [2.0.2](https://github.com/matteobruni/tsparticles/compare/svelte-particles@1.41.4...svelte-particles@2.0.2) (2022-02-21)
 
 
@@ -15,6 +33,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.42.1](https://github.com/matteobruni/tsparticles/compare/svelte-particles@1.42.0...svelte-particles@1.42.1) (2022-03-09)
+
+**Note:** Version bump only for package svelte-particles
+
+
+
+
+
+# [1.42.0](https://github.com/matteobruni/tsparticles/compare/svelte-particles@1.41.6...svelte-particles@1.42.0) (2022-03-08)
+
+**Note:** Version bump only for package svelte-particles
 
 
 

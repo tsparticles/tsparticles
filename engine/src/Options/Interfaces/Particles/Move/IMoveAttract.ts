@@ -1,10 +1,11 @@
 import type { ICoordinates } from "../../../../Core";
+import type { RangeValue } from "../../../../Types";
 
 /**
  * @category Options
  */
 export interface IMoveAttract {
-    distance: number;
+    distance: RangeValue;
 
     enable: boolean;
 

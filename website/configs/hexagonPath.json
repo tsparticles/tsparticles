@@ -1,5 +1,4 @@
 {
-  "fpsLimit": 120,
   "particles": {
     "color": {
       "value": "#FF0000",
@@ -67,7 +66,6 @@
   "fullScreen": {
     "zIndex": -1
   },
-  "detectRetina": true,
   "emitters": {
     "direction": "none",
     "rate": {

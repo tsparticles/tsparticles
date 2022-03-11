@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-path-perlin-noise",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "tsParticles perlin noise path",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -22,15 +22,34 @@
   },
   "keywords": [
     "tsparticles",
+    "particles.js",
+    "particlesjs",
     "particles",
     "particle",
     "canvas",
     "jsparticles",
     "xparticles",
     "particles-js",
-    "particles.js",
+    "particles-bg",
+    "particles-bg-vue",
     "particles-ts",
     "particles.ts",
+    "react-particles-js",
+    "react-particles.js",
+    "react-particles",
+    "react",
+    "reactjs",
+    "vue-particles",
+    "ngx-particles",
+    "angular-particles",
+    "particleground",
+    "vue",
+    "vuejs",
+    "preact",
+    "preactjs",
+    "jquery",
+    "angularjs",
+    "angular",
     "typescript",
     "javascript",
     "animation",
@@ -43,7 +62,16 @@
     "css3",
     "animated",
     "background",
-    "tsparticles-preset"
+    "confetti",
+    "canvas",
+    "fireworks",
+    "fireworks-js",
+    "confetti-js",
+    "confettijs",
+    "fireworksjs",
+    "canvas-confetti",
+    "tsparticles-path",
+    "tsparticles-plugin"
   ],
   "publishConfig": {
     "directory": "dist"
@@ -80,9 +108,9 @@
     "webpack": "^5.68.0",
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.2",
-    "webpack-tsparticles-plugin": "^1.0.0"
+    "webpack-tsparticles-plugin": "^1.0.1"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.0.2"
+    "tsparticles-engine": "^2.0.3"
   }
 }

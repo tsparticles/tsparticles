@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.2](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.26.4...react-tsparticles-demo@2.0.2) (2022-02-21)
+## [2.0.3](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.27.1...react-tsparticles-demo@2.0.3) (2022-03-11)
 
 
 ### Features
@@ -11,6 +11,34 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
 * moved polygon mask to external plugin (breaking) ([abdfe37](https://github.com/matteobruni/tsparticles/commit/abdfe37f250a4f357f4491bb7ff0e54da6a7303e))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+## [2.0.2](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.26.4...react-tsparticles-demo@2.0.2) (2022-02-21)
+## [1.27.1](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.27.0...react-tsparticles-demo@1.27.1) (2022-03-09)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
+# [1.27.0](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.26.6...react-tsparticles-demo@1.27.0) (2022-03-08)
+
+
+### Features
+
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+* moved polygon mask to external plugin (breaking) ([abdfe37](https://github.com/matteobruni/tsparticles/commit/abdfe37f250a4f357f4491bb7ff0e54da6a7303e))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+* more rangeable options ([a2598c0](https://github.com/matteobruni/tsparticles/commit/a2598c07e968ab383c0a1eb311e22c4a0f52d9b8))
+
+
+
+
+
 ## [1.26.6](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.26.5...react-tsparticles-demo@1.26.6) (2022-03-03)
 
 **Note:** Version bump only for package react-tsparticles-demo

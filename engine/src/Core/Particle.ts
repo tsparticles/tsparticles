@@ -16,6 +16,7 @@ import {
     IHsl,
     IParticle,
     IParticleGradientAnimation,
+    IParticleGravity,
     IParticleHslAnimation,
     IParticleLife,
     IParticleNumericValueAnimation,
@@ -104,6 +105,7 @@ export class Particle implements IParticle {
     strokeColor?: IParticleHslAnimation;
 
     readonly moveCenter: ICoordinates & { radius: number };
+    readonly gravity: IParticleGravity;
     readonly moveDecay: number;
     readonly outType: ParticleOutType;
     readonly position: Vector3d;
@@ -200,7 +202,7 @@ export class Particle implements IParticle {
             max: getRangeMax(sizeRange) * pxRatio,
             min: getRangeMin(sizeRange) * pxRatio,
             loops: 0,
-            maxLoops: sizeOptions.animation.count,
+            maxLoops: getRangeValue(sizeOptions.animation.count),
         };
 
         const sizeAnimation = sizeOptions.animation;
@@ -268,6 +270,12 @@ export class Particle implements IParticle {
         this.initialVelocity = this.calculateVelocity();
         this.velocity = this.initialVelocity.copy();
         this.moveDecay = 1 - getRangeValue(this.options.move.decay);
+        const gravityOptions = this.options.move.gravity;
+        this.gravity = {
+            enable: gravityOptions.enable,
+            acceleration: getRangeValue(gravityOptions.acceleration),
+            inverse: gravityOptions.inverse,
+        };
 
         /* parallax */
         this.offset = Vector.origin;
@@ -548,8 +556,8 @@ export class Particle implements IParticle {
             return res;
         }
 
-        const rad = (Math.PI / 180) * moveOptions.angle.value;
-        const radOffset = (Math.PI / 180) * moveOptions.angle.offset;
+        const rad = (Math.PI / 180) * getRangeValue(moveOptions.angle.value);
+        const radOffset = (Math.PI / 180) * getRangeValue(moveOptions.angle.offset);
 
         const range = {
             left: radOffset - rad / 2,

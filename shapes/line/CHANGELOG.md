@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-line@2.0.2...tsparticles-shape-line@2.0.3) (2022-03-11)
+
+**Note:** Version bump only for package tsparticles-shape-line
+
+
+
+
+
 ## [2.0.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-line@2.0.1...tsparticles-shape-line@2.0.2) (2022-02-21)
 
 **Note:** Version bump only for package tsparticles-shape-line

@@ -1,12 +1,13 @@
 import type { IMoveAngle, IOptionLoader } from "../../../Interfaces";
-import type { RecursivePartial } from "../../../../Types";
+import type { RangeValue, RecursivePartial } from "../../../../Types";
+import { setRangeValue } from "../../../../Utils";
 
 /**
  * @category Options
  */
 export class MoveAngle implements IMoveAngle, IOptionLoader<IMoveAngle> {
-    offset;
-    value;
+    offset: RangeValue;
+    value: RangeValue;
 
     constructor() {
         this.offset = 0; //45;
@@ -19,11 +20,11 @@ export class MoveAngle implements IMoveAngle, IOptionLoader<IMoveAngle> {
         }
 
         if (data.offset !== undefined) {
-            this.offset = data.offset;
+            this.offset = setRangeValue(data.offset);
         }
 
         if (data.value !== undefined) {
-            this.value = data.value;
+            this.value = setRangeValue(data.value);
         }
     }
 }

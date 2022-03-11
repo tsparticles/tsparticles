@@ -1,7 +1,7 @@
 import type {
     IAnimatableColor,
-    ICoordinates,
     IParticlesOptions,
+    IRangedCoordinates,
     MoveDirection,
     MoveDirectionAlt,
     RecursivePartial,
@@ -63,7 +63,7 @@ export interface IEmitter {
      * The relative position (in percent) of the emitter, where particles spawns.
      * If size is specified the position will be the center of the size options
      */
-    position?: RecursivePartial<ICoordinates>;
+    position?: RecursivePartial<IRangedCoordinates>;
 
     /**
      * The particles emitting rate options

@@ -1,13 +1,10 @@
 {
   "fullScreen": {
-    "enable": true,
     "zIndex": -1
   },
-  "detectRetina": true,
   "background": {
     "color": "#000"
   },
-  "fpsLimit": 120,
   "emitters": {
     "direction": "top",
     "life": {

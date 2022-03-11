@@ -1,6 +1,7 @@
 import type { IOptionLoader, ITwinkleValues } from "../../../Interfaces";
+import type { RangeValue, RecursivePartial } from "../../../../Types";
 import { OptionsColor } from "../../OptionsColor";
-import type { RecursivePartial } from "../../../../Types";
+import { setRangeValue } from "../../../../Utils";
 
 /**
  * @category Options
@@ -9,7 +10,7 @@ export class TwinkleValues implements ITwinkleValues, IOptionLoader<ITwinkleValu
     color?: OptionsColor;
     enable;
     frequency;
-    opacity;
+    opacity: RangeValue;
 
     constructor() {
         this.enable = false;
@@ -35,7 +36,7 @@ export class TwinkleValues implements ITwinkleValues, IOptionLoader<ITwinkleValu
         }
 
         if (data.opacity !== undefined) {
-            this.opacity = data.opacity;
+            this.opacity = setRangeValue(data.opacity);
         }
     }
 }
