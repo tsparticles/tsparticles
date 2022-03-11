@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.27.1...preact-particles-demo@2.0.3) (2022-03-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @capacitor/core to v3.4.2 ([b488e20](https://github.com/matteobruni/tsparticles/commit/b488e20ac54a48883bf7388ce33d6d71833cdec9))
+* **deps:** update dependency preact-router to v4 ([46d8edb](https://github.com/matteobruni/tsparticles/commit/46d8edb1a0d5d1047ddcf4258d895756a8f9cf7a))
+* **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
+
+
+### Features
+
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+
+
+
+
+
 ## [2.0.2](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.26.4...preact-particles-demo@2.0.2) (2022-02-21)
 ## [1.27.1](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.27.0...preact-particles-demo@1.27.1) (2022-03-09)
 

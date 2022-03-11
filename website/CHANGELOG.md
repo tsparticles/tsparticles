@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.42.1...tsparticles-website@2.0.3) (2022-03-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/matteobruni/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 ## [2.0.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.41.4...tsparticles-website@2.0.2) (2022-02-21)
 ## [1.42.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.42.0...tsparticles-website@1.42.1) (2022-03-09)
 
