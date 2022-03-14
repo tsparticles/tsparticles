@@ -22,6 +22,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 ## [2.0.2](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.26.4...preact-particles-demo@2.0.2) (2022-02-21)
+## [1.27.2](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.27.1...preact-particles-demo@1.27.2) (2022-03-14)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
 ## [1.27.1](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.27.0...preact-particles-demo@1.27.1) (2022-03-09)
 
 **Note:** Version bump only for package preact-particles-demo

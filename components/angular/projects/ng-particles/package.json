@@ -81,6 +81,6 @@
     "tsparticles-engine": "^2.0.3"
   },
   "dependencies": {
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.1"
   }
 }

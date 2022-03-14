@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [2.0.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-links@1.42.1...tsparticles-preset-links@2.0.3) (2022-03-11)
+## [1.42.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-links@1.42.1...tsparticles-preset-links@1.42.2) (2022-03-14)
 
 
 ### Bug Fixes
@@ -38,6 +39,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * fixed links and triangles presets ([fdd4d8b](https://github.com/matteobruni/tsparticles/commit/fdd4d8b13ae7c23a5bafd001d2f0169193804f12))
 * fixed links presets ([9812393](https://github.com/matteobruni/tsparticles/commit/9812393eafea002d7d68dc5b302c5c56346e3319))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+* fixed flashing issue with background mask, closes [#3514](https://github.com/matteobruni/tsparticles/issues/3514) ([6f74bf1](https://github.com/matteobruni/tsparticles/commit/6f74bf1ab62587c7f2352bfe6f72ea29bb0a31fc))
+
+
+
+
+
 ## [1.42.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-links@1.42.0...tsparticles-preset-links@1.42.1) (2022-03-09)
 
 **Note:** Version bump only for package tsparticles-preset-links

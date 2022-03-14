@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [2.0.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-snow@1.42.1...tsparticles-preset-snow@2.0.3) (2022-03-11)
+## [1.42.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-snow@1.42.1...tsparticles-preset-snow@1.42.2) (2022-03-14)
 
 
 ### Bug Fixes
@@ -38,6 +39,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * fixed snow preset ([38cba58](https://github.com/matteobruni/tsparticles/commit/38cba5884e01be5721395e5f084eb24ac15806de))
 * fixed stars preset ([04e7f4c](https://github.com/matteobruni/tsparticles/commit/04e7f4cd9bda078410940c561a20d57a5502f6e1))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+* fixed flashing issue with background mask, closes [#3514](https://github.com/matteobruni/tsparticles/issues/3514) ([6f74bf1](https://github.com/matteobruni/tsparticles/commit/6f74bf1ab62587c7f2352bfe6f72ea29bb0a31fc))
+
+
+
+
+
 ## [1.42.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-snow@1.42.0...tsparticles-preset-snow@1.42.1) (2022-03-09)
 
 **Note:** Version bump only for package tsparticles-preset-snow

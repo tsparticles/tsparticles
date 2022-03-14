@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [2.0.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-confetti@1.42.1...tsparticles-preset-confetti@2.0.3) (2022-03-11)
+## [1.42.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-confetti@1.42.1...tsparticles-preset-confetti@1.42.2) (2022-03-14)
 
 
 ### Bug Fixes
@@ -26,6 +27,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 ## [2.0.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-confetti@1.41.4...tsparticles-preset-confetti@2.0.2) (2022-02-21)
+* fixed flashing issue with background mask, closes [#3514](https://github.com/matteobruni/tsparticles/issues/3514) ([6f74bf1](https://github.com/matteobruni/tsparticles/commit/6f74bf1ab62587c7f2352bfe6f72ea29bb0a31fc))
+
+
+
+
+
 ## [1.42.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-confetti@1.42.0...tsparticles-preset-confetti@1.42.1) (2022-03-09)
 
 **Note:** Version bump only for package tsparticles-preset-confetti

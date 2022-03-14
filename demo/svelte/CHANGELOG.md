@@ -20,6 +20,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 ## [2.0.2](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.24.4...svelte-demo@2.0.2) (2022-02-21)
+## [1.25.2](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.25.1...svelte-demo@1.25.2) (2022-03-14)
+
+**Note:** Version bump only for package svelte-demo
+
+
+
+
+
 ## [1.25.1](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.25.0...svelte-demo@1.25.1) (2022-03-09)
 
 **Note:** Version bump only for package svelte-demo

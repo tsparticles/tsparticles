@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [2.0.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-firefly@1.42.1...tsparticles-preset-firefly@2.0.3) (2022-03-11)
+## [1.42.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-firefly@1.42.1...tsparticles-preset-firefly@1.42.2) (2022-03-14)
 
 
 ### Bug Fixes
@@ -36,6 +37,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * created and implemented move plugins ([752483a](https://github.com/matteobruni/tsparticles/commit/752483aeeb94dd851dc27fe75e4c258fd87f0a90))
 * fixed firefly and fireworks presets ([ec952c9](https://github.com/matteobruni/tsparticles/commit/ec952c9ac0b42dc1c5350279a44a1255ca1f4fca))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+* fixed flashing issue with background mask, closes [#3514](https://github.com/matteobruni/tsparticles/issues/3514) ([6f74bf1](https://github.com/matteobruni/tsparticles/commit/6f74bf1ab62587c7f2352bfe6f72ea29bb0a31fc))
+
+
+
+
+
 ## [1.42.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-firefly@1.42.0...tsparticles-preset-firefly@1.42.1) (2022-03-09)
 
 **Note:** Version bump only for package tsparticles-preset-firefly
