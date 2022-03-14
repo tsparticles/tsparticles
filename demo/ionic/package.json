@@ -1,6 +1,6 @@
 {
   "name": "ionic-demo",
-  "version": "0.11.1",
+  "version": "0.11.2",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
   "scripts": {
@@ -25,10 +25,10 @@
     "@capacitor/keyboard": "1.2.2",
     "@capacitor/status-bar": "1.0.8",
     "@ionic/angular": "^6.0.0",
-    "ng-particles": "^2.42.1",
+    "ng-particles": "^2.42.2",
     "rxjs": "~7.5.0",
     "tslib": "^2.2.0",
-    "tsparticles": "^1.42.1",
+    "tsparticles": "^1.42.2",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

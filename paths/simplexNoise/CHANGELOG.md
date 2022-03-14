@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.42.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-simplex-noise@1.42.1...tsparticles-path-simplex-noise@1.42.2) (2022-03-14)
+
+
+### Bug Fixes
+
+* fixed flashing issue with background mask, closes [#3514](https://github.com/matteobruni/tsparticles/issues/3514) ([6f74bf1](https://github.com/matteobruni/tsparticles/commit/6f74bf1ab62587c7f2352bfe6f72ea29bb0a31fc))
+
+
+
+
+
 ## [1.42.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-simplex-noise@1.42.0...tsparticles-path-simplex-noise@1.42.1) (2022-03-09)
 
 **Note:** Version bump only for package tsparticles-path-simplex-noise
