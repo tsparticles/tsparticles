@@ -41,7 +41,7 @@ export class Canvas {
      */
     private context: CanvasRenderingContext2D | null;
     private generatedCanvas;
-    private coverColor?: IRgba;
+    private coverColorStyle?: string;
     private trailFillColor?: IRgba;
     private originalStyle?: CSSStyleDeclaration;
 
@@ -108,10 +108,10 @@ export class Canvas {
         const options = this.container.actualOptions;
 
         this.draw((ctx) => {
-            if (options.backgroundMask.enable && options.backgroundMask.cover && this.coverColor) {
+            if (options.backgroundMask.enable && options.backgroundMask.cover) {
                 clear(ctx, this.size);
 
-                this.paintBase(getStyleFromRgb(this.coverColor, this.coverColor.a));
+                this.paintBase(this.coverColorStyle);
             } else {
                 this.paintBase();
             }
@@ -357,12 +357,16 @@ export class Canvas {
         const coverRgb = colorToRgb(color);
 
         if (coverRgb) {
-            this.coverColor = {
+            const coverColor = {
                 r: coverRgb.r,
                 g: coverRgb.g,
                 b: coverRgb.b,
                 a: cover.opacity,
             };
+
+            this.coverColorStyle = getStyleFromRgb(coverColor, coverColor.a);
+
+            console.log(this.coverColorStyle);
         }
     }
 

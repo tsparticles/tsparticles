@@ -4,7 +4,6 @@ import type { ISourceOptions } from 'tsparticles';
 
 @NgModule({
   declarations: [ NgParticlesComponent, ParticlesComponent ],
-  imports: [],
   exports: [ NgParticlesComponent, ParticlesComponent ]
 })
 export class NgParticlesModule {

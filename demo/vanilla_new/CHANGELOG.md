@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.27.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@1.27.1...tsparticles-demo-new@1.27.2) (2022-03-14)
+
+**Note:** Version bump only for package tsparticles-demo-new
+
+
+
+
+
 ## [1.27.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@1.27.0...tsparticles-demo-new@1.27.1) (2022-03-09)
 
 **Note:** Version bump only for package tsparticles-demo-new

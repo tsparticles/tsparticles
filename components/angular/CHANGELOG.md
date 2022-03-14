@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.42.2](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.42.1...ng-particles@2.42.2) (2022-03-14)
+
+
+### Bug Fixes
+
+* do not load particles on the Node.js side and make its loading cancellable ([6711708](https://github.com/matteobruni/tsparticles/commit/67117085c3e2da281216a18933f53d3f9b731136))
+* fixed flashing issue with background mask, closes [#3514](https://github.com/matteobruni/tsparticles/issues/3514) ([6f74bf1](https://github.com/matteobruni/tsparticles/commit/6f74bf1ab62587c7f2352bfe6f72ea29bb0a31fc))
+
+
+
+
+
 ## [2.42.1](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.42.0...ng-particles@2.42.1) (2022-03-09)
 
 **Note:** Version bump only for package ng-particles
