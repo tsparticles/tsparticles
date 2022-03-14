@@ -1660,11 +1660,11 @@
     webpack "^5.22.0"
 
 "@vue/cli-plugin-eslint@~5.0.0-beta.4":
-  version "5.0.0-rc.3"
-  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-eslint/-/cli-plugin-eslint-5.0.0-rc.3.tgz#04ac5338f3e13e3bc69d2cde93d131aa83261607"
-  integrity sha512-DNvHWMt9ruHPhzVLO4jP2Z1X6utQjNBmxak9Ko4QI0CNA9cAly4DezXMYgBt5/x/SH7LvIBxk0wYu/KqmOB9VA==
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-eslint/-/cli-plugin-eslint-5.0.1.tgz#5944eafb84bb5076d6280432edb7d674d0f86962"
+  integrity sha512-ZGxIAT4b9ppMbePJrsZA6e5882n7JIQgji8LLyYSMuf0+GTsEjUDz01nRmAD7PW+Gpf8+B5oA2tU+S3E5l6/WA==
   dependencies:
-    "@vue/cli-shared-utils" "^5.0.0-rc.3"
+    "@vue/cli-shared-utils" "^5.0.1"
     eslint-webpack-plugin "^3.1.0"
     globby "^11.0.2"
     webpack "^5.54.0"
@@ -1764,17 +1764,17 @@
     webpack-virtual-modules "^0.4.2"
     whatwg-fetch "^3.6.2"
 
-"@vue/cli-shared-utils@^5.0.0-beta.4", "@vue/cli-shared-utils@^5.0.0-rc.3":
-  version "5.0.0-rc.3"
-  resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-5.0.0-rc.3.tgz#44bbc62c565c5a36a4532260a7349d451f948ee7"
-  integrity sha512-jUTE7EX66KEoQhcoOrs97l0rJnB0Xj/PQ41Z0vppJpkWQDbNebtBhROjce4VMSAFJXK1F+YHWNvdq57JRUcrWQ==
+"@vue/cli-shared-utils@^5.0.0-beta.4", "@vue/cli-shared-utils@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-5.0.1.tgz#9e33cacefad427bbf8939f953204373ad107fbee"
+  integrity sha512-oL164c3yDhdLHgiFvSkXuP7z0eEY8gqTYzHHbvQJCIBtRZ/0H9Q7xICpAeMZ63lJvS2+fA5bQfv+kPII/kcjmQ==
   dependencies:
     chalk "^4.1.2"
     execa "^1.0.0"
     joi "^17.4.0"
     launch-editor "^2.2.1"
     lru-cache "^6.0.0"
-    node-fetch "^2.6.1"
+    node-fetch "^2.6.7"
     node-ipc "^9.1.1"
     open "^8.0.2"
     ora "^5.3.0"
@@ -5108,7 +5108,7 @@ no-case@^3.0.4:
     lower-case "^2.0.2"
     tslib "^2.0.3"
 
-node-fetch@^2.6.1:
+node-fetch@^2.6.7:
   version "2.6.7"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.7.tgz#24de9fba827e3b4ae44dc8b20256a379160052ad"
   integrity sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==
