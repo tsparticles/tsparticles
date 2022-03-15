@@ -365,8 +365,6 @@ export class Canvas {
             };
 
             this.coverColorStyle = getStyleFromRgb(coverColor, coverColor.a);
-
-            console.log(this.coverColorStyle);
         }
     }
 
