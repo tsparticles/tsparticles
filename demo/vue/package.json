@@ -41,7 +41,7 @@
     "babel-loader": "8.2.3",
     "eslint": "8.11.0",
     "eslint-config-prettier": "8.5.0",
-    "prettier": "2.5.1",
+    "prettier": "2.6.0",
     "rollup": "2.70.1",
     "rollup-plugin-terser": "7.0.2",
     "rollup-plugin-typescript": "1.0.1",
