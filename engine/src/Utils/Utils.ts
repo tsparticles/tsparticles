@@ -385,10 +385,6 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
 }
 
 function loadOptions<T>(options: IOptionLoader<T>, ...sourceOptionsArr: RecursivePartial<T | undefined>[]) {
-    if (!sourceOptionsArr) {
-        return;
-    }
-
     for (const sourceOptions of sourceOptionsArr) {
         options.load(sourceOptions);
     }
