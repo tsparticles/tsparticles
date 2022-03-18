@@ -177,7 +177,12 @@ export class Canvas {
             height: this.element.offsetHeight * pxRatio,
         };
 
-        if (newSize.height === size.height && newSize.width === size.width) {
+        if (
+            newSize.height === size.height &&
+            newSize.width === size.width &&
+            newSize.height === this.element.height &&
+            newSize.width === this.element.width
+        ) {
             return;
         }
 
