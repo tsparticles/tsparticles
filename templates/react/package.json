@@ -1,6 +1,6 @@
 {
   "name": "cra-template-particles",
-  "version": "1.42.2",
+  "version": "1.42.3",
   "description": "Official React tsParticles template",
   "keywords": [
     "tsparticles",
@@ -80,9 +80,9 @@
     }
   ],
   "dependencies": {
-    "react-tsparticles": "^1.42.2",
+    "react-tsparticles": "^1.42.3",
     "tslib": "^2.3.0",
-    "tsparticles": "^1.42.2"
+    "tsparticles": "^1.42.3"
   },
   "scripts": {
     "build": "node scripts/prebuild.js",

@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-path-simplex-noise",
-  "version": "1.42.2",
+  "version": "1.42.3",
   "description": "tsParticles simplex noise path",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -85,6 +85,6 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles": "^1.42.2"
+    "tsparticles": "^1.42.3"
   }
 }
