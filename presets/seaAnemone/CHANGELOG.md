@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.42.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-sea-anemone@1.42.2...tsparticles-preset-sea-anemone@1.42.3) (2022-03-18)
+
+
+### Bug Fixes
+
+* fixed flashing issue with resize ([4e44c8e](https://github.com/matteobruni/tsparticles/commit/4e44c8e368561195441c7cd153e811e7e410e7a4))
+
+
+
+
+
 ## [1.42.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-sea-anemone@1.42.1...tsparticles-preset-sea-anemone@1.42.2) (2022-03-14)
 
 

@@ -172,13 +172,24 @@ export class Canvas {
         const container = this.container;
         const pxRatio = container.retina.pixelRatio;
         const size = container.canvas.size;
+        const newSize = {
+            width: this.element.offsetWidth * pxRatio,
+            height: this.element.offsetHeight * pxRatio,
+        };
+
+        if (
+            newSize.height === size.height &&
+            newSize.width === size.width &&
+            newSize.height === this.element.height &&
+            newSize.width === this.element.width
+        ) {
+            return;
+        }
+
         const oldSize = { ...size };
 
-        size.width = this.element.offsetWidth * pxRatio;
-        size.height = this.element.offsetHeight * pxRatio;
-
-        this.element.width = size.width;
-        this.element.height = size.height;
+        this.element.width = size.width = this.element.offsetWidth * pxRatio;
+        this.element.height = size.height = this.element.offsetHeight * pxRatio;
 
         if (this.container.started) {
             this.resizeFactor = {
@@ -365,8 +376,6 @@ export class Canvas {
             };
 
             this.coverColorStyle = getStyleFromRgb(coverColor, coverColor.a);
-
-            console.log(this.coverColorStyle);
         }
     }
 

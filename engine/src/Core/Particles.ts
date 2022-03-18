@@ -234,12 +234,8 @@ export class Particles {
     }
 
     async draw(delta: IDelta): Promise<void> {
-        const container = this.container;
-
-        /* clear canvas */
-        container.canvas.clear();
-
-        const canvasSize = this.container.canvas.size;
+        const container = this.container,
+            canvasSize = this.container.canvas.size;
 
         this.quadTree = new QuadTree(
             new Rectangle(
@@ -259,6 +255,9 @@ export class Particles {
             this.lastZIndex = this.zArray[this.zArray.length - 1].position.z;
             this.needsSort = false;
         }
+
+        /* clear canvas */
+        container.canvas.clear();
 
         /* draw polygon shape in debug mode */
         for (const [, plugin] of container.plugins) {
