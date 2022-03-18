@@ -41,10 +41,6 @@ export const options: ISourceOptions = {
             },
         },
         number: {
-            density: {
-                enable: true,
-                area: 800,
-            },
             value: 0,
             limit: 300,
         },

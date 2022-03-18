@@ -172,6 +172,15 @@ export class Canvas {
         const container = this.container;
         const pxRatio = container.retina.pixelRatio;
         const size = container.canvas.size;
+        const newSize = {
+            width: this.element.offsetWidth * pxRatio,
+            height: this.element.offsetHeight * pxRatio,
+        };
+
+        if (newSize.height === size.height && newSize.width === size.width) {
+            return;
+        }
+
         const oldSize = { ...size };
 
         size.width = this.element.offsetWidth * pxRatio;
