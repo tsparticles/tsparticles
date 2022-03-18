@@ -188,11 +188,8 @@ export class Canvas {
 
         const oldSize = { ...size };
 
-        size.width = this.element.offsetWidth * pxRatio;
-        size.height = this.element.offsetHeight * pxRatio;
-
-        this.element.width = size.width;
-        this.element.height = size.height;
+        this.element.width = size.width = this.element.offsetWidth * pxRatio;
+        this.element.height = size.height = this.element.offsetHeight * pxRatio;
 
         if (this.container.started) {
             this.resizeFactor = {
