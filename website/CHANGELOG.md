@@ -20,6 +20,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 ## [2.0.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.41.4...tsparticles-website@2.0.2) (2022-02-21)
+## [1.42.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.42.2...tsparticles-website@1.42.3) (2022-03-18)
+
+**Note:** Version bump only for package tsparticles-website
+
+
+
+
+
 ## [1.42.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.42.1...tsparticles-website@1.42.2) (2022-03-14)
 
 **Note:** Version bump only for package tsparticles-website

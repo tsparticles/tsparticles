@@ -36,6 +36,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.42.3](https://github.com/matteobruni/tsparticles/compare/jquery-particles@1.42.2...jquery-particles@1.42.3) (2022-03-18)
+
+**Note:** Version bump only for package jquery-particles
+
+
+
+
+
 ## [1.42.2](https://github.com/matteobruni/tsparticles/compare/jquery-particles@1.42.1...jquery-particles@1.42.2) (2022-03-14)
 
 **Note:** Version bump only for package jquery-particles

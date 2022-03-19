@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [2.0.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.0.2...tsparticles-engine@2.0.3) (2022-03-11)
+## [1.42.3](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.42.2...tsparticles@1.42.3) (2022-03-18)
+
+
+### Bug Fixes
+
+* fixed flashing issue with resize ([4e44c8e](https://github.com/matteobruni/tsparticles/commit/4e44c8e368561195441c7cd153e811e7e410e7a4))
+* fixed issue with new resize checks ([0cce40c](https://github.com/matteobruni/tsparticles/commit/0cce40cf3faeff00c3ef5f5ffab3575e38aca5a0))
+
+
+
+
+
 ## [1.42.2](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.42.1...tsparticles@1.42.2) (2022-03-14)
 
 
