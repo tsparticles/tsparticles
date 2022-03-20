@@ -4,7 +4,8 @@
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-fire/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-fire) [![npmjs](https://badge.fury.io/js/tsparticles-preset-fire.svg)](https://www.npmjs.com/package/tsparticles-preset-fire) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-fire)](https://www.npmjs.com/package/tsparticles-preset-fire)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) preset for a faded red to black background with particles colored like fire and ash sparks.
+[tsParticles](https://github.com/matteobruni/tsparticles) preset for a faded red to black background with particles
+colored like fire and ash sparks.
 
 [![Slack](https://particles.js.org/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI) [![Discord](https://particles.js.org/images/discord.png)](https://discord.gg/hACwv45Hme) [![Telegram](https://particles.js.org/images/telegram.png)](https://t.me/tsparticles)
 
@@ -25,8 +26,8 @@ Once installed you need one more script to be included in your page (or you can 
 from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-fire):
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@1/tsparticles.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-fire@1/tsparticles.preset.fire.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-fire@2/tsparticles.preset.fire.min.js"></script>
 ```
 
 This script **MUST** be placed after the `tsParticles` one.
@@ -36,7 +37,7 @@ This script **MUST** be placed after the `tsParticles` one.
 A bundled script can also be used, this will include every needed plugin needed by the preset.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-fire@1/tsparticles.preset.fire.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-fire@2/tsparticles.preset.fire.bundle.min.js"></script>
 ```
 
 ### Usage
@@ -75,16 +76,16 @@ _The syntax for `React.js`, `Preact` and `Inferno` is the same_.
 
 This sample uses the class component syntax, but you can use hooks as well (if the library supports it).
 
-```javascript
+```typescript jsx
 import Particles from "react-tsparticles";
-import { Main } from "tsparticles";
+import type { Engine } from "tsparticles";
 import { loadFirePreset } from "tsparticles-preset-fire";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
   // this customizes the component tsParticles installation
-  customInit(main: Main) {
+  async customInit(engine: Engine): Promise<void> {
     // this adds the preset to tsParticles, you can safely use the
-    loadFirePreset(main);
+    await loadFirePreset(engine);
   }
 
   render() {
@@ -106,8 +107,8 @@ _The syntax for `Vue.js 2.x` and `3.x` is the same_
 ```
 
 ```js
-function particlesInit(main: Main) {
-  loadFirePreset(main);
+async function particlesInit(engine: Engine): Promise<void> {
+  await loadFirePreset(engine);
 }
 ```
 
@@ -123,8 +124,8 @@ function particlesInit(main: Main) {
 ```
 
 ```ts
-function particlesInit(main: Main): void {
-  loadFirePreset(main);
+async function particlesInit(engine: Engine): Promise<void> {
+  await loadFirePreset(engine);
 }
 ```
 

@@ -1,7 +1,7 @@
 {
   "name": "particles.vue-demo",
   "private": true,
-  "version": "1.27.3",
+  "version": "1.27.4",
   "description": "VueJS Demo",
   "author": "Matteo Bruni <ar3s@icloud.com>",
   "homepage": "https://github.com/matteobruni/tsparticles#readme",
@@ -20,16 +20,16 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "dependencies": {
-    "particles.vue": "^2.42.3",
-    "tsparticles": "^1.42.3",
+    "particles.vue": "^2.42.4",
+    "tsparticles": "^1.42.4",
     "vue": "^2.6.14",
     "vue-class-component": "^7.2.6",
     "vue-property-decorator": "^9.1.2"
   },
   "devDependencies": {
-    "@babel/core": "7.17.7",
+    "@babel/core": "7.17.8",
     "@babel/plugin-proposal-class-properties": "7.16.7",
-    "@babel/plugin-proposal-decorators": "7.17.2",
+    "@babel/plugin-proposal-decorators": "7.17.8",
     "@rollup/plugin-node-resolve": "13.1.3",
     "@rollup/plugin-replace": "4.0.0",
     "@typescript-eslint/eslint-plugin": "5.15.0",

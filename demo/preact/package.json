@@ -1,7 +1,7 @@
 {
   "name": "preact-particles-demo",
   "private": true,
-  "version": "1.27.3",
+  "version": "1.27.4",
   "description": "> TODO: description",
   "author": "Matteo Bruni <ar3s@icloud.com>",
   "homepage": "https://github.com/matteobruni/tsparticles#readme",
@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "preact": "^10.6.6",
-    "preact-particles": "^1.42.3",
+    "preact-particles": "^1.42.4",
     "preact-render-to-string": "^5.1.20",
     "preact-router": "^4.0.0"
   }

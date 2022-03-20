@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.42.4](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.42.3...tsparticles@1.42.4) (2022-03-20)
+
+
+### Bug Fixes
+
+* moving canvas.clear closer to drawn breaks grab links, and maybe other interactions ([9b70b78](https://github.com/matteobruni/tsparticles/commit/9b70b786bd93ba7c245b8e24113156f747dd6608))
+
+
+
+
+
 ## [1.42.3](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.42.2...tsparticles@1.42.3) (2022-03-18)
 
 
