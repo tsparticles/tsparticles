@@ -125,7 +125,7 @@ async function particlesInit(engine: Engine): Promise<void> {
 
 ```typescript
 async function particlesInit(engine: Engine): Promise<void> {
-    await loadSeaAnemonePreset(engine);
+  await loadSeaAnemonePreset(engine);
 }
 ```
 
@@ -142,7 +142,7 @@ async function particlesInit(engine: Engine): Promise<void> {
 
 ```js
 let onParticlesInit = (event) => {
-    const main = event.detail;
-    loadSeaAnemonePreset(main);
+  const main = event.detail;
+  loadSeaAnemonePreset(main);
 };
 ```
