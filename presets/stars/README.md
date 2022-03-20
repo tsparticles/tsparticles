@@ -36,7 +36,7 @@ This script **MUST** be placed after the `tsParticles` one.
 A bundled script can also be used, this will include every needed plugin needed by the preset.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-stars@1/tsparticles.preset.stars.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-stars@2/tsparticles.preset.stars.bundle.min.js"></script>
 ```
 
 ### Usage
@@ -44,10 +44,10 @@ A bundled script can also be used, this will include every needed plugin needed 
 Once the scripts are loaded you can set up `tsParticles` like this:
 
 ```javascript
-loadStarsPreset(tsParticles);
-
-tsParticles.load("tsparticles", {
-  preset: "stars",
+loadStarsPreset(tsParticles).then(() => {
+  tsParticles.load("tsparticles", {
+    preset: "stars",
+  });
 });
 ```
 
@@ -75,16 +75,16 @@ _The syntax for `React.js`, `Preact` and `Inferno` is the same_.
 
 This sample uses the class component syntax, but you can use hooks as well (if the library supports it).
 
-```javascript
+```typescript jsx
 import Particles from "react-tsparticles";
-import { Main } from "tsparticles";
+import type { Engine } from "tsparticles";
 import { loadStarsPreset } from "tsparticles-preset-stars";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
   // this customizes the component tsParticles installation
-  customInit(main: Main) {
+  async customInit(engine: Engine): Promise<void> {
     // this adds the preset to tsParticles, you can safely use the
-    loadStarsPreset(main);
+    await loadStarsPreset(engine);
   }
 
   render() {
@@ -105,9 +105,9 @@ _The syntax for `Vue.js 2.x` and `3.x` is the same_
 <Particles id="tsparticles" :particlesInit="particlesInit" url="http://foo.bar/particles.json" />
 ```
 
-```js
-function particlesInit(main: Main) {
-  loadStarsPreset(main);
+```typescript
+async function particlesInit(engine: Engine): Promise<void> {
+  await loadStarsPreset(engine);
 }
 ```
 
@@ -122,9 +122,9 @@ function particlesInit(main: Main) {
 ></ng-particles>
 ```
 
-```ts
-function particlesInit(main: Main): void {
-  loadStarsPreset(main);
+```typescript
+async function particlesInit(engine: Engine): Promise<void> {
+  await loadStarsPreset(engine);
 }
 ```
 
