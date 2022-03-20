@@ -125,7 +125,7 @@ async function particlesInit(engine: Engine): Promise<void> {
 
 ```ts
 async function particlesInit(engine: Engine): Promise<void> {
-    await loadFireflyPreset(engine);
+  await loadFireflyPreset(engine);
 }
 ```
 
@@ -142,7 +142,7 @@ async function particlesInit(engine: Engine): Promise<void> {
 
 ```js
 let onParticlesInit = (event) => {
-    const main = event.detail;
-    loadFireflyPreset(main);
+  const main = event.detail;
+  loadFireflyPreset(main);
 };
 ```

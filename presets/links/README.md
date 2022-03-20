@@ -125,7 +125,7 @@ async function particlesInit(engine: Engine): Promise<void> {
 
 ```ts
 async function particlesInit(engine: Engine): Promise<void> {
-    await loadLinksPreset(engine);
+  await loadLinksPreset(engine);
 }
 ```
 
@@ -142,7 +142,7 @@ async function particlesInit(engine: Engine): Promise<void> {
 
 ```js
 let onParticlesInit = (event) => {
-    const main = event.detail;
-    loadLinksPreset(main);
+  const main = event.detail;
+  loadLinksPreset(main);
 };
 ```
