@@ -1615,11 +1615,11 @@
     webpack "^5.54.0"
 
 "@vue/cli-plugin-eslint@~5.0.0-beta.4":
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-eslint/-/cli-plugin-eslint-5.0.1.tgz#5944eafb84bb5076d6280432edb7d674d0f86962"
-  integrity sha512-ZGxIAT4b9ppMbePJrsZA6e5882n7JIQgji8LLyYSMuf0+GTsEjUDz01nRmAD7PW+Gpf8+B5oA2tU+S3E5l6/WA==
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-eslint/-/cli-plugin-eslint-5.0.3.tgz#47f00fea50205513f1908fbb1f93420760f6091c"
+  integrity sha512-gp2UdXYp3ofXndD2vKWQ56e6GXwCkrkS5yBzfM6T9aKFS9+3TV5FipQGQf4O2V3rhlCjWulUV4i3uaQMRems6g==
   dependencies:
-    "@vue/cli-shared-utils" "^5.0.1"
+    "@vue/cli-shared-utils" "^5.0.3"
     eslint-webpack-plugin "^3.1.0"
     globby "^11.0.2"
     webpack "^5.54.0"
@@ -6504,6 +6504,11 @@ tslib@^2.0.3, tslib@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
   integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
+
+tsparticles-engine@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.3.tgz#d14bba5434a758a70a58fe1a2fda757aa3cbf0b8"
+  integrity sha512-n54t3Qcdnz/wc6op38Q/nVwfi7d/m/HdiDdJsJy4DWAJnnu4YZLGoor9h76nuvfIeY7niTQWMLMxWBViAKOOEA==
 
 tsutils@^3.21.0:
   version "3.21.0"
