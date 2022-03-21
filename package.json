@@ -23,7 +23,7 @@
     "lerna": "^4.0.0"
   },
   "resolutions": {
-    "npm-packlist": "1.1.12"
+    "npm-packlist": "4.0.0"
   },
   "husky": {
     "hooks": {
