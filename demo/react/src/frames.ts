@@ -12,7 +12,7 @@ import type { ISourceOptions } from "tsparticles";
 export type TFrame = {
     backgroundColor: string;
     name: string;
-    options: ISourceOptions;
+    options?: ISourceOptions;
     slug: string;
 };
 
@@ -326,5 +326,10 @@ export const frames: TFrame[] = [
             }
         },
         slug: 'mask',
+    }, {
+        backgroundColor: "black",
+        name: "No particles",
+        options: undefined,
+        slug: "no-particles"
     }
 ];

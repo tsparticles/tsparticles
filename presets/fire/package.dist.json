@@ -78,7 +78,7 @@
   "main": "index.js",
   "jsdelivr": "tsparticles.preset.fire.min.js",
   "unpkg": "tsparticles.preset.fire.min.js",
-  "module": "index.js",
+  "module": "esm/index.js",
   "types": "index.d.ts",
   "dependencies": {
     "tsparticles": "^1.42.4"

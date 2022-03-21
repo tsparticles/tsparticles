@@ -9,7 +9,7 @@
     "solid-particles": "^1.42.4",
     "solid-scripts": "^0.0.61",
     "tsparticles": "^1.42.4",
-    "typescript": "^4.4.2"
+    "typescript": "^4.6.2"
   },
   "scripts": {
     "start": "solid-scripts start",

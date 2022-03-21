@@ -78,7 +78,7 @@
   "main": "index.js",
   "jsdelivr": "tsparticles.preset.bubbles.min.js",
   "unpkg": "tsparticles.preset.bubbles.min.js",
-  "module": "index.js",
+  "module": "esm/index.js",
   "types": "index.d.ts",
   "dependencies": {
     "tsparticles": "^1.42.4"
