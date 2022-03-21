@@ -7782,7 +7782,7 @@ preact-render-to-string@^3.6.3:
   dependencies:
     pretty-format "^3.5.1"
 
-preact-render-to-string@^5.1.20:
+preact-render-to-string@^5.1.19:
   version "5.1.20"
   resolved "https://registry.yarnpkg.com/preact-render-to-string/-/preact-render-to-string-5.1.20.tgz#9e61a478e8514e5c4140282c7c43d9747a6d32a9"
   integrity sha512-ivh2oOGzth0o7XqbatWUQ81WQGoJwSqDKP5z917SoqTWYCAr7dlBzMv3SAMTAu3Gr5g47BJwrvyO44H2Y10ubg==
@@ -7794,7 +7794,7 @@ preact-router@^4.0.0:
   resolved "https://registry.yarnpkg.com/preact-router/-/preact-router-4.0.0.tgz#0701994d396cf405c144c9c6391699314ac7622b"
   integrity sha512-Y5f/G8ITHcw0vcJJ+drEsEcv4yHGeKJ78v3kF7AL6Ef35Lgoj+qPuRHarTeMBCXDzlmLWAqhmacfDNIgMa0+pw==
 
-preact@^10.6.6:
+preact@^10.6.4:
   version "10.6.6"
   resolved "https://registry.yarnpkg.com/preact/-/preact-10.6.6.tgz#f1899bc8dab7c0788b858481532cb3b5d764a520"
   integrity sha512-dgxpTFV2vs4vizwKohYKkk7g7rmp1wOOcfd4Tz3IB3Wi+ivZzsn/SpeKJhRENSE+n8sUfsAl4S3HiCVT923ABw==
