@@ -14,7 +14,7 @@ export class BackgroundMask implements IBackgroundMask, IOptionLoader<IBackgroun
      * Canvas composite operation
      * values here: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation
      */
-    composite;
+    composite: GlobalCompositeOperation;
 
     /**
      * Background covering color
