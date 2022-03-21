@@ -90,7 +90,7 @@
     "vue": "<3"
   },
   "dependencies": {
-    "tsparticles": "^1.42.3",
+    "tsparticles": "^1.42.4",
     "vue-class-component": "<8",
     "vue-property-decorator": "<10"
   },

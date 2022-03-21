@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [2.0.3](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.27.1...preact-particles-demo@2.0.3) (2022-03-11)
+## [1.27.4](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.27.3...preact-particles-demo@1.27.4) (2022-03-20)
 
 
 ### Bug Fixes
@@ -22,6 +23,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 ## [2.0.2](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.26.4...preact-particles-demo@2.0.2) (2022-02-21)
+* upgrade preact from 10.6.5 to 10.6.6 ([525d1b7](https://github.com/matteobruni/tsparticles/commit/525d1b7e6145bcbbd205235982c2478796c882d2))
+* upgrade preact-render-to-string from 5.1.19 to 5.1.20 ([1b85be0](https://github.com/matteobruni/tsparticles/commit/1b85be0123f24a9cf23e54e70ba2c0dbabe0c0f1))
+
+
+
+
+
 ## [1.27.3](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.27.2...preact-particles-demo@1.27.3) (2022-03-18)
 
 **Note:** Version bump only for package preact-particles-demo

@@ -255,6 +255,9 @@ export class Particles {
             4
         );
 
+        /* clear canvas */
+        container.canvas.clear();
+
         /* update each particles param */
         await this.update(delta);
 
@@ -263,9 +266,6 @@ export class Particles {
             this.lastZIndex = this.zArray[this.zArray.length - 1].position.z;
             this.needsSort = false;
         }
-
-        /* clear canvas */
-        container.canvas.clear();
 
         /* draw polygon shape in debug mode */
         for (const [, plugin] of container.plugins) {
