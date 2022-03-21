@@ -78,7 +78,7 @@
   "main": "shape.js",
   "jsdelivr": "tsparticles.shape.rounded-rect.min.js",
   "unpkg": "tsparticles.shape.rounded-rect.min.js",
-  "module": "shape.js",
+  "module": "esm/shape.js",
   "types": "shape.d.ts",
   "dependencies": {
     "tsparticles": "^1.42.4"

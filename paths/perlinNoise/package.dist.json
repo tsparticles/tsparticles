@@ -82,7 +82,7 @@
   "main": "index.js",
   "jsdelivr": "tsparticles.path.perlin.noise.min.js",
   "unpkg": "tsparticles.path.perlin.noise.min.js",
-  "module": "index.js",
+  "module": "esm/index.js",
   "types": "index.d.ts",
   "dependencies": {
     "tsparticles": "^1.42.4"

@@ -82,7 +82,7 @@
   "main": "index.js",
   "jsdelivr": "tsparticles.path.polygon.min.js",
   "unpkg": "tsparticles.path.polygon.min.js",
-  "module": "index.js",
+  "module": "esm/index.js",
   "types": "index.d.ts",
   "dependencies": {
     "tsparticles": "^1.42.4"

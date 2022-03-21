@@ -79,7 +79,7 @@
   "main": "index.js",
   "jsdelivr": "tsparticles.interaction.particles.repulse.min.js",
   "unpkg": "tsparticles.interaction.particles.repulse.min.js",
-  "module": "index.js",
+  "module": "esm/index.js",
   "types": "index.d.ts",
   "dependencies": {
     "tsparticles": "^1.42.4"

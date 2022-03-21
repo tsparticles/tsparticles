@@ -81,7 +81,7 @@
   "main": "index.js",
   "jsdelivr": "tsparticles.plugin.infection.min.js",
   "unpkg": "tsparticles.plugin.infection.min.js",
-  "module": "index.js",
+  "module": "esm/index.js",
   "types": "index.d.ts",
   "dependencies": {
     "tsparticles": "^1.42.4"
