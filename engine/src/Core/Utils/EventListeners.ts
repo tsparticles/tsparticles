@@ -1,5 +1,5 @@
 import { ClickMode, InteractivityDetect } from "../../Enums";
-import { clamp, isSsr, itemFromArray } from "../../Utils";
+import { isSsr, itemFromArray } from "../../Utils";
 import { Constants } from "./Constants";
 import type { Container } from "../Container";
 import type { ICoordinates } from "../Interfaces";
@@ -318,9 +318,9 @@ export class EventListeners {
             };
         }
 
-        const pxRatio = container.retina.pixelRatio;
-
         if (pos) {
+            const pxRatio = container.retina.pixelRatio;
+
             pos.x *= pxRatio;
             pos.y *= pxRatio;
         }
@@ -514,14 +514,31 @@ export class EventListeners {
     }
 
     private handleWheel(e: Event): void {
-        const event = e as WheelEvent;
+        const event = e as WheelEvent & { wheelDelta?: number };
         const container = this.container;
         const scaleFactor = 8;
+        const retina = container.retina;
+        const scale = retina.scale;
 
         event.preventDefault();
 
-        container.retina.scale += event.deltaY * -0.01;
+        const delta = event.wheelDelta ?? -event.detail;
+        const factor = delta > 0 ? 1.1 : 1 / 1.1;
 
-        container.retina.scale = clamp(container.retina.scale, 1 / scaleFactor, scaleFactor);
+        const newScale = scale.value * factor;
+
+        if (newScale < 1 / scaleFactor || newScale > scaleFactor) {
+            return;
+        }
+
+        scale.value = newScale;
+
+        const fixedPos = {
+            x: event.x * retina.pixelRatio,
+            y: event.y * retina.pixelRatio,
+        };
+
+        scale.translate.x = fixedPos.x - (fixedPos.x - scale.translate.x) * factor;
+        scale.translate.y = fixedPos.y - (fixedPos.y - scale.translate.y) * factor;
     }
 }

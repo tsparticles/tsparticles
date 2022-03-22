@@ -1,7 +1,4 @@
-import type { Container } from "../Core/Container";
-import type { IDelta } from "../Core/Interfaces/IDelta";
-import type { IParticle } from "../Core/Interfaces/IParticle";
-import { Particle } from "../Core/Particle";
+import type { Container, IDelta, IParticle, Particle } from "../Core";
 
 /**
  * @category Types

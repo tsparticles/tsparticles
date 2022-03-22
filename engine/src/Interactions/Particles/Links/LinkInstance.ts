@@ -109,6 +109,7 @@ export class LinkInstance implements IContainerPlugin {
 
             drawLinkTriangle(
                 ctx,
+                container,
                 pos1,
                 pos2,
                 pos3,
@@ -172,6 +173,7 @@ export class LinkInstance implements IContainerPlugin {
 
             drawLinkLine(
                 ctx,
+                container,
                 width,
                 pos1,
                 pos2,

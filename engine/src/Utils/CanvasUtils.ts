@@ -31,8 +31,14 @@ function drawTriangle(context: CanvasRenderingContext2D, p1: ICoordinates, p2: I
     context.closePath();
 }
 
-export function paintBase(context: CanvasRenderingContext2D, dimension: IDimension, baseColor?: string): void {
+export function paintBase(
+    context: CanvasRenderingContext2D,
+    container: Container,
+    dimension: IDimension,
+    baseColor?: string
+): void {
     context.save();
+    setScale(context, container);
     context.fillStyle = baseColor ?? "rgba(0,0,0,0)";
     context.fillRect(0, 0, dimension.width, dimension.height);
     context.restore();
@@ -44,6 +50,7 @@ export function clear(context: CanvasRenderingContext2D, dimension: IDimension):
 
 export function drawLinkLine(
     context: CanvasRenderingContext2D,
+    container: Container,
     width: number,
     begin: ICoordinates,
     end: ICoordinates,
@@ -60,6 +67,8 @@ export function drawLinkLine(
     /* path */
 
     let drawn = false;
+
+    setScale(context, container);
 
     if (getDistance(begin, end) <= maxDistance) {
         drawLine(context, begin, end);
@@ -147,6 +156,7 @@ export function drawLinkLine(
 
 export function drawLinkTriangle(
     context: CanvasRenderingContext2D,
+    container: Container,
     pos1: ICoordinates,
     pos2: ICoordinates,
     pos3: ICoordinates,
@@ -157,6 +167,7 @@ export function drawLinkTriangle(
 ): void {
     // this.ctx.lineCap = "round"; /* performance issue */
     /* path */
+    setScale(context, container);
 
     drawTriangle(context, pos1, pos2, pos3);
 
@@ -171,13 +182,14 @@ export function drawLinkTriangle(
 
 export function drawConnectLine(
     context: CanvasRenderingContext2D,
+    container: Container,
     width: number,
     lineStyle: CanvasGradient,
     begin: ICoordinates,
     end: ICoordinates
 ): void {
     context.save();
-
+    setScale(context, container);
     drawLine(context, begin, end);
 
     context.lineWidth = width;
@@ -214,6 +226,7 @@ export function gradient(
 
 export function drawGrabLine(
     context: CanvasRenderingContext2D,
+    container: Container,
     width: number,
     begin: ICoordinates,
     end: ICoordinates,
@@ -221,11 +234,24 @@ export function drawGrabLine(
     opacity: number
 ): void {
     context.save();
+    const scale = container.retina.scale;
 
-    drawLine(context, begin, end);
+    setScale(context, container);
+
+    drawLine(
+        context,
+        {
+            x: begin.x + scale.translate.x,
+            y: begin.y + scale.translate.y,
+        },
+        {
+            x: end.x,
+            y: end.y,
+        }
+    );
 
     context.strokeStyle = getStyleFromRgb(colorLine, opacity);
-    context.lineWidth = width;
+    context.lineWidth = width * scale.value;
     context.stroke();
     context.restore();
 }
@@ -249,6 +275,8 @@ export function drawParticle(
     const rollOptions = particle.options.roll;
 
     context.save();
+
+    setScale(context, container);
 
     if (tiltOptions.enable || rollOptions.enable) {
         const roll = rollOptions.enable && particle.roll;
@@ -347,6 +375,9 @@ export function drawParticle(
     context.restore();
 
     context.save();
+
+    setScale(context, container);
+
     if (tiltOptions.enable && particle.tilt) {
         context.setTransform(
             1,
@@ -415,24 +446,32 @@ export function drawShapeAfterEffect(
     drawer.afterEffect(context, particle, radius, opacity, delta, container.retina.pixelRatio);
 }
 
-export function drawPlugin(context: CanvasRenderingContext2D, plugin: IContainerPlugin, delta: IDelta): void {
+export function drawPlugin(
+    context: CanvasRenderingContext2D,
+    container: Container,
+    plugin: IContainerPlugin,
+    delta: IDelta
+): void {
     if (!plugin.draw) {
         return;
     }
 
     context.save();
+    setScale(context, container);
     plugin.draw(context, delta);
     context.restore();
 }
 
 export function drawParticlePlugin(
     context: CanvasRenderingContext2D,
+    container: Container,
     plugin: IContainerPlugin,
     particle: Particle,
     delta: IDelta
 ): void {
     if (plugin.drawParticle !== undefined) {
         context.save();
+        setScale(context, container);
         plugin.drawParticle(context, particle, delta);
         context.restore();
     }
@@ -474,4 +513,10 @@ export function alterHsl(color: IHsl, type: AlterType, value: number): IHsl {
         s: color.s,
         l: color.l + (type === AlterType.darken ? -1 : 1) * value,
     };
+}
+
+export function setScale(context: CanvasRenderingContext2D, container: Container): void {
+    const scale = container.retina.scale;
+
+    context.transform(scale.value, 0, 0, scale.value, scale.translate.x, scale.translate.y);
 }

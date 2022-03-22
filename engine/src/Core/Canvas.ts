@@ -212,7 +212,8 @@ export class Canvas {
 
             drawConnectLine(
                 ctx,
-                (p1.retina.linksWidth ?? this.container.retina.linksWidth) * this.container.retina.scale,
+                this.container,
+                p1.retina.linksWidth ?? this.container.retina.linksWidth,
                 lineStyle,
                 pos1,
                 pos2
@@ -228,7 +229,8 @@ export class Canvas {
 
             drawGrabLine(
                 ctx,
-                (particle.retina.linksWidth ?? container.retina.linksWidth) * container.retina.scale,
+                container,
+                particle.retina.linksWidth ?? container.retina.linksWidth,
                 beginPos,
                 mousePos,
                 lineColor,
@@ -325,13 +327,13 @@ export class Canvas {
 
     drawPlugin(plugin: IContainerPlugin, delta: IDelta): void {
         this.draw((ctx) => {
-            drawPlugin(ctx, plugin, delta);
+            drawPlugin(ctx, this.container, plugin, delta);
         });
     }
 
     drawParticlePlugin(plugin: IContainerPlugin, particle: Particle, delta: IDelta): void {
         this.draw((ctx) => {
-            drawParticlePlugin(ctx, plugin, particle, delta);
+            drawParticlePlugin(ctx, this.container, plugin, particle, delta);
         });
     }
 
@@ -468,7 +470,7 @@ export class Canvas {
 
     private paintBase(baseColor?: string): void {
         this.draw((ctx) => {
-            paintBase(ctx, this.size, baseColor);
+            paintBase(ctx, this.container, this.size, baseColor);
         });
     }
 

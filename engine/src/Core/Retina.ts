@@ -1,6 +1,20 @@
 import { getRangeValue, isSsr } from "../Utils";
 import type { Container } from "./Container";
+import type { ICoordinates } from "./Interfaces";
 import type { Particle } from "./Particle";
+
+export class Scale {
+    value;
+    translate: ICoordinates;
+
+    constructor() {
+        this.value = 1;
+        this.translate = {
+            x: 0,
+            y: 0,
+        };
+    }
+}
 
 /**
  * @category Core
@@ -23,10 +37,10 @@ export class Retina {
     bounceModeDistance!: number;
     maxSpeed!: number;
     orbitRadius?: number;
-    scale: number;
+    scale: Scale;
 
     constructor(private readonly container: Container) {
-        this.scale = 1;
+        this.scale = new Scale();
     }
 
     /**
