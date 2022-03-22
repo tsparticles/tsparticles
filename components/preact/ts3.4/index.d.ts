@@ -7,8 +7,6 @@ import { IParticlesProps, IParticlesState, ParticlesProps } from "../src/";
 import { ISourceOptions } from "tsparticles";
 import { ComponentClass } from "react";
 
-export * from "tsparticles";
-
 type IParticlesParams = IParticlesProps;
 export { ISourceOptions, IParticlesProps, ParticlesProps, IParticlesParams };
 

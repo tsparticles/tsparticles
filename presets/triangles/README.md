@@ -1,15 +1,19 @@
-[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
 # tsParticles Triangles Preset
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-triangles/badge)](https://www.jsdelivr.com/package/npm/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles-preset-links.svg)](https://www.npmjs.com/package/tsparticles-preset-links) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-triangles)](https://www.npmjs.com/package/tsparticles-preset-triangles)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-triangles/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-triangles) [![npmjs](https://badge.fury.io/js/tsparticles-preset-links.svg)](https://www.npmjs.com/package/tsparticles-preset-links) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-triangles)](https://www.npmjs.com/package/tsparticles-preset-triangles)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) preset for creating a particles web created by link lines
 between them.
 
+[![Slack](https://particles.js.org/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI) [![Discord](https://particles.js.org/images/discord.png)](https://discord.gg/hACwv45Hme) [![Telegram](https://particles.js.org/images/telegram.png)](https://t.me/tsparticles)
+
+[![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles") <a href="https://www.buymeacoffee.com/matteobruni"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
+
 ## Sample
 
-![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/v1/presets/triangles/images/sample.png)
+[![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/triangles/images/sample.png)](https://particles.js.org/samples/presets/triangles)
 
 ## How to use it
 
@@ -22,8 +26,8 @@ Once installed you need one more script to be included in your page (or you can 
 from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-triangles):
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-triangles"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@1/tsparticles.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-triangles@1/tsparticles.preset.triangles.min.js"></script>
 ```
 
 This script **MUST** be placed after the `tsParticles` one.
@@ -33,7 +37,7 @@ This script **MUST** be placed after the `tsParticles` one.
 A bundled script can also be used, this will include every needed plugin needed by the preset.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-triangles/dist/tsparticles.preset.triangles.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-triangles@2/tsparticles.preset.triangles.bundle.min.js"></script>
 ```
 
 ### Usage
@@ -72,16 +76,16 @@ _The syntax for `React.js`, `Preact` and `Inferno` is the same_.
 
 This sample uses the class component syntax, but you can use hooks as well (if the library supports it).
 
-```javascript
+```typescript jsx
 import Particles from "react-tsparticles";
-import { Main } from "tsparticles";
+import type { Engine } from "tsparticles";
 import { loadTrianglesPreset } from "tsparticles-preset-triangles";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
   // this customizes the component tsParticles installation
-  customInit(main: Main) {
+  async customInit(engine: Engine): Promise<void> {
     // this adds the preset to tsParticles, you can safely use the
-    loadTrianglesPreset(main);
+    loadTrianglesPreset(engine);
   }
 
   render() {
@@ -103,8 +107,8 @@ _The syntax for `Vue.js 2.x` and `3.x` is the same_
 ```
 
 ```js
-function particlesInit(main: Main) {
-  loadTrianglesPreset(main);
+async function particlesInit(engine: Engine): Promise<void> {
+  loadTrianglesPreset(engine);
 }
 ```
 
@@ -120,8 +124,8 @@ function particlesInit(main: Main) {
 ```
 
 ```ts
-function particlesInit(main: Main): void {
-  loadTrianglesPreset(main);
+async function particlesInit(engine: Engine): Promise<void> {
+  await loadTrianglesPreset(engine);
 }
 ```
 
@@ -137,7 +141,8 @@ function particlesInit(main: Main): void {
 ```
 
 ```js
-let onParticlesInit = (main) => {
+let onParticlesInit = (event) => {
+  const main = event.detail;
   loadTrianglesPreset(main);
 };
 ```

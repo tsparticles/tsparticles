@@ -1,25 +1,43 @@
-import type { Container, IParticle } from "tsparticles";
-import { NumberUtils, Particle, ParticlesInteractorBase, Vector } from "tsparticles";
+import { Particle, ParticlesInteractorBase, Vector, clamp, getDistances, getRangeValue } from "tsparticles";
+import type { Container } from "tsparticles";
+
+type RepulseParticle = Particle & {
+    repulse?: {
+        distance: number;
+        speed: number;
+        factor: number;
+    };
+};
 
 export class Repulser extends ParticlesInteractorBase {
     constructor(container: Container) {
         super(container);
     }
 
-    public isEnabled(particle: Particle): boolean {
+    isEnabled(particle: Particle): boolean {
         return particle.options.repulse.enabled;
     }
 
-    public reset(): void {
+    reset(): void {
         // do nothing
     }
 
-    public interact(p1: IParticle): void {
+    async interact(p1: RepulseParticle): Promise<void> {
         const container = this.container;
-        const repulseOpt1 = p1.options.repulse;
+
+        if (!p1.repulse) {
+            const repulseOpt1 = p1.options.repulse;
+
+            p1.repulse = {
+                distance: getRangeValue(repulseOpt1.distance),
+                speed: getRangeValue(repulseOpt1.speed),
+                factor: getRangeValue(repulseOpt1.factor),
+            };
+        }
+
         const pos1 = p1.getPosition();
 
-        const query = container.particles.quadTree.queryCircle(pos1, repulseOpt1.distance);
+        const query = container.particles.quadTree.queryCircle(pos1, p1.repulse.distance);
 
         for (const p2 of query) {
             if (p1 === p2 || p2.destroyed) {
@@ -27,14 +45,10 @@ export class Repulser extends ParticlesInteractorBase {
             }
 
             const pos2 = p2.getPosition();
-            const { dx, dy, distance } = NumberUtils.getDistances(pos2, pos1);
-            const velocity = repulseOpt1.speed * repulseOpt1.factor;
+            const { dx, dy, distance } = getDistances(pos2, pos1);
+            const velocity = p1.repulse.speed * p1.repulse.factor;
             if (distance > 0) {
-                const repulseFactor = NumberUtils.clamp(
-                    (1 - Math.pow(distance / repulseOpt1.distance, 2)) * velocity,
-                    0,
-                    velocity
-                );
+                const repulseFactor = clamp((1 - Math.pow(distance / p1.repulse.distance, 2)) * velocity, 0, velocity);
                 const normVec = Vector.create((dx / distance) * repulseFactor, (dy / distance) * repulseFactor);
 
                 p2.position.addTo(normVec);

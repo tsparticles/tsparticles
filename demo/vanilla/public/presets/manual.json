@@ -1,5 +1,5 @@
 {
-  "fpsLimit": 60,
+  "fpsLimit": 120,
   "manualParticles": [
     {
       "position": {
@@ -87,7 +87,6 @@
     }
   },
   "interactivity": {
-    "detect_on": "canvas",
     "events": {
       "onHover": {
         "enable": false,

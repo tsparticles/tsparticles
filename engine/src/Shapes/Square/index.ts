@@ -1,9 +1,9 @@
-import type { Main } from "../../main";
+import type { Engine } from "../../engine";
 import { SquareDrawer } from "./SquareDrawer";
 
-export function loadSquareShape(tsParticles: Main): void {
+export async function loadSquareShape(engine: Engine): Promise<void> {
     const drawer = new SquareDrawer();
 
-    tsParticles.addShape("edge", drawer);
-    tsParticles.addShape("square", drawer);
+    await engine.addShape("edge", drawer);
+    await engine.addShape("square", drawer);
 }

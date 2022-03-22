@@ -1,12 +1,12 @@
-import type { ICoordinates } from "../../../../Core/Interfaces";
 import type { MoveDirection, MoveDirectionAlt } from "../../../../Enums";
-import type { IParticles } from "../../../../Options/Interfaces/Particles/IParticles";
-import type { IEmitterRate } from "./IEmitterRate";
-import type { IEmitterLife } from "./IEmitterLife";
-import type { RecursivePartial } from "../../../../Types";
-import type { IEmitterSize } from "./IEmitterSize";
+import type { EmitterShapeType } from "../../Enums";
 import type { IAnimatableColor } from "../../../../Options/Interfaces/IAnimatableColor";
-import type { EmitterShapeType } from "../../Enums/EmitterShapeType";
+import type { IEmitterLife } from "./IEmitterLife";
+import type { IEmitterRate } from "./IEmitterRate";
+import type { IEmitterSize } from "./IEmitterSize";
+import type { IParticles } from "../../../../Options/Interfaces/Particles/IParticles";
+import type { IRangedCoordinates } from "../../../../Core";
+import type { RecursivePartial } from "../../../../Types";
 
 /**
  * Particles emitter object options
@@ -28,6 +28,11 @@ export interface IEmitter {
      * The direction of the emitted particles, [[MoveDirection]] is the enum used for values
      */
     direction?: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
+
+    /**
+     * Using this id to link the emitter to an HTML element
+     */
+    domId?: string;
 
     /**
      * Sets if the particles will spawn at the emitter perimeter or inside the area
@@ -55,7 +60,7 @@ export interface IEmitter {
      * The relative position (in percent) of the emitter, where particles spawns.
      * If size is specified the position will be the center of the size options
      */
-    position?: RecursivePartial<ICoordinates>;
+    position?: RecursivePartial<IRangedCoordinates>;
 
     /**
      * The particles emitting rate options

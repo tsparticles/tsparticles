@@ -3,6 +3,278 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.42.4](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.42.3...riot-particles@1.42.4) (2022-03-20)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+## [1.42.3](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.42.2...riot-particles@1.42.3) (2022-03-18)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+## [1.42.2](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.42.1...riot-particles@1.42.2) (2022-03-14)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+## [1.42.1](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.42.0...riot-particles@1.42.1) (2022-03-09)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+# [1.42.0](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.41.6...riot-particles@1.42.0) (2022-03-08)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+## [1.41.6](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.41.5...riot-particles@1.41.6) (2022-03-03)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+## [1.41.5](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.41.4...riot-particles@1.41.5) (2022-02-24)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+## [1.41.4](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.41.3...riot-particles@1.41.4) (2022-02-20)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+## [1.41.3](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.41.2...riot-particles@1.41.3) (2022-02-19)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+## [1.41.2](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.41.1...riot-particles@1.41.2) (2022-02-16)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+## [1.41.1](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.41.0...riot-particles@1.41.1) (2022-02-14)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+# [1.41.0](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.40.2...riot-particles@1.41.0) (2022-02-10)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+## [1.40.2](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.40.1...riot-particles@1.40.2) (2022-02-07)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+## [1.40.1](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.40.0...riot-particles@1.40.1) (2022-02-06)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+# [1.40.0](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.13.3...riot-particles@1.40.0) (2022-02-04)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+## [1.13.3](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.13.2...riot-particles@1.13.3) (2022-02-02)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+## [1.13.2](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.13.1...riot-particles@1.13.2) (2022-01-29)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+## [1.13.1](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.13.0...riot-particles@1.13.1) (2022-01-26)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+# [1.13.0](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.12.0...riot-particles@1.13.0) (2022-01-08)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+# [1.12.0](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.11.6...riot-particles@1.12.0) (2021-12-29)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+## [1.11.6](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.11.5...riot-particles@1.11.6) (2021-12-24)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+## [1.11.5](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.11.4...riot-particles@1.11.5) (2021-11-28)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+## [1.11.4](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.11.3...riot-particles@1.11.4) (2021-11-17)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+## [1.11.3](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.11.2...riot-particles@1.11.3) (2021-11-05)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+## [1.11.2](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.11.1...riot-particles@1.11.2) (2021-10-31)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+## [1.11.1](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.11.0...riot-particles@1.11.1) (2021-10-30)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+# [1.11.0](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.10.0...riot-particles@1.11.0) (2021-10-28)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+# [1.10.0](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.9.4...riot-particles@1.10.0) (2021-10-14)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+## [1.9.4](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.9.3...riot-particles@1.9.4) (2021-10-06)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+## [1.9.3](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.9.2...riot-particles@1.9.3) (2021-10-03)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+## [1.9.2](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.9.1...riot-particles@1.9.2) (2021-09-27)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+## [1.9.1](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.9.0...riot-particles@1.9.1) (2021-09-20)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+# [1.9.0](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.8.1...riot-particles@1.9.0) (2021-09-18)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
+## [1.8.1](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.8.0...riot-particles@1.8.1) (2021-09-15)
+
+**Note:** Version bump only for package riot-particles
+
+
+
+
+
 # [1.8.0](https://github.com/matteobruni/tsparticles/compare/riot-particles@1.7.3...riot-particles@1.8.0) (2021-08-23)
 
 

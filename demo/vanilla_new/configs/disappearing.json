@@ -8,7 +8,7 @@
       "value": "#000"
     }
   },
-  "fpsLimit": 60,
+  "fpsLimit": 120,
   "emitters": {
     "direction": "random",
     "size": {
@@ -67,7 +67,6 @@
     }
   },
   "interactivity": {
-    "detect_on": "canvas",
     "events": {
       "onhover": {
         "enable": true,

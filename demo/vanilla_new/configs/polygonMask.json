@@ -4,9 +4,8 @@
     "zIndex": 0
   },
   "detectRetina": false,
-  "fpsLimit": 30,
+  "fpsLimit": 120,
   "interactivity": {
-    "detectsOn": "canvas",
     "events": {
       "onClick": {
         "enable": false,

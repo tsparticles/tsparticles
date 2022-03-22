@@ -1,5 +1,5 @@
-import type { IBounceData } from "./IBounceData";
 import { OutMode, OutModeDirection } from "../../Enums";
+import type { IBounceData } from "./IBounceData";
 import { getRangeValue } from "../../Utils";
 
 export function bounceHorizontal(data: IBounceData): void {

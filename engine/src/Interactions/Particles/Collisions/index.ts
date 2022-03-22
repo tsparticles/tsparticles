@@ -1,6 +1,6 @@
-import type { Main } from "../../../main";
 import { Collider } from "./Collider";
+import type { Engine } from "../../../engine";
 
-export function loadParticlesCollisionsInteraction(tsParticles: Main): void {
-    tsParticles.addInteractor("particlesCollisions", (container) => new Collider(container));
+export async function loadParticlesCollisionsInteraction(engine: Engine): Promise<void> {
+    await engine.addInteractor("particlesCollisions", (container) => new Collider(container));
 }

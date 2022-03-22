@@ -1,17 +1,18 @@
+import type { RangeValue, RecursivePartial } from "../../Types";
+import { ResponsiveMode, ThemeMode } from "../../Enums";
+import { Background } from "./Background/Background";
+import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
+import type { Engine } from "../../engine";
+import { FullScreen } from "./FullScreen/FullScreen";
+import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import type { IOptions } from "../Interfaces/IOptions";
 import { Interactivity } from "./Interactivity/Interactivity";
-import { ParticlesOptions } from "./Particles/ParticlesOptions";
-import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
-import type { RangeValue, RecursivePartial } from "../../Types";
-import { Background } from "./Background/Background";
-import { Plugins } from "../../Utils";
-import type { IOptionLoader } from "../Interfaces/IOptionLoader";
-import { Theme } from "./Theme/Theme";
-import { ThemeMode } from "../../Enums";
-import { FullScreen } from "./FullScreen/FullScreen";
-import { Motion } from "./Motion/Motion";
 import { ManualParticle } from "./ManualParticle";
+import { Motion } from "./Motion/Motion";
+import { ParticlesOptions } from "./Particles/ParticlesOptions";
 import { Responsive } from "./Responsive";
+import { Theme } from "./Theme/Theme";
+import { deepExtend } from "../../Utils";
 
 /**
  * [[include:Options.md]]
@@ -78,20 +79,27 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     pauseOnBlur;
     pauseOnOutsideViewport;
     preset?: string | string[];
+    style: RecursivePartial<CSSStyleDeclaration>;
     responsive: Responsive[];
     themes: Theme[];
     zLayers;
+    defaultDarkTheme?: string;
+    defaultLightTheme?: string;
 
     [name: string]: unknown;
 
-    constructor() {
+    readonly #engine;
+
+    constructor(engine: Engine) {
+        this.#engine = engine;
+
         this.autoPlay = true;
         this.background = new Background();
         this.backgroundMask = new BackgroundMask();
         this.fullScreen = new FullScreen();
         this.detectRetina = true;
         this.duration = 0;
-        this.fpsLimit = 60;
+        this.fpsLimit = 120;
         this.interactivity = new Interactivity();
         this.manualParticles = [];
         this.motion = new Motion();
@@ -99,6 +107,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.pauseOnBlur = true;
         this.pauseOnOutsideViewport = true;
         this.responsive = [];
+        this.style = {};
         this.themes = [];
         this.zLayers = 100;
     }
@@ -155,7 +164,15 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
 
         this.background.load(data.background);
-        this.fullScreen.load(data.fullScreen ?? data.backgroundMode);
+
+        const fullScreen = data.fullScreen ?? data.backgroundMode;
+
+        if (typeof fullScreen === "boolean") {
+            this.fullScreen.enable = fullScreen;
+        } else {
+            this.fullScreen.load(fullScreen);
+        }
+
         this.backgroundMask.load(data.backgroundMask);
         this.interactivity.load(data.interactivity);
 
@@ -170,10 +187,11 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
 
         this.motion.load(data.motion);
-
         this.particles.load(data.particles);
 
-        Plugins.loadOptions(this, data);
+        this.style = deepExtend(this.style, data.style) as RecursivePartial<CSSStyleDeclaration>;
+
+        this.#engine.plugins.loadOptions(this, data);
 
         if (data.responsive !== undefined) {
             for (const responsive of data.responsive) {
@@ -194,6 +212,9 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
                 this.themes.push(optTheme);
             }
         }
+
+        this.defaultDarkTheme = this.#findDefaultTheme(ThemeMode.dark)?.name;
+        this.defaultLightTheme = this.#findDefaultTheme(ThemeMode.light)?.name;
     }
 
     setTheme(name?: string): void {
@@ -204,19 +225,9 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
                 this.load(chosenTheme.options);
             }
         } else {
-            const clientDarkMode =
-                typeof matchMedia !== "undefined" && matchMedia("(prefers-color-scheme: dark)").matches;
-
-            let defaultTheme = this.themes.find(
-                (theme) =>
-                    theme.default.value &&
-                    ((theme.default.mode === ThemeMode.dark && clientDarkMode) ||
-                        (theme.default.mode === ThemeMode.light && !clientDarkMode))
-            );
-
-            if (!defaultTheme) {
-                defaultTheme = this.themes.find((theme) => theme.default.value && theme.default.mode === ThemeMode.any);
-            }
+            const mediaMatch = typeof matchMedia !== "undefined" && matchMedia("(prefers-color-scheme: dark)"),
+                clientDarkMode = mediaMatch && mediaMatch.matches,
+                defaultTheme = this.#findDefaultTheme(clientDarkMode ? ThemeMode.dark : ThemeMode.light);
 
             if (defaultTheme) {
                 this.load(defaultTheme.options);
@@ -224,12 +235,28 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
     }
 
-    private importPreset(preset: string): void {
-        this.load(Plugins.getPreset(preset));
+    setResponsive(width: number, pxRatio: number, defaultOptions: IOptions): number | undefined {
+        this.load(defaultOptions);
+
+        const responsiveOptions = this.responsive.find((t) =>
+            t.mode === ResponsiveMode.screen && screen
+                ? t.maxWidth * pxRatio > screen.availWidth
+                : t.maxWidth * pxRatio > width
+        );
+
+        this.load(responsiveOptions?.options);
+
+        return responsiveOptions?.maxWidth;
     }
 
-    setResponsive(width: number, pxRatio: number, defaultOptions: IOptions): void {
-        this.load(defaultOptions);
-        this.load(this.responsive.find((t) => t.maxWidth * pxRatio > width)?.options);
+    private importPreset(preset: string): void {
+        this.load(this.#engine.plugins.getPreset(preset));
+    }
+
+    #findDefaultTheme(mode: ThemeMode): Theme | undefined {
+        return (
+            this.themes.find((theme) => theme.default.value && theme.default.mode === mode) ??
+            this.themes.find((theme) => theme.default.value && theme.default.mode === ThemeMode.any)
+        );
     }
 }

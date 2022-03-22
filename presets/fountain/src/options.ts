@@ -1,11 +1,8 @@
+import { DestroyMode, MoveDirection, OutMode } from "tsparticles";
 import type { ISourceOptions } from "tsparticles";
-import { DestroyMode, InteractivityDetect, MoveDirection, OutMode } from "tsparticles";
 
 export const options: ISourceOptions = {
-    fullScreen: {
-        enable: true,
-    },
-    fpsLimit: 60,
+    fpsLimit: 120,
     particles: {
         bounce: {
             vertical: {
@@ -78,12 +75,6 @@ export const options: ISourceOptions = {
                 fillColor: "#fff",
                 length: 3,
             },
-        },
-    },
-    interactivity: {
-        detectsOn: InteractivityDetect.canvas,
-        events: {
-            resize: true,
         },
     },
     detectRetina: true,

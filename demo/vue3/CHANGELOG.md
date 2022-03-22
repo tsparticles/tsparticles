@@ -3,6 +3,296 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.25.4](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.25.3...particles.vue3-demo@1.25.4) (2022-03-20)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
+## [1.25.3](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.25.2...particles.vue3-demo@1.25.3) (2022-03-18)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
+## [1.25.2](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.25.1...particles.vue3-demo@1.25.2) (2022-03-14)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
+## [1.25.1](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.25.0...particles.vue3-demo@1.25.1) (2022-03-09)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
+# [1.25.0](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.24.6...particles.vue3-demo@1.25.0) (2022-03-08)
+
+
+### Bug Fixes
+
+* upgrade vue from 3.2.29 to 3.2.30 ([5e13e9d](https://github.com/matteobruni/tsparticles/commit/5e13e9dad9efb691570369307eef39be9bc75d92))
+
+
+
+
+
+## [1.24.6](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.24.5...particles.vue3-demo@1.24.6) (2022-03-03)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
+## [1.24.5](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.24.4...particles.vue3-demo@1.24.5) (2022-02-24)
+
+
+### Bug Fixes
+
+* fixed emitters issues ([c9d9a51](https://github.com/matteobruni/tsparticles/commit/c9d9a51e41fdc77a9bf544a09d979d8c2f6b10d5))
+
+
+
+
+
+## [1.24.4](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.24.3...particles.vue3-demo@1.24.4) (2022-02-20)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
+## [1.24.3](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.24.2...particles.vue3-demo@1.24.3) (2022-02-19)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
+## [1.24.2](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.24.1...particles.vue3-demo@1.24.2) (2022-02-16)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
+## [1.24.1](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.24.0...particles.vue3-demo@1.24.1) (2022-02-14)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
+# [1.24.0](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.23.2...particles.vue3-demo@1.24.0) (2022-02-10)
+
+
+### Bug Fixes
+
+* upgrade core-js from 3.16.2 to 3.20.3 ([ca703e5](https://github.com/matteobruni/tsparticles/commit/ca703e5dffeb92843c2da7605f6d9af5f54d15a2))
+* upgrade highlight.js from 11.2.0 to 11.4.0 ([112a342](https://github.com/matteobruni/tsparticles/commit/112a342be47511c7ae15a788cbf377ad151f74c4))
+* upgrade vue from 3.2.4 to 3.2.26 ([c9434b6](https://github.com/matteobruni/tsparticles/commit/c9434b67c361d96e537f27251f0dbd98a1dd215d))
+
+
+
+
+
+## [1.23.2](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.23.1...particles.vue3-demo@1.23.2) (2022-02-07)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
+## [1.23.1](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.23.0...particles.vue3-demo@1.23.1) (2022-02-06)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
+# [1.23.0](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.22.3...particles.vue3-demo@1.23.0) (2022-02-04)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
+## [1.22.3](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.22.2...particles.vue3-demo@1.22.3) (2022-02-02)
+
+
+### Features
+
+* updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
+
+
+
+
+
+## [1.22.2](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.22.1...particles.vue3-demo@1.22.2) (2022-01-29)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
+## [1.22.1](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.22.0...particles.vue3-demo@1.22.1) (2022-01-26)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
+# [1.22.0](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.21.0...particles.vue3-demo@1.22.0) (2022-01-08)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
+# [1.21.0](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.20.6...particles.vue3-demo@1.21.0) (2021-12-29)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
+## [1.20.6](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.20.5...particles.vue3-demo@1.20.6) (2021-12-24)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
+## [1.20.5](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.20.4...particles.vue3-demo@1.20.5) (2021-11-28)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
+## [1.20.4](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.20.3...particles.vue3-demo@1.20.4) (2021-11-17)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
+## [1.20.3](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.20.2...particles.vue3-demo@1.20.3) (2021-11-05)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
+## [1.20.2](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.20.1...particles.vue3-demo@1.20.2) (2021-10-31)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
+## [1.20.1](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.20.0...particles.vue3-demo@1.20.1) (2021-10-30)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
+# [1.20.0](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.19.0...particles.vue3-demo@1.20.0) (2021-10-28)
+
+
+### Features
+
+* optmize demo of vue3 ([88664ef](https://github.com/matteobruni/tsparticles/commit/88664ef4dea5a9bd42c12a8cc2975b4fea78d4a4))
+* optmize demo of vue3 ([6618f5d](https://github.com/matteobruni/tsparticles/commit/6618f5ddd384fa4b3ca3e984033e45691a1ed986))
+
+
+
+
+
+# [1.19.0](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.18.4...particles.vue3-demo@1.19.0) (2021-10-14)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
+## [1.18.4](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.18.3...particles.vue3-demo@1.18.4) (2021-10-06)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
+## [1.18.3](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.18.2...particles.vue3-demo@1.18.3) (2021-10-03)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
+## [1.18.2](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.18.1...particles.vue3-demo@1.18.2) (2021-09-27)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
+## [1.18.1](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.18.0...particles.vue3-demo@1.18.1) (2021-09-20)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
+# [1.18.0](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.17.1...particles.vue3-demo@1.18.0) (2021-09-18)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
+## [1.17.1](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.17.0...particles.vue3-demo@1.17.1) (2021-09-15)
+
+**Note:** Version bump only for package particles.vue3-demo
+
+
+
+
+
 # [1.17.0](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.16.3...particles.vue3-demo@1.17.0) (2021-08-23)
 
 

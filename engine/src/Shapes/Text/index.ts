@@ -1,10 +1,10 @@
-import type { Main } from "../../main";
-import { validTypes, TextDrawer } from "./TextDrawer";
+import { TextDrawer, validTypes } from "./TextDrawer";
+import type { Engine } from "../../engine";
 
-export function loadTextShape(tsParticles: Main): void {
+export async function loadTextShape(engine: Engine): Promise<void> {
     const drawer = new TextDrawer();
 
     for (const type of validTypes) {
-        tsParticles.addShape(type, drawer);
+        await engine.addShape(type, drawer);
     }
 }

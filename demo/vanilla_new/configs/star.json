@@ -3,7 +3,7 @@
     "enable": true,
     "zIndex": 0
   },
-  "fpsLimit": 60,
+  "fpsLimit": 120,
   "particles": {
     "number": {
       "value": 10,
@@ -75,7 +75,6 @@
     }
   },
   "interactivity": {
-    "detect_on": "window",
     "events": {
       "onhover": {
         "enable": true,

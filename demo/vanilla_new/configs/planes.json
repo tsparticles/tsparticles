@@ -3,9 +3,8 @@
     "enable": true,
     "zIndex": 0
   },
-  "fpsLimit": 60,
+  "fpsLimit": 120,
   "interactivity": {
-    "detect_on": "canvas",
     "events": {
       "onclick": {
         "enable": true,

@@ -1,6 +1,6 @@
-import type { Main } from "../../main";
+import type { Engine } from "../../engine";
 import { SizeUpdater } from "./SizeUpdater";
 
-export function loadSizeUpdater(tsParticles: Main): void {
-    tsParticles.addParticleUpdater("size", () => new SizeUpdater());
+export async function loadSizeUpdater(engine: Engine): Promise<void> {
+    await engine.addParticleUpdater("size", () => new SizeUpdater());
 }

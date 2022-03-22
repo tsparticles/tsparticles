@@ -1,8 +1,8 @@
-import type { IValueWithRandom } from "../Options/Interfaces/IValueWithRandom";
-import type { ICoordinates } from "../Core/Interfaces";
 import { EasingType, MoveDirection, MoveDirectionAlt } from "../Enums";
+import type { ICoordinates } from "../Core";
+import type { IValueWithRandom } from "../Options/Interfaces/IValueWithRandom";
 import { RangeValue } from "../Types";
-import { Vector } from "../Core/Particle/Vector";
+import { Vector } from "../Core";
 
 /**
  * Clamps a number between a minimum and maximum value

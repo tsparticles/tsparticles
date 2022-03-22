@@ -1,8 +1,7 @@
-import type { Particle } from "../../../Core/Particle";
-import type { Container } from "../../../Core/Container";
-import { CollisionMode } from "../../../Enums";
+import type { Container, Particle } from "../../../Core";
 import { circleBounce, circleBounceDataFromParticle, clamp, getDistance } from "../../../Utils";
-import { ParticlesInteractorBase } from "../../../Core/ParticlesInteractorBase";
+import { CollisionMode } from "../../../Enums";
+import { ParticlesInteractorBase } from "../../../Core";
 
 function bounce(p1: Particle, p2: Particle): void {
     circleBounce(circleBounceDataFromParticle(p1), circleBounceDataFromParticle(p2));
@@ -42,7 +41,7 @@ export class Collider extends ParticlesInteractorBase {
         // do nothing
     }
 
-    interact(p1: Particle): void {
+    async interact(p1: Particle): Promise<void> {
         const container = this.container;
         const pos1 = p1.getPosition();
 

@@ -1,6 +1,5 @@
-import type { Particle } from "../../Core/Particle";
-import type { IDelta, IParticleUpdater } from "../../Core/Interfaces";
 import { AnimationStatus, DestroyType } from "../../Enums";
+import type { IDelta, IParticleUpdater, Particle } from "../../Core";
 import { clamp } from "../../Utils";
 
 function checkDestroy(particle: Particle, value: number, minValue: number, maxValue: number): void {
@@ -24,11 +23,9 @@ function updateSize(particle: Particle, delta: IDelta): void {
     const maxValue = particle.size.max;
 
     if (
-        !(
-            !particle.destroyed &&
-            particle.size.enable &&
-            ((particle.size.loops ?? 0) <= 0 || (particle.size.loops ?? 0) < (particle.size.maxLoops ?? 0))
-        )
+        particle.destroyed ||
+        !particle.size.enable ||
+        ((particle.size.maxLoops ?? 0) > 0 && (particle.size.loops ?? 0) > (particle.size.maxLoops ?? 0))
     ) {
         return;
     }
@@ -70,12 +67,17 @@ function updateSize(particle: Particle, delta: IDelta): void {
 }
 
 export class SizeUpdater implements IParticleUpdater {
+    init(): void {
+        // nothing
+    }
+
     isEnabled(particle: Particle): boolean {
         return (
             !particle.destroyed &&
             !particle.spawning &&
             particle.size.enable &&
-            ((particle.size.loops ?? 0) <= 0 || (particle.size.loops ?? 0) < (particle.size.maxLoops ?? 0))
+            ((particle.size.maxLoops ?? 0) <= 0 ||
+                ((particle.size.maxLoops ?? 0) > 0 && (particle.size.loops ?? 0) < (particle.size.maxLoops ?? 0)))
         );
     }
 

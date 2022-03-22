@@ -1,6 +1,6 @@
-import type { Main } from "../../main";
+import type { Engine } from "../../engine";
 import { RollUpdater } from "./RollUpdater";
 
-export function loadRollUpdater(tsParticles: Main): void {
-    tsParticles.addParticleUpdater("roll", () => new RollUpdater());
+export async function loadRollUpdater(engine: Engine): Promise<void> {
+    await engine.addParticleUpdater("roll", () => new RollUpdater());
 }

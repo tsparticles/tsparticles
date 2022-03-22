@@ -1,24 +1,23 @@
-import type { Container } from "./Container";
+import type { IContainerPlugin, ICoordinates, IDelta, IDimension, IHsl, IParticle, IRgb, IRgba } from "./Interfaces";
 import {
+    clear,
     colorToHsl,
     colorToRgb,
-    Constants,
     deepExtend,
     drawConnectLine,
-    drawEllipse,
     drawGrabLine,
     drawParticle,
     drawParticlePlugin,
     drawPlugin,
+    getRangeValue,
     getStyleFromHsl,
     getStyleFromRgb,
     gradient,
     paintBase,
 } from "../Utils";
+import { Constants } from "./Utils";
+import type { Container } from "./Container";
 import type { Particle } from "./Particle";
-import { clear } from "../Utils";
-import type { IContainerPlugin, ICoordinates, IDelta, IDimension, IHsl, IParticle, IRgb, IRgba } from "./Interfaces";
-import { OrbitType } from "../Enums";
 
 /**
  * Canvas manager
@@ -42,7 +41,7 @@ export class Canvas {
      */
     private context: CanvasRenderingContext2D | null;
     private generatedCanvas;
-    private coverColor?: IRgba;
+    private coverColorStyle?: string;
     private trailFillColor?: IRgba;
     private originalStyle?: CSSStyleDeclaration;
 
@@ -73,16 +72,15 @@ export class Canvas {
         this.paint();
     }
 
-    loadCanvas(canvas: HTMLCanvasElement, generatedCanvas?: boolean): void {
-        if (!canvas.className) {
-            canvas.className = Constants.canvasClass;
-        }
-
+    loadCanvas(canvas: HTMLCanvasElement): void {
         if (this.generatedCanvas) {
             this.element?.remove();
         }
 
-        this.generatedCanvas = generatedCanvas ?? this.generatedCanvas;
+        this.generatedCanvas =
+            canvas.dataset && Constants.generatedAttribute in canvas.dataset
+                ? canvas.dataset[Constants.generatedAttribute] === "true"
+                : this.generatedCanvas;
         this.element = canvas;
         this.originalStyle = deepExtend({}, this.element.style) as CSSStyleDeclaration;
         this.size.height = canvas.offsetHeight;
@@ -110,10 +108,10 @@ export class Canvas {
         const options = this.container.actualOptions;
 
         this.draw((ctx) => {
-            if (options.backgroundMask.enable && options.backgroundMask.cover && this.coverColor) {
+            if (options.backgroundMask.enable && options.backgroundMask.cover) {
                 clear(ctx, this.size);
 
-                this.paintBase(getStyleFromRgb(this.coverColor, this.coverColor.a));
+                this.paintBase(this.coverColorStyle);
             } else {
                 this.paintBase();
             }
@@ -138,7 +136,7 @@ export class Canvas {
         }
     }
 
-    windowResize(): void {
+    async windowResize(): Promise<void> {
         if (!this.element) {
             return;
         }
@@ -147,7 +145,7 @@ export class Canvas {
 
         this.resize();
 
-        container.actualOptions.setResponsive(this.size.width, container.retina.pixelRatio, container.options);
+        const needsRefresh = container.updateActualOptions();
 
         /* density particles enabled */
         container.particles.setDensity();
@@ -156,6 +154,10 @@ export class Canvas {
             if (plugin.resize !== undefined) {
                 plugin.resize();
             }
+        }
+
+        if (needsRefresh) {
+            await container.refresh();
         }
     }
 
@@ -170,16 +172,24 @@ export class Canvas {
         const container = this.container;
         const pxRatio = container.retina.pixelRatio;
         const size = container.canvas.size;
-        const oldSize = {
-            width: size.width,
-            height: size.height,
+        const newSize = {
+            width: this.element.offsetWidth * pxRatio,
+            height: this.element.offsetHeight * pxRatio,
         };
 
-        size.width = this.element.offsetWidth * pxRatio;
-        size.height = this.element.offsetHeight * pxRatio;
+        if (
+            newSize.height === size.height &&
+            newSize.width === size.width &&
+            newSize.height === this.element.height &&
+            newSize.width === this.element.width
+        ) {
+            return;
+        }
 
-        this.element.width = size.width;
-        this.element.height = size.height;
+        const oldSize = { ...size };
+
+        this.element.width = size.width = this.element.offsetWidth * pxRatio;
+        this.element.height = size.height = this.element.offsetHeight * pxRatio;
 
         if (this.container.started) {
             this.resizeFactor = {
@@ -202,7 +212,7 @@ export class Canvas {
 
             drawConnectLine(
                 ctx,
-                (p1.linksWidth ?? this.container.retina.linksWidth) * this.container.retina.scale,
+                (p1.retina.linksWidth ?? this.container.retina.linksWidth) * this.container.retina.scale,
                 lineStyle,
                 pos1,
                 pos2
@@ -218,7 +228,7 @@ export class Canvas {
 
             drawGrabLine(
                 ctx,
-                (particle.linksWidth ?? container.retina.linksWidth) * container.retina.scale,
+                (particle.retina.linksWidth ?? container.retina.linksWidth) * container.retina.scale,
                 beginPos,
                 mousePos,
                 lineColor,
@@ -261,16 +271,16 @@ export class Canvas {
         const zIndexOptions = particle.options.zIndex;
         const zOpacityFactor = (1 - particle.zIndexFactor) ** zIndexOptions.opacityRate;
         const radius = particle.getRadius();
-        const opacity = twinkling ? twinkle.opacity : particle.bubble.opacity ?? particle.opacity.value;
-        const strokeOpacity = particle.stroke.opacity ?? opacity;
+        const opacity = twinkling
+            ? getRangeValue(twinkle.opacity)
+            : particle.bubble.opacity ?? particle.opacity?.value ?? 1;
+        const strokeOpacity = particle.stroke?.opacity ?? opacity;
         const zOpacity = opacity * zOpacityFactor;
         const fillColorValue = fColor ? getStyleFromHsl(fColor, zOpacity) : undefined;
 
         if (!fillColorValue && !sColor) {
             return;
         }
-
-        const orbitOptions = particle.options.orbit;
 
         this.draw((ctx) => {
             const zSizeFactor = (1 - particle.zIndexFactor) ** zIndexOptions.sizeRate;
@@ -282,8 +292,12 @@ export class Canvas {
                 return;
             }
 
-            if (orbitOptions.enable) {
-                this.drawOrbit(particle, OrbitType.back);
+            const container = this.container;
+
+            for (const updater of container.particles.updaters) {
+                if (updater.beforeDraw) {
+                    updater.beforeDraw(particle);
+                }
             }
 
             drawParticle(
@@ -301,42 +315,11 @@ export class Canvas {
                 particle.gradient
             );
 
-            if (orbitOptions.enable) {
-                this.drawOrbit(particle, OrbitType.front);
+            for (const updater of container.particles.updaters) {
+                if (updater.afterDraw) {
+                    updater.afterDraw(particle);
+                }
             }
-        });
-    }
-
-    drawOrbit(particle: IParticle, type: string): void {
-        const container = this.container;
-        const orbitOptions = particle.options.orbit;
-
-        let start: number;
-        let end: number;
-
-        if (type === OrbitType.back) {
-            start = Math.PI / 2;
-            end = (Math.PI * 3) / 2;
-        } else if (type === OrbitType.front) {
-            start = (Math.PI * 3) / 2;
-            end = Math.PI / 2;
-        } else {
-            start = 0;
-            end = 2 * Math.PI;
-        }
-
-        this.draw((ctx) => {
-            drawEllipse(
-                ctx,
-                particle,
-                particle.orbitColor ?? particle.getFillColor(),
-                particle.orbitRadius ?? container.retina.orbitRadius ?? particle.getRadius() * container.retina.scale,
-                orbitOptions.opacity,
-                orbitOptions.width * container.retina.scale,
-                (particle.orbitRotation ?? 0) * container.retina.pixelRatio * container.retina.scale,
-                start,
-                end
-            );
         });
     }
 
@@ -391,12 +374,14 @@ export class Canvas {
         const coverRgb = colorToRgb(color);
 
         if (coverRgb) {
-            this.coverColor = {
+            const coverColor = {
                 r: coverRgb.r,
                 g: coverRgb.g,
                 b: coverRgb.b,
                 a: cover.opacity,
             };
+
+            this.coverColorStyle = getStyleFromRgb(coverColor, coverColor.a);
         }
     }
 
@@ -451,12 +436,12 @@ export class Canvas {
         if (options.fullScreen.enable) {
             this.originalStyle = deepExtend({}, element.style) as CSSStyleDeclaration;
 
-            element.style.position = "fixed";
-            element.style.zIndex = options.fullScreen.zIndex.toString(10);
-            element.style.top = "0";
-            element.style.left = "0";
-            element.style.width = "100%";
-            element.style.height = "100%";
+            element.style.setProperty("position", "fixed", "important");
+            element.style.setProperty("z-index", options.fullScreen.zIndex.toString(10), "important");
+            element.style.setProperty("top", "0", "important");
+            element.style.setProperty("left", "0", "important");
+            element.style.setProperty("width", "100%", "important");
+            element.style.setProperty("height", "100%", "important");
         } else if (originalStyle) {
             element.style.position = originalStyle.position;
             element.style.zIndex = originalStyle.zIndex;
@@ -464,6 +449,20 @@ export class Canvas {
             element.style.left = originalStyle.left;
             element.style.width = originalStyle.width;
             element.style.height = originalStyle.height;
+        }
+
+        for (const key in options.style) {
+            if (!key || !options.style) {
+                continue;
+            }
+
+            const value = options.style[key];
+
+            if (!value) {
+                continue;
+            }
+
+            element.style.setProperty(key, value, "important");
         }
     }
 

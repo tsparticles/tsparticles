@@ -1,10 +1,12 @@
-import { Particle } from "../../Core/Particle";
-import type { IDelta, IParticleUpdater } from "../../Core/Interfaces";
-import type { Container } from "../../Core/Container";
+import type { Container, IDelta, IParticleUpdater, Particle } from "../../Core";
 import { getRangeValue, randomInRange, setRangeValue } from "../../Utils";
 
 export class LifeUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
+
+    init(): void {
+        // nothing
+    }
 
     isEnabled(particle: Particle): boolean {
         return !particle.destroyed;

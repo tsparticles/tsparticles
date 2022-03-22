@@ -59,7 +59,6 @@
     }
   },
   "interactivity": {
-    "detect_on": "canvas",
     "events": {
       "onHover": {
         "enable": true,
@@ -111,7 +110,7 @@
     }
   },
   "retina_detect": true,
-  "fpsLimit": 60,
+  "fpsLimit": 120,
   "background": {
     "color": "#ffffff",
     "image": "url('https://particles.js.org/images/background3.jpg')",

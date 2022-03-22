@@ -1,6 +1,3 @@
-import { describe, it } from "mocha";
-import { Options } from "../src/Options/Classes/Options";
-import { expect } from "chai";
 import {
     ClickMode,
     CollisionMode,
@@ -10,14 +7,19 @@ import {
     OutMode,
     RotateDirection,
     ShapeType,
+    tsParticles,
 } from "../src";
+import { describe, it } from "mocha";
+import { IParticles } from "../src/Options/Interfaces/Particles/IParticles";
+import { Options } from "../src/Options/Classes/Options";
+import { OptionsColor } from "../src/Options/Classes/OptionsColor";
 import { ParticlesOptions } from "../src/Options/Classes/Particles/ParticlesOptions";
 import type { RecursivePartial } from "../src";
-import { IParticles } from "../src/Options/Interfaces/Particles/IParticles";
+import { expect } from "chai";
 
 describe("Options tests", () => {
     it("checking default options", () => {
-        const options = new Options();
+        const options = new Options(tsParticles);
 
         /* background */
         expect(options.background.color).to.include({ value: "" });
@@ -41,10 +43,10 @@ describe("Options tests", () => {
         expect(options.detectRetina).to.be.true;
 
         /* fps limit */
-        expect(options.fpsLimit).to.equal(60);
+        expect(options.fpsLimit).to.equal(120);
 
         /* interactivity */
-        expect(options.interactivity.detectsOn).to.equal(InteractivityDetect.canvas);
+        expect(options.interactivity.detectsOn).to.equal(InteractivityDetect.window);
 
         /* interactivity events */
         expect(options.interactivity.events.onClick.enable).to.be.false;
@@ -161,7 +163,7 @@ describe("Options tests", () => {
     });
 
     it("check default preset options", () => {
-        const options = new Options();
+        const options = new Options(tsParticles);
         const preset = {
             background: {
                 color: "#0d47a1",
@@ -340,7 +342,7 @@ describe("Options tests", () => {
     });
 
     it("check test preset options", () => {
-        const options = new Options();
+        const options = new Options(tsParticles);
         const preset = {
             background: {
                 color: "#0d47a1",
@@ -613,5 +615,23 @@ describe("Options tests", () => {
         particlesOptions.load(emitterOptions);
 
         expect(particlesOptions).to.not.include(generalOptions).and.include(emitterOptions);
+    });
+
+    it("check color options override", () => {
+        const colorOptions = new OptionsColor();
+
+        colorOptions.load({
+            value: ["#5bc0eb", "#fde74c", "#9bc53d", "#e55934", "#fa7921"],
+        });
+
+        const otherOptions = new OptionsColor();
+
+        const copyOptions = OptionsColor.create(otherOptions, colorOptions);
+
+        const copyOptions2 = OptionsColor.create(otherOptions, copyOptions);
+
+        expect(colorOptions.value).to.be.an("array");
+        expect(copyOptions.value).to.be.an("array");
+        expect(copyOptions2.value).to.be.an("array");
     });
 });

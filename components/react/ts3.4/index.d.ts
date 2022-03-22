@@ -10,8 +10,6 @@ import { ISourceOptions } from "tsparticles";
 
 type IParticlesParams = IParticlesProps
 
-export * from "tsparticles";
-
 export { ISourceOptions, IParticlesProps, ParticlesProps, IParticlesParams };
 
 type Particles = ComponentClass<IParticlesProps, IParticlesState>;

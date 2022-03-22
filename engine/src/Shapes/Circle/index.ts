@@ -1,6 +1,6 @@
-import type { Main } from "../../main";
 import { CircleDrawer } from "./CircleDrawer";
+import type { Engine } from "../../engine";
 
-export function loadCircleShape(tsParticles: Main): void {
-    tsParticles.addShape("circle", new CircleDrawer());
+export async function loadCircleShape(engine: Engine): Promise<void> {
+    await engine.addShape("circle", new CircleDrawer());
 }

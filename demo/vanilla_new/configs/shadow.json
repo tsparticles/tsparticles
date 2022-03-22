@@ -73,7 +73,6 @@
     }
   },
   "interactivity": {
-    "detect_on": "canvas",
     "events": {
       "onhover": {
         "enable": true,
@@ -114,7 +113,7 @@
       }
     }
   },
-  "fpsLimit": 30,
+  "fpsLimit": 120,
   "retina_detect": true,
   "background": {
     "color": "#0d47a1",

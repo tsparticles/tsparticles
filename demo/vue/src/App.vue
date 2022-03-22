@@ -7,9 +7,8 @@
                                                value: '#0d47a1'
                                              }
                                            },
-                                           fpsLimit: 60,
+                                           fpsLimit: 120,
                                            interactivity: {
-                                             detectsOn: 'window',
                                              events: {
                                                onClick: {
                                                  enable: true,
@@ -103,15 +102,5 @@ export default class App extends Vue {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-}
-
-#tsparticles {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #000000;
-  z-index: -10;
 }
 </style>

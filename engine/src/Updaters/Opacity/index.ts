@@ -1,6 +1,6 @@
-import type { Main } from "../../main";
+import type { Engine } from "../../engine";
 import { OpacityUpdater } from "./OpacityUpdater";
 
-export function loadOpacityUpdater(tsParticles: Main): void {
-    tsParticles.addParticleUpdater("opacity", () => new OpacityUpdater());
+export async function loadOpacityUpdater(engine: Engine): Promise<void> {
+    await engine.addParticleUpdater("opacity", (container) => new OpacityUpdater(container));
 }

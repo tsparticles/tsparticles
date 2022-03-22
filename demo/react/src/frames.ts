@@ -2,17 +2,17 @@ import react from "../public/assets/react.svg";
 import k8s from "../public/assets/k8s.svg";
 import code from "../public/assets/code.png";
 import smallDeer from "../public/assets/small-deer.svg";
-import { MoveDirection, OutMode, HoverMode, ClickMode, ShapeType } from "react-tsparticles";
+import { MoveDirection, OutMode, HoverMode, ClickMode, ShapeType } from "tsparticles";
 import {
-    Type as PolygonMaskType,
-    InlineArrangement as PolygonMaskInlineArrangement
+    PolygonMaskType,
+    PolygonMaskInlineArrangement
 } from "tsparticles/Plugins/PolygonMask/Enums";
 import type { ISourceOptions } from "tsparticles";
 
 export type TFrame = {
     backgroundColor: string;
     name: string;
-    options: ISourceOptions;
+    options?: ISourceOptions;
     slug: string;
 };
 
@@ -21,7 +21,7 @@ export const frames: TFrame[] = [
         backgroundColor: 'linear-gradient(135deg, #606c88 0%, #3f4c6b 100%)',
         name: 'Simple',
         options: {
-            fpsLimit: 60,
+            fpsLimit: 120,
             particles: {
                 number: {
                     value: 50
@@ -51,7 +51,7 @@ export const frames: TFrame[] = [
         backgroundColor: '#232741',
         name: 'Bubbles',
         options: {
-            fpsLimit: 60,
+            fpsLimit: 120,
             particles: {
                 number: {
                     value: 160,
@@ -109,7 +109,7 @@ export const frames: TFrame[] = [
         backgroundColor: 'linear-gradient(to bottom, #a90329 0%,#8f0222 44%,#6d0019 100%)',
         name: 'Snow',
         options: {
-            fpsLimit: 60,
+            fpsLimit: 120,
             particles: {
                 number: {
                     value: 160,
@@ -150,7 +150,7 @@ export const frames: TFrame[] = [
         backgroundColor: 'linear-gradient(45deg, #2d364c 0%,#252d3f 100%)',
         name: 'Night Sky',
         options: {
-            fpsLimit: 60,
+            fpsLimit: 120,
             particles: {
                 number: {
                     value: 60,
@@ -200,7 +200,7 @@ export const frames: TFrame[] = [
         backgroundColor: 'linear-gradient(45deg, #7d7e7d 0%,#0e0e0e 100%)',
         name: 'Multiple images',
         options: {
-            fpsLimit: 60,
+            fpsLimit: 120,
             particles: {
                 number: {
                     value: 8,
@@ -326,5 +326,10 @@ export const frames: TFrame[] = [
             }
         },
         slug: 'mask',
+    }, {
+        backgroundColor: "black",
+        name: "No particles",
+        options: undefined,
+        slug: "no-particles"
     }
 ];

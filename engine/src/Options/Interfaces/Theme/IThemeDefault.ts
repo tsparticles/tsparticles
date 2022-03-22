@@ -5,6 +5,11 @@ import type { ThemeMode } from "../../../Enums";
  */
 export interface IThemeDefault {
     /**
+     * If set to true, this theme will be switched when the mode matches the user OS theme
+     */
+    auto: boolean;
+
+    /**
      * Default theme mode
      * `any`: Sets the default theme for every configuration
      * `dark`: Sets the default theme when the user has dark mode set

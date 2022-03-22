@@ -1,0 +1,149 @@
+{
+  "detectRetina": true,
+  "fpsLimit": 120,
+  "particles": {
+    "move": {
+      "direction": "none",
+      "enable": true,
+      "outModes": "destroy",
+      "random": false,
+      "speed": 2,
+      "straight": false
+    },
+    "number": {
+      "density": {
+        "enable": true,
+        "area": 800
+      },
+      "limit": 0,
+      "value": 80
+    },
+    "opacity": {
+      "animation": {
+        "enable": false,
+        "minimumValue": 0.1,
+        "speed": 1,
+        "sync": false
+      },
+      "random": false,
+      "value": 1
+    },
+    "rotate": {
+      "animation": {
+        "enable": true,
+        "speed": 5,
+        "sync": false
+      },
+      "direction": "random",
+      "random": true,
+      "value": 0
+    },
+    "shape": {
+      "type": "circle"
+    },
+    "size": {
+      "animation": {
+        "enable": false,
+        "minimumValue": 0.1,
+        "speed": 40,
+        "sync": false
+      },
+      "random": false,
+      "value": 16
+    }
+  },
+  "background": {
+    "color": "#fff"
+  },
+  "emitters": {
+    "particles": {
+      "shape": {
+        "type": "image",
+        "options": {
+          "image": [
+            {
+              "src": "https://particles.js.org/images/fruits/apple.png",
+              "width": 32,
+              "height": 32
+            },
+            {
+              "src": "https://particles.js.org/images/fruits/avocado.png",
+              "width": 32,
+              "height": 32
+            },
+            {
+              "src": "https://particles.js.org/images/fruits/banana.png",
+              "width": 32,
+              "height": 32
+            },
+            {
+              "src": "https://particles.js.org/images/fruits/berries.png",
+              "width": 32,
+              "height": 32
+            },
+            {
+              "src": "https://particles.js.org/images/fruits/cherry.png",
+              "width": 32,
+              "height": 32
+            },
+            {
+              "src": "https://particles.js.org/images/fruits/grapes.png",
+              "width": 32,
+              "height": 32
+            },
+            {
+              "src": "https://particles.js.org/images/fruits/lemon.png",
+              "width": 32,
+              "height": 32
+            },
+            {
+              "src": "https://particles.js.org/images/fruits/orange.png",
+              "width": 32,
+              "height": 32
+            },
+            {
+              "src": "https://particles.js.org/images/fruits/peach.png",
+              "width": 32,
+              "height": 32
+            },
+            {
+              "src": "https://particles.js.org/images/fruits/pear.png",
+              "width": 32,
+              "height": 32
+            },
+            {
+              "src": "https://particles.js.org/images/fruits/pepper.png",
+              "width": 32,
+              "height": 32
+            },
+            {
+              "src": "https://particles.js.org/images/fruits/plum.png",
+              "width": 32,
+              "height": 32
+            },
+            {
+              "src": "https://particles.js.org/images/fruits/star.png",
+              "width": 32,
+              "height": 32
+            },
+            {
+              "src": "https://particles.js.org/images/fruits/strawberry.png",
+              "width": 32,
+              "height": 32
+            },
+            {
+              "src": "https://particles.js.org/images/fruits/watermelon.png",
+              "width": 32,
+              "height": 32
+            },
+            {
+              "src": "https://particles.js.org/images/fruits/watermelon_slice.png",
+              "width": 32,
+              "height": 32
+            }
+          ]
+        }
+      }
+    }
+  }
+}

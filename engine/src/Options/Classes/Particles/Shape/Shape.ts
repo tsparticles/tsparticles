@@ -1,13 +1,13 @@
-import type { IShape } from "../../../Interfaces/Particles/Shape/IShape";
-import { ShapeType } from "../../../../Enums";
 import type { RecursivePartial, ShapeData, SingleOrMultiple } from "../../../../Types";
+import type { ICharacterShape } from "../../../Interfaces/Particles/Shape/ICharacterShape";
+import type { IImageShape } from "../../../Interfaces/Particles/Shape/IImageShape";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { IPolygonShape } from "../../../Interfaces/Particles/Shape/IPolygonShape";
+import type { IShape } from "../../../Interfaces/Particles/Shape/IShape";
+import type { IShapeValues } from "../../../../Core";
+import { ShapeType } from "../../../../Enums";
 import { Stroke } from "../Stroke";
 import { deepExtend } from "../../../../Utils";
-import type { IShapeValues } from "../../../../Core/Interfaces";
-import type { IPolygonShape } from "../../../Interfaces/Particles/Shape/IPolygonShape";
-import type { IImageShape } from "../../../Interfaces/Particles/Shape/IImageShape";
-import type { ICharacterShape } from "../../../Interfaces/Particles/Shape/ICharacterShape";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 /**
  * [[include:Options/Particles/Shape.md]]

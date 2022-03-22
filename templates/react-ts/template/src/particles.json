@@ -4,9 +4,8 @@
       "value": "#282c34"
     }
   },
-  "fpsLimit": 60,
+  "fpsLimit": 120,
   "interactivity": {
-    "detectsOn": "window",
     "events": {
       "onClick": {
         "enable": true,

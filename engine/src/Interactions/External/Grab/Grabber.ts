@@ -1,7 +1,7 @@
-import type { Container } from "../../../Core/Container";
-import { Constants, getLinkRandomColor, getLinkColor, getDistance, isInArray } from "../../../Utils";
+import { Constants, ExternalInteractorBase } from "../../../Core";
+import { getDistance, getLinkColor, getLinkRandomColor, isInArray } from "../../../Utils";
+import type { Container } from "../../../Core";
 import { HoverMode } from "../../../Enums";
-import { ExternalInteractorBase } from "../../../Core/ExternalInteractorBase";
 
 /**
  * Particle grab manager
@@ -24,7 +24,7 @@ export class Grabber extends ExternalInteractorBase {
         // do nothing
     }
 
-    interact(): void {
+    async interact(): Promise<void> {
         const container = this.container,
             options = container.actualOptions,
             interactivity = options.interactivity;

@@ -4,9 +4,6 @@ export const options = {
     background: {
         color: "#000",
     },
-    fullScreen: {
-        enable: true,
-    },
     particles: {
         color: {
             value: "#ffffff",

@@ -1,9 +1,7 @@
-import { Particle } from "../../../Core/Particle";
-import type { Container } from "../../../Core/Container";
-import { Circle, CircleWarp, getDistance, getLinkRandomColor } from "../../../Utils";
-import { ICoordinates, IDimension, IParticle } from "../../../Core/Interfaces";
-import { ParticlesInteractorBase } from "../../../Core/ParticlesInteractorBase";
-import { LinkParticle } from "./LinkParticle";
+import { Circle, CircleWarp, ParticlesInteractorBase } from "../../../Core";
+import type { Container, ICoordinates, IDimension, IParticle, Particle } from "../../../Core";
+import { getDistance, getLinkRandomColor } from "../../../Utils";
+import type { LinkParticle } from "./LinkParticle";
 
 function getLinkDistance(
     pos1: ICoordinates,
@@ -63,7 +61,7 @@ export class Linker extends ParticlesInteractorBase {
         // do nothing
     }
 
-    interact(p1: LinkParticle): void {
+    async interact(p1: LinkParticle): Promise<void> {
         p1.links = [];
 
         const pos1 = p1.getPosition();
@@ -76,7 +74,7 @@ export class Linker extends ParticlesInteractorBase {
 
         const linkOpt1 = p1.options.links;
         const optOpacity = linkOpt1.opacity;
-        const optDistance = (p1.linksDistance ?? container.retina.linksDistance) * container.retina.scale;
+        const optDistance = (p1.retina.linksDistance ?? container.retina.linksDistance) * container.retina.scale;
         const warp = linkOpt1.warp;
         const range = warp
             ? new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize)

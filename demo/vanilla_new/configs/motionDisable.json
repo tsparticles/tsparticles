@@ -3,7 +3,7 @@
     "enable": true,
     "zIndex": 0
   },
-  "fpsLimit": 60,
+  "fpsLimit": 120,
   "motion": {
     "disable": true
   },
@@ -68,7 +68,6 @@
     }
   },
   "interactivity": {
-    "detect_on": "canvas",
     "events": {
       "onhover": {
         "enable": true,

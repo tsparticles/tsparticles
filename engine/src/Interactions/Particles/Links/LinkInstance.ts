@@ -1,9 +1,7 @@
-import type { IContainerPlugin, IRgb } from "../../../Core/Interfaces";
-import type { Particle } from "../../../Core/Particle";
-import { colorToRgb, drawLinkLine, drawLinkTriangle, getDistance, getLinkColor } from "../../../Utils";
-import type { Container } from "../../../Core/Container";
-import type { LinkParticle } from "./LinkParticle";
+import type { Container, IContainerPlugin, IRgb, Particle } from "../../../Core";
+import { colorToRgb, drawLinkLine, drawLinkTriangle, getDistance, getLinkColor, getRangeValue } from "../../../Utils";
 import type { ILink } from "./ILink";
+import type { LinkParticle } from "./LinkParticle";
 
 export class LinkInstance implements IContainerPlugin {
     constructor(private readonly container: Container) {}
@@ -151,7 +149,7 @@ export class LinkInstance implements IContainerPlugin {
 
                 if (twinkling && twinkleRgb !== undefined) {
                     colorLine = twinkleRgb;
-                    opacity = twinkle.opacity;
+                    opacity = getRangeValue(twinkle.opacity);
                 }
             }
 
@@ -169,8 +167,8 @@ export class LinkInstance implements IContainerPlugin {
                 return;
             }
 
-            const width = p1.linksWidth ?? container.retina.linksWidth;
-            const maxDistance = p1.linksDistance ?? container.retina.linksDistance;
+            const width = p1.retina.linksWidth ?? container.retina.linksWidth;
+            const maxDistance = p1.retina.linksDistance ?? container.retina.linksDistance;
 
             drawLinkLine(
                 ctx,

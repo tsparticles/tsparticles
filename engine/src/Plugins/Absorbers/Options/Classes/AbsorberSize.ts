@@ -1,17 +1,19 @@
+import { AbsorberSizeLimit } from "./AbsorberSizeLimit";
 import type { IAbsorberSize } from "../Interfaces/IAbsorberSize";
-import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
+import type { RecursivePartial } from "../../../../Types";
 import { ValueWithRandom } from "../../../../Options/Classes/ValueWithRandom";
 
 export class AbsorberSize extends ValueWithRandom implements IAbsorberSize, IOptionLoader<IAbsorberSize> {
     density;
-    limit?: number;
+    limit: AbsorberSizeLimit;
 
     constructor() {
         super();
         this.density = 5;
         this.random.minimumValue = 1;
         this.value = 50;
+        this.limit = new AbsorberSizeLimit();
     }
 
     load(data?: RecursivePartial<IAbsorberSize>): void {
@@ -24,12 +26,11 @@ export class AbsorberSize extends ValueWithRandom implements IAbsorberSize, IOpt
         if (data.density !== undefined) {
             this.density = data.density;
         }
-        if (data.limit !== undefined) {
-            this.limit = data.limit;
-        }
 
-        if (data.limit !== undefined) {
-            this.limit = data.limit;
+        if (typeof data.limit === "number") {
+            this.limit.radius = data.limit;
+        } else {
+            this.limit.load(data.limit);
         }
     }
 }

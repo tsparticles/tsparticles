@@ -4,9 +4,6 @@ export const options: ISourceOptions = {
     background: {
         color: "#000000",
     },
-    fullScreen: {
-        enable: true,
-    },
     particles: {
         links: {
             distance: 125,

@@ -1,6 +1,6 @@
-import type { Main } from "../../main";
+import type { Engine } from "../../engine";
 import { LineDrawer } from "./LineDrawer";
 
-export function loadLineShape(tsParticles: Main): void {
-    tsParticles.addShape("line", new LineDrawer());
+export async function loadLineShape(engine: Engine): Promise<void> {
+    await engine.addShape("line", new LineDrawer());
 }

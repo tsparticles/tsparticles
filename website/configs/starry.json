@@ -1,6 +1,6 @@
 {
   "fullScreen": {
-    "enable": true
+    "zIndex": -1
   },
   "background": {
     "color": "#000"
@@ -16,8 +16,15 @@
         "speed": 0.25
       }
     },
+    "number": {
+      "value": 200,
+      "density": {
+        "enable": true
+      }
+    },
     "size": {
       "value": 1
     }
-  }
+  },
+  "emitters": []
 }

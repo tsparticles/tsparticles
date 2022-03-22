@@ -1,8 +1,6 @@
-import type { IParticle } from "../../../Core/Interfaces";
-import type { Container } from "../../../Core/Container";
-import { Particle } from "../../../Core/Particle";
+import type { Container, IParticle, Particle } from "../../../Core";
+import { ParticlesInteractorBase } from "../../../Core";
 import { getDistances } from "../../../Utils";
-import { ParticlesInteractorBase } from "../../../Core/ParticlesInteractorBase";
 
 /**
  * @category Interactions
@@ -12,9 +10,9 @@ export class Attractor extends ParticlesInteractorBase {
         super(container);
     }
 
-    interact(p1: IParticle): void {
+    async interact(p1: IParticle): Promise<void> {
         const container = this.container,
-            distance = p1.attractDistance ?? container.retina.attractDistance,
+            distance = p1.retina.attractDistance ?? container.retina.attractDistance,
             pos1 = p1.getPosition(),
             query = container.particles.quadTree.queryCircle(pos1, distance);
 

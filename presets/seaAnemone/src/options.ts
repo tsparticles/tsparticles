@@ -5,16 +5,7 @@ export const presetName = "seaAnemone";
 export const pathGeneratorName = `${presetName}Path`;
 
 export const options: ISourceOptions = {
-    fullScreen: {
-        enable: true,
-    },
-    fpsLimit: 60,
-    interactivity: {
-        detectsOn: "canvas",
-        events: {
-            resize: true,
-        },
-    },
+    fpsLimit: 120,
     particles: {
         color: {
             value: "#FF0000",
@@ -50,10 +41,6 @@ export const options: ISourceOptions = {
             },
         },
         number: {
-            density: {
-                enable: true,
-                area: 800,
-            },
             value: 0,
             limit: 300,
         },

@@ -1,7 +1,7 @@
 import type { IMotion } from "../../Interfaces/Motion/IMotion";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
-import type { RecursivePartial } from "../../../Types";
 import { MotionReduce } from "./MotionReduce";
+import type { RecursivePartial } from "../../../Types";
 
 /**
  * [[include:Options/Motion.md]]

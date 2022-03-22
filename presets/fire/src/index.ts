@@ -1,6 +1,6 @@
-import type { Main } from "tsparticles";
+import type { Engine } from "tsparticles";
 import { options } from "./options";
 
-export function loadFirePreset(tsParticles: Main): void {
-    tsParticles.addPreset("fire", options);
+export function loadFirePreset(engine: Engine): void {
+    engine.addPreset("fire", options);
 }

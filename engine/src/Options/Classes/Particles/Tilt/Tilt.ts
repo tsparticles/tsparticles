@@ -1,9 +1,9 @@
-import { TiltAnimation } from "./TiltAnimation";
 import { TiltDirection, TiltDirectionAlt } from "../../../../Enums";
-import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import { ValueWithRandom } from "../../ValueWithRandom";
 import type { ITilt } from "../../../Interfaces/Particles/Tilt/ITilt";
+import type { RecursivePartial } from "../../../../Types";
+import { TiltAnimation } from "./TiltAnimation";
+import { ValueWithRandom } from "../../ValueWithRandom";
 
 /**
  * [[include:Options/Particles/Rotate.md]]

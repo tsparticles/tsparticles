@@ -1,5 +1,5 @@
 {
-  "fpsLimit": 60,
+  "fpsLimit": 120,
   "particles": {
     "number": {
       "value": 30,
@@ -48,7 +48,6 @@
     }
   },
   "interactivity": {
-    "detectsOn": "canvas",
     "events": {
       "onHover": {
         "enable": true,

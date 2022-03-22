@@ -1,13 +1,10 @@
+import { MoveDirection, OutMode } from "tsparticles";
 import type { ISourceOptions } from "tsparticles";
-import { InteractivityDetect, MoveDirection, OutMode } from "tsparticles";
 
 export const options: ISourceOptions = {
-    fpsLimit: 60,
+    fpsLimit: 120,
     background: {
         color: "#fff",
-    },
-    fullScreen: {
-        enable: true,
     },
     particles: {
         number: {
@@ -31,15 +28,19 @@ export const options: ISourceOptions = {
         },
         move: {
             enable: true,
-            speed: 20,
+            angle: {
+                value: 30,
+                offset: 0,
+            },
+            speed: {
+                min: 10,
+                max: 20,
+            },
             direction: MoveDirection.top,
-            outMode: OutMode.destroy,
-        },
-    },
-    interactivity: {
-        detectsOn: InteractivityDetect.canvas,
-        events: {
-            resize: true,
+            outModes: {
+                default: OutMode.destroy,
+                bottom: OutMode.none,
+            },
         },
     },
     detectRetina: true,
@@ -47,15 +48,15 @@ export const options: ISourceOptions = {
         direction: MoveDirection.top,
         position: {
             x: 50,
-            y: 120,
+            y: 150,
         },
         rate: {
             delay: 0.2,
-            quantity: 2,
+            quantity: 3,
         },
         size: {
             width: 100,
-            height: 0,
+            height: 50,
         },
     },
 };

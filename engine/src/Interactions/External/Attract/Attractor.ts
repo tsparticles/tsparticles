@@ -1,9 +1,7 @@
-import type { Container } from "../../../Core/Container";
+import { Circle, Constants, ExternalInteractorBase, Range, Vector } from "../../../Core";
 import { ClickMode, HoverMode } from "../../../Enums";
-import { Circle, Constants, Range, getDistances, calcEasing, clamp, isInArray } from "../../../Utils";
-import type { ICoordinates } from "../../../Core/Interfaces";
-import { ExternalInteractorBase } from "../../../Core/ExternalInteractorBase";
-import { Vector } from "../../../Core/Particle/Vector";
+import type { Container, ICoordinates } from "../../../Core";
+import { calcEasing, clamp, getDistances, isInArray } from "../../../Utils";
 
 /**
  * Particle attract manager
@@ -34,7 +32,7 @@ export class Attractor extends ExternalInteractorBase {
         // do nothing
     }
 
-    interact(): void {
+    async interact(): Promise<void> {
         const container = this.container,
             options = container.actualOptions,
             mouseMoveStatus = container.interactivity.status === Constants.mouseMoveEvent,

@@ -1,7 +1,7 @@
 {
   "name": "react-tsparticles-demo",
   "private": true,
-  "version": "1.19.0",
+  "version": "1.27.4",
   "description": "> TODO: description",
   "author": "Matteo Bruni <ar3s@icloud.com>",
   "homepage": "https://github.com/matteobruni/tsparticles#readme",
@@ -11,31 +11,40 @@
     "url": "git+https://github.com/matteobruni/tsparticles.git"
   },
   "scripts": {
-    "start": "parcel serve public/index.html --no-cache --open",
-    "build": "parcel build -t browser -d dist public/index.html --no-source-maps"
+    "start": "rimraf -f ../../.parcel-cache && rimraf -f .parcel-cache && tsc && parcel serve public/index.html --no-cache --open",
+    "build": "rimraf -f ../../.parcel-cache && rimraf -f .parcel-cache && tsc && parcel build --no-cache --target browser"
   },
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
+  },
+  "targets": {
+    "browser": {
+      "source": "./public/index.html",
+      "distDir": "./dist",
+      "sourceMap": false
+    }
   },
   "devDependencies": {
     "@types/react": "^17.0.18",
     "@types/react-dom": "^17.0.9",
     "@types/react-syntax-highlighter": "^13.5.2",
-    "@typescript-eslint/eslint-plugin": "^4.29.1",
-    "@typescript-eslint/parser": "^4.29.1",
-    "eslint": "^7.32.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "browserslist": "^4.17.5",
+    "eslint": "^8.0.0",
     "eslint-config-prettier": "^8.3.0",
-    "node-sass": "^6.0.1",
-    "parcel": "^1.12.4",
+    "node-sass": "^7.0.0",
+    "parcel": "^2.3.2",
     "prettier": "^2.3.2",
     "react-syntax-highlighter": "^15.4.4",
-    "rxjs": "^7.3.0",
-    "typescript": "^4.3.5"
+    "rimraf": "^3.0.2",
+    "typescript": "^4.6.2"
   },
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-tsparticles": "^1.34.0",
-    "tsparticles": "^1.34.0"
+    "react-tsparticles": "^1.42.4",
+    "rxjs": "^7.5.2",
+    "tsparticles": "^1.42.4"
   }
 }

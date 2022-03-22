@@ -30,7 +30,10 @@
       }
     },
     "move": {
-      "decay": 0.1,
+      "decay": {
+        "min": 0.05,
+        "max": 0.15
+      },
       "direction": "top",
       "enable": true,
       "gravity": {
@@ -40,8 +43,7 @@
       },
       "outModes": {
         "top": "none",
-        "default": "destroy",
-        "bottom": "bounce"
+        "default": "destroy"
       },
       "speed": {
         "min": 50,
@@ -130,6 +132,7 @@
         "value": 30
       },
       "enable": true,
+      "mode": "both",
       "speed": {
         "min": 15,
         "max": 25
@@ -155,7 +158,7 @@
       "height": 0
     },
     "rate": {
-      "quantity": 10,
+      "quantity": 5,
       "delay": 0.1
     }
   }

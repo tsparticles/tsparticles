@@ -2,17 +2,8 @@
  * [[include:Container.md]]
  * @packageDocumentation
  */
-import { Canvas } from "./Canvas";
-import { Particles } from "./Particles";
-import { Retina } from "./Retina";
-import type { IOptions } from "../Options/Interfaces/IOptions";
-import { FrameManager } from "./FrameManager";
-import type { RecursivePartial } from "../Types";
-import { Options } from "../Options/Classes/Options";
-import { animate, cancelAnimation, EventListeners, getRangeValue, Plugins } from "../Utils";
-import { Particle } from "./Particle";
-import { Vector } from "./Particle/Vector";
-import {
+import { EventListeners, FrameManager, Vector } from "./Utils";
+import type {
     IAttract,
     IBubble,
     IContainerInteractivity,
@@ -23,6 +14,15 @@ import {
     IRgb,
     IShapeDrawer,
 } from "./Interfaces";
+import { animate, cancelAnimation, getRangeValue } from "../Utils";
+import { Canvas } from "./Canvas";
+import type { Engine } from "../engine";
+import type { IOptions } from "../Options/Interfaces/IOptions";
+import { Options } from "../Options/Classes/Options";
+import { Particle } from "./Particle";
+import { Particles } from "./Particles";
+import type { RecursivePartial } from "../Types";
+import { Retina } from "./Retina";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -51,6 +51,7 @@ export class Container {
     repulse: IRepulse;
     attract: IAttract;
     zLayers;
+    responsiveMaxWidth?: number;
 
     /**
      * The options used by the container, it's a full [[Options]] object
@@ -88,27 +89,33 @@ export class Container {
      */
     readonly plugins;
 
-    readonly pathGenerator: IMovePathGenerator;
+    pathGenerator: IMovePathGenerator;
 
     private _options;
     private _sourceOptions;
+    private readonly _initialSourceOptions;
     private paused;
     private firstStart;
     private currentTheme?: string;
     private drawAnimationFrame?: number;
+    private readonly presets;
 
     private readonly eventListeners;
     private readonly intersectionObserver?;
 
+    readonly #engine;
+
     /**
      * This is the core class, create an instance to have a new working particles manager
      * @constructor
+     * @param engine the engine used by container
      * @param id the id to identify this instance
      * @param sourceOptions the options to load
      * @param presets all the presets to load with options
      */
-    constructor(readonly id: string, sourceOptions?: RecursivePartial<IOptions>, ...presets: string[]) {
-        this.fpsLimit = 60;
+    constructor(engine: Engine, readonly id: string, sourceOptions?: RecursivePartial<IOptions>, ...presets: string[]) {
+        this.#engine = engine;
+        this.fpsLimit = 120;
         this.duration = 0;
         this.lifeTime = 0;
         this.firstStart = true;
@@ -119,10 +126,12 @@ export class Container {
         this.zLayers = 100;
         this.pageHidden = false;
         this._sourceOptions = sourceOptions;
+        this._initialSourceOptions = sourceOptions;
         this.retina = new Retina(this);
         this.canvas = new Canvas(this);
-        this.particles = new Particles(this);
+        this.particles = new Particles(this.#engine, this);
         this.drawer = new FrameManager(this);
+        this.presets = presets;
         this.pathGenerator = {
             generate: (): Vector => {
                 const v = Vector.create(0, 0);
@@ -152,25 +161,8 @@ export class Container {
         this.drawers = new Map<string, IShapeDrawer>();
         this.density = 1;
         /* tsParticles variables with default values */
-        this._options = new Options();
-        this.actualOptions = new Options();
-
-        for (const preset of presets) {
-            this._options.load(Plugins.getPreset(preset));
-        }
-
-        const shapes = Plugins.getSupportedShapes();
-
-        for (const type of shapes) {
-            const drawer = Plugins.getShapeDrawer(type);
-
-            if (drawer) {
-                this.drawers.set(type, drawer);
-            }
-        }
-
-        /* options settings */
-        this._options.load(this._sourceOptions);
+        this._options = new Options(this.#engine);
+        this.actualOptions = new Options(this.#engine);
 
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);
@@ -238,14 +230,14 @@ export class Container {
     draw(force: boolean): void {
         let refreshTime = force;
 
-        this.drawAnimationFrame = animate()((timestamp) => {
+        this.drawAnimationFrame = animate()(async (timestamp) => {
             if (refreshTime) {
                 this.lastFrameTime = undefined;
 
                 refreshTime = false;
             }
 
-            this.drawer.nextFrame(timestamp);
+            await this.drawer.nextFrame(timestamp);
         });
     }
 
@@ -298,17 +290,13 @@ export class Container {
                 this.pathGenerator.update = update;
             }
         } else {
-            if (pathOrGenerator.generate) {
-                this.pathGenerator.generate = pathOrGenerator.generate;
-            }
+            const oldGenerator = this.pathGenerator;
 
-            if (pathOrGenerator.init) {
-                this.pathGenerator.init = pathOrGenerator.init;
-            }
+            this.pathGenerator = pathOrGenerator;
 
-            if (pathOrGenerator.update) {
-                this.pathGenerator.update = pathOrGenerator.update;
-            }
+            this.pathGenerator.generate ||= oldGenerator.generate;
+            this.pathGenerator.init ||= oldGenerator.init;
+            this.pathGenerator.update ||= oldGenerator.update;
         }
     }
 
@@ -369,7 +357,7 @@ export class Container {
     }
 
     reset(): Promise<void> {
-        this._options = new Options();
+        this._options = new Options(this.#engine);
 
         return this.refresh();
     }
@@ -390,7 +378,7 @@ export class Container {
         this.canvas.clear();
 
         if (this.interactivity.element instanceof HTMLElement && this.intersectionObserver) {
-            this.intersectionObserver.observe(this.interactivity.element);
+            this.intersectionObserver.unobserve(this.interactivity.element);
         }
 
         for (const [, plugin] of this.plugins) {
@@ -407,6 +395,8 @@ export class Container {
 
         delete this.particles.grabLineColor;
         delete this.particles.linksColor;
+
+        this._sourceOptions = this._options;
     }
 
     /**
@@ -550,8 +540,46 @@ export class Container {
         el.addEventListener("touchcancel", touchCancelHandler);
     }
 
-    private async init(): Promise<void> {
-        this.actualOptions = new Options();
+    updateActualOptions(): boolean {
+        this.actualOptions.responsive = [];
+        const newMaxWidth = this.actualOptions.setResponsive(
+            this.canvas.size.width,
+            this.retina.pixelRatio,
+            this._options
+        );
+        this.actualOptions.setTheme(this.currentTheme);
+
+        if (this.responsiveMaxWidth != newMaxWidth) {
+            this.responsiveMaxWidth = newMaxWidth;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    async init(): Promise<void> {
+        this._options = new Options(this.#engine);
+
+        for (const preset of this.presets) {
+            this._options.load(this.#engine.plugins.getPreset(preset));
+        }
+
+        const shapes = this.#engine.plugins.getSupportedShapes();
+
+        for (const type of shapes) {
+            const drawer = this.#engine.plugins.getShapeDrawer(type);
+
+            if (drawer) {
+                this.drawers.set(type, drawer);
+            }
+        }
+
+        /* options settings */
+        this._options.load(this._initialSourceOptions);
+        this._options.load(this._sourceOptions);
+
+        this.actualOptions = new Options(this.#engine);
 
         this.actualOptions.load(this._options);
 
@@ -559,8 +587,7 @@ export class Container {
         this.retina.init();
         this.canvas.init();
 
-        this.actualOptions.setResponsive(this.canvas.size.width, this.retina.pixelRatio, this._options);
-        this.actualOptions.setTheme(this.currentTheme);
+        this.updateActualOptions();
 
         this.canvas.initBackground();
         this.canvas.resize();
@@ -569,9 +596,9 @@ export class Container {
 
         this.duration = getRangeValue(this.actualOptions.duration);
         this.lifeTime = 0;
-        this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 60;
+        this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 120;
 
-        const availablePlugins = Plugins.getAvailablePlugins(this);
+        const availablePlugins = this.#engine.plugins.getAvailablePlugins(this);
 
         for (const [id, plugin] of availablePlugins) {
             this.plugins.set(id, plugin);
@@ -594,21 +621,7 @@ export class Container {
         const pathOptions = this.actualOptions.particles.move.path;
 
         if (pathOptions.generator) {
-            const customGenerator = Plugins.getPathGenerator(pathOptions.generator);
-
-            if (customGenerator) {
-                if (customGenerator.init) {
-                    this.pathGenerator.init = customGenerator.init;
-                }
-
-                if (customGenerator.generate) {
-                    this.pathGenerator.generate = customGenerator.generate;
-                }
-
-                if (customGenerator.update) {
-                    this.pathGenerator.update = customGenerator.update;
-                }
-            }
+            this.setPath(this.#engine.plugins.getPathGenerator(pathOptions.generator));
         }
 
         this.particles.init();

@@ -1,5 +1,5 @@
 const webpack = require("webpack");
-const {BundleAnalyzerPlugin} = require("webpack-bundle-analyzer");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 const production = process.env.NODE_ENV === "production";
 
@@ -26,7 +26,10 @@ const typescriptLoader = {
         {
             loader: "babel-loader",
             options: {
-                presets: ["@babel/preset-env"]
+                presets: [ "@babel/preset-env" ],
+                plugins: [
+                    [ "@babel/transform-runtime" ]
+                ]
             }
         }, {
             loader: "ts-loader"
@@ -100,7 +103,7 @@ const getConfig = (target = "cjs") => {
         context: __dirname,
         devtool: production ? false : "source-map-loader",
         resolve: {
-            extensions: [".ts", ".tsx", ".js"],
+            extensions: [ ".ts", ".tsx", ".js" ],
             alias: {
                 "react": "preact/compat",
                 "react-dom/test-utils": "preact/test-utils",
@@ -119,4 +122,4 @@ const getConfig = (target = "cjs") => {
     };
 };
 
-module.exports = [getConfig("cjs"), getConfig("umd")];
+module.exports = [ getConfig("cjs"), getConfig("umd") ];

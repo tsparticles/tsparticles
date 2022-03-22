@@ -6,17 +6,17 @@ import type {
     IHsva,
     IParticle,
     IParticleHslAnimation,
+    IParticleValueAnimation,
     IRgb,
     IRgba,
     IValueColor,
-} from "../Core/Interfaces";
-import { itemFromArray } from "./Utils";
-import { Constants } from "./Constants";
-import { mix, randomInRange, setRangeValue } from "./NumberUtils";
-import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
-import type { IParticleValueAnimation } from "../Core/Interfaces";
+} from "../Core";
+import { getRangeValue, mix, randomInRange, setRangeValue } from "./NumberUtils";
 import { AnimationStatus } from "../Enums";
+import { Constants } from "../Core";
 import type { HslAnimation } from "../Options/Classes/HslAnimation";
+import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
+import { itemFromArray } from "./Utils";
 
 /**
  *
@@ -561,7 +561,7 @@ function setColorAnimation(
     colorValue.enable = colorAnimation.enable;
 
     if (colorValue.enable) {
-        colorValue.velocity = (colorAnimation.speed / 100) * reduceFactor;
+        colorValue.velocity = (getRangeValue(colorAnimation.speed) / 100) * reduceFactor;
 
         if (colorAnimation.sync) {
             return;

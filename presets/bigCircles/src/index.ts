@@ -1,7 +1,7 @@
-import type { Main } from "tsparticles";
+import type { Engine } from "tsparticles";
 import { options } from "./options";
 
-export function loadBigCirclesPreset(tsParticles: Main): void {
-    tsParticles.addPreset("bigCircles", options);
-    tsParticles.addPreset("big-circles", options);
+export function loadBigCirclesPreset(engine: Engine): void {
+    engine.addPreset("bigCircles", options);
+    engine.addPreset("big-circles", options);
 }

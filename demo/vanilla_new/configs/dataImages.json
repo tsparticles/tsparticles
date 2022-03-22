@@ -5,7 +5,6 @@
   },
   "detectRetina": true,
   "interactivity": {
-    "detectsOn": "canvas",
     "events": {
       "onClick": {
         "enable": true,

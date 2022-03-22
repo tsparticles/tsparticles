@@ -1,15 +1,15 @@
-import type { IEmitter } from "../Interfaces/IEmitter";
-import type { RecursivePartial } from "../../../../Types";
-import type { ICoordinates } from "../../../../Core/Interfaces";
 import { MoveDirection, MoveDirectionAlt } from "../../../../Enums";
-import type { IParticles } from "../../../../Options/Interfaces/Particles/IParticles";
-import { EmitterRate } from "./EmitterRate";
-import { EmitterLife } from "./EmitterLife";
-import { deepExtend } from "../../../../Utils";
-import { EmitterSize } from "./EmitterSize";
-import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
+import { deepExtend, setRangeValue } from "../../../../Utils";
 import { AnimatableColor } from "../../../../Options/Classes/AnimatableColor";
+import { EmitterLife } from "./EmitterLife";
+import { EmitterRate } from "./EmitterRate";
 import { EmitterShapeType } from "../../Enums";
+import { EmitterSize } from "./EmitterSize";
+import type { IEmitter } from "../Interfaces/IEmitter";
+import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
+import type { IParticles } from "../../../../Options/Interfaces/Particles/IParticles";
+import type { IRangedCoordinates } from "../../../../Core";
+import type { RecursivePartial } from "../../../../Types";
 
 /**
  * [[include:Options/Plugins/Emitters.md]]
@@ -19,11 +19,12 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     autoPlay;
     size?: EmitterSize;
     direction?: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
+    domId?: string;
     fill;
     life;
     name?: string;
     particles?: RecursivePartial<IParticles>;
-    position?: RecursivePartial<ICoordinates>;
+    position?: RecursivePartial<IRangedCoordinates>;
     rate;
     shape: EmitterShapeType | keyof typeof EmitterShapeType;
     spawnColor?: AnimatableColor;
@@ -59,6 +60,8 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
             this.direction = data.direction;
         }
 
+        this.domId = data.domId;
+
         if (data.fill !== undefined) {
             this.fill = data.fill;
         }
@@ -78,10 +81,15 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
         }
 
         if (data.position !== undefined) {
-            this.position = {
-                x: data.position.x,
-                y: data.position.y,
-            };
+            this.position = {};
+
+            if (data.position.x !== undefined) {
+                this.position.x = setRangeValue(data.position.x);
+            }
+
+            if (data.position.y !== undefined) {
+                this.position.y = setRangeValue(data.position.y);
+            }
         }
 
         if (data.spawnColor !== undefined) {

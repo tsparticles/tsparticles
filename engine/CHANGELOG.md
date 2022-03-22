@@ -3,6 +3,410 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.42.4](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.42.3...tsparticles@1.42.4) (2022-03-20)
+
+
+### Bug Fixes
+
+* moving canvas.clear closer to drawn breaks grab links, and maybe other interactions ([9b70b78](https://github.com/matteobruni/tsparticles/commit/9b70b786bd93ba7c245b8e24113156f747dd6608))
+
+
+
+
+
+## [1.42.3](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.42.2...tsparticles@1.42.3) (2022-03-18)
+
+
+### Bug Fixes
+
+* fixed flashing issue with resize ([4e44c8e](https://github.com/matteobruni/tsparticles/commit/4e44c8e368561195441c7cd153e811e7e410e7a4))
+* fixed issue with new resize checks ([0cce40c](https://github.com/matteobruni/tsparticles/commit/0cce40cf3faeff00c3ef5f5ffab3575e38aca5a0))
+
+
+
+
+
+## [1.42.2](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.42.1...tsparticles@1.42.2) (2022-03-14)
+
+
+### Bug Fixes
+
+* fixed flashing issue with background mask, closes [#3514](https://github.com/matteobruni/tsparticles/issues/3514) ([6f74bf1](https://github.com/matteobruni/tsparticles/commit/6f74bf1ab62587c7f2352bfe6f72ea29bb0a31fc))
+
+
+
+
+
+## [1.42.1](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.42.0...tsparticles@1.42.1) (2022-03-09)
+
+
+### Bug Fixes
+
+* fixed issue with 0 positions on x and y with emitters ([63e8a11](https://github.com/matteobruni/tsparticles/commit/63e8a115614ca106375fdae7f77cd73181ede96a))
+
+
+
+
+
+# [1.42.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.41.6...tsparticles@1.42.0) (2022-03-08)
+
+
+### Features
+
+* more rangeable options ([a2598c0](https://github.com/matteobruni/tsparticles/commit/a2598c07e968ab383c0a1eb311e22c4a0f52d9b8))
+
+
+
+
+
+## [1.41.6](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.41.5...tsparticles@1.41.6) (2022-03-03)
+
+
+### Bug Fixes
+
+* fixed issue with canvas resize ([4c72a96](https://github.com/matteobruni/tsparticles/commit/4c72a96c707266da6cb1b5081bc7b504c5cfb3de))
+
+
+
+
+
+## [1.41.5](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.41.4...tsparticles@1.41.5) (2022-02-24)
+
+
+### Bug Fixes
+
+* fixed emitters issues ([c9d9a51](https://github.com/matteobruni/tsparticles/commit/c9d9a51e41fdc77a9bf544a09d979d8c2f6b10d5))
+
+
+
+
+
+## [1.41.4](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.41.3...tsparticles@1.41.4) (2022-02-20)
+
+
+### Bug Fixes
+
+* removed useless console.log (debug purposes) ([93835e7](https://github.com/matteobruni/tsparticles/commit/93835e70dfaeedc9ac926f362a3ff1d4509e31fd))
+
+
+
+
+
+## [1.41.3](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.41.2...tsparticles@1.41.3) (2022-02-19)
+
+
+### Bug Fixes
+
+* fixed issue with size and opacity updaters ([f81e228](https://github.com/matteobruni/tsparticles/commit/f81e2280e3cff3942bdd8037df658b169d07ed30))
+* removed useless check ([edb272e](https://github.com/matteobruni/tsparticles/commit/edb272ec5683933ed6309d03dbdd109c76607a1e))
+
+
+
+
+
+## [1.41.2](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.41.1...tsparticles@1.41.2) (2022-02-16)
+
+
+### Bug Fixes
+
+* fixed tilt back/front colors ([657585f](https://github.com/matteobruni/tsparticles/commit/657585f22d7fefa95df1cde16d6c68522fcfb34b))
+
+
+
+
+
+## [1.41.1](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.41.0...tsparticles@1.41.1) (2022-02-14)
+
+**Note:** Version bump only for package tsparticles
+
+
+
+
+
+# [1.41.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.40.2...tsparticles@1.41.0) (2022-02-10)
+
+
+### Bug Fixes
+
+* fixed issue with path generators ([29644fc](https://github.com/matteobruni/tsparticles/commit/29644fc7a281fae1c438dee74e43dd611ec7af07))
+
+
+
+
+
+## [1.40.2](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.40.1...tsparticles@1.40.2) (2022-02-07)
+
+
+### Bug Fixes
+
+* removed all browser flags in package.json, a lot of issues with it. closes [#3094](https://github.com/matteobruni/tsparticles/issues/3094) ([1415875](https://github.com/matteobruni/tsparticles/commit/14158755ec80ace4e0c520cef407b2d7f4078568))
+
+
+
+
+
+## [1.40.1](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.40.0...tsparticles@1.40.1) (2022-02-06)
+
+**Note:** Version bump only for package tsparticles
+
+
+
+
+
+# [1.40.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.39.3...tsparticles@1.40.0) (2022-02-04)
+
+
+### Bug Fixes
+
+* fixed emitter issue on first start, closes [#3074](https://github.com/matteobruni/tsparticles/issues/3074) ([79fe654](https://github.com/matteobruni/tsparticles/commit/79fe654b0c4707337d3ceea7509cf115feddaa05))
+
+
+### Features
+
+* added domId property to Emitters options ([9408d14](https://github.com/matteobruni/tsparticles/commit/9408d148138e0bacea6d2e426c885a66c625e1a6))
+
+
+
+
+
+## [1.39.3](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.39.2...tsparticles@1.39.3) (2022-02-02)
+
+
+### Bug Fixes
+
+* solved performance drop issue after refresh, closes [#2809](https://github.com/matteobruni/tsparticles/issues/2809), [#2815](https://github.com/matteobruni/tsparticles/issues/2815), [#2936](https://github.com/matteobruni/tsparticles/issues/2936) ([286c3e8](https://github.com/matteobruni/tsparticles/commit/286c3e867fab2fcf0660a40abda60d1e756b1fdb))
+
+
+### Features
+
+* updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
+
+
+
+
+
+## [1.39.2](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.39.1...tsparticles@1.39.2) (2022-01-29)
+
+**Note:** Version bump only for package tsparticles
+
+
+
+
+
+## [1.39.1](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.39.0...tsparticles@1.39.1) (2022-01-26)
+
+
+### Bug Fixes
+
+* fixed issues with absorbers and emitters plugins Container extension methods ([ce196be](https://github.com/matteobruni/tsparticles/commit/ce196bebd035281c08b5c77c5301ba1ebd7e734f))
+
+
+
+
+
+# [1.39.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.38.0...tsparticles@1.39.0) (2022-01-08)
+
+
+### Bug Fixes
+
+* fixed priority on canvas styles ([3cc3d97](https://github.com/matteobruni/tsparticles/commit/3cc3d97bb01ee9ae265b33fdba636dde9c696355))
+
+
+### Code Refactoring
+
+* **engine:** changed all enums to const, smaller output size ([9536087](https://github.com/matteobruni/tsparticles/commit/953608731be325c0c6b5f6811eb58f8898a1e353))
+
+
+### Features
+
+* added all files for supporting the smaller engine, preparing for v2 incoming changes ([4d90c83](https://github.com/matteobruni/tsparticles/commit/4d90c83867b4801eeebd86651381ecf8e8ce5cec))
+* improved image loading, now if an image is missing it will be loaded at runtime ([5155bef](https://github.com/matteobruni/tsparticles/commit/5155bef24ef3e3fa5ba4654361aabaab074c9957))
+
+
+### BREAKING CHANGES
+
+* **engine:** enums are not exported anymore, this could break javascript usages
+
+
+
+
+
+# [1.38.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.37.6...tsparticles@1.38.0) (2021-12-29)
+
+
+### Features
+
+* added style options ([12045cd](https://github.com/matteobruni/tsparticles/commit/12045cdfe3111e018258a7bc1c88974e28b6f31e))
+
+
+
+
+
+## [1.37.6](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.37.5...tsparticles@1.37.6) (2021-12-24)
+
+
+### Bug Fixes
+
+* fixed some readmes ([93f371a](https://github.com/matteobruni/tsparticles/commit/93f371ab82a5074d34ec7632ade41edc3dbf0ec7))
+
+
+
+
+
+## [1.37.5](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.37.4...tsparticles@1.37.5) (2021-11-28)
+
+
+### Bug Fixes
+
+* fixed issue with collisions, fixes [#2586](https://github.com/matteobruni/tsparticles/issues/2586), fixes [#2380](https://github.com/matteobruni/tsparticles/issues/2380) ([204cb8d](https://github.com/matteobruni/tsparticles/commit/204cb8dc188cf2c37d746652d4ea3effde2a5b9b))
+
+
+
+
+
+## [1.37.4](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.37.3...tsparticles@1.37.4) (2021-11-17)
+
+**Note:** Version bump only for package tsparticles
+
+
+
+
+
+## [1.37.3](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.37.2...tsparticles@1.37.3) (2021-11-05)
+
+
+### Features
+
+* added more absorber size limit options ([f2d0493](https://github.com/matteobruni/tsparticles/commit/f2d0493f34bc373846d8a8ae78e36dd56816308e))
+
+
+
+
+
+## [1.37.2](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.37.1...tsparticles@1.37.2) (2021-10-31)
+
+
+### Bug Fixes
+
+* fixes some dynamic import issues ([8ba2415](https://github.com/matteobruni/tsparticles/commit/8ba2415d52384fd4ce722110cda02c8c0db92674))
+
+
+
+
+
+## [1.37.1](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.37.0...tsparticles@1.37.1) (2021-10-30)
+
+
+### Bug Fixes
+
+* added browserslist to fix some issues with older browsers ([24d8f52](https://github.com/matteobruni/tsparticles/commit/24d8f520ee6934bd967d63612c828705e1dc09e2))
+* fixed issue with dynamic imports and async loading ([b7f444b](https://github.com/matteobruni/tsparticles/commit/b7f444b1ef279083572e3a52f341d39091c885e6))
+
+
+
+
+
+# [1.37.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.36.0...tsparticles@1.37.0) (2021-10-28)
+
+
+### Features
+
+* enabled full screen by default, window is now the default interacitivity target ([e205e4c](https://github.com/matteobruni/tsparticles/commit/e205e4c9811b73c53ece9bb53a8a541c88afc017))
+
+
+
+
+
+# [1.36.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.35.4...tsparticles@1.36.0) (2021-10-14)
+
+
+### Bug Fixes
+
+* fixes [#2329](https://github.com/matteobruni/tsparticles/issues/2329) ([1982442](https://github.com/matteobruni/tsparticles/commit/1982442b6084f15ce40559c9391f097563728ff2))
+* fixes issue with responsive not refreshing when changing options ([f54cefa](https://github.com/matteobruni/tsparticles/commit/f54cefac475599e7717c125490e81e2b17e89c3f))
+
+
+### Features
+
+* fixed lazy loading ([0f774ef](https://github.com/matteobruni/tsparticles/commit/0f774ef3d837f41b872bf866c4f4a87e4bafed6e))
+* fixed lazy loading ([60f9689](https://github.com/matteobruni/tsparticles/commit/60f96899bc564e547a49a5e17be4f40fe12288ba))
+* migrated to chunks ([58b69c1](https://github.com/matteobruni/tsparticles/commit/58b69c130d1e768c0dc0a1b61e904c23408e6ec5))
+
+
+
+
+
+## [1.35.4](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.35.3...tsparticles@1.35.4) (2021-10-06)
+
+**Note:** Version bump only for package tsparticles
+
+
+
+
+
+## [1.35.3](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.35.2...tsparticles@1.35.3) (2021-10-03)
+
+
+### Bug Fixes
+
+* fixed typings for tsParticles load methods ([847bbbe](https://github.com/matteobruni/tsparticles/commit/847bbbef680d72c50db6dc6ef4d3b297c9b82355))
+* improved new methods without id ([9b7a106](https://github.com/matteobruni/tsparticles/commit/9b7a106acd4c3225aa001f12ab25e4c2b89dde66))
+
+
+### Features
+
+* removing the id constraint, a random one will be generated ([3b6b48e](https://github.com/matteobruni/tsparticles/commit/3b6b48efd8962ccc11549339b38888808da2a657))
+
+
+
+
+
+## [1.35.2](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.35.1...tsparticles@1.35.2) (2021-09-27)
+
+
+### Bug Fixes
+
+* added try catch in pathseg polyfill, fixes [#2264](https://github.com/matteobruni/tsparticles/issues/2264) ([6b849f2](https://github.com/matteobruni/tsparticles/commit/6b849f2455371946ab6949385de5b3b6699cae70))
+
+
+
+
+
+## [1.35.1](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.35.0...tsparticles@1.35.1) (2021-09-20)
+
+
+### Bug Fixes
+
+* fixes [#2241](https://github.com/matteobruni/tsparticles/issues/2241) ([b5802df](https://github.com/matteobruni/tsparticles/commit/b5802dfcbf61f7d236cecc60e141ddd77d4a3d06))
+
+
+
+
+
+# [1.35.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.34.1...tsparticles@1.35.0) (2021-09-18)
+
+
+### Bug Fixes
+
+* fixed issue with emitters and themes, they weren't applied correctly ([3a9dcae](https://github.com/matteobruni/tsparticles/commit/3a9dcaebed687277db76f7f1016e3835284b0d48))
+
+
+### Features
+
+* auto themes ([d80b78c](https://github.com/matteobruni/tsparticles/commit/d80b78cb49ae04796473bd06f827d5d5a29a3e35))
+
+
+
+
+
+## [1.34.1](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.34.0...tsparticles@1.34.1) (2021-09-15)
+
+**Note:** Version bump only for package tsparticles
+
+
+
+
+
 # [1.34.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.33.3...tsparticles@1.34.0) (2021-08-23)
 
 

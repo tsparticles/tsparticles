@@ -1,6 +1,6 @@
-import type { Main } from "../../main";
+import type { Engine } from "../../engine";
 import { LifeUpdater } from "./LifeUpdater";
 
-export function loadLifeUpdater(tsParticles: Main): void {
-    tsParticles.addParticleUpdater("life", (container) => new LifeUpdater(container));
+export async function loadLifeUpdater(engine: Engine): Promise<void> {
+    await engine.addParticleUpdater("life", (container) => new LifeUpdater(container));
 }

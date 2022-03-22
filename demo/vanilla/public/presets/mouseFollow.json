@@ -1,10 +1,9 @@
 {
-  "fpsLimit": 60,
+  "fpsLimit": 120,
   "background": {
     "color": "#000000"
   },
   "interactivity": {
-    "detect_on": "window",
     "events": {
       "onHover": {
         "enable": true,

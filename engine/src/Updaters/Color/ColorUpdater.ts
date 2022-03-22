@@ -1,7 +1,6 @@
-import { Particle } from "../../Core/Particle";
-import type { IDelta, IParticleUpdater, IParticleValueAnimation } from "../../Core/Interfaces";
+import type { Container, IDelta, IParticleUpdater, IParticleValueAnimation, Particle } from "../../Core";
+import { colorToHsl, getHslAnimationFromHsl, randomInRange } from "../../Utils";
 import { AnimationStatus } from "../../Enums";
-import { randomInRange } from "../../Utils";
 import type { IColorAnimation } from "../../Options/Interfaces/IColorAnimation";
 
 function updateColorValue(
@@ -58,6 +57,21 @@ function updateColor(particle: Particle, delta: IDelta): void {
 }
 
 export class ColorUpdater implements IParticleUpdater {
+    constructor(private readonly container: Container) {}
+
+    init(particle: Particle): void {
+        /* color */
+        const hslColor = colorToHsl(particle.options.color, particle.id, particle.options.reduceDuplicates);
+
+        if (hslColor) {
+            particle.color = getHslAnimationFromHsl(
+                hslColor,
+                particle.options.color.animation,
+                this.container.retina.reduceFactor
+            );
+        }
+    }
+
     isEnabled(particle: Particle): boolean {
         const animationOptions = particle.options.color.animation;
 

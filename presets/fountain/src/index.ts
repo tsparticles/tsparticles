@@ -1,6 +1,6 @@
-import type { Main } from "tsparticles";
+import type { Engine } from "tsparticles";
 import { options } from "./options";
 
-export function loadFountainPreset(tsParticles: Main): void {
-    tsParticles.addPreset("fountain", options);
+export function loadFountainPreset(engine: Engine): void {
+    engine.addPreset("fountain", options);
 }

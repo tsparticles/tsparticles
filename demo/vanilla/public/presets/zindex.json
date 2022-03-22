@@ -1,5 +1,5 @@
 {
-  "fpsLimit": 60,
+  "fpsLimit": 120,
   "particles": {
     "groups": {
       "z5000": {
@@ -87,7 +87,6 @@
     }
   },
   "interactivity": {
-    "detectsOn": "canvas",
     "events": {
       "onHover": {
         "enable": false,

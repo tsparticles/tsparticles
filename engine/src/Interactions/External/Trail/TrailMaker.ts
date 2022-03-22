@@ -1,8 +1,7 @@
-import type { Container } from "../../../Core/Container";
-import { isInArray } from "../../../Utils";
 import { ClickMode, HoverMode } from "../../../Enums";
-import type { ICoordinates, IDelta } from "../../../Core/Interfaces";
-import { ExternalInteractorBase } from "../../../Core/ExternalInteractorBase";
+import type { Container, ICoordinates, IDelta } from "../../../Core";
+import { ExternalInteractorBase } from "../../../Core";
+import { isInArray } from "../../../Utils";
 
 /**
  * @category Interactions
@@ -17,7 +16,7 @@ export class TrailMaker extends ExternalInteractorBase {
         this.delay = 0;
     }
 
-    interact(delta: IDelta): void {
+    async interact(delta: IDelta): Promise<void> {
         if (!this.container.retina.reduceFactor) {
             return;
         }

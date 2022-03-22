@@ -19,8 +19,12 @@ const Particles = (props: IParticlesProps): JSX.Element => {
 	try {
 		const id = props.id ?? "tsparticles";
 
-		if (props.init) {
-			props.init(tsParticles);
+		const [init, setInit] = createSignal(!props.init);
+
+		if (props.init && !init()) {
+			props.init(tsParticles).then(() => {
+				setInit(true);
+			});
 		}
 
 		const options = createMemo(() => props.params ?? props.options ?? {});
@@ -33,7 +37,7 @@ const Particles = (props: IParticlesProps): JSX.Element => {
 			undefined as string | undefined
 		);
 
-		const cb = (container?: Container) => {
+		const cb = async (container?: Container) => {
 			if (refContainer) {
 				refContainer.current = container;
 			}
@@ -41,23 +45,31 @@ const Particles = (props: IParticlesProps): JSX.Element => {
 			setContainerId(container?.id);
 
 			if (loaded && container) {
-				loaded(container);
+				await loaded(container);
 			}
 		};
 
-		createEffect(() => {
+		createEffect(async () => {
+			if (!init()) {
+				return;
+			}
+
 			const container = tsParticles.dom().find((t) => t.id === containerId());
 
 			container?.destroy();
 
-			if (url) {
-				tsParticles.loadJSON(id, url).then(cb);
-			} else {
-				tsParticles.load(id, options()).then(cb);
-			}
+			const newContainer = url
+				? await tsParticles.loadJSON(id, url)
+				: await tsParticles.load(id, options());
+
+			await cb(newContainer);
 		});
 
 		onCleanup(() => {
+			if (!init()) {
+				return;
+			}
+
 			const container = tsParticles.dom().find((t) => t.id === containerId());
 
 			container?.destroy();
@@ -78,7 +90,9 @@ const Particles = (props: IParticlesProps): JSX.Element => {
 			</div>
 		);
 	} catch (e) {
-		return <div></div>;
+		console.log(e);
+
+		return <div />;
 	}
 };
 

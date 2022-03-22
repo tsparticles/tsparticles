@@ -1,5 +1,5 @@
 {
-  "fpsLimit": 60,
+  "fpsLimit": 120,
   "emitters": {
     "direction": "top",
     "size": {
@@ -73,7 +73,6 @@
     }
   },
   "interactivity": {
-    "detect_on": "canvas",
     "events": {
       "onhover": {
         "enable": false,

@@ -1,13 +1,7 @@
 {
-    "fpsLimit": 60,
+    "fpsLimit": 120,
     "background": {
         "color": "#000"
-    },
-    "interactivity": {
-        "detectsOn": "canvas",
-        "events": {
-            "resize": true
-        }
     },
     "particles": {
         "color": {

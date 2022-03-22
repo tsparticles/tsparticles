@@ -1,3 +1,4 @@
+import { DivMode, OutModeDirection } from "../Enums";
 import type {
     IBounds,
     ICircleBouncer,
@@ -6,55 +7,21 @@ import type {
     IParticle,
     IRangeValue,
     IRectSideResult,
-} from "../Core/Interfaces";
-import { DivMode } from "../Enums";
-import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICharacterShape";
-import type { SingleOrMultiple } from "../Types";
+} from "../Core";
+import { collisionVelocity, getDistances, getValue } from "./NumberUtils";
 import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
+import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICharacterShape";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
-import { OutModeDirection } from "../Enums";
-import { collisionVelocity, getValue } from "./NumberUtils";
-import { Vector } from "../Core/Particle/Vector";
-
-type CSSOMString = string;
-type FontFaceLoadStatus = "unloaded" | "loading" | "loaded" | "error";
-type FontFaceSetStatus = "loading" | "loaded";
-
-interface FontFace {
-    family: CSSOMString;
-    style: CSSOMString;
-    weight: CSSOMString;
-    stretch: CSSOMString;
-    unicodeRange: CSSOMString;
-    variant: CSSOMString;
-    featureSettings: CSSOMString;
-    variationSettings: CSSOMString;
-    display: CSSOMString;
-    readonly status: FontFaceLoadStatus;
-    readonly loaded: Promise<FontFace>;
-
-    load(): Promise<FontFace>;
-}
-
-interface FontFaceSet {
-    readonly status: FontFaceSetStatus;
-    readonly ready: Promise<FontFaceSet>;
-
-    check(font: string, text?: string): boolean;
-
-    load(font: string, text?: string): Promise<FontFace[]>;
-}
+import type { SingleOrMultiple } from "../Types";
+import { Vector } from "../Core";
 
 declare global {
-    interface Document {
-        fonts: FontFaceSet;
-    }
-
     interface Window {
         customRequestAnimationFrame: (callback: FrameRequestCallback) => number;
         mozRequestAnimationFrame: (callback: FrameRequestCallback) => number;
         oRequestAnimationFrame: (callback: FrameRequestCallback) => number;
         msRequestAnimationFrame: (callback: FrameRequestCallback) => number;
+        webkitRequestAnimationFrame: (callback: FrameRequestCallback) => number;
         customCancelRequestAnimationFrame: (handle: number) => void;
         webkitCancelRequestAnimationFrame: (handle: number) => void;
         mozCancelRequestAnimationFrame: (handle: number) => void;
@@ -108,7 +75,7 @@ function checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>
 
 /* ---------- global functions - vendors ------------ */
 export function isSsr(): boolean {
-    return typeof window === "undefined" || !window;
+    return typeof window === "undefined" || !window || typeof window.document === "undefined" || !window.document;
 }
 
 export function animate(): (callback: FrameRequestCallback) => number {
@@ -308,19 +275,15 @@ export function circleBounceDataFromParticle(p: IParticle): ICircleBouncer {
 }
 
 export function circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
-    const xVelocityDiff = p1.velocity.x;
-    const yVelocityDiff = p1.velocity.y;
+    const { x: xVelocityDiff, y: yVelocityDiff } = p1.velocity.sub(p2.velocity);
 
-    const pos1 = p1.position;
-    const pos2 = p2.position;
-
-    const xDist = pos2.x - pos1.x;
-    const yDist = pos2.y - pos1.y;
+    const [pos1, pos2] = [p1.position, p2.position];
+    const { dx: xDist, dy: yDist } = getDistances(pos2, pos1);
 
     // Prevent accidental overlap of particles
     if (xVelocityDiff * xDist + yVelocityDiff * yDist >= 0) {
         // Grab angle between the two colliding particles
-        const angle = -Math.atan2(pos2.y - pos1.y, pos2.x - pos1.x);
+        const angle = -Math.atan2(yDist, xDist);
 
         // Store mass in var for better readability in collision equation
         const m1 = p1.mass;

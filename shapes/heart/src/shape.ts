@@ -1,6 +1,6 @@
-import { Main } from "tsparticles";
+import type { Engine } from "tsparticles";
 import { HeartDrawer } from "./HeartDrawer";
 
-export function loadHeartShape(tsParticles: Main): void {
-    tsParticles.addShape("heart", new HeartDrawer());
+export function loadHeartShape(engine: Engine): void {
+    engine.addShape("heart", new HeartDrawer());
 }

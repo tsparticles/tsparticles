@@ -19,7 +19,6 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "preserveSymlinks": true,
             "assets": [
               {
                 "glob": "**/*",
@@ -32,11 +31,9 @@
                 "output": "./svg"
               }
             ],
-            "styles": [
-              "src/theme/variables.scss",
-              "src/global.scss"
-            ],
+            "styles": ["src/theme/variables.scss", "src/global.scss"],
             "scripts": [],
+            "preserveSymlinks": true,
             "aot": false,
             "vendorChunk": true,
             "extractLicenses": false,
@@ -175,7 +172,6 @@
     }
   },
   "cli": {
-    "analytics": "42076ca9-06eb-4f84-a636-7883a669eece",
     "defaultCollection": "@ionic/angular-toolkit"
   },
   "schematics": {

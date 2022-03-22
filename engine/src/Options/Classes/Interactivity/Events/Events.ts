@@ -1,8 +1,8 @@
-import type { IEvents } from "../../../Interfaces/Interactivity/Events/IEvents";
+import type { RecursivePartial, SingleOrMultiple } from "../../../../Types";
 import { ClickEvent } from "./ClickEvent";
 import { DivEvent } from "./DivEvent";
 import { HoverEvent } from "./HoverEvent";
-import type { RecursivePartial, SingleOrMultiple } from "../../../../Types";
+import type { IEvents } from "../../../Interfaces/Interactivity/Events/IEvents";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 /**

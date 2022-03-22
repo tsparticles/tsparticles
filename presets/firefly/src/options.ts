@@ -1,12 +1,12 @@
+import { ClickMode } from "tsparticles";
 import type { ISourceOptions } from "tsparticles";
-import { ClickMode, InteractivityDetect } from "tsparticles";
 
 export const options: ISourceOptions = {
     fullScreen: {
         enable: true,
         zIndex: -1,
     },
-    fpsLimit: 60,
+    fpsLimit: 120,
     particles: {
         number: {
             value: 0,
@@ -42,7 +42,6 @@ export const options: ISourceOptions = {
         },
     },
     interactivity: {
-        detectsOn: InteractivityDetect.window,
         events: {
             onHover: {
                 enable: true,

@@ -1,4 +1,4 @@
-import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
+import type { ICoordinates } from "../../Core";
 import type { IParticles } from "./Particles/IParticles";
 import type { RecursivePartial } from "../../Types";
 

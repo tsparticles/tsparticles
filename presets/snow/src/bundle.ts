@@ -1,5 +1,5 @@
-import { tsParticles } from "tsparticles";
 import { loadSnowPreset } from ".";
+import { tsParticles } from "tsparticles";
 
 loadSnowPreset(tsParticles);
 

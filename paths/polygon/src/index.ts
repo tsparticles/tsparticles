@@ -1,8 +1,8 @@
-import type { Main } from "tsparticles";
-import { polygonPathGenerator } from "./pathGen";
+import type { Engine } from "tsparticles";
+import { PolygonPathGenerator } from "./PolygonPathGenerator";
 
 export const polygonPathName = "polygonPathGenerator";
 
-export function loadPolygonPath(tsParticles: Main): void {
-    tsParticles.addPathGenerator(polygonPathName, polygonPathGenerator);
+export function loadPolygonPath(engine: Engine): void {
+    engine.addPathGenerator(polygonPathName, new PolygonPathGenerator());
 }

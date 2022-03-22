@@ -1,6 +1,6 @@
-import type { Main } from "../../main";
+import type { Engine } from "../../engine";
 import { WobbleUpdater } from "./WobbleUpdater";
 
-export function loadWobbleUpdater(tsParticles: Main): void {
-    tsParticles.addParticleUpdater("wobble", () => new WobbleUpdater());
+export async function loadWobbleUpdater(engine: Engine): Promise<void> {
+    await engine.addParticleUpdater("wobble", (container) => new WobbleUpdater(container));
 }

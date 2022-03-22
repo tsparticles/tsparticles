@@ -1,7 +1,6 @@
+import { Canvas } from "../../src";
+import { Container } from "../../src";
 import { createCanvas } from "canvas";
-
-import { Container } from "../../src/Core/Container";
-import { Canvas } from "../../src/Core/Canvas";
 
 export class TestCanvas {
     canvas: Canvas;
@@ -9,6 +8,7 @@ export class TestCanvas {
 
     constructor(container: Container, width: number, height: number) {
         const newCanvas = createCanvas(width, height) as any;
+        newCanvas.dataset = {};
         newCanvas.offsetHeight = newCanvas.height;
         newCanvas.offsetWidth = newCanvas.width;
         this.container = container;

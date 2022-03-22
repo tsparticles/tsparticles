@@ -1,6 +1,6 @@
-import type { Main } from "tsparticles";
+import type { Engine } from "tsparticles";
 import { options } from "./options";
 
-export function loadFireworksPreset(tsParticles: Main): void {
-    tsParticles.addPreset("fireworks", options);
+export function loadFireworksPreset(engine: Engine): void {
+    engine.addPreset("fireworks", options);
 }

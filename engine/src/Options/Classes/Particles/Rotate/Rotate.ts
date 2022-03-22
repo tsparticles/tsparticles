@@ -1,8 +1,8 @@
-import type { IRotate } from "../../../Interfaces/Particles/Rotate/IRotate";
-import { RotateAnimation } from "./RotateAnimation";
 import { RotateDirection, RotateDirectionAlt } from "../../../../Enums";
-import type { RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { IRotate } from "../../../Interfaces/Particles/Rotate/IRotate";
+import type { RecursivePartial } from "../../../../Types";
+import { RotateAnimation } from "./RotateAnimation";
 import { ValueWithRandom } from "../../ValueWithRandom";
 
 /**

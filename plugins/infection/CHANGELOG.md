@@ -3,6 +3,287 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.42.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.42.3...tsparticles-plugin-infection@1.42.4) (2022-03-20)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+## [1.42.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.42.2...tsparticles-plugin-infection@1.42.3) (2022-03-18)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+## [1.42.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.42.1...tsparticles-plugin-infection@1.42.2) (2022-03-14)
+
+
+### Bug Fixes
+
+* fixed flashing issue with background mask, closes [#3514](https://github.com/matteobruni/tsparticles/issues/3514) ([6f74bf1](https://github.com/matteobruni/tsparticles/commit/6f74bf1ab62587c7f2352bfe6f72ea29bb0a31fc))
+
+
+
+
+
+## [1.42.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.42.0...tsparticles-plugin-infection@1.42.1) (2022-03-09)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+# [1.42.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.41.6...tsparticles-plugin-infection@1.42.0) (2022-03-08)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+## [1.41.6](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.41.5...tsparticles-plugin-infection@1.41.6) (2022-03-03)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+## [1.41.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.41.4...tsparticles-plugin-infection@1.41.5) (2022-02-24)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+## [1.41.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.41.3...tsparticles-plugin-infection@1.41.4) (2022-02-20)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+## [1.41.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.41.2...tsparticles-plugin-infection@1.41.3) (2022-02-19)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+## [1.41.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.41.1...tsparticles-plugin-infection@1.41.2) (2022-02-16)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+## [1.41.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.41.0...tsparticles-plugin-infection@1.41.1) (2022-02-14)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+# [1.41.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.40.2...tsparticles-plugin-infection@1.41.0) (2022-02-10)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+## [1.40.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.40.1...tsparticles-plugin-infection@1.40.2) (2022-02-07)
+
+
+### Bug Fixes
+
+* removed all browser flags in package.json, a lot of issues with it. closes [#3094](https://github.com/matteobruni/tsparticles/issues/3094) ([1415875](https://github.com/matteobruni/tsparticles/commit/14158755ec80ace4e0c520cef407b2d7f4078568))
+
+
+
+
+
+## [1.40.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.40.0...tsparticles-plugin-infection@1.40.1) (2022-02-06)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+# [1.40.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.39.3...tsparticles-plugin-infection@1.40.0) (2022-02-04)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+## [1.39.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.39.2...tsparticles-plugin-infection@1.39.3) (2022-02-02)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+## [1.39.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.39.1...tsparticles-plugin-infection@1.39.2) (2022-01-29)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+## [1.39.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.39.0...tsparticles-plugin-infection@1.39.1) (2022-01-26)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+# [1.39.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.38.0...tsparticles-plugin-infection@1.39.0) (2022-01-08)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+# [1.38.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.37.6...tsparticles-plugin-infection@1.38.0) (2021-12-29)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+## [1.37.6](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.37.5...tsparticles-plugin-infection@1.37.6) (2021-12-24)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+## [1.37.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.37.4...tsparticles-plugin-infection@1.37.5) (2021-11-28)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+## [1.37.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.37.3...tsparticles-plugin-infection@1.37.4) (2021-11-17)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+## [1.37.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.37.2...tsparticles-plugin-infection@1.37.3) (2021-11-05)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+## [1.37.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.37.1...tsparticles-plugin-infection@1.37.2) (2021-10-31)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+## [1.37.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.37.0...tsparticles-plugin-infection@1.37.1) (2021-10-30)
+
+
+### Bug Fixes
+
+* added browserslist to fix some issues with older browsers ([24d8f52](https://github.com/matteobruni/tsparticles/commit/24d8f520ee6934bd967d63612c828705e1dc09e2))
+
+
+
+
+
+# [1.37.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.36.0...tsparticles-plugin-infection@1.37.0) (2021-10-28)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+# [1.36.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.35.4...tsparticles-plugin-infection@1.36.0) (2021-10-14)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+## [1.35.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.35.3...tsparticles-plugin-infection@1.35.4) (2021-10-06)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+## [1.35.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.35.2...tsparticles-plugin-infection@1.35.3) (2021-10-03)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+## [1.35.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.35.1...tsparticles-plugin-infection@1.35.2) (2021-09-27)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+## [1.35.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.35.0...tsparticles-plugin-infection@1.35.1) (2021-09-20)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+# [1.35.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.34.1...tsparticles-plugin-infection@1.35.0) (2021-09-18)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
+## [1.34.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.34.0...tsparticles-plugin-infection@1.34.1) (2021-09-15)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
+
+
+
+
 # [1.34.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@1.33.3...tsparticles-plugin-infection@1.34.0) (2021-08-23)
 
 

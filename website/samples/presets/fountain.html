@@ -1,21 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="description" content="tsParticles">
-    <meta name="author" content="Matteo Bruni">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:creator" content="@HollowMatt_ITA">
-    <meta name="twitter:image:src" content="https://particles.js.org/images/demo.png">
-    <meta property="og:title" content="tsParticles - A lightweight TypeScript library for creating particles">
-    <meta property="og:site_name" content="tsParticles">
-    <meta property="og:url" content="https://particles.js.org/">
-    <meta property="og:description" content="A lightweight TypeScript library for creating particles.">
-    <meta property="og:image" content="https://particles.js.org/images/demo.png">
-    <title>tsParticles</title>
+    <meta charset="utf-8"/>
+    <link
+            rel="shortcut icon"
+            href="https://particles.js.org/tsParticles-64.png"
+    />
+    <meta
+            name="description"
+            content="tsParticles - Easily create highly customizable particles, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno."
+    />
+    <meta name="author" content="Matteo Bruni"/>
+    <meta
+            name="keyword"
+            content="HTML, CSS, JavaScript, Particles, Particles.js, Canvas, Confetti, Fireworks, Animations, React, Vue, Angular, Vue.js, Svelte"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:creator" content="@HollowMatt_ITA"/>
+    <meta
+            name="twitter:image:src"
+            content="https://particles.js.org/images/demo2.png"
+    />
+
+    <meta
+            property="og:title"
+            content="tsParticles - JavaScript Particles, Confetti and Fireworks animations for your website"
+    />
+    <meta property="og:site_name" content="tsParticles"/>
+    <meta property="og:url" content="https://particles.js.org/"/>
+    <meta
+            property="og:description"
+            content="Easily create highly customizable particles, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno."
+    />
+    <meta
+            property="og:image"
+            content="https://particles.js.org/images/demo2.png"
+    />
+    <title>
+        tsParticles | Fountain Preset | JavaScript Particles, Confetti and Fireworks animations for your website
+    </title>
     <link rel="stylesheet" href="/css/presets.min.css"/>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161253125-1"></script>
@@ -43,17 +73,35 @@
         });
 
         gtag("config", "AW-1021008757");
-        gtag("event", "conversion", {"send_to": "AW-1021008757/3t7QCNqulswBEPW27eYD"});
+        gtag("event", "conversion", { "send_to": "AW-1021008757/3t7QCNqulswBEPW27eYD" });
     </script>
 </head>
+
 <body>
 <div id="tsparticles"></div>
+<script type="text/javascript">
+    (function (c, l, a, r, i, t, y) {
+        c[a] = c[a] || function () {
+            (c[a].q = c[a].q || []).push(arguments)
+        };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "8q4bxin4tm");
+</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1784552607103901"
         crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-fountain@1.19.0/tsparticles.preset.fountain.bundle.js"
-        integrity="sha256-X9AnV5xN/aCGgjpnFdoxqgs+nEfF6ZrgBtmVrhPfcxA=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.42.4/tsparticles.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-fountain@1.42.4/tsparticles.preset.fountain.min.js"></script>
 <script type="text/javascript">
-    tsParticles.load("tsparticles", {preset: "fountain"});
+    (async () => {
+        await loadFountainPreset(tsParticles);
+
+        await tsParticles.load("tsparticles", { preset: "fountain" });
+    })();
 </script>
 </body>
+
 </html>

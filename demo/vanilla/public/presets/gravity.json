@@ -1,5 +1,5 @@
 {
-  "fpsLimit": 60,
+  "fpsLimit": 120,
   "particles": {
     "destroy": {
       "mode": "split",
@@ -89,7 +89,6 @@
     }
   },
   "interactivity": {
-    "detect_on": "canvas",
     "events": {
       "onHover": {
         "enable": false,

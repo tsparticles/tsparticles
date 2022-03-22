@@ -1,10 +1,9 @@
-import type { Container } from "../../../Core/Container";
+import { Circle, Constants, ExternalInteractorBase, Rectangle } from "../../../Core";
+import { ClickMode, DivMode, DivType, HoverMode } from "../../../Enums";
 import {
-    Circle,
     clamp,
     colorMix,
     colorToHsl,
-    Constants,
     divMode,
     divModeExecute,
     getDistance,
@@ -12,16 +11,14 @@ import {
     isDivModeEnabled,
     isInArray,
     itemFromArray,
-    Rectangle,
     rgbToHsl,
 } from "../../../Utils";
-import { ClickMode, DivMode, DivType, HoverMode } from "../../../Enums";
-import { Particle } from "../../../Core/Particle";
-import { DivEvent } from "../../../Options/Classes/Interactivity/Events/DivEvent";
 import { BubbleDiv } from "../../../Options/Classes/Interactivity/Modes/BubbleDiv";
-import { ExternalInteractorBase } from "../../../Core/ExternalInteractorBase";
-import { ProcessBubbleType } from "./ProcessBubbleType";
+import type { Container } from "../../../Core";
+import { DivEvent } from "../../../Options/Classes/Interactivity/Events/DivEvent";
 import type { IBubblerProcessParam } from "./IBubblerProcessParam";
+import type { Particle } from "../../../Core";
+import { ProcessBubbleType } from "./ProcessBubbleType";
 
 function calculateBubbleValue(
     particleValue: number,
@@ -80,7 +77,7 @@ export class Bubbler extends ExternalInteractorBase {
         delete particle.bubble.color;
     }
 
-    interact(): void {
+    async interact(): Promise<void> {
         const options = this.container.actualOptions,
             events = options.interactivity.events,
             onHover = events.onHover,
@@ -262,7 +259,7 @@ export class Bubbler extends ExternalInteractorBase {
                 },
                 particlesObj: {
                     optValue: getRangeMax(particle.options.opacity.value),
-                    value: particle.opacity.value,
+                    value: particle.opacity?.value ?? 1,
                 },
                 type: ProcessBubbleType.opacity,
             };
@@ -350,7 +347,7 @@ export class Bubbler extends ExternalInteractorBase {
         }
 
         const optOpacity = particle.options.opacity.value;
-        const pOpacity = particle.opacity.value;
+        const pOpacity = particle.opacity?.value ?? 1;
         const opacity = calculateBubbleValue(pOpacity, modeOpacity, getRangeMax(optOpacity), ratio);
 
         if (opacity !== undefined) {

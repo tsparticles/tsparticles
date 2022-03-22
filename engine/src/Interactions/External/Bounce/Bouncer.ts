@@ -1,22 +1,17 @@
+import { Circle, Constants, ExternalInteractorBase, Range, Rectangle, Vector } from "../../../Core";
+import { DivMode, DivType, HoverMode } from "../../../Enums";
 import {
     calculateBounds,
-    Circle,
     circleBounce,
     circleBounceDataFromParticle,
-    Constants,
     divModeExecute,
     isDivModeEnabled,
     isInArray,
-    Range,
-    Rectangle,
     rectBounce,
 } from "../../../Utils";
-import type { Container } from "../../../Core/Container";
-import { DivMode, DivType, HoverMode } from "../../../Enums";
+import type { Container } from "../../../Core";
 import { DivEvent } from "../../../Options/Classes/Interactivity/Events/DivEvent";
-import type { ICoordinates } from "../../../Core/Interfaces";
-import { Vector } from "../../../Core/Particle/Vector";
-import { ExternalInteractorBase } from "../../../Core/ExternalInteractorBase";
+import type { ICoordinates } from "../../../Core";
 
 export class Bouncer extends ExternalInteractorBase {
     constructor(container: Container) {
@@ -36,7 +31,7 @@ export class Bouncer extends ExternalInteractorBase {
         );
     }
 
-    interact(): void {
+    async interact(): Promise<void> {
         const container = this.container,
             options = container.actualOptions,
             events = options.interactivity.events,

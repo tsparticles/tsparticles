@@ -1,5 +1,5 @@
 {
-  "fpsLimit": 60,
+  "fpsLimit": 120,
   "infection": {
     "enable": true,
     "infections": 10,
@@ -99,7 +99,6 @@
     }
   },
   "interactivity": {
-    "detect_on": "canvas",
     "events": {
       "onhover": {
         "enable": false,

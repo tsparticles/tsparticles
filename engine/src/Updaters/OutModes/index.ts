@@ -1,6 +1,6 @@
-import type { Main } from "../../main";
+import type { Engine } from "../../engine";
 import { OutOfCanvasUpdater } from "./OutOfCanvasUpdater";
 
-export function loadOutModesUpdater(tsParticles: Main): void {
-    tsParticles.addParticleUpdater("outModes", (container) => new OutOfCanvasUpdater(container));
+export async function loadOutModesUpdater(engine: Engine): Promise<void> {
+    await engine.addParticleUpdater("outModes", (container) => new OutOfCanvasUpdater(container));
 }

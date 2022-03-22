@@ -10,7 +10,6 @@ import { Component } from "inferno";
 
 type IParticlesParams = IParticlesProps;
 
-export * from "tsparticles";
 export { ISourceOptions, IParticlesProps, ParticlesProps, IParticlesParams };
 
 type Particles = Component<IParticlesProps, IParticlesState>;

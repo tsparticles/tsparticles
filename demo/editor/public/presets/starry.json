@@ -7,7 +7,6 @@
     "color": "#000"
   },
   "interactivity": {
-    "detectsOn": "window",
     "events": {
       "onClick": {
         "enable": true,

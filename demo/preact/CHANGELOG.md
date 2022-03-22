@@ -3,6 +3,289 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.27.4](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.27.3...preact-particles-demo@1.27.4) (2022-03-20)
+
+
+### Bug Fixes
+
+* upgrade preact from 10.6.5 to 10.6.6 ([525d1b7](https://github.com/matteobruni/tsparticles/commit/525d1b7e6145bcbbd205235982c2478796c882d2))
+* upgrade preact-render-to-string from 5.1.19 to 5.1.20 ([1b85be0](https://github.com/matteobruni/tsparticles/commit/1b85be0123f24a9cf23e54e70ba2c0dbabe0c0f1))
+
+
+
+
+
+## [1.27.3](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.27.2...preact-particles-demo@1.27.3) (2022-03-18)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.27.2](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.27.1...preact-particles-demo@1.27.2) (2022-03-14)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.27.1](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.27.0...preact-particles-demo@1.27.1) (2022-03-09)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+# [1.27.0](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.26.6...preact-particles-demo@1.27.0) (2022-03-08)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.26.6](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.26.5...preact-particles-demo@1.26.6) (2022-03-03)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.26.5](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.26.4...preact-particles-demo@1.26.5) (2022-02-24)
+
+
+### Bug Fixes
+
+* fixed emitters issues ([c9d9a51](https://github.com/matteobruni/tsparticles/commit/c9d9a51e41fdc77a9bf544a09d979d8c2f6b10d5))
+
+
+
+
+
+## [1.26.4](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.26.3...preact-particles-demo@1.26.4) (2022-02-20)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.26.3](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.26.2...preact-particles-demo@1.26.3) (2022-02-19)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.26.2](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.26.1...preact-particles-demo@1.26.2) (2022-02-16)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.26.1](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.26.0...preact-particles-demo@1.26.1) (2022-02-14)
+
+
+### Bug Fixes
+
+* **deps:** update dependency preact-router to v4 ([c80c3a3](https://github.com/matteobruni/tsparticles/commit/c80c3a39d7dcc44d6c173e360c7a9a07d4f60efb))
+* upgrade preact from 10.5.14 to 10.6.4 ([0e83038](https://github.com/matteobruni/tsparticles/commit/0e830385d790f8f84b875aefc7fdbcda19f01b12))
+
+
+
+
+
+# [1.26.0](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.25.2...preact-particles-demo@1.26.0) (2022-02-10)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.25.2](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.25.1...preact-particles-demo@1.25.2) (2022-02-07)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.25.1](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.25.0...preact-particles-demo@1.25.1) (2022-02-06)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+# [1.25.0](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.24.3...preact-particles-demo@1.25.0) (2022-02-04)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.24.3](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.24.2...preact-particles-demo@1.24.3) (2022-02-02)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.24.2](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.24.1...preact-particles-demo@1.24.2) (2022-01-29)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.24.1](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.24.0...preact-particles-demo@1.24.1) (2022-01-26)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+# [1.24.0](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.23.0...preact-particles-demo@1.24.0) (2022-01-08)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+# [1.23.0](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.22.6...preact-particles-demo@1.23.0) (2021-12-29)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.22.6](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.22.5...preact-particles-demo@1.22.6) (2021-12-24)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.22.5](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.22.4...preact-particles-demo@1.22.5) (2021-11-28)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.22.4](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.22.3...preact-particles-demo@1.22.4) (2021-11-17)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.22.3](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.22.2...preact-particles-demo@1.22.3) (2021-11-05)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.22.2](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.22.1...preact-particles-demo@1.22.2) (2021-10-31)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.22.1](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.22.0...preact-particles-demo@1.22.1) (2021-10-30)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+# [1.22.0](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.21.0...preact-particles-demo@1.22.0) (2021-10-28)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+# [1.21.0](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.20.4...preact-particles-demo@1.21.0) (2021-10-14)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.20.4](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.20.3...preact-particles-demo@1.20.4) (2021-10-06)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.20.3](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.20.2...preact-particles-demo@1.20.3) (2021-10-03)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.20.2](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.20.1...preact-particles-demo@1.20.2) (2021-09-27)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.20.1](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.20.0...preact-particles-demo@1.20.1) (2021-09-20)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+# [1.20.0](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.19.1...preact-particles-demo@1.20.0) (2021-09-18)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.19.1](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.19.0...preact-particles-demo@1.19.1) (2021-09-15)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
 # [1.19.0](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.18.3...preact-particles-demo@1.19.0) (2021-08-23)
 
 

@@ -9,12 +9,12 @@ html(lang="en")
 
         meta(name="twitter:card" content="summary_large_image")
         meta(name="twitter:creator" content="@HollowMatt_ITA")
-        meta(name="twitter:image:src" content="https://particles.js.org/images/demo.png")
+        meta(name="twitter:image:src" content="https://particles.js.org/images/demo2.png")
         meta(property="og:title" content="tsParticles - A lightweight TypeScript library for creating particles")
         meta(property="og:site_name" content="tsParticles")
         meta(property="og:url" content="https://particles.js.org/")
         meta(property="og:description" content="A lightweight TypeScript library for creating particles.")
-        meta(property="og:image" content="https://particles.js.org/images/demo.png")
+        meta(property="og:image" content="https://particles.js.org/images/demo2.png")
 
         title tsParticles
 
@@ -22,6 +22,11 @@ html(lang="en")
     body
         #tsparticles(style="background: #000; position: fixed; width: 100%; height: 100%; left: 0; top: 0;")
 
-        script(src="/preset-confetti/tsparticles.preset.confetti.bundle.min.js")
+        script(src="/tsparticles/tsparticles.min.js")
+        script(src="/preset-confetti/tsparticles.preset.confetti.min.js")
         script.
-            confetti("tsparticles", {});
+            loadConfettiPreset(tsParticles);
+
+            tsParticles.load("tsparticles", {
+                preset: "confetti"
+            });

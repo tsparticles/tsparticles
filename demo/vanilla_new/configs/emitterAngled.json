@@ -3,7 +3,7 @@
     "enable": true,
     "zIndex": 0
   },
-  "fpsLimit": 60,
+  "fpsLimit": 120,
   "particles": {
     "number": {
       "value": 0
@@ -37,12 +37,6 @@
       "outModes": {
         "default": "destroy"
       }
-    }
-  },
-  "interactivity": {
-    "detectsOn": "canvas",
-    "events": {
-      "resize": true
     }
   },
   "detectRetina": true,

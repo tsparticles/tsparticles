@@ -1,6 +1,6 @@
-import type { Main } from "../../../main";
+import type { Engine } from "../../../engine";
 import { Repulser } from "./Repulser";
 
-export function loadExternalRepulseInteraction(tsParticles: Main): void {
-    tsParticles.addInteractor("externalRepulse", (container) => new Repulser(container));
+export async function loadExternalRepulseInteraction(engine: Engine): Promise<void> {
+    await engine.addInteractor("externalRepulse", (container) => new Repulser(container));
 }

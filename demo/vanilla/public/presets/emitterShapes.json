@@ -1,5 +1,5 @@
 {
-  "fpsLimit": 60,
+  "fpsLimit": 120,
   "particles": {
     "number": {
       "value": 0
@@ -15,12 +15,6 @@
     },
     "size": {
       "value": 1
-    }
-  },
-  "interactivity": {
-    "detectsOn": "canvas",
-    "events": {
-      "resize": true
     }
   },
   "detectRetina": true,

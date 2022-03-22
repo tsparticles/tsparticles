@@ -1,11 +1,11 @@
 {
-  "fpsLimit": 60,
+  "fpsLimit": 120,
   "particles": {
     "number": {
       "value": 80,
       "density": {
         "enable": true,
-        "value_area": 800
+        "area": 800
       }
     },
     "color": {
@@ -61,7 +61,6 @@
     }
   },
   "interactivity": {
-    "detect_on": "canvas",
     "events": {
       "onhover": {
         "enable": true,

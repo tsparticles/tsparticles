@@ -3,6 +3,322 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.27.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.27.3...tsparticles-demo@1.27.4) (2022-03-20)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+## [1.27.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.27.2...tsparticles-demo@1.27.3) (2022-03-18)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+## [1.27.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.27.1...tsparticles-demo@1.27.2) (2022-03-14)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+## [1.27.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.27.0...tsparticles-demo@1.27.1) (2022-03-09)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+# [1.27.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.26.6...tsparticles-demo@1.27.0) (2022-03-08)
+
+
+### Features
+
+* more rangeable options ([a2598c0](https://github.com/matteobruni/tsparticles/commit/a2598c07e968ab383c0a1eb311e22c4a0f52d9b8))
+
+
+
+
+
+## [1.26.6](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.26.5...tsparticles-demo@1.26.6) (2022-03-03)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+## [1.26.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.26.4...tsparticles-demo@1.26.5) (2022-02-24)
+
+
+### Bug Fixes
+
+* fixed emitters issues ([c9d9a51](https://github.com/matteobruni/tsparticles/commit/c9d9a51e41fdc77a9bf544a09d979d8c2f6b10d5))
+
+
+
+
+
+## [1.26.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.26.3...tsparticles-demo@1.26.4) (2022-02-20)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+## [1.26.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.26.2...tsparticles-demo@1.26.3) (2022-02-19)
+
+
+### Bug Fixes
+
+* fixed issue with size and opacity updaters ([f81e228](https://github.com/matteobruni/tsparticles/commit/f81e2280e3cff3942bdd8037df658b169d07ed30))
+
+
+
+
+
+## [1.26.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.26.1...tsparticles-demo@1.26.2) (2022-02-16)
+
+
+### Bug Fixes
+
+* fixed tilt back/front colors ([657585f](https://github.com/matteobruni/tsparticles/commit/657585f22d7fefa95df1cde16d6c68522fcfb34b))
+
+
+
+
+
+## [1.26.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.26.0...tsparticles-demo@1.26.1) (2022-02-14)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+# [1.26.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.25.2...tsparticles-demo@1.26.0) (2022-02-10)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+## [1.25.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.25.1...tsparticles-demo@1.25.2) (2022-02-07)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+## [1.25.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.25.0...tsparticles-demo@1.25.1) (2022-02-06)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+# [1.25.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.24.3...tsparticles-demo@1.25.0) (2022-02-04)
+
+
+### Features
+
+* added domId property to Emitters options ([9408d14](https://github.com/matteobruni/tsparticles/commit/9408d148138e0bacea6d2e426c885a66c625e1a6))
+
+
+
+
+
+## [1.24.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.24.2...tsparticles-demo@1.24.3) (2022-02-02)
+
+
+### Features
+
+* updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
+
+
+
+
+
+## [1.24.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.24.1...tsparticles-demo@1.24.2) (2022-01-29)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+## [1.24.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.24.0...tsparticles-demo@1.24.1) (2022-01-26)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+# [1.24.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.23.0...tsparticles-demo@1.24.0) (2022-01-08)
+
+
+### Features
+
+* improved image loading, now if an image is missing it will be loaded at runtime ([5155bef](https://github.com/matteobruni/tsparticles/commit/5155bef24ef3e3fa5ba4654361aabaab074c9957))
+
+
+
+
+
+# [1.23.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.22.6...tsparticles-demo@1.23.0) (2021-12-29)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+## [1.22.6](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.22.5...tsparticles-demo@1.22.6) (2021-12-24)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+## [1.22.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.22.4...tsparticles-demo@1.22.5) (2021-11-28)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+## [1.22.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.22.3...tsparticles-demo@1.22.4) (2021-11-17)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+## [1.22.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.22.2...tsparticles-demo@1.22.3) (2021-11-05)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+## [1.22.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.22.1...tsparticles-demo@1.22.2) (2021-10-31)
+
+
+### Bug Fixes
+
+* fixes some dynamic import issues ([8ba2415](https://github.com/matteobruni/tsparticles/commit/8ba2415d52384fd4ce722110cda02c8c0db92674))
+
+
+
+
+
+## [1.22.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.22.0...tsparticles-demo@1.22.1) (2021-10-30)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+# [1.22.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.21.0...tsparticles-demo@1.22.0) (2021-10-28)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+# [1.21.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.20.4...tsparticles-demo@1.21.0) (2021-10-14)
+
+
+### Bug Fixes
+
+* fixes issue with responsive not refreshing when changing options ([f54cefa](https://github.com/matteobruni/tsparticles/commit/f54cefac475599e7717c125490e81e2b17e89c3f))
+
+
+
+
+
+## [1.20.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.20.3...tsparticles-demo@1.20.4) (2021-10-06)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+## [1.20.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.20.2...tsparticles-demo@1.20.3) (2021-10-03)
+
+
+### Bug Fixes
+
+* fixed fireworks presets ([3402e46](https://github.com/matteobruni/tsparticles/commit/3402e46c7a6c945c481b563fa633fd6095f9b377))
+* improved new methods without id ([9b7a106](https://github.com/matteobruni/tsparticles/commit/9b7a106acd4c3225aa001f12ab25e4c2b89dde66))
+
+
+### Features
+
+* removing the id constraint, a random one will be generated ([3b6b48e](https://github.com/matteobruni/tsparticles/commit/3b6b48efd8962ccc11549339b38888808da2a657))
+
+
+
+
+
+## [1.20.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.20.1...tsparticles-demo@1.20.2) (2021-09-27)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+## [1.20.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.20.0...tsparticles-demo@1.20.1) (2021-09-20)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
+# [1.20.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.19.1...tsparticles-demo@1.20.0) (2021-09-18)
+
+
+### Bug Fixes
+
+* fixed issue with emitters and themes, they weren't applied correctly ([3a9dcae](https://github.com/matteobruni/tsparticles/commit/3a9dcaebed687277db76f7f1016e3835284b0d48))
+
+
+### Features
+
+* auto themes ([d80b78c](https://github.com/matteobruni/tsparticles/commit/d80b78cb49ae04796473bd06f827d5d5a29a3e35))
+
+
+
+
+
+## [1.19.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.19.0...tsparticles-demo@1.19.1) (2021-09-15)
+
+**Note:** Version bump only for package tsparticles-demo
+
+
+
+
+
 # [1.19.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@1.18.3...tsparticles-demo@1.19.0) (2021-08-23)
 
 

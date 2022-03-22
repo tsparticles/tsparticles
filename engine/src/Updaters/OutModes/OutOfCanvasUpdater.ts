@@ -1,12 +1,14 @@
-import type { IDelta, IParticleUpdater } from "../../Core/Interfaces";
-import { calculateBounds, isPointInside } from "../../Utils";
+import type { Container, IDelta, IParticleUpdater, Particle } from "../../Core";
 import { OutMode, OutModeAlt, OutModeDirection } from "../../Enums";
-import type { Particle } from "../../Core/Particle";
-import type { Container } from "../../Core/Container";
 import { bounceHorizontal, bounceVertical } from "./Utils";
+import { calculateBounds, isPointInside } from "../../Utils";
 
 export class OutOfCanvasUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
+
+    init(): void {
+        // nothing
+    }
 
     isEnabled(particle: Particle): boolean {
         return !particle.destroyed && !particle.spawning;

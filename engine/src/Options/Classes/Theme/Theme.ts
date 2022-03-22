@@ -1,9 +1,9 @@
-import type { ITheme } from "../../Interfaces/Theme/ITheme";
-import type { RecursivePartial } from "../../../Types";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import type { IOptions } from "../../Interfaces/IOptions";
-import { deepExtend } from "../../../Utils";
+import type { ITheme } from "../../Interfaces/Theme/ITheme";
+import type { RecursivePartial } from "../../../Types";
 import { ThemeDefault } from "./ThemeDefault";
+import { deepExtend } from "../../../Utils";
 
 export class Theme implements ITheme, IOptionLoader<ITheme> {
     name;

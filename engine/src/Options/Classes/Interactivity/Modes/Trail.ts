@@ -1,8 +1,8 @@
-import type { ITrail } from "../../../Interfaces/Interactivity/Modes/ITrail";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { IParticles } from "../../../Interfaces/Particles/IParticles";
+import type { ITrail } from "../../../Interfaces/Interactivity/Modes/ITrail";
 import type { RecursivePartial } from "../../../../Types";
 import { deepExtend } from "../../../../Utils";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 /**
  * @category Options

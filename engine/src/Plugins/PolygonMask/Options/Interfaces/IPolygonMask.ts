@@ -1,29 +1,31 @@
-import type { IDraw } from "./IDraw";
-import type { IMove } from "./IMove";
-import type { InlineArrangement, InlineArrangementAlt } from "../../Enums";
-import type { IInline } from "./IInline";
-import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
-import type { ILocalSvg } from "./ILocalSvg";
-import { Type } from "../../Enums";
+import type { PolygonMaskInlineArrangement, PolygonMaskInlineArrangementAlt, PolygonMaskType } from "../../Enums";
+import type { ICoordinates } from "../../../../Core";
+import type { IPolygonMaskDraw } from "./IPolygonMaskDraw";
+import type { IPolygonMaskInline } from "./IPolygonMaskInline";
+import type { IPolygonMaskLocalSvg } from "./IPolygonMaskLocalSvg";
+import type { IPolygonMaskMove } from "./IPolygonMaskMove";
 
 /**
  * [[include:Options/Plugins/PolygonMask.md]]
  * @category Polygon Mask Plugin
  */
 export interface IPolygonMask {
-    draw: IDraw;
+    draw: IPolygonMaskDraw;
     enable: boolean;
-    inline: IInline;
+    inline: IPolygonMaskInline;
 
     /**
      * @deprecated the inlineArrangement is deprecated, please use the new inline.arrangement property
      */
-    inlineArrangement: InlineArrangement | keyof typeof InlineArrangement | InlineArrangementAlt;
+    inlineArrangement:
+        | PolygonMaskInlineArrangement
+        | keyof typeof PolygonMaskInlineArrangement
+        | PolygonMaskInlineArrangementAlt;
 
-    move: IMove;
+    move: IPolygonMaskMove;
     position?: ICoordinates;
     scale: number;
-    type: Type;
+    type: PolygonMaskType;
     url?: string;
-    data?: string | ILocalSvg;
+    data?: string | IPolygonMaskLocalSvg;
 }

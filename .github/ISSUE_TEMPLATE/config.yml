@@ -5,4 +5,7 @@ contact_links:
     about: The official tsParticles Q&A, idea discussions or sharing awesome configurations. If you have some general questions this is the right place to ask.
   - name: Official tsParticles Slack
     url: https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI
-    about: The official slack offers more direct support.
+    about: The official Slack offers more direct support.
+  - name: Official tsParticles Discord
+    url: https://discord.com/invite/hACwv45Hme
+    about: The official Discord offers more direct support.

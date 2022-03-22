@@ -1,7 +1,7 @@
-import type { IPath } from "../../../../Interfaces/Particles/Move/Path/iPath";
-import type { RecursivePartial, PathOptions } from "../../../../../Types";
-import { PathDelay } from "./PathDelay";
+import type { PathOptions, RecursivePartial } from "../../../../../Types";
 import type { IOptionLoader } from "../../../../Interfaces/IOptionLoader";
+import type { IPath } from "../../../../Interfaces/Particles/Move/Path/IPath";
+import { PathDelay } from "./PathDelay";
 import { deepExtend } from "../../../../../Utils";
 
 /**

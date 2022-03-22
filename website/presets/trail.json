@@ -3,7 +3,7 @@
     "enable": true,
     "zIndex": 1
   },
-  "fpsLimit": 60,
+  "fpsLimit": 120,
   "emitters": {
     "position": {
       "x": 50,
@@ -96,7 +96,6 @@
     }
   },
   "interactivity": {
-    "detect_on": "canvas",
     "events": {
       "onhover": {
         "enable": false,

@@ -1,30 +1,29 @@
-import type { Container } from "../../Core/Container";
-import type { IEmitter } from "./Options/Interfaces/IEmitter";
+import type { Container, ICoordinates, IDelta, IDimension, IHsl } from "../../Core";
 import { colorToHsl, deepExtend, getRangeValue, isPointInside, randomInRange } from "../../Utils";
-import { SizeMode } from "../../Enums";
+import { Emitter } from "./Options/Classes/Emitter";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
 import type { Emitters } from "./Emitters";
-import type { RecursivePartial } from "../../Types";
-import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
-import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
-import type { ICoordinates, IDelta, IHsl } from "../../Core/Interfaces";
+import type { EmittersEngine } from "./EmittersEngine";
 import type { IColorAnimation } from "../../Options/Interfaces/IColorAnimation";
-import type { IHslAnimation } from "../../Options/Interfaces/IHslAnimation";
-import { ShapeManager } from "./ShapeManager";
+import type { IEmitter } from "./Options/Interfaces/IEmitter";
 import type { IEmitterShape } from "./IEmitterShape";
+import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
+import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
+import type { RecursivePartial } from "../../Types";
+import { SizeMode } from "../../Enums";
 
 /**
  * @category Emitters Plugin
  */
 export class EmitterInstance {
-    position: ICoordinates;
-    size: IEmitterSize;
-    emitterOptions: IEmitter;
+    position?: ICoordinates;
+    size;
+    options;
     spawnColor?: IHsl;
     fill;
 
-    #firstSpawn: boolean;
-    #startParticlesAdded: boolean;
+    #firstSpawn;
+    #startParticlesAdded;
 
     readonly name?: string;
     private paused;
@@ -43,41 +42,50 @@ export class EmitterInstance {
     private readonly initialPosition?: ICoordinates;
     private readonly particlesOptions: RecursivePartial<IParticles>;
 
+    readonly #engine;
+
     constructor(
+        engine: EmittersEngine,
         private readonly emitters: Emitters,
         private readonly container: Container,
-        emitterOptions: IEmitter,
+        options: RecursivePartial<IEmitter>,
         position?: ICoordinates
     ) {
+        this.#engine = engine;
         this.currentDuration = 0;
         this.currentEmitDelay = 0;
         this.currentSpawnDelay = 0;
         this.initialPosition = position;
-        this.emitterOptions = deepExtend({}, emitterOptions) as IEmitter;
-        this.spawnDelay = ((this.emitterOptions.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
+
+        if (options instanceof Emitter) {
+            this.options = options;
+        } else {
+            this.options = new Emitter();
+            this.options.load(options);
+        }
+
+        this.spawnDelay = ((this.options.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
         this.position = this.initialPosition ?? this.calcPosition();
-        this.name = emitterOptions.name;
-        this.shape = ShapeManager.getShape(emitterOptions.shape);
-        this.fill = emitterOptions.fill;
-        this.#firstSpawn = !this.emitterOptions.life.wait;
+        this.name = this.options.name;
+        this.shape = this.#engine.emitterShapeManager?.getShape(this.options.shape);
+        this.fill = this.options.fill;
+        this.#firstSpawn = !this.options.life.wait;
         this.#startParticlesAdded = false;
 
-        let particlesOptions = deepExtend({}, this.emitterOptions.particles) as RecursivePartial<IParticles>;
+        let particlesOptions = deepExtend({}, this.options.particles) as RecursivePartial<IParticles>;
 
         particlesOptions ??= {};
         particlesOptions.move ??= {};
-        particlesOptions.move.direction ??= this.emitterOptions.direction;
+        particlesOptions.move.direction ??= this.options.direction;
 
-        if (this.emitterOptions.spawnColor !== undefined) {
-            this.spawnColor = colorToHsl(this.emitterOptions.spawnColor);
+        if (this.options.spawnColor) {
+            this.spawnColor = colorToHsl(this.options.spawnColor);
         }
 
-        this.paused = !this.emitterOptions.autoPlay;
-
+        this.paused = !this.options.autoPlay;
         this.particlesOptions = particlesOptions;
-
         this.size =
-            this.emitterOptions.size ??
+            this.options.size ??
             ((): IEmitterSize => {
                 const size = new EmitterSize();
 
@@ -89,8 +97,7 @@ export class EmitterInstance {
 
                 return size;
             })();
-
-        this.lifeCount = this.emitterOptions.life.count ?? -1;
+        this.lifeCount = this.options.life.count ?? -1;
         this.immortal = this.lifeCount <= 0;
 
         this.play();
@@ -115,11 +122,11 @@ export class EmitterInstance {
 
         if (
             this.container.retina.reduceFactor &&
-            (this.lifeCount > 0 || this.immortal || !this.emitterOptions.life.count) &&
+            (this.lifeCount > 0 || this.immortal || !this.options.life.count) &&
             (this.#firstSpawn || this.currentSpawnDelay >= (this.spawnDelay ?? 0))
         ) {
             if (this.emitDelay === undefined) {
-                const delay = getRangeValue(this.emitterOptions.rate.delay);
+                const delay = getRangeValue(this.options.rate.delay);
 
                 this.emitDelay = (1000 * delay) / this.container.retina.reduceFactor;
             }
@@ -162,7 +169,7 @@ export class EmitterInstance {
         if (!this.#startParticlesAdded) {
             this.#startParticlesAdded = true;
 
-            this.emitParticles(this.emitterOptions.startCount);
+            this.emitParticles(this.options.startCount);
         }
 
         if (this.duration !== undefined) {
@@ -182,8 +189,7 @@ export class EmitterInstance {
                 if (this.lifeCount > 0 || this.immortal) {
                     this.position = this.calcPosition();
 
-                    this.spawnDelay =
-                        ((this.emitterOptions.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
+                    this.spawnDelay = ((this.options.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
                 } else {
                     this.destroy();
                 }
@@ -214,12 +220,58 @@ export class EmitterInstance {
         }
     }
 
+    getPosition(): ICoordinates | undefined {
+        if (this.options.domId) {
+            const container = this.container,
+                element = document.getElementById(this.options.domId);
+
+            if (element) {
+                const elRect = element.getBoundingClientRect();
+
+                return {
+                    x: (elRect.x + elRect.width / 2) * container.retina.pixelRatio,
+                    y: (elRect.y + elRect.height / 2) * container.retina.pixelRatio,
+                };
+            }
+        }
+
+        return this.position;
+    }
+
+    getSize(): IDimension {
+        const container = this.container;
+
+        if (this.options.domId) {
+            const element = document.getElementById(this.options.domId);
+
+            if (element) {
+                const elRect = element.getBoundingClientRect();
+
+                return {
+                    width: elRect.width * container.retina.pixelRatio,
+                    height: elRect.height * container.retina.pixelRatio,
+                };
+            }
+        }
+
+        return {
+            width:
+                this.size.mode === SizeMode.percent
+                    ? (container.canvas.size.width * this.size.width) / 100
+                    : this.size.width,
+            height:
+                this.size.mode === SizeMode.percent
+                    ? (container.canvas.size.height * this.size.height) / 100
+                    : this.size.height,
+        };
+    }
+
     private prepareToDie(): void {
         if (this.paused) {
             return;
         }
 
-        const duration = this.emitterOptions.life?.duration;
+        const duration = this.options.life?.duration;
 
         if (
             this.container.retina.reduceFactor &&
@@ -237,12 +289,11 @@ export class EmitterInstance {
 
     private calcPosition(): ICoordinates {
         const container = this.container;
-
-        const percentPosition = this.emitterOptions.position;
+        const percentPosition = this.options.position;
 
         return {
-            x: ((percentPosition?.x ?? Math.random() * 100) / 100) * container.canvas.size.width,
-            y: ((percentPosition?.y ?? Math.random() * 100) / 100) * container.canvas.size.height,
+            x: (getRangeValue(percentPosition?.x ?? Math.random() * 100) / 100) * container.canvas.size.width,
+            y: (getRangeValue(percentPosition?.y ?? Math.random() * 100) / 100) * container.canvas.size.height,
         };
     }
 
@@ -251,43 +302,26 @@ export class EmitterInstance {
             return;
         }
 
-        const quantity = getRangeValue(this.emitterOptions.rate.quantity);
+        const quantity = getRangeValue(this.options.rate.quantity);
 
         this.emitParticles(quantity);
     }
 
     private emitParticles(quantity: number): void {
         const container = this.container;
-        const position = this.position;
-        const offset = {
-            x:
-                this.size.mode === SizeMode.percent
-                    ? (container.canvas.size.width * this.size.width) / 100
-                    : this.size.width,
-            y:
-                this.size.mode === SizeMode.percent
-                    ? (container.canvas.size.height * this.size.height) / 100
-                    : this.size.height,
-        };
+        const position = this.getPosition();
+        const size = this.getSize();
 
         for (let i = 0; i < quantity; i++) {
             const particlesOptions = deepExtend({}, this.particlesOptions) as RecursivePartial<IParticles>;
 
-            if (this.spawnColor !== undefined) {
-                const colorAnimation = this.emitterOptions.spawnColor?.animation;
+            if (this.spawnColor) {
+                const hslAnimation = this.options.spawnColor?.animation;
 
-                if (colorAnimation) {
-                    const hueAnimation = colorAnimation as IColorAnimation;
-
-                    if (hueAnimation.enable) {
-                        this.spawnColor.h = this.setColorAnimation(hueAnimation, this.spawnColor.h, 360);
-                    } else {
-                        const hslAnimation = colorAnimation as IHslAnimation;
-
-                        this.spawnColor.h = this.setColorAnimation(hslAnimation.h, this.spawnColor.h, 360);
-                        this.spawnColor.s = this.setColorAnimation(hslAnimation.s, this.spawnColor.s, 100);
-                        this.spawnColor.l = this.setColorAnimation(hslAnimation.l, this.spawnColor.l, 100);
-                    }
+                if (hslAnimation) {
+                    this.spawnColor.h = this.setColorAnimation(hslAnimation.h, this.spawnColor.h, 360);
+                    this.spawnColor.s = this.setColorAnimation(hslAnimation.s, this.spawnColor.s, 100);
+                    this.spawnColor.l = this.setColorAnimation(hslAnimation.l, this.spawnColor.l, 100);
                 }
 
                 if (!particlesOptions.color) {
@@ -299,7 +333,11 @@ export class EmitterInstance {
                 }
             }
 
-            const pPosition = this.shape?.randomPosition(position, offset, this.fill) ?? position;
+            if (!position) {
+                return;
+            }
+
+            const pPosition = this.shape?.randomPosition(position, size, this.fill) ?? position;
 
             container.particles.addParticle(pPosition, particlesOptions);
         }
@@ -314,9 +352,9 @@ export class EmitterInstance {
 
         const colorOffset = randomInRange(animation.offset);
 
-        const delay = getRangeValue(this.emitterOptions.rate.delay);
+        const delay = getRangeValue(this.options.rate.delay);
         const emitFactor = (1000 * delay) / container.retina.reduceFactor;
-        const colorSpeed = animation.speed ?? 0;
+        const colorSpeed = getRangeValue(animation.speed ?? 0);
 
         return (initValue + (colorSpeed * container.fpsLimit) / emitFactor + colorOffset * 3.6) % maxValue;
     }

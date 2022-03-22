@@ -1,5 +1,5 @@
-import { tsParticles } from "tsparticles";
 import { loadBubblesPreset } from ".";
+import { tsParticles } from "tsparticles";
 
 loadBubblesPreset(tsParticles);
 

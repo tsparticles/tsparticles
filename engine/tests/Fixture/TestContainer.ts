@@ -1,8 +1,8 @@
-import { tsParticles } from "../../src";
-import { Container } from "../../src/Core/Container";
-import { Options } from "../../src/Options/Classes/Options";
+import { Container } from "../../src";
 import type { IOptions } from "../../src/Options/Interfaces/IOptions";
-import { RecursivePartial } from "../../src/Types";
+import { Options } from "../../src/Options/Classes/Options";
+import { RecursivePartial } from "../../src";
+import { tsParticles } from "../../src";
 
 export class TestContainer {
     private readonly id: string;
@@ -10,6 +10,7 @@ export class TestContainer {
     container: Container;
 
     constructor(options?: RecursivePartial<IOptions>) {
+        window.SVGPathSeg = {} as any;
         tsParticles.init();
 
         const defaultOptions: RecursivePartial<IOptions> = { particles: { size: { value: 0 } } };
@@ -17,8 +18,8 @@ export class TestContainer {
         this.id = "test-container";
 
         this.options = options ?? defaultOptions; // This keeps new Particle from offsetting position by 3
-        this.container = new Container(this.id, this.options);
-        this.container.retina.init();
+        this.container = new Container(tsParticles, this.id, this.options);
+        this.container.init();
     }
 
     /**
@@ -32,9 +33,9 @@ export class TestContainer {
             this.options = options;
         }
 
-        this.container = new Container(this.id, this.options);
-        this.container.actualOptions = new Options();
+        this.container = new Container(tsParticles, this.id, this.options);
+        this.container.actualOptions = new Options(tsParticles);
         this.container.actualOptions.load(this.container.options);
-        this.container.retina.init();
+        this.container.init();
     }
 }

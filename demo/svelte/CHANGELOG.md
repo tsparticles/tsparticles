@@ -3,41 +3,117 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [1.17.0](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.16.3...svelte-demo@1.17.0) (2021-08-23)
+## [1.25.4](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.25.3...svelte-demo@1.25.4) (2022-03-20)
+
+**Note:** Version bump only for package svelte-demo
+
+
+
+
+
+## [1.25.3](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.25.2...svelte-demo@1.25.3) (2022-03-18)
+
+**Note:** Version bump only for package svelte-demo
+
+
+
+
+
+## [1.25.2](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.25.1...svelte-demo@1.25.2) (2022-03-14)
+
+**Note:** Version bump only for package svelte-demo
+
+
+
+
+
+## [1.25.1](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.25.0...svelte-demo@1.25.1) (2022-03-09)
+
+**Note:** Version bump only for package svelte-demo
+
+
+
+
+
+# [1.25.0](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.24.6...svelte-demo@1.25.0) (2022-03-08)
+
+**Note:** Version bump only for package svelte-demo
+
+
+
+
+
+## [1.24.6](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.24.5...svelte-demo@1.24.6) (2022-03-03)
+
+**Note:** Version bump only for package svelte-demo
+
+
+
+
+
+## [1.24.5](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.24.4...svelte-demo@1.24.5) (2022-02-24)
 
 
 ### Bug Fixes
 
-* **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
-* **deps:** update all ([d9f0ff2](https://github.com/matteobruni/tsparticles/commit/d9f0ff2f8c4ac269aaad5077492746e3da8fb422))
+* fixed emitters issues ([c9d9a51](https://github.com/matteobruni/tsparticles/commit/c9d9a51e41fdc77a9bf544a09d979d8c2f6b10d5))
 
 
 
 
 
-## [1.16.3](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.16.2...svelte-demo@1.16.3) (2021-08-10)
+## [1.24.4](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.24.3...svelte-demo@1.24.4) (2022-02-20)
+
+**Note:** Version bump only for package svelte-demo
+
+
+
+
+
+## [1.24.3](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.24.2...svelte-demo@1.24.3) (2022-02-19)
+
+**Note:** Version bump only for package svelte-demo
+
+
+
+
+
+## [1.24.2](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.24.1...svelte-demo@1.24.2) (2022-02-16)
+
+**Note:** Version bump only for package svelte-demo
+
+
+
+
+
+## [1.24.1](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.24.0...svelte-demo@1.24.1) (2022-02-14)
+
+**Note:** Version bump only for package svelte-demo
+
+
+
+
+
+# [1.24.0](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.23.2...svelte-demo@1.24.0) (2022-02-10)
+
+**Note:** Version bump only for package svelte-demo
+
+
+
+
+
+## [1.23.2](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.23.1...svelte-demo@1.23.2) (2022-02-07)
 
 
 ### Bug Fixes
 
-* fixed issues with svelte 3.41.0 ([113c1c9](https://github.com/matteobruni/tsparticles/commit/113c1c9675eb365dedbedbc8ea39a8116ef66da8))
+* removed all browser flags in package.json, a lot of issues with it. closes [#3094](https://github.com/matteobruni/tsparticles/issues/3094) ([1415875](https://github.com/matteobruni/tsparticles/commit/14158755ec80ace4e0c520cef407b2d7f4078568))
 
 
 
 
 
-## [1.16.2](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.16.1...svelte-demo@1.16.2) (2021-07-31)
-
-
-### Bug Fixes
-
-* fixed svelte component, reverted to an older svelte version for now, closes [#1924](https://github.com/matteobruni/tsparticles/issues/1924) ([80a88be](https://github.com/matteobruni/tsparticles/commit/80a88beaeb8a11b83c3f602234da0ec2cfadc10e))
-
-
-
-
-
-## [1.16.1](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.16.0...svelte-demo@1.16.1) (2021-07-29)
+## [1.23.1](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.23.0...svelte-demo@1.23.1) (2022-02-06)
 
 **Note:** Version bump only for package svelte-demo
 
@@ -45,7 +121,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [1.16.0](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.15.0...svelte-demo@1.16.0) (2021-07-29)
+# [1.23.0](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.22.3...svelte-demo@1.23.0) (2022-02-04)
 
 **Note:** Version bump only for package svelte-demo
 
@@ -53,7 +129,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.1.1](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.1.0...svelte-demo@1.1.1) (2020-10-06)
+## [1.22.3](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.22.2...svelte-demo@1.22.3) (2022-02-02)
 
 **Note:** Version bump only for package svelte-demo
 
@@ -61,7 +137,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [1.1.0](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.1.0-beta.5...svelte-demo@1.1.0) (2020-10-05)
+## [1.22.2](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.22.1...svelte-demo@1.22.2) (2022-01-29)
 
 **Note:** Version bump only for package svelte-demo
 
@@ -69,7 +145,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [1.1.0-beta.5](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.1.0-beta.4...svelte-demo@1.1.0-beta.5) (2020-10-04)
+## [1.22.1](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.22.0...svelte-demo@1.22.1) (2022-01-26)
 
 **Note:** Version bump only for package svelte-demo
 
@@ -77,150 +153,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [1.1.0-beta.4](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.1.0-beta.3...svelte-demo@1.1.0-beta.4) (2020-10-04)
-
-**Note:** Version bump only for package svelte-demo
-
-
-
-
-
-# [1.1.0-beta.3](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.1.0-beta.2...svelte-demo@1.1.0-beta.3) (2020-10-03)
-
-**Note:** Version bump only for package svelte-demo
-
-
-
-
-
-# [1.1.0-beta.2](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.1.0-beta.1...svelte-demo@1.1.0-beta.2) (2020-10-03)
-
-**Note:** Version bump only for package svelte-demo
-
-
-
-
-
-# [1.1.0-beta.1](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.1.0-beta.0...svelte-demo@1.1.0-beta.1) (2020-10-03)
-
-**Note:** Version bump only for package svelte-demo
-
-
-
-
-
-# [1.1.0-beta.0](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.0.13...svelte-demo@1.1.0-beta.0) (2020-10-02)
-
-**Note:** Version bump only for package svelte-demo
-
-
-
-
-
-# [1.1.0-alpha.14](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.0.10...svelte-demo@1.1.0-alpha.14) (2020-08-22)
-
-**Note:** Version bump only for package svelte-demo
-
-
-
-
-
-# [1.1.0-alpha.13](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.1.0-alpha.12...svelte-demo@1.1.0-alpha.13) (2020-08-17)
-
-**Note:** Version bump only for package svelte-demo
-
-
-
-
-
-# [1.1.0-alpha.12](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.0.8...svelte-demo@1.1.0-alpha.12) (2020-08-16)
-
-**Note:** Version bump only for package svelte-demo
-
-
-
-
-
-# [1.1.0-alpha.11](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.1.0-alpha.10...svelte-demo@1.1.0-alpha.11) (2020-08-13)
-
-**Note:** Version bump only for package svelte-demo
-
-
-
-
-
-# [1.1.0-alpha.10](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.1.0-alpha.9...svelte-demo@1.1.0-alpha.10) (2020-08-13)
-
-**Note:** Version bump only for package svelte-demo
-
-
-
-
-
-# [1.1.0-alpha.9](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.1.0-alpha.8...svelte-demo@1.1.0-alpha.9) (2020-08-13)
-
-**Note:** Version bump only for package svelte-demo
-
-
-
-
-
-# [1.1.0-alpha.8](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.1.0-alpha.7...svelte-demo@1.1.0-alpha.8) (2020-08-13)
-
-**Note:** Version bump only for package svelte-demo
-
-
-
-
-
-# [1.1.0-alpha.7](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.1.0-alpha.6...svelte-demo@1.1.0-alpha.7) (2020-08-12)
-
-**Note:** Version bump only for package svelte-demo
-
-
-
-
-
-# [1.1.0-alpha.6](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.1.0-alpha.5...svelte-demo@1.1.0-alpha.6) (2020-08-11)
-
-**Note:** Version bump only for package svelte-demo
-
-
-
-
-
-# [1.1.0-alpha.5](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.1.0-alpha.4...svelte-demo@1.1.0-alpha.5) (2020-08-11)
-
-**Note:** Version bump only for package svelte-demo
-
-
-
-
-
-# [1.1.0-alpha.4](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.1.0-alpha.3...svelte-demo@1.1.0-alpha.4) (2020-08-11)
-
-**Note:** Version bump only for package svelte-demo
-
-
-
-
-
-# [1.1.0-alpha.3](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.1.0-alpha.2...svelte-demo@1.1.0-alpha.3) (2020-08-10)
-
-**Note:** Version bump only for package svelte-demo
-
-
-
-
-
-# [1.1.0-alpha.2](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.1.0-alpha.1...svelte-demo@1.1.0-alpha.2) (2020-08-09)
-
-**Note:** Version bump only for package svelte-demo
-
-
-
-
-
-# [1.1.0-alpha.1](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.0.7...svelte-demo@1.1.0-alpha.1) (2020-08-08)
+# [1.22.0](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.21.0...svelte-demo@1.22.0) (2022-01-08)
 
 **Note:** Version bump only for package svelte-demo

@@ -1,20 +1,20 @@
+import type { ICoordinates, IDimension } from "../../../../Core";
 import type { IEmitterShape } from "../../IEmitterShape";
-import type { ICoordinates } from "../../../../Core/Interfaces";
 
 function randomSquareCoordinate(position: number, offset: number): number {
     return position + offset * (Math.random() - 0.5);
 }
 
 export class SquareShape implements IEmitterShape {
-    randomPosition(position: ICoordinates, offset: ICoordinates, fill: boolean): ICoordinates {
+    randomPosition(position: ICoordinates, size: IDimension, fill: boolean): ICoordinates {
         if (fill) {
             return {
-                x: randomSquareCoordinate(position.x, offset.x),
-                y: randomSquareCoordinate(position.y, offset.y),
+                x: randomSquareCoordinate(position.x, size.width),
+                y: randomSquareCoordinate(position.y, size.height),
             };
         } else {
-            const halfW = offset.x / 2,
-                halfH = offset.y / 2,
+            const halfW = size.width / 2,
+                halfH = size.height / 2,
                 side = Math.floor(Math.random() * 4),
                 v = (Math.random() - 0.5) * 2;
 

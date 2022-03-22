@@ -6,9 +6,8 @@
     "enable": true
   },
   "detectRetina": true,
-  "fpsLimit": 60,
+  "fpsLimit": 120,
   "interactivity": {
-    "detectsOn": "window",
     "events": {
       "onHover": {
         "mode": "trail",

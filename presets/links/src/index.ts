@@ -1,6 +1,6 @@
-import type { Main } from "tsparticles";
+import type { Engine } from "tsparticles";
 import { options } from "./options";
 
-export function loadLinksPreset(tsParticles: Main): void {
-    tsParticles.addPreset("links", options);
+export function loadLinksPreset(engine: Engine): void {
+    engine.addPreset("links", options);
 }

@@ -1,11 +1,12 @@
-import { RecursivePartial } from "../../Types";
-import { IOptionLoader } from "../Interfaces/IOptionLoader";
-import { IAnimation } from "../Interfaces/IAnimation";
+import type { RangeValue, RecursivePartial } from "../../Types";
+import type { IAnimation } from "../Interfaces/IAnimation";
+import type { IOptionLoader } from "../Interfaces/IOptionLoader";
+import { setRangeValue } from "../../Utils";
 
 export class AnimationOptions implements IAnimation, IOptionLoader<IAnimation> {
-    count: number;
+    count: RangeValue;
     enable: boolean;
-    speed: number;
+    speed: RangeValue;
     sync: boolean;
 
     constructor() {
@@ -21,7 +22,7 @@ export class AnimationOptions implements IAnimation, IOptionLoader<IAnimation> {
         }
 
         if (data.count !== undefined) {
-            this.count = data.count;
+            this.count = setRangeValue(data.count);
         }
 
         if (data.enable !== undefined) {
@@ -29,7 +30,7 @@ export class AnimationOptions implements IAnimation, IOptionLoader<IAnimation> {
         }
 
         if (data.speed !== undefined) {
-            this.speed = data.speed;
+            this.speed = setRangeValue(data.speed);
         }
 
         if (data.sync !== undefined) {

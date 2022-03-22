@@ -1,26 +1,41 @@
-import type { Container } from "./Container";
-import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
-import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
-import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import {
-    AlterType,
     AnimationStatus,
     DestroyMode,
     OutMode,
     OutModeAlt,
+    RollMode,
     RotateDirection,
     ShapeType,
     StartValueType,
-    TiltDirection,
 } from "../Enums";
-import type { RecursivePartial } from "../Types";
+import type {
+    IBubbleParticleData,
+    ICoordinates,
+    ICoordinates3d,
+    IDelta,
+    IHsl,
+    IParticle,
+    IParticleGradientAnimation,
+    IParticleGravity,
+    IParticleHslAnimation,
+    IParticleLife,
+    IParticleNumericValueAnimation,
+    IParticleRetinaProps,
+    IParticleRoll,
+    IParticleSpin,
+    IParticleTiltValueAnimation,
+    IParticleValueAnimation,
+    IParticleWobble,
+    IRgb,
+    IShapeValues,
+} from "./Interfaces";
+import { Vector, Vector3d } from "./Utils";
 import {
+    alterHsl,
     clamp,
-    colorToHsl,
     colorToRgb,
     deepExtend,
     getDistance,
-    getHslAnimationFromHsl,
     getHslFromAnimation,
     getParticleBaseVelocity,
     getParticleDirectionAngle,
@@ -30,32 +45,34 @@ import {
     getValue,
     isInArray,
     itemFromArray,
-    Plugins,
     randomInRange,
     setRangeValue,
 } from "../Utils";
+import type { Container } from "./Container";
+import type { Engine } from "../engine";
+import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
+import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
+import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
+import type { RecursivePartial } from "../Types";
+import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import type { Stroke } from "../Options/Classes/Particles/Stroke";
-import { Vector } from "./Particle/Vector";
-import type {
-    IBubbleParticleData,
-    ICoordinates,
-    ICoordinates3d,
-    IDelta,
-    IDistance,
-    IHsl,
-    IParticle,
-    IParticleGradientAnimation,
-    IParticleHslAnimation,
-    IParticleLife,
-    IParticleNumericValueAnimation,
-    IParticleSpin,
-    IParticleTiltValueAnimation,
-    IParticleValueAnimation,
-    IRgb,
-    IShapeValues,
-} from "./Interfaces";
-import { Vector3d } from "./Particle/Vector3d";
-import { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
+
+const fixOutMode = (data: {
+    outMode: OutMode | keyof typeof OutMode | OutModeAlt;
+    checkModes: (OutMode | keyof typeof OutMode | OutModeAlt)[];
+    coord: number;
+    maxCoord: number;
+    setCb: (value: number) => void;
+    radius: number;
+}) => {
+    if (isInArray(data.outMode, data.checkModes) || isInArray(data.outMode, data.checkModes)) {
+        if (data.coord > data.maxCoord - data.radius * 2) {
+            data.setCb(-data.radius);
+        } else if (data.coord < data.radius * 2) {
+            data.setCb(data.radius);
+        }
+    }
+};
 
 /**
  * The single particle object
@@ -63,53 +80,40 @@ import { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
  */
 export class Particle implements IParticle {
     destroyed;
+    ignoresResizeRatio;
     lastPathTime;
     misplaced;
-    rollAngle;
-    rollSpeed;
     spawning;
     splitCount;
     unbreakable;
-    wobbleAngle;
-    wobbleDistance;
-    wobbleSpeed;
 
     readonly pathDelay;
     readonly sides;
-    readonly strokeWidth;
     readonly options;
     readonly life: IParticleLife;
-    readonly maxDistance: Partial<IDistance>;
 
-    alterValue?: number;
-    alterType?: AlterType;
-    attractDistance?: number;
+    roll?: IParticleRoll;
+    wobble?: IParticleWobble;
     backColor?: IHsl;
     close: boolean;
     fill: boolean;
     randomIndexData?: number;
-    linksDistance?: number;
-    linksWidth?: number;
-    moveDrift?: number;
-    moveSpeed?: number;
-    maxSpeed?: number;
-    orbitRadius?: number;
-    orbitRotation?: number;
-    sizeAnimationSpeed?: number;
+    gradient?: IParticleGradientAnimation;
+    rotate?: IParticleValueAnimation<number>;
+    tilt?: IParticleTiltValueAnimation;
+    color?: IParticleHslAnimation;
+    opacity?: IParticleNumericValueAnimation;
+    strokeWidth?: number;
+    stroke?: Stroke;
+    strokeColor?: IParticleHslAnimation;
 
+    readonly gravity: IParticleGravity;
+    readonly moveDecay: number;
     readonly direction: number;
-    readonly stroke: Stroke;
     readonly position: Vector3d;
     readonly offset: Vector;
     readonly shadowColor: IRgb | undefined;
-    readonly color?: IParticleHslAnimation;
-    readonly gradient?: IParticleGradientAnimation;
-    readonly opacity: IParticleNumericValueAnimation;
-    readonly rotate: IParticleValueAnimation<number>;
     readonly size: IParticleNumericValueAnimation;
-    readonly tilt: IParticleTiltValueAnimation;
-    readonly strokeColor?: IParticleHslAnimation;
-    readonly orbitColor?: IHsl;
     readonly velocity: Vector;
     readonly shape: ShapeType | string;
     readonly spin?: IParticleSpin;
@@ -118,14 +122,19 @@ export class Particle implements IParticle {
     readonly shapeData?: IShapeValues;
     readonly bubble: IBubbleParticleData;
     readonly zIndexFactor: number;
+    readonly retina: IParticleRetinaProps;
+
+    readonly #engine;
 
     constructor(
+        engine: Engine,
         readonly id: number,
         readonly container: Container,
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticles>,
         readonly group?: string
     ) {
+        this.#engine = engine;
         this.fill = true;
         this.close = true;
         this.lastPathTime = 0;
@@ -133,13 +142,16 @@ export class Particle implements IParticle {
         this.unbreakable = false;
         this.splitCount = 0;
         this.misplaced = false;
-        this.maxDistance = {};
+        this.retina = {
+            maxDistance: {},
+        };
+        this.ignoresResizeRatio = true;
 
         const pxRatio = container.retina.pixelRatio;
-        const options = container.actualOptions;
+        const mainOptions = container.actualOptions;
         const particlesOptions = new ParticlesOptions();
 
-        particlesOptions.load(options.particles);
+        particlesOptions.load(mainOptions.particles);
 
         const shapeType = particlesOptions.shape.type;
         const reduceDuplicates = particlesOptions.reduceDuplicates;
@@ -178,27 +190,23 @@ export class Particle implements IParticle {
         this.fill = this.shapeData?.fill ?? this.fill;
         this.close = this.shapeData?.close ?? this.close;
         this.options = particlesOptions;
+        this.pathDelay = getValue(this.options.move.path.delay) * 1000;
 
         const zIndexValue = getRangeValue(this.options.zIndex.value);
-
-        this.pathDelay = getValue(this.options.move.path.delay) * 1000;
-        this.wobbleDistance = 0;
 
         container.retina.initParticle(this);
 
         /* size */
-        const sizeOptions = this.options.size;
-        const sizeValue = getValue(sizeOptions) * container.retina.pixelRatio;
-
-        const sizeRange = sizeOptions.value;
+        const sizeOptions = this.options.size,
+            sizeRange = sizeOptions.value;
 
         this.size = {
             enable: sizeOptions.animation.enable,
-            value: sizeValue,
+            value: getValue(sizeOptions) * container.retina.pixelRatio,
             max: getRangeMax(sizeRange) * pxRatio,
             min: getRangeMin(sizeRange) * pxRatio,
             loops: 0,
-            maxLoops: sizeOptions.animation.count,
+            maxLoops: getRangeValue(sizeOptions.animation.count),
         };
 
         const sizeAnimation = sizeOptions.animation;
@@ -228,7 +236,7 @@ export class Particle implements IParticle {
             }
 
             this.size.velocity =
-                ((this.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100) *
+                ((this.retina.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100) *
                 container.retina.reduceFactor;
 
             if (!sizeAnimation.sync) {
@@ -244,223 +252,13 @@ export class Particle implements IParticle {
         /* animation - velocity for speed */
         this.initialVelocity = this.calculateVelocity();
         this.velocity = this.initialVelocity.copy();
-
-        const rotateOptions = this.options.rotate;
-
-        this.rotate = {
-            enable: rotateOptions.animation.enable,
-            value: (getRangeValue(rotateOptions.value) * Math.PI) / 180,
+        this.moveDecay = 1 - getRangeValue(this.options.move.decay);
+        const gravityOptions = this.options.move.gravity;
+        this.gravity = {
+            enable: gravityOptions.enable,
+            acceleration: getRangeValue(gravityOptions.acceleration),
+            inverse: gravityOptions.inverse,
         };
-
-        let rotateDirection = rotateOptions.direction;
-
-        if (rotateDirection === RotateDirection.random) {
-            const index = Math.floor(Math.random() * 2);
-
-            rotateDirection = index > 0 ? RotateDirection.counterClockwise : RotateDirection.clockwise;
-        }
-
-        switch (rotateDirection) {
-            case RotateDirection.counterClockwise:
-            case "counterClockwise":
-                this.rotate.status = AnimationStatus.decreasing;
-                break;
-            case RotateDirection.clockwise:
-                this.rotate.status = AnimationStatus.increasing;
-                break;
-        }
-
-        const rotateAnimation = this.options.rotate.animation;
-
-        if (rotateAnimation.enable) {
-            this.rotate.velocity = (rotateAnimation.speed / 360) * container.retina.reduceFactor;
-
-            if (!rotateAnimation.sync) {
-                this.rotate.velocity *= Math.random();
-            }
-        }
-
-        const tiltOptions = this.options.tilt;
-
-        this.tilt = {
-            enable: tiltOptions.enable,
-            value: (getRangeValue(tiltOptions.value) * Math.PI) / 180,
-            sinDirection: Math.random() >= 0.5 ? 1 : -1,
-            cosDirection: Math.random() >= 0.5 ? 1 : -1,
-        };
-
-        let tiltDirection = tiltOptions.direction;
-
-        if (tiltDirection === TiltDirection.random) {
-            const index = Math.floor(Math.random() * 2);
-
-            tiltDirection = index > 0 ? TiltDirection.counterClockwise : TiltDirection.clockwise;
-        }
-
-        switch (tiltDirection) {
-            case TiltDirection.counterClockwise:
-            case "counterClockwise":
-                this.tilt.status = AnimationStatus.decreasing;
-                break;
-            case TiltDirection.clockwise:
-                this.tilt.status = AnimationStatus.increasing;
-                break;
-        }
-
-        const tiltAnimation = this.options.tilt.animation;
-
-        if (tiltAnimation.enable) {
-            this.tilt.velocity = (tiltAnimation.speed / 360) * container.retina.reduceFactor;
-
-            if (!tiltAnimation.sync) {
-                this.tilt.velocity *= Math.random();
-            }
-        }
-
-        /* orbit */
-        const orbitOptions = particlesOptions.orbit;
-
-        if (orbitOptions.enable) {
-            this.orbitRotation = getRangeValue(orbitOptions.rotation.value);
-
-            this.orbitColor = colorToHsl(orbitOptions.color);
-        }
-
-        /* color */
-        const hslColor = colorToHsl(this.options.color, this.id, reduceDuplicates);
-
-        if (hslColor) {
-            this.color = getHslAnimationFromHsl(hslColor, this.options.color.animation, container.retina.reduceFactor);
-        }
-
-        const gradient =
-            this.options.gradient instanceof Array ? itemFromArray(this.options.gradient) : this.options.gradient;
-
-        if (gradient) {
-            this.gradient = {
-                angle: {
-                    value: gradient.angle.value,
-                    enable: gradient.angle.animation.enable,
-                    velocity: (gradient.angle.animation.speed / 360) * container.retina.reduceFactor,
-                },
-                type: gradient.type,
-                colors: [],
-            };
-
-            let rotateDirection = gradient.angle.direction;
-
-            if (rotateDirection === RotateDirection.random) {
-                const index = Math.floor(Math.random() * 2);
-
-                rotateDirection = index > 0 ? RotateDirection.counterClockwise : RotateDirection.clockwise;
-            }
-
-            switch (rotateDirection) {
-                case RotateDirection.counterClockwise:
-                case "counterClockwise":
-                    this.gradient.angle.status = AnimationStatus.decreasing;
-                    break;
-                case RotateDirection.clockwise:
-                    this.gradient.angle.status = AnimationStatus.increasing;
-                    break;
-            }
-
-            for (const grColor of gradient.colors) {
-                const grHslColor = colorToHsl(grColor.value, this.id, reduceDuplicates);
-
-                if (grHslColor) {
-                    const grHslAnimation = getHslAnimationFromHsl(
-                        grHslColor,
-                        grColor.value.animation,
-                        container.retina.reduceFactor
-                    );
-
-                    const addColor = {
-                        stop: grColor.stop,
-                        value: grHslAnimation,
-                        opacity: grColor.opacity
-                            ? {
-                                  enable: grColor.opacity.animation.enable,
-                                  max: getRangeMax(grColor.opacity.value),
-                                  min: getRangeMin(grColor.opacity.value),
-                                  status: AnimationStatus.increasing,
-                                  value: getRangeValue(grColor.opacity.value),
-                                  velocity: (grColor.opacity.animation.speed / 100) * container.retina.reduceFactor,
-                              }
-                            : undefined,
-                    };
-
-                    if (grColor.opacity && addColor.opacity) {
-                        const opacityRange = grColor.opacity.value;
-
-                        addColor.opacity.min = getRangeMin(opacityRange);
-                        addColor.opacity.max = getRangeMax(opacityRange);
-
-                        const opacityAnimation = grColor.opacity.animation;
-
-                        switch (opacityAnimation.startValue) {
-                            case StartValueType.min:
-                                addColor.opacity.value = addColor.opacity.min;
-                                addColor.opacity.status = AnimationStatus.increasing;
-
-                                break;
-
-                            case StartValueType.random:
-                                addColor.opacity.value = randomInRange(addColor.opacity);
-                                addColor.opacity.status =
-                                    Math.random() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
-
-                                break;
-
-                            case StartValueType.max:
-                            default:
-                                addColor.opacity.value = addColor.opacity.max;
-                                addColor.opacity.status = AnimationStatus.decreasing;
-
-                                break;
-                        }
-                    }
-
-                    this.gradient.colors.push(addColor);
-                }
-            }
-        }
-
-        const rollOpt = this.options.roll;
-
-        if (rollOpt.enable) {
-            if (this.color) {
-                if (rollOpt.backColor) {
-                    this.backColor = colorToHsl(rollOpt.backColor);
-                } else if (rollOpt.darken.enable && rollOpt.enlighten.enable) {
-                    this.alterType = Math.random() >= 0.5 ? AlterType.darken : AlterType.enlighten;
-                    this.alterValue =
-                        this.alterType === AlterType.darken ? rollOpt.darken.value : rollOpt.enlighten.value;
-                } else if (rollOpt.darken.enable) {
-                    this.alterType = AlterType.darken;
-                    this.alterValue = rollOpt.darken.value;
-                } else if (rollOpt.enlighten.enable) {
-                    this.alterType = AlterType.enlighten;
-                    this.alterValue = rollOpt.enlighten.value;
-                }
-            }
-
-            this.rollAngle = Math.random() * Math.PI * 2;
-            this.rollSpeed = getRangeValue(rollOpt.speed) / 360;
-        } else {
-            this.rollAngle = 0;
-            this.rollSpeed = 0;
-        }
-
-        const wobbleOpt = this.options.wobble;
-
-        if (wobbleOpt.enable) {
-            this.wobbleAngle = Math.random() * Math.PI * 2;
-            this.wobbleSpeed = getRangeValue(wobbleOpt.speed) / 360;
-        } else {
-            this.wobbleAngle = 0;
-            this.wobbleSpeed = 0;
-        }
 
         /* position */
         this.position = this.calcPosition(container, position, clamp(zIndexValue, 0, container.zLayers));
@@ -476,64 +274,12 @@ export class Particle implements IParticle {
 
         // Scale z-index factor
         this.zIndexFactor = this.position.z / container.zLayers;
-
-        /* opacity */
-        const opacityOptions = this.options.opacity;
-
-        this.opacity = {
-            enable: opacityOptions.animation.enable,
-            max: getRangeMax(opacityOptions.value),
-            min: getRangeMin(opacityOptions.value),
-            value: getRangeValue(opacityOptions.value),
-            loops: 0,
-            maxLoops: opacityOptions.animation.count,
-        };
-
-        const opacityAnimation = opacityOptions.animation;
-
-        if (opacityAnimation.enable) {
-            this.opacity.status = AnimationStatus.increasing;
-
-            const opacityRange = opacityOptions.value;
-
-            this.opacity.min = getRangeMin(opacityRange);
-            this.opacity.max = getRangeMax(opacityRange);
-
-            switch (opacityAnimation.startValue) {
-                case StartValueType.min:
-                    this.opacity.value = this.opacity.min;
-                    this.opacity.status = AnimationStatus.increasing;
-
-                    break;
-
-                case StartValueType.random:
-                    this.opacity.value = randomInRange(this.opacity);
-                    this.opacity.status =
-                        Math.random() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
-
-                    break;
-
-                case StartValueType.max:
-                default:
-                    this.opacity.value = this.opacity.max;
-                    this.opacity.status = AnimationStatus.decreasing;
-
-                    break;
-            }
-
-            this.opacity.velocity = (opacityAnimation.speed / 100) * container.retina.reduceFactor;
-
-            if (!opacityAnimation.sync) {
-                this.opacity.velocity *= Math.random();
-            }
-        }
-
         this.sides = 24;
 
         let drawer = container.drawers.get(this.shape);
 
         if (!drawer) {
-            drawer = Plugins.getShapeDrawer(this.shape);
+            drawer = this.#engine.plugins.getShapeDrawer(this.shape);
 
             if (drawer) {
                 container.drawers.set(this.shape, drawer);
@@ -548,24 +294,6 @@ export class Particle implements IParticle {
 
         if (sideCountFunc) {
             this.sides = sideCountFunc(this);
-        }
-
-        this.stroke =
-            this.options.stroke instanceof Array
-                ? itemFromArray(this.options.stroke, this.id, reduceDuplicates)
-                : this.options.stroke;
-
-        this.strokeWidth = this.stroke.width * container.retina.pixelRatio;
-
-        /* strokeColor */
-        const strokeHslColor = colorToHsl(this.stroke.color) ?? this.getFillColor();
-
-        if (strokeHslColor) {
-            this.strokeColor = getHslAnimationFromHsl(
-                strokeHslColor,
-                this.stroke.color?.animation,
-                container.retina.reduceFactor
-            );
         }
 
         this.life = this.loadLife();
@@ -587,11 +315,17 @@ export class Particle implements IParticle {
                 direction: this.velocity.x >= 0 ? RotateDirection.clockwise : RotateDirection.counterClockwise,
                 angle: this.velocity.angle,
                 radius: distance,
-                acceleration: getRangeValue(this.options.move.spin.acceleration),
+                acceleration: this.retina.spinAcceleration ?? getRangeValue(this.options.move.spin.acceleration),
             };
         }
 
         this.shadowColor = colorToRgb(this.options.shadow.color);
+
+        for (const updater of container.particles.updaters) {
+            if (updater.init) {
+                updater.init(this);
+            }
+        }
 
         if (drawer && drawer.particleInit) {
             drawer.particleInit(container, this);
@@ -639,34 +373,28 @@ export class Particle implements IParticle {
     }
 
     getRadius(): number {
-        return (this.bubble.radius || this.size.value) * this.container.retina.scale;
+        return (this.bubble.radius ?? this.size.value) * this.container.retina.scale;
     }
 
     getMass(): number {
-        const radius = this.getRadius();
-
-        return (radius ** 2 * Math.PI) / 2;
+        return (this.getRadius() ** 2 * Math.PI) / 2;
     }
 
     getFillColor(): IHsl | undefined {
-        if (this.bubble.color) {
-            return this.bubble.color;
-        }
+        const color = this.bubble.color ?? getHslFromAnimation(this.color);
 
-        const color = getHslFromAnimation(this.color);
-
-        if (color && (this.backColor || (this.alterType && this.alterValue !== undefined))) {
-            const rolled = Math.floor(this.rollAngle / (Math.PI / 2)) % 2;
+        if (color && this.roll && (this.backColor || this.roll.alter)) {
+            const backFactor = this.options.roll.mode === RollMode.both ? 2 : 1,
+                backSum = this.options.roll.mode === RollMode.horizontal ? Math.PI / 2 : 0,
+                rolled = Math.floor(((this.roll.angle ?? 0) + backSum) / (Math.PI / backFactor)) % 2;
 
             if (rolled) {
                 if (this.backColor) {
                     return this.backColor;
-                } else if (this.alterType && this.alterValue !== undefined) {
-                    return {
-                        h: color.h,
-                        s: color.s,
-                        l: color.l + (this.alterType === AlterType.darken ? -1 : 1) * this.alterValue,
-                    };
+                }
+
+                if (this.roll.alter) {
+                    return alterHsl(color, this.roll.alter.type, this.roll.alter.value);
                 }
             }
         }
@@ -710,7 +438,10 @@ export class Particle implements IParticle {
      * This method is used when the particle has lost a life and needs some value resets
      */
     reset(): void {
-        this.opacity.loops = 0;
+        if (this.opacity) {
+            this.opacity.loops = 0;
+        }
+
         this.size.loops = 0;
     }
 
@@ -752,27 +483,27 @@ export class Particle implements IParticle {
         const radius = this.getRadius();
 
         /* check position  - into the canvas */
-        const outModes = this.options.move.outModes;
-
-        const fixHorizontal = (outMode: OutMode | keyof typeof OutMode | OutModeAlt) => {
-            if (isInArray(outMode, OutMode.bounce) || isInArray(outMode, OutMode.bounceHorizontal)) {
-                if (pos.x > container.canvas.size.width - radius * 2) {
-                    pos.x -= radius;
-                } else if (pos.x < radius * 2) {
-                    pos.x += radius;
-                }
-            }
-        };
-
-        const fixVertical = (outMode: OutMode | keyof typeof OutMode | OutModeAlt) => {
-            if (isInArray(outMode, OutMode.bounce) || isInArray(outMode, OutMode.bounceVertical)) {
-                if (pos.y > container.canvas.size.height - radius * 2) {
-                    pos.y -= radius;
-                } else if (pos.y < radius * 2) {
-                    pos.y += radius;
-                }
-            }
-        };
+        const outModes = this.options.move.outModes,
+            fixHorizontal = (outMode: OutMode | keyof typeof OutMode | OutModeAlt) => {
+                fixOutMode({
+                    outMode,
+                    checkModes: [OutMode.bounce, OutMode.bounceHorizontal],
+                    coord: pos.x,
+                    maxCoord: container.canvas.size.width,
+                    setCb: (value: number) => (pos.x += value),
+                    radius,
+                });
+            },
+            fixVertical = (outMode: OutMode | keyof typeof OutMode | OutModeAlt) => {
+                fixOutMode({
+                    outMode,
+                    checkModes: [OutMode.bounce, OutMode.bounceVertical],
+                    coord: pos.y,
+                    maxCoord: container.canvas.size.height,
+                    setCb: (value: number) => (pos.y += value),
+                    radius,
+                });
+            };
 
         fixHorizontal(outModes.left ?? outModes.default);
         fixHorizontal(outModes.right ?? outModes.default);
@@ -819,16 +550,15 @@ export class Particle implements IParticle {
     }
 
     private calculateVelocity(): Vector {
-        const baseVelocity = getParticleBaseVelocity(this.direction);
-        const res = baseVelocity.copy();
-        const moveOptions = this.options.move;
-        const rad = (Math.PI / 180) * moveOptions.angle.value;
-        const radOffset = (Math.PI / 180) * moveOptions.angle.offset;
-
-        const range = {
-            left: radOffset - rad / 2,
-            right: radOffset + rad / 2,
-        };
+        const baseVelocity = getParticleBaseVelocity(this.direction),
+            res = baseVelocity.copy(),
+            moveOptions = this.options.move,
+            rad = (Math.PI / 180) * getRangeValue(moveOptions.angle.value),
+            radOffset = (Math.PI / 180) * getRangeValue(moveOptions.angle.offset),
+            range = {
+                left: radOffset - rad / 2,
+                right: radOffset + rad / 2,
+            };
 
         if (!moveOptions.straight) {
             res.angle += randomInRange(setRangeValue(range.left, range.right));

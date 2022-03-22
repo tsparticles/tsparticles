@@ -3,7 +3,7 @@ tsParticles.load("particles", {
         enable: true,
         zIndex: 0
     },
-    fpsLimit: 60,
+    fpsLimit: 120,
     particles: {
         number: {
             value: 80,
@@ -68,7 +68,6 @@ tsParticles.load("particles", {
         }
     },
     interactivity: {
-        detectsOn: "canvas",
         events: {
             onHover: {
                 enable: true,

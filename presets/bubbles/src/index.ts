@@ -1,6 +1,6 @@
-import type { Main } from "tsparticles";
+import type { Engine } from "tsparticles";
 import { options } from "./options";
 
-export function loadBubblesPreset(tsParticles: Main): void {
-    tsParticles.addPreset("bubbles", options);
+export function loadBubblesPreset(engine: Engine): void {
+    engine.addPreset("bubbles", options);
 }

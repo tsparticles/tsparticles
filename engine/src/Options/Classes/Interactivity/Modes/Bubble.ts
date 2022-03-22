@@ -1,7 +1,7 @@
-import type { IBubble } from "../../../Interfaces/Interactivity/Modes/IBubble";
 import type { RecursivePartial, SingleOrMultiple } from "../../../../Types";
-import { BubbleDiv } from "./BubbleDiv";
 import { BubbleBase } from "./BubbleBase";
+import { BubbleDiv } from "./BubbleDiv";
+import type { IBubble } from "../../../Interfaces/Interactivity/Modes/IBubble";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 
 /**

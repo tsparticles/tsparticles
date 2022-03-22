@@ -1,209 +1,13 @@
-import type { Container } from "../../Core/Container";
-import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
-import { InlineArrangement, Type } from "./Enums";
-import { Particle } from "../../Core/Particle";
-import {
-    colorToRgb,
-    Constants,
-    deepExtend,
-    getDistance,
-    getDistances,
-    getStyleFromRgb,
-    itemFromArray,
-} from "../../Utils";
-import type { IDimension } from "../../Core/Interfaces/IDimension";
+import type { Container, IContainerPlugin, ICoordinates, IDelta, IDimension, Particle } from "../../Core";
+import { PolygonMaskInlineArrangement, PolygonMaskType } from "./Enums";
+import { calcClosestPtOnSegment, drawPolygonMask, drawPolygonMaskPath, parsePaths, segmentBounce } from "./Utils";
+import { deepExtend, getDistance, getDistances, itemFromArray } from "../../Utils";
+import { Constants } from "../../Core";
+import type { IPolygonMaskOptions } from "./Types";
 import type { ISvgPath } from "./Interfaces/ISvgPath";
-import type { IContainerPlugin } from "../../Core/Interfaces/IContainerPlugin";
-import type { IDrawStroke } from "./Options/Interfaces/IDrawStroke";
-import type { IOptions } from "../../Options/Interfaces/IOptions";
-import type { RecursivePartial } from "../../Types";
-import type { IPolygonMask } from "./Options/Interfaces/IPolygonMask";
-import { PolygonMask } from "./Options/Classes/PolygonMask";
-import { Vector } from "../../Core/Particle/Vector";
-import type { IDelta } from "../../Core/Interfaces/IDelta";
 import { OutModeDirection } from "../../Enums";
-
-type SvgAbsoluteCoordinatesTypes =
-    | SVGPathSegArcAbs
-    | SVGPathSegCurvetoCubicAbs
-    | SVGPathSegCurvetoCubicSmoothAbs
-    | SVGPathSegCurvetoQuadraticAbs
-    | SVGPathSegCurvetoQuadraticSmoothAbs
-    | SVGPathSegLinetoAbs
-    | SVGPathSegMovetoAbs;
-
-type SvgRelativeCoordinatesTypes =
-    | SVGPathSegArcRel
-    | SVGPathSegCurvetoCubicRel
-    | SVGPathSegCurvetoCubicSmoothRel
-    | SVGPathSegCurvetoQuadraticRel
-    | SVGPathSegCurvetoQuadraticSmoothRel
-    | SVGPathSegLinetoRel
-    | SVGPathSegMovetoRel;
-
-type IPolygonMaskOptions = IOptions & {
-    polygon: IPolygonMask;
-};
-
-function drawPolygonMask(context: CanvasRenderingContext2D, rawData: ICoordinates[], stroke: IDrawStroke): void {
-    const color = colorToRgb(stroke.color);
-
-    if (!color) {
-        return;
-    }
-
-    context.beginPath();
-    context.moveTo(rawData[0].x, rawData[0].y);
-
-    for (const item of rawData) {
-        context.lineTo(item.x, item.y);
-    }
-
-    context.closePath();
-    context.strokeStyle = getStyleFromRgb(color);
-    context.lineWidth = stroke.width;
-    context.stroke();
-}
-
-function drawPolygonMaskPath(
-    context: CanvasRenderingContext2D,
-    path: Path2D,
-    stroke: IDrawStroke,
-    position: ICoordinates
-): void {
-    context.translate(position.x, position.y);
-
-    const color = colorToRgb(stroke.color);
-
-    if (!color) {
-        return;
-    }
-
-    context.strokeStyle = getStyleFromRgb(color, stroke.opacity);
-    context.lineWidth = stroke.width;
-    context.stroke(path);
-}
-
-function parsePaths(paths: ISvgPath[], scale: number, offset: ICoordinates): ICoordinates[] {
-    const res: ICoordinates[] = [];
-
-    for (const path of paths) {
-        const segments = path.element.pathSegList;
-        const len = segments.numberOfItems;
-        const p = {
-            x: 0,
-            y: 0,
-        };
-
-        for (let i = 0; i < len; i++) {
-            const segment: SVGPathSeg = segments.getItem(i);
-            const svgPathSeg = window.SVGPathSeg;
-
-            switch (segment.pathSegType) {
-                //
-                // Absolute
-                //
-                case svgPathSeg.PATHSEG_MOVETO_ABS:
-                case svgPathSeg.PATHSEG_LINETO_ABS:
-                case svgPathSeg.PATHSEG_CURVETO_CUBIC_ABS:
-                case svgPathSeg.PATHSEG_CURVETO_QUADRATIC_ABS:
-                case svgPathSeg.PATHSEG_ARC_ABS:
-                case svgPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_ABS:
-                case svgPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS: {
-                    const absSeg = segment as SvgAbsoluteCoordinatesTypes;
-
-                    p.x = absSeg.x;
-                    p.y = absSeg.y;
-                    break;
-                }
-                case svgPathSeg.PATHSEG_LINETO_HORIZONTAL_ABS:
-                    p.x = (segment as SVGPathSegLinetoHorizontalAbs).x;
-                    break;
-
-                case svgPathSeg.PATHSEG_LINETO_VERTICAL_ABS:
-                    p.y = (segment as SVGPathSegLinetoVerticalAbs).y;
-                    break;
-
-                //
-                // Relative
-                //
-                case svgPathSeg.PATHSEG_LINETO_REL:
-                case svgPathSeg.PATHSEG_MOVETO_REL:
-                case svgPathSeg.PATHSEG_CURVETO_CUBIC_REL:
-                case svgPathSeg.PATHSEG_CURVETO_QUADRATIC_REL:
-                case svgPathSeg.PATHSEG_ARC_REL:
-                case svgPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL:
-                case svgPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL: {
-                    const relSeg = segment as SvgRelativeCoordinatesTypes;
-
-                    p.x += relSeg.x;
-                    p.y += relSeg.y;
-                    break;
-                }
-                case svgPathSeg.PATHSEG_LINETO_HORIZONTAL_REL:
-                    p.x += (segment as SVGPathSegLinetoHorizontalRel).x;
-                    break;
-
-                case svgPathSeg.PATHSEG_LINETO_VERTICAL_REL:
-                    p.y += (segment as SVGPathSegLinetoVerticalRel).y;
-                    break;
-
-                case svgPathSeg.PATHSEG_UNKNOWN:
-                case svgPathSeg.PATHSEG_CLOSEPATH:
-                    continue; // Skip the closing path (and the UNKNOWN)
-            }
-
-            res.push({
-                x: p.x * scale + offset.x,
-                y: p.y * scale + offset.y,
-            });
-        }
-    }
-
-    return res;
-}
-
-function calcClosestPtOnSegment(
-    s1: ICoordinates,
-    s2: ICoordinates,
-    pos: ICoordinates
-): ICoordinates & { isOnSegment: boolean } {
-    // calc delta distance: source point to line start
-    const { dx, dy } = getDistances(pos, s1);
-
-    // calc delta distance: line start to end
-    const { dx: dxx, dy: dyy } = getDistances(s2, s1);
-
-    // Calc position on line normalized between 0.00 & 1.00
-    // == dot product divided by delta line distances squared
-    const t = (dx * dxx + dy * dyy) / (dxx ** 2 + dyy ** 2);
-
-    // calc nearest pt on line
-    let x = s1.x + dxx * t;
-    let y = s1.y + dyy * t;
-
-    // clamp results to being on the segment
-    if (t < 0) {
-        x = s1.x;
-        y = s1.y;
-    } else if (t > 1) {
-        x = s2.x;
-        y = s2.y;
-    }
-
-    return { x: x, y: y, isOnSegment: t >= 0 && t <= 1 };
-}
-
-function segmentBounce(start: ICoordinates, stop: ICoordinates, velocity: Vector): void {
-    const { dx, dy } = getDistances(start, stop);
-    const wallAngle = Math.atan2(dy, dx); // + Math.PI / 2;
-    const wallNormalX = Math.sin(wallAngle);
-    const wallNormalY = -Math.cos(wallAngle);
-    const d = 2 * (velocity.x * wallNormalX + velocity.y * wallNormalY);
-
-    velocity.x -= d * wallNormalX;
-    velocity.y -= d * wallNormalY;
-}
+import { PolygonMask } from "./Options/Classes/PolygonMask";
+import type { RecursivePartial } from "../../Types";
 
 /**
  * Polygon Mask manager
@@ -247,7 +51,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         const container = this.container;
         const options = this.options;
 
-        if (!(options.enable && options.type !== Type.none)) {
+        if (!(options.enable && options.type !== PolygonMaskType.none)) {
             return;
         }
 
@@ -258,7 +62,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         this.redrawTimeout = window.setTimeout(async () => {
             await this.initRawData(true);
 
-            container.particles.redraw();
+            await container.particles.redraw();
         }, 250);
     }
 
@@ -272,9 +76,9 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
         if (
             options.enable &&
-            options.type === Type.inline &&
-            (options.inline.arrangement === InlineArrangement.onePerPoint ||
-                options.inline.arrangement === InlineArrangement.perPoint)
+            options.type === PolygonMaskType.inline &&
+            (options.inline.arrangement === PolygonMaskInlineArrangement.onePerPoint ||
+                options.inline.arrangement === PolygonMaskInlineArrangement.perPoint)
         ) {
             this.drawPoints();
 
@@ -303,8 +107,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
         return (
             options.enable &&
-            options.type !== Type.none &&
-            options.type !== Type.inline &&
+            options.type !== PolygonMaskType.none &&
+            options.type !== PolygonMaskType.inline &&
             this.checkInsidePolygon(position)
         );
     }
@@ -339,14 +143,14 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
     }
 
-    private polygonBounce(particle: Particle, delta: IDelta, direction: OutModeDirection): boolean {
+    private polygonBounce(particle: Particle, _delta: IDelta, direction: OutModeDirection): boolean {
         const options = this.options;
 
         if (!this.raw || !options.enable || direction !== OutModeDirection.top) {
             return false;
         }
 
-        if (options.type === Type.inside || options.type === Type.outside) {
+        if (options.type === PolygonMaskType.inside || options.type === PolygonMaskType.outside) {
             let closest: ICoordinates | undefined, dx: number | undefined, dy: number | undefined;
             const pos = particle.getPosition(),
                 radius = particle.getRadius();
@@ -385,7 +189,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
                 return true;
             }
-        } else if (options.type === Type.inline && particle.initialPosition) {
+        } else if (options.type === PolygonMaskType.inline && particle.initialPosition) {
             const dist = getDistance(particle.initialPosition, particle.getPosition());
 
             if (dist > this.polygonMaskMoveRadius) {
@@ -403,7 +207,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         const container = this.container;
         const options = this.options;
 
-        if (!options.enable || options.type === Type.none || options.type === Type.inline) {
+        if (!options.enable || options.type === PolygonMaskType.none || options.type === PolygonMaskType.inline) {
             return true;
         }
 
@@ -434,7 +238,11 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
         // }
 
-        return options.type === Type.inside ? inside : options.type === Type.outside ? !inside : false;
+        return options.type === PolygonMaskType.inside
+            ? inside
+            : options.type === PolygonMaskType.outside
+            ? !inside
+            : false;
     }
 
     private parseSvgPath(xml: string, force?: boolean): ICoordinates[] | undefined {
@@ -490,7 +298,6 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
 
     /**
-     * Depends on SVGPathSeg API polyfill https://github.com/progers/pathseg for Chrome
      * Deprecate SVGPathElement.getPathSegAtLength removed in:
      * Chrome for desktop release 62
      * Chrome for Android release 62
@@ -536,19 +343,19 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
         let position: ICoordinates;
 
-        if (options.type === Type.inline) {
+        if (options.type === PolygonMaskType.inline) {
             switch (options.inline.arrangement) {
-                case InlineArrangement.randomPoint:
+                case PolygonMaskInlineArrangement.randomPoint:
                     position = this.getRandomPoint();
                     break;
-                case InlineArrangement.randomLength:
+                case PolygonMaskInlineArrangement.randomLength:
                     position = this.getRandomPointByLength();
                     break;
-                case InlineArrangement.equidistant:
+                case PolygonMaskInlineArrangement.equidistant:
                     position = this.getEquidistantPointByIndex(container.particles.count);
                     break;
-                case InlineArrangement.onePerPoint:
-                case InlineArrangement.perPoint:
+                case PolygonMaskInlineArrangement.onePerPoint:
+                case PolygonMaskInlineArrangement.perPoint:
                 default:
                     position = this.getPointByIndex(container.particles.count);
             }

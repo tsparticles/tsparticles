@@ -1,14 +1,18 @@
-[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# tsParticles Fire Preset
+# tsParticles Fireworks Preset
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-fire/badge)](https://www.jsdelivr.com/package/npm/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles-preset-fire.svg)](https://www.npmjs.com/package/tsparticles-preset-fire) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-fire)](https://www.npmjs.com/package/tsparticles-preset-fire)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-fireworks/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-fireworks) [![npmjs](https://badge.fury.io/js/tsparticles-preset-fireworks.svg)](https://www.npmjs.com/package/tsparticles-preset-fireworks) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-fireworks)](https://www.npmjs.com/package/tsparticles-preset-fireworks)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) preset for a faded red to black background with particles colored like fire and ash sparks.
+[tsParticles](https://github.com/matteobruni/tsparticles) preset for fireworks effect.
+
+[![Slack](https://particles.js.org/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI) [![Discord](https://particles.js.org/images/discord.png)](https://discord.gg/hACwv45Hme) [![Telegram](https://particles.js.org/images/telegram.png)](https://t.me/tsparticles)
+
+[![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles") <a href="https://www.buymeacoffee.com/matteobruni"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
 
 ## Sample
 
-![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/v1/presets/fire/images/sample.png)
+[![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/fireworks/images/sample.png)](https://particles.js.org/samples/presets/fireworks)
 
 ## How to use it
 
@@ -18,11 +22,11 @@ The first step is installing [tsParticles](https://github.com/matteobruni/tspart
 vanilla javascript in the main project [here](https://github.com/matteobruni/tsparticles)
 
 Once installed you need one more script to be included in your page (or you can download that
-from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-fire):
+from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-fireworks):
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-fire"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-fireworks@2/tsparticles.preset.fireworks.min.js"></script>
 ```
 
 This script **MUST** be placed after the `tsParticles` one.
@@ -32,7 +36,7 @@ This script **MUST** be placed after the `tsParticles` one.
 A bundled script can also be used, this will include every needed plugin needed by the preset.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-fire/dist/tsparticles.preset.fire.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-fireworks@2/tsparticles.preset.fireworks.bundle.min.js"></script>
 ```
 
 ### Usage
@@ -40,10 +44,10 @@ A bundled script can also be used, this will include every needed plugin needed 
 Once the scripts are loaded you can set up `tsParticles` like this:
 
 ```javascript
-loadFirePreset(tsParticles);
+loadFireworksPreset(tsParticles);
 
 tsParticles.load("tsparticles", {
-  preset: "fire",
+  preset: "fireworks",
 });
 ```
 
@@ -59,7 +63,7 @@ tsParticles.load("tsparticles", {
       type: "square",
     },
   },
-  preset: "fire",
+  preset: "fireworks",
 });
 ```
 
@@ -71,21 +75,21 @@ _The syntax for `React.js`, `Preact` and `Inferno` is the same_.
 
 This sample uses the class component syntax, but you can use hooks as well (if the library supports it).
 
-```javascript
+```typescript jsx
 import Particles from "react-tsparticles";
-import { Main } from "tsparticles";
-import { loadFirePreset } from "tsparticles-preset-fire";
+import type { Engine } from "tsparticles";
+import { loadFireworksPreset } from "tsparticles-preset-fireworks";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
   // this customizes the component tsParticles installation
-  customInit(main: Main) {
+  async customInit(engine: Engine): Promise<void> {
     // this adds the preset to tsParticles, you can safely use the
-    loadFirePreset(main);
+    await loadFireworksPreset(engine);
   }
 
   render() {
     const options = {
-      preset: "fire",
+      preset: "fireworks",
     };
 
     return <Particles options={options} init={this.customInit} />;
@@ -102,8 +106,8 @@ _The syntax for `Vue.js 2.x` and `3.x` is the same_
 ```
 
 ```js
-function particlesInit(main: Main) {
-  loadFirePreset(main);
+async function particlesInit(engine: Engine): Promise<void> {
+  await loadFireworksPreset(engine);
 }
 ```
 
@@ -119,8 +123,8 @@ function particlesInit(main: Main) {
 ```
 
 ```ts
-function particlesInit(main: Main): void {
-  loadFirePreset(main);
+async function particlesInit(engine: Engine): Promise<void> {
+  await loadFireworksPreset(engine);
 }
 ```
 
@@ -136,7 +140,8 @@ function particlesInit(main: Main): void {
 ```
 
 ```js
-let onParticlesInit = (main) => {
-  loadFirePreset(main);
+let onParticlesInit = (event) => {
+  const main = event.detail;
+  loadFireworksPreset(main);
 };
 ```

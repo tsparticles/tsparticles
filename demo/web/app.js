@@ -12,9 +12,8 @@ app.set('views', './views');
 app.set('view engine', 'pug');
 app.use(stylus.middleware('./public'));
 app.use(express.static('./public'));
-app.use("/tsparticles", express.static("./node_modules/tsparticles/dist"));
+app.use("/tsparticles", express.static("./node_modules/tsparticles"));
 app.use("/web-particles", express.static("./node_modules/web-particles/dist"));
-app.use("/pathseg", express.static("./node_modules/pathseg/"));
 app.use("/webcomponentsjs", express.static("./node_modules/@webcomponents/webcomponentsjs/"));
 
 app.get('/', function (req, res) {

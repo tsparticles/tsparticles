@@ -1,8 +1,8 @@
-import type { Main } from "tsparticles";
-import { simplexNoiseGenerator } from "./pathGen";
+import type { Engine } from "tsparticles";
+import { SimplexNoiseGenerator } from "./SimplexNoiseGenerator";
 
 export const simplexNoisePathName = "simplexNoise";
 
-export function loadSimplexNoisePath(tsParticles: Main): void {
-    tsParticles.addPathGenerator(simplexNoisePathName, simplexNoiseGenerator);
+export function loadSimplexNoisePath(engine: Engine): void {
+    engine.addPathGenerator(simplexNoisePathName, new SimplexNoiseGenerator());
 }

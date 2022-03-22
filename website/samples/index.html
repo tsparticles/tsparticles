@@ -2,32 +2,54 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <link rel="shortcut icon" href="https://particles.js.org/tsParticles-64.png"/>
-    <meta name="description"
-          content="tsParticles - Easily create highly customizable particles animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno."/>
+    <meta charset="utf-8"/>
+    <link
+            rel="shortcut icon"
+            href="https://particles.js.org/tsParticles-64.png"
+    />
+    <meta
+            name="description"
+            content="tsParticles - Easily create highly customizable particles, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno."
+    />
     <meta name="author" content="Matteo Bruni"/>
-    <meta name="keyword"
-          content="HTML, CSS, JavaScript, Particles, Particles.js, Animations, React, Vue, Angular, Vue.js, Svelte"/>
+    <meta
+            name="keyword"
+            content="HTML, CSS, JavaScript, Particles, Particles.js, Canvas, Confetti, Fireworks, Animations, React, Vue, Angular, Vue.js, Svelte"
+    />
     <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
 
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:creator" content="@HollowMatt_ITA"/>
-    <meta name="twitter:image:src" content="https://particles.js.org/images/demo.png"/>
+    <meta
+            name="twitter:image:src"
+            content="https://particles.js.org/images/demo2.png"
+    />
 
-    <meta property="og:title" content="tsParticles - JavaScript Particles animations for your website"/>
+    <meta
+            property="og:title"
+            content="tsParticles - JavaScript Particles, Confetti and Fireworks animations for your website"
+    />
     <meta property="og:site_name" content="tsParticles"/>
     <meta property="og:url" content="https://particles.js.org/"/>
-    <meta property="og:description"
-          content="Easily create highly customizable particles animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno."/>
-    <meta property="og:image" content="https://particles.js.org/images/demo.png"/>
+    <meta
+            property="og:description"
+            content="Easily create highly customizable particles, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno."
+    />
+    <meta
+            property="og:image"
+            content="https://particles.js.org/images/demo2.png"
+    />
 
-    <title>tsParticles | JavaScript Particles animations for your website</title>
+    <title>
+        tsParticles | Samples | JavaScript Particles, Confetti and Fireworks animations for your website
+    </title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"
           integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsoneditor@8.6.3/dist/jsoneditor.min.css"
@@ -61,7 +83,7 @@
         });
 
         gtag("config", "AW-1021008757");
-        gtag("event", "conversion", {"send_to": "AW-1021008757/3t7QCNqulswBEPW27eYD"});
+        gtag("event", "conversion", { "send_to": "AW-1021008757/3t7QCNqulswBEPW27eYD" });
     </script>
 </head>
 
@@ -73,7 +95,7 @@
             <img src="https://particles.js.org/images/tsParticles-60.png" width="30" height="30"
                  class="d-inline-block align-top" alt="">
             <a class="navbar-brand" href="#">tsParticles</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -84,10 +106,10 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarPresetsDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Presets
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarPresetsDropdown">
+                        <div class="dropdown-menu preset-menu" aria-labelledby="navbarPresetsDropdown">
                             <a class="dropdown-item preset-item" data-preset="amongUs" href="#">Among Us</a>
                             <a class="dropdown-item preset-item" data-preset="background" href="#">Background
                                 Mask</a>
@@ -117,12 +139,12 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarSocialDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Share
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarSocialDropdown">
                             <a class="dropdown-item" target="_blank"
-                               href="https://www.facebook.com/dialog/feed?app_id=508841200049663&amp;link=https://particles.js.org&amp;picture=https://particles.js.org/images/demo.png&amp;name=tsParticles&amp;description=tsParticles%20-%20A%20lightweight%20TypeScript%20library%20for%20creating%20particles&amp;redirect_uri=https://particles.js.org">Facebook</a>
+                               href="https://www.facebook.com/dialog/feed?app_id=508841200049663&amp;link=https://particles.js.org&amp;picture=https://particles.js.org/images/demo2.png&amp;name=tsParticles&amp;description=tsParticles%20-%20A%20lightweight%20TypeScript%20library%20for%20creating%20particles&amp;redirect_uri=https://particles.js.org">Facebook</a>
                             <a class="dropdown-item" target="_blank"
                                href="https://twitter.com/intent/tweet?text=tsParticles%20-%20A%20lightweight%20TypeScript%20library%20for%20creating%20particles&amp;url=https://particles.js.org&amp;hashtags=typescript,particles,html5,webdesign&amp;via=HollowMatt_ITA">Twitter</a>
                             <a class="dropdown-item" target="_blank"
@@ -130,7 +152,7 @@
                             <a class="dropdown-item" target="_blank"
                                href="https://dev.to/new?prefill=---%5Cn%20title%3A%20tsParticles%5Cn%20published%3A%20false%5Cn%20tags%3A%20javascript%2C%20showdev%2C%20webdesign%2C%20github%5Cn%20---%5Cn%20%5Cn%20%5Cn%20%5Cn%20tsParticles%20-%20A%20lightweight%20TypeScript%20library%20for%20creating%20particles%20https://particles.js.org%5Cn">Dev</a>
                             <a class="dropdown-item" target="_blank"
-                               href="http://www.pinterest.com/pin/create/button/?url=https://particles.js.org&amp;media=https://particles.js.org/images/demo.png&amp;description=tsParticles%20-%20A%20lightweight%20TypeScript%20library%20for%20creating%20particles%20https://particles.js.org"
+                               href="http://www.pinterest.com/pin/create/button/?url=https://particles.js.org&amp;media=https://particles.js.org/images/demo2.png&amp;description=tsParticles%20-%20A%20lightweight%20TypeScript%20library%20for%20creating%20particles%20https://particles.js.org"
                                data-pin-do="buttonPin" data-pin-config="above">Pinterest</a>
                             <a class="dropdown-item" target="_blank"
                                href="mailto:steve@jobs.com?subject=tsParticles%20-%20A%20lightweight%20TypeScript%20library%20for%20creating%20particles&amp;body=tsParticles%20-%20A%20lightweight%20TypeScript%20library%20for%20creating%20particles%20https://particles.js.org">Email</a>
@@ -138,7 +160,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarOtherDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             More
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarOtherDropdown">
@@ -183,10 +205,10 @@
                 <div class="col p-0">
                     <div class="btn-group w-100">
                         <div class="btn-group">
-                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">Presets
                             </button>
-                            <div class="dropdown-menu">
+                            <div class="dropdown-menu preset-menu">
                                 <a class="dropdown-item preset-item" data-preset="absorbers" href="#">Absorbers</a>
                                 <a class="dropdown-item preset-item" data-preset="amongUs" href="#">Among Us</a>
                                 <a class="dropdown-item preset-item" data-preset="background" href="#">Background
@@ -236,12 +258,12 @@
                         <button class="btn btn-primary btn-xs text-center w-100" id="btnUpdate" type="button">Reload
                         </button>
                         <div class="btn-group">
-                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">Share
                             </button>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" target="_blank"
-                                   href="https://www.facebook.com/dialog/feed?app_id=508841200049663&amp;link=https://particles.js.org&amp;picture=https://particles.js.org/images/demo.png&amp;name=tsParticles&amp;description=tsParticles%20-%20A%20lightweight%20TypeScript%20library%20for%20creating%20particles&amp;redirect_uri=https://particles.js.org">Facebook</a>
+                                   href="https://www.facebook.com/dialog/feed?app_id=508841200049663&amp;link=https://particles.js.org&amp;picture=https://particles.js.org/images/demo2.png&amp;name=tsParticles&amp;description=tsParticles%20-%20A%20lightweight%20TypeScript%20library%20for%20creating%20particles&amp;redirect_uri=https://particles.js.org">Facebook</a>
                                 <a class="dropdown-item" target="_blank"
                                    href="https://twitter.com/intent/tweet?text=tsParticles%20-%20A%20lightweight%20TypeScript%20library%20for%20creating%20particles&amp;url=https://particles.js.org&amp;hashtags=typescript,particles,html5,webdesign&amp;via=HollowMatt_ITA">Twitter</a>
                                 <a class="dropdown-item" target="_blank"
@@ -249,14 +271,14 @@
                                 <a class="dropdown-item" target="_blank"
                                    href="https://dev.to/new?prefill=---%5Cn%20title%3A%20tsParticles%5Cn%20published%3A%20false%5Cn%20tags%3A%20javascript%2C%20showdev%2C%20webdesign%2C%20github%5Cn%20---%5Cn%20%5Cn%20%5Cn%20%5Cn%20tsParticles%20-%20A%20lightweight%20TypeScript%20library%20for%20creating%20particles%20https://particles.js.org%5Cn">Dev</a>
                                 <a class="dropdown-item" target="_blank"
-                                   href="http://www.pinterest.com/pin/create/button/?url=https://particles.js.org&amp;media=https://particles.js.org/images/demo.png&amp;description=tsParticles%20-%20A%20lightweight%20TypeScript%20library%20for%20creating%20particles%20https://particles.js.org"
+                                   href="http://www.pinterest.com/pin/create/button/?url=https://particles.js.org&amp;media=https://particles.js.org/images/demo2.png&amp;description=tsParticles%20-%20A%20lightweight%20TypeScript%20library%20for%20creating%20particles%20https://particles.js.org"
                                    data-pin-do="buttonPin" data-pin-config="above">Pinterest</a>
                                 <a class="dropdown-item" target="_blank"
                                    href="mailto:steve@jobs.com?subject=tsParticles%20-%20A%20lightweight%20TypeScript%20library%20for%20creating%20particles&amp;body=tsParticles%20-%20A%20lightweight%20TypeScript%20library%20for%20creating%20particles%20https://particles.js.org">Email</a>
                             </div>
                         </div>
                         <div class="btn-group">
-                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">More
                             </button>
                             <div class="dropdown-menu">
@@ -361,50 +383,50 @@
     <input type="hidden" name="data" value="" id="code-pen-data"><input type="submit" value="Create Pen">
 </form>
 
+<script type="text/javascript">
+    (function (c, l, a, r, i, t, y) {
+        c[a] = c[a] || function () {
+            (c[a].q = c[a].q || []).push(arguments)
+        };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "8q4bxin4tm");
+</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1784552607103901"
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
         crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
-        integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@@fortawesome/fontawesome-free@5.13.0/js/fontawesome.min.js"
+<script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/js/fontawesome.min.js"
         integrity="sha256-NP9NujdEzS5m4ZxvNqkcbxyHB0dTRy9hG13RwTVBGwo=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/jsoneditor@8.6.3/dist/jsoneditor.min.js"
         integrity="sha256-iha/QQwSuta8sBMrJ7j9cR7WF/duYY3RmJy+1JIYWjU=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/stats.ts@1.1.0/dist/stats.min.js"
         integrity="sha256-WPj1kJMqFC8e1B4yBtOJ3OPV31gGsJydT6D4Dg6JMww=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/pathseg@1.2.0/pathseg.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"
         integrity="sha256-ur/YlHMU96MxHEsy3fHGszZHas7NzH4RQlD4tDVvFhw=" crossorigin="anonymous"></script>
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.34.0/tsparticles.min.js"
-        integrity="sha256-Q+igCSWU3LYGWo5H+pJr7+2y/08i7WJiYv9rGZkdyxA=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-infection@1.34.0/tsparticles.plugin.infection.min.js"
-        integrity="sha256-oR7tBoBwLfrzzQLH8WuNv0xOo6m0Ee4Ho2gJSI0w15k=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-light@1.34.0/tsparticles.interaction.light.min.js"
-        integrity="sha256-GzFlJhFJC8DZaLQCir8nl3xK9Das2GbmvArI2WiOl80=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-particles-repulse@1.34.0/tsparticles.interaction.particles.repulse.min.js"
-        integrity="sha256-6bTwPk9qRfP6pI6zarNBtO6ZuNJrld3yTXqoqdNhpuk=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-gradient@1.34.0/tsparticles.updater.gradient.min.js"
-        integrity="sha256-a0qLkg7h887aFoA6dLYrwIUJuyfJiv2VOLg4I1ocTDQ=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-orbit@1.34.0/tsparticles.updater.orbit.min.js"
-        integrity="sha256-t+zWpfDrrlhLpk168V4KDV6fIhrXId0SJToEgvfDVOs=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-curves@1.34.0/tsparticles.path.curves.min.js"
-        integrity="sha256-x2h+OTzwP/FfMseruJL4N7qt40drZf4OMTLG7LKFja4=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-polygon@1.34.0/tsparticles.path.polygon.min.js"
-        integrity="sha256-Rfv8DOUHuXjONL6qmY2kpc9/ormdESsT6hwO2kp4Wb8=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-perlin-noise@1.34.0/tsparticles.path.perlin.noise.min.js"
-        integrity="sha256-vAnSJSzHeU3IcVIcww2bGfQOiRiRtPHZfAeBYRFm2ow=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-simplex-noise@1.34.0/tsparticles.path.simplex.noise.min.js"
-        integrity="sha256-ttXjYdm/g4Rq34UnuGMrC9W6QwqiUJ9wklsFLqHwHh0=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-links@1.19.0/tsparticles.preset.links.min.js"
-        integrity="sha256-S7tlOP5vSEClpfJfLBZPYNyxoXc418kMeB8eiOf3B6k=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.42.4/tsparticles.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-infection@1.42.4/tsparticles.plugin.infection.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-light@1.42.4/tsparticles.interaction.light.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-particles-repulse@1.42.4/tsparticles.interaction.particles.repulse.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-gradient@1.42.4/tsparticles.updater.gradient.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-orbit@1.42.4/tsparticles.updater.orbit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-curves@1.42.4/tsparticles.path.curves.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-polygon@1.42.4/tsparticles.path.polygon.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-perlin-noise@1.42.4/tsparticles.path.perlin.noise.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-simplex-noise@1.42.4/tsparticles.path.simplex.noise.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-links@1.42.4/tsparticles.preset.links.min.js"></script>
 
 <script src="../js/demo.min.js"></script>
 </body>

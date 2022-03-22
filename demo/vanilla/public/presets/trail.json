@@ -2,7 +2,7 @@
   "background": {
     "color": "#000"
   },
-  "fpsLimit": 60,
+  "fpsLimit": 120,
   "emitters": {
     "position": {
       "x": 50,
@@ -83,7 +83,6 @@
     }
   },
   "interactivity": {
-    "detectsOn": "canvas",
     "events": {
       "onHover": {
         "enable": false,

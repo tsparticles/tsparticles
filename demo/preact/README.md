@@ -4,7 +4,7 @@
 
 ## Usage
 
-```
+```javascript
 const preact = require('preact');
 
 // TODO: DEMONSTRATE API

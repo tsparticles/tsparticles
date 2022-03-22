@@ -1,9 +1,9 @@
-import type { Main } from "../../main";
+import type { Engine } from "../../engine";
 import { ImageDrawer } from "./ImageDrawer";
 
-export function loadImageShape(tsParticles: Main): void {
+export async function loadImageShape(engine: Engine): Promise<void> {
     const imageDrawer = new ImageDrawer();
 
-    tsParticles.addShape("image", imageDrawer);
-    tsParticles.addShape("images", imageDrawer);
+    await engine.addShape("image", imageDrawer);
+    await engine.addShape("images", imageDrawer);
 }

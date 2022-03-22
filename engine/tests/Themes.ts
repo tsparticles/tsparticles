@@ -1,6 +1,15 @@
+import {
+    ClickMode,
+    HoverMode,
+    MoveDirection,
+    OutMode,
+    RotateDirection,
+    ShapeType,
+    ThemeMode,
+    tsParticles,
+} from "../src";
 import { describe, it } from "mocha";
 import { Options } from "../src/Options/Classes/Options";
-import { RotateDirection, MoveDirection, ShapeType, ClickMode, HoverMode, OutMode, ThemeMode } from "../src/Enums";
 import { expect } from "chai";
 
 describe("Themes", () => {
@@ -41,7 +50,7 @@ describe("Themes", () => {
                 },
             },
         ],
-        fpsLimit: 60,
+        fpsLimit: 120,
         particles: {
             number: {
                 value: 30,
@@ -94,7 +103,7 @@ describe("Themes", () => {
         detectRetina: true,
     };
 
-    const options = new Options();
+    const options = new Options(tsParticles);
 
     options.load(sourceOptions);
 

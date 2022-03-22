@@ -1,6 +1,6 @@
 import type { IClickEvent } from "./IClickEvent";
-import type { IHoverEvent } from "./IHoverEvent";
 import type { IDivEvent } from "./IDivEvent";
+import type { IHoverEvent } from "./IHoverEvent";
 import type { SingleOrMultiple } from "../../../../Types";
 
 /**

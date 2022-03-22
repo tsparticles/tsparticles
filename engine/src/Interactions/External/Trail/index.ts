@@ -1,6 +1,6 @@
-import type { Main } from "../../../main";
+import type { Engine } from "../../../engine";
 import { TrailMaker } from "./TrailMaker";
 
-export function loadExternalTrailInteraction(tsParticles: Main): void {
-    tsParticles.addInteractor("externalTrail", (container) => new TrailMaker(container));
+export async function loadExternalTrailInteraction(engine: Engine): Promise<void> {
+    await engine.addInteractor("externalTrail", (container) => new TrailMaker(container));
 }

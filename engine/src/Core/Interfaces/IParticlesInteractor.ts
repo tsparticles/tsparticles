@@ -1,6 +1,6 @@
-import type { Particle } from "../Particle";
-import type { IInteractor } from "./IInteractor";
 import type { IDelta } from "./IDelta";
+import type { IInteractor } from "./IInteractor";
+import type { Particle } from "../Particle";
 
 /**
  * @category Interfaces
@@ -8,5 +8,5 @@ import type { IDelta } from "./IDelta";
 export interface IParticlesInteractor extends IInteractor {
     isEnabled(particle: Particle): boolean;
 
-    interact(particle: Particle, delta: IDelta): void;
+    interact(particle: Particle, delta: IDelta): Promise<void>;
 }

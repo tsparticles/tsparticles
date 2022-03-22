@@ -1,9 +1,10 @@
-import type { IAbsorber } from "../Interfaces/IAbsorber";
-import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
-import type { RecursivePartial } from "../../../../Types";
 import { AbsorberSize } from "./AbsorberSize";
-import { OptionsColor } from "../../../../Options/Classes/OptionsColor";
+import type { IAbsorber } from "../Interfaces/IAbsorber";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
+import type { IRangedCoordinates } from "../../../../Core";
+import { OptionsColor } from "../../../../Options/Classes/OptionsColor";
+import type { RecursivePartial } from "../../../../Types";
+import { setRangeValue } from "../../../../Utils";
 
 /**
  * [[include:Options/Plugins/Absorbers.md]]
@@ -14,7 +15,7 @@ export class Absorber implements IAbsorber, IOptionLoader<IAbsorber> {
     draggable;
     name?: string;
     opacity;
-    position?: RecursivePartial<ICoordinates>;
+    position?: RecursivePartial<IRangedCoordinates>;
     size;
     destroy;
     orbits;
@@ -49,10 +50,15 @@ export class Absorber implements IAbsorber, IOptionLoader<IAbsorber> {
         }
 
         if (data.position !== undefined) {
-            this.position = {
-                x: data.position.x,
-                y: data.position.y,
-            };
+            this.position = {};
+
+            if (data.position.x !== undefined) {
+                this.position.x = setRangeValue(data.position.x);
+            }
+
+            if (data.position.y !== undefined) {
+                this.position.y = setRangeValue(data.position.y);
+            }
         }
 
         if (data.size !== undefined) {

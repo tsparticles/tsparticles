@@ -1,10 +1,10 @@
 import { describe, it } from "mocha";
-import { expect } from "chai";
+import type { ICoordinates } from "../src";
+import { ShapeType } from "../src";
 import { TestCanvas } from "./Fixture/TestCanvas";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticle } from "./Fixture/TestParticle";
-import { ShapeType } from "../src/Enums";
-import { ICoordinates } from "../src/Core/Interfaces/ICoordinates";
+import { expect } from "chai";
 
 const Window = require("window");
 
@@ -43,7 +43,7 @@ describe("Particle", () => {
         };
 
         describe("shape - no emitter", () => {
-            it("should set the shape property to circle when default Particles options are used", () => {
+            it("should set the shape property to circle when default Particles options are used", async () => {
                 expect(testParticle.particle?.shape).to.equal(ShapeType.circle);
             });
 
@@ -60,6 +60,12 @@ describe("Particle", () => {
 
                 expect(testParticle.particle?.shape).to.be.a("string");
                 expect(shapeTypes).to.include(testParticle.particle?.shape);
+            });
+
+            it("should always set an angle in range [0,360]", () => {
+                // Note, the real range should be [0,360) but the function includes 360 and it won't hurt anything
+                expect(testParticle.particle?.rotate?.value).to.be.at.least(-2 * Math.PI);
+                expect(testParticle.particle?.rotate?.value).to.be.at.most(2 * Math.PI);
             });
 
             after(() => {
@@ -112,12 +118,6 @@ describe("Particle", () => {
                 testContainer.reset({});
                 testParticle.reset(testContainer.container);
             });
-        });
-
-        it("should always set an angle in range [0,360]", () => {
-            // Note, the real range should be [0,360) but the function includes 360 and it won't hurt anything
-            expect(testParticle.particle?.rotate.value).to.be.at.least(-2 * Math.PI);
-            expect(testParticle.particle?.rotate.value).to.be.at.most(2 * Math.PI);
         });
     });
 

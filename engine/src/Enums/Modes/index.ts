@@ -4,5 +4,7 @@ export * from "./DivMode";
 export * from "./HoverMode";
 export * from "./CollisionMode";
 export * from "./OutMode";
+export * from "./RollMode";
 export * from "./SizeMode";
 export * from "./ThemeMode";
+export * from "./ResponsiveMode";

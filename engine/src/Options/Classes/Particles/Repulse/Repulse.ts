@@ -1,17 +1,18 @@
-import type { IRepulse } from "../../../Interfaces/Particles/Repulse/IRepulse";
-import type { RecursivePartial } from "../../../../Types";
+import type { RangeValue, RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { IRepulse } from "../../../Interfaces/Particles/Repulse/IRepulse";
 import { ValueWithRandom } from "../../ValueWithRandom";
+import { setRangeValue } from "../../../../Utils";
 
 /**
  * @category Options
  */
 export class Repulse extends ValueWithRandom implements IRepulse, IOptionLoader<IRepulse> {
     enabled;
-    distance;
-    duration;
-    factor;
-    speed;
+    distance: RangeValue;
+    duration: RangeValue;
+    factor: RangeValue;
+    speed: RangeValue;
 
     constructor() {
         super();
@@ -34,19 +35,19 @@ export class Repulse extends ValueWithRandom implements IRepulse, IOptionLoader<
         }
 
         if (data.distance !== undefined) {
-            this.distance = data.distance;
+            this.distance = setRangeValue(data.distance);
         }
 
         if (data.duration !== undefined) {
-            this.duration = data.duration;
+            this.duration = setRangeValue(data.duration);
         }
 
         if (data.factor !== undefined) {
-            this.factor = data.factor;
+            this.factor = setRangeValue(data.factor);
         }
 
         if (data.speed !== undefined) {
-            this.speed = data.speed;
+            this.speed = setRangeValue(data.speed);
         }
     }
 }

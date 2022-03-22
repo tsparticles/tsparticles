@@ -1,6 +1,6 @@
-import { loadConfettiPreset, confetti } from "./preset";
-import { tsParticles } from "tsparticles";
+import { confetti, loadConfettiPreset } from "./preset";
 import type { IConfettiOptions } from "./IConfettiOptions";
+import { tsParticles } from "tsparticles";
 
 loadConfettiPreset(tsParticles);
 

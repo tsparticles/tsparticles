@@ -1,5 +1,5 @@
-import type { IColor } from "../../../Core/Interfaces/Colors";
 import type { IBackgroundMaskCover } from "./IBackgroundMaskCover";
+import type { IColor } from "../../../Core";
 
 /**
  * The options to apply a base color to canvas to cover what's behind
@@ -14,7 +14,7 @@ export interface IBackgroundMask {
      * The default value is `destination-out`, which unveils the background below using drawn elements, any other valid value
      * can be found [here](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation)
      */
-    composite: string;
+    composite: GlobalCompositeOperation;
 
     /**
      * The `cover` property can be set to a HEX string or to a {@link IColor | color object}, that is the same as the one used

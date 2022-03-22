@@ -1,27 +1,36 @@
 <my-component>
     <p>{ props.message }</p>
 
-    <riot-particles id="tsparticles" options='{{
-        background: {
-            color: "#000"
-        },
-        fullScreen: {
-            enable: true
-        },
-        particles: {
-            links: {
-                enable: true
-            },
-            move: {
-                enable: true
-            }
-        }
-    }}' particlesInit='{(main) => console.log(main)}' particlesLoaded='{(container) => console.log(container)}'/>
+    <riot-particles id="tsparticles" options="{particlesConfig}" particlesInit="{particlesInit}"
+                    particlesLoaded="{particlesLoaded}"/>
 
     <script>
         import RiotParticles from 'riot-particles';
 
+        const particlesConfig = {
+            background: {
+                color: "#000"
+            },
+            fullScreen: {
+                enable: true
+            },
+            particles: {
+                links: {
+                    enable: true
+                },
+                move: {
+                    enable: true
+                }
+            }
+        };
+
+        const particlesInit = (main) => console.log(main);
+        const particlesLoaded = (container) => console.log(container);
+
         export default {
+            particlesConfig,
+            particlesInit,
+            particlesLoaded,
             components: {
                 RiotParticles
             }

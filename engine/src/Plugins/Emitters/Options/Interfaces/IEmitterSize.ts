@@ -1,5 +1,5 @@
-import type { SizeMode } from "../../../../Enums";
 import type { IDimension } from "../../../../Core/Interfaces/IDimension";
+import type { SizeMode } from "../../../../Enums";
 
 /**
  * @category Emitters Plugin

@@ -1,16 +1,16 @@
-import type { Main } from "../../main";
+import type { Engine } from "../../engine";
 import { PolygonDrawer } from "./PolygonDrawer";
 import { TriangleDrawer } from "./TriangleDrawer";
 
-export function loadGenericPolygonShape(tsParticles: Main): void {
-    tsParticles.addShape("polygon", new PolygonDrawer());
+export async function loadGenericPolygonShape(engine: Engine): Promise<void> {
+    await engine.addShape("polygon", new PolygonDrawer());
 }
 
-export function loadTriangleShape(tsParticles: Main): void {
-    tsParticles.addShape("triangle", new TriangleDrawer());
+export async function loadTriangleShape(engine: Engine): Promise<void> {
+    await engine.addShape("triangle", new TriangleDrawer());
 }
 
-export function loadPolygonShape(tsParticles: Main): void {
-    loadGenericPolygonShape(tsParticles);
-    loadTriangleShape(tsParticles);
+export async function loadPolygonShape(engine: Engine): Promise<void> {
+    await loadGenericPolygonShape(engine);
+    await loadTriangleShape(engine);
 }

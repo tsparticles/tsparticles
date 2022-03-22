@@ -1,11 +1,4 @@
 {
-  "fpsLimit": 60,
-  "interactivity": {
-    "detectsOn": "canvas",
-    "events": {
-      "resize": true
-    }
-  },
   "particles": {
     "color": {
       "value": "#FF0000",
@@ -70,7 +63,9 @@
   "background": {
     "color": "#000"
   },
-  "detectRetina": true,
+  "fullScreen": {
+    "zIndex": -1
+  },
   "emitters": {
     "direction": "none",
     "rate": {

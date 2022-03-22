@@ -1,5 +1,4 @@
-import * as React from 'react';
-import * as pkgInfo from '../../package.json';
+import React from 'react';
 import { FrameThumbsContainer } from './frame-thumbs-container';
 import { ParticlesContainer } from './particles-container';
 import { Subscription } from 'rxjs';
@@ -19,7 +18,7 @@ const getFrameCode = (options: ISourceOptions) => {
 interface IProps extends Partial<IDefaultProps> {
     name: string;
     backgroundColor: string;
-    options: ISourceOptions;
+    options?: ISourceOptions;
 }
 
 interface IDefaultProps {
@@ -44,7 +43,7 @@ export class FrameLayout extends React.Component<IProps, IState> {
         this.onCodeContainerClick = this.onCodeContainerClick.bind(this);
         this.state = {
             codeVisible: false,
-            version: pkgInfo.version
+            version: ""
         };
     }
 
@@ -55,6 +54,13 @@ export class FrameLayout extends React.Component<IProps, IState> {
                     codeVisible: false
                 });
             }
+        });
+
+        // @ts-ignore
+        import("../../package.json").then(pkgInfo => {
+            this.setState({
+                version: pkgInfo.version
+            })
         });
     }
 
@@ -79,7 +85,7 @@ export class FrameLayout extends React.Component<IProps, IState> {
                     background: this.props.backgroundColor
                 }}>
                 <div className="frame-layout__particles-container">
-                    <ParticlesContainer options={this.props.options}/>
+                    {this.props.options && <ParticlesContainer options={this.props.options}/>}
                 </div>
                 <div className="frame-layout__container">
                     {/*

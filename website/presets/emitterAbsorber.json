@@ -3,7 +3,7 @@
     "enable": true,
     "zIndex": 1
   },
-  "fpsLimit": 60,
+  "fpsLimit": 120,
   "particles": {
     "number": {
       "value": 0,
@@ -60,7 +60,6 @@
     }
   },
   "interactivity": {
-    "detect_on": "canvas",
     "events": {
       "onhover": {
         "enable": false,
@@ -127,10 +126,10 @@
   },
   "emitters": [
     {
-      "direction": "top-right",
+      "direction": "bottom-left",
       "position": {
-        "x": 0,
-        "y": 100
+        "x": 100,
+        "y": 0
       },
       "particles": {
         "shape": {

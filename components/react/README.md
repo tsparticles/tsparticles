@@ -1,4 +1,4 @@
-[![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
+[![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
 # react-tsparticles
 
@@ -6,16 +6,20 @@
 
 Official [tsParticles](https://github.com/matteobruni/tsparticles) ReactJS component
 
+[![Slack](https://particles.js.org/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI) [![Discord](https://particles.js.org/images/discord.png)](https://discord.gg/hACwv45Hme) [![Telegram](https://particles.js.org/images/telegram.png)](https://t.me/tsparticles)
+
+[![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles") <a href="https://www.buymeacoffee.com/matteobruni"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
+
 ## Installation
 
 ```shell
-npm install react-tsparticles react
+npm install react-tsparticles
 ```
 
 or
 
 ```shell
-yarn add react-tsparticles react
+yarn add react-tsparticles
 ```
 
 #### create-react-app
@@ -48,35 +52,21 @@ _Remote url_
 ```javascript
 import Particles from "react-tsparticles";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.particlesInit = this.particlesInit.bind(this);
-    this.particlesLoaded = this.particlesLoaded.bind(this);
-  }
-
-  particlesInit(main) {
+const App = () => {
+  const particlesInit = (main) => {
     console.log(main);
 
     // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
-  }
+  };
 
-  particlesLoaded(container) {
+  const particlesLoaded = (container) => {
     console.log(container);
-  }
+  };
 
-  render() {
-    return (
-      <Particles
-        id="tsparticles"
-        url="http://foo.bar/particles.json"
-        init={this.particlesInit}
-        loaded={this.particlesLoaded}
-      />
-    );
-  }
-}
+  return (
+    <Particles id="tsparticles" url="http://foo.bar/particles.json" init={particlesInit} loaded={particlesLoaded} />
+  );
+};
 ```
 
 _Options object_
@@ -84,112 +74,101 @@ _Options object_
 ```javascript
 import Particles from "react-tsparticles";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.particlesInit = this.particlesInit.bind(this);
-    this.particlesLoaded = this.particlesLoaded.bind(this);
-  }
-
-  particlesInit(main) {
+const App = () => {
+  const particlesInit = (main) => {
     console.log(main);
 
     // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
-  }
+  };
 
-  particlesLoaded(container) {
+  const particlesLoaded = (container) => {
     console.log(container);
-  }
-
-  render() {
-    return (
-      <Particles
-        id="tsparticles"
-        init={this.particlesInit}
-        loaded={this.particlesLoaded}
-        options={{
-          background: {
-            color: {
-              value: "#0d47a1",
+  };
+  return (
+    <Particles
+      id="tsparticles"
+      init={particlesInit}
+      loaded={particlesLoaded}
+      options={{
+        background: {
+          color: {
+            value: "#0d47a1",
+          },
+        },
+        fpsLimit: 120,
+        interactivity: {
+          events: {
+            onClick: {
+              enable: true,
+              mode: "push",
+            },
+            onHover: {
+              enable: true,
+              mode: "repulse",
+            },
+            resize: true,
+          },
+          modes: {
+            bubble: {
+              distance: 400,
+              duration: 2,
+              opacity: 0.8,
+              size: 40,
+            },
+            push: {
+              quantity: 4,
+            },
+            repulse: {
+              distance: 200,
+              duration: 0.4,
             },
           },
-          fpsLimit: 60,
-          interactivity: {
-            detectsOn: "canvas",
-            events: {
-              onClick: {
-                enable: true,
-                mode: "push",
-              },
-              onHover: {
-                enable: true,
-                mode: "repulse",
-              },
-              resize: true,
-            },
-            modes: {
-              bubble: {
-                distance: 400,
-                duration: 2,
-                opacity: 0.8,
-                size: 40,
-              },
-              push: {
-                quantity: 4,
-              },
-              repulse: {
-                distance: 200,
-                duration: 0.4,
-              },
-            },
+        },
+        particles: {
+          color: {
+            value: "#ffffff",
           },
-          particles: {
-            color: {
-              value: "#ffffff",
-            },
-            links: {
-              color: "#ffffff",
-              distance: 150,
-              enable: true,
-              opacity: 0.5,
-              width: 1,
-            },
-            collisions: {
-              enable: true,
-            },
-            move: {
-              direction: "none",
-              enable: true,
-              outMode: "bounce",
-              random: false,
-              speed: 6,
-              straight: false,
-            },
-            number: {
-              density: {
-                enable: true,
-                value_area: 800,
-              },
-              value: 80,
-            },
-            opacity: {
-              value: 0.5,
-            },
-            shape: {
-              type: "circle",
-            },
-            size: {
-              random: true,
-              value: 5,
-            },
+          links: {
+            color: "#ffffff",
+            distance: 150,
+            enable: true,
+            opacity: 0.5,
+            width: 1,
           },
-          detectRetina: true,
-        }}
-      />
-    );
-  }
-}
+          collisions: {
+            enable: true,
+          },
+          move: {
+            direction: "none",
+            enable: true,
+            outMode: "bounce",
+            random: false,
+            speed: 6,
+            straight: false,
+          },
+          number: {
+            density: {
+              enable: true,
+              area: 800,
+            },
+            value: 80,
+          },
+          opacity: {
+            value: 0.5,
+          },
+          shape: {
+            type: "circle",
+          },
+          size: {
+            random: true,
+            value: 5,
+          },
+        },
+        detectRetina: true,
+      }}
+    />
+  );
+};
 ```
 
 ### Props

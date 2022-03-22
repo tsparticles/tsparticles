@@ -1,4 +1,4 @@
-import type { IParticle, IShapeDrawer } from "../../Core/Interfaces";
+import type { IParticle, IShapeDrawer } from "../../Core";
 
 const fixFactor = Math.sqrt(2);
 
