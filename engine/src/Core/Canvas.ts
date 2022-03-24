@@ -236,6 +236,12 @@ export class Canvas {
             return;
         }
 
+        const radius = particle.getRadius();
+
+        if (radius <= 0) {
+            return;
+        }
+
         const pfColor = particle.getFillColor();
         const psColor = particle.getStrokeColor() ?? pfColor;
 
@@ -264,28 +270,21 @@ export class Canvas {
         const options = this.container.actualOptions;
         const zIndexOptions = particle.options.zIndex;
         const zOpacityFactor = (1 - particle.zIndexFactor) ** zIndexOptions.opacityRate;
-        const radius = particle.getRadius();
         const opacity = twinkling
             ? getRangeValue(twinkle.opacity)
             : particle.bubble.opacity ?? particle.opacity?.value ?? 1;
         const strokeOpacity = particle.stroke?.opacity ?? opacity;
         const zOpacity = opacity * zOpacityFactor;
         const fillColorValue = fColor ? getStyleFromHsl(fColor, zOpacity) : undefined;
+        const zStrokeOpacity = strokeOpacity * zOpacityFactor;
+        const strokeColorValue = sColor ? getStyleFromHsl(sColor, zStrokeOpacity) : fillColorValue;
 
-        if (!fillColorValue && !sColor) {
+        if (!fillColorValue && !strokeColorValue) {
             return;
         }
 
         this.draw((ctx) => {
             const zSizeFactor = (1 - particle.zIndexFactor) ** zIndexOptions.sizeRate;
-
-            const zStrokeOpacity = strokeOpacity * zOpacityFactor;
-            const strokeColorValue = sColor ? getStyleFromHsl(sColor, zStrokeOpacity) : fillColorValue;
-
-            if (radius <= 0) {
-                return;
-            }
-
             const container = this.container;
 
             for (const updater of container.particles.updaters) {
