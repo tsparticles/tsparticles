@@ -131,7 +131,6 @@ export const updateAnimationState = (newAnimationState) => {
 
     if (container) {
       container.destroy();
-      updateCode("");
     }
   }
 
