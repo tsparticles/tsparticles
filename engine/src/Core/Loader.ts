@@ -60,8 +60,8 @@ export class Loader {
     }
 
     async loadOptions(params: LoaderParams): Promise<Container | undefined> {
-        const tagId = params.tagId ?? `tsparticles${Math.floor(Math.random() * 10000)}`;
-        const { options, index } = params;
+        const tagId = params.tagId ?? `tsparticles${Math.floor(Math.random() * 10000)}`,
+            { options, index } = params;
 
         /* elements */
         let domContainer = params.element ?? document.getElementById(tagId);

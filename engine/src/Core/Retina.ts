@@ -30,8 +30,8 @@ export class Retina {
      * Initializes all the values needing a pixel ratio factor (sizes, widths, distances)
      */
     init(): void {
-        const container = this.container;
-        const options = container.actualOptions;
+        const container = this.container,
+            options = container.actualOptions;
 
         this.pixelRatio = !options.detectRetina || isSsr() ? 1 : window.devicePixelRatio;
 
@@ -105,10 +105,10 @@ export class Retina {
     }
 
     initParticle(particle: Particle): void {
-        const options = particle.options;
-        const ratio = this.pixelRatio;
-        const moveDistance = options.move.distance;
-        const props = particle.retina;
+        const options = particle.options,
+            ratio = this.pixelRatio,
+            moveDistance = options.move.distance,
+            props = particle.retina;
 
         props.attractDistance = getRangeValue(options.move.attract.distance) * ratio;
         props.linksDistance = options.links.distance * ratio;

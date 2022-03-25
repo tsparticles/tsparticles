@@ -27,11 +27,11 @@ export class FrameManager {
 
             container.lastFrameTime ??= timestamp;
 
-            const deltaValue = timestamp - container.lastFrameTime;
-            const delta = {
-                value: deltaValue,
-                factor: (60 * deltaValue) / 1000,
-            };
+            const deltaValue = timestamp - container.lastFrameTime,
+                delta = {
+                    value: deltaValue,
+                    factor: (60 * deltaValue) / 1000,
+                };
 
             container.lifeTime += delta.value;
             container.lastFrameTime = timestamp;

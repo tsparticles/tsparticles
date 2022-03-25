@@ -149,14 +149,14 @@ export class Particle implements IParticle {
         };
         this.ignoresResizeRatio = true;
 
-        const pxRatio = container.retina.pixelRatio;
-        const mainOptions = container.actualOptions;
-        const particlesOptions = new ParticlesOptions();
+        const pxRatio = container.retina.pixelRatio,
+            mainOptions = container.actualOptions,
+            particlesOptions = new ParticlesOptions();
 
         particlesOptions.load(mainOptions.particles);
 
-        const shapeType = particlesOptions.shape.type;
-        const reduceDuplicates = particlesOptions.reduceDuplicates;
+        const shapeType = particlesOptions.shape.type,
+            reduceDuplicates = particlesOptions.reduceDuplicates;
 
         this.shape = shapeType instanceof Array ? itemFromArray(shapeType, this.id, reduceDuplicates) : shapeType;
 
@@ -302,15 +302,13 @@ export class Particle implements IParticle {
         this.spawning = this.life.delay > 0;
 
         if (this.options.move.spin.enable) {
-            const spinPos = this.options.move.spin.position ?? { x: 50, y: 50 };
-
-            const spinCenter = {
-                x: (spinPos.x / 100) * container.canvas.size.width,
-                y: (spinPos.y / 100) * container.canvas.size.height,
-            };
-
-            const pos = this.getPosition();
-            const distance = getDistance(pos, spinCenter);
+            const spinPos = this.options.move.spin.position ?? { x: 50, y: 50 },
+                spinCenter = {
+                    x: (spinPos.x / 100) * container.canvas.size.width,
+                    y: (spinPos.y / 100) * container.canvas.size.height,
+                },
+                pos = this.getPosition(),
+                distance = getDistance(pos, spinCenter);
 
             this.spin = {
                 center: spinCenter,
@@ -345,8 +343,8 @@ export class Particle implements IParticle {
     }
 
     isInsideCanvas(): boolean {
-        const radius = this.getRadius();
-        const canvasSize = this.container.canvas.size;
+        const radius = this.getRadius(),
+            canvasSize = this.container.canvas.size;
 
         return (
             this.position.x >= -radius &&
@@ -476,16 +474,15 @@ export class Particle implements IParticle {
             }
         }
 
-        const canvasSize = container.canvas.size;
-        const pos = Vector3d.create(
-            position?.x ?? Math.random() * canvasSize.width,
-            position?.y ?? Math.random() * canvasSize.height,
-            zIndex
-        );
-        const radius = this.getRadius();
-
-        /* check position  - into the canvas */
-        const outModes = this.options.move.outModes,
+        const canvasSize = container.canvas.size,
+            pos = Vector3d.create(
+                position?.x ?? Math.random() * canvasSize.width,
+                position?.y ?? Math.random() * canvasSize.height,
+                zIndex
+            ),
+            radius = this.getRadius(),
+            /* check position  - into the canvas */
+            outModes = this.options.move.outModes,
             fixHorizontal = (outMode: OutMode | keyof typeof OutMode | OutModeAlt) => {
                 fixOutMode({
                     outMode,
@@ -520,8 +517,8 @@ export class Particle implements IParticle {
     }
 
     private checkOverlap(pos: ICoordinates, tryCount = 0): boolean {
-        const collisionsOptions = this.options.collisions;
-        const radius = this.getRadius();
+        const collisionsOptions = this.options.collisions,
+            radius = this.getRadius();
 
         if (!collisionsOptions.enable) {
             return false;
@@ -585,25 +582,24 @@ export class Particle implements IParticle {
     }
 
     private loadLife(): IParticleLife {
-        const container = this.container;
-        const particlesOptions = this.options;
-        const lifeOptions = particlesOptions.life;
-
-        const life = {
-            delay: container.retina.reduceFactor
-                ? ((getRangeValue(lifeOptions.delay.value) * (lifeOptions.delay.sync ? 1 : Math.random())) /
-                      container.retina.reduceFactor) *
-                  1000
-                : 0,
-            delayTime: 0,
-            duration: container.retina.reduceFactor
-                ? ((getRangeValue(lifeOptions.duration.value) * (lifeOptions.duration.sync ? 1 : Math.random())) /
-                      container.retina.reduceFactor) *
-                  1000
-                : 0,
-            time: 0,
-            count: particlesOptions.life.count,
-        };
+        const container = this.container,
+            particlesOptions = this.options,
+            lifeOptions = particlesOptions.life,
+            life = {
+                delay: container.retina.reduceFactor
+                    ? ((getRangeValue(lifeOptions.delay.value) * (lifeOptions.delay.sync ? 1 : Math.random())) /
+                          container.retina.reduceFactor) *
+                      1000
+                    : 0,
+                delayTime: 0,
+                duration: container.retina.reduceFactor
+                    ? ((getRangeValue(lifeOptions.duration.value) * (lifeOptions.duration.sync ? 1 : Math.random())) /
+                          container.retina.reduceFactor) *
+                      1000
+                    : 0,
+                time: 0,
+                count: particlesOptions.life.count,
+            };
 
         if (life.duration <= 0) {
             life.duration = -1;

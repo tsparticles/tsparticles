@@ -5,13 +5,12 @@ import type { IDelta } from "../Interfaces";
 import type { Particle } from "../Particle";
 
 function applyDistance(particle: Particle): void {
-    const initialPosition = particle.initialPosition;
-    const { dx, dy } = getDistances(initialPosition, particle.position);
-    const dxFixed = Math.abs(dx),
-        dyFixed = Math.abs(dy);
-
-    const hDistance = particle.retina.maxDistance.horizontal;
-    const vDistance = particle.retina.maxDistance.vertical;
+    const initialPosition = particle.initialPosition,
+        { dx, dy } = getDistances(initialPosition, particle.position),
+        dxFixed = Math.abs(dx),
+        dyFixed = Math.abs(dy),
+        hDistance = particle.retina.maxDistance.horizontal,
+        vDistance = particle.retina.maxDistance.vertical;
 
     if (!hDistance && !vDistance) {
         return;
@@ -61,8 +60,8 @@ export class ParticlesMover {
     }
 
     private moveParticle(particle: Particle, delta: IDelta): void {
-        const particleOptions = particle.options;
-        const moveOptions = particleOptions.move;
+        const particleOptions = particle.options,
+            moveOptions = particleOptions.move;
 
         if (!moveOptions.enable) {
             return;
@@ -83,8 +82,8 @@ export class ParticlesMover {
 
         this.applyPath(particle, delta);
 
-        const gravityOptions = particle.gravity;
-        const gravityFactor = gravityOptions.enable && gravityOptions.inverse ? -1 : 1;
+        const gravityOptions = particle.gravity,
+            gravityFactor = gravityOptions.enable && gravityOptions.inverse ? -1 : 1;
 
         if (gravityOptions.enable && moveSpeed) {
             particle.velocity.y += (gravityFactor * (gravityOptions.acceleration * delta.factor)) / (60 * moveSpeed);
@@ -100,8 +99,8 @@ export class ParticlesMover {
             particle.velocity.multTo(decay);
         }
 
-        const velocity = particle.velocity.mult(moveSpeed);
-        const maxSpeed = particle.retina.maxSpeed ?? container.retina.maxSpeed;
+        const velocity = particle.velocity.mult(moveSpeed),
+            maxSpeed = particle.retina.maxSpeed ?? container.retina.maxSpeed;
 
         if (
             gravityOptions.enable &&
@@ -167,9 +166,9 @@ export class ParticlesMover {
     }
 
     private applyPath(particle: Particle, delta: IDelta): void {
-        const particlesOptions = particle.options;
-        const pathOptions = particlesOptions.move.path;
-        const pathEnabled = pathOptions.enable;
+        const particlesOptions = particle.options,
+            pathOptions = particlesOptions.move.path,
+            pathEnabled = pathOptions.enable;
 
         if (!pathEnabled) {
             return;
@@ -196,41 +195,40 @@ export class ParticlesMover {
     }
 
     private moveParallax(particle: Particle): void {
-        const container = this.container;
-        const options = container.actualOptions;
+        const container = this.container,
+            options = container.actualOptions;
 
         if (isSsr() || !options.interactivity.events.onHover.parallax.enable) {
             return;
         }
 
-        const parallaxForce = options.interactivity.events.onHover.parallax.force;
-        const mousePos = container.interactivity.mouse.position;
+        const parallaxForce = options.interactivity.events.onHover.parallax.force,
+            mousePos = container.interactivity.mouse.position;
 
         if (!mousePos) {
             return;
         }
 
         const canvasCenter = {
-            x: container.canvas.size.width / 2,
-            y: container.canvas.size.height / 2,
-        };
-        const parallaxSmooth = options.interactivity.events.onHover.parallax.smooth;
-        const factor = particle.getRadius() / parallaxForce;
-
-        /* smaller is the particle, longer is the offset distance */
-        const tmp = {
-            x: (mousePos.x - canvasCenter.x) * factor,
-            y: (mousePos.y - canvasCenter.y) * factor,
-        };
+                x: container.canvas.size.width / 2,
+                y: container.canvas.size.height / 2,
+            },
+            parallaxSmooth = options.interactivity.events.onHover.parallax.smooth,
+            factor = particle.getRadius() / parallaxForce,
+            /* smaller is the particle, longer is the offset distance */
+            tmp = {
+                x: (mousePos.x - canvasCenter.x) * factor,
+                y: (mousePos.y - canvasCenter.y) * factor,
+            };
 
         particle.offset.x += (tmp.x - particle.offset.x) / parallaxSmooth; // Easing equation
         particle.offset.y += (tmp.y - particle.offset.y) / parallaxSmooth; // Easing equation
     }
 
     private getProximitySpeedFactor(particle: Particle): number {
-        const container = this.container;
-        const options = container.actualOptions;
-        const active = isInArray(HoverMode.slow, options.interactivity.events.onHover.mode);
+        const container = this.container,
+            options = container.actualOptions,
+            active = isInArray(HoverMode.slow, options.interactivity.events.onHover.mode);
 
         if (!active) {
             return 1;
@@ -242,16 +240,16 @@ export class ParticlesMover {
             return 1;
         }
 
-        const particlePos = particle.getPosition();
-        const dist = getDistance(mousePos, particlePos);
-        const radius = container.retina.slowModeRadius;
+        const particlePos = particle.getPosition(),
+            dist = getDistance(mousePos, particlePos),
+            radius = container.retina.slowModeRadius;
 
         if (dist > radius) {
             return 1;
         }
 
-        const proximityFactor = dist / radius || 0;
-        const slowFactor = options.interactivity.modes.slow.factor;
+        const proximityFactor = dist / radius || 0,
+            slowFactor = options.interactivity.modes.slow.factor;
 
         return proximityFactor / slowFactor;
     }

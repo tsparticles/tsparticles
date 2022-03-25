@@ -91,9 +91,9 @@ export class EventListeners {
      * Initializing event listeners
      */
     private manageListeners(add: boolean): void {
-        const container = this.container;
-        const options = container.actualOptions;
-        const detectType = options.interactivity.detectsOn;
+        const container = this.container,
+            options = container.actualOptions,
+            detectType = options.interactivity.detectsOn;
         let mouseLeaveEvent = Constants.mouseLeaveEvent;
 
         /* events target element */
@@ -206,8 +206,8 @@ export class EventListeners {
     }
 
     private handleVisibilityChange(): void {
-        const container = this.container;
-        const options = container.actualOptions;
+        const container = this.container,
+            options = container.actualOptions;
 
         this.mouseTouchFinish();
 
@@ -246,10 +246,10 @@ export class EventListeners {
      * @param e the event arguments
      */
     private mouseTouchMove(e: Event): void {
-        const container = this.container;
-        const options = container.actualOptions;
+        const container = this.container,
+            options = container.actualOptions;
 
-        if (container.interactivity?.element === undefined) {
+        if (!container.interactivity?.element) {
             return;
         }
 
@@ -331,7 +331,7 @@ export class EventListeners {
     private mouseTouchFinish(): void {
         const interactivity = this.container.interactivity;
 
-        if (interactivity === undefined) {
+        if (!interactivity) {
             return;
         }
 
@@ -351,9 +351,9 @@ export class EventListeners {
      * @param e the click event arguments
      */
     private mouseTouchClick(e: Event): void {
-        const container = this.container;
-        const options = container.actualOptions;
-        const mouse = container.interactivity.mouse;
+        const container = this.container,
+            options = container.actualOptions,
+            mouse = container.interactivity.mouse;
 
         mouse.inside = true;
 
@@ -361,17 +361,19 @@ export class EventListeners {
 
         const mousePosition = mouse.position;
 
-        if (mousePosition === undefined || !options.interactivity.events.onClick.enable) {
+        if (!mousePosition || !options.interactivity.events.onClick.enable) {
             return;
         }
 
         for (const [, plugin] of container.plugins) {
-            if (plugin.clickPositionValid !== undefined) {
-                handled = plugin.clickPositionValid(mousePosition);
+            if (!plugin.clickPositionValid) {
+                continue;
+            }
 
-                if (handled) {
-                    break;
-                }
+            handled = plugin.clickPositionValid(mousePosition);
+
+            if (handled) {
+                break;
             }
         }
 
@@ -387,19 +389,20 @@ export class EventListeners {
      * @param e the click event arguments
      */
     private doMouseTouchClick(e: Event): void {
-        const container = this.container;
-        const options = container.actualOptions;
+        const container = this.container,
+            options = container.actualOptions;
 
         if (this.canPush) {
             const mousePos = container.interactivity.mouse.position;
-            if (mousePos) {
-                container.interactivity.mouse.clickPosition = {
-                    x: mousePos.x,
-                    y: mousePos.y,
-                };
-            } else {
+
+            if (!mousePos) {
                 return;
             }
+
+            container.interactivity.mouse.clickPosition = {
+                x: mousePos.x,
+                y: mousePos.y,
+            };
 
             container.interactivity.mouse.clickTime = new Date().getTime();
 
@@ -420,11 +423,11 @@ export class EventListeners {
     }
 
     private handleThemeChange(e: Event): void {
-        const mediaEvent = e as MediaQueryListEvent;
-        const themeName = mediaEvent.matches
-            ? this.container.options.defaultDarkTheme
-            : this.container.options.defaultLightTheme;
-        const theme = this.container.options.themes.find((theme) => theme.name === themeName);
+        const mediaEvent = e as MediaQueryListEvent,
+            themeName = mediaEvent.matches
+                ? this.container.options.defaultDarkTheme
+                : this.container.options.defaultLightTheme,
+            theme = this.container.options.themes.find((theme) => theme.name === themeName);
 
         if (theme && theme.default.auto) {
             this.container.loadTheme(themeName);
@@ -432,18 +435,18 @@ export class EventListeners {
     }
 
     private handleClickMode(mode: ClickMode | string): void {
-        const container = this.container;
-        const options = container.actualOptions;
-        const pushNb = options.interactivity.modes.push.quantity;
-        const removeNb = options.interactivity.modes.remove.quantity;
+        const container = this.container,
+            options = container.actualOptions,
+            pushNb = options.interactivity.modes.push.quantity,
+            removeNb = options.interactivity.modes.remove.quantity;
 
         switch (mode) {
             case ClickMode.push: {
                 if (pushNb > 0) {
-                    const pushOptions = options.interactivity.modes.push;
-                    const group = itemFromArray([undefined, ...pushOptions.groups]);
-                    const groupOptions =
-                        group !== undefined ? container.actualOptions.particles.groups[group] : undefined;
+                    const pushOptions = options.interactivity.modes.push,
+                        group = itemFromArray([undefined, ...pushOptions.groups]),
+                        groupOptions =
+                            group !== undefined ? container.actualOptions.particles.groups[group] : undefined;
 
                     container.particles.push(pushNb, container.interactivity.mouse, groupOptions, group);
                 }
@@ -452,9 +455,11 @@ export class EventListeners {
             }
             case ClickMode.remove:
                 container.particles.removeQuantity(removeNb);
+
                 break;
             case ClickMode.bubble:
                 container.bubble.clicking = true;
+
                 break;
             case ClickMode.repulse:
                 container.repulse.clicking = true;

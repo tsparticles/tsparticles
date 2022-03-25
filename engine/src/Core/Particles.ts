@@ -81,8 +81,8 @@ export class Particles {
 
     /* --------- tsParticles functions - particles ----------- */
     init(): void {
-        const container = this.container;
-        const options = container.actualOptions;
+        const container = this.container,
+            options = container.actualOptions;
 
         this.lastZIndex = 0;
         this.needsSort = false;
@@ -162,8 +162,8 @@ export class Particles {
     }
 
     async update(delta: IDelta): Promise<void> {
-        const container = this.container;
-        const particlesToDelete = [];
+        const container = this.container,
+            particlesToDelete = [];
 
         container.pathGenerator.update();
 
@@ -336,12 +336,11 @@ export class Particles {
 
         options.load(splitOptions.particles);
 
-        const offset = splitOptions.sizeOffset ? setRangeValue(-parent.size.value, parent.size.value) : 0;
-
-        const position = {
-            x: parent.position.x + randomInRange(offset),
-            y: parent.position.y + randomInRange(offset),
-        };
+        const offset = splitOptions.sizeOffset ? setRangeValue(-parent.size.value, parent.size.value) : 0,
+            position = {
+                x: parent.position.x + randomInRange(offset),
+                y: parent.position.y + randomInRange(offset),
+            };
 
         return this.pushParticle(position, options, parent.group, (particle) => {
             if (particle.size.value < 0.5) {
@@ -438,12 +437,12 @@ export class Particles {
             return;
         }
 
-        const numberOptions = options.number;
-        const densityFactor = this.initDensityFactor(numberOptions.density);
-        const optParticlesNumber = numberOptions.value;
-        const optParticlesLimit = numberOptions.limit > 0 ? numberOptions.limit : optParticlesNumber;
-        const particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + manualCount;
-        const particlesCount = Math.min(this.count, this.array.filter((t) => t.group === group).length);
+        const numberOptions = options.number,
+            densityFactor = this.initDensityFactor(numberOptions.density),
+            optParticlesNumber = numberOptions.value,
+            optParticlesLimit = numberOptions.limit > 0 ? numberOptions.limit : optParticlesNumber,
+            particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + manualCount,
+            particlesCount = Math.min(this.count, this.array.filter((t) => t.group === group).length);
 
         this.limit = numberOptions.limit * densityFactor;
 

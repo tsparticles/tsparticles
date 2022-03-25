@@ -52,13 +52,12 @@ export class CircleWarp extends Circle {
             return true;
         }
 
-        const rect = range as Rectangle;
-        const circle = range as Circle;
-
-        const newPos = {
-            x: range.position.x - this.canvasSize.width,
-            y: range.position.y - this.canvasSize.height,
-        };
+        const rect = range as Rectangle,
+            circle = range as Circle,
+            newPos = {
+                x: range.position.x - this.canvasSize.width,
+                y: range.position.y - this.canvasSize.height,
+            };
 
         if (circle.radius !== undefined) {
             const biggerCircle = new Circle(newPos.x, newPos.y, circle.radius * 2);

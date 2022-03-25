@@ -16,24 +16,23 @@ export class Circle extends Range {
     }
 
     intersects(range: Range): boolean {
-        const rect = range as Rectangle;
-        const circle = range as Circle;
-        const pos1 = this.position;
-        const pos2 = range.position;
-
-        const xDist = Math.abs(pos2.x - pos1.x);
-        const yDist = Math.abs(pos2.y - pos1.y);
-        const r = this.radius;
+        const rect = range as Rectangle,
+            circle = range as Circle,
+            pos1 = this.position,
+            pos2 = range.position,
+            xDist = Math.abs(pos2.x - pos1.x),
+            yDist = Math.abs(pos2.y - pos1.y),
+            r = this.radius;
 
         if (circle.radius !== undefined) {
-            const rSum = r + circle.radius;
-            const dist = Math.sqrt(xDist * xDist + yDist + yDist);
+            const rSum = r + circle.radius,
+                dist = Math.sqrt(xDist * xDist + yDist + yDist);
 
             return rSum > dist;
         } else if (rect.size !== undefined) {
-            const w = rect.size.width;
-            const h = rect.size.height;
-            const edges = Math.pow(xDist - w, 2) + Math.pow(yDist - h, 2);
+            const w = rect.size.width,
+                h = rect.size.height,
+                edges = Math.pow(xDist - w, 2) + Math.pow(yDist - h, 2);
 
             if (xDist > r + w || yDist > r + h) {
                 return false;

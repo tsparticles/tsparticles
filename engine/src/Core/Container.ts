@@ -465,11 +465,11 @@ export class Container {
                 return;
             }
 
-            const mouseEvent = e as MouseEvent;
-            const pos = {
-                x: mouseEvent.offsetX || mouseEvent.clientX,
-                y: mouseEvent.offsetY || mouseEvent.clientY,
-            };
+            const mouseEvent = e as MouseEvent,
+                pos = {
+                    x: mouseEvent.offsetX || mouseEvent.clientX,
+                    y: mouseEvent.offsetY || mouseEvent.clientY,
+                };
 
             clickOrTouchHandler(e, pos, 1);
         };
@@ -508,11 +508,11 @@ export class Container {
                     }
                 }
 
-                const canvasRect = this.canvas.element?.getBoundingClientRect();
-                const pos = {
-                    x: lastTouch.clientX - (canvasRect?.left ?? 0),
-                    y: lastTouch.clientY - (canvasRect?.top ?? 0),
-                };
+                const canvasRect = this.canvas.element?.getBoundingClientRect(),
+                    pos = {
+                        x: lastTouch.clientX - (canvasRect?.left ?? 0),
+                        y: lastTouch.clientY - (canvasRect?.top ?? 0),
+                    };
 
                 clickOrTouchHandler(e, pos, Math.max(lastTouch.radiusX, lastTouch.radiusY));
             }
