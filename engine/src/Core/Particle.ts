@@ -65,12 +65,14 @@ const fixOutMode = (data: {
     setCb: (value: number) => void;
     radius: number;
 }) => {
-    if (isInArray(data.outMode, data.checkModes) || isInArray(data.outMode, data.checkModes)) {
-        if (data.coord > data.maxCoord - data.radius * 2) {
-            data.setCb(-data.radius);
-        } else if (data.coord < data.radius * 2) {
-            data.setCb(data.radius);
-        }
+    if (!(isInArray(data.outMode, data.checkModes) || isInArray(data.outMode, data.checkModes))) {
+        return;
+    }
+
+    if (data.coord > data.maxCoord - data.radius * 2) {
+        data.setCb(-data.radius);
+    } else if (data.coord < data.radius * 2) {
+        data.setCb(data.radius);
     }
 };
 

@@ -41,36 +41,37 @@ function rectSideBounce(
     const res: IRectSideResult = { bounced: false };
 
     if (
-        pOtherSide.min >= rectOtherSide.min &&
-        pOtherSide.min <= rectOtherSide.max &&
-        pOtherSide.max >= rectOtherSide.min &&
-        pOtherSide.max <= rectOtherSide.max
+        pOtherSide.min < rectOtherSide.min ||
+        pOtherSide.min > rectOtherSide.max ||
+        pOtherSide.max < rectOtherSide.min ||
+        pOtherSide.max > rectOtherSide.max
     ) {
-        if (
-            (pSide.max >= rectSide.min && pSide.max <= (rectSide.max + rectSide.min) / 2 && velocity > 0) ||
-            (pSide.min <= rectSide.max && pSide.min > (rectSide.max + rectSide.min) / 2 && velocity < 0)
-        ) {
-            res.velocity = velocity * -factor;
+        return res;
+    }
 
-            res.bounced = true;
-        }
+    if (
+        (pSide.max >= rectSide.min && pSide.max <= (rectSide.max + rectSide.min) / 2 && velocity > 0) ||
+        (pSide.min <= rectSide.max && pSide.min > (rectSide.max + rectSide.min) / 2 && velocity < 0)
+    ) {
+        res.velocity = velocity * -factor;
+        res.bounced = true;
     }
 
     return res;
 }
 
 function checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>): boolean {
-    if (selectors instanceof Array) {
-        for (const selector of selectors) {
-            if (element.matches(selector)) {
-                return true;
-            }
-        }
-
-        return false;
-    } else {
+    if (!(selectors instanceof Array)) {
         return element.matches(selectors);
     }
+
+    for (const selector of selectors) {
+        if (element.matches(selector)) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 /* ---------- global functions - vendors ------------ */
@@ -198,10 +199,10 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
                 continue;
             }
 
-            const sourceDict = source as Record<string, unknown>;
-            const value = sourceDict[key];
-            const isObject = typeof value === "object";
-            const destDict = destination as Record<string, unknown>;
+            const sourceDict = source as Record<string, unknown>,
+                value = sourceDict[key],
+                isObject = typeof value === "object",
+                destDict = destination as Record<string, unknown>;
 
             destDict[key] =
                 isObject && Array.isArray(value)
@@ -209,6 +210,7 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
                     : deepExtend(destDict[key], value);
         }
     }
+
     return destination;
 }
 
@@ -223,16 +225,16 @@ export function divModeExecute(
 ): void {
     if (divs instanceof Array) {
         for (const div of divs) {
-            const divMode = div.mode;
-            const divEnabled = div.enable;
+            const divMode = div.mode,
+                divEnabled = div.enable;
 
             if (divEnabled && isInArray(mode, divMode)) {
                 singleDivModeExecute(div, callback);
             }
         }
     } else {
-        const divMode = divs.mode;
-        const divEnabled = divs.enable;
+        const divMode = divs.mode,
+            divEnabled = divs.enable;
 
         if (divEnabled && isInArray(mode, divMode)) {
             singleDivModeExecute(divs, callback);
@@ -275,45 +277,35 @@ export function circleBounceDataFromParticle(p: IParticle): ICircleBouncer {
 }
 
 export function circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
-    const { x: xVelocityDiff, y: yVelocityDiff } = p1.velocity.sub(p2.velocity);
-
-    const [pos1, pos2] = [p1.position, p2.position];
-    const { dx: xDist, dy: yDist } = getDistances(pos2, pos1);
+    const { x: xVelocityDiff, y: yVelocityDiff } = p1.velocity.sub(p2.velocity),
+        [pos1, pos2] = [p1.position, p2.position],
+        { dx: xDist, dy: yDist } = getDistances(pos2, pos1);
 
     // Prevent accidental overlap of particles
-    if (xVelocityDiff * xDist + yVelocityDiff * yDist >= 0) {
-        // Grab angle between the two colliding particles
-        const angle = -Math.atan2(yDist, xDist);
-
-        // Store mass in var for better readability in collision equation
-        const m1 = p1.mass;
-        const m2 = p2.mass;
-
-        // Velocity before equation
-        const u1 = p1.velocity.rotate(angle);
-        const u2 = p2.velocity.rotate(angle);
-
-        // Velocity after 1d collision equation
-        const v1 = collisionVelocity(u1, u2, m1, m2);
-        const v2 = collisionVelocity(u2, u1, m1, m2);
-
-        // Final velocity after rotating axis back to original location
-        const vFinal1 = v1.rotate(-angle);
-        const vFinal2 = v2.rotate(-angle);
-
-        // Swap particle velocities for realistic bounce effect
-        p1.velocity.x = vFinal1.x * p1.factor.x;
-        p1.velocity.y = vFinal1.y * p1.factor.y;
-
-        p2.velocity.x = vFinal2.x * p2.factor.x;
-        p2.velocity.y = vFinal2.y * p2.factor.y;
+    if (xVelocityDiff * xDist + yVelocityDiff * yDist < 0) {
+        return;
     }
+
+    const angle = -Math.atan2(yDist, xDist),
+        m1 = p1.mass,
+        m2 = p2.mass,
+        u1 = p1.velocity.rotate(angle),
+        u2 = p2.velocity.rotate(angle),
+        v1 = collisionVelocity(u1, u2, m1, m2),
+        v2 = collisionVelocity(u2, u1, m1, m2),
+        vFinal1 = v1.rotate(-angle),
+        vFinal2 = v2.rotate(-angle);
+
+    p1.velocity.x = vFinal1.x * p1.factor.x;
+    p1.velocity.y = vFinal1.y * p1.factor.y;
+    p2.velocity.x = vFinal2.x * p2.factor.x;
+    p2.velocity.y = vFinal2.y * p2.factor.y;
 }
 
 export function rectBounce(particle: IParticle, divBounds: IBounds): void {
-    const pPos = particle.getPosition();
-    const size = particle.getRadius();
-    const bounds = calculateBounds(pPos, size);
+    const pPos = particle.getPosition(),
+        size = particle.getRadius(),
+        bounds = calculateBounds(pPos, size);
 
     const resH = rectSideBounce(
         {

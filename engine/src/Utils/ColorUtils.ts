@@ -124,19 +124,15 @@ export function colorToRgb(input?: string | IColor, index?: number, useIndex = t
     let res: IRgb | undefined;
 
     if (typeof color.value === "string") {
-        if (color.value === Constants.randomColorValue) {
-            res = getRandomRgbColor();
-        } else {
-            res = stringToRgb(color.value);
-        }
+        res = color.value === Constants.randomColorValue ? getRandomRgbColor() : stringToRgb(color.value);
     } else {
         if (color.value instanceof Array) {
             const colorSelected = itemFromArray(color.value, index, useIndex);
 
             res = colorToRgb({ value: colorSelected });
         } else {
-            const colorValue = color.value as IValueColor;
-            const rgbColor = colorValue.rgb ?? (color.value as IRgb);
+            const colorValue = color.value as IValueColor,
+                rgbColor = colorValue.rgb ?? (color.value as IRgb);
 
             if (rgbColor.r !== undefined) {
                 res = rgbColor;
@@ -172,12 +168,12 @@ export function colorToHsl(color: string | IColor | undefined, index?: number, u
 }
 
 export function rgbToHsl(color: IRgb): IHsl {
-    const r1 = color.r / 255;
-    const g1 = color.g / 255;
-    const b1 = color.b / 255;
+    const r1 = color.r / 255,
+        g1 = color.g / 255,
+        b1 = color.b / 255;
 
-    const max = Math.max(r1, g1, b1);
-    const min = Math.min(r1, g1, b1);
+    const max = Math.max(r1, g1, b1),
+        min = Math.min(r1, g1, b1);
 
     //Calculate L:
     const res = {
@@ -186,7 +182,7 @@ export function rgbToHsl(color: IRgb): IHsl {
         s: 0,
     };
 
-    if (max != min) {
+    if (max !== min) {
         //Calculate S:
         res.s = res.l < 0.5 ? (max - min) / (max + min) : (max - min) / (2.0 - max - min);
         //Calculate H:
@@ -224,12 +220,12 @@ export function stringToRgb(input: string): IRgb | undefined {
  * @param hsl
  */
 export function hslToRgb(hsl: IHsl): IRgb {
-    const result: IRgb = { b: 0, g: 0, r: 0 };
-    const hslPercent: IHsl = {
-        h: hsl.h / 360,
-        l: hsl.l / 100,
-        s: hsl.s / 100,
-    };
+    const result: IRgb = { b: 0, g: 0, r: 0 },
+        hslPercent: IHsl = {
+            h: hsl.h / 360,
+            l: hsl.l / 100,
+            s: hsl.s / 100,
+        };
 
     if (hslPercent.s === 0) {
         result.b = hslPercent.l; // achromatic
@@ -237,10 +233,10 @@ export function hslToRgb(hsl: IHsl): IRgb {
         result.r = hslPercent.l;
     } else {
         const q =
-            hslPercent.l < 0.5
-                ? hslPercent.l * (1 + hslPercent.s)
-                : hslPercent.l + hslPercent.s - hslPercent.l * hslPercent.s;
-        const p = 2 * hslPercent.l - q;
+                hslPercent.l < 0.5
+                    ? hslPercent.l * (1 + hslPercent.s)
+                    : hslPercent.l + hslPercent.s - hslPercent.l * hslPercent.s,
+            p = 2 * hslPercent.l - q;
 
         result.r = hue2rgb(p, q, hslPercent.h + 1 / 3);
         result.g = hue2rgb(p, q, hslPercent.h);
@@ -267,8 +263,8 @@ export function hslaToRgba(hsla: IHsla): IRgba {
 
 export function hslToHsv(hsl: IHsl): IHsv {
     const l = hsl.l / 100,
-        sl = hsl.s / 100;
-    const v = l + sl * Math.min(l, 1 - l),
+        sl = hsl.s / 100,
+        v = l + sl * Math.min(l, 1 - l),
         sv = !v ? 0 : 2 * (1 - l / v);
 
     return {
@@ -291,8 +287,8 @@ export function hslaToHsva(hsla: IHsla): IHsva {
 
 export function hsvToHsl(hsv: IHsv): IHsl {
     const v = hsv.v / 100,
-        sv = hsv.s / 100;
-    const l = v * (1 - sv / 2),
+        sv = hsv.s / 100,
+        l = v * (1 - sv / 2),
         sl = l === 0 || l === 1 ? 0 : (v - l) / Math.min(l, 1 - l);
 
     return {
@@ -314,12 +310,12 @@ export function hsvaToHsla(hsva: IHsva): IHsla {
 }
 
 export function hsvToRgb(hsv: IHsv): IRgb {
-    const result: IRgb = { b: 0, g: 0, r: 0 };
-    const hsvPercent = {
-        h: hsv.h / 60,
-        s: hsv.s / 100,
-        v: hsv.v / 100,
-    };
+    const result: IRgb = { b: 0, g: 0, r: 0 },
+        hsvPercent = {
+            h: hsv.h / 60,
+            s: hsv.s / 100,
+            v: hsv.v / 100,
+        };
 
     const c = hsvPercent.v * hsvPercent.s,
         x = c * (1 - Math.abs((hsvPercent.h % 2) - 1));
@@ -450,8 +446,8 @@ export function getStyleFromHsv(color: IHsv, opacity?: number): string {
 }
 
 export function colorMix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number, size2: number): IRgb {
-    let rgb1 = color1 as IRgb;
-    let rgb2 = color2 as IRgb;
+    let rgb1 = color1 as IRgb,
+        rgb2 = color2 as IRgb;
 
     if (rgb1.r === undefined) {
         rgb1 = hslToRgb(color1 as IHsl);
@@ -472,8 +468,8 @@ export function getLinkColor(p1: IParticle, p2?: IParticle, linkColor?: string |
     if (linkColor === Constants.randomColorValue) {
         return getRandomRgbColor();
     } else if (linkColor === "mid") {
-        const sourceColor = p1.getFillColor() ?? p1.getStrokeColor();
-        const destColor = p2?.getFillColor() ?? p2?.getStrokeColor();
+        const sourceColor = p1.getFillColor() ?? p1.getStrokeColor(),
+            destColor = p2?.getFillColor() ?? p2?.getStrokeColor();
 
         if (sourceColor && destColor && p2) {
             return colorMix(sourceColor, destColor, p1.getRadius(), p2.getRadius());

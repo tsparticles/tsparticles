@@ -121,19 +121,23 @@ export class EmitterInstance {
         }
 
         if (
-            this.container.retina.reduceFactor &&
-            (this.lifeCount > 0 || this.immortal || !this.options.life.count) &&
-            (this.#firstSpawn || this.currentSpawnDelay >= (this.spawnDelay ?? 0))
+            !(
+                this.container.retina.reduceFactor &&
+                (this.lifeCount > 0 || this.immortal || !this.options.life.count) &&
+                (this.#firstSpawn || this.currentSpawnDelay >= (this.spawnDelay ?? 0))
+            )
         ) {
-            if (this.emitDelay === undefined) {
-                const delay = getRangeValue(this.options.rate.delay);
+            return;
+        }
 
-                this.emitDelay = (1000 * delay) / this.container.retina.reduceFactor;
-            }
+        if (this.emitDelay === undefined) {
+            const delay = getRangeValue(this.options.rate.delay);
 
-            if (this.lifeCount > 0 || this.immortal) {
-                this.prepareToDie();
-            }
+            this.emitDelay = (1000 * delay) / this.container.retina.reduceFactor;
+        }
+
+        if (this.lifeCount > 0 || this.immortal) {
+            this.prepareToDie();
         }
     }
 
@@ -288,8 +292,8 @@ export class EmitterInstance {
     }
 
     private calcPosition(): ICoordinates {
-        const container = this.container;
-        const percentPosition = this.options.position;
+        const container = this.container,
+            percentPosition = this.options.position;
 
         return {
             x: (getRangeValue(percentPosition?.x ?? Math.random() * 100) / 100) * container.canvas.size.width,
@@ -308,9 +312,8 @@ export class EmitterInstance {
     }
 
     private emitParticles(quantity: number): void {
-        const container = this.container;
-        const position = this.getPosition();
-        const size = this.getSize();
+        const position = this.getPosition(),
+            size = this.getSize();
 
         for (let i = 0; i < quantity; i++) {
             const particlesOptions = deepExtend({}, this.particlesOptions) as RecursivePartial<IParticles>;
@@ -339,7 +342,7 @@ export class EmitterInstance {
 
             const pPosition = this.shape?.randomPosition(position, size, this.fill) ?? position;
 
-            container.particles.addParticle(pPosition, particlesOptions);
+            this.container.particles.addParticle(pPosition, particlesOptions);
         }
     }
 
@@ -350,11 +353,10 @@ export class EmitterInstance {
             return initValue;
         }
 
-        const colorOffset = randomInRange(animation.offset);
-
-        const delay = getRangeValue(this.options.rate.delay);
-        const emitFactor = (1000 * delay) / container.retina.reduceFactor;
-        const colorSpeed = getRangeValue(animation.speed ?? 0);
+        const colorOffset = randomInRange(animation.offset),
+            delay = getRangeValue(this.options.rate.delay),
+            emitFactor = (1000 * delay) / container.retina.reduceFactor,
+            colorSpeed = getRangeValue(animation.speed ?? 0);
 
         return (initValue + (colorSpeed * container.fpsLimit) / emitFactor + colorOffset * 3.6) % maxValue;
     }

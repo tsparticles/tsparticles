@@ -29,22 +29,19 @@ class AbsorbersPlugin implements IPlugin {
         }
 
         const absorbers = options.absorbers;
-        let loadAbsorbers = false;
 
         if (absorbers instanceof Array) {
-            if (absorbers.length) {
-                loadAbsorbers = true;
-            }
-        } else if (absorbers !== undefined) {
-            loadAbsorbers = true;
+            return !!absorbers.length;
+        } else if (absorbers) {
+            return true;
         } else if (
             options.interactivity?.events?.onClick?.mode &&
             isInArray(AbsorberClickMode.absorber, options.interactivity.events.onClick.mode)
         ) {
-            loadAbsorbers = true;
+            return true;
         }
 
-        return loadAbsorbers;
+        return false;
     }
 
     loadOptions(options: Options, source?: RecursivePartial<IOptions & IAbsorberOptions>): void {

@@ -136,9 +136,8 @@ export class Emitters implements IContainerPlugin {
     }
 
     handleClickMode(mode: string): void {
-        const container = this.container;
-        const emitterOptions = this.emitters;
-        const modeEmitters = this.interactivityEmitters;
+        const emitterOptions = this.emitters,
+            modeEmitters = this.interactivityEmitters;
 
         if (mode === EmitterClickMode.emitter) {
             let emitterModeOptions: IEmitter | undefined;
@@ -152,9 +151,9 @@ export class Emitters implements IContainerPlugin {
             }
 
             const emittersOptions =
-                emitterModeOptions ??
-                (emitterOptions instanceof Array ? itemFromArray(emitterOptions) : emitterOptions);
-            const ePosition = container.interactivity.mouse.clickPosition;
+                    emitterModeOptions ??
+                    (emitterOptions instanceof Array ? itemFromArray(emitterOptions) : emitterOptions),
+                ePosition = this.container.interactivity.mouse.clickPosition;
 
             this.addEmitter(deepExtend({}, emittersOptions) as IEmitter, ePosition);
         }

@@ -64,8 +64,8 @@ export class Bouncer extends ExternalInteractorBase {
     }
 
     private singleSelectorBounce(selector: string, div: DivEvent): void {
-        const container = this.container;
-        const query = document.querySelectorAll(selector);
+        const container = this.container,
+            query = document.querySelectorAll(selector);
 
         if (!query.length) {
             return;
@@ -79,17 +79,16 @@ export class Bouncer extends ExternalInteractorBase {
                     y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
                 },
                 radius = (elem.offsetWidth / 2) * pxRatio,
-                tolerance = 10 * pxRatio;
-
-            const area =
-                div.type === DivType.circle
-                    ? new Circle(pos.x, pos.y, radius + tolerance)
-                    : new Rectangle(
-                          elem.offsetLeft * pxRatio - tolerance,
-                          elem.offsetTop * pxRatio - tolerance,
-                          elem.offsetWidth * pxRatio + tolerance * 2,
-                          elem.offsetHeight * pxRatio + tolerance * 2
-                      );
+                tolerance = 10 * pxRatio,
+                area =
+                    div.type === DivType.circle
+                        ? new Circle(pos.x, pos.y, radius + tolerance)
+                        : new Rectangle(
+                              elem.offsetLeft * pxRatio - tolerance,
+                              elem.offsetTop * pxRatio - tolerance,
+                              elem.offsetWidth * pxRatio + tolerance * 2,
+                              elem.offsetHeight * pxRatio + tolerance * 2
+                          );
 
             this.processBounce(pos, radius, area);
         });

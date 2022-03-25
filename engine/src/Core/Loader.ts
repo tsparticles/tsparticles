@@ -74,9 +74,9 @@ export class Loader {
             document.querySelector("body")?.append(domContainer);
         }
 
-        const currentOptions = options instanceof Array ? itemFromArray(options, index) : options;
-        const dom = this.dom();
-        const oldIndex = dom.findIndex((v) => v.id === tagId);
+        const currentOptions = options instanceof Array ? itemFromArray(options, index) : options,
+            dom = this.dom(),
+            oldIndex = dom.findIndex((v) => v.id === tagId);
 
         if (oldIndex >= 0) {
             const old = this.domItem(oldIndex);
@@ -133,8 +133,8 @@ export class Loader {
     }
 
     async loadRemoteOptions(params: RemoteLoaderParams): Promise<Container | undefined> {
-        const { url: jsonUrl, index } = params;
-        const url = jsonUrl instanceof Array ? itemFromArray(jsonUrl, index) : jsonUrl;
+        const { url: jsonUrl, index } = params,
+            url = jsonUrl instanceof Array ? itemFromArray(jsonUrl, index) : jsonUrl;
 
         if (!url) {
             return;
@@ -288,7 +288,7 @@ export class Loader {
     setOnClickHandler(callback: (evt: Event, particles?: Particle[]) => void): void {
         const dom = this.dom();
 
-        if (dom.length === 0) {
+        if (!dom.length) {
             throw new Error("Can only set click handlers after calling tsParticles.load() or tsParticles.loadJSON()");
         }
 

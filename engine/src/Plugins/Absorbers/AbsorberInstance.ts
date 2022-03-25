@@ -70,8 +70,8 @@ export class AbsorberInstance {
     }
 
     attract(particle: OrbitingParticle): void {
-        const container = this.container;
-        const options = this.options;
+        const container = this.container,
+            options = this.options;
 
         if (options.draggable) {
             const mouse = container.interactivity.mouse;
@@ -92,9 +92,9 @@ export class AbsorberInstance {
             }
         }
 
-        const pos = particle.getPosition();
-        const { dx, dy, distance } = getDistances(this.position, pos);
-        const v = Vector.create(dx, dy);
+        const pos = particle.getPosition(),
+            { dx, dy, distance } = getDistances(this.position, pos),
+            v = Vector.create(dx, dy);
 
         v.length = (this.mass / Math.pow(distance, 2)) * container.retina.reduceFactor;
 

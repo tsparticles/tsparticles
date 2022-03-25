@@ -1,7 +1,7 @@
 import { EasingType, MoveDirection, MoveDirectionAlt } from "../Enums";
 import type { ICoordinates } from "../Core";
 import type { IValueWithRandom } from "../Options/Interfaces/IValueWithRandom";
-import { RangeValue } from "../Types";
+import type { RangeValue } from "../Types";
 import { Vector } from "../Core";
 
 /**
@@ -65,8 +65,14 @@ export function setRangeValue(source: RangeValue, value?: number): RangeValue {
 }
 
 export function getValue(options: IValueWithRandom): number {
-    const random = options.random;
-    const { enable, minimumValue } = typeof random === "boolean" ? { enable: random, minimumValue: 0 } : random;
+    const random = options.random,
+        { enable, minimumValue } =
+            typeof random === "boolean"
+                ? {
+                      enable: random,
+                      minimumValue: 0,
+                  }
+                : random;
 
     return enable ? getRangeValue(setRangeValue(options.value, minimumValue)) : getRangeValue(options.value);
 }
@@ -77,8 +83,9 @@ export function getValue(options: IValueWithRandom): number {
  * @param pointB the second coordinate
  */
 export function getDistances(pointA: ICoordinates, pointB: ICoordinates): { dx: number; dy: number; distance: number } {
-    const dx = pointA.x - pointB.x;
-    const dy = pointA.y - pointB.y;
+    const dx = pointA.x - pointB.x,
+        dy = pointA.y - pointB.y;
+
     return { dx: dx, dy: dy, distance: Math.sqrt(dx * dx + dy * dy) };
 }
 
@@ -153,8 +160,8 @@ export function calcEasing(value: number, type: EasingType): number {
         case EasingType.easeOutSine:
             return Math.sin((value * Math.PI) / 2);
         case EasingType.easeOutBack: {
-            const c1 = 1.70158;
-            const c3 = c1 + 1;
+            const c1 = 1.70158,
+                c3 = c1 + 1;
 
             return 1 + c3 * Math.pow(value - 1, 3) + c1 * Math.pow(value - 1, 2);
         }

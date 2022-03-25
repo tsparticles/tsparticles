@@ -114,9 +114,8 @@ export class Absorbers implements IContainerPlugin {
     }
 
     handleClickMode(mode: string): void {
-        const container = this.container;
-        const absorberOptions = this.absorbers;
-        const modeAbsorbers = this.interactivityAbsorbers;
+        const absorberOptions = this.absorbers,
+            modeAbsorbers = this.interactivityAbsorbers;
 
         if (mode === AbsorberClickMode.absorber) {
             let absorbersModeOptions: IAbsorber | undefined;
@@ -130,10 +129,9 @@ export class Absorbers implements IContainerPlugin {
             }
 
             const absorbersOptions =
-                absorbersModeOptions ??
-                (absorberOptions instanceof Array ? itemFromArray(absorberOptions) : absorberOptions);
-
-            const aPosition = container.interactivity.mouse.clickPosition;
+                    absorbersModeOptions ??
+                    (absorberOptions instanceof Array ? itemFromArray(absorberOptions) : absorberOptions),
+                aPosition = this.container.interactivity.mouse.clickPosition;
 
             this.addAbsorber(absorbersOptions, aPosition);
         }

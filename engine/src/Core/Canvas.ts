@@ -329,10 +329,10 @@ export class Canvas {
     }
 
     initBackground(): void {
-        const options = this.container.actualOptions;
-        const background = options.background;
-        const element = this.element;
-        const elementStyle = element?.style;
+        const options = this.container.actualOptions,
+            background = options.background,
+            element = this.element,
+            elementStyle = element?.style;
 
         if (!elementStyle) {
             return;

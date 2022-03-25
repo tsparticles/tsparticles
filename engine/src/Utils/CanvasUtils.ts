@@ -66,15 +66,13 @@ export function drawLinkLine(
 
         drawn = true;
     } else if (warp) {
-        let pi1: ICoordinates | undefined;
-        let pi2: ICoordinates | undefined;
+        let pi1: ICoordinates | undefined, pi2: ICoordinates | undefined;
 
         const endNE = {
-            x: end.x - canvasSize.width,
-            y: end.y,
-        };
-
-        const d1 = getDistances(begin, endNE);
+                x: end.x - canvasSize.width,
+                y: end.y,
+            },
+            d1 = getDistances(begin, endNE);
 
         if (d1.distance <= maxDistance) {
             const yi = begin.y - (d1.dy / d1.dx) * begin.x;
@@ -83,29 +81,27 @@ export function drawLinkLine(
             pi2 = { x: canvasSize.width, y: yi };
         } else {
             const endSW = {
-                x: end.x,
-                y: end.y - canvasSize.height,
-            };
-
-            const d2 = getDistances(begin, endSW);
+                    x: end.x,
+                    y: end.y - canvasSize.height,
+                },
+                d2 = getDistances(begin, endSW);
 
             if (d2.distance <= maxDistance) {
-                const yi = begin.y - (d2.dy / d2.dx) * begin.x;
-                const xi = -yi / (d2.dy / d2.dx);
+                const yi = begin.y - (d2.dy / d2.dx) * begin.x,
+                    xi = -yi / (d2.dy / d2.dx);
 
                 pi1 = { x: xi, y: 0 };
                 pi2 = { x: xi, y: canvasSize.height };
             } else {
                 const endSE = {
-                    x: end.x - canvasSize.width,
-                    y: end.y - canvasSize.height,
-                };
-
-                const d3 = getDistances(begin, endSE);
+                        x: end.x - canvasSize.width,
+                        y: end.y - canvasSize.height,
+                    },
+                    d3 = getDistances(begin, endSE);
 
                 if (d3.distance <= maxDistance) {
-                    const yi = begin.y - (d3.dy / d3.dx) * begin.x;
-                    const xi = -yi / (d3.dy / d3.dx);
+                    const yi = begin.y - (d3.dy / d3.dx) * begin.x,
+                        xi = -yi / (d3.dy / d3.dx);
 
                     pi1 = { x: xi, y: yi };
                     pi2 = { x: pi1.x + canvasSize.width, y: pi1.y + canvasSize.height };
@@ -165,7 +161,6 @@ export function drawLinkTriangle(
     }
 
     context.fillStyle = getStyleFromRgb(colorTriangle, opacityTriangle);
-
     context.fill();
 }
 
@@ -192,18 +187,18 @@ export function gradient(
     p2: IParticle,
     opacity: number
 ): CanvasGradient | undefined {
-    const gradStop = Math.floor(p2.getRadius() / p1.getRadius());
-    const color1 = p1.getFillColor();
-    const color2 = p2.getFillColor();
+    const gradStop = Math.floor(p2.getRadius() / p1.getRadius()),
+        color1 = p1.getFillColor(),
+        color2 = p2.getFillColor();
 
     if (!color1 || !color2) {
         return;
     }
 
-    const sourcePos = p1.getPosition();
-    const destPos = p2.getPosition();
-    const midRgb = colorMix(color1, color2, p1.getRadius(), p2.getRadius());
-    const grad = context.createLinearGradient(sourcePos.x, sourcePos.y, destPos.x, destPos.y);
+    const sourcePos = p1.getPosition(),
+        destPos = p2.getPosition(),
+        midRgb = colorMix(color1, color2, p1.getRadius(), p2.getRadius()),
+        grad = context.createLinearGradient(sourcePos.x, sourcePos.y, destPos.x, destPos.y);
 
     grad.addColorStop(0, getStyleFromHsl(color1, opacity));
     grad.addColorStop(gradStop > 1 ? 1 : gradStop, getStyleFromRgb(midRgb, opacity));
@@ -244,17 +239,17 @@ export function drawParticle(
     shadow: IShadow,
     gradient?: IParticleGradientAnimation
 ): void {
-    const pos = particle.getPosition();
-    const tiltOptions = particle.options.tilt;
-    const rollOptions = particle.options.roll;
+    const pos = particle.getPosition(),
+        tiltOptions = particle.options.tilt,
+        rollOptions = particle.options.roll;
 
     context.save();
 
     if (tiltOptions.enable || rollOptions.enable) {
-        const roll = rollOptions.enable && particle.roll;
-        const tilt = tiltOptions.enable && particle.tilt;
-        const rollHorizontal = roll && (rollOptions.mode === RollMode.horizontal || rollOptions.mode === RollMode.both);
-        const rollVertical = roll && (rollOptions.mode === RollMode.vertical || rollOptions.mode === RollMode.both);
+        const roll = rollOptions.enable && particle.roll,
+            tilt = tiltOptions.enable && particle.tilt,
+            rollHorizontal = roll && (rollOptions.mode === RollMode.horizontal || rollOptions.mode === RollMode.both),
+            rollVertical = roll && (rollOptions.mode === RollMode.vertical || rollOptions.mode === RollMode.both);
 
         context.setTransform(
             rollHorizontal ? Math.cos(particle.roll.angle) : 1,
@@ -290,16 +285,16 @@ export function drawParticle(
     }
 
     if (gradient) {
-        const gradientAngle = gradient.angle.value;
-        const fillGradient =
-            gradient.type === GradientType.radial
-                ? context.createRadialGradient(0, 0, 0, 0, 0, radius)
-                : context.createLinearGradient(
-                      Math.cos(gradientAngle) * -radius,
-                      Math.sin(gradientAngle) * -radius,
-                      Math.cos(gradientAngle) * radius,
-                      Math.sin(gradientAngle) * radius
-                  );
+        const gradientAngle = gradient.angle.value,
+            fillGradient =
+                gradient.type === GradientType.radial
+                    ? context.createRadialGradient(0, 0, 0, 0, 0, radius)
+                    : context.createLinearGradient(
+                          Math.cos(gradientAngle) * -radius,
+                          Math.sin(gradientAngle) * -radius,
+                          Math.cos(gradientAngle) * radius,
+                          Math.sin(gradientAngle) * radius
+                      );
 
         for (const color of gradient.colors) {
             fillGradient.addColorStop(
@@ -316,10 +311,8 @@ export function drawParticle(
         }
 
         context.fillStyle = fillGradient;
-    } else {
-        if (fillColorValue) {
-            context.fillStyle = fillColorValue;
-        }
+    } else if (fillColorValue) {
+        context.fillStyle = fillColorValue;
     }
 
     const stroke = particle.stroke;
@@ -347,6 +340,7 @@ export function drawParticle(
     context.restore();
 
     context.save();
+
     if (tiltOptions.enable && particle.tilt) {
         context.setTransform(
             1,
@@ -431,11 +425,13 @@ export function drawParticlePlugin(
     particle: Particle,
     delta: IDelta
 ): void {
-    if (plugin.drawParticle !== undefined) {
-        context.save();
-        plugin.drawParticle(context, particle, delta);
-        context.restore();
+    if (!plugin.drawParticle) {
+        return;
     }
+
+    context.save();
+    plugin.drawParticle(context, particle, delta);
+    context.restore();
 }
 
 export function drawEllipse(
@@ -449,14 +445,14 @@ export function drawEllipse(
     start: number,
     end: number
 ): void {
+    if (width <= 0) {
+        return;
+    }
+
     const pos = particle.getPosition();
 
     if (fillColorValue) {
         context.strokeStyle = getStyleFromHsl(fillColorValue, opacity);
-    }
-
-    if (width === 0) {
-        return;
     }
 
     context.lineWidth = width;

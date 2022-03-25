@@ -158,20 +158,22 @@ export class Repulser extends ExternalInteractorBase {
                     velocity = container.actualOptions.interactivity.modes.repulse.speed,
                     force = (-repulseRadius * velocity) / d;
 
-                if (d <= repulseRadius) {
-                    container.repulse.particles.push(particle);
-
-                    const vect = Vector.create(dx, dy);
-
-                    vect.length = force;
-
-                    particle.velocity.setTo(vect);
+                if (d > repulseRadius) {
+                    continue;
                 }
+
+                container.repulse.particles.push(particle);
+
+                const vect = Vector.create(dx, dy);
+
+                vect.length = force;
+                particle.velocity.setTo(vect);
             }
         } else if (container.repulse.clicking === false) {
             for (const particle of container.repulse.particles) {
                 particle.velocity.setTo(particle.initialVelocity);
             }
+
             container.repulse.particles = [];
         }
     }

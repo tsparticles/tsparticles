@@ -50,8 +50,8 @@ export class Attractor extends ExternalInteractorBase {
     }
 
     private hoverAttract(): void {
-        const container = this.container;
-        const mousePos = container.interactivity.mouse.position;
+        const container = this.container,
+            mousePos = container.interactivity.mouse.position;
 
         if (!mousePos) {
             return;
@@ -63,22 +63,22 @@ export class Attractor extends ExternalInteractorBase {
     }
 
     private processAttract(position: ICoordinates, attractRadius: number, area: Range): void {
-        const container = this.container;
-        const attractOptions = container.actualOptions.interactivity.modes.attract;
-        const query = container.particles.quadTree.query(area);
+        const container = this.container,
+            attractOptions = container.actualOptions.interactivity.modes.attract,
+            query = container.particles.quadTree.query(area);
 
         for (const particle of query) {
-            const { dx, dy, distance } = getDistances(particle.position, position);
-            const velocity = attractOptions.speed * attractOptions.factor;
-            const attractFactor = clamp(
-                calcEasing(1 - distance / attractRadius, attractOptions.easing) * velocity,
-                0,
-                attractOptions.maxSpeed
-            );
-            const normVec = Vector.create(
-                distance === 0 ? velocity : (dx / distance) * attractFactor,
-                distance === 0 ? velocity : (dy / distance) * attractFactor
-            );
+            const { dx, dy, distance } = getDistances(particle.position, position),
+                velocity = attractOptions.speed * attractOptions.factor,
+                attractFactor = clamp(
+                    calcEasing(1 - distance / attractRadius, attractOptions.easing) * velocity,
+                    0,
+                    attractOptions.maxSpeed
+                ),
+                normVec = Vector.create(
+                    distance === 0 ? velocity : (dx / distance) * attractFactor,
+                    distance === 0 ? velocity : (dy / distance) * attractFactor
+                );
 
             particle.position.subFrom(normVec);
         }
