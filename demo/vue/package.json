@@ -39,7 +39,7 @@
     "@vue/cli-plugin-typescript": "4.5.17",
     "@vue/cli-service": "4.5.17",
     "babel-loader": "8.2.4",
-    "eslint": "8.11.0",
+    "eslint": "8.12.0",
     "eslint-config-prettier": "8.5.0",
     "prettier": "2.6.0",
     "rollup": "2.70.1",
