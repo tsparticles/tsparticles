@@ -15,7 +15,7 @@
     "react-tsparticles": "^1.42.4"
   },
   "devDependencies": {
-    "eslint": "8.11.0",
+    "eslint": "8.12.0",
     "eslint-config-next": "12.1.1"
   }
 }
