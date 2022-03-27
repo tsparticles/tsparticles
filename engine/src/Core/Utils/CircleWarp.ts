@@ -7,15 +7,23 @@ import { Rectangle } from "./Rectangle";
  * @category Utils
  */
 export class CircleWarp extends Circle {
+    /**
+     * Circle constructor, initialized position and radius
+     * @param x X coordinate of the position
+     * @param y Y coordinate of the position
+     * @param radius Circle's radius
+     * @param canvasSize the canvas size, used for warp formulas
+     */
     constructor(x: number, y: number, radius: number, private readonly canvasSize: IDimension) {
         super(x, y, radius);
 
-        this.canvasSize = {
-            height: canvasSize.height,
-            width: canvasSize.width,
-        };
+        this.canvasSize = {...canvasSize };
     }
 
+    /**
+     * Check if the given point is inside the circle
+     * @param point the point to check
+     */
     contains(point: ICoordinates): boolean {
         if (super.contains(point)) {
             return true;
@@ -47,6 +55,10 @@ export class CircleWarp extends Circle {
         return super.contains(posSW);
     }
 
+    /**
+     * Check if the given range intersects the circle
+     * @param range the range to check
+     */
     intersects(range: Range): boolean {
         if (super.intersects(range)) {
             return true;

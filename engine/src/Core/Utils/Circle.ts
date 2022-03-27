@@ -1,20 +1,34 @@
 import type { ICoordinates } from "../Interfaces";
 import { Range } from "./Range";
-import { Rectangle } from "./Rectangle";
+import type { Rectangle } from "./Rectangle";
 import { getDistance } from "../../Utils";
 
 /**
  * @category Utils
  */
 export class Circle extends Range {
+    /**
+     * Circle constructor, initialized position and radius
+     * @param x X coordinate of the position
+     * @param y Y coordinate of the position
+     * @param radius Circle's radius
+     */
     constructor(x: number, y: number, readonly radius: number) {
         super(x, y);
     }
 
+    /**
+     * Check if the given point is inside the circle
+     * @param point the point to check
+     */
     contains(point: ICoordinates): boolean {
         return getDistance(point, this.position) <= this.radius;
     }
 
+    /**
+     * Check if the given range intersects the circle
+     * @param range the range to check
+     */
     intersects(range: Range): boolean {
         const rect = range as Rectangle,
             circle = range as Circle,

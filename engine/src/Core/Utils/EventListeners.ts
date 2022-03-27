@@ -4,6 +4,14 @@ import { Constants } from "./Constants";
 import type { Container } from "../Container";
 import type { ICoordinates } from "../Interfaces";
 
+/**
+ * Manage the given event listeners
+ * @param element the event listener receiver
+ * @param event the event to listen
+ * @param handler the handler called once the event is triggered
+ * @param add flag for adding or removing the event listener
+ * @param options event listener options object
+ */
 function manageListener(
     element: HTMLElement | Node | Window | MediaQueryList,
     event: string,
@@ -195,6 +203,10 @@ export class EventListeners {
         }
     }
 
+    /**
+     * Handles window resize event
+     * @private
+     */
     private handleWindowResize(): void {
         if (this.resizeTimeout) {
             clearTimeout(this.resizeTimeout);
@@ -205,6 +217,10 @@ export class EventListeners {
         this.resizeTimeout = setTimeout(async () => await this.container.canvas?.windowResize(), 500);
     }
 
+    /**
+     * Handles blur event
+     * @private
+     */
     private handleVisibilityChange(): void {
         const container = this.container,
             options = container.actualOptions;
@@ -230,6 +246,10 @@ export class EventListeners {
         }
     }
 
+    /**
+     * Handle mouse down event
+     * @private
+     */
     private mouseDown(): void {
         const interactivity = this.container.interactivity;
 
@@ -422,6 +442,11 @@ export class EventListeners {
         }
     }
 
+    /**
+     * Handle browser theme change
+     * @param e the media query event
+     * @private
+     */
     private handleThemeChange(e: Event): void {
         const mediaEvent = e as MediaQueryListEvent,
             themeName = mediaEvent.matches
@@ -434,6 +459,11 @@ export class EventListeners {
         }
     }
 
+    /**
+     * Handles click mode event
+     * @param mode Click mode type
+     * @private
+     */
     private handleClickMode(mode: ClickMode | string): void {
         const container = this.container,
             options = container.actualOptions,

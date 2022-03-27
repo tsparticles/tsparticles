@@ -6,8 +6,18 @@ import { Range } from "./Range";
  * @category Utils
  */
 export class Rectangle extends Range {
+    /**
+     * The rectangle size
+     */
     readonly size: IDimension;
 
+    /**
+     * The rectangle constructor, initializes position and size
+     * @param x X coordinate of the position
+     * @param y Y coordinate of the position
+     * @param width Rectangle width
+     * @param height Rectangle height
+     */
     constructor(x: number, y: number, width: number, height: number) {
         super(x, y);
 
@@ -17,6 +27,10 @@ export class Rectangle extends Range {
         };
     }
 
+    /**
+     * Check if the given point is inside the rectangle
+     * @param point the point to check
+     */
     contains(point: ICoordinates): boolean {
         const w = this.size.width,
             h = this.size.height,
@@ -25,6 +39,10 @@ export class Rectangle extends Range {
         return point.x >= pos.x && point.x <= pos.x + w && point.y >= pos.y && point.y <= pos.y + h;
     }
 
+    /**
+     * Check if another range intersects the rectangle
+     * @param range the range to check
+     */
     intersects(range: Range): boolean {
         const rect = range as Rectangle,
             circle = range as Circle,
