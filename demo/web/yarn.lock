@@ -1211,9 +1211,9 @@ minimatch@^3.0.4:
     brace-expansion "^1.1.7"
 
 minimist@^1.2.5:
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
-  integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.6.tgz#8637a5b759ea0d6e98702cfb3a9283323c93af44"
+  integrity sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==
 
 mkdirp@^0.5.1:
   version "0.5.5"
@@ -1833,6 +1833,11 @@ tslib@^1.8.1:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
+tsparticles@^1.42.4:
+  version "1.42.4"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.42.4.tgz#63f0615c44d88c6e7d5e10e7ea1fb7eba1164b76"
+  integrity sha512-tfjh6hZFID+5mIdqIvAvmpGymG5kFIxB2k1fs0SIDemo7iL9qnQyvI3HankxfRtCblcwRoEYj/g5phdIhqY8vA==
+
 tsutils@^3.21.0:
   version "3.21.0"
   resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-3.21.0.tgz#b48717d394cea6c1e096983eed58e9d61715b623"
@@ -1911,6 +1916,13 @@ void-elements@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-3.1.0.tgz#614f7fbf8d801f0bb5f0661f5b2f5785750e4f09"
   integrity sha1-YU9/v42AHwu18GYfWy9XhXUOTwk=
+
+web-particles@^1.42.4:
+  version "1.42.4"
+  resolved "https://registry.yarnpkg.com/web-particles/-/web-particles-1.42.4.tgz#ecead40526d1d0fa8d9494d07b4438e50a6f41c6"
+  integrity sha512-2HBJYClnYp4QZSQP4b/ohNPt3/+mpKfFZA1kZ+8OWMz8ov3cKGUbvirghhHEj8zoduPDpOHmwrMQyLJyGuiw3g==
+  dependencies:
+    tsparticles "^1.42.4"
 
 which@^2.0.1:
   version "2.0.2"
