@@ -6555,10 +6555,10 @@ string_decoder@~1.1.1:
   dependencies:
     safe-buffer "~5.1.0"
 
-stringify-object@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/stringify-object/-/stringify-object-4.0.0.tgz#57a379dacb5355ab3dbe93693ce974f1234f7c88"
-  integrity sha512-MkMnWfxpZgZdd4z+EM7zmpPQZ6tCyC/vx+D1Mz6xbLHpzQwjHjSQCv7LEjDMArrnKCeMWn9KKeDEoifF2B6oaQ==
+stringify-object@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/stringify-object/-/stringify-object-4.0.1.tgz#0d2153f3fb330ed0fdd7f17f07676173b0f9b764"
+  integrity sha512-qpV1FBpN0R1gDAhCHIU71SYGZb35Te+gOQbQ6lYRmVJT7pF1NB8mkHeEJvyYNiHXw+fB4KIbeIjQl1rgiIijiA==
   dependencies:
     get-own-enumerable-property-symbols "^3.0.2"
     is-obj "^3.0.0"
