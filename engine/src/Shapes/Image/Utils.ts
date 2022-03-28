@@ -5,6 +5,9 @@ import type { IHsl, IParticle, Particle } from "../../Core";
 import type { IImageShape } from "../../Options/Interfaces/Particles/Shape/IImageShape";
 import { getStyleFromHsl } from "../../Utils";
 
+/**
+ * The image interface, used for keeping useful data for drawing
+ */
 export interface IImage {
     source: string;
     type: string;
@@ -14,6 +17,9 @@ export interface IImage {
     loading: boolean;
 }
 
+/**
+ * The particle image, containing also some particles options
+ */
 export interface IParticleImage {
     source: string;
     data: IImage;
@@ -23,18 +29,41 @@ export interface IParticleImage {
     replaceColor: boolean;
 }
 
+/*
+ * The container image collection
+ */
 export interface ContainerImage {
+    /**
+     * The container id, used key
+     */
     id: string;
+
+    /**
+     * The image collection of the given container
+     */
     images: IImage[];
 }
 
+/**
+ * The Particle extension type
+ */
 export type IImageParticle = IParticle & {
     image?: IParticleImage;
 };
 
+/**
+ * The color regex for replacing values in SVG data
+ */
 const currentColorRegex =
     /(#(?:[0-9a-f]{2}){2,4}|(#[0-9a-f]{3})|(rgb|hsl)a?\((-?\d+%?[,\s]+){2,3}\s*[\d.]+%?\))|currentcolor/gi;
 
+/**
+ * Replaces the color in SVG files when replace color is set
+ * @param imageShape the image used for replacing SVG data
+ * @param color the replace color value
+ * @param opacity the color opacity
+ * @returns the new SVG data
+ */
 function replaceColorSvg(imageShape: IImage, color: IHsl, opacity: number): string {
     const { svgData } = imageShape;
 
@@ -54,6 +83,10 @@ function replaceColorSvg(imageShape: IImage, color: IHsl, opacity: number): stri
     return `${svgData.substring(0, preFillIndex)} fill="${colorStyle}"${svgData.substring(preFillIndex)}`;
 }
 
+/**
+ * Loads the given image
+ * @param image the image to load
+ */
 export async function loadImage(image: IImage): Promise<void> {
     return new Promise((resolve: () => void) => {
         image.loading = true;
@@ -80,6 +113,10 @@ export async function loadImage(image: IImage): Promise<void> {
     });
 }
 
+/**
+ * Downloads the SVG image data, using `fetch`
+ * @param image the image to download
+ */
 export async function downloadSvgImage(image: IImage): Promise<void> {
     if (image.type !== "svg") {
         await loadImage(image);
@@ -104,6 +141,13 @@ export async function downloadSvgImage(image: IImage): Promise<void> {
     }
 }
 
+/**
+ * Replaces the color in a SVG image
+ * @param image the SVG image to replace
+ * @param imageData the image shape data
+ * @param color the replace color
+ * @param particle the particle where the replaced data is going to be used
+ */
 export function replaceImageColor(
     image: IImage,
     imageData: IImageShape,
@@ -113,7 +157,7 @@ export function replaceImageColor(
     const svgColoredData = replaceColorSvg(image, color, particle.opacity?.value ?? 1);
 
     /* prepare to create img with colored svg */
-    const svg = new Blob([svgColoredData], { type: "image/svg+xml" });
+    const svg = new Blob([ svgColoredData ], { type: "image/svg+xml" });
     const domUrl = URL || window.URL || window.webkitURL || window;
     const url = domUrl.createObjectURL(svg);
 
