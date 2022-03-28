@@ -7,11 +7,18 @@ import type { RecursivePartial } from "../Types";
 import type { SingleOrMultiple } from "../Types";
 import { itemFromArray } from "../Utils";
 
+/**
+ * Default fetch error catcher
+ * @param statusCode the fecth status code error
+ */
 function fetchError(statusCode: number): void {
     console.error(`Error tsParticles - fetch status: ${statusCode}`);
     console.error("Error tsParticles - File config not found");
 }
 
+/**
+ * Loader params for options local object
+ */
 interface LoaderParams {
     element?: HTMLElement;
     index?: number;
@@ -19,6 +26,9 @@ interface LoaderParams {
     tagId?: string;
 }
 
+/**
+ * Loader params for options remote object (AJAX)
+ */
 interface RemoteLoaderParams {
     element?: HTMLElement;
     index?: number;
@@ -31,8 +41,16 @@ interface RemoteLoaderParams {
  * @category Core
  */
 export class Loader {
+    /**
+     * The engine containing this Loader instance
+     * @private
+     */
     readonly #engine;
 
+    /**
+     * Loader constructor, assigns the engine
+     * @param engine the engine containing this Loader instance
+     */
     constructor(engine: Engine) {
         this.#engine = engine;
     }
@@ -59,6 +77,10 @@ export class Loader {
         dom.splice(index, 1);
     }
 
+    /**
+     * Starts an animation in a container, starting from the given options
+     * @param params all the parameters required for loading options in the current animation
+     */
     async loadOptions(params: LoaderParams): Promise<Container | undefined> {
         const tagId = params.tagId ?? `tsparticles${Math.floor(Math.random() * 10000)}`,
             { options, index } = params;
@@ -132,6 +154,10 @@ export class Loader {
         return newItem;
     }
 
+    /**
+     * Starts an animation in a container, starting from the given remote options
+     * @param params all the parameters required for loading a remote url into options in the current animation
+     */
     async loadRemoteOptions(params: RemoteLoaderParams): Promise<Container | undefined> {
         const { url: jsonUrl, index } = params,
             url = jsonUrl instanceof Array ? itemFromArray(jsonUrl, index) : jsonUrl;

@@ -25,12 +25,30 @@ import type { IOptions } from "./Options/Interfaces/IOptions";
  * @category Engine
  */
 export class Engine {
+    /**
+     * Checks if the engine instance is initialized
+     */
     #initialized: boolean;
 
+    /**
+     * Contains all the [[Container]] instances of the current engine instance
+     */
     readonly domArray: Container[];
+
+    /**
+     * Contains the [[Loader]] engine instance
+     * @private
+     */
     readonly #loader: Loader;
+
+    /**
+     * Contains the [[Plugins]] engine instance
+     */
     readonly plugins: Plugins;
 
+    /**
+     * Engine constructor, initializes plugins, loader and the containers array
+     */
     constructor() {
         this.#initialized = false;
         this.domArray = [];

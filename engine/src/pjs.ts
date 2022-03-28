@@ -38,6 +38,10 @@ export interface IParticlesJS {
     setOnClickHandler(callback: EventListenerOrEventListenerObject): void;
 }
 
+/**
+ * Initializes particles.js compatibility to the given engine
+ * @param engine the engine that requires particles.js compatibility
+ */
 const initPjs = (engine: Engine): { particlesJS: IParticlesJS; pJSDom: Container[] } => {
     /**
      * Loads the provided options to create a [[Container]] object.

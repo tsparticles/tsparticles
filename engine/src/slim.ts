@@ -23,6 +23,10 @@ import { loadStarShape } from "./Shapes/Star";
 import { loadStrokeColorUpdater } from "./Updaters/StrokeColor";
 import { loadTextShape } from "./Shapes/Text";
 
+/**
+ * Loads the slim tsParticles instance, containing only default tsParticles plugins for a lighter version
+ * @param engine the engine used to load all plugins
+ */
 export async function loadSlim(engine: Engine): Promise<void> {
     await loadExternalAttractInteraction(engine);
     await loadExternalBounceInteraction(engine);

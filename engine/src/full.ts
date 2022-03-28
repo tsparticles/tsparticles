@@ -8,6 +8,10 @@ import { loadSlim } from "./slim";
 import { loadTiltUpdater } from "./Updaters/Tilt";
 import { loadWobbleUpdater } from "./Updaters/Wobble";
 
+/**
+ * Loads the full tsParticles instance, containing all default tsParticles plugins
+ * @param engine the engine used to load all plugins
+ */
 export async function loadFull(engine: Engine): Promise<void> {
     await loadSlim(engine);
 
