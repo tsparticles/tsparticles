@@ -57,6 +57,10 @@ import type { RecursivePartial } from "../Types";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import type { Stroke } from "../Options/Classes/Particles/Stroke";
 
+/**
+ * fixes out mode, calling the given callback if needed
+ * @param data
+ */
 const fixOutMode = (data: {
     outMode: OutMode | keyof typeof OutMode | OutModeAlt;
     checkModes: (OutMode | keyof typeof OutMode | OutModeAlt)[];
@@ -81,14 +85,44 @@ const fixOutMode = (data: {
  * @category Core
  */
 export class Particle implements IParticle {
+    /**
+     * Checks if the particle is destroyed
+     */
     destroyed;
+
+    /**
+     * When this is enabled, the particle won't resize when the canvas resize event is fired
+     */
     ignoresResizeRatio;
+
+    /**
+     * Last path timestamp
+     */
     lastPathTime;
+
+    /**
+     * Check if the particle needs a fix on the position
+     */
     misplaced;
+
+    /**
+     * Check if the particle is spawning, and can't be touched
+     */
     spawning;
+
+    /**
+     * Sets the count of particles created when destroyed with split mode
+     */
     splitCount;
+
+    /**
+     * Checks if the particle is unbreakable, if true the particle won't destroy on collisions
+     */
     unbreakable;
 
+    /**
+     * Sets the delay for every path step
+     */
     readonly pathDelay;
     readonly sides;
     readonly options;
