@@ -1,4 +1,4 @@
-import type { IShapeValues } from "../Options/Interfaces/Particles/Shape/IShapeValues";
+import type { IShapeValues } from "../Core";
 import type { SingleOrMultiple } from "./SingleOrMultiple";
 
 /**

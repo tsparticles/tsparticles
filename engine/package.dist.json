@@ -9,7 +9,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
-    "directory": "core/main"
+    "directory": "engine"
   },
   "keywords": [
     "tsparticles",
