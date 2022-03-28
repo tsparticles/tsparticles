@@ -2079,18 +2079,6 @@ tslib@^1.8.1, tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tsparticles-path-curves@^1.42.4:
-  version "1.42.4"
-  resolved "https://registry.yarnpkg.com/tsparticles-path-curves/-/tsparticles-path-curves-1.42.4.tgz#72dba224f2b3ec1b477ae46664b7b329c00c9bc8"
-  integrity sha512-NOy8/liT1cdFPna+MI4HtOHxeoUVi1AdVrIWT1JGE1kQYvnO//cV3yy4kloZQ/v2v9qWbY/24FGj5Z9Eie8hqw==
-  dependencies:
-    tsparticles "^1.42.4"
-
-tsparticles@^1.42.4:
-  version "1.42.4"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.42.4.tgz#63f0615c44d88c6e7d5e10e7ea1fb7eba1164b76"
-  integrity sha512-tfjh6hZFID+5mIdqIvAvmpGymG5kFIxB2k1fs0SIDemo7iL9qnQyvI3HankxfRtCblcwRoEYj/g5phdIhqY8vA==
-
 tsutils@^3.21.0:
   version "3.21.0"
   resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-3.21.0.tgz#b48717d394cea6c1e096983eed58e9d61715b623"
