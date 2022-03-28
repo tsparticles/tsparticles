@@ -9,7 +9,7 @@
     "prettify:schema": "prettier --write ./schema/options.schema.json",
     "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
-    "lint:tests": "eslint tests --ext .js,.jsx,.ts,.tsx --fix",
+    "lint:tests": "eslint tests -c .eslintrc.test.js --ext .js,.jsx,.ts,.tsx --fix",
     "clear:dist": "rimraf -f ./dist",
     "clear:docs": "rimraf -f ./docs",
     "slimbuild": "yarn clear:dist && yarn prettify:src && yarn build:ts:check && yarn lint && yarn build:ts && webpack --mode production && yarn distfiles",

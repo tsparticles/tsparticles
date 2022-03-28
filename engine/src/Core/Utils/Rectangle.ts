@@ -30,6 +30,7 @@ export class Rectangle extends Range {
     /**
      * Check if the given point is inside the rectangle
      * @param point the point to check
+     * @returns true or false, checking if the given point is inside the rectangle
      */
     contains(point: ICoordinates): boolean {
         const w = this.size.width,
@@ -42,6 +43,7 @@ export class Rectangle extends Range {
     /**
      * Check if another range intersects the rectangle
      * @param range the range to check
+     * @returns true or false, checking if the range is intersecting with the rectangle
      */
     intersects(range: Range): boolean {
         const rect = range as Rectangle,

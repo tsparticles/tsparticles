@@ -20,6 +20,7 @@ export class Circle extends Range {
     /**
      * Check if the given point is inside the circle
      * @param point the point to check
+     * @returns true or false, checking if the given point is inside the circle
      */
     contains(point: ICoordinates): boolean {
         return getDistance(point, this.position) <= this.radius;
@@ -28,6 +29,7 @@ export class Circle extends Range {
     /**
      * Check if the given range intersects the circle
      * @param range the range to check
+     * @returns true or false, checking if the range is intersecting with the circle
      */
     intersects(range: Range): boolean {
         const rect = range as Rectangle,

@@ -28,15 +28,15 @@ export class Emitters implements IContainerPlugin {
 
         const overridableContainer = container as unknown as EmitterContainer;
 
-        overridableContainer.getEmitter = (idxOrName?: number | string) =>
+        overridableContainer.getEmitter = (idxOrName?: number | string): EmitterInstance | undefined =>
             idxOrName === undefined || typeof idxOrName === "number"
                 ? this.array[idxOrName || 0]
                 : this.array.find((t) => t.name === idxOrName);
 
-        overridableContainer.addEmitter = (options: IEmitter, position?: ICoordinates) =>
+        overridableContainer.addEmitter = (options: IEmitter, position?: ICoordinates): EmitterInstance =>
             this.addEmitter(options, position);
 
-        overridableContainer.removeEmitter = (idxOrName?: number | string) => {
+        overridableContainer.removeEmitter = (idxOrName?: number | string): void => {
             const emitter = overridableContainer.getEmitter(idxOrName);
 
             if (emitter) {
@@ -44,7 +44,7 @@ export class Emitters implements IContainerPlugin {
             }
         };
 
-        overridableContainer.playEmitter = (idxOrName?: number | string) => {
+        overridableContainer.playEmitter = (idxOrName?: number | string): void => {
             const emitter = overridableContainer.getEmitter(idxOrName);
 
             if (emitter) {
@@ -52,7 +52,7 @@ export class Emitters implements IContainerPlugin {
             }
         };
 
-        overridableContainer.pauseEmitter = (idxOrName?: number | string) => {
+        overridableContainer.pauseEmitter = (idxOrName?: number | string): void => {
             const emitter = overridableContainer.getEmitter(idxOrName);
 
             if (emitter) {

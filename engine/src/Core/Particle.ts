@@ -64,7 +64,7 @@ const fixOutMode = (data: {
     maxCoord: number;
     setCb: (value: number) => void;
     radius: number;
-}) => {
+}): void => {
     if (!(isInArray(data.outMode, data.checkModes) || isInArray(data.outMode, data.checkModes))) {
         return;
     }
@@ -483,7 +483,7 @@ export class Particle implements IParticle {
             radius = this.getRadius(),
             /* check position  - into the canvas */
             outModes = this.options.move.outModes,
-            fixHorizontal = (outMode: OutMode | keyof typeof OutMode | OutModeAlt) => {
+            fixHorizontal = (outMode: OutMode | keyof typeof OutMode | OutModeAlt): void => {
                 fixOutMode({
                     outMode,
                     checkModes: [OutMode.bounce, OutMode.bounceHorizontal],
@@ -493,7 +493,7 @@ export class Particle implements IParticle {
                     radius,
                 });
             },
-            fixVertical = (outMode: OutMode | keyof typeof OutMode | OutModeAlt) => {
+            fixVertical = (outMode: OutMode | keyof typeof OutMode | OutModeAlt): void => {
                 fixOutMode({
                     outMode,
                     checkModes: [OutMode.bounce, OutMode.bounceVertical],

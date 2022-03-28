@@ -445,7 +445,7 @@ export class Container {
             return;
         }
 
-        const clickOrTouchHandler = (e: Event, pos: ICoordinates, radius: number) => {
+        const clickOrTouchHandler = (e: Event, pos: ICoordinates, radius: number): void => {
             if (this.destroyed) {
                 return;
             }
@@ -460,7 +460,7 @@ export class Container {
             callback(e, particles);
         };
 
-        const clickHandler = (e: Event) => {
+        const clickHandler = (e: Event): void => {
             if (this.destroyed) {
                 return;
             }
@@ -474,7 +474,7 @@ export class Container {
             clickOrTouchHandler(e, pos, 1);
         };
 
-        const touchStartHandler = () => {
+        const touchStartHandler = (): void => {
             if (this.destroyed) {
                 return;
             }
@@ -483,7 +483,7 @@ export class Container {
             touchMoved = false;
         };
 
-        const touchMoveHandler = () => {
+        const touchMoveHandler = (): void => {
             if (this.destroyed) {
                 return;
             }
@@ -491,7 +491,7 @@ export class Container {
             touchMoved = true;
         };
 
-        const touchEndHandler = (e: Event) => {
+        const touchEndHandler = (e: Event): void => {
             if (this.destroyed) {
                 return;
             }
@@ -521,7 +521,7 @@ export class Container {
             touchMoved = false;
         };
 
-        const touchCancelHandler = () => {
+        const touchCancelHandler = (): void => {
             if (this.destroyed) {
                 return;
             }
@@ -634,7 +634,7 @@ export class Container {
         }
     }
 
-    private intersectionManager(entries: IntersectionObserverEntry[]) {
+    private intersectionManager(entries: IntersectionObserverEntry[]): void {
         if (!this.actualOptions.pauseOnOutsideViewport) {
             return;
         }

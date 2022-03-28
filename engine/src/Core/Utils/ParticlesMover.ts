@@ -4,6 +4,11 @@ import type { Container } from "../Container";
 import type { IDelta } from "../Interfaces";
 import type { Particle } from "../Particle";
 
+/**
+ * This function fixes the particle direction, if a distance is set
+ * since it can't move too far from its initial position
+ * @param particle the particle to move
+ */
 function applyDistance(particle: Particle): void {
     const initialPosition = particle.initialPosition,
         { dx, dy } = getDistances(initialPosition, particle.position),
@@ -46,8 +51,17 @@ function applyDistance(particle: Particle): void {
  * @category Core
  */
 export class ParticlesMover {
+    /**
+     * The movement manager constructor
+     * @param container the parent container
+     */
     constructor(private readonly container: Container) {}
 
+    /**
+     * The main move method, this is the entry point for movement
+     * @param particle the particle to move
+     * @param delta this variable contains the delta between the current frame and the previous frame
+     */
     move(particle: Particle, delta: IDelta): void {
         if (particle.destroyed) {
             return;
@@ -59,6 +73,12 @@ export class ParticlesMover {
         this.moveParallax(particle);
     }
 
+    /**
+     * This moves the particle checking its options
+     * @param particle the particle to move
+     * @param delta this variable contains the delta between the current frame and the previous frame
+     * @private
+     */
     private moveParticle(particle: Particle, delta: IDelta): void {
         const particleOptions = particle.options,
             moveOptions = particleOptions.move;
@@ -136,6 +156,12 @@ export class ParticlesMover {
         applyDistance(particle);
     }
 
+    /**
+     * This method make the particle spin around a point
+     * @param particle the particle to spin
+     * @param moveSpeed the spin speed
+     * @private
+     */
     private spin(particle: Particle, moveSpeed: number): void {
         const container = this.container;
 
@@ -165,6 +191,13 @@ export class ParticlesMover {
         particle.spin.angle += (moveSpeed / 100) * (1 - particle.spin.radius / maxCanvasSize);
     }
 
+    /**
+     * This function applies a path to the particle, the path comes from an external plugin
+     * (for examples: perlin noise, simplex noise, curves, hexagon)
+     * @param particle the particle to move
+     * @param delta this variable contains the delta between the current frame and the previous frame
+     * @private
+     */
     private applyPath(particle: Particle, delta: IDelta): void {
         const particlesOptions = particle.options,
             pathOptions = particlesOptions.move.path,
@@ -194,6 +227,11 @@ export class ParticlesMover {
         particle.lastPathTime -= particle.pathDelay;
     }
 
+    /**
+     * This method creates a parallax effect
+     * @param particle the particle to move
+     * @private
+     */
     private moveParallax(particle: Particle): void {
         const container = this.container,
             options = container.actualOptions;
@@ -225,6 +263,12 @@ export class ParticlesMover {
         particle.offset.y += (tmp.y - particle.offset.y) / parallaxSmooth; // Easing equation
     }
 
+    /**
+     * This method returns the slow hover mode factor to apply to particle velocity
+     * @param particle the particle to move
+     * @returns the slowing factor
+     * @private
+     */
     private getProximitySpeedFactor(particle: Particle): number {
         const container = this.container,
             options = container.actualOptions,

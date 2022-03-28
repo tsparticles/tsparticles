@@ -11,8 +11,8 @@ module.exports = {
         "prettier"
     ],
     rules: {
-        "@typescript-eslint/no-explicit-any": "error",
-        "@typescript-eslint/no-var-requires": "error",
+        "@typescript-eslint/no-explicit-any": "warn",
+        "@typescript-eslint/no-var-requires": "warn",
         "@typescript-eslint/ban-types": "warn",
         "@typescript-eslint/explicit-function-return-type": "error",
         "@typescript-eslint/explicit-member-accessibility": [ "error", {

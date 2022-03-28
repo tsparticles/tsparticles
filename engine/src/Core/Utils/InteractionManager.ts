@@ -8,11 +8,29 @@ import type { Particle } from "../Particle";
  * @category Core
  */
 export class InteractionManager {
+    /**
+     * Registered external interactivity managers
+     * @private
+     */
     private externalInteractors: IExternalInteractor[];
+
+    /**
+     * Registered particles interactions managers
+     * @private
+     */
     private particleInteractors: IParticlesInteractor[];
 
+    /**
+     * The engine used for registering the interactions managers
+     * @private
+     */
     readonly #engine;
 
+    /**
+     * The constructor of the interaction manager
+     * @param engine the parent engine
+     * @param container the parent container
+     */
     constructor(engine: Engine, private readonly container: Container) {
         this.#engine = engine;
 
@@ -22,6 +40,9 @@ export class InteractionManager {
         this.init();
     }
 
+    /**
+     * Initializes the interaction manager, loading all the engine registered managers into the container
+     */
     init(): void {
         const interactors = this.#engine.plugins.getInteractors(this.container, true);
 
@@ -40,6 +61,10 @@ export class InteractionManager {
         }
     }
 
+    /**
+     * Iterates through the external interactivity manager and call the interact method, if they are enabled
+     * @param delta this variable contains the delta between the current frame and the previous frame
+     */
     async externalInteract(delta: IDelta): Promise<void> {
         for (const interactor of this.externalInteractors) {
             if (interactor.isEnabled()) {
@@ -48,6 +73,11 @@ export class InteractionManager {
         }
     }
 
+    /**
+     * Iterates through the particles interactions manager and call the interact method, if they are enabled
+     * @param particle the particle responsible for the current interaction
+     * @param delta this variable contains the delta between the current frame and the previous frame
+     */
     async particlesInteract(particle: Particle, delta: IDelta): Promise<void> {
         for (const interactor of this.externalInteractors) {
             interactor.reset(particle);

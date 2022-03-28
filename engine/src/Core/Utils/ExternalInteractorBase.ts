@@ -9,7 +9,7 @@ import type { Particle } from "../Particle";
 export abstract class ExternalInteractorBase implements IExternalInteractor {
     /**
      * Constructor of external interactivity manager
-     * @param container
+     * @param container the parent container
      * @protected
      */
     protected constructor(protected readonly container: Container) {}
@@ -21,12 +21,13 @@ export abstract class ExternalInteractorBase implements IExternalInteractor {
 
     /**
      * Interaction handler
-     * @param delta
+     * @param delta this variable contains the delta between the current frame and the previous frame
      */
     abstract interact(delta: IDelta): Promise<void>;
 
     /**
      * Interaction enabled check
+     * @returns true or false, checking if the options enable this interaction manager
      */
     abstract isEnabled(): boolean;
 

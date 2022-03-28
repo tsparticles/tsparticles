@@ -28,7 +28,7 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
         delta: IDelta,
         outMode: OutMode | keyof typeof OutMode | OutModeAlt,
         direction: OutModeDirection
-    ) {
+    ): void {
         switch (outMode) {
             case OutMode.bounce:
             case OutMode.bounceVertical:

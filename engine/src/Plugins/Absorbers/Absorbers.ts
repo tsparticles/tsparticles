@@ -24,12 +24,12 @@ export class Absorbers implements IContainerPlugin {
 
         const overridableContainer = container as unknown as AbsorberContainer;
 
-        overridableContainer.getAbsorber = (idxOrName?: number | string) =>
+        overridableContainer.getAbsorber = (idxOrName?: number | string): AbsorberInstance | undefined =>
             idxOrName === undefined || typeof idxOrName === "number"
                 ? this.array[idxOrName || 0]
                 : this.array.find((t) => t.name === idxOrName);
 
-        overridableContainer.addAbsorber = (options: IAbsorber, position?: ICoordinates) =>
+        overridableContainer.addAbsorber = (options: IAbsorber, position?: ICoordinates): AbsorberInstance =>
             this.addAbsorber(options, position);
     }
 

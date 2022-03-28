@@ -102,7 +102,7 @@ export async function loadEmittersPlugin(engine: EmittersEngine): Promise<void> 
     }
 
     if (!engine.addEmitterShape) {
-        engine.addEmitterShape = (name: string, shape: IEmitterShape) => {
+        engine.addEmitterShape = (name: string, shape: IEmitterShape): void => {
             engine.emitterShapeManager?.addShape(name, shape);
         };
     }

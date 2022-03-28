@@ -48,7 +48,7 @@ export class Retina {
                     this.handleMotionChange(mediaQuery);
 
                     // Ads an event listener to check for changes in the media query's value.
-                    const handleChange = () => {
+                    const handleChange = (): void => {
                         this.handleMotionChange(mediaQuery);
 
                         container.refresh().catch(() => {

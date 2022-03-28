@@ -432,7 +432,7 @@ export class Particles {
         this.applyDensity(options.particles, options.manualParticles.length);
     }
 
-    private applyDensity(options: IParticles, manualCount: number, group?: string) {
+    private applyDensity(options: IParticles, manualCount: number, group?: string): void {
         if (!options.number.density?.enable) {
             return;
         }

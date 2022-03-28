@@ -17,12 +17,13 @@ export class CircleWarp extends Circle {
     constructor(x: number, y: number, radius: number, private readonly canvasSize: IDimension) {
         super(x, y, radius);
 
-        this.canvasSize = {...canvasSize };
+        this.canvasSize = { ...canvasSize };
     }
 
     /**
      * Check if the given point is inside the circle
      * @param point the point to check
+     * @returns true or false, checking if the given point is inside the circle
      */
     contains(point: ICoordinates): boolean {
         if (super.contains(point)) {
@@ -58,6 +59,7 @@ export class CircleWarp extends Circle {
     /**
      * Check if the given range intersects the circle
      * @param range the range to check
+     * @returns true or false, checking if the range is intersecting with the circle
      */
     intersects(range: Range): boolean {
         if (super.intersects(range)) {
