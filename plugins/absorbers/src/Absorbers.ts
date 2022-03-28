@@ -1,5 +1,4 @@
 import type {
-    Container,
     IContainerPlugin,
     ICoordinates,
     IOptions,
@@ -23,19 +22,17 @@ export class Absorbers implements IContainerPlugin {
     absorbers: SingleOrMultiple<Absorber>;
     interactivityAbsorbers: SingleOrMultiple<Absorber>;
 
-    constructor(private readonly container: Container) {
+    constructor(private readonly container: AbsorberContainer) {
         this.array = [];
         this.absorbers = [];
         this.interactivityAbsorbers = [];
 
-        const overridableContainer = container as unknown as AbsorberContainer;
-
-        overridableContainer.getAbsorber = (idxOrName?: number | string) =>
+        container.getAbsorber = (idxOrName?: number | string) =>
             idxOrName === undefined || typeof idxOrName === "number"
                 ? this.array[idxOrName || 0]
                 : this.array.find((t) => t.name === idxOrName);
 
-        overridableContainer.addAbsorber = (options: IAbsorber, position?: ICoordinates) =>
+        container.addAbsorber = (options: RecursivePartial<IAbsorber>, position?: ICoordinates) =>
             this.addAbsorber(options, position);
     }
 
@@ -145,7 +142,7 @@ export class Absorbers implements IContainerPlugin {
         }
     }
 
-    addAbsorber(options: IAbsorber, position?: ICoordinates): AbsorberInstance {
+    addAbsorber(options: RecursivePartial<IAbsorber>, position?: ICoordinates): AbsorberInstance {
         const absorber = new AbsorberInstance(this, this.container, options, position);
 
         this.array.push(absorber);

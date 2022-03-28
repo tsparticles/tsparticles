@@ -1,6 +1,7 @@
-import type { Container, Engine, IOptions, IPlugin, Options, RecursivePartial } from "tsparticles-engine";
+import type { Engine, IOptions, IPlugin, Options, RecursivePartial } from "tsparticles-engine";
 import { Absorber } from "./Options/Classes/Absorber";
 import { AbsorberClickMode } from "./Enums";
+import { AbsorberContainer } from "./AbsorberContainer";
 import { Absorbers } from "./Absorbers";
 import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
 import { isInArray } from "tsparticles-engine";
@@ -15,7 +16,7 @@ class AbsorbersPlugin implements IPlugin {
         this.id = "absorbers";
     }
 
-    getPlugin(container: Container): Absorbers {
+    getPlugin(container: AbsorberContainer): Absorbers {
         return new Absorbers(container);
     }
 
@@ -99,3 +100,5 @@ export async function loadAbsorbersPlugin(engine: Engine): Promise<void> {
 
     await engine.addPlugin(plugin);
 }
+
+export * from "./AbsorberContainer";
