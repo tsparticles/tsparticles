@@ -223,7 +223,15 @@ export class Particle implements IParticle {
     readonly initialPosition: Vector;
     readonly initialVelocity: Vector;
     readonly shapeData?: IShapeValues;
+
+    /**
+     * Gets particles bubble data
+     */
     readonly bubble: IBubbleParticleData;
+
+    /**
+     * Gets the particle Z-Index factor
+     */
     readonly zIndexFactor: number;
 
     /**
