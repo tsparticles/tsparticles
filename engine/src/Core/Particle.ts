@@ -121,26 +121,93 @@ export class Particle implements IParticle {
     unbreakable;
 
     /**
-     * Sets the delay for every path step
+     * Gets the delay for every path step
      */
     readonly pathDelay;
+
+    /**
+     * Gets the particle side count
+     */
     readonly sides;
+
+    /**
+     * Gets the particle options
+     */
     readonly options;
+
+    /**
+     * Gets the particle life values
+     */
     readonly life: IParticleLife;
 
+    /**
+     * Gets the particle roll options
+     */
     roll?: IParticleRoll;
+
+    /**
+     * Gets the particle wobble options
+     */
     wobble?: IParticleWobble;
+
+    /**
+     * Particles back color
+     */
     backColor?: IHsl;
+
+    /**
+     * Checks if the particle shape needs a closed path
+     */
     close: boolean;
+
+    /**
+     * Checks if the particle shape needs to be filled with a color
+     */
     fill: boolean;
+
+    /**
+     * The random index used by the particle
+     */
     randomIndexData?: number;
+
+    /**
+     * Gets the particle gradient options
+     */
     gradient?: IParticleGradientAnimation;
+
+    /**
+     * Gets the particle rotate options
+     */
     rotate?: IParticleValueAnimation<number>;
+
+    /**
+     * Gets the particle tilt options
+     */
     tilt?: IParticleTiltValueAnimation;
+
+    /**
+     * Gets the particle color options
+     */
     color?: IParticleHslAnimation;
+
+    /**
+     * Gets the particle opacity options
+     */
     opacity?: IParticleNumericValueAnimation;
+
+    /**
+     * Sets the particle stroke width
+     */
     strokeWidth?: number;
+
+    /**
+     * Gets the particle stroke options
+     */
     stroke?: Stroke;
+
+    /**
+     * Sets the particle stroke color
+     */
     strokeColor?: IParticleHslAnimation;
 
     readonly gravity: IParticleGravity;
@@ -158,8 +225,16 @@ export class Particle implements IParticle {
     readonly shapeData?: IShapeValues;
     readonly bubble: IBubbleParticleData;
     readonly zIndexFactor: number;
+
+    /**
+     * Gets the particle retina values
+     */
     readonly retina: IParticleRetinaProps;
 
+    /**
+     * Gets the particle containing engine instance
+     * @private
+     */
     readonly #engine;
 
     constructor(
