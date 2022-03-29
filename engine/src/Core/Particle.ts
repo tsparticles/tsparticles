@@ -222,6 +222,10 @@ export class Particle implements IParticle {
     readonly spin?: IParticleSpin;
     readonly initialPosition: Vector;
     readonly initialVelocity: Vector;
+
+    /**
+     * Gets particles shape options
+     */
     readonly shapeData?: IShapeValues;
 
     /**
