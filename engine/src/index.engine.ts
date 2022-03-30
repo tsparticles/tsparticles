@@ -3,12 +3,24 @@ import type { IOptions } from "./Options/Interfaces/IOptions";
 import type { RecursivePartial } from "./Types";
 import { initPjs } from "./pjs";
 
-/* ---------- tsParticles functions - start ------------ */
+/**
+ * The exposed tsParticles instance
+ */
 const tsParticles = new Engine();
 
 tsParticles.init();
 
-const { particlesJS, pJSDom } = initPjs(tsParticles);
+const {
+    /**
+     * The particles.js compatibility instance
+     */
+    particlesJS,
+
+    /**
+     * The particles.js compatibility dom array
+     */
+    pJSDom,
+} = initPjs(tsParticles);
 
 export * from "./Core";
 export * from "./Enums";

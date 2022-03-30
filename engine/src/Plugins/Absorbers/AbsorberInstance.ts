@@ -8,9 +8,23 @@ import { RecursivePartial } from "../../Types";
 import { RotateDirection } from "../../Enums";
 import { Vector } from "../../Core";
 
+/**
+ * Particle extension type for Absorber orbit options
+ */
 type OrbitingParticle = Particle & {
+    /**
+     * Vector representing the orbit of the particle around the absorber
+     */
     absorberOrbit?: Vector;
+
+    /**
+     * Particle orbit direction around the absorber
+     */
     absorberOrbitDirection?: RotateDirection;
+
+    /**
+     * Checks if the particle needs a new position after going inside the absorber
+     */
     needsNewPosition?: boolean;
 };
 
@@ -18,20 +32,66 @@ type OrbitingParticle = Particle & {
  * @category Absorbers Plugin
  */
 export class AbsorberInstance {
+    /**
+     * The absorber mass, this increases the attraction force
+     */
     mass;
+
+    /**
+     * The absorber opacity
+     */
     opacity;
+
+    /**
+     * The absorber size, great size doesn't mean great mass, it depends also on the density
+     */
     size;
 
+    /**
+     * The absorber color
+     */
     color: IRgb;
+
+    /**
+     * The absorber size limit
+     */
     limit: IAbsorberSizeLimit;
+
+    /**
+     * The absorber name, useful when retrieving it manually
+     */
     readonly name?: string;
+
+    /**
+     * The absorber position
+     */
     position: Vector;
 
+    /**
+     * Sets if the absorber can be moved with mouse drag&drop
+     * @private
+     */
     private dragging;
 
+    /**
+     * Gets the absorber initial position
+     * @private
+     */
     private readonly initialPosition?: Vector;
+
+    /**
+     * Gets the absorber options
+     * @private
+     */
     private readonly options;
 
+    /**
+     * The absorber constructor, initializes the absorber based on the given options and position
+     * @param absorbers the Absorbers collection manager that will contain this absorber
+     * @param container the Container engine using the absorber plugin, containing the particles that will interact with this Absorber
+     * @param options the Absorber source options
+     * @param position the Absorber optional position, if not given, it will be searched in options, and if not available also there, a random one will be used
+     */
     constructor(
         private readonly absorbers: Absorbers,
         private readonly container: Container,
@@ -69,6 +129,10 @@ export class AbsorberInstance {
         this.position = this.initialPosition?.copy() ?? this.calcPosition();
     }
 
+    /**
+     * Absorber attraction interaction, attract the particle to the absorber
+     * @param particle the particle to attract to the absorber
+     */
     attract(particle: OrbitingParticle): void {
         const container = this.container,
             options = this.options;
@@ -132,6 +196,9 @@ export class AbsorberInstance {
         }
     }
 
+    /**
+     * The resize method, for fixing the Absorber position
+     */
     resize(): void {
         const initialPosition = this.initialPosition;
 
@@ -141,6 +208,10 @@ export class AbsorberInstance {
                 : this.calcPosition();
     }
 
+    /**
+     * The draw method, for drawing the absorber in the canvas
+     * @param context the canvas 2d context used for drawing
+     */
     draw(context: CanvasRenderingContext2D): void {
         context.translate(this.position.x, this.position.y);
         context.beginPath();
@@ -150,10 +221,13 @@ export class AbsorberInstance {
         context.fill();
     }
 
+    /**
+     * This method calculate the absorber position, using the provided options and position
+     * @private
+     */
     private calcPosition(): Vector {
-        const container = this.container;
-
-        const percentPosition = this.options.position;
+        const container = this.container,
+            percentPosition = this.options.position;
 
         return Vector.create(
             (getRangeValue(percentPosition?.x ?? Math.random() * 100) / 100) * container.canvas.size.width,
@@ -161,6 +235,12 @@ export class AbsorberInstance {
         );
     }
 
+    /**
+     * Updates the particle position, if the particle needs a new position
+     * @param particle the particle to update
+     * @param v the vector used for calculating the distance between the Absorber and the particle
+     * @private
+     */
     private updateParticlePosition(particle: OrbitingParticle, v: Vector): void {
         if (particle.destroyed) {
             return;
