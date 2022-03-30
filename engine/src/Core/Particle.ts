@@ -210,21 +210,68 @@ export class Particle implements IParticle {
      */
     strokeColor?: IParticleHslAnimation;
 
+    /**
+     * Gets particle gravity options
+     */
     readonly gravity: IParticleGravity;
+
+    /**
+     * Gets particle movement speed decay
+     */
     readonly moveDecay: number;
+
+    /**
+     * Gets particle direction, the value is an angle in rad
+     */
     readonly direction: number;
+
+    /**
+     * Gets particle current position
+     */
     readonly position: Vector3d;
+
+    /**
+     * Gets particle offset position, used for parallax interaction
+     */
     readonly offset: Vector;
+
+    /**
+     * Gets particle shadow color
+     */
     readonly shadowColor: IRgb | undefined;
+
+    /**
+     * Gets particle size options
+     */
     readonly size: IParticleNumericValueAnimation;
+
+    /**
+     * Gets particle current velocity
+     */
     readonly velocity: Vector;
+
+    /**
+     * Gets particle shape type
+     */
     readonly shape: ShapeType | string;
+
+    /**
+     * Gets particle spin options
+     */
     readonly spin?: IParticleSpin;
+
+    /**
+     * Gets particle initial position
+     */
     readonly initialPosition: Vector;
+
+    /**
+     * Gets particle initial velocity
+     */
     readonly initialVelocity: Vector;
 
     /**
-     * Gets particles shape options
+     * Gets particle shape options
      */
     readonly shapeData?: IShapeValues;
 
