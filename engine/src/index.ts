@@ -38,5 +38,13 @@ export { Engine, Engine as Main };
 export * from "./Utils";
 export * from "./Types";
 export { particlesJS, pJSDom, tsParticles };
+
+/**
+ * tsParticles full options, including plugins
+ */
 export type IOptions = ISlimOptions & IAbsorberOptions & IEmitterOptions & IPolygonMaskOptions;
+
+/**
+ * tsParticles source options alias type, supporting partial objects
+ */
 export type ISourceOptions = RecursivePartial<IOptions>;

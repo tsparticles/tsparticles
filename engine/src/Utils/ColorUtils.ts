@@ -19,7 +19,8 @@ import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 import { itemFromArray } from "./Utils";
 
 /**
- *
+ * Converts hue to RGB values.
+ * @hidden
  * @param p
  * @param q
  * @param t
@@ -50,6 +51,10 @@ function hue2rgb(p: number, q: number, t: number): number {
     return p;
 }
 
+/**
+ * Converts a string to a RGBA color.
+ * @param input A string that represents a color.
+ */
 function stringToRgba(input: string): IRgba | undefined {
     if (input.startsWith("rgb")) {
         const regex = /rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*([\d.]+)\s*)?\)/i;
@@ -160,6 +165,7 @@ export function colorToRgb(input?: string | IColor, index?: number, useIndex = t
  * @param color the input color to convert in [[IHsl]] object
  * @param index the array index, if needed
  * @param useIndex set to false to ignore the index parameter
+ * @returns the [[IHsl]] object
  */
 export function colorToHsl(color: string | IColor | undefined, index?: number, useIndex = true): IHsl | undefined {
     const rgb = colorToRgb(color, index, useIndex);
@@ -167,6 +173,11 @@ export function colorToHsl(color: string | IColor | undefined, index?: number, u
     return rgb !== undefined ? rgbToHsl(rgb) : undefined;
 }
 
+/**
+ * Converts rgb color to hsl color
+ * @param color rgb color to convert
+ * @returns hsl color
+ */
 export function rgbToHsl(color: IRgb): IHsl {
     const r1 = color.r / 255,
         g1 = color.g / 255,
@@ -203,6 +214,11 @@ export function rgbToHsl(color: IRgb): IHsl {
     return res;
 }
 
+/**
+ * Gets alpha value from string color
+ * @param input the input color to convert in alpha value
+ * @returns the alpha value
+ */
 export function stringToAlpha(input: string): number | undefined {
     return stringToRgba(input)?.a;
 }
@@ -210,6 +226,7 @@ export function stringToAlpha(input: string): number | undefined {
 /**
  * Converts hexadecimal string (HTML color code) in a [[IRgb]] object
  * @param input the hexadecimal string (#f70 or #ff7700)
+ * @returns the [[IRgb]] object
  */
 export function stringToRgb(input: string): IRgb | undefined {
     return stringToRgba(input);
@@ -217,7 +234,8 @@ export function stringToRgb(input: string): IRgb | undefined {
 
 /**
  * Converts a Hue Saturation Lightness ([[IHsl]]) object in a [[IRgb]] object
- * @param hsl
+ * @param hsl the Hue Saturation Lightness ([[IHsl]]) object
+ * @returns the [[IRgb]] object
  */
 export function hslToRgb(hsl: IHsl): IRgb {
     const result: IRgb = { b: 0, g: 0, r: 0 },
@@ -250,6 +268,11 @@ export function hslToRgb(hsl: IHsl): IRgb {
     return result;
 }
 
+/**
+ * Converts HSLA color to RGBA color
+ * @param hsla the HSLA color to convert
+ * @returns the RGBA color
+ */
 export function hslaToRgba(hsla: IHsla): IRgba {
     const rgbResult = hslToRgb(hsla);
 
@@ -261,6 +284,11 @@ export function hslaToRgba(hsla: IHsla): IRgba {
     };
 }
 
+/**
+ * Converts a Hue Saturation Lightness ([[IHsl]]) object in a [[IHsv]] object
+ * @param hsl the Hue Saturation Lightness ([[IHsl]]) object
+ * @returns the [[IHsv]] object
+ */
 export function hslToHsv(hsl: IHsl): IHsv {
     const l = hsl.l / 100,
         sl = hsl.s / 100,
@@ -274,6 +302,11 @@ export function hslToHsv(hsl: IHsl): IHsv {
     };
 }
 
+/**
+ * Converts a Hue Saturation Lightness ([[IHsla]]) object in a [[IHsva]] object
+ * @param hsla the Hue Saturation Lightness ([[IHsla]]) object
+ * @returns the [[IHsva]] object
+ */
 export function hslaToHsva(hsla: IHsla): IHsva {
     const hsvResult = hslToHsv(hsla);
 
@@ -285,6 +318,11 @@ export function hslaToHsva(hsla: IHsla): IHsva {
     };
 }
 
+/**
+ * Converts a Hue Saturation Lightness ([[IHsv]]) object in a [[IHsl]] object
+ * @param hsv the Hue Saturation Lightness ([[IHsv]]) object
+ * @returns the [[IHsl]] object
+ */
 export function hsvToHsl(hsv: IHsv): IHsl {
     const v = hsv.v / 100,
         sv = hsv.s / 100,
@@ -298,6 +336,11 @@ export function hsvToHsl(hsv: IHsv): IHsl {
     };
 }
 
+/**
+ * Converts a Hue Saturation Lightness ([[IHsva]]) object in a [[IHsla]] object
+ * @param hsva the Hue Saturation Lightness ([[IHsva]]) object
+ * @returns the [[IHsla]] object
+ */
 export function hsvaToHsla(hsva: IHsva): IHsla {
     const hslResult = hsvToHsl(hsva);
 
@@ -309,6 +352,11 @@ export function hsvaToHsla(hsva: IHsva): IHsla {
     };
 }
 
+/**
+ * Converts a Hue Saturation Lightness ([[IHsv]]) object in a [[IRgb]] object
+ * @param hsv the Hue Saturation Lightness ([[IHsv]]) object
+ * @returns the [[IRgb]] object
+ */
 export function hsvToRgb(hsv: IHsv): IRgb {
     const result: IRgb = { b: 0, g: 0, r: 0 },
         hsvPercent = {
@@ -371,6 +419,11 @@ export function hsvToRgb(hsv: IHsv): IRgb {
     return result;
 }
 
+/**
+ * Converts a Hue Saturation Value ([[IHsva]]) object in a [[IRgba]] object
+ * @param hsva the Hue Saturation Value ([[IHsva]]) object
+ * @returns the [[IRgba]] object
+ */
 export function hsvaToRgba(hsva: IHsva): IRgba {
     const rgbResult = hsvToRgb(hsva);
 
@@ -382,6 +435,11 @@ export function hsvaToRgba(hsva: IHsva): IRgba {
     };
 }
 
+/**
+ * Converts a RGB ([[IRgb]]) object in a [[IHsv]] object
+ * @param rgb the RGB ([[IRgb]]) object
+ * @returns the [[IHsv]] object
+ */
 export function rgbToHsv(rgb: IRgb): IHsv {
     const rgbPercent = {
             r: rgb.r / 255,
@@ -412,6 +470,10 @@ export function rgbToHsv(rgb: IRgb): IHsv {
     };
 }
 
+/**
+ * Converts a RGB ([[IRgba]]) object in a [[IHsva]] object
+ * @param rgba the RGB ([[IRgba]]) object
+ */
 export function rgbaToHsva(rgba: IRgba): IHsva {
     const hsvResult = rgbToHsv(rgba);
 
@@ -423,6 +485,11 @@ export function rgbaToHsva(rgba: IRgba): IHsva {
     };
 }
 
+/**
+ * Returns a random ([[IRgb]]) color
+ * @param min the minimum value for the color
+ * @returns the random ([[IRgb]]) color
+ */
 export function getRandomRgbColor(min?: number): IRgb {
     const fixedMin = min ?? 0;
 
@@ -433,14 +500,32 @@ export function getRandomRgbColor(min?: number): IRgb {
     };
 }
 
+/**
+ * Gets a CSS style string from a [[IRgb]] object and opacity value
+ * @param color the [[IRgb]] input color
+ * @param opacity the opacity value
+ * @returns the CSS style string
+ */
 export function getStyleFromRgb(color: IRgb, opacity?: number): string {
     return `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity ?? 1})`;
 }
 
+/**
+ * Gets a CSS style string from a [[IHsl]] object and opacity value
+ * @param color the [[IHsl]] input color
+ * @param opacity the opacity value
+ * @returns the CSS style string
+ */
 export function getStyleFromHsl(color: IHsl, opacity?: number): string {
     return `hsla(${color.h}, ${color.s}%, ${color.l}%, ${opacity ?? 1})`;
 }
 
+/**
+ * Gets a CSS style string from a [[IHsv]] object and opacity value
+ * @param color the [[IHsv]] input color
+ * @param opacity the opacity value
+ * @returns the CSS style string
+ */
 export function getStyleFromHsv(color: IHsv, opacity?: number): string {
     return getStyleFromHsl(hsvToHsl(color), opacity);
 }

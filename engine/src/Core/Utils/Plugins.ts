@@ -12,7 +12,14 @@ import type { IOptions } from "../../Options/Interfaces/IOptions";
 import type { Options } from "../../Options/Classes/Options";
 import type { RecursivePartial } from "../../Types";
 
+/**
+ * Alias for interactivity manager initializer function
+ */
 type InteractorInitializer = (container: Container) => IInteractor;
+
+/**
+ * Alias for updater initializer function
+ */
 type UpdaterInitializer = (container: Container) => IParticleUpdater;
 
 /**

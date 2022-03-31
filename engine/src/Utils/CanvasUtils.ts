@@ -16,6 +16,13 @@ import type { ILinksShadow } from "../Options/Interfaces/Particles/Links/ILinksS
 import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
 import type { Particle } from "../Core";
 
+/**
+ * Draws a line between two points using canvas API in the given context.
+ * @hidden
+ * @param context - The canvas context to draw on.
+ * @param begin - The begin point of the line.
+ * @param end - The end point of the line.
+ */
 function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
     context.beginPath();
     context.moveTo(begin.x, begin.y);
@@ -23,6 +30,13 @@ function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: I
     context.closePath();
 }
 
+/**
+ * Draws a triangle with three points using canvas API in the given context.
+ * @param context - The canvas context to draw on.
+ * @param p1 - The first point of the triangle.
+ * @param p2 - The second point of the triangle.
+ * @param p3 - The third point of the triangle.
+ */
 function drawTriangle(context: CanvasRenderingContext2D, p1: ICoordinates, p2: ICoordinates, p3: ICoordinates): void {
     context.beginPath();
     context.moveTo(p1.x, p1.y);
@@ -31,6 +45,12 @@ function drawTriangle(context: CanvasRenderingContext2D, p1: ICoordinates, p2: I
     context.closePath();
 }
 
+/**
+ * Fills a rectangle with the given color for the whole canvas.
+ * @param context - The canvas context to draw on.
+ * @param dimension - The dimension of the rectangle.
+ * @param baseColor - The base color of the rectangle, if not specified a transparent color will be used.
+ */
 export function paintBase(context: CanvasRenderingContext2D, dimension: IDimension, baseColor?: string): void {
     context.save();
     context.fillStyle = baseColor ?? "rgba(0,0,0,0)";
@@ -38,10 +58,30 @@ export function paintBase(context: CanvasRenderingContext2D, dimension: IDimensi
     context.restore();
 }
 
+/**
+ * Clears the canvas.
+ * @param context - The canvas context to clear.
+ * @param dimension - The dimension of the canvas.
+ */
 export function clear(context: CanvasRenderingContext2D, dimension: IDimension): void {
     context.clearRect(0, 0, dimension.width, dimension.height);
 }
 
+/**
+ * Draws a line between two particles using canvas API in the given context.
+ * @param context - The canvas context to draw on.
+ * @param width - The width of the line.
+ * @param begin - The begin point of the line.
+ * @param end - The end point of the line.
+ * @param maxDistance - The maximum distance of the line.
+ * @param canvasSize - The dimension of the canvas.
+ * @param warp - If enabled, the line will be warped.
+ * @param backgroundMask - If enabled, the composite value will be used for blending the line in the canvas.
+ * @param composite - The composite value to use for blending the line in the canvas.
+ * @param colorLine - The color of the line.
+ * @param opacity - The opacity of the line.
+ * @param shadow - The shadow of the line.
+ */
 export function drawLinkLine(
     context: CanvasRenderingContext2D,
     width: number,
@@ -141,6 +181,17 @@ export function drawLinkLine(
     context.stroke();
 }
 
+/**
+ * Draws a triangle between three particles using canvas API in the given context.
+ * @param context - The canvas context to draw on.
+ * @param pos1 - The first position of the triangle.
+ * @param pos2 - The second position of the triangle.
+ * @param pos3 - The third position of the triangle.
+ * @param backgroundMask - If enabled, the composite value will be used for blending the triangle in the canvas.
+ * @param composite - The composite value to use for blending the triangle in the canvas.
+ * @param colorTriangle - The color of the triangle.
+ * @param opacityTriangle - The opacity of the triangle.
+ */
 export function drawLinkTriangle(
     context: CanvasRenderingContext2D,
     pos1: ICoordinates,
@@ -164,6 +215,14 @@ export function drawLinkTriangle(
     context.fill();
 }
 
+/**
+ * Draws a line connecting two points using canvas API in the given context.
+ * @param context - The canvas context to draw on.
+ * @param width - The width of the line.
+ * @param lineStyle - The style of the line.
+ * @param begin - The first position of the line.
+ * @param end - The second position of the line.
+ */
 export function drawConnectLine(
     context: CanvasRenderingContext2D,
     width: number,
@@ -181,6 +240,13 @@ export function drawConnectLine(
     context.restore();
 }
 
+/**
+ * Creates a gradient using two particles colors and opacity.
+ * @param context - The canvas context to draw on.
+ * @param p1 - The first particle.
+ * @param p2 - The second particle.
+ * @param opacity - The opacity of the gradient.
+ */
 export function gradient(
     context: CanvasRenderingContext2D,
     p1: IParticle,
@@ -207,6 +273,15 @@ export function gradient(
     return grad;
 }
 
+/**
+ * Draws a grab line between two points using canvas API in the given context.
+ * @param context - The canvas context to draw on.
+ * @param width - The width of the line.
+ * @param begin - The first position of the line.
+ * @param end - The second position of the line.
+ * @param colorLine - The color of the line.
+ * @param opacity - The opacity of the line.
+ */
 export function drawGrabLine(
     context: CanvasRenderingContext2D,
     width: number,
@@ -225,6 +300,21 @@ export function drawGrabLine(
     context.restore();
 }
 
+/**
+ * Draws the particle using canvas API in the given context.
+ * @param container - The container of the particle.
+ * @param context - The canvas context to draw on.
+ * @param particle - The particle to draw.
+ * @param delta this variable contains the delta between the current frame and the previous frame
+ * @param fillColorValue - The fill color value.
+ * @param strokeColorValue - The stroke color value.
+ * @param backgroundMask - If enabled, the composite value will be used for blending the particle in the canvas.
+ * @param composite - The composite value to use for blending the particle in the canvas.
+ * @param radius - The radius of the particle.
+ * @param opacity - The opacity of the particle.
+ * @param shadow - The shadow of the particle.
+ * @param gradient - The gradient of the particle.
+ */
 export function drawParticle(
     container: Container,
     context: CanvasRenderingContext2D,
@@ -367,6 +457,15 @@ export function drawParticle(
     context.restore();
 }
 
+/**
+ * Draws the particle shape using the plugin's shape renderer.
+ * @param container The container of the particle.
+ * @param context The canvas context.
+ * @param particle The particle to draw.
+ * @param radius The radius of the particle.
+ * @param opacity The opacity of the particle.
+ * @param delta this variable contains the delta between the current frame and the previous frame
+ */
 export function drawShape(
     container: Container,
     context: CanvasRenderingContext2D,
@@ -388,6 +487,15 @@ export function drawShape(
     drawer.draw(context, particle, radius, opacity, delta, container.retina.pixelRatio);
 }
 
+/**
+ * Draws the particle effect after the plugin's shape renderer.
+ * @param container The container of the particle.
+ * @param context The canvas context.
+ * @param particle The particle to draw.
+ * @param radius The radius of the particle.
+ * @param opacity The opacity of the particle.
+ * @param delta this variable contains the delta between the current frame and the previous frame
+ */
 export function drawShapeAfterEffect(
     container: Container,
     context: CanvasRenderingContext2D,
@@ -409,6 +517,12 @@ export function drawShapeAfterEffect(
     drawer.afterEffect(context, particle, radius, opacity, delta, container.retina.pixelRatio);
 }
 
+/**
+ * Draws the given plugin in the canvas.
+ * @param context The canvas context.
+ * @param plugin The plugin to draw.
+ * @param delta this variable contains the delta between the current frame and the previous frame
+ */
 export function drawPlugin(context: CanvasRenderingContext2D, plugin: IContainerPlugin, delta: IDelta): void {
     if (!plugin.draw) {
         return;
@@ -419,6 +533,13 @@ export function drawPlugin(context: CanvasRenderingContext2D, plugin: IContainer
     context.restore();
 }
 
+/**
+ * Draws the given particle plugin in the canvas.
+ * @param context The canvas context.
+ * @param plugin The particle plugin to draw.
+ * @param particle The particle to draw.
+ * @param delta this variable contains the delta between the current frame and the previous frame
+ */
 export function drawParticlePlugin(
     context: CanvasRenderingContext2D,
     plugin: IContainerPlugin,
@@ -434,6 +555,18 @@ export function drawParticlePlugin(
     context.restore();
 }
 
+/**
+ * Draws an ellipse for the given particle.
+ * @param context The canvas context.
+ * @param particle The particle to draw.
+ * @param fillColorValue The particle fill color.
+ * @param radius The radius of the particle.
+ * @param opacity The opacity of the particle.
+ * @param width The width of the particle.
+ * @param rotation The rotation of the particle.
+ * @param start The start angle of the particle.
+ * @param end The end angle of the particle.
+ */
 export function drawEllipse(
     context: CanvasRenderingContext2D,
     particle: IParticle,
@@ -464,6 +597,12 @@ export function drawEllipse(
     context.stroke();
 }
 
+/**
+ * Alters HSL values for enlighten or darken the given color.
+ * @param color The color to enlighten or darken.
+ * @param type The type of alteration.
+ * @param value The value of the alteration.
+ */
 export function alterHsl(color: IHsl, type: AlterType, value: number): IHsl {
     return {
         h: color.h,

@@ -42,7 +42,18 @@ export interface IParticlesJS {
  * Initializes particles.js compatibility to the given engine
  * @param engine the engine that requires particles.js compatibility
  */
-const initPjs = (engine: Engine): { particlesJS: IParticlesJS; pJSDom: Container[] } => {
+const initPjs = (
+    engine: Engine
+): {
+    /**
+     * The particles.js compatibility instance
+     */
+    particlesJS: IParticlesJS;
+    /**
+     * The particles.js compatibility dom array
+     */
+    pJSDom: Container[];
+} => {
     /**
      * Loads the provided options to create a [[Container]] object.
      * @deprecated this method is obsolete, please use the new tsParticles.load
