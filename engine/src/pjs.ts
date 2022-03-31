@@ -86,7 +86,7 @@ const initPjs = (
     };
 
     /**
-     * Adds an additional click handler to all the loaded [[Container]] objects.
+     * Adds a click handler to all the loaded [[Container]] objects.
      * @deprecated this method is obsolete, please use the new tsParticles.setOnClickHandler
      * @param callback the function called after the click event is fired
      */
@@ -96,7 +96,7 @@ const initPjs = (
 
     /**
      * All the [[Container]] objects loaded
-     * @deprecated this method is obsolete, please use the new tsParticles.dom
+     * @deprecated this method is obsolete, please use the new [[tsParticles.dom]]
      */
     const pJSDom = engine.dom();
 
