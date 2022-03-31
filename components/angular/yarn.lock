@@ -129,9 +129,9 @@
     rxjs "6.6.7"
 
 "@angular/animations@~13.3.0":
-  version "13.3.0"
-  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-13.3.0.tgz#aaa954dd7c359fad8a1313e6abe311f8733732b3"
-  integrity sha512-q7hkImhHCv0QdriR8HOFhsAW05QDmvapcHrBv3y862LUTR5e90/+81RYuwFuKX1lk/sa7LiHlHHWC7oCspzr2Q==
+  version "13.3.1"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-13.3.1.tgz#58ae68f5ee6118687dc6d8da055472a94b1eade2"
+  integrity sha512-O6DVOk++Bz8Bcz2AAnd1wz1OFzsy3XjmA4o1Mx+DNLRwrLvWHuq33rTVs0Pur7psiKz1lym9kMrY9YwE3s0SJA==
   dependencies:
     tslib "^2.3.0"
 
