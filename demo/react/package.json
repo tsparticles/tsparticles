@@ -44,7 +44,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-tsparticles": "^1.42.4",
-    "rxjs": "^7.5.2",
+    "rxjs": "^7.5.5",
     "tsparticles": "^1.42.4"
   }
 }
