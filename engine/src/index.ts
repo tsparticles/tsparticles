@@ -1,7 +1,7 @@
 import { Engine } from "./engine";
-import type { IAbsorberOptions } from "./Plugins/Absorbers/Options/Interfaces/IAbsorberOptions";
-import type { IEmitterOptions } from "./Plugins/Emitters/Options/Interfaces/IEmitterOptions";
-import type { IPolygonMaskOptions } from "./Plugins/PolygonMask/Options/Interfaces/IPolygonMaskOptions";
+import type { IAbsorberOptions } from "./Plugins/Absorbers";
+import type { IEmitterOptions } from "./Plugins/Emitters";
+import type { IPolygonMaskOptions } from "./Plugins/PolygonMask";
 import type { IOptions as ISlimOptions } from "./Options/Interfaces/IOptions";
 import type { RecursivePartial } from "./Types/RecursivePartial";
 import { initPjs } from "./pjs";
