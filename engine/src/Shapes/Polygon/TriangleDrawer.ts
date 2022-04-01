@@ -1,4 +1,5 @@
-import type { ICoordinates, IParticle } from "../../Core";
+import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
+import type { IParticle } from "../../Core/Interfaces/IParticle";
 import type { ISide } from "./PolygonDrawerBase";
 import { PolygonDrawerBase } from "./PolygonDrawerBase";
 

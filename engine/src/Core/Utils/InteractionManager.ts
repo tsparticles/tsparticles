@@ -1,7 +1,9 @@
-import type { IDelta, IExternalInteractor, IParticlesInteractor } from "../Interfaces";
 import type { Container } from "../Container";
 import type { Engine } from "../../engine";
-import { InteractorType } from "../../Enums";
+import type { IDelta } from "../Interfaces/IDelta";
+import type { IExternalInteractor } from "../Interfaces/IExternalInteractor";
+import type { IParticlesInteractor } from "../Interfaces/IParticlesInteractor";
+import { InteractorType } from "../../Enums/Types/InteractorType";
 import type { Particle } from "../Particle";
 
 /**

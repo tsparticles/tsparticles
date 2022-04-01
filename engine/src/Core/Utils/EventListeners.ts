@@ -1,8 +1,9 @@
-import { ClickMode, InteractivityDetect } from "../../Enums";
-import { isSsr, itemFromArray } from "../../Utils";
+import { isSsr, itemFromArray } from "../../Utils/Utils";
+import { ClickMode } from "../../Enums/Modes/ClickMode";
 import { Constants } from "./Constants";
 import type { Container } from "../Container";
-import type { ICoordinates } from "../Interfaces";
+import type { ICoordinates } from "../Interfaces/ICoordinates";
+import { InteractivityDetect } from "../../Enums/InteractivityDetect";
 
 /**
  * Manage the given event listeners

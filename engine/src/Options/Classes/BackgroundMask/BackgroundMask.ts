@@ -1,9 +1,9 @@
 import { BackgroundMaskCover } from "./BackgroundMaskCover";
 import type { IBackgroundMask } from "../../Interfaces/BackgroundMask/IBackgroundMask";
 import type { IBackgroundMaskCover } from "../../Interfaces/BackgroundMask/IBackgroundMaskCover";
-import type { IColor } from "../../../Core";
+import type { IColor } from "../../../Core/Interfaces/Colors";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
-import type { RecursivePartial } from "../../../Types";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 /**
  * [[include:Options/BackgroundMask.md]]

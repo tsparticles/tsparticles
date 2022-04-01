@@ -1,9 +1,19 @@
-import { Circle, Constants, ExternalInteractorBase, Range, Rectangle, Vector } from "../../../Core";
-import { ClickMode, DivMode, DivType, HoverMode } from "../../../Enums";
-import type { Container, ICoordinates } from "../../../Core";
-import { calcEasing, clamp, divMode, divModeExecute, getDistances, isDivModeEnabled, isInArray } from "../../../Utils";
+import { calcEasing, clamp, getDistances } from "../../../Utils/NumberUtils";
+import { divMode, divModeExecute, isDivModeEnabled, isInArray } from "../../../Utils/Utils";
+import { Circle } from "../../../Core/Utils/Circle";
+import { ClickMode } from "../../../Enums/Modes/ClickMode";
+import { Constants } from "../../../Core/Utils/Constants";
+import type { Container } from "../../../Core/Container";
 import type { DivEvent } from "../../../Options/Classes/Interactivity/Events/DivEvent";
+import { DivMode } from "../../../Enums/Modes/DivMode";
+import { DivType } from "../../../Enums/Types/DivType";
+import { ExternalInteractorBase } from "../../../Core/Utils/ExternalInteractorBase";
+import { HoverMode } from "../../../Enums/Modes/HoverMode";
+import { ICoordinates } from "../../../Core/Interfaces/ICoordinates";
+import { Range } from "../../../Core/Utils/Range";
+import { Rectangle } from "../../../Core/Utils/Rectangle";
 import type { RepulseDiv } from "../../../Options/Classes/Interactivity/Modes/RepulseDiv";
+import { Vector } from "../../../Core/Utils/Vector";
 
 /**
  * Particle repulse manager

@@ -1,4 +1,5 @@
-import type { IParticle, IShapeDrawer } from "../../Core";
+import type { IParticle } from "../../Core/Interfaces/IParticle";
+import type { IShapeDrawer } from "../../Core/Interfaces/IShapeDrawer";
 import type { IStarShape } from "../../Options/Interfaces/Particles/Shape/IStarShape";
 
 /**

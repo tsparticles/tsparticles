@@ -1,5 +1,6 @@
-import type { Container, IPlugin } from "../../../Core";
+import type { Container } from "../../../Core/Container";
 import type { Engine } from "../../../engine";
+import type { IPlugin } from "../../../Core/Interfaces/IPlugin";
 import { LinkInstance } from "./LinkInstance";
 
 class LinksPlugin implements IPlugin {

@@ -1,4 +1,3 @@
-import type { RecursivePartial, SingleOrMultiple } from "../../../Types";
 import { AnimatableColor } from "../AnimatableColor";
 import { AnimatableGradient } from "../AnimatableGradient";
 import { Bounce } from "./Bounce/Bounce";
@@ -13,18 +12,20 @@ import { Opacity } from "./Opacity/Opacity";
 import { Orbit } from "./Orbit/Orbit";
 import type { ParticlesGroups } from "../../../Types/ParticlesGroups";
 import { ParticlesNumber } from "./Number/ParticlesNumber";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import { Repulse } from "./Repulse/Repulse";
 import { Roll } from "./Roll/Roll";
 import { Rotate } from "./Rotate/Rotate";
 import { Shadow } from "./Shadow";
 import { Shape } from "./Shape/Shape";
+import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
 import { Size } from "./Size/Size";
 import { Stroke } from "./Stroke";
 import { Tilt } from "./Tilt/Tilt";
 import { Twinkle } from "./Twinkle/Twinkle";
 import { Wobble } from "./Wobble/Wobble";
 import { ZIndex } from "./ZIndex/ZIndex";
-import { deepExtend } from "../../../Utils";
+import { deepExtend } from "../../../Utils/Utils";
 
 /**
  * [[include:Options/Particles.md]]

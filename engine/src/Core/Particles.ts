@@ -1,14 +1,22 @@
-import type { ICoordinates, IDelta, IMouseData, IParticle, IRgb } from "./Interfaces";
-import { InteractionManager, ParticlesMover, Point, QuadTree, Rectangle } from "./Utils";
-import { getRangeMax, getRangeMin, getRangeValue, randomInRange, setRangeValue } from "../Utils";
+import { getRangeMax, getRangeMin, getRangeValue, randomInRange, setRangeValue } from "../Utils/NumberUtils";
 import type { Container } from "./Container";
 import type { Engine } from "../engine";
+import type { ICoordinates } from "./Interfaces/ICoordinates";
+import type { IDelta } from "./Interfaces/IDelta";
 import type { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";
+import type { IMouseData } from "./Interfaces/IMouseData";
+import type { IParticle } from "./Interfaces/IParticle";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
-import { IParticlesFrequencies } from "./Interfaces/IParticlesFrequencies";
+import type { IParticlesFrequencies } from "./Interfaces/IParticlesFrequencies";
+import type { IRgb } from "./Interfaces/Colors";
+import { InteractionManager } from "./Utils/InteractionManager";
 import { Particle } from "./Particle";
+import { ParticlesMover } from "./Utils/ParticlesMover";
 import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
-import type { RecursivePartial } from "../Types";
+import { Point } from "./Utils/Point";
+import { QuadTree } from "./Utils/QuadTree";
+import { Rectangle } from "./Utils/Rectangle";
+import type { RecursivePartial } from "../Types/RecursivePartial";
 
 /**
  * Particles manager object

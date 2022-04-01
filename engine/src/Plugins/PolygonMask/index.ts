@@ -1,13 +1,14 @@
-import type { Container, IPlugin } from "../../Core";
+import type { Container } from "../../Core/Container";
 import type { Engine } from "../../engine";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
+import type { IPlugin } from "../../Core/Interfaces/IPlugin";
 import type { IPolygonMaskOptions } from "./Options/Interfaces/IPolygonMaskOptions";
 import { Options } from "../../Options/Classes/Options";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
 import { PolygonMaskInstance } from "./PolygonMaskInstance";
-import { PolygonMaskType } from "./Enums";
-import type { RecursivePartial } from "../../Types";
-import { isSsr } from "../../Utils";
+import { PolygonMaskType } from "./Enums/PolygonMaskType";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
+import { isSsr } from "../../Utils/Utils";
 
 /**
  * @category Polygon Mask Plugin
@@ -61,3 +62,8 @@ export async function loadPolygonMaskPlugin(engine: Engine): Promise<void> {
 
     await engine.addPlugin(plugin);
 }
+
+export * from "./Enums/PolygonMaskInlineArrangement";
+export * from "./Enums/PolygonMaskMoveType";
+export * from "./Enums/PolygonMaskType";
+export * from "./Options/Interfaces/IPolygonMaskOptions";

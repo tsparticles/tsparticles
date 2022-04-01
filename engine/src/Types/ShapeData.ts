@@ -1,4 +1,4 @@
-import type { IShapeValues } from "../Core";
+import type { IShapeValues } from "../Core/Interfaces/IShapeValues";
 import type { SingleOrMultiple } from "./SingleOrMultiple";
 
 /**

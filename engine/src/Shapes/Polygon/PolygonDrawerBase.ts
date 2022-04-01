@@ -1,5 +1,7 @@
-import type { ICoordinates, IParticle, IShapeDrawer } from "../../Core";
+import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
+import type { IParticle } from "../../Core/Interfaces/IParticle";
 import type { IPolygonShape } from "../../Options/Interfaces/Particles/Shape/IPolygonShape";
+import type { IShapeDrawer } from "../../Core/Interfaces/IShapeDrawer";
 
 export interface ISideCount {
     numerator: number;

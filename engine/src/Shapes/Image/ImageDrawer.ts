@@ -1,7 +1,9 @@
-import type { Container, IShapeDrawer, Particle } from "../../Core";
 import type { ContainerImage, IImage, IImageParticle, IParticleImage } from "./Utils";
 import { downloadSvgImage, loadImage, replaceImageColor } from "./Utils";
+import type { Container } from "../../Core/Container";
 import type { IImageShape } from "../../Options/Interfaces/Particles/Shape/IImageShape";
+import type { IShapeDrawer } from "../../Core/Interfaces/IShapeDrawer";
+import type { Particle } from "../../Core/Particle";
 
 /**
  * @category Shape Drawers

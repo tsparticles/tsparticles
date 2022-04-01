@@ -1,10 +1,17 @@
-import { Circle, Constants, ExternalInteractorBase, Range, Vector } from "../../../Core";
-import { ClickMode, HoverMode } from "../../../Enums";
-import type { Container, ICoordinates } from "../../../Core";
-import { calcEasing, clamp, getDistances, isInArray } from "../../../Utils";
+import { calcEasing, clamp, getDistances } from "../../../Utils/NumberUtils";
+import { Circle } from "../../../Core/Utils/Circle";
+import { ClickMode } from "../../../Enums/Modes/ClickMode";
+import { Constants } from "../../../Core/Utils/Constants";
+import type { Container } from "../../../Core/Container";
+import { ExternalInteractorBase } from "../../../Core/Utils/ExternalInteractorBase";
+import { HoverMode } from "../../../Enums/Modes/HoverMode";
+import type { ICoordinates } from "../../../Core/Interfaces/ICoordinates";
+import { Range } from "../../../Core/Utils/Range";
+import { Vector } from "../../../Core/Utils/Vector";
+import { isInArray } from "../../../Utils/Utils";
 
 /**
- * Particle attract manager
+ * Particle external attract manager
  * @category Interactions
  */
 export class Attractor extends ExternalInteractorBase {

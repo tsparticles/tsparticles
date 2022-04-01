@@ -1,12 +1,17 @@
-import type { Container, ICoordinates, IRgb, Particle } from "../../Core";
-import { colorToRgb, getDistance, getDistances, getRangeValue, getStyleFromRgb, isPointInside } from "../../Utils";
+import { colorToRgb, getStyleFromRgb } from "../../Utils/ColorUtils";
+import { getDistance, getDistances, getRangeValue } from "../../Utils/NumberUtils";
 import { Absorber } from "./Options/Classes/Absorber";
-import type { Absorbers } from "./Absorbers";
+import { Absorbers } from "./Absorbers";
+import type { Container } from "../../Core/Container";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
-import { IAbsorberSizeLimit } from "./Options/Interfaces/IAbsorberSizeLimit";
-import { RecursivePartial } from "../../Types";
-import { RotateDirection } from "../../Enums";
-import { Vector } from "../../Core";
+import type { IAbsorberSizeLimit } from "./Options/Interfaces/IAbsorberSizeLimit";
+import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
+import type { IRgb } from "../../Core/Interfaces/Colors";
+import type { Particle } from "../../Core/Particle";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
+import { RotateDirection } from "../../Enums/Directions/RotateDirection";
+import { Vector } from "../../Core/Utils/Vector";
+import { isPointInside } from "../../Utils/Utils";
 
 /**
  * Particle extension type for Absorber orbit options

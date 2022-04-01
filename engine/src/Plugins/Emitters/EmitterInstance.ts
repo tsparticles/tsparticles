@@ -1,16 +1,22 @@
-import type { Container, ICoordinates, IDelta, IDimension, IHsl } from "../../Core";
-import { colorToHsl, deepExtend, getRangeValue, isPointInside, randomInRange } from "../../Utils";
+import { deepExtend, isPointInside } from "../../Utils/Utils";
+import { getRangeValue, randomInRange } from "../../Utils/NumberUtils";
+import type { Container } from "../../Core/Container";
 import { Emitter } from "./Options/Classes/Emitter";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
 import type { Emitters } from "./Emitters";
 import type { EmittersEngine } from "./EmittersEngine";
 import type { IColorAnimation } from "../../Options/Interfaces/IColorAnimation";
+import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
+import type { IDelta } from "../../Core/Interfaces/IDelta";
+import type { IDimension } from "../../Core/Interfaces/IDimension";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
 import type { IEmitterShape } from "./IEmitterShape";
 import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
+import type { IHsl } from "../../Core/Interfaces/Colors";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
-import type { RecursivePartial } from "../../Types";
-import { SizeMode } from "../../Enums";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
+import { SizeMode } from "../../Enums/Modes/SizeMode";
+import { colorToHsl } from "../../Utils/ColorUtils";
 
 /**
  * @category Emitters Plugin

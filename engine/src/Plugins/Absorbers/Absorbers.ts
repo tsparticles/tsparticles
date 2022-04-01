@@ -1,13 +1,17 @@
-import type { Container, IContainerPlugin, ICoordinates, Particle } from "../../Core";
-import type { RecursivePartial, SingleOrMultiple } from "../../Types";
 import { Absorber } from "./Options/Classes/Absorber";
-import { AbsorberClickMode } from "./Enums";
+import { AbsorberClickMode } from "./Enums/AbsorberClickMode";
 import type { AbsorberContainer } from "./AbsorberContainer";
 import { AbsorberInstance } from "./AbsorberInstance";
+import type { Container } from "../../Core/Container";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
 import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
+import type { IContainerPlugin } from "../../Core/Interfaces/IContainerPlugin";
+import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
-import { itemFromArray } from "../../Utils";
+import type { Particle } from "../../Core/Particle";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
+import { itemFromArray } from "../../Utils/Utils";
 
 /**
  * @category Absorbers Plugin

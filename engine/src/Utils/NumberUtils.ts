@@ -1,8 +1,9 @@
-import { EasingType, MoveDirection, MoveDirectionAlt } from "../Enums";
-import type { ICoordinates } from "../Core";
+import { MoveDirection, MoveDirectionAlt } from "../Enums/Directions/MoveDirection";
+import { EasingType } from "../Enums/Types/EasingType";
+import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IValueWithRandom } from "../Options/Interfaces/IValueWithRandom";
-import type { RangeValue } from "../Types";
-import { Vector } from "../Core";
+import type { RangeValue } from "../Types/RangeValue";
+import { Vector } from "../Core/Utils/Vector";
 
 /**
  * Clamps a number between a minimum and maximum value

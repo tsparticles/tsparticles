@@ -1,19 +1,18 @@
-import { DivMode, OutModeDirection } from "../Enums";
-import type {
-    IBounds,
-    ICircleBouncer,
-    ICoordinates,
-    IDimension,
-    IParticle,
-    IRangeValue,
-    IRectSideResult,
-} from "../Core";
 import { collisionVelocity, getDistances, getValue } from "./NumberUtils";
 import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
+import { DivMode } from "../Enums/Modes/DivMode";
+import type { IBounds } from "../Core/Interfaces/IBounds";
 import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICharacterShape";
+import type { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer";
+import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
+import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
-import type { SingleOrMultiple } from "../Types";
-import { Vector } from "../Core";
+import type { IParticle } from "../Core/Interfaces/IParticle";
+import type { IRangeValue } from "../Core/Interfaces/IRangeValue";
+import type { IRectSideResult } from "../Core/Interfaces/IRectSideResult";
+import { OutModeDirection } from "../Enums/Directions/OutModeDirection";
+import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
+import { Vector } from "../Core/Utils/Vector";
 
 declare global {
     interface Window {
@@ -104,14 +103,14 @@ export function animate(): (callback: FrameRequestCallback) => number {
     return isSsr()
         ? (callback: FrameRequestCallback): number => setTimeout(callback)
         : (callback: FrameRequestCallback): number =>
-            (
-                window.requestAnimationFrame ||
-                window.webkitRequestAnimationFrame ||
-                window.mozRequestAnimationFrame ||
-                window.oRequestAnimationFrame ||
-                window.msRequestAnimationFrame ||
-                window.setTimeout
-            )(callback);
+              (
+                  window.requestAnimationFrame ||
+                  window.webkitRequestAnimationFrame ||
+                  window.mozRequestAnimationFrame ||
+                  window.oRequestAnimationFrame ||
+                  window.msRequestAnimationFrame ||
+                  window.setTimeout
+              )(callback);
 }
 
 /**
@@ -121,14 +120,14 @@ export function cancelAnimation(): (handle: number) => void {
     return isSsr()
         ? (handle: number): void => clearTimeout(handle)
         : (handle: number): void =>
-            (
-                window.cancelAnimationFrame ||
-                window.webkitCancelRequestAnimationFrame ||
-                window.mozCancelRequestAnimationFrame ||
-                window.oCancelRequestAnimationFrame ||
-                window.msCancelRequestAnimationFrame ||
-                window.clearTimeout
-            )(handle);
+              (
+                  window.cancelAnimationFrame ||
+                  window.webkitCancelRequestAnimationFrame ||
+                  window.mozCancelRequestAnimationFrame ||
+                  window.oCancelRequestAnimationFrame ||
+                  window.msCancelRequestAnimationFrame ||
+                  window.clearTimeout
+              )(handle);
 }
 
 /**
@@ -377,7 +376,7 @@ export function circleBounceDataFromParticle(p: IParticle): ICircleBouncer {
  */
 export function circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
     const { x: xVelocityDiff, y: yVelocityDiff } = p1.velocity.sub(p2.velocity),
-        [ pos1, pos2 ] = [ p1.position, p2.position ],
+        [pos1, pos2] = [p1.position, p2.position],
         { dx: xDist, dy: yDist } = getDistances(pos2, pos1);
 
     // Prevent accidental overlap of particles

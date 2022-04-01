@@ -1,8 +1,10 @@
-import { HoverMode, RotateDirection } from "../../Enums";
-import { clamp, getDistance, getDistances, getRangeMax, getRangeValue, isInArray, isSsr } from "../../Utils";
+import { clamp, getDistance, getDistances, getRangeMax, getRangeValue } from "../../Utils/NumberUtils";
+import { isInArray, isSsr } from "../../Utils/Utils";
 import type { Container } from "../Container";
-import type { IDelta } from "../Interfaces";
+import { HoverMode } from "../../Enums/Modes/HoverMode";
+import type { IDelta } from "../Interfaces/IDelta";
 import type { Particle } from "../Particle";
+import { RotateDirection } from "../../Enums/Directions/RotateDirection";
 
 /**
  * This function fixes the particle direction, if a distance is set

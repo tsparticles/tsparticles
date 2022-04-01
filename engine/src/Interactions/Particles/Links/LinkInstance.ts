@@ -1,7 +1,12 @@
-import type { Container, IContainerPlugin, IRgb, Particle } from "../../../Core";
-import { colorToRgb, drawLinkLine, drawLinkTriangle, getDistance, getLinkColor, getRangeValue } from "../../../Utils";
+import { colorToRgb, getLinkColor } from "../../../Utils/ColorUtils";
+import { drawLinkLine, drawLinkTriangle } from "../../../Utils/CanvasUtils";
+import { getDistance, getRangeValue } from "../../../Utils/NumberUtils";
+import type { Container } from "../../../Core/Container";
+import type { IContainerPlugin } from "../../../Core/Interfaces/IContainerPlugin";
 import type { ILink } from "./ILink";
+import type { IRgb } from "../../../Core/Interfaces/Colors";
 import type { LinkParticle } from "./LinkParticle";
+import type { Particle } from "../../../Core/Particle";
 
 export class LinkInstance implements IContainerPlugin {
     constructor(private readonly container: Container) {}

@@ -1,7 +1,8 @@
-import type { RecursivePartial, SingleOrMultiple } from "../../../../Types";
-import { ClickMode } from "../../../../Enums";
+import { ClickMode } from "../../../../Enums/Modes/ClickMode";
 import type { IClickEvent } from "../../../Interfaces/Interactivity/Events/IClickEvent";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 /**
  * [[include:Options/Interactivity/Click.md]]

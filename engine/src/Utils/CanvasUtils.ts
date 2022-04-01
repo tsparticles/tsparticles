@@ -1,20 +1,19 @@
-import { AlterType, GradientType, RollMode } from "../Enums";
-import type {
-    Container,
-    IContainerPlugin,
-    ICoordinates,
-    IDelta,
-    IDimension,
-    IHsl,
-    IParticle,
-    IParticleGradientAnimation,
-    IRgb,
-} from "../Core";
+import type { IHsl, IRgb } from "../Core/Interfaces/Colors";
 import { colorMix, colorToRgb, getStyleFromHsl, getStyleFromRgb } from "./ColorUtils";
 import { getDistance, getDistances } from "./NumberUtils";
+import { AlterType } from "../Enums/Types/AlterType";
+import type { Container } from "../Core/Container";
+import { GradientType } from "../Enums/Types/GradientType";
+import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
+import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
+import type { IDelta } from "../Core/Interfaces/IDelta";
+import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { ILinksShadow } from "../Options/Interfaces/Particles/Links/ILinksShadow";
+import type { IParticle } from "../Core/Interfaces/IParticle";
+import type { IParticleGradientAnimation } from "../Core/Interfaces/IParticleGradientAnimation";
 import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
-import type { Particle } from "../Core";
+import type { Particle } from "../Core/Particle";
+import { RollMode } from "../Enums/Modes/RollMode";
 
 /**
  * Draws a line between two points using canvas API in the given context.

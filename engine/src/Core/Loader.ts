@@ -1,11 +1,11 @@
-import { Constants } from "./Utils";
+import { Constants } from "./Utils/Constants";
 import { Container } from "./Container";
 import type { Engine } from "../engine";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { Particle } from "./Particle";
-import type { RecursivePartial } from "../Types";
-import type { SingleOrMultiple } from "../Types";
-import { itemFromArray } from "../Utils";
+import type { RecursivePartial } from "../Types/RecursivePartial";
+import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
+import { itemFromArray } from "../Utils/Utils";
 
 /**
  * Default fetch error catcher

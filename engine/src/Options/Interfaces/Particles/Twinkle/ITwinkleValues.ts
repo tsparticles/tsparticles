@@ -1,5 +1,5 @@
-import type { IColor } from "../../../../Core";
-import type { RangeValue } from "../../../../Types";
+import type { IColor } from "../../../../Core/Interfaces/Colors";
+import type { RangeValue } from "../../../../Types/RangeValue";
 
 /**
  * @category Options

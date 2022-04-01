@@ -1,4 +1,4 @@
-import type { ThemeMode } from "../../../Enums";
+import type { ThemeMode } from "../../../Enums/Modes/ThemeMode";
 
 /**
  * Options to set the default theme

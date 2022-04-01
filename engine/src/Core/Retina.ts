@@ -1,6 +1,7 @@
-import { getRangeValue, isSsr } from "../Utils";
 import type { Container } from "./Container";
 import type { Particle } from "./Particle";
+import { getRangeValue } from "../Utils/NumberUtils";
+import { isSsr } from "../Utils/Utils";
 
 /**
  * @category Core

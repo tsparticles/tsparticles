@@ -1,13 +1,16 @@
-import { GradientType, RotateDirection, RotateDirectionAlt, StartValueType } from "../../Enums";
 import type { IAnimatableGradientColor, IGradientColorOpacityAnimation } from "../Interfaces/IOptionsGradient";
-import type { IGradientAngle, IGradientColorOpacity } from "../../Core";
-import type { RangeValue, RecursivePartial } from "../../Types";
+import type { IGradientAngle, IGradientColorOpacity } from "../../Core/Interfaces/Gradients";
+import { RotateDirection, RotateDirectionAlt } from "../../Enums/Directions/RotateDirection";
 import { AnimatableColor } from "./AnimatableColor";
+import { GradientType } from "../../Enums/Types/GradientType";
 import type { IAnimatable } from "../Interfaces/IAnimatable";
 import type { IAnimatableGradient } from "../Interfaces/IAnimatableGradient";
 import type { IAnimation } from "../Interfaces/IAnimation";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
-import { setRangeValue } from "../../Utils";
+import type { RangeValue } from "../../Types/RangeValue";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
+import { StartValueType } from "../../Enums/Types/StartValueType";
+import { setRangeValue } from "../../Utils/NumberUtils";
 
 export class AnimatableGradient implements IAnimatableGradient, IOptionLoader<IAnimatableGradient> {
     angle: GradientAngle;

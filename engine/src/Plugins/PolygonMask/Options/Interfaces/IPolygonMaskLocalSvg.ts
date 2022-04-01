@@ -1,5 +1,5 @@
-import type { IDimension } from "../../../../Core";
-import type { SingleOrMultiple } from "../../../../Types";
+import type { IDimension } from "../../../../Core/Interfaces/IDimension";
+import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 /**
  * @category Polygon Mask Plugin

@@ -1,14 +1,18 @@
-import type { Container, IContainerPlugin, ICoordinates, IDelta } from "../../Core";
-import type { RecursivePartial, SingleOrMultiple } from "../../Types";
-import { deepExtend, itemFromArray } from "../../Utils";
+import { deepExtend, itemFromArray } from "../../Utils/Utils";
+import { Container } from "../../Core/Container";
 import { Emitter } from "./Options/Classes/Emitter";
-import { EmitterClickMode } from "./Enums";
+import { EmitterClickMode } from "./Enums/EmitterClickMode";
 import type { EmitterContainer } from "./EmitterContainer";
 import { EmitterInstance } from "./EmitterInstance";
 import type { EmittersEngine } from "./EmittersEngine";
+import type { IContainerPlugin } from "../../Core/Interfaces/IContainerPlugin";
+import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
+import type { IDelta } from "../../Core/Interfaces/IDelta";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 
 /**
  * @category Emitters Plugin

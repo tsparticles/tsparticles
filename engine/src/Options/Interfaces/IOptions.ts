@@ -1,4 +1,3 @@
-import type { RangeValue, RecursivePartial, SingleOrMultiple } from "../../Types";
 import type { IBackground } from "./Background/IBackground";
 import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask";
 import type { IFullScreen } from "./FullScreen/IFullScreen";
@@ -8,6 +7,9 @@ import type { IMotion } from "./Motion/IMotion";
 import type { IParticles } from "./Particles/IParticles";
 import type { IResponsive } from "./IResponsive";
 import type { ITheme } from "./Theme/ITheme";
+import type { RangeValue } from "../../Types/RangeValue";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`

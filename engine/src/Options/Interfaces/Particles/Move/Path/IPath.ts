@@ -1,5 +1,5 @@
 import type { IValueWithRandom } from "../../../IValueWithRandom";
-import type { PathOptions } from "../../../../../Types";
+import type { PathOptions } from "../../../../../Types/PathOptions";
 
 /**
  * @category Options

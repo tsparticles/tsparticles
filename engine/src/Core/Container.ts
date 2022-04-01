@@ -2,27 +2,28 @@
  * [[include:Container.md]]
  * @packageDocumentation
  */
-import { EventListeners, FrameManager, Vector } from "./Utils";
-import type {
-    IAttract,
-    IBubble,
-    IContainerInteractivity,
-    IContainerPlugin,
-    ICoordinates,
-    IMovePathGenerator,
-    IRepulse,
-    IRgb,
-    IShapeDrawer,
-} from "./Interfaces";
-import { animate, cancelAnimation, getRangeValue } from "../Utils";
+import { animate, cancelAnimation } from "../Utils/Utils";
 import { Canvas } from "./Canvas";
 import type { Engine } from "../engine";
+import { EventListeners } from "./Utils/EventListeners";
+import { FrameManager } from "./Utils/FrameManager";
+import type { IAttract } from "./Interfaces/IAttract";
+import type { IBubble } from "./Interfaces/IBubble";
+import type { IContainerInteractivity } from "./Interfaces/IContainerInteractivity";
+import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
+import type { ICoordinates } from "./Interfaces/ICoordinates";
+import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator";
 import type { IOptions } from "../Options/Interfaces/IOptions";
+import type { IRepulse } from "./Interfaces/IRepulse";
+import type { IRgb } from "./Interfaces/Colors";
+import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import { Options } from "../Options/Classes/Options";
-import { Particle } from "./Particle";
+import type { Particle } from "./Particle";
 import { Particles } from "./Particles";
-import type { RecursivePartial } from "../Types";
+import type { RecursivePartial } from "../Types/RecursivePartial";
 import { Retina } from "./Retina";
+import { Vector } from "./Utils/Vector";
+import { getRangeValue } from "../Utils/NumberUtils";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working

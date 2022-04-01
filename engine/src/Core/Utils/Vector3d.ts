@@ -1,4 +1,4 @@
-import type { ICoordinates3d } from "../Interfaces";
+import type { ICoordinates3d } from "../Interfaces/ICoordinates";
 import { Vector } from "./Vector";
 
 /**

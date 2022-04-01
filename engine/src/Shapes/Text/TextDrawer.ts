@@ -1,6 +1,8 @@
-import type { Container, IParticle, IShapeDrawer } from "../../Core";
-import { isInArray, itemFromArray, loadFont } from "../../Utils";
+import { isInArray, itemFromArray, loadFont } from "../../Utils/Utils";
+import type { Container } from "../../Core/Container";
 import type { ICharacterShape } from "../../Options/Interfaces/Particles/Shape/ICharacterShape";
+import type { IParticle } from "../../Core/Interfaces/IParticle";
+import type { IShapeDrawer } from "../../Core/Interfaces/IShapeDrawer";
 
 export const validTypes = ["text", "character", "char"];
 

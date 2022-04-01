@@ -1,6 +1,7 @@
-import type { RecursivePartial, SingleOrMultiple } from "../../../../Types";
 import type { IBubbleBase } from "../../../Interfaces/Interactivity/Modes/IBubbleBase";
 import { OptionsColor } from "../../OptionsColor";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 /**
  * @category Options

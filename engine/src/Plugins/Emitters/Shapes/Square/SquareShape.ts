@@ -1,4 +1,5 @@
-import type { ICoordinates, IDimension } from "../../../../Core";
+import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
+import type { IDimension } from "../../../../Core/Interfaces/IDimension";
 import type { IEmitterShape } from "../../IEmitterShape";
 
 function randomSquareCoordinate(position: number, offset: number): number {

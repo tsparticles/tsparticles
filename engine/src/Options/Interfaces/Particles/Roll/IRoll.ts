@@ -1,7 +1,8 @@
-import type { RangeValue, SingleOrMultiple } from "../../../../Types";
-import type { IColor } from "../../../../Core";
+import type { IColor } from "../../../../Core/Interfaces/Colors";
 import type { IRollLight } from "./IRollLight";
-import type { RollMode } from "../../../../Enums";
+import type { RangeValue } from "../../../../Types/RangeValue";
+import type { RollMode } from "../../../../Enums/Modes/RollMode";
+import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 export interface IRoll {
     backColor?: SingleOrMultiple<string> | IColor;

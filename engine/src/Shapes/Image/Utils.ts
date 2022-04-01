@@ -1,9 +1,12 @@
+import type { IHsl } from "../../Core/Interfaces/Colors";
+import type { IImageShape } from "../../Options/Interfaces/Particles/Shape/IImageShape";
+import type { IParticle } from "../../Core/Interfaces/IParticle";
+import type { Particle } from "../../Core/Particle";
+import { getStyleFromHsl } from "../../Utils/ColorUtils";
+
 /**
  * @category Interfaces
  */
-import type { IHsl, IParticle, Particle } from "../../Core";
-import type { IImageShape } from "../../Options/Interfaces/Particles/Shape/IImageShape";
-import { getStyleFromHsl } from "../../Utils";
 
 /**
  * The image interface, used for keeping useful data for drawing

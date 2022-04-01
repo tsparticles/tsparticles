@@ -1,23 +1,25 @@
-import type { IContainerPlugin, ICoordinates, IDelta, IDimension, IHsl, IParticle, IRgb, IRgba } from "./Interfaces";
+import type { IHsl, IRgb, IRgba } from "./Interfaces/Colors";
 import {
     clear,
-    colorToHsl,
-    colorToRgb,
-    deepExtend,
     drawConnectLine,
     drawGrabLine,
     drawParticle,
     drawParticlePlugin,
     drawPlugin,
-    getRangeValue,
-    getStyleFromHsl,
-    getStyleFromRgb,
     gradient,
     paintBase,
-} from "../Utils";
-import { Constants } from "./Utils";
+} from "../Utils/CanvasUtils";
+import { colorToHsl, colorToRgb, getStyleFromHsl, getStyleFromRgb } from "../Utils/ColorUtils";
+import { Constants } from "./Utils/Constants";
 import type { Container } from "./Container";
+import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
+import type { ICoordinates } from "./Interfaces/ICoordinates";
+import type { IDelta } from "./Interfaces/IDelta";
+import type { IDimension } from "./Interfaces/IDimension";
+import type { IParticle } from "./Interfaces/IParticle";
 import type { Particle } from "./Particle";
+import { deepExtend } from "../Utils/Utils";
+import { getRangeValue } from "../Utils/NumberUtils";
 
 /**
  * Canvas manager

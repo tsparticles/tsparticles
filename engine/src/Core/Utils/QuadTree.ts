@@ -1,12 +1,13 @@
-import type { ICoordinates, IDimension } from "../Interfaces";
 import { Circle } from "./Circle";
 import { CircleWarp } from "./CircleWarp";
 import type { Container } from "../Container";
+import type { ICoordinates } from "../Interfaces/ICoordinates";
+import type { IDimension } from "../Interfaces/IDimension";
 import type { Particle } from "../Particle";
 import type { Point } from "./Point";
 import type { Range } from "./Range";
 import { Rectangle } from "./Rectangle";
-import { getDistance } from "../../Utils";
+import { getDistance } from "../../Utils/NumberUtils";
 
 /**
  * @category Utils

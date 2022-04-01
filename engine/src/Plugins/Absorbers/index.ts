@@ -1,13 +1,14 @@
-import type { Container, IPlugin } from "../../Core";
 import { Absorber } from "./Options/Classes/Absorber";
-import { AbsorberClickMode } from "./Enums";
+import { AbsorberClickMode } from "./Enums/AbsorberClickMode";
 import { Absorbers } from "./Absorbers";
+import type { Container } from "../../Core/Container";
 import type { Engine } from "../../engine";
 import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
+import type { IPlugin } from "../../Core/Interfaces/IPlugin";
 import { Options } from "../../Options/Classes/Options";
-import type { RecursivePartial } from "../../Types";
-import { isInArray } from "../../Utils";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
+import { isInArray } from "../../Utils/Utils";
 
 /**
  * @category Absorbers Plugin
@@ -100,3 +101,6 @@ export async function loadAbsorbersPlugin(engine: Engine): Promise<void> {
 
     await engine.addPlugin(plugin);
 }
+
+export * from "./Enums/AbsorberClickMode";
+export * from "./Options/Interfaces/IAbsorberOptions";

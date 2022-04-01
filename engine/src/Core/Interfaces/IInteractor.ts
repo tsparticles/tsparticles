@@ -1,4 +1,4 @@
-import type { InteractorType } from "../../Enums";
+import type { InteractorType } from "../../Enums/Types/InteractorType";
 import type { Particle } from "../Particle";
 
 /**

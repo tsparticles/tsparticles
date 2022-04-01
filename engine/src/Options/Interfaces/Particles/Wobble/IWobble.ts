@@ -1,4 +1,4 @@
-import type { RangeValue } from "../../../../Types";
+import type { RangeValue } from "../../../../Types/RangeValue";
 
 export interface IWobble {
     distance: RangeValue;

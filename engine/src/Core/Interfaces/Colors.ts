@@ -1,4 +1,4 @@
-import type { SingleOrMultiple } from "../../Types";
+import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 
 /**
  * Alpha Color

@@ -1,6 +1,6 @@
 import type { IEmitterLife } from "../Interfaces/IEmitterLife";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
-import type { RecursivePartial } from "../../../../Types";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 /**
  * @category Emitters Plugin

@@ -7,7 +7,7 @@ import type { IModes } from "../../../Interfaces/Interactivity/Modes/IModes";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { Light } from "./Light";
 import { Push } from "./Push";
-import type { RecursivePartial } from "../../../../Types";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { Remove } from "./Remove";
 import { Repulse } from "./Repulse";
 import { Slow } from "./Slow";

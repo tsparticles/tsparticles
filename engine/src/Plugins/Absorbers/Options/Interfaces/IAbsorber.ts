@@ -1,6 +1,7 @@
-import type { IColor, IRangedCoordinates } from "../../../../Core";
 import type { IAbsorberSize } from "./IAbsorberSize";
-import { RecursivePartial } from "../../../../Types";
+import type { IColor } from "../../../../Core/Interfaces/Colors";
+import type { IRangedCoordinates } from "../../../../Core/Interfaces/ICoordinates";
+import { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 /**
  * Absorber options

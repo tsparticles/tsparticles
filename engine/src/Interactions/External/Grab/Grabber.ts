@@ -1,7 +1,10 @@
-import { Constants, ExternalInteractorBase } from "../../../Core";
-import { getDistance, getLinkColor, getLinkRandomColor, isInArray } from "../../../Utils";
-import type { Container } from "../../../Core";
-import { HoverMode } from "../../../Enums";
+import { getLinkColor, getLinkRandomColor } from "../../../Utils/ColorUtils";
+import { Constants } from "../../../Core/Utils/Constants";
+import type { Container } from "../../../Core/Container";
+import { ExternalInteractorBase } from "../../../Core/Utils/ExternalInteractorBase";
+import { HoverMode } from "../../../Enums/Modes/HoverMode";
+import { getDistance } from "../../../Utils/NumberUtils";
+import { isInArray } from "../../../Utils/Utils";
 
 /**
  * Particle grab manager

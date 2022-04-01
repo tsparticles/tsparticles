@@ -1,21 +1,12 @@
-import type {
-    IColor,
-    IHsl,
-    IHsla,
-    IHsv,
-    IHsva,
-    IParticle,
-    IParticleHslAnimation,
-    IParticleValueAnimation,
-    IRgb,
-    IRgba,
-    IValueColor,
-} from "../Core";
+import type { IColor, IHsl, IHsla, IHsv, IHsva, IRgb, IRgba, IValueColor } from "../Core/Interfaces/Colors";
 import { getRangeValue, mix, randomInRange, setRangeValue } from "./NumberUtils";
-import { AnimationStatus } from "../Enums";
-import { Constants } from "../Core";
-import type { HslAnimation } from "../Options/Classes/HslAnimation";
+import { AnimationStatus } from "../Enums/AnimationStatus";
+import { Constants } from "../Core/Utils/Constants";
+import { HslAnimation } from "../Options/Classes/HslAnimation";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
+import type { IParticle } from "../Core/Interfaces/IParticle";
+import type { IParticleHslAnimation } from "../Core/Interfaces/IParticleHslAnimation";
+import type { IParticleValueAnimation } from "../Core/Interfaces/IParticleValueAnimation";
 import { itemFromArray } from "./Utils";
 
 /**

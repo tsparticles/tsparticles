@@ -1,8 +1,9 @@
-import type { RecursivePartial, SingleOrMultiple } from "../../../../Types";
-import { HoverMode } from "../../../../Enums";
+import { HoverMode } from "../../../../Enums/Modes/HoverMode";
 import type { IHoverEvent } from "../../../Interfaces/Interactivity/Events/IHoverEvent";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { Parallax } from "./Parallax";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 /**
  * [[include:Options/Interactivity/Hover.md]]

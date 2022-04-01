@@ -10,8 +10,8 @@ import type { IParticleWobble } from "./IParticleWobble";
 import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
 import type { IShapeValues } from "./IShapeValues";
 import type { IStroke } from "../../Options/Interfaces/Particles/IStroke";
-import type { ShapeType } from "../../Enums";
-import type { Vector } from "../Utils";
+import type { ShapeType } from "../../Enums/Types/ShapeType";
+import type { Vector } from "../Utils/Vector";
 
 /**
  * @category Interfaces

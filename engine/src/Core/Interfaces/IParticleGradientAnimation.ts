@@ -1,4 +1,4 @@
-import type { GradientType } from "../../Enums";
+import type { GradientType } from "../../Enums/Types/GradientType";
 import type { IParticleGradientColorAnimation } from "./IParticleGradientColorAnimation";
 import type { IParticleValueAnimation } from "./IParticleValueAnimation";
 

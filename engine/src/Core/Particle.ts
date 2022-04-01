@@ -1,61 +1,54 @@
+import { ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates";
+import type { IHsl, IRgb } from "./Interfaces/Colors";
 import {
-    AnimationStatus,
-    DestroyMode,
-    OutMode,
-    OutModeAlt,
-    RollMode,
-    RotateDirection,
-    ShapeType,
-    StartValueType,
-} from "../Enums";
-import type {
-    IBubbleParticleData,
-    ICoordinates,
-    ICoordinates3d,
-    IDelta,
-    IHsl,
-    IParticle,
-    IParticleGradientAnimation,
-    IParticleGravity,
-    IParticleHslAnimation,
-    IParticleLife,
     IParticleNumericValueAnimation,
-    IParticleRetinaProps,
-    IParticleRoll,
-    IParticleSpin,
     IParticleTiltValueAnimation,
     IParticleValueAnimation,
-    IParticleWobble,
-    IRgb,
-    IShapeValues,
-} from "./Interfaces";
-import { Vector, Vector3d } from "./Utils";
+} from "./Interfaces/IParticleValueAnimation";
+import { OutMode, OutModeAlt } from "../Enums/Modes/OutMode";
 import {
-    alterHsl,
     clamp,
-    colorToRgb,
-    deepExtend,
     getDistance,
-    getHslFromAnimation,
     getParticleBaseVelocity,
     getParticleDirectionAngle,
     getRangeMax,
     getRangeMin,
     getRangeValue,
     getValue,
-    isInArray,
-    itemFromArray,
     randomInRange,
     setRangeValue,
-} from "../Utils";
+} from "../Utils/NumberUtils";
+import { colorToRgb, getHslFromAnimation } from "../Utils/ColorUtils";
+import { deepExtend, isInArray, itemFromArray } from "../Utils/Utils";
+import { AnimationStatus } from "../Enums/AnimationStatus";
 import type { Container } from "./Container";
+import { DestroyMode } from "../Enums/Modes/DestroyMode";
 import type { Engine } from "../engine";
+import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
+import type { IDelta } from "./Interfaces/IDelta";
+import type { IParticle } from "./Interfaces/IParticle";
+import type { IParticleGradientAnimation } from "./Interfaces/IParticleGradientAnimation";
+import type { IParticleGravity } from "./Interfaces/IParticleGravity";
+import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation";
+import type { IParticleLife } from "./Interfaces/IParticleLife";
+import type { IParticleRetinaProps } from "./Interfaces/IParticleRetinaProps";
+import type { IParticleRoll } from "./Interfaces/IParticleRoll";
+import type { IParticleSpin } from "./Interfaces/IParticleSpin";
+import type { IParticleWobble } from "./Interfaces/IParticleWobble";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
+import type { IShapeValues } from "./Interfaces/IShapeValues";
 import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
-import type { RecursivePartial } from "../Types";
+import type { RecursivePartial } from "../Types/RecursivePartial";
+import { RollMode } from "../Enums/Modes/RollMode";
+import { RotateDirection } from "../Enums/Directions/RotateDirection";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
-import type { Stroke } from "../Options/Classes/Particles/Stroke";
+import { ShapeType } from "../Enums/Types/ShapeType";
+import { StartValueType } from "../Enums/Types/StartValueType";
+import { Stroke } from "../Options/Classes/Particles/Stroke";
+import { Vector } from "./Utils/Vector";
+import { Vector3d } from "./Utils/Vector3d";
+import { alterHsl } from "../Utils/CanvasUtils";
 
 /**
  * fixes out mode, calling the given callback if needed
