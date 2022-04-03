@@ -290,7 +290,6 @@ export class Particles {
         this.zArray = [];
     }
 
-    /* ---------- tsParticles functions - modes events ------------ */
     push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticles>, group?: string): void {
         this.pushing = true;
 
