@@ -15,11 +15,11 @@ import { loadWobbleUpdater } from "./Updaters/Wobble";
 export async function loadFull(engine: Engine): Promise<void> {
     await loadSlim(engine);
 
-    await loadExternalTrailInteraction(engine);
-
     await loadRollUpdater(engine);
     await loadTiltUpdater(engine);
     await loadWobbleUpdater(engine);
+
+    await loadExternalTrailInteraction(engine);
 
     await loadAbsorbersPlugin(engine);
     await loadEmittersPlugin(engine);

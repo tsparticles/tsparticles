@@ -206,7 +206,7 @@ export class Vector implements ICoordinates {
      * Set the vector to the specified velocity
      * @param v the Vector used to set the current vector
      */
-    setTo(v: Vector): void {
+    setTo(v: ICoordinates): void {
         this.x = v.x;
         this.y = v.y;
     }

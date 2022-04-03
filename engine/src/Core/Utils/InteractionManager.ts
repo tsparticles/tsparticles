@@ -1,3 +1,4 @@
+import type { ClickMode } from "../../Enums/Modes/ClickMode";
 import type { Container } from "../Container";
 import type { Engine } from "../../engine";
 import type { IDelta } from "../Interfaces/IDelta";
@@ -89,6 +90,14 @@ export class InteractionManager {
         for (const interactor of this.particleInteractors) {
             if (interactor.isEnabled(particle)) {
                 await interactor.interact(particle, delta);
+            }
+        }
+    }
+
+    handleClickMode(mode: ClickMode | string): void {
+        for (const interactor of this.externalInteractors) {
+            if (interactor.handleClickMode) {
+                interactor.handleClickMode(mode);
             }
         }
     }

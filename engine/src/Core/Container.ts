@@ -4,17 +4,15 @@
  */
 import { animate, cancelAnimation } from "../Utils/Utils";
 import { Canvas } from "./Canvas";
+import type { ClickMode } from "../Enums/Modes/ClickMode";
 import type { Engine } from "../engine";
 import { EventListeners } from "./Utils/EventListeners";
 import { FrameManager } from "./Utils/FrameManager";
-import type { IAttract } from "./Interfaces/IAttract";
-import type { IBubble } from "./Interfaces/IBubble";
 import type { IContainerInteractivity } from "./Interfaces/IContainerInteractivity";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator";
 import type { IOptions } from "../Options/Interfaces/IOptions";
-import type { IRepulse } from "./Interfaces/IRepulse";
 import type { IRgb } from "./Interfaces/Colors";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import { Options } from "../Options/Classes/Options";
@@ -48,9 +46,6 @@ export class Container {
     lifeTime;
     fpsLimit;
     interactivity: IContainerInteractivity;
-    bubble: IBubble;
-    repulse: IRepulse;
-    attract: IAttract;
     zLayers;
     responsiveMaxWidth?: number;
 
@@ -155,9 +150,6 @@ export class Container {
                 inside: false,
             },
         };
-        this.bubble = {};
-        this.repulse = { particles: [] };
-        this.attract = { particles: [] };
         this.plugins = new Map<string, IContainerPlugin>();
         this.drawers = new Map<string, IShapeDrawer>();
         this.density = 1;
@@ -539,6 +531,16 @@ export class Container {
         el.addEventListener("touchmove", touchMoveHandler);
         el.addEventListener("touchend", touchEndHandler);
         el.addEventListener("touchcancel", touchCancelHandler);
+    }
+
+    handleClickMode(mode: ClickMode | string): void {
+        this.particles.handleClickMode(mode);
+
+        for (const [, plugin] of this.plugins) {
+            if (plugin.handleClickMode) {
+                plugin.handleClickMode(mode);
+            }
+        }
     }
 
     updateActualOptions(): boolean {

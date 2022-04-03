@@ -1,5 +1,11 @@
+import {
+    calcPositionOrRandomFromSize,
+    calcPositionOrRandomFromSizeRanged,
+    getDistance,
+    getDistances,
+    getRangeValue,
+} from "../../Utils/NumberUtils";
 import { colorToRgb, getStyleFromRgb } from "../../Utils/ColorUtils";
-import { getDistance, getDistances, getRangeValue } from "../../Utils/NumberUtils";
 import { Absorber } from "./Options/Classes/Absorber";
 import { Absorbers } from "./Absorbers";
 import type { Container } from "../../Core/Container";
@@ -231,13 +237,12 @@ export class AbsorberInstance {
      * @private
      */
     private calcPosition(): Vector {
-        const container = this.container,
-            percentPosition = this.options.position;
+        const exactPosition = calcPositionOrRandomFromSizeRanged({
+            size: this.container.canvas.size,
+            position: this.options.position,
+        });
 
-        return Vector.create(
-            (getRangeValue(percentPosition?.x ?? Math.random() * 100) / 100) * container.canvas.size.width,
-            (getRangeValue(percentPosition?.y ?? Math.random() * 100) / 100) * container.canvas.size.height
-        );
+        return Vector.create(exactPosition.x, exactPosition.y);
     }
 
     /**
@@ -251,12 +256,13 @@ export class AbsorberInstance {
             return;
         }
 
-        const container = this.container;
-        const canvasSize = container.canvas.size;
+        const container = this.container,
+            canvasSize = container.canvas.size;
 
         if (particle.needsNewPosition) {
-            particle.position.x = Math.floor(Math.random() * canvasSize.width);
-            particle.position.y = Math.floor(Math.random() * canvasSize.height);
+            const newPosition = calcPositionOrRandomFromSize({ size: canvasSize });
+
+            particle.position.setTo(newPosition);
             particle.velocity.setTo(particle.initialVelocity);
             particle.absorberOrbit = undefined;
             particle.needsNewPosition = false;
@@ -280,12 +286,11 @@ export class AbsorberInstance {
                     particle.velocity.x >= 0 ? RotateDirection.clockwise : RotateDirection.counterClockwise;
             }
 
-            const orbitRadius = particle.absorberOrbit.length;
-            const orbitAngle = particle.absorberOrbit.angle;
-            const orbitDirection = particle.absorberOrbitDirection;
+            const orbitRadius = particle.absorberOrbit.length,
+                orbitAngle = particle.absorberOrbit.angle,
+                orbitDirection = particle.absorberOrbitDirection;
 
-            particle.velocity.x = 0;
-            particle.velocity.y = 0;
+            particle.velocity.setTo(Vector.origin);
 
             const updateFunc = {
                 x: orbitDirection === RotateDirection.clockwise ? Math.cos : Math.sin,

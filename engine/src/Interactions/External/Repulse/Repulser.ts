@@ -9,19 +9,69 @@ import { DivMode } from "../../../Enums/Modes/DivMode";
 import { DivType } from "../../../Enums/Types/DivType";
 import { ExternalInteractorBase } from "../../../Core/Utils/ExternalInteractorBase";
 import { HoverMode } from "../../../Enums/Modes/HoverMode";
-import { ICoordinates } from "../../../Core/Interfaces/ICoordinates";
+import type { ICoordinates } from "../../../Core/Interfaces/ICoordinates";
+import type { IParticle } from "../../../Core/Interfaces/IParticle";
 import { Range } from "../../../Core/Utils/Range";
 import { Rectangle } from "../../../Core/Utils/Rectangle";
 import type { RepulseDiv } from "../../../Options/Classes/Interactivity/Modes/RepulseDiv";
 import { Vector } from "../../../Core/Utils/Vector";
+
+interface IContainerRepulse {
+    particles: IParticle[];
+    finish?: boolean;
+    count?: number;
+    clicking?: boolean;
+}
+
+type ContainerRepulser = Container & {
+    repulse?: IContainerRepulse;
+};
 
 /**
  * Particle repulse manager
  * @category Interactions
  */
 export class Repulser extends ExternalInteractorBase {
-    constructor(container: Container) {
+    handleClickMode: (mode: string) => void;
+
+    constructor(container: ContainerRepulser) {
         super(container);
+
+        if (!container.repulse) {
+            container.repulse = { particles: [] };
+        }
+
+        this.handleClickMode = (mode): void => {
+            const options = this.container.actualOptions;
+
+            if (mode !== ClickMode.repulse) {
+                return;
+            }
+
+            if (!container.repulse) {
+                container.repulse = { particles: [] };
+            }
+
+            container.repulse.clicking = true;
+            container.repulse.count = 0;
+
+            for (const particle of container.repulse.particles) {
+                particle.velocity.setTo(particle.initialVelocity);
+            }
+
+            container.repulse.particles = [];
+            container.repulse.finish = false;
+
+            setTimeout(() => {
+                if (!container.destroyed) {
+                    if (!container.repulse) {
+                        container.repulse = { particles: [] };
+                    }
+
+                    container.repulse.clicking = false;
+                }
+            }, options.interactivity.modes.repulse.duration * 1000);
+        };
     }
 
     isEnabled(): boolean {
@@ -136,7 +186,11 @@ export class Repulser extends ExternalInteractorBase {
     }
 
     private clickRepulse(): void {
-        const container = this.container;
+        const container = this.container as ContainerRepulser;
+
+        if (!container.repulse) {
+            container.repulse = { particles: [] };
+        }
 
         if (!container.repulse.finish) {
             if (!container.repulse.count) {
@@ -168,22 +222,20 @@ export class Repulser extends ExternalInteractorBase {
                     velocity = container.actualOptions.interactivity.modes.repulse.speed,
                     force = (-repulseRadius * velocity) / d;
 
-                if (d > repulseRadius) {
-                    continue;
+                if (d <= repulseRadius) {
+                    container.repulse.particles.push(particle);
+
+                    const vect = Vector.create(dx, dy);
+
+                    vect.length = force;
+
+                    particle.velocity.setTo(vect);
                 }
-
-                container.repulse.particles.push(particle);
-
-                const vect = Vector.create(dx, dy);
-
-                vect.length = force;
-                particle.velocity.setTo(vect);
             }
         } else if (container.repulse.clicking === false) {
             for (const particle of container.repulse.particles) {
                 particle.velocity.setTo(particle.initialVelocity);
             }
-
             container.repulse.particles = [];
         }
     }

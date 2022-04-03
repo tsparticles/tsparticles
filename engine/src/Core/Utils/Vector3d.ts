@@ -1,4 +1,4 @@
-import type { ICoordinates3d } from "../Interfaces/ICoordinates";
+import type { ICoordinates, ICoordinates3d } from "../Interfaces/ICoordinates";
 import { Vector } from "./Vector";
 
 /**
@@ -147,11 +147,13 @@ export class Vector3d extends Vector implements ICoordinates3d {
      * Set the vector to the specified velocity
      * @param v the Vector used to set the current vector
      */
-    setTo(v: Vector): void {
+    setTo(v: ICoordinates): void {
         super.setTo(v);
 
-        if (v instanceof Vector3d) {
-            this.z = v.z;
+        const v3d = v as ICoordinates3d;
+
+        if (v3d.z !== undefined) {
+            this.z = v3d.z;
         }
     }
 }

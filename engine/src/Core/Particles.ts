@@ -1,4 +1,12 @@
-import { getRangeMax, getRangeMin, getRangeValue, randomInRange, setRangeValue } from "../Utils/NumberUtils";
+import {
+    calcPositionFromSize,
+    getRangeMax,
+    getRangeMin,
+    getRangeValue,
+    randomInRange,
+    setRangeValue,
+} from "../Utils/NumberUtils";
+import { ClickMode } from "../Enums/Modes/ClickMode";
 import type { Container } from "./Container";
 import type { Engine } from "../engine";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
@@ -418,14 +426,13 @@ export class Particles {
             options = container.actualOptions;
 
         for (const particle of options.manualParticles) {
-            const pos = particle.position
-                ? {
-                      x: (particle.position.x * container.canvas.size.width) / 100,
-                      y: (particle.position.y * container.canvas.size.height) / 100,
-                  }
-                : undefined;
-
-            this.addParticle(pos, particle.options);
+            this.addParticle(
+                calcPositionFromSize({
+                    size: container.canvas.size,
+                    position: particle.position,
+                }),
+                particle.options
+            );
         }
     }
 
@@ -437,6 +444,10 @@ export class Particles {
         }
 
         this.applyDensity(options.particles, options.manualParticles.length);
+    }
+
+    handleClickMode(mode: ClickMode | string): void {
+        this.interactionManager.handleClickMode(mode);
     }
 
     private applyDensity(options: IParticles, manualCount: number, group?: string): void {

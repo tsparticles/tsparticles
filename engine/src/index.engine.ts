@@ -24,9 +24,7 @@ const {
 
 export * from "./Core/Interfaces/Colors";
 export * from "./Core/Interfaces/Gradients";
-export * from "./Core/Interfaces/IAttract";
 export * from "./Core/Interfaces/IBounds";
-export * from "./Core/Interfaces/IBubble";
 export * from "./Core/Interfaces/IBubbleParticleData";
 export * from "./Core/Interfaces/ICircleBouncer";
 export * from "./Core/Interfaces/IContainerInteractivity";
@@ -55,7 +53,6 @@ export * from "./Core/Interfaces/IParticleWobble";
 export * from "./Core/Interfaces/IPlugin";
 export * from "./Core/Interfaces/IRangeValue";
 export * from "./Core/Interfaces/IRectSideResult";
-export * from "./Core/Interfaces/IRepulse";
 export * from "./Core/Interfaces/IShapeDrawer";
 export * from "./Core/Interfaces/IShapeValues";
 export * from "./Core/Utils/Circle";

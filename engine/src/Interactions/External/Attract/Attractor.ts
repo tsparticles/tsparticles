@@ -6,17 +6,67 @@ import type { Container } from "../../../Core/Container";
 import { ExternalInteractorBase } from "../../../Core/Utils/ExternalInteractorBase";
 import { HoverMode } from "../../../Enums/Modes/HoverMode";
 import type { ICoordinates } from "../../../Core/Interfaces/ICoordinates";
+import type { IParticle } from "../../../Core/Interfaces/IParticle";
 import { Range } from "../../../Core/Utils/Range";
 import { Vector } from "../../../Core/Utils/Vector";
 import { isInArray } from "../../../Utils/Utils";
+
+interface IContainerAttract {
+    particles: IParticle[];
+    finish?: boolean;
+    count?: number;
+    clicking?: boolean;
+}
+
+type ContainerAttractor = Container & {
+    attract?: IContainerAttract;
+};
 
 /**
  * Particle external attract manager
  * @category Interactions
  */
 export class Attractor extends ExternalInteractorBase {
-    constructor(container: Container) {
+    handleClickMode: (mode: ClickMode | string) => void;
+
+    constructor(container: ContainerAttractor) {
         super(container);
+
+        if (!container.attract) {
+            container.attract = { particles: [] };
+        }
+
+        this.handleClickMode = (mode): void => {
+            const options = this.container.actualOptions;
+
+            if (mode !== ClickMode.attract) {
+                return;
+            }
+
+            if (!container.attract) {
+                container.attract = { particles: [] };
+            }
+
+            container.attract.clicking = true;
+            container.attract.count = 0;
+
+            for (const particle of container.attract.particles) {
+                particle.velocity.setTo(particle.initialVelocity);
+            }
+
+            container.attract.particles = [];
+            container.attract.finish = false;
+
+            setTimeout(() => {
+                if (!container.destroyed) {
+                    if (!container.attract) {
+                        container.attract = { particles: [] };
+                    }
+
+                    container.attract.clicking = false;
+                }
+            }, options.interactivity.modes.attract.duration * 1000);
+        };
     }
 
     isEnabled(): boolean {
@@ -57,8 +107,8 @@ export class Attractor extends ExternalInteractorBase {
     }
 
     private hoverAttract(): void {
-        const container = this.container,
-            mousePos = container.interactivity.mouse.position;
+        const container = this.container;
+        const mousePos = container.interactivity.mouse.position;
 
         if (!mousePos) {
             return;
@@ -70,29 +120,33 @@ export class Attractor extends ExternalInteractorBase {
     }
 
     private processAttract(position: ICoordinates, attractRadius: number, area: Range): void {
-        const container = this.container,
-            attractOptions = container.actualOptions.interactivity.modes.attract,
-            query = container.particles.quadTree.query(area);
+        const container = this.container;
+        const attractOptions = container.actualOptions.interactivity.modes.attract;
+        const query = container.particles.quadTree.query(area);
 
         for (const particle of query) {
-            const { dx, dy, distance } = getDistances(particle.position, position),
-                velocity = attractOptions.speed * attractOptions.factor,
-                attractFactor = clamp(
-                    calcEasing(1 - distance / attractRadius, attractOptions.easing) * velocity,
-                    0,
-                    attractOptions.maxSpeed
-                ),
-                normVec = Vector.create(
-                    distance === 0 ? velocity : (dx / distance) * attractFactor,
-                    distance === 0 ? velocity : (dy / distance) * attractFactor
-                );
+            const { dx, dy, distance } = getDistances(particle.position, position);
+            const velocity = attractOptions.speed * attractOptions.factor;
+            const attractFactor = clamp(
+                calcEasing(1 - distance / attractRadius, attractOptions.easing) * velocity,
+                0,
+                attractOptions.maxSpeed
+            );
+            const normVec = Vector.create(
+                distance === 0 ? velocity : (dx / distance) * attractFactor,
+                distance === 0 ? velocity : (dy / distance) * attractFactor
+            );
 
             particle.position.subFrom(normVec);
         }
     }
 
     private clickAttract(): void {
-        const container = this.container;
+        const container = this.container as ContainerAttractor;
+
+        if (!container.attract) {
+            container.attract = { particles: [] };
+        }
 
         if (!container.attract.finish) {
             if (!container.attract.count) {

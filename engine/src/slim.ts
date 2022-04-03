@@ -7,6 +7,9 @@ import { loadExternalBounceInteraction } from "./Interactions/External/Bounce";
 import { loadExternalBubbleInteraction } from "./Interactions/External/Bubble";
 import { loadExternalConnectInteraction } from "./Interactions/External/Connect";
 import { loadExternalGrabInteraction } from "./Interactions/External/Grab";
+import { loadExternalPauseInteraction } from "./Interactions/External/Pause";
+import { loadExternalPushInteraction } from "./Interactions/External/Push";
+import { loadExternalRemoveInteraction } from "./Interactions/External/Remove";
 import { loadExternalRepulseInteraction } from "./Interactions/External/Repulse";
 import { loadImageShape } from "./Shapes/Image";
 import { loadLifeUpdater } from "./Updaters/Life";
@@ -33,6 +36,9 @@ export async function loadSlim(engine: Engine): Promise<void> {
     await loadExternalBubbleInteraction(engine);
     await loadExternalConnectInteraction(engine);
     await loadExternalGrabInteraction(engine);
+    await loadExternalPauseInteraction(engine);
+    await loadExternalPushInteraction(engine);
+    await loadExternalRemoveInteraction(engine);
     await loadExternalRepulseInteraction(engine);
 
     await loadParticlesAttractInteraction(engine);

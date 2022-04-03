@@ -7,6 +7,7 @@ import {
 } from "./Interfaces/IParticleValueAnimation";
 import { OutMode, OutModeAlt } from "../Enums/Modes/OutMode";
 import {
+    calcExactPositionOrRandomFromSize,
     clamp,
     getDistance,
     getParticleBaseVelocity,
@@ -630,11 +631,11 @@ export class Particle implements IParticle {
         }
 
         const canvasSize = container.canvas.size,
-            pos = Vector3d.create(
-                position?.x ?? Math.random() * canvasSize.width,
-                position?.y ?? Math.random() * canvasSize.height,
-                zIndex
-            ),
+            exactPosition = calcExactPositionOrRandomFromSize({
+                size: canvasSize,
+                position: position,
+            }),
+            pos = Vector3d.create(exactPosition.x, exactPosition.y, zIndex),
             radius = this.getRadius(),
             /* check position  - into the canvas */
             outModes = this.options.move.outModes,

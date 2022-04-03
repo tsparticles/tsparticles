@@ -1,3 +1,4 @@
+import { IPositionFromSizeParams, IRangedPositionFromSizeParams } from "../Core/Interfaces/IPositionFromSizeParams";
 import { MoveDirection, MoveDirectionAlt } from "../Enums/Directions/MoveDirection";
 import { EasingType } from "../Enums/Types/EasingType";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
@@ -171,4 +172,70 @@ export function calcEasing(value: number, type: EasingType): number {
         default:
             return value;
     }
+}
+
+/**
+ * Gets exact position from percent position based on the given size
+ * @param data the data to use for calculating the position
+ * @returns the exact position
+ */
+export function calcPositionFromSize(data: IPositionFromSizeParams): ICoordinates | undefined {
+    return data.position?.x !== undefined && data.position?.y !== undefined
+        ? {
+              x: (data.position.x * data.size.width) / 100,
+              y: (data.position.y * data.size.height) / 100,
+          }
+        : undefined;
+}
+
+/**
+ * Gets exact position from percent position, or a random one if not specified, based on the given size
+ * @param data the data to use for calculating the position
+ * @returns the exact position
+ */
+export function calcPositionOrRandomFromSize(data: IPositionFromSizeParams): ICoordinates {
+    return {
+        x: ((data.position?.x ?? Math.random() * 100) * data.size.width) / 100,
+        y: ((data.position?.y ?? Math.random() * 100) * data.size.height) / 100,
+    };
+}
+
+/**
+ * Gets exact position from percent position, or a random one if not specified, based on the given size
+ * @param data the data to use for calculating the position
+ * @returns the exact position
+ */
+export function calcPositionOrRandomFromSizeRanged(data: IRangedPositionFromSizeParams): ICoordinates {
+    const position = {
+        x: data.position?.x !== undefined ? getRangeValue(data.position.x) : undefined,
+        y: data.position?.y !== undefined ? getRangeValue(data.position.y) : undefined,
+    };
+
+    return calcPositionOrRandomFromSize({ size: data.size, position });
+}
+
+/**
+ * Gets exact position from exact position, or a random one if not specified, based on the given size
+ * @param data the data to use for calculating the position
+ * @returns the exact position
+ */
+export function calcExactPositionOrRandomFromSize(data: IPositionFromSizeParams): ICoordinates {
+    return {
+        x: data.position?.x ?? Math.random() * data.size.width,
+        y: data.position?.y ?? Math.random() * data.size.height,
+    };
+}
+
+/**
+ * Gets exact position from exact position, or a random one if not specified, based on the given size
+ * @param data the data to use for calculating the position
+ * @returns the exact position
+ */
+export function calcExactPositionOrRandomFromSizeRanged(data: IRangedPositionFromSizeParams): ICoordinates {
+    const position = {
+        x: data.position?.x !== undefined ? getRangeValue(data.position.x) : undefined,
+        y: data.position?.y !== undefined ? getRangeValue(data.position.y) : undefined,
+    };
+
+    return calcExactPositionOrRandomFromSize({ size: data.size, position });
 }

@@ -1,5 +1,5 @@
+import { calcPositionOrRandomFromSizeRanged, getRangeValue, randomInRange } from "../../Utils/NumberUtils";
 import { deepExtend, isPointInside } from "../../Utils/Utils";
-import { getRangeValue, randomInRange } from "../../Utils/NumberUtils";
 import type { Container } from "../../Core/Container";
 import { Emitter } from "./Options/Classes/Emitter";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
@@ -298,13 +298,10 @@ export class EmitterInstance {
     }
 
     private calcPosition(): ICoordinates {
-        const container = this.container,
-            percentPosition = this.options.position;
-
-        return {
-            x: (getRangeValue(percentPosition?.x ?? Math.random() * 100) / 100) * container.canvas.size.width,
-            y: (getRangeValue(percentPosition?.y ?? Math.random() * 100) / 100) * container.canvas.size.height,
-        };
+        return calcPositionOrRandomFromSizeRanged({
+            size: this.container.canvas.size,
+            position: this.options.position,
+        });
     }
 
     private emit(): void {
