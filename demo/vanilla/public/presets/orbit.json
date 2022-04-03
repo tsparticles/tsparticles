@@ -40,7 +40,7 @@
     "orbit": {
       "animation": {
         "enable": true,
-        "speed": 10
+        "speed": 1
       },
       "enable": true,
       "opacity": 1,

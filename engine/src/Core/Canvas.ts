@@ -17,6 +17,7 @@ import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IDelta } from "./Interfaces/IDelta";
 import type { IDimension } from "./Interfaces/IDimension";
 import type { IParticle } from "./Interfaces/IParticle";
+import type { IParticleColorStyle } from "./Interfaces/IParticleColorStyle";
 import type { Particle } from "./Particle";
 import { deepExtend } from "../Utils/Utils";
 import { getRangeValue } from "../Utils/NumberUtils";
@@ -277,13 +278,13 @@ export class Canvas {
                 : particle.bubble.opacity ?? particle.opacity?.value ?? 1,
             strokeOpacity = particle.stroke?.opacity ?? opacity,
             zOpacity = opacity * zOpacityFactor,
-            fillColorValue = fColor ? getStyleFromHsl(fColor, zOpacity) : undefined,
-            zStrokeOpacity = strokeOpacity * zOpacityFactor,
-            strokeColorValue = sColor ? getStyleFromHsl(sColor, zStrokeOpacity) : fillColorValue;
+            zStrokeOpacity = strokeOpacity * zOpacityFactor;
 
-        if (!fillColorValue && !strokeColorValue) {
-            return;
-        }
+        const colorStyles: IParticleColorStyle = {
+            fill: fColor ? getStyleFromHsl(fColor, zOpacity) : undefined,
+        };
+
+        colorStyles.stroke = sColor ? getStyleFromHsl(sColor, zStrokeOpacity) : colorStyles.fill;
 
         this.draw((ctx) => {
             const zSizeFactor = (1 - particle.zIndexFactor) ** zIndexOptions.sizeRate,
@@ -293,6 +294,18 @@ export class Canvas {
                 if (updater.beforeDraw) {
                     updater.beforeDraw(particle);
                 }
+
+                if (updater.getColorStyles) {
+                    const { fill, stroke } = updater.getColorStyles(particle, ctx, radius, opacity);
+
+                    if (fill) {
+                        colorStyles.fill = fill;
+                    }
+
+                    if (stroke) {
+                        colorStyles.stroke = stroke;
+                    }
+                }
             }
 
             drawParticle(
@@ -300,14 +313,12 @@ export class Canvas {
                 ctx,
                 particle,
                 delta,
-                fillColorValue,
-                strokeColorValue,
+                colorStyles,
                 options.backgroundMask.enable,
                 options.backgroundMask.composite,
                 radius * zSizeFactor,
                 zOpacity,
-                particle.options.shadow,
-                particle.gradient
+                particle.options.shadow
             );
 
             for (const updater of container.particles.updaters) {

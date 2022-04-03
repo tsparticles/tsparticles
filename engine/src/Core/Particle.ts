@@ -27,7 +27,6 @@ import type { Engine } from "../engine";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
 import type { IDelta } from "./Interfaces/IDelta";
 import type { IParticle } from "./Interfaces/IParticle";
-import type { IParticleGradientAnimation } from "./Interfaces/IParticleGradientAnimation";
 import type { IParticleGravity } from "./Interfaces/IParticleGravity";
 import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation";
 import type { IParticleLife } from "./Interfaces/IParticleLife";
@@ -162,11 +161,6 @@ export class Particle implements IParticle {
      * The random index used by the particle
      */
     randomIndexData?: number;
-
-    /**
-     * Gets the particle gradient options
-     */
-    gradient?: IParticleGradientAnimation;
 
     /**
      * Gets the particle rotate options

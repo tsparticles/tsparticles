@@ -46,8 +46,7 @@ export * from "./Core/Interfaces/IInteractor";
 export * from "./Core/Interfaces/IMouseData";
 export * from "./Core/Interfaces/IMovePathGenerator";
 export * from "./Core/Interfaces/IParticle";
-export * from "./Core/Interfaces/IParticleGradientAnimation";
-export * from "./Core/Interfaces/IParticleGradientColorAnimation";
+export * from "./Core/Interfaces/IParticleColorStyle";
 export * from "./Core/Interfaces/IParticleGravity";
 export * from "./Core/Interfaces/IParticleHslAnimation";
 export * from "./Core/Interfaces/IParticlesInteractor";
@@ -109,7 +108,6 @@ export * from "./Enums/Types/ShapeType";
 export * from "./Enums/Types/StartValueType";
 export * from "./Enums/Types/DivType";
 export * from "./Enums/Types/EasingType";
-export * from "./Enums/Types/OrbitType";
 export * from "./Enums/AnimationStatus";
 export * from "./Enums/InteractivityDetect";
 export { Engine, Engine as Main };
@@ -140,3 +138,4 @@ export type IOptions = ISlimOptions & IAbsorberOptions & IEmitterOptions & IPoly
  * tsParticles source options alias type, supporting partial objects
  */
 export type ISourceOptions = RecursivePartial<IOptions>;
+export { IParticleColorStyle } from "./Core/Interfaces/IParticleColorStyle";

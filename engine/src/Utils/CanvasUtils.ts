@@ -3,14 +3,13 @@ import { colorMix, colorToRgb, getStyleFromHsl, getStyleFromRgb } from "./ColorU
 import { getDistance, getDistances } from "./NumberUtils";
 import { AlterType } from "../Enums/Types/AlterType";
 import type { Container } from "../Core/Container";
-import { GradientType } from "../Enums/Types/GradientType";
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IDelta } from "../Core/Interfaces/IDelta";
 import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { ILinksShadow } from "../Options/Interfaces/Particles/Links/ILinksShadow";
 import type { IParticle } from "../Core/Interfaces/IParticle";
-import type { IParticleGradientAnimation } from "../Core/Interfaces/IParticleGradientAnimation";
+import type { IParticleColorStyle } from "../Core/Interfaces/IParticleColorStyle";
 import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
 import type { Particle } from "../Core/Particle";
 import { RollMode } from "../Enums/Modes/RollMode";
@@ -305,28 +304,24 @@ export function drawGrabLine(
  * @param context - The canvas context to draw on.
  * @param particle - The particle to draw.
  * @param delta this variable contains the delta between the current frame and the previous frame
- * @param fillColorValue - The fill color value.
- * @param strokeColorValue - The stroke color value.
+ * @param colorStyles - The color styles value.
  * @param backgroundMask - If enabled, the composite value will be used for blending the particle in the canvas.
  * @param composite - The composite value to use for blending the particle in the canvas.
  * @param radius - The radius of the particle.
  * @param opacity - The opacity of the particle.
  * @param shadow - The shadow of the particle.
- * @param gradient - The gradient of the particle.
  */
 export function drawParticle(
     container: Container,
     context: CanvasRenderingContext2D,
     particle: IParticle,
     delta: IDelta,
-    fillColorValue: string | undefined,
-    strokeColorValue: string | undefined,
+    colorStyles: IParticleColorStyle,
     backgroundMask: boolean,
     composite: GlobalCompositeOperation,
     radius: number,
     opacity: number,
-    shadow: IShadow,
-    gradient?: IParticleGradientAnimation
+    shadow: IShadow
 ): void {
     const pos = particle.getPosition(),
         tiltOptions = particle.options.tilt,
@@ -373,43 +368,16 @@ export function drawParticle(
         context.shadowOffsetY = shadow.offset.y;
     }
 
-    if (gradient) {
-        const gradientAngle = gradient.angle.value,
-            fillGradient =
-                gradient.type === GradientType.radial
-                    ? context.createRadialGradient(0, 0, 0, 0, 0, radius)
-                    : context.createLinearGradient(
-                          Math.cos(gradientAngle) * -radius,
-                          Math.sin(gradientAngle) * -radius,
-                          Math.cos(gradientAngle) * radius,
-                          Math.sin(gradientAngle) * radius
-                      );
-
-        for (const color of gradient.colors) {
-            fillGradient.addColorStop(
-                color.stop,
-                getStyleFromHsl(
-                    {
-                        h: color.value.h.value,
-                        s: color.value.s.value,
-                        l: color.value.l.value,
-                    },
-                    color.opacity?.value ?? opacity
-                )
-            );
-        }
-
-        context.fillStyle = fillGradient;
-    } else if (fillColorValue) {
-        context.fillStyle = fillColorValue;
+    if (colorStyles.fill) {
+        context.fillStyle = colorStyles.fill;
     }
 
     const stroke = particle.stroke;
 
     context.lineWidth = particle.strokeWidth ?? 0;
 
-    if (strokeColorValue) {
-        context.strokeStyle = strokeColorValue;
+    if (colorStyles.stroke) {
+        context.strokeStyle = colorStyles.stroke;
     }
 
     drawShape(container, context, particle, radius, opacity, delta);
