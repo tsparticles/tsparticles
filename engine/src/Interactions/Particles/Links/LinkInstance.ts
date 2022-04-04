@@ -29,46 +29,49 @@ export class LinkInstance implements IContainerPlugin {
             particles = container.particles,
             pOptions = particle.options;
 
-        if (linkParticle.links.length > 0) {
-            context.save();
-            const p1Links = linkParticle.links.filter((l) => {
-                const linkFreq = container.particles.getLinkFrequency(linkParticle, l.destination);
+        if (linkParticle.links.length <= 0) {
+            return;
+        }
 
-                return linkFreq <= pOptions.links.frequency;
-            });
+        context.save();
 
-            for (const link of p1Links) {
-                const p2 = link.destination;
+        const p1Links = linkParticle.links.filter((l) => {
+            const linkFreq = container.particles.getLinkFrequency(linkParticle, l.destination);
 
-                if (pOptions.links.triangles.enable) {
-                    const links = p1Links.map((l) => l.destination),
-                        vertices = p2.links.filter((t) => {
-                            const linkFreq = container.particles.getLinkFrequency(p2, t.destination);
+            return linkFreq <= pOptions.links.frequency;
+        });
 
-                            return linkFreq <= p2.options.links.frequency && links.indexOf(t.destination) >= 0;
-                        });
+        for (const link of p1Links) {
+            const p2 = link.destination;
 
-                    if (vertices.length) {
-                        for (const vertex of vertices) {
-                            const p3 = vertex.destination,
-                                triangleFreq = particles.getTriangleFrequency(linkParticle, p2, p3);
+            if (pOptions.links.triangles.enable) {
+                const links = p1Links.map((l) => l.destination),
+                    vertices = p2.links.filter((t) => {
+                        const linkFreq = container.particles.getLinkFrequency(p2, t.destination);
 
-                            if (triangleFreq > pOptions.links.triangles.frequency) {
-                                continue;
-                            }
+                        return linkFreq <= p2.options.links.frequency && links.indexOf(t.destination) >= 0;
+                    });
 
-                            this.drawLinkTriangle(linkParticle, link, vertex);
+                if (vertices.length) {
+                    for (const vertex of vertices) {
+                        const p3 = vertex.destination,
+                            triangleFreq = particles.getTriangleFrequency(linkParticle, p2, p3);
+
+                        if (triangleFreq > pOptions.links.triangles.frequency) {
+                            continue;
                         }
-                    }
-                }
 
-                if (link.opacity > 0 && container.retina.linksWidth > 0) {
-                    this.drawLinkLine(linkParticle, link);
+                        this.drawLinkTriangle(linkParticle, link, vertex);
+                    }
                 }
             }
 
-            context.restore();
+            if (link.opacity > 0 && container.retina.linksWidth > 0) {
+                this.drawLinkLine(linkParticle, link);
+            }
         }
+
+        context.restore();
     }
 
     private drawLinkTriangle(p1: LinkParticle, link1: ILink, link2: ILink): void {
@@ -153,7 +156,7 @@ export class LinkInstance implements IContainerPlugin {
                     twinkleRgb = colorToRgb(twinkle.color),
                     twinkling = Math.random() < twinkleFreq;
 
-                if (twinkling && twinkleRgb !== undefined) {
+                if (twinkling && twinkleRgb) {
                     colorLine = twinkleRgb;
                     opacity = getRangeValue(twinkle.opacity);
                 }

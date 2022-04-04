@@ -20,7 +20,7 @@ export class TwinkleUpdater implements IParticleUpdater {
             twinkleRgb = colorToHsl(twinkle.color),
             twinkleStyle = twinkleRgb ? getStyleFromHsl(twinkleRgb, twinklingOpacity) : undefined,
             res: IParticleColorStyle = {},
-            needsTwinkle = twinkling && twinkleStyle !== undefined;
+            needsTwinkle = twinkling && twinkleStyle;
 
         res.fill = needsTwinkle ? twinkleStyle : undefined;
         res.stroke = needsTwinkle ? twinkleStyle : undefined;
