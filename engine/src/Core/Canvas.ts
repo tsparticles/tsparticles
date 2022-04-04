@@ -20,7 +20,6 @@ import type { IParticle } from "./Interfaces/IParticle";
 import type { IParticleColorStyle } from "./Interfaces/IParticleColorStyle";
 import type { Particle } from "./Particle";
 import { deepExtend } from "../Utils/Utils";
-import { getRangeValue } from "../Utils/NumberUtils";
 
 /**
  * Canvas manager
@@ -254,28 +253,20 @@ export class Canvas {
 
         let [fColor, sColor] = this.getPluginParticleColors(particle);
 
-        const pOptions = particle.options,
-            twinkle = pOptions.twinkle.particles,
-            twinkling = twinkle.enable && Math.random() < twinkle.frequency;
-
         if (!fColor || !sColor) {
-            const twinkleRgb = colorToHsl(twinkle.color);
-
             if (!fColor) {
-                fColor = twinkling && twinkleRgb !== undefined ? twinkleRgb : pfColor ? pfColor : undefined;
+                fColor = pfColor ? pfColor : undefined;
             }
 
             if (!sColor) {
-                sColor = twinkling && twinkleRgb !== undefined ? twinkleRgb : psColor ? psColor : undefined;
+                sColor = psColor ? psColor : undefined;
             }
         }
 
         const options = this.container.actualOptions,
             zIndexOptions = particle.options.zIndex,
             zOpacityFactor = (1 - particle.zIndexFactor) ** zIndexOptions.opacityRate,
-            opacity = twinkling
-                ? getRangeValue(twinkle.opacity)
-                : particle.bubble.opacity ?? particle.opacity?.value ?? 1,
+            opacity = particle.bubble.opacity ?? particle.opacity?.value ?? 1,
             strokeOpacity = particle.stroke?.opacity ?? opacity,
             zOpacity = opacity * zOpacityFactor,
             zStrokeOpacity = strokeOpacity * zOpacityFactor;
@@ -296,7 +287,7 @@ export class Canvas {
                 }
 
                 if (updater.getColorStyles) {
-                    const { fill, stroke } = updater.getColorStyles(particle, ctx, radius, opacity);
+                    const { fill, stroke } = updater.getColorStyles(particle, ctx, radius, zOpacity);
 
                     if (fill) {
                         colorStyles.fill = fill;
