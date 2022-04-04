@@ -8,6 +8,7 @@ import type { Container } from "./Core/Container";
 import type { IInteractor } from "./Core/Interfaces/IInteractor";
 import type { IMovePathGenerator } from "./Core/Interfaces/IMovePathGenerator";
 import type { IOptions } from "./Options/Interfaces/IOptions";
+import type { IParticleMover } from "./Core/Interfaces/IParticlesMover";
 import type { IParticleUpdater } from "./Core/Interfaces/IParticleUpdater";
 import type { IPlugin } from "./Core/Interfaces/IPlugin";
 import type { IShapeDrawer } from "./Core/Interfaces/IShapeDrawer";
@@ -246,6 +247,12 @@ export class Engine {
      */
     async addInteractor(name: string, interactorInitializer: (container: Container) => IInteractor): Promise<void> {
         this.plugins.addInteractor(name, interactorInitializer);
+
+        await this.refresh();
+    }
+
+    async addMover(name: string, moverInitializer: (container: Container) => IParticleMover): Promise<void> {
+        this.plugins.addParticleMover(name, moverInitializer);
 
         await this.refresh();
     }

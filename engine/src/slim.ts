@@ -1,5 +1,6 @@
 import type { Engine } from "./engine";
 import { loadAngleUpdater } from "./Updaters/Angle";
+import { loadBaseMover } from "./Movers/Base";
 import { loadCircleShape } from "./Shapes/Circle";
 import { loadColorUpdater } from "./Updaters/Color";
 import { loadExternalAttractInteraction } from "./Interactions/External/Attract";
@@ -16,6 +17,7 @@ import { loadLifeUpdater } from "./Updaters/Life";
 import { loadLineShape } from "./Shapes/Line";
 import { loadOpacityUpdater } from "./Updaters/Opacity";
 import { loadOutModesUpdater } from "./Updaters/OutModes";
+import { loadParallaxMover } from "./Movers/Parallax";
 import { loadParticlesAttractInteraction } from "./Interactions/Particles/Attract";
 import { loadParticlesCollisionsInteraction } from "./Interactions/Particles/Collisions";
 import { loadParticlesLinksInteraction } from "./Interactions/Particles/Links";
@@ -31,6 +33,9 @@ import { loadTextShape } from "./Shapes/Text";
  * @param engine the engine used to load all plugins
  */
 export async function loadSlim(engine: Engine): Promise<void> {
+    await loadBaseMover(engine);
+    await loadParallaxMover(engine);
+
     await loadExternalAttractInteraction(engine);
     await loadExternalBounceInteraction(engine);
     await loadExternalBubbleInteraction(engine);

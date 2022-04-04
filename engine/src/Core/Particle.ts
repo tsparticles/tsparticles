@@ -33,7 +33,6 @@ import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation";
 import type { IParticleLife } from "./Interfaces/IParticleLife";
 import type { IParticleRetinaProps } from "./Interfaces/IParticleRetinaProps";
 import type { IParticleRoll } from "./Interfaces/IParticleRoll";
-import type { IParticleSpin } from "./Interfaces/IParticleSpin";
 import type { IParticleWobble } from "./Interfaces/IParticleWobble";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
 import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
@@ -41,7 +40,6 @@ import type { IShapeValues } from "./Interfaces/IShapeValues";
 import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
 import type { RecursivePartial } from "../Types/RecursivePartial";
 import { RollMode } from "../Enums/Modes/RollMode";
-import { RotateDirection } from "../Enums/Directions/RotateDirection";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import { ShapeType } from "../Enums/Types/ShapeType";
 import { StartValueType } from "../Enums/Types/StartValueType";
@@ -242,11 +240,6 @@ export class Particle implements IParticle {
      * Gets particle shape type
      */
     readonly shape: ShapeType | string;
-
-    /**
-     * Gets particle spin options
-     */
-    readonly spin?: IParticleSpin;
 
     /**
      * Gets particle initial position
@@ -456,24 +449,6 @@ export class Particle implements IParticle {
 
         this.life = this.loadLife();
         this.spawning = this.life.delay > 0;
-
-        if (this.options.move.spin.enable) {
-            const spinPos = this.options.move.spin.position ?? { x: 50, y: 50 },
-                spinCenter = {
-                    x: (spinPos.x / 100) * container.canvas.size.width,
-                    y: (spinPos.y / 100) * container.canvas.size.height,
-                },
-                pos = this.getPosition(),
-                distance = getDistance(pos, spinCenter);
-
-            this.spin = {
-                center: spinCenter,
-                direction: this.velocity.x >= 0 ? RotateDirection.clockwise : RotateDirection.counterClockwise,
-                angle: this.velocity.angle,
-                radius: distance,
-                acceleration: this.retina.spinAcceleration ?? getRangeValue(this.options.move.spin.acceleration),
-            };
-        }
 
         this.shadowColor = colorToRgb(this.options.shadow.color);
 

@@ -19,7 +19,6 @@ import type { IParticlesFrequencies } from "./Interfaces/IParticlesFrequencies";
 import type { IRgb } from "./Interfaces/Colors";
 import { InteractionManager } from "./Utils/InteractionManager";
 import { Particle } from "./Particle";
-import { ParticlesMover } from "./Utils/ParticlesMover";
 import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
 import { Point } from "./Utils/Point";
 import { QuadTree } from "./Utils/QuadTree";
@@ -54,12 +53,12 @@ export class Particles {
     linksColor?: IRgb | string;
     grabLineColor?: IRgb | string;
 
+    movers;
     updaters;
 
     private interactionManager;
     private nextId;
     private readonly freqs: IParticlesFrequencies;
-    private readonly mover;
 
     readonly #engine;
 
@@ -69,7 +68,6 @@ export class Particles {
         this.nextId = 0;
         this.array = [];
         this.zArray = [];
-        this.mover = new ParticlesMover(container);
         this.limit = 0;
         this.needsSort = false;
         this.lastZIndex = 0;
@@ -92,6 +90,7 @@ export class Particles {
             4
         );
 
+        this.movers = this.#engine.plugins.getMovers(container, true);
         this.updaters = this.#engine.plugins.getUpdaters(container, true);
     }
 
@@ -219,7 +218,11 @@ export class Particles {
                 }
             }
 
-            this.mover.move(particle, delta);
+            for (const mover of this.movers) {
+                if (mover.isEnabled(particle)) {
+                    mover.move(particle, delta);
+                }
+            }
 
             if (particle.destroyed) {
                 particlesToDelete.push(particle);
