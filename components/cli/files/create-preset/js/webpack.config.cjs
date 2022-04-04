@@ -1,92 +1,92 @@
 const path = require("path");
 const TerserPlugin = require("terser-webpack-plugin");
 const webpack = require("webpack");
-const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const {BundleAnalyzerPlugin} = require("webpack-bundle-analyzer");
 
 const getEntry = (name, bundle) => {
-  const obj = {};
-  const fileName = bundle ? "bundle" : "index";
+    const obj = {};
+    const fileName = bundle ? "bundle" : "index";
 
-  obj[`tsparticles.preset.${name}`] = `./${fileName}.js`;
-  obj[`tsparticles.preset.${name}.min`] = `./${fileName}.js`;
+    obj[`tsparticles.preset.${name}`] = `./dist/browser/${fileName}.js`;
+    obj[`tsparticles.preset.${name}.min`] = `./dist/browser/${fileName}.js`;
 
-  return obj;
-};
+    return obj;
+}
 
 const getExternals = (bundle) => {
-  if (bundle) {
-    return [];
-  }
+    if (bundle) {
+        return [];
+    }
 
-  return [
-    {
-      tsparticles: {
-        commonjs: "tsparticles",
-        commonjs2: "tsparticles",
-        amd: "tsparticles",
-        root: "window",
-      },
-    },
-  ];
+    return [
+        {
+            "tsparticles": {
+                commonjs: "tsparticles",
+                commonjs2: "tsparticles",
+                amd: "tsparticles",
+                root: "window"
+            }
+        }
+    ];
 };
 
 const getConfig = (entry, bannerInput, minBannerInput, dir, bundle) => {
-  return {
-    entry: entry,
-    output: {
-      path: path.resolve(dir),
-      filename: "[name].js",
-      libraryTarget: "umd",
-      globalObject: "this",
-    },
-    resolve: {
-      extensions: [".js", ".json"],
-    },
-    externals: getExternals(bundle),
-    module: {
-      rules: [
-        {
-          // Include ts, tsx, js, and jsx files.
-          test: /\.js$/,
-          exclude: /node_modules/,
-          loader: "babel-loader",
+    return {
+        entry: entry,
+        output: {
+            path: path.resolve(dir, "dist"),
+            filename: "[name].js",
+            libraryTarget: "umd",
+            globalObject: "this"
         },
-      ],
-    },
-    plugins: [
-      new webpack.BannerPlugin({
-        banner: bannerInput,
-        exclude: /\.min\.js$/,
-      }),
-      new webpack.BannerPlugin({
-        banner: minBannerInput,
-        include: /\.min\.js$/,
-      }),
-      new BundleAnalyzerPlugin({
-        openAnalyzer: false,
-        analyzerMode: "static",
-        exclude: /\.min\.js$/,
-        reportFilename: "report.html",
-      }),
-    ],
-    optimization: {
-      minimize: true,
-      minimizer: [
-        new TerserPlugin({
-          include: /\.min\.js$/,
-          terserOptions: {
-            output: {
-              comments: minBanner,
-            },
-          },
-          extractComments: false,
-        }),
-      ],
-    },
-  };
+        resolve: {
+            extensions: [".js", ".json"]
+        },
+        externals: getExternals(bundle),
+        module: {
+            rules: [
+                {
+                    // Include ts, tsx, js, and jsx files.
+                    test: /\.js$/,
+                    exclude: /node_modules/,
+                    loader: "babel-loader"
+                }
+            ]
+        },
+        plugins: [
+            new webpack.BannerPlugin({
+                banner: bannerInput,
+                exclude: /\.min\.js$/
+            }),
+            new webpack.BannerPlugin({
+                banner: minBannerInput,
+                include: /\.min\.js$/
+            }),
+            new BundleAnalyzerPlugin({
+                openAnalyzer: false,
+                analyzerMode: "static",
+                exclude: /\.min\.js$/,
+                reportFilename: "report.html"
+            })
+        ],
+        optimization: {
+            minimize: true,
+            minimizer: [
+                new TerserPlugin({
+                    include: /\.min\.js$/,
+                    terserOptions: {
+                        output: {
+                            comments: minBanner
+                        }
+                    },
+                    extractComments: false
+                })
+            ]
+        }
+    };
 };
 
-const { author, version } = require("./package.json");
+const version = require("./package.json").version;
 
 const banner = `Author : Matteo Bruni
 MIT license: https://opensource.org/licenses/MIT
