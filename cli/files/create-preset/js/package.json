@@ -18,7 +18,6 @@
     "bundle": "webpack --mode production --config webpack.config.cjs",
     "build": "yarn clear:dist && yarn prettify:src && yarn lint && yarn bundle && yarn prettify:readme",
     "clear:dist": "rimraf -f ./dist",
-    "version": "git add package.dist.json",
     "prepack": "yarn build"
   },
   "repository": {
