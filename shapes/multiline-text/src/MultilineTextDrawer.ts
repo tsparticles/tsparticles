@@ -1,7 +1,5 @@
 import { isInArray, itemFromArray, loadFont } from "tsparticles";
-import type { IShapeDrawer } from "tsparticles/Core/Interfaces/IShapeDrawer";
-import type { Container, SingleOrMultiple, IParticle } from "tsparticles";
-import type { IShapeValues } from "tsparticles/Options/Interfaces/Particles/Shape/IShapeValues";
+import type { Container, IParticle, IShapeDrawer, IShapeValues, SingleOrMultiple } from "tsparticles";
 
 interface IMultilineTextShape extends IShapeValues {
     value: SingleOrMultiple<string>;

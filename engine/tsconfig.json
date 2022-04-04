@@ -2,7 +2,7 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "module": "commonjs",
-    "outDir": "./dist"
+    "outDir": "./dist/cjs"
   },
   "typedocOptions": {
     "gaID": "UA-161253125-1",

@@ -54,7 +54,7 @@ export async function loadPolygonMaskPlugin(engine: Engine): Promise<void> {
             /* webpackMode: "lazy" */
             /* webpackPrefetch: true */
             /* webpackPreload: true */
-            "./pathseg"
+            "./pathseg.js"
         );
     }
 
