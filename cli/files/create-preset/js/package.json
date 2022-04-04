@@ -1,6 +1,7 @@
 {
   "name": "tsparticles-preset-template",
   "version": "1.42.4",
+  "private": true,
   "description": "tsParticles template preset",
   "homepage": "https://particles.js.org/",
   "main": "index.js",

@@ -152,8 +152,15 @@ async function updatePackageFile(destPath, name, description, repoUrl) {
         `"tsparticles.preset.${camelizedName}.min.js"`
     );
 
+    const privateRegex = /"private": true/g;
+    const replacedPrivateText = replacedFileText.replace(
+        privateRegex,
+        ""
+    );
+
+
     const nameRegex = /"tsparticles-preset-template"/g;
-    const nameReplacedText = replacedFileText.replace(
+    const nameReplacedText = replacedPrivateText.replace(
         nameRegex,
         `"tsparticles-preset-${dashedName}"`
     );
