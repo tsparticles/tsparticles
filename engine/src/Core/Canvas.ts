@@ -145,12 +145,13 @@ export class Canvas {
 
         this.resize();
 
-        const container = this.container, needsRefresh = container.updateActualOptions();
+        const container = this.container,
+            needsRefresh = container.updateActualOptions();
 
         /* density particles enabled */
         container.particles.setDensity();
 
-        for (const [ , plugin ] of container.plugins) {
+        for (const [, plugin] of container.plugins) {
             if (plugin.resize !== undefined) {
                 plugin.resize();
             }
@@ -249,7 +250,7 @@ export class Canvas {
             return;
         }
 
-        let [ fColor, sColor ] = this.getPluginParticleColors(particle);
+        let [fColor, sColor] = this.getPluginParticleColors(particle);
 
         if (!fColor || !sColor) {
             if (!fColor) {
@@ -400,7 +401,7 @@ export class Canvas {
     private getPluginParticleColors(particle: Particle): (IHsl | undefined)[] {
         let fColor: IHsl | undefined, sColor: IHsl | undefined;
 
-        for (const [ , plugin ] of this.container.plugins) {
+        for (const [, plugin] of this.container.plugins) {
             if (!fColor && plugin.particleFillColor) {
                 fColor = colorToHsl(plugin.particleFillColor(particle));
             }
@@ -414,7 +415,7 @@ export class Canvas {
             }
         }
 
-        return [ fColor, sColor ];
+        return [fColor, sColor];
     }
 
     private initStyle(): void {
