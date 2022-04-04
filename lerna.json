@@ -1,5 +1,7 @@
 {
   "packages": [
+    "cli",
+    "cli/**/*",
     "components/*",
     "demo/**/*",
     "editor",

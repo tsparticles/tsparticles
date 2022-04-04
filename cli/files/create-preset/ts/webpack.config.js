@@ -1,7 +1,7 @@
 const path = require("path");
 const TerserPlugin = require("terser-webpack-plugin");
 const webpack = require("webpack");
-const {BundleAnalyzerPlugin} = require("webpack-bundle-analyzer");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 const getEntry = (name, bundle) => {
     const obj = {};
@@ -40,7 +40,7 @@ const getConfig = (entry, bannerInput, minBannerInput, dir, bundle) => {
             globalObject: "this"
         },
         resolve: {
-            extensions: [".js", ".json"]
+            extensions: [ ".js", ".json" ]
         },
         externals: getExternals(bundle),
         module: {
@@ -86,7 +86,7 @@ const getConfig = (entry, bannerInput, minBannerInput, dir, bundle) => {
     };
 };
 
-const version = require("./package.json").version;
+const { author, version } = require("./package.json");
 
 const banner = `Author : Matteo Bruni
 MIT license: https://opensource.org/licenses/MIT
@@ -95,7 +95,7 @@ GitHub : https://www.github.com/matteobruni/tsparticles
 How to use? : Check the GitHub README
 v${version}`;
 
-const minBanner = `tsParticles Template Preset v${version} by Matteo Bruni`;
+const minBanner = `tsParticles Template Preset v${version} by ${author}`;
 
 module.exports = [
     getConfig(getEntry("template", false), banner, minBanner, __dirname, false),

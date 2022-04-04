@@ -1,6 +1,8 @@
 {
   "name": "@tsparticles/preset-template-typescript",
-  "version": "1.0.0",
+  "version": "1.42.4",
+  "private": true,
+  "author": "Matteo Bruni",
   "description": "tsParticles template preset, using TypeScript",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -32,7 +34,6 @@
     "background",
     "tsparticles-preset"
   ],
-  "author": "Matteo Bruni",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/tsparticles/preset-template/issues"
@@ -44,6 +45,6 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles": "^1.39.0"
+    "tsparticles": "^1.42.4"
   }
 }

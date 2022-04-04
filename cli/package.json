@@ -5,5 +5,9 @@
   "bin": "cli.js",
   "repository": "https://github.com/tsparticles/cli.git",
   "author": "Matteo Bruni <176620+matteobruni@users.noreply.github.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^10.0.1",
+    "tsparticles": "^1.42.4"
+  }
 }

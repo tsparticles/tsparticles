@@ -1,6 +1,8 @@
 {
   "name": "tsparticles-preset-template",
-  "version": "1.0.0",
+  "version": "1.42.4",
+  "private": true,
+  "author": "Matteo Bruni <176620+matteobruni@users.noreply.github.com>",
   "description": "tsParticles template preset",
   "homepage": "https://particles.js.org/",
   "main": "index.js",
