@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/cli",
-  "version": "1.42.4",
+  "version": "1.43.0",
   "description": "tsParticles CLI utilities",
   "bin": "cli.js",
   "repository": "https://github.com/tsparticles/cli.git",
@@ -8,6 +8,6 @@
   "license": "MIT",
   "dependencies": {
     "fs-extra": "^10.0.1",
-    "tsparticles": "^1.42.4"
+    "tsparticles": "^1.43.0"
   }
 }

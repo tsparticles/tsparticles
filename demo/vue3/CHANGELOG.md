@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.26.0](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.25.4...particles.vue3-demo@1.26.0) (2022-04-04)
+
+
+### Bug Fixes
+
+* upgrade core-js from 3.21.0 to 3.21.1 ([c405f3b](https://github.com/matteobruni/tsparticles/commit/c405f3bb3992bb3a5aa25c5e3d6b92559fa12df9))
+* upgrade highlight.js from 11.4.0 to 11.5.0 ([59243fe](https://github.com/matteobruni/tsparticles/commit/59243feac3117efd871ba30023e43c2f3cacdccf))
+* upgrade stringify-object from 4.0.0 to 4.0.1 ([ffdcdff](https://github.com/matteobruni/tsparticles/commit/ffdcdff66691186cce6956df8ec41104dfd63594))
+
+
+
+
+
 ## [1.25.4](https://github.com/matteobruni/tsparticles/compare/particles.vue3-demo@1.25.3...particles.vue3-demo@1.25.4) (2022-03-20)
 
 **Note:** Version bump only for package particles.vue3-demo

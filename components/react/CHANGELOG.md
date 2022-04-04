@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.43.0](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.42.4...react-tsparticles@1.43.0) (2022-04-04)
+
+
+### Bug Fixes
+
+* **deps:** update react monorepo to v18 ([79e531d](https://github.com/matteobruni/tsparticles/commit/79e531dc77dd73c9493e30e9eb23f5620a860ea9))
+
+
+
+
+
 ## [1.42.4](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.42.3...react-tsparticles@1.42.4) (2022-03-20)
 
 **Note:** Version bump only for package react-tsparticles

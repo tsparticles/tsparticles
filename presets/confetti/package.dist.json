@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-confetti",
-  "version": "1.42.4",
+  "version": "1.43.0",
   "description": "tsParticles confetti preset",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -81,6 +81,6 @@
   "module": "esm/index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles": "^1.42.4"
+    "tsparticles": "^1.43.0"
   }
 }
