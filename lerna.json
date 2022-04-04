@@ -1,6 +1,8 @@
 {
   "packages": [
     "cli",
+    "cli/files/create-preset/js",
+    "cli/files/create-preset/ts",
     "components/*",
     "demo/**/*",
     "editor",
