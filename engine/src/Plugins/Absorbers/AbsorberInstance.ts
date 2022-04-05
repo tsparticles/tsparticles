@@ -1,16 +1,41 @@
-import type { Container, ICoordinates, IRgb, Particle } from "../../Core";
-import { colorToRgb, getDistance, getDistances, getRangeValue, getStyleFromRgb, isPointInside } from "../../Utils";
+import {
+    calcPositionOrRandomFromSize,
+    calcPositionOrRandomFromSizeRanged,
+    getDistance,
+    getDistances,
+    getRangeValue,
+} from "../../Utils/NumberUtils";
+import { colorToRgb, getStyleFromRgb } from "../../Utils/ColorUtils";
 import { Absorber } from "./Options/Classes/Absorber";
-import type { Absorbers } from "./Absorbers";
+import { Absorbers } from "./Absorbers";
+import type { Container } from "../../Core/Container";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
-import { IAbsorberSizeLimit } from "./Options/Interfaces/IAbsorberSizeLimit";
-import { RecursivePartial } from "../../Types";
-import { RotateDirection } from "../../Enums";
-import { Vector } from "../../Core";
+import type { IAbsorberSizeLimit } from "./Options/Interfaces/IAbsorberSizeLimit";
+import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
+import type { IRgb } from "../../Core/Interfaces/Colors";
+import type { Particle } from "../../Core/Particle";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
+import { RotateDirection } from "../../Enums/Directions/RotateDirection";
+import { Vector } from "../../Core/Utils/Vector";
+import { isPointInside } from "../../Utils/Utils";
 
+/**
+ * Particle extension type for Absorber orbit options
+ */
 type OrbitingParticle = Particle & {
+    /**
+     * Vector representing the orbit of the particle around the absorber
+     */
     absorberOrbit?: Vector;
+
+    /**
+     * Particle orbit direction around the absorber
+     */
     absorberOrbitDirection?: RotateDirection;
+
+    /**
+     * Checks if the particle needs a new position after going inside the absorber
+     */
     needsNewPosition?: boolean;
 };
 
@@ -18,20 +43,66 @@ type OrbitingParticle = Particle & {
  * @category Absorbers Plugin
  */
 export class AbsorberInstance {
+    /**
+     * The absorber mass, this increases the attraction force
+     */
     mass;
+
+    /**
+     * The absorber opacity
+     */
     opacity;
+
+    /**
+     * The absorber size, great size doesn't mean great mass, it depends also on the density
+     */
     size;
 
+    /**
+     * The absorber color
+     */
     color: IRgb;
+
+    /**
+     * The absorber size limit
+     */
     limit: IAbsorberSizeLimit;
+
+    /**
+     * The absorber name, useful when retrieving it manually
+     */
     readonly name?: string;
+
+    /**
+     * The absorber position
+     */
     position: Vector;
 
+    /**
+     * Sets if the absorber can be moved with mouse drag&drop
+     * @private
+     */
     private dragging;
 
+    /**
+     * Gets the absorber initial position
+     * @private
+     */
     private readonly initialPosition?: Vector;
+
+    /**
+     * Gets the absorber options
+     * @private
+     */
     private readonly options;
 
+    /**
+     * The absorber constructor, initializes the absorber based on the given options and position
+     * @param absorbers the Absorbers collection manager that will contain this absorber
+     * @param container the Container engine using the absorber plugin, containing the particles that will interact with this Absorber
+     * @param options the Absorber source options
+     * @param position the Absorber optional position, if not given, it will be searched in options, and if not available also there, a random one will be used
+     */
     constructor(
         private readonly absorbers: Absorbers,
         private readonly container: Container,
@@ -69,9 +140,13 @@ export class AbsorberInstance {
         this.position = this.initialPosition?.copy() ?? this.calcPosition();
     }
 
+    /**
+     * Absorber attraction interaction, attract the particle to the absorber
+     * @param particle the particle to attract to the absorber
+     */
     attract(particle: OrbitingParticle): void {
-        const container = this.container;
-        const options = this.options;
+        const container = this.container,
+            options = this.options;
 
         if (options.draggable) {
             const mouse = container.interactivity.mouse;
@@ -92,9 +167,9 @@ export class AbsorberInstance {
             }
         }
 
-        const pos = particle.getPosition();
-        const { dx, dy, distance } = getDistances(this.position, pos);
-        const v = Vector.create(dx, dy);
+        const pos = particle.getPosition(),
+            { dx, dy, distance } = getDistances(this.position, pos),
+            v = Vector.create(dx, dy);
 
         v.length = (this.mass / Math.pow(distance, 2)) * container.retina.reduceFactor;
 
@@ -132,6 +207,9 @@ export class AbsorberInstance {
         }
     }
 
+    /**
+     * The resize method, for fixing the Absorber position
+     */
     resize(): void {
         const initialPosition = this.initialPosition;
 
@@ -141,6 +219,10 @@ export class AbsorberInstance {
                 : this.calcPosition();
     }
 
+    /**
+     * The draw method, for drawing the absorber in the canvas
+     * @param context the canvas 2d context used for drawing
+     */
     draw(context: CanvasRenderingContext2D): void {
         context.translate(this.position.x, this.position.y);
         context.beginPath();
@@ -150,28 +232,37 @@ export class AbsorberInstance {
         context.fill();
     }
 
+    /**
+     * This method calculate the absorber position, using the provided options and position
+     * @private
+     */
     private calcPosition(): Vector {
-        const container = this.container;
+        const exactPosition = calcPositionOrRandomFromSizeRanged({
+            size: this.container.canvas.size,
+            position: this.options.position,
+        });
 
-        const percentPosition = this.options.position;
-
-        return Vector.create(
-            (getRangeValue(percentPosition?.x ?? Math.random() * 100) / 100) * container.canvas.size.width,
-            (getRangeValue(percentPosition?.y ?? Math.random() * 100) / 100) * container.canvas.size.height
-        );
+        return Vector.create(exactPosition.x, exactPosition.y);
     }
 
+    /**
+     * Updates the particle position, if the particle needs a new position
+     * @param particle the particle to update
+     * @param v the vector used for calculating the distance between the Absorber and the particle
+     * @private
+     */
     private updateParticlePosition(particle: OrbitingParticle, v: Vector): void {
         if (particle.destroyed) {
             return;
         }
 
-        const container = this.container;
-        const canvasSize = container.canvas.size;
+        const container = this.container,
+            canvasSize = container.canvas.size;
 
         if (particle.needsNewPosition) {
-            particle.position.x = Math.floor(Math.random() * canvasSize.width);
-            particle.position.y = Math.floor(Math.random() * canvasSize.height);
+            const newPosition = calcPositionOrRandomFromSize({ size: canvasSize });
+
+            particle.position.setTo(newPosition);
             particle.velocity.setTo(particle.initialVelocity);
             particle.absorberOrbit = undefined;
             particle.needsNewPosition = false;
@@ -195,12 +286,11 @@ export class AbsorberInstance {
                     particle.velocity.x >= 0 ? RotateDirection.clockwise : RotateDirection.counterClockwise;
             }
 
-            const orbitRadius = particle.absorberOrbit.length;
-            const orbitAngle = particle.absorberOrbit.angle;
-            const orbitDirection = particle.absorberOrbitDirection;
+            const orbitRadius = particle.absorberOrbit.length,
+                orbitAngle = particle.absorberOrbit.angle,
+                orbitDirection = particle.absorberOrbitDirection;
 
-            particle.velocity.x = 0;
-            particle.velocity.y = 0;
+            particle.velocity.setTo(Vector.origin);
 
             const updateFunc = {
                 x: orbitDirection === RotateDirection.clockwise ? Math.cos : Math.sin,

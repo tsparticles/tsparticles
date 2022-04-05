@@ -1,6 +1,10 @@
-import { AnimationStatus, TiltDirection } from "../../Enums";
-import type { Container, IDelta, IParticleUpdater, Particle } from "../../Core";
-import { getRangeValue } from "../../Utils";
+import { AnimationStatus } from "../../Enums/AnimationStatus";
+import type { Container } from "../../Core/Container";
+import type { IDelta } from "../../Core/Interfaces/IDelta";
+import type { IParticleUpdater } from "../../Core/Interfaces/IParticleUpdater";
+import type { Particle } from "../../Core/Particle";
+import { TiltDirection } from "../../Enums/Directions/TiltDirection";
+import { getRangeValue } from "../../Utils/NumberUtils";
 
 function updateTilt(particle: Particle, delta: IDelta): void {
     if (!particle.tilt) {

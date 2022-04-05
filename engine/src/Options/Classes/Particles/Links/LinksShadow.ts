@@ -1,7 +1,7 @@
 import type { ILinksShadow } from "../../../Interfaces/Particles/Links/ILinksShadow";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { OptionsColor } from "../../OptionsColor";
-import type { RecursivePartial } from "../../../../Types";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 /**
  * @category Options

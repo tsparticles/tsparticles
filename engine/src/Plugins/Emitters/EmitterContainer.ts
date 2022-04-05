@@ -1,5 +1,5 @@
 import type { EmitterInstance } from "./EmitterInstance";
-import type { ICoordinates } from "../../Core";
+import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
 
 export interface EmitterContainer {

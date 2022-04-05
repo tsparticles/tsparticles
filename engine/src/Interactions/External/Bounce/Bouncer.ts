@@ -1,5 +1,3 @@
-import { Circle, Constants, ExternalInteractorBase, Range, Rectangle, Vector } from "../../../Core";
-import { DivMode, DivType, HoverMode } from "../../../Enums";
 import {
     calculateBounds,
     circleBounce,
@@ -8,10 +6,19 @@ import {
     isDivModeEnabled,
     isInArray,
     rectBounce,
-} from "../../../Utils";
-import type { Container } from "../../../Core";
+} from "../../../Utils/Utils";
+import { Circle } from "../../../Core/Utils/Circle";
+import { Constants } from "../../../Core/Utils/Constants";
+import type { Container } from "../../../Core/Container";
 import { DivEvent } from "../../../Options/Classes/Interactivity/Events/DivEvent";
-import type { ICoordinates } from "../../../Core";
+import { DivMode } from "../../../Enums/Modes/DivMode";
+import { DivType } from "../../../Enums/Types/DivType";
+import { ExternalInteractorBase } from "../../../Core/Utils/ExternalInteractorBase";
+import { HoverMode } from "../../../Enums/Modes/HoverMode";
+import type { ICoordinates } from "../../../Core/Interfaces/ICoordinates";
+import { Range } from "../../../Core/Utils/Range";
+import { Rectangle } from "../../../Core/Utils/Rectangle";
+import { Vector } from "../../../Core/Utils/Vector";
 
 export class Bouncer extends ExternalInteractorBase {
     constructor(container: Container) {
@@ -64,8 +71,8 @@ export class Bouncer extends ExternalInteractorBase {
     }
 
     private singleSelectorBounce(selector: string, div: DivEvent): void {
-        const container = this.container;
-        const query = document.querySelectorAll(selector);
+        const container = this.container,
+            query = document.querySelectorAll(selector);
 
         if (!query.length) {
             return;
@@ -79,17 +86,16 @@ export class Bouncer extends ExternalInteractorBase {
                     y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
                 },
                 radius = (elem.offsetWidth / 2) * pxRatio,
-                tolerance = 10 * pxRatio;
-
-            const area =
-                div.type === DivType.circle
-                    ? new Circle(pos.x, pos.y, radius + tolerance)
-                    : new Rectangle(
-                          elem.offsetLeft * pxRatio - tolerance,
-                          elem.offsetTop * pxRatio - tolerance,
-                          elem.offsetWidth * pxRatio + tolerance * 2,
-                          elem.offsetHeight * pxRatio + tolerance * 2
-                      );
+                tolerance = 10 * pxRatio,
+                area =
+                    div.type === DivType.circle
+                        ? new Circle(pos.x, pos.y, radius + tolerance)
+                        : new Rectangle(
+                              elem.offsetLeft * pxRatio - tolerance,
+                              elem.offsetTop * pxRatio - tolerance,
+                              elem.offsetWidth * pxRatio + tolerance * 2,
+                              elem.offsetHeight * pxRatio + tolerance * 2
+                          );
 
             this.processBounce(pos, radius, area);
         });

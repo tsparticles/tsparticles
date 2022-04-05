@@ -1,7 +1,7 @@
-import { EasingType } from "../../../../Enums";
+import { EasingType } from "../../../../Enums/Types/EasingType";
 import type { IAttract } from "../../../Interfaces/Interactivity/Modes/IAttract";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { RecursivePartial } from "../../../../Types";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 /**
  * @category Options

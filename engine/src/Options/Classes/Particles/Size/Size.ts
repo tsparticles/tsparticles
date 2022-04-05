@@ -1,9 +1,9 @@
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { ISize } from "../../../Interfaces/Particles/Size/ISize";
-import type { RecursivePartial } from "../../../../Types";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { SizeAnimation } from "./SizeAnimation";
 import { ValueWithRandom } from "../../ValueWithRandom";
-import { setRangeValue } from "../../../../Utils";
+import { setRangeValue } from "../../../../Utils/NumberUtils";
 
 /**
  * [[include:Options/Particles/Size.md]]

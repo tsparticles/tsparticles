@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.16.4...riot-particles-demo@1.17.0) (2022-04-04)
+
+**Note:** Version bump only for package riot-particles-demo
+
+
+
+
+
 ## [1.16.4](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.16.3...riot-particles-demo@1.16.4) (2022-03-20)
 
 **Note:** Version bump only for package riot-particles-demo

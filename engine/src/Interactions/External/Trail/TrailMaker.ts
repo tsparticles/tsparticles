@@ -1,7 +1,10 @@
-import { ClickMode, HoverMode } from "../../../Enums";
-import type { Container, ICoordinates, IDelta } from "../../../Core";
-import { ExternalInteractorBase } from "../../../Core";
-import { isInArray } from "../../../Utils";
+import { ClickMode } from "../../../Enums/Modes/ClickMode";
+import type { Container } from "../../../Core/Container";
+import { ExternalInteractorBase } from "../../../Core/Utils/ExternalInteractorBase";
+import { HoverMode } from "../../../Enums/Modes/HoverMode";
+import type { ICoordinates } from "../../../Core/Interfaces/ICoordinates";
+import type { IDelta } from "../../../Core/Interfaces/IDelta";
+import { isInArray } from "../../../Utils/Utils";
 
 /**
  * @category Interactions

@@ -1,5 +1,8 @@
-import type { Container, IDelta, IParticleUpdater, Particle } from "../../Core";
-import { getRangeValue, randomInRange, setRangeValue } from "../../Utils";
+import { getRangeValue, randomInRange, setRangeValue } from "../../Utils/NumberUtils";
+import type { Container } from "../../Core/Container";
+import type { IDelta } from "../../Core/Interfaces/IDelta";
+import type { IParticleUpdater } from "../../Core/Interfaces/IParticleUpdater";
+import type { Particle } from "../../Core/Particle";
 
 export class LifeUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}

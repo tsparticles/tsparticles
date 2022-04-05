@@ -1,5 +1,5 @@
 import type { IShapeValues } from "./IShapeValues";
-import type { SingleOrMultiple } from "../../../../Types";
+import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 /**
  * @category Options

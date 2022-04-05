@@ -1,12 +1,29 @@
-import type { Container, IDelta, IParticleUpdater, Particle } from "../../Core";
-import { getRangeValue } from "../../Utils";
+import type { Container } from "../../Core/Container";
+import type { IDelta } from "../../Core/Interfaces/IDelta";
+import type { IParticleUpdater } from "../../Core/Interfaces/IParticleUpdater";
+import type { Particle } from "../../Core/Particle";
+import { getRangeValue } from "../../Utils/NumberUtils";
 
+/**
+ * Wobble particle extension type
+ */
 type WobbleParticle = Particle & {
+    /**
+     * Particle retina cached options
+     */
     retina: {
+        /**
+         * The particle maximum wobble distance
+         */
         wobbleDistance?: number;
     };
 };
 
+/**
+ * Updates particle wobbling values
+ * @param particle the particle to update
+ * @param delta this variable contains the delta between the current frame and the previous frame
+ */
 function updateWobble(particle: WobbleParticle, delta: IDelta): void {
     const wobble = particle.options.wobble;
 
@@ -28,9 +45,20 @@ function updateWobble(particle: WobbleParticle, delta: IDelta): void {
     particle.position.y += distance * Math.abs(Math.sin(particle.wobble.angle));
 }
 
+/**
+ * The Wobble updater plugin
+ */
 export class WobbleUpdater implements IParticleUpdater {
+    /**
+     * The Wobble updater plugin constructor, assigns the container using the plugin
+     * @param container the container using the plugin
+     */
     constructor(private readonly container: Container) {}
 
+    /**
+     * Initializing the particle for wobble animation
+     * @param particle the particle to init
+     */
     init(particle: WobbleParticle): void {
         const wobbleOpt = particle.options.wobble;
 
@@ -49,10 +77,19 @@ export class WobbleUpdater implements IParticleUpdater {
         particle.retina.wobbleDistance = getRangeValue(wobbleOpt.distance) * this.container.retina.pixelRatio;
     }
 
+    /**
+     * Checks if the given particle needs the wobble animation
+     * @param particle
+     */
     isEnabled(particle: WobbleParticle): boolean {
         return !particle.destroyed && !particle.spawning && particle.options.wobble.enable;
     }
 
+    /**
+     * Updates the particle wobble animation
+     * @param particle the particle to update
+     * @param delta this variable contains the delta between the current frame and the previous frame
+     */
     update(particle: WobbleParticle, delta: IDelta): void {
         if (!this.isEnabled(particle)) {
             return;

@@ -1,7 +1,7 @@
 import { Density } from "./Density";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { IParticlesNumber } from "../../../Interfaces/Particles/Number/IParticlesNumber";
-import type { RecursivePartial } from "../../../../Types";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 /**
  * [[include:Options/Particles/Number.md]]

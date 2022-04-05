@@ -1,23 +1,25 @@
-import type { IContainerPlugin, ICoordinates, IDelta, IDimension, IHsl, IParticle, IRgb, IRgba } from "./Interfaces";
+import type { IHsl, IRgb, IRgba } from "./Interfaces/Colors";
 import {
     clear,
-    colorToHsl,
-    colorToRgb,
-    deepExtend,
     drawConnectLine,
     drawGrabLine,
     drawParticle,
     drawParticlePlugin,
     drawPlugin,
-    getRangeValue,
-    getStyleFromHsl,
-    getStyleFromRgb,
     gradient,
     paintBase,
-} from "../Utils";
-import { Constants } from "./Utils";
+} from "../Utils/CanvasUtils";
+import { colorToHsl, colorToRgb, getStyleFromHsl, getStyleFromRgb } from "../Utils/ColorUtils";
+import { Constants } from "./Utils/Constants";
 import type { Container } from "./Container";
+import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
+import type { ICoordinates } from "./Interfaces/ICoordinates";
+import type { IDelta } from "./Interfaces/IDelta";
+import type { IDimension } from "./Interfaces/IDimension";
+import type { IParticle } from "./Interfaces/IParticle";
+import type { IParticleColorStyle } from "./Interfaces/IParticleColorStyle";
 import type { Particle } from "./Particle";
+import { deepExtend } from "../Utils/Utils";
 
 /**
  * Canvas manager
@@ -122,8 +124,8 @@ export class Canvas {
      * Clears the canvas content
      */
     clear(): void {
-        const options = this.container.actualOptions;
-        const trail = options.particles.move.trail;
+        const options = this.container.actualOptions,
+            trail = options.particles.move.trail;
 
         if (options.backgroundMask.enable) {
             this.paint();
@@ -141,11 +143,10 @@ export class Canvas {
             return;
         }
 
-        const container = this.container;
-
         this.resize();
 
-        const needsRefresh = container.updateActualOptions();
+        const container = this.container,
+            needsRefresh = container.updateActualOptions();
 
         /* density particles enabled */
         container.particles.setDensity();
@@ -169,13 +170,13 @@ export class Canvas {
             return;
         }
 
-        const container = this.container;
-        const pxRatio = container.retina.pixelRatio;
-        const size = container.canvas.size;
-        const newSize = {
-            width: this.element.offsetWidth * pxRatio,
-            height: this.element.offsetHeight * pxRatio,
-        };
+        const container = this.container,
+            pxRatio = container.retina.pixelRatio,
+            size = container.canvas.size,
+            newSize = {
+                width: this.element.offsetWidth * pxRatio,
+                height: this.element.offsetHeight * pxRatio,
+            };
 
         if (
             newSize.height === size.height &&
@@ -207,8 +208,8 @@ export class Canvas {
                 return;
             }
 
-            const pos1 = p1.getPosition();
-            const pos2 = p2.getPosition();
+            const pos1 = p1.getPosition(),
+                pos2 = p2.getPosition();
 
             drawConnectLine(ctx, p1.retina.linksWidth ?? this.container.retina.linksWidth, lineStyle, pos1, pos2);
         });
@@ -236,8 +237,14 @@ export class Canvas {
             return;
         }
 
-        const pfColor = particle.getFillColor();
-        const psColor = particle.getStrokeColor() ?? pfColor;
+        const radius = particle.getRadius();
+
+        if (radius <= 0) {
+            return;
+        }
+
+        const pfColor = particle.getFillColor(),
+            psColor = particle.getStrokeColor() ?? pfColor;
 
         if (!pfColor && !psColor) {
             return;
@@ -245,68 +252,63 @@ export class Canvas {
 
         let [fColor, sColor] = this.getPluginParticleColors(particle);
 
-        const pOptions = particle.options;
-        const twinkle = pOptions.twinkle.particles;
-        const twinkling = twinkle.enable && Math.random() < twinkle.frequency;
-
         if (!fColor || !sColor) {
-            const twinkleRgb = colorToHsl(twinkle.color);
-
             if (!fColor) {
-                fColor = twinkling && twinkleRgb !== undefined ? twinkleRgb : pfColor ? pfColor : undefined;
+                fColor = pfColor ? pfColor : undefined;
             }
 
             if (!sColor) {
-                sColor = twinkling && twinkleRgb !== undefined ? twinkleRgb : psColor ? psColor : undefined;
+                sColor = psColor ? psColor : undefined;
             }
         }
 
-        const options = this.container.actualOptions;
-        const zIndexOptions = particle.options.zIndex;
-        const zOpacityFactor = (1 - particle.zIndexFactor) ** zIndexOptions.opacityRate;
-        const radius = particle.getRadius();
-        const opacity = twinkling
-            ? getRangeValue(twinkle.opacity)
-            : particle.bubble.opacity ?? particle.opacity?.value ?? 1;
-        const strokeOpacity = particle.stroke?.opacity ?? opacity;
-        const zOpacity = opacity * zOpacityFactor;
-        const fillColorValue = fColor ? getStyleFromHsl(fColor, zOpacity) : undefined;
+        const options = this.container.actualOptions,
+            zIndexOptions = particle.options.zIndex,
+            zOpacityFactor = (1 - particle.zIndexFactor) ** zIndexOptions.opacityRate,
+            opacity = particle.bubble.opacity ?? particle.opacity?.value ?? 1,
+            strokeOpacity = particle.stroke?.opacity ?? opacity,
+            zOpacity = opacity * zOpacityFactor,
+            zStrokeOpacity = strokeOpacity * zOpacityFactor;
 
-        if (!fillColorValue && !sColor) {
-            return;
-        }
+        const colorStyles: IParticleColorStyle = {
+            fill: fColor ? getStyleFromHsl(fColor, zOpacity) : undefined,
+        };
+
+        colorStyles.stroke = sColor ? getStyleFromHsl(sColor, zStrokeOpacity) : colorStyles.fill;
 
         this.draw((ctx) => {
-            const zSizeFactor = (1 - particle.zIndexFactor) ** zIndexOptions.sizeRate;
-
-            const zStrokeOpacity = strokeOpacity * zOpacityFactor;
-            const strokeColorValue = sColor ? getStyleFromHsl(sColor, zStrokeOpacity) : fillColorValue;
-
-            if (radius <= 0) {
-                return;
-            }
-
-            const container = this.container;
+            const zSizeFactor = (1 - particle.zIndexFactor) ** zIndexOptions.sizeRate,
+                container = this.container;
 
             for (const updater of container.particles.updaters) {
                 if (updater.beforeDraw) {
                     updater.beforeDraw(particle);
                 }
+
+                if (updater.getColorStyles) {
+                    const { fill, stroke } = updater.getColorStyles(particle, ctx, radius, zOpacity);
+
+                    if (fill) {
+                        colorStyles.fill = fill;
+                    }
+
+                    if (stroke) {
+                        colorStyles.stroke = stroke;
+                    }
+                }
             }
 
             drawParticle(
-                this.container,
+                container,
                 ctx,
                 particle,
                 delta,
-                fillColorValue,
-                strokeColorValue,
+                colorStyles,
                 options.backgroundMask.enable,
                 options.backgroundMask.composite,
                 radius * zSizeFactor,
                 zOpacity,
-                particle.options.shadow,
-                particle.gradient
+                particle.options.shadow
             );
 
             for (const updater of container.particles.updaters) {
@@ -330,10 +332,10 @@ export class Canvas {
     }
 
     initBackground(): void {
-        const options = this.container.actualOptions;
-        const background = options.background;
-        const element = this.element;
-        const elementStyle = element?.style;
+        const options = this.container.actualOptions,
+            background = options.background,
+            element = this.element,
+            elementStyle = element?.style;
 
         if (!elementStyle) {
             return;
@@ -362,10 +364,10 @@ export class Canvas {
     }
 
     private initCover(): void {
-        const options = this.container.actualOptions;
-        const cover = options.backgroundMask.cover;
-        const color = cover.color;
-        const coverRgb = colorToRgb(color);
+        const options = this.container.actualOptions,
+            cover = options.backgroundMask.cover,
+            color = cover.color,
+            coverRgb = colorToRgb(color);
 
         if (coverRgb) {
             const coverColor = {
@@ -380,9 +382,9 @@ export class Canvas {
     }
 
     private initTrail(): void {
-        const options = this.container.actualOptions;
-        const trail = options.particles.move.trail;
-        const fillColor = colorToRgb(trail.fillColor);
+        const options = this.container.actualOptions,
+            trail = options.particles.move.trail,
+            fillColor = colorToRgb(trail.fillColor);
 
         if (fillColor) {
             const trail = options.particles.move.trail;
@@ -397,8 +399,7 @@ export class Canvas {
     }
 
     private getPluginParticleColors(particle: Particle): (IHsl | undefined)[] {
-        let fColor: IHsl | undefined;
-        let sColor: IHsl | undefined;
+        let fColor: IHsl | undefined, sColor: IHsl | undefined;
 
         for (const [, plugin] of this.container.plugins) {
             if (!fColor && plugin.particleFillColor) {
@@ -468,8 +469,8 @@ export class Canvas {
 
     private lineStyle(p1: IParticle, p2: IParticle): CanvasGradient | undefined {
         return this.draw((ctx) => {
-            const options = this.container.actualOptions;
-            const connectOptions = options.interactivity.modes.connect;
+            const options = this.container.actualOptions,
+                connectOptions = options.interactivity.modes.connect;
 
             return gradient(ctx, p1, p2, connectOptions.links.opacity);
         });

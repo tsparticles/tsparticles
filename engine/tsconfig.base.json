@@ -13,7 +13,7 @@
     ],
     "allowJs": true,
     "rootDir": "./src",
-    "declaration": true,
+    "declaration": false,
     "removeComments": true,
     "importHelpers": false,
     "strict": true,

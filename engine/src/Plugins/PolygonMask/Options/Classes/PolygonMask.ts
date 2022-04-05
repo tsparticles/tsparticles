@@ -1,13 +1,17 @@
-import { PolygonMaskInlineArrangement, PolygonMaskInlineArrangementAlt, PolygonMaskType } from "../../Enums";
-import type { ICoordinates } from "../../../../Core";
+import {
+    PolygonMaskInlineArrangement,
+    PolygonMaskInlineArrangementAlt,
+} from "../../Enums/PolygonMaskInlineArrangement";
+import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 import type { IPolygonMask } from "../Interfaces/IPolygonMask";
 import { PolygonMaskDraw } from "./PolygonMaskDraw";
 import { PolygonMaskInline } from "./PolygonMaskInline";
 import { PolygonMaskLocalSvg } from "./PolygonMaskLocalSvg";
 import { PolygonMaskMove } from "./PolygonMaskMove";
-import type { RecursivePartial } from "../../../../Types";
-import { deepExtend } from "../../../../Utils";
+import { PolygonMaskType } from "../../Enums/PolygonMaskType";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import { deepExtend } from "../../../../Utils/Utils";
 
 /**
  * [[include:Options/Plugins/PolygonMask.md]]

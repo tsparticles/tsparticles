@@ -1,14 +1,18 @@
-import type { Container, IContainerPlugin, ICoordinates, IDelta } from "../../Core";
-import type { RecursivePartial, SingleOrMultiple } from "../../Types";
-import { deepExtend, itemFromArray } from "../../Utils";
+import { deepExtend, itemFromArray } from "../../Utils/Utils";
+import { Container } from "../../Core/Container";
 import { Emitter } from "./Options/Classes/Emitter";
-import { EmitterClickMode } from "./Enums";
+import { EmitterClickMode } from "./Enums/EmitterClickMode";
 import type { EmitterContainer } from "./EmitterContainer";
 import { EmitterInstance } from "./EmitterInstance";
 import type { EmittersEngine } from "./EmittersEngine";
+import type { IContainerPlugin } from "../../Core/Interfaces/IContainerPlugin";
+import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
+import type { IDelta } from "../../Core/Interfaces/IDelta";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 
 /**
  * @category Emitters Plugin
@@ -28,15 +32,15 @@ export class Emitters implements IContainerPlugin {
 
         const overridableContainer = container as unknown as EmitterContainer;
 
-        overridableContainer.getEmitter = (idxOrName?: number | string) =>
+        overridableContainer.getEmitter = (idxOrName?: number | string): EmitterInstance | undefined =>
             idxOrName === undefined || typeof idxOrName === "number"
                 ? this.array[idxOrName || 0]
                 : this.array.find((t) => t.name === idxOrName);
 
-        overridableContainer.addEmitter = (options: IEmitter, position?: ICoordinates) =>
+        overridableContainer.addEmitter = (options: IEmitter, position?: ICoordinates): EmitterInstance =>
             this.addEmitter(options, position);
 
-        overridableContainer.removeEmitter = (idxOrName?: number | string) => {
+        overridableContainer.removeEmitter = (idxOrName?: number | string): void => {
             const emitter = overridableContainer.getEmitter(idxOrName);
 
             if (emitter) {
@@ -44,7 +48,7 @@ export class Emitters implements IContainerPlugin {
             }
         };
 
-        overridableContainer.playEmitter = (idxOrName?: number | string) => {
+        overridableContainer.playEmitter = (idxOrName?: number | string): void => {
             const emitter = overridableContainer.getEmitter(idxOrName);
 
             if (emitter) {
@@ -52,7 +56,7 @@ export class Emitters implements IContainerPlugin {
             }
         };
 
-        overridableContainer.pauseEmitter = (idxOrName?: number | string) => {
+        overridableContainer.pauseEmitter = (idxOrName?: number | string): void => {
             const emitter = overridableContainer.getEmitter(idxOrName);
 
             if (emitter) {
@@ -136,9 +140,8 @@ export class Emitters implements IContainerPlugin {
     }
 
     handleClickMode(mode: string): void {
-        const container = this.container;
-        const emitterOptions = this.emitters;
-        const modeEmitters = this.interactivityEmitters;
+        const emitterOptions = this.emitters,
+            modeEmitters = this.interactivityEmitters;
 
         if (mode === EmitterClickMode.emitter) {
             let emitterModeOptions: IEmitter | undefined;
@@ -152,9 +155,9 @@ export class Emitters implements IContainerPlugin {
             }
 
             const emittersOptions =
-                emitterModeOptions ??
-                (emitterOptions instanceof Array ? itemFromArray(emitterOptions) : emitterOptions);
-            const ePosition = container.interactivity.mouse.clickPosition;
+                    emitterModeOptions ??
+                    (emitterOptions instanceof Array ? itemFromArray(emitterOptions) : emitterOptions),
+                ePosition = this.container.interactivity.mouse.clickPosition;
 
             this.addEmitter(deepExtend({}, emittersOptions) as IEmitter, ePosition);
         }

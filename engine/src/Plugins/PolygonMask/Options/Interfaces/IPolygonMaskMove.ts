@@ -1,4 +1,4 @@
-import type { PolygonMaskMoveType } from "../../Enums";
+import type { PolygonMaskMoveType } from "../../Enums/PolygonMaskMoveType";
 
 /**
  * @category Polygon Mask Plugin

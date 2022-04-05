@@ -1,6 +1,9 @@
-import { AnimationStatus, DestroyType } from "../../Enums";
-import type { IDelta, IParticleUpdater, Particle } from "../../Core";
-import { clamp } from "../../Utils";
+import { AnimationStatus } from "../../Enums/AnimationStatus";
+import { DestroyType } from "../../Enums/Types/DestroyType";
+import type { IDelta } from "../../Core/Interfaces/IDelta";
+import type { IParticleUpdater } from "../../Core/Interfaces/IParticleUpdater";
+import type { Particle } from "../../Core/Particle";
+import { clamp } from "../../Utils/NumberUtils";
 
 function checkDestroy(particle: Particle, value: number, minValue: number, maxValue: number): void {
     switch (particle.options.size.animation.destroy) {

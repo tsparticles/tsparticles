@@ -1,5 +1,5 @@
 import type { ICoordinates } from "./ICoordinates";
-import type { RotateDirection } from "../../Enums";
+import type { RotateDirection } from "../../Enums/Directions/RotateDirection";
 
 export interface IParticleSpin {
     acceleration: number;

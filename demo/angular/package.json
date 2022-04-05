@@ -1,6 +1,6 @@
 {
   "name": "ng-particles-demo",
-  "version": "1.27.4",
+  "version": "1.28.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -18,10 +18,10 @@
     "@angular/platform-browser": "~13.3.0",
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
-    "ng-particles": "^2.42.4",
+    "ng-particles": "^2.43.0",
     "rxjs": "~7.5.5",
     "tslib": "^2.3.1",
-    "tsparticles": "^1.42.4",
+    "tsparticles": "^1.43.0",
     "zone.js": "~0.11.5"
   },
   "devDependencies": {
@@ -36,6 +36,6 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~4.0.1",
     "karma-jasmine-html-reporter": "~1.7.0",
-    "typescript": "~4.6.0"
+    "typescript": "~4.6.2"
   }
 }

@@ -1,8 +1,9 @@
-import type { RangeValue, RecursivePartial } from "../../../../Types";
 import type { IAttract } from "../../../Interfaces/Particles/Move/IAttract";
-import type { ICoordinates } from "../../../../Core";
+import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import { setRangeValue } from "../../../../Utils";
+import type { RangeValue } from "../../../../Types/RangeValue";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import { setRangeValue } from "../../../../Utils/NumberUtils";
 
 /**
  * @category Options

@@ -1,7 +1,7 @@
 {
   "name": "riot-particles-demo",
   "private": true,
-  "version": "1.16.4",
+  "version": "1.17.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,7 @@
   "license": "ISC",
   "devDependencies": {
     "@riotjs/compiler": "^6.0.4",
-    "@riotjs/register": "^5.0.0",
+    "@riotjs/register": "^6.0.0",
     "@riotjs/webpack-loader": "^6.0.0",
     "chai": "^4.3.4",
     "css-loader": "^6.5.1",
@@ -37,7 +37,7 @@
     "@riotjs/route": "^8.0.1",
     "path": "^0.12.7",
     "riot": "^6.1.1",
-    "riot-particles": "^1.42.4",
-    "tsparticles": "^1.42.4"
+    "riot-particles": "^1.43.0",
+    "tsparticles": "^1.43.0"
   }
 }

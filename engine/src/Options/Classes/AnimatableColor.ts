@@ -1,10 +1,11 @@
-import type { RecursivePartial, SingleOrMultiple } from "../../Types";
 import { HslAnimation } from "./HslAnimation";
 import type { IAnimatableColor } from "../Interfaces/IAnimatableColor";
 import { IColorAnimation } from "../Interfaces/IColorAnimation";
 import type { IHslAnimation } from "../Interfaces/IHslAnimation";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import { OptionsColor } from "./OptionsColor";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 
 /**
  * [[include:Options/Particles/Color.md]]

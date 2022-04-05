@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.28.0](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.27.4...react-tsparticles-demo@1.28.0) (2022-04-04)
+
+
+### Bug Fixes
+
+* **deps:** update react monorepo to v18 ([79e531d](https://github.com/matteobruni/tsparticles/commit/79e531dc77dd73c9493e30e9eb23f5620a860ea9))
+* updated all plugins to use new build system, improves imports compatibility ([0d75d97](https://github.com/matteobruni/tsparticles/commit/0d75d97c02c8a8f55e1697e4e7f0fdcf4c24ae4a))
+* upgrade rxjs from 7.5.4 to 7.5.5 ([866f8a8](https://github.com/matteobruni/tsparticles/commit/866f8a8ce102aeb04c66c4d21f26583643aa6aab))
+
+
+
+
+
 ## [1.27.4](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.27.3...react-tsparticles-demo@1.27.4) (2022-03-20)
 
 **Note:** Version bump only for package react-tsparticles-demo

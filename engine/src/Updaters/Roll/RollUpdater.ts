@@ -1,6 +1,9 @@
-import type { IDelta, IParticleUpdater, Particle } from "../../Core";
-import { colorToHsl, getRangeValue } from "../../Utils";
-import { AlterType } from "../../Enums";
+import { AlterType } from "../../Enums/Types/AlterType";
+import type { IDelta } from "../../Core/Interfaces/IDelta";
+import type { IParticleUpdater } from "../../Core/Interfaces/IParticleUpdater";
+import type { Particle } from "../../Core/Particle";
+import { colorToHsl } from "../../Utils/ColorUtils";
+import { getRangeValue } from "../../Utils/NumberUtils";
 
 function updateRoll(particle: Particle, delta: IDelta): void {
     const roll = particle.options.roll;

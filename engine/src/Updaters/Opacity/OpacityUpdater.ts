@@ -1,6 +1,11 @@
-import { AnimationStatus, DestroyType, StartValueType } from "../../Enums";
-import type { Container, IDelta, IParticleUpdater, Particle } from "../../Core";
-import { clamp, getRangeMax, getRangeMin, getRangeValue, randomInRange } from "../../Utils";
+import { clamp, getRangeMax, getRangeMin, getRangeValue, randomInRange } from "../../Utils/NumberUtils";
+import { AnimationStatus } from "../../Enums/AnimationStatus";
+import type { Container } from "../../Core/Container";
+import { DestroyType } from "../../Enums/Types/DestroyType";
+import type { IDelta } from "../../Core/Interfaces/IDelta";
+import { IParticleUpdater } from "../../Core/Interfaces/IParticleUpdater";
+import type { Particle } from "../../Core/Particle";
+import { StartValueType } from "../../Enums/Types/StartValueType";
 
 function checkDestroy(particle: Particle, value: number, minValue: number, maxValue: number): void {
     switch (particle.options.opacity.animation.destroy) {

@@ -1,6 +1,6 @@
 import type { IOptions } from "./IOptions";
-import type { RecursivePartial } from "../../Types";
-import { ResponsiveMode } from "../../Enums";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
+import { ResponsiveMode } from "../../Enums/Modes/ResponsiveMode";
 
 export interface IResponsive {
     maxWidth: number;

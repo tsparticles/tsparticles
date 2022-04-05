@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-rounded-rect",
-  "version": "1.42.4",
+  "version": "1.43.0",
   "description": "tsParticles rounded rect shape",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -78,9 +78,9 @@
   "main": "shape.js",
   "jsdelivr": "tsparticles.shape.rounded-rect.min.js",
   "unpkg": "tsparticles.shape.rounded-rect.min.js",
-  "module": "shape.js",
+  "module": "esm/shape.js",
   "types": "shape.d.ts",
   "dependencies": {
-    "tsparticles": "^1.42.4"
+    "tsparticles": "^1.43.0"
   }
 }

@@ -1,5 +1,3 @@
-import type { RangeValue, RecursivePartial } from "../../Types";
-import { ResponsiveMode, ThemeMode } from "../../Enums";
 import { Background } from "./Background/Background";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
 import type { Engine } from "../../engine";
@@ -10,9 +8,13 @@ import { Interactivity } from "./Interactivity/Interactivity";
 import { ManualParticle } from "./ManualParticle";
 import { Motion } from "./Motion/Motion";
 import { ParticlesOptions } from "./Particles/ParticlesOptions";
+import type { RangeValue } from "../../Types/RangeValue";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
 import { Responsive } from "./Responsive";
+import { ResponsiveMode } from "../../Enums/Modes/ResponsiveMode";
 import { Theme } from "./Theme/Theme";
-import { deepExtend } from "../../Utils";
+import { ThemeMode } from "../../Enums/Modes/ThemeMode";
+import { deepExtend } from "../../Utils/Utils";
 
 /**
  * [[include:Options.md]]

@@ -1,4 +1,4 @@
-import type { AlterType } from "../../Enums";
+import type { AlterType } from "../../Enums/Types/AlterType";
 
 export interface IParticleRoll {
     angle: number;

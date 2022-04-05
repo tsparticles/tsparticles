@@ -1,6 +1,6 @@
 {
   "name": "tsparticles",
-  "version": "1.42.4",
+  "version": "1.43.0",
   "description": "Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -9,7 +9,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
-    "directory": "core/main"
+    "directory": "engine"
   },
   "keywords": [
     "tsparticles",
@@ -82,9 +82,257 @@
       "url": "https://www.buymeacoffee.com/matteobruni"
     }
   ],
-  "main": "index.js",
+  "main": "cjs/index.js",
   "module": "esm/index.js",
   "jsdelivr": "tsparticles.min.js",
   "unpkg": "tsparticles.min.js",
-  "types": "index.d.ts"
+  "types": "types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./esm/index.js",
+      "require": "./cjs/index.js",
+      "types": "./types/index.d.ts",
+      "default": "./umd/index.js"
+    },
+    "./engine": {
+      "import": "./esm/index.engine.js",
+      "require": "./cjs/index.engine.js",
+      "types": "./types/index.engine.d.ts",
+      "default": "./umd/index.engine.js"
+    },
+    "./slim": {
+      "import": "./esm/slim.js",
+      "require": "./cjs/slim.js",
+      "types": "./types/slim.d.ts",
+      "default": "./umd/slim.js"
+    },
+    "./full": {
+      "import": "./esm/full.js",
+      "require": "./cjs/full.js",
+      "types": "./types/full.d.ts",
+      "default": "./umd/full.js"
+    },
+    "./interactions/external/attract": {
+      "import": "./esm/Interactions/External/Attract/index.js",
+      "require": "./cjs/Interactions/External/Attract/index.js",
+      "types": "./types/Interactions/External/Attract/index.d.ts",
+      "default": "./umd/Interactions/External/Attract/index.js"
+    },
+    "./interactions/external/bounce": {
+      "import": "./esm/Interactions/External/Bounce/index.js",
+      "require": "./cjs/Interactions/External/Bounce/index.js",
+      "types": "./types/Interactions/External/Bounce/index.d.ts",
+      "default": "./umd/Interactions/External/Bounce/index.js"
+    },
+    "./interactions/external/bubble": {
+      "import": "./esm/Interactions/External/Bubble/index.js",
+      "require": "./cjs/Interactions/External/Bubble/index.js",
+      "types": "./types/Interactions/External/Bubble/index.d.ts",
+      "default": "./umd/Interactions/External/Bubble/index.js"
+    },
+    "./interactions/external/connect": {
+      "import": "./esm/Interactions/External/Connect/index.js",
+      "require": "./cjs/Interactions/External/Connect/index.js",
+      "types": "./types/Interactions/External/Connect/index.d.ts",
+      "default": "./umd/Interactions/External/Connect/index.js"
+    },
+    "./interactions/external/grab": {
+      "import": "./esm/Interactions/External/Grab/index.js",
+      "require": "./cjs/Interactions/External/Grab/index.js",
+      "types": "./types/Interactions/External/Grab/index.d.ts",
+      "default": "./umd/Interactions/External/Grab/index.js"
+    },
+    "./interactions/external/pause": {
+      "import": "./esm/Interactions/External/Pause/index.js",
+      "require": "./cjs/Interactions/External/Pause/index.js",
+      "types": "./types/Interactions/External/Pause/index.d.ts",
+      "default": "./umd/Interactions/External/Pause/index.js"
+    },
+    "./interactions/external/push": {
+      "import": "./esm/Interactions/External/Push/index.js",
+      "require": "./cjs/Interactions/External/Push/index.js",
+      "types": "./types/Interactions/External/Push/index.d.ts",
+      "default": "./umd/Interactions/External/Push/index.js"
+    },
+    "./interactions/external/remove": {
+      "import": "./esm/Interactions/External/Remove/index.js",
+      "require": "./cjs/Interactions/External/Remove/index.js",
+      "types": "./types/Interactions/External/Remove/index.d.ts",
+      "default": "./umd/Interactions/External/Remove/index.js"
+    },
+    "./interactions/external/repulse": {
+      "import": "./esm/Interactions/External/Repulse/index.js",
+      "require": "./cjs/Interactions/External/Repulse/index.js",
+      "types": "./types/Interactions/External/Repulse/index.d.ts",
+      "default": "./umd/Interactions/External/Repulse/index.js"
+    },
+    "./interactions/external/trail": {
+      "import": "./esm/Interactions/External/Trail/index.js",
+      "require": "./cjs/Interactions/External/Trail/index.js",
+      "types": "./types/Interactions/External/Trail/index.d.ts",
+      "default": "./umd/Interactions/External/Trail/index.js"
+    },
+    "./interactions/particles/attract": {
+      "import": "./esm/Interactions/Particles/Attract/index.js",
+      "require": "./cjs/Interactions/Particles/Attract/index.js",
+      "types": "./types/Interactions/Particles/Attract/index.d.ts",
+      "default": "./umd/Interactions/Particles/Attract/index.js"
+    },
+    "./interactions/particles/collisions": {
+      "import": "./esm/Interactions/Particles/Collisions/index.js",
+      "require": "./cjs/Interactions/Particles/Collisions/index.js",
+      "types": "./types/Interactions/Particles/Collisions/index.d.ts",
+      "default": "./umd/Interactions/Particles/Collisions/index.js"
+    },
+    "./interactions/particles/links": {
+      "import": "./esm/Interactions/Particles/Links/index.js",
+      "require": "./cjs/Interactions/Particles/Links/index.js",
+      "types": "./types/Interactions/Particles/Links/index.d.ts",
+      "default": "./umd/Interactions/Particles/Links/index.js"
+    },
+    "./movers/base": {
+      "import": "./esm/Movers/Base/index.js",
+      "require": "./cjs/Movers/Base/index.js",
+      "types": "./types/Movers/Base/index.d.ts",
+      "default": "./umd/Movers/Base/index.js"
+    },
+    "./movers/parallax": {
+      "import": "./esm/Movers/Parallax/index.js",
+      "require": "./cjs/Movers/Parallax/index.js",
+      "types": "./types/Movers/Parallax/index.d.ts",
+      "default": "./umd/Movers/Parallax/index.js"
+    },
+    "./plugins/absorbers": {
+      "import": "./esm/Plugins/Absorbers/index.js",
+      "require": "./cjs/Plugins/Absorbers/index.js",
+      "types": "./types/Plugins/Absorbers/index.d.ts",
+      "default": "./umd/Plugins/Absorbers/index.js"
+    },
+    "./plugins/emitters": {
+      "import": "./esm/Plugins/Emitters/index.js",
+      "require": "./cjs/Plugins/Emitters/index.js",
+      "types": "./types/Plugins/Emitters/index.d.ts",
+      "default": "./umd/Plugins/Emitters/index.js"
+    },
+    "./plugins/polygon-mask": {
+      "import": "./esm/Plugins/PolygonMask/index.js",
+      "require": "./cjs/Plugins/PolygonMask/index.js",
+      "types": "./types/Plugins/PolygonMask/index.d.ts",
+      "default": "./umd/Plugins/PolygonMask/index.js"
+    },
+    "./shapes/circle": {
+      "import": "./esm/Shapes/Circle/index.js",
+      "require": "./cjs/Shapes/Circle/index.js",
+      "types": "./types/Shapes/Circle/index.d.ts",
+      "default": "./umd/Shapes/Circle/index.js"
+    },
+    "./shapes/image": {
+      "import": "./esm/Shapes/Image/index.js",
+      "require": "./cjs/Shapes/Image/index.js",
+      "types": "./types/Shapes/Image/index.d.ts",
+      "default": "./umd/Shapes/Image/index.js"
+    },
+    "./shapes/line": {
+      "import": "./esm/Shapes/Line/index.js",
+      "require": "./cjs/Shapes/Line/index.js",
+      "types": "./types/Shapes/Line/index.d.ts",
+      "default": "./umd/Shapes/Line/index.js"
+    },
+    "./shapes/polygon": {
+      "import": "./esm/Shapes/Polygon/index.js",
+      "require": "./cjs/Shapes/Polygon/index.js",
+      "types": "./types/Shapes/Polygon/index.d.ts",
+      "default": "./umd/Shapes/Polygon/index.js"
+    },
+    "./shapes/square": {
+      "import": "./esm/Shapes/Square/index.js",
+      "require": "./cjs/Shapes/Square/index.js",
+      "types": "./types/Shapes/Square/index.d.ts",
+      "default": "./umd/Shapes/Square/index.js"
+    },
+    "./shapes/star": {
+      "import": "./esm/Shapes/Star/index.js",
+      "require": "./cjs/Shapes/Star/index.js",
+      "types": "./types/Shapes/Star/index.d.ts",
+      "default": "./umd/Shapes/Star/index.js"
+    },
+    "./shapes/text": {
+      "import": "./esm/Shapes/Text/index.js",
+      "require": "./cjs/Shapes/Text/index.js",
+      "types": "./types/Shapes/Text/index.d.ts",
+      "default": "./umd/Shapes/Text/index.js"
+    },
+    "./updaters/angle": {
+      "import": "./esm/Updaters/Angle/index.js",
+      "require": "./cjs/Updaters/Angle/index.js",
+      "types": "./types/Updaters/Angle/index.d.ts",
+      "default": "./umd/Updaters/Angle/index.js"
+    },
+    "./updaters/color": {
+      "import": "./esm/Updaters/Color/index.js",
+      "require": "./cjs/Updaters/Color/index.js",
+      "types": "./types/Updaters/Color/index.d.ts",
+      "default": "./umd/Updaters/Color/index.js"
+    },
+    "./updaters/life": {
+      "import": "./esm/Updaters/Life/index.js",
+      "require": "./cjs/Updaters/Life/index.js",
+      "types": "./types/Updaters/Life/index.d.ts",
+      "default": "./umd/Updaters/Life/index.js"
+    },
+    "./updaters/opacity": {
+      "import": "./esm/Updaters/Opacity/index.js",
+      "require": "./cjs/Updaters/Opacity/index.js",
+      "types": "./types/Updaters/Opacity/index.d.ts",
+      "default": "./umd/Updaters/Opacity/index.js"
+    },
+    "./updaters/out-modes": {
+      "import": "./esm/Updaters/OutModes/index.js",
+      "require": "./cjs/Updaters/OutModes/index.js",
+      "types": "./types/Updaters/OutModes/index.d.ts",
+      "default": "./umd/Updaters/OutModes/index.js"
+    },
+    "./updaters/roll": {
+      "import": "./esm/Updaters/Roll/index.js",
+      "require": "./cjs/Updaters/Roll/index.js",
+      "types": "./types/Updaters/Roll/index.d.ts",
+      "default": "./umd/Updaters/Roll/index.js"
+    },
+    "./updaters/size": {
+      "import": "./esm/Updaters/Size/index.js",
+      "require": "./cjs/Updaters/Size/index.js",
+      "types": "./types/Updaters/Size/index.d.ts",
+      "default": "./umd/Updaters/Size/index.js"
+    },
+    "./updaters/stroke-color": {
+      "import": "./esm/Updaters/StrokeColor/index.js",
+      "require": "./cjs/Updaters/StrokeColor/index.js",
+      "types": "./types/Updaters/StrokeColor/index.d.ts",
+      "default": "./umd/Updaters/StrokeColor/index.js"
+    },
+    "./updaters/tilt": {
+      "import": "./esm/Updaters/Tilt/index.js",
+      "require": "./cjs/Updaters/Tilt/index.js",
+      "types": "./types/Updaters/Tilt/index.d.ts",
+      "default": "./umd/Updaters/Tilt/index.js"
+    },
+    "./updaters/twinkle": {
+      "import": "./esm/Updaters/Twinkle/index.js",
+      "require": "./cjs/Updaters/Twinkle/index.js",
+      "types": "./types/Updaters/Twinkle/index.d.ts",
+      "default": "./umd/Updaters/Twinkle/index.js"
+    },
+    "./updaters/wobble": {
+      "import": "./esm/Updaters/Wobble/index.js",
+      "require": "./cjs/Updaters/Wobble/index.js",
+      "types": "./types/Updaters/Wobble/index.d.ts",
+      "default": "./umd/Updaters/Wobble/index.js"
+    },
+    "./Options/*": {
+      "import": "./esm/Options/*.js",
+      "require": "./cjs/Options/*.js",
+      "types": "./types/Options/*.d.ts",
+      "default": "./umd/Options/*.js"
+    }
+  }
 }

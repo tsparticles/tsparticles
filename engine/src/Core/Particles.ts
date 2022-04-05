@@ -1,14 +1,29 @@
-import type { ICoordinates, IDelta, IMouseData, IParticle, IRgb } from "./Interfaces";
-import { InteractionManager, ParticlesMover, Point, QuadTree, Rectangle } from "./Utils";
-import { getRangeMax, getRangeMin, getRangeValue, randomInRange, setRangeValue } from "../Utils";
+import {
+    calcPositionFromSize,
+    getRangeMax,
+    getRangeMin,
+    getRangeValue,
+    randomInRange,
+    setRangeValue,
+} from "../Utils/NumberUtils";
+import { ClickMode } from "../Enums/Modes/ClickMode";
 import type { Container } from "./Container";
 import type { Engine } from "../engine";
+import type { ICoordinates } from "./Interfaces/ICoordinates";
+import type { IDelta } from "./Interfaces/IDelta";
 import type { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";
+import type { IMouseData } from "./Interfaces/IMouseData";
+import type { IParticle } from "./Interfaces/IParticle";
 import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
-import { IParticlesFrequencies } from "./Interfaces/IParticlesFrequencies";
+import type { IParticlesFrequencies } from "./Interfaces/IParticlesFrequencies";
+import type { IRgb } from "./Interfaces/Colors";
+import { InteractionManager } from "./Utils/InteractionManager";
 import { Particle } from "./Particle";
 import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
-import type { RecursivePartial } from "../Types";
+import { Point } from "./Utils/Point";
+import { QuadTree } from "./Utils/QuadTree";
+import { Rectangle } from "./Utils/Rectangle";
+import type { RecursivePartial } from "../Types/RecursivePartial";
 
 /**
  * Particles manager object
@@ -38,12 +53,12 @@ export class Particles {
     linksColor?: IRgb | string;
     grabLineColor?: IRgb | string;
 
+    movers;
     updaters;
 
     private interactionManager;
     private nextId;
     private readonly freqs: IParticlesFrequencies;
-    private readonly mover;
 
     readonly #engine;
 
@@ -53,7 +68,6 @@ export class Particles {
         this.nextId = 0;
         this.array = [];
         this.zArray = [];
-        this.mover = new ParticlesMover(container);
         this.limit = 0;
         this.needsSort = false;
         this.lastZIndex = 0;
@@ -76,13 +90,14 @@ export class Particles {
             4
         );
 
+        this.movers = this.#engine.plugins.getMovers(container, true);
         this.updaters = this.#engine.plugins.getUpdaters(container, true);
     }
 
     /* --------- tsParticles functions - particles ----------- */
     init(): void {
-        const container = this.container;
-        const options = container.actualOptions;
+        const container = this.container,
+            options = container.actualOptions;
 
         this.lastZIndex = 0;
         this.needsSort = false;
@@ -162,8 +177,8 @@ export class Particles {
     }
 
     async update(delta: IDelta): Promise<void> {
-        const container = this.container;
-        const particlesToDelete = [];
+        const container = this.container,
+            particlesToDelete = [];
 
         container.pathGenerator.update();
 
@@ -203,7 +218,11 @@ export class Particles {
                 }
             }
 
-            this.mover.move(particle, delta);
+            for (const mover of this.movers) {
+                if (mover.isEnabled(particle)) {
+                    mover.move(particle, delta);
+                }
+            }
 
             if (particle.destroyed) {
                 particlesToDelete.push(particle);
@@ -282,7 +301,6 @@ export class Particles {
         this.zArray = [];
     }
 
-    /* ---------- tsParticles functions - modes events ------------ */
     push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticles>, group?: string): void {
         this.pushing = true;
 
@@ -336,12 +354,11 @@ export class Particles {
 
         options.load(splitOptions.particles);
 
-        const offset = splitOptions.sizeOffset ? setRangeValue(-parent.size.value, parent.size.value) : 0;
-
-        const position = {
-            x: parent.position.x + randomInRange(offset),
-            y: parent.position.y + randomInRange(offset),
-        };
+        const offset = splitOptions.sizeOffset ? setRangeValue(-parent.size.value, parent.size.value) : 0,
+            position = {
+                x: parent.position.x + randomInRange(offset),
+                y: parent.position.y + randomInRange(offset),
+            };
 
         return this.pushParticle(position, options, parent.group, (particle) => {
             if (particle.size.value < 0.5) {
@@ -412,14 +429,13 @@ export class Particles {
             options = container.actualOptions;
 
         for (const particle of options.manualParticles) {
-            const pos = particle.position
-                ? {
-                      x: (particle.position.x * container.canvas.size.width) / 100,
-                      y: (particle.position.y * container.canvas.size.height) / 100,
-                  }
-                : undefined;
-
-            this.addParticle(pos, particle.options);
+            this.addParticle(
+                calcPositionFromSize({
+                    size: container.canvas.size,
+                    position: particle.position,
+                }),
+                particle.options
+            );
         }
     }
 
@@ -433,17 +449,21 @@ export class Particles {
         this.applyDensity(options.particles, options.manualParticles.length);
     }
 
-    private applyDensity(options: IParticles, manualCount: number, group?: string) {
+    handleClickMode(mode: ClickMode | string): void {
+        this.interactionManager.handleClickMode(mode);
+    }
+
+    private applyDensity(options: IParticles, manualCount: number, group?: string): void {
         if (!options.number.density?.enable) {
             return;
         }
 
-        const numberOptions = options.number;
-        const densityFactor = this.initDensityFactor(numberOptions.density);
-        const optParticlesNumber = numberOptions.value;
-        const optParticlesLimit = numberOptions.limit > 0 ? numberOptions.limit : optParticlesNumber;
-        const particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + manualCount;
-        const particlesCount = Math.min(this.count, this.array.filter((t) => t.group === group).length);
+        const numberOptions = options.number,
+            densityFactor = this.initDensityFactor(numberOptions.density),
+            optParticlesNumber = numberOptions.value,
+            optParticlesLimit = numberOptions.limit > 0 ? numberOptions.limit : optParticlesNumber,
+            particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + manualCount,
+            particlesCount = Math.min(this.count, this.array.filter((t) => t.group === group).length);
 
         this.limit = numberOptions.limit * densityFactor;
 

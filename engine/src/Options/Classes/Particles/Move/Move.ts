@@ -1,16 +1,19 @@
-import { MoveDirection, MoveDirectionAlt, OutMode, OutModeAlt } from "../../../../Enums";
-import type { RangeValue, RecursivePartial } from "../../../../Types";
-import { deepExtend, setRangeValue } from "../../../../Utils";
+import { MoveDirection, MoveDirectionAlt } from "../../../../Enums/Directions/MoveDirection";
+import { OutMode, OutModeAlt } from "../../../../Enums/Modes/OutMode";
 import { Attract } from "./Attract";
-import type { IDistance } from "../../../../Core";
+import { IDistance } from "../../../../Core/Interfaces/IDistance";
 import type { IMove } from "../../../Interfaces/Particles/Move/IMove";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { MoveAngle } from "./MoveAngle";
 import { MoveGravity } from "./MoveGravity";
 import { OutModes } from "./OutModes";
 import { Path } from "./Path/Path";
+import { RangeValue } from "../../../../Types/RangeValue";
+import { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { Spin } from "./Spin";
 import { Trail } from "./Trail";
+import { deepExtend } from "../../../../Utils/Utils";
+import { setRangeValue } from "../../../../Utils/NumberUtils";
 
 /**
  * [[include:Options/Particles/Move.md]]

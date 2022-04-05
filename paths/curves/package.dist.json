@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-path-curves",
-  "version": "1.42.4",
+  "version": "1.43.0",
   "description": "tsParticles curves path",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -82,9 +82,9 @@
   "main": "index.js",
   "jsdelivr": "tsparticles.path.curves.min.js",
   "unpkg": "tsparticles.path.curves.min.js",
-  "module": "index.js",
+  "module": "esm/index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles": "^1.42.4"
+    "tsparticles": "^1.43.0"
   }
 }

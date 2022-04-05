@@ -1,7 +1,8 @@
-import type { RangeValue, RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { IWobble } from "../../../Interfaces/Particles/Wobble/IWobble";
-import { setRangeValue } from "../../../../Utils";
+import type { RangeValue } from "../../../../Types/RangeValue";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import { setRangeValue } from "../../../../Utils/NumberUtils";
 
 export class Wobble implements IWobble, IOptionLoader<IWobble> {
     distance: RangeValue;

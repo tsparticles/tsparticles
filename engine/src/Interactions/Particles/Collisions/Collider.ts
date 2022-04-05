@@ -1,7 +1,9 @@
-import type { Container, Particle } from "../../../Core";
-import { circleBounce, circleBounceDataFromParticle, clamp, getDistance } from "../../../Utils";
-import { CollisionMode } from "../../../Enums";
-import { ParticlesInteractorBase } from "../../../Core";
+import { circleBounce, circleBounceDataFromParticle } from "../../../Utils/Utils";
+import { clamp, getDistance } from "../../../Utils/NumberUtils";
+import { CollisionMode } from "../../../Enums/Modes/CollisionMode";
+import type { Container } from "../../../Core/Container";
+import type { Particle } from "../../../Core/Particle";
+import { ParticlesInteractorBase } from "../../../Core/Utils/ParticlesInteractorBase";
 
 function bounce(p1: Particle, p2: Particle): void {
     circleBounce(circleBounceDataFromParticle(p1), circleBounceDataFromParticle(p2));
@@ -42,12 +44,10 @@ export class Collider extends ParticlesInteractorBase {
     }
 
     async interact(p1: Particle): Promise<void> {
-        const container = this.container;
-        const pos1 = p1.getPosition();
-
-        const radius1 = p1.getRadius();
-
-        const query = container.particles.quadTree.queryCircle(pos1, radius1 * 2);
+        const container = this.container,
+            pos1 = p1.getPosition(),
+            radius1 = p1.getRadius(),
+            query = container.particles.quadTree.queryCircle(pos1, radius1 * 2);
 
         for (const p2 of query) {
             if (
@@ -66,9 +66,9 @@ export class Collider extends ParticlesInteractorBase {
                 continue;
             }
 
-            const dist = getDistance(pos1, pos2);
-            const radius2 = p2.getRadius();
-            const distP = radius1 + radius2;
+            const dist = getDistance(pos1, pos2),
+                radius2 = p2.getRadius(),
+                distP = radius1 + radius2;
 
             if (dist <= distP) {
                 this.resolveCollision(p1, p2);
@@ -78,24 +78,21 @@ export class Collider extends ParticlesInteractorBase {
 
     private resolveCollision(p1: Particle, p2: Particle): void {
         switch (p1.options.collisions.mode) {
-            case CollisionMode.absorb: {
+            case CollisionMode.absorb:
                 this.absorb(p1, p2);
                 break;
-            }
-            case CollisionMode.bounce: {
+            case CollisionMode.bounce:
                 bounce(p1, p2);
                 break;
-            }
-            case CollisionMode.destroy: {
+            case CollisionMode.destroy:
                 destroy(p1, p2);
                 break;
-            }
         }
     }
 
     private absorb(p1: Particle, p2: Particle): void {
-        const container = this.container;
-        const fps = container.fpsLimit / 1000;
+        const container = this.container,
+            fps = container.fpsLimit / 1000;
 
         if (p1.getRadius() === undefined && p2.getRadius() !== undefined) {
             p1.destroy();

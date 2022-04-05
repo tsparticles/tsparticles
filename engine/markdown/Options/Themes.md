@@ -23,7 +23,7 @@ If set to `true` this theme will be the default one for the specified mode, the 
 
 ## Name
 
-The theme name used to change the theme using the {@link setTheme} function
+The theme name used to change the theme using the {@link Container.loadTheme} function
 
 ## Options
 

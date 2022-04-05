@@ -1,5 +1,5 @@
 import type { IValueWithRandom } from "../../../Interfaces/IValueWithRandom";
-import type { RecursivePartial } from "../../../../Types";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { ValueWithRandom } from "../../ValueWithRandom";
 
 /**

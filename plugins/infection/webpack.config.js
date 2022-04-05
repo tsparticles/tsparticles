@@ -7,8 +7,8 @@ const version = require("./package.json").version;
 const getEntry = (name) => {
   const obj = {};
 
-  obj[`tsparticles.plugin.${name}`] = "./dist/index.js";
-  obj[`tsparticles.plugin.${name}.min`] = "./dist/index.js";
+  obj[`tsparticles.plugin.${name}`] = "./dist/browser/index.js";
+  obj[`tsparticles.plugin.${name}.min`] = "./dist/browser/index.js";
 
   return obj;
 };

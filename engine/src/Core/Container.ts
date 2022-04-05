@@ -2,27 +2,26 @@
  * [[include:Container.md]]
  * @packageDocumentation
  */
-import { EventListeners, FrameManager, Vector } from "./Utils";
-import type {
-    IAttract,
-    IBubble,
-    IContainerInteractivity,
-    IContainerPlugin,
-    ICoordinates,
-    IMovePathGenerator,
-    IRepulse,
-    IRgb,
-    IShapeDrawer,
-} from "./Interfaces";
-import { animate, cancelAnimation, getRangeValue } from "../Utils";
+import { animate, cancelAnimation } from "../Utils/Utils";
 import { Canvas } from "./Canvas";
+import type { ClickMode } from "../Enums/Modes/ClickMode";
 import type { Engine } from "../engine";
+import { EventListeners } from "./Utils/EventListeners";
+import { FrameManager } from "./Utils/FrameManager";
+import type { IContainerInteractivity } from "./Interfaces/IContainerInteractivity";
+import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
+import type { ICoordinates } from "./Interfaces/ICoordinates";
+import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator";
 import type { IOptions } from "../Options/Interfaces/IOptions";
+import type { IRgb } from "./Interfaces/Colors";
+import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import { Options } from "../Options/Classes/Options";
-import { Particle } from "./Particle";
+import type { Particle } from "./Particle";
 import { Particles } from "./Particles";
-import type { RecursivePartial } from "../Types";
+import type { RecursivePartial } from "../Types/RecursivePartial";
 import { Retina } from "./Retina";
+import { Vector } from "./Utils/Vector";
+import { getRangeValue } from "../Utils/NumberUtils";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -47,9 +46,6 @@ export class Container {
     lifeTime;
     fpsLimit;
     interactivity: IContainerInteractivity;
-    bubble: IBubble;
-    repulse: IRepulse;
-    attract: IAttract;
     zLayers;
     responsiveMaxWidth?: number;
 
@@ -154,9 +150,6 @@ export class Container {
                 inside: false,
             },
         };
-        this.bubble = {};
-        this.repulse = { particles: [] };
-        this.attract = { particles: [] };
         this.plugins = new Map<string, IContainerPlugin>();
         this.drawers = new Map<string, IShapeDrawer>();
         this.density = 1;
@@ -445,7 +438,7 @@ export class Container {
             return;
         }
 
-        const clickOrTouchHandler = (e: Event, pos: ICoordinates, radius: number) => {
+        const clickOrTouchHandler = (e: Event, pos: ICoordinates, radius: number): void => {
             if (this.destroyed) {
                 return;
             }
@@ -460,21 +453,21 @@ export class Container {
             callback(e, particles);
         };
 
-        const clickHandler = (e: Event) => {
+        const clickHandler = (e: Event): void => {
             if (this.destroyed) {
                 return;
             }
 
-            const mouseEvent = e as MouseEvent;
-            const pos = {
-                x: mouseEvent.offsetX || mouseEvent.clientX,
-                y: mouseEvent.offsetY || mouseEvent.clientY,
-            };
+            const mouseEvent = e as MouseEvent,
+                pos = {
+                    x: mouseEvent.offsetX || mouseEvent.clientX,
+                    y: mouseEvent.offsetY || mouseEvent.clientY,
+                };
 
             clickOrTouchHandler(e, pos, 1);
         };
 
-        const touchStartHandler = () => {
+        const touchStartHandler = (): void => {
             if (this.destroyed) {
                 return;
             }
@@ -483,7 +476,7 @@ export class Container {
             touchMoved = false;
         };
 
-        const touchMoveHandler = () => {
+        const touchMoveHandler = (): void => {
             if (this.destroyed) {
                 return;
             }
@@ -491,7 +484,7 @@ export class Container {
             touchMoved = true;
         };
 
-        const touchEndHandler = (e: Event) => {
+        const touchEndHandler = (e: Event): void => {
             if (this.destroyed) {
                 return;
             }
@@ -508,11 +501,11 @@ export class Container {
                     }
                 }
 
-                const canvasRect = this.canvas.element?.getBoundingClientRect();
-                const pos = {
-                    x: lastTouch.clientX - (canvasRect?.left ?? 0),
-                    y: lastTouch.clientY - (canvasRect?.top ?? 0),
-                };
+                const canvasRect = this.canvas.element?.getBoundingClientRect(),
+                    pos = {
+                        x: lastTouch.clientX - (canvasRect?.left ?? 0),
+                        y: lastTouch.clientY - (canvasRect?.top ?? 0),
+                    };
 
                 clickOrTouchHandler(e, pos, Math.max(lastTouch.radiusX, lastTouch.radiusY));
             }
@@ -521,7 +514,7 @@ export class Container {
             touchMoved = false;
         };
 
-        const touchCancelHandler = () => {
+        const touchCancelHandler = (): void => {
             if (this.destroyed) {
                 return;
             }
@@ -538,6 +531,16 @@ export class Container {
         el.addEventListener("touchmove", touchMoveHandler);
         el.addEventListener("touchend", touchEndHandler);
         el.addEventListener("touchcancel", touchCancelHandler);
+    }
+
+    handleClickMode(mode: ClickMode | string): void {
+        this.particles.handleClickMode(mode);
+
+        for (const [, plugin] of this.plugins) {
+            if (plugin.handleClickMode) {
+                plugin.handleClickMode(mode);
+            }
+        }
     }
 
     updateActualOptions(): boolean {
@@ -634,7 +637,7 @@ export class Container {
         }
     }
 
-    private intersectionManager(entries: IntersectionObserverEntry[]) {
+    private intersectionManager(entries: IntersectionObserverEntry[]): void {
         if (!this.actualOptions.pauseOnOutsideViewport) {
             return;
         }

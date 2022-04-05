@@ -1,5 +1,5 @@
 .container {
-  padding: 0 2rem;
+  /*padding: 0 2rem;*/
 }
 
 .main {
@@ -19,6 +19,8 @@
   border-top: 1px solid #eaeaea;
   justify-content: center;
   align-items: center;
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
 }
 
 .footer a {
@@ -84,6 +86,8 @@
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
   max-width: 300px;
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
 }
 
 .card:hover,

@@ -1,13 +1,17 @@
-import type { Container, IContainerPlugin, ICoordinates, Particle } from "../../Core";
-import type { RecursivePartial, SingleOrMultiple } from "../../Types";
 import { Absorber } from "./Options/Classes/Absorber";
-import { AbsorberClickMode } from "./Enums";
+import { AbsorberClickMode } from "./Enums/AbsorberClickMode";
 import type { AbsorberContainer } from "./AbsorberContainer";
 import { AbsorberInstance } from "./AbsorberInstance";
+import type { Container } from "../../Core/Container";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
 import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
+import type { IContainerPlugin } from "../../Core/Interfaces/IContainerPlugin";
+import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
-import { itemFromArray } from "../../Utils";
+import type { Particle } from "../../Core/Particle";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
+import { itemFromArray } from "../../Utils/Utils";
 
 /**
  * @category Absorbers Plugin
@@ -24,12 +28,12 @@ export class Absorbers implements IContainerPlugin {
 
         const overridableContainer = container as unknown as AbsorberContainer;
 
-        overridableContainer.getAbsorber = (idxOrName?: number | string) =>
+        overridableContainer.getAbsorber = (idxOrName?: number | string): AbsorberInstance | undefined =>
             idxOrName === undefined || typeof idxOrName === "number"
                 ? this.array[idxOrName || 0]
                 : this.array.find((t) => t.name === idxOrName);
 
-        overridableContainer.addAbsorber = (options: IAbsorber, position?: ICoordinates) =>
+        overridableContainer.addAbsorber = (options: IAbsorber, position?: ICoordinates): AbsorberInstance =>
             this.addAbsorber(options, position);
     }
 
@@ -114,9 +118,8 @@ export class Absorbers implements IContainerPlugin {
     }
 
     handleClickMode(mode: string): void {
-        const container = this.container;
-        const absorberOptions = this.absorbers;
-        const modeAbsorbers = this.interactivityAbsorbers;
+        const absorberOptions = this.absorbers,
+            modeAbsorbers = this.interactivityAbsorbers;
 
         if (mode === AbsorberClickMode.absorber) {
             let absorbersModeOptions: IAbsorber | undefined;
@@ -130,10 +133,9 @@ export class Absorbers implements IContainerPlugin {
             }
 
             const absorbersOptions =
-                absorbersModeOptions ??
-                (absorberOptions instanceof Array ? itemFromArray(absorberOptions) : absorberOptions);
-
-            const aPosition = container.interactivity.mouse.clickPosition;
+                    absorbersModeOptions ??
+                    (absorberOptions instanceof Array ? itemFromArray(absorberOptions) : absorberOptions),
+                aPosition = this.container.interactivity.mouse.clickPosition;
 
             this.addAbsorber(absorbersOptions, aPosition);
         }

@@ -1,7 +1,8 @@
-import type { RangeValue, RecursivePartial } from "../../../../Types";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { IRollLight } from "../../../Interfaces/Particles/Roll/IRollLight";
-import { setRangeValue } from "../../../../Utils";
+import type { RangeValue } from "../../../../Types/RangeValue";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import { setRangeValue } from "../../../../Utils/NumberUtils";
 
 export class RollLight implements IRollLight, IOptionLoader<IRollLight> {
     enable;

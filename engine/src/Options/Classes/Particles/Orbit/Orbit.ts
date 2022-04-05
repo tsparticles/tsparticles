@@ -1,11 +1,12 @@
-import type { RangeValue, RecursivePartial } from "../../../../Types";
 import { AnimationOptions } from "../../AnimationOptions";
 import type { IAnimatable } from "../../../Interfaces/IAnimatable";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { IOrbit } from "../../../Interfaces/Particles/Orbit/IOrbit";
 import { OptionsColor } from "../../OptionsColor";
 import { OrbitRotation } from "./OrbitRotation";
-import { setRangeValue } from "../../../../Utils";
+import type { RangeValue } from "../../../../Types/RangeValue";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import { setRangeValue } from "../../../../Utils/NumberUtils";
 
 /**
  * [[include:Options/Particles/Orbit.md]]

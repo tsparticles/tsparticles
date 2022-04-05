@@ -1,22 +1,22 @@
 import type {
-    Container,
-    IInteractor,
-    IMovePathGenerator,
-    IParticleUpdater,
-    IPlugin,
-    IShapeDrawer,
-    Particle,
-} from "./Core";
-import { Loader, Plugins } from "./Core";
-import type {
-    RecursivePartial,
     ShapeDrawerAfterEffectFunction,
     ShapeDrawerDestroyFunction,
     ShapeDrawerDrawFunction,
     ShapeDrawerInitFunction,
-    SingleOrMultiple,
-} from "./Types";
+} from "./Types/ShapeDrawerFunctions";
+import type { Container } from "./Core/Container";
+import type { IInteractor } from "./Core/Interfaces/IInteractor";
+import type { IMovePathGenerator } from "./Core/Interfaces/IMovePathGenerator";
 import type { IOptions } from "./Options/Interfaces/IOptions";
+import type { IParticleMover } from "./Core/Interfaces/IParticlesMover";
+import type { IParticleUpdater } from "./Core/Interfaces/IParticleUpdater";
+import type { IPlugin } from "./Core/Interfaces/IPlugin";
+import type { IShapeDrawer } from "./Core/Interfaces/IShapeDrawer";
+import { Loader } from "./Core/Loader";
+import type { Particle } from "./Core/Particle";
+import { Plugins } from "./Core/Utils/Plugins";
+import type { RecursivePartial } from "./Types/RecursivePartial";
+import type { SingleOrMultiple } from "./Types/SingleOrMultiple";
 
 /**
  * Engine class for creating the singleton on window.
@@ -25,12 +25,30 @@ import type { IOptions } from "./Options/Interfaces/IOptions";
  * @category Engine
  */
 export class Engine {
+    /**
+     * Checks if the engine instance is initialized
+     */
     #initialized: boolean;
 
+    /**
+     * Contains all the [[Container]] instances of the current engine instance
+     */
     readonly domArray: Container[];
+
+    /**
+     * Contains the [[Loader]] engine instance
+     * @private
+     */
     readonly #loader: Loader;
+
+    /**
+     * Contains the [[Plugins]] engine instance
+     */
     readonly plugins: Plugins;
 
+    /**
+     * Engine constructor, initializes plugins, loader and the containers array
+     */
     constructor() {
         this.#initialized = false;
         this.domArray = [];
@@ -229,6 +247,12 @@ export class Engine {
      */
     async addInteractor(name: string, interactorInitializer: (container: Container) => IInteractor): Promise<void> {
         this.plugins.addInteractor(name, interactorInitializer);
+
+        await this.refresh();
+    }
+
+    async addMover(name: string, moverInitializer: (container: Container) => IParticleMover): Promise<void> {
+        this.plugins.addParticleMover(name, moverInitializer);
 
         await this.refresh();
     }

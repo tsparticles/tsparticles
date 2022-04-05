@@ -1,24 +1,29 @@
-import { Circle, Constants, ExternalInteractorBase, Rectangle } from "../../../Core";
-import { ClickMode, DivMode, DivType, HoverMode } from "../../../Enums";
-import {
-    clamp,
-    colorMix,
-    colorToHsl,
-    divMode,
-    divModeExecute,
-    getDistance,
-    getRangeMax,
-    isDivModeEnabled,
-    isInArray,
-    itemFromArray,
-    rgbToHsl,
-} from "../../../Utils";
+import { clamp, getDistance, getRangeMax } from "../../../Utils/NumberUtils";
+import { colorMix, colorToHsl, rgbToHsl } from "../../../Utils/ColorUtils";
+import { divMode, divModeExecute, isDivModeEnabled, isInArray, itemFromArray } from "../../../Utils/Utils";
 import { BubbleDiv } from "../../../Options/Classes/Interactivity/Modes/BubbleDiv";
-import type { Container } from "../../../Core";
+import { Circle } from "../../../Core/Utils/Circle";
+import { ClickMode } from "../../../Enums/Modes/ClickMode";
+import { Constants } from "../../../Core/Utils/Constants";
+import { Container } from "../../../Core/Container";
 import { DivEvent } from "../../../Options/Classes/Interactivity/Events/DivEvent";
+import { DivMode } from "../../../Enums/Modes/DivMode";
+import { DivType } from "../../../Enums/Types/DivType";
+import { ExternalInteractorBase } from "../../../Core/Utils/ExternalInteractorBase";
+import { HoverMode } from "../../../Enums/Modes/HoverMode";
 import type { IBubblerProcessParam } from "./IBubblerProcessParam";
-import type { Particle } from "../../../Core";
+import { Particle } from "../../../Core/Particle";
 import { ProcessBubbleType } from "./ProcessBubbleType";
+import { Rectangle } from "../../../Core/Utils/Rectangle";
+
+interface IContainerBubble {
+    clicking?: boolean;
+    durationEnd?: boolean;
+}
+
+type ContainerBubbler = Container & {
+    bubble?: IContainerBubble;
+};
 
 function calculateBubbleValue(
     particleValue: number,
@@ -42,8 +47,26 @@ function calculateBubbleValue(
  * @category Interactions
  */
 export class Bubbler extends ExternalInteractorBase {
-    constructor(container: Container) {
+    handleClickMode: (mode: ClickMode | string) => void;
+
+    constructor(container: ContainerBubbler) {
         super(container);
+
+        if (!container.bubble) {
+            container.bubble = {};
+        }
+
+        this.handleClickMode = (mode): void => {
+            if (mode !== ClickMode.bubble) {
+                return;
+            }
+
+            if (!container.bubble) {
+                container.bubble = {};
+            }
+
+            container.bubble.clicking = true;
+        };
     }
 
     isEnabled(): boolean {
@@ -154,7 +177,7 @@ export class Bubbler extends ExternalInteractorBase {
     }
 
     private process(particle: Particle, distMouse: number, timeSpent: number, data: IBubblerProcessParam): void {
-        const container = this.container,
+        const container = this.container as ContainerBubbler,
             bubbleParam = data.bubbleObj.optValue;
 
         if (bubbleParam === undefined) {
@@ -171,6 +194,10 @@ export class Bubbler extends ExternalInteractorBase {
 
         if (bubbleParam === particlesParam) {
             return;
+        }
+
+        if (!container.bubble) {
+            container.bubble = {};
         }
 
         if (!container.bubble.durationEnd) {
@@ -209,12 +236,16 @@ export class Bubbler extends ExternalInteractorBase {
     }
 
     private clickBubble(): void {
-        const container = this.container,
+        const container = this.container as ContainerBubbler,
             options = container.actualOptions,
             mouseClickPos = container.interactivity.mouse.clickPosition;
 
         if (!mouseClickPos) {
             return;
+        }
+
+        if (!container.bubble) {
+            container.bubble = {};
         }
 
         const distance = container.retina.bubbleModeDistance,

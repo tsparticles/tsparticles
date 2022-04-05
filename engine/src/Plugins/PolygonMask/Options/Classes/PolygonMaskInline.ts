@@ -1,7 +1,10 @@
-import { PolygonMaskInlineArrangement, PolygonMaskInlineArrangementAlt } from "../../Enums";
+import {
+    PolygonMaskInlineArrangement,
+    PolygonMaskInlineArrangementAlt,
+} from "../../Enums/PolygonMaskInlineArrangement";
 import type { IOptionLoader } from "../../../../Options/Interfaces/IOptionLoader";
 import type { IPolygonMaskInline } from "../Interfaces/IPolygonMaskInline";
-import type { RecursivePartial } from "../../../../Types";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 /**
  * @category Polygon Mask Plugin
