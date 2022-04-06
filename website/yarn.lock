@@ -649,33 +649,33 @@ tslib@^2.0.3:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
   integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
 
-tsparticles-editor@^1.43.0:
-  version "1.43.0"
-  resolved "https://registry.yarnpkg.com/tsparticles-editor/-/tsparticles-editor-1.43.0.tgz#09d29a995636b55af0652e68013d2cbf65416ae8"
-  integrity sha512-nTXwjqNJgJPqhYA+brHh8+B3rAAMJ1NbGk/jk7A3tbBfB730jcqxhqFhw4kNLwV4uIzVALX+hiWRpFtWexKnqA==
+tsparticles-editor@^1.43.1:
+  version "1.43.1"
+  resolved "https://registry.yarnpkg.com/tsparticles-editor/-/tsparticles-editor-1.43.1.tgz#f53c3193cab149f6876196b012616cc75bb9ff5d"
+  integrity sha512-OkXT889jvVVPRgr7v3/BXaqK1nMVTWAtan0f7vkklf+tTwi7jZOLUnYqRFnLbdcYi/RiamxX2P3if1/5YofXzQ==
   dependencies:
     object-gui "^1.1.1"
-    tsparticles "^1.43.0"
-    tsparticles-plugin-infection "^1.43.0"
+    tsparticles "^1.43.1"
+    tsparticles-plugin-infection "^1.43.1"
 
-tsparticles-plugin-infection@^1.43.0:
-  version "1.43.0"
-  resolved "https://registry.yarnpkg.com/tsparticles-plugin-infection/-/tsparticles-plugin-infection-1.43.0.tgz#fb5277d71d39b0558cf954c315d9937a4d313e83"
-  integrity sha512-AolH0XadD5bphIHOTziGkrLCZAWKDCROZ3klQuiCVHO5lKfHjwWpiabtYAp0LpkLZs+wGBoM0Ug3NN9Vp87UwA==
+tsparticles-plugin-infection@^1.43.1:
+  version "1.43.1"
+  resolved "https://registry.yarnpkg.com/tsparticles-plugin-infection/-/tsparticles-plugin-infection-1.43.1.tgz#7fea1dbd5b792ab10273aa833642953e098bd649"
+  integrity sha512-1PNrTNrSd+b1SzSe/Yv7NuXuR7caw32ldhOcFec5fay8H4sRno6WufkmEkfbMZmJ+Yi4kaEovpYVCl3VNQ/5bA==
   dependencies:
-    tsparticles "^1.43.0"
+    tsparticles "^1.43.1"
 
-tsparticles-preset-links@^1.43.0:
-  version "1.43.0"
-  resolved "https://registry.yarnpkg.com/tsparticles-preset-links/-/tsparticles-preset-links-1.43.0.tgz#b153e238c9289907138e712fa8edccc509c6f7c2"
-  integrity sha512-x4ckkHi6sf4HqYAPVDYtwaQXYnY+AyflEmJnvIMD7NOc38DxPquuRFc5P1A4NZe9jZ2vSM/kwoyRVfyPz3Fk5Q==
+tsparticles-preset-links@^1.43.1:
+  version "1.43.1"
+  resolved "https://registry.yarnpkg.com/tsparticles-preset-links/-/tsparticles-preset-links-1.43.1.tgz#ed0fac1b8c4d74a9bef7c2034638464f9284efc0"
+  integrity sha512-3izVtbbZvXcmXRHopNQ3QqNGBXbXh5VvBJyVjc1yQvxk5bH/jJdzmNQZuPwBt3MfDavra1eYg9mw4kF+yIpXJg==
   dependencies:
-    tsparticles "^1.43.0"
+    tsparticles "^1.43.1"
 
-tsparticles@^1.43.0:
-  version "1.43.0"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.43.0.tgz#bb26ca852ae85f870fd15bbcb71b83d52b396068"
-  integrity sha512-0r9hdGaImm0cxp6FraLgKUBJy03utZ2j2LaBZus6hSpPMnsP48UrJLQKmcgRRlGWeOUq6YI6WywpbSbSoA/cKA==
+tsparticles@^1.43.1:
+  version "1.43.1"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.43.1.tgz#1f6b37ee41b6ab043d66a0e20bfe0855a1aea006"
+  integrity sha512-6EuHncwqzoyTlUxc11YH8LVlwVUgpYaZD0yMOeA2OvRqFZ9VQV8EjjQ6ZfXt6pfGA1ObPwU929jveFatxwTQkg==
 
 universalify@^0.1.0:
   version "0.1.2"

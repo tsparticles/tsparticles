@@ -94,6 +94,7 @@
     "tsparticles-slim": "^2.0.3",
     "tsparticles-updater-roll": "^2.0.3",
     "tsparticles-updater-tilt": "^2.0.3",
+    "tsparticles-updater-twinkle": "^2.0.3",
     "tsparticles-updater-wobble": "^2.0.3"
   },
   "publishConfig": {

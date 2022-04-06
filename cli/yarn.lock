@@ -25,10 +25,10 @@ jsonfile@^6.0.1:
   optionalDependencies:
     graceful-fs "^4.1.6"
 
-tsparticles@^1.43.0:
-  version "1.43.0"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.43.0.tgz#bb26ca852ae85f870fd15bbcb71b83d52b396068"
-  integrity sha512-0r9hdGaImm0cxp6FraLgKUBJy03utZ2j2LaBZus6hSpPMnsP48UrJLQKmcgRRlGWeOUq6YI6WywpbSbSoA/cKA==
+tsparticles@^1.43.1:
+  version "1.43.1"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.43.1.tgz#1f6b37ee41b6ab043d66a0e20bfe0855a1aea006"
+  integrity sha512-6EuHncwqzoyTlUxc11YH8LVlwVUgpYaZD0yMOeA2OvRqFZ9VQV8EjjQ6ZfXt6pfGA1ObPwU929jveFatxwTQkg==
 
 universalify@^2.0.0:
   version "2.0.0"
