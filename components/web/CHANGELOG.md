@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4](https://github.com/matteobruni/tsparticles/compare/web-particles@1.43.1...web-particles@2.0.4) (2022-04-06)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+* **deps:** update dependency @capacitor/core to v3.4.2 ([aa44c98](https://github.com/matteobruni/tsparticles/commit/aa44c9855cd819c90d6676a7c547ddd1b3de727c))
+* **deps:** update dependency @capacitor/core to v3.4.2 ([b488e20](https://github.com/matteobruni/tsparticles/commit/b488e20ac54a48883bf7388ce33d6d71833cdec9))
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 ## [2.0.3](https://github.com/matteobruni/tsparticles/compare/web-particles@1.42.1...web-particles@2.0.3) (2022-03-11)
 
 

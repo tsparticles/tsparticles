@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-configs@1.0.3...tsparticles-demo-configs@1.0.4) (2022-04-06)
+
+
+### Bug Fixes
+
+* **deps:** update react monorepo to v18 ([3f6aa46](https://github.com/matteobruni/tsparticles/commit/3f6aa46e399d0092ae13ba494db86256c0d05c40))
+
+
+
+
+
 ## [1.0.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-configs@1.0.2...tsparticles-demo-configs@1.0.3) (2022-03-11)
 
 **Note:** Version bump only for package tsparticles-demo-configs
