@@ -5,8 +5,8 @@
 <script lang="ts">
 import { nextTick, PropType } from "vue";
 import { Options, Vue } from "vue-class-component";
-import { tsParticles } from "tsparticles";
-import type { Container, ISourceOptions, Main } from "tsparticles";
+import { tsParticles } from "tsparticles-engine";
+import type { Container, ISourceOptions, Engine } from "tsparticles-engine";
 
 export type IParticlesProps = ISourceOptions;
 export type IParticlesParams = IParticlesProps;
@@ -27,7 +27,7 @@ export type IParticlesParams = IParticlesProps;
       type: Function as PropType<(container: Container) => void>
     },
     particlesInit: {
-      type: Function as PropType<(tsParticles: Main) => void>
+      type: Function as PropType<(engine: Engine) => void>
     }
   }
 })
@@ -36,11 +36,11 @@ export default class Particles extends Vue {
   private options?: IParticlesProps;
   private url?: string;
   private particlesLoaded?: (container: Container) => void;
-  private particlesInit?: (tsParticles: Main) => void;
+  private particlesInit?: (engine: Engine) => Promise<void>;
   private container?: Container;
 
   public mounted(): void {
-    nextTick(() => {
+    nextTick(async () => {
       if (!this.id) {
         throw new Error("Prop 'id' is required!");
       }
@@ -48,7 +48,7 @@ export default class Particles extends Vue {
       tsParticles.init();
 
       if (this.particlesInit) {
-        this.particlesInit(tsParticles);
+        await this.particlesInit(tsParticles);
       }
 
       const cb = (container?: Container) => {
@@ -59,15 +59,9 @@ export default class Particles extends Vue {
         }
       };
 
-      if (this.url) {
-        tsParticles
-            .loadJSON(this.id, this.url)
-            .then(cb);
-      } else {
-        tsParticles
-            .load(this.id, this.options ?? {})
-            .then(cb);
-      }
+      const container = await (this.url ? tsParticles.loadJSON(this.id, this.url) : tsParticles.load(this.id, this.options ?? {}));
+
+      cb(container);
     });
   }
 

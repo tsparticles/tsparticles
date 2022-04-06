@@ -4,7 +4,7 @@ import type { IContainerPlugin } from "../Interfaces/IContainerPlugin";
 import type { IInteractor } from "../Interfaces/IInteractor";
 import type { IMovePathGenerator } from "../Interfaces/IMovePathGenerator";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
-import type { IParticleMover } from "../Interfaces/IParticlesMover";
+import type { IParticleMover } from "../Interfaces/IParticleMover";
 import type { IParticleUpdater } from "../Interfaces/IParticleUpdater";
 import type { IPlugin } from "../Interfaces/IPlugin";
 import type { IShapeDrawer } from "../Interfaces/IShapeDrawer";

@@ -3,15 +3,14 @@ import type { IImageShape } from "./IImageShape";
 import type { IPolygonShape } from "./IPolygonShape";
 import type { IStroke } from "../IStroke";
 import type { ShapeData } from "../../../../Types/ShapeData";
-import type { ShapeType } from "../../../../Enums/Types/ShapeType";
-import { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 /**
  * [[include:Options/Particles/Shape.md]]
  * @category Options
  */
 export interface IShape {
-    type: SingleOrMultiple<ShapeType | keyof typeof ShapeType | string>;
+    type: SingleOrMultiple<string>;
 
     /**
      * @deprecated this property was moved to particles section

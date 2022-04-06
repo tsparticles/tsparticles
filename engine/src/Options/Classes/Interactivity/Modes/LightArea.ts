@@ -13,7 +13,7 @@ export class LightArea implements ILightArea, IOptionLoader<ILightArea> {
     }
 
     load(data?: RecursivePartial<ILightArea>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

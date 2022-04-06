@@ -49,7 +49,7 @@ $ yarn add tsparticles-path-polygon
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles");
+const { tsParticles } = require("tsparticles-engine");
 const { loadPolygonPath } = require("tsparticles-path-polygon");
 
 loadPolygonPath(tsParticles);
@@ -58,7 +58,7 @@ loadPolygonPath(tsParticles);
 or
 
 ```javascript
-import { tsParticles } from "tsparticles";
+import { tsParticles } from "tsparticles-engine";
 import { loadPolygonPath } from "tsparticles-path-polygon";
 
 loadPolygonPath(tsParticles);

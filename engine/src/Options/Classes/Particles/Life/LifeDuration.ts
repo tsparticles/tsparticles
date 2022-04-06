@@ -13,7 +13,7 @@ export class LifeDuration extends ValueWithRandom implements ILifeDuration, IOpt
     }
 
     load(data?: RecursivePartial<ILifeDuration>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

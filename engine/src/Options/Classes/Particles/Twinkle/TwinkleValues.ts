@@ -21,7 +21,7 @@ export class TwinkleValues implements ITwinkleValues, IOptionLoader<ITwinkleValu
     }
 
     load(data?: RecursivePartial<ITwinkleValues>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

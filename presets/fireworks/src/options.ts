@@ -1,5 +1,5 @@
-import { DestroyMode, DestroyType, MoveDirection, OutMode, ShapeType, StartValueType } from "tsparticles";
-import type { ISourceOptions } from "tsparticles";
+import { DestroyMode, DestroyType, MoveDirection, OutMode, StartValueType } from "tsparticles-engine";
+import type { ISourceOptions } from "tsparticles-engine";
 
 export const options: ISourceOptions = {
     detectRetina: true,
@@ -42,11 +42,11 @@ export const options: ISourceOptions = {
                     value: 100,
                 },
                 particles: {
-                    stroke: {
-                        width: 0,
-                    },
                     color: {
                         value: ["#ff595e", "#ffca3a", "#8ac926", "#1982c4", "#6a4c93"],
+                    },
+                    stroke: {
+                        width: 0,
                     },
                     number: {
                         value: 0,
@@ -68,7 +68,7 @@ export const options: ISourceOptions = {
                         },
                     },
                     shape: {
-                        type: ShapeType.circle,
+                        type: "circle",
                     },
                     size: {
                         value: 2,
@@ -94,7 +94,7 @@ export const options: ISourceOptions = {
                         direction: "none",
                         random: true,
                         straight: false,
-                        outMode: OutMode.destroy,
+                        outModes: OutMode.destroy,
                     },
                 },
             },

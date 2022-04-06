@@ -1,7 +1,7 @@
 import type { IColor, IHsl, IHsla, IHsv, IHsva, IRgb, IRgba, IValueColor } from "../Core/Interfaces/Colors";
 import { getRangeValue, mix, randomInRange, setRangeValue } from "./NumberUtils";
+import { midColorValue, randomColorValue } from "../Core/Utils/Constants";
 import { AnimationStatus } from "../Enums/AnimationStatus";
-import { Constants } from "../Core/Utils/Constants";
 import { HslAnimation } from "../Options/Classes/HslAnimation";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 import type { IParticle } from "../Core/Interfaces/IParticle";
@@ -120,7 +120,7 @@ export function colorToRgb(input?: string | IColor, index?: number, useIndex = t
     let res: IRgb | undefined;
 
     if (typeof color.value === "string") {
-        res = color.value === Constants.randomColorValue ? getRandomRgbColor() : stringToRgb(color.value);
+        res = color.value === randomColorValue ? getRandomRgbColor() : stringToRgb(color.value);
     } else {
         if (color.value instanceof Array) {
             const colorSelected = itemFromArray(color.value, index, useIndex);
@@ -541,7 +541,7 @@ export function colorMix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number
 }
 
 export function getLinkColor(p1: IParticle, p2?: IParticle, linkColor?: string | IRgb): IRgb | undefined {
-    if (linkColor === Constants.randomColorValue) {
+    if (linkColor === randomColorValue) {
         return getRandomRgbColor();
     } else if (linkColor === "mid") {
         const sourceColor = p1.getFillColor() ?? p1.getStrokeColor(),
@@ -568,15 +568,15 @@ export function getLinkRandomColor(
 ): IRgb | string | undefined {
     const color = typeof optColor === "string" ? optColor : optColor.value;
 
-    if (color === Constants.randomColorValue) {
+    if (color === randomColorValue) {
         if (consent) {
             return colorToRgb({
                 value: color,
             });
         } else if (blink) {
-            return Constants.randomColorValue;
+            return randomColorValue;
         } else {
-            return Constants.midColorValue;
+            return midColorValue;
         }
     } else {
         return colorToRgb({

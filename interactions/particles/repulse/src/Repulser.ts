@@ -1,5 +1,5 @@
-import { Particle, ParticlesInteractorBase, Vector, clamp, getDistances, getRangeValue } from "tsparticles";
-import type { Container } from "tsparticles";
+import type { Container, Particle } from "tsparticles-engine";
+import { ParticlesInteractorBase, Vector, clamp, getDistances, getRangeValue } from "tsparticles-engine";
 
 type RepulseParticle = Particle & {
     repulse?: {

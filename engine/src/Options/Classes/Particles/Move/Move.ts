@@ -1,17 +1,18 @@
 import { MoveDirection, MoveDirectionAlt } from "../../../../Enums/Directions/MoveDirection";
 import { OutMode, OutModeAlt } from "../../../../Enums/Modes/OutMode";
-import { Attract } from "./Attract";
+import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
 import { IDistance } from "../../../../Core/Interfaces/IDistance";
 import type { IMove } from "../../../Interfaces/Particles/Move/IMove";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { MoveAngle } from "./MoveAngle";
+import { MoveAttract } from "./MoveAttract";
 import { MoveGravity } from "./MoveGravity";
+import { MovePath } from "./Path/MovePath";
+import { MoveTrail } from "./MoveTrail";
 import { OutModes } from "./OutModes";
-import { Path } from "./Path/Path";
 import { RangeValue } from "../../../../Types/RangeValue";
 import { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { Spin } from "./Spin";
-import { Trail } from "./Trail";
 import { deepExtend } from "../../../../Utils/Utils";
 import { setRangeValue } from "../../../../Utils/NumberUtils";
 
@@ -87,19 +88,20 @@ export class Move implements IMove, IOptionLoader<IMove> {
     /**
      * @deprecated use the new [[path]] property instead
      */
-    get noise(): Path {
+    get noise(): MovePath {
         return this.path;
     }
 
     /**
      * @deprecated use the new [[path]] property instead
      */
-    set noise(value: Path) {
+    set noise(value: MovePath) {
         this.path = value;
     }
 
     angle;
     attract;
+    center: ICoordinates & { radius: number };
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
     distance: Partial<IDistance>;
     decay;
@@ -119,27 +121,32 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
     constructor() {
         this.angle = new MoveAngle();
-        this.attract = new Attract();
+        this.attract = new MoveAttract();
+        this.center = {
+            x: 50,
+            y: 50,
+            radius: 0,
+        };
         this.decay = 0;
         this.distance = {};
         this.direction = MoveDirection.none;
         this.drift = 0;
         this.enable = false;
         this.gravity = new MoveGravity();
-        this.path = new Path();
+        this.path = new MovePath();
         this.outModes = new OutModes();
         this.random = false;
         this.size = false;
         this.speed = 2;
         this.spin = new Spin();
         this.straight = false;
-        this.trail = new Trail();
+        this.trail = new MoveTrail();
         this.vibrate = false;
         this.warp = false;
     }
 
     load(data?: RecursivePartial<IMove>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 
@@ -152,6 +159,8 @@ export class Move implements IMove, IOptionLoader<IMove> {
         }
 
         this.attract.load(data.attract);
+
+        this.center = deepExtend(this.center, data.center) as ICoordinates & { radius: number };
 
         if (data.decay !== undefined) {
             this.decay = data.decay;

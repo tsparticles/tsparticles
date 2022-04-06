@@ -1,19 +1,19 @@
 import { AnimatableColor } from "../AnimatableColor";
 import { AnimatableGradient } from "../AnimatableGradient";
-import { Bounce } from "./Bounce/Bounce";
 import { Collisions } from "./Collisions/Collisions";
 import { Destroy } from "./Destroy/Destroy";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
-import type { IParticles } from "../../Interfaces/Particles/IParticles";
+import type { IParticlesOptions } from "../../Interfaces/Particles/IParticlesOptions";
 import { Life } from "./Life/Life";
 import { Links } from "./Links/Links";
 import { Move } from "./Move/Move";
 import { Opacity } from "./Opacity/Opacity";
 import { Orbit } from "./Orbit/Orbit";
+import { ParticlesBounce } from "./Bounce/ParticlesBounce";
 import type { ParticlesGroups } from "../../../Types/ParticlesGroups";
 import { ParticlesNumber } from "./Number/ParticlesNumber";
+import { ParticlesRepulse } from "./Repulse/ParticlesRepulse";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import { Repulse } from "./Repulse/Repulse";
 import { Roll } from "./Roll/Roll";
 import { Rotate } from "./Rotate/Rotate";
 import { Shadow } from "./Shadow";
@@ -31,7 +31,7 @@ import { deepExtend } from "../../../Utils/Utils";
  * [[include:Options/Particles.md]]
  * @category Options
  */
-export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
+export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParticlesOptions> {
     bounce;
     collisions;
     color;
@@ -92,9 +92,10 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
     }
 
     constructor() {
-        this.bounce = new Bounce();
+        this.bounce = new ParticlesBounce();
         this.collisions = new Collisions();
         this.color = new AnimatableColor();
+        this.color.value = "#fff";
         this.destroy = new Destroy();
         this.gradient = [];
         this.groups = {};
@@ -105,7 +106,7 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
         this.opacity = new Opacity();
         this.orbit = new Orbit();
         this.reduceDuplicates = false;
-        this.repulse = new Repulse();
+        this.repulse = new ParticlesRepulse();
         this.roll = new Roll();
         this.rotate = new Rotate();
         this.shadow = new Shadow();
@@ -118,8 +119,8 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
         this.zIndex = new ZIndex();
     }
 
-    load(data?: RecursivePartial<IParticles>): void {
-        if (data === undefined) {
+    load(data?: RecursivePartial<IParticlesOptions>): void {
+        if (!data) {
             return;
         }
 
@@ -140,7 +141,7 @@ export class ParticlesOptions implements IParticles, IOptionLoader<IParticles> {
                 const item = data.groups[group];
 
                 if (item !== undefined) {
-                    this.groups[group] = deepExtend(this.groups[group] ?? {}, item) as IParticles;
+                    this.groups[group] = deepExtend(this.groups[group] ?? {}, item) as IParticlesOptions;
                 }
             }
         }

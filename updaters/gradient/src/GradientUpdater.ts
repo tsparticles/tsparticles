@@ -1,12 +1,3 @@
-import type {
-    IDelta,
-    IParticleColorStyle,
-    IParticleHslAnimation,
-    IParticleNumericValueAnimation,
-    IParticleUpdater,
-    IParticleValueAnimation,
-    Particle,
-} from "tsparticles";
 import {
     AnimationStatus,
     GradientType,
@@ -20,7 +11,16 @@ import {
     getStyleFromHsl,
     itemFromArray,
     randomInRange,
-} from "tsparticles";
+} from "tsparticles-engine";
+import type {
+    IDelta,
+    IParticleColorStyle,
+    IParticleHslAnimation,
+    IParticleNumericValueAnimation,
+    IParticleUpdater,
+    IParticleValueAnimation,
+    Particle,
+} from "tsparticles-engine";
 
 interface IParticleGradientColorAnimation {
     stop: number;

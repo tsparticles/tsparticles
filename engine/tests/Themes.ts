@@ -1,15 +1,5 @@
-import {
-    ClickMode,
-    HoverMode,
-    MoveDirection,
-    OutMode,
-    RotateDirection,
-    ShapeType,
-    ThemeMode,
-    tsParticles,
-} from "../src";
+import { ClickMode, HoverMode, MoveDirection, Options, OutMode, RotateDirection, ThemeMode, tsParticles } from "../src";
 import { describe, it } from "mocha";
-import { Options } from "../src/Options/Classes/Options";
 import { expect } from "chai";
 
 describe("Themes", () => {
@@ -60,7 +50,7 @@ describe("Themes", () => {
                 },
             },
             shape: {
-                type: [ShapeType.circle, ShapeType.square],
+                type: ["circle", "square"],
             },
             opacity: {
                 value: 1,

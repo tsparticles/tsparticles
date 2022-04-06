@@ -1,6 +1,6 @@
-import { Density } from "./Density";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { IParticlesNumber } from "../../../Interfaces/Particles/Number/IParticlesNumber";
+import { ParticlesDensity } from "./ParticlesDensity";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 /**
@@ -27,13 +27,13 @@ export class ParticlesNumber implements IParticlesNumber, IOptionLoader<IParticl
     value;
 
     constructor() {
-        this.density = new Density();
+        this.density = new ParticlesDensity();
         this.limit = 0;
         this.value = 100;
     }
 
     load(data?: RecursivePartial<IParticlesNumber>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

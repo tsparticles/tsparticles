@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-firefly",
-  "version": "1.43.1",
+  "version": "2.0.4",
   "description": "tsParticles firefly preset",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -78,9 +78,16 @@
   "main": "index.js",
   "jsdelivr": "tsparticles.preset.firefly.min.js",
   "unpkg": "tsparticles.preset.firefly.min.js",
-  "module": "esm/index.js",
+  "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles": "^1.43.1"
+    "tsparticles-engine": "^2.0.4",
+    "tsparticles-interaction-external-trail": "^2.0.4",
+    "tsparticles-move-base": "^2.0.4",
+    "tsparticles-shape-circle": "^2.0.4",
+    "tsparticles-updater-color": "^2.0.4",
+    "tsparticles-updater-life": "^2.0.4",
+    "tsparticles-updater-opacity": "^2.0.4",
+    "tsparticles-updater-size": "^2.0.4"
   }
 }

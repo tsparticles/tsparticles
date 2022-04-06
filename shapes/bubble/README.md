@@ -50,7 +50,7 @@ $ yarn add tsparticles-shape-bubble
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles");
+const { tsParticles } = require("tsparticles-engine");
 const { loadBubbleShape } = require("tsparticles-shape-bubble");
 
 loadBubbleShape(tsParticles);
@@ -59,7 +59,7 @@ loadBubbleShape(tsParticles);
 or
 
 ```javascript
-import { tsParticles } from "tsparticles";
+import { tsParticles } from "tsparticles-engine";
 import { loadBubbleShape } from "tsparticles-shape-bubble";
 
 loadBubbleShape(tsParticles);

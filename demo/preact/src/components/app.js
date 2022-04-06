@@ -4,6 +4,7 @@ import Particles from 'preact-particles';
 import Header from './header';
 import Home from '../routes/home';
 import Profile from '../routes/profile';
+import { loadFull } from "tsparticles";
 
 export default class App extends Component {
     key = "simple1";
@@ -58,10 +59,14 @@ export default class App extends Component {
         }, () => document.location.hash = `#${frames[key]}`);
     }
 
+    async particlesInit(main) {
+        await loadFull(main);
+    }
+
     render() {
         return (
             <div id="app">
-                <Header />
+                <Header/>
                 <div style="position: absolute; top: 50%; right: 10px; z-index: 3000;">
                     <div>
                         <button onClick={() => {
@@ -76,11 +81,12 @@ export default class App extends Component {
                         </button>
                     </div>
                 </div>
-                <Particles id="tsparticles" options={this.options[this.state.key]} />
+                <Particles id="tsparticles" options={this.options[this.state.key]}
+                           init={this.particlesInit.bind(this)}/>
                 <Router onChange={this.handleRoute}>
-                    <Home path="/" />
-                    <Profile path="/profile/" user="me" />
-                    <Profile path="/profile/:user" />
+                    <Home path="/"/>
+                    <Profile path="/profile/" user="me"/>
+                    <Profile path="/profile/:user"/>
                 </Router>
             </div>
         );

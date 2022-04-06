@@ -14,7 +14,7 @@ export class Light implements ILight, IOptionLoader<ILight> {
     }
 
     load(data?: RecursivePartial<ILight>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

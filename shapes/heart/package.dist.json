@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-heart",
-  "version": "1.43.1",
+  "version": "2.0.4",
   "description": "tsParticles heart shape",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -75,12 +75,12 @@
       "url": "https://www.buymeacoffee.com/matteobruni"
     }
   ],
-  "main": "shape.js",
+  "main": "index.js",
   "jsdelivr": "tsparticles.shape.heart.min.js",
   "unpkg": "tsparticles.shape.heart.min.js",
-  "module": "esm/shape.js",
-  "types": "shape.d.ts",
+  "module": "index.js",
+  "types": "index.d.ts",
   "dependencies": {
-    "tsparticles": "^1.43.1"
+    "tsparticles-engine": "^2.0.4"
   }
 }

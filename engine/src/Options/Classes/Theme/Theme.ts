@@ -16,7 +16,7 @@ export class Theme implements ITheme, IOptionLoader<ITheme> {
     }
 
     load(data?: RecursivePartial<ITheme>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

@@ -33,6 +33,15 @@ describe("Particles", () => {
         },
     };
 
+    const enableParticleEmptyMoveOptions = {
+        particles: {
+            number: { value: 0 },
+            move: {
+                enable: true,
+            },
+        },
+    };
+
     it("should create the number of particles configured in container", () => {
         testContainer.reset(numParticlesOptions);
         testParticles.reset(testContainer.container);
@@ -42,7 +51,13 @@ describe("Particles", () => {
     });
 
     it("should add particles to array of particles", () => {
-        testContainer.reset({});
+        testContainer.reset({
+            particles: {
+                number: {
+                    value: 0,
+                },
+            },
+        });
         testParticles.reset(testContainer.container);
 
         expect(testParticles.particles.count).to.equal(0);
@@ -141,13 +156,13 @@ describe("Particles", () => {
     });
 
     it("should push multiple particles at the specified position", () => {
-        testContainer.reset(enableParticleMoveOptions);
+        testContainer.reset(enableParticleEmptyMoveOptions);
         testCanvas.reset(1920, 1080, testContainer.container);
         testParticles.reset(testContainer.container);
 
         const position: ICoordinates3d = { x: 100, y: 100, z: 0 };
         testParticles.particles.push(numParticles, { position, clicking: false, inside: false });
-        expect(testParticles.particles.count).to.equal(5);
+        expect(testParticles.particles.count).to.equal(numParticles);
 
         for (let i = 0; i < numParticles; i++) {
             expect(testParticles.particles.array[i].position).to.eql(position);
@@ -155,7 +170,7 @@ describe("Particles", () => {
     });
 
     it("should move particles", () => {
-        testContainer.reset(enableParticleMoveOptions);
+        testContainer.reset(enableParticleEmptyMoveOptions);
         testCanvas.reset(1920, 1080, testContainer.container);
         testParticles.reset(testContainer.container);
 

@@ -1,10 +1,12 @@
-import { Constants } from "./Utils/Constants";
 import { Container } from "./Container";
+import type { CustomEventArgs } from "../Types/CustomEventArgs";
+import type { CustomEventListener } from "../Types/CustomEventListener";
 import type { Engine } from "../engine";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { Particle } from "./Particle";
 import type { RecursivePartial } from "../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
+import { generatedAttribute } from "./Utils/Constants";
 import { itemFromArray } from "../Utils/Utils";
 
 /**
@@ -144,7 +146,7 @@ export class Loader {
         if (domContainer.tagName.toLowerCase() === "canvas") {
             canvasEl = domContainer as HTMLCanvasElement;
 
-            canvasEl.dataset[Constants.generatedAttribute] = "false";
+            canvasEl.dataset[generatedAttribute] = "false";
         } else {
             const existingCanvases = domContainer.getElementsByTagName("canvas");
 
@@ -152,12 +154,12 @@ export class Loader {
             if (existingCanvases.length) {
                 canvasEl = existingCanvases[0];
 
-                canvasEl.dataset[Constants.generatedAttribute] = "false";
+                canvasEl.dataset[generatedAttribute] = "false";
             } else {
                 /* create canvas element */
                 canvasEl = document.createElement("canvas");
 
-                canvasEl.dataset[Constants.generatedAttribute] = "true";
+                canvasEl.dataset[generatedAttribute] = "true";
 
                 /* set size canvas */
                 canvasEl.style.width = "100%";
@@ -328,7 +330,7 @@ export class Loader {
             url = domContainer as SingleOrMultiple<string>;
             newIndex = jsonUrl as number;
         } else {
-            newId = id as string;
+            newId = id;
             element = domContainer as HTMLElement;
             url = jsonUrl as SingleOrMultiple<string>;
             newIndex = index;
@@ -351,5 +353,32 @@ export class Loader {
         for (const domItem of dom) {
             domItem.addClickHandler(callback);
         }
+    }
+
+    /**
+     * Adds a listener to the specified event
+     * @param type The event to listen to
+     * @param listener The listener of the specified event
+     */
+    addEventListener(type: string, listener: CustomEventListener): void {
+        this.#engine.eventDispatcher.addEventListener(type, listener);
+    }
+
+    /**
+     * Removes a listener from the specified event
+     * @param type The event to stop listening to
+     * @param listener The listener of the specified event
+     */
+    removeEventListener(type: string, listener: CustomEventListener): void {
+        this.#engine.eventDispatcher.removeEventListener(type, listener);
+    }
+
+    /**
+     * Dispatches an event that will be listened from listeners
+     * @param type The event to dispatch
+     * @param args The event parameters
+     */
+    dispatchEvent(type: string, args: CustomEventArgs): void {
+        this.#engine.eventDispatcher.dispatchEvent(type, args);
     }
 }

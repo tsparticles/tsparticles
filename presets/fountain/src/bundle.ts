@@ -1,5 +1,5 @@
 import { loadFountainPreset } from ".";
-import { tsParticles } from "tsparticles";
+import { tsParticles } from "tsparticles-engine";
 
 loadFountainPreset(tsParticles);
 

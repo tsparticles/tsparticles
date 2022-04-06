@@ -17,7 +17,7 @@ export class Stroke implements IStroke, IOptionLoader<IStroke> {
     }
 
     load(data?: RecursivePartial<IStroke>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

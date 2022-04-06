@@ -1,6 +1,6 @@
 import type { IColor } from "../../../../Core/Interfaces/Colors";
 
 export interface ILightShadow {
-    color: string | IColor;
+    color: IColor | string;
     length: number;
 }

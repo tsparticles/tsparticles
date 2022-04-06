@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4](https://github.com/matteobruni/tsparticles/compare/web-particles@1.43.1...web-particles@2.0.4) (2022-04-06)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+* **deps:** update dependency @capacitor/core to v3.4.2 ([aa44c98](https://github.com/matteobruni/tsparticles/commit/aa44c9855cd819c90d6676a7c547ddd1b3de727c))
+* **deps:** update dependency @capacitor/core to v3.4.2 ([b488e20](https://github.com/matteobruni/tsparticles/commit/b488e20ac54a48883bf7388ce33d6d71833cdec9))
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+## [2.0.3](https://github.com/matteobruni/tsparticles/compare/web-particles@1.42.1...web-particles@2.0.3) (2022-03-11)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+* **deps:** update dependency @capacitor/core to v3.4.2 ([b488e20](https://github.com/matteobruni/tsparticles/commit/b488e20ac54a48883bf7388ce33d6d71833cdec9))
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+## [2.0.2](https://github.com/matteobruni/tsparticles/compare/web-particles@1.41.4...web-particles@2.0.2) (2022-02-21)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 ## [1.43.1](https://github.com/matteobruni/tsparticles/compare/web-particles@1.43.0...web-particles@1.43.1) (2022-04-06)
 
 **Note:** Version bump only for package web-particles
@@ -59,6 +105,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [2.0.1](https://github.com/matteobruni/tsparticles/compare/web-particles@2.0.0...web-particles@2.0.1) (2022-02-15)
 ## [1.41.6](https://github.com/matteobruni/tsparticles/compare/web-particles@1.41.5...web-particles@1.41.6) (2022-03-03)
 
 **Note:** Version bump only for package web-particles
@@ -99,6 +146,28 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [2.0.0](https://github.com/matteobruni/tsparticles/compare/web-particles@1.41.1...web-particles@2.0.0) (2022-02-15)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+# [2.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/web-particles@1.12.2...web-particles@2.0.0-beta.4) (2022-01-30)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
 ## [1.41.1](https://github.com/matteobruni/tsparticles/compare/web-particles@1.41.0...web-particles@1.41.1) (2022-02-14)
 
 **Note:** Version bump only for package web-particles
@@ -144,12 +213,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 * updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
 
 
 
 
 
+# [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/web-particles@2.0.0-beta.2...web-particles@2.0.0-beta.3) (2021-12-07)
 ## [1.12.2](https://github.com/matteobruni/tsparticles/compare/web-particles@1.12.1...web-particles@1.12.2) (2022-01-29)
 
 **Note:** Version bump only for package web-particles
@@ -182,6 +253,34 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/web-particles@1.10.5...web-particles@2.0.0-beta.2) (2021-12-04)
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+# [2.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/web-particles@1.8.4...web-particles@2.0.0-beta.1) (2021-10-06)
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+# [2.0.0-beta.0](https://github.com/matteobruni/tsparticles/compare/web-particles@1.8.3...web-particles@2.0.0-beta.0) (2021-10-06)
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 ## [1.10.6](https://github.com/matteobruni/tsparticles/compare/web-particles@1.10.5...web-particles@1.10.6) (2021-12-24)
 
 

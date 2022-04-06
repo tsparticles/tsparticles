@@ -2,28 +2,29 @@ import {
     calcPositionFromSize,
     getRangeMax,
     getRangeMin,
-    getRangeValue,
+    getValue,
     randomInRange,
     setRangeValue,
 } from "../Utils/NumberUtils";
 import { ClickMode } from "../Enums/Modes/ClickMode";
 import type { Container } from "./Container";
 import type { Engine } from "../engine";
+import { EventType } from "../Enums/Types/EventType";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IDelta } from "./Interfaces/IDelta";
-import type { IDensity } from "../Options/Interfaces/Particles/Number/IDensity";
 import type { IMouseData } from "./Interfaces/IMouseData";
 import type { IParticle } from "./Interfaces/IParticle";
-import type { IParticles } from "../Options/Interfaces/Particles/IParticles";
+import type { IParticlesDensity } from "../Options/Interfaces/Particles/Number/IParticlesDensity";
 import type { IParticlesFrequencies } from "./Interfaces/IParticlesFrequencies";
+import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions";
 import type { IRgb } from "./Interfaces/Colors";
 import { InteractionManager } from "./Utils/InteractionManager";
 import { Particle } from "./Particle";
-import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
 import { Point } from "./Utils/Point";
 import { QuadTree } from "./Utils/QuadTree";
 import { Rectangle } from "./Utils/Rectangle";
 import type { RecursivePartial } from "../Types/RecursivePartial";
+import { loadParticlesOptions } from "../Utils/Utils";
 
 /**
  * Particles manager object
@@ -64,7 +65,6 @@ export class Particles {
 
     constructor(engine: Engine, private readonly container: Container) {
         this.#engine = engine;
-
         this.nextId = 0;
         this.array = [];
         this.zArray = [];
@@ -169,6 +169,13 @@ export class Particles {
             this.zArray.splice(zIdx, 1);
 
             deleted++;
+
+            this.#engine.dispatchEvent(EventType.particleRemoved, {
+                container: this.container,
+                data: {
+                    particle,
+                },
+            });
         }
     }
 
@@ -301,7 +308,7 @@ export class Particles {
         this.zArray = [];
     }
 
-    push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticles>, group?: string): void {
+    push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticlesOptions>, group?: string): void {
         this.pushing = true;
 
         for (let i = 0; i < nb; i++) {
@@ -313,7 +320,7 @@ export class Particles {
 
     addParticle(
         position?: ICoordinates,
-        overrideOptions?: RecursivePartial<IParticles>,
+        overrideOptions?: RecursivePartial<IParticlesOptions>,
         group?: string
     ): Particle | undefined {
         const container = this.container,
@@ -332,12 +339,9 @@ export class Particles {
     }
 
     addSplitParticle(parent: Particle): Particle | undefined {
-        const splitOptions = parent.options.destroy.split,
-            options = new ParticlesOptions();
-
-        options.load(parent.options);
-
-        const factor = getRangeValue(splitOptions.factor.value);
+        const splitOptions = parent.options.destroy.split;
+        const options = loadParticlesOptions(parent.options);
+        const factor = getValue(splitOptions.factor);
 
         options.color.load({
             value: {
@@ -453,7 +457,7 @@ export class Particles {
         this.interactionManager.handleClickMode(mode);
     }
 
-    private applyDensity(options: IParticles, manualCount: number, group?: string): void {
+    private applyDensity(options: IParticlesOptions, manualCount: number, group?: string): void {
         if (!options.number.density?.enable) {
             return;
         }
@@ -474,7 +478,7 @@ export class Particles {
         }
     }
 
-    private initDensityFactor(densityOptions: IDensity): number {
+    private initDensityFactor(densityOptions: IParticlesDensity): number {
         const container = this.container;
 
         if (!container.canvas.element || !densityOptions.enable) {
@@ -489,7 +493,7 @@ export class Particles {
 
     private pushParticle(
         position?: ICoordinates,
-        overrideOptions?: RecursivePartial<IParticles>,
+        overrideOptions?: RecursivePartial<IParticlesOptions>,
         group?: string,
         initializer?: (particle: Particle) => boolean
     ): Particle | undefined {
@@ -510,6 +514,13 @@ export class Particles {
             this.zArray.push(particle);
 
             this.nextId++;
+
+            this.#engine.dispatchEvent(EventType.particleAdded, {
+                container: this.container,
+                data: {
+                    particle,
+                },
+            });
 
             return particle;
         } catch (e) {

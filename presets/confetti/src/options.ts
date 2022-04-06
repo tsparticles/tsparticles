@@ -1,4 +1,4 @@
-import type { ISourceOptions, RecursivePartial } from "tsparticles";
+import type { ISourceOptions, RecursivePartial } from "tsparticles-engine";
 import { ConfettiOptions } from "./ConfettiOptions";
 import type { IConfettiOptions } from "./IConfettiOptions";
 
@@ -24,10 +24,9 @@ export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>)
                 type: actualOptions.shapes,
             },
             opacity: {
-                value: 1,
+                value: { min: 0, max: 1 },
                 animation: {
                     enable: true,
-                    minimumValue: 0,
                     speed: 0.5,
                     startValue: "max",
                     destroy: "min",

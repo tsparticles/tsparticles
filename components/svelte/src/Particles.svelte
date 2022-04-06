@@ -1,22 +1,25 @@
 <script lang="ts">
     import { afterUpdate, createEventDispatcher } from "svelte";
-    import type { ISourceOptions } from "tsparticles";
-    import { tsParticles } from "tsparticles";
+    import type { ISourceOptions } from "tsparticles-engine";
+    import { tsParticles } from "tsparticles-engine";
 
     export let options: ISourceOptions = {};
     export let url = "";
     export let id = "tsparticles";
+    export let particlesInit;
 
     const dispatch = createEventDispatcher();
-    const particlesInitEvent = "particlesInit";
+
     const particlesLoadedEvent = "particlesLoaded";
 
     let oldId = id;
 
-    afterUpdate(() => {
+    afterUpdate(async () => {
         tsParticles.init();
 
-        dispatch(particlesInitEvent, tsParticles);
+        if (particlesInit) {
+            await particlesInit(tsParticles);
+        }
 
         if (oldId) {
             const oldContainer = tsParticles.dom().find((c) => c.id === oldId);
@@ -35,13 +38,19 @@
                 oldId = id;
             };
 
+            let container;
+
             if (url) {
-                tsParticles.loadJSON(id, url).then(cb);
+                container = await tsParticles.loadJSON(id, url);
             } else if (options) {
-                tsParticles.load(id, options).then(cb);
+                container = await tsParticles.load(id, options);
             } else {
                 console.error("You must specify options or url to load tsParticles");
+
+                return;
             }
+
+            cb(container);
         } else {
             dispatch(particlesLoadedEvent, {
                 particles: undefined,

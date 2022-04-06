@@ -5,7 +5,7 @@
 
 /// <reference types="inferno" />
 import { IParticlesProps, IParticlesState, ParticlesProps } from "../src/";
-import { ISourceOptions } from "tsparticles";
+import { ISourceOptions } from "tsparticles-engine";
 import { Component } from "inferno";
 
 type IParticlesParams = IParticlesProps;

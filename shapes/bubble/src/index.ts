@@ -1,4 +1,6 @@
-import { loadBubbleShape } from "./shape";
-import { tsParticles } from "tsparticles";
+import { BubbleDrawer } from "./BubbleDrawer";
+import type { Engine } from "tsparticles-engine";
 
-loadBubbleShape(tsParticles);
+export async function loadBubbleShape(engine: Engine): Promise<void> {
+    await engine.addShape("bubble", new BubbleDrawer());
+}

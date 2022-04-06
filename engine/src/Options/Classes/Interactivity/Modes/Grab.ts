@@ -50,7 +50,7 @@ export class Grab implements IGrab, IOptionLoader<IGrab> {
     }
 
     load(data?: RecursivePartial<IGrab>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

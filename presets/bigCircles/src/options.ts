@@ -1,5 +1,5 @@
-import { MoveDirection, OutMode } from "tsparticles";
-import type { ISourceOptions } from "tsparticles";
+import { MoveDirection, OutMode } from "tsparticles-engine";
+import type { ISourceOptions } from "tsparticles-engine";
 
 export const options: ISourceOptions = {
     fpsLimit: 120,
@@ -20,11 +20,7 @@ export const options: ISourceOptions = {
             value: 0.5,
         },
         size: {
-            value: 400,
-            random: {
-                enable: true,
-                minimumValue: 200,
-            },
+            value: { min: 200, max: 400 },
         },
         move: {
             enable: true,
@@ -45,7 +41,6 @@ export const options: ISourceOptions = {
     },
     detectRetina: true,
     emitters: {
-        direction: MoveDirection.top,
         position: {
             x: 50,
             y: 150,

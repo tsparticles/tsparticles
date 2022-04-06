@@ -1,0 +1,62 @@
+{
+  "detectRetina": true,
+  "fpsLimit": 60,
+  "particles": {
+    "color": {
+      "value": ["#5bc0eb", "#fde74c", "#9bc53d", "#e55934", "#fa7921"]
+    },
+    "move": {
+      "attract": {
+        "enable": false,
+        "rotate": {
+          "x": 600,
+          "y": 1200
+        }
+      },
+      "direction": "none",
+      "enable": true,
+      "outModes": {
+        "default": "out"
+      },
+      "speed": 3
+    },
+    "number": {
+      "density": {
+        "enable": true,
+        "area": 800
+      },
+      "limit": 300,
+      "value": 100
+    },
+    "opacity": {
+      "value": 1
+    },
+    "orbit": {
+      "animation": {
+        "enable": true,
+        "speed": 10
+      },
+      "enable": true,
+      "opacity": 1,
+      "color": "#ff7700",
+      "rotation": {
+        "random": {
+          "enable": true
+        }
+      }
+    },
+    "shape": {
+      "type": ["circle", "square"]
+    },
+    "size": {
+      "value": 10
+    }
+  },
+  "background": {
+    "color": "#000000",
+    "image": "",
+    "position": "50% 50%",
+    "repeat": "no-repeat",
+    "size": "cover"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "nextjs",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -12,8 +12,8 @@
     "next": "12.1.4",
     "react": "18.0.0",
     "react-dom": "18.0.0",
-    "react-tsparticles": "^1.43.1",
-    "tsparticles-preset-big-circles": "^1.43.1"
+    "react-tsparticles": "^2.0.4",
+    "tsparticles-preset-big-circles": "^2.0.4"
   },
   "devDependencies": {
     "eslint": "8.12.0",

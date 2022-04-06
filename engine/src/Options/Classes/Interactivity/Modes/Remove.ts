@@ -30,7 +30,7 @@ export class Remove implements IRemove, IOptionLoader<IRemove> {
     }
 
     load(data?: RecursivePartial<IRemove>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

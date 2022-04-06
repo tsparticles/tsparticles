@@ -18,7 +18,7 @@ export class LinksTriangle implements ILinksTriangle, IOptionLoader<ILinksTriang
     }
 
     load(data?: RecursivePartial<ILinksTriangle>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

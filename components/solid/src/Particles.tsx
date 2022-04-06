@@ -1,10 +1,11 @@
-import { tsParticles, Container } from "tsparticles";
+import { tsParticles, Container } from "tsparticles-engine";
 import type { IParticlesProps } from "./IParticlesProps";
 import {
 	createEffect,
 	createMemo,
 	createSignal,
 	onCleanup,
+	onMount,
 	JSX,
 } from "solid-js";
 
@@ -16,17 +17,10 @@ interface MutableRefObject<T> {
  * @param (props:IParticlesProps) Particles component properties
  */
 const Particles = (props: IParticlesProps): JSX.Element => {
+	const [init, setInit] = createSignal(!props.init);
+
 	try {
 		const id = props.id ?? "tsparticles";
-
-		const [init, setInit] = createSignal(!props.init);
-
-		if (props.init && !init()) {
-			props.init(tsParticles).then(() => {
-				setInit(true);
-			});
-		}
-
 		const options = createMemo(() => props.params ?? props.options ?? {});
 
 		const refContainer = props.container as MutableRefObject<
@@ -49,20 +43,30 @@ const Particles = (props: IParticlesProps): JSX.Element => {
 			}
 		};
 
+		onMount(async () => {
+			if (props.init && !init()) {
+				await props.init(tsParticles);
+
+				setInit(true);
+			}
+		});
+
 		createEffect(async () => {
 			if (!init()) {
+				console.log("not initialized");
+
 				return;
 			}
 
-			const container = tsParticles.dom().find((t) => t.id === containerId());
+			let container = tsParticles.dom().find((t) => t.id === containerId());
 
 			container?.destroy();
 
-			const newContainer = url
-				? await tsParticles.loadJSON(id, url)
-				: await tsParticles.load(id, options());
+			container = await (url
+				? tsParticles.loadJSON(id, url)
+				: tsParticles.load(id, options()));
 
-			await cb(newContainer);
+			await cb(container);
 		});
 
 		onCleanup(() => {

@@ -36,7 +36,7 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.(js|jsx|tsx|ts)$/,   // All ts and tsx files will be process by
+				test: /\.(tsx|ts)$/,   // All ts and tsx files will be process by
 				loader: 'babel-loader',			// first babel-loader, then ts-loader
 				options: {
 					presets: [ "@babel/preset-env" ],

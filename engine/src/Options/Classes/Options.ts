@@ -1,3 +1,4 @@
+import { deepExtend, loadParticlesOptions } from "../../Utils/Utils";
 import { Background } from "./Background/Background";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
 import type { Engine } from "../../engine";
@@ -7,20 +8,21 @@ import type { IOptions } from "../Interfaces/IOptions";
 import { Interactivity } from "./Interactivity/Interactivity";
 import { ManualParticle } from "./ManualParticle";
 import { Motion } from "./Motion/Motion";
-import { ParticlesOptions } from "./Particles/ParticlesOptions";
 import type { RangeValue } from "../../Types/RangeValue";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
 import { Responsive } from "./Responsive";
 import { ResponsiveMode } from "../../Enums/Modes/ResponsiveMode";
+import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 import { Theme } from "./Theme/Theme";
 import { ThemeMode } from "../../Enums/Modes/ThemeMode";
-import { deepExtend } from "../../Utils/Utils";
 
 /**
  * [[include:Options.md]]
  * @category Options
  */
 export class Options implements IOptions, IOptionLoader<IOptions> {
+    readonly #engine;
+
     /**
      * @deprecated this property is obsolete, please use the new fpsLimit
      */
@@ -80,7 +82,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     particles;
     pauseOnBlur;
     pauseOnOutsideViewport;
-    preset?: string | string[];
+    preset?: SingleOrMultiple<string>;
     style: RecursivePartial<CSSStyleDeclaration>;
     responsive: Responsive[];
     themes: Theme[];
@@ -90,11 +92,8 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
     [name: string]: unknown;
 
-    readonly #engine;
-
     constructor(engine: Engine) {
         this.#engine = engine;
-
         this.autoPlay = true;
         this.background = new Background();
         this.backgroundMask = new BackgroundMask();
@@ -105,7 +104,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.interactivity = new Interactivity();
         this.manualParticles = [];
         this.motion = new Motion();
-        this.particles = new ParticlesOptions();
+        this.particles = loadParticlesOptions();
         this.pauseOnBlur = true;
         this.pauseOnOutsideViewport = true;
         this.responsive = [];
@@ -119,7 +118,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
      * @param data the source data to load into the instance
      */
     load(data?: RecursivePartial<IOptions>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

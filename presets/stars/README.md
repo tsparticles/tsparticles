@@ -77,7 +77,7 @@ This sample uses the class component syntax, but you can use hooks as well (if t
 
 ```typescript jsx
 import Particles from "react-tsparticles";
-import type { Engine } from "tsparticles";
+import type { Engine } from "tsparticles-engine";
 import { loadStarsPreset } from "tsparticles-preset-stars";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {

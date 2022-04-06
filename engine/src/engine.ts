@@ -1,10 +1,18 @@
-import type {
+/**
+ * Engine class for creating the singleton on window.
+ * It's a singleton proxy to the static [[this.#loader]] class for initializing [[Container]] instances
+ * @category Engine
+ */
+import {
     ShapeDrawerAfterEffectFunction,
     ShapeDrawerDestroyFunction,
     ShapeDrawerDrawFunction,
     ShapeDrawerInitFunction,
 } from "./Types/ShapeDrawerFunctions";
 import type { Container } from "./Core/Container";
+import type { CustomEventArgs } from "./Types/CustomEventArgs";
+import type { CustomEventListener } from "./Types/CustomEventListener";
+import { EventDispatcher } from "./Utils/EventDispatcher";
 import type { IInteractor } from "./Core/Interfaces/IInteractor";
 import type { IMovePathGenerator } from "./Core/Interfaces/IMovePathGenerator";
 import type { IOptions } from "./Options/Interfaces/IOptions";
@@ -25,6 +33,8 @@ import type { SingleOrMultiple } from "./Types/SingleOrMultiple";
  * @category Engine
  */
 export class Engine {
+    readonly eventDispatcher;
+
     /**
      * Checks if the engine instance is initialized
      */
@@ -50,8 +60,9 @@ export class Engine {
      * Engine constructor, initializes plugins, loader and the containers array
      */
     constructor() {
-        this.#initialized = false;
         this.domArray = [];
+        this.eventDispatcher = new EventDispatcher();
+        this.#initialized = false;
         this.#loader = new Loader(this);
         this.plugins = new Plugins(this);
     }
@@ -269,5 +280,32 @@ export class Engine {
         this.plugins.addParticleUpdater(name, updaterInitializer);
 
         await this.refresh();
+    }
+
+    /**
+     * Adds a listener to the specified event
+     * @param type The event to listen to
+     * @param listener The listener of the specified event
+     */
+    addEventListener(type: string, listener: CustomEventListener): void {
+        this.#loader.addEventListener(type, listener);
+    }
+
+    /**
+     * Removes a listener from the specified event
+     * @param type The event to stop listening to
+     * @param listener The listener of the specified event
+     */
+    removeEventListener(type: string, listener: CustomEventListener): void {
+        this.#loader.removeEventListener(type, listener);
+    }
+
+    /**
+     * Dispatches an event that will be listened from listeners
+     * @param type The event to dispatch
+     * @param args The event parameters
+     */
+    dispatchEvent(type: string, args: CustomEventArgs): void {
+        this.#loader.dispatchEvent(type, args);
     }
 }

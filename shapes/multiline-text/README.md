@@ -50,7 +50,7 @@ $ yarn add tsparticles-shape-multiline-text
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles");
+const { tsParticles } = require("tsparticles-engine");
 const { loadMultilineTextShape } = require("tsparticles-shape-multiline-text");
 
 loadMultilineTextShape(tsParticles);
@@ -59,7 +59,7 @@ loadMultilineTextShape(tsParticles);
 or
 
 ```javascript
-import { tsParticles } from "tsparticles";
+import { tsParticles } from "tsparticles-engine";
 import { loadMultilineTextShape } from "tsparticles-shape-multiline-text";
 
 loadMultilineTextShape(tsParticles);

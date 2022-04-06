@@ -17,7 +17,7 @@ export class Parallax implements IParallax, IOptionLoader<IParallax> {
     }
 
     load(data?: RecursivePartial<IParallax>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

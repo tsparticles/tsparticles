@@ -34,10 +34,17 @@ _Remote url_
 import Particles from "solid-particles";
 
 function App() {
+  const particlesInit = async (main) => {
+    // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+    // starting from v2 you can add only the features you need reducing the bundle size
+    await loadFull(main);
+  };
+
   return (
     <div class="App">
       <Particles
         id="tsparticles"
+        init={particlesInit}
         options={{
           background: {
             color: "#000",
@@ -56,6 +63,7 @@ _Options object_
 
 ```javascript
 import Particles from "solid-particles";
+import { loadFull } from "tsparticles";
 
 class App extends Component {
   constructor(props) {
@@ -65,10 +73,13 @@ class App extends Component {
     this.particlesLoaded = this.particlesLoaded.bind(this);
   }
 
-  particlesInit(main) {
+  async particlesInit(main) {
     console.log(main);
 
     // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+    // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+    // starting from v2 you can add only the features you need reducing the bundle size
+    await loadFull(main);
   }
 
   particlesLoaded(container) {
@@ -133,7 +144,9 @@ class App extends Component {
             move: {
               direction: "none",
               enable: true,
-              outMode: "bounce",
+              outModes: {
+                default: "bounce",
+              },
               random: false,
               speed: 6,
               straight: false,
@@ -152,8 +165,7 @@ class App extends Component {
               type: "circle",
             },
             size: {
-              random: true,
-              value: 5,
+              value: { min: 1, max: 5 },
             },
           },
           detectRetina: true,

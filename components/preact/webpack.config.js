@@ -26,7 +26,7 @@ const typescriptLoader = {
         {
             loader: "babel-loader",
             options: {
-                presets: [ "@babel/preset-env" ],
+                presets: ["@babel/preset-env"],
                 plugins: [
                     [ "@babel/transform-runtime" ]
                 ]
@@ -52,10 +52,26 @@ const getExternals = (target = "cjs") => {
         /[Pp]react/,
         /[Pp]react\/compat/,
         {
-            tsparticles: {
+            "tsparticles": {
                 commonjs: "tsparticles",
                 commonjs2: "tsparticles",
                 amd: "tsparticles",
+                root: "window"
+            }
+        },
+        {
+            "tsparticles-slim": {
+                commonjs: "tsparticles-slim",
+                commonjs2: "tsparticles-slim",
+                amd: "tsparticles-slim",
+                root: "window"
+            }
+        },
+        {
+            "tsparticles-engine": {
+                commonjs: "tsparticles-engine",
+                commonjs2: "tsparticles-engine",
+                amd: "tsparticles-engine",
                 root: "window"
             }
         },
@@ -68,7 +84,8 @@ const getExternals = (target = "cjs") => {
 };
 
 const getLibraryTarget = (target = "cjs") => {
-    let libraryTarget = "";
+    let libraryTarget;
+
     switch (target) {
         case "umd":
             libraryTarget = "umd";
@@ -79,6 +96,7 @@ const getLibraryTarget = (target = "cjs") => {
         default:
             libraryTarget = target;
     }
+
     return libraryTarget;
 };
 

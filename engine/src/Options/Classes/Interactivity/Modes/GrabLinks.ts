@@ -19,7 +19,7 @@ export class GrabLinks implements IGrabLinks, IOptionLoader<IGrabLinks> {
     }
 
     load(data?: RecursivePartial<IGrabLinks>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

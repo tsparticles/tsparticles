@@ -45,7 +45,7 @@ export class Modes implements IModes, IOptionLoader<IModes> {
     }
 
     load(data?: RecursivePartial<IModes>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

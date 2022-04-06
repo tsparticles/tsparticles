@@ -4,7 +4,7 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 /// <reference types="solid-js" />
-import type { Container, ISourceOptions, Engine } from "tsparticles";
+import type { Container, ISourceOptions, Engine } from "tsparticles-engine";
 import type { JSX } from "solid-js";
 
 export interface IParticlesProps {

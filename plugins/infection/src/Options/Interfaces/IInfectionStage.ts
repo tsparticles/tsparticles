@@ -1,4 +1,4 @@
-import type { IColor } from "tsparticles";
+import type { IColor } from "tsparticles-engine";
 
 /**
  * Infection stage options

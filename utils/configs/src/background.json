@@ -1,0 +1,97 @@
+{
+  "particles": {
+    "number": {
+      "value": 80,
+      "density": {
+        "enable": true,
+        "area": 800
+      }
+    },
+    "color": {
+      "value": "#ffffff"
+    },
+    "shape": {
+      "type": "circle"
+    },
+    "opacity": {
+      "value": 1
+    },
+    "size": {
+      "value": {
+        "min": 1,
+        "max": 30
+      }
+    },
+    "links": {
+      "enable": true,
+      "distance": 150,
+      "color": "#ffffff",
+      "opacity": 1,
+      "width": 1
+    },
+    "move": {
+      "enable": true,
+      "speed": 2,
+      "direction": "none",
+      "random": false,
+      "straight": false,
+      "outModes": "out"
+    }
+  },
+  "interactivity": {
+    "detectsOn": "canvas",
+    "events": {
+      "onHover": {
+        "enable": true,
+        "mode": "bubble"
+      },
+      "onClick": {
+        "enable": true,
+        "mode": "push"
+      },
+      "resize": true
+    },
+    "modes": {
+      "grab": {
+        "distance": 400,
+        "links": {
+          "opacity": 1
+        }
+      },
+      "bubble": {
+        "distance": 400,
+        "size": 100,
+        "duration": 2,
+        "opacity": 1
+      },
+      "repulse": {
+        "distance": 200
+      },
+      "push": {
+        "quantity": 4
+      },
+      "remove": {
+        "quantity": 2
+      }
+    }
+  },
+  "backgroundMask": {
+    "enable": true,
+    "cover": {
+      "value": {
+        "r": 255,
+        "g": 255,
+        "b": 255
+      }
+    }
+  },
+  "detectRetina": true,
+  "fpsLimit": 60,
+  "background": {
+    "color": "#ffffff",
+    "image": "url('https://particles.js.org/images/background3.jpg')",
+    "position": "50% 50%",
+    "repeat": "no-repeat",
+    "size": "cover"
+  }
+}

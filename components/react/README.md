@@ -31,14 +31,14 @@ Starting from version 1.17.0 there are two official `create-react-app` templates
 
 You can simply install them using the `create-react-app` command like this:
 
-```shell script
-create-react-app your_app --template particles
+```shell
+$ create-react-app your_app --template particles
 ```
 
 or
 
-```shell script
-create-react-app your_app --template particles-typescript
+```shell
+$ create-react-app your_app --template particles-typescript
 ```
 
 ## How to use
@@ -51,12 +51,16 @@ _Remote url_
 
 ```javascript
 import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
 
 const App = () => {
-  const particlesInit = (main) => {
+  const particlesInit = async (main) => {
     console.log(main);
 
     // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+    // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+    // starting from v2 you can add only the features you need reducing the bundle size
+    await loadFull(tsParticles);
   };
 
   const particlesLoaded = (container) => {
@@ -73,12 +77,16 @@ _Options object_
 
 ```javascript
 import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
 
 const App = () => {
-  const particlesInit = (main) => {
+  const particlesInit = async (main) => {
     console.log(main);
 
     // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+    // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+    // starting from v2 you can add only the features you need reducing the bundle size
+    await loadFull(main);
   };
 
   const particlesLoaded = (container) => {
@@ -109,12 +117,6 @@ const App = () => {
             resize: true,
           },
           modes: {
-            bubble: {
-              distance: 400,
-              duration: 2,
-              opacity: 0.8,
-              size: 40,
-            },
             push: {
               quantity: 4,
             },
@@ -141,7 +143,9 @@ const App = () => {
           move: {
             direction: "none",
             enable: true,
-            outMode: "bounce",
+            outModes: {
+              default: "bounce",
+            },
             random: false,
             speed: 6,
             straight: false,
@@ -160,8 +164,7 @@ const App = () => {
             type: "circle",
           },
           size: {
-            random: true,
-            value: 5,
+            value: { min: 1, max: 5 },
           },
         },
         detectRetina: true,
@@ -186,14 +189,19 @@ const App = () => {
 | init            | function | This function is called after the tsParticles instance initialization, the instance is the parameter and you can load custom presets or shapes here |
 | loaded          | function | This function is called when particles are correctly loaded in canvas, the current container is the parameter and you can customize it here         |
 
-Find your parameters configuration [here](https://particles.js.org).
+
+**particles.json**
+
+Find all configuration options [here](https://particles.js.org/docs/interfaces/Options_Interfaces_IOptions.IOptions.html).
+
+You can find sample json configurations [here](https://github.com/matteobruni/tsparticles/tree/main/website/presets) 📖
 
 ## Demos
 
-The demo website is [here](https://particles.js.org)
-
-<https://particles.js.org>
+Preset demos can be found [here](https://particles.js.org/samples/presets/index.html)
 
 There's also a CodePen collection actively maintained and updated [here](https://codepen.io/collection/DPOage)
 
-<https://codepen.io/collection/DPOage>
+Report bugs and issues [here](https://github.com/matteobruni/tsparticles/issues)
+
+[tsParticle Website](https://particles.js.org)

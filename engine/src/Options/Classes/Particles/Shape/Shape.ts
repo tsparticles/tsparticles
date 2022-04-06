@@ -6,7 +6,6 @@ import type { IShape } from "../../../Interfaces/Particles/Shape/IShape";
 import type { IShapeValues } from "../../../../Core/Interfaces/IShapeValues";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { ShapeData } from "../../../../Types/ShapeData";
-import { ShapeType } from "../../../../Enums/Types/ShapeType";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 import { Stroke } from "../Stroke";
 import { deepExtend } from "../../../../Utils/Utils";
@@ -20,7 +19,7 @@ export class Shape implements IShape, IOptionLoader<IShape> {
      * @deprecated this property was integrated in custom shape management
      */
     get image(): SingleOrMultiple<IImageShape> {
-        return (this.options[ShapeType.image] ?? this.options[ShapeType.images]) as SingleOrMultiple<IImageShape>;
+        return (this.options["image"] ?? this.options["images"]) as SingleOrMultiple<IImageShape>;
     }
 
     /**
@@ -28,8 +27,8 @@ export class Shape implements IShape, IOptionLoader<IShape> {
      * @param value
      */
     set image(value: SingleOrMultiple<IImageShape>) {
-        this.options[ShapeType.image] = value;
-        this.options[ShapeType.images] = value;
+        this.options["image"] = value;
+        this.options["images"] = value;
     }
 
     /**
@@ -79,42 +78,42 @@ export class Shape implements IShape, IOptionLoader<IShape> {
      * @deprecated this property was integrated in custom shape management
      */
     get character(): SingleOrMultiple<ICharacterShape> {
-        return (this.options[ShapeType.character] ?? this.options[ShapeType.char]) as SingleOrMultiple<ICharacterShape>;
+        return (this.options["character"] ?? this.options["char"]) as SingleOrMultiple<ICharacterShape>;
     }
 
     /**
      * @deprecated this property was integrated in custom shape management
      */
     set character(value: SingleOrMultiple<ICharacterShape>) {
-        this.options[ShapeType.character] = value;
-        this.options[ShapeType.char] = value;
+        this.options["character"] = value;
+        this.options["char"] = value;
     }
 
     /**
      * @deprecated this property was integrated in custom shape management
      */
     get polygon(): SingleOrMultiple<IPolygonShape> {
-        return (this.options[ShapeType.polygon] ?? this.options[ShapeType.star]) as SingleOrMultiple<IPolygonShape>;
+        return (this.options["polygon"] ?? this.options["star"]) as SingleOrMultiple<IPolygonShape>;
     }
 
     /**
      * @deprecated this property was integrated in custom shape management
      */
     set polygon(value: SingleOrMultiple<IPolygonShape>) {
-        this.options[ShapeType.polygon] = value;
-        this.options[ShapeType.star] = value;
+        this.options["polygon"] = value;
+        this.options["star"] = value;
     }
 
-    type: SingleOrMultiple<ShapeType | keyof typeof ShapeType | string>;
+    type: SingleOrMultiple<string>;
     options: ShapeData;
 
     constructor() {
         this.options = {};
-        this.type = ShapeType.circle;
+        this.type = "circle";
     }
 
     load(data?: RecursivePartial<IShape>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 
@@ -124,15 +123,15 @@ export class Shape implements IShape, IOptionLoader<IShape> {
             for (const shape in options) {
                 const item = options[shape];
 
-                if (item !== undefined) {
+                if (item) {
                     this.options[shape] = deepExtend(this.options[shape] ?? {}, item) as IShapeValues[];
                 }
             }
         }
 
-        this.loadShape(data.character, ShapeType.character, ShapeType.char, true);
-        this.loadShape(data.polygon, ShapeType.polygon, ShapeType.star, false);
-        this.loadShape(data.image ?? data.images, ShapeType.image, ShapeType.images, true);
+        this.loadShape(data.character, "character", "char", true);
+        this.loadShape(data.polygon, "polygon", "star", false);
+        this.loadShape(data.image ?? data.images, "image", "images", true);
 
         if (data.type !== undefined) {
             this.type = data.type;
@@ -141,8 +140,8 @@ export class Shape implements IShape, IOptionLoader<IShape> {
 
     private loadShape<T extends IShapeValues>(
         item: RecursivePartial<SingleOrMultiple<T>> | undefined,
-        mainKey: ShapeType,
-        altKey: ShapeType,
+        mainKey: string,
+        altKey: string,
         altOverride: boolean
     ): void {
         if (item === undefined) {

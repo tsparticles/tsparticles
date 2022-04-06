@@ -1,8 +1,8 @@
-import { Bounce } from "../Bounce/Bounce";
 import { CollisionMode } from "../../../../Enums/Modes/CollisionMode";
 import { CollisionsOverlap } from "./CollisionsOverlap";
 import type { ICollisions } from "../../../Interfaces/Particles/Collisions/ICollisions";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import { ParticlesBounce } from "../Bounce/ParticlesBounce";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 /**
@@ -10,20 +10,20 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
  * [[include:Collisions.md]]
  */
 export class Collisions implements ICollisions, IOptionLoader<ICollisions> {
-    bounce: Bounce;
+    bounce;
     enable;
     mode: CollisionMode | keyof typeof CollisionMode;
     overlap;
 
     constructor() {
-        this.bounce = new Bounce();
+        this.bounce = new ParticlesBounce();
         this.enable = false;
         this.mode = CollisionMode.bounce;
         this.overlap = new CollisionsOverlap();
     }
 
     load(data?: RecursivePartial<ICollisions>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

@@ -75,7 +75,7 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
     }
 
     load(data?: RecursivePartial<IEvents>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

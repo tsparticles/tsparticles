@@ -1,5 +1,4 @@
-import type { ICoordinates, IOptionLoader } from "tsparticles";
-import type { RecursivePartial, SingleOrMultiple } from "tsparticles";
+import type { ICoordinates, IOptionLoader, RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
 import type { IConfettiOptions } from "./IConfettiOptions";
 
 export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfettiOptions> {

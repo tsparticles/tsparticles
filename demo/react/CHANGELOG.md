@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.28.1...react-tsparticles-demo@2.0.4) (2022-04-06)
+
+
+### Bug Fixes
+
+* **deps:** update react monorepo to v18 ([4a434e6](https://github.com/matteobruni/tsparticles/commit/4a434e6217f7b65291da2a053af8f2ded70c879c))
+
+
+### Features
+
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+* moved polygon mask to external plugin (breaking) ([abdfe37](https://github.com/matteobruni/tsparticles/commit/abdfe37f250a4f357f4491bb7ff0e54da6a7303e))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+## [2.0.3](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.27.1...react-tsparticles-demo@2.0.3) (2022-03-11)
+
+
+### Features
+
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+* moved polygon mask to external plugin (breaking) ([abdfe37](https://github.com/matteobruni/tsparticles/commit/abdfe37f250a4f357f4491bb7ff0e54da6a7303e))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 ## [1.28.1](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.28.0...react-tsparticles-demo@1.28.1) (2022-04-06)
 
 **Note:** Version bump only for package react-tsparticles-demo
@@ -24,6 +50,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [2.0.2](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.26.4...react-tsparticles-demo@2.0.2) (2022-02-21)
 ## [1.27.4](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.27.3...react-tsparticles-demo@1.27.4) (2022-03-20)
 
 **Note:** Version bump only for package react-tsparticles-demo
@@ -61,6 +88,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+* moved polygon mask to external plugin (breaking) ([abdfe37](https://github.com/matteobruni/tsparticles/commit/abdfe37f250a4f357f4491bb7ff0e54da6a7303e))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 * more rangeable options ([a2598c0](https://github.com/matteobruni/tsparticles/commit/a2598c07e968ab383c0a1eb311e22c4a0f52d9b8))
 
 
@@ -86,6 +116,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [2.0.1](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@2.0.0...react-tsparticles-demo@2.0.1) (2022-02-15)
 ## [1.26.4](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.26.3...react-tsparticles-demo@1.26.4) (2022-02-20)
 
 **Note:** Version bump only for package react-tsparticles-demo
@@ -110,6 +141,20 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [2.0.0](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.26.1...react-tsparticles-demo@2.0.0) (2022-02-15)
+
+
+### Features
+
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+* moved polygon mask to external plugin (breaking) ([abdfe37](https://github.com/matteobruni/tsparticles/commit/abdfe37f250a4f357f4491bb7ff0e54da6a7303e))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+# [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.24.2...react-tsparticles-demo@2.0.0-beta.5) (2022-01-30)
 ## [1.26.1](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.26.0...react-tsparticles-demo@1.26.1) (2022-02-14)
 
 
@@ -158,12 +203,16 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+* moved polygon mask to external plugin (breaking) ([abdfe37](https://github.com/matteobruni/tsparticles/commit/abdfe37f250a4f357f4491bb7ff0e54da6a7303e))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 * updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
 
 
 
 
 
+# [2.0.0-beta.4](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@2.0.0-beta.3...react-tsparticles-demo@2.0.0-beta.4) (2021-12-07)
 ## [1.24.2](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.24.1...react-tsparticles-demo@1.24.2) (2022-01-29)
 
 **Note:** Version bump only for package react-tsparticles-demo
@@ -204,6 +253,26 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [2.0.0-beta.3](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.22.5...react-tsparticles-demo@2.0.0-beta.3) (2021-12-04)
+
+
+### Features
+
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+* moved polygon mask to external plugin (breaking) ([abdfe37](https://github.com/matteobruni/tsparticles/commit/abdfe37f250a4f357f4491bb7ff0e54da6a7303e))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+# [2.0.0-beta.2](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.20.4...react-tsparticles-demo@2.0.0-beta.2) (2021-10-06)
+
+
+### Features
+
+* moved polygon mask to external plugin (breaking) ([abdfe37](https://github.com/matteobruni/tsparticles/commit/abdfe37f250a4f357f4491bb7ff0e54da6a7303e))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 ## [1.22.5](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.22.4...react-tsparticles-demo@1.22.5) (2021-11-28)
 
 **Note:** Version bump only for package react-tsparticles-demo
@@ -250,6 +319,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [2.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@2.0.0-beta.0...react-tsparticles-demo@2.0.0-beta.1) (2021-10-06)
 # [1.22.0](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.21.0...react-tsparticles-demo@1.22.0) (2021-10-28)
 
 **Note:** Version bump only for package react-tsparticles-demo
@@ -269,6 +339,18 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ## [1.20.4](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.20.3...react-tsparticles-demo@1.20.4) (2021-10-06)
 
 **Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
+# [2.0.0-beta.0](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.20.3...react-tsparticles-demo@2.0.0-beta.0) (2021-10-06)
+
+
+### Features
+
+* moved polygon mask to external plugin (breaking) ([abdfe37](https://github.com/matteobruni/tsparticles/commit/abdfe37f250a4f357f4491bb7ff0e54da6a7303e))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 
 

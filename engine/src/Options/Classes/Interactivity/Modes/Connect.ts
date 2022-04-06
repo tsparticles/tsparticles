@@ -52,7 +52,7 @@ export class Connect implements IConnect, IOptionLoader<IConnect> {
     }
 
     load(data?: RecursivePartial<IConnect>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

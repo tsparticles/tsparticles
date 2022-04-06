@@ -49,7 +49,7 @@ $ yarn add tsparticles-plugin-infection
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles");
+const { tsParticles } = require("tsparticles-engine");
 const { loadInfectionPlugin } = require("tsparticles-plugin-infection");
 
 loadInfectionPlugin(tsParticles);
@@ -58,7 +58,7 @@ loadInfectionPlugin(tsParticles);
 or
 
 ```javascript
-import { tsParticles } from "tsparticles";
+import { tsParticles } from "tsparticles-engine";
 import { loadInfectionPlugin } from "tsparticles-plugin-infection";
 
 loadInfectionPlugin(tsParticles);

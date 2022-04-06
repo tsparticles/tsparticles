@@ -49,7 +49,7 @@ $ yarn add tsparticles-path-perlin-noise
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles");
+const { tsParticles } = require("tsparticles-engine");
 const { loadPerlinNoisePath } = require("tsparticles-path-perlin-noise");
 
 loadPerlinNoisePath(tsParticles);
@@ -58,7 +58,7 @@ loadPerlinNoisePath(tsParticles);
 or
 
 ```javascript
-import { tsParticles } from "tsparticles";
+import { tsParticles } from "tsparticles-engine";
 import { loadPerlinNoisePath } from "tsparticles-path-perlin-noise";
 
 loadPerlinNoisePath(tsParticles);

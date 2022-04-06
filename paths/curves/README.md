@@ -49,7 +49,7 @@ $ yarn add tsparticles-path-curves
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles");
+const { tsParticles } = require("tsparticles-engine");
 const { loadCurvesPath } = require("tsparticles-path-curves");
 
 loadCurvesPath(tsParticles);
@@ -58,7 +58,7 @@ loadCurvesPath(tsParticles);
 or
 
 ```javascript
-import { tsParticles } from "tsparticles";
+import { tsParticles } from "tsparticles-engine";
 import { loadCurvesPath } from "tsparticles-path-curves";
 
 loadCurvesPath(tsParticles);

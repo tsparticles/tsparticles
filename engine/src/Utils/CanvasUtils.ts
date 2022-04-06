@@ -1,13 +1,11 @@
 import type { IHsl, IRgb } from "../Core/Interfaces/Colors";
-import { colorMix, colorToRgb, getStyleFromHsl, getStyleFromRgb } from "./ColorUtils";
-import { getDistance, getDistances } from "./NumberUtils";
+import { colorMix, getStyleFromHsl, getStyleFromRgb } from "./ColorUtils";
 import { AlterType } from "../Enums/Types/AlterType";
 import type { Container } from "../Core/Container";
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IDelta } from "../Core/Interfaces/IDelta";
 import type { IDimension } from "../Core/Interfaces/IDimension";
-import type { ILinksShadow } from "../Options/Interfaces/Particles/Links/ILinksShadow";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IParticleColorStyle } from "../Core/Interfaces/IParticleColorStyle";
 import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
@@ -21,7 +19,7 @@ import { RollMode } from "../Enums/Modes/RollMode";
  * @param begin - The begin point of the line.
  * @param end - The end point of the line.
  */
-function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
+export function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
     context.beginPath();
     context.moveTo(begin.x, begin.y);
     context.lineTo(end.x, end.y);
@@ -35,7 +33,12 @@ function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: I
  * @param p2 - The second point of the triangle.
  * @param p3 - The third point of the triangle.
  */
-function drawTriangle(context: CanvasRenderingContext2D, p1: ICoordinates, p2: ICoordinates, p3: ICoordinates): void {
+export function drawTriangle(
+    context: CanvasRenderingContext2D,
+    p1: ICoordinates,
+    p2: ICoordinates,
+    p3: ICoordinates
+): void {
     context.beginPath();
     context.moveTo(p1.x, p1.y);
     context.lineTo(p2.x, p2.y);
@@ -65,162 +68,6 @@ export function clear(context: CanvasRenderingContext2D, dimension: IDimension):
     context.clearRect(0, 0, dimension.width, dimension.height);
 }
 
-/**
- * Draws a line between two particles using canvas API in the given context.
- * @param context - The canvas context to draw on.
- * @param width - The width of the line.
- * @param begin - The begin point of the line.
- * @param end - The end point of the line.
- * @param maxDistance - The maximum distance of the line.
- * @param canvasSize - The dimension of the canvas.
- * @param warp - If enabled, the line will be warped.
- * @param backgroundMask - If enabled, the composite value will be used for blending the line in the canvas.
- * @param composite - The composite value to use for blending the line in the canvas.
- * @param colorLine - The color of the line.
- * @param opacity - The opacity of the line.
- * @param shadow - The shadow of the line.
- */
-export function drawLinkLine(
-    context: CanvasRenderingContext2D,
-    width: number,
-    begin: ICoordinates,
-    end: ICoordinates,
-    maxDistance: number,
-    canvasSize: IDimension,
-    warp: boolean,
-    backgroundMask: boolean,
-    composite: GlobalCompositeOperation,
-    colorLine: IRgb,
-    opacity: number,
-    shadow: ILinksShadow
-): void {
-    // this.ctx.lineCap = "round"; /* performance issue */
-    /* path */
-
-    let drawn = false;
-
-    if (getDistance(begin, end) <= maxDistance) {
-        drawLine(context, begin, end);
-
-        drawn = true;
-    } else if (warp) {
-        let pi1: ICoordinates | undefined, pi2: ICoordinates | undefined;
-
-        const endNE = {
-                x: end.x - canvasSize.width,
-                y: end.y,
-            },
-            d1 = getDistances(begin, endNE);
-
-        if (d1.distance <= maxDistance) {
-            const yi = begin.y - (d1.dy / d1.dx) * begin.x;
-
-            pi1 = { x: 0, y: yi };
-            pi2 = { x: canvasSize.width, y: yi };
-        } else {
-            const endSW = {
-                    x: end.x,
-                    y: end.y - canvasSize.height,
-                },
-                d2 = getDistances(begin, endSW);
-
-            if (d2.distance <= maxDistance) {
-                const yi = begin.y - (d2.dy / d2.dx) * begin.x,
-                    xi = -yi / (d2.dy / d2.dx);
-
-                pi1 = { x: xi, y: 0 };
-                pi2 = { x: xi, y: canvasSize.height };
-            } else {
-                const endSE = {
-                        x: end.x - canvasSize.width,
-                        y: end.y - canvasSize.height,
-                    },
-                    d3 = getDistances(begin, endSE);
-
-                if (d3.distance <= maxDistance) {
-                    const yi = begin.y - (d3.dy / d3.dx) * begin.x,
-                        xi = -yi / (d3.dy / d3.dx);
-
-                    pi1 = { x: xi, y: yi };
-                    pi2 = { x: pi1.x + canvasSize.width, y: pi1.y + canvasSize.height };
-                }
-            }
-        }
-
-        if (pi1 && pi2) {
-            drawLine(context, begin, pi1);
-            drawLine(context, end, pi2);
-
-            drawn = true;
-        }
-    }
-
-    if (!drawn) {
-        return;
-    }
-
-    context.lineWidth = width;
-
-    if (backgroundMask) {
-        context.globalCompositeOperation = composite;
-    }
-
-    context.strokeStyle = getStyleFromRgb(colorLine, opacity);
-
-    if (shadow.enable) {
-        const shadowColor = colorToRgb(shadow.color);
-
-        if (shadowColor) {
-            context.shadowBlur = shadow.blur;
-            context.shadowColor = getStyleFromRgb(shadowColor);
-        }
-    }
-
-    context.stroke();
-}
-
-/**
- * Draws a triangle between three particles using canvas API in the given context.
- * @param context - The canvas context to draw on.
- * @param pos1 - The first position of the triangle.
- * @param pos2 - The second position of the triangle.
- * @param pos3 - The third position of the triangle.
- * @param backgroundMask - If enabled, the composite value will be used for blending the triangle in the canvas.
- * @param composite - The composite value to use for blending the triangle in the canvas.
- * @param colorTriangle - The color of the triangle.
- * @param opacityTriangle - The opacity of the triangle.
- */
-export function drawLinkTriangle(
-    context: CanvasRenderingContext2D,
-    pos1: ICoordinates,
-    pos2: ICoordinates,
-    pos3: ICoordinates,
-    backgroundMask: boolean,
-    composite: GlobalCompositeOperation,
-    colorTriangle: IRgb,
-    opacityTriangle: number
-): void {
-    // this.ctx.lineCap = "round"; /* performance issue */
-    /* path */
-
-    drawTriangle(context, pos1, pos2, pos3);
-
-    if (backgroundMask) {
-        context.globalCompositeOperation = composite;
-    }
-
-    context.fillStyle = getStyleFromRgb(colorTriangle, opacityTriangle);
-    context.fill();
-}
-
-/**
- * Draws a line connecting two points using canvas API in the given context.
- * @param context - The canvas context to draw on.
- * @param width - The width of the line.
- * @param lineStyle - The style of the line.
- * @param begin - The first position of the line.
- * @param end - The second position of the line.
- */
 export function drawConnectLine(
     context: CanvasRenderingContext2D,
     width: number,

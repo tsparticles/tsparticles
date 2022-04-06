@@ -1,16 +1,22 @@
 import { collisionVelocity, getDistances, getValue } from "./NumberUtils";
 import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
 import { DivMode } from "../Enums/Modes/DivMode";
+import type { Engine } from "../engine";
 import type { IBounds } from "../Core/Interfaces/IBounds";
-import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICharacterShape";
 import type { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
+import type { IOptionLoader } from "../Options/Interfaces/IOptionLoader";
+import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { IParticle } from "../Core/Interfaces/IParticle";
+import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions";
 import type { IRangeValue } from "../Core/Interfaces/IRangeValue";
 import type { IRectSideResult } from "../Core/Interfaces/IRectSideResult";
+import { Options } from "../Options/Classes/Options";
 import { OutModeDirection } from "../Enums/Directions/OutModeDirection";
+import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
+import type { RecursivePartial } from "../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
 import { Vector } from "../Core/Utils/Vector";
 
@@ -142,11 +148,12 @@ export function isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
 
 /**
  * Loads a font for the canvas
- * @param character character shape options
+ * @param font font name
+ * @param weight font weight
  */
-export async function loadFont(character: ICharacterShape): Promise<void> {
+export async function loadFont(font?: string, weight?: string): Promise<void> {
     try {
-        await document.fonts.load(`${character.weight ?? "400"} 36px '${character.font ?? "Verdana"}'`);
+        await document.fonts.load(`${weight ?? "400"} 36px '${font ?? "Verdana"}'`);
     } catch {
         // ignores any error
     }
@@ -177,6 +184,7 @@ export function itemFromArray<T>(array: T[], index?: number, useIndex = true): T
  * Checks if the given point is inside the given rectangle
  * @param point the point to check
  * @param size the rectangle size
+ * @param offset position offset
  * @param radius the point radius
  * @param direction the point direction
  * @returns true if the point is inside the rectangle
@@ -184,35 +192,42 @@ export function itemFromArray<T>(array: T[], index?: number, useIndex = true): T
 export function isPointInside(
     point: ICoordinates,
     size: IDimension,
+    offset: ICoordinates,
     radius?: number,
     direction?: OutModeDirection
 ): boolean {
-    return areBoundsInside(calculateBounds(point, radius ?? 0), size, direction);
+    return areBoundsInside(calculateBounds(point, radius ?? 0), size, offset, direction);
 }
 
 /**
  * Checks if the given shape bounds are inside the given rectangle
  * @param bounds the shape bounds to check
  * @param size the rectangle size
+ * @param offset position offset
  * @param direction the shape direction
  */
-export function areBoundsInside(bounds: IBounds, size: IDimension, direction?: OutModeDirection): boolean {
+export function areBoundsInside(
+    bounds: IBounds,
+    size: IDimension,
+    offset: ICoordinates,
+    direction?: OutModeDirection
+): boolean {
     let inside = true;
 
     if (!direction || direction === OutModeDirection.bottom) {
-        inside = bounds.top < size.height;
+        inside = bounds.top < size.height + offset.x;
     }
 
     if (inside && (!direction || direction === OutModeDirection.left)) {
-        inside = bounds.right > 0;
+        inside = bounds.right > offset.x;
     }
 
     if (inside && (!direction || direction === OutModeDirection.right)) {
-        inside = bounds.left < size.width;
+        inside = bounds.left < size.width + offset.y;
     }
 
     if (inside && (!direction || direction === OutModeDirection.top)) {
-        inside = bounds.bottom > 0;
+        inside = bounds.bottom > offset.y;
     }
 
     return inside;
@@ -471,4 +486,31 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
             particle.position.y = resV.position;
         }
     }
+}
+
+function loadOptions<T>(options: IOptionLoader<T>, ...sourceOptionsArr: RecursivePartial<T | undefined>[]): void {
+    for (const sourceOptions of sourceOptionsArr) {
+        options.load(sourceOptions);
+    }
+}
+
+export function loadContainerOptions(
+    engine: Engine,
+    ...sourceOptionsArr: RecursivePartial<IOptions | undefined>[]
+): Options {
+    const options = new Options(engine);
+
+    loadOptions(options, ...sourceOptionsArr);
+
+    return options;
+}
+
+export function loadParticlesOptions(
+    ...sourceOptionsArr: RecursivePartial<IParticlesOptions | undefined>[]
+): ParticlesOptions {
+    const options = new ParticlesOptions();
+
+    loadOptions(options, ...sourceOptionsArr);
+
+    return options;
 }

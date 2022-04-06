@@ -1,5 +1,5 @@
 import { loadSeaAnemonePreset } from ".";
-import { tsParticles } from "tsparticles";
+import { tsParticles } from "tsparticles-engine";
 
 loadSeaAnemonePreset(tsParticles);
 

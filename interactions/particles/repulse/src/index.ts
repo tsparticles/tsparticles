@@ -1,4 +1,4 @@
-import type { Engine } from "tsparticles";
+import type { Engine } from "tsparticles-engine";
 import { Repulser } from "./Repulser";
 
 export function loadParticlesRepulseInteraction(engine: Engine): void {

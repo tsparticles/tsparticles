@@ -10,7 +10,6 @@ import {
     paintBase,
 } from "../Utils/CanvasUtils";
 import { colorToHsl, colorToRgb, getStyleFromHsl, getStyleFromRgb } from "../Utils/ColorUtils";
-import { Constants } from "./Utils/Constants";
 import type { Container } from "./Container";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
@@ -20,6 +19,7 @@ import type { IParticle } from "./Interfaces/IParticle";
 import type { IParticleColorStyle } from "./Interfaces/IParticleColorStyle";
 import type { Particle } from "./Particle";
 import { deepExtend } from "../Utils/Utils";
+import { generatedAttribute } from "./Utils/Constants";
 
 /**
  * Canvas manager
@@ -80,8 +80,8 @@ export class Canvas {
         }
 
         this.generatedCanvas =
-            canvas.dataset && Constants.generatedAttribute in canvas.dataset
-                ? canvas.dataset[Constants.generatedAttribute] === "true"
+            canvas.dataset && generatedAttribute in canvas.dataset
+                ? canvas.dataset[generatedAttribute] === "true"
                 : this.generatedCanvas;
         this.element = canvas;
         this.originalStyle = deepExtend({}, this.element.style) as CSSStyleDeclaration;

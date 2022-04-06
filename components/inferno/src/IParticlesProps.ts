@@ -1,5 +1,5 @@
 import type { RefObject } from "inferno";
-import type { Container, ISourceOptions, Engine } from "tsparticles";
+import type { Container, ISourceOptions, Engine } from "tsparticles-engine";
 
 export interface IParticlesProps {
 	id?: string;

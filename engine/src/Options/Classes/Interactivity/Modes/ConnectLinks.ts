@@ -17,6 +17,8 @@ export class ConnectLinks implements IConnectLinks, IOptionLoader<IConnectLinks>
             return;
         }
 
-        this.opacity = data.opacity;
+        if (data.opacity !== undefined) {
+            this.opacity = data.opacity;
+        }
     }
 }

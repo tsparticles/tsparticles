@@ -1,4 +1,6 @@
-import { tsParticles } from "tsparticles";
-import { loadMultilineTextShape } from "./shape";
+import type { Engine } from "tsparticles-engine";
+import { MultilineTextDrawer } from "./MultilineTextDrawer";
 
-loadMultilineTextShape(tsParticles);
+export function loadMultilineTextShape(engine: Engine): void {
+    engine.addShape("multiline-text", new MultilineTextDrawer());
+}

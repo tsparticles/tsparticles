@@ -4,8 +4,8 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 import type { ComponentClass } from "react";
-import type { CSSProperties, RefObject } from "react";
-import type { Container, ISourceOptions, Engine } from "tsparticles";
+import { CSSProperties, RefObject } from "react";
+import type { Container, ISourceOptions, Engine } from "tsparticles-engine";
 
 export interface IParticlesProps {
     id?: string;

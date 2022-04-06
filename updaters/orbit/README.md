@@ -49,7 +49,7 @@ $ yarn add tsparticles-updater-orbit
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles");
+const { tsParticles } = require("tsparticles-engine");
 const { loadOrbitUpdater } = require("tsparticles-updater-orbit");
 
 loadOrbitUpdater(tsParticles);
@@ -58,7 +58,7 @@ loadOrbitUpdater(tsParticles);
 or
 
 ```javascript
-import { tsParticles } from "tsparticles";
+import { tsParticles } from "tsparticles-engine";
 import { loadOrbitUpdater } from "tsparticles-updater-orbit";
 
 loadOrbitUpdater(tsParticles);
