@@ -1,4 +1,4 @@
-import { SingleOrMultiple } from "../../../../Types";
+import { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 /**
  * @category Options

@@ -77,9 +77,9 @@
       "url": "https://www.buymeacoffee.com/matteobruni"
     }
   ],
-  "main": "index.js",
+  "main": "cjs/index.js",
   "module": "esm/index.js",
   "jsdelivr": "tsparticles.engine.min.js",
   "unpkg": "tsparticles.engine.min.js",
-  "types": "index.d.ts"
+  "types": "types/index.d.ts"
 }

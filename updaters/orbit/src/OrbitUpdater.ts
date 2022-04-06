@@ -1,5 +1,18 @@
-import type { Container, IDelta, IHsl, IParticleRetinaProps, IParticleUpdater, Particle } from "tsparticles-engine";
-import { OrbitType, colorToHsl, drawEllipse, getRangeValue } from "tsparticles-engine";
+import type { Container, IDelta, IParticleUpdater, Particle, IHsl, IParticleRetinaProps, Retina } from "tsparticles-engine";
+import { colorToHsl, drawEllipse, getRangeValue } from "tsparticles-engine";
+
+export const enum OrbitType {
+    front = "front",
+    back = "back",
+}
+
+type OrbitRetina = Retina & {
+    orbitRadius?: number;
+};
+
+type OrbitContainer = Container & {
+    retina: OrbitRetina;
+};
 
 type OrbitParticle = Particle & {
     orbitColor?: IHsl;
@@ -13,20 +26,22 @@ type OrbitParticle = Particle & {
 };
 
 export class OrbitUpdater implements IParticleUpdater {
-    constructor(private readonly container: Container) {}
+    constructor(private readonly container: OrbitContainer) {}
 
     init(particle: OrbitParticle): void {
         /* orbit */
-        const particlesOptions = particle.options;
-        const orbitOptions = particlesOptions.orbit;
+        const container = this.container,
+            particlesOptions = particle.options,
+            orbitOptions = particlesOptions.orbit;
 
         if (orbitOptions.enable) {
             particle.orbitRotation = getRangeValue(orbitOptions.rotation.value);
             particle.orbitColor = colorToHsl(orbitOptions.color);
             particle.retina.orbitRadius =
                 orbitOptions?.radius !== undefined
-                    ? getRangeValue(orbitOptions.radius) * this.container.retina.pixelRatio
+                    ? getRangeValue(orbitOptions.radius) * container.retina.pixelRatio
                     : undefined;
+            container.retina.orbitRadius = particle.retina.orbitRadius;
             particle.orbitAnimationSpeed = orbitOptions.animation.enable
                 ? getRangeValue(orbitOptions.animation.speed)
                 : 0;
@@ -72,8 +87,7 @@ export class OrbitUpdater implements IParticleUpdater {
     drawOrbit(particle: OrbitParticle, type: OrbitType): void {
         const container = this.container;
 
-        let start: number;
-        let end: number;
+        let start: number, end: number;
 
         switch (type) {
             case OrbitType.back:

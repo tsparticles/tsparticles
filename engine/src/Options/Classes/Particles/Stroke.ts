@@ -1,6 +1,8 @@
 import type { IOptionLoader, IStroke } from "../../Interfaces";
 import { AnimatableColor } from "../AnimatableColor";
-import type { RecursivePartial } from "../../../Types";
+import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
+import type { IStroke } from "../../Interfaces/Particles/IStroke";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 /**
  * [[include:Options/Particles/Stroke.md]]

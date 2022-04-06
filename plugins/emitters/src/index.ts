@@ -1,6 +1,7 @@
 import { EmitterClickMode, EmitterShapeType } from "./Enums";
 import { IOptions, IPlugin, Options, RecursivePartial, isInArray } from "tsparticles-engine";
 import { CircleShape } from "./Shapes/Circle/CircleShape";
+import type { Container } from "../../Core/Container";
 import { Emitter } from "./Options/Classes/Emitter";
 import { EmitterContainer } from "./EmitterContainer";
 import { Emitters } from "./Emitters";
@@ -99,7 +100,7 @@ export async function loadEmittersPlugin(engine: EmittersEngine): Promise<void> 
     }
 
     if (!engine.addEmitterShape) {
-        engine.addEmitterShape = (name: string, shape: IEmitterShape) => {
+        engine.addEmitterShape = (name: string, shape: IEmitterShape): void => {
             engine.emitterShapeManager?.addShape(name, shape);
         };
     }
@@ -114,3 +115,6 @@ export async function loadEmittersPlugin(engine: EmittersEngine): Promise<void> 
 
 export * from "./EmitterContainer";
 export * from "./EmittersEngine";
+export * from "./Enums/EmitterClickMode";
+export * from "./Enums/EmitterShapeType";
+export * from "./Options/Interfaces/IEmitterOptions";

@@ -45,7 +45,7 @@ export class Repulser extends ExternalInteractorBase {
             container.repulse = { particles: [] };
         }
 
-        this.handleClickMode = (mode) => {
+        this.handleClickMode = (mode): void => {
             const options = this.container.actualOptions;
 
             if (mode !== ClickMode.repulse) {

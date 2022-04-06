@@ -1,6 +1,6 @@
 import type { ILightShadow, IOptionLoader } from "../../../Interfaces";
 import { OptionsColor } from "../../OptionsColor";
-import type { RecursivePartial } from "../../../../Types";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class LightShadow implements ILightShadow, IOptionLoader<ILightShadow> {
     color;

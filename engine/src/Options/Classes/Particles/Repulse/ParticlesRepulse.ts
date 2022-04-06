@@ -1,7 +1,9 @@
-import type { IOptionLoader, IParticlesRepulse } from "../../../Interfaces";
-import type { RangeValue, RecursivePartial } from "../../../../Types";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { IRepulse } from "../../../Interfaces/Particles/Repulse/IRepulse";
+import type { RangeValue } from "../../../../Types/RangeValue";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { ValueWithRandom } from "../../ValueWithRandom";
-import { setRangeValue } from "../../../../Utils";
+import { setRangeValue } from "../../../../Utils/NumberUtils";
 
 /**
  * @category Options

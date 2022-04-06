@@ -37,7 +37,7 @@ This script **MUST** be placed after the `tsParticles` one.
 A bundled script can also be used, this will include every needed plugin needed by the preset.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-triangles@2/tsparticles.preset.triangles.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-triangles@1/tsparticles.preset.triangles.bundle.min.js"></script>
 ```
 
 ### Usage

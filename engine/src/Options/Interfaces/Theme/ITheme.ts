@@ -1,6 +1,6 @@
 import type { IOptions } from "../IOptions";
 import type { IThemeDefault } from "./IThemeDefault";
-import type { RecursivePartial } from "../../../Types";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 /**
  * The options to configure themes that can be easily switched

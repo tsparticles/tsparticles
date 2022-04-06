@@ -6,7 +6,7 @@ import { Connect } from "./Connect";
 import { Grab } from "./Grab";
 import { Light } from "./Light";
 import { Push } from "./Push";
-import type { RecursivePartial } from "../../../../Types";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { Remove } from "./Remove";
 import { Repulse } from "./Repulse";
 import { Slow } from "./Slow";

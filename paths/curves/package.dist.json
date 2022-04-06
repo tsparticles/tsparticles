@@ -82,7 +82,7 @@
   "main": "index.js",
   "jsdelivr": "tsparticles.path.curves.min.js",
   "unpkg": "tsparticles.path.curves.min.js",
-  "module": "index.js",
+  "module": "esm/index.js",
   "types": "index.d.ts",
   "dependencies": {
     "tsparticles-engine": "^2.0.3"

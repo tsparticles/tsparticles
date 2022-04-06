@@ -1,7 +1,7 @@
 import type { ILife, IOptionLoader } from "../../../Interfaces";
 import { LifeDelay } from "./LifeDelay";
 import { LifeDuration } from "./LifeDuration";
-import type { RecursivePartial } from "../../../../Types";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class Life implements ILife, IOptionLoader<ILife> {
     count;

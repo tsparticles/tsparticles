@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [2.0.3](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.42.1...react-tsparticles@2.0.3) (2022-03-11)
+# [1.43.0](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.42.4...react-tsparticles@1.43.0) (2022-04-04)
 
 
 ### Bug Fixes
@@ -34,6 +35,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+* **deps:** update react monorepo to v18 ([79e531d](https://github.com/matteobruni/tsparticles/commit/79e531dc77dd73c9493e30e9eb23f5620a860ea9))
+
+
+
+
+
 ## [1.42.4](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@1.42.3...react-tsparticles@1.42.4) (2022-03-20)
 
 **Note:** Version bump only for package react-tsparticles

@@ -11,6 +11,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
 * moved polygon mask to external plugin (breaking) ([abdfe37](https://github.com/matteobruni/tsparticles/commit/abdfe37f250a4f357f4491bb7ff0e54da6a7303e))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+# [1.28.0](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.27.4...react-tsparticles-demo@1.28.0) (2022-04-04)
+
+
+### Bug Fixes
+
+* **deps:** update react monorepo to v18 ([79e531d](https://github.com/matteobruni/tsparticles/commit/79e531dc77dd73c9493e30e9eb23f5620a860ea9))
+* updated all plugins to use new build system, improves imports compatibility ([0d75d97](https://github.com/matteobruni/tsparticles/commit/0d75d97c02c8a8f55e1697e4e7f0fdcf4c24ae4a))
+* upgrade rxjs from 7.5.4 to 7.5.5 ([866f8a8](https://github.com/matteobruni/tsparticles/commit/866f8a8ce102aeb04c66c4d21f26583643aa6aab))
 
 
 

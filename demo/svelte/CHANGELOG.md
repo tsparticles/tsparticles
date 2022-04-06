@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [2.0.3](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.25.1...svelte-demo@2.0.3) (2022-03-11)
+# [1.26.0](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.25.4...svelte-demo@1.26.0) (2022-04-04)
 
 
 ### Bug Fixes
@@ -20,6 +21,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 ## [2.0.2](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.24.4...svelte-demo@2.0.2) (2022-02-21)
+* upgrade sirv-cli from 2.0.1 to 2.0.2 ([70f74fe](https://github.com/matteobruni/tsparticles/commit/70f74fed6693561fac9f259b3de6ea16a9c2fa32))
+
+
+
+
+
 ## [1.25.4](https://github.com/matteobruni/tsparticles/compare/svelte-demo@1.25.3...svelte-demo@1.25.4) (2022-03-20)
 
 **Note:** Version bump only for package svelte-demo

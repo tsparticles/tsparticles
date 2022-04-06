@@ -36,6 +36,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+# [2.43.0](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.42.4...particles.vue@2.43.0) (2022-04-04)
+
+**Note:** Version bump only for package particles.vue
+
+
+
+
+
 ## [2.42.4](https://github.com/matteobruni/tsparticles/compare/particles.vue@2.42.3...particles.vue@2.42.4) (2022-03-20)
 
 **Note:** Version bump only for package particles.vue

@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [2.0.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fountain@1.42.1...tsparticles-preset-fountain@2.0.3) (2022-03-11)
+# [1.43.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fountain@1.42.4...tsparticles-preset-fountain@1.43.0) (2022-04-04)
+
+**Note:** Version bump only for package tsparticles-preset-fountain
+
+
+
+
+
 ## [1.42.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fountain@1.42.3...tsparticles-preset-fountain@1.42.4) (2022-03-20)
 
 **Note:** Version bump only for package tsparticles-preset-fountain

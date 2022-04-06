@@ -2,7 +2,7 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "module": "commonjs",
-    "outDir": "./dist"
+    "outDir": "./dist/cjs"
   },
   "typedocOptions": {
     "gaID": "UA-161253125-1",
@@ -16,6 +16,10 @@
     "hideGenerator": true,
     "out": "./docs",
     "clarityId": "8q4bxin4tm",
-    "googleAdsId": "1784552607103901"
+    "googleAdsId": "1784552607103901",
+    "validation": {
+      "invalidLink": true,
+      "notDocumented": true
+    }
   }
 }

@@ -90,7 +90,7 @@
     "vue": "<3"
   },
   "dependencies": {
-    "tsparticles": "^1.42.4",
+    "tsparticles": "^1.43.0",
     "vue-class-component": "<8",
     "vue-property-decorator": "<10"
   },
@@ -112,7 +112,7 @@
     "rollup-plugin-typescript2": "^0.31.0",
     "rollup-plugin-vue": "^5.1.9",
     "ssri": "^8.0.1",
-    "typescript": "^4.4.2",
+    "typescript": "^4.6.3",
     "vue": "^2.6.14",
     "vue-template-compiler": "^2.6.14"
   }

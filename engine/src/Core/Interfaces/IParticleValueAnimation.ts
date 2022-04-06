@@ -1,4 +1,4 @@
-import type { AnimationStatus } from "../../Enums";
+import type { AnimationStatus } from "../../Enums/AnimationStatus";
 
 /**
  * @category Interfaces

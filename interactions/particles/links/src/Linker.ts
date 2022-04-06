@@ -63,23 +63,22 @@ export class Linker extends ParticlesInteractorBase {
     async interact(p1: LinkParticle): Promise<void> {
         p1.links = [];
 
-        const pos1 = p1.getPosition();
-        const container = this.container;
-        const canvasSize = container.canvas.size;
+        const pos1 = p1.getPosition(),
+            container = this.container,
+            canvasSize = container.canvas.size;
 
         if (pos1.x < 0 || pos1.y < 0 || pos1.x > canvasSize.width || pos1.y > canvasSize.height) {
             return;
         }
 
-        const linkOpt1 = p1.options.links;
-        const optOpacity = linkOpt1.opacity;
-        const optDistance = p1.retina.linksDistance ?? container.retina.linksDistance;
-        const warp = linkOpt1.warp;
-        const range = warp
-            ? new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize)
-            : new Circle(pos1.x, pos1.y, optDistance);
-
-        const query = container.particles.quadTree.query(range) as LinkParticle[];
+        const linkOpt1 = p1.options.links,
+            optOpacity = linkOpt1.opacity,
+            optDistance = p1.retina.linksDistance ?? container.retina.linksDistance,
+            warp = linkOpt1.warp,
+            range = warp
+                ? new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize)
+                : new Circle(pos1.x, pos1.y, optDistance),
+            query = container.particles.quadTree.query(range) as LinkParticle[];
 
         for (const p2 of query) {
             const linkOpt2 = p2.options.links;
@@ -121,8 +120,8 @@ export class Linker extends ParticlesInteractorBase {
     }
 
     private setColor(p1: IParticle): void {
-        const container = this.container;
-        const linksOptions = p1.options.links;
+        const container = this.container,
+            linksOptions = p1.options.links;
 
         let linkColor =
             linksOptions.id === undefined

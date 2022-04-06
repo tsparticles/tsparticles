@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Particles from 'react-tsparticles'
+import { loadBigCirclesPreset } from "tsparticles-preset-big-circles";
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -66,45 +67,11 @@ export default function Home() {
                 </a>
             </footer>
             <Particles id="tsparticles" options={{
-                background: {
-                    color: "#000"
-                },
+                preset: "bigCircles",
                 fullScreen: {
                     zIndex: -1
-                },
-                particles: {
-                    links: {
-                        enable: true
-                    },
-                    number: {
-                        density: {
-                            enable: true
-                        }
-                    },
-                    move: {
-                        enable: true,
-                        speed: {
-                            min: 2,
-                            max: 6
-                        }
-                    },
-                    opacity: {
-                        value: {
-                            min: 0.3,
-                            max: 0.8
-                        }
-                    },
-                    shape: {
-                        type:["square", "circle"]
-                    },
-                    size: {
-                        value: {
-                            min: 1,
-                            max: 5
-                        }
-                    }
                 }
-            }}/>
+            }} init={async (engine) => await loadBigCirclesPreset(engine)}/>
         </div>
     )
 }

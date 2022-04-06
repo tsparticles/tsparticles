@@ -1,7 +1,7 @@
-import type { IAnimatableColor, IColorAnimation, IHslAnimation, IOptionLoader } from "../Interfaces";
-import type { RecursivePartial, SingleOrMultiple } from "../../Types";
 import { HslAnimation } from "./HslAnimation";
 import { OptionsColor } from "./OptionsColor";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 
 /**
  * [[include:Options/Particles/Color.md]]

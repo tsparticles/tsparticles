@@ -23,6 +23,16 @@ import {
 } from "tsparticles-engine";
 import type { IBubblerProcessParam } from "./IBubblerProcessParam";
 import { ProcessBubbleType } from "./ProcessBubbleType";
+import { Rectangle } from "../../../Core/Utils/Rectangle";
+
+interface IContainerBubble {
+    clicking?: boolean;
+    durationEnd?: boolean;
+}
+
+type ContainerBubbler = Container & {
+    bubble?: IContainerBubble;
+};
 
 interface IContainerBubble {
     clicking?: boolean;
@@ -64,7 +74,7 @@ export class Bubbler extends ExternalInteractorBase {
             container.bubble = {};
         }
 
-        this.handleClickMode = (mode) => {
+        this.handleClickMode = (mode): void => {
             if (mode !== ClickMode.bubble) {
                 return;
             }

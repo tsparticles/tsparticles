@@ -78,8 +78,8 @@ export class Particles {
 
     /* --------- tsParticles functions - particles ----------- */
     init(): void {
-        const container = this.container;
-        const options = container.actualOptions;
+        const container = this.container,
+            options = container.actualOptions;
 
         this.lastZIndex = 0;
         this.needsSort = false;
@@ -166,8 +166,8 @@ export class Particles {
     }
 
     async update(delta: IDelta): Promise<void> {
-        const container = this.container;
-        const particlesToDelete = [];
+        const container = this.container,
+            particlesToDelete = [];
 
         container.pathGenerator.update();
 
@@ -290,7 +290,6 @@ export class Particles {
         this.zArray = [];
     }
 
-    /* ---------- tsParticles functions - modes events ------------ */
     push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticlesOptions>, group?: string): void {
         this.pushing = true;
 
@@ -341,12 +340,11 @@ export class Particles {
 
         options.load(splitOptions.particles);
 
-        const offset = splitOptions.sizeOffset ? setRangeValue(-parent.size.value, parent.size.value) : 0;
-
-        const position = {
-            x: parent.position.x + randomInRange(offset),
-            y: parent.position.y + randomInRange(offset),
-        };
+        const offset = splitOptions.sizeOffset ? setRangeValue(-parent.size.value, parent.size.value) : 0,
+            position = {
+                x: parent.position.x + randomInRange(offset),
+                y: parent.position.y + randomInRange(offset),
+            };
 
         return this.pushParticle(position, options, parent.group, (particle) => {
             if (particle.size.value < 0.5) {
@@ -417,14 +415,13 @@ export class Particles {
             options = container.actualOptions;
 
         for (const particle of options.manualParticles) {
-            const pos = particle.position
-                ? {
-                      x: (particle.position.x * container.canvas.size.width) / 100,
-                      y: (particle.position.y * container.canvas.size.height) / 100,
-                  }
-                : undefined;
-
-            this.addParticle(pos, particle.options);
+            this.addParticle(
+                calcPositionFromSize({
+                    size: container.canvas.size,
+                    position: particle.position,
+                }),
+                particle.options
+            );
         }
     }
 
@@ -442,17 +439,17 @@ export class Particles {
         this.interactionManager.handleClickMode(mode);
     }
 
-    private applyDensity(options: IParticlesOptions, manualCount: number, group?: string) {
+    private applyDensity(options: IParticlesOptions, manualCount: number, group?: string): void {
         if (!options.number.density?.enable) {
             return;
         }
 
-        const numberOptions = options.number;
-        const densityFactor = this.initDensityFactor(numberOptions.density);
-        const optParticlesNumber = numberOptions.value;
-        const optParticlesLimit = numberOptions.limit > 0 ? numberOptions.limit : optParticlesNumber;
-        const particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + manualCount;
-        const particlesCount = Math.min(this.count, this.array.filter((t) => t.group === group).length);
+        const numberOptions = options.number,
+            densityFactor = this.initDensityFactor(numberOptions.density),
+            optParticlesNumber = numberOptions.value,
+            optParticlesLimit = numberOptions.limit > 0 ? numberOptions.limit : optParticlesNumber,
+            particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + manualCount,
+            particlesCount = Math.min(this.count, this.array.filter((t) => t.group === group).length);
 
         this.limit = numberOptions.limit * densityFactor;
 

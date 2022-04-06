@@ -25,7 +25,7 @@ import type { ITwinkle } from "./Twinkle";
 import type { IWobble } from "./Wobble";
 import type { IZIndex } from "./ZIndex";
 import type { ParticlesGroups } from "../../../Types/ParticlesGroups";
-import type { SingleOrMultiple } from "../../../Types";
+import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
 
 /**
  * [[include:Options/Particles.md]]

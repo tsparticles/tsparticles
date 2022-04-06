@@ -34,14 +34,32 @@ import type { IOptions } from "./Options";
  * @category Engine
  */
 export class Engine {
-    readonly domArray: Container[];
     readonly eventDispatcher;
-    readonly plugins;
 
-    #initialized;
+    /**
+     * Checks if the engine instance is initialized
+     */
+    #initialized: boolean;
 
-    readonly #loader;
+    /**
+     * Contains all the [[Container]] instances of the current engine instance
+     */
+    readonly domArray: Container[];
 
+    /**
+     * Contains the [[Loader]] engine instance
+     * @private
+     */
+    readonly #loader: Loader;
+
+    /**
+     * Contains the [[Plugins]] engine instance
+     */
+    readonly plugins: Plugins;
+
+    /**
+     * Engine constructor, initializes plugins, loader and the containers array
+     */
     constructor() {
         this.domArray = [];
         this.eventDispatcher = new EventDispatcher();

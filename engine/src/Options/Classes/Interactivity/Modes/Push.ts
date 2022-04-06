@@ -1,5 +1,6 @@
-import type { IOptionLoader, IPush } from "../../../Interfaces";
-import type { RecursivePartial } from "../../../../Types";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { IPush } from "../../../Interfaces/Interactivity/Modes/IPush";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 /**
  * @category Options

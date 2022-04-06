@@ -1,9 +1,10 @@
-import type { IOptionLoader, IParticlesOptions } from "../../../Interfaces";
-import type { ISplit } from "../../../Interfaces";
-import type { RecursivePartial } from "../../../../Types";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import { IParticles } from "../../../Interfaces/Particles/IParticles";
+import type { ISplit } from "../../../Interfaces/Particles/Destroy/ISplit";
+import { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { SplitFactor } from "./SplitFactor";
 import { SplitRate } from "./SplitRate";
-import { deepExtend } from "../../../../Utils";
+import { deepExtend } from "../../../../Utils/Utils";
 
 export class Split implements ISplit, IOptionLoader<ISplit> {
     count: number;

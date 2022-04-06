@@ -52,7 +52,7 @@ export async function loadPolygonMaskPlugin(engine: Engine): Promise<void> {
             /* webpackMode: "lazy" */
             /* webpackPrefetch: true */
             /* webpackPreload: true */
-            "./pathseg"
+            "./pathseg.js"
         );
     }
 
@@ -61,4 +61,7 @@ export async function loadPolygonMaskPlugin(engine: Engine): Promise<void> {
     await engine.addPlugin(plugin);
 }
 
-export * from "./Enums";
+export * from "./Enums/PolygonMaskInlineArrangement";
+export * from "./Enums/PolygonMaskMoveType";
+export * from "./Enums/PolygonMaskType";
+export * from "./Options/Interfaces/IPolygonMaskOptions";
