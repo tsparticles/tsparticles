@@ -1923,7 +1923,7 @@ tapable@^2.1.1, tapable@^2.2.0:
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-2.2.0.tgz#5c373d281d9c672848213d0e037d1c4165ab426b"
   integrity sha512-FBk4IesMV1rBxX2tfiK8RAmogtWn53puLOQlvO8XuwlgxcYbP4mVPS9Ph4aeamSyyVjOl24aYWAuc8U5kCVwMw==
 
-terser-webpack-plugin@^5.1.3, terser-webpack-plugin@^5.2.4, terser-webpack-plugin@^5.3.1:
+terser-webpack-plugin@^5.1.3, terser-webpack-plugin@^5.3.1:
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/terser-webpack-plugin/-/terser-webpack-plugin-5.3.1.tgz#0320dcc270ad5372c1e8993fabbd927929773e54"
   integrity sha512-GvlZdT6wPQKbDNW/GDQzZFg/j4vKU96yl2q6mcUkzKOgW4gwf1Z8cZToUCrz31XHlPWH8MVb1r2tFtdDtTGJ7g==
@@ -1977,60 +1977,6 @@ tslib@^1.8.1, tslib@^1.9.0:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
-
-tsparticles-engine@^2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.4.tgz#b89652c3bfd31066954de5cd5179121dd6bfd6e6"
-  integrity sha512-58ExYre1CwKz/Vls0ITrIfwvByJR4REzrLDy2n1K2ovdyrAxyoTxP9FOmDAMR/sbvg+M45m01XtJb+//Vzb5/A==
-
-tsparticles-move-base@^2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/tsparticles-move-base/-/tsparticles-move-base-2.0.4.tgz#f24cb38906261fa24510cee67b8939ae1d16130b"
-  integrity sha512-1ANCRRXBCr9QmYPzKzed36qX9cpvgB5Cik6e2VowFu5SJVfBvQilkKCDqg9HbBOdNYkT1caOBzkVFP5hKqDX3Q==
-  dependencies:
-    tsparticles-engine "^2.0.4"
-
-tsparticles-plugin-emitters@^2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/tsparticles-plugin-emitters/-/tsparticles-plugin-emitters-2.0.4.tgz#406b51efa1a99f3323eeff38cf3d951de99cf26f"
-  integrity sha512-WvmFwfbvYzeYRbeid8PI1pPzKYZzbXl/bENEyKnkcbRa9zuWowQFOCizBnFvHA2+PFmAK76O3fv59Sf7loHJjQ==
-  dependencies:
-    tsparticles-engine "^2.0.4"
-
-tsparticles-shape-circle@^2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/tsparticles-shape-circle/-/tsparticles-shape-circle-2.0.4.tgz#5814ce59ddda2335b0d394f7c34f7b769d8118ec"
-  integrity sha512-D5IY01C77jisjZHHLnVytVtPIuk+YRviq3fU5LOVdTaolTIOFl6sCUC6G63XD0MC3wDVwPN5W5vNukZEEfeKbg==
-  dependencies:
-    tsparticles-engine "^2.0.4"
-
-tsparticles-updater-color@^2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/tsparticles-updater-color/-/tsparticles-updater-color-2.0.4.tgz#b7a6b361df9324cc3e06943f005b7eedd0a2ee71"
-  integrity sha512-4NwRLFWhuS2I1rUkFBn+FSuTPYu9E90u0ZxQBlwPDlp81+mkOxVQtLYXTdiGbfb4JIq+2Oa2wY/CMwrJgFrJaQ==
-  dependencies:
-    tsparticles-engine "^2.0.4"
-
-tsparticles-updater-opacity@^2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/tsparticles-updater-opacity/-/tsparticles-updater-opacity-2.0.4.tgz#9585ad40a644871bb1a9ff721c2e39d77543e79e"
-  integrity sha512-nxdGhKDPQ2gjryHTVjQYsWI4Q/m3CjWsIIgGAOvyVFnAacCkrHdbaFa/GcidVDYdu8d3lF3iLWwYvZuTp40Elg==
-  dependencies:
-    tsparticles-engine "^2.0.4"
-
-tsparticles-updater-out-modes@^2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/tsparticles-updater-out-modes/-/tsparticles-updater-out-modes-2.0.4.tgz#985d47d4962bcacd256911372f31b22a6602e46a"
-  integrity sha512-TVLDQqaD44OtRHA3Rur48Sdyd6r543+Tk7q1zVnRSt7tt2+ezISPkK2ZT8Huq518n2Hmqw3VrQPI50tyODrpuw==
-  dependencies:
-    tsparticles-engine "^2.0.4"
-
-tsparticles-updater-size@^2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/tsparticles-updater-size/-/tsparticles-updater-size-2.0.4.tgz#104f0cafbb793bc6e54c1a2af06ff3e74b36a017"
-  integrity sha512-m0t8vwYmaxLfa2U0dUKiWiw0WesIpuRiZx+PXMMMETP9Yvebvec0n6lqiFVgH3mN5f3YiGM1VaQI8RnEoCJ+/g==
-  dependencies:
-    tsparticles-engine "^2.0.4"
 
 tsutils@^3.21.0:
   version "3.21.0"
@@ -2086,7 +2032,7 @@ watchpack@^2.3.1:
     glob-to-regexp "^0.4.1"
     graceful-fs "^4.1.2"
 
-webpack-bundle-analyzer@^4.4.2, webpack-bundle-analyzer@^4.5.0:
+webpack-bundle-analyzer@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/webpack-bundle-analyzer/-/webpack-bundle-analyzer-4.5.0.tgz#1b0eea2947e73528754a6f9af3e91b2b6e0f79d5"
   integrity sha512-GUMZlM3SKwS8Z+CKeIFx7CVoHn3dXFcUAjT/dcZQQmfSZGvitPfMob2ipjai7ovFFqPvTqkEZ/leL4O0YOdAYQ==
@@ -2132,16 +2078,7 @@ webpack-sources@^3.2.3:
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-3.2.3.tgz#2d4daab8451fd4b240cc27055ff6a0c2ccea0cde"
   integrity sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==
 
-webpack-tsparticles-plugin@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/webpack-tsparticles-plugin/-/webpack-tsparticles-plugin-1.0.2.tgz#732e5c5d257c5844dcd923e5cb0cf1d03d897dd4"
-  integrity sha512-PVpBdJhIm3tuATsFKmhmHa+OZ9k+h2WM1ThrjQ8IcN8WOHZWqs0q03mlDE16DhmFfrDUbMPw31wagoyOzgnc9g==
-  dependencies:
-    terser-webpack-plugin "^5.2.4"
-    webpack "^5.53.0"
-    webpack-bundle-analyzer "^4.4.2"
-
-webpack@^5.53.0, webpack@^5.71.0:
+webpack@^5.71.0:
   version "5.71.0"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.71.0.tgz#b01fcf379570b8c5ee06ca06c829ca168c951884"
   integrity sha512-g4dFT7CFG8LY0iU5G8nBL6VlkT21Z7dcYDpJAEJV5Q1WLb9UwnFbrem1k7K52ILqEmomN7pnzWFxxE6SlDY56A==
