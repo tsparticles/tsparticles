@@ -104,6 +104,7 @@
     "tsparticles-updater-size": "^2.0.3",
     "tsparticles-updater-stroke-color": "^2.0.3",
     "tsparticles-updater-tilt": "^2.0.3",
+    "tsparticles-updater-twinkle": "^2.0.3",
     "tsparticles-updater-wobble": "^2.0.3"
   }
 }

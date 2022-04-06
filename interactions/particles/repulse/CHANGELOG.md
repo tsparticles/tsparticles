@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [2.0.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-particles-repulse@1.42.1...tsparticles-interaction-particles-repulse@2.0.3) (2022-03-11)
+## [1.43.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-particles-repulse@1.43.0...tsparticles-interaction-particles-repulse@1.43.1) (2022-04-06)
+
+**Note:** Version bump only for package tsparticles-interaction-particles-repulse
+
+
+
+
+
 # [1.43.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-particles-repulse@1.42.4...tsparticles-interaction-particles-repulse@1.43.0) (2022-04-04)
 
 
