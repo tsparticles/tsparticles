@@ -1,12 +1,12 @@
 import type {
     IAnimatableColor,
-    ICoordinates,
     IParticlesOptions,
+    IRangedCoordinates,
     MoveDirection,
     MoveDirectionAlt,
     RecursivePartial,
 } from "tsparticles-engine";
-import type { EmitterShapeType } from "../../Enums";
+import type { EmitterShapeType } from "../../Enums/EmitterShapeType";
 import type { IEmitterLife } from "./IEmitterLife";
 import type { IEmitterRate } from "./IEmitterRate";
 import type { IEmitterSize } from "./IEmitterSize";
@@ -31,6 +31,11 @@ export interface IEmitter {
      * The direction of the emitted particles, [[MoveDirection]] is the enum used for values
      */
     direction?: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
+
+    /**
+     * Using this id to link the emitter to an HTML element
+     */
+    domId?: string;
 
     /**
      * Sets if the particles will spawn at the emitter perimeter or inside the area
@@ -58,7 +63,7 @@ export interface IEmitter {
      * The relative position (in percent) of the emitter, where particles spawns.
      * If size is specified the position will be the center of the size options
      */
-    position?: RecursivePartial<ICoordinates>;
+    position?: RecursivePartial<IRangedCoordinates>;
 
     /**
      * The particles emitting rate options

@@ -3,7 +3,186 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.28.1...editor-demo@2.0.4) (2022-04-06)
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+## [2.0.3](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.27.1...editor-demo@2.0.3) (2022-03-11)
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+## [2.0.2](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.26.4...editor-demo@2.0.2) (2022-02-21)
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.28.1](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.28.0...editor-demo@1.28.1) (2022-04-06)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
+# [1.28.0](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.27.4...editor-demo@1.28.0) (2022-04-04)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
+## [1.27.4](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.27.3...editor-demo@1.27.4) (2022-03-20)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
+## [1.27.3](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.27.2...editor-demo@1.27.3) (2022-03-18)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
+## [1.27.2](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.27.1...editor-demo@1.27.2) (2022-03-14)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
+## [1.27.1](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.27.0...editor-demo@1.27.1) (2022-03-09)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
+# [1.27.0](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.26.6...editor-demo@1.27.0) (2022-03-08)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
+## [1.26.6](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.26.5...editor-demo@1.26.6) (2022-03-03)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
+## [1.26.5](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.26.4...editor-demo@1.26.5) (2022-02-24)
+
+
+### Bug Fixes
+
+* fixed emitters issues ([c9d9a51](https://github.com/matteobruni/tsparticles/commit/c9d9a51e41fdc77a9bf544a09d979d8c2f6b10d5))
+
+
+
+
+
+## [2.0.1](https://github.com/matteobruni/tsparticles/compare/editor-demo@2.0.0...editor-demo@2.0.1) (2022-02-15)
+## [1.26.4](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.26.3...editor-demo@1.26.4) (2022-02-20)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
+## [1.26.3](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.26.2...editor-demo@1.26.3) (2022-02-19)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
+## [1.26.2](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.26.1...editor-demo@1.26.2) (2022-02-16)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
+# [2.0.0](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.26.1...editor-demo@2.0.0) (2022-02-15)
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.24.2...editor-demo@2.0.0-beta.5) (2022-01-30)
+## [1.26.1](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.26.0...editor-demo@1.26.1) (2022-02-14)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
+# [1.26.0](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.25.2...editor-demo@1.26.0) (2022-02-10)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
+## [1.25.2](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.25.1...editor-demo@1.25.2) (2022-02-07)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
+## [1.25.1](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.25.0...editor-demo@1.25.1) (2022-02-06)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
+# [1.25.0](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.24.3...editor-demo@1.25.0) (2022-02-04)
+
+**Note:** Version bump only for package editor-demo
+
+
+
+
+
 ## [1.24.3](https://github.com/matteobruni/tsparticles/compare/editor-demo@1.24.2...editor-demo@1.24.3) (2022-02-02)
 
 

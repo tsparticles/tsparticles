@@ -1,9 +1,9 @@
 import type {
     Container,
-    Engine,
     IColorAnimation,
     ICoordinates,
     IDelta,
+    IDimension,
     IHsl,
     IParticlesOptions,
     RecursivePartial,
@@ -11,6 +11,7 @@ import type {
 import {
     SizeMode,
     Vector,
+    calcPositionOrRandomFromSizeRanged,
     colorToHsl,
     deepExtend,
     getRangeValue,
@@ -20,22 +21,21 @@ import {
 import { Emitter } from "./Options/Classes/Emitter";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
 import type { Emitters } from "./Emitters";
+import type { EmittersEngine } from "./EmittersEngine";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
 import type { IEmitterShape } from "./IEmitterShape";
 import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
-import { ShapeManager } from "./ShapeManager";
 
 /**
  * @category Emitters Plugin
  */
 export class EmitterInstance {
-    position;
+    position?: ICoordinates;
     size;
     options;
     spawnColor?: IHsl;
     fill;
 
-    #engine;
     #firstSpawn;
     #startParticlesAdded;
 
@@ -56,10 +56,12 @@ export class EmitterInstance {
     private readonly initialPosition?: ICoordinates;
     private readonly particlesOptions: RecursivePartial<IParticlesOptions>;
 
+    readonly #engine;
+
     constructor(
+        engine: EmittersEngine,
         private readonly emitters: Emitters,
         private readonly container: Container,
-        engine: Engine,
         options: RecursivePartial<IEmitter>,
         position?: ICoordinates
     ) {
@@ -79,7 +81,7 @@ export class EmitterInstance {
         this.spawnDelay = ((this.options.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
         this.position = this.initialPosition ?? this.calcPosition();
         this.name = this.options.name;
-        this.shape = ShapeManager.getShape(this.options.shape);
+        this.shape = this.#engine.emitterShapeManager?.getShape(this.options.shape);
         this.fill = this.options.fill;
         this.#firstSpawn = !this.options.life.wait;
         this.#startParticlesAdded = false;
@@ -140,19 +142,23 @@ export class EmitterInstance {
         }
 
         if (
-            this.container.retina.reduceFactor &&
-            (this.lifeCount > 0 || this.immortal || !this.options.life.count) &&
-            (this.#firstSpawn || this.currentSpawnDelay >= (this.spawnDelay ?? 0))
+            !(
+                this.container.retina.reduceFactor &&
+                (this.lifeCount > 0 || this.immortal || !this.options.life.count) &&
+                (this.#firstSpawn || this.currentSpawnDelay >= (this.spawnDelay ?? 0))
+            )
         ) {
-            if (this.emitDelay === undefined) {
-                const delay = getRangeValue(this.options.rate.delay);
+            return;
+        }
 
-                this.emitDelay = (1000 * delay) / this.container.retina.reduceFactor;
-            }
+        if (this.emitDelay === undefined) {
+            const delay = getRangeValue(this.options.rate.delay);
 
-            if (this.lifeCount > 0 || this.immortal) {
-                this.prepareToDie();
-            }
+            this.emitDelay = (1000 * delay) / this.container.retina.reduceFactor;
+        }
+
+        if (this.lifeCount > 0 || this.immortal) {
+            this.prepareToDie();
         }
     }
 
@@ -245,6 +251,52 @@ export class EmitterInstance {
         }
     }
 
+    getPosition(): ICoordinates | undefined {
+        if (this.options.domId) {
+            const container = this.container,
+                element = document.getElementById(this.options.domId);
+
+            if (element) {
+                const elRect = element.getBoundingClientRect();
+
+                return {
+                    x: (elRect.x + elRect.width / 2) * container.retina.pixelRatio,
+                    y: (elRect.y + elRect.height / 2) * container.retina.pixelRatio,
+                };
+            }
+        }
+
+        return this.position;
+    }
+
+    getSize(): IDimension {
+        const container = this.container;
+
+        if (this.options.domId) {
+            const element = document.getElementById(this.options.domId);
+
+            if (element) {
+                const elRect = element.getBoundingClientRect();
+
+                return {
+                    width: elRect.width * container.retina.pixelRatio,
+                    height: elRect.height * container.retina.pixelRatio,
+                };
+            }
+        }
+
+        return {
+            width:
+                this.size.mode === SizeMode.percent
+                    ? (container.canvas.size.width * this.size.width) / 100
+                    : this.size.width,
+            height:
+                this.size.mode === SizeMode.percent
+                    ? (container.canvas.size.height * this.size.height) / 100
+                    : this.size.height,
+        };
+    }
+
     private prepareToDie(): void {
         if (this.paused) {
             return;
@@ -274,13 +326,10 @@ export class EmitterInstance {
     }
 
     private calcPosition(): ICoordinates {
-        const container = this.container;
-        const percentPosition = this.options.position;
-
-        return {
-            x: ((percentPosition?.x ?? Math.random() * 100) / 100) * container.canvas.size.width,
-            y: ((percentPosition?.y ?? Math.random() * 100) / 100) * container.canvas.size.height,
-        };
+        return calcPositionOrRandomFromSizeRanged({
+            size: this.container.canvas.size,
+            position: this.options.position,
+        });
     }
 
     private emit(): void {
@@ -294,18 +343,8 @@ export class EmitterInstance {
     }
 
     private emitParticles(quantity: number): void {
-        const container = this.container;
-        const position = this.position;
-        const offset = {
-            x:
-                this.size.mode === SizeMode.percent
-                    ? (container.canvas.size.width * this.size.width) / 100
-                    : this.size.width,
-            y:
-                this.size.mode === SizeMode.percent
-                    ? (container.canvas.size.height * this.size.height) / 100
-                    : this.size.height,
-        };
+        const position = this.getPosition(),
+            size = this.getSize();
 
         for (let i = 0; i < quantity; i++) {
             const particlesOptions = deepExtend({}, this.particlesOptions) as RecursivePartial<IParticlesOptions>;
@@ -328,9 +367,13 @@ export class EmitterInstance {
                 }
             }
 
-            const pPosition = this.shape?.randomPosition(position, offset, this.fill) ?? position;
+            if (!position) {
+                return;
+            }
 
-            container.particles.addParticle(pPosition, particlesOptions);
+            const pPosition = this.shape?.randomPosition(position, size, this.fill) ?? position;
+
+            this.container.particles.addParticle(pPosition, particlesOptions);
         }
     }
 
@@ -341,11 +384,10 @@ export class EmitterInstance {
             return initValue;
         }
 
-        const colorOffset = randomInRange(animation.offset);
-
-        const delay = getRangeValue(this.options.rate.delay);
-        const emitFactor = (1000 * delay) / container.retina.reduceFactor;
-        const colorSpeed = animation.speed ?? 0;
+        const colorOffset = randomInRange(animation.offset),
+            delay = getRangeValue(this.options.rate.delay),
+            emitFactor = (1000 * delay) / container.retina.reduceFactor,
+            colorSpeed = getRangeValue(animation.speed ?? 0);
 
         return (initValue + (colorSpeed * container.fpsLimit) / emitFactor + colorOffset * 3.6) % maxValue;
     }

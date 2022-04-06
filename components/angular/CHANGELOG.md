@@ -3,6 +3,188 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.4](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.43.1...ng-particles@3.0.4) (2022-04-06)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to ~13.1.0 ([1f80f2b](https://github.com/matteobruni/tsparticles/commit/1f80f2b467d440ed3f2d4b4a4bd08eb561cef76f))
+* **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+* **deps:** update angular monorepo to ~13.3.0 ([6aa9b81](https://github.com/matteobruni/tsparticles/commit/6aa9b814962c0460949452e7ee5c84617330ffd4))
+* **deps:** update angular monorepo to ~13.3.0 ([71e7a23](https://github.com/matteobruni/tsparticles/commit/71e7a2388d7871a26b4b25d691c061cacf8e08eb))
+* **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+* **deps:** update dependency rxjs to ~7.4.0 ([048238b](https://github.com/matteobruni/tsparticles/commit/048238b7b14b1ee49356afa47e5c7aa0ab4ac1f0))
+* **deps:** update dependency rxjs to ~7.5.0 ([f2d0505](https://github.com/matteobruni/tsparticles/commit/f2d0505863dafba475f8d6275d6474a54970a814))
+* removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
+
+
+### Features
+
+* changed particlesInit on angular, is a property now and not an event ([38f6219](https://github.com/matteobruni/tsparticles/commit/38f62190549bb194e6ab542ba834ae2118f99ba6))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+## [3.0.3](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.42.1...ng-particles@3.0.3) (2022-03-11)
+## [2.43.1](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.43.0...ng-particles@2.43.1) (2022-04-06)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+# [2.43.0](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.42.4...ng-particles@2.43.0) (2022-04-04)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+## [2.42.4](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.42.3...ng-particles@2.42.4) (2022-03-20)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+## [2.42.3](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.42.2...ng-particles@2.42.3) (2022-03-18)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+## [2.42.2](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.42.1...ng-particles@2.42.2) (2022-03-14)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to ~13.1.0 ([1f80f2b](https://github.com/matteobruni/tsparticles/commit/1f80f2b467d440ed3f2d4b4a4bd08eb561cef76f))
+* **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+* **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+* **deps:** update dependency rxjs to ~7.4.0 ([048238b](https://github.com/matteobruni/tsparticles/commit/048238b7b14b1ee49356afa47e5c7aa0ab4ac1f0))
+* **deps:** update dependency rxjs to ~7.5.0 ([f2d0505](https://github.com/matteobruni/tsparticles/commit/f2d0505863dafba475f8d6275d6474a54970a814))
+* removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
+
+
+### Features
+
+* changed particlesInit on angular, is a property now and not an event ([38f6219](https://github.com/matteobruni/tsparticles/commit/38f62190549bb194e6ab542ba834ae2118f99ba6))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+## [3.0.2](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.41.4...ng-particles@3.0.2) (2022-02-21)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to ~13.1.0 ([1f80f2b](https://github.com/matteobruni/tsparticles/commit/1f80f2b467d440ed3f2d4b4a4bd08eb561cef76f))
+* **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+* **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+* **deps:** update dependency rxjs to ~7.4.0 ([048238b](https://github.com/matteobruni/tsparticles/commit/048238b7b14b1ee49356afa47e5c7aa0ab4ac1f0))
+* **deps:** update dependency rxjs to ~7.5.0 ([f2d0505](https://github.com/matteobruni/tsparticles/commit/f2d0505863dafba475f8d6275d6474a54970a814))
+* removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
+
+
+### Features
+
+* changed particlesInit on angular, is a property now and not an event ([38f6219](https://github.com/matteobruni/tsparticles/commit/38f62190549bb194e6ab542ba834ae2118f99ba6))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+* do not load particles on the Node.js side and make its loading cancellable ([6711708](https://github.com/matteobruni/tsparticles/commit/67117085c3e2da281216a18933f53d3f9b731136))
+* fixed flashing issue with background mask, closes [#3514](https://github.com/matteobruni/tsparticles/issues/3514) ([6f74bf1](https://github.com/matteobruni/tsparticles/commit/6f74bf1ab62587c7f2352bfe6f72ea29bb0a31fc))
+
+
+
+
+
+## [2.42.1](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.42.0...ng-particles@2.42.1) (2022-03-09)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+# [2.42.0](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.41.6...ng-particles@2.42.0) (2022-03-08)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+## [3.0.1](https://github.com/matteobruni/tsparticles/compare/ng-particles@3.0.0...ng-particles@3.0.1) (2022-02-15)
+## [2.41.6](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.41.5...ng-particles@2.41.6) (2022-03-03)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+## [2.41.5](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.41.4...ng-particles@2.41.5) (2022-02-24)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+## [2.41.4](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.41.3...ng-particles@2.41.4) (2022-02-20)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+## [2.41.3](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.41.2...ng-particles@2.41.3) (2022-02-19)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+## [2.41.2](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.41.1...ng-particles@2.41.2) (2022-02-16)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+# [3.0.0](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.41.1...ng-particles@3.0.0) (2022-02-15)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to ~13.1.0 ([1f80f2b](https://github.com/matteobruni/tsparticles/commit/1f80f2b467d440ed3f2d4b4a4bd08eb561cef76f))
+* **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+* **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+* **deps:** update dependency rxjs to ~7.4.0 ([048238b](https://github.com/matteobruni/tsparticles/commit/048238b7b14b1ee49356afa47e5c7aa0ab4ac1f0))
+* **deps:** update dependency rxjs to ~7.5.0 ([f2d0505](https://github.com/matteobruni/tsparticles/commit/f2d0505863dafba475f8d6275d6474a54970a814))
+* removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
+
+
+### Features
+
+* changed particlesInit on angular, is a property now and not an event ([38f6219](https://github.com/matteobruni/tsparticles/commit/38f62190549bb194e6ab542ba834ae2118f99ba6))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [3.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.22.2...ng-particles@3.0.0-beta.5) (2022-01-30)
 
 
@@ -14,6 +196,49 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **deps:** update dependency rxjs to ~7.4.0 ([048238b](https://github.com/matteobruni/tsparticles/commit/048238b7b14b1ee49356afa47e5c7aa0ab4ac1f0))
 * **deps:** update dependency rxjs to ~7.5.0 ([f2d0505](https://github.com/matteobruni/tsparticles/commit/f2d0505863dafba475f8d6275d6474a54970a814))
 * removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
+## [2.41.1](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.41.0...ng-particles@2.41.1) (2022-02-14)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+# [2.41.0](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.40.2...ng-particles@2.41.0) (2022-02-10)
+
+
+### Features
+
+* updated ng-particles to Angular 13 ([802e290](https://github.com/matteobruni/tsparticles/commit/802e2904fcf01e713fe74bcdb4efb32979e27cc8))
+
+
+
+
+
+## [2.40.2](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.40.1...ng-particles@2.40.2) (2022-02-07)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+## [2.40.1](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.40.0...ng-particles@2.40.1) (2022-02-06)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+# [2.40.0](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.22.3...ng-particles@2.40.0) (2022-02-04)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
 ## [2.22.3](https://github.com/matteobruni/tsparticles/compare/ng-particles@2.22.2...ng-particles@2.22.3) (2022-02-02)
 
 

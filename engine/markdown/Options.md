@@ -27,5 +27,4 @@ These options are not part of the slim bundle
 | ------------- | ------------------ | ------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | `absorbers`   | `object` / `array` |         | See Absorbers options {@link IAbsorber | here}                                                                                               |
 | `emitters`    | `object` / `array` |         | See Emitter options {@link IEmitter | here}                                                                                                  |
-| `infection`   | `object`           |         | See Infection options {@link IInfection | here}. This plugin is neither part of the full bundle, it's only external starting from `1.32.0`   |
 | `polygonMask` | `object`           |         | See Particles options {@link IPolygonMask | here}                                                                                            |

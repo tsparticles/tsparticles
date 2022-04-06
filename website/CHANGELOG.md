@@ -3,12 +3,211 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.39.2...tsparticles-website@2.0.0-beta.5) (2022-01-30)
+## [2.0.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.43.1...tsparticles-website@2.0.4) (2022-04-06)
 
 
 ### Bug Fixes
 
 * **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/matteobruni/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+## [2.0.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.42.1...tsparticles-website@2.0.3) (2022-03-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/matteobruni/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+## [2.0.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.41.4...tsparticles-website@2.0.2) (2022-02-21)
+## [1.43.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.43.0...tsparticles-website@1.43.1) (2022-04-06)
+
+**Note:** Version bump only for package tsparticles-website
+
+
+
+
+
+# [1.43.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.42.4...tsparticles-website@1.43.0) (2022-04-04)
+
+**Note:** Version bump only for package tsparticles-website
+
+
+
+
+
+## [1.42.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.42.3...tsparticles-website@1.42.4) (2022-03-20)
+
+**Note:** Version bump only for package tsparticles-website
+
+
+
+
+
+## [1.42.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.42.2...tsparticles-website@1.42.3) (2022-03-18)
+
+**Note:** Version bump only for package tsparticles-website
+
+
+
+
+
+## [1.42.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.42.1...tsparticles-website@1.42.2) (2022-03-14)
+
+**Note:** Version bump only for package tsparticles-website
+
+
+
+
+
+## [1.42.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.42.0...tsparticles-website@1.42.1) (2022-03-09)
+
+**Note:** Version bump only for package tsparticles-website
+
+
+
+
+
+# [1.42.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.41.6...tsparticles-website@1.42.0) (2022-03-08)
+
+**Note:** Version bump only for package tsparticles-website
+
+
+
+
+
+## [1.41.6](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.41.5...tsparticles-website@1.41.6) (2022-03-03)
+
+**Note:** Version bump only for package tsparticles-website
+
+
+
+
+
+## [1.41.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.41.4...tsparticles-website@1.41.5) (2022-02-24)
+
+
+### Bug Fixes
+
+* **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/matteobruni/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+## [2.0.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@2.0.0...tsparticles-website@2.0.1) (2022-02-15)
+* fixed emitters issues ([c9d9a51](https://github.com/matteobruni/tsparticles/commit/c9d9a51e41fdc77a9bf544a09d979d8c2f6b10d5))
+
+
+
+
+
+## [1.41.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.41.3...tsparticles-website@1.41.4) (2022-02-20)
+
+**Note:** Version bump only for package tsparticles-website
+
+
+
+
+
+## [1.41.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.41.2...tsparticles-website@1.41.3) (2022-02-19)
+
+**Note:** Version bump only for package tsparticles-website
+
+
+
+
+
+## [1.41.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.41.1...tsparticles-website@1.41.2) (2022-02-16)
+
+**Note:** Version bump only for package tsparticles-website
+
+
+
+
+
+# [2.0.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.41.1...tsparticles-website@2.0.0) (2022-02-15)
+
+
+### Bug Fixes
+
+* **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/matteobruni/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+# [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.39.2...tsparticles-website@2.0.0-beta.5) (2022-01-30)
+## [1.41.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.41.0...tsparticles-website@1.41.1) (2022-02-14)
+
+
+### Bug Fixes
+
+* **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/matteobruni/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
+* **deps:** update dependency minify to v8 ([e2ffbec](https://github.com/matteobruni/tsparticles/commit/e2ffbec6b4c83a847450c1edc8b8f114f45c0eff))
+
+
+
+
+
+# [1.41.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.40.2...tsparticles-website@1.41.0) (2022-02-10)
+
+**Note:** Version bump only for package tsparticles-website
+
+
+
+
+
+## [1.40.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.40.1...tsparticles-website@1.40.2) (2022-02-07)
+
+**Note:** Version bump only for package tsparticles-website
+
+
+
+
+
+## [1.40.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.40.0...tsparticles-website@1.40.1) (2022-02-06)
+
+**Note:** Version bump only for package tsparticles-website
+
+
+
+
+
+# [1.40.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.39.3...tsparticles-website@1.40.0) (2022-02-04)
+
+**Note:** Version bump only for package tsparticles-website
+
+
+
+
+
 ## [1.39.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@1.39.2...tsparticles-website@1.39.3) (2022-02-02)
 
 

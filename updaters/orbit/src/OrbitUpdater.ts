@@ -1,5 +1,26 @@
-import type { Container, IDelta, IHsl, IParticleRetinaProps, IParticleUpdater, Particle } from "tsparticles-engine";
-import { OrbitType, colorToHsl, drawEllipse, getRangeValue } from "tsparticles-engine";
+import type {
+    Container,
+    IDelta,
+    IHsl,
+    IParticleRetinaProps,
+    IParticleUpdater,
+    Particle,
+    Retina,
+} from "tsparticles-engine";
+import { colorToHsl, drawEllipse, getRangeValue } from "tsparticles-engine";
+
+export const enum OrbitType {
+    front = "front",
+    back = "back",
+}
+
+type OrbitRetina = Retina & {
+    orbitRadius?: number;
+};
+
+type OrbitContainer = Container & {
+    retina: OrbitRetina;
+};
 
 type OrbitParticle = Particle & {
     orbitColor?: IHsl;
@@ -7,23 +28,33 @@ type OrbitParticle = Particle & {
     retina: IParticleRetinaProps & {
         orbitRadius?: number;
     };
+    orbitAnimationSpeed?: number;
+    orbitOpacity?: number;
+    orbitWidth?: number;
 };
 
 export class OrbitUpdater implements IParticleUpdater {
-    constructor(private readonly container: Container) {}
+    constructor(private readonly container: OrbitContainer) {}
 
     init(particle: OrbitParticle): void {
         /* orbit */
-        const particlesOptions = particle.options;
-        const orbitOptions = particlesOptions.orbit;
+        const container = this.container,
+            particlesOptions = particle.options,
+            orbitOptions = particlesOptions.orbit;
 
         if (orbitOptions.enable) {
-            particle.orbitRotation = getRangeValue(orbitOptions.rotation);
-
+            particle.orbitRotation = getRangeValue(orbitOptions.rotation.value);
             particle.orbitColor = colorToHsl(orbitOptions.color);
-
             particle.retina.orbitRadius =
-                orbitOptions?.radius !== undefined ? orbitOptions.radius * this.container.retina.pixelRatio : undefined;
+                orbitOptions?.radius !== undefined
+                    ? getRangeValue(orbitOptions.radius) * container.retina.pixelRatio
+                    : undefined;
+            container.retina.orbitRadius = particle.retina.orbitRadius;
+            particle.orbitAnimationSpeed = orbitOptions.animation.enable
+                ? getRangeValue(orbitOptions.animation.speed)
+                : 0;
+            particle.orbitWidth = getRangeValue(orbitOptions.width);
+            particle.orbitOpacity = getRangeValue(orbitOptions.opacity);
         }
     }
 
@@ -34,8 +65,6 @@ export class OrbitUpdater implements IParticleUpdater {
     }
 
     update(particle: OrbitParticle, delta: IDelta): void {
-        const orbitAnimations = particle.options.orbit.animation;
-
         if (!this.isEnabled(particle)) {
             return;
         }
@@ -44,7 +73,7 @@ export class OrbitUpdater implements IParticleUpdater {
             particle.orbitRotation = 0;
         }
 
-        particle.orbitRotation += (orbitAnimations.speed / (Math.PI * 2)) * delta.factor;
+        particle.orbitRotation += (particle.orbitAnimationSpeed ?? 0 / (Math.PI * 2)) * delta.factor;
     }
 
     beforeDraw(particle: OrbitParticle): void {
@@ -65,10 +94,8 @@ export class OrbitUpdater implements IParticleUpdater {
 
     drawOrbit(particle: OrbitParticle, type: OrbitType): void {
         const container = this.container;
-        const orbitOptions = particle.options.orbit;
 
-        let start: number;
-        let end: number;
+        let start: number, end: number;
 
         switch (type) {
             case OrbitType.back:
@@ -90,8 +117,8 @@ export class OrbitUpdater implements IParticleUpdater {
                 particle,
                 particle.orbitColor ?? particle.getFillColor(),
                 particle.retina.orbitRadius ?? container.retina.orbitRadius ?? particle.getRadius(),
-                orbitOptions.opacity,
-                orbitOptions.width,
+                particle.orbitOpacity ?? 1,
+                particle.orbitWidth ?? 1,
                 (particle.orbitRotation ?? 0) * container.retina.pixelRatio,
                 start,
                 end

@@ -1,12 +1,15 @@
-import type { IOptionLoader, IRotateAnimation } from "../../../Interfaces";
-import type { RecursivePartial } from "../../../../Types";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { IRotateAnimation } from "../../../Interfaces/Particles/Rotate/IRotateAnimation";
+import type { RangeValue } from "../../../../Types/RangeValue";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import { setRangeValue } from "../../../../Utils/NumberUtils";
 
 /**
  * @category Options
  */
 export class RotateAnimation implements IRotateAnimation, IOptionLoader<IRotateAnimation> {
     enable;
-    speed;
+    speed: RangeValue;
     sync;
 
     constructor() {
@@ -25,7 +28,7 @@ export class RotateAnimation implements IRotateAnimation, IOptionLoader<IRotateA
         }
 
         if (data.speed !== undefined) {
-            this.speed = data.speed;
+            this.speed = setRangeValue(data.speed);
         }
 
         if (data.sync !== undefined) {

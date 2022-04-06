@@ -1,10 +1,11 @@
-import type { RangeValue, RecursivePartial } from "../../../../Types";
-import type { IOptionLoader } from "../../../Interfaces";
-import type { IRoll } from "../../../Interfaces";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { IRoll } from "../../../Interfaces/Particles/Roll/IRoll";
 import { OptionsColor } from "../../OptionsColor";
+import type { RangeValue } from "../../../../Types/RangeValue";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { RollLight } from "./RollLight";
-import { RollMode } from "../../../../Enums";
-import { setRangeValue } from "../../../../Utils";
+import { RollMode } from "../../../../Enums/Modes/RollMode";
+import { setRangeValue } from "../../../../Utils/NumberUtils";
 
 export class Roll implements IRoll, IOptionLoader<IRoll> {
     backColor?: OptionsColor;
@@ -27,7 +28,10 @@ export class Roll implements IRoll, IOptionLoader<IRoll> {
             return;
         }
 
-        this.backColor = OptionsColor.create(this.backColor, data.backColor);
+        if (data.backColor !== undefined) {
+            this.backColor = OptionsColor.create(this.backColor, data.backColor);
+        }
+
         this.darken.load(data.darken);
 
         if (data.enable !== undefined) {

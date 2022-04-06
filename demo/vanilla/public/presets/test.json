@@ -1,99 +1,43 @@
 {
-  "fpsLimit": 120,
+  "fpsLimit": 60,
+  "background": {
+    "color": "#000"
+  },
   "particles": {
-    "number": {
-      "value": 50
-    },
-    "shape": {
-      "type": "circle"
-    },
-    "opacity": {
-      "value": 0.5
+    "color": {
+      "value": "#ffffff"
     },
     "size": {
-      "value": 400,
-      "random": {
+      "value": {
+        "min": 0,
+        "max": 6
+      },
+      "animation": {
         "enable": true,
-        "minimumValue": 200
+        "speed": 3,
+        "sync": false,
+        "destroy": "none",
+        "startValue": "min"
       }
     },
     "move": {
       "enable": true,
-      "speed": 10,
-      "direction": "top",
-      "outMode": "destroy"
-    }
-  },
-  "detectRetina": true,
-  "background": {
-    "image": "",
-    "position": "50% 50%",
-    "repeat": "no-repeat",
-    "size": "cover"
-  },
-  "themes": [
-    {
-      "name": "light",
-      "default": {
-        "auto": true,
-        "value": true,
-        "mode": "light"
+      "speed": 3,
+      "random": false,
+      "size": true
+    },
+    "number": {
+      "density": {
+        "enable": true,
+        "area": 800
       },
-      "options": {
-        "background": {
-          "color": "#fff"
-        },
-        "particles": {
-          "color": {
-            "value": [
-              "#5bc0eb",
-              "#fde74c",
-              "#9bc53d",
-              "#e55934",
-              "#fa7921"
-            ]
-          }
-        }
-      }
+      "value": 80
     },
-    {
-      "name": "dark",
-      "default": {
-        "auto": true,
-        "value": true,
-        "mode": "dark"
-      },
-      "options": {
-        "background": {
-          "color": "#000"
-        },
-        "particles": {
-          "color": {
-            "value": [
-              "#004f74",
-              "#5f5800",
-              "#245100",
-              "#7d0000",
-              "#810c00"
-            ]
-          }
-        }
-      }
-    }
-  ],
-  "emitters": {
-    "direction": "top",
-    "position": {
-      "x": 50,
-      "y": 120
+    "opacity": {
+      "value": 0.5
     },
-    "rate": {
-      "delay": 0.2,
-      "quantity": 2
-    },
-    "size": {
-      "width": 100,
-      "height": 0
+    "shape": {
+      "type": "circle"
     }
   }
 }

@@ -1,6 +1,6 @@
-import type { HoverMode } from "../../../../Enums";
+import type { HoverMode } from "../../../../Enums/Modes/HoverMode";
 import type { IParallax } from "./IParallax";
-import type { SingleOrMultiple } from "../../../../Types";
+import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 /**
  * [[include:Options/Interactivity/Hover.md]]

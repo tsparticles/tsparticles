@@ -1,4 +1,4 @@
-import type { ClickMode } from "../../Enums";
+import type { ClickMode } from "../../Enums/Modes/ClickMode";
 import type { IDelta } from "./IDelta";
 import type { IInteractor } from "./IInteractor";
 
@@ -10,5 +10,5 @@ export interface IExternalInteractor extends IInteractor {
 
     isEnabled(): boolean;
 
-    interact(delta: IDelta): void;
+    interact(delta: IDelta): Promise<void>;
 }

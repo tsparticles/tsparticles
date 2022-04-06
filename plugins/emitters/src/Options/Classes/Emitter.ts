@@ -1,8 +1,8 @@
-import { AnimatableColor, MoveDirection, MoveDirectionAlt, deepExtend } from "tsparticles-engine";
-import type { ICoordinates, IOptionLoader, IParticlesOptions, RecursivePartial } from "tsparticles-engine";
+import { AnimatableColor, MoveDirection, MoveDirectionAlt, deepExtend, setRangeValue } from "tsparticles-engine";
+import type { IOptionLoader, IParticlesOptions, IRangedCoordinates, RecursivePartial } from "tsparticles-engine";
 import { EmitterLife } from "./EmitterLife";
 import { EmitterRate } from "./EmitterRate";
-import { EmitterShapeType } from "../../Enums";
+import { EmitterShapeType } from "../../Enums/EmitterShapeType";
 import { EmitterSize } from "./EmitterSize";
 import type { IEmitter } from "../Interfaces/IEmitter";
 
@@ -14,11 +14,12 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     autoPlay;
     size?: EmitterSize;
     direction?: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
+    domId?: string;
     fill;
     life;
     name?: string;
     particles?: RecursivePartial<IParticlesOptions>;
-    position?: RecursivePartial<ICoordinates>;
+    position?: RecursivePartial<IRangedCoordinates>;
     rate;
     shape: EmitterShapeType | keyof typeof EmitterShapeType;
     spawnColor?: AnimatableColor;
@@ -54,6 +55,8 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
             this.direction = data.direction;
         }
 
+        this.domId = data.domId;
+
         if (data.fill !== undefined) {
             this.fill = data.fill;
         }
@@ -73,10 +76,15 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
         }
 
         if (data.position !== undefined) {
-            this.position = {
-                x: data.position.x,
-                y: data.position.y,
-            };
+            this.position = {};
+
+            if (data.position.x !== undefined) {
+                this.position.x = setRangeValue(data.position.x);
+            }
+
+            if (data.position.y !== undefined) {
+                this.position.y = setRangeValue(data.position.y);
+            }
         }
 
         if (data.spawnColor !== undefined) {

@@ -1,6 +1,5 @@
 {
     "fullScreen": {
-        "enable": true,
         "zIndex": -1
     },
     "particles": {
@@ -59,7 +58,6 @@
             }
         }
     },
-    "detectRetina": true,
     "background": {
         "color": "#ffffff",
         "image": "",

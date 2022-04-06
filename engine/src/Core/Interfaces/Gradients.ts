@@ -1,7 +1,7 @@
-import type { GradientType, RotateDirectionAlt } from "../../Enums";
+import { RotateDirection, RotateDirectionAlt } from "../../Enums/Directions/RotateDirection";
+import { GradientType } from "../../Enums/Types/GradientType";
 import type { IColor } from "./Colors";
-import type { RangeValue } from "../../Types";
-import type { RotateDirection } from "../../Enums";
+import type { RangeValue } from "../../Types/RangeValue";
 
 export interface IGradientColorOpacity {
     value: RangeValue;

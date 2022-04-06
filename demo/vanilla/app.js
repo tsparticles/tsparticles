@@ -19,7 +19,7 @@ app.set('views', './views');
 app.set('view engine', 'pug');
 app.use(stylus.middleware('./public'));
 app.use(express.static('./public'));
-app.use("/docs", express.static("../../core/main/docs"));
+app.use("/docs", express.static("../../engine/docs"));
 app.use("/fontawesome", express.static("./node_modules/@fortawesome/fontawesome-free"));
 app.use("/jsoneditor", express.static("./node_modules/jsoneditor/dist"));
 app.use("/jquery", express.static("./node_modules/jquery/dist"));
@@ -55,6 +55,7 @@ app.use("/updater-color", express.static("./node_modules/tsparticles-updater-col
 app.use("/updater-stroke-color", express.static("./node_modules/tsparticles-updater-stroke-color"));
 app.use("/updater-out-modes", express.static("./node_modules/tsparticles-updater-out-modes"));
 app.use("/updater-tilt", express.static("./node_modules/tsparticles-updater-tilt"))
+app.use("/updater-twinkle", express.static("./node_modules/tsparticles-updater-twinkle"))
 app.use("/updater-roll", express.static("./node_modules/tsparticles-updater-roll"))
 app.use("/updater-wobble", express.static("./node_modules/tsparticles-updater-wobble"))
 app.use("/interaction-external-trail", express.static("./node_modules/tsparticles-interaction-external-trail"))
@@ -93,6 +94,10 @@ app.use("/stats.ts", express.static("./node_modules/stats.ts/"));
 
 app.get('/', function (req, res) {
     res.render('index');
+});
+
+app.get('/domEmitters', function (req, res) {
+    res.render('domEmitters');
 });
 
 app.get('/slim', function (req, res) {

@@ -1,8 +1,11 @@
+import type { RangeValue } from "../../../../Types/RangeValue";
+
 /**
  * @category Options
  */
+
 export interface ITiltAnimation {
     enable: boolean;
-    speed: number;
+    speed: RangeValue;
     sync: boolean;
 }

@@ -24,11 +24,18 @@ export const options: ISourceOptions = {
         },
         move: {
             enable: true,
-            speed: 10,
+            angle: {
+                value: 30,
+                offset: 0,
+            },
+            speed: {
+                min: 10,
+                max: 20,
+            },
             direction: MoveDirection.top,
             outModes: {
-                top: OutMode.destroy,
-                default: OutMode.out,
+                default: OutMode.destroy,
+                bottom: OutMode.none,
             },
         },
     },
@@ -36,15 +43,15 @@ export const options: ISourceOptions = {
     emitters: {
         position: {
             x: 50,
-            y: 130,
+            y: 150,
         },
         rate: {
             delay: 0.2,
-            quantity: 2,
+            quantity: 3,
         },
         size: {
             width: 100,
-            height: 0,
+            height: 50,
         },
     },
 };

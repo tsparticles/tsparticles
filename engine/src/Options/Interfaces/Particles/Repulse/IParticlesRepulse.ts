@@ -1,4 +1,5 @@
 import type { IValueWithRandom } from "../../IValueWithRandom";
+import type { RangeValue } from "../../../../Types/RangeValue";
 
 /**
  * @category Options
@@ -6,8 +7,8 @@ import type { IValueWithRandom } from "../../IValueWithRandom";
  */
 export interface IParticlesRepulse extends IValueWithRandom {
     enabled: boolean;
-    distance: number;
-    duration: number;
-    factor: number;
-    speed: number;
+    distance: RangeValue;
+    duration: RangeValue;
+    factor: RangeValue;
+    speed: RangeValue;
 }

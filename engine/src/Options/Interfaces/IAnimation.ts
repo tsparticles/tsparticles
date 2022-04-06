@@ -1,5 +1,7 @@
+import { RangeValue } from "../../Types/RangeValue";
+
 export interface IAnimation {
-    count: number;
+    count: RangeValue;
 
     /**
      * Enables/disables the animation
@@ -9,7 +11,7 @@ export interface IAnimation {
     /**
      * Speed animation
      */
-    speed: number;
+    speed: RangeValue;
 
     /**
      * Enables the sync animations for the particles created at the same time

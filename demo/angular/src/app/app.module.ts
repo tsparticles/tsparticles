@@ -4,12 +4,10 @@ import { NgParticlesModule } from 'ng-particles';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ContainerComponent } from './container/container.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ContainerComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -17,6 +15,7 @@ import { ContainerComponent } from './container/container.component';
     NgParticlesModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {
+}

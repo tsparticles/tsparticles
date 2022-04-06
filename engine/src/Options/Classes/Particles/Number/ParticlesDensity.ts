@@ -1,10 +1,28 @@
-import type { IOptionLoader, IParticlesDensity } from "../../../Interfaces";
-import type { RecursivePartial } from "../../../../Types";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { IParticlesDensity } from "../../../Interfaces/Particles/Number/IParticlesDensity";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 /**
  * @category Options
  */
 export class ParticlesDensity implements IParticlesDensity, IOptionLoader<IParticlesDensity> {
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new area
+     */
+    get value_area(): number {
+        return this.area;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new area
+     * @param value
+     */
+    set value_area(value: number) {
+        this.area = value;
+    }
+
     area;
     enable;
     factor;
@@ -24,8 +42,10 @@ export class ParticlesDensity implements IParticlesDensity, IOptionLoader<IParti
             this.enable = data.enable;
         }
 
-        if (data.area !== undefined) {
-            this.area = data.area;
+        const area = data.area ?? data.value_area;
+
+        if (area !== undefined) {
+            this.area = area;
         }
 
         if (data.factor !== undefined) {

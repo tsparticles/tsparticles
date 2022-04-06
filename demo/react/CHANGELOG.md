@@ -3,7 +3,201 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.28.1...react-tsparticles-demo@2.0.4) (2022-04-06)
+
+
+### Bug Fixes
+
+* **deps:** update react monorepo to v18 ([4a434e6](https://github.com/matteobruni/tsparticles/commit/4a434e6217f7b65291da2a053af8f2ded70c879c))
+
+
+### Features
+
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+* moved polygon mask to external plugin (breaking) ([abdfe37](https://github.com/matteobruni/tsparticles/commit/abdfe37f250a4f357f4491bb7ff0e54da6a7303e))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+## [2.0.3](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.27.1...react-tsparticles-demo@2.0.3) (2022-03-11)
+
+
+### Features
+
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+* moved polygon mask to external plugin (breaking) ([abdfe37](https://github.com/matteobruni/tsparticles/commit/abdfe37f250a4f357f4491bb7ff0e54da6a7303e))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.28.1](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.28.0...react-tsparticles-demo@1.28.1) (2022-04-06)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
+# [1.28.0](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.27.4...react-tsparticles-demo@1.28.0) (2022-04-04)
+
+
+### Bug Fixes
+
+* **deps:** update react monorepo to v18 ([79e531d](https://github.com/matteobruni/tsparticles/commit/79e531dc77dd73c9493e30e9eb23f5620a860ea9))
+* updated all plugins to use new build system, improves imports compatibility ([0d75d97](https://github.com/matteobruni/tsparticles/commit/0d75d97c02c8a8f55e1697e4e7f0fdcf4c24ae4a))
+* upgrade rxjs from 7.5.4 to 7.5.5 ([866f8a8](https://github.com/matteobruni/tsparticles/commit/866f8a8ce102aeb04c66c4d21f26583643aa6aab))
+
+
+
+
+
+## [2.0.2](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.26.4...react-tsparticles-demo@2.0.2) (2022-02-21)
+## [1.27.4](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.27.3...react-tsparticles-demo@1.27.4) (2022-03-20)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
+## [1.27.3](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.27.2...react-tsparticles-demo@1.27.3) (2022-03-18)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
+## [1.27.2](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.27.1...react-tsparticles-demo@1.27.2) (2022-03-14)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
+## [1.27.1](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.27.0...react-tsparticles-demo@1.27.1) (2022-03-09)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
+# [1.27.0](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.26.6...react-tsparticles-demo@1.27.0) (2022-03-08)
+
+
+### Features
+
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+* moved polygon mask to external plugin (breaking) ([abdfe37](https://github.com/matteobruni/tsparticles/commit/abdfe37f250a4f357f4491bb7ff0e54da6a7303e))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+* more rangeable options ([a2598c0](https://github.com/matteobruni/tsparticles/commit/a2598c07e968ab383c0a1eb311e22c4a0f52d9b8))
+
+
+
+
+
+## [1.26.6](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.26.5...react-tsparticles-demo@1.26.6) (2022-03-03)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
+## [1.26.5](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.26.4...react-tsparticles-demo@1.26.5) (2022-02-24)
+
+
+### Bug Fixes
+
+* fixed emitters issues ([c9d9a51](https://github.com/matteobruni/tsparticles/commit/c9d9a51e41fdc77a9bf544a09d979d8c2f6b10d5))
+
+
+
+
+
+## [2.0.1](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@2.0.0...react-tsparticles-demo@2.0.1) (2022-02-15)
+## [1.26.4](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.26.3...react-tsparticles-demo@1.26.4) (2022-02-20)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
+## [1.26.3](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.26.2...react-tsparticles-demo@1.26.3) (2022-02-19)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
+## [1.26.2](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.26.1...react-tsparticles-demo@1.26.2) (2022-02-16)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
+# [2.0.0](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.26.1...react-tsparticles-demo@2.0.0) (2022-02-15)
+
+
+### Features
+
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+* moved polygon mask to external plugin (breaking) ([abdfe37](https://github.com/matteobruni/tsparticles/commit/abdfe37f250a4f357f4491bb7ff0e54da6a7303e))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.24.2...react-tsparticles-demo@2.0.0-beta.5) (2022-01-30)
+## [1.26.1](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.26.0...react-tsparticles-demo@1.26.1) (2022-02-14)
+
+
+### Bug Fixes
+
+* upgrade rxjs from 7.3.0 to 7.5.2 ([ac52db7](https://github.com/matteobruni/tsparticles/commit/ac52db7274471a02caaf10e6aa0bcd587efdae3b))
+
+
+
+
+
+# [1.26.0](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.25.2...react-tsparticles-demo@1.26.0) (2022-02-10)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
+## [1.25.2](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.25.1...react-tsparticles-demo@1.25.2) (2022-02-07)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
+## [1.25.1](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.25.0...react-tsparticles-demo@1.25.1) (2022-02-06)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
+# [1.25.0](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.24.3...react-tsparticles-demo@1.25.0) (2022-02-04)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
 ## [1.24.3](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@1.24.2...react-tsparticles-demo@1.24.3) (2022-02-02)
 
 

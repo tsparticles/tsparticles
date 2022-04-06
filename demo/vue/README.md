@@ -4,7 +4,7 @@
 
 ## Usage
 
-```
+```javascript
 const vue = require('vue');
 
 // TODO: DEMONSTRATE API

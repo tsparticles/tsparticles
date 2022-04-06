@@ -1,5 +1,6 @@
-import type { ICollisionsOverlap, IOptionLoader } from "../../../Interfaces";
-import type { RecursivePartial } from "../../../../Types";
+import type { ICollisionsOverlap } from "../../../Interfaces/Particles/Collisions/ICollisionsOverlap";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class CollisionsOverlap implements ICollisionsOverlap, IOptionLoader<ICollisionsOverlap> {
     enable: boolean;

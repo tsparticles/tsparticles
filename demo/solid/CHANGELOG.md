@@ -3,6 +3,156 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.26.1...solid-particles-demo@2.0.4) (2022-04-06)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @capacitor/core to v3.4.2 ([b488e20](https://github.com/matteobruni/tsparticles/commit/b488e20ac54a48883bf7388ce33d6d71833cdec9))
+
+
+### Features
+
+* async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+## [2.0.3](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.25.1...solid-particles-demo@2.0.3) (2022-03-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @capacitor/core to v3.4.2 ([b488e20](https://github.com/matteobruni/tsparticles/commit/b488e20ac54a48883bf7388ce33d6d71833cdec9))
+
+
+### Features
+
+* async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+## [2.0.2](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.24.4...solid-particles-demo@2.0.2) (2022-02-21)
+
+
+### Features
+
+* async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.26.1](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.26.0...solid-particles-demo@1.26.1) (2022-04-06)
+
+**Note:** Version bump only for package solid-particles-demo
+
+
+
+
+
+# [1.26.0](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.25.4...solid-particles-demo@1.26.0) (2022-04-04)
+
+**Note:** Version bump only for package solid-particles-demo
+
+
+
+
+
+## [1.25.4](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.25.3...solid-particles-demo@1.25.4) (2022-03-20)
+
+**Note:** Version bump only for package solid-particles-demo
+
+
+
+
+
+## [1.25.3](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.25.2...solid-particles-demo@1.25.3) (2022-03-18)
+
+**Note:** Version bump only for package solid-particles-demo
+
+
+
+
+
+## [1.25.2](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.25.1...solid-particles-demo@1.25.2) (2022-03-14)
+
+**Note:** Version bump only for package solid-particles-demo
+
+
+
+
+
+## [1.25.1](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.25.0...solid-particles-demo@1.25.1) (2022-03-09)
+
+**Note:** Version bump only for package solid-particles-demo
+
+
+
+
+
+# [1.25.0](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.24.6...solid-particles-demo@1.25.0) (2022-03-08)
+
+**Note:** Version bump only for package solid-particles-demo
+
+
+
+
+
+## [2.0.1](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@2.0.0...solid-particles-demo@2.0.1) (2022-02-15)
+## [1.24.6](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.24.5...solid-particles-demo@1.24.6) (2022-03-03)
+
+**Note:** Version bump only for package solid-particles-demo
+
+
+
+
+
+## [1.24.5](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.24.4...solid-particles-demo@1.24.5) (2022-02-24)
+
+**Note:** Version bump only for package solid-particles-demo
+
+
+
+
+
+## [1.24.4](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.24.3...solid-particles-demo@1.24.4) (2022-02-20)
+
+**Note:** Version bump only for package solid-particles-demo
+
+
+
+
+
+## [1.24.3](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.24.2...solid-particles-demo@1.24.3) (2022-02-19)
+
+**Note:** Version bump only for package solid-particles-demo
+
+
+
+
+
+## [1.24.2](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.24.1...solid-particles-demo@1.24.2) (2022-02-16)
+
+**Note:** Version bump only for package solid-particles-demo
+
+
+
+
+
+# [2.0.0](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.24.1...solid-particles-demo@2.0.0) (2022-02-15)
+
+
+### Features
+
+* async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.22.2...solid-particles-demo@2.0.0-beta.5) (2022-01-30)
 
 
@@ -32,6 +182,41 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.24.1](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.24.0...solid-particles-demo@1.24.1) (2022-02-14)
+
+**Note:** Version bump only for package solid-particles-demo
+
+
+
+
+
+# [1.24.0](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.23.2...solid-particles-demo@1.24.0) (2022-02-10)
+
+**Note:** Version bump only for package solid-particles-demo
+
+
+
+
+
+## [1.23.2](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.23.1...solid-particles-demo@1.23.2) (2022-02-07)
+
+**Note:** Version bump only for package solid-particles-demo
+
+
+
+
+
+## [1.23.1](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.23.0...solid-particles-demo@1.23.1) (2022-02-06)
+
+**Note:** Version bump only for package solid-particles-demo
+
+
+
+
+
+# [1.23.0](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@1.22.3...solid-particles-demo@1.23.0) (2022-02-04)
+
+**Note:** Version bump only for package solid-particles-demo
 
 
 

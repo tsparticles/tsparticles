@@ -1,6 +1,7 @@
-import { getRangeValue, isSsr } from "../Utils";
 import type { Container } from "./Container";
 import type { Particle } from "./Particle";
+import { getRangeValue } from "../Utils/NumberUtils";
+import { isSsr } from "../Utils/Utils";
 
 /**
  * @category Core
@@ -22,7 +23,6 @@ export class Retina {
     pixelRatio!: number;
     bounceModeDistance!: number;
     maxSpeed!: number;
-    orbitRadius?: number;
 
     constructor(private readonly container: Container) {}
 
@@ -30,8 +30,8 @@ export class Retina {
      * Initializes all the values needing a pixel ratio factor (sizes, widths, distances)
      */
     init(): void {
-        const container = this.container;
-        const options = container.actualOptions;
+        const container = this.container,
+            options = container.actualOptions;
 
         this.pixelRatio = !options.detectRetina || isSsr() ? 1 : window.devicePixelRatio;
 
@@ -48,7 +48,7 @@ export class Retina {
                     this.handleMotionChange(mediaQuery);
 
                     // Ads an event listener to check for changes in the media query's value.
-                    const handleChange = () => {
+                    const handleChange = (): void => {
                         this.handleMotionChange(mediaQuery);
 
                         container.refresh().catch(() => {
@@ -78,15 +78,11 @@ export class Retina {
 
         const particles = options.particles;
 
-        this.attractDistance = particles.move.attract.distance * ratio;
+        this.attractDistance = getRangeValue(particles.move.attract.distance) * ratio;
         this.linksDistance = particles.links.distance * ratio;
         this.linksWidth = particles.links.width * ratio;
-        this.sizeAnimationSpeed = particles.size.animation.speed * ratio;
-        this.maxSpeed = particles.move.gravity.maxSpeed * ratio;
-
-        if (particles.orbit.radius !== undefined) {
-            this.orbitRadius = particles.orbit.radius * this.container.retina.pixelRatio;
-        }
+        this.sizeAnimationSpeed = getRangeValue(particles.size.animation.speed) * ratio;
+        this.maxSpeed = getRangeValue(particles.move.gravity.maxSpeed) * ratio;
 
         const modes = options.interactivity.modes;
 
@@ -105,24 +101,24 @@ export class Retina {
     }
 
     initParticle(particle: Particle): void {
-        const options = particle.options;
-        const ratio = this.pixelRatio;
-        const moveDistance = options.move.distance;
-        const props = particle.retina;
+        const options = particle.options,
+            ratio = this.pixelRatio,
+            moveDistance = options.move.distance,
+            props = particle.retina;
 
-        props.attractDistance = options.move.attract.distance * ratio;
+        props.attractDistance = getRangeValue(options.move.attract.distance) * ratio;
         props.linksDistance = options.links.distance * ratio;
         props.linksWidth = options.links.width * ratio;
         props.moveDrift = getRangeValue(options.move.drift) * ratio;
         props.moveSpeed = getRangeValue(options.move.speed) * ratio;
-        props.sizeAnimationSpeed = options.size.animation.speed * ratio;
+        props.sizeAnimationSpeed = getRangeValue(options.size.animation.speed) * ratio;
 
         const maxDistance = props.maxDistance;
 
         maxDistance.horizontal = moveDistance.horizontal !== undefined ? moveDistance.horizontal * ratio : undefined;
         maxDistance.vertical = moveDistance.vertical !== undefined ? moveDistance.vertical * ratio : undefined;
 
-        props.maxSpeed = options.move.gravity.maxSpeed * ratio;
+        props.maxSpeed = getRangeValue(options.move.gravity.maxSpeed) * ratio;
     }
 
     private handleMotionChange(mediaQuery: MediaQueryList): void {

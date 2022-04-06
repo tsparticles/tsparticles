@@ -1,5 +1,4 @@
-import type { Container } from "tsparticles-engine";
-import { IParticlesJSOptions } from "./IParticlesJSOptions";
+import type { Container, ISourceOptions } from "tsparticles-engine";
 
 /**
  * [[include:pjsMigration.md]]
@@ -12,7 +11,7 @@ export interface IParticlesJS {
      * @param tagId the particles container element id
      * @param options the options object to initialize the [[Container]]
      */
-    (tagId: string, options: IParticlesJSOptions): Promise<Container | undefined>;
+    (tagId: string, options: ISourceOptions): Promise<Container | undefined>;
 
     /**
      * Loads the provided json with a GET request.

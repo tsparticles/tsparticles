@@ -2,7 +2,7 @@ import type { Container, Engine, IOptions, IPlugin, Options, RecursivePartial } 
 import type { IPolygonMaskOptions } from "./Options/Interfaces/IPolygonMaskOptions";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
 import { PolygonMaskInstance } from "./PolygonMaskInstance";
-import { PolygonMaskType } from "./Enums";
+import { PolygonMaskType } from "./Enums/PolygonMaskType";
 import { isSsr } from "tsparticles-engine";
 
 /**
@@ -52,7 +52,7 @@ export async function loadPolygonMaskPlugin(engine: Engine): Promise<void> {
             /* webpackMode: "lazy" */
             /* webpackPrefetch: true */
             /* webpackPreload: true */
-            "./pathseg"
+            "./pathseg.js"
         );
     }
 
@@ -61,4 +61,7 @@ export async function loadPolygonMaskPlugin(engine: Engine): Promise<void> {
     await engine.addPlugin(plugin);
 }
 
-export * from "./Enums";
+export * from "./Enums/PolygonMaskInlineArrangement";
+export * from "./Enums/PolygonMaskMoveType";
+export * from "./Enums/PolygonMaskType";
+export * from "./Options/Interfaces/IPolygonMaskOptions";

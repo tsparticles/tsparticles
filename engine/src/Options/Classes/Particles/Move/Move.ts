@@ -1,21 +1,104 @@
+import { MoveDirection, MoveDirectionAlt } from "../../../../Enums/Directions/MoveDirection";
+import { OutMode, OutModeAlt } from "../../../../Enums/Modes/OutMode";
+import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
+import { IDistance } from "../../../../Core/Interfaces/IDistance";
+import type { IMove } from "../../../Interfaces/Particles/Move/IMove";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import { MoveAngle } from "./MoveAngle";
+import { MoveAttract } from "./MoveAttract";
+import { MoveGravity } from "./MoveGravity";
+import { MovePath } from "./Path/MovePath";
+import { MoveTrail } from "./MoveTrail";
+import { OutModes } from "./OutModes";
+import { RangeValue } from "../../../../Types/RangeValue";
+import { RecursivePartial } from "../../../../Types/RecursivePartial";
+import { Spin } from "./Spin";
+import { deepExtend } from "../../../../Utils/Utils";
+import { setRangeValue } from "../../../../Utils/NumberUtils";
+
 /**
  * [[include:Options/Particles/Move.md]]
  * @category Options
  */
-import type { ICoordinates, IDistance } from "../../../../Core";
-import type { IMove, IOptionLoader } from "../../../Interfaces";
-import { MoveDirection, MoveDirectionAlt } from "../../../../Enums";
-import { RangeValue, RecursivePartial } from "../../../../Types";
-import { deepExtend, setRangeValue } from "../../../../Utils";
-import { MoveAngle } from "./MoveAngle";
-import { MoveAttract } from "./MoveAttract";
-import { MoveGravity } from "./MoveGravity";
-import { MovePath } from "./MovePath";
-import { MoveTrail } from "./MoveTrail";
-import { OutModes } from "./OutModes";
-import { Spin } from "./Spin";
-
 export class Move implements IMove, IOptionLoader<IMove> {
+    /**
+     * @deprecated this property is obsolete, please use the new collisions object on particles options
+     */
+    get collisions(): boolean {
+        return false;
+    }
+
+    /**
+     * @deprecated this property is obsolete, please use the new collisions object on particles options
+     * @param value
+     */
+    set collisions(value: boolean) {
+        // deprecated
+    }
+
+    /**
+     * @deprecated this property is obsolete, please use the new collisions object on particles options
+     */
+    get bounce(): boolean {
+        return this.collisions;
+    }
+
+    /**
+     * @deprecated this property is obsolete, please use the new collisions object on particles options
+     * @param value
+     */
+    set bounce(value: boolean) {
+        this.collisions = value;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new outMode
+     */
+    get out_mode(): OutMode | keyof typeof OutMode | OutModeAlt {
+        return this.outMode;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new outMode
+     * @param value
+     */
+    set out_mode(value: OutMode | keyof typeof OutMode | OutModeAlt) {
+        this.outMode = value;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new outMode
+     */
+    get outMode(): OutMode | keyof typeof OutMode | OutModeAlt {
+        return this.outModes.default;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new outMode
+     * @param value
+     */
+    set outMode(value: OutMode | keyof typeof OutMode | OutModeAlt) {
+        this.outModes.default = value;
+    }
+
+    /**
+     * @deprecated use the new [[path]] property instead
+     */
+    get noise(): MovePath {
+        return this.path;
+    }
+
+    /**
+     * @deprecated use the new [[path]] property instead
+     */
+    set noise(value: MovePath) {
+        this.path = value;
+    }
+
     angle;
     attract;
     center: ICoordinates & { radius: number };
@@ -67,10 +150,12 @@ export class Move implements IMove, IOptionLoader<IMove> {
             return;
         }
 
-        if (typeof data.angle === "number") {
-            this.angle.value = data.angle;
-        } else {
-            this.angle.load(data.angle);
+        if (data.angle !== undefined) {
+            if (typeof data.angle === "number") {
+                this.angle.value = data.angle;
+            } else {
+                this.angle.load(data.angle);
+            }
         }
 
         this.attract.load(data.attract);
@@ -105,17 +190,19 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
         this.gravity.load(data.gravity);
 
-        if (data.outModes) {
-            if (typeof data.outModes === "string") {
+        const outMode = data.outMode ?? data.out_mode;
+
+        if (data.outModes !== undefined || outMode !== undefined) {
+            if (typeof data.outModes === "string" || (data.outModes === undefined && outMode !== undefined)) {
                 this.outModes.load({
-                    default: data.outModes,
+                    default: data.outModes ?? outMode,
                 });
             } else {
                 this.outModes.load(data.outModes);
             }
         }
 
-        this.path.load(data.path);
+        this.path.load(data.path ?? data.noise);
 
         if (data.random !== undefined) {
             this.random = data.random;

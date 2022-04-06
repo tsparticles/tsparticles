@@ -1,7 +1,8 @@
 import type { IAnimatable } from "../../IAnimatable";
 import type { IAnimation } from "../../IAnimation";
-import type { IColor } from "../../../../Core";
-import type { RangeValue } from "../../../../Types";
+import type { IColor } from "../../../../Core/Interfaces/Colors";
+import type { IValueWithRandom } from "../../IValueWithRandom";
+import type { RangeValue } from "../../../../Types/RangeValue";
 
 /**
  * @category Options
@@ -15,8 +16,8 @@ export interface IOrbit extends IAnimatable<IAnimation> {
      */
     enable: boolean;
 
-    radius?: number;
-    rotation: RangeValue;
-    opacity: number;
-    width: number;
+    radius?: RangeValue;
+    rotation: IValueWithRandom;
+    opacity: RangeValue;
+    width: RangeValue;
 }

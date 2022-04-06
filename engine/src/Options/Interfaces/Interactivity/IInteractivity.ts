@@ -1,6 +1,6 @@
-import type { IEvents } from "./Events";
-import type { IModes } from "./Modes";
-import type { InteractivityDetect } from "../../../Enums";
+import type { IEvents } from "./Events/IEvents";
+import type { IModes } from "./Modes/IModes";
+import type { InteractivityDetect } from "../../../Enums/InteractivityDetect";
 
 /**
  * Particles interactivity options
@@ -8,6 +8,11 @@ import type { InteractivityDetect } from "../../../Enums";
  * @category Options
  */
 export interface IInteractivity {
+    /**
+     * @deprecated use the new detectsOn instead
+     */
+    detect_on: InteractivityDetect | keyof typeof InteractivityDetect;
+
     /**
      * Where the mouse events will be detected
      * If set to `canvas` only the particles canvas will be targeted

@@ -2,24 +2,32 @@
  * [[include:pjsMigration.md]]
  * @packageDocumentation
  */
-import type { Container, Engine, Particle, RecursivePartial } from "tsparticles-engine";
+import type { Container, Engine, ISourceOptions, Particle } from "tsparticles-engine";
 import type { IParticlesJS } from "./IParticlesJS";
-import type { IParticlesJSOptions } from "./IParticlesJSOptions";
-import { ParticlesJSPlugin } from "./particlesJSPlugin";
 
-const initPjs = (engine: Engine): { particlesJS: IParticlesJS; pJSDom: Container[] } => {
-    engine.addPlugin(new ParticlesJSPlugin());
-
+/**
+ * Initializes particles.js compatibility to the given engine
+ * @param engine the engine that requires particles.js compatibility
+ */
+const initPjs = (
+    engine: Engine
+): {
+    /**
+     * The particles.js compatibility instance
+     */
+    particlesJS: IParticlesJS;
+    /**
+     * The particles.js compatibility dom array
+     */
+    pJSDom: Container[];
+} => {
     /**
      * Loads the provided options to create a [[Container]] object.
      * @deprecated this method is obsolete, please use the new tsParticles.load
      * @param tagId the particles container element id
      * @param options the options object to initialize the [[Container]]
      */
-    const particlesJS = (
-        tagId: string,
-        options: RecursivePartial<IParticlesJSOptions>
-    ): Promise<Container | undefined> => {
+    const particlesJS = (tagId: string, options: ISourceOptions): Promise<Container | undefined> => {
         return engine.load(tagId, options);
     };
 
@@ -45,7 +53,7 @@ const initPjs = (engine: Engine): { particlesJS: IParticlesJS; pJSDom: Container
     };
 
     /**
-     * Adds an additional click handler to all the loaded [[Container]] objects.
+     * Adds a click handler to all the loaded [[Container]] objects.
      * @deprecated this method is obsolete, please use the new tsParticles.setOnClickHandler
      * @param callback the function called after the click event is fired
      */
@@ -55,7 +63,7 @@ const initPjs = (engine: Engine): { particlesJS: IParticlesJS; pJSDom: Container
 
     /**
      * All the [[Container]] objects loaded
-     * @deprecated this method is obsolete, please use the new tsParticles.dom
+     * @deprecated this method is obsolete, please use the new [[tsParticles.dom]]
      */
     const pJSDom = engine.dom();
 

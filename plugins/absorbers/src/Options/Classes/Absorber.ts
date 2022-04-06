@@ -1,7 +1,7 @@
-import type { ICoordinates, IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import type { IOptionLoader, IRangedCoordinates, RecursivePartial } from "tsparticles-engine";
+import { OptionsColor, setRangeValue } from "tsparticles-engine";
 import { AbsorberSize } from "./AbsorberSize";
 import type { IAbsorber } from "../Interfaces/IAbsorber";
-import { OptionsColor } from "tsparticles-engine";
 
 /**
  * [[include:Options/Plugins/Absorbers.md]]
@@ -12,7 +12,7 @@ export class Absorber implements IAbsorber, IOptionLoader<IAbsorber> {
     draggable;
     name?: string;
     opacity;
-    position?: RecursivePartial<ICoordinates>;
+    position?: RecursivePartial<IRangedCoordinates>;
     size;
     destroy;
     orbits;
@@ -47,10 +47,15 @@ export class Absorber implements IAbsorber, IOptionLoader<IAbsorber> {
         }
 
         if (data.position !== undefined) {
-            this.position = {
-                x: data.position.x,
-                y: data.position.y,
-            };
+            this.position = {};
+
+            if (data.position.x !== undefined) {
+                this.position.x = setRangeValue(data.position.x);
+            }
+
+            if (data.position.y !== undefined) {
+                this.position.y = setRangeValue(data.position.y);
+            }
         }
 
         if (data.size !== undefined) {

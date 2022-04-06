@@ -48,6 +48,10 @@
     {
       "direction": "top",
       "position": {
+        "x": {
+          "min": 25,
+          "max": 75
+        },
         "y": 100
       },
       "life": {

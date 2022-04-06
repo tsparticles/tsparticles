@@ -1,4 +1,4 @@
-import type { IColor, ICoordinates, RecursivePartial } from "tsparticles-engine";
+import type { IColor, IRangedCoordinates, RecursivePartial } from "tsparticles-engine";
 import type { IAbsorberSize } from "./IAbsorberSize";
 
 /**
@@ -25,7 +25,7 @@ export interface IAbsorber {
     /**
      * Absorber position, percent values calculated on canvas size
      */
-    position?: RecursivePartial<ICoordinates>;
+    position?: RecursivePartial<IRangedCoordinates>;
 
     /**
      * Absorber size, these values will be used as pixels

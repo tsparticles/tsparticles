@@ -30,13 +30,13 @@ For building the first time:
 
 Unix
 
-```bash
+```shell
 yarn && npx lerna bootstrap && npx lerna run build
 ```
 
 Windows
 
-```bash
+```shell
 yarn
 npx lerna bootstrap
 npx lerna run build
@@ -46,13 +46,13 @@ For building local packages it's possible to run only `yarn build` in every fold
 
 For running demos
 
-```bash
+```shell
 yarn start
 ```
 
 or
 
-```bash
+```shell
 yarn serve
 ```
 
@@ -72,20 +72,25 @@ A demo folder has been created with all the demo apps needed.
 
 *The build task will be performed automatically by the CI\CD, but a first local check should be done*
 
-If you want to contribute to the project, please use *dev* as the base branch.
+If you want to contribute to the project, please use *v1* or *dev* as the base branch, *v1* is the current release, *dev* is what is coming in *v2*.
 
 Use *main* branch **ONLY** for critical bug fixes.
 
-Once done, create the **Pull Request** to *dev* branch. If it's a critical bug fix, use *staging*.
+Once done, create the **Pull Request** to *v1* or *dev* branch. If it's a critical bug fix, use *main*.
 
 ## Branches
+
+### *v1*
+
+This branch is the main version 1 development branch, it's going to be deprecated once the version 2 will be released officially.
+
 ### *dev*
 This branch is the main development branch, and it has the lowest priority branch under CI.
 
 This branch should always build. Sometimes it can be necessary to break this rule. This is why it is **should** and not **must**.
  
-### *staging*
-This branch is for testing the product before a new release.
+### *next*
+This branch is for testing the version 2 before being released officially.
 
 This branch is the one used to make PR to *main*, so this branch **MUST** build.
 

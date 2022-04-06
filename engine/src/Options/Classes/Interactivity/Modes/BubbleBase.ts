@@ -1,6 +1,8 @@
-import type { IBubbleBase, IOptionLoader } from "../../../Interfaces";
-import type { RecursivePartial, SingleOrMultiple } from "../../../../Types";
+import type { IBubbleBase } from "../../../Interfaces/Interactivity/Modes/IBubbleBase";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { OptionsColor } from "../../OptionsColor";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 /**
  * @category Options
@@ -40,14 +42,16 @@ export abstract class BubbleBase implements IBubbleBase, IOptionLoader<IBubbleBa
             this.opacity = data.opacity;
         }
 
-        if (data.color instanceof Array) {
-            this.color = data.color.map((s) => OptionsColor.create(undefined, s));
-        } else {
-            if (this.color instanceof Array) {
-                this.color = new OptionsColor();
-            }
+        if (data.color !== undefined) {
+            if (data.color instanceof Array) {
+                this.color = data.color.map((s) => OptionsColor.create(undefined, s));
+            } else {
+                if (this.color instanceof Array) {
+                    this.color = new OptionsColor();
+                }
 
-            this.color = OptionsColor.create(this.color, data.color);
+                this.color = OptionsColor.create(this.color, data.color);
+            }
         }
 
         if (data.size !== undefined) {

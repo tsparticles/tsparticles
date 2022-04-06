@@ -34,11 +34,9 @@ function updateOpacity(particle: Particle, delta: IDelta): void {
     const maxValue = particle.opacity.max;
 
     if (
-        !(
-            !particle.destroyed &&
-            particle.opacity.enable &&
-            ((particle.opacity.maxLoops ?? 0) <= 0 || (particle.opacity.loops ?? 0) < (particle.opacity.maxLoops ?? 0))
-        )
+        particle.destroyed ||
+        !particle.opacity.enable ||
+        ((particle.opacity.maxLoops ?? 0) > 0 && (particle.opacity.loops ?? 0) > (particle.opacity.maxLoops ?? 0))
     ) {
         return;
     }
@@ -94,7 +92,7 @@ export class OpacityUpdater implements IParticleUpdater {
             min: getRangeMin(opacityOptions.value),
             value: getRangeValue(opacityOptions.value),
             loops: 0,
-            maxLoops: opacityOptions.animation.count,
+            maxLoops: getRangeValue(opacityOptions.animation.count),
         };
 
         const opacityAnimation = opacityOptions.animation;
@@ -129,7 +127,8 @@ export class OpacityUpdater implements IParticleUpdater {
                     break;
             }
 
-            particle.opacity.velocity = (opacityAnimation.speed / 100) * this.container.retina.reduceFactor;
+            particle.opacity.velocity =
+                (getRangeValue(opacityAnimation.speed) / 100) * this.container.retina.reduceFactor;
 
             if (!opacityAnimation.sync) {
                 particle.opacity.velocity *= Math.random();
@@ -143,7 +142,9 @@ export class OpacityUpdater implements IParticleUpdater {
             !particle.spawning &&
             !!particle.opacity &&
             particle.opacity.enable &&
-            ((particle.opacity.maxLoops ?? 0) <= 0 || (particle.opacity.loops ?? 0) < (particle.opacity.maxLoops ?? 0))
+            ((particle.opacity.maxLoops ?? 0) <= 0 ||
+                ((particle.opacity.maxLoops ?? 0) > 0 &&
+                    (particle.opacity.loops ?? 0) < (particle.opacity.maxLoops ?? 0)))
         );
     }
 

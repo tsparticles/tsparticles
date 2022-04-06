@@ -3,6 +3,171 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.43.1...preact-particles@2.0.4) (2022-04-06)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+* **deps:** update react monorepo to v18 ([3f6aa46](https://github.com/matteobruni/tsparticles/commit/3f6aa46e399d0092ae13ba494db86256c0d05c40))
+* removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
+
+
+### Features
+
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+## [2.0.3](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.42.1...preact-particles@2.0.3) (2022-03-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+* removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
+
+
+### Features
+
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
+## [2.0.2](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.41.4...preact-particles@2.0.2) (2022-02-21)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+* removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
+
+
+### Features
+
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.43.1](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.43.0...preact-particles@1.43.1) (2022-04-06)
+
+**Note:** Version bump only for package preact-particles
+
+
+
+
+
+# [1.43.0](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.42.4...preact-particles@1.43.0) (2022-04-04)
+
+**Note:** Version bump only for package preact-particles
+
+
+
+
+
+## [1.42.4](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.42.3...preact-particles@1.42.4) (2022-03-20)
+
+**Note:** Version bump only for package preact-particles
+
+
+
+
+
+## [1.42.3](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.42.2...preact-particles@1.42.3) (2022-03-18)
+
+**Note:** Version bump only for package preact-particles
+
+
+
+
+
+## [1.42.2](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.42.1...preact-particles@1.42.2) (2022-03-14)
+
+**Note:** Version bump only for package preact-particles
+
+
+
+
+
+## [1.42.1](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.42.0...preact-particles@1.42.1) (2022-03-09)
+
+**Note:** Version bump only for package preact-particles
+
+
+
+
+
+# [1.42.0](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.41.6...preact-particles@1.42.0) (2022-03-08)
+
+**Note:** Version bump only for package preact-particles
+
+
+
+
+
+## [2.0.1](https://github.com/matteobruni/tsparticles/compare/preact-particles@2.0.0...preact-particles@2.0.1) (2022-02-15)
+## [1.41.6](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.41.5...preact-particles@1.41.6) (2022-03-03)
+
+**Note:** Version bump only for package preact-particles
+
+
+
+
+
+## [1.41.5](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.41.4...preact-particles@1.41.5) (2022-02-24)
+
+**Note:** Version bump only for package preact-particles
+
+
+
+
+
+## [1.41.4](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.41.3...preact-particles@1.41.4) (2022-02-20)
+
+**Note:** Version bump only for package preact-particles
+
+
+
+
+
+## [1.41.3](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.41.2...preact-particles@1.41.3) (2022-02-19)
+
+**Note:** Version bump only for package preact-particles
+
+
+
+
+
+## [1.41.2](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.41.1...preact-particles@1.41.2) (2022-02-16)
+
+**Note:** Version bump only for package preact-particles
+
+
+
+
+
+# [2.0.0](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.41.1...preact-particles@2.0.0) (2022-02-15)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+* removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
+
+
+### Features
+
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 # [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.39.2...preact-particles@2.0.0-beta.5) (2022-01-30)
 
 
@@ -10,6 +175,46 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
 * removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
+## [1.41.1](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.41.0...preact-particles@1.41.1) (2022-02-14)
+
+**Note:** Version bump only for package preact-particles
+
+
+
+
+
+# [1.41.0](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.40.2...preact-particles@1.41.0) (2022-02-10)
+
+**Note:** Version bump only for package preact-particles
+
+
+
+
+
+## [1.40.2](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.40.1...preact-particles@1.40.2) (2022-02-07)
+
+**Note:** Version bump only for package preact-particles
+
+
+
+
+
+## [1.40.1](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.40.0...preact-particles@1.40.1) (2022-02-06)
+
+**Note:** Version bump only for package preact-particles
+
+
+
+
+
+# [1.40.0](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.39.3...preact-particles@1.40.0) (2022-02-04)
+
+**Note:** Version bump only for package preact-particles
+
+
+
+
+
 ## [1.39.3](https://github.com/matteobruni/tsparticles/compare/preact-particles@1.39.2...preact-particles@1.39.3) (2022-02-02)
 
 

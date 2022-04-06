@@ -3,7 +3,108 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.24.2...preact-particles-demo@2.0.0-beta.5) (2022-01-30)
+## [2.0.4](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.28.1...preact-particles-demo@2.0.4) (2022-04-06)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @capacitor/core to v3.4.2 ([b488e20](https://github.com/matteobruni/tsparticles/commit/b488e20ac54a48883bf7388ce33d6d71833cdec9))
+* **deps:** update dependency preact-router to v4 ([46d8edb](https://github.com/matteobruni/tsparticles/commit/46d8edb1a0d5d1047ddcf4258d895756a8f9cf7a))
+* **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
+
+
+### Features
+
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+
+
+
+
+
+## [2.0.3](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.27.1...preact-particles-demo@2.0.3) (2022-03-11)
+## [1.28.1](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.28.0...preact-particles-demo@1.28.1) (2022-04-06)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+# [1.28.0](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.27.4...preact-particles-demo@1.28.0) (2022-04-04)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.27.4](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.27.3...preact-particles-demo@1.27.4) (2022-03-20)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @capacitor/core to v3.4.2 ([b488e20](https://github.com/matteobruni/tsparticles/commit/b488e20ac54a48883bf7388ce33d6d71833cdec9))
+* **deps:** update dependency preact-router to v4 ([46d8edb](https://github.com/matteobruni/tsparticles/commit/46d8edb1a0d5d1047ddcf4258d895756a8f9cf7a))
+* **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
+
+
+### Features
+
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+
+
+
+
+
+## [2.0.2](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.26.4...preact-particles-demo@2.0.2) (2022-02-21)
+* upgrade preact from 10.6.5 to 10.6.6 ([525d1b7](https://github.com/matteobruni/tsparticles/commit/525d1b7e6145bcbbd205235982c2478796c882d2))
+* upgrade preact-render-to-string from 5.1.19 to 5.1.20 ([1b85be0](https://github.com/matteobruni/tsparticles/commit/1b85be0123f24a9cf23e54e70ba2c0dbabe0c0f1))
+
+
+
+
+
+## [1.27.3](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.27.2...preact-particles-demo@1.27.3) (2022-03-18)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.27.2](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.27.1...preact-particles-demo@1.27.2) (2022-03-14)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.27.1](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.27.0...preact-particles-demo@1.27.1) (2022-03-09)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+# [1.27.0](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.26.6...preact-particles-demo@1.27.0) (2022-03-08)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.26.6](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.26.5...preact-particles-demo@1.26.6) (2022-03-03)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.26.5](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.26.4...preact-particles-demo@1.26.5) (2022-02-24)
 
 
 ### Bug Fixes
@@ -15,6 +116,106 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+
+
+
+
+
+## [2.0.1](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@2.0.0...preact-particles-demo@2.0.1) (2022-02-15)
+* fixed emitters issues ([c9d9a51](https://github.com/matteobruni/tsparticles/commit/c9d9a51e41fdc77a9bf544a09d979d8c2f6b10d5))
+
+
+
+
+
+## [1.26.4](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.26.3...preact-particles-demo@1.26.4) (2022-02-20)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.26.3](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.26.2...preact-particles-demo@1.26.3) (2022-02-19)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.26.2](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.26.1...preact-particles-demo@1.26.2) (2022-02-16)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+# [2.0.0](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.26.1...preact-particles-demo@2.0.0) (2022-02-15)
+
+
+### Bug Fixes
+
+* **deps:** update dependency preact-router to v4 ([46d8edb](https://github.com/matteobruni/tsparticles/commit/46d8edb1a0d5d1047ddcf4258d895756a8f9cf7a))
+* **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
+
+
+### Features
+
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+
+
+
+
+
+# [2.0.0-beta.5](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.24.2...preact-particles-demo@2.0.0-beta.5) (2022-01-30)
+## [1.26.1](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.26.0...preact-particles-demo@1.26.1) (2022-02-14)
+
+
+### Bug Fixes
+
+* **deps:** update dependency preact-router to v4 ([46d8edb](https://github.com/matteobruni/tsparticles/commit/46d8edb1a0d5d1047ddcf4258d895756a8f9cf7a))
+* **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
+
+
+### Features
+
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+* **deps:** update dependency preact-router to v4 ([c80c3a3](https://github.com/matteobruni/tsparticles/commit/c80c3a39d7dcc44d6c173e360c7a9a07d4f60efb))
+* upgrade preact from 10.5.14 to 10.6.4 ([0e83038](https://github.com/matteobruni/tsparticles/commit/0e830385d790f8f84b875aefc7fdbcda19f01b12))
+
+
+
+
+
+# [1.26.0](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.25.2...preact-particles-demo@1.26.0) (2022-02-10)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.25.2](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.25.1...preact-particles-demo@1.25.2) (2022-02-07)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+## [1.25.1](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.25.0...preact-particles-demo@1.25.1) (2022-02-06)
+
+**Note:** Version bump only for package preact-particles-demo
+
+
+
+
+
+# [1.25.0](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.24.3...preact-particles-demo@1.25.0) (2022-02-04)
+
+**Note:** Version bump only for package preact-particles-demo
 
 
 

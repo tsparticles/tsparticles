@@ -1,7 +1,9 @@
-import type { IOptionLoader, IOptions, IResponsive } from "../Interfaces";
-import type { RecursivePartial } from "../../Types";
-import { ResponsiveMode } from "../../Enums";
-import { deepExtend } from "../../Utils";
+import type { IOptionLoader } from "../Interfaces/IOptionLoader";
+import type { IOptions } from "../Interfaces/IOptions";
+import type { IResponsive } from "../Interfaces/IResponsive";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
+import { ResponsiveMode } from "../../Enums/Modes/ResponsiveMode";
+import { deepExtend } from "../../Utils/Utils";
 
 export class Responsive implements IResponsive, IOptionLoader<IResponsive> {
     maxWidth: number;

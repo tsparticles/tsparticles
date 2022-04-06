@@ -2,24 +2,27 @@
  * [[include:Container.md]]
  * @packageDocumentation
  */
-import { ClickMode, EventType } from "../Enums";
-import { EventListeners, FrameManager, Vector } from "./Utils";
-import type {
-    IContainerInteractivity,
-    IContainerPlugin,
-    ICoordinates,
-    IMovePathGenerator,
-    IRgb,
-    IShapeDrawer,
-} from "./Interfaces";
-import type { IOptions, Options } from "../Options";
-import { animate, cancelAnimation, getRangeValue, loadContainerOptions } from "../Utils";
+import { animate, cancelAnimation, loadContainerOptions } from "../Utils/Utils";
 import { Canvas } from "./Canvas";
+import { ClickMode } from "../Enums/Modes/ClickMode";
 import { Engine } from "../engine";
+import { EventListeners } from "./Utils/EventListeners";
+import { EventType } from "../Enums/Types/EventType";
+import { FrameManager } from "./Utils/FrameManager";
+import type { IContainerInteractivity } from "./Interfaces/IContainerInteractivity";
+import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
+import type { ICoordinates } from "./Interfaces/ICoordinates";
+import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator";
+import type { IOptions } from "../Options/Interfaces/IOptions";
+import type { IRgb } from "./Interfaces/Colors";
+import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
+import { Options } from "../Options/Classes/Options";
 import type { Particle } from "./Particle";
 import { Particles } from "./Particles";
-import type { RecursivePartial } from "../Types";
+import type { RecursivePartial } from "../Types/RecursivePartial";
 import { Retina } from "./Retina";
+import { Vector } from "./Utils/Vector";
+import { getRangeValue } from "../Utils/NumberUtils";
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -46,8 +49,6 @@ export class Container {
     interactivity: IContainerInteractivity;
     zLayers;
     responsiveMaxWidth?: number;
-
-    #engine;
 
     /**
      * The options used by the container, it's a full [[Options]] object
@@ -85,7 +86,7 @@ export class Container {
      */
     readonly plugins;
 
-    readonly pathGenerator: IMovePathGenerator;
+    pathGenerator: IMovePathGenerator;
 
     private _options;
     private _sourceOptions;
@@ -98,10 +99,12 @@ export class Container {
     private readonly eventListeners;
     private readonly intersectionObserver?;
 
+    readonly #engine;
+
     /**
      * This is the core class, create an instance to have a new working particles manager
      * @constructor
-     * @param engine the current engine instance
+     * @param engine the engine used by container
      * @param id the id to identify this instance
      * @param sourceOptions the options to load
      */
@@ -223,14 +226,14 @@ export class Container {
     draw(force: boolean): void {
         let refreshTime = force;
 
-        this.drawAnimationFrame = animate()((timestamp) => {
+        this.drawAnimationFrame = animate()(async (timestamp) => {
             if (refreshTime) {
                 this.lastFrameTime = undefined;
 
                 refreshTime = false;
             }
 
-            this.drawer.nextFrame(timestamp);
+            await this.drawer.nextFrame(timestamp);
         });
     }
 
@@ -283,17 +286,13 @@ export class Container {
                 this.pathGenerator.update = update;
             }
         } else {
-            if (pathOrGenerator.generate) {
-                this.pathGenerator.generate = pathOrGenerator.generate;
-            }
+            const oldGenerator = this.pathGenerator;
 
-            if (pathOrGenerator.init) {
-                this.pathGenerator.init = pathOrGenerator.init;
-            }
+            this.pathGenerator = pathOrGenerator;
 
-            if (pathOrGenerator.update) {
-                this.pathGenerator.update = pathOrGenerator.update;
-            }
+            this.pathGenerator.generate ||= oldGenerator.generate;
+            this.pathGenerator.init ||= oldGenerator.init;
+            this.pathGenerator.update ||= oldGenerator.update;
         }
     }
 
@@ -448,7 +447,7 @@ export class Container {
             return;
         }
 
-        const clickOrTouchHandler = (e: Event, pos: ICoordinates, radius: number) => {
+        const clickOrTouchHandler = (e: Event, pos: ICoordinates, radius: number): void => {
             if (this.destroyed) {
                 return;
             }
@@ -463,21 +462,21 @@ export class Container {
             callback(e, particles);
         };
 
-        const clickHandler = (e: Event) => {
+        const clickHandler = (e: Event): void => {
             if (this.destroyed) {
                 return;
             }
 
-            const mouseEvent = e as MouseEvent;
-            const pos = {
-                x: mouseEvent.offsetX || mouseEvent.clientX,
-                y: mouseEvent.offsetY || mouseEvent.clientY,
-            };
+            const mouseEvent = e as MouseEvent,
+                pos = {
+                    x: mouseEvent.offsetX || mouseEvent.clientX,
+                    y: mouseEvent.offsetY || mouseEvent.clientY,
+                };
 
             clickOrTouchHandler(e, pos, 1);
         };
 
-        const touchStartHandler = () => {
+        const touchStartHandler = (): void => {
             if (this.destroyed) {
                 return;
             }
@@ -486,7 +485,7 @@ export class Container {
             touchMoved = false;
         };
 
-        const touchMoveHandler = () => {
+        const touchMoveHandler = (): void => {
             if (this.destroyed) {
                 return;
             }
@@ -494,7 +493,7 @@ export class Container {
             touchMoved = true;
         };
 
-        const touchEndHandler = (e: Event) => {
+        const touchEndHandler = (e: Event): void => {
             if (this.destroyed) {
                 return;
             }
@@ -511,11 +510,11 @@ export class Container {
                     }
                 }
 
-                const canvasRect = this.canvas.element?.getBoundingClientRect();
-                const pos = {
-                    x: lastTouch.clientX - (canvasRect?.left ?? 0),
-                    y: lastTouch.clientY - (canvasRect?.top ?? 0),
-                };
+                const canvasRect = this.canvas.element?.getBoundingClientRect(),
+                    pos = {
+                        x: lastTouch.clientX - (canvasRect?.left ?? 0),
+                        y: lastTouch.clientY - (canvasRect?.top ?? 0),
+                    };
 
                 clickOrTouchHandler(e, pos, Math.max(lastTouch.radiusX, lastTouch.radiusY));
             }
@@ -524,7 +523,7 @@ export class Container {
             touchMoved = false;
         };
 
-        const touchCancelHandler = () => {
+        const touchCancelHandler = (): void => {
             if (this.destroyed) {
                 return;
             }
@@ -624,21 +623,7 @@ export class Container {
         const pathOptions = this.actualOptions.particles.move.path;
 
         if (pathOptions.generator) {
-            const customGenerator = this.#engine.plugins.getPathGenerator(pathOptions.generator);
-
-            if (customGenerator) {
-                if (customGenerator.init) {
-                    this.pathGenerator.init = customGenerator.init;
-                }
-
-                if (customGenerator.generate) {
-                    this.pathGenerator.generate = customGenerator.generate;
-                }
-
-                if (customGenerator.update) {
-                    this.pathGenerator.update = customGenerator.update;
-                }
-            }
+            this.setPath(this.#engine.plugins.getPathGenerator(pathOptions.generator));
         }
 
         this.#engine.dispatchEvent(EventType.containerInit, { container: this });
@@ -655,7 +640,7 @@ export class Container {
         this.#engine.dispatchEvent(EventType.particlesSetup, { container: this });
     }
 
-    private intersectionManager(entries: IntersectionObserverEntry[]) {
+    private intersectionManager(entries: IntersectionObserverEntry[]): void {
         if (!this.actualOptions.pauseOnOutsideViewport) {
             return;
         }

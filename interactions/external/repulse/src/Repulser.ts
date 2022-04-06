@@ -45,7 +45,7 @@ export class Repulser extends ExternalInteractorBase {
             container.repulse = { particles: [] };
         }
 
-        this.handleClickMode = (mode) => {
+        this.handleClickMode = (mode): void => {
             const options = this.container.actualOptions;
 
             if (mode !== ClickMode.repulse) {
@@ -102,7 +102,7 @@ export class Repulser extends ExternalInteractorBase {
         // do nothing
     }
 
-    interact(): void {
+    async interact(): Promise<void> {
         const container = this.container,
             options = container.actualOptions,
             mouseMoveStatus = container.interactivity.status === mouseMoveEvent,

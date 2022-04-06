@@ -125,7 +125,7 @@
     "draw": {
       "enable": true,
       "lineColor": "rgba(255,255,255,0.2)",
-      "lineWidth": 0.5
+      "lineWidth": 1
     },
     "enable": true,
     "move": {

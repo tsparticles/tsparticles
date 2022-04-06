@@ -9,9 +9,9 @@ export class FrameManager {
     /**
      * Handles the rAF method preparing the next animation frame to be drawn
      * limiting it if it's needed by the current configuration
-     * @param timestamp
+     * @param timestamp the new frame timestamp
      */
-    nextFrame(timestamp: DOMHighResTimeStamp): void {
+    async nextFrame(timestamp: DOMHighResTimeStamp): Promise<void> {
         try {
             const container = this.container;
 
@@ -27,11 +27,11 @@ export class FrameManager {
 
             container.lastFrameTime ??= timestamp;
 
-            const deltaValue = timestamp - container.lastFrameTime;
-            const delta = {
-                value: deltaValue,
-                factor: (60 * deltaValue) / 1000,
-            };
+            const deltaValue = timestamp - container.lastFrameTime,
+                delta = {
+                    value: deltaValue,
+                    factor: (60 * deltaValue) / 1000,
+                };
 
             container.lifeTime += delta.value;
             container.lastFrameTime = timestamp;
@@ -41,7 +41,7 @@ export class FrameManager {
                 return;
             }
 
-            container.particles.draw(delta);
+            await container.particles.draw(delta);
 
             if (container.duration > 0 && container.lifeTime > container.duration) {
                 container.destroy();

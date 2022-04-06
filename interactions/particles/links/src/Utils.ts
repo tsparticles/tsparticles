@@ -20,7 +20,7 @@ export function drawLinkLine(
     canvasSize: IDimension,
     warp: boolean,
     backgroundMask: boolean,
-    composite: string,
+    composite: GlobalCompositeOperation,
     colorLine: IRgb,
     opacity: number,
     shadow: ILinksShadow
@@ -120,7 +120,7 @@ export function drawLinkTriangle(
     pos2: ICoordinates,
     pos3: ICoordinates,
     backgroundMask: boolean,
-    composite: string,
+    composite: GlobalCompositeOperation,
     colorTriangle: IRgb,
     opacityTriangle: number
 ): void {

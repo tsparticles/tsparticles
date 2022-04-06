@@ -1,55 +1,57 @@
+import { ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates";
+import type { IHsl, IRgb } from "./Interfaces/Colors";
 import {
-    AnimationStatus,
-    DestroyMode,
-    MoveDirection,
-    OutMode,
-    OutModeAlt,
-    ParticleOutType,
-    StartValueType,
-} from "../Enums";
-import {
-    IBubbleParticleData,
-    ICoordinates,
-    ICoordinates3d,
-    IDelta,
-    IHsl,
-    IParticle,
-    IParticleGradientAnimation,
-    IParticleHslAnimation,
-    IParticleLife,
     IParticleNumericValueAnimation,
-    IParticleRetinaProps,
-    IParticleRoll,
     IParticleTiltValueAnimation,
     IParticleValueAnimation,
-    IParticleWobble,
-    IRgb,
-    IShapeValues,
-} from "./Interfaces";
-import { IParticlesOptions, IShape, Shape, Stroke } from "../Options";
-import { Vector, Vector3d } from "./Utils";
+} from "./Interfaces/IParticleValueAnimation";
+import { OutMode, OutModeAlt } from "../Enums/Modes/OutMode";
 import {
-    alterHsl,
+    calcExactPositionOrRandomFromSize,
     clamp,
-    colorToRgb,
-    deepExtend,
     getDistance,
-    getHslFromAnimation,
     getParticleBaseVelocity,
     getParticleDirectionAngle,
     getRangeMax,
     getRangeMin,
     getRangeValue,
-    isInArray,
-    itemFromArray,
-    loadParticlesOptions,
+    getValue,
     randomInRange,
     setRangeValue,
-} from "../Utils";
-import { Container } from "./Container";
-import { Engine } from "../engine";
-import { RecursivePartial } from "../Types";
+} from "../Utils/NumberUtils";
+import { colorToRgb, getHslFromAnimation } from "../Utils/ColorUtils";
+import { deepExtend, isInArray, itemFromArray, loadParticlesOptions } from "../Utils/Utils";
+import { AnimationStatus } from "../Enums/AnimationStatus";
+import type { Container } from "./Container";
+import { DestroyMode } from "../Enums/Modes/DestroyMode";
+import type { Engine } from "../engine";
+import { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
+import type { IDelta } from "./Interfaces/IDelta";
+import type { IParticle } from "./Interfaces/IParticle";
+import type { IParticleGravity } from "./Interfaces/IParticleGravity";
+import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation";
+import type { IParticleLife } from "./Interfaces/IParticleLife";
+import type { IParticleRetinaProps } from "./Interfaces/IParticleRetinaProps";
+import type { IParticleRoll } from "./Interfaces/IParticleRoll";
+import type { IParticleWobble } from "./Interfaces/IParticleWobble";
+import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions";
+import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
+import type { IShapeValues } from "./Interfaces/IShapeValues";
+import { MoveDirection } from "../Enums/Directions/MoveDirection";
+import { ParticleOutType } from "../Enums/Types/ParticleOutType";
+import type { RecursivePartial } from "../Types/RecursivePartial";
+import { RollMode } from "../Enums/Modes/RollMode";
+import { Shape } from "../Options/Classes/Particles/Shape/Shape";
+import { StartValueType } from "../Enums/Types/StartValueType";
+import { Stroke } from "../Options/Classes/Particles/Stroke";
+import { Vector } from "./Utils/Vector";
+import { Vector3d } from "./Utils/Vector3d";
+import { alterHsl } from "../Utils/CanvasUtils";
 
+/**
+ * fixes out mode, calling the given callback if needed
+ * @param data
+ */
 const fixOutMode = (data: {
     outMode: OutMode | keyof typeof OutMode | OutModeAlt;
     checkModes: (OutMode | keyof typeof OutMode | OutModeAlt)[];
@@ -57,13 +59,15 @@ const fixOutMode = (data: {
     maxCoord: number;
     setCb: (value: number) => void;
     radius: number;
-}) => {
-    if (isInArray(data.outMode, data.checkModes)) {
-        if (data.coord > data.maxCoord - data.radius * 2) {
-            data.setCb(-data.radius);
-        } else if (data.coord < data.radius * 2) {
-            data.setCb(data.radius);
-        }
+}): void => {
+    if (!(isInArray(data.outMode, data.checkModes) || isInArray(data.outMode, data.checkModes))) {
+        return;
+    }
+
+    if (data.coord > data.maxCoord - data.radius * 2) {
+        data.setCb(-data.radius);
+    } else if (data.coord < data.radius * 2) {
+        data.setCb(data.radius);
     }
 };
 
@@ -72,56 +76,215 @@ const fixOutMode = (data: {
  * @category Core
  */
 export class Particle implements IParticle {
-    #engine;
-
+    /**
+     * Checks if the particle is destroyed
+     */
     destroyed;
+
+    /**
+     * When this is enabled, the particle won't resize when the canvas resize event is fired
+     */
+    ignoresResizeRatio;
+
+    /**
+     * Last path timestamp
+     */
     lastPathTime;
+
+    /**
+     * Check if the particle needs a fix on the position
+     */
     misplaced;
+
+    /**
+     * Check if the particle is spawning, and can't be touched
+     */
     spawning;
+
+    /**
+     * Sets the count of particles created when destroyed with split mode
+     */
     splitCount;
+
+    /**
+     * Checks if the particle is unbreakable, if true the particle won't destroy on collisions
+     */
     unbreakable;
 
+    /**
+     * Gets the delay for every path step
+     */
     readonly pathDelay;
+
+    /**
+     * Gets the particle side count
+     */
     readonly sides;
+
+    /**
+     * Gets the particle options
+     */
     readonly options;
+
+    /**
+     * Gets the particle life values
+     */
     readonly life: IParticleLife;
 
+    /**
+     * Gets the particle roll options
+     */
     roll?: IParticleRoll;
+
+    /**
+     * Gets the particle wobble options
+     */
     wobble?: IParticleWobble;
+
+    /**
+     * Particles back color
+     */
     backColor?: IHsl;
+
+    /**
+     * Checks if the particle shape needs a closed path
+     */
     close: boolean;
-    direction: number;
+
+    /**
+     * Checks if the particle shape needs to be filled with a color
+     */
     fill: boolean;
+
+    /**
+     * The random index used by the particle
+     */
     randomIndexData?: number;
-    gradient?: IParticleGradientAnimation;
+
+    /**
+     * Gets the particle rotate options
+     */
     rotate?: IParticleValueAnimation<number>;
+
+    /**
+     * Gets the particle tilt options
+     */
     tilt?: IParticleTiltValueAnimation;
+
+    /**
+     * Gets the particle color options
+     */
     color?: IParticleHslAnimation;
+
+    /**
+     * Gets the particle opacity options
+     */
     opacity?: IParticleNumericValueAnimation;
+
+    /**
+     * Sets the particle stroke width
+     */
     strokeWidth?: number;
+
+    /**
+     * Gets the particle stroke options
+     */
     stroke?: Stroke;
+
+    /**
+     * Sets the particle stroke color
+     */
     strokeColor?: IParticleHslAnimation;
 
     readonly moveCenter: ICoordinates & { radius: number };
+
+    /**
+     * Gets particle gravity options
+     */
+    readonly gravity: IParticleGravity;
+
+    /**
+     * Gets particle movement speed decay
+     */
     readonly moveDecay: number;
+
     readonly outType: ParticleOutType;
+
+    /**
+     * Gets particle direction, the value is an angle in rad
+     */
+    direction: number;
+
+    /**
+     * Gets particle current position
+     */
     readonly position: Vector3d;
+
+    /**
+     * Gets particle offset position, used for parallax interaction
+     */
     readonly offset: Vector;
+
+    /**
+     * Gets particle shadow color
+     */
     readonly shadowColor: IRgb | undefined;
+
+    /**
+     * Gets particle size options
+     */
     readonly size: IParticleNumericValueAnimation;
+
+    /**
+     * Gets particle current velocity
+     */
     readonly velocity: Vector;
+
+    /**
+     * Gets particle shape type
+     */
     readonly shape: string;
+
+    /**
+     * Gets particle initial position
+     */
     readonly initialPosition: Vector;
+
+    /**
+     * Gets particle initial velocity
+     */
     readonly initialVelocity: Vector;
+
+    /**
+     * Gets particle shape options
+     */
     readonly shapeData?: IShapeValues;
+
+    /**
+     * Gets particles bubble data
+     */
     readonly bubble: IBubbleParticleData;
+
+    /**
+     * Gets the particle Z-Index factor
+     */
     readonly zIndexFactor: number;
+
+    /**
+     * Gets the particle retina values
+     */
     readonly retina: IParticleRetinaProps;
 
+    /**
+     * Gets the particle containing engine instance
+     * @private
+     */
+    readonly #engine;
+
     constructor(
+        engine: Engine,
         readonly id: number,
         readonly container: Container,
-        engine: Engine,
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticlesOptions>,
         readonly group?: string
@@ -138,13 +301,14 @@ export class Particle implements IParticle {
             maxDistance: {},
         };
         this.outType = ParticleOutType.normal;
+        this.ignoresResizeRatio = true;
 
-        const pxRatio = container.retina.pixelRatio;
-        const mainOptions = container.actualOptions;
-        const particlesOptions = loadParticlesOptions(mainOptions.particles);
+        const pxRatio = container.retina.pixelRatio,
+            mainOptions = container.actualOptions,
+            particlesOptions = loadParticlesOptions(mainOptions.particles);
 
-        const shapeType = particlesOptions.shape.type;
-        const reduceDuplicates = particlesOptions.reduceDuplicates;
+        const shapeType = particlesOptions.shape.type,
+            reduceDuplicates = particlesOptions.reduceDuplicates;
 
         this.shape = shapeType instanceof Array ? itemFromArray(shapeType, this.id, reduceDuplicates) : shapeType;
 
@@ -180,7 +344,7 @@ export class Particle implements IParticle {
         this.fill = this.shapeData?.fill ?? this.fill;
         this.close = this.shapeData?.close ?? this.close;
         this.options = particlesOptions;
-        this.pathDelay = getRangeValue(this.options.move.path.delay) * 1000;
+        this.pathDelay = getValue(this.options.move.path.delay) * 1000;
 
         const zIndexValue = getRangeValue(this.options.zIndex.value);
 
@@ -196,7 +360,7 @@ export class Particle implements IParticle {
             max: getRangeMax(sizeRange) * pxRatio,
             min: getRangeMin(sizeRange) * pxRatio,
             loops: 0,
-            maxLoops: sizeOptions.animation.count,
+            maxLoops: getRangeValue(sizeOptions.animation.count),
         };
 
         const sizeAnimation = sizeOptions.animation;
@@ -264,6 +428,12 @@ export class Particle implements IParticle {
         this.initialVelocity = this.calculateVelocity();
         this.velocity = this.initialVelocity.copy();
         this.moveDecay = 1 - getRangeValue(this.options.move.decay);
+        const gravityOptions = this.options.move.gravity;
+        this.gravity = {
+            enable: gravityOptions.enable,
+            acceleration: getRangeValue(gravityOptions.acceleration),
+            inverse: gravityOptions.inverse,
+        };
 
         /* parallax */
         this.offset = Vector.origin;
@@ -329,8 +499,8 @@ export class Particle implements IParticle {
     }
 
     isInsideCanvas(): boolean {
-        const radius = this.getRadius();
-        const canvasSize = this.container.canvas.size;
+        const radius = this.getRadius(),
+            canvasSize = this.container.canvas.size;
 
         return (
             this.position.x >= -radius &&
@@ -370,7 +540,9 @@ export class Particle implements IParticle {
         const color = this.bubble.color ?? getHslFromAnimation(this.color);
 
         if (color && this.roll && (this.backColor || this.roll.alter)) {
-            const rolled = Math.floor((this.roll?.angle ?? 0) / (Math.PI / 2)) % 2;
+            const backFactor = this.options.roll.mode === RollMode.both ? 2 : 1,
+                backSum = this.options.roll.mode === RollMode.horizontal ? Math.PI / 2 : 0,
+                rolled = Math.floor(((this.roll.angle ?? 0) + backSum) / (Math.PI / backFactor)) % 2;
 
             if (rolled) {
                 if (this.backColor) {
@@ -436,7 +608,7 @@ export class Particle implements IParticle {
             return;
         }
 
-        const rate = getRangeValue(splitOptions.rate);
+        const rate = getValue(splitOptions.rate);
 
         for (let i = 0; i < rate; i++) {
             this.container.particles.addSplitParticle(this);
@@ -458,17 +630,16 @@ export class Particle implements IParticle {
             }
         }
 
-        const canvasSize = container.canvas.size;
-        const pos = Vector3d.create(
-            position?.x ?? Math.random() * canvasSize.width,
-            position?.y ?? Math.random() * canvasSize.height,
-            zIndex
-        );
-        const radius = this.getRadius();
-
-        /* check position  - into the canvas */
-        const outModes = this.options.move.outModes,
-            fixHorizontal = (outMode: OutMode | keyof typeof OutMode | OutModeAlt) => {
+        const canvasSize = container.canvas.size,
+            exactPosition = calcExactPositionOrRandomFromSize({
+                size: canvasSize,
+                position: position,
+            }),
+            pos = Vector3d.create(exactPosition.x, exactPosition.y, zIndex),
+            radius = this.getRadius(),
+            /* check position  - into the canvas */
+            outModes = this.options.move.outModes,
+            fixHorizontal = (outMode: OutMode | keyof typeof OutMode | OutModeAlt): void => {
                 fixOutMode({
                     outMode,
                     checkModes: [OutMode.bounce, OutMode.bounceHorizontal],
@@ -478,7 +649,7 @@ export class Particle implements IParticle {
                     radius,
                 });
             },
-            fixVertical = (outMode: OutMode | keyof typeof OutMode | OutModeAlt) => {
+            fixVertical = (outMode: OutMode | keyof typeof OutMode | OutModeAlt): void => {
                 fixOutMode({
                     outMode,
                     checkModes: [OutMode.bounce, OutMode.bounceVertical],
@@ -502,8 +673,8 @@ export class Particle implements IParticle {
     }
 
     private checkOverlap(pos: ICoordinates, tryCount = 0): boolean {
-        const collisionsOptions = this.options.collisions;
-        const radius = this.getRadius();
+        const collisionsOptions = this.options.collisions,
+            radius = this.getRadius();
 
         if (!collisionsOptions.enable) {
             return false;
@@ -542,8 +713,8 @@ export class Particle implements IParticle {
             return res;
         }
 
-        const rad = (Math.PI / 180) * moveOptions.angle.value;
-        const radOffset = (Math.PI / 180) * moveOptions.angle.offset;
+        const rad = (Math.PI / 180) * getRangeValue(moveOptions.angle.value);
+        const radOffset = (Math.PI / 180) * getRangeValue(moveOptions.angle.offset);
 
         const range = {
             left: radOffset - rad / 2,
@@ -573,25 +744,24 @@ export class Particle implements IParticle {
     }
 
     private loadLife(): IParticleLife {
-        const container = this.container;
-        const particlesOptions = this.options;
-        const lifeOptions = particlesOptions.life;
-
-        const life = {
-            delay: container.retina.reduceFactor
-                ? ((getRangeValue(lifeOptions.delay.value) * (lifeOptions.delay.sync ? 1 : Math.random())) /
-                      container.retina.reduceFactor) *
-                  1000
-                : 0,
-            delayTime: 0,
-            duration: container.retina.reduceFactor
-                ? ((getRangeValue(lifeOptions.duration.value) * (lifeOptions.duration.sync ? 1 : Math.random())) /
-                      container.retina.reduceFactor) *
-                  1000
-                : 0,
-            time: 0,
-            count: particlesOptions.life.count,
-        };
+        const container = this.container,
+            particlesOptions = this.options,
+            lifeOptions = particlesOptions.life,
+            life = {
+                delay: container.retina.reduceFactor
+                    ? ((getRangeValue(lifeOptions.delay.value) * (lifeOptions.delay.sync ? 1 : Math.random())) /
+                          container.retina.reduceFactor) *
+                      1000
+                    : 0,
+                delayTime: 0,
+                duration: container.retina.reduceFactor
+                    ? ((getRangeValue(lifeOptions.duration.value) * (lifeOptions.duration.sync ? 1 : Math.random())) /
+                          container.retina.reduceFactor) *
+                      1000
+                    : 0,
+                time: 0,
+                count: particlesOptions.life.count,
+            };
 
         if (life.duration <= 0) {
             life.duration = -1;

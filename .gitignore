@@ -357,7 +357,7 @@ dist/
 tmp/
 build/
 docs/
-core/main/typedoc/themes/particles/assets/js/tsparticles.min.js
+engine/typedoc/themes/particles/assets/js/tsparticles.min.js
 demo/vanilla/report.html
 demo/vanilla/report.htm
 demo/vanilla/report.*.html

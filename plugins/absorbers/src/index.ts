@@ -1,6 +1,7 @@
-import type { Container, Engine, IOptions, IPlugin, Options, RecursivePartial } from "tsparticles-engine";
+import type { Engine, IOptions, IPlugin, Options, RecursivePartial } from "tsparticles-engine";
 import { Absorber } from "./Options/Classes/Absorber";
-import { AbsorberClickMode } from "./Enums";
+import { AbsorberClickMode } from "./Enums/AbsorberClickMode";
+import { AbsorberContainer } from "./AbsorberContainer";
 import { Absorbers } from "./Absorbers";
 import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
 import { isInArray } from "tsparticles-engine";
@@ -15,7 +16,7 @@ class AbsorbersPlugin implements IPlugin {
         this.id = "absorbers";
     }
 
-    getPlugin(container: Container): Absorbers {
+    getPlugin(container: AbsorberContainer): Absorbers {
         return new Absorbers(container);
     }
 
@@ -25,22 +26,19 @@ class AbsorbersPlugin implements IPlugin {
         }
 
         const absorbers = options.absorbers;
-        let loadAbsorbers = false;
 
         if (absorbers instanceof Array) {
-            if (absorbers.length) {
-                loadAbsorbers = true;
-            }
-        } else if (absorbers !== undefined) {
-            loadAbsorbers = true;
+            return !!absorbers.length;
+        } else if (absorbers) {
+            return true;
         } else if (
             options.interactivity?.events?.onClick?.mode &&
             isInArray(AbsorberClickMode.absorber, options.interactivity.events.onClick.mode)
         ) {
-            loadAbsorbers = true;
+            return true;
         }
 
-        return loadAbsorbers;
+        return false;
     }
 
     loadOptions(options: Options, source?: RecursivePartial<IOptions & IAbsorberOptions>): void {
@@ -99,3 +97,7 @@ export async function loadAbsorbersPlugin(engine: Engine): Promise<void> {
 
     await engine.addPlugin(plugin);
 }
+
+export * from "./AbsorberContainer";
+export * from "./Enums/AbsorberClickMode";
+export * from "./Options/Interfaces/IAbsorberOptions";

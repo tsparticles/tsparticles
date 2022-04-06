@@ -1,4 +1,5 @@
-import type { CustomEventArgs, CustomEventListener } from "../Types";
+import type { CustomEventArgs } from "../Types/CustomEventArgs";
+import type { CustomEventListener } from "../Types/CustomEventListener";
 
 export class EventDispatcher {
     #listeners: Map<string, CustomEventListener[]>;

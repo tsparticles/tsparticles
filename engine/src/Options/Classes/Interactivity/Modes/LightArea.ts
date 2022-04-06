@@ -1,6 +1,7 @@
-import type { ILightArea, IOptionLoader } from "../../../Interfaces";
+import type { ILightArea } from "../../../Interfaces/Interactivity/Modes/ILightArea";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { LightGradient } from "./LightGradient";
-import type { RecursivePartial } from "../../../../Types";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class LightArea implements ILightArea, IOptionLoader<ILightArea> {
     gradient;

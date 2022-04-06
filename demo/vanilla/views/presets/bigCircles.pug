@@ -23,9 +23,12 @@ html(lang="en")
         #stats
         #tsparticles
 
-        script(src="/preset-big-circles/tsparticles.preset.bigCircles.bundle.min.js")
         script(src="/three/examples/js/libs/stats.min.js")
+        script(src="/tsparticles/tsparticles.min.js")
+        script(src="/preset-big-circles/tsparticles.preset.bigCircles.min.js")
         script.
+            loadBigCirclesPreset(tsParticles);
+
             tsParticles.load("tsparticles", {preset: "bigCircles"});
 
             const stats = new Stats();

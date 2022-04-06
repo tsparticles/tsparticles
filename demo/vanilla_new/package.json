@@ -1,7 +1,7 @@
 {
   "name": "tsparticles-demo-new",
   "private": true,
-  "version": "2.0.0-beta.5",
+  "version": "2.0.4",
   "description": "tsParticles Demo Website",
   "main": "index.html",
   "scripts": {
@@ -34,20 +34,20 @@
   "homepage": "https://github.com/matteobruni/tsparticles#readme",
   "dependencies": {
     "copyfiles": "^2.4.1",
-    "fs-extra": "^10.0.0",
-    "minify": "^8.0.3",
+    "fs-extra": "^10.0.1",
+    "minify": "^8.0.4",
     "rimraf": "^3.0.2",
-    "sass": "^1.37.5",
-    "tsparticles": "^2.0.0-beta.5",
-    "tsparticles-engine": "^2.0.0-beta.4",
-    "tsparticles-interaction-light": "^2.0.0-beta.5",
-    "tsparticles-interaction-particles-repulse": "^2.0.0-beta.5",
-    "tsparticles-path-curves": "^2.0.0-beta.5",
-    "tsparticles-path-perlin-noise": "^2.0.0-beta.5",
-    "tsparticles-path-polygon": "^2.0.0-beta.5",
-    "tsparticles-path-simplex-noise": "^2.0.0-beta.5",
-    "tsparticles-plugin-infection": "^2.0.0-beta.5",
-    "tsparticles-updater-gradient": "^2.0.0-beta.5",
-    "tsparticles-updater-orbit": "^2.0.0-beta.5"
+    "sass": "^1.49.9",
+    "tsparticles": "^2.0.4",
+    "tsparticles-engine": "^2.0.4",
+    "tsparticles-interaction-light": "^2.0.4",
+    "tsparticles-interaction-particles-repulse": "^2.0.4",
+    "tsparticles-path-curves": "^2.0.4",
+    "tsparticles-path-perlin-noise": "^2.0.4",
+    "tsparticles-path-polygon": "^2.0.4",
+    "tsparticles-path-simplex-noise": "^2.0.4",
+    "tsparticles-plugin-infection": "^2.0.4",
+    "tsparticles-updater-gradient": "^2.0.4",
+    "tsparticles-updater-orbit": "^2.0.4"
   }
 }

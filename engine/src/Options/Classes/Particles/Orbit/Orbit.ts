@@ -1,9 +1,12 @@
-import type { IOptionLoader, IOrbit } from "../../../Interfaces";
-import type { RangeValue, RecursivePartial } from "../../../../Types";
 import { AnimationOptions } from "../../AnimationOptions";
-import type { IAnimatable } from "../../../Interfaces";
+import type { IAnimatable } from "../../../Interfaces/IAnimatable";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { IOrbit } from "../../../Interfaces/Particles/Orbit/IOrbit";
 import { OptionsColor } from "../../OptionsColor";
-import { setRangeValue } from "../../../../Utils";
+import { OrbitRotation } from "./OrbitRotation";
+import type { RangeValue } from "../../../../Types/RangeValue";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import { setRangeValue } from "../../../../Utils/NumberUtils";
 
 /**
  * [[include:Options/Particles/Orbit.md]]
@@ -12,17 +15,17 @@ import { setRangeValue } from "../../../../Utils";
 export class Orbit implements IOrbit, IOptionLoader<IOrbit>, IAnimatable<AnimationOptions> {
     animation;
     enable: boolean;
-    opacity: number;
-    width: number;
+    opacity: RangeValue;
+    width: RangeValue;
     color?: OptionsColor;
-    radius?: number;
-    rotation: RangeValue;
+    radius?: RangeValue;
+    rotation;
 
     constructor() {
         this.animation = new AnimationOptions();
         this.enable = false;
         this.opacity = 1;
-        this.rotation = 0;
+        this.rotation = new OrbitRotation();
         this.width = 1;
     }
 
@@ -33,21 +36,19 @@ export class Orbit implements IOrbit, IOptionLoader<IOrbit>, IAnimatable<Animati
 
         this.animation.load(data.animation);
 
-        if (data.rotation !== undefined) {
-            this.rotation = setRangeValue(data.rotation);
-        }
+        this.rotation.load(data.rotation);
 
         if (data.enable !== undefined) {
             this.enable = data.enable;
         }
         if (data.opacity !== undefined) {
-            this.opacity = data.opacity;
+            this.opacity = setRangeValue(data.opacity);
         }
         if (data.width !== undefined) {
-            this.width = data.width;
+            this.width = setRangeValue(data.width);
         }
         if (data.radius !== undefined) {
-            this.radius = data.radius;
+            this.radius = setRangeValue(data.radius);
         }
         if (data.color !== undefined) {
             this.color = OptionsColor.create(this.color, data.color);

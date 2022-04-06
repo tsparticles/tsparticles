@@ -6,6 +6,10 @@
 
 Official [tsParticles](https://github.com/matteobruni/tsparticles) solid component
 
+[![Slack](https://particles.js.org/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI) [![Discord](https://particles.js.org/images/discord.png)](https://discord.gg/hACwv45Hme) [![Telegram](https://particles.js.org/images/telegram.png)](https://t.me/tsparticles)
+
+[![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles") <a href="https://www.buymeacoffee.com/matteobruni"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
+
 ## Installation
 
 ```shell
@@ -30,10 +34,10 @@ _Remote url_
 import Particles from "solid-particles";
 
 function App() {
-  const particlesInit = (main) => {
+  const particlesInit = async (main) => {
     // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
     // starting from v2 you can add only the features you need reducing the bundle size
-    loadFull(main);
+    await loadFull(main);
   };
 
   return (
@@ -69,13 +73,13 @@ class App extends Component {
     this.particlesLoaded = this.particlesLoaded.bind(this);
   }
 
-  particlesInit(main) {
+  async particlesInit(main) {
     console.log(main);
 
     // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
     // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
     // starting from v2 you can add only the features you need reducing the bundle size
-    loadFull(main);
+    await loadFull(main);
   }
 
   particlesLoaded(container) {

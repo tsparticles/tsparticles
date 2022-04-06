@@ -1,16 +1,16 @@
-import { GradientType, RotateDirection, RotateDirectionAlt, StartValueType } from "../../Enums";
-import type {
-    IAnimatable,
-    IAnimatableGradient,
-    IAnimatableGradientColor,
-    IAnimation,
-    IGradientColorOpacityAnimation,
-    IOptionLoader,
-} from "../Interfaces";
-import type { IGradientAngle, IGradientColorOpacity } from "../../Core";
-import type { RangeValue, RecursivePartial } from "../../Types";
+import type { IAnimatableGradientColor, IGradientColorOpacityAnimation } from "../Interfaces/IOptionsGradient";
+import type { IGradientAngle, IGradientColorOpacity } from "../../Core/Interfaces/Gradients";
+import { RotateDirection, RotateDirectionAlt } from "../../Enums/Directions/RotateDirection";
 import { AnimatableColor } from "./AnimatableColor";
-import { setRangeValue } from "../../Utils";
+import { GradientType } from "../../Enums/Types/GradientType";
+import type { IAnimatable } from "../Interfaces/IAnimatable";
+import type { IAnimatableGradient } from "../Interfaces/IAnimatableGradient";
+import type { IAnimation } from "../Interfaces/IAnimation";
+import type { IOptionLoader } from "../Interfaces/IOptionLoader";
+import type { RangeValue } from "../../Types/RangeValue";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
+import { StartValueType } from "../../Enums/Types/StartValueType";
+import { setRangeValue } from "../../Utils/NumberUtils";
 
 export class AnimatableGradient implements IAnimatableGradient, IOptionLoader<IAnimatableGradient> {
     angle: GradientAngle;
@@ -137,9 +137,9 @@ export class AnimatableGradientColor implements IAnimatableGradientColor, IOptio
 }
 
 export class GradientAngleAnimation implements IAnimation, IOptionLoader<IAnimation> {
-    count;
+    count: RangeValue;
     enable;
-    speed;
+    speed: RangeValue;
     sync;
 
     constructor() {
@@ -155,7 +155,7 @@ export class GradientAngleAnimation implements IAnimation, IOptionLoader<IAnimat
         }
 
         if (data.count !== undefined) {
-            this.count = data.count;
+            this.count = setRangeValue(data.count);
         }
 
         if (data.enable !== undefined) {
@@ -163,7 +163,7 @@ export class GradientAngleAnimation implements IAnimation, IOptionLoader<IAnimat
         }
 
         if (data.speed !== undefined) {
-            this.speed = data.speed;
+            this.speed = setRangeValue(data.speed);
         }
 
         if (data.sync !== undefined) {
@@ -175,9 +175,9 @@ export class GradientAngleAnimation implements IAnimation, IOptionLoader<IAnimat
 export class GradientColorOpacityAnimation
     implements IGradientColorOpacityAnimation, IOptionLoader<IGradientColorOpacityAnimation>
 {
-    count;
+    count: RangeValue;
     enable;
-    speed;
+    speed: RangeValue;
     sync;
     startValue: StartValueType | keyof typeof StartValueType;
 
@@ -195,7 +195,7 @@ export class GradientColorOpacityAnimation
         }
 
         if (data.count !== undefined) {
-            this.count = data.count;
+            this.count = setRangeValue(data.count);
         }
 
         if (data.enable !== undefined) {
@@ -203,7 +203,7 @@ export class GradientColorOpacityAnimation
         }
 
         if (data.speed !== undefined) {
-            this.speed = data.speed;
+            this.speed = setRangeValue(data.speed);
         }
 
         if (data.sync !== undefined) {

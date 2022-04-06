@@ -1,34 +1,36 @@
+import { AnimatableColor } from "../AnimatableColor";
+import { AnimatableGradient } from "../AnimatableGradient";
+import { Collisions } from "./Collisions/Collisions";
+import { Destroy } from "./Destroy/Destroy";
+import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
+import type { IParticlesOptions } from "../../Interfaces/Particles/IParticlesOptions";
+import { Life } from "./Life/Life";
+import { Links } from "./Links/Links";
+import { Move } from "./Move/Move";
+import { Opacity } from "./Opacity/Opacity";
+import { Orbit } from "./Orbit/Orbit";
+import { ParticlesBounce } from "./Bounce/ParticlesBounce";
+import type { ParticlesGroups } from "../../../Types/ParticlesGroups";
+import { ParticlesNumber } from "./Number/ParticlesNumber";
+import { ParticlesRepulse } from "./Repulse/ParticlesRepulse";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import { Roll } from "./Roll/Roll";
+import { Rotate } from "./Rotate/Rotate";
+import { Shadow } from "./Shadow";
+import { Shape } from "./Shape/Shape";
+import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
+import { Size } from "./Size/Size";
+import { Stroke } from "./Stroke";
+import { Tilt } from "./Tilt/Tilt";
+import { Twinkle } from "./Twinkle/Twinkle";
+import { Wobble } from "./Wobble/Wobble";
+import { ZIndex } from "./ZIndex/ZIndex";
+import { deepExtend } from "../../../Utils/Utils";
+
 /**
  * [[include:Options/Particles.md]]
  * @category Options
  */
-import type { IOptionLoader, IParticlesOptions } from "../../Interfaces";
-import type { RecursivePartial, SingleOrMultiple } from "../../../Types";
-import { AnimatableColor } from "../AnimatableColor";
-import { AnimatableGradient } from "../AnimatableGradient";
-import { Collisions } from "./Collisions";
-import { Destroy } from "./Destroy";
-import { Life } from "./Life";
-import { Links } from "./Links";
-import { Move } from "./Move";
-import { Opacity } from "./Opacity";
-import { Orbit } from "./Orbit";
-import { ParticlesBounce } from "./Bounce";
-import { ParticlesGroups } from "../../../Types/ParticlesGroups";
-import { ParticlesNumber } from "./Number";
-import { ParticlesRepulse } from "./Repulse";
-import { Roll } from "./Roll";
-import { Rotate } from "./Rotate";
-import { Shadow } from "./Shadow";
-import { Shape } from "./Shape";
-import { Size } from "./Size";
-import { Stroke } from "./Stroke";
-import { Tilt } from "./Tilt";
-import { Twinkle } from "./Twinkle";
-import { Wobble } from "./Wobble";
-import { ZIndex } from "./ZIndex";
-import { deepExtend } from "../../../Utils";
-
 export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParticlesOptions> {
     bounce;
     collisions;
@@ -54,6 +56,40 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     twinkle;
     wobble;
     zIndex;
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new links
+     */
+    get line_linked(): Links {
+        return this.links;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new links
+     * @param value
+     */
+    set line_linked(value: Links) {
+        this.links = value;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new lineLinked
+     */
+    get lineLinked(): Links {
+        return this.links;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new lineLinked
+     * @param value
+     */
+    set lineLinked(value: Links) {
+        this.links = value;
+    }
 
     constructor() {
         this.bounce = new ParticlesBounce();
@@ -90,9 +126,15 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
 
         this.bounce.load(data.bounce);
         this.color.load(AnimatableColor.create(this.color, data.color));
+
         this.destroy.load(data.destroy);
         this.life.load(data.life);
-        this.links.load(data.links);
+
+        const links = data.links ?? data.lineLinked ?? data.line_linked;
+
+        if (links !== undefined) {
+            this.links.load(links);
+        }
 
         if (data.groups !== undefined) {
             for (const group in data.groups) {
@@ -123,9 +165,16 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.twinkle.load(data.twinkle);
         this.wobble.load(data.wobble);
         this.zIndex.load(data.zIndex);
+
+        const collisions = data.move?.collisions ?? data.move?.bounce;
+
+        if (collisions !== undefined) {
+            this.collisions.enable = collisions;
+        }
+
         this.collisions.load(data.collisions);
 
-        const strokeToLoad = data.stroke;
+        const strokeToLoad = data.stroke ?? data.shape?.stroke;
 
         if (strokeToLoad) {
             if (strokeToLoad instanceof Array) {

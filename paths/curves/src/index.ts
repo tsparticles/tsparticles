@@ -1,8 +1,8 @@
+import { CurvesPathGenerator } from "./CurvesPathGenerator";
 import type { Engine } from "tsparticles-engine";
-import { curvesPathGenerator } from "./pathGen";
 
 export const curvesPathName = "curvesPathGenerator";
 
 export function loadCurvesPath(engine: Engine): void {
-    engine.addPathGenerator(curvesPathName, curvesPathGenerator);
+    engine.addPathGenerator(curvesPathName, new CurvesPathGenerator());
 }

@@ -1,4 +1,4 @@
-import type { IParticlesOptions } from "../Options";
+import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions";
 
 /**
  * @category Types
