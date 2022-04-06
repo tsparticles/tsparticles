@@ -3,7 +3,53 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.0.3...tsparticles-engine@2.0.4) (2022-04-06)
+
+
+### Bug Fixes
+
+* fixed flashing issue with background mask, closes [#3514](https://github.com/matteobruni/tsparticles/issues/3514) ([6f74bf1](https://github.com/matteobruni/tsparticles/commit/6f74bf1ab62587c7f2352bfe6f72ea29bb0a31fc))
+* fixed flashing issue with resize ([4e44c8e](https://github.com/matteobruni/tsparticles/commit/4e44c8e368561195441c7cd153e811e7e410e7a4))
+* fixed issue with new resize checks ([0cce40c](https://github.com/matteobruni/tsparticles/commit/0cce40cf3faeff00c3ef5f5ffab3575e38aca5a0))
+* moving canvas.clear closer to drawn breaks grab links, and maybe other interactions ([9b70b78](https://github.com/matteobruni/tsparticles/commit/9b70b786bd93ba7c245b8e24113156f747dd6608))
+
+
+
+
+
 ## [2.0.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.0.2...tsparticles-engine@2.0.3) (2022-03-11)
+# [1.43.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.42.4...tsparticles@1.43.0) (2022-04-04)
+
+**Note:** Version bump only for package tsparticles
+
+
+
+
+
+## [1.42.4](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.42.3...tsparticles@1.42.4) (2022-03-20)
+
+
+### Bug Fixes
+
+* moving canvas.clear closer to drawn breaks grab links, and maybe other interactions ([9b70b78](https://github.com/matteobruni/tsparticles/commit/9b70b786bd93ba7c245b8e24113156f747dd6608))
+
+
+
+
+
+## [1.42.3](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.42.2...tsparticles@1.42.3) (2022-03-18)
+
+
+### Bug Fixes
+
+* fixed flashing issue with resize ([4e44c8e](https://github.com/matteobruni/tsparticles/commit/4e44c8e368561195441c7cd153e811e7e410e7a4))
+* fixed issue with new resize checks ([0cce40c](https://github.com/matteobruni/tsparticles/commit/0cce40cf3faeff00c3ef5f5ffab3575e38aca5a0))
+
+
+
+
+
+## [1.42.2](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.42.1...tsparticles@1.42.2) (2022-03-14)
 
 
 ### Bug Fixes
@@ -22,6 +68,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 ## [2.0.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.0.1...tsparticles-engine@2.0.2) (2022-02-21)
+* fixed flashing issue with background mask, closes [#3514](https://github.com/matteobruni/tsparticles/issues/3514) ([6f74bf1](https://github.com/matteobruni/tsparticles/commit/6f74bf1ab62587c7f2352bfe6f72ea29bb0a31fc))
+
+
+
+
+
 ## [1.42.1](https://github.com/matteobruni/tsparticles/compare/tsparticles@1.42.0...tsparticles@1.42.1) (2022-03-09)
 
 

@@ -3,7 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@1.28.1...tsparticles-demo-new@2.0.4) (2022-04-06)
+
+
+### Bug Fixes
+
+* **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/matteobruni/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 ## [2.0.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@1.27.1...tsparticles-demo-new@2.0.3) (2022-03-11)
+# [1.28.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@1.27.4...tsparticles-demo-new@1.28.0) (2022-04-04)
 
 
 ### Bug Fixes
@@ -30,6 +47,38 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+* upgrade fs-extra from 10.0.0 to 10.0.1 ([35e46c6](https://github.com/matteobruni/tsparticles/commit/35e46c6dc0f3a35a582ef62dd94cca9b7fbc9bd3))
+* upgrade minify from 8.0.3 to 8.0.4 ([f91828c](https://github.com/matteobruni/tsparticles/commit/f91828c8321505d8861bbf154794eb4e8f061d72))
+* upgrade sass from 1.38.0 to 1.49.9 ([ff3f4fa](https://github.com/matteobruni/tsparticles/commit/ff3f4fadb6e3858985b810c14983258a8d8f16a3))
+
+
+
+
+
+## [1.27.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@1.27.3...tsparticles-demo-new@1.27.4) (2022-03-20)
+
+**Note:** Version bump only for package tsparticles-demo-new
+
+
+
+
+
+## [1.27.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@1.27.2...tsparticles-demo-new@1.27.3) (2022-03-18)
+
+**Note:** Version bump only for package tsparticles-demo-new
+
+
+
+
+
+## [1.27.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@1.27.1...tsparticles-demo-new@1.27.2) (2022-03-14)
+
+**Note:** Version bump only for package tsparticles-demo-new
+
+
+
+
+
 ## [1.27.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@1.27.0...tsparticles-demo-new@1.27.1) (2022-03-09)
 
 **Note:** Version bump only for package tsparticles-demo-new

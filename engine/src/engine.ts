@@ -3,29 +3,28 @@
  * It's a singleton proxy to the static [[this.#loader]] class for initializing [[Container]] instances
  * @category Engine
  */
-import type {
-    Container,
-    IInteractor,
-    IMovePathGenerator,
-    IParticleMover,
-    IParticleUpdater,
-    IPlugin,
-    IShapeDrawer,
-    Particle,
-} from "./Core";
-import type {
-    CustomEventArgs,
-    CustomEventListener,
-    RecursivePartial,
+import {
     ShapeDrawerAfterEffectFunction,
     ShapeDrawerDestroyFunction,
     ShapeDrawerDrawFunction,
     ShapeDrawerInitFunction,
-    SingleOrMultiple,
-} from "./Types";
-import { Loader, Plugins } from "./Core";
-import { EventDispatcher } from "./Utils";
-import type { IOptions } from "./Options";
+} from "./Types/ShapeDrawerFunctions";
+import type { Container } from "./Core/Container";
+import type { CustomEventArgs } from "./Types/CustomEventArgs";
+import type { CustomEventListener } from "./Types/CustomEventListener";
+import { EventDispatcher } from "./Utils/EventDispatcher";
+import type { IInteractor } from "./Core/Interfaces/IInteractor";
+import type { IMovePathGenerator } from "./Core/Interfaces/IMovePathGenerator";
+import type { IOptions } from "./Options/Interfaces/IOptions";
+import type { IParticleMover } from "./Core/Interfaces/IParticlesMover";
+import type { IParticleUpdater } from "./Core/Interfaces/IParticleUpdater";
+import type { IPlugin } from "./Core/Interfaces/IPlugin";
+import type { IShapeDrawer } from "./Core/Interfaces/IShapeDrawer";
+import { Loader } from "./Core/Loader";
+import type { Particle } from "./Core/Particle";
+import { Plugins } from "./Core/Utils/Plugins";
+import type { RecursivePartial } from "./Types/RecursivePartial";
+import type { SingleOrMultiple } from "./Types/SingleOrMultiple";
 
 /**
  * Engine class for creating the singleton on window.
@@ -34,14 +33,32 @@ import type { IOptions } from "./Options";
  * @category Engine
  */
 export class Engine {
-    readonly domArray: Container[];
     readonly eventDispatcher;
-    readonly plugins;
 
-    #initialized;
+    /**
+     * Checks if the engine instance is initialized
+     */
+    #initialized: boolean;
 
-    readonly #loader;
+    /**
+     * Contains all the [[Container]] instances of the current engine instance
+     */
+    readonly domArray: Container[];
 
+    /**
+     * Contains the [[Loader]] engine instance
+     * @private
+     */
+    readonly #loader: Loader;
+
+    /**
+     * Contains the [[Plugins]] engine instance
+     */
+    readonly plugins: Plugins;
+
+    /**
+     * Engine constructor, initializes plugins, loader and the containers array
+     */
     constructor() {
         this.domArray = [];
         this.eventDispatcher = new EventDispatcher();

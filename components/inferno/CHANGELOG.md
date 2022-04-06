@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.43.1...inferno-particles@2.0.4) (2022-04-06)
+
+
+### Bug Fixes
+
+* **deps:** update dependency sirv-cli to v2 ([176dc1d](https://github.com/matteobruni/tsparticles/commit/176dc1dc15c080032ad2f2addc59be6efce6248d))
+* **deps:** update react monorepo to v18 ([3f6aa46](https://github.com/matteobruni/tsparticles/commit/3f6aa46e399d0092ae13ba494db86256c0d05c40))
+
+
+### Features
+
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 ## [2.0.3](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.42.1...inferno-particles@2.0.3) (2022-03-11)
 
 
@@ -32,6 +50,46 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.43.1](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.43.0...inferno-particles@1.43.1) (2022-04-06)
+
+**Note:** Version bump only for package inferno-particles
+
+
+
+
+
+# [1.43.0](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.42.4...inferno-particles@1.43.0) (2022-04-04)
+
+**Note:** Version bump only for package inferno-particles
+
+
+
+
+
+## [1.42.4](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.42.3...inferno-particles@1.42.4) (2022-03-20)
+
+**Note:** Version bump only for package inferno-particles
+
+
+
+
+
+## [1.42.3](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.42.2...inferno-particles@1.42.3) (2022-03-18)
+
+**Note:** Version bump only for package inferno-particles
+
+
+
+
+
+## [1.42.2](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.42.1...inferno-particles@1.42.2) (2022-03-14)
+
+**Note:** Version bump only for package inferno-particles
+
+
+
+
+
 ## [1.42.1](https://github.com/matteobruni/tsparticles/compare/inferno-particles@1.42.0...inferno-particles@1.42.1) (2022-03-09)
 
 **Note:** Version bump only for package inferno-particles

@@ -64,7 +64,7 @@ export class Bubbler extends ExternalInteractorBase {
             container.bubble = {};
         }
 
-        this.handleClickMode = (mode) => {
+        this.handleClickMode = (mode): void => {
             if (mode !== ClickMode.bubble) {
                 return;
             }

@@ -1,6 +1,8 @@
-import type { IAnimation, IOptionLoader } from "../Interfaces";
-import type { RangeValue, RecursivePartial } from "../../Types";
-import { setRangeValue } from "../../Utils";
+import type { IAnimation } from "../Interfaces/IAnimation";
+import type { IOptionLoader } from "../Interfaces/IOptionLoader";
+import type { RangeValue } from "../../Types/RangeValue";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
+import { setRangeValue } from "../../Utils/NumberUtils";
 
 export class AnimationOptions implements IAnimation, IOptionLoader<IAnimation> {
     count: RangeValue;

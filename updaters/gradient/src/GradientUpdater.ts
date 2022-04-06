@@ -1,5 +1,6 @@
 import {
     AnimationStatus,
+    GradientType,
     RotateDirection,
     StartValueType,
     colorToHsl,
@@ -7,16 +8,38 @@ import {
     getRangeMax,
     getRangeMin,
     getRangeValue,
+    getStyleFromHsl,
     itemFromArray,
     randomInRange,
 } from "tsparticles-engine";
 import type {
     IDelta,
+    IParticleColorStyle,
+    IParticleHslAnimation,
     IParticleNumericValueAnimation,
     IParticleUpdater,
     IParticleValueAnimation,
     Particle,
 } from "tsparticles-engine";
+
+interface IParticleGradientColorAnimation {
+    stop: number;
+    value: IParticleHslAnimation;
+    opacity?: IParticleNumericValueAnimation;
+}
+
+interface IParticleGradientAnimation {
+    angle: IParticleValueAnimation<number>;
+    type: GradientType;
+    colors: IParticleGradientColorAnimation[];
+}
+
+type GradientParticle = Particle & {
+    /**
+     * Gets the particle gradient options
+     */
+    gradient?: IParticleGradientAnimation;
+};
 
 function updateColorOpacity(delta: IDelta, value: IParticleNumericValueAnimation) {
     if (!value.enable) {
@@ -103,7 +126,7 @@ function updateAngle(delta: IDelta, angle: IParticleValueAnimation<number>): voi
     }
 }
 
-function updateGradient(particle: Particle, delta: IDelta): void {
+function updateGradient(particle: GradientParticle, delta: IDelta): void {
     const gradient = particle.gradient;
 
     if (!gradient) {
@@ -132,7 +155,7 @@ function updateGradient(particle: Particle, delta: IDelta): void {
 }
 
 export class GradientUpdater implements IParticleUpdater {
-    init(particle: Particle): void {
+    init(particle: GradientParticle): void {
         const gradient =
             particle.options.gradient instanceof Array
                 ? itemFromArray(particle.options.gradient)
@@ -234,7 +257,7 @@ export class GradientUpdater implements IParticleUpdater {
         }
     }
 
-    isEnabled(particle: Particle): boolean {
+    isEnabled(particle: GradientParticle): boolean {
         return (
             !particle.destroyed &&
             !particle.spawning &&
@@ -244,7 +267,47 @@ export class GradientUpdater implements IParticleUpdater {
         );
     }
 
-    update(particle: Particle, delta: IDelta): void {
+    getColorStyles(
+        particle: GradientParticle,
+        context: CanvasRenderingContext2D,
+        radius: number,
+        opacity: number
+    ): IParticleColorStyle {
+        const gradient = particle.gradient;
+
+        if (!gradient) {
+            return {};
+        }
+
+        const gradientAngle = gradient.angle.value,
+            fillGradient =
+                gradient.type === GradientType.radial
+                    ? context.createRadialGradient(0, 0, 0, 0, 0, radius)
+                    : context.createLinearGradient(
+                          Math.cos(gradientAngle) * -radius,
+                          Math.sin(gradientAngle) * -radius,
+                          Math.cos(gradientAngle) * radius,
+                          Math.sin(gradientAngle) * radius
+                      );
+
+        for (const color of gradient.colors) {
+            fillGradient.addColorStop(
+                color.stop,
+                getStyleFromHsl(
+                    {
+                        h: color.value.h.value,
+                        s: color.value.s.value,
+                        l: color.value.l.value,
+                    },
+                    color.opacity?.value ?? opacity
+                )
+            );
+        }
+
+        return { fill: fillGradient };
+    }
+
+    update(particle: GradientParticle, delta: IDelta): void {
         updateGradient(particle, delta);
     }
 }

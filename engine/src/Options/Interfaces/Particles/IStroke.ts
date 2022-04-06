@@ -1,5 +1,5 @@
 import type { IAnimatableColor } from "../IAnimatableColor";
-import type { IColor } from "../../../Core";
+import type { IColor } from "../../../Core/Interfaces/Colors";
 
 /**
  * Particle stroke, outlines the particle with a customizable line

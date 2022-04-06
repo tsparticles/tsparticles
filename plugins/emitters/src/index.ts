@@ -1,13 +1,16 @@
-import { Container, IOptions, IPlugin, Options, RecursivePartial, isInArray } from "tsparticles-engine";
-import { EmitterClickMode, EmitterShapeType } from "./Enums";
+import type { IOptions, IPlugin, Options, RecursivePartial } from "tsparticles-engine";
 import { CircleShape } from "./Shapes/Circle/CircleShape";
 import { Emitter } from "./Options/Classes/Emitter";
+import { EmitterClickMode } from "./Enums/EmitterClickMode";
+import { EmitterContainer } from "./EmitterContainer";
+import { EmitterShapeType } from "./Enums/EmitterShapeType";
 import { Emitters } from "./Emitters";
 import { EmittersEngine } from "./EmittersEngine";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 import { IEmitterShape } from "./IEmitterShape";
 import { ShapeManager } from "./ShapeManager";
 import { SquareShape } from "./Shapes/Square/SquareShape";
+import { isInArray } from "tsparticles-engine";
 
 /**
  * @category Emitters Plugin
@@ -22,7 +25,7 @@ class EmittersPlugin implements IPlugin {
         this.id = "emitters";
     }
 
-    getPlugin(container: Container): Emitters {
+    getPlugin(container: EmitterContainer): Emitters {
         return new Emitters(this.#engine, container);
     }
 
@@ -98,7 +101,7 @@ export async function loadEmittersPlugin(engine: EmittersEngine): Promise<void> 
     }
 
     if (!engine.addEmitterShape) {
-        engine.addEmitterShape = (name: string, shape: IEmitterShape) => {
+        engine.addEmitterShape = (name: string, shape: IEmitterShape): void => {
             engine.emitterShapeManager?.addShape(name, shape);
         };
     }
@@ -111,4 +114,8 @@ export async function loadEmittersPlugin(engine: EmittersEngine): Promise<void> 
     engine.addEmitterShape(EmitterShapeType.square, new SquareShape());
 }
 
+export * from "./EmitterContainer";
 export * from "./EmittersEngine";
+export * from "./Enums/EmitterClickMode";
+export * from "./Enums/EmitterShapeType";
+export * from "./Options/Interfaces/IEmitterOptions";

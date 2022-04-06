@@ -1,6 +1,8 @@
-import type { IColorAnimation, IOptionLoader } from "../Interfaces";
-import type { RangeValue, RecursivePartial } from "../../Types";
-import { setRangeValue } from "../../Utils";
+import type { IColorAnimation } from "../Interfaces/IColorAnimation";
+import type { IOptionLoader } from "../Interfaces/IOptionLoader";
+import type { RangeValue } from "../../Types/RangeValue";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
+import { setRangeValue } from "../../Utils/NumberUtils";
 
 /**
  * @category Options

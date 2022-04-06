@@ -57,12 +57,12 @@ export function parsePaths(paths: ISvgPath[], scale: number, offset: ICoordinate
     const res: ICoordinates[] = [];
 
     for (const path of paths) {
-        const segments = path.element.pathSegList;
-        const len = segments?.numberOfItems ?? 0;
-        const p = {
-            x: 0,
-            y: 0,
-        };
+        const segments = path.element.pathSegList,
+            len = segments?.numberOfItems ?? 0,
+            p = {
+                x: 0,
+                y: 0,
+            };
 
         for (let i = 0; i < len; i++) {
             const segment: SVGPathSeg | undefined = segments?.getItem(i);
@@ -137,22 +137,19 @@ export function calcClosestPtOnSegment(
     s2: ICoordinates,
     pos: ICoordinates
 ): ICoordinates & { isOnSegment: boolean } {
-    // calc delta distance: source point to line start
-    const { dx, dy } = getDistances(pos, s1);
-
-    // calc delta distance: line start to end
-    const { dx: dxx, dy: dyy } = getDistances(s2, s1);
-
-    // Calc position on line normalized between 0.00 & 1.00
-    // == dot product divided by delta line distances squared
-    const t = (dx * dxx + dy * dyy) / (dxx ** 2 + dyy ** 2);
-
-    // calc nearest pt on line
-    const res = {
-        x: s1.x + dxx * t,
-        y: s1.x + dyy * t,
-        isOnSegment: t >= 0 && t <= 1,
-    };
+    // calc delta distance: source point to line start, line start to end
+    const { dx, dy } = getDistances(pos, s1),
+        // calc delta distance:
+        { dx: dxx, dy: dyy } = getDistances(s2, s1),
+        // Calc position on line normalized between 0.00 & 1.00
+        // == dot product divided by delta line distances squared
+        t = (dx * dxx + dy * dyy) / (dxx ** 2 + dyy ** 2),
+        // calc nearest pt on line
+        res = {
+            x: s1.x + dxx * t,
+            y: s1.x + dyy * t,
+            isOnSegment: t >= 0 && t <= 1,
+        };
 
     // clamp results to being on the segment
     if (t < 0) {
@@ -167,11 +164,12 @@ export function calcClosestPtOnSegment(
 }
 
 export function segmentBounce(start: ICoordinates, stop: ICoordinates, velocity: Vector): void {
-    const { dx, dy } = getDistances(start, stop);
-    const wallAngle = Math.atan2(dy, dx); // + Math.PI / 2;
-    const wallNormal = Vector.create(Math.sin(wallAngle), -Math.cos(wallAngle));
-    const d = 2 * (velocity.x * wallNormal.x + velocity.y * wallNormal.y);
+    const { dx, dy } = getDistances(start, stop),
+        wallAngle = Math.atan2(dy, dx), // + Math.PI / 2;
+        wallNormal = Vector.create(Math.sin(wallAngle), -Math.cos(wallAngle)),
+        d = 2 * (velocity.x * wallNormal.x + velocity.y * wallNormal.y);
 
     wallNormal.multTo(d);
+
     velocity.subFrom(wallNormal);
 }

@@ -1,5 +1,5 @@
 import type { IValueWithRandom } from "../../IValueWithRandom";
-import type { RangeValue } from "../../../../Types";
+import type { RangeValue } from "../../../../Types/RangeValue";
 
 /**
  * @category Options

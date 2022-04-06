@@ -189,14 +189,19 @@ const App = () => {
 | init            | function | This function is called after the tsParticles instance initialization, the instance is the parameter and you can load custom presets or shapes here |
 | loaded          | function | This function is called when particles are correctly loaded in canvas, the current container is the parameter and you can customize it here         |
 
-Find your parameters configuration [here](https://particles.js.org).
+
+**particles.json**
+
+Find all configuration options [here](https://particles.js.org/docs/interfaces/Options_Interfaces_IOptions.IOptions.html).
+
+You can find sample json configurations [here](https://github.com/matteobruni/tsparticles/tree/main/website/presets) 📖
 
 ## Demos
 
-The demo website is [here](https://particles.js.org)
-
-<https://particles.js.org>
+Preset demos can be found [here](https://particles.js.org/samples/presets/index.html)
 
 There's also a CodePen collection actively maintained and updated [here](https://codepen.io/collection/DPOage)
 
-<https://codepen.io/collection/DPOage>
+Report bugs and issues [here](https://github.com/matteobruni/tsparticles/issues)
+
+[tsParticle Website](https://particles.js.org)

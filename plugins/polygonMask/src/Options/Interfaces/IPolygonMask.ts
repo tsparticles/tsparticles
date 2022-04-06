@@ -3,7 +3,7 @@ import type { IPolygonMaskDraw } from "./IPolygonMaskDraw";
 import type { IPolygonMaskInline } from "./IPolygonMaskInline";
 import type { IPolygonMaskLocalSvg } from "./IPolygonMaskLocalSvg";
 import type { IPolygonMaskMove } from "./IPolygonMaskMove";
-import type { PolygonMaskType } from "../../Enums";
+import type { PolygonMaskType } from "../../Enums/PolygonMaskType";
 
 /**
  * [[include:Options/Plugins/PolygonMask.md]]

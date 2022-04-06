@@ -1,7 +1,9 @@
-import { DestroyType, StartValueType } from "../../../../Enums";
-import type { IOptionLoader, ISizeAnimation } from "../../../Interfaces";
 import { AnimationOptions } from "../../AnimationOptions";
-import type { RecursivePartial } from "../../../../Types";
+import { DestroyType } from "../../../../Enums/Types/DestroyType";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { ISizeAnimation } from "../../../Interfaces/Particles/Size/ISizeAnimation";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import { StartValueType } from "../../../../Enums/Types/StartValueType";
 
 /**
  * @category Options

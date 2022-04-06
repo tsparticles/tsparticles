@@ -1,5 +1,4 @@
 import type { Container, Engine, IContainerPlugin, ICoordinates, IDelta, IDimension } from "tsparticles-engine";
-import { PolygonMaskInlineArrangement, PolygonMaskType } from "./Enums";
 import { calcClosestPtOnSegment, drawPolygonMask, drawPolygonMaskPath, parsePaths, segmentBounce } from "./utils";
 import {
     deepExtend,
@@ -14,6 +13,8 @@ import type { ISvgPath } from "./Interfaces/ISvgPath";
 import { OutModeDirection } from "tsparticles-engine";
 import { Particle } from "tsparticles-engine";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
+import { PolygonMaskInlineArrangement } from "./Enums/PolygonMaskInlineArrangement";
+import { PolygonMaskType } from "./Enums/PolygonMaskType";
 import type { RecursivePartial } from "tsparticles-engine";
 
 /**
@@ -58,8 +59,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
 
     resize(): void {
-        const container = this.container;
-        const options = this.options;
+        const container = this.container,
+            options = this.options;
 
         if (!(options.enable && options.type !== PolygonMaskType.none)) {
             return;
@@ -128,18 +129,18 @@ export class PolygonMaskInstance implements IContainerPlugin {
             return;
         }
 
-        const options = this.options;
-        const polygonDraw = options.draw;
+        const options = this.options,
+            polygonDraw = options.draw;
 
-        if (!(options.enable && polygonDraw.enable)) {
+        if (!options.enable || !polygonDraw.enable) {
             return;
         }
 
         const rawData = this.raw;
 
         for (const path of this.paths) {
-            const path2d = path.path2d;
-            const path2dSupported = this.path2DSupported;
+            const path2d = path.path2d,
+                path2dSupported = this.path2DSupported;
 
             if (!context) {
                 continue;
@@ -214,8 +215,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
 
     private checkInsidePolygon(position?: ICoordinates): boolean {
-        const container = this.container;
-        const options = this.options;
+        const container = this.container,
+            options = this.options;
 
         if (!options.enable || options.type === PolygonMaskType.none || options.type === PolygonMaskType.inline) {
             return true;
@@ -228,9 +229,9 @@ export class PolygonMaskInstance implements IContainerPlugin {
             throw new Error(noPolygonFound);
         }
 
-        const canvasSize = container.canvas.size;
-        const x = position?.x ?? Math.random() * canvasSize.width;
-        const y = position?.y ?? Math.random() * canvasSize.height;
+        const canvasSize = container.canvas.size,
+            x = position?.x ?? Math.random() * canvasSize.width,
+            y = position?.y ?? Math.random() * canvasSize.height;
 
         let inside = false;
 
@@ -238,9 +239,9 @@ export class PolygonMaskInstance implements IContainerPlugin {
         //     inside = container.canvas.isPointInPath(this.polygonPath, position);
         // } else {
         for (let i = 0, j = this.raw.length - 1; i < this.raw.length; j = i++) {
-            const pi = this.raw[i];
-            const pj = this.raw[j];
-            const intersect = pi.y > y !== pj.y > y && x < ((pj.x - pi.x) * (y - pi.y)) / (pj.y - pi.y) + pi.x;
+            const pi = this.raw[i],
+                pj = this.raw[j],
+                intersect = pi.y > y !== pj.y > y && x < ((pj.x - pi.x) * (y - pi.y)) / (pj.y - pi.y) + pi.x;
 
             if (intersect) {
                 inside = !inside;
@@ -262,11 +263,11 @@ export class PolygonMaskInstance implements IContainerPlugin {
             return this.raw;
         }
 
-        const container = this.container;
-        const options = this.options;
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(xml, "image/svg+xml");
-        const svg = doc.getElementsByTagName("svg")[0];
+        const container = this.container,
+            options = this.options,
+            parser = new DOMParser(),
+            doc = parser.parseFromString(xml, "image/svg+xml"),
+            svg = doc.getElementsByTagName("svg")[0];
 
         let svgPaths = svg.getElementsByTagName("path");
 
@@ -287,8 +288,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
             }
         }
 
-        const pxRatio = container.retina.pixelRatio;
-        const scale = options.scale / pxRatio;
+        const pxRatio = container.retina.pixelRatio,
+            scale = options.scale / pxRatio;
 
         this.dimension.width = parseFloat(svg.getAttribute("width") ?? "0") * scale;
         this.dimension.height = parseFloat(svg.getAttribute("height") ?? "0") * scale;
@@ -316,9 +317,9 @@ export class PolygonMaskInstance implements IContainerPlugin {
      * Opera for Android release 49
      */
     private async downloadSvgPath(svgUrl?: string, force?: boolean): Promise<ICoordinates[] | undefined> {
-        const options = this.options;
-        const url = svgUrl || options.url;
-        const forceDownload = force ?? false;
+        const options = this.options,
+            url = svgUrl || options.url,
+            forceDownload = force ?? false;
 
         // Load SVG from file on server
         if (!url || (this.paths !== undefined && !forceDownload)) {
@@ -348,8 +349,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
 
     private randomPoint(): ICoordinates {
-        const container = this.container;
-        const options = this.options;
+        const container = this.container,
+            options = this.options;
 
         let position: ICoordinates;
 
@@ -403,9 +404,9 @@ export class PolygonMaskInstance implements IContainerPlugin {
             throw new Error(noPolygonDataLoaded);
         }
 
-        const path = itemFromArray(this.paths);
-        const distance = Math.floor(Math.random() * path.length) + 1;
-        const point = path.element.getPointAtLength(distance);
+        const path = itemFromArray(this.paths),
+            distance = Math.floor(Math.random() * path.length) + 1,
+            point = path.element.getPointAtLength(distance);
 
         return {
             x: point.x * options.scale + (this.offset?.x || 0),
@@ -414,16 +415,16 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
 
     private getEquidistantPointByIndex(index: number): ICoordinates {
-        const options = this.container.actualOptions;
-        const polygonMaskOptions = this.options;
+        const options = this.container.actualOptions,
+            polygonMaskOptions = this.options;
 
         if (!this.raw || !this.raw.length || !this.paths?.length) throw new Error(noPolygonDataLoaded);
 
-        let offset = 0;
-        let point: DOMPoint | undefined;
+        let offset = 0,
+            point: DOMPoint | undefined;
 
-        const totalLength = this.paths.reduce((tot: number, path: ISvgPath) => tot + path.length, 0);
-        const distance = totalLength / options.particles.number.value;
+        const totalLength = this.paths.reduce((tot: number, path: ISvgPath) => tot + path.length, 0),
+            distance = totalLength / options.particles.number.value;
 
         for (const path of this.paths) {
             const pathDistance = distance * index - offset;
@@ -467,10 +468,10 @@ export class PolygonMaskInstance implements IContainerPlugin {
             const pathData = path.element?.getAttribute("d");
 
             if (pathData) {
-                const path2d = new Path2D(pathData);
-                const matrix = document.createElementNS("http://www.w3.org/2000/svg", "svg").createSVGMatrix();
-                const finalPath = new Path2D();
-                const transform = matrix.scale(options.scale);
+                const path2d = new Path2D(pathData),
+                    matrix = document.createElementNS("http://www.w3.org/2000/svg", "svg").createSVGMatrix(),
+                    finalPath = new Path2D(),
+                    transform = matrix.scale(options.scale);
 
                 if (finalPath.addPath) {
                     finalPath.addPath(path2d, transform);

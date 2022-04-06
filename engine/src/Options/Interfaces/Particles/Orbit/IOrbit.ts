@@ -1,8 +1,8 @@
 import type { IAnimatable } from "../../IAnimatable";
 import type { IAnimation } from "../../IAnimation";
-import type { IColor } from "../../../../Core";
+import type { IColor } from "../../../../Core/Interfaces/Colors";
 import type { IValueWithRandom } from "../../IValueWithRandom";
-import type { RangeValue } from "../../../../Types";
+import type { RangeValue } from "../../../../Types/RangeValue";
 
 /**
  * @category Options

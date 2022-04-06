@@ -3,7 +3,7 @@
  * @category Options
  */
 import type { IAnimation } from "./IAnimation";
-import type { RangeValue } from "../../Types";
+import type { RangeValue } from "../../Types/RangeValue";
 
 export interface IColorAnimation extends IAnimation {
     /**

@@ -1,6 +1,7 @@
-import type { IGrabLinks, IOptionLoader } from "../../../Interfaces";
+import type { IGrabLinks } from "../../../Interfaces/Interactivity/Modes/IGrabLinks";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { OptionsColor } from "../../OptionsColor";
-import type { RecursivePartial } from "../../../../Types";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 /**
  * @category Options

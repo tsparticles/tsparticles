@@ -1,4 +1,7 @@
-import type { PolygonMaskInlineArrangement, PolygonMaskInlineArrangementAlt } from "../../Enums";
+import type {
+    PolygonMaskInlineArrangement,
+    PolygonMaskInlineArrangementAlt,
+} from "../../Enums/PolygonMaskInlineArrangement";
 
 /**
  * @category Polygon Mask Plugin

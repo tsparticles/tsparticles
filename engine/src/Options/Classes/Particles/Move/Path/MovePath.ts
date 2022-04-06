@@ -1,11 +1,13 @@
+import type { IMovePath } from "../../../../Interfaces/Particles/Move/Path/IMovePath";
+import type { IOptionLoader } from "../../../../Interfaces/IOptionLoader";
+import { MovePathDelay } from "./MovePathDelay";
+import { PathOptions } from "../../../../../Types/PathOptions";
+import { RecursivePartial } from "../../../../../Types/RecursivePartial";
+import { deepExtend } from "../../../../../Utils/Utils";
+
 /**
  * @category Options
  */
-import type { IMovePath, IOptionLoader } from "../../../../Interfaces";
-import type { PathOptions, RecursivePartial } from "../../../../../Types";
-import { MovePathDelay } from "./MovePathDelay";
-import { deepExtend } from "../../../../../Utils";
-
 export class MovePath implements IMovePath, IOptionLoader<IMovePath> {
     clamp;
     delay;

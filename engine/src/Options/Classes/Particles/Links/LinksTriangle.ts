@@ -1,6 +1,7 @@
-import type { ILinksTriangle, IOptionLoader } from "../../../Interfaces";
+import type { ILinksTriangle } from "../../../Interfaces/Particles/Links/ILinksTriangle";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { OptionsColor } from "../../OptionsColor";
-import type { RecursivePartial } from "../../../../Types";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 /**
  * @category Options

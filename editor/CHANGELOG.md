@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.43.1...tsparticles-editor@2.0.4) (2022-04-06)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+* **deps:** update react monorepo to v18 ([3f6aa46](https://github.com/matteobruni/tsparticles/commit/3f6aa46e399d0092ae13ba494db86256c0d05c40))
+
+
+### Features
+
+* added new move direction: inside and outside, out modes needs more fixes ([32a70a6](https://github.com/matteobruni/tsparticles/commit/32a70a68a155db1ed796519addd7298e33a39094))
+* moved absorbers to an external plugin, breaking ([5e7223f](https://github.com/matteobruni/tsparticles/commit/5e7223fb6b505260eb72899ec1e9762d96a5c4d7))
+* moved all plugins to external packages, breaking ([a3edcec](https://github.com/matteobruni/tsparticles/commit/a3edcecd129009e7d9af138dd9a1285360e7003d))
+* moved polygon mask to external plugin (breaking) ([abdfe37](https://github.com/matteobruni/tsparticles/commit/abdfe37f250a4f357f4491bb7ff0e54da6a7303e))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 ## [2.0.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.42.1...tsparticles-editor@2.0.3) (2022-03-11)
 
 
@@ -38,6 +59,46 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * moved all plugins to external packages, breaking ([a3edcec](https://github.com/matteobruni/tsparticles/commit/a3edcecd129009e7d9af138dd9a1285360e7003d))
 * moved polygon mask to external plugin (breaking) ([abdfe37](https://github.com/matteobruni/tsparticles/commit/abdfe37f250a4f357f4491bb7ff0e54da6a7303e))
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.43.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.43.0...tsparticles-editor@1.43.1) (2022-04-06)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
+# [1.43.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.42.4...tsparticles-editor@1.43.0) (2022-04-04)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
+## [1.42.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.42.3...tsparticles-editor@1.42.4) (2022-03-20)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
+## [1.42.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.42.2...tsparticles-editor@1.42.3) (2022-03-18)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
+## [1.42.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.42.1...tsparticles-editor@1.42.2) (2022-03-14)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
 ## [1.42.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@1.42.0...tsparticles-editor@1.42.1) (2022-03-09)
 
 **Note:** Version bump only for package tsparticles-editor

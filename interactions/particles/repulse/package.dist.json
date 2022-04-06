@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-interaction-particles-repulse",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "tsParticles repulse particles interaction",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -79,9 +79,9 @@
   "main": "index.js",
   "jsdelivr": "tsparticles.interaction.particles.repulse.min.js",
   "unpkg": "tsparticles.interaction.particles.repulse.min.js",
-  "module": "index.js",
+  "module": "esm/index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.0.3"
+    "tsparticles-engine": "^2.0.4"
   }
 }

@@ -1,4 +1,4 @@
-import type { DestroyMode } from "../../../../Enums";
+import type { DestroyMode } from "../../../../Enums/Modes/DestroyMode";
 import type { ISplit } from "./ISplit";
 
 /**

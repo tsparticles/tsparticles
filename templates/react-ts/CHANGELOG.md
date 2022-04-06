@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4](https://github.com/matteobruni/tsparticles/compare/cra-template-particles-typescript@1.43.1...cra-template-particles-typescript@2.0.4) (2022-04-06)
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 ## [2.0.3](https://github.com/matteobruni/tsparticles/compare/cra-template-particles-typescript@1.42.1...cra-template-particles-typescript@2.0.3) (2022-03-11)
 
 
@@ -20,6 +31,46 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [1.43.1](https://github.com/matteobruni/tsparticles/compare/cra-template-particles-typescript@1.43.0...cra-template-particles-typescript@1.43.1) (2022-04-06)
+
+**Note:** Version bump only for package cra-template-particles-typescript
+
+
+
+
+
+# [1.43.0](https://github.com/matteobruni/tsparticles/compare/cra-template-particles-typescript@1.42.4...cra-template-particles-typescript@1.43.0) (2022-04-04)
+
+**Note:** Version bump only for package cra-template-particles-typescript
+
+
+
+
+
+## [1.42.4](https://github.com/matteobruni/tsparticles/compare/cra-template-particles-typescript@1.42.3...cra-template-particles-typescript@1.42.4) (2022-03-20)
+
+**Note:** Version bump only for package cra-template-particles-typescript
+
+
+
+
+
+## [1.42.3](https://github.com/matteobruni/tsparticles/compare/cra-template-particles-typescript@1.42.2...cra-template-particles-typescript@1.42.3) (2022-03-18)
+
+**Note:** Version bump only for package cra-template-particles-typescript
+
+
+
+
+
+## [1.42.2](https://github.com/matteobruni/tsparticles/compare/cra-template-particles-typescript@1.42.1...cra-template-particles-typescript@1.42.2) (2022-03-14)
+
+**Note:** Version bump only for package cra-template-particles-typescript
+
+
+
+
+
 ## [1.42.1](https://github.com/matteobruni/tsparticles/compare/cra-template-particles-typescript@1.42.0...cra-template-particles-typescript@1.42.1) (2022-03-09)
 
 **Note:** Version bump only for package cra-template-particles-typescript

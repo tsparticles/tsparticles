@@ -1,6 +1,7 @@
-import type { IOptionLoader, IParticlesBounce } from "../../../Interfaces";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { IParticlesBounce } from "../../../Interfaces/Particles/Bounce/IParticlesBounce";
 import { ParticlesBounceFactor } from "./ParticlesBounceFactor";
-import type { RecursivePartial } from "../../../../Types";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class ParticlesBounce implements IParticlesBounce, IOptionLoader<IParticlesBounce> {
     horizontal;

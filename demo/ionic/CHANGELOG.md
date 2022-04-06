@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.4](https://github.com/matteobruni/tsparticles/compare/ionic-demo@0.12.1...ionic-demo@1.0.4) (2022-04-06)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to ~13.1.0 ([1f80f2b](https://github.com/matteobruni/tsparticles/commit/1f80f2b467d440ed3f2d4b4a4bd08eb561cef76f))
+* **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+* **deps:** update angular monorepo to ~13.3.0 ([6aa9b81](https://github.com/matteobruni/tsparticles/commit/6aa9b814962c0460949452e7ee5c84617330ffd4))
+* **deps:** update angular monorepo to ~13.3.0 ([71e7a23](https://github.com/matteobruni/tsparticles/commit/71e7a2388d7871a26b4b25d691c061cacf8e08eb))
+* **deps:** update capacitor monorepo ([405fb46](https://github.com/matteobruni/tsparticles/commit/405fb46102a790fb686f05651c6b414876a0900f))
+* **deps:** update capacitor monorepo ([eaeea3b](https://github.com/matteobruni/tsparticles/commit/eaeea3b5cc7a0589d2883d371aa756104c1bace8))
+* **deps:** update capacitor monorepo ([f501b7e](https://github.com/matteobruni/tsparticles/commit/f501b7e93bb14fd04dfabea7e54948dca9e5219a))
+* **deps:** update capacitor monorepo ([5bf40c2](https://github.com/matteobruni/tsparticles/commit/5bf40c2b300f67244341589dd5cb8671005f6921))
+* **deps:** update dependency @capacitor/app to v1.1.1 ([bd69e38](https://github.com/matteobruni/tsparticles/commit/bd69e38aaf9ab0f405e33ba98132195ec5e98559))
+* **deps:** update dependency @capacitor/core to v3.4.2 ([b488e20](https://github.com/matteobruni/tsparticles/commit/b488e20ac54a48883bf7388ce33d6d71833cdec9))
+* **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+* **deps:** update dependency rxjs to ~7.4.0 ([048238b](https://github.com/matteobruni/tsparticles/commit/048238b7b14b1ee49356afa47e5c7aa0ab4ac1f0))
+* **deps:** update dependency rxjs to ~7.5.0 ([f2d0505](https://github.com/matteobruni/tsparticles/commit/f2d0505863dafba475f8d6275d6474a54970a814))
+
+
+### Features
+
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 ## [1.0.3](https://github.com/matteobruni/tsparticles/compare/ionic-demo@0.11.1...ionic-demo@1.0.3) (2022-03-11)
 
 
@@ -48,6 +76,46 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [0.12.1](https://github.com/matteobruni/tsparticles/compare/ionic-demo@0.12.0...ionic-demo@0.12.1) (2022-04-06)
+
+**Note:** Version bump only for package ionic-demo
+
+
+
+
+
+# [0.12.0](https://github.com/matteobruni/tsparticles/compare/ionic-demo@0.11.4...ionic-demo@0.12.0) (2022-04-04)
+
+**Note:** Version bump only for package ionic-demo
+
+
+
+
+
+## [0.11.4](https://github.com/matteobruni/tsparticles/compare/ionic-demo@0.11.3...ionic-demo@0.11.4) (2022-03-20)
+
+**Note:** Version bump only for package ionic-demo
+
+
+
+
+
+## [0.11.3](https://github.com/matteobruni/tsparticles/compare/ionic-demo@0.11.2...ionic-demo@0.11.3) (2022-03-18)
+
+**Note:** Version bump only for package ionic-demo
+
+
+
+
+
+## [0.11.2](https://github.com/matteobruni/tsparticles/compare/ionic-demo@0.11.1...ionic-demo@0.11.2) (2022-03-14)
+
+**Note:** Version bump only for package ionic-demo
+
+
+
+
+
 ## [0.11.1](https://github.com/matteobruni/tsparticles/compare/ionic-demo@0.11.0...ionic-demo@0.11.1) (2022-03-09)
 
 **Note:** Version bump only for package ionic-demo

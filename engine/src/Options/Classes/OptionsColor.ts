@@ -1,6 +1,8 @@
-import type { IHsl, IHsv, IRgb, IValueColor } from "../../Core";
-import type { IOptionLoader, IOptionsColor } from "../Interfaces";
-import type { RecursivePartial, SingleOrMultiple } from "../../Types";
+import type { IHsl, IHsv, IRgb, IValueColor } from "../../Core/Interfaces/Colors";
+import type { IOptionLoader } from "../Interfaces/IOptionLoader";
+import type { IOptionsColor } from "../Interfaces/IOptionsColor";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 
 /**
  * [[include:Color.md]]

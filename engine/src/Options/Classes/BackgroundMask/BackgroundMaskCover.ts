@@ -1,6 +1,7 @@
-import type { IBackgroundMaskCover, IOptionLoader } from "../../Interfaces";
+import type { IBackgroundMaskCover } from "../../Interfaces/BackgroundMask/IBackgroundMaskCover";
+import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import { OptionsColor } from "../OptionsColor";
-import type { RecursivePartial } from "../../../Types";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 /**
  * @category Options

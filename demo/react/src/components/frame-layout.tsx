@@ -18,7 +18,7 @@ const getFrameCode = (options: ISourceOptions) => {
 interface IProps extends Partial<IDefaultProps> {
     name: string;
     backgroundColor: string;
-    options: ISourceOptions;
+    options?: ISourceOptions;
 }
 
 interface IDefaultProps {
@@ -85,7 +85,7 @@ export class FrameLayout extends React.Component<IProps, IState> {
                     background: this.props.backgroundColor
                 }}>
                 <div className="frame-layout__particles-container">
-                    <ParticlesContainer options={this.props.options}/>
+                    {this.props.options && <ParticlesContainer options={this.props.options}/>}
                 </div>
                 <div className="frame-layout__container">
                     {/*

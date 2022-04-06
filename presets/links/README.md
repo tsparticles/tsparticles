@@ -37,7 +37,7 @@ This script **MUST** be placed after the `tsParticles` one.
 A bundled script can also be used, this will include every needed plugin needed by the preset.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-links@2/tsparticles.preset.links.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-links@1/tsparticles.preset.links.min.js"></script>
 ```
 
 ### Usage
@@ -76,9 +76,9 @@ _The syntax for `React.js`, `Preact` and `Inferno` is the same_.
 
 This sample uses the class component syntax, but you can use hooks as well (if the library supports it).
 
-```javascript
+```typescript jsx
 import Particles from "react-tsparticles";
-import { Engine } from "tsparticles-engine";
+import type { Engine } from "tsparticles-engine";
 import { loadLinksPreset } from "tsparticles-preset-links";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {

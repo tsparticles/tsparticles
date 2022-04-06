@@ -1,8 +1,10 @@
-import { EasingType, MoveDirection, MoveDirectionAlt } from "../Enums";
-import type { ICoordinates } from "../Core";
-import type { IValueWithRandom } from "../Options";
-import type { RangeValue } from "../Types";
-import { Vector } from "../Core";
+import { IPositionFromSizeParams, IRangedPositionFromSizeParams } from "../Core/Interfaces/IPositionFromSizeParams";
+import { MoveDirection, MoveDirectionAlt } from "../Enums/Directions/MoveDirection";
+import { EasingType } from "../Enums/Types/EasingType";
+import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
+import type { IValueWithRandom } from "../Options/Interfaces/IValueWithRandom";
+import type { RangeValue } from "../Types/RangeValue";
+import { Vector } from "../Core/Utils/Vector";
 
 /**
  * Clamps a number between a minimum and maximum value
@@ -65,8 +67,14 @@ export function setRangeValue(source: RangeValue, value?: number): RangeValue {
 }
 
 export function getValue(options: IValueWithRandom): number {
-    const random = options.random;
-    const { enable, minimumValue } = typeof random === "boolean" ? { enable: random, minimumValue: 0 } : random;
+    const random = options.random,
+        { enable, minimumValue } =
+            typeof random === "boolean"
+                ? {
+                      enable: random,
+                      minimumValue: 0,
+                  }
+                : random;
 
     return enable ? getRangeValue(setRangeValue(options.value, minimumValue)) : getRangeValue(options.value);
 }
@@ -77,8 +85,9 @@ export function getValue(options: IValueWithRandom): number {
  * @param pointB the second coordinate
  */
 export function getDistances(pointA: ICoordinates, pointB: ICoordinates): { dx: number; dy: number; distance: number } {
-    const dx = pointA.x - pointB.x;
-    const dy = pointA.y - pointB.y;
+    const dx = pointA.x - pointB.x,
+        dy = pointA.y - pointB.y;
+
     return { dx: dx, dy: dy, distance: Math.sqrt(dx * dx + dy * dy) };
 }
 
@@ -159,8 +168,8 @@ export function calcEasing(value: number, type: EasingType): number {
         case EasingType.easeOutSine:
             return Math.sin((value * Math.PI) / 2);
         case EasingType.easeOutBack: {
-            const c1 = 1.70158;
-            const c3 = c1 + 1;
+            const c1 = 1.70158,
+                c3 = c1 + 1;
 
             return 1 + c3 * Math.pow(value - 1, 3) + c1 * Math.pow(value - 1, 2);
         }
@@ -169,4 +178,70 @@ export function calcEasing(value: number, type: EasingType): number {
         default:
             return value;
     }
+}
+
+/**
+ * Gets exact position from percent position based on the given size
+ * @param data the data to use for calculating the position
+ * @returns the exact position
+ */
+export function calcPositionFromSize(data: IPositionFromSizeParams): ICoordinates | undefined {
+    return data.position?.x !== undefined && data.position?.y !== undefined
+        ? {
+              x: (data.position.x * data.size.width) / 100,
+              y: (data.position.y * data.size.height) / 100,
+          }
+        : undefined;
+}
+
+/**
+ * Gets exact position from percent position, or a random one if not specified, based on the given size
+ * @param data the data to use for calculating the position
+ * @returns the exact position
+ */
+export function calcPositionOrRandomFromSize(data: IPositionFromSizeParams): ICoordinates {
+    return {
+        x: ((data.position?.x ?? Math.random() * 100) * data.size.width) / 100,
+        y: ((data.position?.y ?? Math.random() * 100) * data.size.height) / 100,
+    };
+}
+
+/**
+ * Gets exact position from percent position, or a random one if not specified, based on the given size
+ * @param data the data to use for calculating the position
+ * @returns the exact position
+ */
+export function calcPositionOrRandomFromSizeRanged(data: IRangedPositionFromSizeParams): ICoordinates {
+    const position = {
+        x: data.position?.x !== undefined ? getRangeValue(data.position.x) : undefined,
+        y: data.position?.y !== undefined ? getRangeValue(data.position.y) : undefined,
+    };
+
+    return calcPositionOrRandomFromSize({ size: data.size, position });
+}
+
+/**
+ * Gets exact position from exact position, or a random one if not specified, based on the given size
+ * @param data the data to use for calculating the position
+ * @returns the exact position
+ */
+export function calcExactPositionOrRandomFromSize(data: IPositionFromSizeParams): ICoordinates {
+    return {
+        x: data.position?.x ?? Math.random() * data.size.width,
+        y: data.position?.y ?? Math.random() * data.size.height,
+    };
+}
+
+/**
+ * Gets exact position from exact position, or a random one if not specified, based on the given size
+ * @param data the data to use for calculating the position
+ * @returns the exact position
+ */
+export function calcExactPositionOrRandomFromSizeRanged(data: IRangedPositionFromSizeParams): ICoordinates {
+    const position = {
+        x: data.position?.x !== undefined ? getRangeValue(data.position.x) : undefined,
+        y: data.position?.y !== undefined ? getRangeValue(data.position.y) : undefined,
+    };
+
+    return calcExactPositionOrRandomFromSize({ size: data.size, position });
 }

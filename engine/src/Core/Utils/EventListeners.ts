@@ -1,4 +1,3 @@
-import { ClickMode, InteractivityDetect } from "../../Enums";
 import {
     mouseDownEvent,
     mouseLeaveEvent,
@@ -12,10 +11,20 @@ import {
     touchStartEvent,
     visibilityChangeEvent,
 } from "./Constants";
+import { ClickMode } from "../../Enums/Modes/ClickMode";
 import type { Container } from "../Container";
-import type { ICoordinates } from "../Interfaces";
-import { isSsr } from "../../Utils";
+import type { ICoordinates } from "../Interfaces/ICoordinates";
+import { InteractivityDetect } from "../../Enums/InteractivityDetect";
+import { isSsr } from "../../Utils/Utils";
 
+/**
+ * Manage the given event listeners
+ * @param element the event listener receiver
+ * @param event the event to listen
+ * @param handler the handler called once the event is triggered
+ * @param add flag for adding or removing the event listener
+ * @param options event listener options object
+ */
 function manageListener(
     element: HTMLElement | Node | Window | MediaQueryList,
     event: string,
@@ -103,9 +112,9 @@ export class EventListeners {
      * Initializing event listeners
      */
     private manageListeners(add: boolean): void {
-        const container = this.container;
-        const options = container.actualOptions;
-        const detectType = options.interactivity.detectsOn;
+        const container = this.container,
+            options = container.actualOptions,
+            detectType = options.interactivity.detectsOn;
         let mouseLeaveTmpEvent = mouseLeaveEvent;
 
         /* events target element */
@@ -207,6 +216,10 @@ export class EventListeners {
         }
     }
 
+    /**
+     * Handles window resize event
+     * @private
+     */
     private handleWindowResize(): void {
         if (this.resizeTimeout) {
             clearTimeout(this.resizeTimeout);
@@ -217,9 +230,13 @@ export class EventListeners {
         this.resizeTimeout = setTimeout(async () => this.container.canvas?.windowResize(), 500);
     }
 
+    /**
+     * Handles blur event
+     * @private
+     */
     private handleVisibilityChange(): void {
-        const container = this.container;
-        const options = container.actualOptions;
+        const container = this.container,
+            options = container.actualOptions;
 
         this.mouseTouchFinish();
 
@@ -242,6 +259,10 @@ export class EventListeners {
         }
     }
 
+    /**
+     * Handle mouse down event
+     * @private
+     */
     private mouseDown(): void {
         const interactivity = this.container.interactivity;
 
@@ -258,10 +279,10 @@ export class EventListeners {
      * @param e the event arguments
      */
     private mouseTouchMove(e: Event): void {
-        const container = this.container;
-        const options = container.actualOptions;
+        const container = this.container,
+            options = container.actualOptions;
 
-        if (container.interactivity?.element === undefined) {
+        if (!container.interactivity?.element) {
             return;
         }
 
@@ -343,7 +364,7 @@ export class EventListeners {
     private mouseTouchFinish(): void {
         const interactivity = this.container.interactivity;
 
-        if (interactivity === undefined) {
+        if (!interactivity) {
             return;
         }
 
@@ -363,9 +384,9 @@ export class EventListeners {
      * @param e the click event arguments
      */
     private mouseTouchClick(e: Event): void {
-        const container = this.container;
-        const options = container.actualOptions;
-        const mouse = container.interactivity.mouse;
+        const container = this.container,
+            options = container.actualOptions,
+            mouse = container.interactivity.mouse;
 
         mouse.inside = true;
 
@@ -373,17 +394,19 @@ export class EventListeners {
 
         const mousePosition = mouse.position;
 
-        if (mousePosition === undefined || !options.interactivity.events.onClick.enable) {
+        if (!mousePosition || !options.interactivity.events.onClick.enable) {
             return;
         }
 
         for (const [, plugin] of container.plugins) {
-            if (plugin.clickPositionValid !== undefined) {
-                handled = plugin.clickPositionValid(mousePosition);
+            if (!plugin.clickPositionValid) {
+                continue;
+            }
 
-                if (handled) {
-                    break;
-                }
+            handled = plugin.clickPositionValid(mousePosition);
+
+            if (handled) {
+                break;
             }
         }
 
@@ -399,19 +422,20 @@ export class EventListeners {
      * @param e the click event arguments
      */
     private doMouseTouchClick(e: Event): void {
-        const container = this.container;
-        const options = container.actualOptions;
+        const container = this.container,
+            options = container.actualOptions;
 
         if (this.canPush) {
             const mousePos = container.interactivity.mouse.position;
-            if (mousePos) {
-                container.interactivity.mouse.clickPosition = {
-                    x: mousePos.x,
-                    y: mousePos.y,
-                };
-            } else {
+
+            if (!mousePos) {
                 return;
             }
+
+            container.interactivity.mouse.clickPosition = {
+                x: mousePos.x,
+                y: mousePos.y,
+            };
 
             container.interactivity.mouse.clickTime = new Date().getTime();
 
@@ -431,18 +455,28 @@ export class EventListeners {
         }
     }
 
+    /**
+     * Handle browser theme change
+     * @param e the media query event
+     * @private
+     */
     private handleThemeChange(e: Event): void {
-        const mediaEvent = e as MediaQueryListEvent;
-        const themeName = mediaEvent.matches
-            ? this.container.options.defaultDarkTheme
-            : this.container.options.defaultLightTheme;
-        const theme = this.container.options.themes.find((theme) => theme.name === themeName);
+        const mediaEvent = e as MediaQueryListEvent,
+            themeName = mediaEvent.matches
+                ? this.container.options.defaultDarkTheme
+                : this.container.options.defaultLightTheme,
+            theme = this.container.options.themes.find((theme) => theme.name === themeName);
 
         if (theme && theme.default.auto) {
             this.container.loadTheme(themeName);
         }
     }
 
+    /**
+     * Handles click mode event
+     * @param mode Click mode type
+     * @private
+     */
     private handleClickMode(mode: ClickMode | string): void {
         this.container.handleClickMode(mode);
     }

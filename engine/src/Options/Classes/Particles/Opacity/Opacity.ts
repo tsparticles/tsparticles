@@ -1,8 +1,9 @@
-import type { IOpacity, IOptionLoader } from "../../../Interfaces";
+import type { IOpacity } from "../../../Interfaces/Particles/Opacity/IOpacity";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { OpacityAnimation } from "./OpacityAnimation";
-import type { RecursivePartial } from "../../../../Types";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { ValueWithRandom } from "../../ValueWithRandom";
-import { setRangeValue } from "../../../../Utils";
+import { setRangeValue } from "../../../../Utils/NumberUtils";
 
 /**
  * [[include:Options/Particles/Opacity.md]]

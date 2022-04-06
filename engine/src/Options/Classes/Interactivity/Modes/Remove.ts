@@ -1,5 +1,6 @@
-import type { IOptionLoader, IRemove } from "../../../Interfaces";
-import type { RecursivePartial } from "../../../../Types";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { IRemove } from "../../../Interfaces/Interactivity/Modes/IRemove";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 /**
  * @category Options

@@ -1,0 +1,50 @@
+{
+  "name": "@tsparticles/preset-template-typescript",
+  "version": "1.43.2",
+  "private": true,
+  "author": "Matteo Bruni",
+  "description": "tsParticles template preset, using TypeScript",
+  "homepage": "https://particles.js.org/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/preset-template.git"
+  },
+  "keywords": [
+    "tsparticles",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles.js",
+    "particles-ts",
+    "particles.ts",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background",
+    "tsparticles-preset"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tsparticles/preset-template/issues"
+  },
+  "main": "index.js",
+  "jsdelivr": "tsparticles.preset.template.min.js",
+  "unpkg": "tsparticles.preset.template.min.js",
+  "browser": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "dependencies": {
+    "tsparticles": "^1.43.1"
+  }
+}

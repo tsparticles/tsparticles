@@ -1,5 +1,5 @@
-import type { ICoordinates } from "../../../../Core";
-import type { RangeValue } from "../../../../Types";
+import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
+import type { RangeValue } from "../../../../Types/RangeValue";
 
 /**
  * @category Options

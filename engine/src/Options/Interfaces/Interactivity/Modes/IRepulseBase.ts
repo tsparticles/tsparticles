@@ -1,7 +1,7 @@
 /**
  * @category Options
  */
-import type { EasingType } from "../../../../Enums";
+import type { EasingType } from "../../../../Enums/Types/EasingType";
 
 export interface IRepulseBase {
     distance: number;

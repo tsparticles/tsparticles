@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.17.1...riot-particles-demo@2.0.4) (2022-04-06)
+
+
+### Bug Fixes
+
+* fixed some components init functions, they must be async ([0541dfa](https://github.com/matteobruni/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
+
+
+### Features
+
+* async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
+
+
+
+
 ## [2.0.3](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.16.1...riot-particles-demo@2.0.3) (2022-03-11)
 
 
@@ -21,6 +38,46 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 ## [2.0.2](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.15.4...riot-particles-demo@2.0.2) (2022-02-21)
+## [1.17.1](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.17.0...riot-particles-demo@1.17.1) (2022-04-06)
+
+**Note:** Version bump only for package riot-particles-demo
+
+
+
+
+
+# [1.17.0](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.16.4...riot-particles-demo@1.17.0) (2022-04-04)
+
+**Note:** Version bump only for package riot-particles-demo
+
+
+
+
+
+## [1.16.4](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.16.3...riot-particles-demo@1.16.4) (2022-03-20)
+
+**Note:** Version bump only for package riot-particles-demo
+
+
+
+
+
+## [1.16.3](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.16.2...riot-particles-demo@1.16.3) (2022-03-18)
+
+**Note:** Version bump only for package riot-particles-demo
+
+
+
+
+
+## [1.16.2](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.16.1...riot-particles-demo@1.16.2) (2022-03-14)
+
+**Note:** Version bump only for package riot-particles-demo
+
+
+
+
+
 ## [1.16.1](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.16.0...riot-particles-demo@1.16.1) (2022-03-09)
 
 **Note:** Version bump only for package riot-particles-demo

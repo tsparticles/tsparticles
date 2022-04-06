@@ -1,13 +1,15 @@
-import type { RangeValue, RecursivePartial, SingleOrMultiple } from "../../Types";
-import type { IBackground } from "./Background";
-import type { IBackgroundMask } from "./BackgroundMask";
-import type { IFullScreen } from "./FullScreen";
-import type { IInteractivity } from "./Interactivity";
+import type { IBackground } from "./Background/IBackground";
+import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask";
+import type { IFullScreen } from "./FullScreen/IFullScreen";
+import type { IInteractivity } from "./Interactivity/IInteractivity";
 import type { IManualParticle } from "./IManualParticle";
-import type { IMotion } from "./Motion";
-import type { IParticlesOptions } from "./Particles";
+import type { IMotion } from "./Motion/IMotion";
+import type { IParticlesOptions } from "./Particles/IParticlesOptions";
 import type { IResponsive } from "./IResponsive";
-import type { ITheme } from "./Theme";
+import type { ITheme } from "./Theme/ITheme";
+import type { RangeValue } from "../../Types/RangeValue";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`

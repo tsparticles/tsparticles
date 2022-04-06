@@ -1,7 +1,7 @@
 {
   "name": "preact-particles-demo",
   "private": true,
-  "version": "2.0.3",
+  "version": "2.0.4",
   "type": "module",
   "description": "> TODO: description",
   "author": "Matteo Bruni <ar3s@icloud.com>",
@@ -43,11 +43,11 @@
     "sirv-cli": "^2.0.0"
   },
   "dependencies": {
-    "preact": "^10.6.4",
-    "preact-particles": "^2.0.3",
-    "preact-render-to-string": "^5.1.19",
+    "preact": "^10.6.6",
+    "preact-particles": "^2.0.4",
+    "preact-render-to-string": "^5.1.20",
     "preact-router": "^4.0.0",
-    "tsparticles": "^2.0.3",
-    "tsparticles-engine": "^2.0.3"
+    "tsparticles": "^2.0.4",
+    "tsparticles-engine": "^2.0.4"
   }
 }

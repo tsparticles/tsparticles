@@ -1,6 +1,8 @@
-import type { IOptionLoader, IRotateAnimation } from "../../../Interfaces";
-import type { RangeValue, RecursivePartial } from "../../../../Types";
-import { setRangeValue } from "../../../../Utils";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { IRotateAnimation } from "../../../Interfaces/Particles/Rotate/IRotateAnimation";
+import type { RangeValue } from "../../../../Types/RangeValue";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import { setRangeValue } from "../../../../Utils/NumberUtils";
 
 /**
  * @category Options
