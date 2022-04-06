@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.28.1](https://github.com/matteobruni/tsparticles/compare/jquery-particles-demo@1.28.0...jquery-particles-demo@1.28.1) (2022-04-06)
+
+**Note:** Version bump only for package jquery-particles-demo
+
+
+
+
+
 # [1.28.0](https://github.com/matteobruni/tsparticles/compare/jquery-particles-demo@1.27.4...jquery-particles-demo@1.28.0) (2022-04-04)
 
 **Note:** Version bump only for package jquery-particles-demo
