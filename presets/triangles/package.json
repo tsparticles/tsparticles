@@ -112,7 +112,7 @@
     "webpack": "^5.71.0",
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.2",
-    "webpack-tsparticles-plugin": "^1.0.1"
+    "webpack-tsparticles-plugin": "^1.0.2"
   },
   "dependencies": {
     "tsparticles-engine": "^2.0.4",
@@ -122,7 +122,6 @@
     "tsparticles-updater-color": "^2.0.4",
     "tsparticles-updater-opacity": "^2.0.4",
     "tsparticles-updater-out-modes": "^2.0.4",
-    "tsparticles-updater-size": "^2.0.4",
-    "webpack-tsparticles-plugin": "^1.0.2"
+    "tsparticles-updater-size": "^2.0.4"
   }
 }
