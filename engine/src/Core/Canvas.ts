@@ -18,8 +18,8 @@ import type { IDimension } from "./Interfaces/IDimension";
 import type { IParticle } from "./Interfaces/IParticle";
 import type { IParticleColorStyle } from "./Interfaces/IParticleColorStyle";
 import type { Particle } from "./Particle";
-import { generatedAttribute } from "./Utils/Constants";
 import { deepExtend } from "../Utils/Utils";
+import { generatedAttribute } from "./Utils/Constants";
 
 /**
  * Canvas manager

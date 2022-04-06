@@ -35,7 +35,7 @@ export class Grabber extends ExternalInteractorBase {
             options = container.actualOptions,
             interactivity = options.interactivity;
 
-        if (!interactivity.events.onHover.enable || container.interactivity.status !== Constants.mouseMoveEvent) {
+        if (!interactivity.events.onHover.enable || container.interactivity.status !== mouseMoveEvent) {
             return;
         }
 

@@ -1,9 +1,10 @@
-import type { IModes, IOptionLoader } from "../../../Interfaces";
 import { Attract } from "./Attract";
 import { Bounce } from "./Bounce";
 import { Bubble } from "./Bubble";
 import { Connect } from "./Connect";
 import { Grab } from "./Grab";
+import type { IModes } from "../../../Interfaces/Interactivity/Modes/IModes";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { Light } from "./Light";
 import { Push } from "./Push";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";

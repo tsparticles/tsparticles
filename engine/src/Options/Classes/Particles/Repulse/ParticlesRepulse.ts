@@ -1,5 +1,5 @@
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { IRepulse } from "../../../Interfaces/Particles/Repulse/IRepulse";
+import type { IParticlesRepulse } from "../../../Interfaces/Particles/Repulse/IParticlesRepulse";
 import type { RangeValue } from "../../../../Types/RangeValue";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { ValueWithRandom } from "../../ValueWithRandom";

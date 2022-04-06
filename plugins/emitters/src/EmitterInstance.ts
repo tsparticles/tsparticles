@@ -11,6 +11,7 @@ import type {
 import {
     SizeMode,
     Vector,
+    calcPositionOrRandomFromSizeRanged,
     colorToHsl,
     deepExtend,
     getRangeValue,

@@ -1,37 +1,11 @@
 import { ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates";
 import type { IHsl, IRgb } from "./Interfaces/Colors";
 import {
-    AnimationStatus,
-    DestroyMode,
-    MoveDirection,
-    OutMode,
-    OutModeAlt,
-    ParticleOutType,
-    RollMode,
-    StartValueType,
-} from "../Enums";
-import {
-    IBubbleParticleData,
-    ICoordinates,
-    ICoordinates3d,
-    IDelta,
-    IHsl,
-    IParticle,
-    IParticleGradientAnimation,
-    IParticleGravity,
-    IParticleHslAnimation,
-    IParticleLife,
     IParticleNumericValueAnimation,
-    IParticleRetinaProps,
-    IParticleRoll,
     IParticleTiltValueAnimation,
     IParticleValueAnimation,
-    IParticleWobble,
-    IRgb,
-    IShapeValues,
-} from "./Interfaces";
-import { IParticlesOptions, IShape, Shape, Stroke } from "../Options";
-import { Vector, Vector3d } from "./Utils";
+} from "./Interfaces/IParticleValueAnimation";
+import { OutMode, OutModeAlt } from "../Enums/Modes/OutMode";
 import {
     calcExactPositionOrRandomFromSize,
     clamp,
@@ -42,15 +16,37 @@ import {
     getRangeMin,
     getRangeValue,
     getValue,
-    isInArray,
-    itemFromArray,
-    loadParticlesOptions,
     randomInRange,
     setRangeValue,
-} from "../Utils";
-import { Container } from "./Container";
-import { Engine } from "../engine";
-import { RecursivePartial } from "../Types";
+} from "../Utils/NumberUtils";
+import { colorToRgb, getHslFromAnimation } from "../Utils/ColorUtils";
+import { deepExtend, isInArray, itemFromArray, loadParticlesOptions } from "../Utils/Utils";
+import { AnimationStatus } from "../Enums/AnimationStatus";
+import type { Container } from "./Container";
+import { DestroyMode } from "../Enums/Modes/DestroyMode";
+import type { Engine } from "../engine";
+import { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
+import type { IDelta } from "./Interfaces/IDelta";
+import type { IParticle } from "./Interfaces/IParticle";
+import type { IParticleGravity } from "./Interfaces/IParticleGravity";
+import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation";
+import type { IParticleLife } from "./Interfaces/IParticleLife";
+import type { IParticleRetinaProps } from "./Interfaces/IParticleRetinaProps";
+import type { IParticleRoll } from "./Interfaces/IParticleRoll";
+import type { IParticleWobble } from "./Interfaces/IParticleWobble";
+import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions";
+import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
+import type { IShapeValues } from "./Interfaces/IShapeValues";
+import { MoveDirection } from "../Enums/Directions/MoveDirection";
+import { ParticleOutType } from "../Enums/Types/ParticleOutType";
+import type { RecursivePartial } from "../Types/RecursivePartial";
+import { RollMode } from "../Enums/Modes/RollMode";
+import { Shape } from "../Options/Classes/Particles/Shape/Shape";
+import { StartValueType } from "../Enums/Types/StartValueType";
+import { Stroke } from "../Options/Classes/Particles/Stroke";
+import { Vector } from "./Utils/Vector";
+import { Vector3d } from "./Utils/Vector3d";
+import { alterHsl } from "../Utils/CanvasUtils";
 
 /**
  * fixes out mode, calling the given callback if needed
@@ -201,7 +197,7 @@ export class Particle implements IParticle {
     strokeColor?: IParticleHslAnimation;
 
     readonly moveCenter: ICoordinates & { radius: number };
-    
+
     /**
      * Gets particle gravity options
      */
@@ -217,7 +213,7 @@ export class Particle implements IParticle {
     /**
      * Gets particle direction, the value is an angle in rad
      */
-    readonly direction: number;
+    direction: number;
 
     /**
      * Gets particle current position

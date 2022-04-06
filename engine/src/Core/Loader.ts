@@ -1,10 +1,13 @@
-import { CustomEventArgs, CustomEventListener, RecursivePartial, SingleOrMultiple } from "../Types";
 import { Container } from "./Container";
-import { Engine } from "../engine";
-import { IOptions } from "../Options";
-import { Particle } from "./Particle";
-import { generatedAttribute } from "./Utils";
-import { itemFromArray } from "../Utils";
+import type { CustomEventArgs } from "../Types/CustomEventArgs";
+import type { CustomEventListener } from "../Types/CustomEventListener";
+import type { Engine } from "../engine";
+import type { IOptions } from "../Options/Interfaces/IOptions";
+import type { Particle } from "./Particle";
+import type { RecursivePartial } from "../Types/RecursivePartial";
+import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
+import { generatedAttribute } from "./Utils/Constants";
+import { itemFromArray } from "../Utils/Utils";
 
 /**
  * Default fetch error catcher

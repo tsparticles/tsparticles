@@ -12,9 +12,6 @@ import { EmitterClickMode } from "./Enums/EmitterClickMode";
 import type { EmitterContainer } from "./EmitterContainer";
 import { EmitterInstance } from "./EmitterInstance";
 import type { EmittersEngine } from "./EmittersEngine";
-import type { IContainerPlugin } from "../../Core/Interfaces/IContainerPlugin";
-import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
-import type { IDelta } from "../../Core/Interfaces/IDelta";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 

@@ -1,6 +1,6 @@
-import { Density } from "./Density";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { IParticlesNumber } from "../../../Interfaces/Particles/Number/IParticlesNumber";
+import { ParticlesDensity } from "./ParticlesDensity";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 /**

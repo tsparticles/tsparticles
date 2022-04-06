@@ -1,4 +1,5 @@
-import type { IColor, ICoordinates } from "../../../Core";
+import { IColor } from "../../../Core/Interfaces/Colors";
+import { ICoordinates } from "../../../Core/Interfaces/ICoordinates";
 
 /**
  * @category Options

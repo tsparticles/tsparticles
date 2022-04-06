@@ -1,4 +1,3 @@
-import type { IOptionLoader, IStroke } from "../../Interfaces";
 import { AnimatableColor } from "../AnimatableColor";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import type { IStroke } from "../../Interfaces/Particles/IStroke";

@@ -1,4 +1,3 @@
-import { ClickMode, InteractivityDetect } from "../../Enums";
 import {
     mouseDownEvent,
     mouseLeaveEvent,
@@ -12,9 +11,11 @@ import {
     touchStartEvent,
     visibilityChangeEvent,
 } from "./Constants";
+import { ClickMode } from "../../Enums/Modes/ClickMode";
 import type { Container } from "../Container";
-import type { ICoordinates } from "../Interfaces";
-import { isSsr } from "../../Utils";
+import type { ICoordinates } from "../Interfaces/ICoordinates";
+import { InteractivityDetect } from "../../Enums/InteractivityDetect";
+import { isSsr } from "../../Utils/Utils";
 
 /**
  * Manage the given event listeners

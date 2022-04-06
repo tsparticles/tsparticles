@@ -2,20 +2,21 @@
  * [[include:Container.md]]
  * @packageDocumentation
  */
-import { ClickMode, EventType } from "../Enums";
-import { EventListeners, FrameManager, Vector } from "./Utils";
-import type {
-    IContainerInteractivity,
-    IContainerPlugin,
-    ICoordinates,
-    IMovePathGenerator,
-    IRgb,
-    IShapeDrawer,
-} from "./Interfaces";
-import type { IOptions, Options } from "../Options";
-import { animate, cancelAnimation, getRangeValue, loadContainerOptions } from "../Utils";
+import { animate, cancelAnimation, loadContainerOptions } from "../Utils/Utils";
 import { Canvas } from "./Canvas";
+import { ClickMode } from "../Enums/Modes/ClickMode";
 import { Engine } from "../engine";
+import { EventListeners } from "./Utils/EventListeners";
+import { EventType } from "../Enums/Types/EventType";
+import { FrameManager } from "./Utils/FrameManager";
+import type { IContainerInteractivity } from "./Interfaces/IContainerInteractivity";
+import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
+import type { ICoordinates } from "./Interfaces/ICoordinates";
+import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator";
+import type { IOptions } from "../Options/Interfaces/IOptions";
+import type { IRgb } from "./Interfaces/Colors";
+import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
+import { Options } from "../Options/Classes/Options";
 import type { Particle } from "./Particle";
 import { Particles } from "./Particles";
 import type { RecursivePartial } from "../Types/RecursivePartial";

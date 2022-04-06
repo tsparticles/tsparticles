@@ -1,7 +1,9 @@
-import type { IMoveAttract, IOptionLoader } from "../../../Interfaces";
-import type { RangeValue, RecursivePartial } from "../../../../Types";
-import type { ICoordinates } from "../../../../Core";
-import { setRangeValue } from "../../../../Utils";
+import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
+import type { IMoveAttract } from "../../../Interfaces/Particles/Move/IMoveAttract";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { RangeValue } from "../../../../Types/RangeValue";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import { setRangeValue } from "../../../../Utils/NumberUtils";
 
 /**
  * @category Options

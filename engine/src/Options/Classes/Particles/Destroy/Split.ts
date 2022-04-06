@@ -1,5 +1,5 @@
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import { IParticles } from "../../../Interfaces/Particles/IParticles";
+import { IParticlesOptions } from "../../../Interfaces/Particles/IParticlesOptions";
 import type { ISplit } from "../../../Interfaces/Particles/Destroy/ISplit";
 import { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { SplitFactor } from "./SplitFactor";

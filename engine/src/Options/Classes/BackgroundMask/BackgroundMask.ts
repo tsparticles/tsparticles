@@ -1,4 +1,3 @@
-import type { IBackgroundMask, IBackgroundMaskCover, IOptionLoader } from "../../Interfaces";
 import { BackgroundMaskCover } from "./BackgroundMaskCover";
 import type { IBackgroundMask } from "../../Interfaces/BackgroundMask/IBackgroundMask";
 import type { IBackgroundMaskCover } from "../../Interfaces/BackgroundMask/IBackgroundMaskCover";

@@ -1,7 +1,7 @@
 import type { IColor, IHsl, IHsla, IHsv, IHsva, IRgb, IRgba, IValueColor } from "../Core/Interfaces/Colors";
 import { getRangeValue, mix, randomInRange, setRangeValue } from "./NumberUtils";
+import { midColorValue, randomColorValue } from "../Core/Utils/Constants";
 import { AnimationStatus } from "../Enums/AnimationStatus";
-import { Constants } from "../Core/Utils/Constants";
 import { HslAnimation } from "../Options/Classes/HslAnimation";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 import type { IParticle } from "../Core/Interfaces/IParticle";
@@ -120,7 +120,7 @@ export function colorToRgb(input?: string | IColor, index?: number, useIndex = t
     let res: IRgb | undefined;
 
     if (typeof color.value === "string") {
-        res = color.value === Constants.randomColorValue ? getRandomRgbColor() : stringToRgb(color.value);
+        res = color.value === randomColorValue ? getRandomRgbColor() : stringToRgb(color.value);
     } else {
         if (color.value instanceof Array) {
             const colorSelected = itemFromArray(color.value, index, useIndex);

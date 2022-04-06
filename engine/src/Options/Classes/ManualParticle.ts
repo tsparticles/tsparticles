@@ -1,7 +1,7 @@
 import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
 import type { IManualParticle } from "../Interfaces/IManualParticle";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
-import type { IParticles } from "../Interfaces/Particles/IParticles";
+import type { IParticlesOptions } from "../Interfaces/Particles/IParticlesOptions";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
 import { deepExtend } from "../../Utils/Utils";
 

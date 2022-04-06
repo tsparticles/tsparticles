@@ -1,13 +1,11 @@
 import type { IHsl, IRgb } from "../Core/Interfaces/Colors";
-import { colorMix, colorToRgb, getStyleFromHsl, getStyleFromRgb } from "./ColorUtils";
-import { getDistance, getDistances } from "./NumberUtils";
+import { colorMix, getStyleFromHsl, getStyleFromRgb } from "./ColorUtils";
 import { AlterType } from "../Enums/Types/AlterType";
 import type { Container } from "../Core/Container";
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IDelta } from "../Core/Interfaces/IDelta";
 import type { IDimension } from "../Core/Interfaces/IDimension";
-import type { ILinksShadow } from "../Options/Interfaces/Particles/Links/ILinksShadow";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IParticleColorStyle } from "../Core/Interfaces/IParticleColorStyle";
 import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
@@ -21,7 +19,7 @@ import { RollMode } from "../Enums/Modes/RollMode";
  * @param begin - The begin point of the line.
  * @param end - The end point of the line.
  */
-function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
+export function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
     context.beginPath();
     context.moveTo(begin.x, begin.y);
     context.lineTo(end.x, end.y);
@@ -35,7 +33,12 @@ function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: I
  * @param p2 - The second point of the triangle.
  * @param p3 - The third point of the triangle.
  */
-export function drawTriangle(context: CanvasRenderingContext2D, p1: ICoordinates, p2: ICoordinates, p3: ICoordinates): void {
+export function drawTriangle(
+    context: CanvasRenderingContext2D,
+    p1: ICoordinates,
+    p2: ICoordinates,
+    p3: ICoordinates
+): void {
     context.beginPath();
     context.moveTo(p1.x, p1.y);
     context.lineTo(p2.x, p2.y);

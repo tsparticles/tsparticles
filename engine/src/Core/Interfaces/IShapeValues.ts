@@ -1,4 +1,4 @@
-import type { IParticles } from "../../Options/Interfaces/Particles/IParticles";
+import type { IParticlesOptions } from "../../Options/Interfaces/Particles/IParticlesOptions";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
 
 /**

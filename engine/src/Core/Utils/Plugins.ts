@@ -1,16 +1,15 @@
-import type {
-    IContainerPlugin,
-    IInteractor,
-    IMovePathGenerator,
-    IParticleMover,
-    IParticleUpdater,
-    IPlugin,
-    IShapeDrawer,
-} from "../Interfaces";
-import type { IOptions, Options } from "../../Options";
 import type { Container } from "../Container";
-import { Engine } from "../../engine";
-import type { RecursivePartial } from "../../Types";
+import type { Engine } from "../../engine";
+import type { IContainerPlugin } from "../Interfaces/IContainerPlugin";
+import type { IInteractor } from "../Interfaces/IInteractor";
+import type { IMovePathGenerator } from "../Interfaces/IMovePathGenerator";
+import type { IOptions } from "../../Options/Interfaces/IOptions";
+import type { IParticleMover } from "../Interfaces/IParticleMover";
+import type { IParticleUpdater } from "../Interfaces/IParticleUpdater";
+import type { IPlugin } from "../Interfaces/IPlugin";
+import type { IShapeDrawer } from "../Interfaces/IShapeDrawer";
+import type { Options } from "../../Options/Classes/Options";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
 
 /**
  * Alias for interactivity manager initializer function

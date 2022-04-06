@@ -1,4 +1,5 @@
-import type { IBubbleBase, IOptionLoader } from "../../../Interfaces";
+import type { IBubbleBase } from "../../../Interfaces/Interactivity/Modes/IBubbleBase";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { OptionsColor } from "../../OptionsColor";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";

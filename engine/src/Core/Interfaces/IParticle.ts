@@ -3,14 +3,16 @@
  */
 import type { IHsl, IRgb } from "./Colors";
 import type { IParticleTiltValueAnimation, IParticleValueAnimation } from "./IParticleValueAnimation";
-import type { IParticlesOptions, IShapeValues, IStroke } from "../../Options";
 import type { IBubbleParticleData } from "./IBubbleParticleData";
 import type { ICoordinates3d } from "./ICoordinates";
 import type { IParticleHslAnimation } from "./IParticleHslAnimation";
 import type { IParticleRetinaProps } from "./IParticleRetinaProps";
 import type { IParticleRoll } from "./IParticleRoll";
 import type { IParticleWobble } from "./IParticleWobble";
-import type { Vector } from "../Utils";
+import type { IParticlesOptions } from "../../Options/Interfaces/Particles/IParticlesOptions";
+import type { IShapeValues } from "./IShapeValues";
+import type { IStroke } from "../../Options/Interfaces/Particles/IStroke";
+import type { Vector } from "../Utils/Vector";
 
 export interface IParticle {
     misplaced: boolean;

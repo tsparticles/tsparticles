@@ -14,6 +14,8 @@ import {
 } from "tsparticles-engine";
 import type {
     IDelta,
+    IParticleColorStyle,
+    IParticleHslAnimation,
     IParticleNumericValueAnimation,
     IParticleUpdater,
     IParticleValueAnimation,

@@ -1,15 +1,16 @@
-import { EmitterClickMode, EmitterShapeType } from "./Enums";
-import { IOptions, IPlugin, Options, RecursivePartial, isInArray } from "tsparticles-engine";
+import type { IOptions, IPlugin, Options, RecursivePartial } from "tsparticles-engine";
 import { CircleShape } from "./Shapes/Circle/CircleShape";
-import type { Container } from "../../Core/Container";
 import { Emitter } from "./Options/Classes/Emitter";
+import { EmitterClickMode } from "./Enums/EmitterClickMode";
 import { EmitterContainer } from "./EmitterContainer";
+import { EmitterShapeType } from "./Enums/EmitterShapeType";
 import { Emitters } from "./Emitters";
 import { EmittersEngine } from "./EmittersEngine";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 import { IEmitterShape } from "./IEmitterShape";
 import { ShapeManager } from "./ShapeManager";
 import { SquareShape } from "./Shapes/Square/SquareShape";
+import { isInArray } from "tsparticles-engine";
 
 /**
  * @category Emitters Plugin

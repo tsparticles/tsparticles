@@ -2,6 +2,8 @@ import type { Container, ICoordinates, IRgb, Particle, RecursivePartial } from "
 import {
     RotateDirection,
     Vector,
+    calcPositionOrRandomFromSize,
+    calcPositionOrRandomFromSizeRanged,
     colorToRgb,
     getDistance,
     getDistances,
@@ -11,7 +13,6 @@ import {
 } from "tsparticles-engine";
 import { Absorber } from "./Options/Classes/Absorber";
 import { Absorbers } from "./Absorbers";
-import type { Container } from "../../Core/Container";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
 import type { IAbsorberSizeLimit } from "./Options/Interfaces/IAbsorberSizeLimit";
 

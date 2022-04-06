@@ -1,16 +1,22 @@
 import { collisionVelocity, getDistances, getValue } from "./NumberUtils";
 import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
 import { DivMode } from "../Enums/Modes/DivMode";
+import type { Engine } from "../engine";
 import type { IBounds } from "../Core/Interfaces/IBounds";
-import type { ICharacterShape } from "../Options/Interfaces/Particles/Shape/ICharacterShape";
 import type { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
+import type { IOptionLoader } from "../Options/Interfaces/IOptionLoader";
+import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { IParticle } from "../Core/Interfaces/IParticle";
+import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions";
 import type { IRangeValue } from "../Core/Interfaces/IRangeValue";
 import type { IRectSideResult } from "../Core/Interfaces/IRectSideResult";
+import { Options } from "../Options/Classes/Options";
 import { OutModeDirection } from "../Enums/Directions/OutModeDirection";
+import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
+import type { RecursivePartial } from "../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
 import { Vector } from "../Core/Utils/Vector";
 
@@ -178,6 +184,7 @@ export function itemFromArray<T>(array: T[], index?: number, useIndex = true): T
  * Checks if the given point is inside the given rectangle
  * @param point the point to check
  * @param size the rectangle size
+ * @param offset position offset
  * @param radius the point radius
  * @param direction the point direction
  * @returns true if the point is inside the rectangle
@@ -199,7 +206,12 @@ export function isPointInside(
  * @param offset position offset
  * @param direction the shape direction
  */
-export function areBoundsInside(bounds: IBounds, size: IDimension, offset: ICoordinates, direction?: OutModeDirection): boolean {
+export function areBoundsInside(
+    bounds: IBounds,
+    size: IDimension,
+    offset: ICoordinates,
+    direction?: OutModeDirection
+): boolean {
     let inside = true;
 
     if (!direction || direction === OutModeDirection.bottom) {
@@ -476,7 +488,7 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
     }
 }
 
-function loadOptions<T>(options: IOptionLoader<T>, ...sourceOptionsArr: RecursivePartial<T | undefined>[]) {
+function loadOptions<T>(options: IOptionLoader<T>, ...sourceOptionsArr: RecursivePartial<T | undefined>[]): void {
     for (const sourceOptions of sourceOptionsArr) {
         options.load(sourceOptions);
     }

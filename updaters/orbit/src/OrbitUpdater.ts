@@ -1,4 +1,12 @@
-import type { Container, IDelta, IParticleUpdater, Particle, IHsl, IParticleRetinaProps, Retina } from "tsparticles-engine";
+import type {
+    Container,
+    IDelta,
+    IHsl,
+    IParticleRetinaProps,
+    IParticleUpdater,
+    Particle,
+    Retina,
+} from "tsparticles-engine";
 import { colorToHsl, drawEllipse, getRangeValue } from "tsparticles-engine";
 
 export const enum OrbitType {

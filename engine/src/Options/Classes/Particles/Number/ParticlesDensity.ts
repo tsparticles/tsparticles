@@ -1,5 +1,5 @@
-import type { IDensity } from "../../../Interfaces/Particles/Number/IDensity";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { IParticlesDensity } from "../../../Interfaces/Particles/Number/IParticlesDensity";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 /**

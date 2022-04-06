@@ -1,4 +1,5 @@
-import type { ILife, IOptionLoader } from "../../../Interfaces";
+import type { ILife } from "../../../Interfaces/Particles/Life/ILife";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { LifeDelay } from "./LifeDelay";
 import { LifeDuration } from "./LifeDuration";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
