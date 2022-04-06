@@ -281,5 +281,10 @@ canvas {
         loadPolygonPath(tsParticles);
         loadPerlinNoisePath(tsParticles);
         loadSimplexNoisePath(tsParticles);
+        loadBubbleShape(tsParticles);
+        loadHeartShape(tsParticles);
+        loadMultilineTextShape(tsParticles);
+        loadRoundedRectShape(tsParticles);
+        loadSpiralShape(tsParticles);
     });
 })();

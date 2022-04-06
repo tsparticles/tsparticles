@@ -55,6 +55,7 @@ app.use("/updater-color", express.static("./node_modules/tsparticles-updater-col
 app.use("/updater-stroke-color", express.static("./node_modules/tsparticles-updater-stroke-color"));
 app.use("/updater-out-modes", express.static("./node_modules/tsparticles-updater-out-modes"));
 app.use("/updater-tilt", express.static("./node_modules/tsparticles-updater-tilt"))
+app.use("/updater-twinkle", express.static("./node_modules/tsparticles-updater-twinkle"))
 app.use("/updater-roll", express.static("./node_modules/tsparticles-updater-roll"))
 app.use("/updater-wobble", express.static("./node_modules/tsparticles-updater-wobble"))
 app.use("/interaction-external-trail", express.static("./node_modules/tsparticles-interaction-external-trail"))
