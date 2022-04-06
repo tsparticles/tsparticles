@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.43.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-simplex-noise@1.43.0...tsparticles-path-simplex-noise@1.43.1) (2022-04-06)
+
+**Note:** Version bump only for package tsparticles-path-simplex-noise
+
+
+
+
+
 # [1.43.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-simplex-noise@1.42.4...tsparticles-path-simplex-noise@1.43.0) (2022-04-04)
 
 

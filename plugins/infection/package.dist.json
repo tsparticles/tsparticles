@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-plugin-infection",
-  "version": "1.43.0",
+  "version": "1.43.1",
   "description": "tsParticles infection plugin",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -84,6 +84,6 @@
   "module": "esm/index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles": "^1.43.0"
+    "tsparticles": "^1.43.1"
   }
 }
