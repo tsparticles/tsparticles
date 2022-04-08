@@ -3433,11 +3433,11 @@ typedarray-to-buffer@^3.1.5:
     is-typedarray "^1.0.0"
 
 typedoc-plugin-clarity@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-clarity/-/typedoc-plugin-clarity-1.0.2.tgz#b380d0bd366a4969ecfa73ff0f1c5fb31b3a6df9"
-  integrity sha512-UGBiV0p0Mg+EMJbItHOONUAGDLjvZr872P/Voo6hD67IIjTSWHyVHaHpEuyqo/uEPyXXZ70+4WhaOBJ5pdS7BQ==
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-clarity/-/typedoc-plugin-clarity-1.0.3.tgz#5be75ac0ff1eea73e3503f418d8f40c26de3f1b3"
+  integrity sha512-FxN+aN8Ob9bwYYO9mIGwXd2VNCc/Jt6B8ZSXxeBG7LNJVu4GvxtA38YjYw8tFuoQdIOB9WEaA/FBXL+E/dCPtQ==
   dependencies:
-    typescript "4.4.4"
+    typescript "^4.6.3"
 
 typedoc-plugin-coverage@^1.0.2:
   version "1.0.2"
@@ -3480,7 +3480,7 @@ typescript-json-schema@^0.53.0:
     typescript "~4.5.0"
     yargs "^17.1.1"
 
-typescript@4.4.4, typescript@<4.5.0:
+typescript@<4.5.0:
   version "4.4.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.4.4.tgz#2cd01a1a1f160704d3101fd5a58ff0f9fcb8030c"
   integrity sha512-DqGhF5IKoBl8WNf8C1gu8q0xZSInh9j1kJJMqT3a94w1JzVaBU4EXOSMrz9yDqMT0xt3selp83fuFMQ0uzv6qA==
