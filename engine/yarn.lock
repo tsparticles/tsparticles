@@ -3775,10 +3775,10 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typedoc-plugin-carbon-ads@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-carbon-ads/-/typedoc-plugin-carbon-ads-1.0.1.tgz#0109ca3c68638f948d6aa028a709b6d38503987e"
-  integrity sha512-72ZjcNfbk2CH+EuBWdG+bT3cL+Wb0CBovicgz6wXZhlpqE6RNwHqyJMNGmCCz7MhV7r5td4JhKnYi5UGwJIeFg==
+typedoc-plugin-carbon-ads@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-carbon-ads/-/typedoc-plugin-carbon-ads-1.0.2.tgz#e6f10bb135edbb2aa4dc48b1571661247a031ad8"
+  integrity sha512-3kcvswlm2f7nq5r6yCO2qCjZfCMr4uJ/9PWcYGvRAEgy3lQ5ww5ke5x1koFgtjhGdnAuqndLxJnis9dOIZEFoA==
   dependencies:
     typescript "^4.6.3"
 
