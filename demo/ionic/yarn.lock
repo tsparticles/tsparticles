@@ -1343,7 +1343,7 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
-"@capacitor/app@^1.1.1":
+"@capacitor/app@1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@capacitor/app/-/app-1.1.1.tgz#bde7202faad1b47c4ae2c4a622285d7569384c5e"
   integrity sha512-8ADkldHnoE1xkWvPUsGlERVGm6/Zvcxy6hCI80AxydIKyaCG7kbDAvUclebbnw/eFRxj2zBoVatGLjmJNvTbYw==
@@ -1370,24 +1370,24 @@
     tslib "^2.1.0"
     xml2js "^0.4.23"
 
-"@capacitor/core@^3.4.3":
+"@capacitor/core@3.4.3":
   version "3.4.3"
   resolved "https://registry.yarnpkg.com/@capacitor/core/-/core-3.4.3.tgz#3cf343b7035f1f6f9b73854dfb828600cd8a5e07"
   integrity sha512-drfu0IiDMyeJtL4QALQgNFqdgN19DZJkbKh945eXyK44Sk2YkFXUs7Ewq1ZlVI30QF79mHGuM13oZeki0gv5Tw==
   dependencies:
     tslib "^2.1.0"
 
-"@capacitor/haptics@^1.1.4":
+"@capacitor/haptics@1.1.4":
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/@capacitor/haptics/-/haptics-1.1.4.tgz#80d5bc4776740a227a8cb83c85fac4db1316db8e"
   integrity sha512-+pJIb5X7xAcbrWj6rJaV+cwBlv8aFwB1/Ob6EV4atydThuuVSSsAL4hI4ZYlPNOxM6H5s+ZDLj7Pa2os4eFmtg==
 
-"@capacitor/keyboard@^1.2.2":
+"@capacitor/keyboard@1.2.2":
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/@capacitor/keyboard/-/keyboard-1.2.2.tgz#7be5d2e4956b77e5eb7235ec020d131c9f87f30a"
   integrity sha512-dOZSXJTY/tTbRQ+Neiny72BIXN2Hvf/2AgPpMdTErDfaQM7C2MMgtJrm+Mi+YUeT6AnJFmt68nHJGImAL4lzmA==
 
-"@capacitor/status-bar@^1.0.8":
+"@capacitor/status-bar@1.0.8":
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/@capacitor/status-bar/-/status-bar-1.0.8.tgz#a783561fb5815b30f3e75dd95c87e00aaff5450b"
   integrity sha512-lhxa70K6vg0QjdddbT9RqFLfQ9a0Fk1OVE54MhUH30DWymv4h2LrC+mJgH6JS46WQbR2UCHRymfmVCq1PS2Qiw==
@@ -8527,7 +8527,7 @@ yn@3.1.1:
   resolved "https://registry.yarnpkg.com/yn/-/yn-3.1.1.tgz#1e87401a09d767c1d5eab26a6e4c185182d2eb50"
   integrity sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==
 
-zone.js@~0.11.5:
+zone.js@~0.11.4:
   version "0.11.5"
   resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.11.5.tgz#ab0b449e91fadb5ebb2db189ffe1b7b6048dc8b1"
   integrity sha512-D1/7VxEuQ7xk6z/kAROe4SUbd9CzxY4zOwVGnGHerd/SgLIVU5f4esDzQUsOCeArn933BZfWMKydH7l7dPEp0g==
