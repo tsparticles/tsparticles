@@ -88,7 +88,6 @@
     "tsparticles-updater-color": "^2.0.4",
     "tsparticles-updater-opacity": "^2.0.4",
     "tsparticles-updater-out-modes": "^2.0.4",
-    "tsparticles-updater-size": "^2.0.4",
-    "webpack-tsparticles-plugin": "^1.0.2"
+    "tsparticles-updater-size": "^2.0.4"
   }
 }
