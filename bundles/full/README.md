@@ -9,15 +9,15 @@ a `tsparticles-engine` instance.
 
 **Included Packages**
 
-- tsparticles-engine
-- tsparticles-slim (and all its dependencies)
-- tsparticles-interaction-external-trail
-- tsparticles-plugin-absorbers
-- tsparticles-plugin-emitters
-- tsparticles-plugin-polygon-mask
-- tsparticles-updater-roll
-- tsparticles-updater-tilt
-- tsparticles-updater-wobble
+- [tsparticles-engine](https://github.com/matteobruni/tsparticles/tree/main/engine)
+- [tsparticles-slim (and all its dependencies)](https://github.com/matteobruni/tsparticles/tree/main/bundles/slim)
+- [tsparticles-interaction-external-trail](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/trail)
+- [tsparticles-plugin-absorbers](https://github.com/matteobruni/tsparticles/tree/main/plugins/absorbers)
+- [tsparticles-plugin-emitters](https://github.com/matteobruni/tsparticles/tree/main/plugins/emitters)
+- [tsparticles-plugin-polygon-mask](https://github.com/matteobruni/tsparticles/tree/main/plugins/polygonMask)
+- [tsparticles-updater-roll](https://github.com/matteobruni/tsparticles/tree/main/updaters/roll)
+- [tsparticles-updater-tilt](https://github.com/matteobruni/tsparticles/tree/main/updaters/tilt)
+- [tsparticles-updater-wobble](https://github.com/matteobruni/tsparticles/tree/main/updaters/wobble)
 
 ## How to use it
 
@@ -74,9 +74,9 @@ import { loadFull } from "tsparticles";
 
 export class ParticlesContainer extends PureComponent<unknown> {
   // this customizes the component tsParticles installation
-  customInit(engine: Engine) {
+  async customInit(engine: Engine): Promise<void> {
     // this adds the bundle to tsParticles
-    loadFull(engine);
+    await loadFull(engine);
   }
 
   render() {
@@ -99,9 +99,9 @@ import { loadFull } from "tsparticles";
 
 export function ParticlesContainer(props: unknown) {
   // this customizes the component tsParticles installation
-  const customInit = useCallback((engine: Engine) => {
+  const customInit = useCallback(async (engine: Engine) => {
     // this adds the bundle to tsParticles
-    loadFull(engine);
+    await loadFull(engine);
   });
 
   const options = {
@@ -121,8 +121,8 @@ _The syntax for `Vue.js 2.x` and `3.x` is the same_
 ```
 
 ```js
-function particlesInit(engine: Engine) {
-  loadFull(engine);
+async function particlesInit(engine: Engine): Promise<void> {
+  await loadFull(engine);
 }
 ```
 
@@ -133,13 +133,13 @@ function particlesInit(engine: Engine) {
   [id]="id"
   [options]="particlesOptions"
   (particlesLoaded)="particlesLoaded($event)"
-  (particlesInit)="particlesInit($event)"
+  [particlesInit]="particlesInit"
 ></ng-particles>
 ```
 
 ```ts
-function particlesInit(engine: Engine): void {
-  loadFull(engine);
+async function particlesInit(engine: Engine): Promise<void> {
+  await loadFull(engine);
 }
 ```
 

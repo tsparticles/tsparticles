@@ -71,7 +71,7 @@ links you need, and _don't be scared by **TypeScript**, it's just the source lan
 
 **The output files are just JavaScript**. 🤩
 
-CDNs and `npm` have all the sources you need in **Javascript**, a bundle browser ready (tsparticles.min.js) and all
+CDNs and `npm` have all the sources you need in **Javascript**, a bundle browser ready (tsparticles.engine.min.js) and all
 files splitted for `import` syntax.
 
 **If you are interested** there are some _simple instructions_
