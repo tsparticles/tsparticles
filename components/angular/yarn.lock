@@ -4089,12 +4089,7 @@ istanbul-reports@^3.0.5:
     html-escaper "^2.0.0"
     istanbul-lib-report "^3.0.0"
 
-jasmine-core@^3.6.0:
-  version "3.99.0"
-  resolved "https://registry.yarnpkg.com/jasmine-core/-/jasmine-core-3.99.0.tgz#99a3da0d38ba2de82614d9198b7b1bc1c32a5960"
-  integrity sha512-+ZDaJlEfRopINQqgE+hvzRyDIQDeKfqqTvF8RzXsvU1yE3pBDRud2+Qfh9WvGgRpuzqxyQJVI6Amy5XQ11r/3w==
-
-jasmine-core@~4.1.0:
+jasmine-core@^4.1.0, jasmine-core@~4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/jasmine-core/-/jasmine-core-4.1.0.tgz#2377349b0e8bfd3fbdb36c9e4f09e3b1a17cf5c2"
   integrity sha512-8E8BiffCL8sBwK1zU9cbavLe8xpJAgOduSJ6N8PJVv8VosQ/nxVTuXj2kUeHxTlZBVvh24G19ga7xdiaxlceKg==
@@ -4208,12 +4203,12 @@ karma-jasmine-html-reporter@~1.7.0:
   resolved "https://registry.yarnpkg.com/karma-jasmine-html-reporter/-/karma-jasmine-html-reporter-1.7.0.tgz#52c489a74d760934a1089bfa5ea4a8fcb84cc28b"
   integrity sha512-pzum1TL7j90DTE86eFt48/s12hqwQuiD+e5aXx2Dc9wDEn2LfGq6RoAxEZZjFiN0RDSCOnosEKRZWxbQ+iMpQQ==
 
-karma-jasmine@~4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/karma-jasmine/-/karma-jasmine-4.0.1.tgz#b99e073b6d99a5196fc4bffc121b89313b0abd82"
-  integrity sha512-h8XDAhTiZjJKzfkoO1laMH+zfNlra+dEQHUAjpn5JV1zCPtOIVWGQjLBrqhnzQa/hrU2XrZwSyBa6XjEBzfXzw==
+karma-jasmine@~5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/karma-jasmine/-/karma-jasmine-5.0.0.tgz#e270c86214b5390df77ebe1b6eaab79664d87d9f"
+  integrity sha512-dsFkCoTwyoNyQnMgegS72wIA/2xPDJG5yzTry0448U6lAY7P60Wgg4UuLlbdLv8YHbimgNpDXjjmfPdc99EDWQ==
   dependencies:
-    jasmine-core "^3.6.0"
+    jasmine-core "^4.1.0"
 
 karma-source-map-support@1.4.0:
   version "1.4.0"
