@@ -1834,7 +1834,7 @@ array.prototype.flat@^1.2.3:
     define-properties "^1.1.3"
     es-abstract "^1.18.0-next.1"
 
-array.prototype.flatmap@^1.2.1, array.prototype.flatmap@^1.2.3:
+array.prototype.flatmap@^1.2.3:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/array.prototype.flatmap/-/array.prototype.flatmap-1.2.4.tgz#94cfd47cc1556ec0747d97f7c7738c58122004c9"
   integrity sha512-r9Z0zYoxqHz60vvQbWEdXIEtCwHF0yxaWfno9qzXeNHvfyl3BZqygmGzb84dsubyaXLH4husF+NFgMSdpZhk2Q==
@@ -3825,12 +3825,10 @@ envinfo@^7.8.1:
   resolved "https://registry.yarnpkg.com/envinfo/-/envinfo-7.8.1.tgz#06377e3e5f4d379fea7ac592d5ad8927e0c4d475"
   integrity sha512-/o+BXHmB7ocbHEAs6F2EnG0ogybVVUdkRunTT2glZU9XAaGmhqskrvKwqXuDfNjEO0LZKWdejEEpnq8aM0tOaw==
 
-enzyme-adapter-preact-pure@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/enzyme-adapter-preact-pure/-/enzyme-adapter-preact-pure-3.1.0.tgz#594dee3c425eb03ef5c4c30d0fd55a2d6d9799c2"
-  integrity sha512-IyhHVOe4TtgnQX/iF1PGvhNFXZCBJ8amRQ30Atb6actyelMh4tQAXEjj06FaO5c+frChgDw3YxtLxGEs1Mhv2A==
-  dependencies:
-    array.prototype.flatmap "^1.2.1"
+enzyme-adapter-preact-pure@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/enzyme-adapter-preact-pure/-/enzyme-adapter-preact-pure-4.0.0.tgz#9c4e55e445f97cdadba2dc84019da72b7d3f7ba9"
+  integrity sha512-mKpA+ONNkSAqrvi3NZD/VxkwWPiuotTUM+eC5yM0kHPfUOH6l4J5gjyHWRM9fQvdDSb3JbQOPEWz2TEn/aMYDA==
 
 enzyme-shallow-equal@^1.0.1:
   version "1.0.4"
