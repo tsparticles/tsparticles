@@ -38,6 +38,7 @@
     "tsparticles-interaction-particles-links": "^2.0.5",
     "tsparticles-move-base": "^2.0.5",
     "tsparticles-move-parallax": "^2.0.5",
+    "tsparticles-particles.js": "^2.0.5",
     "tsparticles-plugin-absorbers": "^2.0.5",
     "tsparticles-plugin-emitters": "^2.0.5",
     "tsparticles-plugin-polygon-mask": "^2.0.5",
