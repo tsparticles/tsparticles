@@ -23,23 +23,38 @@ html(lang="en")
         #stats
         #tsparticles(style="background: #000; position: fixed; width: 100%; height: 100%; left: 0; top: 0;")
 
-        script(src="/three/examples/js/libs/stats.min.js")
-        script(src="/tsparticles/tsparticles.min.js")
+        script(src="/stats.ts/dist/stats.min.js")
+        script(src="/tsparticles-engine/tsparticles.engine.min.js")
+        script(src="/move-base/tsparticles.move.base.min.js")
+        script(src="/plugin-emitters/tsparticles.plugin.emitters.min.js")
+        script(src="/shape-circle/tsparticles.shape.circle.min.js")
+        script(src="/shape-square/tsparticles.shape.square.min.js")
+        script(src="/updater-angle/tsparticles.updater.angle.min.js")
+        script(src="/updater-color/tsparticles.updater.color.min.js")
+        script(src="/updater-life/tsparticles.updater.life.min.js")
+        script(src="/updater-opacity/tsparticles.updater.opacity.min.js")
+        script(src="/updater-out-modes/tsparticles.updater.out-modes.min.js")
+        script(src="/updater-roll/tsparticles.updater.roll.min.js")
+        script(src="/updater-size/tsparticles.updater.size.min.js")
+        script(src="/updater-tilt/tsparticles.updater.tilt.min.js")
+        script(src="/updater-wobble/tsparticles.updater.wobble.min.js")
         script(src="/preset-confetti/tsparticles.preset.confetti.min.js")
         script.
-            loadConfettiPreset(tsParticles);
+            (async () => {
+                await loadConfettiPreset(tsParticles);
 
-            tsParticles.load("tsparticles", {
-                preset: "confetti"
-            });
+                await tsParticles.load("tsparticles", {
+                    preset: "confetti"
+                });
+            })();
 
             const stats = new Stats();
 
-            stats.setMode(0);
-            stats.domElement.style.position = "absolute";
-            stats.domElement.style.left = "3px";
-            stats.domElement.style.top = "3px";
-            stats.domElement.id = "stats-graph";
+            stats.showPanel(0);
+            stats.dom.style.position = "absolute";
+            stats.dom.style.left = "3px";
+            stats.dom.style.top = "3px";
+            stats.dom.id = "stats-graph";
 
             const initStats = function () {
                 const update = function () {
@@ -52,6 +67,6 @@ html(lang="en")
                 requestAnimationFrame(update);
             };
 
-            document.body.querySelector('#stats').appendChild(stats.domElement);
+            document.body.querySelector('#stats').appendChild(stats.dom);
 
             initStats();

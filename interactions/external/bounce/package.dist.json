@@ -39,8 +39,8 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "main": "index.js",
-  "jsdelivr": "tsparticles.interaction.particles.bounce.min.js",
-  "unpkg": "tsparticles.interaction.particles.bounce.min.js",
+  "jsdelivr": "tsparticles.interaction.external.bounce.min.js",
+  "unpkg": "tsparticles.interaction.external.bounce.min.js",
   "browser": "index.js",
   "module": "index.js",
   "types": "index.d.ts",

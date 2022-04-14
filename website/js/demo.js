@@ -452,8 +452,6 @@ canvas {
 
         editor = new JSONEditor(element, options);
 
-        loadLinksPreset(tsParticles);
-
         const presetItems = document.body.querySelectorAll(".preset-item");
 
         if (window.location.hash) {
@@ -505,7 +503,21 @@ canvas {
         initSidebar();
         initStats();
 
+        loadFull(tsParticles);
+
         loadInfectionPlugin(tsParticles);
         loadLightInteraction(tsParticles);
+        loadParticlesRepulseInteraction(tsParticles);
+        loadGradientUpdater(tsParticles);
+        loadOrbitUpdater(tsParticles);
+        loadCurvesPath(tsParticles);
+        loadPolygonPath(tsParticles);
+        loadPerlinNoisePath(tsParticles);
+        loadSimplexNoisePath(tsParticles);
+        loadBubbleShape(tsParticles);
+        loadHeartShape(tsParticles);
+        loadMultilineTextShape(tsParticles);
+        loadRoundedRectShape(tsParticles);
+        loadSpiralShape(tsParticles);
     });
 })();
