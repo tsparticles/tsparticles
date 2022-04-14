@@ -1,7 +1,6 @@
 {
   "baseBranches": [
-    "dev",
-    "v1"
+    "dev"
   ],
   "extends": [
     "config:base",
