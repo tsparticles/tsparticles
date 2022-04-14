@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.5](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@2.0.4...riot-particles-demo@2.0.5) (2022-04-14)
+
+
+### Bug Fixes
+
+* upgrade riot from 6.1.1 to 6.1.2 ([5eaa71c](https://github.com/matteobruni/tsparticles/commit/5eaa71c8d4af857a6829b2c1b371921e2d9f53e1))
+
+
+
+
+
 ## [2.0.4](https://github.com/matteobruni/tsparticles/compare/riot-particles-demo@1.17.1...riot-particles-demo@2.0.4) (2022-04-06)
 
 

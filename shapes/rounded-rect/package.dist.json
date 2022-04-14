@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-rounded-rect",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "tsParticles rounded rect shape",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -81,6 +81,6 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.0.4"
+    "tsparticles-engine": "^2.0.5"
   }
 }
