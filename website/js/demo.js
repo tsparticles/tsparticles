@@ -301,29 +301,9 @@
             const data = {
                 html: `<!-- tsParticles - https://particles.js.org - https://github.com/matteobruni/tsparticles -->
 <div id="tsparticles"></div>`,
-                css: `/* ---- reset ---- */
-body {
-    margin: 0;
-    font: normal 75% Arial, Helvetica, sans-serif;
-}
-
-canvas {
-    display: block;
-    vertical-align: bottom;
-}
-/* ---- tsparticles container ---- */
-#tsparticles {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: ${particlesContainer.style.backgroundColor};
-    background-image: ${particlesContainer.style.backgroundImage};
-    background-repeat: ${particlesContainer.style.backgroundRepeat};
-    background-size: ${particlesContainer.style.backgroundSize};
-    background-position: ${particlesContainer.style.backgroundPosition};
-}`,
+                css: ``,
                 js: `tsParticles.load("tsparticles", ${JSON.stringify(container.options)});`,
-                js_external: "https://cdn.jsdelivr.net/npm/tsparticles@1.43.1/tsparticles.min.js",
+                js_external: "https://cdn.jsdelivr.net/npm/tsparticles@2.0.5/tsparticles.bundle.min.js",
                 title: "tsParticles example",
                 description: "This pen was created with tsParticles from https://particles.js.org",
                 tags: "tsparticles, javascript, typescript, design, animation",
