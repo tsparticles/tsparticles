@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-interaction-external-pause",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "tsParticles pause external interaction",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -39,8 +39,8 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "main": "index.js",
-  "jsdelivr": "tsparticles.interaction.particles.pause.min.js",
-  "unpkg": "tsparticles.interaction.particles.pause.min.js",
+  "jsdelivr": "tsparticles.interaction.external.pause.min.js",
+  "unpkg": "tsparticles.interaction.external.pause.min.js",
   "browser": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
@@ -62,6 +62,6 @@
     }
   },
   "dependencies": {
-    "tsparticles-engine": "^2.0.4"
+    "tsparticles-engine": "^2.0.5"
   }
 }

@@ -23,21 +23,30 @@ html(lang="en")
         #stats
         #tsparticles
 
-        script(src="/three/examples/js/libs/stats.min.js")
-        script(src="/tsparticles/tsparticles.min.js")
+        script(src="/stats.ts/dist/stats.min.js")
+        script(src="/tsparticles-engine/tsparticles.engine.min.js")
+        script(src="/move-base/tsparticles.move.base.min.js")
+        script(src="/plugin-emitters/tsparticles.plugin.emitters.min.js")
+        script(src="/shape-circle/tsparticles.shape.circle.min.js")
+        script(src="/updater-color/tsparticles.updater.color.min.js")
+        script(src="/updater-opacity/tsparticles.updater.opacity.min.js")
+        script(src="/updater-out-modes/tsparticles.updater.out-modes.min.js")
+        script(src="/updater-size/tsparticles.updater.size.min.js")
         script(src="/preset-fountain/tsparticles.preset.fountain.min.js")
         script.
-            loadFountainPreset(tsParticles);
+            (async () => {
+                await loadFountainPreset(tsParticles);
 
-            tsParticles.load("tsparticles", { preset: "fountain" });
+                await tsParticles.load("tsparticles", { preset: "fountain" });
+            })();
 
             const stats = new Stats();
 
-            stats.setMode(0);
-            stats.domElement.style.position = "absolute";
-            stats.domElement.style.left = "3px";
-            stats.domElement.style.top = "3px";
-            stats.domElement.id = "stats-graph";
+            stats.showPanel(0);
+            stats.dom.style.position = "absolute";
+            stats.dom.style.left = "3px";
+            stats.dom.style.top = "3px";
+            stats.dom.id = "stats-graph";
 
             const initStats = function () {
                 const update = function () {
@@ -50,6 +59,6 @@ html(lang="en")
                 requestAnimationFrame(update);
             };
 
-            document.body.querySelector('#stats').appendChild(stats.domElement);
+            document.body.querySelector('#stats').appendChild(stats.dom);
 
             initStats();

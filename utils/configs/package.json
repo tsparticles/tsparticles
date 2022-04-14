@@ -1,13 +1,17 @@
 {
   "name": "tsparticles-demo-configs",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "tsParticles demo configurations",
   "homepage": "https://particles.js.org/",
   "scripts": {
     "prettify:src": "prettier --write ./src",
     "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
-    "compile": "tsc",
+    "compile": "yarn build:ts",
+    "build:ts": "yarn build:ts:browser && yarn build:ts:cjs && yarn build:ts:esm",
+    "build:ts:browser": "tsc -b tsconfig.browser.json",
+    "build:ts:cjs": "tsc",
+    "build:ts:esm": "tsc -b tsconfig.module.json",
     "bundle": "webpack --mode production",
     "distfiles": "node ./scripts/distfiles.js",
     "build": "node ./scripts/updateSrc.js && yarn clear:dist && yarn prettify:src && yarn compile && yarn lint && yarn bundle && yarn prettify:readme && yarn distfiles",
@@ -22,15 +26,34 @@
   },
   "keywords": [
     "tsparticles",
+    "particles.js",
+    "particlesjs",
     "particles",
     "particle",
     "canvas",
     "jsparticles",
     "xparticles",
     "particles-js",
-    "particles.js",
+    "particles-bg",
+    "particles-bg-vue",
     "particles-ts",
     "particles.ts",
+    "react-particles-js",
+    "react-particles.js",
+    "react-particles",
+    "react",
+    "reactjs",
+    "vue-particles",
+    "ngx-particles",
+    "angular-particles",
+    "particleground",
+    "vue",
+    "vuejs",
+    "preact",
+    "preactjs",
+    "jquery",
+    "angularjs",
+    "angular",
     "typescript",
     "javascript",
     "animation",
@@ -43,7 +66,14 @@
     "css3",
     "animated",
     "background",
-    "tsparticles-preset"
+    "confetti",
+    "canvas",
+    "fireworks",
+    "fireworks-js",
+    "confetti-js",
+    "confettijs",
+    "fireworksjs",
+    "canvas-confetti"
   ],
   "publishConfig": {
     "directory": "dist"
@@ -53,25 +83,36 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/matteobruni"
+    },
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/matteobruni"
+    }
+  ],
   "devDependencies": {
-    "@babel/core": "^7.15.5",
-    "@types/webpack-env": "^1.16.2",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^5.0.0",
-    "babel-loader": "^8.2.2",
+    "@babel/core": "^7.17.8",
+    "@types/webpack-env": "^1.16.3",
+    "@typescript-eslint/eslint-plugin": "^5.17.0",
+    "@typescript-eslint/parser": "^5.17.0",
+    "babel-loader": "^8.2.4",
+    "browserslist": "^4.20.2",
     "copyfiles": "^2.4.1",
-    "downlevel-dts": "^0.9.0",
-    "eslint": "^8.0.0",
-    "eslint-config-prettier": "^8.3.0",
-    "prettier": "^2.4.1",
+    "eslint": "^8.12.0",
+    "eslint-config-prettier": "^8.5.0",
+    "prettier": "^2.6.2",
     "rimraf": "^3.0.2",
-    "terser-webpack-plugin": "^5.2.4",
+    "terser-webpack-plugin": "^5.3.1",
     "typescript": "^4.6.3",
-    "webpack": "^5.53.0",
-    "webpack-bundle-analyzer": "^4.4.2",
-    "webpack-cli": "^4.8.0"
+    "webpack": "^5.71.0",
+    "webpack-bundle-analyzer": "^4.5.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-tsparticles-plugin": "^1.0.3"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.0.4"
+    "tsparticles-engine": "^2.0.5"
   }
 }

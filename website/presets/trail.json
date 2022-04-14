@@ -1,7 +1,6 @@
 {
-  "fullScreen": {
-    "enable": true,
-    "zIndex": 1
+  "background": {
+    "color": "#000"
   },
   "fpsLimit": 120,
   "emitters": {
@@ -15,17 +14,14 @@
       "mode": "precise"
     },
     "rate": {
-      "delay": 0.1,
-      "quantity": 1
+      "delay": 0.25,
+      "quantity": 4
     }
   },
   "particles": {
     "number": {
       "value": 0,
-      "density": {
-        "enable": false,
-        "value_area": 800
-      }
+      "limit": 300
     },
     "color": {
       "value": [
@@ -40,29 +36,12 @@
       "type": "circle"
     },
     "opacity": {
-      "value": 0.5,
-      "random": false,
-      "anim": {
-        "enable": false,
-        "speed": 1,
-        "opacity_min": 0.1,
-        "sync": false
-      }
+      "value": 1
     },
     "size": {
-      "value": 7,
-      "random": {
-        "enable": true,
-        "minimumValue": 4
-      },
-      "anim": {
-        "enable": false,
-        "speed": 40,
-        "size_min": 0.1,
-        "sync": false
-      }
+      "value": 3
     },
-    "line_linked": {
+    "links": {
       "enable": false,
       "distance": 150,
       "color": "#ffffff",
@@ -71,17 +50,25 @@
     },
     "move": {
       "enable": true,
-      "speed": 4,
+      "speed": 3,
       "direction": "none",
       "random": false,
       "straight": false,
-      "out_mode": "destroy",
+      "outModes": {
+        "default": "destroy"
+      },
       "bounce": false,
       "path": {
         "enable": true,
         "delay": {
           "value": 0.1
-        }
+        },
+        "options": {
+          "size": 5,
+          "draw": false,
+          "increment": 0.001
+        },
+        "generator": "perlinNoise"
       },
       "trail": {
         "enable": true,
@@ -97,11 +84,11 @@
   },
   "interactivity": {
     "events": {
-      "onhover": {
+      "onHover": {
         "enable": false,
         "mode": "grab"
       },
-      "onclick": {
+      "onClick": {
         "enable": false,
         "mode": "repulse"
       },
@@ -110,7 +97,7 @@
     "modes": {
       "grab": {
         "distance": 200,
-        "line_linked": {
+        "links": {
           "opacity": 1
         }
       },
@@ -118,20 +105,18 @@
         "distance": 400,
         "size": 40,
         "duration": 2,
-        "opacity": 8,
-        "speed": 3
+        "opacity": 8
       },
       "repulse": {
         "distance": 200
       },
       "push": {
-        "particles_nb": 4
+        "quantity": 4
       },
       "remove": {
-        "particles_nb": 2
+        "quantity": 2
       }
     }
   },
-  "retina_detect": true,
-  "pauseOnBlur": false
+  "detectRetina": true
 }

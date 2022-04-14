@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.5](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@2.0.4...preact-particles-demo@2.0.5) (2022-04-14)
+
+
+### Bug Fixes
+
+* upgrade preact-router from 4.0.0 to 4.0.1 ([c8740e1](https://github.com/matteobruni/tsparticles/commit/c8740e13db83fb95cdbd980f0b531e6ac1e09ff9))
+
+
+
+
+
 ## [2.0.4](https://github.com/matteobruni/tsparticles/compare/preact-particles-demo@1.28.1...preact-particles-demo@2.0.4) (2022-04-06)
 
 

@@ -9,33 +9,33 @@ a `tsparticles-engine` instance.
 
 **Included Packages**
 
-- tsparticles-engine
-- tsparticles-interaction-external-attract
-- tsparticles-interaction-external-bounce
-- tsparticles-interaction-external-bubble
-- tsparticles-interaction-external-connect
-- tsparticles-interaction-external-grab
-- tsparticles-interaction-external-pause
-- tsparticles-interaction-external-push
-- tsparticles-interaction-external-remove
-- tsparticles-interaction-external-repulse
-- tsparticles-interaction-particles-attract
-- tsparticles-interaction-particles-collisions
-- tsparticles-interaction-particles-links
-- tsparticles-shape-circle
-- tsparticles-shape-image
-- tsparticles-shape-line
-- tsparticles-shape-polygon
-- tsparticles-shape-square
-- tsparticles-shape-star
-- tsparticles-shape-text
-- tsparticles-updater-angle
-- tsparticles-updater-color
-- tsparticles-updater-life
-- tsparticles-updater-opacity
-- tsparticles-updater-out-modes
-- tsparticles-updater-size
-- tsparticles-updater-stroke-color
+- [tsparticles-engine](https://github.com/matteobruni/tsparticles/tree/main/engine)
+- [tsparticles-interaction-external-attract](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/attract)
+- [tsparticles-interaction-external-bounce](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/bounce)
+- [tsparticles-interaction-external-bubble](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/bubble)
+- [tsparticles-interaction-external-connect](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/connect)
+- [tsparticles-interaction-external-grab](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/grab)
+- [tsparticles-interaction-external-pause](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/pause)
+- [tsparticles-interaction-external-push](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/push)
+- [tsparticles-interaction-external-remove](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/remove)
+- [tsparticles-interaction-external-repulse](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/repulse)
+- [tsparticles-interaction-particles-attract](https://github.com/matteobruni/tsparticles/tree/main/interactions/particles/attract)
+- [tsparticles-interaction-particles-collisions](https://github.com/matteobruni/tsparticles/tree/main/interactions/particles/collisions)
+- [tsparticles-interaction-particles-links](https://github.com/matteobruni/tsparticles/tree/main/interactions/particles/links)
+- [tsparticles-shape-circle](https://github.com/matteobruni/tsparticles/tree/main/shapes/circle)
+- [tsparticles-shape-image](https://github.com/matteobruni/tsparticles/tree/main/shapes/image)
+- [tsparticles-shape-line](https://github.com/matteobruni/tsparticles/tree/main/shapes/line)
+- [tsparticles-shape-polygon](https://github.com/matteobruni/tsparticles/tree/main/shapes/polygon)
+- [tsparticles-shape-square](https://github.com/matteobruni/tsparticles/tree/main/shapes/square)
+- [tsparticles-shape-star](https://github.com/matteobruni/tsparticles/tree/main/shapes/star)
+- [tsparticles-shape-text](https://github.com/matteobruni/tsparticles/tree/main/shapes/text)
+- [tsparticles-updater-angle](https://github.com/matteobruni/tsparticles/tree/main/updaters/angle)
+- [tsparticles-updater-color](https://github.com/matteobruni/tsparticles/tree/main/updaters/color)
+- [tsparticles-updater-life](https://github.com/matteobruni/tsparticles/tree/main/updaters/life)
+- [tsparticles-updater-opacity](https://github.com/matteobruni/tsparticles/tree/main/updaters/opacity)
+- [tsparticles-updater-out-modes](https://github.com/matteobruni/tsparticles/tree/main/updaters/outModes)
+- [tsparticles-updater-size](https://github.com/matteobruni/tsparticles/tree/main/updaters/size)
+- [tsparticles-updater-stroke-color](https://github.com/matteobruni/tsparticles/tree/main/updaters/strokeColor)
 
 ## How to use it
 

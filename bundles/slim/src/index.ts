@@ -1,4 +1,5 @@
 import type { Engine } from "tsparticles-engine";
+import { initPjs } from "tsparticles-particles.js";
 import { loadAngleUpdater } from "tsparticles-updater-angle";
 import { loadBaseMover } from "tsparticles-move-base";
 import { loadCircleShape } from "tsparticles-shape-circle";
@@ -61,4 +62,6 @@ export async function loadSlim(engine: Engine): Promise<void> {
     await loadColorUpdater(engine);
     await loadStrokeColorUpdater(engine);
     await loadOutModesUpdater(engine);
+
+    await initPjs(engine);
 }

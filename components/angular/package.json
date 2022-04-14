@@ -1,6 +1,6 @@
 {
   "name": "ng-particles",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "Official tsParticles Angular Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Svelte, jQuery, Preact, Riot.js, Solid.js, Inferno.",
   "keywords": [
     "tsparticles",
@@ -76,7 +76,7 @@
     "@angular/router": "~13.3.0",
     "rxjs": "~7.5.5",
     "tslib": "^2.3.1",
-    "tsparticles-engine": "^2.0.4",
+    "tsparticles-engine": "^2.0.5",
     "zone.js": "~0.11.5"
   },
   "devDependencies": {
@@ -85,13 +85,13 @@
     "@angular/compiler-cli": "~13.3.0",
     "@types/jasmine": "~4.0.0",
     "@types/node": "^17.0.21",
-    "jasmine-core": "~4.0.1",
+    "jasmine-core": "~4.1.0",
     "karma": "~6.3.17",
     "karma-chrome-launcher": "~3.1.1",
     "karma-coverage": "~2.2.0",
-    "karma-jasmine": "~4.0.1",
+    "karma-jasmine": "~5.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "ng-packagr": "^13.3.0",
-    "typescript": "~4.6.2"
+    "typescript": "~4.6.3"
   }
 }

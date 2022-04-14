@@ -56,6 +56,79 @@
           integrity="sha256-thQmdfrg82/N5u9ybMxam1RKdSfaxOPCgl5q9AI/mDI=" crossorigin="anonymous">
 
     <link href="../css/main.min.css" rel="stylesheet" type="text/css">
+    <style>
+        #carbonads * {
+            margin: initial;
+            padding: initial;
+        }
+
+        #carbonads {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+            Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Helvetica, Arial,
+            sans-serif;
+        }
+
+        #carbonads {
+            display: flex;
+            max-width: 330px;
+            background-color: hsl(0, 0%, 98%);
+            box-shadow: 0 1px 4px 1px hsla(0, 0%, 0%, 0.1);
+            z-index: 100;
+        }
+
+        #carbonads a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        #carbonads a:hover {
+            color: inherit;
+        }
+
+        #carbonads span {
+            position: relative;
+            display: block;
+            overflow: hidden;
+        }
+
+        #carbonads .carbon-wrap {
+            display: flex;
+        }
+
+        #carbonads .carbon-img {
+            display: block;
+            margin: 0;
+            line-height: 1;
+        }
+
+        #carbonads .carbon-img img {
+            display: block;
+        }
+
+        #carbonads .carbon-text {
+            font-size: 13px;
+            padding: 10px;
+            margin-bottom: 16px;
+            line-height: 1.5;
+            text-align: left;
+        }
+
+        #carbonads .carbon-poweredby {
+            display: block;
+            padding: 6px 8px;
+            background: #f1f1f2;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            font-size: 8px;
+            line-height: 1;
+            border-top-left-radius: 3px;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+    </style>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161253125-1"></script>
@@ -315,6 +388,9 @@
             </div>
             <div class="row m-0">
                 <div class="col p-0">
+                    <script async type="text/javascript"
+                            src="//cdn.carbonads.com/carbon.js?serve=CEAI6KJL&placement=particlesjsorg"
+                            id="_carbonads_js"></script>
                     <div id="editor"></div>
                 </div>
             </div>
@@ -395,8 +471,6 @@
         y.parentNode.insertBefore(t, y);
     })(window, document, "clarity", "script", "8q4bxin4tm");
 </script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1784552607103901"
-        crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -416,17 +490,61 @@
         integrity="sha256-ur/YlHMU96MxHEsy3fHGszZHas7NzH4RQlD4tDVvFhw=" crossorigin="anonymous"></script>
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.42.4/tsparticles.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-infection@1.42.4/tsparticles.plugin.infection.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-light@1.42.4/tsparticles.interaction.light.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-particles-repulse@1.42.4/tsparticles.interaction.particles.repulse.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-gradient@1.42.4/tsparticles.updater.gradient.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-orbit@1.42.4/tsparticles.updater.orbit.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-curves@1.42.4/tsparticles.path.curves.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-polygon@1.42.4/tsparticles.path.polygon.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-perlin-noise@1.42.4/tsparticles.path.perlin.noise.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-simplex-noise@1.42.4/tsparticles.path.simplex.noise.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-links@1.42.4/tsparticles.preset.links.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2.0.5/tsparticles.engine.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-attract@2.0.5/tsparticles.interaction.external.attract.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-bounce@2.0.5/tsparticles.interaction.external.bounce.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-bubble@2.0.5/tsparticles.interaction.external.bubble.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-connect@2.0.5/tsparticles.interaction.external.connect.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-grab@2.0.5/tsparticles.interaction.external.grab.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-pause@2.0.5/tsparticles.interaction.external.pause.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-push@2.0.5/tsparticles.interaction.external.push.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-remove@2.0.5/tsparticles.interaction.external.remove.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-repulse@2.0.5/tsparticles.interaction.external.repulse.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-particles-attract@2.0.5/tsparticles.interaction.particles.attract.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-particles-collisions@2.0.5/tsparticles.interaction.particles.collisions.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-particles-links@2.0.5/tsparticles.interaction.particles.links.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-move-base@2.0.5/tsparticles.move.base.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-move-parallax@2.0.5/tsparticles.move.parallax.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-particles.js@2.0.5/tsparticles.pjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-circle@2.0.5/tsparticles.shape.circle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-image@2.0.5/tsparticles.shape.image.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-line@2.0.5/tsparticles.shape.line.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-polygon@2.0.5/tsparticles.shape.polygon.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-square@2.0.5/tsparticles.shape.square.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-star@2.0.5/tsparticles.shape.star.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-text@2.0.5/tsparticles.shape.text.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-angle@2.0.5/tsparticles.updater.angle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-color@2.0.5/tsparticles.updater.color.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-life@2.0.5/tsparticles.updater.life.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-opacity@2.0.5/tsparticles.updater.opacity.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-out-modes@2.0.5/tsparticles.updater.out-modes.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-size@2.0.5/tsparticles.updater.size.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-stroke-color@2.0.5/tsparticles.updater.stroke-color.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.0.5/tsparticles.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-trail@2.0.5/tsparticles.interaction.external.trail.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-absorbers@2.0.5/tsparticles.plugin.absorbers.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-emitters@2.0.5/tsparticles.plugin.emitters.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-polygon-mask@2.0.5/tsparticles.plugin.polygon-mask.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-roll@2.0.5/tsparticles.updater.roll.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-tilt@2.0.5/tsparticles.updater.tilt.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-twinkle@2.0.5/tsparticles.updater.twinkle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-wobble@2.0.5/tsparticles.updater.wobble.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2.0.5/tsparticles.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-infection@2.0.5/tsparticles.plugin.infection.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-light@2.0.5/tsparticles.interaction.light.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-particles-repulse@2.0.5/tsparticles.interaction.particles.repulse.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-gradient@2.0.5/tsparticles.updater.gradient.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-orbit@2.0.5/tsparticles.updater.orbit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-curves@2.0.5/tsparticles.path.curves.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-polygon@2.0.5/tsparticles.path.polygon.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-perlin-noise@2.0.5/tsparticles.path.perlin.noise.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-simplex-noise@2.0.5/tsparticles.path.simplex.noise.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-links@2.0.5/tsparticles.preset.links.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-bubble@2.0.5/tsparticles.shape.bubble.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-heart@2.0.5/tsparticles.shape.heart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-multiline-text@2.0.5/tsparticles.shape.multiline-text.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-rounded-rect@2.0.5/tsparticles.shape.rounded-rect.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-spiral@2.0.5/tsparticles.shape.spiral.min.js"></script>
 
 <script src="../js/demo.min.js"></script>
 </body>

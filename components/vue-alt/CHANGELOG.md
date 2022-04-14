@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.5](https://github.com/matteobruni/tsparticles/compare/vue2-particles@2.0.4...vue2-particles@2.0.5) (2022-04-14)
+
+**Note:** Version bump only for package vue2-particles
+
+
+
+
+
 ## [2.0.4](https://github.com/matteobruni/tsparticles/compare/vue2-particles@1.43.1...vue2-particles@2.0.4) (2022-04-06)
 
 **Note:** Version bump only for package vue2-particles
