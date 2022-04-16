@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-triangles",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "tsParticles triangles preset",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -113,16 +113,16 @@
     "webpack": "^5.72.0",
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.2",
-    "webpack-tsparticles-plugin": "^1.0.3"
+    "webpack-tsparticles-plugin": "^1.0.4"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.0.5",
-    "tsparticles-interaction-particles-links": "^2.0.5",
-    "tsparticles-move-base": "^2.0.5",
-    "tsparticles-shape-circle": "^2.0.5",
-    "tsparticles-updater-color": "^2.0.5",
-    "tsparticles-updater-opacity": "^2.0.5",
-    "tsparticles-updater-out-modes": "^2.0.5",
-    "tsparticles-updater-size": "^2.0.5"
+    "tsparticles-engine": "^2.0.6",
+    "tsparticles-interaction-particles-links": "^2.0.6",
+    "tsparticles-move-base": "^2.0.6",
+    "tsparticles-shape-circle": "^2.0.6",
+    "tsparticles-updater-color": "^2.0.6",
+    "tsparticles-updater-opacity": "^2.0.6",
+    "tsparticles-updater-out-modes": "^2.0.6",
+    "tsparticles-updater-size": "^2.0.6"
   }
 }
