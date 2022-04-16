@@ -58,8 +58,8 @@
     "confettijs",
     "fireworksjs",
     "canvas-confetti",
-    "tsparticles-updater",
-    "tsparticles-plugin"
+    "tsparticles-plugin",
+    "tsparticles-updater"
   ],
   "author": "Matteo Bruni",
   "license": "MIT",
@@ -76,11 +76,11 @@
       "url": "https://www.buymeacoffee.com/matteobruni"
     }
   ],
-  "main": "index.js",
+  "main": "cjs/index.js",
   "jsdelivr": "tsparticles.updater.gradient.min.js",
   "unpkg": "tsparticles.updater.gradient.min.js",
   "module": "esm/index.js",
-  "types": "index.d.ts",
+  "types": "types/index.d.ts",
   "dependencies": {
     "tsparticles-engine": "^2.0.5"
   }

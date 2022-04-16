@@ -4,8 +4,8 @@ const getEntry = (format, name, bundle) => {
         fixName = name ? `.${name}` : "",
         obj = {};
 
-    obj[`tsparticles${fixFormat}${fixName}`] = `./dist/${fileName}.js`;
-    obj[`tsparticles${fixFormat}${fixName}.min`] = `./dist/${fileName}.js`;
+    obj[`tsparticles${fixFormat}${fixName}`] = `./dist/browser/${fileName}.js`;
+    obj[`tsparticles${fixFormat}${fixName}.min`] = `./dist/browser/${fileName}.js`;
 
     return obj;
 }

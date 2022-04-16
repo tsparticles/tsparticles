@@ -75,11 +75,11 @@
       "url": "https://www.buymeacoffee.com/matteobruni"
     }
   ],
-  "main": "index.js",
+  "main": "cjs/index.js",
   "jsdelivr": "tsparticles.preset.fire.min.js",
   "unpkg": "tsparticles.preset.fire.min.js",
-  "module": "index.js",
-  "types": "index.d.ts",
+  "module": "esm/index.js",
+  "types": "types/index.d.ts",
   "dependencies": {
     "tsparticles-engine": "^2.0.5",
     "tsparticles-interaction-external-push": "^2.0.5",

@@ -27,6 +27,10 @@
     "react-particles",
     "react",
     "reactjs",
+    "vue-particles",
+    "ngx-particles",
+    "angular-particles",
+    "particleground",
     "vue",
     "vuejs",
     "preact",
@@ -45,7 +49,15 @@
     "html",
     "css3",
     "animated",
-    "background"
+    "background",
+    "confetti",
+    "canvas",
+    "fireworks",
+    "fireworks-js",
+    "confetti-js",
+    "confettijs",
+    "fireworksjs",
+    "canvas-confetti"
   ],
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
@@ -59,10 +71,9 @@
   "dependencies": {
     "tsparticles-engine": "^2.0.5"
   },
-  "main": "index.js",
+  "main": "cjs/index.js",
   "module": "esm/index.js",
   "jsdelivr": "tsparticles.pjs.min.js",
   "unpkg": "tsparticles.pjs.min.js",
-  "browser": "index.js",
-  "types": "index.d.ts"
+  "types": "types/index.d.ts"
 }

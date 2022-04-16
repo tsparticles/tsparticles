@@ -41,7 +41,6 @@
   "main": "index.js",
   "jsdelivr": "tsparticles.preset.template.min.js",
   "unpkg": "tsparticles.preset.template.min.js",
-  "browser": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {

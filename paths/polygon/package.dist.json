@@ -58,8 +58,8 @@
     "confettijs",
     "fireworksjs",
     "canvas-confetti",
-    "tsparticles-path",
-    "tsparticles-plugin"
+    "tsparticles-plugin",
+    "tsparticles-path"
   ],
   "publishConfig": {
     "directory": "dist"
@@ -79,11 +79,11 @@
       "url": "https://www.buymeacoffee.com/matteobruni"
     }
   ],
-  "main": "index.js",
+  "main": "cjs/index.js",
   "jsdelivr": "tsparticles.path.polygon.min.js",
   "unpkg": "tsparticles.path.polygon.min.js",
   "module": "esm/index.js",
-  "types": "index.d.ts",
+  "types": "types/index.d.ts",
   "dependencies": {
     "tsparticles-engine": "^2.0.5"
   }
