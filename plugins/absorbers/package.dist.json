@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-plugin-absorbers",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "tsParticles absorbers plugin",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -10,15 +10,34 @@
   },
   "keywords": [
     "tsparticles",
+    "particles.js",
+    "particlesjs",
     "particles",
     "particle",
     "canvas",
     "jsparticles",
     "xparticles",
     "particles-js",
-    "particles.js",
+    "particles-bg",
+    "particles-bg-vue",
     "particles-ts",
     "particles.ts",
+    "react-particles-js",
+    "react-particles.js",
+    "react-particles",
+    "react",
+    "reactjs",
+    "vue-particles",
+    "ngx-particles",
+    "angular-particles",
+    "particleground",
+    "vue",
+    "vuejs",
+    "preact",
+    "preactjs",
+    "jquery",
+    "angularjs",
+    "angular",
     "typescript",
     "javascript",
     "animation",
@@ -31,7 +50,15 @@
     "css3",
     "animated",
     "background",
-    "tsparticles-preset"
+    "confetti",
+    "canvas",
+    "fireworks",
+    "fireworks-js",
+    "confetti-js",
+    "confettijs",
+    "fireworksjs",
+    "canvas-confetti",
+    "tsparticles-plugin"
   ],
   "publishConfig": {
     "directory": "dist"
@@ -41,13 +68,12 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "main": "index.js",
+  "main": "cjs/index.js",
   "jsdelivr": "tsparticles.plugin.absorbers.min.js",
   "unpkg": "tsparticles.plugin.absorbers.min.js",
-  "browser": "index.js",
-  "module": "index.js",
-  "types": "index.d.ts",
+  "module": "esm/index.js",
+  "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.0.5"
+    "tsparticles-engine": "^2.0.6"
   }
 }

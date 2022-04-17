@@ -1,16 +1,16 @@
 const express = require('express');
 const helmet = require('helmet');
 const stylus = require('stylus');
-const rateLimit = require("express-rate-limit");
+//const rateLimit = require("express-rate-limit");
 
 const app = express();
 
-const limiter = rateLimit({
+/*const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
     max: 100 // limit each IP to 100 requests per windowMs
-});
+});*/
 
-app.use(limiter);
+//app.use(limiter);
 // app.use(helmet()); // Safari requires https, probably a bug
 
 const port = 3001;
@@ -21,7 +21,7 @@ app.use(stylus.middleware('./public'));
 app.use(express.static('./public'));
 app.use("/tsparticles", express.static("./node_modules/tsparticles"));
 app.use("/object-gui", express.static("./node_modules/object-gui/dist"));
-app.use("/tsparticles-editor", express.static("./node_modules/tsparticles-editor/dist"));
+app.use("/tsparticles-editor", express.static("./node_modules/tsparticles-editor"));
 
 app.get('/', function (req, res) {
     res.render('index');

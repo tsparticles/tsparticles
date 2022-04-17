@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-bubble",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "tsParticles bubble shape",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -75,12 +75,12 @@
       "url": "https://www.buymeacoffee.com/matteobruni"
     }
   ],
-  "main": "index.js",
+  "main": "cjs/index.js",
   "jsdelivr": "tsparticles.shape.bubble.min.js",
   "unpkg": "tsparticles.shape.bubble.min.js",
-  "module": "index.js",
-  "types": "index.d.ts",
+  "module": "esm/index.js",
+  "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.0.5"
+    "tsparticles-engine": "^2.0.6"
   }
 }

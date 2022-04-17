@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/cli",
-  "version": "1.43.3",
+  "version": "1.43.4",
   "private": false,
   "description": "tsParticles CLI utilities",
   "bin": "cli.js",

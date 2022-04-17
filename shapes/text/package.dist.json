@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-text",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "tsParticles text shape",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -38,13 +38,12 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "main": "index.js",
+  "main": "cjs/index.js",
   "jsdelivr": "tsparticles.shape.text.min.js",
   "unpkg": "tsparticles.shape.text.min.js",
-  "browser": "index.js",
-  "module": "index.js",
-  "types": "index.d.ts",
+  "module": "esm/index.js",
+  "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.0.5"
+    "tsparticles-engine": "^2.0.6"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-updater-gradient",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "tsParticles particles gradient updater",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -58,8 +58,8 @@
     "confettijs",
     "fireworksjs",
     "canvas-confetti",
-    "tsparticles-updater",
-    "tsparticles-plugin"
+    "tsparticles-plugin",
+    "tsparticles-updater"
   ],
   "author": "Matteo Bruni",
   "license": "MIT",
@@ -76,12 +76,12 @@
       "url": "https://www.buymeacoffee.com/matteobruni"
     }
   ],
-  "main": "index.js",
+  "main": "cjs/index.js",
   "jsdelivr": "tsparticles.updater.gradient.min.js",
   "unpkg": "tsparticles.updater.gradient.min.js",
   "module": "esm/index.js",
-  "types": "index.d.ts",
+  "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.0.5"
+    "tsparticles-engine": "^2.0.6"
   }
 }

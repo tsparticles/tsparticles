@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-fireworks",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "tsParticles fireworks preset",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -8,10 +8,11 @@
     "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "compile": "yarn build:ts",
-    "build:ts": "yarn build:ts:browser && yarn build:ts:cjs && yarn build:ts:esm && yarn build:ts:umd",
+    "build:ts": "yarn build:ts:types && yarn build:ts:browser && yarn build:ts:cjs && yarn build:ts:esm && yarn build:ts:umd",
     "build:ts:browser": "tsc -b tsconfig.browser.json",
     "build:ts:cjs": "tsc",
     "build:ts:esm": "tsc -b tsconfig.module.json",
+    "build:ts:types": "tsc -b tsconfig.types.json",
     "build:ts:umd": "tsc -b tsconfig.umd.json",
     "bundle": "webpack --mode production",
     "distfiles": "node ./scripts/distfiles.js",
@@ -112,20 +113,20 @@
     "webpack": "^5.72.0",
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.2",
-    "webpack-tsparticles-plugin": "^1.0.3"
+    "webpack-tsparticles-plugin": "^1.0.4"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.0.5",
-    "tsparticles-move-base": "^2.0.5",
-    "tsparticles-plugin-emitters": "^2.0.5",
-    "tsparticles-shape-circle": "^2.0.5",
-    "tsparticles-shape-line": "^2.0.5",
-    "tsparticles-updater-angle": "^2.0.5",
-    "tsparticles-updater-color": "^2.0.5",
-    "tsparticles-updater-life": "^2.0.5",
-    "tsparticles-updater-opacity": "^2.0.5",
-    "tsparticles-updater-out-modes": "^2.0.5",
-    "tsparticles-updater-size": "^2.0.5",
-    "tsparticles-updater-stroke-color": "^2.0.5"
+    "tsparticles-engine": "^2.0.6",
+    "tsparticles-move-base": "^2.0.6",
+    "tsparticles-plugin-emitters": "^2.0.6",
+    "tsparticles-shape-circle": "^2.0.6",
+    "tsparticles-shape-line": "^2.0.6",
+    "tsparticles-updater-angle": "^2.0.6",
+    "tsparticles-updater-color": "^2.0.6",
+    "tsparticles-updater-life": "^2.0.6",
+    "tsparticles-updater-opacity": "^2.0.6",
+    "tsparticles-updater-out-modes": "^2.0.6",
+    "tsparticles-updater-size": "^2.0.6",
+    "tsparticles-updater-stroke-color": "^2.0.6"
   }
 }

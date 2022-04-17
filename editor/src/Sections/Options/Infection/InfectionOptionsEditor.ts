@@ -1,8 +1,7 @@
 import { EditorGroup, EditorType } from "object-gui";
+import type { IInfection, IInfectionStage } from "tsparticles-plugin-infection";
 import type { Container } from "tsparticles-engine";
 import { EditorBase } from "../../../EditorBase";
-import type { IInfection } from "tsparticles-plugin-infection/Options/Interfaces/IInfection";
-import type { IInfectionStage } from "tsparticles-plugin-infection/Options/Interfaces/IInfectionStage";
 
 export class InfectionOptionsEditor extends EditorBase {
     group!: EditorGroup;

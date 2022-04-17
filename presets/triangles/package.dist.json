@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-triangles",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "tsParticles triangles preset",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -75,19 +75,19 @@
       "url": "https://www.buymeacoffee.com/matteobruni"
     }
   ],
-  "main": "index.js",
+  "main": "cjs/index.js",
   "jsdelivr": "tsparticles.preset.triangles.min.js",
   "unpkg": "tsparticles.preset.triangles.min.js",
   "module": "esm/index.js",
-  "types": "index.d.ts",
+  "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.0.5",
-    "tsparticles-interaction-particles-links": "^2.0.5",
-    "tsparticles-move-base": "^2.0.5",
-    "tsparticles-shape-circle": "^2.0.5",
-    "tsparticles-updater-color": "^2.0.5",
-    "tsparticles-updater-opacity": "^2.0.5",
-    "tsparticles-updater-out-modes": "^2.0.5",
-    "tsparticles-updater-size": "^2.0.5"
+    "tsparticles-engine": "^2.0.6",
+    "tsparticles-interaction-particles-links": "^2.0.6",
+    "tsparticles-move-base": "^2.0.6",
+    "tsparticles-shape-circle": "^2.0.6",
+    "tsparticles-updater-color": "^2.0.6",
+    "tsparticles-updater-opacity": "^2.0.6",
+    "tsparticles-updater-out-modes": "^2.0.6",
+    "tsparticles-updater-size": "^2.0.6"
   }
 }

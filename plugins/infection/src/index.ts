@@ -45,3 +45,6 @@ export async function loadInfectionPlugin(engine: Engine): Promise<void> {
     await engine.addPlugin(plugin);
     await engine.addInteractor("particlesInfection", (container) => new ParticlesInfecter(container));
 }
+
+export * from "./Options/Interfaces/IInfection";
+export * from "./Options/Interfaces/IInfectionStage";

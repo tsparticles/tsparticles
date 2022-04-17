@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-path-simplex-noise",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "tsParticles simplex noise path",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -58,8 +58,8 @@
     "confettijs",
     "fireworksjs",
     "canvas-confetti",
-    "tsparticles-path",
-    "tsparticles-plugin"
+    "tsparticles-plugin",
+    "tsparticles-path"
   ],
   "publishConfig": {
     "directory": "dist"
@@ -79,12 +79,12 @@
       "url": "https://www.buymeacoffee.com/matteobruni"
     }
   ],
-  "main": "index.js",
+  "main": "cjs/index.js",
   "jsdelivr": "tsparticles.path.simplex.noise.min.js",
   "unpkg": "tsparticles.path.simplex.noise.min.js",
   "module": "esm/index.js",
-  "types": "index.d.ts",
+  "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.0.5"
+    "tsparticles-engine": "^2.0.6"
   }
 }

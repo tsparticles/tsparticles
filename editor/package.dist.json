@@ -1,0 +1,47 @@
+{
+  "name": "tsparticles-editor",
+  "version": "2.0.6",
+  "description": "tsParticles Configuration Editor",
+  "keywords": [
+    "tsparticles",
+    "particles.js",
+    "particles",
+    "editor",
+    "dat.gui",
+    "javascript",
+    "wysiwyg"
+  ],
+  "author": "Matteo Bruni <ar3s@icloud.com>",
+  "homepage": "https://particles.js.org/",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/tsparticles.git",
+    "directory": "core/editor"
+  },
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles/issues"
+  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/matteobruni"
+    },
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/matteobruni"
+    }
+  ],
+  "dependencies": {
+    "object-gui": "^1.1.1",
+    "tsparticles-engine": "^2.0.6",
+    "tsparticles-plugin-absorbers": "^2.0.6",
+    "tsparticles-plugin-emitters": "^2.0.6",
+    "tsparticles-plugin-infection": "^2.0.6"
+  },
+  "main": "cjs/index.js",
+  "jsdelivr": "tsparticles.editor.min.js",
+  "unpkg": "tsparticles.editor.min.js",
+  "module": "esm/index.js",
+  "types": "types/index.d.ts"
+}

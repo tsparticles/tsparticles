@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-snow",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "tsParticles snow preset",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -75,18 +75,18 @@
       "url": "https://www.buymeacoffee.com/matteobruni"
     }
   ],
-  "main": "index.js",
+  "main": "cjs/index.js",
   "jsdelivr": "tsparticles.preset.snow.min.js",
   "unpkg": "tsparticles.preset.snow.min.js",
-  "module": "index.js",
-  "types": "index.d.ts",
+  "module": "esm/index.js",
+  "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.0.5",
-    "tsparticles-move-base": "^2.0.5",
-    "tsparticles-shape-circle": "^2.0.5",
-    "tsparticles-updater-color": "^2.0.5",
-    "tsparticles-updater-opacity": "^2.0.5",
-    "tsparticles-updater-out-modes": "^2.0.5",
-    "tsparticles-updater-size": "^2.0.5"
+    "tsparticles-engine": "^2.0.6",
+    "tsparticles-move-base": "^2.0.6",
+    "tsparticles-shape-circle": "^2.0.6",
+    "tsparticles-updater-color": "^2.0.6",
+    "tsparticles-updater-opacity": "^2.0.6",
+    "tsparticles-updater-out-modes": "^2.0.6",
+    "tsparticles-updater-size": "^2.0.6"
   }
 }
