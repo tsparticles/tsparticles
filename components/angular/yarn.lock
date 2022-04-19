@@ -219,9 +219,9 @@
     tslib "^2.3.0"
 
 "@angular/router@~13.3.0":
-  version "13.3.2"
-  resolved "https://registry.yarnpkg.com/@angular/router/-/router-13.3.2.tgz#26bb9590c2a32ae4e7937831c1b205add4d86d42"
-  integrity sha512-SJGGib9eA22QEbzMy7b7IUQDDrRBMaQ51FEqyCpBsOZ5xM2VhdnVnix0HT0fVRF/I63xUBgiDSVgPn6QPNv1kw==
+  version "13.3.3"
+  resolved "https://registry.yarnpkg.com/@angular/router/-/router-13.3.3.tgz#97258e71606585c3f5b6fa97beffd226307bdffc"
+  integrity sha512-8RMUPT5eLKgs+I72MD7vBXvdGwhxPzCAmICH6aUkq8qZKnbLh0Qeh4ZLM7xLH+b3HRrrT64fSrKP4CCGwAmA9Q==
   dependencies:
     tslib "^2.3.0"
 
@@ -1655,9 +1655,9 @@
   integrity sha512-YATxVxgRqNH6nHEIsvg6k2Boc1JHI9ZbH5iWFFv/MTkchz3b1ieGDa5T0a9RznNdI0KhVbdbWSN+KWWrQZRxTw==
 
 "@types/node@*", "@types/node@>=10.0.0", "@types/node@^17.0.21":
-  version "17.0.23"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.23.tgz#3b41a6e643589ac6442bdbd7a4a3ded62f33f7da"
-  integrity sha512-UxDxWn7dl97rKVeVS61vErvw086aCYhDLyvRQZ5Rk65rZKepaFdm53GeqXaKBuOhED4e9uWq34IC3TdSdJJ2Gw==
+  version "17.0.25"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.25.tgz#527051f3c2f77aa52e5dc74e45a3da5fb2301448"
+  integrity sha512-wANk6fBrUwdpY4isjWrKTufkrXdu1D2YHCot2fD/DfWxF5sMrVSA+KN7ydckvaTCh0HiqX9IVl0L5/ZoXg5M7w==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
