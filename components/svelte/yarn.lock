@@ -705,9 +705,9 @@ supports-color@^7.0.0:
     has-flag "^4.0.0"
 
 svelte-check@^2.4.4:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-2.6.0.tgz#ddb590236a9f78a0a7ffa80d9de6460432003b57"
-  integrity sha512-POL3IqLUuGqb9DdvuXQaSTNXYnw/odK4hqW86+2LwGcZTdbUPKBBln7pq74wXmcnRE+12bXMY1CvbcUNa2d5nw==
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-2.7.0.tgz#10d579dc89bf2e145a04786cc9fa8dabfb018a2a"
+  integrity sha512-GrvG24j0+i8AOm0k0KyJ6Dqc+TAR2yzB7rtS4nljHStunVxCTr/1KYlv4EsOeoqtHLzeWMOd5D2O6nDdP/yw4A==
   dependencies:
     chokidar "^3.4.1"
     fast-glob "^3.2.7"
