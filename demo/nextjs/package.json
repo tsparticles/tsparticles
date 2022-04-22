@@ -16,7 +16,7 @@
     "tsparticles-preset-big-circles": "^2.0.6"
   },
   "devDependencies": {
-    "eslint": "8.13.0",
+    "eslint": "8.14.0",
     "eslint-config-next": "12.1.5"
   }
 }
