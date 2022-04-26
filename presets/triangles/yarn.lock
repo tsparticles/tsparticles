@@ -1987,60 +1987,6 @@ tslib@^1.8.1:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tsparticles-engine@^2.0.6:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.6.tgz#27e85d8d014a2d9435ffc9a2c7efd570baf6dc64"
-  integrity sha512-qsAMp68No1ncbFQbyjILrVtS9LeNTtBmxPa91COvHq4iLELReUjVxXTWfLWi0+xczTbdpNPRPx92r0V3xlqeHw==
-
-tsparticles-interaction-particles-links@^2.0.6:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/tsparticles-interaction-particles-links/-/tsparticles-interaction-particles-links-2.0.6.tgz#d373f853010a9575992bf48bc3182af5c9b82580"
-  integrity sha512-Ds895DBTVKXD1wayIB5R6420EPxM6YRjaW9MmRD9DYuAiHNTE9gjx+OC5rIz7I6trv3cFmT3sBwRIPE67V3+KQ==
-  dependencies:
-    tsparticles-engine "^2.0.6"
-
-tsparticles-move-base@^2.0.6:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/tsparticles-move-base/-/tsparticles-move-base-2.0.6.tgz#b044a9920177fa48521a9cf355c81a927b0f930b"
-  integrity sha512-ZRmUKOWzMsYIZ/TXA1KO4+MfRXZPNBpVPJw2ivAAHd2pefqMyHqqikbFj72fol5uQCeZt4yF4c3pychKGn2MHg==
-  dependencies:
-    tsparticles-engine "^2.0.6"
-
-tsparticles-shape-circle@^2.0.6:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/tsparticles-shape-circle/-/tsparticles-shape-circle-2.0.6.tgz#971dc19fdc36d0136389f36f0f911a2779eaca4b"
-  integrity sha512-6DR1y0CcvOwekUGa5EgOKrRXf9PWXZEH8/c46bdqVDbdS7c5OXtmydnHApgNTkvpDAXNqNew8JOMeqM4mzKmTg==
-  dependencies:
-    tsparticles-engine "^2.0.6"
-
-tsparticles-updater-color@^2.0.6:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/tsparticles-updater-color/-/tsparticles-updater-color-2.0.6.tgz#3d17bdb6596d945ade708761e9889ae4db339f68"
-  integrity sha512-Hj1DWDfMu2r3i6oNTGUBWmzE7RaOe8aG+5b5qWJ4Lb1g/8Ar+FHGFFgDYXyVFbKqNR8pQwjKT1tRsLZF0ANhfw==
-  dependencies:
-    tsparticles-engine "^2.0.6"
-
-tsparticles-updater-opacity@^2.0.6:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/tsparticles-updater-opacity/-/tsparticles-updater-opacity-2.0.6.tgz#0ecddc4f1f05a466aab6dd08c78d46a938723de8"
-  integrity sha512-PscpRLlUb3vrsWOAL6s83CwRcVhc2RCmLbWXr84ZT3izKoRCjyHFkbTU/we343DiDXbMqxyxA8/KKYvEAphIhw==
-  dependencies:
-    tsparticles-engine "^2.0.6"
-
-tsparticles-updater-out-modes@^2.0.6:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/tsparticles-updater-out-modes/-/tsparticles-updater-out-modes-2.0.6.tgz#2b489c338d15d040615dbd7b68cf57b6a90edf1e"
-  integrity sha512-c8qG36XNcfY6hMmZQ5EPsV66AmHEwNJEuItiOY/0mmT6hmJHHDF2ps1EECedfRiixm6APk+jTDsARt7iL+IC8g==
-  dependencies:
-    tsparticles-engine "^2.0.6"
-
-tsparticles-updater-size@^2.0.6:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/tsparticles-updater-size/-/tsparticles-updater-size-2.0.6.tgz#f329aec60f9d4691d64bceaa7e921a4328bc1212"
-  integrity sha512-VdpY2jxy8HLagLStO7ylfRJR9NoXF52Rd6l/1l7CHMc/2lu38tENDoPkPVSXCvBJPKHK3eoDksMCknZ069tIEA==
-  dependencies:
-    tsparticles-engine "^2.0.6"
-
 tsutils@^3.21.0:
   version "3.21.0"
   resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-3.21.0.tgz#b48717d394cea6c1e096983eed58e9d61715b623"
@@ -2140,28 +2086,6 @@ webpack-sources@^3.2.3:
   version "3.2.3"
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-3.2.3.tgz#2d4daab8451fd4b240cc27055ff6a0c2ccea0cde"
   integrity sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==
-
-webpack-tsparticles-plugin@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/webpack-tsparticles-plugin/-/webpack-tsparticles-plugin-1.0.4.tgz#4a2caf1855c282a1ce53f4cd5d612225ea2034ce"
-  integrity sha512-KSLM/xlR7gL/vLEt13/B9DbvLSlo99d91Dlga/8FJaahHAx5hKRCxphs+QQv3yN3gMYGSmIHTmDC2FnGutOtnQ==
-  dependencies:
-    "@babel/core" "^7.17.9"
-    "@types/webpack-env" "^1.16.3"
-    "@typescript-eslint/eslint-plugin" "^5.19.0"
-    "@typescript-eslint/parser" "^5.19.0"
-    babel-loader "^8.2.4"
-    browserslist "^4.20.2"
-    copyfiles "^2.4.1"
-    eslint "^8.13.0"
-    eslint-config-prettier "^8.5.0"
-    prettier "^2.6.2"
-    rimraf "^3.0.2"
-    terser-webpack-plugin "^5.3.1"
-    typescript "^4.6.3"
-    webpack "^5.72.0"
-    webpack-bundle-analyzer "^4.5.0"
-    webpack-cli "^4.9.2"
 
 webpack@^5.72.0:
   version "5.72.0"
