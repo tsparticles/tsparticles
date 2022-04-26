@@ -219,9 +219,9 @@
     tslib "^2.3.0"
 
 "@angular/router@~13.3.0":
-  version "13.3.3"
-  resolved "https://registry.yarnpkg.com/@angular/router/-/router-13.3.3.tgz#97258e71606585c3f5b6fa97beffd226307bdffc"
-  integrity sha512-8RMUPT5eLKgs+I72MD7vBXvdGwhxPzCAmICH6aUkq8qZKnbLh0Qeh4ZLM7xLH+b3HRrrT64fSrKP4CCGwAmA9Q==
+  version "13.3.4"
+  resolved "https://registry.yarnpkg.com/@angular/router/-/router-13.3.4.tgz#0f05f8a5bec94e8315f1d4223aed8717504b22f2"
+  integrity sha512-UuMAjWHoFKF8b9gFOiqL7fpVXjIr89BtxVES3yXReVq/IZJz9gWup6lYK3KMja+F8HZB8LBUMYgtqjS9iyLV/Q==
   dependencies:
     tslib "^2.3.0"
 
@@ -6454,6 +6454,11 @@ tslib@^2.0.0, tslib@^2.1.0, tslib@^2.3.0, tslib@^2.3.1:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
   integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
+
+tsparticles-engine@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.6.tgz#27e85d8d014a2d9435ffc9a2c7efd570baf6dc64"
+  integrity sha512-qsAMp68No1ncbFQbyjILrVtS9LeNTtBmxPa91COvHq4iLELReUjVxXTWfLWi0+xczTbdpNPRPx92r0V3xlqeHw==
 
 type-fest@^0.21.3:
   version "0.21.3"
