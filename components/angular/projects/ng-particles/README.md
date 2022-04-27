@@ -30,12 +30,12 @@ _template.html_
 
 ```html
 
-<@tsparticles/angular [id]="id" [options]="particlesOptions" [particlesInit]="particlesInit"
+<ng-particles [id]="id" [options]="particlesOptions" [particlesInit]="particlesInit"
               (particlesLoaded)="particlesLoaded($event)"></@tsparticles/angular>
 
 <!-- or -->
 
-<@tsparticles/angular [id]="id" [url]="particlesUrl" [particlesInit]="particlesInit"
+<ng-particles [id]="id" [url]="particlesUrl" [particlesInit]="particlesInit"
               (particlesLoaded)="particlesLoaded($event)"></@tsparticles/angular>
 ```
 

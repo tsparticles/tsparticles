@@ -58,10 +58,10 @@
     "fireworksjs",
     "canvas-confetti"
   ],
-  "main": "dist/@tsparticles/vue2.js",
-  "module": "dist/@tsparticles/vue2.js",
-  "unpkg": "dist/@tsparticles/vue2.min.js",
-  "jsdelivr": "dist/@tsparticles/vue2.min.js",
+  "main": "dist/vue2-particles.js",
+  "module": "dist/vue2.particles.js",
+  "unpkg": "dist/vue2.particles.js",
+  "jsdelivr": "dist/vue2-particles.min.js",
   "repository": {
     "url": "https://github.com/matteobruni/tsparticles",
     "type": "git",

@@ -68,8 +68,8 @@
     "dist/**/*",
     "src/**/*"
   ],
-  "main": "dist/umd/@tsparticles/svelte.js",
-  "module": "dist/es/@tsparticles/svelte.js",
+  "main": "dist/umd/svelte-particles.js",
+  "module": "dist/es/svelte-particles.js",
   "svelte": "src/index.ts",
   "types": "src/index.d.ts",
   "peerDependencies": {

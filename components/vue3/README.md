@@ -147,7 +147,7 @@ There's also a CodePen collection actively maintained and updated [here](https:/
 
 If you are migrating your project from Vue 2.x to 3.x you need to these steps:
 
-- Change the dependency from `@tsparticles/vue2` to `@tsparticles/vue3`
+- Change the dependency from `@tsparticles/vue3` to `@tsparticles/vue3`
 - Update the `node_modules` folder executing `npm install` or `yarn`
 - Change the `use` function from `Vue.use(Particles)` to `createApp(App).use(Particles)`.
 

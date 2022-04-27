@@ -115,7 +115,7 @@ async function particlesInit(engine: Engine): Promise<void> {
 ### Angular
 
 ```html
-<@tsparticles/angular
+<ng-particles
   [id]="id"
   [options]="particlesOptions"
   (particlesLoaded)="particlesLoaded($event)"

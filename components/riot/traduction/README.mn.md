@@ -26,7 +26,7 @@ yarn add @tsparticles/riot riot
 
 ```html
 
-<@tsparticles/riot id="tsparticles" options='{{
+<riot-particles id="tsparticles" options='{{
         background: {
             color: "#000"
         },
@@ -55,7 +55,7 @@ yarn add @tsparticles/riot riot
 
 <!-- эсвэл -->
 
-<@tsparticles/riot
+<riot-particles
         id="tsparticles"
         url="https://foo.bar/particles.json"
         particlesInit='{(main) => console.log(main)}' particlesLoaded='{(container) => console.log(container)}'/>

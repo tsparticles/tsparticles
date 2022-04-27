@@ -82,18 +82,16 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { Vue } from "vue-property-decorator";
-import type { Engine } from "@tsparticles/engine";
 import { loadFull } from "tsparticles";
 
-declare module '@tsparticles/vue2';
 import Particles from "@tsparticles/vue2";
 
 Vue.use(Particles);
 
 export default class App extends Vue {
-  async particlesInit(engine: Engine) {
+  async particlesInit(engine) {
     await loadFull(engine);
   }
 }

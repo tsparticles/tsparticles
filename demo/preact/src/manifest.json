@@ -1,6 +1,6 @@
 {
-  "name": "preact-@tsparticles/demo",
-  "short_name": "preact-@tsparticles/demo",
+  "name": "@tsparticles/preact-demo",
+  "short_name": "@tsparticles/preact-demo",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",

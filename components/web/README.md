@@ -22,12 +22,12 @@ yarn add @tsparticles/webcomponents
 
 ```html
 
-<@tsparticles/webcomponents
+<web-particles
         id="tsparticles"
         url="http://foo.bar/particles.json"
 />
 
-<@tsparticles/webcomponents
+<web-particles
         id="tsparticles"
         options="{
             background: {

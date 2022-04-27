@@ -18,10 +18,7 @@
     "@angular/platform-browser": "~13.3.4",
     "@angular/platform-browser-dynamic": "~13.3.4",
     "@angular/router": "~13.3.4",
-    "@tsparticles/angular": "^3.0.6",
-    "rxjs": "~7.5.5",
-    "tslib": "^2.4.0",
-    "tsparticles": "^2.0.6",
+    "@tsparticles/angular": "^2.0.6",
     "@tsparticles/engine": "^2.0.6",
     "@tsparticles/interaction-external-attract": "^2.0.6",
     "@tsparticles/interaction-external-bounce": "^2.0.6",
@@ -61,6 +58,9 @@
     "@tsparticles/updater-tilt": "^2.0.6",
     "@tsparticles/updater-twinkle": "^2.0.6",
     "@tsparticles/updater-wobble": "^2.0.6",
+    "rxjs": "~7.5.5",
+    "tslib": "^2.4.0",
+    "tsparticles": "^2.0.6",
     "zone.js": "~0.11.5"
   },
   "devDependencies": {
