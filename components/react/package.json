@@ -6,13 +6,6 @@
   "unpkg": "umd/particles.js",
   "jsdelivr": "umd/particles.js",
   "types": "index.d.ts",
-  "typesVersions": {
-    "<3.8": {
-      "*": [
-        "ts3.4"
-      ]
-    }
-  },
   "scripts": {
     "prettify:src": "prettier --write ./src",
     "prettify:readme": "prettier --write ./README.md",
@@ -102,28 +95,28 @@
     "tsparticles-engine": "^2.0.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.0",
-    "@babel/plugin-transform-runtime": "^7.16.4",
-    "@babel/preset-env": "^7.16.4",
-    "@babel/runtime": "^7.16.3",
-    "@types/node": "^17.0.0",
-    "@types/react": "^18.0.0",
+    "@babel/core": "^7.17.9",
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/runtime": "^7.17.9",
+    "@types/node": "^17.0.29",
+    "@types/react": "^18.0.8",
     "@types/react-dom": "^18.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.11.0",
-    "@typescript-eslint/parser": "^5.11.0",
-    "babel-loader": "^8.2.2",
+    "@typescript-eslint/eslint-plugin": "^5.21.0",
+    "@typescript-eslint/parser": "^5.21.0",
+    "babel-loader": "^8.2.5",
     "cross-env": "^7.0.3",
-    "eslint": "^8.9.0",
-    "eslint-config-prettier": "^8.3.0",
-    "prettier": "^2.3.2",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "ts-loader": "^9.2.5",
-    "ts-node": "^10.2.0",
+    "eslint": "^8.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "prettier": "^2.6.2",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "ts-loader": "^9.2.9",
+    "ts-node": "^10.7.0",
     "typescript": "^4.6.3",
-    "webpack": "^5.50.0",
-    "webpack-bundle-analyzer": "^4.4.2",
-    "webpack-cli": "^4.8.0",
+    "webpack": "^5.72.0",
+    "webpack-bundle-analyzer": "^4.5.0",
+    "webpack-cli": "^4.9.2",
     "webpack-node-externals": "^3.0.0"
   }
 }
