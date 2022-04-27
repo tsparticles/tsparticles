@@ -1,4 +1,4 @@
-import type { Container, ISourceOptions } from "tsparticles-engine";
+import type { Container, ISourceOptions } from "@tsparticles/engine";
 
 /**
  * [[include:pjsMigration.md]]

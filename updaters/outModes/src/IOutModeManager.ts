@@ -1,4 +1,4 @@
-import type { IDelta, OutMode, OutModeAlt, OutModeDirection, Particle } from "tsparticles-engine";
+import type { IDelta, OutMode, OutModeAlt, OutModeDirection, Particle } from "@tsparticles/engine";
 
 export interface IOutModeManager {
     update(

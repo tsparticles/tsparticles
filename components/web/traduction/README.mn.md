@@ -1,8 +1,8 @@
 [![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# web-particles
+# @tsparticles/webcomponents
 
-[![npm](https://img.shields.io/npm/v/web-particles)](https://www.npmjs.com/package/web-particles) [![npm](https://img.shields.io/npm/dm/web-particles)](https://www.npmjs.com/package/web-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/webcomponents)](https://www.npmjs.com/package/@tsparticles/webcomponents) [![npm](https://img.shields.io/npm/dm/@tsparticles/webcomponents)](https://www.npmjs.com/package/@tsparticles/webcomponents)
 
 Албан ёсны [tsParticles](https://github.com/matteobruni/tsparticles) Web компонэнт
 
@@ -13,7 +13,7 @@
 ## Татах
 
 ```shell script
-yarn add web-particles
+yarn add @tsparticles/webcomponents
 ```
 
 ## Хэрхэн ашиглах
@@ -22,12 +22,12 @@ yarn add web-particles
 
 ```html
 
-<web-particles
+<@tsparticles/webcomponents
         id="tsparticles"
         url="http://foo.bar/particles.json"
 />
 
-<web-particles
+<@tsparticles/webcomponents
         id="tsparticles"
         options="{
             background: {

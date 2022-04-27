@@ -1,4 +1,4 @@
-import type { Engine } from "tsparticles-engine";
+import type { Engine } from "@tsparticles/engine";
 import { TrailMaker } from "./TrailMaker";
 
 export async function loadExternalTrailInteraction(engine: Engine): Promise<void> {

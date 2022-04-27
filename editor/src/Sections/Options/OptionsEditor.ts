@@ -1,4 +1,4 @@
-import type { Container, IOptions } from "tsparticles-engine";
+import type { Container, IOptions } from "@tsparticles/engine";
 import { Editor, EditorGroup, EditorType } from "object-gui";
 import { BackgroundMaskOptionsEditor } from "./BackgroundMask/BackgroundMaskOptionsEditor";
 import { BackgroundOptionsEditor } from "./Background/BackgroundOptionsEditor";

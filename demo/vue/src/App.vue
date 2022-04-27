@@ -84,11 +84,11 @@
 
 <script lang="ts">
 import { Vue } from "vue-property-decorator";
-import type { Engine } from "tsparticles-engine";
+import type { Engine } from "@tsparticles/engine";
 import { loadFull } from "tsparticles";
 
-declare module 'particles.vue';
-import Particles from "particles.vue";
+declare module '@tsparticles/vue2';
+import Particles from "@tsparticles/vue2";
 
 Vue.use(Particles);
 

@@ -1,5 +1,5 @@
-import type { Container, IDelta, IParticleUpdater, Particle } from "tsparticles-engine";
-import { getRangeValue } from "tsparticles-engine";
+import type { Container, IDelta, IParticleUpdater, Particle } from "@tsparticles/engine";
+import { getRangeValue } from "@tsparticles/engine";
 
 /**
  * Wobble particle extension type

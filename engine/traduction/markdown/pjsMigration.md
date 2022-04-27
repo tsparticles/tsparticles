@@ -29,7 +29,7 @@ Si has configurado el css de esta forma
 Debes cambiarlo a lo siguiente
 
 ```css
-.tsparticles-canvas-element {
+.@tsparticles/canvas-element {
     /* your awesome CSS code */
 }
 ```

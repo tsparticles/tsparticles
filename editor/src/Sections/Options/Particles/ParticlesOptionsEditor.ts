@@ -1,4 +1,4 @@
-import type { Container, IParticlesOptions } from "tsparticles-engine";
+import type { Container, IParticlesOptions } from "@tsparticles/engine";
 import { BounceOptionsEditor } from "./Bounce/BounceOptionsEditor";
 import { CollisionsOptionsEditor } from "./Collisions/CollisionsOptionsEditor";
 import { ColorOptionsEditor } from "./Color/ColorOptionsEditor";

@@ -1,11 +1,11 @@
-// Type definitions for preact-particles
+// Type definitions for @tsparticles/preact
 // Project: https://github.com/matteobruni/tsparticles
 // Definitions by: Matteo Bruni <https://github.com/matteobruni>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 import type { ComponentClass } from "react";
 import { CSSProperties, RefObject } from "react";
-import type { Container, ISourceOptions, Engine } from "tsparticles-engine";
+import type { Container, ISourceOptions, Engine } from "@tsparticles/engine";
 
 export interface IParticlesProps {
     id?: string;

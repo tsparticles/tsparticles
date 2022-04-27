@@ -1,5 +1,5 @@
-import type { Container, IContainerPlugin, IRgb, Particle } from "tsparticles-engine";
-import { colorToRgb, getDistance, getLinkColor, getRangeValue } from "tsparticles-engine";
+import type { Container, IContainerPlugin, IRgb, Particle } from "@tsparticles/engine";
+import { colorToRgb, getDistance, getLinkColor, getRangeValue } from "@tsparticles/engine";
 import { drawLinkLine, drawLinkTriangle } from "./Utils";
 import type { ILink } from "./ILink";
 import type { LinkParticle } from "./LinkParticle";

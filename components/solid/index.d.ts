@@ -1,10 +1,10 @@
-// Type definitions for solid-particles
+// Type definitions for @tsparticles/solid
 // Project: https://github.com/matteobruni/tsparticles
 // Definitions by: Matteo Bruni <https://github.com/matteobruni>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 /// <reference types="solid-js" />
-import type { Container, ISourceOptions, Engine } from "tsparticles-engine";
+import type { Container, ISourceOptions, Engine } from "@tsparticles/engine";
 import type { JSX } from "solid-js";
 
 export interface IParticlesProps {

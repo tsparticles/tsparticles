@@ -2,9 +2,9 @@
 
 # tsParticles Polygon Mask Plugin
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-plugin-polygon-mask/badge)](https://www.jsdelivr.com/package/npm/tsparticles-plugin-polygon-mask)
-[![npmjs](https://badge.fury.io/js/tsparticles-plugin-polygon-mask.svg)](https://www.npmjs.com/package/tsparticles-plugin-polygon-mask)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-plugin-polygon-mask)](https://www.npmjs.com/package/tsparticles-plugin-polygon-mask)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/plugin-polygon-mask/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/plugin-polygon-mask)
+[![npmjs](https://badge.fury.io/js/@tsparticles/plugin-polygon-mask.svg)](https://www.npmjs.com/package/@tsparticles/plugin-polygon-mask)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/plugin-polygon-mask)](https://www.npmjs.com/package/@tsparticles/plugin-polygon-mask)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) plugin for particles polygon mask effect.
 
@@ -37,20 +37,20 @@ tsParticles.load("tsparticles", {
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-plugin-polygon-mask
+$ npm install @tsparticles/plugin-polygon-mask
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-plugin-polygon-mask
+$ yarn add @tsparticles/plugin-polygon-mask
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles-engine");
-const { loadPolygonMaskPlugin } = require("tsparticles-plugin-polygon-mask");
+const { tsParticles } = require("@tsparticles/engine");
+const { loadPolygonMaskPlugin } = require("@tsparticles/plugin-polygon-mask");
 
 loadPolygonMaskPlugin(tsParticles);
 ```
@@ -58,8 +58,8 @@ loadPolygonMaskPlugin(tsParticles);
 or
 
 ```javascript
-import { tsParticles } from "tsparticles-engine";
-import { loadPolygonMaskPlugin } from "tsparticles-plugin-polygon-mask";
+import { tsParticles } from "@tsparticles/engine";
+import { loadPolygonMaskPlugin } from "@tsparticles/plugin-polygon-mask";
 
 loadPolygonMaskPlugin(tsParticles);
 ```

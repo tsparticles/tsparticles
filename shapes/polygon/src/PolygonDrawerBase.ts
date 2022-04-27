@@ -1,4 +1,4 @@
-import type { ICoordinates, IParticle, IShapeDrawer } from "tsparticles-engine";
+import type { ICoordinates, IParticle, IShapeDrawer } from "@tsparticles/engine";
 import type { IPolygonShape } from "./IPolygonShape";
 
 export interface ISideCount {

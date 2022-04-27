@@ -1,8 +1,8 @@
 [![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# particles.vue3
+# @tsparticles/vue3
 
-[![npm](https://img.shields.io/npm/v/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![npm](https://img.shields.io/npm/dm/particles.vue3)](https://www.npmjs.com/package/particles.vue3)
+[![npm](https://img.shields.io/npm/v/@tsparticles/vue3)](https://www.npmjs.com/package/@tsparticles/vue3) [![npm](https://img.shields.io/npm/dm/@tsparticles/vue3)](https://www.npmjs.com/package/@tsparticles/vue3)
 
 Componente Oficial [tsParticles](https://github.com/matteobruni/tsparticles) para VueJS 3.x
 
@@ -13,13 +13,13 @@ Componente Oficial [tsParticles](https://github.com/matteobruni/tsparticles) par
 ## Instalação
 
 ```shell script
-yarn add particles.vue3
+yarn add @tsparticles/vue3
 ```
 
 ## Como usar
 
 ```javascript
-import Particles from "particles.vue3";
+import Particles from "@tsparticles/vue3";
 
 createApp(App).use(Particles)
 ```
@@ -118,7 +118,7 @@ createApp(App).use(Particles)
 Se o Typescript retornar algum erro ao importar/utilizar o plugin, tente adicionar o seguinte import antes do exemplo anterior:
 
 ```typescript
-declare module "particles.vue3";
+declare module "@tsparticles/vue3";
 ```
 
 ## Demos

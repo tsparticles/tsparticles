@@ -27,7 +27,7 @@ jsonfile@^6.0.1:
 
 tsparticles@^1.43.1:
   version "1.43.1"
-  resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-1.43.1.tgz#1f6b37ee41b6ab043d66a0e20bfe0855a1aea006"
+  resolved "https://registry.yarnpkg.com/tsparticles/-/@tsparticles/1.43.1.tgz#1f6b37ee41b6ab043d66a0e20bfe0855a1aea006"
   integrity sha512-6EuHncwqzoyTlUxc11YH8LVlwVUgpYaZD0yMOeA2OvRqFZ9VQV8EjjQ6ZfXt6pfGA1ObPwU929jveFatxwTQkg==
 
 universalify@^2.0.0:

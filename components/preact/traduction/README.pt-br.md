@@ -1,8 +1,8 @@
 [![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# preact-particles
+# @tsparticles/preact
 
-[![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/preact)](https://www.npmjs.com/package/@tsparticles/preact) [![npm](https://img.shields.io/npm/dm/@tsparticles/preact)](https://www.npmjs.com/package/@tsparticles/preact)
 
 Componente Oficial [tsParticles](https://github.com/matteobruni/tsparticles) para Preact
 
@@ -13,13 +13,13 @@ Componente Oficial [tsParticles](https://github.com/matteobruni/tsparticles) par
 ## Instalação
 
 ```shell
-npm install preact-particles
+npm install @tsparticles/preact
 ```
 
 ou
 
 ```shell
-yarn add preact-particles
+yarn add @tsparticles/preact
 ```
 
 ## Como usar
@@ -29,7 +29,7 @@ yarn add preact-particles
 Exemplo:
 
 ```javascript
-import Particles from "preact-particles";
+import Particles from "@tsparticles/preact";
 
 class App extends Component {
   render() {

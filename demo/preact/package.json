@@ -1,5 +1,5 @@
 {
-  "name": "preact-particles-demo",
+  "name": "@tsparticles/preact-demo",
   "private": true,
   "version": "2.0.6",
   "type": "module",
@@ -44,10 +44,10 @@
   },
   "dependencies": {
     "preact": "^10.7.1",
-    "preact-particles": "^2.0.6",
+    "@tsparticles/preact": "^2.0.6",
     "preact-render-to-string": "^5.1.21",
     "preact-router": "^4.0.1",
     "tsparticles": "^2.0.6",
-    "tsparticles-engine": "^2.0.6"
+    "@tsparticles/engine": "^2.0.6"
   }
 }

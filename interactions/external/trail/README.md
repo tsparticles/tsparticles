@@ -2,9 +2,9 @@
 
 # tsParticles External Trail Interaction
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-interaction-external-trail/badge)](https://www.jsdelivr.com/package/npm/tsparticles-interaction-external-trail)
-[![npmjs](https://badge.fury.io/js/tsparticles-interaction-external-trail.svg)](https://www.npmjs.com/package/tsparticles-interaction-external-trail)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-interaction-external-trail)](https://www.npmjs.com/package/tsparticles-interaction-external-trail)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/interaction-external-trail/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/interaction-external-trail)
+[![npmjs](https://badge.fury.io/js/@tsparticles/interaction-external-trail.svg)](https://www.npmjs.com/package/@tsparticles/interaction-external-trail)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/interaction-external-trail)](https://www.npmjs.com/package/@tsparticles/interaction-external-trail)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) interaction plugin for trail effect around mouse or HTML
 elements.
@@ -39,20 +39,20 @@ tsParticles.load("tsparticles", {
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-interaction-external-trail
+$ npm install @tsparticles/interaction-external-trail
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-interaction-external-trail
+$ yarn add @tsparticles/interaction-external-trail
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles-engine");
-const { loadExternalTrailInteraction } = require("tsparticles-interaction-external-trail");
+const { tsParticles } = require("@tsparticles/engine");
+const { loadExternalTrailInteraction } = require("@tsparticles/interaction-external-trail");
 
 loadExternalTrailInteraction(tsParticles);
 ```
@@ -60,8 +60,8 @@ loadExternalTrailInteraction(tsParticles);
 or
 
 ```javascript
-import { tsParticles } from "tsparticles-engine";
-import { loadExternalTrailInteraction } from "tsparticles-interaction-external-trail";
+import { tsParticles } from "@tsparticles/engine";
+import { loadExternalTrailInteraction } from "@tsparticles/interaction-external-trail";
 
 loadExternalTrailInteraction(tsParticles);
 ```

@@ -1,8 +1,8 @@
 [![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# ng-particles
+# @tsparticles/angular
 
-[![npm](https://img.shields.io/npm/v/ng-particles)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/ng-particles)](https://www.npmjs.com/package/ng-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/angular)](https://www.npmjs.com/package/@tsparticles/angular) [![npm](https://img.shields.io/npm/dm/@tsparticles/angular)](https://www.npmjs.com/package/@tsparticles/angular)
 
 Албан ёсны [tsParticles](https://github.com/matteobruni/tsparticles) Angular компонэнт
 
@@ -15,13 +15,13 @@
 ### Татах
 
 ```shell script
-npm install ng-particles tsparticles
+npm install @tsparticles/angular tsparticles
 ```
 
 or
 
 ```shell script
-yarn add ng-particles tsparticles
+yarn add @tsparticles/angular tsparticles
 ```
 
 ### Ашиглалт
@@ -30,13 +30,13 @@ _template.html_
 
 ```html
 
-<ng-particles [id]="id" [options]="particlesOptions" (particlesLoaded)="particlesLoaded($event)"
-              (particlesInit)="particlesInit($event)"></ng-particles>
+<@tsparticles/angular [id]="id" [options]="particlesOptions" (particlesLoaded)="particlesLoaded($event)"
+              (particlesInit)="particlesInit($event)"></@tsparticles/angular>
 
 <!-- эсвэл -->
 
-<ng-particles [id]="id" [url]="particlesUrl" (particlesLoaded)="particlesLoaded($event)"
-              (particlesInit)="particlesInit($event)"></ng-particles>
+<@tsparticles/angular [id]="id" [url]="particlesUrl" (particlesLoaded)="particlesLoaded($event)"
+              (particlesInit)="particlesInit($event)"></@tsparticles/angular>
 ```
 
 _app.ts_
@@ -141,7 +141,7 @@ export class AppComponent {
 _app.module.ts_
 
 ```typescript
-import { NgParticlesModule } from "ng-particles";
+import { NgParticlesModule } from "@tsparticles/angular";
 import { NgModule } from "@angular/core";
 
 @NgModule({

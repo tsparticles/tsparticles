@@ -1,5 +1,5 @@
 import type { CSSProperties, RefObject } from "react";
-import type { ISourceOptions, Container, Engine } from "tsparticles-engine";
+import type { ISourceOptions, Container, Engine } from "@tsparticles/engine";
 
 export interface IParticlesProps {
     id?: string;

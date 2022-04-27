@@ -1,5 +1,5 @@
 {
-  "name": "svelte-particles",
+  "name": "@tsparticles/svelte",
   "version": "2.0.6",
   "description": "Official tsParticles Svelte Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Angular, jQuery, Preact, Riot.js, Solid.js, Inferno.",
   "scripts": {
@@ -68,15 +68,15 @@
     "dist/**/*",
     "src/**/*"
   ],
-  "main": "dist/umd/svelte-particles.js",
-  "module": "dist/es/svelte-particles.js",
+  "main": "dist/umd/@tsparticles/svelte.js",
+  "module": "dist/es/@tsparticles/svelte.js",
   "svelte": "src/index.ts",
   "types": "src/index.d.ts",
   "peerDependencies": {
     "svelte": ">=3"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.0.6"
+    "@tsparticles/engine": "^2.0.6"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^22.0.0",

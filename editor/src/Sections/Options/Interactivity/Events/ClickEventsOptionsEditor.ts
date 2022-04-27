@@ -1,9 +1,9 @@
-import type { Container, IClickEvent } from "tsparticles-engine";
+import type { Container, IClickEvent } from "@tsparticles/engine";
 import { EditorGroup, EditorType } from "object-gui";
-import { ClickMode } from "tsparticles-engine";
+import { ClickMode } from "@tsparticles/engine";
 import { EditorBase } from "../../../../EditorBase";
-import { loadAbsorbersPlugin } from "tsparticles-plugin-absorbers";
-import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
+import { loadAbsorbersPlugin } from "@tsparticles/plugin-absorbers";
+import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
 
 export class ClickEventsOptionsEditor extends EditorBase {
     group!: EditorGroup;

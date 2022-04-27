@@ -1,5 +1,5 @@
-import { tsParticles } from "tsparticles-engine";
-import type { ISourceOptions, Container } from "tsparticles-engine";
+import { tsParticles } from "@tsparticles/engine";
+import type { ISourceOptions, Container } from "@tsparticles/engine";
 
 /**
  * Extend the jQuery result declaration with the example plugin.

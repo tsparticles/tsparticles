@@ -1,10 +1,10 @@
-// Type definitions for react-tsparticles
+// Type definitions for @tsparticles/react
 // Project: https://github.com/matteobruni/tsparticles
 // Definitions by: Matteo Bruni <https://github.com/matteobruni>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 /// <reference types="react" />
-import type { Container, ISourceOptions, Engine } from "tsparticles-engine";
+import type { Container, ISourceOptions, Engine } from "@tsparticles/engine";
 
 export interface IParticlesState {
     library?: Container;

@@ -11,8 +11,8 @@ import {
 import { isPlatformServer } from '@angular/common';
 import { EMPTY, from, mergeMap, Subject, takeUntil } from 'rxjs';
 
-import { tsParticles } from 'tsparticles-engine';
-import type { Container, Engine } from 'tsparticles-engine';
+import { tsParticles } from '@tsparticles/engine';
+import type { Container, Engine } from '@tsparticles/engine';
 
 import { IParticlesProps } from './ng-particles.module';
 

@@ -1,5 +1,5 @@
-import { HoverMode, RotateDirection, clamp, getDistance, getDistances, isInArray } from "tsparticles-engine";
-import type { IDelta, Particle } from "tsparticles-engine";
+import { HoverMode, RotateDirection, clamp, getDistance, getDistances, isInArray } from "@tsparticles/engine";
+import type { IDelta, Particle } from "@tsparticles/engine";
 import type { SpinParticle } from "./Types";
 
 export function applyDistance(particle: SpinParticle): void {

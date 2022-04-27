@@ -1,8 +1,8 @@
 [![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# particles.vue
+# @tsparticles/vue2
 
-[![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue)
+[![npm](https://img.shields.io/npm/v/@tsparticles/vue2)](https://www.npmjs.com/package/@tsparticles/vue2) [![npm](https://img.shields.io/npm/dm/@tsparticles/vue2)](https://www.npmjs.com/package/@tsparticles/vue2)
 
 Offizieller [tsParticles](https://github.com/matteobruni/tsparticles) VueJS-Komponent
 
@@ -14,14 +14,14 @@ Offizieller [tsParticles](https://github.com/matteobruni/tsparticles) VueJS-Komp
 
 ```shell script
 
-yarn add particles.vue
+yarn add @tsparticles/vue2
 
 ```
 
 ## Verwendung
 
 ```javascript
-import Particles from 'particles.vue';
+import Particles from '@tsparticles/vue2';
 
 Vue.use(Particles);
 ```
@@ -198,7 +198,7 @@ Wenn TypeScript beim Importieren/Benutzen des Particles-Plugins einen Fehler zur
 dem vorherigen Code einzufügen.
 
 ```typescript
-declare module 'particles.vue';
+declare module '@tsparticles/vue2';
 ```
 
 ## Demos

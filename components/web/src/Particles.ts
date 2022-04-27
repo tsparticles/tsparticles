@@ -1,4 +1,4 @@
-import type { Container, ISourceOptions, Engine, RecursivePartial } from "tsparticles-engine";
+import type { Container, ISourceOptions, Engine, RecursivePartial } from "@tsparticles/engine";
 
 declare global {
     interface Window {
@@ -79,4 +79,4 @@ export class Particles extends HTMLElement {
     }
 }
 
-customElements.define("web-particles", Particles);
+customElements.define("@tsparticles/webcomponents", Particles);

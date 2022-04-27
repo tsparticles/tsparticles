@@ -1,8 +1,8 @@
 [![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# react-tsparticles
+# @tsparticles/react
 
-[![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/react)](https://www.npmjs.com/package/@tsparticles/react) [![npm](https://img.shields.io/npm/dm/@tsparticles/react)](https://www.npmjs.com/package/@tsparticles/react)
 
 Официальный компонтент [tsParticles](https://github.com/matteobruni/tsparticles) для ReactJS
 
@@ -13,13 +13,13 @@
 ## Установка
 
 ```shell
-npm install react-tsparticles
+npm install @tsparticles/react
 ```
 
 или
 
 ```shell
-yarn add react-tsparticles
+yarn add @tsparticles/react
 ```
 
 #### create-react-app
@@ -48,7 +48,7 @@ create-react-app your_app --template particles-typescript
 Пример:
 
 ```javascript
-import Particles from "react-tsparticles";
+import Particles from "@tsparticles/react";
 
 const App = () => {
   const particlesInit = (main) => {

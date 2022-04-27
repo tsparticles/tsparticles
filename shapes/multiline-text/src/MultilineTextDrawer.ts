@@ -1,5 +1,5 @@
-import type { Container, IParticle, IShapeDrawer, SingleOrMultiple } from "tsparticles-engine";
-import { isInArray, itemFromArray, loadFont } from "tsparticles-engine";
+import type { Container, IParticle, IShapeDrawer, SingleOrMultiple } from "@tsparticles/engine";
+import { isInArray, itemFromArray, loadFont } from "@tsparticles/engine";
 import type { IMultilineTextShape } from "./IMultilineTextShape";
 import { MultilineTextParticle } from "./MultilineTextParticle";
 

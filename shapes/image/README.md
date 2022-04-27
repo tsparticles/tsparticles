@@ -2,9 +2,9 @@
 
 # tsParticles Image Shape
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-shape-image/badge)](https://www.jsdelivr.com/package/npm/tsparticles-shape-image)
-[![npmjs](https://badge.fury.io/js/tsparticles-shape-image.svg)](https://www.npmjs.com/package/tsparticles-shape-image)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-shape-image)](https://www.npmjs.com/package/tsparticles-shape-image)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/shape-image/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/shape-image)
+[![npmjs](https://badge.fury.io/js/@tsparticles/shape-image.svg)](https://www.npmjs.com/package/@tsparticles/shape-image)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/shape-image)](https://www.npmjs.com/package/@tsparticles/shape-image)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) additional image shape.
 
@@ -38,20 +38,20 @@ tsParticles.load("tsparticles", {
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-shape-image
+$ npm install @tsparticles/shape-image
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-shape-image
+$ yarn add @tsparticles/shape-image
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles-engine");
-const { loadImageShape } = require("tsparticles-shape-image");
+const { tsParticles } = require("@tsparticles/engine");
+const { loadImageShape } = require("@tsparticles/shape-image");
 
 loadImageShape(tsParticles);
 ```
@@ -59,8 +59,8 @@ loadImageShape(tsParticles);
 or
 
 ```javascript
-import { tsParticles } from "tsparticles-engine";
-import { loadImageShape } from "tsparticles-shape-image";
+import { tsParticles } from "@tsparticles/engine";
+import { loadImageShape } from "@tsparticles/shape-image";
 
 loadImageShape(tsParticles);
 ```

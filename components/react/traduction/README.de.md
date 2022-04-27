@@ -1,8 +1,8 @@
 [![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# react-tsparticles
+# @tsparticles/react
 
-[![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/react)](https://www.npmjs.com/package/@tsparticles/react) [![npm](https://img.shields.io/npm/dm/@tsparticles/react)](https://www.npmjs.com/package/@tsparticles/react)
 
 Offizieller[tsParticles](https://github.com/matteobruni/tsparticles) ReactJS-Komponent
 
@@ -14,7 +14,7 @@ Offizieller[tsParticles](https://github.com/matteobruni/tsparticles) ReactJS-Kom
 
 ```shell
 
-npm install react-tsparticles
+npm install @tsparticles/react
 
 ```
 
@@ -22,7 +22,7 @@ oder
 
 ```shell
 
-yarn add react-tsparticles
+yarn add @tsparticles/react
 
 ```
 
@@ -57,13 +57,13 @@ create-react-app your_app --template particles-typescript
 Beispiel:
 
 ```javascript
-import Particles from "react-tsparticles";
+import Particles from "@tsparticles/react";
 
 const App = () => {
   const particlesInit = (main) => {
     console.log(main);
 
-    // Sie können die tsParticles-Instanz (main) hier initialisieren und benutzerdefinierte Formen oder Voreinstellungen hinzufügen
+    // Sie können die @tsparticles/Instanz (main) hier initialisieren und benutzerdefinierte Formen oder Voreinstellungen hinzufügen
   }
   
   const particlesLoaded = (container) => {

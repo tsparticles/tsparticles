@@ -1,4 +1,4 @@
-import type { IParticle } from "tsparticles-engine";
+import type { IParticle } from "@tsparticles/engine";
 
 export interface TextParticle extends IParticle {
     text?: string;

@@ -8,7 +8,7 @@ tsParticles ahora soporta personalizaciones 🥳.
 
 Ahora puedes crear un script con tu propia figura para usarla en tu sitio web o para distribuir. Todo lo que debes hacer es una función que dibuje, darle un nombre y usarla en la configuración.
 
-Publica tus figuras con la etiqueta `tsparticles-shape` en `NPM` para que todos lo puedan encontrar.
+Publica tus figuras con la etiqueta `@tsparticles/shape` en `NPM` para que todos lo puedan encontrar.
 
 Encontrarás un ejemplo más abajo.
 
@@ -119,7 +119,7 @@ _config.json_ - La sección de configuración para añadir tu configuración o e
 
 Ahora puedes crear un script con tu propio ajuste predefinido para usar en tu sitio web o para su distribución. Todo lo que tienes que hacer es darle un nombre y definir todas las opciones que necesitas para que carge correctamente. Recuerda no importar toda la configuración, las propiedades no necesarias pueden omitirse.
 
-Publica tus ajustes predefinidos con la etiqueta `tsparticles-preset` en `NPM` para que todos lo puedan encontrar.
+Publica tus ajustes predefinidos con la etiqueta `@tsparticles/preset` en `NPM` para que todos lo puedan encontrar.
 
 Encontrarás un ejemplo debajo.
 

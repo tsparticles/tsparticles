@@ -1,5 +1,5 @@
 {
-  "name": "tsparticles-preset-bubbles",
+  "name": "@tsparticles/preset-bubbles",
   "version": "2.0.6",
   "description": "tsParticles bubbles preset",
   "homepage": "https://particles.js.org/",
@@ -58,7 +58,7 @@
     "confettijs",
     "fireworksjs",
     "canvas-confetti",
-    "tsparticles-preset"
+    "@tsparticles/preset"
   ],
   "author": "Matteo Bruni",
   "license": "MIT",
@@ -81,13 +81,13 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.0.6",
-    "tsparticles-move-base": "^2.0.6",
-    "tsparticles-plugin-emitters": "^2.0.6",
-    "tsparticles-shape-circle": "^2.0.6",
-    "tsparticles-updater-color": "^2.0.6",
-    "tsparticles-updater-opacity": "^2.0.6",
-    "tsparticles-updater-out-modes": "^2.0.6",
-    "tsparticles-updater-size": "^2.0.6"
+    "@tsparticles/engine": "^2.0.6",
+    "@tsparticles/move-base": "^2.0.6",
+    "@tsparticles/plugin-emitters": "^2.0.6",
+    "@tsparticles/shape-circle": "^2.0.6",
+    "@tsparticles/updater-color": "^2.0.6",
+    "@tsparticles/updater-opacity": "^2.0.6",
+    "@tsparticles/updater-out-modes": "^2.0.6",
+    "@tsparticles/updater-size": "^2.0.6"
   }
 }

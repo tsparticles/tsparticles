@@ -32,8 +32,8 @@ const rollupConfig = {
     outputOptions: {
         sourcemap: true,
         exports: 'named',
-        file: 'dist/web-particles.js',
-        name: 'web-particles',
+        file: 'dist/@tsparticles/webcomponents.js',
+        name: '@tsparticles/webcomponents',
         format: 'es'
     } as OutputOptions
 }

@@ -13,9 +13,9 @@ fs.readFile(libPackage, function (error, data) {
 
     console.log(libObj);
 
-    libObj.package.dependencies["react-tsparticles"] = mainPackage.dependencies["react-tsparticles"];
+    libObj.package.dependencies["@tsparticles/react"] = mainPackage.dependencies["@tsparticles/react"];
     libObj.package.dependencies["tsparticles"] = mainPackage.dependencies["tsparticles"];
-    libObj.package.dependencies["tsparticles-engine"] = mainPackage.dependencies["tsparticles-engine"];
+    libObj.package.dependencies["@tsparticles/engine"] = mainPackage.dependencies["@tsparticles/engine"];
 
     fs.writeFile(libPackage, JSON.stringify(libObj, undefined, 2), 'utf-8', function () {
         console.log(`template.json dependencies updated successfully`);

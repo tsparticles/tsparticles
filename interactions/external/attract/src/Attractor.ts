@@ -10,8 +10,8 @@ import {
     getDistances,
     isInArray,
     mouseMoveEvent,
-} from "tsparticles-engine";
-import type { Container, ICoordinates, IParticle } from "tsparticles-engine";
+} from "@tsparticles/engine";
+import type { Container, ICoordinates, IParticle } from "@tsparticles/engine";
 
 interface IContainerAttract {
     particles: IParticle[];

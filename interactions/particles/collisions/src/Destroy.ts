@@ -1,4 +1,4 @@
-import type { Particle } from "tsparticles-engine";
+import type { Particle } from "@tsparticles/engine";
 import { bounce } from "./Bounce";
 
 export function destroy(p1: Particle, p2: Particle): void {

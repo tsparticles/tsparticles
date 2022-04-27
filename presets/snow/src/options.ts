@@ -1,4 +1,4 @@
-import { MoveDirection } from "tsparticles-engine";
+import { MoveDirection } from "@tsparticles/engine";
 
 export const options = {
     background: {

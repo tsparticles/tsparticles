@@ -1,4 +1,4 @@
-import type { Container, Engine, IContainerPlugin, ICoordinates, IDelta, IDimension } from "tsparticles-engine";
+import type { Container, Engine, IContainerPlugin, ICoordinates, IDelta, IDimension } from "@tsparticles/engine";
 import { calcClosestPtOnSegment, drawPolygonMask, drawPolygonMaskPath, parsePaths, segmentBounce } from "./utils";
 import {
     deepExtend,
@@ -7,15 +7,15 @@ import {
     itemFromArray,
     noPolygonDataLoaded,
     noPolygonFound,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { IPolygonMaskOptions } from "./types";
 import type { ISvgPath } from "./Interfaces/ISvgPath";
-import { OutModeDirection } from "tsparticles-engine";
-import { Particle } from "tsparticles-engine";
+import { OutModeDirection } from "@tsparticles/engine";
+import { Particle } from "@tsparticles/engine";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
 import { PolygonMaskInlineArrangement } from "./Enums/PolygonMaskInlineArrangement";
 import { PolygonMaskType } from "./Enums/PolygonMaskType";
-import type { RecursivePartial } from "tsparticles-engine";
+import type { RecursivePartial } from "@tsparticles/engine";
 
 /**
  * Polygon Mask manager

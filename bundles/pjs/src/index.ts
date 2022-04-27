@@ -2,7 +2,7 @@
  * [[include:pjsMigration.md]]
  * @packageDocumentation
  */
-import type { Container, Engine, ISourceOptions, Particle } from "tsparticles-engine";
+import type { Container, Engine, ISourceOptions, Particle } from "@tsparticles/engine";
 import type { IParticlesJS } from "./IParticlesJS";
 
 /**

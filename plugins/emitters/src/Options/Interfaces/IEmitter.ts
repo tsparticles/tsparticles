@@ -5,7 +5,7 @@ import type {
     MoveDirection,
     MoveDirectionAlt,
     RecursivePartial,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { EmitterShapeType } from "../../Enums/EmitterShapeType";
 import type { IEmitterLife } from "./IEmitterLife";
 import type { IEmitterRate } from "./IEmitterRate";

@@ -1,8 +1,8 @@
 [![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# solid-particles
+# @tsparticles/solid
 
-[![npm](https://img.shields.io/npm/v/solid-particles)](https://www.npmjs.com/package/solid-particles) [![npm](https://img.shields.io/npm/dm/solid-particles)](https://www.npmjs.com/package/solid-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/solid)](https://www.npmjs.com/package/@tsparticles/solid) [![npm](https://img.shields.io/npm/dm/@tsparticles/solid)](https://www.npmjs.com/package/@tsparticles/solid)
 
 Албан ёсны [tsParticles](https://github.com/matteobruni/tsparticles) solid компонэнт
 
@@ -13,13 +13,13 @@
 ## Татах
 
 ```shell
-npm install solid-particles solid-js
+npm install @tsparticles/solid solid-js
 ```
 
 эсвэл
 
 ```shell
-yarn add solid-particles solid-js
+yarn add @tsparticles/solid solid-js
 ```
 
 ## Хэрхэн ашиглах
@@ -31,7 +31,7 @@ yarn add solid-particles solid-js
 _Remote url_
 
 ```javascript
-import Particles from "solid-particles";
+import Particles from "@tsparticles/solid";
 
 function App() {
   return (
@@ -55,7 +55,7 @@ function App() {
 _Options object_
 
 ```javascript
-import Particles from "solid-particles";
+import Particles from "@tsparticles/solid";
 
 class App extends Component {
   constructor(props) {

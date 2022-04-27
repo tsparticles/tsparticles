@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import type { Container, Engine, ISourceOptions } from "tsparticles-engine";
+import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
 import { loadFull } from "tsparticles";
 
 @Component({

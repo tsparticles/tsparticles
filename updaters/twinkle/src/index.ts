@@ -1,4 +1,4 @@
-import type { Engine } from "tsparticles-engine";
+import type { Engine } from "@tsparticles/engine";
 import { TwinkleUpdater } from "./TwinkleUpdater";
 
 export async function loadTwinkleUpdater(engine: Engine): Promise<void> {

@@ -2,9 +2,9 @@
 
 # tsParticles Spiral Shape
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-shape-spiral/badge)](https://www.jsdelivr.com/package/npm/tsparticles-shape-spiral)
-[![npmjs](https://badge.fury.io/js/tsparticles-shape-spiral.svg)](https://www.npmjs.com/package/tsparticles-shape-spiral)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-shape-spiral)](https://www.npmjs.com/package/tsparticles-shape-spiral)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/shape-spiral/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/shape-spiral)
+[![npmjs](https://badge.fury.io/js/@tsparticles/shape-spiral.svg)](https://www.npmjs.com/package/@tsparticles/shape-spiral)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/shape-spiral)](https://www.npmjs.com/package/@tsparticles/shape-spiral)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) additional spiral shape.
 
@@ -38,20 +38,20 @@ tsParticles.load("tsparticles", {
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-shape-spiral
+$ npm install @tsparticles/shape-spiral
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-shape-spiral
+$ yarn add @tsparticles/shape-spiral
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles-engine");
-const { loadSpiralShape } = require("tsparticles-shape-spiral");
+const { tsParticles } = require("@tsparticles/engine");
+const { loadSpiralShape } = require("@tsparticles/shape-spiral");
 
 loadSpiralShape(tsParticles);
 ```
@@ -59,8 +59,8 @@ loadSpiralShape(tsParticles);
 or
 
 ```javascript
-import { tsParticles } from "tsparticles-engine";
-import { loadSpiralShape } from "tsparticles-shape-spiral";
+import { tsParticles } from "@tsparticles/engine";
+import { loadSpiralShape } from "@tsparticles/shape-spiral";
 
 loadSpiralShape(tsParticles);
 ```

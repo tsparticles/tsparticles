@@ -107,5 +107,5 @@ $(document).ready(function () {
         updateBackground();
     });
 
-    document.body.querySelector('#tsparticles-container').appendChild(stats.dom);
+    document.body.querySelector('#@tsparticles/container').appendChild(stats.dom);
 });

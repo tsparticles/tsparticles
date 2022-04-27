@@ -16,8 +16,8 @@ import {
     isInArray,
     mouseMoveEvent,
     rectBounce,
-} from "tsparticles-engine";
-import type { Container, ICoordinates } from "tsparticles-engine";
+} from "@tsparticles/engine";
+import type { Container, ICoordinates } from "@tsparticles/engine";
 
 export class Bouncer extends ExternalInteractorBase {
     constructor(container: Container) {

@@ -1,4 +1,4 @@
-import type { Container } from "tsparticles-engine";
+import type { Container } from "@tsparticles/engine";
 import type { EditorGroup } from "object-gui";
 
 export abstract class EditorBase {

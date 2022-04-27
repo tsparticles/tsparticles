@@ -1,5 +1,5 @@
 {
-  "name": "tsparticles-updater-color",
+  "name": "@tsparticles/updater-color",
   "version": "2.0.6",
   "description": "tsParticles particles color updater",
   "homepage": "https://particles.js.org/",
@@ -76,8 +76,8 @@
     "confettijs",
     "fireworksjs",
     "canvas-confetti",
-    "tsparticles-plugin",
-    "tsparticles-updater"
+    "@tsparticles/plugin",
+    "@tsparticles/updater"
   ],
   "publishConfig": {
     "directory": "dist"
@@ -104,9 +104,9 @@
     "webpack": "^5.72.0",
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.2",
-    "webpack-tsparticles-plugin": "^1.0.4"
+    "webpack-@tsparticles/plugin": "^1.0.4"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.0.6"
+    "@tsparticles/engine": "^2.0.6"
   }
 }

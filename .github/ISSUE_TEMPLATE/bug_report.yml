@@ -41,17 +41,17 @@ body:
       multiple: true
       options:
         - Vanilla (tsparticles)
-        - React.js (react-tsparticles, react-particles-js)
-        - Vue.js 2.x (particles.vue)
-        - Vue.js 3.x (particles.vue3)
-        - Angular (ng-particles)
-        - Svelte (svelte-particles)
-        - jQuery (jquery-particles)
-        - Preact (preact-particles)
-        - Solid (solid-particles)
-        - Riot.js (riot-particles)
-        - Inferno (inferno-particles)
-        - Web Components (web-particles)
+        - React.js (@tsparticles/react)
+        - Vue.js 2.x (@tsparticles/vue2)
+        - Vue.js 3.x (@tsparticles/vue3)
+        - Angular (@tsparticles/angular)
+        - Svelte (@tsparticles/svelte)
+        - jQuery (@tsparticles/jquery)
+        - Preact (@tsparticles/preact)
+        - Solid (@tsparticles/solid)
+        - Riot.js (@tsparticles/riot)
+        - Inferno (@tsparticles/inferno)
+        - Web Components (@tsparticles/webcomponents)
     validations:
       required: true
   - type: textarea

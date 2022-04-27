@@ -6,8 +6,8 @@ import type {
     IParticleUpdater,
     Particle,
     Retina,
-} from "tsparticles-engine";
-import { colorToHsl, drawEllipse, getRangeValue } from "tsparticles-engine";
+} from "@tsparticles/engine";
+import { colorToHsl, drawEllipse, getRangeValue } from "@tsparticles/engine";
 
 export const enum OrbitType {
     front = "front",

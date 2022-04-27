@@ -1,4 +1,4 @@
-import type { Engine } from "tsparticles-engine";
+import type { Engine } from "@tsparticles/engine";
 import { WobbleUpdater } from "./WobbleUpdater";
 
 export async function loadWobbleUpdater(engine: Engine): Promise<void> {

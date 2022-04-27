@@ -85,7 +85,7 @@ async function createPresetCb(...args) {
 async function helpPresetCb(...args) {
   console.log("Create Preset Help\n");
   console.log(
-    'tsparticles-cli create preset "<name>" "<description>" [-type <type>]\n'
+    '@tsparticles/cli create preset "<name>" "<description>" [-type <type>]\n'
   );
   console.log("  name - The preset name");
   console.log("  description - The preset description");

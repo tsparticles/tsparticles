@@ -73,7 +73,7 @@ const tsParticles = require("tsparticles");
 
 // of
 
-import {tsParticles} from "tsparticles-engine";
+import {tsParticles} from "@tsparticles/engine";
 ```
 
 De geïmporteerde `tsParticles` is dezelfde instantie als wanneer je het script had gebruikt van een CDN.
@@ -180,63 +180,63 @@ particles.pause();
 
 ### Angular
 
-#### `ng-particles`
+#### `@tsparticles/angular`
 
-[![npm](https://img.shields.io/npm/v/ng-particles)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/ng-particles)](https://www.npmjs.com/package/ng-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/angular)](https://www.npmjs.com/package/@tsparticles/angular) [![npm](https://img.shields.io/npm/dm/@tsparticles/angular)](https://www.npmjs.com/package/@tsparticles/angular)
 
 Je kunt [hier](https://github.com/matteobruni/tsparticles/blob/main/components/angular/traduction/README.nl.md) de
 instructies vinden
 
 ### Inferno
 
-#### `inferno-particles`
+#### `@tsparticles/inferno`
 
-[![npm](https://img.shields.io/npm/v/inferno-particles)](https://www.npmjs.com/package/inferno-particles) [![npm](https://img.shields.io/npm/dm/inferno-particles)](https://www.npmjs.com/package/inferno-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/inferno)](https://www.npmjs.com/package/@tsparticles/inferno) [![npm](https://img.shields.io/npm/dm/@tsparticles/inferno)](https://www.npmjs.com/package/@tsparticles/inferno)
 
 Je kunt [hier](https://github.com/matteobruni/tsparticles/blob/main/components/inferno/traduction/README.nl.md) de
 instructies vinden
 
 ### jQuery
 
-#### `jquery-particles`
+#### `@tsparticles/jquery`
 
-[![npm](https://img.shields.io/npm/v/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles)](https://www.npmjs.com/package/jquery-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/jquery)](https://www.npmjs.com/package/@tsparticles/jquery) [![npm](https://img.shields.io/npm/dm/@tsparticles/jquery)](https://www.npmjs.com/package/@tsparticles/jquery)
 
 Je kunt [hier](https://github.com/matteobruni/tsparticles/blob/main/components/jquery/traduction/README.nl.md) de
 instructies vinden
 
 ### Preact
 
-#### `preact-particles`
+#### `@tsparticles/preact`
 
-[![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/preact)](https://www.npmjs.com/package/@tsparticles/preact) [![npm](https://img.shields.io/npm/dm/@tsparticles/preact)](https://www.npmjs.com/package/@tsparticles/preact)
 
 Je kunt [hier](https://github.com/matteobruni/tsparticles/blob/main/components/preact/traduction/README.nl.md) de
 instructies vinden
 
 ### ReactJS
 
-#### `react-tsparticles`
+#### `@tsparticles/react`
 
-[![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/react)](https://www.npmjs.com/package/@tsparticles/react) [![npm](https://img.shields.io/npm/dm/@tsparticles/react)](https://www.npmjs.com/package/@tsparticles/react)
 
 Je kunt [hier](https://github.com/matteobruni/tsparticles/blob/main/components/react/traduction/README.nl.md) de
 instructies vinden
 
 ### Svelte
 
-#### `svelte-particles`
+#### `@tsparticles/svelte`
 
-[![npm](https://img.shields.io/npm/v/svelte-particles)](https://www.npmjs.com/package/svelte-particles) [![npm downloads](https://img.shields.io/npm/dm/svelte-particles)](https://www.npmjs.com/package/svelte-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/svelte)](https://www.npmjs.com/package/@tsparticles/svelte) [![npm downloads](https://img.shields.io/npm/dm/@tsparticles/svelte)](https://www.npmjs.com/package/@tsparticles/svelte)
 
 Je kunt [hier](https://github.com/matteobruni/tsparticles/blob/main/components/svelte/traduction/README.nl.md) de
 instructies vinden
 
 ### VueJS
 
-#### `particles.vue`
+#### `@tsparticles/vue2`
 
-[![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue)
+[![npm](https://img.shields.io/npm/v/@tsparticles/vue2)](https://www.npmjs.com/package/@tsparticles/vue2) [![npm](https://img.shields.io/npm/dm/@tsparticles/vue2)](https://www.npmjs.com/package/@tsparticles/vue2)
 
 Je kunt [hier](https://github.com/matteobruni/tsparticles/blob/main/components/vue/traduction/README.nl.md) de
 instructies vinden
@@ -367,10 +367,10 @@ De **tsParticles** bibliotheek is volledig verenigbaar met de _particles.js_ con
 
 Serieus, je hoeft alleen de script bron aan de passen et-voilà, **je bent klaar** 🧙!
 
-Je kan **[hier](https://dev.to/matteobruni/migrating-from-particles-js-to-tsparticles-2a6m)** meer lezen.
+Je kan **[hier](https://dev.to/matteobruni/migrating-from-particles-js-to-@tsparticles/2a6m)** meer lezen.
 
 Wil je 5 redenen hebben om over te
-stappen? [Lees hier](https://dev.to/matteobruni/5-reasons-to-use-tsparticles-and-not-particles-js-1gbe)
+stappen? [Lees hier](https://dev.to/matteobruni/5-reasons-to-use-@tsparticles/and-not-particles-js-1gbe)
 
 _Hier onder kan je alle informatie vinden die je nodig hebt om tsParticles te installeren en gebruik te maken van de
 nieuwe syntaxis._

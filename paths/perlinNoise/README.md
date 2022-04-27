@@ -2,9 +2,9 @@
 
 # tsParticles Perlin Noise Path
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-path-perlin-noise/badge)](https://www.jsdelivr.com/package/npm/tsparticles-path-perlin-noise)
-[![npmjs](https://badge.fury.io/js/tsparticles-path-perlin-noise.svg)](https://www.npmjs.com/package/tsparticles-path-perlin-noise)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-path-perlin-noise)](https://www.npmjs.com/package/tsparticles-path-perlin-noise)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/path-perlin-noise/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/path-perlin-noise)
+[![npmjs](https://badge.fury.io/js/@tsparticles/path-perlin-noise.svg)](https://www.npmjs.com/package/@tsparticles/path-perlin-noise)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/path-perlin-noise)](https://www.npmjs.com/package/@tsparticles/path-perlin-noise)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) path plugin for perlin noise movement.
 
@@ -37,20 +37,20 @@ tsParticles.load("tsparticles", {
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-path-perlin-noise
+$ npm install @tsparticles/path-perlin-noise
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-path-perlin-noise
+$ yarn add @tsparticles/path-perlin-noise
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles-engine");
-const { loadPerlinNoisePath } = require("tsparticles-path-perlin-noise");
+const { tsParticles } = require("@tsparticles/engine");
+const { loadPerlinNoisePath } = require("@tsparticles/path-perlin-noise");
 
 loadPerlinNoisePath(tsParticles);
 ```
@@ -58,8 +58,8 @@ loadPerlinNoisePath(tsParticles);
 or
 
 ```javascript
-import { tsParticles } from "tsparticles-engine";
-import { loadPerlinNoisePath } from "tsparticles-path-perlin-noise";
+import { tsParticles } from "@tsparticles/engine";
+import { loadPerlinNoisePath } from "@tsparticles/path-perlin-noise";
 
 loadPerlinNoisePath(tsParticles);
 ```

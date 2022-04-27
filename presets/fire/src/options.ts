@@ -1,5 +1,5 @@
-import { ClickMode } from "tsparticles-engine";
-import type { ISourceOptions } from "tsparticles-engine";
+import { ClickMode } from "@tsparticles/engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 export const options: ISourceOptions = {
     fpsLimit: 40,

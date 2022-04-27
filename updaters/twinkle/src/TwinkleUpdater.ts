@@ -1,5 +1,5 @@
-import type { IParticleColorStyle, IParticleUpdater, Particle } from "tsparticles-engine";
-import { colorToHsl, getRangeValue, getStyleFromHsl } from "tsparticles-engine";
+import type { IParticleColorStyle, IParticleUpdater, Particle } from "@tsparticles/engine";
+import { colorToHsl, getRangeValue, getStyleFromHsl } from "@tsparticles/engine";
 
 export class TwinkleUpdater implements IParticleUpdater {
     getColorStyles(

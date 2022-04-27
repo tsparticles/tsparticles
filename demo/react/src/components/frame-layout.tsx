@@ -3,7 +3,7 @@ import { FrameThumbsContainer } from './frame-thumbs-container';
 import { ParticlesContainer } from './particles-container';
 import { Subscription } from 'rxjs';
 import { onKeyPressed } from '../streams/key-pressed';
-import type { ISourceOptions } from "tsparticles-engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 
 const getFrameCode = (options: ISourceOptions) => {
@@ -116,7 +116,7 @@ export class FrameLayout extends React.Component<IProps, IState> {
                 <div className="frame-layout__footer">
                     <a
                         className="github-mark"
-                        href="https://github.com/matteobruni/react-tsparticles"
+                        href="https://github.com/matteobruni/@tsparticles/react"
                         target="_blank"/>
                     <span>v{this.state.version}</span>
                 </div>

@@ -1,4 +1,4 @@
-import type { Container, ITwinkle, ITwinkleValues } from "tsparticles-engine";
+import type { Container, ITwinkle, ITwinkleValues } from "@tsparticles/engine";
 import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
 

@@ -1,7 +1,7 @@
-import type { Container, ITilt } from "tsparticles-engine";
+import type { Container, ITilt } from "@tsparticles/engine";
 import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
-import { TiltDirection } from "tsparticles-engine";
+import { TiltDirection } from "@tsparticles/engine";
 
 export class TiltOptionsEditor extends EditorBase {
     group!: EditorGroup;

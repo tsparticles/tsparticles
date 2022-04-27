@@ -8,8 +8,8 @@ import {
     getDistance,
     getDistances,
     getStyleFromRgb,
-} from "tsparticles-engine";
-import type { ILinksShadow } from "tsparticles-engine";
+} from "@tsparticles/engine";
+import type { ILinksShadow } from "@tsparticles/engine";
 
 export function drawLinkLine(
     context: CanvasRenderingContext2D,

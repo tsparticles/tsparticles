@@ -1,8 +1,8 @@
 [![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# preact-particles
+# @tsparticles/preact
 
-[![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/preact)](https://www.npmjs.com/package/@tsparticles/preact) [![npm](https://img.shields.io/npm/dm/@tsparticles/preact)](https://www.npmjs.com/package/@tsparticles/preact)
 
 Official [tsParticles](https://github.com/matteobruni/tsparticles) Preact component
 
@@ -13,13 +13,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) Preact compon
 ## Installation
 
 ```shell
-npm install preact-particles
+npm install @tsparticles/preact
 ```
 
 or
 
 ```shell
-yarn add preact-particles
+yarn add @tsparticles/preact
 ```
 
 ## How to use
@@ -31,7 +31,7 @@ Examples:
 _Remote url_
 
 ```javascript
-import Particles from "preact-particles";
+import Particles from "@tsparticles/preact";
 import { loadFull } from "tsparticles";
 
 class App extends Component {
@@ -71,7 +71,7 @@ class App extends Component {
 _Options object_
 
 ```javascript
-import Particles from "preact-particles";
+import Particles from "@tsparticles/preact";
 import { loadFull } from "tsparticles";
 
 class App extends Component {

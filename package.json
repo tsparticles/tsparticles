@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "tsparticles-workspace",
+  "name": "@tsparticles/workspace",
   "version": "0.0.0",
   "scripts": {
     "build": "lerna run build",

@@ -1,5 +1,5 @@
 import Vue from "vue";
-import particles from "./Particles.vue";
+import particles from "./@tsparticles/vue2";
 
 const VueParticles = {
     install: (vue: typeof Vue, options: unknown) => {

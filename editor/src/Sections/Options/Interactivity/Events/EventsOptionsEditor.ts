@@ -1,4 +1,4 @@
-import type { Container, IEvents } from "tsparticles-engine";
+import type { Container, IEvents } from "@tsparticles/engine";
 import { EditorGroup, EditorType } from "object-gui";
 import { ClickEventsOptionsEditor } from "./ClickEventsOptionsEditor";
 import { DivsEventsOptionsEditor } from "./DivsEventsOptionsEditor";

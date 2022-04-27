@@ -1,5 +1,5 @@
 {
-  "name": "web-particles-demo",
+  "name": "@tsparticles/webcomponents-demo",
   "private": true,
   "version": "2.0.6",
   "description": "> TODO: description",
@@ -37,7 +37,7 @@
     "pug-cli": "^1.0.0-alpha6",
     "stylus": "^0.57.0",
     "tsparticles": "^2.0.6",
-    "tsparticles-engine": "^2.0.6",
-    "web-particles": "^2.0.6"
+    "@tsparticles/engine": "^2.0.6",
+    "@tsparticles/webcomponents": "^2.0.6"
   }
 }

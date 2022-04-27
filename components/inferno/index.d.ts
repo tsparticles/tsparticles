@@ -1,10 +1,10 @@
-// Type definitions for inferno-particles
+// Type definitions for @tsparticles/inferno
 // Project: https://github.com/matteobruni/tsparticles
 // Definitions by: Matteo Bruni <https://github.com/matteobruni>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 /// <reference types="inferno" />
-import type { Container, ISourceOptions, Engine } from "tsparticles-engine";
+import type { Container, ISourceOptions, Engine } from "@tsparticles/engine";
 import type { Component } from "inferno";
 import type { RefObject } from "inferno";
 

@@ -1,20 +1,20 @@
-import type { Engine, RecursivePartial } from "tsparticles-engine";
+import type { Engine, RecursivePartial } from "@tsparticles/engine";
 import type { IConfettiOptions } from "./IConfettiOptions";
-import { loadAngleUpdater } from "tsparticles-updater-angle";
-import { loadBaseMover } from "tsparticles-move-base";
-import { loadCircleShape } from "tsparticles-shape-circle";
-import { loadColorUpdater } from "tsparticles-updater-color";
-import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
-import { loadLifeUpdater } from "tsparticles-updater-life";
-import { loadOpacityUpdater } from "tsparticles-updater-opacity";
+import { loadAngleUpdater } from "@tsparticles/updater-angle";
+import { loadBaseMover } from "@tsparticles/move-base";
+import { loadCircleShape } from "@tsparticles/shape-circle";
+import { loadColorUpdater } from "@tsparticles/updater-color";
+import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
+import { loadLifeUpdater } from "@tsparticles/updater-life";
+import { loadOpacityUpdater } from "@tsparticles/updater-opacity";
 import { loadOptions } from "./options";
-import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
-import { loadRollUpdater } from "tsparticles-updater-roll";
-import { loadSizeUpdater } from "tsparticles-updater-size";
-import { loadSquareShape } from "tsparticles-shape-square";
-import { loadTiltUpdater } from "tsparticles-updater-tilt";
-import { loadWobbleUpdater } from "tsparticles-updater-wobble";
-import { tsParticles } from "tsparticles-engine";
+import { loadOutModesUpdater } from "@tsparticles/updater-out-modes";
+import { loadRollUpdater } from "@tsparticles/updater-roll";
+import { loadSizeUpdater } from "@tsparticles/updater-size";
+import { loadSquareShape } from "@tsparticles/shape-square";
+import { loadTiltUpdater } from "@tsparticles/updater-tilt";
+import { loadWobbleUpdater } from "@tsparticles/updater-wobble";
+import { tsParticles } from "@tsparticles/engine";
 
 async function loadPreset(
     engine: Engine,

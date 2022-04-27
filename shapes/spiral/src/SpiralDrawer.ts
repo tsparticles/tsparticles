@@ -1,4 +1,4 @@
-import type { Container, IParticle, IShapeDrawer } from "tsparticles-engine";
+import type { Container, IParticle, IShapeDrawer } from "@tsparticles/engine";
 import type { ISpiralData } from "./ISpiralData";
 import type { ISpiralParticle } from "./ISpiralParticle";
 

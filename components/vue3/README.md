@@ -1,8 +1,8 @@
 [![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# particles.vue3
+# @tsparticles/vue3
 
-[![npm](https://img.shields.io/npm/v/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![npm](https://img.shields.io/npm/dm/particles.vue3)](https://www.npmjs.com/package/particles.vue3)
+[![npm](https://img.shields.io/npm/v/@tsparticles/vue3)](https://www.npmjs.com/package/@tsparticles/vue3) [![npm](https://img.shields.io/npm/dm/@tsparticles/vue3)](https://www.npmjs.com/package/@tsparticles/vue3)
 
 Official [tsParticles](https://github.com/matteobruni/tsparticles) VueJS 3.x component
 
@@ -13,13 +13,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) VueJS 3.x com
 ## Installation
 
 ```shell script
-yarn add particles.vue3
+yarn add @tsparticles/vue3
 ```
 
 ## Usage
 
 ```javascript
-import Particles from "particles.vue3";
+import Particles from "@tsparticles/vue3";
 
 createApp(App).use(Particles)
 ```
@@ -130,7 +130,7 @@ If TypeScript returns error while importing/using Particles plugin try adding th
 code:
 
 ```typescript
-declare module "particles.vue3";
+declare module "@tsparticles/vue3";
 ```
 
 ## Demos
@@ -147,7 +147,7 @@ There's also a CodePen collection actively maintained and updated [here](https:/
 
 If you are migrating your project from Vue 2.x to 3.x you need to these steps:
 
-- Change the dependency from `particles.vue` to `particles.vue3`
+- Change the dependency from `@tsparticles/vue2` to `@tsparticles/vue3`
 - Update the `node_modules` folder executing `npm install` or `yarn`
 - Change the `use` function from `Vue.use(Particles)` to `createApp(App).use(Particles)`.
 

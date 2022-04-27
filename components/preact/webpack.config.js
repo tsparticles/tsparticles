@@ -60,18 +60,18 @@ const getExternals = (target = "cjs") => {
             }
         },
         {
-            "tsparticles-slim": {
-                commonjs: "tsparticles-slim",
-                commonjs2: "tsparticles-slim",
-                amd: "tsparticles-slim",
+            "@tsparticles/slim": {
+                commonjs: "@tsparticles/slim",
+                commonjs2: "@tsparticles/slim",
+                amd: "@tsparticles/slim",
                 root: "window"
             }
         },
         {
-            "tsparticles-engine": {
-                commonjs: "tsparticles-engine",
-                commonjs2: "tsparticles-engine",
-                amd: "tsparticles-engine",
+            "@tsparticles/engine": {
+                commonjs: "@tsparticles/engine",
+                commonjs2: "@tsparticles/engine",
+                amd: "@tsparticles/engine",
                 root: "window"
             }
         },

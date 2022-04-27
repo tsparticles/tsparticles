@@ -2,9 +2,9 @@
 
 # tsParticles Particles Collisions Interaction
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-interaction-particles-collisions/badge)](https://www.jsdelivr.com/package/npm/tsparticles-interaction-particles-collisions)
-[![npmjs](https://badge.fury.io/js/tsparticles-interaction-particles-collisions.svg)](https://www.npmjs.com/package/tsparticles-interaction-particles-collisions)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-interaction-particles-collisions)](https://www.npmjs.com/package/tsparticles-interaction-particles-collisions)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/interaction-particles-collisions/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/interaction-particles-collisions)
+[![npmjs](https://badge.fury.io/js/@tsparticles/interaction-particles-collisions.svg)](https://www.npmjs.com/package/@tsparticles/interaction-particles-collisions)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/interaction-particles-collisions)](https://www.npmjs.com/package/@tsparticles/interaction-particles-collisions)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) interaction plugin for collisions effect between particles.
 
@@ -38,20 +38,20 @@ tsParticles.load("tsparticles", {
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-interaction-particles-collisions
+$ npm install @tsparticles/interaction-particles-collisions
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-interaction-particles-collisions
+$ yarn add @tsparticles/interaction-particles-collisions
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles-engine");
-const { loadParticlesCollisionsInteraction } = require("tsparticles-interaction-particles-collisions");
+const { tsParticles } = require("@tsparticles/engine");
+const { loadParticlesCollisionsInteraction } = require("@tsparticles/interaction-particles-collisions");
 
 loadParticlesCollisionsInteraction(tsParticles);
 ```
@@ -59,8 +59,8 @@ loadParticlesCollisionsInteraction(tsParticles);
 or
 
 ```javascript
-import { tsParticles } from "tsparticles-engine";
-import { loadParticlesCollisionsInteraction } from "tsparticles-interaction-particles-collisions";
+import { tsParticles } from "@tsparticles/engine";
+import { loadParticlesCollisionsInteraction } from "@tsparticles/interaction-particles-collisions";
 
 loadParticlesCollisionsInteraction(tsParticles);
 ```

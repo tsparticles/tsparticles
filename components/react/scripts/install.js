@@ -21,7 +21,7 @@ try {
     }
 
     if (dependencies["react-particles-js"]) {
-        console.error("\x1b[31m%s\x1b[0m", "The package react-particles-js has been deprecated, is not supported anymore, and can cause issues with react-tsparticles package. Please consider removing the deprecated dependency.");
+        console.error("\x1b[31m%s\x1b[0m", "The package react-particles-js has been deprecated, is not supported anymore, and can cause issues with @tsparticles/react package. Please consider removing the deprecated dependency.");
 
         throw new Error(reactParticlesJsFoundError);
     }

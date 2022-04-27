@@ -2,9 +2,9 @@
 
 # tsParticles Size Updater
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-updater-size/badge)](https://www.jsdelivr.com/package/npm/tsparticles-updater-size)
-[![npmjs](https://badge.fury.io/js/tsparticles-updater-size.svg)](https://www.npmjs.com/package/tsparticles-updater-size)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-updater-size)](https://www.npmjs.com/package/tsparticles-updater-size)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/updater-size/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/updater-size)
+[![npmjs](https://badge.fury.io/js/@tsparticles/updater-size.svg)](https://www.npmjs.com/package/@tsparticles/updater-size)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/updater-size)](https://www.npmjs.com/package/@tsparticles/updater-size)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) updater plugin for size animations.
 
@@ -37,20 +37,20 @@ tsParticles.load("tsparticles", {
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-updater-size
+$ npm install @tsparticles/updater-size
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-updater-size
+$ yarn add @tsparticles/updater-size
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles-engine");
-const { loadSizeUpdater } = require("tsparticles-updater-size");
+const { tsParticles } = require("@tsparticles/engine");
+const { loadSizeUpdater } = require("@tsparticles/updater-size");
 
 loadSizeUpdater(tsParticles);
 ```
@@ -58,8 +58,8 @@ loadSizeUpdater(tsParticles);
 or
 
 ```javascript
-import { tsParticles } from "tsparticles-engine";
-import { loadSizeUpdater } from "tsparticles-updater-size";
+import { tsParticles } from "@tsparticles/engine";
+import { loadSizeUpdater } from "@tsparticles/updater-size";
 
 loadSizeUpdater(tsParticles);
 ```

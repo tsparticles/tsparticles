@@ -2,40 +2,40 @@
 
 # tsParticles Slim Bundle
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-slim/badge)](https://www.jsdelivr.com/package/npm/tsparticles-slim) [![npmjs](https://badge.fury.io/js/tsparticles-slim.svg)](https://www.npmjs.com/package/tsparticles-slim) [![npmjs](https://img.shields.io/npm/dt/tsparticles-slim)](https://www.npmjs.com/package/tsparticles-slim)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/slim/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/slim) [![npmjs](https://badge.fury.io/js/@tsparticles/slim.svg)](https://www.npmjs.com/package/@tsparticles/slim) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/slim)](https://www.npmjs.com/package/@tsparticles/slim)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) slim bundle loads some of the most used features to
-a `tsparticles-engine` instance.
+a `@tsparticles/engine` instance.
 
 **Included Packages**
 
-- [tsparticles-engine](https://github.com/matteobruni/tsparticles/tree/main/engine)
-- [tsparticles-interaction-external-attract](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/attract)
-- [tsparticles-interaction-external-bounce](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/bounce)
-- [tsparticles-interaction-external-bubble](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/bubble)
-- [tsparticles-interaction-external-connect](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/connect)
-- [tsparticles-interaction-external-grab](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/grab)
-- [tsparticles-interaction-external-pause](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/pause)
-- [tsparticles-interaction-external-push](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/push)
-- [tsparticles-interaction-external-remove](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/remove)
-- [tsparticles-interaction-external-repulse](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/repulse)
-- [tsparticles-interaction-particles-attract](https://github.com/matteobruni/tsparticles/tree/main/interactions/particles/attract)
-- [tsparticles-interaction-particles-collisions](https://github.com/matteobruni/tsparticles/tree/main/interactions/particles/collisions)
-- [tsparticles-interaction-particles-links](https://github.com/matteobruni/tsparticles/tree/main/interactions/particles/links)
-- [tsparticles-shape-circle](https://github.com/matteobruni/tsparticles/tree/main/shapes/circle)
-- [tsparticles-shape-image](https://github.com/matteobruni/tsparticles/tree/main/shapes/image)
-- [tsparticles-shape-line](https://github.com/matteobruni/tsparticles/tree/main/shapes/line)
-- [tsparticles-shape-polygon](https://github.com/matteobruni/tsparticles/tree/main/shapes/polygon)
-- [tsparticles-shape-square](https://github.com/matteobruni/tsparticles/tree/main/shapes/square)
-- [tsparticles-shape-star](https://github.com/matteobruni/tsparticles/tree/main/shapes/star)
-- [tsparticles-shape-text](https://github.com/matteobruni/tsparticles/tree/main/shapes/text)
-- [tsparticles-updater-angle](https://github.com/matteobruni/tsparticles/tree/main/updaters/angle)
-- [tsparticles-updater-color](https://github.com/matteobruni/tsparticles/tree/main/updaters/color)
-- [tsparticles-updater-life](https://github.com/matteobruni/tsparticles/tree/main/updaters/life)
-- [tsparticles-updater-opacity](https://github.com/matteobruni/tsparticles/tree/main/updaters/opacity)
-- [tsparticles-updater-out-modes](https://github.com/matteobruni/tsparticles/tree/main/updaters/outModes)
-- [tsparticles-updater-size](https://github.com/matteobruni/tsparticles/tree/main/updaters/size)
-- [tsparticles-updater-stroke-color](https://github.com/matteobruni/tsparticles/tree/main/updaters/strokeColor)
+- [@tsparticles/engine](https://github.com/matteobruni/tsparticles/tree/main/engine)
+- [@tsparticles/interaction-external-attract](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/attract)
+- [@tsparticles/interaction-external-bounce](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/bounce)
+- [@tsparticles/interaction-external-bubble](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/bubble)
+- [@tsparticles/interaction-external-connect](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/connect)
+- [@tsparticles/interaction-external-grab](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/grab)
+- [@tsparticles/interaction-external-pause](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/pause)
+- [@tsparticles/interaction-external-push](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/push)
+- [@tsparticles/interaction-external-remove](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/remove)
+- [@tsparticles/interaction-external-repulse](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/repulse)
+- [@tsparticles/interaction-particles-attract](https://github.com/matteobruni/tsparticles/tree/main/interactions/particles/attract)
+- [@tsparticles/interaction-particles-collisions](https://github.com/matteobruni/tsparticles/tree/main/interactions/particles/collisions)
+- [@tsparticles/interaction-particles-links](https://github.com/matteobruni/tsparticles/tree/main/interactions/particles/links)
+- [@tsparticles/shape-circle](https://github.com/matteobruni/tsparticles/tree/main/shapes/circle)
+- [@tsparticles/shape-image](https://github.com/matteobruni/tsparticles/tree/main/shapes/image)
+- [@tsparticles/shape-line](https://github.com/matteobruni/tsparticles/tree/main/shapes/line)
+- [@tsparticles/shape-polygon](https://github.com/matteobruni/tsparticles/tree/main/shapes/polygon)
+- [@tsparticles/shape-square](https://github.com/matteobruni/tsparticles/tree/main/shapes/square)
+- [@tsparticles/shape-star](https://github.com/matteobruni/tsparticles/tree/main/shapes/star)
+- [@tsparticles/shape-text](https://github.com/matteobruni/tsparticles/tree/main/shapes/text)
+- [@tsparticles/updater-angle](https://github.com/matteobruni/tsparticles/tree/main/updaters/angle)
+- [@tsparticles/updater-color](https://github.com/matteobruni/tsparticles/tree/main/updaters/color)
+- [@tsparticles/updater-life](https://github.com/matteobruni/tsparticles/tree/main/updaters/life)
+- [@tsparticles/updater-opacity](https://github.com/matteobruni/tsparticles/tree/main/updaters/opacity)
+- [@tsparticles/updater-out-modes](https://github.com/matteobruni/tsparticles/tree/main/updaters/outModes)
+- [@tsparticles/updater-size](https://github.com/matteobruni/tsparticles/tree/main/updaters/size)
+- [@tsparticles/updater-stroke-color](https://github.com/matteobruni/tsparticles/tree/main/updaters/strokeColor)
 
 ## How to use it
 
@@ -83,9 +83,9 @@ _Class Components_
 
 ```typescript jsx
 import React from "react";
-import Particles from "react-tsparticles";
-import type { Engine } from "tsparticles-engine";
-import { loadSlim } from "tsparticles-slim";
+import Particles from "@tsparticles/react";
+import type { Engine } from "@tsparticles/engine";
+import { loadSlim } from "@tsparticles/slim";
 
 export class ParticlesContainer extends PureComponent<unknown> {
   // this customizes the component tsParticles installation
@@ -108,9 +108,9 @@ _Hooks / Functional Components_
 
 ```typescript jsx
 import React, { useCallback } from "react";
-import Particles from "react-tsparticles";
-import type { Engine } from "tsparticles-engine";
-import { loadSlim } from "tsparticles-slim";
+import Particles from "@tsparticles/react";
+import type { Engine } from "@tsparticles/engine";
+import { loadSlim } from "@tsparticles/slim";
 
 export function ParticlesContainer(props: unknown) {
   // this customizes the component tsParticles installation
@@ -144,12 +144,12 @@ function particlesInit(engine: Engine) {
 ### Angular
 
 ```html
-<ng-particles
+<@tsparticles/angular
   [id]="id"
   [options]="particlesOptions"
   (particlesLoaded)="particlesLoaded($event)"
   (particlesInit)="particlesInit($event)"
-></ng-particles>
+></@tsparticles/angular>
 ```
 
 ```ts

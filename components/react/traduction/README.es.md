@@ -1,21 +1,21 @@
 [![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
 
-# react-tsparticles
+# @tsparticles/react
 
-[![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/react)](https://www.npmjs.com/package/@tsparticles/react) [![npm](https://img.shields.io/npm/dm/@tsparticles/react)](https://www.npmjs.com/package/@tsparticles/react)
 
 Componentes Oficiales de ReactJS [tsParticles](https://github.com/matteobruni/tsparticles)
 
 ## Instalación
 
 ```shell
-npm install react-tsparticles react
+npm install @tsparticles/react react
 ```
 
 o
 
 ```shell
-yarn add react-tsparticles react
+yarn add @tsparticles/react react
 ```
 
 #### create-react-app
@@ -46,7 +46,7 @@ Ejemplos:
 _URL Remota_
 
 ```javascript
-import Particles from "react-tsparticles";
+import Particles from "@tsparticles/react";
 
 const App = () => {
   const particlesInit = (main) => {
@@ -68,7 +68,7 @@ const App = () => {
 _Objeto de Opciones_
 
 ```javascript
-import Particles from "react-tsparticles";
+import Particles from "@tsparticles/react";
 
 const App = () => {
   const particlesInit = (main) => {

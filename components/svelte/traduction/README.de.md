@@ -1,8 +1,8 @@
 [![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# svelte-particles
+# @tsparticles/svelte
 
-[![npm](https://img.shields.io/npm/v/svelte-particles)](https://www.npmjs.com/package/svelte-particles) [![npm downloads](https://img.shields.io/npm/dm/svelte-particles)](https://www.npmjs.com/package/svelte-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/svelte)](https://www.npmjs.com/package/@tsparticles/svelte) [![npm downloads](https://img.shields.io/npm/dm/@tsparticles/svelte)](https://www.npmjs.com/package/@tsparticles/svelte)
 
 Offizieller [tsParticles](https://github.com/matteobruni/tsparticles) SvelteJS-Komponent.
 
@@ -14,7 +14,7 @@ Offizieller [tsParticles](https://github.com/matteobruni/tsparticles) SvelteJS-K
 
 ```shell
 
-npm install svelte-particles
+npm install @tsparticles/svelte
 
 ```
 
@@ -22,7 +22,7 @@ oder
 
 ```shell
 
-yarn add svelte-particles
+yarn add @tsparticles/svelte
 
 ```
 
@@ -30,7 +30,7 @@ yarn add svelte-particles
 
 ```html
 <script>
-  import Particles from 'svelte-particles';
+  import Particles from '@tsparticles/svelte';
 
   let particlesConfig = {
     particles: {
@@ -79,7 +79,7 @@ Im Folgenden siehst du ein Beispiel:
   let ParticlesComponent;
 
   onMount(async () => {
-    const module = await import('svelte-particles');
+    const module = await import('@tsparticles/svelte');
 
     ParticlesComponent = module.default;
   });

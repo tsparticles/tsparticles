@@ -1,4 +1,4 @@
-import type { IColor } from "tsparticles-engine";
+import type { IColor } from "@tsparticles/engine";
 
 /**
  * @category Polygon Mask Plugin

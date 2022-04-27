@@ -1,8 +1,8 @@
 [![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# ng-particles
+# @tsparticles/angular
 
-[![npm](https://img.shields.io/npm/v/ng-particles)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/ng-particles)](https://www.npmjs.com/package/ng-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/angular)](https://www.npmjs.com/package/@tsparticles/angular) [![npm](https://img.shields.io/npm/dm/@tsparticles/angular)](https://www.npmjs.com/package/@tsparticles/angular)
 
 Službena [tsParticles](https://github.com/matteobruni/tsparticles) Angular komponenta
 
@@ -15,13 +15,13 @@ Službena [tsParticles](https://github.com/matteobruni/tsparticles) Angular komp
 ### Instalacija
 
 ```shell script
-npm install ng-particles tsparticles
+npm install @tsparticles/angular tsparticles
 ```
 
 ili
 
 ```shell script
-yarn add ng-particles tsparticles
+yarn add @tsparticles/angular tsparticles
 ```
 
 ### Upotreba
@@ -30,13 +30,13 @@ _template.html_
 
 ```html
 
-<ng-particles [id]="id" [options]="particlesOptions" (particlesLoaded)="particlesLoaded($event)"
-              (particlesInit)="particlesInit($event)"></ng-particles>
+<@tsparticles/angular [id]="id" [options]="particlesOptions" (particlesLoaded)="particlesLoaded($event)"
+              (particlesInit)="particlesInit($event)"></@tsparticles/angular>
 
 <!-- ili -->
 
-<ng-particles [id]="id" [url]="particlesUrl" (particlesLoaded)="particlesLoaded($event)"
-              (particlesInit)="particlesInit($event)"></ng-particles>
+<@tsparticles/angular [id]="id" [url]="particlesUrl" (particlesLoaded)="particlesLoaded($event)"
+              (particlesInit)="particlesInit($event)"></@tsparticles/angular>
 ```
 
 _app.ts_
@@ -134,7 +134,7 @@ export class AppComponent {
   async particlesInit(engine: Engine): Promise<void> {
     console.log(engine);
 
-    // Počevši od 1.19.0 možete dodati custom postavke ili oblike, koristeći trenutnu verziju tsParticles-a (main)
+    // Počevši od 1.19.0 možete dodati custom postavke ili oblike, koristeći trenutnu verziju @tsparticles/a (main)
   }
 }
 ```
@@ -142,7 +142,7 @@ export class AppComponent {
 _app.module.ts_
 
 ```typescript
-import { NgParticlesModule } from "ng-particles";
+import { NgParticlesModule } from "@tsparticles/angular";
 import { NgModule } from "@angular/core";
 
 @NgModule({

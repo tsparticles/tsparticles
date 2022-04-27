@@ -28,7 +28,7 @@ import CodeViewer from './components/code-viewer.vue';
 import stringifyObject from 'stringify-object';
 import { Options, Vue } from "vue-class-component";
 import { optionsMap } from './map-options';
-import type { Engine } from "tsparticles-engine";
+import type { Engine } from "@tsparticles/engine";
 import { loadFull } from "tsparticles";
 
 @Options({

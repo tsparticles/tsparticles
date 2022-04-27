@@ -1,5 +1,5 @@
-import { MoveDirection, OutMode } from "tsparticles-engine";
-import type { ISourceOptions } from "tsparticles-engine";
+import { MoveDirection, OutMode } from "@tsparticles/engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 export const options: ISourceOptions = {
     fpsLimit: 120,

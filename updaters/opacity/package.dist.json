@@ -1,5 +1,5 @@
 {
-  "name": "tsparticles-updater-opacity",
+  "name": "@tsparticles/updater-opacity",
   "version": "2.0.6",
   "description": "tsParticles particles opacity updater",
   "homepage": "https://particles.js.org/",
@@ -58,8 +58,8 @@
     "confettijs",
     "fireworksjs",
     "canvas-confetti",
-    "tsparticles-plugin",
-    "tsparticles-updater"
+    "@tsparticles/plugin",
+    "@tsparticles/updater"
   ],
   "author": "Matteo Bruni",
   "license": "MIT",
@@ -72,6 +72,6 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.0.6"
+    "@tsparticles/engine": "^2.0.6"
   }
 }

@@ -1,8 +1,8 @@
 [![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# riot-particles
+# @tsparticles/riot
 
-[![npm](https://img.shields.io/npm/v/riot-particles)](https://www.npmjs.com/package/riot-particles) [![npm downloads](https://img.shields.io/npm/dm/riot-particles)](https://www.npmjs.com/package/riot-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/riot)](https://www.npmjs.com/package/@tsparticles/riot) [![npm downloads](https://img.shields.io/npm/dm/@tsparticles/riot)](https://www.npmjs.com/package/@tsparticles/riot)
 
 Official [tsParticles](https://github.com/matteobruni/tsparticles) RiotJS component
 
@@ -13,20 +13,20 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) RiotJS compon
 ## Installation
 
 ```shell
-npm install riot-particles
+npm install @tsparticles/riot
 ```
 
 or
 
 ```shell
-yarn add riot-particles
+yarn add @tsparticles/riot
 ```
 
 ## Usage
 
 ```html
 
-<riot-particles id="tsparticles" options='{{
+<@tsparticles/riot id="tsparticles" options='{{
         background: {
             color: "#000"
         },
@@ -50,7 +50,7 @@ yarn add riot-particles
     }}' particlesLoaded='{(container) => console.log(container)}'/>
 
 <script>
-    import RiotParticles from "riot-particles";
+    import RiotParticles from "@tsparticles/riot";
     import { loadFull } from "tsparticles";
 
     export default {
@@ -62,7 +62,7 @@ yarn add riot-particles
 
 <!-- or -->
 
-<riot-particles
+<@tsparticles/riot
         id="tsparticles"
         url="https://foo.bar/particles.json"
         particlesInit='{async (main) => {

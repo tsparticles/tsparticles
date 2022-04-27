@@ -1,8 +1,8 @@
 [![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# inferno-particles
+# @tsparticles/inferno
 
-[![npm](https://img.shields.io/npm/v/inferno-particles)](https://www.npmjs.com/package/inferno-particles) [![npm](https://img.shields.io/npm/dm/inferno-particles)](https://www.npmjs.com/package/inferno-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/inferno)](https://www.npmjs.com/package/@tsparticles/inferno) [![npm](https://img.shields.io/npm/dm/@tsparticles/inferno)](https://www.npmjs.com/package/@tsparticles/inferno)
 
 Official [tsParticles](https://github.com/matteobruni/tsparticles) Inferno component
 
@@ -13,13 +13,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) Inferno compo
 ## Installation
 
 ```shell
-npm install inferno-particles
+npm install @tsparticles/inferno
 ```
 
 or
 
 ```shell
-yarn add inferno-particles
+yarn add @tsparticles/inferno
 ```
 
 ## How to use
@@ -31,7 +31,7 @@ Examples:
 _Remote url_
 
 ```javascript
-import Particles from "inferno-particles";
+import Particles from "@tsparticles/inferno";
 import { loadFull } from "tsparticles";
 
 class App extends Component {
@@ -71,7 +71,7 @@ class App extends Component {
 _Options object_
 
 ```javascript
-import Particles from "inferno-particles";
+import Particles from "@tsparticles/inferno";
 import { loadFull } from "tsparticles";
 
 class App extends Component {

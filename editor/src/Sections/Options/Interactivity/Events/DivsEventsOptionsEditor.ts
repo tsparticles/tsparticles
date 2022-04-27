@@ -1,5 +1,5 @@
-import type { Container, IDivEvent, SingleOrMultiple } from "tsparticles-engine";
-import { DivMode, DivType } from "tsparticles-engine";
+import type { Container, IDivEvent, SingleOrMultiple } from "@tsparticles/engine";
+import { DivMode, DivType } from "@tsparticles/engine";
 import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
 

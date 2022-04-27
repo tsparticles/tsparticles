@@ -1,8 +1,8 @@
 [![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# ng-particles
+# @tsparticles/angular
 
-[![npm](https://img.shields.io/npm/v/ng-particles)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/ng-particles)](https://www.npmjs.com/package/ng-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/angular)](https://www.npmjs.com/package/@tsparticles/angular) [![npm](https://img.shields.io/npm/dm/@tsparticles/angular)](https://www.npmjs.com/package/@tsparticles/angular)
 
 Offizieller [tsParticles](https://github.com/matteobruni/tsparticles) Angular-Komponent
 
@@ -16,7 +16,7 @@ Offizieller [tsParticles](https://github.com/matteobruni/tsparticles) Angular-Ko
 
 ```shell script
 
-npm install ng-particles
+npm install @tsparticles/angular
 
 ```
 
@@ -24,7 +24,7 @@ oder
 
 ```shell script
 
-yarn add ng-particles
+yarn add @tsparticles/angular
 
 ```
 
@@ -167,7 +167,7 @@ export class AppComponent {
 _app.module.ts_
 
 ```typescript
-import { NgParticlesModule } from 'ng-particles';
+import { NgParticlesModule } from '@tsparticles/angular';
 
 import { NgModule } from '@angular/core';
 

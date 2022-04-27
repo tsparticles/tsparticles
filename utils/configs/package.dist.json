@@ -1,5 +1,5 @@
 {
-  "name": "tsparticles-demo-configs",
+  "name": "@tsparticles/demo-configs",
   "version": "1.0.6",
   "description": "tsParticles demo configurations",
   "homepage": "https://particles.js.org/",
@@ -80,6 +80,6 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.0.6"
+    "@tsparticles/engine": "^2.0.6"
   }
 }

@@ -178,65 +178,65 @@ particles.pause();
 
 ### Angular
 
-#### `ng-particles`
+#### `@tsparticles/angular`
 
-[![npm](https://img.shields.io/npm/v/ng-particles)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/ng-particles)](https://www.npmjs.com/package/ng-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/angular)](https://www.npmjs.com/package/@tsparticles/angular) [![npm](https://img.shields.io/npm/dm/@tsparticles/angular)](https://www.npmjs.com/package/@tsparticles/angular)
 
 Anda dapat menemukan instruksinya di [sini](https://github.com/matteobruni/tsparticles/blob/main/components/angular/README.md)
 
 ### Inferno
 
-#### `inferno-particles`
+#### `@tsparticles/inferno`
 
-[![npm](https://img.shields.io/npm/v/inferno-particles)](https://www.npmjs.com/package/inferno-particles) [![npm](https://img.shields.io/npm/dm/inferno-particles)](https://www.npmjs.com/package/inferno-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/inferno)](https://www.npmjs.com/package/@tsparticles/inferno) [![npm](https://img.shields.io/npm/dm/@tsparticles/inferno)](https://www.npmjs.com/package/@tsparticles/inferno)
 
 Anda dapat menemukan instruksinya di [sini](https://github.com/matteobruni/tsparticles/blob/main/components/inferno/README.md)
 
 ### jQuery
 
-#### `jquery-particles`
+#### `@tsparticles/jquery`
 
-[![npm](https://img.shields.io/npm/v/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles)](https://www.npmjs.com/package/jquery-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/jquery)](https://www.npmjs.com/package/@tsparticles/jquery) [![npm](https://img.shields.io/npm/dm/@tsparticles/jquery)](https://www.npmjs.com/package/@tsparticles/jquery)
 
 Anda dapat menemukan instruksinya di [sini](https://github.com/matteobruni/tsparticles/blob/main/components/jquery/README.md)
 
 ### Preact
 
-#### `preact-particles`
+#### `@tsparticles/preact`
 
-[![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/preact)](https://www.npmjs.com/package/@tsparticles/preact) [![npm](https://img.shields.io/npm/dm/@tsparticles/preact)](https://www.npmjs.com/package/@tsparticles/preact)
 
 Anda dapat menemukan instruksinya di [sini](https://github.com/matteobruni/tsparticles/blob/main/components/preact/README.md)
 
 ### ReactJS
 
-#### `react-tsparticles`
+#### `@tsparticles/react`
 
-[![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/react)](https://www.npmjs.com/package/@tsparticles/react) [![npm](https://img.shields.io/npm/dm/@tsparticles/react)](https://www.npmjs.com/package/@tsparticles/react)
 
 Anda dapat menemukan instruksinya di [sini](https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md)
 
 ### Svelte
 
-#### `svelte-particles`
+#### `@tsparticles/svelte`
 
-[![npm](https://img.shields.io/npm/v/svelte-particles)](https://www.npmjs.com/package/svelte-particles) [![npm downloads](https://img.shields.io/npm/dm/svelte-particles)](https://www.npmjs.com/package/svelte-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/svelte)](https://www.npmjs.com/package/@tsparticles/svelte) [![npm downloads](https://img.shields.io/npm/dm/@tsparticles/svelte)](https://www.npmjs.com/package/@tsparticles/svelte)
 
 Anda dapat menemukan instruksinya di [sini](https://github.com/matteobruni/tsparticles/blob/main/components/svelte/README.md)
 
 ### VueJS 2.x
 
-#### `particles.vue`
+#### `@tsparticles/vue2`
 
-[![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue)
+[![npm](https://img.shields.io/npm/v/@tsparticles/vue2)](https://www.npmjs.com/package/@tsparticles/vue2) [![npm](https://img.shields.io/npm/dm/@tsparticles/vue2)](https://www.npmjs.com/package/@tsparticles/vue2)
 
 Anda dapat menemukan instruksinya di [sini](https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md)
 
 ### VueJS 3.x
 
-#### `particles.vue3`
+#### `@tsparticles/vue3`
 
-[![npm](https://img.shields.io/npm/v/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![npm](https://img.shields.io/npm/dm/particles.vue3)](https://www.npmjs.com/package/particles.vue3)
+[![npm](https://img.shields.io/npm/v/@tsparticles/vue3)](https://www.npmjs.com/package/@tsparticles/vue3) [![npm](https://img.shields.io/npm/dm/@tsparticles/vue3)](https://www.npmjs.com/package/@tsparticles/vue3)
 
 Anda dapat menemukan instruksinya di [sini](https://github.com/matteobruni/tsparticles/blob/main/components/vue3/README.md)
 
@@ -338,9 +338,9 @@ Library **tsParticles** sepenuhnya kompatibel dengan konfigurasi _particles.js_.
 
 Serius, Anda cukup mengganti sumber script dan et-voilà, **siap digunakan** 🧙!
 
-Anda dapat membaca lebih banyak di **[sini](https://dev.to/matteobruni/migrating-from-particles-js-to-tsparticles-2a6m)**
+Anda dapat membaca lebih banyak di **[sini](https://dev.to/matteobruni/migrating-from-particles-js-to-@tsparticles/2a6m)**
 
-Ingin tahu 5 alasan untuk migrasi? [Baca di sini](https://dev.to/matteobruni/5-reasons-to-use-tsparticles-and-not-particles-js-1gbe)
+Ingin tahu 5 alasan untuk migrasi? [Baca di sini](https://dev.to/matteobruni/5-reasons-to-use-@tsparticles/and-not-particles-js-1gbe)
 
 _Di bawah ini Anda dapat menemukan semua informasi yang dibutuhkan untuk memasang tsParticles dan sintaksis barunya._
 

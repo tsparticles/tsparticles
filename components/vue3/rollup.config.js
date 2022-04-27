@@ -6,7 +6,7 @@ export default [ {
     input: 'src/Particles/index.ts',
     output: {
         format: 'esm',
-        file: 'dist/particles.vue.js',
+        file: 'dist/@tsparticles/vue2.js',
     },
     external: [ 'vue', 'vue-class-component', 'tsparticles' ],
     plugins: [
@@ -22,7 +22,7 @@ export default [ {
         input: 'src/Particles/index.ts',
         output: {
             format: 'esm',
-            file: 'dist/particles.vue.min.js'
+            file: 'dist/@tsparticles/vue2.min.js'
         },
         external: [ 'vue', 'vue-class-component', 'tsparticles' ],
         plugins: [

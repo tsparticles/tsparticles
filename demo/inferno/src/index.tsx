@@ -1,8 +1,8 @@
 import { Component, render, version } from 'inferno';
 import { Incrementer } from './components/Incrementer';
-import Particles from "inferno-particles";
+import Particles from "@tsparticles/inferno";
 import './main.css';
-import { Engine } from "tsparticles-engine";
+import { Engine } from "@tsparticles/engine";
 import { loadFull } from "tsparticles";
 
 const container = document.getElementById('app');

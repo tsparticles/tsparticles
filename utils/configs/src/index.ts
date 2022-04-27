@@ -102,7 +102,7 @@ import virus from "./virus.json";
 import warp from "./warp.json";
 import wobble from "./wobble.json";
 import zindex from "./zindex.json";
-import { tsParticles } from "tsparticles-engine";
+import { tsParticles } from "@tsparticles/engine";
 
 const mainConfigs = tsParticles as unknown as {
     configs: unknown;

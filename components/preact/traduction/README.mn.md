@@ -1,8 +1,8 @@
 [![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# preact-particles
+# @tsparticles/preact
 
-[![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/preact)](https://www.npmjs.com/package/@tsparticles/preact) [![npm](https://img.shields.io/npm/dm/@tsparticles/preact)](https://www.npmjs.com/package/@tsparticles/preact)
 
 Албан ёсны [tsParticles](https://github.com/matteobruni/tsparticles) Preact компонэнт
 
@@ -13,13 +13,13 @@
 ## Татах
 
 ```shell
-npm install preact-particles preact
+npm install @tsparticles/preact preact
 ```
 
 эсвэл
 
 ```shell
-yarn add preact-particles preact
+yarn add @tsparticles/preact preact
 ```
 
 ## Хэрхэн ашиглах
@@ -31,7 +31,7 @@ yarn add preact-particles preact
 _Remote url_
 
 ```javascript
-import Particles from "preact-particles";
+import Particles from "@tsparticles/preact";
 
 class App extends Component {
   constructor(props) {
@@ -67,7 +67,7 @@ class App extends Component {
 _Options object_
 
 ```javascript
-import Particles from "preact-particles";
+import Particles from "@tsparticles/preact";
 
 class App extends Component {
   constructor(props) {

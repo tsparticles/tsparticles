@@ -1,4 +1,4 @@
-import type { ISourceOptions, RecursivePartial } from "tsparticles-engine";
+import type { ISourceOptions, RecursivePartial } from "@tsparticles/engine";
 import { ConfettiOptions } from "./ConfettiOptions";
 import type { IConfettiOptions } from "./IConfettiOptions";
 

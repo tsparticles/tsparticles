@@ -1,4 +1,4 @@
-import type { Engine } from "tsparticles-engine";
+import type { Engine } from "@tsparticles/engine";
 import { Pauser } from "./Pauser";
 
 export function loadExternalPauseInteraction(engine: Engine): void {

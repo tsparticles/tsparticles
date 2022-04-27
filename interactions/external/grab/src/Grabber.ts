@@ -6,8 +6,8 @@ import {
     getLinkRandomColor,
     isInArray,
     mouseMoveEvent,
-} from "tsparticles-engine";
-import type { Container } from "tsparticles-engine";
+} from "@tsparticles/engine";
+import type { Container } from "@tsparticles/engine";
 
 /**
  * Particle grab manager

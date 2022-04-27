@@ -2,9 +2,9 @@
 
 # tsParticles Orbit Updater
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-updater-orbit/badge)](https://www.jsdelivr.com/package/npm/tsparticles-updater-orbit)
-[![npmjs](https://badge.fury.io/js/tsparticles-updater-orbit.svg)](https://www.npmjs.com/package/tsparticles-updater-orbit)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-updater-orbit)](https://www.npmjs.com/package/tsparticles-updater-orbit)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/updater-orbit/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/updater-orbit)
+[![npmjs](https://badge.fury.io/js/@tsparticles/updater-orbit.svg)](https://www.npmjs.com/package/@tsparticles/updater-orbit)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/updater-orbit)](https://www.npmjs.com/package/@tsparticles/updater-orbit)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) updater plugin for orbit animations.
 
@@ -37,20 +37,20 @@ tsParticles.load("tsparticles", {
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-updater-orbit
+$ npm install @tsparticles/updater-orbit
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-updater-orbit
+$ yarn add @tsparticles/updater-orbit
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles-engine");
-const { loadOrbitUpdater } = require("tsparticles-updater-orbit");
+const { tsParticles } = require("@tsparticles/engine");
+const { loadOrbitUpdater } = require("@tsparticles/updater-orbit");
 
 loadOrbitUpdater(tsParticles);
 ```
@@ -58,8 +58,8 @@ loadOrbitUpdater(tsParticles);
 or
 
 ```javascript
-import { tsParticles } from "tsparticles-engine";
-import { loadOrbitUpdater } from "tsparticles-updater-orbit";
+import { tsParticles } from "@tsparticles/engine";
+import { loadOrbitUpdater } from "@tsparticles/updater-orbit";
 
 loadOrbitUpdater(tsParticles);
 ```

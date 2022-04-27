@@ -1,5 +1,5 @@
 {
-  "name": "webpack-tsparticles-plugin",
+  "name": "webpack-@tsparticles/plugin",
   "version": "1.0.4",
   "main": "webpack-tsparticles.js",
   "license": "MIT",

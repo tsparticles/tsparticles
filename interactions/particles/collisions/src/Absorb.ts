@@ -1,5 +1,5 @@
-import type { Particle } from "tsparticles-engine";
-import { clamp } from "tsparticles-engine";
+import type { Particle } from "@tsparticles/engine";
+import { clamp } from "@tsparticles/engine";
 
 export function absorb(p1: Particle, p2: Particle, fps: number, pixelRatio: number): void {
     if (p1.getRadius() === undefined && p2.getRadius() !== undefined) {

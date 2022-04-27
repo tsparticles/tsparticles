@@ -1,4 +1,4 @@
-import type { Container, IShapeDrawer, Particle } from "tsparticles-engine";
+import type { Container, IShapeDrawer, Particle } from "@tsparticles/engine";
 import { IImage, IImageParticle, IParticleImage, downloadSvgImage, loadImage, replaceImageColor } from "./Utils";
 import { IImageShape } from "./IImageShape";
 

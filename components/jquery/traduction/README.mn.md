@@ -1,8 +1,8 @@
 [![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# jquery-particles
+# @tsparticles/jquery
 
-[![npm](https://img.shields.io/npm/v/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles)](https://www.npmjs.com/package/jquery-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/jquery)](https://www.npmjs.com/package/@tsparticles/jquery) [![npm](https://img.shields.io/npm/dm/@tsparticles/jquery)](https://www.npmjs.com/package/@tsparticles/jquery)
 
 Албан ёсны [tsParticles](https://github.com/matteobruni/tsparticles) jQuery залгаас
 
@@ -13,19 +13,19 @@
 ## Татах
 
 ```shell script
-npm install jquery-particles jquery
+npm install @tsparticles/jquery jquery
 ```
 
 эсвэл jsDelivr -ээс
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/jquery-particles/badge)](https://www.jsdelivr.com/package/npm/jquery-particles)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/jquery/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/jquery)
 
 ```html
 <!-- эхлээд tsParticles -ийн оруулах -->
 <script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
 
 <!-- дараа нь jquery wrapper оруулах -->
-<script src="https://cdn.jsdelivr.net/npm/jquery-particles"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/jquery"></script>
 ```
 
 ## Хэрхэн ашиглах

@@ -10,7 +10,7 @@
 | `interactivity`  | `object`           |                                        | Ver las opciones de Interactividad {@link IInteractivity | aquí}                                                                                                                                                |
 | `particles`      | `object`           |                                        | Ver las opciones de Partículas {@link IParticles | aquí}                                                                                                                                                        |
 | `pauseOnBlur`    | `boolean`          | `true` / `false`                       | pausa las animaciones cuando la página está en segundo plano                                                                                                                                                |
-| `preset`         | `string` / `array` | `"basic"`<br /> `[ "basic", "60fps" ]` | Puede usar esta propiedad para cargar uno o más ajustes predefinidos para enfocar propiedades importantes y no toda la configuración. Puedes encontrar ajustes predefinidos en `npm` [here](https://www.npmjs.com/search?q=tsparticles-preset) |
+| `preset`         | `string` / `array` | `"basic"`<br /> `[ "basic", "60fps" ]` | Puede usar esta propiedad para cargar uno o más ajustes predefinidos para enfocar propiedades importantes y no toda la configuración. Puedes encontrar ajustes predefinidos en `npm` [here](https://www.npmjs.com/search?q=@tsparticles/preset) |
 
 ## Plugins
 

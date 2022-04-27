@@ -1,21 +1,21 @@
 [![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
 
-# preact-particles
+# @tsparticles/preact
 
-[![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/preact)](https://www.npmjs.com/package/@tsparticles/preact) [![npm](https://img.shields.io/npm/dm/@tsparticles/preact)](https://www.npmjs.com/package/@tsparticles/preact)
 
 Componente Oficial Preact [tsParticles](https://github.com/matteobruni/tsparticles)
 
 ## Instalación
 
 ```shell
-npm install preact-particles preact
+npm install @tsparticles/preact preact
 ```
 
 o
 
 ```shell
-yarn add preact-particles preact
+yarn add @tsparticles/preact preact
 ```
 
 ## Cómo usar?
@@ -27,7 +27,7 @@ Ejemplos:
 _URL Remota_
 
 ```javascript
-import Particles from "preact-particles";
+import Particles from "@tsparticles/preact";
 
 class App extends Component {
   constructor(props) {
@@ -63,7 +63,7 @@ class App extends Component {
 _Objeto de opciones_
 
 ```javascript
-import Particles from "preact-particles";
+import Particles from "@tsparticles/preact";
 
 class App extends Component {
   constructor(props) {

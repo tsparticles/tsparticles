@@ -5,8 +5,8 @@
 <script lang="ts">
 import { nextTick, PropType } from "vue";
 import { Options, Vue } from "vue-class-component";
-import { tsParticles } from "tsparticles-engine";
-import type { Container, ISourceOptions, Engine } from "tsparticles-engine";
+import { tsParticles } from "@tsparticles/engine";
+import type { Container, ISourceOptions, Engine } from "@tsparticles/engine";
 
 export type IParticlesProps = ISourceOptions;
 export type IParticlesParams = IParticlesProps;

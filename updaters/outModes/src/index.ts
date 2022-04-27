@@ -1,4 +1,4 @@
-import type { Engine } from "tsparticles-engine";
+import type { Engine } from "@tsparticles/engine";
 import { OutOfCanvasUpdater } from "./OutOfCanvasUpdater";
 
 export async function loadOutModesUpdater(engine: Engine): Promise<void> {

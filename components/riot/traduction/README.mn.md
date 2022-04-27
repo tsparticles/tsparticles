@@ -1,8 +1,8 @@
 [![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# riot-particles
+# @tsparticles/riot
 
-[![npm](https://img.shields.io/npm/v/riot-particles)](https://www.npmjs.com/package/riot-particles) [![npm downloads](https://img.shields.io/npm/dm/riot-particles)](https://www.npmjs.com/package/riot-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/riot)](https://www.npmjs.com/package/@tsparticles/riot) [![npm downloads](https://img.shields.io/npm/dm/@tsparticles/riot)](https://www.npmjs.com/package/@tsparticles/riot)
 
 Албан ёсны [tsParticles](https://github.com/matteobruni/tsparticles) RiotJS компонэнт
 
@@ -13,20 +13,20 @@
 ## Татах
 
 ```shell
-npm install riot-particles riot
+npm install @tsparticles/riot riot
 ```
 
 эсвэл
 
 ```shell
-yarn add riot-particles riot
+yarn add @tsparticles/riot riot
 ```
 
 ## Хэрхэн ашиглах
 
 ```html
 
-<riot-particles id="tsparticles" options='{{
+<@tsparticles/riot id="tsparticles" options='{{
         background: {
             color: "#000"
         },
@@ -44,7 +44,7 @@ yarn add riot-particles riot
     }}' particlesInit='{(main) => console.log(main)}' particlesLoaded='{(container) => console.log(container)}'/>
 
 <script>
-    import RiotParticles from 'riot-particles';
+    import RiotParticles from '@tsparticles/riot';
 
     export default {
         components: {
@@ -55,7 +55,7 @@ yarn add riot-particles riot
 
 <!-- эсвэл -->
 
-<riot-particles
+<@tsparticles/riot
         id="tsparticles"
         url="https://foo.bar/particles.json"
         particlesInit='{(main) => console.log(main)}' particlesLoaded='{(container) => console.log(container)}'/>

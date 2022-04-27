@@ -1,4 +1,4 @@
-import type { BubbleDiv, Container, DivEvent, Particle } from "tsparticles-engine";
+import type { BubbleDiv, Container, DivEvent, Particle } from "@tsparticles/engine";
 import {
     Circle,
     ClickMode,
@@ -20,7 +20,7 @@ import {
     mouseLeaveEvent,
     mouseMoveEvent,
     rgbToHsl,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { IBubblerProcessParam } from "./IBubblerProcessParam";
 import { ProcessBubbleType } from "./ProcessBubbleType";
 

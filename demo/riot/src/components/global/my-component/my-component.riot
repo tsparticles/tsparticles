@@ -1,11 +1,11 @@
 <my-component>
     <p>{ props.message }</p>
 
-    <riot-particles id="tsparticles" options='{particlesConfig}' particlesInit='{particlesInit}'
+    <@tsparticles/riot id="tsparticles" options='{particlesConfig}' particlesInit='{particlesInit}'
                     particlesLoaded='{particlesLoaded}'/>
 
     <script>
-        import RiotParticles from "riot-particles";
+        import RiotParticles from "@tsparticles/riot";
         import { loadFull } from "tsparticles";
 
         export default {

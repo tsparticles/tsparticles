@@ -1,4 +1,4 @@
-import type { IShapeValues } from "tsparticles-engine";
+import type { IShapeValues } from "@tsparticles/engine";
 
 export interface IImageShape extends IShapeValues {
     replaceColor: boolean;

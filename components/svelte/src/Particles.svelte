@@ -1,7 +1,7 @@
 <script lang="ts">
     import { afterUpdate, createEventDispatcher } from "svelte";
-    import type { ISourceOptions } from "tsparticles-engine";
-    import { tsParticles } from "tsparticles-engine";
+    import type { ISourceOptions } from "@tsparticles/engine";
+    import { tsParticles } from "@tsparticles/engine";
 
     export let options: ISourceOptions = {};
     export let url = "";

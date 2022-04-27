@@ -11,7 +11,7 @@ import {
     getStyleFromHsl,
     itemFromArray,
     randomInRange,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type {
     IDelta,
     IParticleColorStyle,
@@ -20,7 +20,7 @@ import type {
     IParticleUpdater,
     IParticleValueAnimation,
     Particle,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 
 interface IParticleGradientColorAnimation {
     stop: number;

@@ -21,9 +21,9 @@ html(lang="en")
         link(href="/stylesheets/main.css" rel="stylesheet" type="text/css")
 
     body
-        web-particles(id="tsparticles" url="/presets/default.json")
+        @tsparticles/webcomponents(id="tsparticles" url="/presets/default.json")
 
         script(src="/tsparticles/tsparticles.bundle.min.js")
         script(src="/webcomponentsjs/custom-elements-es5-adapter.js")
         script(src="/webcomponentsjs/webcomponents-loader.js")
-        script(src="/web-particles/web-particles.js" type="module")
+        script(src="/@tsparticles/webcomponents/@tsparticles/webcomponents.js" type="module")

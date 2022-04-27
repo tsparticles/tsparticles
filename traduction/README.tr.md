@@ -203,65 +203,65 @@ particles.pause();
 
 ### Angular
 
-#### `ng-particles`
+#### `@tsparticles/angular`
 
-[![npm](https://img.shields.io/npm/v/ng-particles)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/ng-particles)](https://www.npmjs.com/package/ng-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/angular)](https://www.npmjs.com/package/@tsparticles/angular) [![npm](https://img.shields.io/npm/dm/@tsparticles/angular)](https://www.npmjs.com/package/@tsparticles/angular)
 
 Talimatları [burada](https://github.com/matteobruni/tsparticles/blob/main/components/angular/README.md) bulabilirsiniz.
 
 ### Inferno
 
-#### `inferno-particles`
+#### `@tsparticles/inferno`
 
-[![npm](https://img.shields.io/npm/v/inferno-particles)](https://www.npmjs.com/package/inferno-particles) [![npm](https://img.shields.io/npm/dm/inferno-particles)](https://www.npmjs.com/package/inferno-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/inferno)](https://www.npmjs.com/package/@tsparticles/inferno) [![npm](https://img.shields.io/npm/dm/@tsparticles/inferno)](https://www.npmjs.com/package/@tsparticles/inferno)
 
 Talimatları [burada](https://github.com/matteobruni/tsparticles/blob/main/components/inferno/README.md) bulabilirsiniz.
 
 ### jQuery
 
-#### `jquery-particles`
+#### `@tsparticles/jquery`
 
-[![npm](https://img.shields.io/npm/v/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles)](https://www.npmjs.com/package/jquery-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/jquery)](https://www.npmjs.com/package/@tsparticles/jquery) [![npm](https://img.shields.io/npm/dm/@tsparticles/jquery)](https://www.npmjs.com/package/@tsparticles/jquery)
 
 Talimatları [burada](https://github.com/matteobruni/tsparticles/blob/main/components/jquery/README.md) bulabilirsiniz.
 
 ### Preact
 
-#### `preact-particles`
+#### `@tsparticles/preact`
 
-[![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/preact)](https://www.npmjs.com/package/@tsparticles/preact) [![npm](https://img.shields.io/npm/dm/@tsparticles/preact)](https://www.npmjs.com/package/@tsparticles/preact)
 
 Talimatları [burada](https://github.com/matteobruni/tsparticles/blob/main/components/preact/README.md) bulabilirsiniz.
 
 ### ReactJS
 
-#### `react-tsparticles`
+#### `@tsparticles/react`
 
-[![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/react)](https://www.npmjs.com/package/@tsparticles/react) [![npm](https://img.shields.io/npm/dm/@tsparticles/react)](https://www.npmjs.com/package/@tsparticles/react)
 
 Talimatları [burada](https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md) bulabilirsiniz.
 
 ### Svelte
 
-#### `svelte-particles`
+#### `@tsparticles/svelte`
 
-[![npm](https://img.shields.io/npm/v/svelte-particles)](https://www.npmjs.com/package/svelte-particles) [![npm downloads](https://img.shields.io/npm/dm/svelte-particles)](https://www.npmjs.com/package/svelte-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/svelte)](https://www.npmjs.com/package/@tsparticles/svelte) [![npm downloads](https://img.shields.io/npm/dm/@tsparticles/svelte)](https://www.npmjs.com/package/@tsparticles/svelte)
 
 Talimatları [burada](https://github.com/matteobruni/tsparticles/blob/main/components/svelte/README.md) bulabilirsiniz.
 
 ### VueJS 2.x
 
-#### `particles.vue`
+#### `@tsparticles/vue2`
 
-[![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue)
+[![npm](https://img.shields.io/npm/v/@tsparticles/vue2)](https://www.npmjs.com/package/@tsparticles/vue2) [![npm](https://img.shields.io/npm/dm/@tsparticles/vue2)](https://www.npmjs.com/package/@tsparticles/vue2)
 
 Talimatları [burada](https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md) bulabilirsiniz.
 
 ### VueJS 3.x
 
-#### `particles.vue3`
+#### `@tsparticles/vue3`
 
-[![npm](https://img.shields.io/npm/v/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![npm](https://img.shields.io/npm/dm/particles.vue3)](https://www.npmjs.com/package/particles.vue3)
+[![npm](https://img.shields.io/npm/v/@tsparticles/vue3)](https://www.npmjs.com/package/@tsparticles/vue3) [![npm](https://img.shields.io/npm/dm/@tsparticles/vue3)](https://www.npmjs.com/package/@tsparticles/vue3)
 
 Talimatları [burada](https://github.com/matteobruni/tsparticles/blob/main/components/vue3/README.md) bulabilirsiniz.
 
@@ -390,9 +390,9 @@ _Yeterince cesursanız__, geliştirilmekte olan özellikleri denemek için `dev`
 
 Cidden, sadece betik kaynağını değiştirmen gerekiyor et-voilà, **hazırsın** 🧙!
 
-Daha fazlasını **[buradan](https://dev.to/matteobruni/migrating-from-particles-js-to-tsparticles-2a6m)** okuyabilirsiniz.
+Daha fazlasını **[buradan](https://dev.to/matteobruni/migrating-from-particles-js-to-@tsparticles/2a6m)** okuyabilirsiniz.
 
-Geçiş yapmak için 5 neden bilmek ister misiniz? [Burayı](https://dev.to/matteobruni/5-reasons-to-use-tsparticles-and-not-particles-js-1gbe) oku.
+Geçiş yapmak için 5 neden bilmek ister misiniz? [Burayı](https://dev.to/matteobruni/5-reasons-to-use-@tsparticles/and-not-particles-js-1gbe) oku.
 
 _Aşağıda tsParticles'ı ve onun yeni sözdizimini kurmak için ihtiyacınız olan tüm bilgileri bulabilirsiniz._
 

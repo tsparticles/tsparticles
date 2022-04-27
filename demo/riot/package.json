@@ -1,5 +1,5 @@
 {
-  "name": "riot-particles-demo",
+  "name": "@tsparticles/riot-demo",
   "private": true,
   "version": "2.0.6",
   "description": "",
@@ -37,8 +37,8 @@
     "@riotjs/route": "^8.0.1",
     "path": "^0.12.7",
     "riot": "^6.1.2",
-    "riot-particles": "^2.0.6",
+    "@tsparticles/riot": "^2.0.6",
     "tsparticles": "^2.0.6",
-    "tsparticles-engine": "^2.0.6"
+    "@tsparticles/engine": "^2.0.6"
   }
 }

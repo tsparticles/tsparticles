@@ -1,4 +1,4 @@
-import type { ICoordinates, IParticle } from "tsparticles-engine";
+import type { ICoordinates, IParticle } from "@tsparticles/engine";
 import type { IPolygonShape } from "./IPolygonShape";
 import type { ISide } from "./PolygonDrawerBase";
 import { PolygonDrawerBase } from "./PolygonDrawerBase";

@@ -7536,7 +7536,7 @@ var riotParticles = {
       evaluate: _scope => _scope.props.id
     }]
   }]),
-  name: 'riot-particles'
+  name: '@tsparticles/riot'
 };
 
 export { riotParticles as default };

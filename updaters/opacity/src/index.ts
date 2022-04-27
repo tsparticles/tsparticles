@@ -1,4 +1,4 @@
-import type { Engine } from "tsparticles-engine";
+import type { Engine } from "@tsparticles/engine";
 import { OpacityUpdater } from "./OpacityUpdater";
 
 export async function loadOpacityUpdater(engine: Engine): Promise<void> {

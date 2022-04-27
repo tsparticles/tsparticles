@@ -21,7 +21,7 @@ app.use(stylus.middleware('./public'));
 app.use(express.static('./public'));
 app.use("/tsparticles", express.static("./node_modules/tsparticles"));
 app.use("/object-gui", express.static("./node_modules/object-gui/dist"));
-app.use("/tsparticles-editor", express.static("./node_modules/tsparticles-editor"));
+app.use("/@tsparticles/editor", express.static("./node_modules/@tsparticles/editor"));
 
 app.get('/', function (req, res) {
     res.render('index');

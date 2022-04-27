@@ -1,4 +1,4 @@
-import type { Engine } from "tsparticles-engine";
+import type { Engine } from "@tsparticles/engine";
 import { Remover } from "./Remover";
 
 export function loadExternalRemoveInteraction(engine: Engine): void {

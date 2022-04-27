@@ -5,14 +5,14 @@ import type {
     Particle,
     RecursivePartial,
     SingleOrMultiple,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import { Absorber } from "./Options/Classes/Absorber";
 import { AbsorberClickMode } from "./Enums/AbsorberClickMode";
 import type { AbsorberContainer } from "./AbsorberContainer";
 import { AbsorberInstance } from "./AbsorberInstance";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
 import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
-import { itemFromArray } from "tsparticles-engine";
+import { itemFromArray } from "@tsparticles/engine";
 
 /**
  * @category Absorbers Plugin

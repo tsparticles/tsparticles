@@ -2,9 +2,9 @@
 
 # tsParticles Twinkle Updater
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-updater-twinkle/badge)](https://www.jsdelivr.com/package/npm/tsparticles-updater-twinkle)
-[![npmjs](https://badge.fury.io/js/tsparticles-updater-twinkle.svg)](https://www.npmjs.com/package/tsparticles-updater-twinkle)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-updater-twinkle)](https://www.npmjs.com/package/tsparticles-updater-twinkle)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/updater-twinkle/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/updater-twinkle)
+[![npmjs](https://badge.fury.io/js/@tsparticles/updater-twinkle.svg)](https://www.npmjs.com/package/@tsparticles/updater-twinkle)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/updater-twinkle)](https://www.npmjs.com/package/@tsparticles/updater-twinkle)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) updater plugin for twinkle animations.
 
@@ -37,20 +37,20 @@ tsParticles.load("tsparticles", {
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-updater-twinkle
+$ npm install @tsparticles/updater-twinkle
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-updater-twinkle
+$ yarn add @tsparticles/updater-twinkle
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles-engine");
-const { loadTwinkleUpdater } = require("tsparticles-updater-twinkle");
+const { tsParticles } = require("@tsparticles/engine");
+const { loadTwinkleUpdater } = require("@tsparticles/updater-twinkle");
 
 loadTwinkleUpdater(tsParticles);
 ```
@@ -58,8 +58,8 @@ loadTwinkleUpdater(tsParticles);
 or
 
 ```javascript
-import { tsParticles } from "tsparticles-engine";
-import { loadTwinkleUpdater } from "tsparticles-updater-twinkle";
+import { tsParticles } from "@tsparticles/engine";
+import { loadTwinkleUpdater } from "@tsparticles/updater-twinkle";
 
 loadTwinkleUpdater(tsParticles);
 ```

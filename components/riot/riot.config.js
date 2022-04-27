@@ -1,4 +1,4 @@
 module.exports = {
-    input: 'riot-particles.riot',
+    input: '@tsparticles/riot.riot',
     output: 'index.js'
 }

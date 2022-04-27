@@ -14,7 +14,7 @@ import type {
     SVGPathSegMovetoAbs,
     SVGPathSegMovetoRel,
 } from "./pathseg";
-import type { IOptions } from "tsparticles-engine";
+import type { IOptions } from "@tsparticles/engine";
 import type { IPolygonMask } from "./Options/Interfaces/IPolygonMask";
 
 export type SvgAbsoluteCoordinatesTypes =

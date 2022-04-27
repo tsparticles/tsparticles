@@ -2,7 +2,7 @@
 
 # tsParticles Big Circles Preset
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-big-circles/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-big-circles) [![npmjs](https://badge.fury.io/js/tsparticles-preset-big-circles.svg)](https://www.npmjs.com/package/tsparticles-preset-big-circles) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-big-circles)](https://www.npmjs.com/package/tsparticles-preset-big-circles)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-big-circles/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-big-circles) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-big-circles.svg)](https://www.npmjs.com/package/@tsparticles/preset-big-circles) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-big-circles)](https://www.npmjs.com/package/@tsparticles/preset-big-circles)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) preset for big colored circles on a white background.
 
@@ -22,11 +22,11 @@ The first step is installing [tsParticles](https://github.com/matteobruni/tspart
 vanilla javascript in the main project [here](https://github.com/matteobruni/tsparticles)
 
 Once installed you need one more script to be included in your page (or you can download that
-from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-big-circles):
+from [jsDelivr](https://www.jsdelivr.com/package/npm/@tsparticles/preset-big-circles):
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/tsparticles@1/tsparticles.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-big-circles@1/tsparticles.preset.bigCircles.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-big-circles@1/tsparticles.preset.bigCircles.min.js"></script>
 ```
 
 This script **MUST** be placed after the `tsParticles` one.
@@ -36,7 +36,7 @@ This script **MUST** be placed after the `tsParticles` one.
 A bundled script can also be used, this will include every needed plugin needed by the preset.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-big-circles@1/tsparticles.preset.bigCircles.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-big-circles@1/tsparticles.preset.bigCircles.bundle.min.js"></script>
 ```
 
 ### Usage
@@ -74,9 +74,9 @@ _The syntax for `React.js`, `Preact` and `Inferno` is the same_.
 This sample uses the class component syntax, but you can use hooks as well (if the library supports it).
 
 ```typescript jsx
-import Particles from "react-tsparticles";
-import type { Engine } from "tsparticles-engine";
-import { loadBigCirclesPreset } from "tsparticles-preset-big-circles";
+import Particles from "@tsparticles/react";
+import type { Engine } from "@tsparticles/engine";
+import { loadBigCirclesPreset } from "@tsparticles/preset-big-circles";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
   // this customizes the component tsParticles installation
@@ -112,12 +112,12 @@ async function particlesInit(engine: Engine): Promise<void> {
 ### Angular
 
 ```html
-<ng-particles
+<@tsparticles/angular
   [id]="id"
   [options]="particlesOptions"
   (particlesLoaded)="particlesLoaded($event)"
   [particlesInit]="particlesInit"
-></ng-particles>
+></@tsparticles/angular>
 ```
 
 ```ts

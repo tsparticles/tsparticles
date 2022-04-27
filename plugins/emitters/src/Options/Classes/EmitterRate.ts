@@ -1,6 +1,6 @@
-import type { IOptionLoader, RangeValue, RecursivePartial } from "tsparticles-engine";
+import type { IOptionLoader, RangeValue, RecursivePartial } from "@tsparticles/engine";
 import type { IEmitterRate } from "../Interfaces/IEmitterRate";
-import { setRangeValue } from "tsparticles-engine";
+import { setRangeValue } from "@tsparticles/engine";
 
 /**
  * @category Emitters Plugin

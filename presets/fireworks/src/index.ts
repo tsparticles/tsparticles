@@ -1,15 +1,15 @@
-import type { Engine } from "tsparticles-engine";
-import { loadAngleUpdater } from "tsparticles-updater-angle";
-import { loadBaseMover } from "tsparticles-move-base";
-import { loadCircleShape } from "tsparticles-shape-circle";
-import { loadColorUpdater } from "tsparticles-updater-color";
-import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
-import { loadLifeUpdater } from "tsparticles-updater-life";
-import { loadLineShape } from "tsparticles-shape-line";
-import { loadOpacityUpdater } from "tsparticles-updater-opacity";
-import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
-import { loadSizeUpdater } from "tsparticles-updater-size";
-import { loadStrokeColorUpdater } from "tsparticles-updater-stroke-color";
+import type { Engine } from "@tsparticles/engine";
+import { loadAngleUpdater } from "@tsparticles/updater-angle";
+import { loadBaseMover } from "@tsparticles/move-base";
+import { loadCircleShape } from "@tsparticles/shape-circle";
+import { loadColorUpdater } from "@tsparticles/updater-color";
+import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
+import { loadLifeUpdater } from "@tsparticles/updater-life";
+import { loadLineShape } from "@tsparticles/shape-line";
+import { loadOpacityUpdater } from "@tsparticles/updater-opacity";
+import { loadOutModesUpdater } from "@tsparticles/updater-out-modes";
+import { loadSizeUpdater } from "@tsparticles/updater-size";
+import { loadStrokeColorUpdater } from "@tsparticles/updater-stroke-color";
 import { options } from "./options";
 
 export async function loadFireworksPreset(engine: Engine): Promise<void> {

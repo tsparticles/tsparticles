@@ -17,8 +17,8 @@ import {
     isDivModeEnabled,
     isInArray,
     mouseMoveEvent,
-} from "tsparticles-engine";
-import type { Container, DivEvent, ICoordinates, RepulseDiv } from "tsparticles-engine";
+} from "@tsparticles/engine";
+import type { Container, DivEvent, ICoordinates, RepulseDiv } from "@tsparticles/engine";
 
 interface IContainerRepulse {
     particles: IParticle[];

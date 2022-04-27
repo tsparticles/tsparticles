@@ -1,4 +1,4 @@
-import type { IInteractivity, IModes, SingleOrMultiple } from "tsparticles-engine";
+import type { IInteractivity, IModes, SingleOrMultiple } from "@tsparticles/engine";
 import type { IAbsorber } from "./IAbsorber";
 
 /**
