@@ -3,13 +3,6 @@
 	"version": "2.0.6",
 	"description": "Official tsParticles Inferno Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Solid.js.",
 	"main": "index.js",
-	"typesVersions": {
-		"<3.8": {
-			"*": [
-				"ts3.4"
-			]
-		}
-	},
 	"scripts": {
 		"build": "yarn prettify:src && yarn lint && webpack --mode production && yarn prettify:readme",
 		"check": "tsc",
@@ -98,30 +91,30 @@
 		"tsparticles-engine": "^2.0.6"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.15.0",
-		"@babel/plugin-proposal-class-properties": "^7.14.5",
-		"@babel/plugin-transform-runtime": "^7.16.4",
-		"@babel/preset-env": "^7.15.0",
-		"@babel/preset-typescript": "^7.15.0",
-		"@babel/runtime": "^7.16.3",
-		"@typescript-eslint/eslint-plugin": "^5.11.0",
-		"@typescript-eslint/parser": "^5.11.0",
-		"babel-loader": "^8.2.2",
-		"babel-plugin-inferno": "^6.3.0",
+		"@babel/core": "^7.17.9",
+		"@babel/plugin-proposal-class-properties": "^7.16.7",
+		"@babel/plugin-transform-runtime": "^7.17.0",
+		"@babel/preset-env": "^7.16.11",
+		"@babel/preset-typescript": "^7.16.7",
+		"@babel/runtime": "^7.17.9",
+		"@typescript-eslint/eslint-plugin": "^5.21.0",
+		"@typescript-eslint/parser": "^5.21.0",
+		"babel-loader": "^8.2.5",
+		"babel-plugin-inferno": "^6.4.0",
 		"clean-webpack-plugin": "^4.0.0",
-		"css-loader": "^6.2.0",
-		"eslint": "^8.9.0",
-		"eslint-config-prettier": "^8.3.0",
-		"html-webpack-plugin": "^5.3.2",
-		"inferno": "^7.4.8",
-		"node-sass": "^7.0.0",
-		"prettier": "^2.3.2",
-		"sass-loader": "^12.1.0",
-		"source-map-loader": "^3.0.0",
-		"style-loader": "^3.2.1",
+		"css-loader": "^6.7.1",
+		"eslint": "^8.14.0",
+		"eslint-config-prettier": "^8.5.0",
+		"html-webpack-plugin": "^5.5.0",
+		"inferno": "^7.4.11",
+		"node-sass": "^7.0.1",
+		"prettier": "^2.6.2",
+		"sass-loader": "^12.6.0",
+		"source-map-loader": "^3.0.1",
+		"style-loader": "^3.3.1",
 		"typescript": "^4.6.3",
-		"webpack": "^5.50.0",
-		"webpack-cli": "^4.8.0",
-		"webpack-dev-server": "^4.0.0"
+		"webpack": "^5.72.0",
+		"webpack-cli": "^4.9.2",
+		"webpack-dev-server": "^4.8.1"
 	}
 }

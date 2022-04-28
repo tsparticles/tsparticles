@@ -13,18 +13,18 @@
     "deploy:site": "lerna run deploy --scope website"
   },
   "devDependencies": {
-    "@commitlint/cli": "^16.0.2",
-    "@commitlint/config-conventional": "^16.0.0",
-    "@parcel/transformer-sass": "^2.3.2",
-    "@types/node": "^17.0.17",
-    "parcel": "^2.3.2",
+    "@commitlint/cli": "^16.2.3",
+    "@commitlint/config-conventional": "^16.2.1",
+    "@parcel/transformer-sass": "^2.5.0",
+    "@types/node": "^17.0.29",
+    "parcel": "^2.5.0",
     "husky": "^7.0.4",
     "ini": "^3.0.0",
     "lerna": "^4.0.0",
     "yorkie": "^2.0.0"
   },
   "resolutions": {
-    "npm-packlist": "5.0.0"
+    "npm-packlist": "5.0.2"
   },
   "husky": {
     "hooks": {
