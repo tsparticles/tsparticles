@@ -198,9 +198,9 @@
     tslib "^2.3.0"
 
 "@angular/forms@~13.3.4":
-  version "13.3.4"
-  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-13.3.4.tgz#89650c4335f09a1e2da596cee71342eaf6cdf664"
-  integrity sha512-QHyUXOKYITysaJJ4VnmBacE69oz0rw4G7Y2lhPb2V3a1XsWeO61SZEeGMfAWo7sLoDvi2MCEWNEhl1du4dK14A==
+  version "13.3.5"
+  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-13.3.5.tgz#86909ed2ef8050a9d5a5148becc0696bf4afbfd8"
+  integrity sha512-jCxxAwf4HkDmKE76/yQmTsbqW3jsxiKyPy32Nh6Bt4r/ww8VDv+sv5YdYNuvvZcuuQ70K+/EPnKFpQgYttvS8A==
   dependencies:
     tslib "^2.3.0"
 
@@ -6459,6 +6459,11 @@ tslib@^2.0.0, tslib@^2.1.0, tslib@^2.3.0, tslib@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
   integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
+
+tsparticles-engine@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.6.tgz#27e85d8d014a2d9435ffc9a2c7efd570baf6dc64"
+  integrity sha512-qsAMp68No1ncbFQbyjILrVtS9LeNTtBmxPa91COvHq4iLELReUjVxXTWfLWi0+xczTbdpNPRPx92r0V3xlqeHw==
 
 type-fest@^0.21.3:
   version "0.21.3"
