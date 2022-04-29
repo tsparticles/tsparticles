@@ -178,6 +178,7 @@ const App = () => {
 
 | Prop            | Type     | Definition                                                                                                                                          |
 | --------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id              | string   | The id of the element.                                                                                                                              |
 | width           | string   | The width of the canvas.                                                                                                                            |
 | height          | string   | The height of the canvas.                                                                                                                           |
 | options         | object   | The options of the particles instance.                                                                                                              |

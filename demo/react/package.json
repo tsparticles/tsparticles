@@ -29,7 +29,7 @@
     "@parcel/transformer-sass": "^2.5.0",
     "@types/react": "^18.0.8",
     "@types/react-dom": "^18.0.0",
-    "@types/react-syntax-highlighter": "^13.5.2",
+    "@types/react-syntax-highlighter": "^15.0.0",
     "@typescript-eslint/eslint-plugin": "^5.21.0",
     "@typescript-eslint/parser": "^5.21.0",
     "browserslist": "^4.20.3",
@@ -40,7 +40,7 @@
     "prettier": "^2.6.2",
     "react-syntax-highlighter": "^15.5.0",
     "rimraf": "^3.0.2",
-    "typescript": "^4.6.3"
+    "typescript": "^4.6.4"
   },
   "dependencies": {
     "react": "^18.1.0",
