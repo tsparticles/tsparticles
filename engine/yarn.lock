@@ -3428,19 +3428,19 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typedoc-plugin-carbon-ads@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-carbon-ads/-/typedoc-plugin-carbon-ads-1.0.4.tgz#5e36990cd794a1ea30e822d452ef01976261b31d"
-  integrity sha512-mz3Unz/LCGEUfmWlabY3JJmOzfoJx/ykqD0DDwqj3UQQmB0Gb37ShHx0H/Nt1BOwC20eTash1uZhaU943kCodw==
+typedoc-plugin-carbon-ads@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-carbon-ads/-/typedoc-plugin-carbon-ads-1.0.5.tgz#bbed420888fc1be36a7a19738071f925643cbb1c"
+  integrity sha512-BrhthCQL1IJeFr45AUtrw4ocC9nQeudLQ3E+SBPV0TEsmjhdAAvI+W6tjxMXGOOcJ12MxiPXR/qyvZ4rjQKNEQ==
   dependencies:
-    typescript "^4.6.3"
+    typescript "^4.6.4"
 
-typedoc-plugin-clarity@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-clarity/-/typedoc-plugin-clarity-1.0.3.tgz#5be75ac0ff1eea73e3503f418d8f40c26de3f1b3"
-  integrity sha512-FxN+aN8Ob9bwYYO9mIGwXd2VNCc/Jt6B8ZSXxeBG7LNJVu4GvxtA38YjYw8tFuoQdIOB9WEaA/FBXL+E/dCPtQ==
+typedoc-plugin-clarity@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-clarity/-/typedoc-plugin-clarity-1.0.4.tgz#600d06ea7fc650b2c512cdbc7af8c9ce70deb872"
+  integrity sha512-8pvfD5j8jPQ7OZG4aIv9TOqUEELRX93ZdWFmyyQGz74o/f6aFJ4xjGupkRaMFBAg0RjAisRWf47MeLbO5Y9PxQ==
   dependencies:
-    typescript "^4.6.3"
+    typedoc "^0.22.15"
 
 typedoc-plugin-coverage@^1.0.2:
   version "1.0.2"
@@ -3476,7 +3476,7 @@ typescript-json-schema@^0.53.0:
     typescript "~4.5.0"
     yargs "^17.1.1"
 
-typescript@^4.6.3, typescript@^4.6.4, typescript@~4.6.2:
+typescript@^4.6.4, typescript@~4.6.2:
   version "4.6.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.6.4.tgz#caa78bbc3a59e6a5c510d35703f6a09877ce45e9"
   integrity sha512-9ia/jWHIEbo49HfjrLGfKbZSuWo9iTMwXO+Ca3pRsSpbsMbc7/IU8NKdCZVRRBafVPGnoJeFL76ZOAA84I9fEg==

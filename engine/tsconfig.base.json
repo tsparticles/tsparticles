@@ -25,7 +25,11 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "types": [
+      "mocha",
+      "node"
+    ]
   },
   "include": [
     "./src"
