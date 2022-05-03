@@ -3470,11 +3470,11 @@ typedoc-plugin-carbon-ads@^1.0.4:
     typescript "^4.6.3"
 
 typedoc-plugin-clarity@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-clarity/-/typedoc-plugin-clarity-1.0.3.tgz#5be75ac0ff1eea73e3503f418d8f40c26de3f1b3"
-  integrity sha512-FxN+aN8Ob9bwYYO9mIGwXd2VNCc/Jt6B8ZSXxeBG7LNJVu4GvxtA38YjYw8tFuoQdIOB9WEaA/FBXL+E/dCPtQ==
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-clarity/-/typedoc-plugin-clarity-1.0.4.tgz#600d06ea7fc650b2c512cdbc7af8c9ce70deb872"
+  integrity sha512-8pvfD5j8jPQ7OZG4aIv9TOqUEELRX93ZdWFmyyQGz74o/f6aFJ4xjGupkRaMFBAg0RjAisRWf47MeLbO5Y9PxQ==
   dependencies:
-    typescript "^4.6.3"
+    typedoc "^0.22.15"
 
 typedoc-plugin-coverage@^1.0.2:
   version "1.0.2"
