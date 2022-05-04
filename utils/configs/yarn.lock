@@ -21,7 +21,7 @@
   resolved "https://registry.yarnpkg.com/@babel/compat-data/-/compat-data-7.17.10.tgz#711dc726a492dfc8be8220028b1b92482362baab"
   integrity sha512-GZt/TCsG70Ms19gfZO1tM4CVnXsPgEPBCpJu+Qz3L0LUDsY5nZqFZglIoPC1kIYOtNBZlrnFT+klg12vFGZXrw==
 
-"@babel/core@^7.17.8", "@babel/core@^7.17.9":
+"@babel/core@^7.17.8":
   version "7.17.10"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.17.10.tgz#74ef0fbf56b7dfc3f198fc2d927f4f03e12f4b05"
   integrity sha512-liKoppandF3ZcBnIYFjfSDHZLKdLHGJRkoWtG8zQyGJBQfIYobpnVGI5+pLBNtS6psFLDzyq8+h5HiVljW9PNA==
@@ -311,7 +311,7 @@
   resolved "https://registry.yarnpkg.com/@types/webpack-env/-/webpack-env-1.16.3.tgz#b776327a73e561b71e7881d0cd6d34a1424db86a"
   integrity sha512-9gtOPPkfyNoEqCQgx4qJKkuNm/x0R2hKR7fdl7zvTJyHnIisuE/LfvXOsYWL0o3qq6uiBnKZNNNzi3l0y/X+xw==
 
-"@typescript-eslint/eslint-plugin@^5.17.0", "@typescript-eslint/eslint-plugin@^5.19.0":
+"@typescript-eslint/eslint-plugin@^5.17.0":
   version "5.22.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-5.22.0.tgz#7b52a0de2e664044f28b36419210aea4ab619e2a"
   integrity sha512-YCiy5PUzpAeOPGQ7VSGDEY2NeYUV1B0swde2e0HzokRsHBYjSdF6DZ51OuRZxVPHx0032lXGLvOMls91D8FXlg==
@@ -326,7 +326,7 @@
     semver "^7.3.5"
     tsutils "^3.21.0"
 
-"@typescript-eslint/parser@^5.17.0", "@typescript-eslint/parser@^5.19.0":
+"@typescript-eslint/parser@^5.17.0":
   version "5.22.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-5.22.0.tgz#7bedf8784ef0d5d60567c5ba4ce162460e70c178"
   integrity sha512-piwC4krUpRDqPaPbFaycN70KCP87+PC5WZmrWs+DlVOxxmF+zI6b6hETv7Quy4s9wbkV16ikMeZgXsvzwI3icQ==
@@ -904,7 +904,7 @@ eslint-visitor-keys@^3.0.0, eslint-visitor-keys@^3.3.0:
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-3.3.0.tgz#f6480fa6b1f30efe2d1968aa8ac745b862469826"
   integrity sha512-mQ+suqKJVyeuwGYHAdjMFqjCyfl8+Ldnxuyp3ldiMBFKkvytrXUZWaiPCEav8qDHKty44bD+qV1IP4T+w+xXRA==
 
-eslint@^8.12.0, eslint@^8.13.0:
+eslint@^8.12.0:
   version "8.14.0"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-8.14.0.tgz#62741f159d9eb4a79695b28ec4989fcdec623239"
   integrity sha512-3/CE4aJX7LNEiE3i6FeodHmI/38GZtWCsAtsymScmzYapx8q1nVVb+eLcLSzATmCPXw5pT4TqVs1E0OmxAd9tw==
@@ -1937,11 +1937,6 @@ tslib@^1.8.1:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tsparticles-engine@^2.0.6:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.6.tgz#27e85d8d014a2d9435ffc9a2c7efd570baf6dc64"
-  integrity sha512-qsAMp68No1ncbFQbyjILrVtS9LeNTtBmxPa91COvHq4iLELReUjVxXTWfLWi0+xczTbdpNPRPx92r0V3xlqeHw==
-
 tsutils@^3.21.0:
   version "3.21.0"
   resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-3.21.0.tgz#b48717d394cea6c1e096983eed58e9d61715b623"
@@ -1961,7 +1956,7 @@ type-fest@^0.20.2:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.20.2.tgz#1bf207f4b28f91583666cb5fbd327887301cd5f4"
   integrity sha512-Ne+eE4r0/iWnpAxD852z3A+N0Bt5RN//NjJwRd2VFHEmrywxf5vsZlh4R6lixl6B+wz/8d+maTSAkN1FIkI3LQ==
 
-typescript@^4.6.3, typescript@^4.6.4:
+typescript@^4.6.4:
   version "4.6.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.6.4.tgz#caa78bbc3a59e6a5c510d35703f6a09877ce45e9"
   integrity sha512-9ia/jWHIEbo49HfjrLGfKbZSuWo9iTMwXO+Ca3pRsSpbsMbc7/IU8NKdCZVRRBafVPGnoJeFL76ZOAA84I9fEg==
@@ -2042,29 +2037,7 @@ webpack-sources@^3.2.3:
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-3.2.3.tgz#2d4daab8451fd4b240cc27055ff6a0c2ccea0cde"
   integrity sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==
 
-webpack-tsparticles-plugin@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/webpack-tsparticles-plugin/-/webpack-tsparticles-plugin-1.0.4.tgz#4a2caf1855c282a1ce53f4cd5d612225ea2034ce"
-  integrity sha512-KSLM/xlR7gL/vLEt13/B9DbvLSlo99d91Dlga/8FJaahHAx5hKRCxphs+QQv3yN3gMYGSmIHTmDC2FnGutOtnQ==
-  dependencies:
-    "@babel/core" "^7.17.9"
-    "@types/webpack-env" "^1.16.3"
-    "@typescript-eslint/eslint-plugin" "^5.19.0"
-    "@typescript-eslint/parser" "^5.19.0"
-    babel-loader "^8.2.4"
-    browserslist "^4.20.2"
-    copyfiles "^2.4.1"
-    eslint "^8.13.0"
-    eslint-config-prettier "^8.5.0"
-    prettier "^2.6.2"
-    rimraf "^3.0.2"
-    terser-webpack-plugin "^5.3.1"
-    typescript "^4.6.3"
-    webpack "^5.72.0"
-    webpack-bundle-analyzer "^4.5.0"
-    webpack-cli "^4.9.2"
-
-webpack@^5.71.0, webpack@^5.72.0:
+webpack@^5.71.0:
   version "5.72.0"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.72.0.tgz#f8bc40d9c6bb489a4b7a8a685101d6022b8b6e28"
   integrity sha512-qmSmbspI0Qo5ld49htys8GY9XhS9CGqFoHTsOVAnjBdg0Zn79y135R+k4IR4rKK6+eKaabMhJwiVB7xw0SJu5w==
