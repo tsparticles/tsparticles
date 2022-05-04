@@ -161,9 +161,9 @@
     uuid "8.3.2"
 
 "@angular/common@~13.3.4":
-  version "13.3.4"
-  resolved "https://registry.yarnpkg.com/@angular/common/-/common-13.3.4.tgz#4e2968935a3572b2c57eea2c09e33c54c7bd8e72"
-  integrity sha512-vPZuUGWMXz6r30obBqH+iIG4Feq4YEK/4wUks7PEYGke8MXFPYsNKuHMhKCgYEhabD/4Mo4GEp3i18/3Kk72Mw==
+  version "13.3.5"
+  resolved "https://registry.yarnpkg.com/@angular/common/-/common-13.3.5.tgz#dd73209f897c634d66c5abdfbf15e38b085d175f"
+  integrity sha512-teG+itdlw2sOMwYeXkeFe8h32SsNqN0qHHz/v6I9qKHgCLkC/or8A7NtsoCwYSTymIEJJ7DZ1w9VWhM7DSYd1w==
   dependencies:
     tslib "^2.3.0"
 
