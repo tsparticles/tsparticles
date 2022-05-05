@@ -3424,11 +3424,11 @@ typedarray-to-buffer@^3.1.5:
     is-typedarray "^1.0.0"
 
 typedoc-plugin-carbon-ads@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-carbon-ads/-/typedoc-plugin-carbon-ads-1.0.4.tgz#5e36990cd794a1ea30e822d452ef01976261b31d"
-  integrity sha512-mz3Unz/LCGEUfmWlabY3JJmOzfoJx/ykqD0DDwqj3UQQmB0Gb37ShHx0H/Nt1BOwC20eTash1uZhaU943kCodw==
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-carbon-ads/-/typedoc-plugin-carbon-ads-1.0.5.tgz#bbed420888fc1be36a7a19738071f925643cbb1c"
+  integrity sha512-BrhthCQL1IJeFr45AUtrw4ocC9nQeudLQ3E+SBPV0TEsmjhdAAvI+W6tjxMXGOOcJ12MxiPXR/qyvZ4rjQKNEQ==
   dependencies:
-    typescript "^4.6.3"
+    typescript "^4.6.4"
 
 typedoc-plugin-clarity@^1.0.3:
   version "1.0.4"
@@ -3471,7 +3471,7 @@ typescript-json-schema@^0.53.0:
     typescript "~4.5.0"
     yargs "^17.1.1"
 
-typescript@^4.6.3, typescript@^4.6.4, typescript@~4.6.2:
+typescript@^4.6.4, typescript@~4.6.2:
   version "4.6.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.6.4.tgz#caa78bbc3a59e6a5c510d35703f6a09877ce45e9"
   integrity sha512-9ia/jWHIEbo49HfjrLGfKbZSuWo9iTMwXO+Ca3pRsSpbsMbc7/IU8NKdCZVRRBafVPGnoJeFL76ZOAA84I9fEg==
