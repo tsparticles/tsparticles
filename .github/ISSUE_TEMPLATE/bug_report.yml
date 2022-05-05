@@ -29,9 +29,9 @@ body:
   - type: input
     id: version
     attributes:
-      label: Version
-      description: What version of our software are you running?
-      placeholder: Version (eg. 1.0.0)
+      label: tsParticles Version
+      description: What version of tsParticles are you running?
+      placeholder: tsParticles Version (eg. 1.0.0)
     validations:
       required: true
   - type: dropdown
@@ -58,8 +58,8 @@ body:
     id: configuration
     attributes:
       label: tsParticles Configuration
-      description: Paste here your configuration to help us reproducing the issue
-      placeholder: Paste here your tsParticles configuration!
+      description: Paste here ONLY your configuration to help us reproducing the issue
+      placeholder: Paste here ONLY your tsParticles configuration
       render: json
     validations:
       required: true
