@@ -29,9 +29,9 @@ body:
   - type: input
     id: version
     attributes:
-      label: Version
+      label: tsParticles Version
       description: What version of our software are you running?
-      placeholder: Version (eg. 1.0.0)
+      placeholder: tsParticles Version (eg. 1.0.0)
     validations:
       required: true
   - type: dropdown
