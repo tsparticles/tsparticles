@@ -22,22 +22,22 @@
 		"tsparticles-engine": "^2.0.6"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.15.0",
-		"@babel/plugin-proposal-class-properties": "^7.14.5",
-		"@babel/preset-env": "^7.15.0",
-		"@babel/preset-typescript": "^7.15.0",
-		"babel-loader": "^8.2.2",
-		"babel-plugin-inferno": "^6.3.0",
+		"@babel/core": "^7.17.9",
+		"@babel/plugin-proposal-class-properties": "^7.16.7",
+		"@babel/preset-env": "^7.16.11",
+		"@babel/preset-typescript": "^7.16.7",
+		"babel-loader": "^8.2.5",
+		"babel-plugin-inferno": "^6.4.0",
 		"clean-webpack-plugin": "^4.0.0",
-		"css-loader": "^6.2.0",
-		"html-webpack-plugin": "^5.3.2",
-		"node-sass": "^7.0.0",
-		"sass-loader": "^12.1.0",
-		"source-map-loader": "^3.0.0",
-		"style-loader": "^3.2.1",
-		"typescript": "^4.6.3",
-		"webpack": "^5.50.0",
-		"webpack-cli": "^4.8.0",
-		"webpack-dev-server": "^4.0.0"
+		"css-loader": "^6.7.1",
+		"html-webpack-plugin": "^5.5.0",
+		"node-sass": "^7.0.1",
+		"sass-loader": "^12.6.0",
+		"source-map-loader": "^3.0.1",
+		"style-loader": "^3.3.1",
+		"typescript": "^4.6.4",
+		"webpack": "^5.72.0",
+		"webpack-cli": "^4.9.2",
+		"webpack-dev-server": "^4.8.1"
 	}
 }
