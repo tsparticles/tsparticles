@@ -27,7 +27,6 @@ Vue.use(Particles);
 ### Demo config
 
 ```html
-
 <template>
     <div id="app">
         <Particles
@@ -124,6 +123,18 @@ Vue.use(Particles);
         />
     </div>
 </template>
+```
+
+```javascript
+import { loadFull } from "tsparticles";
+
+const particlesInit = async (engine) => {
+    await loadFull(engine);
+}
+
+const particlesLoaded = async (container) => {
+    console.log("Particles container loaded", container);
+}
 ```
 
 ### TypeScript errors

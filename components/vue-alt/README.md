@@ -125,6 +125,18 @@ Vue.use(Particles);
 </template>
 ```
 
+```javascript
+import { loadFull } from "tsparticles";
+
+const particlesInit = async (engine) => {
+    await loadFull(engine);
+}
+
+const particlesLoaded = async (container) => {
+    console.log("Particles container loaded", container);
+}
+```
+
 ### TypeScript errors
 
 If TypeScript returns error while importing/using Particles plugin try adding the following import before the previous
