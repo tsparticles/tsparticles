@@ -26,6 +26,7 @@ app.use("/jquery", express.static("./node_modules/jquery/dist"));
 app.use("/popper.js", express.static("./node_modules/popper.js/dist"));
 app.use("/bootstrap", express.static("./node_modules/bootstrap/dist"));
 app.use("/tsparticles-engine", express.static("./node_modules/tsparticles-engine"));
+app.use("/tsparticles-particles.js", express.static("./node_modules/tsparticles-particles.js"));
 app.use("/tsparticles-slim", express.static("./node_modules/tsparticles-slim"));
 app.use("/tsparticles", express.static("./node_modules/tsparticles"));
 app.use("/interaction-external-attract", express.static("./node_modules/tsparticles-interaction-external-attract"));
