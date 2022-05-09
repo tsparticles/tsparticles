@@ -17,9 +17,10 @@ function checkDestroy(particle: Particle, value: number, minValue: number, maxVa
 }
 
 function updateSize(particle: Particle, delta: IDelta): void {
-    const sizeVelocity = (particle.size.velocity ?? 0) * delta.factor;
-    const minValue = particle.size.min;
-    const maxValue = particle.size.max;
+    const sizeVelocity = (particle.size.velocity ?? 0) * delta.factor,
+        minValue = particle.size.min,
+        maxValue = particle.size.max,
+        decay = particle.size.decay ?? 1;
 
     if (
         particle.destroyed ||
@@ -56,6 +57,10 @@ function updateSize(particle: Particle, delta: IDelta): void {
             } else {
                 particle.size.value -= sizeVelocity;
             }
+    }
+
+    if (particle.size.velocity && decay !== 1) {
+        particle.size.velocity *= decay;
     }
 
     checkDestroy(particle, particle.size.value, minValue, maxValue);

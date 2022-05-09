@@ -8,12 +8,14 @@ export class AnimationOptions implements IAnimation, IOptionLoader<IAnimation> {
     count: RangeValue;
     enable: boolean;
     speed: RangeValue;
+    decay: RangeValue;
     sync: boolean;
 
     constructor() {
         this.count = 0;
         this.enable = false;
         this.speed = 1;
+        this.decay = 0;
         this.sync = false;
     }
 
@@ -32,6 +34,10 @@ export class AnimationOptions implements IAnimation, IOptionLoader<IAnimation> {
 
         if (data.speed !== undefined) {
             this.speed = setRangeValue(data.speed);
+        }
+
+        if (data.decay !== undefined) {
+            this.decay = setRangeValue(data.decay);
         }
 
         if (data.sync !== undefined) {

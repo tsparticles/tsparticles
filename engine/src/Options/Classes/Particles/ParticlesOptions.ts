@@ -1,5 +1,5 @@
 import { AnimatableColor } from "../AnimatableColor";
-import { AnimatableGradient } from "../AnimatableGradient";
+import { AnimatableGradient } from "../Gradients/AnimatableGradient";
 import { Collisions } from "./Collisions/Collisions";
 import { Destroy } from "./Destroy/Destroy";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";

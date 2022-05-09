@@ -28,9 +28,9 @@ function updateWobble(particle: WobbleParticle, delta: IDelta): void {
         return;
     }
 
-    const speed = particle.wobble.speed * delta.factor;
-    const distance = ((particle.retina.wobbleDistance ?? 0) * delta.factor) / (1000 / 60);
-    const max = 2 * Math.PI;
+    const speed = particle.wobble.speed * delta.factor,
+        distance = ((particle.retina.wobbleDistance ?? 0) * delta.factor) / (1000 / 60),
+        max = 2 * Math.PI;
 
     particle.wobble.angle += speed;
 
