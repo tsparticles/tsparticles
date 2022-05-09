@@ -21,8 +21,9 @@ function updateColorValue(
         return;
     }
 
-    const offset = randomInRange(valueAnimation.offset);
-    const velocity = (value.velocity ?? 0) * delta.factor + offset * 3.6;
+    const offset = randomInRange(valueAnimation.offset),
+        velocity = (value.velocity ?? 0) * delta.factor + offset * 3.6,
+        decay = value.decay ?? 1;
 
     if (!decrease || colorValue.status === AnimationStatus.increasing) {
         colorValue.value += velocity;
@@ -40,6 +41,10 @@ function updateColorValue(
         }
     }
 
+    if (colorValue.velocity && decay !== 1) {
+        colorValue.velocity *= decay;
+    }
+
     if (colorValue.value > max) {
         colorValue.value %= max;
     }
@@ -50,8 +55,8 @@ function updateStrokeColor(particle: Particle, delta: IDelta): void {
         return;
     }
 
-    const animationOptions = particle.stroke.color.animation;
-    const h = particle.strokeColor?.h ?? particle.color?.h;
+    const animationOptions = particle.stroke.color.animation,
+        h = particle.strokeColor?.h ?? particle.color?.h;
 
     if (h) {
         updateColorValue(delta, h, animationOptions.h, 360, false);

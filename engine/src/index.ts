@@ -89,7 +89,12 @@ export * from "./Enums/AnimationStatus";
 export * from "./Enums/InteractivityDetect";
 export { Engine, Engine as Main };
 export * from "./Options/Classes/AnimatableColor";
-export * from "./Options/Classes/AnimatableGradient";
+export * from "./Options/Classes/Gradients/AnimatableGradient";
+export * from "./Options/Classes/Gradients/AnimatableGradientColor";
+export * from "./Options/Classes/Gradients/GradientAngle";
+export * from "./Options/Classes/Gradients/GradientAngleAnimation";
+export * from "./Options/Classes/Gradients/GradientColorOpacity";
+export * from "./Options/Classes/Gradients/GradientColorOpacityAnimation";
 export * from "./Options/Classes/AnimationOptions";
 export * from "./Options/Classes/Background/Background";
 export * from "./Options/Classes/BackgroundMask/BackgroundMask";
@@ -292,4 +297,3 @@ export { tsParticles };
  * tsParticles source options alias type, supporting partial objects
  */
 export type ISourceOptions = RecursivePartial<IOptions>;
-export { IParticleColorStyle } from "./Core/Interfaces/IParticleColorStyle";

@@ -6,10 +6,11 @@ function updateTilt(particle: Particle, delta: IDelta): void {
         return;
     }
 
-    const tilt = particle.options.tilt;
-    const tiltAnimation = tilt.animation;
-    const speed = (particle.tilt.velocity ?? 0) * delta.factor;
-    const max = 2 * Math.PI;
+    const tilt = particle.options.tilt,
+        tiltAnimation = tilt.animation,
+        speed = (particle.tilt.velocity ?? 0) * delta.factor,
+        max = 2 * Math.PI,
+        decay = particle.tilt.decay ?? 1;
 
     if (!tiltAnimation.enable) {
         return;
@@ -33,6 +34,10 @@ function updateTilt(particle: Particle, delta: IDelta): void {
             }
 
             break;
+    }
+
+    if (particle.tilt.velocity && decay !== 1) {
+        particle.tilt.velocity *= decay;
     }
 }
 
@@ -70,6 +75,7 @@ export class TiltUpdater implements IParticleUpdater {
         const tiltAnimation = particle.options.tilt.animation;
 
         if (tiltAnimation.enable) {
+            particle.tilt.decay = 1 - getRangeValue(tiltAnimation.decay);
             particle.tilt.velocity = (getRangeValue(tiltAnimation.speed) / 360) * this.container.retina.reduceFactor;
 
             if (!tiltAnimation.sync) {

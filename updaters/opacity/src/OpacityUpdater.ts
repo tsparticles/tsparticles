@@ -30,8 +30,9 @@ function updateOpacity(particle: Particle, delta: IDelta): void {
         return;
     }
 
-    const minValue = particle.opacity.min;
-    const maxValue = particle.opacity.max;
+    const minValue = particle.opacity.min,
+        maxValue = particle.opacity.max,
+        decay = particle.opacity.decay ?? 1;
 
     if (
         particle.destroyed ||
@@ -72,6 +73,10 @@ function updateOpacity(particle: Particle, delta: IDelta): void {
             break;
     }
 
+    if (particle.opacity.velocity && particle.opacity.decay !== 1) {
+        particle.opacity.velocity *= decay;
+    }
+
     checkDestroy(particle, particle.opacity.value, minValue, maxValue);
 
     if (!particle.destroyed) {
@@ -98,6 +103,7 @@ export class OpacityUpdater implements IParticleUpdater {
         const opacityAnimation = opacityOptions.animation;
 
         if (opacityAnimation.enable) {
+            particle.opacity.decay = 1 - getRangeValue(opacityAnimation.decay);
             particle.opacity.status = AnimationStatus.increasing;
 
             const opacityRange = opacityOptions.value;

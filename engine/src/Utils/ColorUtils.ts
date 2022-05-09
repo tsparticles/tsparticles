@@ -634,15 +634,11 @@ function setColorAnimation(
 
     if (colorValue.enable) {
         colorValue.velocity = (getRangeValue(colorAnimation.speed) / 100) * reduceFactor;
-
-        if (colorAnimation.sync) {
-            return;
-        }
-
+        colorValue.decay = 1 - getRangeValue(colorAnimation.decay);
         colorValue.status = AnimationStatus.increasing;
-        colorValue.velocity *= Math.random();
 
-        if (colorValue.value) {
+        if (!colorAnimation.sync) {
+            colorValue.velocity *= Math.random();
             colorValue.value *= Math.random();
         }
     } else {
