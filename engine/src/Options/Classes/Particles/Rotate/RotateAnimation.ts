@@ -10,11 +10,13 @@ import { setRangeValue } from "../../../../Utils/NumberUtils";
 export class RotateAnimation implements IRotateAnimation, IOptionLoader<IRotateAnimation> {
     enable;
     speed: RangeValue;
+    decay: RangeValue;
     sync;
 
     constructor() {
         this.enable = false;
         this.speed = 0;
+        this.decay = 0;
         this.sync = false;
     }
 
@@ -29,6 +31,10 @@ export class RotateAnimation implements IRotateAnimation, IOptionLoader<IRotateA
 
         if (data.speed !== undefined) {
             this.speed = setRangeValue(data.speed);
+        }
+
+        if (data.decay !== undefined) {
+            this.decay = setRangeValue(data.decay);
         }
 
         if (data.sync !== undefined) {

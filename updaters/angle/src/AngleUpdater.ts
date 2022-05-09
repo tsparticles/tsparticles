@@ -8,10 +8,11 @@ function updateAngle(particle: Particle, delta: IDelta): void {
         return;
     }
 
-    const rotateOptions = particle.options.rotate;
-    const rotateAnimation = rotateOptions.animation;
-    const speed = (rotate.velocity ?? 0) * delta.factor;
-    const max = 2 * Math.PI;
+    const rotateOptions = particle.options.rotate,
+        rotateAnimation = rotateOptions.animation,
+        speed = (rotate.velocity ?? 0) * delta.factor,
+        max = 2 * Math.PI,
+        decay = rotate.decay ?? 1;
 
     if (!rotateAnimation.enable) {
         return;
@@ -35,6 +36,10 @@ function updateAngle(particle: Particle, delta: IDelta): void {
             }
 
             break;
+    }
+
+    if (rotate.velocity && decay !== 1) {
+        rotate.velocity *= decay;
     }
 }
 
@@ -70,6 +75,7 @@ export class AngleUpdater implements IParticleUpdater {
         const rotateAnimation = particle.options.rotate.animation;
 
         if (rotateAnimation.enable) {
+            particle.rotate.decay = 1 - getRangeValue(rotateAnimation.decay);
             particle.rotate.velocity =
                 (getRangeValue(rotateAnimation.speed) / 360) * this.container.retina.reduceFactor;
 
@@ -80,8 +86,8 @@ export class AngleUpdater implements IParticleUpdater {
     }
 
     isEnabled(particle: Particle): boolean {
-        const rotate = particle.options.rotate;
-        const rotateAnimation = rotate.animation;
+        const rotate = particle.options.rotate,
+            rotateAnimation = rotate.animation;
 
         return !particle.destroyed && !particle.spawning && !rotate.path && rotateAnimation.enable;
     }

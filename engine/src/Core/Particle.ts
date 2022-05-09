@@ -352,7 +352,8 @@ export class Particle implements IParticle {
 
         /* size */
         const sizeOptions = this.options.size,
-            sizeRange = sizeOptions.value;
+            sizeRange = sizeOptions.value,
+            sizeAnimation = sizeOptions.animation;
 
         this.size = {
             enable: sizeOptions.animation.enable,
@@ -363,10 +364,9 @@ export class Particle implements IParticle {
             maxLoops: getRangeValue(sizeOptions.animation.count),
         };
 
-        const sizeAnimation = sizeOptions.animation;
-
         if (sizeAnimation.enable) {
             this.size.status = AnimationStatus.increasing;
+            this.size.decay = 1 - getRangeValue(sizeAnimation.decay);
 
             switch (sizeAnimation.startValue) {
                 case StartValueType.min:
