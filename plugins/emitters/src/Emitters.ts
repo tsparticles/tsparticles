@@ -6,13 +6,14 @@ import type {
     RecursivePartial,
     SingleOrMultiple,
 } from "tsparticles-engine";
-import { deepExtend, itemFromArray } from "tsparticles-engine";
+import { arrayRandomIndex, deepExtend, itemFromArray } from "tsparticles-engine";
 import { Emitter } from "./Options/Classes/Emitter";
 import { EmitterClickMode } from "./Enums/EmitterClickMode";
 import type { EmitterContainer } from "./EmitterContainer";
 import { EmitterInstance } from "./EmitterInstance";
 import type { EmittersEngine } from "./EmittersEngine";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
+import type { IEmitterModeOptions } from "./Options/Interfaces/IEmitterModeOptions";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 
 /**
@@ -21,7 +22,7 @@ import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 export class Emitters implements IContainerPlugin {
     array: EmitterInstance[];
     emitters: SingleOrMultiple<Emitter>;
-    interactivityEmitters: SingleOrMultiple<Emitter>;
+    interactivityEmitters: IEmitterModeOptions;
 
     readonly #engine;
 
@@ -29,7 +30,13 @@ export class Emitters implements IContainerPlugin {
         this.#engine = engine;
         this.array = [];
         this.emitters = [];
-        this.interactivityEmitters = [];
+        this.interactivityEmitters = {
+            random: {
+                count: 1,
+                enable: false,
+            },
+            value: [],
+        };
 
         container.getEmitter = (idxOrName?: number | string) =>
             idxOrName === undefined || typeof idxOrName === "number"
@@ -91,19 +98,63 @@ export class Emitters implements IContainerPlugin {
 
         if (interactivityEmitters) {
             if (interactivityEmitters instanceof Array) {
-                this.interactivityEmitters = interactivityEmitters.map((s) => {
+                this.interactivityEmitters = {
+                    random: {
+                        count: 1,
+                        enable: true,
+                    },
+                    value: interactivityEmitters.map((s) => {
+                        const tmp = new Emitter();
+
+                        tmp.load(s);
+
+                        return tmp;
+                    }),
+                };
+            } else {
+                const emitterMode = interactivityEmitters as IEmitterModeOptions;
+
+                if (emitterMode.value !== undefined) {
+                    if (emitterMode.value instanceof Array) {
+                        this.interactivityEmitters = {
+                            random: {
+                                count: this.interactivityEmitters.random.count ?? 1,
+                                enable: this.interactivityEmitters.random.enable ?? false,
+                            },
+                            value: emitterMode.value.map((s) => {
+                                const tmp = new Emitter();
+
+                                tmp.load(s);
+
+                                return tmp;
+                            }),
+                        };
+                    } else {
+                        const tmp = new Emitter();
+
+                        tmp.load(emitterMode.value);
+
+                        this.interactivityEmitters = {
+                            random: {
+                                count: this.interactivityEmitters.random.count ?? 1,
+                                enable: this.interactivityEmitters.random.enable ?? false,
+                            },
+                            value: tmp,
+                        };
+                    }
+                } else {
                     const tmp = new Emitter();
 
-                    tmp.load(s);
+                    tmp.load(interactivityEmitters as IEmitter);
 
-                    return tmp;
-                });
-            } else {
-                if (this.interactivityEmitters instanceof Array) {
-                    this.interactivityEmitters = new Emitter();
+                    this.interactivityEmitters = {
+                        random: {
+                            count: this.interactivityEmitters.random.count ?? 1,
+                            enable: this.interactivityEmitters.random.enable ?? false,
+                        },
+                        value: tmp,
+                    };
                 }
-
-                this.interactivityEmitters.load(interactivityEmitters);
             }
         }
 
@@ -143,22 +194,41 @@ export class Emitters implements IContainerPlugin {
             modeEmitters = this.interactivityEmitters;
 
         if (mode === EmitterClickMode.emitter) {
-            let emitterModeOptions: IEmitter | undefined;
+            let emittersModeOptions: SingleOrMultiple<IEmitter> | undefined;
 
-            if (modeEmitters instanceof Array) {
-                if (modeEmitters.length > 0) {
-                    emitterModeOptions = itemFromArray(modeEmitters);
+            if (modeEmitters && modeEmitters.value instanceof Array) {
+                if (modeEmitters.value.length > 0 && modeEmitters.random.enable) {
+                    emittersModeOptions = [];
+                    const usedIndexes: number[] = [];
+
+                    for (let i = 0; i < modeEmitters.random.count; i++) {
+                        const idx = arrayRandomIndex(modeEmitters.value);
+
+                        if (usedIndexes.includes(idx) && usedIndexes.length < modeEmitters.value.length) {
+                            i--;
+                            continue;
+                        }
+
+                        usedIndexes.push(idx);
+                        emittersModeOptions.push(itemFromArray(modeEmitters.value, idx));
+                    }
+                } else {
+                    emittersModeOptions = modeEmitters.value;
                 }
             } else {
-                emitterModeOptions = modeEmitters;
+                emittersModeOptions = modeEmitters.value;
             }
 
-            const emittersOptions =
-                    emitterModeOptions ??
-                    (emitterOptions instanceof Array ? itemFromArray(emitterOptions) : emitterOptions),
+            const emittersOptions = emittersModeOptions ?? emitterOptions,
                 ePosition = this.container.interactivity.mouse.clickPosition;
 
-            this.addEmitter(deepExtend({}, emittersOptions) as IEmitter, ePosition);
+            if (emittersOptions instanceof Array) {
+                for (const emitterOptions of emittersOptions) {
+                    this.addEmitter(emitterOptions, ePosition);
+                }
+            } else {
+                this.addEmitter(deepExtend({}, emittersOptions) as IEmitter, ePosition);
+            }
         }
     }
 
