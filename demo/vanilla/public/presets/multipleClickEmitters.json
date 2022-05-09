@@ -57,7 +57,7 @@
           },
           {
             "name": "small-particles",
-            "startCount": 30,
+            "startCount": 50,
             "life": {
               "count": 1,
               "delay": 0,
