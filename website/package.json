@@ -25,7 +25,7 @@
   "homepage": "https://github.com/matteobruni/tsparticles#readme",
   "dependencies": {
     "fs-extra": "^10.0.0",
-    "gh-pages": "^3.2.3",
+    "gh-pages": "^4.0.0",
     "minify": "^8.0.3",
     "rimraf": "^3.0.2",
     "sass": "^1.37.5",
