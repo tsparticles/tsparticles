@@ -236,7 +236,7 @@ export class Loader {
         }
 
         if (typeof options === "number") {
-            params.index = options ?? params.index;
+            params.index = options;
         } else {
             params.options = options ?? params.options;
         }

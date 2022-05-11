@@ -42,20 +42,20 @@ export class OrbitUpdater implements IParticleUpdater {
             particlesOptions = particle.options,
             orbitOptions = particlesOptions.orbit;
 
-        if (orbitOptions.enable) {
-            particle.orbitRotation = getRangeValue(orbitOptions.rotation.value);
-            particle.orbitColor = colorToHsl(orbitOptions.color);
-            particle.retina.orbitRadius =
-                orbitOptions?.radius !== undefined
-                    ? getRangeValue(orbitOptions.radius) * container.retina.pixelRatio
-                    : undefined;
-            container.retina.orbitRadius = particle.retina.orbitRadius;
-            particle.orbitAnimationSpeed = orbitOptions.animation.enable
-                ? getRangeValue(orbitOptions.animation.speed)
-                : 0;
-            particle.orbitWidth = getRangeValue(orbitOptions.width);
-            particle.orbitOpacity = getRangeValue(orbitOptions.opacity);
+        if (!orbitOptions?.enable) {
+            return;
         }
+
+        particle.orbitRotation = getRangeValue(orbitOptions.rotation.value);
+        particle.orbitColor = colorToHsl(orbitOptions.color);
+        particle.retina.orbitRadius =
+            orbitOptions.radius !== undefined
+                ? getRangeValue(orbitOptions.radius) * container.retina.pixelRatio
+                : undefined;
+        container.retina.orbitRadius = particle.retina.orbitRadius;
+        particle.orbitAnimationSpeed = orbitOptions.animation.enable ? getRangeValue(orbitOptions.animation.speed) : 0;
+        particle.orbitWidth = getRangeValue(orbitOptions.width);
+        particle.orbitOpacity = getRangeValue(orbitOptions.opacity);
     }
 
     isEnabled(particle: OrbitParticle): boolean {

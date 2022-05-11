@@ -216,7 +216,7 @@ export class Emitters implements IContainerPlugin {
                     emittersModeOptions = modeEmitters.value;
                 }
             } else {
-                emittersModeOptions = modeEmitters.value;
+                emittersModeOptions = modeEmitters?.value;
             }
 
             const emittersOptions = emittersModeOptions ?? emitterOptions,
