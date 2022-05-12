@@ -593,7 +593,7 @@ _Read more [here](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.
 
 <p>
   <a href="https://www.codacy.com">
-    <img src="https://particles.js.org/images/codacy-logos/codacy-white.jpeg" alt="Codacy" height="150" />
+    <img src="https://particles.js.org/images/codacy-logos/codacy-white.jpeg" alt="Codacy" height="100" />
   </a>
 </p>
 
