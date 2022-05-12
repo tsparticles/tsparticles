@@ -589,6 +589,8 @@ _Read more [here](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.
 
 [JetBrains WebStorm](https://www.jetbrains.com/webstorm/?from=tsParticles) is used to maintain this project.
 
+---
+
 ## Sponsors
 
 <p>
