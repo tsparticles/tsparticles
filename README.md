@@ -597,6 +597,8 @@ _Read more [here](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.
   </a>
 </p>
 
+[Codacy](https://www.codacy.com) is a code quality platform that helps you to detect and fix code quality issues in your code.
+
 **Automate code reviews on your commits and pull requests**
 
 Check your code quality and keep track of your technical debt for more than 40 programming languages. Seamlessly
