@@ -56,6 +56,7 @@ version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) 
     - [Background Mask particles](#Background-Mask-particles)
 - [Migrating from Particles.js](#Migrating-from-Particlesjs)
 - [Plugins/Customizations](#PluginsCustomizations)
+- [Sponsors](#Sponsors)
 
 ---
 
