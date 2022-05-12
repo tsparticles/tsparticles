@@ -15,46 +15,48 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 
 ## Table of Contents
 
-⚠️⚠️ *This readme refers to upcoming **v2** version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) for **v1** documentation* ⚠️⚠️
+⚠️⚠️ *This readme refers to upcoming **v2**
+version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) for **v1** documentation* ⚠️⚠️
 
 - [Use for your website](#Do-you-want-to-use-it-on-your-website)
-  - [Library installation](#Library-installation)
+    - [Library installation](#Library-installation)
 - [Official components for some of the most used frameworks](#Official-components-for-some-of-the-most-used-frameworks)
-  - [Angular](#Angular)
-  - [Inferno](#Inferno)
-  - [jQuery](#jQuery)
-  - [Preact](#Preact)
-  - [ReactJS](#ReactJS)
-  - [RiotJS](#RiotJS)
-  - [SolidJS](#SolidJS)
-  - [Svelte](#Svelte)
-  - [VueJS 2.x](#VueJS-2x)
-  - [VueJS 3.x](#VueJS-3x)
-  - [Web Components](#Web-Components)
-  - [WordPress](#WordPress)
+    - [Angular](#Angular)
+    - [Inferno](#Inferno)
+    - [jQuery](#jQuery)
+    - [Preact](#Preact)
+    - [ReactJS](#ReactJS)
+    - [RiotJS](#RiotJS)
+    - [SolidJS](#SolidJS)
+    - [Svelte](#Svelte)
+    - [VueJS 2.x](#VueJS-2x)
+    - [VueJS 3.x](#VueJS-3x)
+    - [Web Components](#Web-Components)
+    - [WordPress](#WordPress)
 - [Presets](#Presets)
-  - [Big Circles](#Big-Circles)
-  - [Bubbles](#Bubbles)
-  - [Confetti](#Confetti)
-  - [Fire](#Fire)
-  - [Firefly](#Firefly)
-  - [Fireworks](#Fireworks)
-  - [Fountain](#fountain)
-  - [Links](#links)
-  - [Sea Anemone](#Sea-Anemone)
-  - [Snow](#Snow)
-  - [Stars](#Stars)
-  - [Triangles](#Triangles)
+    - [Big Circles](#Big-Circles)
+    - [Bubbles](#Bubbles)
+    - [Confetti](#Confetti)
+    - [Fire](#Fire)
+    - [Firefly](#Firefly)
+    - [Fireworks](#Fireworks)
+    - [Fountain](#fountain)
+    - [Links](#links)
+    - [Sea Anemone](#Sea-Anemone)
+    - [Snow](#Snow)
+    - [Stars](#Stars)
+    - [Triangles](#Triangles)
 - [Templates and Resources](#Templates-and-Resources)
 - [Demo / Generator](#Demo--Generator)
-  - [Characters as particles](#Characters-as-particles)
-  - [Mouse hover connections](#Mouse-hover-connections)
-  - [Polygon mask](#Polygon-mask)
-  - [Animated stars](#Animated-stars)
-  - [Nyan cat flying on scrolling stars](#Nyan-cat-flying-on-scrolling-stars)
-  - [Background Mask particles](#Background-Mask-particles)
+    - [Characters as particles](#Characters-as-particles)
+    - [Mouse hover connections](#Mouse-hover-connections)
+    - [Polygon mask](#Polygon-mask)
+    - [Animated stars](#Animated-stars)
+    - [Nyan cat flying on scrolling stars](#Nyan-cat-flying-on-scrolling-stars)
+    - [Background Mask particles](#Background-Mask-particles)
 - [Migrating from Particles.js](#Migrating-from-Particlesjs)
 - [Plugins/Customizations](#PluginsCustomizations)
+- [Sponsors](#Sponsors)
 
 ---
 
@@ -71,7 +73,8 @@ links you need, and _don't be scared by **TypeScript**, it's just the source lan
 
 **The output files are just JavaScript**. 🤩
 
-CDNs and `npm` have all the sources you need in **Javascript**, a bundle browser ready (tsparticles.engine.min.js) and all
+CDNs and `npm` have all the sources you need in **Javascript**, a bundle browser ready (tsparticles.engine.min.js) and
+all
 files splitted for `import` syntax.
 
 **If you are interested** there are some _simple instructions_
@@ -149,6 +152,7 @@ Load tsParticles and configure the particles:
 **index.html**
 
 ```html
+
 <div id="tsparticles"></div>
 
 <script src="tsparticles.engine.min.js"></script>
@@ -161,20 +165,20 @@ Load tsParticles and configure the particles:
 /* tsParticles.loadJSON(@dom-id, @path-json, @callback (optional)); */
 
 tsParticles
-  .loadJSON("tsparticles", "presets/default.json")
-  .then((container) => {
-    console.log("callback - tsparticles config loaded");
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+    .loadJSON("tsparticles", "presets/default.json")
+    .then((container) => {
+        console.log("callback - tsparticles config loaded");
+    })
+    .catch((error) => {
+        console.error(error);
+    });
 
 //or
 
 /* tsParticles.load(@dom-id, @options); */
 
 tsParticles.load("tsparticles", {
-  /* options here */
+    /* options here */
 });
 
 //or
@@ -182,26 +186,26 @@ tsParticles.load("tsparticles", {
 /* tsParticles.loadFromArray(@dom-id, @options, @index (optional)); */
 
 tsParticles.loadFromArray("tsparticles", [
-  {
-    /* options here */
-  },
-  {
-    /* other options here */
-  },
+    {
+        /* options here */
+    },
+    {
+        /* other options here */
+    },
 ]);
 //random object
 
 tsParticles.loadFromArray(
-  "tsparticles",
-  [
-    {
-      /* options here */
-    },
-    {
-      /* other options here */
-    },
-  ],
-  1
+    "tsparticles",
+    [
+        {
+            /* options here */
+        },
+        {
+            /* other options here */
+        },
+    ],
+    1
 ); //the second one
 // Important! If the index is not in range 0...<array.length, the index will be ignored.
 
@@ -212,7 +216,7 @@ tsParticles.loadFromArray(
 /* this will be fired from all particles loaded */
 
 tsParticles.setOnClickHandler((event, particles) => {
-  /* custom on click handler */
+    /* custom on click handler */
 });
 
 // now you can control the animations too, it's possible to pause and resume the animations
@@ -585,3 +589,21 @@ _Read more [here](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.
 ### Huge thanks to [JetBrains](https://www.jetbrains.com/?from=tsParticles) for the 2020-2022 Open Source Licenses!
 
 [JetBrains WebStorm](https://www.jetbrains.com/webstorm/?from=tsParticles) is used to maintain this project.
+
+---
+
+## Sponsors
+
+<p>
+  <a href="https://www.codacy.com">
+    <img src="https://particles.js.org/images/codacy-logos/codacy-white.jpeg" alt="Codacy" height="100" />
+  </a>
+</p>
+
+[Codacy](https://www.codacy.com) is a code quality platform that helps you to detect and fix code quality issues in your
+code.
+
+**Automate code reviews on your commits and pull requests**
+
+Check your code quality and keep track of your technical debt for more than 40 programming languages. Seamlessly
+integrated within your development workflow.
