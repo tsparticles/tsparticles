@@ -126,8 +126,7 @@ body {
     border-color: #ccc;
 
     &:focus,
-    &:focus,
-    &:focus {
+    &.focus {
       box-shadow: 0 0 0 0.2rem rgba(90, 163, 196, 0.5);
     }
   }
