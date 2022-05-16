@@ -23,6 +23,24 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
+"@jridgewell/resolve-uri@^3.0.3":
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/@jridgewell/resolve-uri/-/resolve-uri-3.0.7.tgz#30cd49820a962aff48c8fffc5cd760151fca61fe"
+  integrity sha512-8cXDaBBHOr2pQ7j77Y6Vp5VDT2sIqWyWQ56TjEq4ih/a4iST3dItRe8Q9fp0rrIl9DoKhWQtUQz/YpOxLkXbNA==
+
+"@jridgewell/sourcemap-codec@^1.4.10":
+  version "1.4.13"
+  resolved "https://registry.yarnpkg.com/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.13.tgz#b6461fb0c2964356c469e115f504c95ad97ab88c"
+  integrity sha512-GryiOJmNcWbovBxTfZSF71V/mXbgcV3MewDe3kIMCLyIh5e7SKAeUZs+rMnJ8jkMolZ/4/VsdBmMrw3l+VdZ3w==
+
+"@jridgewell/trace-mapping@^0.3.9":
+  version "0.3.13"
+  resolved "https://registry.yarnpkg.com/@jridgewell/trace-mapping/-/trace-mapping-0.3.13.tgz#dcfe3e95f224c8fe97a87a5235defec999aa92ea"
+  integrity sha512-o1xbKhp9qnIAoHJSWd6KlCZfqslL4valSF81H8ImioOAxluWYWOpWkpyktY2vnt4tbrX9XYaxovq6cgowaJp2w==
+  dependencies:
+    "@jridgewell/resolve-uri" "^3.0.3"
+    "@jridgewell/sourcemap-codec" "^1.4.10"
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
@@ -680,7 +698,7 @@ source-map@^0.6.0:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
 
-source-map@^0.7.3, source-map@~0.7.2:
+source-map@~0.7.2:
   version "0.7.3"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.7.3.tgz#5302f8169031735226544092e64981f751750383"
   integrity sha512-CkCj6giN3S+n9qrYiBTX5gystlENnRW5jZeNLHpe6aue+SrHcG5VYwujhW9s4dY31mEGsxBDrHR6oI69fTXsaQ==
@@ -712,16 +730,16 @@ supports-color@^7.0.0:
     has-flag "^4.0.0"
 
 svelte-check@^2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-2.7.0.tgz#10d579dc89bf2e145a04786cc9fa8dabfb018a2a"
-  integrity sha512-GrvG24j0+i8AOm0k0KyJ6Dqc+TAR2yzB7rtS4nljHStunVxCTr/1KYlv4EsOeoqtHLzeWMOd5D2O6nDdP/yw4A==
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-2.7.1.tgz#ecb89d11fcd67a46e750dba289fffb17e7597ddd"
+  integrity sha512-vHVu2+SQ6ibt77iTQaq2oiOjBgGL48qqcg0ZdEOsP5pPOjgeyR9QbnaEdzdBs9nsVYBc/42haKtzb2uFqS8GVw==
   dependencies:
+    "@jridgewell/trace-mapping" "^0.3.9"
     chokidar "^3.4.1"
     fast-glob "^3.2.7"
     import-fresh "^3.2.1"
     picocolors "^1.0.0"
     sade "^1.7.4"
-    source-map "^0.7.3"
     svelte-preprocess "^4.0.0"
     typescript "*"
 
