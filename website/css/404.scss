@@ -124,7 +124,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: '';
+  content: "";
   content: none;
 }
 
@@ -132,7 +132,6 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-
 
 /* ---------------particles 404 style---------------------- */
 body {
@@ -174,7 +173,7 @@ body {
   font-family: "Share Tech Mono";
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: .7em;
+  letter-spacing: 0.7em;
   font-size: 2rem;
   padding: 0 0 0 1.4em;
 }
@@ -183,7 +182,7 @@ body {
   font-family: "Space Mono";
   line-height: 42px;
   font-size: 15px;
-  letter-spacing: .15rem;
+  letter-spacing: 0.15rem;
   padding: 0 20px;
   max-width: 600px;
   margin: auto;
@@ -206,23 +205,23 @@ body {
   font-family: "Space Mono";
   text-transform: uppercase;
   font-size: 11px;
-  letter-spacing: .1rem;
+  letter-spacing: 0.1rem;
   position: relative;
 }
 
 .links a:before {
-  content: '';
+  content: "";
   height: 42px;
   background: #000000;
   position: absolute;
   top: 0;
   right: 0;
   width: 0;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 .links a:after {
-  transition: all .3s;
+  transition: all 0.3s;
   z-index: 999;
   position: relative;
   content: "back to hompage";
@@ -282,7 +281,7 @@ body {
   }
 
   .message-description {
-    font-size: .7rem;
+    font-size: 0.7rem;
     line-height: 2rem;
   }
 

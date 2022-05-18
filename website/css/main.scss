@@ -74,14 +74,14 @@ body {
 #repulse-div {
   width: 200px;
   height: 200px;
-  background-color: rgba(255, 255, 255, .5);
+  background-color: rgba(255, 255, 255, 0.5);
   border-radius: 100px;
   position: absolute;
   top: 50%;
   left: 50%;
   margin-left: -100px;
   margin-top: -100px;
-  z-index: 200
+  z-index: 200;
 }
 
 @media (min-width: 1600px) and (-webkit-device-pixel-ratio: 1) {
@@ -103,33 +103,37 @@ body {
     border-color: #ccc;
   }
 
-  &:focus, &.focus {
+  &:focus,
+  &.focus {
     color: #fff;
     background-color: #5aa3c4;
     border-color: #ccc;
     box-shadow: 0 0 0 0.2rem rgba(90, 163, 196, 0.5);
   }
 
-  &.disabled, &:disabled {
+  &.disabled,
+  &:disabled {
     color: #fff;
     background-color: #61dafb;
     border-color: #ccc;
   }
 
-  &:not(:disabled):not(.disabled):active, &:not(:disabled):not(.disabled).active,
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active,
   .show > &.dropdown-toggle {
     color: #fff;
     background-color: #5aa3c4;
     border-color: #ccc;
 
-    &:focus, &:focus,
-    &:focus {
+    &:focus,
+    &.focus {
       box-shadow: 0 0 0 0.2rem rgba(90, 163, 196, 0.5);
     }
   }
 }
 
-#stats, .count-particles {
+#stats,
+.count-particles {
   -webkit-user-select: none;
 }
 
@@ -146,7 +150,6 @@ body {
 .count-particles {
   border-radius: 0 0 3px 3px;
 }
-
 
 // Fix Presets not scrollable in the side menu #2283
 .btn-group .preset-menu.dropdown-menu.show {

@@ -8,8 +8,8 @@ import particlesOptions from "./particles.json";
 import { ISourceOptions } from "tsparticles-engine";
 
 function App() {
-    const particlesInit = useCallback((engine: Engine) => {
-        loadFull(engine);
+    const particlesInit = useCallback(async (engine: Engine) => {
+        await loadFull(engine);
     }, []);
 
     return (
