@@ -54,6 +54,7 @@ version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) 
   - [Animated stars](#Animated-stars)
   - [Nyan cat flying on scrolling stars](#Nyan-cat-flying-on-scrolling-stars)
   - [Background Mask particles](#Background-Mask-particles)
+- [Video Tutorials](#Video-Tutorials)
 - [Migrating from Particles.js](#Migrating-from-Particlesjs)
 - [Plugins/Customizations](#PluginsCustomizations)
 - [Sponsors](#Sponsors)
@@ -474,6 +475,14 @@ credited as the template author!
 <https://particles.js.org/samples>
 
 [![Particles demo](https://particles.js.org/images/demo2.png?v=1.39.1)](https://particles.js.org/samples)
+
+---
+
+## **_Video Tutorials_**
+
+You can find all video tutorials in the website here: <https://particles.js.org/video.html>
+
+*More videos are coming soon! Check every day if there are some new contents.*
 
 ---
 
