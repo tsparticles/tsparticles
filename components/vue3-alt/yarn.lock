@@ -1763,6 +1763,16 @@
     estree-walker "^2.0.2"
     source-map "^0.6.1"
 
+"@vue/compiler-core@3.2.34":
+  version "3.2.34"
+  resolved "https://registry.yarnpkg.com/@vue/compiler-core/-/compiler-core-3.2.34.tgz#e28fe9d2b22dcb60274daea6df07e653d8a3ecbe"
+  integrity sha512-Y53lv04ZhDfqflhk4yEgBZrCL1RipbxqmqJFfl1PRkjOzt0bvJpf1sCNN81QNfXohVwFGf+Hng2ztwLwOZgbuA==
+  dependencies:
+    "@babel/parser" "^7.16.4"
+    "@vue/shared" "3.2.34"
+    estree-walker "^2.0.2"
+    source-map "^0.6.1"
+
 "@vue/compiler-dom@3.2.33":
   version "3.2.33"
   resolved "https://registry.yarnpkg.com/@vue/compiler-dom/-/compiler-dom-3.2.33.tgz#6db84296f949f18e5d3e7fd5e80f943dbed7d5ec"
@@ -1771,7 +1781,15 @@
     "@vue/compiler-core" "3.2.33"
     "@vue/shared" "3.2.33"
 
-"@vue/compiler-sfc@3.2.33", "@vue/compiler-sfc@^3.2.33":
+"@vue/compiler-dom@3.2.34":
+  version "3.2.34"
+  resolved "https://registry.yarnpkg.com/@vue/compiler-dom/-/compiler-dom-3.2.34.tgz#3aadd83fd789c7feaa56f838e86c5c7146395579"
+  integrity sha512-MFLUYDgy0aES9x1goU/pgxpzgT9IZOndO8qwQVSyVfUvl/CywEBtfBi5+8fsiBDhoGIT7g8qcsUUF1NYViU2vQ==
+  dependencies:
+    "@vue/compiler-core" "3.2.34"
+    "@vue/shared" "3.2.34"
+
+"@vue/compiler-sfc@3.2.33":
   version "3.2.33"
   resolved "https://registry.yarnpkg.com/@vue/compiler-sfc/-/compiler-sfc-3.2.33.tgz#7ce01dc947a8b76c099811dc6ca58494d4dc773d"
   integrity sha512-H8D0WqagCr295pQjUYyO8P3IejM3vEzeCO1apzByAEaAR/WimhMYczHfZVvlCE/9yBaEu/eu9RdiWr0kF8b71Q==
@@ -1787,6 +1805,22 @@
     postcss "^8.1.10"
     source-map "^0.6.1"
 
+"@vue/compiler-sfc@^3.2.33":
+  version "3.2.34"
+  resolved "https://registry.yarnpkg.com/@vue/compiler-sfc/-/compiler-sfc-3.2.34.tgz#3c02b261e631f20587b31e2b9ddc5596cd36c9da"
+  integrity sha512-I+vT4soKJtdsoREBDYAcz56+yGpZ5T3GUigvBFgC2yTeTtBtREOPzYw8kZyMuD2ZlryPYBkbV8D9xxcvU0j/aw==
+  dependencies:
+    "@babel/parser" "^7.16.4"
+    "@vue/compiler-core" "3.2.34"
+    "@vue/compiler-dom" "3.2.34"
+    "@vue/compiler-ssr" "3.2.34"
+    "@vue/reactivity-transform" "3.2.34"
+    "@vue/shared" "3.2.34"
+    estree-walker "^2.0.2"
+    magic-string "^0.25.7"
+    postcss "^8.1.10"
+    source-map "^0.6.1"
+
 "@vue/compiler-ssr@3.2.33":
   version "3.2.33"
   resolved "https://registry.yarnpkg.com/@vue/compiler-ssr/-/compiler-ssr-3.2.33.tgz#3e820267e4eea48fde9519f006dedca3f5e42e71"
@@ -1794,6 +1828,14 @@
   dependencies:
     "@vue/compiler-dom" "3.2.33"
     "@vue/shared" "3.2.33"
+
+"@vue/compiler-ssr@3.2.34":
+  version "3.2.34"
+  resolved "https://registry.yarnpkg.com/@vue/compiler-ssr/-/compiler-ssr-3.2.34.tgz#5e2acc9c051cf877e6a5da20ffd4ff0257d9f4c5"
+  integrity sha512-zyaMdGJhxoA34ibWsXF7VH1PO5yrNB1MZg/ByRfXGM8JefGQaz+PpHvBy/5OI0ehEyhAyCb7279JdhYHacMZbw==
+  dependencies:
+    "@vue/compiler-dom" "3.2.34"
+    "@vue/shared" "3.2.34"
 
 "@vue/component-compiler-utils@^3.1.0", "@vue/component-compiler-utils@^3.3.0":
   version "3.3.0"
@@ -1839,6 +1881,17 @@
     estree-walker "^2.0.2"
     magic-string "^0.25.7"
 
+"@vue/reactivity-transform@3.2.34":
+  version "3.2.34"
+  resolved "https://registry.yarnpkg.com/@vue/reactivity-transform/-/reactivity-transform-3.2.34.tgz#852894181ce70a09a2a4c7605d31ad8b8d068d87"
+  integrity sha512-OtsrL4/i6Md279pMhZ8wRijeDhPSdnXrH9wmqAcKDhVcp1L2kSWlgVVLa1jGIyyFYE806YiJNJiGBvXPGXMzxw==
+  dependencies:
+    "@babel/parser" "^7.16.4"
+    "@vue/compiler-core" "3.2.34"
+    "@vue/shared" "3.2.34"
+    estree-walker "^2.0.2"
+    magic-string "^0.25.7"
+
 "@vue/reactivity@3.2.33":
   version "3.2.33"
   resolved "https://registry.yarnpkg.com/@vue/reactivity/-/reactivity-3.2.33.tgz#c84eedb5225138dbfc2472864c151d3efbb4b673"
@@ -1875,6 +1928,11 @@
   version "3.2.33"
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.2.33.tgz#69a8c99ceb37c1b031d5cc4aec2ff1dc77e1161e"
   integrity sha512-UBc1Pg1T3yZ97vsA2ueER0F6GbJebLHYlEi4ou1H5YL4KWvMOOWwpYo9/QpWq93wxKG6Wo13IY74Hcn/f7c7Bg==
+
+"@vue/shared@3.2.34":
+  version "3.2.34"
+  resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.2.34.tgz#b71750d05120feb644102088a09be64518cd3a86"
+  integrity sha512-zhEeB8TrFmTXmTXmu/wcjEhgrjO4xqdDQrCdPhjX7NxfoLqoBVKguOm8qyihWNLbP+41svYY4za9mqXyqFLzNg==
 
 "@vue/vue-loader-v15@npm:vue-loader@^15.9.7":
   version "15.9.7"
