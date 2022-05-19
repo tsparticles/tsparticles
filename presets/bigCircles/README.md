@@ -114,10 +114,14 @@ _The syntax for `Vue.js 2.x` and `3.x` is the same_
 
 ```vue
 
-<Particles id="tsparticles" :particlesInit="particlesInit" url="http://foo.bar/particles.json"/>
+<Particles id="tsparticles" :particlesInit="particlesInit" :options="particlesOptions" />
 ```
 
 ```js
+const particlesOptions = {
+    preset: "bigCircles", // also "big-circles" is accepted
+};
+
 async function particlesInit(engine: Engine): Promise<void> {
     await loadBigCirclesPreset(engine);
 }
@@ -130,12 +134,15 @@ async function particlesInit(engine: Engine): Promise<void> {
 <ng-particles
         [id]="id"
         [options]="particlesOptions"
-        (particlesLoaded)="particlesLoaded($event)"
         [particlesInit]="particlesInit"
 ></ng-particles>
 ```
 
 ```ts
+const particlesOptions = {
+    preset: "bigCircles", // also "big-circles" is accepted
+};
+
 async function particlesInit(engine: Engine): Promise<void> {
     await loadBigCirclesPreset(engine);
 }
@@ -147,14 +154,17 @@ async function particlesInit(engine: Engine): Promise<void> {
 
 <Particles
         id="tsparticles"
-        url="{particlesUrl}"
-        on:particlesInit="{onParticlesInit}"
+        options={particlesOptions}
+        particlesInit={particlesInit}
 />
 ```
 
 ```js
-let onParticlesInit = (event) => {
-    const main = event.detail;
-    loadBigCirclesPreset(main);
+let particlesOptions = {
+    preset: "bigCircles", // also "big-circles" is accepted
+};
+
+let particlesInit = async (engine) => {
+    await loadBigCirclesPreset(engine);
 };
 ```
