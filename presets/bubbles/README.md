@@ -72,7 +72,7 @@ You can override all the options defining the properties like in any standard `t
 tsParticles.load("tsparticles", {
     particles: {
         shape: {
-            type: "square",
+            type: "square", // starting from v2, this require the square shape script
         },
     },
     preset: "bubbles",
