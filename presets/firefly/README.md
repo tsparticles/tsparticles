@@ -26,8 +26,17 @@ Once installed you need one more script to be included in your page (or you can 
 from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-firefly):
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@1/tsparticles.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-firefly@1/tsparticles.preset.firefly.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2/tsparticles.engine.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-trail@2/tsparticles.interaction.external.trail.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-move-base@2/tsparticles.move.base.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-emitters@2/tsparticles.plugin.emitters.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-circle@2/tsparticles.shape.circle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-color@2/tsparticles.updater.color.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-life@2/tsparticles.updater.life.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-opacity@2/tsparticles.updater.opacity.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-size@2/tsparticles.updater.size.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-firefly@2/tsparticles.preset.firefly.min.js"></script>
 ```
 
 This script **MUST** be placed after the `tsParticles` one.
@@ -37,7 +46,8 @@ This script **MUST** be placed after the `tsParticles` one.
 A bundled script can also be used, this will include every needed plugin needed by the preset.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-firefly@1/tsparticles.preset.firefly.bundle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-firefly@2/tsparticles.preset.firefly.bundle.min.js"></script>
 ```
 
 ### Usage
@@ -45,11 +55,13 @@ A bundled script can also be used, this will include every needed plugin needed 
 Once the scripts are loaded you can set up `tsParticles` like this:
 
 ```javascript
-loadFireflyPreset(tsParticles);
+(async () => {
+    await loadFireflyPreset(tsParticles); // this is required only if you are not using the bundle script
 
-tsParticles.load("tsparticles", {
-  preset: "firefly",
-});
+    await tsParticles.load("tsparticles", {
+        preset: "firefly",
+    });
+})();
 ```
 
 #### Customization
@@ -59,12 +71,12 @@ You can override all the options defining the properties like in any standard `t
 
 ```javascript
 tsParticles.load("tsparticles", {
-  particles: {
-    shape: {
-      type: "square",
+    particles: {
+        shape: {
+            type: "square", // starting from v2, this require the square shape script
+        },
     },
-  },
-  preset: "firefly",
+    preset: "firefly",
 });
 ```
 
@@ -82,19 +94,19 @@ import type { Engine } from "tsparticles-engine";
 import { loadFireflyPreset } from "tsparticles-preset-firefly";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
-  // this customizes the component tsParticles installation
-  async customInit(engine: Engine): Promise<void> {
-    // this adds the preset to tsParticles, you can safely use the
-    await loadFireflyPreset(engine);
-  }
+    // this customizes the component tsParticles installation
+    async customInit(engine: Engine): Promise<void> {
+        // this adds the preset to tsParticles, you can safely use the
+        await loadFireflyPreset(engine);
+    }
 
-  render() {
-    const options = {
-      preset: "firefly",
-    };
+    render() {
+        const options = {
+            preset: "firefly",
+        };
 
-    return <Particles options={options} init={this.customInit} />;
-  }
+        return <Particles options={options} init={this.customInit}/>;
+    }
 }
 ```
 
@@ -103,29 +115,38 @@ export class ParticlesContainer extends React.PureComponent<IProps> {
 _The syntax for `Vue.js 2.x` and `3.x` is the same_
 
 ```vue
-<Particles id="tsparticles" :particlesInit="particlesInit" url="http://foo.bar/particles.json" />
+
+<Particles id="tsparticles" :particlesInit="particlesInit" :options="particlesOptions"/>
 ```
 
 ```js
+let particlesOptions = {
+    preset: "firefly",
+};
+
 async function particlesInit(engine: Engine): Promise<void> {
-  await loadFireflyPreset(engine);
+    await loadFireflyPreset(engine);
 }
 ```
 
 ### Angular
 
 ```html
+
 <ng-particles
-  [id]="id"
-  [options]="particlesOptions"
-  (particlesLoaded)="particlesLoaded($event)"
-  (particlesInit)="particlesInit($event)"
+        [id]="id"
+        [options]="particlesOptions"
+        [particlesInit]="particlesInit"
 ></ng-particles>
 ```
 
 ```ts
+const particlesOptions = {
+    preset: "firefly",
+};
+
 async function particlesInit(engine: Engine): Promise<void> {
-  await loadFireflyPreset(engine);
+    await loadFireflyPreset(engine);
 }
 ```
 
@@ -135,14 +156,17 @@ async function particlesInit(engine: Engine): Promise<void> {
 
 <Particles
         id="tsparticles"
-        url="http://foo.bar/particles.json"
-        on:particlesInit="{onParticlesInit}"
+        options={particlesOptions}
+        particlesInit="{particlesInit}"
 />
 ```
 
 ```js
-let onParticlesInit = (event) => {
-  const main = event.detail;
-  loadFireflyPreset(main);
+let particlesOptions = {
+    preset: "firefly",
+};
+
+let particlesInit = async (engine) => {
+    await loadFireflyPreset(main);
 };
 ```

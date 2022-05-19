@@ -38,8 +38,6 @@ from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-bubbles)
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-bubbles@2/tsparticles.preset.bubbles.min.js"></script>
 ```
 
-This script **MUST** be placed after the `tsParticles` one.
-
 #### Bundle
 
 A bundled script can also be used, this will include every needed plugin needed by the preset.

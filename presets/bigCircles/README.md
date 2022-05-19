@@ -37,8 +37,6 @@ from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-big-circ
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-big-circles@2/tsparticles.preset.bigCircles.min.js"></script>
 ```
 
-This script **MUST** be placed after the `tsParticles` one.
-
 #### Bundle
 
 A bundled script can also be used, this will include every needed plugin needed by the preset.

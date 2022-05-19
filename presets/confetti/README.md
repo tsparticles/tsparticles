@@ -44,8 +44,6 @@ from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-confetti
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-confetti@2/tsparticles.preset.confetti.min.js"></script>
 ```
 
-This script **MUST** be placed after the `tsParticles` one.
-
 #### Bundle
 
 A bundled script can also be used, this will include every needed plugin needed by the preset.
