@@ -55,7 +55,7 @@ Once the scripts are loaded you can set up `tsParticles` like this:
 
 ```javascript
 (async () => {
-    await loadFountainPreset(tsParticles);
+    await loadFountainPreset(tsParticles); // this is required only if you are not using the bundle script
 
     await tsParticles.load("tsparticles", {
         preset: "fountain",

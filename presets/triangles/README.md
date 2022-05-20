@@ -35,7 +35,7 @@ from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-triangle
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-opacity@2/tsparticles.updater.opacity.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-out-modes@2/tsparticles.updater.out-modes.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-size@2/tsparticles.updater.size.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-links@2/tsparticles.preset.links.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-triangles@2/tsparticles.preset.triangles.min.js"></script>
 ```
 
 This script **MUST** be placed after the `tsParticles` one.
@@ -55,7 +55,7 @@ Once the scripts are loaded you can set up `tsParticles` like this:
 
 ```javascript
 (async () => {
-    await loadTrianglesPreset(tsParticles);
+    await loadTrianglesPreset(tsParticles); // this is required only if you are not using the bundle script
 
     await tsParticles.load("tsparticles", {
         preset: "triangles",
