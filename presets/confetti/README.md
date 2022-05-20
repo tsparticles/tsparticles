@@ -26,18 +26,31 @@ Once added the script you need one more script to be included in your page (or y
 from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-confetti):
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@1/tsparticles.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-confetti@1/tsparticles.preset.confetti.min.js"></script>
-```
 
-This script **MUST** be placed after the `tsParticles` one.
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2/tsparticles.engine.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-move-base@2/tsparticles.move.base.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-emitters@2/tsparticles.plugin.emitters.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-circle@2/tsparticles.shape.circle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-square@2/tsparticles.shape.square.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-angle@2/tsparticles.updater.angle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-color@2/tsparticles.updater.color.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-life@2/tsparticles.updater.life.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-opacity@2/tsparticles.updater.opacity.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-out-modes@2/tsparticles.updater.out-modes.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-roll@2/tsparticles.updater.roll.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-size@2/tsparticles.updater.size.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-tilt@2/tsparticles.updater.tilt.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-wobble@2/tsparticles.updater.wobble.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-confetti@2/tsparticles.preset.confetti.min.js"></script>
+```
 
 #### Bundle
 
 A bundled script can also be used, this will include every needed plugin needed by the preset.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-confetti@1/tsparticles.preset.confetti.bundle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-confetti@2/tsparticles.preset.confetti.bundle.min.js"></script>
 ```
 
 ### Usage
@@ -45,23 +58,25 @@ A bundled script can also be used, this will include every needed plugin needed 
 Once the scripts are loaded you can set up `tsParticles` like this:
 
 ```javascript
-loadConfettiPreset(tsParticles);
+(async () => {
+    await loadConfettiPreset(tsParticles); // this is required only if you are not using the bundle script
 
-tsParticles.load("tsparticles", {
-  preset: "confetti",
-});
+    await tsParticles.load("tsparticles", {
+        preset: "confetti",
+    });
+})();
 ```
 
 ### Customization
 
 ```javascript
 tsParticles.load("tsparticles", {
-  particles: {
-    color: {
-      value: ["#0000ff", "#00ff00"],
+    particles: {
+        color: {
+            value: [ "#0000ff", "#00ff00" ],
+        },
     },
-  },
-  preset: "confetti",
+    preset: "confetti",
 });
 ```
 
@@ -119,12 +134,12 @@ will last forever.
 
 ```javascript
 tsParticles.load("tsparticles", {
-  emitters: {
-    life: {
-      duration: 0,
+    emitters: {
+        life: {
+            duration: 0,
+        },
     },
-  },
-  preset: "confetti",
+    preset: "confetti",
 });
 ```
 
@@ -146,21 +161,21 @@ canvas size.
 
 ```javascript
 tsParticles.load("tsparticles", {
-  emitters: {
-    life: {
-      count: 0,
+    emitters: {
+        life: {
+            count: 0,
+        },
+        position: {
+            // uncomment only one of these lines,
+            // to have explosions on the x or y axis
+            // centered on the other one
+            // if everything is kept commented,
+            // random positions will be used everytime the cannon fires
+            // x: 50,
+            // y: 50
+        },
     },
-    position: {
-      // uncomment only one of these lines,
-      // to have explosions on the x or y axis
-      // centered on the other one
-      // if everything is kept commented,
-      // random positions will be used everytime the cannon fires
-      // x: 50,
-      // y: 50
-    },
-  },
-  preset: "confetti",
+    preset: "confetti",
 });
 ```
 
@@ -176,8 +191,8 @@ Like this:
 
 ```javascript
 tsParticles.load("tsparticles", {
-  emitters: [],
-  preset: "confetti",
+    emitters: [],
+    preset: "confetti",
 });
 ```
 
@@ -189,43 +204,44 @@ Now you can add emitters to the array, using the standard tsParticles emitters o
 
 ```javascript
 tsParticles.load("tsparticles", {
-  emitters: [
-    {
-      life: {
-        duration: 5,
-        count: 1,
-      },
-      position: {
-        x: 0,
-        y: 30,
-      },
-      particles: {
-        move: {
-          direction: "top-right",
+    emitters: [
+        {
+            life: {
+                duration: 5,
+                count: 1,
+            },
+            position: {
+                x: 0,
+                y: 30,
+            },
+            particles: {
+                move: {
+                    direction: "top-right",
+                },
+            },
         },
-      },
-    },
-    {
-      life: {
-        duration: 5,
-        count: 1,
-      },
-      position: {
-        x: 100,
-        y: 30,
-      },
-      particles: {
-        move: {
-          direction: "top-left",
+        {
+            life: {
+                duration: 5,
+                count: 1,
+            },
+            position: {
+                x: 100,
+                y: 30,
+            },
+            particles: {
+                move: {
+                    direction: "top-left",
+                },
+            },
         },
-      },
-    },
-  ],
-  preset: "confetti",
+    ],
+    preset: "confetti",
 });
 ```
 
-This samples creates two cannons, one on the left and one on the right of the canvas, at 30% of canvas height, shooting in opposite directions.
+This samples creates two cannons, one on the left and one on the right of the canvas, at 30% of canvas height, shooting
+in opposite directions.
 
 ### React.js / Preact / Inferno
 
@@ -239,19 +255,19 @@ import type { Engine } from "tsparticles-engine";
 import { loadConfettiPreset } from "tsparticles-preset-confetti";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
-  // this customizes the component tsParticles installation
-  async customInit(engine: Engine): Promise<void> {
-    // this adds the preset to tsParticles, you can safely use the
-    await loadConfettiPreset(engine);
-  }
+    // this customizes the component tsParticles installation
+    async customInit(engine: Engine): Promise<void> {
+        // this adds the preset to tsParticles, you can safely use the
+        await loadConfettiPreset(engine);
+    }
 
-  render() {
-    const options = {
-      preset: "confetti",
-    };
+    render() {
+        const options = {
+            preset: "confetti",
+        };
 
-    return <Particles options={options} init={this.customInit} />;
-  }
+        return <Particles options={options} init={this.customInit}/>;
+    }
 }
 ```
 
@@ -260,29 +276,38 @@ export class ParticlesContainer extends React.PureComponent<IProps> {
 _The syntax for `Vue.js 2.x` and `3.x` is the same_
 
 ```vue
-<Particles id="tsparticles" :particlesInit="particlesInit" url="http://foo.bar/particles.json" />
+
+<Particles id="tsparticles" :particlesInit="particlesInit" :options="particlesOptions" />
 ```
 
-```js
+```ts
+const particlesOptions = {
+  preset: "confetti",
+};
+
 async function particlesInit(engine: Engine): Promise<void> {
-  await loadConfettiPreset(engine);
+    await loadConfettiPreset(engine);
 }
 ```
 
 ### Angular
 
 ```html
+
 <ng-particles
-  [id]="id"
-  [options]="particlesOptions"
-  (particlesLoaded)="particlesLoaded($event)"
-  (particlesInit)="particlesInit($event)"
+        [id]="id"
+        [options]="particlesOptions"
+        [particlesInit]="particlesInit"
 ></ng-particles>
 ```
 
 ```ts
+const particlesOptions = {
+  preset: "confetti",
+};
+
 async function particlesInit(engine: Engine): Promise<void> {
-  await loadConfettiPreset(engine);
+    await loadConfettiPreset(engine);
 }
 ```
 
@@ -292,15 +317,18 @@ async function particlesInit(engine: Engine): Promise<void> {
 
 <Particles
         id="tsparticles"
-        url="http://foo.bar/particles.json"
-        on:particlesInit="{onParticlesInit}"
+        options={options} 
+        particlesInit={particlesInit}
 />
 ```
 
 ```js
-let onParticlesInit = (event) => {
-  const main = event.detail;
-  loadConfettiPreset(main);
+let particlesOptions = {
+  preset: "confetti",
+};
+
+let particlesInit = async (engine) => {
+    await loadConfettiPreset(engine);
 };
 ```
 
@@ -310,35 +338,35 @@ This module exports another method for using the confetti preset
 
 ```javascript
 confetti("tsparticles", {
-  /**
-   * @deprecated use count property instead
-   */
-  particleCount: 50,
-  /**
-   * @deprecated use position property instead
-   */
-  origin: {
-    x: 50,
-    y: 50,
-  },
-  //------------------------------------------
-  angle: 90,
-  count: 50,
-  position: {
-    x: 50,
-    y: 50,
-  },
-  spread: 45,
-  startVelocity: 45,
-  decay: 0.9,
-  gravity: 1,
-  drift: 0,
-  ticks: 200,
-  colors: ["#ffffff", "#ff0000"],
-  shapes: ["square", "circle"],
-  scalar: 1,
-  zIndex: 100,
-  disableForReducedMotion: true,
+    /**
+     * @deprecated use count property instead
+     */
+    particleCount: 50,
+    /**
+     * @deprecated use position property instead
+     */
+    origin: {
+        x: 50,
+        y: 50,
+    },
+    //------------------------------------------
+    angle: 90,
+    count: 50,
+    position: {
+        x: 50,
+        y: 50,
+    },
+    spread: 45,
+    startVelocity: 45,
+    decay: 0.9,
+    gravity: 1,
+    drift: 0,
+    ticks: 200,
+    colors: [ "#ffffff", "#ff0000" ],
+    shapes: [ "square", "circle" ],
+    scalar: 1,
+    zIndex: 100,
+    disableForReducedMotion: true,
 });
 ```
 
@@ -371,10 +399,10 @@ which has the following properties:
   confetti disappear too quickly for you.
 - `position` _Object_: Where to start firing confetti from. Feel free to launch off-screen if you'd like. (`origin` can
   be used too, but it's deprecated)
-  - `position.x` _Number (default: 0.5)_: The `x` position on the page, with `0` being the left edge and `1` being the
-    right edge.
-  - `position.y` _Number (default: 0.5)_: The `y` position on the page, with `0` being the top edge and `1` being the
-    bottom edge.
+    - `position.x` _Number (default: 0.5)_: The `x` position on the page, with `0` being the left edge and `1` being the
+      right edge.
+    - `position.y` _Number (default: 0.5)_: The `y` position on the page, with `0` being the top edge and `1` being the
+      bottom edge.
 - `colors` _Array&lt;String&gt;_: An array of color strings, in the HEX format... you know, like `#bada55`.
 - `shapes` _Array&lt;String&gt;_: An array of shapes for the confetti. The possible values are `square` and `circle`.
   The default is to use both shapes in an even mix. You can even change the mix by providing a value such
