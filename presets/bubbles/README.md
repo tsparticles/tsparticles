@@ -116,7 +116,7 @@ _The syntax for `Vue.js 2.x` and `3.x` is the same_
 <Particles id="tsparticles" :particlesInit="particlesInit" :options="particlesOptions" />
 ```
 
-```js
+```ts
 const particlesOptions = {
     preset: "bubbles",
 };
