@@ -7,9 +7,9 @@
 
 ## Particles Destroy Split
 
-| key            | option type          | example                    | notes                                           |
-| -------------- | -------------------- | -------------------------- | ----------------------------------------------- |
-| `count`        | `number`             | `1`                        |                                                 |
-| `factor.value` | `number` / `range`   | `9` / `{min: 4, max: 9 }` |                                                 |
-| `particles`    | `object`             |                            | See Particles options {@link IParticles | here} |
-| `rate.value`   | `number` / `range`   | `9` / `{ min: 4, max: 9 }` |                                                 |
+| key            | option type          | example                    | notes                                                  |
+|----------------| -------------------- |----------------------------|--------------------------------------------------------|
+| `count`        | `number`             | `1`                        |                                                        |
+| `factor.value` | `number` / `range`   | `9` / `{min: 4, max: 9 }`  |                                                        |
+| `particles`    | `object`             |                            | See Particles options {@link IParticlesOptions | here} |
+| `rate.value`   | `number` / `range`   | `9` / `{ min: 4, max: 9 }` |                                                        |

@@ -34,9 +34,14 @@
         />
         <meta property="og:image" content="https://particles.js.org/images/demo2.png" />
         <title>
-            tsParticles | Triangles Preset | JavaScript Particles, Confetti and Fireworks animations for your website
+            tsParticles | Video Tutorials | JavaScript Particles, Confetti and Fireworks animations for your website
         </title>
-        <link rel="stylesheet" href="/css/presets.min.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+            integrity="sha256-T/zFmO5s/0aSwc6ics2KLxlfbewyRz6UNw1s3Ppf5gE="
+            crossorigin="anonymous"
+        />
         <style>
             #carbonads * {
                 margin: initial;
@@ -140,8 +145,41 @@
         </script>
     </head>
 
-    <body>
-        <div id="tsparticles"></div>
+    <body style="background-color: #000c66">
+        <div class="container-fluid m-0">
+            <div class="row">
+                <div class="col-6 mt-3 mb-3">
+                    <div style="display: flex; align-items: center; flex-direction: column">
+                        <div style="flex: 560px">
+                            <iframe
+                                width="560"
+                                height="315"
+                                src="https://www.youtube.com/embed/Q0Lf1GGlenY"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 mt-3 mb-3">
+                    <div style="display: flex; align-items: center; flex-direction: column">
+                        <div style="flex: 560px">
+                            <iframe
+                                width="560"
+                                height="315"
+                                src="https://www.youtube.com/embed/uuohRbc18zE"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script type="text/javascript">
             (function (c, l, a, r, i, t, y) {
                 c[a] =
@@ -162,21 +200,20 @@
             src="//cdn.carbonads.com/carbon.js?serve=CEAI6KJL&placement=particlesjsorg"
             id="_carbonads_js"
         ></script>
-        <script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2.0.5/tsparticles.engine.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-particles-links@2.0.5/tsparticles.interaction.particles.links.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/tsparticles-move-base@2.0.5/tsparticles.move.base.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-circle@2.0.5/tsparticles.shape.circle.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-color@2.0.5/tsparticles.updater.color.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-opacity@2.0.5/tsparticles.updater.opacity.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-out-modes@2.0.5/tsparticles.updater.out-modes.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-size@2.0.5/tsparticles.updater.size.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-triangles@2.0.5/tsparticles.preset.triangles.min.js"></script>
-        <script type="text/javascript">
-            (async () => {
-                await loadTrianglesPreset(tsParticles);
-
-                await tsParticles.load("tsparticles", { preset: "triangles" });
-            })();
-        </script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"
+            integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha256-/ijcOLwFf26xEYAjW75FizKVo5tnTYiQddPZoLUHHZ8="
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+            integrity="sha256-7dA7lq5P94hkBsWdff7qobYkp9ope/L5LQy2t/ljPLo="
+            crossorigin="anonymous"
+        ></script>
     </body>
 </html>

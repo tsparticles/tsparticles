@@ -5,7 +5,7 @@
 
 ## Options
 
-See Particles options {@link IParticles | here}
+See Particles options {@link IParticlesOptions | here}
 
 ## Position
 
