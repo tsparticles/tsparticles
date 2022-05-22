@@ -51,11 +51,13 @@ is enough, and if this is done the `tsparticles-engine` is not needed, since it'
 Once the scripts are loaded you can set up `tsParticles` like this:
 
 ```javascript
-loadFull(tsParticles); // not needed if using the bundle script, required for any other installation
+(async () => {
+  await loadFull(tsParticles); // not needed if using the bundle script, required for any other installation
 
-tsParticles.load("tsparticles", {
-  /* options */
-});
+  await tsParticles.load("tsparticles", {
+    /* options */
+  });
+})();
 ```
 
 ### React.js / Preact / Inferno
@@ -117,10 +119,14 @@ export function ParticlesContainer(props: unknown) {
 _The syntax for `Vue.js 2.x` and `3.x` is the same_
 
 ```vue
-<Particles id="tsparticles" :particlesInit="particlesInit" url="http://foo.bar/particles.json" />
+<Particles id="tsparticles" :particlesInit="particlesInit" :options="options" />
 ```
 
 ```js
+const options = {
+  /* custom options */
+};
+
 async function particlesInit(engine: Engine): Promise<void> {
   await loadFull(engine);
 }
@@ -131,13 +137,16 @@ async function particlesInit(engine: Engine): Promise<void> {
 ```html
 <ng-particles
   [id]="id"
-  [options]="particlesOptions"
-  (particlesLoaded)="particlesLoaded($event)"
+  [options]="options"
   [particlesInit]="particlesInit"
 ></ng-particles>
 ```
 
 ```ts
+const options = {
+  /* custom options */
+};
+
 async function particlesInit(engine: Engine): Promise<void> {
   await loadFull(engine);
 }
@@ -147,15 +156,21 @@ async function particlesInit(engine: Engine): Promise<void> {
 
 ```sveltehtml
 
+<script>
+</script>
 <Particles
         id="tsparticles"
-        url="http://foo.bar/particles.json"
-        on:particlesInit="{onParticlesInit}"
+        options={options}
+        particlesInit={particlesInit}
 />
 ```
 
 ```js
-let onParticlesInit = (engine) => {
-  loadFull(engine);
+let options = {
+  /* custom options */
+};
+
+let particlesInit = async (engine) => {
+  await loadFull(engine);
 };
 ```
