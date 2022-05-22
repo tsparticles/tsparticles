@@ -51,11 +51,11 @@ Once the scripts are loaded you can set up `tsParticles` like this:
 
 ```javascript
 (async () => {
-    await loadFirePreset(tsParticles);
+  await loadFirePreset(tsParticles);
 
-    await tsParticles.load("tsparticles", {
-        preset: "fire",
-    });
+  await tsParticles.load("tsparticles", {
+    preset: "fire",
+  });
 })();
 ```
 
@@ -110,33 +110,28 @@ export class ParticlesContainer extends React.PureComponent<IProps> {
 _The syntax for `Vue.js 2.x` and `3.x` is the same_
 
 ```vue
-
 <Particles id="tsparticles" :particlesInit="particlesInit" :options="particlesOptions" />
 ```
 
 ```ts
 const particlesOptions = {
-    preset: "fire",
+  preset: "fire",
 };
 
 async function particlesInit(engine: Engine): Promise<void> {
-    await loadFirePreset(engine);
+  await loadFirePreset(engine);
 }
 ```
 
 ### Angular
 
 ```html
-<ng-particles
-  [id]="id"
-  [options]="particlesOptions"
-  [particlesInit]="particlesInit"
-></ng-particles>
+<ng-particles [id]="id" [options]="particlesOptions" [particlesInit]="particlesInit"></ng-particles>
 ```
 
 ```ts
 const particlesOptions = {
-    preset: "fire",
+  preset: "fire",
 };
 
 async function particlesInit(engine: Engine): Promise<void> {
@@ -157,7 +152,7 @@ async function particlesInit(engine: Engine): Promise<void> {
 
 ```js
 let particlesOptions = {
-    preset: "fire",
+  preset: "fire",
 };
 
 let particlesInit = async (engine) => {
