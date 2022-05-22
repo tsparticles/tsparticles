@@ -1,6 +1,6 @@
 # Colores
 
-Los colores de **tsParticles** pueden tener una variedad de valores y todas las propiedades de color (excepto {@link IParticles.color | particles color}) en las opciones, aceptan todos estos valores.
+Los colores de **tsParticles** pueden tener una variedad de valores y todas las propiedades de color (excepto {@link IParticlesOptions.color | particles color}) en las opciones, aceptan todos estos valores.
 
 Todas las propiedades `color` aceptan `string`s y `object`s. El color `object` tiene una única propiedad: `value`.
 
