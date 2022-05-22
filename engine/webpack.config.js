@@ -48,6 +48,7 @@ const getConfig = (entry) => {
                 banner: minBanner,
                 include: /\.min\.js$/
             }),
+            new webpack.ProgressPlugin(),
             new BundleAnalyzerPlugin({
                 openAnalyzer: false,
                 analyzerMode: "static",

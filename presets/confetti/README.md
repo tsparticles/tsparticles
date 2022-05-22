@@ -26,18 +26,29 @@ Once added the script you need one more script to be included in your page (or y
 from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-confetti):
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@1/tsparticles.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-confetti@1/tsparticles.preset.confetti.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2/tsparticles.engine.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-move-base@2/tsparticles.move.base.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-emitters@2/tsparticles.plugin.emitters.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-circle@2/tsparticles.shape.circle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-square@2/tsparticles.shape.square.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-angle@2/tsparticles.updater.angle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-color@2/tsparticles.updater.color.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-life@2/tsparticles.updater.life.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-opacity@2/tsparticles.updater.opacity.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-out-modes@2/tsparticles.updater.out-modes.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-roll@2/tsparticles.updater.roll.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-size@2/tsparticles.updater.size.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-tilt@2/tsparticles.updater.tilt.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-wobble@2/tsparticles.updater.wobble.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-confetti@2/tsparticles.preset.confetti.min.js"></script>
 ```
-
-This script **MUST** be placed after the `tsParticles` one.
 
 #### Bundle
 
 A bundled script can also be used, this will include every needed plugin needed by the preset.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-confetti@1/tsparticles.preset.confetti.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-confetti@2/tsparticles.preset.confetti.bundle.min.js"></script>
 ```
 
 ### Usage
@@ -45,11 +56,13 @@ A bundled script can also be used, this will include every needed plugin needed 
 Once the scripts are loaded you can set up `tsParticles` like this:
 
 ```javascript
-loadConfettiPreset(tsParticles);
+(async () => {
+  await loadConfettiPreset(tsParticles); // this is required only if you are not using the bundle script
 
-tsParticles.load("tsparticles", {
-  preset: "confetti",
-});
+  await tsParticles.load("tsparticles", {
+    preset: "confetti",
+  });
+})();
 ```
 
 ### Customization
@@ -225,7 +238,8 @@ tsParticles.load("tsparticles", {
 });
 ```
 
-This samples creates two cannons, one on the left and one on the right of the canvas, at 30% of canvas height, shooting in opposite directions.
+This samples creates two cannons, one on the left and one on the right of the canvas, at 30% of canvas height, shooting
+in opposite directions.
 
 ### React.js / Preact / Inferno
 
@@ -260,10 +274,14 @@ export class ParticlesContainer extends React.PureComponent<IProps> {
 _The syntax for `Vue.js 2.x` and `3.x` is the same_
 
 ```vue
-<Particles id="tsparticles" :particlesInit="particlesInit" url="http://foo.bar/particles.json" />
+<Particles id="tsparticles" :particlesInit="particlesInit" :options="particlesOptions" />
 ```
 
-```js
+```ts
+const particlesOptions = {
+  preset: "confetti",
+};
+
 async function particlesInit(engine: Engine): Promise<void> {
   await loadConfettiPreset(engine);
 }
@@ -272,15 +290,14 @@ async function particlesInit(engine: Engine): Promise<void> {
 ### Angular
 
 ```html
-<ng-particles
-  [id]="id"
-  [options]="particlesOptions"
-  (particlesLoaded)="particlesLoaded($event)"
-  (particlesInit)="particlesInit($event)"
-></ng-particles>
+<ng-particles [id]="id" [options]="particlesOptions" [particlesInit]="particlesInit"></ng-particles>
 ```
 
 ```ts
+const particlesOptions = {
+  preset: "confetti",
+};
+
 async function particlesInit(engine: Engine): Promise<void> {
   await loadConfettiPreset(engine);
 }
@@ -292,15 +309,18 @@ async function particlesInit(engine: Engine): Promise<void> {
 
 <Particles
         id="tsparticles"
-        url="http://foo.bar/particles.json"
-        on:particlesInit="{onParticlesInit}"
+        options={options}
+        particlesInit={particlesInit}
 />
 ```
 
 ```js
-let onParticlesInit = (event) => {
-  const main = event.detail;
-  loadConfettiPreset(main);
+let particlesOptions = {
+  preset: "confetti",
+};
+
+let particlesInit = async (engine) => {
+  await loadConfettiPreset(engine);
 };
 ```
 

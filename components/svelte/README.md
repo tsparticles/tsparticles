@@ -53,13 +53,11 @@ yarn add svelte-particles
     // (from the core library) methods like play, pause, refresh, start, stop
   };
 
-  let onParticlesInit = (event) => {
-    const main = event.detail;
-
+  let particlesInit = async (engine) => {
     // you can use main to customize the tsParticles instance adding presets or custom shapes
     // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
     // starting from v2 you can add only the features you need reducing the bundle size
-    await loadFull(main);
+    await loadFull(engine);
   };
 </script>
 
@@ -150,6 +148,19 @@ You can see a sample below:
   particlesInit="{particlesInit}"
 />
 ```
+
+### TypeScript errors
+
+A user reported me a TypeScript error (#3963), and that's because this Svelte component is built using TypeScript.
+
+If someone is experiencing the same error, please follow these steps:
+
+- install these packages: `typescript`, `svelte-preprocess`.
+- add a `tsconfig.json` file to your project, following this sample: <https://github.com/ivanhofer/sveltekit-typescript-showcase#configure-typescript> (see this for example: <https://github.com/ivanhofer/sveltekit-typescript-showcase/blob/main/tsconfig.json>)
+- import `svelte-preprocess` in your svelte configuration file, like this: `import preprocess from 'svelte-preprocess'` (see this for example: <https://github.com/ivanhofer/sveltekit-typescript-showcase/blob/c824e45338ffc1a9c907c63d00a6a0af4884a0e9/svelte.config.js#L2>)
+- use the `preprocess` function in your svelte configuration file, like this: `preprocess: preprocess(),` (see this for example: <https://github.com/ivanhofer/sveltekit-typescript-showcase/blob/c824e45338ffc1a9c907c63d00a6a0af4884a0e9/svelte.config.js#L9>)
+
+After that, everything should work as expected.
 
 ## Demos
 

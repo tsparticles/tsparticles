@@ -1,30 +1,30 @@
 {
-  "fullScreen": {
-    "zIndex": -1
-  },
-  "background": {
-    "color": "#000"
-  },
-  "particles": {
-    "opacity": {
-      "value": {
-        "min": 0.1,
-        "max": 1
-      },
-      "animation": {
-        "enable": true,
-        "speed": 0.25
-      }
+    "fullScreen": {
+        "zIndex": -1
     },
-    "number": {
-      "value": 200,
-      "density": {
-        "enable": true
-      }
+    "background": {
+        "color": "#000"
     },
-    "size": {
-      "value": 1
-    }
-  },
-  "emitters": []
+    "particles": {
+        "opacity": {
+            "value": {
+                "min": 0.1,
+                "max": 1
+            },
+            "animation": {
+                "enable": true,
+                "speed": 0.25
+            }
+        },
+        "number": {
+            "value": 200,
+            "density": {
+                "enable": true
+            }
+        },
+        "size": {
+            "value": 1
+        }
+    },
+    "emitters": []
 }

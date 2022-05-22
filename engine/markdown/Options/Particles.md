@@ -26,7 +26,7 @@
 
 ## Bounce
 
-See Particles Bounce documentation {@link IBounce | here}
+See Particles Bounce documentation {@link IParticlesBounce | here}
 
 ## Collisions
 
@@ -72,7 +72,7 @@ If set to `true` it reduces particles duplicates, picking particles configuratio
 
 ## Repulse
 
-See Particles Repulse documentation {@link IRepulse | here}
+See Particles Repulse documentation {@link IParticlesRepulse | here}
 
 ## Roll
 

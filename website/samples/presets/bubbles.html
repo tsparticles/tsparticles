@@ -1,188 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8"/>
-    <link
-            rel="shortcut icon"
-            href="https://particles.js.org/tsParticles-64.png"
-    />
-    <meta
+    <head>
+        <meta charset="utf-8" />
+        <link rel="shortcut icon" href="https://particles.js.org/tsParticles-64.png" />
+        <meta
             name="description"
             content="tsParticles - Easily create highly customizable particles, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno."
-    />
-    <meta name="author" content="Matteo Bruni"/>
-    <meta
+        />
+        <meta name="author" content="Matteo Bruni" />
+        <meta
             name="keyword"
-            content="HTML, CSS, JavaScript, Particles, Particles.js, Canvas, Confetti, Fireworks, Animations, React, Vue, Angular, Vue.js, Svelte"
-    />
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta
+            content="html css javascript typescript particles js ts jsx tsx canvas confetti fireworks animations react vue angular svelte libraries how to create add"
+        />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+        />
 
-    <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:creator" content="@HollowMatt_ITA"/>
-    <meta
-            name="twitter:image:src"
-            content="https://particles.js.org/images/demo2.png"
-    />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:creator" content="@HollowMatt_ITA" />
+        <meta name="twitter:image:src" content="https://particles.js.org/images/demo2.png" />
 
-    <meta
+        <meta
             property="og:title"
             content="tsParticles - JavaScript Particles, Confetti and Fireworks animations for your website"
-    />
-    <meta property="og:site_name" content="tsParticles"/>
-    <meta property="og:url" content="https://particles.js.org/"/>
-    <meta
+        />
+        <meta property="og:site_name" content="tsParticles" />
+        <meta property="og:url" content="https://particles.js.org/" />
+        <meta
             property="og:description"
             content="Easily create highly customizable particles, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno."
-    />
-    <meta
-            property="og:image"
-            content="https://particles.js.org/images/demo2.png"
-    />
-    <title>
-        tsParticles | Bubbles Preset | JavaScript Particles, Confetti and Fireworks animations for your website
-    </title>
-    <link rel="stylesheet" href="/css/presets.min.css"/>
-    <style>
-        #carbonads * {
-            margin: initial;
-            padding: initial;
-        }
-
-        #carbonads {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-            Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Helvetica, Arial,
-            sans-serif;
-        }
-
-        #carbonads {
-            display: flex;
-            max-width: 330px;
-            background-color: hsl(0, 0%, 98%);
-            box-shadow: 0 1px 4px 1px hsla(0, 0%, 0%, 0.1);
-            z-index: 100;
-        }
-
-        #carbonads a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        #carbonads a:hover {
-            color: inherit;
-        }
-
-        #carbonads span {
-            position: relative;
-            display: block;
-            overflow: hidden;
-        }
-
-        #carbonads .carbon-wrap {
-            display: flex;
-        }
-
-        #carbonads .carbon-img {
-            display: block;
-            margin: 0;
-            line-height: 1;
-        }
-
-        #carbonads .carbon-img img {
-            display: block;
-        }
-
-        #carbonads .carbon-text {
-            font-size: 13px;
-            padding: 10px;
-            margin-bottom: 16px;
-            line-height: 1.5;
-            text-align: left;
-        }
-
-        #carbonads .carbon-poweredby {
-            display: block;
-            padding: 6px 8px;
-            background: #f1f1f2;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 600;
-            font-size: 8px;
-            line-height: 1;
-            border-top-left-radius: 3px;
-            position: absolute;
-            bottom: 0;
-            right: 0;
-        }
-    </style>
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161253125-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-
-        gtag("js", new Date());
-
-        gtag("config", "UA-161253125-1", {
-            "custom_map": {
-                "dimension1": "dimension_codepen_data",
-                "dimension2": "dimension_editor_data",
-                "dimension3": "dimension_editor_error",
-                "dimension4": "dimension_editor_mode",
-                "dimension5": "dimension_particles_export_config",
-                "dimension6": "dimension_new_preset",
-                "dimension7": "dimension_old_preset",
-                "dimension8": "dimension_status",
-                "dimension9": "dimension_particles_options"
+        />
+        <meta property="og:image" content="https://particles.js.org/images/demo2.png" />
+        <title>
+            tsParticles | Bubbles Preset | JavaScript Particles, Confetti and Fireworks animations for your website
+        </title>
+        <link rel="stylesheet" href="/css/presets.min.css" />
+        <style>
+            #carbonads * {
+                margin: initial;
+                padding: initial;
             }
-        });
 
-        gtag("config", "AW-1021008757");
-        gtag("event", "conversion", { "send_to": "AW-1021008757/3t7QCNqulswBEPW27eYD" });
-    </script>
-</head>
+            #carbonads {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell,
+                    "Helvetica Neue", Helvetica, Arial, sans-serif;
+            }
 
-<body>
-<div id="tsparticles"></div>
-<script type="text/javascript">
-    (function (c, l, a, r, i, t, y) {
-        c[a] = c[a] || function () {
-            (c[a].q = c[a].q || []).push(arguments)
-        };
-        t = l.createElement(r);
-        t.async = 1;
-        t.src = "https://www.clarity.ms/tag/" + i;
-        y = l.getElementsByTagName(r)[0];
-        y.parentNode.insertBefore(t, y);
-    })(window, document, "clarity", "script", "8q4bxin4tm");
-</script>
-<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CEAI6KJL&placement=particlesjsorg"
-        id="_carbonads_js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2.0.5/tsparticles.engine.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-move-base@2.0.5/tsparticles.move.base.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-emitters@2.0.5/tsparticles.plugin.emitters.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-circle@2.0.5/tsparticles.shape.circle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-color@2.0.5/tsparticles.updater.color.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-opacity@2.0.5/tsparticles.updater.opacity.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-out-modes@2.0.5/tsparticles.updater.out-modes.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-size@2.0.5/tsparticles.updater.size.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-bubbles@2.0.5/tsparticles.preset.bubbles.min.js"></script>
-<script type="text/javascript">
-    (async () => {
-        await loadBubblesPreset(tsParticles);
+            #carbonads {
+                display: flex;
+                max-width: 330px;
+                background-color: hsl(0, 0%, 98%);
+                box-shadow: 0 1px 4px 1px hsla(0, 0%, 0%, 0.1);
+                z-index: 100;
+            }
 
-        await tsParticles.load("tsparticles", { preset: "bubbles" });
-    })();
-</script>
-</body>
+            #carbonads a {
+                color: inherit;
+                text-decoration: none;
+            }
 
+            #carbonads a:hover {
+                color: inherit;
+            }
+
+            #carbonads span {
+                position: relative;
+                display: block;
+                overflow: hidden;
+            }
+
+            #carbonads .carbon-wrap {
+                display: flex;
+            }
+
+            #carbonads .carbon-img {
+                display: block;
+                margin: 0;
+                line-height: 1;
+            }
+
+            #carbonads .carbon-img img {
+                display: block;
+            }
+
+            #carbonads .carbon-text {
+                font-size: 13px;
+                padding: 10px;
+                margin-bottom: 16px;
+                line-height: 1.5;
+                text-align: left;
+            }
+
+            #carbonads .carbon-poweredby {
+                display: block;
+                padding: 6px 8px;
+                background: #f1f1f2;
+                text-align: center;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                font-weight: 600;
+                font-size: 8px;
+                line-height: 1;
+                border-top-left-radius: 3px;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+            }
+        </style>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161253125-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+
+            gtag("js", new Date());
+
+            gtag("config", "UA-161253125-1", {
+                custom_map: {
+                    dimension1: "dimension_codepen_data",
+                    dimension2: "dimension_editor_data",
+                    dimension3: "dimension_editor_error",
+                    dimension4: "dimension_editor_mode",
+                    dimension5: "dimension_particles_export_config",
+                    dimension6: "dimension_new_preset",
+                    dimension7: "dimension_old_preset",
+                    dimension8: "dimension_status",
+                    dimension9: "dimension_particles_options",
+                },
+            });
+
+            gtag("config", "AW-1021008757");
+            gtag("event", "conversion", { send_to: "AW-1021008757/3t7QCNqulswBEPW27eYD" });
+        </script>
+    </head>
+
+    <body>
+        <div id="tsparticles"></div>
+        <script type="text/javascript">
+            (function (c, l, a, r, i, t, y) {
+                c[a] =
+                    c[a] ||
+                    function () {
+                        (c[a].q = c[a].q || []).push(arguments);
+                    };
+                t = l.createElement(r);
+                t.async = 1;
+                t.src = "https://www.clarity.ms/tag/" + i;
+                y = l.getElementsByTagName(r)[0];
+                y.parentNode.insertBefore(t, y);
+            })(window, document, "clarity", "script", "8q4bxin4tm");
+        </script>
+        <script
+            async
+            type="text/javascript"
+            src="//cdn.carbonads.com/carbon.js?serve=CEAI6KJL&placement=particlesjsorg"
+            id="_carbonads_js"
+        ></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2.0.5/tsparticles.engine.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-move-base@2.0.5/tsparticles.move.base.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-emitters@2.0.5/tsparticles.plugin.emitters.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-circle@2.0.5/tsparticles.shape.circle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-color@2.0.5/tsparticles.updater.color.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-opacity@2.0.5/tsparticles.updater.opacity.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-out-modes@2.0.5/tsparticles.updater.out-modes.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-size@2.0.5/tsparticles.updater.size.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-bubbles@2.0.5/tsparticles.preset.bubbles.min.js"></script>
+        <script type="text/javascript">
+            (async () => {
+                await loadBubblesPreset(tsParticles);
+
+                await tsParticles.load("tsparticles", { preset: "bubbles" });
+            })();
+        </script>
+    </body>
 </html>

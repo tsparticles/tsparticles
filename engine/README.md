@@ -15,6 +15,9 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 
 ## Table of Contents
 
+⚠️⚠️ _This readme refers to upcoming **v2**
+version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) for **v1** documentation_ ⚠️⚠️
+
 - [Use for your website](#Do-you-want-to-use-it-on-your-website)
   - [Library installation](#Library-installation)
 - [Official components for some of the most used frameworks](#Official-components-for-some-of-the-most-used-frameworks)
@@ -51,8 +54,10 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
   - [Animated stars](#Animated-stars)
   - [Nyan cat flying on scrolling stars](#Nyan-cat-flying-on-scrolling-stars)
   - [Background Mask particles](#Background-Mask-particles)
+- [Video Tutorials](#Video-Tutorials)
 - [Migrating from Particles.js](#Migrating-from-Particlesjs)
 - [Plugins/Customizations](#PluginsCustomizations)
+- [Sponsors](#Sponsors)
 
 ---
 
@@ -69,7 +74,8 @@ links you need, and _don't be scared by **TypeScript**, it's just the source lan
 
 **The output files are just JavaScript**. 🤩
 
-CDNs and `npm` have all the sources you need in **Javascript**, a bundle browser ready (tsparticles.min.js) and all
+CDNs and `npm` have all the sources you need in **Javascript**, a bundle browser ready (tsparticles.engine.min.js) and
+all
 files splitted for `import` syntax.
 
 **If you are interested** there are some _simple instructions_
@@ -309,20 +315,6 @@ Instructions available [here](https://github.com/matteobruni/tsparticles/blob/ma
 
 Instruction available [here](https://github.com/matteobruni/tsparticles/blob/main/components/vue3/README.md)
 
-### WordPress
-
-Actually an official tsParticles plugin isn't existing, but I have a collaboration with
-the `Premium Addons for Elementor` plugin collection.
-
-<div style="float: left; margin-right: 10px;">
-    <img width="64" alt="Premium Addons for Elementor" src="https://particles.js.org/images/premium-addons-wordpress-plugin.png" />
-</div>
-<div>
-    Premium Addons for Elementor is one of the most common plugins for Elementor that offers more than 55 highly customizable Elementor Widgets and Section Add-ons. tsParticles is exclusively included in Premium Particles Section Add-on for Elementor Page Builder. <a href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/" target="_blank">Check It Now</a>.<br />
-    Use Premium Addons for Elementor Page Builder and get the chance to include tsParticles in your next WordPress website without the need to write a single line of code. <a href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/" target="_blank">See a Live Example</a>.
-</div>
-<div style="clear: both;"></div>
-
 ### Web Components
 
 #### `web-particles`
@@ -360,7 +352,7 @@ This preset loads big colored circles moving upwards on a white background.
 
 [![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/bigCircles/images/sample.png)](https://particles.js.org/samples/presets/bigCircles)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/preset/bigCircles/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/bigCircles/README.md)
 
 ### Bubbles
 
@@ -370,7 +362,7 @@ This preset loads colored bubbles coming from the bottom of the screen on a whit
 
 [![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/bubbles/images/sample.png)](https://particles.js.org/samples/presets/bubbles)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/preset/bubbles/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/bubbles/README.md)
 
 ### Confetti
 
@@ -380,7 +372,7 @@ This preset loads white and red confetti launched from the screen center on a tr
 
 [![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/confetti/images/sample.png)](https://particles.js.org/samples/presets/confetti)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/preset/confetti/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/confetti/README.md)
 
 ### Fire
 
@@ -390,7 +382,7 @@ This preset loads a faded red to black background with particles colored like fi
 
 [![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/fire/images/sample.png)](https://particles.js.org/samples/presets/fire)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/preset/fire/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/fire/README.md)
 
 ### Firefly
 
@@ -400,7 +392,7 @@ This preset loads a mouse trail made with small fading particles like little fir
 
 [![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/firefly/images/sample.png)](https://particles.js.org/samples/presets/firefly)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/preset/firefly/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/firefly/README.md)
 
 ### Fireworks
 
@@ -410,7 +402,7 @@ This preset loads a beautiful fireworks effect.
 
 [![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/fireworks/images/sample.png)](https://particles.js.org/samples/presets/fireworks)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/preset/fireworks/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/fireworks/README.md)
 
 ### Fountain
 
@@ -418,7 +410,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/fountain/images/sample.png)](https://particles.js.org/samples/presets/fountain)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/preset/fountain/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/fountain/README.md)
 
 ### Links
 
@@ -426,7 +418,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/links/images/sample.png)](https://particles.js.org/samples/presets/links)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/preset/links/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/links/README.md)
 
 ### Sea Anemone
 
@@ -434,7 +426,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/seaAnemone/images/sample.png)](https://particles.js.org/samples/presets/seaAnemone)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/preset/seaAnemone/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/seaAnemone/README.md)
 
 ### Snow
 
@@ -442,7 +434,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/snow/images/sample.png)](https://particles.js.org/samples/presets/snow)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/preset/snow/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/snow/README.md)
 
 ### Stars
 
@@ -450,7 +442,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/stars/images/sample.png)](https://particles.js.org/samples/presets/stars)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/preset/stars/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/stars/README.md)
 
 ### Triangles
 
@@ -458,7 +450,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/triangles/images/sample.png)](https://particles.js.org/samples/presets/triangles)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/preset/triangles/README.md)
+You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/triangles/README.md)
 
 ---
 
@@ -481,7 +473,15 @@ credited as the template author!
 
 <https://particles.js.org/samples>
 
-[![Particles demo](https://particles.js.org/images/demo2.png?v=1.39.2)](https://particles.js.org/samples)
+[![Particles demo](https://particles.js.org/images/demo2.png?v=1.39.1)](https://particles.js.org/samples)
+
+---
+
+## **_Video Tutorials_**
+
+You can find all video tutorials in the website here: <https://particles.js.org/video.html>
+
+_More videos are coming soon! Check every day if there are some new contents._
 
 ---
 
@@ -594,6 +594,24 @@ _Read more [here](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.
     </a>  
 </p>
 
-### Huge thanks to [JetBrains](https://www.jetbrains.com/?from=tsParticles) for the 2020-2021 Open Source Licenses!
+### Huge thanks to [JetBrains](https://www.jetbrains.com/?from=tsParticles) for the 2020-2022 Open Source Licenses!
 
 [JetBrains WebStorm](https://www.jetbrains.com/webstorm/?from=tsParticles) is used to maintain this project.
+
+---
+
+## Sponsors
+
+<p>
+  <a href="https://www.codacy.com">
+    <img src="https://particles.js.org/images/codacy-logos/codacy-white.jpeg" alt="Codacy" height="100" />
+  </a>
+</p>
+
+[Codacy](https://www.codacy.com) is a code quality platform that helps you to detect and fix code quality issues in your
+code.
+
+**Automate code reviews on your commits and pull requests**
+
+Check your code quality and keep track of your technical debt for more than 40 programming languages. Seamlessly
+integrated within your development workflow.
