@@ -25,7 +25,6 @@ Once installed you need one more script to be included in your page (or you can 
 from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-stars):
 
 ```html
-
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2/tsparticles.engine.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-move-base@2/tsparticles.move.base.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-circle@2/tsparticles.shape.circle.min.js"></script>
@@ -43,7 +42,6 @@ This script **MUST** be placed after the `tsParticles` one.
 A bundled script can also be used, this will include every needed plugin needed by the preset.
 
 ```html
-
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-stars@2/tsparticles.preset.stars.bundle.min.js"></script>
 ```
 
@@ -53,11 +51,11 @@ Once the scripts are loaded you can set up `tsParticles` like this:
 
 ```javascript
 (async () => {
-    await loadStarsPreset(tsParticles); // this is required only if you are not using the bundle script
+  await loadStarsPreset(tsParticles); // this is required only if you are not using the bundle script
 
-    await tsParticles.load("tsparticles", {
-        preset: "stars",
-    });
+  await tsParticles.load("tsparticles", {
+    preset: "stars",
+  });
 })();
 ```
 
@@ -68,12 +66,12 @@ You can override all the options defining the properties like in any standard `t
 
 ```javascript
 tsParticles.load("tsparticles", {
-    particles: {
-        shape: {
-            type: "square", // starting from v2, this require the square shape script
-        },
+  particles: {
+    shape: {
+      type: "square", // starting from v2, this require the square shape script
     },
-    preset: "stars",
+  },
+  preset: "stars",
 });
 ```
 
@@ -91,19 +89,19 @@ import type { Engine } from "tsparticles-engine";
 import { loadStarsPreset } from "tsparticles-preset-stars";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
-    // this customizes the component tsParticles installation
-    async customInit(engine: Engine): Promise<void> {
-        // this adds the preset to tsParticles, you can safely use the
-        await loadStarsPreset(engine);
-    }
+  // this customizes the component tsParticles installation
+  async customInit(engine: Engine): Promise<void> {
+    // this adds the preset to tsParticles, you can safely use the
+    await loadStarsPreset(engine);
+  }
 
-    render() {
-        const options = {
-            preset: "stars",
-        };
+  render() {
+    const options = {
+      preset: "stars",
+    };
 
-        return <Particles options={options} init={this.customInit}/>;
-    }
+    return <Particles options={options} init={this.customInit} />;
+  }
 }
 ```
 
@@ -112,38 +110,32 @@ export class ParticlesContainer extends React.PureComponent<IProps> {
 _The syntax for `Vue.js 2.x` and `3.x` is the same_
 
 ```vue
-
-<Particles id="tsparticles" :particlesInit="particlesInit" :options="particlesOptions"/>
+<Particles id="tsparticles" :particlesInit="particlesInit" :options="particlesOptions" />
 ```
 
 ```ts
 const particlesOptions = {
-    preset: "stars",
+  preset: "stars",
 };
 
 async function particlesInit(engine: Engine): Promise<void> {
-    await loadStarsPreset(engine);
+  await loadStarsPreset(engine);
 }
 ```
 
 ### Angular
 
 ```html
-
-<ng-particles
-        [id]="id"
-        [options]="particlesOptions"
-        [particlesInit]="particlesInit"
-></ng-particles>
+<ng-particles [id]="id" [options]="particlesOptions" [particlesInit]="particlesInit"></ng-particles>
 ```
 
 ```typescript
 const particlesOptions = {
-    preset: "stars",
+  preset: "stars",
 };
 
 async function particlesInit(engine: Engine): Promise<void> {
-    await loadStarsPreset(engine);
+  await loadStarsPreset(engine);
 }
 ```
 
@@ -160,10 +152,10 @@ async function particlesInit(engine: Engine): Promise<void> {
 
 ```js
 let particlesOptions = {
-    preset: "bubbles",
+  preset: "bubbles",
 };
 
 let particlesInit = async (engine) => {
-    await loadStarsPreset(engine);
+  await loadStarsPreset(engine);
 };
 ```
