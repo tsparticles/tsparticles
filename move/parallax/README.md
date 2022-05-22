@@ -1,12 +1,12 @@
 [![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
 
-# tsParticles Light Interaction
+# tsParticles Parallax Mover
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-interaction-light/badge)](https://www.jsdelivr.com/package/npm/tsparticles-interaction-light)
-[![npmjs](https://badge.fury.io/js/tsparticles-interaction-light.svg)](https://www.npmjs.com/package/tsparticles-interaction-light)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-interaction-light)](https://www.npmjs.com/package/tsparticles-interaction-light)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-move-parallax/badge)](https://www.jsdelivr.com/package/npm/tsparticles-move-parallax)
+[![npmjs](https://badge.fury.io/js/tsparticles-move-parallax.svg)](https://www.npmjs.com/package/tsparticles-move-parallax)
+[![npmjs](https://img.shields.io/npm/dt/tsparticles-move-parallax)](https://www.npmjs.com/package/tsparticles-move-parallax)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) interaction plugin for light effect.
+[tsParticles](https://github.com/matteobruni/tsparticles) move plugin for parallax effect.
 
 ## How to use it
 
@@ -14,10 +14,10 @@
 
 The CDN/Vanilla version JS has one required file in vanilla configuration:
 
-Including the `tsparticles.interaction.light.min.js` file will export the function to load the interaction plugin:
+Including the `tsparticles.move.parallax.min.js` file will export the function to load the interaction plugin:
 
 ```javascript
-loadLightInteraction;
+loadParallaxMover;
 ```
 
 ### Usage
@@ -25,11 +25,13 @@ loadLightInteraction;
 Once the scripts are loaded you can set up `tsParticles` and the interaction plugin like this:
 
 ```javascript
-loadLightInteraction(tsParticles);
+(async () => {
+    await loadParallaxMover(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
-});
+    await tsParticles.load("tsparticles", {
+        /* options */
+    });
+})();
 ```
 
 ### ESM / CommonJS
@@ -37,29 +39,29 @@ tsParticles.load("tsparticles", {
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-interaction-light
+$ npm install tsparticles-move-parallax
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-interaction-light
+$ yarn add tsparticles-move-parallax
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
 const { tsParticles } = require("tsparticles-engine");
-const { loadLightInteraction } = require("tsparticles-interaction-light");
+const { loadParallaxMover } = require("tsparticles-move-parallax");
 
-loadLightInteraction(tsParticles);
+loadParallaxMover(tsParticles); // awaitable
 ```
 
 or
 
 ```javascript
 import { tsParticles } from "tsparticles-engine";
-import { loadLightInteraction } from "tsparticles-interaction-light";
+import { loadParallaxMover } from "tsparticles-move-parallax";
 
-loadLightInteraction(tsParticles);
+loadParallaxMover(tsParticles); // awaitable
 ```
