@@ -481,7 +481,7 @@ credited as the template author!
 
 You can find all video tutorials in the website here: <https://particles.js.org/video.html>
 
-*More videos are coming soon! Check every day if there are some new contents.*
+_More videos are coming soon! Check every day if there are some new contents._
 
 ---
 
