@@ -372,6 +372,7 @@ coverage/
 .codacy-coverage/
 
 package-lock.json
+yarn.lock
 components/preact/cjs/
 components/preact/umd/
 components/react/cjs/

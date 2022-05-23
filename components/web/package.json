@@ -86,6 +86,7 @@
     "tsparticles-engine": "^2.0.6"
   },
   "devDependencies": {
+    "@types/node": "^17.0.35",
     "rollup": "^2.70.2",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-typescript2": "^0.31.2",
