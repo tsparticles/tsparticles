@@ -34,7 +34,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
       tsparticles-interaction-external-trail: link:../../interactions/external/trail
@@ -64,7 +64,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../bundles/pjs:
     specifiers:
@@ -86,7 +86,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -107,7 +107,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../bundles/slim:
     specifiers:
@@ -158,7 +158,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
       tsparticles-interaction-external-attract: link:../../interactions/external/attract
@@ -208,7 +208,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../cli:
     specifiers:
@@ -1970,7 +1970,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       object-gui: 1.1.1
       tsparticles-engine: link:../engine
@@ -1995,7 +1995,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../utils/webpack
 
   ../../engine:
     specifiers:
@@ -2095,7 +2095,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../../engine
     devDependencies:
@@ -2116,7 +2116,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../../utils/webpack
 
   ../../interactions/external/bounce:
     specifiers:
@@ -2138,7 +2138,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../../engine
     devDependencies:
@@ -2159,7 +2159,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../../utils/webpack
 
   ../../interactions/external/bubble:
     specifiers:
@@ -2181,7 +2181,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../../engine
     devDependencies:
@@ -2202,7 +2202,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../../utils/webpack
 
   ../../interactions/external/connect:
     specifiers:
@@ -2224,7 +2224,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../../engine
     devDependencies:
@@ -2245,7 +2245,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../../utils/webpack
 
   ../../interactions/external/grab:
     specifiers:
@@ -2267,7 +2267,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../../engine
     devDependencies:
@@ -2288,7 +2288,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../../utils/webpack
 
   ../../interactions/external/pause:
     specifiers:
@@ -2310,7 +2310,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../../engine
     devDependencies:
@@ -2331,7 +2331,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../../utils/webpack
 
   ../../interactions/external/push:
     specifiers:
@@ -2353,7 +2353,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../../engine
     devDependencies:
@@ -2374,7 +2374,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../../utils/webpack
 
   ../../interactions/external/remove:
     specifiers:
@@ -2396,7 +2396,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../../engine
     devDependencies:
@@ -2417,7 +2417,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../../utils/webpack
 
   ../../interactions/external/repulse:
     specifiers:
@@ -2439,7 +2439,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../../engine
     devDependencies:
@@ -2460,7 +2460,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../../utils/webpack
 
   ../../interactions/external/trail:
     specifiers:
@@ -2482,7 +2482,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../../engine
     devDependencies:
@@ -2503,7 +2503,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../../utils/webpack
 
   ../../interactions/light:
     specifiers:
@@ -2525,7 +2525,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -2546,7 +2546,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../interactions/particles/attract:
     specifiers:
@@ -2568,7 +2568,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../../engine
     devDependencies:
@@ -2589,7 +2589,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../../utils/webpack
 
   ../../interactions/particles/collisions:
     specifiers:
@@ -2611,7 +2611,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../../engine
     devDependencies:
@@ -2632,7 +2632,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../../utils/webpack
 
   ../../interactions/particles/links:
     specifiers:
@@ -2654,7 +2654,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../../engine
     devDependencies:
@@ -2675,7 +2675,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../../utils/webpack
 
   ../../interactions/particles/repulse:
     specifiers:
@@ -2697,7 +2697,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../../engine
     devDependencies:
@@ -2718,7 +2718,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../../utils/webpack
 
   ../../move/base:
     specifiers:
@@ -2740,7 +2740,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -2761,7 +2761,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../move/parallax:
     specifiers:
@@ -2783,7 +2783,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -2804,7 +2804,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../paths/curves:
     specifiers:
@@ -2826,7 +2826,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -2847,7 +2847,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../paths/perlinNoise:
     specifiers:
@@ -2869,7 +2869,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -2890,7 +2890,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../paths/polygon:
     specifiers:
@@ -2912,7 +2912,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -2933,7 +2933,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../paths/simplexNoise:
     specifiers:
@@ -2955,7 +2955,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -2976,7 +2976,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../plugins/absorbers:
     specifiers:
@@ -2998,7 +2998,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -3019,7 +3019,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../plugins/emitters:
     specifiers:
@@ -3041,7 +3041,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -3062,7 +3062,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../plugins/infection:
     specifiers:
@@ -3084,7 +3084,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -3105,7 +3105,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../plugins/polygonMask:
     specifiers:
@@ -3127,7 +3127,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -3148,7 +3148,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../presets/bigCircles:
     specifiers:
@@ -3177,7 +3177,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
       tsparticles-move-base: link:../../move/base
@@ -3205,7 +3205,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../presets/bubbles:
     specifiers:
@@ -3234,7 +3234,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
       tsparticles-move-base: link:../../move/base
@@ -3262,7 +3262,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../presets/confetti:
     specifiers:
@@ -3297,7 +3297,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
       tsparticles-move-base: link:../../move/base
@@ -3331,7 +3331,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../presets/fire:
     specifiers:
@@ -3360,7 +3360,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
       tsparticles-interaction-external-push: link:../../interactions/external/push
@@ -3388,7 +3388,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../presets/firefly:
     specifiers:
@@ -3417,7 +3417,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
       tsparticles-interaction-external-trail: link:../../interactions/external/trail
@@ -3445,7 +3445,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../presets/fireworks:
     specifiers:
@@ -3478,7 +3478,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
       tsparticles-move-base: link:../../move/base
@@ -3510,7 +3510,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../presets/fountain:
     specifiers:
@@ -3539,7 +3539,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
       tsparticles-move-base: link:../../move/base
@@ -3567,7 +3567,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../presets/links:
     specifiers:
@@ -3596,7 +3596,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
       tsparticles-interaction-particles-links: link:../../interactions/particles/links
@@ -3624,7 +3624,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../presets/seaAnemone:
     specifiers:
@@ -3654,7 +3654,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
       tsparticles-move-base: link:../../move/base
@@ -3683,7 +3683,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../presets/snow:
     specifiers:
@@ -3711,7 +3711,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
       tsparticles-move-base: link:../../move/base
@@ -3738,7 +3738,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../presets/stars:
     specifiers:
@@ -3766,7 +3766,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
       tsparticles-move-base: link:../../move/base
@@ -3793,7 +3793,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../presets/triangles:
     specifiers:
@@ -3822,7 +3822,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
       tsparticles-interaction-particles-links: link:../../interactions/particles/links
@@ -3850,7 +3850,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../shapes/bubble:
     specifiers:
@@ -3872,7 +3872,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -3893,7 +3893,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../shapes/circle:
     specifiers:
@@ -3915,7 +3915,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -3936,7 +3936,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../shapes/heart:
     specifiers:
@@ -3958,7 +3958,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -3979,7 +3979,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../shapes/image:
     specifiers:
@@ -4001,7 +4001,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -4022,7 +4022,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../shapes/line:
     specifiers:
@@ -4044,7 +4044,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -4065,7 +4065,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../shapes/multiline-text:
     specifiers:
@@ -4087,7 +4087,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -4108,7 +4108,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../shapes/polygon:
     specifiers:
@@ -4130,7 +4130,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -4151,7 +4151,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../shapes/rounded-rect:
     specifiers:
@@ -4173,7 +4173,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -4194,7 +4194,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../shapes/spiral:
     specifiers:
@@ -4216,7 +4216,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -4237,7 +4237,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../shapes/square:
     specifiers:
@@ -4259,7 +4259,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -4280,7 +4280,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../shapes/star:
     specifiers:
@@ -4302,7 +4302,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -4323,7 +4323,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../shapes/text:
     specifiers:
@@ -4345,7 +4345,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -4366,7 +4366,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../templates/react:
     specifiers:
@@ -4416,7 +4416,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -4437,7 +4437,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../updaters/color:
     specifiers:
@@ -4459,7 +4459,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -4480,7 +4480,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../updaters/gradient:
     specifiers:
@@ -4502,7 +4502,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -4523,7 +4523,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../updaters/life:
     specifiers:
@@ -4545,7 +4545,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -4566,7 +4566,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../updaters/opacity:
     specifiers:
@@ -4588,7 +4588,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -4609,7 +4609,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../updaters/orbit:
     specifiers:
@@ -4631,7 +4631,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -4652,7 +4652,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../updaters/outModes:
     specifiers:
@@ -4674,7 +4674,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -4695,7 +4695,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../updaters/roll:
     specifiers:
@@ -4717,7 +4717,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -4738,7 +4738,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../updaters/size:
     specifiers:
@@ -4760,7 +4760,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -4781,7 +4781,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../updaters/strokeColor:
     specifiers:
@@ -4803,7 +4803,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -4824,7 +4824,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../updaters/tilt:
     specifiers:
@@ -4846,7 +4846,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -4867,7 +4867,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../updaters/twinkle:
     specifiers:
@@ -4889,7 +4889,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -4910,7 +4910,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../updaters/wobble:
     specifiers:
@@ -4932,7 +4932,7 @@ importers:
       webpack: ^5.72.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -4953,7 +4953,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../../utils/webpack
 
   ../../utils/configs:
     specifiers:
@@ -4974,7 +4974,7 @@ importers:
       webpack: ^5.71.0
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
-      webpack-tsparticles-plugin: ^1.0.4
+      webpack-tsparticles-plugin: workspace:^1.0.4
     dependencies:
       tsparticles-engine: link:../../engine
     devDependencies:
@@ -4994,7 +4994,7 @@ importers:
       webpack: 5.72.1_webpack-cli@4.9.2
       webpack-bundle-analyzer: 4.5.0
       webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-      webpack-tsparticles-plugin: 1.0.4
+      webpack-tsparticles-plugin: link:../webpack
 
   ../../utils/webpack:
     specifiers:
@@ -30497,37 +30497,6 @@ packages:
     dependencies:
       typed-assert: 1.0.9
       webpack: 5.70.0_esbuild@0.14.22
-    dev: true
-
-  /webpack-tsparticles-plugin/1.0.4:
-    resolution: {integrity: sha512-KSLM/xlR7gL/vLEt13/B9DbvLSlo99d91Dlga/8FJaahHAx5hKRCxphs+QQv3yN3gMYGSmIHTmDC2FnGutOtnQ==}
-    dependencies:
-      '@babel/core': 7.18.0
-      '@types/webpack-env': 1.17.0
-      '@typescript-eslint/eslint-plugin': 5.25.0_jorowkvdqu6pwramweg5le7ncu
-      '@typescript-eslint/parser': 5.25.0_utdtartgf6fqqgkivzeynh76la
-      babel-loader: 8.2.5_qqaml4ljchhh37dxp4aoesgrby
-      browserslist: 4.20.3
-      copyfiles: 2.4.1
-      eslint: 8.16.0
-      eslint-config-prettier: 8.5.0_eslint@8.16.0
-      prettier: 2.6.2
-      rimraf: 3.0.2
-      terser-webpack-plugin: 5.3.1_webpack@5.72.1
-      typescript: 4.6.4
-      webpack: 5.72.1_webpack-cli@4.9.2
-      webpack-bundle-analyzer: 4.5.0
-      webpack-cli: 4.9.2_i4zllit3wmjnrjzoztt45u66hq
-    transitivePeerDependencies:
-      - '@swc/core'
-      - '@webpack-cli/generators'
-      - '@webpack-cli/migrate'
-      - bufferutil
-      - esbuild
-      - supports-color
-      - uglify-js
-      - utf-8-validate
-      - webpack-dev-server
     dev: true
 
   /webpack-virtual-modules/0.4.3:
