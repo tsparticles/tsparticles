@@ -33,8 +33,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: pnpm install
-      - run: node common/scripts/install-run-rush.js install --no-link
-      - run: node common/scripts/install-run-rush.js link
+      - run: node common/scripts/install-run-rush.js install
       - run: node common/scripts/install-run-rush.js rebuild
       - run: echo ${{ github.repository_owner }}
       - run: echo ${{ github.actor }}
