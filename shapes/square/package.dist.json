@@ -44,6 +44,6 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.0.6"
+    "tsparticles-engine": "workspace:^2.0.6"
   }
 }

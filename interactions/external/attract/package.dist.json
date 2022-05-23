@@ -67,7 +67,7 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.0.6"
+    "tsparticles-engine": "workspace:^2.0.6"
   },
   "main": "cjs/index.js",
   "module": "esm/index.js",

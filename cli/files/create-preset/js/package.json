@@ -1,6 +1,6 @@
 {
-  "name": "tsparticles-preset-template",
-  "version": "1.43.4",
+  "name": "@tsparticles/preset-template",
+  "version": "2.0.6",
   "private": true,
   "description": "tsParticles template preset",
   "homepage": "https://particles.js.org/",
@@ -68,6 +68,6 @@
     "webpack-cli": "^4.9.2"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.0.6"
+    "tsparticles-engine": "workspace:^2.0.6"
   }
 }

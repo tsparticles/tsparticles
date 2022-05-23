@@ -1,6 +1,6 @@
 // TODO: Change this import
 import { loadTemplatePreset } from ".";
-import { tsParticles } from "tsparticles";
+import { tsParticles } from "tsparticles-engine";
 
 // TODO: Change this function, it's the same coming from the import
 loadTemplatePreset(tsParticles);

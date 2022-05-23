@@ -1,0 +1,1029 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
+  "rushVersion": "5.70.0",
+  "pnpmVersion": "7.0.0",
+  "pnpmOptions": {
+    "pnpmStore": "local",
+    "strictPeerDependencies": true,
+    "resolutionStrategy": "fast",
+    "preventManualShrinkwrapChanges": true,
+    "useWorkspaces": true
+  },
+  "nodeSupportedVersionRange": ">=14.15.0 <15.0.0 || >=16.13.0 <17.0.0",
+  "ensureConsistentVersions": false,
+  "projectFolderMinDepth": 1,
+  "projectFolderMaxDepth": 1024,
+  "repository": {
+    "url": "https://github.com/matteobruni/tsparticles",
+    "defaultBranch": "main",
+    "defaultRemote": "origin"
+  },
+  "telemetryEnabled": false,
+  "projects": [
+    {
+      "packageName": "tsparticles-engine",
+      "projectFolder": "engine",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "engine", "vanilla"]
+    },
+    {
+      "packageName": "ng-particles",
+      "projectFolder": "components/angular",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist/ng-particles",
+      "tags": ["tsparticles", "component", "angular"]
+    },
+    {
+      "packageName": "inferno-particles",
+      "projectFolder": "components/inferno",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "tags": ["tsparticles", "component", "inferno"]
+    },
+    {
+      "packageName": "jquery-particles",
+      "projectFolder": "components/jquery",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "tags": ["tsparticles", "component", "jquery"]
+    },
+    {
+      "packageName": "preact-particles",
+      "projectFolder": "components/preact",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "tags": ["tsparticles", "component", "preact"]
+    },
+    {
+      "packageName": "react-tsparticles",
+      "projectFolder": "components/react",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "tags": ["tsparticles", "component", "react"]
+    },
+    {
+      "packageName": "riot-particles",
+      "projectFolder": "components/riot",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "tags": ["tsparticles", "component", "riot"]
+    },
+    {
+      "packageName": "solid-particles",
+      "projectFolder": "components/solid",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "tags": ["tsparticles", "component", "solid"]
+    },
+    {
+      "packageName": "svelte-particles",
+      "projectFolder": "components/svelte",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "tags": ["tsparticles", "component", "svelte"]
+    },
+    {
+      "packageName": "particles.vue",
+      "projectFolder": "components/vue",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "tags": ["tsparticles", "component", "vue2"]
+    },
+    {
+      "packageName": "vue2-particles",
+      "projectFolder": "components/vue-alt",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "tags": ["tsparticles", "component", "vue2"]
+    },
+    {
+      "packageName": "particles.vue3",
+      "projectFolder": "components/vue3",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "tags": ["tsparticles", "component", "vue3"]
+    },
+    {
+      "packageName": "vue3-particles",
+      "projectFolder": "components/vue3-alt",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "tags": ["tsparticles", "component", "vue3"]
+    },
+    {
+      "packageName": "web-particles",
+      "projectFolder": "components/web",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "tags": ["tsparticles", "component", "webcomponents"]
+    },
+    {
+      "packageName": "tsparticles-interaction-light",
+      "projectFolder": "interactions/light",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "interactions", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-interaction-external-attract",
+      "projectFolder": "interactions/external/attract",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "interactions", "external", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-interaction-external-bounce",
+      "projectFolder": "interactions/external/bounce",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "interactions", "external", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-interaction-external-bubble",
+      "projectFolder": "interactions/external/bubble",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "interactions", "external", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-interaction-external-connect",
+      "projectFolder": "interactions/external/connect",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "interactions", "external", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-interaction-external-grab",
+      "projectFolder": "interactions/external/grab",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "interactions", "external", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-interaction-external-pause",
+      "projectFolder": "interactions/external/pause",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "interactions", "external", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-interaction-external-push",
+      "projectFolder": "interactions/external/push",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "interactions", "external", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-interaction-external-remove",
+      "projectFolder": "interactions/external/remove",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "interactions", "external", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-interaction-external-repulse",
+      "projectFolder": "interactions/external/repulse",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "interactions", "external", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-interaction-external-trail",
+      "projectFolder": "interactions/external/trail",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "interactions", "external", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-interaction-particles-attract",
+      "projectFolder": "interactions/particles/attract",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "interactions", "particles", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-interaction-particles-collisions",
+      "projectFolder": "interactions/particles/collisions",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "interactions", "particles", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-interaction-particles-links",
+      "projectFolder": "interactions/particles/links",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "interactions", "particles", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-interaction-particles-repulse",
+      "projectFolder": "interactions/particles/repulse",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "interactions", "particles", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-move-base",
+      "projectFolder": "move/base",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "move", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-move-parallax",
+      "projectFolder": "move/parallax",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "move", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-path-curves",
+      "projectFolder": "paths/curves",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "path", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-path-perlin-noise",
+      "projectFolder": "paths/perlinNoise",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "path", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-path-polygon",
+      "projectFolder": "paths/polygon",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "path", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-path-simplex-noise",
+      "projectFolder": "paths/simplexNoise",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "path", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-plugin-absorbers",
+      "projectFolder": "plugins/absorbers",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "plugin", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-plugin-emitters",
+      "projectFolder": "plugins/emitters",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "plugin", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-plugin-infection",
+      "projectFolder": "plugins/infection",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "plugin", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-plugin-polygon-mask",
+      "projectFolder": "plugins/polygonMask",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "plugin", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-shape-bubble",
+      "projectFolder": "shapes/bubble",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "shape", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-shape-circle",
+      "projectFolder": "shapes/circle",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "shape", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-shape-heart",
+      "projectFolder": "shapes/heart",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "shape", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-shape-image",
+      "projectFolder": "shapes/image",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "shape", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-shape-line",
+      "projectFolder": "shapes/line",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "shape", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-shape-multiline-text",
+      "projectFolder": "shapes/multiline-text",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "shape", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-shape-polygon",
+      "projectFolder": "shapes/polygon",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "shape", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-shape-rounded-rect",
+      "projectFolder": "shapes/rounded-rect",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "shape", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-shape-spiral",
+      "projectFolder": "shapes/spiral",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "shape", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-shape-square",
+      "projectFolder": "shapes/square",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "shape", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-shape-star",
+      "projectFolder": "shapes/star",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "shape", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-shape-text",
+      "projectFolder": "shapes/text",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "shape", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-updater-angle",
+      "projectFolder": "updaters/angle",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "updater", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-updater-color",
+      "projectFolder": "updaters/color",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "updater", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-updater-gradient",
+      "projectFolder": "updaters/gradient",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "updater", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-updater-life",
+      "projectFolder": "updaters/life",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "updater", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-updater-opacity",
+      "projectFolder": "updaters/opacity",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "updater", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-updater-orbit",
+      "projectFolder": "updaters/orbit",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "updater", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-updater-out-modes",
+      "projectFolder": "updaters/outModes",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "updater", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-updater-roll",
+      "projectFolder": "updaters/roll",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "updater", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-updater-size",
+      "projectFolder": "updaters/size",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "updater", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-updater-stroke-color",
+      "projectFolder": "updaters/strokeColor",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "updater", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-updater-tilt",
+      "projectFolder": "updaters/tilt",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "updater", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-updater-twinkle",
+      "projectFolder": "updaters/twinkle",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "updater", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-updater-wobble",
+      "projectFolder": "updaters/wobble",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "updater", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles",
+      "projectFolder": "bundles/full",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "bundle", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-particles.js",
+      "projectFolder": "bundles/pjs",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "bundle", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-slim",
+      "projectFolder": "bundles/slim",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "bundle", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-editor",
+      "projectFolder": "editor",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "editor", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-preset-big-circles",
+      "projectFolder": "presets/bigCircles",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "preset", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-preset-bubbles",
+      "projectFolder": "presets/bubbles",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "preset", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-preset-confetti",
+      "projectFolder": "presets/confetti",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "preset", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-preset-fire",
+      "projectFolder": "presets/fire",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "preset", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-preset-firefly",
+      "projectFolder": "presets/firefly",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "preset", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-preset-fireworks",
+      "projectFolder": "presets/fireworks",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "preset", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-preset-fountain",
+      "projectFolder": "presets/fountain",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "preset", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-preset-links",
+      "projectFolder": "presets/links",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "preset", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-preset-sea-anemone",
+      "projectFolder": "presets/seaAnemone",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "preset", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-preset-snow",
+      "projectFolder": "presets/snow",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "preset", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-preset-stars",
+      "projectFolder": "presets/stars",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "preset", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-preset-triangles",
+      "projectFolder": "presets/triangles",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "preset", "vanilla"]
+    },
+    {
+      "packageName": "cra-template-particles",
+      "projectFolder": "templates/react",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "tags": ["tsparticles", "cra-template", "react"]
+    },
+    {
+      "packageName": "cra-template-particles-typescript",
+      "projectFolder": "templates/react-ts",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "tags": ["tsparticles", "cra-template", "react"]
+    },
+    {
+      "packageName": "tsparticles-demo-configs",
+      "projectFolder": "utils/configs",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "publishFolder": "dist",
+      "tags": ["tsparticles", "utils", "vanilla"]
+    },
+    {
+      "packageName": "webpack-tsparticles-plugin",
+      "projectFolder": "utils/webpack",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "tags": ["tsparticles", "utils", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-website",
+      "projectFolder": "website",
+      "reviewCategory": "prototypes",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": true,
+      "shouldPublish": false,
+      "tags": ["tsparticles", "website", "vanilla"]
+    },
+    {
+      "packageName": "@tsparticles/cli",
+      "projectFolder": "cli",
+      "reviewCategory": "production",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": false,
+      "shouldPublish": true,
+      "tags": ["tsparticles", "cli", "vanilla"]
+    },
+    {
+      "packageName": "@tsparticles/preset-template",
+      "projectFolder": "cli/files/create-preset/js",
+      "reviewCategory": "prototype",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": true,
+      "shouldPublish": false,
+      "tags": ["tsparticles", "cli", "vanilla"]
+    },
+    {
+      "packageName": "@tsparticles/preset-template-typescript",
+      "projectFolder": "cli/files/create-preset/ts",
+      "reviewCategory": "prototype",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": true,
+      "shouldPublish": false,
+      "tags": ["tsparticles", "cli", "vanilla"]
+    },
+    {
+      "packageName": "ng-particles-demo",
+      "projectFolder": "demo/angular",
+      "reviewCategory": "prototypes",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": true,
+      "shouldPublish": false,
+      "tags": ["tsparticles", "demo", "angular"]
+    },
+    {
+      "packageName": "editor-demo",
+      "projectFolder": "demo/editor",
+      "reviewCategory": "prototypes",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": true,
+      "shouldPublish": false,
+      "tags": ["tsparticles", "demo", "vanilla"]
+    },
+    {
+      "packageName": "inferno-particles-demo",
+      "projectFolder": "demo/inferno",
+      "reviewCategory": "prototypes",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": true,
+      "shouldPublish": false,
+      "tags": ["tsparticles", "demo", "inferno"]
+    },
+    {
+      "packageName": "ionic-demo",
+      "projectFolder": "demo/ionic",
+      "reviewCategory": "prototypes",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": true,
+      "shouldPublish": false,
+      "tags": ["tsparticles", "demo", "angular", "ionic"]
+    },
+    {
+      "packageName": "jquery-particles-demo",
+      "projectFolder": "demo/jquery",
+      "reviewCategory": "prototypes",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": true,
+      "shouldPublish": false,
+      "tags": ["tsparticles", "demo", "jquery"]
+    },
+    {
+      "packageName": "nextjs",
+      "projectFolder": "demo/nextjs",
+      "reviewCategory": "prototypes",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": true,
+      "shouldPublish": false,
+      "tags": ["tsparticles", "demo", "react", "nextjs"]
+    },
+    {
+      "packageName": "preact-particles-demo",
+      "projectFolder": "demo/preact",
+      "reviewCategory": "prototypes",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": true,
+      "shouldPublish": false,
+      "tags": ["tsparticles", "demo", "preact"]
+    },
+    {
+      "packageName": "react-tsparticles-demo",
+      "projectFolder": "demo/react",
+      "reviewCategory": "prototypes",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": true,
+      "shouldPublish": false,
+      "tags": ["tsparticles", "demo", "react"]
+    },
+    {
+      "packageName": "riot-particles-demo",
+      "projectFolder": "demo/riot",
+      "reviewCategory": "prototypes",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": true,
+      "shouldPublish": false,
+      "tags": ["tsparticles", "demo", "riot"]
+    },
+    {
+      "packageName": "solid-particles-demo",
+      "projectFolder": "demo/solid",
+      "reviewCategory": "prototypes",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": true,
+      "shouldPublish": false,
+      "tags": ["tsparticles", "demo", "solid"]
+    },
+    {
+      "packageName": "svelte-demo",
+      "projectFolder": "demo/svelte",
+      "reviewCategory": "prototypes",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": true,
+      "shouldPublish": false,
+      "tags": ["tsparticles", "demo", "svelte"]
+    },
+    {
+      "packageName": "tsparticles-demo",
+      "projectFolder": "demo/vanilla",
+      "reviewCategory": "prototypes",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": true,
+      "shouldPublish": false,
+      "tags": ["tsparticles", "demo", "vanilla"]
+    },
+    {
+      "packageName": "tsparticles-demo-new",
+      "projectFolder": "demo/vanilla_new",
+      "reviewCategory": "prototypes",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": true,
+      "shouldPublish": false,
+      "tags": ["tsparticles", "demo", "vanilla"]
+    },
+    {
+      "packageName": "particles.vue-demo",
+      "projectFolder": "demo/vue",
+      "reviewCategory": "prototypes",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": true,
+      "shouldPublish": false,
+      "tags": ["tsparticles", "demo", "vue2"]
+    },
+    {
+      "packageName": "vue3-demo",
+      "projectFolder": "demo/vue3",
+      "reviewCategory": "prototypes",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": true,
+      "shouldPublish": false,
+      "tags": ["tsparticles", "demo", "vue3"]
+    },
+    {
+      "packageName": "web-particles-demo",
+      "projectFolder": "demo/web",
+      "reviewCategory": "prototypes",
+      "cyclicDependencyProjects": [],
+      "skipRushCheck": true,
+      "shouldPublish": false,
+      "tags": ["tsparticles", "demo", "webcomponents"]
+    }
+  ]
+}

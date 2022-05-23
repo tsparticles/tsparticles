@@ -153,7 +153,7 @@ async function updatePackageFile(destPath, name, description, repoUrl) {
   );
 
 
-  const nameRegex = /"tsparticles-preset-template"/g;
+  const nameRegex = /"\@tsparticles\/preset-template"/g;
   const nameReplacedText = replacedPrivateText.replace(
       nameRegex,
       `"tsparticles-preset-${dashedName}"`
@@ -206,7 +206,7 @@ async function updatePackageDistFile(destPath, name, description, repoUrl) {
   );
 
 
-  const nameRegex = /"tsparticles-preset-template"/g;
+  const nameRegex = /"\@tsparticles\/preset-template"/g;
   const nameReplacedText = replacedPrivateText.replace(
       nameRegex,
       `"tsparticles-preset-${dashedName}"`
@@ -250,7 +250,7 @@ async function updateReadmeFile(destPath, name, description, repoUrl) {
       `tsParticles ${description} Preset`
   );
 
-  const readmePackageNameRegex = /tsparticles-preset-template/g;
+  const readmePackageNameRegex = /\@tsparticles\/preset-template/g;
 
   const replacedPackageNameText = replacedDescriptionText.replace(
       readmePackageNameRegex,

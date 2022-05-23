@@ -81,13 +81,13 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.0.6",
-    "tsparticles-interaction-particles-links": "^2.0.6",
-    "tsparticles-move-base": "^2.0.6",
-    "tsparticles-shape-circle": "^2.0.6",
-    "tsparticles-updater-color": "^2.0.6",
-    "tsparticles-updater-opacity": "^2.0.6",
-    "tsparticles-updater-out-modes": "^2.0.6",
-    "tsparticles-updater-size": "^2.0.6"
+    "tsparticles-engine": "workspace:^2.0.6",
+    "tsparticles-interaction-particles-links": "workspace:^2.0.6",
+    "tsparticles-move-base": "workspace:^2.0.6",
+    "tsparticles-shape-circle": "workspace:^2.0.6",
+    "tsparticles-updater-color": "workspace:^2.0.6",
+    "tsparticles-updater-opacity": "workspace:^2.0.6",
+    "tsparticles-updater-out-modes": "workspace:^2.0.6",
+    "tsparticles-updater-size": "workspace:^2.0.6"
   }
 }
