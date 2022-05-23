@@ -80,5 +80,8 @@
   },
   "dependencies": {
     "tsparticles-engine": "^2.0.6"
-  }
+  },
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts"
 }

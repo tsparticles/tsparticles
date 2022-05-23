@@ -66,12 +66,12 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "main": "cjs/index.js",
-  "jsdelivr": "tsparticles.interaction.external.bounce.min.js",
-  "unpkg": "tsparticles.interaction.external.bounce.min.js",
-  "module": "esm/index.js",
-  "types": "types/index.d.ts",
   "dependencies": {
     "tsparticles-engine": "^2.0.6"
-  }
+  },
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "types": "types/index.d.ts",
+  "jsdelivr": "tsparticles.interaction.external.bounce.min.js",
+  "unpkg": "tsparticles.interaction.external.bounce.min.js"
 }

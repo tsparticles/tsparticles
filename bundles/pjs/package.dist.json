@@ -73,7 +73,7 @@
   },
   "main": "cjs/index.js",
   "module": "esm/index.js",
+  "types": "types/index.d.ts",
   "jsdelivr": "tsparticles.pjs.min.js",
-  "unpkg": "tsparticles.pjs.min.js",
-  "types": "types/index.d.ts"
+  "unpkg": "tsparticles.pjs.min.js"
 }

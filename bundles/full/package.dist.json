@@ -68,11 +68,6 @@
     "type": "github",
     "url": "https://github.com/sponsors/matteobruni"
   },
-  "main": "cjs/index.js",
-  "module": "esm/index.js",
-  "jsdelivr": "tsparticles.min.js",
-  "unpkg": "tsparticles.min.js",
-  "types": "types/index.d.ts",
   "dependencies": {
     "tsparticles-engine": "^2.0.6",
     "tsparticles-interaction-external-trail": "^2.0.6",
@@ -84,5 +79,10 @@
     "tsparticles-updater-tilt": "^2.0.6",
     "tsparticles-updater-twinkle": "^2.0.6",
     "tsparticles-updater-wobble": "^2.0.6"
-  }
+  },
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "types": "types/index.d.ts",
+  "jsdelivr": "tsparticles.min.js",
+  "unpkg": "tsparticles.min.js"
 }

@@ -145,6 +145,9 @@
   "publishConfig": {
     "directory": "dist"
   },
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
   "nyc": {
     "extension": [
       ".ts",
