@@ -24,9 +24,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - run: yarn install
-      - run: npx lerna bootstrap
-      - run: npx lerna run build
+      - run: pnpm install
+      - run: node common/scripts/install-run-rush.js install --no-link
+      - run: node common/scripts/install-run-rush.js link
+      - run: node common/scripts/install-run-rush.js rebuild
       - run: echo ${{ github.repository_owner }}
       - run: echo ${{ github.actor }}
       #- run: lerna test
