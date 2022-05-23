@@ -17,14 +17,16 @@
       "summary": "Build all projects that haven't been built, or have changed since they were last built",
       "incremental": true,
       "enableParallelism": true,
+      "ignoreMissingScript": true,
       "allowWarningsInSuccessfulBuild": true
     },
     {
       "name": "rebuild",
       "commandKind": "bulk",
-      "summary": "Rebuild all projects",
+      "summary": "Rebuild all projects", 
       "incremental": false,
       "enableParallelism": true,
+      "ignoreMissingScript": true,
       "allowWarningsInSuccessfulBuild": true
     }
   ],
