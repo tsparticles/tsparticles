@@ -3,7 +3,7 @@
   "name": "tsparticles-workspace",
   "version": "0.0.0",
   "scripts": {
-    "build": "lerna run build",
+    "build": "rush build",
     "version:alpha": "lerna version prerelease --preid alpha --conventional-commits",
     "version:beta": "lerna version prerelease --preid beta --conventional-commits",
     "publish:alpha": "lerna publish from-package --pre-dist-tag alpha --preid alpha",
@@ -21,7 +21,6 @@
     "parcel": "^2.5.0",
     "husky": "^7.0.4",
     "ini": "^3.0.0",
-    "lerna": "^4.0.0",
     "yorkie": "^2.0.0"
   },
   "resolutions": {

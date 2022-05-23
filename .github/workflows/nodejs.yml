@@ -30,12 +30,6 @@ jobs:
       - run: node common/scripts/install-run-rush.js rebuild
       - run: echo ${{ github.repository_owner }}
       - run: echo ${{ github.actor }}
-      #- run: lerna test
-      #- name: Codacy Coverage Reporter
-      #  uses: codacy/codacy-coverage-reporter-action@0.2.0
-      #  with:
-      #    project-token: ${{ secrets.CodacyCoverageToken }}
-      #    coverage-reports: coverage/lcov.info
       - if: github.ref == 'refs/heads/main'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
