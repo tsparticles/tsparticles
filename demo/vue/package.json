@@ -13,6 +13,7 @@
   },
   "scripts": {
     "serve": "vue-cli-service serve",
+    "rebuild": "pnpm run build",
     "build": "vue-cli-service build",
     "clean": "rm -rf dist/*"
   },

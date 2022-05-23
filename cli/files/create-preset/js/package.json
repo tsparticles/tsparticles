@@ -15,9 +15,10 @@
     "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "bundle": "webpack --mode production --config webpack.config.cjs",
-    "build": "yarn clear:dist && yarn prettify:src && yarn lint && yarn bundle && yarn prettify:readme",
+    "rebuild": "pnpm run build",
+    "build": "pnpm run clear:dist && pnpm run prettify:src && pnpm run lint && pnpm run bundle && pnpm run prettify:readme",
     "clear:dist": "rimraf -f ./dist",
-    "prepack": "yarn build"
+    "prepack": "pnpm run build"
   },
   "repository": {
     "type": "git",

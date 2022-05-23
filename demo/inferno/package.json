@@ -5,6 +5,7 @@
 	"description": "> TODO: description",
 	"main": "index.js",
 	"scripts": {
+		"rebuild": "pnpm run build",
 		"build": "webpack --mode production",
 		"check": "tsc",
 		"start": "webpack serve --config webpack.config.js --mode development"

@@ -18,6 +18,7 @@
     ]
   },
   "scripts": {
+    "rebuild": "pnpm run build",
     "build": "npx preact build --no-prerender",
     "start": "sirv build --cors --single --host",
     "dev": "preact watch",

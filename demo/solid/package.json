@@ -16,6 +16,7 @@
   },
   "scripts": {
     "start": "solid-scripts start",
+    "rebuild": "pnpm run build",
     "build": "solid-scripts build",
     "test": "solid-scripts test"
   },

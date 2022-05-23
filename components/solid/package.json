@@ -4,13 +4,14 @@
 	"description": "Official tsParticles Solid Component - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.js.",
 	"main": "dist/particles.js",
 	"scripts": {
-		"build": "yarn prettify:src && yarn lint && webpack --mode production && yarn prettify:readme",
-		"build:debug": "yarn prettify:src && yarn lint && webpack && yarn prettify:readme",
+		"rebuild": "pnpm run build",
+		"build": "pnpm run prettify:src && pnpm run lint && webpack --mode production && pnpm run prettify:readme",
+		"build:debug": "pnpm run prettify:src && pnpm run lint && webpack && pnpm run prettify:readme",
 		"check": "tsc",
 		"lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
 		"prettify:src": "prettier --write ./src",
 		"prettify:readme": "prettier --write ./README.md",
-		"prepack": "yarn build"
+		"prepack": "pnpm run build"
 	},
 	"bugs": {
 		"url": "https://github.com/matteobruni/tsparticles/issues"

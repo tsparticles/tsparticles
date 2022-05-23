@@ -3,6 +3,7 @@
   "name": "tsparticles-workspace",
   "version": "0.0.0",
   "scripts": {
+    "rebuild": "rush rebuild",
     "build": "rush build",
     "version:alpha": "lerna version prerelease --preid alpha --conventional-commits",
     "version:beta": "lerna version prerelease --preid beta --conventional-commits",

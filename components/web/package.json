@@ -79,8 +79,9 @@
     }
   ],
   "scripts": {
+    "rebuild": "pnpm run build",
     "build": "ts-node -O '{ \"module\": \"commonjs\" }' build.ts",
-    "prepack": "yarn build"
+    "prepack": "pnpm run build"
   },
   "dependencies": {
     "tsparticles-engine": "workspace:^2.0.6"

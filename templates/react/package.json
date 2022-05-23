@@ -87,8 +87,9 @@
     "tsparticles-engine": "workspace:^2.0.6"
   },
   "scripts": {
+    "rebuild": "pnpm run build",
     "build": "node scripts/prebuild.js",
-    "version": "yarn build && git add ./template.json",
-    "prepack": "yarn build"
+    "version": "pnpm run build && git add ./template.json",
+    "prepack": "pnpm run build"
   }
 }

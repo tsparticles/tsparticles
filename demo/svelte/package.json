@@ -3,6 +3,7 @@
   "version": "2.0.6",
   "private": true,
   "scripts": {
+    "rebuild": "pnpm run build",
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "start": "sirv public --host",

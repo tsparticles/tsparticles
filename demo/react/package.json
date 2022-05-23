@@ -12,6 +12,7 @@
   },
   "scripts": {
     "start": "rimraf -f ../../.parcel-cache && rimraf -f .parcel-cache && tsc && parcel serve public/index.html --no-cache --open",
+    "rebuild": "pnpm run build",
     "build": "rimraf -f ../../.parcel-cache && rimraf -f .parcel-cache && tsc && parcel build --no-cache --target browser"
   },
   "bugs": {

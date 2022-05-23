@@ -10,10 +10,11 @@
     "prettify:src": "prettier --write ./src",
     "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
-    "prebuild": "yarn prettify:src && yarn lint",
-    "build:debug": "yarn prebuild && webpack",
-    "build": "yarn prebuild && cross-env NODE_ENV=production webpack && yarn prettify:readme",
-    "prepack": "yarn build",
+    "prebuild": "pnpm run prettify:src && pnpm run lint",
+    "build:debug": "pnpm run prebuild && webpack",
+    "rebuild": "pnpm run build",
+    "build": "pnpm run prebuild && cross-env NODE_ENV=production webpack && pnpm run prettify:readme",
+    "prepack": "pnpm run build",
     "install": "node ./scripts/install.js"
   },
   "repository": {
