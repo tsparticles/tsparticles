@@ -3,15 +3,18 @@
 </template>
 
 <script lang="ts">
-import { nextTick, PropType } from "vue";
-import { Options, Vue } from "vue-class-component";
+import { defineComponent, nextTick } from "vue";
+import type { PropType } from "vue";
 import { tsParticles } from "tsparticles-engine";
 import type { Container, ISourceOptions, Engine } from "tsparticles-engine";
 
 export type IParticlesProps = ISourceOptions;
 export type IParticlesParams = IParticlesProps;
 
-@Options({
+let container: Container | undefined;
+
+export default defineComponent({
+  name: "Particles",
   props: {
     id: {
       type: String,
@@ -29,17 +32,8 @@ export type IParticlesParams = IParticlesProps;
     particlesInit: {
       type: Function as PropType<(engine: Engine) => void>
     }
-  }
-})
-export default class Particles extends Vue {
-  private id!: string;
-  private options?: IParticlesProps;
-  private url?: string;
-  private particlesLoaded?: (container: Container) => void;
-  private particlesInit?: (engine: Engine) => Promise<void>;
-  private container?: Container;
-
-  public mounted(): void {
+  },
+  mounted(): void {
     nextTick(async () => {
       if (!this.id) {
         throw new Error("Prop 'id' is required!");
@@ -51,24 +45,23 @@ export default class Particles extends Vue {
         await this.particlesInit(tsParticles);
       }
 
-      const cb = (container?: Container) => {
-        this.container = container;
+      const cb = (cbContainer?: Container) => {
+        container = cbContainer;
 
         if (this.particlesLoaded && container) {
           this.particlesLoaded(container);
         }
       };
 
-      const container = await (this.url ? tsParticles.loadJSON(this.id, this.url) : tsParticles.load(this.id, this.options ?? {}));
+      let loadedContainer = await (this.url ? tsParticles.loadJSON(this.id, this.url) : tsParticles.load(this.id, this.options ?? {}));
 
-      cb(container);
+      cb(loadedContainer);
     });
-  }
-
-  public beforeDestroy(): void {
-    if (this.container) {
-      this.container.destroy();
+  },
+  beforeMount(): void {
+    if (container) {
+      container.destroy();
     }
   }
-}
+})
 </script>

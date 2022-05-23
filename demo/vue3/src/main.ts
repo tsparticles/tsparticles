@@ -1,11 +1,5 @@
-import { createApp } from "vue";
+import { createApp } from 'vue'
 import Particles from "particles.vue3";
-import 'highlight.js/styles/github-dark.css';
-import 'highlight.js/lib/common';
-import App from "./App.vue";
-import hljsVuePlugin from "@highlightjs/vue-plugin";
+import App from './App.vue'
 
-createApp(App)
-  .use(Particles)
-  .use(hljsVuePlugin)
-  .mount("#app");
+createApp(App).use(Particles).mount('#app')
