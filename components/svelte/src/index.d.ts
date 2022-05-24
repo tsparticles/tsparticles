@@ -1,8 +1,7 @@
 import type { SvelteComponentTyped } from "svelte";
-import type { ISourceOptions, Engine, Container } from "tsparticles";
+import type { ISourceOptions, Engine, Container } from "tsparticles-engine";
 
-declare module "svelte-particles"
-{
+declare module "svelte-particles" {
     type CustomEventWrapper<T> = {
         [K in keyof T]: CustomEvent<T[K]>;
     };
@@ -10,12 +9,13 @@ declare module "svelte-particles"
         options?: ISourceOptions;
         url?: string;
         id?: string;
+        particlesInit: (engine: Engine) => Promise<void>;
     };
     type ParticlesEvents = CustomEventWrapper<{
-        particlesInit: Engine;
         particlesLoaded: {
             particles?: Container;
         };
     }>;
-    export default class extends SvelteComponentTyped<ParticlesProps, ParticlesEvents, {}> {}
+    export default class extends SvelteComponentTyped<ParticlesProps, ParticlesEvents, {}> {
+    }
 }
