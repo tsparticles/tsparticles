@@ -12,7 +12,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
-    "fs-extra": "^10.0.1",
-    "tsparticles-engine": "workspace:^2.0.6"
+    "fs-extra": "^10.1.0",
+    "tsparticles-engine": "^2.0.6"
   }
 }

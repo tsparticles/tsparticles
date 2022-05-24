@@ -34,10 +34,10 @@
   ],
   "dependencies": {
     "object-gui": "^1.1.1",
-    "tsparticles-engine": "workspace:^2.0.6",
-    "tsparticles-plugin-absorbers": "workspace:^2.0.6",
-    "tsparticles-plugin-emitters": "workspace:^2.0.6",
-    "tsparticles-plugin-infection": "workspace:^2.0.6"
+    "tsparticles-engine": ^2.0.6",
+    "tsparticles-plugin-absorbers": ^2.0.6",
+    "tsparticles-plugin-emitters": ^2.0.6",
+    "tsparticles-plugin-infection": ^2.0.6"
   },
   "main": "cjs/index.js",
   "module": "esm/index.js",

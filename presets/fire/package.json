@@ -115,17 +115,17 @@
     "webpack": "^5.72.0",
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.2",
-    "webpack-tsparticles-plugin": "workspace:^1.0.4"
+    "webpack-tsparticles-plugin": "^1.0.4"
   },
   "dependencies": {
-    "tsparticles-engine": "workspace:^2.0.6",
-    "tsparticles-interaction-external-push": "workspace:^2.0.6",
-    "tsparticles-move-base": "workspace:^2.0.6",
-    "tsparticles-shape-circle": "workspace:^2.0.6",
-    "tsparticles-updater-color": "workspace:^2.0.6",
-    "tsparticles-updater-opacity": "workspace:^2.0.6",
-    "tsparticles-updater-out-modes": "workspace:^2.0.6",
-    "tsparticles-updater-size": "workspace:^2.0.6"
+    "tsparticles-engine": "^2.0.6",
+    "tsparticles-interaction-external-push": "^2.0.6",
+    "tsparticles-move-base": "^2.0.6",
+    "tsparticles-shape-circle": "^2.0.6",
+    "tsparticles-updater-color": "^2.0.6",
+    "tsparticles-updater-opacity": "^2.0.6",
+    "tsparticles-updater-out-modes": "^2.0.6",
+    "tsparticles-updater-size": "^2.0.6"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",

@@ -84,7 +84,7 @@
     "prepack": "pnpm run build"
   },
   "dependencies": {
-    "tsparticles-engine": "workspace:^2.0.6"
+    "tsparticles-engine": "^2.0.6"
   },
   "devDependencies": {
     "@types/node": "^17.0.35",

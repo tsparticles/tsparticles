@@ -69,16 +69,16 @@
     "url": "https://github.com/sponsors/matteobruni"
   },
   "dependencies": {
-    "tsparticles-engine": "workspace:^2.0.6",
-    "tsparticles-interaction-external-trail": "workspace:^2.0.6",
-    "tsparticles-plugin-absorbers": "workspace:^2.0.6",
-    "tsparticles-plugin-emitters": "workspace:^2.0.6",
-    "tsparticles-plugin-polygon-mask": "workspace:^2.0.6",
-    "tsparticles-slim": "workspace:^2.0.6",
-    "tsparticles-updater-roll": "workspace:^2.0.6",
-    "tsparticles-updater-tilt": "workspace:^2.0.6",
-    "tsparticles-updater-twinkle": "workspace:^2.0.6",
-    "tsparticles-updater-wobble": "workspace:^2.0.6"
+    "tsparticles-engine": ^2.0.6",
+    "tsparticles-interaction-external-trail": ^2.0.6",
+    "tsparticles-plugin-absorbers": ^2.0.6",
+    "tsparticles-plugin-emitters": ^2.0.6",
+    "tsparticles-plugin-polygon-mask": ^2.0.6",
+    "tsparticles-slim": ^2.0.6",
+    "tsparticles-updater-roll": ^2.0.6",
+    "tsparticles-updater-tilt": ^2.0.6",
+    "tsparticles-updater-twinkle": ^2.0.6",
+    "tsparticles-updater-wobble": ^2.0.6"
   },
   "main": "cjs/index.js",
   "module": "esm/index.js",

@@ -81,10 +81,10 @@
   ],
   "dependencies": {
     "react": "^18.1.0",
-    "react-tsparticles": "workspace:^2.0.6",
+    "react-tsparticles": "^2.0.6",
     "tslib": "^2.4.0",
-    "tsparticles": "workspace:^2.0.6",
-    "tsparticles-engine": "workspace:^2.0.6"
+    "tsparticles": "^2.0.6",
+    "tsparticles-engine": "^2.0.6"
   },
   "scripts": {
     "rebuild": "pnpm run build",

@@ -72,14 +72,14 @@
     "webpack": "^5.72.0",
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.2",
-    "webpack-tsparticles-plugin": "workspace:^1.0.4"
+    "webpack-tsparticles-plugin": "^1.0.4"
   },
   "dependencies": {
     "object-gui": "^1.1.1",
-    "tsparticles-engine": "workspace:^2.0.6",
-    "tsparticles-plugin-absorbers": "workspace:^2.0.6",
-    "tsparticles-plugin-emitters": "workspace:^2.0.6",
-    "tsparticles-plugin-infection": "workspace:^2.0.6"
+    "tsparticles-engine": "^2.0.6",
+    "tsparticles-plugin-absorbers": "^2.0.6",
+    "tsparticles-plugin-emitters": "^2.0.6",
+    "tsparticles-plugin-infection": "^2.0.6"
   },
   "publishConfig": {
     "directory": "dist"

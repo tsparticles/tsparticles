@@ -4,10 +4,10 @@
   "pnpmVersion": "7.0.0",
   "pnpmOptions": {
     "pnpmStore": "local",
-    "strictPeerDependencies": true,
+    "strictPeerDependencies": false,
     "resolutionStrategy": "fast",
     "preventManualShrinkwrapChanges": true,
-    "useWorkspaces": true
+    "useWorkspaces": false
   },
   "nodeSupportedVersionRange": ">=14.15.0 <15.0.0 || >=16.13.0 <17.0.0",
   "ensureConsistentVersions": false,

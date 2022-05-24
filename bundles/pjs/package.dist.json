@@ -69,7 +69,7 @@
     "url": "https://github.com/sponsors/matteobruni"
   },
   "dependencies": {
-    "tsparticles-engine": "workspace:^2.0.6"
+    "tsparticles-engine": ^2.0.6"
   },
   "main": "cjs/index.js",
   "module": "esm/index.js",
