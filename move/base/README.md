@@ -26,11 +26,11 @@ Once the scripts are loaded you can set up `tsParticles` and the interaction plu
 
 ```javascript
 (async () => {
-    await loadBaseMover(tsParticles);
+  await loadBaseMover(tsParticles);
 
-    await tsParticles.load("tsparticles", {
-        /* options */
-    });
+  await tsParticles.load("tsparticles", {
+    /* options */
+  });
 })();
 ```
 
