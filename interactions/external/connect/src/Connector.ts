@@ -1,5 +1,5 @@
+import type { Container, Particle } from "tsparticles-engine";
 import { ExternalInteractorBase, HoverMode, isInArray } from "tsparticles-engine";
-import type { Container } from "tsparticles-engine";
 
 /**
  * Particle connection manager
@@ -10,10 +10,10 @@ export class Connector extends ExternalInteractorBase {
         super(container);
     }
 
-    isEnabled(): boolean {
+    isEnabled(particle?: Particle): boolean {
         const container = this.container,
             mouse = container.interactivity.mouse,
-            events = container.actualOptions.interactivity.events;
+            events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
 
         if (!(events.onHover.enable && mouse.position)) {
             return false;
@@ -41,7 +41,7 @@ export class Connector extends ExternalInteractorBase {
             }
 
             const distance = Math.abs(container.retina.connectModeRadius),
-                query = container.particles.quadTree.queryCircle(mousePos, distance);
+                query = container.particles.quadTree.queryCircle(mousePos, distance, (p) => this.isEnabled(p));
 
             let i = 0;
 

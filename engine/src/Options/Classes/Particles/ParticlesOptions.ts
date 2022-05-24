@@ -2,6 +2,7 @@ import { AnimatableColor } from "../AnimatableColor";
 import { AnimatableGradient } from "../Gradients/AnimatableGradient";
 import { Collisions } from "./Collisions/Collisions";
 import { Destroy } from "./Destroy/Destroy";
+import type { IInteractivity } from "../../Interfaces/Interactivity/IInteractivity";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import type { IParticlesOptions } from "../../Interfaces/Particles/IParticlesOptions";
 import { Life } from "./Life/Life";
@@ -38,6 +39,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     destroy;
     gradient: SingleOrMultiple<AnimatableGradient>;
     groups: ParticlesGroups;
+    interactivity?: RecursivePartial<IInteractivity>;
     life;
     links;
     move;
@@ -173,6 +175,10 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         }
 
         this.collisions.load(data.collisions);
+
+        if (data.interactivity !== undefined) {
+            this.interactivity = deepExtend({}, data.interactivity) as RecursivePartial<IInteractivity>;
+        }
 
         const strokeToLoad = data.stroke ?? data.shape?.stroke;
 

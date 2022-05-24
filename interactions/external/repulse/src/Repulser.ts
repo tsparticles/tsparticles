@@ -5,7 +5,6 @@ import {
     DivType,
     ExternalInteractorBase,
     HoverMode,
-    IParticle,
     Range,
     Rectangle,
     Vector,
@@ -18,10 +17,10 @@ import {
     isInArray,
     mouseMoveEvent,
 } from "tsparticles-engine";
-import type { Container, DivEvent, ICoordinates, RepulseDiv } from "tsparticles-engine";
+import type { Container, DivEvent, ICoordinates, Particle, RepulseDiv } from "tsparticles-engine";
 
 interface IContainerRepulse {
-    particles: IParticle[];
+    particles: Particle[];
     finish?: boolean;
     count?: number;
     clicking?: boolean;
@@ -60,6 +59,10 @@ export class Repulser extends ExternalInteractorBase {
             container.repulse.count = 0;
 
             for (const particle of container.repulse.particles) {
+                if (!this.isEnabled(particle)) {
+                    continue;
+                }
+
                 particle.velocity.setTo(particle.initialVelocity);
             }
 
@@ -78,11 +81,11 @@ export class Repulser extends ExternalInteractorBase {
         };
     }
 
-    isEnabled(): boolean {
+    isEnabled(particle?: Particle): boolean {
         const container = this.container,
             options = container.actualOptions,
             mouse = container.interactivity.mouse,
-            events = options.interactivity.events,
+            events = (particle?.interactivity ?? options.interactivity).events,
             divs = events.onDiv,
             divRepulse = isDivModeEnabled(DivMode.repulse, divs);
 
@@ -169,7 +172,7 @@ export class Repulser extends ExternalInteractorBase {
 
     private processRepulse(position: ICoordinates, repulseRadius: number, area: Range, divRepulse?: RepulseDiv): void {
         const container = this.container,
-            query = container.particles.quadTree.query(area),
+            query = container.particles.quadTree.query(area, (p) => this.isEnabled(p)),
             repulseOptions = container.actualOptions.interactivity.modes.repulse;
 
         for (const particle of query) {
@@ -218,7 +221,7 @@ export class Repulser extends ExternalInteractorBase {
             }
 
             const range = new Circle(mouseClickPos.x, mouseClickPos.y, repulseRadius),
-                query = container.particles.quadTree.query(range);
+                query = container.particles.quadTree.query(range, (p) => this.isEnabled(p));
 
             for (const particle of query) {
                 const { dx, dy, distance } = getDistances(mouseClickPos, particle.position),
@@ -385,7 +388,7 @@ export class Repulser implements IExternalInteractor {
         divRepulse?: RepulseDiv
     ): void {
         const container = this.container;
-        const query = container.particles.quadTree.query(area);
+        const query = container.particles.quadTree.query(area, p => this.isEnabled(p));
 
         for (const particle of query) {
             const { dx, dy, distance } = getDistances(particle.position, position);

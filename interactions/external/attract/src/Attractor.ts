@@ -11,10 +11,10 @@ import {
     isInArray,
     mouseMoveEvent,
 } from "tsparticles-engine";
-import type { Container, ICoordinates, IParticle } from "tsparticles-engine";
+import type { Container, ICoordinates, Particle } from "tsparticles-engine";
 
 interface IContainerAttract {
-    particles: IParticle[];
+    particles: Particle[];
     finish?: boolean;
     count?: number;
     clicking?: boolean;
@@ -53,6 +53,10 @@ export class Attractor extends ExternalInteractorBase {
             container.attract.count = 0;
 
             for (const particle of container.attract.particles) {
+                if (!this.isEnabled(particle)) {
+                    continue;
+                }
+
                 particle.velocity.setTo(particle.initialVelocity);
             }
 
@@ -71,11 +75,11 @@ export class Attractor extends ExternalInteractorBase {
         };
     }
 
-    isEnabled(): boolean {
+    isEnabled(particle?: Particle): boolean {
         const container = this.container,
             options = container.actualOptions,
             mouse = container.interactivity.mouse,
-            events = options.interactivity.events;
+            events = (particle?.interactivity ?? options.interactivity).events;
 
         if ((!mouse.position || !events.onHover.enable) && (!mouse.clickPosition || !events.onClick.enable)) {
             return false;
@@ -122,9 +126,9 @@ export class Attractor extends ExternalInteractorBase {
     }
 
     private processAttract(position: ICoordinates, attractRadius: number, area: Range): void {
-        const container = this.container;
-        const attractOptions = container.actualOptions.interactivity.modes.attract;
-        const query = container.particles.quadTree.query(area);
+        const container = this.container,
+            attractOptions = container.actualOptions.interactivity.modes.attract,
+            query = container.particles.quadTree.query(area, (p) => this.isEnabled(p));
 
         for (const particle of query) {
             const { dx, dy, distance } = getDistances(particle.position, position);

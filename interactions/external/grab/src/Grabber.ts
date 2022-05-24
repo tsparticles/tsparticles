@@ -1,3 +1,4 @@
+import type { Container, Particle } from "tsparticles-engine";
 import {
     ExternalInteractorBase,
     HoverMode,
@@ -7,7 +8,6 @@ import {
     isInArray,
     mouseMoveEvent,
 } from "tsparticles-engine";
-import type { Container } from "tsparticles-engine";
 
 /**
  * Particle grab manager
@@ -18,10 +18,10 @@ export class Grabber extends ExternalInteractorBase {
         super(container);
     }
 
-    isEnabled(): boolean {
+    isEnabled(particle?: Particle): boolean {
         const container = this.container,
             mouse = container.interactivity.mouse,
-            events = container.actualOptions.interactivity.events;
+            events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
 
         return events.onHover.enable && !!mouse.position && isInArray(HoverMode.grab, events.onHover.mode);
     }
@@ -46,7 +46,7 @@ export class Grabber extends ExternalInteractorBase {
         }
 
         const distance = container.retina.grabModeDistance,
-            query = container.particles.quadTree.queryCircle(mousePos, distance);
+            query = container.particles.quadTree.queryCircle(mousePos, distance, (p) => this.isEnabled(p));
 
         for (const particle of query) {
             /*

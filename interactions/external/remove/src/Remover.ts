@@ -16,9 +16,9 @@ export class Remover extends ExternalInteractorBase {
                 return;
             }
 
-            const container = this.container;
-            const options = container.actualOptions;
-            const removeNb = options.interactivity.modes.remove.quantity;
+            const container = this.container,
+                options = container.actualOptions,
+                removeNb = options.interactivity.modes.remove.quantity;
 
             container.particles.removeQuantity(removeNb);
         };

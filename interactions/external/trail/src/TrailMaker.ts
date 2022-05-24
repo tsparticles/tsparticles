@@ -1,5 +1,5 @@
 import { ClickMode, ExternalInteractorBase, HoverMode, isInArray } from "tsparticles-engine";
-import type { Container, ICoordinates, IDelta } from "tsparticles-engine";
+import type { Container, ICoordinates, IDelta, Particle } from "tsparticles-engine";
 
 /**
  * @category Interactions
@@ -60,11 +60,11 @@ export class TrailMaker extends ExternalInteractorBase {
         this.delay -= optDelay;
     }
 
-    isEnabled(): boolean {
+    isEnabled(particle?: Particle): boolean {
         const container = this.container,
             options = container.actualOptions,
             mouse = container.interactivity.mouse,
-            events = options.interactivity.events;
+            events = (particle?.interactivity ?? options.interactivity).events;
 
         return (
             (mouse.clicking && mouse.inside && !!mouse.position && isInArray(ClickMode.trail, events.onClick.mode)) ||

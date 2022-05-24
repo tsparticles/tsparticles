@@ -17,18 +17,18 @@ import {
     mouseMoveEvent,
     rectBounce,
 } from "tsparticles-engine";
-import type { Container, ICoordinates } from "tsparticles-engine";
+import type { Container, ICoordinates, Particle } from "tsparticles-engine";
 
 export class Bouncer extends ExternalInteractorBase {
     constructor(container: Container) {
         super(container);
     }
 
-    isEnabled(): boolean {
+    isEnabled(particle?: Particle): boolean {
         const container = this.container,
             options = container.actualOptions,
             mouse = container.interactivity.mouse,
-            events = options.interactivity.events,
+            events = (particle?.interactivity ?? options.interactivity).events,
             divs = events.onDiv;
 
         return (
@@ -101,7 +101,7 @@ export class Bouncer extends ExternalInteractorBase {
     }
 
     private processBounce(position: ICoordinates, radius: number, area: Range): void {
-        const query = this.container.particles.quadTree.query(area);
+        const query = this.container.particles.quadTree.query(area, (p) => this.isEnabled(p));
 
         for (const particle of query) {
             if (area instanceof Circle) {

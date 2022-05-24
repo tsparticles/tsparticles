@@ -28,13 +28,14 @@ export abstract class ExternalInteractorBase implements IExternalInteractor {
 
     /**
      * Interaction enabled check
+     * @param particle the particle to check, if null, checks the container
      * @returns true or false, checking if the options enable this interaction manager
      */
-    abstract isEnabled(): boolean;
+    abstract isEnabled(particle?: Particle): boolean;
 
     /**
      * Before interaction reset
-     * @param particle the particle to be reset
+     * @param particle the particle to reset
      */
     abstract reset(particle: Particle): void;
 }

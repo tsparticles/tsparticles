@@ -37,6 +37,7 @@ import type { IParticleWobble } from "./Interfaces/IParticleWobble";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions";
 import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
 import type { IShapeValues } from "./Interfaces/IShapeValues";
+import { Interactivity } from "../Options/Classes/Interactivity/Interactivity";
 import { MoveDirection } from "../Enums/Directions/MoveDirection";
 import { ParticleOutType } from "../Enums/Types/ParticleOutType";
 import type { RecursivePartial } from "../Types/RecursivePartial";
@@ -275,6 +276,8 @@ export class Particle implements IParticle {
      */
     readonly retina: IParticleRetinaProps;
 
+    readonly interactivity: Interactivity;
+
     /**
      * Gets the particle containing engine instance
      * @private
@@ -340,6 +343,11 @@ export class Particle implements IParticle {
         if (this.shapeData?.particles !== undefined) {
             particlesOptions.load(this.shapeData?.particles);
         }
+
+        this.interactivity = new Interactivity();
+
+        this.interactivity.load(container.actualOptions.interactivity);
+        this.interactivity.load(particlesOptions.interactivity);
 
         this.fill = this.shapeData?.fill ?? this.fill;
         this.close = this.shapeData?.close ?? this.close;

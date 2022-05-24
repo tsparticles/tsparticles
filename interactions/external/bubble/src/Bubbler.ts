@@ -77,11 +77,11 @@ export class Bubbler extends ExternalInteractorBase {
         };
     }
 
-    isEnabled(): boolean {
+    isEnabled(particle?: Particle): boolean {
         const container = this.container,
             options = container.actualOptions,
             mouse = container.interactivity.mouse,
-            events = options.interactivity.events,
+            events = (particle?.interactivity ?? options.interactivity).events,
             divs = events.onDiv,
             divBubble = isDivModeEnabled(DivMode.bubble, divs);
 
@@ -154,7 +154,7 @@ export class Bubbler extends ExternalInteractorBase {
                               elem.offsetWidth * pxRatio,
                               elem.offsetHeight * pxRatio
                           ),
-                query = container.particles.quadTree.query(area);
+                query = container.particles.quadTree.query(area, (p) => this.isEnabled(p));
 
             for (const particle of query) {
                 if (!area.contains(particle.getPosition())) {
@@ -257,7 +257,7 @@ export class Bubbler extends ExternalInteractorBase {
         }
 
         const distance = container.retina.bubbleModeDistance,
-            query = container.particles.quadTree.queryCircle(mouseClickPos, distance);
+            query = container.particles.quadTree.queryCircle(mouseClickPos, distance, (p) => this.isEnabled(p));
 
         for (const particle of query) {
             if (!container.bubble.clicking) {
@@ -326,7 +326,7 @@ export class Bubbler extends ExternalInteractorBase {
         }
 
         const distance = container.retina.bubbleModeDistance,
-            query = container.particles.quadTree.queryCircle(mousePos, distance);
+            query = container.particles.quadTree.queryCircle(mousePos, distance, (p) => this.isEnabled(p));
 
         //for (const { distance, particle } of query) {
         for (const particle of query) {

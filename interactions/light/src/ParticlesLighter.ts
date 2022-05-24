@@ -22,10 +22,10 @@ export class ParticlesLighter extends ParticlesInteractorBase {
         }
     }
 
-    isEnabled(): boolean {
+    isEnabled(particle: Particle): boolean {
         const container = this.container,
             mouse = container.interactivity.mouse,
-            events = container.actualOptions.interactivity.events;
+            events = particle.interactivity.events;
 
         if (!(events.onHover.enable && mouse.position)) {
             return false;

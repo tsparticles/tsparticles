@@ -6,6 +6,7 @@ import type { IAnimatableColor } from "../IAnimatableColor";
 import type { IAnimatableGradient } from "../IAnimatableGradient";
 import type { ICollisions } from "./Collisions/ICollisions";
 import type { IDestroy } from "./Destroy/IDestroy";
+import type { IInteractivity } from "../Interactivity/IInteractivity";
 import type { ILife } from "./Life/ILife";
 import type { ILinks } from "./Links/ILinks";
 import type { IMove } from "./Move/IMove";
@@ -25,6 +26,7 @@ import type { ITwinkle } from "./Twinkle/ITwinkle";
 import type { IWobble } from "./Wobble/IWobble";
 import type { IZIndex } from "./ZIndex/IZIndex";
 import type { ParticlesGroups } from "../../../Types/ParticlesGroups";
+import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
 
 /**
@@ -48,6 +50,7 @@ export interface IParticlesOptions {
     destroy: IDestroy;
     gradient: SingleOrMultiple<IAnimatableGradient>;
     groups: ParticlesGroups;
+    interactivity?: RecursivePartial<IInteractivity>;
     life: ILife;
     links: ILinks;
     move: IMove;

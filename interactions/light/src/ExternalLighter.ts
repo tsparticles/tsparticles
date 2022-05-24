@@ -1,5 +1,5 @@
+import type { Container, Particle } from "tsparticles-engine";
 import { ExternalInteractorBase, HoverMode, isInArray } from "tsparticles-engine";
-import type { Container } from "tsparticles-engine";
 import { drawLight } from "./Utils";
 
 export class ExternalLighter extends ExternalInteractorBase {
@@ -24,10 +24,10 @@ export class ExternalLighter extends ExternalInteractorBase {
         }
     }
 
-    isEnabled(): boolean {
+    isEnabled(particle?: Particle): boolean {
         const container = this.container,
             mouse = container.interactivity.mouse,
-            events = container.actualOptions.interactivity.events;
+            events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
 
         if (!(events.onHover.enable && mouse.position)) {
             return false;
