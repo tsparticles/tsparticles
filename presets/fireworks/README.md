@@ -25,7 +25,6 @@ Once installed you need one more script to be included in your page (or you can 
 from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-fireworks):
 
 ```html
-
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2/tsparticles.engine.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-move-base@2/tsparticles.move.base.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-emitters@2/tsparticles.plugin.emitters.min.js"></script>
@@ -48,7 +47,6 @@ This script **MUST** be placed after the `tsParticles` one.
 A bundled script can also be used, this will include every needed plugin needed by the preset.
 
 ```html
-
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-fireworks@2/tsparticles.preset.fireworks.bundle.min.js"></script>
 ```
 
@@ -58,11 +56,11 @@ Once the scripts are loaded you can set up `tsParticles` like this:
 
 ```javascript
 (async () => {
-    await loadFireworksPreset(tsParticles); // this is required only if you are not using the bundle script
+  await loadFireworksPreset(tsParticles); // this is required only if you are not using the bundle script
 
-    await tsParticles.load("tsparticles", {
-        preset: "fireworks",
-    });
+  await tsParticles.load("tsparticles", {
+    preset: "fireworks",
+  });
 })();
 ```
 
@@ -73,12 +71,12 @@ You can override all the options defining the properties like in any standard `t
 
 ```javascript
 tsParticles.load("tsparticles", {
-    particles: {
-        shape: {
-            type: "square", // starting from v2, this require the square shape script
-        },
+  particles: {
+    shape: {
+      type: "square", // starting from v2, this require the square shape script
     },
-    preset: "fireworks",
+  },
+  preset: "fireworks",
 });
 ```
 
@@ -96,19 +94,19 @@ import type { Engine } from "tsparticles-engine";
 import { loadFireworksPreset } from "tsparticles-preset-fireworks";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
-    // this customizes the component tsParticles installation
-    async customInit(engine: Engine): Promise<void> {
-        // this adds the preset to tsParticles, you can safely use the
-        await loadFireworksPreset(engine);
-    }
+  // this customizes the component tsParticles installation
+  async customInit(engine: Engine): Promise<void> {
+    // this adds the preset to tsParticles, you can safely use the
+    await loadFireworksPreset(engine);
+  }
 
-    render() {
-        const options = {
-            preset: "fireworks",
-        };
+  render() {
+    const options = {
+      preset: "fireworks",
+    };
 
-        return <Particles options={options} init={this.customInit}/>;
-    }
+    return <Particles options={options} init={this.customInit} />;
+  }
 }
 ```
 
@@ -117,38 +115,32 @@ export class ParticlesContainer extends React.PureComponent<IProps> {
 _The syntax for `Vue.js 2.x` and `3.x` is the same_
 
 ```vue
-
-<Particles id="tsparticles" :particlesInit="particlesInit" :options="particlesOptions"/>
+<Particles id="tsparticles" :particlesInit="particlesInit" :options="particlesOptions" />
 ```
 
 ```ts
 const particlesOptions = {
-    preset: "fireworks",
+  preset: "fireworks",
 };
 
 async function particlesInit(engine: Engine): Promise<void> {
-    await loadFireworksPreset(engine);
+  await loadFireworksPreset(engine);
 }
 ```
 
 ### Angular
 
 ```html
-
-<ng-particles
-        [id]="id"
-        [options]="particlesOptions"
-        [particlesInit]="particlesInit"
-></ng-particles>
+<ng-particles [id]="id" [options]="particlesOptions" [particlesInit]="particlesInit"></ng-particles>
 ```
 
 ```ts
 const particlesOptions = {
-    preset: "fireworks",
+  preset: "fireworks",
 };
 
 async function particlesInit(engine: Engine): Promise<void> {
-    await loadFireworksPreset(engine);
+  await loadFireworksPreset(engine);
 }
 ```
 
@@ -165,10 +157,10 @@ async function particlesInit(engine: Engine): Promise<void> {
 
 ```js
 let particlesOptions = {
-    preset: "fireworks",
+  preset: "fireworks",
 };
 
 let particlesInit = async (engine) => {
-    await loadFireworksPreset(engine);
+  await loadFireworksPreset(engine);
 };
 ```

@@ -15,8 +15,8 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 
 ## Table of Contents
 
-⚠️⚠️ *This readme refers to upcoming **v2**
-version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) for **v1** documentation* ⚠️⚠️
+⚠️⚠️ _This readme refers to upcoming **v2**
+version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) for **v1** documentation_ ⚠️⚠️
 
 - [Use for your website](#Do-you-want-to-use-it-on-your-website)
   - [Library installation](#Library-installation)
@@ -153,7 +153,6 @@ Load tsParticles and configure the particles:
 **index.html**
 
 ```html
-
 <div id="tsparticles"></div>
 
 <script src="tsparticles.engine.min.js"></script>
@@ -166,20 +165,20 @@ Load tsParticles and configure the particles:
 /* tsParticles.loadJSON(@dom-id, @path-json, @callback (optional)); */
 
 tsParticles
-    .loadJSON("tsparticles", "presets/default.json")
-    .then((container) => {
-        console.log("callback - tsparticles config loaded");
-    })
-    .catch((error) => {
-        console.error(error);
-    });
+  .loadJSON("tsparticles", "presets/default.json")
+  .then((container) => {
+    console.log("callback - tsparticles config loaded");
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 
 //or
 
 /* tsParticles.load(@dom-id, @options); */
 
 tsParticles.load("tsparticles", {
-    /* options here */
+  /* options here */
 });
 
 //or
@@ -187,26 +186,26 @@ tsParticles.load("tsparticles", {
 /* tsParticles.loadFromArray(@dom-id, @options, @index (optional)); */
 
 tsParticles.loadFromArray("tsparticles", [
-    {
-        /* options here */
-    },
-    {
-        /* other options here */
-    },
+  {
+    /* options here */
+  },
+  {
+    /* other options here */
+  },
 ]);
 //random object
 
 tsParticles.loadFromArray(
-    "tsparticles",
-    [
-        {
-            /* options here */
-        },
-        {
-            /* other options here */
-        },
-    ],
-    1
+  "tsparticles",
+  [
+    {
+      /* options here */
+    },
+    {
+      /* other options here */
+    },
+  ],
+  1
 ); //the second one
 // Important! If the index is not in range 0...<array.length, the index will be ignored.
 
@@ -217,7 +216,7 @@ tsParticles.loadFromArray(
 /* this will be fired from all particles loaded */
 
 tsParticles.setOnClickHandler((event, particles) => {
-    /* custom on click handler */
+  /* custom on click handler */
 });
 
 // now you can control the animations too, it's possible to pause and resume the animations
@@ -482,7 +481,7 @@ credited as the template author!
 
 You can find all video tutorials in the website here: <https://particles.js.org/video.html>
 
-*More videos are coming soon! Check every day if there are some new contents.*
+_More videos are coming soon! Check every day if there are some new contents._
 
 ---
 
