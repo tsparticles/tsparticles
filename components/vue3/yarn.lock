@@ -2089,9 +2089,9 @@ validator@^13.7.0:
   integrity sha512-nYXQLCBkpJ8X6ltALua9dRrZDHVYxjJ1wgskNt1lH9fzGjs3tgojGSCBjmEPwkWS1y29+DrizMTW19Pr9uB2nw==
 
 vite-plugin-dts@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/vite-plugin-dts/-/vite-plugin-dts-1.1.1.tgz#3bbb70dab2a299a20119702c9b9858351a954fd5"
-  integrity sha512-2aRLBppGCDhtrj+7uV3/Muvn4Pa35CQpZ5Js+z8HQRsTM1YMuvEkSGGQwHkSQdDSyaFv6O1zBqN0ln6hgqHvyw==
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/vite-plugin-dts/-/vite-plugin-dts-1.2.0.tgz#79dde8fc04d68d3fbc228bcf4c1698f0be6b1627"
+  integrity sha512-dg0x2VKHDnpNQvx0iPKkPpX+aJNBqzusMJv1l7SwzTV8J62eLhIKzE2FKOp4oYkPlN/vi+MqNEDKvv+XE70lzA==
   dependencies:
     "@microsoft/api-extractor" "^7.20.0"
     "@rushstack/node-core-library" "^3.45.1"
