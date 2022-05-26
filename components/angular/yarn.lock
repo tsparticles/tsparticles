@@ -198,9 +198,9 @@
     tslib "^2.3.0"
 
 "@angular/platform-browser-dynamic@~13.3.4":
-  version "13.3.9"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-13.3.9.tgz#681083b281a0a24e56193c5ceb2b18d32a0b09a7"
-  integrity sha512-flyfoJG9vBSj3rmH/jUNaOPGfGlGHSj4v34OL16Qjk3M5bxbQKxBYNrDAUwk0Ve4S4qUfXF7ZDE0v1vUvn+3MA==
+  version "13.3.10"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-13.3.10.tgz#0932117362dd4216ad9bc47640279243ecd91c53"
+  integrity sha512-hygsEjTaS+VDUrBZZiRJFo5J7AHCS/EcAc1IWvb69EnVqA9RwqM4hWbuy3y/cmLEeHLLmRldIlS6xRPt8fTNQg==
   dependencies:
     tslib "^2.3.0"
 
@@ -6444,6 +6444,11 @@ tslib@^2.0.0, tslib@^2.1.0, tslib@^2.3.0, tslib@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
   integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
+
+tsparticles-engine@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.6.tgz#27e85d8d014a2d9435ffc9a2c7efd570baf6dc64"
+  integrity sha512-qsAMp68No1ncbFQbyjILrVtS9LeNTtBmxPa91COvHq4iLELReUjVxXTWfLWi0+xczTbdpNPRPx92r0V3xlqeHw==
 
 type-fest@^0.21.3:
   version "0.21.3"
