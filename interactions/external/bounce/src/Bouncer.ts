@@ -53,6 +53,10 @@ export class Bouncer extends ExternalInteractorBase {
         }
     }
 
+    clear(): void {
+        // do nothing
+    }
+
     reset(): void {
         // do nothing
     }

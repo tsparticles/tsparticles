@@ -571,9 +571,6 @@ export class Particle implements IParticle {
     }
 
     destroy(override?: boolean): void {
-        this.destroyed = true;
-        this.bubble.inRange = false;
-
         if (this.unbreakable) {
             return;
         }

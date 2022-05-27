@@ -28,6 +28,10 @@ export class Remover extends ExternalInteractorBase {
         return true;
     }
 
+    clear(): void {
+        // do nothing
+    }
+
     reset(): void {
         // do nothing
     }

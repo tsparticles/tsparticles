@@ -8,4 +8,6 @@ export interface IInteractor {
     type: InteractorType;
 
     reset(particle: Particle): void;
+
+    clear(particle: Particle): void;
 }

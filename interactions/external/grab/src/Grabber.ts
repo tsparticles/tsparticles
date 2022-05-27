@@ -1,13 +1,63 @@
-import type { Container, Particle } from "tsparticles-engine";
+import type { Container, ICoordinates, IRgb, Particle } from "tsparticles-engine";
 import {
     ExternalInteractorBase,
     HoverMode,
+    drawLine,
     getDistance,
     getLinkColor,
     getLinkRandomColor,
+    getStyleFromRgb,
     isInArray,
     mouseMoveEvent,
 } from "tsparticles-engine";
+
+/**
+ * Draws a grab line between two points using canvas API in the given context.
+ * @param context - The canvas context to draw on.
+ * @param width - The width of the line.
+ * @param begin - The first position of the line.
+ * @param end - The second position of the line.
+ * @param colorLine - The color of the line.
+ * @param opacity - The opacity of the line.
+ */
+export function drawGrabLine(
+    context: CanvasRenderingContext2D,
+    width: number,
+    begin: ICoordinates,
+    end: ICoordinates,
+    colorLine: IRgb,
+    opacity: number
+): void {
+    context.save();
+
+    drawLine(context, begin, end);
+
+    context.strokeStyle = getStyleFromRgb(colorLine, opacity);
+    context.lineWidth = width;
+    context.stroke();
+    context.restore();
+}
+
+function drawGrab(
+    container: Container,
+    particle: Particle,
+    lineColor: IRgb,
+    opacity: number,
+    mousePos: ICoordinates
+): void {
+    container.canvas.draw((ctx) => {
+        const beginPos = particle.getPosition();
+
+        drawGrabLine(
+            ctx,
+            particle.retina.linksWidth ?? container.retina.linksWidth,
+            beginPos,
+            mousePos,
+            lineColor,
+            opacity
+        );
+    });
+}
 
 /**
  * Particle grab manager
@@ -24,6 +74,10 @@ export class Grabber extends ExternalInteractorBase {
             events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
 
         return events.onHover.enable && !!mouse.position && isInArray(HoverMode.grab, events.onHover.mode);
+    }
+
+    clear(): void {
+        // do nothing
     }
 
     reset(): void {
@@ -86,7 +140,7 @@ export class Grabber extends ExternalInteractorBase {
                 return;
             }
 
-            container.canvas.drawGrabLine(particle, colorLine, opacityLine, mousePos);
+            drawGrab(container, particle, colorLine, opacityLine, mousePos);
         }
     }
 }

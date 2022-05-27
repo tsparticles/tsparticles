@@ -91,6 +91,10 @@ export class Attractor extends ExternalInteractorBase {
         return isInArray(HoverMode.attract, hoverMode) || isInArray(ClickMode.attract, clickMode);
     }
 
+    clear(): void {
+        // do nothing
+    }
+
     reset(): void {
         // do nothing
     }

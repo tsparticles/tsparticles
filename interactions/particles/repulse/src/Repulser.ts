@@ -18,6 +18,10 @@ export class Repulser extends ParticlesInteractorBase {
         return particle.options.repulse.enabled;
     }
 
+    clear(): void {
+        // do nothing
+    }
+
     reset(): void {
         // do nothing
     }

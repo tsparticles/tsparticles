@@ -91,7 +91,7 @@ const getConfig = (entry) => {
 
 module.exports = [
     getConfig({
-        "tsparticles.engine": "./dist/browser/index.js",
-        "tsparticles.engine.min": "./dist/browser/index.js"
+        "tsparticles.engine": "./dist/browser/bundle.js",
+        "tsparticles.engine.min": "./dist/browser/bundle.js"
     })
 ];

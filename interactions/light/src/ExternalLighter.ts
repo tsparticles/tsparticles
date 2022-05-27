@@ -36,6 +36,10 @@ export class ExternalLighter extends ExternalInteractorBase {
         return isInArray(HoverMode.light, events.onHover.mode);
     }
 
+    clear(): void {
+        // do nothing
+    }
+
     reset(): void {
         // do nothing
     }

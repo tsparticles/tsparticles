@@ -97,8 +97,12 @@ export class Bubbler extends ExternalInteractorBase {
         return isInArray(HoverMode.bubble, hoverMode) || isInArray(ClickMode.bubble, clickMode) || divBubble;
     }
 
-    reset(particle: Particle, force?: boolean): void {
-        if (!(!particle.bubble.inRange || force)) {
+    reset(particle: Particle): void {
+        particle.bubble.inRange = false;
+    }
+
+    clear(particle: Particle, force?: boolean): void {
+        if (particle.bubble.inRange && !force) {
             return;
         }
 
@@ -167,7 +171,7 @@ export class Bubbler extends ExternalInteractorBase {
                 const divBubble = divMode(divs, elem);
 
                 if (!particle.bubble.div || particle.bubble.div !== elem) {
-                    this.reset(particle, true);
+                    this.clear(particle, true);
 
                     particle.bubble.div = elem;
                 }

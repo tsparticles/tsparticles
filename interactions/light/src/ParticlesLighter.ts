@@ -34,6 +34,10 @@ export class ParticlesLighter extends ParticlesInteractorBase {
         return isInArray(HoverMode.light, events.onHover.mode);
     }
 
+    clear(): void {
+        // do nothing
+    }
+
     reset(): void {
         // do nothing
     }

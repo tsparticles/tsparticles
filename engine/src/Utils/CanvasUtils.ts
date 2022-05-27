@@ -1,4 +1,3 @@
-import type { IHsl, IRgb } from "../Core/Interfaces/Colors";
 import { colorMix, getStyleFromHsl, getStyleFromRgb } from "./ColorUtils";
 import { AlterType } from "../Enums/Types/AlterType";
 import type { Container } from "../Core/Container";
@@ -6,6 +5,7 @@ import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IDelta } from "../Core/Interfaces/IDelta";
 import type { IDimension } from "../Core/Interfaces/IDimension";
+import type { IHsl } from "../Core/Interfaces/Colors";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IParticleColorStyle } from "../Core/Interfaces/IParticleColorStyle";
 import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
@@ -68,23 +68,6 @@ export function clear(context: CanvasRenderingContext2D, dimension: IDimension):
     context.clearRect(0, 0, dimension.width, dimension.height);
 }
 
-export function drawConnectLine(
-    context: CanvasRenderingContext2D,
-    width: number,
-    lineStyle: CanvasGradient,
-    begin: ICoordinates,
-    end: ICoordinates
-): void {
-    context.save();
-
-    drawLine(context, begin, end);
-
-    context.lineWidth = width;
-    context.strokeStyle = lineStyle;
-    context.stroke();
-    context.restore();
-}
-
 /**
  * Creates a gradient using two particles colors and opacity.
  * @param context - The canvas context to draw on.
@@ -116,33 +99,6 @@ export function gradient(
     grad.addColorStop(1, getStyleFromHsl(color2, opacity));
 
     return grad;
-}
-
-/**
- * Draws a grab line between two points using canvas API in the given context.
- * @param context - The canvas context to draw on.
- * @param width - The width of the line.
- * @param begin - The first position of the line.
- * @param end - The second position of the line.
- * @param colorLine - The color of the line.
- * @param opacity - The opacity of the line.
- */
-export function drawGrabLine(
-    context: CanvasRenderingContext2D,
-    width: number,
-    begin: ICoordinates,
-    end: ICoordinates,
-    colorLine: IRgb,
-    opacity: number
-): void {
-    context.save();
-
-    drawLine(context, begin, end);
-
-    context.strokeStyle = getStyleFromRgb(colorLine, opacity);
-    context.lineWidth = width;
-    context.stroke();
-    context.restore();
 }
 
 /**

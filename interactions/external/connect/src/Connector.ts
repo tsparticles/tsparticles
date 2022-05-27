@@ -1,5 +1,49 @@
-import type { Container, Particle } from "tsparticles-engine";
-import { ExternalInteractorBase, HoverMode, isInArray } from "tsparticles-engine";
+import type { Container, ICoordinates, Particle } from "tsparticles-engine";
+import { ExternalInteractorBase, HoverMode, drawLine, gradient, isInArray } from "tsparticles-engine";
+
+function drawConnectLine(
+    context: CanvasRenderingContext2D,
+    width: number,
+    lineStyle: CanvasGradient,
+    begin: ICoordinates,
+    end: ICoordinates
+): void {
+    context.save();
+
+    drawLine(context, begin, end);
+
+    context.lineWidth = width;
+    context.strokeStyle = lineStyle;
+    context.stroke();
+    context.restore();
+}
+
+function lineStyle(
+    container: Container,
+    ctx: CanvasRenderingContext2D,
+    p1: Particle,
+    p2: Particle
+): CanvasGradient | undefined {
+    const options = container.actualOptions,
+        connectOptions = options.interactivity.modes.connect;
+
+    return gradient(ctx, p1, p2, connectOptions.links.opacity);
+}
+
+function drawConnection(container: Container, p1: Particle, p2: Particle): void {
+    container.canvas.draw((ctx) => {
+        const ls = lineStyle(container, ctx, p1, p2);
+
+        if (!ls) {
+            return;
+        }
+
+        const pos1 = p1.getPosition(),
+            pos2 = p2.getPosition();
+
+        drawConnectLine(ctx, p1.retina.linksWidth ?? container.retina.linksWidth, ls, pos1, pos2);
+    });
+}
 
 /**
  * Particle connection manager
@@ -20,6 +64,10 @@ export class Connector extends ExternalInteractorBase {
         }
 
         return isInArray(HoverMode.connect, events.onHover.mode);
+    }
+
+    clear(): void {
+        // do nothing
     }
 
     reset(): void {
@@ -55,7 +103,7 @@ export class Connector extends ExternalInteractorBase {
                         yDiff = Math.abs(pos1.y - pos2.y);
 
                     if (xDiff < distMax && yDiff < distMax) {
-                        container.canvas.drawConnectLine(p1, p2);
+                        drawConnection(container, p1, p2);
                     }
                 }
 

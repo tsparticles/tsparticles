@@ -34,6 +34,12 @@ export abstract class ExternalInteractorBase implements IExternalInteractor {
     abstract isEnabled(particle?: Particle): boolean;
 
     /**
+     * Before interaction clear
+     * @param particle the particle to clear
+     */
+    abstract clear(particle: Particle): void;
+
+    /**
      * Before interaction reset
      * @param particle the particle to reset
      */

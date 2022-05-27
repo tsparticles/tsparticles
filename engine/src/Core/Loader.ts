@@ -88,28 +88,6 @@ export class Loader {
     }
 
     /**
-     * All the [[Container]] objects loaded
-     */
-    dom(): Container[] {
-        return this.#engine.domArray;
-    }
-
-    /**
-     * Retrieves a [[Container]] from all the objects loaded
-     * @param index the object index
-     */
-    domItem(index: number): Container | undefined {
-        const dom = this.dom();
-        const item = dom[index];
-
-        if (item && !item.destroyed) {
-            return item;
-        }
-
-        dom.splice(index, 1);
-    }
-
-    /**
      * Starts an animation in a container, starting from the given options
      * @param params all the parameters required for loading options in the current animation
      */
@@ -129,11 +107,11 @@ export class Loader {
         }
 
         const currentOptions = options instanceof Array ? itemFromArray(options, index) : options,
-            dom = this.dom(),
+            dom = this.#engine.dom(),
             oldIndex = dom.findIndex((v) => v.id === tagId);
 
         if (oldIndex >= 0) {
-            const old = this.domItem(oldIndex);
+            const old = this.#engine.domItem(oldIndex);
 
             if (old && !old.destroyed) {
                 old.destroy();
@@ -344,7 +322,7 @@ export class Loader {
      * @param callback the function called after the click event is fired
      */
     setOnClickHandler(callback: (evt: Event, particles?: Particle[]) => void): void {
-        const dom = this.dom();
+        const dom = this.#engine.dom();
 
         if (!dom.length) {
             throw new Error("Can only set click handlers after calling tsParticles.load() or tsParticles.loadJSON()");
@@ -353,32 +331,5 @@ export class Loader {
         for (const domItem of dom) {
             domItem.addClickHandler(callback);
         }
-    }
-
-    /**
-     * Adds a listener to the specified event
-     * @param type The event to listen to
-     * @param listener The listener of the specified event
-     */
-    addEventListener(type: string, listener: CustomEventListener): void {
-        this.#engine.eventDispatcher.addEventListener(type, listener);
-    }
-
-    /**
-     * Removes a listener from the specified event
-     * @param type The event to stop listening to
-     * @param listener The listener of the specified event
-     */
-    removeEventListener(type: string, listener: CustomEventListener): void {
-        this.#engine.eventDispatcher.removeEventListener(type, listener);
-    }
-
-    /**
-     * Dispatches an event that will be listened from listeners
-     * @param type The event to dispatch
-     * @param args The event parameters
-     */
-    dispatchEvent(type: string, args: CustomEventArgs): void {
-        this.#engine.eventDispatcher.dispatchEvent(type, args);
     }
 }

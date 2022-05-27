@@ -213,7 +213,8 @@ export class Particles {
             }
 
             particle.ignoresResizeRatio = false;
-            particle.bubble.inRange = false;
+
+            await this.interactionManager.reset(particle);
 
             for (const [, plugin] of this.container.plugins) {
                 if (particle.destroyed) {
