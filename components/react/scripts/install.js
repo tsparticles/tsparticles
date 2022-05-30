@@ -1,6 +1,10 @@
 const path = require('path');
 const reactParticlesJsFoundError = "react-particles-js-found";
 
+if (!process.env.INIT_CWD) {
+    return;
+}
+
 try {
     console.log("Thank you for installing tsParticles official React.js component.");
     console.log("Remember to checkout the official website https://particles.js.org to explore some samples.");
