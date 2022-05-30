@@ -380,10 +380,10 @@ make-dir@^3.0.2:
   dependencies:
     semver "^6.0.0"
 
-minify@^8.0.3:
-  version "8.0.4"
-  resolved "https://registry.yarnpkg.com/minify/-/minify-8.0.4.tgz#c6ee10a887b0da8c24f45098c217382eb0be55f0"
-  integrity sha512-NA3ia+/VbjxgPb6Oo7aebvi0WGKHyNWGPg4m018CmWT1Ar8CXLnpz7Ux1ccaVPfADjs3Yv8hc4NuBvUVdIZ21A==
+minify@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/minify/-/minify-9.0.0.tgz#29133979e54164676673a35130ec42a7d509aa18"
+  integrity sha512-h5kVS+licRg/uYc0mIvIl+CqNv/eaJbRQKYmyJetEdx+nNdWsqWbCiVXmgb2bwL7JQnxMyXOg5fQMwt5jdX5xg==
   dependencies:
     clean-css "^5.0.1"
     css-b64-images "~0.2.5"
