@@ -122,9 +122,9 @@
     rxjs "6.6.7"
 
 "@angular/animations@~13.3.4":
-  version "13.3.9"
-  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-13.3.9.tgz#2c8683986d15003394e72ed4ae329406d9dab537"
-  integrity sha512-PIspkNm1r7Uq1F3/c24mTQjCbKvl84Iy5kRmKOtjxp9uBGg1Dy+akw29hJt2FAqKa5yKFustBFCgWKypqgSoUQ==
+  version "13.3.10"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-13.3.10.tgz#fbd1dbb129212be33ad699ffc3a859e238080192"
+  integrity sha512-V/0h3xepWPBRjWroFXYrNIE3iZPREjv0hiB3gskF/2KLlx5jvpUWlaBx0rEYRa8XXIPJyAaKBGwWSBnT/Z88TQ==
   dependencies:
     tslib "^2.3.0"
 
@@ -6444,6 +6444,11 @@ tslib@^2.0.0, tslib@^2.1.0, tslib@^2.3.0, tslib@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
   integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
+
+tsparticles-engine@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.0.6.tgz#27e85d8d014a2d9435ffc9a2c7efd570baf6dc64"
+  integrity sha512-qsAMp68No1ncbFQbyjILrVtS9LeNTtBmxPa91COvHq4iLELReUjVxXTWfLWi0+xczTbdpNPRPx92r0V3xlqeHw==
 
 type-fest@^0.21.3:
   version "0.21.3"
