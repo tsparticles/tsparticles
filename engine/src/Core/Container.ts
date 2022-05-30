@@ -302,6 +302,7 @@ export class Container {
     destroy(): void {
         this.stop();
 
+        this.particles.destroy();
         this.canvas.destroy();
 
         for (const [, drawer] of this.drawers) {
