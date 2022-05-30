@@ -142,6 +142,13 @@ export class Particles {
         container.pathGenerator.init(container);
     }
 
+    destroy(): void {
+        this.array = [];
+        this.zArray = [];
+        this.movers = [];
+        this.updaters = [];
+    }
+
     async redraw(): Promise<void> {
         this.clear();
         this.init();
