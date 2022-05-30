@@ -1,9 +1,6 @@
 import { Container } from "./Container";
-import type { CustomEventArgs } from "../Types/CustomEventArgs";
-import type { CustomEventListener } from "../Types/CustomEventListener";
 import type { Engine } from "../engine";
 import type { IOptions } from "../Options/Interfaces/IOptions";
-import type { Particle } from "./Particle";
 import type { RecursivePartial } from "../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
 import { generatedAttribute } from "./Utils/Constants";
@@ -16,6 +13,27 @@ import { itemFromArray } from "../Utils/Utils";
 function fetchError(statusCode: number): void {
     console.error(`Error tsParticles - fetch status: ${statusCode}`);
     console.error("Error tsParticles - File config not found");
+}
+
+async function getDataFromUrl(
+    jsonUrl?: SingleOrMultiple<string>,
+    index?: number
+): Promise<SingleOrMultiple<RecursivePartial<IOptions>> | undefined> {
+    const url = jsonUrl instanceof Array ? itemFromArray(jsonUrl, index) : jsonUrl;
+
+    if (!url) {
+        return;
+    }
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+        fetchError(response.status);
+
+        return;
+    }
+
+    return await response.json();
 }
 
 /**
@@ -41,26 +59,11 @@ interface LoaderParams {
      * The id assigned to the container
      */
     tagId?: string;
-}
-
-/**
- * Loader params for options remote object (AJAX)
- */
-interface RemoteLoaderParams {
-    /**
-     * The container HTML element, could be a canvas or any other element that will contain the canvas
-     */
-    element?: HTMLElement;
 
     /**
-     * The index of the chosen element of the url array, if an array is given. If not specified, a random index will be used
+     * Used for loading options locally or remotely
      */
-    index?: number;
-
-    /**
-     * The id assigned to the container
-     */
-    tagId?: string;
+    remote: boolean;
 
     /**
      * The url or the url array used to get options
@@ -93,7 +96,8 @@ export class Loader {
      */
     async loadOptions(params: LoaderParams): Promise<Container | undefined> {
         const tagId = params.tagId ?? `tsparticles${Math.floor(Math.random() * 10000)}`,
-            { options, index } = params;
+            { index, url: jsonUrl, remote } = params,
+            options = remote ? await getDataFromUrl(jsonUrl, index) : params.options;
 
         /* elements */
         let domContainer = params.element ?? document.getElementById(tagId);
@@ -168,30 +172,8 @@ export class Loader {
      * Starts an animation in a container, starting from the given remote options
      * @param params all the parameters required for loading a remote url into options in the current animation
      */
-    async loadRemoteOptions(params: RemoteLoaderParams): Promise<Container | undefined> {
-        const { url: jsonUrl, index } = params,
-            url = jsonUrl instanceof Array ? itemFromArray(jsonUrl, index) : jsonUrl;
-
-        if (!url) {
-            return;
-        }
-
-        const response = await fetch(url);
-
-        if (!response.ok) {
-            fetchError(response.status);
-
-            return;
-        }
-
-        const data = await response.json();
-
-        return this.loadOptions({
-            tagId: params.tagId,
-            element: params.element,
-            index,
-            options: data,
-        });
+    async loadRemoteOptions(params: LoaderParams): Promise<Container | undefined> {
+        return this.loadOptions(params);
     }
 
     /**
@@ -205,7 +187,7 @@ export class Loader {
         options?: SingleOrMultiple<RecursivePartial<IOptions>> | number,
         index?: number
     ): Promise<Container | undefined> {
-        const params: LoaderParams = { index };
+        const params: LoaderParams = { index, remote: false };
 
         if (typeof tagId === "string") {
             params.tagId = tagId;
@@ -235,7 +217,7 @@ export class Loader {
         options?: SingleOrMultiple<RecursivePartial<IOptions>> | number,
         index?: number
     ): Promise<Container | undefined> {
-        const params: LoaderParams = { index };
+        const params: LoaderParams = { index, remote: false };
 
         if (typeof id === "string") {
             params.tagId = id;
@@ -280,7 +262,7 @@ export class Loader {
             url = jsonUrl;
         }
 
-        return this.loadRemoteOptions({ tagId: id, url, index });
+        return this.loadRemoteOptions({ tagId: id, url, index, remote: true });
     }
 
     /**
@@ -314,22 +296,6 @@ export class Loader {
             newIndex = index;
         }
 
-        return this.loadRemoteOptions({ tagId: newId, url, index: newIndex, element });
-    }
-
-    /**
-     * Adds an additional click handler to all the loaded [[Container]] objects.
-     * @param callback the function called after the click event is fired
-     */
-    setOnClickHandler(callback: (evt: Event, particles?: Particle[]) => void): void {
-        const dom = this.#engine.dom();
-
-        if (!dom.length) {
-            throw new Error("Can only set click handlers after calling tsParticles.load() or tsParticles.loadJSON()");
-        }
-
-        for (const domItem of dom) {
-            domItem.addClickHandler(callback);
-        }
+        return this.loadRemoteOptions({ tagId: newId, url, index: newIndex, element, remote: true });
     }
 }

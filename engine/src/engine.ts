@@ -156,7 +156,15 @@ export class Engine {
      * @param callback The function called after the click event is fired
      */
     setOnClickHandler(callback: (e: Event, particles?: Particle[]) => void): void {
-        this.#loader.setOnClickHandler(callback);
+        const dom = this.dom();
+
+        if (!dom.length) {
+            throw new Error("Can only set click handlers after calling tsParticles.load() or tsParticles.loadJSON()");
+        }
+
+        for (const domItem of dom) {
+            domItem.addClickHandler(callback);
+        }
     }
 
     /**
