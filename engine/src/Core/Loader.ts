@@ -33,7 +33,7 @@ async function getDataFromUrl(
         return;
     }
 
-    return await response.json();
+    return response.json();
 }
 
 /**
