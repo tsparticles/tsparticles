@@ -4,12 +4,12 @@ import {
     Vector,
     calcPositionOrRandomFromSize,
     calcPositionOrRandomFromSizeRanged,
-    colorToRgb,
     getDistance,
     getDistances,
     getRangeValue,
     getStyleFromRgb,
     isPointInside,
+    rangeColorToRgb,
 } from "tsparticles-engine";
 import { Absorber } from "./Options/Classes/Absorber";
 import { Absorbers } from "./Absorbers";
@@ -128,7 +128,7 @@ export class AbsorberInstance {
             mass: limit.mass,
         };
 
-        this.color = colorToRgb(this.options.color) ?? {
+        this.color = rangeColorToRgb(this.options.color) ?? {
             b: 0,
             g: 0,
             r: 0,

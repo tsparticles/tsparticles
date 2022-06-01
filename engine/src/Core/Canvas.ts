@@ -1,6 +1,6 @@
 import type { IHsl, IRgba } from "./Interfaces/Colors";
 import { clear, drawParticle, drawParticlePlugin, drawPlugin, paintBase } from "../Utils/CanvasUtils";
-import { colorToHsl, colorToRgb, getStyleFromHsl, getStyleFromRgb } from "../Utils/ColorUtils";
+import { getStyleFromHsl, getStyleFromRgb, rangeColorToHsl, rangeColorToRgb } from "../Utils/ColorUtils";
 import type { Container } from "./Container";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { IDelta } from "./Interfaces/IDelta";
@@ -300,7 +300,7 @@ export class Canvas {
         }
 
         if (background.color) {
-            const color = colorToRgb(background.color);
+            const color = rangeColorToRgb(background.color);
 
             elementStyle.backgroundColor = color ? getStyleFromRgb(color, background.opacity) : "";
         } else {
@@ -325,7 +325,7 @@ export class Canvas {
         const options = this.container.actualOptions,
             cover = options.backgroundMask.cover,
             color = cover.color,
-            coverRgb = colorToRgb(color);
+            coverRgb = rangeColorToRgb(color);
 
         if (coverRgb) {
             const coverColor = {
@@ -342,7 +342,7 @@ export class Canvas {
     private initTrail(): void {
         const options = this.container.actualOptions,
             trail = options.particles.move.trail,
-            fillColor = colorToRgb(trail.fillColor);
+            fillColor = rangeColorToRgb(trail.fillColor);
 
         if (fillColor) {
             const trail = options.particles.move.trail;
@@ -361,11 +361,11 @@ export class Canvas {
 
         for (const [, plugin] of this.container.plugins) {
             if (!fColor && plugin.particleFillColor) {
-                fColor = colorToHsl(plugin.particleFillColor(particle));
+                fColor = rangeColorToHsl(plugin.particleFillColor(particle));
             }
 
             if (!sColor && plugin.particleStrokeColor) {
-                sColor = colorToHsl(plugin.particleStrokeColor(particle));
+                sColor = rangeColorToHsl(plugin.particleStrokeColor(particle));
             }
 
             if (fColor && sColor) {

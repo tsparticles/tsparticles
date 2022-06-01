@@ -19,8 +19,8 @@ import {
     randomInRange,
     setRangeValue,
 } from "../Utils/NumberUtils";
-import { colorToRgb, getHslFromAnimation } from "../Utils/ColorUtils";
 import { deepExtend, isInArray, itemFromArray, loadParticlesOptions } from "../Utils/Utils";
+import { getHslFromAnimation, rangeColorToRgb } from "../Utils/ColorUtils";
 import { AnimationStatus } from "../Enums/AnimationStatus";
 import type { Container } from "./Container";
 import { DestroyMode } from "../Enums/Modes/DestroyMode";
@@ -472,7 +472,7 @@ export class Particle implements IParticle {
 
         this.life = this.loadLife();
         this.spawning = this.life.delay > 0;
-        this.shadowColor = colorToRgb(this.options.shadow.color);
+        this.shadowColor = rangeColorToRgb(this.options.shadow.color);
 
         for (const updater of container.particles.updaters) {
             if (updater.init) {
@@ -608,10 +608,14 @@ export class Particle implements IParticle {
             return;
         }
 
-        const rate = getValue(splitOptions.rate);
+        const rate = getValue(splitOptions.rate),
+            particlesSplitOptions =
+                splitOptions.particles instanceof Array
+                    ? itemFromArray(splitOptions.particles)
+                    : splitOptions.particles;
 
         for (let i = 0; i < rate; i++) {
-            this.container.particles.addSplitParticle(this);
+            this.container.particles.addSplitParticle(this, particlesSplitOptions);
         }
     }
 

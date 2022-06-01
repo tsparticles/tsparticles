@@ -9,7 +9,6 @@ import {
     Rectangle,
     clamp,
     colorMix,
-    colorToHsl,
     divMode,
     divModeExecute,
     getDistance,
@@ -19,6 +18,7 @@ import {
     itemFromArray,
     mouseLeaveEvent,
     mouseMoveEvent,
+    rangeColorToHsl,
     rgbToHsl,
 } from "tsparticles-engine";
 import type { IBubblerProcessParam } from "./IBubblerProcessParam";
@@ -411,7 +411,7 @@ export class Bubbler extends ExternalInteractorBase {
 
             const bubbleColor = modeColor instanceof Array ? itemFromArray(modeColor) : modeColor;
 
-            particle.bubble.finalColor = colorToHsl(bubbleColor);
+            particle.bubble.finalColor = rangeColorToHsl(bubbleColor);
         }
 
         if (!particle.bubble.finalColor) {

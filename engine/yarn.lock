@@ -1759,6 +1759,17 @@ glob@7.2.0, glob@^7.0.5, glob@^7.1.3, glob@^7.1.4, glob@^7.1.6, glob@^7.1.7, glo
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
+glob@^8.0.3:
+  version "8.0.3"
+  resolved "https://registry.yarnpkg.com/glob/-/glob-8.0.3.tgz#415c6eb2deed9e502c68fa44a272e6da6eeca42e"
+  integrity sha512-ull455NHSHI/Y1FqGaaYFaLGkNMMJbavMrEGFXG/PGrg6y7sutWHUHrz6gy6WEBH6akM1M414dWKCNs+IhKdiQ==
+  dependencies:
+    fs.realpath "^1.0.0"
+    inflight "^1.0.4"
+    inherits "2"
+    minimatch "^5.0.1"
+    once "^1.3.0"
+
 globals@^11.1.0:
   version "11.12.0"
   resolved "https://registry.yarnpkg.com/globals/-/globals-11.12.0.tgz#ab8795338868a0babd8525758018c2a7eb95c42e"
@@ -2328,10 +2339,10 @@ make-error@^1.1.1:
   resolved "https://registry.yarnpkg.com/make-error/-/make-error-1.3.6.tgz#2eb2e37ea9b67c4891f684a1394799af484cf7a2"
   integrity sha512-s8UhlNe7vPKomQhC1qFelMokr/Sc3AgNbso3n74mVPA5LTZwkB9NlXf4XPamLxJE8h0gh73rM94xvwRT2CVInw==
 
-marked@^4.0.12:
-  version "4.0.12"
-  resolved "https://registry.yarnpkg.com/marked/-/marked-4.0.12.tgz#2262a4e6fd1afd2f13557726238b69a48b982f7d"
-  integrity sha512-hgibXWrEDNBWgGiK18j/4lkS6ihTe9sxtV4Q1OQppb/0zzyPSzoFANBa5MfsG/zgsWklmNnhm0XACZOH/0HBiQ==
+marked@^4.0.16:
+  version "4.0.16"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-4.0.16.tgz#9ec18fc1a723032eb28666100344d9428cf7a264"
+  integrity sha512-wahonIQ5Jnyatt2fn8KqF/nIqZM8mh3oRu2+l5EANGMhu6RFjiSG52QNE2eWzFMI94HqYSgN184NurgNG6CztA==
 
 merge-stream@^2.0.0:
   version "2.0.0"
@@ -2391,6 +2402,13 @@ minimatch@^3.0.3, minimatch@^3.0.4, minimatch@^3.1.2:
   integrity sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==
   dependencies:
     brace-expansion "^1.1.7"
+
+minimatch@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-5.1.0.tgz#1717b464f4971b144f6aabe8f2d0b8e4511e09c7"
+  integrity sha512-9TPBGGak4nHfGZsPBohm9AWg6NoT7QTCehS3BIJABslyZbzxfV78QM2Y6+i741OPZIafFAaiiEMh5OyIrJPgtg==
+  dependencies:
+    brace-expansion "^2.0.1"
 
 minipass@^3.0.0:
   version "3.1.6"
@@ -3435,46 +3453,46 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typedoc-plugin-carbon-ads@^1.0.4:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-carbon-ads/-/typedoc-plugin-carbon-ads-1.0.5.tgz#bbed420888fc1be36a7a19738071f925643cbb1c"
-  integrity sha512-BrhthCQL1IJeFr45AUtrw4ocC9nQeudLQ3E+SBPV0TEsmjhdAAvI+W6tjxMXGOOcJ12MxiPXR/qyvZ4rjQKNEQ==
+typedoc-plugin-carbon-ads@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-carbon-ads/-/typedoc-plugin-carbon-ads-1.0.7.tgz#df61f9ec7cd5fb4f5e0c82767cd194ceea4067c3"
+  integrity sha512-54zJNVyaYZD1M6yP9ce92UAmNpLuhQPhdqQF6SJET/XFfBL2/Vz5pnwn9ZP1NYtW0KlhI8ksUd31wInLfUp7Tw==
   dependencies:
-    typescript "^4.6.4"
+    typescript "^4.7.2"
 
-typedoc-plugin-clarity@^1.0.3:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-clarity/-/typedoc-plugin-clarity-1.0.4.tgz#600d06ea7fc650b2c512cdbc7af8c9ce70deb872"
-  integrity sha512-8pvfD5j8jPQ7OZG4aIv9TOqUEELRX93ZdWFmyyQGz74o/f6aFJ4xjGupkRaMFBAg0RjAisRWf47MeLbO5Y9PxQ==
+typedoc-plugin-clarity@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-clarity/-/typedoc-plugin-clarity-1.0.5.tgz#068e03fe0b2057caa92739fa98ca8ab5322f486d"
+  integrity sha512-mAE+8lsYOW4QpECURlY6b3/tpaoEPVvHJ6NbRk8wUFLZ/TrspVFldNZY94NRAGhsULAD0iWUN8KI4U8nwfYNrg==
   dependencies:
-    typedoc "^0.22.15"
+    typescript "^4.7.2"
 
 typedoc-plugin-coverage@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/typedoc-plugin-coverage/-/typedoc-plugin-coverage-1.0.2.tgz#94f9eddbedae00326f57026f865dedc5622810c6"
   integrity sha512-RacrPr0coZ+A/KjGYOuHNzF245VHQwTA55508Q9KiOfaBrjB4ItbaNuDT4IvNZkT58C8wbdNTZ8qI7d7FMNIMw==
 
-typedoc-plugin-keyword@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-keyword/-/typedoc-plugin-keyword-1.0.0.tgz#3bf42401d9090c31468582c01e34a2058fd2fff8"
-  integrity sha512-AWym9WWlob4ue70y+evpniE45+DdPS7jd/1T/3m/bj/32/IJVxGlecf4REjhfQO/w2dARdv6ncZ3pNIoeDI5vA==
+typedoc-plugin-keyword@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-keyword/-/typedoc-plugin-keyword-1.0.2.tgz#9b672ad1ff4eaf5f9d3fd2a35a620647eb3a8df6"
+  integrity sha512-a6tWc47JqHfnJzy1bZj3srxyNQPS6b4th35VIudzqaVOHJ/U7E9ceHX2vvwohJFsBRLojGpd82EnB4khyBr6Hg==
   dependencies:
-    typescript "^4.6.4"
+    typescript "^4.7.2"
 
 typedoc-plugin-missing-exports@^0.22.6:
   version "0.22.6"
   resolved "https://registry.yarnpkg.com/typedoc-plugin-missing-exports/-/typedoc-plugin-missing-exports-0.22.6.tgz#7467c60f1cd26507124103f0b9bca271d5aa8d71"
   integrity sha512-1uguGQqa+c5f33nWS3v1mm0uAx4Ii1lw4Kx2zQksmYFKNEWTmrmMXbMNBoBg4wu0p4dFCNC7JIWPoRzpNS6pFA==
 
-typedoc@^0.22.15:
-  version "0.22.15"
-  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.22.15.tgz#c6ad7ed9d017dc2c3a06c9189cb392bd8e2d8c3f"
-  integrity sha512-CMd1lrqQbFvbx6S9G6fL4HKp3GoIuhujJReWqlIvSb2T26vGai+8Os3Mde7Pn832pXYemd9BMuuYWhFpL5st0Q==
+typedoc@^0.22.16:
+  version "0.22.16"
+  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.22.16.tgz#41e0ff099274ce13c5c3ea49cc5ad615d2f3119e"
+  integrity sha512-0Qf0/CsQe6JZTXoYwBM3Iql8gLAWLjQP7O/j9YzfkJp3G/WVGmIMRajKnldJuA/zVvhr+ifsHTgctQh5g2t4iw==
   dependencies:
-    glob "^7.2.0"
+    glob "^8.0.3"
     lunr "^2.3.9"
-    marked "^4.0.12"
-    minimatch "^5.0.1"
+    marked "^4.0.16"
+    minimatch "^5.1.0"
     shiki "^0.10.1"
 
 typescript-json-schema@^0.53.0:
@@ -3491,7 +3509,12 @@ typescript-json-schema@^0.53.0:
     typescript "~4.6.0"
     yargs "^17.1.1"
 
-typescript@^4.6.4, typescript@~4.6.0, typescript@~4.6.2:
+typescript@^4.7.2:
+  version "4.7.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.2.tgz#1f9aa2ceb9af87cca227813b4310fff0b51593c4"
+  integrity sha512-Mamb1iX2FDUpcTRzltPxgWMKy3fhg0TN378ylbktPGPK/99KbDtMQ4W1hwgsbPAsG3a0xKa1vmw4VKZQbkvz5A==
+
+typescript@~4.6.0, typescript@~4.6.2:
   version "4.6.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.6.4.tgz#caa78bbc3a59e6a5c510d35703f6a09877ce45e9"
   integrity sha512-9ia/jWHIEbo49HfjrLGfKbZSuWo9iTMwXO+Ca3pRsSpbsMbc7/IU8NKdCZVRRBafVPGnoJeFL76ZOAA84I9fEg==

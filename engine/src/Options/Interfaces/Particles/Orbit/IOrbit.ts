@@ -1,6 +1,6 @@
 import type { IAnimatable } from "../../IAnimatable";
 import type { IAnimation } from "../../IAnimation";
-import type { IColor } from "../../../../Core/Interfaces/Colors";
+import type { IOptionsColor } from "../../IOptionsColor";
 import type { IValueWithRandom } from "../../IValueWithRandom";
 import type { RangeValue } from "../../../../Types/RangeValue";
 
@@ -9,7 +9,7 @@ import type { RangeValue } from "../../../../Types/RangeValue";
  * [[include:Options/Particles/Orbit.md]]
  */
 export interface IOrbit extends IAnimatable<IAnimation> {
-    color?: string | IColor;
+    color?: string | IOptionsColor;
 
     /**
      * Enables/disables the animation

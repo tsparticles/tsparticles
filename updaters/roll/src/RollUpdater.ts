@@ -1,4 +1,4 @@
-import { AlterType, colorToHsl, getRangeValue } from "tsparticles-engine";
+import { AlterType, getRangeValue, rangeColorToHsl } from "tsparticles-engine";
 import type { IDelta, IParticleUpdater, Particle } from "tsparticles-engine";
 
 function updateRoll(particle: Particle, delta: IDelta): void {
@@ -29,7 +29,7 @@ export class RollUpdater implements IParticleUpdater {
             };
 
             if (rollOpt.backColor) {
-                particle.backColor = colorToHsl(rollOpt.backColor);
+                particle.backColor = rangeColorToHsl(rollOpt.backColor);
             } else if (rollOpt.darken.enable && rollOpt.enlighten.enable) {
                 const alterType = Math.random() >= 0.5 ? AlterType.darken : AlterType.enlighten;
 

@@ -12,11 +12,12 @@ import {
     SizeMode,
     Vector,
     calcPositionOrRandomFromSizeRanged,
-    colorToHsl,
     deepExtend,
     getRangeValue,
     isPointInside,
+    itemFromArray,
     randomInRange,
+    rangeColorToHsl,
 } from "tsparticles-engine";
 import { Emitter } from "./Options/Classes/Emitter";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
@@ -93,7 +94,7 @@ export class EmitterInstance {
         particlesOptions.move.direction ??= this.options.direction;
 
         if (this.options.spawnColor) {
-            this.spawnColor = colorToHsl(this.options.spawnColor);
+            this.spawnColor = rangeColorToHsl(this.options.spawnColor);
         }
 
         this.paused = !this.options.autoPlay;
@@ -344,10 +345,12 @@ export class EmitterInstance {
 
     private emitParticles(quantity: number): void {
         const position = this.getPosition(),
-            size = this.getSize();
+            size = this.getSize(),
+            singleParticlesOptions =
+                this.particlesOptions instanceof Array ? itemFromArray(this.particlesOptions) : this.particlesOptions;
 
         for (let i = 0; i < quantity; i++) {
-            const particlesOptions = deepExtend({}, this.particlesOptions) as RecursivePartial<IParticlesOptions>;
+            const particlesOptions = deepExtend({}, singleParticlesOptions) as RecursivePartial<IParticlesOptions>;
 
             if (this.spawnColor) {
                 const hslAnimation = this.options.spawnColor?.animation;

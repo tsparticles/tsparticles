@@ -1,3 +1,4 @@
+import type { RangeValue } from "../../Types/RangeValue";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 
 /**
@@ -25,6 +26,18 @@ export interface IColor {
 }
 
 /**
+ * Color
+ * [[include:Color.md]]
+ * @category Interfaces
+ */
+export interface IRangeColor {
+    /**
+     * Color value, can be a single or an array of [[IValueColor]], [[IRgb]], [[IHsl]] or string
+     */
+    value: SingleOrMultiple<IRangeValueColor | IRangeRgb | IRangeHsl | IRangeHsv | SingleOrMultiple<string>>;
+}
+
+/**
  * @category Interfaces
  */
 export interface IHsl {
@@ -42,6 +55,26 @@ export interface IHsl {
      * Luminance
      */
     l: number;
+}
+
+/**
+ * @category Interfaces
+ */
+export interface IRangeHsl {
+    /**
+     * Hue
+     */
+    h: RangeValue;
+
+    /**
+     * Saturation
+     */
+    s: RangeValue;
+
+    /**
+     * Luminance
+     */
+    l: RangeValue;
 }
 
 /**
@@ -69,6 +102,26 @@ export interface IHsv {
     v: number;
 }
 
+/**
+ * @category Interfaces
+ */
+export interface IRangeHsv {
+    /**
+     * Hue
+     */
+    h: RangeValue;
+
+    /**
+     * Saturation
+     */
+    s: RangeValue;
+
+    /**
+     * Value
+     */
+    v: RangeValue;
+}
+
 export interface IHsva extends IHsv, IAlphaColor {}
 
 /**
@@ -94,6 +147,26 @@ export interface IRgb {
 /**
  * @category Interfaces
  */
+export interface IRangeRgb {
+    /**
+     * Red
+     */
+    r: RangeValue;
+
+    /**
+     * Green
+     */
+    g: RangeValue;
+
+    /**
+     * Blue
+     */
+    b: RangeValue;
+}
+
+/**
+ * @category Interfaces
+ */
 export interface IRgba extends IRgb, IAlphaColor {}
 
 /**
@@ -114,4 +187,24 @@ export interface IValueColor {
      * Hsv value
      */
     hsv?: IHsv;
+}
+
+/**
+ * @category Interfaces
+ */
+export interface IRangeValueColor {
+    /**
+     * Rgb Value
+     */
+    rgb?: IRangeRgb;
+
+    /**
+     * Hsl value
+     */
+    hsl?: IRangeHsl;
+
+    /**
+     * Hsv value
+     */
+    hsv?: IRangeHsv;
 }

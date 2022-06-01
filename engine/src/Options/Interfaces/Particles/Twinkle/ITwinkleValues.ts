@@ -1,11 +1,11 @@
-import type { IColor } from "../../../../Core/Interfaces/Colors";
+import type { IOptionsColor } from "../../IOptionsColor";
 import type { RangeValue } from "../../../../Types/RangeValue";
 
 /**
  * @category Options
  */
 export interface ITwinkleValues {
-    color?: string | IColor;
+    color?: string | IOptionsColor;
     enable: boolean;
     frequency: number;
     opacity: RangeValue;

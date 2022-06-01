@@ -1,5 +1,5 @@
 import type { IParticleColorStyle, IParticleUpdater, Particle } from "tsparticles-engine";
-import { colorToHsl, getRangeValue, getStyleFromHsl } from "tsparticles-engine";
+import { getRangeValue, getStyleFromHsl, rangeColorToHsl } from "tsparticles-engine";
 
 export class TwinkleUpdater implements IParticleUpdater {
     getColorStyles(
@@ -14,7 +14,7 @@ export class TwinkleUpdater implements IParticleUpdater {
             zIndexOptions = particle.options.zIndex,
             zOpacityFactor = (1 - particle.zIndexFactor) ** zIndexOptions.opacityRate,
             twinklingOpacity = twinkling ? getRangeValue(twinkle.opacity) * zOpacityFactor : opacity,
-            twinkleRgb = colorToHsl(twinkle.color),
+            twinkleRgb = rangeColorToHsl(twinkle.color),
             twinkleStyle = twinkleRgb ? getStyleFromHsl(twinkleRgb, twinklingOpacity) : undefined,
             res: IParticleColorStyle = {},
             needsTwinkle = twinkling && twinkleStyle;

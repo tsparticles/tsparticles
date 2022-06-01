@@ -1,11 +1,11 @@
-import type { IColor } from "../../../../Core/Interfaces/Colors";
+import type { IOptionsColor } from "../../IOptionsColor";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 /**
  * @category Options
  */
 export interface IBubbleBase {
-    color?: SingleOrMultiple<IColor | string>;
+    color?: SingleOrMultiple<string | IOptionsColor>;
     mix: boolean;
     distance: number;
     duration: number;

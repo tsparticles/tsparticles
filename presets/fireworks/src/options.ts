@@ -1,5 +1,109 @@
-import { DestroyMode, DestroyType, MoveDirection, OutMode, StartValueType } from "tsparticles-engine";
-import type { ISourceOptions } from "tsparticles-engine";
+import {
+    DestroyMode,
+    DestroyType,
+    IRangeValue,
+    MoveDirection,
+    OutMode,
+    StartValueType,
+    rgbToHsl,
+    setRangeValue,
+    stringToRgb,
+} from "tsparticles-engine";
+import type { IParticlesOptions, ISourceOptions, RecursivePartial } from "tsparticles-engine";
+
+const fixRange = (value: IRangeValue, min: number, max: number) => {
+    const diffSMax = value.max > max ? value.max - max : 0;
+    let res = setRangeValue(value);
+
+    if (diffSMax) {
+        res = setRangeValue(value.min - diffSMax, max);
+    }
+
+    const diffSMin = value.min < min ? value.min : 0;
+
+    if (diffSMin) {
+        res = setRangeValue(0, value.max + diffSMin);
+    }
+
+    return res;
+};
+
+const fireworksOptions: RecursivePartial<IParticlesOptions>[] = ["#ff595e", "#ffca3a", "#8ac926", "#1982c4", "#6a4c93"]
+    .map((color) => {
+        const rgb = stringToRgb(color);
+
+        if (!rgb) {
+            return undefined;
+        }
+
+        const hsl = rgbToHsl(rgb),
+            sRange = fixRange({ min: hsl.s - 20, max: hsl.s + 20 }, 0, 100),
+            lRange = fixRange({ min: hsl.l - 20, max: hsl.l + 20 }, 0, 100);
+
+        console.log(hsl.h, sRange, lRange);
+
+        return {
+            color: {
+                value: {
+                    h: hsl.h,
+                    s: sRange,
+                    l: lRange,
+                },
+            },
+            stroke: {
+                width: 0,
+            },
+            number: {
+                value: 0,
+            },
+            collisions: {
+                enable: false,
+            },
+            opacity: {
+                value: {
+                    min: 0.1,
+                    max: 1,
+                },
+                animation: {
+                    enable: true,
+                    speed: 0.7,
+                    sync: false,
+                    startValue: StartValueType.max,
+                    destroy: DestroyType.min,
+                },
+            },
+            shape: {
+                type: "circle",
+            },
+            size: {
+                value: 2,
+                animation: {
+                    enable: false,
+                },
+            },
+            life: {
+                count: 1,
+                duration: {
+                    value: {
+                        min: 1,
+                        max: 2,
+                    },
+                },
+            },
+            move: {
+                enable: true,
+                gravity: {
+                    enable: false,
+                },
+                speed: 2,
+                direction: "none",
+                random: true,
+                straight: false,
+                outModes: OutMode.destroy,
+            },
+        } as RecursivePartial<IParticlesOptions>;
+    })
+    .filter((t) => t !== undefined) as RecursivePartial<IParticlesOptions>[];
 
 export const options: ISourceOptions = {
     detectRetina: true,
@@ -15,7 +119,7 @@ export const options: ISourceOptions = {
             delay: 0.1,
         },
         rate: {
-            delay: 0.5,
+            delay: 0.3,
             quantity: 1,
         },
         size: {
@@ -41,62 +145,7 @@ export const options: ISourceOptions = {
                 rate: {
                     value: 100,
                 },
-                particles: {
-                    color: {
-                        value: ["#ff595e", "#ffca3a", "#8ac926", "#1982c4", "#6a4c93"],
-                    },
-                    stroke: {
-                        width: 0,
-                    },
-                    number: {
-                        value: 0,
-                    },
-                    collisions: {
-                        enable: false,
-                    },
-                    opacity: {
-                        value: {
-                            min: 0.1,
-                            max: 1,
-                        },
-                        animation: {
-                            enable: true,
-                            speed: 0.7,
-                            sync: false,
-                            startValue: StartValueType.max,
-                            destroy: DestroyType.min,
-                        },
-                    },
-                    shape: {
-                        type: "circle",
-                    },
-                    size: {
-                        value: 2,
-                        animation: {
-                            enable: false,
-                        },
-                    },
-                    life: {
-                        count: 1,
-                        duration: {
-                            value: {
-                                min: 1,
-                                max: 2,
-                            },
-                        },
-                    },
-                    move: {
-                        enable: true,
-                        gravity: {
-                            enable: false,
-                        },
-                        speed: 2,
-                        direction: "none",
-                        random: true,
-                        straight: false,
-                        outModes: OutMode.destroy,
-                    },
-                },
+                particles: fireworksOptions,
             },
         },
         life: {

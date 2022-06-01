@@ -1,6 +1,6 @@
-import type { IColor } from "../../../../Core/Interfaces/Colors";
 import type { ILinksShadow } from "./ILinksShadow";
 import type { ILinksTriangle } from "./ILinksTriangle";
+import type { IOptionsColor } from "../../IOptionsColor";
 
 /**
  * Particles Links options, this configures how the particles link together
@@ -20,7 +20,7 @@ export interface ILinks {
      * if [[consent]] is `true` a random color is used for all links,
      * if [[blink]] and [[consent]] are false the color will be a gradient with the two linked particles color
      */
-    color: string | IColor;
+    color: string | IOptionsColor;
 
     /**
      * If enabled the links will have a single random color, if [[color]] value is "random"

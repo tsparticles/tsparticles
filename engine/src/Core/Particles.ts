@@ -346,10 +346,13 @@ export class Particles {
         return this.pushParticle(position, overrideOptions, group);
     }
 
-    addSplitParticle(parent: Particle): Particle | undefined {
-        const splitOptions = parent.options.destroy.split;
-        const options = loadParticlesOptions(parent.options);
-        const factor = getValue(splitOptions.factor);
+    addSplitParticle(
+        parent: Particle,
+        splitParticlesOptions?: RecursivePartial<IParticlesOptions>
+    ): Particle | undefined {
+        const splitOptions = parent.options.destroy.split,
+            options = loadParticlesOptions(parent.options),
+            factor = getValue(splitOptions.factor);
 
         options.color.load({
             value: {
@@ -364,7 +367,7 @@ export class Particles {
             options.size.value.max /= factor;
         }
 
-        options.load(splitOptions.particles);
+        options.load(splitParticlesOptions);
 
         const offset = splitOptions.sizeOffset ? setRangeValue(-parent.size.value, parent.size.value) : 0,
             position = {

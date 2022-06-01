@@ -1,10 +1,10 @@
-import type { IColor } from "tsparticles-engine";
+import type { IOptionsColor } from "tsparticles-engine";
 
 /**
  * @category Polygon Mask Plugin
  */
 export interface IPolygonMaskDrawStroke {
-    color: string | IColor;
+    color: string | IOptionsColor;
     width: number;
     opacity: number;
 }

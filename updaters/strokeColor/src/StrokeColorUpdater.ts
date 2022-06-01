@@ -1,4 +1,10 @@
-import { AnimationStatus, colorToHsl, getHslAnimationFromHsl, itemFromArray, randomInRange } from "tsparticles-engine";
+import {
+    AnimationStatus,
+    getHslAnimationFromHsl,
+    itemFromArray,
+    randomInRange,
+    rangeColorToHsl,
+} from "tsparticles-engine";
 import type {
     Container,
     IColorAnimation,
@@ -89,7 +95,7 @@ export class StrokeColorUpdater implements IParticleUpdater {
 
         particle.strokeWidth = particle.stroke.width * container.retina.pixelRatio;
 
-        const strokeHslColor = colorToHsl(particle.stroke.color) ?? particle.getFillColor();
+        const strokeHslColor = rangeColorToHsl(particle.stroke.color) ?? particle.getFillColor();
 
         if (strokeHslColor) {
             particle.strokeColor = getHslAnimationFromHsl(

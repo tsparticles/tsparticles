@@ -7,7 +7,7 @@ import type {
     Particle,
     Retina,
 } from "tsparticles-engine";
-import { colorToHsl, drawEllipse, getRangeValue } from "tsparticles-engine";
+import { drawEllipse, getRangeValue, rangeColorToHsl } from "tsparticles-engine";
 
 export const enum OrbitType {
     front = "front",
@@ -47,7 +47,7 @@ export class OrbitUpdater implements IParticleUpdater {
         }
 
         particle.orbitRotation = getRangeValue(orbitOptions.rotation.value);
-        particle.orbitColor = colorToHsl(orbitOptions.color);
+        particle.orbitColor = rangeColorToHsl(orbitOptions.color);
         particle.retina.orbitRadius =
             orbitOptions.radius !== undefined
                 ? getRangeValue(orbitOptions.radius) * container.retina.pixelRatio

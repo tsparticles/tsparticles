@@ -1,4 +1,4 @@
-import { AnimationStatus, colorToHsl, getHslAnimationFromHsl, randomInRange } from "tsparticles-engine";
+import { AnimationStatus, getHslAnimationFromHsl, randomInRange, rangeColorToHsl } from "tsparticles-engine";
 import type {
     Container,
     IColorAnimation,
@@ -71,7 +71,7 @@ export class ColorUpdater implements IParticleUpdater {
 
     init(particle: Particle): void {
         /* color */
-        const hslColor = colorToHsl(particle.options.color, particle.id, particle.options.reduceDuplicates);
+        const hslColor = rangeColorToHsl(particle.options.color, particle.id, particle.options.reduceDuplicates);
 
         if (hslColor) {
             particle.color = getHslAnimationFromHsl(

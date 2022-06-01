@@ -1,4 +1,4 @@
-import type { IColor } from "tsparticles-engine";
+import type { IOptionsColor } from "tsparticles-engine";
 
 /**
  * Infection stage options
@@ -8,7 +8,7 @@ export interface IInfectionStage {
      * Infection stage particle color
      * @category Options
      */
-    color: string | IColor;
+    color: string | IOptionsColor;
 
     /**
      * Infection stage duration, after this time has passed it will go to the next stage,

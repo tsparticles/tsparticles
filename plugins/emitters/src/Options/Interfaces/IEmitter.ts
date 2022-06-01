@@ -5,6 +5,7 @@ import type {
     MoveDirection,
     MoveDirectionAlt,
     RecursivePartial,
+    SingleOrMultiple,
 } from "tsparticles-engine";
 import type { EmitterShapeType } from "../../Enums/EmitterShapeType";
 import type { IEmitterLife } from "./IEmitterLife";
@@ -57,7 +58,7 @@ export interface IEmitter {
      * These settings will overrides other particles settings for the particles emitted by this emitter
      * Particles number options won't override anything, they will be ignored completely
      */
-    particles?: RecursivePartial<IParticlesOptions>;
+    particles?: SingleOrMultiple<RecursivePartial<IParticlesOptions>>;
 
     /**
      * The relative position (in percent) of the emitter, where particles spawns.

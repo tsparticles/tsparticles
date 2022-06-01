@@ -1,6 +1,7 @@
-import { Container, ICoordinates, Particle, colorToRgb, getStyleFromRgb } from "tsparticles-engine";
+import { ICoordinates, getStyleFromRgb } from "tsparticles-engine";
+import { LightContainer, LightParticle } from "./Types";
 
-export function drawLight(container: Container, context: CanvasRenderingContext2D, mousePos: ICoordinates): void {
+export function drawLight(container: LightContainer, context: CanvasRenderingContext2D, mousePos: ICoordinates): void {
     const lightOptions = container.actualOptions.interactivity.modes.light.area;
 
     context.beginPath();
@@ -15,13 +16,9 @@ export function drawLight(container: Container, context: CanvasRenderingContext2
         lightOptions.radius
     );
 
-    const lightGradient = lightOptions.gradient;
-    const gradientRgb = {
-        start: colorToRgb(lightGradient.start),
-        stop: colorToRgb(lightGradient.stop),
-    };
+    const gradientRgb = container.canvas.mouseLight;
 
-    if (!gradientRgb.start || !gradientRgb.stop) {
+    if (!gradientRgb || !gradientRgb.start || !gradientRgb.stop) {
         return;
     }
 
@@ -32,9 +29,9 @@ export function drawLight(container: Container, context: CanvasRenderingContext2
 }
 
 export function drawParticleShadow(
-    container: Container,
+    container: LightContainer,
     context: CanvasRenderingContext2D,
-    particle: Particle,
+    particle: LightParticle,
     mousePos: ICoordinates
 ): void {
     const pos = particle.getPosition();
@@ -73,7 +70,7 @@ export function drawParticleShadow(
         });
     }
 
-    const shadowRgb = colorToRgb(shadowOptions.color);
+    const shadowRgb = particle.lightShadow;
 
     if (!shadowRgb) {
         return;

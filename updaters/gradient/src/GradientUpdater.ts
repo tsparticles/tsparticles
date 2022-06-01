@@ -3,7 +3,6 @@ import {
     GradientType,
     RotateDirection,
     StartValueType,
-    colorToHsl,
     getHslAnimationFromHsl,
     getRangeMax,
     getRangeMin,
@@ -11,6 +10,7 @@ import {
     getStyleFromHsl,
     itemFromArray,
     randomInRange,
+    rangeColorToHsl,
 } from "tsparticles-engine";
 import type {
     IDelta,
@@ -211,7 +211,7 @@ export class GradientUpdater implements IParticleUpdater {
             const reduceDuplicates = particle.options.reduceDuplicates;
 
             for (const grColor of gradient.colors) {
-                const grHslColor = colorToHsl(grColor.value, particle.id, reduceDuplicates);
+                const grHslColor = rangeColorToHsl(grColor.value, particle.id, reduceDuplicates);
 
                 if (grHslColor) {
                     const grHslAnimation = getHslAnimationFromHsl(

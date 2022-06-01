@@ -1,4 +1,4 @@
-import type { IColor } from "../../../Core/Interfaces/Colors";
+import type { IOptionsColor } from "../IOptionsColor";
 
 /**
  * The background options used by the canvas element, it's not drawn, it's applied in the style
@@ -11,7 +11,7 @@ export interface IBackground {
      *
      * This color is set to canvas style `background-color` property, if this property is not set the background will be transparent.
      */
-    color: IColor | string;
+    color: string | IOptionsColor;
 
     /**
      * The `image` property sets the canvas style `background-image` property.
