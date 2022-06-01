@@ -66,11 +66,11 @@ function stringToRgba(input: string): IRgba | undefined {
 
         return result
             ? {
-                  a: result.length > 4 ? parseFloat(result[5]) : 1,
-                  b: parseInt(result[3], 10),
-                  g: parseInt(result[2], 10),
-                  r: parseInt(result[1], 10),
-              }
+                a: result.length > 4 ? parseFloat(result[5]) : 1,
+                b: parseInt(result[3], 10),
+                g: parseInt(result[2], 10),
+                r: parseInt(result[1], 10),
+            }
             : undefined;
     } else if (input.startsWith("hsl")) {
         const regex = /hsla?\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([\d.]+)\s*)?\)/i,
@@ -78,11 +78,11 @@ function stringToRgba(input: string): IRgba | undefined {
 
         return result
             ? hslaToRgba({
-                  a: result.length > 4 ? parseFloat(result[5]) : 1,
-                  h: parseInt(result[1], 10),
-                  l: parseInt(result[3], 10),
-                  s: parseInt(result[2], 10),
-              })
+                a: result.length > 4 ? parseFloat(result[5]) : 1,
+                h: parseInt(result[1], 10),
+                l: parseInt(result[3], 10),
+                s: parseInt(result[2], 10),
+            })
             : undefined;
     } else if (input.startsWith("hsv")) {
         const regex = /hsva?\(\s*(\d+)°\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([\d.]+)\s*)?\)/i,
@@ -90,11 +90,11 @@ function stringToRgba(input: string): IRgba | undefined {
 
         return result
             ? hsvaToRgba({
-                  a: result.length > 4 ? parseFloat(result[5]) : 1,
-                  h: parseInt(result[1], 10),
-                  s: parseInt(result[2], 10),
-                  v: parseInt(result[3], 10),
-              })
+                a: result.length > 4 ? parseFloat(result[5]) : 1,
+                h: parseInt(result[1], 10),
+                s: parseInt(result[2], 10),
+                v: parseInt(result[3], 10),
+            })
             : undefined;
     } else {
         const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])([a-f\d])?$/i,
@@ -106,11 +106,11 @@ function stringToRgba(input: string): IRgba | undefined {
 
         return result
             ? {
-                  a: result[4] !== undefined ? parseInt(result[4], 16) / 0xff : 1,
-                  b: parseInt(result[3], 16),
-                  g: parseInt(result[2], 16),
-                  r: parseInt(result[1], 16),
-              }
+                a: result[4] !== undefined ? parseInt(result[4], 16) / 0xff : 1,
+                b: parseInt(result[3], 16),
+                g: parseInt(result[2], 16),
+                r: parseInt(result[1], 16),
+            }
             : undefined;
     }
 }
@@ -143,9 +143,9 @@ export function rangeColorToRgb(input?: string | IRangeColor, index?: number, us
 
     if (rgbColor.r !== undefined) {
         return {
-            r: getRangeValue(rgbColor.r) % 256,
-            g: getRangeValue(rgbColor.g) % 256,
-            b: getRangeValue(rgbColor.b) % 256,
+            r: getRangeValue(rgbColor.r),
+            g: getRangeValue(rgbColor.g),
+            b: getRangeValue(rgbColor.b),
         };
     }
 
@@ -153,9 +153,9 @@ export function rangeColorToRgb(input?: string | IRangeColor, index?: number, us
 
     if (hslColor.h !== undefined && hslColor.l !== undefined) {
         return hslToRgb({
-            h: getRangeValue(hslColor.h) % 360,
-            l: getRangeValue(hslColor.l) % 100,
-            s: getRangeValue(hslColor.s) % 100,
+            h: getRangeValue(hslColor.h),
+            l: getRangeValue(hslColor.l),
+            s: getRangeValue(hslColor.s),
         });
     }
 
@@ -163,9 +163,9 @@ export function rangeColorToRgb(input?: string | IRangeColor, index?: number, us
 
     if (hsvColor.h !== undefined && hsvColor.v !== undefined) {
         const res = hsvToRgb({
-            h: getRangeValue(hsvColor.h) % 360,
-            s: getRangeValue(hsvColor.s) % 100,
-            v: getRangeValue(hsvColor.v) % 100,
+            h: getRangeValue(hsvColor.h),
+            s: getRangeValue(hsvColor.s),
+            v: getRangeValue(hsvColor.v),
         });
 
         console.log("hsv", res);
@@ -662,10 +662,10 @@ export function getLinkRandomColor(
 export function getHslFromAnimation(animation?: IParticleHslAnimation): IHsl | undefined {
     return animation !== undefined
         ? {
-              h: animation.h.value,
-              s: animation.s.value,
-              l: animation.l.value,
-          }
+            h: animation.h.value,
+            s: animation.s.value,
+            l: animation.l.value,
+        }
         : undefined;
 }
 
