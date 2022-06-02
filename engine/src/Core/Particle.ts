@@ -20,7 +20,7 @@ import {
     setRangeValue,
 } from "../Utils/NumberUtils";
 import { deepExtend, isInArray, itemFromArray, loadParticlesOptions } from "../Utils/Utils";
-import { getHslFromAnimation, getStyleFromHsl, rangeColorToRgb } from "../Utils/ColorUtils";
+import { getHslFromAnimation, rangeColorToRgb } from "../Utils/ColorUtils";
 import { AnimationStatus } from "../Enums/AnimationStatus";
 import type { Container } from "./Container";
 import { DestroyMode } from "../Enums/Modes/DestroyMode";
