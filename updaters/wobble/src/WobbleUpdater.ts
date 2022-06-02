@@ -28,11 +28,12 @@ function updateWobble(particle: WobbleParticle, delta: IDelta): void {
         return;
     }
 
-    const speed = particle.wobble.speed * delta.factor,
-        distance = ((particle.retina.wobbleDistance ?? 0) * delta.factor) / (1000 / 60),
+    const angleSpeed = particle.wobble.angleSpeed * delta.factor,
+        moveSpeed = particle.wobble.moveSpeed * delta.factor,
+        distance = (moveSpeed * ((particle.retina.wobbleDistance ?? 0) * delta.factor)) / (1000 / 60),
         max = 2 * Math.PI;
 
-    particle.wobble.angle += speed;
+    particle.wobble.angle += angleSpeed;
 
     if (particle.wobble.angle > max) {
         particle.wobble.angle -= max;
@@ -62,12 +63,14 @@ export class WobbleUpdater implements IParticleUpdater {
         if (wobbleOpt.enable) {
             particle.wobble = {
                 angle: Math.random() * Math.PI * 2,
-                speed: getRangeValue(wobbleOpt.speed) / 360,
+                angleSpeed: getRangeValue(wobbleOpt.speed.angle) / 360,
+                moveSpeed: getRangeValue(wobbleOpt.speed.move) / 10,
             };
         } else {
             particle.wobble = {
                 angle: 0,
-                speed: 0,
+                angleSpeed: 0,
+                moveSpeed: 0,
             };
         }
 

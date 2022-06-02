@@ -297,3 +297,5 @@ export { tsParticles };
  * tsParticles source options alias type, supporting partial objects
  */
 export type ISourceOptions = RecursivePartial<IOptions>;
+export { IWobbleSpeed } from "./Options/Interfaces/Particles/Wobble/IWobbleSpeed";
+export { WobbleSpeed } from "./Options/Classes/Particles/Wobble/WobbleSpeed";

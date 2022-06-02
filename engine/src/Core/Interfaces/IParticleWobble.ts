@@ -1,4 +1,5 @@
 export interface IParticleWobble {
     angle: number;
-    speed: number;
+    angleSpeed: number;
+    moveSpeed: number;
 }
