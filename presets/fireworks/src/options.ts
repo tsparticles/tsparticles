@@ -40,8 +40,6 @@ const fireworksOptions: RecursivePartial<IParticlesOptions>[] = ["#ff595e", "#ff
             sRange = fixRange({ min: hsl.s - 20, max: hsl.s + 20 }, 0, 100),
             lRange = fixRange({ min: hsl.l - 20, max: hsl.l + 20 }, 0, 100);
 
-        console.log(hsl.h, sRange, lRange);
-
         return {
             color: {
                 value: {
@@ -119,7 +117,7 @@ export const options: ISourceOptions = {
             delay: 0.1,
         },
         rate: {
-            delay: 0.3,
+            delay: 0.25,
             quantity: 1,
         },
         size: {
@@ -143,7 +141,7 @@ export const options: ISourceOptions = {
                     value: 0.333333,
                 },
                 rate: {
-                    value: 100,
+                    value: 200,
                 },
                 particles: fireworksOptions,
             },
