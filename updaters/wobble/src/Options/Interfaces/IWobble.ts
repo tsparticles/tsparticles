@@ -1,5 +1,5 @@
 import type { IWobbleSpeed } from "./IWobbleSpeed";
-import type { RangeValue } from "../../../../Types/RangeValue";
+import type { RangeValue } from "tsparticles-engine";
 
 export interface IWobble {
     distance: RangeValue;

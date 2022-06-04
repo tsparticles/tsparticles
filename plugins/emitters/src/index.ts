@@ -32,7 +32,7 @@ class EmittersPlugin implements IPlugin {
     }
 
     needsPlugin(options?: RecursivePartial<IOptions & IEmitterOptions>): boolean {
-        if (options === undefined) {
+        if (!options) {
             return false;
         }
 

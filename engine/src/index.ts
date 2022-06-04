@@ -180,7 +180,6 @@ export * from "./Options/Classes/Particles/Tilt/Tilt";
 export * from "./Options/Classes/Particles/Tilt/TiltAnimation";
 export * from "./Options/Classes/Particles/Twinkle/Twinkle";
 export * from "./Options/Classes/Particles/Twinkle/TwinkleValues";
-export * from "./Options/Classes/Particles/Wobble/Wobble";
 export * from "./Options/Classes/Particles/ZIndex/ZIndex";
 export * from "./Options/Classes/Responsive";
 export * from "./Options/Classes/Theme/Theme";
@@ -277,7 +276,6 @@ export * from "./Options/Interfaces/Particles/Tilt/ITilt";
 export * from "./Options/Interfaces/Particles/Tilt/ITiltAnimation";
 export * from "./Options/Interfaces/Particles/Twinkle/ITwinkle";
 export * from "./Options/Interfaces/Particles/Twinkle/ITwinkleValues";
-export * from "./Options/Interfaces/Particles/Wobble/IWobble";
 export * from "./Options/Interfaces/Particles/ZIndex/IZIndex";
 export * from "./Options/Interfaces/Theme/ITheme";
 export * from "./Options/Interfaces/Theme/IThemeDefault";
@@ -297,5 +295,3 @@ export { tsParticles };
  * tsParticles source options alias type, supporting partial objects
  */
 export type ISourceOptions = RecursivePartial<IOptions>;
-export { IWobbleSpeed } from "./Options/Interfaces/Particles/Wobble/IWobbleSpeed";
-export { WobbleSpeed } from "./Options/Classes/Particles/Wobble/WobbleSpeed";

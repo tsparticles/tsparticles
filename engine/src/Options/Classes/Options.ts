@@ -1,6 +1,7 @@
 import { deepExtend, loadParticlesOptions } from "../../Utils/Utils";
 import { Background } from "./Background/Background";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
+import type { Container } from "../../Core/Container";
 import type { Engine } from "../../engine";
 import { FullScreen } from "./FullScreen/FullScreen";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
@@ -21,6 +22,7 @@ import { ThemeMode } from "../../Enums/Modes/ThemeMode";
  * @category Options
  */
 export class Options implements IOptions, IOptionLoader<IOptions> {
+    readonly #container;
     readonly #engine;
 
     /**
@@ -92,8 +94,9 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
     [name: string]: unknown;
 
-    constructor(engine: Engine) {
+    constructor(engine: Engine, container: Container) {
         this.#engine = engine;
+        this.#container = container;
         this.autoPlay = true;
         this.background = new Background();
         this.backgroundMask = new BackgroundMask();
@@ -104,7 +107,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.interactivity = new Interactivity();
         this.manualParticles = [];
         this.motion = new Motion();
-        this.particles = loadParticlesOptions();
+        this.particles = loadParticlesOptions(this.#engine, this.#container);
         this.pauseOnBlur = true;
         this.pauseOnOutsideViewport = true;
         this.responsive = [];

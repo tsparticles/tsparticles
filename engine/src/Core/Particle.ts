@@ -308,7 +308,7 @@ export class Particle implements IParticle {
 
         const pxRatio = container.retina.pixelRatio,
             mainOptions = container.actualOptions,
-            particlesOptions = loadParticlesOptions(mainOptions.particles);
+            particlesOptions = loadParticlesOptions(this.#engine, container, mainOptions.particles);
 
         const shapeType = particlesOptions.shape.type,
             reduceDuplicates = particlesOptions.reduceDuplicates;

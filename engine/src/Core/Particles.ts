@@ -197,7 +197,7 @@ export class Particles {
         container.pathGenerator.update();
 
         for (const [, plugin] of container.plugins) {
-            if (plugin.update !== undefined) {
+            if (plugin.update) {
                 plugin.update(delta);
             }
         }
@@ -351,7 +351,7 @@ export class Particles {
         splitParticlesOptions?: RecursivePartial<IParticlesOptions>
     ): Particle | undefined {
         const splitOptions = parent.options.destroy.split,
-            options = loadParticlesOptions(parent.options),
+            options = loadParticlesOptions(this.#engine, this.container, parent.options),
             factor = getValue(splitOptions.factor);
 
         options.color.load({

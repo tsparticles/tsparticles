@@ -151,8 +151,8 @@ export class Container {
         this.drawers = new Map<string, IShapeDrawer>();
         this.density = 1;
         /* tsParticles variables with default values */
-        this._options = loadContainerOptions(this.#engine);
-        this.actualOptions = loadContainerOptions(this.#engine);
+        this._options = loadContainerOptions(this.#engine, this);
+        this.actualOptions = loadContainerOptions(this.#engine, this);
 
         /* ---------- tsParticles - start ------------ */
         this.eventListeners = new EventListeners(this);
@@ -356,7 +356,7 @@ export class Container {
     }
 
     reset(): Promise<void> {
-        this._options = loadContainerOptions(this.#engine);
+        this._options = loadContainerOptions(this.#engine, this);
 
         return this.refresh();
     }
@@ -583,8 +583,8 @@ export class Container {
         }
 
         /* options settings */
-        this._options = loadContainerOptions(this.#engine, this._initialSourceOptions, this.sourceOptions);
-        this.actualOptions = loadContainerOptions(this.#engine, this._options);
+        this._options = loadContainerOptions(this.#engine, this, this._initialSourceOptions, this.sourceOptions);
+        this.actualOptions = loadContainerOptions(this.#engine, this, this._options);
 
         /* init canvas + particles */
         this.retina.init();

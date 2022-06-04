@@ -6,9 +6,11 @@ import type { IMovePathGenerator } from "../Interfaces/IMovePathGenerator";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
 import type { IParticleMover } from "../Interfaces/IParticleMover";
 import type { IParticleUpdater } from "../Interfaces/IParticleUpdater";
+import type { IParticlesOptions } from "../../Options/Interfaces/Particles/IParticlesOptions";
 import type { IPlugin } from "../Interfaces/IPlugin";
 import type { IShapeDrawer } from "../Interfaces/IShapeDrawer";
 import type { Options } from "../../Options/Classes/Options";
+import type { ParticlesOptions } from "../../Options/Classes/Particles/ParticlesOptions";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
 
 /**
@@ -142,6 +144,30 @@ export class Plugins {
     loadOptions(options: Options, sourceOptions: RecursivePartial<IOptions>): void {
         for (const plugin of this.plugins) {
             plugin.loadOptions(options, sourceOptions);
+        }
+    }
+
+    /**
+     * Load the given particles options for all the updaters
+     * @param container the container of the updaters
+     * @param options the actual options to set
+     * @param sourceOptions the source options to read
+     */
+    loadParticlesOptions(
+        container: Container,
+        options: ParticlesOptions,
+        ...sourceOptions: (RecursivePartial<IParticlesOptions> | undefined)[]
+    ): void {
+        const updaters = this.updaters.get(container);
+
+        if (!updaters) {
+            return;
+        }
+
+        for (const updater of updaters) {
+            if (updater.loadOptions) {
+                updater.loadOptions(options, ...sourceOptions);
+            }
         }
     }
 

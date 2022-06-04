@@ -1,4 +1,4 @@
-import { RangeValue } from "../../../../Types/RangeValue";
+import type { RangeValue } from "tsparticles-engine";
 
 export interface IWobbleSpeed {
     angle: RangeValue;

@@ -1,7 +1,9 @@
 import { AnimatableColor } from "../AnimatableColor";
 import { AnimatableGradient } from "../Gradients/AnimatableGradient";
 import { Collisions } from "./Collisions/Collisions";
+import type { Container } from "../../../Core/Container";
 import { Destroy } from "./Destroy/Destroy";
+import type { Engine } from "../../../engine";
 import type { IInteractivity } from "../../Interfaces/Interactivity/IInteractivity";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import type { IParticlesOptions } from "../../Interfaces/Particles/IParticlesOptions";
@@ -24,7 +26,6 @@ import { Size } from "./Size/Size";
 import { Stroke } from "./Stroke";
 import { Tilt } from "./Tilt/Tilt";
 import { Twinkle } from "./Twinkle/Twinkle";
-import { Wobble } from "./Wobble/Wobble";
 import { ZIndex } from "./ZIndex/ZIndex";
 import { deepExtend } from "../../../Utils/Utils";
 
@@ -56,7 +57,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     stroke: SingleOrMultiple<Stroke>;
     tilt;
     twinkle;
-    wobble;
     zIndex;
 
     /**
@@ -93,7 +93,15 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.links = value;
     }
 
-    constructor() {
+    [name: string]: unknown;
+
+    readonly #engine;
+    readonly #container;
+
+    constructor(engine: Engine, container?: Container) {
+        this.#engine = engine;
+        this.#container = container;
+
         this.bounce = new ParticlesBounce();
         this.collisions = new Collisions();
         this.color = new AnimatableColor();
@@ -117,7 +125,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.stroke = new Stroke();
         this.tilt = new Tilt();
         this.twinkle = new Twinkle();
-        this.wobble = new Wobble();
         this.zIndex = new ZIndex();
     }
 
@@ -165,7 +172,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.shadow.load(data.shadow);
         this.tilt.load(data.tilt);
         this.twinkle.load(data.twinkle);
-        this.wobble.load(data.wobble);
         this.zIndex.load(data.zIndex);
 
         const collisions = data.move?.collisions ?? data.move?.bounce;
@@ -217,6 +223,18 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
                 }
 
                 this.gradient.load(gradientToLoad);
+            }
+        }
+
+        if (this.#container) {
+            const updaters = this.#engine.plugins.updaters.get(this.#container);
+
+            if (updaters) {
+                for (const updater of updaters) {
+                    if (updater.loadOptions) {
+                        updater.loadOptions(this, data);
+                    }
+                }
             }
         }
     }
