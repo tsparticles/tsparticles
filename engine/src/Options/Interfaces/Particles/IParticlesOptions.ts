@@ -11,7 +11,6 @@ import type { ILife } from "./Life/ILife";
 import type { ILinks } from "./Links/ILinks";
 import type { IMove } from "./Move/IMove";
 import type { IOpacity } from "./Opacity/IOpacity";
-import type { IOrbit } from "./Orbit/IOrbit";
 import type { IParticlesBounce } from "./Bounce/IParticlesBounce";
 import type { IParticlesNumber } from "./Number/IParticlesNumber";
 import type { IParticlesRepulse } from "./Repulse/IParticlesRepulse";
@@ -54,7 +53,6 @@ export interface IParticlesOptions {
     move: IMove;
     number: IParticlesNumber;
     opacity: IOpacity;
-    orbit: IOrbit;
     reduceDuplicates: boolean;
     repulse: IParticlesRepulse;
     roll: IRoll;

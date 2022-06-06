@@ -1,6 +1,5 @@
-import type { IValueWithRandom } from "../../../Interfaces/IValueWithRandom";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { ValueWithRandom } from "../../ValueWithRandom";
+import type { IValueWithRandom, RecursivePartial } from "tsparticles-engine";
+import { ValueWithRandom } from "tsparticles-engine";
 
 /**
  * @category Options

@@ -108,8 +108,6 @@ export * from "./Options/Classes/Particles/Number/ParticlesNumber";
 export * from "./Options/Classes/Particles/Number/ParticlesDensity";
 export * from "./Options/Classes/Particles/Opacity/Opacity";
 export * from "./Options/Classes/Particles/Opacity/OpacityAnimation";
-export * from "./Options/Classes/Particles/Orbit/Orbit";
-export * from "./Options/Classes/Particles/Orbit/OrbitRotation";
 export * from "./Options/Classes/Particles/Repulse/ParticlesRepulse";
 export * from "./Options/Classes/Particles/Roll/Roll";
 export * from "./Options/Classes/Particles/Roll/RollLight";

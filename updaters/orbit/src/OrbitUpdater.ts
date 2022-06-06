@@ -4,15 +4,28 @@ import type {
     IHsl,
     IParticleRetinaProps,
     IParticleUpdater,
+    IParticlesOptions,
     Particle,
+    ParticlesOptions,
+    RecursivePartial,
     Retina,
 } from "tsparticles-engine";
 import { drawEllipse, getRangeValue, rangeColorToHsl } from "tsparticles-engine";
+import type { IOrbit } from "./Options/Interfaces/IOrbit";
+import { Orbit } from "./Options/Classes/Orbit";
 
 export const enum OrbitType {
     front = "front",
     back = "back",
 }
+
+type IOrbitParticlesOptions = IParticlesOptions & {
+    orbit?: IOrbit;
+};
+
+type OrbitParticlesOptions = ParticlesOptions & {
+    orbit?: Orbit;
+};
 
 type OrbitRetina = Retina & {
     orbitRadius?: number;
@@ -23,6 +36,7 @@ type OrbitContainer = Container & {
 };
 
 type OrbitParticle = Particle & {
+    options: OrbitParticlesOptions;
     orbitColor?: IHsl;
     orbitRotation?: number;
     retina: IParticleRetinaProps & {
@@ -59,9 +73,9 @@ export class OrbitUpdater implements IParticleUpdater {
     }
 
     isEnabled(particle: OrbitParticle): boolean {
-        const orbitAnimations = particle.options.orbit.animation;
+        const orbitAnimations = particle.options.orbit?.animation;
 
-        return !particle.destroyed && !particle.spawning && orbitAnimations.enable;
+        return !particle.destroyed && !particle.spawning && !!orbitAnimations?.enable;
     }
 
     update(particle: OrbitParticle, delta: IDelta): void {
@@ -79,7 +93,7 @@ export class OrbitUpdater implements IParticleUpdater {
     beforeDraw(particle: OrbitParticle): void {
         const orbitOptions = particle.options.orbit;
 
-        if (orbitOptions.enable) {
+        if (orbitOptions?.enable) {
             this.drawOrbit(particle, OrbitType.back);
         }
     }
@@ -87,7 +101,7 @@ export class OrbitUpdater implements IParticleUpdater {
     afterDraw(particle: OrbitParticle): void {
         const orbitOptions = particle.options.orbit;
 
-        if (orbitOptions.enable) {
+        if (orbitOptions?.enable) {
             this.drawOrbit(particle, OrbitType.front);
         }
     }
@@ -124,5 +138,22 @@ export class OrbitUpdater implements IParticleUpdater {
                 end
             );
         });
+    }
+
+    loadOptions(
+        options: OrbitParticlesOptions,
+        ...sources: (RecursivePartial<IOrbitParticlesOptions> | undefined)[]
+    ): void {
+        for (const source of sources) {
+            if (!source?.orbit) {
+                continue;
+            }
+
+            if (!options.orbit) {
+                options.orbit = new Orbit();
+            }
+
+            options.orbit.load(source.orbit);
+        }
     }
 }

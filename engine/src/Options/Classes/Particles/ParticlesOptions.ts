@@ -11,7 +11,6 @@ import { Life } from "./Life/Life";
 import { Links } from "./Links/Links";
 import { Move } from "./Move/Move";
 import { Opacity } from "./Opacity/Opacity";
-import { Orbit } from "./Orbit/Orbit";
 import { ParticlesBounce } from "./Bounce/ParticlesBounce";
 import type { ParticlesGroups } from "../../../Types/ParticlesGroups";
 import { ParticlesNumber } from "./Number/ParticlesNumber";
@@ -45,7 +44,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     move;
     number;
     opacity;
-    orbit;
     reduceDuplicates;
     repulse;
     roll;
@@ -112,7 +110,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.move = new Move();
         this.number = new ParticlesNumber();
         this.opacity = new Opacity();
-        this.orbit = new Orbit();
         this.reduceDuplicates = false;
         this.repulse = new ParticlesRepulse();
         this.roll = new Roll();
@@ -155,7 +152,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.move.load(data.move);
         this.number.load(data.number);
         this.opacity.load(data.opacity);
-        this.orbit.load(data.orbit);
 
         if (data.reduceDuplicates !== undefined) {
             this.reduceDuplicates = data.reduceDuplicates;
