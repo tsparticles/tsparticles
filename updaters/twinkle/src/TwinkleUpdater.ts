@@ -1,5 +1,26 @@
-import type { IParticleColorStyle, IParticleUpdater, Particle } from "tsparticles-engine";
+import type {
+    IParticleColorStyle,
+    IParticleUpdater,
+    IParticlesOptions,
+    Particle,
+    ParticlesOptions,
+    RecursivePartial,
+} from "tsparticles-engine";
 import { getRangeValue, getStyleFromHsl, rangeColorToHsl } from "tsparticles-engine";
+import { ITwinkle } from "./Options/Interfaces/ITwinkle";
+import { Twinkle } from "./Options/Classes/Twinkle";
+
+type TwinkeParticle = Particle & {
+    options: TwinkleParticlesOptions;
+};
+
+type ITwinkleParticlesOptions = IParticlesOptions & {
+    twinkle?: ITwinkle;
+};
+
+type TwinkleParticlesOptions = ParticlesOptions & {
+    twinkle?: Twinkle;
+};
 
 export class TwinkleUpdater implements IParticleUpdater {
     getColorStyles(
@@ -9,7 +30,13 @@ export class TwinkleUpdater implements IParticleUpdater {
         opacity: number
     ): IParticleColorStyle {
         const pOptions = particle.options,
-            twinkle = pOptions.twinkle.particles,
+            twinkleOptions = pOptions.twinkle as Twinkle;
+
+        if (!twinkleOptions) {
+            return {};
+        }
+
+        const twinkle = twinkleOptions.particles,
             twinkling = twinkle.enable && Math.random() < twinkle.frequency,
             zIndexOptions = particle.options.zIndex,
             zOpacityFactor = (1 - particle.zIndexFactor) ** zIndexOptions.opacityRate,
@@ -29,11 +56,35 @@ export class TwinkleUpdater implements IParticleUpdater {
         // do nothing
     }
 
-    isEnabled(particle: Particle): boolean {
-        return particle.options.twinkle.particles.enable;
+    isEnabled(particle: TwinkeParticle): boolean {
+        const pOptions = particle.options,
+            twinkleOptions = pOptions.twinkle as Twinkle;
+
+        if (!twinkleOptions) {
+            return false;
+        }
+
+        return twinkleOptions.particles.enable;
     }
 
     update(): void {
         // do nothing
+    }
+
+    loadOptions(
+        options: TwinkleParticlesOptions,
+        ...sources: (RecursivePartial<ITwinkleParticlesOptions> | undefined)[]
+    ): void {
+        for (const source of sources) {
+            if (!source?.twinkle) {
+                continue;
+            }
+
+            if (!options.twinkle) {
+                options.twinkle = new Twinkle();
+            }
+
+            options.twinkle.load(source.twinkle);
+        }
     }
 }

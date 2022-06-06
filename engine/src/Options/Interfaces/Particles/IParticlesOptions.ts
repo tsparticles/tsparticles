@@ -22,7 +22,6 @@ import type { IShape } from "./Shape/IShape";
 import type { ISize } from "./Size/ISize";
 import type { IStroke } from "./IStroke";
 import type { ITilt } from "./Tilt/ITilt";
-import type { ITwinkle } from "./Twinkle/ITwinkle";
 import type { IZIndex } from "./ZIndex/IZIndex";
 import type { ParticlesGroups } from "../../../Types/ParticlesGroups";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
@@ -65,7 +64,6 @@ export interface IParticlesOptions {
     size: ISize;
     stroke: SingleOrMultiple<IStroke>;
     tilt: ITilt;
-    twinkle: ITwinkle;
     zIndex: IZIndex;
 
     [name: string]: unknown;

@@ -1,9 +1,6 @@
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { ITwinkleValues } from "../../../Interfaces/Particles/Twinkle/ITwinkleValues";
-import { OptionsColor } from "../../OptionsColor";
-import type { RangeValue } from "../../../../Types/RangeValue";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { setRangeValue } from "../../../../Utils/NumberUtils";
+import type { IOptionLoader, RangeValue, RecursivePartial } from "tsparticles-engine";
+import { OptionsColor, setRangeValue } from "tsparticles-engine";
+import type { ITwinkleValues } from "../Interfaces/ITwinkleValues";
 
 /**
  * @category Options

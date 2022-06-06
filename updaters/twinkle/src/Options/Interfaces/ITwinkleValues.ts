@@ -1,5 +1,4 @@
-import type { IOptionsColor } from "../../IOptionsColor";
-import type { RangeValue } from "../../../../Types/RangeValue";
+import type { IOptionsColor, RangeValue } from "tsparticles-engine";
 
 /**
  * @category Options

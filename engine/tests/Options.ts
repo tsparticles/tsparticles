@@ -13,11 +13,14 @@ import {
 } from "../src";
 import type { IParticlesOptions, RecursivePartial } from "../src";
 import { describe, it } from "mocha";
+import { TestContainer } from "./Fixture/TestContainer";
 import { expect } from "chai";
+
+const testContainer = new TestContainer({});
 
 describe("Options tests", () => {
     it("checking default options", () => {
-        const options = new Options(tsParticles);
+        const options = new Options(tsParticles, testContainer.container);
 
         /* background */
         expect(options.background.color).to.include({ value: "" });
@@ -154,7 +157,7 @@ describe("Options tests", () => {
     });
 
     it("check default preset options", () => {
-        const options = new Options(tsParticles);
+        const options = new Options(tsParticles, testContainer.container);
         const preset = {
             background: {
                 color: "#0d47a1",
@@ -328,7 +331,7 @@ describe("Options tests", () => {
     });
 
     it("check test preset options", () => {
-        const options = new Options(tsParticles);
+        const options = new Options(tsParticles, testContainer.container);
         const preset = {
             background: {
                 color: "#0d47a1",
@@ -519,7 +522,7 @@ describe("Options tests", () => {
     });
 
     it("check particlesOptions override", () => {
-        const particlesOptions = new ParticlesOptions();
+        const particlesOptions = new ParticlesOptions(tsParticles, testContainer.container);
 
         const generalOptions: RecursivePartial<IParticlesOptions> = {
             number: {
