@@ -10,7 +10,6 @@ import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IParticleColorStyle } from "../Core/Interfaces/IParticleColorStyle";
 import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
 import type { Particle } from "../Core/Particle";
-import { RollMode } from "../Enums/Modes/RollMode";
 
 /**
  * Draws a line between two points using canvas API in the given context.
@@ -133,8 +132,8 @@ export function drawParticle(
     if (particle.tilt?.enable || particle.roll?.enable) {
         const roll = particle.roll?.enable && particle.roll,
             tilt = particle.tilt?.enable && particle.tilt,
-            rollHorizontal = roll && (roll.mode === RollMode.horizontal || roll.mode === RollMode.both),
-            rollVertical = roll && (roll.mode === RollMode.vertical || roll.mode === RollMode.both);
+            rollHorizontal = roll && roll.horizontal,
+            rollVertical = roll && roll.vertical;
 
         context.setTransform(
             rollHorizontal ? Math.cos(particle.roll.angle) : 1,

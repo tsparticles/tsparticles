@@ -41,7 +41,6 @@ import { Interactivity } from "../Options/Classes/Interactivity/Interactivity";
 import { MoveDirection } from "../Enums/Directions/MoveDirection";
 import { ParticleOutType } from "../Enums/Types/ParticleOutType";
 import type { RecursivePartial } from "../Types/RecursivePartial";
-import { RollMode } from "../Enums/Modes/RollMode";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import { StartValueType } from "../Enums/Types/StartValueType";
 import { Stroke } from "../Options/Classes/Particles/Stroke";
@@ -543,8 +542,8 @@ export class Particle implements IParticle {
         const color = this.bubble.color ?? getHslFromAnimation(this.color);
 
         if (color && this.roll && (this.backColor || this.roll.alter)) {
-            const backFactor = this.roll.mode === RollMode.both ? 2 : 1,
-                backSum = this.roll.mode === RollMode.horizontal ? Math.PI / 2 : 0,
+            const backFactor = this.roll.horizontal && this.roll.vertical ? 2 : 1,
+                backSum = this.roll.horizontal ? Math.PI / 2 : 0,
                 rolled = Math.floor(((this.roll.angle ?? 0) + backSum) / (Math.PI / backFactor)) % 2;
 
             if (rolled) {

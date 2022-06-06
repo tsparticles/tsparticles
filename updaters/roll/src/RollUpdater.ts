@@ -1,4 +1,4 @@
-import { AlterType, RollMode, getRangeValue, rangeColorToHsl } from "tsparticles-engine";
+import { AlterType, getRangeValue, rangeColorToHsl } from "tsparticles-engine";
 import type {
     IDelta,
     IParticleUpdater,
@@ -9,6 +9,7 @@ import type {
 } from "tsparticles-engine";
 import type { IRoll } from "./Options/Interfaces/IRoll";
 import { Roll } from "./Options/Classes/Roll";
+import { RollMode } from "./RollMode";
 
 type RollParticle = Particle & {
     options: RollParticlesOptions;
@@ -46,7 +47,8 @@ export class RollUpdater implements IParticleUpdater {
         if (rollOpt?.enable) {
             particle.roll = {
                 enable: rollOpt.enable,
-                mode: rollOpt.mode,
+                horizontal: rollOpt.mode === RollMode.horizontal || rollOpt.mode === RollMode.both,
+                vertical: rollOpt.mode === RollMode.vertical || rollOpt.mode === RollMode.both,
                 angle: Math.random() * Math.PI * 2,
                 speed: getRangeValue(rollOpt.speed) / 360,
             };
@@ -74,7 +76,13 @@ export class RollUpdater implements IParticleUpdater {
                 };
             }
         } else {
-            particle.roll = { enable: false, mode: RollMode.both, angle: 0, speed: 0 };
+            particle.roll = {
+                enable: false,
+                horizontal: false,
+                vertical: false,
+                angle: 0,
+                speed: 0,
+            };
         }
     }
 
