@@ -1,4 +1,4 @@
-import type { RangeValue } from "../../../../Types/RangeValue";
+import type { RangeValue } from "tsparticles-engine";
 
 export interface IRollLight {
     enable: boolean;

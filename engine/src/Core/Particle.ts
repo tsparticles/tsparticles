@@ -543,8 +543,8 @@ export class Particle implements IParticle {
         const color = this.bubble.color ?? getHslFromAnimation(this.color);
 
         if (color && this.roll && (this.backColor || this.roll.alter)) {
-            const backFactor = this.options.roll.mode === RollMode.both ? 2 : 1,
-                backSum = this.options.roll.mode === RollMode.horizontal ? Math.PI / 2 : 0,
+            const backFactor = this.roll.mode === RollMode.both ? 2 : 1,
+                backSum = this.roll.mode === RollMode.horizontal ? Math.PI / 2 : 0,
                 rolled = Math.floor(((this.roll.angle ?? 0) + backSum) / (Math.PI / backFactor)) % 2;
 
             if (rolled) {

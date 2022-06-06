@@ -1,11 +1,7 @@
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { IRoll } from "../../../Interfaces/Particles/Roll/IRoll";
-import { OptionsColor } from "../../OptionsColor";
-import type { RangeValue } from "../../../../Types/RangeValue";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IOptionLoader, RangeValue, RecursivePartial } from "tsparticles-engine";
+import { OptionsColor, RollMode, setRangeValue } from "tsparticles-engine";
+import type { IRoll } from "../Interfaces/IRoll";
 import { RollLight } from "./RollLight";
-import { RollMode } from "../../../../Enums/Modes/RollMode";
-import { setRangeValue } from "../../../../Utils/NumberUtils";
 
 export class Roll implements IRoll, IOptionLoader<IRoll> {
     backColor?: OptionsColor;

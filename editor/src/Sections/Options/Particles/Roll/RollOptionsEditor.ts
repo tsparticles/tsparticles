@@ -1,10 +1,10 @@
-import type { Container, IRoll } from "tsparticles-engine";
 import { EditorGroup, EditorType } from "object-gui";
+import type { Container } from "tsparticles-engine";
 import { EditorBase } from "../../../../EditorBase";
 
 export class RollOptionsEditor extends EditorBase {
     group!: EditorGroup;
-    private options!: IRoll;
+    private options!: unknown;
 
     constructor(particles: Container) {
         super(particles);
@@ -12,7 +12,7 @@ export class RollOptionsEditor extends EditorBase {
 
     addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("roll", "Roll");
-        this.options = this.group.data as IRoll;
+        this.options = this.group.data as unknown;
 
         this.addDarken();
         this.addEnlighten();
@@ -46,32 +46,35 @@ export class RollOptionsEditor extends EditorBase {
     }
 
     private addProperties(): void {
-        const particles = this.particles;
-        const color =
-            typeof this.options.backColor === "string"
-                ? this.options.backColor
-                : this.options.backColor instanceof Array
-                ? this.options.backColor[0]
-                : this.options.backColor?.value;
+        const particles = this.particles,
+            options = this.options as {
+                backColor: string | unknown[] | { value: unknown };
+            },
+            color =
+                typeof options.backColor === "string"
+                    ? options.backColor
+                    : options.backColor instanceof Array
+                    ? options.backColor[0]
+                    : options.backColor?.value;
 
         this.group
             .addProperty("backColor", "Back Color", EditorType.color, color, false)
             .change(async (value: unknown) => {
                 if (typeof value === "string") {
-                    if (typeof this.options.backColor === "string") {
-                        this.options.backColor = value;
+                    if (typeof options.backColor === "string") {
+                        options.backColor = value;
                     } else {
-                        if (this.options.backColor === undefined) {
-                            this.options.backColor = {
+                        if (options.backColor === undefined) {
+                            options.backColor = {
                                 value: value,
                             };
                         } else {
-                            if (this.options.backColor instanceof Array) {
-                                this.options.backColor = {
+                            if (options.backColor instanceof Array) {
+                                options.backColor = {
                                     value: value,
                                 };
                             } else {
-                                this.options.backColor.value = value;
+                                options.backColor.value = value;
                             }
                         }
                     }

@@ -16,7 +16,6 @@ import type { ParticlesGroups } from "../../../Types/ParticlesGroups";
 import { ParticlesNumber } from "./Number/ParticlesNumber";
 import { ParticlesRepulse } from "./Repulse/ParticlesRepulse";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import { Roll } from "./Roll/Roll";
 import { Rotate } from "./Rotate/Rotate";
 import { Shadow } from "./Shadow";
 import { Shape } from "./Shape/Shape";
@@ -45,7 +44,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     opacity;
     reduceDuplicates;
     repulse;
-    roll;
     rotate;
     shape;
     size;
@@ -110,7 +108,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.opacity = new Opacity();
         this.reduceDuplicates = false;
         this.repulse = new ParticlesRepulse();
-        this.roll = new Roll();
         this.rotate = new Rotate();
         this.shadow = new Shadow();
         this.shape = new Shape();
@@ -155,7 +152,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         }
 
         this.repulse.load(data.repulse);
-        this.roll.load(data.roll);
         this.rotate.load(data.rotate);
         this.shape.load(data.shape);
         this.size.load(data.size);
