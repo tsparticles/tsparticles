@@ -1,11 +1,10 @@
-import type { Container, ITilt } from "tsparticles-engine";
 import { EditorGroup, EditorType } from "object-gui";
+import type { Container } from "tsparticles-engine";
 import { EditorBase } from "../../../../EditorBase";
-import { TiltDirection } from "tsparticles-engine";
 
 export class TiltOptionsEditor extends EditorBase {
     group!: EditorGroup;
-    private options!: ITilt;
+    private options!: unknown;
 
     constructor(particles: Container) {
         super(particles);
@@ -13,7 +12,7 @@ export class TiltOptionsEditor extends EditorBase {
 
     addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("tilt", "Tilt");
-        this.options = this.group.data as ITilt;
+        this.options = this.group.data as unknown;
 
         this.addAnimation();
         this.addProperties();
@@ -46,13 +45,13 @@ export class TiltOptionsEditor extends EditorBase {
             })
             .addItems([
                 {
-                    value: TiltDirection.clockwise,
+                    value: "clockwise",
                 },
                 {
-                    value: TiltDirection.counterClockwise,
+                    value: "counterClockwise",
                 },
                 {
-                    value: TiltDirection.random,
+                    value: "random",
                 },
             ]);
 

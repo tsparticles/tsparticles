@@ -127,14 +127,13 @@ export function drawParticle(
     shadow: IShadow
 ): void {
     const pos = particle.getPosition(),
-        tiltOptions = particle.options.tilt,
         rollOptions = particle.options.roll;
 
     context.save();
 
-    if (tiltOptions.enable || rollOptions.enable) {
+    if (particle.tilt?.enable || rollOptions.enable) {
         const roll = rollOptions.enable && particle.roll,
-            tilt = tiltOptions.enable && particle.tilt,
+            tilt = particle.tilt?.enable && particle.tilt,
             rollHorizontal = roll && (rollOptions.mode === RollMode.horizontal || rollOptions.mode === RollMode.both),
             rollVertical = roll && (rollOptions.mode === RollMode.vertical || rollOptions.mode === RollMode.both);
 
@@ -201,7 +200,7 @@ export function drawParticle(
 
     context.save();
 
-    if (tiltOptions.enable && particle.tilt) {
+    if (particle.tilt?.enable && particle.tilt) {
         context.setTransform(
             1,
             Math.cos(particle.tilt.value) * particle.tilt.cosDirection,

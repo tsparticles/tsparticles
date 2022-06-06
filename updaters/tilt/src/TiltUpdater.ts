@@ -1,8 +1,29 @@
-import { AnimationStatus, TiltDirection, getRangeValue } from "tsparticles-engine";
+import {
+    AnimationStatus,
+    IParticlesOptions,
+    ParticlesOptions,
+    RecursivePartial,
+    getRangeValue,
+} from "tsparticles-engine";
 import type { Container, IDelta, IParticleUpdater, Particle } from "tsparticles-engine";
+import { ITilt } from "./Options/Interfaces/ITilt";
+import { Tilt } from "./Options/Classes/Tilt";
+import { TiltDirection } from "./TiltDirection";
 
-function updateTilt(particle: Particle, delta: IDelta): void {
-    if (!particle.tilt) {
+type TiltParticle = Particle & {
+    options: TiltParticlesOptions;
+};
+
+type ITiltParticlesOptions = IParticlesOptions & {
+    tilt?: ITilt;
+};
+
+type TiltParticlesOptions = ParticlesOptions & {
+    tilt?: Tilt;
+};
+
+function updateTilt(particle: TiltParticle, delta: IDelta): void {
+    if (!particle.tilt || !particle.options.tilt) {
         return;
     }
 
@@ -44,8 +65,12 @@ function updateTilt(particle: Particle, delta: IDelta): void {
 export class TiltUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
 
-    init(particle: Particle): void {
+    init(particle: TiltParticle): void {
         const tiltOptions = particle.options.tilt;
+
+        if (!tiltOptions) {
+            return;
+        }
 
         particle.tilt = {
             enable: tiltOptions.enable,
@@ -72,9 +97,9 @@ export class TiltUpdater implements IParticleUpdater {
                 break;
         }
 
-        const tiltAnimation = particle.options.tilt.animation;
+        const tiltAnimation = particle.options.tilt?.animation;
 
-        if (tiltAnimation.enable) {
+        if (tiltAnimation?.enable) {
             particle.tilt.decay = 1 - getRangeValue(tiltAnimation.decay);
             particle.tilt.velocity = (getRangeValue(tiltAnimation.speed) / 360) * this.container.retina.reduceFactor;
 
@@ -84,11 +109,10 @@ export class TiltUpdater implements IParticleUpdater {
         }
     }
 
-    isEnabled(particle: Particle): boolean {
-        const tilt = particle.options.tilt;
-        const tiltAnimation = tilt.animation;
+    isEnabled(particle: TiltParticle): boolean {
+        const tiltAnimation = particle.options.tilt?.animation;
 
-        return !particle.destroyed && !particle.spawning && tiltAnimation.enable;
+        return !particle.destroyed && !particle.spawning && !!tiltAnimation?.enable;
     }
 
     update(particle: Particle, delta: IDelta): void {
@@ -97,5 +121,22 @@ export class TiltUpdater implements IParticleUpdater {
         }
 
         updateTilt(particle, delta);
+    }
+
+    loadOptions(
+        options: TiltParticlesOptions,
+        ...sources: (RecursivePartial<ITiltParticlesOptions> | undefined)[]
+    ): void {
+        for (const source of sources) {
+            if (!source?.tilt) {
+                continue;
+            }
+
+            if (!options.tilt) {
+                options.tilt = new Tilt();
+            }
+
+            options.tilt.load(source.tilt);
+        }
     }
 }

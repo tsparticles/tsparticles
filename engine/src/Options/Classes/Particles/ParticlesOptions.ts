@@ -23,7 +23,6 @@ import { Shape } from "./Shape/Shape";
 import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
 import { Size } from "./Size/Size";
 import { Stroke } from "./Stroke";
-import { Tilt } from "./Tilt/Tilt";
 import { ZIndex } from "./ZIndex/ZIndex";
 import { deepExtend } from "../../../Utils/Utils";
 
@@ -52,7 +51,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     size;
     shadow;
     stroke: SingleOrMultiple<Stroke>;
-    tilt;
     zIndex;
 
     /**
@@ -118,7 +116,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.shape = new Shape();
         this.size = new Size();
         this.stroke = new Stroke();
-        this.tilt = new Tilt();
         this.zIndex = new ZIndex();
     }
 
@@ -163,7 +160,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.shape.load(data.shape);
         this.size.load(data.size);
         this.shadow.load(data.shadow);
-        this.tilt.load(data.tilt);
         this.zIndex.load(data.zIndex);
 
         const collisions = data.move?.collisions ?? data.move?.bounce;

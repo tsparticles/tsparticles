@@ -1,9 +1,8 @@
-import { TiltDirection, TiltDirectionAlt } from "../../../../Enums/Directions/TiltDirection";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { ITilt } from "../../../Interfaces/Particles/Tilt/ITilt";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import { TiltDirection, TiltDirectionAlt } from "../../TiltDirection";
+import type { ITilt } from "../Interfaces/ITilt";
 import { TiltAnimation } from "./TiltAnimation";
-import { ValueWithRandom } from "../../ValueWithRandom";
+import { ValueWithRandom } from "tsparticles-engine";
 
 /**
  * [[include:Options/Particles/Rotate.md]]
