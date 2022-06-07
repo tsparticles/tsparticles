@@ -1,11 +1,16 @@
 {
-  "$schema": "https://typedoc.org/schema.json",
   "gaID": "UA-161253125-1",
   "includes": "./markdown",
-  "entryPoints": [
-    "../engine/src/index.ts"
+  "entryPoints": ["./engine/src/index.ts"],
+  "entryPointStrategy": "Resolve",
+  "exclude": [
+      "components/**/*",
+      "templates/**/*",
+      "cli/**/*",
+      "demo/**/*",
+      "utils/**/*",
+      "website/**/*"
   ],
-  "entryPointStrategy": "packages",
   "name": "tsParticles",
   "includeVersion": true,
   "hideGenerator": true,

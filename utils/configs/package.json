@@ -93,6 +93,9 @@
       "url": "https://www.buymeacoffee.com/matteobruni"
     }
   ],
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "devDependencies": {
     "@babel/core": "^7.17.8",
     "@types/webpack-env": "^1.16.3",

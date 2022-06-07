@@ -6,6 +6,7 @@
     "cli/files/create-preset/ts",
     "components/*",
     "demo/**/*",
+    "docsgen",
     "editor",
     "engine",
     "interactions/*",
@@ -23,7 +24,7 @@
   ],
   "version": "independent",
   "npmClient": "yarn",
-  "useWorkspaces": false,
+  "useWorkspaces": true,
   "conventionalCommits": true,
   "command": {
     "version": {

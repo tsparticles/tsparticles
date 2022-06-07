@@ -65,6 +65,26 @@
   "publishConfig": {
     "directory": "./dist/ng-particles"
   },
+  "types": "dist/ng-particles/ng-particles.d.ts",
+  "module": "dist/ng-particles/fesm2015/ng-particles.mjs",
+  "es2020": "dist/ng-particles/fesm2020/ng-particles.mjs",
+  "esm2020": "dist/ng-particles/esm2020/ng-particles.mjs",
+  "fesm2020": "dist/ng-particles/fesm2020/ng-particles.mjs",
+  "fesm2015": "dist/ng-particles/fesm2015/ng-particles.mjs",
+  "typings": "dist/ng-particles/index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./dist/ng-particles/package.json"
+    },
+    ".": {
+      "types": "./dist/ng-particles/index.d.ts",
+      "esm2020": "./dist/ng-particles/esm2020/ng-particles.mjs",
+      "es2020": "./dist/ng-particles/fesm2020/ng-particles.mjs",
+      "es2015": "./dist/ng-particles/fesm2015/ng-particles.mjs",
+      "node": "./dist/ng-particles/fesm2015/ng-particles.mjs",
+      "default": "./dist/ng-particles/fesm2020/ng-particles.mjs"
+    }
+  },
   "dependencies": {
     "@angular/animations": "~14.0.0",
     "@angular/common": "~14.0.0",
