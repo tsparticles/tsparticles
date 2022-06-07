@@ -7,7 +7,6 @@ import type { Engine } from "../../../engine";
 import type { IInteractivity } from "../../Interfaces/Interactivity/IInteractivity";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import type { IParticlesOptions } from "../../Interfaces/Particles/IParticlesOptions";
-import { Life } from "./Life/Life";
 import { Links } from "./Links/Links";
 import { Move } from "./Move/Move";
 import { Opacity } from "./Opacity/Opacity";
@@ -37,7 +36,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     gradient: SingleOrMultiple<AnimatableGradient>;
     groups: ParticlesGroups;
     interactivity?: RecursivePartial<IInteractivity>;
-    life;
     links;
     move;
     number;
@@ -101,7 +99,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.destroy = new Destroy();
         this.gradient = [];
         this.groups = {};
-        this.life = new Life();
         this.links = new Links();
         this.move = new Move();
         this.number = new ParticlesNumber();
@@ -125,7 +122,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.color.load(AnimatableColor.create(this.color, data.color));
 
         this.destroy.load(data.destroy);
-        this.life.load(data.life);
 
         const links = data.links ?? data.lineLinked ?? data.line_linked;
 

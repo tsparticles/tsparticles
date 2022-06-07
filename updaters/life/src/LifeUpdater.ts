@@ -1,19 +1,84 @@
-import type { Container, IDelta, IParticleUpdater, Particle } from "tsparticles-engine";
+import type {
+    Container,
+    IDelta,
+    IParticleUpdater,
+    IParticlesOptions,
+    Particle,
+    ParticlesOptions,
+    RecursivePartial,
+} from "tsparticles-engine";
 import { getRangeValue, randomInRange, setRangeValue } from "tsparticles-engine";
+import type { ILife } from "./Options/Interfaces/ILife";
+import { Life } from "./Options/Classes/Life";
+
+interface IParticleLife {
+    delay: number;
+    delayTime: number;
+    duration: number;
+    time: number;
+    count: number;
+}
+
+type ILifeParticlesOptions = IParticlesOptions & {
+    life?: ILife;
+};
+
+type LifeParticlesOptions = ParticlesOptions & {
+    life?: Life;
+};
+
+type LifeParticle = Particle & {
+    life?: IParticleLife;
+    options: LifeParticlesOptions;
+};
 
 export class LifeUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
 
-    init(): void {
-        // nothing
+    init(particle: LifeParticle): void {
+        const container = this.container,
+            particlesOptions = particle.options,
+            lifeOptions = particlesOptions.life;
+
+        if (!lifeOptions) {
+            return;
+        }
+
+        particle.life = {
+            delay: container.retina.reduceFactor
+                ? ((getRangeValue(lifeOptions.delay.value) * (lifeOptions.delay.sync ? 1 : Math.random())) /
+                      container.retina.reduceFactor) *
+                  1000
+                : 0,
+            delayTime: 0,
+            duration: container.retina.reduceFactor
+                ? ((getRangeValue(lifeOptions.duration.value) * (lifeOptions.duration.sync ? 1 : Math.random())) /
+                      container.retina.reduceFactor) *
+                  1000
+                : 0,
+            time: 0,
+            count: lifeOptions.count,
+        };
+
+        if (particle.life.duration <= 0) {
+            particle.life.duration = -1;
+        }
+
+        if (particle.life.count <= 0) {
+            particle.life.count = -1;
+        }
+
+        if (particle.life) {
+            particle.spawning = particle.life.delay > 0;
+        }
     }
 
     isEnabled(particle: Particle): boolean {
         return !particle.destroyed;
     }
 
-    update(particle: Particle, delta: IDelta): void {
-        if (!this.isEnabled(particle)) {
+    update(particle: LifeParticle, delta: IDelta): void {
+        if (!this.isEnabled(particle) || !particle.life) {
             return;
         }
 
@@ -77,7 +142,26 @@ export class LifeUpdater implements IParticleUpdater {
 
         const lifeOptions = particle.options.life;
 
-        life.delay = getRangeValue(lifeOptions.delay.value) * 1000;
-        life.duration = getRangeValue(lifeOptions.duration.value) * 1000;
+        if (lifeOptions) {
+            life.delay = getRangeValue(lifeOptions.delay.value) * 1000;
+            life.duration = getRangeValue(lifeOptions.duration.value) * 1000;
+        }
+    }
+
+    loadOptions(
+        options: LifeParticlesOptions,
+        ...sources: (RecursivePartial<ILifeParticlesOptions> | undefined)[]
+    ): void {
+        for (const source of sources) {
+            if (!source?.life) {
+                continue;
+            }
+
+            if (!options.life) {
+                options.life = new Life();
+            }
+
+            options.life.load(source.life);
+        }
     }
 }

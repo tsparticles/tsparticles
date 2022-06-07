@@ -30,7 +30,6 @@ import type { IDelta } from "./Interfaces/IDelta";
 import type { IParticle } from "./Interfaces/IParticle";
 import type { IParticleGravity } from "./Interfaces/IParticleGravity";
 import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation";
-import type { IParticleLife } from "./Interfaces/IParticleLife";
 import type { IParticleRetinaProps } from "./Interfaces/IParticleRetinaProps";
 import type { IParticleRoll } from "./Interfaces/IParticleRoll";
 import type { IParticleWobble } from "./Interfaces/IParticleWobble";
@@ -125,11 +124,6 @@ export class Particle implements IParticle {
      * Gets the particle options
      */
     readonly options;
-
-    /**
-     * Gets the particle life values
-     */
-    readonly life: IParticleLife;
 
     /**
      * Gets the particle roll options
@@ -469,8 +463,7 @@ export class Particle implements IParticle {
             this.sides = sideCountFunc(this);
         }
 
-        this.life = this.loadLife();
-        this.spawning = this.life.delay > 0;
+        this.spawning = false;
         this.shadowColor = rangeColorToRgb(this.options.shadow.color);
 
         for (const updater of container.particles.updaters) {
@@ -744,36 +737,5 @@ export class Particle implements IParticle {
                 shapeData instanceof Array ? itemFromArray(shapeData, this.id, reduceDuplicates) : shapeData
             ) as IShapeValues;
         }
-    }
-
-    private loadLife(): IParticleLife {
-        const container = this.container,
-            particlesOptions = this.options,
-            lifeOptions = particlesOptions.life,
-            life = {
-                delay: container.retina.reduceFactor
-                    ? ((getRangeValue(lifeOptions.delay.value) * (lifeOptions.delay.sync ? 1 : Math.random())) /
-                          container.retina.reduceFactor) *
-                      1000
-                    : 0,
-                delayTime: 0,
-                duration: container.retina.reduceFactor
-                    ? ((getRangeValue(lifeOptions.duration.value) * (lifeOptions.duration.sync ? 1 : Math.random())) /
-                          container.retina.reduceFactor) *
-                      1000
-                    : 0,
-                time: 0,
-                count: particlesOptions.life.count,
-            };
-
-        if (life.duration <= 0) {
-            life.duration = -1;
-        }
-
-        if (life.count <= 0) {
-            life.count = -1;
-        }
-
-        return life;
     }
 }

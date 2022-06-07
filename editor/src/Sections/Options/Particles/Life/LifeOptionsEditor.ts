@@ -1,10 +1,10 @@
-import type { Container, ILife } from "tsparticles-engine";
 import { EditorGroup, EditorType } from "object-gui";
+import type { Container } from "tsparticles-engine";
 import { EditorBase } from "../../../../EditorBase";
 
 export class LifeOptionsEditor extends EditorBase {
     group!: EditorGroup;
-    private options!: ILife;
+    private options!: unknown;
 
     constructor(particles: Container) {
         super(particles);
@@ -12,9 +12,7 @@ export class LifeOptionsEditor extends EditorBase {
 
     addToGroup(parent: EditorGroup, options?: unknown): void {
         this.group = parent.addGroup("life", "Life", true, options);
-        this.options = this.group.data as ILife;
-
-        this.options.count;
+        this.options = this.group.data as unknown;
 
         this.addDelay();
         this.addDuration();

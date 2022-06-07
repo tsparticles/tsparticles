@@ -7,7 +7,6 @@ import type { IAnimatableGradient } from "../IAnimatableGradient";
 import type { ICollisions } from "./Collisions/ICollisions";
 import type { IDestroy } from "./Destroy/IDestroy";
 import type { IInteractivity } from "../Interactivity/IInteractivity";
-import type { ILife } from "./Life/ILife";
 import type { ILinks } from "./Links/ILinks";
 import type { IMove } from "./Move/IMove";
 import type { IOpacity } from "./Opacity/IOpacity";
@@ -46,7 +45,6 @@ export interface IParticlesOptions {
     gradient: SingleOrMultiple<IAnimatableGradient>;
     groups: ParticlesGroups;
     interactivity?: RecursivePartial<IInteractivity>;
-    life: ILife;
     links: ILinks;
     move: IMove;
     number: IParticlesNumber;
