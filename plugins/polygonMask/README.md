@@ -25,11 +25,13 @@ loadPolygonMaskPlugin;
 Once the scripts are loaded you can set up `tsParticles` and the plugin like this:
 
 ```javascript
-loadPolygonMaskPlugin(tsParticles);
+(async () => {
+  await loadPolygonMaskPlugin(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
-});
+  await tsParticles.load("tsparticles", {
+    /* options */
+  });
+})();
 ```
 
 ### ESM / CommonJS
@@ -52,7 +54,7 @@ Then you need to import it in the app, like this:
 const { tsParticles } = require("tsparticles-engine");
 const { loadPolygonMaskPlugin } = require("tsparticles-plugin-polygon-mask");
 
-loadPolygonMaskPlugin(tsParticles);
+loadPolygonMaskPlugin(tsParticles); // awaitable
 ```
 
 or
@@ -61,5 +63,5 @@ or
 import { tsParticles } from "tsparticles-engine";
 import { loadPolygonMaskPlugin } from "tsparticles-plugin-polygon-mask";
 
-loadPolygonMaskPlugin(tsParticles);
+loadPolygonMaskPlugin(tsParticles); // awaitable
 ```
