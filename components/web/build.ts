@@ -18,7 +18,12 @@ const rollupConfig = {
             typescript2({
                 check: false,
                 cacheRoot: path.join(path.resolve(), 'node_modules/.tmp/.rts2_cache'),
-                useTsconfigDeclarationDir: true
+                useTsconfigDeclarationDir: true,
+                tsconfigOverride: {
+                    compilerOptions: {
+                        module: "esnext"
+                    }
+                },
             }),
             resolve()
         ],

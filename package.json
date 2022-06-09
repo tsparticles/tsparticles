@@ -27,7 +27,7 @@
   ],
   "scripts": {
     "build": "lerna run build",
-    "build:docs": "rimraf -f docs && typedoc --tsconfig ./tsconfig.json",
+    "build:docs": "rimraf -f docs && typedoc --tsconfig ./tsconfig.docs.json",
     "version:alpha": "lerna version prerelease --preid alpha --conventional-commits",
     "version:beta": "lerna version prerelease --preid beta --conventional-commits",
     "publish:alpha": "lerna publish from-package --pre-dist-tag alpha --preid alpha",
