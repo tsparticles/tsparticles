@@ -30,7 +30,7 @@
     "minify": "^8.0.3",
     "prettier": "^2.6.2",
     "rimraf": "^3.0.2",
-    "sass": "^1.37.5",
+    "sass": "^1.52.0",
     "tsparticles": "^1.43.1",
     "tsparticles-editor": "^1.43.1",
     "tsparticles-preset-links": "^1.43.1"
