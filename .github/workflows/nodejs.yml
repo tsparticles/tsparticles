@@ -9,6 +9,9 @@ on:
   pull_request:
     branches: [ main, dev, v1 ]
 
+env:
+  NX_CLOUD_DISTRIBUTED_EXECUTION: true
+
 jobs:
   build:
 
@@ -20,13 +23,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+      - run: npx nx-cloud start-ci-run
       - run: yarn install
       - run: npx lerna bootstrap
       - run: npx lerna run build
+      - run: npx nx-cloud stop-all-agents
       - run: echo ${{ github.repository_owner }}
       - run: echo ${{ github.actor }}
       #- run: lerna test
@@ -65,3 +72,20 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
           projectId: tsparticles
+
+  agents:
+    runs-on: ubuntu-latest
+    name: Nx Agent
+    timeout-minutes: 60
+    strategy:
+      matrix:
+        agent: [ 1, 2, 3 ]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - run: yarn install
+      - run: npx lerna bootstrap
+      - name: Start Nx Agent ${{ matrix.agent }}
+        run: npx nx-cloud start-agent
