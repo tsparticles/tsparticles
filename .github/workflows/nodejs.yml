@@ -139,7 +139,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
-      - run: npx install
+      - run: yarn install
       - run: npx lerna bootstrap
       - name: Start Nx Agent ${{ matrix.agent }}
         run: npx nx-cloud start-agent
