@@ -32,8 +32,7 @@ jobs:
       - run: yarn install
       - run: yarn lerna bootstrap
       - run: yarn nx-cloud start-ci-run
-      - run: yarn nx affected --target=build --parallel --max-parallel=3
-      - run: yarn nx affected --target=test --parallel --max-parallel=2
+      - run: yarn build:ci
       - run: yarn nx-cloud stop-all-agents
       #- run: lerna test
       #- name: Codacy Coverage Reporter
@@ -87,8 +86,7 @@ jobs:
       - run: yarn install
       - run: yarn lerna bootstrap
       - run: yarn nx-cloud start-ci-run
-      - run: yarn nx affected --target=build --parallel --max-parallel=3
-      - run: yarn nx affected --target=test --parallel --max-parallel=2
+      - run: yarn build:ci
       - run: yarn nx-cloud stop-all-agents
       - run: echo ${{ github.repository_owner }}
       - run: echo ${{ github.actor }}

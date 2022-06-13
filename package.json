@@ -27,6 +27,7 @@
   ],
   "scripts": {
     "build": "lerna run build",
+    "build:ci": "nx affected --target=build --parallel --max-parallel=3",
     "build:docs": "rimraf -f docs && typedoc --tsconfig ./tsconfig.docs.json",
     "version:alpha": "lerna version prerelease --preid alpha --conventional-commits",
     "version:beta": "lerna version prerelease --preid beta --conventional-commits",
