@@ -27,7 +27,6 @@
   ],
   "scripts": {
     "build": "lerna run build",
-    "build:ci": "nx affected --target=build --parallel --max-parallel=3",
     "build:docs": "rimraf -f docs && typedoc --tsconfig ./tsconfig.docs.json",
     "version:alpha": "lerna version prerelease --preid alpha --conventional-commits",
     "version:beta": "lerna version prerelease --preid beta --conventional-commits",
@@ -56,10 +55,10 @@
     "typedoc-plugin-keyword": "^1.0.2",
     "typedoc-plugin-missing-exports": "^0.22.6",
     "yorkie": "^2.0.0",
-    "@nrwl/workspace": "latest",
-    "nx": "latest",
-    "@nrwl/cli": "latest",
-    "@nrwl/nx-cloud": "latest"
+    "@nrwl/workspace": "^14.2.4",
+    "nx": "^14.2.4",
+    "@nrwl/cli": "^14.2.4",
+    "@nrwl/nx-cloud": "^14.0.8"
   },
   "resolutions": {
     "npm-packlist": "5.1.0"
