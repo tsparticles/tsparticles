@@ -42,7 +42,7 @@ jobs:
       - run: yarn install
       - run: npx lerna bootstrap
       - run: npx nx-cloud start-ci-run
-      - run: npx lerna run build #--concurrency 3
+      - run: npx lerna run build --concurrency 3
       - run: npx nx-cloud stop-all-agents
       #- run: lerna test
       #- name: Codacy Coverage Reporter
@@ -106,7 +106,7 @@ jobs:
       - run: yarn install
       - run: npx lerna bootstrap
       - run: npx nx-cloud start-ci-run
-      - run: npx lerna run build #--concurrency 3
+      - run: npx lerna run build --concurrency 3
       - run: npx nx-cloud stop-all-agents
       - run: echo ${{ github.repository_owner }}
       - run: echo ${{ github.actor }}
@@ -147,19 +147,19 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
           projectId: tsparticles
 
-#  agents:
-#    runs-on: ubuntu-latest
-#    name: Nx Agent
-#    timeout-minutes: 60
-#    strategy:
-#      matrix:
-#        agent: [ 1, 2, 3 ]
-#    steps:
-#      - uses: actions/checkout@v3
-#      - uses: actions/setup-node@v3
-#        with:
-#          node-version: '16'
-#      - run: yarn install
-#      - run: npx lerna bootstrap
-#      - name: Start Nx Agent ${{ matrix.agent }}
-#        run: npx nx-cloud start-agent
+  agents:
+    runs-on: ubuntu-latest
+    name: Nx Agent
+    timeout-minutes: 60
+    strategy:
+      matrix:
+        agent: [ 1, 2, 3 ]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - run: yarn install
+      - run: npx lerna bootstrap
+      - name: Start Nx Agent ${{ matrix.agent }}
+        run: npx nx-cloud start-agent
