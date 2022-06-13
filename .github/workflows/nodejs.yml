@@ -30,10 +30,10 @@ jobs:
         with:
           node-version: '16'
       - run: yarn install
-      - run: yarn lerna bootstrap
-      - run: yarn nx-cloud start-ci-run
-      - run: yarn build:ci
-      - run: yarn nx-cloud stop-all-agents
+      - run: npx lerna bootstrap
+      - run: npx nx-cloud start-ci-run
+      - run: npx lerna run build
+      - run: npx nx-cloud stop-all-agents
       #- run: lerna test
       #- name: Codacy Coverage Reporter
       #  uses: codacy/codacy-coverage-reporter-action@0.2.0
@@ -84,10 +84,10 @@ jobs:
         with:
           node-version: '16'
       - run: yarn install
-      - run: yarn lerna bootstrap
-      - run: yarn nx-cloud start-ci-run
-      - run: yarn build:ci
-      - run: yarn nx-cloud stop-all-agents
+      - run: npx lerna bootstrap
+      - run: npx nx-cloud start-ci-run
+      - run: npx lerna run build
+      - run: npx nx-cloud stop-all-agents
       - run: echo ${{ github.repository_owner }}
       - run: echo ${{ github.actor }}
       #- run: lerna test
@@ -139,7 +139,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
-      - run: yarn install
-      - run: yarn lerna bootstrap
+      - run: npx install
+      - run: npx lerna bootstrap
       - name: Start Nx Agent ${{ matrix.agent }}
-        run: yarn nx-cloud start-agent
+        run: npx nx-cloud start-agent
