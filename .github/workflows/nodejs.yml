@@ -1,14 +1,8 @@
 name: Node.js CI
 on:
   push:
-    branches:
-    - main
-    - dev
-    - v1
-  pull_request:
-    - main
-    - dev
-    - v1
+    branches: [ main, dev, v1 ]
+  pull_request: [ main, dev, v1 ]
 
 env:
   NX_CLOUD_DISTRIBUTED_EXECUTION: true
