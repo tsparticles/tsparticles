@@ -79,8 +79,8 @@
   "main": "cjs/index.js",
   "module": "esm/index.js",
   "types": "types/index.d.ts",
-  "unpkg": "particles.js",
-  "jsdelivr": "particles.js",
+  "unpkg": "particles.min.js",
+  "jsdelivr": "particles.min.js",
   "peerDependencies": {
     "react": ">=16"
   },
