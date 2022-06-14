@@ -14,5 +14,5 @@ export interface IParticlesProps {
     canvasClassName?: string;
     container?: RefObject<Container>;
     init?: (engine: Engine) => Promise<void>;
-    loaded?: (container: Container) => Promise<void>;
+    loaded?: (container?: Container) => Promise<void>;
 }

@@ -5,6 +5,8 @@ import type { IParticlesProps } from "./IParticlesProps";
 import type { IParticlesState } from "./IParticlesState";
 import type { ISourceOptions } from "tsparticles-engine";
 
+const defaultId = "tsparticles";
+
 /**
  * @param {{id?: string,width?: string,height?: string,options?: ISourceOptions,params?: ISourceOptions,style?: CSSProperties,className?: string,canvasClassName?: string,container?: RefObject<Container>}}
  */
@@ -15,7 +17,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
         options: {},
         style: {},
         url: undefined,
-        id: "tsparticles",
+        id: defaultId,
     };
 
     constructor(props: IParticlesProps) {
@@ -104,7 +106,7 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
 
         const cb = async (container?: Container) => {
             if (this.props.container) {
-                (this.props.container as MutableRefObject<Container>).current = container;
+                (this.props.container as MutableRefObject<Container | undefined>).current = container;
             }
 
             this.setState({
@@ -116,9 +118,10 @@ export default class Particles extends Component<IParticlesProps, IParticlesStat
             }
         };
 
-        const container = this.props.url
-            ? await tsParticles.loadJSON(this.props.id, this.props.url)
-            : await tsParticles.load(this.props.id, this.props.params ?? this.props.options);
+        const id = this.props.id ?? Particles.defaultProps.id ?? defaultId,
+            container = this.props.url
+                ? await tsParticles.loadJSON(id, this.props.url)
+                : await tsParticles.load(id, this.props.params ?? this.props.options);
 
         await cb(container);
     }
