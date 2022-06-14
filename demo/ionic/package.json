@@ -93,7 +93,7 @@
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "jasmine-core": "~4.2.0",
     "jasmine-spec-reporter": "~7.0.0",
-    "karma": "~6.3.19",
+    "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.1",
     "karma-coverage": "~2.2.0",
     "karma-coverage-istanbul-reporter": "~3.0.3",

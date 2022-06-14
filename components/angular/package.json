@@ -106,7 +106,7 @@
     "@types/jasmine": "~4.0.3",
     "@types/node": "^17.0.29",
     "jasmine-core": "~4.2.0",
-    "karma": "~6.3.19",
+    "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.1",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.0.0",
