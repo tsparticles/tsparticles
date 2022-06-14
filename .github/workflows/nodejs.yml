@@ -82,15 +82,11 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
           projectId: tsparticles
   pr:
+    env:
+      NX_CLOUD_ACCESS_TOKEN: 'YmE3OGY1MTQtNTJjMC00MzdjLTgwYjEtZDk4YWE0OTQ4MTIzfHJlYWQ='
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
     steps:
-      - if: ${{ secrets.NX_CLOUD_ACCESS_TOKEN != null }}
-        env:
-          NX_CLOUD_ACCESS_TOKEN: '${{ secrets.NX_CLOUD_ACCESS_TOKEN }}'
-      - if: ${{ secrets.NX_CLOUD_ACCESS_TOKEN == null }}
-        env:
-          NX_CLOUD_ACCESS_TOKEN: 'YmE3OGY1MTQtNTJjMC00MzdjLTgwYjEtZDk4YWE0OTQ4MTIzfHJlYWQ=' # read only token, no issue
       - uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.ref }}
