@@ -4,6 +4,7 @@
     "vite.config.*"
   ],
   "compilerOptions": {
+    "allowJs": true,
     "composite": true,
     "types": [
       "node"
