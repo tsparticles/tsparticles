@@ -11992,9 +11992,9 @@ mini-css-extract-plugin@2.6.0, mini-css-extract-plugin@^2.5.3:
     schema-utils "^4.0.0"
 
 minify@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/minify/-/minify-9.0.0.tgz#29133979e54164676673a35130ec42a7d509aa18"
-  integrity sha512-h5kVS+licRg/uYc0mIvIl+CqNv/eaJbRQKYmyJetEdx+nNdWsqWbCiVXmgb2bwL7JQnxMyXOg5fQMwt5jdX5xg==
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/minify/-/minify-9.1.0.tgz#30a527d3214d6236d05eb6a43d65a7f4a60d4ada"
+  integrity sha512-1/VsCf9hNOE5dntVUaGGVfo5s2+k6LQsZx9HR2EX5/MUiNmDr0MTFGFD56ouz3yks8vjCVTrH1wir6gTF0anhw==
   dependencies:
     clean-css "^5.0.1"
     css-b64-images "~0.2.5"
