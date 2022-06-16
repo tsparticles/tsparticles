@@ -17,15 +17,17 @@ interface MutableRefObject<T> {
  * @param (props:IParticlesProps) Particles component properties
  */
 const Particles = (props: IParticlesProps): JSX.Element => {
-	const [ init, setInit ] = createSignal(!props.init);
+	const [init, setInit] = createSignal(!props.init);
 
 	try {
 		const id = props.id ?? "tsparticles";
 		const options = createMemo(() => props.params ?? props.options ?? {});
 
-		const refContainer = props.container as MutableRefObject<Container | undefined>;
+		const refContainer = props.container as MutableRefObject<
+			Container | undefined
+		>;
 		const { className, canvasClassName, loaded, url, width, height } = props;
-		const [ containerId, setContainerId ] = createSignal(
+		const [containerId, setContainerId] = createSignal(
 			undefined as string | undefined
 		);
 
@@ -94,7 +96,7 @@ const Particles = (props: IParticlesProps): JSX.Element => {
 	} catch (e) {
 		console.log(e);
 
-		return <div/>;
+		return <div />;
 	}
 };
 
