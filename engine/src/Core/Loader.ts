@@ -143,13 +143,17 @@ export class Loader {
 
                 canvasEl.dataset[generatedAttribute] = "true";
 
-                /* set size canvas */
-                canvasEl.style.width = "100%";
-                canvasEl.style.height = "100%";
-
                 /* append canvas */
                 domContainer.appendChild(canvasEl);
             }
+        }
+
+        if (!canvasEl.style.width) {
+            canvasEl.style.width = "100%";
+        }
+
+        if (!canvasEl.style.height) {
+            canvasEl.style.height = "100%";
         }
 
         /* launch tsParticles */
