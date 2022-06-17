@@ -390,6 +390,8 @@ export class Container {
             this.plugins.delete(key);
         }
 
+        this.#engine.plugins.destroy(this);
+
         this.particles.linksColors = new Map<string, IRgb | string | undefined>();
 
         delete this.particles.grabLineColor;

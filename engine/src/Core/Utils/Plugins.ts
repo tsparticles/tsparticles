@@ -309,4 +309,10 @@ export class Plugins {
     addParticleMover(name: string, initMover: (container: Container) => IParticleMover): void {
         this.moversInitializers.set(name, initMover);
     }
+
+    destroy(container: Container): void {
+        this.updaters.delete(container);
+        this.movers.delete(container);
+        this.interactors.delete(container);
+    }
 }

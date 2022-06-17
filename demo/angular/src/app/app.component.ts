@@ -10,11 +10,15 @@ import { loadFull } from "tsparticles";
 export class AppComponent {
   title = 'angular13';
   id = 'tsparticles';
+  visible = true;
   options: ISourceOptions = {
     background: {
       color: {
         value: '#0d47a1'
       }
+    },
+    fullScreen: {
+      zIndex: -1
     },
     fpsLimit: 120,
     interactivity: {
@@ -50,9 +54,6 @@ export class AppComponent {
         opacity: 0.5,
         width: 1
       },
-      collisions: {
-        enable: true
-      },
       move: {
         direction: 'none',
         enable: true,
@@ -81,6 +82,12 @@ export class AppComponent {
     detectRetina: true
   };
 
+  toggleClick(): void {
+    console.log("clicked");
+
+    this.visible = !this.visible;
+  }
+
   constructor() {
   }
 
@@ -88,12 +95,12 @@ export class AppComponent {
   }
 
   async particlesInit(engine: Engine): Promise<void> {
-    await loadFull(engine);
+    console.log("init", engine);
 
-    console.log(loadFull);
+    await loadFull(engine);
   }
 
   public particlesLoaded(container: Container): void {
-    console.log(container);
+    console.log("loaded", container);
   }
 }
