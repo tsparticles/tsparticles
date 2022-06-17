@@ -1603,7 +1603,7 @@
     node-gyp "^8.4.1"
     read-package-json-fast "^2.0.3"
 
-"@nrwl/cli@14.3.6", "@nrwl/cli@^14.3.0":
+"@nrwl/cli@14.3.6", "@nrwl/cli@^14.3.6":
   version "14.3.6"
   resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-14.3.6.tgz#bf9d36822bbe9db42c250f4151df2b496ae7f13f"
   integrity sha512-MNCBzM3ZDsujEc5crltH/kEyNBKx6DofLHdpzY1EoiY+yF57W7E1B6ERkVUGDc52sR4snEUKpQLXdVFjwP+z8A==
@@ -1651,7 +1651,7 @@
     tmp "~0.2.1"
     tslib "^2.3.0"
 
-"@nrwl/nx-cloud@^14.1.0":
+"@nrwl/nx-cloud@^14.1.2":
   version "14.1.2"
   resolved "https://registry.yarnpkg.com/@nrwl/nx-cloud/-/nx-cloud-14.1.2.tgz#f09a372dccbeb649b294fcfbf13d42aa33177cdf"
   integrity sha512-ZMxxx+NNp06IDPJ8cbQDPNMNRuH+pM/RoC7ZsCriotDG3kpzour41OGf0UpnXSXcTJPlDyHG6Xi0XuPdjmpNSw==
@@ -1669,7 +1669,7 @@
   dependencies:
     nx "14.3.6"
 
-"@nrwl/workspace@^14.3.0":
+"@nrwl/workspace@14.3.6":
   version "14.3.6"
   resolved "https://registry.yarnpkg.com/@nrwl/workspace/-/workspace-14.3.6.tgz#6c35468d74531cf5d6b92ff12b7baf6413902687"
   integrity sha512-uuJ6rFj55FLydJrYYi8ME5pJviXLS0VC/t3Jk2D9+4wEyRMwdWS/6jUnCLnRgLHtEm1SARSzy/KYGz4UtbKncQ==
@@ -6067,7 +6067,7 @@ nwsapi@^2.2.0:
   resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.2.0.tgz#204879a9e3d068ff2a55139c2c772780681a38b7"
   integrity sha512-h2AatdwYH+JHiZpv7pt/gSX1XoRGb7L/qSIeuqA6GwYoF9w1vP1cw42TO0aI2pNyshRK5893hNSl+1//vHK7hQ==
 
-nx@14.3.6, nx@^14.3.0:
+nx@14.3.6, nx@^14.3.6:
   version "14.3.6"
   resolved "https://registry.yarnpkg.com/nx/-/nx-14.3.6.tgz#0b30dbe96df2cd62cb68c9d3609e2dc3219b0a20"
   integrity sha512-jBgqXEkRalo8PwXJzO4HVNN3P5pqyL5VawyNd34qPl+4t2XlDRqoK0J74i8liPGdKPBB1HjM2K1u+QNF2ROvQA==

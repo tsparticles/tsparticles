@@ -32,10 +32,10 @@
     "typedoc-plugin-keyword": "^1.0.2",
     "typedoc-plugin-missing-exports": "^0.22.6",
     "yorkie": "^2.0.0",
-    "@nrwl/workspace": "^14.3.0",
-    "nx": "^14.3.0",
-    "@nrwl/cli": "^14.3.0",
-    "@nrwl/nx-cloud": "^14.1.0"
+    "@nrwl/workspace": "14.3.6",
+    "nx": "^14.3.6",
+    "@nrwl/cli": "^14.3.6",
+    "@nrwl/nx-cloud": "^14.1.2"
   },
   "resolutions": {
     "npm-packlist": "5.1.0"
@@ -46,3 +46,4 @@
     }
   }
 }
+
