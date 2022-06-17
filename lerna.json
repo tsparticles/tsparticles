@@ -24,7 +24,7 @@
   ],
   "version": "independent",
   "npmClient": "yarn",
-  "useWorkspaces": true,
+  "useWorkspaces": false,
   "conventionalCommits": true,
   "useNx": true,
   "command": {

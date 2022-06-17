@@ -11,11 +11,6 @@
       "ES2015",
       "DOM"
     ],
-    "types": [
-      "node",
-      "chai",
-      "mocha"
-    ],
     "allowJs": true,
     "rootDir": "./src",
     "declaration": false,
