@@ -17,7 +17,6 @@
     "build:ts:umd": "tsc -b tsconfig.umd.json",
     "distfiles": "node ./scripts/distfiles.js",
     "version": "yarn distfiles  && git add package.dist.json",
-    "postversion": "git push && git push --tags",
     "prepack": "yarn build",
     "install": "node ./scripts/install.js"
   },
