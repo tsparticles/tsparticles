@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.44.0](https://github.com/tsparticles/preset-template/compare/tsparticles-preset-template@1.43.4...tsparticles-preset-template@1.44.0) (2022-06-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency gh-pages to v4 ([cf6e957](https://github.com/tsparticles/preset-template/commit/cf6e9577132afcec26410f7321fcf5ffcfb05930))
+* **deps:** update dependency minify to v9 ([a12fb3e](https://github.com/tsparticles/preset-template/commit/a12fb3e6f2a94677b4be32ebc69a17b085d2f3d2))
+
+
+
+
+
 ## [1.43.4](https://github.com/tsparticles/preset-template/compare/tsparticles-preset-template@1.43.3...tsparticles-preset-template@1.43.4) (2022-04-16)
 
 

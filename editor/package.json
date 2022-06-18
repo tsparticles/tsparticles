@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-editor",
-  "version": "2.0.6",
+  "version": "2.1.0",
   "description": "tsParticles Configuration Editor",
   "keywords": [
     "tsparticles",
@@ -73,14 +73,14 @@
     "webpack": "^5.72.0",
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.2",
-    "webpack-tsparticles-plugin": "^1.0.4"
+    "webpack-tsparticles-plugin": "^1.1.0"
   },
   "dependencies": {
     "object-gui": "^1.1.1",
-    "tsparticles-engine": "^2.0.6",
-    "tsparticles-plugin-absorbers": "^2.0.6",
-    "tsparticles-plugin-emitters": "^2.0.6",
-    "tsparticles-plugin-infection": "^2.0.6"
+    "tsparticles-engine": "^2.1.0",
+    "tsparticles-plugin-absorbers": "^2.1.0",
+    "tsparticles-plugin-emitters": "^2.1.0",
+    "tsparticles-plugin-infection": "^2.1.0"
   },
   "publishConfig": {
     "directory": "dist"

@@ -1,6 +1,6 @@
 {
   "name": "vue3-demo",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
@@ -9,10 +9,10 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "vue": "^3.2.36",
-    "particles.vue3": "^2.0.6",
-    "tsparticles-engine": "^2.0.6",
-    "tsparticles": "^2.0.6"
+    "particles.vue3": "^2.1.0",
+    "tsparticles": "^2.1.0",
+    "tsparticles-engine": "^2.1.0",
+    "vue": "^3.2.36"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.3",

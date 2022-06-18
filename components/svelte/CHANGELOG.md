@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/matteobruni/tsparticles/compare/svelte-particles@2.0.6...svelte-particles@2.1.0) (2022-06-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @capacitor/core to v3.5.0 ([581bb7e](https://github.com/matteobruni/tsparticles/commit/581bb7e2f4f6aceb3535daf9223954a80f2daa81))
+* **deps:** update dependency gh-pages to v4 ([cf6e957](https://github.com/matteobruni/tsparticles/commit/cf6e9577132afcec26410f7321fcf5ffcfb05930))
+* fixed svelte typings, closes [#4131](https://github.com/matteobruni/tsparticles/issues/4131) ([27f1bdb](https://github.com/matteobruni/tsparticles/commit/27f1bdba71ea22f116bc882c0de86f18ed1f0573))
+
+
+
+
+
 ## [2.0.6](https://github.com/matteobruni/tsparticles/compare/svelte-particles@2.0.5...svelte-particles@2.0.6) (2022-04-16)
 
 **Note:** Version bump only for package svelte-particles

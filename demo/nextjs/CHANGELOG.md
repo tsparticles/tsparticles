@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/matteobruni/tsparticles/compare/nextjs@0.2.4...nextjs@0.3.0) (2022-06-18)
+
+
+### Bug Fixes
+
+* **deps:** update react monorepo to v18.1.0 ([6b45793](https://github.com/matteobruni/tsparticles/commit/6b457937c41d7681a2135dfcb6ff220e578f22bb))
+
+
+
+
+
 ## [0.2.4](https://github.com/matteobruni/tsparticles/compare/nextjs@0.2.3...nextjs@0.2.4) (2022-04-16)
 
 **Note:** Version bump only for package nextjs

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-sea-anemone@2.0.6...tsparticles-preset-sea-anemone@2.1.0) (2022-06-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency gh-pages to v4 ([cf6e957](https://github.com/matteobruni/tsparticles/commit/cf6e9577132afcec26410f7321fcf5ffcfb05930))
+* **deps:** update react monorepo to v18.1.0 ([6b45793](https://github.com/matteobruni/tsparticles/commit/6b457937c41d7681a2135dfcb6ff220e578f22bb))
+* removed useless variable ([88d2927](https://github.com/matteobruni/tsparticles/commit/88d29276006f956703149f580710a360f96af1de))
+
+
+
+
+
 ## [2.0.6](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-sea-anemone@2.0.5...tsparticles-preset-sea-anemone@2.0.6) (2022-04-16)
 
 

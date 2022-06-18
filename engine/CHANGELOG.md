@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.0.6...tsparticles-engine@2.1.0) (2022-06-18)
+
+
+### Bug Fixes
+
+* fixed connect links options ([5eb3186](https://github.com/matteobruni/tsparticles/commit/5eb31866b3a9fe1328969c254f2fff0be995b1f5))
+* fixed issue with non-generated canvas elements, closes [#4228](https://github.com/matteobruni/tsparticles/issues/4228) ([297e974](https://github.com/matteobruni/tsparticles/commit/297e9740580e11cf2c8b98a5a9e88736fdf855e4))
+* fixed new multiple particles feature and particle destroy method ([aee6eff](https://github.com/matteobruni/tsparticles/commit/aee6effe57407c354c2648f2f3661981ed38a995))
+* improving container destruction ([c4ebce6](https://github.com/matteobruni/tsparticles/commit/c4ebce6ba3b6e6b5b68a1fa6b342d41fee31837b))
+* moved some specific code to the relative project, removing it from the generic engine ([09fe635](https://github.com/matteobruni/tsparticles/commit/09fe63568adc244d11b7eff009626b905d5b05e4))
+* removed bad check when retrieving color range value ([27a0778](https://github.com/matteobruni/tsparticles/commit/27a0778ae0fcb57fde4a9d660af603a994efb1ac))
+* trying fixing issue [#4151](https://github.com/matteobruni/tsparticles/issues/4151) ([83e3e06](https://github.com/matteobruni/tsparticles/commit/83e3e0625743decef39c8496f8b30ed367803a4f))
+
+
+### Features
+
+* added decay to all animations ([954858e](https://github.com/matteobruni/tsparticles/commit/954858ec9ef85a7d9d676838399777e4a1a8b885))
+* added new speed object for wobble effect ([a450513](https://github.com/matteobruni/tsparticles/commit/a450513b04dedb7f4c18ad98278ef23094f22016))
+* added range colors to all color fields ([1b6f32a](https://github.com/matteobruni/tsparticles/commit/1b6f32ad50beb3dc4813187a6e1d03f3013f3ca9))
+* interactivity options overrides in particles options, closes [#4120](https://github.com/matteobruni/tsparticles/issues/4120) ([309afb5](https://github.com/matteobruni/tsparticles/commit/309afb5749e40373648bf9173800334da4dbf965))
+* loading updater options in updaters instead of in the engine, started from wobble ([85abd01](https://github.com/matteobruni/tsparticles/commit/85abd01a618efd3afd17f6fd605d46005cd842dd))
+* moved life options to life updater ([ea85856](https://github.com/matteobruni/tsparticles/commit/ea85856de8246e09a01bdcd4d12fb86bc04631ee))
+* moved orbit options to orbit updater package ([8542054](https://github.com/matteobruni/tsparticles/commit/8542054c3a71ed17341411efd88353a1dbb94072))
+* moved roll options to orbit updater package ([e70e482](https://github.com/matteobruni/tsparticles/commit/e70e482f9d17969885da9c7b0c07edba0fb38447))
+* moved roll options to orbit updater package ([521c784](https://github.com/matteobruni/tsparticles/commit/521c784ff71022af3b02cac181eb6942d36aa592))
+* moved tilt options to orbit updater package ([735b4b4](https://github.com/matteobruni/tsparticles/commit/735b4b4c9747195296c435fa2e2c9c84423bd658))
+* moved twinkle options to twinkle updater package ([d6389d4](https://github.com/matteobruni/tsparticles/commit/d6389d4750bdbd2945a1fe84a781671e618122d2))
+
+
+
+
+
 ## [2.0.6](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.0.5...tsparticles-engine@2.0.6) (2022-04-16)
 
 **Note:** Version bump only for package tsparticles-engine

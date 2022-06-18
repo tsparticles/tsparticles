@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fireworks@2.0.6...tsparticles-preset-fireworks@2.1.0) (2022-06-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency gh-pages to v4 ([cf6e957](https://github.com/matteobruni/tsparticles/commit/cf6e9577132afcec26410f7321fcf5ffcfb05930))
+* **deps:** update react monorepo to v18.1.0 ([6b45793](https://github.com/matteobruni/tsparticles/commit/6b457937c41d7681a2135dfcb6ff220e578f22bb))
+* fixed new multiple particles feature and particle destroy method ([aee6eff](https://github.com/matteobruni/tsparticles/commit/aee6effe57407c354c2648f2f3661981ed38a995))
+
+
+### Features
+
+* added range colors to all color fields ([1b6f32a](https://github.com/matteobruni/tsparticles/commit/1b6f32ad50beb3dc4813187a6e1d03f3013f3ca9))
+
+
+
+
+
 ## [2.0.6](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fireworks@2.0.5...tsparticles-preset-fireworks@2.0.6) (2022-04-16)
 
 

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-updater-life@2.0.6...tsparticles-updater-life@2.1.0) (2022-06-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency gh-pages to v4 ([cf6e957](https://github.com/matteobruni/tsparticles/commit/cf6e9577132afcec26410f7321fcf5ffcfb05930))
+* **deps:** update react monorepo to v18.1.0 ([6b45793](https://github.com/matteobruni/tsparticles/commit/6b457937c41d7681a2135dfcb6ff220e578f22bb))
+
+
+### Features
+
+* moved life options to life updater ([ea85856](https://github.com/matteobruni/tsparticles/commit/ea85856de8246e09a01bdcd4d12fb86bc04631ee))
+
+
+
+
+
 ## [2.0.6](https://github.com/matteobruni/tsparticles/compare/tsparticles-updater-life@2.0.5...tsparticles-updater-life@2.0.6) (2022-04-16)
 
 
