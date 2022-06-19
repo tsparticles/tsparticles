@@ -22,7 +22,7 @@
     "css-loader": "^6.7.1",
     "esm": "^3.2.25",
     "html-webpack-plugin": "^5.5.0",
-    "jsdom": "^19.0.0",
+    "jsdom": "^20.0.0",
     "jsdom-global": "^3.0.2",
     "mini-css-extract-plugin": "^2.6.0",
     "mocha": "^10.0.0",
