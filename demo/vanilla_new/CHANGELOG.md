@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@2.0.6...tsparticles-demo-new@2.1.0) (2022-06-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency minify to v9 ([a12fb3e](https://github.com/matteobruni/tsparticles/commit/a12fb3e6f2a94677b4be32ebc69a17b085d2f3d2))
+
+
+
+
+
 ## [2.0.6](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@2.0.5...tsparticles-demo-new@2.0.6) (2022-04-16)
 
 **Note:** Version bump only for package tsparticles-demo-new

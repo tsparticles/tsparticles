@@ -1,6 +1,9 @@
 import type { IDelta } from "./IDelta";
 import type { IParticleColorStyle } from "./IParticleColorStyle";
+import type { IParticlesOptions } from "../../Options/Interfaces/Particles/IParticlesOptions";
 import type { Particle } from "../Particle";
+import type { ParticlesOptions } from "../../Options/Classes/Particles/ParticlesOptions";
+import type { RecursivePartial } from "../../Types/RecursivePartial";
 
 export interface IParticleUpdater {
     init(particle: Particle): void;
@@ -19,4 +22,6 @@ export interface IParticleUpdater {
     ) => IParticleColorStyle;
 
     afterDraw?: (particle: Particle) => void;
+
+    loadOptions?: (options: ParticlesOptions, ...sources: (RecursivePartial<IParticlesOptions> | undefined)[]) => void;
 }

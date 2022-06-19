@@ -540,7 +540,8 @@
   </div>
 
   <ng-particles id="tsparticles" [options]="options" [particlesInit]="particlesInit"
-                (particlesLoaded)="particlesLoaded($event)"></ng-particles>˙
+                (particlesLoaded)="particlesLoaded($event)" *ngIf="visible"></ng-particles>
+  <button (click)="toggleClick()">Toggle Particles</button>
 
   <!-- Footer -->
   <footer>

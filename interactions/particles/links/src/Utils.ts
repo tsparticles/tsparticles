@@ -2,12 +2,12 @@ import {
     ICoordinates,
     IDimension,
     IRgb,
-    colorToRgb,
     drawLine,
     drawTriangle,
     getDistance,
     getDistances,
     getStyleFromRgb,
+    rangeColorToRgb,
 } from "tsparticles-engine";
 import type { ILinksShadow } from "tsparticles-engine";
 
@@ -103,7 +103,7 @@ export function drawLinkLine(
     context.strokeStyle = getStyleFromRgb(colorLine, opacity);
 
     if (shadow.enable) {
-        const shadowColor = colorToRgb(shadow.color);
+        const shadowColor = rangeColorToRgb(shadow.color);
 
         if (shadowColor) {
             context.shadowBlur = shadow.blur;

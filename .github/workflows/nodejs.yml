@@ -1,32 +1,114 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
 name: Node.js CI
-
 on:
   push:
-    branches: [ main, dev, v1 ]
+    branches:
+      - main
+      - dev
+      - v1
   pull_request:
-    branches: [ main, dev, v1 ]
+    branches:
+      - main
+      - dev
+      - v1
+
+env:
+  NX_CLOUD_DISTRIBUTED_EXECUTION: true
+  NX_CLOUD_ACCESS_TOKEN: '${{ secrets.NX_CLOUD_ACCESS_TOKEN }}'
+  NX_BRANCH: '${{github.event.pull_request.number || github.ref_name}}'
 
 jobs:
-  build:
-
+  main:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [ 14.x, 16.x ]
-
+    if: ${{ github.event_name != 'pull_request' }}
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        name: Checkout [main]
         with:
-          node-version: ${{ matrix.node-version }}
+          fetch-depth: 0
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - uses: actions/cache@v3
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
       - run: yarn install
       - run: npx lerna bootstrap
-      - run: npx lerna run build
+      - run: npx nx-cloud start-ci-run
+      - run: npx lerna run build --concurrency 3
+      - run: npx nx-cloud stop-all-agents
+      #- run: lerna test
+      #- name: Codacy Coverage Reporter
+      #  uses: codacy/codacy-coverage-reporter-action@0.2.0
+      #  with:
+      #    project-token: ${{ secrets.CodacyCoverageToken }}
+      #    coverage-reports: coverage/lcov.info
+      - if: github.ref == 'refs/heads/main'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
+          projectId: tsparticles
+          channelId: live
+
+      - if: github.ref == 'refs/heads/staging'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
+          projectId: tsparticles
+          channelId: next
+
+      - if: github.ref == 'refs/heads/dev'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
+          projectId: tsparticles
+          channelId: dev
+
+      - if: contains(github.ref, 'refs/pull') && github.actor == 'matteobruni'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
+          projectId: tsparticles
+  pr:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - uses: actions/cache@v3
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - run: yarn install
+      - run: npx lerna bootstrap
+      - run: npx nx-cloud start-ci-run
+      - run: npx lerna run build --concurrency 3
+      - run: npx nx-cloud stop-all-agents
       - run: echo ${{ github.repository_owner }}
       - run: echo ${{ github.actor }}
       #- run: lerna test
@@ -65,3 +147,20 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
           projectId: tsparticles
+
+  agents:
+    runs-on: ubuntu-latest
+    name: Nx Agent
+    timeout-minutes: 60
+    strategy:
+      matrix:
+        agent: [ 1, 2, 3 ]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - run: yarn install
+      - run: npx lerna bootstrap
+      - name: Start Nx Agent ${{ matrix.agent }}
+        run: npx nx-cloud start-agent

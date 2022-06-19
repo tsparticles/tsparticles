@@ -1,10 +1,10 @@
-import type { Container, ITwinkle, ITwinkleValues } from "tsparticles-engine";
 import { EditorGroup, EditorType } from "object-gui";
+import type { Container } from "tsparticles-engine";
 import { EditorBase } from "../../../../EditorBase";
 
 export class TwinkleOptionsEditor extends EditorBase {
     group!: EditorGroup;
-    private options!: ITwinkle;
+    private options!: unknown;
 
     constructor(particles: Container) {
         super(particles);
@@ -12,7 +12,7 @@ export class TwinkleOptionsEditor extends EditorBase {
 
     addToGroup(parent: EditorGroup, options?: unknown): void {
         this.group = parent.addGroup("twinkle", "Twinkle", true, options);
-        this.options = this.group.data as ITwinkle;
+        this.options = this.group.data as unknown;
 
         this.addTwinkle();
     }
@@ -24,7 +24,7 @@ export class TwinkleOptionsEditor extends EditorBase {
 
     private addTwinkleValues(group: EditorGroup): void {
         const particles = this.particles;
-        const options = group.data as ITwinkleValues;
+        const options = group.data as { color: string | undefined | { value: unknown } };
         const color = typeof options.color === "string" ? options.color : options.color?.value;
 
         group.addProperty("color", "Color", EditorType.color, color, false).change(async (value: unknown) => {

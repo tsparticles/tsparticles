@@ -1,15 +1,37 @@
-import { AnimationStatus, TiltDirection, getRangeValue } from "tsparticles-engine";
+import {
+    AnimationStatus,
+    IParticlesOptions,
+    ParticlesOptions,
+    RecursivePartial,
+    getRangeValue,
+} from "tsparticles-engine";
 import type { Container, IDelta, IParticleUpdater, Particle } from "tsparticles-engine";
+import { ITilt } from "./Options/Interfaces/ITilt";
+import { Tilt } from "./Options/Classes/Tilt";
+import { TiltDirection } from "./TiltDirection";
 
-function updateTilt(particle: Particle, delta: IDelta): void {
-    if (!particle.tilt) {
+type TiltParticle = Particle & {
+    options: TiltParticlesOptions;
+};
+
+type ITiltParticlesOptions = IParticlesOptions & {
+    tilt?: ITilt;
+};
+
+type TiltParticlesOptions = ParticlesOptions & {
+    tilt?: Tilt;
+};
+
+function updateTilt(particle: TiltParticle, delta: IDelta): void {
+    if (!particle.tilt || !particle.options.tilt) {
         return;
     }
 
-    const tilt = particle.options.tilt;
-    const tiltAnimation = tilt.animation;
-    const speed = (particle.tilt.velocity ?? 0) * delta.factor;
-    const max = 2 * Math.PI;
+    const tilt = particle.options.tilt,
+        tiltAnimation = tilt.animation,
+        speed = (particle.tilt.velocity ?? 0) * delta.factor,
+        max = 2 * Math.PI,
+        decay = particle.tilt.decay ?? 1;
 
     if (!tiltAnimation.enable) {
         return;
@@ -34,13 +56,21 @@ function updateTilt(particle: Particle, delta: IDelta): void {
 
             break;
     }
+
+    if (particle.tilt.velocity && decay !== 1) {
+        particle.tilt.velocity *= decay;
+    }
 }
 
 export class TiltUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
 
-    init(particle: Particle): void {
+    init(particle: TiltParticle): void {
         const tiltOptions = particle.options.tilt;
+
+        if (!tiltOptions) {
+            return;
+        }
 
         particle.tilt = {
             enable: tiltOptions.enable,
@@ -67,9 +97,10 @@ export class TiltUpdater implements IParticleUpdater {
                 break;
         }
 
-        const tiltAnimation = particle.options.tilt.animation;
+        const tiltAnimation = particle.options.tilt?.animation;
 
-        if (tiltAnimation.enable) {
+        if (tiltAnimation?.enable) {
+            particle.tilt.decay = 1 - getRangeValue(tiltAnimation.decay);
             particle.tilt.velocity = (getRangeValue(tiltAnimation.speed) / 360) * this.container.retina.reduceFactor;
 
             if (!tiltAnimation.sync) {
@@ -78,11 +109,10 @@ export class TiltUpdater implements IParticleUpdater {
         }
     }
 
-    isEnabled(particle: Particle): boolean {
-        const tilt = particle.options.tilt;
-        const tiltAnimation = tilt.animation;
+    isEnabled(particle: TiltParticle): boolean {
+        const tiltAnimation = particle.options.tilt?.animation;
 
-        return !particle.destroyed && !particle.spawning && tiltAnimation.enable;
+        return !particle.destroyed && !particle.spawning && !!tiltAnimation?.enable;
     }
 
     update(particle: Particle, delta: IDelta): void {
@@ -91,5 +121,22 @@ export class TiltUpdater implements IParticleUpdater {
         }
 
         updateTilt(particle, delta);
+    }
+
+    loadOptions(
+        options: TiltParticlesOptions,
+        ...sources: (RecursivePartial<ITiltParticlesOptions> | undefined)[]
+    ): void {
+        for (const source of sources) {
+            if (!source?.tilt) {
+                continue;
+            }
+
+            if (!options.tilt) {
+                options.tilt = new Tilt();
+            }
+
+            options.tilt.load(source.tilt);
+        }
     }
 }

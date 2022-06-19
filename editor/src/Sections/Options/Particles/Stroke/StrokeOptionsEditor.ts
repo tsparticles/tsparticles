@@ -38,6 +38,7 @@ export class StrokeOptionsEditor extends EditorBase {
                     enable: false,
                     offset: { max: 0, min: 0 },
                     speed: 0,
+                    decay: 0,
                     sync: false,
                 },
             };

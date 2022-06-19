@@ -91,10 +91,11 @@ export class QuadTree {
      * Queries the instance using a [[Circle]] object, with the given position and the given radius
      * @param position the circle position
      * @param radius the circle radius
+     * @param check the function to check if the particle can be added to the result
      * @returns the particles inside the given circle
      */
-    queryCircle(position: ICoordinates, radius: number): Particle[] {
-        return this.query(new Circle(position.x, position.y, radius));
+    queryCircle(position: ICoordinates, radius: number, check?: (particle: Particle) => boolean): Particle[] {
+        return this.query(new Circle(position.x, position.y, radius), check);
     }
 
     /**
@@ -102,9 +103,15 @@ export class QuadTree {
      * @param position the circle position
      * @param radius the circle radius
      * @param containerOrSize the container canvas size
+     * @param check the function to check if the particle can be added to the result
      * @returns the particles inside the given circle
      */
-    queryCircleWarp(position: ICoordinates, radius: number, containerOrSize: Container | IDimension): Particle[] {
+    queryCircleWarp(
+        position: ICoordinates,
+        radius: number,
+        containerOrSize: Container | IDimension,
+        check?: (particle: Particle) => boolean
+    ): Particle[] {
         const container = containerOrSize as Container,
             size = containerOrSize as IDimension;
 
@@ -114,7 +121,8 @@ export class QuadTree {
                 position.y,
                 radius,
                 container.canvas !== undefined ? container.canvas.size : size
-            )
+            ),
+            check
         );
     }
 
@@ -122,19 +130,21 @@ export class QuadTree {
      * Queries the instance using a [[Rectangle]] object, with the given position and the given size
      * @param position the rectangle position
      * @param size the rectangle size
+     * @param check the function to check if the particle can be added to the result
      * @returns the particles inside the given rectangle
      */
-    queryRectangle(position: ICoordinates, size: IDimension): Particle[] {
-        return this.query(new Rectangle(position.x, position.y, size.width, size.height));
+    queryRectangle(position: ICoordinates, size: IDimension, check?: (particle: Particle) => boolean): Particle[] {
+        return this.query(new Rectangle(position.x, position.y, size.width, size.height), check);
     }
 
     /**
      * Queries the instance using a [[Rectangle]] object, with the given position and the given size
      * @param range the range to use for querying the tree
+     * @param check the function to check if the particle can be added to the result
      * @param found found particles array, output parameter
      * @returns the particles inside the given range
      */
-    query(range: Range, found?: Particle[]): Particle[] {
+    query(range: Range, check?: (particle: Particle) => boolean, found?: Particle[]): Particle[] {
         const res = found ?? [];
 
         if (!range.intersects(this.rectangle)) {
@@ -142,7 +152,11 @@ export class QuadTree {
         }
 
         for (const p of this.points) {
-            if (!range.contains(p.position) && getDistance(range.position, p.position) > p.particle.getRadius()) {
+            if (
+                !range.contains(p.position) &&
+                getDistance(range.position, p.position) > p.particle.getRadius() &&
+                (!check || check(p.particle))
+            ) {
                 continue;
             }
 
@@ -150,10 +164,10 @@ export class QuadTree {
         }
 
         if (this.divided) {
-            this.northEast?.query(range, res);
-            this.northWest?.query(range, res);
-            this.southEast?.query(range, res);
-            this.southWest?.query(range, res);
+            this.northEast?.query(range, check, res);
+            this.northWest?.query(range, check, res);
+            this.southEast?.query(range, check, res);
+            this.southWest?.query(range, check, res);
         }
 
         return res;

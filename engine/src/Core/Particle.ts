@@ -19,8 +19,8 @@ import {
     randomInRange,
     setRangeValue,
 } from "../Utils/NumberUtils";
-import { colorToRgb, getHslFromAnimation } from "../Utils/ColorUtils";
 import { deepExtend, isInArray, itemFromArray, loadParticlesOptions } from "../Utils/Utils";
+import { getHslFromAnimation, rangeColorToRgb } from "../Utils/ColorUtils";
 import { AnimationStatus } from "../Enums/AnimationStatus";
 import type { Container } from "./Container";
 import { DestroyMode } from "../Enums/Modes/DestroyMode";
@@ -30,17 +30,16 @@ import type { IDelta } from "./Interfaces/IDelta";
 import type { IParticle } from "./Interfaces/IParticle";
 import type { IParticleGravity } from "./Interfaces/IParticleGravity";
 import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation";
-import type { IParticleLife } from "./Interfaces/IParticleLife";
 import type { IParticleRetinaProps } from "./Interfaces/IParticleRetinaProps";
 import type { IParticleRoll } from "./Interfaces/IParticleRoll";
 import type { IParticleWobble } from "./Interfaces/IParticleWobble";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions";
 import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
 import type { IShapeValues } from "./Interfaces/IShapeValues";
+import { Interactivity } from "../Options/Classes/Interactivity/Interactivity";
 import { MoveDirection } from "../Enums/Directions/MoveDirection";
 import { ParticleOutType } from "../Enums/Types/ParticleOutType";
 import type { RecursivePartial } from "../Types/RecursivePartial";
-import { RollMode } from "../Enums/Modes/RollMode";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import { StartValueType } from "../Enums/Types/StartValueType";
 import { Stroke } from "../Options/Classes/Particles/Stroke";
@@ -125,11 +124,6 @@ export class Particle implements IParticle {
      * Gets the particle options
      */
     readonly options;
-
-    /**
-     * Gets the particle life values
-     */
-    readonly life: IParticleLife;
 
     /**
      * Gets the particle roll options
@@ -275,6 +269,8 @@ export class Particle implements IParticle {
      */
     readonly retina: IParticleRetinaProps;
 
+    readonly interactivity: Interactivity;
+
     /**
      * Gets the particle containing engine instance
      * @private
@@ -305,7 +301,7 @@ export class Particle implements IParticle {
 
         const pxRatio = container.retina.pixelRatio,
             mainOptions = container.actualOptions,
-            particlesOptions = loadParticlesOptions(mainOptions.particles);
+            particlesOptions = loadParticlesOptions(this.#engine, container, mainOptions.particles);
 
         const shapeType = particlesOptions.shape.type,
             reduceDuplicates = particlesOptions.reduceDuplicates;
@@ -333,13 +329,13 @@ export class Particle implements IParticle {
             this.shapeData = this.loadShapeData(particlesOptions.shape, reduceDuplicates);
         }
 
-        if (overrideOptions !== undefined) {
-            particlesOptions.load(overrideOptions);
-        }
+        particlesOptions.load(overrideOptions);
+        particlesOptions.load(this.shapeData?.particles);
 
-        if (this.shapeData?.particles !== undefined) {
-            particlesOptions.load(this.shapeData?.particles);
-        }
+        this.interactivity = new Interactivity();
+
+        this.interactivity.load(container.actualOptions.interactivity);
+        this.interactivity.load(particlesOptions.interactivity);
 
         this.fill = this.shapeData?.fill ?? this.fill;
         this.close = this.shapeData?.close ?? this.close;
@@ -352,7 +348,8 @@ export class Particle implements IParticle {
 
         /* size */
         const sizeOptions = this.options.size,
-            sizeRange = sizeOptions.value;
+            sizeRange = sizeOptions.value,
+            sizeAnimation = sizeOptions.animation;
 
         this.size = {
             enable: sizeOptions.animation.enable,
@@ -363,10 +360,9 @@ export class Particle implements IParticle {
             maxLoops: getRangeValue(sizeOptions.animation.count),
         };
 
-        const sizeAnimation = sizeOptions.animation;
-
         if (sizeAnimation.enable) {
             this.size.status = AnimationStatus.increasing;
+            this.size.decay = 1 - getRangeValue(sizeAnimation.decay);
 
             switch (sizeAnimation.startValue) {
                 case StartValueType.min:
@@ -467,9 +463,8 @@ export class Particle implements IParticle {
             this.sides = sideCountFunc(this);
         }
 
-        this.life = this.loadLife();
-        this.spawning = this.life.delay > 0;
-        this.shadowColor = colorToRgb(this.options.shadow.color);
+        this.spawning = false;
+        this.shadowColor = rangeColorToRgb(this.options.shadow.color);
 
         for (const updater of container.particles.updaters) {
             if (updater.init) {
@@ -540,8 +535,8 @@ export class Particle implements IParticle {
         const color = this.bubble.color ?? getHslFromAnimation(this.color);
 
         if (color && this.roll && (this.backColor || this.roll.alter)) {
-            const backFactor = this.options.roll.mode === RollMode.both ? 2 : 1,
-                backSum = this.options.roll.mode === RollMode.horizontal ? Math.PI / 2 : 0,
+            const backFactor = this.roll.horizontal && this.roll.vertical ? 2 : 1,
+                backSum = this.roll.horizontal ? Math.PI / 2 : 0,
                 rolled = Math.floor(((this.roll.angle ?? 0) + backSum) / (Math.PI / backFactor)) % 2;
 
             if (rolled) {
@@ -563,10 +558,7 @@ export class Particle implements IParticle {
     }
 
     destroy(override?: boolean): void {
-        this.destroyed = true;
-        this.bubble.inRange = false;
-
-        if (this.unbreakable) {
+        if (this.unbreakable || this.destroyed) {
             return;
         }
 
@@ -608,10 +600,14 @@ export class Particle implements IParticle {
             return;
         }
 
-        const rate = getValue(splitOptions.rate);
+        const rate = getValue(splitOptions.rate),
+            particlesSplitOptions =
+                splitOptions.particles instanceof Array
+                    ? itemFromArray(splitOptions.particles)
+                    : splitOptions.particles;
 
         for (let i = 0; i < rate; i++) {
-            this.container.particles.addSplitParticle(this);
+            this.container.particles.addSplitParticle(this, particlesSplitOptions);
         }
     }
 
@@ -741,36 +737,5 @@ export class Particle implements IParticle {
                 shapeData instanceof Array ? itemFromArray(shapeData, this.id, reduceDuplicates) : shapeData
             ) as IShapeValues;
         }
-    }
-
-    private loadLife(): IParticleLife {
-        const container = this.container,
-            particlesOptions = this.options,
-            lifeOptions = particlesOptions.life,
-            life = {
-                delay: container.retina.reduceFactor
-                    ? ((getRangeValue(lifeOptions.delay.value) * (lifeOptions.delay.sync ? 1 : Math.random())) /
-                          container.retina.reduceFactor) *
-                      1000
-                    : 0,
-                delayTime: 0,
-                duration: container.retina.reduceFactor
-                    ? ((getRangeValue(lifeOptions.duration.value) * (lifeOptions.duration.sync ? 1 : Math.random())) /
-                          container.retina.reduceFactor) *
-                      1000
-                    : 0,
-                time: 0,
-                count: particlesOptions.life.count,
-            };
-
-        if (life.duration <= 0) {
-            life.duration = -1;
-        }
-
-        if (life.count <= 0) {
-            life.count = -1;
-        }
-
-        return life;
     }
 }

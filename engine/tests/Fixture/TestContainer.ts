@@ -4,6 +4,10 @@ import { Options } from "../../src";
 import { RecursivePartial } from "../../src";
 import { tsParticles } from "../../src";
 
+const Window = require("window");
+
+const gThis = globalThis;
+
 declare global {
     interface Window {
         SVGPathSeg: unknown;
@@ -16,6 +20,8 @@ export class TestContainer {
     container: Container;
 
     constructor(options?: RecursivePartial<IOptions>) {
+        gThis.window = new Window();
+
         window.SVGPathSeg = {} as any;
         tsParticles.init();
 
@@ -40,7 +46,7 @@ export class TestContainer {
         }
 
         this.container = new Container(tsParticles, this.id, this.options);
-        this.container.actualOptions = new Options(tsParticles);
+        this.container.actualOptions = new Options(tsParticles, this.container);
         this.container.actualOptions.load(this.container.options);
         this.container.init();
     }

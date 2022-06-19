@@ -1,6 +1,6 @@
-import type { IColor } from "../../../../Core/Interfaces/Colors";
+import type { IOptionsColor } from "../../IOptionsColor";
 
 export interface ILightGradient {
-    start: IColor | string;
-    stop: IColor | string;
+    start: string | IOptionsColor;
+    stop: string | IOptionsColor;
 }

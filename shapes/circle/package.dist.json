@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-circle",
-  "version": "2.0.6",
+  "version": "2.1.0",
   "description": "tsParticles circle shape",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -44,6 +44,6 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.0.6"
+    "tsparticles-engine": "^2.1.0"
   }
 }

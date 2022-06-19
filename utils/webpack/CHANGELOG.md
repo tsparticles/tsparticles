@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/matteobruni/tsparticles/compare/webpack-tsparticles-plugin@1.0.4...webpack-tsparticles-plugin@1.1.0) (2022-06-18)
+
+
+### Features
+
+* moved twinkle options to twinkle updater package ([d6389d4](https://github.com/matteobruni/tsparticles/commit/d6389d4750bdbd2945a1fe84a781671e618122d2))
+
+
+
+
+
 ## [1.0.4](https://github.com/matteobruni/tsparticles/compare/webpack-tsparticles-plugin@1.0.3...webpack-tsparticles-plugin@1.0.4) (2022-04-16)
 
 

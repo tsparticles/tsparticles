@@ -1,21 +1,10 @@
-import type { IHsl, IRgb, IRgba } from "./Interfaces/Colors";
-import {
-    clear,
-    drawConnectLine,
-    drawGrabLine,
-    drawParticle,
-    drawParticlePlugin,
-    drawPlugin,
-    gradient,
-    paintBase,
-} from "../Utils/CanvasUtils";
-import { colorToHsl, colorToRgb, getStyleFromHsl, getStyleFromRgb } from "../Utils/ColorUtils";
+import type { IHsl, IRgba } from "./Interfaces/Colors";
+import { clear, drawParticle, drawParticlePlugin, drawPlugin, paintBase } from "../Utils/CanvasUtils";
+import { getStyleFromHsl, getStyleFromRgb, rangeColorToHsl, rangeColorToRgb } from "../Utils/ColorUtils";
 import type { Container } from "./Container";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
-import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IDelta } from "./Interfaces/IDelta";
 import type { IDimension } from "./Interfaces/IDimension";
-import type { IParticle } from "./Interfaces/IParticle";
 import type { IParticleColorStyle } from "./Interfaces/IParticleColorStyle";
 import type { Particle } from "./Particle";
 import { deepExtend } from "../Utils/Utils";
@@ -41,7 +30,8 @@ export class Canvas {
     /**
      * The particles canvas context
      */
-    private context: CanvasRenderingContext2D | null;
+    #context: CanvasRenderingContext2D | null;
+
     private generatedCanvas;
     private coverColorStyle?: string;
     private trailFillColor?: IRgba;
@@ -57,7 +47,7 @@ export class Canvas {
             width: 0,
         };
 
-        this.context = null;
+        this.#context = null;
         this.generatedCanvas = false;
     }
 
@@ -88,7 +78,7 @@ export class Canvas {
         this.size.height = canvas.offsetHeight;
         this.size.width = canvas.offsetWidth;
 
-        this.context = this.element.getContext("2d");
+        this.#context = this.element.getContext("2d");
         this.container.retina.init();
         this.initBackground();
     }
@@ -198,38 +188,6 @@ export class Canvas {
                 height: size.height / oldSize.height,
             };
         }
-    }
-
-    drawConnectLine(p1: IParticle, p2: IParticle): void {
-        this.draw((ctx) => {
-            const lineStyle = this.lineStyle(p1, p2);
-
-            if (!lineStyle) {
-                return;
-            }
-
-            const pos1 = p1.getPosition(),
-                pos2 = p2.getPosition();
-
-            drawConnectLine(ctx, p1.retina.linksWidth ?? this.container.retina.linksWidth, lineStyle, pos1, pos2);
-        });
-    }
-
-    drawGrabLine(particle: IParticle, lineColor: IRgb, opacity: number, mousePos: ICoordinates): void {
-        const container = this.container;
-
-        this.draw((ctx) => {
-            const beginPos = particle.getPosition();
-
-            drawGrabLine(
-                ctx,
-                particle.retina.linksWidth ?? container.retina.linksWidth,
-                beginPos,
-                mousePos,
-                lineColor,
-                opacity
-            );
-        });
     }
 
     drawParticle(particle: Particle, delta: IDelta): void {
@@ -342,7 +300,7 @@ export class Canvas {
         }
 
         if (background.color) {
-            const color = colorToRgb(background.color);
+            const color = rangeColorToRgb(background.color);
 
             elementStyle.backgroundColor = color ? getStyleFromRgb(color, background.opacity) : "";
         } else {
@@ -356,18 +314,18 @@ export class Canvas {
     }
 
     draw<T>(cb: (context: CanvasRenderingContext2D) => T): T | undefined {
-        if (!this.context) {
+        if (!this.#context) {
             return;
         }
 
-        return cb(this.context);
+        return cb(this.#context);
     }
 
     private initCover(): void {
         const options = this.container.actualOptions,
             cover = options.backgroundMask.cover,
             color = cover.color,
-            coverRgb = colorToRgb(color);
+            coverRgb = rangeColorToRgb(color);
 
         if (coverRgb) {
             const coverColor = {
@@ -384,7 +342,7 @@ export class Canvas {
     private initTrail(): void {
         const options = this.container.actualOptions,
             trail = options.particles.move.trail,
-            fillColor = colorToRgb(trail.fillColor);
+            fillColor = rangeColorToRgb(trail.fillColor);
 
         if (fillColor) {
             const trail = options.particles.move.trail;
@@ -403,11 +361,11 @@ export class Canvas {
 
         for (const [, plugin] of this.container.plugins) {
             if (!fColor && plugin.particleFillColor) {
-                fColor = colorToHsl(plugin.particleFillColor(particle));
+                fColor = rangeColorToHsl(plugin.particleFillColor(particle));
             }
 
             if (!sColor && plugin.particleStrokeColor) {
-                sColor = colorToHsl(plugin.particleStrokeColor(particle));
+                sColor = rangeColorToHsl(plugin.particleStrokeColor(particle));
             }
 
             if (fColor && sColor) {
@@ -464,15 +422,6 @@ export class Canvas {
     private paintBase(baseColor?: string): void {
         this.draw((ctx) => {
             paintBase(ctx, this.size, baseColor);
-        });
-    }
-
-    private lineStyle(p1: IParticle, p2: IParticle): CanvasGradient | undefined {
-        return this.draw((ctx) => {
-            const options = this.container.actualOptions,
-                connectOptions = options.interactivity.modes.connect;
-
-            return gradient(ctx, p1, p2, connectOptions.links.opacity);
         });
     }
 }

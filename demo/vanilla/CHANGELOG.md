@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@2.0.6...tsparticles-demo@2.1.0) (2022-06-18)
+
+
+### Features
+
+* added multiple emitters supported, instead of single or randomized ([cf401aa](https://github.com/matteobruni/tsparticles/commit/cf401aac3be9d3baaa2f01fb4ddf97d437a4343f))
+
+
+
+
+
 ## [2.0.6](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@2.0.5...tsparticles-demo@2.0.6) (2022-04-16)
 
 **Note:** Version bump only for package tsparticles-demo

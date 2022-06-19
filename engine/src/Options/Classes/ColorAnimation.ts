@@ -12,6 +12,7 @@ export class ColorAnimation implements IColorAnimation, IOptionLoader<IColorAnim
     enable;
     offset: RangeValue;
     speed: RangeValue;
+    decay: RangeValue;
     sync;
 
     constructor() {
@@ -19,6 +20,7 @@ export class ColorAnimation implements IColorAnimation, IOptionLoader<IColorAnim
         this.enable = false;
         this.offset = 0;
         this.speed = 1;
+        this.decay = 0;
         this.sync = true;
     }
 
@@ -41,6 +43,10 @@ export class ColorAnimation implements IColorAnimation, IOptionLoader<IColorAnim
 
         if (data.speed !== undefined) {
             this.speed = setRangeValue(data.speed);
+        }
+
+        if (data.decay !== undefined) {
+            this.decay = setRangeValue(data.decay);
         }
 
         if (data.sync !== undefined) {

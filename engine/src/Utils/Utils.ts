@@ -1,4 +1,5 @@
 import { collisionVelocity, getDistances, getValue } from "./NumberUtils";
+import type { Container } from "../Core/Container";
 import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
 import { DivMode } from "../Enums/Modes/DivMode";
 import type { Engine } from "../engine";
@@ -496,9 +497,10 @@ function loadOptions<T>(options: IOptionLoader<T>, ...sourceOptionsArr: Recursiv
 
 export function loadContainerOptions(
     engine: Engine,
+    container: Container,
     ...sourceOptionsArr: RecursivePartial<IOptions | undefined>[]
 ): Options {
-    const options = new Options(engine);
+    const options = new Options(engine, container);
 
     loadOptions(options, ...sourceOptionsArr);
 
@@ -506,9 +508,11 @@ export function loadContainerOptions(
 }
 
 export function loadParticlesOptions(
+    engine: Engine,
+    container: Container,
     ...sourceOptionsArr: RecursivePartial<IParticlesOptions | undefined>[]
 ): ParticlesOptions {
-    const options = new ParticlesOptions();
+    const options = new ParticlesOptions(engine, container);
 
     loadOptions(options, ...sourceOptionsArr);
 

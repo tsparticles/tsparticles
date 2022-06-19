@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.44.0](https://github.com/tsparticles/preset-template/compare/@tsparticles/preset-template-typescript@1.43.4...@tsparticles/preset-template-typescript@1.44.0) (2022-06-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency gh-pages to v4 ([cf6e957](https://github.com/tsparticles/preset-template/commit/cf6e9577132afcec26410f7321fcf5ffcfb05930))
+
+
+
+
+
 ## [1.43.4](https://github.com/tsparticles/preset-template/compare/@tsparticles/preset-template-typescript@1.43.3...@tsparticles/preset-template-typescript@1.43.4) (2022-04-16)
 
 

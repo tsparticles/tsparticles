@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/matteobruni/tsparticles/compare/ng-particles@3.0.6...ng-particles@3.1.0) (2022-06-18)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to v14 ([c620315](https://github.com/matteobruni/tsparticles/commit/c620315e06a16e0129acef06a4dac6505b4ce456))
+* **deps:** update dependency @capacitor/core to v3.5.0 ([581bb7e](https://github.com/matteobruni/tsparticles/commit/581bb7e2f4f6aceb3535daf9223954a80f2daa81))
+* **deps:** update dependency gh-pages to v4 ([cf6e957](https://github.com/matteobruni/tsparticles/commit/cf6e9577132afcec26410f7321fcf5ffcfb05930))
+* **deps:** update react monorepo to v18.1.0 ([6b45793](https://github.com/matteobruni/tsparticles/commit/6b457937c41d7681a2135dfcb6ff220e578f22bb))
+* fixed connect links options ([5eb3186](https://github.com/matteobruni/tsparticles/commit/5eb31866b3a9fe1328969c254f2fff0be995b1f5))
+* trying fixing issue [#4151](https://github.com/matteobruni/tsparticles/issues/4151) ([83e3e06](https://github.com/matteobruni/tsparticles/commit/83e3e0625743decef39c8496f8b30ed367803a4f))
+* upgrade @angular/common from 13.3.1 to 13.3.2 ([aa4ea55](https://github.com/matteobruni/tsparticles/commit/aa4ea55966bdb85dac6c3d147dfa5f993ea1ea3c))
+* upgrade multiple dependencies with Snyk ([796d33c](https://github.com/matteobruni/tsparticles/commit/796d33c91553ea4cf99b06f18fbf1ccf446f8152))
+
+
+
+
+
 ## [3.0.6](https://github.com/matteobruni/tsparticles/compare/ng-particles@3.0.5...ng-particles@3.0.6) (2022-04-16)
 
 **Note:** Version bump only for package ng-particles

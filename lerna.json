@@ -6,6 +6,7 @@
     "cli/files/create-preset/ts",
     "components/*",
     "demo/**/*",
+    "docsgen",
     "editor",
     "engine",
     "interactions/*",
@@ -25,6 +26,7 @@
   "npmClient": "yarn",
   "useWorkspaces": false,
   "conventionalCommits": true,
+  "useNx": true,
   "command": {
     "version": {
       "message": "chore(release): published new version"

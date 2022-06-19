@@ -6,8 +6,10 @@ import { EmitterContainer } from "./EmitterContainer";
 import { EmitterShapeType } from "./Enums/EmitterShapeType";
 import { Emitters } from "./Emitters";
 import { EmittersEngine } from "./EmittersEngine";
+import type { IEmitter } from "./Options/Interfaces/IEmitter";
+import type { IEmitterModeOptions } from "./Options/Interfaces/IEmitterModeOptions";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
-import { IEmitterShape } from "./IEmitterShape";
+import type { IEmitterShape } from "./IEmitterShape";
 import { ShapeManager } from "./ShapeManager";
 import { SquareShape } from "./Shapes/Square/SquareShape";
 import { isInArray } from "tsparticles-engine";
@@ -30,7 +32,7 @@ class EmittersPlugin implements IPlugin {
     }
 
     needsPlugin(options?: RecursivePartial<IOptions & IEmitterOptions>): boolean {
-        if (options === undefined) {
+        if (!options) {
             return false;
         }
 
@@ -75,21 +77,61 @@ class EmittersPlugin implements IPlugin {
 
         if (interactivityEmitters) {
             if (interactivityEmitters instanceof Array) {
-                optionsCast.interactivity.modes.emitters = interactivityEmitters.map((s) => {
-                    const tmp = new Emitter();
+                optionsCast.interactivity.modes.emitters = {
+                    random: {
+                        count: 1,
+                        enable: true,
+                    },
+                    value: interactivityEmitters.map((s) => {
+                        const tmp = new Emitter();
 
-                    tmp.load(s);
+                        tmp.load(s);
 
-                    return tmp;
-                });
+                        return tmp;
+                    }),
+                };
             } else {
-                let emitterOptions = optionsCast.interactivity.modes.emitters as Emitter;
+                const emitterMode = interactivityEmitters as IEmitterModeOptions;
 
-                if (emitterOptions?.load === undefined) {
-                    optionsCast.interactivity.modes.emitters = emitterOptions = new Emitter();
+                if (emitterMode.value !== undefined) {
+                    if (emitterMode.value instanceof Array) {
+                        optionsCast.interactivity.modes.emitters = {
+                            random: {
+                                count: emitterMode.random.count ?? 1,
+                                enable: emitterMode.random.enable ?? false,
+                            },
+                            value: emitterMode.value.map((s) => {
+                                const tmp = new Emitter();
+
+                                tmp.load(s);
+
+                                return tmp;
+                            }),
+                        };
+                    } else {
+                        const tmp = new Emitter();
+
+                        tmp.load(emitterMode.value);
+
+                        optionsCast.interactivity.modes.emitters = {
+                            random: {
+                                count: emitterMode.random.count ?? 1,
+                                enable: emitterMode.random.enable ?? false,
+                            },
+                            value: tmp,
+                        };
+                    }
+                } else {
+                    const emitterOptions = (optionsCast.interactivity.modes.emitters = {
+                        random: {
+                            count: 1,
+                            enable: false,
+                        },
+                        value: new Emitter(),
+                    });
+
+                    emitterOptions.value.load(interactivityEmitters as IEmitter);
                 }
-
-                emitterOptions.load(interactivityEmitters);
             }
         }
     }
@@ -119,3 +161,4 @@ export * from "./EmittersEngine";
 export * from "./Enums/EmitterClickMode";
 export * from "./Enums/EmitterShapeType";
 export * from "./Options/Interfaces/IEmitterOptions";
+export { IEmitterModeOptions } from "./Options/Interfaces/IEmitterModeOptions";

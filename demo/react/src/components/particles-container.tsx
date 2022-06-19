@@ -19,7 +19,7 @@ export class ParticlesContainer extends React.PureComponent<IProps> {
         await loadFull(engine);
     }
 
-    async particlesLoaded(container: Container): Promise<void> {
+    async particlesLoaded(container?: Container): Promise<void> {
         console.log(container);
     }
 

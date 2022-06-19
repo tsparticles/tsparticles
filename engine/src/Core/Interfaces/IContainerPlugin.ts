@@ -1,8 +1,8 @@
 import type { ClickMode } from "../../Enums/Modes/ClickMode";
-import type { IColor } from "./Colors";
 import type { ICoordinates } from "./ICoordinates";
 import type { IDelta } from "./IDelta";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
+import type { IOptionsColor } from "../../Options/Interfaces/IOptionsColor";
 import type { OutModeDirection } from "../../Enums/Directions/OutModeDirection";
 import type { Particle } from "../Particle";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
@@ -22,8 +22,8 @@ export interface IContainerPlugin {
     particleBounce?: (particle: Particle, delta: IDelta, direction: OutModeDirection) => boolean;
     particleCreated?: (particle: Particle) => void;
     particleDestroyed?: (particle: Particle, override?: boolean) => void;
-    particleFillColor?: (particle: Particle) => string | IColor | undefined;
-    particleStrokeColor?: (particle: Particle) => string | IColor | undefined;
+    particleFillColor?: (particle: Particle) => string | IOptionsColor | undefined;
+    particleStrokeColor?: (particle: Particle) => string | IOptionsColor | undefined;
     particlePosition?: (position?: ICoordinates, particle?: Particle) => ICoordinates | undefined;
     particleUpdate?: (particle: Particle, delta: IDelta) => void;
     particlesInitialization?: () => boolean;

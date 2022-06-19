@@ -1,4 +1,4 @@
-import { ICoordinates, Vector, colorToRgb, getDistances, getStyleFromRgb } from "tsparticles-engine";
+import { ICoordinates, Vector, getDistances, getStyleFromRgb, rangeColorToRgb } from "tsparticles-engine";
 import {
     SVGPathSeg,
     SVGPathSegLinetoHorizontalAbs,
@@ -15,7 +15,7 @@ export function drawPolygonMask(
     rawData: ICoordinates[],
     stroke: IPolygonMaskDrawStroke
 ): void {
-    const color = colorToRgb(stroke.color);
+    const color = rangeColorToRgb(stroke.color);
 
     if (!color) {
         return;
@@ -42,7 +42,7 @@ export function drawPolygonMaskPath(
 ): void {
     context.translate(position.x, position.y);
 
-    const color = colorToRgb(stroke.color);
+    const color = rangeColorToRgb(stroke.color);
 
     if (!color) {
         return;

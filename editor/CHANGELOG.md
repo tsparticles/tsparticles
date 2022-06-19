@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@2.0.6...tsparticles-editor@2.1.0) (2022-06-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency gh-pages to v4 ([cf6e957](https://github.com/matteobruni/tsparticles/commit/cf6e9577132afcec26410f7321fcf5ffcfb05930))
+* **deps:** update react monorepo to v18.1.0 ([6b45793](https://github.com/matteobruni/tsparticles/commit/6b457937c41d7681a2135dfcb6ff220e578f22bb))
+
+
+### Features
+
+* added decay to all animations ([954858e](https://github.com/matteobruni/tsparticles/commit/954858ec9ef85a7d9d676838399777e4a1a8b885))
+* moved life options to life updater ([ea85856](https://github.com/matteobruni/tsparticles/commit/ea85856de8246e09a01bdcd4d12fb86bc04631ee))
+* moved roll options to orbit updater package ([521c784](https://github.com/matteobruni/tsparticles/commit/521c784ff71022af3b02cac181eb6942d36aa592))
+* moved tilt options to orbit updater package ([735b4b4](https://github.com/matteobruni/tsparticles/commit/735b4b4c9747195296c435fa2e2c9c84423bd658))
+* moved twinkle options to twinkle updater package ([d6389d4](https://github.com/matteobruni/tsparticles/commit/d6389d4750bdbd2945a1fe84a781671e618122d2))
+
+
+
+
+
 ## [2.0.6](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@2.0.5...tsparticles-editor@2.0.6) (2022-04-16)
 
 

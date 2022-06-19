@@ -14,6 +14,11 @@ export interface IAnimation {
     speed: RangeValue;
 
     /**
+     * Speed animation decay
+     */
+    decay: RangeValue;
+
+    /**
      * Enables the sync animations for the particles created at the same time
      * pushed or emitter particles will be out of sync
      */

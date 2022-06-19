@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@2.0.6...react-tsparticles-demo@2.1.0) (2022-06-18)
+
+
+### Features
+
+* added range colors to all color fields ([1b6f32a](https://github.com/matteobruni/tsparticles/commit/1b6f32ad50beb3dc4813187a6e1d03f3013f3ca9))
+
+
+
+
+
 ## [2.0.6](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@2.0.5...react-tsparticles-demo@2.0.6) (2022-04-16)
 
 **Note:** Version bump only for package react-tsparticles-demo

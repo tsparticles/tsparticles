@@ -1,5 +1,5 @@
-import { IColor } from "../../../Core/Interfaces/Colors";
-import { ICoordinates } from "../../../Core/Interfaces/ICoordinates";
+import type { ICoordinates } from "../../../Core/Interfaces/ICoordinates";
+import type { IOptionsColor } from "../IOptionsColor";
 
 /**
  * @category Options
@@ -7,7 +7,7 @@ import { ICoordinates } from "../../../Core/Interfaces/ICoordinates";
  */
 export interface IShadow {
     blur: number;
-    color: string | IColor;
+    color: string | IOptionsColor;
     enable: boolean;
     offset: ICoordinates;
 }

@@ -56,6 +56,10 @@ export class Linker extends ParticlesInteractorBase {
         return particle.options.links.enable;
     }
 
+    clear(): void {
+        // do nothing
+    }
+
     reset(): void {
         // do nothing
     }

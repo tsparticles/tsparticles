@@ -12,6 +12,7 @@ import type { IParticleWobble } from "./IParticleWobble";
 import type { IParticlesOptions } from "../../Options/Interfaces/Particles/IParticlesOptions";
 import type { IShapeValues } from "./IShapeValues";
 import type { IStroke } from "../../Options/Interfaces/Particles/IStroke";
+import type { Interactivity } from "../../Options/Classes/Interactivity/Interactivity";
 import type { Vector } from "../Utils/Vector";
 
 export interface IParticle {
@@ -45,6 +46,7 @@ export interface IParticle {
     readonly strokeWidth?: number;
     readonly velocity: Vector;
     readonly retina: IParticleRetinaProps;
+    readonly interactivity: Interactivity;
 
     getPosition(): ICoordinates3d;
 

@@ -142,6 +142,13 @@ export class Particles {
         container.pathGenerator.init(container);
     }
 
+    destroy(): void {
+        this.array = [];
+        this.zArray = [];
+        this.movers = [];
+        this.updaters = [];
+    }
+
     async redraw(): Promise<void> {
         this.clear();
         this.init();
@@ -190,7 +197,7 @@ export class Particles {
         container.pathGenerator.update();
 
         for (const [, plugin] of container.plugins) {
-            if (plugin.update !== undefined) {
+            if (plugin.update) {
                 plugin.update(delta);
             }
         }
@@ -213,7 +220,8 @@ export class Particles {
             }
 
             particle.ignoresResizeRatio = false;
-            particle.bubble.inRange = false;
+
+            await this.interactionManager.reset(particle);
 
             for (const [, plugin] of this.container.plugins) {
                 if (particle.destroyed) {
@@ -338,10 +346,13 @@ export class Particles {
         return this.pushParticle(position, overrideOptions, group);
     }
 
-    addSplitParticle(parent: Particle): Particle | undefined {
-        const splitOptions = parent.options.destroy.split;
-        const options = loadParticlesOptions(parent.options);
-        const factor = getValue(splitOptions.factor);
+    addSplitParticle(
+        parent: Particle,
+        splitParticlesOptions?: RecursivePartial<IParticlesOptions>
+    ): Particle | undefined {
+        const splitOptions = parent.options.destroy.split,
+            options = loadParticlesOptions(this.#engine, this.container, parent.options),
+            factor = getValue(splitOptions.factor);
 
         options.color.load({
             value: {
@@ -356,7 +367,7 @@ export class Particles {
             options.size.value.max /= factor;
         }
 
-        options.load(splitOptions.particles);
+        options.load(splitParticlesOptions);
 
         const offset = splitOptions.sizeOffset ? setRangeValue(-parent.size.value, parent.size.value) : 0,
             position = {

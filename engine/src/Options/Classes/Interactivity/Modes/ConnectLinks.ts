@@ -13,7 +13,7 @@ export class ConnectLinks implements IConnectLinks, IOptionLoader<IConnectLinks>
     }
 
     load(data?: RecursivePartial<IConnectLinks>): void {
-        if (!(data !== undefined && data.opacity !== undefined)) {
+        if (!data) {
             return;
         }
 

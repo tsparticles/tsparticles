@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@2.0.6...tsparticles-website@2.1.0) (2022-06-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency gh-pages to v4 ([cf6e957](https://github.com/matteobruni/tsparticles/commit/cf6e9577132afcec26410f7321fcf5ffcfb05930))
+* **deps:** update dependency minify to v9 ([a12fb3e](https://github.com/matteobruni/tsparticles/commit/a12fb3e6f2a94677b4be32ebc69a17b085d2f3d2))
+* fixed react-tsparticles typescript template ([04a4d10](https://github.com/matteobruni/tsparticles/commit/04a4d100b97bd5828d7346c7277c5b47bd8f9208))
+* upgrade sass from 1.51.0 to 1.52.0 ([854882b](https://github.com/matteobruni/tsparticles/commit/854882b4d490f9429f8f99a9098bfaf1f8e341d8))
+
+
+### Features
+
+* added range colors to all color fields ([1b6f32a](https://github.com/matteobruni/tsparticles/commit/1b6f32ad50beb3dc4813187a6e1d03f3013f3ca9))
+
+
+
+
+
 ## [2.0.6](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@2.0.5...tsparticles-website@2.0.6) (2022-04-16)
 
 **Note:** Version bump only for package tsparticles-website

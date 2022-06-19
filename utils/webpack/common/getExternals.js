@@ -71,6 +71,7 @@ const getExternals = (bundle) => {
         "tsparticles-updater-roll",
         "tsparticles-updater-size",
         "tsparticles-updater-tilt",
+        "tsparticles-updater-twinkle",
         "tsparticles-updater-wobble");
 };
 

@@ -65,6 +65,24 @@ export class InteractionManager {
 
     /**
      * Iterates through the external interactivity manager and call the interact method, if they are enabled
+     * @param particle the particle to reset
+     */
+    async reset(particle: Particle): Promise<void> {
+        for (const interactor of this.externalInteractors) {
+            if (interactor.isEnabled()) {
+                await interactor.reset(particle);
+            }
+        }
+
+        for (const interactor of this.particleInteractors) {
+            if (interactor.isEnabled(particle)) {
+                await interactor.reset(particle);
+            }
+        }
+    }
+
+    /**
+     * Iterates through the external interactivity manager and call the interact method, if they are enabled
      * @param delta this variable contains the delta between the current frame and the previous frame
      */
     async externalInteract(delta: IDelta): Promise<void> {
@@ -82,7 +100,7 @@ export class InteractionManager {
      */
     async particlesInteract(particle: Particle, delta: IDelta): Promise<void> {
         for (const interactor of this.externalInteractors) {
-            interactor.reset(particle);
+            interactor.clear(particle);
         }
 
         /* interaction auto between particles */

@@ -155,25 +155,20 @@ export function replaceImageColor(
     color: IHsl,
     particle: Particle
 ): IParticleImage {
-    const svgColoredData = replaceColorSvg(image, color, particle.opacity?.value ?? 1);
-
-    /* prepare to create img with colored svg */
-    const svg = new Blob([svgColoredData], { type: "image/svg+xml" });
-    const domUrl = URL || window.URL || window.webkitURL || window;
-    const url = domUrl.createObjectURL(svg);
-
-    /* create particle img obj */
-    const img = new Image();
-
-    const imageRes: IParticleImage = {
-        data: {
-            ...image,
-            svgData: svgColoredData,
-        },
-        ratio: imageData.width / imageData.height,
-        replaceColor: imageData.replaceColor ?? imageData.replace_color,
-        source: imageData.src,
-    };
+    const svgColoredData = replaceColorSvg(image, color, particle.opacity?.value ?? 1),
+        svg = new Blob([svgColoredData], { type: "image/svg+xml" }) /* prepare to create img with colored svg */,
+        domUrl = URL || window.URL || window.webkitURL || window,
+        url = domUrl.createObjectURL(svg),
+        img = new Image() /* create particle img obj */,
+        imageRes: IParticleImage = {
+            data: {
+                ...image,
+                svgData: svgColoredData,
+            },
+            ratio: imageData.width / imageData.height,
+            replaceColor: imageData.replaceColor ?? imageData.replace_color,
+            source: imageData.src,
+        };
 
     img.addEventListener("load", () => {
         const pImage = (particle as IImageParticle).image;

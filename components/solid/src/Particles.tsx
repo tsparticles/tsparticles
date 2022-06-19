@@ -82,9 +82,9 @@ const Particles = (props: IParticlesProps): JSX.Element => {
 		});
 
 		return (
-			<div className={className ?? ""} id={id}>
+			<div class={className ?? ""} id={id}>
 				<canvas
-					className={canvasClassName ?? ""}
+					class={canvasClassName ?? ""}
 					style={{
 						...props.style,
 						width,

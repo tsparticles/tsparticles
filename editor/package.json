@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-editor",
-  "version": "2.0.6",
+  "version": "2.1.0",
   "description": "tsParticles Configuration Editor",
   "keywords": [
     "tsparticles",
@@ -53,6 +53,9 @@
       "url": "https://www.buymeacoffee.com/matteobruni"
     }
   ],
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
   "devDependencies": {
     "@babel/core": "^7.17.9",
     "@types/webpack-env": "^1.16.4",
@@ -66,18 +69,18 @@
     "prettier": "^2.6.2",
     "rimraf": "^3.0.2",
     "terser-webpack-plugin": "^5.3.1",
-    "typescript": "^4.6.4",
+    "typescript": "^4.7.3",
     "webpack": "^5.72.0",
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.2",
-    "webpack-tsparticles-plugin": "^1.0.4"
+    "webpack-tsparticles-plugin": "^1.1.0"
   },
   "dependencies": {
     "object-gui": "^1.1.1",
-    "tsparticles-engine": "^2.0.6",
-    "tsparticles-plugin-absorbers": "^2.0.6",
-    "tsparticles-plugin-emitters": "^2.0.6",
-    "tsparticles-plugin-infection": "^2.0.6"
+    "tsparticles-engine": "^2.1.0",
+    "tsparticles-plugin-absorbers": "^2.1.0",
+    "tsparticles-plugin-emitters": "^2.1.0",
+    "tsparticles-plugin-infection": "^2.1.0"
   },
   "publishConfig": {
     "directory": "dist"

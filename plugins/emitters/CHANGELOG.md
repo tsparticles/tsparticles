@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-emitters@2.0.6...tsparticles-plugin-emitters@2.1.0) (2022-06-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency gh-pages to v4 ([cf6e957](https://github.com/matteobruni/tsparticles/commit/cf6e9577132afcec26410f7321fcf5ffcfb05930))
+* **deps:** update react monorepo to v18.1.0 ([6b45793](https://github.com/matteobruni/tsparticles/commit/6b457937c41d7681a2135dfcb6ff220e578f22bb))
+
+
+### Features
+
+* added multiple emitters supported, instead of single or randomized ([cf401aa](https://github.com/matteobruni/tsparticles/commit/cf401aac3be9d3baaa2f01fb4ddf97d437a4343f))
+* added range colors to all color fields ([1b6f32a](https://github.com/matteobruni/tsparticles/commit/1b6f32ad50beb3dc4813187a6e1d03f3013f3ca9))
+* loading updater options in updaters instead of in the engine, started from wobble ([85abd01](https://github.com/matteobruni/tsparticles/commit/85abd01a618efd3afd17f6fd605d46005cd842dd))
+
+
+
+
+
 ## [2.0.6](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-emitters@2.0.5...tsparticles-plugin-emitters@2.0.6) (2022-04-16)
 
 

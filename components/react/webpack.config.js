@@ -1,145 +1,105 @@
-const webpack = require('webpack');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const path = require("path");
+const TerserPlugin = require("terser-webpack-plugin");
+const webpack = require("webpack");
+const version = require("./package.json").version;
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
-const production = process.env.NODE_ENV === "production";
+const banner = `Author : Matteo Bruni
+MIT license: https://opensource.org/licenses/MIT
+Demo / Generator : https://particles.js.org/
+GitHub : https://www.github.com/matteobruni/tsparticles
+How to use? : Check the GitHub README
+v${version}`;
 
-const plugins = (production ?
-    [
-        new webpack.DefinePlugin({
-            'process.env': {
-                'NODE_ENV': JSON.stringify('production')
-            }
-        })
-    ] :
-    []).concat([
-    new BundleAnalyzerPlugin({
-        openAnalyzer: false,
-        analyzerMode: "static",
-        reportFilename: "../report.html"
-    })
-]);
+const minBanner = `React tsParticles v${version} by Matteo Bruni`;
 
-const typescriptLoader = {
-    test: /\.tsx?$/,
-    exclude: /node_modules/,
-    use: [
-        {
-            loader: 'babel-loader',
-            options: {
-                presets: [ '@babel/preset-env' ],
-                plugins: [
-                    [ "@babel/transform-runtime" ]
-                ]
-            }
-        }, {
-            loader: 'ts-loader'
-        }
-    ]
-};
+const getConfig = (entry) => {
+    const reportFileName = "report";
 
-const jsonLoader = {
-    test: /\.json$/,
-    use: 'json-loader'
-};
-
-const rules = [
-    typescriptLoader,
-    jsonLoader
-];
-
-const getExternals = (target = 'cjs') => {
-    const baseExternals = [
-        {
-            react: {
-                commonjs: "react",
-                commonjs2: "react",
-                amd: "react",
-                root: "React"
-            }
+    return {
+        entry: entry,
+        output: {
+            path: path.resolve(__dirname, "dist"),
+            filename: "[name].js",
+            libraryTarget: "umd",
+            library: "Particles",
+            globalObject: "this",
+            chunkFilename: '[name].js',
         },
-        {
-            "tsparticles": {
-                commonjs: "tsparticles",
-                commonjs2: "tsparticles",
-                amd: "tsparticles",
-                root: "window"
-            }
+        resolve: {
+            extensions: [ ".js", ".json" ]
         },
-        {
-            "tsparticles-slim": {
-                commonjs: "tsparticles-slim",
-                commonjs2: "tsparticles-slim",
-                amd: "tsparticles-slim",
-                root: "window"
-            }
-        },
-        {
+        externals: [ {
             "tsparticles-engine": {
                 commonjs: "tsparticles-engine",
                 commonjs2: "tsparticles-engine",
                 amd: "tsparticles-engine",
                 root: "window"
             }
-        }
-    ];
-
-    if (target === 'cjs') {
-        baseExternals.push(/fast-deep-equal/);
-    }
-    return baseExternals;
-};
-
-const getLibraryTarget = (target = 'cjs') => {
-    let libraryTarget;
-
-    switch (target) {
-        case 'umd':
-            libraryTarget = 'umd';
-            break;
-        case 'cjs':
-            libraryTarget = 'commonjs';
-            break;
-        default:
-            libraryTarget = target;
-    }
-
-    return libraryTarget;
-}
-
-const getOutput = (target = 'cjs') => {
-    const baseOutput = {
-        path: __dirname + `/${target}`,
-        filename: "particles.js",
-        libraryTarget: getLibraryTarget(target)
-    };
-
-    if (target === 'umd') {
-        baseOutput.library = 'Particles';
-        baseOutput.globalObject = 'this';
-    }
-
-    return baseOutput;
-}
-
-const getConfig = (target = 'cjs') => {
-
-
-    return {
-        mode: production ? 'production' : 'development',
-        context: __dirname,
-        devtool: production ? false : "source-map",
-        resolve: {
-            extensions: [ ".ts", ".tsx", ".js" ]
-        },
-        entry: "./src/index.ts",
-        output: getOutput(target),
-        target: 'web',
+        } ],
         module: {
-            rules
+            rules: [
+                {
+                    // Include ts, tsx, js, and jsx files.
+                    test: /\.js$/,
+                    exclude: /node_modules/,
+                    loader: "babel-loader"
+                }
+            ]
         },
-        externals: getExternals(target),
-        plugins
-    }
+        plugins: [
+            new webpack.BannerPlugin({
+                banner,
+                exclude: /\.min\.js$/
+            }),
+            new webpack.BannerPlugin({
+                banner: minBanner,
+                include: /\.min\.js$/
+            }),
+            new webpack.ProgressPlugin(),
+            new BundleAnalyzerPlugin({
+                openAnalyzer: false,
+                analyzerMode: "static",
+                exclude: /\.min\.js$/,
+                reportFilename: `${reportFileName}.html`
+            })
+        ],
+        optimization: {
+            minimize: true,
+            minimizer: [
+                new TerserPlugin({
+                    include: /\.min\.js$/,
+                    terserOptions: {
+                        output: {
+                            comments: minBanner
+                        }
+                    },
+                    extractComments: false
+                }),
+                new TerserPlugin({
+                    exclude: /\.min\.js$/,
+                    terserOptions: {
+                        compress: false,
+                        format: {
+                            beautify: true,
+                            indent_level: 2,
+                            semicolons: false,
+                            comments: banner
+                        },
+                        mangle: false,
+                        keep_classnames: true,
+                        keep_fnames: true,
+                    },
+                    extractComments: false
+                })
+            ]
+        }
+    };
 };
 
-module.exports = [ getConfig('cjs'), getConfig('umd') ];
+module.exports = [
+    getConfig({
+        "particles": "./dist/browser/index.js",
+        "particles.min": "./dist/browser/index.js"
+    })
+];

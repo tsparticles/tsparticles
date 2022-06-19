@@ -1,4 +1,4 @@
-import type { IColor, IContainerPlugin, Particle } from "tsparticles-engine";
+import type { IContainerPlugin, IOptionsColor, Particle } from "tsparticles-engine";
 import type { InfectableContainer, InfectableParticle } from "./Types";
 import type { IInfectionOptions } from "./Options/Interfaces/IInfectionOptions";
 import { Infecter } from "./Infecter";
@@ -29,7 +29,7 @@ export class InfectionInstance implements IContainerPlugin {
         }
     }
 
-    particleFillColor(particle: Particle): string | IColor | undefined {
+    particleFillColor(particle: Particle): string | IOptionsColor | undefined {
         const infParticle = particle as unknown as InfectableParticle;
         const options = this.container.actualOptions as unknown as IInfectionOptions;
 
@@ -44,7 +44,7 @@ export class InfectionInstance implements IContainerPlugin {
         return infectionStage !== undefined ? infectionStages[infectionStage].color : undefined;
     }
 
-    particleStrokeColor(particle: Particle): string | IColor | undefined {
+    particleStrokeColor(particle: Particle): string | IOptionsColor | undefined {
         return this.particleFillColor(particle);
     }
 }

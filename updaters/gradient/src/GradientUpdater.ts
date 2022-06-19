@@ -3,7 +3,6 @@ import {
     GradientType,
     RotateDirection,
     StartValueType,
-    colorToHsl,
     getHslAnimationFromHsl,
     getRangeMax,
     getRangeMin,
@@ -11,6 +10,7 @@ import {
     getStyleFromHsl,
     itemFromArray,
     randomInRange,
+    rangeColorToHsl,
 } from "tsparticles-engine";
 import type {
     IDelta,
@@ -46,6 +46,8 @@ function updateColorOpacity(delta: IDelta, value: IParticleNumericValueAnimation
         return;
     }
 
+    const decay = value.decay ?? 1;
+
     switch (value.status) {
         case AnimationStatus.increasing:
             if (value.value >= value.max) {
@@ -64,6 +66,10 @@ function updateColorOpacity(delta: IDelta, value: IParticleNumericValueAnimation
 
             break;
     }
+
+    if (value.velocity && decay !== 1) {
+        value.velocity *= decay;
+    }
 }
 
 function updateColorValue(delta: IDelta, value: IParticleValueAnimation<number>, max: number, decrease: boolean): void {
@@ -74,7 +80,8 @@ function updateColorValue(delta: IDelta, value: IParticleValueAnimation<number>,
     }
 
     //const offset = NumberUtils.randomInRange(valueAnimation.offset);
-    const velocity = (value.velocity ?? 0) * delta.factor; // + offset * 3.6;
+    const velocity = (value.velocity ?? 0) * delta.factor,
+        decay = value.decay ?? 1; // + offset * 3.6;
 
     if (!decrease || colorValue.status === AnimationStatus.increasing) {
         colorValue.value += velocity;
@@ -95,11 +102,16 @@ function updateColorValue(delta: IDelta, value: IParticleValueAnimation<number>,
     if (colorValue.value > max) {
         colorValue.value %= max;
     }
+
+    if (value.velocity && decay !== 1) {
+        value.velocity *= decay;
+    }
 }
 
 function updateAngle(delta: IDelta, angle: IParticleValueAnimation<number>): void {
-    const speed = (angle.velocity ?? 0) * delta.factor;
-    const max = 2 * Math.PI;
+    const speed = (angle.velocity ?? 0) * delta.factor,
+        max = 2 * Math.PI,
+        decay = angle.decay ?? 1;
 
     if (!angle.enable) {
         return;
@@ -123,6 +135,10 @@ function updateAngle(delta: IDelta, angle: IParticleValueAnimation<number>): voi
             }
 
             break;
+    }
+
+    if (angle.velocity && decay !== 1) {
+        angle.velocity *= decay;
     }
 }
 
@@ -168,6 +184,7 @@ export class GradientUpdater implements IParticleUpdater {
                     enable: gradient.angle.animation.enable,
                     velocity:
                         (getRangeValue(gradient.angle.animation.speed) / 360) * particle.container.retina.reduceFactor,
+                    decay: 1 - getRangeValue(gradient.angle.animation.decay),
                 },
                 type: gradient.type,
                 colors: [],
@@ -194,7 +211,7 @@ export class GradientUpdater implements IParticleUpdater {
             const reduceDuplicates = particle.options.reduceDuplicates;
 
             for (const grColor of gradient.colors) {
-                const grHslColor = colorToHsl(grColor.value, particle.id, reduceDuplicates);
+                const grHslColor = rangeColorToHsl(grColor.value, particle.id, reduceDuplicates);
 
                 if (grHslColor) {
                     const grHslAnimation = getHslAnimationFromHsl(
@@ -216,6 +233,7 @@ export class GradientUpdater implements IParticleUpdater {
                                   velocity:
                                       (getRangeValue(grColor.opacity.animation.speed) / 100) *
                                       particle.container.retina.reduceFactor,
+                                  decay: 1 - getRangeValue(grColor.opacity.animation.decay),
                               }
                             : undefined,
                     };

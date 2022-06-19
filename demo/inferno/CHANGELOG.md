@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/matteobruni/tsparticles/compare/inferno-particles-demo@2.0.6...inferno-particles-demo@2.1.0) (2022-06-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @capacitor/core to v3.5.0 ([581bb7e](https://github.com/matteobruni/tsparticles/commit/581bb7e2f4f6aceb3535daf9223954a80f2daa81))
+* **deps:** update dependency inferno to v8 ([f4f0419](https://github.com/matteobruni/tsparticles/commit/f4f04197f966a4d512f5be0c37097e963889336e))
+
+
+
+
+
 ## [2.0.6](https://github.com/matteobruni/tsparticles/compare/inferno-particles-demo@2.0.5...inferno-particles-demo@2.0.6) (2022-04-16)
 
 **Note:** Version bump only for package inferno-particles-demo

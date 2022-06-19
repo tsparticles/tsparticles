@@ -1,11 +1,14 @@
 import type { Container, IShapeDrawer, Particle } from "tsparticles-engine";
-import { IImage, IImageParticle, IParticleImage, downloadSvgImage, loadImage, replaceImageColor } from "./Utils";
+import {
+    ContainerImage,
+    IImage,
+    IImageParticle,
+    IParticleImage,
+    downloadSvgImage,
+    loadImage,
+    replaceImageColor,
+} from "./Utils";
 import { IImageShape } from "./IImageShape";
-
-interface ContainerImage {
-    id: string;
-    images: IImage[];
-}
 
 /**
  * @category Shape Drawers
@@ -78,19 +81,18 @@ export class ImageDrawer implements IShapeDrawer {
      * @param opacity the particle opacity
      */
     draw(context: CanvasRenderingContext2D, particle: IImageParticle, radius: number, opacity: number): void {
-        const image = particle.image;
-        const element = image?.data?.element;
+        const image = particle.image,
+            element = image?.data?.element;
 
         if (!element) {
             return;
         }
 
-        const ratio = image?.ratio ?? 1;
-
-        const pos = {
-            x: -radius,
-            y: -radius,
-        };
+        const ratio = image?.ratio ?? 1,
+            pos = {
+                x: -radius,
+                y: -radius,
+            };
 
         if (!image?.data.svgData || !image?.replaceColor) {
             context.globalAlpha = opacity;
@@ -112,9 +114,10 @@ export class ImageDrawer implements IShapeDrawer {
             return;
         }
 
-        const images = this.getImages(particle.container).images;
-        const imageData = particle.shapeData as IImageShape;
-        const image = images.find((t) => t.source === imageData.src);
+        const images = this.getImages(particle.container).images,
+            imageData = particle.shapeData as IImageShape,
+            image = images.find((t) => t.source === imageData.src);
+
         let imageRes: IParticleImage;
 
         if (!image) {
@@ -147,14 +150,13 @@ export class ImageDrawer implements IShapeDrawer {
             imageRes.ratio = 1;
         }
 
-        const fill = imageData.fill ?? particle.fill;
-        const close = imageData.close ?? particle.close;
-
-        const imageShape = {
-            image: imageRes,
-            fill,
-            close,
-        };
+        const fill = imageData.fill ?? particle.fill,
+            close = imageData.close ?? particle.close,
+            imageShape = {
+                image: imageRes,
+                fill,
+                close,
+            };
 
         (particle as IImageParticle).image = imageShape.image;
 
@@ -186,6 +188,7 @@ export class ImageDrawer implements IShapeDrawer {
             this.addImage(container, image);
 
             const imageFunc = imageShape.replaceColor ? downloadSvgImage : loadImage;
+
             await imageFunc(image);
         } catch {
             throw new Error(`tsParticles error - ${imageShape.src} not found`);

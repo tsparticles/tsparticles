@@ -1,9 +1,24 @@
-import type { IColor, IHsl, IHsla, IHsv, IHsva, IRgb, IRgba, IValueColor } from "../Core/Interfaces/Colors";
+import type {
+    IColor,
+    IHsl,
+    IHsla,
+    IHsv,
+    IHsva,
+    IRangeColor,
+    IRangeHsl,
+    IRangeHsv,
+    IRangeRgb,
+    IRangeValueColor,
+    IRgb,
+    IRgba,
+    IValueColor,
+} from "../Core/Interfaces/Colors";
 import { getRangeValue, mix, randomInRange, setRangeValue } from "./NumberUtils";
 import { midColorValue, randomColorValue } from "../Core/Utils/Constants";
 import { AnimationStatus } from "../Enums/AnimationStatus";
 import { HslAnimation } from "../Options/Classes/HslAnimation";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
+import type { IOptionsColor } from "../Options/Interfaces/IOptionsColor";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IParticleHslAnimation } from "../Core/Interfaces/IParticleHslAnimation";
 import type { IParticleValueAnimation } from "../Core/Interfaces/IParticleValueAnimation";
@@ -17,26 +32,24 @@ import { itemFromArray } from "./Utils";
  * @param t
  */
 function hue2rgb(p: number, q: number, t: number): number {
-    let tCalc = t;
-
-    if (tCalc < 0) {
-        tCalc += 1;
+    if (t < 0) {
+        t += 1;
     }
 
-    if (tCalc > 1) {
-        tCalc -= 1;
+    if (t > 1) {
+        t -= 1;
     }
 
-    if (tCalc < 1 / 6) {
-        return p + (q - p) * 6 * tCalc;
+    if (t < 1 / 6) {
+        return p + (q - p) * 6 * t;
     }
 
-    if (tCalc < 1 / 2) {
+    if (t < 1 / 2) {
         return q;
     }
 
-    if (tCalc < 2 / 3) {
-        return p + (q - p) * (2 / 3 - tCalc) * 6;
+    if (t < 2 / 3) {
+        return p + (q - p) * (2 / 3 - t) * 6;
     }
 
     return p;
@@ -48,8 +61,8 @@ function hue2rgb(p: number, q: number, t: number): number {
  */
 function stringToRgba(input: string): IRgba | undefined {
     if (input.startsWith("rgb")) {
-        const regex = /rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*([\d.]+)\s*)?\)/i;
-        const result = regex.exec(input);
+        const regex = /rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*([\d.]+)\s*)?\)/i,
+            result = regex.exec(input);
 
         return result
             ? {
@@ -60,8 +73,8 @@ function stringToRgba(input: string): IRgba | undefined {
               }
             : undefined;
     } else if (input.startsWith("hsl")) {
-        const regex = /hsla?\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([\d.]+)\s*)?\)/i;
-        const result = regex.exec(input);
+        const regex = /hsla?\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([\d.]+)\s*)?\)/i,
+            result = regex.exec(input);
 
         return result
             ? hslaToRgba({
@@ -72,8 +85,8 @@ function stringToRgba(input: string): IRgba | undefined {
               })
             : undefined;
     } else if (input.startsWith("hsv")) {
-        const regex = /hsva?\(\s*(\d+)°\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([\d.]+)\s*)?\)/i;
-        const result = regex.exec(input);
+        const regex = /hsva?\(\s*(\d+)°\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([\d.]+)\s*)?\)/i,
+            result = regex.exec(input);
 
         return result
             ? hsvaToRgba({
@@ -84,14 +97,12 @@ function stringToRgba(input: string): IRgba | undefined {
               })
             : undefined;
     } else {
-        // By Tim Down - http://stackoverflow.com/a/5624139/3493650
-        // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
-        const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])([a-f\d])?$/i;
-        const hexFixed = input.replace(shorthandRegex, (_m, r, g, b, a) => {
-            return r + r + g + g + b + b + (a !== undefined ? a + a : "");
-        });
-        const regex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})?$/i;
-        const result = regex.exec(hexFixed);
+        const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])([a-f\d])?$/i,
+            hexFixed = input.replace(shorthandRegex, (_, r, g, b, a) => {
+                return r + r + g + g + b + b + (a !== undefined ? a + a : "");
+            }),
+            regex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})?$/i,
+            result = regex.exec(hexFixed);
 
         return result
             ? {
@@ -110,6 +121,65 @@ function stringToRgba(input: string): IRgba | undefined {
  * @param index the array index, if needed
  * @param useIndex set to false to ignore the index parameter
  */
+export function rangeColorToRgb(input?: string | IRangeColor, index?: number, useIndex = true): IRgb | undefined {
+    if (input === undefined) {
+        return undefined;
+    }
+
+    const color = typeof input === "string" ? { value: input } : input;
+
+    if (typeof color.value === "string") {
+        return colorToRgb(color.value, index, useIndex);
+    }
+
+    if (color.value instanceof Array) {
+        return rangeColorToRgb({
+            value: itemFromArray(color.value, index, useIndex),
+        });
+    }
+
+    const colorValue = color.value as IRangeValueColor,
+        rgbColor = colorValue.rgb ?? (color.value as IRangeRgb);
+
+    if (rgbColor.r !== undefined) {
+        return {
+            r: getRangeValue(rgbColor.r),
+            g: getRangeValue(rgbColor.g),
+            b: getRangeValue(rgbColor.b),
+        };
+    }
+
+    const hslColor = colorValue.hsl ?? (color.value as IRangeHsl);
+
+    if (hslColor.h !== undefined && hslColor.l !== undefined) {
+        return hslToRgb({
+            h: getRangeValue(hslColor.h),
+            l: getRangeValue(hslColor.l),
+            s: getRangeValue(hslColor.s),
+        });
+    }
+
+    const hsvColor = colorValue.hsv ?? (color.value as IRangeHsv);
+
+    if (hsvColor.h !== undefined && hsvColor.v !== undefined) {
+        const res = hsvToRgb({
+            h: getRangeValue(hsvColor.h),
+            s: getRangeValue(hsvColor.s),
+            v: getRangeValue(hsvColor.v),
+        });
+
+        return res;
+    }
+
+    return undefined;
+}
+
+/**
+ * Gets the particles color
+ * @param input the input color to convert in [[IRgb]] object
+ * @param index the array index, if needed
+ * @param useIndex set to false to ignore the index parameter
+ */
 export function colorToRgb(input?: string | IColor, index?: number, useIndex = true): IRgb | undefined {
     if (input === undefined) {
         return;
@@ -117,38 +187,36 @@ export function colorToRgb(input?: string | IColor, index?: number, useIndex = t
 
     const color = typeof input === "string" ? { value: input } : input;
 
-    let res: IRgb | undefined;
-
     if (typeof color.value === "string") {
-        res = color.value === randomColorValue ? getRandomRgbColor() : stringToRgb(color.value);
-    } else {
-        if (color.value instanceof Array) {
-            const colorSelected = itemFromArray(color.value, index, useIndex);
-
-            res = colorToRgb({ value: colorSelected });
-        } else {
-            const colorValue = color.value as IValueColor,
-                rgbColor = colorValue.rgb ?? (color.value as IRgb);
-
-            if (rgbColor.r !== undefined) {
-                res = rgbColor;
-            } else {
-                const hslColor = colorValue.hsl ?? (color.value as IHsl);
-
-                if (hslColor.h !== undefined && hslColor.l !== undefined) {
-                    res = hslToRgb(hslColor);
-                } else {
-                    const hsvColor = colorValue.hsv ?? (color.value as IHsv);
-
-                    if (hsvColor.h !== undefined && hsvColor.v !== undefined) {
-                        res = hsvToRgb(hsvColor);
-                    }
-                }
-            }
-        }
+        return color.value === randomColorValue ? getRandomRgbColor() : stringToRgb(color.value);
     }
 
-    return res;
+    if (color.value instanceof Array) {
+        return colorToRgb({
+            value: itemFromArray(color.value, index, useIndex),
+        });
+    }
+
+    const colorValue = color.value as IValueColor,
+        rgbColor = colorValue.rgb ?? (color.value as IRgb);
+
+    if (rgbColor.r !== undefined) {
+        return rgbColor;
+    }
+
+    const hslColor = colorValue.hsl ?? (color.value as IHsl);
+
+    if (hslColor.h !== undefined && hslColor.l !== undefined) {
+        return hslToRgb(hslColor);
+    }
+
+    const hsvColor = colorValue.hsv ?? (color.value as IHsv);
+
+    if (hsvColor.h !== undefined && hsvColor.v !== undefined) {
+        return hsvToRgb(hsvColor);
+    }
+
+    return undefined;
 }
 
 /**
@@ -165,6 +233,23 @@ export function colorToHsl(color: string | IColor | undefined, index?: number, u
 }
 
 /**
+ * Gets the particles color
+ * @param color the input color to convert in [[IHsl]] object
+ * @param index the array index, if needed
+ * @param useIndex set to false to ignore the index parameter
+ * @returns the [[IHsl]] object
+ */
+export function rangeColorToHsl(
+    color: string | IRangeColor | undefined,
+    index?: number,
+    useIndex = true
+): IHsl | undefined {
+    const rgb = rangeColorToRgb(color, index, useIndex);
+
+    return rgb !== undefined ? rgbToHsl(rgb) : undefined;
+}
+
+/**
  * Converts rgb color to hsl color
  * @param color rgb color to convert
  * @returns hsl color
@@ -172,17 +257,15 @@ export function colorToHsl(color: string | IColor | undefined, index?: number, u
 export function rgbToHsl(color: IRgb): IHsl {
     const r1 = color.r / 255,
         g1 = color.g / 255,
-        b1 = color.b / 255;
-
-    const max = Math.max(r1, g1, b1),
-        min = Math.min(r1, g1, b1);
-
-    //Calculate L:
-    const res = {
-        h: 0,
-        l: (max + min) / 2,
-        s: 0,
-    };
+        b1 = color.b / 255,
+        max = Math.max(r1, g1, b1),
+        min = Math.min(r1, g1, b1),
+        //Calculate L:
+        res = {
+            h: 0,
+            l: (max + min) / 2,
+            s: 0,
+        };
 
     if (max !== min) {
         //Calculate S:
@@ -200,6 +283,10 @@ export function rgbToHsl(color: IRgb): IHsl {
 
     if (res.h < 0) {
         res.h += 360;
+    }
+
+    if (res.h >= 360) {
+        res.h -= 360;
     }
 
     return res;
@@ -236,7 +323,7 @@ export function hslToRgb(hsl: IHsl): IRgb {
             s: hsl.s / 100,
         };
 
-    if (hslPercent.s === 0) {
+    if (!hslPercent.s) {
         result.b = hslPercent.l; // achromatic
         result.g = hslPercent.l;
         result.r = hslPercent.l;
@@ -299,13 +386,9 @@ export function hslToHsv(hsl: IHsl): IHsv {
  * @returns the [[IHsva]] object
  */
 export function hslaToHsva(hsla: IHsla): IHsva {
-    const hsvResult = hslToHsv(hsla);
-
     return {
         a: hsla.a,
-        h: hsvResult.h,
-        s: hsvResult.s,
-        v: hsvResult.v,
+        ...hslToHsv(hsla),
     };
 }
 
@@ -333,13 +416,9 @@ export function hsvToHsl(hsv: IHsv): IHsl {
  * @returns the [[IHsla]] object
  */
 export function hsvaToHsla(hsva: IHsva): IHsla {
-    const hslResult = hsvToHsl(hsva);
-
     return {
         a: hsva.a,
-        h: hslResult.h,
-        l: hslResult.l,
-        s: hslResult.s,
+        ...hsvToHsl(hsva),
     };
 }
 
@@ -354,9 +433,8 @@ export function hsvToRgb(hsv: IHsv): IRgb {
             h: hsv.h / 60,
             s: hsv.s / 100,
             v: hsv.v / 100,
-        };
-
-    const c = hsvPercent.v * hsvPercent.s,
+        },
+        c = hsvPercent.v * hsvPercent.s,
         x = c * (1 - Math.abs((hsvPercent.h % 2) - 1));
 
     let tempRgb: IRgb | undefined;
@@ -416,13 +494,9 @@ export function hsvToRgb(hsv: IHsv): IRgb {
  * @returns the [[IRgba]] object
  */
 export function hsvaToRgba(hsva: IHsva): IRgba {
-    const rgbResult = hsvToRgb(hsva);
-
     return {
         a: hsva.a,
-        b: rgbResult.b,
-        g: rgbResult.g,
-        r: rgbResult.r,
+        ...hsvToRgb(hsva),
     };
 }
 
@@ -466,13 +540,9 @@ export function rgbToHsv(rgb: IRgb): IHsv {
  * @param rgba the RGB ([[IRgba]]) object
  */
 export function rgbaToHsva(rgba: IRgba): IHsva {
-    const hsvResult = rgbToHsv(rgba);
-
     return {
         a: rgba.a,
-        h: hsvResult.h,
-        s: hsvResult.s,
-        v: hsvResult.v,
+        ...rgbToHsv(rgba),
     };
 }
 
@@ -562,7 +632,7 @@ export function getLinkColor(p1: IParticle, p2?: IParticle, linkColor?: string |
 }
 
 export function getLinkRandomColor(
-    optColor: string | IColor,
+    optColor: string | IOptionsColor,
     blink: boolean,
     consent: boolean
 ): IRgb | string | undefined {
@@ -570,16 +640,18 @@ export function getLinkRandomColor(
 
     if (color === randomColorValue) {
         if (consent) {
-            return colorToRgb({
+            return rangeColorToRgb({
                 value: color,
             });
-        } else if (blink) {
-            return randomColorValue;
-        } else {
-            return midColorValue;
         }
+
+        if (blink) {
+            return randomColorValue;
+        }
+
+        return midColorValue;
     } else {
-        return colorToRgb({
+        return rangeColorToRgb({
             value: color,
         });
     }
@@ -634,15 +706,11 @@ function setColorAnimation(
 
     if (colorValue.enable) {
         colorValue.velocity = (getRangeValue(colorAnimation.speed) / 100) * reduceFactor;
-
-        if (colorAnimation.sync) {
-            return;
-        }
-
+        colorValue.decay = 1 - getRangeValue(colorAnimation.decay);
         colorValue.status = AnimationStatus.increasing;
-        colorValue.velocity *= Math.random();
 
-        if (colorValue.value) {
+        if (!colorAnimation.sync) {
+            colorValue.velocity *= Math.random();
             colorValue.value *= Math.random();
         }
     } else {

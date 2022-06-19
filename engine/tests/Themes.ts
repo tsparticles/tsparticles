@@ -1,6 +1,9 @@
 import { ClickMode, HoverMode, MoveDirection, Options, OutMode, RotateDirection, ThemeMode, tsParticles } from "../src";
 import { describe, it } from "mocha";
+import { TestContainer } from "./Fixture/TestContainer";
 import { expect } from "chai";
+
+const testContainer = new TestContainer({});
 
 describe("Themes", () => {
     const sourceOptions = {
@@ -93,7 +96,7 @@ describe("Themes", () => {
         detectRetina: true,
     };
 
-    const options = new Options(tsParticles);
+    const options = new Options(tsParticles, testContainer.container);
 
     options.load(sourceOptions);
 

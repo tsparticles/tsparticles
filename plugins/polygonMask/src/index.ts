@@ -1,9 +1,9 @@
+import "./pathseg";
 import type { Container, Engine, IOptions, IPlugin, Options, RecursivePartial } from "tsparticles-engine";
 import type { IPolygonMaskOptions } from "./Options/Interfaces/IPolygonMaskOptions";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
 import { PolygonMaskInstance } from "./PolygonMaskInstance";
 import { PolygonMaskType } from "./Enums/PolygonMaskType";
-import { isSsr } from "tsparticles-engine";
 
 /**
  * @category Polygon Mask Plugin
@@ -46,16 +46,6 @@ class PolygonMaskPlugin implements IPlugin {
 }
 
 export async function loadPolygonMaskPlugin(engine: Engine): Promise<void> {
-    if (!isSsr() && !("SVGPathSeg" in window)) {
-        await import(
-            /* webpackChunkName: "tsparticles.pathseg.min" */
-            /* webpackMode: "lazy" */
-            /* webpackPrefetch: true */
-            /* webpackPreload: true */
-            "./pathseg.js"
-        );
-    }
-
     const plugin = new PolygonMaskPlugin(engine);
 
     await engine.addPlugin(plugin);

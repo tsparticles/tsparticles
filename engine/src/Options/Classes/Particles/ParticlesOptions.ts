@@ -1,29 +1,26 @@
 import { AnimatableColor } from "../AnimatableColor";
-import { AnimatableGradient } from "../AnimatableGradient";
+import { AnimatableGradient } from "../Gradients/AnimatableGradient";
 import { Collisions } from "./Collisions/Collisions";
+import type { Container } from "../../../Core/Container";
 import { Destroy } from "./Destroy/Destroy";
+import type { Engine } from "../../../engine";
+import type { IInteractivity } from "../../Interfaces/Interactivity/IInteractivity";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import type { IParticlesOptions } from "../../Interfaces/Particles/IParticlesOptions";
-import { Life } from "./Life/Life";
 import { Links } from "./Links/Links";
 import { Move } from "./Move/Move";
 import { Opacity } from "./Opacity/Opacity";
-import { Orbit } from "./Orbit/Orbit";
 import { ParticlesBounce } from "./Bounce/ParticlesBounce";
 import type { ParticlesGroups } from "../../../Types/ParticlesGroups";
 import { ParticlesNumber } from "./Number/ParticlesNumber";
 import { ParticlesRepulse } from "./Repulse/ParticlesRepulse";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import { Roll } from "./Roll/Roll";
 import { Rotate } from "./Rotate/Rotate";
 import { Shadow } from "./Shadow";
 import { Shape } from "./Shape/Shape";
 import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
 import { Size } from "./Size/Size";
 import { Stroke } from "./Stroke";
-import { Tilt } from "./Tilt/Tilt";
-import { Twinkle } from "./Twinkle/Twinkle";
-import { Wobble } from "./Wobble/Wobble";
 import { ZIndex } from "./ZIndex/ZIndex";
 import { deepExtend } from "../../../Utils/Utils";
 
@@ -38,23 +35,18 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     destroy;
     gradient: SingleOrMultiple<AnimatableGradient>;
     groups: ParticlesGroups;
-    life;
+    interactivity?: RecursivePartial<IInteractivity>;
     links;
     move;
     number;
     opacity;
-    orbit;
     reduceDuplicates;
     repulse;
-    roll;
     rotate;
     shape;
     size;
     shadow;
     stroke: SingleOrMultiple<Stroke>;
-    tilt;
-    twinkle;
-    wobble;
     zIndex;
 
     /**
@@ -91,7 +83,15 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.links = value;
     }
 
-    constructor() {
+    [name: string]: unknown;
+
+    readonly #engine;
+    readonly #container;
+
+    constructor(engine: Engine, container?: Container) {
+        this.#engine = engine;
+        this.#container = container;
+
         this.bounce = new ParticlesBounce();
         this.collisions = new Collisions();
         this.color = new AnimatableColor();
@@ -99,23 +99,17 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.destroy = new Destroy();
         this.gradient = [];
         this.groups = {};
-        this.life = new Life();
         this.links = new Links();
         this.move = new Move();
         this.number = new ParticlesNumber();
         this.opacity = new Opacity();
-        this.orbit = new Orbit();
         this.reduceDuplicates = false;
         this.repulse = new ParticlesRepulse();
-        this.roll = new Roll();
         this.rotate = new Rotate();
         this.shadow = new Shadow();
         this.shape = new Shape();
         this.size = new Size();
         this.stroke = new Stroke();
-        this.tilt = new Tilt();
-        this.twinkle = new Twinkle();
-        this.wobble = new Wobble();
         this.zIndex = new ZIndex();
     }
 
@@ -128,7 +122,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.color.load(AnimatableColor.create(this.color, data.color));
 
         this.destroy.load(data.destroy);
-        this.life.load(data.life);
 
         const links = data.links ?? data.lineLinked ?? data.line_linked;
 
@@ -149,21 +142,16 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.move.load(data.move);
         this.number.load(data.number);
         this.opacity.load(data.opacity);
-        this.orbit.load(data.orbit);
 
         if (data.reduceDuplicates !== undefined) {
             this.reduceDuplicates = data.reduceDuplicates;
         }
 
         this.repulse.load(data.repulse);
-        this.roll.load(data.roll);
         this.rotate.load(data.rotate);
         this.shape.load(data.shape);
         this.size.load(data.size);
         this.shadow.load(data.shadow);
-        this.tilt.load(data.tilt);
-        this.twinkle.load(data.twinkle);
-        this.wobble.load(data.wobble);
         this.zIndex.load(data.zIndex);
 
         const collisions = data.move?.collisions ?? data.move?.bounce;
@@ -173,6 +161,10 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         }
 
         this.collisions.load(data.collisions);
+
+        if (data.interactivity !== undefined) {
+            this.interactivity = deepExtend({}, data.interactivity) as RecursivePartial<IInteractivity>;
+        }
 
         const strokeToLoad = data.stroke ?? data.shape?.stroke;
 
@@ -211,6 +203,18 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
                 }
 
                 this.gradient.load(gradientToLoad);
+            }
+        }
+
+        if (this.#container) {
+            const updaters = this.#engine.plugins.updaters.get(this.#container);
+
+            if (updaters) {
+                for (const updater of updaters) {
+                    if (updater.loadOptions) {
+                        updater.loadOptions(this, data);
+                    }
+                }
             }
         }
     }

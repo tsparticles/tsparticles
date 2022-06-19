@@ -9,7 +9,6 @@ import {
     Rectangle,
     clamp,
     colorMix,
-    colorToHsl,
     divMode,
     divModeExecute,
     getDistance,
@@ -19,6 +18,7 @@ import {
     itemFromArray,
     mouseLeaveEvent,
     mouseMoveEvent,
+    rangeColorToHsl,
     rgbToHsl,
 } from "tsparticles-engine";
 import type { IBubblerProcessParam } from "./IBubblerProcessParam";
@@ -77,11 +77,11 @@ export class Bubbler extends ExternalInteractorBase {
         };
     }
 
-    isEnabled(): boolean {
+    isEnabled(particle?: Particle): boolean {
         const container = this.container,
             options = container.actualOptions,
             mouse = container.interactivity.mouse,
-            events = options.interactivity.events,
+            events = (particle?.interactivity ?? options.interactivity).events,
             divs = events.onDiv,
             divBubble = isDivModeEnabled(DivMode.bubble, divs);
 
@@ -97,8 +97,12 @@ export class Bubbler extends ExternalInteractorBase {
         return isInArray(HoverMode.bubble, hoverMode) || isInArray(ClickMode.bubble, clickMode) || divBubble;
     }
 
-    reset(particle: Particle, force?: boolean): void {
-        if (!(!particle.bubble.inRange || force)) {
+    reset(particle: Particle): void {
+        particle.bubble.inRange = false;
+    }
+
+    clear(particle: Particle, force?: boolean): void {
+        if (particle.bubble.inRange && !force) {
             return;
         }
 
@@ -154,7 +158,7 @@ export class Bubbler extends ExternalInteractorBase {
                               elem.offsetWidth * pxRatio,
                               elem.offsetHeight * pxRatio
                           ),
-                query = container.particles.quadTree.query(area);
+                query = container.particles.quadTree.query(area, (p) => this.isEnabled(p));
 
             for (const particle of query) {
                 if (!area.contains(particle.getPosition())) {
@@ -167,7 +171,7 @@ export class Bubbler extends ExternalInteractorBase {
                 const divBubble = divMode(divs, elem);
 
                 if (!particle.bubble.div || particle.bubble.div !== elem) {
-                    this.reset(particle, true);
+                    this.clear(particle, true);
 
                     particle.bubble.div = elem;
                 }
@@ -257,7 +261,7 @@ export class Bubbler extends ExternalInteractorBase {
         }
 
         const distance = container.retina.bubbleModeDistance,
-            query = container.particles.quadTree.queryCircle(mouseClickPos, distance);
+            query = container.particles.quadTree.queryCircle(mouseClickPos, distance, (p) => this.isEnabled(p));
 
         for (const particle of query) {
             if (!container.bubble.clicking) {
@@ -326,7 +330,7 @@ export class Bubbler extends ExternalInteractorBase {
         }
 
         const distance = container.retina.bubbleModeDistance,
-            query = container.particles.quadTree.queryCircle(mousePos, distance);
+            query = container.particles.quadTree.queryCircle(mousePos, distance, (p) => this.isEnabled(p));
 
         //for (const { distance, particle } of query) {
         for (const particle of query) {
@@ -407,7 +411,7 @@ export class Bubbler extends ExternalInteractorBase {
 
             const bubbleColor = modeColor instanceof Array ? itemFromArray(modeColor) : modeColor;
 
-            particle.bubble.finalColor = colorToHsl(bubbleColor);
+            particle.bubble.finalColor = rangeColorToHsl(bubbleColor);
         }
 
         if (!particle.bubble.finalColor) {

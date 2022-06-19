@@ -7,6 +7,7 @@ export interface IParticleValueAnimation<T> {
     enable: boolean;
     status?: AnimationStatus;
     velocity?: number;
+    decay?: number;
     value: T;
     loops?: number;
     maxLoops?: number;

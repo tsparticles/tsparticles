@@ -1,10 +1,22 @@
-import type { Container, IDelta, IParticleUpdater, Particle } from "tsparticles-engine";
+import type {
+    Container,
+    IDelta,
+    IParticleUpdater,
+    IParticlesOptions,
+    Particle,
+    ParticlesOptions,
+    RecursivePartial,
+} from "tsparticles-engine";
+import type { IWobble } from "./Options/Interfaces/IWobble";
+import { Wobble } from "./Options/Classes/Wobble";
 import { getRangeValue } from "tsparticles-engine";
 
 /**
  * Wobble particle extension type
  */
 type WobbleParticle = Particle & {
+    options: WobbleParticlesOptions;
+
     /**
      * Particle retina cached options
      */
@@ -16,6 +28,14 @@ type WobbleParticle = Particle & {
     };
 };
 
+type IWobbleParticlesOptions = IParticlesOptions & {
+    wobble?: IWobble;
+};
+
+type WobbleParticlesOptions = ParticlesOptions & {
+    wobble?: Wobble;
+};
+
 /**
  * Updates particle wobbling values
  * @param particle the particle to update
@@ -24,15 +44,16 @@ type WobbleParticle = Particle & {
 function updateWobble(particle: WobbleParticle, delta: IDelta): void {
     const wobble = particle.options.wobble;
 
-    if (!wobble.enable || !particle.wobble) {
+    if (!wobble?.enable || !particle.wobble) {
         return;
     }
 
-    const speed = particle.wobble.speed * delta.factor;
-    const distance = ((particle.retina.wobbleDistance ?? 0) * delta.factor) / (1000 / 60);
-    const max = 2 * Math.PI;
+    const angleSpeed = particle.wobble.angleSpeed * delta.factor,
+        moveSpeed = particle.wobble.moveSpeed * delta.factor,
+        distance = (moveSpeed * ((particle.retina.wobbleDistance ?? 0) * delta.factor)) / (1000 / 60),
+        max = 2 * Math.PI;
 
-    particle.wobble.angle += speed;
+    particle.wobble.angle += angleSpeed;
 
     if (particle.wobble.angle > max) {
         particle.wobble.angle -= max;
@@ -59,19 +80,21 @@ export class WobbleUpdater implements IParticleUpdater {
     init(particle: WobbleParticle): void {
         const wobbleOpt = particle.options.wobble;
 
-        if (wobbleOpt.enable) {
+        if (wobbleOpt?.enable) {
             particle.wobble = {
                 angle: Math.random() * Math.PI * 2,
-                speed: getRangeValue(wobbleOpt.speed) / 360,
+                angleSpeed: getRangeValue(wobbleOpt.speed.angle) / 360,
+                moveSpeed: getRangeValue(wobbleOpt.speed.move) / 10,
             };
         } else {
             particle.wobble = {
                 angle: 0,
-                speed: 0,
+                angleSpeed: 0,
+                moveSpeed: 0,
             };
         }
 
-        particle.retina.wobbleDistance = getRangeValue(wobbleOpt.distance) * this.container.retina.pixelRatio;
+        particle.retina.wobbleDistance = getRangeValue(wobbleOpt?.distance ?? 0) * this.container.retina.pixelRatio;
     }
 
     /**
@@ -79,7 +102,7 @@ export class WobbleUpdater implements IParticleUpdater {
      * @param particle
      */
     isEnabled(particle: WobbleParticle): boolean {
-        return !particle.destroyed && !particle.spawning && particle.options.wobble.enable;
+        return !particle.destroyed && !particle.spawning && !!particle.options.wobble?.enable;
     }
 
     /**
@@ -93,5 +116,22 @@ export class WobbleUpdater implements IParticleUpdater {
         }
 
         updateWobble(particle, delta);
+    }
+
+    loadOptions(
+        options: WobbleParticlesOptions,
+        ...sources: (RecursivePartial<IWobbleParticlesOptions> | undefined)[]
+    ): void {
+        for (const source of sources) {
+            if (!source?.wobble) {
+                continue;
+            }
+
+            if (!options.wobble) {
+                options.wobble = new Wobble();
+            }
+
+            options.wobble.load(source.wobble);
+        }
     }
 }

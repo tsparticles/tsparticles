@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@2.0.6...solid-particles-demo@2.1.0) (2022-06-18)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to v14 ([c620315](https://github.com/matteobruni/tsparticles/commit/c620315e06a16e0129acef06a4dac6505b4ce456))
+* **deps:** update dependency @capacitor/core to v3.5.0 ([581bb7e](https://github.com/matteobruni/tsparticles/commit/581bb7e2f4f6aceb3535daf9223954a80f2daa81))
+
+
+
+
+
 ## [2.0.6](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@2.0.5...solid-particles-demo@2.0.6) (2022-04-16)
 
 **Note:** Version bump only for package solid-particles-demo

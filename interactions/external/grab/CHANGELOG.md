@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-external-grab@2.0.6...tsparticles-interaction-external-grab@2.1.0) (2022-06-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency gh-pages to v4 ([cf6e957](https://github.com/matteobruni/tsparticles/commit/cf6e9577132afcec26410f7321fcf5ffcfb05930))
+* **deps:** update react monorepo to v18.1.0 ([6b45793](https://github.com/matteobruni/tsparticles/commit/6b457937c41d7681a2135dfcb6ff220e578f22bb))
+* moved some specific code to the relative project, removing it from the generic engine ([09fe635](https://github.com/matteobruni/tsparticles/commit/09fe63568adc244d11b7eff009626b905d5b05e4))
+
+
+### Features
+
+* interactivity options overrides in particles options, closes [#4120](https://github.com/matteobruni/tsparticles/issues/4120) ([309afb5](https://github.com/matteobruni/tsparticles/commit/309afb5749e40373648bf9173800334da4dbf965))
+
+
+
+
+
 ## [2.0.6](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-external-grab@2.0.5...tsparticles-interaction-external-grab@2.0.6) (2022-04-16)
 
 

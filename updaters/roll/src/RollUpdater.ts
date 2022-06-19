@@ -1,15 +1,37 @@
-import { AlterType, colorToHsl, getRangeValue } from "tsparticles-engine";
-import type { IDelta, IParticleUpdater, Particle } from "tsparticles-engine";
+import { AlterType, getRangeValue, rangeColorToHsl } from "tsparticles-engine";
+import type {
+    IDelta,
+    IParticleUpdater,
+    IParticlesOptions,
+    Particle,
+    ParticlesOptions,
+    RecursivePartial,
+} from "tsparticles-engine";
+import type { IRoll } from "./Options/Interfaces/IRoll";
+import { Roll } from "./Options/Classes/Roll";
+import { RollMode } from "./RollMode";
 
-function updateRoll(particle: Particle, delta: IDelta): void {
+type RollParticle = Particle & {
+    options: RollParticlesOptions;
+};
+
+type RollParticlesOptions = ParticlesOptions & {
+    roll?: Roll;
+};
+
+type IRollParticlesOptions = IParticlesOptions & {
+    roll?: IRoll;
+};
+
+function updateRoll(particle: RollParticle, delta: IDelta): void {
     const roll = particle.options.roll;
 
-    if (!particle.roll || !roll.enable) {
+    if (!particle.roll || !roll?.enable) {
         return;
     }
 
-    const speed = particle.roll.speed * delta.factor;
-    const max = 2 * Math.PI;
+    const speed = particle.roll.speed * delta.factor,
+        max = 2 * Math.PI;
 
     particle.roll.angle += speed;
 
@@ -19,17 +41,20 @@ function updateRoll(particle: Particle, delta: IDelta): void {
 }
 
 export class RollUpdater implements IParticleUpdater {
-    init(particle: Particle): void {
+    init(particle: RollParticle): void {
         const rollOpt = particle.options.roll;
 
-        if (rollOpt.enable) {
+        if (rollOpt?.enable) {
             particle.roll = {
+                enable: rollOpt.enable,
+                horizontal: rollOpt.mode === RollMode.horizontal || rollOpt.mode === RollMode.both,
+                vertical: rollOpt.mode === RollMode.vertical || rollOpt.mode === RollMode.both,
                 angle: Math.random() * Math.PI * 2,
                 speed: getRangeValue(rollOpt.speed) / 360,
             };
 
             if (rollOpt.backColor) {
-                particle.backColor = colorToHsl(rollOpt.backColor);
+                particle.backColor = rangeColorToHsl(rollOpt.backColor);
             } else if (rollOpt.darken.enable && rollOpt.enlighten.enable) {
                 const alterType = Math.random() >= 0.5 ? AlterType.darken : AlterType.enlighten;
 
@@ -51,14 +76,20 @@ export class RollUpdater implements IParticleUpdater {
                 };
             }
         } else {
-            particle.roll = { angle: 0, speed: 0 };
+            particle.roll = {
+                enable: false,
+                horizontal: false,
+                vertical: false,
+                angle: 0,
+                speed: 0,
+            };
         }
     }
 
-    isEnabled(particle: Particle): boolean {
+    isEnabled(particle: RollParticle): boolean {
         const roll = particle.options.roll;
 
-        return !particle.destroyed && !particle.spawning && roll.enable;
+        return !particle.destroyed && !particle.spawning && !!roll?.enable;
     }
 
     update(particle: Particle, delta: IDelta): void {
@@ -67,5 +98,22 @@ export class RollUpdater implements IParticleUpdater {
         }
 
         updateRoll(particle, delta);
+    }
+
+    loadOptions(
+        options: RollParticlesOptions,
+        ...sources: (RecursivePartial<IRollParticlesOptions> | undefined)[]
+    ): void {
+        for (const source of sources) {
+            if (!source?.roll) {
+                continue;
+            }
+
+            if (!options.roll) {
+                options.roll = new Roll();
+            }
+
+            options.roll.load(source.roll);
+        }
     }
 }

@@ -156,7 +156,15 @@ export class Engine {
      * @param callback The function called after the click event is fired
      */
     setOnClickHandler(callback: (e: Event, particles?: Particle[]) => void): void {
-        this.#loader.setOnClickHandler(callback);
+        const dom = this.dom();
+
+        if (!dom.length) {
+            throw new Error("Can only set click handlers after calling tsParticles.load() or tsParticles.loadJSON()");
+        }
+
+        for (const domItem of dom) {
+            domItem.addClickHandler(callback);
+        }
     }
 
     /**
@@ -164,7 +172,7 @@ export class Engine {
      * @returns All the [[Container]] objects loaded
      */
     dom(): Container[] {
-        return this.#loader.dom();
+        return this.domArray;
     }
 
     /**
@@ -173,7 +181,14 @@ export class Engine {
      * @returns The [[Container]] object at specified index, if present or not destroyed, otherwise undefined
      */
     domItem(index: number): Container | undefined {
-        return this.#loader.domItem(index);
+        const dom = this.dom(),
+            item = dom[index];
+
+        if (item && !item.destroyed) {
+            return item;
+        }
+
+        dom.splice(index, 1);
     }
 
     /**
@@ -288,7 +303,7 @@ export class Engine {
      * @param listener The listener of the specified event
      */
     addEventListener(type: string, listener: CustomEventListener): void {
-        this.#loader.addEventListener(type, listener);
+        this.eventDispatcher.addEventListener(type, listener);
     }
 
     /**
@@ -297,7 +312,7 @@ export class Engine {
      * @param listener The listener of the specified event
      */
     removeEventListener(type: string, listener: CustomEventListener): void {
-        this.#loader.removeEventListener(type, listener);
+        this.eventDispatcher.removeEventListener(type, listener);
     }
 
     /**
@@ -306,6 +321,6 @@ export class Engine {
      * @param args The event parameters
      */
     dispatchEvent(type: string, args: CustomEventArgs): void {
-        this.#loader.dispatchEvent(type, args);
+        this.eventDispatcher.dispatchEvent(type, args);
     }
 }

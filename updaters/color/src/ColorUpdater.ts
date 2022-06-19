@@ -1,4 +1,4 @@
-import { AnimationStatus, colorToHsl, getHslAnimationFromHsl, randomInRange } from "tsparticles-engine";
+import { AnimationStatus, getHslAnimationFromHsl, randomInRange, rangeColorToHsl } from "tsparticles-engine";
 import type {
     Container,
     IColorAnimation,
@@ -21,8 +21,9 @@ function updateColorValue(
         return;
     }
 
-    const offset = randomInRange(valueAnimation.offset);
-    const velocity = (value.velocity ?? 0) * delta.factor + offset * 3.6;
+    const offset = randomInRange(valueAnimation.offset),
+        velocity = (value.velocity ?? 0) * delta.factor + offset * 3.6,
+        decay = value.decay ?? 1;
 
     if (!decrease || colorValue.status === AnimationStatus.increasing) {
         colorValue.value += velocity;
@@ -38,6 +39,10 @@ function updateColorValue(
             colorValue.status = AnimationStatus.increasing;
             colorValue.value += colorValue.value;
         }
+    }
+
+    if (colorValue.velocity && decay !== 1) {
+        colorValue.velocity *= decay;
     }
 
     if (colorValue.value > max) {
@@ -66,7 +71,7 @@ export class ColorUpdater implements IParticleUpdater {
 
     init(particle: Particle): void {
         /* color */
-        const hslColor = colorToHsl(particle.options.color, particle.id, particle.options.reduceDuplicates);
+        const hslColor = rangeColorToHsl(particle.options.color, particle.id, particle.options.reduceDuplicates);
 
         if (hslColor) {
             particle.color = getHslAnimationFromHsl(
