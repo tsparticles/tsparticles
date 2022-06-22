@@ -3,14 +3,18 @@ import type { IBounceData } from "./IBounceData";
 
 export function bounceHorizontal(data: IBounceData): void {
     if (
-        !(
-            data.outMode === OutMode.bounce ||
-            data.outMode === OutMode.bounceHorizontal ||
-            data.outMode === "bounceHorizontal" ||
-            data.outMode === OutMode.split
-        )
+        data.outMode !== OutMode.bounce &&
+        data.outMode !== OutMode.bounceHorizontal &&
+        data.outMode !== "bounceHorizontal" &&
+        data.outMode !== OutMode.split
     ) {
         return;
+    }
+
+    if (data.bounds.right < 0) {
+        data.particle.position.x = data.size + data.offset.x;
+    } else if (data.bounds.left > data.canvasSize.width) {
+        data.particle.position.x = data.canvasSize.width - data.size - data.offset.x;
     }
 
     const velocity = data.particle.velocity.x;
@@ -46,41 +50,47 @@ export function bounceHorizontal(data: IBounceData): void {
 
 export function bounceVertical(data: IBounceData): void {
     if (
-        data.outMode === OutMode.bounce ||
-        data.outMode === OutMode.bounceVertical ||
-        data.outMode === "bounceVertical" ||
-        data.outMode === OutMode.split
+        data.outMode !== OutMode.bounce &&
+        data.outMode !== OutMode.bounceVertical &&
+        data.outMode !== "bounceVertical" &&
+        data.outMode !== OutMode.split
     ) {
-        const velocity = data.particle.velocity.y;
-        let bounced = false;
+        return;
+    }
 
-        if (
-            (data.direction === OutModeDirection.bottom &&
-                data.bounds.bottom >= data.canvasSize.height &&
-                velocity > 0) ||
-            (data.direction === OutModeDirection.top && data.bounds.top <= 0 && velocity < 0)
-        ) {
-            const newVelocity = getValue(data.particle.options.bounce.vertical);
+    if (data.bounds.bottom < 0) {
+        data.particle.position.y = data.size + data.offset.y;
+    } else if (data.bounds.top > data.canvasSize.height) {
+        data.particle.position.y = data.canvasSize.height - data.size - data.offset.y;
+    }
 
-            data.particle.velocity.y *= -newVelocity;
+    const velocity = data.particle.velocity.y;
+    let bounced = false;
 
-            bounced = true;
-        }
+    if (
+        (data.direction === OutModeDirection.bottom && data.bounds.bottom >= data.canvasSize.height && velocity > 0) ||
+        (data.direction === OutModeDirection.top && data.bounds.top <= 0 && velocity < 0)
+    ) {
+        const newVelocity = getValue(data.particle.options.bounce.vertical);
 
-        if (!bounced) {
-            return;
-        }
+        data.particle.velocity.y *= -newVelocity;
 
-        const minPos = data.offset.y + data.size;
+        bounced = true;
+    }
 
-        if (data.bounds.bottom >= data.canvasSize.height) {
-            data.particle.position.y = data.canvasSize.height - minPos;
-        } else if (data.bounds.top <= 0) {
-            data.particle.position.y = minPos;
-        }
+    if (!bounced) {
+        return;
+    }
 
-        if (data.outMode === OutMode.split) {
-            data.particle.destroy();
-        }
+    const minPos = data.offset.y + data.size;
+
+    if (data.bounds.bottom >= data.canvasSize.height) {
+        data.particle.position.y = data.canvasSize.height - minPos;
+    } else if (data.bounds.top <= 0) {
+        data.particle.position.y = minPos;
+    }
+
+    if (data.outMode === OutMode.split) {
+        data.particle.destroy();
     }
 }
