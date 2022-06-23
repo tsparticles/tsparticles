@@ -19,7 +19,7 @@ import {
     randomInRange,
     setRangeValue,
 } from "../Utils/NumberUtils";
-import { deepExtend, isInArray, itemFromArray, loadParticlesOptions } from "../Utils/Utils";
+import { deepExtend, isInArray, itemFromArray } from "../Utils/Utils";
 import { getHslFromAnimation, rangeColorToRgb } from "../Utils/ColorUtils";
 import { AnimationStatus } from "../Enums/AnimationStatus";
 import type { Container } from "./Container";
@@ -46,6 +46,7 @@ import { Stroke } from "../Options/Classes/Particles/Stroke";
 import { Vector } from "./Utils/Vector";
 import { Vector3d } from "./Utils/Vector3d";
 import { alterHsl } from "../Utils/CanvasUtils";
+import { loadParticlesOptions } from "../Utils/OptionsUtils";
 
 /**
  * fixes out mode, calling the given callback if needed

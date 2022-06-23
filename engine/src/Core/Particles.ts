@@ -24,7 +24,7 @@ import { Point } from "./Utils/Point";
 import { QuadTree } from "./Utils/QuadTree";
 import { Rectangle } from "./Utils/Rectangle";
 import type { RecursivePartial } from "../Types/RecursivePartial";
-import { loadParticlesOptions } from "../Utils/Utils";
+import { loadParticlesOptions } from "../Utils/OptionsUtils";
 
 /**
  * Particles manager object

@@ -265,6 +265,7 @@ export * from "./Types/PathOptions";
 export * from "./Utils/CanvasUtils";
 export * from "./Utils/ColorUtils";
 export * from "./Utils/NumberUtils";
+export * from "./Utils/OptionsUtils";
 export * from "./Utils/Utils";
 export { tsParticles };
 

@@ -2,7 +2,7 @@
  * [[include:Container.md]]
  * @packageDocumentation
  */
-import { animate, cancelAnimation, loadContainerOptions } from "../Utils/Utils";
+import { animate, cancelAnimation } from "../Utils/Utils";
 import { Canvas } from "./Canvas";
 import { ClickMode } from "../Enums/Modes/ClickMode";
 import { Engine } from "../engine";
@@ -23,6 +23,19 @@ import type { RecursivePartial } from "../Types/RecursivePartial";
 import { Retina } from "./Retina";
 import { Vector } from "./Utils/Vector";
 import { getRangeValue } from "../Utils/NumberUtils";
+import { loadOptions } from "../Utils/OptionsUtils";
+
+function loadContainerOptions(
+    engine: Engine,
+    container: Container,
+    ...sourceOptionsArr: RecursivePartial<IOptions | undefined>[]
+): Options {
+    const options = new Options(engine, container);
+
+    loadOptions(options, ...sourceOptionsArr);
+
+    return options;
+}
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
