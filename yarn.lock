@@ -1817,16 +1817,6 @@
     "@parcel/utils" "2.6.2"
     nullthrows "^1.1.1"
 
-"@parcel/cache@2.6.1":
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/@parcel/cache/-/cache-2.6.1.tgz#4bdabd0ff6271b5e658814c342385c30893b1ccd"
-  integrity sha512-FjG9DDLUCxlnS32cF7riga8gwMKbwxKnVIUsKZU5K9I+Sd5HtKRqn8H3e7dksCiVCPqZR3jItnr7FH9bEniWJA==
-  dependencies:
-    "@parcel/fs" "2.6.1"
-    "@parcel/logger" "2.6.1"
-    "@parcel/utils" "2.6.1"
-    lmdb "2.5.2"
-
 "@parcel/cache@2.6.2":
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/@parcel/cache/-/cache-2.6.2.tgz#66163c8f8ac4aac865c4b9eb2197b0d9e6f91a74"
@@ -1836,13 +1826,6 @@
     "@parcel/logger" "2.6.2"
     "@parcel/utils" "2.6.2"
     lmdb "2.5.2"
-
-"@parcel/codeframe@2.6.1":
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/@parcel/codeframe/-/codeframe-2.6.1.tgz#aaa1dc02b4ea373c5b566dc448dc2e70b6c7c31d"
-  integrity sha512-6GR9w9cccxCMbDqXNfEGwFjju+Ks3mMDaiLuLXIITkuEYgxdbXrpNlcpD0tJiSJn3cyo8gieUYFF4wlJyuS/gQ==
-  dependencies:
-    chalk "^4.1.0"
 
 "@parcel/codeframe@2.6.2":
   version "2.6.2"
@@ -1980,14 +1963,6 @@
     "@parcel/css-linux-x64-musl" "1.10.1"
     "@parcel/css-win32-x64-msvc" "1.10.1"
 
-"@parcel/diagnostic@2.6.1":
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/@parcel/diagnostic/-/diagnostic-2.6.1.tgz#38fec6777e8d9ab6c77a3ebb5394ca5b2a25098a"
-  integrity sha512-7lbmRCHEeS8uzO+BzfTtiJMfeOKf5HOTaVE+kzTkfqHT/H3ChD1rNQQdxTjE+TvX2k7lLdEE6Qstj7OmrE/xQg==
-  dependencies:
-    "@mischnic/json-sourcemap" "^0.1.0"
-    nullthrows "^1.1.1"
-
 "@parcel/diagnostic@2.6.2":
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/@parcel/diagnostic/-/diagnostic-2.6.2.tgz#da3fca0d82bc012f49288c963024edd089ca9f41"
@@ -1996,22 +1971,10 @@
     "@mischnic/json-sourcemap" "^0.1.0"
     nullthrows "^1.1.1"
 
-"@parcel/events@2.6.1":
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/@parcel/events/-/events-2.6.1.tgz#e49fdc19f82398dc5b3d4b7c80a98875e1e07c9b"
-  integrity sha512-x0PkTFm2wm1hIfwD/p0jNuCUM0t2NwzUxdZrTHm9ncqrYbO2tpG0N5jkTC9V9fu7j639vGVA7uOHYFgExTKUbQ==
-
 "@parcel/events@2.6.2":
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/@parcel/events/-/events-2.6.2.tgz#97a1059d1eb93df8d3d426b6b150f829f70f543b"
   integrity sha512-IaCjOeA5ercdFVi1EZOmUHhGfIysmCUgc2Th9hMugSFO0I3GzRsBcAdP6XPfWm+TV6sQ/qZRfdk/drUxoAupnw==
-
-"@parcel/fs-search@2.6.1":
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/@parcel/fs-search/-/fs-search-2.6.1.tgz#5be85d40c290e9e4a9577d32deffc1897298163a"
-  integrity sha512-vfbknvzUjy1PQuCfjfbCQUIQXCUb+n+sd5CZHOODvE4PewvspW/YmKJpYluDr0S4mOa1GX7cHJCL675DALW5yQ==
-  dependencies:
-    detect-libc "^1.0.3"
 
 "@parcel/fs-search@2.6.2":
   version "2.6.2"
@@ -2019,17 +1982,6 @@
   integrity sha512-4STid1zqtGnmGjHD/2TG2g/zPDiCTtE3IAS24QYH3eiUAz2uoKGgEqd2tZbZ2yI96jtCuIhC1bzVu8Hbykls7w==
   dependencies:
     detect-libc "^1.0.3"
-
-"@parcel/fs@2.6.1":
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/@parcel/fs/-/fs-2.6.1.tgz#81ae9602c4413838b5ea09c0a893972e40f22991"
-  integrity sha512-+kI2IPdZ5WH94+9LMCO/INnJUcbPcfVim97ORMjfe3mOYEPEQYqzM5g8SLjqiW/H5OIVapdIYoHWBEBpo3itdA==
-  dependencies:
-    "@parcel/fs-search" "2.6.1"
-    "@parcel/types" "2.6.1"
-    "@parcel/utils" "2.6.1"
-    "@parcel/watcher" "^2.0.0"
-    "@parcel/workers" "2.6.1"
 
 "@parcel/fs@2.6.2":
   version "2.6.2"
@@ -2050,14 +2002,6 @@
     "@parcel/utils" "2.6.2"
     nullthrows "^1.1.1"
 
-"@parcel/hash@2.6.1":
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/@parcel/hash/-/hash-2.6.1.tgz#c5d2a6fdc5c88dbcc212184e43f4fcc3b694699f"
-  integrity sha512-5gve/OKOXzYADfCJ+atpR6L13n4clexazkNRcsm6LZtE2Gm84Nx81gdb8z08EJrZALC62f9J2FOmQxm6ZHrTSQ==
-  dependencies:
-    detect-libc "^1.0.3"
-    xxhash-wasm "^0.4.2"
-
 "@parcel/hash@2.6.2":
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/@parcel/hash/-/hash-2.6.2.tgz#485e31323036abdf3648ba7f8816985296f358ba"
@@ -2066,14 +2010,6 @@
     detect-libc "^1.0.3"
     xxhash-wasm "^0.4.2"
 
-"@parcel/logger@2.6.1":
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/@parcel/logger/-/logger-2.6.1.tgz#d1a3685884d497b3acf16007fe7e0e2a8d3acb49"
-  integrity sha512-AnKAVS/QRi1ee+Q1MxL+oUZT7dBZ36VUtevmXMSaaoN3W1KwYjM4Brq3zdiTZRfa7Akpdu6Ca1QVK5hGpvXKSg==
-  dependencies:
-    "@parcel/diagnostic" "2.6.1"
-    "@parcel/events" "2.6.1"
-
 "@parcel/logger@2.6.2":
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/@parcel/logger/-/logger-2.6.2.tgz#c99eed0e1ed13ac0c25f5e57355ab1bf5b3eda21"
@@ -2081,13 +2017,6 @@
   dependencies:
     "@parcel/diagnostic" "2.6.2"
     "@parcel/events" "2.6.2"
-
-"@parcel/markdown-ansi@2.6.1":
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/@parcel/markdown-ansi/-/markdown-ansi-2.6.1.tgz#f2e587249ff065830a6687c88afc099769085e49"
-  integrity sha512-p4dDINi+UeEUQfkA70R9gNJIuSnMuljSUfHf7erTU8vSqRD1tQpnmH7GfzzQLHYwHk8UYICGU8C6z7EtPH92Ng==
-  dependencies:
-    chalk "^4.1.0"
 
 "@parcel/markdown-ansi@2.6.2":
   version "2.6.2"
@@ -2172,19 +2101,6 @@
     nullthrows "^1.1.1"
     terser "^5.2.0"
 
-"@parcel/package-manager@2.6.1":
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/@parcel/package-manager/-/package-manager-2.6.1.tgz#dd6788bcc73d49f6192a0f01b382439f7dbe4dd2"
-  integrity sha512-lC+e0l+rB2QYBtXetAdDSqcidni0V1eYEAYXv4+sLnAMwyCeH3x4Ctivj/w0ILzuAFnS5ow9V91boM6DQegqHQ==
-  dependencies:
-    "@parcel/diagnostic" "2.6.1"
-    "@parcel/fs" "2.6.1"
-    "@parcel/logger" "2.6.1"
-    "@parcel/types" "2.6.1"
-    "@parcel/utils" "2.6.1"
-    "@parcel/workers" "2.6.1"
-    semver "^5.7.1"
-
 "@parcel/package-manager@2.6.2":
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/@parcel/package-manager/-/package-manager-2.6.2.tgz#003e8326adf95f85b2a40bb5e5f24a735d58f114"
@@ -2248,13 +2164,6 @@
     "@parcel/types" "2.6.2"
     "@parcel/utils" "2.6.2"
     posthtml "^0.16.4"
-
-"@parcel/plugin@2.6.1":
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/@parcel/plugin/-/plugin-2.6.1.tgz#7de4bf6774d5ea70f3879581bed3489f85749d97"
-  integrity sha512-0QVS7mhrS9gGHtaT0KpPes2CCCAyPvvI2oZLq+NX3z7Qa73kj3Ct5QL2JuRywnefDVnkY79256oTdsq/nJrnXg==
-  dependencies:
-    "@parcel/types" "2.6.1"
 
 "@parcel/plugin@2.6.2":
   version "2.6.2"
@@ -2452,11 +2361,11 @@
     react-refresh "^0.9.0"
 
 "@parcel/transformer-sass@^2.6.0":
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/@parcel/transformer-sass/-/transformer-sass-2.6.1.tgz#17dbbf6a44a68f97907ff1d07a687d530e167632"
-  integrity sha512-Z7xX+lTiIoupNIZt07BSIBZ9v9uJeSWFQpgOrMnR6Wbyon7l48kD4CWCb4xUvbylnvPGQPecap6oOilMTWca2g==
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/transformer-sass/-/transformer-sass-2.6.2.tgz#fd8587cc3796508f7ba1b8daabb27bc215982042"
+  integrity sha512-8Nev5rY67qFIFaRceQiFLa08oUk10iru28gi8/rURPuMvXKg+jIz6zqfIdxT8ZVxbqkFdqI1eVCc+Lelspn15A==
   dependencies:
-    "@parcel/plugin" "2.6.1"
+    "@parcel/plugin" "2.6.2"
     "@parcel/source-map" "^2.0.0"
     sass "^1.38.0"
 
@@ -2474,19 +2383,6 @@
     posthtml-render "^3.0.0"
     semver "^5.7.1"
 
-"@parcel/types@2.6.1":
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/@parcel/types/-/types-2.6.1.tgz#17977ca3ff02b135eeb91d6c3baf8ac2bc5e4db7"
-  integrity sha512-IXt0MiBmg95SKOAyvRNjcNlJvWUMtvCw6ea7+h1mWStm4gcJBoaznbgLJsG2C17AJ2F8CNR/5jZKlM9SDzTayg==
-  dependencies:
-    "@parcel/cache" "2.6.1"
-    "@parcel/diagnostic" "2.6.1"
-    "@parcel/fs" "2.6.1"
-    "@parcel/package-manager" "2.6.1"
-    "@parcel/source-map" "^2.0.0"
-    "@parcel/workers" "2.6.1"
-    utility-types "^3.10.0"
-
 "@parcel/types@2.6.2":
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/@parcel/types/-/types-2.6.2.tgz#216313bcaf625e59a2bd525a00c3b1f6701b0d92"
@@ -2499,19 +2395,6 @@
     "@parcel/source-map" "^2.0.0"
     "@parcel/workers" "2.6.2"
     utility-types "^3.10.0"
-
-"@parcel/utils@2.6.1":
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/@parcel/utils/-/utils-2.6.1.tgz#bbed3757fec985793c805135cac3f5d9cb1d49f7"
-  integrity sha512-jMoNNBVGGs1IeNZnGGJv3R2otmf39X/0OerpuI27Ut4iCt79y6TVMFdoB7eG2aEYFdL6cD7xNfieQvX+6nrjoQ==
-  dependencies:
-    "@parcel/codeframe" "2.6.1"
-    "@parcel/diagnostic" "2.6.1"
-    "@parcel/hash" "2.6.1"
-    "@parcel/logger" "2.6.1"
-    "@parcel/markdown-ansi" "2.6.1"
-    "@parcel/source-map" "^2.0.0"
-    chalk "^4.1.0"
 
 "@parcel/utils@2.6.2":
   version "2.6.2"
@@ -2541,18 +2424,6 @@
   dependencies:
     node-addon-api "^3.2.1"
     node-gyp-build "^4.3.0"
-
-"@parcel/workers@2.6.1":
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/@parcel/workers/-/workers-2.6.1.tgz#451446b3ef21a5ed478caf368d63b543f8efa8aa"
-  integrity sha512-KIXu5HAmnEDIDwwJDnLzlr0avsewux3rWHe/nN43ERgj2j5j1nVqIulE7tX+XKAM3AHTFKWHJi5RLX4Htl2wwg==
-  dependencies:
-    "@parcel/diagnostic" "2.6.1"
-    "@parcel/logger" "2.6.1"
-    "@parcel/types" "2.6.1"
-    "@parcel/utils" "2.6.1"
-    chrome-trace-event "^1.0.2"
-    nullthrows "^1.1.1"
 
 "@parcel/workers@2.6.2":
   version "2.6.2"
