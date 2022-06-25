@@ -57,7 +57,7 @@ export class Particles {
     movers;
     updaters;
 
-    private interactionManager;
+    private readonly interactionManager;
     private nextId;
     private readonly freqs: IParticlesFrequencies;
 
