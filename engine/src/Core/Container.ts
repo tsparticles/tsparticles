@@ -143,7 +143,7 @@ export class Container {
             generate: (p: Particle): Vector => {
                 const v = p.velocity.copy();
 
-                v.angle += (v.length * Math.PI) / 180;
+                v.angle += v.length * Math.PI / 180;
 
                 return v;
             },

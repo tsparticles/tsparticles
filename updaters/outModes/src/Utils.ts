@@ -21,8 +21,8 @@ export function bounceHorizontal(data: IBounceData): void {
     let bounced = false;
 
     if (
-        (data.direction === OutModeDirection.right && data.bounds.right >= data.canvasSize.width && velocity > 0) ||
-        (data.direction === OutModeDirection.left && data.bounds.left <= 0 && velocity < 0)
+        data.direction === OutModeDirection.right && data.bounds.right >= data.canvasSize.width && velocity > 0 ||
+        data.direction === OutModeDirection.left && data.bounds.left <= 0 && velocity < 0
     ) {
         const newVelocity = getValue(data.particle.options.bounce.horizontal);
 
@@ -68,8 +68,8 @@ export function bounceVertical(data: IBounceData): void {
     let bounced = false;
 
     if (
-        (data.direction === OutModeDirection.bottom && data.bounds.bottom >= data.canvasSize.height && velocity > 0) ||
-        (data.direction === OutModeDirection.top && data.bounds.top <= 0 && velocity < 0)
+        data.direction === OutModeDirection.bottom && data.bounds.bottom >= data.canvasSize.height && velocity > 0 ||
+        data.direction === OutModeDirection.top && data.bounds.top <= 0 && velocity < 0
     ) {
         const newVelocity = getValue(data.particle.options.bounce.vertical);
 

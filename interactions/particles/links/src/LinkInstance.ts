@@ -4,6 +4,15 @@ import { getDistance, getLinkColor, getRangeValue, rangeColorToRgb } from "tspar
 import type { ILink } from "./ILink";
 import type { LinkParticle } from "./LinkParticle";
 
+interface ITwinkle {
+    lines: {
+        enable: boolean;
+        frequency: number;
+        color: IRangeColor;
+        opacity: RangeValue;
+    };
+}
+
 export class LinkInstance implements IContainerPlugin {
     constructor(private readonly container: Container) {}
 
@@ -144,17 +153,7 @@ export class LinkInstance implements IContainerPlugin {
              *  mid: in consent mode: sample particles color and get a mid level color
              *                        from those two for the connecting line color
              */
-
-            const twinkle = (
-                p1.options.twinkle as {
-                    lines: {
-                        enable: boolean;
-                        frequency: number;
-                        color: IRangeColor;
-                        opacity: RangeValue;
-                    };
-                }
-            )?.lines;
+            const twinkle = (p1.options.twinkle as ITwinkle)?.lines;
 
             if (twinkle?.enable) {
                 const twinkleFreq = twinkle.frequency,

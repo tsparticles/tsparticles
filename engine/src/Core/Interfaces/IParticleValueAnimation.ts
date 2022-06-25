@@ -17,8 +17,3 @@ export interface IParticleNumericValueAnimation extends IParticleValueAnimation<
     min: number;
     max: number;
 }
-
-export interface IParticleTiltValueAnimation extends IParticleValueAnimation<number> {
-    sinDirection: number;
-    cosDirection: number;
-}

@@ -48,7 +48,7 @@ export class DivsEventsOptionsEditor extends EditorBase {
         }
     }
 
-    private addDiv(group: EditorGroup) {
+    private addDiv(group: EditorGroup): void {
         const particles = this.particles;
         const options = group.data as IDivEvent;
 

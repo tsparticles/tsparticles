@@ -12,7 +12,7 @@ export class SpiralDrawer implements IShapeDrawer {
         spiral.spiralLineSpacing = (shapeData.lineSpacing ?? 1) * pixelRatio;
     }
 
-    draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number) {
+    draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
         const spiral = particle as ISpiralParticle,
             realWidth = (radius - spiral.spiralInnerRadius) / spiral.spiralLineSpacing;
 

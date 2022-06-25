@@ -86,7 +86,7 @@ export class Bubbler extends ExternalInteractorBase {
             divBubble = isDivModeEnabled(DivMode.bubble, divs);
 
         if (
-            !(divBubble || (events.onHover.enable && mouse.position) || (events.onClick.enable && mouse.clickPosition))
+            !(divBubble || events.onHover.enable && mouse.position || events.onClick.enable && mouse.clickPosition)
         ) {
             return false;
         }
@@ -148,7 +148,7 @@ export class Bubbler extends ExternalInteractorBase {
                     x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
                     y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
                 },
-                repulseRadius = (elem.offsetWidth / 2) * pxRatio,
+                repulseRadius = elem.offsetWidth / 2 * pxRatio,
                 area =
                     div.type === DivType.circle
                         ? new Circle(pos.x, pos.y, repulseRadius)
@@ -217,7 +217,7 @@ export class Bubbler extends ExternalInteractorBase {
                 const obj = pObjBubble ?? pObj;
 
                 if (obj !== bubbleParam) {
-                    const value = pObj - (timeSpent * (pObj - bubbleParam)) / bubbleDuration;
+                    const value = pObj - timeSpent * (pObj - bubbleParam) / bubbleDuration;
 
                     if (type === ProcessBubbleType.size) {
                         particle.bubble.radius = value;

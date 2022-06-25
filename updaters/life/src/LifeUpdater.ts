@@ -46,14 +46,14 @@ export class LifeUpdater implements IParticleUpdater {
 
         particle.life = {
             delay: container.retina.reduceFactor
-                ? ((getRangeValue(lifeOptions.delay.value) * (lifeOptions.delay.sync ? 1 : Math.random())) /
-                      container.retina.reduceFactor) *
+                ? getRangeValue(lifeOptions.delay.value) * (lifeOptions.delay.sync ? 1 : Math.random()) /
+                      container.retina.reduceFactor *
                   1000
                 : 0,
             delayTime: 0,
             duration: container.retina.reduceFactor
-                ? ((getRangeValue(lifeOptions.duration.value) * (lifeOptions.duration.sync ? 1 : Math.random())) /
-                      container.retina.reduceFactor) *
+                ? getRangeValue(lifeOptions.duration.value) * (lifeOptions.duration.sync ? 1 : Math.random()) /
+                      container.retina.reduceFactor *
                   1000
                 : 0,
             time: 0,

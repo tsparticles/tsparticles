@@ -8,6 +8,7 @@ import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { IHsl } from "../Core/Interfaces/Colors";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IParticleColorStyle } from "../Core/Interfaces/IParticleColorStyle";
+import type { IParticleTransformValues } from "../Core/Interfaces/IParticleTransformValues";
 import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
 import type { Particle } from "../Core/Particle";
 
@@ -112,6 +113,7 @@ export function gradient(
  * @param radius - The radius of the particle.
  * @param opacity - The opacity of the particle.
  * @param shadow - The shadow of the particle.
+ * @param transform - The particle transform values.
  */
 export function drawParticle(
     container: Container,
@@ -123,26 +125,20 @@ export function drawParticle(
     composite: GlobalCompositeOperation,
     radius: number,
     opacity: number,
-    shadow: IShadow
+    shadow: IShadow,
+    transform: IParticleTransformValues
 ): void {
     const pos = particle.getPosition();
 
     context.save();
 
-    if (particle.tilt?.enable || particle.roll?.enable) {
-        const roll = particle.roll?.enable && particle.roll,
-            tilt = particle.tilt?.enable && particle.tilt,
-            rollHorizontal = roll && roll.horizontal,
-            rollVertical = roll && roll.vertical;
-
-        context.setTransform(
-            rollHorizontal ? Math.cos(particle.roll.angle) : 1,
-            tilt ? Math.cos(particle.tilt.value) * particle.tilt.cosDirection : 0,
-            tilt ? Math.sin(particle.tilt.value) * particle.tilt.sinDirection : 0,
-            rollVertical ? Math.sin(particle.roll.angle) : 1,
-            pos.x,
-            pos.y
-        );
+    if (
+        transform.a !== undefined ||
+        transform.b !== undefined ||
+        transform.c !== undefined ||
+        transform.d !== undefined
+    ) {
+        context.setTransform(transform.a ?? 1, transform.b ?? 0, transform.c ?? 0, transform.d ?? 1, pos.x, pos.y);
     } else {
         context.translate(pos.x, pos.y);
     }
@@ -198,15 +194,13 @@ export function drawParticle(
 
     context.save();
 
-    if (particle.tilt?.enable && particle.tilt) {
-        context.setTransform(
-            1,
-            Math.cos(particle.tilt.value) * particle.tilt.cosDirection,
-            Math.sin(particle.tilt.value) * particle.tilt.sinDirection,
-            1,
-            pos.x,
-            pos.y
-        );
+    if (
+        transform.a !== undefined ||
+        transform.b !== undefined ||
+        transform.c !== undefined ||
+        transform.d !== undefined
+    ) {
+        context.setTransform(transform.a ?? 1, transform.b ?? 0, transform.c ?? 0, transform.d ?? 1, pos.x, pos.y);
     } else {
         context.translate(pos.x, pos.y);
     }
@@ -357,7 +351,7 @@ export function drawEllipse(
 
     context.lineWidth = width;
 
-    const rotationRadian = (rotation * Math.PI) / 180;
+    const rotationRadian = rotation * Math.PI / 180;
 
     context.beginPath();
     context.ellipse(pos.x, pos.y, radius / 2, radius * 2, rotationRadian, start, end);

@@ -114,10 +114,10 @@ export class OrbitUpdater implements IParticleUpdater {
         switch (type) {
             case OrbitType.back:
                 start = Math.PI / 2;
-                end = (Math.PI * 3) / 2;
+                end = Math.PI * 3 / 2;
                 break;
             case OrbitType.front:
-                start = (Math.PI * 3) / 2;
+                start = Math.PI * 3 / 2;
                 end = Math.PI / 2;
                 break;
             default:

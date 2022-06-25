@@ -12,7 +12,7 @@ export class Pusher extends ExternalInteractorBase {
     constructor(container: Container) {
         super(container);
 
-        this.handleClickMode = (mode) => {
+        this.handleClickMode = (mode): void => {
             if (mode !== ClickMode.push) {
                 return;
             }

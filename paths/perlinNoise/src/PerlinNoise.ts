@@ -56,7 +56,7 @@ export class PerlinNoise {
         }
 
         for (let i = 0; i < 256; i++) {
-            const v = i & 1 ? p[i] ^ (seed & 255) : p[i] ^ ((seed >> 8) & 255);
+            const v = i & 1 ? p[i] ^ seed & 255 : p[i] ^ seed >> 8 & 255;
 
             perm[i] = perm[i + 256] = v;
             gradP[i] = gradP[i + 256] = grad3[v % 12];

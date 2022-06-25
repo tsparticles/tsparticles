@@ -27,12 +27,12 @@ export class Absorbers implements IContainerPlugin {
         this.absorbers = [];
         this.interactivityAbsorbers = [];
 
-        container.getAbsorber = (idxOrName?: number | string) =>
+        container.getAbsorber = (idxOrName?: number | string): AbsorberInstance | undefined =>
             idxOrName === undefined || typeof idxOrName === "number"
                 ? this.array[idxOrName || 0]
                 : this.array.find((t) => t.name === idxOrName);
 
-        container.addAbsorber = (options: RecursivePartial<IAbsorber>, position?: ICoordinates) =>
+        container.addAbsorber = (options: RecursivePartial<IAbsorber>, position?: ICoordinates): AbsorberInstance =>
             this.addAbsorber(options, position);
     }
 

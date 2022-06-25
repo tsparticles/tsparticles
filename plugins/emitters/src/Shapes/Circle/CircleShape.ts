@@ -5,7 +5,7 @@ export class CircleShape implements IEmitterShape {
     randomPosition(position: ICoordinates, size: IDimension, fill: boolean): ICoordinates {
         const generateTheta = (x: number, y: number): number => {
                 const u = Math.random() / 4.0,
-                    theta = Math.atan((y / x) * Math.tan(2 * Math.PI * u)),
+                    theta = Math.atan(y / x * Math.tan(2 * Math.PI * u)),
                     v = Math.random();
 
                 if (v < 0.25) {
@@ -19,7 +19,7 @@ export class CircleShape implements IEmitterShape {
                 }
             },
             radius = (x: number, y: number, theta: number): number =>
-                (x * y) / Math.sqrt((y * Math.cos(theta)) ** 2 + (x * Math.sin(theta)) ** 2),
+                x * y / Math.sqrt((y * Math.cos(theta)) ** 2 + (x * Math.sin(theta)) ** 2),
             [a, b] = [size.width / 2, size.height / 2],
             randomTheta = generateTheta(a, b),
             maxRadius = radius(a, b, randomTheta),

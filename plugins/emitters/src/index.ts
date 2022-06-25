@@ -39,10 +39,10 @@ class EmittersPlugin implements IPlugin {
         const emitters = options.emitters;
 
         return (
-            (emitters instanceof Array && !!emitters.length) ||
+            emitters instanceof Array && !!emitters.length ||
             emitters !== undefined ||
-            (!!options.interactivity?.events?.onClick?.mode &&
-                isInArray(EmitterClickMode.emitter, options.interactivity.events.onClick.mode))
+            !!options.interactivity?.events?.onClick?.mode &&
+                isInArray(EmitterClickMode.emitter, options.interactivity.events.onClick.mode)
         );
     }
 
@@ -122,13 +122,13 @@ class EmittersPlugin implements IPlugin {
                         };
                     }
                 } else {
-                    const emitterOptions = (optionsCast.interactivity.modes.emitters = {
+                    const emitterOptions = optionsCast.interactivity.modes.emitters = {
                         random: {
                             count: 1,
                             enable: false,
                         },
                         value: new Emitter(),
-                    });
+                    };
 
                     emitterOptions.value.load(interactivityEmitters as IEmitter);
                 }

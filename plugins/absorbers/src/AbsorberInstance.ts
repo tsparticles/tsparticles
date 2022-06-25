@@ -168,14 +168,14 @@ export class AbsorberInstance {
             { dx, dy, distance } = getDistances(this.position, pos),
             v = Vector.create(dx, dy);
 
-        v.length = (this.mass / Math.pow(distance, 2)) * container.retina.reduceFactor;
+        v.length = this.mass / Math.pow(distance, 2) * container.retina.reduceFactor;
 
         if (distance < this.size + particle.getRadius()) {
             const sizeFactor = particle.getRadius() * 0.033 * container.retina.pixelRatio;
 
             if (
-                (this.size > particle.getRadius() && distance < this.size - particle.getRadius()) ||
-                (particle.absorberOrbit !== undefined && particle.absorberOrbit.length < 0)
+                this.size > particle.getRadius() && distance < this.size - particle.getRadius() ||
+                particle.absorberOrbit !== undefined && particle.absorberOrbit.length < 0
             ) {
                 if (options.destroy) {
                     particle.destroy();
@@ -299,7 +299,7 @@ export class AbsorberInstance {
 
             particle.absorberOrbit.length -= v.length;
             particle.absorberOrbit.angle +=
-                (((particle.retina.moveSpeed ?? 0) * container.retina.pixelRatio) / 100) *
+                (particle.retina.moveSpeed ?? 0) * container.retina.pixelRatio / 100 *
                 container.retina.reduceFactor;
         } else {
             const addV = Vector.origin;

@@ -38,15 +38,15 @@ export class Emitters implements IContainerPlugin {
             value: [],
         };
 
-        container.getEmitter = (idxOrName?: number | string) =>
+        container.getEmitter = (idxOrName?: number | string): EmitterInstance | undefined =>
             idxOrName === undefined || typeof idxOrName === "number"
                 ? this.array[idxOrName || 0]
                 : this.array.find((t) => t.name === idxOrName);
 
-        container.addEmitter = (options: RecursivePartial<IEmitter>, position?: ICoordinates) =>
+        container.addEmitter = (options: RecursivePartial<IEmitter>, position?: ICoordinates): EmitterInstance =>
             this.addEmitter(options, position);
 
-        container.removeEmitter = (idxOrName?: number | string) => {
+        container.removeEmitter = (idxOrName?: number | string): void => {
             const emitter = container.getEmitter(idxOrName);
 
             if (emitter) {
@@ -54,7 +54,7 @@ export class Emitters implements IContainerPlugin {
             }
         };
 
-        container.playEmitter = (idxOrName?: number | string) => {
+        container.playEmitter = (idxOrName?: number | string): void => {
             const emitter = container.getEmitter(idxOrName);
 
             if (emitter) {
@@ -62,7 +62,7 @@ export class Emitters implements IContainerPlugin {
             }
         };
 
-        container.pauseEmitter = (idxOrName?: number | string) => {
+        container.pauseEmitter = (idxOrName?: number | string): void => {
             const emitter = container.getEmitter(idxOrName);
 
             if (emitter) {

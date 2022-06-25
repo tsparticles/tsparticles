@@ -1,5 +1,6 @@
 import type { IDelta } from "./IDelta";
 import type { IParticleColorStyle } from "./IParticleColorStyle";
+import type { IParticleTransformValues } from "./IParticleTransformValues";
 import type { IParticlesOptions } from "../../Options/Interfaces/Particles/IParticlesOptions";
 import type { Particle } from "../Particle";
 import type { ParticlesOptions } from "../../Options/Classes/Particles/ParticlesOptions";
@@ -20,6 +21,8 @@ export interface IParticleUpdater {
         radius: number,
         opacity: number
     ) => IParticleColorStyle;
+
+    getTransformValues?: (particle: Particle) => IParticleTransformValues;
 
     afterDraw?: (particle: Particle) => void;
 

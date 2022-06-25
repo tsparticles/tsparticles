@@ -19,7 +19,7 @@ export class LifeOptionsEditor extends EditorBase {
         this.addProperties();
     }
 
-    private addDelay() {
+    private addDelay(): void {
         const particles = this.particles;
         const group = this.group.addGroup("delay", "Delay");
         const randomGroup = group.addGroup("random", "Random");
@@ -41,7 +41,7 @@ export class LifeOptionsEditor extends EditorBase {
         });
     }
 
-    private addDuration() {
+    private addDuration(): void {
         const particles = this.particles;
         const group = this.group.addGroup("duration", "Duration");
         const randomGroup = group.addGroup("random", "Random");
@@ -63,7 +63,7 @@ export class LifeOptionsEditor extends EditorBase {
         });
     }
 
-    private addProperties() {
+    private addProperties(): void {
         const particles = this.particles;
 
         this.group.addProperty("count", "Count", EditorType.number).change(async () => {

@@ -116,7 +116,7 @@ export class Grabber extends ExternalInteractorBase {
 
             const grabLineOptions = interactivity.modes.grab.links,
                 lineOpacity = grabLineOptions.opacity,
-                opacityLine = lineOpacity - (pointDistance * lineOpacity) / distance;
+                opacityLine = lineOpacity - pointDistance * lineOpacity / distance;
 
             if (opacityLine <= 0) {
                 continue;

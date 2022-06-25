@@ -13,7 +13,7 @@ const drawRoundedRect = (
         bottomLeft: 4,
         topLeft: 4,
     }
-) => {
+): void => {
     const { x, y, width, height } = info;
     const r = x + width;
     const b = y + height;
@@ -37,7 +37,7 @@ export class RoundedRectDrawer implements IShapeDrawer {
         roundedRect.borderRadius = (shapeData?.radius ?? 4) * container.retina.pixelRatio;
     }
 
-    draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number) {
+    draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
         const roundedRect = particle as IRoundedParticle;
 
         drawRoundedRect(

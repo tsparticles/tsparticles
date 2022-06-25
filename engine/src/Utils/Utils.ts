@@ -58,8 +58,8 @@ function rectSideBounce(
     }
 
     if (
-        (pSide.max >= rectSide.min && pSide.max <= (rectSide.max + rectSide.min) / 2 && velocity > 0) ||
-        (pSide.min <= rectSide.max && pSide.min > (rectSide.max + rectSide.min) / 2 && velocity < 0)
+        pSide.max >= rectSide.min && pSide.max <= (rectSide.max + rectSide.min) / 2 && velocity > 0 ||
+        pSide.min <= rectSide.max && pSide.min > (rectSide.max + rectSide.min) / 2 && velocity < 0
     ) {
         res.velocity = velocity * -factor;
         res.bounced = true;
@@ -136,7 +136,7 @@ export function cancelAnimation(): (handle: number) => void {
  * @returns true if the value is equal to the destination, if same type, or is in the provided array
  */
 export function isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
-    return value === array || (array instanceof Array && array.indexOf(value) > -1);
+    return value === array || array instanceof Array && array.indexOf(value) > -1;
 }
 
 /**

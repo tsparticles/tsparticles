@@ -84,8 +84,8 @@ export class Particles {
             new Rectangle(
                 -canvasSize.width / 4,
                 -canvasSize.height / 4,
-                (canvasSize.width * 3) / 2,
-                (canvasSize.height * 3) / 2
+                canvasSize.width * 3 / 2,
+                canvasSize.height * 3 / 2
             ),
             4
         );
@@ -275,8 +275,8 @@ export class Particles {
             new Rectangle(
                 -canvasSize.width / 4,
                 -canvasSize.height / 4,
-                (canvasSize.width * 3) / 2,
-                (canvasSize.height * 3) / 2
+                canvasSize.width * 3 / 2,
+                canvasSize.height * 3 / 2
             ),
             4
         );
@@ -499,7 +499,7 @@ export class Particles {
         const canvas = container.canvas.element,
             pxRatio = container.retina.pixelRatio;
 
-        return (canvas.width * canvas.height) / (densityOptions.factor * pxRatio ** 2 * densityOptions.area);
+        return canvas.width * canvas.height / (densityOptions.factor * pxRatio ** 2 * densityOptions.area);
     }
 
     private pushParticle(

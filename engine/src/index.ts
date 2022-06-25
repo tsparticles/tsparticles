@@ -273,3 +273,4 @@ export { tsParticles };
  * tsParticles source options alias type, supporting partial objects
  */
 export type ISourceOptions = RecursivePartial<IOptions>;
+export { IParticleTransformValues } from "./Core/Interfaces/IParticleTransformValues";

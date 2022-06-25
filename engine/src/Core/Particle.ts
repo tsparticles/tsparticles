@@ -1,10 +1,6 @@
 import { ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates";
 import type { IHsl, IRgb } from "./Interfaces/Colors";
-import {
-    IParticleNumericValueAnimation,
-    IParticleTiltValueAnimation,
-    IParticleValueAnimation,
-} from "./Interfaces/IParticleValueAnimation";
+import { IParticleNumericValueAnimation, IParticleValueAnimation } from "./Interfaces/IParticleValueAnimation";
 import { OutMode, OutModeAlt } from "../Enums/Modes/OutMode";
 import {
     calcExactPositionOrRandomFromSize,
@@ -160,11 +156,6 @@ export class Particle implements IParticle {
      * Gets the particle rotate options
      */
     rotate?: IParticleValueAnimation<number>;
-
-    /**
-     * Gets the particle tilt options
-     */
-    tilt?: IParticleTiltValueAnimation;
 
     /**
      * Gets the particle color options
@@ -387,7 +378,7 @@ export class Particle implements IParticle {
             }
 
             this.size.velocity =
-                ((this.retina.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100) *
+                (this.retina.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100 *
                 container.retina.reduceFactor;
 
             if (!sizeAnimation.sync) {
@@ -406,8 +397,8 @@ export class Particle implements IParticle {
             moveCenterPerc = this.options.move.center;
 
         this.moveCenter = {
-            x: (canvasSize.width * moveCenterPerc.x) / 100,
-            y: (canvasSize.height * moveCenterPerc.y) / 100,
+            x: canvasSize.width * moveCenterPerc.x / 100,
+            y: canvasSize.height * moveCenterPerc.y / 100,
             radius: this.options.move.center.radius,
         };
         this.direction = getParticleDirectionAngle(this.options.move.direction, this.position, this.moveCenter);
@@ -529,7 +520,7 @@ export class Particle implements IParticle {
     }
 
     getMass(): number {
-        return (this.getRadius() ** 2 * Math.PI) / 2;
+        return this.getRadius() ** 2 * Math.PI / 2;
     }
 
     getFillColor(): IHsl | undefined {
@@ -642,7 +633,7 @@ export class Particle implements IParticle {
                     checkModes: [OutMode.bounce, OutMode.bounceHorizontal],
                     coord: pos.x,
                     maxCoord: container.canvas.size.width,
-                    setCb: (value: number) => (pos.x += value),
+                    setCb: (value: number) => pos.x += value,
                     radius,
                 });
             },
@@ -652,7 +643,7 @@ export class Particle implements IParticle {
                     checkModes: [OutMode.bounce, OutMode.bounceVertical],
                     coord: pos.y,
                     maxCoord: container.canvas.size.height,
-                    setCb: (value: number) => (pos.y += value),
+                    setCb: (value: number) => pos.y += value,
                     radius,
                 });
             };
@@ -710,8 +701,8 @@ export class Particle implements IParticle {
             return res;
         }
 
-        const rad = (Math.PI / 180) * getRangeValue(moveOptions.angle.value);
-        const radOffset = (Math.PI / 180) * getRangeValue(moveOptions.angle.offset);
+        const rad = Math.PI / 180 * getRangeValue(moveOptions.angle.value);
+        const radOffset = Math.PI / 180 * getRangeValue(moveOptions.angle.offset);
 
         const range = {
             left: radOffset - rad / 2,

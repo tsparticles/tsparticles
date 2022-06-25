@@ -241,7 +241,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         for (let i = 0, j = this.raw.length - 1; i < this.raw.length; j = i++) {
             const pi = this.raw[i],
                 pj = this.raw[j],
-                intersect = pi.y > y !== pj.y > y && x < ((pj.x - pi.x) * (y - pi.y)) / (pj.y - pi.y) + pi.x;
+                intersect = pi.y > y !== pj.y > y && x < (pj.x - pi.x) * (y - pi.y) / (pj.y - pi.y) + pi.x;
 
             if (intersect) {
                 inside = !inside;
@@ -301,8 +301,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
         /* centering of the polygon mask */
         this.offset = {
-            x: (container.canvas.size.width * position.x) / (100 * pxRatio) - this.dimension.width / 2,
-            y: (container.canvas.size.height * position.y) / (100 * pxRatio) - this.dimension.height / 2,
+            x: container.canvas.size.width * position.x / (100 * pxRatio) - this.dimension.width / 2,
+            y: container.canvas.size.height * position.y / (100 * pxRatio) - this.dimension.height / 2,
         };
 
         return parsePaths(this.paths, scale, this.offset);
@@ -322,7 +322,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
             forceDownload = force ?? false;
 
         // Load SVG from file on server
-        if (!url || (this.paths !== undefined && !forceDownload)) {
+        if (!url || this.paths !== undefined && !forceDownload) {
             return this.raw;
         }
 

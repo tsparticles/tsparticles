@@ -32,7 +32,7 @@ export class Bouncer extends ExternalInteractorBase {
             divs = events.onDiv;
 
         return (
-            (mouse.position && events.onHover.enable && isInArray(HoverMode.bounce, events.onHover.mode)) ||
+            mouse.position && events.onHover.enable && isInArray(HoverMode.bounce, events.onHover.mode) ||
             isDivModeEnabled(DivMode.bounce, divs)
         );
     }
@@ -88,7 +88,7 @@ export class Bouncer extends ExternalInteractorBase {
                     x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
                     y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
                 },
-                radius = (elem.offsetWidth / 2) * pxRatio,
+                radius = elem.offsetWidth / 2 * pxRatio,
                 tolerance = 10 * pxRatio,
                 area =
                     div.type === DivType.circle
@@ -112,7 +112,7 @@ export class Bouncer extends ExternalInteractorBase {
                 circleBounce(circleBounceDataFromParticle(particle), {
                     position,
                     radius,
-                    mass: (radius ** 2 * Math.PI) / 2,
+                    mass: radius ** 2 * Math.PI / 2,
                     velocity: Vector.origin,
                     factor: Vector.origin,
                 });

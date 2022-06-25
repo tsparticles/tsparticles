@@ -19,7 +19,7 @@ export class InfectionOptionsEditor extends EditorBase {
         this.addProperties();
     }
 
-    private addProperties() {
+    private addProperties(): void {
         const particles = this.particles;
 
         this.group.addProperty("cure", "Cure", EditorType.boolean).change(async () => {
@@ -39,7 +39,7 @@ export class InfectionOptionsEditor extends EditorBase {
         });
     }
 
-    private addStages() {
+    private addStages(): void {
         const particles = this.particles;
         const options = this.options;
         const stagesGroup = this.group.addGroup("stages", "Stages");
@@ -55,7 +55,7 @@ export class InfectionOptionsEditor extends EditorBase {
         });
     }
 
-    private addStage(parent: EditorGroup, stages: IInfectionStage[], index: number) {
+    private addStage(parent: EditorGroup, stages: IInfectionStage[], index: number): void {
         const particles = this.particles;
         const stageGroup = parent.addGroup(index.toString(10), `Stage ${index}`, true, stages);
         const stage = stageGroup.data as IInfectionStage;

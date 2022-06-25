@@ -13,8 +13,8 @@ export class BaseMover implements IParticleMover {
             const spinPos = spinOptions.position ?? { x: 50, y: 50 };
 
             const spinCenter = {
-                x: (spinPos.x / 100) * container.canvas.size.width,
-                y: (spinPos.y / 100) * container.canvas.size.height,
+                x: spinPos.x / 100 * container.canvas.size.width,
+                y: spinPos.y / 100 * container.canvas.size.height,
             };
 
             const pos = particle.getPosition();
@@ -50,13 +50,13 @@ export class BaseMover implements IParticleMover {
             baseSpeed =
                 (particle.retina.moveSpeed ??= getRangeValue(moveOptions.speed) * container.retina.pixelRatio) *
                 container.retina.reduceFactor,
-            moveDrift = (particle.retina.moveDrift ??=
-                getRangeValue(particle.options.move.drift) * container.retina.pixelRatio),
+            moveDrift = particle.retina.moveDrift ??=
+                getRangeValue(particle.options.move.drift) * container.retina.pixelRatio,
             maxSize = getRangeMax(particleOptions.size.value) * container.retina.pixelRatio,
             sizeFactor = moveOptions.size ? particle.getRadius() / maxSize : 1,
             speedFactor = sizeFactor * slowFactor * (delta.factor || 1),
             diffFactor = 2,
-            moveSpeed = (baseSpeed * speedFactor) / diffFactor;
+            moveSpeed = baseSpeed * speedFactor / diffFactor;
 
         applyPath(particle, delta);
 
@@ -64,11 +64,11 @@ export class BaseMover implements IParticleMover {
             gravityFactor = gravityOptions.enable && gravityOptions.inverse ? -1 : 1;
 
         if (gravityOptions.enable && moveSpeed) {
-            particle.velocity.y += (gravityFactor * (gravityOptions.acceleration * delta.factor)) / (60 * moveSpeed);
+            particle.velocity.y += gravityFactor * (gravityOptions.acceleration * delta.factor) / (60 * moveSpeed);
         }
 
         if (moveDrift && moveSpeed) {
-            particle.velocity.x += (moveDrift * delta.factor) / (60 * moveSpeed);
+            particle.velocity.x += moveDrift * delta.factor / (60 * moveSpeed);
         }
 
         const decay = particle.moveDecay;
@@ -83,8 +83,8 @@ export class BaseMover implements IParticleMover {
         if (
             gravityOptions.enable &&
             maxSpeed > 0 &&
-            ((!gravityOptions.inverse && velocity.y >= 0 && velocity.y >= maxSpeed) ||
-                (gravityOptions.inverse && velocity.y <= 0 && velocity.y <= -maxSpeed))
+            (!gravityOptions.inverse && velocity.y >= 0 && velocity.y >= maxSpeed ||
+                gravityOptions.inverse && velocity.y <= 0 && velocity.y <= -maxSpeed)
         ) {
             velocity.y = gravityFactor * maxSpeed;
 

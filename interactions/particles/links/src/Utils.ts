@@ -46,7 +46,7 @@ export function drawLinkLine(
         const d1 = getDistances(begin, endNE);
 
         if (d1.distance <= maxDistance) {
-            const yi = begin.y - (d1.dy / d1.dx) * begin.x;
+            const yi = begin.y - d1.dy / d1.dx * begin.x;
 
             pi1 = { x: 0, y: yi };
             pi2 = { x: canvasSize.width, y: yi };
@@ -59,7 +59,7 @@ export function drawLinkLine(
             const d2 = getDistances(begin, endSW);
 
             if (d2.distance <= maxDistance) {
-                const yi = begin.y - (d2.dy / d2.dx) * begin.x;
+                const yi = begin.y - d2.dy / d2.dx * begin.x;
                 const xi = -yi / (d2.dy / d2.dx);
 
                 pi1 = { x: xi, y: 0 };
@@ -73,7 +73,7 @@ export function drawLinkLine(
                 const d3 = getDistances(begin, endSE);
 
                 if (d3.distance <= maxDistance) {
-                    const yi = begin.y - (d3.dy / d3.dx) * begin.x;
+                    const yi = begin.y - d3.dy / d3.dx * begin.x;
                     const xi = -yi / (d3.dy / d3.dx);
 
                     pi1 = { x: xi, y: yi };

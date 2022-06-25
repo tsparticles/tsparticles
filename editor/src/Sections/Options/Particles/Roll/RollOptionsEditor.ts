@@ -19,7 +19,7 @@ export class RollOptionsEditor extends EditorBase {
         this.addProperties();
     }
 
-    private addDarken() {
+    private addDarken(): void {
         const particles = this.particles;
         const group = this.group.addGroup("darken", "Darken");
 
@@ -32,7 +32,7 @@ export class RollOptionsEditor extends EditorBase {
         });
     }
 
-    private addEnlighten() {
+    private addEnlighten(): void {
         const particles = this.particles;
         const group = this.group.addGroup("enlighten", "Enlighten");
 

@@ -6,9 +6,22 @@ import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { IDelta } from "./Interfaces/IDelta";
 import type { IDimension } from "./Interfaces/IDimension";
 import type { IParticleColorStyle } from "./Interfaces/IParticleColorStyle";
+import type { IParticleTransformValues } from "./Interfaces/IParticleTransformValues";
 import type { Particle } from "./Particle";
 import { deepExtend } from "../Utils/Utils";
 import { generatedAttribute } from "./Utils/Constants";
+
+function setTransformValue(
+    factor: IParticleTransformValues,
+    newFactor: IParticleTransformValues,
+    key: keyof IParticleTransformValues
+): void {
+    const newValue = newFactor[key];
+
+    if (newValue !== undefined) {
+        factor[key] = (factor[key] ?? 1) * newValue;
+    }
+}
 
 /**
  * Canvas manager
@@ -235,6 +248,8 @@ export class Canvas {
         colorStyles.stroke = sColor ? getStyleFromHsl(sColor, zStrokeOpacity) : colorStyles.fill;
 
         this.draw((ctx) => {
+            const transform: IParticleTransformValues = {};
+
             const zSizeFactor = (1 - particle.zIndexFactor) ** zIndexOptions.sizeRate,
                 container = this.container;
 
@@ -254,6 +269,14 @@ export class Canvas {
                         colorStyles.stroke = stroke;
                     }
                 }
+
+                if (updater.getTransformValues) {
+                    const updaterTransform = updater.getTransformValues(particle);
+
+                    for (const key in updaterTransform) {
+                        setTransformValue(transform, updaterTransform, key as keyof IParticleTransformValues);
+                    }
+                }
             }
 
             drawParticle(
@@ -266,7 +289,8 @@ export class Canvas {
                 options.backgroundMask.composite,
                 radius * zSizeFactor,
                 zOpacity,
-                particle.options.shadow
+                particle.options.shadow,
+                transform
             );
 
             for (const updater of container.particles.updaters) {
