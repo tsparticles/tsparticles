@@ -30,6 +30,10 @@ export class Pauser extends ExternalInteractorBase {
         return true;
     }
 
+    init(): void {
+        // do nothing
+    }
+
     clear(): void {
         // do nothing
     }

@@ -7,6 +7,8 @@ import type { Particle } from "../Particle";
 export interface IInteractor {
     type: InteractorType;
 
+    init(): void;
+
     reset(particle: Particle): void;
 
     clear(particle: Particle): void;

@@ -39,6 +39,10 @@ export class Attractor extends ParticlesInteractorBase {
         return particle.options.move.attract.enable;
     }
 
+    init(): void {
+        // do nothing
+    }
+
     clear(): void {
         // do nothing
     }

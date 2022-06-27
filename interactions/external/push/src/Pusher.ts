@@ -37,6 +37,10 @@ export class Pusher extends ExternalInteractorBase {
         return true;
     }
 
+    init(): void {
+        // do nothing
+    }
+
     clear(): void {
         // do nothing
     }

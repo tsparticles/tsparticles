@@ -21,6 +21,11 @@ export abstract class ExternalInteractorBase implements IExternalInteractor {
     type: InteractorType = InteractorType.External;
 
     /**
+     * Initializes the interactivity manager
+     */
+    abstract init(): void;
+
+    /**
      * Interaction handler
      * @param delta this variable contains the delta between the current frame and the previous frame
      */

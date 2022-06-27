@@ -101,6 +101,10 @@ export class Repulser extends ExternalInteractorBase {
         return isInArray(HoverMode.repulse, hoverMode) || isInArray(ClickMode.repulse, clickMode) || divRepulse;
     }
 
+    init(): void {
+        // do nothing
+    }
+
     clear(): void {
         // do nothing
     }

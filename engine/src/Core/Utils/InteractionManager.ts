@@ -60,6 +60,8 @@ export class InteractionManager {
                     this.particleInteractors.push(interactor as IParticlesInteractor);
                     break;
             }
+
+            interactor.init();
         }
     }
 

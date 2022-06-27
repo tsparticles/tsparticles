@@ -14,7 +14,6 @@ import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator";
 import type { IOptions } from "../Options/Interfaces/IOptions";
-import type { IRgb } from "./Interfaces/Colors";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import { Options } from "../Options/Classes/Options";
 import type { Particle } from "./Particle";
@@ -405,10 +404,7 @@ export class Container {
 
         this.#engine.plugins.destroy(this);
 
-        this.particles.linksColors = new Map<string, IRgb | string | undefined>();
-
         delete this.particles.grabLineColor;
-        delete this.particles.linksColor;
 
         this._sourceOptions = this._options;
 

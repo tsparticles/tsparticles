@@ -14,6 +14,10 @@ export class Collider extends ParticlesInteractorBase {
         return particle.options.collisions.enable;
     }
 
+    init(): void {
+        // do nothing
+    }
+
     clear(): void {
         // do nothing
     }

@@ -1,4 +1,5 @@
-import type { Container, Engine, IPlugin } from "tsparticles-engine";
+import type { Engine, IPlugin } from "tsparticles-engine";
+import type { LinkContainer } from "./LinkContainer";
 import { LinkInstance } from "./LinkInstance";
 
 class LinksPlugin implements IPlugin {
@@ -8,7 +9,7 @@ class LinksPlugin implements IPlugin {
         this.id = "links";
     }
 
-    getPlugin(container: Container): LinkInstance {
+    getPlugin(container: LinkContainer): LinkInstance {
         return new LinkInstance(container);
     }
 

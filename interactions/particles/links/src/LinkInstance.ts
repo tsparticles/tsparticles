@@ -1,7 +1,8 @@
-import type { Container, IContainerPlugin, IRangeColor, IRgb, Particle, RangeValue } from "tsparticles-engine";
+import type { IContainerPlugin, IRangeColor, IRgb, Particle, RangeValue } from "tsparticles-engine";
 import { drawLinkLine, drawLinkTriangle } from "./Utils";
 import { getDistance, getLinkColor, getRangeValue, rangeColorToRgb } from "tsparticles-engine";
 import type { ILink } from "./ILink";
+import type { LinkContainer } from "./LinkContainer";
 import type { LinkParticle } from "./LinkParticle";
 
 interface ITwinkle {
@@ -14,7 +15,7 @@ interface ITwinkle {
 }
 
 export class LinkInstance implements IContainerPlugin {
-    constructor(private readonly container: Container) {}
+    constructor(private readonly container: LinkContainer) {}
 
     particleCreated(particle: Particle): void {
         const linkParticle = particle as unknown as LinkParticle;

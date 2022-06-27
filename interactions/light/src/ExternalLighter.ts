@@ -49,6 +49,10 @@ export class ExternalLighter extends ExternalInteractorBase {
         return res;
     }
 
+    init(): void {
+        // do nothing
+    }
+
     clear(): void {
         // do nothing
     }

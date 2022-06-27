@@ -29,7 +29,6 @@ export * from "./Core/Interfaces/IParticleColorStyle";
 export * from "./Core/Interfaces/IParticleHslAnimation";
 export * from "./Core/Interfaces/IParticlesInteractor";
 export * from "./Core/Interfaces/IParticleLife";
-export * from "./Core/Interfaces/IParticleLoops";
 export * from "./Core/Interfaces/IParticleRetinaProps";
 export * from "./Core/Interfaces/IParticleRoll";
 export * from "./Core/Interfaces/IParticleUpdater";

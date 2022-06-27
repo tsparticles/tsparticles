@@ -21,6 +21,11 @@ export abstract class ParticlesInteractorBase implements IParticlesInteractor {
     type: InteractorType = InteractorType.Particles;
 
     /**
+     * Initializes the interactivity manager
+     */
+    abstract init(): void;
+
+    /**
      * Interaction handler
      * @param particle the particle responsible for interactions
      * @param delta this variable contains the delta between the current frame and the previous frame

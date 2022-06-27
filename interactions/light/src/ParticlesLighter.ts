@@ -44,6 +44,10 @@ export class ParticlesLighter extends ParticlesInteractorBase {
         return res;
     }
 
+    init(): void {
+        // do nothing
+    }
+
     clear(): void {
         // do nothing
     }

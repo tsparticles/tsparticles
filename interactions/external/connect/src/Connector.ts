@@ -66,6 +66,10 @@ export class Connector extends ExternalInteractorBase {
         return isInArray(HoverMode.connect, events.onHover.mode);
     }
 
+    init(): void {
+        // do nothing
+    }
+
     clear(): void {
         // do nothing
     }

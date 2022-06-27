@@ -76,6 +76,10 @@ export class Grabber extends ExternalInteractorBase {
         return events.onHover.enable && !!mouse.position && isInArray(HoverMode.grab, events.onHover.mode);
     }
 
+    init(): void {
+        // do nothing
+    }
+
     clear(): void {
         // do nothing
     }

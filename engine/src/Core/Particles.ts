@@ -39,7 +39,6 @@ export class Particles {
      * The quad tree used to search particles withing ranges
      */
     quadTree;
-    linksColors;
     limit;
     needsSort;
     lastZIndex;
@@ -51,7 +50,6 @@ export class Particles {
     zArray: Particle[];
 
     pushing?: boolean;
-    linksColor?: IRgb | string;
     grabLineColor?: IRgb | string;
 
     movers;
@@ -79,7 +77,6 @@ export class Particles {
 
         const canvasSize = this.container.canvas.size;
 
-        this.linksColors = new Map<string, IRgb | string | undefined>();
         this.quadTree = new QuadTree(
             new Rectangle(
                 -canvasSize.width / 4,

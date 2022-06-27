@@ -15,6 +15,10 @@ export class ParticlesInfecter extends ParticlesInteractorBase {
         return (this.container.actualOptions as unknown as IInfectionOptions)?.infection?.enable ?? false;
     }
 
+    init(): void {
+        // do nothing
+    }
+
     clear(): void {
         // do nothing
     }

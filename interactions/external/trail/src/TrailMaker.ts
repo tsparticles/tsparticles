@@ -72,6 +72,10 @@ export class TrailMaker extends ExternalInteractorBase {
         );
     }
 
+    init(): void {
+        // do nothing
+    }
+
     clear(): void {
         // do nothing
     }
