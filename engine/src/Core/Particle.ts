@@ -24,7 +24,6 @@ import type { Engine } from "../engine";
 import { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
 import type { IDelta } from "./Interfaces/IDelta";
 import type { IParticle } from "./Interfaces/IParticle";
-import type { IParticleGravity } from "./Interfaces/IParticleGravity";
 import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation";
 import type { IParticleRetinaProps } from "./Interfaces/IParticleRetinaProps";
 import type { IParticleRoll } from "./Interfaces/IParticleRoll";
@@ -183,11 +182,6 @@ export class Particle implements IParticle {
     strokeColor?: IParticleHslAnimation;
 
     readonly moveCenter: ICoordinates & { radius: number };
-
-    /**
-     * Gets particle gravity options
-     */
-    readonly gravity: IParticleGravity;
 
     /**
      * Gets particle movement speed decay
@@ -416,12 +410,6 @@ export class Particle implements IParticle {
         this.initialVelocity = this.calculateVelocity();
         this.velocity = this.initialVelocity.copy();
         this.moveDecay = 1 - getRangeValue(this.options.move.decay);
-        const gravityOptions = this.options.move.gravity;
-        this.gravity = {
-            enable: gravityOptions.enable,
-            acceleration: getRangeValue(gravityOptions.acceleration),
-            inverse: gravityOptions.inverse,
-        };
 
         /* parallax */
         this.offset = Vector.origin;

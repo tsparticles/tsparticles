@@ -26,7 +26,6 @@ export * from "./Core/Interfaces/IMouseData";
 export * from "./Core/Interfaces/IMovePathGenerator";
 export * from "./Core/Interfaces/IParticle";
 export * from "./Core/Interfaces/IParticleColorStyle";
-export * from "./Core/Interfaces/IParticleGravity";
 export * from "./Core/Interfaces/IParticleHslAnimation";
 export * from "./Core/Interfaces/IParticlesInteractor";
 export * from "./Core/Interfaces/IParticleLife";
