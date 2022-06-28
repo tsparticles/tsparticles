@@ -3390,12 +3390,12 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typedoc-plugin-carbon-ads@^1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-carbon-ads/-/typedoc-plugin-carbon-ads-1.0.7.tgz#df61f9ec7cd5fb4f5e0c82767cd194ceea4067c3"
-  integrity sha512-54zJNVyaYZD1M6yP9ce92UAmNpLuhQPhdqQF6SJET/XFfBL2/Vz5pnwn9ZP1NYtW0KlhI8ksUd31wInLfUp7Tw==
+typedoc-plugin-carbon-ads@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-carbon-ads/-/typedoc-plugin-carbon-ads-1.1.0.tgz#03b98a94d64ebe62366d13dba15eff892eb327a5"
+  integrity sha512-34X92szvQHOnR6r4J6v2oFvBIV071u9yuoBIgAEpWcSVse+bQODPVBjNqJIafgFD+U2gIR573Ys0zK8kIJI64Q==
   dependencies:
-    typescript "^4.7.2"
+    typescript "^4.7.4"
 
 typedoc-plugin-clarity@^1.0.5:
   version "1.0.5"
@@ -3421,10 +3421,10 @@ typedoc-plugin-missing-exports@^0.23.0:
   resolved "https://registry.yarnpkg.com/typedoc-plugin-missing-exports/-/typedoc-plugin-missing-exports-0.23.0.tgz#076df6ffce4d84e8097be009b7c62a17d58477a5"
   integrity sha512-9smahDSsFRno9ZwoEshQDuIYMHWGB1E6LUud5qMxR2wNZ0T4DlZz0QjoK3HzXtX34mUpTH0dYtt7NQUK4D6B6Q==
 
-typedoc@^0.23.1:
-  version "0.23.1"
-  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.23.1.tgz#4bb6ed19ee683bce7b032af0de006445fe6f42e3"
-  integrity sha512-6Lb8E+RTEUPzdPUNugQQTOQYccq0iSfZgZ875fzSynByJWC7RbKNwLIx0Osv8pcJyiByy3jH/wdZR0tajuijLQ==
+typedoc@^0.23.2:
+  version "0.23.2"
+  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.23.2.tgz#c5f82752530749c8b541ff9b17883f6fb9e72f14"
+  integrity sha512-THpC4vtb3wu1yck6YHzEc4ck6W4lScf8TD0Rg7XAetDih8BzP+ErYO0/6DtdzYcZyKkDwEoujkMeWW7CffCbrQ==
   dependencies:
     lunr "^2.3.9"
     marked "^4.0.16"
@@ -3445,7 +3445,7 @@ typescript-json-schema@^0.53.0:
     typescript "~4.6.0"
     yargs "^17.1.1"
 
-typescript@^4.7.2, typescript@^4.7.3:
+typescript@^4.7.2, typescript@^4.7.3, typescript@^4.7.4:
   version "4.7.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.4.tgz#1a88596d1cf47d59507a1bcdfb5b9dfe4d488235"
   integrity sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==
