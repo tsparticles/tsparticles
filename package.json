@@ -10,7 +10,8 @@
     "publish:beta": "lerna publish from-package --pre-dist-tag beta --preid beta",
     "publish:next": "lerna publish from-package --dist-tag next",
     "publish:v1": "lerna publish from-package --dist-tag v1",
-    "deploy:site": "lerna run deploy --scope website"
+    "deploy:site": "lerna run deploy --scope website",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.1",
@@ -18,7 +19,7 @@
     "@parcel/transformer-sass": "^2.6.0",
     "@types/node": "^18.0.0",
     "copyfiles": "^2.4.1",
-    "husky": "^8.0.1",
+    "husky": "^8.0.0",
     "ini": "^3.0.0",
     "lerna": "^5.1.2",
     "parcel": "^2.6.0",
@@ -32,11 +33,5 @@
   },
   "resolutions": {
     "npm-packlist": "5.1.0"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
   }
 }
-
