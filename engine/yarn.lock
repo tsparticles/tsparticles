@@ -3404,10 +3404,10 @@ typedoc-plugin-clarity@^1.0.5:
   dependencies:
     typescript "^4.7.2"
 
-typedoc-plugin-coverage@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-coverage/-/typedoc-plugin-coverage-1.0.2.tgz#94f9eddbedae00326f57026f865dedc5622810c6"
-  integrity sha512-RacrPr0coZ+A/KjGYOuHNzF245VHQwTA55508Q9KiOfaBrjB4ItbaNuDT4IvNZkT58C8wbdNTZ8qI7d7FMNIMw==
+typedoc-plugin-coverage@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-coverage/-/typedoc-plugin-coverage-2.0.0.tgz#f2b9f3b8caf9d6baaa80b764aa6cffc49030fb7d"
+  integrity sha512-IJsYW0SvV2RUWfUBWuCG2cXTv+FiPDlls9+JlUlct3N41c1hV01ZOLKmZpEVelrvNSU3SnxxA8mkct3BQm2v0g==
 
 typedoc-plugin-keyword@^1.0.2:
   version "1.0.2"
