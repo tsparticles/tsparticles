@@ -7,7 +7,7 @@ import type {
     RecursivePartial,
 } from "tsparticles-engine";
 import { getRangeValue, getStyleFromHsl, rangeColorToHsl } from "tsparticles-engine";
-import { ITwinkle } from "./Options/Interfaces/ITwinkle";
+import type { ITwinkle } from "./Options/Interfaces/ITwinkle";
 import { Twinkle } from "./Options/Classes/Twinkle";
 
 type TwinkeParticle = Particle & {

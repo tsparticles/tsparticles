@@ -2,13 +2,13 @@
 import type { Engine } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import HelloWorld from "./components/HelloWorld.vue";
+import TheWelcome from "./components/TheWelcome.vue";
 
 const options = {
   background: {
     color: {
-      value: 'white',
+      value: "white",
     },
   },
   fpsLimit: 120,
@@ -16,11 +16,11 @@ const options = {
     events: {
       onClick: {
         enable: true,
-        mode: 'push',
+        mode: "push",
       },
       onHover: {
         enable: true,
-        mode: 'repulse',
+        mode: "repulse",
       },
       resize: true,
     },
@@ -38,15 +38,15 @@ const options = {
       repulse: {
         distance: 200,
         duration: 0.4,
-      }
-    }
+      },
+    },
   },
   particles: {
     color: {
-      value: '#0e47a1',
+      value: "#0e47a1",
     },
     links: {
-      color: '#0e47a1',
+      color: "#0e47a1",
       distance: 150,
       enable: true,
       opacity: 0.5,
@@ -56,9 +56,9 @@ const options = {
       enable: false,
     },
     move: {
-      direction: 'none',
+      direction: "none",
       enable: true,
-      outMode: 'bounce',
+      outMode: "bounce",
       random: false,
       speed: 6,
       straight: false,
@@ -74,12 +74,12 @@ const options = {
       value: 0.5,
     },
     shape: {
-      type: 'circle',
+      type: "circle",
     },
     size: {
       random: true,
       value: 5,
-    }
+    },
   },
   detectRetina: true,
 };
@@ -90,26 +90,32 @@ const particlesInit = async (engine: Engine) => {
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125"/>
+    <img
+      alt="Vue logo"
+      class="logo"
+      src="./assets/logo.svg"
+      width="125"
+      height="125"
+    />
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!"/>
+      <HelloWorld msg="You did it!" />
     </div>
   </header>
 
   <main>
-    <TheWelcome/>
+    <TheWelcome />
 
     <Particles
-        id="tsparticles"
-        :options="options"
-        :particlesInit="particlesInit"
+      id="tsparticles"
+      :options="options"
+      :particlesInit="particlesInit"
     />
   </main>
 </template>
 
 <style>
-@import './assets/base.css';
+@import "./assets/base.css";
 
 #app {
   max-width: 1280px;

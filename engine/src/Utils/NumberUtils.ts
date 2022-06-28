@@ -1,8 +1,12 @@
-import { IPositionFromSizeParams, IRangedPositionFromSizeParams } from "../Core/Interfaces/IPositionFromSizeParams";
-import { MoveDirection, MoveDirectionAlt } from "../Enums/Directions/MoveDirection";
+import type {
+    IPositionFromSizeParams,
+    IRangedPositionFromSizeParams
+} from "../Core/Interfaces/IPositionFromSizeParams";
 import { EasingType } from "../Enums/Types/EasingType";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IValueWithRandom } from "../Options/Interfaces/IValueWithRandom";
+import { MoveDirection } from "../Enums/Directions/MoveDirection";
+import type { MoveDirectionAlt } from "../Enums/Directions/MoveDirection";
 import type { RangeValue } from "../Types/RangeValue";
 import { Vector } from "../Core/Utils/Vector";
 
@@ -60,9 +64,9 @@ export function setRangeValue(source: RangeValue, value?: number): RangeValue {
 
     return value !== undefined
         ? {
-              min: Math.min(min, value),
-              max: Math.max(max, value),
-          }
+            min: Math.min(min, value),
+            max: Math.max(max, value),
+        }
         : setRangeValue(min, max);
 }
 
@@ -71,9 +75,9 @@ export function getValue(options: IValueWithRandom): number {
         { enable, minimumValue } =
             typeof random === "boolean"
                 ? {
-                      enable: random,
-                      minimumValue: 0,
-                  }
+                    enable: random,
+                    minimumValue: 0,
+                }
                 : random;
 
     return enable ? getRangeValue(setRangeValue(options.value, minimumValue)) : getRangeValue(options.value);
@@ -188,9 +192,9 @@ export function calcEasing(value: number, type: EasingType): number {
 export function calcPositionFromSize(data: IPositionFromSizeParams): ICoordinates | undefined {
     return data.position?.x !== undefined && data.position?.y !== undefined
         ? {
-              x: data.position.x * data.size.width / 100,
-              y: data.position.y * data.size.height / 100,
-          }
+            x: data.position.x * data.size.width / 100,
+            y: data.position.y * data.size.height / 100,
+        }
         : undefined;
 }
 

@@ -11,7 +11,7 @@ import {
 import type { IPolygonMaskOptions } from "./types";
 import type { ISvgPath } from "./Interfaces/ISvgPath";
 import { OutModeDirection } from "tsparticles-engine";
-import { Particle } from "tsparticles-engine";
+import type { Particle } from "tsparticles-engine";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
 import { PolygonMaskInlineArrangement } from "./Enums/PolygonMaskInlineArrangement";
 import { PolygonMaskType } from "./Enums/PolygonMaskType";

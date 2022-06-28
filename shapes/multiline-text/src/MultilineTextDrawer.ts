@@ -1,7 +1,7 @@
 import type { Container, IParticle, IShapeDrawer, SingleOrMultiple } from "tsparticles-engine";
 import { isInArray, itemFromArray, loadFont } from "tsparticles-engine";
 import type { IMultilineTextShape } from "./IMultilineTextShape";
-import { MultilineTextParticle } from "./MultilineTextParticle";
+import type { MultilineTextParticle } from "./MultilineTextParticle";
 
 export class MultilineTextDrawer implements IShapeDrawer {
     async init(container: Container): Promise<void> {

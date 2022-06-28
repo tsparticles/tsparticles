@@ -18,20 +18,20 @@ export default defineComponent({
   props: {
     id: {
       type: String,
-      required: true
+      required: true,
     },
     options: {
-      type: Object as PropType<IParticlesProps>
+      type: Object as PropType<IParticlesProps>,
     },
     url: {
-      type: String
+      type: String,
     },
     particlesLoaded: {
-      type: Function as PropType<(container: Container) => void>
+      type: Function as PropType<(container: Container) => void>,
     },
     particlesInit: {
-      type: Function as PropType<(engine: Engine) => void>
-    }
+      type: Function as PropType<(engine: Engine) => void>,
+    },
   },
   mounted(): void {
     nextTick(async () => {
@@ -53,7 +53,9 @@ export default defineComponent({
         }
       };
 
-      let loadedContainer = await (this.url ? tsParticles.loadJSON(this.id, this.url) : tsParticles.load(this.id, this.options ?? {}));
+      const loadedContainer = await (this.url
+        ? tsParticles.loadJSON(this.id, this.url)
+        : tsParticles.load(this.id, this.options ?? {}));
 
       cb(loadedContainer);
     });
@@ -62,6 +64,6 @@ export default defineComponent({
     if (container) {
       container.destroy();
     }
-  }
-})
+  },
+});
 </script>

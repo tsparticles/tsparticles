@@ -1,6 +1,7 @@
-import { EditorGroup, EditorType } from "object-gui";
 import type { Container } from "tsparticles-engine";
 import { EditorBase } from "../../../../EditorBase";
+import type { EditorGroup } from "object-gui";
+import { EditorType } from "object-gui";
 
 export class TwinkleOptionsEditor extends EditorBase {
     group!: EditorGroup;

@@ -4,8 +4,8 @@
  */
 import { animate, cancelAnimation } from "../Utils/Utils";
 import { Canvas } from "./Canvas";
-import { ClickMode } from "../Enums/Modes/ClickMode";
-import { Engine } from "../engine";
+import type { ClickMode } from "../Enums/Modes/ClickMode";
+import type { Engine } from "../engine";
 import { EventListeners } from "./Utils/EventListeners";
 import { EventType } from "../Enums/Types/EventType";
 import { FrameManager } from "./Utils/FrameManager";
@@ -20,7 +20,7 @@ import type { Particle } from "./Particle";
 import { Particles } from "./Particles";
 import type { RecursivePartial } from "../Types/RecursivePartial";
 import { Retina } from "./Retina";
-import { Vector } from "./Utils/Vector";
+import type { Vector } from "./Utils/Vector";
 import { getRangeValue } from "../Utils/NumberUtils";
 import { loadOptions } from "../Utils/OptionsUtils";
 

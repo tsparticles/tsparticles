@@ -6,7 +6,7 @@ import {
     randomInRange,
     setRangeValue,
 } from "../Utils/NumberUtils";
-import { ClickMode } from "../Enums/Modes/ClickMode";
+import type { ClickMode } from "../Enums/Modes/ClickMode";
 import type { Container } from "./Container";
 import type { Engine } from "../engine";
 import { EventType } from "../Enums/Types/EventType";

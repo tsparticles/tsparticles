@@ -1,6 +1,7 @@
 import type { Container, IBackgroundMask, IBackgroundMaskCover, IColor } from "tsparticles-engine";
-import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../EditorBase";
+import type { EditorGroup } from "object-gui";
+import { EditorType } from "object-gui";
 
 export class BackgroundMaskOptionsEditor extends EditorBase {
     group!: EditorGroup;

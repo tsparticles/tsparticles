@@ -1,9 +1,11 @@
 import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import type { IPolygonMaskInline } from "../Interfaces/IPolygonMaskInline";
 import {
-    PolygonMaskInlineArrangement,
-    PolygonMaskInlineArrangementAlt,
+    PolygonMaskInlineArrangement
 } from "../../Enums/PolygonMaskInlineArrangement";
-import { IPolygonMaskInline } from "../Interfaces/IPolygonMaskInline";
+import type {
+    PolygonMaskInlineArrangementAlt
+} from "../../Enums/PolygonMaskInlineArrangement";
 
 /**
  * @category Polygon Mask Plugin

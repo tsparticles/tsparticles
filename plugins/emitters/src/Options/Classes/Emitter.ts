@@ -1,11 +1,11 @@
-import { AnimatableColor, MoveDirection, MoveDirectionAlt, deepExtend, setRangeValue } from "tsparticles-engine";
+import { AnimatableColor, deepExtend, setRangeValue } from "tsparticles-engine";
 import type {
     IOptionLoader,
     IParticlesOptions,
     IRangedCoordinates,
-    RecursivePartial,
-    SingleOrMultiple,
-} from "tsparticles-engine";
+    MoveDirection,
+    MoveDirectionAlt,
+ RecursivePartial, SingleOrMultiple} from "tsparticles-engine";
 import { EmitterLife } from "./EmitterLife";
 import { EmitterRate } from "./EmitterRate";
 import { EmitterShapeType } from "../../Enums/EmitterShapeType";

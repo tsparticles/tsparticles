@@ -1,4 +1,4 @@
-import { RangeValue } from "../../Types/RangeValue";
+import type { RangeValue } from "../../Types/RangeValue";
 
 export interface IAnimation {
     count: RangeValue;

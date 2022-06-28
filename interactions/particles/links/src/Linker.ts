@@ -1,7 +1,7 @@
 import { Circle, CircleWarp, ParticlesInteractorBase, getDistance, getLinkRandomColor } from "tsparticles-engine";
 import type { ICoordinates, IDimension, IParticle, IRgb, Particle } from "tsparticles-engine";
 import type { LinkContainer } from "./LinkContainer";
-import { LinkParticle } from "./LinkParticle";
+import type { LinkParticle } from "./LinkParticle";
 
 function getLinkDistance(
     pos1: ICoordinates,

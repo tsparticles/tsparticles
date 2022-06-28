@@ -1,6 +1,6 @@
 import { Editor, EditorType } from "object-gui";
 import type { Container } from "tsparticles-engine";
-import { EditorInputBase } from "object-gui/dist/js/Editors/EditorInputBase";
+import type { EditorInputBase } from "object-gui/dist/js/Editors/EditorInputBase";
 import { OptionsEditor } from "./Sections/Options/OptionsEditor";
 
 export class ParticlesEditor extends Editor {

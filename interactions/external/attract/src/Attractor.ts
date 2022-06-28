@@ -3,7 +3,6 @@ import {
     ClickMode,
     ExternalInteractorBase,
     HoverMode,
-    Range,
     Vector,
     calcEasing,
     clamp,
@@ -11,7 +10,8 @@ import {
     isInArray,
     mouseMoveEvent,
 } from "tsparticles-engine";
-import type { Container, ICoordinates, Particle } from "tsparticles-engine";
+import type { Container, ICoordinates, Particle,
+    Range} from "tsparticles-engine";
 
 interface IContainerAttract {
     particles: Particle[];

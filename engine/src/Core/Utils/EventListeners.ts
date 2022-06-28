@@ -11,7 +11,7 @@ import {
     touchStartEvent,
     visibilityChangeEvent,
 } from "./Constants";
-import { ClickMode } from "../../Enums/Modes/ClickMode";
+import type { ClickMode } from "../../Enums/Modes/ClickMode";
 import type { Container } from "../Container";
 import type { ICoordinates } from "../Interfaces/ICoordinates";
 import { InteractivityDetect } from "../../Enums/InteractivityDetect";

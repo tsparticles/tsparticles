@@ -5,7 +5,6 @@ import {
     DivType,
     ExternalInteractorBase,
     HoverMode,
-    Range,
     Rectangle,
     Vector,
     calcEasing,
@@ -17,7 +16,8 @@ import {
     isInArray,
     mouseMoveEvent,
 } from "tsparticles-engine";
-import type { Container, DivEvent, ICoordinates, Particle, RepulseDiv } from "tsparticles-engine";
+import type { Container, DivEvent, ICoordinates, Particle, Range,
+    RepulseDiv} from "tsparticles-engine";
 
 interface IContainerRepulse {
     particles: Particle[];

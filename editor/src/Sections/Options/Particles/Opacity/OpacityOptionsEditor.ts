@@ -1,7 +1,8 @@
 import type { Container, IOpacity } from "tsparticles-engine";
 import { DestroyType, StartValueType } from "tsparticles-engine";
-import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
+import type { EditorGroup } from "object-gui";
+import { EditorType } from "object-gui";
 
 export class OpacityOptionsEditor extends EditorBase {
     group!: EditorGroup;

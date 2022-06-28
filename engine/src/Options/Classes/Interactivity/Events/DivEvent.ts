@@ -1,4 +1,4 @@
-import { DivMode } from "../../../../Enums/Modes/DivMode";
+import type { DivMode } from "../../../../Enums/Modes/DivMode";
 import { DivType } from "../../../../Enums/Types/DivType";
 import type { IDivEvent } from "../../../Interfaces/Interactivity/Events/IDivEvent";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";

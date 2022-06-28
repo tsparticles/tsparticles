@@ -1,4 +1,4 @@
-import { ClickMode } from "../../../../Enums/Modes/ClickMode";
+import type { ClickMode } from "../../../../Enums/Modes/ClickMode";
 import type { IClickEvent } from "../../../Interfaces/Interactivity/Events/IClickEvent";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";

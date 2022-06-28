@@ -1,7 +1,6 @@
-import { ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates";
+import type { ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates";
 import type { IHsl, IRgb } from "./Interfaces/Colors";
-import { IParticleNumericValueAnimation, IParticleValueAnimation } from "./Interfaces/IParticleValueAnimation";
-import { OutMode, OutModeAlt } from "../Enums/Modes/OutMode";
+import type { IParticleNumericValueAnimation, IParticleValueAnimation } from "./Interfaces/IParticleValueAnimation";
 import {
     calcExactPositionOrRandomFromSize,
     clamp,
@@ -21,7 +20,7 @@ import { AnimationStatus } from "../Enums/AnimationStatus";
 import type { Container } from "./Container";
 import { DestroyMode } from "../Enums/Modes/DestroyMode";
 import type { Engine } from "../engine";
-import { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
+import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
 import type { IDelta } from "./Interfaces/IDelta";
 import type { IParticle } from "./Interfaces/IParticle";
 import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation";
@@ -33,11 +32,13 @@ import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
 import type { IShapeValues } from "./Interfaces/IShapeValues";
 import { Interactivity } from "../Options/Classes/Interactivity/Interactivity";
 import { MoveDirection } from "../Enums/Directions/MoveDirection";
+import { OutMode } from "../Enums/Modes/OutMode";
+import type { OutModeAlt } from "../Enums/Modes/OutMode";
 import { ParticleOutType } from "../Enums/Types/ParticleOutType";
 import type { RecursivePartial } from "../Types/RecursivePartial";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import { StartValueType } from "../Enums/Types/StartValueType";
-import { Stroke } from "../Options/Classes/Particles/Stroke";
+import type { Stroke } from "../Options/Classes/Particles/Stroke";
 import { Vector } from "./Utils/Vector";
 import { Vector3d } from "./Utils/Vector3d";
 import { alterHsl } from "../Utils/CanvasUtils";
@@ -462,7 +463,7 @@ export class Particle implements IParticle {
             drawer.particleInit(container, this);
         }
 
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             if (plugin.particleCreated) {
                 plugin.particleCreated(this);
             }
@@ -488,7 +489,7 @@ export class Particle implements IParticle {
     draw(delta: IDelta): void {
         const container = this.container;
 
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             container.canvas.drawParticlePlugin(plugin, this, delta);
         }
 
@@ -545,7 +546,7 @@ export class Particle implements IParticle {
         this.destroyed = true;
         this.bubble.inRange = false;
 
-        for (const [, plugin] of this.container.plugins) {
+        for (const [ , plugin ] of this.container.plugins) {
             if (plugin.particleDestroyed) {
                 plugin.particleDestroyed(this, override);
             }
@@ -597,7 +598,7 @@ export class Particle implements IParticle {
         zIndex: number,
         tryCount = 0
     ): Vector3d {
-        for (const [, plugin] of container.plugins) {
+        for (const [ , plugin ] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
@@ -618,7 +619,7 @@ export class Particle implements IParticle {
             fixHorizontal = (outMode: OutMode | keyof typeof OutMode | OutModeAlt): void => {
                 fixOutMode({
                     outMode,
-                    checkModes: [OutMode.bounce, OutMode.bounceHorizontal],
+                    checkModes: [ OutMode.bounce, OutMode.bounceHorizontal ],
                     coord: pos.x,
                     maxCoord: container.canvas.size.width,
                     setCb: (value: number) => pos.x += value,
@@ -628,7 +629,7 @@ export class Particle implements IParticle {
             fixVertical = (outMode: OutMode | keyof typeof OutMode | OutModeAlt): void => {
                 fixOutMode({
                     outMode,
-                    checkModes: [OutMode.bounce, OutMode.bounceVertical],
+                    checkModes: [ OutMode.bounce, OutMode.bounceVertical ],
                     coord: pos.y,
                     maxCoord: container.canvas.size.height,
                     setCb: (value: number) => pos.y += value,

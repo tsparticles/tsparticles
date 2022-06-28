@@ -7,7 +7,7 @@ import type { IShapeValues } from "../../../../Core/Interfaces/IShapeValues";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { ShapeData } from "../../../../Types/ShapeData";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
-import { Stroke } from "../Stroke";
+import type { Stroke } from "../Stroke";
 import { deepExtend } from "../../../../Utils/Utils";
 
 /**

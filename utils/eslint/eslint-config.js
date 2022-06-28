@@ -20,6 +20,7 @@ module.exports = {
             "error",
             "constructor"
         ],
+        "@typescript-eslint/consistent-type-imports": [ "error" ],
         "@typescript-eslint/explicit-function-return-type": "error",
         "@typescript-eslint/explicit-member-accessibility": [ "error", {
             "accessibility": "no-public"

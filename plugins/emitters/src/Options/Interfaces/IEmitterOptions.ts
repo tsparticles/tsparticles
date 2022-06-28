@@ -1,6 +1,6 @@
 import type { IInteractivity, IModes, SingleOrMultiple } from "tsparticles-engine";
 import type { IEmitter } from "./IEmitter";
-import { IEmitterModeOptions } from "./IEmitterModeOptions";
+import type { IEmitterModeOptions } from "./IEmitterModeOptions";
 
 /**
  * @category Emitters Plugin

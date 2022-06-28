@@ -16,7 +16,7 @@ import type {
 import { getRangeValue, mix, randomInRange, setRangeValue } from "./NumberUtils";
 import { midColorValue, randomColorValue } from "../Core/Utils/Constants";
 import { AnimationStatus } from "../Enums/AnimationStatus";
-import { HslAnimation } from "../Options/Classes/HslAnimation";
+import type { HslAnimation } from "../Options/Classes/HslAnimation";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 import type { IOptionsColor } from "../Options/Interfaces/IOptionsColor";
 import type { IParticle } from "../Core/Interfaces/IParticle";

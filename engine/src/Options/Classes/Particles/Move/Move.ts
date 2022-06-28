@@ -1,17 +1,18 @@
-import { MoveDirection, MoveDirectionAlt } from "../../../../Enums/Directions/MoveDirection";
-import { OutMode, OutModeAlt } from "../../../../Enums/Modes/OutMode";
+import type { OutMode, OutModeAlt } from "../../../../Enums/Modes/OutMode";
 import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
-import { IDistance } from "../../../../Core/Interfaces/IDistance";
+import type { IDistance } from "../../../../Core/Interfaces/IDistance";
 import type { IMove } from "../../../Interfaces/Particles/Move/IMove";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { MoveAngle } from "./MoveAngle";
 import { MoveAttract } from "./MoveAttract";
+import { MoveDirection } from "../../../../Enums/Directions/MoveDirection";
+import type { MoveDirectionAlt } from "../../../../Enums/Directions/MoveDirection";
 import { MoveGravity } from "./MoveGravity";
 import { MovePath } from "./Path/MovePath";
 import { MoveTrail } from "./MoveTrail";
 import { OutModes } from "./OutModes";
-import { RangeValue } from "../../../../Types/RangeValue";
-import { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RangeValue } from "../../../../Types/RangeValue";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { Spin } from "./Spin";
 import { deepExtend } from "../../../../Utils/Utils";
 import { setRangeValue } from "../../../../Utils/NumberUtils";
@@ -174,9 +175,9 @@ export class Move implements IMove, IOptionLoader<IMove> {
             this.distance =
                 typeof data.distance === "number"
                     ? {
-                          horizontal: data.distance,
-                          vertical: data.distance,
-                      }
+                        horizontal: data.distance,
+                        vertical: data.distance,
+                    }
                     : (deepExtend({}, data.distance) as IDistance);
         }
 

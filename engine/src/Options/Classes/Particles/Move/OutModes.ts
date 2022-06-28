@@ -1,6 +1,7 @@
-import { OutMode, OutModeAlt } from "../../../../Enums/Modes/OutMode";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { IOutModes } from "../../../Interfaces/Particles/Move/IOutModes";
+import { OutMode } from "../../../../Enums/Modes/OutMode";
+import type { OutModeAlt } from "../../../../Enums/Modes/OutMode";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class OutModes implements IOutModes, IOptionLoader<IOutModes> {

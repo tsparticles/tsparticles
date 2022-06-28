@@ -12,7 +12,7 @@ import {
     rangeColorToRgb,
 } from "tsparticles-engine";
 import { Absorber } from "./Options/Classes/Absorber";
-import { Absorbers } from "./Absorbers";
+import type { Absorbers } from "./Absorbers";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
 import type { IAbsorberSizeLimit } from "./Options/Interfaces/IAbsorberSizeLimit";
 

@@ -2,10 +2,10 @@ import type { IOptions, IPlugin, Options, RecursivePartial } from "tsparticles-e
 import { CircleShape } from "./Shapes/Circle/CircleShape";
 import { Emitter } from "./Options/Classes/Emitter";
 import { EmitterClickMode } from "./Enums/EmitterClickMode";
-import { EmitterContainer } from "./EmitterContainer";
+import type { EmitterContainer } from "./EmitterContainer";
 import { EmitterShapeType } from "./Enums/EmitterShapeType";
 import { Emitters } from "./Emitters";
-import { EmittersEngine } from "./EmittersEngine";
+import type { EmittersEngine } from "./EmittersEngine";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
 import type { IEmitterModeOptions } from "./Options/Interfaces/IEmitterModeOptions";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";

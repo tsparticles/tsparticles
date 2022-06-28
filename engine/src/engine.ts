@@ -3,7 +3,7 @@
  * It's a singleton proxy to the static [[this.#loader]] class for initializing [[Container]] instances
  * @category Engine
  */
-import {
+import type {
     ShapeDrawerAfterEffectFunction,
     ShapeDrawerDestroyFunction,
     ShapeDrawerDrawFunction,

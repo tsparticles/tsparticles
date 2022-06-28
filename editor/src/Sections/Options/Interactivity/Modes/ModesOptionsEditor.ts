@@ -1,7 +1,8 @@
 import type { Container, IModes } from "tsparticles-engine";
-import { EditorGroup, EditorType } from "object-gui";
 import { EasingType } from "tsparticles-engine";
 import { EditorBase } from "../../../../EditorBase";
+import type { EditorGroup } from "object-gui";
+import { EditorType } from "object-gui";
 import { ParticlesOptionsEditor } from "../../Particles/ParticlesOptionsEditor";
 
 export class ModesOptionsEditor extends EditorBase {
@@ -90,8 +91,8 @@ export class ModesOptionsEditor extends EditorBase {
             typeof options.color === "string"
                 ? options.color
                 : options.color instanceof Array
-                ? undefined
-                : options.color?.value;
+                    ? undefined
+                    : options.color?.value;
 
         group.addProperty("color", "Color", EditorType.color, color, false).change(async (value: unknown) => {
             if (typeof value === "string") {

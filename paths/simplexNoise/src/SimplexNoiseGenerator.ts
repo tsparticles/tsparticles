@@ -1,7 +1,8 @@
 import type { Container, IMovePathGenerator, Particle } from "tsparticles-engine";
-import { Noise4D, makeNoise4D } from "./simplex";
-import { ISimplexOptions } from "./ISimplexOptions";
+import type { ISimplexOptions } from "./ISimplexOptions";
+import type { Noise4D } from "./simplex";
 import { Vector } from "tsparticles-engine";
+import { makeNoise4D } from "./simplex";
 
 export class SimplexNoiseGenerator implements IMovePathGenerator {
     container?: Container;
@@ -80,7 +81,7 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
                 this.field[x][y] = new Array(this.options.layers);
 
                 for (let z = 0; z < this.options.layers; z++) {
-                    this.field[x][y][z] = [0, 0];
+                    this.field[x][y][z] = [ 0, 0 ];
                 }
             }
         }

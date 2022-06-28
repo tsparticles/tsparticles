@@ -1,7 +1,8 @@
 import type { Container, IStroke } from "tsparticles-engine";
-import { EditorGroup, EditorType, SingleOrMultiple } from "object-gui";
+import type { EditorGroup, SingleOrMultiple } from "object-gui";
 import { ColorOptionsEditor } from "../Color/ColorOptionsEditor";
 import { EditorBase } from "../../../../EditorBase";
+import { EditorType } from "object-gui";
 
 export class StrokeOptionsEditor extends EditorBase {
     group!: EditorGroup;

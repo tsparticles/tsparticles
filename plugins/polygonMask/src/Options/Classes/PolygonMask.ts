@@ -1,5 +1,5 @@
 import type { ICoordinates, IOptionLoader, RecursivePartial } from "tsparticles-engine";
-import {
+import type {
     PolygonMaskInlineArrangement,
     PolygonMaskInlineArrangementAlt,
 } from "../../Enums/PolygonMaskInlineArrangement";

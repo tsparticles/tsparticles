@@ -1,5 +1,6 @@
-import { ICoordinates, getStyleFromRgb } from "tsparticles-engine";
-import { LightContainer, LightParticle } from "./Types";
+import type { LightContainer, LightParticle } from "./Types";
+import type { ICoordinates } from "tsparticles-engine";
+import { getStyleFromRgb } from "tsparticles-engine";
 
 export function drawLight(container: LightContainer, context: CanvasRenderingContext2D, mousePos: ICoordinates): void {
     const lightOptions = container.actualOptions.interactivity.modes.light.area;

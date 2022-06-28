@@ -1,6 +1,6 @@
 import { collisionVelocity, getDistances, getValue } from "./NumberUtils";
-import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
-import { DivMode } from "../Enums/Modes/DivMode";
+import type { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
+import type { DivMode } from "../Enums/Modes/DivMode";
 import type { IBounds } from "../Core/Interfaces/IBounds";
 import type { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";

@@ -1,12 +1,12 @@
 /**
  * @category Core
  */
-import { ClickMode } from "../../Enums/Modes/ClickMode";
+import type { ClickMode } from "../../Enums/Modes/ClickMode";
 import type { Container } from "../Container";
 import type { Engine } from "../../engine";
-import { IDelta } from "../Interfaces/IDelta";
-import { IExternalInteractor } from "../Interfaces/IExternalInteractor";
-import { IParticlesInteractor } from "../Interfaces/IParticlesInteractor";
+import type { IDelta } from "../Interfaces/IDelta";
+import type { IExternalInteractor } from "../Interfaces/IExternalInteractor";
+import type { IParticlesInteractor } from "../Interfaces/IParticlesInteractor";
 import { InteractorType } from "../../Enums/Types/InteractorType";
 import type { Particle } from "../Particle";
 

@@ -1,6 +1,7 @@
-import { EditorGroup, EditorType } from "object-gui";
 import type { Container } from "tsparticles-engine";
 import { EditorBase } from "../../../../EditorBase";
+import type { EditorGroup } from "object-gui";
+import { EditorType } from "object-gui";
 
 export class RollOptionsEditor extends EditorBase {
     group!: EditorGroup;
@@ -54,8 +55,8 @@ export class RollOptionsEditor extends EditorBase {
                 typeof options.backColor === "string"
                     ? options.backColor
                     : options.backColor instanceof Array
-                    ? options.backColor[0]
-                    : options.backColor?.value;
+                        ? options.backColor[0]
+                        : options.backColor?.value;
 
         this.group
             .addProperty("backColor", "Back Color", EditorType.color, color, false)

@@ -1,8 +1,9 @@
 import type { Container, IOptions } from "tsparticles-engine";
-import { Editor, EditorGroup, EditorType } from "object-gui";
+import type { Editor, EditorGroup } from "object-gui";
 import { BackgroundMaskOptionsEditor } from "./BackgroundMask/BackgroundMaskOptionsEditor";
 import { BackgroundOptionsEditor } from "./Background/BackgroundOptionsEditor";
 import { EditorBase } from "../../EditorBase";
+import { EditorType } from "object-gui";
 import { FullScreenOptionsEditor } from "./FullScreen/FullScreenOptionsEditor";
 import { InfectionOptionsEditor } from "./Infection/InfectionOptionsEditor";
 import { InteractivityOptionsEditor } from "./Interactivity/InteractivityOptionsEditor";
