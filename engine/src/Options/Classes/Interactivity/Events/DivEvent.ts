@@ -22,7 +22,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
 
     selectors: SingleOrMultiple<string>;
 
-    type;
+    type: DivType | keyof typeof DivType;
 
     constructor() {
         this.selectors = [];
