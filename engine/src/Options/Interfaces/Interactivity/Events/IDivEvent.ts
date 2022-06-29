@@ -28,5 +28,5 @@ export interface IDivEvent {
 
     selectors: SingleOrMultiple<string>;
 
-    type: DivType;
+    type: DivType | keyof typeof DivType;
 }
