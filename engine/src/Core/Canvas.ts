@@ -85,6 +85,8 @@ export class Canvas {
     destroy(): void {
         if (this.generatedCanvas) {
             this.element?.remove();
+        } else {
+            this.resetOriginalStyle();
         }
 
         this.draw((ctx) => {
@@ -390,8 +392,6 @@ export class Canvas {
             return;
         }
 
-        const originalStyle = this.originalStyle;
-
         if (options.fullScreen.enable) {
             this.originalStyle = deepExtend({}, element.style) as CSSStyleDeclaration;
 
@@ -401,13 +401,8 @@ export class Canvas {
             element.style.setProperty("left", "0", "important");
             element.style.setProperty("width", "100%", "important");
             element.style.setProperty("height", "100%", "important");
-        } else if (originalStyle) {
-            element.style.position = originalStyle.position;
-            element.style.zIndex = originalStyle.zIndex;
-            element.style.top = originalStyle.top;
-            element.style.left = originalStyle.left;
-            element.style.width = originalStyle.width;
-            element.style.height = originalStyle.height;
+        } else {
+            this.resetOriginalStyle();
         }
 
         for (const key in options.style) {
@@ -446,5 +441,19 @@ export class Canvas {
         this.draw((ctx) => {
             paintBase(ctx, this.size, baseColor);
         });
+    }
+
+    private resetOriginalStyle(): void {
+        const element = this.element,
+            originalStyle = this.originalStyle;
+
+        if (element && originalStyle) {
+            element.style.position = originalStyle.position;
+            element.style.zIndex = originalStyle.zIndex;
+            element.style.top = originalStyle.top;
+            element.style.left = originalStyle.left;
+            element.style.width = originalStyle.width;
+            element.style.height = originalStyle.height;
+        }
     }
 }
