@@ -4,6 +4,11 @@ export interface IAnimation {
     count: RangeValue;
 
     /**
+     * Speed animation decay
+     */
+    decay: RangeValue;
+
+    /**
      * Enables/disables the animation
      */
     enable: boolean;
@@ -12,11 +17,6 @@ export interface IAnimation {
      * Speed animation
      */
     speed: RangeValue;
-
-    /**
-     * Speed animation decay
-     */
-    decay: RangeValue;
 
     /**
      * Enables the sync animations for the particles created at the same time

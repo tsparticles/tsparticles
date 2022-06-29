@@ -14,6 +14,14 @@ export class TrailMaker extends ExternalInteractorBase {
         this.delay = 0;
     }
 
+    clear(): void {
+        // do nothing
+    }
+
+    init(): void {
+        // do nothing
+    }
+
     async interact(delta: IDelta): Promise<void> {
         if (!this.container.retina.reduceFactor) {
             return;
@@ -70,14 +78,6 @@ export class TrailMaker extends ExternalInteractorBase {
             mouse.clicking && mouse.inside && !!mouse.position && isInArray(ClickMode.trail, events.onClick.mode) ||
             mouse.inside && !!mouse.position && isInArray(HoverMode.trail, events.onHover.mode)
         );
-    }
-
-    init(): void {
-        // do nothing
-    }
-
-    clear(): void {
-        // do nothing
     }
 
     reset(): void {

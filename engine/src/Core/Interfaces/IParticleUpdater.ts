@@ -7,11 +7,7 @@ import type { ParticlesOptions } from "../../Options/Classes/Particles/Particles
 import type { RecursivePartial } from "../../Types/RecursivePartial";
 
 export interface IParticleUpdater {
-    init(particle: Particle): void;
-
-    isEnabled(particle: Particle): boolean;
-
-    update(particle: Particle, delta: IDelta): void;
+    afterDraw?: (particle: Particle) => void;
 
     beforeDraw?: (particle: Particle) => void;
 
@@ -24,7 +20,11 @@ export interface IParticleUpdater {
 
     getTransformValues?: (particle: Particle) => IParticleTransformValues;
 
-    afterDraw?: (particle: Particle) => void;
-
     loadOptions?: (options: ParticlesOptions, ...sources: (RecursivePartial<IParticlesOptions> | undefined)[]) => void;
+
+    init(particle: Particle): void;
+
+    isEnabled(particle: Particle): boolean;
+
+    update(particle: Particle, delta: IDelta): void;
 }

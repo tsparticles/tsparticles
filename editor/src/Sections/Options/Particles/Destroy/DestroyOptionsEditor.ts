@@ -20,6 +20,25 @@ export class DestroyOptionsEditor extends EditorBase {
         this.addProperties();
     }
 
+    private addProperties(): void {
+        const group = this.group;
+        const particles = this.particles;
+
+        group
+            .addProperty("mode", "Mode", EditorType.select)
+            .change(async () => {
+                particles.refresh();
+            })
+            .addItems([
+                {
+                    value: DestroyMode.none,
+                },
+                {
+                    value: DestroyMode.split,
+                },
+            ]);
+    }
+
     private addSplit(): void {
         const group = this.group.addGroup("split", "Split");
         const particles = this.particles;
@@ -59,24 +78,5 @@ export class DestroyOptionsEditor extends EditorBase {
         group.addProperty("count", "Count", EditorType.number).change(async () => {
             particles.refresh();
         });
-    }
-
-    private addProperties(): void {
-        const group = this.group;
-        const particles = this.particles;
-
-        group
-            .addProperty("mode", "Mode", EditorType.select)
-            .change(async () => {
-                particles.refresh();
-            })
-            .addItems([
-                {
-                    value: DestroyMode.none,
-                },
-                {
-                    value: DestroyMode.split,
-                },
-            ]);
     }
 }

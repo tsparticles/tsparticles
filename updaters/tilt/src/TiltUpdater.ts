@@ -15,8 +15,8 @@ import { Tilt } from "./Options/Classes/Tilt";
 import { TiltDirection } from "./TiltDirection";
 
 export interface IParticleTiltValueAnimation extends IParticleValueAnimation<number> {
-    sinDirection: number;
     cosDirection: number;
+    sinDirection: number;
 }
 
 type TiltParticle = Particle & {
@@ -75,6 +75,15 @@ function updateTilt(particle: TiltParticle, delta: IDelta): void {
 export class TiltUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
 
+    getTransformValues(particle: TiltParticle): IParticleTransformValues {
+        const tilt = particle.tilt?.enable && particle.tilt;
+
+        return {
+            b: tilt ? Math.cos(tilt.value) * tilt.cosDirection : undefined,
+            c: tilt ? Math.sin(tilt.value) * tilt.sinDirection : undefined,
+        };
+    }
+
     init(particle: TiltParticle): void {
         const tiltOptions = particle.options.tilt;
 
@@ -125,23 +134,6 @@ export class TiltUpdater implements IParticleUpdater {
         return !particle.destroyed && !particle.spawning && !!tiltAnimation?.enable;
     }
 
-    update(particle: Particle, delta: IDelta): void {
-        if (!this.isEnabled(particle)) {
-            return;
-        }
-
-        updateTilt(particle, delta);
-    }
-
-    getTransformValues(particle: TiltParticle): IParticleTransformValues {
-        const tilt = particle.tilt?.enable && particle.tilt;
-
-        return {
-            b: tilt ? Math.cos(tilt.value) * tilt.cosDirection : undefined,
-            c: tilt ? Math.sin(tilt.value) * tilt.sinDirection : undefined,
-        };
-    }
-
     loadOptions(
         options: TiltParticlesOptions,
         ...sources: (RecursivePartial<ITiltParticlesOptions> | undefined)[]
@@ -157,5 +149,13 @@ export class TiltUpdater implements IParticleUpdater {
 
             options.tilt.load(source.tilt);
         }
+    }
+
+    update(particle: Particle, delta: IDelta): void {
+        if (!this.isEnabled(particle)) {
+            return;
+        }
+
+        updateTilt(particle, delta);
     }
 }

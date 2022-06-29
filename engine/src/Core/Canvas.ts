@@ -29,26 +29,26 @@ function setTransformValue(
  */
 export class Canvas {
     /**
+     * The particles canvas context
+     */
+    #context: CanvasRenderingContext2D | null;
+
+    /**
      * The particles canvas
      */
     element?: HTMLCanvasElement;
+
+    resizeFactor?: IDimension;
 
     /**
      * The particles canvas dimension
      */
     readonly size: IDimension;
 
-    resizeFactor?: IDimension;
-
-    /**
-     * The particles canvas context
-     */
-    #context: CanvasRenderingContext2D | null;
-
-    private generatedCanvas;
     private coverColorStyle?: string;
-    private trailFillColor?: IRgba;
+    private generatedCanvas;
     private originalStyle?: CSSStyleDeclaration;
+    private trailFillColor?: IRgba;
 
     /**
      * Constructor of canvas manager
@@ -62,65 +62,6 @@ export class Canvas {
 
         this.#context = null;
         this.generatedCanvas = false;
-    }
-
-    /* ---------- tsParticles functions - canvas ------------ */
-    /**
-     * Initializes the canvas element
-     */
-    init(): void {
-        this.resize();
-        this.initStyle();
-        this.initCover();
-        this.initTrail();
-        this.initBackground();
-        this.paint();
-    }
-
-    loadCanvas(canvas: HTMLCanvasElement): void {
-        if (this.generatedCanvas) {
-            this.element?.remove();
-        }
-
-        this.generatedCanvas =
-            canvas.dataset && generatedAttribute in canvas.dataset
-                ? canvas.dataset[generatedAttribute] === "true"
-                : this.generatedCanvas;
-        this.element = canvas;
-        this.originalStyle = deepExtend({}, this.element.style) as CSSStyleDeclaration;
-        this.size.height = canvas.offsetHeight;
-        this.size.width = canvas.offsetWidth;
-
-        this.#context = this.element.getContext("2d");
-        this.container.retina.init();
-        this.initBackground();
-    }
-
-    destroy(): void {
-        if (this.generatedCanvas) {
-            this.element?.remove();
-        }
-
-        this.draw((ctx) => {
-            clear(ctx, this.size);
-        });
-    }
-
-    /**
-     * Paints the canvas background
-     */
-    paint(): void {
-        const options = this.container.actualOptions;
-
-        this.draw((ctx) => {
-            if (options.backgroundMask.enable && options.backgroundMask.cover) {
-                clear(ctx, this.size);
-
-                this.paintBase(this.coverColorStyle);
-            } else {
-                this.paintBase();
-            }
-        });
     }
 
     /**
@@ -141,66 +82,22 @@ export class Canvas {
         }
     }
 
-    async windowResize(): Promise<void> {
-        if (!this.element) {
-            return;
+    destroy(): void {
+        if (this.generatedCanvas) {
+            this.element?.remove();
         }
 
-        this.resize();
-
-        const container = this.container,
-            needsRefresh = container.updateActualOptions();
-
-        /* density particles enabled */
-        container.particles.setDensity();
-
-        for (const [, plugin] of container.plugins) {
-            if (plugin.resize !== undefined) {
-                plugin.resize();
-            }
-        }
-
-        if (needsRefresh) {
-            await container.refresh();
-        }
+        this.draw((ctx) => {
+            clear(ctx, this.size);
+        });
     }
 
-    /**
-     * Calculates the size of the canvas
-     */
-    resize(): void {
-        if (!this.element) {
+    draw<T>(cb: (context: CanvasRenderingContext2D) => T): T | undefined {
+        if (!this.#context) {
             return;
         }
 
-        const container = this.container,
-            pxRatio = container.retina.pixelRatio,
-            size = container.canvas.size,
-            newSize = {
-                width: this.element.offsetWidth * pxRatio,
-                height: this.element.offsetHeight * pxRatio,
-            };
-
-        if (
-            newSize.height === size.height &&
-            newSize.width === size.width &&
-            newSize.height === this.element.height &&
-            newSize.width === this.element.width
-        ) {
-            return;
-        }
-
-        const oldSize = { ...size };
-
-        this.element.width = size.width = this.element.offsetWidth * pxRatio;
-        this.element.height = size.height = this.element.offsetHeight * pxRatio;
-
-        if (this.container.started) {
-            this.resizeFactor = {
-                width: size.width / oldSize.width,
-                height: size.height / oldSize.height,
-            };
-        }
+        return cb(this.#context);
     }
 
     drawParticle(particle: Particle, delta: IDelta): void {
@@ -301,16 +198,28 @@ export class Canvas {
         });
     }
 
+    drawParticlePlugin(plugin: IContainerPlugin, particle: Particle, delta: IDelta): void {
+        this.draw((ctx) => {
+            drawParticlePlugin(ctx, plugin, particle, delta);
+        });
+    }
+
     drawPlugin(plugin: IContainerPlugin, delta: IDelta): void {
         this.draw((ctx) => {
             drawPlugin(ctx, plugin, delta);
         });
     }
 
-    drawParticlePlugin(plugin: IContainerPlugin, particle: Particle, delta: IDelta): void {
-        this.draw((ctx) => {
-            drawParticlePlugin(ctx, plugin, particle, delta);
-        });
+    /**
+     * Initializes the canvas element
+     */
+    init(): void {
+        this.resize();
+        this.initStyle();
+        this.initCover();
+        this.initTrail();
+        this.initBackground();
+        this.paint();
     }
 
     initBackground(): void {
@@ -337,46 +246,101 @@ export class Canvas {
         elementStyle.backgroundSize = background.size || "";
     }
 
-    draw<T>(cb: (context: CanvasRenderingContext2D) => T): T | undefined {
-        if (!this.#context) {
+    loadCanvas(canvas: HTMLCanvasElement): void {
+        if (this.generatedCanvas) {
+            this.element?.remove();
+        }
+
+        this.generatedCanvas =
+            canvas.dataset && generatedAttribute in canvas.dataset
+                ? canvas.dataset[generatedAttribute] === "true"
+                : this.generatedCanvas;
+        this.element = canvas;
+        this.originalStyle = deepExtend({}, this.element.style) as CSSStyleDeclaration;
+        this.size.height = canvas.offsetHeight;
+        this.size.width = canvas.offsetWidth;
+
+        this.#context = this.element.getContext("2d");
+        this.container.retina.init();
+        this.initBackground();
+    }
+
+    /**
+     * Paints the canvas background
+     */
+    paint(): void {
+        const options = this.container.actualOptions;
+
+        this.draw((ctx) => {
+            if (options.backgroundMask.enable && options.backgroundMask.cover) {
+                clear(ctx, this.size);
+
+                this.paintBase(this.coverColorStyle);
+            } else {
+                this.paintBase();
+            }
+        });
+    }
+
+    /**
+     * Calculates the size of the canvas
+     */
+    resize(): void {
+        if (!this.element) {
             return;
         }
 
-        return cb(this.#context);
-    }
-
-    private initCover(): void {
-        const options = this.container.actualOptions,
-            cover = options.backgroundMask.cover,
-            color = cover.color,
-            coverRgb = rangeColorToRgb(color);
-
-        if (coverRgb) {
-            const coverColor = {
-                r: coverRgb.r,
-                g: coverRgb.g,
-                b: coverRgb.b,
-                a: cover.opacity,
+        const container = this.container,
+            pxRatio = container.retina.pixelRatio,
+            size = container.canvas.size,
+            newSize = {
+                width: this.element.offsetWidth * pxRatio,
+                height: this.element.offsetHeight * pxRatio,
             };
 
-            this.coverColorStyle = getStyleFromRgb(coverColor, coverColor.a);
+        if (
+            newSize.height === size.height &&
+            newSize.width === size.width &&
+            newSize.height === this.element.height &&
+            newSize.width === this.element.width
+        ) {
+            return;
+        }
+
+        const oldSize = { ...size };
+
+        this.element.width = size.width = this.element.offsetWidth * pxRatio;
+        this.element.height = size.height = this.element.offsetHeight * pxRatio;
+
+        if (this.container.started) {
+            this.resizeFactor = {
+                width: size.width / oldSize.width,
+                height: size.height / oldSize.height,
+            };
         }
     }
 
-    private initTrail(): void {
-        const options = this.container.actualOptions,
-            trail = options.particles.move.trail,
-            fillColor = rangeColorToRgb(trail.fillColor);
+    async windowResize(): Promise<void> {
+        if (!this.element) {
+            return;
+        }
 
-        if (fillColor) {
-            const trail = options.particles.move.trail;
+        this.resize();
 
-            this.trailFillColor = {
-                r: fillColor.r,
-                g: fillColor.g,
-                b: fillColor.b,
-                a: 1 / trail.length,
-            };
+        const container = this.container,
+            needsRefresh = container.updateActualOptions();
+
+        /* density particles enabled */
+        container.particles.setDensity();
+
+        for (const [, plugin] of container.plugins) {
+            if (plugin.resize !== undefined) {
+                plugin.resize();
+            }
+        }
+
+        if (needsRefresh) {
+            await container.refresh();
         }
     }
 
@@ -398,6 +362,24 @@ export class Canvas {
         }
 
         return [fColor, sColor];
+    }
+
+    private initCover(): void {
+        const options = this.container.actualOptions,
+            cover = options.backgroundMask.cover,
+            color = cover.color,
+            coverRgb = rangeColorToRgb(color);
+
+        if (coverRgb) {
+            const coverColor = {
+                r: coverRgb.r,
+                g: coverRgb.g,
+                b: coverRgb.b,
+                a: cover.opacity,
+            };
+
+            this.coverColorStyle = getStyleFromRgb(coverColor, coverColor.a);
+        }
     }
 
     private initStyle(): void {
@@ -440,6 +422,23 @@ export class Canvas {
             }
 
             element.style.setProperty(key, value, "important");
+        }
+    }
+
+    private initTrail(): void {
+        const options = this.container.actualOptions,
+            trail = options.particles.move.trail,
+            fillColor = rangeColorToRgb(trail.fillColor);
+
+        if (fillColor) {
+            const trail = options.particles.move.trail;
+
+            this.trailFillColor = {
+                r: fillColor.r,
+                g: fillColor.g,
+                b: fillColor.b,
+                a: 1 / trail.length,
+            };
         }
     }
 

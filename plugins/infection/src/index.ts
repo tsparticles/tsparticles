@@ -19,10 +19,6 @@ class Plugin implements IPlugin {
         return new InfectionInstance(container);
     }
 
-    needsPlugin(options?: RecursivePartial<IInfectionOptions>): boolean {
-        return options?.infection?.enable ?? false;
-    }
-
     loadOptions(options: Options, source?: RecursivePartial<IInfectionOptions>): void {
         if (!this.needsPlugin(source)) {
             return;
@@ -36,6 +32,10 @@ class Plugin implements IPlugin {
         }
 
         infectionOptions.load(source?.infection);
+    }
+
+    needsPlugin(options?: RecursivePartial<IInfectionOptions>): boolean {
+        return options?.infection?.enable ?? false;
     }
 }
 

@@ -19,6 +19,12 @@ export class QuadTree {
     readonly points: Point[];
 
     /**
+     * Used to know if the current instance is divided or not (branch or leaf)
+     * @private
+     */
+    private divided;
+
+    /**
      * The NE subtree
      * @private
      */
@@ -41,12 +47,6 @@ export class QuadTree {
      * @private
      */
     private southWest?: QuadTree;
-
-    /**
-     * Used to know if the current instance is divided or not (branch or leaf)
-     * @private
-     */
-    private divided;
 
     /**
      * Initializes the instance with a rectangle and a capacity
@@ -85,6 +85,42 @@ export class QuadTree {
                 this.southWest?.insert(point)) ??
             false
         );
+    }
+
+    /**
+     * Queries the instance using a [[Rectangle]] object, with the given position and the given size
+     * @param range the range to use for querying the tree
+     * @param check the function to check if the particle can be added to the result
+     * @param found found particles array, output parameter
+     * @returns the particles inside the given range
+     */
+    query(range: Range, check?: (particle: Particle) => boolean, found?: Particle[]): Particle[] {
+        const res = found ?? [];
+
+        if (!range.intersects(this.rectangle)) {
+            return [];
+        }
+
+        for (const p of this.points) {
+            if (
+                !range.contains(p.position) &&
+                getDistance(range.position, p.position) > p.particle.getRadius() &&
+                (!check || check(p.particle))
+            ) {
+                continue;
+            }
+
+            res.push(p.particle);
+        }
+
+        if (this.divided) {
+            this.northEast?.query(range, check, res);
+            this.northWest?.query(range, check, res);
+            this.southEast?.query(range, check, res);
+            this.southWest?.query(range, check, res);
+        }
+
+        return res;
     }
 
     /**
@@ -135,42 +171,6 @@ export class QuadTree {
      */
     queryRectangle(position: ICoordinates, size: IDimension, check?: (particle: Particle) => boolean): Particle[] {
         return this.query(new Rectangle(position.x, position.y, size.width, size.height), check);
-    }
-
-    /**
-     * Queries the instance using a [[Rectangle]] object, with the given position and the given size
-     * @param range the range to use for querying the tree
-     * @param check the function to check if the particle can be added to the result
-     * @param found found particles array, output parameter
-     * @returns the particles inside the given range
-     */
-    query(range: Range, check?: (particle: Particle) => boolean, found?: Particle[]): Particle[] {
-        const res = found ?? [];
-
-        if (!range.intersects(this.rectangle)) {
-            return [];
-        }
-
-        for (const p of this.points) {
-            if (
-                !range.contains(p.position) &&
-                getDistance(range.position, p.position) > p.particle.getRadius() &&
-                (!check || check(p.particle))
-            ) {
-                continue;
-            }
-
-            res.push(p.particle);
-        }
-
-        if (this.divided) {
-            this.northEast?.query(range, check, res);
-            this.northWest?.query(range, check, res);
-            this.southEast?.query(range, check, res);
-            this.southWest?.query(range, check, res);
-        }
-
-        return res;
     }
 
     /**

@@ -41,21 +41,6 @@ type OrbitingParticle = Particle & {
  */
 export class AbsorberInstance {
     /**
-     * The absorber mass, this increases the attraction force
-     */
-    mass;
-
-    /**
-     * The absorber opacity
-     */
-    opacity;
-
-    /**
-     * The absorber size, great size doesn't mean great mass, it depends also on the density
-     */
-    size;
-
-    /**
      * The absorber color
      */
     color: IRgb;
@@ -66,14 +51,29 @@ export class AbsorberInstance {
     limit: IAbsorberSizeLimit;
 
     /**
+     * The absorber mass, this increases the attraction force
+     */
+    mass;
+
+    /**
      * The absorber name, useful when retrieving it manually
      */
     readonly name?: string;
 
     /**
+     * The absorber opacity
+     */
+    opacity;
+
+    /**
      * The absorber position
      */
     position: Vector;
+
+    /**
+     * The absorber size, great size doesn't mean great mass, it depends also on the density
+     */
+    size;
 
     /**
      * Sets if the absorber can be moved with mouse drag&drop
@@ -205,18 +205,6 @@ export class AbsorberInstance {
     }
 
     /**
-     * The resize method, for fixing the Absorber position
-     */
-    resize(): void {
-        const initialPosition = this.initialPosition;
-
-        this.position =
-            initialPosition && isPointInside(initialPosition, this.container.canvas.size, Vector.origin)
-                ? initialPosition
-                : this.calcPosition();
-    }
-
-    /**
      * The draw method, for drawing the absorber in the canvas
      * @param context the canvas 2d context used for drawing
      */
@@ -227,6 +215,18 @@ export class AbsorberInstance {
         context.closePath();
         context.fillStyle = getStyleFromRgb(this.color, this.opacity);
         context.fill();
+    }
+
+    /**
+     * The resize method, for fixing the Absorber position
+     */
+    resize(): void {
+        const initialPosition = this.initialPosition;
+
+        this.position =
+            initialPosition && isPointInside(initialPosition, this.container.canvas.size, Vector.origin)
+                ? initialPosition
+                : this.calcPosition();
     }
 
     /**

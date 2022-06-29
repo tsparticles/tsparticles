@@ -13,7 +13,7 @@ export class TiltOptionsEditor extends EditorBase {
 
     addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("tilt", "Tilt");
-        this.options = this.group.data as unknown;
+        this.options = this.group.data;
 
         this.addAnimation();
         this.addProperties();

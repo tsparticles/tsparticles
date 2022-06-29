@@ -6,6 +6,12 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
  * @category Options
  */
 export class Remove implements IRemove, IOptionLoader<IRemove> {
+    quantity;
+
+    constructor() {
+        this.quantity = 2;
+    }
+
     /**
      *
      * @deprecated this property is obsolete, please use the new quantity
@@ -21,12 +27,6 @@ export class Remove implements IRemove, IOptionLoader<IRemove> {
      */
     set particles_nb(value: number) {
         this.quantity = value;
-    }
-
-    quantity;
-
-    constructor() {
-        this.quantity = 2;
     }
 
     load(data?: RecursivePartial<IRemove>): void {

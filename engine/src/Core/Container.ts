@@ -43,48 +43,18 @@ function loadContainerOptions(
  */
 export class Container {
     /**
-     * Check if the particles container is started
+     * The options loaded by the container, it's a full [[Options]] object
      */
-    started;
+    actualOptions;
+
+    readonly canvas;
+
+    density;
 
     /**
      * Check if the particles container is destroyed, if so it's not recommended using it
      */
     destroyed;
-
-    density;
-    duration;
-    pageHidden;
-    lastFrameTime?: number;
-    lifeTime;
-    fpsLimit;
-    interactivity: IContainerInteractivity;
-    zLayers;
-    responsiveMaxWidth?: number;
-
-    /**
-     * The options used by the container, it's a full [[Options]] object
-     */
-    get options(): Options {
-        return this._options;
-    }
-
-    get sourceOptions(): RecursivePartial<IOptions> | undefined {
-        return this._sourceOptions;
-    }
-
-    /**
-     * The options loaded by the container, it's a full [[Options]] object
-     */
-    actualOptions;
-
-    readonly retina;
-    readonly canvas;
-
-    /**
-     * The particles manager
-     */
-    readonly particles;
 
     readonly drawer;
 
@@ -93,25 +63,48 @@ export class Container {
      */
     readonly drawers;
 
+    duration;
+
+    readonly #engine;
+
+    fpsLimit;
+    interactivity: IContainerInteractivity;
+    lastFrameTime?: number;
+    lifeTime;
+    pageHidden;
+
+    /**
+     * The particles manager
+     */
+    readonly particles;
+
+    pathGenerator: IMovePathGenerator;
+
     /**
      * All the plugins used by the container
      */
     readonly plugins;
 
-    pathGenerator: IMovePathGenerator;
+    responsiveMaxWidth?: number;
 
+    readonly retina;
+
+    /**
+     * Check if the particles container is started
+     */
+    started;
+
+    zLayers;
+
+    private readonly _initialSourceOptions;
     private _options;
     private _sourceOptions;
-    private readonly _initialSourceOptions;
-    private paused;
-    private firstStart;
     private currentTheme?: string;
     private drawAnimationFrame?: number;
-
     private readonly eventListeners;
+    private firstStart;
     private readonly intersectionObserver?;
-
-    readonly #engine;
+    private paused;
 
     /**
      * This is the core class, create an instance to have a new working particles manager
@@ -177,279 +170,14 @@ export class Container {
     }
 
     /**
-     * Starts animations and resume from pause
-     * @param force
+     * The options used by the container, it's a full [[Options]] object
      */
-    play(force?: boolean): void {
-        const needsUpdate = this.paused || force;
-
-        if (this.firstStart && !this.actualOptions.autoPlay) {
-            this.firstStart = false;
-            return;
-        }
-
-        if (this.paused) {
-            this.paused = false;
-        }
-
-        if (needsUpdate) {
-            for (const [, plugin] of this.plugins) {
-                if (plugin.play) {
-                    plugin.play();
-                }
-            }
-        }
-
-        this.#engine.dispatchEvent(EventType.containerPlay, { container: this });
-
-        this.draw(needsUpdate || false);
+    get options(): Options {
+        return this._options;
     }
 
-    /**
-     * Pauses animations
-     */
-    pause(): void {
-        if (this.drawAnimationFrame !== undefined) {
-            cancelAnimation()(this.drawAnimationFrame);
-
-            delete this.drawAnimationFrame;
-        }
-
-        if (this.paused) {
-            return;
-        }
-
-        for (const [, plugin] of this.plugins) {
-            if (plugin.pause) {
-                plugin.pause();
-            }
-        }
-
-        if (!this.pageHidden) {
-            this.paused = true;
-        }
-
-        this.#engine.dispatchEvent(EventType.containerPaused, { container: this });
-    }
-
-    /**
-     * Draws a frame
-     */
-    draw(force: boolean): void {
-        let refreshTime = force;
-
-        this.drawAnimationFrame = animate()(async (timestamp) => {
-            if (refreshTime) {
-                this.lastFrameTime = undefined;
-
-                refreshTime = false;
-            }
-
-            await this.drawer.nextFrame(timestamp);
-        });
-    }
-
-    /**
-     * Gets the animation status
-     * @returns `true` is playing, `false` is paused
-     */
-    getAnimationStatus(): boolean {
-        return !this.paused && !this.pageHidden;
-    }
-
-    /**
-     * Customise path generation
-     * @deprecated Use the new setPath
-     * @param noiseOrGenerator the [[IMovePathGenerator]] object or a function that generates a [[Vector]] object from [[Particle]]
-     * @param init the [[IMovePathGenerator]] init function, if the first parameter is a generator function
-     * @param update the [[IMovePathGenerator]] update function, if the first parameter is a generator function
-     */
-    setNoise(
-        noiseOrGenerator?: IMovePathGenerator | ((particle: Particle) => Vector),
-        init?: () => void,
-        update?: () => void
-    ): void {
-        this.setPath(noiseOrGenerator, init, update);
-    }
-
-    /**
-     * Customise path generation
-     * @param pathOrGenerator the [[IMovePathGenerator]] object or a function that generates a [[Vector]] object from [[Particle]]
-     * @param init the [[IMovePathGenerator]] init function, if the first parameter is a generator function
-     * @param update the [[IMovePathGenerator]] update function, if the first parameter is a generator function
-     */
-    setPath(
-        pathOrGenerator?: IMovePathGenerator | ((particle: Particle) => Vector),
-        init?: () => void,
-        update?: () => void
-    ): void {
-        if (!pathOrGenerator) {
-            return;
-        }
-
-        if (typeof pathOrGenerator === "function") {
-            this.pathGenerator.generate = pathOrGenerator;
-
-            if (init) {
-                this.pathGenerator.init = init;
-            }
-
-            if (update) {
-                this.pathGenerator.update = update;
-            }
-        } else {
-            const oldGenerator = this.pathGenerator;
-
-            this.pathGenerator = pathOrGenerator;
-
-            this.pathGenerator.generate ||= oldGenerator.generate;
-            this.pathGenerator.init ||= oldGenerator.init;
-            this.pathGenerator.update ||= oldGenerator.update;
-        }
-    }
-
-    /**
-     * Destroys the current container, invalidating it
-     */
-    destroy(): void {
-        this.stop();
-
-        this.particles.destroy();
-        this.canvas.destroy();
-
-        for (const [, drawer] of this.drawers) {
-            if (drawer.destroy) {
-                drawer.destroy(this);
-            }
-        }
-
-        for (const key of this.drawers.keys()) {
-            this.drawers.delete(key);
-        }
-
-        this.destroyed = true;
-
-        this.#engine.dispatchEvent(EventType.containerDestroyed, { container: this });
-    }
-
-    /**
-     * @deprecated this method is deprecated, please use the exportImage method
-     * @param callback The callback to handle the image
-     */
-    exportImg(callback: BlobCallback): void {
-        this.exportImage(callback);
-    }
-
-    /**
-     * Exports the current canvas image, `background` property of `options` won't be rendered because it's css related
-     * @param callback The callback to handle the image
-     * @param type The exported image type
-     * @param quality The exported image quality
-     */
-    exportImage(callback: BlobCallback, type?: string, quality?: number): void {
-        return this.canvas.element?.toBlob(callback, type ?? "image/png", quality);
-    }
-
-    /**
-     * Exports the current configuration using `options` property
-     * @returns a JSON string created from `options` property
-     */
-    exportConfiguration(): string {
-        return JSON.stringify(this.actualOptions, undefined, 2);
-    }
-
-    /**
-     * Restarts the container, just a [[stop]]/[[start]] alias
-     */
-    refresh(): Promise<void> {
-        /* restart */
-        this.stop();
-        return this.start();
-    }
-
-    reset(): Promise<void> {
-        this._options = loadContainerOptions(this.#engine, this);
-
-        return this.refresh();
-    }
-
-    /**
-     * Stops the container, opposite to `start`. Clears some resources and stops events.
-     */
-    stop(): void {
-        if (!this.started) {
-            return;
-        }
-
-        this.firstStart = true;
-        this.started = false;
-        this.eventListeners.removeListeners();
-        this.pause();
-        this.particles.clear();
-        this.canvas.clear();
-
-        if (this.interactivity.element instanceof HTMLElement && this.intersectionObserver) {
-            this.intersectionObserver.unobserve(this.interactivity.element);
-        }
-
-        for (const [, plugin] of this.plugins) {
-            if (plugin.stop) {
-                plugin.stop();
-            }
-        }
-
-        for (const key of this.plugins.keys()) {
-            this.plugins.delete(key);
-        }
-
-        this.#engine.plugins.destroy(this);
-
-        delete this.particles.grabLineColor;
-
-        this._sourceOptions = this._options;
-
-        this.#engine.dispatchEvent(EventType.containerStopped, { container: this });
-    }
-
-    /**
-     * Loads the given theme, overriding the options
-     * @param name the theme name, if `undefined` resets the default options or the default theme
-     */
-    async loadTheme(name?: string): Promise<void> {
-        this.currentTheme = name;
-
-        await this.refresh();
-    }
-
-    /**
-     * Starts the container, initializes what are needed to create animations and event handling
-     */
-    async start(): Promise<void> {
-        if (this.started) {
-            return;
-        }
-
-        await this.init();
-
-        this.started = true;
-
-        this.eventListeners.addListeners();
-
-        if (this.interactivity.element instanceof HTMLElement && this.intersectionObserver) {
-            this.intersectionObserver.observe(this.interactivity.element);
-        }
-
-        for (const [, plugin] of this.plugins) {
-            if (plugin.startAsync !== undefined) {
-                await plugin.startAsync();
-            } else if (plugin.start !== undefined) {
-                plugin.start();
-            }
-        }
-
-        this.#engine.dispatchEvent(EventType.containerStarted, { container: this });
-
-        this.play();
+    get sourceOptions(): RecursivePartial<IOptions> | undefined {
+        return this._sourceOptions;
     }
 
     addClickHandler(callback: (evt: Event, particles?: Particle[]) => void): void {
@@ -554,6 +282,81 @@ export class Container {
         el.addEventListener("touchcancel", touchCancelHandler);
     }
 
+    /**
+     * Destroys the current container, invalidating it
+     */
+    destroy(): void {
+        this.stop();
+
+        this.particles.destroy();
+        this.canvas.destroy();
+
+        for (const [, drawer] of this.drawers) {
+            if (drawer.destroy) {
+                drawer.destroy(this);
+            }
+        }
+
+        for (const key of this.drawers.keys()) {
+            this.drawers.delete(key);
+        }
+
+        this.destroyed = true;
+
+        this.#engine.dispatchEvent(EventType.containerDestroyed, { container: this });
+    }
+
+    /**
+     * Draws a frame
+     */
+    draw(force: boolean): void {
+        let refreshTime = force;
+
+        this.drawAnimationFrame = animate()(async (timestamp) => {
+            if (refreshTime) {
+                this.lastFrameTime = undefined;
+
+                refreshTime = false;
+            }
+
+            await this.drawer.nextFrame(timestamp);
+        });
+    }
+
+    /**
+     * Exports the current configuration using `options` property
+     * @returns a JSON string created from `options` property
+     */
+    exportConfiguration(): string {
+        return JSON.stringify(this.actualOptions, undefined, 2);
+    }
+
+    /**
+     * Exports the current canvas image, `background` property of `options` won't be rendered because it's css related
+     * @param callback The callback to handle the image
+     * @param type The exported image type
+     * @param quality The exported image quality
+     */
+    exportImage(callback: BlobCallback, type?: string, quality?: number): void {
+        return this.canvas.element?.toBlob(callback, type ?? "image/png", quality);
+    }
+
+    /**
+     * @deprecated this method is deprecated, please use the exportImage method
+     * @param callback The callback to handle the image
+     */
+    exportImg(callback: BlobCallback): void {
+        this.exportImage(callback);
+    }
+
+    /**
+     * Gets the animation status
+     * @returns `true` is playing, `false` is paused
+     */
+    getAnimationStatus(): boolean {
+        return !this.paused && !this.pageHidden;
+    }
+
     handleClickMode(mode: ClickMode | string): void {
         this.particles.handleClickMode(mode);
 
@@ -562,24 +365,6 @@ export class Container {
                 plugin.handleClickMode(mode);
             }
         }
-    }
-
-    updateActualOptions(): boolean {
-        this.actualOptions.responsive = [];
-        const newMaxWidth = this.actualOptions.setResponsive(
-            this.canvas.size.width,
-            this.retina.pixelRatio,
-            this._options
-        );
-        this.actualOptions.setTheme(this.currentTheme);
-
-        if (this.responsiveMaxWidth != newMaxWidth) {
-            this.responsiveMaxWidth = newMaxWidth;
-
-            return true;
-        }
-
-        return false;
     }
 
     async init(): Promise<void> {
@@ -650,6 +435,225 @@ export class Container {
         }
 
         this.#engine.dispatchEvent(EventType.particlesSetup, { container: this });
+    }
+
+    /**
+     * Loads the given theme, overriding the options
+     * @param name the theme name, if `undefined` resets the default options or the default theme
+     */
+    async loadTheme(name?: string): Promise<void> {
+        this.currentTheme = name;
+
+        await this.refresh();
+    }
+
+    /**
+     * Pauses animations
+     */
+    pause(): void {
+        if (this.drawAnimationFrame !== undefined) {
+            cancelAnimation()(this.drawAnimationFrame);
+
+            delete this.drawAnimationFrame;
+        }
+
+        if (this.paused) {
+            return;
+        }
+
+        for (const [, plugin] of this.plugins) {
+            if (plugin.pause) {
+                plugin.pause();
+            }
+        }
+
+        if (!this.pageHidden) {
+            this.paused = true;
+        }
+
+        this.#engine.dispatchEvent(EventType.containerPaused, { container: this });
+    }
+
+    /**
+     * Starts animations and resume from pause
+     * @param force
+     */
+    play(force?: boolean): void {
+        const needsUpdate = this.paused || force;
+
+        if (this.firstStart && !this.actualOptions.autoPlay) {
+            this.firstStart = false;
+            return;
+        }
+
+        if (this.paused) {
+            this.paused = false;
+        }
+
+        if (needsUpdate) {
+            for (const [, plugin] of this.plugins) {
+                if (plugin.play) {
+                    plugin.play();
+                }
+            }
+        }
+
+        this.#engine.dispatchEvent(EventType.containerPlay, { container: this });
+
+        this.draw(needsUpdate || false);
+    }
+
+    /**
+     * Restarts the container, just a [[stop]]/[[start]] alias
+     */
+    refresh(): Promise<void> {
+        /* restart */
+        this.stop();
+        return this.start();
+    }
+
+    reset(): Promise<void> {
+        this._options = loadContainerOptions(this.#engine, this);
+
+        return this.refresh();
+    }
+
+    /**
+     * Customise path generation
+     * @deprecated Use the new setPath
+     * @param noiseOrGenerator the [[IMovePathGenerator]] object or a function that generates a [[Vector]] object from [[Particle]]
+     * @param init the [[IMovePathGenerator]] init function, if the first parameter is a generator function
+     * @param update the [[IMovePathGenerator]] update function, if the first parameter is a generator function
+     */
+    setNoise(
+        noiseOrGenerator?: IMovePathGenerator | ((particle: Particle) => Vector),
+        init?: () => void,
+        update?: () => void
+    ): void {
+        this.setPath(noiseOrGenerator, init, update);
+    }
+
+    /**
+     * Customise path generation
+     * @param pathOrGenerator the [[IMovePathGenerator]] object or a function that generates a [[Vector]] object from [[Particle]]
+     * @param init the [[IMovePathGenerator]] init function, if the first parameter is a generator function
+     * @param update the [[IMovePathGenerator]] update function, if the first parameter is a generator function
+     */
+    setPath(
+        pathOrGenerator?: IMovePathGenerator | ((particle: Particle) => Vector),
+        init?: () => void,
+        update?: () => void
+    ): void {
+        if (!pathOrGenerator) {
+            return;
+        }
+
+        if (typeof pathOrGenerator === "function") {
+            this.pathGenerator.generate = pathOrGenerator;
+
+            if (init) {
+                this.pathGenerator.init = init;
+            }
+
+            if (update) {
+                this.pathGenerator.update = update;
+            }
+        } else {
+            const oldGenerator = this.pathGenerator;
+
+            this.pathGenerator = pathOrGenerator;
+
+            this.pathGenerator.generate ||= oldGenerator.generate;
+            this.pathGenerator.init ||= oldGenerator.init;
+            this.pathGenerator.update ||= oldGenerator.update;
+        }
+    }
+
+    /**
+     * Starts the container, initializes what are needed to create animations and event handling
+     */
+    async start(): Promise<void> {
+        if (this.started) {
+            return;
+        }
+
+        await this.init();
+
+        this.started = true;
+
+        this.eventListeners.addListeners();
+
+        if (this.interactivity.element instanceof HTMLElement && this.intersectionObserver) {
+            this.intersectionObserver.observe(this.interactivity.element);
+        }
+
+        for (const [, plugin] of this.plugins) {
+            if (plugin.startAsync !== undefined) {
+                await plugin.startAsync();
+            } else if (plugin.start !== undefined) {
+                plugin.start();
+            }
+        }
+
+        this.#engine.dispatchEvent(EventType.containerStarted, { container: this });
+
+        this.play();
+    }
+
+    /**
+     * Stops the container, opposite to `start`. Clears some resources and stops events.
+     */
+    stop(): void {
+        if (!this.started) {
+            return;
+        }
+
+        this.firstStart = true;
+        this.started = false;
+        this.eventListeners.removeListeners();
+        this.pause();
+        this.particles.clear();
+        this.canvas.clear();
+
+        if (this.interactivity.element instanceof HTMLElement && this.intersectionObserver) {
+            this.intersectionObserver.unobserve(this.interactivity.element);
+        }
+
+        for (const [, plugin] of this.plugins) {
+            if (plugin.stop) {
+                plugin.stop();
+            }
+        }
+
+        for (const key of this.plugins.keys()) {
+            this.plugins.delete(key);
+        }
+
+        this.#engine.plugins.destroy(this);
+
+        delete this.particles.grabLineColor;
+
+        this._sourceOptions = this._options;
+
+        this.#engine.dispatchEvent(EventType.containerStopped, { container: this });
+    }
+
+    updateActualOptions(): boolean {
+        this.actualOptions.responsive = [];
+        const newMaxWidth = this.actualOptions.setResponsive(
+            this.canvas.size.width,
+            this.retina.pixelRatio,
+            this._options
+        );
+        this.actualOptions.setTheme(this.currentTheme);
+
+        if (this.responsiveMaxWidth != newMaxWidth) {
+            this.responsiveMaxWidth = newMaxWidth;
+
+            return true;
+        }
+
+        return false;
     }
 
     private intersectionManager(entries: IntersectionObserverEntry[]): void {

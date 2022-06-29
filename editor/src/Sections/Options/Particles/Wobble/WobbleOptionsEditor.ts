@@ -13,7 +13,7 @@ export class WobbleOptionsEditor extends EditorBase {
 
     addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("wobble", "Wobble");
-        this.options = this.group.data as unknown;
+        this.options = this.group.data;
 
         this.addProperties();
     }

@@ -8,9 +8,9 @@ import { setRangeValue } from "../../../../Utils/NumberUtils";
  * @category Options
  */
 export class RotateAnimation implements IRotateAnimation, IOptionLoader<IRotateAnimation> {
+    decay: RangeValue;
     enable;
     speed: RangeValue;
-    decay: RangeValue;
     sync;
 
     constructor() {

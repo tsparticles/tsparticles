@@ -5,6 +5,6 @@ import type { IOptionsColor } from "tsparticles-engine";
  */
 export interface IPolygonMaskDrawStroke {
     color: string | IOptionsColor;
-    width: number;
     opacity: number;
+    width: number;
 }

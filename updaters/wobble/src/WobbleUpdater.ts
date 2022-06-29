@@ -105,19 +105,6 @@ export class WobbleUpdater implements IParticleUpdater {
         return !particle.destroyed && !particle.spawning && !!particle.options.wobble?.enable;
     }
 
-    /**
-     * Updates the particle wobble animation
-     * @param particle the particle to update
-     * @param delta this variable contains the delta between the current frame and the previous frame
-     */
-    update(particle: WobbleParticle, delta: IDelta): void {
-        if (!this.isEnabled(particle)) {
-            return;
-        }
-
-        updateWobble(particle, delta);
-    }
-
     loadOptions(
         options: WobbleParticlesOptions,
         ...sources: (RecursivePartial<IWobbleParticlesOptions> | undefined)[]
@@ -133,5 +120,18 @@ export class WobbleUpdater implements IParticleUpdater {
 
             options.wobble.load(source.wobble);
         }
+    }
+
+    /**
+     * Updates the particle wobble animation
+     * @param particle the particle to update
+     * @param delta this variable contains the delta between the current frame and the previous frame
+     */
+    update(particle: WobbleParticle, delta: IDelta): void {
+        if (!this.isEnabled(particle)) {
+            return;
+        }
+
+        updateWobble(particle, delta);
     }
 }

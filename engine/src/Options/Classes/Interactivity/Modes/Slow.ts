@@ -6,6 +6,14 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
  * @category Options
  */
 export class Slow implements ISlow, IOptionLoader<ISlow> {
+    factor;
+    radius;
+
+    constructor() {
+        this.factor = 3;
+        this.radius = 200;
+    }
+
     /**
      * @deprecated this property will be removed soon, please use the HoverMode.slow in the HoverEvent
      */
@@ -18,14 +26,6 @@ export class Slow implements ISlow, IOptionLoader<ISlow> {
      */
     set active(_value: boolean) {
         // deprecated
-    }
-
-    factor;
-    radius;
-
-    constructor() {
-        this.factor = 3;
-        this.radius = 200;
     }
 
     load(data?: RecursivePartial<ISlow>): void {

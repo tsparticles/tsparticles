@@ -8,6 +8,14 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
  * @category Options
  */
 export class RepulseDiv extends RepulseBase implements IRepulseDiv, IOptionLoader<IRepulseDiv> {
+    selectors: SingleOrMultiple<string>;
+
+    constructor() {
+        super();
+
+        this.selectors = [];
+    }
+
     /**
      * @deprecated This property is deprecated, please use the new selectors property
      */
@@ -31,14 +39,6 @@ export class RepulseDiv extends RepulseBase implements IRepulseDiv, IOptionLoade
         } else {
             this.selectors = `#${value}`;
         }
-    }
-
-    selectors: SingleOrMultiple<string>;
-
-    constructor() {
-        super();
-
-        this.selectors = [];
     }
 
     load(data?: RecursivePartial<IRepulseDiv>): void {

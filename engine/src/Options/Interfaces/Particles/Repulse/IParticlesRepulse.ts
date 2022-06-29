@@ -6,9 +6,9 @@ import type { RangeValue } from "../../../../Types/RangeValue";
  * [[include:Options/Particles/Repulse.md]]
  */
 export interface IParticlesRepulse extends IValueWithRandom {
-    enabled: boolean;
     distance: RangeValue;
     duration: RangeValue;
+    enabled: boolean;
     factor: RangeValue;
     speed: RangeValue;
 }

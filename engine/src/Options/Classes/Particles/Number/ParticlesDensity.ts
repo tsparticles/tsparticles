@@ -6,6 +6,16 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
  * @category Options
  */
 export class ParticlesDensity implements IParticlesDensity, IOptionLoader<IParticlesDensity> {
+    area;
+    enable;
+    factor;
+
+    constructor() {
+        this.enable = false;
+        this.area = 800;
+        this.factor = 1000;
+    }
+
     /**
      *
      * @deprecated this property is obsolete, please use the new area
@@ -21,16 +31,6 @@ export class ParticlesDensity implements IParticlesDensity, IOptionLoader<IParti
      */
     set value_area(value: number) {
         this.area = value;
-    }
-
-    area;
-    enable;
-    factor;
-
-    constructor() {
-        this.enable = false;
-        this.area = 800;
-        this.factor = 1000;
     }
 
     load(data?: RecursivePartial<IParticlesDensity>): void {

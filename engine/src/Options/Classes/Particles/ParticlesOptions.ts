@@ -29,10 +29,14 @@ import { deepExtend } from "../../../Utils/Utils";
  * @category Options
  */
 export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParticlesOptions> {
+    [name: string]: unknown;
+
     bounce;
     collisions;
     color;
+    readonly #container;
     destroy;
+    readonly #engine;
     gradient: SingleOrMultiple<AnimatableGradient>;
     groups: ParticlesGroups;
     interactivity?: RecursivePartial<IInteractivity>;
@@ -43,50 +47,11 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     reduceDuplicates;
     repulse;
     rotate;
+    shadow;
     shape;
     size;
-    shadow;
     stroke: SingleOrMultiple<Stroke>;
     zIndex;
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new links
-     */
-    get line_linked(): Links {
-        return this.links;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new links
-     * @param value
-     */
-    set line_linked(value: Links) {
-        this.links = value;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new lineLinked
-     */
-    get lineLinked(): Links {
-        return this.links;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new lineLinked
-     * @param value
-     */
-    set lineLinked(value: Links) {
-        this.links = value;
-    }
-
-    [name: string]: unknown;
-
-    readonly #engine;
-    readonly #container;
 
     constructor(engine: Engine, container?: Container) {
         this.#engine = engine;
@@ -111,6 +76,40 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.size = new Size();
         this.stroke = new Stroke();
         this.zIndex = new ZIndex();
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new lineLinked
+     */
+    get lineLinked(): Links {
+        return this.links;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new lineLinked
+     * @param value
+     */
+    set lineLinked(value: Links) {
+        this.links = value;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new links
+     */
+    get line_linked(): Links {
+        return this.links;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new links
+     * @param value
+     */
+    set line_linked(value: Links) {
+        this.links = value;
     }
 
     load(data?: RecursivePartial<IParticlesOptions>): void {

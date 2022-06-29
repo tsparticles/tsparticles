@@ -12,11 +12,11 @@ import type { ILife } from "./Options/Interfaces/ILife";
 import { Life } from "./Options/Classes/Life";
 
 interface IParticleLife {
+    count: number;
     delay: number;
     delayTime: number;
     duration: number;
     time: number;
-    count: number;
 }
 
 type ILifeParticlesOptions = IParticlesOptions & {
@@ -75,6 +75,23 @@ export class LifeUpdater implements IParticleUpdater {
 
     isEnabled(particle: Particle): boolean {
         return !particle.destroyed;
+    }
+
+    loadOptions(
+        options: LifeParticlesOptions,
+        ...sources: (RecursivePartial<ILifeParticlesOptions> | undefined)[]
+    ): void {
+        for (const source of sources) {
+            if (!source?.life) {
+                continue;
+            }
+
+            if (!options.life) {
+                options.life = new Life();
+            }
+
+            options.life.load(source.life);
+        }
     }
 
     update(particle: LifeParticle, delta: IDelta): void {
@@ -145,23 +162,6 @@ export class LifeUpdater implements IParticleUpdater {
         if (lifeOptions) {
             life.delay = getRangeValue(lifeOptions.delay.value) * 1000;
             life.duration = getRangeValue(lifeOptions.duration.value) * 1000;
-        }
-    }
-
-    loadOptions(
-        options: LifeParticlesOptions,
-        ...sources: (RecursivePartial<ILifeParticlesOptions> | undefined)[]
-    ): void {
-        for (const source of sources) {
-            if (!source?.life) {
-                continue;
-            }
-
-            if (!options.life) {
-                options.life = new Life();
-            }
-
-            options.life.load(source.life);
         }
     }
 }

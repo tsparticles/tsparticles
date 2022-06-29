@@ -8,12 +8,12 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
  * @category Options
  */
 export abstract class BubbleBase implements IBubbleBase, IOptionLoader<IBubbleBase> {
+    color?: SingleOrMultiple<OptionsColor>;
     distance;
     duration;
     mix;
     opacity?: number;
     size?: number;
-    color?: SingleOrMultiple<OptionsColor>;
 
     constructor() {
         this.distance = 200;

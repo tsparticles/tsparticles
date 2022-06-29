@@ -1,6 +1,6 @@
 import type { Container, IInteractivity } from "tsparticles-engine";
 import { EditorBase } from "../../../EditorBase";
-import type { EditorGroup} from "object-gui";
+import type { EditorGroup } from "object-gui";
 import { EditorType } from "object-gui";
 import { EventsOptionsEditor } from "./Events/EventsOptionsEditor";
 import { InteractivityDetect } from "tsparticles-engine";
@@ -24,14 +24,14 @@ export class InteractivityOptionsEditor extends EditorBase {
         this.addProperties();
     }
 
-    private addModes(): void {
-        const options = new ModesOptionsEditor(this.particles);
+    private addEvents(): void {
+        const options = new EventsOptionsEditor(this.particles);
 
         options.addToGroup(this.group);
     }
 
-    private addEvents(): void {
-        const options = new EventsOptionsEditor(this.particles);
+    private addModes(): void {
+        const options = new ModesOptionsEditor(this.particles);
 
         options.addToGroup(this.group);
     }

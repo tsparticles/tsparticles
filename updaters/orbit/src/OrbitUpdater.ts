@@ -37,57 +37,25 @@ type OrbitContainer = Container & {
 
 type OrbitParticle = Particle & {
     options: OrbitParticlesOptions;
+    orbitAnimationSpeed?: number;
     orbitColor?: IHsl;
+    orbitOpacity?: number;
     orbitRotation?: number;
+    orbitWidth?: number;
     retina: IParticleRetinaProps & {
         orbitRadius?: number;
     };
-    orbitAnimationSpeed?: number;
-    orbitOpacity?: number;
-    orbitWidth?: number;
 };
 
 export class OrbitUpdater implements IParticleUpdater {
     constructor(private readonly container: OrbitContainer) {}
 
-    init(particle: OrbitParticle): void {
-        /* orbit */
-        const container = this.container,
-            particlesOptions = particle.options,
-            orbitOptions = particlesOptions.orbit;
+    afterDraw(particle: OrbitParticle): void {
+        const orbitOptions = particle.options.orbit;
 
-        if (!orbitOptions?.enable) {
-            return;
+        if (orbitOptions?.enable) {
+            this.drawOrbit(particle, OrbitType.front);
         }
-
-        particle.orbitRotation = getRangeValue(orbitOptions.rotation.value);
-        particle.orbitColor = rangeColorToHsl(orbitOptions.color);
-        particle.retina.orbitRadius =
-            orbitOptions.radius !== undefined
-                ? getRangeValue(orbitOptions.radius) * container.retina.pixelRatio
-                : undefined;
-        container.retina.orbitRadius = particle.retina.orbitRadius;
-        particle.orbitAnimationSpeed = orbitOptions.animation.enable ? getRangeValue(orbitOptions.animation.speed) : 0;
-        particle.orbitWidth = getRangeValue(orbitOptions.width);
-        particle.orbitOpacity = getRangeValue(orbitOptions.opacity);
-    }
-
-    isEnabled(particle: OrbitParticle): boolean {
-        const orbitAnimations = particle.options.orbit?.animation;
-
-        return !particle.destroyed && !particle.spawning && !!orbitAnimations?.enable;
-    }
-
-    update(particle: OrbitParticle, delta: IDelta): void {
-        if (!this.isEnabled(particle)) {
-            return;
-        }
-
-        if (particle.orbitRotation === undefined) {
-            particle.orbitRotation = 0;
-        }
-
-        particle.orbitRotation += (particle.orbitAnimationSpeed ?? 0 / (Math.PI * 2)) * delta.factor;
     }
 
     beforeDraw(particle: OrbitParticle): void {
@@ -95,14 +63,6 @@ export class OrbitUpdater implements IParticleUpdater {
 
         if (orbitOptions?.enable) {
             this.drawOrbit(particle, OrbitType.back);
-        }
-    }
-
-    afterDraw(particle: OrbitParticle): void {
-        const orbitOptions = particle.options.orbit;
-
-        if (orbitOptions?.enable) {
-            this.drawOrbit(particle, OrbitType.front);
         }
     }
 
@@ -140,6 +100,34 @@ export class OrbitUpdater implements IParticleUpdater {
         });
     }
 
+    init(particle: OrbitParticle): void {
+        /* orbit */
+        const container = this.container,
+            particlesOptions = particle.options,
+            orbitOptions = particlesOptions.orbit;
+
+        if (!orbitOptions?.enable) {
+            return;
+        }
+
+        particle.orbitRotation = getRangeValue(orbitOptions.rotation.value);
+        particle.orbitColor = rangeColorToHsl(orbitOptions.color);
+        particle.retina.orbitRadius =
+            orbitOptions.radius !== undefined
+                ? getRangeValue(orbitOptions.radius) * container.retina.pixelRatio
+                : undefined;
+        container.retina.orbitRadius = particle.retina.orbitRadius;
+        particle.orbitAnimationSpeed = orbitOptions.animation.enable ? getRangeValue(orbitOptions.animation.speed) : 0;
+        particle.orbitWidth = getRangeValue(orbitOptions.width);
+        particle.orbitOpacity = getRangeValue(orbitOptions.opacity);
+    }
+
+    isEnabled(particle: OrbitParticle): boolean {
+        const orbitAnimations = particle.options.orbit?.animation;
+
+        return !particle.destroyed && !particle.spawning && !!orbitAnimations?.enable;
+    }
+
     loadOptions(
         options: OrbitParticlesOptions,
         ...sources: (RecursivePartial<IOrbitParticlesOptions> | undefined)[]
@@ -155,5 +143,17 @@ export class OrbitUpdater implements IParticleUpdater {
 
             options.orbit.load(source.orbit);
         }
+    }
+
+    update(particle: OrbitParticle, delta: IDelta): void {
+        if (!this.isEnabled(particle)) {
+            return;
+        }
+
+        if (particle.orbitRotation === undefined) {
+            particle.orbitRotation = 0;
+        }
+
+        particle.orbitRotation += (particle.orbitAnimationSpeed ?? 0 / (Math.PI * 2)) * delta.factor;
     }
 }

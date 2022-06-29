@@ -4,7 +4,7 @@ import type { IOptionsColor } from "../../IOptionsColor";
  * @category Options
  */
 export interface IMoveTrail {
-    fillColor: string | IOptionsColor;
     enable: boolean;
+    fillColor: string | IOptionsColor;
     length: number;
 }

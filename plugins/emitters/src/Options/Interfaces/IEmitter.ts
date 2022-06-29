@@ -24,11 +24,6 @@ export interface IEmitter {
     autoPlay: boolean;
 
     /**
-     * The size of the particles emitter area
-     */
-    size?: IEmitterSize;
-
-    /**
      * The direction of the emitted particles, [[MoveDirection]] is the enum used for values
      */
     direction?: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
@@ -75,6 +70,11 @@ export interface IEmitter {
      * The emitter shape type (circle or square)
      */
     shape: EmitterShapeType | keyof typeof EmitterShapeType;
+
+    /**
+     * The size of the particles emitter area
+     */
+    size?: IEmitterSize;
 
     /**
      * The particle spawn color

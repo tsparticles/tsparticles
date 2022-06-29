@@ -11,20 +11,24 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
  */
 export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
     /**
-     * The element id to detect the event
-     * @deprecated this property is obsolete, please use the new selectors
+     * The div event handler enabling mode
      */
-    get elementId(): SingleOrMultiple<string> {
-        return this.ids;
-    }
+    enable;
 
     /**
-     * The element id to detect the event
-     * @deprecated this property is obsolete, please use the new selectors
-     * @param value
+     * Div mode values described in [[DivMode]], an array of these values is also valid.
      */
-    set elementId(value: SingleOrMultiple<string>) {
-        this.ids = value;
+    mode: SingleOrMultiple<DivMode | keyof typeof DivMode | string>;
+
+    selectors: SingleOrMultiple<string>;
+
+    type;
+
+    constructor() {
+        this.selectors = [];
+        this.enable = false;
+        this.mode = [];
+        this.type = DivType.circle;
     }
 
     /**
@@ -42,6 +46,23 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
      */
     set el(value: SingleOrMultiple<string>) {
         this.elementId = value;
+    }
+
+    /**
+     * The element id to detect the event
+     * @deprecated this property is obsolete, please use the new selectors
+     */
+    get elementId(): SingleOrMultiple<string> {
+        return this.ids;
+    }
+
+    /**
+     * The element id to detect the event
+     * @deprecated this property is obsolete, please use the new selectors
+     * @param value
+     */
+    set elementId(value: SingleOrMultiple<string>) {
+        this.ids = value;
     }
 
     /**
@@ -64,27 +85,6 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
      */
     set ids(value: SingleOrMultiple<string>) {
         this.selectors = value instanceof Array ? value.map((t) => `#${t}`) : `#${value}`;
-    }
-
-    selectors: SingleOrMultiple<string>;
-
-    /**
-     * The div event handler enabling mode
-     */
-    enable;
-
-    /**
-     * Div mode values described in [[DivMode]], an array of these values is also valid.
-     */
-    mode: SingleOrMultiple<DivMode | keyof typeof DivMode | string>;
-
-    type;
-
-    constructor() {
-        this.selectors = [];
-        this.enable = false;
-        this.mode = [];
-        this.type = DivType.circle;
     }
 
     load(data?: RecursivePartial<IDivEvent>): void {

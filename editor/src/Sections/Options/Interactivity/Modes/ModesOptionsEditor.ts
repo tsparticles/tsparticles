@@ -91,8 +91,8 @@ export class ModesOptionsEditor extends EditorBase {
             typeof options.color === "string"
                 ? options.color
                 : options.color instanceof Array
-                    ? undefined
-                    : options.color?.value;
+                ? undefined
+                : options.color?.value;
 
         group.addProperty("color", "Color", EditorType.color, color, false).change(async (value: unknown) => {
             if (typeof value === "string") {

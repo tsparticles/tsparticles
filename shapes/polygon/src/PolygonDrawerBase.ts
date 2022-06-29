@@ -2,8 +2,8 @@ import type { ICoordinates, IParticle, IShapeDrawer } from "tsparticles-engine";
 import type { IPolygonShape } from "./IPolygonShape";
 
 export interface ISideCount {
-    numerator: number;
     denominator: number;
+    numerator: number;
 }
 
 export interface ISide {
@@ -15,12 +15,6 @@ export interface ISide {
  * @category Shape Drawers
  */
 export abstract class PolygonDrawerBase implements IShapeDrawer {
-    getSidesCount(particle: IParticle): number {
-        const polygon = particle.shapeData as IPolygonShape;
-
-        return polygon?.sides ?? polygon?.nb_sides ?? 5;
-    }
-
     draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
         const start = this.getCenter(particle, radius);
         const side = this.getSidesData(particle, radius);
@@ -46,7 +40,13 @@ export abstract class PolygonDrawerBase implements IShapeDrawer {
         }
     }
 
-    abstract getSidesData(particle: IParticle, radius: number): ISide;
+    getSidesCount(particle: IParticle): number {
+        const polygon = particle.shapeData as IPolygonShape;
+
+        return polygon?.sides ?? polygon?.nb_sides ?? 5;
+    }
 
     abstract getCenter(particle: IParticle, radius: number): ICoordinates;
+
+    abstract getSidesData(particle: IParticle, radius: number): ISide;
 }

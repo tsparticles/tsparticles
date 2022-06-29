@@ -13,7 +13,7 @@ export class TwinkleOptionsEditor extends EditorBase {
 
     addToGroup(parent: EditorGroup, options?: unknown): void {
         this.group = parent.addGroup("twinkle", "Twinkle", true, options);
-        this.options = this.group.data as unknown;
+        this.options = this.group.data;
 
         this.addTwinkle();
     }

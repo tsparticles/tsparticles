@@ -8,6 +8,14 @@ export class ExternalLighter extends ExternalInteractorBase {
         super(container);
     }
 
+    clear(): void {
+        // do nothing
+    }
+
+    init(): void {
+        // do nothing
+    }
+
     async interact(): Promise<void> {
         const container = this.container,
             options = container.actualOptions;
@@ -47,14 +55,6 @@ export class ExternalLighter extends ExternalInteractorBase {
         }
 
         return res;
-    }
-
-    init(): void {
-        // do nothing
-    }
-
-    clear(): void {
-        // do nothing
     }
 
     reset(): void {

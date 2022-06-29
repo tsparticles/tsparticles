@@ -4,19 +4,10 @@ import type { EditorInputBase } from "object-gui/dist/js/Editors/EditorInputBase
 import { OptionsEditor } from "./Sections/Options/OptionsEditor";
 
 export class ParticlesEditor extends Editor {
-    constructor(readonly particles: Container) {
-        super(particles.id, "tsParticles", particles);
-    }
-
     private _presets?: EditorInputBase;
 
-    protected customize(): void {
-        super.customize();
-
-        this.addOptions();
-        this.addButtons();
-
-        this.addPresets();
+    constructor(readonly particles: Container) {
+        super(particles.id, "tsParticles", particles);
     }
 
     addPreset(text: string, file: string): void {
@@ -27,10 +18,13 @@ export class ParticlesEditor extends Editor {
         this._presets.addItem(file, text);
     }
 
-    private addOptions(): void {
-        const options = new OptionsEditor(this.data as Container);
+    protected customize(): void {
+        super.customize();
 
-        options.addToGroup(this);
+        this.addOptions();
+        this.addButtons();
+
+        this.addPresets();
     }
 
     private addButtons(): void {
@@ -55,6 +49,12 @@ export class ParticlesEditor extends Editor {
             e.initMouseEvent("click", true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
             a.dispatchEvent(e);
         });
+    }
+
+    private addOptions(): void {
+        const options = new OptionsEditor(this.data as Container);
+
+        options.addToGroup(this);
     }
 
     private addPresets(): void {

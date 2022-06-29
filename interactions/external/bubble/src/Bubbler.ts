@@ -77,34 +77,6 @@ export class Bubbler extends ExternalInteractorBase {
         };
     }
 
-    isEnabled(particle?: Particle): boolean {
-        const container = this.container,
-            options = container.actualOptions,
-            mouse = container.interactivity.mouse,
-            events = (particle?.interactivity ?? options.interactivity).events,
-            divs = events.onDiv,
-            divBubble = isDivModeEnabled(DivMode.bubble, divs);
-
-        if (
-            !(divBubble || events.onHover.enable && mouse.position || events.onClick.enable && mouse.clickPosition)
-        ) {
-            return false;
-        }
-
-        const hoverMode = events.onHover.mode;
-        const clickMode = events.onClick.mode;
-
-        return isInArray(HoverMode.bubble, hoverMode) || isInArray(ClickMode.bubble, clickMode) || divBubble;
-    }
-
-    reset(particle: Particle): void {
-        particle.bubble.inRange = false;
-    }
-
-    init(): void {
-        // do nothing
-    }
-
     clear(particle: Particle, force?: boolean): void {
         if (particle.bubble.inRange && !force) {
             return;
@@ -114,6 +86,10 @@ export class Bubbler extends ExternalInteractorBase {
         delete particle.bubble.opacity;
         delete particle.bubble.radius;
         delete particle.bubble.color;
+    }
+
+    init(): void {
+        // do nothing
     }
 
     async interact(): Promise<void> {
@@ -137,118 +113,28 @@ export class Bubbler extends ExternalInteractorBase {
         }
     }
 
-    private singleSelectorHover(selector: string, div: DivEvent): void {
+    isEnabled(particle?: Particle): boolean {
         const container = this.container,
-            selectors = document.querySelectorAll(selector);
+            options = container.actualOptions,
+            mouse = container.interactivity.mouse,
+            events = (particle?.interactivity ?? options.interactivity).events,
+            divs = events.onDiv,
+            divBubble = isDivModeEnabled(DivMode.bubble, divs);
 
-        if (!selectors.length) {
-            return;
+        if (
+            !(divBubble || events.onHover.enable && mouse.position || events.onClick.enable && mouse.clickPosition)
+        ) {
+            return false;
         }
 
-        selectors.forEach((item) => {
-            const elem = item as HTMLElement,
-                pxRatio = container.retina.pixelRatio,
-                pos = {
-                    x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
-                    y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
-                },
-                repulseRadius = elem.offsetWidth / 2 * pxRatio,
-                area =
-                    div.type === DivType.circle
-                        ? new Circle(pos.x, pos.y, repulseRadius)
-                        : new Rectangle(
-                              elem.offsetLeft * pxRatio,
-                              elem.offsetTop * pxRatio,
-                              elem.offsetWidth * pxRatio,
-                              elem.offsetHeight * pxRatio
-                          ),
-                query = container.particles.quadTree.query(area, (p) => this.isEnabled(p));
+        const hoverMode = events.onHover.mode;
+        const clickMode = events.onClick.mode;
 
-            for (const particle of query) {
-                if (!area.contains(particle.getPosition())) {
-                    continue;
-                }
-
-                particle.bubble.inRange = true;
-
-                const divs = container.actualOptions.interactivity.modes.bubble.divs;
-                const divBubble = divMode(divs, elem);
-
-                if (!particle.bubble.div || particle.bubble.div !== elem) {
-                    this.clear(particle, true);
-
-                    particle.bubble.div = elem;
-                }
-
-                /* size */
-                this.hoverBubbleSize(particle, 1, divBubble);
-
-                /* opacity */
-                this.hoverBubbleOpacity(particle, 1, divBubble);
-
-                /* color */
-                this.hoverBubbleColor(particle, 1, divBubble);
-            }
-        });
+        return isInArray(HoverMode.bubble, hoverMode) || isInArray(ClickMode.bubble, clickMode) || divBubble;
     }
 
-    private process(particle: Particle, distMouse: number, timeSpent: number, data: IBubblerProcessParam): void {
-        const container = this.container as ContainerBubbler,
-            bubbleParam = data.bubbleObj.optValue;
-
-        if (bubbleParam === undefined) {
-            return;
-        }
-
-        const options = container.actualOptions,
-            bubbleDuration = options.interactivity.modes.bubble.duration,
-            bubbleDistance = container.retina.bubbleModeDistance,
-            particlesParam = data.particlesObj.optValue,
-            pObjBubble = data.bubbleObj.value,
-            pObj = data.particlesObj.value || 0,
-            type = data.type;
-
-        if (bubbleParam === particlesParam) {
-            return;
-        }
-
-        if (!container.bubble) {
-            container.bubble = {};
-        }
-
-        if (!container.bubble.durationEnd) {
-            if (distMouse <= bubbleDistance) {
-                const obj = pObjBubble ?? pObj;
-
-                if (obj !== bubbleParam) {
-                    const value = pObj - timeSpent * (pObj - bubbleParam) / bubbleDuration;
-
-                    if (type === ProcessBubbleType.size) {
-                        particle.bubble.radius = value;
-                    }
-
-                    if (type === ProcessBubbleType.opacity) {
-                        particle.bubble.opacity = value;
-                    }
-                }
-            } else {
-                if (type === ProcessBubbleType.size) {
-                    delete particle.bubble.radius;
-                }
-
-                if (type === ProcessBubbleType.opacity) {
-                    delete particle.bubble.opacity;
-                }
-            }
-        } else if (pObjBubble) {
-            if (type === ProcessBubbleType.size) {
-                delete particle.bubble.radius;
-            }
-
-            if (type === ProcessBubbleType.opacity) {
-                delete particle.bubble.opacity;
-            }
-        }
+    reset(particle: Particle): void {
+        particle.bubble.inRange = false;
     }
 
     private clickBubble(): void {
@@ -367,41 +253,6 @@ export class Bubbler extends ExternalInteractorBase {
         }
     }
 
-    private hoverBubbleSize(particle: Particle, ratio: number, divBubble?: BubbleDiv): void {
-        const container = this.container,
-            modeSize = divBubble?.size ? divBubble.size * container.retina.pixelRatio : container.retina.bubbleModeSize;
-
-        if (modeSize === undefined) {
-            return;
-        }
-
-        const optSize = getRangeMax(particle.options.size.value) * container.retina.pixelRatio;
-        const pSize = particle.size.value;
-        const size = calculateBubbleValue(pSize, modeSize, optSize, ratio);
-
-        if (size !== undefined) {
-            particle.bubble.radius = size;
-        }
-    }
-
-    private hoverBubbleOpacity(particle: Particle, ratio: number, divBubble?: BubbleDiv): void {
-        const container = this.container,
-            options = container.actualOptions,
-            modeOpacity = divBubble?.opacity ?? options.interactivity.modes.bubble.opacity;
-
-        if (!modeOpacity) {
-            return;
-        }
-
-        const optOpacity = particle.options.opacity.value;
-        const pOpacity = particle.opacity?.value ?? 1;
-        const opacity = calculateBubbleValue(pOpacity, modeOpacity, getRangeMax(optOpacity), ratio);
-
-        if (opacity !== undefined) {
-            particle.bubble.opacity = opacity;
-        }
-    }
-
     private hoverBubbleColor(particle: Particle, ratio: number, divBubble?: BubbleDiv): void {
         const options = this.container.actualOptions;
         const bubbleOptions = divBubble ?? options.interactivity.modes.bubble;
@@ -433,5 +284,154 @@ export class Bubbler extends ExternalInteractorBase {
         } else {
             particle.bubble.color = particle.bubble.finalColor;
         }
+    }
+
+    private hoverBubbleOpacity(particle: Particle, ratio: number, divBubble?: BubbleDiv): void {
+        const container = this.container,
+            options = container.actualOptions,
+            modeOpacity = divBubble?.opacity ?? options.interactivity.modes.bubble.opacity;
+
+        if (!modeOpacity) {
+            return;
+        }
+
+        const optOpacity = particle.options.opacity.value;
+        const pOpacity = particle.opacity?.value ?? 1;
+        const opacity = calculateBubbleValue(pOpacity, modeOpacity, getRangeMax(optOpacity), ratio);
+
+        if (opacity !== undefined) {
+            particle.bubble.opacity = opacity;
+        }
+    }
+
+    private hoverBubbleSize(particle: Particle, ratio: number, divBubble?: BubbleDiv): void {
+        const container = this.container,
+            modeSize = divBubble?.size ? divBubble.size * container.retina.pixelRatio : container.retina.bubbleModeSize;
+
+        if (modeSize === undefined) {
+            return;
+        }
+
+        const optSize = getRangeMax(particle.options.size.value) * container.retina.pixelRatio;
+        const pSize = particle.size.value;
+        const size = calculateBubbleValue(pSize, modeSize, optSize, ratio);
+
+        if (size !== undefined) {
+            particle.bubble.radius = size;
+        }
+    }
+
+    private process(particle: Particle, distMouse: number, timeSpent: number, data: IBubblerProcessParam): void {
+        const container = this.container as ContainerBubbler,
+            bubbleParam = data.bubbleObj.optValue;
+
+        if (bubbleParam === undefined) {
+            return;
+        }
+
+        const options = container.actualOptions,
+            bubbleDuration = options.interactivity.modes.bubble.duration,
+            bubbleDistance = container.retina.bubbleModeDistance,
+            particlesParam = data.particlesObj.optValue,
+            pObjBubble = data.bubbleObj.value,
+            pObj = data.particlesObj.value || 0,
+            type = data.type;
+
+        if (bubbleParam === particlesParam) {
+            return;
+        }
+
+        if (!container.bubble) {
+            container.bubble = {};
+        }
+
+        if (!container.bubble.durationEnd) {
+            if (distMouse <= bubbleDistance) {
+                const obj = pObjBubble ?? pObj;
+
+                if (obj !== bubbleParam) {
+                    const value = pObj - timeSpent * (pObj - bubbleParam) / bubbleDuration;
+
+                    if (type === ProcessBubbleType.size) {
+                        particle.bubble.radius = value;
+                    }
+
+                    if (type === ProcessBubbleType.opacity) {
+                        particle.bubble.opacity = value;
+                    }
+                }
+            } else {
+                if (type === ProcessBubbleType.size) {
+                    delete particle.bubble.radius;
+                }
+
+                if (type === ProcessBubbleType.opacity) {
+                    delete particle.bubble.opacity;
+                }
+            }
+        } else if (pObjBubble) {
+            if (type === ProcessBubbleType.size) {
+                delete particle.bubble.radius;
+            }
+
+            if (type === ProcessBubbleType.opacity) {
+                delete particle.bubble.opacity;
+            }
+        }
+    }
+
+    private singleSelectorHover(selector: string, div: DivEvent): void {
+        const container = this.container,
+            selectors = document.querySelectorAll(selector);
+
+        if (!selectors.length) {
+            return;
+        }
+
+        selectors.forEach((item) => {
+            const elem = item as HTMLElement,
+                pxRatio = container.retina.pixelRatio,
+                pos = {
+                    x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
+                    y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
+                },
+                repulseRadius = elem.offsetWidth / 2 * pxRatio,
+                area =
+                    div.type === DivType.circle
+                        ? new Circle(pos.x, pos.y, repulseRadius)
+                        : new Rectangle(
+                              elem.offsetLeft * pxRatio,
+                              elem.offsetTop * pxRatio,
+                              elem.offsetWidth * pxRatio,
+                              elem.offsetHeight * pxRatio
+                          ),
+                query = container.particles.quadTree.query(area, (p) => this.isEnabled(p));
+
+            for (const particle of query) {
+                if (!area.contains(particle.getPosition())) {
+                    continue;
+                }
+
+                particle.bubble.inRange = true;
+
+                const divs = container.actualOptions.interactivity.modes.bubble.divs;
+                const divBubble = divMode(divs, elem);
+
+                if (!particle.bubble.div || particle.bubble.div !== elem) {
+                    this.clear(particle, true);
+
+                    particle.bubble.div = elem;
+                }
+
+                /* size */
+                this.hoverBubbleSize(particle, 1, divBubble);
+
+                /* opacity */
+                this.hoverBubbleOpacity(particle, 1, divBubble);
+
+                /* color */
+                this.hoverBubbleColor(particle, 1, divBubble);
+            }
+        });
     }
 }

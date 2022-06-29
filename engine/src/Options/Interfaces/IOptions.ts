@@ -18,6 +18,11 @@ import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
  */
 export interface IOptions {
     /**
+     * More custom options for external plugins or customizations
+     */
+    [name: string]: unknown;
+
+    /**
      * Sets if the animations should start automatically or manually
      */
     autoPlay: boolean;
@@ -49,15 +54,15 @@ export interface IOptions {
     duration: RangeValue;
 
     /**
+     * The FPS (Frame Per Second) limit applied to all particles animations.
+     */
+    fpsLimit: number;
+
+    /**
      * The Frame Per Second limit applied to all particles animations.
      * @deprecated use the new fpsLimit instead
      */
     fps_limit: number;
-
-    /**
-     * The FPS (Frame Per Second) limit applied to all particles animations.
-     */
-    fpsLimit: number;
 
     /**
      * Sets the animated background mode for particles canvas bringing it to the back
@@ -121,9 +126,4 @@ export interface IOptions {
      * The maximum layers used in the z-axis
      */
     zLayers: number;
-
-    /**
-     * More custom options for external plugins or customizations
-     */
-    [name: string]: unknown;
 }

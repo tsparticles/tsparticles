@@ -30,13 +30,6 @@ const drawRoundedRect = (
 };
 
 export class RoundedRectDrawer implements IShapeDrawer {
-    particleInit(container: Container, particle: IParticle): void {
-        const shapeData = particle.shapeData as IRoundedRectData;
-        const roundedRect = particle as IRoundedParticle;
-
-        roundedRect.borderRadius = (shapeData?.radius ?? 4) * container.retina.pixelRatio;
-    }
-
     draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
         const roundedRect = particle as IRoundedParticle;
 
@@ -55,5 +48,12 @@ export class RoundedRectDrawer implements IShapeDrawer {
                 bottomRight: roundedRect.borderRadius,
             }
         );
+    }
+
+    particleInit(container: Container, particle: IParticle): void {
+        const shapeData = particle.shapeData as IRoundedRectData;
+        const roundedRect = particle as IRoundedParticle;
+
+        roundedRect.borderRadius = (shapeData?.radius ?? 4) * container.retina.pixelRatio;
     }
 }

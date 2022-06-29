@@ -2,10 +2,10 @@ import type { Container, IParticle, Particle } from "tsparticles-engine";
 import type { Infecter } from "./Infecter";
 
 export interface IParticleInfection {
-    stage?: number;
-    time?: number;
     delay?: number;
     delayStage?: number;
+    stage?: number;
+    time?: number;
 }
 
 export type InfectableContainer = Container & {

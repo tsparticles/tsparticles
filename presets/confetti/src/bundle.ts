@@ -4,4 +4,5 @@ import { tsParticles } from "tsparticles-engine";
 
 loadConfettiPreset(tsParticles);
 
-export { confetti, loadConfettiPreset, tsParticles, ConfettiOptions };
+export type { ConfettiOptions };
+export { confetti, loadConfettiPreset, tsParticles };

@@ -11,19 +11,11 @@ export class ParticlesInfecter extends ParticlesInteractorBase {
         super(container);
     }
 
-    isEnabled(): boolean {
-        return (this.container.actualOptions as unknown as IInfectionOptions)?.infection?.enable ?? false;
-    }
-
-    init(): void {
-        // do nothing
-    }
-
     clear(): void {
         // do nothing
     }
 
-    reset(): void {
+    init(): void {
         // do nothing
     }
 
@@ -40,22 +32,22 @@ export class ParticlesInfecter extends ParticlesInteractorBase {
             return;
         }
 
-        const container = this.container;
-        const options = container.actualOptions as unknown as IInfectionOptions;
-        const infectionOptions = options.infection;
+        const container = this.container,
+            options = container.actualOptions as unknown as IInfectionOptions,
+            infectionOptions = options.infection;
 
         if (!infectionOptions.enable || infectionOptions.stages.length < 1) {
             return;
         }
 
-        const infectionStage1 = infectionOptions.stages[p1.infection.stage];
-        const pxRatio = container.retina.pixelRatio;
-        const radius = p1.getRadius() * 2 + infectionStage1.radius * pxRatio;
-        const pos = p1.getPosition();
-        const infectedStage1 = infectionStage1.infectedStage ?? p1.infection.stage;
-        const query = container.particles.quadTree.queryCircle(pos, radius);
-        const infections = infectionStage1.rate;
-        const neighbors = query.length;
+        const infectionStage1 = infectionOptions.stages[p1.infection.stage],
+            pxRatio = container.retina.pixelRatio,
+            radius = p1.getRadius() * 2 + infectionStage1.radius * pxRatio,
+            pos = p1.getPosition(),
+            infectedStage1 = infectionStage1.infectedStage ?? p1.infection.stage,
+            query = container.particles.quadTree.queryCircle(pos, radius),
+            infections = infectionStage1.rate,
+            neighbors = query.length;
 
         for (const p2 of query) {
             const infP2 = p2 as InfectableParticle;
@@ -82,5 +74,13 @@ export class ParticlesInfecter extends ParticlesInteractorBase {
                 }
             }
         }
+    }
+
+    isEnabled(): boolean {
+        return (this.container.actualOptions as unknown as IInfectionOptions)?.infection?.enable ?? false;
+    }
+
+    reset(): void {
+        // do nothing
     }
 }

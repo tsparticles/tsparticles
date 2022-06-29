@@ -13,7 +13,7 @@ export class LifeOptionsEditor extends EditorBase {
 
     addToGroup(parent: EditorGroup, options?: unknown): void {
         this.group = parent.addGroup("life", "Life", true, options);
-        this.options = this.group.data as unknown;
+        this.options = this.group.data;
 
         this.addDelay();
         this.addDuration();

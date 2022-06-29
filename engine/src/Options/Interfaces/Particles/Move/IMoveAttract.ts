@@ -9,6 +9,8 @@ export interface IMoveAttract {
 
     enable: boolean;
 
+    rotate: ICoordinates;
+
     /**
      * @deprecated use the new rotate.x instead
      */
@@ -18,6 +20,4 @@ export interface IMoveAttract {
      * @deprecated use the new rotate.y instead
      */
     rotateY: number;
-
-    rotate: ICoordinates;
 }

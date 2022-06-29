@@ -16,41 +16,45 @@ import type { RangeValue } from "../../../../Types/RangeValue";
  * @category Options
  */
 export interface IMove {
+    angle: number | IMoveAngle;
+    attract: IMoveAttract;
+
     /**
      * @deprecated use the new collisions property on particles instead
      */
     bounce: boolean;
+
+    center: Partial<ICoordinates & { radius: number }>;
 
     /**
      * @deprecated use the new collisions property on particles instead
      */
     collisions: boolean;
 
-    /**
-     * @deprecated use the new outModes instead
-     */
-    out_mode: OutMode | keyof typeof OutMode | OutModeAlt;
-
-    /**
-     * @deprecated use the new outModes instead
-     */
-    outMode: OutMode | keyof typeof OutMode | OutModeAlt;
-
-    /**
-     * @deprecated use the new [[path]] property instead
-     */
-    noise: IMovePath;
-
-    angle: number | IMoveAngle;
-    attract: IMoveAttract;
-    center: Partial<ICoordinates & { radius: number }>;
     decay: number;
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
     distance: number | Partial<IDistance>;
     drift: RangeValue;
     enable: boolean;
     gravity: IMoveGravity;
+
+    /**
+     * @deprecated use the new [[path]] property instead
+     */
+    noise: IMovePath;
+
+    /**
+     * @deprecated use the new outModes instead
+     */
+    outMode: OutMode | keyof typeof OutMode | OutModeAlt;
+
     outModes: IOutModes | OutMode | keyof typeof OutMode | OutModeAlt;
+
+    /**
+     * @deprecated use the new outModes instead
+     */
+    out_mode: OutMode | keyof typeof OutMode | OutModeAlt;
+
     path: IMovePath;
     random: boolean;
     size: boolean;

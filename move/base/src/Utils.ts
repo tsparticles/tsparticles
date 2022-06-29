@@ -3,13 +3,12 @@ import type { IDelta, Particle } from "tsparticles-engine";
 import type { MoveParticle } from "./Types";
 
 export function applyDistance(particle: MoveParticle): void {
-    const initialPosition = particle.initialPosition;
-    const { dx, dy } = getDistances(initialPosition, particle.position);
-    const dxFixed = Math.abs(dx),
-        dyFixed = Math.abs(dy);
-
-    const hDistance = particle.retina.maxDistance.horizontal;
-    const vDistance = particle.retina.maxDistance.vertical;
+    const initialPosition = particle.initialPosition,
+        { dx, dy } = getDistances(initialPosition, particle.position),
+        dxFixed = Math.abs(dx),
+        dyFixed = Math.abs(dy),
+        hDistance = particle.retina.maxDistance.horizontal,
+        vDistance = particle.retina.maxDistance.vertical;
 
     if (!hDistance && !vDistance) {
         return;

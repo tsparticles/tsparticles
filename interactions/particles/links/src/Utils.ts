@@ -1,9 +1,4 @@
-import type {
-    ICoordinates,
-    IDimension,
-    ILinksShadow,
-    IRgb
-} from "tsparticles-engine";
+import type { ICoordinates, IDimension, ILinksShadow, IRgb } from "tsparticles-engine";
 import {
     drawLine,
     drawTriangle,

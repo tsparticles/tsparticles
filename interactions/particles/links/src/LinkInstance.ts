@@ -7,27 +7,15 @@ import type { LinkParticle } from "./LinkParticle";
 
 interface ITwinkle {
     lines: {
+        color: IRangeColor;
         enable: boolean;
         frequency: number;
-        color: IRangeColor;
         opacity: RangeValue;
     };
 }
 
 export class LinkInstance implements IContainerPlugin {
     constructor(private readonly container: LinkContainer) {}
-
-    particleCreated(particle: Particle): void {
-        const linkParticle = particle as unknown as LinkParticle;
-
-        linkParticle.links = [];
-    }
-
-    particleDestroyed(particle: Particle): void {
-        const linkParticle = particle as unknown as LinkParticle;
-
-        linkParticle.links = [];
-    }
 
     drawParticle(context: CanvasRenderingContext2D, particle: Particle): void {
         const linkParticle = particle as unknown as LinkParticle,
@@ -80,58 +68,16 @@ export class LinkInstance implements IContainerPlugin {
         context.restore();
     }
 
-    private drawLinkTriangle(p1: LinkParticle, link1: ILink, link2: ILink): void {
-        const container = this.container,
-            options = container.actualOptions,
-            p2 = link1.destination,
-            p3 = link2.destination,
-            triangleOptions = p1.options.links.triangles,
-            opacityTriangle = triangleOptions.opacity ?? (link1.opacity + link2.opacity) / 2;
+    particleCreated(particle: Particle): void {
+        const linkParticle = particle as unknown as LinkParticle;
 
-        if (opacityTriangle <= 0) {
-            return;
-        }
+        linkParticle.links = [];
+    }
 
-        container.canvas.draw((ctx) => {
-            const pos1 = p1.getPosition();
-            const pos2 = p2.getPosition();
-            const pos3 = p3.getPosition();
+    particleDestroyed(particle: Particle): void {
+        const linkParticle = particle as unknown as LinkParticle;
 
-            if (
-                getDistance(pos1, pos2) > container.retina.linksDistance ||
-                getDistance(pos3, pos2) > container.retina.linksDistance ||
-                getDistance(pos3, pos1) > container.retina.linksDistance
-            ) {
-                return;
-            }
-
-            let colorTriangle = rangeColorToRgb(triangleOptions.color);
-
-            if (!colorTriangle) {
-                const linksOptions = p1.options.links,
-                    linkColor =
-                        linksOptions.id !== undefined
-                            ? container.particles.linksColors.get(linksOptions.id)
-                            : container.particles.linksColor;
-
-                colorTriangle = getLinkColor(p1, p2, linkColor);
-            }
-
-            if (!colorTriangle) {
-                return;
-            }
-
-            drawLinkTriangle(
-                ctx,
-                pos1,
-                pos2,
-                pos3,
-                options.backgroundMask.enable,
-                options.backgroundMask.composite,
-                colorTriangle,
-                opacityTriangle
-            );
-        });
+        linkParticle.links = [];
     }
 
     private drawLinkLine(p1: LinkParticle, link: ILink): void {
@@ -197,6 +143,60 @@ export class LinkInstance implements IContainerPlugin {
                 colorLine,
                 opacity,
                 p1.options.links.shadow
+            );
+        });
+    }
+
+    private drawLinkTriangle(p1: LinkParticle, link1: ILink, link2: ILink): void {
+        const container = this.container,
+            options = container.actualOptions,
+            p2 = link1.destination,
+            p3 = link2.destination,
+            triangleOptions = p1.options.links.triangles,
+            opacityTriangle = triangleOptions.opacity ?? (link1.opacity + link2.opacity) / 2;
+
+        if (opacityTriangle <= 0) {
+            return;
+        }
+
+        container.canvas.draw((ctx) => {
+            const pos1 = p1.getPosition();
+            const pos2 = p2.getPosition();
+            const pos3 = p3.getPosition();
+
+            if (
+                getDistance(pos1, pos2) > container.retina.linksDistance ||
+                getDistance(pos3, pos2) > container.retina.linksDistance ||
+                getDistance(pos3, pos1) > container.retina.linksDistance
+            ) {
+                return;
+            }
+
+            let colorTriangle = rangeColorToRgb(triangleOptions.color);
+
+            if (!colorTriangle) {
+                const linksOptions = p1.options.links,
+                    linkColor =
+                        linksOptions.id !== undefined
+                            ? container.particles.linksColors.get(linksOptions.id)
+                            : container.particles.linksColor;
+
+                colorTriangle = getLinkColor(p1, p2, linkColor);
+            }
+
+            if (!colorTriangle) {
+                return;
+            }
+
+            drawLinkTriangle(
+                ctx,
+                pos1,
+                pos2,
+                pos3,
+                options.backgroundMask.enable,
+                options.backgroundMask.composite,
+                colorTriangle,
+                opacityTriangle
             );
         });
     }

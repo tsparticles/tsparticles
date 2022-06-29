@@ -22,12 +22,12 @@ export interface IInfection {
     enable: boolean;
 
     /**
-     * This property contains all the infection stages configurations, array of [[IInfectionStage]]
-     */
-    stages: IInfectionStage[];
-
-    /**
      * The initial number of infected particles
      */
     infections: number;
+
+    /**
+     * This property contains all the infection stages configurations, array of [[IInfectionStage]]
+     */
+    stages: IInfectionStage[];
 }

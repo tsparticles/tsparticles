@@ -26,23 +26,23 @@ export class Pauser extends ExternalInteractorBase {
         };
     }
 
-    isEnabled(): boolean {
-        return true;
+    clear(): void {
+        // do nothing
     }
 
     init(): void {
         // do nothing
     }
 
-    clear(): void {
+    async interact(): Promise<void> {
         // do nothing
+    }
+
+    isEnabled(): boolean {
+        return true;
     }
 
     reset(): void {
-        // do nothing
-    }
-
-    async interact(): Promise<void> {
         // do nothing
     }
 }

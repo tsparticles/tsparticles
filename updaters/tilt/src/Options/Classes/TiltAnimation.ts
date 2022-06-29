@@ -6,9 +6,9 @@ import { setRangeValue } from "tsparticles-engine";
  * @category Options
  */
 export class TiltAnimation implements ITiltAnimation, IOptionLoader<ITiltAnimation> {
+    decay: RangeValue;
     enable;
     speed: RangeValue;
-    decay: RangeValue;
     sync;
 
     constructor() {

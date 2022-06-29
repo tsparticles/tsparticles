@@ -9,12 +9,12 @@ export interface IConnect {
     /**
      * @deprecated use the new links instead
      */
-    line_linked: IConnectLinks;
+    lineLinked: IConnectLinks;
 
     /**
      * @deprecated use the new links instead
      */
-    lineLinked: IConnectLinks;
+    line_linked: IConnectLinks;
 
     links: IConnectLinks;
     radius: number;

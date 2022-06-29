@@ -13,13 +13,13 @@ const initPjs = (
     engine: Engine
 ): {
     /**
-     * The particles.js compatibility instance
-     */
-    particlesJS: IParticlesJS;
-    /**
      * The particles.js compatibility dom array
      */
     pJSDom: Container[];
+    /**
+     * The particles.js compatibility instance
+     */
+    particlesJS: IParticlesJS;
 } => {
     /**
      * Loads the provided options to create a [[Container]] object.

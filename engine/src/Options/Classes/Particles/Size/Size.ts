@@ -10,6 +10,15 @@ import { setRangeValue } from "../../../../Utils/NumberUtils";
  * @category Options
  */
 export class Size extends ValueWithRandom implements ISize, IOptionLoader<ISize> {
+    animation;
+
+    constructor() {
+        super();
+        this.animation = new SizeAnimation();
+        this.random.minimumValue = 1;
+        this.value = 3;
+    }
+
     /**
      *
      * @deprecated this property is obsolete, please use the new animation
@@ -25,15 +34,6 @@ export class Size extends ValueWithRandom implements ISize, IOptionLoader<ISize>
      */
     set anim(value: SizeAnimation) {
         this.animation = value;
-    }
-
-    animation;
-
-    constructor() {
-        super();
-        this.animation = new SizeAnimation();
-        this.random.minimumValue = 1;
-        this.value = 3;
     }
 
     load(data?: RecursivePartial<ISize>): void {

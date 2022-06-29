@@ -10,24 +10,24 @@ import { getStyleFromHsl } from "tsparticles-engine";
  * The image interface, used for keeping useful data for drawing
  */
 export interface IImage {
-    source: string;
-    type: string;
     element?: HTMLImageElement;
-    svgData?: string;
     error: boolean;
     loading: boolean;
+    source: string;
+    svgData?: string;
+    type: string;
 }
 
 /**
  * The particle image, containing also some particles options
  */
 export interface IParticleImage {
-    source: string;
     data: IImage;
-    ratio: number;
     element?: HTMLImageElement;
     loaded?: boolean;
+    ratio: number;
     replaceColor: boolean;
+    source: string;
 }
 
 /*

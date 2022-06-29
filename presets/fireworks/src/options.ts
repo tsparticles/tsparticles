@@ -8,8 +8,7 @@ import {
     setRangeValue,
     stringToRgb,
 } from "tsparticles-engine";
-import type { IParticlesOptions, IRangeValue, ISourceOptions, RangeValue,
-    RecursivePartial} from "tsparticles-engine";
+import type { IParticlesOptions, IRangeValue, ISourceOptions, RangeValue, RecursivePartial } from "tsparticles-engine";
 
 const fixRange = (value: IRangeValue, min: number, max: number): RangeValue => {
     const diffSMax = value.max > max ? value.max - max : 0;

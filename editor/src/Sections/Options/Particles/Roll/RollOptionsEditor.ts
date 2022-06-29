@@ -13,7 +13,7 @@ export class RollOptionsEditor extends EditorBase {
 
     addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("roll", "Roll");
-        this.options = this.group.data as unknown;
+        this.options = this.group.data;
 
         this.addDarken();
         this.addEnlighten();
@@ -55,8 +55,8 @@ export class RollOptionsEditor extends EditorBase {
                 typeof options.backColor === "string"
                     ? options.backColor
                     : options.backColor instanceof Array
-                        ? options.backColor[0]
-                        : options.backColor?.value;
+                    ? options.backColor[0]
+                    : options.backColor?.value;
 
         this.group
             .addProperty("backColor", "Back Color", EditorType.color, color, false)

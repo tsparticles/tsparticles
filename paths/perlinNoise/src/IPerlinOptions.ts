@@ -1,9 +1,9 @@
 export interface IPerlinOptions {
-    draw: boolean;
-    size: number;
-    increment: number;
     columns: number;
-    rows: number;
-    width: number;
+    draw: boolean;
     height: number;
+    increment: number;
+    rows: number;
+    size: number;
+    width: number;
 }

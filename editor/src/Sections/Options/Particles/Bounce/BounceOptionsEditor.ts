@@ -18,11 +18,6 @@ export class BounceOptionsEditor extends EditorBase {
         this.addFactors();
     }
 
-    private addFactors(): void {
-        this.addFactor("horizontal", "Horizontal");
-        this.addFactor("vertical", "Vertical");
-    }
-
     private addFactor(name: string, title: string): void {
         const particles = this.particles;
         const group = this.group.addGroup(name, title);
@@ -40,5 +35,10 @@ export class BounceOptionsEditor extends EditorBase {
         group.addProperty("value", "Value", EditorType.number).change(async () => {
             await particles.refresh();
         });
+    }
+
+    private addFactors(): void {
+        this.addFactor("horizontal", "Horizontal");
+        this.addFactor("vertical", "Vertical");
     }
 }

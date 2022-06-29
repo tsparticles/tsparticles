@@ -6,8 +6,8 @@ import { ThemeDefault } from "./ThemeDefault";
 import { deepExtend } from "../../../Utils/Utils";
 
 export class Theme implements ITheme, IOptionLoader<ITheme> {
-    name;
     default;
+    name;
     options?: RecursivePartial<IOptions>;
 
     constructor() {

@@ -67,10 +67,6 @@ export class TwinkleUpdater implements IParticleUpdater {
         return twinkleOptions.particles.enable;
     }
 
-    update(): void {
-        // do nothing
-    }
-
     loadOptions(
         options: TwinkleParticlesOptions,
         ...sources: (RecursivePartial<ITwinkleParticlesOptions> | undefined)[]
@@ -86,5 +82,9 @@ export class TwinkleUpdater implements IParticleUpdater {
 
             options.twinkle.load(source.twinkle);
         }
+    }
+
+    update(): void {
+        // do nothing
     }
 }

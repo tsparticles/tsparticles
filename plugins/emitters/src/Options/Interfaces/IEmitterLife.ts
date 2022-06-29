@@ -11,15 +11,15 @@ export interface IEmitterLife {
     count?: number;
 
     /**
+     * The delay between any spawn, except first.
+     */
+    delay?: number;
+
+    /**
      * The duration of any emitter life.
      * If <= 0 or not specified infinity will be the value.
      */
     duration?: number;
-
-    /**
-     * The delay between any spawn, except first.
-     */
-    delay?: number;
 
     /**
      * If enabled the first delay will be applied

@@ -6,9 +6,9 @@ import { setRangeValue } from "../../../Utils/NumberUtils";
 
 export class GradientAngleAnimation implements IAnimation, IOptionLoader<IAnimation> {
     count: RangeValue;
+    decay: RangeValue;
     enable;
     speed: RangeValue;
-    decay: RangeValue;
     sync;
 
     constructor() {

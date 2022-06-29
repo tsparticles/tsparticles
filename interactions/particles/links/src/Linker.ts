@@ -57,20 +57,12 @@ export class Linker extends ParticlesInteractorBase {
         this.linkContainer = container;
     }
 
-    isEnabled(particle: Particle): boolean {
-        return particle.options.links.enable;
-    }
-
-    init(): void {
-        this.linkContainer.particles.linksColors = new Map<string, IRgb | string | undefined>();
-    }
-
     clear(): void {
         // do nothing
     }
 
-    reset(): void {
-        // do nothing
+    init(): void {
+        this.linkContainer.particles.linksColors = new Map<string, IRgb | string | undefined>();
     }
 
     async interact(p1: LinkParticle): Promise<void> {
@@ -130,6 +122,14 @@ export class Linker extends ParticlesInteractorBase {
                 opacity: opacityLine,
             });
         }
+    }
+
+    isEnabled(particle: Particle): boolean {
+        return particle.options.links.enable;
+    }
+
+    reset(): void {
+        // do nothing
     }
 
     private setColor(p1: IParticle): void {

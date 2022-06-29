@@ -16,6 +16,25 @@ import { deepExtend } from "tsparticles-engine";
  * @category Polygon Mask Plugin
  */
 export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {
+    data?: string | PolygonMaskLocalSvg;
+    draw;
+    enable;
+    inline;
+    move;
+    position?: ICoordinates;
+    scale;
+    type;
+    url?: string;
+
+    constructor() {
+        this.draw = new PolygonMaskDraw();
+        this.enable = false;
+        this.inline = new PolygonMaskInline();
+        this.move = new PolygonMaskMove();
+        this.scale = 1;
+        this.type = PolygonMaskType.none;
+    }
+
     /**
      * @deprecated the property inlineArrangement is deprecated, please use the new inline.arrangement
      */
@@ -36,25 +55,6 @@ export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {
             | PolygonMaskInlineArrangementAlt
     ) {
         this.inline.arrangement = value;
-    }
-
-    draw;
-    enable;
-    inline;
-    move;
-    position?: ICoordinates;
-    scale;
-    type;
-    url?: string;
-    data?: string | PolygonMaskLocalSvg;
-
-    constructor() {
-        this.draw = new PolygonMaskDraw();
-        this.enable = false;
-        this.inline = new PolygonMaskInline();
-        this.move = new PolygonMaskMove();
-        this.scale = 1;
-        this.type = PolygonMaskType.none;
     }
 
     load(data?: RecursivePartial<IPolygonMask>): void {

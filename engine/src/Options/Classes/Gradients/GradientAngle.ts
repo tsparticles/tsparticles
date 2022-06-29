@@ -8,10 +8,11 @@ import { RotateDirection } from "../../../Enums/Directions/RotateDirection";
 import type { RotateDirectionAlt } from "../../../Enums/Directions/RotateDirection";
 
 export class GradientAngle
-    implements IGradientAngle, IAnimatable<IAnimation>, IOptionLoader<IGradientAngle & IAnimatable<IAnimation>> {
+    implements IGradientAngle, IAnimatable<IAnimation>, IOptionLoader<IGradientAngle & IAnimatable<IAnimation>>
+{
     animation;
-    value;
     direction: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
+    value;
 
     constructor() {
         this.value = 0;

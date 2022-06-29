@@ -10,10 +10,10 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial";
 export class Background implements IBackground, IOptionLoader<IBackground> {
     color;
     image;
+    opacity;
     position;
     repeat;
     size;
-    opacity;
 
     constructor() {
         this.color = new OptionsColor();

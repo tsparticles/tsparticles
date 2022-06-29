@@ -2,38 +2,6 @@ import type { ICoordinates, IOptionLoader, RecursivePartial, SingleOrMultiple } 
 import type { IConfettiOptions } from "./IConfettiOptions";
 
 export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfettiOptions> {
-    /**
-     * @deprecated use count instead
-     */
-    get particleCount(): number {
-        return this.count;
-    }
-
-    /**
-     * @deprecated use count instead
-     */
-    set particleCount(value: number) {
-        this.count = value;
-    }
-
-    /**
-     * @deprecated use position instead
-     */
-    get origin(): ICoordinates {
-        return {
-            x: this.position.x / 100,
-            y: this.position.y / 100,
-        };
-    }
-
-    /**
-     * @deprecated use position instead
-     */
-    set origin(value: ICoordinates) {
-        this.position.x = value.x * 100;
-        this.position.y = value.y * 100;
-    }
-
     angle: number;
     colors: SingleOrMultiple<string>;
     count: number;
@@ -67,6 +35,38 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
         this.scalar = 1;
         this.zIndex = 100;
         this.disableForReducedMotion = true;
+    }
+
+    /**
+     * @deprecated use position instead
+     */
+    get origin(): ICoordinates {
+        return {
+            x: this.position.x / 100,
+            y: this.position.y / 100,
+        };
+    }
+
+    /**
+     * @deprecated use position instead
+     */
+    set origin(value: ICoordinates) {
+        this.position.x = value.x * 100;
+        this.position.y = value.y * 100;
+    }
+
+    /**
+     * @deprecated use count instead
+     */
+    get particleCount(): number {
+        return this.count;
+    }
+
+    /**
+     * @deprecated use count instead
+     */
+    set particleCount(value: number) {
+        this.count = value;
     }
 
     load(data?: RecursivePartial<IConfettiOptions>): void {

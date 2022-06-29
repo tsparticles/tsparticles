@@ -9,6 +9,25 @@ export class InfectionInstance implements IContainerPlugin {
         this.container.infecter = new Infecter(this.container);
     }
 
+    particleFillColor(particle: Particle): string | IOptionsColor | undefined {
+        const infParticle = particle as unknown as InfectableParticle;
+        const options = this.container.actualOptions as unknown as IInfectionOptions;
+
+        if (!infParticle.infection) {
+            return;
+        }
+
+        const infectionStage = infParticle.infection.stage;
+        const infection = options.infection;
+        const infectionStages = infection.stages;
+
+        return infectionStage !== undefined ? infectionStages[infectionStage].color : undefined;
+    }
+
+    particleStrokeColor(particle: Particle): string | IOptionsColor | undefined {
+        return this.particleFillColor(particle);
+    }
+
     particlesSetup(): void {
         const options = this.container.actualOptions as unknown as IInfectionOptions;
 
@@ -27,24 +46,5 @@ export class InfectionInstance implements IContainerPlugin {
 
             this.container.infecter?.startInfection(infected, 0);
         }
-    }
-
-    particleFillColor(particle: Particle): string | IOptionsColor | undefined {
-        const infParticle = particle as unknown as InfectableParticle;
-        const options = this.container.actualOptions as unknown as IInfectionOptions;
-
-        if (!infParticle.infection) {
-            return;
-        }
-
-        const infectionStage = infParticle.infection.stage;
-        const infection = options.infection;
-        const infectionStages = infection.stages;
-
-        return infectionStage !== undefined ? infectionStages[infectionStage].color : undefined;
-    }
-
-    particleStrokeColor(particle: Particle): string | IOptionsColor | undefined {
-        return this.particleFillColor(particle);
     }
 }

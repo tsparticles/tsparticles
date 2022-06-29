@@ -20,8 +20,8 @@ export class Links implements ILinks, IOptionLoader<ILinks> {
     opacity;
     shadow;
     triangles;
-    width;
     warp;
+    width;
 
     constructor() {
         this.blink = false;

@@ -6,16 +6,17 @@ import type { StartValueType } from "../../../../Enums/Types/StartValueType";
  * @category Options
  */
 export interface IOpacityAnimation extends IAnimation {
-    /**
-     * @deprecated use the new minimumValue instead
-     */
-    opacity_min?: number;
+    destroy: DestroyType | keyof typeof DestroyType;
 
     /**
      * @deprecated use the new min/max object in opacity value
      */
     minimumValue?: number;
 
-    destroy: DestroyType | keyof typeof DestroyType;
+    /**
+     * @deprecated use the new minimumValue instead
+     */
+    opacity_min?: number;
+
     startValue: StartValueType | keyof typeof StartValueType;
 }

@@ -10,14 +10,13 @@ import {
     isInArray,
     mouseMoveEvent,
 } from "tsparticles-engine";
-import type { Container, ICoordinates, Particle,
-    Range} from "tsparticles-engine";
+import type { Container, ICoordinates, Particle, Range } from "tsparticles-engine";
 
 interface IContainerAttract {
-    particles: Particle[];
-    finish?: boolean;
-    count?: number;
     clicking?: boolean;
+    count?: number;
+    finish?: boolean;
+    particles: Particle[];
 }
 
 type ContainerAttractor = Container & {
@@ -75,31 +74,11 @@ export class Attractor extends ExternalInteractorBase {
         };
     }
 
-    isEnabled(particle?: Particle): boolean {
-        const container = this.container,
-            options = container.actualOptions,
-            mouse = container.interactivity.mouse,
-            events = (particle?.interactivity ?? options.interactivity).events;
-
-        if ((!mouse.position || !events.onHover.enable) && (!mouse.clickPosition || !events.onClick.enable)) {
-            return false;
-        }
-
-        const hoverMode = events.onHover.mode,
-            clickMode = events.onClick.mode;
-
-        return isInArray(HoverMode.attract, hoverMode) || isInArray(ClickMode.attract, clickMode);
-    }
-
-    init(): void {
-        // do nothing
-    }
-
     clear(): void {
         // do nothing
     }
 
-    reset(): void {
+    init(): void {
         // do nothing
     }
 
@@ -120,39 +99,24 @@ export class Attractor extends ExternalInteractorBase {
         }
     }
 
-    private hoverAttract(): void {
-        const container = this.container;
-        const mousePos = container.interactivity.mouse.position;
+    isEnabled(particle?: Particle): boolean {
+        const container = this.container,
+            options = container.actualOptions,
+            mouse = container.interactivity.mouse,
+            events = (particle?.interactivity ?? options.interactivity).events;
 
-        if (!mousePos) {
-            return;
+        if ((!mouse.position || !events.onHover.enable) && (!mouse.clickPosition || !events.onClick.enable)) {
+            return false;
         }
 
-        const attractRadius = container.retina.attractModeDistance;
+        const hoverMode = events.onHover.mode,
+            clickMode = events.onClick.mode;
 
-        this.processAttract(mousePos, attractRadius, new Circle(mousePos.x, mousePos.y, attractRadius));
+        return isInArray(HoverMode.attract, hoverMode) || isInArray(ClickMode.attract, clickMode);
     }
 
-    private processAttract(position: ICoordinates, attractRadius: number, area: Range): void {
-        const container = this.container,
-            attractOptions = container.actualOptions.interactivity.modes.attract,
-            query = container.particles.quadTree.query(area, (p) => this.isEnabled(p));
-
-        for (const particle of query) {
-            const { dx, dy, distance } = getDistances(particle.position, position);
-            const velocity = attractOptions.speed * attractOptions.factor;
-            const attractFactor = clamp(
-                calcEasing(1 - distance / attractRadius, attractOptions.easing) * velocity,
-                0,
-                attractOptions.maxSpeed
-            );
-            const normVec = Vector.create(
-                distance === 0 ? velocity : dx / distance * attractFactor,
-                distance === 0 ? velocity : dy / distance * attractFactor
-            );
-
-            particle.position.subFrom(normVec);
-        }
+    reset(): void {
+        // do nothing
     }
 
     private clickAttract(): void {
@@ -189,5 +153,40 @@ export class Attractor extends ExternalInteractorBase {
         }
 
         return;
+    }
+
+    private hoverAttract(): void {
+        const container = this.container;
+        const mousePos = container.interactivity.mouse.position;
+
+        if (!mousePos) {
+            return;
+        }
+
+        const attractRadius = container.retina.attractModeDistance;
+
+        this.processAttract(mousePos, attractRadius, new Circle(mousePos.x, mousePos.y, attractRadius));
+    }
+
+    private processAttract(position: ICoordinates, attractRadius: number, area: Range): void {
+        const container = this.container,
+            attractOptions = container.actualOptions.interactivity.modes.attract,
+            query = container.particles.quadTree.query(area, (p) => this.isEnabled(p));
+
+        for (const particle of query) {
+            const { dx, dy, distance } = getDistances(particle.position, position);
+            const velocity = attractOptions.speed * attractOptions.factor;
+            const attractFactor = clamp(
+                calcEasing(1 - distance / attractRadius, attractOptions.easing) * velocity,
+                0,
+                attractOptions.maxSpeed
+            );
+            const normVec = Vector.create(
+                distance === 0 ? velocity : dx / distance * attractFactor,
+                distance === 0 ? velocity : dy / distance * attractFactor
+            );
+
+            particle.position.subFrom(normVec);
+        }
     }
 }

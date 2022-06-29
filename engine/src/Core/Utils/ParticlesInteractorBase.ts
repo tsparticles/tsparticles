@@ -9,6 +9,11 @@ import type { Particle } from "../Particle";
  */
 export abstract class ParticlesInteractorBase implements IParticlesInteractor {
     /**
+     * Particles interactions type
+     */
+    type: InteractorType = InteractorType.Particles;
+
+    /**
      * The particles interactions manager constructor
      * @param container the parent container
      * @protected
@@ -16,9 +21,10 @@ export abstract class ParticlesInteractorBase implements IParticlesInteractor {
     protected constructor(protected readonly container: Container) {}
 
     /**
-     * Particles interactions type
+     * Before interaction clear
+     * @param particle the particle to clear
      */
-    type: InteractorType = InteractorType.Particles;
+    abstract clear(particle: Particle): void;
 
     /**
      * Initializes the interactivity manager
@@ -38,12 +44,6 @@ export abstract class ParticlesInteractorBase implements IParticlesInteractor {
      * @returns true or false, checking if the options enable this interaction manager
      */
     abstract isEnabled(particle: Particle): boolean;
-
-    /**
-     * Before interaction clear
-     * @param particle the particle to clear
-     */
-    abstract clear(particle: Particle): void;
 
     /**
      * Before interaction reset

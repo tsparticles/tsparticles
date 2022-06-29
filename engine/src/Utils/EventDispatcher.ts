@@ -18,6 +18,22 @@ export class EventDispatcher {
         this.#listeners.get(type)?.push(listener);
     }
 
+    dispatchEvent(type: string, args: CustomEventArgs): void {
+        this.#listeners.get(type)?.forEach((handler) => handler(args));
+    }
+
+    hasEventListener(type: string): boolean {
+        return !!this.#listeners.get(type);
+    }
+
+    removeAllEventListeners(type?: string): void {
+        if (!type) {
+            this.#listeners = new Map<string, CustomEventListener[]>();
+        } else {
+            this.#listeners.delete(type);
+        }
+    }
+
     removeEventListener(type: string, listener: CustomEventListener): void {
         const arr = this.#listeners.get(type);
 
@@ -37,21 +53,5 @@ export class EventDispatcher {
         } else {
             arr.splice(idx, 1);
         }
-    }
-
-    removeAllEventListeners(type?: string): void {
-        if (!type) {
-            this.#listeners = new Map<string, CustomEventListener[]>();
-        } else {
-            this.#listeners.delete(type);
-        }
-    }
-
-    dispatchEvent(type: string, args: CustomEventArgs): void {
-        this.#listeners.get(type)?.forEach((handler) => handler(args));
-    }
-
-    hasEventListener(type: string): boolean {
-        return !!this.#listeners.get(type);
     }
 }

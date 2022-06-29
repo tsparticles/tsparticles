@@ -8,6 +8,14 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
  * @category Options
  */
 export class BubbleDiv extends BubbleBase implements IBubbleDiv, IOptionLoader<IBubbleDiv> {
+    selectors: SingleOrMultiple<string>;
+
+    constructor() {
+        super();
+
+        this.selectors = [];
+    }
+
     /**
      * @deprecated This property is deprecated, please use the new selectors property
      */
@@ -22,14 +30,6 @@ export class BubbleDiv extends BubbleBase implements IBubbleDiv, IOptionLoader<I
      */
     set ids(value: SingleOrMultiple<string>) {
         this.selectors = value instanceof Array ? value.map((t) => `#${t}`) : `#${value}`;
-    }
-
-    selectors: SingleOrMultiple<string>;
-
-    constructor() {
-        super();
-
-        this.selectors = [];
     }
 
     load(data?: RecursivePartial<IBubbleDiv>): void {

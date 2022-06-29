@@ -8,6 +8,16 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
  * @category Options
  */
 export class ParticlesNumber implements IParticlesNumber, IOptionLoader<IParticlesNumber> {
+    density;
+    limit;
+    value;
+
+    constructor() {
+        this.density = new ParticlesDensity();
+        this.limit = 0;
+        this.value = 100;
+    }
+
     /**
      * @deprecated the max property is deprecated, please use the new limit
      */
@@ -20,16 +30,6 @@ export class ParticlesNumber implements IParticlesNumber, IOptionLoader<IParticl
      */
     set max(value: number) {
         this.limit = value;
-    }
-
-    density;
-    limit;
-    value;
-
-    constructor() {
-        this.density = new ParticlesDensity();
-        this.limit = 0;
-        this.value = 100;
     }
 
     load(data?: RecursivePartial<IParticlesNumber>): void {

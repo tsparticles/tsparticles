@@ -9,6 +9,19 @@ import { setRangeValue } from "../../../../Utils/NumberUtils";
  * @category Options
  */
 export class MoveAttract implements IMoveAttract, IOptionLoader<IMoveAttract> {
+    distance: RangeValue;
+    enable;
+    rotate: ICoordinates;
+
+    constructor() {
+        this.distance = 200;
+        this.enable = false;
+        this.rotate = {
+            x: 3000,
+            y: 3000,
+        };
+    }
+
     /**
      *
      * @deprecated this property is obsolete, please use the new rotate.x
@@ -41,19 +54,6 @@ export class MoveAttract implements IMoveAttract, IOptionLoader<IMoveAttract> {
      */
     set rotateY(value: number) {
         this.rotate.y = value;
-    }
-
-    distance: RangeValue;
-    enable;
-    rotate: ICoordinates;
-
-    constructor() {
-        this.distance = 200;
-        this.enable = false;
-        this.rotate = {
-            x: 3000,
-            y: 3000,
-        };
     }
 
     load(data?: RecursivePartial<IMoveAttract>): void {

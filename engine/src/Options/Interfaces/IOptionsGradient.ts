@@ -9,8 +9,8 @@ export interface IGradientColorOpacityAnimation extends IAnimation {
 }
 
 export interface IAnimatableGradientColor extends IGradientColor {
-    value: IAnimatableColor;
     opacity?: (IGradientColorOpacity & IAnimatable<IGradientColorOpacityAnimation>) | number;
+    value: IAnimatableColor;
 }
 
 export type IOptionsGradient = IGradient;

@@ -6,9 +6,9 @@ import { setRangeValue } from "../../Utils/NumberUtils";
 
 export class AnimationOptions implements IAnimation, IOptionLoader<IAnimation> {
     count: RangeValue;
+    decay: RangeValue;
     enable: boolean;
     speed: RangeValue;
-    decay: RangeValue;
     sync: boolean;
 
     constructor() {

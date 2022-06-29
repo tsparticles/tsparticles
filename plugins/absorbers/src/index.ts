@@ -20,27 +20,6 @@ class AbsorbersPlugin implements IPlugin {
         return new Absorbers(container);
     }
 
-    needsPlugin(options?: RecursivePartial<IOptions & IAbsorberOptions>): boolean {
-        if (!options) {
-            return false;
-        }
-
-        const absorbers = options.absorbers;
-
-        if (absorbers instanceof Array) {
-            return !!absorbers.length;
-        } else if (absorbers) {
-            return true;
-        } else if (
-            options.interactivity?.events?.onClick?.mode &&
-            isInArray(AbsorberClickMode.absorber, options.interactivity.events.onClick.mode)
-        ) {
-            return true;
-        }
-
-        return false;
-    }
-
     loadOptions(options: Options, source?: RecursivePartial<IOptions & IAbsorberOptions>): void {
         if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
             return;
@@ -89,6 +68,27 @@ class AbsorbersPlugin implements IPlugin {
                 absorberOptions.load(interactivityAbsorbers);
             }
         }
+    }
+
+    needsPlugin(options?: RecursivePartial<IOptions & IAbsorberOptions>): boolean {
+        if (!options) {
+            return false;
+        }
+
+        const absorbers = options.absorbers;
+
+        if (absorbers instanceof Array) {
+            return !!absorbers.length;
+        } else if (absorbers) {
+            return true;
+        } else if (
+            options.interactivity?.events?.onClick?.mode &&
+            isInArray(AbsorberClickMode.absorber, options.interactivity.events.onClick.mode)
+        ) {
+            return true;
+        }
+
+        return false;
     }
 }
 

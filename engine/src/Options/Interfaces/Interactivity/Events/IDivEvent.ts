@@ -7,9 +7,6 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
  * @category Options
  */
 export interface IDivEvent {
-    enable: boolean;
-    mode: SingleOrMultiple<DivMode | keyof typeof DivMode | string>;
-
     /**
      * @deprecated This property is deprecated, use the new selectors property instead
      */
@@ -20,10 +17,14 @@ export interface IDivEvent {
      */
     elementId: SingleOrMultiple<string>;
 
+    enable: boolean;
+
     /**
      * @deprecated This property is deprecated, use the new selectors property instead
      */
     ids: SingleOrMultiple<string>;
+
+    mode: SingleOrMultiple<DivMode | keyof typeof DivMode | string>;
 
     selectors: SingleOrMultiple<string>;
 

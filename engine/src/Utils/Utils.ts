@@ -15,16 +15,16 @@ import { Vector } from "../Core/Utils/Vector";
 
 declare global {
     interface Window {
-        customRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        mozRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        oRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        msRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        webkitRequestAnimationFrame: (callback: FrameRequestCallback) => number;
         customCancelRequestAnimationFrame: (handle: number) => void;
-        webkitCancelRequestAnimationFrame: (handle: number) => void;
+        customRequestAnimationFrame: (callback: FrameRequestCallback) => number;
         mozCancelRequestAnimationFrame: (handle: number) => void;
-        oCancelRequestAnimationFrame: (handle: number) => void;
+        mozRequestAnimationFrame: (callback: FrameRequestCallback) => number;
         msCancelRequestAnimationFrame: (handle: number) => void;
+        msRequestAnimationFrame: (callback: FrameRequestCallback) => number;
+        oCancelRequestAnimationFrame: (handle: number) => void;
+        oRequestAnimationFrame: (callback: FrameRequestCallback) => number;
+        webkitCancelRequestAnimationFrame: (handle: number) => void;
+        webkitRequestAnimationFrame: (callback: FrameRequestCallback) => number;
     }
 }
 

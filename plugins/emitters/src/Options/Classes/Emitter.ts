@@ -5,7 +5,9 @@ import type {
     IRangedCoordinates,
     MoveDirection,
     MoveDirectionAlt,
- RecursivePartial, SingleOrMultiple} from "tsparticles-engine";
+    RecursivePartial,
+    SingleOrMultiple,
+} from "tsparticles-engine";
 import { EmitterLife } from "./EmitterLife";
 import { EmitterRate } from "./EmitterRate";
 import { EmitterShapeType } from "../../Enums/EmitterShapeType";
@@ -18,7 +20,6 @@ import type { IEmitter } from "../Interfaces/IEmitter";
  */
 export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     autoPlay;
-    size?: EmitterSize;
     direction?: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
     domId?: string;
     fill;
@@ -28,6 +29,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     position?: RecursivePartial<IRangedCoordinates>;
     rate;
     shape: EmitterShapeType | keyof typeof EmitterShapeType;
+    size?: EmitterSize;
     spawnColor?: AnimatableColor;
     startCount;
 

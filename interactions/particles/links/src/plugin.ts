@@ -13,12 +13,12 @@ class LinksPlugin implements IPlugin {
         return new LinkInstance(container);
     }
 
-    needsPlugin(): boolean {
-        return true;
-    }
-
     loadOptions(): void {
         // do nothing
+    }
+
+    needsPlugin(): boolean {
+        return true;
     }
 }
 

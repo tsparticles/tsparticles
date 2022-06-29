@@ -2,11 +2,11 @@ import type { IBounds, ICoordinates, IDimension, OutMode, OutModeAlt, OutModeDir
 import type { Particle } from "tsparticles-engine";
 
 export interface IBounceData {
-    particle: Particle;
-    outMode: OutMode | OutModeAlt | keyof typeof OutMode;
-    direction: OutModeDirection;
     bounds: IBounds;
     canvasSize: IDimension;
+    direction: OutModeDirection;
     offset: ICoordinates;
+    outMode: OutMode | OutModeAlt | keyof typeof OutMode;
+    particle: Particle;
     size: number;
 }

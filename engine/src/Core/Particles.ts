@@ -31,35 +31,32 @@ import { loadParticlesOptions } from "../Utils/OptionsUtils";
  * @category Core
  */
 export class Particles {
-    get count(): number {
-        return this.array.length;
-    }
+    /**
+     * All the particles used in canvas
+     */
+    array: Particle[];
+
+    readonly #engine;
+
+    grabLineColor?: IRgb | string;
+    lastZIndex;
+    limit;
+    movers;
+    needsSort;
+    pushing?: boolean;
 
     /**
      * The quad tree used to search particles withing ranges
      */
     quadTree;
-    limit;
-    needsSort;
-    lastZIndex;
 
-    /**
-     * All the particles used in canvas
-     */
-    array: Particle[];
-    zArray: Particle[];
-
-    pushing?: boolean;
-    grabLineColor?: IRgb | string;
-
-    movers;
     updaters;
 
+    zArray: Particle[];
+
+    private readonly freqs: IParticlesFrequencies;
     private readonly interactionManager;
     private nextId;
-    private readonly freqs: IParticlesFrequencies;
-
-    readonly #engine;
 
     constructor(engine: Engine, private readonly container: Container) {
         this.#engine = engine;
@@ -89,6 +86,194 @@ export class Particles {
 
         this.movers = this.#engine.plugins.getMovers(container, true);
         this.updaters = this.#engine.plugins.getUpdaters(container, true);
+    }
+
+    get count(): number {
+        return this.array.length;
+    }
+
+    addManualParticles(): void {
+        const container = this.container,
+            options = container.actualOptions;
+
+        for (const particle of options.manualParticles) {
+            this.addParticle(
+                calcPositionFromSize({
+                    size: container.canvas.size,
+                    position: particle.position,
+                }),
+                particle.options
+            );
+        }
+    }
+
+    addParticle(
+        position?: ICoordinates,
+        overrideOptions?: RecursivePartial<IParticlesOptions>,
+        group?: string
+    ): Particle | undefined {
+        const container = this.container,
+            options = container.actualOptions,
+            limit = options.particles.number.limit * container.density;
+
+        if (limit > 0) {
+            const countToRemove = this.count + 1 - limit;
+
+            if (countToRemove > 0) {
+                this.removeQuantity(countToRemove);
+            }
+        }
+
+        return this.pushParticle(position, overrideOptions, group);
+    }
+
+    addSplitParticle(
+        parent: Particle,
+        splitParticlesOptions?: RecursivePartial<IParticlesOptions>
+    ): Particle | undefined {
+        const splitOptions = parent.options.destroy.split,
+            options = loadParticlesOptions(this.#engine, this.container, parent.options),
+            factor = getValue(splitOptions.factor);
+
+        options.color.load({
+            value: {
+                hsl: parent.getFillColor(),
+            },
+        });
+
+        if (typeof options.size.value === "number") {
+            options.size.value /= factor;
+        } else {
+            options.size.value.min /= factor;
+            options.size.value.max /= factor;
+        }
+
+        options.load(splitParticlesOptions);
+
+        const offset = splitOptions.sizeOffset ? setRangeValue(-parent.size.value, parent.size.value) : 0,
+            position = {
+                x: parent.position.x + randomInRange(offset),
+                y: parent.position.y + randomInRange(offset),
+            };
+
+        return this.pushParticle(position, options, parent.group, (particle) => {
+            if (particle.size.value < 0.5) {
+                return false;
+            }
+
+            particle.velocity.length = randomInRange(setRangeValue(parent.velocity.length, particle.velocity.length));
+            particle.splitCount = parent.splitCount + 1;
+            particle.unbreakable = true;
+
+            setTimeout(() => {
+                particle.unbreakable = false;
+            }, 500);
+
+            return true;
+        });
+    }
+
+    /**
+     * Removes all particles from the array
+     */
+    clear(): void {
+        this.array = [];
+        this.zArray = [];
+    }
+
+    destroy(): void {
+        this.array = [];
+        this.zArray = [];
+        this.movers = [];
+        this.updaters = [];
+    }
+
+    async draw(delta: IDelta): Promise<void> {
+        const container = this.container,
+            canvasSize = this.container.canvas.size;
+
+        this.quadTree = new QuadTree(
+            new Rectangle(
+                -canvasSize.width / 4,
+                -canvasSize.height / 4,
+                canvasSize.width * 3 / 2,
+                canvasSize.height * 3 / 2
+            ),
+            4
+        );
+
+        /* clear canvas */
+        container.canvas.clear();
+
+        /* update each particles param */
+        await this.update(delta);
+
+        if (this.needsSort) {
+            this.zArray.sort((a, b) => b.position.z - a.position.z || a.id - b.id);
+            this.lastZIndex = this.zArray[this.zArray.length - 1].position.z;
+            this.needsSort = false;
+        }
+
+        /* draw polygon shape in debug mode */
+        for (const [, plugin] of container.plugins) {
+            container.canvas.drawPlugin(plugin, delta);
+        }
+
+        /*if (container.canvas.context) {
+            this.quadTree.draw(container.canvas.context);
+        }*/
+
+        /* draw each particle */
+        for (const p of this.zArray) {
+            p.draw(delta);
+        }
+    }
+
+    getLinkFrequency(p1: IParticle, p2: IParticle): number {
+        const range = setRangeValue(p1.id, p2.id),
+            key = `${getRangeMin(range)}_${getRangeMax(range)}`;
+
+        let res = this.freqs.links.get(key);
+
+        if (res === undefined) {
+            res = Math.random();
+
+            this.freqs.links.set(key, res);
+        }
+
+        return res;
+    }
+
+    getTriangleFrequency(p1: IParticle, p2: IParticle, p3: IParticle): number {
+        let [id1, id2, id3] = [p1.id, p2.id, p3.id];
+
+        if (id1 > id2) {
+            [id2, id1] = [id1, id2];
+        }
+
+        if (id2 > id3) {
+            [id3, id2] = [id2, id3];
+        }
+
+        if (id1 > id3) {
+            [id3, id1] = [id1, id3];
+        }
+
+        const key = `${id1}_${id2}_${id3}`;
+
+        let res = this.freqs.triangles.get(key);
+
+        if (res === undefined) {
+            res = Math.random();
+
+            this.freqs.triangles.set(key, res);
+        }
+
+        return res;
+    }
+
+    handleClickMode(mode: ClickMode | string): void {
+        this.interactionManager.handleClickMode(mode);
     }
 
     /* --------- tsParticles functions - particles ----------- */
@@ -139,17 +324,24 @@ export class Particles {
         container.pathGenerator.init(container);
     }
 
-    destroy(): void {
-        this.array = [];
-        this.zArray = [];
-        this.movers = [];
-        this.updaters = [];
+    push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticlesOptions>, group?: string): void {
+        this.pushing = true;
+
+        for (let i = 0; i < nb; i++) {
+            this.addParticle(mouse?.position, overrideOptions, group);
+        }
+
+        this.pushing = false;
     }
 
     async redraw(): Promise<void> {
         this.clear();
         this.init();
         await this.draw({ value: 0, factor: 0 });
+    }
+
+    remove(particle: Particle, group?: string, override?: boolean): void {
+        this.removeAt(this.array.indexOf(particle), undefined, group, override);
     }
 
     removeAt(index: number, quantity = 1, group?: string, override?: boolean): void {
@@ -183,8 +375,18 @@ export class Particles {
         }
     }
 
-    remove(particle: Particle, group?: string, override?: boolean): void {
-        this.removeAt(this.array.indexOf(particle), undefined, group, override);
+    removeQuantity(quantity: number, group?: string): void {
+        this.removeAt(0, quantity, group);
+    }
+
+    setDensity(): void {
+        const options = this.container.actualOptions;
+
+        for (const group in options.particles.groups) {
+            this.applyDensity(options.particles.groups[group], 0, group);
+        }
+
+        this.applyDensity(options.particles, options.manualParticles.length);
     }
 
     async update(delta: IDelta): Promise<void> {
@@ -262,207 +464,6 @@ export class Particles {
         }
 
         delete container.canvas.resizeFactor;
-    }
-
-    async draw(delta: IDelta): Promise<void> {
-        const container = this.container,
-            canvasSize = this.container.canvas.size;
-
-        this.quadTree = new QuadTree(
-            new Rectangle(
-                -canvasSize.width / 4,
-                -canvasSize.height / 4,
-                canvasSize.width * 3 / 2,
-                canvasSize.height * 3 / 2
-            ),
-            4
-        );
-
-        /* clear canvas */
-        container.canvas.clear();
-
-        /* update each particles param */
-        await this.update(delta);
-
-        if (this.needsSort) {
-            this.zArray.sort((a, b) => b.position.z - a.position.z || a.id - b.id);
-            this.lastZIndex = this.zArray[this.zArray.length - 1].position.z;
-            this.needsSort = false;
-        }
-
-        /* draw polygon shape in debug mode */
-        for (const [, plugin] of container.plugins) {
-            container.canvas.drawPlugin(plugin, delta);
-        }
-
-        /*if (container.canvas.context) {
-            this.quadTree.draw(container.canvas.context);
-        }*/
-
-        /* draw each particle */
-        for (const p of this.zArray) {
-            p.draw(delta);
-        }
-    }
-
-    /**
-     * Removes all particles from the array
-     */
-    clear(): void {
-        this.array = [];
-        this.zArray = [];
-    }
-
-    push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticlesOptions>, group?: string): void {
-        this.pushing = true;
-
-        for (let i = 0; i < nb; i++) {
-            this.addParticle(mouse?.position, overrideOptions, group);
-        }
-
-        this.pushing = false;
-    }
-
-    addParticle(
-        position?: ICoordinates,
-        overrideOptions?: RecursivePartial<IParticlesOptions>,
-        group?: string
-    ): Particle | undefined {
-        const container = this.container,
-            options = container.actualOptions,
-            limit = options.particles.number.limit * container.density;
-
-        if (limit > 0) {
-            const countToRemove = this.count + 1 - limit;
-
-            if (countToRemove > 0) {
-                this.removeQuantity(countToRemove);
-            }
-        }
-
-        return this.pushParticle(position, overrideOptions, group);
-    }
-
-    addSplitParticle(
-        parent: Particle,
-        splitParticlesOptions?: RecursivePartial<IParticlesOptions>
-    ): Particle | undefined {
-        const splitOptions = parent.options.destroy.split,
-            options = loadParticlesOptions(this.#engine, this.container, parent.options),
-            factor = getValue(splitOptions.factor);
-
-        options.color.load({
-            value: {
-                hsl: parent.getFillColor(),
-            },
-        });
-
-        if (typeof options.size.value === "number") {
-            options.size.value /= factor;
-        } else {
-            options.size.value.min /= factor;
-            options.size.value.max /= factor;
-        }
-
-        options.load(splitParticlesOptions);
-
-        const offset = splitOptions.sizeOffset ? setRangeValue(-parent.size.value, parent.size.value) : 0,
-            position = {
-                x: parent.position.x + randomInRange(offset),
-                y: parent.position.y + randomInRange(offset),
-            };
-
-        return this.pushParticle(position, options, parent.group, (particle) => {
-            if (particle.size.value < 0.5) {
-                return false;
-            }
-
-            particle.velocity.length = randomInRange(setRangeValue(parent.velocity.length, particle.velocity.length));
-            particle.splitCount = parent.splitCount + 1;
-            particle.unbreakable = true;
-
-            setTimeout(() => {
-                particle.unbreakable = false;
-            }, 500);
-
-            return true;
-        });
-    }
-
-    removeQuantity(quantity: number, group?: string): void {
-        this.removeAt(0, quantity, group);
-    }
-
-    getLinkFrequency(p1: IParticle, p2: IParticle): number {
-        const range = setRangeValue(p1.id, p2.id),
-            key = `${getRangeMin(range)}_${getRangeMax(range)}`;
-
-        let res = this.freqs.links.get(key);
-
-        if (res === undefined) {
-            res = Math.random();
-
-            this.freqs.links.set(key, res);
-        }
-
-        return res;
-    }
-
-    getTriangleFrequency(p1: IParticle, p2: IParticle, p3: IParticle): number {
-        let [id1, id2, id3] = [p1.id, p2.id, p3.id];
-
-        if (id1 > id2) {
-            [id2, id1] = [id1, id2];
-        }
-
-        if (id2 > id3) {
-            [id3, id2] = [id2, id3];
-        }
-
-        if (id1 > id3) {
-            [id3, id1] = [id1, id3];
-        }
-
-        const key = `${id1}_${id2}_${id3}`;
-
-        let res = this.freqs.triangles.get(key);
-
-        if (res === undefined) {
-            res = Math.random();
-
-            this.freqs.triangles.set(key, res);
-        }
-
-        return res;
-    }
-
-    addManualParticles(): void {
-        const container = this.container,
-            options = container.actualOptions;
-
-        for (const particle of options.manualParticles) {
-            this.addParticle(
-                calcPositionFromSize({
-                    size: container.canvas.size,
-                    position: particle.position,
-                }),
-                particle.options
-            );
-        }
-    }
-
-    setDensity(): void {
-        const options = this.container.actualOptions;
-
-        for (const group in options.particles.groups) {
-            this.applyDensity(options.particles.groups[group], 0, group);
-        }
-
-        this.applyDensity(options.particles, options.manualParticles.length);
-    }
-
-    handleClickMode(mode: ClickMode | string): void {
-        this.interactionManager.handleClickMode(mode);
     }
 
     private applyDensity(options: IParticlesOptions, manualCount: number, group?: string): void {

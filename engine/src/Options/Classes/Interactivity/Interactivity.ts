@@ -11,6 +11,16 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial";
  * @category Options
  */
 export class Interactivity implements IInteractivity, IOptionLoader<IInteractivity> {
+    detectsOn: InteractivityDetect | keyof typeof InteractivityDetect;
+    events;
+    modes;
+
+    constructor() {
+        this.detectsOn = InteractivityDetect.window;
+        this.events = new Events();
+        this.modes = new Modes();
+    }
+
     /**
      *
      * @deprecated this property is obsolete, please use the new detectsOn
@@ -26,16 +36,6 @@ export class Interactivity implements IInteractivity, IOptionLoader<IInteractivi
      */
     set detect_on(value: InteractivityDetect | keyof typeof InteractivityDetect) {
         this.detectsOn = value;
-    }
-
-    detectsOn: InteractivityDetect | keyof typeof InteractivityDetect;
-    events;
-    modes;
-
-    constructor() {
-        this.detectsOn = InteractivityDetect.window;
-        this.events = new Events();
-        this.modes = new Modes();
     }
 
     load(data?: RecursivePartial<IInteractivity>): void {

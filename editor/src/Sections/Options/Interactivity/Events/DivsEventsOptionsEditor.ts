@@ -35,20 +35,6 @@ export class DivsEventsOptionsEditor extends EditorBase {
         }
     }
 
-    private addDivs(): void {
-        const options = this.options;
-
-        if (options instanceof Array) {
-            for (let i = 0; i < options.length; i++) {
-                const group = this.group.addGroup(i.toString(10), `Div_${i + 1}`, true, options);
-
-                this.addDiv(group);
-            }
-        } else {
-            this.addDiv(this.group);
-        }
-    }
-
     private addDiv(group: EditorGroup): void {
         const particles = this.particles;
         const options = group.data as IDivEvent;
@@ -112,5 +98,19 @@ export class DivsEventsOptionsEditor extends EditorBase {
                     value: DivType.rectangle,
                 },
             ]);
+    }
+
+    private addDivs(): void {
+        const options = this.options;
+
+        if (options instanceof Array) {
+            for (let i = 0; i < options.length; i++) {
+                const group = this.group.addGroup(i.toString(10), `Div_${i + 1}`, true, options);
+
+                this.addDiv(group);
+            }
+        } else {
+            this.addDiv(this.group);
+        }
     }
 }

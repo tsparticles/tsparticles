@@ -9,12 +9,12 @@ import { OrbitRotation } from "./OrbitRotation";
  */
 export class Orbit implements IOrbit, IOptionLoader<IOrbit>, IAnimatable<AnimationOptions> {
     animation;
+    color?: OptionsColor;
     enable: boolean;
     opacity: RangeValue;
-    width: RangeValue;
-    color?: OptionsColor;
     radius?: RangeValue;
     rotation;
+    width: RangeValue;
 
     constructor() {
         this.animation = new AnimationOptions();

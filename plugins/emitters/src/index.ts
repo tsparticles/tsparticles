@@ -18,9 +18,8 @@ import { isInArray } from "tsparticles-engine";
  * @category Emitters Plugin
  */
 class EmittersPlugin implements IPlugin {
-    readonly id;
-
     readonly #engine;
+    readonly id;
 
     constructor(engine: EmittersEngine) {
         this.#engine = engine;
@@ -29,21 +28,6 @@ class EmittersPlugin implements IPlugin {
 
     getPlugin(container: EmitterContainer): Emitters {
         return new Emitters(this.#engine, container);
-    }
-
-    needsPlugin(options?: RecursivePartial<IOptions & IEmitterOptions>): boolean {
-        if (!options) {
-            return false;
-        }
-
-        const emitters = options.emitters;
-
-        return (
-            emitters instanceof Array && !!emitters.length ||
-            emitters !== undefined ||
-            !!options.interactivity?.events?.onClick?.mode &&
-                isInArray(EmitterClickMode.emitter, options.interactivity.events.onClick.mode)
-        );
     }
 
     loadOptions(options: Options, source?: RecursivePartial<IOptions & IEmitterOptions>): void {
@@ -135,6 +119,21 @@ class EmittersPlugin implements IPlugin {
             }
         }
     }
+
+    needsPlugin(options?: RecursivePartial<IOptions & IEmitterOptions>): boolean {
+        if (!options) {
+            return false;
+        }
+
+        const emitters = options.emitters;
+
+        return (
+            emitters instanceof Array && !!emitters.length ||
+            emitters !== undefined ||
+            !!options.interactivity?.events?.onClick?.mode &&
+                isInArray(EmitterClickMode.emitter, options.interactivity.events.onClick.mode)
+        );
+    }
 }
 
 export async function loadEmittersPlugin(engine: EmittersEngine): Promise<void> {
@@ -161,4 +160,4 @@ export * from "./EmittersEngine";
 export * from "./Enums/EmitterClickMode";
 export * from "./Enums/EmitterShapeType";
 export * from "./Options/Interfaces/IEmitterOptions";
-export { IEmitterModeOptions } from "./Options/Interfaces/IEmitterModeOptions";
+export type { IEmitterModeOptions } from "./Options/Interfaces/IEmitterModeOptions";

@@ -16,14 +16,13 @@ import {
     isInArray,
     mouseMoveEvent,
 } from "tsparticles-engine";
-import type { Container, DivEvent, ICoordinates, Particle, Range,
-    RepulseDiv} from "tsparticles-engine";
+import type { Container, DivEvent, ICoordinates, Particle, Range, RepulseDiv } from "tsparticles-engine";
 
 interface IContainerRepulse {
-    particles: Particle[];
-    finish?: boolean;
-    count?: number;
     clicking?: boolean;
+    count?: number;
+    finish?: boolean;
+    particles: Particle[];
 }
 
 type ContainerRepulser = Container & {
@@ -81,35 +80,11 @@ export class Repulser extends ExternalInteractorBase {
         };
     }
 
-    isEnabled(particle?: Particle): boolean {
-        const container = this.container,
-            options = container.actualOptions,
-            mouse = container.interactivity.mouse,
-            events = (particle?.interactivity ?? options.interactivity).events,
-            divs = events.onDiv,
-            divRepulse = isDivModeEnabled(DivMode.repulse, divs);
-
-        if (
-            !(divRepulse || events.onHover.enable && mouse.position || events.onClick.enable && mouse.clickPosition)
-        ) {
-            return false;
-        }
-
-        const hoverMode = events.onHover.mode,
-            clickMode = events.onClick.mode;
-
-        return isInArray(HoverMode.repulse, hoverMode) || isInArray(ClickMode.repulse, clickMode) || divRepulse;
-    }
-
-    init(): void {
-        // do nothing
-    }
-
     clear(): void {
         // do nothing
     }
 
-    reset(): void {
+    init(): void {
         // do nothing
     }
 
@@ -133,71 +108,28 @@ export class Repulser extends ExternalInteractorBase {
         }
     }
 
-    private singleSelectorRepulse(selector: string, div: DivEvent): void {
+    isEnabled(particle?: Particle): boolean {
         const container = this.container,
-            query = document.querySelectorAll(selector);
+            options = container.actualOptions,
+            mouse = container.interactivity.mouse,
+            events = (particle?.interactivity ?? options.interactivity).events,
+            divs = events.onDiv,
+            divRepulse = isDivModeEnabled(DivMode.repulse, divs);
 
-        if (!query.length) {
-            return;
+        if (
+            !(divRepulse || events.onHover.enable && mouse.position || events.onClick.enable && mouse.clickPosition)
+        ) {
+            return false;
         }
 
-        query.forEach((item) => {
-            const elem = item as HTMLElement,
-                pxRatio = container.retina.pixelRatio,
-                pos = {
-                    x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
-                    y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
-                },
-                repulseRadius = elem.offsetWidth / 2 * pxRatio,
-                area =
-                    div.type === DivType.circle
-                        ? new Circle(pos.x, pos.y, repulseRadius)
-                        : new Rectangle(
-                              elem.offsetLeft * pxRatio,
-                              elem.offsetTop * pxRatio,
-                              elem.offsetWidth * pxRatio,
-                              elem.offsetHeight * pxRatio
-                          ),
-                divs = container.actualOptions.interactivity.modes.repulse.divs,
-                divRepulse = divMode(divs, elem);
+        const hoverMode = events.onHover.mode,
+            clickMode = events.onClick.mode;
 
-            this.processRepulse(pos, repulseRadius, area, divRepulse);
-        });
+        return isInArray(HoverMode.repulse, hoverMode) || isInArray(ClickMode.repulse, clickMode) || divRepulse;
     }
 
-    private hoverRepulse(): void {
-        const container = this.container,
-            mousePos = container.interactivity.mouse.position;
-
-        if (!mousePos) {
-            return;
-        }
-
-        const repulseRadius = container.retina.repulseModeDistance;
-
-        this.processRepulse(mousePos, repulseRadius, new Circle(mousePos.x, mousePos.y, repulseRadius));
-    }
-
-    private processRepulse(position: ICoordinates, repulseRadius: number, area: Range, divRepulse?: RepulseDiv): void {
-        const container = this.container,
-            query = container.particles.quadTree.query(area, (p) => this.isEnabled(p)),
-            repulseOptions = container.actualOptions.interactivity.modes.repulse;
-
-        for (const particle of query) {
-            const { dx, dy, distance } = getDistances(particle.position, position),
-                velocity = (divRepulse?.speed ?? repulseOptions.speed) * repulseOptions.factor,
-                repulseFactor = clamp(
-                    calcEasing(1 - distance / repulseRadius, repulseOptions.easing) * velocity,
-                    0,
-                    repulseOptions.maxSpeed
-                ),
-                normVec = Vector.create(
-                    distance === 0 ? velocity : dx / distance * repulseFactor,
-                    distance === 0 ? velocity : dy / distance * repulseFactor
-                );
-
-            particle.position.addTo(normVec);
-        }
+    reset(): void {
+        // do nothing
     }
 
     private clickRepulse(): void {
@@ -253,6 +185,73 @@ export class Repulser extends ExternalInteractorBase {
             }
             container.repulse.particles = [];
         }
+    }
+
+    private hoverRepulse(): void {
+        const container = this.container,
+            mousePos = container.interactivity.mouse.position;
+
+        if (!mousePos) {
+            return;
+        }
+
+        const repulseRadius = container.retina.repulseModeDistance;
+
+        this.processRepulse(mousePos, repulseRadius, new Circle(mousePos.x, mousePos.y, repulseRadius));
+    }
+
+    private processRepulse(position: ICoordinates, repulseRadius: number, area: Range, divRepulse?: RepulseDiv): void {
+        const container = this.container,
+            query = container.particles.quadTree.query(area, (p) => this.isEnabled(p)),
+            repulseOptions = container.actualOptions.interactivity.modes.repulse;
+
+        for (const particle of query) {
+            const { dx, dy, distance } = getDistances(particle.position, position),
+                velocity = (divRepulse?.speed ?? repulseOptions.speed) * repulseOptions.factor,
+                repulseFactor = clamp(
+                    calcEasing(1 - distance / repulseRadius, repulseOptions.easing) * velocity,
+                    0,
+                    repulseOptions.maxSpeed
+                ),
+                normVec = Vector.create(
+                    distance === 0 ? velocity : dx / distance * repulseFactor,
+                    distance === 0 ? velocity : dy / distance * repulseFactor
+                );
+
+            particle.position.addTo(normVec);
+        }
+    }
+
+    private singleSelectorRepulse(selector: string, div: DivEvent): void {
+        const container = this.container,
+            query = document.querySelectorAll(selector);
+
+        if (!query.length) {
+            return;
+        }
+
+        query.forEach((item) => {
+            const elem = item as HTMLElement,
+                pxRatio = container.retina.pixelRatio,
+                pos = {
+                    x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
+                    y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
+                },
+                repulseRadius = elem.offsetWidth / 2 * pxRatio,
+                area =
+                    div.type === DivType.circle
+                        ? new Circle(pos.x, pos.y, repulseRadius)
+                        : new Rectangle(
+                              elem.offsetLeft * pxRatio,
+                              elem.offsetTop * pxRatio,
+                              elem.offsetWidth * pxRatio,
+                              elem.offsetHeight * pxRatio
+                          ),
+                divs = container.actualOptions.interactivity.modes.repulse.divs,
+                divRepulse = divMode(divs, elem);
+
+            this.processRepulse(pos, repulseRadius, area, divRepulse);
+        });
     }
 }
 

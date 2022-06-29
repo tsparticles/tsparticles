@@ -12,6 +12,12 @@ import type { Particle } from "../Particle";
 
 export class InteractionManager {
     /**
+     * The engine used for registering the interactions managers
+     * @private
+     */
+    readonly #engine;
+
+    /**
      * Registered external interactivity managers
      * @private
      */
@@ -24,12 +30,6 @@ export class InteractionManager {
     private particleInteractors: IParticlesInteractor[];
 
     /**
-     * The engine used for registering the interactions managers
-     * @private
-     */
-    readonly #engine;
-
-    /**
      * The constructor of the interaction manager
      * @param engine the parent engine
      * @param container the parent container
@@ -40,6 +40,26 @@ export class InteractionManager {
         this.particleInteractors = [];
 
         this.init();
+    }
+
+    /**
+     * Iterates through the external interactivity manager and call the interact method, if they are enabled
+     * @param delta this variable contains the delta between the current frame and the previous frame
+     */
+    async externalInteract(delta: IDelta): Promise<void> {
+        for (const interactor of this.externalInteractors) {
+            if (interactor.isEnabled()) {
+                await interactor.interact(delta);
+            }
+        }
+    }
+
+    handleClickMode(mode: ClickMode | string): void {
+        for (const interactor of this.externalInteractors) {
+            if (interactor.handleClickMode) {
+                interactor.handleClickMode(mode);
+            }
+        }
     }
 
     /**
@@ -66,36 +86,6 @@ export class InteractionManager {
     }
 
     /**
-     * Iterates through the external interactivity manager and call the interact method, if they are enabled
-     * @param particle the particle to reset
-     */
-    async reset(particle: Particle): Promise<void> {
-        for (const interactor of this.externalInteractors) {
-            if (interactor.isEnabled()) {
-                await interactor.reset(particle);
-            }
-        }
-
-        for (const interactor of this.particleInteractors) {
-            if (interactor.isEnabled(particle)) {
-                await interactor.reset(particle);
-            }
-        }
-    }
-
-    /**
-     * Iterates through the external interactivity manager and call the interact method, if they are enabled
-     * @param delta this variable contains the delta between the current frame and the previous frame
-     */
-    async externalInteract(delta: IDelta): Promise<void> {
-        for (const interactor of this.externalInteractors) {
-            if (interactor.isEnabled()) {
-                await interactor.interact(delta);
-            }
-        }
-    }
-
-    /**
      * Iterates through the particles interactions manager and call the interact method, if they are enabled
      * @param particle the particle responsible for the current interaction
      * @param delta this variable contains the delta between the current frame and the previous frame
@@ -113,10 +103,20 @@ export class InteractionManager {
         }
     }
 
-    handleClickMode(mode: ClickMode | string): void {
+    /**
+     * Iterates through the external interactivity manager and call the interact method, if they are enabled
+     * @param particle the particle to reset
+     */
+    async reset(particle: Particle): Promise<void> {
         for (const interactor of this.externalInteractors) {
-            if (interactor.handleClickMode) {
-                interactor.handleClickMode(mode);
+            if (interactor.isEnabled()) {
+                await interactor.reset(particle);
+            }
+        }
+
+        for (const interactor of this.particleInteractors) {
+            if (interactor.isEnabled(particle)) {
+                await interactor.reset(particle);
             }
         }
     }

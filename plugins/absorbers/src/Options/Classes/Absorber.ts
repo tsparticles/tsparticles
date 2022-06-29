@@ -9,13 +9,13 @@ import type { IAbsorber } from "../Interfaces/IAbsorber";
  */
 export class Absorber implements IAbsorber, IOptionLoader<IAbsorber> {
     color;
+    destroy;
     draggable;
     name?: string;
     opacity;
+    orbits;
     position?: RecursivePartial<IRangedCoordinates>;
     size;
-    destroy;
-    orbits;
 
     constructor() {
         this.color = new OptionsColor();

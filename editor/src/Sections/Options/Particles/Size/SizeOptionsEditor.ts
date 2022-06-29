@@ -76,6 +76,14 @@ export class SizeOptionsEditor extends EditorBase {
         });
     }
 
+    private addProperties(): void {
+        const particles = this.particles;
+
+        this.group.addProperty("value", "Value", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
+    }
+
     private addRandom(): void {
         const group = this.group.addGroup("random", "Random");
         const particles = this.particles;
@@ -85,14 +93,6 @@ export class SizeOptionsEditor extends EditorBase {
         });
 
         group.addProperty("minimumValue", "Minimum Value", EditorType.number).change(async () => {
-            await particles.refresh();
-        });
-    }
-
-    private addProperties(): void {
-        const particles = this.particles;
-
-        this.group.addProperty("value", "Value", EditorType.number).change(async () => {
             await particles.refresh();
         });
     }

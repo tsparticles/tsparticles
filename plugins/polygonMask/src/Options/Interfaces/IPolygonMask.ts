@@ -10,6 +10,7 @@ import type { PolygonMaskType } from "../../Enums/PolygonMaskType";
  * @category Polygon Mask Plugin
  */
 export interface IPolygonMask {
+    data?: string | IPolygonMaskLocalSvg;
     draw: IPolygonMaskDraw;
     enable: boolean;
     inline: IPolygonMaskInline;
@@ -18,5 +19,4 @@ export interface IPolygonMask {
     scale: number;
     type: PolygonMaskType;
     url?: string;
-    data?: string | IPolygonMaskLocalSvg;
 }

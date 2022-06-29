@@ -12,6 +12,6 @@ export interface ILink {
  * @category Interfaces
  */
 export interface ILinkTriangle {
-    vertices: LinkParticle[];
     opacity: number;
+    vertices: LinkParticle[];
 }

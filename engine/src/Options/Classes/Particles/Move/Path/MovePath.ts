@@ -12,8 +12,8 @@ export class MovePath implements IMovePath, IOptionLoader<IMovePath> {
     clamp;
     delay;
     enable;
-    options: PathOptions;
     generator?: string;
+    options: PathOptions;
 
     constructor() {
         this.clamp = true;

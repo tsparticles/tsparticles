@@ -6,8 +6,8 @@ import { SizeMode } from "tsparticles-engine";
  * @category Emitters Plugin
  */
 export class EmitterSize implements IEmitterSize, IOptionLoader<IEmitterSize> {
-    mode: SizeMode | keyof typeof SizeMode;
     height;
+    mode: SizeMode | keyof typeof SizeMode;
     width;
 
     constructor() {
