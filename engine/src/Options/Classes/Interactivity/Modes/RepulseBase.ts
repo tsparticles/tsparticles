@@ -1,4 +1,5 @@
 import { EasingType } from "../../../../Enums/Types/EasingType";
+import type { EasingTypeAlt } from "../../../../Enums/Types/EasingType";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { IRepulseBase } from "../../../Interfaces/Interactivity/Modes/IRepulseBase";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
@@ -9,7 +10,7 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 export abstract class RepulseBase implements IRepulseBase, IOptionLoader<IRepulseBase> {
     distance;
     duration;
-    easing: EasingType | keyof typeof EasingType;
+    easing: EasingType | EasingTypeAlt;
     factor;
     maxSpeed;
     speed;

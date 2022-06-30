@@ -3,6 +3,7 @@ import type {
     IRangedPositionFromSizeParams,
 } from "../Core/Interfaces/IPositionFromSizeParams";
 import { EasingType } from "../Enums/Types/EasingType";
+import type { EasingTypeAlt } from "../Enums/Types/EasingType";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IValueWithRandom } from "../Options/Interfaces/IValueWithRandom";
 import { MoveDirection } from "../Enums/Directions/MoveDirection";
@@ -157,7 +158,7 @@ export function collisionVelocity(v1: Vector, v2: Vector, m1: number, m2: number
     return Vector.create(v1.x * (m1 - m2) / (m1 + m2) + v2.x * 2 * m2 / (m1 + m2), v1.y);
 }
 
-export function calcEasing(value: number, type: EasingType): number {
+export function calcEasing(value: number, type: EasingType | EasingTypeAlt): number {
     switch (type) {
         case EasingType.easeOutQuad:
             return 1 - (1 - value) ** 2;

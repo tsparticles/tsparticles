@@ -8,3 +8,13 @@ export const enum EasingType {
     easeOutExpo = "ease-out-expo",
     easeOutSine = "ease-out-sine",
 }
+
+export type EasingTypeAlt =
+    | "ease-out-back"
+    | "ease-out-circ"
+    | "ease-out-cubic"
+    | "ease-out-quad"
+    | "ease-out-quart"
+    | "ease-out-quint"
+    | "ease-out-expo"
+    | "ease-out-sine";
