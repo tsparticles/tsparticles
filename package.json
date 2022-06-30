@@ -32,6 +32,6 @@
     "@nrwl/nx-cloud": "^14.1.2"
   },
   "resolutions": {
-    "npm-packlist": "5.1.0"
+    "npm-packlist": "5.1.1"
   }
 }
