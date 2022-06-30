@@ -5,7 +5,7 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { Split } from "./Split";
 
 export class Destroy implements IDestroy, IOptionLoader<IDestroy> {
-    mode: DestroyMode;
+    mode: DestroyMode | keyof typeof DestroyMode;
     split: Split;
 
     constructor() {

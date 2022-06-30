@@ -9,7 +9,7 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 export abstract class RepulseBase implements IRepulseBase, IOptionLoader<IRepulseBase> {
     distance;
     duration;
-    easing;
+    easing: EasingType | keyof typeof EasingType;
     factor;
     maxSpeed;
     speed;

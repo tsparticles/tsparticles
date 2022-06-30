@@ -9,7 +9,7 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 export class Attract implements IAttract, IOptionLoader<IAttract> {
     distance;
     duration;
-    easing;
+    easing: EasingType | keyof typeof EasingType;
     factor;
     maxSpeed;
     speed;

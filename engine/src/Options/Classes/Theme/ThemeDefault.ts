@@ -5,7 +5,7 @@ import { ThemeMode } from "../../../Enums/Modes/ThemeMode";
 
 export class ThemeDefault implements IThemeDefault, IOptionLoader<IThemeDefault> {
     auto;
-    mode: ThemeMode | keyof ThemeMode;
+    mode: ThemeMode | keyof typeof ThemeMode;
     value;
 
     constructor() {
