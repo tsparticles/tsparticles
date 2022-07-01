@@ -1,6 +1,7 @@
 {
   "name": "vue3-demo",
   "version": "0.1.1",
+  "private": true,
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
