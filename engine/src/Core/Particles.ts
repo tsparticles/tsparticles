@@ -321,6 +321,7 @@ export class Particles {
             }
         }
 
+        this.interactionManager.init();
         container.pathGenerator.init(container);
     }
 

@@ -38,8 +38,6 @@ export class InteractionManager {
         this.#engine = engine;
         this.externalInteractors = [];
         this.particleInteractors = [];
-
-        this.init();
     }
 
     /**
