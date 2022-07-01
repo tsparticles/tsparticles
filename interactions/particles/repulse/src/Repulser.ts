@@ -4,8 +4,8 @@ import { ParticlesInteractorBase, Vector, clamp, getDistances, getRangeValue } f
 type RepulseParticle = Particle & {
     repulse?: {
         distance: number;
-        speed: number;
         factor: number;
+        speed: number;
     };
 };
 
@@ -14,15 +14,11 @@ export class Repulser extends ParticlesInteractorBase {
         super(container);
     }
 
-    isEnabled(particle: Particle): boolean {
-        return particle.options.repulse.enabled;
-    }
-
     clear(): void {
         // do nothing
     }
 
-    reset(): void {
+    init(): void {
         // do nothing
     }
 
@@ -53,7 +49,7 @@ export class Repulser extends ParticlesInteractorBase {
             const velocity = p1.repulse.speed * p1.repulse.factor;
             if (distance > 0) {
                 const repulseFactor = clamp((1 - Math.pow(distance / p1.repulse.distance, 2)) * velocity, 0, velocity);
-                const normVec = Vector.create((dx / distance) * repulseFactor, (dy / distance) * repulseFactor);
+                const normVec = Vector.create(dx / distance * repulseFactor, dy / distance * repulseFactor);
 
                 p2.position.addTo(normVec);
             } else {
@@ -62,5 +58,13 @@ export class Repulser extends ParticlesInteractorBase {
                 p2.position.addTo(velocityVec);
             }
         }
+    }
+
+    isEnabled(particle: Particle): boolean {
+        return particle.options.repulse.enabled;
+    }
+
+    reset(): void {
+        // do nothing
     }
 }

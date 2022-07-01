@@ -10,15 +10,11 @@ export class Collider extends ParticlesInteractorBase {
         super(container);
     }
 
-    isEnabled(particle: Particle): boolean {
-        return particle.options.collisions.enable;
-    }
-
     clear(): void {
         // do nothing
     }
 
-    reset(): void {
+    init(): void {
         // do nothing
     }
 
@@ -55,5 +51,13 @@ export class Collider extends ParticlesInteractorBase {
 
             resolveCollision(p1, p2, container.fpsLimit / 1000, container.retina.pixelRatio);
         }
+    }
+
+    isEnabled(particle: Particle): boolean {
+        return particle.options.collisions.enable;
+    }
+
+    reset(): void {
+        // do nothing
     }
 }

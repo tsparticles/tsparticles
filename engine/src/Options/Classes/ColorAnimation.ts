@@ -9,10 +9,10 @@ import { setRangeValue } from "../../Utils/NumberUtils";
  */
 export class ColorAnimation implements IColorAnimation, IOptionLoader<IColorAnimation> {
     count: RangeValue;
+    decay: RangeValue;
     enable;
     offset: RangeValue;
     speed: RangeValue;
-    decay: RangeValue;
     sync;
 
     constructor() {

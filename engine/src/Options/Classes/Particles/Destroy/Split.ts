@@ -10,8 +10,8 @@ import { deepExtend } from "../../../../Utils/Utils";
 export class Split implements ISplit, IOptionLoader<ISplit> {
     count: number;
     factor: SplitFactor;
-    rate: SplitRate;
     particles?: SingleOrMultiple<RecursivePartial<IParticlesOptions>>;
+    rate: SplitRate;
     sizeOffset: boolean;
 
     constructor() {

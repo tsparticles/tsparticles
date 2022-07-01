@@ -9,8 +9,8 @@ import { PolygonMaskType } from "./Enums/PolygonMaskType";
  * @category Polygon Mask Plugin
  */
 class PolygonMaskPlugin implements IPlugin {
-    readonly id;
     readonly #engine;
+    readonly id;
 
     constructor(engine: Engine) {
         this.id = "polygonMask";
@@ -20,13 +20,6 @@ class PolygonMaskPlugin implements IPlugin {
 
     getPlugin(container: Container): PolygonMaskInstance {
         return new PolygonMaskInstance(container, this.#engine);
-    }
-
-    needsPlugin(options?: RecursivePartial<IOptions & IPolygonMaskOptions>): boolean {
-        return (
-            options?.polygon?.enable ??
-            (options?.polygon?.type !== undefined && options.polygon.type !== PolygonMaskType.none)
-        );
     }
 
     loadOptions(options: Options, source?: RecursivePartial<IOptions & IPolygonMaskOptions>): void {
@@ -42,6 +35,13 @@ class PolygonMaskPlugin implements IPlugin {
         }
 
         polygonOptions.load(source?.polygon);
+    }
+
+    needsPlugin(options?: RecursivePartial<IOptions & IPolygonMaskOptions>): boolean {
+        return (
+            options?.polygon?.enable ??
+            (options?.polygon?.type !== undefined && options.polygon.type !== PolygonMaskType.none)
+        );
     }
 }
 

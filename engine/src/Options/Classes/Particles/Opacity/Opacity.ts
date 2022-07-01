@@ -10,6 +10,15 @@ import { setRangeValue } from "../../../../Utils/NumberUtils";
  * @category Options
  */
 export class Opacity extends ValueWithRandom implements IOpacity, IOptionLoader<IOpacity> {
+    animation;
+
+    constructor() {
+        super();
+        this.animation = new OpacityAnimation();
+        this.random.minimumValue = 0.1;
+        this.value = 1;
+    }
+
     /**
      *
      * @deprecated this property is obsolete, please use the new animation
@@ -25,15 +34,6 @@ export class Opacity extends ValueWithRandom implements IOpacity, IOptionLoader<
      */
     set anim(value: OpacityAnimation) {
         this.animation = value;
-    }
-
-    animation;
-
-    constructor() {
-        super();
-        this.animation = new OpacityAnimation();
-        this.random.minimumValue = 0.1;
-        this.value = 1;
     }
 
     load(data?: RecursivePartial<IOpacity>): void {

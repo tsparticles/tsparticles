@@ -54,23 +54,11 @@ export class Connector extends ExternalInteractorBase {
         super(container);
     }
 
-    isEnabled(particle?: Particle): boolean {
-        const container = this.container,
-            mouse = container.interactivity.mouse,
-            events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
-
-        if (!(events.onHover.enable && mouse.position)) {
-            return false;
-        }
-
-        return isInArray(HoverMode.connect, events.onHover.mode);
-    }
-
     clear(): void {
         // do nothing
     }
 
-    reset(): void {
+    init(): void {
         // do nothing
     }
 
@@ -110,5 +98,21 @@ export class Connector extends ExternalInteractorBase {
                 ++i;
             }
         }
+    }
+
+    isEnabled(particle?: Particle): boolean {
+        const container = this.container,
+            mouse = container.interactivity.mouse,
+            events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
+
+        if (!(events.onHover.enable && mouse.position)) {
+            return false;
+        }
+
+        return isInArray(HoverMode.connect, events.onHover.mode);
+    }
+
+    reset(): void {
+        // do nothing
     }
 }

@@ -7,7 +7,7 @@ import type { IShapeValues } from "../../../../Core/Interfaces/IShapeValues";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { ShapeData } from "../../../../Types/ShapeData";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
-import { Stroke } from "../Stroke";
+import type { Stroke } from "../Stroke";
 import { deepExtend } from "../../../../Utils/Utils";
 
 /**
@@ -15,63 +15,12 @@ import { deepExtend } from "../../../../Utils/Utils";
  * @category Options
  */
 export class Shape implements IShape, IOptionLoader<IShape> {
-    /**
-     * @deprecated this property was integrated in custom shape management
-     */
-    get image(): SingleOrMultiple<IImageShape> {
-        return (this.options["image"] ?? this.options["images"]) as SingleOrMultiple<IImageShape>;
-    }
+    options: ShapeData;
+    type: SingleOrMultiple<string>;
 
-    /**
-     * @deprecated this property was integrated in custom shape management
-     * @param value
-     */
-    set image(value: SingleOrMultiple<IImageShape>) {
-        this.options["image"] = value;
-        this.options["images"] = value;
-    }
-
-    /**
-     * @deprecated This options has been renamed options
-     */
-    get custom(): ShapeData {
-        return this.options;
-    }
-
-    /**
-     * @deprecated This options has been renamed options
-     * @param value
-     */
-    set custom(value: ShapeData) {
-        this.options = value;
-    }
-
-    /**
-     * @deprecated the property images is deprecated, please use the image property, it works with one and many
-     */
-    get images(): SingleOrMultiple<IImageShape> {
-        return this.image;
-    }
-
-    /**
-     * @deprecated the property images is deprecated, please use the image property, it works with one and many
-     */
-    set images(value: SingleOrMultiple<IImageShape>) {
-        this.image = value;
-    }
-
-    /**
-     * @deprecated this property was moved to particles section
-     */
-    get stroke(): SingleOrMultiple<Stroke> {
-        return [];
-    }
-
-    /**
-     * @deprecated this property was moved to particles section
-     */
-    set stroke(_value: SingleOrMultiple<Stroke>) {
-        // deprecated
+    constructor() {
+        this.options = {};
+        this.type = "circle";
     }
 
     /**
@@ -90,6 +39,51 @@ export class Shape implements IShape, IOptionLoader<IShape> {
     }
 
     /**
+     * @deprecated This options has been renamed options
+     */
+    get custom(): ShapeData {
+        return this.options;
+    }
+
+    /**
+     * @deprecated This options has been renamed options
+     * @param value
+     */
+    set custom(value: ShapeData) {
+        this.options = value;
+    }
+
+    /**
+     * @deprecated this property was integrated in custom shape management
+     */
+    get image(): SingleOrMultiple<IImageShape> {
+        return (this.options["image"] ?? this.options["images"]) as SingleOrMultiple<IImageShape>;
+    }
+
+    /**
+     * @deprecated this property was integrated in custom shape management
+     * @param value
+     */
+    set image(value: SingleOrMultiple<IImageShape>) {
+        this.options["image"] = value;
+        this.options["images"] = value;
+    }
+
+    /**
+     * @deprecated the property images is deprecated, please use the image property, it works with one and many
+     */
+    get images(): SingleOrMultiple<IImageShape> {
+        return this.image;
+    }
+
+    /**
+     * @deprecated the property images is deprecated, please use the image property, it works with one and many
+     */
+    set images(value: SingleOrMultiple<IImageShape>) {
+        this.image = value;
+    }
+
+    /**
      * @deprecated this property was integrated in custom shape management
      */
     get polygon(): SingleOrMultiple<IPolygonShape> {
@@ -104,12 +98,18 @@ export class Shape implements IShape, IOptionLoader<IShape> {
         this.options["star"] = value;
     }
 
-    type: SingleOrMultiple<string>;
-    options: ShapeData;
+    /**
+     * @deprecated this property was moved to particles section
+     */
+    get stroke(): SingleOrMultiple<Stroke> {
+        return [];
+    }
 
-    constructor() {
-        this.options = {};
-        this.type = "circle";
+    /**
+     * @deprecated this property was moved to particles section
+     */
+    set stroke(_value: SingleOrMultiple<Stroke>) {
+        // deprecated
     }
 
     load(data?: RecursivePartial<IShape>): void {

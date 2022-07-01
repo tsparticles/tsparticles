@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-move-base",
-  "version": "2.1.0",
+  "version": "2.1.3",
   "description": "tsParticles Base movement",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -72,6 +72,6 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.1.0"
+    "tsparticles-engine": "^2.1.3"
   }
 }

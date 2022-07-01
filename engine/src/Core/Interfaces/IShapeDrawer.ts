@@ -13,26 +13,6 @@ import type {
  */
 export interface IShapeDrawer {
     /**
-     * Shape sides count function
-     */
-    getSidesCount?: ShapeDrawerSidesCountFunction;
-
-    /**
-     * Shape init function
-     */
-    init?: ShapeDrawerInitFunction;
-
-    /**
-     * Shape particle init function
-     */
-    particleInit?: ShapeDrawerParticleInitFunction;
-
-    /**
-     * Shape draw function
-     */
-    draw: ShapeDrawerDrawFunction;
-
-    /**
      * Shape after draw effect function
      */
     afterEffect?: ShapeDrawerAfterEffectFunction;
@@ -43,7 +23,27 @@ export interface IShapeDrawer {
     destroy?: ShapeDrawerDestroyFunction;
 
     /**
+     * Shape draw function
+     */
+    draw: ShapeDrawerDrawFunction;
+
+    /**
+     * Shape sides count function
+     */
+    getSidesCount?: ShapeDrawerSidesCountFunction;
+
+    /**
+     * Shape init function
+     */
+    init?: ShapeDrawerInitFunction;
+
+    /**
      * Shape load function
      */
     loadShape?: ShapeDrawerLoadFunction;
+
+    /**
+     * Shape particle init function
+     */
+    particleInit?: ShapeDrawerParticleInitFunction;
 }

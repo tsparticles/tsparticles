@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import type { Container, Engine } from "tsparticles-engine";
-import { loadFull } from "tsparticles";
+import type { Container, Engine } from 'tsparticles-engine';
+import { loadFull } from 'tsparticles';
 
 @Component({
   selector: 'app-tab1',

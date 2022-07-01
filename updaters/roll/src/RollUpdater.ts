@@ -1,6 +1,7 @@
 import { AlterType, getRangeValue, rangeColorToHsl } from "tsparticles-engine";
 import type {
     IDelta,
+    IParticleTransformValues,
     IParticleUpdater,
     IParticlesOptions,
     Particle,
@@ -41,6 +42,17 @@ function updateRoll(particle: RollParticle, delta: IDelta): void {
 }
 
 export class RollUpdater implements IParticleUpdater {
+    getTransformValues(particle: Particle): IParticleTransformValues {
+        const roll = particle.roll?.enable && particle.roll,
+            rollHorizontal = roll && roll.horizontal,
+            rollVertical = roll && roll.vertical;
+
+        return {
+            a: rollHorizontal ? Math.cos(roll.angle) : undefined,
+            d: rollVertical ? Math.sin(roll.angle) : undefined,
+        };
+    }
+
     init(particle: RollParticle): void {
         const rollOpt = particle.options.roll;
 
@@ -92,14 +104,6 @@ export class RollUpdater implements IParticleUpdater {
         return !particle.destroyed && !particle.spawning && !!roll?.enable;
     }
 
-    update(particle: Particle, delta: IDelta): void {
-        if (!this.isEnabled(particle)) {
-            return;
-        }
-
-        updateRoll(particle, delta);
-    }
-
     loadOptions(
         options: RollParticlesOptions,
         ...sources: (RecursivePartial<IRollParticlesOptions> | undefined)[]
@@ -115,5 +119,13 @@ export class RollUpdater implements IParticleUpdater {
 
             options.roll.load(source.roll);
         }
+    }
+
+    update(particle: Particle, delta: IDelta): void {
+        if (!this.isEnabled(particle)) {
+            return;
+        }
+
+        updateRoll(particle, delta);
     }
 }

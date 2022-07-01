@@ -9,14 +9,14 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial";
  */
 export interface ITheme {
     /**
-     * Theme name, use it when changing theme
-     */
-    name: string;
-
-    /**
      * Options to set the default theme
      */
     default: IThemeDefault;
+
+    /**
+     * Theme name, use it when changing theme
+     */
+    name: string;
 
     /**
      * All options the theme will override

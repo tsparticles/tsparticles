@@ -41,28 +41,6 @@ function lerp(a: number, b: number, t: number): number {
 }
 
 export class PerlinNoise {
-    seed(inputSeed: number): void {
-        let seed = inputSeed;
-
-        if (seed > 0 && seed < 1) {
-            // Scale the seed out
-            seed *= 65536;
-        }
-
-        seed = Math.floor(seed);
-
-        if (seed < 256) {
-            seed |= seed << 8;
-        }
-
-        for (let i = 0; i < 256; i++) {
-            const v = i & 1 ? p[i] ^ (seed & 255) : p[i] ^ ((seed >> 8) & 255);
-
-            perm[i] = perm[i + 256] = v;
-            gradP[i] = gradP[i + 256] = grad3[v % 12];
-        }
-    }
-
     noise(x: number, y: number, z: number): number {
         // Find unit grid cell containing point
         let X = Math.floor(x),
@@ -98,5 +76,27 @@ export class PerlinNoise {
             lerp(lerp(n010, n110, u), lerp(n011, n111, u), w),
             v
         );
+    }
+
+    seed(inputSeed: number): void {
+        let seed = inputSeed;
+
+        if (seed > 0 && seed < 1) {
+            // Scale the seed out
+            seed *= 65536;
+        }
+
+        seed = Math.floor(seed);
+
+        if (seed < 256) {
+            seed |= seed << 8;
+        }
+
+        for (let i = 0; i < 256; i++) {
+            const v = i & 1 ? p[i] ^ seed & 255 : p[i] ^ seed >> 8 & 255;
+
+            perm[i] = perm[i + 256] = v;
+            gradP[i] = gradP[i + 256] = grad3[v % 12];
+        }
     }
 }

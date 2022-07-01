@@ -1,14 +1,7 @@
 import type { Container, IShapeDrawer, Particle } from "tsparticles-engine";
-import {
-    ContainerImage,
-    IImage,
-    IImageParticle,
-    IParticleImage,
-    downloadSvgImage,
-    loadImage,
-    replaceImageColor,
-} from "./Utils";
-import { IImageShape } from "./IImageShape";
+import type { ContainerImage, IImage, IImageParticle, IParticleImage } from "./Utils";
+import { downloadSvgImage, loadImage, replaceImageColor } from "./Utils";
+import type { IImageShape } from "./IImageShape";
 
 /**
  * @category Shape Drawers
@@ -25,34 +18,6 @@ export class ImageDrawer implements IShapeDrawer {
      */
     constructor() {
         this.#images = [];
-    }
-
-    /**
-     * Returning the side count for the image, defaults to 12 for using the inner circle as rendering
-     * When using non-transparent images this can be an issue with shadows
-     */
-    getSidesCount(): number {
-        return 12;
-    }
-
-    /**
-     * Gets the image collection of the given container
-     * @param container the container requesting the image collection
-     * @returns the container image collection
-     */
-    getImages(container: Container): ContainerImage {
-        const containerImages = this.#images.find((t) => t.id === container.id);
-
-        if (!containerImages) {
-            this.#images.push({
-                id: container.id,
-                images: [],
-            });
-
-            return this.getImages(container);
-        } else {
-            return containerImages;
-        }
     }
 
     /**
@@ -98,11 +63,39 @@ export class ImageDrawer implements IShapeDrawer {
             context.globalAlpha = opacity;
         }
 
-        context.drawImage(element, pos.x, pos.y, radius * 2, (radius * 2) / ratio);
+        context.drawImage(element, pos.x, pos.y, radius * 2, radius * 2 / ratio);
 
         if (!image?.data.svgData || !image?.replaceColor) {
             context.globalAlpha = 1;
         }
+    }
+
+    /**
+     * Gets the image collection of the given container
+     * @param container the container requesting the image collection
+     * @returns the container image collection
+     */
+    getImages(container: Container): ContainerImage {
+        const containerImages = this.#images.find((t) => t.id === container.id);
+
+        if (!containerImages) {
+            this.#images.push({
+                id: container.id,
+                images: [],
+            });
+
+            return this.getImages(container);
+        } else {
+            return containerImages;
+        }
+    }
+
+    /**
+     * Returning the side count for the image, defaults to 12 for using the inner circle as rendering
+     * When using non-transparent images this can be an issue with shadows
+     */
+    getSidesCount(): number {
+        return 12;
     }
 
     /**

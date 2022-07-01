@@ -18,8 +18,8 @@ import { itemFromArray } from "tsparticles-engine";
  * @category Absorbers Plugin
  */
 export class Absorbers implements IContainerPlugin {
-    array: AbsorberInstance[];
     absorbers: SingleOrMultiple<Absorber>;
+    array: AbsorberInstance[];
     interactivityAbsorbers: SingleOrMultiple<Absorber>;
 
     constructor(private readonly container: AbsorberContainer) {
@@ -27,13 +27,53 @@ export class Absorbers implements IContainerPlugin {
         this.absorbers = [];
         this.interactivityAbsorbers = [];
 
-        container.getAbsorber = (idxOrName?: number | string) =>
+        container.getAbsorber = (idxOrName?: number | string): AbsorberInstance | undefined =>
             idxOrName === undefined || typeof idxOrName === "number"
                 ? this.array[idxOrName || 0]
                 : this.array.find((t) => t.name === idxOrName);
 
-        container.addAbsorber = (options: RecursivePartial<IAbsorber>, position?: ICoordinates) =>
+        container.addAbsorber = (options: RecursivePartial<IAbsorber>, position?: ICoordinates): AbsorberInstance =>
             this.addAbsorber(options, position);
+    }
+
+    addAbsorber(options: RecursivePartial<IAbsorber>, position?: ICoordinates): AbsorberInstance {
+        const absorber = new AbsorberInstance(this, this.container, options, position);
+
+        this.array.push(absorber);
+
+        return absorber;
+    }
+
+    draw(context: CanvasRenderingContext2D): void {
+        for (const absorber of this.array) {
+            context.save();
+            absorber.draw(context);
+            context.restore();
+        }
+    }
+
+    handleClickMode(mode: string): void {
+        const absorberOptions = this.absorbers,
+            modeAbsorbers = this.interactivityAbsorbers;
+
+        if (mode === AbsorberClickMode.absorber) {
+            let absorbersModeOptions: IAbsorber | undefined;
+
+            if (modeAbsorbers instanceof Array) {
+                if (modeAbsorbers.length > 0) {
+                    absorbersModeOptions = itemFromArray(modeAbsorbers);
+                }
+            } else {
+                absorbersModeOptions = modeAbsorbers;
+            }
+
+            const absorbersOptions =
+                    absorbersModeOptions ??
+                    (absorberOptions instanceof Array ? itemFromArray(absorberOptions) : absorberOptions),
+                aPosition = this.container.interactivity.mouse.clickPosition;
+
+            this.addAbsorber(absorbersOptions, aPosition);
+        }
     }
 
     init(options?: RecursivePartial<IOptions & IAbsorberOptions>): void {
@@ -98,16 +138,12 @@ export class Absorbers implements IContainerPlugin {
         }
     }
 
-    draw(context: CanvasRenderingContext2D): void {
-        for (const absorber of this.array) {
-            context.save();
-            absorber.draw(context);
-            context.restore();
-        }
-    }
+    removeAbsorber(absorber: AbsorberInstance): void {
+        const index = this.array.indexOf(absorber);
 
-    stop(): void {
-        this.array = [];
+        if (index >= 0) {
+            this.array.splice(index, 1);
+        }
     }
 
     resize(): void {
@@ -116,43 +152,7 @@ export class Absorbers implements IContainerPlugin {
         }
     }
 
-    handleClickMode(mode: string): void {
-        const absorberOptions = this.absorbers,
-            modeAbsorbers = this.interactivityAbsorbers;
-
-        if (mode === AbsorberClickMode.absorber) {
-            let absorbersModeOptions: IAbsorber | undefined;
-
-            if (modeAbsorbers instanceof Array) {
-                if (modeAbsorbers.length > 0) {
-                    absorbersModeOptions = itemFromArray(modeAbsorbers);
-                }
-            } else {
-                absorbersModeOptions = modeAbsorbers;
-            }
-
-            const absorbersOptions =
-                    absorbersModeOptions ??
-                    (absorberOptions instanceof Array ? itemFromArray(absorberOptions) : absorberOptions),
-                aPosition = this.container.interactivity.mouse.clickPosition;
-
-            this.addAbsorber(absorbersOptions, aPosition);
-        }
-    }
-
-    addAbsorber(options: RecursivePartial<IAbsorber>, position?: ICoordinates): AbsorberInstance {
-        const absorber = new AbsorberInstance(this, this.container, options, position);
-
-        this.array.push(absorber);
-
-        return absorber;
-    }
-
-    removeAbsorber(absorber: AbsorberInstance): void {
-        const index = this.array.indexOf(absorber);
-
-        if (index >= 0) {
-            this.array.splice(index, 1);
-        }
+    stop(): void {
+        this.array = [];
     }
 }

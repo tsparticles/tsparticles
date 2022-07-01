@@ -11,7 +11,7 @@ export class Pauser extends ExternalInteractorBase {
     constructor(container: Container) {
         super(container);
 
-        this.handleClickMode = (mode) => {
+        this.handleClickMode = (mode): void => {
             if (mode !== ClickMode.pause) {
                 return;
             }
@@ -26,19 +26,23 @@ export class Pauser extends ExternalInteractorBase {
         };
     }
 
-    isEnabled(): boolean {
-        return true;
-    }
-
     clear(): void {
         // do nothing
     }
 
-    reset(): void {
+    init(): void {
         // do nothing
     }
 
     async interact(): Promise<void> {
+        // do nothing
+    }
+
+    isEnabled(): boolean {
+        return true;
+    }
+
+    reset(): void {
         // do nothing
     }
 }

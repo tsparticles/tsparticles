@@ -9,23 +9,6 @@ import { StartValueType } from "../../../../Enums/Types/StartValueType";
  * @category Options
  */
 export class SizeAnimation extends AnimationOptions implements ISizeAnimation, IOptionLoader<ISizeAnimation> {
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new minimumValue
-     */
-    get size_min(): number | undefined {
-        return this.minimumValue;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new minimumValue
-     * @param value
-     */
-    set size_min(value: number | undefined) {
-        this.minimumValue = value;
-    }
-
     destroy: DestroyType | keyof typeof DestroyType;
 
     /**
@@ -43,6 +26,23 @@ export class SizeAnimation extends AnimationOptions implements ISizeAnimation, I
         this.speed = 5;
         this.startValue = StartValueType.random;
         this.sync = false;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new minimumValue
+     */
+    get size_min(): number | undefined {
+        return this.minimumValue;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new minimumValue
+     * @param value
+     */
+    set size_min(value: number | undefined) {
+        this.minimumValue = value;
     }
 
     load(data?: RecursivePartial<ISizeAnimation>): void {

@@ -1,23 +1,21 @@
-import type { Container, IContainerPlugin, IRangeColor, IRgb, Particle, RangeValue } from "tsparticles-engine";
+import type { IContainerPlugin, IRangeColor, IRgb, Particle, RangeValue } from "tsparticles-engine";
 import { drawLinkLine, drawLinkTriangle } from "./Utils";
 import { getDistance, getLinkColor, getRangeValue, rangeColorToRgb } from "tsparticles-engine";
 import type { ILink } from "./ILink";
+import type { LinkContainer } from "./LinkContainer";
 import type { LinkParticle } from "./LinkParticle";
 
+interface ITwinkle {
+    lines: {
+        color: IRangeColor;
+        enable: boolean;
+        frequency: number;
+        opacity: RangeValue;
+    };
+}
+
 export class LinkInstance implements IContainerPlugin {
-    constructor(private readonly container: Container) {}
-
-    particleCreated(particle: Particle): void {
-        const linkParticle = particle as unknown as LinkParticle;
-
-        linkParticle.links = [];
-    }
-
-    particleDestroyed(particle: Particle): void {
-        const linkParticle = particle as unknown as LinkParticle;
-
-        linkParticle.links = [];
-    }
+    constructor(private readonly container: LinkContainer) {}
 
     drawParticle(context: CanvasRenderingContext2D, particle: Particle): void {
         const linkParticle = particle as unknown as LinkParticle,
@@ -70,6 +68,85 @@ export class LinkInstance implements IContainerPlugin {
         context.restore();
     }
 
+    particleCreated(particle: Particle): void {
+        const linkParticle = particle as unknown as LinkParticle;
+
+        linkParticle.links = [];
+    }
+
+    particleDestroyed(particle: Particle): void {
+        const linkParticle = particle as unknown as LinkParticle;
+
+        linkParticle.links = [];
+    }
+
+    private drawLinkLine(p1: LinkParticle, link: ILink): void {
+        const container = this.container,
+            options = container.actualOptions,
+            p2 = link.destination,
+            pos1 = p1.getPosition(),
+            pos2 = p2.getPosition();
+
+        let opacity = link.opacity;
+
+        container.canvas.draw((ctx) => {
+            let colorLine: IRgb | undefined;
+
+            /*
+             * particles connecting line color:
+             *
+             *  random: in blink mode : in every frame refresh the color would change
+             *          hence resulting blinking of lines
+             *  mid: in consent mode: sample particles color and get a mid level color
+             *                        from those two for the connecting line color
+             */
+            const twinkle = (p1.options.twinkle as ITwinkle)?.lines;
+
+            if (twinkle?.enable) {
+                const twinkleFreq = twinkle.frequency,
+                    twinkleRgb = rangeColorToRgb(twinkle.color),
+                    twinkling = Math.random() < twinkleFreq;
+
+                if (twinkling && twinkleRgb) {
+                    colorLine = twinkleRgb;
+                    opacity = getRangeValue(twinkle.opacity);
+                }
+            }
+
+            if (!colorLine) {
+                const linksOptions = p1.options.links,
+                    linkColor =
+                        linksOptions.id !== undefined
+                            ? container.particles.linksColors.get(linksOptions.id)
+                            : container.particles.linksColor;
+
+                colorLine = getLinkColor(p1, p2, linkColor);
+            }
+
+            if (!colorLine) {
+                return;
+            }
+
+            const width = p1.retina.linksWidth ?? container.retina.linksWidth,
+                maxDistance = p1.retina.linksDistance ?? container.retina.linksDistance;
+
+            drawLinkLine(
+                ctx,
+                width,
+                pos1,
+                pos2,
+                maxDistance,
+                container.canvas.size,
+                p1.options.links.warp,
+                options.backgroundMask.enable,
+                options.backgroundMask.composite,
+                colorLine,
+                opacity,
+                p1.options.links.shadow
+            );
+        });
+    }
+
     private drawLinkTriangle(p1: LinkParticle, link1: ILink, link2: ILink): void {
         const container = this.container,
             options = container.actualOptions,
@@ -120,83 +197,6 @@ export class LinkInstance implements IContainerPlugin {
                 options.backgroundMask.composite,
                 colorTriangle,
                 opacityTriangle
-            );
-        });
-    }
-
-    private drawLinkLine(p1: LinkParticle, link: ILink): void {
-        const container = this.container,
-            options = container.actualOptions,
-            p2 = link.destination,
-            pos1 = p1.getPosition(),
-            pos2 = p2.getPosition();
-
-        let opacity = link.opacity;
-
-        container.canvas.draw((ctx) => {
-            let colorLine: IRgb | undefined;
-
-            /*
-             * particles connecting line color:
-             *
-             *  random: in blink mode : in every frame refresh the color would change
-             *          hence resulting blinking of lines
-             *  mid: in consent mode: sample particles color and get a mid level color
-             *                        from those two for the connecting line color
-             */
-
-            const twinkle = (
-                p1.options.twinkle as {
-                    lines: {
-                        enable: boolean;
-                        frequency: number;
-                        color: IRangeColor;
-                        opacity: RangeValue;
-                    };
-                }
-            )?.lines;
-
-            if (twinkle?.enable) {
-                const twinkleFreq = twinkle.frequency,
-                    twinkleRgb = rangeColorToRgb(twinkle.color),
-                    twinkling = Math.random() < twinkleFreq;
-
-                if (twinkling && twinkleRgb) {
-                    colorLine = twinkleRgb;
-                    opacity = getRangeValue(twinkle.opacity);
-                }
-            }
-
-            if (!colorLine) {
-                const linksOptions = p1.options.links,
-                    linkColor =
-                        linksOptions.id !== undefined
-                            ? container.particles.linksColors.get(linksOptions.id)
-                            : container.particles.linksColor;
-
-                colorLine = getLinkColor(p1, p2, linkColor);
-            }
-
-            if (!colorLine) {
-                return;
-            }
-
-            const width = p1.retina.linksWidth ?? container.retina.linksWidth,
-                maxDistance = p1.retina.linksDistance ?? container.retina.linksDistance;
-
-            drawLinkLine(
-                ctx,
-                width,
-                pos1,
-                pos2,
-                maxDistance,
-                container.canvas.size,
-                p1.options.links.warp,
-                options.backgroundMask.enable,
-                options.backgroundMask.composite,
-                colorLine,
-                opacity,
-                p1.options.links.shadow
             );
         });
     }

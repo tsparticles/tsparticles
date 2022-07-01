@@ -6,8 +6,8 @@ import { setRangeValue } from "tsparticles-engine";
  * @category Emitters Plugin
  */
 export class EmitterRate implements IEmitterRate, IOptionLoader<IEmitterRate> {
-    quantity: RangeValue;
     delay: RangeValue;
+    quantity: RangeValue;
 
     constructor() {
         this.quantity = 1;

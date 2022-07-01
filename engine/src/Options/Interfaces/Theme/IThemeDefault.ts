@@ -16,7 +16,7 @@ export interface IThemeDefault {
      * `light`: Sets the default theme when the user has light mode set
      * If `dark` or `light` themes are set, the `any` default theme will be used only for unset modes
      */
-    mode: ThemeMode | keyof ThemeMode;
+    mode: ThemeMode | keyof typeof ThemeMode;
 
     /**
      * Sets or unsets the default flag to this theme and mode

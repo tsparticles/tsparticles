@@ -1,7 +1,8 @@
 import type { Container, IMove, IMoveTrail } from "tsparticles-engine";
-import { EditorGroup, EditorType } from "object-gui";
 import { MoveDirection, OutMode } from "tsparticles-engine";
 import { EditorBase } from "../../../../EditorBase";
+import type { EditorGroup } from "object-gui";
+import { EditorType } from "object-gui";
 
 export class MoveOptionsEditor extends EditorBase {
     group!: EditorGroup;
@@ -177,39 +178,6 @@ export class MoveOptionsEditor extends EditorBase {
         });
     }
 
-    private addTrail(): void {
-        const particles = this.particles;
-        const group = this.group.addGroup("trail", "Trail");
-        const options = group.data as IMoveTrail;
-        const color = typeof options.fillColor === "string" ? options.fillColor : options.fillColor?.value;
-
-        group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
-            await particles.refresh();
-        });
-
-        group.addProperty("fillColor", "Fill Color", EditorType.color, color, false).change(async (value: unknown) => {
-            if (typeof value === "string") {
-                if (typeof options.fillColor === "string") {
-                    options.fillColor = value;
-                } else {
-                    if (options.fillColor === undefined) {
-                        options.fillColor = {
-                            value: value,
-                        };
-                    } else {
-                        options.fillColor.value = value;
-                    }
-                }
-            }
-
-            await particles.refresh();
-        });
-
-        group.addProperty("length", "Length", EditorType.number).change(async () => {
-            await particles.refresh();
-        });
-    }
-
     private addProperties(): void {
         const particles = this.particles;
         const group = this.group;
@@ -278,6 +246,39 @@ export class MoveOptionsEditor extends EditorBase {
         });
 
         group.addProperty("warp", "Warp", EditorType.boolean).change(async () => {
+            await particles.refresh();
+        });
+    }
+
+    private addTrail(): void {
+        const particles = this.particles;
+        const group = this.group.addGroup("trail", "Trail");
+        const options = group.data as IMoveTrail;
+        const color = typeof options.fillColor === "string" ? options.fillColor : options.fillColor?.value;
+
+        group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
+            await particles.refresh();
+        });
+
+        group.addProperty("fillColor", "Fill Color", EditorType.color, color, false).change(async (value: unknown) => {
+            if (typeof value === "string") {
+                if (typeof options.fillColor === "string") {
+                    options.fillColor = value;
+                } else {
+                    if (options.fillColor === undefined) {
+                        options.fillColor = {
+                            value: value,
+                        };
+                    } else {
+                        options.fillColor.value = value;
+                    }
+                }
+            }
+
+            await particles.refresh();
+        });
+
+        group.addProperty("length", "Length", EditorType.number).change(async () => {
             await particles.refresh();
         });
     }

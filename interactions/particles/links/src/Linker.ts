@@ -1,6 +1,7 @@
 import { Circle, CircleWarp, ParticlesInteractorBase, getDistance, getLinkRandomColor } from "tsparticles-engine";
-import type { Container, ICoordinates, IDimension, IParticle, Particle } from "tsparticles-engine";
-import { LinkParticle } from "./LinkParticle";
+import type { ICoordinates, IDimension, IParticle, IRgb, Particle } from "tsparticles-engine";
+import type { LinkContainer } from "./LinkContainer";
+import type { LinkParticle } from "./LinkParticle";
 
 function getLinkDistance(
     pos1: ICoordinates,
@@ -48,20 +49,20 @@ function getLinkDistance(
 }
 
 export class Linker extends ParticlesInteractorBase {
-    constructor(container: Container) {
-        super(container);
-    }
+    linkContainer: LinkContainer;
 
-    isEnabled(particle: Particle): boolean {
-        return particle.options.links.enable;
+    constructor(container: LinkContainer) {
+        super(container);
+
+        this.linkContainer = container;
     }
 
     clear(): void {
         // do nothing
     }
 
-    reset(): void {
-        // do nothing
+    init(): void {
+        this.linkContainer.particles.linksColors = new Map<string, IRgb | string | undefined>();
     }
 
     async interact(p1: LinkParticle): Promise<void> {
@@ -123,8 +124,16 @@ export class Linker extends ParticlesInteractorBase {
         }
     }
 
+    isEnabled(particle: Particle): boolean {
+        return particle.options.links.enable;
+    }
+
+    reset(): void {
+        // do nothing
+    }
+
     private setColor(p1: IParticle): void {
-        const container = this.container,
+        const container = this.linkContainer,
             linksOptions = p1.options.links;
 
         let linkColor =

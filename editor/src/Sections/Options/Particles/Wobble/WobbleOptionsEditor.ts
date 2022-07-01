@@ -1,6 +1,7 @@
-import { EditorGroup, EditorType } from "object-gui";
 import type { Container } from "tsparticles-engine";
 import { EditorBase } from "../../../../EditorBase";
+import type { EditorGroup } from "object-gui";
+import { EditorType } from "object-gui";
 
 export class WobbleOptionsEditor extends EditorBase {
     group!: EditorGroup;
@@ -12,7 +13,7 @@ export class WobbleOptionsEditor extends EditorBase {
 
     addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("wobble", "Wobble");
-        this.options = this.group.data as unknown;
+        this.options = this.group.data;
 
         this.addProperties();
     }

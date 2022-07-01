@@ -1,17 +1,18 @@
-import { MoveDirection, MoveDirectionAlt } from "../../../../Enums/Directions/MoveDirection";
-import { OutMode, OutModeAlt } from "../../../../Enums/Modes/OutMode";
+import type { OutMode, OutModeAlt } from "../../../../Enums/Modes/OutMode";
 import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
-import { IDistance } from "../../../../Core/Interfaces/IDistance";
+import type { IDistance } from "../../../../Core/Interfaces/IDistance";
 import type { IMove } from "../../../Interfaces/Particles/Move/IMove";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { MoveAngle } from "./MoveAngle";
 import { MoveAttract } from "./MoveAttract";
+import { MoveDirection } from "../../../../Enums/Directions/MoveDirection";
+import type { MoveDirectionAlt } from "../../../../Enums/Directions/MoveDirection";
 import { MoveGravity } from "./MoveGravity";
 import { MovePath } from "./Path/MovePath";
 import { MoveTrail } from "./MoveTrail";
 import { OutModes } from "./OutModes";
-import { RangeValue } from "../../../../Types/RangeValue";
-import { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { RangeValue } from "../../../../Types/RangeValue";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { Spin } from "./Spin";
 import { deepExtend } from "../../../../Utils/Utils";
 import { setRangeValue } from "../../../../Utils/NumberUtils";
@@ -21,95 +22,17 @@ import { setRangeValue } from "../../../../Utils/NumberUtils";
  * @category Options
  */
 export class Move implements IMove, IOptionLoader<IMove> {
-    /**
-     * @deprecated this property is obsolete, please use the new collisions object on particles options
-     */
-    get collisions(): boolean {
-        return false;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new collisions object on particles options
-     * @param value
-     */
-    set collisions(value: boolean) {
-        // deprecated
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new collisions object on particles options
-     */
-    get bounce(): boolean {
-        return this.collisions;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new collisions object on particles options
-     * @param value
-     */
-    set bounce(value: boolean) {
-        this.collisions = value;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new outMode
-     */
-    get out_mode(): OutMode | keyof typeof OutMode | OutModeAlt {
-        return this.outMode;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new outMode
-     * @param value
-     */
-    set out_mode(value: OutMode | keyof typeof OutMode | OutModeAlt) {
-        this.outMode = value;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new outMode
-     */
-    get outMode(): OutMode | keyof typeof OutMode | OutModeAlt {
-        return this.outModes.default;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new outMode
-     * @param value
-     */
-    set outMode(value: OutMode | keyof typeof OutMode | OutModeAlt) {
-        this.outModes.default = value;
-    }
-
-    /**
-     * @deprecated use the new [[path]] property instead
-     */
-    get noise(): MovePath {
-        return this.path;
-    }
-
-    /**
-     * @deprecated use the new [[path]] property instead
-     */
-    set noise(value: MovePath) {
-        this.path = value;
-    }
-
     angle;
     attract;
     center: ICoordinates & { radius: number };
+    decay;
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
     distance: Partial<IDistance>;
-    decay;
     drift: RangeValue;
     enable;
     gravity;
-    path;
     outModes: OutModes;
+    path;
     random;
     size;
     speed: RangeValue;
@@ -143,6 +66,84 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.trail = new MoveTrail();
         this.vibrate = false;
         this.warp = false;
+    }
+
+    /**
+     * @deprecated this property is obsolete, please use the new collisions object on particles options
+     */
+    get bounce(): boolean {
+        return this.collisions;
+    }
+
+    /**
+     * @deprecated this property is obsolete, please use the new collisions object on particles options
+     * @param value
+     */
+    set bounce(value: boolean) {
+        this.collisions = value;
+    }
+
+    /**
+     * @deprecated this property is obsolete, please use the new collisions object on particles options
+     */
+    get collisions(): boolean {
+        return false;
+    }
+
+    /**
+     * @deprecated this property is obsolete, please use the new collisions object on particles options
+     * @param value
+     */
+    set collisions(value: boolean) {
+        // deprecated
+    }
+
+    /**
+     * @deprecated use the new [[path]] property instead
+     */
+    get noise(): MovePath {
+        return this.path;
+    }
+
+    /**
+     * @deprecated use the new [[path]] property instead
+     */
+    set noise(value: MovePath) {
+        this.path = value;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new outMode
+     */
+    get outMode(): OutMode | keyof typeof OutMode | OutModeAlt {
+        return this.outModes.default;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new outMode
+     * @param value
+     */
+    set outMode(value: OutMode | keyof typeof OutMode | OutModeAlt) {
+        this.outModes.default = value;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new outMode
+     */
+    get out_mode(): OutMode | keyof typeof OutMode | OutModeAlt {
+        return this.outMode;
+    }
+
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new outMode
+     * @param value
+     */
+    set out_mode(value: OutMode | keyof typeof OutMode | OutModeAlt) {
+        this.outMode = value;
     }
 
     load(data?: RecursivePartial<IMove>): void {
@@ -193,7 +194,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
         const outMode = data.outMode ?? data.out_mode;
 
         if (data.outModes !== undefined || outMode !== undefined) {
-            if (typeof data.outModes === "string" || (data.outModes === undefined && outMode !== undefined)) {
+            if (typeof data.outModes === "string" || data.outModes === undefined && outMode !== undefined) {
                 this.outModes.load({
                     default: data.outModes ?? outMode,
                 });

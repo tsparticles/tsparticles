@@ -6,9 +6,9 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
  */
 export interface IBubbleBase {
     color?: SingleOrMultiple<string | IOptionsColor>;
-    mix: boolean;
     distance: number;
     duration: number;
+    mix: boolean;
     opacity?: number;
     size?: number;
 }

@@ -20,22 +20,6 @@ export class Infecter {
         particle.infection.delayStage = stage;
     }
 
-    updateInfectionStage(particle: InfectableParticle, stage: number): void {
-        const options = this.container.actualOptions as unknown as IInfectionOptions,
-            stagesCount = options.infection.stages.length;
-
-        if (
-            stage > stagesCount ||
-            stage < 0 ||
-            (particle.infection.stage !== undefined && particle.infection.stage > stage)
-        ) {
-            return;
-        }
-
-        particle.infection.stage = stage;
-        particle.infection.time = 0;
-    }
-
     updateInfection(particle: InfectableParticle, delta: number): void {
         const options = this.container.actualOptions as unknown as IInfectionOptions,
             infection = options.infection,
@@ -79,6 +63,22 @@ export class Infecter {
             delete particle.infection.stage;
             delete particle.infection.time;
         }
+    }
+
+    updateInfectionStage(particle: InfectableParticle, stage: number): void {
+        const options = this.container.actualOptions as unknown as IInfectionOptions,
+            stagesCount = options.infection.stages.length;
+
+        if (
+            stage > stagesCount ||
+            stage < 0 ||
+            particle.infection.stage !== undefined && particle.infection.stage > stage
+        ) {
+            return;
+        }
+
+        particle.infection.stage = stage;
+        particle.infection.time = 0;
     }
 
     private nextInfectionStage(particle: InfectableParticle): void {

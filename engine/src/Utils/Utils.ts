@@ -1,38 +1,30 @@
 import { collisionVelocity, getDistances, getValue } from "./NumberUtils";
-import type { Container } from "../Core/Container";
-import { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
-import { DivMode } from "../Enums/Modes/DivMode";
-import type { Engine } from "../engine";
+import type { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
+import type { DivMode } from "../Enums/Modes/DivMode";
 import type { IBounds } from "../Core/Interfaces/IBounds";
 import type { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
-import type { IOptionLoader } from "../Options/Interfaces/IOptionLoader";
-import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { IParticle } from "../Core/Interfaces/IParticle";
-import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions";
 import type { IRangeValue } from "../Core/Interfaces/IRangeValue";
 import type { IRectSideResult } from "../Core/Interfaces/IRectSideResult";
-import { Options } from "../Options/Classes/Options";
 import { OutModeDirection } from "../Enums/Directions/OutModeDirection";
-import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
-import type { RecursivePartial } from "../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
 import { Vector } from "../Core/Utils/Vector";
 
 declare global {
     interface Window {
-        customRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        mozRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        oRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        msRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        webkitRequestAnimationFrame: (callback: FrameRequestCallback) => number;
         customCancelRequestAnimationFrame: (handle: number) => void;
-        webkitCancelRequestAnimationFrame: (handle: number) => void;
+        customRequestAnimationFrame: (callback: FrameRequestCallback) => number;
         mozCancelRequestAnimationFrame: (handle: number) => void;
-        oCancelRequestAnimationFrame: (handle: number) => void;
+        mozRequestAnimationFrame: (callback: FrameRequestCallback) => number;
         msCancelRequestAnimationFrame: (handle: number) => void;
+        msRequestAnimationFrame: (callback: FrameRequestCallback) => number;
+        oCancelRequestAnimationFrame: (handle: number) => void;
+        oRequestAnimationFrame: (callback: FrameRequestCallback) => number;
+        webkitCancelRequestAnimationFrame: (handle: number) => void;
+        webkitRequestAnimationFrame: (callback: FrameRequestCallback) => number;
     }
 }
 
@@ -66,8 +58,8 @@ function rectSideBounce(
     }
 
     if (
-        (pSide.max >= rectSide.min && pSide.max <= (rectSide.max + rectSide.min) / 2 && velocity > 0) ||
-        (pSide.min <= rectSide.max && pSide.min > (rectSide.max + rectSide.min) / 2 && velocity < 0)
+        pSide.max >= rectSide.min && pSide.max <= (rectSide.max + rectSide.min) / 2 && velocity > 0 ||
+        pSide.min <= rectSide.max && pSide.min > (rectSide.max + rectSide.min) / 2 && velocity < 0
     ) {
         res.velocity = velocity * -factor;
         res.bounced = true;
@@ -144,7 +136,7 @@ export function cancelAnimation(): (handle: number) => void {
  * @returns true if the value is equal to the destination, if same type, or is in the provided array
  */
 export function isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
-    return value === array || (array instanceof Array && array.indexOf(value) > -1);
+    return value === array || array instanceof Array && array.indexOf(value) > -1;
 }
 
 /**
@@ -487,34 +479,4 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
             particle.position.y = resV.position;
         }
     }
-}
-
-function loadOptions<T>(options: IOptionLoader<T>, ...sourceOptionsArr: RecursivePartial<T | undefined>[]): void {
-    for (const sourceOptions of sourceOptionsArr) {
-        options.load(sourceOptions);
-    }
-}
-
-export function loadContainerOptions(
-    engine: Engine,
-    container: Container,
-    ...sourceOptionsArr: RecursivePartial<IOptions | undefined>[]
-): Options {
-    const options = new Options(engine, container);
-
-    loadOptions(options, ...sourceOptionsArr);
-
-    return options;
-}
-
-export function loadParticlesOptions(
-    engine: Engine,
-    container: Container,
-    ...sourceOptionsArr: RecursivePartial<IParticlesOptions | undefined>[]
-): ParticlesOptions {
-    const options = new ParticlesOptions(engine, container);
-
-    loadOptions(options, ...sourceOptionsArr);
-
-    return options;
 }

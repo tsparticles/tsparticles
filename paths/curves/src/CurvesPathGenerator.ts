@@ -1,7 +1,7 @@
 import type { Container, IMovePathGenerator } from "tsparticles-engine";
 import { CurvesPathGen } from "./Curves";
 import type { CurvesPathParticle } from "./CurvesPathParticle";
-import { ICurvesOptions } from "./ICurvesOptions";
+import type { ICurvesOptions } from "./ICurvesOptions";
 import { Vector } from "tsparticles-engine";
 
 declare global {
@@ -61,7 +61,7 @@ export class CurvesPathGenerator implements IMovePathGenerator {
             this.options.rndFunc = sourceOptions.rndFunc as () => number;
         } else if (typeof sourceOptions.rndFunc === "string") {
             this.options.rndFunc =
-                (window[sourceOptions.rndFunc] as unknown as (() => number) | null | undefined) || this.options.rndFunc;
+                (window[sourceOptions.rndFunc] as (() => number) | null | undefined) || this.options.rndFunc;
         }
 
         this.options.period = (sourceOptions.period as number) ?? this.options.period;

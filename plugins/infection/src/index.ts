@@ -2,7 +2,7 @@ import type { Container, Engine, IPlugin, RecursivePartial } from "tsparticles-e
 import type { IInfectionOptions } from "./Options/Interfaces/IInfectionOptions";
 import { Infection } from "./Options/Classes/Infection";
 import { InfectionInstance } from "./InfectionInstance";
-import { Options } from "tsparticles-engine";
+import type { Options } from "tsparticles-engine";
 import { ParticlesInfecter } from "./ParticlesInfecter";
 
 /**
@@ -19,10 +19,6 @@ class Plugin implements IPlugin {
         return new InfectionInstance(container);
     }
 
-    needsPlugin(options?: RecursivePartial<IInfectionOptions>): boolean {
-        return options?.infection?.enable ?? false;
-    }
-
     loadOptions(options: Options, source?: RecursivePartial<IInfectionOptions>): void {
         if (!this.needsPlugin(source)) {
             return;
@@ -36,6 +32,10 @@ class Plugin implements IPlugin {
         }
 
         infectionOptions.load(source?.infection);
+    }
+
+    needsPlugin(options?: RecursivePartial<IInfectionOptions>): boolean {
+        return options?.infection?.enable ?? false;
     }
 }
 

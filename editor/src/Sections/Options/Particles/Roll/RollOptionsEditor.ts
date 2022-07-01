@@ -1,6 +1,7 @@
-import { EditorGroup, EditorType } from "object-gui";
 import type { Container } from "tsparticles-engine";
 import { EditorBase } from "../../../../EditorBase";
+import type { EditorGroup } from "object-gui";
+import { EditorType } from "object-gui";
 
 export class RollOptionsEditor extends EditorBase {
     group!: EditorGroup;
@@ -12,14 +13,14 @@ export class RollOptionsEditor extends EditorBase {
 
     addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("roll", "Roll");
-        this.options = this.group.data as unknown;
+        this.options = this.group.data;
 
         this.addDarken();
         this.addEnlighten();
         this.addProperties();
     }
 
-    private addDarken() {
+    private addDarken(): void {
         const particles = this.particles;
         const group = this.group.addGroup("darken", "Darken");
 
@@ -32,7 +33,7 @@ export class RollOptionsEditor extends EditorBase {
         });
     }
 
-    private addEnlighten() {
+    private addEnlighten(): void {
         const particles = this.particles;
         const group = this.group.addGroup("enlighten", "Enlighten");
 

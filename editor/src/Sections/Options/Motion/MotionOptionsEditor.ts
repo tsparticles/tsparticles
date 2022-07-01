@@ -1,6 +1,7 @@
 import type { Container, IMotion } from "tsparticles-engine";
-import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../EditorBase";
+import type { EditorGroup } from "object-gui";
+import { EditorType } from "object-gui";
 
 export class MotionOptionsEditor extends EditorBase {
     private group!: EditorGroup;
@@ -18,6 +19,14 @@ export class MotionOptionsEditor extends EditorBase {
         this.addProperties();
     }
 
+    private addProperties(): void {
+        const particles = this.particles;
+
+        this.group.addProperty("disable", "Disable", EditorType.boolean).change(async () => {
+            await particles.refresh();
+        });
+    }
+
     private addReduce(): void {
         const particles = this.particles;
         const coverGroup = this.group.addGroup("reduce", "Reduce");
@@ -30,14 +39,6 @@ export class MotionOptionsEditor extends EditorBase {
             .step(1);
 
         coverGroup.addProperty("value", "Value", EditorType.boolean).change(async () => {
-            await particles.refresh();
-        });
-    }
-
-    private addProperties(): void {
-        const particles = this.particles;
-
-        this.group.addProperty("disable", "Disable", EditorType.boolean).change(async () => {
             await particles.refresh();
         });
     }

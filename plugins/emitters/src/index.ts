@@ -2,10 +2,10 @@ import type { IOptions, IPlugin, Options, RecursivePartial } from "tsparticles-e
 import { CircleShape } from "./Shapes/Circle/CircleShape";
 import { Emitter } from "./Options/Classes/Emitter";
 import { EmitterClickMode } from "./Enums/EmitterClickMode";
-import { EmitterContainer } from "./EmitterContainer";
+import type { EmitterContainer } from "./EmitterContainer";
 import { EmitterShapeType } from "./Enums/EmitterShapeType";
 import { Emitters } from "./Emitters";
-import { EmittersEngine } from "./EmittersEngine";
+import type { EmittersEngine } from "./EmittersEngine";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
 import type { IEmitterModeOptions } from "./Options/Interfaces/IEmitterModeOptions";
 import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
@@ -18,9 +18,8 @@ import { isInArray } from "tsparticles-engine";
  * @category Emitters Plugin
  */
 class EmittersPlugin implements IPlugin {
-    readonly id;
-
     readonly #engine;
+    readonly id;
 
     constructor(engine: EmittersEngine) {
         this.#engine = engine;
@@ -29,21 +28,6 @@ class EmittersPlugin implements IPlugin {
 
     getPlugin(container: EmitterContainer): Emitters {
         return new Emitters(this.#engine, container);
-    }
-
-    needsPlugin(options?: RecursivePartial<IOptions & IEmitterOptions>): boolean {
-        if (!options) {
-            return false;
-        }
-
-        const emitters = options.emitters;
-
-        return (
-            (emitters instanceof Array && !!emitters.length) ||
-            emitters !== undefined ||
-            (!!options.interactivity?.events?.onClick?.mode &&
-                isInArray(EmitterClickMode.emitter, options.interactivity.events.onClick.mode))
-        );
     }
 
     loadOptions(options: Options, source?: RecursivePartial<IOptions & IEmitterOptions>): void {
@@ -122,18 +106,33 @@ class EmittersPlugin implements IPlugin {
                         };
                     }
                 } else {
-                    const emitterOptions = (optionsCast.interactivity.modes.emitters = {
+                    const emitterOptions = optionsCast.interactivity.modes.emitters = {
                         random: {
                             count: 1,
                             enable: false,
                         },
                         value: new Emitter(),
-                    });
+                    };
 
                     emitterOptions.value.load(interactivityEmitters as IEmitter);
                 }
             }
         }
+    }
+
+    needsPlugin(options?: RecursivePartial<IOptions & IEmitterOptions>): boolean {
+        if (!options) {
+            return false;
+        }
+
+        const emitters = options.emitters;
+
+        return (
+            emitters instanceof Array && !!emitters.length ||
+            emitters !== undefined ||
+            !!options.interactivity?.events?.onClick?.mode &&
+                isInArray(EmitterClickMode.emitter, options.interactivity.events.onClick.mode)
+        );
     }
 }
 
@@ -161,4 +160,4 @@ export * from "./EmittersEngine";
 export * from "./Enums/EmitterClickMode";
 export * from "./Enums/EmitterShapeType";
 export * from "./Options/Interfaces/IEmitterOptions";
-export { IEmitterModeOptions } from "./Options/Interfaces/IEmitterModeOptions";
+export type { IEmitterModeOptions } from "./Options/Interfaces/IEmitterModeOptions";

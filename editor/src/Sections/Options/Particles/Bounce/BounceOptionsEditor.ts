@@ -1,6 +1,7 @@
 import type { Container, IParticlesBounce } from "tsparticles-engine";
-import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
+import type { EditorGroup } from "object-gui";
+import { EditorType } from "object-gui";
 
 export class BounceOptionsEditor extends EditorBase {
     group!: EditorGroup;
@@ -15,11 +16,6 @@ export class BounceOptionsEditor extends EditorBase {
         this.options = this.group.data as IParticlesBounce;
 
         this.addFactors();
-    }
-
-    private addFactors(): void {
-        this.addFactor("horizontal", "Horizontal");
-        this.addFactor("vertical", "Vertical");
     }
 
     private addFactor(name: string, title: string): void {
@@ -39,5 +35,10 @@ export class BounceOptionsEditor extends EditorBase {
         group.addProperty("value", "Value", EditorType.number).change(async () => {
             await particles.refresh();
         });
+    }
+
+    private addFactors(): void {
+        this.addFactor("horizontal", "Horizontal");
+        this.addFactor("vertical", "Vertical");
     }
 }

@@ -51,7 +51,7 @@ export class AngleUpdater implements IParticleUpdater {
 
         particle.rotate = {
             enable: rotateOptions.animation.enable,
-            value: (getRangeValue(rotateOptions.value) * Math.PI) / 180,
+            value: getRangeValue(rotateOptions.value) * Math.PI / 180,
         };
 
         let rotateDirection = rotateOptions.direction;
@@ -77,7 +77,7 @@ export class AngleUpdater implements IParticleUpdater {
         if (rotateAnimation.enable) {
             particle.rotate.decay = 1 - getRangeValue(rotateAnimation.decay);
             particle.rotate.velocity =
-                (getRangeValue(rotateAnimation.speed) / 360) * this.container.retina.reduceFactor;
+                getRangeValue(rotateAnimation.speed) / 360 * this.container.retina.reduceFactor;
 
             if (!rotateAnimation.sync) {
                 particle.rotate.velocity *= Math.random();

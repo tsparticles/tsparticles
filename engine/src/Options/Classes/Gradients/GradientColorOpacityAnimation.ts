@@ -9,11 +9,11 @@ export class GradientColorOpacityAnimation
     implements IGradientColorOpacityAnimation, IOptionLoader<IGradientColorOpacityAnimation>
 {
     count: RangeValue;
+    decay: RangeValue;
     enable;
     speed: RangeValue;
-    decay: RangeValue;
-    sync;
     startValue: StartValueType | keyof typeof StartValueType;
+    sync;
 
     constructor() {
         this.count = 0;

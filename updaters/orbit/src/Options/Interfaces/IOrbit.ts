@@ -12,8 +12,8 @@ export interface IOrbit extends IAnimatable<IAnimation> {
      */
     enable: boolean;
 
+    opacity: RangeValue;
     radius?: RangeValue;
     rotation: IValueWithRandom;
-    opacity: RangeValue;
     width: RangeValue;
 }

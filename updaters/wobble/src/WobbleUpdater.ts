@@ -50,7 +50,7 @@ function updateWobble(particle: WobbleParticle, delta: IDelta): void {
 
     const angleSpeed = particle.wobble.angleSpeed * delta.factor,
         moveSpeed = particle.wobble.moveSpeed * delta.factor,
-        distance = (moveSpeed * ((particle.retina.wobbleDistance ?? 0) * delta.factor)) / (1000 / 60),
+        distance = moveSpeed * ((particle.retina.wobbleDistance ?? 0) * delta.factor) / (1000 / 60),
         max = 2 * Math.PI;
 
     particle.wobble.angle += angleSpeed;
@@ -105,19 +105,6 @@ export class WobbleUpdater implements IParticleUpdater {
         return !particle.destroyed && !particle.spawning && !!particle.options.wobble?.enable;
     }
 
-    /**
-     * Updates the particle wobble animation
-     * @param particle the particle to update
-     * @param delta this variable contains the delta between the current frame and the previous frame
-     */
-    update(particle: WobbleParticle, delta: IDelta): void {
-        if (!this.isEnabled(particle)) {
-            return;
-        }
-
-        updateWobble(particle, delta);
-    }
-
     loadOptions(
         options: WobbleParticlesOptions,
         ...sources: (RecursivePartial<IWobbleParticlesOptions> | undefined)[]
@@ -133,5 +120,18 @@ export class WobbleUpdater implements IParticleUpdater {
 
             options.wobble.load(source.wobble);
         }
+    }
+
+    /**
+     * Updates the particle wobble animation
+     * @param particle the particle to update
+     * @param delta this variable contains the delta between the current frame and the previous frame
+     */
+    update(particle: WobbleParticle, delta: IDelta): void {
+        if (!this.isEnabled(particle)) {
+            return;
+        }
+
+        updateWobble(particle, delta);
     }
 }

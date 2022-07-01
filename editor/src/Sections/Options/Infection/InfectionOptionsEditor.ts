@@ -1,7 +1,8 @@
-import { EditorGroup, EditorType } from "object-gui";
 import type { IInfection, IInfectionStage } from "tsparticles-plugin-infection";
 import type { Container } from "tsparticles-engine";
 import { EditorBase } from "../../../EditorBase";
+import type { EditorGroup } from "object-gui";
+import { EditorType } from "object-gui";
 
 export class InfectionOptionsEditor extends EditorBase {
     group!: EditorGroup;
@@ -19,7 +20,7 @@ export class InfectionOptionsEditor extends EditorBase {
         this.addProperties();
     }
 
-    private addProperties() {
+    private addProperties(): void {
         const particles = this.particles;
 
         this.group.addProperty("cure", "Cure", EditorType.boolean).change(async () => {
@@ -39,23 +40,7 @@ export class InfectionOptionsEditor extends EditorBase {
         });
     }
 
-    private addStages() {
-        const particles = this.particles;
-        const options = this.options;
-        const stagesGroup = this.group.addGroup("stages", "Stages");
-
-        for (let i = 0; i < options.stages.length; i++) {
-            this.addStage(stagesGroup, options.stages, i + 1);
-        }
-
-        stagesGroup.addButton("addStage", "Add Stage", false).click(async () => {
-            this.addStage(stagesGroup, options.stages, options.stages.length);
-
-            await particles.refresh();
-        });
-    }
-
-    private addStage(parent: EditorGroup, stages: IInfectionStage[], index: number) {
+    private addStage(parent: EditorGroup, stages: IInfectionStage[], index: number): void {
         const particles = this.particles;
         const stageGroup = parent.addGroup(index.toString(10), `Stage ${index}`, true, stages);
         const stage = stageGroup.data as IInfectionStage;
@@ -89,6 +74,22 @@ export class InfectionOptionsEditor extends EditorBase {
         });
 
         stageGroup.addProperty("rate", "Rate", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
+    }
+
+    private addStages(): void {
+        const particles = this.particles;
+        const options = this.options;
+        const stagesGroup = this.group.addGroup("stages", "Stages");
+
+        for (let i = 0; i < options.stages.length; i++) {
+            this.addStage(stagesGroup, options.stages, i + 1);
+        }
+
+        stagesGroup.addButton("addStage", "Add Stage", false).click(async () => {
+            this.addStage(stagesGroup, options.stages, options.stages.length);
+
             await particles.refresh();
         });
     }

@@ -1,7 +1,8 @@
 import type { Container, IOpacity } from "tsparticles-engine";
 import { DestroyType, StartValueType } from "tsparticles-engine";
-import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
+import type { EditorGroup } from "object-gui";
+import { EditorType } from "object-gui";
 
 export class OpacityOptionsEditor extends EditorBase {
     group!: EditorGroup;
@@ -83,19 +84,6 @@ export class OpacityOptionsEditor extends EditorBase {
         });
     }
 
-    private addRandom(): void {
-        const particles = this.particles;
-        const group = this.group.addGroup("random", "Random");
-
-        group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
-            await particles.refresh();
-        });
-
-        group.addProperty("minimumValue", "Minimum Value", EditorType.number).change(async () => {
-            await particles.refresh();
-        });
-    }
-
     private addProperties(): void {
         const particles = this.particles;
 
@@ -107,5 +95,18 @@ export class OpacityOptionsEditor extends EditorBase {
             .min(0)
             .max(1)
             .step(0.01);
+    }
+
+    private addRandom(): void {
+        const particles = this.particles;
+        const group = this.group.addGroup("random", "Random");
+
+        group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
+            await particles.refresh();
+        });
+
+        group.addProperty("minimumValue", "Minimum Value", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
     }
 }

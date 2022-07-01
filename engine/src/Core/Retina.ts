@@ -7,22 +7,22 @@ import { isSsr } from "../Utils/Utils";
  * @category Core
  */
 export class Retina {
-    reduceFactor!: number;
+    attractDistance!: number;
+    attractModeDistance!: number;
+    bounceModeDistance!: number;
     bubbleModeDistance!: number;
     bubbleModeSize?: number;
     connectModeDistance!: number;
     connectModeRadius!: number;
     grabModeDistance!: number;
-    repulseModeDistance!: number;
-    attractModeDistance!: number;
-    attractDistance!: number;
-    slowModeRadius!: number;
     linksDistance!: number;
     linksWidth!: number;
-    sizeAnimationSpeed!: number;
-    pixelRatio!: number;
-    bounceModeDistance!: number;
     maxSpeed!: number;
+    pixelRatio!: number;
+    reduceFactor!: number;
+    repulseModeDistance!: number;
+    sizeAnimationSpeed!: number;
+    slowModeRadius!: number;
 
     constructor(private readonly container: Container) {}
 

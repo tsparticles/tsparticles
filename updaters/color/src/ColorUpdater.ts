@@ -88,9 +88,9 @@ export class ColorUpdater implements IParticleUpdater {
         return (
             !particle.destroyed &&
             !particle.spawning &&
-            ((particle.color?.h.value !== undefined && animationOptions.h.enable) ||
-                (particle.color?.s.value !== undefined && animationOptions.s.enable) ||
-                (particle.color?.l.value !== undefined && animationOptions.l.enable))
+            (particle.color?.h.value !== undefined && animationOptions.h.enable ||
+                particle.color?.s.value !== undefined && animationOptions.s.enable ||
+                particle.color?.l.value !== undefined && animationOptions.l.enable)
         );
     }
 

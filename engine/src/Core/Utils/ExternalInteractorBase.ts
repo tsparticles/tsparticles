@@ -9,6 +9,11 @@ import type { Particle } from "../Particle";
  */
 export abstract class ExternalInteractorBase implements IExternalInteractor {
     /**
+     * External Interactivity type
+     */
+    type: InteractorType = InteractorType.External;
+
+    /**
      * Constructor of external interactivity manager
      * @param container the parent container
      * @protected
@@ -16,9 +21,15 @@ export abstract class ExternalInteractorBase implements IExternalInteractor {
     protected constructor(protected readonly container: Container) {}
 
     /**
-     * External Interactivity type
+     * Before interaction clear
+     * @param particle the particle to clear
      */
-    type: InteractorType = InteractorType.External;
+    abstract clear(particle: Particle): void;
+
+    /**
+     * Initializes the interactivity manager
+     */
+    abstract init(): void;
 
     /**
      * Interaction handler
@@ -32,12 +43,6 @@ export abstract class ExternalInteractorBase implements IExternalInteractor {
      * @returns true or false, checking if the options enable this interaction manager
      */
     abstract isEnabled(particle?: Particle): boolean;
-
-    /**
-     * Before interaction clear
-     * @param particle the particle to clear
-     */
-    abstract clear(particle: Particle): void;
 
     /**
      * Before interaction reset

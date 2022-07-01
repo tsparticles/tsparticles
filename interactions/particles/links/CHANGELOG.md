@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-particles-links@2.1.2...tsparticles-interaction-particles-links@2.1.3) (2022-07-01)
+
+
+### Bug Fixes
+
+* fix linker plugin issue ([b9505e2](https://github.com/matteobruni/tsparticles/commit/b9505e2453e893a0a30fd483595de412c70dda3c))
+
+
+
+
+
+## [2.1.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-particles-links@2.1.1...tsparticles-interaction-particles-links@2.1.2) (2022-07-01)
+
+
+### Bug Fixes
+
+* fix linker plugin issue ([54ed421](https://github.com/matteobruni/tsparticles/commit/54ed42199d555162dc2c4e496f6ce5a8d53bb1e8))
+
+
+
+
+
+## [2.1.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-particles-links@2.1.0...tsparticles-interaction-particles-links@2.1.1) (2022-07-01)
+
+**Note:** Version bump only for package tsparticles-interaction-particles-links
+
+
+
+
+
 # [2.1.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-particles-links@2.0.6...tsparticles-interaction-particles-links@2.1.0) (2022-06-18)
 
 

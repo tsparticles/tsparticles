@@ -8,6 +8,6 @@ export interface IMovePath {
     clamp: boolean;
     delay: IValueWithRandom;
     enable: boolean;
-    options: PathOptions;
     generator?: string;
+    options: PathOptions;
 }

@@ -1,17 +1,27 @@
-import {
-    AnimationStatus,
+import { AnimationStatus, getRangeValue } from "tsparticles-engine";
+import type {
+    Container,
+    IDelta,
+    IParticleTransformValues,
+    IParticleUpdater,
+    IParticleValueAnimation,
     IParticlesOptions,
+    Particle,
     ParticlesOptions,
     RecursivePartial,
-    getRangeValue,
 } from "tsparticles-engine";
-import type { Container, IDelta, IParticleUpdater, Particle } from "tsparticles-engine";
-import { ITilt } from "./Options/Interfaces/ITilt";
+import type { ITilt } from "./Options/Interfaces/ITilt";
 import { Tilt } from "./Options/Classes/Tilt";
 import { TiltDirection } from "./TiltDirection";
 
+export interface IParticleTiltValueAnimation extends IParticleValueAnimation<number> {
+    cosDirection: number;
+    sinDirection: number;
+}
+
 type TiltParticle = Particle & {
     options: TiltParticlesOptions;
+    tilt?: IParticleTiltValueAnimation;
 };
 
 type ITiltParticlesOptions = IParticlesOptions & {
@@ -65,6 +75,15 @@ function updateTilt(particle: TiltParticle, delta: IDelta): void {
 export class TiltUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
 
+    getTransformValues(particle: TiltParticle): IParticleTransformValues {
+        const tilt = particle.tilt?.enable && particle.tilt;
+
+        return {
+            b: tilt ? Math.cos(tilt.value) * tilt.cosDirection : undefined,
+            c: tilt ? Math.sin(tilt.value) * tilt.sinDirection : undefined,
+        };
+    }
+
     init(particle: TiltParticle): void {
         const tiltOptions = particle.options.tilt;
 
@@ -74,7 +93,7 @@ export class TiltUpdater implements IParticleUpdater {
 
         particle.tilt = {
             enable: tiltOptions.enable,
-            value: (getRangeValue(tiltOptions.value) * Math.PI) / 180,
+            value: getRangeValue(tiltOptions.value) * Math.PI / 180,
             sinDirection: Math.random() >= 0.5 ? 1 : -1,
             cosDirection: Math.random() >= 0.5 ? 1 : -1,
         };
@@ -101,7 +120,7 @@ export class TiltUpdater implements IParticleUpdater {
 
         if (tiltAnimation?.enable) {
             particle.tilt.decay = 1 - getRangeValue(tiltAnimation.decay);
-            particle.tilt.velocity = (getRangeValue(tiltAnimation.speed) / 360) * this.container.retina.reduceFactor;
+            particle.tilt.velocity = getRangeValue(tiltAnimation.speed) / 360 * this.container.retina.reduceFactor;
 
             if (!tiltAnimation.sync) {
                 particle.tilt.velocity *= Math.random();
@@ -113,14 +132,6 @@ export class TiltUpdater implements IParticleUpdater {
         const tiltAnimation = particle.options.tilt?.animation;
 
         return !particle.destroyed && !particle.spawning && !!tiltAnimation?.enable;
-    }
-
-    update(particle: Particle, delta: IDelta): void {
-        if (!this.isEnabled(particle)) {
-            return;
-        }
-
-        updateTilt(particle, delta);
     }
 
     loadOptions(
@@ -138,5 +149,13 @@ export class TiltUpdater implements IParticleUpdater {
 
             options.tilt.load(source.tilt);
         }
+    }
+
+    update(particle: Particle, delta: IDelta): void {
+        if (!this.isEnabled(particle)) {
+            return;
+        }
+
+        updateTilt(particle, delta);
     }
 }

@@ -11,7 +11,7 @@ import {
     touchStartEvent,
     visibilityChangeEvent,
 } from "./Constants";
-import { ClickMode } from "../../Enums/Modes/ClickMode";
+import type { ClickMode } from "../../Enums/Modes/ClickMode";
 import type { Container } from "../Container";
 import type { ICoordinates } from "../Interfaces/ICoordinates";
 import { InteractivityDetect } from "../../Enums/InteractivityDetect";
@@ -54,23 +54,25 @@ function manageListener(
  * @category Utils
  */
 export class EventListeners {
-    private readonly mouseMoveHandler: EventListenerOrEventListenerObject;
-    private readonly touchStartHandler: EventListenerOrEventListenerObject;
-    private readonly touchMoveHandler: EventListenerOrEventListenerObject;
-    private readonly touchEndHandler: EventListenerOrEventListenerObject;
-    private readonly mouseLeaveHandler: EventListenerOrEventListenerObject;
-    private readonly touchCancelHandler: EventListenerOrEventListenerObject;
-    private readonly touchEndClickHandler: EventListenerOrEventListenerObject;
+    private canPush: boolean;
+
     private readonly mouseDownHandler: EventListenerOrEventListenerObject;
+    private readonly mouseLeaveHandler: EventListenerOrEventListenerObject;
+    private readonly mouseMoveHandler: EventListenerOrEventListenerObject;
     private readonly mouseUpHandler: EventListenerOrEventListenerObject;
-    private readonly visibilityChangeHandler: EventListenerOrEventListenerObject;
-    private readonly themeChangeHandler: EventListenerOrEventListenerObject;
     private readonly oldThemeChangeHandler: (this: MediaQueryList, ev: MediaQueryListEvent) => unknown;
     private readonly resizeHandler: EventListenerOrEventListenerObject;
 
-    private canPush: boolean;
-    private resizeTimeout?: NodeJS.Timeout;
     private resizeObserver?: ResizeObserver;
+    private resizeTimeout?: NodeJS.Timeout;
+
+    private readonly themeChangeHandler: EventListenerOrEventListenerObject;
+    private readonly touchCancelHandler: EventListenerOrEventListenerObject;
+    private readonly touchEndClickHandler: EventListenerOrEventListenerObject;
+    private readonly touchEndHandler: EventListenerOrEventListenerObject;
+    private readonly touchMoveHandler: EventListenerOrEventListenerObject;
+    private readonly touchStartHandler: EventListenerOrEventListenerObject;
+    private readonly visibilityChangeHandler: EventListenerOrEventListenerObject;
 
     /**
      * Events listener constructor
@@ -106,6 +108,113 @@ export class EventListeners {
      */
     removeListeners(): void {
         this.manageListeners(false);
+    }
+
+    /**
+     * Mouse/Touch click/tap event implementation
+     * @param e the click event arguments
+     */
+    private doMouseTouchClick(e: Event): void {
+        const container = this.container,
+            options = container.actualOptions;
+
+        if (this.canPush) {
+            const mousePos = container.interactivity.mouse.position;
+
+            if (!mousePos) {
+                return;
+            }
+
+            container.interactivity.mouse.clickPosition = {
+                x: mousePos.x,
+                y: mousePos.y,
+            };
+
+            container.interactivity.mouse.clickTime = new Date().getTime();
+
+            const onClick = options.interactivity.events.onClick;
+
+            if (onClick.mode instanceof Array) {
+                for (const mode of onClick.mode) {
+                    this.handleClickMode(mode);
+                }
+            } else {
+                this.handleClickMode(onClick.mode);
+            }
+        }
+
+        if (e.type === "touchend") {
+            setTimeout(() => this.mouseTouchFinish(), 500);
+        }
+    }
+
+    /**
+     * Handles click mode event
+     * @param mode Click mode type
+     * @private
+     */
+    private handleClickMode(mode: ClickMode | string): void {
+        this.container.handleClickMode(mode);
+    }
+
+    /**
+     * Handle browser theme change
+     * @param e the media query event
+     * @private
+     */
+    private handleThemeChange(e: Event): void {
+        const mediaEvent = e as MediaQueryListEvent,
+            themeName = mediaEvent.matches
+                ? this.container.options.defaultDarkTheme
+                : this.container.options.defaultLightTheme,
+            theme = this.container.options.themes.find((theme) => theme.name === themeName);
+
+        if (theme && theme.default.auto) {
+            this.container.loadTheme(themeName);
+        }
+    }
+
+    /**
+     * Handles blur event
+     * @private
+     */
+    private handleVisibilityChange(): void {
+        const container = this.container,
+            options = container.actualOptions;
+
+        this.mouseTouchFinish();
+
+        if (!options.pauseOnBlur) {
+            return;
+        }
+
+        if (document?.hidden) {
+            container.pageHidden = true;
+
+            container.pause();
+        } else {
+            container.pageHidden = false;
+
+            if (container.getAnimationStatus()) {
+                container.play(true);
+            } else {
+                container.draw(true);
+            }
+        }
+    }
+
+    /**
+     * Handles window resize event
+     * @private
+     */
+    private handleWindowResize(): void {
+        if (this.resizeTimeout) {
+            clearTimeout(this.resizeTimeout);
+
+            delete this.resizeTimeout;
+        }
+
+        this.resizeTimeout = setTimeout(async () => this.container.canvas?.windowResize(), 500);
     }
 
     /**
@@ -217,49 +326,6 @@ export class EventListeners {
     }
 
     /**
-     * Handles window resize event
-     * @private
-     */
-    private handleWindowResize(): void {
-        if (this.resizeTimeout) {
-            clearTimeout(this.resizeTimeout);
-
-            delete this.resizeTimeout;
-        }
-
-        this.resizeTimeout = setTimeout(async () => this.container.canvas?.windowResize(), 500);
-    }
-
-    /**
-     * Handles blur event
-     * @private
-     */
-    private handleVisibilityChange(): void {
-        const container = this.container,
-            options = container.actualOptions;
-
-        this.mouseTouchFinish();
-
-        if (!options.pauseOnBlur) {
-            return;
-        }
-
-        if (document?.hidden) {
-            container.pageHidden = true;
-
-            container.pause();
-        } else {
-            container.pageHidden = false;
-
-            if (container.getAnimationStatus()) {
-                container.play(true);
-            } else {
-                container.draw(true);
-            }
-        }
-    }
-
-    /**
      * Handle mouse down event
      * @private
      */
@@ -272,6 +338,65 @@ export class EventListeners {
             mouse.clicking = true;
             mouse.downPosition = mouse.position;
         }
+    }
+
+    /**
+     * Mouse/Touch click/tap event
+     * @param e the click event arguments
+     */
+    private mouseTouchClick(e: Event): void {
+        const container = this.container,
+            options = container.actualOptions,
+            mouse = container.interactivity.mouse;
+
+        mouse.inside = true;
+
+        let handled = false;
+
+        const mousePosition = mouse.position;
+
+        if (!mousePosition || !options.interactivity.events.onClick.enable) {
+            return;
+        }
+
+        for (const [, plugin] of container.plugins) {
+            if (!plugin.clickPositionValid) {
+                continue;
+            }
+
+            handled = plugin.clickPositionValid(mousePosition);
+
+            if (handled) {
+                break;
+            }
+        }
+
+        if (!handled) {
+            this.doMouseTouchClick(e);
+        }
+
+        mouse.clicking = false;
+    }
+
+    /**
+     * Mouse/Touch event finish
+     */
+    private mouseTouchFinish(): void {
+        const interactivity = this.container.interactivity;
+
+        if (!interactivity) {
+            return;
+        }
+
+        const mouse = interactivity.mouse;
+
+        delete mouse.position;
+        delete mouse.clickPosition;
+        delete mouse.downPosition;
+
+        interactivity.status = mouseLeaveEvent;
+        mouse.inside = false;
+        mouse.clicking = false;
     }
 
     /**
@@ -356,128 +481,5 @@ export class EventListeners {
 
         container.interactivity.mouse.position = pos;
         container.interactivity.status = mouseMoveEvent;
-    }
-
-    /**
-     * Mouse/Touch event finish
-     */
-    private mouseTouchFinish(): void {
-        const interactivity = this.container.interactivity;
-
-        if (!interactivity) {
-            return;
-        }
-
-        const mouse = interactivity.mouse;
-
-        delete mouse.position;
-        delete mouse.clickPosition;
-        delete mouse.downPosition;
-
-        interactivity.status = mouseLeaveEvent;
-        mouse.inside = false;
-        mouse.clicking = false;
-    }
-
-    /**
-     * Mouse/Touch click/tap event
-     * @param e the click event arguments
-     */
-    private mouseTouchClick(e: Event): void {
-        const container = this.container,
-            options = container.actualOptions,
-            mouse = container.interactivity.mouse;
-
-        mouse.inside = true;
-
-        let handled = false;
-
-        const mousePosition = mouse.position;
-
-        if (!mousePosition || !options.interactivity.events.onClick.enable) {
-            return;
-        }
-
-        for (const [, plugin] of container.plugins) {
-            if (!plugin.clickPositionValid) {
-                continue;
-            }
-
-            handled = plugin.clickPositionValid(mousePosition);
-
-            if (handled) {
-                break;
-            }
-        }
-
-        if (!handled) {
-            this.doMouseTouchClick(e);
-        }
-
-        mouse.clicking = false;
-    }
-
-    /**
-     * Mouse/Touch click/tap event implementation
-     * @param e the click event arguments
-     */
-    private doMouseTouchClick(e: Event): void {
-        const container = this.container,
-            options = container.actualOptions;
-
-        if (this.canPush) {
-            const mousePos = container.interactivity.mouse.position;
-
-            if (!mousePos) {
-                return;
-            }
-
-            container.interactivity.mouse.clickPosition = {
-                x: mousePos.x,
-                y: mousePos.y,
-            };
-
-            container.interactivity.mouse.clickTime = new Date().getTime();
-
-            const onClick = options.interactivity.events.onClick;
-
-            if (onClick.mode instanceof Array) {
-                for (const mode of onClick.mode) {
-                    this.handleClickMode(mode);
-                }
-            } else {
-                this.handleClickMode(onClick.mode);
-            }
-        }
-
-        if (e.type === "touchend") {
-            setTimeout(() => this.mouseTouchFinish(), 500);
-        }
-    }
-
-    /**
-     * Handle browser theme change
-     * @param e the media query event
-     * @private
-     */
-    private handleThemeChange(e: Event): void {
-        const mediaEvent = e as MediaQueryListEvent,
-            themeName = mediaEvent.matches
-                ? this.container.options.defaultDarkTheme
-                : this.container.options.defaultLightTheme,
-            theme = this.container.options.themes.find((theme) => theme.name === themeName);
-
-        if (theme && theme.default.auto) {
-            this.container.loadTheme(themeName);
-        }
-    }
-
-    /**
-     * Handles click mode event
-     * @param mode Click mode type
-     * @private
-     */
-    private handleClickMode(mode: ClickMode | string): void {
-        this.container.handleClickMode(mode);
     }
 }

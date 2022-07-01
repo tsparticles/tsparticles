@@ -43,7 +43,7 @@ export class OutOutMode implements IOutModeManager {
 
                 const { dx, dy } = getDistances(particle.position, circVec);
 
-                if ((vx <= 0 && dx >= 0) || (vy <= 0 && dy >= 0) || (vx >= 0 && dx <= 0) || (vy >= 0 && dy <= 0)) {
+                if (vx <= 0 && dx >= 0 || vy <= 0 && dy >= 0 || vx >= 0 && dx <= 0 || vy >= 0 && dy <= 0) {
                     return;
                 }
 

@@ -1,16 +1,13 @@
 import type { IDelta } from "./IDelta";
 import type { IParticleColorStyle } from "./IParticleColorStyle";
+import type { IParticleTransformValues } from "./IParticleTransformValues";
 import type { IParticlesOptions } from "../../Options/Interfaces/Particles/IParticlesOptions";
 import type { Particle } from "../Particle";
 import type { ParticlesOptions } from "../../Options/Classes/Particles/ParticlesOptions";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
 
 export interface IParticleUpdater {
-    init(particle: Particle): void;
-
-    isEnabled(particle: Particle): boolean;
-
-    update(particle: Particle, delta: IDelta): void;
+    afterDraw?: (particle: Particle) => void;
 
     beforeDraw?: (particle: Particle) => void;
 
@@ -21,7 +18,13 @@ export interface IParticleUpdater {
         opacity: number
     ) => IParticleColorStyle;
 
-    afterDraw?: (particle: Particle) => void;
+    getTransformValues?: (particle: Particle) => IParticleTransformValues;
 
     loadOptions?: (options: ParticlesOptions, ...sources: (RecursivePartial<IParticlesOptions> | undefined)[]) => void;
+
+    init(particle: Particle): void;
+
+    isEnabled(particle: Particle): boolean;
+
+    update(particle: Particle, delta: IDelta): void;
 }

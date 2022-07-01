@@ -28,15 +28,7 @@ import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
  * @category Options
  */
 export interface IParticlesOptions {
-    /**
-     * @deprecated use the new links instead
-     */
-    line_linked: ILinks;
-
-    /**
-     * @deprecated use the new links instead
-     */
-    lineLinked: ILinks;
+    [name: string]: unknown;
 
     bounce: IParticlesBounce;
     collisions: ICollisions;
@@ -45,6 +37,17 @@ export interface IParticlesOptions {
     gradient: SingleOrMultiple<IAnimatableGradient>;
     groups: ParticlesGroups;
     interactivity?: RecursivePartial<IInteractivity>;
+
+    /**
+     * @deprecated use the new links instead
+     */
+    lineLinked: ILinks;
+
+    /**
+     * @deprecated use the new links instead
+     */
+    line_linked: ILinks;
+
     links: ILinks;
     move: IMove;
     number: IParticlesNumber;
@@ -57,6 +60,4 @@ export interface IParticlesOptions {
     size: ISize;
     stroke: SingleOrMultiple<IStroke>;
     zIndex: IZIndex;
-
-    [name: string]: unknown;
 }

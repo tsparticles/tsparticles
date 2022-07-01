@@ -1,4 +1,3 @@
-import { deepExtend, loadParticlesOptions } from "../../Utils/Utils";
 import { Background } from "./Background/Background";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
 import type { Container } from "../../Core/Container";
@@ -16,14 +15,75 @@ import { ResponsiveMode } from "../../Enums/Modes/ResponsiveMode";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 import { Theme } from "./Theme/Theme";
 import { ThemeMode } from "../../Enums/Modes/ThemeMode";
+import { deepExtend } from "../../Utils/Utils";
+import { loadParticlesOptions } from "../../Utils/OptionsUtils";
 
 /**
  * [[include:Options.md]]
  * @category Options
  */
 export class Options implements IOptions, IOptionLoader<IOptions> {
+    [name: string]: unknown;
+
+    autoPlay;
+    background;
+    backgroundMask;
     readonly #container;
+    defaultDarkTheme?: string;
+    defaultLightTheme?: string;
+    detectRetina;
+    duration: RangeValue;
     readonly #engine;
+    fpsLimit;
+    fullScreen;
+    interactivity;
+    manualParticles: ManualParticle[];
+    motion;
+    particles;
+    pauseOnBlur;
+    pauseOnOutsideViewport;
+    preset?: SingleOrMultiple<string>;
+    responsive: Responsive[];
+    style: RecursivePartial<CSSStyleDeclaration>;
+    themes: Theme[];
+    zLayers;
+
+    constructor(engine: Engine, container: Container) {
+        this.#engine = engine;
+        this.#container = container;
+        this.autoPlay = true;
+        this.background = new Background();
+        this.backgroundMask = new BackgroundMask();
+        this.fullScreen = new FullScreen();
+        this.detectRetina = true;
+        this.duration = 0;
+        this.fpsLimit = 120;
+        this.interactivity = new Interactivity();
+        this.manualParticles = [];
+        this.motion = new Motion();
+        this.particles = loadParticlesOptions(this.#engine, this.#container);
+        this.pauseOnBlur = true;
+        this.pauseOnOutsideViewport = true;
+        this.responsive = [];
+        this.style = {};
+        this.themes = [];
+        this.zLayers = 100;
+    }
+
+    /**
+     * @deprecated this property is obsolete, please use the new fullScreen
+     */
+    get backgroundMode(): FullScreen {
+        return this.fullScreen;
+    }
+
+    /**
+     * @deprecated this property is obsolete, please use the new fullScreen
+     * @param value
+     */
+    set backgroundMode(value: FullScreen) {
+        this.fullScreen.load(value);
+    }
 
     /**
      * @deprecated this property is obsolete, please use the new fpsLimit
@@ -56,64 +116,11 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.detectRetina = value;
     }
 
-    /**
-     * @deprecated this property is obsolete, please use the new fullScreen
-     */
-    get backgroundMode(): FullScreen {
-        return this.fullScreen;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new fullScreen
-     * @param value
-     */
-    set backgroundMode(value: FullScreen) {
-        this.fullScreen.load(value);
-    }
-
-    autoPlay;
-    background;
-    backgroundMask;
-    detectRetina;
-    duration: RangeValue;
-    fpsLimit;
-    fullScreen;
-    interactivity;
-    manualParticles: ManualParticle[];
-    motion;
-    particles;
-    pauseOnBlur;
-    pauseOnOutsideViewport;
-    preset?: SingleOrMultiple<string>;
-    style: RecursivePartial<CSSStyleDeclaration>;
-    responsive: Responsive[];
-    themes: Theme[];
-    zLayers;
-    defaultDarkTheme?: string;
-    defaultLightTheme?: string;
-
-    [name: string]: unknown;
-
-    constructor(engine: Engine, container: Container) {
-        this.#engine = engine;
-        this.#container = container;
-        this.autoPlay = true;
-        this.background = new Background();
-        this.backgroundMask = new BackgroundMask();
-        this.fullScreen = new FullScreen();
-        this.detectRetina = true;
-        this.duration = 0;
-        this.fpsLimit = 120;
-        this.interactivity = new Interactivity();
-        this.manualParticles = [];
-        this.motion = new Motion();
-        this.particles = loadParticlesOptions(this.#engine, this.#container);
-        this.pauseOnBlur = true;
-        this.pauseOnOutsideViewport = true;
-        this.responsive = [];
-        this.style = {};
-        this.themes = [];
-        this.zLayers = 100;
+    #findDefaultTheme(mode: ThemeMode): Theme | undefined {
+        return (
+            this.themes.find((theme) => theme.default.value && theme.default.mode === mode) ??
+            this.themes.find((theme) => theme.default.value && theme.default.mode === ThemeMode.any)
+        );
     }
 
     /**
@@ -221,6 +228,20 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.defaultLightTheme = this.#findDefaultTheme(ThemeMode.light)?.name;
     }
 
+    setResponsive(width: number, pxRatio: number, defaultOptions: IOptions): number | undefined {
+        this.load(defaultOptions);
+
+        const responsiveOptions = this.responsive.find((t) =>
+            t.mode === ResponsiveMode.screen && screen
+                ? t.maxWidth * pxRatio > screen.availWidth
+                : t.maxWidth * pxRatio > width
+        );
+
+        this.load(responsiveOptions?.options);
+
+        return responsiveOptions?.maxWidth;
+    }
+
     setTheme(name?: string): void {
         if (name) {
             const chosenTheme = this.themes.find((theme) => theme.name === name);
@@ -239,28 +260,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
     }
 
-    setResponsive(width: number, pxRatio: number, defaultOptions: IOptions): number | undefined {
-        this.load(defaultOptions);
-
-        const responsiveOptions = this.responsive.find((t) =>
-            t.mode === ResponsiveMode.screen && screen
-                ? t.maxWidth * pxRatio > screen.availWidth
-                : t.maxWidth * pxRatio > width
-        );
-
-        this.load(responsiveOptions?.options);
-
-        return responsiveOptions?.maxWidth;
-    }
-
     private importPreset(preset: string): void {
         this.load(this.#engine.plugins.getPreset(preset));
-    }
-
-    #findDefaultTheme(mode: ThemeMode): Theme | undefined {
-        return (
-            this.themes.find((theme) => theme.default.value && theme.default.mode === mode) ??
-            this.themes.find((theme) => theme.default.value && theme.default.mode === ThemeMode.any)
-        );
     }
 }

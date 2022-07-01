@@ -1,11 +1,9 @@
 import {
     Circle,
-    DivEvent,
     DivMode,
     DivType,
     ExternalInteractorBase,
     HoverMode,
-    Range,
     Rectangle,
     Vector,
     calculateBounds,
@@ -17,24 +15,19 @@ import {
     mouseMoveEvent,
     rectBounce,
 } from "tsparticles-engine";
-import type { Container, ICoordinates, Particle } from "tsparticles-engine";
+import type { Container, DivEvent, ICoordinates, Particle, Range } from "tsparticles-engine";
 
 export class Bouncer extends ExternalInteractorBase {
     constructor(container: Container) {
         super(container);
     }
 
-    isEnabled(particle?: Particle): boolean {
-        const container = this.container,
-            options = container.actualOptions,
-            mouse = container.interactivity.mouse,
-            events = (particle?.interactivity ?? options.interactivity).events,
-            divs = events.onDiv;
+    clear(): void {
+        // do nothing
+    }
 
-        return (
-            (mouse.position && events.onHover.enable && isInArray(HoverMode.bounce, events.onHover.mode)) ||
-            isDivModeEnabled(DivMode.bounce, divs)
-        );
+    init(): void {
+        // do nothing
     }
 
     async interact(): Promise<void> {
@@ -53,12 +46,39 @@ export class Bouncer extends ExternalInteractorBase {
         }
     }
 
-    clear(): void {
-        // do nothing
+    isEnabled(particle?: Particle): boolean {
+        const container = this.container,
+            options = container.actualOptions,
+            mouse = container.interactivity.mouse,
+            events = (particle?.interactivity ?? options.interactivity).events,
+            divs = events.onDiv;
+
+        return (
+            mouse.position && events.onHover.enable && isInArray(HoverMode.bounce, events.onHover.mode) ||
+            isDivModeEnabled(DivMode.bounce, divs)
+        );
     }
 
     reset(): void {
         // do nothing
+    }
+
+    private processBounce(position: ICoordinates, radius: number, area: Range): void {
+        const query = this.container.particles.quadTree.query(area, (p) => this.isEnabled(p));
+
+        for (const particle of query) {
+            if (area instanceof Circle) {
+                circleBounce(circleBounceDataFromParticle(particle), {
+                    position,
+                    radius,
+                    mass: radius ** 2 * Math.PI / 2,
+                    velocity: Vector.origin,
+                    factor: Vector.origin,
+                });
+            } else if (area instanceof Rectangle) {
+                rectBounce(particle, calculateBounds(position, radius));
+            }
+        }
     }
 
     private processMouseBounce(): void {
@@ -88,7 +108,7 @@ export class Bouncer extends ExternalInteractorBase {
                     x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
                     y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
                 },
-                radius = (elem.offsetWidth / 2) * pxRatio,
+                radius = elem.offsetWidth / 2 * pxRatio,
                 tolerance = 10 * pxRatio,
                 area =
                     div.type === DivType.circle
@@ -102,23 +122,5 @@ export class Bouncer extends ExternalInteractorBase {
 
             this.processBounce(pos, radius, area);
         });
-    }
-
-    private processBounce(position: ICoordinates, radius: number, area: Range): void {
-        const query = this.container.particles.quadTree.query(area, (p) => this.isEnabled(p));
-
-        for (const particle of query) {
-            if (area instanceof Circle) {
-                circleBounce(circleBounceDataFromParticle(particle), {
-                    position,
-                    radius,
-                    mass: (radius ** 2 * Math.PI) / 2,
-                    velocity: Vector.origin,
-                    factor: Vector.origin,
-                });
-            } else if (area instanceof Rectangle) {
-                rectBounce(particle, calculateBounds(position, radius));
-            }
-        }
     }
 }

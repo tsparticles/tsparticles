@@ -56,14 +56,14 @@ interface LoaderParams {
     options?: SingleOrMultiple<RecursivePartial<IOptions>>;
 
     /**
-     * The id assigned to the container
-     */
-    tagId?: string;
-
-    /**
      * Used for loading options locally or remotely
      */
     remote: boolean;
+
+    /**
+     * The id assigned to the container
+     */
+    tagId?: string;
 
     /**
      * The url or the url array used to get options
@@ -88,6 +88,59 @@ export class Loader {
      */
     constructor(engine: Engine) {
         this.#engine = engine;
+    }
+
+    /**
+     * Loads the provided options to create a [[Container]] object.
+     * @param tagId the particles container element id
+     * @param options the options object to initialize the [[Container]]
+     * @param index if an options array is provided, this will retrieve the exact index of that array
+     */
+    load(
+        tagId: string | SingleOrMultiple<RecursivePartial<IOptions>>,
+        options?: SingleOrMultiple<RecursivePartial<IOptions>> | number,
+        index?: number
+    ): Promise<Container | undefined> {
+        const params: LoaderParams = { index, remote: false };
+
+        if (typeof tagId === "string") {
+            params.tagId = tagId;
+        } else {
+            params.options = tagId;
+        }
+
+        if (typeof options === "number") {
+            params.index = options;
+        } else {
+            params.options = options ?? params.options;
+        }
+
+        return this.loadOptions(params);
+    }
+
+    /**
+     * Loads the provided json with a GET request. The content will be used to create a [[Container]] object.
+     * This method is async, so if you need a callback refer to JavaScript function `fetch`
+     * @param tagId the particles container element id
+     * @param jsonUrl the json path (or paths array) to use in the GET request
+     * @param index the index of the paths array, if a single path is passed this value is ignored
+     * @returns A Promise with the [[Container]] object created
+     */
+    async loadJSON(
+        tagId: string | SingleOrMultiple<string>,
+        jsonUrl?: SingleOrMultiple<string> | number,
+        index?: number
+    ): Promise<Container | undefined> {
+        let url: SingleOrMultiple<string>, id: string | undefined;
+
+        if (typeof jsonUrl === "number" || jsonUrl === undefined) {
+            url = tagId;
+        } else {
+            id = tagId as string;
+            url = jsonUrl;
+        }
+
+        return this.loadRemoteOptions({ tagId: id, url, index, remote: true });
     }
 
     /**
@@ -182,34 +235,6 @@ export class Loader {
 
     /**
      * Loads the provided options to create a [[Container]] object.
-     * @param tagId the particles container element id
-     * @param options the options object to initialize the [[Container]]
-     * @param index if an options array is provided, this will retrieve the exact index of that array
-     */
-    load(
-        tagId: string | SingleOrMultiple<RecursivePartial<IOptions>>,
-        options?: SingleOrMultiple<RecursivePartial<IOptions>> | number,
-        index?: number
-    ): Promise<Container | undefined> {
-        const params: LoaderParams = { index, remote: false };
-
-        if (typeof tagId === "string") {
-            params.tagId = tagId;
-        } else {
-            params.options = tagId;
-        }
-
-        if (typeof options === "number") {
-            params.index = options;
-        } else {
-            params.options = options ?? params.options;
-        }
-
-        return this.loadOptions(params);
-    }
-
-    /**
-     * Loads the provided options to create a [[Container]] object.
      * @param id the particles container element id
      * @param domContainer the dom container
      * @param options the options object to initialize the [[Container]]
@@ -242,31 +267,6 @@ export class Loader {
         }
 
         return this.loadOptions(params);
-    }
-
-    /**
-     * Loads the provided json with a GET request. The content will be used to create a [[Container]] object.
-     * This method is async, so if you need a callback refer to JavaScript function `fetch`
-     * @param tagId the particles container element id
-     * @param jsonUrl the json path (or paths array) to use in the GET request
-     * @param index the index of the paths array, if a single path is passed this value is ignored
-     * @returns A Promise with the [[Container]] object created
-     */
-    async loadJSON(
-        tagId: string | SingleOrMultiple<string>,
-        jsonUrl?: SingleOrMultiple<string> | number,
-        index?: number
-    ): Promise<Container | undefined> {
-        let url: SingleOrMultiple<string>, id: string | undefined;
-
-        if (typeof jsonUrl === "number" || jsonUrl === undefined) {
-            url = tagId;
-        } else {
-            id = tagId as string;
-            url = jsonUrl;
-        }
-
-        return this.loadRemoteOptions({ tagId: id, url, index, remote: true });
     }
 
     /**

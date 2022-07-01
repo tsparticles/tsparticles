@@ -5,7 +5,7 @@ import type { IEmitter } from "./Options/Interfaces/IEmitter";
 export interface EmitterContainer extends Container {
     addEmitter: (options: RecursivePartial<IEmitter>, position?: ICoordinates) => EmitterInstance;
     getEmitter: (idxOrName?: number | string) => EmitterInstance | undefined;
-    playEmitter: (idxOrName?: number | string) => void;
     pauseEmitter: (idxOrName?: number | string) => void;
+    playEmitter: (idxOrName?: number | string) => void;
     removeEmitter: (idxOrName?: number | string) => void;
 }

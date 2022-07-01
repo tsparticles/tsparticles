@@ -108,6 +108,14 @@ export class ParticlesOptionsEditor extends EditorBase {
         options.addToGroup(this.group);
     }
 
+    private addProperties(): void {
+        const particles = this.particles;
+
+        this.group.addProperty("reduceDuplicates", "Reduce Duplicates", EditorType.boolean).change(async () => {
+            await particles.refresh();
+        });
+    }
+
     private addRoll(): void {
         const options = new RollOptionsEditor(this.particles);
 
@@ -160,13 +168,5 @@ export class ParticlesOptionsEditor extends EditorBase {
         const options = new WobbleOptionsEditor(this.particles);
 
         options.addToGroup(this.group);
-    }
-
-    private addProperties(): void {
-        const particles = this.particles;
-
-        this.group.addProperty("reduceDuplicates", "Reduce Duplicates", EditorType.boolean).change(async () => {
-            await particles.refresh();
-        });
     }
 }

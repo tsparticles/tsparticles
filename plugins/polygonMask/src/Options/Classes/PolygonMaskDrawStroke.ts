@@ -7,8 +7,8 @@ import type { IPolygonMaskDrawStroke } from "../Interfaces/IPolygonMaskDrawStrok
  */
 export class PolygonMaskDrawStroke implements IPolygonMaskDrawStroke, IOptionLoader<IPolygonMaskDrawStroke> {
     color;
-    width;
     opacity;
+    width;
 
     constructor() {
         this.color = new OptionsColor();

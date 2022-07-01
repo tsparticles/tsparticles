@@ -16,7 +16,7 @@ import type {
 import { getRangeValue, mix, randomInRange, setRangeValue } from "./NumberUtils";
 import { midColorValue, randomColorValue } from "../Core/Utils/Constants";
 import { AnimationStatus } from "../Enums/AnimationStatus";
-import { HslAnimation } from "../Options/Classes/HslAnimation";
+import type { HslAnimation } from "../Options/Classes/HslAnimation";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
 import type { IOptionsColor } from "../Options/Interfaces/IOptionsColor";
 import type { IParticle } from "../Core/Interfaces/IParticle";
@@ -274,7 +274,7 @@ export function rgbToHsl(color: IRgb): IHsl {
         res.h =
             r1 === max
                 ? (g1 - b1) / (max - min)
-                : (res.h = g1 === max ? 2.0 + (b1 - r1) / (max - min) : 4.0 + (r1 - g1) / (max - min));
+                : res.h = g1 === max ? 2.0 + (b1 - r1) / (max - min) : 4.0 + (r1 - g1) / (max - min);
     }
 
     res.l *= 100;
@@ -435,7 +435,7 @@ export function hsvToRgb(hsv: IHsv): IRgb {
             v: hsv.v / 100,
         },
         c = hsvPercent.v * hsvPercent.s,
-        x = c * (1 - Math.abs((hsvPercent.h % 2) - 1));
+        x = c * (1 - Math.abs(hsvPercent.h % 2 - 1));
 
     let tempRgb: IRgb | undefined;
 
@@ -705,7 +705,7 @@ function setColorAnimation(
     colorValue.enable = colorAnimation.enable;
 
     if (colorValue.enable) {
-        colorValue.velocity = (getRangeValue(colorAnimation.speed) / 100) * reduceFactor;
+        colorValue.velocity = getRangeValue(colorAnimation.speed) / 100 * reduceFactor;
         colorValue.decay = 1 - getRangeValue(colorAnimation.decay);
         colorValue.status = AnimationStatus.increasing;
 

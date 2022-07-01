@@ -5,22 +5,31 @@ import type { ICoordinates } from "../Interfaces/ICoordinates";
  */
 export class Vector implements ICoordinates {
     /**
-     * Clones the given vector
-     * @param source the vector to clone
-     * @returns a new vector instance, created from the given one
+     * X coordinate of the vector
      */
-    static clone(source: Vector): Vector {
-        return Vector.create(source.x, source.y);
-    }
+    x;
 
     /**
-     * Creates a new vector instance
-     * @param x X coordinate
-     * @param y Y coordinate
-     * @returns the new vector created
+     * Y coordinate of the vector
      */
-    static create(x: number | ICoordinates, y?: number): Vector {
-        return new Vector(x, y);
+    y;
+
+    /**
+     * Vector constructor, creating an instance with the given coordinates
+     * @param xOrCoords X coordinate or the whole [[ICoordinates]] object
+     * @param y Y coordinate
+     * @protected
+     */
+    protected constructor(xOrCoords: number | ICoordinates, y?: number) {
+        if (typeof xOrCoords !== "number" && xOrCoords) {
+            this.x = xOrCoords.x;
+            this.y = xOrCoords.y;
+        } else if (xOrCoords !== undefined && y !== undefined) {
+            this.x = xOrCoords;
+            this.y = y;
+        } else {
+            throw new Error("tsParticles - Vector not initialized correctly");
+        }
     }
 
     /**
@@ -61,31 +70,22 @@ export class Vector implements ICoordinates {
     }
 
     /**
-     * X coordinate of the vector
+     * Clones the given vector
+     * @param source the vector to clone
+     * @returns a new vector instance, created from the given one
      */
-    x;
+    static clone(source: Vector): Vector {
+        return Vector.create(source.x, source.y);
+    }
 
     /**
-     * Y coordinate of the vector
-     */
-    y;
-
-    /**
-     * Vector constructor, creating an instance with the given coordinates
-     * @param xOrCoords X coordinate or the whole [[ICoordinates]] object
+     * Creates a new vector instance
+     * @param x X coordinate
      * @param y Y coordinate
-     * @protected
+     * @returns the new vector created
      */
-    protected constructor(xOrCoords: number | ICoordinates, y?: number) {
-        if (typeof xOrCoords !== "number" && xOrCoords) {
-            this.x = xOrCoords.x;
-            this.y = xOrCoords.y;
-        } else if (xOrCoords !== undefined && y !== undefined) {
-            this.x = xOrCoords;
-            this.y = y;
-        } else {
-            throw new Error("tsParticles - Vector not initialized correctly");
-        }
+    static create(x: number | ICoordinates, y?: number): Vector {
+        return new Vector(x, y);
     }
 
     /**
@@ -107,21 +107,63 @@ export class Vector implements ICoordinates {
     }
 
     /**
-     * Subtracts the current and the given vector together, without modifying them
-     * @param v the vector used for the subtract operation
-     * @returns the subtracted vector
+     * Copies the current vector, cloning it
+     * @returns the cloned current vector
      */
-    sub(v: Vector): Vector {
-        return Vector.create(this.x - v.x, this.y - v.y);
+    copy(): Vector {
+        return Vector.clone(this);
     }
 
     /**
-     * Subtracts the given vector from the current one, modifying it
-     * @param v the vector to subtract from the current one
+     * Calculates the distance between the current vector and the given one
+     * @param v the vector used for calculating the distance from the current one
+     * @returns the distance between the vectors
      */
-    subFrom(v: Vector): void {
-        this.x -= v.x;
-        this.y -= v.y;
+    distanceTo(v: Vector): number {
+        return this.sub(v).length;
+    }
+
+    /**
+     * Get the distance squared between two vectors
+     * @param v the vector used for calculating the distance from the current one
+     * @returns the distance squared between the vectors
+     */
+    distanceToSq(v: Vector): number {
+        return this.sub(v).getLengthSq();
+    }
+
+    /**
+     * Divides the given scalar and the current vector together, without modifying it
+     * @param n the scalar value to divide from the current vector
+     */
+    div(n: number): Vector {
+        return Vector.create(this.x / n, this.y / n);
+    }
+
+    /**
+     * Divides the given scalar from the current vector, modifying it
+     * @param n the scalar value to divide from the current vector
+     */
+    divTo(n: number): void {
+        this.x /= n;
+        this.y /= n;
+    }
+
+    /**
+     * Get the squared length value
+     * @returns the squared length value
+     */
+    getLengthSq(): number {
+        return this.x ** 2 + this.y ** 2;
+    }
+
+    /**
+     * Returns the Manhattan distance between all vectors
+     * @param v the vector used for calculating the distance from the current one
+     * @returns the Manhattan distance between the vectors
+     */
+    manhattanDistanceTo(v: Vector): number {
+        return Math.abs(v.x - this.x) + Math.abs(v.y - this.y);
     }
 
     /**
@@ -143,63 +185,14 @@ export class Vector implements ICoordinates {
     }
 
     /**
-     * Divides the given scalar and the current vector together, without modifying it
-     * @param n the scalar value to divide from the current vector
+     * Creates a new vector, rotating the current one, without modifying it
+     * @param angle the rotation angle
      */
-    div(n: number): Vector {
-        return Vector.create(this.x / n, this.y / n);
-    }
-
-    /**
-     * Divides the given scalar from the current vector, modifying it
-     * @param n the scalar value to divide from the current vector
-     */
-    divTo(n: number): void {
-        this.x /= n;
-        this.y /= n;
-    }
-
-    /**
-     * Calculates the distance between the current vector and the given one
-     * @param v the vector used for calculating the distance from the current one
-     * @returns the distance between the vectors
-     */
-    distanceTo(v: Vector): number {
-        return this.sub(v).length;
-    }
-
-    /**
-     * Get the squared length value
-     * @returns the squared length value
-     */
-    getLengthSq(): number {
-        return this.x ** 2 + this.y ** 2;
-    }
-
-    /**
-     * Get the distance squared between two vectors
-     * @param v the vector used for calculating the distance from the current one
-     * @returns the distance squared between the vectors
-     */
-    distanceToSq(v: Vector): number {
-        return this.sub(v).getLengthSq();
-    }
-
-    /**
-     * Returns the Manhattan distance between all vectors
-     * @param v the vector used for calculating the distance from the current one
-     * @returns the Manhattan distance between the vectors
-     */
-    manhattanDistanceTo(v: Vector): number {
-        return Math.abs(v.x - this.x) + Math.abs(v.y - this.y);
-    }
-
-    /**
-     * Copies the current vector, cloning it
-     * @returns the cloned current vector
-     */
-    copy(): Vector {
-        return Vector.clone(this);
+    rotate(angle: number): Vector {
+        return Vector.create(
+            this.x * Math.cos(angle) - this.y * Math.sin(angle),
+            this.x * Math.sin(angle) + this.y * Math.cos(angle)
+        );
     }
 
     /**
@@ -212,14 +205,21 @@ export class Vector implements ICoordinates {
     }
 
     /**
-     * Creates a new vector, rotating the current one, without modifying it
-     * @param angle the rotation angle
+     * Subtracts the current and the given vector together, without modifying them
+     * @param v the vector used for the subtract operation
+     * @returns the subtracted vector
      */
-    rotate(angle: number): Vector {
-        return Vector.create(
-            this.x * Math.cos(angle) - this.y * Math.sin(angle),
-            this.x * Math.sin(angle) + this.y * Math.cos(angle)
-        );
+    sub(v: Vector): Vector {
+        return Vector.create(this.x - v.x, this.y - v.y);
+    }
+
+    /**
+     * Subtracts the given vector from the current one, modifying it
+     * @param v the vector to subtract from the current one
+     */
+    subFrom(v: Vector): void {
+        this.x -= v.x;
+        this.y -= v.y;
     }
 
     /**

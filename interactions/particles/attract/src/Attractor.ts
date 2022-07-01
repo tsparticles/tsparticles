@@ -9,6 +9,14 @@ export class Attractor extends ParticlesInteractorBase {
         super(container);
     }
 
+    clear(): void {
+        // do nothing
+    }
+
+    init(): void {
+        // do nothing
+    }
+
     async interact(p1: IParticle): Promise<void> {
         const container = this.container,
             distance = p1.retina.attractDistance ?? container.retina.attractDistance,
@@ -37,10 +45,6 @@ export class Attractor extends ParticlesInteractorBase {
 
     isEnabled(particle: Particle): boolean {
         return particle.options.move.attract.enable;
-    }
-
-    clear(): void {
-        // do nothing
     }
 
     reset(): void {

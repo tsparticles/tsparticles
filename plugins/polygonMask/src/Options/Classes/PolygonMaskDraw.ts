@@ -7,18 +7,12 @@ import { PolygonMaskDrawStroke } from "./PolygonMaskDrawStroke";
  * @category Polygon Mask Plugin
  */
 export class PolygonMaskDraw implements IPolygonMaskDraw, IOptionLoader<IPolygonMaskDraw> {
-    /**
-     * @deprecated the property lineWidth is deprecated, please use the new stroke.width
-     */
-    get lineWidth(): number {
-        return this.stroke.width;
-    }
+    enable;
+    stroke;
 
-    /**
-     * @deprecated the property lineWidth is deprecated, please use the new stroke.width
-     */
-    set lineWidth(value: number) {
-        this.stroke.width = value;
+    constructor() {
+        this.enable = false;
+        this.stroke = new PolygonMaskDrawStroke();
     }
 
     /**
@@ -35,12 +29,18 @@ export class PolygonMaskDraw implements IPolygonMaskDraw, IOptionLoader<IPolygon
         this.stroke.color = OptionsColor.create(this.stroke.color, value);
     }
 
-    enable;
-    stroke;
+    /**
+     * @deprecated the property lineWidth is deprecated, please use the new stroke.width
+     */
+    get lineWidth(): number {
+        return this.stroke.width;
+    }
 
-    constructor() {
-        this.enable = false;
-        this.stroke = new PolygonMaskDrawStroke();
+    /**
+     * @deprecated the property lineWidth is deprecated, please use the new stroke.width
+     */
+    set lineWidth(value: number) {
+        this.stroke.width = value;
     }
 
     load(data?: RecursivePartial<IPolygonMaskDraw>): void {

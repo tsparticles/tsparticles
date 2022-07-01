@@ -31,33 +31,28 @@ import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
  * @category Emitters Plugin
  */
 export class EmitterInstance {
+    readonly #engine;
+    fill;
+    #firstSpawn;
+    readonly name?: string;
+    options;
     position?: ICoordinates;
     size;
-    options;
     spawnColor?: IHsl;
-    fill;
-
-    #firstSpawn;
     #startParticlesAdded;
 
-    readonly name?: string;
-    private paused;
+    private currentDuration;
     private currentEmitDelay;
     private currentSpawnDelay;
-    private currentDuration;
-    private lifeCount;
-
     private duration?: number;
     private emitDelay?: number;
-    private spawnDelay?: number;
-
     private readonly immortal;
-
-    private readonly shape?: IEmitterShape;
     private readonly initialPosition?: ICoordinates;
+    private lifeCount;
     private readonly particlesOptions: RecursivePartial<IParticlesOptions>;
-
-    readonly #engine;
+    private paused;
+    private readonly shape?: IEmitterShape;
+    private spawnDelay?: number;
 
     constructor(
         engine: EmittersEngine,
@@ -79,7 +74,7 @@ export class EmitterInstance {
             this.options.load(options);
         }
 
-        this.spawnDelay = ((this.options.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
+        this.spawnDelay = (this.options.life.delay ?? 0) * 1000 / this.container.retina.reduceFactor;
         this.position = this.initialPosition ?? this.calcPosition();
         this.name = this.options.name;
         this.shape = this.#engine.emitterShapeManager?.getShape(this.options.shape);
@@ -125,16 +120,70 @@ export class EmitterInstance {
         this.play();
     }
 
+    externalPause(): void {
+        this.paused = true;
+
+        this.pause();
+    }
+
     externalPlay(): void {
         this.paused = false;
 
         this.play();
     }
 
-    externalPause(): void {
-        this.paused = true;
+    getPosition(): ICoordinates | undefined {
+        if (this.options.domId) {
+            const container = this.container,
+                element = document.getElementById(this.options.domId);
 
-        this.pause();
+            if (element) {
+                const elRect = element.getBoundingClientRect();
+
+                return {
+                    x: (elRect.x + elRect.width / 2) * container.retina.pixelRatio,
+                    y: (elRect.y + elRect.height / 2) * container.retina.pixelRatio,
+                };
+            }
+        }
+
+        return this.position;
+    }
+
+    getSize(): IDimension {
+        const container = this.container;
+
+        if (this.options.domId) {
+            const element = document.getElementById(this.options.domId);
+
+            if (element) {
+                const elRect = element.getBoundingClientRect();
+
+                return {
+                    width: elRect.width * container.retina.pixelRatio,
+                    height: elRect.height * container.retina.pixelRatio,
+                };
+            }
+        }
+
+        return {
+            width:
+                this.size.mode === SizeMode.percent
+                    ? container.canvas.size.width * this.size.width / 100
+                    : this.size.width,
+            height:
+                this.size.mode === SizeMode.percent
+                    ? container.canvas.size.height * this.size.height / 100
+                    : this.size.height,
+        };
+    }
+
+    pause(): void {
+        if (this.paused) {
+            return;
+        }
+
+        delete this.emitDelay;
     }
 
     play(): void {
@@ -155,20 +204,12 @@ export class EmitterInstance {
         if (this.emitDelay === undefined) {
             const delay = getRangeValue(this.options.rate.delay);
 
-            this.emitDelay = (1000 * delay) / this.container.retina.reduceFactor;
+            this.emitDelay = 1000 * delay / this.container.retina.reduceFactor;
         }
 
         if (this.lifeCount > 0 || this.immortal) {
             this.prepareToDie();
         }
-    }
-
-    pause(): void {
-        if (this.paused) {
-            return;
-        }
-
-        delete this.emitDelay;
     }
 
     resize(): void {
@@ -215,7 +256,7 @@ export class EmitterInstance {
                 if (this.lifeCount > 0 || this.immortal) {
                     this.position = this.calcPosition();
 
-                    this.spawnDelay = ((this.options.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
+                    this.spawnDelay = (this.options.life.delay ?? 0) * 1000 / this.container.retina.reduceFactor;
                 } else {
                     this.destroy();
                 }
@@ -252,67 +293,11 @@ export class EmitterInstance {
         }
     }
 
-    getPosition(): ICoordinates | undefined {
-        if (this.options.domId) {
-            const container = this.container,
-                element = document.getElementById(this.options.domId);
-
-            if (element) {
-                const elRect = element.getBoundingClientRect();
-
-                return {
-                    x: (elRect.x + elRect.width / 2) * container.retina.pixelRatio,
-                    y: (elRect.y + elRect.height / 2) * container.retina.pixelRatio,
-                };
-            }
-        }
-
-        return this.position;
-    }
-
-    getSize(): IDimension {
-        const container = this.container;
-
-        if (this.options.domId) {
-            const element = document.getElementById(this.options.domId);
-
-            if (element) {
-                const elRect = element.getBoundingClientRect();
-
-                return {
-                    width: elRect.width * container.retina.pixelRatio,
-                    height: elRect.height * container.retina.pixelRatio,
-                };
-            }
-        }
-
-        return {
-            width:
-                this.size.mode === SizeMode.percent
-                    ? (container.canvas.size.width * this.size.width) / 100
-                    : this.size.width,
-            height:
-                this.size.mode === SizeMode.percent
-                    ? (container.canvas.size.height * this.size.height) / 100
-                    : this.size.height,
-        };
-    }
-
-    private prepareToDie(): void {
-        if (this.paused) {
-            return;
-        }
-
-        const duration = this.options.life?.duration;
-
-        if (
-            this.container.retina.reduceFactor &&
-            (this.lifeCount > 0 || this.immortal) &&
-            duration !== undefined &&
-            duration > 0
-        ) {
-            this.duration = duration * 1000;
-        }
+    private calcPosition(): ICoordinates {
+        return calcPositionOrRandomFromSizeRanged({
+            size: this.container.canvas.size,
+            position: this.options.position,
+        });
     }
 
     private destroy(): void {
@@ -323,13 +308,6 @@ export class EmitterInstance {
             data: {
                 emitter: this,
             },
-        });
-    }
-
-    private calcPosition(): ICoordinates {
-        return calcPositionOrRandomFromSizeRanged({
-            size: this.container.canvas.size,
-            position: this.options.position,
         });
     }
 
@@ -380,6 +358,23 @@ export class EmitterInstance {
         }
     }
 
+    private prepareToDie(): void {
+        if (this.paused) {
+            return;
+        }
+
+        const duration = this.options.life?.duration;
+
+        if (
+            this.container.retina.reduceFactor &&
+            (this.lifeCount > 0 || this.immortal) &&
+            duration !== undefined &&
+            duration > 0
+        ) {
+            this.duration = duration * 1000;
+        }
+    }
+
     private setColorAnimation(animation: IColorAnimation, initValue: number, maxValue: number): number {
         const container = this.container;
 
@@ -389,9 +384,9 @@ export class EmitterInstance {
 
         const colorOffset = randomInRange(animation.offset),
             delay = getRangeValue(this.options.rate.delay),
-            emitFactor = (1000 * delay) / container.retina.reduceFactor,
+            emitFactor = 1000 * delay / container.retina.reduceFactor,
             colorSpeed = getRangeValue(animation.speed ?? 0);
 
-        return (initValue + (colorSpeed * container.fpsLimit) / emitFactor + colorOffset * 3.6) % maxValue;
+        return (initValue + colorSpeed * container.fpsLimit / emitFactor + colorOffset * 3.6) % maxValue;
     }
 }

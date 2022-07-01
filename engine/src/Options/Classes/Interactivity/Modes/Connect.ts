@@ -7,21 +7,14 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
  * @category Options
  */
 export class Connect implements IConnect, IOptionLoader<IConnect> {
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new links
-     */
-    get line_linked(): ConnectLinks {
-        return this.links;
-    }
+    distance;
+    links;
+    radius;
 
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new links
-     * @param value
-     */
-    set line_linked(value: ConnectLinks) {
-        this.links = value;
+    constructor() {
+        this.distance = 80;
+        this.links = new ConnectLinks();
+        this.radius = 60;
     }
 
     /**
@@ -41,14 +34,21 @@ export class Connect implements IConnect, IOptionLoader<IConnect> {
         this.links = value;
     }
 
-    distance;
-    links;
-    radius;
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new links
+     */
+    get line_linked(): ConnectLinks {
+        return this.links;
+    }
 
-    constructor() {
-        this.distance = 80;
-        this.links = new ConnectLinks();
-        this.radius = 60;
+    /**
+     *
+     * @deprecated this property is obsolete, please use the new links
+     * @param value
+     */
+    set line_linked(value: ConnectLinks) {
+        this.links = value;
     }
 
     load(data?: RecursivePartial<IConnect>): void {

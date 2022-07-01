@@ -8,8 +8,8 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
  */
 export class MoveTrail implements IMoveTrail, IOptionLoader<IMoveTrail> {
     enable;
-    length;
     fillColor;
+    length;
 
     constructor() {
         this.enable = false;

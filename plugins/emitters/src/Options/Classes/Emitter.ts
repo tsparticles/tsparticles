@@ -1,8 +1,10 @@
-import { AnimatableColor, MoveDirection, MoveDirectionAlt, deepExtend, setRangeValue } from "tsparticles-engine";
+import { AnimatableColor, deepExtend, setRangeValue } from "tsparticles-engine";
 import type {
     IOptionLoader,
     IParticlesOptions,
     IRangedCoordinates,
+    MoveDirection,
+    MoveDirectionAlt,
     RecursivePartial,
     SingleOrMultiple,
 } from "tsparticles-engine";
@@ -18,7 +20,6 @@ import type { IEmitter } from "../Interfaces/IEmitter";
  */
 export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     autoPlay;
-    size?: EmitterSize;
     direction?: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
     domId?: string;
     fill;
@@ -28,6 +29,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     position?: RecursivePartial<IRangedCoordinates>;
     rate;
     shape: EmitterShapeType | keyof typeof EmitterShapeType;
+    size?: EmitterSize;
     spawnColor?: AnimatableColor;
     startCount;
 

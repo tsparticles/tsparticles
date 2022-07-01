@@ -5,9 +5,9 @@ import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 export class AnimatableGradientColor implements IAnimatableGradientColor, IOptionLoader<IAnimatableGradientColor> {
+    opacity?: GradientColorOpacity;
     stop;
     value;
-    opacity?: GradientColorOpacity;
 
     constructor() {
         this.stop = 0;

@@ -9,9 +9,9 @@ import { setRangeValue } from "../../../../Utils/NumberUtils";
  * @category Options
  */
 export class ParticlesRepulse extends ValueWithRandom implements IParticlesRepulse, IOptionLoader<IParticlesRepulse> {
-    enabled;
     distance: RangeValue;
     duration: RangeValue;
+    enabled;
     factor: RangeValue;
     speed: RangeValue;
 

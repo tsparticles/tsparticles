@@ -1,5 +1,5 @@
 export interface IRectSideResult {
-    velocity?: number;
-    position?: number;
     bounced: boolean;
+    position?: number;
+    velocity?: number;
 }

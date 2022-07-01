@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.3](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@2.1.2...react-tsparticles-demo@2.1.3) (2022-07-01)
+
+
+### Bug Fixes
+
+* fix linker plugin issue ([b9505e2](https://github.com/matteobruni/tsparticles/commit/b9505e2453e893a0a30fd483595de412c70dda3c))
+
+
+
+
+
+## [2.1.2](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@2.1.1...react-tsparticles-demo@2.1.2) (2022-07-01)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
+## [2.1.1](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@2.1.0...react-tsparticles-demo@2.1.1) (2022-07-01)
+
+**Note:** Version bump only for package react-tsparticles-demo
+
+
+
+
+
 # [2.1.0](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@2.0.6...react-tsparticles-demo@2.1.0) (2022-06-18)
 
 

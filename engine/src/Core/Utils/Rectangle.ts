@@ -1,4 +1,4 @@
-import { Circle } from "./Circle";
+import type { Circle } from "./Circle";
 import type { ICoordinates } from "../Interfaces/ICoordinates";
 import type { IDimension } from "../Interfaces/IDimension";
 import { Range } from "./Range";

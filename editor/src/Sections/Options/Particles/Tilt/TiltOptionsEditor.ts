@@ -1,6 +1,7 @@
-import { EditorGroup, EditorType } from "object-gui";
 import type { Container } from "tsparticles-engine";
 import { EditorBase } from "../../../../EditorBase";
+import type { EditorGroup } from "object-gui";
+import { EditorType } from "object-gui";
 
 export class TiltOptionsEditor extends EditorBase {
     group!: EditorGroup;
@@ -12,7 +13,7 @@ export class TiltOptionsEditor extends EditorBase {
 
     addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("tilt", "Tilt");
-        this.options = this.group.data as unknown;
+        this.options = this.group.data;
 
         this.addAnimation();
         this.addProperties();

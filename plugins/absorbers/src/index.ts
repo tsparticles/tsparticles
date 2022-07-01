@@ -1,7 +1,7 @@
 import type { Engine, IOptions, IPlugin, Options, RecursivePartial } from "tsparticles-engine";
 import { Absorber } from "./Options/Classes/Absorber";
 import { AbsorberClickMode } from "./Enums/AbsorberClickMode";
-import { AbsorberContainer } from "./AbsorberContainer";
+import type { AbsorberContainer } from "./AbsorberContainer";
 import { Absorbers } from "./Absorbers";
 import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
 import { isInArray } from "tsparticles-engine";
@@ -18,27 +18,6 @@ class AbsorbersPlugin implements IPlugin {
 
     getPlugin(container: AbsorberContainer): Absorbers {
         return new Absorbers(container);
-    }
-
-    needsPlugin(options?: RecursivePartial<IOptions & IAbsorberOptions>): boolean {
-        if (!options) {
-            return false;
-        }
-
-        const absorbers = options.absorbers;
-
-        if (absorbers instanceof Array) {
-            return !!absorbers.length;
-        } else if (absorbers) {
-            return true;
-        } else if (
-            options.interactivity?.events?.onClick?.mode &&
-            isInArray(AbsorberClickMode.absorber, options.interactivity.events.onClick.mode)
-        ) {
-            return true;
-        }
-
-        return false;
     }
 
     loadOptions(options: Options, source?: RecursivePartial<IOptions & IAbsorberOptions>): void {
@@ -89,6 +68,27 @@ class AbsorbersPlugin implements IPlugin {
                 absorberOptions.load(interactivityAbsorbers);
             }
         }
+    }
+
+    needsPlugin(options?: RecursivePartial<IOptions & IAbsorberOptions>): boolean {
+        if (!options) {
+            return false;
+        }
+
+        const absorbers = options.absorbers;
+
+        if (absorbers instanceof Array) {
+            return !!absorbers.length;
+        } else if (absorbers) {
+            return true;
+        } else if (
+            options.interactivity?.events?.onClick?.mode &&
+            isInArray(AbsorberClickMode.absorber, options.interactivity.events.onClick.mode)
+        ) {
+            return true;
+        }
+
+        return false;
     }
 }
 

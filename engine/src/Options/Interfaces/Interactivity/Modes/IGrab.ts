@@ -9,12 +9,12 @@ export interface IGrab {
     /**
      * @deprecated use the new links instead
      */
-    line_linked: IGrabLinks;
+    lineLinked: IGrabLinks;
 
     /**
      * @deprecated use the new links instead
      */
-    lineLinked: IGrabLinks;
+    line_linked: IGrabLinks;
 
     links: IGrabLinks;
 }

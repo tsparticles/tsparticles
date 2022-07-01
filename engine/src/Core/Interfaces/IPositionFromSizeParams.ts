@@ -6,14 +6,14 @@ import type { IDimension } from "./IDimension";
  */
 export interface IPositionFromSizeParams {
     /**
-     * the size to use for calculating the position
-     */
-    size: IDimension;
-
-    /**
      * the position to use for calculating the exact position
      */
     position?: Partial<ICoordinates>;
+
+    /**
+     * the size to use for calculating the position
+     */
+    size: IDimension;
 }
 
 /**
@@ -21,12 +21,12 @@ export interface IPositionFromSizeParams {
  */
 export interface IRangedPositionFromSizeParams {
     /**
-     * the size to use for calculating the position
-     */
-    size: IDimension;
-
-    /**
      * the position to use for calculating the exact position
      */
     position?: Partial<IRangedCoordinates>;
+
+    /**
+     * the size to use for calculating the position
+     */
+    size: IDimension;
 }

@@ -1,4 +1,4 @@
-import { OutMode, OutModeAlt } from "../../../../Enums/Modes/OutMode";
+import type { OutMode, OutModeAlt } from "../../../../Enums/Modes/OutMode";
 
 export interface IOutModes {
     bottom?: OutMode | keyof typeof OutMode | OutModeAlt;

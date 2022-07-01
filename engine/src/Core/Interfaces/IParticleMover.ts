@@ -1,5 +1,5 @@
-import { IDelta } from "./IDelta";
-import { Particle } from "../Particle";
+import type { IDelta } from "./IDelta";
+import type { Particle } from "../Particle";
 
 export interface IParticleMover {
     init(particle: Particle): void;

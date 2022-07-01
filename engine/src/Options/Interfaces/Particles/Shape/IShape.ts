@@ -10,22 +10,15 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
  * @category Options
  */
 export interface IShape {
-    type: SingleOrMultiple<string>;
-
-    /**
-     * @deprecated this property was moved to particles section
-     */
-    stroke: SingleOrMultiple<IStroke>;
-
-    /**
-     * @deprecated this property is now integrated in custom shape management
-     */
-    polygon: SingleOrMultiple<IPolygonShape>;
-
     /**
      * @deprecated this property is now integrated in custom shape management
      */
     character: SingleOrMultiple<ICharacterShape>;
+
+    /**
+     * @deprecated this property has been renamed to options
+     */
+    custom: ShapeData;
 
     /**
      * @deprecated this property was integrated in custom shape management
@@ -37,10 +30,17 @@ export interface IShape {
      */
     images: SingleOrMultiple<IImageShape>;
 
-    /**
-     * @deprecated this property has been renamed to options
-     */
-    custom: ShapeData;
-
     options: ShapeData;
+
+    /**
+     * @deprecated this property is now integrated in custom shape management
+     */
+    polygon: SingleOrMultiple<IPolygonShape>;
+
+    /**
+     * @deprecated this property was moved to particles section
+     */
+    stroke: SingleOrMultiple<IStroke>;
+
+    type: SingleOrMultiple<string>;
 }

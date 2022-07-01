@@ -113,9 +113,9 @@ export class StrokeColorUpdater implements IParticleUpdater {
             !particle.destroyed &&
             !particle.spawning &&
             !!color &&
-            ((particle.strokeColor?.h.value !== undefined && color.animation.h.enable) ||
-                (particle.strokeColor?.s.value !== undefined && color.animation.s.enable) ||
-                (particle.strokeColor?.l.value !== undefined && color.animation.l.enable))
+            (particle.strokeColor?.h.value !== undefined && color.animation.h.enable ||
+                particle.strokeColor?.s.value !== undefined && color.animation.s.enable ||
+                particle.strokeColor?.l.value !== undefined && color.animation.l.enable)
         );
     }
 

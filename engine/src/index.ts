@@ -26,11 +26,9 @@ export * from "./Core/Interfaces/IMouseData";
 export * from "./Core/Interfaces/IMovePathGenerator";
 export * from "./Core/Interfaces/IParticle";
 export * from "./Core/Interfaces/IParticleColorStyle";
-export * from "./Core/Interfaces/IParticleGravity";
 export * from "./Core/Interfaces/IParticleHslAnimation";
 export * from "./Core/Interfaces/IParticlesInteractor";
 export * from "./Core/Interfaces/IParticleLife";
-export * from "./Core/Interfaces/IParticleLoops";
 export * from "./Core/Interfaces/IParticleRetinaProps";
 export * from "./Core/Interfaces/IParticleRoll";
 export * from "./Core/Interfaces/IParticleUpdater";
@@ -265,6 +263,7 @@ export * from "./Types/PathOptions";
 export * from "./Utils/CanvasUtils";
 export * from "./Utils/ColorUtils";
 export * from "./Utils/NumberUtils";
+export * from "./Utils/OptionsUtils";
 export * from "./Utils/Utils";
 export { tsParticles };
 
@@ -272,3 +271,4 @@ export { tsParticles };
  * tsParticles source options alias type, supporting partial objects
  */
 export type ISourceOptions = RecursivePartial<IOptions>;
+export type { IParticleTransformValues } from "./Core/Interfaces/IParticleTransformValues";

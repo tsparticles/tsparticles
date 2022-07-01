@@ -1,8 +1,8 @@
 import type { IMovePath } from "../../../../Interfaces/Particles/Move/Path/IMovePath";
 import type { IOptionLoader } from "../../../../Interfaces/IOptionLoader";
 import { MovePathDelay } from "./MovePathDelay";
-import { PathOptions } from "../../../../../Types/PathOptions";
-import { RecursivePartial } from "../../../../../Types/RecursivePartial";
+import type { PathOptions } from "../../../../../Types/PathOptions";
+import type { RecursivePartial } from "../../../../../Types/RecursivePartial";
 import { deepExtend } from "../../../../../Utils/Utils";
 
 /**
@@ -12,8 +12,8 @@ export class MovePath implements IMovePath, IOptionLoader<IMovePath> {
     clamp;
     delay;
     enable;
-    options: PathOptions;
     generator?: string;
+    options: PathOptions;
 
     constructor() {
         this.clamp = true;

@@ -1,12 +1,12 @@
+import type { EasingType, EasingTypeAlt } from "../../../../Enums/Types/EasingType";
+
 /**
  * @category Options
  */
-import type { EasingType } from "../../../../Enums/Types/EasingType";
-
 export interface IAttract {
     distance: number;
     duration: number;
-    easing: EasingType;
+    easing: EasingType | EasingTypeAlt;
     factor: number;
     maxSpeed: number;
     speed: number;

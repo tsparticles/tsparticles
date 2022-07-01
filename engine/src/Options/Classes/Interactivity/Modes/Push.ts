@@ -6,6 +6,16 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
  * @category Options
  */
 export class Push implements IPush, IOptionLoader<IPush> {
+    default;
+    groups: string[];
+    quantity;
+
+    constructor() {
+        this.default = true;
+        this.groups = [];
+        this.quantity = 4;
+    }
+
     /**
      *
      * @deprecated this property is obsolete, please use the new quantity
@@ -21,16 +31,6 @@ export class Push implements IPush, IOptionLoader<IPush> {
      */
     set particles_nb(value: number) {
         this.quantity = value;
-    }
-
-    default;
-    groups: string[];
-    quantity;
-
-    constructor() {
-        this.default = true;
-        this.groups = [];
-        this.quantity = 4;
     }
 
     load(data?: RecursivePartial<IPush>): void {

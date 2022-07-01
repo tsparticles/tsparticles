@@ -1,8 +1,9 @@
 import type { Container, IOptions } from "tsparticles-engine";
-import { Editor, EditorGroup, EditorType } from "object-gui";
+import type { Editor, EditorGroup } from "object-gui";
 import { BackgroundMaskOptionsEditor } from "./BackgroundMask/BackgroundMaskOptionsEditor";
 import { BackgroundOptionsEditor } from "./Background/BackgroundOptionsEditor";
 import { EditorBase } from "../../EditorBase";
+import { EditorType } from "object-gui";
 import { FullScreenOptionsEditor } from "./FullScreen/FullScreenOptionsEditor";
 import { InfectionOptionsEditor } from "./Infection/InfectionOptionsEditor";
 import { InteractivityOptionsEditor } from "./Interactivity/InteractivityOptionsEditor";
@@ -30,32 +31,6 @@ export class OptionsEditor extends EditorBase {
         this.addParticles();
 
         this.addProperties();
-    }
-
-    private addProperties(): void {
-        const particles = this.particles;
-
-        this.group.addProperty("autoPlay", "Auto Play", EditorType.boolean).change(async () => {
-            await particles.refresh();
-        });
-
-        this.group.addProperty("detectRetina", "Detect Retina", EditorType.boolean).change(async () => {
-            await particles.refresh();
-        });
-
-        this.group.addProperty("fpsLimit", "FPS Limit", EditorType.number).change(async () => {
-            await particles.refresh();
-        });
-
-        this.group.addProperty("pauseOnBlur", "Pause on Blur", EditorType.boolean).change(async () => {
-            await particles.refresh();
-        });
-
-        this.group
-            .addProperty("pauseOnOutsideViewport", "Pause on Outside Viewport", EditorType.boolean)
-            .change(async () => {
-                await particles.refresh();
-            });
     }
 
     private addBackground(): void {
@@ -97,5 +72,31 @@ export class OptionsEditor extends EditorBase {
         const options = new ParticlesOptionsEditor(this.particles);
 
         options.addToGroup(this.group);
+    }
+
+    private addProperties(): void {
+        const particles = this.particles;
+
+        this.group.addProperty("autoPlay", "Auto Play", EditorType.boolean).change(async () => {
+            await particles.refresh();
+        });
+
+        this.group.addProperty("detectRetina", "Detect Retina", EditorType.boolean).change(async () => {
+            await particles.refresh();
+        });
+
+        this.group.addProperty("fpsLimit", "FPS Limit", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
+
+        this.group.addProperty("pauseOnBlur", "Pause on Blur", EditorType.boolean).change(async () => {
+            await particles.refresh();
+        });
+
+        this.group
+            .addProperty("pauseOnOutsideViewport", "Pause on Outside Viewport", EditorType.boolean)
+            .change(async () => {
+                await particles.refresh();
+            });
     }
 }

@@ -47,14 +47,14 @@ export interface IHsl {
     h: number;
 
     /**
-     * Saturation
-     */
-    s: number;
-
-    /**
      * Luminance
      */
     l: number;
+
+    /**
+     * Saturation
+     */
+    s: number;
 }
 
 /**
@@ -67,14 +67,14 @@ export interface IRangeHsl {
     h: RangeValue;
 
     /**
-     * Saturation
-     */
-    s: RangeValue;
-
-    /**
      * Luminance
      */
     l: RangeValue;
+
+    /**
+     * Saturation
+     */
+    s: RangeValue;
 }
 
 /**
@@ -129,9 +129,9 @@ export interface IHsva extends IHsv, IAlphaColor {}
  */
 export interface IRgb {
     /**
-     * Red
+     * Blue
      */
-    r: number;
+    b: number;
 
     /**
      * Green
@@ -139,9 +139,9 @@ export interface IRgb {
     g: number;
 
     /**
-     * Blue
+     * Red
      */
-    b: number;
+    r: number;
 }
 
 /**
@@ -149,9 +149,9 @@ export interface IRgb {
  */
 export interface IRangeRgb {
     /**
-     * Red
+     * Blue
      */
-    r: RangeValue;
+    b: RangeValue;
 
     /**
      * Green
@@ -159,9 +159,9 @@ export interface IRangeRgb {
     g: RangeValue;
 
     /**
-     * Blue
+     * Red
      */
-    b: RangeValue;
+    r: RangeValue;
 }
 
 /**
@@ -174,11 +174,6 @@ export interface IRgba extends IRgb, IAlphaColor {}
  */
 export interface IValueColor {
     /**
-     * Rgb Value
-     */
-    rgb?: IRgb;
-
-    /**
      * Hsl value
      */
     hsl?: IHsl;
@@ -187,17 +182,17 @@ export interface IValueColor {
      * Hsv value
      */
     hsv?: IHsv;
+
+    /**
+     * Rgb Value
+     */
+    rgb?: IRgb;
 }
 
 /**
  * @category Interfaces
  */
 export interface IRangeValueColor {
-    /**
-     * Rgb Value
-     */
-    rgb?: IRangeRgb;
-
     /**
      * Hsl value
      */
@@ -207,4 +202,9 @@ export interface IRangeValueColor {
      * Hsv value
      */
     hsv?: IRangeHsv;
+
+    /**
+     * Rgb Value
+     */
+    rgb?: IRangeRgb;
 }

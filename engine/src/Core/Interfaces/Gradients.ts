@@ -8,18 +8,18 @@ export interface IGradientColorOpacity {
 }
 
 export interface IGradientColor {
-    value: IOptionsColor;
-    stop: number;
     opacity?: IGradientColorOpacity | number;
+    stop: number;
+    value: IOptionsColor;
 }
 
 export interface IGradientAngle {
-    value: number;
     direction: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
+    value: number;
 }
 
 export interface IGradient {
     angle?: IGradientAngle;
-    type: GradientType;
     colors: IGradientColor[];
+    type: GradientType;
 }

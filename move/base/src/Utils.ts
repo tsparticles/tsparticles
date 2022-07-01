@@ -1,22 +1,21 @@
 import { HoverMode, RotateDirection, clamp, getDistance, getDistances, isInArray } from "tsparticles-engine";
 import type { IDelta, Particle } from "tsparticles-engine";
-import type { SpinParticle } from "./Types";
+import type { MoveParticle } from "./Types";
 
-export function applyDistance(particle: SpinParticle): void {
-    const initialPosition = particle.initialPosition;
-    const { dx, dy } = getDistances(initialPosition, particle.position);
-    const dxFixed = Math.abs(dx),
-        dyFixed = Math.abs(dy);
-
-    const hDistance = particle.retina.maxDistance.horizontal;
-    const vDistance = particle.retina.maxDistance.vertical;
+export function applyDistance(particle: MoveParticle): void {
+    const initialPosition = particle.initialPosition,
+        { dx, dy } = getDistances(initialPosition, particle.position),
+        dxFixed = Math.abs(dx),
+        dyFixed = Math.abs(dy),
+        hDistance = particle.retina.maxDistance.horizontal,
+        vDistance = particle.retina.maxDistance.vertical;
 
     if (!hDistance && !vDistance) {
         return;
     }
 
-    if (((hDistance && dxFixed >= hDistance) || (vDistance && dyFixed >= vDistance)) && !particle.misplaced) {
-        particle.misplaced = (!!hDistance && dxFixed > hDistance) || (!!vDistance && dyFixed > vDistance);
+    if ((hDistance && dxFixed >= hDistance || vDistance && dyFixed >= vDistance) && !particle.misplaced) {
+        particle.misplaced = !!hDistance && dxFixed > hDistance || !!vDistance && dyFixed > vDistance;
 
         if (hDistance) {
             particle.velocity.x = particle.velocity.y / 2 - particle.velocity.x;
@@ -31,17 +30,17 @@ export function applyDistance(particle: SpinParticle): void {
         const pos = particle.position,
             vel = particle.velocity;
 
-        if (hDistance && ((pos.x < initialPosition.x && vel.x < 0) || (pos.x > initialPosition.x && vel.x > 0))) {
+        if (hDistance && (pos.x < initialPosition.x && vel.x < 0 || pos.x > initialPosition.x && vel.x > 0)) {
             vel.x *= -Math.random();
         }
 
-        if (vDistance && ((pos.y < initialPosition.y && vel.y < 0) || (pos.y > initialPosition.y && vel.y > 0))) {
+        if (vDistance && (pos.y < initialPosition.y && vel.y < 0 || pos.y > initialPosition.y && vel.y > 0)) {
             vel.y *= -Math.random();
         }
     }
 }
 
-export function spin(particle: SpinParticle, moveSpeed: number): void {
+export function spin(particle: MoveParticle, moveSpeed: number): void {
     const container = particle.container;
 
     if (!particle.spin) {
@@ -67,7 +66,7 @@ export function spin(particle: SpinParticle, moveSpeed: number): void {
         particle.spin.acceleration *= -1;
     }
 
-    particle.spin.angle += (moveSpeed / 100) * (1 - particle.spin.radius / maxCanvasSize);
+    particle.spin.angle += moveSpeed / 100 * (1 - particle.spin.radius / maxCanvasSize);
 }
 
 export function applyPath(particle: Particle, delta: IDelta): void {

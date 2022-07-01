@@ -9,6 +9,24 @@ import { StartValueType } from "../../../../Enums/Types/StartValueType";
  * @category Options
  */
 export class OpacityAnimation extends AnimationOptions implements IOpacityAnimation, IOptionLoader<IOpacityAnimation> {
+    destroy: DestroyType | keyof typeof DestroyType;
+
+    /**
+     * @deprecated this property is obsolete, please use the new min/max object in the opacity value
+     */
+    minimumValue?: number;
+
+    startValue: StartValueType | keyof typeof StartValueType;
+
+    constructor() {
+        super();
+        this.destroy = DestroyType.none;
+        this.enable = false;
+        this.speed = 2;
+        this.startValue = StartValueType.random;
+        this.sync = false;
+    }
+
     /**
      *
      * @deprecated this property is obsolete, please use the new minimumValue
@@ -24,23 +42,6 @@ export class OpacityAnimation extends AnimationOptions implements IOpacityAnimat
      */
     set opacity_min(value: number | undefined) {
         this.minimumValue = value;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new min/max object in the opacity value
-     */
-    minimumValue?: number;
-
-    destroy: DestroyType | keyof typeof DestroyType;
-    startValue: StartValueType | keyof typeof StartValueType;
-
-    constructor() {
-        super();
-        this.destroy = DestroyType.none;
-        this.enable = false;
-        this.speed = 2;
-        this.startValue = StartValueType.random;
-        this.sync = false;
     }
 
     load(data?: RecursivePartial<IOpacityAnimation>): void {

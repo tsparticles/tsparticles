@@ -1,6 +1,6 @@
 export type RadiusInfo = {
-    topRight: number;
-    bottomRight: number;
     bottomLeft: number;
+    bottomRight: number;
     topLeft: number;
+    topRight: number;
 };

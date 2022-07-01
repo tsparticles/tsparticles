@@ -22,9 +22,8 @@ import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 export class Emitters implements IContainerPlugin {
     array: EmitterInstance[];
     emitters: SingleOrMultiple<Emitter>;
-    interactivityEmitters: IEmitterModeOptions;
-
     readonly #engine;
+    interactivityEmitters: IEmitterModeOptions;
 
     constructor(engine: EmittersEngine, private readonly container: EmitterContainer) {
         this.#engine = engine;
@@ -38,15 +37,15 @@ export class Emitters implements IContainerPlugin {
             value: [],
         };
 
-        container.getEmitter = (idxOrName?: number | string) =>
+        container.getEmitter = (idxOrName?: number | string): EmitterInstance | undefined =>
             idxOrName === undefined || typeof idxOrName === "number"
                 ? this.array[idxOrName || 0]
                 : this.array.find((t) => t.name === idxOrName);
 
-        container.addEmitter = (options: RecursivePartial<IEmitter>, position?: ICoordinates) =>
+        container.addEmitter = (options: RecursivePartial<IEmitter>, position?: ICoordinates): EmitterInstance =>
             this.addEmitter(options, position);
 
-        container.removeEmitter = (idxOrName?: number | string) => {
+        container.removeEmitter = (idxOrName?: number | string): void => {
             const emitter = container.getEmitter(idxOrName);
 
             if (emitter) {
@@ -54,7 +53,7 @@ export class Emitters implements IContainerPlugin {
             }
         };
 
-        container.playEmitter = (idxOrName?: number | string) => {
+        container.playEmitter = (idxOrName?: number | string): void => {
             const emitter = container.getEmitter(idxOrName);
 
             if (emitter) {
@@ -62,13 +61,68 @@ export class Emitters implements IContainerPlugin {
             }
         };
 
-        container.pauseEmitter = (idxOrName?: number | string) => {
+        container.pauseEmitter = (idxOrName?: number | string): void => {
             const emitter = container.getEmitter(idxOrName);
 
             if (emitter) {
                 emitter.externalPause();
             }
         };
+    }
+
+    addEmitter(options: RecursivePartial<IEmitter>, position?: ICoordinates): EmitterInstance {
+        const emitterOptions = new Emitter();
+
+        emitterOptions.load(options);
+
+        const emitter = new EmitterInstance(this.#engine, this, this.container, emitterOptions, position);
+
+        this.array.push(emitter);
+
+        return emitter;
+    }
+
+    handleClickMode(mode: string): void {
+        const emitterOptions = this.emitters,
+            modeEmitters = this.interactivityEmitters;
+
+        if (mode === EmitterClickMode.emitter) {
+            let emittersModeOptions: SingleOrMultiple<IEmitter> | undefined;
+
+            if (modeEmitters && modeEmitters.value instanceof Array) {
+                if (modeEmitters.value.length > 0 && modeEmitters.random.enable) {
+                    emittersModeOptions = [];
+                    const usedIndexes: number[] = [];
+
+                    for (let i = 0; i < modeEmitters.random.count; i++) {
+                        const idx = arrayRandomIndex(modeEmitters.value);
+
+                        if (usedIndexes.includes(idx) && usedIndexes.length < modeEmitters.value.length) {
+                            i--;
+                            continue;
+                        }
+
+                        usedIndexes.push(idx);
+                        emittersModeOptions.push(itemFromArray(modeEmitters.value, idx));
+                    }
+                } else {
+                    emittersModeOptions = modeEmitters.value;
+                }
+            } else {
+                emittersModeOptions = modeEmitters?.value;
+            }
+
+            const emittersOptions = emittersModeOptions ?? emitterOptions,
+                ePosition = this.container.interactivity.mouse.clickPosition;
+
+            if (emittersOptions instanceof Array) {
+                for (const emitterOptions of emittersOptions) {
+                    this.addEmitter(emitterOptions, ePosition);
+                }
+            } else {
+                this.addEmitter(deepExtend({}, emittersOptions) as IEmitter, ePosition);
+            }
+        }
     }
 
     init(options?: RecursivePartial<IOptions & IEmitterOptions>): void {
@@ -167,15 +221,29 @@ export class Emitters implements IContainerPlugin {
         }
     }
 
+    pause(): void {
+        for (const emitter of this.array) {
+            emitter.pause();
+        }
+    }
+
     play(): void {
         for (const emitter of this.array) {
             emitter.play();
         }
     }
 
-    pause(): void {
+    removeEmitter(emitter: EmitterInstance): void {
+        const index = this.array.indexOf(emitter);
+
+        if (index >= 0) {
+            this.array.splice(index, 1);
+        }
+    }
+
+    resize(): void {
         for (const emitter of this.array) {
-            emitter.pause();
+            emitter.resize();
         }
     }
 
@@ -186,75 +254,6 @@ export class Emitters implements IContainerPlugin {
     update(delta: IDelta): void {
         for (const emitter of this.array) {
             emitter.update(delta);
-        }
-    }
-
-    handleClickMode(mode: string): void {
-        const emitterOptions = this.emitters,
-            modeEmitters = this.interactivityEmitters;
-
-        if (mode === EmitterClickMode.emitter) {
-            let emittersModeOptions: SingleOrMultiple<IEmitter> | undefined;
-
-            if (modeEmitters && modeEmitters.value instanceof Array) {
-                if (modeEmitters.value.length > 0 && modeEmitters.random.enable) {
-                    emittersModeOptions = [];
-                    const usedIndexes: number[] = [];
-
-                    for (let i = 0; i < modeEmitters.random.count; i++) {
-                        const idx = arrayRandomIndex(modeEmitters.value);
-
-                        if (usedIndexes.includes(idx) && usedIndexes.length < modeEmitters.value.length) {
-                            i--;
-                            continue;
-                        }
-
-                        usedIndexes.push(idx);
-                        emittersModeOptions.push(itemFromArray(modeEmitters.value, idx));
-                    }
-                } else {
-                    emittersModeOptions = modeEmitters.value;
-                }
-            } else {
-                emittersModeOptions = modeEmitters?.value;
-            }
-
-            const emittersOptions = emittersModeOptions ?? emitterOptions,
-                ePosition = this.container.interactivity.mouse.clickPosition;
-
-            if (emittersOptions instanceof Array) {
-                for (const emitterOptions of emittersOptions) {
-                    this.addEmitter(emitterOptions, ePosition);
-                }
-            } else {
-                this.addEmitter(deepExtend({}, emittersOptions) as IEmitter, ePosition);
-            }
-        }
-    }
-
-    resize(): void {
-        for (const emitter of this.array) {
-            emitter.resize();
-        }
-    }
-
-    addEmitter(options: RecursivePartial<IEmitter>, position?: ICoordinates): EmitterInstance {
-        const emitterOptions = new Emitter();
-
-        emitterOptions.load(options);
-
-        const emitter = new EmitterInstance(this.#engine, this, this.container, emitterOptions, position);
-
-        this.array.push(emitter);
-
-        return emitter;
-    }
-
-    removeEmitter(emitter: EmitterInstance): void {
-        const index = this.array.indexOf(emitter);
-
-        if (index >= 0) {
-            this.array.splice(index, 1);
         }
     }
 }

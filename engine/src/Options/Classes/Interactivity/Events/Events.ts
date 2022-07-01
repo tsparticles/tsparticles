@@ -11,6 +11,18 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
  * @category Options
  */
 export class Events implements IEvents, IOptionLoader<IEvents> {
+    onClick;
+    onDiv: SingleOrMultiple<DivEvent>;
+    onHover;
+    resize;
+
+    constructor() {
+        this.onClick = new ClickEvent();
+        this.onDiv = new DivEvent();
+        this.onHover = new HoverEvent();
+        this.resize = true;
+    }
+
     /**
      *
      * @deprecated this property is obsolete, please use the new onClick
@@ -60,18 +72,6 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
      */
     set onhover(value: HoverEvent) {
         this.onHover = value;
-    }
-
-    onClick;
-    onDiv: SingleOrMultiple<DivEvent>;
-    onHover;
-    resize;
-
-    constructor() {
-        this.onClick = new ClickEvent();
-        this.onDiv = new DivEvent();
-        this.onHover = new HoverEvent();
-        this.resize = true;
     }
 
     load(data?: RecursivePartial<IEvents>): void {

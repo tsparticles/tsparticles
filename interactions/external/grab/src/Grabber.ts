@@ -68,19 +68,11 @@ export class Grabber extends ExternalInteractorBase {
         super(container);
     }
 
-    isEnabled(particle?: Particle): boolean {
-        const container = this.container,
-            mouse = container.interactivity.mouse,
-            events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
-
-        return events.onHover.enable && !!mouse.position && isInArray(HoverMode.grab, events.onHover.mode);
-    }
-
     clear(): void {
         // do nothing
     }
 
-    reset(): void {
+    init(): void {
         // do nothing
     }
 
@@ -116,7 +108,7 @@ export class Grabber extends ExternalInteractorBase {
 
             const grabLineOptions = interactivity.modes.grab.links,
                 lineOpacity = grabLineOptions.opacity,
-                opacityLine = lineOpacity - (pointDistance * lineOpacity) / distance;
+                opacityLine = lineOpacity - pointDistance * lineOpacity / distance;
 
             if (opacityLine <= 0) {
                 continue;
@@ -142,5 +134,17 @@ export class Grabber extends ExternalInteractorBase {
 
             drawGrab(container, particle, colorLine, opacityLine, mousePos);
         }
+    }
+
+    isEnabled(particle?: Particle): boolean {
+        const container = this.container,
+            mouse = container.interactivity.mouse,
+            events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
+
+        return events.onHover.enable && !!mouse.position && isInArray(HoverMode.grab, events.onHover.mode);
+    }
+
+    reset(): void {
+        // do nothing
     }
 }

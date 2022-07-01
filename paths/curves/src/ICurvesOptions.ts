@@ -1,8 +1,8 @@
 export interface ICurvesOptions {
-    rndFunc: (() => number) | null;
-    period: number;
-    nbHarmonics: number;
     attenHarmonics: number;
-    lowValue: number;
     highValue: number;
+    lowValue: number;
+    nbHarmonics: number;
+    period: number;
+    rndFunc: (() => number) | null;
 }

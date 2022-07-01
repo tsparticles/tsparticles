@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.3](https://github.com/matteobruni/tsparticles/compare/ng-particles@3.1.2...ng-particles@3.1.3) (2022-07-01)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+## [3.1.2](https://github.com/matteobruni/tsparticles/compare/ng-particles@3.1.0...ng-particles@3.1.2) (2022-07-01)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+## 3.1.1 (2022-07-01)
+
+
+### Bug Fixes
+
+* **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
+* **deps:** pin dependencies ([3dac0d0](https://github.com/matteobruni/tsparticles/commit/3dac0d0a594092707ddd31a70b09cdb7238d5eba))
+* **deps:** update angular monorepo to ~13.1.0 ([1f80f2b](https://github.com/matteobruni/tsparticles/commit/1f80f2b467d440ed3f2d4b4a4bd08eb561cef76f))
+* **deps:** update angular monorepo to ~13.2.0 ([fa858b8](https://github.com/matteobruni/tsparticles/commit/fa858b8bad73331485a63d2a31124369c8cb8168))
+* **deps:** update angular monorepo to ~13.3.0 ([6aa9b81](https://github.com/matteobruni/tsparticles/commit/6aa9b814962c0460949452e7ee5c84617330ffd4))
+* **deps:** update angular monorepo to ~13.3.0 ([71e7a23](https://github.com/matteobruni/tsparticles/commit/71e7a2388d7871a26b4b25d691c061cacf8e08eb))
+* **deps:** update angular monorepo to v14 ([c620315](https://github.com/matteobruni/tsparticles/commit/c620315e06a16e0129acef06a4dac6505b4ce456))
+* **deps:** update dependency @capacitor/core to v3.5.0 ([581bb7e](https://github.com/matteobruni/tsparticles/commit/581bb7e2f4f6aceb3535daf9223954a80f2daa81))
+* **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+* **deps:** update dependency gh-pages to v4 ([cf6e957](https://github.com/matteobruni/tsparticles/commit/cf6e9577132afcec26410f7321fcf5ffcfb05930))
+* **deps:** update dependency rxjs to ~7.4.0 ([048238b](https://github.com/matteobruni/tsparticles/commit/048238b7b14b1ee49356afa47e5c7aa0ab4ac1f0))
+* **deps:** update dependency rxjs to ~7.5.0 ([f2d0505](https://github.com/matteobruni/tsparticles/commit/f2d0505863dafba475f8d6275d6474a54970a814))
+* **deps:** update react monorepo to v18.1.0 ([6b45793](https://github.com/matteobruni/tsparticles/commit/6b457937c41d7681a2135dfcb6ff220e578f22bb))
+* do not load particles on the Node.js side and make its loading cancellable ([6711708](https://github.com/matteobruni/tsparticles/commit/67117085c3e2da281216a18933f53d3f9b731136))
+* fixed angular readme, closes [#2297](https://github.com/matteobruni/tsparticles/issues/2297) ([5f51b87](https://github.com/matteobruni/tsparticles/commit/5f51b87a6fca58ee88ae51a17dbd5e0d1911b3c6))
+* fixed click handler, it wasn't working fine ([fd9873b](https://github.com/matteobruni/tsparticles/commit/fd9873b250d236b196cc7ff952d237f2768fb26b))
+* fixed connect links options ([5eb3186](https://github.com/matteobruni/tsparticles/commit/5eb31866b3a9fe1328969c254f2fff0be995b1f5))
+* fixed flashing issue with background mask, closes [#3514](https://github.com/matteobruni/tsparticles/issues/3514) ([6f74bf1](https://github.com/matteobruni/tsparticles/commit/6f74bf1ab62587c7f2352bfe6f72ea29bb0a31fc))
+* fixed issues with absorbers and emitters plugins Container extension methods ([ce196be](https://github.com/matteobruni/tsparticles/commit/ce196bebd035281c08b5c77c5301ba1ebd7e734f))
+* fixed some readmes ([93f371a](https://github.com/matteobruni/tsparticles/commit/93f371ab82a5074d34ec7632ade41edc3dbf0ec7))
+* removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
+* trying fixing issue [#4151](https://github.com/matteobruni/tsparticles/issues/4151) ([83e3e06](https://github.com/matteobruni/tsparticles/commit/83e3e0625743decef39c8496f8b30ed367803a4f))
+* upgrade @angular/common from 13.3.1 to 13.3.2 ([aa4ea55](https://github.com/matteobruni/tsparticles/commit/aa4ea55966bdb85dac6c3d147dfa5f993ea1ea3c))
+* upgrade multiple dependencies with Snyk ([796d33c](https://github.com/matteobruni/tsparticles/commit/796d33c91553ea4cf99b06f18fbf1ccf446f8152))
+* upgrade multiple dependencies with Snyk ([0667f67](https://github.com/matteobruni/tsparticles/commit/0667f67e403d331684cf5fb85036a0a76fc426d5))
+* upgrade rxjs from 7.3.0 to 7.4.0 ([5579eff](https://github.com/matteobruni/tsparticles/commit/5579eff8393a8685f038a94de42f7bf057f73a79))
+* upgrade rxjs from 7.4.0 to 7.5.1 ([edf9c98](https://github.com/matteobruni/tsparticles/commit/edf9c98613fdf7c080275eecfcffac0c7048af46))
+
+
+### Features
+
+* added new methods to particle class ([5743453](https://github.com/matteobruni/tsparticles/commit/5743453906001569f262888aa54539ad4e1463ac))
+* added particles loaded event to angular component ([81400e8](https://github.com/matteobruni/tsparticles/commit/81400e88c8451643828684e521c9900637165ca1))
+* changed particlesInit on angular, is a property now and not an event ([38f6219](https://github.com/matteobruni/tsparticles/commit/38f62190549bb194e6ab542ba834ae2118f99ba6))
+* fixed lazy loading ([60f9689](https://github.com/matteobruni/tsparticles/commit/60f96899bc564e547a49a5e17be4f40fe12288ba))
+* improved move path generators ([9b67377](https://github.com/matteobruni/tsparticles/commit/9b67377f9208a005b122e312ad4ad3c95a50deb7))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+* updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
+* updated ng-particles to Angular 13 ([802e290](https://github.com/matteobruni/tsparticles/commit/802e2904fcf01e713fe74bcdb4efb32979e27cc8))
+* updated to angular 10.1 (rc) to support TS 4.0 ([429cf89](https://github.com/matteobruni/tsparticles/commit/429cf893fb364101aeaddc2d2248245b0926741f))
+* upgraded components ([47060c2](https://github.com/matteobruni/tsparticles/commit/47060c2bafb0f7e21955e2e3ea736592ae189167))
+
+
+
+
+
 # [3.1.0](https://github.com/matteobruni/tsparticles/compare/ng-particles@3.0.6...ng-particles@3.1.0) (2022-06-18)
 
 

@@ -1,6 +1,7 @@
 import type { Container, ILinks, ILinksShadow } from "tsparticles-engine";
-import { EditorGroup, EditorType } from "object-gui";
 import { EditorBase } from "../../../../EditorBase";
+import type { EditorGroup } from "object-gui";
+import { EditorType } from "object-gui";
 
 export class LinksOptionsEditor extends EditorBase {
     group!: EditorGroup;
@@ -17,6 +18,70 @@ export class LinksOptionsEditor extends EditorBase {
         this.addShadow();
         this.addTriangles();
         this.addProperties();
+    }
+
+    private addProperties(): void {
+        const particles = this.particles;
+        const options = this.options;
+        const color = typeof options.color === "string" ? options.color : options.color?.value;
+
+        this.group.addProperty("blink", "Blink", EditorType.boolean).change(async () => {
+            await particles.refresh();
+        });
+
+        this.group.addProperty("color", "Color", EditorType.color, color, false).change(async (value: unknown) => {
+            if (typeof value === "string") {
+                if (typeof options.color === "string") {
+                    options.color = value;
+                } else {
+                    options.color.value = value;
+                }
+
+                await particles.refresh();
+            }
+        });
+
+        this.group.addProperty("consent", "Consent", EditorType.boolean).change(async () => {
+            await particles.refresh();
+        });
+
+        this.group.addProperty("distance", "Distance", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
+
+        this.group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
+            await particles.refresh();
+        });
+
+        this.group
+            .addProperty("frequency", "Frequency", EditorType.number)
+            .min(0)
+            .max(1)
+            .step(0.01)
+            .change(async () => {
+                await particles.refresh();
+            });
+
+        this.group.addProperty("id", "Id", EditorType.string).change(async () => {
+            await particles.refresh();
+        });
+
+        this.group
+            .addProperty("opacity", "Opacity", EditorType.number)
+            .change(async () => {
+                await particles.refresh();
+            })
+            .step(0.01)
+            .min(0)
+            .max(1);
+
+        this.group.addProperty("warp", "Warp", EditorType.boolean).change(async () => {
+            await particles.refresh();
+        });
+
+        this.group.addProperty("width", "Width", EditorType.number).change(async () => {
+            await particles.refresh();
+        });
     }
 
     private addShadow(): void {
@@ -97,69 +162,5 @@ export class LinksOptionsEditor extends EditorBase {
             .step(0.01)
             .min(0)
             .max(1);
-    }
-
-    private addProperties(): void {
-        const particles = this.particles;
-        const options = this.options;
-        const color = typeof options.color === "string" ? options.color : options.color?.value;
-
-        this.group.addProperty("blink", "Blink", EditorType.boolean).change(async () => {
-            await particles.refresh();
-        });
-
-        this.group.addProperty("color", "Color", EditorType.color, color, false).change(async (value: unknown) => {
-            if (typeof value === "string") {
-                if (typeof options.color === "string") {
-                    options.color = value;
-                } else {
-                    options.color.value = value;
-                }
-
-                await particles.refresh();
-            }
-        });
-
-        this.group.addProperty("consent", "Consent", EditorType.boolean).change(async () => {
-            await particles.refresh();
-        });
-
-        this.group.addProperty("distance", "Distance", EditorType.number).change(async () => {
-            await particles.refresh();
-        });
-
-        this.group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
-            await particles.refresh();
-        });
-
-        this.group
-            .addProperty("frequency", "Frequency", EditorType.number)
-            .min(0)
-            .max(1)
-            .step(0.01)
-            .change(async () => {
-                await particles.refresh();
-            });
-
-        this.group.addProperty("id", "Id", EditorType.string).change(async () => {
-            await particles.refresh();
-        });
-
-        this.group
-            .addProperty("opacity", "Opacity", EditorType.number)
-            .change(async () => {
-                await particles.refresh();
-            })
-            .step(0.01)
-            .min(0)
-            .max(1);
-
-        this.group.addProperty("warp", "Warp", EditorType.boolean).change(async () => {
-            await particles.refresh();
-        });
-
-        this.group.addProperty("width", "Width", EditorType.number).change(async () => {
-            await particles.refresh();
-        });
     }
 }

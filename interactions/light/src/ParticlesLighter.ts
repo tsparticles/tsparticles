@@ -8,6 +8,14 @@ export class ParticlesLighter extends ParticlesInteractorBase {
         super(container);
     }
 
+    clear(): void {
+        // do nothing
+    }
+
+    init(): void {
+        // do nothing
+    }
+
     async interact(particle: Particle): Promise<void> {
         const container = this.container,
             options = container.actualOptions;
@@ -42,10 +50,6 @@ export class ParticlesLighter extends ParticlesInteractorBase {
         }
 
         return res;
-    }
-
-    clear(): void {
-        // do nothing
     }
 
     reset(): void {
