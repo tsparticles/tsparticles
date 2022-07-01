@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-editor",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "tsParticles Configuration Editor",
   "keywords": [
     "tsparticles",
@@ -58,7 +58,7 @@
   "types": "dist/types/index.d.ts",
   "devDependencies": {
     "@babel/core": "^7.17.9",
-    "@tsparticles/eslint-config": "^1.0.1",
+    "@tsparticles/eslint-config": "^1.0.2",
     "@types/webpack-env": "^1.16.4",
     "@typescript-eslint/eslint-plugin": "^5.21.0",
     "@typescript-eslint/parser": "^5.21.0",
@@ -78,10 +78,10 @@
   },
   "dependencies": {
     "object-gui": "^1.1.1",
-    "tsparticles-engine": "^2.1.1",
-    "tsparticles-plugin-absorbers": "^2.1.1",
-    "tsparticles-plugin-emitters": "^2.1.1",
-    "tsparticles-plugin-infection": "^2.1.1"
+    "tsparticles-engine": "^2.1.2",
+    "tsparticles-plugin-absorbers": "^2.1.2",
+    "tsparticles-plugin-emitters": "^2.1.2",
+    "tsparticles-plugin-infection": "^2.1.2"
   },
   "publishConfig": {
     "directory": "dist"

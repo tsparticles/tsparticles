@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-big-circles",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "tsParticles big circles preset",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -101,7 +101,7 @@
   "types": "dist/types/index.d.ts",
   "devDependencies": {
     "@babel/core": "^7.17.9",
-    "@tsparticles/eslint-config": "^1.0.1",
+    "@tsparticles/eslint-config": "^1.0.2",
     "@types/webpack-env": "^1.16.4",
     "@typescript-eslint/eslint-plugin": "^5.21.0",
     "@typescript-eslint/parser": "^5.21.0",
@@ -120,13 +120,13 @@
     "webpack-tsparticles-plugin": "^1.1.1"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.1.1",
-    "tsparticles-move-base": "^2.1.1",
-    "tsparticles-plugin-emitters": "^2.1.1",
-    "tsparticles-shape-circle": "^2.1.1",
-    "tsparticles-updater-color": "^2.1.1",
-    "tsparticles-updater-opacity": "^2.1.1",
-    "tsparticles-updater-out-modes": "^2.1.1",
-    "tsparticles-updater-size": "^2.1.1"
+    "tsparticles-engine": "^2.1.2",
+    "tsparticles-move-base": "^2.1.2",
+    "tsparticles-plugin-emitters": "^2.1.2",
+    "tsparticles-shape-circle": "^2.1.2",
+    "tsparticles-updater-color": "^2.1.2",
+    "tsparticles-updater-opacity": "^2.1.2",
+    "tsparticles-updater-out-modes": "^2.1.2",
+    "tsparticles-updater-size": "^2.1.2"
   }
 }
