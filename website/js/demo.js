@@ -144,12 +144,12 @@
     let refreshParticles = function (callback) {
         const container = tsParticles.domItem(0);
 
-        gtag("event", "particles_refresh", {
+        /*gtag("event", "particles_refresh", {
             dimension_particles_options: JSON.stringify(container.options),
             event_category: "Particles",
             event_action: "Particles Refresh",
             event_label: "Particles Refresh",
-        });
+        });*/
 
         container.refresh().then(() => {
             if (callback && typeof callback === "function") {
@@ -176,12 +176,12 @@
             sidebar.classList.remove("d-md-block");
         }
 
-        gtag("event", "toggle_sidebar", {
+        /*gtag("event", "toggle_sidebar", {
             dimension_status: !sidebarHidden ? "Hidden" : "Visible",
             event_category: "Sidebar",
             event_action: "Sidebar Toggle",
             event_label: "Sidebar Toggle",
-        });
+        });*/
 
         refreshParticles();
     };
@@ -212,11 +212,11 @@
 
                 modalBody.appendChild(image);
 
-                gtag("event", "export_image", {
+                /*gtag("event", "export_image", {
                     event_category: "Particles",
                     event_action: "Image Export",
                     event_label: "Image Export",
-                });
+                });*/
 
                 const exportModal = new bootstrap.Modal(document.getElementById("exportModal"));
 
@@ -273,12 +273,12 @@
                     a.dispatchEvent(e);
                 };
 
-                gtag("event", "export_config", {
+                /*gtag("event", "export_config", {
                     dimension_particles_export_config: JSON.stringify(container.options),
                     event_category: "Particles",
                     event_action: "Config Export",
                     event_label: "Config Export",
-                });
+                });*/
 
                 const exportModal = new bootstrap.Modal(document.getElementById("exportModal"));
 
@@ -309,12 +309,12 @@
 
             inputData.value = JSONstring;
 
-            gtag("event", "export_codepen", {
+            /*gtag("event", "export_codepen", {
                 dimension_codepen_data: JSONstring,
                 event_category: "Particles",
                 event_action: "CodePen Export",
                 event_label: "CodePen Export",
-            });
+            });*/
 
             form.submit();
         }
@@ -330,12 +330,12 @@
             statsEl.setAttribute("hidden", "");
         }
 
-        gtag("event", "stats_toggle", {
+        /*gtag("event", "stats_toggle", {
             dimension_status: !statsHidden ? "Hidden" : "Visible",
             event_category: "Stats",
             event_action: "Stats Toggle",
             event_label: "Stats Toggle",
-        });
+        });*/
     };
 
     let btnParticlesUpdate = function () {
@@ -350,13 +350,13 @@
         localStorage.presetId = presetId;
         window.location.hash = presetId;
 
-        gtag("event", "preset_change", {
+        /*gtag("event", "preset_change", {
             dimension_old_preset: oldPreset,
             dimension_new_preset: localStorage.presetId,
             event_category: "Particles",
             event_action: "Preset Changed",
             event_label: "Preset Changed",
-        });
+        });*/
 
         updateParticles(editor);
     };
@@ -396,30 +396,30 @@
                 getOptions: jsonEditorAutoComplete,
             },
             onError: function (err) {
-                gtag("event", "editor_error", {
+                /*gtag("event", "editor_error", {
                     dimension_editor_error: "Editor error: " + err,
                     event_category: "Editor",
                     event_action: "Editor Error",
                     event_label: "Editor Error",
-                });
+                });*/
 
                 alert(err.toString());
             },
             onModeChange: function (newMode, oldMode) {
-                gtag("event", "editor_mode_change", {
+                /*gtag("event", "editor_mode_change", {
                     dimension_editor_mode: "Editor changed from " + oldMode + " to " + newMode,
                     event_category: "Editor",
                     event_action: "Editor Mode Change",
                     event_label: "Editor Mode Change",
-                });
+                });*/
             },
             onChange: function () {
-                gtag("event", "editor_change", {
+                /*gtag("event", "editor_change", {
                     dimension_editor_data: JSON.stringify(editor.get()),
                     event_category: "Editor",
                     event_action: "Editor Change",
                     event_label: "Editor Change",
-                });
+                });*/
             },
         };
 
