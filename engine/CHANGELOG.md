@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.1.0...tsparticles-engine@2.1.1) (2022-07-01)
+
+
+### Bug Fixes
+
+* fixed more enum typings ([cc5e52d](https://github.com/matteobruni/tsparticles/commit/cc5e52d9f271c16125432e285503e7e7bd7bc71e))
+* fixed more enum typings ([eed6c1f](https://github.com/matteobruni/tsparticles/commit/eed6c1f2237d78aae68beabc0c055e60770fe557))
+* fixed more enum typings ([ae6501c](https://github.com/matteobruni/tsparticles/commit/ae6501c4c8ab3cbcc4d3eeb01dfe54599df88c47))
+* fixed restoring canvas when not generated after full screen set, closes [#4291](https://github.com/matteobruni/tsparticles/issues/4291) ([28acc87](https://github.com/matteobruni/tsparticles/commit/28acc876335ed062fa14cfaa296dfaee0cdee8c9))
+* fixed typings in onDiv configuration, the DivType accepts also valid string values now ([164da18](https://github.com/matteobruni/tsparticles/commit/164da18be5f3feabbc7c367469446e3446cbb5f4))
+* fixed typings in onDiv configuration, the DivType accepts also valid string values now ([a4aa0a3](https://github.com/matteobruni/tsparticles/commit/a4aa0a3d8a249143489052ad474e4cf5b03a6bbb))
+
+
+### Features
+
+* moved gravity data from engine to base mover ([ead8f6e](https://github.com/matteobruni/tsparticles/commit/ead8f6e7d6e8fc579b6a5f45949b196b523c26f7))
+
+
+
+
+
 # [2.1.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.0.6...tsparticles-engine@2.1.0) (2022-06-18)
 
 

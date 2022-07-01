@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@2.1.0...react-tsparticles@2.1.1) (2022-07-01)
+
+
+### Bug Fixes
+
+* typo in readme for react-tsparticles ([478460c](https://github.com/matteobruni/tsparticles/commit/478460cef74761d4bba88d8c5c97d41b4e73708a))
+
+
+
+
+
 # [2.1.0](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@2.0.6...react-tsparticles@2.1.0) (2022-06-18)
 
 

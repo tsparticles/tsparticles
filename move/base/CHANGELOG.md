@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-move-base@2.1.0...tsparticles-move-base@2.1.1) (2022-07-01)
+
+
+### Features
+
+* moved gravity data from engine to base mover ([ead8f6e](https://github.com/matteobruni/tsparticles/commit/ead8f6e7d6e8fc579b6a5f45949b196b523c26f7))
+
+
+
+
+
 # [2.1.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-move-base@2.0.6...tsparticles-move-base@2.1.0) (2022-06-18)
 
 
