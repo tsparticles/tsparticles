@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-path-polygon",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "tsParticles polygon path",
   "homepage": "https://particles.js.org/",
   "repository": {
@@ -85,6 +85,6 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.1.2"
+    "tsparticles-engine": "^2.1.3"
   }
 }

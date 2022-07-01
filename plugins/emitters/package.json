@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-plugin-emitters",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "tsParticles emitters plugin",
   "homepage": "https://particles.js.org/",
   "scripts": {
@@ -110,6 +110,6 @@
     "webpack-tsparticles-plugin": "^1.1.1"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.1.2"
+    "tsparticles-engine": "^2.1.3"
   }
 }
