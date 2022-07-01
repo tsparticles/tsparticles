@@ -62,7 +62,9 @@ export class Linker extends ParticlesInteractorBase {
     }
 
     init(): void {
-        this.linkContainer.particles.linksColors = new Map<string, IRgb | string | undefined>();
+        if (!this.linkContainer?.particles) {
+            this.linkContainer.particles.linksColors = new Map<string, IRgb | string | undefined>();
+        }
     }
 
     async interact(p1: LinkParticle): Promise<void> {
@@ -133,6 +135,10 @@ export class Linker extends ParticlesInteractorBase {
     }
 
     private setColor(p1: IParticle): void {
+        if (!this.linkContainer?.particles?.linksColors) {
+            this.linkContainer.particles.linksColors = new Map<string, IRgb | string | undefined>();
+        }
+
         const container = this.linkContainer,
             linksOptions = p1.options.links;
 
