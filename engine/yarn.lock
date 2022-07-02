@@ -3441,9 +3441,9 @@ typedoc-plugin-missing-exports@^0.23.0:
   integrity sha512-9smahDSsFRno9ZwoEshQDuIYMHWGB1E6LUud5qMxR2wNZ0T4DlZz0QjoK3HzXtX34mUpTH0dYtt7NQUK4D6B6Q==
 
 typedoc@^0.23.2:
-  version "0.23.2"
-  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.23.2.tgz#c5f82752530749c8b541ff9b17883f6fb9e72f14"
-  integrity sha512-THpC4vtb3wu1yck6YHzEc4ck6W4lScf8TD0Rg7XAetDih8BzP+ErYO0/6DtdzYcZyKkDwEoujkMeWW7CffCbrQ==
+  version "0.23.4"
+  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.23.4.tgz#58a93033181d907baea616115190da3b5273416e"
+  integrity sha512-KvDc3aO7eSrPhPJ36zPfjKNdOMSQFeUOMOMZdG7jACQePJny+qEbufINCac/wAH8nMaCE3TRa5jcDmouRy58nA==
   dependencies:
     lunr "^2.3.9"
     marked "^4.0.16"
