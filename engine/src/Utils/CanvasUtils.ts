@@ -145,10 +145,8 @@ export function drawParticle(
 
     context.beginPath();
 
-    const angle = (particle.rotate?.value ?? 0) + (particle.options.rotate.path ? particle.velocity.angle : 0);
-
-    if (angle !== 0) {
-        context.rotate(angle);
+    if (particle.rotation) {
+        context.rotate(particle.rotation);
     }
 
     if (backgroundMask) {
@@ -205,8 +203,8 @@ export function drawParticle(
         context.translate(pos.x, pos.y);
     }
 
-    if (angle !== 0) {
-        context.rotate(angle);
+    if (particle.rotation) {
+        context.rotate(particle.rotation);
     }
 
     if (backgroundMask) {

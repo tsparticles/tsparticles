@@ -190,9 +190,9 @@ export class Particle implements IParticle {
     roll?: IParticleRoll;
 
     /**
-     * Gets the particle rotate options
+     * Gets the particle rotation angle
      */
-    rotate?: IParticleValueAnimation<number>;
+    rotation: number;
 
     /**
      * Gets particle shadow color
@@ -279,6 +279,7 @@ export class Particle implements IParticle {
         this.destroyed = false;
         this.unbreakable = false;
         this.splitCount = 0;
+        this.rotation = 0;
         this.misplaced = false;
         this.retina = {
             maxDistance: {},
