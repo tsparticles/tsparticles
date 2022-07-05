@@ -105,9 +105,12 @@
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
+  "prettier": "@tsparticles/prettier-config",
   "devDependencies": {
     "@babel/core": "^7.17.9",
     "@tsparticles/eslint-config": "^1.0.2",
+    "@tsparticles/prettier-config": "^1.0.0",
+    "@tsparticles/tsconfig": "^1.0.0",
     "@types/chai": "^4.3.1",
     "@types/mocha": "^9.1.1",
     "@types/node": "^18.0.0",

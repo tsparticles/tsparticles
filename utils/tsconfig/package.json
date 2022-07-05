@@ -1,0 +1,15 @@
+{
+  "name": "@tsparticles/tsconfig",
+  "version": "1.0.0",
+  "description": "tsParticles default TypeScript Compiler Configuration",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  },
+  "peerDependencies": {
+    "typescript": "^4.7.4"
+  }
+}

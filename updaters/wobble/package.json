@@ -93,6 +93,7 @@
   "devDependencies": {
     "@babel/core": "^7.17.9",
     "@tsparticles/eslint-config": "^1.0.2",
+    "@tsparticles/tsconfig": "^1.0.0",
     "@types/webpack-env": "^1.16.4",
     "@typescript-eslint/eslint-plugin": "^5.21.0",
     "@typescript-eslint/parser": "^5.21.0",

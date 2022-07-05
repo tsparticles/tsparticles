@@ -3,6 +3,7 @@
   "version": "1.0.2",
   "description": "tsParticles default ESLint Configuration",
   "main": "eslint-config.js",
+  "license": "MIT",
   "files": [
     "eslint-config.js"
   ],

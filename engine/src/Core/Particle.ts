@@ -1,6 +1,5 @@
 import type { ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates";
 import type { IHsl, IRgb } from "./Interfaces/Colors";
-import type { IParticleNumericValueAnimation, IParticleValueAnimation } from "./Interfaces/IParticleValueAnimation";
 import {
     calcExactPositionOrRandomFromSize,
     clamp,
@@ -24,6 +23,7 @@ import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
 import type { IDelta } from "./Interfaces/IDelta";
 import type { IParticle } from "./Interfaces/IParticle";
 import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation";
+import type { IParticleNumericValueAnimation } from "./Interfaces/IParticleValueAnimation";
 import type { IParticleRetinaProps } from "./Interfaces/IParticleRetinaProps";
 import type { IParticleRoll } from "./Interfaces/IParticleRoll";
 import type { IParticleWobble } from "./Interfaces/IParticleWobble";
