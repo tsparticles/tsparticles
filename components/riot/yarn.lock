@@ -252,12 +252,7 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@babel/parser@^7.16.7", "@babel/parser@^7.18.5":
-  version "7.18.5"
-  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.18.5.tgz#337062363436a893a2d22faa60be5bb37091c83c"
-  integrity sha512-YZWVaglMiplo7v8f1oMQ5ZPQr0vn7HPeZXxXWsxXJRjGVrzUFn9OxFQl1sb5wzfootjA/yChhW84BV+383FSOw==
-
-"@babel/parser@^7.18.6":
+"@babel/parser@^7.16.7", "@babel/parser@^7.18.5", "@babel/parser@^7.18.6":
   version "7.18.6"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.18.6.tgz#845338edecad65ebffef058d3be851f1d28a63bc"
   integrity sha512-uQVSa9jJUe/G/304lXspfWVpKpK4euFLgGiMQFOCpM/bgcAdeoHwi/OQz23O9GK2osz26ZiXRRV9aV+Yl1O8tw==
@@ -429,9 +424,9 @@
     rollup-plugin-riot "^6.0.0"
 
 "@riotjs/compiler@^6.1.3":
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/@riotjs/compiler/-/compiler-6.2.0.tgz#bc44feccb5a563d95735132b718ae274ab6cfb01"
-  integrity sha512-rg+rtDsf2MgsK93pxATXHpnpqlvrbhPp2I//07FwdYZBHZjCTngOCy5DkXhoMtSN39L+MlDcp1EiGlu7Mxq9TQ==
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/@riotjs/compiler/-/compiler-6.3.0.tgz#1e29416b9d3475cdda25eaed11c2528307f096b2"
+  integrity sha512-klWA8hKKpcViSOwvjuVPUVmqzEepVYjmKOma+4ktAqv/w7z3GRoBb1P9WNkz2ICkDU1NViNg8fZjEUiiy938QA==
   dependencies:
     "@babel/parser" "^7.18.5"
     "@riotjs/parser" "^4.3.1"
@@ -2158,6 +2153,11 @@ tslib@^2.0.1:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
   integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
+
+tsparticles-engine@^2.1.3:
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.1.3.tgz#d8922cf7811c40e5e9b87b18f9cc86043af8e900"
+  integrity sha512-BmCo534tF5yRQofUczGSfCFrdeMYO6e7FXHv6AdRxL+j9NNPH3zF4HX6k24tbO4kmTH8tGX/+F9mugEQVo9AEg==
 
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"
