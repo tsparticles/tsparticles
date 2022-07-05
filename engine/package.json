@@ -150,22 +150,5 @@
   },
   "publishConfig": {
     "directory": "dist"
-  },
-  "nyc": {
-    "extension": [
-      ".ts",
-      ".tsx"
-    ],
-    "include": [
-      "src/**/*.ts"
-    ],
-    "exclude": [
-      "**/*.d.ts"
-    ],
-    "reporter": [
-      "lcov",
-      "html"
-    ],
-    "all": true
   }
 }
