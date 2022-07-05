@@ -62,6 +62,7 @@
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
+  "typedocMain": "./src/index.ts",
   "devDependencies": {
     "@babel/core": "^7.17.9",
     "@tsparticles/eslint-config": "^1.0.2",
