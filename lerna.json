@@ -20,7 +20,7 @@
     "updaters/*",
     "utils/*",
     "website",
-    "websites/*"
+    "website2"
   ],
   "version": "independent",
   "npmClient": "yarn",
