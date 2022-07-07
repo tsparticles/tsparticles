@@ -2,46 +2,58 @@
 Hero styles
 ========================================================================== */
 
+.particles-container {
+  position: relative;
+}
+
+.particles-container > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .hero-body {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
 
-    .title {
-        font-family: $font;
-        color: $blue-grey;
-    }
+  .title {
+    font-family: $font;
+    color: $blue-grey;
+  }
 
-    .title {
-        &.is-bold {
-            font-weight: 700;
-        }
+  .title {
+    &.is-bold {
+      font-weight: 700;
     }
+  }
 
-    .subtitle {
-        &.is-muted {
-            color: $muted-grey;
-        }
+  .subtitle {
+    &.is-muted {
+      color: $muted-grey;
     }
+  }
 
-    .landing-caption {
-        .button {
-            min-width: 130px;
-        }
+  .landing-caption {
+    .button {
+      min-width: 130px;
     }
+  }
 }
 
 .hero-foot {
 
-    * {
-        border: none !important;
-    }
+  * {
+    border: none !important;
+  }
 
-    img {
-        &.partner-logo {
-            display: block;
-            margin: 0 auto;
-            width: 100%;
-            max-width: 100px;
-        }
+  img {
+    &.partner-logo {
+      display: block;
+      margin: 0 auto;
+      width: 100%;
+      max-width: 100px;
     }
+  }
 }
