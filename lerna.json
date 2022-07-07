@@ -19,13 +19,14 @@
     "templates/*",
     "updaters/*",
     "utils/*",
-    "website"
+    "website",
+    "websites/*"
   ],
   "version": "independent",
   "npmClient": "yarn",
   "useWorkspaces": false,
   "conventionalCommits": true,
-  "useNx": true,
+  "useNx": false,
   "command": {
     "version": {
       "message": "chore(release): published new version"
