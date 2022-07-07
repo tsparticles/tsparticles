@@ -116,7 +116,7 @@ Section Styles
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 0 auto 10px auto;
+        margin: 0 auto 10px;
         transition: all .3s;
 
         ion-icon {
@@ -163,7 +163,7 @@ Section Styles
         img {
             display: block;
             max-width: 160px;
-            margin: 0 auto 0 auto;
+            margin: 0 auto;
         }
 
         .price {
@@ -195,7 +195,7 @@ Section Styles
         }
 
         p {
-            padding: 24px 0 16px 0;
+            padding: 24px 0 16px;
             color: $muted-grey;
         }
     }
