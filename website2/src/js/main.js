@@ -58,6 +58,10 @@ document.onreadystatechange = function () {
                     color: {
                         value: "#000"
                     },
+                    links: {
+                        color: "#000",
+                        enable: true
+                    },
                     move: {
                         enable: true
                     },
