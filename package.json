@@ -29,7 +29,7 @@
     "nx": "^14.4.1",
     "parcel": "^2.6.0",
     "rimraf": "^3.0.2",
-    "typedoc": "^0.23.5",
+    "typedoc": "^0.23.6",
     "typedoc-plugin-carbon-ads": "^1.1.1",
     "typedoc-plugin-clarity": "^1.1.0",
     "typedoc-plugin-coverage": "^2.0.0",
