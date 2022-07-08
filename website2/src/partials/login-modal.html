@@ -1,0 +1,32 @@
+<div id="auth-modal" class="modal">
+    <div class="modal-background modal-dismiss"></div>
+    <div class="modal-content">
+        <div class="flex-card auth-card">
+            <div class="tabs-wrapper">
+                <div class="tabs">
+                    <ul>
+                        <li class="is-active" data-tab="login-tab"><a>Login</a></li>
+                        <li data-tab="register-tab"><a>Register</a></li>
+                    </ul>
+                </div>
+                <div id="login-tab" class="tab-content is-active">
+                    <div class="field">
+                        <label>Username</label>
+                        <div class="control">
+                            <input type="text" class="input is-medium" placeholder="Enter username">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Password</label>
+                        <div class="control">
+                            <input type="password" class="input is-medium" placeholder="Enter password">
+                        </div>
+                    </div>
+
+                    <a class="button is-fullwidth secondary-btn is-rounded raised">Log in</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="modal-close is-large modal-dismiss" aria-label="close"></button>
+</div>
