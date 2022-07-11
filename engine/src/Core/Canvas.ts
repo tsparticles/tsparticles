@@ -7,6 +7,7 @@ import type { IDelta } from "./Interfaces/IDelta";
 import type { IDimension } from "./Interfaces/IDimension";
 import type { IParticleColorStyle } from "./Interfaces/IParticleColorStyle";
 import type { IParticleTransformValues } from "./Interfaces/IParticleTransformValues";
+import type { IParticleUpdater } from "./Interfaces/IParticleUpdater";
 import type { Particle } from "./Particle";
 import { deepExtend } from "../Utils/Utils";
 import { generatedAttribute } from "./Utils/Constants";
@@ -28,6 +29,8 @@ function setTransformValue(
  * @category Core
  */
 export class Canvas {
+    #colorPlugins: IContainerPlugin[];
+
     /**
      * The particles canvas context
      */
@@ -38,7 +41,12 @@ export class Canvas {
      */
     element?: HTMLCanvasElement;
 
+    #postDrawUpdaters: IParticleUpdater[];
+    #preDrawUpdaters: IParticleUpdater[];
+
     resizeFactor?: IDimension;
+
+    #resizePlugins: IContainerPlugin[];
 
     /**
      * The particles canvas dimension
@@ -62,6 +70,10 @@ export class Canvas {
 
         this.#context = null;
         this.generatedCanvas = false;
+        this.#preDrawUpdaters = [];
+        this.#postDrawUpdaters = [];
+        this.#resizePlugins = [];
+        this.#colorPlugins = [];
     }
 
     /**
@@ -92,6 +104,11 @@ export class Canvas {
         this.draw((ctx) => {
             clear(ctx, this.size);
         });
+
+        this.#preDrawUpdaters = [];
+        this.#postDrawUpdaters = [];
+        this.#resizePlugins = [];
+        this.#colorPlugins = [];
     }
 
     draw<T>(cb: (context: CanvasRenderingContext2D) => T): T | undefined {
@@ -116,10 +133,6 @@ export class Canvas {
         const pfColor = particle.getFillColor(),
             psColor = particle.getStrokeColor() ?? pfColor;
 
-        if (!pfColor && !psColor) {
-            return;
-        }
-
         let [fColor, sColor] = this.getPluginParticleColors(particle);
 
         if (!fColor || !sColor) {
@@ -132,71 +145,42 @@ export class Canvas {
             }
         }
 
-        const options = this.container.actualOptions,
-            zIndexOptions = particle.options.zIndex,
-            zOpacityFactor = (1 - particle.zIndexFactor) ** zIndexOptions.opacityRate,
-            opacity = particle.bubble.opacity ?? particle.opacity?.value ?? 1,
-            strokeOpacity = particle.stroke?.opacity ?? opacity,
-            zOpacity = opacity * zOpacityFactor,
-            zStrokeOpacity = strokeOpacity * zOpacityFactor;
-
-        const colorStyles: IParticleColorStyle = {
-            fill: fColor ? getStyleFromHsl(fColor, zOpacity) : undefined,
-        };
-
-        colorStyles.stroke = sColor ? getStyleFromHsl(sColor, zStrokeOpacity) : colorStyles.fill;
+        if (!fColor || !sColor) {
+            return;
+        }
 
         this.draw((ctx) => {
-            const transform: IParticleTransformValues = {};
+            const options = this.container.actualOptions,
+                zIndexOptions = particle.options.zIndex,
+                zOpacityFactor = (1 - particle.zIndexFactor) ** zIndexOptions.opacityRate,
+                opacity = particle.bubble.opacity ?? particle.opacity?.value ?? 1,
+                strokeOpacity = particle.stroke?.opacity ?? opacity,
+                zOpacity = opacity * zOpacityFactor,
+                zStrokeOpacity = strokeOpacity * zOpacityFactor,
+                transform: IParticleTransformValues = {},
+                colorStyles: IParticleColorStyle = {
+                    fill: fColor ? getStyleFromHsl(fColor, zOpacity) : undefined,
+                };
 
-            const zSizeFactor = (1 - particle.zIndexFactor) ** zIndexOptions.sizeRate,
-                container = this.container;
+            colorStyles.stroke = sColor ? getStyleFromHsl(sColor, zStrokeOpacity) : colorStyles.fill;
 
-            for (const updater of container.particles.updaters) {
-                if (updater.beforeDraw) {
-                    updater.beforeDraw(particle);
-                }
+            this.applyPreDrawUpdaters(ctx, particle, radius, zOpacity, colorStyles, transform);
 
-                if (updater.getColorStyles) {
-                    const { fill, stroke } = updater.getColorStyles(particle, ctx, radius, zOpacity);
-
-                    if (fill) {
-                        colorStyles.fill = fill;
-                    }
-
-                    if (stroke) {
-                        colorStyles.stroke = stroke;
-                    }
-                }
-
-                if (updater.getTransformValues) {
-                    const updaterTransform = updater.getTransformValues(particle);
-
-                    for (const key in updaterTransform) {
-                        setTransformValue(transform, updaterTransform, key as keyof IParticleTransformValues);
-                    }
-                }
-            }
-
-            drawParticle(
-                container,
-                ctx,
+            drawParticle({
+                container: this.container,
+                context: ctx,
                 particle,
                 delta,
                 colorStyles,
-                options.backgroundMask.enable,
-                options.backgroundMask.composite,
-                radius * zSizeFactor,
-                zOpacity,
-                particle.options.shadow,
-                transform
-            );
+                backgroundMask: options.backgroundMask.enable,
+                composite: options.backgroundMask.composite,
+                radius: radius * (1 - particle.zIndexFactor) ** zIndexOptions.sizeRate,
+                opacity: zOpacity,
+                shadow: particle.options.shadow,
+                transform,
+            });
 
-            for (const updater of container.particles.updaters) {
-                if (updater.afterDraw) {
-                    updater.afterDraw(particle);
-                }
-            }
+            this.applyPostDrawUpdaters(particle);
         });
     }
 
@@ -221,6 +205,8 @@ export class Canvas {
         this.initCover();
         this.initTrail();
         this.initBackground();
+        this.initUpdaters();
+        this.initPlugins();
         this.paint();
     }
 
@@ -246,6 +232,35 @@ export class Canvas {
         elementStyle.backgroundPosition = background.position || "";
         elementStyle.backgroundRepeat = background.repeat || "";
         elementStyle.backgroundSize = background.size || "";
+    }
+
+    initPlugins(): void {
+        this.#resizePlugins = [];
+
+        for (const [, plugin] of this.container.plugins) {
+            if (plugin.resize) {
+                this.#resizePlugins.push(plugin);
+            }
+
+            if (plugin.particleFillColor || plugin.particleStrokeColor) {
+                this.#colorPlugins.push(plugin);
+            }
+        }
+    }
+
+    initUpdaters(): void {
+        this.#preDrawUpdaters = [];
+        this.#postDrawUpdaters = [];
+
+        for (const updater of this.container.particles.updaters) {
+            if (updater.afterDraw) {
+                this.#postDrawUpdaters.push(updater);
+            }
+
+            if (updater.getColorStyles && updater.getTransformValues && updater.beforeDraw) {
+                this.#preDrawUpdaters.push(updater);
+            }
+        }
     }
 
     loadCanvas(canvas: HTMLCanvasElement): void {
@@ -335,21 +350,62 @@ export class Canvas {
         /* density particles enabled */
         container.particles.setDensity();
 
-        for (const [, plugin] of container.plugins) {
-            if (plugin.resize !== undefined) {
-                plugin.resize();
-            }
-        }
+        this.applyResizePlugins();
 
         if (needsRefresh) {
             await container.refresh();
         }
     }
 
+    private applyPostDrawUpdaters(particle: Particle): void {
+        for (const updater of this.#postDrawUpdaters) {
+            updater.afterDraw?.(particle);
+        }
+    }
+
+    private applyPreDrawUpdaters(
+        ctx: CanvasRenderingContext2D,
+        particle: Particle,
+        radius: number,
+        zOpacity: number,
+        colorStyles: IParticleColorStyle,
+        transform: IParticleTransformValues
+    ): void {
+        for (const updater of this.#preDrawUpdaters) {
+            if (updater.getColorStyles) {
+                const { fill, stroke } = updater.getColorStyles(particle, ctx, radius, zOpacity);
+
+                if (fill) {
+                    colorStyles.fill = fill;
+                }
+
+                if (stroke) {
+                    colorStyles.stroke = stroke;
+                }
+            }
+
+            if (updater.getTransformValues) {
+                const updaterTransform = updater.getTransformValues(particle);
+
+                for (const key in updaterTransform) {
+                    setTransformValue(transform, updaterTransform, key as keyof IParticleTransformValues);
+                }
+            }
+
+            updater.beforeDraw?.(particle);
+        }
+    }
+
+    private applyResizePlugins(): void {
+        for (const plugin of this.#resizePlugins) {
+            plugin.resize?.();
+        }
+    }
+
     private getPluginParticleColors(particle: Particle): (IHsl | undefined)[] {
         let fColor: IHsl | undefined, sColor: IHsl | undefined;
 
-        for (const [, plugin] of this.container.plugins) {
+        for (const plugin of this.#colorPlugins) {
             if (!fColor && plugin.particleFillColor) {
                 fColor = rangeColorToHsl(plugin.particleFillColor(particle));
             }

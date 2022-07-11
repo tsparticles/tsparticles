@@ -101,33 +101,72 @@ export function gradient(
     return grad;
 }
 
+interface DrawParticleParams {
+    /**
+     * If enabled, the composite value will be used for blending the particle in the canvas
+     */
+    backgroundMask: boolean;
+    /**
+     * The color styles value
+     */
+    colorStyles: IParticleColorStyle;
+    /**
+     * The composite value to use for blending the particle in the canvas
+     */
+    composite: GlobalCompositeOperation;
+    /**
+     * The container of the particle
+     */
+    container: Container;
+    /**
+     * The canvas context to draw on
+     */
+    context: CanvasRenderingContext2D;
+    /**
+     * This variable contains the delta between the current frame and the previous frame
+     */
+    delta: IDelta;
+    /**
+     * The opacity of the particle
+     */
+    opacity: number;
+    /**
+     * The particle to draw
+     */
+    particle: IParticle;
+    /**
+     * The radius of the particle
+     */
+    radius: number;
+    /**
+     * The shadow of the particle
+     */
+    shadow: IShadow;
+    /**
+     * The particle transform values
+     */
+    transform: IParticleTransformValues;
+}
+
 /**
  * Draws the particle using canvas API in the given context.
- * @param container - The container of the particle.
- * @param context - The canvas context to draw on.
- * @param particle - The particle to draw.
- * @param delta this variable contains the delta between the current frame and the previous frame
- * @param colorStyles - The color styles value.
- * @param backgroundMask - If enabled, the composite value will be used for blending the particle in the canvas.
- * @param composite - The composite value to use for blending the particle in the canvas.
- * @param radius - The radius of the particle.
- * @param opacity - The opacity of the particle.
- * @param shadow - The shadow of the particle.
- * @param transform - The particle transform values.
+ * @param data - The function parameters.
  */
-export function drawParticle(
-    container: Container,
-    context: CanvasRenderingContext2D,
-    particle: IParticle,
-    delta: IDelta,
-    colorStyles: IParticleColorStyle,
-    backgroundMask: boolean,
-    composite: GlobalCompositeOperation,
-    radius: number,
-    opacity: number,
-    shadow: IShadow,
-    transform: IParticleTransformValues
-): void {
+export function drawParticle(data: DrawParticleParams): void {
+    const {
+        container,
+        context,
+        particle,
+        delta,
+        colorStyles,
+        backgroundMask,
+        composite,
+        radius,
+        opacity,
+        shadow,
+        transform,
+    } = data;
+
     const pos = particle.getPosition();
 
     context.save();
