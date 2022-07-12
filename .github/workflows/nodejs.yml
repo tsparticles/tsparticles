@@ -11,11 +11,6 @@ on:
       - dev
       - v1
 
-env:
-  NX_CLOUD_DISTRIBUTED_EXECUTION: true
-  NX_CLOUD_ACCESS_TOKEN: '${{ secrets.NX_CLOUD_ACCESS_TOKEN }}'
-  NX_BRANCH: '${{github.event.pull_request.number || github.ref_name}}'
-
 jobs:
   main:
     runs-on: ubuntu-latest
@@ -25,8 +20,6 @@ jobs:
         name: Checkout [main]
         with:
           fetch-depth: 0
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v2
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
@@ -42,9 +35,7 @@ jobs:
       #      ${{ runner.os }}-yarn-
       - run: yarn install
       - run: npx lerna bootstrap
-      - run: npx nx-cloud start-ci-run
       - run: npx lerna run build --concurrency 3
-      - run: npx nx-cloud stop-all-agents
       #- run: lerna test
       #- name: Codacy Coverage Reporter
       #  uses: codacy/codacy-coverage-reporter-action@0.2.0
@@ -89,8 +80,6 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v2
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
@@ -106,9 +95,7 @@ jobs:
       #      ${{ runner.os }}-yarn-
       - run: yarn install
       - run: npx lerna bootstrap
-      - run: npx nx-cloud start-ci-run
       - run: npx lerna run build --concurrency 3
-      - run: npx nx-cloud stop-all-agents
       - run: echo ${{ github.repository_owner }}
       - run: echo ${{ github.actor }}
       #- run: lerna test
@@ -147,20 +134,3 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
           projectId: tsparticles
-
-  agents:
-    runs-on: ubuntu-latest
-    name: Nx Agent
-    timeout-minutes: 60
-    strategy:
-      matrix:
-        agent: [ 1, 2, 3 ]
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-      - run: yarn install
-      - run: npx lerna bootstrap
-      - name: Start Nx Agent ${{ matrix.agent }}
-        run: npx nx-cloud start-agent
