@@ -57,7 +57,7 @@
   },
   "particles": {
     "color": {
-      "value": "#ff0000"
+      "value": "#000"
     },
     "lineLinked": {
       "blink": false,
@@ -113,27 +113,31 @@
       "value": 0
     },
     "shape": {
-      "character": {
-        "fill": false,
-        "font": "Verdana",
-        "style": "",
-        "value": "*",
-        "weight": "400"
-      },
-      "image": [
-        {
-          "src": "/images/canine.svg",
-          "width": 32,
-          "height": 32,
-          "replaceColor": true
-        }
-      ],
-      "polygon": {
-        "sides": 5
-      },
-      "stroke": {
-        "color": "#000000",
-        "width": 0
+      "options": {
+        "image": [
+          {
+            "src": "/images/canine1.svg",
+            "width": 32,
+            "height": 32,
+            "replaceColor": true,
+            "particles": {
+              "color": {
+                "value": "#00f"
+              }
+            }
+          },
+          {
+            "src": "/images/canine2.svg",
+            "width": 32,
+            "height": 32,
+            "replaceColor": true,
+            "particles": {
+              "color": {
+                "value": "#0f0"
+              }
+            }
+          }
+        ]
       },
       "type": "image"
     },
