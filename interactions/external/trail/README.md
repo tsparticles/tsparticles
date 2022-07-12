@@ -4,7 +4,7 @@
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-interaction-external-trail/badge)](https://www.jsdelivr.com/package/npm/tsparticles-interaction-external-trail)
 [![npmjs](https://badge.fury.io/js/tsparticles-interaction-external-trail.svg)](https://www.npmjs.com/package/tsparticles-interaction-external-trail)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-interaction-external-trail)](https://www.npmjs.com/package/tsparticles-interaction-external-trail)
+[![npmjs](https://img.shields.io/npm/dt/tsparticles-interaction-external-trail)](https://www.npmjs.com/package/tsparticles-interaction-external-trail) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) interaction plugin for trail effect around mouse or HTML
 elements.
