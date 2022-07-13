@@ -189,7 +189,7 @@ class App extends Component {
 | style           | object   | The style of the canvas element.                                                                                                                    |
 | className       | string   | The class name of the canvas wrapper.                                                                                                               |
 | canvasClassName | string   | the class name of the canvas.                                                                                                                       |
-| container       | object   | The instance of the [particles container](https://particles.js.org/docs/modules/_core_container_.html)                                              |
+| container       | object   | The instance of the [particles container](https://particles.js.org/docs/modules/Core_Container.html)                                              |
 | init            | function | This function is called after the tsParticles instance initialization, the instance is the parameter and you can load custom presets or shapes here |
 | loaded          | function | This function is called when particles are correctly loaded in canvas, the current container is the parameter and you can customize it here         |
 

@@ -157,7 +157,7 @@ const App = () => {
 | style           | объект | Стили элемента canvas.                                                                                           |
 | className       | строка | Имя класса для элемента-обертки элемента canvas.                                                                 |
 | canvasClassName | строка | Имя класса для элемента canvas.                                                                                  |
-| container       | объект | Экземпляр класса [контейнера частиц](https://particles.js.org/docs/modules/_core_container_.html). |
+| container       | объект | Экземпляр класса [контейнера частиц](https://particles.js.org/docs/modules/Core_Container.html). |
 
 [Здесь](https://particles.js.org) можно найти параметры для настройки.
 
