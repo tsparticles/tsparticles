@@ -13,6 +13,8 @@ on:
 
 jobs:
   main:
+    env:
+      firebaseToken: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
     runs-on: ubuntu-latest
     if: ${{ github.event_name != 'pull_request' }}
     steps:
@@ -35,14 +37,14 @@ jobs:
       #      ${{ runner.os }}-yarn-
       - run: yarn install
       - run: npx lerna bootstrap
-      - run: npx lerna run build --concurrency 3
+      - run: npx lerna run build:ci #--concurrency 3
       #- run: lerna test
       #- name: Codacy Coverage Reporter
       #  uses: codacy/codacy-coverage-reporter-action@0.2.0
       #  with:
       #    project-token: ${{ secrets.CodacyCoverageToken }}
       #    coverage-reports: coverage/lcov.info
-      - if: github.ref == 'refs/heads/main'
+      - if: env.firebaseToken != '' && github.ref == 'refs/heads/main'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -50,7 +52,7 @@ jobs:
           projectId: tsparticles
           channelId: live
 
-      - if: github.ref == 'refs/heads/staging'
+      - if: env.firebaseToken != '' && github.ref == 'refs/heads/staging'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -58,7 +60,7 @@ jobs:
           projectId: tsparticles
           channelId: next
 
-      - if: github.ref == 'refs/heads/dev'
+      - if: env.firebaseToken != '' && github.ref == 'refs/heads/dev'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -66,13 +68,15 @@ jobs:
           projectId: tsparticles
           channelId: dev
 
-      - if: contains(github.ref, 'refs/pull') && github.actor == 'matteobruni'
+      - if: env.firebaseToken != '' && contains(github.ref, 'refs/pull') && github.actor == 'matteobruni'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
           projectId: tsparticles
   pr:
+    env:
+      firebaseToken: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
     steps:
@@ -95,7 +99,7 @@ jobs:
       #      ${{ runner.os }}-yarn-
       - run: yarn install
       - run: npx lerna bootstrap
-      - run: npx lerna run build --concurrency 3
+      - run: npx lerna run build:ci #--concurrency 3
       - run: echo ${{ github.repository_owner }}
       - run: echo ${{ github.actor }}
       #- run: lerna test
@@ -104,7 +108,7 @@ jobs:
       #  with:
       #    project-token: ${{ secrets.CodacyCoverageToken }}
       #    coverage-reports: coverage/lcov.info
-      - if: github.ref == 'refs/heads/main'
+      - if: env.firebaseToken != '' && github.ref == 'refs/heads/main'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -112,7 +116,7 @@ jobs:
           projectId: tsparticles
           channelId: live
 
-      - if: github.ref == 'refs/heads/staging'
+      - if: env.firebaseToken != '' && github.ref == 'refs/heads/staging'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -120,7 +124,7 @@ jobs:
           projectId: tsparticles
           channelId: next
 
-      - if: github.ref == 'refs/heads/dev'
+      - if: env.firebaseToken != '' && github.ref == 'refs/heads/dev'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -128,7 +132,7 @@ jobs:
           projectId: tsparticles
           channelId: dev
 
-      - if: contains(github.ref, 'refs/pull') && github.actor == 'matteobruni'
+      - if: env.firebaseToken != '' && contains(github.ref, 'refs/pull') && github.actor == 'matteobruni'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
