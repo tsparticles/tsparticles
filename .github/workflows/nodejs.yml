@@ -13,11 +13,11 @@ on:
 
 jobs:
   main:
+    env:
+      has_firebase: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES != '' && secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES != null }}'
     runs-on: ubuntu-latest
     if: ${{ github.event_name != 'pull_request' }}
     steps:
-      - env:
-          has_firebase: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES != '' && secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES != null }}'
       - uses: actions/checkout@v3
         name: Checkout [main]
         with:
@@ -75,11 +75,11 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
           projectId: tsparticles
   pr:
+    env:
+      has_firebase: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES != '' && secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES != null }}'
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
     steps:
-      - env:
-          has_firebase: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES != '' && secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES != null }}'
       - uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.ref }}
