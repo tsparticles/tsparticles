@@ -11,11 +11,15 @@
   "types": "index.d.ts",
   "type": "module",
   "scripts": {
+    "prettify:ci:src": "prettier --check --list-different ./*.js",
+    "prettify:ci:readme": "prettier --check --list-different ./README.md",
     "prettify:src": "prettier --write ./*.js",
     "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "lint:ci": "eslint . --ext .js,.jsx,.ts,.tsx",
     "bundle": "webpack --mode production --config webpack.config.cjs",
     "build": "yarn clear:dist && yarn prettify:src && yarn lint && yarn bundle && yarn prettify:readme",
+    "build:ci": "yarn clear:dist && yarn prettify:ci:src && yarn lint:ci && yarn bundle && yarn prettify:ci:readme",
     "clear:dist": "rimraf -f ./dist",
     "prepack": "yarn build"
   },

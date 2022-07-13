@@ -9,6 +9,7 @@
     "cov": "nyc report --reporter=text-lcov",
     "cov-html": "nyc report --reporter=html",
     "build": "webpack --mode production",
+    "build:ci": "webpack --mode production",
     "prepublishOnly": "npm test",
     "start": "webpack serve --mode development --hot --port 3000"
   },

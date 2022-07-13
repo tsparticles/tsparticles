@@ -57,6 +57,7 @@
     "ng": "ng",
     "build:all": "ng build",
     "build": "node scripts/prebuild.js && ng build ng-particles --configuration production",
+    "build:ci": "node scripts/prebuild.js && ng build ng-particles --configuration production",
     "version": "yarn build && git add ./projects/ng-particles/package.json",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",

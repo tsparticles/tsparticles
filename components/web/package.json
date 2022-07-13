@@ -80,6 +80,7 @@
   ],
   "scripts": {
     "build": "ts-node -O '{ \"module\": \"commonjs\" }' build.ts",
+    "build:ci": "ts-node -O '{ \"module\": \"commonjs\" }' build.ts",
     "prepack": "yarn build"
   },
   "dependencies": {
