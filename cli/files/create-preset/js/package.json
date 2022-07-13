@@ -11,8 +11,8 @@
   "types": "index.d.ts",
   "type": "module",
   "scripts": {
-    "prettify:ci:src": "prettier --check --list-different ./*.js",
-    "prettify:ci:readme": "prettier --check --list-different ./README.md",
+    "prettify:ci:src": "prettier --check ./*.js",
+    "prettify:ci:readme": "prettier --check ./README.md",
     "prettify:src": "prettier --write ./*.js",
     "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",

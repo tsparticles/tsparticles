@@ -5,7 +5,7 @@
   "homepage": "https://particles.js.org/",
   "scripts": {
     "prettify:ci:src": "prettier --list-different ./src",
-    "prettify:ci:readme": "prettier --check --list-different ./README.md",
+    "prettify:ci:readme": "prettier --check ./README.md",
     "prettify:src": "prettier --write ./src",
     "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",

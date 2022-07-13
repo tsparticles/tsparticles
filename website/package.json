@@ -9,7 +9,7 @@
     "clear:cache": "rimraf -f ./node_modules/.cache",
     "clear:docs": "rimraf -f ./docs",
     "lint": "prettier --write ./configs && prettier --write ./css/*.scss && prettier --write ./js/404.js && prettier --write ./js/demo.js && prettier --write ./presets && prettier --write ./samples && prettier --write index.html && prettier --write privacy.html && prettier --write 404.html && prettier --write video.html",
-    "lint:ci": "prettier --check --list-different ./configs && prettier --check --list-different ./css/*.scss && prettier --check --list-different ./js/404.js && prettier --check --list-different ./js/demo.js && prettier --check --list-different ./presets && prettier --check --list-different ./samples && prettier --check --list-different index.html && prettier --check --list-different privacy.html && prettier --check --list-different 404.html && prettier --check --list-different video.html",
+    "lint:ci": "prettier --check ./configs && prettier --check ./css/*.scss && prettier --check ./js/404.js && prettier --check ./js/demo.js && prettier --check ./presets && prettier --check ./samples && prettier --check index.html && prettier --check privacy.html && prettier --check 404.html && prettier --check video.html",
     "build:js": "minify ./js/demo.js > ./js/demo.min.js && minify ./js/404.js > ./js/404.min.js",
     "build:css": "sass ./css/main.scss ./css/main.css && minify ./css/main.css > ./css/main.min.css && sass ./css/presets.scss ./css/presets.css && minify ./css/presets.css > ./css/presets.min.css && sass ./css/404.scss ./css/404.css && minify ./css/404.css > ./css/404.min.css",
     "build": " yarn clear:cache && yarn lint && yarn build:css && yarn build:js",
