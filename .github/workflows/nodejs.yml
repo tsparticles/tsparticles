@@ -14,7 +14,7 @@ on:
 jobs:
   main:
     env:
-      has_firebase: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES != '' }} && ${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES != null }}'
+      has_firebase: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES != '' && secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES != null }}'
     runs-on: ubuntu-latest
     if: ${{ github.event_name != 'pull_request' }}
     steps:
@@ -76,7 +76,7 @@ jobs:
           projectId: tsparticles
   pr:
     env:
-      has_firebase: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES != '' }}' && '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES != null }}'
+      has_firebase: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES != '' && secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES != null }}'
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
     steps:
