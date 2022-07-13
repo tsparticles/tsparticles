@@ -372,7 +372,7 @@ tsParticles अब कुछ अनुकूलन का समर्थन क
 
 **आप अपने खुद के प्लगइन्स बना सकते हैं**
 
-_Read more [here](https://particles.js.org/docs/modules/_core_interfaces_iplugin_.html)..._
+_Read more [here](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.html)..._
 
 ---
 

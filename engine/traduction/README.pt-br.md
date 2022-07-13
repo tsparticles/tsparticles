@@ -372,7 +372,7 @@ tsParticles agora tem suporte a algumas customizações 🥳.
 
 **Você pode criar seus próprios plugins**
 
-_Leia mais [aqui](https://particles.js.org/docs/modules/_core_interfaces_iplugin_.html)..._
+_Leia mais [aqui](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.html)..._
 
 ---
 

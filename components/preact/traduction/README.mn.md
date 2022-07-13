@@ -187,7 +187,7 @@ class App extends Component {
 | style           | обжект   | Канвасын стилл|
 | className       | мөр   | Канвас агуулагчын класс|
 | canvasClassName | мөр   | Канвасын класс|
-| container       | обжект   | Жишээ [particles container](https://particles.js.org/docs/modules/_core_container_.html)                                              |
+| container       | обжект   | Жишээ [particles container](https://particles.js.org/docs/modules/Core_Container.html)                                              |
 | init            | функц | tsParticles instance эхэлсний дараа дуудагддаг функц|
 | loaded          | функц | Канвас бүрэн зөв ажилсан бол дуудагддаг функц|
 

@@ -187,7 +187,7 @@ class App extends Component {
 | style           | object   | Style untuk elemen kanvas.                                                                                                                    |
 | className       | string   | Nama kelas untuk wrapper kanvas.                                                                                                               |
 | canvasClassName | string   | Nama kelas untuk kanvas.                                                                                                                       |
-| container       | object   |  Instance untuk [kontainer partikel](https://particles.js.org/docs/modules/_core_container_.html)                                              |
+| container       | object   |  Instance untuk [kontainer partikel](https://particles.js.org/docs/modules/Core_Container.html)                                              |
 | init            | function | Fungsi ini dipanggil seletah inisialisasi instance tsParticles, parameternya adalah instance tersebut dan Anda dapat memuat preset kustom atau bentuk di sini. |
 | loaded          | function |  Fungsi ini dipangil ketika partikel sudah termuat dengan benar di kanvas, kontainer saat ini adalah parameternya dan Anda dapat melakukan kustomisasi di sini.         |
 

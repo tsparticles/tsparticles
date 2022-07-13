@@ -157,7 +157,7 @@ const App = () => {
 | style           | object | De stijl van het canvas element.                                                                                     |
 | className       | string | De class naam van de canvas wrapper.                                                                                |
 | canvasClassName | string | De class naam van het canvas.                                                                                        |
-| container       | object | De instantie van de [deeltjes container](https://particles.js.org/docs/modules/_core_container_.html) |
+| container       | object | De instantie van de [deeltjes container](https://particles.js.org/docs/modules/Core_Container.html) |
 
 Vind je parameters configuratie [hier](https://particles.js.org).
 
