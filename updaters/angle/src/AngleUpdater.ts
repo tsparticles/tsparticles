@@ -1,7 +1,11 @@
 import { AnimationStatus, RotateDirection, getRangeValue } from "tsparticles-engine";
-import type { Container, IDelta, IParticleUpdater, Particle } from "tsparticles-engine";
+import type { Container, IDelta, IParticleUpdater, IParticleValueAnimation, Particle } from "tsparticles-engine";
 
-function updateAngle(particle: Particle, delta: IDelta): void {
+type RotateParticle = Particle & {
+    rotate?: IParticleValueAnimation<number>;
+};
+
+function updateAngle(particle: RotateParticle, delta: IDelta): void {
     const rotate = particle.rotate;
 
     if (!rotate) {
@@ -46,12 +50,12 @@ function updateAngle(particle: Particle, delta: IDelta): void {
 export class AngleUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
 
-    init(particle: Particle): void {
+    init(particle: RotateParticle): void {
         const rotateOptions = particle.options.rotate;
 
         particle.rotate = {
             enable: rotateOptions.animation.enable,
-            value: getRangeValue(rotateOptions.value) * Math.PI / 180,
+            value: (getRangeValue(rotateOptions.value) * Math.PI) / 180,
         };
 
         let rotateDirection = rotateOptions.direction;
@@ -77,7 +81,7 @@ export class AngleUpdater implements IParticleUpdater {
         if (rotateAnimation.enable) {
             particle.rotate.decay = 1 - getRangeValue(rotateAnimation.decay);
             particle.rotate.velocity =
-                getRangeValue(rotateAnimation.speed) / 360 * this.container.retina.reduceFactor;
+                (getRangeValue(rotateAnimation.speed) / 360) * this.container.retina.reduceFactor;
 
             if (!rotateAnimation.sync) {
                 particle.rotate.velocity *= Math.random();
@@ -92,11 +96,13 @@ export class AngleUpdater implements IParticleUpdater {
         return !particle.destroyed && !particle.spawning && !rotate.path && rotateAnimation.enable;
     }
 
-    update(particle: Particle, delta: IDelta): void {
+    update(particle: RotateParticle, delta: IDelta): void {
         if (!this.isEnabled(particle)) {
             return;
         }
 
         updateAngle(particle, delta);
+
+        particle.rotation = particle.rotate?.value ?? 0;
     }
 }

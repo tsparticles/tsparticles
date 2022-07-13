@@ -6041,13 +6041,6 @@ neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-ng-particles@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/ng-particles/-/ng-particles-3.1.0.tgz#34cc84196408f4098d3f23853f612b5fccde39a1"
-  integrity sha512-KDyWFRc0UC1/n8t4tdJNKReiQRAvDK0D5rkblYq8e4WcWFhisXkDTpYnlPhG21kGdoGzyDZgkxIITusRASPUiw==
-  dependencies:
-    tslib "^2.4.0"
-
 nice-napi@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/nice-napi/-/nice-napi-1.0.2.tgz#dc0ab5a1eac20ce548802fc5686eaa6bc654927b"

@@ -4,9 +4,12 @@
   "description": "tsParticles push external interaction",
   "homepage": "https://particles.js.org/",
   "scripts": {
+    "prettify:ci:src": "prettier --check ./src",
+    "prettify:ci:readme": "prettier --check ./README.md",
     "prettify:src": "prettier --write ./src",
     "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
+    "lint:ci": "eslint src --ext .js,.jsx,.ts,.tsx",
     "compile": "yarn build:ts",
     "build:ts": "yarn build:ts:types && yarn build:ts:browser && yarn build:ts:cjs && yarn build:ts:esm && yarn build:ts:umd",
     "build:ts:browser": "tsc -b tsconfig.browser.json",
@@ -17,6 +20,7 @@
     "bundle": "webpack --mode production",
     "distfiles": "node ./scripts/distfiles.js",
     "build": "yarn clear:dist && yarn prettify:src && yarn compile && yarn lint && yarn bundle && yarn prettify:readme && yarn distfiles",
+    "build:ci": "yarn clear:dist && yarn prettify:ci:src && yarn compile && yarn lint:ci && yarn bundle && yarn prettify:ci:readme && yarn distfiles",
     "clear:dist": "rimraf -f ./dist",
     "version": "yarn distfiles && git add package.dist.json",
     "prepack": "yarn build"
@@ -90,6 +94,7 @@
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
+  "typedocMain": "./src/index.ts",
   "devDependencies": {
     "@babel/core": "^7.17.9",
     "@tsparticles/eslint-config": "^1.0.2",

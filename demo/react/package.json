@@ -12,7 +12,8 @@
   },
   "scripts": {
     "start": "rimraf -f .parcel-cache && tsc && parcel serve public/index.html --no-cache --open",
-    "build": "rimraf -f .parcel-cache && tsc && parcel build --no-cache --target browser"
+    "build": "rimraf -f .parcel-cache && tsc && parcel build --no-cache --target browser",
+    "build:ci": "rimraf -f .parcel-cache && tsc && parcel build --no-cache --target browser"
   },
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"

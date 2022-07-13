@@ -35,7 +35,7 @@ export class TextDrawer implements IShapeDrawer {
             size = Math.round(radius) * 2,
             font = character.font ?? "Verdana",
             fill = particle.fill,
-            offsetX = text.length * radius / 2;
+            offsetX = (text.length * radius) / 2;
 
         context.font = `${style} ${weight} ${size}px "${font}"`;
 

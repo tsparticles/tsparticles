@@ -5,8 +5,12 @@
 	"main": "index.js",
 	"scripts": {
 		"build": "yarn prettify:src && yarn lint && webpack --mode production && yarn prettify:readme",
+		"build:ci": "yarn prettify:ci:src && yarn lint && webpack --mode production && yarn prettify:ci:readme",
 		"check": "tsc",
 		"lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
+		"lint:ci": "eslint src --ext .js,.jsx,.ts,.tsx",
+		"prettify:ci:src": "prettier --check ./src",
+		"prettify:ci:readme": "prettier --check ./README.md",
 		"prettify:src": "prettier --write ./src",
 		"prettify:readme": "prettier --write ./README.md",
 		"prepack": "yarn build"

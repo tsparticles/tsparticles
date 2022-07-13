@@ -4,7 +4,7 @@
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-interaction-external-pause/badge)](https://www.jsdelivr.com/package/npm/tsparticles-interaction-external-pause)
 [![npmjs](https://badge.fury.io/js/tsparticles-interaction-external-pause.svg)](https://www.npmjs.com/package/tsparticles-interaction-external-pause)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-interaction-external-pause)](https://www.npmjs.com/package/tsparticles-interaction-external-pause)
+[![npmjs](https://img.shields.io/npm/dt/tsparticles-interaction-external-pause)](https://www.npmjs.com/package/tsparticles-interaction-external-pause) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) interaction plugin for pause effect around mouse or HTML
 elements.

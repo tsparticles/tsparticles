@@ -12,6 +12,7 @@
   },
   "scripts": {
     "build": "yarn build:style && yarn build:index",
+    "build:ci": "yarn build:style && yarn build:index",
     "build:index": "npx pug ./views/index.pug",
     "build:style": "npx stylus ./public/stylesheets/main.styl",
     "start": "yarn build && node ./app.js"

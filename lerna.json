@@ -6,7 +6,6 @@
     "cli/files/create-preset/ts",
     "components/*",
     "demo/**/*",
-    "docsgen",
     "editor",
     "engine",
     "interactions/*",

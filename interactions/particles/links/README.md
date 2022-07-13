@@ -4,7 +4,7 @@
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-interaction-particles-links/badge)](https://www.jsdelivr.com/package/npm/tsparticles-interaction-particles-links)
 [![npmjs](https://badge.fury.io/js/tsparticles-interaction-particles-links.svg)](https://www.npmjs.com/package/tsparticles-interaction-particles-links)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-interaction-particles-links)](https://www.npmjs.com/package/tsparticles-interaction-particles-links)
+[![npmjs](https://img.shields.io/npm/dt/tsparticles-interaction-particles-links)](https://www.npmjs.com/package/tsparticles-interaction-particles-links) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) interaction plugin for links effect between particles.
 

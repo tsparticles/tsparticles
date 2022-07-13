@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "rollup -c",
+    "build:ci": "rollup -c",
     "dev": "rollup -c -w",
     "start": "sirv public --host",
     "check": "svelte-check --tsconfig ./tsconfig.json"

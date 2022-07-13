@@ -4,7 +4,7 @@
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-plugin-infection/badge)](https://www.jsdelivr.com/package/npm/tsparticles-plugin-infection)
 [![npmjs](https://badge.fury.io/js/tsparticles-plugin-infection.svg)](https://www.npmjs.com/package/tsparticles-plugin-infection)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-plugin-infection)](https://www.npmjs.com/package/tsparticles-plugin-infection)
+[![npmjs](https://img.shields.io/npm/dt/tsparticles-plugin-infection)](https://www.npmjs.com/package/tsparticles-plugin-infection) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) plugin for particles infection simulation effect.
 

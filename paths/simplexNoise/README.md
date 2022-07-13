@@ -4,7 +4,7 @@
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-path-simplex-noise/badge)](https://www.jsdelivr.com/package/npm/tsparticles-path-simplex-noise)
 [![npmjs](https://badge.fury.io/js/tsparticles-path-simplex-noise.svg)](https://www.npmjs.com/package/tsparticles-path-simplex-noise)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-path-simplex-noise)](https://www.npmjs.com/package/tsparticles-path-simplex-noise)
+[![npmjs](https://img.shields.io/npm/dt/tsparticles-path-simplex-noise)](https://www.npmjs.com/package/tsparticles-path-simplex-noise) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) path plugin for simplex noise movement.
 

@@ -194,7 +194,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
         const outMode = data.outMode ?? data.out_mode;
 
         if (data.outModes !== undefined || outMode !== undefined) {
-            if (typeof data.outModes === "string" || data.outModes === undefined && outMode !== undefined) {
+            if (typeof data.outModes === "string" || (data.outModes === undefined && outMode !== undefined)) {
                 this.outModes.load({
                     default: data.outModes ?? outMode,
                 });

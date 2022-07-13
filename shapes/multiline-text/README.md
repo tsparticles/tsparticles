@@ -4,7 +4,7 @@
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-shape-multiline-text/badge)](https://www.jsdelivr.com/package/npm/tsparticles-shape-multiline-text)
 [![npmjs](https://badge.fury.io/js/tsparticles-shape-multiline-text.svg)](https://www.npmjs.com/package/tsparticles-shape-multiline-text)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-shape-multiline-text)](https://www.npmjs.com/package/tsparticles-shape-multiline-text)
+[![npmjs](https://img.shields.io/npm/dt/tsparticles-shape-multiline-text)](https://www.npmjs.com/package/tsparticles-shape-multiline-text) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) additional multiline text shape.
 

@@ -5,6 +5,7 @@
   "scripts": {
     "clean": "rm -rf dist/*",
     "build": "npm run clean && yarn rollup --config rollup.config.js",
+    "build:ci": "npm run clean && yarn rollup --config rollup.config.js",
     "prepack": "yarn build"
   },
   "keywords": [
