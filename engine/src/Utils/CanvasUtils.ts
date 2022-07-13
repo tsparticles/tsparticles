@@ -388,7 +388,7 @@ export function drawEllipse(
 
     context.lineWidth = width;
 
-    const rotationRadian = rotation * Math.PI / 180;
+    const rotationRadian = (rotation * Math.PI) / 180;
 
     context.beginPath();
     context.ellipse(pos.x, pos.y, radius / 2, radius * 2, rotationRadian, start, end);
