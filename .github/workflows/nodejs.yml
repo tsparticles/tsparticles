@@ -42,7 +42,7 @@ jobs:
       #  with:
       #    project-token: ${{ secrets.CodacyCoverageToken }}
       #    coverage-reports: coverage/lcov.info
-      - if: github.ref == 'refs/heads/main'
+      - if: secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES != null && github.ref == 'refs/heads/main'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -50,7 +50,7 @@ jobs:
           projectId: tsparticles
           channelId: live
 
-      - if: github.ref == 'refs/heads/staging'
+      - if: secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES != null && github.ref == 'refs/heads/staging'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -58,7 +58,7 @@ jobs:
           projectId: tsparticles
           channelId: next
 
-      - if: github.ref == 'refs/heads/dev'
+      - if: secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES != null && github.ref == 'refs/heads/dev'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -66,7 +66,7 @@ jobs:
           projectId: tsparticles
           channelId: dev
 
-      - if: contains(github.ref, 'refs/pull') && github.actor == 'matteobruni'
+      - if: secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES != null && contains(github.ref, 'refs/pull') && github.actor == 'matteobruni'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -104,7 +104,7 @@ jobs:
       #  with:
       #    project-token: ${{ secrets.CodacyCoverageToken }}
       #    coverage-reports: coverage/lcov.info
-      - if: github.ref == 'refs/heads/main'
+      - if: secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES != null && github.ref == 'refs/heads/main'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -112,7 +112,7 @@ jobs:
           projectId: tsparticles
           channelId: live
 
-      - if: github.ref == 'refs/heads/staging'
+      - if: secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES != null && github.ref == 'refs/heads/staging'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -120,7 +120,7 @@ jobs:
           projectId: tsparticles
           channelId: next
 
-      - if: github.ref == 'refs/heads/dev'
+      - if: secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES != null && github.ref == 'refs/heads/dev'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -128,7 +128,7 @@ jobs:
           projectId: tsparticles
           channelId: dev
 
-      - if: contains(github.ref, 'refs/pull') && github.actor == 'matteobruni'
+      - if: secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES != null && contains(github.ref, 'refs/pull') && github.actor == 'matteobruni'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
