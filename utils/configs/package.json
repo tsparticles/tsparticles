@@ -100,8 +100,11 @@
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "prettier": "@tsparticles/prettier-config",
   "devDependencies": {
     "@babel/core": "^7.17.8",
+    "@tsparticles/eslint-config": "^1.0.2",
+    "@tsparticles/prettier-config": "^1.0.0",
     "@types/webpack-env": "^1.16.3",
     "@typescript-eslint/eslint-plugin": "^5.17.0",
     "@typescript-eslint/parser": "^5.17.0",
