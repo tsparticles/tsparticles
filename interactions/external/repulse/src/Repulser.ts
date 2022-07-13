@@ -117,7 +117,7 @@ export class Repulser extends ExternalInteractorBase {
             divRepulse = isDivModeEnabled(DivMode.repulse, divs);
 
         if (
-            !(divRepulse || events.onHover.enable && mouse.position || events.onClick.enable && mouse.clickPosition)
+            !(divRepulse || (events.onHover.enable && mouse.position) || (events.onClick.enable && mouse.clickPosition))
         ) {
             return false;
         }
@@ -167,7 +167,7 @@ export class Repulser extends ExternalInteractorBase {
                 const { dx, dy, distance } = getDistances(mouseClickPos, particle.position),
                     d = distance ** 2,
                     velocity = container.actualOptions.interactivity.modes.repulse.speed,
-                    force = -repulseRadius * velocity / d;
+                    force = (-repulseRadius * velocity) / d;
 
                 if (d <= repulseRadius) {
                     container.repulse.particles.push(particle);
@@ -214,8 +214,8 @@ export class Repulser extends ExternalInteractorBase {
                     repulseOptions.maxSpeed
                 ),
                 normVec = Vector.create(
-                    distance === 0 ? velocity : dx / distance * repulseFactor,
-                    distance === 0 ? velocity : dy / distance * repulseFactor
+                    distance === 0 ? velocity : (dx / distance) * repulseFactor,
+                    distance === 0 ? velocity : (dy / distance) * repulseFactor
                 );
 
             particle.position.addTo(normVec);
@@ -237,7 +237,7 @@ export class Repulser extends ExternalInteractorBase {
                     x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
                     y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
                 },
-                repulseRadius = elem.offsetWidth / 2 * pxRatio,
+                repulseRadius = (elem.offsetWidth / 2) * pxRatio,
                 area =
                     div.type === DivType.circle
                         ? new Circle(pos.x, pos.y, repulseRadius)

@@ -182,8 +182,8 @@ export class Attractor extends ExternalInteractorBase {
                 attractOptions.maxSpeed
             );
             const normVec = Vector.create(
-                distance === 0 ? velocity : dx / distance * attractFactor,
-                distance === 0 ? velocity : dy / distance * attractFactor
+                distance === 0 ? velocity : (dx / distance) * attractFactor,
+                distance === 0 ? velocity : (dy / distance) * attractFactor
             );
 
             particle.position.subFrom(normVec);

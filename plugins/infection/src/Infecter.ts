@@ -72,7 +72,7 @@ export class Infecter {
         if (
             stage > stagesCount ||
             stage < 0 ||
-            particle.infection.stage !== undefined && particle.infection.stage > stage
+            (particle.infection.stage !== undefined && particle.infection.stage > stage)
         ) {
             return;
         }

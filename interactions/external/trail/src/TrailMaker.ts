@@ -30,7 +30,7 @@ export class TrailMaker extends ExternalInteractorBase {
         const container = this.container,
             options = container.actualOptions,
             trailOptions = options.interactivity.modes.trail,
-            optDelay = trailOptions.delay * 1000 / this.container.retina.reduceFactor;
+            optDelay = (trailOptions.delay * 1000) / this.container.retina.reduceFactor;
 
         if (this.delay < optDelay) {
             this.delay += delta.value;
@@ -45,8 +45,8 @@ export class TrailMaker extends ExternalInteractorBase {
         if (trailOptions.pauseOnStop) {
             if (
                 container.interactivity.mouse.position === this.lastPosition ||
-                container.interactivity.mouse.position?.x === this.lastPosition?.x &&
-                    container.interactivity.mouse.position?.y === this.lastPosition?.y
+                (container.interactivity.mouse.position?.x === this.lastPosition?.x &&
+                    container.interactivity.mouse.position?.y === this.lastPosition?.y)
             ) {
                 canEmit = false;
             }
@@ -75,8 +75,8 @@ export class TrailMaker extends ExternalInteractorBase {
             events = (particle?.interactivity ?? options.interactivity).events;
 
         return (
-            mouse.clicking && mouse.inside && !!mouse.position && isInArray(ClickMode.trail, events.onClick.mode) ||
-            mouse.inside && !!mouse.position && isInArray(HoverMode.trail, events.onHover.mode)
+            (mouse.clicking && mouse.inside && !!mouse.position && isInArray(ClickMode.trail, events.onClick.mode)) ||
+            (mouse.inside && !!mouse.position && isInArray(HoverMode.trail, events.onHover.mode))
         );
     }
 
