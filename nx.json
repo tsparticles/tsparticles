@@ -8,6 +8,7 @@
         "accessToken": "YmE3OGY1MTQtNTJjMC00MzdjLTgwYjEtZDk4YWE0OTQ4MTIzfHJlYWQ=",
         "cacheableOperations": [
           "build",
+          "build:ci",
           "test",
           "lint",
           "package",
@@ -20,6 +21,7 @@
       "options": {
         "cacheableOperations": [
           "build",
+          "build:ci",
           "lint",
           "test",
           "e2e"
@@ -31,6 +33,12 @@
     "build": [
       {
         "target": "build",
+        "projects": "dependencies"
+      }
+    ],
+    "build:ci": [
+      {
+        "target": "build:ci",
         "projects": "dependencies"
       }
     ],
