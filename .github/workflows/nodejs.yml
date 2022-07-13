@@ -14,7 +14,7 @@ on:
 jobs:
   main:
     env:
-      has_firebase: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES != '' && secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES != null }}'
+      firebaseToken: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
     runs-on: ubuntu-latest
     if: ${{ github.event_name != 'pull_request' }}
     steps:
@@ -44,7 +44,7 @@ jobs:
       #  with:
       #    project-token: ${{ secrets.CodacyCoverageToken }}
       #    coverage-reports: coverage/lcov.info
-      - if: env.has_firebase && github.ref == 'refs/heads/main'
+      - if: env.firebaseToken != '' && github.ref == 'refs/heads/main'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -52,7 +52,7 @@ jobs:
           projectId: tsparticles
           channelId: live
 
-      - if: env.has_firebase && github.ref == 'refs/heads/staging'
+      - if: env.firebaseToken != '' && github.ref == 'refs/heads/staging'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -60,7 +60,7 @@ jobs:
           projectId: tsparticles
           channelId: next
 
-      - if: env.has_firebase && github.ref == 'refs/heads/dev'
+      - if: env.firebaseToken != '' && github.ref == 'refs/heads/dev'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -68,7 +68,7 @@ jobs:
           projectId: tsparticles
           channelId: dev
 
-      - if: env.has_firebase && contains(github.ref, 'refs/pull') && github.actor == 'matteobruni'
+      - if: env.firebaseToken != '' && contains(github.ref, 'refs/pull') && github.actor == 'matteobruni'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -76,7 +76,7 @@ jobs:
           projectId: tsparticles
   pr:
     env:
-      has_firebase: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES != '' && secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES != null }}'
+      firebaseToken: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
     steps:
@@ -108,7 +108,7 @@ jobs:
       #  with:
       #    project-token: ${{ secrets.CodacyCoverageToken }}
       #    coverage-reports: coverage/lcov.info
-      - if: env.has_firebase && github.ref == 'refs/heads/main'
+      - if: env.firebaseToken != '' && github.ref == 'refs/heads/main'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -116,7 +116,7 @@ jobs:
           projectId: tsparticles
           channelId: live
 
-      - if: env.has_firebase && github.ref == 'refs/heads/staging'
+      - if: env.firebaseToken != '' && github.ref == 'refs/heads/staging'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -124,7 +124,7 @@ jobs:
           projectId: tsparticles
           channelId: next
 
-      - if: env.has_firebase && github.ref == 'refs/heads/dev'
+      - if: env.firebaseToken != '' && github.ref == 'refs/heads/dev'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -132,7 +132,7 @@ jobs:
           projectId: tsparticles
           channelId: dev
 
-      - if: env.has_firebase && contains(github.ref, 'refs/pull') && github.actor == 'matteobruni'
+      - if: env.firebaseToken != '' && contains(github.ref, 'refs/pull') && github.actor == 'matteobruni'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
