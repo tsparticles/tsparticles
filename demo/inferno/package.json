@@ -6,6 +6,7 @@
 	"main": "index.js",
 	"scripts": {
 		"build": "webpack --mode production",
+		"build:ci": "webpack --mode production",
 		"check": "tsc",
 		"start": "webpack serve --config webpack.config.js --mode development"
 	},

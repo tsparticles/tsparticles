@@ -223,7 +223,7 @@ export class GradientUpdater implements IParticleUpdater {
                     value: gradient.angle.value,
                     enable: gradient.angle.animation.enable,
                     velocity:
-                        getRangeValue(gradient.angle.animation.speed) / 360 * particle.container.retina.reduceFactor,
+                        (getRangeValue(gradient.angle.animation.speed) / 360) * particle.container.retina.reduceFactor,
                     decay: 1 - getRangeValue(gradient.angle.animation.decay),
                 },
                 type: gradient.type,
@@ -271,7 +271,7 @@ export class GradientUpdater implements IParticleUpdater {
                                   status: AnimationStatus.increasing,
                                   value: getRangeValue(grColor.opacity.value),
                                   velocity:
-                                      getRangeValue(grColor.opacity.animation.speed) / 100 *
+                                      (getRangeValue(grColor.opacity.animation.speed) / 100) *
                                       particle.container.retina.reduceFactor,
                                   decay: 1 - getRangeValue(grColor.opacity.animation.decay),
                               }

@@ -135,7 +135,7 @@ export class Container {
             generate: (p: Particle): Vector => {
                 const v = p.velocity.copy();
 
-                v.angle += v.length * Math.PI / 180;
+                v.angle += (v.length * Math.PI) / 180;
 
                 return v;
             },
@@ -181,6 +181,10 @@ export class Container {
     }
 
     addClickHandler(callback: (evt: Event, particles?: Particle[]) => void): void {
+        if (this.destroyed) {
+            return;
+        }
+
         const el = this.interactivity.element;
 
         if (!el) {
@@ -286,6 +290,10 @@ export class Container {
      * Destroys the current container, invalidating it
      */
     destroy(): void {
+        if (this.destroyed) {
+            return;
+        }
+
         this.stop();
 
         this.particles.destroy();
@@ -303,6 +311,13 @@ export class Container {
 
         this.destroyed = true;
 
+        const mainArr = this.#engine.dom(),
+            idx = mainArr.findIndex((t) => t === this);
+
+        if (idx >= 0) {
+            mainArr.splice(idx, 1);
+        }
+
         this.#engine.dispatchEvent(EventType.containerDestroyed, { container: this });
     }
 
@@ -310,6 +325,10 @@ export class Container {
      * Draws a frame
      */
     draw(force: boolean): void {
+        if (this.destroyed) {
+            return;
+        }
+
         let refreshTime = force;
 
         this.drawAnimationFrame = animate()(async (timestamp) => {
@@ -354,10 +373,14 @@ export class Container {
      * @returns `true` is playing, `false` is paused
      */
     getAnimationStatus(): boolean {
-        return !this.paused && !this.pageHidden;
+        return !this.paused && !this.pageHidden && !this.destroyed;
     }
 
     handleClickMode(mode: ClickMode | string): void {
+        if (this.destroyed) {
+            return;
+        }
+
         this.particles.handleClickMode(mode);
 
         for (const [, plugin] of this.plugins) {
@@ -368,6 +391,10 @@ export class Container {
     }
 
     async init(): Promise<void> {
+        if (this.destroyed) {
+            return;
+        }
+
         const shapes = this.#engine.plugins.getSupportedShapes();
 
         for (const type of shapes) {
@@ -442,6 +469,10 @@ export class Container {
      * @param name the theme name, if `undefined` resets the default options or the default theme
      */
     async loadTheme(name?: string): Promise<void> {
+        if (this.destroyed) {
+            return;
+        }
+
         this.currentTheme = name;
 
         await this.refresh();
@@ -451,6 +482,10 @@ export class Container {
      * Pauses animations
      */
     pause(): void {
+        if (this.destroyed) {
+            return;
+        }
+
         if (this.drawAnimationFrame !== undefined) {
             cancelAnimation()(this.drawAnimationFrame);
 
@@ -479,6 +514,10 @@ export class Container {
      * @param force
      */
     play(force?: boolean): void {
+        if (this.destroyed) {
+            return;
+        }
+
         const needsUpdate = this.paused || force;
 
         if (this.firstStart && !this.actualOptions.autoPlay) {
@@ -506,13 +545,21 @@ export class Container {
     /**
      * Restarts the container, just a [[stop]]/[[start]] alias
      */
-    refresh(): Promise<void> {
+    async refresh(): Promise<void> {
+        if (this.destroyed) {
+            return;
+        }
+
         /* restart */
         this.stop();
         return this.start();
     }
 
-    reset(): Promise<void> {
+    async reset(): Promise<void> {
+        if (this.destroyed) {
+            return;
+        }
+
         this._options = loadContainerOptions(this.#engine, this);
 
         return this.refresh();
@@ -544,7 +591,7 @@ export class Container {
         init?: () => void,
         update?: () => void
     ): void {
-        if (!pathOrGenerator) {
+        if (!pathOrGenerator || this.destroyed) {
             return;
         }
 
@@ -573,7 +620,7 @@ export class Container {
      * Starts the container, initializes what are needed to create animations and event handling
      */
     async start(): Promise<void> {
-        if (this.started) {
+        if (this.started || this.destroyed) {
             return;
         }
 
@@ -604,7 +651,7 @@ export class Container {
      * Stops the container, opposite to `start`. Clears some resources and stops events.
      */
     stop(): void {
-        if (!this.started) {
+        if (!this.started || this.destroyed) {
             return;
         }
 

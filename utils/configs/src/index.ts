@@ -96,13 +96,13 @@ import strokeAnimation from "./strokeAnimation.json";
 import svgReplace from "./svgReplace.json";
 import test from "./test.json";
 import trail from "./trail.json";
+import { tsParticles } from "tsparticles-engine";
 import twinkle from "./twinkle.json";
 import vibrate from "./vibrate.json";
 import virus from "./virus.json";
 import warp from "./warp.json";
 import wobble from "./wobble.json";
 import zindex from "./zindex.json";
-import { tsParticles } from "tsparticles-engine";
 
 const mainConfigs = tsParticles as unknown as {
     configs: unknown;

@@ -27,7 +27,7 @@ module.exports = {
             "accessibility": "no-public"
         } ],
         "@typescript-eslint/no-explicit-any": "error",
-        "@typescript-eslint/no-extra-parens": [ "error" ],
+        //"@typescript-eslint/no-extra-parens": [ "error" ],
         "@typescript-eslint/no-inferrable-types": "error",
         "@typescript-eslint/member-ordering": [ "error", {
             "default": {
@@ -137,7 +137,7 @@ module.exports = {
         "@typescript-eslint/no-var-requires": "error",
         "@typescript-eslint/prefer-readonly": [ "error" ],
         "comma-spacing": "off",
-        "no-extra-parens": "off",
+        //"no-extra-parens": "off",
         "sort-imports": [ "error", {
             "allowSeparatedGroups": false,
             "ignoreCase": false,

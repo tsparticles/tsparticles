@@ -49,7 +49,7 @@ export class Repulser extends ParticlesInteractorBase {
             const velocity = p1.repulse.speed * p1.repulse.factor;
             if (distance > 0) {
                 const repulseFactor = clamp((1 - Math.pow(distance / p1.repulse.distance, 2)) * velocity, 0, velocity);
-                const normVec = Vector.create(dx / distance * repulseFactor, dy / distance * repulseFactor);
+                const normVec = Vector.create((dx / distance) * repulseFactor, (dy / distance) * repulseFactor);
 
                 p2.position.addTo(normVec);
             } else {

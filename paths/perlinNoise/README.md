@@ -4,7 +4,7 @@
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-path-perlin-noise/badge)](https://www.jsdelivr.com/package/npm/tsparticles-path-perlin-noise)
 [![npmjs](https://badge.fury.io/js/tsparticles-path-perlin-noise.svg)](https://www.npmjs.com/package/tsparticles-path-perlin-noise)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-path-perlin-noise)](https://www.npmjs.com/package/tsparticles-path-perlin-noise)
+[![npmjs](https://img.shields.io/npm/dt/tsparticles-path-perlin-noise)](https://www.npmjs.com/package/tsparticles-path-perlin-noise) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) path plugin for perlin noise movement.
 

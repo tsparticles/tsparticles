@@ -4,7 +4,7 @@
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-shape-spiral/badge)](https://www.jsdelivr.com/package/npm/tsparticles-shape-spiral)
 [![npmjs](https://badge.fury.io/js/tsparticles-shape-spiral.svg)](https://www.npmjs.com/package/tsparticles-shape-spiral)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-shape-spiral)](https://www.npmjs.com/package/tsparticles-shape-spiral)
+[![npmjs](https://img.shields.io/npm/dt/tsparticles-shape-spiral)](https://www.npmjs.com/package/tsparticles-shape-spiral) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) additional spiral shape.
 

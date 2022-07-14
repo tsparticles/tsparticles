@@ -14,8 +14,8 @@ export function applyDistance(particle: MoveParticle): void {
         return;
     }
 
-    if ((hDistance && dxFixed >= hDistance || vDistance && dyFixed >= vDistance) && !particle.misplaced) {
-        particle.misplaced = !!hDistance && dxFixed > hDistance || !!vDistance && dyFixed > vDistance;
+    if (((hDistance && dxFixed >= hDistance) || (vDistance && dyFixed >= vDistance)) && !particle.misplaced) {
+        particle.misplaced = (!!hDistance && dxFixed > hDistance) || (!!vDistance && dyFixed > vDistance);
 
         if (hDistance) {
             particle.velocity.x = particle.velocity.y / 2 - particle.velocity.x;
@@ -30,11 +30,11 @@ export function applyDistance(particle: MoveParticle): void {
         const pos = particle.position,
             vel = particle.velocity;
 
-        if (hDistance && (pos.x < initialPosition.x && vel.x < 0 || pos.x > initialPosition.x && vel.x > 0)) {
+        if (hDistance && ((pos.x < initialPosition.x && vel.x < 0) || (pos.x > initialPosition.x && vel.x > 0))) {
             vel.x *= -Math.random();
         }
 
-        if (vDistance && (pos.y < initialPosition.y && vel.y < 0 || pos.y > initialPosition.y && vel.y > 0)) {
+        if (vDistance && ((pos.y < initialPosition.y && vel.y < 0) || (pos.y > initialPosition.y && vel.y > 0))) {
             vel.y *= -Math.random();
         }
     }
@@ -66,7 +66,7 @@ export function spin(particle: MoveParticle, moveSpeed: number): void {
         particle.spin.acceleration *= -1;
     }
 
-    particle.spin.angle += moveSpeed / 100 * (1 - particle.spin.radius / maxCanvasSize);
+    particle.spin.angle += (moveSpeed / 100) * (1 - particle.spin.radius / maxCanvasSize);
 }
 
 export function applyPath(particle: Particle, delta: IDelta): void {

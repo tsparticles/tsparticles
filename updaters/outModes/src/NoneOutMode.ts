@@ -20,10 +20,10 @@ export class NoneOutMode implements IOutModeManager {
         }
 
         if (
-            particle.options.move.distance.horizontal &&
-                (direction === OutModeDirection.left || direction === OutModeDirection.right) ||
-            particle.options.move.distance.vertical &&
-                (direction === OutModeDirection.top || direction === OutModeDirection.bottom)
+            (particle.options.move.distance.horizontal &&
+                (direction === OutModeDirection.left || direction === OutModeDirection.right)) ||
+            (particle.options.move.distance.vertical &&
+                (direction === OutModeDirection.top || direction === OutModeDirection.bottom))
         ) {
             return;
         }
@@ -36,10 +36,10 @@ export class NoneOutMode implements IOutModeManager {
 
         if (!gravityOptions.enable) {
             if (
-                particle.velocity.y > 0 && particle.position.y <= canvasSize.height + pRadius ||
-                particle.velocity.y < 0 && particle.position.y >= -pRadius ||
-                particle.velocity.x > 0 && particle.position.x <= canvasSize.width + pRadius ||
-                particle.velocity.x < 0 && particle.position.x >= -pRadius
+                (particle.velocity.y > 0 && particle.position.y <= canvasSize.height + pRadius) ||
+                (particle.velocity.y < 0 && particle.position.y >= -pRadius) ||
+                (particle.velocity.x > 0 && particle.position.x <= canvasSize.width + pRadius) ||
+                (particle.velocity.x < 0 && particle.position.x >= -pRadius)
             ) {
                 return;
             }
@@ -51,10 +51,10 @@ export class NoneOutMode implements IOutModeManager {
             const position = particle.position;
 
             if (
-                !gravityOptions.inverse &&
+                (!gravityOptions.inverse &&
                     position.y > canvasSize.height + pRadius &&
-                    direction === OutModeDirection.bottom ||
-                gravityOptions.inverse && position.y < -pRadius && direction === OutModeDirection.top
+                    direction === OutModeDirection.bottom) ||
+                (gravityOptions.inverse && position.y < -pRadius && direction === OutModeDirection.top)
             ) {
                 container.particles.remove(particle);
             }

@@ -4,7 +4,7 @@
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-shape-polygon/badge)](https://www.jsdelivr.com/package/npm/tsparticles-shape-polygon)
 [![npmjs](https://badge.fury.io/js/tsparticles-shape-polygon.svg)](https://www.npmjs.com/package/tsparticles-shape-polygon)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-shape-polygon)](https://www.npmjs.com/package/tsparticles-shape-polygon)
+[![npmjs](https://img.shields.io/npm/dt/tsparticles-shape-polygon)](https://www.npmjs.com/package/tsparticles-shape-polygon) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) additional polygon shape.
 

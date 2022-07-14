@@ -177,7 +177,7 @@ class App extends Component {
 | canvasClassName | string | Der Klassenname des canvas. |
 
 | container | object | Die Instanz des [Partikel-Containers]
-(https://particles.js.org/docs/modules/_core_container_.html) |
+(https://particles.js.org/docs/modules/Core_Container.html) |
 
 Finde die Konfiguration der Parameter [hier](https://particles.js.org).
 

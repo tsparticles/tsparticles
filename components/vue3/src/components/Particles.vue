@@ -60,9 +60,15 @@ export default defineComponent({
       cb(loadedContainer);
     });
   },
-  beforeMount(): void {
+  unmounted(): void {
+    console.log("unmount");
+
     if (container) {
       container.destroy();
+
+      container = undefined;
+
+      tsParticles.dom();
     }
   },
 });

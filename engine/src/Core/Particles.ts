@@ -78,8 +78,8 @@ export class Particles {
             new Rectangle(
                 -canvasSize.width / 4,
                 -canvasSize.height / 4,
-                canvasSize.width * 3 / 2,
-                canvasSize.height * 3 / 2
+                (canvasSize.width * 3) / 2,
+                (canvasSize.height * 3) / 2
             ),
             4
         );
@@ -196,8 +196,8 @@ export class Particles {
             new Rectangle(
                 -canvasSize.width / 4,
                 -canvasSize.height / 4,
-                canvasSize.width * 3 / 2,
-                canvasSize.height * 3 / 2
+                (canvasSize.width * 3) / 2,
+                (canvasSize.height * 3) / 2
             ),
             4
         );
@@ -397,9 +397,7 @@ export class Particles {
         container.pathGenerator.update();
 
         for (const [, plugin] of container.plugins) {
-            if (plugin.update) {
-                plugin.update(delta);
-            }
+            plugin.update?.(delta);
         }
 
         for (const particle of this.array) {
@@ -428,9 +426,7 @@ export class Particles {
                     break;
                 }
 
-                if (plugin.particleUpdate) {
-                    plugin.particleUpdate(particle, delta);
-                }
+                plugin.particleUpdate?.(particle, delta);
             }
 
             for (const mover of this.movers) {
@@ -498,7 +494,7 @@ export class Particles {
         const canvas = container.canvas.element,
             pxRatio = container.retina.pixelRatio;
 
-        return canvas.width * canvas.height / (densityOptions.factor * pxRatio ** 2 * densityOptions.area);
+        return (canvas.width * canvas.height) / (densityOptions.factor * pxRatio ** 2 * densityOptions.area);
     }
 
     private pushParticle(

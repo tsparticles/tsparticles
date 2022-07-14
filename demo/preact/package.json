@@ -19,6 +19,7 @@
   },
   "scripts": {
     "build": "npx preact build --no-prerender",
+    "build:ci": "npx preact build --no-prerender",
     "start": "sirv build --cors --single --host",
     "dev": "preact watch",
     "lint": "echo eslint src"

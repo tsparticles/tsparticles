@@ -4,7 +4,7 @@
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-path-curves/badge)](https://www.jsdelivr.com/package/npm/tsparticles-path-curves)
 [![npmjs](https://badge.fury.io/js/tsparticles-path-curves.svg)](https://www.npmjs.com/package/tsparticles-path-curves)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-path-curves)](https://www.npmjs.com/package/tsparticles-path-curves)
+[![npmjs](https://img.shields.io/npm/dt/tsparticles-path-curves)](https://www.npmjs.com/package/tsparticles-path-curves) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) path plugin for curves movement.
 

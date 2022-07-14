@@ -4,7 +4,7 @@
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-interaction-particles-repulse/badge)](https://www.jsdelivr.com/package/npm/tsparticles-interaction-particles-repulse)
 [![npmjs](https://badge.fury.io/js/tsparticles-interaction-particles-repulse.svg)](https://www.npmjs.com/package/tsparticles-interaction-particles-repulse)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-interaction-particles-repulse)](https://www.npmjs.com/package/tsparticles-interaction-particles-repulse)
+[![npmjs](https://img.shields.io/npm/dt/tsparticles-interaction-particles-repulse)](https://www.npmjs.com/package/tsparticles-interaction-particles-repulse) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) interaction plugin for repulse effect between particles.
 

@@ -101,17 +101,17 @@ export function makeNoise4D(clientSeed: number): Noise4D {
 
         const inSum = xins + yins + zins + wins;
         const hash =
-            zins - wins + 1 |
-            yins - zins + 1 << 1 |
-            yins - wins + 1 << 2 |
-            xins - yins + 1 << 3 |
-            xins - zins + 1 << 4 |
-            xins - wins + 1 << 5 |
-            inSum << 6 |
-            inSum + wins << 8 |
-            inSum + zins << 11 |
-            inSum + yins << 14 |
-            inSum + xins << 17;
+            (zins - wins + 1) |
+            ((yins - zins + 1) << 1) |
+            ((yins - wins + 1) << 2) |
+            ((xins - yins + 1) << 3) |
+            ((xins - zins + 1) << 4) |
+            ((xins - wins + 1) << 5) |
+            (inSum << 6) |
+            ((inSum + wins) << 8) |
+            ((inSum + zins) << 11) |
+            ((inSum + yins) << 14) |
+            ((inSum + xins) << 17);
 
         let value = 0;
 
@@ -129,9 +129,9 @@ export function makeNoise4D(clientSeed: number): Noise4D {
                 const pw = wsb + c.wsb;
 
                 const indexPartA = perm[px & 0xff];
-                const indexPartB = perm[indexPartA + py & 0xff];
-                const indexPartC = perm[indexPartB + pz & 0xff];
-                const index = perm4D[indexPartC + pw & 0xff];
+                const indexPartB = perm[(indexPartA + py) & 0xff];
+                const indexPartC = perm[(indexPartB + pz) & 0xff];
+                const index = perm4D[(indexPartC + pw) & 0xff];
 
                 const valuePart =
                     gradients4D[index] * dx +
