@@ -38,7 +38,7 @@ export class Engine {
      */
     readonly #domArray: Container[];
 
-    readonly eventDispatcher;
+    readonly #eventDispatcher;
 
     /**
      * Checks if the engine instance is initialized
@@ -61,7 +61,7 @@ export class Engine {
      */
     constructor() {
         this.#domArray = [];
-        this.eventDispatcher = new EventDispatcher();
+        this.#eventDispatcher = new EventDispatcher();
         this.#initialized = false;
         this.#loader = new Loader(this);
         this.plugins = new Plugins(this);
@@ -73,7 +73,7 @@ export class Engine {
      * @param listener The listener of the specified event
      */
     addEventListener(type: string, listener: CustomEventListener): void {
-        this.eventDispatcher.addEventListener(type, listener);
+        this.#eventDispatcher.addEventListener(type, listener);
     }
 
     /**
@@ -179,7 +179,7 @@ export class Engine {
      * @param args The event parameters
      */
     dispatchEvent(type: string, args: CustomEventArgs): void {
-        this.eventDispatcher.dispatchEvent(type, args);
+        this.#eventDispatcher.dispatchEvent(type, args);
     }
 
     /**
@@ -274,7 +274,7 @@ export class Engine {
      * @param listener The listener of the specified event
      */
     removeEventListener(type: string, listener: CustomEventListener): void {
-        this.eventDispatcher.removeEventListener(type, listener);
+        this.#eventDispatcher.removeEventListener(type, listener);
     }
 
     /**
