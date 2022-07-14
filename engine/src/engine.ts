@@ -36,7 +36,7 @@ export class Engine {
     /**
      * Contains all the [[Container]] instances of the current engine instance
      */
-    readonly domArray: Container[];
+    readonly #domArray: Container[];
 
     readonly eventDispatcher;
 
@@ -60,7 +60,7 @@ export class Engine {
      * Engine constructor, initializes plugins, loader and the containers array
      */
     constructor() {
-        this.domArray = [];
+        this.#domArray = [];
         this.eventDispatcher = new EventDispatcher();
         this.#initialized = false;
         this.#loader = new Loader(this);
@@ -187,7 +187,7 @@ export class Engine {
      * @returns All the [[Container]] objects loaded
      */
     dom(): Container[] {
-        return this.domArray;
+        return this.#domArray;
     }
 
     /**
