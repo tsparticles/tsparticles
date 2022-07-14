@@ -552,7 +552,7 @@ export class Container {
 
         /* restart */
         this.stop();
-        return await this.start();
+        return this.start();
     }
 
     async reset(): Promise<void> {
@@ -562,7 +562,7 @@ export class Container {
 
         this._options = loadContainerOptions(this.#engine, this);
 
-        return await this.refresh();
+        return this.refresh();
     }
 
     /**
