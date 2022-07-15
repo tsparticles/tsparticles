@@ -78,17 +78,17 @@ export function applyPath(particle: Particle, delta: IDelta): void {
         return;
     }
 
-    const container = particle.container;
-
     if (particle.lastPathTime <= particle.pathDelay) {
         particle.lastPathTime += delta.value;
 
         return;
     }
 
-    const path = container.pathGenerator.generate(particle);
+    const path = particle.pathGenerator?.generate(particle);
 
-    particle.velocity.addTo(path);
+    if (path) {
+        particle.velocity.addTo(path);
+    }
 
     if (pathOptions.clamp) {
         particle.velocity.x = clamp(particle.velocity.x, -1, 1);

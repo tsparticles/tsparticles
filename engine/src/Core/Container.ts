@@ -40,6 +40,23 @@ function loadContainerOptions(
     return options;
 }
 
+const defaultPathGeneratorKey = "default",
+    defaultPathGenerator: IMovePathGenerator = {
+        generate: (p: Particle): Vector => {
+            const v = p.velocity.copy();
+
+            v.angle += (v.length * Math.PI) / 180;
+
+            return v;
+        },
+        init: (): void => {
+            // nothing required
+        },
+        update: (): void => {
+            // nothing required
+        },
+    };
+
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
  * [[include:Container.md]]
@@ -86,7 +103,7 @@ export class Container {
      */
     readonly particles;
 
-    pathGenerator: IMovePathGenerator;
+    pathGenerators: Map<string, IMovePathGenerator>;
 
     /**
      * All the plugins used by the container
@@ -138,21 +155,7 @@ export class Container {
         this.canvas = new Canvas(this);
         this.particles = new Particles(this.#engine, this);
         this.drawer = new FrameManager(this);
-        this.pathGenerator = {
-            generate: (p: Particle): Vector => {
-                const v = p.velocity.copy();
-
-                v.angle += (v.length * Math.PI) / 180;
-
-                return v;
-            },
-            init: (): void => {
-                // nothing required
-            },
-            update: (): void => {
-                // nothing required
-            },
-        };
+        this.pathGenerators = new Map<string, IMovePathGenerator>();
         this.interactivity = {
             mouse: {
                 clicking: false,
@@ -291,6 +294,22 @@ export class Container {
         el.addEventListener("touchmove", touchMoveHandler);
         el.addEventListener("touchend", touchEndHandler);
         el.addEventListener("touchcancel", touchCancelHandler);
+    }
+
+    /**
+     * Add a new path generator to the container
+     * @param key the key to identify the path generator
+     * @param generator the path generator
+     * @param override if true, override the existing path generator
+     */
+    addPath(key: string, generator?: IMovePathGenerator, override = false): boolean {
+        if (!guardCheck(this) || (!override && this.pathGenerators.has(key))) {
+            return false;
+        }
+
+        this.pathGenerators.set(key, generator ?? defaultPathGenerator);
+
+        return true;
     }
 
     /**
@@ -451,12 +470,6 @@ export class Container {
             }
         }
 
-        const pathOptions = this.actualOptions.particles.move.path;
-
-        if (pathOptions.generator) {
-            this.setPath(this.#engine.plugins.getPathGenerator(pathOptions.generator));
-        }
-
         this.#engine.dispatchEvent(EventType.containerInit, { container: this });
 
         this.particles.init();
@@ -602,25 +615,27 @@ export class Container {
             return;
         }
 
+        const pathGenerator = { ...defaultPathGenerator };
+
         if (typeof pathOrGenerator === "function") {
-            this.pathGenerator.generate = pathOrGenerator;
+            pathGenerator.generate = pathOrGenerator;
 
             if (init) {
-                this.pathGenerator.init = init;
+                pathGenerator.init = init;
             }
 
             if (update) {
-                this.pathGenerator.update = update;
+                pathGenerator.update = update;
             }
         } else {
-            const oldGenerator = this.pathGenerator;
+            const oldGenerator = pathGenerator;
 
-            this.pathGenerator = pathOrGenerator;
-
-            this.pathGenerator.generate ||= oldGenerator.generate;
-            this.pathGenerator.init ||= oldGenerator.init;
-            this.pathGenerator.update ||= oldGenerator.update;
+            pathGenerator.generate = pathOrGenerator.generate || oldGenerator.generate;
+            pathGenerator.init = pathOrGenerator.init || oldGenerator.init;
+            pathGenerator.update = pathOrGenerator.update || oldGenerator.update;
         }
+
+        this.addPath(defaultPathGeneratorKey, pathGenerator, true);
     }
 
     /**

@@ -21,6 +21,7 @@ import { DestroyMode } from "../Enums/Modes/DestroyMode";
 import type { Engine } from "../engine";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
 import type { IDelta } from "./Interfaces/IDelta";
+import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator";
 import type { IParticle } from "./Interfaces/IParticle";
 import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation";
 import type { IParticleNumericValueAnimation } from "./Interfaces/IParticleValueAnimation";
@@ -168,6 +169,11 @@ export class Particle implements IParticle {
      * Gets the delay for every path step
      */
     readonly pathDelay;
+
+    /**
+     * Gets the particle's path generator
+     */
+    readonly pathGenerator?: IMovePathGenerator;
 
     /**
      * Gets particle current position
@@ -328,7 +334,18 @@ export class Particle implements IParticle {
         this.fill = this.shapeData?.fill ?? this.fill;
         this.close = this.shapeData?.close ?? this.close;
         this.options = particlesOptions;
-        this.pathDelay = getValue(this.options.move.path.delay) * 1000;
+
+        const pathOptions = this.options.move.path;
+
+        this.pathDelay = getValue(pathOptions.delay) * 1000;
+
+        if (pathOptions.generator) {
+            this.pathGenerator = this.#engine.plugins.getPathGenerator(pathOptions.generator);
+
+            if (this.pathGenerator && container.addPath(pathOptions.generator, this.pathGenerator)) {
+                this.pathGenerator.init(container);
+            }
+        }
 
         const zIndexValue = getRangeValue(this.options.zIndex.value);
 
