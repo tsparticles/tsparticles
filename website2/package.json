@@ -10,6 +10,7 @@
     "@ryangjchandler/fern": "^0.1.0",
     "alpinejs": "^3.10.2",
     "bulma": "^0.9.4",
+    "highlight.js": "^11.6.0",
     "js-datepicker": "^5.18.0",
     "notyf": "^3.10.0",
     "codemirror": "^5.65.6",

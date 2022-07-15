@@ -5,6 +5,9 @@ import Alpine from "alpinejs";
 import intersect from "@alpinejs/intersect";
 import Fern from "@ryangjchandler/fern";
 import "regenerator-runtime";
+import hljs from "highlight.js";
+import hljsjavascript from 'highlight.js/lib/languages/javascript';
+import hljstypescript from 'highlight.js/lib/languages/typescript';
 import { tsParticles } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 
@@ -33,6 +36,9 @@ const feather = require("feather-icons");
 
 const showPageloader = initPageLoader();
 
+hljs.registerLanguage('javascript', hljsjavascript);
+hljs.registerLanguage('typescript', hljstypescript);
+
 document.onreadystatechange = function () {
     if (document.readyState === "complete") {
         //Switch demo images
@@ -46,6 +52,10 @@ document.onreadystatechange = function () {
 
         // Add modal windows
         const modals = initModals();
+
+        document.querySelectorAll('pre code').forEach((el) => {
+            hljs.highlightElement(el);
+        });
 
         (async () => {
             await loadFull(tsParticles);

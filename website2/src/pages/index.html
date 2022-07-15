@@ -126,14 +126,82 @@ title: Landing Page
     <div class="container">
 
         <div class="columns is-vcentered app-side">
-            <div class="column is-5 is-offset-1">
-                <h3 class="title is-3 is-spaced is-title-reveal">An intuitive app</h3>
-                <p class="subtitle is-5 is-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum audissem
-                    Antiochum, Brute, ut solebam, cum M. Quae diligentissime contra Aristonem dicuntur a Chryippo.</p>
+            <div class="column is-6">
+                <h3 class="title is-3 is-spaced is-title-reveal">Demo</h3>
+                <p class="subtitle is-5 is-muted">
+                <pre><code class="language-javascript">tsParticles.load({
+    particles: {
+        number: {
+            value: 80,
+            density: {
+                enable: true,
+                area: 800
+            }
+        },
+        color: {
+            value: ["#2EB67D", "#ECB22E", "#E01E5B", "#36C5F0"]
+        },
+        shape: {
+            type: "circle",
+        },
+        opacity: {
+            value: 1,
+        },
+        size: {
+            value: { min: 1, max: 8 },
+        },
+        links: {
+            enable: true,
+            distance: 150,
+            color: "#808080",
+            opacity: 0.4,
+            width: 1
+        },
+        move: {
+            enable: true,
+            speed: 5,
+            direction: "none",
+            random: false,
+            straight: false,
+            outModes: "out",
+        }
+    },
+    interactivity: {
+        events: {
+            onHover: {
+                enable: true,
+                mode: "grab"
+            },
+            onClick: {
+                enable: true,
+                mode: "push"
+            }
+        },
+        modes: {
+            grab: {
+                distance: 140,
+                links: {
+                    opacity: 1
+                }
+            },
+            push: {
+                quantity: 4
+            },
+        }
+    }
+});</code></pre>
+                </p>
             </div>
-            <div class="column is-10">
+            <div class="column is-7">
                 <div class="has-text-centered">
-                    <img class="pushed-image" src="/img/illustrations/mockups/app-mockup.png">
+                    <p class="codepen" data-height="1100" data-default-tab="result" data-slug-hash="ZExLYyg"
+                       data-preview="true" data-user="matteobruni"
+                       style="height: 1100px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/matteobruni/pen/ZExLYyg">
+  tsParticles - Slack Colored Particles</a> by Matteo Bruni (<a href="https://codepen.io/matteobruni">@matteobruni</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+                    </p>
+                    <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
                 </div>
             </div>
         </div>
