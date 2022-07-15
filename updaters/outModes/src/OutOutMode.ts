@@ -8,6 +8,7 @@ import {
     getDistances,
     isPointInside,
     randomInRange,
+    tspRandom,
 } from "tsparticles-engine";
 import type { IOutModeManager } from "./IOutModeManager";
 
@@ -128,7 +129,7 @@ export class OutOutMode implements IOutModeManager {
                             particle.initialPosition.x = particle.position.x;
 
                             if (!wrap) {
-                                particle.position.y = Math.random() * canvasSize.height;
+                                particle.position.y = tspRandom() * canvasSize.height;
                                 particle.initialPosition.y = particle.position.y;
                             }
                         } else if (direction === OutModeDirection.left && nextBounds.right < -particle.offset.x) {
@@ -136,7 +137,7 @@ export class OutOutMode implements IOutModeManager {
                             particle.initialPosition.x = particle.position.x;
 
                             if (!wrap) {
-                                particle.position.y = Math.random() * canvasSize.height;
+                                particle.position.y = tspRandom() * canvasSize.height;
                                 particle.initialPosition.y = particle.position.y;
                             }
                         }
@@ -146,7 +147,7 @@ export class OutOutMode implements IOutModeManager {
                             nextBounds.top > canvasSize.height + particle.offset.y
                         ) {
                             if (!wrap) {
-                                particle.position.x = Math.random() * canvasSize.width;
+                                particle.position.x = tspRandom() * canvasSize.width;
                                 particle.initialPosition.x = particle.position.x;
                             }
 
@@ -154,7 +155,7 @@ export class OutOutMode implements IOutModeManager {
                             particle.initialPosition.y = particle.position.y;
                         } else if (direction === OutModeDirection.top && nextBounds.bottom < -particle.offset.y) {
                             if (!wrap) {
-                                particle.position.x = Math.random() * canvasSize.width;
+                                particle.position.x = tspRandom() * canvasSize.width;
                                 particle.initialPosition.x = particle.position.x;
                             }
 

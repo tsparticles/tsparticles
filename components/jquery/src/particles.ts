@@ -1,4 +1,4 @@
-import { tsParticles } from "tsparticles-engine";
+import { tsParticles, tspRandom } from "tsparticles-engine";
 import type { ISourceOptions, Container } from "tsparticles-engine";
 
 /**
@@ -26,7 +26,7 @@ $.fn.particles = function (): ParticlesResult {
     const init = (options: IParticlesProps, callback: (container: Container | undefined) => Promise<void>): void => {
         this.each((index, element) => {
             if (element.id === undefined) {
-                element.id = baseId + Math.floor(Math.random() * 1000);
+                element.id = baseId + Math.floor(tspRandom() * 1000);
             }
 
             tsParticles.load(element.id, options).then(callback);
@@ -36,7 +36,7 @@ $.fn.particles = function (): ParticlesResult {
     const ajax = (jsonUrl: string, callback: (container: Container | undefined) => Promise<void>): void => {
         this.each((index, element) => {
             if (element.id === undefined) {
-                element.id = baseId + Math.floor(Math.random() * 1000);
+                element.id = baseId + Math.floor(tspRandom() * 1000);
             }
 
             tsParticles.loadJSON(element.id, jsonUrl).then(callback);

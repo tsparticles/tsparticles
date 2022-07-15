@@ -12,6 +12,7 @@ import {
     getValue,
     randomInRange,
     setRangeValue,
+    tspRandom,
 } from "../Utils/NumberUtils";
 import { deepExtend, isInArray, itemFromArray } from "../Utils/Utils";
 import { getHslFromAnimation, rangeColorToRgb } from "../Utils/ColorUtils";
@@ -21,6 +22,7 @@ import { DestroyMode } from "../Enums/Modes/DestroyMode";
 import type { Engine } from "../engine";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
 import type { IDelta } from "./Interfaces/IDelta";
+import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator";
 import type { IParticle } from "./Interfaces/IParticle";
 import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation";
 import type { IParticleNumericValueAnimation } from "./Interfaces/IParticleValueAnimation";
@@ -168,6 +170,11 @@ export class Particle implements IParticle {
      * Gets the delay for every path step
      */
     readonly pathDelay;
+
+    /**
+     * Gets the particle's path generator
+     */
+    readonly pathGenerator?: IMovePathGenerator;
 
     /**
      * Gets particle current position
@@ -328,7 +335,18 @@ export class Particle implements IParticle {
         this.fill = this.shapeData?.fill ?? this.fill;
         this.close = this.shapeData?.close ?? this.close;
         this.options = particlesOptions;
-        this.pathDelay = getValue(this.options.move.path.delay) * 1000;
+
+        const pathOptions = this.options.move.path;
+
+        this.pathDelay = getValue(pathOptions.delay) * 1000;
+
+        if (pathOptions.generator) {
+            this.pathGenerator = this.#engine.plugins.getPathGenerator(pathOptions.generator);
+
+            if (this.pathGenerator && container.addPath(pathOptions.generator, this.pathGenerator)) {
+                this.pathGenerator.init(container);
+            }
+        }
 
         const zIndexValue = getRangeValue(this.options.zIndex.value);
 
@@ -361,7 +379,7 @@ export class Particle implements IParticle {
 
                 case StartValueType.random:
                     this.size.value = randomInRange(this.size) * pxRatio;
-                    this.size.status = Math.random() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
+                    this.size.status = tspRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
                     break;
 
@@ -378,7 +396,7 @@ export class Particle implements IParticle {
                 container.retina.reduceFactor;
 
             if (!sizeAnimation.sync) {
-                this.size.velocity *= Math.random();
+                this.size.velocity *= tspRandom();
             }
         }
 
@@ -648,7 +666,7 @@ export class Particle implements IParticle {
         }
 
         if (moveOptions.random && typeof moveOptions.speed === "number") {
-            res.length *= Math.random();
+            res.length *= tspRandom();
         }
 
         return res;

@@ -1,6 +1,6 @@
 import type { IContainerPlugin, IRangeColor, IRgb, Particle, RangeValue } from "tsparticles-engine";
 import { drawLinkLine, drawLinkTriangle } from "./Utils";
-import { getDistance, getLinkColor, getRangeValue, rangeColorToRgb } from "tsparticles-engine";
+import { getDistance, getLinkColor, getRangeValue, rangeColorToRgb, tspRandom } from "tsparticles-engine";
 import type { ILink } from "./ILink";
 import type { LinkContainer } from "./LinkContainer";
 import type { LinkParticle } from "./LinkParticle";
@@ -105,7 +105,7 @@ export class LinkInstance implements IContainerPlugin {
             if (twinkle?.enable) {
                 const twinkleFreq = twinkle.frequency,
                     twinkleRgb = rangeColorToRgb(twinkle.color),
-                    twinkling = Math.random() < twinkleFreq;
+                    twinkling = tspRandom() < twinkleFreq;
 
                 if (twinkling && twinkleRgb) {
                     colorLine = twinkleRgb;

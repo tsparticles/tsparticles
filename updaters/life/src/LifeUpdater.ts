@@ -7,7 +7,7 @@ import type {
     ParticlesOptions,
     RecursivePartial,
 } from "tsparticles-engine";
-import { getRangeValue, randomInRange, setRangeValue } from "tsparticles-engine";
+import { getRangeValue, randomInRange, setRangeValue, tspRandom } from "tsparticles-engine";
 import type { ILife } from "./Options/Interfaces/ILife";
 import { Life } from "./Options/Classes/Life";
 
@@ -46,13 +46,13 @@ export class LifeUpdater implements IParticleUpdater {
 
         particle.life = {
             delay: container.retina.reduceFactor
-                ? ((getRangeValue(lifeOptions.delay.value) * (lifeOptions.delay.sync ? 1 : Math.random())) /
+                ? ((getRangeValue(lifeOptions.delay.value) * (lifeOptions.delay.sync ? 1 : tspRandom())) /
                       container.retina.reduceFactor) *
                   1000
                 : 0,
             delayTime: 0,
             duration: container.retina.reduceFactor
-                ? ((getRangeValue(lifeOptions.duration.value) * (lifeOptions.duration.sync ? 1 : Math.random())) /
+                ? ((getRangeValue(lifeOptions.duration.value) * (lifeOptions.duration.sync ? 1 : tspRandom())) /
                       container.retina.reduceFactor) *
                   1000
                 : 0,

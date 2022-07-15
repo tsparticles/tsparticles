@@ -7,9 +7,9 @@ import type {
     ParticlesOptions,
     RecursivePartial,
 } from "tsparticles-engine";
+import { getRangeValue, tspRandom } from "tsparticles-engine";
 import type { IWobble } from "./Options/Interfaces/IWobble";
 import { Wobble } from "./Options/Classes/Wobble";
-import { getRangeValue } from "tsparticles-engine";
 
 /**
  * Wobble particle extension type
@@ -82,7 +82,7 @@ export class WobbleUpdater implements IParticleUpdater {
 
         if (wobbleOpt?.enable) {
             particle.wobble = {
-                angle: Math.random() * Math.PI * 2,
+                angle: tspRandom() * Math.PI * 2,
                 angleSpeed: getRangeValue(wobbleOpt.speed.angle) / 360,
                 moveSpeed: getRangeValue(wobbleOpt.speed.move) / 10,
             };

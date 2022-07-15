@@ -1,7 +1,7 @@
 import type { Container, IMovePathGenerator, Particle } from "tsparticles-engine";
+import { Vector, tspRandom } from "tsparticles-engine";
 import type { IPerlinOptions } from "./IPerlinOptions";
 import { PerlinNoise } from "./PerlinNoise";
-import { Vector } from "tsparticles-engine";
 
 export class PerlinNoiseGenerator implements IMovePathGenerator {
     container?: Container;
@@ -115,7 +115,7 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
         this.options.width = container.canvas.size.width;
         this.options.height = container.canvas.size.height;
 
-        this.noiseGen.seed((sourceOptions.seed as number) ?? Math.random());
+        this.noiseGen.seed((sourceOptions.seed as number) ?? tspRandom());
 
         this.options.columns = Math.floor(this.options.width / this.options.size) + 1;
         this.options.rows = Math.floor(this.options.height / this.options.size) + 1;

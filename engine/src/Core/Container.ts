@@ -24,6 +24,10 @@ import type { Vector } from "./Utils/Vector";
 import { getRangeValue } from "../Utils/NumberUtils";
 import { loadOptions } from "../Utils/OptionsUtils";
 
+function guardCheck(container: Container): boolean {
+    return !container.destroyed;
+}
+
 function loadContainerOptions(
     engine: Engine,
     container: Container,
@@ -36,6 +40,23 @@ function loadContainerOptions(
     return options;
 }
 
+const defaultPathGeneratorKey = "default",
+    defaultPathGenerator: IMovePathGenerator = {
+        generate: (p: Particle): Vector => {
+            const v = p.velocity.copy();
+
+            v.angle += (v.length * Math.PI) / 180;
+
+            return v;
+        },
+        init: (): void => {
+            // nothing required
+        },
+        update: (): void => {
+            // nothing required
+        },
+    };
+
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
  * [[include:Container.md]]
@@ -47,12 +68,15 @@ export class Container {
      */
     actualOptions;
 
+    /**
+     * Canvas object, in charge of the canvas element and drawing functions
+     */
     readonly canvas;
 
     density;
 
     /**
-     * Check if the particles container is destroyed, if so it's not recommended using it
+     * Check if the particles' container is destroyed, if so it's not recommended using it
      */
     destroyed;
 
@@ -66,6 +90,7 @@ export class Container {
     duration;
 
     readonly #engine;
+    readonly #eventListeners;
 
     fpsLimit;
     interactivity: IContainerInteractivity;
@@ -78,7 +103,7 @@ export class Container {
      */
     readonly particles;
 
-    pathGenerator: IMovePathGenerator;
+    pathGenerators: Map<string, IMovePathGenerator>;
 
     /**
      * All the plugins used by the container
@@ -101,7 +126,6 @@ export class Container {
     private _sourceOptions;
     private currentTheme?: string;
     private drawAnimationFrame?: number;
-    private readonly eventListeners;
     private firstStart;
     private readonly intersectionObserver?;
     private paused;
@@ -131,21 +155,7 @@ export class Container {
         this.canvas = new Canvas(this);
         this.particles = new Particles(this.#engine, this);
         this.drawer = new FrameManager(this);
-        this.pathGenerator = {
-            generate: (p: Particle): Vector => {
-                const v = p.velocity.copy();
-
-                v.angle += (v.length * Math.PI) / 180;
-
-                return v;
-            },
-            init: (): void => {
-                // nothing required
-            },
-            update: (): void => {
-                // nothing required
-            },
-        };
+        this.pathGenerators = new Map<string, IMovePathGenerator>();
         this.interactivity = {
             mouse: {
                 clicking: false,
@@ -160,7 +170,7 @@ export class Container {
         this.actualOptions = loadContainerOptions(this.#engine, this);
 
         /* ---------- tsParticles - start ------------ */
-        this.eventListeners = new EventListeners(this);
+        this.#eventListeners = new EventListeners(this);
 
         if (typeof IntersectionObserver !== "undefined" && IntersectionObserver) {
             this.intersectionObserver = new IntersectionObserver((entries) => this.intersectionManager(entries));
@@ -176,12 +186,19 @@ export class Container {
         return this._options;
     }
 
+    /**
+     * The options that were initially passed to the container
+     */
     get sourceOptions(): RecursivePartial<IOptions> | undefined {
         return this._sourceOptions;
     }
 
+    /**
+     * Adds a click handler to the container
+     * @param callback the callback to be called when the click event occurs
+     */
     addClickHandler(callback: (evt: Event, particles?: Particle[]) => void): void {
-        if (this.destroyed) {
+        if (!guardCheck(this)) {
             return;
         }
 
@@ -192,7 +209,7 @@ export class Container {
         }
 
         const clickOrTouchHandler = (e: Event, pos: ICoordinates, radius: number): void => {
-            if (this.destroyed) {
+            if (!guardCheck(this)) {
                 return;
             }
 
@@ -207,7 +224,7 @@ export class Container {
         };
 
         const clickHandler = (e: Event): void => {
-            if (this.destroyed) {
+            if (!guardCheck(this)) {
                 return;
             }
 
@@ -221,7 +238,7 @@ export class Container {
         };
 
         const touchStartHandler = (): void => {
-            if (this.destroyed) {
+            if (!guardCheck(this)) {
                 return;
             }
 
@@ -230,7 +247,7 @@ export class Container {
         };
 
         const touchMoveHandler = (): void => {
-            if (this.destroyed) {
+            if (!guardCheck(this)) {
                 return;
             }
 
@@ -238,7 +255,7 @@ export class Container {
         };
 
         const touchEndHandler = (e: Event): void => {
-            if (this.destroyed) {
+            if (!guardCheck(this)) {
                 return;
             }
 
@@ -268,7 +285,7 @@ export class Container {
         };
 
         const touchCancelHandler = (): void => {
-            if (this.destroyed) {
+            if (!guardCheck(this)) {
                 return;
             }
 
@@ -287,10 +304,26 @@ export class Container {
     }
 
     /**
+     * Add a new path generator to the container
+     * @param key the key to identify the path generator
+     * @param generator the path generator
+     * @param override if true, override the existing path generator
+     */
+    addPath(key: string, generator?: IMovePathGenerator, override = false): boolean {
+        if (!guardCheck(this) || (!override && this.pathGenerators.has(key))) {
+            return false;
+        }
+
+        this.pathGenerators.set(key, generator ?? defaultPathGenerator);
+
+        return true;
+    }
+
+    /**
      * Destroys the current container, invalidating it
      */
     destroy(): void {
-        if (this.destroyed) {
+        if (!guardCheck(this)) {
             return;
         }
 
@@ -325,7 +358,7 @@ export class Container {
      * Draws a frame
      */
     draw(force: boolean): void {
-        if (this.destroyed) {
+        if (!guardCheck(this)) {
             return;
         }
 
@@ -373,11 +406,15 @@ export class Container {
      * @returns `true` is playing, `false` is paused
      */
     getAnimationStatus(): boolean {
-        return !this.paused && !this.pageHidden && !this.destroyed;
+        return !this.paused && !this.pageHidden && guardCheck(this);
     }
 
+    /**
+     * Handles click event in the container
+     * @param mode click mode to handle
+     */
     handleClickMode(mode: ClickMode | string): void {
-        if (this.destroyed) {
+        if (!guardCheck(this)) {
             return;
         }
 
@@ -390,8 +427,11 @@ export class Container {
         }
     }
 
+    /**
+     * Initializes the container
+     */
     async init(): Promise<void> {
-        if (this.destroyed) {
+        if (!guardCheck(this)) {
             return;
         }
 
@@ -444,12 +484,6 @@ export class Container {
             }
         }
 
-        const pathOptions = this.actualOptions.particles.move.path;
-
-        if (pathOptions.generator) {
-            this.setPath(this.#engine.plugins.getPathGenerator(pathOptions.generator));
-        }
-
         this.#engine.dispatchEvent(EventType.containerInit, { container: this });
 
         this.particles.init();
@@ -469,7 +503,7 @@ export class Container {
      * @param name the theme name, if `undefined` resets the default options or the default theme
      */
     async loadTheme(name?: string): Promise<void> {
-        if (this.destroyed) {
+        if (!guardCheck(this)) {
             return;
         }
 
@@ -482,7 +516,7 @@ export class Container {
      * Pauses animations
      */
     pause(): void {
-        if (this.destroyed) {
+        if (!guardCheck(this)) {
             return;
         }
 
@@ -514,7 +548,7 @@ export class Container {
      * @param force
      */
     play(force?: boolean): void {
-        if (this.destroyed) {
+        if (!guardCheck(this)) {
             return;
         }
 
@@ -546,7 +580,7 @@ export class Container {
      * Restarts the container, just a [[stop]]/[[start]] alias
      */
     async refresh(): Promise<void> {
-        if (this.destroyed) {
+        if (!guardCheck(this)) {
             return;
         }
 
@@ -556,7 +590,7 @@ export class Container {
     }
 
     async reset(): Promise<void> {
-        if (this.destroyed) {
+        if (!guardCheck(this)) {
             return;
         }
 
@@ -582,6 +616,7 @@ export class Container {
 
     /**
      * Customise path generation
+     * @deprecated Use the new addPath
      * @param pathOrGenerator the [[IMovePathGenerator]] object or a function that generates a [[Vector]] object from [[Particle]]
      * @param init the [[IMovePathGenerator]] init function, if the first parameter is a generator function
      * @param update the [[IMovePathGenerator]] update function, if the first parameter is a generator function
@@ -591,36 +626,38 @@ export class Container {
         init?: () => void,
         update?: () => void
     ): void {
-        if (!pathOrGenerator || this.destroyed) {
+        if (!pathOrGenerator || !guardCheck(this)) {
             return;
         }
 
+        const pathGenerator = { ...defaultPathGenerator };
+
         if (typeof pathOrGenerator === "function") {
-            this.pathGenerator.generate = pathOrGenerator;
+            pathGenerator.generate = pathOrGenerator;
 
             if (init) {
-                this.pathGenerator.init = init;
+                pathGenerator.init = init;
             }
 
             if (update) {
-                this.pathGenerator.update = update;
+                pathGenerator.update = update;
             }
         } else {
-            const oldGenerator = this.pathGenerator;
+            const oldGenerator = pathGenerator;
 
-            this.pathGenerator = pathOrGenerator;
-
-            this.pathGenerator.generate ||= oldGenerator.generate;
-            this.pathGenerator.init ||= oldGenerator.init;
-            this.pathGenerator.update ||= oldGenerator.update;
+            pathGenerator.generate = pathOrGenerator.generate || oldGenerator.generate;
+            pathGenerator.init = pathOrGenerator.init || oldGenerator.init;
+            pathGenerator.update = pathOrGenerator.update || oldGenerator.update;
         }
+
+        this.addPath(defaultPathGeneratorKey, pathGenerator, true);
     }
 
     /**
      * Starts the container, initializes what are needed to create animations and event handling
      */
     async start(): Promise<void> {
-        if (this.started || this.destroyed) {
+        if (this.started || !guardCheck(this)) {
             return;
         }
 
@@ -628,7 +665,7 @@ export class Container {
 
         this.started = true;
 
-        this.eventListeners.addListeners();
+        this.#eventListeners.addListeners();
 
         if (this.interactivity.element instanceof HTMLElement && this.intersectionObserver) {
             this.intersectionObserver.observe(this.interactivity.element);
@@ -651,13 +688,13 @@ export class Container {
      * Stops the container, opposite to `start`. Clears some resources and stops events.
      */
     stop(): void {
-        if (!this.started || this.destroyed) {
+        if (!this.started || !guardCheck(this)) {
             return;
         }
 
         this.firstStart = true;
         this.started = false;
-        this.eventListeners.removeListeners();
+        this.#eventListeners.removeListeners();
         this.pause();
         this.particles.clear();
         this.canvas.clear();
@@ -685,6 +722,9 @@ export class Container {
         this.#engine.dispatchEvent(EventType.containerStopped, { container: this });
     }
 
+    /**
+     * Updates the container options
+     */
     updateActualOptions(): boolean {
         this.actualOptions.responsive = [];
         const newMaxWidth = this.actualOptions.setResponsive(

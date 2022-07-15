@@ -1,4 +1,4 @@
-import { HoverMode, RotateDirection, clamp, getDistance, getDistances, isInArray } from "tsparticles-engine";
+import { HoverMode, RotateDirection, clamp, getDistance, getDistances, isInArray, tspRandom } from "tsparticles-engine";
 import type { IDelta, Particle } from "tsparticles-engine";
 import type { MoveParticle } from "./Types";
 
@@ -31,11 +31,11 @@ export function applyDistance(particle: MoveParticle): void {
             vel = particle.velocity;
 
         if (hDistance && ((pos.x < initialPosition.x && vel.x < 0) || (pos.x > initialPosition.x && vel.x > 0))) {
-            vel.x *= -Math.random();
+            vel.x *= -tspRandom();
         }
 
         if (vDistance && ((pos.y < initialPosition.y && vel.y < 0) || (pos.y > initialPosition.y && vel.y > 0))) {
-            vel.y *= -Math.random();
+            vel.y *= -tspRandom();
         }
     }
 }
@@ -78,17 +78,17 @@ export function applyPath(particle: Particle, delta: IDelta): void {
         return;
     }
 
-    const container = particle.container;
-
     if (particle.lastPathTime <= particle.pathDelay) {
         particle.lastPathTime += delta.value;
 
         return;
     }
 
-    const path = container.pathGenerator.generate(particle);
+    const path = particle.pathGenerator?.generate(particle);
 
-    particle.velocity.addTo(path);
+    if (path) {
+        particle.velocity.addTo(path);
+    }
 
     if (pathOptions.clamp) {
         particle.velocity.x = clamp(particle.velocity.x, -1, 1);

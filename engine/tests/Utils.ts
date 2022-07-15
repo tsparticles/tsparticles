@@ -1,8 +1,10 @@
 import * as NumberUtils from "../src/Utils/NumberUtils";
 import * as Utils from "../src/Utils/Utils";
-import { Container, MoveDirection, OutModeDirection, Particle, Vector, tsParticles } from "../src";
+import { MoveDirection, OutModeDirection, Vector, tsParticles, tspRandom } from "../src";
 import type { ICoordinates, IParticle } from "../src";
 import { describe, it } from "mocha";
+import { Container } from "../src/Core/Container";
+import { Particle } from "../src/Core/Particle";
 import { expect } from "chai";
 
 function buildParticleWithDirection(direction: MoveDirection): IParticle {
@@ -113,7 +115,7 @@ describe("Utils", () => {
         const size = 10;
 
         it("should return the average when weights are identical", () => {
-            const weight1 = Math.floor(Math.random() * (size - 1) + 1);
+            const weight1 = Math.floor(tspRandom() * (size - 1) + 1);
             const weight2 = weight1;
             const mean = Math.floor((comp1 + comp2) / 2);
 
@@ -121,7 +123,7 @@ describe("Utils", () => {
         });
 
         it("should return comp1 when weight2 is 0 (and weight1 > 0)", () => {
-            const weight1 = Math.floor(Math.random() * (size - 1) + 1);
+            const weight1 = Math.floor(tspRandom() * (size - 1) + 1);
             const weight2 = 0;
 
             expect(NumberUtils.mix(comp1, comp2, weight1, weight2), `weight 1: ${weight1}`).to.be.equal(
@@ -131,7 +133,7 @@ describe("Utils", () => {
 
         it("should return comp2 when weight1 is 0 (and weight2 > 0)", () => {
             const weight1 = 0;
-            const weight2 = Math.floor(Math.random() * (size - 1) + 1);
+            const weight2 = Math.floor(tspRandom() * (size - 1) + 1);
 
             expect(NumberUtils.mix(comp1, comp2, weight1, weight2)).to.be.equal(Math.floor(comp2));
         });
@@ -538,7 +540,7 @@ describe("Utils", () => {
         });
 
         it("should return true when point lies on top boundary of screen with non-zero radius", () => {
-            expect(Utils.isPointInside(topPoint, dimension, Vector.origin, Math.random())).to.be.true;
+            expect(Utils.isPointInside(topPoint, dimension, Vector.origin, tspRandom())).to.be.true;
         });
 
         it("should return false when point lies on bottom boundary of screen with no radius", () => {
@@ -546,7 +548,7 @@ describe("Utils", () => {
         });
 
         it("should return true when point lies on bottom boundary of screen with non-zero radius", () => {
-            expect(Utils.isPointInside(bottomPoint, dimension, Vector.origin, Math.random())).to.be.true;
+            expect(Utils.isPointInside(bottomPoint, dimension, Vector.origin, tspRandom())).to.be.true;
         });
 
         it("should return false when point lies on left boundary of screen with no radius", () => {
@@ -554,7 +556,7 @@ describe("Utils", () => {
         });
 
         it("should return true when point lies on left boundary of screen with non-zero radius", () => {
-            expect(Utils.isPointInside(leftPoint, dimension, Vector.origin, Math.random())).to.be.true;
+            expect(Utils.isPointInside(leftPoint, dimension, Vector.origin, tspRandom())).to.be.true;
         });
 
         it("should return false when point lies on right boundary of screen with no radius", () => {
@@ -562,7 +564,7 @@ describe("Utils", () => {
         });
 
         it("should return true when point lies on right boundary of screen with non-zero radius", () => {
-            expect(Utils.isPointInside(rightPoint, dimension, Vector.origin, Math.random())).to.be.true;
+            expect(Utils.isPointInside(rightPoint, dimension, Vector.origin, tspRandom())).to.be.true;
         });
     });
 
@@ -610,14 +612,14 @@ describe("Utils", () => {
 
     describe("segmentBounce", () => {
         const start = {
-                x: 29, //Math.floor(Math.random() * 100),
-                y: 82, //Math.floor(Math.random() * 100)
+                x: 29, //Math.floor(tspRandom() * 100),
+                y: 82, //Math.floor(tspRandom() * 100)
             },
             stop = {
-                x: 53, //Math.floor(Math.random() * 100),
-                y: 82, //Math.floor(Math.random() * 100)
+                x: 53, //Math.floor(tspRandom() * 100),
+                y: 82, //Math.floor(tspRandom() * 100)
             },
-            velocity = Vector.origin; // angle = 238.91568442036498 * Math.PI / 180;//Math.random() * Math.PI * 2;
+            velocity = Vector.origin; // angle = 238.91568442036498 * Math.PI / 180;//tspRandom() * Math.PI * 2;
 
         velocity.length = 1;
         velocity.angle = (238.91568442036498 * Math.PI) / 180;

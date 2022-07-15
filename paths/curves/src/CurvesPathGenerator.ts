@@ -3,6 +3,7 @@ import { CurvesPathGen } from "./Curves";
 import type { CurvesPathParticle } from "./CurvesPathParticle";
 import type { ICurvesOptions } from "./ICurvesOptions";
 import { Vector } from "tsparticles-engine";
+import { tspRandom } from "tsparticles-engine";
 
 declare global {
     interface Window {
@@ -41,8 +42,8 @@ export class CurvesPathGenerator implements IMovePathGenerator {
         if (p.curveVelocity === undefined) {
             p.curveVelocity = Vector.origin;
 
-            p.curveVelocity.length = Math.random() * 0.6 + 0.8;
-            p.curveVelocity.angle = Math.random() * Math.PI * 2;
+            p.curveVelocity.length = tspRandom() * 0.6 + 0.8;
+            p.curveVelocity.angle = tspRandom() * Math.PI * 2;
         } else {
             p.curveVelocity.length += 0.01;
             p.curveVelocity.angle = (p.curveVelocity.angle + p.pathGen()) % (Math.PI * 2);

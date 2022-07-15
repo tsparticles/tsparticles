@@ -11,6 +11,7 @@ import {
     itemFromArray,
     randomInRange,
     rangeColorToHsl,
+    tspRandom,
 } from "tsparticles-engine";
 import type {
     IDelta,
@@ -233,7 +234,7 @@ export class GradientUpdater implements IParticleUpdater {
             let rotateDirection = gradient.angle.direction;
 
             if (rotateDirection === RotateDirection.random) {
-                const index = Math.floor(Math.random() * 2);
+                const index = Math.floor(tspRandom() * 2);
 
                 rotateDirection = index > 0 ? RotateDirection.counterClockwise : RotateDirection.clockwise;
             }
@@ -296,7 +297,7 @@ export class GradientUpdater implements IParticleUpdater {
                             case StartValueType.random:
                                 addColor.opacity.value = randomInRange(addColor.opacity);
                                 addColor.opacity.status =
-                                    Math.random() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
+                                    tspRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
                                 break;
 

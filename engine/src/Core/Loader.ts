@@ -5,6 +5,7 @@ import type { RecursivePartial } from "../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
 import { generatedAttribute } from "./Utils/Constants";
 import { itemFromArray } from "../Utils/Utils";
+import { tspRandom } from "../Utils/NumberUtils";
 
 /**
  * Default fetch error catcher
@@ -148,7 +149,7 @@ export class Loader {
      * @param params all the parameters required for loading options in the current animation
      */
     async loadOptions(params: LoaderParams): Promise<Container | undefined> {
-        const tagId = params.tagId ?? `tsparticles${Math.floor(Math.random() * 10000)}`,
+        const tagId = params.tagId ?? `tsparticles${Math.floor(tspRandom() * 10000)}`,
             { index, url: jsonUrl, remote } = params,
             options = remote ? await getDataFromUrl(jsonUrl, index) : params.options;
 
