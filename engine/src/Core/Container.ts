@@ -186,10 +186,17 @@ export class Container {
         return this._options;
     }
 
+    /**
+     * The options that were initially passed to the container
+     */
     get sourceOptions(): RecursivePartial<IOptions> | undefined {
         return this._sourceOptions;
     }
 
+    /**
+     * Adds a click handler to the container
+     * @param callback the callback to be called when the click event occurs
+     */
     addClickHandler(callback: (evt: Event, particles?: Particle[]) => void): void {
         if (!guardCheck(this)) {
             return;
@@ -402,6 +409,10 @@ export class Container {
         return !this.paused && !this.pageHidden && guardCheck(this);
     }
 
+    /**
+     * Handles click event in the container
+     * @param mode click mode to handle
+     */
     handleClickMode(mode: ClickMode | string): void {
         if (!guardCheck(this)) {
             return;
@@ -416,6 +427,9 @@ export class Container {
         }
     }
 
+    /**
+     * Initializes the container
+     */
     async init(): Promise<void> {
         if (!guardCheck(this)) {
             return;
@@ -602,6 +616,7 @@ export class Container {
 
     /**
      * Customise path generation
+     * @deprecated Use the new addPath
      * @param pathOrGenerator the [[IMovePathGenerator]] object or a function that generates a [[Vector]] object from [[Particle]]
      * @param init the [[IMovePathGenerator]] init function, if the first parameter is a generator function
      * @param update the [[IMovePathGenerator]] update function, if the first parameter is a generator function
@@ -707,6 +722,9 @@ export class Container {
         this.#engine.dispatchEvent(EventType.containerStopped, { container: this });
     }
 
+    /**
+     * Updates the container options
+     */
     updateActualOptions(): boolean {
         this.actualOptions.responsive = [];
         const newMaxWidth = this.actualOptions.setResponsive(

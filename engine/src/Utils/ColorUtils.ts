@@ -119,11 +119,11 @@ function stringToRgba(input: string): IRgba | undefined {
  * Gets the particles color
  * @param input the input color to convert in [[IRgb]] object
  * @param index the array index, if needed
- * @param useIndex set to false to ignore the index parameter
+ * @param useIndex set to false for ignoring the index parameter
  */
 export function rangeColorToRgb(input?: string | IRangeColor, index?: number, useIndex = true): IRgb | undefined {
-    if (input === undefined) {
-        return undefined;
+    if (!input) {
+        return;
     }
 
     const color = typeof input === "string" ? { value: input } : input;
@@ -162,16 +162,14 @@ export function rangeColorToRgb(input?: string | IRangeColor, index?: number, us
     const hsvColor = colorValue.hsv ?? (color.value as IRangeHsv);
 
     if (hsvColor.h !== undefined && hsvColor.v !== undefined) {
-        const res = hsvToRgb({
+        return hsvToRgb({
             h: getRangeValue(hsvColor.h),
             s: getRangeValue(hsvColor.s),
             v: getRangeValue(hsvColor.v),
         });
-
-        return res;
     }
 
-    return undefined;
+    return;
 }
 
 /**
@@ -181,7 +179,7 @@ export function rangeColorToRgb(input?: string | IRangeColor, index?: number, us
  * @param useIndex set to false to ignore the index parameter
  */
 export function colorToRgb(input?: string | IColor, index?: number, useIndex = true): IRgb | undefined {
-    if (input === undefined) {
+    if (!input) {
         return;
     }
 
@@ -216,7 +214,7 @@ export function colorToRgb(input?: string | IColor, index?: number, useIndex = t
         return hsvToRgb(hsvColor);
     }
 
-    return undefined;
+    return;
 }
 
 /**
@@ -229,7 +227,7 @@ export function colorToRgb(input?: string | IColor, index?: number, useIndex = t
 export function colorToHsl(color: string | IColor | undefined, index?: number, useIndex = true): IHsl | undefined {
     const rgb = colorToRgb(color, index, useIndex);
 
-    return rgb !== undefined ? rgbToHsl(rgb) : undefined;
+    return rgb ? rgbToHsl(rgb) : undefined;
 }
 
 /**
@@ -246,7 +244,7 @@ export function rangeColorToHsl(
 ): IHsl | undefined {
     const rgb = rangeColorToRgb(color, index, useIndex);
 
-    return rgb !== undefined ? rgbToHsl(rgb) : undefined;
+    return rgb ? rgbToHsl(rgb) : undefined;
 }
 
 /**

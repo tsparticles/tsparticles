@@ -1,8 +1,10 @@
 import * as NumberUtils from "../src/Utils/NumberUtils";
 import * as Utils from "../src/Utils/Utils";
-import { Container, MoveDirection, OutModeDirection, Particle, Vector, tsParticles } from "../src";
+import { MoveDirection, OutModeDirection, Vector, tsParticles } from "../src";
 import type { ICoordinates, IParticle } from "../src";
 import { describe, it } from "mocha";
+import { Container } from "../src/Core/Container";
+import { Particle } from "../src/Core/Particle";
 import { expect } from "chai";
 
 function buildParticleWithDirection(direction: MoveDirection): IParticle {

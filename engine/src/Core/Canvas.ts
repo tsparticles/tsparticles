@@ -94,6 +94,9 @@ export class Canvas {
         }
     }
 
+    /**
+     * Destroying object actions
+     */
     destroy(): void {
         if (this.generatedCanvas) {
             this.element?.remove();
@@ -111,6 +114,10 @@ export class Canvas {
         this.#colorPlugins = [];
     }
 
+    /**
+     * Generic draw method, for drawing stuff on the canvas context
+     * @param cb
+     */
     draw<T>(cb: (context: CanvasRenderingContext2D) => T): T | undefined {
         if (!this.#context) {
             return;
@@ -119,6 +126,11 @@ export class Canvas {
         return cb(this.#context);
     }
 
+    /**
+     * Draws the specified particle in the canvas
+     * @param particle the particle to draw
+     * @param delta the frame delta time values
+     */
     drawParticle(particle: Particle, delta: IDelta): void {
         if (particle.spawning || particle.destroyed) {
             return;
@@ -184,12 +196,23 @@ export class Canvas {
         });
     }
 
+    /**
+     * Draws stuff using the given plugin, using the given particle
+     * @param plugin the plugin to use for drawing stuff
+     * @param particle the particle used
+     * @param delta the frame delta time values
+     */
     drawParticlePlugin(plugin: IContainerPlugin, particle: Particle, delta: IDelta): void {
         this.draw((ctx) => {
             drawParticlePlugin(ctx, plugin, particle, delta);
         });
     }
 
+    /**
+     * Draws stuff using the given plugin
+     * @param plugin the plugin to use for drawing stuff
+     * @param delta the frame delta time values
+     */
     drawPlugin(plugin: IContainerPlugin, delta: IDelta): void {
         this.draw((ctx) => {
             drawPlugin(ctx, plugin, delta);
@@ -210,6 +233,9 @@ export class Canvas {
         this.paint();
     }
 
+    /**
+     * Initializes the canvas background
+     */
     initBackground(): void {
         const options = this.container.actualOptions,
             background = options.background,
@@ -234,6 +260,9 @@ export class Canvas {
         elementStyle.backgroundSize = background.size || "";
     }
 
+    /**
+     * Initializes the plugins needed by canvas
+     */
     initPlugins(): void {
         this.#resizePlugins = [];
 
@@ -248,6 +277,9 @@ export class Canvas {
         }
     }
 
+    /**
+     * Initializes the updaters needed by canvas
+     */
     initUpdaters(): void {
         this.#preDrawUpdaters = [];
         this.#postDrawUpdaters = [];
@@ -263,6 +295,10 @@ export class Canvas {
         }
     }
 
+    /**
+     * Loads the canvas html element
+     * @param canvas the canvas html element
+     */
     loadCanvas(canvas: HTMLCanvasElement): void {
         if (this.generatedCanvas) {
             this.element?.remove();
@@ -337,6 +373,9 @@ export class Canvas {
         }
     }
 
+    /**
+     * The window resize event handler
+     */
     async windowResize(): Promise<void> {
         if (!this.element) {
             return;
