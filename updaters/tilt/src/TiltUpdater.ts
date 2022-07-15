@@ -1,4 +1,4 @@
-import { AnimationStatus, getRangeValue } from "tsparticles-engine";
+import { AnimationStatus, getRangeValue, tspRandom } from "tsparticles-engine";
 import type {
     Container,
     IDelta,
@@ -94,14 +94,14 @@ export class TiltUpdater implements IParticleUpdater {
         particle.tilt = {
             enable: tiltOptions.enable,
             value: (getRangeValue(tiltOptions.value) * Math.PI) / 180,
-            sinDirection: Math.random() >= 0.5 ? 1 : -1,
-            cosDirection: Math.random() >= 0.5 ? 1 : -1,
+            sinDirection: tspRandom() >= 0.5 ? 1 : -1,
+            cosDirection: tspRandom() >= 0.5 ? 1 : -1,
         };
 
         let tiltDirection = tiltOptions.direction;
 
         if (tiltDirection === TiltDirection.random) {
-            const index = Math.floor(Math.random() * 2);
+            const index = Math.floor(tspRandom() * 2);
 
             tiltDirection = index > 0 ? TiltDirection.counterClockwise : TiltDirection.clockwise;
         }
@@ -123,7 +123,7 @@ export class TiltUpdater implements IParticleUpdater {
             particle.tilt.velocity = (getRangeValue(tiltAnimation.speed) / 360) * this.container.retina.reduceFactor;
 
             if (!tiltAnimation.sync) {
-                particle.tilt.velocity *= Math.random();
+                particle.tilt.velocity *= tspRandom();
             }
         }
     }

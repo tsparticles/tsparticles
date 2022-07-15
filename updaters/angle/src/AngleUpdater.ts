@@ -1,4 +1,4 @@
-import { AnimationStatus, RotateDirection, getRangeValue } from "tsparticles-engine";
+import { AnimationStatus, RotateDirection, getRangeValue, tspRandom } from "tsparticles-engine";
 import type { Container, IDelta, IParticleUpdater, IParticleValueAnimation, Particle } from "tsparticles-engine";
 
 type RotateParticle = Particle & {
@@ -61,7 +61,7 @@ export class AngleUpdater implements IParticleUpdater {
         let rotateDirection = rotateOptions.direction;
 
         if (rotateDirection === RotateDirection.random) {
-            const index = Math.floor(Math.random() * 2);
+            const index = Math.floor(tspRandom() * 2);
 
             rotateDirection = index > 0 ? RotateDirection.counterClockwise : RotateDirection.clockwise;
         }
@@ -84,16 +84,18 @@ export class AngleUpdater implements IParticleUpdater {
                 (getRangeValue(rotateAnimation.speed) / 360) * this.container.retina.reduceFactor;
 
             if (!rotateAnimation.sync) {
-                particle.rotate.velocity *= Math.random();
+                particle.rotate.velocity *= tspRandom();
             }
         }
+
+        particle.rotation = particle.rotate.value;
     }
 
     isEnabled(particle: Particle): boolean {
         const rotate = particle.options.rotate,
             rotateAnimation = rotate.animation;
 
-        return !particle.destroyed && !particle.spawning && !rotate.path && rotateAnimation.enable;
+        return !particle.destroyed && !particle.spawning && rotateAnimation.enable && !rotate.path;
     }
 
     update(particle: RotateParticle, delta: IDelta): void {

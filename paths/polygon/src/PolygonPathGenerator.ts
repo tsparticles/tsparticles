@@ -1,7 +1,7 @@
 import type { Container, ICoordinates, IMovePathGenerator } from "tsparticles-engine";
+import { Vector, tspRandom } from "tsparticles-engine";
 import type { IPolygonPathOptions } from "./IPolygonPathOptions";
 import type { PolygonPathParticle } from "./PolygonPathParticle";
-import { Vector } from "tsparticles-engine";
 
 export class PolygonPathGenerator implements IMovePathGenerator {
     dirsList: ICoordinates[];
@@ -23,7 +23,7 @@ export class PolygonPathGenerator implements IMovePathGenerator {
 
         if (p.hexDirection === undefined) {
             p.hexDirection =
-                this.options.sides === 6 ? ((Math.random() * 3) | 0) * 2 : (Math.random() * this.options.sides) | 0;
+                this.options.sides === 6 ? ((tspRandom() * 3) | 0) * 2 : (tspRandom() * this.options.sides) | 0;
         }
 
         if (p.hexSpeed === undefined) {
@@ -32,7 +32,7 @@ export class PolygonPathGenerator implements IMovePathGenerator {
 
         if (p.hexStep % this.options.turnSteps === 0) {
             p.hexDirection =
-                Math.random() > 0.5
+                tspRandom() > 0.5
                     ? (p.hexDirection + 1) % this.options.sides
                     : (p.hexDirection + this.options.sides - 1) % this.options.sides;
         }

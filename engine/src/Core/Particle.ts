@@ -12,6 +12,7 @@ import {
     getValue,
     randomInRange,
     setRangeValue,
+    tspRandom,
 } from "../Utils/NumberUtils";
 import { deepExtend, isInArray, itemFromArray } from "../Utils/Utils";
 import { getHslFromAnimation, rangeColorToRgb } from "../Utils/ColorUtils";
@@ -378,7 +379,7 @@ export class Particle implements IParticle {
 
                 case StartValueType.random:
                     this.size.value = randomInRange(this.size) * pxRatio;
-                    this.size.status = Math.random() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
+                    this.size.status = tspRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
                     break;
 
@@ -395,7 +396,7 @@ export class Particle implements IParticle {
                 container.retina.reduceFactor;
 
             if (!sizeAnimation.sync) {
-                this.size.velocity *= Math.random();
+                this.size.velocity *= tspRandom();
             }
         }
 
@@ -665,7 +666,7 @@ export class Particle implements IParticle {
         }
 
         if (moveOptions.random && typeof moveOptions.speed === "number") {
-            res.length *= Math.random();
+            res.length *= tspRandom();
         }
 
         return res;

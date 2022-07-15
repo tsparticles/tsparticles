@@ -7,6 +7,7 @@ import {
     itemFromArray,
     noPolygonDataLoaded,
     noPolygonFound,
+    tspRandom,
 } from "tsparticles-engine";
 import type { IPolygonMaskOptions } from "./types";
 import type { ISvgPath } from "./Interfaces/ISvgPath";
@@ -169,8 +170,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
 
         const canvasSize = container.canvas.size,
-            x = position?.x ?? Math.random() * canvasSize.width,
-            y = position?.y ?? Math.random() * canvasSize.height;
+            x = position?.x ?? tspRandom() * canvasSize.width,
+            y = position?.y ?? tspRandom() * canvasSize.height;
 
         let inside = false;
 
@@ -341,7 +342,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
 
         const path = itemFromArray(this.paths),
-            distance = Math.floor(Math.random() * path.length) + 1,
+            distance = Math.floor(tspRandom() * path.length) + 1,
             point = path.element.getPointAtLength(distance);
 
         return {
@@ -519,8 +520,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
             }
         } else {
             position = {
-                x: Math.random() * container.canvas.size.width,
-                y: Math.random() * container.canvas.size.height,
+                x: tspRandom() * container.canvas.size.width,
+                y: tspRandom() * container.canvas.size.height,
             };
         }
 

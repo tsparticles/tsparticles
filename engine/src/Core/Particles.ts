@@ -5,6 +5,7 @@ import {
     getValue,
     randomInRange,
     setRangeValue,
+    tspRandom,
 } from "../Utils/NumberUtils";
 import type { ClickMode } from "../Enums/Modes/ClickMode";
 import type { Container } from "./Container";
@@ -236,7 +237,7 @@ export class Particles {
         let res = this.freqs.links.get(key);
 
         if (res === undefined) {
-            res = Math.random();
+            res = tspRandom();
 
             this.freqs.links.set(key, res);
         }
@@ -264,7 +265,7 @@ export class Particles {
         let res = this.freqs.triangles.get(key);
 
         if (res === undefined) {
-            res = Math.random();
+            res = tspRandom();
 
             this.freqs.triangles.set(key, res);
         }

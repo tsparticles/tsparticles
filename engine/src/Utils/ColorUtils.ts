@@ -13,7 +13,7 @@ import type {
     IRgba,
     IValueColor,
 } from "../Core/Interfaces/Colors";
-import { getRangeValue, mix, randomInRange, setRangeValue } from "./NumberUtils";
+import { getRangeValue, mix, randomInRange, setRangeValue, tspRandom } from "./NumberUtils";
 import { midColorValue, randomColorValue } from "../Core/Utils/Constants";
 import { AnimationStatus } from "../Enums/AnimationStatus";
 import type { HslAnimation } from "../Options/Classes/HslAnimation";
@@ -708,8 +708,8 @@ function setColorAnimation(
         colorValue.status = AnimationStatus.increasing;
 
         if (!colorAnimation.sync) {
-            colorValue.velocity *= Math.random();
-            colorValue.value *= Math.random();
+            colorValue.velocity *= tspRandom();
+            colorValue.value *= tspRandom();
         }
     } else {
         colorValue.velocity = 0;
