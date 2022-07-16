@@ -159,3 +159,40 @@ let particlesInit = async (engine) => {
   await loadSnowPreset(engine);
 };
 ```
+
+---
+
+```mermaid
+flowchart LR
+
+e[tsParticles Engine]
+
+subgraph m [Movers]
+mb[Base]
+end
+
+e --> m
+
+subgraph s [Shapes]
+sc[Circle]
+end
+
+e --> s
+
+subgraph u [Updaters]
+uc[Color]
+uop[Opacity]
+uou[Out Modes]
+usi[Size]
+end
+
+e --> u
+
+subgraph pr [Presets]
+prsn[Snow]
+end
+
+e --> pr
+
+mb & sc & uc & uop & uou & usi --> prsn
+```

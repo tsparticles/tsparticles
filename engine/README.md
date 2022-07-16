@@ -15,8 +15,8 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 
 ## Table of Contents
 
-⚠️⚠️ _This readme refers to upcoming **v2**
-version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) for **v1** documentation_ ⚠️⚠️
+⚠️⚠️ \_This readme refers to **v2**
+version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) for **v1** documentation\* ⚠️⚠️
 
 - [Use for your website](#Do-you-want-to-use-it-on-your-website)
   - [Library installation](#Library-installation)
@@ -57,6 +57,7 @@ version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) 
 - [Video Tutorials](#Video-Tutorials)
 - [Migrating from Particles.js](#Migrating-from-Particlesjs)
 - [Plugins/Customizations](#PluginsCustomizations)
+- [Dependency Graphs](#Dependency-Graphs)
 - [Sponsors](#Sponsors)
 
 ---
@@ -582,6 +583,159 @@ tsParticles now supports some customizations 🥳.
 **You can create your own plugins**
 
 _Read more [here](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.html)..._
+
+---
+
+## Dependency Graphs
+
+```mermaid
+flowchart TD
+
+subgraph c [Components]
+ca[Angular]
+ci[Inferno.js]
+cj[JQuery]
+cp[Preact]
+cre[React.js]
+cri[Riot.js]
+cso[Solid.js]
+csv[Svelte]
+cv2[Vue.js 2.x]
+cv3[Vue.js 3.x]
+cw[Web Components]
+end
+
+e[tsParticles Engine] --> c
+```
+
+```mermaid
+flowchart LR
+
+subgraph b [Bundles]
+bp[Particles.js compatibility bundle] --> bs[tsParticles Slim]
+bs --> bf[tsParticles]
+end
+
+e[tsParticles Engine] --> b
+
+iea & iebo & iebu & iec & ieg & iepa & iepu & ierem & ierep --> bs
+ipa & ipc & ipl --> bs
+mb & mp --> bs
+sc & si & sl & sp & ssq & sst & st --> bs
+ua & uc & ul & uop & uou & usi & ust --> bs
+
+iet --> bf
+pla & ple & plp --> bf
+ur & uti & utw & uw --> bf
+
+subgraph i [Interactions]
+
+subgraph ie [Externals]
+iea[Attract]
+iebo[Bounce]
+iebu[Bubble]
+iec[Connect]
+ieg[Grab]
+iepa[Pause]
+iepu[Push]
+ierem[Remove]
+ierep[Repulse]
+iet[Trail]
+end
+
+il[Light]
+
+subgraph ip [Particles]
+ipa[Attract]
+ipc[Collisions]
+ipl[Links]
+ipr[Repulse]
+end
+
+end
+
+i --> ie
+i --> ip
+
+e --> i
+
+subgraph m [Movers]
+mb[Base]
+mp[Parallax]
+end
+
+e --> m
+
+subgraph pa [Paths]
+pac[Curves]
+pape[Perlin Noise]
+papo[Polygon]
+pas[Simplex Noise]
+end
+
+e --> pa
+
+subgraph pl [Plugins]
+pla[Absorbers]
+ple[Emitters]
+pli[Infection]
+plp[Polygon Mask]
+end
+
+e --> pl
+
+subgraph s [Shapes]
+sb[Bubble]
+sc[Circle]
+sh[Heart]
+si[Image]
+sl[Line]
+sm[Multiline Text]
+sp[Polygon]
+sr[Rounded Rectangle]
+ssp[Spiral]
+ssq[Square]
+sst[Star]
+st[Text]
+end
+
+e --> s
+
+subgraph u [Updaters]
+ua[Angle]
+uc[Color]
+ug[Gradient]
+ul[Life]
+uop[Opacity]
+uor[Orbit]
+uou[Out Modes]
+ur[Roll]
+usi[Size]
+ust[Stroke Color]
+uti[Tilt]
+utw[Twinkle]
+uw[Wobble]
+end
+
+e --> u
+
+subgraph pr [Presets]
+prbi[Big Circles]
+prbu[Bubbles]
+prc[Confetti]
+prf[Fire]
+prff[Firefly]
+prfw[Fireworks]
+prfo[Fountain]
+prl[Links]
+prsa[Sea Anemone]
+prsn[Snow]
+prst[Stars]
+prt[Triangles]
+end
+
+e --> pr
+```
 
 ---
 

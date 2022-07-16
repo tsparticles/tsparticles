@@ -161,3 +161,50 @@ let particlesInit = async (engine) => {
   await loadLinksPreset(engine);
 };
 ```
+
+```mermaid
+flowchart TD
+
+subgraph i [Interactions]
+
+subgraph ip [Particles]
+ipl[Links]
+end
+
+end
+
+i --> ip
+
+e[tsParticles Engine] --> i
+
+subgraph m [Movers]
+mb[Base]
+end
+
+e --> m
+
+e --> pa
+
+subgraph s [Shapes]
+sc[Circle]
+end
+
+e --> s
+
+subgraph u [Updaters]
+uc[Color]
+uop[Opacity]
+uou[Out Modes]
+usi[Size]
+end
+
+e --> u
+
+subgraph pr [Presets]
+prl[Links]
+end
+
+e --> pr
+
+ipl & mb & sc & uc & uop & uou & usi --> prl
+```
