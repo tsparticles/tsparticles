@@ -10,7 +10,7 @@ import prettier from "prettier";
 const pkgInfo = require("../package.json");
 
 function compile(basePath: string, type: "browser" | "cjs" | "esm" | "types" | "umd"): number {
-    let options: unknown = undefined;
+    let options: unknown;
 
     switch (type) {
         case "browser":
