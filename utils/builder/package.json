@@ -1,8 +1,10 @@
 {
-  "name": "@tsparticles/builder",
+  "name": "@tsparticles/build",
   "version": "1.0.0",
   "license": "MIT",
-  "bin": "dist/build.js",
+  "bin": {
+    "tsparticles-build": "dist/build.js"
+  },
   "prettier": "@tsparticles/prettier-config",
   "scripts": {
     "prettify:ci:src": "prettier --check ./src",
@@ -15,7 +17,7 @@
     "compile:ci": "yarn build:ts",
     "build:ts": "yarn build:ts:cjs",
     "build:ts:cjs": "tsc",
-    "build": "yarn clear:dist && yarn prettify:src && yarn lint && yarn compile && yarn prettify:readme",
+    "build": "yarn clear:dist && yarn prettify:src && yarn lint && yarn compile && yarn prettify:readme && chmod +x dist/build.js",
     "build:ci": "yarn clear:dist && yarn prettify:ci:src && yarn lint:ci && yarn compile && yarn prettify:ci:readme",
     "clear:dist": "rimraf -f ./dist",
     "prepack": "yarn build"

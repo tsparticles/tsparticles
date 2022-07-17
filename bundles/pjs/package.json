@@ -21,6 +21,7 @@
     "distfiles": "node ./scripts/distfiles.js",
     "build": "yarn clear:dist && yarn prettify:src && yarn lint && yarn compile && yarn bundle && yarn prettify:readme && yarn distfiles",
     "build:ci": "yarn clear:dist && yarn prettify:ci:src && yarn lint:ci && yarn compile && yarn bundle && yarn prettify:ci:readme && yarn distfiles",
+    "build:new": "tsparticles-build src",
     "clear:dist": "rimraf -f ./dist",
     "version": "yarn distfiles && git add package.dist.json",
     "prepack": "yarn build"
@@ -97,6 +98,7 @@
   "prettier": "@tsparticles/prettier-config",
   "devDependencies": {
     "@babel/core": "^7.17.9",
+    "@tsparticles/build": "^1.0.0",
     "@tsparticles/eslint-config": "^1.0.2",
     "@tsparticles/prettier-config": "^1.0.0",
     "@tsparticles/tsconfig": "^1.0.0",
