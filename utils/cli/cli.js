@@ -7,7 +7,7 @@ console.log(`tsParticles CLI v${pkgInfo.version}\n`);
 
 if (process.argv.length < 3) {
   console.error(
-    `Not enought parameters, run "tsparticles-cli help" for a full list`
+    `Not enough parameters, run "tsparticles-cli help" for a full list`
   );
 
   return;
