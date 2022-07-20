@@ -115,7 +115,7 @@ export class Particles {
     ): Particle | undefined {
         const container = this.container,
             options = container.actualOptions,
-            limit = options.particles.number.limit * container.density;
+            limit = options.particles.number.limit;
 
         if (limit > 0) {
             const countToRemove = this.count + 1 - limit;

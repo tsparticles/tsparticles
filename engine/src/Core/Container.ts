@@ -24,6 +24,11 @@ import type { Vector } from "./Utils/Vector";
 import { getRangeValue } from "../Utils/NumberUtils";
 import { loadOptions } from "../Utils/OptionsUtils";
 
+/**
+ * Checks if the container is still usable
+ * @param container the container to check
+ * @returns true if the container is still usable
+ */
 function guardCheck(container: Container): boolean {
     return !container.destroyed;
 }
@@ -73,29 +78,49 @@ export class Container {
      */
     readonly canvas;
 
-    density;
-
     /**
      * Check if the particles' container is destroyed, if so it's not recommended using it
      */
     destroyed;
-
-    readonly drawer;
 
     /**
      * All the shape drawers used by the container
      */
     readonly drawers;
 
+    /**
+     * The container duration
+     */
     duration;
 
     readonly #engine;
     readonly #eventListeners;
 
+    /**
+     * The container fps limit, coming from options
+     */
     fpsLimit;
+
+    /**
+     * The container frame manager
+     */
+    readonly frameManager;
+
     interactivity: IContainerInteractivity;
+
+    /**
+     * Last frame time, used for delta values, for keeping animation correct in lower frame rates
+     */
     lastFrameTime?: number;
+
+    /**
+     * The container life time
+     */
     lifeTime;
+
+    /**
+     * The container check if it's hidden on the web page
+     */
     pageHidden;
 
     /**
@@ -154,7 +179,7 @@ export class Container {
         this.retina = new Retina(this);
         this.canvas = new Canvas(this);
         this.particles = new Particles(this.#engine, this);
-        this.drawer = new FrameManager(this);
+        this.frameManager = new FrameManager(this);
         this.pathGenerators = new Map<string, IMovePathGenerator>();
         this.interactivity = {
             mouse: {
@@ -164,7 +189,6 @@ export class Container {
         };
         this.plugins = new Map<string, IContainerPlugin>();
         this.drawers = new Map<string, IShapeDrawer>();
-        this.density = 1;
         /* tsParticles variables with default values */
         this._options = loadContainerOptions(this.#engine, this);
         this.actualOptions = loadContainerOptions(this.#engine, this);
@@ -371,7 +395,7 @@ export class Container {
                 refreshTime = false;
             }
 
-            await this.drawer.nextFrame(timestamp);
+            await this.frameManager.nextFrame(timestamp);
         });
     }
 
