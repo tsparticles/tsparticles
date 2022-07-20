@@ -67,10 +67,10 @@
     "directory": "./dist/ng-particles"
   },
   "dependencies": {
-    "@angular/animations": "~14.0.2",
+    "@angular/animations": "~14.1.0",
     "@angular/common": "~14.0.2",
     "@angular/compiler": "~14.0.2",
-    "@angular/core": "~14.0.2",
+    "@angular/core": "~14.1.0",
     "@angular/forms": "~14.0.2",
     "@angular/platform-browser": "~14.0.2",
     "@angular/platform-browser-dynamic": "~14.0.2",
