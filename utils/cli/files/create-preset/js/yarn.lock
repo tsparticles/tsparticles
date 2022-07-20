@@ -44,9 +44,9 @@
     semver "^6.3.0"
 
 "@babel/eslint-parser@^7.17.0":
-  version "7.18.2"
-  resolved "https://registry.yarnpkg.com/@babel/eslint-parser/-/eslint-parser-7.18.2.tgz#e14dee36c010edfb0153cf900c2b0815e82e3245"
-  integrity sha512-oFQYkE8SuH14+uR51JVAmdqwKYXGRjEXx7s+WiagVjqQ+HPE+nnwyF2qlVG8evUsUHmPcA+6YXMEDbIhEyQc5A==
+  version "7.18.9"
+  resolved "https://registry.yarnpkg.com/@babel/eslint-parser/-/eslint-parser-7.18.9.tgz#255a63796819a97b7578751bb08ab9f2a375a031"
+  integrity sha512-KzSGpMBggz4fKbRbWLNyPVTuQr6cmCcBhOyXTw/fieOVaw5oYAwcAj4a7UKcDYCPxQq+CG1NCDZH9e2JTXquiQ==
   dependencies:
     eslint-scope "^5.1.1"
     eslint-visitor-keys "^2.1.0"
@@ -1672,6 +1672,11 @@ totalist@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/totalist/-/totalist-1.1.0.tgz#a4d65a3e546517701e3e5c37a47a70ac97fe56df"
   integrity sha512-gduQwd1rOdDMGxFG1gEvhV88Oirdo2p+KjoYFU7k2g+i7n6AFFbDQ5kMPUsW0pNbfQsB/cwXvT1i4Bue0s9g5g==
+
+tsparticles-engine@^2.1.3:
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.1.3.tgz#d8922cf7811c40e5e9b87b18f9cc86043af8e900"
+  integrity sha512-BmCo534tF5yRQofUczGSfCFrdeMYO6e7FXHv6AdRxL+j9NNPH3zF4HX6k24tbO4kmTH8tGX/+F9mugEQVo9AEg==
 
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"
