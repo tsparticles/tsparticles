@@ -47,6 +47,7 @@ const getExternals = (bundle) => {
         "tsparticles-path-simplex-noise",
         "tsparticles-plugin-absorbers",
         "tsparticles-plugin-emitters",
+        "tsparticles-plugin-hsv-color",
         "tsparticles-plugin-infection",
         "tsparticles-plugin-polygon-mask",
         "tsparticles-shape-bubble",

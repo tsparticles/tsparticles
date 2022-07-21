@@ -260,3 +260,7 @@ export function calcExactPositionOrRandomFromSizeRanged(data: IRangedPositionFro
 
     return calcExactPositionOrRandomFromSize({ size: data.size, position });
 }
+
+export function parseAlpha(input: string): number {
+    return input.endsWith("%") ? parseFloat(input) / 100 : parseFloat(input);
+}

@@ -1,6 +1,15 @@
 import { Engine } from "./engine";
+import { HslColorManager } from "./Utils/HslColorManager";
 import type { IOptions } from "./Options/Interfaces/IOptions";
 import type { RecursivePartial } from "./Types/RecursivePartial";
+import { RgbColorManager } from "./Utils/RgbColorManager";
+import { addColorManager } from "./Utils/ColorUtils";
+
+const rgbColorManager = new RgbColorManager(),
+    hslColorManager = new HslColorManager();
+
+addColorManager("rgb", rgbColorManager);
+addColorManager("hsl", hslColorManager);
 
 /**
  * The exposed tsParticles instance
@@ -129,8 +138,10 @@ export * from "./Options/Classes/Theme/ThemeDefault";
 export * from "./Options/Classes/ValueWithRandom";
 export * from "./Utils/CanvasUtils";
 export * from "./Utils/ColorUtils";
+export * from "./Utils/HslColorManager";
 export * from "./Utils/NumberUtils";
 export * from "./Utils/OptionsUtils";
+export * from "./Utils/RgbColorManager";
 export * from "./Utils/Utils";
 export { tsParticles };
 

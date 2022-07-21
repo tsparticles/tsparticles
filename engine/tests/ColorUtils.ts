@@ -178,61 +178,61 @@ describe("ColorUtils", () => {
         });
     });
 
-    describe("hslToHsv", () => {
-        it("hsl value", () => {
-            const color: IHsl = {
-                h: 0,
-                l: 50,
-                s: 100,
-            };
-
-            expect(ColorUtils.hslToHsv(color)).to.include({
-                h: 0,
-                s: 100,
-                v: 100,
-            }).and.not.be.undefined.and.not.be.null;
-        });
-    });
-
-    describe("hsvToHsl", () => {
-        it("hsv value", () => {
-            const color: IHsv = {
-                h: 0,
-                s: 100,
-                v: 100,
-            };
-
-            expect(ColorUtils.hsvToHsl(color)).to.include({
-                h: 0,
-                l: 50,
-                s: 100,
-            }).and.not.be.undefined.and.not.be.null;
-        });
-    });
-
-    describe("hsvToRgb", () => {
-        it("hsv value", () => {
-            const color: IHsv = {
-                h: 0,
-                s: 100,
-                v: 100,
-            };
-
-            expect(ColorUtils.hsvToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
-        });
-    });
-
-    describe("rgbToHsv", () => {
-        it("rgb value", () => {
-            const color: IHsv = {
-                h: 0,
-                s: 100,
-                v: 100,
-            };
-
-            expect(ColorUtils.rgbToHsv(red)).to.include(color).and.not.be.undefined.and.not.be.null;
-        });
-    });
+    // describe("hslToHsv", () => {
+    //     it("hsl value", () => {
+    //         const color: IHsl = {
+    //             h: 0,
+    //             l: 50,
+    //             s: 100,
+    //         };
+    //
+    //         expect(ColorUtils.hslToHsv(color)).to.include({
+    //             h: 0,
+    //             s: 100,
+    //             v: 100,
+    //         }).and.not.be.undefined.and.not.be.null;
+    //     });
+    // });
+    //
+    // describe("hsvToHsl", () => {
+    //     it("hsv value", () => {
+    //         const color: IHsv = {
+    //             h: 0,
+    //             s: 100,
+    //             v: 100,
+    //         };
+    //
+    //         expect(ColorUtils.hsvToHsl(color)).to.include({
+    //             h: 0,
+    //             l: 50,
+    //             s: 100,
+    //         }).and.not.be.undefined.and.not.be.null;
+    //     });
+    // });
+    //
+    // describe("hsvToRgb", () => {
+    //     it("hsv value", () => {
+    //         const color: IHsv = {
+    //             h: 0,
+    //             s: 100,
+    //             v: 100,
+    //         };
+    //
+    //         expect(ColorUtils.hsvToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
+    //     });
+    // });
+    //
+    // describe("rgbToHsv", () => {
+    //     it("rgb value", () => {
+    //         const color: IHsv = {
+    //             h: 0,
+    //             s: 100,
+    //             v: 100,
+    //         };
+    //
+    //         expect(ColorUtils.rgbToHsv(red)).to.include(color).and.not.be.undefined.and.not.be.null;
+    //     });
+    // });
 
     describe("getRandomRgbColor", () => {
         const checkRange = (n: number, min?: number): boolean => n >= (min ?? 0) && n < 256;
@@ -268,14 +268,14 @@ describe("ColorUtils", () => {
             expect(ColorUtils.getStyleFromHsl(color)).to.equal("hsla(0, 100%, 50%, 1)");
         });
 
-        it("IHsv to hsla string", () => {
-            const color: IHsv = {
-                h: 0,
-                s: 100,
-                v: 100,
-            };
-
-            expect(ColorUtils.getStyleFromHsv(color)).to.equal("hsla(0, 100%, 50%, 1)");
-        });
+        // it("IHsv to hsla string", () => {
+        //     const color: IHsv = {
+        //         h: 0,
+        //         s: 100,
+        //         v: 100,
+        //     };
+        //
+        //     expect(ColorUtils.getStyleFromHsv(color)).to.equal("hsla(0, 100%, 50%, 1)");
+        // });
     });
 });
