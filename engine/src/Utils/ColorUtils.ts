@@ -55,46 +55,48 @@ function hue2rgb(p: number, q: number, t: number): number {
     return p;
 }
 
+function parseAlpha(input: string): number {
+    return input.endsWith("%") ? parseFloat(input) / 100 : parseFloat(input);
+}
+
 /**
  * Converts a string to a RGBA color.
  * @param input A string that represents a color.
  */
 function stringToRgba(input: string): IRgba | undefined {
     if (input.startsWith("rgb")) {
-        const regex = /rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*([\d.]+)\s*)?\)/i,
+        const regex = /rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*([\d.%]+)\s*)?\)/i,
             result = regex.exec(input);
 
-        return result
-            ? {
-                  a: result.length > 4 ? parseFloat(result[5]) : 1,
-                  b: parseInt(result[3], 10),
-                  g: parseInt(result[2], 10),
-                  r: parseInt(result[1], 10),
-              }
-            : undefined;
+        return result ? {
+            a: result.length > 4 ? parseAlpha(result[5]) : 1,
+            b: parseInt(result[3], 10),
+            g: parseInt(result[2], 10),
+            r: parseInt(result[1], 10),
+        } : undefined;
     } else if (input.startsWith("hsl")) {
-        const regex = /hsla?\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([\d.]+)\s*)?\)/i,
+        const regex = /hsla?\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([\d.%]+)\s*)?\)/i,
             result = regex.exec(input);
 
         return result
             ? hslaToRgba({
-                  a: result.length > 4 ? parseFloat(result[5]) : 1,
-                  h: parseInt(result[1], 10),
-                  l: parseInt(result[3], 10),
-                  s: parseInt(result[2], 10),
-              })
+                a: result.length > 4 ? parseAlpha(result[5]) : 1,
+                h: parseInt(result[1], 10),
+                l: parseInt(result[3], 10),
+                s: parseInt(result[2], 10),
+            })
             : undefined;
     } else if (input.startsWith("hsv")) {
-        const regex = /hsva?\(\s*(\d+)°\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([\d.]+)\s*)?\)/i,
+        const regex = /hsva?\(\s*(\d+)°\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([\d.%]+)\s*)?\)/i,
             result = regex.exec(input);
 
         return result
             ? hsvaToRgba({
-                  a: result.length > 4 ? parseFloat(result[5]) : 1,
-                  h: parseInt(result[1], 10),
-                  s: parseInt(result[2], 10),
-                  v: parseInt(result[3], 10),
-              })
+                a: result.length > 4 ? parseAlpha(result[5]) : 1,
+                h: parseInt(result[1], 10),
+                s: parseInt(result[2], 10),
+                v: parseInt(result[3], 10),
+            })
             : undefined;
     } else {
         const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])([a-f\d])?$/i,
@@ -106,11 +108,11 @@ function stringToRgba(input: string): IRgba | undefined {
 
         return result
             ? {
-                  a: result[4] !== undefined ? parseInt(result[4], 16) / 0xff : 1,
-                  b: parseInt(result[3], 16),
-                  g: parseInt(result[2], 16),
-                  r: parseInt(result[1], 16),
-              }
+                a: result[4] !== undefined ? parseInt(result[4], 16) / 0xff : 1,
+                b: parseInt(result[3], 16),
+                g: parseInt(result[2], 16),
+                r: parseInt(result[1], 16),
+            }
             : undefined;
     }
 }
@@ -658,10 +660,10 @@ export function getLinkRandomColor(
 export function getHslFromAnimation(animation?: IParticleHslAnimation): IHsl | undefined {
     return animation !== undefined
         ? {
-              h: animation.h.value,
-              s: animation.s.value,
-              l: animation.l.value,
-          }
+            h: animation.h.value,
+            s: animation.s.value,
+            l: animation.l.value,
+        }
         : undefined;
 }
 
