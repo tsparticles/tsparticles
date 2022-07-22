@@ -100,7 +100,7 @@
     "typescript": "~4.7.3",
     "vite": "^3.0.0",
     "vite-plugin-dts": "^1.1.1",
-    "vue-tsc": "^0.38.0"
+    "vue-tsc": "^0.39.0"
   },
   "main": "dist/particles.vue3.umd.js",
   "module": "dist/particles.vue3.es.js",
