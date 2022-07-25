@@ -14,7 +14,12 @@ export async function buildDistFiles(basePath: string): Promise<void> {
         const libObj = JSON.parse(text);
 
         libObj.version = pkgInfo.version;
-        libObj.dependencies = JSON.parse(JSON.stringify(pkgInfo.dependencies));
+
+        if (pkgInfo.dependencies) {
+            libObj.dependencies = JSON.parse(JSON.stringify(pkgInfo.dependencies));
+        } else if (pkgInfo.peerDependencies) {
+            libObj.peerDependencies = JSON.parse(JSON.stringify(pkgInfo.peerDependencies));
+        }
 
         fs.writeFileSync(libPackage, JSON.stringify(libObj, undefined, 2), "utf8");
 

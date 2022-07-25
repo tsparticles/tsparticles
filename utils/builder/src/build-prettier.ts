@@ -38,7 +38,6 @@ export async function prettifyReadme(basePath: string, ci: boolean): Promise<voi
     options.printWidth = 120;
     options.endOfLine = "lf";
     options.parser = "markdown";
-    options.tabWidth = 4;
 
     const formatted = prettier.format(contents, options);
 
