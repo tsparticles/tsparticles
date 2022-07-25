@@ -1,12 +1,12 @@
 import { ESLint } from "eslint";
 
-export async function lint(): Promise<void> {
+export async function lint(ci: boolean): Promise<void> {
     const eslint = new ESLint({
         baseConfig: {
             extends: ["@tsparticles/eslint-config"],
         },
         extensions: [".js", ".jsx", ".ts", ".tsx"],
-        fix: true,
+        fix: !ci,
     });
 
     const results = await eslint.lintFiles(["src"]);

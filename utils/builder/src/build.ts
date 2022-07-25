@@ -1,10 +1,12 @@
 #!/usr/bin/env node
+import { prettifyReadme, prettifySrc } from "./build-prettier";
+import { buildDistFiles } from "./build-distfiles";
 import { buildTS } from "./build-tsc";
 import { bundle } from "./build-bundle";
+import { clearDist } from "./build-clear";
 import fs from "fs-extra";
 import { lint } from "./build-eslint";
 import path from "path";
-import { prettify } from "./build-prettier";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const pkgInfo = require("../package.json");
@@ -30,7 +32,7 @@ const pkgInfo = require("../package.json");
 
     if (process.argv[2] === "--help" || process.argv[2] === "-h") {
         console.log(`
-        Usage: tsparticles-build [path]
+        Usage: tsparticles-build [path] [--distfiles] [--ci]
         
         Options:
             -h, --help        Prints this help message
@@ -41,7 +43,24 @@ const pkgInfo = require("../package.json");
         return;
     }
 
+    let ci = false;
+
+    if (process.argv.includes("--ci")) {
+        ci = true;
+    }
+
+    if (process.argv.includes("--distfiles")) {
+        await buildDistFiles(process.cwd());
+
+        process.exitCode = 0;
+
+        return;
+    }
+
     const basePath = process.cwd();
+
+    await clearDist(basePath);
+
     const srcPath = path.join(basePath, process.argv[2]);
 
     if (!(await fs.pathExists(srcPath))) {
@@ -52,16 +71,23 @@ const pkgInfo = require("../package.json");
         return;
     }
 
-    // prettier
-    await prettify(basePath, srcPath);
+    // prettier src
+    await prettifySrc(basePath, srcPath, ci);
 
     // eslint
-    await lint();
+    await lint(ci);
 
     // tsc
     buildTS(basePath);
 
-    bundle();
+    // webpack
+    await bundle(basePath);
+
+    // prettier readme
+    await prettifyReadme(basePath, ci);
+
+    // distfiles
+    await buildDistFiles(basePath);
 })().catch((error) => {
     process.exitCode = 1;
 
