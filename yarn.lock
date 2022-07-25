@@ -7513,10 +7513,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==
 
-typedoc-plugin-carbon-ads@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-carbon-ads/-/typedoc-plugin-carbon-ads-1.1.1.tgz#b8189d1365f705665339c798520b0de1e3e8c969"
-  integrity sha512-+bYXKrLFqIEWtFWC5KDZDbsYjJotug1VCsrIFZP7Ti82AIaA7fcF69WCIVnfFkI0p5+pqIwOI9HuNXd55eJRTw==
+typedoc-plugin-carbon-ads@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-carbon-ads/-/typedoc-plugin-carbon-ads-1.1.4.tgz#580891a43e2d5002f82871776feba315751f75b7"
+  integrity sha512-EyjN1lWaho/P566T1mJXswlIpRdq+Nn73dgtk8Rmigd8DXTVi5WlTIL7gcYUbLn3yMNL+1N/I5Ub9vBi9XrFTg==
   dependencies:
     typescript "^4.7.4"
 
