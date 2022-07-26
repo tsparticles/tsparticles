@@ -31,6 +31,7 @@
     "eslint": "^8.20.0",
     "eslint-config-prettier": "^8.5.0",
     "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
     "typescript": "^4.7.4",
     "webpack": "^5.74.0",
     "webpack-tsparticles-plugin": "^1.1.1"
@@ -44,7 +45,6 @@
     "@types/rimraf": "^3.0.2",
     "@types/webpack": "^5.28.0",
     "fs-extra": "^10.1.0",
-    "klaw": "^4.0.1",
-    "rimraf": "^3.0.2"
+    "klaw": "^4.0.1"
   }
 }

@@ -27,7 +27,7 @@
     "parcel": "^2.6.2",
     "rimraf": "^3.0.2",
     "typedoc": "^0.23.8",
-    "typedoc-plugin-carbon-ads": "^1.1.4",
+    "typedoc-plugin-carbon-ads": "^1.1.6",
     "typedoc-plugin-clarity": "^1.1.0",
     "typedoc-plugin-coverage": "^2.0.0",
     "typedoc-plugin-keyword": "^1.1.0",
