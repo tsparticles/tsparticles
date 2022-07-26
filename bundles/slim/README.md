@@ -9,33 +9,33 @@ a `tsparticles-engine` instance.
 
 **Included Packages**
 
--   [tsparticles-engine](https://github.com/matteobruni/tsparticles/tree/main/engine)
--   [tsparticles-interaction-external-attract](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/attract)
--   [tsparticles-interaction-external-bounce](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/bounce)
--   [tsparticles-interaction-external-bubble](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/bubble)
--   [tsparticles-interaction-external-connect](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/connect)
--   [tsparticles-interaction-external-grab](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/grab)
--   [tsparticles-interaction-external-pause](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/pause)
--   [tsparticles-interaction-external-push](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/push)
--   [tsparticles-interaction-external-remove](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/remove)
--   [tsparticles-interaction-external-repulse](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/repulse)
--   [tsparticles-interaction-particles-attract](https://github.com/matteobruni/tsparticles/tree/main/interactions/particles/attract)
--   [tsparticles-interaction-particles-collisions](https://github.com/matteobruni/tsparticles/tree/main/interactions/particles/collisions)
--   [tsparticles-interaction-particles-links](https://github.com/matteobruni/tsparticles/tree/main/interactions/particles/links)
--   [tsparticles-shape-circle](https://github.com/matteobruni/tsparticles/tree/main/shapes/circle)
--   [tsparticles-shape-image](https://github.com/matteobruni/tsparticles/tree/main/shapes/image)
--   [tsparticles-shape-line](https://github.com/matteobruni/tsparticles/tree/main/shapes/line)
--   [tsparticles-shape-polygon](https://github.com/matteobruni/tsparticles/tree/main/shapes/polygon)
--   [tsparticles-shape-square](https://github.com/matteobruni/tsparticles/tree/main/shapes/square)
--   [tsparticles-shape-star](https://github.com/matteobruni/tsparticles/tree/main/shapes/star)
--   [tsparticles-shape-text](https://github.com/matteobruni/tsparticles/tree/main/shapes/text)
--   [tsparticles-updater-angle](https://github.com/matteobruni/tsparticles/tree/main/updaters/angle)
--   [tsparticles-updater-color](https://github.com/matteobruni/tsparticles/tree/main/updaters/color)
--   [tsparticles-updater-life](https://github.com/matteobruni/tsparticles/tree/main/updaters/life)
--   [tsparticles-updater-opacity](https://github.com/matteobruni/tsparticles/tree/main/updaters/opacity)
--   [tsparticles-updater-out-modes](https://github.com/matteobruni/tsparticles/tree/main/updaters/outModes)
--   [tsparticles-updater-size](https://github.com/matteobruni/tsparticles/tree/main/updaters/size)
--   [tsparticles-updater-stroke-color](https://github.com/matteobruni/tsparticles/tree/main/updaters/strokeColor)
+- [tsparticles-engine](https://github.com/matteobruni/tsparticles/tree/main/engine)
+- [tsparticles-interaction-external-attract](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/attract)
+- [tsparticles-interaction-external-bounce](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/bounce)
+- [tsparticles-interaction-external-bubble](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/bubble)
+- [tsparticles-interaction-external-connect](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/connect)
+- [tsparticles-interaction-external-grab](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/grab)
+- [tsparticles-interaction-external-pause](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/pause)
+- [tsparticles-interaction-external-push](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/push)
+- [tsparticles-interaction-external-remove](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/remove)
+- [tsparticles-interaction-external-repulse](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/repulse)
+- [tsparticles-interaction-particles-attract](https://github.com/matteobruni/tsparticles/tree/main/interactions/particles/attract)
+- [tsparticles-interaction-particles-collisions](https://github.com/matteobruni/tsparticles/tree/main/interactions/particles/collisions)
+- [tsparticles-interaction-particles-links](https://github.com/matteobruni/tsparticles/tree/main/interactions/particles/links)
+- [tsparticles-shape-circle](https://github.com/matteobruni/tsparticles/tree/main/shapes/circle)
+- [tsparticles-shape-image](https://github.com/matteobruni/tsparticles/tree/main/shapes/image)
+- [tsparticles-shape-line](https://github.com/matteobruni/tsparticles/tree/main/shapes/line)
+- [tsparticles-shape-polygon](https://github.com/matteobruni/tsparticles/tree/main/shapes/polygon)
+- [tsparticles-shape-square](https://github.com/matteobruni/tsparticles/tree/main/shapes/square)
+- [tsparticles-shape-star](https://github.com/matteobruni/tsparticles/tree/main/shapes/star)
+- [tsparticles-shape-text](https://github.com/matteobruni/tsparticles/tree/main/shapes/text)
+- [tsparticles-updater-angle](https://github.com/matteobruni/tsparticles/tree/main/updaters/angle)
+- [tsparticles-updater-color](https://github.com/matteobruni/tsparticles/tree/main/updaters/color)
+- [tsparticles-updater-life](https://github.com/matteobruni/tsparticles/tree/main/updaters/life)
+- [tsparticles-updater-opacity](https://github.com/matteobruni/tsparticles/tree/main/updaters/opacity)
+- [tsparticles-updater-out-modes](https://github.com/matteobruni/tsparticles/tree/main/updaters/outModes)
+- [tsparticles-updater-size](https://github.com/matteobruni/tsparticles/tree/main/updaters/size)
+- [tsparticles-updater-stroke-color](https://github.com/matteobruni/tsparticles/tree/main/updaters/strokeColor)
 
 ## How to use it
 
@@ -43,9 +43,9 @@ a `tsparticles-engine` instance.
 
 The CDN/Vanilla version JS has two different files:
 
--   One is a bundle file with all the scripts included in a single file
--   One is a file including just the `loadSlim` function to load the tsParticles slim preset, all dependencies must be
-    included manually
+- One is a bundle file with all the scripts included in a single file
+- One is a file including just the `loadSlim` function to load the tsParticles slim preset, all dependencies must be
+  included manually
 
 #### Bundle
 
@@ -67,11 +67,11 @@ Once the scripts are loaded you can set up `tsParticles` like this:
 
 ```javascript
 (async () => {
-    await loadSlim(tsParticles); // not needed if using the bundle script, required for any other installation
+  await loadSlim(tsParticles); // not needed if using the bundle script, required for any other installation
 
-    await tsParticles.load("tsparticles", {
-        /* options */
-    });
+  await tsParticles.load("tsparticles", {
+    /* options */
+  });
 })();
 ```
 
@@ -90,19 +90,19 @@ import type { Engine } from "tsparticles-engine";
 import { loadSlim } from "tsparticles-slim";
 
 export class ParticlesContainer extends PureComponent<unknown> {
-    // this customizes the component tsParticles installation
-    async customInit(engine: Engine) {
-        // this adds the bundle to tsParticles
-        await loadSlim(engine);
-    }
+  // this customizes the component tsParticles installation
+  async customInit(engine: Engine) {
+    // this adds the bundle to tsParticles
+    await loadSlim(engine);
+  }
 
-    render() {
-        const options = {
-            /* custom options */
-        };
+  render() {
+    const options = {
+      /* custom options */
+    };
 
-        return <Particles options={options} init={this.customInit} />;
-    }
+    return <Particles options={options} init={this.customInit} />;
+  }
 }
 ```
 
@@ -115,17 +115,17 @@ import type { Engine } from "tsparticles-engine";
 import { loadSlim } from "tsparticles-slim";
 
 export function ParticlesContainer(props: unknown) {
-    // this customizes the component tsParticles installation
-    const customInit = useCallback(async (engine: Engine) => {
-        // this adds the bundle to tsParticles
-        await loadSlim(engine);
-    });
+  // this customizes the component tsParticles installation
+  const customInit = useCallback(async (engine: Engine) => {
+    // this adds the bundle to tsParticles
+    await loadSlim(engine);
+  });
 
-    const options = {
-        /* custom options */
-    };
+  const options = {
+    /* custom options */
+  };
 
-    return <Particles options={options} init={this.customInit} />;
+  return <Particles options={options} init={this.customInit} />;
 }
 ```
 
@@ -139,11 +139,11 @@ _The syntax for `Vue.js 2.x` and `3.x` is the same_
 
 ```js
 const options = {
-    /* custom options */
+  /* custom options */
 };
 
 async function particlesInit(engine: Engine) {
-    await loadSlim(engine);
+  await loadSlim(engine);
 }
 ```
 
@@ -155,11 +155,11 @@ async function particlesInit(engine: Engine) {
 
 ```ts
 const options = {
-    /* custom options */
+  /* custom options */
 };
 
 async function particlesInit(engine: Engine): void {
-    await loadSlim(engine);
+  await loadSlim(engine);
 }
 ```
 
@@ -176,10 +176,10 @@ async function particlesInit(engine: Engine): void {
 
 ```js
 let options = {
-    /* custom options */
+  /* custom options */
 };
 
 let particlesInit = async (engine) => {
-    await loadSlim(engine);
+  await loadSlim(engine);
 };
 ```

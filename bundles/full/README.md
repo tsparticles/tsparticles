@@ -9,15 +9,15 @@ a `tsparticles-engine` instance.
 
 **Included Packages**
 
--   [tsparticles-engine](https://github.com/matteobruni/tsparticles/tree/main/engine)
--   [tsparticles-slim (and all its dependencies)](https://github.com/matteobruni/tsparticles/tree/main/bundles/slim)
--   [tsparticles-interaction-external-trail](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/trail)
--   [tsparticles-plugin-absorbers](https://github.com/matteobruni/tsparticles/tree/main/plugins/absorbers)
--   [tsparticles-plugin-emitters](https://github.com/matteobruni/tsparticles/tree/main/plugins/emitters)
--   [tsparticles-plugin-polygon-mask](https://github.com/matteobruni/tsparticles/tree/main/plugins/polygonMask)
--   [tsparticles-updater-roll](https://github.com/matteobruni/tsparticles/tree/main/updaters/roll)
--   [tsparticles-updater-tilt](https://github.com/matteobruni/tsparticles/tree/main/updaters/tilt)
--   [tsparticles-updater-wobble](https://github.com/matteobruni/tsparticles/tree/main/updaters/wobble)
+- [tsparticles-engine](https://github.com/matteobruni/tsparticles/tree/main/engine)
+- [tsparticles-slim (and all its dependencies)](https://github.com/matteobruni/tsparticles/tree/main/bundles/slim)
+- [tsparticles-interaction-external-trail](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/trail)
+- [tsparticles-plugin-absorbers](https://github.com/matteobruni/tsparticles/tree/main/plugins/absorbers)
+- [tsparticles-plugin-emitters](https://github.com/matteobruni/tsparticles/tree/main/plugins/emitters)
+- [tsparticles-plugin-polygon-mask](https://github.com/matteobruni/tsparticles/tree/main/plugins/polygonMask)
+- [tsparticles-updater-roll](https://github.com/matteobruni/tsparticles/tree/main/updaters/roll)
+- [tsparticles-updater-tilt](https://github.com/matteobruni/tsparticles/tree/main/updaters/tilt)
+- [tsparticles-updater-wobble](https://github.com/matteobruni/tsparticles/tree/main/updaters/wobble)
 
 ## How to use it
 
@@ -25,9 +25,9 @@ a `tsparticles-engine` instance.
 
 The CDN/Vanilla version JS has two different files:
 
--   One is a bundle file with all the scripts included in a single file
--   One is a file including just the `loadFull` function to load the tsParticles full preset, all dependencies must be
-    included manually
+- One is a bundle file with all the scripts included in a single file
+- One is a file including just the `loadFull` function to load the tsParticles full preset, all dependencies must be
+  included manually
 
 #### Bundle
 
@@ -52,11 +52,11 @@ Once the scripts are loaded you can set up `tsParticles` like this:
 
 ```javascript
 (async () => {
-    await loadFull(tsParticles); // not needed if using the bundle script, required for any other installation
+  await loadFull(tsParticles); // not needed if using the bundle script, required for any other installation
 
-    await tsParticles.load("tsparticles", {
-        /* options */
-    });
+  await tsParticles.load("tsparticles", {
+    /* options */
+  });
 })();
 ```
 
@@ -75,19 +75,19 @@ import type { Engine } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 
 export class ParticlesContainer extends PureComponent<unknown> {
-    // this customizes the component tsParticles installation
-    async customInit(engine: Engine): Promise<void> {
-        // this adds the bundle to tsParticles
-        await loadFull(engine);
-    }
+  // this customizes the component tsParticles installation
+  async customInit(engine: Engine): Promise<void> {
+    // this adds the bundle to tsParticles
+    await loadFull(engine);
+  }
 
-    render() {
-        const options = {
-            /* custom options */
-        };
+  render() {
+    const options = {
+      /* custom options */
+    };
 
-        return <Particles options={options} init={this.customInit} />;
-    }
+    return <Particles options={options} init={this.customInit} />;
+  }
 }
 ```
 
@@ -100,17 +100,17 @@ import type { Engine } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 
 export function ParticlesContainer(props: unknown) {
-    // this customizes the component tsParticles installation
-    const customInit = useCallback(async (engine: Engine) => {
-        // this adds the bundle to tsParticles
-        await loadFull(engine);
-    });
+  // this customizes the component tsParticles installation
+  const customInit = useCallback(async (engine: Engine) => {
+    // this adds the bundle to tsParticles
+    await loadFull(engine);
+  });
 
-    const options = {
-        /* custom options */
-    };
+  const options = {
+    /* custom options */
+  };
 
-    return <Particles options={options} init={this.customInit} />;
+  return <Particles options={options} init={this.customInit} />;
 }
 ```
 
@@ -124,11 +124,11 @@ _The syntax for `Vue.js 2.x` and `3.x` is the same_
 
 ```js
 const options = {
-    /* custom options */
+  /* custom options */
 };
 
 async function particlesInit(engine: Engine): Promise<void> {
-    await loadFull(engine);
+  await loadFull(engine);
 }
 ```
 
@@ -140,11 +140,11 @@ async function particlesInit(engine: Engine): Promise<void> {
 
 ```ts
 const options = {
-    /* custom options */
+  /* custom options */
 };
 
 async function particlesInit(engine: Engine): Promise<void> {
-    await loadFull(engine);
+  await loadFull(engine);
 }
 ```
 
@@ -163,10 +163,10 @@ async function particlesInit(engine: Engine): Promise<void> {
 
 ```js
 let options = {
-    /* custom options */
+  /* custom options */
 };
 
 let particlesInit = async (engine) => {
-    await loadFull(engine);
+  await loadFull(engine);
 };
 ```

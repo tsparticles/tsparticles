@@ -12,8 +12,8 @@
 
 The CDN/Vanilla version JS has two different files:
 
--   One is a bundle file with all the scripts included in a single file
--   One is a file including just the `initPjs` function to load the tsParticles/particles.js compatibility
+- One is a bundle file with all the scripts included in a single file
+- One is a file including just the `initPjs` function to load the tsParticles/particles.js compatibility
 
 #### Bundle
 
@@ -37,12 +37,12 @@ Once the scripts are loaded you can set up `tsParticles` or `particlesJS` like t
 const { particlesJS } = initPjs(tsParticles); // not needed if using the bundle script, required for any other installation
 
 particlesJS("tsparticles", {
-    /* options */
+  /* options */
 });
 
 // or
 
 tsParticles.load("tsparticles", {
-    /* options */
+  /* options */
 });
 ```
