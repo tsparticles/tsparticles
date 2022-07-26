@@ -2,16 +2,17 @@ import fs from "fs";
 import path from "path";
 
 export async function buildDistFiles(basePath: string): Promise<void> {
-    const pkgInfo = await import(path.join(basePath, "package.json"));
-    const libPackage = path.join(basePath, "package.dist.json");
+    const pkgInfo = await import(path.join(basePath, "package.json")),
+        libPackage = path.join(basePath, "package.dist.json"),
+        distPath = path.join(basePath, pkgInfo.publishConfig?.directory || "dist");
 
     fs.readFile(libPackage, function (error: NodeJS.ErrnoException | null, data: Buffer) {
         if (error) {
             throw error;
         }
 
-        const text = data.toString();
-        const libObj = JSON.parse(text);
+        const text = data.toString(),
+            libObj = JSON.parse(text);
 
         libObj.version = pkgInfo.version;
 
@@ -25,11 +26,33 @@ export async function buildDistFiles(basePath: string): Promise<void> {
 
         console.log(`package.dist.json updated successfully to version ${pkgInfo.version}`);
 
-        fs.copyFileSync(path.join(basePath, "README.md"), path.join(basePath, "dist", "README.md"));
-        fs.copyFileSync(path.join(basePath, "package.dist.json"), path.join(basePath, "dist", "package.json"));
+        const rootFilesToCopy = [
+            "LICENSE",
+            "README.md",
+            {
+                source: "package.dist.json",
+                destination: "package.json",
+            },
+        ];
 
-        if (!fs.existsSync(path.join(basePath, "dist", "scripts"))) {
-            fs.mkdirSync(path.join(basePath, "dist", "scripts"));
+        for (const file of rootFilesToCopy) {
+            const src = path.join(basePath, typeof file === "string" ? file : file.source),
+                dest = path.join(distPath, typeof file === "string" ? file : file.destination);
+
+            fs.copyFileSync(src, dest);
+        }
+
+        const scriptsPath = path.join(basePath, "scripts"),
+            distScriptsPath = path.join(distPath, "scripts");
+
+        if (fs.existsSync(scriptsPath) && !fs.existsSync(distScriptsPath)) {
+            fs.mkdirSync(distScriptsPath);
+
+            const installPath = path.join(scriptsPath, "install.js");
+
+            if (fs.existsSync(installPath)) {
+                fs.copyFileSync(installPath, path.join(distScriptsPath, "install.js"));
+            }
         }
     });
 }
