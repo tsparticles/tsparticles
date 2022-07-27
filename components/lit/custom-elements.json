@@ -2,8 +2,8 @@
   "version": "experimental",
   "tags": [
     {
-      "name": "my-element",
-      "path": "./src/my-element.ts",
+      "name": "lit-particles",
+      "path": "./src/lit-particles.ts",
       "description": "An example element.",
       "attributes": [
         {

@@ -1,0 +1,9 @@
+/node_modules/
+/lib/
+/test/
+
+# top level source
+lit-particles.js
+lit-particles.js.map
+lit-particles.d.ts
+lit-particles.d.ts.map
