@@ -13,26 +13,52 @@
 ---
 ## İçindekiler
 
-* [Siteniz için kullanın](#Bu-kütüphaneyi-sitenizde-kullanmak-ister-misiniz)
-  * [Kütüphanenin kurulumu](#Kütüphanenin-kurulumu)
-* [Popüler çerçevelerden bazıları için resmi bileşenler](#Popüler-çerçevelerden-bazıları-için-resmi-bileşenler)
-  * [Angular](#Angular)
-  * [Inferno](#Inferno)
-  * [jQuery](#jQuery)
-  * [Preact](#Preact)
-  * [ReactJS](#ReactJS)
-  * [Svelte](#Svelte)
-  * [VueJS 2.x](#VueJS-2x)
-  * [VueJS 3.x](#VueJS-3x)
-  * [WordPress](#WordPress)
-* [Şablonlar ve Kaynaklar](#Şablonlar-ve-Kaynaklar)
-* [Demo / Üretici](#Demo--Üretici)
-  * [Harf parçacıklar](#Harf-parçacıklar)
-  * ["Mouse hover" bağlantıları](#Mouse-hover-bağlantıları)
-  * [Çokgen maskesi](#Çokgen-maskesi)
-  * [Hareketli yıldızlar](#Hareketli-yıldızlar)
-  * [Kayan yıldızlar üzerinde uçan Nyan cat](#Kayan-yıldızlar-üzerinde-uçan-Nyan-cat)
-  * [Arka fonu maskeleyen parçacıklar](#Arka-fonu-maskeleyen-parçacıklar)
+- [tsParticles - TypeScript Parçacıkları](#tsparticles---typescript-parçacıkları)
+  - [İçindekiler](#i̇çindekiler)
+  - [Bu kütüphaneyi sitenizde kullanmak ister misiniz?](#bu-kütüphaneyi-sitenizde-kullanmak-ister-misiniz)
+  - [**_Kütüphane kurulumu_**](#kütüphane-kurulumu)
+    - [**_Hosting / CDN_**](#hosting--cdn)
+      - [jsDelivr](#jsdelivr)
+      - [cdnjs](#cdnjs)
+      - [unpkg](#unpkg)
+    - [**_npm_**](#npm)
+    - [**_yarn_**](#yarn)
+      - [Import ve require](#import-ve-require)
+    - [**_NuGet_**](#nuget)
+    - [**_Kullanım_**](#kullanım)
+  - [Popüler çerçevelerden bazıları için resmi bileşenler](#popüler-çerçevelerden-bazıları-için-resmi-bileşenler)
+    - [Angular](#angular)
+      - [`ng-particles`](#ng-particles)
+    - [Inferno](#inferno)
+      - [`inferno-particles`](#inferno-particles)
+    - [jQuery](#jquery)
+      - [`jquery-particles`](#jquery-particles)
+    - [Preact](#preact)
+      - [`preact-particles`](#preact-particles)
+    - [ReactJS](#reactjs)
+      - [`react-particles`](#react-particles)
+    - [Svelte](#svelte)
+      - [`svelte-particles`](#svelte-particles)
+    - [VueJS 2.x](#vuejs-2x)
+      - [`vue2-particles`](#vue2-particles)
+    - [VueJS 3.x](#vuejs-3x)
+      - [`vue3-particles`](#vue3-particles)
+    - [WordPress](#wordpress)
+  - [Şablonlar ve Kaynaklar](#şablonlar-ve-kaynaklar)
+  - [**_Demo / Üretici_**](#demo--üretici)
+    - [Harf parçacıklar](#harf-parçacıklar)
+    - ["Mouse hover" bağlantıları](#mouse-hover-bağlantıları)
+    - [Çokgen maskesi](#çokgen-maskesi)
+    - [Hareketli yıldızlar](#hareketli-yıldızlar)
+    - [Kayan yıldızlar üzerinde uçan Nyan cat](#kayan-yıldızlar-üzerinde-uçan-nyan-cat)
+    - [Kar parçacıkları](#kar-parçacıkları)
+    - [Arka fonu maskeleyen parçacıklar](#arka-fonu-maskeleyen-parçacıklar)
+      - [COVID-19 SARS-CoV-2 parçacıkları](#covid-19-sars-cov-2-parçacıkları)
+  - [**_Seçenekler_**](#seçenekler)
+  - [Bunu, gerçekte görmek ve denemek ister misiniz?](#bunu-gerçekte-görmek-ve-denemek-ister-misiniz)
+  - [Particles.js kütüphanesinden göç](#particlesjs-kütüphanesinden-göç)
+  - [Eklentiler ve Özelleştirlemeler](#eklentiler-ve-özelleştirlemeler)
+    - [2020-2021 Açık Kaynak Lisansları için JetBrains'e çok teşekkürler!](#2020-2021-açık-kaynak-lisansları-için-jetbrainse-çok-teşekkürler)
 
 * [Particles.js kütüphanesinden göç](#particlesjs-kütüphanesinden-göç)
 
@@ -235,9 +261,9 @@ Talimatları [burada](https://github.com/matteobruni/tsparticles/blob/main/compo
 
 ### ReactJS
 
-#### `react-tsparticles`
+#### `react-particles`
 
-[![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
+[![npm](https://img.shields.io/npm/v/react-particles)](https://www.npmjs.com/package/react-particles) [![npm](https://img.shields.io/npm/dm/react-particles)](https://www.npmjs.com/package/react-particles)
 
 Talimatları [burada](https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md) bulabilirsiniz.
 
@@ -251,17 +277,17 @@ Talimatları [burada](https://github.com/matteobruni/tsparticles/blob/main/compo
 
 ### VueJS 2.x
 
-#### `particles.vue`
+#### `vue2-particles`
 
-[![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue)
+[![npm](https://img.shields.io/npm/v/vue2-particles)](https://www.npmjs.com/package/vue2-particles) [![npm](https://img.shields.io/npm/dm/vue2-particles)](https://www.npmjs.com/package/vue2-particles)
 
 Talimatları [burada](https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md) bulabilirsiniz.
 
 ### VueJS 3.x
 
-#### `particles.vue3`
+#### `vue3-particles`
 
-[![npm](https://img.shields.io/npm/v/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![npm](https://img.shields.io/npm/dm/particles.vue3)](https://www.npmjs.com/package/particles.vue3)
+[![npm](https://img.shields.io/npm/v/vue3-particles)](https://www.npmjs.com/package/vue3-particles) [![npm](https://img.shields.io/npm/dm/vue3-particles)](https://www.npmjs.com/package/vue3-particles)
 
 Talimatları [burada](https://github.com/matteobruni/tsparticles/blob/main/components/vue3/README.md) bulabilirsiniz.
 

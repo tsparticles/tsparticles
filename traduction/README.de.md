@@ -231,9 +231,9 @@ particles.pause();
 
 ### ReactJS
 
-#### `react-tsparticles`
+#### `react-particles`
 
-[![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
+[![npm](https://img.shields.io/npm/v/react-particles)](https://www.npmjs.com/package/react-particles) [![npm](https://img.shields.io/npm/dm/react-particles)](https://www.npmjs.com/package/react-particles)
 
 [Hier](https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md) findest du die Anleitung.
 
@@ -247,9 +247,9 @@ particles.pause();
 
 ### VueJS
 
-#### `particles.vue`
+#### `vue2-particles`
 
-[![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue)
+[![npm](https://img.shields.io/npm/v/vue2-particles)](https://www.npmjs.com/package/vue2-particles) [![npm](https://img.shields.io/npm/dm/vue2-particles)](https://www.npmjs.com/package/vue2-particles)
 
 [Hier](https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md) findest du die Anleitung.
 

@@ -1,8 +1,8 @@
 [![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# react-tsparticles
+# react-particles
 
-[![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
+[![npm](https://img.shields.io/npm/v/react-particles)](https://www.npmjs.com/package/react-particles) [![npm](https://img.shields.io/npm/dm/react-particles)](https://www.npmjs.com/package/react-particles)
 
 Komponen resmi [tsParticles](https://github.com/matteobruni/tsparticles) untuk ReactJS
 
@@ -13,13 +13,13 @@ Komponen resmi [tsParticles](https://github.com/matteobruni/tsparticles) untuk R
 ## Instalasi
 
 ```shell
-npm install react-tsparticles react
+npm install react-particles react
 ```
 
 atau
 
 ```shell
-yarn add react-tsparticles react
+yarn add react-particles react
 ```
 
 #### create-react-app
@@ -50,7 +50,7 @@ Contoh:
 _Remote url_
 
 ```javascript
-import Particles from "react-tsparticles";
+import Particles from "react-particles";
 
 const App = () => {
   const particlesInit = (main) => {
@@ -72,7 +72,7 @@ const App = () => {
 _Options object_
 
 ```javascript
-import Particles from "react-tsparticles";
+import Particles from "react-particles";
 
 const App = () => {
   const particlesInit = (main) => {

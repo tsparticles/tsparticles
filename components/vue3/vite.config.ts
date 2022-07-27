@@ -10,8 +10,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/components/index.ts"),
-      name: "particles.vue3",
-      fileName: (format) => `particles.vue3.${format}.js`,
+      name: "vue3-particles",
+      fileName: (format) => `vue3-particles.${format}.js`,
     },
     rollupOptions: {
       external: ["vue"],
