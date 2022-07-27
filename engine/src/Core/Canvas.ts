@@ -289,7 +289,7 @@ export class Canvas {
                 this.#postDrawUpdaters.push(updater);
             }
 
-            if (updater.getColorStyles && updater.getTransformValues && updater.beforeDraw) {
+            if (updater.getColorStyles || updater.getTransformValues || updater.beforeDraw) {
                 this.#preDrawUpdaters.push(updater);
             }
         }

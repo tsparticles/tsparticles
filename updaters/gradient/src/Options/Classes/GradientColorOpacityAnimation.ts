@@ -1,9 +1,6 @@
-import type { IGradientColorOpacityAnimation } from "../../Interfaces/IOptionsGradient";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
-import type { RangeValue } from "../../../Types/RangeValue";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import { StartValueType } from "../../../Enums/Types/StartValueType";
-import { setRangeValue } from "../../../Utils/NumberUtils";
+import type { IOptionLoader, RangeValue, RecursivePartial } from "tsparticles-engine";
+import { StartValueType, setRangeValue } from "tsparticles-engine";
+import type { IGradientColorOpacityAnimation } from "../Interfaces/IOptionsGradient";
 
 export class GradientColorOpacityAnimation
     implements IGradientColorOpacityAnimation, IOptionLoader<IGradientColorOpacityAnimation>

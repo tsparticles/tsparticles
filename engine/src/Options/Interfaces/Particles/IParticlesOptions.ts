@@ -3,7 +3,6 @@
  * @category Options
  */
 import type { IAnimatableColor } from "../IAnimatableColor";
-import type { IAnimatableGradient } from "../IAnimatableGradient";
 import type { ICollisions } from "./Collisions/ICollisions";
 import type { IDestroy } from "./Destroy/IDestroy";
 import type { IInteractivity } from "../Interactivity/IInteractivity";
@@ -34,7 +33,6 @@ export interface IParticlesOptions {
     collisions: ICollisions;
     color: IAnimatableColor;
     destroy: IDestroy;
-    gradient: SingleOrMultiple<IAnimatableGradient>;
     groups: ParticlesGroups;
     interactivity?: RecursivePartial<IInteractivity>;
 

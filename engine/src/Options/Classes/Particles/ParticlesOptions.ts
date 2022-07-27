@@ -1,5 +1,4 @@
 import { AnimatableColor } from "../AnimatableColor";
-import { AnimatableGradient } from "../Gradients/AnimatableGradient";
 import { Collisions } from "./Collisions/Collisions";
 import type { Container } from "../../../Core/Container";
 import { Destroy } from "./Destroy/Destroy";
@@ -37,7 +36,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     readonly #container;
     destroy;
     readonly #engine;
-    gradient: SingleOrMultiple<AnimatableGradient>;
     groups: ParticlesGroups;
     interactivity?: RecursivePartial<IInteractivity>;
     links;
@@ -62,7 +60,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.color = new AnimatableColor();
         this.color.value = "#fff";
         this.destroy = new Destroy();
-        this.gradient = [];
         this.groups = {};
         this.links = new Links();
         this.move = new Move();
@@ -182,26 +179,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
                 }
 
                 this.stroke.load(strokeToLoad);
-            }
-        }
-
-        const gradientToLoad = data.gradient;
-
-        if (gradientToLoad) {
-            if (gradientToLoad instanceof Array) {
-                this.gradient = gradientToLoad.map((s) => {
-                    const tmp = new AnimatableGradient();
-
-                    tmp.load(s);
-
-                    return tmp;
-                });
-            } else {
-                if (this.gradient instanceof Array) {
-                    this.gradient = new AnimatableGradient();
-                }
-
-                this.gradient.load(gradientToLoad);
             }
         }
 

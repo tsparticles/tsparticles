@@ -1,7 +1,6 @@
+import type { IAnimatable, IAnimation } from "tsparticles-engine";
 import type { IAnimatableGradientColor, IOptionsGradient } from "./IOptionsGradient";
-import type { IAnimatable } from "./IAnimatable";
-import type { IAnimation } from "./IAnimation";
-import type { IGradientAngle } from "../../Core/Interfaces/Gradients";
+import type { IGradientAngle } from "./Gradients";
 
 export type IAnimatableGradient = IOptionsGradient & {
     angle: IGradientAngle & IAnimatable<IAnimation>;
