@@ -5,7 +5,7 @@
   "homepage": "https://particles.js.org/",
   "scripts": {
     "build": "tsparticles-build src && yarn build:docs",
-    "build:ci": "tsparticles-build src --ci && yarn build:docs",
+    "build:ci": "tsparticles-build src --ci",
     "build:docs": "rimraf -f docs && typedoc",
     "version": "tsparticles-build src --distfiles && git add package.dist.json",
     "prepack": "yarn build"
