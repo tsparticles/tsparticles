@@ -87,7 +87,6 @@ import { Vue } from "vue-property-decorator";
 import type { Engine } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 
-declare module 'vue2-particles';
 import Particles from "vue2-particles";
 
 Vue.use(Particles);
