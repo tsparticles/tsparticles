@@ -29,15 +29,15 @@ try {
 
     if (dependencies["react-particles-js"]) {
         console.error("\x1b[31m%s\x1b[0m", "The package react-particles-js has been deprecated and is not supported anymore.");
-        console.error("\x1b[31m%s\x1b[0m", "Please consider switching to react-tsparticles package.")
+        console.error("\x1b[31m%s\x1b[0m", "Please consider switching to react-particles package.")
         console.error("\x1b[31m%s\x1b[0m", "This error will be fixed once react-particles-js is removed from the package.json file.");
 
         throw new Error(reactParticlesJsFoundError);
     }
 
     if (dependencies["react"] || dependencies["next"]) {
-        if (!dependencies["react-tsparticles"]) {
-            console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found React installed. Please download react-tsparticles to use tsParticles with a component ready to use and easier to configure.");
+        if (!dependencies["react-particles"]) {
+            console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found React installed. Please download react-particles to use tsParticles with a component ready to use and easier to configure.");
             console.log("You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md");
         }
     }
@@ -56,13 +56,13 @@ try {
         const vueMajor = (vueVersion || nuxtVersion).split(".")[0];
 
         if (vueMajor > 2) {
-            if (!dependencies["particles.vue3"]) {
-                console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found Vue 3.x installed. Please Download particles.vue3 to use tsParticles with a component ready to use and easier to configure.");
+            if (!dependencies["vue3-particles"]) {
+                console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found Vue 3.x installed. Please Download vue3-particles to use tsParticles with a component ready to use and easier to configure.");
                 console.log("You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/main/components/vue3/README.md");
             }
         } else {
-            if (!dependencies["particles.vue"]) {
-                console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found Vue 2.x installed. Please Download particles.vue to use tsParticles with a component ready to use and easier to configure.");
+            if (!dependencies["vue2-particles"]) {
+                console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found Vue 2.x installed. Please Download vue2-particles to use tsParticles with a component ready to use and easier to configure.");
                 console.log("You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md");
             }
         }

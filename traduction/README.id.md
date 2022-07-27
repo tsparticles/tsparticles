@@ -218,9 +218,9 @@ lengkap [disini](https://github.com/matteobruni/tsparticles/blob/main/components
 
 ### ReactJS
 
-#### `react-tsparticles`
+#### `react-particles`
 
-[![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
+[![npm](https://img.shields.io/npm/v/react-particles)](https://www.npmjs.com/package/react-particles) [![npm](https://img.shields.io/npm/dm/react-particles)](https://www.npmjs.com/package/react-particles)
 
 Kamu dapat menemukan instruksi
 lengkap [disini](https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md)
@@ -236,9 +236,9 @@ lengkap [disini](https://github.com/matteobruni/tsparticles/blob/main/components
 
 ### VueJS
 
-#### `particles.vue`
+#### `vue2-particles`
 
-[![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue)
+[![npm](https://img.shields.io/npm/v/vue2-particles)](https://www.npmjs.com/package/vue2-particles) [![npm](https://img.shields.io/npm/dm/vue2-particles)](https://www.npmjs.com/package/vue2-particles)
 
 Kamu dapat menemukan instruksi
 lengkap [disini](https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md)

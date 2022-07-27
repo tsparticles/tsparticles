@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import Particles from 'react-tsparticles'
+import Particles from 'react-particles'
 import { loadBigCirclesPreset } from "tsparticles-preset-big-circles";
 import styles from '../styles/Home.module.css'
 
