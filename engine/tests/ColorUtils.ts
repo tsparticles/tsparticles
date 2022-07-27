@@ -1,5 +1,5 @@
 import * as ColorUtils from "../src/Utils/ColorUtils";
-import { IColor, IHsl, IHsla, IHsv, IRgb } from "../src";
+import { IColor, IHsl, IHsla, IRgb } from "../src";
 import { describe, it } from "mocha";
 import { expect } from "chai";
 
