@@ -70,7 +70,7 @@ _The syntax for `React.js`, `Preact` and `Inferno` is the same_.
 This sample uses the class component syntax, but you can use hooks as well (if the library supports it).
 
 ```javascript
-import Particles from "react-tsparticles";
+import Particles from "react-particles";
 import { Main } from "tsparticles";
 import { loadTemplatePreset } from "tsparticles-preset-template";
 

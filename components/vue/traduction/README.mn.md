@@ -1,8 +1,8 @@
 [![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# particles.vue
+# vue2-particles
 
-[![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue)
+[![npm](https://img.shields.io/npm/v/vue2-particles)](https://www.npmjs.com/package/vue2-particles) [![npm](https://img.shields.io/npm/dm/vue2-particles)](https://www.npmjs.com/package/vue2-particles)
 
 Албан ёсны [tsParticles](https://github.com/matteobruni/tsparticles) VueJS компонэнт
 
@@ -13,13 +13,13 @@
 ## Татах
 
 ```shell script
-yarn add particles.vue vue@2
+yarn add vue2-particles vue@2
 ```
 
 ## Хэрхэн ашиглах
 
 ```javascript
-import Particles from "particles.vue";
+import Particles from "vue2-particles";
 
 Vue.use(Particles);
 ```
@@ -130,7 +130,7 @@ Vue.use(Particles);
 Хэрвээ TypeScript Partiles plugin импортлох/хэрэглэх үед алдаа гаргавал доорх мөрийг кодныхоо өмнө оруулаарай:
 
 ```typescript
-declare module "particles.vue";
+declare module "vue2-particles";
 ```
 
 ## Жишээ

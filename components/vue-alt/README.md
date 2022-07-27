@@ -1,8 +1,8 @@
 [![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# vue2-particles
+# particles.vue
 
-[![npm](https://img.shields.io/npm/v/vue2-particles)](https://www.npmjs.com/package/vue2-particles) [![npm](https://img.shields.io/npm/dm/vue2-particles)](https://www.npmjs.com/package/vue2-particles) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 Official [tsParticles](https://github.com/matteobruni/tsparticles) VueJS component
 
@@ -13,13 +13,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) VueJS compone
 ## Installation
 
 ```shell script
-yarn add vue2-particles
+yarn add particles.vue
 ```
 
 ## Usage
 
 ```javascript
-import Particles from "vue2-particles";
+import Particles from "particles.vue";
 
 Vue.use(Particles);
 ```
@@ -27,7 +27,6 @@ Vue.use(Particles);
 ### Demo config
 
 ```html
-
 <template>
     <div id="app">
         <Particles
@@ -95,7 +94,9 @@ Vue.use(Particles);
                         move: {
                             direction: 'none',
                             enable: true,
-                            outMode: 'bounce',
+                            outModes: {
+                                default: 'bounce'
+                            },
                             random: false,
                             speed: 6,
                             straight: false
@@ -114,8 +115,7 @@ Vue.use(Particles);
                             type: 'circle'
                         },
                         size: {
-                            random: true,
-                            value: 5
+                            value: { min: 1, max: 5 },
                         }
                     },
                     detectRetina: true
@@ -143,7 +143,7 @@ If TypeScript returns error while importing/using Particles plugin try adding th
 code:
 
 ```typescript
-declare module "vue2-particles";
+declare module "particles.vue";
 ```
 
 ## Demos
