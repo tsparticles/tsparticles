@@ -65,8 +65,6 @@ export default defineComponent({
       container.destroy();
 
       container = undefined;
-
-      tsParticles.dom();
     }
   },
 });
