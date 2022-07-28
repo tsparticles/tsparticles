@@ -24,6 +24,10 @@ import type { Vector } from "./Utils/Vector";
 import { getRangeValue } from "../Utils/NumberUtils";
 import { loadOptions } from "../Utils/OptionsUtils";
 
+function guardCheck(container: Container): boolean {
+    return !container.destroyed;
+}
+
 function loadContainerOptions(
     engine: Engine,
     container: Container,
@@ -47,12 +51,15 @@ export class Container {
      */
     actualOptions;
 
+    /**
+     * Canvas object, in charge of the canvas element and drawing functions
+     */
     readonly canvas;
 
     density;
 
     /**
-     * Check if the particles container is destroyed, if so it's not recommended using it
+     * Check if the particles' container is destroyed, if so it's not recommended using it
      */
     destroyed;
 
@@ -66,6 +73,7 @@ export class Container {
     duration;
 
     readonly #engine;
+    readonly #eventListeners;
 
     fpsLimit;
     interactivity: IContainerInteractivity;
@@ -101,7 +109,6 @@ export class Container {
     private _sourceOptions;
     private currentTheme?: string;
     private drawAnimationFrame?: number;
-    private readonly eventListeners;
     private firstStart;
     private readonly intersectionObserver?;
     private paused;
@@ -160,7 +167,7 @@ export class Container {
         this.actualOptions = loadContainerOptions(this.#engine, this);
 
         /* ---------- tsParticles - start ------------ */
-        this.eventListeners = new EventListeners(this);
+        this.#eventListeners = new EventListeners(this);
 
         if (typeof IntersectionObserver !== "undefined" && IntersectionObserver) {
             this.intersectionObserver = new IntersectionObserver((entries) => this.intersectionManager(entries));
@@ -181,6 +188,10 @@ export class Container {
     }
 
     addClickHandler(callback: (evt: Event, particles?: Particle[]) => void): void {
+        if (!guardCheck(this)) {
+            return;
+        }
+
         const el = this.interactivity.element;
 
         if (!el) {
@@ -188,7 +199,7 @@ export class Container {
         }
 
         const clickOrTouchHandler = (e: Event, pos: ICoordinates, radius: number): void => {
-            if (this.destroyed) {
+            if (!guardCheck(this)) {
                 return;
             }
 
@@ -203,7 +214,7 @@ export class Container {
         };
 
         const clickHandler = (e: Event): void => {
-            if (this.destroyed) {
+            if (!guardCheck(this)) {
                 return;
             }
 
@@ -217,7 +228,7 @@ export class Container {
         };
 
         const touchStartHandler = (): void => {
-            if (this.destroyed) {
+            if (!guardCheck(this)) {
                 return;
             }
 
@@ -226,7 +237,7 @@ export class Container {
         };
 
         const touchMoveHandler = (): void => {
-            if (this.destroyed) {
+            if (!guardCheck(this)) {
                 return;
             }
 
@@ -234,7 +245,7 @@ export class Container {
         };
 
         const touchEndHandler = (e: Event): void => {
-            if (this.destroyed) {
+            if (!guardCheck(this)) {
                 return;
             }
 
@@ -264,7 +275,7 @@ export class Container {
         };
 
         const touchCancelHandler = (): void => {
-            if (this.destroyed) {
+            if (!guardCheck(this)) {
                 return;
             }
 
@@ -286,6 +297,10 @@ export class Container {
      * Destroys the current container, invalidating it
      */
     destroy(): void {
+        if (!guardCheck(this)) {
+            return;
+        }
+
         this.stop();
 
         this.particles.destroy();
@@ -303,6 +318,13 @@ export class Container {
 
         this.destroyed = true;
 
+        const mainArr = this.#engine.dom(),
+            idx = mainArr.findIndex((t) => t === this);
+
+        if (idx >= 0) {
+            mainArr.splice(idx, 1);
+        }
+
         this.#engine.dispatchEvent(EventType.containerDestroyed, { container: this });
     }
 
@@ -310,6 +332,10 @@ export class Container {
      * Draws a frame
      */
     draw(force: boolean): void {
+        if (!guardCheck(this)) {
+            return;
+        }
+
         let refreshTime = force;
 
         this.drawAnimationFrame = animate()(async (timestamp) => {
@@ -354,10 +380,14 @@ export class Container {
      * @returns `true` is playing, `false` is paused
      */
     getAnimationStatus(): boolean {
-        return !this.paused && !this.pageHidden;
+        return !this.paused && !this.pageHidden && guardCheck(this);
     }
 
     handleClickMode(mode: ClickMode | string): void {
+        if (!guardCheck(this)) {
+            return;
+        }
+
         this.particles.handleClickMode(mode);
 
         for (const [, plugin] of this.plugins) {
@@ -368,6 +398,10 @@ export class Container {
     }
 
     async init(): Promise<void> {
+        if (!guardCheck(this)) {
+            return;
+        }
+
         const shapes = this.#engine.plugins.getSupportedShapes();
 
         for (const type of shapes) {
@@ -442,6 +476,10 @@ export class Container {
      * @param name the theme name, if `undefined` resets the default options or the default theme
      */
     async loadTheme(name?: string): Promise<void> {
+        if (!guardCheck(this)) {
+            return;
+        }
+
         this.currentTheme = name;
 
         await this.refresh();
@@ -451,6 +489,10 @@ export class Container {
      * Pauses animations
      */
     pause(): void {
+        if (!guardCheck(this)) {
+            return;
+        }
+
         if (this.drawAnimationFrame !== undefined) {
             cancelAnimation()(this.drawAnimationFrame);
 
@@ -479,6 +521,10 @@ export class Container {
      * @param force
      */
     play(force?: boolean): void {
+        if (!guardCheck(this)) {
+            return;
+        }
+
         const needsUpdate = this.paused || force;
 
         if (this.firstStart && !this.actualOptions.autoPlay) {
@@ -506,13 +552,21 @@ export class Container {
     /**
      * Restarts the container, just a [[stop]]/[[start]] alias
      */
-    refresh(): Promise<void> {
+    async refresh(): Promise<void> {
+        if (!guardCheck(this)) {
+            return;
+        }
+
         /* restart */
         this.stop();
         return this.start();
     }
 
-    reset(): Promise<void> {
+    async reset(): Promise<void> {
+        if (!guardCheck(this)) {
+            return;
+        }
+
         this._options = loadContainerOptions(this.#engine, this);
 
         return this.refresh();
@@ -530,6 +584,10 @@ export class Container {
         init?: () => void,
         update?: () => void
     ): void {
+        if (!guardCheck(this)) {
+            return;
+        }
+
         this.setPath(noiseOrGenerator, init, update);
     }
 
@@ -544,7 +602,7 @@ export class Container {
         init?: () => void,
         update?: () => void
     ): void {
-        if (!pathOrGenerator) {
+        if (!pathOrGenerator || !guardCheck(this)) {
             return;
         }
 
@@ -573,7 +631,7 @@ export class Container {
      * Starts the container, initializes what are needed to create animations and event handling
      */
     async start(): Promise<void> {
-        if (this.started) {
+        if (this.started || !guardCheck(this)) {
             return;
         }
 
@@ -581,7 +639,7 @@ export class Container {
 
         this.started = true;
 
-        this.eventListeners.addListeners();
+        this.#eventListeners.addListeners();
 
         if (this.interactivity.element instanceof HTMLElement && this.intersectionObserver) {
             this.intersectionObserver.observe(this.interactivity.element);
@@ -604,13 +662,13 @@ export class Container {
      * Stops the container, opposite to `start`. Clears some resources and stops events.
      */
     stop(): void {
-        if (!this.started) {
+        if (!this.started || !guardCheck(this)) {
             return;
         }
 
         this.firstStart = true;
         this.started = false;
-        this.eventListeners.removeListeners();
+        this.#eventListeners.removeListeners();
         this.pause();
         this.particles.clear();
         this.canvas.clear();

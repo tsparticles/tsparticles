@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.4 (2022-07-28)
+
+
+### Bug Fixes
+
+* **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
+* **deps:** update all ([d9f0ff2](https://github.com/matteobruni/tsparticles/commit/d9f0ff2f8c4ac269aaad5077492746e3da8fb422))
+* **deps:** update react monorepo to v18 ([79e531d](https://github.com/matteobruni/tsparticles/commit/79e531dc77dd73c9493e30e9eb23f5620a860ea9))
+* **deps:** update react monorepo to v18 ([4a434e6](https://github.com/matteobruni/tsparticles/commit/4a434e6217f7b65291da2a053af8f2ded70c879c))
+* fix linker plugin issue ([b9505e2](https://github.com/matteobruni/tsparticles/commit/b9505e2453e893a0a30fd483595de412c70dda3c))
+* fixed [#1683](https://github.com/matteobruni/tsparticles/issues/1683) ([36d2073](https://github.com/matteobruni/tsparticles/commit/36d2073ea559b60173e6e74fb00aa4e1658ef24d)), closes [#1682](https://github.com/matteobruni/tsparticles/issues/1682)
+* fixed demos ([ac11cab](https://github.com/matteobruni/tsparticles/commit/ac11cab60705a1cfc2b50453349389bfc9c31bf6))
+* fixed emitters issues ([c9d9a51](https://github.com/matteobruni/tsparticles/commit/c9d9a51e41fdc77a9bf544a09d979d8c2f6b10d5))
+* fixed issue with dynamic imports and async loading ([b7f444b](https://github.com/matteobruni/tsparticles/commit/b7f444b1ef279083572e3a52f341d39091c885e6))
+* fixes some dynamic import issues ([8ba2415](https://github.com/matteobruni/tsparticles/commit/8ba2415d52384fd4ce722110cda02c8c0db92674))
+* updated all plugins to use new build system, improves imports compatibility ([0d75d97](https://github.com/matteobruni/tsparticles/commit/0d75d97c02c8a8f55e1697e4e7f0fdcf4c24ae4a))
+* upgrade rxjs from 7.3.0 to 7.5.2 ([ac52db7](https://github.com/matteobruni/tsparticles/commit/ac52db7274471a02caaf10e6aa0bcd587efdae3b))
+* upgrade rxjs from 7.5.4 to 7.5.5 ([866f8a8](https://github.com/matteobruni/tsparticles/commit/866f8a8ce102aeb04c66c4d21f26583643aa6aab))
+
+
+### Features
+
+* added confetti cannon preset ([625eeff](https://github.com/matteobruni/tsparticles/commit/625eeffa151b7d236f25414e8464628f166d0478))
+* added init state to react, preact and inferno components ([2fbc361](https://github.com/matteobruni/tsparticles/commit/2fbc361060d58db48faa6836b249e704e0b04e04))
+* added range colors to all color fields ([1b6f32a](https://github.com/matteobruni/tsparticles/commit/1b6f32ad50beb3dc4813187a6e1d03f3013f3ca9))
+* added sizeOffset option to destroy split section ([a6b9ba0](https://github.com/matteobruni/tsparticles/commit/a6b9ba0e207f7976c7a91fe1e2091e7fd40effb4))
+* more rangeable options ([a2598c0](https://github.com/matteobruni/tsparticles/commit/a2598c07e968ab383c0a1eb311e22c4a0f52d9b8))
+* moved polygon mask to external plugin (breaking) ([abdfe37](https://github.com/matteobruni/tsparticles/commit/abdfe37f250a4f357f4491bb7ff0e54da6a7303e))
+* preparing react-particles and switching alternate packages ([49e749e](https://github.com/matteobruni/tsparticles/commit/49e749e90e076f0cb22eefe0f3399102f5b9fb35))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+* updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
+
+
+
+
+
 ## [2.1.3](https://github.com/matteobruni/tsparticles/compare/react-tsparticles-demo@2.1.2...react-tsparticles-demo@2.1.3) (2022-07-01)
 
 
