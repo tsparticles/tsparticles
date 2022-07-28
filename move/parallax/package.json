@@ -52,6 +52,7 @@
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
   "typedocMain": "./src/index.ts",
+  "prettier": "@tsparticles/prettier-config",
   "devDependencies": {
     "@babel/core": "^7.18.9",
     "@tsparticles/build": "^1.0.0",
