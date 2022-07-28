@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@2.1.3...tsparticles-demo-new@2.1.4) (2022-07-28)
+
+
+### Bug Fixes
+
+* upgrade sass from 1.52.3 to 1.53.0 ([fb2ec98](https://github.com/matteobruni/tsparticles/commit/fb2ec98631e18673b008cd14e6b7c4cb4e40d94c))
+
+
+
+
+
 ## [2.1.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@2.1.2...tsparticles-demo-new@2.1.3) (2022-07-01)
 
 **Note:** Version bump only for package tsparticles-demo-new

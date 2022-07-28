@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.44.4](https://github.com/tsparticles/preset-template/compare/@tsparticles/preset-template-typescript@1.44.3...@tsparticles/preset-template-typescript@1.44.4) (2022-07-28)
+
+
+### Features
+
+* preparing react-particles and switching alternate packages ([49e749e](https://github.com/tsparticles/preset-template/commit/49e749e90e076f0cb22eefe0f3399102f5b9fb35))
+
+
+
+
+
 ## [1.44.3](https://github.com/tsparticles/preset-template/compare/@tsparticles/preset-template-typescript@1.44.2...@tsparticles/preset-template-typescript@1.44.3) (2022-07-01)
 
 **Note:** Version bump only for package @tsparticles/preset-template-typescript

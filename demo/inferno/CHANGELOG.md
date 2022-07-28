@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.4](https://github.com/matteobruni/tsparticles/compare/inferno-particles-demo@2.1.3...inferno-particles-demo@2.1.4) (2022-07-28)
+
+
+### Bug Fixes
+
+* upgrade inferno from 8.0.0 to 8.0.1 ([a62c06a](https://github.com/matteobruni/tsparticles/commit/a62c06ac36516159d5e10ce84f37b1bce4596c08))
+
+
+
+
+
 ## [2.1.3](https://github.com/matteobruni/tsparticles/compare/inferno-particles-demo@2.1.2...inferno-particles-demo@2.1.3) (2022-07-01)
 
 **Note:** Version bump only for package inferno-particles-demo
