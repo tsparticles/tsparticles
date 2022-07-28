@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.1.3...tsparticles-engine@2.1.4) (2022-07-28)
+
+
+### Bug Fixes
+
+* fixed issue with destroyed containers, fixes [#4385](https://github.com/matteobruni/tsparticles/issues/4385), fixes [#4413](https://github.com/matteobruni/tsparticles/issues/4413), fixes [#4534](https://github.com/matteobruni/tsparticles/issues/4534) ([4d22425](https://github.com/matteobruni/tsparticles/commit/4d22425210f64b937a5d1b7bf825624b3ed5f2b6)), closes [#4532](https://github.com/matteobruni/tsparticles/issues/4532)
+
+
+### Features
+
+* preparing react-particles and switching alternate packages ([49e749e](https://github.com/matteobruni/tsparticles/commit/49e749e90e076f0cb22eefe0f3399102f5b9fb35))
+
+
+
+
+
 ## [2.1.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.1.2...tsparticles-engine@2.1.3) (2022-07-01)
 
 

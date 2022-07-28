@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.44.2](https://github.com/tsparticles/cli/compare/@tsparticles/cli@1.44.1...@tsparticles/cli@1.44.2) (2022-07-28)
+
+
+### Features
+
+* preparing react-particles and switching alternate packages ([49e749e](https://github.com/tsparticles/cli/commit/49e749e90e076f0cb22eefe0f3399102f5b9fb35))
+
+
+
+
+
 ## [1.44.1](https://github.com/tsparticles/cli/compare/@tsparticles/cli@1.44.0...@tsparticles/cli@1.44.1) (2022-07-01)
 
 **Note:** Version bump only for package @tsparticles/cli
