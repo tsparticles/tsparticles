@@ -59,15 +59,11 @@ export class ImageDrawer implements IShapeDrawer {
                 y: -radius,
             };
 
-        if (!image?.data.svgData || !image?.replaceColor) {
-            context.globalAlpha = opacity;
-        }
+        context.globalAlpha = opacity;
 
         context.drawImage(element, pos.x, pos.y, radius * 2, radius * 2 / ratio);
 
-        if (!image?.data.svgData || !image?.replaceColor) {
-            context.globalAlpha = 1;
-        }
+        context.globalAlpha = 1;
     }
 
     /**
