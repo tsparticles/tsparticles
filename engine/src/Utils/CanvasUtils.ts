@@ -1,4 +1,4 @@
-import { colorMix, getStyleFromHsl, getStyleFromRgb } from "./ColorUtils";
+import { getStyleFromHsl, getStyleFromRgb } from "./ColorUtils";
 import { AlterType } from "../Enums/Types/AlterType";
 import type { Container } from "../Core/Container";
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
@@ -66,39 +66,6 @@ export function paintBase(context: CanvasRenderingContext2D, dimension: IDimensi
  */
 export function clear(context: CanvasRenderingContext2D, dimension: IDimension): void {
     context.clearRect(0, 0, dimension.width, dimension.height);
-}
-
-/**
- * Creates a gradient using two particles colors and opacity.
- * @param context - The canvas context to draw on.
- * @param p1 - The first particle.
- * @param p2 - The second particle.
- * @param opacity - The opacity of the gradient.
- */
-export function gradient(
-    context: CanvasRenderingContext2D,
-    p1: IParticle,
-    p2: IParticle,
-    opacity: number
-): CanvasGradient | undefined {
-    const gradStop = Math.floor(p2.getRadius() / p1.getRadius()),
-        color1 = p1.getFillColor(),
-        color2 = p2.getFillColor();
-
-    if (!color1 || !color2) {
-        return;
-    }
-
-    const sourcePos = p1.getPosition(),
-        destPos = p2.getPosition(),
-        midRgb = colorMix(color1, color2, p1.getRadius(), p2.getRadius()),
-        grad = context.createLinearGradient(sourcePos.x, sourcePos.y, destPos.x, destPos.y);
-
-    grad.addColorStop(0, getStyleFromHsl(color1, opacity));
-    grad.addColorStop(gradStop > 1 ? 1 : gradStop, getStyleFromRgb(midRgb, opacity));
-    grad.addColorStop(1, getStyleFromHsl(color2, opacity));
-
-    return grad;
 }
 
 interface DrawParticleParams {

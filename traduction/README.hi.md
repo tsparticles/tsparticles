@@ -210,9 +210,9 @@ particles.pause();
 
 #### `प्रतिक्रिया-क्षिप्रहृदयता '
 
-[! [npm] (https://img.shields.io/npm/v/react-tsparticles)] (https://www.npmjs.com/package/react-tsparticles) [! npm] (https) //img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
+[! [npm] (https://img.shields.io/npm/v/react-particles)] (https://www.npmjs.com/package/react-particles) [! npm] (https) //img.shields.io/npm/dm/react-particles)](https://www.npmjs.com/package/react-particles)
 
-आप [यहाँ] (https://github.com/matteobruni/tsparticles/blob/main/compenders/react/README.md) निर्देश पा सकते हैं
+आप [यहाँ] (https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md) निर्देश पा सकते हैं
 
 ### स्वेल्ट
 
@@ -221,15 +221,15 @@ particles.pause();
 [! [npm] (https://img.shields.io/npm/v/svelte-particles)] (https://www.npmjs.com/package/svelte-particles) [! [npm डाउनलोड] (
 https) : //img.shields.io/npm/dm/svelte-particles)] (https://www.npmjs.com/package/svelte-particles)
 
-आप [here] (https://github.com/matteobruni/tsparticles/blob/main/compenders/svelte/README.md) निर्देश पा सकते हैं
+आप [here] (https://github.com/matteobruni/tsparticles/blob/main/components/svelte/README.md) निर्देश पा सकते हैं
 
 ### VueJS
 
 #### `कण.व्यू`
 
-[! [npm] (https://img.shields.io/npm/v/particles.vue)] (https://www.npmjs.com/package/particles.vue) [! [npm] (https:) //img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue)
+[! [npm] (https://img.shields.io/npm/v/vue2-particles)] (https://www.npmjs.com/package/vue2-particles) [! [npm] (https:) //img.shields.io/npm/dm/vue2-particles)](https://www.npmjs.com/package/vue2-particles)
 
-आप निर्देश [here] (https://github.com/matteobruni/tsparticles/blob/main/compenders/vue/README.md) पा सकते हैं
+आप निर्देश [here] (https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md) पा सकते हैं
 
 ---
 

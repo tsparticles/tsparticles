@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-website",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "private": true,
   "description": "tsParticles Official Website",
   "main": "index.html",
@@ -14,7 +14,7 @@
     "build:css": "sass ./css/main.scss ./css/main.css && minify ./css/main.css > ./css/main.min.css && sass ./css/presets.scss ./css/presets.css && minify ./css/presets.css > ./css/presets.min.css && sass ./css/404.scss ./css/404.css && minify ./css/404.css > ./css/404.min.css",
     "build": " yarn clear:cache && yarn lint && yarn build:css && yarn build:js",
     "build:ci": " yarn clear:cache && yarn lint:ci && yarn build:css && yarn build:js",
-    "deploy": "yarn build && yarn clear:docs && lerna run build:docs && node deploy.cjs"
+    "deploy": "yarn build && yarn clear:docs && lerna run build-docs && node deploy.cjs"
   },
   "repository": {
     "type": "git",
@@ -33,8 +33,9 @@
     "prettier": "^2.6.2",
     "rimraf": "^3.0.2",
     "sass": "^1.52.0",
-    "tsparticles": "^2.1.3",
-    "tsparticles-editor": "^2.1.3",
-    "tsparticles-preset-links": "^2.1.3"
+    "tsparticles": "^2.1.4",
+    "tsparticles-editor": "^2.1.4",
+    "tsparticles-engine": "^2.1.4",
+    "tsparticles-preset-links": "^2.1.4"
   }
 }

@@ -1,5 +1,5 @@
 import { createApp } from "vue";
-import Particles from "particles.vue3";
+import Particles from "vue3-particles";
 import App from "./App.vue";
 import router from "./router";
 

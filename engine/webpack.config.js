@@ -19,6 +19,7 @@ const getConfig = (entry) => {
 
     return {
         entry: entry,
+        mode: "production",
         output: {
             path: path.resolve(__dirname, "dist"),
             filename: "[name].js",

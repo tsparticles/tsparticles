@@ -7,7 +7,7 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni) [![Rate on Openbase](https://badges.openbase.com/js/rating/tsparticles.svg)](https://openbase.com/js/tsparticles?utm_source=embedded&utm_medium=badge&utm_campaign=rate-badge) [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge?style=rounded)](https://www.jsdelivr.com/package/npm/tsparticles) [![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) [![npm](https://img.shields.io/npm/dm/tsparticles)](https://www.npmjs.com/package/tsparticles) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/) [![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Grade) [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/matteobruni/tsparticles) [![Run on Repl.it](https://repl.it/badge/github/matteobruni/tsparticles)](https://repl.it/github/matteobruni/tsparticles)
 
-[![Discord](https://img.shields.io/discord/872061157379301416?label=discord&logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/hACwv45Hme) [![Slack](https://particles.js.org/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI) [![Telegram](https://particles.js.org/images/telegram.png)](https://t.me/tsparticles)
+[![Discord](https://img.shields.io/discord/872061157379301416?label=discord&logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/hACwv45Hme) [![Slack](https://particles.js.org/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI) [![Telegram](https://particles.js.org/images/telegram.png)](https://t.me/tsparticles) [![Reddit](https://img.shields.io/reddit/subreddit-subscribers/tsParticles?style=social)](https://www.reddit.com/r/tsParticles/)
 
 [![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles") <a href="https://www.buymeacoffee.com/matteobruni"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
 
@@ -15,8 +15,8 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 
 ## Table of Contents
 
-⚠️⚠️ _This readme refers to upcoming **v2**
-version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) for **v1** documentation_ ⚠️⚠️
+⚠️⚠️ \_This readme refers to **v2**
+version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) for **v1** documentation\* ⚠️⚠️
 
 - [Use for your website](#Do-you-want-to-use-it-on-your-website)
   - [Library installation](#Library-installation)
@@ -57,6 +57,7 @@ version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) 
 - [Video Tutorials](#Video-Tutorials)
 - [Migrating from Particles.js](#Migrating-from-Particlesjs)
 - [Plugins/Customizations](#PluginsCustomizations)
+- [Dependency Graphs](#Dependency-Graphs)
 - [Sponsors](#Sponsors)
 
 ---
@@ -269,9 +270,9 @@ Instructions available [here](https://github.com/matteobruni/tsparticles/blob/ma
 
 ### ReactJS
 
-`react-tsparticles`
+`react-particles`
 
-[![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
+[![npm](https://img.shields.io/npm/v/react-particles)](https://www.npmjs.com/package/react-particles) [![npm](https://img.shields.io/npm/dm/react-particles)](https://www.npmjs.com/package/react-particles)
 
 Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md)
 
@@ -301,17 +302,17 @@ Instructions available [here](https://github.com/matteobruni/tsparticles/blob/ma
 
 ### VueJS 2.x
 
-`particles.vue`
+`vue2-particles`
 
-[![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue)
+[![npm](https://img.shields.io/npm/v/vue2-particles)](https://www.npmjs.com/package/vue2-particles) [![npm](https://img.shields.io/npm/dm/vue2-particles)](https://www.npmjs.com/package/vue2-particles)
 
 Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md)
 
 ### VueJS 3.x
 
-`particles.vue3`
+`vue3-particles`
 
-[![npm](https://img.shields.io/npm/v/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![npm](https://img.shields.io/npm/dm/particles.vue3)](https://www.npmjs.com/package/particles.vue3)
+[![npm](https://img.shields.io/npm/v/vue3-particles)](https://www.npmjs.com/package/vue3-particles) [![npm](https://img.shields.io/npm/dm/vue3-particles)](https://www.npmjs.com/package/vue3-particles)
 
 Instruction available [here](https://github.com/matteobruni/tsparticles/blob/main/components/vue3/README.md)
 
@@ -582,6 +583,159 @@ tsParticles now supports some customizations 🥳.
 **You can create your own plugins**
 
 _Read more [here](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.html)..._
+
+---
+
+## Dependency Graphs
+
+```mermaid
+flowchart TD
+
+subgraph c [Components]
+ca[Angular]
+ci[Inferno.js]
+cj[JQuery]
+cp[Preact]
+cre[React.js]
+cri[Riot.js]
+cso[Solid.js]
+csv[Svelte]
+cv2[Vue.js 2.x]
+cv3[Vue.js 3.x]
+cw[Web Components]
+end
+
+e[tsParticles Engine] --> c
+```
+
+```mermaid
+flowchart LR
+
+subgraph b [Bundles]
+bp[Particles.js compatibility bundle] --> bs[tsParticles Slim]
+bs --> bf[tsParticles]
+end
+
+e[tsParticles Engine] --> b
+
+iea & iebo & iebu & iec & ieg & iepa & iepu & ierem & ierep --> bs
+ipa & ipc & ipl --> bs
+mb & mp --> bs
+sc & si & sl & sp & ssq & sst & st --> bs
+ua & uc & ul & uop & uou & usi & ust --> bs
+
+iet --> bf
+pla & ple & plp --> bf
+ur & uti & utw & uw --> bf
+
+subgraph i [Interactions]
+
+subgraph ie [Externals]
+iea[Attract]
+iebo[Bounce]
+iebu[Bubble]
+iec[Connect]
+ieg[Grab]
+iepa[Pause]
+iepu[Push]
+ierem[Remove]
+ierep[Repulse]
+iet[Trail]
+end
+
+il[Light]
+
+subgraph ip [Particles]
+ipa[Attract]
+ipc[Collisions]
+ipl[Links]
+ipr[Repulse]
+end
+
+end
+
+i --> ie
+i --> ip
+
+e --> i
+
+subgraph m [Movers]
+mb[Base]
+mp[Parallax]
+end
+
+e --> m
+
+subgraph pa [Paths]
+pac[Curves]
+pape[Perlin Noise]
+papo[Polygon]
+pas[Simplex Noise]
+end
+
+e --> pa
+
+subgraph pl [Plugins]
+pla[Absorbers]
+ple[Emitters]
+pli[Infection]
+plp[Polygon Mask]
+end
+
+e --> pl
+
+subgraph s [Shapes]
+sb[Bubble]
+sc[Circle]
+sh[Heart]
+si[Image]
+sl[Line]
+sm[Multiline Text]
+sp[Polygon]
+sr[Rounded Rectangle]
+ssp[Spiral]
+ssq[Square]
+sst[Star]
+st[Text]
+end
+
+e --> s
+
+subgraph u [Updaters]
+ua[Angle]
+uc[Color]
+ug[Gradient]
+ul[Life]
+uop[Opacity]
+uor[Orbit]
+uou[Out Modes]
+ur[Roll]
+usi[Size]
+ust[Stroke Color]
+uti[Tilt]
+utw[Twinkle]
+uw[Wobble]
+end
+
+e --> u
+
+subgraph pr [Presets]
+prbi[Big Circles]
+prbu[Bubbles]
+prc[Confetti]
+prf[Fire]
+prff[Firefly]
+prfw[Fireworks]
+prfo[Fountain]
+prl[Links]
+prsa[Sea Anemone]
+prsn[Snow]
+prst[Stars]
+prt[Triangles]
+end
+
+e --> pr
+```
 
 ---
 

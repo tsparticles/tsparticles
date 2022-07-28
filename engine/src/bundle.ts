@@ -1,6 +1,15 @@
 import { Engine } from "./engine";
+import { HslColorManager } from "./Utils/HslColorManager";
 import type { IOptions } from "./Options/Interfaces/IOptions";
 import type { RecursivePartial } from "./Types/RecursivePartial";
+import { RgbColorManager } from "./Utils/RgbColorManager";
+import { addColorManager } from "./Utils/ColorUtils";
+
+const rgbColorManager = new RgbColorManager(),
+    hslColorManager = new HslColorManager();
+
+addColorManager("rgb", rgbColorManager);
+addColorManager("hsl", hslColorManager);
 
 /**
  * The exposed tsParticles instance
@@ -42,12 +51,6 @@ export * from "./Enums/Types/EasingType";
 export * from "./Enums/AnimationStatus";
 export * from "./Enums/InteractivityDetect";
 export * from "./Options/Classes/AnimatableColor";
-export * from "./Options/Classes/Gradients/AnimatableGradient";
-export * from "./Options/Classes/Gradients/AnimatableGradientColor";
-export * from "./Options/Classes/Gradients/GradientAngle";
-export * from "./Options/Classes/Gradients/GradientAngleAnimation";
-export * from "./Options/Classes/Gradients/GradientColorOpacity";
-export * from "./Options/Classes/Gradients/GradientColorOpacityAnimation";
 export * from "./Options/Classes/AnimationOptions";
 export * from "./Options/Classes/Background/Background";
 export * from "./Options/Classes/BackgroundMask/BackgroundMask";
@@ -129,8 +132,10 @@ export * from "./Options/Classes/Theme/ThemeDefault";
 export * from "./Options/Classes/ValueWithRandom";
 export * from "./Utils/CanvasUtils";
 export * from "./Utils/ColorUtils";
+export * from "./Utils/HslColorManager";
 export * from "./Utils/NumberUtils";
 export * from "./Utils/OptionsUtils";
+export * from "./Utils/RgbColorManager";
 export * from "./Utils/Utils";
 export { tsParticles };
 

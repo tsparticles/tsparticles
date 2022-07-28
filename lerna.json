@@ -1,9 +1,6 @@
 {
   "packages": [
     "bundles/*",
-    "cli",
-    "cli/files/create-preset/js",
-    "cli/files/create-preset/ts",
     "components/*",
     "demo/**/*",
     "editor",
@@ -19,6 +16,8 @@
     "templates/*",
     "updaters/*",
     "utils/*",
+    "utils/cli/files/create-preset/js",
+    "utils/cli/files/create-preset/ts",
     "website",
     "website2"
   ],

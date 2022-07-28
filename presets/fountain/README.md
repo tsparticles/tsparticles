@@ -86,7 +86,7 @@ _The syntax for `React.js`, `Preact` and `Inferno` is the same_.
 This sample uses the class component syntax, but you can use hooks as well (if the library supports it).
 
 ```typescript jsx
-import Particles from "react-tsparticles";
+import Particles from "react-particles";
 import type { Engine } from "tsparticles-engine";
 import { loadFountainPreset } from "tsparticles-preset-fountain";
 
@@ -160,4 +160,45 @@ let particlesOptions = {
 let particlesInit = async (engine) => {
   await loadFountainPreset(engine);
 };
+```
+
+---
+
+```mermaid
+flowchart TD
+
+subgraph m [Movers]
+mb[Base]
+end
+
+e[tsParticles Engine] --> m
+
+subgraph pl [Plugins]
+ple[Emitters]
+end
+
+e --> pl
+
+subgraph s [Shapes]
+sc[Circle]
+end
+
+e --> s
+
+subgraph u [Updaters]
+uc[Color]
+uop[Opacity]
+uou[Out Modes]
+usi[Size]
+end
+
+e --> u
+
+subgraph pr [Presets]
+prfo[Fountain]
+end
+
+e --> pr
+
+mb & ple & sc & uc & uop & uou & usi --> prfo
 ```

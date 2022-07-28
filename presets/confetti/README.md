@@ -248,7 +248,7 @@ _The syntax for `React.js`, `Preact` and `Inferno` is the same_.
 This sample uses the class component syntax, but you can use hooks as well (if the library supports it).
 
 ```typescript jsx
-import Particles from "react-tsparticles";
+import Particles from "react-particles";
 import type { Engine } from "tsparticles-engine";
 import { loadConfettiPreset } from "tsparticles-preset-confetti";
 
@@ -405,3 +405,46 @@ which has the following properties:
   can set it even higher.
 - `disableForReducedMotion` _Boolean (default: true)_: Disables confetti entirely for users
   that [prefer reduced motion](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion).
+
+---
+
+```mermaid
+flowchart TD
+
+subgraph m [Movers]
+mb[Base]
+end
+
+e[tsParticles Engine] --> m
+
+subgraph pl [Plugins]
+ple[Emitters]
+end
+
+e --> pl
+
+subgraph s [Shapes]
+sc[Circle]
+ssq[Square]
+end
+
+e --> s
+
+subgraph u [Updaters]
+ua[Angle]
+uc[Color]
+uop[Opacity]
+uou[Out Modes]
+usi[Size]
+uti[Tilt]
+uw[Wobble]
+end
+
+e --> u
+
+subgraph pr [Presets]
+prc[Confetti]
+end
+
+mb & ple & sc & ssq & ua & uc & uop & uou & usi & uti & uw --> prc
+```

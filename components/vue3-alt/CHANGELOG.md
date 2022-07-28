@@ -3,31 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.1.3](https://github.com/matteobruni/tsparticles/compare/vue3-particles@2.1.2...vue3-particles@2.1.3) (2022-07-01)
-
-**Note:** Version bump only for package vue3-particles
+## [2.1.4](https://github.com/matteobruni/tsparticles/compare/particles.vue3@2.1.3...particles.vue3@2.1.4) (2022-07-28)
 
 
+### Bug Fixes
+
+* fixed issue with destroyed containers, fixes [#4385](https://github.com/matteobruni/tsparticles/issues/4385), fixes [#4413](https://github.com/matteobruni/tsparticles/issues/4413), fixes [#4534](https://github.com/matteobruni/tsparticles/issues/4534) ([4d22425](https://github.com/matteobruni/tsparticles/commit/4d22425210f64b937a5d1b7bf825624b3ed5f2b6)), closes [#4532](https://github.com/matteobruni/tsparticles/issues/4532)
 
 
+### Features
 
-## [2.1.2](https://github.com/matteobruni/tsparticles/compare/vue3-particles@2.1.1...vue3-particles@2.1.2) (2022-07-01)
-
-**Note:** Version bump only for package vue3-particles
-
-
-
-
-
-## [2.1.1](https://github.com/matteobruni/tsparticles/compare/vue3-particles@2.1.0...vue3-particles@2.1.1) (2022-07-01)
-
-**Note:** Version bump only for package vue3-particles
+* preparing react-particles and switching alternate packages ([49e749e](https://github.com/matteobruni/tsparticles/commit/49e749e90e076f0cb22eefe0f3399102f5b9fb35))
 
 
 
 
 
-# [2.1.0](https://github.com/matteobruni/tsparticles/compare/vue3-particles@2.0.6...vue3-particles@2.1.0) (2022-06-18)
+## [2.1.3](https://github.com/matteobruni/tsparticles/compare/particles.vue3@2.1.2...particles.vue3@2.1.3) (2022-07-01)
+
+**Note:** Version bump only for package particles.vue3
+
+
+
+
+
+## [2.1.2](https://github.com/matteobruni/tsparticles/compare/particles.vue3@2.1.1...particles.vue3@2.1.2) (2022-07-01)
+
+**Note:** Version bump only for package particles.vue3
+
+
+
+
+
+## [2.1.1](https://github.com/matteobruni/tsparticles/compare/particles.vue3@2.1.0...particles.vue3@2.1.1) (2022-07-01)
+
+**Note:** Version bump only for package particles.vue3
+
+
+
+
+
+# [2.1.0](https://github.com/matteobruni/tsparticles/compare/particles.vue3@2.0.6...particles.vue3@2.1.0) (2022-06-18)
 
 
 ### Bug Fixes

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.4](https://github.com/matteobruni/tsparticles/compare/tsparticles@2.1.3...tsparticles@2.1.4) (2022-07-28)
+
+
+### Features
+
+* preparing react-particles and switching alternate packages ([49e749e](https://github.com/matteobruni/tsparticles/commit/49e749e90e076f0cb22eefe0f3399102f5b9fb35))
+
+
+
+
+
 ## [2.1.3](https://github.com/matteobruni/tsparticles/compare/tsparticles@2.1.2...tsparticles@2.1.3) (2022-07-01)
 
 **Note:** Version bump only for package tsparticles

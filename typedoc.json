@@ -69,7 +69,7 @@
     "presets/stars",
     "presets/triangles"
   ],
-  "entryPointStrategy": "Packages",
+  "entryPointStrategy": "packages",
   "name": "tsParticles",
   "includeVersion": true,
   "hideGenerator": true,
