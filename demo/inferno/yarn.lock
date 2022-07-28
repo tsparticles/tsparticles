@@ -2896,7 +2896,7 @@ inferno-vnode-flags@8.0.1:
   resolved "https://registry.yarnpkg.com/inferno-vnode-flags/-/inferno-vnode-flags-8.0.1.tgz#f8d1f3b714eb92c6bc8028dcbc212ae44a263717"
   integrity sha512-ct9qsX7CtSvd575f1XKJHGRpzrjNplJLWefOjcyNKFWzqWi6GCrprmYsbGWWE1rAXi6mF6nz/0JbOGWzfZ6tlw==
 
-inferno@^8.0.0:
+inferno@^8.0.1:
   version "8.0.1"
   resolved "https://registry.yarnpkg.com/inferno/-/inferno-8.0.1.tgz#cb4e3c1076502e0afdad2785cb9ae6365265af84"
   integrity sha512-WXdEcYtil/WnMlMYHDFGFUO0g6+mavpgBbT8mxE7+72ScUnnDU1CNki2G8FTwuhJnsnzB6c6t1LbzO5mKiPOiQ==
