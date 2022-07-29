@@ -141,16 +141,18 @@ export class Linker extends ParticlesInteractorBase {
                 ? container.particles.linksColor
                 : container.particles.linksColors.get(linksOptions.id);
 
-        if (!linkColor) {
-            const optColor = linksOptions.color;
+        if (linkColor) {
+            return;
+        }
 
-            linkColor = getLinkRandomColor(optColor, linksOptions.blink, linksOptions.consent);
+        const optColor = linksOptions.color;
 
-            if (linksOptions.id === undefined) {
-                container.particles.linksColor = linkColor;
-            } else {
-                container.particles.linksColors.set(linksOptions.id, linkColor);
-            }
+        linkColor = getLinkRandomColor(optColor, linksOptions.blink, linksOptions.consent);
+
+        if (linksOptions.id === undefined) {
+            container.particles.linksColor = linkColor;
+        } else {
+            container.particles.linksColors.set(linksOptions.id, linkColor);
         }
     }
 }
