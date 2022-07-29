@@ -52,6 +52,10 @@ export class ParticlesLighter extends ParticlesInteractorBase {
         return res;
     }
 
+    async particleInteract(): Promise<void> {
+        // do nothing
+    }
+
     reset(): void {
         // do nothing
     }

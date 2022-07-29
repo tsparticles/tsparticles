@@ -45,6 +45,8 @@ export abstract class ParticlesInteractorBase implements IParticlesInteractor {
      */
     abstract isEnabled(particle: Particle): boolean;
 
+    abstract particleInteract(p1: Particle, p2: Particle, delta: IDelta): Promise<void>;
+
     /**
      * Before interaction reset
      * @param particle the particle to be reset

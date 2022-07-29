@@ -52,6 +52,19 @@ export class InteractionManager {
         }
     }
 
+    /**
+     * Iterates through the external interactivity manager and call the interact method, if they are enabled
+     * @param particle the particle to interact with
+     * @param delta this variable contains the delta between the current frame and the previous frame
+     */
+    async externalParticleInteract(particle: Particle, delta: IDelta): Promise<void> {
+        for (const interactor of this.externalInteractors) {
+            if (interactor.isEnabled()) {
+                await interactor.particleInteract(particle, delta);
+            }
+        }
+    }
+
     handleClickMode(mode: ClickMode | string): void {
         for (const interactor of this.externalInteractors) {
             if (interactor.handleClickMode) {
@@ -97,6 +110,25 @@ export class InteractionManager {
         for (const interactor of this.particleInteractors) {
             if (interactor.isEnabled(particle)) {
                 await interactor.interact(particle, delta);
+            }
+        }
+    }
+
+    /**
+     * Iterates through the particles interactions manager and call the interact method, if they are enabled
+     * @param p1 the particle responsible for the current interaction
+     * @param p2 the particle to interact with
+     * @param delta this variable contains the delta between the current frame and the previous frame
+     */
+    async particlesParticleInteract(p1: Particle, p2: Particle, delta: IDelta): Promise<void> {
+        for (const interactor of this.externalInteractors) {
+            interactor.clear(p1);
+        }
+
+        /* interaction auto between particles */
+        for (const interactor of this.particleInteractors) {
+            if (interactor.isEnabled(p1)) {
+                await interactor.particleInteract(p1, p2, delta);
             }
         }
     }

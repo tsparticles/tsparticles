@@ -12,4 +12,6 @@ export interface IExternalInteractor extends IInteractor {
     interact(delta: IDelta): Promise<void>;
 
     isEnabled(particle?: Particle): boolean;
+
+    particleInteract(particle: Particle, delta: IDelta): Promise<void>;
 }

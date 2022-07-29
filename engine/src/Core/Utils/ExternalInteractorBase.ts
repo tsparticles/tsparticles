@@ -44,6 +44,8 @@ export abstract class ExternalInteractorBase implements IExternalInteractor {
      */
     abstract isEnabled(particle?: Particle): boolean;
 
+    abstract particleInteract(particle: Particle, delta: IDelta): Promise<void>;
+
     /**
      * Before interaction reset
      * @param particle the particle to reset

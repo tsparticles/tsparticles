@@ -15,7 +15,10 @@ import {
     mouseMoveEvent,
     rectBounce,
 } from "tsparticles-engine";
-import type { Container, DivEvent, ICoordinates, Particle, Range } from "tsparticles-engine";
+import type {
+    Container, DivEvent, ICoordinates, Particle,
+    Range
+} from "tsparticles-engine";
 
 export class Bouncer extends ExternalInteractorBase {
     constructor(container: Container) {
@@ -31,7 +34,7 @@ export class Bouncer extends ExternalInteractorBase {
     }
 
     async interact(): Promise<void> {
-        const container = this.container,
+        /*const container = this.container,
             options = container.actualOptions,
             events = options.interactivity.events,
             mouseMoveStatus = container.interactivity.status === mouseMoveEvent,
@@ -43,7 +46,7 @@ export class Bouncer extends ExternalInteractorBase {
             this.processMouseBounce();
         } else {
             divModeExecute(DivMode.bounce, divs, (selector, div): void => this.singleSelectorBounce(selector, div));
-        }
+        }*/
     }
 
     isEnabled(particle?: Particle): boolean {
@@ -57,6 +60,22 @@ export class Bouncer extends ExternalInteractorBase {
             (mouse.position && events.onHover.enable && isInArray(HoverMode.bounce, events.onHover.mode)) ||
             isDivModeEnabled(DivMode.bounce, divs)
         );
+    }
+
+    async particleInteract(particle: Particle): Promise<void> {
+        const container = this.container,
+            options = container.actualOptions,
+            events = options.interactivity.events,
+            mouseMoveStatus = container.interactivity.status === mouseMoveEvent,
+            hoverEnabled = events.onHover.enable,
+            hoverMode = events.onHover.mode,
+            divs = events.onDiv;
+
+        if (mouseMoveStatus && hoverEnabled && isInArray(HoverMode.bounce, hoverMode)) {
+            this.processMouseBounce(particle);
+        } else {
+            divModeExecute(DivMode.bounce, divs, (selector, div): void => this.singleSelectorBounce(selector, div, particle));
+        }
     }
 
     reset(): void {
@@ -81,7 +100,7 @@ export class Bouncer extends ExternalInteractorBase {
         }
     }
 
-    private processMouseBounce(): void {
+    private processMouseBounce(particle?: Particle): void {
         const container = this.container,
             pxRatio = container.retina.pixelRatio,
             tolerance = 10 * pxRatio,
@@ -89,11 +108,21 @@ export class Bouncer extends ExternalInteractorBase {
             radius = container.retina.bounceModeDistance;
 
         if (mousePos) {
-            this.processBounce(mousePos, radius, new Circle(mousePos.x, mousePos.y, radius + tolerance));
+            if (particle) {
+                circleBounce(circleBounceDataFromParticle(particle), {
+                    position: mousePos,
+                    radius,
+                    mass: (radius ** 2 * Math.PI) / 2,
+                    velocity: Vector.origin,
+                    factor: Vector.origin,
+                });
+            } else {
+                this.processBounce(mousePos, radius, new Circle(mousePos.x, mousePos.y, radius + tolerance));
+            }
         }
     }
 
-    private singleSelectorBounce(selector: string, div: DivEvent): void {
+    private singleSelectorBounce(selector: string, div: DivEvent, particle?: Particle): void {
         const container = this.container,
             query = document.querySelectorAll(selector);
 
@@ -109,18 +138,37 @@ export class Bouncer extends ExternalInteractorBase {
                     y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
                 },
                 radius = (elem.offsetWidth / 2) * pxRatio,
-                tolerance = 10 * pxRatio,
-                area =
+                tolerance = 10 * pxRatio;
+
+
+            if (particle) {
+                switch (div.type) {
+                    case DivType.circle:
+                        circleBounce(circleBounceDataFromParticle(particle), {
+                            position: pos,
+                            radius,
+                            mass: (radius ** 2 * Math.PI) / 2,
+                            velocity: Vector.origin,
+                            factor: Vector.origin,
+                        });
+                        break;
+                    case DivType.rectangle:
+                        rectBounce(particle, calculateBounds(pos, radius));
+                        break;
+                }
+            } else {
+                const area =
                     div.type === DivType.circle
                         ? new Circle(pos.x, pos.y, radius + tolerance)
                         : new Rectangle(
-                              elem.offsetLeft * pxRatio - tolerance,
-                              elem.offsetTop * pxRatio - tolerance,
-                              elem.offsetWidth * pxRatio + tolerance * 2,
-                              elem.offsetHeight * pxRatio + tolerance * 2
-                          );
+                            elem.offsetLeft * pxRatio - tolerance,
+                            elem.offsetTop * pxRatio - tolerance,
+                            elem.offsetWidth * pxRatio + tolerance * 2,
+                            elem.offsetHeight * pxRatio + tolerance * 2
+                        );
 
-            this.processBounce(pos, radius, area);
+                this.processBounce(pos, radius, area);
+            }
         });
     }
 }

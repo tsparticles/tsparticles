@@ -406,7 +406,10 @@ export class Particles {
             plugin.update?.(delta);
         }
 
-        for (const particle of this.array) {
+        for (let i = 0; i < this.count; i++) {
+            //for (const particle of this.array) {
+            const particle = this.array[i];
+
             // let d = ( dx = container.interactivity.mouse.click_pos_x - p.x ) * dx +
             //         ( dy = container.interactivity.mouse.click_pos_y - p.y ) * dy;
             // let f = -BANG_SIZE / d;
@@ -446,14 +449,27 @@ export class Particles {
                 continue;
             }
 
+            this.interactionManager.particlesInteract(particle, delta);
             this.quadTree.insert(new Point(particle.getPosition(), particle));
+
+            for (const updater of this.updaters) {
+                updater.update(particle, delta);
+            }
+
+            for (let j = i; j < this.count; j++) {
+                const p2 = this.array[j];
+
+                if (!particle.destroyed && !particle.spawning) {
+                    await this.interactionManager.particlesParticleInteract(particle, p2, delta);
+                }
+            }
         }
 
         for (const particle of particlesToDelete) {
             this.remove(particle);
         }
 
-        await this.interactionManager.externalInteract(delta);
+        /*await this.interactionManager.externalInteract(delta);
 
         // this loop is required to be done after mouse interactions
         for (const particle of container.particles.array) {
@@ -464,7 +480,7 @@ export class Particles {
             if (!particle.destroyed && !particle.spawning) {
                 await this.interactionManager.particlesInteract(particle, delta);
             }
-        }
+        }*/
 
         delete container.canvas.resizeFactor;
     }

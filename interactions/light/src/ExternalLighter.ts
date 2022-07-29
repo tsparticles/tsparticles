@@ -57,6 +57,10 @@ export class ExternalLighter extends ExternalInteractorBase {
         return res;
     }
 
+    async particleInteract(): Promise<void> {
+        // do nothing
+    }
+
     reset(): void {
         // do nothing
     }
