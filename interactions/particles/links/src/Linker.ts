@@ -94,6 +94,7 @@ export class Linker extends ParticlesInteractorBase {
                 linkOpt1.id !== linkOpt2.id ||
                 p2.spawning ||
                 p2.destroyed ||
+                !p2.links ||
                 p1.links.map((t) => t.destination).indexOf(p2) !== -1 ||
                 p2.links.map((t) => t.destination).indexOf(p1) !== -1
             ) {

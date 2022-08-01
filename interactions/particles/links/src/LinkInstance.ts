@@ -22,17 +22,15 @@ export class LinkInstance implements IContainerPlugin {
             container = this.container,
             pOptions = particle.options;
 
-        if (linkParticle.links.length <= 0) {
+        if (!linkParticle.links || linkParticle.links.length <= 0) {
             return;
         }
 
         context.save();
 
-        const p1Links = linkParticle.links.filter((l) => {
-            const linkFreq = container.particles.getLinkFrequency(linkParticle, l.destination);
-
-            return linkFreq <= pOptions.links.frequency;
-        });
+        const p1Links = linkParticle.links.filter(
+            (l) => container.particles.getLinkFrequency(linkParticle, l.destination) <= pOptions.links.frequency
+        );
 
         for (const link of p1Links) {
             this.drawTriangles(container, pOptions, linkParticle, link, p1Links);
@@ -45,16 +43,12 @@ export class LinkInstance implements IContainerPlugin {
         context.restore();
     }
 
-    particleCreated(particle: Particle): void {
-        const linkParticle = particle as unknown as LinkParticle;
-
-        linkParticle.links = [];
+    particleCreated(particle: LinkParticle): void {
+        particle.links = [];
     }
 
-    particleDestroyed(particle: Particle): void {
-        const linkParticle = particle as unknown as LinkParticle;
-
-        linkParticle.links = [];
+    particleDestroyed(particle: LinkParticle): void {
+        particle.links = [];
     }
 
     private drawLinkLine(p1: LinkParticle, link: ILink): void {
@@ -192,7 +186,7 @@ export class LinkInstance implements IContainerPlugin {
             return;
         }
 
-        const vertices = p2.links.filter((t) => {
+        const vertices = p2.links?.filter((t) => {
             const linkFreq = container.particles.getLinkFrequency(p2, t.destination);
 
             return (
@@ -200,7 +194,7 @@ export class LinkInstance implements IContainerPlugin {
             );
         });
 
-        if (!vertices.length) {
+        if (!vertices?.length) {
             return;
         }
 
