@@ -6,7 +6,6 @@ import type { Engine } from "../../../engine";
 import type { IInteractivity } from "../../Interfaces/Interactivity/IInteractivity";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import type { IParticlesOptions } from "../../Interfaces/Particles/IParticlesOptions";
-import { Links } from "./Links/Links";
 import { Move } from "./Move/Move";
 import { Opacity } from "./Opacity/Opacity";
 import { ParticlesBounce } from "./Bounce/ParticlesBounce";
@@ -38,7 +37,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     readonly #engine;
     groups: ParticlesGroups;
     interactivity?: RecursivePartial<IInteractivity>;
-    links;
     move;
     number;
     opacity;
@@ -61,7 +59,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.color.value = "#fff";
         this.destroy = new Destroy();
         this.groups = {};
-        this.links = new Links();
         this.move = new Move();
         this.number = new ParticlesNumber();
         this.opacity = new Opacity();
@@ -75,40 +72,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.zIndex = new ZIndex();
     }
 
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new lineLinked
-     */
-    get lineLinked(): Links {
-        return this.links;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new lineLinked
-     * @param value
-     */
-    set lineLinked(value: Links) {
-        this.links = value;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new links
-     */
-    get line_linked(): Links {
-        return this.links;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new links
-     * @param value
-     */
-    set line_linked(value: Links) {
-        this.links = value;
-    }
-
     load(data?: RecursivePartial<IParticlesOptions>): void {
         if (!data) {
             return;
@@ -118,12 +81,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.color.load(AnimatableColor.create(this.color, data.color));
 
         this.destroy.load(data.destroy);
-
-        const links = data.links ?? data.lineLinked ?? data.line_linked;
-
-        if (links !== undefined) {
-            this.links.load(links);
-        }
 
         if (data.groups !== undefined) {
             for (const group in data.groups) {
@@ -189,6 +146,16 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
                 for (const updater of updaters) {
                     if (updater.loadOptions) {
                         updater.loadOptions(this, data);
+                    }
+                }
+            }
+
+            const interactors = this.#engine.plugins.interactors.get(this.#container);
+
+            if (interactors) {
+                for (const interactor of interactors) {
+                    if (interactor.loadParticlesOptions) {
+                        interactor.loadParticlesOptions(this, data);
                     }
                 }
             }

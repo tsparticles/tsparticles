@@ -71,23 +71,42 @@ const pkgInfo = require("../package.json");
         return;
     }
 
-    // prettier src
-    await prettifySrc(basePath, srcPath, ci);
+    let canContinue = true;
 
-    // eslint
-    await lint(ci);
+    if (canContinue) {
+        // prettier src
+        canContinue = await prettifySrc(basePath, srcPath, ci);
+    }
 
-    // tsc
-    buildTS(basePath);
+    if (canContinue) {
+        // eslint
+        canContinue = await lint(ci);
+    }
 
-    // webpack
-    await bundle(basePath);
+    if (canContinue) {
+        // tsc
+        canContinue = buildTS(basePath);
+    }
 
-    // prettier readme
-    await prettifyReadme(basePath, ci);
+    if (canContinue) {
+        // webpack
+        canContinue = await bundle(basePath);
+    }
 
-    // distfiles
-    await buildDistFiles(basePath);
+    if (canContinue) {
+        // prettier readme
+        canContinue = await prettifyReadme(basePath, ci);
+    }
+
+    if (canContinue) {
+        // distfiles
+        canContinue = await buildDistFiles(basePath);
+    }
+
+    if (!canContinue) {
+        process.exitCode = 1;
+        process.abort();
+    }
 })().catch((error) => {
     process.exitCode = 1;
 

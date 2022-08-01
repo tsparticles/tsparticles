@@ -1,7 +1,6 @@
-import type { ILinksShadow } from "../../../Interfaces/Particles/Links/ILinksShadow";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import { OptionsColor } from "../../OptionsColor";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import type { ILinksShadow } from "../Interfaces/ILinksShadow";
+import { OptionsColor } from "tsparticles-engine";
 
 /**
  * @category Options

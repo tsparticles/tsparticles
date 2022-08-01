@@ -1,4 +1,4 @@
-import type { Container, ICoordinates, IRgb, Particle } from "tsparticles-engine";
+import type { Container, ICoordinates, IRgb, OptionsColor, Particle } from "tsparticles-engine";
 import {
     ExternalInteractorBase,
     HoverMode,
@@ -10,6 +10,17 @@ import {
     isInArray,
     mouseMoveEvent,
 } from "tsparticles-engine";
+
+type LinkParticle = Particle & {
+    options: {
+        links?: {
+            color?: OptionsColor;
+        };
+    };
+    retina: {
+        linksWidth?: number;
+    };
+};
 
 /**
  * Draws a grab line between two points using canvas API in the given context.
@@ -40,7 +51,7 @@ export function drawGrabLine(
 
 function drawGrab(
     container: Container,
-    particle: Particle,
+    particle: LinkParticle,
     lineColor: IRgb,
     opacity: number,
     mousePos: ICoordinates
@@ -48,14 +59,7 @@ function drawGrab(
     container.canvas.draw((ctx) => {
         const beginPos = particle.getPosition();
 
-        drawGrabLine(
-            ctx,
-            particle.retina.linksWidth ?? container.retina.linksWidth,
-            beginPos,
-            mousePos,
-            lineColor,
-            opacity
-        );
+        drawGrabLine(ctx, particle.retina.linksWidth ?? 0, beginPos, mousePos, lineColor, opacity);
     });
 }
 
@@ -92,7 +96,9 @@ export class Grabber extends ExternalInteractorBase {
         }
 
         const distance = container.retina.grabModeDistance,
-            query = container.particles.quadTree.queryCircle(mousePos, distance, (p) => this.isEnabled(p));
+            query = container.particles.quadTree.queryCircle(mousePos, distance, (p) =>
+                this.isEnabled(p)
+            ) as LinkParticle[];
 
         for (const particle of query) {
             /*
@@ -114,9 +120,9 @@ export class Grabber extends ExternalInteractorBase {
                 continue;
             }
 
-            const optColor = grabLineOptions.color ?? particle.options.links.color;
+            const optColor = grabLineOptions.color ?? particle.options.links?.color;
 
-            if (!container.particles.grabLineColor) {
+            if (!container.particles.grabLineColor && optColor) {
                 const linksOptions = options.interactivity.modes.grab.links;
 
                 container.particles.grabLineColor = getLinkRandomColor(

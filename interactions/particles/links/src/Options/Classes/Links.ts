@@ -1,9 +1,8 @@
-import type { ILinks } from "../../../Interfaces/Particles/Links/ILinks";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import type { ILinks } from "../Interfaces/ILinks";
 import { LinksShadow } from "./LinksShadow";
 import { LinksTriangle } from "./LinksTriangle";
-import { OptionsColor } from "../../OptionsColor";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import { OptionsColor } from "tsparticles-engine";
 
 /**
  * [[include:Options/Particles/Links.md]]

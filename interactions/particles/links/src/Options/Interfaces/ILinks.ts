@@ -1,6 +1,6 @@
 import type { ILinksShadow } from "./ILinksShadow";
 import type { ILinksTriangle } from "./ILinksTriangle";
-import type { IOptionsColor } from "../../IOptionsColor";
+import type { IOptionsColor } from "tsparticles-engine";
 
 /**
  * Particles Links options, this configures how the particles link together
