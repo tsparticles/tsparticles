@@ -9,6 +9,12 @@ import {
     isInArray,
 } from "tsparticles-engine";
 
+type LinkParticle = Particle & {
+    retina: {
+        linksWidth?: number;
+    };
+};
+
 /**
  * Creates a gradient using two particles colors and opacity.
  * @param context - The canvas context to draw on.
@@ -71,7 +77,7 @@ function lineStyle(
     return gradient(ctx, p1, p2, connectOptions.links.opacity);
 }
 
-function drawConnection(container: Container, p1: Particle, p2: Particle): void {
+function drawConnection(container: Container, p1: LinkParticle, p2: LinkParticle): void {
     container.canvas.draw((ctx) => {
         const ls = lineStyle(container, ctx, p1, p2);
 
@@ -82,7 +88,7 @@ function drawConnection(container: Container, p1: Particle, p2: Particle): void 
         const pos1 = p1.getPosition(),
             pos2 = p2.getPosition();
 
-        drawConnectLine(ctx, p1.retina.linksWidth ?? container.retina.linksWidth, ls, pos1, pos2);
+        drawConnectLine(ctx, p1.retina.linksWidth ?? 0, ls, pos1, pos2);
     });
 }
 
