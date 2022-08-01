@@ -1,28 +1,45 @@
 import path from "path";
 import webpack from "webpack";
 
-export async function bundle(basePath: string): Promise<void> {
-    const options = await import(path.join(basePath, "webpack.config.js"));
+export async function bundle(basePath: string): Promise<boolean> {
+    try {
+        const options = await import(path.join(basePath, "webpack.config.js")),
+            res = await new Promise<boolean>((resolve, reject) => {
+                webpack(options.default, (err, stats) => {
+                    if (err) {
+                        console.error(err.stack || err);
 
-    webpack(options.default, (err, stats) => {
-        if (err) {
-            console.error(err.stack || err);
-            return;
-        }
+                        reject(err);
+                        return;
+                    }
 
-        if (!stats) {
-            console.error("No stats returned from webpack");
-            return;
-        }
+                    if (!stats) {
+                        const err = "No stats returned from webpack";
 
-        const info = stats.toJson();
+                        console.error(err);
+                        reject(err);
 
-        if (stats.hasErrors()) {
-            console.error(info.errors);
-        }
+                        return;
+                    }
 
-        if (stats.hasWarnings()) {
-            console.warn(info.warnings);
-        }
-    });
+                    const info = stats.toJson();
+
+                    if (stats.hasErrors()) {
+                        console.error(info.errors);
+
+                        reject(info.errors);
+                    }
+
+                    if (stats.hasWarnings()) {
+                        console.warn(info.warnings);
+                    }
+
+                    resolve(true);
+                });
+            });
+
+        return res;
+    } catch {
+        return false;
+    }
 }

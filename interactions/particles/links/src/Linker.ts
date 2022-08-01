@@ -1,7 +1,10 @@
 import { Circle, CircleWarp, ParticlesInteractorBase, getDistance, getLinkRandomColor } from "tsparticles-engine";
-import type { ICoordinates, IDimension, IParticle, IRgb, Particle } from "tsparticles-engine";
+import type { ICoordinates, IDimension, IRgb, RecursivePartial } from "tsparticles-engine";
+import type { IParticlesLinkOptions } from "./Options/Interfaces/IParticlesLinkOptions";
 import type { LinkContainer } from "./LinkContainer";
 import type { LinkParticle } from "./LinkParticle";
+import { Links } from "./Options/Classes/Links";
+import type { ParticlesLinkOptions } from "./Options/Classes/ParticlesLinkOptions";
 
 function getLinkDistance(
     pos1: ICoordinates,
@@ -66,6 +69,10 @@ export class Linker extends ParticlesInteractorBase {
     }
 
     async interact(p1: LinkParticle): Promise<void> {
+        if (!p1.options.links) {
+            return;
+        }
+
         p1.links = [];
 
         const pos1 = p1.getPosition(),
@@ -78,7 +85,7 @@ export class Linker extends ParticlesInteractorBase {
 
         const linkOpt1 = p1.options.links,
             optOpacity = linkOpt1.opacity,
-            optDistance = p1.retina.linksDistance ?? container.retina.linksDistance,
+            optDistance = p1.retina.linksDistance ?? 0,
             warp = linkOpt1.warp,
             range = warp
                 ? new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize)
@@ -90,7 +97,7 @@ export class Linker extends ParticlesInteractorBase {
 
             if (
                 p1 === p2 ||
-                !linkOpt2.enable ||
+                !linkOpt2?.enable ||
                 linkOpt1.id !== linkOpt2.id ||
                 p2.spawning ||
                 p2.destroyed ||
@@ -125,15 +132,38 @@ export class Linker extends ParticlesInteractorBase {
         }
     }
 
-    isEnabled(particle: Particle): boolean {
-        return particle.options.links.enable;
+    isEnabled(particle: LinkParticle): boolean {
+        return !!particle.options.links?.enable;
+    }
+
+    loadParticlesOptions(
+        options: ParticlesLinkOptions,
+        ...sources: (RecursivePartial<IParticlesLinkOptions> | undefined)[]
+    ): void {
+        for (const source of sources) {
+            const sourceLinks = source?.links ?? source?.lineLinked ?? source?.line_linked;
+
+            if (!sourceLinks) {
+                return;
+            }
+
+            if (!options.links) {
+                options.links = new Links();
+            }
+
+            options.links.load(sourceLinks);
+        }
     }
 
     reset(): void {
         // do nothing
     }
 
-    private setColor(p1: IParticle): void {
+    private setColor(p1: LinkParticle): void {
+        if (!p1.options.links) {
+            return;
+        }
+
         const container = this.linkContainer,
             linksOptions = p1.options.links;
 

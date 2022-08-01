@@ -1,4 +1,4 @@
-import type { IOptionsColor } from "../../IOptionsColor";
+import type { IOptionsColor } from "tsparticles-engine";
 
 /**
  * @category Options
