@@ -1,7 +1,7 @@
 {
   "name": "ionic-demo",
   "version": "1.1.4",
-  "author": "Ionic Framework",
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",

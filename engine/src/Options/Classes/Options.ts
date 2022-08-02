@@ -243,7 +243,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
         const responsiveOptions = this.responsive.find((t) =>
             t.mode === ResponsiveMode.screen && screen
-                ? t.maxWidth * pxRatio > screen.availWidth
+                ? t.maxWidth > screen.availWidth
                 : t.maxWidth * pxRatio > width
         );
 

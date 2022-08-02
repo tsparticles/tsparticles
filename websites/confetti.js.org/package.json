@@ -1,0 +1,27 @@
+{
+  "name": "confetti-website",
+  "version": "1.0.0",
+  "description": "tsParticles confetti webpage",
+  "private": true,
+  "main": "index.html",
+  "scripts": {
+    "deploy": "rimraf -f node_modules/.cache && node deploy.cjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/confetti.git"
+  },
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matteobruni/confetti/issues"
+  },
+  "homepage": "https://confetti.js.org",
+  "dependencies": {
+    "tsparticles": "^2.1.4"
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0",
+    "rimraf": "^3.0.2"
+  }
+}

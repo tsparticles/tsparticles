@@ -18,14 +18,13 @@
     "utils/*",
     "utils/cli/files/create-preset/js",
     "utils/cli/files/create-preset/ts",
-    "website",
-    "website2"
+    "websites/*"
   ],
   "version": "independent",
   "npmClient": "yarn",
   "useWorkspaces": false,
   "conventionalCommits": true,
-  "useNx": false,
+  "useNx": true,
   "command": {
     "version": {
       "message": "chore(release): published new version"

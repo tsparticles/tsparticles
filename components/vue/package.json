@@ -68,7 +68,7 @@
     "type": "git",
     "directory": "components/vue"
   },
-  "author": "Matteo Bruni",
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "files": [
     "dist"
