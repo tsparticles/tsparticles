@@ -4,7 +4,7 @@
   "private": true,
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "description": "tsParticles template preset, using TypeScript",
-  "homepage": "https://particles.js.org/",
+  "homepage": "https://particles.js.org",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsparticles/preset-template.git"

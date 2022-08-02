@@ -3,7 +3,7 @@
   "version": "1.44.4",
   "private": true,
   "description": "tsParticles template preset, using TypeScript",
-  "homepage": "https://particles.js.org/",
+  "homepage": "https://particles.js.org",
   "scripts": {
     "prettify:ci:src": "prettier --check ./src",
     "prettify:ci:readme": "prettier --check ./README.md",

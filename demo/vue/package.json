@@ -4,7 +4,7 @@
   "version": "2.1.4",
   "description": "VueJS Demo",
   "author": "Matteo Bruni <matteo.bruni@me.com>",
-  "homepage": "https://github.com/matteobruni/tsparticles#readme",
+  "homepage": "https://particles.js.org",
   "license": "MIT",
   "main": "lib/vue.js",
   "repository": {

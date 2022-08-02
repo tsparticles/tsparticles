@@ -2,7 +2,7 @@
   "name": "tsparticles-shape-star",
   "version": "2.1.4",
   "description": "tsParticles star shape",
-  "homepage": "https://particles.js.org/",
+  "homepage": "https://particles.js.org",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",

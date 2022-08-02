@@ -2,7 +2,7 @@
   "name": "tsparticles-shape-bubble",
   "version": "2.1.4",
   "description": "tsParticles bubble shape",
-  "homepage": "https://particles.js.org/",
+  "homepage": "https://particles.js.org",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",

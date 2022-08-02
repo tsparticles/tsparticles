@@ -2,7 +2,7 @@
   "name": "tsparticles-path-polygon",
   "version": "2.1.4",
   "description": "tsParticles polygon path",
-  "homepage": "https://particles.js.org/",
+  "homepage": "https://particles.js.org",
   "scripts": {
     "build": "tsparticles-build src && yarn build:docs",
     "build:ci": "tsparticles-build src --ci",
