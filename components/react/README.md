@@ -22,7 +22,7 @@ or
 yarn add react-particles
 ```
 
-#### create-react-app
+### create-react-app
 
 Starting from version 1.17.0 there are two official `create-react-app` templates:
 
@@ -47,10 +47,11 @@ $ create-react-app your_app --template particles-typescript
 
 Examples:
 
-_Remote url_
+#### Remote url
 
-#### JavaScript support
-```javascript
+##### JavaScript support - url
+
+```jsx
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 import { useCallback } from "react";
@@ -74,9 +75,10 @@ const App = () => {
 };
 ```
 
-#### TypeScript support
-```typescript
-import Particles from "react-tsparticles";
+##### TypeScript support - url
+
+```typescript jsx
+import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 import { useCallback } from "react";
 
@@ -100,10 +102,11 @@ const App = () => {
 };
 ```
 
-_Options object_
+#### Options object
 
-#### JavaScript support
-```javascript
+##### JavaScript support - object
+
+```jsx
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 import { useCallback } from "react";
@@ -203,9 +206,10 @@ const App = () => {
 };
 ```
 
-#### TypeScript support
-```typescript
-import Particles from "react-tsparticles";
+##### TypeScript support - object
+
+```typescript jsx
+import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 
 const App = () => {
@@ -319,7 +323,7 @@ const App = () => {
 | init            | function | This function is called after the tsParticles instance initialization, the instance is the parameter and you can load custom presets or shapes here |
 | loaded          | function | This function is called when particles are correctly loaded in canvas, the current container is the parameter and you can customize it here         |
 
-**particles.json**
+#### particles.json
 
 Find all configuration options [here](https://particles.js.org/docs/interfaces/Options_Interfaces_IOptions.IOptions.html).
 
