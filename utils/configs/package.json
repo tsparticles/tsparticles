@@ -82,7 +82,7 @@
   "publishConfig": {
     "directory": "dist"
   },
-  "author": "Matteo Bruni",
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"

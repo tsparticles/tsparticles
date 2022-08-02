@@ -4,6 +4,9 @@
   "description": "tsParticles confetti webpage",
   "private": true,
   "main": "index.html",
+  "scripts": {
+    "deploy": "node deploy.cjs"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/confetti.git"
@@ -13,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/matteobruni/confetti/issues"
   },
-  "homepage": "https://confetti.js.org"
+  "homepage": "https://confetti.js.org",
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
+  }
 }

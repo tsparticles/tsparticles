@@ -51,7 +51,7 @@
     "background",
     "tsparticles-preset"
   ],
-  "author": "Matteo Bruni",
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/tsparticles/preset-template/issues"
