@@ -1,8 +1,8 @@
 [![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# vue3-particles
+# particles.vue3
 
-[![npm](https://img.shields.io/npm/v/vue3-particles)](https://www.npmjs.com/package/vue3-particles) [![npm](https://img.shields.io/npm/dm/vue3-particles)](https://www.npmjs.com/package/vue3-particles) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![npm](https://img.shields.io/npm/v/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![npm](https://img.shields.io/npm/dm/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 Official [tsParticles](https://github.com/matteobruni/tsparticles) VueJS 3.x component
 
@@ -13,13 +13,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) VueJS 3.x com
 ## Installation
 
 ```shell script
-yarn add vue3-particles
+yarn add particles.vue3
 ```
 
 ## Usage
 
 ```javascript
-import Particles from "vue3-particles";
+import Particles from "particles.vue3";
 
 createApp(App).use(Particles)
 ```
@@ -93,7 +93,9 @@ createApp(App).use(Particles)
                         move: {
                             direction: 'none',
                             enable: true,
-                            outMode: 'bounce',
+                            outModes: {
+                                default: 'bounce'
+                            },
                             random: false,
                             speed: 6,
                             straight: false
@@ -112,8 +114,7 @@ createApp(App).use(Particles)
                             type: 'circle'
                         },
                         size: {
-                            random: true,
-                            value: 5
+                            value: { min: 1, max: 5 },
                         }
                     },
                     detectRetina: true
@@ -141,7 +142,7 @@ If TypeScript returns error while importing/using Particles plugin try adding th
 code:
 
 ```typescript
-declare module "vue3-particles";
+declare module "particles.vue3";
 ```
 
 ## Demos
@@ -158,7 +159,7 @@ There's also a CodePen collection actively maintained and updated [here](https:/
 
 If you are migrating your project from Vue 2.x to 3.x you need to these steps:
 
-- Change the dependency from `vue2-particles` to `vue3-particles`
+- Change the dependency from `particles.vue` to `particles.vue3`
 - Update the `node_modules` folder executing `npm install` or `yarn`
 - Change the `use` function from `Vue.use(Particles)` to `createApp(App).use(Particles)`.
 

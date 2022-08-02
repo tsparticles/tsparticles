@@ -635,6 +635,10 @@ export class Container {
         init?: () => void,
         update?: () => void
     ): void {
+        if (!guardCheck(this)) {
+            return;
+        }
+
         this.setPath(noiseOrGenerator, init, update);
     }
 

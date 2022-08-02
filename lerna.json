@@ -18,7 +18,7 @@
     "utils/*",
     "utils/cli/files/create-preset/js",
     "utils/cli/files/create-preset/ts",
-    "website"
+    "websites/*"
   ],
   "version": "independent",
   "npmClient": "yarn",

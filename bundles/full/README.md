@@ -70,7 +70,7 @@ _Class Components_
 
 ```typescript jsx
 import React from "react";
-import Particles from "react-tsparticles";
+import Particles from "react-particles";
 import type { Engine } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 
@@ -95,7 +95,7 @@ _Hooks / Functional Components_
 
 ```typescript jsx
 import React, { useCallback } from "react";
-import Particles from "react-tsparticles";
+import Particles from "react-particles";
 import type { Engine } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 

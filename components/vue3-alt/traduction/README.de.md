@@ -1,8 +1,8 @@
 [![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# vue3-particles
+# particles.vue3
 
-[![npm](https://img.shields.io/npm/v/vue3-particles)](https://www.npmjs.com/package/vue3-particles) [![npm](https://img.shields.io/npm/dm/vue3-particles)](https://www.npmjs.com/package/vue3-particles)
+[![npm](https://img.shields.io/npm/v/particles.vue3)](https://www.npmjs.com/package/particles.vue3) [![npm](https://img.shields.io/npm/dm/particles.vue3)](https://www.npmjs.com/package/particles.vue3)
 
 Offizieller [tsParticles](https://github.com/matteobruni/tsparticles) VueJS 3.x -Komponent
 
@@ -14,14 +14,14 @@ Offizieller [tsParticles](https://github.com/matteobruni/tsparticles) VueJS 3.x 
 
 ```shell script
 
-yarn add vue3-particles
+yarn add particles.vue3
 
 ```
 
 ## Verwendung
 
 ```javascript
-import Particles from 'vue3-particles';
+import Particles from 'particles.vue3';
 
 createApp(App).use(Particles);
 ```
@@ -196,7 +196,7 @@ detectRetina: true
 Wenn TypeScript beim Importieren/Benutzen des Particles-Plugins einen Fehler zurückgibt, versuche die folgende Zeile vor dem vorherigen Code einzufügen.
 
 ```typescript
-declare module 'vue3-particles';
+declare module 'particles.vue3';
 ```
 
 ## Demos

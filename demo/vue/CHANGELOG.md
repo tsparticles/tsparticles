@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.4 (2022-07-28)
+
+
+### Bug Fixes
+
+* **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
+* fixed emitters issues ([c9d9a51](https://github.com/matteobruni/tsparticles/commit/c9d9a51e41fdc77a9bf544a09d979d8c2f6b10d5))
+* fixed package.json typos ([5c0cb15](https://github.com/matteobruni/tsparticles/commit/5c0cb15e21efa547b5253a57d4497686eecfbe61))
+
+
+### Features
+
+* added confetti cannon preset ([625eeff](https://github.com/matteobruni/tsparticles/commit/625eeffa151b7d236f25414e8464628f166d0478))
+* added sizeOffset option to destroy split section ([a6b9ba0](https://github.com/matteobruni/tsparticles/commit/a6b9ba0e207f7976c7a91fe1e2091e7fd40effb4))
+* async presets ([86f3038](https://github.com/matteobruni/tsparticles/commit/86f3038bfc336744e88bb3d6ab7dfd4a36ada4e6))
+* changed angular and vue component name and syntax, changed version to 2.0.0 for breaking changes ([58d58f9](https://github.com/matteobruni/tsparticles/commit/58d58f9a37a116cab7ad656331f59ee9236ccf1b))
+* created vue3 component, closes [#832](https://github.com/matteobruni/tsparticles/issues/832) ([e6430e9](https://github.com/matteobruni/tsparticles/commit/e6430e9162b6cb1ac72c38c02c70521d2e77d949))
+* preparing react-particles and switching alternate packages ([49e749e](https://github.com/matteobruni/tsparticles/commit/49e749e90e076f0cb22eefe0f3399102f5b9fb35))
+* splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+* updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
+
+
+
+
+
 ## [2.1.3](https://github.com/matteobruni/tsparticles/compare/particles.vue-demo@2.1.2...particles.vue-demo@2.1.3) (2022-07-01)
 
 **Note:** Version bump only for package particles.vue-demo

@@ -1,6 +1,6 @@
 {
   "name": "cra-template-particles",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "description": "Official React tsParticles template",
   "keywords": [
     "tsparticles",
@@ -53,7 +53,7 @@
     "fireworksjs",
     "canvas-confetti"
   ],
-  "author": "Matteo Bruni <ar3s@icloud.com>",
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
   "homepage": "https://particles.js.org",
   "license": "MIT",
   "main": "template.json",
@@ -80,10 +80,10 @@
     }
   ],
   "dependencies": {
-    "react-tsparticles": "^2.1.3",
+    "react-particles": "^2.1.4",
     "tslib": "^2.4.0",
-    "tsparticles": "^2.1.3",
-    "tsparticles-engine": "^2.1.3"
+    "tsparticles": "^2.1.4",
+    "tsparticles-engine": "^2.1.4"
   },
   "scripts": {
     "build": "node scripts/prebuild.js",

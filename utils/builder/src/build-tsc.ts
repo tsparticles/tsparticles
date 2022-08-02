@@ -87,7 +87,7 @@ function compile(basePath: string, type: "browser" | "cjs" | "esm" | "types" | "
     return exitCode;
 }
 
-export function buildTS(basePath: string): void {
+export function buildTS(basePath: string): boolean {
     let exitCode = compile(basePath, "browser");
 
     if (!exitCode) {
@@ -105,4 +105,6 @@ export function buildTS(basePath: string): void {
     if (!exitCode) {
         compile(basePath, "umd");
     }
+
+    return !exitCode;
 }

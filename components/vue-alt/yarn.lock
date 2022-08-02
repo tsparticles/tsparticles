@@ -317,9 +317,9 @@
     "@babel/plugin-syntax-class-static-block" "^7.14.5"
 
 "@babel/plugin-proposal-decorators@^7.12.13", "@babel/plugin-proposal-decorators@^7.18.9":
-  version "7.18.9"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-decorators/-/plugin-proposal-decorators-7.18.9.tgz#d09d41ffc74af8499d2ac706ed0dbd5474711665"
-  integrity sha512-KD7zDNaD14CRpjQjVbV4EnH9lsKYlcpUrhZH37ei2IY+AlXrfAPy5pTmRUE4X6X1k8EsKXPraykxeaogqQvSGA==
+  version "7.18.10"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-decorators/-/plugin-proposal-decorators-7.18.10.tgz#788650d01e518a8a722eb8b3055dd9d73ecb7a35"
+  integrity sha512-wdGTwWF5QtpTY/gbBtQLAiCnoxfD4qMbN87NYZle1dOZ9Os8Y6zXcKrIaOU8W+TIvFUWVGG9tUgNww3CjXRVVw==
   dependencies:
     "@babel/helper-create-class-features-plugin" "^7.18.9"
     "@babel/helper-plugin-utils" "^7.18.9"
@@ -5948,10 +5948,10 @@ tslib@^2.0.3, tslib@^2.4.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
   integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
 
-tsparticles-engine@^2.1.3:
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.1.3.tgz#d8922cf7811c40e5e9b87b18f9cc86043af8e900"
-  integrity sha512-BmCo534tF5yRQofUczGSfCFrdeMYO6e7FXHv6AdRxL+j9NNPH3zF4HX6k24tbO4kmTH8tGX/+F9mugEQVo9AEg==
+tsparticles-engine@^2.1.4:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.1.4.tgz#9dd6c0bc8547249ddba6dc0f9f453113999464c4"
+  integrity sha512-V+2INRD9whshxM2DQQ/QWzboEIyPy95fwCf5I+zVNCYDdCWh5/w/AK/UY3k0/slcrxDyZOErNj1NygGSdxqy7w==
 
 type-fest@^0.6.0:
   version "0.6.0"

@@ -86,7 +86,7 @@ describe("Options tests", () => {
         expect(options.particles.color).to.be.an("object").to.have.property("value").to.equal("#fff");
 
         /* particles line linked */
-        expect(options.particles.links.blink).to.be.false;
+        /*expect(options.particles.links.blink).to.be.false;
         expect(options.particles.links.color).to.be.an("object").to.have.property("value").to.equal("#fff");
         expect(options.particles.links.consent).to.be.false;
         expect(options.particles.links.distance).to.equal(100);
@@ -95,7 +95,7 @@ describe("Options tests", () => {
         expect(options.particles.links.shadow.blur).to.equal(5);
         expect(options.particles.links.shadow.color).to.be.an("object").to.have.property("value").to.equal("#000");
         expect(options.particles.links.shadow.enable).to.be.false;
-        expect(options.particles.links.width).to.equal(1);
+        expect(options.particles.links.width).to.equal(1);*/
 
         /* particles move */
         expect(options.particles.move.attract.enable).to.be.false;
@@ -290,11 +290,11 @@ describe("Options tests", () => {
         expect(options.particles.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
 
         /* particles line linked */
-        expect(options.particles.links.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
+        /*expect(options.particles.links.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
         expect(options.particles.links.distance).to.equal(150);
         expect(options.particles.links.enable).to.be.true;
         expect(options.particles.links.opacity).to.equal(0.4);
-        expect(options.particles.links.width).to.equal(1);
+        expect(options.particles.links.width).to.equal(1);*/
 
         /* particles move */
         expect(options.particles.move.attract.enable).to.be.false;
@@ -470,11 +470,11 @@ describe("Options tests", () => {
         expect(options.particles.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
 
         /* particles line linked */
-        expect(options.particles.links.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
+        /*expect(options.particles.links.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
         expect(options.particles.links.distance).to.equal(150);
         expect(options.particles.links.enable).to.be.false;
         expect(options.particles.links.opacity).to.equal(0.4);
-        expect(options.particles.links.width).to.equal(1);
+        expect(options.particles.links.width).to.equal(1);*/
 
         /* particles move */
         expect(options.particles.move.attract.enable).to.be.false;

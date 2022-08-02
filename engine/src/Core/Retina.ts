@@ -15,8 +15,6 @@ export class Retina {
     connectModeDistance!: number;
     connectModeRadius!: number;
     grabModeDistance!: number;
-    linksDistance!: number;
-    linksWidth!: number;
     maxSpeed!: number;
     pixelRatio!: number;
     reduceFactor!: number;
@@ -79,8 +77,6 @@ export class Retina {
         const particles = options.particles;
 
         this.attractDistance = getRangeValue(particles.move.attract.distance) * ratio;
-        this.linksDistance = particles.links.distance * ratio;
-        this.linksWidth = particles.links.width * ratio;
         this.sizeAnimationSpeed = getRangeValue(particles.size.animation.speed) * ratio;
         this.maxSpeed = getRangeValue(particles.move.gravity.maxSpeed) * ratio;
 
@@ -107,8 +103,6 @@ export class Retina {
             props = particle.retina;
 
         props.attractDistance = getRangeValue(options.move.attract.distance) * ratio;
-        props.linksDistance = options.links.distance * ratio;
-        props.linksWidth = options.links.width * ratio;
         props.moveDrift = getRangeValue(options.move.drift) * ratio;
         props.moveSpeed = getRangeValue(options.move.speed) * ratio;
         props.sizeAnimationSpeed = getRangeValue(options.size.animation.speed) * ratio;

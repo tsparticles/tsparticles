@@ -1,8 +1,8 @@
 {
   "name": "tsparticles-interaction-external-pause",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "description": "tsParticles pause external interaction",
-  "homepage": "https://particles.js.org/",
+  "homepage": "https://particles.js.org",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
@@ -61,7 +61,7 @@
     "tsparticles-plugin",
     "tsparticles-interaction"
   ],
-  "author": "Matteo Bruni",
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
@@ -72,6 +72,6 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.1.3"
+    "tsparticles-engine": "^2.1.4"
   }
 }

@@ -61,14 +61,10 @@ export default defineComponent({
     });
   },
   unmounted(): void {
-    console.log("unmount");
-
     if (container) {
       container.destroy();
 
       container = undefined;
-
-      tsParticles.dom();
     }
   },
 });

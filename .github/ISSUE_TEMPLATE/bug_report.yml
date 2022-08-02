@@ -41,9 +41,9 @@ body:
       multiple: true
       options:
         - Vanilla (tsparticles)
-        - React.js (react-tsparticles, react-particles-js)
-        - Vue.js 2.x (particles.vue)
-        - Vue.js 3.x (particles.vue3)
+        - React.js (react-particles, react-tsparticles, react-particles-js)
+        - Vue.js 2.x (vue2-particles, particles.vue)
+        - Vue.js 3.x (vue3-particles, particles.vue3)
         - Angular (ng-particles)
         - Svelte (svelte-particles)
         - jQuery (jquery-particles)

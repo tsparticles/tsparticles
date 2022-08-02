@@ -1,5 +1,4 @@
 import { AnimatableColor } from "../AnimatableColor";
-import { AnimatableGradient } from "../Gradients/AnimatableGradient";
 import { Collisions } from "./Collisions/Collisions";
 import type { Container } from "../../../Core/Container";
 import { Destroy } from "./Destroy/Destroy";
@@ -7,7 +6,6 @@ import type { Engine } from "../../../engine";
 import type { IInteractivity } from "../../Interfaces/Interactivity/IInteractivity";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import type { IParticlesOptions } from "../../Interfaces/Particles/IParticlesOptions";
-import { Links } from "./Links/Links";
 import { Move } from "./Move/Move";
 import { Opacity } from "./Opacity/Opacity";
 import { ParticlesBounce } from "./Bounce/ParticlesBounce";
@@ -37,10 +35,8 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     readonly #container;
     destroy;
     readonly #engine;
-    gradient: SingleOrMultiple<AnimatableGradient>;
     groups: ParticlesGroups;
     interactivity?: RecursivePartial<IInteractivity>;
-    links;
     move;
     number;
     opacity;
@@ -62,9 +58,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.color = new AnimatableColor();
         this.color.value = "#fff";
         this.destroy = new Destroy();
-        this.gradient = [];
         this.groups = {};
-        this.links = new Links();
         this.move = new Move();
         this.number = new ParticlesNumber();
         this.opacity = new Opacity();
@@ -78,40 +72,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.zIndex = new ZIndex();
     }
 
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new lineLinked
-     */
-    get lineLinked(): Links {
-        return this.links;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new lineLinked
-     * @param value
-     */
-    set lineLinked(value: Links) {
-        this.links = value;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new links
-     */
-    get line_linked(): Links {
-        return this.links;
-    }
-
-    /**
-     *
-     * @deprecated this property is obsolete, please use the new links
-     * @param value
-     */
-    set line_linked(value: Links) {
-        this.links = value;
-    }
-
     load(data?: RecursivePartial<IParticlesOptions>): void {
         if (!data) {
             return;
@@ -121,12 +81,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.color.load(AnimatableColor.create(this.color, data.color));
 
         this.destroy.load(data.destroy);
-
-        const links = data.links ?? data.lineLinked ?? data.line_linked;
-
-        if (links !== undefined) {
-            this.links.load(links);
-        }
 
         if (data.groups !== undefined) {
             for (const group in data.groups) {
@@ -185,26 +139,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
             }
         }
 
-        const gradientToLoad = data.gradient;
-
-        if (gradientToLoad) {
-            if (gradientToLoad instanceof Array) {
-                this.gradient = gradientToLoad.map((s) => {
-                    const tmp = new AnimatableGradient();
-
-                    tmp.load(s);
-
-                    return tmp;
-                });
-            } else {
-                if (this.gradient instanceof Array) {
-                    this.gradient = new AnimatableGradient();
-                }
-
-                this.gradient.load(gradientToLoad);
-            }
-        }
-
         if (this.#container) {
             const updaters = this.#engine.plugins.updaters.get(this.#container);
 
@@ -212,6 +146,16 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
                 for (const updater of updaters) {
                     if (updater.loadOptions) {
                         updater.loadOptions(this, data);
+                    }
+                }
+            }
+
+            const interactors = this.#engine.plugins.interactors.get(this.#container);
+
+            if (interactors) {
+                for (const interactor of interactors) {
+                    if (interactor.loadParticlesOptions) {
+                        interactor.loadParticlesOptions(this, data);
                     }
                 }
             }

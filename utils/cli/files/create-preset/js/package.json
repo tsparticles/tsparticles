@@ -1,9 +1,9 @@
 {
   "name": "tsparticles-preset-template",
-  "version": "1.44.3",
+  "version": "1.44.4",
   "private": true,
   "description": "tsParticles template preset",
-  "homepage": "https://particles.js.org/",
+  "homepage": "https://particles.js.org",
   "main": "index.js",
   "jsdelivr": "tsparticles.preset.template.min.js",
   "unpkg": "tsparticles.preset.template.min.js",
@@ -51,7 +51,7 @@
     "background",
     "tsparticles-preset"
   ],
-  "author": "Matteo Bruni",
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/tsparticles/preset-template/issues"
@@ -72,6 +72,6 @@
     "webpack-cli": "^4.9.2"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.1.3"
+    "tsparticles-engine": "^2.1.4"
   }
 }

@@ -204,6 +204,16 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
         this.#engine.plugins.loadOptions(this, data);
 
+        const interactors = this.#engine.plugins.interactors.get(this.#container);
+
+        if (interactors) {
+            for (const interactor of interactors) {
+                if (interactor.loadOptions) {
+                    interactor.loadOptions(this, data);
+                }
+            }
+        }
+
         if (data.responsive !== undefined) {
             for (const responsive of data.responsive) {
                 const optResponsive = new Responsive();
@@ -232,9 +242,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.load(defaultOptions);
 
         const responsiveOptions = this.responsive.find((t) =>
-            t.mode === ResponsiveMode.screen && screen
-                ? t.maxWidth * pxRatio > screen.availWidth
-                : t.maxWidth * pxRatio > width
+            t.mode === ResponsiveMode.screen && screen ? t.maxWidth > screen.availWidth : t.maxWidth * pxRatio > width
         );
 
         this.load(responsiveOptions?.options);

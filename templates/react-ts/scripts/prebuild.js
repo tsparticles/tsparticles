@@ -13,7 +13,7 @@ fs.readFile(libPackage, function (error, data) {
 
     console.log(libObj);
 
-    libObj.package.dependencies["react-tsparticles"] = mainPackage.dependencies["react-tsparticles"];
+    libObj.package.dependencies["react-particles"] = mainPackage.dependencies["react-particles"];
     libObj.package.dependencies["tsparticles"] = mainPackage.dependencies["tsparticles"];
     libObj.package.dependencies["tsparticles-engine"] = mainPackage.dependencies["tsparticles-engine"];
 

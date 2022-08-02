@@ -1,8 +1,8 @@
 [![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# particles.vue
+# vue2-particles
 
-[![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue)
+[![npm](https://img.shields.io/npm/v/vue2-particles)](https://www.npmjs.com/package/vue2-particles) [![npm](https://img.shields.io/npm/dm/vue2-particles)](https://www.npmjs.com/package/vue2-particles)
 
 Официальный компонтент [tsParticles](https://github.com/matteobruni/tsparticles) для VueJS
 
@@ -13,13 +13,13 @@
 ## Установка
 
 ```shell script
-yarn add particles.vue
+yarn add vue2-particles
 ```
 
 ## Применение
 
 ```javascript
-import Particles from "particles.vue";
+import Particles from "vue2-particles";
 
 Vue.use(Particles);
 ```
@@ -118,7 +118,7 @@ Vue.use(Particles);
 Если TypeScript возвращает ошибку вовремя импорта/использования компонента, попробуйте добавить следующее определение перед предыдущим кодом:
 
 ```typescript
-declare module "particles.vue";
+declare module "vue2-particles";
 ```
 
 ## Демо
