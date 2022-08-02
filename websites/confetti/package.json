@@ -1,0 +1,17 @@
+{
+  "name": "confetti-website",
+  "version": "1.0.0",
+  "description": "tsParticles confetti webpage",
+  "private": true,
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/confetti.git"
+  },
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matteobruni/confetti/issues"
+  },
+  "homepage": "https://confetti.js.org"
+}
