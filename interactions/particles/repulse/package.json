@@ -2,7 +2,7 @@
   "name": "tsparticles-interaction-particles-repulse",
   "version": "2.1.4",
   "description": "tsParticles repulse particles interaction",
-  "homepage": "https://particles.js.org/",
+  "homepage": "https://particles.js.org",
   "scripts": {
     "build": "tsparticles-build src && yarn build:docs",
     "build:ci": "tsparticles-build src --ci",
@@ -89,7 +89,11 @@
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
-  "typedocMain": "./src/index.ts",
+  "typedoc": {
+    "entryPoint": "./src/index.ts",
+    "displayName": "tsParticles repulse particles interaction",
+    "readmeFile": "./README.md"
+  },
   "prettier": "@tsparticles/prettier-config",
   "devDependencies": {
     "@babel/core": "^7.18.9",

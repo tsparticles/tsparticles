@@ -32,7 +32,7 @@
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "homepage": "https://github.com/matteobruni/tsparticles#readme",
+  "homepage": "https://particles.js.org",
   "dependencies": {
     "copyfiles": "^2.4.1",
     "fs-extra": "^10.1.0",

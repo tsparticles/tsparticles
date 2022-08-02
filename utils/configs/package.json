@@ -2,7 +2,7 @@
   "name": "tsparticles-demo-configs",
   "version": "1.1.4",
   "description": "tsParticles demo configurations",
-  "homepage": "https://particles.js.org/",
+  "homepage": "https://particles.js.org",
   "scripts": {
     "prettify:ci:src": "prettier --check ./src",
     "prettify:ci:readme": "prettier --check ./README.md",

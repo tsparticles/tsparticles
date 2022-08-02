@@ -77,7 +77,7 @@
 	],
 	"author": "Matteo Bruni <matteo.bruni@me.com>",
 	"license": "MIT",
-	"homepage": "https://particles.js.org/",
+	"homepage": "https://particles.js.org",
 	"funding": [
 		{
 			"type": "github",

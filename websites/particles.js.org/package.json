@@ -20,12 +20,12 @@
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git"
   },
-  "author": "",
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "homepage": "https://github.com/matteobruni/tsparticles#readme",
+  "homepage": "https://particles.js.org",
   "dependencies": {
     "fs-extra": "^10.0.0",
     "gh-pages": "^4.0.0",

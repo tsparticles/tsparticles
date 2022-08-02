@@ -1,9 +1,21 @@
 const express = require('express');
 const helmet = require('helmet');
 const stylus = require('stylus');
+const livereload = require("livereload");
+const connectLiveReload = require("connect-livereload");
 //const rateLimit = require("express-rate-limit");
 
 const app = express();
+
+const liveReloadServer = livereload.createServer();
+
+liveReloadServer.server.once("connection", () => {
+    setTimeout(() => {
+        liveReloadServer.refresh("/");
+    }, 100);
+});
+
+app.use(connectLiveReload());
 
 /*const limiter = rateLimit({
     windowMs: 1000, // 15 minutes

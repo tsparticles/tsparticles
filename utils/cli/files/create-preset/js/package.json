@@ -3,7 +3,7 @@
   "version": "1.44.4",
   "private": true,
   "description": "tsParticles template preset",
-  "homepage": "https://particles.js.org/",
+  "homepage": "https://particles.js.org",
   "main": "index.js",
   "jsdelivr": "tsparticles.preset.template.min.js",
   "unpkg": "tsparticles.preset.template.min.js",

@@ -2,7 +2,7 @@
   "name": "ionic-demo",
   "version": "1.1.4",
   "author": "Matteo Bruni <matteo.bruni@me.com>",
-  "homepage": "https://ionicframework.com/",
+  "homepage": "https://particles.js.org",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

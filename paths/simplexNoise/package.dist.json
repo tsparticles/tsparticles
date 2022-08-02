@@ -2,7 +2,7 @@
   "name": "tsparticles-path-simplex-noise",
   "version": "2.1.4",
   "description": "tsParticles simplex noise path",
-  "homepage": "https://particles.js.org/",
+  "homepage": "https://particles.js.org",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
