@@ -17,6 +17,9 @@
     "url": "https://github.com/matteobruni/confetti/issues"
   },
   "homepage": "https://confetti.js.org",
+  "dependencies": {
+    "tsparticles": "^2.1.4"
+  },
   "devDependencies": {
     "gh-pages": "^4.0.0",
     "rimraf": "^3.0.2"
