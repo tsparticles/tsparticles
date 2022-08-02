@@ -1,8 +1,8 @@
 [![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# react-tsparticles
+# react-particles
 
-[![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
+[![npm](https://img.shields.io/npm/v/react-particles)](https://www.npmjs.com/package/react-particles) [![npm](https://img.shields.io/npm/dm/react-particles)](https://www.npmjs.com/package/react-particles)
 
 Official [tsParticles](https://github.com/matteobruni/tsparticles) ReactJS component
 
@@ -13,13 +13,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) ReactJS compo
 ## Installation
 
 ```shell
-npm install react-tsparticles
+npm install react-particles
 ```
 
 or
 
 ```shell
-yarn add react-tsparticles
+yarn add react-particles
 ```
 
 #### create-react-app
@@ -51,7 +51,7 @@ _Remote url_
 
 #### JavaScript support
 ```javascript
-import Particles from "react-tsparticles";
+import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 import { useCallback } from "react";
 
@@ -104,7 +104,7 @@ _Options object_
 
 #### JavaScript support
 ```javascript
-import Particles from "react-tsparticles";
+import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 import { useCallback } from "react";
 

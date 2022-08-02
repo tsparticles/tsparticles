@@ -1,8 +1,8 @@
 [![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# particles.vue
+# vue2-particles
 
-[![npm](https://img.shields.io/npm/v/particles.vue)](https://www.npmjs.com/package/particles.vue) [![npm](https://img.shields.io/npm/dm/particles.vue)](https://www.npmjs.com/package/particles.vue)
+[![npm](https://img.shields.io/npm/v/vue2-particles)](https://www.npmjs.com/package/vue2-particles) [![npm](https://img.shields.io/npm/dm/vue2-particles)](https://www.npmjs.com/package/vue2-particles)
 
 Official [tsParticles](https://github.com/matteobruni/tsparticles) VueJS component
 
@@ -13,13 +13,13 @@ Official [tsParticles](https://github.com/matteobruni/tsparticles) VueJS compone
 ## Installation
 
 ```shell script
-yarn add particles.vue
+yarn add vue2-particles
 ```
 
 ## Usage
 
 ```javascript
-import Particles from "particles.vue";
+import Particles from "vue2-particles";
 
 Vue.use(Particles);
 ```
@@ -27,6 +27,7 @@ Vue.use(Particles);
 ### Demo config
 
 ```html
+
 <template>
     <div id="app">
         <Particles
@@ -94,9 +95,7 @@ Vue.use(Particles);
                         move: {
                             direction: 'none',
                             enable: true,
-                            outModes: {
-                                default: 'bounce'
-                            },
+                            outMode: 'bounce',
                             random: false,
                             speed: 6,
                             straight: false
@@ -115,7 +114,8 @@ Vue.use(Particles);
                             type: 'circle'
                         },
                         size: {
-                            value: { min: 1, max: 5 },
+                            random: true,
+                            value: 5
                         }
                     },
                     detectRetina: true
@@ -143,7 +143,7 @@ If TypeScript returns error while importing/using Particles plugin try adding th
 code:
 
 ```typescript
-declare module "particles.vue";
+declare module "vue2-particles";
 ```
 
 ## Demos

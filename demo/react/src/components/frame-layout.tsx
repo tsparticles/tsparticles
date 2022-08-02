@@ -116,7 +116,7 @@ export class FrameLayout extends React.Component<IProps, IState> {
                 <div className="frame-layout__footer">
                     <a
                         className="github-mark"
-                        href="https://github.com/matteobruni/react-tsparticles"
+                        href="https://github.com/matteobruni/react-particles"
                         target="_blank"/>
                     <span>v{this.state.version}</span>
                 </div>

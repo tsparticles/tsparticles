@@ -60,9 +60,11 @@ export default defineComponent({
       cb(loadedContainer);
     });
   },
-  beforeMount(): void {
+  unmounted(): void {
     if (container) {
       container.destroy();
+
+      container = undefined;
     }
   },
 });

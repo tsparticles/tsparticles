@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.4](https://github.com/matteobruni/tsparticles/compare/nextjs@0.3.3...nextjs@0.3.4) (2022-07-28)
+
+
+### Features
+
+* preparing react-particles and switching alternate packages ([49e749e](https://github.com/matteobruni/tsparticles/commit/49e749e90e076f0cb22eefe0f3399102f5b9fb35))
+
+
+
+
+
 ## [0.3.3](https://github.com/matteobruni/tsparticles/compare/nextjs@0.3.2...nextjs@0.3.3) (2022-07-01)
 
 **Note:** Version bump only for package nextjs
