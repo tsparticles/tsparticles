@@ -3,8 +3,9 @@ const ghpages = require("gh-pages");
 ghpages.publish(
     "./",
     {
+        branch: "main",
         dotfiles: true,
-        history: false,
+        history: true,
         message: "build: gh pages updated",
         repo: "https://github.com/matteobruni/confetti.git",
         user: {
