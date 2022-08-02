@@ -111,3 +111,14 @@ main {
   background: #282c34cc !important;
   height: 100%;
 }
+
+#ads {
+  position: fixed;
+  top: 3.5rem;
+  right: 0;
+  max-width: 330px;
+  height: 100px;
+  z-index: 0;
+  background: #232323;
+  border-bottom: 1px solid #343a40;
+}

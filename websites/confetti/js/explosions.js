@@ -8,6 +8,9 @@ import { optionsToCode } from "./utils.js";
 
 const config = () => {
   return {
+    fullScreen: {
+      zIndex: 1
+    },
     particles: {
       number: {
         value: 0,

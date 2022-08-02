@@ -8,6 +8,9 @@ import { optionsToCode } from "./utils.js";
 
 const config = () => {
   return {
+    fullScreen: {
+      zIndex: 1
+    },
     emitters: {
       position: {
         x: 50,
@@ -33,7 +36,7 @@ const config = () => {
           top: "none",
           default: "destroy",
         },
-        speed: { min: 75, max: 150 },
+        speed: { min: 50, max: 100 },
       },
       number: {
         value: 0,
@@ -99,6 +102,18 @@ const config = () => {
       },
       shape: getParticlesShapes(),
     },
+    responsive: [
+      {
+        maxWidth: 1024,
+        options: {
+          particles: {
+            move: {
+              speed: { min: 33, max: 66 },
+            }
+          }
+        }
+      }
+    ]
   };
 };
 
