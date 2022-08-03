@@ -1585,12 +1585,19 @@
     read-package-json-fast "^2.0.3"
     which "^2.0.2"
 
-"@nrwl/cli@14.5.1", "@nrwl/cli@^14.4.3":
+"@nrwl/cli@14.5.1":
   version "14.5.1"
   resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-14.5.1.tgz#60b7ed1386601a56bedb04d7e8fdb6c2407a4cbe"
   integrity sha512-CWYAK5Oz/hZw82aeReKI0kPKKA0nCgtmf3fw4wVMNfTySW5Umt+08D5ZXG8xshtd4JODa4Lvvqtd7ig2mLh9sw==
   dependencies:
     nx "14.5.1"
+
+"@nrwl/cli@14.5.2", "@nrwl/cli@^14.4.3":
+  version "14.5.2"
+  resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-14.5.2.tgz#3608d03e55d5b15145d22f8cf2577e23688ff291"
+  integrity sha512-uriSxM33IpiBpW9kHEW3gw5OjPaQe3jHdWUMOT88TrqTlf449qe01Sys8+H2YgJMIcLTFYX0fP4V1K9jqKKZCg==
+  dependencies:
+    nx "14.5.2"
 
 "@nrwl/devkit@14.5.1":
   version "14.5.1"
@@ -1650,6 +1657,13 @@
   integrity sha512-7A35jJ89Y9W64wLsq1WZfduEIG9Iz1Alb8OWBXB9tpt4ZOuQw2o0LphbxpCPv039c5xQQGMtkD2owd3Xi73bvQ==
   dependencies:
     nx "14.5.1"
+
+"@nrwl/tao@14.5.2":
+  version "14.5.2"
+  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-14.5.2.tgz#13828035314732051683709907fcda3aa4d4718b"
+  integrity sha512-SEx3SM7xQiB8mOQ/gCt7lFJKRrkq3rBX6FiV3bl+dQtuKK2zKQbyikY9r+MCZCQNqZAud3HJ2xCyKZBhK8htQg==
+  dependencies:
+    nx "14.5.2"
 
 "@nrwl/workspace@^14.4.3":
   version "14.5.1"
@@ -5939,13 +5953,49 @@ nwsapi@^2.2.0:
   resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.2.1.tgz#10a9f268fbf4c461249ebcfe38e359aa36e2577c"
   integrity sha512-JYOWTeFoS0Z93587vRJgASD5Ut11fYl5NyihP3KrYBvMe1FRRs6RN7m20SA/16GM4P6hTnZjT+UmDOt38UeXNg==
 
-nx@14.5.1, "nx@>=14.4.3 < 16", nx@^14.4.3:
+nx@14.5.1:
   version "14.5.1"
   resolved "https://registry.yarnpkg.com/nx/-/nx-14.5.1.tgz#4725d260e02a891a16ddf886f80f197373d9b3f1"
   integrity sha512-0QimStCyaw4HpgiJYpdH7NWMEVULKMcXEgPG/Mu3XDQtda/+8plDJ+ftfVo3MfjXIzQ6T7+zo//xESUez0pZ5w==
   dependencies:
     "@nrwl/cli" "14.5.1"
     "@nrwl/tao" "14.5.1"
+    "@parcel/watcher" "2.0.4"
+    chalk "4.1.0"
+    chokidar "^3.5.1"
+    cli-cursor "3.1.0"
+    cli-spinners "2.6.1"
+    cliui "^7.0.2"
+    dotenv "~10.0.0"
+    enquirer "~2.3.6"
+    fast-glob "3.2.7"
+    figures "3.2.0"
+    flat "^5.0.2"
+    fs-extra "^10.1.0"
+    glob "7.1.4"
+    ignore "^5.0.4"
+    js-yaml "4.1.0"
+    jsonc-parser "3.0.0"
+    minimatch "3.0.5"
+    npm-run-path "^4.0.1"
+    open "^8.4.0"
+    semver "7.3.4"
+    string-width "^4.2.3"
+    tar-stream "~2.2.0"
+    tmp "~0.2.1"
+    tsconfig-paths "^3.9.0"
+    tslib "^2.3.0"
+    v8-compile-cache "2.3.0"
+    yargs "^17.4.0"
+    yargs-parser "21.0.1"
+
+nx@14.5.2, "nx@>=14.4.3 < 16", nx@^14.4.3:
+  version "14.5.2"
+  resolved "https://registry.yarnpkg.com/nx/-/nx-14.5.2.tgz#6514a38cc24cc642c2a3b54f5345791db8e4d9fb"
+  integrity sha512-I6KWVMR5Ksj/HgderkcmJmyaqHdWblQeFUeVq9to263Wr3QCIRigbvdDI3rq3ZQCBMyhUSOVP9MFXROoRVtJXQ==
+  dependencies:
+    "@nrwl/cli" "14.5.2"
+    "@nrwl/tao" "14.5.2"
     "@parcel/watcher" "2.0.4"
     chalk "4.1.0"
     chokidar "^3.5.1"
