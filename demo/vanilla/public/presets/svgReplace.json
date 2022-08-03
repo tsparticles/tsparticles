@@ -57,7 +57,7 @@
   },
   "particles": {
     "color": {
-      "value": "#000"
+      "value": ["#000", "#f00", "#00f"]
     },
     "lineLinked": {
       "blink": false,
@@ -115,30 +115,12 @@
     },
     "shape": {
       "options": {
-        "image": [
-          {
-            "src": "/images/canine1.svg",
-            "width": 32,
-            "height": 32,
-            "replaceColor": true,
-            "particles": {
-              "color": {
-                "value": "#00f"
-              }
-            }
-          },
-          {
-            "src": "/images/canine2.svg",
-            "width": 32,
-            "height": 32,
-            "replaceColor": true,
-            "particles": {
-              "color": {
-                "value": "#0f0"
-              }
-            }
-          }
-        ]
+        "image": {
+          "src": "/images/canine.svg",
+          "width": 32,
+          "height": 32,
+          "replaceColor": true
+        }
       },
       "type": "image"
     },

@@ -35,7 +35,7 @@ export type ShapeDrawerInitFunction = (container: Container) => Promise<void>;
  * @param container the container containing the shape
  * @param particle the particle using the shape
  */
-export type ShapeDrawerParticleInitFunction = (container: Container, particle: IParticle) => void;
+export type ShapeDrawerParticleInitFunction = (container: Container, particle: Particle) => void;
 
 /**
  * Shape after draw effect function
@@ -69,7 +69,7 @@ export type ShapeDrawerDestroyFunction = (container: Container) => void;
  * @param particle the particle using the shape
  * @returns the number of sides for the used shape
  */
-export type ShapeDrawerSidesCountFunction = (particle: IParticle) => number;
+export type ShapeDrawerSidesCountFunction = (particle: Particle) => number;
 
 /**
  * Shape load function

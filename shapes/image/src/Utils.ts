@@ -10,6 +10,7 @@ import { getStyleFromHsl } from "tsparticles-engine";
  * The image interface, used for keeping useful data for drawing
  */
 export interface IImage {
+    color?: IHsl;
     element?: HTMLImageElement;
     error: boolean;
     loading: boolean;
@@ -22,6 +23,7 @@ export interface IImage {
  * The particle image, containing also some particles options
  */
 export interface IParticleImage {
+    color?: IHsl;
     data: IImage;
     element?: HTMLImageElement;
     loaded?: boolean;
@@ -161,6 +163,7 @@ export function replaceImageColor(
         url = domUrl.createObjectURL(svg),
         img = new Image() /* create particle img obj */,
         imageRes: IParticleImage = {
+            color,
             data: {
                 ...image,
                 svgData: svgColoredData,

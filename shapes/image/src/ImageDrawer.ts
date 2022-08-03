@@ -1,4 +1,4 @@
-import type { Container, IShapeDrawer, Particle } from "tsparticles-engine";
+import type { Container, IHsl, IShapeDrawer, Particle } from "tsparticles-engine";
 import type { ContainerImage, IImage, IImageParticle, IParticleImage } from "./Utils";
 import { downloadSvgImage, loadImage, replaceImageColor } from "./Utils";
 import type { IImageShape } from "./IImageShape";
@@ -96,22 +96,29 @@ export class ImageDrawer implements IShapeDrawer {
 
     /**
      * Loads the image shape to the given particle
+     * @param container the particles container
      * @param particle the particle loading the image shape
      */
-    loadShape(particle: Particle): void {
+    particleInit(container: Container, particle: Particle): void {
         if (particle.shape !== "image" && particle.shape !== "images") {
             return;
         }
 
-        const images = this.getImages(particle.container).images,
+        const images = this.getImages(container).images,
             imageData = particle.shapeData as IImageShape,
-            image = images.find((t) => t.source === imageData.src);
+            color = particle.getFillColor(),
+            replaceColor = imageData.replaceColor ?? imageData.replace_color,
+            image = images.find(
+                (t) =>
+                    t.source === imageData.src &&
+                    (!replaceColor || (t.color?.h === color?.h && t.color?.s === color?.s && t.color?.l === color?.l))
+            );
 
         let imageRes: IParticleImage;
 
         if (!image) {
-            this.loadImageShape(particle.container, imageData).then(() => {
-                this.loadShape(particle);
+            this.loadImageShape(container, imageData, color).then(() => {
+                this.particleInit(container, particle);
             });
 
             return;
@@ -121,16 +128,15 @@ export class ImageDrawer implements IShapeDrawer {
             return;
         }
 
-        const color = particle.getFillColor();
-
-        if (image.svgData && imageData.replaceColor && color) {
+        if (image.svgData && replaceColor && color) {
             imageRes = replaceImageColor(image, imageData, color, particle);
         } else {
             imageRes = {
+                color,
                 data: image,
                 loaded: true,
                 ratio: imageData.width / imageData.height,
-                replaceColor: imageData.replaceColor ?? imageData.replace_color,
+                replaceColor: replaceColor,
                 source: imageData.src,
             };
         }
@@ -157,9 +163,10 @@ export class ImageDrawer implements IShapeDrawer {
      * Loads the image shape
      * @param container the container used for searching images
      * @param imageShape the image shape to load
+     * @param color the color to use for replace, if needed
      * @private
      */
-    private async loadImageShape(container: Container, imageShape: IImageShape): Promise<void> {
+    private async loadImageShape(container: Container, imageShape: IImageShape, color?: IHsl): Promise<void> {
         const source = imageShape.src;
 
         if (!source) {
@@ -168,6 +175,7 @@ export class ImageDrawer implements IShapeDrawer {
 
         try {
             const image: IImage = {
+                color,
                 source: source,
                 type: source.substr(source.length - 3),
                 error: false,
@@ -176,7 +184,7 @@ export class ImageDrawer implements IShapeDrawer {
 
             this.addImage(container, image);
 
-            const imageFunc = imageShape.replaceColor ? downloadSvgImage : loadImage;
+            const imageFunc = imageShape.replaceColor ?? imageShape.replace_color ? downloadSvgImage : loadImage;
 
             await imageFunc(image);
         } catch {
