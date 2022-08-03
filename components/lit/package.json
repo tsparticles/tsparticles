@@ -7,16 +7,12 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
+    "build:ci": "tsc",
     "build:watch": "tsc --watch",
     "clean": "rimraf lit-particles.{d.ts,d.ts.map,js,js.map}",
     "lint": "lit-analyzer && eslint 'src/**/*.ts'",
     "format": "prettier src/* --write",
     "analyze": "wca analyze \"src/**/*.ts\" --outFile custom-elements.json",
-    "serve": "es-dev-server --node-resolve --watch",
-    "test": "karma start karma.conf.cjs",
-    "test:watch": "karma start karma.conf.cjs --auto-watch=true --single-run=false",
-    "test:update-snapshots": "karma start karma.conf.cjs --update-snapshots",
-    "test:prune-snapshots": "karma start karma.conf.cjs --prune-snapshots",
     "checksize": "rollup -c ; cat lit-particles.bundled.js | gzip -9 | wc -c ; rm lit-particles.bundled.js"
   },
   "keywords": [
