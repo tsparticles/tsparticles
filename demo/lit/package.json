@@ -1,9 +1,8 @@
 {
-  "name": "lit-element-starter-ts",
-  "version": "0.0.0",
+  "name": "lit-particles-demo",
+  "version": "1.0.0",
+  "private": true,
   "description": "A simple web component",
-  "main": "my-element.js",
-  "module": "my-element.js",
   "type": "module",
   "scripts": {
     "build": "tsc",
@@ -11,19 +10,8 @@
     "clean": "rimraf my-element.{d.ts,d.ts.map,js,js.map} test/my-element.{d.ts,d.ts.map,js,js.map} test/my-element_test.{d.ts,d.ts.map,js,js.map}",
     "lint": "lit-analyzer && eslint 'src/**/*.ts'",
     "format": "prettier src/* --write",
-    "docs": "npm run docs:clean && npm run build && npm run analyze && npm run docs:build && npm run docs:assets && npm run docs:gen",
-    "docs:clean": "rimraf docs",
-    "docs:gen": "eleventy --config=.eleventy.cjs",
-    "docs:gen:watch": "eleventy --config=.eleventy.cjs --watch",
-    "docs:build": "rollup -c --file docs/my-element.bundled.js",
-    "docs:assets": "cp node_modules/prismjs/themes/prism-okaidia.css docs/",
-    "docs:serve": "es-dev-server --root-dir=docs --node-resolve --watch",
     "analyze": "wca analyze \"src/**/*.ts\" --outFile custom-elements.json",
     "serve": "es-dev-server --node-resolve --watch",
-    "test": "karma start karma.conf.cjs",
-    "test:watch": "karma start karma.conf.cjs --auto-watch=true --single-run=false",
-    "test:update-snapshots": "karma start karma.conf.cjs --update-snapshots",
-    "test:prune-snapshots": "karma start karma.conf.cjs --prune-snapshots",
     "checksize": "rollup -c ; cat my-element.bundled.js | gzip -9 | wc -c ; rm my-element.bundled.js"
   },
   "keywords": [
@@ -54,6 +42,7 @@
     "karma-chai": "^0.1.0",
     "karma-mocha": "^1.3.0",
     "lit-analyzer": "^1.1.9",
+    "lit-tsparticles": "^2.1.4",
     "mocha": "^6.2.2",
     "prettier": "^1.19.1",
     "rimraf": "^3.0.2",
@@ -61,6 +50,7 @@
     "rollup-plugin-filesize": "^6.2.1",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-terser": "^5.1.3",
+    "tsparticles": "^2.1.4",
     "typescript": "^3.7.2",
     "web-component-analyzer": "^1.0.0"
   }
