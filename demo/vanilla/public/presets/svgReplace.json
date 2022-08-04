@@ -57,7 +57,7 @@
   },
   "particles": {
     "color": {
-      "value": ["#000", "#f00", "#00f"]
+      "value": "#00f"
     },
     "lineLinked": {
       "blink": false,

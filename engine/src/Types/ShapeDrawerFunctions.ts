@@ -1,6 +1,5 @@
 import type { Container } from "../Core/Container";
 import type { IDelta } from "../Core/Interfaces/IDelta";
-import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { Particle } from "../Core/Particle";
 
 /**
@@ -15,7 +14,7 @@ import type { Particle } from "../Core/Particle";
  */
 export type ShapeDrawerDrawFunction = (
     context: CanvasRenderingContext2D,
-    particle: IParticle,
+    particle: Particle,
     radius: number,
     opacity: number,
     delta: IDelta,
@@ -49,7 +48,7 @@ export type ShapeDrawerParticleInitFunction = (container: Container, particle: P
  */
 export type ShapeDrawerAfterEffectFunction = (
     context: CanvasRenderingContext2D,
-    particle: IParticle,
+    particle: Particle,
     radius: number,
     opacity: number,
     delta: IDelta,

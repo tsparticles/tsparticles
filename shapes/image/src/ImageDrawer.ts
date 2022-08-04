@@ -1,5 +1,5 @@
-import type { Container, IHsl, IShapeDrawer, Particle } from "tsparticles-engine";
-import type { ContainerImage, IImage, IImageParticle, IParticleImage } from "./Utils";
+import type { Container, IShapeDrawer } from "tsparticles-engine";
+import type { ContainerImage, IImage, IParticleImage, ImageParticle } from "./Utils";
 import { downloadSvgImage, loadImage, replaceImageColor } from "./Utils";
 import type { IImageShape } from "./IImageShape";
 
@@ -45,9 +45,9 @@ export class ImageDrawer implements IShapeDrawer {
      * @param radius the particle radius
      * @param opacity the particle opacity
      */
-    draw(context: CanvasRenderingContext2D, particle: IImageParticle, radius: number, opacity: number): void {
+    draw(context: CanvasRenderingContext2D, particle: ImageParticle, radius: number, opacity: number): void {
         const image = particle.image,
-            element = image?.data?.element;
+            element = image?.element;
 
         if (!element) {
             return;
@@ -94,31 +94,19 @@ export class ImageDrawer implements IShapeDrawer {
         return 12;
     }
 
-    /**
-     * Loads the image shape to the given particle
-     * @param container the particles container
-     * @param particle the particle loading the image shape
-     */
-    particleInit(container: Container, particle: Particle): void {
+    loadShape(particle: ImageParticle): void {
         if (particle.shape !== "image" && particle.shape !== "images") {
             return;
         }
 
-        const images = this.getImages(container).images,
+        const container = particle.container,
+            images = this.getImages(container).images,
             imageData = particle.shapeData as IImageShape,
-            color = particle.getFillColor(),
-            replaceColor = imageData.replaceColor ?? imageData.replace_color,
-            image = images.find(
-                (t) =>
-                    t.source === imageData.src &&
-                    (!replaceColor || (t.color?.h === color?.h && t.color?.s === color?.s && t.color?.l === color?.l))
-            );
-
-        let imageRes: IParticleImage;
+            image = images.find((t) => t.source === imageData.src);
 
         if (!image) {
-            this.loadImageShape(container, imageData, color).then(() => {
-                this.particleInit(container, particle);
+            this.loadImageShape(container, imageData).then(() => {
+                this.loadShape(particle);
             });
 
             return;
@@ -127,46 +115,78 @@ export class ImageDrawer implements IShapeDrawer {
         if (image.error) {
             return;
         }
+    }
 
-        if (image.svgData && replaceColor && color) {
-            imageRes = replaceImageColor(image, imageData, color, particle);
-        } else {
-            imageRes = {
-                color,
-                data: image,
-                loaded: true,
-                ratio: imageData.width / imageData.height,
-                replaceColor: replaceColor,
-                source: imageData.src,
-            };
+    /**
+     * Loads the image shape to the given particle
+     * @param container the particles container
+     * @param particle the particle loading the image shape
+     */
+    particleInit(container: Container, particle: ImageParticle): void {
+        if (particle.shape !== "image" && particle.shape !== "images") {
+            return;
         }
 
-        if (!imageRes.ratio) {
-            imageRes.ratio = 1;
+        const images = this.getImages(container).images,
+            imageData = particle.shapeData as IImageShape,
+            color = particle.getFillColor(),
+            replaceColor = imageData.replaceColor ?? imageData.replace_color,
+            image = images.find((t) => t.source === imageData.src);
+
+        if (!image) {
+            return;
         }
 
-        const fill = imageData.fill ?? particle.fill,
-            close = imageData.close ?? particle.close,
-            imageShape = {
-                image: imageRes,
-                fill,
-                close,
-            };
+        if (image.loading) {
+            setTimeout((): void => {
+                this.particleInit(container, particle);
+            });
 
-        (particle as IImageParticle).image = imageShape.image;
+            return;
+        }
 
-        particle.fill = imageShape.fill;
-        particle.close = imageShape.close;
+        (async (): Promise<void> => {
+            let imageRes: IParticleImage;
+
+            if (image.svgData && replaceColor && color) {
+                imageRes = await replaceImageColor(image, imageData, color, particle);
+            } else {
+                imageRes = {
+                    color,
+                    data: image,
+                    element: image.element,
+                    loaded: true,
+                    ratio: imageData.width / imageData.height,
+                    replaceColor: replaceColor,
+                    source: imageData.src,
+                };
+            }
+
+            if (!imageRes.ratio) {
+                imageRes.ratio = 1;
+            }
+
+            const fill = imageData.fill ?? particle.fill,
+                close = imageData.close ?? particle.close,
+                imageShape = {
+                    image: imageRes,
+                    fill,
+                    close,
+                };
+
+            particle.image = imageShape.image;
+            particle.fill = imageShape.fill;
+            particle.close = imageShape.close;
+        })();
     }
 
     /**
      * Loads the image shape
      * @param container the container used for searching images
      * @param imageShape the image shape to load
-     * @param color the color to use for replace, if needed
      * @private
      */
-    private async loadImageShape(container: Container, imageShape: IImageShape, color?: IHsl): Promise<void> {
+    private async loadImageShape(container: Container, imageShape: IImageShape): Promise<void> {
         const source = imageShape.src;
 
         if (!source) {
@@ -175,9 +195,8 @@ export class ImageDrawer implements IShapeDrawer {
 
         try {
             const image: IImage = {
-                color,
                 source: source,
-                type: source.substr(source.length - 3),
+                type: source.substring(source.length - 3),
                 error: false,
                 loading: true,
             };
