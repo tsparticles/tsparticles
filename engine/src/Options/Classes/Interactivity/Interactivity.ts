@@ -1,3 +1,5 @@
+import type { Container } from "../../../Core/Container";
+import type { Engine } from "../../../engine";
 import { Events } from "./Events/Events";
 import { HoverMode } from "../../../Enums/Modes/HoverMode";
 import type { IInteractivity } from "../../Interfaces/Interactivity/IInteractivity";
@@ -11,11 +13,21 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial";
  * @category Options
  */
 export class Interactivity implements IInteractivity, IOptionLoader<IInteractivity> {
+    [name: string]: unknown;
+
+    readonly #container;
+
     detectsOn: InteractivityDetect | keyof typeof InteractivityDetect;
+
+    readonly #engine;
+
     events;
     modes;
 
-    constructor() {
+    constructor(engine: Engine, container?: Container) {
+        this.#engine = engine;
+        this.#container = container;
+
         this.detectsOn = InteractivityDetect.window;
         this.events = new Events();
         this.modes = new Modes();
@@ -59,6 +71,18 @@ export class Interactivity implements IInteractivity, IOptionLoader<IInteractivi
                 }
             } else if (this.events.onHover.mode !== HoverMode.slow) {
                 this.events.onHover.mode = [this.events.onHover.mode, HoverMode.slow];
+            }
+        }
+
+        if (this.#container) {
+            const interactors = this.#engine.plugins.interactors.get(this.#container);
+
+            if (interactors) {
+                for (const interactor of interactors) {
+                    if (interactor.loadInteractivityOptions) {
+                        interactor.loadInteractivityOptions(this, data);
+                    }
+                }
             }
         }
     }

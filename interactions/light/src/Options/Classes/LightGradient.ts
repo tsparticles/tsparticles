@@ -1,7 +1,6 @@
-import type { ILightGradient } from "../../../Interfaces/Interactivity/Modes/ILightGradient";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import { OptionsColor } from "../../OptionsColor";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import type { ILightGradient } from "../Interfaces/ILightGradient";
+import { OptionsColor } from "tsparticles-engine";
 
 export class LightGradient implements ILightGradient, IOptionLoader<ILightGradient> {
     start;

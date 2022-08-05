@@ -327,7 +327,7 @@ export class Particle implements IParticle {
         particlesOptions.load(overrideOptions);
         particlesOptions.load(this.shapeData?.particles);
 
-        this.interactivity = new Interactivity();
+        this.interactivity = new Interactivity(engine, container);
 
         this.interactivity.load(container.actualOptions.interactivity);
         this.interactivity.load(particlesOptions.interactivity);

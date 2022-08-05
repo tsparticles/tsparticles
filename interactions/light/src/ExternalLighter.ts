@@ -1,6 +1,5 @@
 import { ExternalInteractorBase, HoverMode, isInArray, rangeColorToRgb } from "tsparticles-engine";
-import type { LightContainer } from "./Types";
-import type { Particle } from "tsparticles-engine";
+import type { LightContainer, LightParticle } from "./Types";
 import { drawLight } from "./Utils";
 
 export class ExternalLighter extends ExternalInteractorBase {
@@ -33,7 +32,7 @@ export class ExternalLighter extends ExternalInteractorBase {
         }
     }
 
-    isEnabled(particle?: Particle): boolean {
+    isEnabled(particle?: LightParticle): boolean {
         const container = this.container as LightContainer,
             mouse = container.interactivity.mouse,
             interactivity = particle?.interactivity ?? container.actualOptions.interactivity,
@@ -45,7 +44,7 @@ export class ExternalLighter extends ExternalInteractorBase {
 
         const res = isInArray(HoverMode.light, events.onHover.mode);
 
-        if (res) {
+        if (res && interactivity.modes.light) {
             const lightGradient = interactivity.modes.light.area.gradient;
 
             container.canvas.mouseLight = {

@@ -58,7 +58,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.detectRetina = true;
         this.duration = 0;
         this.fpsLimit = 120;
-        this.interactivity = new Interactivity();
+        this.interactivity = new Interactivity(engine, container);
         this.manualParticles = [];
         this.motion = new Motion();
         this.particles = loadParticlesOptions(this.#engine, this.#container);

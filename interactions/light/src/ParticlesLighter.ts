@@ -1,11 +1,16 @@
-import { HoverMode, ParticlesInteractorBase, isInArray, rangeColorToRgb } from "tsparticles-engine";
-import type { LightContainer, LightParticle } from "./Types";
-import type { Particle } from "tsparticles-engine";
+import { HoverMode, Modes, ParticlesInteractorBase, isInArray, rangeColorToRgb } from "tsparticles-engine";
+import type { IInteractivity, Interactivity, RecursivePartial } from "tsparticles-engine";
+import type { LightContainer, LightInteractivity, LightParticle } from "./Types";
+import { Light } from "./Options/Classes/Light";
 import { drawParticleShadow } from "./Utils";
 
 export class ParticlesLighter extends ParticlesInteractorBase {
+    readonly #container;
+
     constructor(container: LightContainer) {
         super(container);
+
+        this.#container = container;
     }
 
     clear(): void {
@@ -16,8 +21,8 @@ export class ParticlesLighter extends ParticlesInteractorBase {
         // do nothing
     }
 
-    async interact(particle: Particle): Promise<void> {
-        const container = this.container,
+    async interact(particle: LightParticle): Promise<void> {
+        const container = this.#container,
             options = container.actualOptions;
 
         if (options.interactivity.events.onHover.enable && container.interactivity.status === "mousemove") {
@@ -43,13 +48,34 @@ export class ParticlesLighter extends ParticlesInteractorBase {
 
         const res = isInArray(HoverMode.light, events.onHover.mode);
 
-        if (res) {
+        if (res && interactivity.modes.light) {
             const shadowOptions = interactivity.modes.light.shadow;
 
             particle.lightShadow = rangeColorToRgb(shadowOptions.color);
         }
 
         return res;
+    }
+
+    loadInteractivityOptions(
+        options: Interactivity & LightInteractivity,
+        ...sources: RecursivePartial<(IInteractivity & LightInteractivity) | undefined>[]
+    ): void {
+        for (const source of sources) {
+            if (!source?.modes?.light) {
+                continue;
+            }
+
+            if (!options.modes) {
+                options.modes = new Modes();
+            }
+
+            if (!options.modes.light) {
+                options.modes.light = new Light();
+            }
+
+            options.modes.light.load(source.modes.light);
+        }
     }
 
     reset(): void {
