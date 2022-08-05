@@ -333,10 +333,10 @@
     rollup "^2.70.1"
     rollup-plugin-riot "^6.0.0"
 
-"@riotjs/compiler@^6.1.3", "@riotjs/compiler@^6.3.0":
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/@riotjs/compiler/-/compiler-6.3.1.tgz#261654caf3d4580f66e93d35a6b039d3d98e9595"
-  integrity sha512-BPKHu3WUSq2chr+CFZhVcVmoUD5stIgfkSfActlq0D8MVzNPU4fqagCgpkrXcr+1ikXA47ZeYJhwpgfVsX5zUA==
+"@riotjs/compiler@^6.1.3", "@riotjs/compiler@^6.3.2":
+  version "6.3.2"
+  resolved "https://registry.yarnpkg.com/@riotjs/compiler/-/compiler-6.3.2.tgz#9643d3b6d9890f0a1a805180cca43b19116dbaab"
+  integrity sha512-pGlLt08lhYeK+KMD3sPKsXInjQQWx9qMb7A/DPqbfMUvplsoTHnF2QfBWSmENqCaKGPGC4pTM1YCnaghQ5W6PA==
   dependencies:
     "@babel/parser" "^7.18.10"
     "@riotjs/parser" "^4.3.1"
@@ -1843,11 +1843,11 @@ rimraf@^3.0.0:
     glob "^7.1.3"
 
 riot@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/riot/-/riot-7.0.0.tgz#438fe045c2db936f44a9a8168be112120696ddce"
-  integrity sha512-HVN+PJmipgjr6djtRUKxLBe/NEu0tJdan3j1GEbYWnVUxgpY4kzAxf97F/dBFtUbKN1XGheLkiXSVvtDDBQLfg==
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/riot/-/riot-7.0.2.tgz#44c26181098fcdd676bc33abd51e623a85a9743f"
+  integrity sha512-9JT2ULNzw6PXNlUjChSixSyyffYHL+BiRmI5H9tTKiWCVSLS9wbyr9J0v0PsDdfeP9lMf+1KqGha/M9mvZspZw==
   dependencies:
-    "@riotjs/compiler" "^6.3.0"
+    "@riotjs/compiler" "^6.3.2"
     "@riotjs/dom-bindings" "6.0.3"
     "@riotjs/util" "^2.1.1"
     bianco.attr "^1.1.1"
