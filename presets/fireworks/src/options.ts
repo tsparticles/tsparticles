@@ -73,9 +73,14 @@ const fireworksOptions: RecursivePartial<IParticlesOptions>[] = ["#ff595e", "#ff
                 type: "circle",
             },
             size: {
-                value: 2,
+                value: { min: 1, max: 2 },
                 animation: {
-                    enable: false,
+                    enable: true,
+                    speed: 5,
+                    count: 1,
+                    sync: false,
+                    startValue: StartValueType.min,
+                    destroy: DestroyType.none,
                 },
             },
             life: {
@@ -88,14 +93,15 @@ const fireworksOptions: RecursivePartial<IParticlesOptions>[] = ["#ff595e", "#ff
                 },
             },
             move: {
+                decay: 0.05,
                 enable: true,
                 gravity: {
-                    enable: false,
+                    enable: true,
+                    inverse: false,
+                    acceleration: 5,
                 },
-                speed: 2,
+                speed: { min: 5, max: 10 },
                 direction: "none",
-                random: true,
-                straight: false,
                 outModes: OutMode.destroy,
             },
         } as RecursivePartial<IParticlesOptions>;
@@ -116,7 +122,7 @@ export const options: ISourceOptions = {
             delay: 0.1,
         },
         rate: {
-            delay: 0.25,
+            delay: 0.15,
             quantity: 1,
         },
         size: {
@@ -140,7 +146,7 @@ export const options: ISourceOptions = {
                     value: 0.333333,
                 },
                 rate: {
-                    value: 200,
+                    value: 100,
                 },
                 particles: fireworksOptions,
             },
