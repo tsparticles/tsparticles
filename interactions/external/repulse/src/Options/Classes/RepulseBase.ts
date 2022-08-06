@@ -1,8 +1,6 @@
-import { EasingType } from "../../../../Enums/Types/EasingType";
-import type { EasingTypeAlt } from "../../../../Enums/Types/EasingType";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { IRepulseBase } from "../../../Interfaces/Interactivity/Modes/IRepulseBase";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { EasingTypeAlt, IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import { EasingType } from "tsparticles-engine";
+import type { IRepulseBase } from "../Interfaces/IRepulseBase";
 
 /**
  * @category Options

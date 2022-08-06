@@ -11,7 +11,6 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { Push } from "./Push";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { Remove } from "./Remove";
-import { Repulse } from "./Repulse";
 import { Slow } from "./Slow";
 
 /**
@@ -30,7 +29,6 @@ export class Modes implements IModes, IOptionLoader<IModes> {
     grab;
     push;
     remove;
-    repulse;
     slow;
 
     constructor(engine: Engine, container?: Container) {
@@ -44,7 +42,6 @@ export class Modes implements IModes, IOptionLoader<IModes> {
         this.grab = new Grab();
         this.push = new Push();
         this.remove = new Remove();
-        this.repulse = new Repulse();
         this.slow = new Slow();
     }
 
@@ -59,7 +56,6 @@ export class Modes implements IModes, IOptionLoader<IModes> {
         this.grab.load(data.grab);
         this.push.load(data.push);
         this.remove.load(data.remove);
-        this.repulse.load(data.repulse);
         this.slow.load(data.slow);
 
         if (this.#container) {
