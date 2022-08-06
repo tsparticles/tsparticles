@@ -1,15 +1,28 @@
-import { ClickMode, ExternalInteractorBase, HoverMode, isInArray } from "tsparticles-engine";
-import type { Container, ICoordinates, IDelta, Particle } from "tsparticles-engine";
+import { ClickMode, ExternalInteractorBase, HoverMode, Modes, isInArray } from "tsparticles-engine";
+import type {
+    ICoordinates,
+    IDelta,
+    IInteractivity,
+    Interactivity,
+    Particle,
+    RecursivePartial,
+} from "tsparticles-engine";
+import type { ITrailInteractivity, TrailContainer, TrailInteractivity } from "./Types";
+import { Trail } from "./Options/Classes/Trail";
 
 /**
  * @category Interactions
  */
 export class TrailMaker extends ExternalInteractorBase {
+    readonly #container;
+
     private delay: number;
     private lastPosition?: ICoordinates;
 
-    constructor(container: Container) {
+    constructor(container: TrailContainer) {
         super(container);
+
+        this.#container = container;
 
         this.delay = 0;
     }
@@ -27,10 +40,15 @@ export class TrailMaker extends ExternalInteractorBase {
             return;
         }
 
-        const container = this.container,
+        const container = this.#container,
             options = container.actualOptions,
-            trailOptions = options.interactivity.modes.trail,
-            optDelay = (trailOptions.delay * 1000) / this.container.retina.reduceFactor;
+            trailOptions = options.interactivity.modes.trail;
+
+        if (!trailOptions) {
+            return;
+        }
+
+        const optDelay = (trailOptions.delay * 1000) / this.container.retina.reduceFactor;
 
         if (this.delay < optDelay) {
             this.delay += delta.value;
@@ -78,6 +96,27 @@ export class TrailMaker extends ExternalInteractorBase {
             (mouse.clicking && mouse.inside && !!mouse.position && isInArray(ClickMode.trail, events.onClick.mode)) ||
             (mouse.inside && !!mouse.position && isInArray(HoverMode.trail, events.onHover.mode))
         );
+    }
+
+    loadInteractivityOptions(
+        options: Interactivity & TrailInteractivity,
+        ...sources: RecursivePartial<(IInteractivity & ITrailInteractivity) | undefined>[]
+    ): void {
+        for (const source of sources) {
+            if (!source?.modes?.trail) {
+                continue;
+            }
+
+            if (!options.modes) {
+                options.modes = new Modes();
+            }
+
+            if (!options.modes.trail) {
+                options.modes.trail = new Trail();
+            }
+
+            options.modes.trail.load(source.modes.trail);
+        }
     }
 
     reset(): void {

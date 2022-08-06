@@ -82,7 +82,6 @@ export * from "./Options/Classes/Interactivity/Modes/Repulse";
 export * from "./Options/Classes/Interactivity/Modes/RepulseBase";
 export * from "./Options/Classes/Interactivity/Modes/RepulseDiv";
 export * from "./Options/Classes/Interactivity/Modes/Slow";
-export * from "./Options/Classes/Interactivity/Modes/Trail";
 export * from "./Options/Classes/ManualParticle";
 export * from "./Options/Classes/Motion/Motion";
 export * from "./Options/Classes/Motion/MotionReduce";

@@ -7,7 +7,6 @@ import type { IPush } from "./IPush";
 import type { IRemove } from "./IRemove";
 import type { IRepulse } from "./IRepulse";
 import type { ISlow } from "./ISlow";
-import type { ITrail } from "./ITrail";
 
 /**
  * [[include:Options/Interactivity/Modes.md]]
@@ -23,5 +22,4 @@ export interface IModes {
     remove: IRemove;
     repulse: IRepulse;
     slow: ISlow;
-    trail: ITrail;
 }

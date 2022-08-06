@@ -10,7 +10,6 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { Remove } from "./Remove";
 import { Repulse } from "./Repulse";
 import { Slow } from "./Slow";
-import { Trail } from "./Trail";
 
 /**
  * [[include:Options/Interactivity/Modes.md]]
@@ -26,7 +25,6 @@ export class Modes implements IModes, IOptionLoader<IModes> {
     remove;
     repulse;
     slow;
-    trail;
 
     constructor() {
         this.attract = new Attract();
@@ -38,7 +36,6 @@ export class Modes implements IModes, IOptionLoader<IModes> {
         this.remove = new Remove();
         this.repulse = new Repulse();
         this.slow = new Slow();
-        this.trail = new Trail();
     }
 
     load(data?: RecursivePartial<IModes>): void {
@@ -54,6 +51,5 @@ export class Modes implements IModes, IOptionLoader<IModes> {
         this.remove.load(data.remove);
         this.repulse.load(data.repulse);
         this.slow.load(data.slow);
-        this.trail.load(data.trail);
     }
 }
