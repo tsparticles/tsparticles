@@ -1,5 +1,8 @@
 import { ExternalInteractorBase, HoverMode, isInArray, rangeColorToRgb } from "tsparticles-engine";
+import type { ILightMode, LightMode } from "./Types";
+import type { IModes, Modes, RecursivePartial } from "tsparticles-engine";
 import type { LightContainer, LightParticle } from "./Types";
+import { Light } from "./Options/Classes/Light";
 import { drawLight } from "./Utils";
 
 export class ExternalLighter extends ExternalInteractorBase {
@@ -54,6 +57,23 @@ export class ExternalLighter extends ExternalInteractorBase {
         }
 
         return res;
+    }
+
+    loadModeOptions(
+        options: Modes & LightMode,
+        ...sources: RecursivePartial<(IModes & ILightMode) | undefined>[]
+    ): void {
+        for (const source of sources) {
+            if (!source?.light) {
+                continue;
+            }
+
+            if (!options.light) {
+                options.light = new Light();
+            }
+
+            options.light.load(source.light);
+        }
     }
 
     reset(): void {

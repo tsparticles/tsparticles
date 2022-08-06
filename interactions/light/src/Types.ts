@@ -3,16 +3,12 @@ import type { LightOptions, LightParticlesOptions } from "./Options/Classes/Ligh
 import type { ILight } from "./Options/Interfaces/ILight";
 import type { Light } from "./Options/Classes/Light";
 
-export type ILightInteractivity = {
-    modes?: {
-        light?: ILight;
-    };
+export type ILightMode = {
+    light?: ILight;
 };
 
-export type LightInteractivity = {
-    modes?: {
-        light?: Light;
-    };
+export type LightMode = {
+    light?: Light;
 };
 
 export type LightContainer = Container & {
@@ -20,11 +16,12 @@ export type LightContainer = Container & {
     canvas: {
         mouseLight?: { start?: IRgb; stop?: IRgb };
     };
-    interactivity?: LightInteractivity;
 };
 
 export type LightParticle = Particle & {
-    interactivity?: LightInteractivity;
+    interactivity: {
+        modes: ILightMode;
+    };
     lightShadow?: IRgb;
     options: LightParticlesOptions;
 };

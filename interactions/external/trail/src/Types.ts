@@ -3,16 +3,12 @@ import type { ITrail } from "./Options/Interfaces/ITrail";
 import type { Trail } from "./Options/Classes/Trail";
 import type { TrailOptions } from "./Options/Classes/TrailOptions";
 
-export type ITrailInteractivity = {
-    modes: {
-        trail: ITrail;
-    };
+export type ITrailMode = {
+    trail: ITrail;
 };
 
-export type TrailInteractivity = {
-    modes: {
-        trail?: Trail;
-    };
+export type TrailMode = {
+    trail?: Trail;
 };
 
 export type TrailContainer = Container & {

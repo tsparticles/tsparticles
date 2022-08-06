@@ -1,7 +1,5 @@
-import { HoverMode, Modes, ParticlesInteractorBase, isInArray, rangeColorToRgb } from "tsparticles-engine";
-import type { IInteractivity, Interactivity, RecursivePartial } from "tsparticles-engine";
-import type { ILightInteractivity, LightContainer, LightInteractivity, LightParticle } from "./Types";
-import { Light } from "./Options/Classes/Light";
+import { HoverMode, ParticlesInteractorBase, isInArray, rangeColorToRgb } from "tsparticles-engine";
+import type { LightContainer, LightParticle } from "./Types";
 import { drawParticleShadow } from "./Utils";
 
 export class ParticlesLighter extends ParticlesInteractorBase {
@@ -55,27 +53,6 @@ export class ParticlesLighter extends ParticlesInteractorBase {
         }
 
         return res;
-    }
-
-    loadInteractivityOptions(
-        options: Interactivity & LightInteractivity,
-        ...sources: RecursivePartial<(IInteractivity & ILightInteractivity) | undefined>[]
-    ): void {
-        for (const source of sources) {
-            if (!source?.modes?.light) {
-                continue;
-            }
-
-            if (!options.modes) {
-                options.modes = new Modes();
-            }
-
-            if (!options.modes.light) {
-                options.modes.light = new Light();
-            }
-
-            options.modes.light.load(source.modes.light);
-        }
     }
 
     reset(): void {

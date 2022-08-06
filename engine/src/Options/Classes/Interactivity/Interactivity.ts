@@ -30,7 +30,7 @@ export class Interactivity implements IInteractivity, IOptionLoader<IInteractivi
 
         this.detectsOn = InteractivityDetect.window;
         this.events = new Events();
-        this.modes = new Modes();
+        this.modes = new Modes(engine, container);
     }
 
     /**
@@ -71,18 +71,6 @@ export class Interactivity implements IInteractivity, IOptionLoader<IInteractivi
                 }
             } else if (this.events.onHover.mode !== HoverMode.slow) {
                 this.events.onHover.mode = [this.events.onHover.mode, HoverMode.slow];
-            }
-        }
-
-        if (this.#container) {
-            const interactors = this.#engine.plugins.interactors.get(this.#container);
-
-            if (interactors) {
-                for (const interactor of interactors) {
-                    if (interactor.loadInteractivityOptions) {
-                        interactor.loadInteractivityOptions(this, data);
-                    }
-                }
             }
         }
     }

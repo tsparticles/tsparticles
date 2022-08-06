@@ -1,13 +1,6 @@
-import { ClickMode, ExternalInteractorBase, HoverMode, Modes, isInArray } from "tsparticles-engine";
-import type {
-    ICoordinates,
-    IDelta,
-    IInteractivity,
-    Interactivity,
-    Particle,
-    RecursivePartial,
-} from "tsparticles-engine";
-import type { ITrailInteractivity, TrailContainer, TrailInteractivity } from "./Types";
+import { ClickMode, ExternalInteractorBase, HoverMode, isInArray } from "tsparticles-engine";
+import type { ICoordinates, IDelta, IModes, Modes, Particle, RecursivePartial } from "tsparticles-engine";
+import type { ITrailMode, TrailContainer, TrailMode } from "./Types";
 import { Trail } from "./Options/Classes/Trail";
 
 /**
@@ -98,24 +91,20 @@ export class TrailMaker extends ExternalInteractorBase {
         );
     }
 
-    loadInteractivityOptions(
-        options: Interactivity & TrailInteractivity,
-        ...sources: RecursivePartial<(IInteractivity & ITrailInteractivity) | undefined>[]
+    loadModeOptions(
+        options: Modes & TrailMode,
+        ...sources: RecursivePartial<(IModes & ITrailMode) | undefined>[]
     ): void {
         for (const source of sources) {
-            if (!source?.modes?.trail) {
+            if (!source?.trail) {
                 continue;
             }
 
-            if (!options.modes) {
-                options.modes = new Modes();
+            if (!options.trail) {
+                options.trail = new Trail();
             }
 
-            if (!options.modes.trail) {
-                options.modes.trail = new Trail();
-            }
-
-            options.modes.trail.load(source.modes.trail);
+            options.trail.load(source.trail);
         }
     }
 

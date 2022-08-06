@@ -2,7 +2,10 @@ import { Attract } from "./Attract";
 import { Bounce } from "./Bounce";
 import { Bubble } from "./Bubble";
 import { Connect } from "./Connect";
+import type { Container } from "../../../../Core/Container";
+import type { Engine } from "../../../../engine";
 import { Grab } from "./Grab";
+import type { IExternalInteractor } from "../../../../Core/Interfaces/IExternalInteractor";
 import type { IModes } from "../../../Interfaces/Interactivity/Modes/IModes";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { Push } from "./Push";
@@ -20,13 +23,20 @@ export class Modes implements IModes, IOptionLoader<IModes> {
     bounce;
     bubble;
     connect;
+
+    readonly #container;
+    readonly #engine;
+
     grab;
     push;
     remove;
     repulse;
     slow;
 
-    constructor() {
+    constructor(engine: Engine, container?: Container) {
+        this.#engine = engine;
+        this.#container = container;
+
         this.attract = new Attract();
         this.bounce = new Bounce();
         this.bubble = new Bubble();
@@ -51,5 +61,17 @@ export class Modes implements IModes, IOptionLoader<IModes> {
         this.remove.load(data.remove);
         this.repulse.load(data.repulse);
         this.slow.load(data.slow);
+
+        if (this.#container) {
+            const interactors = this.#engine.plugins.interactors.get(this.#container);
+
+            if (interactors) {
+                for (const interactor of interactors as IExternalInteractor[]) {
+                    if (interactor.loadModeOptions) {
+                        interactor.loadModeOptions(this, data);
+                    }
+                }
+            }
+        }
     }
 }
