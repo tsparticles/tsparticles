@@ -77,7 +77,6 @@ export * from "./Options/Classes/Interactivity/Modes/Grab";
 export * from "./Options/Classes/Interactivity/Modes/GrabLinks";
 export * from "./Options/Classes/Interactivity/Modes/Modes";
 export * from "./Options/Classes/Interactivity/Modes/Push";
-export * from "./Options/Classes/Interactivity/Modes/Remove";
 export * from "./Options/Classes/Interactivity/Modes/Slow";
 export * from "./Options/Classes/ManualParticle";
 export * from "./Options/Classes/Motion/Motion";

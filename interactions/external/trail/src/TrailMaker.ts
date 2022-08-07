@@ -96,15 +96,11 @@ export class TrailMaker extends ExternalInteractorBase {
         ...sources: RecursivePartial<(IModes & ITrailMode) | undefined>[]
     ): void {
         for (const source of sources) {
-            if (!source?.trail) {
-                continue;
-            }
-
             if (!options.trail) {
                 options.trail = new Trail();
             }
 
-            options.trail.load(source.trail);
+            options.trail.load(source?.trail);
         }
     }
 

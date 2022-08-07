@@ -2,13 +2,13 @@ import type { Options, ParticlesOptions } from "tsparticles-engine";
 import type { LightMode } from "../../Types";
 
 export type LightOptions = Options & {
-    interactivity?: {
+    interactivity: {
         modes: LightMode;
     };
 };
 
 export type LightParticlesOptions = ParticlesOptions & {
-    interactivity?: {
+    interactivity: {
         modes: LightMode;
     };
 };

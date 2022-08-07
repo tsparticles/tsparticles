@@ -1,6 +1,5 @@
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { IRemove } from "../../../Interfaces/Interactivity/Modes/IRemove";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import type { IRemove } from "../Interfaces/IRemove";
 
 /**
  * @category Options

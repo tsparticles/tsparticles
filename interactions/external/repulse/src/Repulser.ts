@@ -137,15 +137,11 @@ export class Repulser extends ExternalInteractorBase {
         ...sources: RecursivePartial<(IModes & IRepulseMode) | undefined>[]
     ): void {
         for (const source of sources) {
-            if (!source?.repulse) {
-                continue;
-            }
-
             if (!options.repulse) {
                 options.repulse = new Repulse();
             }
 
-            options.repulse.load(source.repulse);
+            options.repulse.load(source?.repulse);
         }
     }
 

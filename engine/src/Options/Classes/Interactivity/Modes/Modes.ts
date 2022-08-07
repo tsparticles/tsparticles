@@ -10,7 +10,6 @@ import type { IModes } from "../../../Interfaces/Interactivity/Modes/IModes";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { Push } from "./Push";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { Remove } from "./Remove";
 import { Slow } from "./Slow";
 
 /**
@@ -18,6 +17,8 @@ import { Slow } from "./Slow";
  * @category Options
  */
 export class Modes implements IModes, IOptionLoader<IModes> {
+    [name: string]: unknown;
+
     attract;
     bounce;
     bubble;
@@ -28,7 +29,6 @@ export class Modes implements IModes, IOptionLoader<IModes> {
 
     grab;
     push;
-    remove;
     slow;
 
     constructor(engine: Engine, container?: Container) {
@@ -41,7 +41,6 @@ export class Modes implements IModes, IOptionLoader<IModes> {
         this.connect = new Connect();
         this.grab = new Grab();
         this.push = new Push();
-        this.remove = new Remove();
         this.slow = new Slow();
     }
 
@@ -55,7 +54,6 @@ export class Modes implements IModes, IOptionLoader<IModes> {
         this.connect.load(data.connect);
         this.grab.load(data.grab);
         this.push.load(data.push);
-        this.remove.load(data.remove);
         this.slow.load(data.slow);
 
         if (this.#container) {

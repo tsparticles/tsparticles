@@ -4,7 +4,6 @@ import type { IBubble } from "./IBubble";
 import type { IConnect } from "./IConnect";
 import type { IGrab } from "./IGrab";
 import type { IPush } from "./IPush";
-import type { IRemove } from "./IRemove";
 import type { ISlow } from "./ISlow";
 
 /**
@@ -12,12 +11,13 @@ import type { ISlow } from "./ISlow";
  * @category Options
  */
 export interface IModes {
+    [name: string]: unknown;
+
     attract: IAttract;
     bounce: IBounce;
     bubble: IBubble;
     connect: IConnect;
     grab: IGrab;
     push: IPush;
-    remove: IRemove;
     slow: ISlow;
 }

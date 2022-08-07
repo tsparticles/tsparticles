@@ -64,15 +64,11 @@ export class ExternalLighter extends ExternalInteractorBase {
         ...sources: RecursivePartial<(IModes & ILightMode) | undefined>[]
     ): void {
         for (const source of sources) {
-            if (!source?.light) {
-                continue;
-            }
-
             if (!options.light) {
                 options.light = new Light();
             }
 
-            options.light.load(source.light);
+            options.light.load(source?.light);
         }
     }
 
