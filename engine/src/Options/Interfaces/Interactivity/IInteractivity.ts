@@ -8,6 +8,8 @@ import type { InteractivityDetect } from "../../../Enums/InteractivityDetect";
  * @category Options
  */
 export interface IInteractivity {
+    [name: string]: unknown;
+
     /**
      * @deprecated use the new detectsOn instead
      */

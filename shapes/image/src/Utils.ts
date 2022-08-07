@@ -1,4 +1,4 @@
-import type { IHsl, IParticle, Particle } from "tsparticles-engine";
+import type { IHsl, Particle } from "tsparticles-engine";
 import type { IImageShape } from "./IImageShape";
 import { getStyleFromHsl } from "tsparticles-engine";
 
@@ -10,6 +10,7 @@ import { getStyleFromHsl } from "tsparticles-engine";
  * The image interface, used for keeping useful data for drawing
  */
 export interface IImage {
+    color?: IHsl;
     element?: HTMLImageElement;
     error: boolean;
     loading: boolean;
@@ -22,6 +23,7 @@ export interface IImage {
  * The particle image, containing also some particles options
  */
 export interface IParticleImage {
+    color?: IHsl;
     data: IImage;
     element?: HTMLImageElement;
     loaded?: boolean;
@@ -48,7 +50,7 @@ export interface ContainerImage {
 /**
  * The Particle extension type
  */
-export type IImageParticle = IParticle & {
+export type ImageParticle = Particle & {
     image?: IParticleImage;
 };
 
@@ -94,14 +96,16 @@ export async function loadImage(image: IImage): Promise<void> {
 
         const img = new Image();
 
+        image.element = img;
+
         img.addEventListener("load", () => {
-            image.element = img;
             image.loading = false;
 
             resolve();
         });
 
         img.addEventListener("error", () => {
+            image.element = undefined;
             image.error = true;
             image.loading = false;
 
@@ -129,8 +133,6 @@ export async function downloadSvgImage(image: IImage): Promise<void> {
 
     const response = await fetch(image.source);
 
-    image.loading = false;
-
     if (!response.ok) {
         console.error("Error tsParticles - Image not found");
 
@@ -140,6 +142,8 @@ export async function downloadSvgImage(image: IImage): Promise<void> {
     if (!image.error) {
         image.svgData = await response.text();
     }
+
+    image.loading = false;
 }
 
 /**
@@ -154,55 +158,53 @@ export function replaceImageColor(
     imageData: IImageShape,
     color: IHsl,
     particle: Particle
-): IParticleImage {
+): Promise<IParticleImage> {
     const svgColoredData = replaceColorSvg(image, color, particle.opacity?.value ?? 1),
-        svg = new Blob([svgColoredData], { type: "image/svg+xml" }) /* prepare to create img with colored svg */,
-        domUrl = URL || window.URL || window.webkitURL || window,
-        url = domUrl.createObjectURL(svg),
-        img = new Image() /* create particle img obj */,
         imageRes: IParticleImage = {
+            color,
             data: {
                 ...image,
                 svgData: svgColoredData,
             },
+            loaded: false,
             ratio: imageData.width / imageData.height,
             replaceColor: imageData.replaceColor ?? imageData.replace_color,
             source: imageData.src,
         };
 
-    img.addEventListener("load", () => {
-        const pImage = (particle as IImageParticle).image;
+    return new Promise<IParticleImage>((resolve) => {
+        const svg = new Blob([svgColoredData], { type: "image/svg+xml" }), // prepare to create img with colored svg
+            domUrl = URL || window.URL || window.webkitURL || window,
+            url = domUrl.createObjectURL(svg),
+            img = new Image();
 
-        if (pImage) {
-            pImage.loaded = true;
-            image.element = img;
-        }
+        img.addEventListener("load", () => {
+            imageRes.loaded = true;
+            imageRes.element = img;
 
-        domUrl.revokeObjectURL(url);
-    });
+            resolve(imageRes);
 
-    img.addEventListener("error", () => {
-        domUrl.revokeObjectURL(url);
-
-        const img2 = {
-            ...image,
-            error: false,
-            loading: true,
-        };
-
-        // deepcode ignore PromiseNotCaughtGeneral: catch can be ignored
-        loadImage(img2).then(() => {
-            const pImage = (particle as IImageParticle).image;
-
-            if (pImage) {
-                image.element = img2.element;
-
-                pImage.loaded = true;
-            }
+            domUrl.revokeObjectURL(url);
         });
+
+        img.addEventListener("error", async () => {
+            domUrl.revokeObjectURL(url);
+
+            const img2 = {
+                ...image,
+                error: false,
+                loading: true,
+            };
+
+            // deepcode ignore PromiseNotCaughtGeneral: catch can be ignored
+            await loadImage(img2);
+
+            imageRes.loaded = true;
+            imageRes.element = img2.element;
+
+            resolve(imageRes);
+        });
+
+        img.src = url;
     });
-
-    img.src = url;
-
-    return imageRes;
 }

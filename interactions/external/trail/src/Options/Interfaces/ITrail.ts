@@ -1,5 +1,4 @@
-import type { IParticlesOptions } from "../../Particles/IParticlesOptions";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IParticlesOptions, RecursivePartial } from "tsparticles-engine";
 
 /**
  * @category Options

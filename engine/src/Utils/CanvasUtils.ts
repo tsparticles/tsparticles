@@ -100,7 +100,7 @@ interface DrawParticleParams {
     /**
      * The particle to draw
      */
-    particle: IParticle;
+    particle: Particle;
     /**
      * The radius of the particle
      */
@@ -236,7 +236,7 @@ export function drawParticle(data: DrawParticleParams): void {
 export function drawShape(
     container: Container,
     context: CanvasRenderingContext2D,
-    particle: IParticle,
+    particle: Particle,
     radius: number,
     opacity: number,
     delta: IDelta
@@ -266,7 +266,7 @@ export function drawShape(
 export function drawShapeAfterEffect(
     container: Container,
     context: CanvasRenderingContext2D,
-    particle: IParticle,
+    particle: Particle,
     radius: number,
     opacity: number,
     delta: IDelta

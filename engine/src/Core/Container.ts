@@ -366,6 +366,8 @@ export class Container {
             this.drawers.delete(key);
         }
 
+        this.#engine.plugins.destroy(this);
+
         this.destroyed = true;
 
         const mainArr = this.#engine.dom(),
@@ -740,8 +742,6 @@ export class Container {
         for (const key of this.plugins.keys()) {
             this.plugins.delete(key);
         }
-
-        this.#engine.plugins.destroy(this);
 
         delete this.particles.grabLineColor;
 

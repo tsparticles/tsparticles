@@ -1,4 +1,4 @@
-import type { IModeDiv } from "./IModeDiv";
+import type { IModeDiv } from "tsparticles-engine";
 import type { IRepulseBase } from "./IRepulseBase";
 
 /**

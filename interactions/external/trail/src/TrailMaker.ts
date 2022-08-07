@@ -1,15 +1,21 @@
 import { ClickMode, ExternalInteractorBase, HoverMode, isInArray } from "tsparticles-engine";
-import type { Container, ICoordinates, IDelta, Particle } from "tsparticles-engine";
+import type { ICoordinates, IDelta, IModes, Modes, Particle, RecursivePartial } from "tsparticles-engine";
+import type { ITrailMode, TrailContainer, TrailMode } from "./Types";
+import { Trail } from "./Options/Classes/Trail";
 
 /**
  * @category Interactions
  */
 export class TrailMaker extends ExternalInteractorBase {
+    readonly #container;
+
     private delay: number;
     private lastPosition?: ICoordinates;
 
-    constructor(container: Container) {
+    constructor(container: TrailContainer) {
         super(container);
+
+        this.#container = container;
 
         this.delay = 0;
     }
@@ -27,10 +33,15 @@ export class TrailMaker extends ExternalInteractorBase {
             return;
         }
 
-        const container = this.container,
+        const container = this.#container,
             options = container.actualOptions,
-            trailOptions = options.interactivity.modes.trail,
-            optDelay = (trailOptions.delay * 1000) / this.container.retina.reduceFactor;
+            trailOptions = options.interactivity.modes.trail;
+
+        if (!trailOptions) {
+            return;
+        }
+
+        const optDelay = (trailOptions.delay * 1000) / this.container.retina.reduceFactor;
 
         if (this.delay < optDelay) {
             this.delay += delta.value;
@@ -78,6 +89,19 @@ export class TrailMaker extends ExternalInteractorBase {
             (mouse.clicking && mouse.inside && !!mouse.position && isInArray(ClickMode.trail, events.onClick.mode)) ||
             (mouse.inside && !!mouse.position && isInArray(HoverMode.trail, events.onHover.mode))
         );
+    }
+
+    loadModeOptions(
+        options: Modes & TrailMode,
+        ...sources: RecursivePartial<(IModes & ITrailMode) | undefined>[]
+    ): void {
+        for (const source of sources) {
+            if (!options.trail) {
+                options.trail = new Trail();
+            }
+
+            options.trail.load(source?.trail);
+        }
     }
 
     reset(): void {

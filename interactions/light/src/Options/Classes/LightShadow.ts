@@ -1,7 +1,6 @@
-import type { ILightShadow } from "../../../Interfaces/Interactivity/Modes/ILightShadow";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import { OptionsColor } from "../../OptionsColor";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import type { ILightShadow } from "../Interfaces/ILightShadow";
+import { OptionsColor } from "tsparticles-engine";
 
 export class LightShadow implements ILightShadow, IOptionLoader<ILightShadow> {
     color;

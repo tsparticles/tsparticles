@@ -1,8 +1,6 @@
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { IRepulseDiv } from "../../../Interfaces/Interactivity/Modes/IRepulseDiv";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IOptionLoader, RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
+import type { IRepulseDiv } from "../Interfaces/IRepulseDiv";
 import { RepulseBase } from "./RepulseBase";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 /**
  * @category Options
