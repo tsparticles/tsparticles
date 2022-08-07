@@ -1,6 +1,5 @@
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { IPush } from "../../../Interfaces/Interactivity/Modes/IPush";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import type { IPush } from "../Interfaces/IPush";
 
 /**
  * @category Options

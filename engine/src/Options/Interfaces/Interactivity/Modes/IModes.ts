@@ -3,7 +3,6 @@ import type { IBounce } from "./IBounce";
 import type { IBubble } from "./IBubble";
 import type { IConnect } from "./IConnect";
 import type { IGrab } from "./IGrab";
-import type { IPush } from "./IPush";
 import type { ISlow } from "./ISlow";
 
 /**
@@ -18,6 +17,5 @@ export interface IModes {
     bubble: IBubble;
     connect: IConnect;
     grab: IGrab;
-    push: IPush;
     slow: ISlow;
 }

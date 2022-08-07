@@ -8,7 +8,6 @@ import { Grab } from "./Grab";
 import type { IExternalInteractor } from "../../../../Core/Interfaces/IExternalInteractor";
 import type { IModes } from "../../../Interfaces/Interactivity/Modes/IModes";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import { Push } from "./Push";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { Slow } from "./Slow";
 
@@ -28,7 +27,6 @@ export class Modes implements IModes, IOptionLoader<IModes> {
     readonly #engine;
 
     grab;
-    push;
     slow;
 
     constructor(engine: Engine, container?: Container) {
@@ -40,7 +38,6 @@ export class Modes implements IModes, IOptionLoader<IModes> {
         this.bubble = new Bubble();
         this.connect = new Connect();
         this.grab = new Grab();
-        this.push = new Push();
         this.slow = new Slow();
     }
 
@@ -53,7 +50,6 @@ export class Modes implements IModes, IOptionLoader<IModes> {
         this.bubble.load(data.bubble);
         this.connect.load(data.connect);
         this.grab.load(data.grab);
-        this.push.load(data.push);
         this.slow.load(data.slow);
 
         if (this.#container) {
