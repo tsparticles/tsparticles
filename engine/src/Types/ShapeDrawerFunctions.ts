@@ -1,6 +1,5 @@
 import type { Container } from "../Core/Container";
 import type { IDelta } from "../Core/Interfaces/IDelta";
-import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { Particle } from "../Core/Particle";
 
 /**
@@ -15,7 +14,7 @@ import type { Particle } from "../Core/Particle";
  */
 export type ShapeDrawerDrawFunction = (
     context: CanvasRenderingContext2D,
-    particle: IParticle,
+    particle: Particle,
     radius: number,
     opacity: number,
     delta: IDelta,
@@ -35,7 +34,7 @@ export type ShapeDrawerInitFunction = (container: Container) => Promise<void>;
  * @param container the container containing the shape
  * @param particle the particle using the shape
  */
-export type ShapeDrawerParticleInitFunction = (container: Container, particle: IParticle) => void;
+export type ShapeDrawerParticleInitFunction = (container: Container, particle: Particle) => void;
 
 /**
  * Shape after draw effect function
@@ -49,7 +48,7 @@ export type ShapeDrawerParticleInitFunction = (container: Container, particle: I
  */
 export type ShapeDrawerAfterEffectFunction = (
     context: CanvasRenderingContext2D,
-    particle: IParticle,
+    particle: Particle,
     radius: number,
     opacity: number,
     delta: IDelta,
@@ -69,7 +68,7 @@ export type ShapeDrawerDestroyFunction = (container: Container) => void;
  * @param particle the particle using the shape
  * @returns the number of sides for the used shape
  */
-export type ShapeDrawerSidesCountFunction = (particle: IParticle) => number;
+export type ShapeDrawerSidesCountFunction = (particle: Particle) => number;
 
 /**
  * Shape load function

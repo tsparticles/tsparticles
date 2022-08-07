@@ -972,7 +972,7 @@
   resolved "https://registry.yarnpkg.com/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz#b2ac626d6cb9c8718ab459166d4bb405b8ffa78b"
   integrity sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==
 
-"@riotjs/compiler@^6.1.3":
+"@riotjs/compiler@^6.1.3", "@riotjs/compiler@^6.3.0":
   version "6.3.0"
   resolved "https://registry.yarnpkg.com/@riotjs/compiler/-/compiler-6.3.0.tgz#1e29416b9d3475cdda25eaed11c2528307f096b2"
   integrity sha512-klWA8hKKpcViSOwvjuVPUVmqzEepVYjmKOma+4ktAqv/w7z3GRoBb1P9WNkz2ICkDU1NViNg8fZjEUiiy938QA==
@@ -1042,7 +1042,7 @@
   resolved "https://registry.yarnpkg.com/@riotjs/util/-/util-2.0.4.tgz#26f8d6928063b77e3e677a38762fd039a9f7a0bd"
   integrity sha512-C+YpN8p30T1+qtuPaHS2uobRHG+EpQhtXsu+Ul7sOStb1PnqptXut2YHSffQ6Xlu+FoOlP/BcMu+RVYvzWPmkg==
 
-"@riotjs/util@^2.0.4":
+"@riotjs/util@^2.0.4", "@riotjs/util@^2.1.1":
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/@riotjs/util/-/util-2.1.1.tgz#7c07b6b8f227548e3f6c187b8cb798fee7b944cd"
   integrity sha512-uE3yhckx6QhFESlA/jO/Nj8HcOeRiCV3Zw1OrdKiRAMh4o/JBhGuAkoknPWCDTHSFIffHuWV8EorbO1wZLBpvw==
@@ -1582,7 +1582,7 @@ batch@0.6.1:
   resolved "https://registry.yarnpkg.com/batch/-/batch-0.6.1.tgz#dc34314f4e679318093fc760272525f94bf25c16"
   integrity sha512-x+VAiMRL6UPkx+kudNvxTl6hB2XNNCG2r+7wixVfIYwu/2HKRXimwQyaumLjMveWvT2Hkd/cAJw+QBMfJ/EKVw==
 
-bianco.attr@^1.0.0:
+bianco.attr@^1.0.0, bianco.attr@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/bianco.attr/-/bianco.attr-1.1.1.tgz#d69b22f9165a537159bc45ae60414b0419e6a1d1"
   integrity sha512-fTjfPnnGYiCVbe5UltC/LsDRtJE+MjmadtL749CMIfCwjl18sdbCkaQ7cgtSao6iC9ZJC8Pzw0rjMdIuA6mK1g==
@@ -1601,7 +1601,7 @@ bianco.events@^1.0.0:
   dependencies:
     bianco.dom-to-array "^1.1.0"
 
-bianco.query@^1.0.0:
+bianco.query@^1.0.0, bianco.query@^1.1.4:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/bianco.query/-/bianco.query-1.1.4.tgz#f550c3e7a3478cf65412957a843dc7a64c5e06dd"
   integrity sha512-jUu8l484ckacCBmxN0gYLZ4Ge5aMfReL+aYNiC81s37s8+l0+rn9pnQayEgQtMHGlnL8ejd+x5U2PKpo0rvQzw==
@@ -4012,16 +4012,16 @@ rimraf@^3.0.0, rimraf@^3.0.2:
   dependencies:
     glob "^7.1.3"
 
-riot@^6.1.2:
-  version "6.1.2"
-  resolved "https://registry.yarnpkg.com/riot/-/riot-6.1.2.tgz#439049b611fdd71191dc3ea2a96b6bea3db52a48"
-  integrity sha512-JYGKN6D2FwNP+eH2suh13jhQPXnaAeXdwCIWH0vz2UvhLBY9mTFZv6/dPAyEluHTf9bjAJOriFc4PDXox5Fjqw==
+riot@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/riot/-/riot-7.0.0.tgz#438fe045c2db936f44a9a8168be112120696ddce"
+  integrity sha512-HVN+PJmipgjr6djtRUKxLBe/NEu0tJdan3j1GEbYWnVUxgpY4kzAxf97F/dBFtUbKN1XGheLkiXSVvtDDBQLfg==
   dependencies:
-    "@riotjs/compiler" "^6.1.3"
+    "@riotjs/compiler" "^6.3.0"
     "@riotjs/dom-bindings" "6.0.3"
-    "@riotjs/util" "^2.0.4"
-    bianco.attr "^1.0.0"
-    bianco.query "^1.0.0"
+    "@riotjs/util" "^2.1.1"
+    bianco.attr "^1.1.1"
+    bianco.query "^1.1.4"
     cumpa "^1.0.1"
     curri "^1.0.1"
 

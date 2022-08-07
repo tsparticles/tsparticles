@@ -1,24 +1,31 @@
 import { ClickMode, ExternalInteractorBase } from "tsparticles-engine";
-import type { Container } from "tsparticles-engine";
+import type { IModes, Modes, RecursivePartial } from "tsparticles-engine";
+import type { IRemoveMode, RemoveContainer, RemoveMode } from "./Types";
+import { Remove } from "./Options/Classes/Remove";
 
 /**
  * Particle attract manager
  * @category Interactions
  */
 export class Remover extends ExternalInteractorBase {
+    readonly #container;
+
     handleClickMode: (mode: string) => void;
 
-    constructor(container: Container) {
+    constructor(container: RemoveContainer) {
         super(container);
 
+        this.#container = container;
+
         this.handleClickMode = (mode): void => {
-            if (mode !== ClickMode.remove) {
+            const container = this.#container,
+                options = container.actualOptions;
+
+            if (!options.interactivity.modes.remove || mode !== ClickMode.remove) {
                 return;
             }
 
-            const container = this.container,
-                options = container.actualOptions,
-                removeNb = options.interactivity.modes.remove.quantity;
+            const removeNb = options.interactivity.modes.remove.quantity;
 
             container.particles.removeQuantity(removeNb);
         };
@@ -38,6 +45,19 @@ export class Remover extends ExternalInteractorBase {
 
     isEnabled(): boolean {
         return true;
+    }
+
+    loadModeOptions(
+        options: Modes & RemoveMode,
+        ...sources: RecursivePartial<(IModes & IRemoveMode) | undefined>[]
+    ): void {
+        for (const source of sources) {
+            if (!options.remove) {
+                options.remove = new Remove();
+            }
+
+            options.remove.load(source?.remove);
+        }
     }
 
     reset(): void {

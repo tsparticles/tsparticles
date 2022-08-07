@@ -1,8 +1,7 @@
-import type { ILight } from "../../../Interfaces/Interactivity/Modes/ILight";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import type { ILight } from "../Interfaces/ILight";
 import { LightArea } from "./LightArea";
 import { LightShadow } from "./LightShadow";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class Light implements ILight, IOptionLoader<ILight> {
     area;

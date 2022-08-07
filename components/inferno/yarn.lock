@@ -3250,23 +3250,23 @@ infer-owner@^1.0.4:
   resolved "https://registry.yarnpkg.com/infer-owner/-/infer-owner-1.0.4.tgz#c4cefcaa8e51051c2a40ba2ce8a3d27295af9467"
   integrity sha512-IClj+Xz94+d7irH5qRyfJonOdfTzuDaifE6ZPWfx0N0+/ATZCbuTPq2prFl526urkQd90WyUKIh1DfBQ2hMz9A==
 
-inferno-shared@8.0.1:
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/inferno-shared/-/inferno-shared-8.0.1.tgz#956fb239f6ec9375dce8dd41474c52d1118cb73a"
-  integrity sha512-V/j6p8UiyJv/eOQxFbFRSfjV2k+zoNNeuwQYiV5t4bB3K2dteJyj2gmhO59TjQOgkveRxQiEzoz0JlHv957oMw==
+inferno-shared@8.0.2:
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/inferno-shared/-/inferno-shared-8.0.2.tgz#3493fc10b192f062124f07845e806d1f66ca109d"
+  integrity sha512-Q3nGshkioxsVatdfmq2FS3p+Oc3hFz/ZwvOxviIsY8+lWDuQbsY2fhT4j5NHkK9kLAlsVnnh534hik4MVKKe+w==
 
-inferno-vnode-flags@8.0.1:
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/inferno-vnode-flags/-/inferno-vnode-flags-8.0.1.tgz#f8d1f3b714eb92c6bc8028dcbc212ae44a263717"
-  integrity sha512-ct9qsX7CtSvd575f1XKJHGRpzrjNplJLWefOjcyNKFWzqWi6GCrprmYsbGWWE1rAXi6mF6nz/0JbOGWzfZ6tlw==
+inferno-vnode-flags@8.0.2:
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/inferno-vnode-flags/-/inferno-vnode-flags-8.0.2.tgz#1e7d859e9cb4648c99cfed1e14810ba6b164def6"
+  integrity sha512-WWqWFLFSJ3i7l5I5nyBUVZpYzPdZ+pve4XJQlmjJAwuceJk6RzxqoXzzax3QkQpClh0ZyuRJv1NDWRET6zmL/Q==
 
 inferno@^8.0.0:
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/inferno/-/inferno-8.0.1.tgz#cb4e3c1076502e0afdad2785cb9ae6365265af84"
-  integrity sha512-WXdEcYtil/WnMlMYHDFGFUO0g6+mavpgBbT8mxE7+72ScUnnDU1CNki2G8FTwuhJnsnzB6c6t1LbzO5mKiPOiQ==
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/inferno/-/inferno-8.0.2.tgz#3f47d62eed4ad41efb1e53d00d7d990241a61fa1"
+  integrity sha512-o+yiSXUiICB9TX7glHckGky7rWx0GE0/qYWRvhrp71Re/6VS8e/5HjIY9x/OKmpAgB/4WVevjs6mecYSrfXAmQ==
   dependencies:
-    inferno-shared "8.0.1"
-    inferno-vnode-flags "8.0.1"
+    inferno-shared "8.0.2"
+    inferno-vnode-flags "8.0.2"
     opencollective-postinstall "^2.0.3"
 
 inflight@^1.0.4:

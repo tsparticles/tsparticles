@@ -1,7 +1,6 @@
-import type { ILightArea } from "../../../Interfaces/Interactivity/Modes/ILightArea";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import type { ILightArea } from "../Interfaces/ILightArea";
 import { LightGradient } from "./LightGradient";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 export class LightArea implements ILightArea, IOptionLoader<ILightArea> {
     gradient;

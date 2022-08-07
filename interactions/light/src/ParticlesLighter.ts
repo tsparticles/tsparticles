@@ -1,11 +1,14 @@
 import { HoverMode, ParticlesInteractorBase, isInArray, rangeColorToRgb } from "tsparticles-engine";
 import type { LightContainer, LightParticle } from "./Types";
-import type { Particle } from "tsparticles-engine";
 import { drawParticleShadow } from "./Utils";
 
 export class ParticlesLighter extends ParticlesInteractorBase {
+    readonly #container;
+
     constructor(container: LightContainer) {
         super(container);
+
+        this.#container = container;
     }
 
     clear(): void {
@@ -16,8 +19,8 @@ export class ParticlesLighter extends ParticlesInteractorBase {
         // do nothing
     }
 
-    async interact(particle: Particle): Promise<void> {
-        const container = this.container,
+    async interact(particle: LightParticle): Promise<void> {
+        const container = this.#container,
             options = container.actualOptions;
 
         if (options.interactivity.events.onHover.enable && container.interactivity.status === "mousemove") {
@@ -43,7 +46,7 @@ export class ParticlesLighter extends ParticlesInteractorBase {
 
         const res = isInArray(HoverMode.light, events.onHover.mode);
 
-        if (res) {
+        if (res && interactivity.modes.light) {
             const shadowOptions = interactivity.modes.light.shadow;
 
             particle.lightShadow = rangeColorToRgb(shadowOptions.color);
