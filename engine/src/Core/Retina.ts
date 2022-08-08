@@ -12,8 +12,6 @@ export class Retina {
     bounceModeDistance!: number;
     bubbleModeDistance!: number;
     bubbleModeSize?: number;
-    connectModeDistance!: number;
-    connectModeRadius!: number;
     maxSpeed!: number;
     pixelRatio!: number;
     reduceFactor!: number;
@@ -81,8 +79,6 @@ export class Retina {
 
         const modes = options.interactivity.modes;
 
-        this.connectModeDistance = modes.connect.distance * ratio;
-        this.connectModeRadius = modes.connect.radius * ratio;
         this.bounceModeDistance = modes.bounce.distance * ratio;
         this.attractModeDistance = modes.attract.distance * ratio;
         this.slowModeRadius = modes.slow.radius * ratio;

@@ -71,8 +71,6 @@ export * from "./Options/Classes/Interactivity/Modes/Bounce";
 export * from "./Options/Classes/Interactivity/Modes/Bubble";
 export * from "./Options/Classes/Interactivity/Modes/BubbleBase";
 export * from "./Options/Classes/Interactivity/Modes/BubbleDiv";
-export * from "./Options/Classes/Interactivity/Modes/Connect";
-export * from "./Options/Classes/Interactivity/Modes/ConnectLinks";
 export * from "./Options/Classes/Interactivity/Modes/Modes";
 export * from "./Options/Classes/Interactivity/Modes/Slow";
 export * from "./Options/Classes/ManualParticle";

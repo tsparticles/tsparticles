@@ -1,4 +1,4 @@
-import type { Container, ICoordinates, Particle } from "tsparticles-engine";
+import type { ConnectContainer, ConnectMode, IConnectMode } from "./Types";
 import {
     ExternalInteractorBase,
     HoverMode,
@@ -8,6 +8,8 @@ import {
     getStyleFromRgb,
     isInArray,
 } from "tsparticles-engine";
+import type { ICoordinates, IModes, Modes, Particle, RecursivePartial } from "tsparticles-engine";
+import { Connect } from "./Options/Classes/Connect";
 
 type LinkParticle = Particle & {
     retina: {
@@ -66,7 +68,7 @@ function drawConnectLine(
 }
 
 function lineStyle(
-    container: Container,
+    container: ConnectContainer,
     ctx: CanvasRenderingContext2D,
     p1: Particle,
     p2: Particle
@@ -74,10 +76,14 @@ function lineStyle(
     const options = container.actualOptions,
         connectOptions = options.interactivity.modes.connect;
 
+    if (!connectOptions) {
+        return;
+    }
+
     return gradient(ctx, p1, p2, connectOptions.links.opacity);
 }
 
-function drawConnection(container: Container, p1: LinkParticle, p2: LinkParticle): void {
+function drawConnection(container: ConnectContainer, p1: LinkParticle, p2: LinkParticle): void {
     container.canvas.draw((ctx) => {
         const ls = lineStyle(container, ctx, p1, p2);
 
@@ -97,8 +103,12 @@ function drawConnection(container: Container, p1: LinkParticle, p2: LinkParticle
  * @category Interactions
  */
 export class Connector extends ExternalInteractorBase {
-    constructor(container: Container) {
+    readonly #container;
+
+    constructor(container: ConnectContainer) {
         super(container);
+
+        this.#container = container;
     }
 
     clear(): void {
@@ -106,20 +116,34 @@ export class Connector extends ExternalInteractorBase {
     }
 
     init(): void {
-        // do nothing
+        const container = this.#container,
+            connect = container.actualOptions.interactivity.modes.connect;
+
+        if (!connect) {
+            return;
+        }
+
+        container.retina.connectModeDistance = connect.distance * container.retina.pixelRatio;
+        container.retina.connectModeRadius = connect.radius * container.retina.pixelRatio;
     }
 
     /**
      * Connecting particles on hover interactivity
      */
     async interact(): Promise<void> {
-        const container = this.container,
+        const container = this.#container,
             options = container.actualOptions;
 
         if (options.interactivity.events.onHover.enable && container.interactivity.status === "mousemove") {
             const mousePos = container.interactivity.mouse.position;
 
-            if (!mousePos) {
+            if (
+                !container.retina.connectModeDistance ||
+                container.retina.connectModeDistance < 0 ||
+                !container.retina.connectModeRadius ||
+                container.retina.connectModeRadius < 0 ||
+                !mousePos
+            ) {
                 return;
             }
 
@@ -157,6 +181,19 @@ export class Connector extends ExternalInteractorBase {
         }
 
         return isInArray(HoverMode.connect, events.onHover.mode);
+    }
+
+    loadModeOptions(
+        options: Modes & ConnectMode,
+        ...sources: RecursivePartial<(IModes & IConnectMode) | undefined>[]
+    ): void {
+        for (const source of sources) {
+            if (!options.connect) {
+                options.connect = new Connect();
+            }
+
+            options.connect.load(source?.connect);
+        }
     }
 
     reset(): void {
