@@ -1,5 +1,4 @@
 import { Attract } from "./Attract";
-import { Bounce } from "./Bounce";
 import type { Container } from "../../../../Core/Container";
 import type { Engine } from "../../../../engine";
 import type { IExternalInteractor } from "../../../../Core/Interfaces/IExternalInteractor";
@@ -16,7 +15,6 @@ export class Modes implements IModes, IOptionLoader<IModes> {
     [name: string]: unknown;
 
     attract;
-    bounce;
 
     readonly #container;
     readonly #engine;
@@ -28,7 +26,6 @@ export class Modes implements IModes, IOptionLoader<IModes> {
         this.#container = container;
 
         this.attract = new Attract();
-        this.bounce = new Bounce();
         this.slow = new Slow();
     }
 

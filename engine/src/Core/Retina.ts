@@ -9,7 +9,6 @@ import { isSsr } from "../Utils/Utils";
 export class Retina {
     attractDistance!: number;
     attractModeDistance!: number;
-    bounceModeDistance!: number;
     maxSpeed!: number;
     pixelRatio!: number;
     reduceFactor!: number;
@@ -77,7 +76,6 @@ export class Retina {
 
         const modes = options.interactivity.modes;
 
-        this.bounceModeDistance = modes.bounce.distance * ratio;
         this.attractModeDistance = modes.attract.distance * ratio;
         this.slowModeRadius = modes.slow.radius * ratio;
     }

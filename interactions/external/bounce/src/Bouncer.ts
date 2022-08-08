@@ -1,3 +1,4 @@
+import type { BounceContainer, BounceMode, IBounceMode } from "./Types";
 import {
     Circle,
     DivMode,
@@ -15,11 +16,16 @@ import {
     mouseMoveEvent,
     rectBounce,
 } from "tsparticles-engine";
-import type { Container, DivEvent, ICoordinates, Particle, Range } from "tsparticles-engine";
+import type { DivEvent, ICoordinates, IModes, Modes, Particle, Range, RecursivePartial } from "tsparticles-engine";
+import { Bounce } from "./Options/Classes/Bounce";
 
 export class Bouncer extends ExternalInteractorBase {
-    constructor(container: Container) {
+    readonly #container;
+
+    constructor(container: BounceContainer) {
         super(container);
+
+        this.#container = container;
     }
 
     clear(): void {
@@ -27,11 +33,18 @@ export class Bouncer extends ExternalInteractorBase {
     }
 
     init(): void {
-        // do nothing
+        const container = this.#container,
+            bounce = container.actualOptions.interactivity.modes.bounce;
+
+        if (!bounce) {
+            return;
+        }
+
+        container.retina.bounceModeDistance = bounce.distance * container.retina.pixelRatio;
     }
 
     async interact(): Promise<void> {
-        const container = this.container,
+        const container = this.#container,
             options = container.actualOptions,
             events = options.interactivity.events,
             mouseMoveStatus = container.interactivity.status === mouseMoveEvent,
@@ -47,7 +60,7 @@ export class Bouncer extends ExternalInteractorBase {
     }
 
     isEnabled(particle?: Particle): boolean {
-        const container = this.container,
+        const container = this.#container,
             options = container.actualOptions,
             mouse = container.interactivity.mouse,
             events = (particle?.interactivity ?? options.interactivity).events,
@@ -59,12 +72,25 @@ export class Bouncer extends ExternalInteractorBase {
         );
     }
 
+    loadModeOptions(
+        options: Modes & BounceMode,
+        ...sources: RecursivePartial<(IModes & IBounceMode) | undefined>[]
+    ): void {
+        for (const source of sources) {
+            if (!options.bounce) {
+                options.bounce = new Bounce();
+            }
+
+            options.bounce.load(source?.bounce);
+        }
+    }
+
     reset(): void {
         // do nothing
     }
 
     private processBounce(position: ICoordinates, radius: number, area: Range): void {
-        const query = this.container.particles.quadTree.query(area, (p) => this.isEnabled(p));
+        const query = this.#container.particles.quadTree.query(area, (p) => this.isEnabled(p));
 
         for (const particle of query) {
             if (area instanceof Circle) {
@@ -82,19 +108,21 @@ export class Bouncer extends ExternalInteractorBase {
     }
 
     private processMouseBounce(): void {
-        const container = this.container,
+        const container = this.#container,
             pxRatio = container.retina.pixelRatio,
             tolerance = 10 * pxRatio,
             mousePos = container.interactivity.mouse.position,
             radius = container.retina.bounceModeDistance;
 
-        if (mousePos) {
-            this.processBounce(mousePos, radius, new Circle(mousePos.x, mousePos.y, radius + tolerance));
+        if (!radius || radius < 0 || !mousePos) {
+            return;
         }
+
+        this.processBounce(mousePos, radius, new Circle(mousePos.x, mousePos.y, radius + tolerance));
     }
 
     private singleSelectorBounce(selector: string, div: DivEvent): void {
-        const container = this.container,
+        const container = this.#container,
             query = document.querySelectorAll(selector);
 
         if (!query.length) {

@@ -1,6 +1,5 @@
-import type { IBounce } from "../../../Interfaces/Interactivity/Modes/IBounce";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import type { IBounce } from "../Interfaces/IBounce";
 
 export class Bounce implements IBounce, IOptionLoader<IBounce> {
     distance: number;
