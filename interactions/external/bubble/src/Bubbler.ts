@@ -146,11 +146,11 @@ export class Bubbler extends ExternalInteractorBase {
         options: Modes & BubbleMode,
         ...sources: RecursivePartial<(IModes & IBubbleMode) | undefined>[]
     ): void {
-        for (const source of sources) {
-            if (!options.bubble) {
-                options.bubble = new Bubble();
-            }
+        if (!options.bubble) {
+            options.bubble = new Bubble();
+        }
 
+        for (const source of sources) {
             options.bubble.load(source?.bubble);
         }
     }

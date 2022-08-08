@@ -122,11 +122,11 @@ export class Attractor extends ExternalInteractorBase {
         options: Modes & AttractMode,
         ...sources: RecursivePartial<(IModes & IAttractMode) | undefined>[]
     ): void {
-        for (const source of sources) {
-            if (!options.attract) {
-                options.attract = new Attract();
-            }
+        if (!options.attract) {
+            options.attract = new Attract();
+        }
 
+        for (const source of sources) {
             options.attract.load(source?.attract);
         }
     }

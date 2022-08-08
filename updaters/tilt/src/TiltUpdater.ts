@@ -138,16 +138,12 @@ export class TiltUpdater implements IParticleUpdater {
         options: TiltParticlesOptions,
         ...sources: (RecursivePartial<ITiltParticlesOptions> | undefined)[]
     ): void {
+        if (!options.tilt) {
+            options.tilt = new Tilt();
+        }
+
         for (const source of sources) {
-            if (!source?.tilt) {
-                continue;
-            }
-
-            if (!options.tilt) {
-                options.tilt = new Tilt();
-            }
-
-            options.tilt.load(source.tilt);
+            options.tilt.load(source?.tilt);
         }
     }
 

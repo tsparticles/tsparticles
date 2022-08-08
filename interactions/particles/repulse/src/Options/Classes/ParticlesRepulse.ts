@@ -1,9 +1,6 @@
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { IParticlesRepulse } from "../../../Interfaces/Particles/Repulse/IParticlesRepulse";
-import type { RangeValue } from "../../../../Types/RangeValue";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { ValueWithRandom } from "../../ValueWithRandom";
-import { setRangeValue } from "../../../../Utils/NumberUtils";
+import type { IOptionLoader, RangeValue, RecursivePartial } from "tsparticles-engine";
+import { ValueWithRandom, setRangeValue } from "tsparticles-engine";
+import type { IParticlesRepulse } from "../Interfaces/IParticlesRepulse";
 
 /**
  * @category Options

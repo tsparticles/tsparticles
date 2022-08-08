@@ -21,4 +21,7 @@ interface IContainerRepulse {
 export type RepulseContainer = Container & {
     actualOptions: RepulseOptions;
     repulse?: IContainerRepulse;
+    retina: {
+        repulseModeDistance?: number;
+    };
 };

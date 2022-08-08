@@ -12,7 +12,6 @@ export class Retina {
     maxSpeed!: number;
     pixelRatio!: number;
     reduceFactor!: number;
-    repulseModeDistance!: number;
     sizeAnimationSpeed!: number;
     slowModeRadius!: number;
 

@@ -97,7 +97,6 @@ export * from "./Options/Classes/Particles/Number/ParticlesNumber";
 export * from "./Options/Classes/Particles/Number/ParticlesDensity";
 export * from "./Options/Classes/Particles/Opacity/Opacity";
 export * from "./Options/Classes/Particles/Opacity/OpacityAnimation";
-export * from "./Options/Classes/Particles/Repulse/ParticlesRepulse";
 export * from "./Options/Classes/Particles/Rotate/Rotate";
 export * from "./Options/Classes/Particles/Rotate/RotateAnimation";
 export * from "./Options/Classes/Particles/Shape/Shape";

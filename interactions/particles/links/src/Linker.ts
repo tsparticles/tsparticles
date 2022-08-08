@@ -140,18 +140,12 @@ export class Linker extends ParticlesInteractorBase {
         options: ParticlesLinkOptions,
         ...sources: (RecursivePartial<IParticlesLinkOptions> | undefined)[]
     ): void {
+        if (!options.links) {
+            options.links = new Links();
+        }
+
         for (const source of sources) {
-            const sourceLinks = source?.links ?? source?.lineLinked ?? source?.line_linked;
-
-            if (!sourceLinks) {
-                return;
-            }
-
-            if (!options.links) {
-                options.links = new Links();
-            }
-
-            options.links.load(sourceLinks);
+            options.links.load(source?.links ?? source?.lineLinked ?? source?.line_linked);
         }
     }
 

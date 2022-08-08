@@ -71,16 +71,12 @@ export class TwinkleUpdater implements IParticleUpdater {
         options: TwinkleParticlesOptions,
         ...sources: (RecursivePartial<ITwinkleParticlesOptions> | undefined)[]
     ): void {
+        if (!options.twinkle) {
+            options.twinkle = new Twinkle();
+        }
+
         for (const source of sources) {
-            if (!source?.twinkle) {
-                continue;
-            }
-
-            if (!options.twinkle) {
-                options.twinkle = new Twinkle();
-            }
-
-            options.twinkle.load(source.twinkle);
+            options.twinkle.load(source?.twinkle);
         }
     }
 

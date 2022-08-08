@@ -51,11 +51,11 @@ export class Remover extends ExternalInteractorBase {
         options: Modes & RemoveMode,
         ...sources: RecursivePartial<(IModes & IRemoveMode) | undefined>[]
     ): void {
-        for (const source of sources) {
-            if (!options.remove) {
-                options.remove = new Remove();
-            }
+        if (!options.remove) {
+            options.remove = new Remove();
+        }
 
+        for (const source of sources) {
             options.remove.load(source?.remove);
         }
     }

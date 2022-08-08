@@ -187,11 +187,11 @@ export class Connector extends ExternalInteractorBase {
         options: Modes & ConnectMode,
         ...sources: RecursivePartial<(IModes & IConnectMode) | undefined>[]
     ): void {
-        for (const source of sources) {
-            if (!options.connect) {
-                options.connect = new Connect();
-            }
+        if (!options.connect) {
+            options.connect = new Connect();
+        }
 
+        for (const source of sources) {
             options.connect.load(source?.connect);
         }
     }

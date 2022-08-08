@@ -10,7 +10,6 @@ import type { IMove } from "./Move/IMove";
 import type { IOpacity } from "./Opacity/IOpacity";
 import type { IParticlesBounce } from "./Bounce/IParticlesBounce";
 import type { IParticlesNumber } from "./Number/IParticlesNumber";
-import type { IParticlesRepulse } from "./Repulse/IParticlesRepulse";
 import type { IRotate } from "./Rotate/IRotate";
 import type { IShadow } from "./IShadow";
 import type { IShape } from "./Shape/IShape";
@@ -38,7 +37,6 @@ export interface IParticlesOptions {
     number: IParticlesNumber;
     opacity: IOpacity;
     reduceDuplicates: boolean;
-    repulse: IParticlesRepulse;
     rotate: IRotate;
     shadow: IShadow;
     shape: IShape;

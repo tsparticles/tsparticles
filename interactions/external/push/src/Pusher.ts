@@ -61,11 +61,11 @@ export class Pusher extends ExternalInteractorBase {
     }
 
     loadModeOptions(options: Modes & PushMode, ...sources: RecursivePartial<(IModes & IPushMode) | undefined>[]): void {
-        for (const source of sources) {
-            if (!options.push) {
-                options.push = new Push();
-            }
+        if (!options.push) {
+            options.push = new Push();
+        }
 
+        for (const source of sources) {
             options.push.load(source?.push);
         }
     }

@@ -1,5 +1,4 @@
-import type { IValueWithRandom } from "../../IValueWithRandom";
-import type { RangeValue } from "../../../../Types/RangeValue";
+import type { IValueWithRandom, RangeValue } from "tsparticles-engine";
 
 /**
  * @category Options
