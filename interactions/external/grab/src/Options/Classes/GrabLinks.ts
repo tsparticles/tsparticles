@@ -1,7 +1,6 @@
-import type { IGrabLinks } from "../../../Interfaces/Interactivity/Modes/IGrabLinks";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import { OptionsColor } from "../../OptionsColor";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import type { IGrabLinks } from "../Interfaces/IGrabLinks";
+import { OptionsColor } from "tsparticles-engine";
 
 /**
  * @category Options

@@ -4,7 +4,6 @@ import { Bubble } from "./Bubble";
 import { Connect } from "./Connect";
 import type { Container } from "../../../../Core/Container";
 import type { Engine } from "../../../../engine";
-import { Grab } from "./Grab";
 import type { IExternalInteractor } from "../../../../Core/Interfaces/IExternalInteractor";
 import type { IModes } from "../../../Interfaces/Interactivity/Modes/IModes";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
@@ -26,7 +25,6 @@ export class Modes implements IModes, IOptionLoader<IModes> {
     readonly #container;
     readonly #engine;
 
-    grab;
     slow;
 
     constructor(engine: Engine, container?: Container) {
@@ -37,7 +35,6 @@ export class Modes implements IModes, IOptionLoader<IModes> {
         this.bounce = new Bounce();
         this.bubble = new Bubble();
         this.connect = new Connect();
-        this.grab = new Grab();
         this.slow = new Slow();
     }
 
@@ -49,7 +46,6 @@ export class Modes implements IModes, IOptionLoader<IModes> {
         this.attract.load(data.attract);
         this.bubble.load(data.bubble);
         this.connect.load(data.connect);
-        this.grab.load(data.grab);
         this.slow.load(data.slow);
 
         if (this.#container) {

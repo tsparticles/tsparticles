@@ -14,7 +14,6 @@ export class Retina {
     bubbleModeSize?: number;
     connectModeDistance!: number;
     connectModeRadius!: number;
-    grabModeDistance!: number;
     maxSpeed!: number;
     pixelRatio!: number;
     reduceFactor!: number;
@@ -84,7 +83,6 @@ export class Retina {
 
         this.connectModeDistance = modes.connect.distance * ratio;
         this.connectModeRadius = modes.connect.radius * ratio;
-        this.grabModeDistance = modes.grab.distance * ratio;
         this.bounceModeDistance = modes.bounce.distance * ratio;
         this.attractModeDistance = modes.attract.distance * ratio;
         this.slowModeRadius = modes.slow.radius * ratio;

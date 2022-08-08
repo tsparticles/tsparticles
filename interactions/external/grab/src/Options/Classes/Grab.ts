@@ -1,7 +1,6 @@
+import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
 import { GrabLinks } from "./GrabLinks";
-import type { IGrab } from "../../../Interfaces/Interactivity/Modes/IGrab";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IGrab } from "../Interfaces/IGrab";
 
 /**
  * @category Options

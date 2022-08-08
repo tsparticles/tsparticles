@@ -2,7 +2,6 @@ import type { IAttract } from "./IAttract";
 import type { IBounce } from "./IBounce";
 import type { IBubble } from "./IBubble";
 import type { IConnect } from "./IConnect";
-import type { IGrab } from "./IGrab";
 import type { ISlow } from "./ISlow";
 
 /**
@@ -16,6 +15,5 @@ export interface IModes {
     bounce: IBounce;
     bubble: IBubble;
     connect: IConnect;
-    grab: IGrab;
     slow: ISlow;
 }
