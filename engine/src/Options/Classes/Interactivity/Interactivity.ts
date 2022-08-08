@@ -1,7 +1,6 @@
 import type { Container } from "../../../Core/Container";
 import type { Engine } from "../../../engine";
 import { Events } from "./Events/Events";
-import { HoverMode } from "../../../Enums/Modes/HoverMode";
 import type { IInteractivity } from "../../Interfaces/Interactivity/IInteractivity";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import { InteractivityDetect } from "../../../Enums/InteractivityDetect";
@@ -63,15 +62,5 @@ export class Interactivity implements IInteractivity, IOptionLoader<IInteractivi
 
         this.events.load(data.events);
         this.modes.load(data.modes);
-
-        if (data.modes?.slow?.active === true) {
-            if (this.events.onHover.mode instanceof Array) {
-                if (this.events.onHover.mode.indexOf(HoverMode.slow) < 0) {
-                    this.events.onHover.mode.push(HoverMode.slow);
-                }
-            } else if (this.events.onHover.mode !== HoverMode.slow) {
-                this.events.onHover.mode = [this.events.onHover.mode, HoverMode.slow];
-            }
-        }
     }
 }
