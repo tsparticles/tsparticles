@@ -66,7 +66,6 @@ export * from "./Options/Classes/Interactivity/Events/Events";
 export * from "./Options/Classes/Interactivity/Events/HoverEvent";
 export * from "./Options/Classes/Interactivity/Events/Parallax";
 export * from "./Options/Classes/Interactivity/Interactivity";
-export * from "./Options/Classes/Interactivity/Modes/Attract";
 export * from "./Options/Classes/Interactivity/Modes/Modes";
 export * from "./Options/Classes/Interactivity/Modes/Slow";
 export * from "./Options/Classes/ManualParticle";

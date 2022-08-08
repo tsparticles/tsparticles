@@ -76,7 +76,6 @@ export class Retina {
 
         const modes = options.interactivity.modes;
 
-        this.attractModeDistance = modes.attract.distance * ratio;
         this.slowModeRadius = modes.slow.radius * ratio;
     }
 

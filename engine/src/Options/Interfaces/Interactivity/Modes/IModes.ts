@@ -1,4 +1,3 @@
-import type { IAttract } from "./IAttract";
 import type { ISlow } from "./ISlow";
 
 /**
@@ -8,6 +7,5 @@ import type { ISlow } from "./ISlow";
 export interface IModes {
     [name: string]: unknown;
 
-    attract: IAttract;
     slow: ISlow;
 }

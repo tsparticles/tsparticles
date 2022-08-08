@@ -1,4 +1,4 @@
-import type { EasingType, EasingTypeAlt } from "../../../../Enums/Types/EasingType";
+import type { EasingType, EasingTypeAlt } from "tsparticles-engine";
 
 /**
  * @category Options

@@ -1,3 +1,4 @@
+import type { AttractContainer, AttractMode, IAttractMode } from "./Types";
 import {
     Circle,
     ClickMode,
@@ -10,37 +11,32 @@ import {
     isInArray,
     mouseMoveEvent,
 } from "tsparticles-engine";
-import type { Container, ICoordinates, Particle, Range } from "tsparticles-engine";
-
-interface IContainerAttract {
-    clicking?: boolean;
-    count?: number;
-    finish?: boolean;
-    particles: Particle[];
-}
-
-type ContainerAttractor = Container & {
-    attract?: IContainerAttract;
-};
+import type { ICoordinates, IModes, Modes, Particle, Range, RecursivePartial } from "tsparticles-engine";
+import { Attract } from "./Options/Classes/Attract";
 
 /**
  * Particle external attract manager
  * @category Interactions
  */
 export class Attractor extends ExternalInteractorBase {
+    readonly #container;
+
     handleClickMode: (mode: string) => void;
 
-    constructor(container: ContainerAttractor) {
+    constructor(container: AttractContainer) {
         super(container);
+
+        this.#container = container;
 
         if (!container.attract) {
             container.attract = { particles: [] };
         }
 
         this.handleClickMode = (mode): void => {
-            const options = this.container.actualOptions;
+            const options = this.#container.actualOptions,
+                attract = options.interactivity.modes.attract;
 
-            if (mode !== ClickMode.attract) {
+            if (!attract || mode !== ClickMode.attract) {
                 return;
             }
 
@@ -70,7 +66,7 @@ export class Attractor extends ExternalInteractorBase {
 
                     container.attract.clicking = false;
                 }
-            }, options.interactivity.modes.attract.duration * 1000);
+            }, attract.duration * 1000);
         };
     }
 
@@ -79,11 +75,18 @@ export class Attractor extends ExternalInteractorBase {
     }
 
     init(): void {
-        // do nothing
+        const container = this.#container,
+            attract = container.actualOptions.interactivity.modes.attract;
+
+        if (!attract) {
+            return;
+        }
+
+        container.retina.attractModeDistance = attract.distance * container.retina.pixelRatio;
     }
 
     async interact(): Promise<void> {
-        const container = this.container,
+        const container = this.#container,
             options = container.actualOptions,
             mouseMoveStatus = container.interactivity.status === mouseMoveEvent,
             events = options.interactivity.events,
@@ -100,7 +103,7 @@ export class Attractor extends ExternalInteractorBase {
     }
 
     isEnabled(particle?: Particle): boolean {
-        const container = this.container,
+        const container = this.#container,
             options = container.actualOptions,
             mouse = container.interactivity.mouse,
             events = (particle?.interactivity ?? options.interactivity).events;
@@ -115,12 +118,25 @@ export class Attractor extends ExternalInteractorBase {
         return isInArray(HoverMode.attract, hoverMode) || isInArray(ClickMode.attract, clickMode);
     }
 
+    loadModeOptions(
+        options: Modes & AttractMode,
+        ...sources: RecursivePartial<(IModes & IAttractMode) | undefined>[]
+    ): void {
+        for (const source of sources) {
+            if (!options.attract) {
+                options.attract = new Attract();
+            }
+
+            options.attract.load(source?.attract);
+        }
+    }
+
     reset(): void {
         // do nothing
     }
 
     private clickAttract(): void {
-        const container = this.container as ContainerAttractor;
+        const container = this.#container;
 
         if (!container.attract) {
             container.attract = { particles: [] };
@@ -156,7 +172,7 @@ export class Attractor extends ExternalInteractorBase {
     }
 
     private hoverAttract(): void {
-        const container = this.container;
+        const container = this.#container;
         const mousePos = container.interactivity.mouse.position;
 
         if (!mousePos) {
@@ -169,9 +185,14 @@ export class Attractor extends ExternalInteractorBase {
     }
 
     private processAttract(position: ICoordinates, attractRadius: number, area: Range): void {
-        const container = this.container,
-            attractOptions = container.actualOptions.interactivity.modes.attract,
-            query = container.particles.quadTree.query(area, (p) => this.isEnabled(p));
+        const container = this.#container,
+            attractOptions = container.actualOptions.interactivity.modes.attract;
+
+        if (!attractOptions) {
+            return;
+        }
+
+        const query = container.particles.quadTree.query(area, (p) => this.isEnabled(p));
 
         for (const particle of query) {
             const { dx, dy, distance } = getDistances(particle.position, position);
