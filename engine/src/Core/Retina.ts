@@ -10,8 +10,6 @@ export class Retina {
     attractDistance!: number;
     attractModeDistance!: number;
     bounceModeDistance!: number;
-    bubbleModeDistance!: number;
-    bubbleModeSize?: number;
     maxSpeed!: number;
     pixelRatio!: number;
     reduceFactor!: number;
@@ -82,11 +80,6 @@ export class Retina {
         this.bounceModeDistance = modes.bounce.distance * ratio;
         this.attractModeDistance = modes.attract.distance * ratio;
         this.slowModeRadius = modes.slow.radius * ratio;
-        this.bubbleModeDistance = modes.bubble.distance * ratio;
-
-        if (modes.bubble.size) {
-            this.bubbleModeSize = modes.bubble.size * ratio;
-        }
     }
 
     initParticle(particle: Particle): void {

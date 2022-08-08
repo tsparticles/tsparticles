@@ -1,8 +1,6 @@
-import type { IBubbleBase } from "../../../Interfaces/Interactivity/Modes/IBubbleBase";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import { OptionsColor } from "../../OptionsColor";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { IOptionLoader, RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
+import type { IBubbleBase } from "../Interfaces/IBubbleBase";
+import { OptionsColor } from "tsparticles-engine";
 
 /**
  * @category Options

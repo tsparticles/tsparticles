@@ -1,5 +1,4 @@
-import type { IOptionsColor } from "../../IOptionsColor";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { IOptionsColor, SingleOrMultiple } from "tsparticles-engine";
 
 /**
  * @category Options

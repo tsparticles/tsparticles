@@ -1,8 +1,6 @@
+import type { IOptionLoader, RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
 import { BubbleBase } from "./BubbleBase";
-import type { IBubbleDiv } from "../../../Interfaces/Interactivity/Modes/IBubbleDiv";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { IBubbleDiv } from "../Interfaces/IBubbleDiv";
 
 /**
  * @category Options

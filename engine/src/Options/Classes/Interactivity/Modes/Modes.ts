@@ -1,6 +1,5 @@
 import { Attract } from "./Attract";
 import { Bounce } from "./Bounce";
-import { Bubble } from "./Bubble";
 import type { Container } from "../../../../Core/Container";
 import type { Engine } from "../../../../engine";
 import type { IExternalInteractor } from "../../../../Core/Interfaces/IExternalInteractor";
@@ -18,7 +17,6 @@ export class Modes implements IModes, IOptionLoader<IModes> {
 
     attract;
     bounce;
-    bubble;
 
     readonly #container;
     readonly #engine;
@@ -31,7 +29,6 @@ export class Modes implements IModes, IOptionLoader<IModes> {
 
         this.attract = new Attract();
         this.bounce = new Bounce();
-        this.bubble = new Bubble();
         this.slow = new Slow();
     }
 
@@ -41,7 +38,6 @@ export class Modes implements IModes, IOptionLoader<IModes> {
         }
 
         this.attract.load(data.attract);
-        this.bubble.load(data.bubble);
         this.slow.load(data.slow);
 
         if (this.#container) {

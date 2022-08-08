@@ -1,6 +1,6 @@
 import type { IBubbleBase } from "./IBubbleBase";
 import type { IBubbleDiv } from "./IBubbleDiv";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { SingleOrMultiple } from "tsparticles-engine";
 
 /**
  * @category Options
