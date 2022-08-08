@@ -46,9 +46,8 @@ export class Repulser extends ParticlesInteractorBase {
             };
         }
 
-        const pos1 = p1.getPosition();
-
-        const query = container.particles.quadTree.queryCircle(pos1, p1.repulse.distance);
+        const pos1 = p1.getPosition(),
+            query = container.particles.quadTree.queryCircle(pos1, p1.repulse.distance);
 
         for (const p2 of query) {
             if (p1 === p2 || p2.destroyed) {
