@@ -199,9 +199,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
         this.motion.load(data.motion);
         this.particles.load(data.particles);
-
         this.style = deepExtend(this.style, data.style) as RecursivePartial<CSSStyleDeclaration>;
-
         this.#engine.plugins.loadOptions(this, data);
 
         const interactors = this.#engine.plugins.interactors.get(this.#container);
@@ -229,7 +227,9 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         if (data.themes !== undefined) {
             for (const theme of data.themes) {
                 const optTheme = new Theme();
+
                 optTheme.load(theme);
+
                 this.themes.push(optTheme);
             }
         }
