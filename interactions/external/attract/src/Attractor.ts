@@ -155,13 +155,12 @@ export class Attractor extends ExternalInteractorBase {
         }
 
         if (container.attract.clicking) {
-            const mousePos = container.interactivity.mouse.clickPosition;
+            const mousePos = container.interactivity.mouse.clickPosition,
+                attractRadius = container.retina.attractModeDistance;
 
-            if (!mousePos) {
+            if (!attractRadius || attractRadius < 0 || !mousePos) {
                 return;
             }
-
-            const attractRadius = container.retina.attractModeDistance;
 
             this.processAttract(mousePos, attractRadius, new Circle(mousePos.x, mousePos.y, attractRadius));
         } else if (container.attract.clicking === false) {
@@ -172,14 +171,13 @@ export class Attractor extends ExternalInteractorBase {
     }
 
     private hoverAttract(): void {
-        const container = this.#container;
-        const mousePos = container.interactivity.mouse.position;
+        const container = this.#container,
+            mousePos = container.interactivity.mouse.position,
+            attractRadius = container.retina.attractModeDistance;
 
-        if (!mousePos) {
+        if (!attractRadius || attractRadius < 0 || !mousePos) {
             return;
         }
-
-        const attractRadius = container.retina.attractModeDistance;
 
         this.processAttract(mousePos, attractRadius, new Circle(mousePos.x, mousePos.y, attractRadius));
     }

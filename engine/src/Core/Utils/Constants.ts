@@ -4,9 +4,6 @@
  */
 export const generatedAttribute = "generated";
 
-export const randomColorValue = "random";
-export const midColorValue = "mid";
-
 export const touchEndEvent = "touchend";
 export const mouseDownEvent = "mousedown";
 export const mouseUpEvent = "mouseup";

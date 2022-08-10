@@ -1,5 +1,5 @@
 import { describe, it } from "mocha";
-import { ICoordinates3d, tspRandom } from "../src";
+import { ICoordinates3d, getRandom } from "../src";
 import { TestCanvas } from "./Fixture/TestCanvas";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticles } from "./Fixture/TestParticles";
@@ -178,7 +178,7 @@ describe("Particles", () => {
         testParticles.particles.push(numParticles, { position, clicking: false, inside: false });
         expect(testParticles.particles.count).to.equal(5);
 
-        let ts = tspRandom() * 16.66667;
+        let ts = getRandom() * 16.66667;
         const logP = testParticles.particles.array[0];
 
         console.log(logP.id);
@@ -188,28 +188,28 @@ describe("Particles", () => {
             factor: (60 * ts) / 1000,
         });
 
-        ts = tspRandom() * 16.66667;
+        ts = getRandom() * 16.66667;
 
         testParticles.particles.update({
             value: ts,
             factor: (60 * ts) / 1000,
         });
 
-        ts = tspRandom() * 16.66667;
+        ts = getRandom() * 16.66667;
 
         testParticles.particles.update({
             value: ts,
             factor: (60 * ts) / 1000,
         });
 
-        ts = tspRandom() * 16.66667;
+        ts = getRandom() * 16.66667;
 
         testParticles.particles.update({
             value: ts,
             factor: (60 * ts) / 1000,
         });
 
-        ts = tspRandom() * 16.66667;
+        ts = getRandom() * 16.66667;
 
         testParticles.particles.update({
             value: ts,

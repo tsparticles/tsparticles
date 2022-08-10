@@ -6,7 +6,7 @@ import type {
     ParticlesOptions,
     RecursivePartial,
 } from "tsparticles-engine";
-import { getRangeValue, getStyleFromHsl, rangeColorToHsl, tspRandom } from "tsparticles-engine";
+import { getRandom, getRangeValue, getStyleFromHsl, rangeColorToHsl } from "tsparticles-engine";
 import type { ITwinkle } from "./Options/Interfaces/ITwinkle";
 import { Twinkle } from "./Options/Classes/Twinkle";
 
@@ -37,7 +37,7 @@ export class TwinkleUpdater implements IParticleUpdater {
         }
 
         const twinkle = twinkleOptions.particles,
-            twinkling = twinkle.enable && tspRandom() < twinkle.frequency,
+            twinkling = twinkle.enable && getRandom() < twinkle.frequency,
             zIndexOptions = particle.options.zIndex,
             zOpacityFactor = (1 - particle.zIndexFactor) ** zIndexOptions.opacityRate,
             twinklingOpacity = twinkling ? getRangeValue(twinkle.opacity) * zOpacityFactor : opacity,

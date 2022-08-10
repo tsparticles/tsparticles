@@ -8,7 +8,6 @@ import { isSsr } from "../Utils/Utils";
  */
 export class Retina {
     attractDistance!: number;
-    attractModeDistance!: number;
     maxSpeed!: number;
     pixelRatio!: number;
     reduceFactor!: number;

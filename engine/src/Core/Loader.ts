@@ -4,16 +4,15 @@ import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { RecursivePartial } from "../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
 import { generatedAttribute } from "./Utils/Constants";
+import { getRandom } from "../Utils/NumberUtils";
 import { itemFromArray } from "../Utils/Utils";
-import { tspRandom } from "../Utils/NumberUtils";
 
 /**
  * Default fetch error catcher
  * @param statusCode the fecth status code error
  */
 function fetchError(statusCode: number): void {
-    console.error(`Error tsParticles - fetch status: ${statusCode}`);
-    console.error("Error tsParticles - File config not found");
+    console.error(`tsParticles - Error ${statusCode} while retrieving config file`);
 }
 
 async function getDataFromUrl(
@@ -28,13 +27,11 @@ async function getDataFromUrl(
 
     const response = await fetch(url);
 
-    if (!response.ok) {
-        fetchError(response.status);
-
-        return;
+    if (response.ok) {
+        return response.json();
     }
 
-    return response.json();
+    fetchError(response.status);
 }
 
 /**
@@ -149,7 +146,7 @@ export class Loader {
      * @param params all the parameters required for loading options in the current animation
      */
     async loadOptions(params: LoaderParams): Promise<Container | undefined> {
-        const tagId = params.tagId ?? `tsparticles${Math.floor(tspRandom() * 10000)}`,
+        const tagId = params.tagId ?? `tsparticles${Math.floor(getRandom() * 10000)}`,
             { index, url: jsonUrl, remote } = params,
             options = remote ? await getDataFromUrl(jsonUrl, index) : params.options;
 
@@ -173,6 +170,7 @@ export class Loader {
 
             if (old && !old.destroyed) {
                 old.destroy();
+
                 dom.splice(oldIndex, 1);
             }
         }

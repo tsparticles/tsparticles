@@ -147,17 +147,15 @@ export class Canvas {
 
         let [fColor, sColor] = this.getPluginParticleColors(particle);
 
-        if (!fColor || !sColor) {
-            if (!fColor) {
-                fColor = pfColor ? pfColor : undefined;
-            }
-
-            if (!sColor) {
-                sColor = psColor ? psColor : undefined;
-            }
+        if (!fColor) {
+            fColor = pfColor;
         }
 
-        if (!fColor || !sColor) {
+        if (!sColor) {
+            sColor = psColor;
+        }
+
+        if (!fColor && !sColor) {
             return;
         }
 
@@ -312,7 +310,6 @@ export class Canvas {
         this.originalStyle = deepExtend({}, this.element.style) as CSSStyleDeclaration;
         this.size.height = canvas.offsetHeight;
         this.size.width = canvas.offsetWidth;
-
         this.#context = this.element.getContext("2d");
         this.container.retina.init();
         this.initBackground();

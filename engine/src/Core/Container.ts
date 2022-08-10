@@ -108,15 +108,19 @@ export class Container {
 
     interactivity: IContainerInteractivity;
 
+    readonly #intersectionObserver;
+
     /**
      * Last frame time, used for delta values, for keeping animation correct in lower frame rates
      */
     lastFrameTime?: number;
 
     /**
-     * The container life time
+     * The container lifetime
      */
     lifeTime;
+
+    #options;
 
     /**
      * The container check if it's hidden on the web page
@@ -139,6 +143,8 @@ export class Container {
 
     readonly retina;
 
+    #sourceOptions;
+
     /**
      * Check if the particles container is started
      */
@@ -147,12 +153,9 @@ export class Container {
     zLayers;
 
     private readonly _initialSourceOptions;
-    private _options;
-    private _sourceOptions;
     private currentTheme?: string;
     private drawAnimationFrame?: number;
     private firstStart;
-    private readonly intersectionObserver?;
     private paused;
 
     /**
@@ -174,7 +177,7 @@ export class Container {
         this.lastFrameTime = 0;
         this.zLayers = 100;
         this.pageHidden = false;
-        this._sourceOptions = sourceOptions;
+        this.#sourceOptions = sourceOptions;
         this._initialSourceOptions = sourceOptions;
         this.retina = new Retina(this);
         this.canvas = new Canvas(this);
@@ -190,14 +193,14 @@ export class Container {
         this.plugins = new Map<string, IContainerPlugin>();
         this.drawers = new Map<string, IShapeDrawer>();
         /* tsParticles variables with default values */
-        this._options = loadContainerOptions(this.#engine, this);
+        this.#options = loadContainerOptions(this.#engine, this);
         this.actualOptions = loadContainerOptions(this.#engine, this);
 
         /* ---------- tsParticles - start ------------ */
         this.#eventListeners = new EventListeners(this);
 
         if (typeof IntersectionObserver !== "undefined" && IntersectionObserver) {
-            this.intersectionObserver = new IntersectionObserver((entries) => this.intersectionManager(entries));
+            this.#intersectionObserver = new IntersectionObserver((entries) => this.intersectionManager(entries));
         }
 
         this.#engine.dispatchEvent(EventType.containerBuilt, { container: this });
@@ -207,14 +210,14 @@ export class Container {
      * The options used by the container, it's a full [[Options]] object
      */
     get options(): Options {
-        return this._options;
+        return this.#options;
     }
 
     /**
      * The options that were initially passed to the container
      */
     get sourceOptions(): RecursivePartial<IOptions> | undefined {
-        return this._sourceOptions;
+        return this.#sourceOptions;
     }
 
     /**
@@ -472,8 +475,8 @@ export class Container {
         }
 
         /* options settings */
-        this._options = loadContainerOptions(this.#engine, this, this._initialSourceOptions, this.sourceOptions);
-        this.actualOptions = loadContainerOptions(this.#engine, this, this._options);
+        this.#options = loadContainerOptions(this.#engine, this, this._initialSourceOptions, this.sourceOptions);
+        this.actualOptions = loadContainerOptions(this.#engine, this, this.#options);
 
         /* init canvas + particles */
         this.retina.init();
@@ -612,6 +615,7 @@ export class Container {
 
         /* restart */
         this.stop();
+
         return this.start();
     }
 
@@ -620,7 +624,7 @@ export class Container {
             return;
         }
 
-        this._options = loadContainerOptions(this.#engine, this);
+        this.#options = loadContainerOptions(this.#engine, this);
 
         return this.refresh();
     }
@@ -697,8 +701,8 @@ export class Container {
 
         this.#eventListeners.addListeners();
 
-        if (this.interactivity.element instanceof HTMLElement && this.intersectionObserver) {
-            this.intersectionObserver.observe(this.interactivity.element);
+        if (this.interactivity.element instanceof HTMLElement && this.#intersectionObserver) {
+            this.#intersectionObserver.observe(this.interactivity.element);
         }
 
         for (const [, plugin] of this.plugins) {
@@ -729,23 +733,19 @@ export class Container {
         this.particles.clear();
         this.canvas.clear();
 
-        if (this.interactivity.element instanceof HTMLElement && this.intersectionObserver) {
-            this.intersectionObserver.unobserve(this.interactivity.element);
+        if (this.interactivity.element instanceof HTMLElement && this.#intersectionObserver) {
+            this.#intersectionObserver.unobserve(this.interactivity.element);
         }
 
         for (const [, plugin] of this.plugins) {
-            if (plugin.stop) {
-                plugin.stop();
-            }
+            plugin.stop?.();
         }
 
         for (const key of this.plugins.keys()) {
             this.plugins.delete(key);
         }
 
-        delete this.particles.grabLineColor;
-
-        this._sourceOptions = this._options;
+        this.#sourceOptions = this.#options;
 
         this.#engine.dispatchEvent(EventType.containerStopped, { container: this });
     }
@@ -755,11 +755,13 @@ export class Container {
      */
     updateActualOptions(): boolean {
         this.actualOptions.responsive = [];
+
         const newMaxWidth = this.actualOptions.setResponsive(
             this.canvas.size.width,
             this.retina.pixelRatio,
-            this._options
+            this.#options
         );
+
         this.actualOptions.setTheme(this.currentTheme);
 
         if (this.responsiveMaxWidth != newMaxWidth) {
@@ -781,11 +783,7 @@ export class Container {
                 continue;
             }
 
-            if (entry.isIntersecting) {
-                this.play();
-            } else {
-                this.pause();
-            }
+            (entry.isIntersecting ? this.play : this.pause)();
         }
     }
 }

@@ -50,4 +50,6 @@ function rollupBuild({
     return rollup(inputOptions).then(bundle => bundle.write(outputOptions));
 }
 
-rollupBuild(rollupConfig);
+rollupBuild(rollupConfig).catch(err => {
+    console.error(err);
+});

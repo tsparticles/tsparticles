@@ -1,4 +1,4 @@
-import { AlterType, getRangeValue, rangeColorToHsl, tspRandom } from "tsparticles-engine";
+import { AlterType, getRandom, getRangeValue, rangeColorToHsl } from "tsparticles-engine";
 import type {
     IDelta,
     IParticleTransformValues,
@@ -61,14 +61,14 @@ export class RollUpdater implements IParticleUpdater {
                 enable: rollOpt.enable,
                 horizontal: rollOpt.mode === RollMode.horizontal || rollOpt.mode === RollMode.both,
                 vertical: rollOpt.mode === RollMode.vertical || rollOpt.mode === RollMode.both,
-                angle: tspRandom() * Math.PI * 2,
+                angle: getRandom() * Math.PI * 2,
                 speed: getRangeValue(rollOpt.speed) / 360,
             };
 
             if (rollOpt.backColor) {
                 particle.backColor = rangeColorToHsl(rollOpt.backColor);
             } else if (rollOpt.darken.enable && rollOpt.enlighten.enable) {
-                const alterType = tspRandom() >= 0.5 ? AlterType.darken : AlterType.enlighten;
+                const alterType = getRandom() >= 0.5 ? AlterType.darken : AlterType.enlighten;
 
                 particle.roll.alter = {
                     type: alterType,

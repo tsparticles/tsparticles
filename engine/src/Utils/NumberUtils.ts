@@ -11,14 +11,21 @@ import type { MoveDirectionAlt } from "../Enums/Directions/MoveDirection";
 import type { RangeValue } from "../Types/RangeValue";
 import { Vector } from "../Core/Utils/Vector";
 
-export let tspRandom = Math.random;
+let _random = Math.random;
 
 /**
  * Replaces the library random function with a custom one.
  * @param rnd A random function that returns a number between 0 and 1.
  */
 export function setRandom(rnd: () => number = Math.random): void {
-    tspRandom = rnd;
+    _random = rnd;
+}
+
+/**
+ * Returns a random number between 0 and 1 using the library random function.
+ */
+export function getRandom(): number {
+    return clamp(_random(), 0, 1 - 1e-16);
 }
 
 /**
@@ -50,7 +57,7 @@ export function randomInRange(r: RangeValue): number {
         min = 0;
     }
 
-    return tspRandom() * (max - min) + min;
+    return getRandom() * (max - min) + min;
 }
 
 export function getRangeValue(value: RangeValue): number {
@@ -146,7 +153,7 @@ export function getParticleDirectionAngle(
                 return Math.atan2(position.y - center.y, position.x - center.x);
             case MoveDirection.none:
             default:
-                return tspRandom() * Math.PI * 2;
+                return getRandom() * Math.PI * 2;
         }
     }
 }
@@ -216,8 +223,8 @@ export function calcPositionFromSize(data: IPositionFromSizeParams): ICoordinate
  */
 export function calcPositionOrRandomFromSize(data: IPositionFromSizeParams): ICoordinates {
     return {
-        x: ((data.position?.x ?? tspRandom() * 100) * data.size.width) / 100,
-        y: ((data.position?.y ?? tspRandom() * 100) * data.size.height) / 100,
+        x: ((data.position?.x ?? getRandom() * 100) * data.size.width) / 100,
+        y: ((data.position?.y ?? getRandom() * 100) * data.size.height) / 100,
     };
 }
 
@@ -242,8 +249,8 @@ export function calcPositionOrRandomFromSizeRanged(data: IRangedPositionFromSize
  */
 export function calcExactPositionOrRandomFromSize(data: IPositionFromSizeParams): ICoordinates {
     return {
-        x: data.position?.x ?? tspRandom() * data.size.width,
-        y: data.position?.y ?? tspRandom() * data.size.height,
+        x: data.position?.x ?? getRandom() * data.size.width,
+        y: data.position?.y ?? getRandom() * data.size.height,
     };
 }
 

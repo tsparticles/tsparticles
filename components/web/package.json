@@ -87,10 +87,10 @@
     "tsparticles-engine": "^2.1.4"
   },
   "devDependencies": {
-    "rollup": "^2.70.2",
+    "rollup": "^2.77.2",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-typescript2": "^0.32.0",
-    "ts-node": "^10.7.0",
+    "rollup-plugin-typescript2": "^0.32.1",
+    "ts-node": "^10.9.1",
     "tslib": "^2.4.0",
     "typescript": "^4.7.4"
   }

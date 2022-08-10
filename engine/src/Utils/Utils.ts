@@ -1,4 +1,4 @@
-import { collisionVelocity, getDistances, getValue, tspRandom } from "./NumberUtils";
+import { collisionVelocity, getDistances, getRandom, getValue } from "./NumberUtils";
 import type { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
 import type { DivMode } from "../Enums/Modes/DivMode";
 import type { IBounds } from "../Core/Interfaces/IBounds";
@@ -158,7 +158,7 @@ export async function loadFont(font?: string, weight?: string): Promise<void> {
  * @returns a random array index
  */
 export function arrayRandomIndex<T>(array: T[]): number {
-    return Math.floor(tspRandom() * array.length);
+    return Math.floor(getRandom() * array.length);
 }
 
 /**

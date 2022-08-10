@@ -1,6 +1,5 @@
 import type { IColor, IHsl, IHsla, IRangeColor, IRgb, IRgba } from "../Core/Interfaces/Colors";
-import { getRangeValue, mix, randomInRange, setRangeValue, tspRandom } from "./NumberUtils";
-import { midColorValue, randomColorValue } from "../Core/Utils/Constants";
+import { getRandom, getRangeValue, mix, randomInRange, setRangeValue } from "./NumberUtils";
 import { AnimationStatus } from "../Enums/AnimationStatus";
 import type { HslAnimation } from "../Options/Classes/HslAnimation";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
@@ -11,7 +10,9 @@ import type { IParticleHslAnimation } from "../Core/Interfaces/IParticleHslAnima
 import type { IParticleValueAnimation } from "../Core/Interfaces/IParticleValueAnimation";
 import { itemFromArray } from "./Utils";
 
-const colorManagers = new Map<string, IColorManager>();
+const randomColorValue = "random",
+    midColorValue = "mid",
+    colorManagers = new Map<string, IColorManager>();
 
 export function addColorManager(key: string, manager: IColorManager): void {
     colorManagers.set(key, manager);
@@ -106,8 +107,6 @@ export function rangeColorToRgb(input?: string | IRangeColor, index?: number, us
             return res;
         }
     }
-
-    return;
 }
 
 /**
@@ -342,7 +341,7 @@ export function colorMix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number
 export function getLinkColor(p1: IParticle, p2?: IParticle, linkColor?: string | IRgb): IRgb | undefined {
     if (linkColor === randomColorValue) {
         return getRandomRgbColor();
-    } else if (linkColor === "mid") {
+    } else if (linkColor === midColorValue) {
         const sourceColor = p1.getFillColor() ?? p1.getStrokeColor(),
             destColor = p2?.getFillColor() ?? p2?.getStrokeColor();
 
@@ -439,8 +438,8 @@ function setColorAnimation(
         colorValue.status = AnimationStatus.increasing;
 
         if (!colorAnimation.sync) {
-            colorValue.velocity *= tspRandom();
-            colorValue.value *= tspRandom();
+            colorValue.velocity *= getRandom();
+            colorValue.value *= getRandom();
         }
     } else {
         colorValue.velocity = 0;

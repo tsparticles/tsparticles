@@ -3,7 +3,7 @@ import type { ISimplexOptions } from "./ISimplexOptions";
 import type { Noise4D } from "./simplex";
 import { Vector } from "tsparticles-engine";
 import { makeNoise4D } from "./simplex";
-import { tspRandom } from "tsparticles-engine";
+import { getRandom } from "tsparticles-engine";
 
 export class SimplexNoiseGenerator implements IMovePathGenerator {
     container?: Container;
@@ -16,7 +16,7 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
 
     constructor() {
         this.field = [];
-        this.noiseFunc = makeNoise4D(tspRandom());
+        this.noiseFunc = makeNoise4D(getRandom());
         this.noiseW = 0;
         this.options = {
             size: 20,
@@ -102,7 +102,7 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
         this.options.width = container.canvas.size.width;
         this.options.height = container.canvas.size.height;
 
-        this.noiseFunc = makeNoise4D((sourceOptions.seed as number) ?? tspRandom());
+        this.noiseFunc = makeNoise4D((sourceOptions.seed as number) ?? getRandom());
 
         this.options.columns = Math.floor(this.options.width / this.options.size) + 1;
         this.options.rows = Math.floor(this.options.height / this.options.size) + 1;

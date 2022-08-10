@@ -6,13 +6,13 @@ import {
     getDistance,
     getParticleBaseVelocity,
     getParticleDirectionAngle,
+    getRandom,
     getRangeMax,
     getRangeMin,
     getRangeValue,
     getValue,
     randomInRange,
     setRangeValue,
-    tspRandom,
 } from "../Utils/NumberUtils";
 import { deepExtend, isInArray, itemFromArray } from "../Utils/Utils";
 import { getHslFromAnimation, rangeColorToRgb } from "../Utils/ColorUtils";
@@ -379,7 +379,7 @@ export class Particle implements IParticle {
 
                 case StartValueType.random:
                     this.size.value = randomInRange(this.size) * pxRatio;
-                    this.size.status = tspRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
+                    this.size.status = getRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
                     break;
 
@@ -396,7 +396,7 @@ export class Particle implements IParticle {
                 container.retina.reduceFactor;
 
             if (!sizeAnimation.sync) {
-                this.size.velocity *= tspRandom();
+                this.size.velocity *= getRandom();
             }
         }
 
@@ -609,7 +609,7 @@ export class Particle implements IParticle {
             }),
             pos = Vector3d.create(exactPosition.x, exactPosition.y, zIndex),
             radius = this.getRadius(),
-            /* check position  - into the canvas */
+            /* check position - into the canvas */
             outModes = this.options.move.outModes,
             fixHorizontal = (outMode: OutMode | keyof typeof OutMode | OutModeAlt): void => {
                 fixOutMode({
@@ -666,7 +666,7 @@ export class Particle implements IParticle {
         }
 
         if (moveOptions.random && typeof moveOptions.speed === "number") {
-            res.length *= tspRandom();
+            res.length *= getRandom();
         }
 
         return res;

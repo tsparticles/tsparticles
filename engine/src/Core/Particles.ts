@@ -1,11 +1,11 @@
 import {
     calcPositionFromSize,
+    getRandom,
     getRangeMax,
     getRangeMin,
     getValue,
     randomInRange,
     setRangeValue,
-    tspRandom,
 } from "../Utils/NumberUtils";
 import type { ClickMode } from "../Enums/Modes/ClickMode";
 import type { Container } from "./Container";
@@ -18,7 +18,6 @@ import type { IParticle } from "./Interfaces/IParticle";
 import type { IParticlesDensity } from "../Options/Interfaces/Particles/Number/IParticlesDensity";
 import type { IParticlesFrequencies } from "./Interfaces/IParticlesFrequencies";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions";
-import type { IRgb } from "./Interfaces/Colors";
 import { InteractionManager } from "./Utils/InteractionManager";
 import { Particle } from "./Particle";
 import { Point } from "./Utils/Point";
@@ -39,7 +38,6 @@ export class Particles {
 
     readonly #engine;
 
-    grabLineColor?: IRgb | string;
     lastZIndex;
     limit;
     movers;
@@ -237,7 +235,7 @@ export class Particles {
         let res = this.freqs.links.get(key);
 
         if (res === undefined) {
-            res = tspRandom();
+            res = getRandom();
 
             this.freqs.links.set(key, res);
         }
@@ -265,7 +263,7 @@ export class Particles {
         let res = this.freqs.triangles.get(key);
 
         if (res === undefined) {
-            res = tspRandom();
+            res = getRandom();
 
             this.freqs.triangles.set(key, res);
         }

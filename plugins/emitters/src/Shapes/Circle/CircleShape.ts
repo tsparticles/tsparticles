@@ -1,13 +1,13 @@
 import type { ICoordinates, IDimension } from "tsparticles-engine";
 import type { IEmitterShape } from "../../IEmitterShape";
-import { tspRandom } from "tsparticles-engine";
+import { getRandom } from "tsparticles-engine";
 
 export class CircleShape implements IEmitterShape {
     randomPosition(position: ICoordinates, size: IDimension, fill: boolean): ICoordinates {
         const generateTheta = (x: number, y: number): number => {
-                const u = tspRandom() / 4.0,
+                const u = getRandom() / 4.0,
                     theta = Math.atan((y / x) * Math.tan(2 * Math.PI * u)),
-                    v = tspRandom();
+                    v = getRandom();
 
                 if (v < 0.25) {
                     return theta;
@@ -24,7 +24,7 @@ export class CircleShape implements IEmitterShape {
             [a, b] = [size.width / 2, size.height / 2],
             randomTheta = generateTheta(a, b),
             maxRadius = radius(a, b, randomTheta),
-            randomRadius = fill ? maxRadius * Math.sqrt(tspRandom()) : maxRadius;
+            randomRadius = fill ? maxRadius * Math.sqrt(getRandom()) : maxRadius;
 
         return {
             x: position.x + randomRadius * Math.cos(randomTheta),

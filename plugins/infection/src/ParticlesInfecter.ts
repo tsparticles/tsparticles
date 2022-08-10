@@ -1,5 +1,5 @@
 import type { InfectableContainer, InfectableParticle } from "./Types";
-import { ParticlesInteractorBase, tspRandom } from "tsparticles-engine";
+import { ParticlesInteractorBase, getRandom } from "tsparticles-engine";
 import type { IDelta } from "tsparticles-engine";
 import type { IInfectionOptions } from "./Options/Interfaces/IInfectionOptions";
 
@@ -61,7 +61,7 @@ export class ParticlesInfecter extends ParticlesInteractorBase {
                 continue;
             }
 
-            if (tspRandom() < infections / neighbors) {
+            if (getRandom() < infections / neighbors) {
                 if (infP2.infection.stage === undefined) {
                     infecter.startInfection(infP2, infectedStage1);
                 } else if (infP2.infection.stage < p1.infection.stage) {
