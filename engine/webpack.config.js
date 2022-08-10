@@ -4,19 +4,18 @@ const webpack = require("webpack");
 const version = require("./package.json").version;
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
-const banner = `Author : Matteo Bruni
+const banner = `tsParticles Engine v${version}
+Author: Matteo Bruni
 MIT license: https://opensource.org/licenses/MIT
-Demo / Generator : https://particles.js.org/
-GitHub : https://www.github.com/matteobruni/tsparticles
-How to use? : Check the GitHub README
-v${version}`;
+Website: https://particles.js.org/
+Confetti Website: https://confetti.js.org
+GitHub: https://www.github.com/matteobruni/tsparticles
+How to use?: Check the GitHub README
+------------------------------------------------------`;
 
-const minBanner = `tsParticles v${version} by Matteo Bruni`;
+const minBanner = `tsParticles Engine v${version} by Matteo Bruni`;
 
 const getConfig = (entry) => {
-    const isSlim = Object.keys(entry).find((t) => t.indexOf("slim") >= 0);
-    const reportFileName = isSlim ? "report.slim" : "report";
-
     return {
         entry: entry,
         mode: "production",
@@ -54,7 +53,7 @@ const getConfig = (entry) => {
                 openAnalyzer: false,
                 analyzerMode: "static",
                 exclude: /\.min\.js$/,
-                reportFilename: `${reportFileName}.html`
+                reportFilename: "report.html"
             })
         ],
         optimization: {
