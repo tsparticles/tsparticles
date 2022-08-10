@@ -39,7 +39,9 @@ export async function bundle(basePath: string): Promise<boolean> {
             });
 
         return res;
-    } catch {
+    } catch (e) {
+        console.log(e);
+
         return false;
     }
 }
