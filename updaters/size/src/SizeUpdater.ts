@@ -25,7 +25,7 @@ function updateSize(particle: Particle, delta: IDelta): void {
     if (
         particle.destroyed ||
         !particle.size.enable ||
-        (particle.size.maxLoops ?? 0) > 0 && (particle.size.loops ?? 0) > (particle.size.maxLoops ?? 0)
+        ((particle.size.maxLoops ?? 0) > 0 && (particle.size.loops ?? 0) > (particle.size.maxLoops ?? 0))
     ) {
         return;
     }
@@ -81,7 +81,7 @@ export class SizeUpdater implements IParticleUpdater {
             !particle.spawning &&
             particle.size.enable &&
             ((particle.size.maxLoops ?? 0) <= 0 ||
-                (particle.size.maxLoops ?? 0) > 0 && (particle.size.loops ?? 0) < (particle.size.maxLoops ?? 0))
+                ((particle.size.maxLoops ?? 0) > 0 && (particle.size.loops ?? 0) < (particle.size.maxLoops ?? 0)))
         );
     }
 

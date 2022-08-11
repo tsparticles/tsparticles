@@ -2,7 +2,7 @@
 
 # tsParticles Firefly Preset
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-firefly/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-firefly) [![npmjs](https://badge.fury.io/js/tsparticles-preset-firefly.svg)](https://www.npmjs.com/package/tsparticles-preset-firefly) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-firefly)](https://www.npmjs.com/package/tsparticles-preset-firefly)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-firefly/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-firefly) [![npmjs](https://badge.fury.io/js/tsparticles-preset-firefly.svg)](https://www.npmjs.com/package/tsparticles-preset-firefly) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-firefly)](https://www.npmjs.com/package/tsparticles-preset-firefly) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) preset for a mouse trail made with small fading particles like
 little fireflies.
@@ -161,4 +161,51 @@ let particlesOptions = {
 let particlesInit = async (engine) => {
   await loadFireflyPreset(main);
 };
+```
+
+---
+
+```mermaid
+flowchart TD
+
+subgraph i [Interactions]
+
+subgraph ie [Externals]
+iet[Trail]
+end
+
+end
+
+i --> ie
+
+e[tsParticles Engine] --> i
+
+subgraph m [Movers]
+mb[Base]
+end
+
+e --> m
+
+subgraph s [Shapes]
+sc[Circle]
+end
+
+e --> s
+
+subgraph u [Updaters]
+uc[Color]
+uop[Opacity]
+uou[Out Modes]
+usi[Size]
+end
+
+e --> u
+
+subgraph pr [Presets]
+prff[Firefly]
+end
+
+e --> pr
+
+iet & mb & sc & uc & uop & uou & usi --> prff
 ```

@@ -1,5 +1,6 @@
-import { Circle, CircleWarp, Point, QuadTree, Rectangle } from "../src";
+import { Circle, CircleWarp, Point, Rectangle } from "../src";
 import { describe, it } from "mocha";
+import { QuadTree } from "../src/Core/Utils/QuadTree";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticle } from "./Fixture/TestParticle";
 import { expect } from "chai";

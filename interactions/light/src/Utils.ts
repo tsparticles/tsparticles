@@ -3,7 +3,11 @@ import type { ICoordinates } from "tsparticles-engine";
 import { getStyleFromRgb } from "tsparticles-engine";
 
 export function drawLight(container: LightContainer, context: CanvasRenderingContext2D, mousePos: ICoordinates): void {
-    const lightOptions = container.actualOptions.interactivity.modes.light.area;
+    const lightOptions = container.actualOptions.interactivity.modes.light?.area;
+
+    if (!lightOptions) {
+        return;
+    }
 
     context.beginPath();
     context.arc(mousePos.x, mousePos.y, lightOptions.radius, 0, 2 * Math.PI);
@@ -35,15 +39,25 @@ export function drawParticleShadow(
     particle: LightParticle,
     mousePos: ICoordinates
 ): void {
-    const pos = particle.getPosition();
-    const shadowOptions = container.actualOptions.interactivity.modes.light.shadow;
+    const pos = particle.getPosition(),
+        shadowOptions = container.actualOptions.interactivity.modes.light?.shadow;
+
+    if (!shadowOptions) {
+        return;
+    }
+
+    const shadowRgb = particle.lightShadow;
+
+    if (!shadowRgb) {
+        return;
+    }
 
     context.save();
 
     const radius = particle.getRadius();
     const sides = particle.sides;
-    const full = Math.PI * 2 / sides;
-    const angle = -(particle.rotate?.value ?? 0) + Math.PI / 4;
+    const full = (Math.PI * 2) / sides;
+    const angle = -particle.rotation + Math.PI / 4;
     const factor = 1; //Math.sqrt(2);
     const dots = [];
 
@@ -69,12 +83,6 @@ export function drawParticleShadow(
             startX: dot.x,
             startY: dot.y,
         });
-    }
-
-    const shadowRgb = particle.lightShadow;
-
-    if (!shadowRgb) {
-        return;
     }
 
     const shadowColor = getStyleFromRgb(shadowRgb);

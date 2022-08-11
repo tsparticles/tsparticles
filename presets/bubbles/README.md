@@ -2,7 +2,7 @@
 
 # tsParticles Bubbles Preset
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-bubbles/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-bubbles) [![npmjs](https://badge.fury.io/js/tsparticles-preset-bubbles.svg)](https://www.npmjs.com/package/tsparticles-preset-bubbles) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-bubbles)](https://www.npmjs.com/package/tsparticles-preset-bubbles)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-bubbles/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-bubbles) [![npmjs](https://badge.fury.io/js/tsparticles-preset-bubbles.svg)](https://www.npmjs.com/package/tsparticles-preset-bubbles) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-bubbles)](https://www.npmjs.com/package/tsparticles-preset-bubbles) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) preset for colored bubbles coming from the bottom of the
 screen on a white background.
@@ -158,4 +158,43 @@ let particlesOptions = {
 let particlesInit = async (engine) => {
   await loadBubblesPreset(engine);
 };
+```
+
+---
+
+```mermaid
+flowchart TD
+
+subgraph m [Movers]
+mb[Base]
+end
+
+e[tsParticles Engine] --> m
+
+subgraph pl [Plugins]
+ple[Emitters]
+end
+
+e --> pl
+
+subgraph s [Shapes]
+sc[Circle]
+end
+
+e --> s
+
+subgraph u [Updaters]
+uc[Color]
+uop[Opacity]
+uou[Out Modes]
+usi[Size]
+end
+
+e --> u
+
+subgraph pr [Presets]
+prbu[Bubbles]
+end
+
+mb & ple & sc & uc & uop & uou & usi --> prbu
 ```

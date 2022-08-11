@@ -1,7 +1,10 @@
-import type { Container, Particle } from "tsparticles-engine";
+import type { Container, Particle, RecursivePartial } from "tsparticles-engine";
+import type { IRepulseParticlesOptions, RepulseParticlesOptions } from "./Types";
 import { ParticlesInteractorBase, Vector, clamp, getDistances, getRangeValue } from "tsparticles-engine";
+import { ParticlesRepulse } from "./Options/Classes/ParticlesRepulse";
 
 type RepulseParticle = Particle & {
+    options: RepulseParticlesOptions;
     repulse?: {
         distance: number;
         factor: number;
@@ -10,8 +13,12 @@ type RepulseParticle = Particle & {
 };
 
 export class Repulser extends ParticlesInteractorBase {
+    readonly #container;
+
     constructor(container: Container) {
         super(container);
+
+        this.#container = container;
     }
 
     clear(): void {
@@ -23,21 +30,24 @@ export class Repulser extends ParticlesInteractorBase {
     }
 
     async interact(p1: RepulseParticle): Promise<void> {
-        const container = this.container;
+        const container = this.#container;
 
         if (!p1.repulse) {
             const repulseOpt1 = p1.options.repulse;
 
+            if (!repulseOpt1) {
+                return;
+            }
+
             p1.repulse = {
-                distance: getRangeValue(repulseOpt1.distance),
+                distance: getRangeValue(repulseOpt1.distance) * container.retina.pixelRatio,
                 speed: getRangeValue(repulseOpt1.speed),
                 factor: getRangeValue(repulseOpt1.factor),
             };
         }
 
-        const pos1 = p1.getPosition();
-
-        const query = container.particles.quadTree.queryCircle(pos1, p1.repulse.distance);
+        const pos1 = p1.getPosition(),
+            query = container.particles.quadTree.queryCircle(pos1, p1.repulse.distance);
 
         for (const p2 of query) {
             if (p1 === p2 || p2.destroyed) {
@@ -49,7 +59,7 @@ export class Repulser extends ParticlesInteractorBase {
             const velocity = p1.repulse.speed * p1.repulse.factor;
             if (distance > 0) {
                 const repulseFactor = clamp((1 - Math.pow(distance / p1.repulse.distance, 2)) * velocity, 0, velocity);
-                const normVec = Vector.create(dx / distance * repulseFactor, dy / distance * repulseFactor);
+                const normVec = Vector.create((dx / distance) * repulseFactor, (dy / distance) * repulseFactor);
 
                 p2.position.addTo(normVec);
             } else {
@@ -60,8 +70,21 @@ export class Repulser extends ParticlesInteractorBase {
         }
     }
 
-    isEnabled(particle: Particle): boolean {
-        return particle.options.repulse.enabled;
+    isEnabled(particle: RepulseParticle): boolean {
+        return particle.options.repulse?.enabled ?? false;
+    }
+
+    loadParticlesOptions?(
+        options: RepulseParticlesOptions,
+        ...sources: (RecursivePartial<IRepulseParticlesOptions> | undefined)[]
+    ): void {
+        if (!options.repulse) {
+            options.repulse = new ParticlesRepulse();
+        }
+
+        for (const source of sources) {
+            options.repulse.load(source?.repulse);
+        }
     }
 
     reset(): void {

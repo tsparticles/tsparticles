@@ -42,10 +42,10 @@ export class DestroyOutMode implements IOutModeManager {
                 const { x: vx, y: vy } = particle.velocity;
 
                 if (
-                    vx < 0 && dx > particle.moveCenter.radius ||
-                    vy < 0 && dy > particle.moveCenter.radius ||
-                    vx >= 0 && dx < -particle.moveCenter.radius ||
-                    vy >= 0 && dy < -particle.moveCenter.radius
+                    (vx < 0 && dx > particle.moveCenter.radius) ||
+                    (vy < 0 && dy > particle.moveCenter.radius) ||
+                    (vx >= 0 && dx < -particle.moveCenter.radius) ||
+                    (vy >= 0 && dy < -particle.moveCenter.radius)
                 ) {
                     return;
                 }

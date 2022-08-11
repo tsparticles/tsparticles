@@ -4,5 +4,5 @@ export interface ICurvesOptions {
     lowValue: number;
     nbHarmonics: number;
     period: number;
-    rndFunc: (() => number) | null;
+    rndFunc?: (() => number) | null;
 }

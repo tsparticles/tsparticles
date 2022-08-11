@@ -374,7 +374,7 @@ tsParticles поддерживает дополнительные настрой
 
 **Вы можете создавать свои собственные плагины**
 
-_Подробности [здесь](https://particles.js.org/docs/modules/_core_interfaces_iplugin_.html)...\_
+_Подробности [здесь](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.html)...\_
 
 ---
 

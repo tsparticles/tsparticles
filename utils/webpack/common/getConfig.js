@@ -1,12 +1,13 @@
 const path = require("path");
 const webpack = require("webpack");
 const TerserPlugin = require("terser-webpack-plugin");
-const {BundleAnalyzerPlugin} = require("webpack-bundle-analyzer");
-const {getExternals} = require("./getExternals");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const { getExternals } = require("./getExternals");
 
 const getConfig = (entry, bannerInput, minBannerInput, dir, bundle) => {
     return {
         entry: entry,
+        mode: "production",
         output: {
             path: path.resolve(dir, "dist"),
             filename: "[name].js",
@@ -15,7 +16,7 @@ const getConfig = (entry, bannerInput, minBannerInput, dir, bundle) => {
             chunkFilename: '[name].js',
         },
         resolve: {
-            extensions: [".js", ".json"]
+            extensions: [ ".js", ".json" ]
         },
         externals: getExternals(bundle),
         module: {
@@ -34,7 +35,7 @@ const getConfig = (entry, bannerInput, minBannerInput, dir, bundle) => {
                 exclude: /\.min\.js$/
             }),
             new webpack.BannerPlugin({
-                banner: minBannerInput,
+                banner: bannerInput,
                 include: /\.min\.js$/
             }),
             new webpack.ProgressPlugin(),
@@ -49,15 +50,12 @@ const getConfig = (entry, bannerInput, minBannerInput, dir, bundle) => {
             minimize: true,
             minimizer: [
                 new TerserPlugin({
-                    include: /\.min\.js$/,
-                    terserOptions: {
-                        output: {
-                            comments: minBannerInput
-                        }
-                    },
-                    extractComments: false
+                    include: /\.min\.js$/
                 })
             ]
+        },
+        performance: {
+            hints: false
         }
     };
 };

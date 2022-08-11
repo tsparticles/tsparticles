@@ -1,7 +1,7 @@
 {
   "name": "tsparticles-demo-new",
   "private": true,
-  "version": "2.1.4",
+  "version": "2.2.0",
   "description": "tsParticles Demo Website",
   "main": "index.html",
   "scripts": {
@@ -20,34 +20,35 @@
     "copy:orbit": "copyfiles -u 2 ./node_modules/tsparticles-updater-orbit/tsparticles.updater.orbit.min.js ./js",
     "build:css": "sass ./css/main.scss ./css/main.css && minify ./css/main.css > ./css/main.min.css && sass ./css/404.scss ./css/404.css && minify ./css/404.css > ./css/404.min.css",
     "build": " yarn clear:cache && yarn build:css && yarn build:js",
+    "build:ci": " yarn clear:cache && yarn build:css && yarn build:js",
     "deploy": "yarn build && yarn clear:docs && lerna run build:docs && node deploy.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
-  "homepage": "https://github.com/matteobruni/tsparticles#readme",
+  "homepage": "https://particles.js.org",
   "dependencies": {
     "copyfiles": "^2.4.1",
     "fs-extra": "^10.1.0",
     "minify": "^9.0.0",
     "rimraf": "^3.0.2",
     "sass": "^1.53.0",
-    "tsparticles": "^2.1.4",
-    "tsparticles-engine": "^2.1.4",
-    "tsparticles-interaction-light": "^2.1.4",
-    "tsparticles-interaction-particles-repulse": "^2.1.4",
-    "tsparticles-path-curves": "^2.1.4",
-    "tsparticles-path-perlin-noise": "^2.1.4",
-    "tsparticles-path-polygon": "^2.1.4",
-    "tsparticles-path-simplex-noise": "^2.1.4",
-    "tsparticles-plugin-infection": "^2.1.4",
-    "tsparticles-updater-gradient": "^2.1.4",
-    "tsparticles-updater-orbit": "^2.1.4"
+    "tsparticles": "^2.2.0",
+    "tsparticles-engine": "^2.2.0",
+    "tsparticles-interaction-light": "^2.2.0",
+    "tsparticles-interaction-particles-repulse": "^2.2.0",
+    "tsparticles-path-curves": "^2.2.0",
+    "tsparticles-path-perlin-noise": "^2.2.0",
+    "tsparticles-path-polygon": "^2.2.0",
+    "tsparticles-path-simplex-noise": "^2.2.0",
+    "tsparticles-plugin-infection": "^2.2.0",
+    "tsparticles-updater-gradient": "^2.2.0",
+    "tsparticles-updater-orbit": "^2.2.0"
   }
 }

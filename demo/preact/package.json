@@ -1,11 +1,11 @@
 {
   "name": "preact-particles-demo",
   "private": true,
-  "version": "2.1.4",
+  "version": "2.2.0",
   "type": "module",
   "description": "> TODO: description",
-  "author": "Matteo Bruni <ar3s@icloud.com>",
-  "homepage": "https://github.com/matteobruni/tsparticles#readme",
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
+  "homepage": "https://particles.js.org",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   },
   "scripts": {
     "build": "npx preact build --no-prerender",
+    "build:ci": "npx preact build --no-prerender",
     "start": "sirv build --cors --single --host",
     "dev": "preact watch",
     "lint": "echo eslint src"
@@ -44,10 +45,10 @@
   },
   "dependencies": {
     "preact": "^10.8.2",
-    "preact-particles": "^2.1.4",
+    "preact-particles": "^2.2.0",
     "preact-render-to-string": "^5.1.21",
     "preact-router": "^4.0.1",
-    "tsparticles": "^2.1.4",
-    "tsparticles-engine": "^2.1.4"
+    "tsparticles": "^2.2.0",
+    "tsparticles-engine": "^2.2.0"
   }
 }

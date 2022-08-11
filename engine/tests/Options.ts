@@ -60,20 +60,20 @@ describe("Options tests", () => {
         expect(options.interactivity.events.resize).to.be.true;
 
         /* interactivity modes */
-        expect(options.interactivity.modes.bubble.color).to.be.undefined;
-        expect(options.interactivity.modes.bubble.distance).to.equal(200);
-        expect(options.interactivity.modes.bubble.duration).to.equal(0.4);
-        expect(options.interactivity.modes.bubble.opacity).to.be.undefined;
-        expect(options.interactivity.modes.bubble.size).to.be.undefined;
-        expect(options.interactivity.modes.connect.distance).to.equal(80);
-        expect(options.interactivity.modes.connect.links.opacity).to.equal(0.5);
-        expect(options.interactivity.modes.connect.radius).to.equal(60);
-        expect(options.interactivity.modes.grab.distance).to.equal(100);
-        expect(options.interactivity.modes.grab.links.opacity).to.equal(1);
-        expect(options.interactivity.modes.push.quantity).to.equal(4);
-        expect(options.interactivity.modes.remove.quantity).to.equal(2);
-        expect(options.interactivity.modes.repulse.distance).to.equal(200);
-        expect(options.interactivity.modes.repulse.duration).to.equal(0.4);
+        //expect(options.interactivity.modes.bubble.color).to.be.undefined;
+        //expect(options.interactivity.modes.bubble.distance).to.equal(200);
+        //expect(options.interactivity.modes.bubble.duration).to.equal(0.4);
+        //expect(options.interactivity.modes.bubble.opacity).to.be.undefined;
+        //expect(options.interactivity.modes.bubble.size).to.be.undefined;
+        //expect(options.interactivity.modes.connect.distance).to.equal(80);
+        //expect(options.interactivity.modes.connect.links.opacity).to.equal(0.5);
+        //expect(options.interactivity.modes.connect.radius).to.equal(60);
+        //expect(options.interactivity.modes.grab.distance).to.equal(100);
+        //expect(options.interactivity.modes.grab.links.opacity).to.equal(1);
+        //expect(options.interactivity.modes.push.quantity).to.equal(4);
+        //expect(options.interactivity.modes.remove.quantity).to.equal(2);
+        //expect(options.interactivity.modes.repulse.distance).to.equal(200);
+        //expect(options.interactivity.modes.repulse.duration).to.equal(0.4);
         expect(options.interactivity.modes.slow.factor).to.equal(3);
         expect(options.interactivity.modes.slow.radius).to.equal(200);
 
@@ -86,7 +86,7 @@ describe("Options tests", () => {
         expect(options.particles.color).to.be.an("object").to.have.property("value").to.equal("#fff");
 
         /* particles line linked */
-        expect(options.particles.links.blink).to.be.false;
+        /*expect(options.particles.links.blink).to.be.false;
         expect(options.particles.links.color).to.be.an("object").to.have.property("value").to.equal("#fff");
         expect(options.particles.links.consent).to.be.false;
         expect(options.particles.links.distance).to.equal(100);
@@ -95,7 +95,7 @@ describe("Options tests", () => {
         expect(options.particles.links.shadow.blur).to.equal(5);
         expect(options.particles.links.shadow.color).to.be.an("object").to.have.property("value").to.equal("#000");
         expect(options.particles.links.shadow.enable).to.be.false;
-        expect(options.particles.links.width).to.equal(1);
+        expect(options.particles.links.width).to.equal(1);*/
 
         /* particles move */
         expect(options.particles.move.attract.enable).to.be.false;
@@ -275,26 +275,26 @@ describe("Options tests", () => {
         expect(options.interactivity.events.resize).to.be.true;
 
         /* interactivity modes */
-        expect(options.interactivity.modes.bubble.distance).to.equal(400);
-        expect(options.interactivity.modes.bubble.duration).to.equal(2);
-        expect(options.interactivity.modes.bubble.opacity).to.equal(0.8);
-        expect(options.interactivity.modes.bubble.size).to.equal(40);
-        expect(options.interactivity.modes.grab.distance).to.equal(400);
-        expect(options.interactivity.modes.grab.links.opacity).to.equal(1);
-        expect(options.interactivity.modes.push.quantity).to.equal(4);
-        expect(options.interactivity.modes.remove.quantity).to.equal(2);
-        expect(options.interactivity.modes.repulse.distance).to.equal(200);
+        //expect(options.interactivity.modes.bubble.distance).to.equal(400);
+        //expect(options.interactivity.modes.bubble.duration).to.equal(2);
+        //expect(options.interactivity.modes.bubble.opacity).to.equal(0.8);
+        //expect(options.interactivity.modes.bubble.size).to.equal(40);
+        //expect(options.interactivity.modes.grab.distance).to.equal(400);
+        //expect(options.interactivity.modes.grab.links.opacity).to.equal(1);
+        //expect(options.interactivity.modes.push.quantity).to.equal(4);
+        //expect(options.interactivity.modes.remove.quantity).to.equal(2);
+        //expect(options.interactivity.modes.repulse.distance).to.equal(200);
 
         /* particles */
         /* particles color */
         expect(options.particles.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
 
         /* particles line linked */
-        expect(options.particles.links.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
+        /*expect(options.particles.links.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
         expect(options.particles.links.distance).to.equal(150);
         expect(options.particles.links.enable).to.be.true;
         expect(options.particles.links.opacity).to.equal(0.4);
-        expect(options.particles.links.width).to.equal(1);
+        expect(options.particles.links.width).to.equal(1);*/
 
         /* particles move */
         expect(options.particles.move.attract.enable).to.be.false;
@@ -451,15 +451,15 @@ describe("Options tests", () => {
         expect(options.interactivity.events.resize).to.be.true;
 
         /* interactivity modes */
-        expect(options.interactivity.modes.bubble.distance).to.equal(400);
-        expect(options.interactivity.modes.bubble.duration).to.equal(2);
-        expect(options.interactivity.modes.bubble.opacity).to.equal(8);
-        expect(options.interactivity.modes.bubble.size).to.equal(40);
-        expect(options.interactivity.modes.grab.distance).to.equal(200);
-        expect(options.interactivity.modes.grab.links.opacity).to.equal(1);
-        expect(options.interactivity.modes.push.quantity).to.equal(4);
-        expect(options.interactivity.modes.remove.quantity).to.equal(2);
-        expect(options.interactivity.modes.repulse.distance).to.equal(200);
+        //expect(options.interactivity.modes.bubble.distance).to.equal(400);
+        //expect(options.interactivity.modes.bubble.duration).to.equal(2);
+        //expect(options.interactivity.modes.bubble.opacity).to.equal(8);
+        //expect(options.interactivity.modes.bubble.size).to.equal(40);
+        //expect(options.interactivity.modes.grab.distance).to.equal(200);
+        //expect(options.interactivity.modes.grab.links.opacity).to.equal(1);
+        //expect(options.interactivity.modes.push.quantity).to.equal(4);
+        //expect(options.interactivity.modes.remove.quantity).to.equal(2);
+        //expect(options.interactivity.modes.repulse.distance).to.equal(200);
 
         /* particles */
         /* particles collisions */
@@ -470,11 +470,11 @@ describe("Options tests", () => {
         expect(options.particles.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
 
         /* particles line linked */
-        expect(options.particles.links.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
+        /*expect(options.particles.links.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
         expect(options.particles.links.distance).to.equal(150);
         expect(options.particles.links.enable).to.be.false;
         expect(options.particles.links.opacity).to.equal(0.4);
-        expect(options.particles.links.width).to.equal(1);
+        expect(options.particles.links.width).to.equal(1);*/
 
         /* particles move */
         expect(options.particles.move.attract.enable).to.be.false;

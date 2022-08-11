@@ -2,7 +2,7 @@
 
 # tsParticles Fire Preset
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-fire/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-fire) [![npmjs](https://badge.fury.io/js/tsparticles-preset-fire.svg)](https://www.npmjs.com/package/tsparticles-preset-fire) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-fire)](https://www.npmjs.com/package/tsparticles-preset-fire)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-fire/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-fire) [![npmjs](https://badge.fury.io/js/tsparticles-preset-fire.svg)](https://www.npmjs.com/package/tsparticles-preset-fire) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-fire)](https://www.npmjs.com/package/tsparticles-preset-fire) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) preset for a faded red to black background with particles
 colored like fire and ash sparks.
@@ -158,4 +158,51 @@ let particlesOptions = {
 let particlesInit = async (engine) => {
   await loadFirePreset(main);
 };
+```
+
+---
+
+```mermaid
+flowchart TD
+
+subgraph i [Interactions]
+
+subgraph ie [Externals]
+iepu[Push]
+end
+
+end
+
+i --> ie
+
+e[tsParticles Engine] --> i
+
+subgraph m [Movers]
+mb[Base]
+end
+
+e --> m
+
+subgraph s [Shapes]
+sc[Circle]
+end
+
+e --> s
+
+subgraph u [Updaters]
+uc[Color]
+uop[Opacity]
+uou[Out Modes]
+usi[Size]
+end
+
+e --> u
+
+subgraph pr [Presets]
+prf[Fire]
+end
+
+e --> pr
+
+iepu & mb & sc & uc & uop & uou & usi --> prf
 ```

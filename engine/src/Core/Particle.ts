@@ -1,12 +1,12 @@
 import type { ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates";
 import type { IHsl, IRgb } from "./Interfaces/Colors";
-import type { IParticleNumericValueAnimation, IParticleValueAnimation } from "./Interfaces/IParticleValueAnimation";
 import {
     calcExactPositionOrRandomFromSize,
     clamp,
     getDistance,
     getParticleBaseVelocity,
     getParticleDirectionAngle,
+    getRandom,
     getRangeMax,
     getRangeMin,
     getRangeValue,
@@ -22,8 +22,10 @@ import { DestroyMode } from "../Enums/Modes/DestroyMode";
 import type { Engine } from "../engine";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
 import type { IDelta } from "./Interfaces/IDelta";
+import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator";
 import type { IParticle } from "./Interfaces/IParticle";
 import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation";
+import type { IParticleNumericValueAnimation } from "./Interfaces/IParticleValueAnimation";
 import type { IParticleRetinaProps } from "./Interfaces/IParticleRetinaProps";
 import type { IParticleRoll } from "./Interfaces/IParticleRoll";
 import type { IParticleWobble } from "./Interfaces/IParticleWobble";
@@ -170,6 +172,11 @@ export class Particle implements IParticle {
     readonly pathDelay;
 
     /**
+     * Gets the particle's path generator
+     */
+    readonly pathGenerator?: IMovePathGenerator;
+
+    /**
      * Gets particle current position
      */
     readonly position: Vector3d;
@@ -190,9 +197,9 @@ export class Particle implements IParticle {
     roll?: IParticleRoll;
 
     /**
-     * Gets the particle rotate options
+     * Gets the particle rotation angle
      */
-    rotate?: IParticleValueAnimation<number>;
+    rotation: number;
 
     /**
      * Gets particle shadow color
@@ -279,6 +286,7 @@ export class Particle implements IParticle {
         this.destroyed = false;
         this.unbreakable = false;
         this.splitCount = 0;
+        this.rotation = 0;
         this.misplaced = false;
         this.retina = {
             maxDistance: {},
@@ -319,7 +327,7 @@ export class Particle implements IParticle {
         particlesOptions.load(overrideOptions);
         particlesOptions.load(this.shapeData?.particles);
 
-        this.interactivity = new Interactivity();
+        this.interactivity = new Interactivity(engine, container);
 
         this.interactivity.load(container.actualOptions.interactivity);
         this.interactivity.load(particlesOptions.interactivity);
@@ -327,7 +335,18 @@ export class Particle implements IParticle {
         this.fill = this.shapeData?.fill ?? this.fill;
         this.close = this.shapeData?.close ?? this.close;
         this.options = particlesOptions;
-        this.pathDelay = getValue(this.options.move.path.delay) * 1000;
+
+        const pathOptions = this.options.move.path;
+
+        this.pathDelay = getValue(pathOptions.delay) * 1000;
+
+        if (pathOptions.generator) {
+            this.pathGenerator = this.#engine.plugins.getPathGenerator(pathOptions.generator);
+
+            if (this.pathGenerator && container.addPath(pathOptions.generator, this.pathGenerator)) {
+                this.pathGenerator.init(container);
+            }
+        }
 
         const zIndexValue = getRangeValue(this.options.zIndex.value);
 
@@ -360,7 +379,7 @@ export class Particle implements IParticle {
 
                 case StartValueType.random:
                     this.size.value = randomInRange(this.size) * pxRatio;
-                    this.size.status = Math.random() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
+                    this.size.status = getRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
                     break;
 
@@ -373,11 +392,11 @@ export class Particle implements IParticle {
             }
 
             this.size.velocity =
-                (this.retina.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100 *
+                ((this.retina.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100) *
                 container.retina.reduceFactor;
 
             if (!sizeAnimation.sync) {
-                this.size.velocity *= Math.random();
+                this.size.velocity *= getRandom();
             }
         }
 
@@ -392,8 +411,8 @@ export class Particle implements IParticle {
             moveCenterPerc = this.options.move.center;
 
         this.moveCenter = {
-            x: canvasSize.width * moveCenterPerc.x / 100,
-            y: canvasSize.height * moveCenterPerc.y / 100,
+            x: (canvasSize.width * moveCenterPerc.x) / 100,
+            y: (canvasSize.height * moveCenterPerc.y) / 100,
             radius: this.options.move.center.radius,
         };
         this.direction = getParticleDirectionAngle(this.options.move.direction, this.position, this.moveCenter);
@@ -448,25 +467,19 @@ export class Particle implements IParticle {
         this.shadowColor = rangeColorToRgb(this.options.shadow.color);
 
         for (const updater of container.particles.updaters) {
-            if (updater.init) {
-                updater.init(this);
-            }
+            updater.init?.(this);
         }
 
         for (const mover of container.particles.movers) {
-            if (mover.init) {
-                mover.init(this);
-            }
+            mover.init?.(this);
         }
 
-        if (drawer && drawer.particleInit) {
+        if (drawer?.particleInit) {
             drawer.particleInit(container, this);
         }
 
         for (const [, plugin] of container.plugins) {
-            if (plugin.particleCreated) {
-                plugin.particleCreated(this);
-            }
+            plugin.particleCreated?.(this);
         }
     }
 
@@ -528,7 +541,7 @@ export class Particle implements IParticle {
     }
 
     getMass(): number {
-        return this.getRadius() ** 2 * Math.PI / 2;
+        return (this.getRadius() ** 2 * Math.PI) / 2;
     }
 
     getPosition(): ICoordinates3d {
@@ -596,7 +609,7 @@ export class Particle implements IParticle {
             }),
             pos = Vector3d.create(exactPosition.x, exactPosition.y, zIndex),
             radius = this.getRadius(),
-            /* check position  - into the canvas */
+            /* check position - into the canvas */
             outModes = this.options.move.outModes,
             fixHorizontal = (outMode: OutMode | keyof typeof OutMode | OutModeAlt): void => {
                 fixOutMode({
@@ -604,7 +617,7 @@ export class Particle implements IParticle {
                     checkModes: [OutMode.bounce, OutMode.bounceHorizontal],
                     coord: pos.x,
                     maxCoord: container.canvas.size.width,
-                    setCb: (value: number) => pos.x += value,
+                    setCb: (value: number) => (pos.x += value),
                     radius,
                 });
             },
@@ -614,7 +627,7 @@ export class Particle implements IParticle {
                     checkModes: [OutMode.bounce, OutMode.bounceVertical],
                     coord: pos.y,
                     maxCoord: container.canvas.size.height,
-                    setCb: (value: number) => pos.y += value,
+                    setCb: (value: number) => (pos.y += value),
                     radius,
                 });
             };
@@ -640,8 +653,8 @@ export class Particle implements IParticle {
             return res;
         }
 
-        const rad = Math.PI / 180 * getRangeValue(moveOptions.angle.value);
-        const radOffset = Math.PI / 180 * getRangeValue(moveOptions.angle.offset);
+        const rad = (Math.PI / 180) * getRangeValue(moveOptions.angle.value);
+        const radOffset = (Math.PI / 180) * getRangeValue(moveOptions.angle.offset);
 
         const range = {
             left: radOffset - rad / 2,
@@ -653,7 +666,7 @@ export class Particle implements IParticle {
         }
 
         if (moveOptions.random && typeof moveOptions.speed === "number") {
-            res.length *= Math.random();
+            res.length *= getRandom();
         }
 
         return res;

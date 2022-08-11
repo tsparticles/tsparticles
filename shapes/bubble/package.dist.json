@@ -1,8 +1,8 @@
 {
   "name": "tsparticles-shape-bubble",
-  "version": "2.1.4",
+  "version": "2.2.0",
   "description": "tsParticles bubble shape",
-  "homepage": "https://particles.js.org/",
+  "homepage": "https://particles.js.org",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
@@ -60,7 +60,7 @@
     "canvas-confetti",
     "tsparticles-shape"
   ],
-  "author": "Matteo Bruni",
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
@@ -81,6 +81,6 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.1.4"
+    "tsparticles-engine": "^2.2.0"
   }
 }

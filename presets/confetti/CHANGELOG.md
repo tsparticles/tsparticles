@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-confetti@2.1.4...tsparticles-preset-confetti@2.2.0) (2022-08-11)
+
+
+### Bug Fixes
+
+* **deps:** update capacitor monorepo to v4 ([a63d3a0](https://github.com/matteobruni/tsparticles/commit/a63d3a005ff47dd38ca7924b29267f4796ffebdb))
+
+
+### Features
+
+* added new tspRandom function and setRandom for customizing all the random behaviors ([bd83a57](https://github.com/matteobruni/tsparticles/commit/bd83a57b2eb8b455450a5940ba4c4d5ff34834b2))
+
+
+
+
+
 ## [2.1.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-confetti@2.1.3...tsparticles-preset-confetti@2.1.4) (2022-07-28)
 
 

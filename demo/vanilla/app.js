@@ -1,9 +1,21 @@
 const express = require('express');
 const helmet = require('helmet');
 const stylus = require('stylus');
+const livereload = require("livereload");
+const connectLiveReload = require("connect-livereload");
 //const rateLimit = require("express-rate-limit");
 
 const app = express();
+
+const liveReloadServer = livereload.createServer();
+
+liveReloadServer.server.once("connection", () => {
+    setTimeout(() => {
+        liveReloadServer.refresh("/");
+    }, 100);
+});
+
+app.use(connectLiveReload());
 
 /*const limiter = rateLimit({
     windowMs: 1000, // 15 minutes
@@ -73,6 +85,7 @@ app.use("/path-curves", express.static("./node_modules/tsparticles-path-curves")
 app.use("/path-polygon", express.static("./node_modules/tsparticles-path-polygon"));
 app.use("/path-perlin-noise", express.static("./node_modules/tsparticles-path-perlin-noise"));
 app.use("/path-simplex-noise", express.static("./node_modules/tsparticles-path-simplex-noise"));
+app.use("/plugin-hsv-color", express.static("./node_modules/tsparticles-plugin-hsv-color"));
 app.use("/plugin-infection", express.static("./node_modules/tsparticles-plugin-infection"));
 app.use("/preset-big-circles", express.static("./node_modules/tsparticles-preset-big-circles"));
 app.use("/preset-bubbles", express.static("./node_modules/tsparticles-preset-bubbles"));

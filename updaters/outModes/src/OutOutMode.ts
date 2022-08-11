@@ -6,6 +6,7 @@ import {
     Vector,
     calculateBounds,
     getDistances,
+    getRandom,
     isPointInside,
     randomInRange,
 } from "tsparticles-engine";
@@ -43,7 +44,7 @@ export class OutOutMode implements IOutModeManager {
 
                 const { dx, dy } = getDistances(particle.position, circVec);
 
-                if (vx <= 0 && dx >= 0 || vy <= 0 && dy >= 0 || vx >= 0 && dx <= 0 || vy >= 0 && dy <= 0) {
+                if ((vx <= 0 && dx >= 0) || (vy <= 0 && dy >= 0) || (vx >= 0 && dx <= 0) || (vy >= 0 && dy <= 0)) {
                     return;
                 }
 
@@ -128,7 +129,7 @@ export class OutOutMode implements IOutModeManager {
                             particle.initialPosition.x = particle.position.x;
 
                             if (!wrap) {
-                                particle.position.y = Math.random() * canvasSize.height;
+                                particle.position.y = getRandom() * canvasSize.height;
                                 particle.initialPosition.y = particle.position.y;
                             }
                         } else if (direction === OutModeDirection.left && nextBounds.right < -particle.offset.x) {
@@ -136,7 +137,7 @@ export class OutOutMode implements IOutModeManager {
                             particle.initialPosition.x = particle.position.x;
 
                             if (!wrap) {
-                                particle.position.y = Math.random() * canvasSize.height;
+                                particle.position.y = getRandom() * canvasSize.height;
                                 particle.initialPosition.y = particle.position.y;
                             }
                         }
@@ -146,7 +147,7 @@ export class OutOutMode implements IOutModeManager {
                             nextBounds.top > canvasSize.height + particle.offset.y
                         ) {
                             if (!wrap) {
-                                particle.position.x = Math.random() * canvasSize.width;
+                                particle.position.x = getRandom() * canvasSize.width;
                                 particle.initialPosition.x = particle.position.x;
                             }
 
@@ -154,7 +155,7 @@ export class OutOutMode implements IOutModeManager {
                             particle.initialPosition.y = particle.position.y;
                         } else if (direction === OutModeDirection.top && nextBounds.bottom < -particle.offset.y) {
                             if (!wrap) {
-                                particle.position.x = Math.random() * canvasSize.width;
+                                particle.position.x = getRandom() * canvasSize.width;
                                 particle.initialPosition.x = particle.position.x;
                             }
 

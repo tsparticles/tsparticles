@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-external-connect@2.1.4...tsparticles-interaction-external-connect@2.2.0) (2022-08-11)
+
+
+### Bug Fixes
+
+* moved gradients classes to gradient updater, lighter engine ([e08d09f](https://github.com/matteobruni/tsparticles/commit/e08d09f7243c4fd790b990e1c3f75c832b9e3ef3))
+
+
+### Features
+
+* moved more code out from engine to specific plugins ([14d4887](https://github.com/matteobruni/tsparticles/commit/14d488756b759b7650e02886ed862f821a6e8ed1))
+* moved more code out from engine to specific plugins ([7cc8ee4](https://github.com/matteobruni/tsparticles/commit/7cc8ee41b80cd151ae71eb6551484ab473b04175))
+
+
+
+
+
 ## [2.1.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-external-connect@2.1.3...tsparticles-interaction-external-connect@2.1.4) (2022-07-28)
 
 **Note:** Version bump only for package tsparticles-interaction-external-connect

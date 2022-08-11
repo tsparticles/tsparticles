@@ -1,7 +1,7 @@
 import type { Container, ICoordinates, IMovePathGenerator } from "tsparticles-engine";
+import { Vector, getRandom } from "tsparticles-engine";
 import type { IPolygonPathOptions } from "./IPolygonPathOptions";
 import type { PolygonPathParticle } from "./PolygonPathParticle";
-import { Vector } from "tsparticles-engine";
 
 export class PolygonPathGenerator implements IMovePathGenerator {
     dirsList: ICoordinates[];
@@ -23,7 +23,7 @@ export class PolygonPathGenerator implements IMovePathGenerator {
 
         if (p.hexDirection === undefined) {
             p.hexDirection =
-                this.options.sides === 6 ? (Math.random() * 3 | 0) * 2 : Math.random() * this.options.sides | 0;
+                this.options.sides === 6 ? ((getRandom() * 3) | 0) * 2 : (getRandom() * this.options.sides) | 0;
         }
 
         if (p.hexSpeed === undefined) {
@@ -32,7 +32,7 @@ export class PolygonPathGenerator implements IMovePathGenerator {
 
         if (p.hexStep % this.options.turnSteps === 0) {
             p.hexDirection =
-                Math.random() > 0.5
+                getRandom() > 0.5
                     ? (p.hexDirection + 1) % this.options.sides
                     : (p.hexDirection + this.options.sides - 1) % this.options.sides;
         }
@@ -68,7 +68,7 @@ export class PolygonPathGenerator implements IMovePathGenerator {
         for (let i = 0; i < 360; i += 360 / this.options.sides) {
             const angle = this.options.angle + i;
 
-            this.dirsList.push(Vector.create(Math.cos(angle * Math.PI / 180), Math.sin(angle * Math.PI / 180)));
+            this.dirsList.push(Vector.create(Math.cos((angle * Math.PI) / 180), Math.sin((angle * Math.PI) / 180)));
         }
     }
 }

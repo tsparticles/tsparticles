@@ -157,7 +157,7 @@ const App = () => {
 | style           | object | O estilo do elemento canvas.                                                                                     |
 | className       | string | Nome da classe do elemento que contém o canvas.                                                                                |
 | canvasClassName | string | Nome da classe do canvas.                                                                                        |
-| container       | object | Instância do [particles container](https://particles.js.org/docs/modules/_core_container_.html) |
+| container       | object | Instância do [particles container](https://particles.js.org/docs/modules/Core_Container.html) |
 
 Veja as configurações dos parâmetros [aqui](https://particles.js.org).
 

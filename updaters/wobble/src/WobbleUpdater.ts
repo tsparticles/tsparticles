@@ -7,9 +7,9 @@ import type {
     ParticlesOptions,
     RecursivePartial,
 } from "tsparticles-engine";
+import { getRandom, getRangeValue } from "tsparticles-engine";
 import type { IWobble } from "./Options/Interfaces/IWobble";
 import { Wobble } from "./Options/Classes/Wobble";
-import { getRangeValue } from "tsparticles-engine";
 
 /**
  * Wobble particle extension type
@@ -50,7 +50,7 @@ function updateWobble(particle: WobbleParticle, delta: IDelta): void {
 
     const angleSpeed = particle.wobble.angleSpeed * delta.factor,
         moveSpeed = particle.wobble.moveSpeed * delta.factor,
-        distance = moveSpeed * ((particle.retina.wobbleDistance ?? 0) * delta.factor) / (1000 / 60),
+        distance = (moveSpeed * ((particle.retina.wobbleDistance ?? 0) * delta.factor)) / (1000 / 60),
         max = 2 * Math.PI;
 
     particle.wobble.angle += angleSpeed;
@@ -82,7 +82,7 @@ export class WobbleUpdater implements IParticleUpdater {
 
         if (wobbleOpt?.enable) {
             particle.wobble = {
-                angle: Math.random() * Math.PI * 2,
+                angle: getRandom() * Math.PI * 2,
                 angleSpeed: getRangeValue(wobbleOpt.speed.angle) / 360,
                 moveSpeed: getRangeValue(wobbleOpt.speed.move) / 10,
             };
@@ -109,16 +109,12 @@ export class WobbleUpdater implements IParticleUpdater {
         options: WobbleParticlesOptions,
         ...sources: (RecursivePartial<IWobbleParticlesOptions> | undefined)[]
     ): void {
+        if (!options.wobble) {
+            options.wobble = new Wobble();
+        }
+
         for (const source of sources) {
-            if (!source?.wobble) {
-                continue;
-            }
-
-            if (!options.wobble) {
-                options.wobble = new Wobble();
-            }
-
-            options.wobble.load(source.wobble);
+            options.wobble.load(source?.wobble);
         }
     }
 

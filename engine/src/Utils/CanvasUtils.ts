@@ -1,4 +1,3 @@
-import { colorMix, getStyleFromHsl, getStyleFromRgb } from "./ColorUtils";
 import { AlterType } from "../Enums/Types/AlterType";
 import type { Container } from "../Core/Container";
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
@@ -6,17 +5,17 @@ import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IDelta } from "../Core/Interfaces/IDelta";
 import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { IHsl } from "../Core/Interfaces/Colors";
-import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IParticleColorStyle } from "../Core/Interfaces/IParticleColorStyle";
 import type { IParticleTransformValues } from "../Core/Interfaces/IParticleTransformValues";
 import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
 import type { Particle } from "../Core/Particle";
+import { getStyleFromRgb } from "./ColorUtils";
 
 /**
  * Draws a line between two points using canvas API in the given context.
  * @hidden
  * @param context - The canvas context to draw on.
- * @param begin - The begin point of the line.
+ * @param begin - The start point of the line.
  * @param end - The end point of the line.
  */
 export function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
@@ -68,66 +67,72 @@ export function clear(context: CanvasRenderingContext2D, dimension: IDimension):
     context.clearRect(0, 0, dimension.width, dimension.height);
 }
 
-/**
- * Creates a gradient using two particles colors and opacity.
- * @param context - The canvas context to draw on.
- * @param p1 - The first particle.
- * @param p2 - The second particle.
- * @param opacity - The opacity of the gradient.
- */
-export function gradient(
-    context: CanvasRenderingContext2D,
-    p1: IParticle,
-    p2: IParticle,
-    opacity: number
-): CanvasGradient | undefined {
-    const gradStop = Math.floor(p2.getRadius() / p1.getRadius()),
-        color1 = p1.getFillColor(),
-        color2 = p2.getFillColor();
-
-    if (!color1 || !color2) {
-        return;
-    }
-
-    const sourcePos = p1.getPosition(),
-        destPos = p2.getPosition(),
-        midRgb = colorMix(color1, color2, p1.getRadius(), p2.getRadius()),
-        grad = context.createLinearGradient(sourcePos.x, sourcePos.y, destPos.x, destPos.y);
-
-    grad.addColorStop(0, getStyleFromHsl(color1, opacity));
-    grad.addColorStop(gradStop > 1 ? 1 : gradStop, getStyleFromRgb(midRgb, opacity));
-    grad.addColorStop(1, getStyleFromHsl(color2, opacity));
-
-    return grad;
+interface DrawParticleParams {
+    /**
+     * If enabled, the composite value will be used for blending the particle in the canvas
+     */
+    backgroundMask: boolean;
+    /**
+     * The color styles value
+     */
+    colorStyles: IParticleColorStyle;
+    /**
+     * The composite value to use for blending the particle in the canvas
+     */
+    composite: GlobalCompositeOperation;
+    /**
+     * The container of the particle
+     */
+    container: Container;
+    /**
+     * The canvas context to draw on
+     */
+    context: CanvasRenderingContext2D;
+    /**
+     * This variable contains the delta between the current frame and the previous frame
+     */
+    delta: IDelta;
+    /**
+     * The opacity of the particle
+     */
+    opacity: number;
+    /**
+     * The particle to draw
+     */
+    particle: Particle;
+    /**
+     * The radius of the particle
+     */
+    radius: number;
+    /**
+     * The shadow of the particle
+     */
+    shadow: IShadow;
+    /**
+     * The particle transform values
+     */
+    transform: IParticleTransformValues;
 }
 
 /**
  * Draws the particle using canvas API in the given context.
- * @param container - The container of the particle.
- * @param context - The canvas context to draw on.
- * @param particle - The particle to draw.
- * @param delta this variable contains the delta between the current frame and the previous frame
- * @param colorStyles - The color styles value.
- * @param backgroundMask - If enabled, the composite value will be used for blending the particle in the canvas.
- * @param composite - The composite value to use for blending the particle in the canvas.
- * @param radius - The radius of the particle.
- * @param opacity - The opacity of the particle.
- * @param shadow - The shadow of the particle.
- * @param transform - The particle transform values.
+ * @param data - The function parameters.
  */
-export function drawParticle(
-    container: Container,
-    context: CanvasRenderingContext2D,
-    particle: IParticle,
-    delta: IDelta,
-    colorStyles: IParticleColorStyle,
-    backgroundMask: boolean,
-    composite: GlobalCompositeOperation,
-    radius: number,
-    opacity: number,
-    shadow: IShadow,
-    transform: IParticleTransformValues
-): void {
+export function drawParticle(data: DrawParticleParams): void {
+    const {
+        container,
+        context,
+        particle,
+        delta,
+        colorStyles,
+        backgroundMask,
+        composite,
+        radius,
+        opacity,
+        shadow,
+        transform,
+    } = data;
+
     const pos = particle.getPosition();
 
     context.save();
@@ -145,7 +150,7 @@ export function drawParticle(
 
     context.beginPath();
 
-    const angle = (particle.rotate?.value ?? 0) + (particle.options.rotate.path ? particle.velocity.angle : 0);
+    const angle = particle.rotation + (particle.options.rotate.path ? particle.velocity.angle : 0);
 
     if (angle !== 0) {
         context.rotate(angle);
@@ -205,8 +210,8 @@ export function drawParticle(
         context.translate(pos.x, pos.y);
     }
 
-    if (angle !== 0) {
-        context.rotate(angle);
+    if (particle.rotation) {
+        context.rotate(particle.rotation);
     }
 
     if (backgroundMask) {
@@ -230,7 +235,7 @@ export function drawParticle(
 export function drawShape(
     container: Container,
     context: CanvasRenderingContext2D,
-    particle: IParticle,
+    particle: Particle,
     radius: number,
     opacity: number,
     delta: IDelta
@@ -260,7 +265,7 @@ export function drawShape(
 export function drawShapeAfterEffect(
     container: Container,
     context: CanvasRenderingContext2D,
-    particle: IParticle,
+    particle: Particle,
     radius: number,
     opacity: number,
     delta: IDelta
@@ -314,48 +319,6 @@ export function drawParticlePlugin(
     context.save();
     plugin.drawParticle(context, particle, delta);
     context.restore();
-}
-
-/**
- * Draws an ellipse for the given particle.
- * @param context The canvas context.
- * @param particle The particle to draw.
- * @param fillColorValue The particle fill color.
- * @param radius The radius of the particle.
- * @param opacity The opacity of the particle.
- * @param width The width of the particle.
- * @param rotation The rotation of the particle.
- * @param start The start angle of the particle.
- * @param end The end angle of the particle.
- */
-export function drawEllipse(
-    context: CanvasRenderingContext2D,
-    particle: IParticle,
-    fillColorValue: IHsl | undefined,
-    radius: number,
-    opacity: number,
-    width: number,
-    rotation: number,
-    start: number,
-    end: number
-): void {
-    if (width <= 0) {
-        return;
-    }
-
-    const pos = particle.getPosition();
-
-    if (fillColorValue) {
-        context.strokeStyle = getStyleFromHsl(fillColorValue, opacity);
-    }
-
-    context.lineWidth = width;
-
-    const rotationRadian = rotation * Math.PI / 180;
-
-    context.beginPath();
-    context.ellipse(pos.x, pos.y, radius / 2, radius * 2, rotationRadian, start, end);
-    context.stroke();
 }
 
 /**

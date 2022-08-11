@@ -2,7 +2,7 @@
 
 # tsParticles Sea Anemone Preset
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-sea-anemone/badge)](https://www.jsdelivr.com/package/npm/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles-preset-sea-anemone.svg)](https://www.npmjs.com/package/tsparticles-preset-sea-anemone) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-sea-anemone)](https://www.npmjs.com/package/tsparticles-preset-sea-anemone)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-sea-anemone/badge)](https://www.jsdelivr.com/package/npm/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles-preset-sea-anemone.svg)](https://www.npmjs.com/package/tsparticles-preset-sea-anemone) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-sea-anemone)](https://www.npmjs.com/package/tsparticles-preset-sea-anemone) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) preset for creating a beautiful sea anemone like effect with
 particles spawned in the canvas center.
@@ -161,4 +161,51 @@ let particlesOptions = {
 let particlesInit = async (engine) => {
   await loadSeaAnemonePreset(engine);
 };
+```
+
+---
+
+```mermaid
+flowchart TD
+
+subgraph m [Movers]
+mb[Base]
+end
+
+e[tsParticles Engine] --> m
+
+subgraph pa [Paths]
+pac[Curves]
+end
+
+e --> pa
+
+subgraph pl [Plugins]
+ple[Emitters]
+end
+
+e --> pl
+
+subgraph s [Shapes]
+sc[Circle]
+end
+
+e --> s
+
+subgraph u [Updaters]
+uc[Color]
+uop[Opacity]
+uou[Out Modes]
+usi[Size]
+end
+
+e --> u
+
+subgraph pr [Presets]
+prsa[Sea Anemone]
+end
+
+e --> pr
+
+mb & pac & ple & sc & uc & uop & uou & usi --> prsa
 ```

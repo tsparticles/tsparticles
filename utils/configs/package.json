@@ -1,12 +1,15 @@
 {
   "name": "tsparticles-demo-configs",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "tsParticles demo configurations",
-  "homepage": "https://particles.js.org/",
+  "homepage": "https://particles.js.org",
   "scripts": {
+    "prettify:ci:src": "prettier --check ./src",
+    "prettify:ci:readme": "prettier --check ./README.md",
     "prettify:src": "prettier --write ./src",
     "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
+    "lint:ci": "eslint src --ext .js,.jsx,.ts,.tsx",
     "compile": "yarn build:ts",
     "build:ts": "yarn build:ts:browser && yarn build:ts:cjs && yarn build:ts:esm",
     "build:ts:browser": "tsc -b tsconfig.browser.json",
@@ -14,7 +17,8 @@
     "build:ts:esm": "tsc -b tsconfig.module.json",
     "bundle": "webpack --mode production",
     "distfiles": "node ./scripts/distfiles.js",
-    "build": "node ./scripts/updateSrc.js && yarn clear:dist && yarn prettify:src && yarn compile && yarn lint && yarn bundle && yarn prettify:readme && yarn distfiles",
+    "build": "node ./scripts/updateSrc.js && yarn clear:dist && yarn prettify:src && yarn lint && yarn compile && yarn bundle && yarn prettify:readme && yarn distfiles",
+    "build:ci": "node ./scripts/updateSrc.js && yarn clear:dist && yarn prettify:ci:src && yarn lint:ci && yarn compile && yarn bundle && yarn prettify:ci:readme && yarn distfiles",
     "clear:dist": "rimraf -f ./dist",
     "version": "yarn distfiles && git add package.dist.json",
     "prepack": "yarn build"
@@ -78,7 +82,7 @@
   "publishConfig": {
     "directory": "dist"
   },
-  "author": "Matteo Bruni",
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
@@ -96,26 +100,29 @@
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "prettier": "@tsparticles/prettier-config",
   "devDependencies": {
-    "@babel/core": "^7.17.8",
-    "@types/webpack-env": "^1.16.3",
-    "@typescript-eslint/eslint-plugin": "^5.17.0",
-    "@typescript-eslint/parser": "^5.17.0",
-    "babel-loader": "^8.2.4",
-    "browserslist": "^4.20.2",
+    "@babel/core": "^7.18.10",
+    "@tsparticles/eslint-config": "^1.1.0",
+    "@tsparticles/prettier-config": "^1.1.0",
+    "@types/webpack-env": "^1.17.0",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
+    "babel-loader": "^8.2.5",
+    "browserslist": "^4.21.3",
     "copyfiles": "^2.4.1",
-    "eslint": "^8.12.0",
+    "eslint": "^8.21.0",
     "eslint-config-prettier": "^8.5.0",
-    "prettier": "^2.6.2",
+    "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
-    "terser-webpack-plugin": "^5.3.1",
-    "typescript": "^4.7.3",
-    "webpack": "^5.71.0",
+    "terser-webpack-plugin": "^5.3.3",
+    "typescript": "^4.7.4",
+    "webpack": "^5.74.0",
     "webpack-bundle-analyzer": "^4.5.0",
-    "webpack-cli": "^4.9.2",
-    "webpack-tsparticles-plugin": "^1.1.2"
+    "webpack-cli": "^4.10.0",
+    "webpack-tsparticles-plugin": "^1.2.0"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.1.4"
+    "tsparticles-engine": "^2.2.0"
   }
 }

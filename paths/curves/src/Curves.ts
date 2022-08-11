@@ -1,5 +1,7 @@
+import { getRandom } from "tsparticles-engine";
+
 export function CurvesPathGen(
-    rndFunc: (() => number) | null,
+    rndFunc: (() => number) | null | undefined,
     period: number,
     nbHarmonics: number,
     attenHarmonics: number,
@@ -11,7 +13,7 @@ export function CurvesPathGen(
         amplitudes: number[] = [], // amplitudes oh harmonics
         increments: number[] = [], // n / period, which will be added to phases for every point
         phases: number[] = [],
-        randomFunc = rndFunc ?? Math.random;
+        randomFunc = rndFunc ?? getRandom;
 
     let globAmplitude = 0;
 
@@ -27,7 +29,7 @@ export function CurvesPathGen(
     } // for kh
 
     /* normalize amplitudes */
-    amplitudes.forEach((value, kh) => amplitudes[kh] = value / globAmplitude * (highValue - lowValue));
+    amplitudes.forEach((value, kh) => (amplitudes[kh] = (value / globAmplitude) * (highValue - lowValue)));
 
     /* returned function here */
     return () => {

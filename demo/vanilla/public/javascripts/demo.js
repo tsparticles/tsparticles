@@ -270,6 +270,8 @@ canvas {
         initSidebar();
         initStats();
 
+        loadHsvColorPlugin();
+
         loadFull(tsParticles);
 
         loadInfectionPlugin(tsParticles);

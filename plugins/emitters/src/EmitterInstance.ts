@@ -74,7 +74,7 @@ export class EmitterInstance {
             this.options.load(options);
         }
 
-        this.spawnDelay = (this.options.life.delay ?? 0) * 1000 / this.container.retina.reduceFactor;
+        this.spawnDelay = ((this.options.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
         this.position = this.initialPosition ?? this.calcPosition();
         this.name = this.options.name;
         this.shape = this.#engine.emitterShapeManager?.getShape(this.options.shape);
@@ -169,11 +169,11 @@ export class EmitterInstance {
         return {
             width:
                 this.size.mode === SizeMode.percent
-                    ? container.canvas.size.width * this.size.width / 100
+                    ? (container.canvas.size.width * this.size.width) / 100
                     : this.size.width,
             height:
                 this.size.mode === SizeMode.percent
-                    ? container.canvas.size.height * this.size.height / 100
+                    ? (container.canvas.size.height * this.size.height) / 100
                     : this.size.height,
         };
     }
@@ -204,7 +204,7 @@ export class EmitterInstance {
         if (this.emitDelay === undefined) {
             const delay = getRangeValue(this.options.rate.delay);
 
-            this.emitDelay = 1000 * delay / this.container.retina.reduceFactor;
+            this.emitDelay = (1000 * delay) / this.container.retina.reduceFactor;
         }
 
         if (this.lifeCount > 0 || this.immortal) {
@@ -256,7 +256,7 @@ export class EmitterInstance {
                 if (this.lifeCount > 0 || this.immortal) {
                     this.position = this.calcPosition();
 
-                    this.spawnDelay = (this.options.life.delay ?? 0) * 1000 / this.container.retina.reduceFactor;
+                    this.spawnDelay = ((this.options.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
                 } else {
                     this.destroy();
                 }
@@ -384,9 +384,9 @@ export class EmitterInstance {
 
         const colorOffset = randomInRange(animation.offset),
             delay = getRangeValue(this.options.rate.delay),
-            emitFactor = 1000 * delay / container.retina.reduceFactor,
+            emitFactor = (1000 * delay) / container.retina.reduceFactor,
             colorSpeed = getRangeValue(animation.speed ?? 0);
 
-        return (initValue + colorSpeed * container.fpsLimit / emitFactor + colorOffset * 3.6) % maxValue;
+        return (initValue + (colorSpeed * container.fpsLimit) / emitFactor + colorOffset * 3.6) % maxValue;
     }
 }

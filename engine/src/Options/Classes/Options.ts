@@ -58,7 +58,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.detectRetina = true;
         this.duration = 0;
         this.fpsLimit = 120;
-        this.interactivity = new Interactivity();
+        this.interactivity = new Interactivity(engine, container);
         this.manualParticles = [];
         this.motion = new Motion();
         this.particles = loadParticlesOptions(this.#engine, this.#container);
@@ -199,10 +199,18 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
         this.motion.load(data.motion);
         this.particles.load(data.particles);
-
         this.style = deepExtend(this.style, data.style) as RecursivePartial<CSSStyleDeclaration>;
-
         this.#engine.plugins.loadOptions(this, data);
+
+        const interactors = this.#engine.plugins.interactors.get(this.#container);
+
+        if (interactors) {
+            for (const interactor of interactors) {
+                if (interactor.loadOptions) {
+                    interactor.loadOptions(this, data);
+                }
+            }
+        }
 
         if (data.responsive !== undefined) {
             for (const responsive of data.responsive) {
@@ -219,7 +227,9 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         if (data.themes !== undefined) {
             for (const theme of data.themes) {
                 const optTheme = new Theme();
+
                 optTheme.load(theme);
+
                 this.themes.push(optTheme);
             }
         }
@@ -232,9 +242,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.load(defaultOptions);
 
         const responsiveOptions = this.responsive.find((t) =>
-            t.mode === ResponsiveMode.screen && screen
-                ? t.maxWidth * pxRatio > screen.availWidth
-                : t.maxWidth * pxRatio > width
+            t.mode === ResponsiveMode.screen && screen ? t.maxWidth > screen.availWidth : t.maxWidth * pxRatio > width
         );
 
         this.load(responsiveOptions?.options);

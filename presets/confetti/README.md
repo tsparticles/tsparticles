@@ -2,7 +2,7 @@
 
 # tsParticles Confetti Preset
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-confetti/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-confetti) [![npmjs](https://badge.fury.io/js/tsparticles-preset-confetti.svg)](https://www.npmjs.com/package/tsparticles-preset-confetti) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-confetti)](https://www.npmjs.com/package/tsparticles-preset-confetti)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-confetti/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-confetti) [![npmjs](https://badge.fury.io/js/tsparticles-preset-confetti.svg)](https://www.npmjs.com/package/tsparticles-preset-confetti) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-confetti)](https://www.npmjs.com/package/tsparticles-preset-confetti) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) preset for white and red confetti launched from the screen
 center on a transparent background.
@@ -405,3 +405,46 @@ which has the following properties:
   can set it even higher.
 - `disableForReducedMotion` _Boolean (default: true)_: Disables confetti entirely for users
   that [prefer reduced motion](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion).
+
+---
+
+```mermaid
+flowchart TD
+
+subgraph m [Movers]
+mb[Base]
+end
+
+e[tsParticles Engine] --> m
+
+subgraph pl [Plugins]
+ple[Emitters]
+end
+
+e --> pl
+
+subgraph s [Shapes]
+sc[Circle]
+ssq[Square]
+end
+
+e --> s
+
+subgraph u [Updaters]
+ua[Angle]
+uc[Color]
+uop[Opacity]
+uou[Out Modes]
+usi[Size]
+uti[Tilt]
+uw[Wobble]
+end
+
+e --> u
+
+subgraph pr [Presets]
+prc[Confetti]
+end
+
+mb & ple & sc & ssq & ua & uc & uop & uou & usi & uti & uw --> prc
+```

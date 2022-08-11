@@ -1,8 +1,9 @@
 import type { ICoordinates, IDimension } from "tsparticles-engine";
 import type { IEmitterShape } from "../../IEmitterShape";
+import { getRandom } from "tsparticles-engine";
 
 function randomSquareCoordinate(position: number, offset: number): number {
-    return position + offset * (Math.random() - 0.5);
+    return position + offset * (getRandom() - 0.5);
 }
 
 export class SquareShape implements IEmitterShape {
@@ -15,8 +16,8 @@ export class SquareShape implements IEmitterShape {
         } else {
             const halfW = size.width / 2,
                 halfH = size.height / 2,
-                side = Math.floor(Math.random() * 4),
-                v = (Math.random() - 0.5) * 2;
+                side = Math.floor(getRandom() * 4),
+                v = (getRandom() - 0.5) * 2;
 
             switch (side) {
                 case 0:

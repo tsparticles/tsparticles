@@ -1,0 +1,19 @@
+{
+  "name": "@tsparticles/prettier-config",
+  "version": "1.1.0",
+  "description": "tsParticles default Prettier Configuration",
+  "main": "prettier-config.json",
+  "license": "MIT",
+  "files": [
+    "prettier-config.json"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "prettier": "^2.7.1"
+  },
+  "peerDependencies": {
+    "prettier": "^2.7.1"
+  }
+}

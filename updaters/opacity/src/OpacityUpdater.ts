@@ -3,6 +3,7 @@ import {
     DestroyType,
     StartValueType,
     clamp,
+    getRandom,
     getRangeMax,
     getRangeMin,
     getRangeValue,
@@ -37,7 +38,7 @@ function updateOpacity(particle: Particle, delta: IDelta): void {
     if (
         particle.destroyed ||
         !particle.opacity.enable ||
-        (particle.opacity.maxLoops ?? 0) > 0 && (particle.opacity.loops ?? 0) > (particle.opacity.maxLoops ?? 0)
+        ((particle.opacity.maxLoops ?? 0) > 0 && (particle.opacity.loops ?? 0) > (particle.opacity.maxLoops ?? 0))
     ) {
         return;
     }
@@ -121,7 +122,7 @@ export class OpacityUpdater implements IParticleUpdater {
                 case StartValueType.random:
                     particle.opacity.value = randomInRange(particle.opacity);
                     particle.opacity.status =
-                        Math.random() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
+                        getRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
                     break;
 
@@ -134,10 +135,10 @@ export class OpacityUpdater implements IParticleUpdater {
             }
 
             particle.opacity.velocity =
-                getRangeValue(opacityAnimation.speed) / 100 * this.container.retina.reduceFactor;
+                (getRangeValue(opacityAnimation.speed) / 100) * this.container.retina.reduceFactor;
 
             if (!opacityAnimation.sync) {
-                particle.opacity.velocity *= Math.random();
+                particle.opacity.velocity *= getRandom();
             }
         }
     }
@@ -149,8 +150,8 @@ export class OpacityUpdater implements IParticleUpdater {
             !!particle.opacity &&
             particle.opacity.enable &&
             ((particle.opacity.maxLoops ?? 0) <= 0 ||
-                (particle.opacity.maxLoops ?? 0) > 0 &&
-                    (particle.opacity.loops ?? 0) < (particle.opacity.maxLoops ?? 0))
+                ((particle.opacity.maxLoops ?? 0) > 0 &&
+                    (particle.opacity.loops ?? 0) < (particle.opacity.maxLoops ?? 0)))
         );
     }
 

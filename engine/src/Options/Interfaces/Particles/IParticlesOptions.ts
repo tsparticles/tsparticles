@@ -3,16 +3,13 @@
  * @category Options
  */
 import type { IAnimatableColor } from "../IAnimatableColor";
-import type { IAnimatableGradient } from "../IAnimatableGradient";
 import type { ICollisions } from "./Collisions/ICollisions";
 import type { IDestroy } from "./Destroy/IDestroy";
 import type { IInteractivity } from "../Interactivity/IInteractivity";
-import type { ILinks } from "./Links/ILinks";
 import type { IMove } from "./Move/IMove";
 import type { IOpacity } from "./Opacity/IOpacity";
 import type { IParticlesBounce } from "./Bounce/IParticlesBounce";
 import type { IParticlesNumber } from "./Number/IParticlesNumber";
-import type { IParticlesRepulse } from "./Repulse/IParticlesRepulse";
 import type { IRotate } from "./Rotate/IRotate";
 import type { IShadow } from "./IShadow";
 import type { IShape } from "./Shape/IShape";
@@ -34,26 +31,12 @@ export interface IParticlesOptions {
     collisions: ICollisions;
     color: IAnimatableColor;
     destroy: IDestroy;
-    gradient: SingleOrMultiple<IAnimatableGradient>;
     groups: ParticlesGroups;
     interactivity?: RecursivePartial<IInteractivity>;
-
-    /**
-     * @deprecated use the new links instead
-     */
-    lineLinked: ILinks;
-
-    /**
-     * @deprecated use the new links instead
-     */
-    line_linked: ILinks;
-
-    links: ILinks;
     move: IMove;
     number: IParticlesNumber;
     opacity: IOpacity;
     reduceDuplicates: boolean;
-    repulse: IParticlesRepulse;
     rotate: IRotate;
     shadow: IShadow;
     shape: IShape;

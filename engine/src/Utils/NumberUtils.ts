@@ -11,6 +11,23 @@ import type { MoveDirectionAlt } from "../Enums/Directions/MoveDirection";
 import type { RangeValue } from "../Types/RangeValue";
 import { Vector } from "../Core/Utils/Vector";
 
+let _random = Math.random;
+
+/**
+ * Replaces the library random function with a custom one.
+ * @param rnd A random function that returns a number between 0 and 1.
+ */
+export function setRandom(rnd: () => number = Math.random): void {
+    _random = rnd;
+}
+
+/**
+ * Returns a random number between 0 and 1 using the library random function.
+ */
+export function getRandom(): number {
+    return clamp(_random(), 0, 1 - 1e-16);
+}
+
 /**
  * Clamps a number between a minimum and maximum value
  * @param num the source number
@@ -40,7 +57,7 @@ export function randomInRange(r: RangeValue): number {
         min = 0;
     }
 
-    return Math.random() * (max - min) + min;
+    return getRandom() * (max - min) + min;
 }
 
 export function getRangeValue(value: RangeValue): number {
@@ -56,7 +73,7 @@ export function getRangeMax(value: RangeValue): number {
 }
 
 export function setRangeValue(source: RangeValue, value?: number): RangeValue {
-    if (source === value || value === undefined && typeof source === "number") {
+    if (source === value || (value === undefined && typeof source === "number")) {
         return source;
     }
 
@@ -111,7 +128,7 @@ export function getParticleDirectionAngle(
     center: ICoordinates
 ): number {
     if (typeof direction === "number") {
-        return direction * Math.PI / 180;
+        return (direction * Math.PI) / 180;
     } else {
         switch (direction) {
             case MoveDirection.top:
@@ -125,18 +142,18 @@ export function getParticleDirectionAngle(
             case MoveDirection.bottom:
                 return Math.PI / 2;
             case MoveDirection.bottomLeft:
-                return 3 * Math.PI / 4;
+                return (3 * Math.PI) / 4;
             case MoveDirection.left:
                 return Math.PI;
             case MoveDirection.topLeft:
-                return -3 * Math.PI / 4;
+                return (-3 * Math.PI) / 4;
             case MoveDirection.inside:
                 return Math.atan2(center.y - position.y, center.x - position.x);
             case MoveDirection.outside:
                 return Math.atan2(position.y - center.y, position.x - center.x);
             case MoveDirection.none:
             default:
-                return Math.random() * Math.PI * 2;
+                return getRandom() * Math.PI * 2;
         }
     }
 }
@@ -155,7 +172,7 @@ export function getParticleBaseVelocity(direction: number): Vector {
 }
 
 export function collisionVelocity(v1: Vector, v2: Vector, m1: number, m2: number): Vector {
-    return Vector.create(v1.x * (m1 - m2) / (m1 + m2) + v2.x * 2 * m2 / (m1 + m2), v1.y);
+    return Vector.create((v1.x * (m1 - m2)) / (m1 + m2) + (v2.x * 2 * m2) / (m1 + m2), v1.y);
 }
 
 export function calcEasing(value: number, type: EasingType | EasingTypeAlt): number {
@@ -171,7 +188,7 @@ export function calcEasing(value: number, type: EasingType | EasingTypeAlt): num
         case EasingType.easeOutExpo:
             return value === 1 ? 1 : 1 - Math.pow(2, -10 * value);
         case EasingType.easeOutSine:
-            return Math.sin(value * Math.PI / 2);
+            return Math.sin((value * Math.PI) / 2);
         case EasingType.easeOutBack: {
             const c1 = 1.70158,
                 c3 = c1 + 1;
@@ -193,8 +210,8 @@ export function calcEasing(value: number, type: EasingType | EasingTypeAlt): num
 export function calcPositionFromSize(data: IPositionFromSizeParams): ICoordinates | undefined {
     return data.position?.x !== undefined && data.position?.y !== undefined
         ? {
-              x: data.position.x * data.size.width / 100,
-              y: data.position.y * data.size.height / 100,
+              x: (data.position.x * data.size.width) / 100,
+              y: (data.position.y * data.size.height) / 100,
           }
         : undefined;
 }
@@ -206,8 +223,8 @@ export function calcPositionFromSize(data: IPositionFromSizeParams): ICoordinate
  */
 export function calcPositionOrRandomFromSize(data: IPositionFromSizeParams): ICoordinates {
     return {
-        x: (data.position?.x ?? Math.random() * 100) * data.size.width / 100,
-        y: (data.position?.y ?? Math.random() * 100) * data.size.height / 100,
+        x: ((data.position?.x ?? getRandom() * 100) * data.size.width) / 100,
+        y: ((data.position?.y ?? getRandom() * 100) * data.size.height) / 100,
     };
 }
 
@@ -232,8 +249,8 @@ export function calcPositionOrRandomFromSizeRanged(data: IRangedPositionFromSize
  */
 export function calcExactPositionOrRandomFromSize(data: IPositionFromSizeParams): ICoordinates {
     return {
-        x: data.position?.x ?? Math.random() * data.size.width,
-        y: data.position?.y ?? Math.random() * data.size.height,
+        x: data.position?.x ?? getRandom() * data.size.width,
+        y: data.position?.y ?? getRandom() * data.size.height,
     };
 }
 
@@ -249,4 +266,8 @@ export function calcExactPositionOrRandomFromSizeRanged(data: IRangedPositionFro
     };
 
     return calcExactPositionOrRandomFromSize({ size: data.size, position });
+}
+
+export function parseAlpha(input: string): number {
+    return input.endsWith("%") ? parseFloat(input) / 100 : parseFloat(input);
 }

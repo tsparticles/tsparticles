@@ -1,10 +1,10 @@
 {
   "name": "vue2-particles-demo",
   "private": true,
-  "version": "2.1.4",
+  "version": "2.2.0",
   "description": "VueJS Demo",
-  "author": "Matteo Bruni <ar3s@icloud.com>",
-  "homepage": "https://github.com/matteobruni/tsparticles#readme",
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
+  "homepage": "https://particles.js.org",
   "license": "MIT",
   "main": "lib/vue.js",
   "repository": {
@@ -14,18 +14,19 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build:ci": "vue-cli-service build",
     "clean": "rm -rf dist/*"
   },
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "dependencies": {
-    "tsparticles": "^2.1.4",
-    "tsparticles-engine": "^2.1.4",
+    "tsparticles": "^2.2.0",
+    "tsparticles-engine": "^2.2.0",
     "vue": "^2.6.14",
     "vue-class-component": "^7.2.6",
     "vue-property-decorator": "^9.1.2",
-    "vue2-particles": "^2.1.4"
+    "vue2-particles": "^2.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",
@@ -47,7 +48,7 @@
     "rollup-plugin-typescript": "^1.0.1",
     "rollup-plugin-typescript2": "^0.32.0",
     "rollup-plugin-vue": "^5.1.9",
-    "typescript": "^4.7.3",
+    "typescript": "^4.7.4",
     "vue-template-compiler": "^2.6.14"
   }
 }

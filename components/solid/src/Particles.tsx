@@ -53,8 +53,6 @@ const Particles = (props: IParticlesProps): JSX.Element => {
 
 		createEffect(async () => {
 			if (!init()) {
-				console.log("not initialized");
-
 				return;
 			}
 
@@ -94,8 +92,6 @@ const Particles = (props: IParticlesProps): JSX.Element => {
 			</div>
 		);
 	} catch (e) {
-		console.log(e);
-
 		return <div />;
 	}
 };

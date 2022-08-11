@@ -4,6 +4,7 @@ import {
     deepExtend,
     getDistance,
     getDistances,
+    getRandom,
     itemFromArray,
     noPolygonDataLoaded,
     noPolygonFound,
@@ -169,8 +170,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
 
         const canvasSize = container.canvas.size,
-            x = position?.x ?? Math.random() * canvasSize.width,
-            y = position?.y ?? Math.random() * canvasSize.height;
+            x = position?.x ?? getRandom() * canvasSize.width,
+            y = position?.y ?? getRandom() * canvasSize.height;
 
         let inside = false;
 
@@ -180,7 +181,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         for (let i = 0, j = this.raw.length - 1; i < this.raw.length; j = i++) {
             const pi = this.raw[i],
                 pj = this.raw[j],
-                intersect = pi.y > y !== pj.y > y && x < (pj.x - pi.x) * (y - pi.y) / (pj.y - pi.y) + pi.x;
+                intersect = pi.y > y !== pj.y > y && x < ((pj.x - pi.x) * (y - pi.y)) / (pj.y - pi.y) + pi.x;
 
             if (intersect) {
                 inside = !inside;
@@ -251,7 +252,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
             forceDownload = force ?? false;
 
         // Load SVG from file on server
-        if (!url || this.paths !== undefined && !forceDownload) {
+        if (!url || (this.paths !== undefined && !forceDownload)) {
             return this.raw;
         }
 
@@ -341,7 +342,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
 
         const path = itemFromArray(this.paths),
-            distance = Math.floor(Math.random() * path.length) + 1,
+            distance = Math.floor(getRandom() * path.length) + 1,
             point = path.element.getPointAtLength(distance);
 
         return {
@@ -428,8 +429,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
         /* centering of the polygon mask */
         this.offset = {
-            x: container.canvas.size.width * position.x / (100 * pxRatio) - this.dimension.width / 2,
-            y: container.canvas.size.height * position.y / (100 * pxRatio) - this.dimension.height / 2,
+            x: (container.canvas.size.width * position.x) / (100 * pxRatio) - this.dimension.width / 2,
+            y: (container.canvas.size.height * position.y) / (100 * pxRatio) - this.dimension.height / 2,
         };
 
         return parsePaths(this.paths, scale, this.offset);
@@ -519,8 +520,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
             }
         } else {
             position = {
-                x: Math.random() * container.canvas.size.width,
-                y: Math.random() * container.canvas.size.height,
+                x: getRandom() * container.canvas.size.width,
+                y: getRandom() * container.canvas.size.height,
             };
         }
 

@@ -1,9 +1,10 @@
 {
   "name": "svelte-demo",
-  "version": "2.1.4",
+  "version": "2.2.0",
   "private": true,
   "scripts": {
     "build": "rollup -c",
+    "build:ci": "rollup -c",
     "dev": "rollup -c -w",
     "start": "sirv public --host",
     "check": "svelte-check --tsconfig ./tsconfig.json"
@@ -22,11 +23,11 @@
     "svelte-check": "^2.7.0",
     "svelte-preprocess": "^4.10.6",
     "tslib": "^2.4.0",
-    "typescript": "^4.7.3"
+    "typescript": "^4.7.4"
   },
   "dependencies": {
     "sirv-cli": "^2.0.2",
-    "svelte-particles": "^2.1.4",
-    "tsparticles": "^2.1.4"
+    "svelte-particles": "^2.2.0",
+    "tsparticles": "^2.2.0"
   }
 }

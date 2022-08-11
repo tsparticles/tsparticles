@@ -1,8 +1,8 @@
 {
   "name": "tsparticles-demo-configs",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "tsParticles demo configurations",
-  "homepage": "https://particles.js.org/",
+  "homepage": "https://particles.js.org",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
@@ -59,7 +59,7 @@
     "fireworksjs",
     "canvas-confetti"
   ],
-  "author": "Matteo Bruni",
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
@@ -80,6 +80,6 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.1.4"
+    "tsparticles-engine": "^2.2.0"
   }
 }

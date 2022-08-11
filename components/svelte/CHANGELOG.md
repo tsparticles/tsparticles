@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/matteobruni/tsparticles/compare/svelte-particles@2.1.4...svelte-particles@2.2.0) (2022-08-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency riot to v7 ([116fa3f](https://github.com/matteobruni/tsparticles/commit/116fa3f0808bb8e1e3df767513ebcb82c2f9e0e5))
+
+
+
+
+
 ## [2.1.4](https://github.com/matteobruni/tsparticles/compare/svelte-particles@2.1.3...svelte-particles@2.1.4) (2022-07-28)
 
 **Note:** Version bump only for package svelte-particles

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/matteobruni/tsparticles/compare/ionic-demo@1.1.4...ionic-demo@1.2.0) (2022-08-11)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to ~14.1.0 ([284f4fc](https://github.com/matteobruni/tsparticles/commit/284f4fcff996381a784b1eed9271fab33c23613d))
+* **deps:** update capacitor monorepo to v4 ([a63d3a0](https://github.com/matteobruni/tsparticles/commit/a63d3a005ff47dd38ca7924b29267f4796ffebdb))
+
+
+
+
+
 ## [1.1.4](https://github.com/matteobruni/tsparticles/compare/ionic-demo@1.1.3...ionic-demo@1.1.4) (2022-07-28)
 
 **Note:** Version bump only for package ionic-demo

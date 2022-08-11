@@ -1,5 +1,6 @@
 import {
     calcPositionFromSize,
+    getRandom,
     getRangeMax,
     getRangeMin,
     getValue,
@@ -17,7 +18,6 @@ import type { IParticle } from "./Interfaces/IParticle";
 import type { IParticlesDensity } from "../Options/Interfaces/Particles/Number/IParticlesDensity";
 import type { IParticlesFrequencies } from "./Interfaces/IParticlesFrequencies";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions";
-import type { IRgb } from "./Interfaces/Colors";
 import { InteractionManager } from "./Utils/InteractionManager";
 import { Particle } from "./Particle";
 import { Point } from "./Utils/Point";
@@ -38,7 +38,6 @@ export class Particles {
 
     readonly #engine;
 
-    grabLineColor?: IRgb | string;
     lastZIndex;
     limit;
     movers;
@@ -78,8 +77,8 @@ export class Particles {
             new Rectangle(
                 -canvasSize.width / 4,
                 -canvasSize.height / 4,
-                canvasSize.width * 3 / 2,
-                canvasSize.height * 3 / 2
+                (canvasSize.width * 3) / 2,
+                (canvasSize.height * 3) / 2
             ),
             4
         );
@@ -114,7 +113,7 @@ export class Particles {
     ): Particle | undefined {
         const container = this.container,
             options = container.actualOptions,
-            limit = options.particles.number.limit * container.density;
+            limit = options.particles.number.limit;
 
         if (limit > 0) {
             const countToRemove = this.count + 1 - limit;
@@ -196,8 +195,8 @@ export class Particles {
             new Rectangle(
                 -canvasSize.width / 4,
                 -canvasSize.height / 4,
-                canvasSize.width * 3 / 2,
-                canvasSize.height * 3 / 2
+                (canvasSize.width * 3) / 2,
+                (canvasSize.height * 3) / 2
             ),
             4
         );
@@ -236,7 +235,7 @@ export class Particles {
         let res = this.freqs.links.get(key);
 
         if (res === undefined) {
-            res = Math.random();
+            res = getRandom();
 
             this.freqs.links.set(key, res);
         }
@@ -264,7 +263,7 @@ export class Particles {
         let res = this.freqs.triangles.get(key);
 
         if (res === undefined) {
-            res = Math.random();
+            res = getRandom();
 
             this.freqs.triangles.set(key, res);
         }
@@ -301,6 +300,12 @@ export class Particles {
             }
         }
 
+        this.interactionManager.init();
+
+        for (const [, pathGenerator] of container.pathGenerators) {
+            pathGenerator.init(container);
+        }
+
         this.addManualParticles();
 
         if (!handled) {
@@ -320,9 +325,6 @@ export class Particles {
                 this.addParticle();
             }
         }
-
-        this.interactionManager.init();
-        container.pathGenerator.init(container);
     }
 
     push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticlesOptions>, group?: string): void {
@@ -394,12 +396,12 @@ export class Particles {
         const container = this.container,
             particlesToDelete = [];
 
-        container.pathGenerator.update();
+        for (const [, pathGenerator] of container.pathGenerators) {
+            pathGenerator.update();
+        }
 
         for (const [, plugin] of container.plugins) {
-            if (plugin.update) {
-                plugin.update(delta);
-            }
+            plugin.update?.(delta);
         }
 
         for (const particle of this.array) {
@@ -428,9 +430,7 @@ export class Particles {
                     break;
                 }
 
-                if (plugin.particleUpdate) {
-                    plugin.particleUpdate(particle, delta);
-                }
+                plugin.particleUpdate?.(particle, delta);
             }
 
             for (const mover of this.movers) {
@@ -498,7 +498,7 @@ export class Particles {
         const canvas = container.canvas.element,
             pxRatio = container.retina.pixelRatio;
 
-        return canvas.width * canvas.height / (densityOptions.factor * pxRatio ** 2 * densityOptions.area);
+        return (canvas.width * canvas.height) / (densityOptions.factor * pxRatio ** 2 * densityOptions.area);
     }
 
     private pushParticle(

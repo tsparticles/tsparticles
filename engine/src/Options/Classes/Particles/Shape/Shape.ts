@@ -144,38 +144,26 @@ export class Shape implements IShape, IOptionLoader<IShape> {
         altKey: string,
         altOverride: boolean
     ): void {
-        if (item === undefined) {
+        if (!item) {
             return;
         }
 
-        if (item instanceof Array) {
-            if (!(this.options[mainKey] instanceof Array)) {
-                this.options[mainKey] = [];
+        const emptyValue = item instanceof Array ? [] : {},
+            mainDifferentValues = item instanceof Array !== this.options[mainKey] instanceof Array,
+            altDifferentValues = item instanceof Array !== this.options[altKey] instanceof Array;
 
-                if (!this.options[altKey] || altOverride) {
-                    this.options[altKey] = [];
-                }
-            }
+        if (mainDifferentValues) {
+            this.options[mainKey] = emptyValue;
+        }
 
-            this.options[mainKey] = deepExtend(this.options[mainKey] ?? [], item) as IShapeValues[];
+        if (altDifferentValues && altOverride) {
+            this.options[altKey] = emptyValue;
+        }
 
-            if (!this.options[altKey] || altOverride) {
-                this.options[altKey] = deepExtend(this.options[altKey] ?? [], item) as IShapeValues[];
-            }
-        } else {
-            if (this.options[mainKey] instanceof Array) {
-                this.options[mainKey] = {};
+        this.options[mainKey] = deepExtend(this.options[mainKey] ?? emptyValue, item) as IShapeValues[];
 
-                if (!this.options[altKey] || altOverride) {
-                    this.options[altKey] = {};
-                }
-            }
-
-            this.options[mainKey] = deepExtend(this.options[mainKey] ?? {}, item) as IShapeValues[];
-
-            if (!this.options[altKey] || altOverride) {
-                this.options[altKey] = deepExtend(this.options[altKey] ?? {}, item) as IShapeValues[];
-            }
+        if (!this.options[altKey] || altOverride) {
+            this.options[altKey] = deepExtend(this.options[altKey] ?? emptyValue, item) as IShapeValues[];
         }
     }
 }

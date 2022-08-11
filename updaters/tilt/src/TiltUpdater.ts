@@ -1,4 +1,4 @@
-import { AnimationStatus, getRangeValue } from "tsparticles-engine";
+import { AnimationStatus, getRandom, getRangeValue } from "tsparticles-engine";
 import type {
     Container,
     IDelta,
@@ -93,15 +93,15 @@ export class TiltUpdater implements IParticleUpdater {
 
         particle.tilt = {
             enable: tiltOptions.enable,
-            value: getRangeValue(tiltOptions.value) * Math.PI / 180,
-            sinDirection: Math.random() >= 0.5 ? 1 : -1,
-            cosDirection: Math.random() >= 0.5 ? 1 : -1,
+            value: (getRangeValue(tiltOptions.value) * Math.PI) / 180,
+            sinDirection: getRandom() >= 0.5 ? 1 : -1,
+            cosDirection: getRandom() >= 0.5 ? 1 : -1,
         };
 
         let tiltDirection = tiltOptions.direction;
 
         if (tiltDirection === TiltDirection.random) {
-            const index = Math.floor(Math.random() * 2);
+            const index = Math.floor(getRandom() * 2);
 
             tiltDirection = index > 0 ? TiltDirection.counterClockwise : TiltDirection.clockwise;
         }
@@ -120,10 +120,10 @@ export class TiltUpdater implements IParticleUpdater {
 
         if (tiltAnimation?.enable) {
             particle.tilt.decay = 1 - getRangeValue(tiltAnimation.decay);
-            particle.tilt.velocity = getRangeValue(tiltAnimation.speed) / 360 * this.container.retina.reduceFactor;
+            particle.tilt.velocity = (getRangeValue(tiltAnimation.speed) / 360) * this.container.retina.reduceFactor;
 
             if (!tiltAnimation.sync) {
-                particle.tilt.velocity *= Math.random();
+                particle.tilt.velocity *= getRandom();
             }
         }
     }
@@ -138,16 +138,12 @@ export class TiltUpdater implements IParticleUpdater {
         options: TiltParticlesOptions,
         ...sources: (RecursivePartial<ITiltParticlesOptions> | undefined)[]
     ): void {
+        if (!options.tilt) {
+            options.tilt = new Tilt();
+        }
+
         for (const source of sources) {
-            if (!source?.tilt) {
-                continue;
-            }
-
-            if (!options.tilt) {
-                options.tilt = new Tilt();
-            }
-
-            options.tilt.load(source.tilt);
+            options.tilt.load(source?.tilt);
         }
     }
 

@@ -1,12 +1,8 @@
 {
   "packages": [
     "bundles/*",
-    "cli",
-    "cli/files/create-preset/js",
-    "cli/files/create-preset/ts",
     "components/*",
     "demo/**/*",
-    "docsgen",
     "editor",
     "engine",
     "interactions/*",
@@ -20,7 +16,9 @@
     "templates/*",
     "updaters/*",
     "utils/*",
-    "website"
+    "utils/cli/files/create-preset/js",
+    "utils/cli/files/create-preset/ts",
+    "websites/*"
   ],
   "version": "independent",
   "npmClient": "yarn",

@@ -4,7 +4,7 @@
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-updater-opacity/badge)](https://www.jsdelivr.com/package/npm/tsparticles-updater-opacity)
 [![npmjs](https://badge.fury.io/js/tsparticles-updater-opacity.svg)](https://www.npmjs.com/package/tsparticles-updater-opacity)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-updater-opacity)](https://www.npmjs.com/package/tsparticles-updater-opacity)
+[![npmjs](https://img.shields.io/npm/dt/tsparticles-updater-opacity)](https://www.npmjs.com/package/tsparticles-updater-opacity) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) updater plugin for opacity animations.
 

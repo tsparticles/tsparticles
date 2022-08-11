@@ -184,7 +184,7 @@ class App extends Component {
 | style           | object   | Estilo del elemento canvas.                                                                                                                    |
 | className       | string   | El nombre de la clase del contenedor del canvas.                                                                                                               |
 | canvasClassName | string   | El nombre de la clase del canvas.                                                                                                                       |
-| container       | object   | La instancia de [particles container](https://particles.js.org/docs/modules/_core_container_.html)                                              |
+| container       | object   | La instancia de [particles container](https://particles.js.org/docs/modules/Core_Container.html)                                              |
 | init            | function | Esta función se llama después de la inicialización de la instancia de tsParticles, la instancia es el parámetro y puede cargar configuraciones o formas preestablecidas personalizadas aquí |
 | loaded          | function | Esta función se llama cuando las partículas se cargan correctamente en el lienzo, el contenedor actual es el parámetro y puede personalizarlo aquí         |
 

@@ -1,4 +1,4 @@
-const { loadParticlesShape } = require("webpack-tsparticles-plugin");
+const { loadParticlesBundle } = require("webpack-tsparticles-plugin");
 const version = require("./package.json").version;
 
-module.exports = loadParticlesShape("bubble", "Bubble", version, __dirname);
+module.exports = loadParticlesBundle("configs", "Configs", version, __dirname);

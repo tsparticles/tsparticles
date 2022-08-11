@@ -1,8 +1,9 @@
 {
   "name": "@tsparticles/eslint-config",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "tsParticles default ESLint Configuration",
   "main": "eslint-config.js",
+  "license": "MIT",
   "files": [
     "eslint-config.js"
   ],
@@ -10,17 +11,17 @@
     "access": "public"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.21.0",
-    "@typescript-eslint/parser": "^5.21.0",
-    "eslint": "^8.18.0",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
+    "eslint": "^8.21.0",
     "eslint-config-prettier": "^8.5.0",
     "prettier": "^2.7.1",
     "typescript": "^4.7.4"
   },
   "peerDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.21.0",
-    "@typescript-eslint/parser": "^5.21.0",
-    "eslint": "^8.18.0",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
+    "eslint": "^8.21.0",
     "eslint-config-prettier": "^8.5.0",
     "prettier": "^2.7.1",
     "typescript": "^4.7.4"

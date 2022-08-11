@@ -40,6 +40,12 @@
         "projects": "dependencies"
       }
     ],
+    "build:ci": [
+      {
+        "target": "build:ci",
+        "projects": "dependencies"
+      }
+    ],
     "prepare": [
       {
         "target": "prepare",

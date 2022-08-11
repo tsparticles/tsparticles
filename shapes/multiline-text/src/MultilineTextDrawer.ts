@@ -35,7 +35,7 @@ export class MultilineTextDrawer implements IShapeDrawer {
 
         if (fill) {
             text?.split("\n").forEach((line, index) => {
-                const offsetX = line.length * radius / 2;
+                const offsetX = (line.length * radius) / 2;
 
                 const pos = {
                     x: -offsetX,
@@ -46,7 +46,7 @@ export class MultilineTextDrawer implements IShapeDrawer {
             });
         } else {
             text?.split("\n").forEach((line, index) => {
-                const offsetX = line.length * radius / 2;
+                const offsetX = (line.length * radius) / 2;
 
                 const pos = {
                     x: -offsetX,

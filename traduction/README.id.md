@@ -381,7 +381,7 @@ tsParticles sekarang mendukung beberapa kustomisasi 🥳.
 
 **Kamu bisa membuat plugin mu sendiri**
 
-_Baca selengkapnya [disini](https://particles.js.org/docs/modules/_core_interfaces_iplugin_.html)...\_
+_Baca selengkapnya [disini](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.html)...\_
 
 ---
 

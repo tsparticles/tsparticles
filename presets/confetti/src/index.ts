@@ -1,4 +1,5 @@
 import type { Engine, RecursivePartial } from "tsparticles-engine";
+import { getRandom, tsParticles } from "tsparticles-engine";
 import type { IConfettiOptions } from "./IConfettiOptions";
 import { loadAngleUpdater } from "tsparticles-updater-angle";
 import { loadBaseMover } from "tsparticles-move-base";
@@ -14,7 +15,6 @@ import { loadSizeUpdater } from "tsparticles-updater-size";
 import { loadSquareShape } from "tsparticles-shape-square";
 import { loadTiltUpdater } from "tsparticles-updater-tilt";
 import { loadWobbleUpdater } from "tsparticles-updater-wobble";
-import { tsParticles } from "tsparticles-engine";
 
 async function loadPreset(
     engine: Engine,
@@ -56,7 +56,7 @@ export async function confetti(
         id = idOrOptions;
         options = confettiOptions ?? {};
     } else {
-        id = `tsparticles_${Math.floor(Math.random() * 1000)}`;
+        id = `tsparticles_${Math.floor(getRandom() * 1000)}`;
         options = idOrOptions;
     }
 

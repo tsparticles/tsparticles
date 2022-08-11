@@ -2,7 +2,7 @@
 
 # tsParticles Fireworks Preset
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-fireworks/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-fireworks) [![npmjs](https://badge.fury.io/js/tsparticles-preset-fireworks.svg)](https://www.npmjs.com/package/tsparticles-preset-fireworks) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-fireworks)](https://www.npmjs.com/package/tsparticles-preset-fireworks)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-fireworks/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-fireworks) [![npmjs](https://badge.fury.io/js/tsparticles-preset-fireworks.svg)](https://www.npmjs.com/package/tsparticles-preset-fireworks) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-fireworks)](https://www.npmjs.com/package/tsparticles-preset-fireworks) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) preset for fireworks effect.
 
@@ -163,4 +163,49 @@ let particlesOptions = {
 let particlesInit = async (engine) => {
   await loadFireworksPreset(engine);
 };
+```
+
+---
+
+```mermaid
+flowchart TD
+
+subgraph m [Movers]
+mb[Base]
+end
+
+e[tsParticles Engine] --> m
+
+subgraph pl [Plugins]
+ple[Emitters]
+end
+
+e --> pl
+
+subgraph s [Shapes]
+sc[Circle]
+sl[Line]
+end
+
+e --> s
+
+subgraph u [Updaters]
+ua[Angle]
+uc[Color]
+ul[Life]
+uop[Opacity]
+uou[Out Modes]
+usi[Size]
+ust[Stroke Color]
+end
+
+e --> u
+
+subgraph pr [Presets]
+prfw[Fireworks]
+end
+
+e --> pr
+
+mb & ple & sc & sl & ua & uc & ul & uop & uou & usi & ust --> prfw
 ```

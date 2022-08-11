@@ -4,7 +4,7 @@
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-interaction-external-repulse/badge)](https://www.jsdelivr.com/package/npm/tsparticles-interaction-external-repulse)
 [![npmjs](https://badge.fury.io/js/tsparticles-interaction-external-repulse.svg)](https://www.npmjs.com/package/tsparticles-interaction-external-repulse)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-interaction-external-repulse)](https://www.npmjs.com/package/tsparticles-interaction-external-repulse)
+[![npmjs](https://img.shields.io/npm/dt/tsparticles-interaction-external-repulse)](https://www.npmjs.com/package/tsparticles-interaction-external-repulse) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) interaction plugin for repulse effect around mouse or HTML
 elements.

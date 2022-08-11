@@ -304,7 +304,7 @@ _Jangan klik! JANGAN KLIK! TIDAKK DIA JADI MENYEBAR!!!!_
 
 **particles.json**
 
-Anda dapat menemukan contoh config di [sini](https://particles.js.org/docs/modules/_core_container_.html) 📖
+Anda dapat menemukan contoh config di [sini](https://particles.js.org/docs/modules/Core_Container.html) 📖
 
 ---
 
@@ -352,7 +352,7 @@ tsParticles sekarang mendukung beberapa kustomisasi 🥳.
 
 **Anda dapat membuat plugin sendiri**
 
-_Baca di [sini](https://particles.js.org/docs/modules/_core_interfaces_iplugin_.html)..._
+_Baca di [sini](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.html)..._
 
 ---
 

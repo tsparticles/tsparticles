@@ -4,7 +4,7 @@
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-shape-line/badge)](https://www.jsdelivr.com/package/npm/tsparticles-shape-line)
 [![npmjs](https://badge.fury.io/js/tsparticles-shape-line.svg)](https://www.npmjs.com/package/tsparticles-shape-line)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-shape-line)](https://www.npmjs.com/package/tsparticles-shape-line)
+[![npmjs](https://img.shields.io/npm/dt/tsparticles-shape-line)](https://www.npmjs.com/package/tsparticles-shape-line) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) additional line shape.
 

@@ -4,7 +4,7 @@
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-shape-star/badge)](https://www.jsdelivr.com/package/npm/tsparticles-shape-star)
 [![npmjs](https://badge.fury.io/js/tsparticles-shape-star.svg)](https://www.npmjs.com/package/tsparticles-shape-star)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-shape-star)](https://www.npmjs.com/package/tsparticles-shape-star)
+[![npmjs](https://img.shields.io/npm/dt/tsparticles-shape-star)](https://www.npmjs.com/package/tsparticles-shape-star) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) additional star shape.
 
