@@ -1474,7 +1474,7 @@
                         (lookahead == "+" ||
                             lookahead == "-" ||
                             lookahead == "." ||
-                            (lookahead >= "0" && lookahead <= "9")) &&
+                            lookahead >= "0" && lookahead <= "9") &&
                         previousCommand != window.SVGPathSeg.PATHSEG_CLOSEPATH
                     ) {
                         if (previousCommand == window.SVGPathSeg.PATHSEG_MOVETO_ABS)
@@ -1521,9 +1521,9 @@
 
                     if (
                         this._currentIndex == this._endIndex ||
-                        ((this._string.charAt(this._currentIndex) < "0" ||
+                        (this._string.charAt(this._currentIndex) < "0" ||
                             this._string.charAt(this._currentIndex) > "9") &&
-                            this._string.charAt(this._currentIndex) != ".")
+                            this._string.charAt(this._currentIndex) != "."
                     )
                         // The first character of a number must be one of [0-9+-.].
                         return undefined;
