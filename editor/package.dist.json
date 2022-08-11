@@ -35,6 +35,17 @@
   "dependencies": {
     "object-gui": "^1.1.1",
     "tsparticles-engine": "^2.2.0",
+    "tsparticles-interaction-external-attract": "^2.2.0",
+    "tsparticles-interaction-external-bounce": "^2.2.0",
+    "tsparticles-interaction-external-bubble": "^2.2.0",
+    "tsparticles-interaction-external-connect": "^2.2.0",
+    "tsparticles-interaction-external-grab": "^2.2.0",
+    "tsparticles-interaction-external-pause": "^2.2.0",
+    "tsparticles-interaction-external-push": "^2.2.0",
+    "tsparticles-interaction-external-remove": "^2.2.0",
+    "tsparticles-interaction-external-repulse": "^2.2.0",
+    "tsparticles-interaction-light": "^2.2.0",
+    "tsparticles-interaction-particles-links": "^2.2.0",
     "tsparticles-plugin-absorbers": "^2.2.0",
     "tsparticles-plugin-emitters": "^2.2.0",
     "tsparticles-plugin-infection": "^2.2.0"

@@ -55,7 +55,7 @@
             if (prop.type) {
                 switch (prop.type) {
                     case "boolean":
-                        return ["true", "false"];
+                        return [ "true", "false" ];
                     case "number":
                         return prop.enum;
                     case "string":
@@ -102,7 +102,8 @@
                         return v.includes(text);
                     });
             }
-        } catch (e) {}
+        } catch (e) {
+        }
 
         return null;
     };
@@ -259,13 +260,13 @@
 
                 downloadBtn.onclick = function () {
                     const contentType = "application/json";
-                    const blob = new Blob([json], { type: contentType });
+                    const blob = new Blob([ json ], { type: contentType });
                     const url = URL.createObjectURL(blob);
                     const a = document.createElement("a");
 
                     a.download = "particles.json";
                     a.href = url;
-                    a.dataset.downloadUrl = [contentType, a.download, a.href].join(":");
+                    a.dataset.downloadUrl = [ contentType, a.download, a.href ].join(":");
 
                     const e = document.createEvent("MouseEvents");
 
@@ -299,7 +300,7 @@
 <div id="tsparticles"></div>`,
                 css: ``,
                 js: `tsParticles.load("tsparticles", ${JSON.stringify(container.options)});`,
-                js_external: "https://cdn.jsdelivr.net/npm/tsparticles@2.1.4/tsparticles.bundle.min.js",
+                js_external: "https://cdn.jsdelivr.net/npm/tsparticles@2.2.0/tsparticles.bundle.min.js",
                 title: "tsParticles example",
                 description: "This pen was created with tsParticles from https://particles.js.org",
                 tags: "tsparticles, javascript, typescript, design, animation",
@@ -341,7 +342,8 @@
     let btnParticlesUpdate = function () {
         const particles = tsParticles.domItem(0);
         particles.options.load(editor.get());
-        refreshParticles(() => {});
+        refreshParticles(() => {
+        });
     };
 
     let changeGenericPreset = function (presetId) {
@@ -385,11 +387,11 @@
         }
     });
 
-    window.addEventListener("load", function () {
+    window.addEventListener("load", async () => {
         const element = document.getElementById("editor");
         const options = {
             mode: "form",
-            modes: ["code", "form", "view", "preview", "text"], // allowed modes
+            modes: [ "code", "form", "view", "preview", "text" ], // allowed modes
             autocomplete: {
                 filter: "contain",
                 trigger: "focus",
@@ -476,21 +478,22 @@
         initSidebar();
         initStats();
 
-        loadFull(tsParticles);
+        await loadFull(tsParticles);
 
-        loadInfectionPlugin(tsParticles);
-        loadLightInteraction(tsParticles);
-        loadParticlesRepulseInteraction(tsParticles);
-        loadGradientUpdater(tsParticles);
-        loadOrbitUpdater(tsParticles);
-        loadCurvesPath(tsParticles);
-        loadPolygonPath(tsParticles);
-        loadPerlinNoisePath(tsParticles);
-        loadSimplexNoisePath(tsParticles);
-        loadBubbleShape(tsParticles);
-        loadHeartShape(tsParticles);
-        loadMultilineTextShape(tsParticles);
-        loadRoundedRectShape(tsParticles);
-        loadSpiralShape(tsParticles);
+        await loadInfectionPlugin(tsParticles);
+        await loadHsvColorPlugin(tsParticles);
+        await loadLightInteraction(tsParticles);
+        await loadParticlesRepulseInteraction(tsParticles);
+        await loadGradientUpdater(tsParticles);
+        await loadOrbitUpdater(tsParticles);
+        await loadCurvesPath(tsParticles);
+        await loadPolygonPath(tsParticles);
+        await loadPerlinNoisePath(tsParticles);
+        await loadSimplexNoisePath(tsParticles);
+        await loadBubbleShape(tsParticles);
+        await loadHeartShape(tsParticles);
+        await loadMultilineTextShape(tsParticles);
+        await loadRoundedRectShape(tsParticles);
+        await loadSpiralShape(tsParticles);
     });
 })();
