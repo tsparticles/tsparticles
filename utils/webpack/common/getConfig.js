@@ -52,27 +52,10 @@ const getConfig = (entry, bannerInput, minBannerInput, dir, bundle) => {
                 new TerserPlugin({
                     include: /\.min\.js$/,
                     terserOptions: {
-                        output: {
+                        format: {
                             comments: minBannerInput
                         }
-                    },
-                    extractComments: false
-                }),
-                new TerserPlugin({
-                    exclude: /\.min\.js$/,
-                    terserOptions: {
-                        compress: false,
-                        format: {
-                            beautify: true,
-                            indent_level: 2,
-                            semicolons: false,
-                            comments: bannerInput
-                        },
-                        mangle: false,
-                        keep_classnames: true,
-                        keep_fnames: true,
-                    },
-                    extractComments: false
+                    }
                 })
             ]
         },
