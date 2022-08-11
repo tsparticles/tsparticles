@@ -10,8 +10,7 @@
   "author": "Matteo Bruni <176620+matteobruni@users.noreply.github.com>",
   "license": "MIT",
   "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
+    "access": "public"
   },
   "dependencies": {
     "fs-extra": "^10.0.1",

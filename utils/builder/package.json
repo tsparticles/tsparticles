@@ -5,6 +5,9 @@
   "bin": {
     "tsparticles-build": "dist/build.js"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "prettier": "@tsparticles/prettier-config",
   "scripts": {
     "prettify:ci:src": "prettier --check ./src",
