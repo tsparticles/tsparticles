@@ -103,7 +103,7 @@ export class ModesOptionsEditor extends EditorBase {
             }
 
             if (typeof value === "string") {
-                if (typeof options?.color === "string") {
+                if (typeof options.color === "string") {
                     options.color = value;
                 } else {
                     options.color = {
@@ -179,7 +179,7 @@ export class ModesOptionsEditor extends EditorBase {
             }
 
             if (typeof value === "string") {
-                if (typeof options?.links.color === "string") {
+                if (typeof options.links.color === "string") {
                     options.links.color = value;
                 } else {
                     options.links.color = {
@@ -229,7 +229,7 @@ export class ModesOptionsEditor extends EditorBase {
                 }
 
                 if (typeof value === "string") {
-                    if (typeof options?.area.gradient.start === "string") {
+                    if (typeof options.area.gradient.start === "string") {
                         options.area.gradient.start = value;
                     } else {
                         options.area.gradient.start = {
@@ -252,7 +252,7 @@ export class ModesOptionsEditor extends EditorBase {
             }
 
             if (typeof value === "string") {
-                if (typeof options?.area.gradient.stop === "string") {
+                if (typeof options.area.gradient.stop === "string") {
                     options.area.gradient.stop = value;
                 } else {
                     options.area.gradient.stop = {
@@ -281,7 +281,7 @@ export class ModesOptionsEditor extends EditorBase {
                 }
 
                 if (typeof value === "string") {
-                    if (typeof options?.shadow.color === "string") {
+                    if (typeof options.shadow.color === "string") {
                         options.shadow.color = value;
                     } else {
                         options.shadow.color = {
