@@ -35,7 +35,7 @@ const getConfig = (entry, bannerInput, minBannerInput, dir, bundle) => {
                 exclude: /\.min\.js$/
             }),
             new webpack.BannerPlugin({
-                banner: minBannerInput,
+                banner: bannerInput,
                 include: /\.min\.js$/
             }),
             new webpack.ProgressPlugin(),
@@ -50,12 +50,7 @@ const getConfig = (entry, bannerInput, minBannerInput, dir, bundle) => {
             minimize: true,
             minimizer: [
                 new TerserPlugin({
-                    include: /\.min\.js$/,
-                    terserOptions: {
-                        format: {
-                            comments: minBannerInput
-                        }
-                    }
+                    include: /\.min\.js$/
                 })
             ]
         },
