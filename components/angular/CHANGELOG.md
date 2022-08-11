@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/matteobruni/tsparticles/compare/ng-particles@3.1.4...ng-particles@3.2.0) (2022-08-11)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to ~14.1.0 ([284f4fc](https://github.com/matteobruni/tsparticles/commit/284f4fcff996381a784b1eed9271fab33c23613d))
+
+
+
+
+
 ## [3.1.4](https://github.com/matteobruni/tsparticles/compare/ng-particles@3.1.3...ng-particles@3.1.4) (2022-07-28)
 
 **Note:** Version bump only for package ng-particles

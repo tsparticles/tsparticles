@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-external-trail@2.1.4...tsparticles-interaction-external-trail@2.2.0) (2022-08-11)
+
+
+### Features
+
+* changed load interactivity options to load mode options and moved to external interactors only ([697a155](https://github.com/matteobruni/tsparticles/commit/697a155856c81ad2d4793404f9fc9e34ff78ed68))
+* moved more code out from engine to specific plugins ([14d4887](https://github.com/matteobruni/tsparticles/commit/14d488756b759b7650e02886ed862f821a6e8ed1))
+* moved more code out from engine to specific plugins ([bdd916b](https://github.com/matteobruni/tsparticles/commit/bdd916b157de7edd96e6401a2366f4e60416ab72))
+* moved more code out from engine to specific plugins ([b504a14](https://github.com/matteobruni/tsparticles/commit/b504a147d6664faccf4fbc990d32c5dc07ef3945))
+
+
+
+
+
 ## [2.1.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-external-trail@2.1.3...tsparticles-interaction-external-trail@2.1.4) (2022-07-28)
 
 **Note:** Version bump only for package tsparticles-interaction-external-trail

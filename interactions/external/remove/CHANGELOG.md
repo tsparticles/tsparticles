@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-external-remove@2.1.4...tsparticles-interaction-external-remove@2.2.0) (2022-08-11)
+
+
+### Features
+
+* moved more code out from engine to specific plugins ([14d4887](https://github.com/matteobruni/tsparticles/commit/14d488756b759b7650e02886ed862f821a6e8ed1))
+* moved more code out from engine to specific plugins ([bdd916b](https://github.com/matteobruni/tsparticles/commit/bdd916b157de7edd96e6401a2366f4e60416ab72))
+
+
+
+
+
 ## [2.1.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-external-remove@2.1.3...tsparticles-interaction-external-remove@2.1.4) (2022-07-28)
 
 **Note:** Version bump only for package tsparticles-interaction-external-remove

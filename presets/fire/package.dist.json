@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-fire",
-  "version": "2.1.4",
+  "version": "2.2.0",
   "description": "tsParticles fire preset",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -81,13 +81,13 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.1.4",
-    "tsparticles-interaction-external-push": "^2.1.4",
-    "tsparticles-move-base": "^2.1.4",
-    "tsparticles-shape-circle": "^2.1.4",
-    "tsparticles-updater-color": "^2.1.4",
-    "tsparticles-updater-opacity": "^2.1.4",
-    "tsparticles-updater-out-modes": "^2.1.4",
-    "tsparticles-updater-size": "^2.1.4"
+    "tsparticles-engine": "^2.2.0",
+    "tsparticles-interaction-external-push": "^2.2.0",
+    "tsparticles-move-base": "^2.2.0",
+    "tsparticles-shape-circle": "^2.2.0",
+    "tsparticles-updater-color": "^2.2.0",
+    "tsparticles-updater-opacity": "^2.2.0",
+    "tsparticles-updater-out-modes": "^2.2.0",
+    "tsparticles-updater-size": "^2.2.0"
   }
 }

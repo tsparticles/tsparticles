@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@2.1.4...solid-particles-demo@2.2.0) (2022-08-11)
+
+**Note:** Version bump only for package solid-particles-demo
+
+
+
+
+
 ## [2.1.4](https://github.com/matteobruni/tsparticles/compare/solid-particles-demo@2.1.3...solid-particles-demo@2.1.4) (2022-07-28)
 
 **Note:** Version bump only for package solid-particles-demo

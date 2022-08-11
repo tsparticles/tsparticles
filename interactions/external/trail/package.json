@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-interaction-external-trail",
-  "version": "2.1.4",
+  "version": "2.2.0",
   "description": "tsParticles trail external interaction",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -59,10 +59,10 @@
   "prettier": "@tsparticles/prettier-config",
   "devDependencies": {
     "@babel/core": "^7.18.9",
-    "@tsparticles/build": "^1.0.0",
-    "@tsparticles/eslint-config": "^1.0.3",
-    "@tsparticles/prettier-config": "^1.0.0",
-    "@tsparticles/tsconfig": "^1.0.0",
+    "@tsparticles/build": "^1.1.0",
+    "@tsparticles/eslint-config": "^1.1.0",
+    "@tsparticles/prettier-config": "^1.1.0",
+    "@tsparticles/tsconfig": "^1.1.0",
     "@types/webpack-env": "^1.17.0",
     "@typescript-eslint/eslint-plugin": "^5.30.7",
     "@typescript-eslint/parser": "^5.30.7",
@@ -78,9 +78,9 @@
     "webpack": "^5.74.0",
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.10.0",
-    "webpack-tsparticles-plugin": "^1.1.2"
+    "webpack-tsparticles-plugin": "^1.2.0"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.1.4"
+    "tsparticles-engine": "^2.2.0"
   }
 }

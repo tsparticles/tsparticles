@@ -1,7 +1,7 @@
 {
   "name": "editor-demo",
   "private": true,
-  "version": "2.1.4",
+  "version": "2.2.0",
   "description": "> TODO: description",
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "homepage": "https://particles.js.org",
@@ -33,8 +33,8 @@
     "pug": "^3.0.2",
     "pug-cli": "^1.0.0-alpha6",
     "stylus": "^0.58.0",
-    "tsparticles": "^2.1.4",
-    "tsparticles-editor": "^2.1.4",
-    "tsparticles-engine": "^2.1.4"
+    "tsparticles": "^2.2.0",
+    "tsparticles-editor": "^2.2.0",
+    "tsparticles-engine": "^2.2.0"
   }
 }

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fireworks@2.1.4...tsparticles-preset-fireworks@2.2.0) (2022-08-11)
+
+
+### Bug Fixes
+
+* **deps:** update capacitor monorepo to v4 ([a63d3a0](https://github.com/matteobruni/tsparticles/commit/a63d3a005ff47dd38ca7924b29267f4796ffebdb))
+
+
+### Features
+
+* improved fireworks preset ([cd23778](https://github.com/matteobruni/tsparticles/commit/cd23778190327340272fb53f9de7c44a2ae23aa2))
+
+
+
+
+
 ## [2.1.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fireworks@2.1.3...tsparticles-preset-fireworks@2.1.4) (2022-07-28)
 
 

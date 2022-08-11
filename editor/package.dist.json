@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-editor",
-  "version": "2.1.4",
+  "version": "2.2.0",
   "description": "tsParticles Configuration Editor",
   "keywords": [
     "tsparticles",
@@ -34,10 +34,10 @@
   ],
   "dependencies": {
     "object-gui": "^1.1.1",
-    "tsparticles-engine": "^2.1.4",
-    "tsparticles-plugin-absorbers": "^2.1.4",
-    "tsparticles-plugin-emitters": "^2.1.4",
-    "tsparticles-plugin-infection": "^2.1.4"
+    "tsparticles-engine": "^2.2.0",
+    "tsparticles-plugin-absorbers": "^2.2.0",
+    "tsparticles-plugin-emitters": "^2.2.0",
+    "tsparticles-plugin-infection": "^2.2.0"
   },
   "main": "cjs/index.js",
   "jsdelivr": "tsparticles.editor.min.js",

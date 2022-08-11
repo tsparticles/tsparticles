@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-image@2.1.4...tsparticles-shape-image@2.2.0) (2022-08-11)
+
+
+### Bug Fixes
+
+* fixed issue with opacity and svg with color replaced, closes [#4532](https://github.com/matteobruni/tsparticles/issues/4532) ([9119b61](https://github.com/matteobruni/tsparticles/commit/9119b61cd6f5cc4a7bcc756f08dd700a77713666))
+
+
+### Features
+
+* reworked image shape, now supports multiple colors in svg replace color, random value too ([3173ebc](https://github.com/matteobruni/tsparticles/commit/3173ebc14716b241fbb84ae9f1a2cd3c5567f846))
+* reworking image shape for supporting multiple colors in svg replace color ([c28bc85](https://github.com/matteobruni/tsparticles/commit/c28bc85fded04a54a3d4cb25dca1701f1f6b1f01))
+
+
+
+
+
 ## [2.1.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-image@2.1.3...tsparticles-shape-image@2.1.4) (2022-07-28)
 
 

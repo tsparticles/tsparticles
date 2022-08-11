@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/tsconfig",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "tsParticles default TypeScript Compiler Configuration",
   "license": "MIT",
   "publishConfig": {
