@@ -55,7 +55,7 @@
             if (prop.type) {
                 switch (prop.type) {
                     case "boolean":
-                        return [ "true", "false" ];
+                        return ["true", "false"];
                     case "number":
                         return prop.enum;
                     case "string":
@@ -102,8 +102,7 @@
                         return v.includes(text);
                     });
             }
-        } catch (e) {
-        }
+        } catch (e) {}
 
         return null;
     };
@@ -260,13 +259,13 @@
 
                 downloadBtn.onclick = function () {
                     const contentType = "application/json";
-                    const blob = new Blob([ json ], { type: contentType });
+                    const blob = new Blob([json], { type: contentType });
                     const url = URL.createObjectURL(blob);
                     const a = document.createElement("a");
 
                     a.download = "particles.json";
                     a.href = url;
-                    a.dataset.downloadUrl = [ contentType, a.download, a.href ].join(":");
+                    a.dataset.downloadUrl = [contentType, a.download, a.href].join(":");
 
                     const e = document.createEvent("MouseEvents");
 
@@ -342,8 +341,7 @@
     let btnParticlesUpdate = function () {
         const particles = tsParticles.domItem(0);
         particles.options.load(editor.get());
-        refreshParticles(() => {
-        });
+        refreshParticles(() => {});
     };
 
     let changeGenericPreset = function (presetId) {
@@ -391,7 +389,7 @@
         const element = document.getElementById("editor");
         const options = {
             mode: "form",
-            modes: [ "code", "form", "view", "preview", "text" ], // allowed modes
+            modes: ["code", "form", "view", "preview", "text"], // allowed modes
             autocomplete: {
                 filter: "contain",
                 trigger: "focus",
