@@ -12,7 +12,6 @@ export class Retina {
     pixelRatio!: number;
     reduceFactor!: number;
     sizeAnimationSpeed!: number;
-    slowModeRadius!: number;
 
     constructor(private readonly container: Container) {}
 
@@ -71,10 +70,6 @@ export class Retina {
         this.attractDistance = getRangeValue(particles.move.attract.distance) * ratio;
         this.sizeAnimationSpeed = getRangeValue(particles.size.animation.speed) * ratio;
         this.maxSpeed = getRangeValue(particles.move.gravity.maxSpeed) * ratio;
-
-        const modes = options.interactivity.modes;
-
-        this.slowModeRadius = modes.slow.radius * ratio;
     }
 
     initParticle(particle: Particle): void {

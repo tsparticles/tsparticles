@@ -1,6 +1,5 @@
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { ISlow } from "../../../Interfaces/Interactivity/Modes/ISlow";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import type { ISlow } from "../Interfaces/ISlow";
 
 /**
  * @category Options

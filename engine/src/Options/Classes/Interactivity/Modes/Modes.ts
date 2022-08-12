@@ -4,7 +4,6 @@ import type { IExternalInteractor } from "../../../../Core/Interfaces/IExternalI
 import type { IModes } from "../../../Interfaces/Interactivity/Modes/IModes";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { Slow } from "./Slow";
 
 /**
  * [[include:Options/Interactivity/Modes.md]]
@@ -16,21 +15,15 @@ export class Modes implements IModes, IOptionLoader<IModes> {
     readonly #container;
     readonly #engine;
 
-    slow;
-
     constructor(engine: Engine, container?: Container) {
         this.#engine = engine;
         this.#container = container;
-
-        this.slow = new Slow();
     }
 
     load(data?: RecursivePartial<IModes>): void {
         if (!data) {
             return;
         }
-
-        this.slow.load(data.slow);
 
         if (this.#container) {
             const interactors = this.#engine.plugins.interactors.get(this.#container);

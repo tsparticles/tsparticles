@@ -99,30 +99,5 @@ export function applyPath(particle: Particle, delta: IDelta): void {
 }
 
 export function getProximitySpeedFactor(particle: Particle): number {
-    const container = particle.container;
-    const options = container.actualOptions;
-    const active = isInArray(HoverMode.slow, options.interactivity.events.onHover.mode);
-
-    if (!active) {
-        return 1;
-    }
-
-    const mousePos = particle.container.interactivity.mouse.position;
-
-    if (!mousePos) {
-        return 1;
-    }
-
-    const particlePos = particle.getPosition();
-    const dist = getDistance(mousePos, particlePos);
-    const radius = container.retina.slowModeRadius;
-
-    if (dist > radius) {
-        return 1;
-    }
-
-    const proximityFactor = dist / radius || 0;
-    const slowFactor = options.interactivity.modes.slow.factor;
-
-    return proximityFactor / slowFactor;
+    return particle.slow.inRange ? particle.slow.factor : 1;
 }

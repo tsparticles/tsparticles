@@ -32,6 +32,7 @@ import type { IParticleWobble } from "./Interfaces/IParticleWobble";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions";
 import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
 import type { IShapeValues } from "./Interfaces/IShapeValues";
+import type { ISlowParticleData } from "./Interfaces/ISlowParticleData";
 import { Interactivity } from "../Options/Classes/Interactivity/Interactivity";
 import { MoveDirection } from "../Enums/Directions/MoveDirection";
 import { OutMode } from "../Enums/Modes/OutMode";
@@ -226,6 +227,8 @@ export class Particle implements IParticle {
      */
     readonly size: IParticleNumericValueAnimation;
 
+    readonly slow: ISlowParticleData;
+
     /**
      * Check if the particle is spawning, and can't be touched
      */
@@ -404,6 +407,10 @@ export class Particle implements IParticle {
         this.bubble = {
             inRange: false,
         };
+        this.slow = {
+            inRange: false,
+            factor: 1,
+        };
         this.position = this.calcPosition(container, position, clamp(zIndexValue, 0, container.zLayers));
         this.initialPosition = this.position.copy();
 
@@ -490,6 +497,7 @@ export class Particle implements IParticle {
 
         this.destroyed = true;
         this.bubble.inRange = false;
+        this.slow.inRange = false;
 
         for (const [, plugin] of this.container.plugins) {
             if (plugin.particleDestroyed) {

@@ -50,6 +50,7 @@ app.use("/interaction-external-pause", express.static("./node_modules/tsparticle
 app.use("/interaction-external-push", express.static("./node_modules/tsparticles-interaction-external-push"));
 app.use("/interaction-external-remove", express.static("./node_modules/tsparticles-interaction-external-remove"));
 app.use("/interaction-external-repulse", express.static("./node_modules/tsparticles-interaction-external-repulse"));
+app.use("/interaction-external-slow", express.static("./node_modules/tsparticles-interaction-external-slow"));
 app.use("/interaction-particles-attract", express.static("./node_modules/tsparticles-interaction-particles-attract"));
 app.use("/interaction-particles-collisions", express.static("./node_modules/tsparticles-interaction-particles-collisions"));
 app.use("/interaction-particles-links", express.static("./node_modules/tsparticles-interaction-particles-links"));

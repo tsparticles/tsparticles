@@ -33,6 +33,7 @@ const getExternals = (bundle) => {
         "tsparticles-interaction-external-push",
         "tsparticles-interaction-external-remove",
         "tsparticles-interaction-external-repulse",
+        "tsparticles-interaction-external-slow",
         "tsparticles-interaction-external-trail",
         "tsparticles-interaction-light",
         "tsparticles-interaction-particles-attract",
