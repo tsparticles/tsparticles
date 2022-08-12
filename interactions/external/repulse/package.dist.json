@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-interaction-external-repulse",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "tsParticles repulse external interaction",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -72,6 +72,6 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.2.0"
+    "tsparticles-engine": "^2.2.1"
   }
 }
