@@ -15,6 +15,7 @@
     "build": "yarn slimbuild && yarn build:schema && yarn lint:tests && yarn prettify:tests && yarn test && yarn build:docs",
     "build:ci": "yarn slimbuild:ci && yarn build:schema && yarn lint:ci:tests && yarn prettify:ci:tests && yarn test",
     "build:docs": "rimraf -f docs && typedoc",
+    "build-docs": "yarn build:docs",
     "build:schema": "echo ts-json-schema-generator --path 'src/**/*.ts' --type 'IOptions' -f tsconfig.schema.json --additional-properties true --out ./schema/options.schema.json",
     "test": "nyc mocha",
     "preversion": "yarn test",
