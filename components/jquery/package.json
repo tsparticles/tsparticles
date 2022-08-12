@@ -26,6 +26,8 @@
     "directory": "components/jquery"
   },
   "keywords": [
+    "front-end",
+    "frontend",
     "jquery-plugin",
     "ecosystem:jquery",
     "tsparticles",
