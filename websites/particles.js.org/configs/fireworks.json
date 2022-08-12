@@ -13,7 +13,7 @@
             "delay": 0.1
         },
         "rate": {
-            "delay": 0.5,
+            "delay": 0.15,
             "quantity": 1
         },
         "size": {
@@ -69,9 +69,14 @@
                         "type": "circle"
                     },
                     "size": {
-                        "value": 2,
+                        "value": { "min": 1, "max": 2 },
                         "animation": {
-                            "enable": false
+                            "enable": true,
+                            "speed": 5,
+                            "count": 1,
+                            "sync": false,
+                            "startValue": "min",
+                            "destroy": "none"
                         }
                     },
                     "life": {
@@ -84,15 +89,16 @@
                         }
                     },
                     "move": {
+                        "decay": 0.05,
                         "enable": true,
                         "gravity": {
-                            "enable": false
+                            "enable": true,
+                            "inverse": false,
+                            "acceleration": 5
                         },
-                        "speed": 2,
+                        "speed": { "min": 5, "max": 10 },
                         "direction": "none",
-                        "random": true,
-                        "straight": false,
-                        "outMode": "destroy"
+                        "outModes": "destroy"
                     }
                 }
             }
