@@ -8,12 +8,12 @@ import { Slow } from "./Options/Classes/Slow";
  * @category Interactions
  */
 export class Slower extends ExternalInteractorBase {
-    readonly #container;
+    private readonly _container;
 
     constructor(container: SlowContainer) {
         super(container);
 
-        this.#container = container;
+        this._container = container;
     }
 
     clear(particle: Particle, force?: boolean): void {
@@ -25,7 +25,7 @@ export class Slower extends ExternalInteractorBase {
     }
 
     init(): void {
-        const container = this.#container,
+        const container = this._container,
             slow = container.actualOptions.interactivity.modes.slow;
 
         if (!slow) {
@@ -40,7 +40,7 @@ export class Slower extends ExternalInteractorBase {
     }
 
     isEnabled(particle?: Particle): boolean {
-        const container = this.#container,
+        const container = this._container,
             mouse = container.interactivity.mouse,
             events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
 
@@ -60,7 +60,7 @@ export class Slower extends ExternalInteractorBase {
     reset(particle: Particle): void {
         particle.slow.inRange = false;
 
-        const container = this.#container,
+        const container = this._container,
             options = container.actualOptions,
             mousePos = container.interactivity.mouse.position,
             radius = container.retina.slowModeRadius,

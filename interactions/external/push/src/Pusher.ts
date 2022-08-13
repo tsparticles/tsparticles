@@ -9,21 +9,21 @@ import { itemFromArray } from "tsparticles-engine";
  * @category Interactions
  */
 export class Pusher extends ExternalInteractorBase {
-    readonly #container;
-
     handleClickMode: (mode: string) => void;
+
+    private readonly _container;
 
     constructor(container: PushContainer) {
         super(container);
 
-        this.#container = container;
+        this._container = container;
 
         this.handleClickMode = (mode): void => {
             if (mode !== ClickMode.push) {
                 return;
             }
 
-            const container = this.#container,
+            const container = this._container,
                 options = container.actualOptions,
                 pushOptions = options.interactivity.modes.push;
 

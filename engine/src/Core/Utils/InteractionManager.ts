@@ -15,13 +15,13 @@ export class InteractionManager {
      * The engine used for registering the interactions managers
      * @private
      */
-    readonly #engine;
+    private readonly _engine;
 
     /**
      * The interactors that are used for initialization
      * @private
      */
-    readonly #interactors;
+    private readonly _interactors;
 
     /**
      * Registered external interactivity managers
@@ -41,8 +41,8 @@ export class InteractionManager {
      * @param container the parent container
      */
     constructor(engine: Engine, private readonly container: Container) {
-        this.#engine = engine;
-        this.#interactors = this.#engine.plugins.getInteractors(this.container, true);
+        this._engine = engine;
+        this._interactors = this._engine.plugins.getInteractors(this.container, true);
         this.externalInteractors = [];
         this.particleInteractors = [];
     }
@@ -74,7 +74,7 @@ export class InteractionManager {
         this.externalInteractors = [];
         this.particleInteractors = [];
 
-        for (const interactor of this.#interactors) {
+        for (const interactor of this._interactors) {
             switch (interactor.type) {
                 case InteractorType.External:
                     this.externalInteractors.push(interactor as IExternalInteractor);

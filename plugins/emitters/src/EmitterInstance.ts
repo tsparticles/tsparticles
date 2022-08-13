@@ -31,28 +31,28 @@ import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
  * @category Emitters Plugin
  */
 export class EmitterInstance {
-    readonly #engine;
     fill;
-    #firstSpawn;
     readonly name?: string;
     options;
     position?: ICoordinates;
     size;
     spawnColor?: IHsl;
-    #startParticlesAdded;
 
-    private currentDuration;
-    private currentEmitDelay;
-    private currentSpawnDelay;
-    private duration?: number;
-    private emitDelay?: number;
-    private readonly immortal;
-    private readonly initialPosition?: ICoordinates;
-    private lifeCount;
-    private readonly particlesOptions: RecursivePartial<IParticlesOptions>;
-    private paused;
-    private readonly shape?: IEmitterShape;
-    private spawnDelay?: number;
+    private _currentDuration;
+    private _currentEmitDelay;
+    private _currentSpawnDelay;
+    private _duration?: number;
+    private _emitDelay?: number;
+    private readonly _engine;
+    private _firstSpawn;
+    private readonly _immortal;
+    private readonly _initialPosition?: ICoordinates;
+    private _lifeCount;
+    private readonly _particlesOptions: RecursivePartial<IParticlesOptions>;
+    private _paused;
+    private readonly _shape?: IEmitterShape;
+    private _spawnDelay?: number;
+    private _startParticlesAdded;
 
     constructor(
         engine: EmittersEngine,
@@ -61,11 +61,11 @@ export class EmitterInstance {
         options: RecursivePartial<IEmitter>,
         position?: ICoordinates
     ) {
-        this.#engine = engine;
-        this.currentDuration = 0;
-        this.currentEmitDelay = 0;
-        this.currentSpawnDelay = 0;
-        this.initialPosition = position;
+        this._engine = engine;
+        this._currentDuration = 0;
+        this._currentEmitDelay = 0;
+        this._currentSpawnDelay = 0;
+        this._initialPosition = position;
 
         if (options instanceof Emitter) {
             this.options = options;
@@ -74,13 +74,13 @@ export class EmitterInstance {
             this.options.load(options);
         }
 
-        this.spawnDelay = ((this.options.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
-        this.position = this.initialPosition ?? this.calcPosition();
+        this._spawnDelay = ((this.options.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
+        this.position = this._initialPosition ?? this.calcPosition();
         this.name = this.options.name;
-        this.shape = this.#engine.emitterShapeManager?.getShape(this.options.shape);
+        this._shape = this._engine.emitterShapeManager?.getShape(this.options.shape);
         this.fill = this.options.fill;
-        this.#firstSpawn = !this.options.life.wait;
-        this.#startParticlesAdded = false;
+        this._firstSpawn = !this.options.life.wait;
+        this._startParticlesAdded = false;
 
         let particlesOptions = deepExtend({}, this.options.particles) as RecursivePartial<IParticlesOptions>;
 
@@ -92,8 +92,8 @@ export class EmitterInstance {
             this.spawnColor = rangeColorToHsl(this.options.spawnColor);
         }
 
-        this.paused = !this.options.autoPlay;
-        this.particlesOptions = particlesOptions;
+        this._paused = !this.options.autoPlay;
+        this._particlesOptions = particlesOptions;
         this.size =
             this.options.size ??
             ((): IEmitterSize => {
@@ -107,10 +107,10 @@ export class EmitterInstance {
 
                 return size;
             })();
-        this.lifeCount = this.options.life.count ?? -1;
-        this.immortal = this.lifeCount <= 0;
+        this._lifeCount = this.options.life.count ?? -1;
+        this._immortal = this._lifeCount <= 0;
 
-        this.#engine.dispatchEvent("emitterCreated", {
+        this._engine.dispatchEvent("emitterCreated", {
             container,
             data: {
                 emitter: this,
@@ -121,13 +121,13 @@ export class EmitterInstance {
     }
 
     externalPause(): void {
-        this.paused = true;
+        this._paused = true;
 
         this.pause();
     }
 
     externalPlay(): void {
-        this.paused = false;
+        this._paused = false;
 
         this.play();
     }
@@ -179,41 +179,41 @@ export class EmitterInstance {
     }
 
     pause(): void {
-        if (this.paused) {
+        if (this._paused) {
             return;
         }
 
-        delete this.emitDelay;
+        delete this._emitDelay;
     }
 
     play(): void {
-        if (this.paused) {
+        if (this._paused) {
             return;
         }
 
         if (
             !(
                 this.container.retina.reduceFactor &&
-                (this.lifeCount > 0 || this.immortal || !this.options.life.count) &&
-                (this.#firstSpawn || this.currentSpawnDelay >= (this.spawnDelay ?? 0))
+                (this._lifeCount > 0 || this._immortal || !this.options.life.count) &&
+                (this._firstSpawn || this._currentSpawnDelay >= (this._spawnDelay ?? 0))
             )
         ) {
             return;
         }
 
-        if (this.emitDelay === undefined) {
+        if (this._emitDelay === undefined) {
             const delay = getRangeValue(this.options.rate.delay);
 
-            this.emitDelay = (1000 * delay) / this.container.retina.reduceFactor;
+            this._emitDelay = (1000 * delay) / this.container.retina.reduceFactor;
         }
 
-        if (this.lifeCount > 0 || this.immortal) {
+        if (this._lifeCount > 0 || this._immortal) {
             this.prepareToDie();
         }
     }
 
     resize(): void {
-        const initialPosition = this.initialPosition;
+        const initialPosition = this._initialPosition;
 
         this.position =
             initialPosition && isPointInside(initialPosition, this.container.canvas.size, Vector.origin)
@@ -222,73 +222,73 @@ export class EmitterInstance {
     }
 
     update(delta: IDelta): void {
-        if (this.paused) {
+        if (this._paused) {
             return;
         }
 
-        if (this.#firstSpawn) {
-            this.#firstSpawn = false;
+        if (this._firstSpawn) {
+            this._firstSpawn = false;
 
-            this.currentSpawnDelay = this.spawnDelay ?? 0;
-            this.currentEmitDelay = this.emitDelay ?? 0;
+            this._currentSpawnDelay = this._spawnDelay ?? 0;
+            this._currentEmitDelay = this._emitDelay ?? 0;
         }
 
-        if (!this.#startParticlesAdded) {
-            this.#startParticlesAdded = true;
+        if (!this._startParticlesAdded) {
+            this._startParticlesAdded = true;
 
             this.emitParticles(this.options.startCount);
         }
 
-        if (this.duration !== undefined) {
-            this.currentDuration += delta.value;
+        if (this._duration !== undefined) {
+            this._currentDuration += delta.value;
 
-            if (this.currentDuration >= this.duration) {
+            if (this._currentDuration >= this._duration) {
                 this.pause();
 
-                if (this.spawnDelay !== undefined) {
-                    delete this.spawnDelay;
+                if (this._spawnDelay !== undefined) {
+                    delete this._spawnDelay;
                 }
 
-                if (!this.immortal) {
-                    this.lifeCount--;
+                if (!this._immortal) {
+                    this._lifeCount--;
                 }
 
-                if (this.lifeCount > 0 || this.immortal) {
+                if (this._lifeCount > 0 || this._immortal) {
                     this.position = this.calcPosition();
 
-                    this.spawnDelay = ((this.options.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
+                    this._spawnDelay = ((this.options.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
                 } else {
                     this.destroy();
                 }
 
-                this.currentDuration -= this.duration;
+                this._currentDuration -= this._duration;
 
-                delete this.duration;
+                delete this._duration;
             }
         }
 
-        if (this.spawnDelay !== undefined) {
-            this.currentSpawnDelay += delta.value;
+        if (this._spawnDelay !== undefined) {
+            this._currentSpawnDelay += delta.value;
 
-            if (this.currentSpawnDelay >= this.spawnDelay) {
-                this.#engine.dispatchEvent("emitterPlay", {
+            if (this._currentSpawnDelay >= this._spawnDelay) {
+                this._engine.dispatchEvent("emitterPlay", {
                     container: this.container,
                 });
 
                 this.play();
 
-                this.currentSpawnDelay -= this.currentSpawnDelay;
+                this._currentSpawnDelay -= this._currentSpawnDelay;
 
-                delete this.spawnDelay;
+                delete this._spawnDelay;
             }
         }
 
-        if (this.emitDelay !== undefined) {
-            this.currentEmitDelay += delta.value;
+        if (this._emitDelay !== undefined) {
+            this._currentEmitDelay += delta.value;
 
-            if (this.currentEmitDelay >= this.emitDelay) {
+            if (this._currentEmitDelay >= this._emitDelay) {
                 this.emit();
-                this.currentEmitDelay -= this.emitDelay;
+                this._currentEmitDelay -= this._emitDelay;
             }
         }
     }
@@ -303,7 +303,7 @@ export class EmitterInstance {
     private destroy(): void {
         this.emitters.removeEmitter(this);
 
-        this.#engine.dispatchEvent("emitterDestroyed", {
+        this._engine.dispatchEvent("emitterDestroyed", {
             container: this.container,
             data: {
                 emitter: this,
@@ -312,7 +312,7 @@ export class EmitterInstance {
     }
 
     private emit(): void {
-        if (this.paused) {
+        if (this._paused) {
             return;
         }
 
@@ -325,7 +325,9 @@ export class EmitterInstance {
         const position = this.getPosition(),
             size = this.getSize(),
             singleParticlesOptions =
-                this.particlesOptions instanceof Array ? itemFromArray(this.particlesOptions) : this.particlesOptions;
+                this._particlesOptions instanceof Array
+                    ? itemFromArray(this._particlesOptions)
+                    : this._particlesOptions;
 
         for (let i = 0; i < quantity; i++) {
             const particlesOptions = deepExtend({}, singleParticlesOptions) as RecursivePartial<IParticlesOptions>;
@@ -352,14 +354,14 @@ export class EmitterInstance {
                 return;
             }
 
-            const pPosition = this.shape?.randomPosition(position, size, this.fill) ?? position;
+            const pPosition = this._shape?.randomPosition(position, size, this.fill) ?? position;
 
             this.container.particles.addParticle(pPosition, particlesOptions);
         }
     }
 
     private prepareToDie(): void {
-        if (this.paused) {
+        if (this._paused) {
             return;
         }
 
@@ -367,11 +369,11 @@ export class EmitterInstance {
 
         if (
             this.container.retina.reduceFactor &&
-            (this.lifeCount > 0 || this.immortal) &&
+            (this._lifeCount > 0 || this._immortal) &&
             duration !== undefined &&
             duration > 0
         ) {
-            this.duration = duration * 1000;
+            this._duration = duration * 1000;
         }
     }
 

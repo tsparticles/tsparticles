@@ -49,14 +49,14 @@ function calculateBubbleValue(
  * @category Interactions
  */
 export class Bubbler extends ExternalInteractorBase {
-    readonly #container;
-
     handleClickMode: (mode: ClickMode | string) => void;
+
+    private readonly _container;
 
     constructor(container: BubbleContainer) {
         super(container);
 
-        this.#container = container;
+        this._container = container;
 
         if (!container.bubble) {
             container.bubble = {};
@@ -87,7 +87,7 @@ export class Bubbler extends ExternalInteractorBase {
     }
 
     init(): void {
-        const container = this.#container,
+        const container = this._container,
             bubble = container.actualOptions.interactivity.modes.bubble;
 
         if (!bubble) {
@@ -102,7 +102,7 @@ export class Bubbler extends ExternalInteractorBase {
     }
 
     async interact(): Promise<void> {
-        const options = this.#container.actualOptions,
+        const options = this._container.actualOptions,
             events = options.interactivity.events,
             onHover = events.onHover,
             onClick = events.onClick,
@@ -123,7 +123,7 @@ export class Bubbler extends ExternalInteractorBase {
     }
 
     isEnabled(particle?: Particle): boolean {
-        const container = this.#container,
+        const container = this._container,
             options = container.actualOptions,
             mouse = container.interactivity.mouse,
             events = (particle?.interactivity ?? options.interactivity).events,
@@ -160,7 +160,7 @@ export class Bubbler extends ExternalInteractorBase {
     }
 
     private clickBubble(): void {
-        const container = this.#container,
+        const container = this._container,
             options = container.actualOptions,
             mouseClickPos = container.interactivity.mouse.clickPosition,
             bubble = options.interactivity.modes.bubble;
@@ -240,7 +240,7 @@ export class Bubbler extends ExternalInteractorBase {
     }
 
     private hoverBubble(): void {
-        const container = this.#container,
+        const container = this._container,
             mousePos = container.interactivity.mouse.position,
             distance = container.retina.bubbleModeDistance;
 
@@ -282,7 +282,7 @@ export class Bubbler extends ExternalInteractorBase {
     }
 
     private hoverBubbleColor(particle: Particle, ratio: number, divBubble?: BubbleDiv): void {
-        const options = this.#container.actualOptions;
+        const options = this._container.actualOptions;
         const bubbleOptions = divBubble ?? options.interactivity.modes.bubble;
 
         if (!bubbleOptions) {
@@ -319,7 +319,7 @@ export class Bubbler extends ExternalInteractorBase {
     }
 
     private hoverBubbleOpacity(particle: Particle, ratio: number, divBubble?: BubbleDiv): void {
-        const container = this.#container,
+        const container = this._container,
             options = container.actualOptions,
             modeOpacity = divBubble?.opacity ?? options.interactivity.modes.bubble?.opacity;
 
@@ -337,7 +337,7 @@ export class Bubbler extends ExternalInteractorBase {
     }
 
     private hoverBubbleSize(particle: Particle, ratio: number, divBubble?: BubbleDiv): void {
-        const container = this.#container,
+        const container = this._container,
             modeSize = divBubble?.size ? divBubble.size * container.retina.pixelRatio : container.retina.bubbleModeSize;
 
         if (modeSize === undefined) {
@@ -354,7 +354,7 @@ export class Bubbler extends ExternalInteractorBase {
     }
 
     private process(particle: Particle, distMouse: number, timeSpent: number, data: IBubblerProcessParam): void {
-        const container = this.#container,
+        const container = this._container,
             bubbleParam = data.bubbleObj.optValue,
             options = container.actualOptions,
             bubble = options.interactivity.modes.bubble;
@@ -414,7 +414,7 @@ export class Bubbler extends ExternalInteractorBase {
     }
 
     private singleSelectorHover(selector: string, div: DivEvent): void {
-        const container = this.#container,
+        const container = this._container,
             selectors = document.querySelectorAll(selector),
             bubble = container.actualOptions.interactivity.modes.bubble;
 

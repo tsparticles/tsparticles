@@ -26,21 +26,21 @@ import type { RepulseDiv } from "./Options/Classes/RepulseDiv";
  * @category Interactions
  */
 export class Repulser extends ExternalInteractorBase {
-    readonly #container;
-
     handleClickMode: (mode: string) => void;
+
+    private readonly _container;
 
     constructor(container: RepulseContainer) {
         super(container);
 
-        this.#container = container;
+        this._container = container;
 
         if (!container.repulse) {
             container.repulse = { particles: [] };
         }
 
         this.handleClickMode = (mode): void => {
-            const options = this.#container.actualOptions,
+            const options = this._container.actualOptions,
                 repulse = options.interactivity.modes.repulse;
 
             if (!repulse || mode !== ClickMode.repulse) {
@@ -82,7 +82,7 @@ export class Repulser extends ExternalInteractorBase {
     }
 
     init(): void {
-        const container = this.#container,
+        const container = this._container,
             repulse = container.actualOptions.interactivity.modes.repulse;
 
         if (!repulse) {
@@ -93,7 +93,7 @@ export class Repulser extends ExternalInteractorBase {
     }
 
     async interact(): Promise<void> {
-        const container = this.#container,
+        const container = this._container,
             options = container.actualOptions,
             mouseMoveStatus = container.interactivity.status === mouseMoveEvent,
             events = options.interactivity.events,
@@ -113,7 +113,7 @@ export class Repulser extends ExternalInteractorBase {
     }
 
     isEnabled(particle?: Particle): boolean {
-        const container = this.#container,
+        const container = this._container,
             options = container.actualOptions,
             mouse = container.interactivity.mouse,
             events = (particle?.interactivity ?? options.interactivity).events,
@@ -150,7 +150,7 @@ export class Repulser extends ExternalInteractorBase {
     }
 
     private clickRepulse(): void {
-        const container = this.#container,
+        const container = this._container,
             repulse = container.actualOptions.interactivity.modes.repulse;
 
         if (!repulse) {
@@ -215,7 +215,7 @@ export class Repulser extends ExternalInteractorBase {
     }
 
     private hoverRepulse(): void {
-        const container = this.#container,
+        const container = this._container,
             mousePos = container.interactivity.mouse.position,
             repulseRadius = container.retina.repulseModeDistance;
 
@@ -227,7 +227,7 @@ export class Repulser extends ExternalInteractorBase {
     }
 
     private processRepulse(position: ICoordinates, repulseRadius: number, area: Range, divRepulse?: RepulseDiv): void {
-        const container = this.#container,
+        const container = this._container,
             query = container.particles.quadTree.query(area, (p) => this.isEnabled(p)),
             repulseOptions = container.actualOptions.interactivity.modes.repulse;
 
@@ -253,7 +253,7 @@ export class Repulser extends ExternalInteractorBase {
     }
 
     private singleSelectorRepulse(selector: string, div: DivEvent): void {
-        const container = this.#container,
+        const container = this._container,
             repulse = container.actualOptions.interactivity.modes.repulse;
 
         if (!repulse) {
@@ -296,7 +296,7 @@ export class Repulser implements IExternalInteractor {
     constructor(private readonly container: Container) {}
 
     public isEnabled(): boolean {
-        const container = this.#container;
+        const container = this._container;
         const options = container.options;
 
         const mouse = container.interactivity.mouse;
@@ -324,7 +324,7 @@ export class Repulser implements IExternalInteractor {
     }
 
     public interact(): void {
-        const container = this.#container;
+        const container = this._container;
         const options = container.options;
         const mouseMoveStatus = container.interactivity.status === mouseMoveEvent;
         const events = options.interactivity.events;
@@ -344,7 +344,7 @@ export class Repulser implements IExternalInteractor {
     }
 
     private singleDivRepulse(selector: string, div: DivEvent): void {
-        const container = this.#container;
+        const container = this._container;
         const query = document.querySelectorAll(selector);
 
         if (!query.length) {

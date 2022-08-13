@@ -103,12 +103,12 @@ function drawConnection(container: ConnectContainer, p1: LinkParticle, p2: LinkP
  * @category Interactions
  */
 export class Connector extends ExternalInteractorBase {
-    readonly #container;
+    private readonly _container;
 
     constructor(container: ConnectContainer) {
         super(container);
 
-        this.#container = container;
+        this._container = container;
     }
 
     clear(): void {
@@ -116,7 +116,7 @@ export class Connector extends ExternalInteractorBase {
     }
 
     init(): void {
-        const container = this.#container,
+        const container = this._container,
             connect = container.actualOptions.interactivity.modes.connect;
 
         if (!connect) {
@@ -131,7 +131,7 @@ export class Connector extends ExternalInteractorBase {
      * Connecting particles on hover interactivity
      */
     async interact(): Promise<void> {
-        const container = this.#container,
+        const container = this._container,
             options = container.actualOptions;
 
         if (options.interactivity.events.onHover.enable && container.interactivity.status === "mousemove") {

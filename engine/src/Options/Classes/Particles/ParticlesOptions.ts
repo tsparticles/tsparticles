@@ -31,9 +31,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     bounce;
     collisions;
     color;
-    readonly #container;
     destroy;
-    readonly #engine;
     groups: ParticlesGroups;
     interactivity?: RecursivePartial<IInteractivity>;
     move;
@@ -47,9 +45,12 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     stroke: SingleOrMultiple<Stroke>;
     zIndex;
 
+    private readonly _container;
+    private readonly _engine;
+
     constructor(engine: Engine, container?: Container) {
-        this.#engine = engine;
-        this.#container = container;
+        this._engine = engine;
+        this._container = container;
 
         this.bounce = new ParticlesBounce();
         this.collisions = new Collisions();
@@ -135,8 +136,8 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
             }
         }
 
-        if (this.#container) {
-            const updaters = this.#engine.plugins.updaters.get(this.#container);
+        if (this._container) {
+            const updaters = this._engine.plugins.updaters.get(this._container);
 
             if (updaters) {
                 for (const updater of updaters) {
@@ -146,7 +147,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
                 }
             }
 
-            const interactors = this.#engine.plugins.interactors.get(this.#container);
+            const interactors = this._engine.plugins.interactors.get(this._container);
 
             if (interactors) {
                 for (const interactor of interactors) {

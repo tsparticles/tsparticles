@@ -29,29 +29,28 @@ function setTransformValue(
  * @category Core
  */
 export class Canvas {
-    #colorPlugins: IContainerPlugin[];
-
-    /**
-     * The particles canvas context
-     */
-    #context: CanvasRenderingContext2D | null;
-
     /**
      * The particles canvas
      */
     element?: HTMLCanvasElement;
 
-    #postDrawUpdaters: IParticleUpdater[];
-    #preDrawUpdaters: IParticleUpdater[];
-
     resizeFactor?: IDimension;
-
-    #resizePlugins: IContainerPlugin[];
 
     /**
      * The particles canvas dimension
      */
     readonly size: IDimension;
+
+    private _colorPlugins: IContainerPlugin[];
+
+    /**
+     * The particles canvas context
+     */
+    private _context: CanvasRenderingContext2D | null;
+
+    private _postDrawUpdaters: IParticleUpdater[];
+    private _preDrawUpdaters: IParticleUpdater[];
+    private _resizePlugins: IContainerPlugin[];
 
     private coverColorStyle?: string;
     private generatedCanvas;
@@ -68,12 +67,12 @@ export class Canvas {
             width: 0,
         };
 
-        this.#context = null;
+        this._context = null;
         this.generatedCanvas = false;
-        this.#preDrawUpdaters = [];
-        this.#postDrawUpdaters = [];
-        this.#resizePlugins = [];
-        this.#colorPlugins = [];
+        this._preDrawUpdaters = [];
+        this._postDrawUpdaters = [];
+        this._resizePlugins = [];
+        this._colorPlugins = [];
     }
 
     /**
@@ -108,10 +107,10 @@ export class Canvas {
             clear(ctx, this.size);
         });
 
-        this.#preDrawUpdaters = [];
-        this.#postDrawUpdaters = [];
-        this.#resizePlugins = [];
-        this.#colorPlugins = [];
+        this._preDrawUpdaters = [];
+        this._postDrawUpdaters = [];
+        this._resizePlugins = [];
+        this._colorPlugins = [];
     }
 
     /**
@@ -119,11 +118,11 @@ export class Canvas {
      * @param cb
      */
     draw<T>(cb: (context: CanvasRenderingContext2D) => T): T | undefined {
-        if (!this.#context) {
+        if (!this._context) {
             return;
         }
 
-        return cb(this.#context);
+        return cb(this._context);
     }
 
     /**
@@ -262,15 +261,15 @@ export class Canvas {
      * Initializes the plugins needed by canvas
      */
     initPlugins(): void {
-        this.#resizePlugins = [];
+        this._resizePlugins = [];
 
         for (const [, plugin] of this.container.plugins) {
             if (plugin.resize) {
-                this.#resizePlugins.push(plugin);
+                this._resizePlugins.push(plugin);
             }
 
             if (plugin.particleFillColor || plugin.particleStrokeColor) {
-                this.#colorPlugins.push(plugin);
+                this._colorPlugins.push(plugin);
             }
         }
     }
@@ -279,16 +278,16 @@ export class Canvas {
      * Initializes the updaters needed by canvas
      */
     initUpdaters(): void {
-        this.#preDrawUpdaters = [];
-        this.#postDrawUpdaters = [];
+        this._preDrawUpdaters = [];
+        this._postDrawUpdaters = [];
 
         for (const updater of this.container.particles.updaters) {
             if (updater.afterDraw) {
-                this.#postDrawUpdaters.push(updater);
+                this._postDrawUpdaters.push(updater);
             }
 
             if (updater.getColorStyles || updater.getTransformValues || updater.beforeDraw) {
-                this.#preDrawUpdaters.push(updater);
+                this._preDrawUpdaters.push(updater);
             }
         }
     }
@@ -310,7 +309,7 @@ export class Canvas {
         this.originalStyle = deepExtend({}, this.element.style) as CSSStyleDeclaration;
         this.size.height = canvas.offsetHeight;
         this.size.width = canvas.offsetWidth;
-        this.#context = this.element.getContext("2d");
+        this._context = this.element.getContext("2d");
         this.container.retina.init();
         this.initBackground();
     }
@@ -394,7 +393,7 @@ export class Canvas {
     }
 
     private applyPostDrawUpdaters(particle: Particle): void {
-        for (const updater of this.#postDrawUpdaters) {
+        for (const updater of this._postDrawUpdaters) {
             updater.afterDraw?.(particle);
         }
     }
@@ -407,7 +406,7 @@ export class Canvas {
         colorStyles: IParticleColorStyle,
         transform: IParticleTransformValues
     ): void {
-        for (const updater of this.#preDrawUpdaters) {
+        for (const updater of this._preDrawUpdaters) {
             if (updater.getColorStyles) {
                 const { fill, stroke } = updater.getColorStyles(particle, ctx, radius, zOpacity);
 
@@ -433,7 +432,7 @@ export class Canvas {
     }
 
     private applyResizePlugins(): void {
-        for (const plugin of this.#resizePlugins) {
+        for (const plugin of this._resizePlugins) {
             plugin.resize?.();
         }
     }
@@ -441,7 +440,7 @@ export class Canvas {
     private getPluginParticleColors(particle: Particle): (IHsl | undefined)[] {
         let fColor: IHsl | undefined, sColor: IHsl | undefined;
 
-        for (const plugin of this.#colorPlugins) {
+        for (const plugin of this._colorPlugins) {
             if (!fColor && plugin.particleFillColor) {
                 fColor = rangeColorToHsl(plugin.particleFillColor(particle));
             }

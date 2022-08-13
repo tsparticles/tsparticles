@@ -8,17 +8,17 @@ import { Remove } from "./Options/Classes/Remove";
  * @category Interactions
  */
 export class Remover extends ExternalInteractorBase {
-    readonly #container;
-
     handleClickMode: (mode: string) => void;
+
+    private readonly _container;
 
     constructor(container: RemoveContainer) {
         super(container);
 
-        this.#container = container;
+        this._container = container;
 
         this.handleClickMode = (mode): void => {
-            const container = this.#container,
+            const container = this._container,
                 options = container.actualOptions;
 
             if (!options.interactivity.modes.remove || mode !== ClickMode.remove) {

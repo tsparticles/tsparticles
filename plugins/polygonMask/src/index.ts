@@ -9,17 +9,18 @@ import { PolygonMaskType } from "./Enums/PolygonMaskType";
  * @category Polygon Mask Plugin
  */
 class PolygonMaskPlugin implements IPlugin {
-    readonly #engine;
     readonly id;
+
+    private readonly _engine;
 
     constructor(engine: Engine) {
         this.id = "polygonMask";
 
-        this.#engine = engine;
+        this._engine = engine;
     }
 
     getPlugin(container: Container): PolygonMaskInstance {
-        return new PolygonMaskInstance(container, this.#engine);
+        return new PolygonMaskInstance(container, this._engine);
     }
 
     loadOptions(options: Options, source?: RecursivePartial<IOptions & IPolygonMaskOptions>): void {

@@ -29,8 +29,8 @@ import { loadOptions } from "../Utils/OptionsUtils";
  * @param container the container to check
  * @returns true if the container is still usable
  */
-function guardCheck(container: Container): boolean {
-    return !container.destroyed;
+function guardCheck(container?: Container): boolean {
+    return !container?.destroyed;
 }
 
 function loadContainerOptions(
@@ -93,9 +93,6 @@ export class Container {
      */
     duration;
 
-    readonly #engine;
-    readonly #eventListeners;
-
     /**
      * The container fps limit, coming from options
      */
@@ -108,8 +105,6 @@ export class Container {
 
     interactivity: IContainerInteractivity;
 
-    readonly #intersectionObserver;
-
     /**
      * Last frame time, used for delta values, for keeping animation correct in lower frame rates
      */
@@ -119,8 +114,6 @@ export class Container {
      * The container lifetime
      */
     lifeTime;
-
-    #options;
 
     /**
      * The container check if it's hidden on the web page
@@ -143,8 +136,6 @@ export class Container {
 
     readonly retina;
 
-    #sourceOptions;
-
     /**
      * Check if the particles container is started
      */
@@ -152,11 +143,16 @@ export class Container {
 
     zLayers;
 
+    private _currentTheme?: string;
+    private _drawAnimationFrame?: number;
+    private readonly _engine;
+    private readonly _eventListeners;
+    private _firstStart;
     private readonly _initialSourceOptions;
-    private currentTheme?: string;
-    private drawAnimationFrame?: number;
-    private firstStart;
-    private paused;
+    private readonly _intersectionObserver;
+    private _options;
+    private _paused;
+    private _sourceOptions;
 
     /**
      * This is the core class, create an instance to have a new working particles manager
@@ -166,22 +162,22 @@ export class Container {
      * @param sourceOptions the options to load
      */
     constructor(engine: Engine, readonly id: string, sourceOptions?: RecursivePartial<IOptions>) {
-        this.#engine = engine;
+        this._engine = engine;
         this.fpsLimit = 120;
         this.duration = 0;
         this.lifeTime = 0;
-        this.firstStart = true;
+        this._firstStart = true;
         this.started = false;
         this.destroyed = false;
-        this.paused = true;
+        this._paused = true;
         this.lastFrameTime = 0;
         this.zLayers = 100;
         this.pageHidden = false;
-        this.#sourceOptions = sourceOptions;
+        this._sourceOptions = sourceOptions;
         this._initialSourceOptions = sourceOptions;
         this.retina = new Retina(this);
         this.canvas = new Canvas(this);
-        this.particles = new Particles(this.#engine, this);
+        this.particles = new Particles(this._engine, this);
         this.frameManager = new FrameManager(this);
         this.pathGenerators = new Map<string, IMovePathGenerator>();
         this.interactivity = {
@@ -193,31 +189,31 @@ export class Container {
         this.plugins = new Map<string, IContainerPlugin>();
         this.drawers = new Map<string, IShapeDrawer>();
         /* tsParticles variables with default values */
-        this.#options = loadContainerOptions(this.#engine, this);
-        this.actualOptions = loadContainerOptions(this.#engine, this);
+        this._options = loadContainerOptions(this._engine, this);
+        this.actualOptions = loadContainerOptions(this._engine, this);
 
         /* ---------- tsParticles - start ------------ */
-        this.#eventListeners = new EventListeners(this);
+        this._eventListeners = new EventListeners(this);
 
         if (typeof IntersectionObserver !== "undefined" && IntersectionObserver) {
-            this.#intersectionObserver = new IntersectionObserver((entries) => this.intersectionManager(entries));
+            this._intersectionObserver = new IntersectionObserver((entries) => this.intersectionManager(entries));
         }
 
-        this.#engine.dispatchEvent(EventType.containerBuilt, { container: this });
+        this._engine.dispatchEvent(EventType.containerBuilt, { container: this });
     }
 
     /**
      * The options used by the container, it's a full [[Options]] object
      */
     get options(): Options {
-        return this.#options;
+        return this._options;
     }
 
     /**
      * The options that were initially passed to the container
      */
     get sourceOptions(): RecursivePartial<IOptions> | undefined {
-        return this.#sourceOptions;
+        return this._sourceOptions;
     }
 
     /**
@@ -369,18 +365,18 @@ export class Container {
             this.drawers.delete(key);
         }
 
-        this.#engine.plugins.destroy(this);
+        this._engine.plugins.destroy(this);
 
         this.destroyed = true;
 
-        const mainArr = this.#engine.dom(),
+        const mainArr = this._engine.dom(),
             idx = mainArr.findIndex((t) => t === this);
 
         if (idx >= 0) {
             mainArr.splice(idx, 1);
         }
 
-        this.#engine.dispatchEvent(EventType.containerDestroyed, { container: this });
+        this._engine.dispatchEvent(EventType.containerDestroyed, { container: this });
     }
 
     /**
@@ -393,7 +389,7 @@ export class Container {
 
         let refreshTime = force;
 
-        this.drawAnimationFrame = animate()(async (timestamp) => {
+        this._drawAnimationFrame = animate()(async (timestamp) => {
             if (refreshTime) {
                 this.lastFrameTime = undefined;
 
@@ -435,7 +431,7 @@ export class Container {
      * @returns `true` is playing, `false` is paused
      */
     getAnimationStatus(): boolean {
-        return !this.paused && !this.pageHidden && guardCheck(this);
+        return !this._paused && !this.pageHidden && guardCheck(this);
     }
 
     /**
@@ -464,10 +460,10 @@ export class Container {
             return;
         }
 
-        const shapes = this.#engine.plugins.getSupportedShapes();
+        const shapes = this._engine.plugins.getSupportedShapes();
 
         for (const type of shapes) {
-            const drawer = this.#engine.plugins.getShapeDrawer(type);
+            const drawer = this._engine.plugins.getShapeDrawer(type);
 
             if (drawer) {
                 this.drawers.set(type, drawer);
@@ -475,8 +471,8 @@ export class Container {
         }
 
         /* options settings */
-        this.#options = loadContainerOptions(this.#engine, this, this._initialSourceOptions, this.sourceOptions);
-        this.actualOptions = loadContainerOptions(this.#engine, this, this.#options);
+        this._options = loadContainerOptions(this._engine, this, this._initialSourceOptions, this.sourceOptions);
+        this.actualOptions = loadContainerOptions(this._engine, this, this._options);
 
         /* init canvas + particles */
         this.retina.init();
@@ -493,7 +489,7 @@ export class Container {
         this.lifeTime = 0;
         this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 120;
 
-        const availablePlugins = this.#engine.plugins.getAvailablePlugins(this);
+        const availablePlugins = this._engine.plugins.getAvailablePlugins(this);
 
         for (const [id, plugin] of availablePlugins) {
             this.plugins.set(id, plugin);
@@ -513,7 +509,7 @@ export class Container {
             }
         }
 
-        this.#engine.dispatchEvent(EventType.containerInit, { container: this });
+        this._engine.dispatchEvent(EventType.containerInit, { container: this });
 
         this.particles.init();
         this.particles.setDensity();
@@ -524,7 +520,7 @@ export class Container {
             }
         }
 
-        this.#engine.dispatchEvent(EventType.particlesSetup, { container: this });
+        this._engine.dispatchEvent(EventType.particlesSetup, { container: this });
     }
 
     /**
@@ -536,7 +532,7 @@ export class Container {
             return;
         }
 
-        this.currentTheme = name;
+        this._currentTheme = name;
 
         await this.refresh();
     }
@@ -549,13 +545,13 @@ export class Container {
             return;
         }
 
-        if (this.drawAnimationFrame !== undefined) {
-            cancelAnimation()(this.drawAnimationFrame);
+        if (this._drawAnimationFrame !== undefined) {
+            cancelAnimation()(this._drawAnimationFrame);
 
-            delete this.drawAnimationFrame;
+            delete this._drawAnimationFrame;
         }
 
-        if (this.paused) {
+        if (this._paused) {
             return;
         }
 
@@ -566,10 +562,10 @@ export class Container {
         }
 
         if (!this.pageHidden) {
-            this.paused = true;
+            this._paused = true;
         }
 
-        this.#engine.dispatchEvent(EventType.containerPaused, { container: this });
+        this._engine.dispatchEvent(EventType.containerPaused, { container: this });
     }
 
     /**
@@ -581,15 +577,15 @@ export class Container {
             return;
         }
 
-        const needsUpdate = this.paused || force;
+        const needsUpdate = this._paused || force;
 
-        if (this.firstStart && !this.actualOptions.autoPlay) {
-            this.firstStart = false;
+        if (this._firstStart && !this.actualOptions.autoPlay) {
+            this._firstStart = false;
             return;
         }
 
-        if (this.paused) {
-            this.paused = false;
+        if (this._paused) {
+            this._paused = false;
         }
 
         if (needsUpdate) {
@@ -600,7 +596,7 @@ export class Container {
             }
         }
 
-        this.#engine.dispatchEvent(EventType.containerPlay, { container: this });
+        this._engine.dispatchEvent(EventType.containerPlay, { container: this });
 
         this.draw(needsUpdate || false);
     }
@@ -624,7 +620,7 @@ export class Container {
             return;
         }
 
-        this.#options = loadContainerOptions(this.#engine, this);
+        this._options = loadContainerOptions(this._engine, this);
 
         return this.refresh();
     }
@@ -699,10 +695,10 @@ export class Container {
 
         this.started = true;
 
-        this.#eventListeners.addListeners();
+        this._eventListeners.addListeners();
 
-        if (this.interactivity.element instanceof HTMLElement && this.#intersectionObserver) {
-            this.#intersectionObserver.observe(this.interactivity.element);
+        if (this.interactivity.element instanceof HTMLElement && this._intersectionObserver) {
+            this._intersectionObserver.observe(this.interactivity.element);
         }
 
         for (const [, plugin] of this.plugins) {
@@ -713,7 +709,7 @@ export class Container {
             }
         }
 
-        this.#engine.dispatchEvent(EventType.containerStarted, { container: this });
+        this._engine.dispatchEvent(EventType.containerStarted, { container: this });
 
         this.play();
     }
@@ -726,15 +722,15 @@ export class Container {
             return;
         }
 
-        this.firstStart = true;
+        this._firstStart = true;
         this.started = false;
-        this.#eventListeners.removeListeners();
+        this._eventListeners.removeListeners();
         this.pause();
         this.particles.clear();
         this.canvas.clear();
 
-        if (this.interactivity.element instanceof HTMLElement && this.#intersectionObserver) {
-            this.#intersectionObserver.unobserve(this.interactivity.element);
+        if (this.interactivity.element instanceof HTMLElement && this._intersectionObserver) {
+            this._intersectionObserver.unobserve(this.interactivity.element);
         }
 
         for (const [, plugin] of this.plugins) {
@@ -745,9 +741,9 @@ export class Container {
             this.plugins.delete(key);
         }
 
-        this.#sourceOptions = this.#options;
+        this._sourceOptions = this._options;
 
-        this.#engine.dispatchEvent(EventType.containerStopped, { container: this });
+        this._engine.dispatchEvent(EventType.containerStopped, { container: this });
     }
 
     /**
@@ -759,10 +755,10 @@ export class Container {
         const newMaxWidth = this.actualOptions.setResponsive(
             this.canvas.size.width,
             this.retina.pixelRatio,
-            this.#options
+            this._options
         );
 
-        this.actualOptions.setTheme(this.currentTheme);
+        this.actualOptions.setTheme(this._currentTheme);
 
         if (this.responsiveMaxWidth != newMaxWidth) {
             this.responsiveMaxWidth = newMaxWidth;

@@ -24,7 +24,6 @@ import type { RecursivePartial } from "tsparticles-engine";
  */
 export class PolygonMaskInstance implements IContainerPlugin {
     dimension: IDimension;
-    #engine;
     offset?: ICoordinates;
     readonly options;
     readonly path2DSupported;
@@ -32,17 +31,18 @@ export class PolygonMaskInstance implements IContainerPlugin {
     raw?: ICoordinates[];
     redrawTimeout?: number;
 
-    private polygonMaskMoveRadius;
+    private readonly _engine;
+    private _polygonMaskMoveRadius;
 
     constructor(private readonly container: Container, engine: Engine) {
-        this.#engine = engine;
+        this._engine = engine;
         this.dimension = {
             height: 0,
             width: 0,
         };
         this.path2DSupported = !!window.Path2D;
         this.options = new PolygonMask();
-        this.polygonMaskMoveRadius = this.options.move.radius * container.retina.pixelRatio;
+        this._polygonMaskMoveRadius = this.options.move.radius * container.retina.pixelRatio;
     }
 
     clickPositionValid(position: ICoordinates): boolean {
@@ -91,7 +91,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
         const polygonMaskOptions = this.options;
 
-        this.polygonMaskMoveRadius = polygonMaskOptions.move.radius * this.container.retina.pixelRatio;
+        this._polygonMaskMoveRadius = polygonMaskOptions.move.radius * this.container.retina.pixelRatio;
 
         /* If is set the url of svg element, load it and parse into raw polygon data */
         if (polygonMaskOptions.enable) {
@@ -379,7 +379,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
         this.createPath2D();
 
-        this.#engine.dispatchEvent("polygonMaskLoaded", {
+        this._engine.dispatchEvent("polygonMaskLoaded", {
             container: this.container,
         });
     }
@@ -485,7 +485,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         } else if (options.type === PolygonMaskType.inline && particle.initialPosition) {
             const dist = getDistance(particle.initialPosition, particle.getPosition());
 
-            if (dist > this.polygonMaskMoveRadius) {
+            if (dist > this._polygonMaskMoveRadius) {
                 particle.velocity.x = particle.velocity.y / 2 - particle.velocity.x;
                 particle.velocity.y = particle.velocity.x / 2 - particle.velocity.y;
 

@@ -18,16 +18,17 @@ import { isInArray } from "tsparticles-engine";
  * @category Emitters Plugin
  */
 class EmittersPlugin implements IPlugin {
-    readonly #engine;
     readonly id;
 
+    private readonly _engine;
+
     constructor(engine: EmittersEngine) {
-        this.#engine = engine;
+        this._engine = engine;
         this.id = "emitters";
     }
 
     getPlugin(container: EmitterContainer): Emitters {
-        return new Emitters(this.#engine, container);
+        return new Emitters(this._engine, container);
     }
 
     loadOptions(options: Options, source?: RecursivePartial<IOptions & IEmitterOptions>): void {

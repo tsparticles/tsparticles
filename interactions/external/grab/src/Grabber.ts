@@ -70,12 +70,12 @@ function drawGrab(
  * @category Interactions
  */
 export class Grabber extends ExternalInteractorBase {
-    readonly #container;
+    private readonly _container;
 
     constructor(container: GrabContainer) {
         super(container);
 
-        this.#container = container;
+        this._container = container;
     }
 
     clear(): void {
@@ -83,7 +83,7 @@ export class Grabber extends ExternalInteractorBase {
     }
 
     init(): void {
-        const container = this.#container,
+        const container = this._container,
             grab = container.actualOptions.interactivity.modes.grab;
 
         if (!grab) {
@@ -94,7 +94,7 @@ export class Grabber extends ExternalInteractorBase {
     }
 
     async interact(): Promise<void> {
-        const container = this.#container,
+        const container = this._container,
             options = container.actualOptions,
             interactivity = options.interactivity;
 

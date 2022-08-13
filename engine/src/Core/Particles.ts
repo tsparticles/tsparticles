@@ -36,8 +36,6 @@ export class Particles {
      */
     array: Particle[];
 
-    readonly #engine;
-
     lastZIndex;
     limit;
     movers;
@@ -53,12 +51,14 @@ export class Particles {
 
     zArray: Particle[];
 
+    private readonly _engine;
+
     private readonly freqs: IParticlesFrequencies;
     private readonly interactionManager;
     private nextId;
 
     constructor(engine: Engine, private readonly container: Container) {
-        this.#engine = engine;
+        this._engine = engine;
         this.nextId = 0;
         this.array = [];
         this.zArray = [];
@@ -69,7 +69,7 @@ export class Particles {
             links: new Map<string, number>(),
             triangles: new Map<string, number>(),
         };
-        this.interactionManager = new InteractionManager(this.#engine, container);
+        this.interactionManager = new InteractionManager(this._engine, container);
 
         const canvasSize = this.container.canvas.size;
 
@@ -83,8 +83,8 @@ export class Particles {
             4
         );
 
-        this.movers = this.#engine.plugins.getMovers(container, true);
-        this.updaters = this.#engine.plugins.getUpdaters(container, true);
+        this.movers = this._engine.plugins.getMovers(container, true);
+        this.updaters = this._engine.plugins.getUpdaters(container, true);
     }
 
     get count(): number {
@@ -131,7 +131,7 @@ export class Particles {
         splitParticlesOptions?: RecursivePartial<IParticlesOptions>
     ): Particle | undefined {
         const splitOptions = parent.options.destroy.split,
-            options = loadParticlesOptions(this.#engine, this.container, parent.options),
+            options = loadParticlesOptions(this._engine, this.container, parent.options),
             factor = getValue(splitOptions.factor);
 
         options.color.load({
@@ -287,7 +287,7 @@ export class Particles {
 
         let handled = false;
 
-        this.updaters = this.#engine.plugins.getUpdaters(container, true);
+        this.updaters = this._engine.plugins.getUpdaters(container, true);
         this.interactionManager.init();
 
         for (const [, plugin] of container.plugins) {
@@ -369,7 +369,7 @@ export class Particles {
 
             deleted++;
 
-            this.#engine.dispatchEvent(EventType.particleRemoved, {
+            this._engine.dispatchEvent(EventType.particleRemoved, {
                 container: this.container,
                 data: {
                     particle,
@@ -508,7 +508,7 @@ export class Particles {
         initializer?: (particle: Particle) => boolean
     ): Particle | undefined {
         try {
-            const particle = new Particle(this.#engine, this.nextId, this.container, position, overrideOptions, group);
+            const particle = new Particle(this._engine, this.nextId, this.container, position, overrideOptions, group);
 
             let canAdd = true;
 
@@ -525,7 +525,7 @@ export class Particles {
 
             this.nextId++;
 
-            this.#engine.dispatchEvent(EventType.particleAdded, {
+            this._engine.dispatchEvent(EventType.particleAdded, {
                 container: this.container,
                 data: {
                     particle,

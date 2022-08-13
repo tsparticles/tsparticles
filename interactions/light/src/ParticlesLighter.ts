@@ -3,12 +3,12 @@ import type { LightContainer, LightParticle } from "./Types";
 import { drawParticleShadow } from "./Utils";
 
 export class ParticlesLighter extends ParticlesInteractorBase {
-    readonly #container;
+    private readonly _container;
 
     constructor(container: LightContainer) {
         super(container);
 
-        this.#container = container;
+        this._container = container;
     }
 
     clear(): void {
@@ -20,7 +20,7 @@ export class ParticlesLighter extends ParticlesInteractorBase {
     }
 
     async interact(particle: LightParticle): Promise<void> {
-        const container = this.#container,
+        const container = this._container,
             options = container.actualOptions;
 
         if (options.interactivity.events.onHover.enable && container.interactivity.status === "mousemove") {

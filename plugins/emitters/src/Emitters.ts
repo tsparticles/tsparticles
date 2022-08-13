@@ -22,11 +22,12 @@ import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 export class Emitters implements IContainerPlugin {
     array: EmitterInstance[];
     emitters: SingleOrMultiple<Emitter>;
-    readonly #engine;
     interactivityEmitters: IEmitterModeOptions;
 
+    private readonly _engine;
+
     constructor(engine: EmittersEngine, private readonly container: EmitterContainer) {
-        this.#engine = engine;
+        this._engine = engine;
         this.array = [];
         this.emitters = [];
         this.interactivityEmitters = {
@@ -75,7 +76,7 @@ export class Emitters implements IContainerPlugin {
 
         emitterOptions.load(options);
 
-        const emitter = new EmitterInstance(this.#engine, this, this.container, emitterOptions, position);
+        const emitter = new EmitterInstance(this._engine, this, this.container, emitterOptions, position);
 
         this.array.push(emitter);
 

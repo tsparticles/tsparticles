@@ -106,12 +106,6 @@ export class Particle implements IParticle {
     direction: number;
 
     /**
-     * Gets the particle containing engine instance
-     * @private
-     */
-    readonly #engine;
-
-    /**
      * Checks if the particle shape needs to be filled with a color
      */
     fill: boolean;
@@ -274,6 +268,12 @@ export class Particle implements IParticle {
      */
     readonly zIndexFactor: number;
 
+    /**
+     * Gets the particle containing engine instance
+     * @private
+     */
+    private readonly _engine;
+
     constructor(
         engine: Engine,
         readonly id: number,
@@ -282,7 +282,7 @@ export class Particle implements IParticle {
         overrideOptions?: RecursivePartial<IParticlesOptions>,
         readonly group?: string
     ) {
-        this.#engine = engine;
+        this._engine = engine;
         this.fill = true;
         this.close = true;
         this.lastPathTime = 0;
@@ -299,7 +299,7 @@ export class Particle implements IParticle {
 
         const pxRatio = container.retina.pixelRatio,
             mainOptions = container.actualOptions,
-            particlesOptions = loadParticlesOptions(this.#engine, container, mainOptions.particles);
+            particlesOptions = loadParticlesOptions(this._engine, container, mainOptions.particles);
 
         const shapeType = particlesOptions.shape.type,
             reduceDuplicates = particlesOptions.reduceDuplicates;
@@ -344,7 +344,7 @@ export class Particle implements IParticle {
         this.pathDelay = getValue(pathOptions.delay) * 1000;
 
         if (pathOptions.generator) {
-            this.pathGenerator = this.#engine.plugins.getPathGenerator(pathOptions.generator);
+            this.pathGenerator = this._engine.plugins.getPathGenerator(pathOptions.generator);
 
             if (this.pathGenerator && container.addPath(pathOptions.generator, this.pathGenerator)) {
                 this.pathGenerator.init(container);
@@ -453,7 +453,7 @@ export class Particle implements IParticle {
         let drawer = container.drawers.get(this.shape);
 
         if (!drawer) {
-            drawer = this.#engine.plugins.getShapeDrawer(this.shape);
+            drawer = this._engine.plugins.getShapeDrawer(this.shape);
 
             if (drawer) {
                 container.drawers.set(this.shape, drawer);
