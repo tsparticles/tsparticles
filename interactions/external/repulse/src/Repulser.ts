@@ -27,7 +27,7 @@ import type { RepulseDiv } from "./Options/Classes/RepulseDiv";
  */
 export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     handleClickMode: (mode: string) => void;
-    
+
     constructor(container: RepulseContainer) {
         super(container);
 

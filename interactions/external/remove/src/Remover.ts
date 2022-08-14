@@ -9,10 +9,10 @@ import { Remove } from "./Options/Classes/Remove";
  */
 export class Remover extends ExternalInteractorBase<RemoveContainer> {
     handleClickMode: (mode: string) => void;
-    
+
     constructor(container: RemoveContainer) {
         super(container);
-        
+
         this.handleClickMode = (mode): void => {
             const container = this.container,
                 options = container.actualOptions;

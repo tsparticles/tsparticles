@@ -50,7 +50,7 @@ function calculateBubbleValue(
  */
 export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     handleClickMode: (mode: ClickMode | string) => void;
-    
+
     constructor(container: BubbleContainer) {
         super(container);
 

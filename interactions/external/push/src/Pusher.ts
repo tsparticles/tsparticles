@@ -10,10 +10,10 @@ import { itemFromArray } from "tsparticles-engine";
  */
 export class Pusher extends ExternalInteractorBase<PushContainer> {
     handleClickMode: (mode: string) => void;
-    
+
     constructor(container: PushContainer) {
         super(container);
-        
+
         this.handleClickMode = (mode): void => {
             if (mode !== ClickMode.push) {
                 return;
