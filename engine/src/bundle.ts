@@ -19,7 +19,6 @@ const tsParticles = new Engine();
 tsParticles.init();
 
 export * from "./Core/Utils/Circle";
-export * from "./Core/Utils/CircleWarp";
 export * from "./Core/Utils/Constants";
 export * from "./Core/Utils/ExternalInteractorBase";
 export * from "./Core/Utils/ParticlesInteractorBase";

@@ -52,7 +52,6 @@ export * from "./Core/Interfaces/IShapeDrawer";
 export * from "./Core/Interfaces/IShapeValues";
 export * from "./Core/Interfaces/ISlowParticleData";
 export * from "./Core/Utils/Circle";
-export * from "./Core/Utils/CircleWarp";
 export * from "./Core/Utils/Constants";
 export * from "./Core/Utils/ExternalInteractorBase";
 export * from "./Core/Utils/ParticlesInteractorBase";

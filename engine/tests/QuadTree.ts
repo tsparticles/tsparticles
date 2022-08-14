@@ -1,4 +1,4 @@
-import { Circle, CircleWarp, Point, Rectangle } from "../src";
+import { Circle, Point, Rectangle } from "../src";
 import { describe, it } from "mocha";
 import { QuadTree } from "../src/Core/Utils/QuadTree";
 import { TestContainer } from "./Fixture/TestContainer";
@@ -33,7 +33,7 @@ describe("QuadTree tests", () => {
         });
     });
 
-    describe("CircleWarp (0, 0, 30) in canvas (200, 200) tests", () => {
+    /*describe("CircleWarp (0, 0, 30) in canvas (200, 200) tests", () => {
         const circle1 = new CircleWarp(0, 0, 30, canvasSize);
 
         it("should intersect with a (180, 180, 20, 20) rectangle", () => {
@@ -47,7 +47,7 @@ describe("QuadTree tests", () => {
 
             expect(circle1.intersects(rect2)).to.be.true;
         });
-    });
+    });*/
 
     describe("Quad Tree (200x200) tests", () => {
         const quadTree = new QuadTree(new Rectangle(0, 0, 200, 200), 4);
@@ -65,7 +65,7 @@ describe("QuadTree tests", () => {
 
             quadTree.insert(new Point(pos1, p1.particle));
 
-            it("query (radius 10) with p1 (5, 5) center should have at least p2 (10, 10)", () => {
+            /*it("query (radius 10) with p1 (5, 5) center should have at least p2 (10, 10)", () => {
                 const p2 = new TestParticle(testContainer.container, { x: 10, y: 10 });
 
                 expect(p2.particle).to.not.be.undefined;
@@ -146,6 +146,7 @@ describe("QuadTree tests", () => {
 
                 expect(quadTree.queryCircleWarp(pos1, 10, canvasSize)).to.be.not.empty;
             });
+             */
         });
 
         describe("Particle (100, 5) tests", () => {
@@ -161,7 +162,7 @@ describe("QuadTree tests", () => {
 
             quadTree.insert(new Point(pos1, p1.particle));
 
-            it("query (radius 10) with p1 (100, 5) center should have at least p2 (100, 199)", () => {
+            /*it("query (radius 10) with p1 (100, 5) center should have at least p2 (100, 199)", () => {
                 const p2 = new TestParticle(testContainer.container, { x: 100, y: 199 });
 
                 expect(p2.particle).to.not.be.undefined;
@@ -175,7 +176,7 @@ describe("QuadTree tests", () => {
                 quadTree.insert(new Point(pos2, p2.particle));
 
                 expect(quadTree.queryCircleWarp(pos1, 10, canvasSize)).to.be.not.empty;
-            });
+            });*/
         });
 
         describe("Particle (5, 100) tests", () => {
@@ -193,7 +194,7 @@ describe("QuadTree tests", () => {
 
             quadTree.insert(new Point(pos1, p1.particle));
 
-            it("query (radius 10) with p1 (5, 100) center should have at least p2 (199, 100)", () => {
+            /*it("query (radius 10) with p1 (5, 100) center should have at least p2 (199, 100)", () => {
                 const p2 = new TestParticle(testContainer.container, { x: 199, y: 100 });
 
                 expect(p2.particle).to.not.be.undefined;
@@ -207,7 +208,7 @@ describe("QuadTree tests", () => {
                 quadTree.insert(new Point(pos2, p2.particle));
 
                 expect(quadTree.queryCircleWarp(pos1, 10, canvasSize)).to.be.not.empty;
-            });
+            });*/
         });
     });
 });

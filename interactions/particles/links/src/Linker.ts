@@ -1,10 +1,11 @@
-import { Circle, CircleWarp, ParticlesInteractorBase, getDistance, getLinkRandomColor } from "tsparticles-engine";
+import { Circle, ParticlesInteractorBase, getDistance, getLinkRandomColor } from "tsparticles-engine";
 import type { ICoordinates, IDimension, IRgb, RecursivePartial } from "tsparticles-engine";
 import type { IParticlesLinkOptions } from "./Options/Interfaces/IParticlesLinkOptions";
 import type { LinkContainer } from "./LinkContainer";
 import type { LinkParticle } from "./LinkParticle";
 import { Links } from "./Options/Classes/Links";
 import type { ParticlesLinkOptions } from "./Options/Classes/ParticlesLinkOptions";
+import { CircleWarp } from "./CircleWarp";
 
 function getLinkDistance(
     pos1: ICoordinates,
