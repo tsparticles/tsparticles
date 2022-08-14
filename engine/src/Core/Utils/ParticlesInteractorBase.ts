@@ -7,7 +7,9 @@ import type { Particle } from "../Particle";
 /**
  * Particles interactions manager, base abstract class
  */
-export abstract class ParticlesInteractorBase implements IParticlesInteractor {
+export abstract class ParticlesInteractorBase<TContainer extends Container = Container>
+    implements IParticlesInteractor
+{
     /**
      * Particles interactions type
      */
@@ -18,7 +20,7 @@ export abstract class ParticlesInteractorBase implements IParticlesInteractor {
      * @param container the parent container
      * @protected
      */
-    protected constructor(protected readonly container: Container) {}
+    protected constructor(protected readonly container: TContainer) {}
 
     /**
      * Before interaction clear

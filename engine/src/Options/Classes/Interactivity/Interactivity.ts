@@ -19,13 +19,7 @@ export class Interactivity implements IInteractivity, IOptionLoader<IInteractivi
     events;
     modes;
 
-    private readonly _container;
-    private readonly _engine;
-
     constructor(engine: Engine, container?: Container) {
-        this._engine = engine;
-        this._container = container;
-
         this.detectsOn = InteractivityDetect.window;
         this.events = new Events();
         this.modes = new Modes(engine, container);

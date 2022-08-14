@@ -6,15 +6,12 @@ import { Trail } from "./Options/Classes/Trail";
 /**
  * @category Interactions
  */
-export class TrailMaker extends ExternalInteractorBase {
-    private readonly _container;
+export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
     private _delay: number;
     private _lastPosition?: ICoordinates;
 
     constructor(container: TrailContainer) {
         super(container);
-
-        this._container = container;
 
         this._delay = 0;
     }
@@ -32,7 +29,7 @@ export class TrailMaker extends ExternalInteractorBase {
             return;
         }
 
-        const container = this._container,
+        const container = this.container,
             options = container.actualOptions,
             trailOptions = options.interactivity.modes.trail;
 

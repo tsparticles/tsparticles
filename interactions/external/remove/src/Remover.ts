@@ -7,18 +7,14 @@ import { Remove } from "./Options/Classes/Remove";
  * Particle attract manager
  * @category Interactions
  */
-export class Remover extends ExternalInteractorBase {
+export class Remover extends ExternalInteractorBase<RemoveContainer> {
     handleClickMode: (mode: string) => void;
-
-    private readonly _container;
-
+    
     constructor(container: RemoveContainer) {
         super(container);
-
-        this._container = container;
-
+        
         this.handleClickMode = (mode): void => {
-            const container = this._container,
+            const container = this.container,
                 options = container.actualOptions;
 
             if (!options.interactivity.modes.remove || mode !== ClickMode.remove) {

@@ -69,13 +69,9 @@ function drawGrab(
  * Particle grab manager
  * @category Interactions
  */
-export class Grabber extends ExternalInteractorBase {
-    private readonly _container;
-
+export class Grabber extends ExternalInteractorBase<GrabContainer> {
     constructor(container: GrabContainer) {
         super(container);
-
-        this._container = container;
     }
 
     clear(): void {
@@ -83,7 +79,7 @@ export class Grabber extends ExternalInteractorBase {
     }
 
     init(): void {
-        const container = this._container,
+        const container = this.container,
             grab = container.actualOptions.interactivity.modes.grab;
 
         if (!grab) {
@@ -94,7 +90,7 @@ export class Grabber extends ExternalInteractorBase {
     }
 
     async interact(): Promise<void> {
-        const container = this._container,
+        const container = this.container,
             options = container.actualOptions,
             interactivity = options.interactivity;
 
