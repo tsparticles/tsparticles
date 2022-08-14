@@ -69,9 +69,37 @@
 
         tsParticles.loadJSON('tsparticles', `/presets/${presetId}.json`).then((particles) => {
             localStorage.presetId = presetId;
-            editor.set(particles.options);
+
+            const omit = (obj) => {
+                return _.omitBy(obj, (value, key) => {
+                    return _.startsWith(key, "_");
+                })
+            };
+
+            const transform = (obj) => {
+                return _.transform(omit(obj), function (result, value, key) {
+                    result[key] = _.isObject(value) ? transform(omit(value)) : value;
+                })
+            };
+
+            editor.update(transform(particles.options));
             editor.expandAll();
         });
+    };
+
+    const omit = (obj, keys) => {
+        if (!keys.length) return obj;
+        const key = keys.pop();
+        const parts = key.split(".");
+        if (parts.length > 1) {
+            const { [parts[0]]: todo, ...rest } = obj;
+            return {
+                ...omit(rest, keys),
+                [parts[0]]: omit(todo, [ parts[1] ]),
+            };
+        }
+        const { [key]: omitted, ...rest } = obj;
+        return omit(rest, keys);
     };
 
     let initSidebar = function () {
