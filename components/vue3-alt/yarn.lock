@@ -559,9 +559,9 @@
     "@vue/babel-plugin-jsx" "^1.1.1"
 
 "@vitejs/plugin-vue@^3.0.0":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@vitejs/plugin-vue/-/plugin-vue-3.0.1.tgz#b6af8f782485374bbb5fe09edf067a845bf4caae"
-  integrity sha512-Ll9JgxG7ONIz/XZv3dssfoMUDu9qAnlJ+km+pBA0teYSXzwPCIzS/e1bmwNYl5dcQGs677D21amgfYAnzMl17A==
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@vitejs/plugin-vue/-/plugin-vue-3.0.3.tgz#7e3e401ccb30b4380d2279d9849281413f1791ef"
+  integrity sha512-U4zNBlz9mg+TA+i+5QPc3N5lQvdUXENZLO2h0Wdzp56gI1MWhqJOv+6R+d4kOzoaSSq6TnGPBdZAXKOe4lXy6g==
 
 "@volar/code-gen@0.40.0":
   version "0.40.0"
@@ -1991,6 +1991,11 @@ tslib@^1.8.1:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
+
+tsparticles-engine@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.2.1.tgz#0d1c501479161ba65a16212140dfd996c3c746aa"
+  integrity sha512-S1Rqxca4lxnMuVboxJbyIW/b8b+wRJJq7mmMS3wusM/01NzW/3OOyXFOcelFz9Ka6JJc7X+RUcv0u614BYWFgg==
 
 tsutils@^3.21.0:
   version "3.21.0"
