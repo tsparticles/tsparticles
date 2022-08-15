@@ -1,7 +1,6 @@
 import { AnimatableColor } from "../AnimatableColor";
 import { Collisions } from "./Collisions/Collisions";
 import type { Container } from "../../../Core/Container";
-import { Destroy } from "./Destroy/Destroy";
 import type { Engine } from "../../../engine";
 import type { IInteractivity } from "../../Interfaces/Interactivity/IInteractivity";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
@@ -31,7 +30,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     bounce;
     collisions;
     color;
-    destroy;
     groups: ParticlesGroups;
     interactivity?: RecursivePartial<IInteractivity>;
     move;
@@ -56,7 +54,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.collisions = new Collisions();
         this.color = new AnimatableColor();
         this.color.value = "#fff";
-        this.destroy = new Destroy();
         this.groups = {};
         this.move = new Move();
         this.number = new ParticlesNumber();
@@ -77,8 +74,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
 
         this.bounce.load(data.bounce);
         this.color.load(AnimatableColor.create(this.color, data.color));
-
-        this.destroy.load(data.destroy);
 
         if (data.groups !== undefined) {
             for (const group in data.groups) {

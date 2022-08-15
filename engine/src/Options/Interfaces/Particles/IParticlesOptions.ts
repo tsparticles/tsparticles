@@ -4,7 +4,6 @@
  */
 import type { IAnimatableColor } from "../IAnimatableColor";
 import type { ICollisions } from "./Collisions/ICollisions";
-import type { IDestroy } from "./Destroy/IDestroy";
 import type { IInteractivity } from "../Interactivity/IInteractivity";
 import type { IMove } from "./Move/IMove";
 import type { IOpacity } from "./Opacity/IOpacity";
@@ -30,7 +29,6 @@ export interface IParticlesOptions {
     bounce: IParticlesBounce;
     collisions: ICollisions;
     color: IAnimatableColor;
-    destroy: IDestroy;
     groups: ParticlesGroups;
     interactivity?: RecursivePartial<IInteractivity>;
     move: IMove;

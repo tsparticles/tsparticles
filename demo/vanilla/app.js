@@ -67,6 +67,7 @@ app.use("/updater-opacity", express.static("./node_modules/tsparticles-updater-o
 app.use("/updater-size", express.static("./node_modules/tsparticles-updater-size"));
 app.use("/updater-angle", express.static("./node_modules/tsparticles-updater-angle"));
 app.use("/updater-color", express.static("./node_modules/tsparticles-updater-color"));
+app.use("/updater-destroy", express.static("./node_modules/tsparticles-updater-destroy"));
 app.use("/updater-stroke-color", express.static("./node_modules/tsparticles-updater-stroke-color"));
 app.use("/updater-out-modes", express.static("./node_modules/tsparticles-updater-out-modes"));
 app.use("/updater-tilt", express.static("./node_modules/tsparticles-updater-tilt"))

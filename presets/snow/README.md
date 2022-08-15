@@ -32,6 +32,7 @@ from [jsDelivr](https://www.jsdelivr.com/package/npm/tsparticles-preset-snow):
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-opacity@2/tsparticles.updater.opacity.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-out-modes@2/tsparticles.updater.out-modes.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-size@2/tsparticles.updater.size.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-wobble@2/tsparticles.updater.size.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-snow@2/tsparticles.preset.snow.min.js"></script>
 ```
 
@@ -184,6 +185,7 @@ uc[Color]
 uop[Opacity]
 uou[Out Modes]
 usi[Size]
+uwo[Wobble]
 end
 
 e --> u

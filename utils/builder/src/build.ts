@@ -75,12 +75,16 @@ const pkgInfo = require("../package.json");
 
     if (canContinue) {
         // prettier src
+        console.log("Start prettier on src");
         canContinue = await prettifySrc(basePath, srcPath, ci);
+        console.log("Prettier done on src");
     }
 
     if (canContinue) {
         // eslint
+        console.log("Start ESLint on src");
         canContinue = await lint(ci);
+        console.log("ESLint done on src", canContinue);
     }
 
     if (canContinue) {

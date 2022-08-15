@@ -82,6 +82,7 @@
     "tsparticles-plugin-emitters": "^2.2.1",
     "tsparticles-plugin-polygon-mask": "^2.2.1",
     "tsparticles-slim": "^2.2.1",
+    "tsparticles-updater-destroy": "^2.2.1",
     "tsparticles-updater-roll": "^2.2.1",
     "tsparticles-updater-tilt": "^2.2.1",
     "tsparticles-updater-twinkle": "^2.2.1",

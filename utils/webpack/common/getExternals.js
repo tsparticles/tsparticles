@@ -65,6 +65,7 @@ const getExternals = (bundle) => {
         "tsparticles-shape-text",
         "tsparticles-updater-angle",
         "tsparticles-updater-color",
+        "tsparticles-updater-destroy",
         "tsparticles-updater-gradient",
         "tsparticles-updater-life",
         "tsparticles-updater-opacity",

@@ -18,7 +18,6 @@ import { deepExtend, isInArray, itemFromArray } from "../Utils/Utils";
 import { getHslFromAnimation, rangeColorToRgb } from "../Utils/ColorUtils";
 import { AnimationStatus } from "../Enums/AnimationStatus";
 import type { Container } from "./Container";
-import { DestroyMode } from "../Enums/Modes/DestroyMode";
 import type { Engine } from "../engine";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
 import type { IDelta } from "./Interfaces/IDelta";
@@ -40,6 +39,7 @@ import type { OutModeAlt } from "../Enums/Modes/OutMode";
 import { ParticleOutType } from "../Enums/Types/ParticleOutType";
 import type { RecursivePartial } from "../Types/RecursivePartial";
 import { Shape } from "../Options/Classes/Particles/Shape/Shape";
+import { SizeMode } from "../Enums/Modes/SizeMode";
 import { StartValueType } from "../Enums/Types/StartValueType";
 import type { Stroke } from "../Options/Classes/Particles/Stroke";
 import { Vector } from "./Utils/Vector";
@@ -229,11 +229,6 @@ export class Particle implements IParticle {
     spawning;
 
     /**
-     * Sets the count of particles created when destroyed with split mode
-     */
-    splitCount;
-
-    /**
      * Gets the particle stroke options
      */
     stroke?: Stroke;
@@ -288,7 +283,6 @@ export class Particle implements IParticle {
         this.lastPathTime = 0;
         this.destroyed = false;
         this.unbreakable = false;
-        this.splitCount = 0;
         this.rotation = 0;
         this.misplaced = false;
         this.retina = {
@@ -415,11 +409,12 @@ export class Particle implements IParticle {
         this.initialPosition = this.position.copy();
 
         const canvasSize = container.canvas.size,
-            moveCenterPerc = this.options.move.center;
+            moveCenter = this.options.move.center,
+            isCenterPercent = moveCenter.mode === SizeMode.percent;
 
         this.moveCenter = {
-            x: (canvasSize.width * moveCenterPerc.x) / 100,
-            y: (canvasSize.height * moveCenterPerc.y) / 100,
+            x: moveCenter.x * (isCenterPercent ? canvasSize.width / 100 : 1),
+            y: moveCenter.y * (isCenterPercent ? canvasSize.height / 100 : 1),
             radius: this.options.move.center.radius,
         };
         this.direction = getParticleDirectionAngle(this.options.move.direction, this.position, this.moveCenter);
@@ -505,14 +500,10 @@ export class Particle implements IParticle {
             }
         }
 
-        if (override) {
-            return;
-        }
-
-        const destroyOptions = this.options.destroy;
-
-        if (destroyOptions.mode === DestroyMode.split) {
-            this.split();
+        for (const updater of this.container.particles.updaters) {
+            if (updater.particleDestroyed) {
+                updater.particleDestroyed(this, override);
+            }
         }
     }
 
@@ -720,24 +711,6 @@ export class Particle implements IParticle {
                 {},
                 shapeData instanceof Array ? itemFromArray(shapeData, this.id, reduceDuplicates) : shapeData
             ) as IShapeValues;
-        }
-    }
-
-    private split(): void {
-        const splitOptions = this.options.destroy.split;
-
-        if (splitOptions.count >= 0 && this.splitCount++ > splitOptions.count) {
-            return;
-        }
-
-        const rate = getValue(splitOptions.rate),
-            particlesSplitOptions =
-                splitOptions.particles instanceof Array
-                    ? itemFromArray(splitOptions.particles)
-                    : splitOptions.particles;
-
-        for (let i = 0; i < rate; i++) {
-            this.container.particles.addSplitParticle(this, particlesSplitOptions);
         }
     }
 }

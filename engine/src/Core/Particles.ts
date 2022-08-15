@@ -1,12 +1,4 @@
-import {
-    calcPositionFromSize,
-    getRandom,
-    getRangeMax,
-    getRangeMin,
-    getValue,
-    randomInRange,
-    setRangeValue,
-} from "../Utils/NumberUtils";
+import { calcPositionFromSize, getRandom, getRangeMax, getRangeMin, setRangeValue } from "../Utils/NumberUtils";
 import type { ClickMode } from "../Enums/Modes/ClickMode";
 import type { Container } from "./Container";
 import type { Engine } from "../engine";
@@ -24,7 +16,6 @@ import { Point } from "./Utils/Point";
 import { QuadTree } from "./Utils/QuadTree";
 import { Rectangle } from "./Utils/Rectangle";
 import type { RecursivePartial } from "../Types/RecursivePartial";
-import { loadParticlesOptions } from "../Utils/OptionsUtils";
 
 /**
  * Particles manager object
@@ -109,7 +100,8 @@ export class Particles {
     addParticle(
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticlesOptions>,
-        group?: string
+        group?: string,
+        initializer?: (particle: Particle) => boolean
     ): Particle | undefined {
         const container = this.container,
             options = container.actualOptions,
@@ -123,53 +115,7 @@ export class Particles {
             }
         }
 
-        return this.pushParticle(position, overrideOptions, group);
-    }
-
-    addSplitParticle(
-        parent: Particle,
-        splitParticlesOptions?: RecursivePartial<IParticlesOptions>
-    ): Particle | undefined {
-        const splitOptions = parent.options.destroy.split,
-            options = loadParticlesOptions(this._engine, this.container, parent.options),
-            factor = getValue(splitOptions.factor);
-
-        options.color.load({
-            value: {
-                hsl: parent.getFillColor(),
-            },
-        });
-
-        if (typeof options.size.value === "number") {
-            options.size.value /= factor;
-        } else {
-            options.size.value.min /= factor;
-            options.size.value.max /= factor;
-        }
-
-        options.load(splitParticlesOptions);
-
-        const offset = splitOptions.sizeOffset ? setRangeValue(-parent.size.value, parent.size.value) : 0,
-            position = {
-                x: parent.position.x + randomInRange(offset),
-                y: parent.position.y + randomInRange(offset),
-            };
-
-        return this.pushParticle(position, options, parent.group, (particle) => {
-            if (particle.size.value < 0.5) {
-                return false;
-            }
-
-            particle.velocity.length = randomInRange(setRangeValue(parent.velocity.length, particle.velocity.length));
-            particle.splitCount = parent.splitCount + 1;
-            particle.unbreakable = true;
-
-            setTimeout(() => {
-                particle.unbreakable = false;
-            }, 500);
-
-            return true;
-        });
+        return this.pushParticle(position, overrideOptions, group, initializer);
     }
 
     /**

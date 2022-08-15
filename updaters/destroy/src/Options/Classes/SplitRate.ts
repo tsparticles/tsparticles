@@ -1,4 +1,4 @@
-import { ValueWithRandom } from "../../ValueWithRandom";
+import { ValueWithRandom } from "tsparticles-engine";
 
 export class SplitRate extends ValueWithRandom {
     constructor() {

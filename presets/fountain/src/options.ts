@@ -1,4 +1,4 @@
-import { DestroyMode, MoveDirection, OutMode } from "tsparticles-engine";
+import { MoveDirection, OutMode } from "tsparticles-engine";
 import type { ISourceOptions } from "tsparticles-engine";
 
 export const options: ISourceOptions = {
@@ -19,7 +19,7 @@ export const options: ISourceOptions = {
             value: 0,
         },
         destroy: {
-            mode: DestroyMode.split,
+            mode: "split",
             split: {
                 count: 2,
                 factor: {

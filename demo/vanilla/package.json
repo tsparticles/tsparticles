@@ -100,6 +100,7 @@
     "tsparticles-slim": "^2.2.1",
     "tsparticles-updater-angle": "^2.2.1",
     "tsparticles-updater-color": "^2.2.1",
+    "tsparticles-updater-destroy": "^2.2.1",
     "tsparticles-updater-gradient": "^2.2.1",
     "tsparticles-updater-life": "^2.2.1",
     "tsparticles-updater-opacity": "^2.2.1",

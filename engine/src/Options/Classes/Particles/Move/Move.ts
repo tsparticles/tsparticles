@@ -13,6 +13,7 @@ import { MoveTrail } from "./MoveTrail";
 import { OutModes } from "./OutModes";
 import type { RangeValue } from "../../../../Types/RangeValue";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import { SizeMode } from "../../../../Enums/Modes/SizeMode";
 import { Spin } from "./Spin";
 import { deepExtend } from "../../../../Utils/Utils";
 import { setRangeValue } from "../../../../Utils/NumberUtils";
@@ -24,7 +25,7 @@ import { setRangeValue } from "../../../../Utils/NumberUtils";
 export class Move implements IMove, IOptionLoader<IMove> {
     angle;
     attract;
-    center: ICoordinates & { radius: number };
+    center: ICoordinates & { mode: SizeMode; radius: number };
     decay;
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
     distance: Partial<IDistance>;
@@ -48,6 +49,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.center = {
             x: 50,
             y: 50,
+            mode: SizeMode.percent,
             radius: 0,
         };
         this.decay = 0;
@@ -161,7 +163,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
         this.attract.load(data.attract);
 
-        this.center = deepExtend(this.center, data.center) as ICoordinates & { radius: number };
+        this.center = deepExtend(this.center, data.center) as ICoordinates & { mode: SizeMode; radius: number };
 
         if (data.decay !== undefined) {
             this.decay = data.decay;

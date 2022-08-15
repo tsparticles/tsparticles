@@ -32,7 +32,9 @@ export async function prettifySrc(basePath: string, srcPath: string, ci: boolean
         }
 
         return true;
-    } catch {
+    } catch (e) {
+        console.error(e);
+
         return false;
     }
 }
@@ -59,7 +61,9 @@ export async function prettifyReadme(basePath: string, ci: boolean): Promise<boo
         }
 
         return true;
-    } catch {
+    } catch (e) {
+        console.error(e);
+
         return false;
     }
 }

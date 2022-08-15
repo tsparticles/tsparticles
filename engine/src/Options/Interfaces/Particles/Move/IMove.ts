@@ -10,6 +10,7 @@ import type { IMoveTrail } from "./IMoveTrail";
 import type { IOutModes } from "./IOutModes";
 import type { ISpin } from "./ISpin";
 import type { RangeValue } from "../../../../Types/RangeValue";
+import type { SizeMode } from "../../../../Enums/Modes/SizeMode";
 
 /**
  * [[include:Options/Particles/Move.md]]
@@ -24,7 +25,7 @@ export interface IMove {
      */
     bounce: boolean;
 
-    center: Partial<ICoordinates & { radius: number }>;
+    center: Partial<ICoordinates & { mode: SizeMode; radius: number }>;
 
     /**
      * @deprecated use the new collisions property on particles instead

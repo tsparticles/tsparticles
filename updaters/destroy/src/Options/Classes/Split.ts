@@ -1,11 +1,8 @@
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { IParticlesOptions } from "../../../Interfaces/Particles/IParticlesOptions";
-import type { ISplit } from "../../../Interfaces/Particles/Destroy/ISplit";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { IOptionLoader, IParticlesOptions, RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
+import type { ISplit } from "../Interfaces/ISplit";
 import { SplitFactor } from "./SplitFactor";
 import { SplitRate } from "./SplitRate";
-import { deepExtend } from "../../../../Utils/Utils";
+import { deepExtend } from "tsparticles-engine";
 
 export class Split implements ISplit, IOptionLoader<ISplit> {
     count: number;
