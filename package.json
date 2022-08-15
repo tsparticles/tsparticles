@@ -19,7 +19,7 @@
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
     "@nrwl/cli": "14.5.6",
-    "@nrwl/nx-cloud": "14.3.0",
+    "@nrwl/nx-cloud": "14.4.0",
     "@nrwl/workspace": "14.5.6",
     "@parcel/transformer-sass": "^2.7.0",
     "@types/node": "^18.6.5",
