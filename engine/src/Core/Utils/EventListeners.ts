@@ -417,7 +417,7 @@ export class EventListeners {
 
         const canvas = container.canvas.element;
 
-        if (e.type.startsWith("mouse")) {
+        if (e.type.startsWith("pointer")) {
             this.canPush = true;
 
             const mouseEvent = e as MouseEvent;

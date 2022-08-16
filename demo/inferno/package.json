@@ -1,6 +1,6 @@
 {
 	"name": "inferno-particles-demo",
-	"version": "2.2.1",
+	"version": "2.2.2",
 	"private": true,
 	"description": "> TODO: description",
 	"main": "index.js",
@@ -10,17 +10,13 @@
 		"check": "tsc",
 		"start": "webpack serve --config webpack.config.js --mode development"
 	},
-	"keywords": [
-		"inferno",
-		"typescript"
-	],
 	"author": "Matteo Bruni <matteo.bruni@me.com>",
 	"license": "MIT",
 	"dependencies": {
 		"inferno": "^8.0.1",
-		"inferno-particles": "^2.2.1",
-		"tsparticles": "^2.2.1",
-		"tsparticles-engine": "^2.2.1"
+		"inferno-particles": "^2.2.2",
+		"tsparticles": "^2.2.2",
+		"tsparticles-engine": "^2.2.2"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.17.9",

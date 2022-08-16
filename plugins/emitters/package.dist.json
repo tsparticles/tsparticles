@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-plugin-emitters",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "tsParticles emitters plugin",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -9,6 +9,8 @@
     "directory": "plugins/emitters"
   },
   "keywords": [
+    "front-end",
+    "frontend",
     "tsparticles",
     "particles.js",
     "particlesjs",
@@ -74,6 +76,6 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.2.1"
+    "tsparticles-engine": "^2.2.2"
   }
 }

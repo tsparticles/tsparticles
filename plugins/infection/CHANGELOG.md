@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@2.2.1...tsparticles-plugin-infection@2.2.2) (2022-08-16)
+
+
+### Bug Fixes
+
+* fixed double mouse events on mobile using pointer events, closes [#4622](https://github.com/matteobruni/tsparticles/issues/4622) ([1019fa4](https://github.com/matteobruni/tsparticles/commit/1019fa431f8a43cbd45d6adeb5adf94433e6e04b))
+
+
+
+
+
 ## [2.2.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@2.2.0...tsparticles-plugin-infection@2.2.1) (2022-08-12)
 
 **Note:** Version bump only for package tsparticles-plugin-infection

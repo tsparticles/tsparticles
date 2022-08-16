@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.45.2](https://github.com/tsparticles/cli/compare/@tsparticles/cli@1.45.1...@tsparticles/cli@1.45.2) (2022-08-16)
+
+
+### Bug Fixes
+
+* fixed double mouse events on mobile using pointer events, closes [#4622](https://github.com/tsparticles/cli/issues/4622) ([1019fa4](https://github.com/tsparticles/cli/commit/1019fa431f8a43cbd45d6adeb5adf94433e6e04b))
+
+
+
+
+
 ## [1.45.1](https://github.com/tsparticles/cli/compare/@tsparticles/cli@1.45.0...@tsparticles/cli@1.45.1) (2022-08-12)
 
 **Note:** Version bump only for package @tsparticles/cli
