@@ -1,14 +1,6 @@
 import type { Container, Engine, IContainerPlugin, ICoordinates, IDelta, IDimension } from "tsparticles-engine";
 import { calcClosestPtOnSegment, drawPolygonMask, drawPolygonMaskPath, parsePaths, segmentBounce } from "./utils";
-import {
-    deepExtend,
-    getDistance,
-    getDistances,
-    getRandom,
-    itemFromArray,
-    noPolygonDataLoaded,
-    noPolygonFound,
-} from "tsparticles-engine";
+import { deepExtend, getDistance, getDistances, getRandom, itemFromArray } from "tsparticles-engine";
 import type { IPolygonMaskOptions } from "./types";
 import type { ISvgPath } from "./Interfaces/ISvgPath";
 import { OutModeDirection } from "tsparticles-engine";
@@ -17,6 +9,9 @@ import { PolygonMask } from "./Options/Classes/PolygonMask";
 import { PolygonMaskInlineArrangement } from "./Enums/PolygonMaskInlineArrangement";
 import { PolygonMaskType } from "./Enums/PolygonMaskType";
 import type { RecursivePartial } from "tsparticles-engine";
+
+const noPolygonDataLoaded = "No polygon data loaded.",
+    noPolygonFound = "No polygon found, you need to specify SVG url in config.";
 
 /**
  * Polygon Mask manager

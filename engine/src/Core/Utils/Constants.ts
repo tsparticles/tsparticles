@@ -15,6 +15,3 @@ export const mouseOutEvent = "mouseout";
 export const touchCancelEvent = "touchcancel";
 export const resizeEvent = "resize";
 export const visibilityChangeEvent = "visibilitychange";
-
-export const noPolygonDataLoaded = "No polygon data loaded.";
-export const noPolygonFound = "No polygon found, you need to specify SVG url in config.";
