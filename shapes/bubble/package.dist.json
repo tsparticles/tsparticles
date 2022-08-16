@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-bubble",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "tsParticles bubble shape",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -83,6 +83,6 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.2.1"
+    "tsparticles-engine": "^2.2.2"
   }
 }

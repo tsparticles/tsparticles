@@ -1,12 +1,12 @@
 {
   "name": "tsparticles-updater-color",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "tsParticles particles color updater",
   "homepage": "https://particles.js.org",
   "scripts": {
     "build": "tsparticles-build src && yarn build:docs",
     "build:ci": "tsparticles-build src --ci",
-    "build:docs": "rimraf -f docs && typedoc",
+    "build:docs": "rimraf -f docs && npx typedoc",
     "version": "tsparticles-build src --distfiles && git add package.dist.json",
     "prepack": "yarn build"
   },
@@ -89,10 +89,10 @@
   "prettier": "@tsparticles/prettier-config",
   "devDependencies": {
     "@babel/core": "^7.18.9",
-    "@tsparticles/build": "^1.1.1",
-    "@tsparticles/eslint-config": "^1.1.1",
-    "@tsparticles/prettier-config": "^1.1.0",
-    "@tsparticles/tsconfig": "^1.1.0",
+    "@tsparticles/build": "^1.1.2",
+    "@tsparticles/eslint-config": "^1.1.2",
+    "@tsparticles/prettier-config": "^1.1.1",
+    "@tsparticles/tsconfig": "^1.1.1",
     "@types/webpack-env": "^1.17.0",
     "@typescript-eslint/eslint-plugin": "^5.30.7",
     "@typescript-eslint/parser": "^5.30.7",
@@ -108,9 +108,9 @@
     "webpack": "^5.74.0",
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.10.0",
-    "webpack-tsparticles-plugin": "^1.2.1"
+    "webpack-tsparticles-plugin": "^1.2.2"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.2.1"
+    "tsparticles-engine": "^2.2.2"
   }
 }
