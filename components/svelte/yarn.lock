@@ -805,11 +805,6 @@ tslib@^2.4.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
   integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
 
-tsparticles-engine@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.2.0.tgz#e16035679c7b7e5bf377cb0e6f50c92ec312720b"
-  integrity sha512-1kPvIMwcfsFTsEJKoNO/XhZq9l07DZRTwO3fetxD8U69orgRveJe32lqIrQQRDXXqoGD5jTM0j7MOrZueS/0AA==
-
 typescript@*, typescript@~4.7.4:
   version "4.7.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.4.tgz#1a88596d1cf47d59507a1bcdfb5b9dfe4d488235"

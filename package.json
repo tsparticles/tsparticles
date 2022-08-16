@@ -5,7 +5,7 @@
   "scripts": {
     "build": "lerna run build",
     "build:ci": "lerna run build:ci",
-    "build:docs": "rimraf -f docs && typedoc",
+    "build:docs": "rimraf -f docs && npx typedoc",
     "version:alpha": "lerna version prerelease --preid alpha --conventional-commits",
     "version:beta": "lerna version prerelease --preid beta --conventional-commits",
     "publish:alpha": "lerna publish from-package --pre-dist-tag alpha --preid alpha",

@@ -22,7 +22,7 @@ export class ExternalLighter extends ExternalInteractorBase {
         const container = this.container,
             options = container.actualOptions;
 
-        if (options.interactivity.events.onHover.enable && container.interactivity.status === "mousemove") {
+        if (options.interactivity.events.onHover.enable && container.interactivity.status === "pointermove") {
             const mousePos = container.interactivity.mouse.position;
 
             if (!mousePos) {

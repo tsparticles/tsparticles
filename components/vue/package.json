@@ -9,6 +9,8 @@
     "prepack": "yarn build"
   },
   "keywords": [
+    "front-end",
+    "frontend",
     "tsparticles",
     "particles.js",
     "particlesjs",

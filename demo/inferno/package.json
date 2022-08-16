@@ -10,10 +10,6 @@
 		"check": "tsc",
 		"start": "webpack serve --config webpack.config.js --mode development"
 	},
-	"keywords": [
-		"inferno",
-		"typescript"
-	],
 	"author": "Matteo Bruni <matteo.bruni@me.com>",
 	"license": "MIT",
 	"dependencies": {

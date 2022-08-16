@@ -23,7 +23,7 @@ export class ParticlesLighter extends ParticlesInteractorBase {
         const container = this.#container,
             options = container.actualOptions;
 
-        if (options.interactivity.events.onHover.enable && container.interactivity.status === "mousemove") {
+        if (options.interactivity.events.onHover.enable && container.interactivity.status === "pointermove") {
             const mousePos = this.container.interactivity.mouse.position;
 
             if (mousePos) {
