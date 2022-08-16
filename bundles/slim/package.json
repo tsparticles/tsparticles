@@ -120,7 +120,7 @@
     "tsparticles-interaction-external-push": "^2.2.2",
     "tsparticles-interaction-external-remove": "^2.2.2",
     "tsparticles-interaction-external-repulse": "^2.2.2",
-    "tsparticles-interaction-external-slow": "^2.2.1",
+    "tsparticles-interaction-external-slow": "^2.2.2",
     "tsparticles-interaction-particles-attract": "^2.2.2",
     "tsparticles-interaction-particles-collisions": "^2.2.2",
     "tsparticles-interaction-particles-links": "^2.2.2",
