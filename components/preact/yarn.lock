@@ -2503,9 +2503,9 @@ pkg-dir@^4.1.0, pkg-dir@^4.2.0:
     find-up "^4.0.0"
 
 preact@^10.7.1:
-  version "10.10.2"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.10.2.tgz#3460d456d84c4701af33ac37e9bd3054271d5b1e"
-  integrity sha512-GUXSsfwq4NKhlLYY5ctfNE0IjFk7Xo4952yPI8yMkXdhzeQmQ+FahZITe7CeHXMPyKBVQ8SoCmGNIy9TSOdhgQ==
+  version "10.10.3"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.10.3.tgz#ea82c5dce85c8a85d541f0110507b2de195ed711"
+  integrity sha512-Gwwh0o531izatQQZu0yEX4mtfxVYsZJ4TT/o2VK3UZ/UuAWAWFnzsEfpZvad32vY3TKoRnSY2WqiDz2rH/viWQ==
 
 prelude-ls@^1.2.1:
   version "1.2.1"
@@ -2856,6 +2856,11 @@ tslib@^1.8.1:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
+
+tsparticles-engine@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.2.2.tgz#f2aae1b2d8b5e29a4c1b88db8fd98f8fb4399c2d"
+  integrity sha512-MY9DAUVH0vZFEi43Wa4tAPTTgfbeV/Yu6aHFJEQ6lZsI0upXdI+o10+IRB03ydoRlwWZ9xcW+4xlYhu3TBfNBw==
 
 tsutils@^3.21.0:
   version "3.21.0"
