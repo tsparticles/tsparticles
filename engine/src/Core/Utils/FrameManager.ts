@@ -1,4 +1,12 @@
 import type { Container } from "../Container";
+import type { IDelta } from "../Interfaces/IDelta";
+
+function initDelta(value: number, smooth = false): IDelta {
+    return {
+        value,
+        factor: smooth ? 1 : (60 * value) / 1000,
+    };
+}
 
 /**
  * @category Core
@@ -28,21 +36,12 @@ export class FrameManager {
 
             container.lastFrameTime ??= timestamp;
 
-            const deltaValue = timestamp - container.lastFrameTime,
-                delta = container.smooth
-                    ? {
-                          value: 0,
-                          factor: 1,
-                      }
-                    : {
-                          value: deltaValue,
-                          factor: (60 * deltaValue) / 1000,
-                      };
+            const delta = initDelta(timestamp - container.lastFrameTime, container.smooth);
 
-            container.lifeTime += deltaValue;
+            container.lifeTime += delta.value;
             container.lastFrameTime = timestamp;
 
-            if (deltaValue > 1000) {
+            if (delta.value > 1000) {
                 container.draw(false);
                 return;
             }
