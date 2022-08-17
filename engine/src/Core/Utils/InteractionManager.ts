@@ -18,22 +18,22 @@ export class InteractionManager {
     private readonly _engine;
 
     /**
+     * Registered external interactivity managers
+     * @private
+     */
+    private _externalInteractors: IExternalInteractor[];
+
+    /**
      * The interactors that are used for initialization
      * @private
      */
     private readonly _interactors;
 
     /**
-     * Registered external interactivity managers
-     * @private
-     */
-    private externalInteractors: IExternalInteractor[];
-
-    /**
      * Registered particles interactions managers
      * @private
      */
-    private particleInteractors: IParticlesInteractor[];
+    private _particleInteractors: IParticlesInteractor[];
 
     /**
      * The constructor of the interaction manager
@@ -43,8 +43,8 @@ export class InteractionManager {
     constructor(engine: Engine, private readonly container: Container) {
         this._engine = engine;
         this._interactors = this._engine.plugins.getInteractors(this.container, true);
-        this.externalInteractors = [];
-        this.particleInteractors = [];
+        this._externalInteractors = [];
+        this._particleInteractors = [];
     }
 
     /**
@@ -52,7 +52,7 @@ export class InteractionManager {
      * @param delta this variable contains the delta between the current frame and the previous frame
      */
     async externalInteract(delta: IDelta): Promise<void> {
-        for (const interactor of this.externalInteractors) {
+        for (const interactor of this._externalInteractors) {
             if (interactor.isEnabled()) {
                 await interactor.interact(delta);
             }
@@ -60,7 +60,7 @@ export class InteractionManager {
     }
 
     handleClickMode(mode: ClickMode | string): void {
-        for (const interactor of this.externalInteractors) {
+        for (const interactor of this._externalInteractors) {
             if (interactor.handleClickMode) {
                 interactor.handleClickMode(mode);
             }
@@ -71,16 +71,16 @@ export class InteractionManager {
      * Initializes the interaction manager, loading all the engine registered managers into the container
      */
     init(): void {
-        this.externalInteractors = [];
-        this.particleInteractors = [];
+        this._externalInteractors = [];
+        this._particleInteractors = [];
 
         for (const interactor of this._interactors) {
             switch (interactor.type) {
                 case InteractorType.External:
-                    this.externalInteractors.push(interactor as IExternalInteractor);
+                    this._externalInteractors.push(interactor as IExternalInteractor);
                     break;
                 case InteractorType.Particles:
-                    this.particleInteractors.push(interactor as IParticlesInteractor);
+                    this._particleInteractors.push(interactor as IParticlesInteractor);
                     break;
             }
 
@@ -94,12 +94,12 @@ export class InteractionManager {
      * @param delta this variable contains the delta between the current frame and the previous frame
      */
     async particlesInteract(particle: Particle, delta: IDelta): Promise<void> {
-        for (const interactor of this.externalInteractors) {
+        for (const interactor of this._externalInteractors) {
             interactor.clear(particle);
         }
 
         /* interaction auto between particles */
-        for (const interactor of this.particleInteractors) {
+        for (const interactor of this._particleInteractors) {
             if (interactor.isEnabled(particle)) {
                 await interactor.interact(particle, delta);
             }
@@ -111,13 +111,13 @@ export class InteractionManager {
      * @param particle the particle to reset
      */
     async reset(particle: Particle): Promise<void> {
-        for (const interactor of this.externalInteractors) {
+        for (const interactor of this._externalInteractors) {
             if (interactor.isEnabled()) {
                 await interactor.reset(particle);
             }
         }
 
-        for (const interactor of this.particleInteractors) {
+        for (const interactor of this._particleInteractors) {
             if (interactor.isEnabled(particle)) {
                 await interactor.reset(particle);
             }

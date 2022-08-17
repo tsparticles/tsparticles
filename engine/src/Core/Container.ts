@@ -136,6 +136,8 @@ export class Container {
 
     readonly retina;
 
+    smooth;
+
     /**
      * Check if the particles container is started
      */
@@ -164,6 +166,7 @@ export class Container {
     constructor(engine: Engine, readonly id: string, sourceOptions?: RecursivePartial<IOptions>) {
         this._engine = engine;
         this.fpsLimit = 120;
+        this.smooth = false;
         this.duration = 0;
         this.lifeTime = 0;
         this._firstStart = true;
@@ -196,7 +199,7 @@ export class Container {
         this._eventListeners = new EventListeners(this);
 
         if (typeof IntersectionObserver !== "undefined" && IntersectionObserver) {
-            this._intersectionObserver = new IntersectionObserver((entries) => this.intersectionManager(entries));
+            this._intersectionObserver = new IntersectionObserver((entries) => this._intersectionManager(entries));
         }
 
         this._engine.dispatchEvent(EventType.containerBuilt, { container: this });
@@ -488,6 +491,7 @@ export class Container {
         this.duration = getRangeValue(this.actualOptions.duration);
         this.lifeTime = 0;
         this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 120;
+        this.smooth = this.actualOptions.smooth;
 
         const availablePlugins = this._engine.plugins.getAvailablePlugins(this);
 
@@ -769,7 +773,7 @@ export class Container {
         return false;
     }
 
-    private intersectionManager(entries: IntersectionObserverEntry[]): void {
+    private _intersectionManager(entries: IntersectionObserverEntry[]): void {
         if (!this.actualOptions.pauseOnOutsideViewport) {
             return;
         }

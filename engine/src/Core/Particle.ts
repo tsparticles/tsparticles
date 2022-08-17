@@ -315,10 +315,10 @@ export class Particle implements IParticle {
             shapeOptions.load(overrideOptions.shape);
 
             if (this.shape) {
-                this.shapeData = this.loadShapeData(shapeOptions, reduceDuplicates);
+                this.shapeData = this._loadShapeData(shapeOptions, reduceDuplicates);
             }
         } else {
-            this.shapeData = this.loadShapeData(particlesOptions.shape, reduceDuplicates);
+            this.shapeData = this._loadShapeData(particlesOptions.shape, reduceDuplicates);
         }
 
         particlesOptions.load(overrideOptions);
@@ -405,7 +405,7 @@ export class Particle implements IParticle {
             inRange: false,
             factor: 1,
         };
-        this.position = this.calcPosition(container, position, clamp(zIndexValue, 0, container.zLayers));
+        this.position = this._calcPosition(container, position, clamp(zIndexValue, 0, container.zLayers));
         this.initialPosition = this.position.copy();
 
         const canvasSize = container.canvas.size,
@@ -429,7 +429,7 @@ export class Particle implements IParticle {
         }
 
         /* animation - velocity for speed */
-        this.initialVelocity = this.calculateVelocity();
+        this.initialVelocity = this._calculateVelocity();
         this.velocity = this.initialVelocity.copy();
         this.moveDecay = 1 - getRangeValue(this.options.move.decay);
 
@@ -586,7 +586,7 @@ export class Particle implements IParticle {
         this.size.loops = 0;
     }
 
-    private calcPosition(
+    private _calcPosition(
         container: Container,
         position: ICoordinates | undefined,
         zIndex: number,
@@ -636,14 +636,14 @@ export class Particle implements IParticle {
         fixVertical(outModes.top ?? outModes.default);
         fixVertical(outModes.bottom ?? outModes.default);
 
-        if (this.checkOverlap(pos, tryCount)) {
-            return this.calcPosition(container, undefined, zIndex, tryCount + 1);
+        if (this._checkOverlap(pos, tryCount)) {
+            return this._calcPosition(container, undefined, zIndex, tryCount + 1);
         }
 
         return pos;
     }
 
-    private calculateVelocity(): Vector {
+    private _calculateVelocity(): Vector {
         const baseVelocity = getParticleBaseVelocity(this.direction);
         const res = baseVelocity.copy();
         const moveOptions = this.options.move;
@@ -671,7 +671,7 @@ export class Particle implements IParticle {
         return res;
     }
 
-    private checkOverlap(pos: ICoordinates, tryCount = 0): boolean {
+    private _checkOverlap(pos: ICoordinates, tryCount = 0): boolean {
         const collisionsOptions = this.options.collisions,
             radius = this.getRadius();
 
@@ -703,7 +703,7 @@ export class Particle implements IParticle {
         return overlaps;
     }
 
-    private loadShapeData(shapeOptions: IShape, reduceDuplicates: boolean): IShapeValues | undefined {
+    private _loadShapeData(shapeOptions: IShape, reduceDuplicates: boolean): IShapeValues | undefined {
         const shapeData = shapeOptions.options[this.shape];
 
         if (shapeData) {

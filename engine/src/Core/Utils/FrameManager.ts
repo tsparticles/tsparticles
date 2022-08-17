@@ -17,6 +17,7 @@ export class FrameManager {
 
             // FPS limit logic - if we are too fast, just draw without updating
             if (
+                !container.smooth &&
                 container.lastFrameTime !== undefined &&
                 timestamp < container.lastFrameTime + 1000 / container.fpsLimit
             ) {
@@ -28,12 +29,17 @@ export class FrameManager {
             container.lastFrameTime ??= timestamp;
 
             const deltaValue = timestamp - container.lastFrameTime,
-                delta = {
-                    value: deltaValue,
-                    factor: (60 * deltaValue) / 1000,
-                };
+                delta = container.smooth
+                    ? {
+                          value: 0,
+                          factor: 1,
+                      }
+                    : {
+                          value: deltaValue,
+                          factor: (60 * deltaValue) / 1000,
+                      };
 
-            container.lifeTime += delta.value;
+            container.lifeTime += deltaValue;
             container.lastFrameTime = timestamp;
 
             if (deltaValue > 1000) {

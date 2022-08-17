@@ -115,7 +115,7 @@ export class Particles {
             }
         }
 
-        return this.pushParticle(position, overrideOptions, group, initializer);
+        return this._pushParticle(position, overrideOptions, group, initializer);
     }
 
     /**
@@ -332,10 +332,10 @@ export class Particles {
         const options = this.container.actualOptions;
 
         for (const group in options.particles.groups) {
-            this.applyDensity(options.particles.groups[group], 0, group);
+            this._applyDensity(options.particles.groups[group], 0, group);
         }
 
-        this.applyDensity(options.particles, options.manualParticles.length);
+        this._applyDensity(options.particles, options.manualParticles.length);
     }
 
     async update(delta: IDelta): Promise<void> {
@@ -413,13 +413,13 @@ export class Particles {
         delete container.canvas.resizeFactor;
     }
 
-    private applyDensity(options: IParticlesOptions, manualCount: number, group?: string): void {
+    private _applyDensity(options: IParticlesOptions, manualCount: number, group?: string): void {
         if (!options.number.density?.enable) {
             return;
         }
 
         const numberOptions = options.number,
-            densityFactor = this.initDensityFactor(numberOptions.density),
+            densityFactor = this._initDensityFactor(numberOptions.density),
             optParticlesNumber = numberOptions.value,
             optParticlesLimit = numberOptions.limit > 0 ? numberOptions.limit : optParticlesNumber,
             particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + manualCount,
@@ -434,7 +434,7 @@ export class Particles {
         }
     }
 
-    private initDensityFactor(densityOptions: IParticlesDensity): number {
+    private _initDensityFactor(densityOptions: IParticlesDensity): number {
         const container = this.container;
 
         if (!container.canvas.element || !densityOptions.enable) {
@@ -447,7 +447,7 @@ export class Particles {
         return (canvas.width * canvas.height) / (densityOptions.factor * pxRatio ** 2 * densityOptions.area);
     }
 
-    private pushParticle(
+    private _pushParticle(
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticlesOptions>,
         group?: string,

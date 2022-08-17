@@ -115,6 +115,14 @@ export interface IOptions {
      */
     retina_detect: boolean;
 
+    /**
+     * Enables a smooth effect, by default it's disabled
+     * When enabled the animation will speed up or slow down depending on fps, the [[fpsLimit]] field will be ignored
+     * The animation will be always smooth, but the behavior could be affected by the user screen refresh rate
+     * It's recommended to keep this disabled, be careful.
+     */
+    smooth: boolean;
+
     style: RecursivePartial<CSSStyleDeclaration>;
 
     /**

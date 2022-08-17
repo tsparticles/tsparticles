@@ -48,14 +48,13 @@ export class Canvas {
      */
     private _context: CanvasRenderingContext2D | null;
 
+    private _coverColorStyle?: string;
+    private _generatedCanvas;
+    private _originalStyle?: CSSStyleDeclaration;
     private _postDrawUpdaters: IParticleUpdater[];
     private _preDrawUpdaters: IParticleUpdater[];
     private _resizePlugins: IContainerPlugin[];
-
-    private coverColorStyle?: string;
-    private generatedCanvas;
-    private originalStyle?: CSSStyleDeclaration;
-    private trailFillColor?: IRgba;
+    private _trailFillColor?: IRgba;
 
     /**
      * Constructor of canvas manager
@@ -68,7 +67,7 @@ export class Canvas {
         };
 
         this._context = null;
-        this.generatedCanvas = false;
+        this._generatedCanvas = false;
         this._preDrawUpdaters = [];
         this._postDrawUpdaters = [];
         this._resizePlugins = [];
@@ -84,8 +83,8 @@ export class Canvas {
 
         if (options.backgroundMask.enable) {
             this.paint();
-        } else if (trail.enable && trail.length > 0 && this.trailFillColor) {
-            this.paintBase(getStyleFromRgb(this.trailFillColor, 1 / trail.length));
+        } else if (trail.enable && trail.length > 0 && this._trailFillColor) {
+            this._paintBase(getStyleFromRgb(this._trailFillColor, 1 / trail.length));
         } else {
             this.draw((ctx) => {
                 clear(ctx, this.size);
@@ -97,10 +96,10 @@ export class Canvas {
      * Destroying object actions
      */
     destroy(): void {
-        if (this.generatedCanvas) {
+        if (this._generatedCanvas) {
             this.element?.remove();
         } else {
-            this.resetOriginalStyle();
+            this._resetOriginalStyle();
         }
 
         this.draw((ctx) => {
@@ -144,7 +143,7 @@ export class Canvas {
         const pfColor = particle.getFillColor(),
             psColor = particle.getStrokeColor() ?? pfColor;
 
-        let [fColor, sColor] = this.getPluginParticleColors(particle);
+        let [fColor, sColor] = this._getPluginParticleColors(particle);
 
         if (!fColor) {
             fColor = pfColor;
@@ -173,7 +172,7 @@ export class Canvas {
 
             colorStyles.stroke = sColor ? getStyleFromHsl(sColor, zStrokeOpacity) : colorStyles.fill;
 
-            this.applyPreDrawUpdaters(ctx, particle, radius, zOpacity, colorStyles, transform);
+            this._applyPreDrawUpdaters(ctx, particle, radius, zOpacity, colorStyles, transform);
 
             drawParticle({
                 container: this.container,
@@ -189,7 +188,7 @@ export class Canvas {
                 transform,
             });
 
-            this.applyPostDrawUpdaters(particle);
+            this._applyPostDrawUpdaters(particle);
         });
     }
 
@@ -221,9 +220,9 @@ export class Canvas {
      */
     init(): void {
         this.resize();
-        this.initStyle();
-        this.initCover();
-        this.initTrail();
+        this._initStyle();
+        this._initCover();
+        this._initTrail();
         this.initBackground();
         this.initUpdaters();
         this.initPlugins();
@@ -297,16 +296,16 @@ export class Canvas {
      * @param canvas the canvas html element
      */
     loadCanvas(canvas: HTMLCanvasElement): void {
-        if (this.generatedCanvas) {
+        if (this._generatedCanvas) {
             this.element?.remove();
         }
 
-        this.generatedCanvas =
+        this._generatedCanvas =
             canvas.dataset && generatedAttribute in canvas.dataset
                 ? canvas.dataset[generatedAttribute] === "true"
-                : this.generatedCanvas;
+                : this._generatedCanvas;
         this.element = canvas;
-        this.originalStyle = deepExtend({}, this.element.style) as CSSStyleDeclaration;
+        this._originalStyle = deepExtend({}, this.element.style) as CSSStyleDeclaration;
         this.size.height = canvas.offsetHeight;
         this.size.width = canvas.offsetWidth;
         this._context = this.element.getContext("2d");
@@ -324,9 +323,9 @@ export class Canvas {
             if (options.backgroundMask.enable && options.backgroundMask.cover) {
                 clear(ctx, this.size);
 
-                this.paintBase(this.coverColorStyle);
+                this._paintBase(this._coverColorStyle);
             } else {
-                this.paintBase();
+                this._paintBase();
             }
         });
     }
@@ -385,20 +384,20 @@ export class Canvas {
         /* density particles enabled */
         container.particles.setDensity();
 
-        this.applyResizePlugins();
+        this._applyResizePlugins();
 
         if (needsRefresh) {
             await container.refresh();
         }
     }
 
-    private applyPostDrawUpdaters(particle: Particle): void {
+    private _applyPostDrawUpdaters(particle: Particle): void {
         for (const updater of this._postDrawUpdaters) {
             updater.afterDraw?.(particle);
         }
     }
 
-    private applyPreDrawUpdaters(
+    private _applyPreDrawUpdaters(
         ctx: CanvasRenderingContext2D,
         particle: Particle,
         radius: number,
@@ -431,13 +430,13 @@ export class Canvas {
         }
     }
 
-    private applyResizePlugins(): void {
+    private _applyResizePlugins(): void {
         for (const plugin of this._resizePlugins) {
             plugin.resize?.();
         }
     }
 
-    private getPluginParticleColors(particle: Particle): (IHsl | undefined)[] {
+    private _getPluginParticleColors(particle: Particle): (IHsl | undefined)[] {
         let fColor: IHsl | undefined, sColor: IHsl | undefined;
 
         for (const plugin of this._colorPlugins) {
@@ -457,7 +456,7 @@ export class Canvas {
         return [fColor, sColor];
     }
 
-    private initCover(): void {
+    private _initCover(): void {
         const options = this.container.actualOptions,
             cover = options.backgroundMask.cover,
             color = cover.color,
@@ -471,11 +470,11 @@ export class Canvas {
                 a: cover.opacity,
             };
 
-            this.coverColorStyle = getStyleFromRgb(coverColor, coverColor.a);
+            this._coverColorStyle = getStyleFromRgb(coverColor, coverColor.a);
         }
     }
 
-    private initStyle(): void {
+    private _initStyle(): void {
         const element = this.element,
             options = this.container.actualOptions;
 
@@ -484,7 +483,7 @@ export class Canvas {
         }
 
         if (options.fullScreen.enable) {
-            this.originalStyle = deepExtend({}, element.style) as CSSStyleDeclaration;
+            this._originalStyle = deepExtend({}, element.style) as CSSStyleDeclaration;
 
             element.style.setProperty("position", "fixed", "important");
             element.style.setProperty("z-index", options.fullScreen.zIndex.toString(10), "important");
@@ -493,7 +492,7 @@ export class Canvas {
             element.style.setProperty("width", "100%", "important");
             element.style.setProperty("height", "100%", "important");
         } else {
-            this.resetOriginalStyle();
+            this._resetOriginalStyle();
         }
 
         for (const key in options.style) {
@@ -511,7 +510,7 @@ export class Canvas {
         }
     }
 
-    private initTrail(): void {
+    private _initTrail(): void {
         const options = this.container.actualOptions,
             trail = options.particles.move.trail,
             fillColor = rangeColorToRgb(trail.fillColor);
@@ -519,7 +518,7 @@ export class Canvas {
         if (fillColor) {
             const trail = options.particles.move.trail;
 
-            this.trailFillColor = {
+            this._trailFillColor = {
                 r: fillColor.r,
                 g: fillColor.g,
                 b: fillColor.b,
@@ -528,15 +527,15 @@ export class Canvas {
         }
     }
 
-    private paintBase(baseColor?: string): void {
+    private _paintBase(baseColor?: string): void {
         this.draw((ctx) => {
             paintBase(ctx, this.size, baseColor);
         });
     }
 
-    private resetOriginalStyle(): void {
+    private _resetOriginalStyle(): void {
         const element = this.element,
-            originalStyle = this.originalStyle;
+            originalStyle = this._originalStyle;
 
         if (element && originalStyle) {
             element.style.position = originalStyle.position;

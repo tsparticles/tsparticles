@@ -42,6 +42,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     pauseOnOutsideViewport;
     preset?: SingleOrMultiple<string>;
     responsive: Responsive[];
+    smooth: boolean;
     style: RecursivePartial<CSSStyleDeclaration>;
     themes: Theme[];
     zLayers;
@@ -66,6 +67,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.pauseOnBlur = true;
         this.pauseOnOutsideViewport = true;
         this.responsive = [];
+        this.smooth = false;
         this.style = {};
         this.themes = [];
         this.zLayers = 100;
@@ -195,6 +197,10 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.particles.load(data.particles);
         this.style = deepExtend(this.style, data.style) as RecursivePartial<CSSStyleDeclaration>;
         this._engine.plugins.loadOptions(this, data);
+
+        if (data.smooth !== undefined) {
+            this.smooth = data.smooth;
+        }
 
         const interactors = this._engine.plugins.interactors.get(this._container);
 
