@@ -1,10 +1,10 @@
 import type { Container } from "../Container";
 import type { IDelta } from "../Interfaces/IDelta";
 
-function initDelta(value: number, smooth = false): IDelta {
+function initDelta(value: number, fpsLimit = 60, smooth = false): IDelta {
     return {
         value,
-        factor: smooth ? 1 : (60 * value) / 1000,
+        factor: smooth ? 60 / fpsLimit : (60 * value) / 1000,
     };
 }
 
@@ -36,7 +36,7 @@ export class FrameManager {
 
             container.lastFrameTime ??= timestamp;
 
-            const delta = initDelta(timestamp - container.lastFrameTime, container.smooth);
+            const delta = initDelta(timestamp - container.lastFrameTime, container.fpsLimit, container.smooth);
 
             container.lifeTime += delta.value;
             container.lastFrameTime = timestamp;
