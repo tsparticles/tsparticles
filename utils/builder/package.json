@@ -47,7 +47,6 @@
     "@types/klaw": "^3.0.3",
     "@types/node": "^18.7.1",
     "@types/prettier": "^2.7.0",
-    "@types/rimraf": "^3.0.2",
-    "@types/webpack": "^5.28.0"
+    "@types/rimraf": "^3.0.2"
   }
 }
