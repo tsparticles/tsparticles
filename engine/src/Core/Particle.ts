@@ -1,4 +1,4 @@
-import type { ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates";
+import type { ICenterCoordinates, ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates";
 import type { IHsl, IRgb } from "./Interfaces/Colors";
 import {
     calcExactPositionOrRandomFromSize,
@@ -137,7 +137,7 @@ export class Particle implements IParticle {
      */
     misplaced;
 
-    readonly moveCenter: ICoordinates & { radius: number };
+    readonly moveCenter: ICenterCoordinates;
 
     /**
      * Gets particle movement speed decay
@@ -413,9 +413,10 @@ export class Particle implements IParticle {
             isCenterPercent = moveCenter.mode === SizeMode.percent;
 
         this.moveCenter = {
-            x: moveCenter.x * (isCenterPercent ? canvasSize.width / 100 : 1),
-            y: moveCenter.y * (isCenterPercent ? canvasSize.height / 100 : 1),
-            radius: this.options.move.center.radius,
+            x: (moveCenter.x ?? 50) * (isCenterPercent ? canvasSize.width / 100 : 1),
+            y: (moveCenter.y ?? 50) * (isCenterPercent ? canvasSize.height / 100 : 1),
+            radius: this.options.move.center.radius ?? 0,
+            mode: this.options.move.center.mode ?? SizeMode.percent,
         };
         this.direction = getParticleDirectionAngle(this.options.move.direction, this.position, this.moveCenter);
 
