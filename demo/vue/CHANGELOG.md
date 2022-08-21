@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.3](https://github.com/matteobruni/tsparticles/compare/vue2-particles-demo@2.2.2...vue2-particles-demo@2.2.3) (2022-08-21)
+
+
+### Bug Fixes
+
+* fixed issue with detectsOn with non "window" values, fixes [#4606](https://github.com/matteobruni/tsparticles/issues/4606) ([ac97f83](https://github.com/matteobruni/tsparticles/commit/ac97f83d470efcb51a3b1942edd7536574c54bad))
+
+
+
+
+
 ## [2.2.2](https://github.com/matteobruni/tsparticles/compare/vue2-particles-demo@2.2.1...vue2-particles-demo@2.2.2) (2022-08-16)
 
 **Note:** Version bump only for package vue2-particles-demo
