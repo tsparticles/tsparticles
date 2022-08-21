@@ -774,7 +774,7 @@ export class Container {
     }
 
     private intersectionManager(entries: IntersectionObserverEntry[]): void {
-        if (!this.actualOptions.pauseOnOutsideViewport) {
+        if (!guardCheck(this) || !this.actualOptions.pauseOnOutsideViewport) {
             return;
         }
 
