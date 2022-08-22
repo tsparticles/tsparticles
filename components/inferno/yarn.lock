@@ -2218,6 +2218,11 @@ cssesc@^3.0.0:
   resolved "https://registry.yarnpkg.com/cssesc/-/cssesc-3.0.0.tgz#37741919903b868565e1c09ea747445cd18983ee"
   integrity sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==
 
+csstype@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.0.tgz#4ddcac3718d787cf9df0d1b7d15033925c8f29f2"
+  integrity sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==
+
 dashdash@^1.12.0:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/dashdash/-/dashdash-1.14.1.tgz#853cfa0f7cbe2fed5de20326b8dd581035f6e2f0"
@@ -3306,23 +3311,18 @@ infer-owner@^1.0.4:
   resolved "https://registry.yarnpkg.com/infer-owner/-/infer-owner-1.0.4.tgz#c4cefcaa8e51051c2a40ba2ce8a3d27295af9467"
   integrity sha512-IClj+Xz94+d7irH5qRyfJonOdfTzuDaifE6ZPWfx0N0+/ATZCbuTPq2prFl526urkQd90WyUKIh1DfBQ2hMz9A==
 
-inferno-shared@8.0.2:
-  version "8.0.2"
-  resolved "https://registry.yarnpkg.com/inferno-shared/-/inferno-shared-8.0.2.tgz#3493fc10b192f062124f07845e806d1f66ca109d"
-  integrity sha512-Q3nGshkioxsVatdfmq2FS3p+Oc3hFz/ZwvOxviIsY8+lWDuQbsY2fhT4j5NHkK9kLAlsVnnh534hik4MVKKe+w==
-
-inferno-vnode-flags@8.0.2:
-  version "8.0.2"
-  resolved "https://registry.yarnpkg.com/inferno-vnode-flags/-/inferno-vnode-flags-8.0.2.tgz#1e7d859e9cb4648c99cfed1e14810ba6b164def6"
-  integrity sha512-WWqWFLFSJ3i7l5I5nyBUVZpYzPdZ+pve4XJQlmjJAwuceJk6RzxqoXzzax3QkQpClh0ZyuRJv1NDWRET6zmL/Q==
+inferno-vnode-flags@8.0.3:
+  version "8.0.3"
+  resolved "https://registry.yarnpkg.com/inferno-vnode-flags/-/inferno-vnode-flags-8.0.3.tgz#1bd78745033719596211155ae673bd648b266a78"
+  integrity sha512-r+wJZNliJWvtcwBd66L3fMSp+M0rinHLilZeLiAX87+ZVPoXKiTDLVmTRI+1j8dm1XmC3IuAHijVfwELnEmoCQ==
 
 inferno@^8.0.0:
-  version "8.0.2"
-  resolved "https://registry.yarnpkg.com/inferno/-/inferno-8.0.2.tgz#3f47d62eed4ad41efb1e53d00d7d990241a61fa1"
-  integrity sha512-o+yiSXUiICB9TX7glHckGky7rWx0GE0/qYWRvhrp71Re/6VS8e/5HjIY9x/OKmpAgB/4WVevjs6mecYSrfXAmQ==
+  version "8.0.3"
+  resolved "https://registry.yarnpkg.com/inferno/-/inferno-8.0.3.tgz#99124f050a9c60995dbdeef8ac258a936df7e62e"
+  integrity sha512-EZJyGfnlNoX4rQj9oX09ZqPmG8Ejrzqb/Y5O1D+QBN84VJ8uQGTqhZdmz3n7mhUnSyHg7VLt+rlbLnlTI4bs4g==
   dependencies:
-    inferno-shared "8.0.2"
-    inferno-vnode-flags "8.0.2"
+    csstype "^3.1.0"
+    inferno-vnode-flags "8.0.3"
     opencollective-postinstall "^2.0.3"
 
 inflight@^1.0.4:
@@ -5201,6 +5201,11 @@ tslib@^2.0.3:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
   integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
+
+tsparticles-engine@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.2.3.tgz#6b850085b8b762a281839b749be820d966c07bfd"
+  integrity sha512-NsylSaQzjF1DvIzZ2hZAm8mtlA4t7fKEPHgL6sM9wU/D7dhm7+w3rFTditRIcEkm67MXZwTGSuP9h/OaNIsSNQ==
 
 tsutils@^3.21.0:
   version "3.21.0"
