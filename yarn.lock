@@ -1641,10 +1641,10 @@
     tmp "~0.2.1"
     tslib "^2.3.0"
 
-"@nrwl/nx-cloud@14.4.1":
-  version "14.4.1"
-  resolved "https://registry.yarnpkg.com/@nrwl/nx-cloud/-/nx-cloud-14.4.1.tgz#a4d8e9ce6e5bbb753916adadaf0e23ca24b54823"
-  integrity sha512-vlWpBmIGfYvB9XMAdDZWOihOTFPE2VV9CDeZzBbSMF32KxDqUkhfaLf3dg6puIeUPkPbj5k+V57xjAl7g9k+Xw==
+"@nrwl/nx-cloud@14.5.0":
+  version "14.5.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/nx-cloud/-/nx-cloud-14.5.0.tgz#98fffae0fbc63484c585334613cd536294a2d438"
+  integrity sha512-8xu2/RVCKF7Lz5bLq3ApgkQQvBjVZUbsMQk7JwUKHc79U0k6o59LP7xIffRUI1RXhHXAywyIBVshilm/n5haTA==
   dependencies:
     axios "^0.21.1"
     chalk "4.1.0"
@@ -5883,7 +5883,7 @@ npm-package-arg@^9.0.0, npm-package-arg@^9.0.1:
     semver "^7.3.5"
     validate-npm-package-name "^4.0.0"
 
-npm-packlist@5.1.2, npm-packlist@^5.1.0, npm-packlist@^5.1.1:
+npm-packlist@^5.1.0, npm-packlist@^5.1.1:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/npm-packlist/-/npm-packlist-5.1.2.tgz#bbca5715020696953fd2862cbc89cbf2d7ee4875"
   integrity sha512-rQiBDNmt1H1jNhFEo9ilTD7ZJXd6cvHSmBK+waIBu886v6OyLWjZqb1RD9viR7rgG0AAe29FYnOXcO26TRxT/Q==
