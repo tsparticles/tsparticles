@@ -85,7 +85,7 @@
     "@angular/language-service": "~14.1.0",
     "@capacitor/cli": "^4.0.0",
     "@ionic/angular-toolkit": "^7.0.0",
-    "@types/jasmine": "~4.0.3",
+    "@types/jasmine": "~4.3.0",
     "@types/jasminewd2": "~2.0.10",
     "@types/node": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.28.0",
