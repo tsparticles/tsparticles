@@ -182,9 +182,9 @@
     tslib "^2.3.0"
 
 "@angular/core@~14.1.0":
-  version "14.1.1"
-  resolved "https://registry.yarnpkg.com/@angular/core/-/core-14.1.1.tgz#5c116d76445d85b03a3e6efaa348399722eac476"
-  integrity sha512-l3ms6/jxIUIeuCkXhz5nhRb94KLQ6wv9+B4lE0aJXcgHTqOmhc/ZIacT51LCjvVcok/vczF3f7w71Ii8b10yKQ==
+  version "14.1.2"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-14.1.2.tgz#1defacaad7494a8dca9e9ba1d4c1fe46009d9e4a"
+  integrity sha512-7DkeMYxXaWiUN0SztsD/dUn8SYo7305sM9HtX9RCGG/pweOoIIdcRhTxyiatyVGzTuulwMs/Y/rD1Q+GsDCnow==
   dependencies:
     tslib "^2.3.0"
 
@@ -6054,6 +6054,11 @@ tslib@^1.9.0:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
+
+tsparticles-engine@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.2.3.tgz#6b850085b8b762a281839b749be820d966c07bfd"
+  integrity sha512-NsylSaQzjF1DvIzZ2hZAm8mtlA4t7fKEPHgL6sM9wU/D7dhm7+w3rFTditRIcEkm67MXZwTGSuP9h/OaNIsSNQ==
 
 type-fest@^0.21.3:
   version "0.21.3"
