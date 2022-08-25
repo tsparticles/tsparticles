@@ -1641,10 +1641,10 @@
     tmp "~0.2.1"
     tslib "^2.3.0"
 
-"@nrwl/nx-cloud@14.5.2":
-  version "14.5.2"
-  resolved "https://registry.yarnpkg.com/@nrwl/nx-cloud/-/nx-cloud-14.5.2.tgz#b530fa3202a6c7f8904ed617e147f89b233f1563"
-  integrity sha512-rQx3TzRsN0EKx4VIR24qdoQxXbNtWe/GSKV09ZPvE0TMmhwNJYJASi5OvhiT9A4ewk3T0ogizbT+LxD8sMNdSg==
+"@nrwl/nx-cloud@14.5.4":
+  version "14.5.4"
+  resolved "https://registry.yarnpkg.com/@nrwl/nx-cloud/-/nx-cloud-14.5.4.tgz#711aae87c9db0bd73dcfa386cb2450923b4e36b6"
+  integrity sha512-fuKsx+2jvpL5OAuwSUsODEydzt01qiPJwZslbCtMWXRGva5KNbT4udNwl0C1M/W9RFVYmFbD7n4Ewz3oho531A==
   dependencies:
     axios "^0.21.1"
     chalk "4.1.0"
