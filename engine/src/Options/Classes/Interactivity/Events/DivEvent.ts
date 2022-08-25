@@ -4,6 +4,7 @@ import type { IDivEvent } from "../../../Interfaces/Interactivity/Events/IDivEve
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import { executeOnSingleOrMultiple } from "../../../../Utils/Utils";
 
 /**
  * [[include:Options/Interactivity/Div.md]]
@@ -70,9 +71,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
      * @deprecated this property is obsolete, please use the new ids
      */
     get ids(): SingleOrMultiple<string> {
-        return this.selectors instanceof Array
-            ? this.selectors.map((t) => t.replace("#", ""))
-            : this.selectors.replace("#", "");
+        return executeOnSingleOrMultiple(this.selectors, (t) => t.replace("#", ""));
 
         // this is the best we can do, if a non-id selector is used the old property won't work
         // but ids is deprecated so who cares.
@@ -84,7 +83,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
      * @param value
      */
     set ids(value: SingleOrMultiple<string>) {
-        this.selectors = value instanceof Array ? value.map((t) => `#${t}`) : `#${value}`;
+        this.selectors = executeOnSingleOrMultiple(value, (t) => `#${t}`);
     }
 
     load(data?: RecursivePartial<IDivEvent>): void {

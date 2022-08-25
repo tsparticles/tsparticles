@@ -75,17 +75,11 @@ function rectSideBounce(
  * @param selectors selectors to check
  */
 function checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>): boolean {
-    if (!(selectors instanceof Array)) {
-        return element.matches(selectors);
-    }
+    const res = executeOnSingleOrMultiple(selectors, (selector) => {
+        return element.matches(selector);
+    });
 
-    for (const selector of selectors) {
-        if (element.matches(selector)) {
-            return true;
-        }
-    }
-
-    return false;
+    return res instanceof Array ? res.some((t) => t) : res;
 }
 
 /**
@@ -294,7 +288,7 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
  * @returns true if the div mode is enabled
  */
 export function isDivModeEnabled(mode: DivMode, divs: SingleOrMultiple<DivEvent>): boolean {
-    return divs instanceof Array ? !!divs.find((t) => t.enable && isInArray(mode, t.mode)) : isInArray(mode, divs.mode);
+    return !!findItemFromSingleOrMultiple(divs, (t) => t.enable && isInArray(mode, t.mode));
 }
 
 /**
@@ -308,23 +302,14 @@ export function divModeExecute(
     divs: SingleOrMultiple<DivEvent>,
     callback: (id: string, div: DivEvent) => void
 ): void {
-    if (divs instanceof Array) {
-        for (const div of divs) {
-            const divMode = div.mode,
-                divEnabled = div.enable;
-
-            if (divEnabled && isInArray(mode, divMode)) {
-                singleDivModeExecute(div, callback);
-            }
-        }
-    } else {
-        const divMode = divs.mode,
-            divEnabled = divs.enable;
+    executeOnSingleOrMultiple(divs, (div) => {
+        const divMode = div.mode,
+            divEnabled = div.enable;
 
         if (divEnabled && isInArray(mode, divMode)) {
-            singleDivModeExecute(divs, callback);
+            singleDivModeExecute(div, callback);
         }
-    }
+    });
 }
 
 /**
@@ -335,13 +320,9 @@ export function divModeExecute(
 export function singleDivModeExecute(div: DivEvent, callback: (selector: string, div: DivEvent) => void): void {
     const selectors = div.selectors;
 
-    if (selectors instanceof Array) {
-        for (const selector of selectors) {
-            callback(selector, div);
-        }
-    } else {
-        callback(selectors, div);
-    }
+    executeOnSingleOrMultiple(selectors, (selector) => {
+        callback(selector, div);
+    });
 }
 
 /**
@@ -355,11 +336,9 @@ export function divMode<T extends IModeDiv>(divs?: SingleOrMultiple<T>, element?
         return;
     }
 
-    if (divs instanceof Array) {
-        return divs.find((d) => checkSelector(element, d.selectors));
-    } else if (checkSelector(element, divs.selectors)) {
-        return divs;
-    }
+    return findItemFromSingleOrMultiple(divs, (div) => {
+        return checkSelector(element, div.selectors);
+    });
 }
 
 /**
@@ -479,4 +458,22 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
             particle.position.y = resV.position;
         }
     }
+}
+
+export function executeOnSingleOrMultiple<T, U = void>(
+    obj: SingleOrMultiple<T>,
+    callback: (obj: T) => U
+): SingleOrMultiple<U> {
+    return obj instanceof Array ? obj.map((item) => callback(item)) : callback(obj);
+}
+
+export function itemFromSingleOrMultiple<T>(obj: SingleOrMultiple<T>, index?: number, useIndex?: boolean): T {
+    return obj instanceof Array ? itemFromArray(obj, index, useIndex) : obj;
+}
+
+export function findItemFromSingleOrMultiple<T>(
+    obj: SingleOrMultiple<T>,
+    callback: (obj: T) => boolean
+): T | undefined {
+    return obj instanceof Array ? obj.find((t) => callback(t)) : callback(obj) ? obj : undefined;
 }

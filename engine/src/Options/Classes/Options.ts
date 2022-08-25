@@ -1,3 +1,4 @@
+import { deepExtend, executeOnSingleOrMultiple } from "../../Utils/Utils";
 import { Background } from "./Background/Background";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
 import type { Container } from "../../Core/Container";
@@ -15,7 +16,6 @@ import { ResponsiveMode } from "../../Enums/Modes/ResponsiveMode";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 import { Theme } from "./Theme/Theme";
 import { ThemeMode } from "../../Enums/Modes/ThemeMode";
-import { deepExtend } from "../../Utils/Utils";
 import { loadParticlesOptions } from "../../Utils/OptionsUtils";
 
 /**
@@ -129,13 +129,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
 
         if (data.preset !== undefined) {
-            if (data.preset instanceof Array) {
-                for (const preset of data.preset) {
-                    this._importPreset(preset);
-                }
-            } else {
-                this._importPreset(data.preset);
-            }
+            executeOnSingleOrMultiple(data.preset, (preset) => this._importPreset(preset));
         }
 
         if (data.autoPlay !== undefined) {

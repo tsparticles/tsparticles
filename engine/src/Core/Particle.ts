@@ -14,7 +14,7 @@ import {
     randomInRange,
     setRangeValue,
 } from "../Utils/NumberUtils";
-import { deepExtend, isInArray, itemFromArray } from "../Utils/Utils";
+import { deepExtend, isInArray, itemFromSingleOrMultiple } from "../Utils/Utils";
 import { getHslFromAnimation, rangeColorToRgb } from "../Utils/ColorUtils";
 import { AnimationStatus } from "../Enums/AnimationStatus";
 import type { Container } from "./Container";
@@ -293,21 +293,17 @@ export class Particle implements IParticle {
 
         const pxRatio = container.retina.pixelRatio,
             mainOptions = container.actualOptions,
-            particlesOptions = loadParticlesOptions(this._engine, container, mainOptions.particles);
-
-        const shapeType = particlesOptions.shape.type,
+            particlesOptions = loadParticlesOptions(this._engine, container, mainOptions.particles),
+            shapeType = particlesOptions.shape.type,
             reduceDuplicates = particlesOptions.reduceDuplicates;
 
-        this.shape = shapeType instanceof Array ? itemFromArray(shapeType, this.id, reduceDuplicates) : shapeType;
+        this.shape = itemFromSingleOrMultiple(shapeType, this.id, reduceDuplicates);
 
         if (overrideOptions?.shape) {
             if (overrideOptions.shape.type) {
                 const overrideShapeType = overrideOptions.shape.type;
 
-                this.shape =
-                    overrideShapeType instanceof Array
-                        ? itemFromArray(overrideShapeType, this.id, reduceDuplicates)
-                        : overrideShapeType;
+                this.shape = itemFromSingleOrMultiple(overrideShapeType, this.id, reduceDuplicates);
             }
 
             const shapeOptions = new Shape();
@@ -708,10 +704,7 @@ export class Particle implements IParticle {
         const shapeData = shapeOptions.options[this.shape];
 
         if (shapeData) {
-            return deepExtend(
-                {},
-                shapeData instanceof Array ? itemFromArray(shapeData, this.id, reduceDuplicates) : shapeData
-            ) as IShapeValues;
+            return deepExtend({}, itemFromSingleOrMultiple(shapeData, this.id, reduceDuplicates)) as IShapeValues;
         }
     }
 }

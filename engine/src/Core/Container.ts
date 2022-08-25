@@ -319,8 +319,8 @@ export class Container {
             touchMoved = false;
         };
 
-        let touched = false;
-        let touchMoved = false;
+        let touched = false,
+            touchMoved = false;
 
         el.addEventListener("click", clickHandler);
         el.addEventListener("touchstart", touchStartHandler);

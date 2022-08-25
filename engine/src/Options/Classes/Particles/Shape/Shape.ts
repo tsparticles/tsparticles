@@ -148,9 +148,10 @@ export class Shape implements IShape, IOptionLoader<IShape> {
             return;
         }
 
-        const emptyValue = item instanceof Array ? [] : {},
-            mainDifferentValues = item instanceof Array !== this.options[mainKey] instanceof Array,
-            altDifferentValues = item instanceof Array !== this.options[altKey] instanceof Array;
+        const isArray = item instanceof Array;
+        const emptyValue = isArray ? [] : {},
+            mainDifferentValues = isArray !== this.options[mainKey] instanceof Array,
+            altDifferentValues = isArray !== this.options[altKey] instanceof Array;
 
         if (mainDifferentValues) {
             this.options[mainKey] = emptyValue;

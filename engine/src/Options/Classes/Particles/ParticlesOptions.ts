@@ -1,3 +1,4 @@
+import { deepExtend, executeOnSingleOrMultiple } from "../../../Utils/Utils";
 import { AnimatableColor } from "../AnimatableColor";
 import { Collisions } from "./Collisions/Collisions";
 import type { Container } from "../../../Core/Container";
@@ -18,7 +19,6 @@ import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
 import { Size } from "./Size/Size";
 import { Stroke } from "./Stroke";
 import { ZIndex } from "./ZIndex/ZIndex";
-import { deepExtend } from "../../../Utils/Utils";
 
 /**
  * [[include:Options/Particles.md]]
@@ -114,21 +114,13 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         const strokeToLoad = data.stroke ?? data.shape?.stroke;
 
         if (strokeToLoad) {
-            if (strokeToLoad instanceof Array) {
-                this.stroke = strokeToLoad.map((s) => {
-                    const tmp = new Stroke();
+            this.stroke = executeOnSingleOrMultiple(this.stroke, (t) => {
+                const tmp = new Stroke();
 
-                    tmp.load(s);
+                tmp.load(t);
 
-                    return tmp;
-                });
-            } else {
-                if (this.stroke instanceof Array) {
-                    this.stroke = new Stroke();
-                }
-
-                this.stroke.load(strokeToLoad);
-            }
+                return tmp;
+            });
         }
 
         if (this._container) {
