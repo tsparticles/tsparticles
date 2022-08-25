@@ -430,11 +430,11 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
                     div.type === DivType.circle
                         ? new Circle(pos.x, pos.y, repulseRadius)
                         : new Rectangle(
-                            elem.offsetLeft * pxRatio,
-                            elem.offsetTop * pxRatio,
-                            elem.offsetWidth * pxRatio,
-                            elem.offsetHeight * pxRatio
-                        ),
+                              elem.offsetLeft * pxRatio,
+                              elem.offsetTop * pxRatio,
+                              elem.offsetWidth * pxRatio,
+                              elem.offsetHeight * pxRatio
+                          ),
                 query = container.particles.quadTree.query(area, (p) => this.isEnabled(p));
 
             for (const particle of query) {
