@@ -1,7 +1,7 @@
 import {
     AnimationStatus,
     getHslAnimationFromHsl,
-    itemFromArray,
+    itemFromSingleOrMultiple,
     randomInRange,
     rangeColorToHsl,
 } from "tsparticles-engine";
@@ -88,10 +88,11 @@ export class StrokeColorUpdater implements IParticleUpdater {
         const container = this.container;
 
         /* strokeColor */
-        particle.stroke =
-            particle.options.stroke instanceof Array
-                ? itemFromArray(particle.options.stroke, particle.id, particle.options.reduceDuplicates)
-                : particle.options.stroke;
+        particle.stroke = itemFromSingleOrMultiple(
+            particle.options.stroke,
+            particle.id,
+            particle.options.reduceDuplicates
+        );
 
         particle.strokeWidth = particle.stroke.width * container.retina.pixelRatio;
 

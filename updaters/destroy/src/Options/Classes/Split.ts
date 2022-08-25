@@ -1,8 +1,8 @@
 import type { IOptionLoader, IParticlesOptions, RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
+import { deepExtend, executeOnSingleOrMultiple } from "tsparticles-engine";
 import type { ISplit } from "../Interfaces/ISplit";
 import { SplitFactor } from "./SplitFactor";
 import { SplitRate } from "./SplitRate";
-import { deepExtend } from "tsparticles-engine";
 
 export class Split implements ISplit, IOptionLoader<ISplit> {
     count: number;
@@ -30,15 +30,9 @@ export class Split implements ISplit, IOptionLoader<ISplit> {
         this.factor.load(data.factor);
         this.rate.load(data.rate);
 
-        if (data.particles !== undefined) {
-            if (data.particles instanceof Array) {
-                this.particles = data.particles.map((s) => {
-                    return deepExtend({}, s) as RecursivePartial<IParticlesOptions>;
-                });
-            } else {
-                this.particles = deepExtend({}, data.particles) as RecursivePartial<IParticlesOptions>;
-            }
-        }
+        this.particles = executeOnSingleOrMultiple(data.particles, (particles) => {
+            return deepExtend({}, particles) as RecursivePartial<IParticlesOptions>;
+        });
 
         if (data.sizeOffset !== undefined) {
             this.sizeOffset = data.sizeOffset;

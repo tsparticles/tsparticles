@@ -12,6 +12,14 @@ export async function lint(ci: boolean): Promise<boolean> {
 
         const results = await eslint.lintFiles(["src"]);
 
+        const errors = ESLint.getErrorResults(results);
+
+        if (errors.length > 0) {
+            console.log(errors);
+
+            return false;
+        }
+
         await ESLint.outputFixes(results);
 
         const formatter = await eslint.loadFormatter("stylish");

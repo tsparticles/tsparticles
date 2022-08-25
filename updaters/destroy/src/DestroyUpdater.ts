@@ -12,7 +12,7 @@ import {
     SizeMode,
     getRangeValue,
     getValue,
-    itemFromArray,
+    itemFromSingleOrMultiple,
     loadParticlesOptions,
     randomInRange,
     setRangeValue,
@@ -204,10 +204,7 @@ export class DestroyUpdater implements IParticleUpdater {
         }
 
         const rate = getValue(splitOptions.rate),
-            particlesSplitOptions =
-                splitOptions.particles instanceof Array
-                    ? itemFromArray(splitOptions.particles)
-                    : splitOptions.particles;
+            particlesSplitOptions = itemFromSingleOrMultiple(splitOptions.particles);
 
         for (let i = 0; i < rate; i++) {
             this.addSplitParticle(particle, particlesSplitOptions);

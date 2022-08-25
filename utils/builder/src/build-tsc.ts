@@ -72,8 +72,9 @@ function compile(basePath: string, type: "browser" | "cjs" | "esm" | "types" | "
 
     allDiagnostics.forEach((diagnostic) => {
         if (diagnostic.file) {
-            const { line, character } = ts.getLineAndCharacterOfPosition(diagnostic.file, diagnostic.start ?? 0);
-            const message = ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n");
+            const { line, character } = ts.getLineAndCharacterOfPosition(diagnostic.file, diagnostic.start ?? 0),
+                message = ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n");
+
             console.log(`${diagnostic.file.fileName} (${line + 1},${character + 1}): ${message}`);
         } else {
             console.log(ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n"));
@@ -88,23 +89,15 @@ function compile(basePath: string, type: "browser" | "cjs" | "esm" | "types" | "
 }
 
 export function buildTS(basePath: string): boolean {
-    let exitCode = compile(basePath, "browser");
+    const types: ("browser" | "cjs" | "esm" | "types" | "umd")[] = ["browser", "cjs", "esm", "types", "umd"];
 
-    if (!exitCode) {
-        exitCode = compile(basePath, "cjs");
+    for (const type of types) {
+        const exitCode = compile(basePath, type);
+
+        if (exitCode) {
+            return false;
+        }
     }
 
-    if (!exitCode) {
-        exitCode = compile(basePath, "esm");
-    }
-
-    if (!exitCode) {
-        exitCode = compile(basePath, "types");
-    }
-
-    if (!exitCode) {
-        compile(basePath, "umd");
-    }
-
-    return !exitCode;
+    return true;
 }

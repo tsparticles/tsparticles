@@ -1,4 +1,5 @@
 import type { IOptions, IPlugin, Options, RecursivePartial } from "tsparticles-engine";
+import { executeOnSingleOrMultiple, isInArray } from "tsparticles-engine";
 import { CircleShape } from "./Shapes/Circle/CircleShape";
 import { Emitter } from "./Options/Classes/Emitter";
 import { EmitterClickMode } from "./Enums/EmitterClickMode";
@@ -12,7 +13,6 @@ import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 import type { IEmitterShape } from "./IEmitterShape";
 import { ShapeManager } from "./ShapeManager";
 import { SquareShape } from "./Shapes/Square/SquareShape";
-import { isInArray } from "tsparticles-engine";
 
 /**
  * @category Emitters Plugin
@@ -38,25 +38,13 @@ class EmittersPlugin implements IPlugin {
 
         const optionsCast = options as unknown as IEmitterOptions;
 
-        if (source?.emitters) {
-            if (source?.emitters instanceof Array) {
-                optionsCast.emitters = source?.emitters.map((s) => {
-                    const tmp = new Emitter();
+        optionsCast.emitters = executeOnSingleOrMultiple(source?.emitters, (emitter) => {
+            const tmp = new Emitter();
 
-                    tmp.load(s);
+            tmp.load(emitter);
 
-                    return tmp;
-                });
-            } else {
-                let emitterOptions = optionsCast.emitters as Emitter;
-
-                if (emitterOptions?.load === undefined) {
-                    optionsCast.emitters = emitterOptions = new Emitter();
-                }
-
-                emitterOptions.load(source?.emitters);
-            }
-        }
+            return tmp;
+        });
 
         const interactivityEmitters = source?.interactivity?.modes?.emitters;
 

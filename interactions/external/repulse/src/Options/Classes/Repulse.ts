@@ -2,6 +2,7 @@ import type { IOptionLoader, RecursivePartial, SingleOrMultiple } from "tspartic
 import type { IRepulse } from "../Interfaces/IRepulse";
 import { RepulseBase } from "./RepulseBase";
 import { RepulseDiv } from "./RepulseDiv";
+import { executeOnSingleOrMultiple } from "tsparticles-engine";
 
 /**
  * @category Options
@@ -16,20 +17,12 @@ export class Repulse extends RepulseBase implements IRepulse, IOptionLoader<IRep
             return;
         }
 
-        if (data.divs instanceof Array) {
-            this.divs = data.divs.map((s) => {
-                const tmp = new RepulseDiv();
+        this.divs = executeOnSingleOrMultiple(data.divs, (div) => {
+            const tmp = new RepulseDiv();
 
-                tmp.load(s);
+            tmp.load(div);
 
-                return tmp;
-            });
-        } else {
-            if (this.divs instanceof Array || !this.divs) {
-                this.divs = new RepulseDiv();
-            }
-
-            this.divs.load(data.divs);
-        }
+            return tmp;
+        });
     }
 }
