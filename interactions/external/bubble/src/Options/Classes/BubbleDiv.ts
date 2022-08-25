@@ -1,4 +1,5 @@
 import type { IOptionLoader, RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
+import { executeOnSingleOrMultiple } from "tsparticles-engine";
 import { BubbleBase } from "./BubbleBase";
 import type { IBubbleDiv } from "../Interfaces/IBubbleDiv";
 
@@ -18,16 +19,14 @@ export class BubbleDiv extends BubbleBase implements IBubbleDiv, IOptionLoader<I
      * @deprecated This property is deprecated, please use the new selectors property
      */
     get ids(): SingleOrMultiple<string> {
-        return this.selectors instanceof Array
-            ? this.selectors.map((t) => t.replace("#", ""))
-            : this.selectors.replace("#", "");
+        return executeOnSingleOrMultiple(this.selectors, (t) => t.replace("#", ""));
     }
 
     /**
      * @deprecated This property is deprecated, please use the new selectors property
      */
     set ids(value: SingleOrMultiple<string>) {
-        this.selectors = value instanceof Array ? value.map((t) => `#${t}`) : `#${value}`;
+        this.selectors = executeOnSingleOrMultiple(value, (t) => `#${t}`);
     }
 
     load(data?: RecursivePartial<IBubbleDiv>): void {

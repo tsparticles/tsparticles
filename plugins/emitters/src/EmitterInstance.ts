@@ -15,7 +15,7 @@ import {
     deepExtend,
     getRangeValue,
     isPointInside,
-    itemFromArray,
+    itemFromSingleOrMultiple,
     randomInRange,
     rangeColorToHsl,
 } from "tsparticles-engine";
@@ -324,10 +324,7 @@ export class EmitterInstance {
     private emitParticles(quantity: number): void {
         const position = this.getPosition(),
             size = this.getSize(),
-            singleParticlesOptions =
-                this._particlesOptions instanceof Array
-                    ? itemFromArray(this._particlesOptions)
-                    : this._particlesOptions;
+            singleParticlesOptions = itemFromSingleOrMultiple(this._particlesOptions);
 
         for (let i = 0; i < quantity; i++) {
             const particlesOptions = deepExtend({}, singleParticlesOptions) as RecursivePartial<IParticlesOptions>;

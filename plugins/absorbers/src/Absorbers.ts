@@ -6,13 +6,13 @@ import type {
     RecursivePartial,
     SingleOrMultiple,
 } from "tsparticles-engine";
+import { executeOnSingleOrMultiple, itemFromSingleOrMultiple } from "tsparticles-engine";
 import { Absorber } from "./Options/Classes/Absorber";
 import { AbsorberClickMode } from "./Enums/AbsorberClickMode";
 import type { AbsorberContainer } from "./AbsorberContainer";
 import { AbsorberInstance } from "./AbsorberInstance";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
 import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
-import { itemFromArray } from "tsparticles-engine";
 
 /**
  * @category Absorbers Plugin
@@ -57,19 +57,8 @@ export class Absorbers implements IContainerPlugin {
             modeAbsorbers = this.interactivityAbsorbers;
 
         if (mode === AbsorberClickMode.absorber) {
-            let absorbersModeOptions: IAbsorber | undefined;
-
-            if (modeAbsorbers instanceof Array) {
-                if (modeAbsorbers.length > 0) {
-                    absorbersModeOptions = itemFromArray(modeAbsorbers);
-                }
-            } else {
-                absorbersModeOptions = modeAbsorbers;
-            }
-
-            const absorbersOptions =
-                    absorbersModeOptions ??
-                    (absorberOptions instanceof Array ? itemFromArray(absorberOptions) : absorberOptions),
+            const absorbersModeOptions = itemFromSingleOrMultiple(modeAbsorbers),
+                absorbersOptions = absorbersModeOptions ?? itemFromSingleOrMultiple(absorberOptions),
                 aPosition = this.container.interactivity.mouse.clickPosition;
 
             this.addAbsorber(absorbersOptions, aPosition);
@@ -81,51 +70,25 @@ export class Absorbers implements IContainerPlugin {
             return;
         }
 
-        if (options.absorbers) {
-            if (options.absorbers instanceof Array) {
-                this.absorbers = options.absorbers.map((s) => {
-                    const tmp = new Absorber();
+        this.absorbers = executeOnSingleOrMultiple(options.absorbers, (absorber) => {
+            const tmp = new Absorber();
 
-                    tmp.load(s);
+            tmp.load(absorber);
 
-                    return tmp;
-                });
-            } else {
-                if (this.absorbers instanceof Array) {
-                    this.absorbers = new Absorber();
-                }
+            return tmp;
+        });
 
-                this.absorbers.load(options.absorbers);
-            }
-        }
+        this.interactivityAbsorbers = executeOnSingleOrMultiple(options.interactivity?.modes?.absorbers, (absorber) => {
+            const tmp = new Absorber();
 
-        const interactivityAbsorbers = options.interactivity?.modes?.absorbers;
+            tmp.load(absorber);
 
-        if (interactivityAbsorbers) {
-            if (interactivityAbsorbers instanceof Array) {
-                this.interactivityAbsorbers = interactivityAbsorbers.map((s) => {
-                    const tmp = new Absorber();
+            return tmp;
+        });
 
-                    tmp.load(s);
-
-                    return tmp;
-                });
-            } else {
-                if (this.interactivityAbsorbers instanceof Array) {
-                    this.interactivityAbsorbers = new Absorber();
-                }
-
-                this.interactivityAbsorbers.load(interactivityAbsorbers);
-            }
-        }
-
-        if (this.absorbers instanceof Array) {
-            for (const absorberOptions of this.absorbers) {
-                this.addAbsorber(absorberOptions);
-            }
-        } else {
-            this.addAbsorber(this.absorbers);
-        }
+        executeOnSingleOrMultiple(this.absorbers, (absorber) => {
+            this.addAbsorber(absorber);
+        });
     }
 
     particleUpdate(particle: Particle): void {

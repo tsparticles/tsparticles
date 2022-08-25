@@ -1,4 +1,5 @@
 import type { IOptionLoader, RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
+import { executeOnSingleOrMultiple } from "tsparticles-engine";
 import type { IBubbleBase } from "../Interfaces/IBubbleBase";
 import { OptionsColor } from "tsparticles-engine";
 
@@ -41,15 +42,11 @@ export abstract class BubbleBase implements IBubbleBase, IOptionLoader<IBubbleBa
         }
 
         if (data.color !== undefined) {
-            if (data.color instanceof Array) {
-                this.color = data.color.map((s) => OptionsColor.create(undefined, s));
-            } else {
-                if (this.color instanceof Array) {
-                    this.color = new OptionsColor();
-                }
+            const sourceColor = this.color instanceof Array ? undefined : this.color;
 
-                this.color = OptionsColor.create(this.color, data.color);
-            }
+            this.color = executeOnSingleOrMultiple(data.color, (color) => {
+                return OptionsColor.create(sourceColor, color);
+            });
         }
 
         if (data.size !== undefined) {
