@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.4](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@2.2.2...react-tsparticles@2.2.4) (2022-08-26)
+
+
+### Bug Fixes
+
+* fixed issue on container guard check, fixes [#4679](https://github.com/matteobruni/tsparticles/issues/4679) ([953767d](https://github.com/matteobruni/tsparticles/commit/953767d8f1d616aa58759efc8b63730cb0f94811))
+
+
+
+
+
 ## [2.2.3](https://github.com/matteobruni/tsparticles/compare/react-tsparticles@2.2.2...react-tsparticles@2.2.3) (2022-08-21)
 
 **Note:** Version bump only for package react-tsparticles
