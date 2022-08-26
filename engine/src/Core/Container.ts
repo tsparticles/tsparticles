@@ -30,7 +30,7 @@ import { loadOptions } from "../Utils/OptionsUtils";
  * @returns true if the container is still usable
  */
 function guardCheck(container: Container): boolean {
-    return !container.destroyed;
+    return container !== undefined && !container.destroyed;
 }
 
 function loadContainerOptions(

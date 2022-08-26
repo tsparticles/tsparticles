@@ -13,6 +13,10 @@ fs.readFile(libPackage, function (error, data) {
 
     libObj.version = mainInfo.version;
 
+    const dependencies = Object.fromEntries(Object.keys(mainInfo.dependencies).filter(t => t.indexOf("react") === -1).map(t => [t, mainInfo.dependencies[t]]));
+
+    libObj.dependencies = JSON.parse(JSON.stringify(dependencies));
+
     fs.writeFileSync(libPackage, JSON.stringify(libObj, undefined, 2), "utf8");
 
     console.log(`package.dist.json updated successfully to version ${mainInfo.version}`);
