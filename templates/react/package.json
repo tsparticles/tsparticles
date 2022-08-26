@@ -1,6 +1,6 @@
 {
   "name": "cra-template-particles",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "description": "Official React tsParticles template",
   "keywords": [
     "front-end",
@@ -82,10 +82,10 @@
     }
   ],
   "dependencies": {
-    "react-particles": "^2.2.3",
+    "react-particles": "^2.2.4",
     "tslib": "^2.4.0",
-    "tsparticles": "^2.2.3",
-    "tsparticles-engine": "^2.2.3"
+    "tsparticles": "^2.2.4",
+    "tsparticles-engine": "^2.2.4"
   },
   "scripts": {
     "build": "node scripts/prebuild.js",
