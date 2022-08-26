@@ -1215,10 +1215,10 @@ commondir@^1.0.1:
   resolved "https://registry.yarnpkg.com/commondir/-/commondir-1.0.1.tgz#ddd800da0c66127393cca5950ea968a3aaf1253b"
   integrity sha512-W9pAhw0ja1Edb5GVdIF1mjZw/ASI0AlShXM83UUGe2DVr5TdAPEA1OA8m/g8zWp9x6On7gqufY+FatDbC3MDQg==
 
-compare-versions@^4.1.3:
-  version "4.1.3"
-  resolved "https://registry.yarnpkg.com/compare-versions/-/compare-versions-4.1.3.tgz#8f7b8966aef7dc4282b45dfa6be98434fc18a1a4"
-  integrity sha512-WQfnbDcrYnGr55UwbxKiQKASnTtNnaAWVi8jZyy8NTpVAXWACSne8lMD1iaIo9AiU6mnuLvSVshCzewVuWxHUg==
+compare-versions@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/compare-versions/-/compare-versions-5.0.0.tgz#5c5b69cff4d37c5f452874ec47ff48a66b89f5bb"
+  integrity sha512-ei+3+vZQfunm1CeyipFXEZ5oBk3/cVo7rdSX635Ph0yn/4XFLabcQyOp+YucEj46raOD7/crw7gIQ8twxQTuhQ==
 
 concat-map@0.0.1:
   version "0.0.1"
