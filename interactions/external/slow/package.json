@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-interaction-external-slow",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "description": "tsParticles slow external interaction",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -111,6 +111,6 @@
     "webpack-tsparticles-plugin": "^1.2.1"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.2.2"
+    "tsparticles-engine": "^2.2.4"
   }
 }

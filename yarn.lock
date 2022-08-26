@@ -5246,7 +5246,7 @@ kind-of@^6.0.2, kind-of@^6.0.3:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
-lerna@^5.4.1:
+lerna@^5.4.3:
   version "5.4.3"
   resolved "https://registry.yarnpkg.com/lerna/-/lerna-5.4.3.tgz#a0a7f24de87b7e4dc4eed5547c07c5dc0865d785"
   integrity sha512-PypijMk4Jii8DoWGRLiHhBUaqpjXAmrwbs6uUZgyb07JrqCrXW3nhAyzdZE5S0rk1/sRzjd10fYmntOgNFfKBw==
@@ -5957,7 +5957,7 @@ nwsapi@^2.2.0:
   resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.2.1.tgz#10a9f268fbf4c461249ebcfe38e359aa36e2577c"
   integrity sha512-JYOWTeFoS0Z93587vRJgASD5Ut11fYl5NyihP3KrYBvMe1FRRs6RN7m20SA/16GM4P6hTnZjT+UmDOt38UeXNg==
 
-nx@14.5.10:
+nx@14.5.10, nx@^14.5.10:
   version "14.5.10"
   resolved "https://registry.yarnpkg.com/nx/-/nx-14.5.10.tgz#cc950bcc2d867f0aa4e86a508842a9299650fbb9"
   integrity sha512-dqiV+zY32k98mfKFTgiQyYd9HYZmB1zoJj6gYniEuqzs6CKp8ZSpeRDaVQRxR6wEMvW9MSTA9kBg8sJ78W/NZg==
