@@ -395,28 +395,27 @@ export function circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
 export function rectBounce(particle: IParticle, divBounds: IBounds): void {
     const pPos = particle.getPosition(),
         size = particle.getRadius(),
-        bounds = calculateBounds(pPos, size);
-
-    const resH = rectSideBounce(
-        {
-            min: bounds.left,
-            max: bounds.right,
-        },
-        {
-            min: bounds.top,
-            max: bounds.bottom,
-        },
-        {
-            min: divBounds.left,
-            max: divBounds.right,
-        },
-        {
-            min: divBounds.top,
-            max: divBounds.bottom,
-        },
-        particle.velocity.x,
-        getValue(particle.options.bounce.horizontal)
-    );
+        bounds = calculateBounds(pPos, size),
+        resH = rectSideBounce(
+            {
+                min: bounds.left,
+                max: bounds.right,
+            },
+            {
+                min: bounds.top,
+                max: bounds.bottom,
+            },
+            {
+                min: divBounds.left,
+                max: divBounds.right,
+            },
+            {
+                min: divBounds.top,
+                max: divBounds.bottom,
+            },
+            particle.velocity.x,
+            getValue(particle.options.bounce.horizontal)
+        );
 
     if (resH.bounced) {
         if (resH.velocity !== undefined) {
