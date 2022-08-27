@@ -13,21 +13,6 @@ import { OutModeDirection } from "../Enums/Directions/OutModeDirection";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
 import { Vector } from "../Core/Utils/Vector";
 
-declare global {
-    interface Window {
-        customCancelRequestAnimationFrame: (handle: number) => void;
-        customRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        mozCancelRequestAnimationFrame: (handle: number) => void;
-        mozRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        msCancelRequestAnimationFrame: (handle: number) => void;
-        msRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        oCancelRequestAnimationFrame: (handle: number) => void;
-        oRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        webkitCancelRequestAnimationFrame: (handle: number) => void;
-        webkitRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-    }
-}
-
 /**
  * Calculates the bounce on a rectangle side
  * @hidden
@@ -95,15 +80,7 @@ export function isSsr(): boolean {
 export function animate(): (callback: FrameRequestCallback) => number {
     return isSsr()
         ? (callback: FrameRequestCallback): number => setTimeout(callback)
-        : (callback: FrameRequestCallback): number =>
-              (
-                  window.requestAnimationFrame ||
-                  window.webkitRequestAnimationFrame ||
-                  window.mozRequestAnimationFrame ||
-                  window.oRequestAnimationFrame ||
-                  window.msRequestAnimationFrame ||
-                  window.setTimeout
-              )(callback);
+        : (callback: FrameRequestCallback): number => (requestAnimationFrame || setTimeout)(callback);
 }
 
 /**
@@ -112,15 +89,7 @@ export function animate(): (callback: FrameRequestCallback) => number {
 export function cancelAnimation(): (handle: number) => void {
     return isSsr()
         ? (handle: number): void => clearTimeout(handle)
-        : (handle: number): void =>
-              (
-                  window.cancelAnimationFrame ||
-                  window.webkitCancelRequestAnimationFrame ||
-                  window.mozCancelRequestAnimationFrame ||
-                  window.oCancelRequestAnimationFrame ||
-                  window.msCancelRequestAnimationFrame ||
-                  window.clearTimeout
-              )(handle);
+        : (handle: number): void => (cancelAnimationFrame || clearTimeout)(handle);
 }
 
 /**
