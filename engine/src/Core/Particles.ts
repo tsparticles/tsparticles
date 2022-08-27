@@ -351,15 +351,6 @@ export class Particles {
         }
 
         for (const particle of this.array) {
-            // let d = ( dx = container.interactivity.mouse.click_pos_x - p.x ) * dx +
-            //         ( dy = container.interactivity.mouse.click_pos_y - p.y ) * dy;
-            // let f = -BANG_SIZE / d;
-            // if ( d < BANG_SIZE ) {
-            //     let t = Math.atan2( dy, dx );
-            //     p.vx = f * Math.cos(t);
-            //     p.vy = f * Math.sin(t);
-            // }
-
             const resizeFactor = container.canvas.resizeFactor;
 
             if (resizeFactor && !particle.ignoresResizeRatio) {

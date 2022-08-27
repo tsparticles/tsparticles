@@ -132,34 +132,6 @@ export class QuadTree {
         return this.query(new Circle(position.x, position.y, radius), check);
     }
 
-    ///**
-    // * Queries the instance using a [[CircleWarp]] object, with the given position and the given radius
-    // * @param position the circle position
-    // * @param radius the circle radius
-    // * @param containerOrSize the container canvas size
-    // * @param check the function to check if the particle can be added to the result
-    // * @returns the particles inside the given circle
-    // */
-    //queryCircleWarp(
-    //    position: ICoordinates,
-    //    radius: number,
-    //    containerOrSize: Container | IDimension,
-    //    check?: (particle: Particle) => boolean
-    //): Particle[] {
-    //    const container = containerOrSize as Container,
-    //        size = containerOrSize as IDimension;
-    //
-    //    return this.query(
-    //        new CircleWarp(
-    //            position.x,
-    //            position.y,
-    //            radius,
-    //            container.canvas !== undefined ? container.canvas.size : size
-    //        ),
-    //        check
-    //    );
-    //}
-
     /**
      * Queries the instance using a [[Rectangle]] object, with the given position and the given size
      * @param position the rectangle position

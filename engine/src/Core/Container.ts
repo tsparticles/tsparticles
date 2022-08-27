@@ -690,7 +690,7 @@ export class Container {
      * Starts the container, initializes what are needed to create animations and event handling
      */
     async start(): Promise<void> {
-        if (this.started || !guardCheck(this)) {
+        if (!guardCheck(this) || this.started) {
             return;
         }
 
@@ -721,7 +721,7 @@ export class Container {
      * Stops the container, opposite to `start`. Clears some resources and stops events.
      */
     stop(): void {
-        if (!this.started || !guardCheck(this)) {
+        if (!guardCheck(this) || !this.started) {
             return;
         }
 
@@ -763,13 +763,13 @@ export class Container {
 
         this.actualOptions.setTheme(this._currentTheme);
 
-        if (this.responsiveMaxWidth != newMaxWidth) {
-            this.responsiveMaxWidth = newMaxWidth;
-
-            return true;
+        if (this.responsiveMaxWidth === newMaxWidth) {
+            return false;
         }
 
-        return false;
+        this.responsiveMaxWidth = newMaxWidth;
+
+        return true;
     }
 
     private _intersectionManager(entries: IntersectionObserverEntry[]): void {

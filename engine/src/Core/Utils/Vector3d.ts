@@ -172,15 +172,6 @@ export class Vector3d implements ICoordinates3d {
     }
 
     /**
-     * Returns the Manhattan distance between all vectors
-     * @param v the vector used for calculating the distance from the current one
-     * @returns the Manhattan distance between the vectors
-     */
-    manhattanDistanceTo(v: Vector3d): number {
-        return Math.abs(v.x - this.x) + Math.abs(v.y - this.y);
-    }
-
-    /**
      * Multiplies the given scalar and the current vector together, without modifying it
      * @param n the scalar value to multiply to the vector
      * @returns the multiplied vector
