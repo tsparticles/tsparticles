@@ -27,7 +27,7 @@
   "scripts": {
     "build": "tsparticles-build src",
     "build:ci": "tsparticles-build src --ci",
-    "version": "tsparticles-build src --distfiles && git add package.dist.json",
+    "version": "tsparticles-build src -d && git add package.dist.json",
     "prepack": "yarn build"
   },
   "bugs": {
