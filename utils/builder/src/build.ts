@@ -38,7 +38,7 @@ const pkgInfo = require("../package.json");
         -h, --help        Prints this help message
         -v, --version     Prints the version
         
-        -a, --all         Do all build steps (default if no flags are specified)
+        -a, --all         Do all build steps (default if no flags are specified) (same as -b -c -d -l -p -t)
         -b, --bundle      Bundle the library using Webpack
         -c, --clean       Clean the dist folder
         --ci              Do all build steps for CI, no fixing files, only checking if they are correct
@@ -54,8 +54,8 @@ const pkgInfo = require("../package.json");
 
     const ci = process.argv.includes("--ci"),
         all = process.argv.includes("--all") || process.argv.includes("-a") || process.argv.length === 3,
-        doBundle = process.argv.includes("--bundle") || process.argv.includes("-b"),
-        clean = process.argv.includes("--clean") || process.argv.includes("-c"),
+        doBundle = all || process.argv.includes("--bundle") || process.argv.includes("-b"),
+        clean = all || process.argv.includes("--clean") || process.argv.includes("-c"),
         distfiles = all || process.argv.includes("--distfiles") || process.argv.includes("-d"),
         doLint = all || process.argv.includes("--lint") || process.argv.includes("-l"),
         prettier = all || process.argv.includes("--prettier") || process.argv.includes("-p"),
