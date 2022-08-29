@@ -2,6 +2,7 @@
   "extends": "@tsparticles/tsconfig/tsconfig.base.json",
   "compilerOptions": {
     "rootDir": "./src",
+    "skipLibCheck": true
   },
   "include": [
     "./src"
@@ -13,5 +14,5 @@
     "./dist/",
     "./typedoc/",
     "./docs/"
-  ],
+  ]
 }
