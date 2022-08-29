@@ -53,7 +53,11 @@ const pkgInfo = require("../package.json");
     }
 
     const ci = process.argv.includes("--ci"),
-        all = process.argv.includes("--all") || process.argv.includes("-a") || process.argv.length === 3,
+        all =
+            process.argv.includes("--all") ||
+            process.argv.includes("-a") ||
+            process.argv.length === 3 ||
+            (process.argv.length === 4 && ci),
         doBundle = all || process.argv.includes("--bundle") || process.argv.includes("-b"),
         clean = all || process.argv.includes("--clean") || process.argv.includes("-c"),
         distfiles = all || process.argv.includes("--distfiles") || process.argv.includes("-d"),
