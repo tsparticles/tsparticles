@@ -89,7 +89,7 @@ const pkgInfo = require("../package.json");
 
     if (canContinue) {
         // tsc
-        canContinue = buildTS(basePath);
+        canContinue = await buildTS(basePath);
     }
 
     if (canContinue) {

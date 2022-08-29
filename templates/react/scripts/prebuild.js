@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs-extra');
 const mainPackage = require('../package.json');
 const libPackage = './template.json';
 

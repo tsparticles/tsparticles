@@ -87,6 +87,9 @@
     "tsparticles": "^2.2.4",
     "tsparticles-engine": "^2.2.4"
   },
+  "devDependencies": {
+    "fs-extra": "^10.1.0"
+  },
   "scripts": {
     "build": "node scripts/prebuild.js",
     "build:ci": "node scripts/prebuild.js",

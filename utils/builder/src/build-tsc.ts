@@ -1,69 +1,116 @@
-import * as ts from "typescript";
+import fs from "fs-extra";
+import path from "path";
+import ts from "typescript";
 
-function compile(basePath: string, type: "browser" | "cjs" | "esm" | "types" | "umd"): number {
-    let options: unknown;
+async function readConfig(basePath: string, file: string): Promise<string | undefined> {
+    const tsconfigPath = path.join(basePath, file);
+
+    if (await fs.pathExists(tsconfigPath)) {
+        const data = await fs.readFile(path.join(basePath, file));
+
+        return data.toString();
+    }
+
+    return;
+}
+
+async function compile(basePath: string, type: "browser" | "cjs" | "esm" | "types" | "umd"): Promise<number> {
+    let options: unknown, data: string | undefined;
 
     switch (type) {
         case "browser":
-            options = {
-                extends: "@tsparticles/tsconfig/tsconfig.browser.json",
-                compilerOptions: {
-                    rootDir: "./src",
-                    outDir: "./dist/browser",
-                },
-                include: ["./src"],
-            };
+            data = await readConfig(basePath, "tsconfig.browser.json");
+
+            if (!data) {
+                options = {
+                    extends: "@tsparticles/tsconfig/tsconfig.browser.json",
+                    compilerOptions: {
+                        rootDir: "./src",
+                        outDir: "./dist/browser",
+                    },
+                    include: ["./src"],
+                };
+            }
+
             break;
         case "cjs":
-            options = {
-                extends: "@tsparticles/tsconfig/tsconfig.json",
-                compilerOptions: {
-                    rootDir: "./src",
-                    outDir: "./dist/cjs",
-                },
-                include: ["./src"],
-            };
+            data = await readConfig(basePath, "tsconfig.json");
+
+            if (!data) {
+                options = {
+                    extends: "@tsparticles/tsconfig/tsconfig.json",
+                    compilerOptions: {
+                        rootDir: "./src",
+                        outDir: "./dist/cjs",
+                    },
+                    include: ["./src"],
+                };
+            }
+
             break;
         case "esm":
-            options = {
-                extends: "@tsparticles/tsconfig/tsconfig.module.json",
-                compilerOptions: {
-                    rootDir: "./src",
-                    outDir: "./dist/esm",
-                },
-                include: ["./src"],
-            };
+            data = await readConfig(basePath, "tsconfig.module.json");
+
+            if (!data) {
+                options = {
+                    extends: "@tsparticles/tsconfig/tsconfig.module.json",
+                    compilerOptions: {
+                        rootDir: "./src",
+                        outDir: "./dist/esm",
+                    },
+                    include: ["./src"],
+                };
+            }
+
             break;
         case "types":
-            options = {
-                extends: "@tsparticles/tsconfig/tsconfig.types.json",
-                compilerOptions: {
-                    rootDir: "./src",
-                    outDir: "./dist/types",
-                },
-                include: ["./src"],
-            };
+            data = await readConfig(basePath, "tsconfig.types.json");
+
+            if (!data) {
+                options = {
+                    extends: "@tsparticles/tsconfig/tsconfig.types.json",
+                    compilerOptions: {
+                        rootDir: "./src",
+                        outDir: "./dist/types",
+                    },
+                    include: ["./src"],
+                };
+            }
+
             break;
         case "umd":
-            options = {
-                extends: "@tsparticles/tsconfig/tsconfig.umd.json",
-                compilerOptions: {
-                    rootDir: "./src",
-                    outDir: "./dist/umd",
-                },
-                include: ["./src"],
-            };
+            data = await readConfig(basePath, "tsconfig.umd.json");
+
+            if (!data) {
+                options = {
+                    extends: "@tsparticles/tsconfig/tsconfig.umd.json",
+                    compilerOptions: {
+                        rootDir: "./src",
+                        outDir: "./dist/umd",
+                    },
+                    include: ["./src"],
+                };
+            }
+
             break;
     }
 
+    if (!data && !options) {
+        return 2;
+    }
+
+    if (!options && data) {
+        options = JSON.parse(data);
+    }
+
     if (!options) {
-        return 0;
+        return 3;
     }
 
     const parsed = ts.parseJsonConfigFileContent(options, ts.sys, basePath);
 
     if (!parsed) {
-        return 0;
+        return 4;
     }
 
     const program = ts.createProgram(parsed.fileNames, parsed.options),
@@ -83,16 +130,16 @@ function compile(basePath: string, type: "browser" | "cjs" | "esm" | "types" | "
 
     const exitCode = emitResult.emitSkipped ? 1 : 0;
 
-    console.log(`Process exiting with code '${exitCode}'.`);
+    console.log(`TSC for ${type} done with exit code: '${exitCode}'.`);
 
     return exitCode;
 }
 
-export function buildTS(basePath: string): boolean {
+export async function buildTS(basePath: string): Promise<boolean> {
     const types: ("browser" | "cjs" | "esm" | "types" | "umd")[] = ["browser", "cjs", "esm", "types", "umd"];
 
-    for (const type of types) {
-        const exitCode = compile(basePath, type);
+    for await (const type of types) {
+        const exitCode = await compile(basePath, type);
 
         if (exitCode) {
             return false;
