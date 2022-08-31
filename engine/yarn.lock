@@ -441,6 +441,41 @@
   resolved "https://registry.yarnpkg.com/@tsconfig/node16/-/node16-1.0.3.tgz#472eaab5f15c1ffdd7f8628bd4c4f753995ec79e"
   integrity sha512-yOlFc+7UtL/89t2ZhjPvvB/DeAr3r+Dq58IgzsFkOAvVC6NMJXmCGjbptdXdR9qsX7pKcTL+s87FtYREi2dEEQ==
 
+"@tsparticles/build@^1.1.4":
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/@tsparticles/build/-/build-1.1.4.tgz#c75b14cf6ff3f18ac87fa212d9764839a15e4100"
+  integrity sha512-eEMtqv1FhvVN6RFMobjpustljXjahLWa0outI6mxBnWfcApzu6i+owXnrY9nobXfa1+6YdeuAhgnQXYx+ygJFA==
+  dependencies:
+    "@tsparticles/eslint-config" "^1.1.4"
+    "@tsparticles/prettier-config" "^1.1.3"
+    "@tsparticles/tsconfig" "^1.1.3"
+    "@typescript-eslint/eslint-plugin" "^5.33.0"
+    "@typescript-eslint/parser" "^5.33.0"
+    eslint "^8.21.0"
+    eslint-config-prettier "^8.5.0"
+    fs-extra "^10.1.0"
+    klaw "^4.0.1"
+    prettier "^2.7.1"
+    rimraf "^3.0.2"
+    typescript "^4.7.4"
+    webpack "^5.74.0"
+    webpack-tsparticles-plugin "^1.2.4"
+
+"@tsparticles/eslint-config@^1.1.4":
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/@tsparticles/eslint-config/-/eslint-config-1.1.4.tgz#a6e4eae29b905dfcf5464f04009620b0d1f1a5d4"
+  integrity sha512-y6s2Sf9zKlQYRYian/P/QwRuNZN4DB/nxcwelKS+Ml5xlctTAZw/o8YLFSKC8JynD2XXV6olF/CSJu6VdcsYiw==
+
+"@tsparticles/prettier-config@^1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@tsparticles/prettier-config/-/prettier-config-1.1.3.tgz#099a404686a6407c408b6061f32fca91573c9b6f"
+  integrity sha512-p4/cEyeF5D/IfUUVdEQmSQqQ47zZs7K8+CulsMrjA/uDb8PZNikYxXJNRr8FNNcEih282wQ6G7WAuvVoi8/CBQ==
+
+"@tsparticles/tsconfig@^1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@tsparticles/tsconfig/-/tsconfig-1.1.3.tgz#e4166af20ba1ef6772a2eeed4face31955551834"
+  integrity sha512-8dCWgrDx1pSZGwBsWSf7xMtHhtIuT/T9XyEEoNkEqY11kbCP3vWjig4SDgOxNN9AieI6h3KHADpaxXBkokb2zw==
+
 "@types/chai@^4.3.3":
   version "4.3.3"
   resolved "https://registry.yarnpkg.com/@types/chai/-/chai-4.3.3.tgz#3c90752792660c4b562ad73b3fbd68bf3bc7ae07"
@@ -492,9 +527,9 @@
   integrity sha512-Z61JK7DKDtdKTWwLeElSEBcWGRLY8g95ic5FoQqI9CMx0ns/Ghep3B4DfcEimiKMvtamNVULVNKEsiwV3aQmXw==
 
 "@types/node@*", "@types/node@^18.7.1":
-  version "18.7.10"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.7.10.tgz#f642dc9ded1bdd8c2cd847246466e71182b0fd67"
-  integrity sha512-SST7B//wF7xlGoLo1IEVB0cQ4e7BgXlDk5IaPgb5s0DlYLjb4if07h8+0zbQIvahfPNXs6e7zyT0EH1MqaS+5g==
+  version "18.7.14"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.7.14.tgz#0fe081752a3333392d00586d815485a17c2cf3c9"
+  integrity sha512-6bbDaETVi8oyIARulOE9qF1/Qdi/23z6emrUh0fNJRUmjznqrixD4MpGDdgOFk5Xb0m2H6Xu42JGdvAxaJR/wA==
 
 "@types/node@^16.9.2":
   version "16.11.45"
@@ -2231,6 +2266,11 @@ kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
+klaw@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/klaw/-/klaw-4.0.1.tgz#8dc6f5723f05894e8e931b516a8ff15c2976d368"
+  integrity sha512-pgsE40/SvC7st04AHiISNewaIMUbY5V/K8b21ekiPiFoYs/EYSdsGa+FJArB1d441uq4Q8zZyIxvAzkGNlBdRw==
+
 levn@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/levn/-/levn-0.4.1.tgz#ae4562c007473b932a6200d403268dd2fffc6ade"
@@ -3441,6 +3481,28 @@ webpack-sources@^3.2.3:
   version "3.2.3"
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-3.2.3.tgz#2d4daab8451fd4b240cc27055ff6a0c2ccea0cde"
   integrity sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==
+
+webpack-tsparticles-plugin@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/webpack-tsparticles-plugin/-/webpack-tsparticles-plugin-1.2.4.tgz#78826d39b4b5dfc41b6a3d04f4dab0738fb2864c"
+  integrity sha512-UekCpKXq+z9llXadaIgYyL/MYVX2IRJLRSmzJs1S6PtgxOfdjUj3yZYvB1WhCsXC9TLI415BwJJKIGGVQts+3Q==
+  dependencies:
+    "@babel/core" "^7.18.10"
+    "@types/webpack-env" "^1.17.0"
+    "@typescript-eslint/eslint-plugin" "^5.33.0"
+    "@typescript-eslint/parser" "^5.33.0"
+    babel-loader "^8.2.5"
+    browserslist "^4.21.3"
+    copyfiles "^2.4.1"
+    eslint "^8.21.0"
+    eslint-config-prettier "^8.5.0"
+    prettier "^2.7.1"
+    rimraf "^3.0.2"
+    terser-webpack-plugin "^5.3.3"
+    typescript "^4.7.4"
+    webpack "^5.74.0"
+    webpack-bundle-analyzer "^4.5.0"
+    webpack-cli "^4.10.0"
 
 webpack@^5.74.0:
   version "5.74.0"
