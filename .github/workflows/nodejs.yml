@@ -45,6 +45,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
       - run: pnpm install --no-frozen-lockfile
+      - run: pnpm run --filter @tsparticles/build build
+      - run: pnpm install --no-frozen-lockfile
       #- run: npx lerna bootstrap
       - run: npx lerna run build:ci #--concurrency 3
       #- run: lerna test
@@ -115,6 +117,8 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
+      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm run --filter @tsparticles/build build
       - run: pnpm install --no-frozen-lockfile
       #- run: npx lerna bootstrap
       - run: npx lerna run build:ci #--concurrency 3
