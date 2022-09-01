@@ -4,10 +4,10 @@
   "description": "tsParticles particles wobble updater",
   "homepage": "https://particles.js.org",
   "scripts": {
-    "build": "npx tsparticles-build src && pnpm run build:docs",
-    "build:ci": "npx tsparticles-build src --ci",
+    "build": "tsparticles-build src && pnpm run build:docs",
+    "build:ci": "tsparticles-build src --ci",
     "build:docs": "rimraf -f docs && npx typedoc",
-    "version": "npx tsparticles-build src -d && git add package.dist.json",
+    "version": "tsparticles-build src -d && git add package.dist.json",
     "prepack": "pnpm run build"
   },
   "repository": {
