@@ -12,9 +12,9 @@
     "lint:ci": "prettier --check ./configs && prettier --check ./css/*.scss && prettier --check ./js/404.js && prettier --check ./js/demo.js && prettier --check ./presets && prettier --check ./samples && prettier --check index.html && prettier --check privacy.html && prettier --check 404.html && prettier --check video.html",
     "build:js": "minify ./js/demo.js > ./js/demo.min.js && minify ./js/404.js > ./js/404.min.js",
     "build:css": "sass ./css/main.scss ./css/main.css && minify ./css/main.css > ./css/main.min.css && sass ./css/presets.scss ./css/presets.css && minify ./css/presets.css > ./css/presets.min.css && sass ./css/404.scss ./css/404.css && minify ./css/404.css > ./css/404.min.css",
-    "build": " yarn clear:cache && yarn lint && yarn build:css && yarn build:js",
-    "build:ci": " yarn clear:cache && yarn lint:ci && yarn build:css && yarn build:js",
-    "deploy": "yarn build && yarn clear:docs && lerna run build-docs && node deploy.cjs"
+    "build": " pnpm run clear:cache && pnpm run lint && pnpm run build:css && pnpm run build:js",
+    "build:ci": " pnpm run clear:cache && pnpm run lint:ci && pnpm run build:css && pnpm run build:js",
+    "deploy": "pnpm run build && pnpm run clear:docs && lerna run build-docs && node deploy.cjs"
   },
   "repository": {
     "type": "git",

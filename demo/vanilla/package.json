@@ -23,8 +23,8 @@
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^6.1.1",
-    "@typescript-eslint/eslint-plugin": "^5.21.0",
-    "@typescript-eslint/parser": "^5.21.0",
+    "@typescript-eslint/eslint-plugin": "^5.36.1",
+    "@typescript-eslint/parser": "^5.36.1",
     "bootstrap": "^5.1.3",
     "connect-livereload": "^0.6.1",
     "eslint": "^8.14.0",
@@ -111,6 +111,7 @@
     "tsparticles-updater-stroke-color": "^2.2.4",
     "tsparticles-updater-tilt": "^2.2.4",
     "tsparticles-updater-twinkle": "^2.2.4",
-    "tsparticles-updater-wobble": "^2.2.4"
+    "tsparticles-updater-wobble": "^2.2.4",
+    "typescript": "^4.8.2"
   }
 }

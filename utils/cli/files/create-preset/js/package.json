@@ -18,10 +18,10 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "lint:ci": "eslint . --ext .js,.jsx,.ts,.tsx",
     "bundle": "webpack --mode production --config webpack.config.cjs",
-    "build": "yarn clear:dist && yarn prettify:src && yarn lint && yarn bundle && yarn prettify:readme",
-    "build:ci": "yarn clear:dist && yarn prettify:ci:src && yarn lint:ci && yarn bundle && yarn prettify:ci:readme",
+    "build": "pnpm run clear:dist && pnpm run prettify:src && pnpm run lint && pnpm run bundle && pnpm run prettify:readme",
+    "build:ci": "pnpm run clear:dist && pnpm run prettify:ci:src && pnpm run lint:ci && pnpm run bundle && pnpm run prettify:ci:readme",
     "clear:dist": "rimraf -f ./dist",
-    "prepack": "yarn build"
+    "prepack": "pnpm run build"
   },
   "repository": {
     "type": "git",

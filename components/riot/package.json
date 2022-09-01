@@ -6,7 +6,7 @@
   "scripts": {
     "build": "riot -f umd src -o dist",
     "build:ci": "riot -f umd src -o dist",
-    "prepack": "yarn build"
+    "prepack": "pnpm run build"
   },
   "repository": {
     "type": "git",
