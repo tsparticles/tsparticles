@@ -1793,9 +1793,9 @@ babel-plugin-polyfill-regenerator@^0.4.0:
     "@babel/helper-define-polyfill-provider" "^0.3.2"
 
 babel-preset-solid@^1.3.17:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/babel-preset-solid/-/babel-preset-solid-1.5.2.tgz#fd091586210c306608ca020b75f233f1494ac44a"
-  integrity sha512-T6cEWWAmLpTlQTgWiW0PUSd2Bji+QH8eP7S5oVfDDqWiv7FdwcXnwr4xjYO/Hj5k6p7UsM9dVtxkzqalM6FF4Q==
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/babel-preset-solid/-/babel-preset-solid-1.5.3.tgz#e01f97778657f9db14113a80598f1065aa896e65"
+  integrity sha512-I9nw4sbe8uKiPFCaFT70rKaI6KQwsqXQ9f/cZV9NPLN1sRhQEyohdXQYYJk1zFPzT2htZws8koKD41+R63qmZg==
   dependencies:
     babel-plugin-jsx-dom-expressions "^0.34.2"
 
@@ -5198,6 +5198,11 @@ tslib@^2.0.3:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
   integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
+
+tsparticles-engine@^2.2.4:
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/tsparticles-engine/-/tsparticles-engine-2.2.4.tgz#b45f56ad3f3f7c5cc0ace466815305e19cb554fc"
+  integrity sha512-glpUmRJKdbtItcHqJhE05V224DsGSV283oXR9dR6aiqA92BX/2dxU/03YrvcbPTppuMo7rFsBMf4NrPV3tXEfw==
 
 tsutils@^3.21.0:
   version "3.21.0"
