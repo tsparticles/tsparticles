@@ -117,7 +117,11 @@ async function compile(basePath: string, type: "browser" | "cjs" | "esm" | "type
         emitResult = program.emit(),
         allDiagnostics = ts.getPreEmitDiagnostics(program).concat(emitResult.diagnostics);
 
+    let failed = false;
+
     allDiagnostics.forEach((diagnostic) => {
+        failed = failed || diagnostic.category === ts.DiagnosticCategory.Error;
+
         if (diagnostic.file) {
             const { line, character } = ts.getLineAndCharacterOfPosition(diagnostic.file, diagnostic.start ?? 0),
                 message = ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n");
@@ -128,7 +132,7 @@ async function compile(basePath: string, type: "browser" | "cjs" | "esm" | "type
         }
     });
 
-    const exitCode = emitResult.emitSkipped ? 1 : 0;
+    const exitCode = emitResult.emitSkipped || failed ? 1 : 0;
 
     console.log(`TSC for ${type} done with exit code: '${exitCode}'.`);
 

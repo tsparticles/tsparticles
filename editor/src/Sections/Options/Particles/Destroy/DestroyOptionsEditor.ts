@@ -1,12 +1,11 @@
-import type { Container, IDestroy } from "tsparticles-engine";
-import { DestroyMode } from "tsparticles-engine";
+import type { Container } from "tsparticles-engine";
 import { EditorBase } from "../../../../EditorBase";
 import type { EditorGroup } from "object-gui";
 import { EditorType } from "object-gui";
 
 export class DestroyOptionsEditor extends EditorBase {
     group!: EditorGroup;
-    private options!: IDestroy;
+    private options!: unknown;
 
     constructor(particles: Container) {
         super(particles);
@@ -14,7 +13,7 @@ export class DestroyOptionsEditor extends EditorBase {
 
     addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("destroy", "Destroy");
-        this.options = this.group.data as IDestroy;
+        this.options = this.group.data;
 
         this.addSplit();
         this.addProperties();
@@ -31,10 +30,10 @@ export class DestroyOptionsEditor extends EditorBase {
             })
             .addItems([
                 {
-                    value: DestroyMode.none,
+                    value: "none",
                 },
                 {
-                    value: DestroyMode.split,
+                    value: "split",
                 },
             ]);
     }
