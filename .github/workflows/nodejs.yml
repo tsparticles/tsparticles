@@ -31,6 +31,10 @@ jobs:
         with:
           version: 7
           run_install: false
+      - name: Get pnpm version
+        id: pnpm-version
+        run: |
+          echo "$(pnpm --version)"
 
       - name: Get pnpm store directory
         id: pnpm-cache
@@ -104,6 +108,10 @@ jobs:
         with:
           version: 7
           run_install: false
+      - name: Get pnpm version
+        id: pnpm-version
+        run: |
+          echo "$(pnpm --version)"
 
       - name: Get pnpm store directory
         id: pnpm-cache
