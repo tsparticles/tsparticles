@@ -25,18 +25,29 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
-      #- name: Get yarn cache directory path
-      #  id: yarn-cache-dir-path
-      #  run: echo "::set-output name=dir::$(yarn cache dir)"
-      #- uses: actions/cache@v3
-      #  id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
-      #  with:
-      #    path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-      #    key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-      #    restore-keys: |
-      #      ${{ runner.os }}-yarn-
-      - run: yarn install
-      - run: npx lerna bootstrap
+      - uses: pnpm/action-setup@v2.0.1
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 7
+          run_install: false
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm run --filter @tsparticles/build build
+      - run: pnpm install --no-frozen-lockfile
+      #- run: npx lerna bootstrap
       - run: npx lerna run build:ci #--concurrency 3
       #- run: lerna test
       #- name: Codacy Coverage Reporter
@@ -87,18 +98,29 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
-      #- name: Get yarn cache directory path
-      #  id: yarn-cache-dir-path
-      #  run: echo "::set-output name=dir::$(yarn cache dir)"
-      #- uses: actions/cache@v3
-      #  id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
-      #  with:
-      #    path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-      #    key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-      #    restore-keys: |
-      #      ${{ runner.os }}-yarn-
-      - run: yarn install
-      - run: npx lerna bootstrap
+      - uses: pnpm/action-setup@v2.0.1
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 7
+          run_install: false
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm run --filter @tsparticles/build build
+      - run: pnpm install --no-frozen-lockfile
+      #- run: npx lerna bootstrap
       - run: npx lerna run build:ci #--concurrency 3
       - run: echo ${{ github.repository_owner }}
       - run: echo ${{ github.actor }}

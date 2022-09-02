@@ -135,6 +135,12 @@ npm install tsparticles-engine
 yarn add tsparticles-engine
 ```
 
+### **_pnpm_**
+
+```shell
+pnpm install tsparticles-engine
+```
+
 #### Import and require
 
 Starting from version 1.12.11 `import` and `require` can be used to import `tsParticles` .

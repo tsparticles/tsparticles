@@ -93,7 +93,7 @@
   "scripts": {
     "build": "node scripts/prebuild.js",
     "build:ci": "node scripts/prebuild.js",
-    "version": "yarn build && git add ./template.json",
-    "prepack": "yarn build"
+    "version": "pnpm run build && git add ./template.json",
+    "prepack": "pnpm run build"
   }
 }

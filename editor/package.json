@@ -28,7 +28,7 @@
     "build": "tsparticles-build src",
     "build:ci": "tsparticles-build src --ci",
     "version": "tsparticles-build src -d && git add package.dist.json",
-    "prepack": "yarn build"
+    "prepack": "pnpm run build"
   },
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"

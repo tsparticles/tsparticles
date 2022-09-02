@@ -21,6 +21,7 @@
     "@nrwl/cli": "^14.6.1",
     "@nrwl/nx-cloud": "^14.6.0",
     "@nrwl/workspace": "^14.6.1",
+    "@parcel/core": "^2.7.0",
     "@parcel/transformer-sass": "^2.7.0",
     "@types/node": "^18.7.14",
     "copyfiles": "^2.4.1",
@@ -38,6 +39,8 @@
     "typedoc-plugin-missing-exports": "^1.0.0",
     "typescript": "^4.8.2",
     "yorkie": "^2.0.0"
-  }
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }
-

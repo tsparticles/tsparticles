@@ -60,13 +60,13 @@
     "build:all": "ng build",
     "build": "node scripts/prebuild.js && ng build ng-particles --configuration production",
     "build:ci": "node scripts/prebuild.js && ng build ng-particles --configuration production",
-    "version": "yarn build && git add ./projects/ng-particles/package.json",
+    "version": "pnpm run build && git add ./projects/ng-particles/package.json",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "prepack": "yarn build"
+    "prepack": "pnpm run build"
   },
   "publishConfig": {
-    "directory": "./dist/ng-particles"
+    "directory": "dist/ng-particles"
   },
   "dependencies": {
     "@angular/animations": "~14.2.0",
@@ -96,5 +96,24 @@
     "karma-jasmine-html-reporter": "~2.0.0",
     "ng-packagr": "~14.2.0",
     "typescript": "~4.8.0"
+  },
+  "module": "dist/ng-particles/fesm2015/ng-particles.mjs",
+  "es2020": "dist/ng-particles/fesm2020/ng-particles.mjs",
+  "esm2020": "dist/ng-particles/esm2020/ng-particles.mjs",
+  "fesm2020": "dist/ng-particles/fesm2020/ng-particles.mjs",
+  "fesm2015": "dist/ng-particles/fesm2015/ng-particles.mjs",
+  "typings": "dist/ng-particles/index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./dist/ng-particles/package.json"
+    },
+    ".": {
+      "types": "./dist/ng-particles/index.d.ts",
+      "esm2020": "./dist/ng-particles/esm2020/ng-particles.mjs",
+      "es2020": "./dist/ng-particles/fesm2020/ng-particles.mjs",
+      "es2015": "./dist/ng-particles/fesm2015/ng-particles.mjs",
+      "node": "./dist/ng-particles/fesm2015/ng-particles.mjs",
+      "default": "./dist/ng-particles/fesm2020/ng-particles.mjs"
+    }
   }
 }

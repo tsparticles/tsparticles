@@ -83,7 +83,7 @@
   "scripts": {
     "build": "ts-node -O '{ \"module\": \"commonjs\" }' build.ts",
     "build:ci": "ts-node -O '{ \"module\": \"commonjs\" }' build.ts",
-    "prepack": "yarn build"
+    "prepack": "pnpm run build"
   },
   "dependencies": {
     "tsparticles-engine": "^2.2.4"
