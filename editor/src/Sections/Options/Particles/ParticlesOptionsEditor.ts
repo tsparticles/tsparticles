@@ -23,15 +23,15 @@ import { WobbleOptionsEditor } from "./Wobble/WobbleOptionsEditor";
 
 export class ParticlesOptionsEditor extends EditorBase {
     group!: EditorGroup;
-    private options!: IParticlesOptions;
+    private options!: () => IParticlesOptions;
 
-    constructor(particles: Container) {
+    constructor(particles: () => Container) {
         super(particles);
     }
 
-    addToGroup(parent: EditorGroup, customName?: string, parentData?: unknown): void {
+    addParticlesToGroup(parent: EditorGroup, customName?: string, parentData?: () => unknown): void {
         this.group = parent.addGroup(customName ?? "particles", "Particles", true, parentData);
-        this.options = this.group.data as IParticlesOptions;
+        this.options = this.group.data as () => IParticlesOptions;
 
         this.addBounce();
         this.addCollisions();
@@ -52,6 +52,10 @@ export class ParticlesOptionsEditor extends EditorBase {
         this.addTwinkle();
         this.addWobble();
         this.addProperties();
+    }
+
+    addToGroup(parent: EditorGroup, options?: () => unknown): void {
+        this.addParticlesToGroup(parent, undefined, options);
     }
 
     private addBounce(): void {
@@ -109,10 +113,8 @@ export class ParticlesOptionsEditor extends EditorBase {
     }
 
     private addProperties(): void {
-        const particles = this.particles;
-
         this.group.addProperty("reduceDuplicates", "Reduce Duplicates", EditorType.boolean).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
     }
 

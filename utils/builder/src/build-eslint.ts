@@ -15,7 +15,10 @@ export async function lint(ci: boolean): Promise<boolean> {
         const errors = ESLint.getErrorResults(results);
 
         if (errors.length > 0) {
-            console.log(errors);
+            const messages = errors.map((t) =>
+                t.messages.map((m) => `${t.filePath} (${m.line},${m.column}): ${m.message}`).join("\n")
+            );
+            console.log(messages.join("\n"));
 
             return false;
         }

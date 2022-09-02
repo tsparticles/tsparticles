@@ -8,15 +8,15 @@ import { HoverEventsOptionsEditor } from "./HoverEventsOptionsEditor";
 
 export class EventsOptionsEditor extends EditorBase {
     group!: EditorGroup;
-    private options!: IEvents;
+    private options!: () => IEvents;
 
-    constructor(particles: Container) {
+    constructor(particles: () => Container) {
         super(particles);
     }
 
     addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("events", "Events");
-        this.options = this.group.data as IEvents;
+        this.options = this.group.data as () => IEvents;
 
         this.addClick();
         this.addDivs();
@@ -43,10 +43,8 @@ export class EventsOptionsEditor extends EditorBase {
     }
 
     private addProperties(): void {
-        const particles = this.particles;
-
         this.group.addProperty("resize", "Resize", EditorType.boolean).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
     }
 }

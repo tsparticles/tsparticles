@@ -5,9 +5,9 @@ import { EditorType } from "object-gui";
 
 export class DestroyOptionsEditor extends EditorBase {
     group!: EditorGroup;
-    private options!: unknown;
+    private options!: () => unknown;
 
-    constructor(particles: Container) {
+    constructor(particles: () => Container) {
         super(particles);
     }
 
@@ -21,12 +21,11 @@ export class DestroyOptionsEditor extends EditorBase {
 
     private addProperties(): void {
         const group = this.group;
-        const particles = this.particles;
 
         group
             .addProperty("mode", "Mode", EditorType.select)
             .change(async () => {
-                particles.refresh();
+                this.particles().refresh();
             })
             .addItems([
                 {
@@ -40,22 +39,21 @@ export class DestroyOptionsEditor extends EditorBase {
 
     private addSplit(): void {
         const group = this.group.addGroup("split", "Split");
-        const particles = this.particles;
 
         const factorGroup = group.addGroup("factor", "Factor");
 
         const randomFactorGroup = factorGroup.addGroup("random", "Random");
 
         randomFactorGroup.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         randomFactorGroup.addProperty("minimumValue", "Minimum Value", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         factorGroup.addProperty("value", "Value", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         const rateGroup = group.addGroup("rate", "Rate");
@@ -63,19 +61,19 @@ export class DestroyOptionsEditor extends EditorBase {
         const randomRateGroup = rateGroup.addGroup("random", "Random");
 
         randomRateGroup.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         randomRateGroup.addProperty("minimumValue", "Minimum Value", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         rateGroup.addProperty("value", "Value", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group.addProperty("count", "Count", EditorType.number).change(async () => {
-            particles.refresh();
+            await this.particles().refresh();
         });
     }
 }

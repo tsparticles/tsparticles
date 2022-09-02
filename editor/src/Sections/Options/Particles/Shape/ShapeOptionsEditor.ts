@@ -5,27 +5,25 @@ import { EditorType } from "object-gui";
 
 export class ShapeOptionsEditor extends EditorBase {
     group!: EditorGroup;
-    private options!: IShape;
+    private options!: () => IShape;
 
-    constructor(particles: Container) {
+    constructor(particles: () => Container) {
         super(particles);
     }
 
     addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("shape", "Shape");
-        this.options = this.group.data as IShape;
+        this.options = this.group.data as () => IShape;
 
         this.addProperties();
     }
 
     private addProperties(): void {
-        const particles = this.particles;
-
         const selectType = this.group.addProperty("type", "Type", EditorType.select).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
-        for (const key of particles.drawers.keys()) {
+        for (const key of this.particles().drawers.keys()) {
             selectType.addItem(key);
         }
     }

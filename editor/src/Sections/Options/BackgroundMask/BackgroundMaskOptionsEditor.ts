@@ -5,23 +5,22 @@ import { EditorType } from "object-gui";
 
 export class BackgroundMaskOptionsEditor extends EditorBase {
     group!: EditorGroup;
-    private options!: IBackgroundMask;
+    private options!: () => IBackgroundMask;
 
-    constructor(particles: Container) {
+    constructor(particles: () => Container) {
         super(particles);
     }
 
     addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("backgroundMask", "Background Mask");
-        this.options = this.group.data as IBackgroundMask;
+        this.options = this.group.data as () => IBackgroundMask;
 
         this.addCover();
         this.addProperties();
     }
 
     private addCover(): void {
-        const particles = this.particles;
-        const options = this.options.cover as IBackgroundMaskCover;
+        const options = this.options().cover as IBackgroundMaskCover;
         const coverColor = options.color as IColor;
         const coverGroup = this.group.addGroup("cover", "Cover");
 
@@ -32,13 +31,13 @@ export class BackgroundMaskOptionsEditor extends EditorBase {
                     coverColor.value = value;
                 }
 
-                await particles.refresh();
+                await this.particles().refresh();
             });
 
         coverGroup
             .addProperty("opacity", "Opacity", EditorType.number)
             .change(async () => {
-                await particles.refresh();
+                await this.particles().refresh();
             })
             .step(0.01)
             .min(0)
@@ -46,12 +45,10 @@ export class BackgroundMaskOptionsEditor extends EditorBase {
     }
 
     private addProperties(): void {
-        const particles = this.particles;
-
         this.group
             .addProperty("composite", "Composite", EditorType.select)
             .change(async () => {
-                await particles.refresh();
+                await this.particles().refresh();
             })
             .addItems([
                 {
@@ -135,7 +132,7 @@ export class BackgroundMaskOptionsEditor extends EditorBase {
             ]);
 
         this.group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
     }
 }

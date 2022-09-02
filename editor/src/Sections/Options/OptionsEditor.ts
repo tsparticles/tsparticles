@@ -9,18 +9,26 @@ import { InfectionOptionsEditor } from "./Infection/InfectionOptionsEditor";
 import { InteractivityOptionsEditor } from "./Interactivity/InteractivityOptionsEditor";
 import { MotionOptionsEditor } from "./Motion/MotionOptionsEditor";
 import { ParticlesOptionsEditor } from "./Particles/ParticlesOptionsEditor";
+import { editorChangedEvent } from "../../Utils";
+import { tsParticles } from "tsparticles-engine";
 
 export class OptionsEditor extends EditorBase {
     group!: EditorGroup;
-    private options!: IOptions;
+    private options!: () => IOptions;
 
-    constructor(particles: Container) {
+    constructor(particles: () => Container) {
         super(particles);
+
+        tsParticles.addEventListener(editorChangedEvent, async (): Promise<void> => {
+            await particles().refresh();
+
+            this.options = (): IOptions => particles().options;
+        });
     }
 
     addToGroup(parent: EditorGroup | Editor): void {
         this.group = parent.addGroup("options", "Options", true);
-        this.options = this.group.data as IOptions;
+        this.options = (() => this.group.data()) as () => IOptions;
 
         this.addBackground();
         this.addBackgroundMask();
@@ -75,28 +83,26 @@ export class OptionsEditor extends EditorBase {
     }
 
     private addProperties(): void {
-        const particles = this.particles;
-
         this.group.addProperty("autoPlay", "Auto Play", EditorType.boolean).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         this.group.addProperty("detectRetina", "Detect Retina", EditorType.boolean).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         this.group.addProperty("fpsLimit", "FPS Limit", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         this.group.addProperty("pauseOnBlur", "Pause on Blur", EditorType.boolean).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         this.group
             .addProperty("pauseOnOutsideViewport", "Pause on Outside Viewport", EditorType.boolean)
             .change(async () => {
-                await particles.refresh();
+                await this.particles().refresh();
             });
     }
 }
