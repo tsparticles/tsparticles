@@ -4,10 +4,10 @@
   "description": "tsParticles particles destroy updater",
   "homepage": "https://particles.js.org",
   "scripts": {
-    "build": "tsparticles-build src && pnpm run build:docs",
-    "build:ci": "tsparticles-build src --ci",
+    "build": "tsparticles-build",
+    "build:ci": "tsparticles-build --ci",
     "build:docs": "rimraf -f docs && typedoc",
-    "version": "tsparticles-build src -d && git add package.dist.json",
+    "version": "tsparticles-build -d && git add package.dist.json",
     "prepack": "pnpm run build"
   },
   "repository": {

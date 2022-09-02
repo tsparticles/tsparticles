@@ -25,9 +25,9 @@
     "directory": "editor"
   },
   "scripts": {
-    "build": "tsparticles-build src",
-    "build:ci": "tsparticles-build src --ci",
-    "version": "tsparticles-build src -d && git add package.dist.json",
+    "build": "tsparticles-build",
+    "build:ci": "tsparticles-build --ci",
+    "version": "tsparticles-build -d && git add package.dist.json",
     "prepack": "pnpm run build"
   },
   "bugs": {

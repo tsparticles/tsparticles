@@ -14,13 +14,6 @@ const pkgInfo = require("../package.json");
 (async function (): Promise<void> {
     console.log(`tsParticles Builder v${pkgInfo.version}\n`);
 
-    if (process.argv.length < 2) {
-        console.error(`Not enough parameters, run "tsparticles-build --help" for a full list`);
-
-        process.exitCode = 1;
-        return;
-    }
-
     if (process.argv[2] === "--version" || process.argv[2] === "-v") {
         console.log(`
     tsParticles Builder version ${pkgInfo.version}
@@ -33,6 +26,9 @@ const pkgInfo = require("../package.json");
     if (process.argv[2] === "--help" || process.argv[2] === "-h") {
         console.log(`
     Usage: tsparticles-build [path] [-a] [-b] [-c] [--ci] [-d] [-l] [-p] [-t]
+    
+    Arguments:
+        path    Path to the tsParticles project root folder, default is "src"
     
     Options:
         -h, --help        Prints this help message
@@ -52,12 +48,15 @@ const pkgInfo = require("../package.json");
         return;
     }
 
-    const ci = process.argv.includes("--ci"),
+    const hasPath = !!process.argv.find((a, idx) => idx > 1 && !a.startsWith("-")),
+        ci = process.argv.includes("--ci"),
         all =
             process.argv.includes("--all") ||
             process.argv.includes("-a") ||
-            process.argv.length === 3 ||
-            (process.argv.length === 4 && ci),
+            (process.argv.length === 2 && !hasPath) ||
+            (process.argv.length === 3 && !hasPath && ci) ||
+            (process.argv.length === 3 && hasPath) ||
+            (process.argv.length === 4 && hasPath && ci),
         doBundle = all || process.argv.includes("--bundle") || process.argv.includes("-b"),
         clean = all || process.argv.includes("--clean") || process.argv.includes("-c"),
         distfiles = all || process.argv.includes("--distfiles") || process.argv.includes("-d"),
@@ -71,7 +70,8 @@ const pkgInfo = require("../package.json");
         await clearDist(basePath);
     }
 
-    const srcPath = path.join(basePath, process.argv[2]);
+    const argPath = !hasPath ? "src" : process.argv[2],
+        srcPath = path.join(basePath, argPath);
 
     if (!(await fs.pathExists(srcPath))) {
         console.error("Provided path does not exist");
