@@ -126,7 +126,7 @@ export class LinksOptionsEditor extends EditorBase {
         const group = this.group.addGroup("triangles", "Triangles");
         const optionsFunc = (): ILinksTriangle => this.options().triangles;
         const options = optionsFunc();
-        const color = typeof options.color === "string" ? options.color : options.color?.value;
+        const color = typeof options?.color === "string" ? options.color : options?.color?.value;
 
         group.addProperty("color", "Color", EditorType.color, color, false).change(async (value: unknown) => {
             const options = optionsFunc();

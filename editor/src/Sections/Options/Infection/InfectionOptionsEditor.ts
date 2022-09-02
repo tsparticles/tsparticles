@@ -76,22 +76,28 @@ export class InfectionOptionsEditor extends EditorBase {
     }
 
     private addStages(): void {
-        const options = this.options;
+        const options = this.options();
         const stagesGroup = this.group.addGroup("stages", "Stages");
 
-        for (let i = 0; i < options().stages.length; i++) {
-            this.addStage(
-                stagesGroup,
-                () => options().stages,
-                () => i + 1
-            );
+        if (options && !options.stages) {
+            options.stages = [];
+        }
+
+        if (options) {
+            for (let i = 0; i < options.stages.length; i++) {
+                this.addStage(
+                    stagesGroup,
+                    () => options.stages,
+                    () => i + 1
+                );
+            }
         }
 
         stagesGroup.addButton("addStage", "Add Stage", false).click(async () => {
             this.addStage(
                 stagesGroup,
-                () => options().stages,
-                () => options().stages.length
+                () => this.options().stages,
+                () => this.options().stages.length
             );
 
             await this.particles().refresh();
