@@ -71,6 +71,7 @@
     "tsparticles-plugin-absorbers": "^2.2.4",
     "tsparticles-plugin-emitters": "^2.2.4",
     "tsparticles-plugin-hsv-color": "^2.2.4",
+    "tsparticles-plugin-image-mask": "^2.2.4",
     "tsparticles-plugin-infection": "^2.2.4",
     "tsparticles-plugin-polygon-mask": "^2.2.4",
     "tsparticles-preset-big-circles": "^2.2.4",

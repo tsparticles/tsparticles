@@ -302,6 +302,7 @@ canvas {
 
         loadFull(tsParticles);
 
+        loadImageMaskPlugin(tsParticles);
         loadInfectionPlugin(tsParticles);
         loadLightInteraction(tsParticles);
         loadParticlesRepulseInteraction(tsParticles);
