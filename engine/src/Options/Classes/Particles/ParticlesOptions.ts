@@ -114,7 +114,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         const strokeToLoad = data.stroke ?? data.shape?.stroke;
 
         if (strokeToLoad) {
-            this.stroke = executeOnSingleOrMultiple(this.stroke, (t) => {
+            this.stroke = executeOnSingleOrMultiple(strokeToLoad, (t) => {
                 const tmp = new Stroke();
 
                 tmp.load(t);
