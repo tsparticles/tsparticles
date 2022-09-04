@@ -1,4 +1,5 @@
 {
+  "smooth": true,
   "interactivity": {
     "events": {
       "onHover": {
@@ -23,16 +24,16 @@
   "particles": {
     "move": {
       "direction": "none",
-      "distance": 2,
-      "enable": false,
+      "distance": 10,
+      "enable": true,
       "outModes": "out",
       "speed": 1
     },
     "number": {
-      "value": 800
+      "value": 600
     },
     "shape": {
-      "type": "circle"
+      "type": ["circle", "square", "triangle"]
     },
     "size": {
       "value": {
