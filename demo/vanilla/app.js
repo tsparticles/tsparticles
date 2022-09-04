@@ -89,6 +89,7 @@ app.use("/path-polygon", express.static("./node_modules/tsparticles-path-polygon
 app.use("/path-perlin-noise", express.static("./node_modules/tsparticles-path-perlin-noise/dist"));
 app.use("/path-simplex-noise", express.static("./node_modules/tsparticles-path-simplex-noise/dist"));
 app.use("/plugin-hsv-color", express.static("./node_modules/tsparticles-plugin-hsv-color/dist"));
+app.use("/plugin-image-mask", express.static("./node_modules/tsparticles-plugin-image-mask/dist"))
 app.use("/plugin-infection", express.static("./node_modules/tsparticles-plugin-infection/dist"));
 app.use("/preset-big-circles", express.static("./node_modules/tsparticles-preset-big-circles/dist"));
 app.use("/preset-bubbles", express.static("./node_modules/tsparticles-preset-bubbles/dist"));

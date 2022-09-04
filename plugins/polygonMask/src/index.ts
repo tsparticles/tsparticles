@@ -1,8 +1,8 @@
 import "./pathseg";
-import type { Container, Engine, IOptions, IPlugin, Options, RecursivePartial } from "tsparticles-engine";
-import type { IPolygonMaskOptions } from "./Options/Interfaces/IPolygonMaskOptions";
+import type { Container, Engine, IPlugin, Options, RecursivePartial } from "tsparticles-engine";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
 import { PolygonMaskInstance } from "./PolygonMaskInstance";
+import type { PolygonMaskOptions } from "./types";
 import { PolygonMaskType } from "./Enums/PolygonMaskType";
 
 /**
@@ -23,12 +23,12 @@ class PolygonMaskPlugin implements IPlugin {
         return new PolygonMaskInstance(container, this._engine);
     }
 
-    loadOptions(options: Options, source?: RecursivePartial<IOptions & IPolygonMaskOptions>): void {
+    loadOptions(options: Options, source?: RecursivePartial<PolygonMaskOptions>): void {
         if (!this.needsPlugin(source)) {
             return;
         }
 
-        const optionsCast = options as unknown as IPolygonMaskOptions;
+        const optionsCast = options as unknown as PolygonMaskOptions;
         let polygonOptions = optionsCast.polygon as PolygonMask;
 
         if (polygonOptions?.load === undefined) {
@@ -38,7 +38,7 @@ class PolygonMaskPlugin implements IPlugin {
         polygonOptions.load(source?.polygon);
     }
 
-    needsPlugin(options?: RecursivePartial<IOptions & IPolygonMaskOptions>): boolean {
+    needsPlugin(options?: RecursivePartial<PolygonMaskOptions>): boolean {
         return (
             options?.polygon?.enable ??
             (options?.polygon?.type !== undefined && options.polygon.type !== PolygonMaskType.none)
