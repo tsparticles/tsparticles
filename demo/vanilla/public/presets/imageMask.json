@@ -16,7 +16,7 @@
         "distance": 40,
         "duration": 2,
         "opacity": 8,
-        "size": 10
+        "size": 15
       }
     }
   },
@@ -24,7 +24,7 @@
     "move": {
       "direction": "none",
       "distance": 2,
-      "enable": true,
+      "enable": false,
       "outModes": "out",
       "speed": 1
     },
@@ -36,15 +36,18 @@
     },
     "size": {
       "value": {
-        "min": 1,
-        "max": 3
+        "min": 3,
+        "max": 5
       }
     }
   },
   "image": {
     "enable": true,
     "src": "https://particles.js.org/images/amongus_cyan.png",
-    "scale": 5
+    "scale": 5,
+    "pixels": {
+      "filter": "pixelFilter"
+    }
   },
   "background": {
     "color": "#000000",

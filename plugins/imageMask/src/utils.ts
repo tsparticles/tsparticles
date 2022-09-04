@@ -7,12 +7,8 @@ export type ImagePixelData = {
 };
 
 export function shuffle<T>(array: T[]): T[] {
-    let currentIndex = array.length,
-        randomIndex;
-
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
+    for (let currentIndex = array.length - 1; currentIndex >= 0; currentIndex--) {
+        const randomIndex = Math.floor(Math.random() * currentIndex);
 
         [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
     }
@@ -46,9 +42,7 @@ export function getImageData(src: string, offset: number): Promise<ImagePixelDat
 
             const pixels: IRgba[][] = [];
 
-            let i = 0;
-
-            while (i < imageData.length - 1) {
+            for (let i = 0; i < imageData.length; i += offset) {
                 const pos = {
                     x: (i / offset) % canvas.width,
                     y: Math.floor(i / offset / canvas.width),
@@ -64,15 +58,9 @@ export function getImageData(src: string, offset: number): Promise<ImagePixelDat
                     b: imageData[i + 2],
                     a: imageData[i + 3],
                 };
-
-                i += offset;
             }
 
-            const res = { pixels, width: Math.min(...pixels.map((row) => row.length)), height: pixels.length };
-
-            console.log(res);
-
-            resolve(res);
+            resolve({ pixels, width: Math.min(...pixels.map((row) => row.length)), height: pixels.length });
         };
         image.onerror = reject;
     });

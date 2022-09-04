@@ -1,11 +1,4 @@
-import type {
-    Container,
-    Engine,
-    IContainerPlugin,
-    IParticlesOptions,
-    IRgb,
-    RecursivePartial,
-} from "tsparticles-engine";
+import type { Container, Engine, IContainerPlugin, IParticlesOptions, RecursivePartial } from "tsparticles-engine";
 import { getImageData, range, shuffle } from "./utils";
 import { ImageMask } from "./Options/Classes/ImageMask";
 import type { ImageMaskOptions } from "./types";
@@ -35,7 +28,7 @@ export class ImageMaskInstance implements IContainerPlugin {
             return;
         }
 
-        const image = await getImageData(url, this.options.offset),
+        const image = await getImageData(url, this.options.pixels.offset),
             imageHeight = image.height,
             imageWidth = image.width,
             numPixels = imageHeight * imageWidth,
@@ -51,8 +44,7 @@ export class ImageMaskInstance implements IContainerPlugin {
                     y: Math.floor(nextIndex / imageWidth),
                 },
                 pixel = image.pixels[pixelPos.y][pixelPos.x],
-                magnitude = (((pixel.r + pixel.g + pixel.b) / 3 / 255) * pixel.a) / 255,
-                shouldCreateParticle = magnitude > 0.22,
+                shouldCreateParticle = this.options.pixels.filter(pixel),
                 scale = this.options.scale,
                 canvasSize = this._container.canvas.size;
 
@@ -64,16 +56,15 @@ export class ImageMaskInstance implements IContainerPlugin {
 
                 const pOptions: RecursivePartial<IParticlesOptions> = {};
 
-                if (this.options.overrideColor) {
-                    const color: IRgb = { ...pixel },
-                        opacity = pixel.a;
-
+                if (this.options.override.color) {
                     pOptions.color = {
-                        value: color,
+                        value: pixel,
                     };
+                }
 
+                if (this.options.override.opacity) {
                     pOptions.opacity = {
-                        value: opacity,
+                        value: pixel.a,
                     };
                 }
 

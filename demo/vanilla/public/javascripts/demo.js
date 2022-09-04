@@ -8,8 +8,7 @@
             maxParticles = Math.max(container.particles.count, maxParticles);
 
             return {
-                value: container.particles.count,
-                maxValue: maxParticles
+                value: container.particles.count, maxValue: maxParticles
             };
         }
     });
@@ -94,8 +93,7 @@
         if (parts.length > 1) {
             const { [parts[0]]: todo, ...rest } = obj;
             return {
-                ...omit(rest, keys),
-                [parts[0]]: omit(todo, [ parts[1] ]),
+                ...omit(rest, keys), [parts[0]]: omit(todo, [ parts[1] ]),
             };
         }
         const { [key]: omitted, ...rest } = obj;
@@ -139,18 +137,13 @@
     window.addEventListener('load', function () {
         const element = document.getElementById('editor');
         const options = {
-            mode: 'form',
-            modes: [ 'code', 'form', 'view', 'preview', 'text' ], // allowed modes
+            mode: 'form', modes: [ 'code', 'form', 'view', 'preview', 'text' ], // allowed modes
             autocomplete: {
-                filter: 'contain',
-                trigger: 'focus'
-            },
-            onError: function (err) {
+                filter: 'contain', trigger: 'focus'
+            }, onError: function (err) {
                 alert(err.toString())
-            },
-            onModeChange: function (newMode, oldMode) {
-            },
-            onChange: function () {
+            }, onModeChange: function (newMode, oldMode) {
+            }, onChange: function () {
             }
         };
         const editor = new JSONEditor(element, options);
@@ -319,3 +312,9 @@ canvas {
         loadSpiralShape(tsParticles);
     });
 })();
+
+function pixelFilter(pixel) {
+    return pixel.r < 30 && pixel.g < 30 && pixel.b < 30 ? false : pixel.a > 0;
+
+
+}

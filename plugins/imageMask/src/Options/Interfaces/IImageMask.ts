@@ -1,11 +1,13 @@
+import type { IImageMaskOverride } from "./IImageMaskOverride";
+import type { IImageMaskPixels } from "./IImageMaskPixels";
+
 /**
- * [[include:Options/Plugins/ImageMask.md]]
  * @category Image Mask Plugin
  */
 export interface IImageMask {
     enable: boolean;
-    offset: number;
-    overrideColor: boolean;
+    override: IImageMaskOverride;
+    pixels: IImageMaskPixels;
     scale: number;
     src?: string;
 }

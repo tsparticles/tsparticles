@@ -1,5 +1,7 @@
 import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
 import type { IImageMask } from "../Interfaces/IImageMask";
+import { ImageMaskOverride } from "./ImageMaskOverride";
+import { ImageMaskPixels } from "./ImageMaskPixels";
 
 /**
  * [[include:Options/Plugins/ImageMask.md]]
@@ -7,14 +9,14 @@ import type { IImageMask } from "../Interfaces/IImageMask";
  */
 export class ImageMask implements IImageMask, IOptionLoader<IImageMask> {
     enable;
-    offset;
-    overrideColor;
+    override;
+    pixels;
     scale;
     src?: string;
 
     constructor() {
-        this.offset = 4;
-        this.overrideColor = true;
+        this.pixels = new ImageMaskPixels();
+        this.override = new ImageMaskOverride();
         this.scale = 1;
         this.enable = false;
     }
@@ -28,13 +30,8 @@ export class ImageMask implements IImageMask, IOptionLoader<IImageMask> {
             this.enable = data.enable;
         }
 
-        if (data.offset !== undefined) {
-            this.offset = data.offset;
-        }
-
-        if (data.overrideColor !== undefined) {
-            this.overrideColor = data.overrideColor;
-        }
+        this.pixels.load(data.pixels);
+        this.override.load(data.override);
 
         if (data.scale !== undefined) {
             this.scale = data.scale;
