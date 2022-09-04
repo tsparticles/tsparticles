@@ -7,11 +7,13 @@ import type { IImageMask } from "../Interfaces/IImageMask";
  */
 export class ImageMask implements IImageMask, IOptionLoader<IImageMask> {
     enable;
+    offset;
     overrideColor;
     scale;
     src?: string;
 
     constructor() {
+        this.offset = 4;
         this.overrideColor = true;
         this.scale = 1;
         this.enable = false;
@@ -24,6 +26,10 @@ export class ImageMask implements IImageMask, IOptionLoader<IImageMask> {
 
         if (data.enable !== undefined) {
             this.enable = data.enable;
+        }
+
+        if (data.offset !== undefined) {
+            this.offset = data.offset;
         }
 
         if (data.overrideColor !== undefined) {

@@ -4,6 +4,7 @@
  */
 export interface IImageMask {
     enable: boolean;
+    offset: number;
     overrideColor: boolean;
     scale: number;
     src?: string;

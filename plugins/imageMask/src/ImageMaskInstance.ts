@@ -35,9 +35,9 @@ export class ImageMaskInstance implements IContainerPlugin {
             return;
         }
 
-        const image = await getImageData(url),
-            imageHeight = image.getHeight(),
-            imageWidth = image.getWidth(),
+        const image = await getImageData(url, this.options.offset),
+            imageHeight = image.height,
+            imageWidth = image.width,
             numPixels = imageHeight * imageWidth,
             indexArray = shuffle(range(numPixels)),
             maxParticles = Math.min(numPixels, this._container.actualOptions.particles.number.value);
@@ -46,15 +46,13 @@ export class ImageMaskInstance implements IContainerPlugin {
 
         while (selectedPixels < maxParticles && indexArray.length) {
             const nextIndex = indexArray.pop() || 0,
-                x = nextIndex % imageWidth,
-                y = Math.floor(nextIndex / imageWidth),
-                pixel = image.get(x, y),
+                pixelPos = {
+                    x: nextIndex % imageWidth,
+                    y: Math.floor(nextIndex / imageWidth),
+                },
+                pixel = image.pixels[pixelPos.y][pixelPos.x],
                 magnitude = (((pixel.r + pixel.g + pixel.b) / 3 / 255) * pixel.a) / 255,
                 shouldCreateParticle = magnitude > 0.22,
-                pixelPos = {
-                    x,
-                    y,
-                },
                 scale = this.options.scale,
                 canvasSize = this._container.canvas.size;
 

@@ -21,29 +21,15 @@
     }
   },
   "particles": {
-    "color": {
-      "value": "#ffffff"
-    },
     "move": {
       "direction": "none",
-      "distance": 5,
+      "distance": 2,
       "enable": true,
-      "outModes": "bounce",
+      "outModes": "out",
       "speed": 1
     },
     "number": {
       "value": 800
-    },
-    "opacity": {
-      "animation": {
-        "enable": true,
-        "speed": 2,
-        "sync": false
-      },
-      "value": {
-        "min": 0.05,
-        "max": 0.4
-      }
     },
     "shape": {
       "type": "circle"

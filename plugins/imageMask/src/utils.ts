@@ -1,68 +1,10 @@
-export type RGBA = {
-    a: number;
-    b: number;
-    g: number;
-    r: number;
+import type { IRgba } from "tsparticles-engine";
+
+export type ImagePixelData = {
+    height: number;
+    pixels: IRgba[][];
+    width: number;
 };
-
-export type SliceRange = [number, number];
-
-export class Array2D<T> {
-    private array: Array<Array<T>>;
-    private height!: number;
-    private width!: number;
-
-    constructor(array: Array<Array<T>>) {
-        this.array = array;
-        this.updateWidth();
-        this.updateHeight();
-    }
-
-    forEach(callback: (item: T, x: number, y: number) => void): void {
-        this.array.forEach((row: T[], y: number) => {
-            row.forEach((item: T, x: number) => {
-                callback(item, x, y);
-            });
-        });
-    }
-
-    get(x: number, y: number): T {
-        return this.array[y][x];
-    }
-
-    getHeight(): number {
-        return this.height;
-    }
-
-    getWidth(): number {
-        return this.width;
-    }
-
-    set(x: number, y: number, value: T): void {
-        if (!this.array[y]) {
-            this.array[y] = [];
-        }
-        this.array[y][x] = value;
-        this.updateWidth();
-        this.updateHeight();
-    }
-
-    slice([xMin, xMax]: SliceRange, [yMin, yMax]: SliceRange): Array2D<T> {
-        return new Array2D(
-            this.array.slice(yMin, yMax).map((row) => {
-                return row.slice(xMin, xMax);
-            })
-        );
-    }
-
-    private updateHeight(): void {
-        this.height = this.array.length;
-    }
-
-    private updateWidth(): void {
-        this.width = Math.min(...this.array.map((row) => row.length));
-    }
-}
 
 export function shuffle<T>(array: T[]): T[] {
     let currentIndex = array.length,
@@ -78,12 +20,12 @@ export function shuffle<T>(array: T[]): T[] {
     return array;
 }
 
-export function getImageData(src: string): Promise<Array2D<RGBA>> {
+export function getImageData(src: string, offset: number): Promise<ImagePixelData> {
     const image = new Image();
 
     image.crossOrigin = "Anonymous";
 
-    const p = new Promise<Array2D<RGBA>>((resolve, reject) => {
+    const p = new Promise<ImagePixelData>((resolve, reject) => {
         image.onload = (): void => {
             const canvas = document.createElement("canvas");
 
@@ -102,29 +44,35 @@ export function getImageData(src: string): Promise<Array2D<RGBA>> {
 
             context.clearRect(0, 0, canvas.width, canvas.height);
 
-            const pixels: RGBA[][] = [];
+            const pixels: IRgba[][] = [];
 
             let i = 0;
 
             while (i < imageData.length - 1) {
-                const x = (i / 4) % canvas.width,
-                    y = Math.floor(i / 4 / canvas.width);
+                const pos = {
+                    x: (i / offset) % canvas.width,
+                    y: Math.floor(i / offset / canvas.width),
+                };
 
-                if (!pixels[y]) {
-                    pixels[y] = [];
+                if (!pixels[pos.y]) {
+                    pixels[pos.y] = [];
                 }
 
-                pixels[y][x] = {
+                pixels[pos.y][pos.x] = {
                     r: imageData[i],
                     g: imageData[i + 1],
                     b: imageData[i + 2],
                     a: imageData[i + 3],
                 };
 
-                i += 4;
+                i += offset;
             }
 
-            resolve(new Array2D(pixels));
+            const res = { pixels, width: Math.min(...pixels.map((row) => row.length)), height: pixels.length };
+
+            console.log(res);
+
+            resolve(res);
         };
         image.onerror = reject;
     });
