@@ -98,7 +98,7 @@ export function getCanvasImageData(
             r: imageData[i],
             g: imageData[i + 1],
             b: imageData[i + 2],
-            a: imageData[i + 3],
+            a: imageData[i + 3] / 255,
         };
     }
 
@@ -137,6 +137,24 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
     image.src = src;
 
     return p;
+}
+
+export function getTextData(text: string, offset: number): CanvasPixelData {
+    const canvas = document.createElement("canvas"),
+        context = canvas.getContext("2d");
+
+    canvas.width = 1000;
+    canvas.height = 1000;
+
+    if (!context) {
+        throw new Error("Could not get canvas context");
+    }
+
+    context.fillStyle = "#f00";
+    context.font = "100px sans-serif";
+    context.fillText(text, canvas.width / 2, canvas.height / 2);
+
+    return getCanvasImageData(context, canvas, offset);
 }
 
 export const range = (n: number): Array<number> => [...Array(n).keys()];

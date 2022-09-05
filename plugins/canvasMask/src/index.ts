@@ -27,17 +27,17 @@ class CanvasMaskPlugin implements IPlugin {
         }
 
         const optionsCast = options as unknown as CanvasMaskOptions;
-        let imageOptions = optionsCast.image as CanvasMask;
+        let canvasMaskOptions = optionsCast.canvasMask as CanvasMask;
 
-        if (imageOptions?.load === undefined) {
-            optionsCast.image = imageOptions = new CanvasMask();
+        if (canvasMaskOptions?.load === undefined) {
+            optionsCast.canvasMask = canvasMaskOptions = new CanvasMask();
         }
 
-        imageOptions.load(source?.image);
+        canvasMaskOptions.load(source?.canvasMask);
     }
 
     needsPlugin(options?: RecursivePartial<CanvasMaskOptions>): boolean {
-        return options?.image?.enable ?? false;
+        return options?.canvasMask?.enable ?? false;
     }
 }
 

@@ -52,8 +52,8 @@
     "pixels": {
       "filter": "pixelFilter"
     },
-    "image": {
-      "src": "https://particles.js.org/images/amongus_cyan.png"
+    "text": {
+      "text": "Ciao"
     }
   },
   "background": {

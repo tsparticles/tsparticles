@@ -1,7 +1,8 @@
 import type { Container, Engine, IContainerPlugin, RecursivePartial } from "tsparticles-engine";
-import { addParticlesFromCanvasPixels, getImageData } from "./utils";
+import { addParticlesFromCanvasPixels, getCanvasImageData, getImageData, getTextData } from "./utils";
 import { CanvasMask } from "./Options/Classes/CanvasMask";
 import type { CanvasMaskOptions } from "./types";
+import type { CanvasPixelData } from "./utils";
 
 export class CanvasMaskInstance implements IContainerPlugin {
     readonly options;
@@ -19,20 +20,48 @@ export class CanvasMaskInstance implements IContainerPlugin {
         const options = this.options,
             container = this._container;
 
-        options.load(data?.image);
+        options.load(data?.canvasMask);
 
         if (!options.enable) {
             return;
         }
 
-        const url = options.src;
+        let pixelData: CanvasPixelData = {
+            pixels: [],
+            height: 0,
+            width: 0,
+        };
 
-        if (!url) {
-            return;
+        const offset = options.pixels.offset;
+
+        if (options.image) {
+            const url = options.image.src;
+
+            if (!url) {
+                return;
+            }
+
+            pixelData = await getImageData(url, offset);
+        } else if (options.text) {
+            pixelData = getTextData(options.text.text, offset);
+        } else if (options.selector) {
+            const canvas = document.querySelector<HTMLCanvasElement>(options.selector);
+
+            if (!canvas) {
+                return;
+            }
+
+            const context = canvas.getContext("2d");
+
+            if (!context) {
+                return;
+            }
+
+            pixelData = getCanvasImageData(context, canvas, offset);
         }
 
-        const image = await getImageData(url, options.pixels.offset);
+        console.log(pixelData);
 
-        addParticlesFromCanvasPixels(container, image, options.scale, options.override, options.pixels.filter);
+        addParticlesFromCanvasPixels(container, pixelData, options.scale, options.override, options.pixels.filter);
     }
 }

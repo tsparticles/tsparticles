@@ -134,7 +134,7 @@
         tsParticles.domItem(0).refresh();
     };
 
-    window.addEventListener('load', function () {
+    window.addEventListener('load', async function () {
         const element = document.getElementById('editor');
         const options = {
             mode: 'form', modes: [ 'code', 'form', 'view', 'preview', 'text' ], // allowed modes
@@ -291,25 +291,25 @@ canvas {
         initSidebar();
         initStats();
 
-        loadHsvColorPlugin();
+        await loadHsvColorPlugin();
 
-        loadFull(tsParticles);
+        await loadFull(tsParticles);
 
-        loadImageMaskPlugin(tsParticles);
-        loadInfectionPlugin(tsParticles);
-        loadLightInteraction(tsParticles);
-        loadParticlesRepulseInteraction(tsParticles);
-        loadGradientUpdater(tsParticles);
-        loadOrbitUpdater(tsParticles);
-        loadCurvesPath(tsParticles);
-        loadPolygonPath(tsParticles);
-        loadPerlinNoisePath(tsParticles);
-        loadSimplexNoisePath(tsParticles);
-        loadBubbleShape(tsParticles);
-        loadHeartShape(tsParticles);
-        loadMultilineTextShape(tsParticles);
-        loadRoundedRectShape(tsParticles);
-        loadSpiralShape(tsParticles);
+        await loadCanvasMaskPlugin(tsParticles);
+        await loadInfectionPlugin(tsParticles);
+        await loadLightInteraction(tsParticles);
+        await loadParticlesRepulseInteraction(tsParticles);
+        await loadGradientUpdater(tsParticles);
+        await loadOrbitUpdater(tsParticles);
+        await loadCurvesPath(tsParticles);
+        await loadPolygonPath(tsParticles);
+        await loadPerlinNoisePath(tsParticles);
+        await loadSimplexNoisePath(tsParticles);
+        await loadBubbleShape(tsParticles);
+        await loadHeartShape(tsParticles);
+        await loadMultilineTextShape(tsParticles);
+        await loadRoundedRectShape(tsParticles);
+        await loadSpiralShape(tsParticles);
     });
 })();
 

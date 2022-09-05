@@ -1,7 +1,9 @@
 import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
-import type { ICanvasMask } from "../Interfaces/ICanvasMask";
 import { CanvasMaskOverride } from "./CanvasMaskOverride";
 import { CanvasMaskPixels } from "./CanvasMaskPixels";
+import type { ICanvasMask } from "../Interfaces/ICanvasMask";
+import { ImageMask } from "./ImageMask";
+import { TextMask } from "./TextMask";
 
 /**
  * [[include:Options/Plugins/CanvasMask.md]]
@@ -9,10 +11,12 @@ import { CanvasMaskPixels } from "./CanvasMaskPixels";
  */
 export class CanvasMask implements ICanvasMask, IOptionLoader<ICanvasMask> {
     enable;
+    image?: ImageMask;
     override;
     pixels;
     scale;
-    src?: string;
+    selector?: string;
+    text?: TextMask;
 
     constructor() {
         this.pixels = new CanvasMaskPixels();
@@ -30,6 +34,14 @@ export class CanvasMask implements ICanvasMask, IOptionLoader<ICanvasMask> {
             this.enable = data.enable;
         }
 
+        if (data.image !== undefined) {
+            if (!this.image) {
+                this.image = new ImageMask();
+            }
+
+            this.image.load(data.image);
+        }
+
         this.pixels.load(data.pixels);
         this.override.load(data.override);
 
@@ -37,8 +49,16 @@ export class CanvasMask implements ICanvasMask, IOptionLoader<ICanvasMask> {
             this.scale = data.scale;
         }
 
-        if (data.src) {
-            this.src = data.src;
+        if (data.selector !== undefined) {
+            this.selector = data.selector;
+        }
+
+        if (data.text !== undefined) {
+            if (!this.text) {
+                this.text = new TextMask();
+            }
+
+            this.text.load(data.text);
         }
     }
 }
