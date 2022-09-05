@@ -1,9 +1,9 @@
 import type { IRgba } from "tsparticles-engine";
 
 /**
- * @category Image Mask Plugin
+ * @category Canvas Mask Plugin
  */
-export interface IImageMaskPixels {
+export interface ICanvasMaskPixels {
     filter: string | ((pixel: IRgba) => boolean);
     offset: number;
 }

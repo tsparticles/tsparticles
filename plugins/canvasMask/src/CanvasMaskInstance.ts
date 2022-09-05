@@ -1,9 +1,9 @@
 import type { Container, Engine, IContainerPlugin, RecursivePartial } from "tsparticles-engine";
 import { addParticlesFromCanvasPixels, getImageData } from "./utils";
-import { ImageMask } from "./Options/Classes/ImageMask";
-import type { ImageMaskOptions } from "./types";
+import { CanvasMask } from "./Options/Classes/CanvasMask";
+import type { CanvasMaskOptions } from "./types";
 
-export class ImageMaskInstance implements IContainerPlugin {
+export class CanvasMaskInstance implements IContainerPlugin {
     readonly options;
 
     private readonly _container;
@@ -12,10 +12,10 @@ export class ImageMaskInstance implements IContainerPlugin {
     constructor(container: Container, engine: Engine) {
         this._container = container;
         this._engine = engine;
-        this.options = new ImageMask();
+        this.options = new CanvasMask();
     }
 
-    async initAsync(data?: RecursivePartial<ImageMaskOptions>): Promise<void> {
+    async initAsync(data?: RecursivePartial<CanvasMaskOptions>): Promise<void> {
         const options = this.options,
             container = this._container;
 

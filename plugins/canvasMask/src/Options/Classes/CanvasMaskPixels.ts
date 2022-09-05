@@ -1,7 +1,7 @@
 import type { IOptionLoader, IRgba, RecursivePartial } from "tsparticles-engine";
-import type { IImageMaskPixels } from "../Interfaces/IImageMaskPixels";
+import type { ICanvasMaskPixels } from "../Interfaces/ICanvasMaskPixels";
 
-export class ImageMaskPixels implements IImageMaskPixels, IOptionLoader<IImageMaskPixels> {
+export class CanvasMaskPixels implements ICanvasMaskPixels, IOptionLoader<ICanvasMaskPixels> {
     filter: (pixel: IRgba) => boolean;
     offset: number;
 
@@ -10,7 +10,7 @@ export class ImageMaskPixels implements IImageMaskPixels, IOptionLoader<IImageMa
         this.offset = 4;
     }
 
-    load(data?: RecursivePartial<IImageMaskPixels> | undefined): void {
+    load(data?: RecursivePartial<ICanvasMaskPixels> | undefined): void {
         if (!data) {
             return;
         }

@@ -1,5 +1,5 @@
 import type { Container, IDimension, IParticlesOptions, IRgba, RecursivePartial } from "tsparticles-engine";
-import type { IImageMaskOverride } from "./Options/Interfaces/IImageMaskOverride";
+import type { ICanvasMaskOverride } from "./Options/Interfaces/ICanvasMaskOverride";
 
 export type CanvasPixelData = {
     height: number;
@@ -21,7 +21,7 @@ export function addParticlesFromCanvasPixels(
     container: Container,
     data: CanvasPixelData,
     scale: number,
-    override: IImageMaskOverride,
+    override: ICanvasMaskOverride,
     filter: (pixel: IRgba) => boolean
 ): void {
     const height = data.height,

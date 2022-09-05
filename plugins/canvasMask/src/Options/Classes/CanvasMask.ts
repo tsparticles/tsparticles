@@ -1,13 +1,13 @@
 import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
-import type { IImageMask } from "../Interfaces/IImageMask";
-import { ImageMaskOverride } from "./ImageMaskOverride";
-import { ImageMaskPixels } from "./ImageMaskPixels";
+import type { ICanvasMask } from "../Interfaces/ICanvasMask";
+import { CanvasMaskOverride } from "./CanvasMaskOverride";
+import { CanvasMaskPixels } from "./CanvasMaskPixels";
 
 /**
- * [[include:Options/Plugins/ImageMask.md]]
- * @category Image Mask Plugin
+ * [[include:Options/Plugins/CanvasMask.md]]
+ * @category Canvas Mask Plugin
  */
-export class ImageMask implements IImageMask, IOptionLoader<IImageMask> {
+export class CanvasMask implements ICanvasMask, IOptionLoader<ICanvasMask> {
     enable;
     override;
     pixels;
@@ -15,13 +15,13 @@ export class ImageMask implements IImageMask, IOptionLoader<IImageMask> {
     src?: string;
 
     constructor() {
-        this.pixels = new ImageMaskPixels();
-        this.override = new ImageMaskOverride();
+        this.pixels = new CanvasMaskPixels();
+        this.override = new CanvasMaskOverride();
         this.scale = 1;
         this.enable = false;
     }
 
-    load(data?: RecursivePartial<IImageMask>): void {
+    load(data?: RecursivePartial<ICanvasMask>): void {
         if (!data) {
             return;
         }

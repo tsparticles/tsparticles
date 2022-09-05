@@ -1,7 +1,7 @@
 import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
-import type { IImageMaskOverride } from "../Interfaces/IImageMaskOverride";
+import type { ICanvasMaskOverride } from "../Interfaces/ICanvasMaskOverride";
 
-export class ImageMaskOverride implements IImageMaskOverride, IOptionLoader<IImageMaskOverride> {
+export class CanvasMaskOverride implements ICanvasMaskOverride, IOptionLoader<ICanvasMaskOverride> {
     color: boolean;
     opacity: boolean;
 
@@ -10,7 +10,7 @@ export class ImageMaskOverride implements IImageMaskOverride, IOptionLoader<IIma
         this.opacity = false;
     }
 
-    load(data?: RecursivePartial<IImageMaskOverride>): void {
+    load(data?: RecursivePartial<ICanvasMaskOverride>): void {
         if (!data) {
             return;
         }

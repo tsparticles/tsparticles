@@ -1,12 +1,12 @@
 {
-  "name": "tsparticles-plugin-image-mask",
+  "name": "tsparticles-plugin-canvas-mask",
   "version": "2.2.4",
-  "description": "tsParticles image mask plugin",
+  "description": "tsParticles canvas mask plugin",
   "homepage": "https://particles.js.org",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
-    "directory": "plugins/imageMask"
+    "directory": "plugins/canvasMask"
   },
   "keywords": [
     "front-end",
@@ -71,8 +71,8 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "main": "cjs/index.js",
-  "jsdelivr": "tsparticles.plugin.image-mask.min.js",
-  "unpkg": "tsparticles.plugin.image-mask.min.js",
+  "jsdelivr": "tsparticles.plugin.canvas-mask.min.js",
+  "unpkg": "tsparticles.plugin.canvas-mask.min.js",
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {

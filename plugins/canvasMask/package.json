@@ -1,7 +1,7 @@
 {
-  "name": "tsparticles-plugin-image-mask",
+  "name": "tsparticles-plugin-canvas-mask",
   "version": "2.2.4",
-  "description": "tsParticles image mask plugin",
+  "description": "tsParticles canvas mask plugin",
   "homepage": "https://particles.js.org",
   "scripts": {
     "build": "tsparticles-build",
@@ -13,7 +13,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
-    "directory": "plugins/imageMask"
+    "directory": "plugins/canvasMask"
   },
   "keywords": [
     "front-end",
@@ -82,7 +82,7 @@
   "types": "dist/types/index.d.ts",
   "typedoc": {
     "entryPoint": "./src/index.ts",
-    "displayName": "tsParticles image mask plugin",
+    "displayName": "tsParticles canvas mask plugin",
     "readmeFile": "./README.md"
   },
   "prettier": "@tsparticles/prettier-config",
