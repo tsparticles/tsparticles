@@ -1,5 +1,6 @@
 import type { Container, IDimension, IParticlesOptions, IRgba, RecursivePartial } from "tsparticles-engine";
 import type { ICanvasMaskOverride } from "./Options/Interfaces/ICanvasMaskOverride";
+import type { IFontTextMask } from "./Options/Interfaces/IFontTextMask";
 
 export type CanvasPixelData = {
     height: number;
@@ -139,7 +140,7 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
     return p;
 }
 
-export function getTextData(text: string, offset: number): CanvasPixelData {
+export function getTextData(text: string, offset: number, font: IFontTextMask): CanvasPixelData {
     const canvas = document.createElement("canvas"),
         context = canvas.getContext("2d");
 
@@ -150,8 +151,10 @@ export function getTextData(text: string, offset: number): CanvasPixelData {
         throw new Error("Could not get canvas context");
     }
 
+    const fontSize = typeof font.size === "number" ? `${font.size}px` : font.size;
+
     context.fillStyle = "#f00";
-    context.font = "100px sans-serif";
+    context.font = `${font.style || ""} ${font.variant || ""} ${font.weight || ""} ${fontSize} ${font.family}`;
     context.fillText(text, canvas.width / 2, canvas.height / 2);
 
     return getCanvasImageData(context, canvas, offset);
