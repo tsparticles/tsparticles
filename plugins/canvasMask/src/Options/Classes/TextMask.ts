@@ -3,10 +3,12 @@ import { FontTextMask } from "./FontTextMask";
 import type { ITextMask } from "../Interfaces/ITextMask";
 
 export class TextMask implements ITextMask, IOptionLoader<ITextMask> {
+    color;
     font;
     text;
 
     constructor() {
+        this.color = "#000000";
         this.font = new FontTextMask();
         this.text = "";
     }
@@ -14,6 +16,10 @@ export class TextMask implements ITextMask, IOptionLoader<ITextMask> {
     load(data?: RecursivePartial<ITextMask>): void {
         if (!data) {
             return;
+        }
+
+        if (data.color !== undefined) {
+            this.color = data.color;
         }
 
         this.font.load(data.font);

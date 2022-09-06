@@ -45,7 +45,7 @@ export class CanvasMaskInstance implements IContainerPlugin {
         } else if (options.text) {
             const textOptions = options.text;
 
-            pixelData = getTextData(textOptions.text, offset, textOptions.font);
+            pixelData = getTextData(textOptions.text, textOptions.color, offset, textOptions.font);
         } else if (options.selector) {
             const canvas = document.querySelector<HTMLCanvasElement>(options.selector);
 
@@ -61,8 +61,6 @@ export class CanvasMaskInstance implements IContainerPlugin {
 
             pixelData = getCanvasImageData(context, canvas, offset);
         }
-
-        console.log(pixelData);
 
         addParticlesFromCanvasPixels(container, pixelData, options.scale, options.override, options.pixels.filter);
     }

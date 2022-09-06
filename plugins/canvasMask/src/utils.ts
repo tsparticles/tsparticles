@@ -12,7 +12,7 @@ export function shuffle<T>(array: T[]): T[] {
     for (let currentIndex = array.length - 1; currentIndex >= 0; currentIndex--) {
         const randomIndex = Math.floor(Math.random() * currentIndex);
 
-        [ array[currentIndex], array[randomIndex] ] = [ array[randomIndex], array[currentIndex] ];
+        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
     }
 
     return array;
@@ -140,7 +140,7 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
     return p;
 }
 
-export function getTextData(text: string, offset: number, font: IFontTextMask): CanvasPixelData {
+export function getTextData(text: string, color: string, offset: number, font: IFontTextMask): CanvasPixelData {
     const canvas = document.createElement("canvas"),
         context = canvas.getContext("2d");
 
@@ -150,15 +150,18 @@ export function getTextData(text: string, offset: number, font: IFontTextMask): 
 
     const fontSize = typeof font.size === "number" ? `${font.size}px` : font.size;
 
-    context.fillStyle = "#f00";
     context.font = `${font.style || ""} ${font.variant || ""} ${font.weight || ""} ${fontSize} ${font.family}`;
 
-    const measure = context.measureText(text), width = measure.width,
-        actualHeight = measure.actualBoundingBoxAscent + measure.actualBoundingBoxDescent;
+    const measure = context.measureText(text);
 
-    context.fillText(text, width / 3, actualHeight * 1.5);
+    canvas.width = measure.width;
+    canvas.height = measure.actualBoundingBoxAscent + measure.actualBoundingBoxDescent;
+
+    context.font = `${font.style || ""} ${font.variant || ""} ${font.weight || ""} ${fontSize} ${font.family}`;
+    context.fillStyle = color;
+    context.fillText(text, 0, measure.actualBoundingBoxAscent);
 
     return getCanvasImageData(context, canvas, offset);
 }
 
-export const range = (n: number): Array<number> => [ ...Array(n).keys() ];
+export const range = (n: number): Array<number> => [...Array(n).keys()];

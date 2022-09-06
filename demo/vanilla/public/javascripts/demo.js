@@ -315,6 +315,8 @@ canvas {
 
 function pixelFilter(pixel) {
     return pixel.r < 30 && pixel.g < 30 && pixel.b < 30 ? false : pixel.a > 0;
+}
 
-
+function pixelTextFilter(pixel) {
+    return pixel.a > 0;
 }
