@@ -12,7 +12,7 @@ export function shuffle<T>(array: T[]): T[] {
     for (let currentIndex = array.length - 1; currentIndex >= 0; currentIndex--) {
         const randomIndex = Math.floor(Math.random() * currentIndex);
 
-        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+        [ array[currentIndex], array[randomIndex] ] = [ array[randomIndex], array[currentIndex] ];
     }
 
     return array;
@@ -144,9 +144,6 @@ export function getTextData(text: string, offset: number, font: IFontTextMask): 
     const canvas = document.createElement("canvas"),
         context = canvas.getContext("2d");
 
-    canvas.width = 1000;
-    canvas.height = 1000;
-
     if (!context) {
         throw new Error("Could not get canvas context");
     }
@@ -155,9 +152,13 @@ export function getTextData(text: string, offset: number, font: IFontTextMask): 
 
     context.fillStyle = "#f00";
     context.font = `${font.style || ""} ${font.variant || ""} ${font.weight || ""} ${fontSize} ${font.family}`;
-    context.fillText(text, canvas.width / 2, canvas.height / 2);
+
+    const measure = context.measureText(text), width = measure.width,
+        actualHeight = measure.actualBoundingBoxAscent + measure.actualBoundingBoxDescent;
+
+    context.fillText(text, width / 3, actualHeight * 1.5);
 
     return getCanvasImageData(context, canvas, offset);
 }
 
-export const range = (n: number): Array<number> => [...Array(n).keys()];
+export const range = (n: number): Array<number> => [ ...Array(n).keys() ];
