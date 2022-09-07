@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import type { ICoordinates, IOptionLoader, RecursivePartial } from "tsparticles-engine";
 import { CanvasMaskOverride } from "./CanvasMaskOverride";
 import { CanvasMaskPixels } from "./CanvasMaskPixels";
 import type { ICanvasMask } from "../Interfaces/ICanvasMask";
@@ -14,15 +14,20 @@ export class CanvasMask implements ICanvasMask, IOptionLoader<ICanvasMask> {
     image?: ImageMask;
     override;
     pixels;
+    position: ICoordinates;
     scale;
     selector?: string;
     text?: TextMask;
 
     constructor() {
-        this.pixels = new CanvasMaskPixels();
-        this.override = new CanvasMaskOverride();
-        this.scale = 1;
         this.enable = false;
+        this.override = new CanvasMaskOverride();
+        this.pixels = new CanvasMaskPixels();
+        this.position = {
+            x: 50,
+            y: 50,
+        };
+        this.scale = 1;
     }
 
     load(data?: RecursivePartial<ICanvasMask>): void {
@@ -34,7 +39,7 @@ export class CanvasMask implements ICanvasMask, IOptionLoader<ICanvasMask> {
             this.enable = data.enable;
         }
 
-        if (data.image !== undefined) {
+        if (data.image) {
             if (!this.image) {
                 this.image = new ImageMask();
             }
@@ -43,6 +48,14 @@ export class CanvasMask implements ICanvasMask, IOptionLoader<ICanvasMask> {
         }
 
         this.pixels.load(data.pixels);
+
+        if (data.position) {
+            this.position = {
+                x: data.position.x ?? this.position.x,
+                y: data.position.y ?? this.position.y,
+            };
+        }
+
         this.override.load(data.override);
 
         if (data.scale !== undefined) {
@@ -53,7 +66,7 @@ export class CanvasMask implements ICanvasMask, IOptionLoader<ICanvasMask> {
             this.selector = data.selector;
         }
 
-        if (data.text !== undefined) {
+        if (data.text) {
             if (!this.text) {
                 this.text = new TextMask();
             }

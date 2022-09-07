@@ -62,6 +62,13 @@ export class CanvasMaskInstance implements IContainerPlugin {
             pixelData = getCanvasImageData(context, canvas, offset);
         }
 
-        addParticlesFromCanvasPixels(container, pixelData, options.scale, options.override, options.pixels.filter);
+        addParticlesFromCanvasPixels(
+            container,
+            pixelData,
+            options.position,
+            options.scale,
+            options.override,
+            options.pixels.filter
+        );
     }
 }

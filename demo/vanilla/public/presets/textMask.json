@@ -58,6 +58,10 @@
     "pixels": {
       "filter": "pixelTextFilter"
     },
+    "position": {
+      "x": 70,
+      "y": 30
+    },
     "text": {
       "color": "#ff0000",
       "font": {

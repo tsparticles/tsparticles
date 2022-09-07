@@ -1,4 +1,11 @@
-import type { Container, IDimension, IParticlesOptions, IRgba, RecursivePartial } from "tsparticles-engine";
+import type {
+    Container,
+    ICoordinates,
+    IDimension,
+    IParticlesOptions,
+    IRgba,
+    RecursivePartial,
+} from "tsparticles-engine";
 import type { ICanvasMaskOverride } from "./Options/Interfaces/ICanvasMaskOverride";
 import type { IFontTextMask } from "./Options/Interfaces/IFontTextMask";
 
@@ -21,6 +28,7 @@ export function shuffle<T>(array: T[]): T[] {
 export function addParticlesFromCanvasPixels(
     container: Container,
     data: CanvasPixelData,
+    position: ICoordinates,
     scale: number,
     override: ICanvasMaskOverride,
     filter: (pixel: IRgba) => boolean
@@ -45,8 +53,8 @@ export function addParticlesFromCanvasPixels(
 
         if (shouldCreateParticle) {
             const pos = {
-                x: pixelPos.x * scale + canvasSize.width / 2 - (width * scale) / 2,
-                y: pixelPos.y * scale + canvasSize.height / 2 - (height * scale) / 2,
+                x: pixelPos.x * scale + (canvasSize.width * position.x) / 100 - (width * scale) / 2,
+                y: pixelPos.y * scale + (canvasSize.height * position.y) / 100 - (height * scale) / 2,
             };
 
             const pOptions: RecursivePartial<IParticlesOptions> = {};
