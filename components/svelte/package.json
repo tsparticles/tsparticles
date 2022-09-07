@@ -83,7 +83,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^22.0.0",
-    "@rollup/plugin-node-resolve": "^13.2.1",
+    "@rollup/plugin-node-resolve": "^14.0.0",
     "@rollup/plugin-typescript": "^8.3.2",
     "@tsconfig/svelte": "^3.0.0",
     "prettier": "^2.6.2",
