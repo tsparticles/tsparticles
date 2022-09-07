@@ -71,7 +71,8 @@
     "tsparticles-interaction"
   ],
   "publishConfig": {
-    "directory": "dist"
+    "directory": "dist",
+    "linkDirectory": true
   },
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",

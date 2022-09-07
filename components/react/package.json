@@ -98,7 +98,8 @@
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "publishConfig": {
-    "directory": "dist"
+    "directory": "dist",
+    "linkDirectory": true
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",

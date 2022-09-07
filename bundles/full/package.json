@@ -123,6 +123,7 @@
     "tsparticles-updater-wobble": "^2.2.4"
   },
   "publishConfig": {
-    "directory": "dist"
+    "directory": "dist",
+    "linkDirectory": true
   }
 }

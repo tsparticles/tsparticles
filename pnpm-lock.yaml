@@ -87,17 +87,17 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
-      tsparticles-interaction-external-trail: link:../../interactions/external/trail
-      tsparticles-plugin-absorbers: link:../../plugins/absorbers
-      tsparticles-plugin-emitters: link:../../plugins/emitters
-      tsparticles-plugin-polygon-mask: link:../../plugins/polygonMask
-      tsparticles-slim: link:../slim
-      tsparticles-updater-destroy: link:../../updaters/destroy
-      tsparticles-updater-roll: link:../../updaters/roll
-      tsparticles-updater-tilt: link:../../updaters/tilt
-      tsparticles-updater-twinkle: link:../../updaters/twinkle
-      tsparticles-updater-wobble: link:../../updaters/wobble
+      tsparticles-engine: link:../../engine/dist
+      tsparticles-interaction-external-trail: link:../../interactions/external/trail/dist
+      tsparticles-plugin-absorbers: link:../../plugins/absorbers/dist
+      tsparticles-plugin-emitters: link:../../plugins/emitters/dist
+      tsparticles-plugin-polygon-mask: link:../../plugins/polygonMask/dist
+      tsparticles-slim: link:../slim/dist
+      tsparticles-updater-destroy: link:../../updaters/destroy/dist
+      tsparticles-updater-roll: link:../../updaters/roll/dist
+      tsparticles-updater-tilt: link:../../updaters/tilt/dist
+      tsparticles-updater-twinkle: link:../../updaters/twinkle/dist
+      tsparticles-updater-wobble: link:../../updaters/wobble/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -147,7 +147,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -227,37 +227,37 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
-      tsparticles-interaction-external-attract: link:../../interactions/external/attract
-      tsparticles-interaction-external-bounce: link:../../interactions/external/bounce
-      tsparticles-interaction-external-bubble: link:../../interactions/external/bubble
-      tsparticles-interaction-external-connect: link:../../interactions/external/connect
-      tsparticles-interaction-external-grab: link:../../interactions/external/grab
-      tsparticles-interaction-external-pause: link:../../interactions/external/pause
-      tsparticles-interaction-external-push: link:../../interactions/external/push
-      tsparticles-interaction-external-remove: link:../../interactions/external/remove
-      tsparticles-interaction-external-repulse: link:../../interactions/external/repulse
-      tsparticles-interaction-external-slow: link:../../interactions/external/slow
-      tsparticles-interaction-particles-attract: link:../../interactions/particles/attract
-      tsparticles-interaction-particles-collisions: link:../../interactions/particles/collisions
-      tsparticles-interaction-particles-links: link:../../interactions/particles/links
-      tsparticles-move-base: link:../../move/base
-      tsparticles-move-parallax: link:../../move/parallax
-      tsparticles-particles.js: link:../pjs
-      tsparticles-shape-circle: link:../../shapes/circle
-      tsparticles-shape-image: link:../../shapes/image
-      tsparticles-shape-line: link:../../shapes/line
-      tsparticles-shape-polygon: link:../../shapes/polygon
-      tsparticles-shape-square: link:../../shapes/square
-      tsparticles-shape-star: link:../../shapes/star
-      tsparticles-shape-text: link:../../shapes/text
-      tsparticles-updater-angle: link:../../updaters/angle
-      tsparticles-updater-color: link:../../updaters/color
-      tsparticles-updater-life: link:../../updaters/life
-      tsparticles-updater-opacity: link:../../updaters/opacity
-      tsparticles-updater-out-modes: link:../../updaters/outModes
-      tsparticles-updater-size: link:../../updaters/size
-      tsparticles-updater-stroke-color: link:../../updaters/strokeColor
+      tsparticles-engine: link:../../engine/dist
+      tsparticles-interaction-external-attract: link:../../interactions/external/attract/dist
+      tsparticles-interaction-external-bounce: link:../../interactions/external/bounce/dist
+      tsparticles-interaction-external-bubble: link:../../interactions/external/bubble/dist
+      tsparticles-interaction-external-connect: link:../../interactions/external/connect/dist
+      tsparticles-interaction-external-grab: link:../../interactions/external/grab/dist
+      tsparticles-interaction-external-pause: link:../../interactions/external/pause/dist
+      tsparticles-interaction-external-push: link:../../interactions/external/push/dist
+      tsparticles-interaction-external-remove: link:../../interactions/external/remove/dist
+      tsparticles-interaction-external-repulse: link:../../interactions/external/repulse/dist
+      tsparticles-interaction-external-slow: link:../../interactions/external/slow/dist
+      tsparticles-interaction-particles-attract: link:../../interactions/particles/attract/dist
+      tsparticles-interaction-particles-collisions: link:../../interactions/particles/collisions/dist
+      tsparticles-interaction-particles-links: link:../../interactions/particles/links/dist
+      tsparticles-move-base: link:../../move/base/dist
+      tsparticles-move-parallax: link:../../move/parallax/dist
+      tsparticles-particles.js: link:../pjs/dist
+      tsparticles-shape-circle: link:../../shapes/circle/dist
+      tsparticles-shape-image: link:../../shapes/image/dist
+      tsparticles-shape-line: link:../../shapes/line/dist
+      tsparticles-shape-polygon: link:../../shapes/polygon/dist
+      tsparticles-shape-square: link:../../shapes/square/dist
+      tsparticles-shape-star: link:../../shapes/star/dist
+      tsparticles-shape-text: link:../../shapes/text/dist
+      tsparticles-updater-angle: link:../../updaters/angle/dist
+      tsparticles-updater-color: link:../../updaters/color/dist
+      tsparticles-updater-life: link:../../updaters/life/dist
+      tsparticles-updater-opacity: link:../../updaters/opacity/dist
+      tsparticles-updater-out-modes: link:../../updaters/outModes/dist
+      tsparticles-updater-size: link:../../updaters/size/dist
+      tsparticles-updater-stroke-color: link:../../updaters/strokeColor/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -297,7 +297,7 @@ importers:
       '@angular/router': ~14.2.0
       '@types/jasmine': ~4.3.0
       '@types/node': ^18.0.0
-      jasmine-core: ~4.3.0
+      jasmine-core: ~4.4.0
       karma: ~6.4.0
       karma-chrome-launcher: ~3.1.1
       karma-coverage: ~2.2.0
@@ -320,7 +320,7 @@ importers:
       '@angular/router': 14.2.0_6lk4yxyxfaqzosenawf2bqx6vy
       rxjs: 7.5.6
       tslib: 2.4.0
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
       zone.js: 0.11.8
     devDependencies:
       '@angular-devkit/build-angular': 14.2.1_6jtpihxwwmcmx556pvlk4f7f2m
@@ -328,12 +328,12 @@ importers:
       '@angular/compiler-cli': 14.2.0_xtg6uy65dha672hxeojheuqzwy
       '@types/jasmine': 4.3.0
       '@types/node': 18.7.14
-      jasmine-core: 4.3.0
+      jasmine-core: 4.4.0
       karma: 6.4.0
       karma-chrome-launcher: 3.1.1
       karma-coverage: 2.2.0
       karma-jasmine: 5.1.0_karma@6.4.0
-      karma-jasmine-html-reporter: 2.0.0_kn32zzqrpbpapqtjwiltm573ri
+      karma-jasmine-html-reporter: 2.0.0_g7zo7ywktikjdpkbmijus2j5li
       ng-packagr: 14.2.0_qmyfordd6aqyub4siiy3ohhe4u
       typescript: 4.8.2
     publishDirectory: dist/ng-particles
@@ -369,7 +369,7 @@ importers:
       webpack-dev-server: ^4.8.1
     dependencies:
       fast-deep-equal: 3.1.3
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@babel/plugin-proposal-class-properties': 7.18.6_@babel+core@7.18.13
@@ -418,7 +418,7 @@ importers:
       typescript: ^4.7.4
       uglify-js: ^3.15.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@babel/preset-env': 7.18.10_@babel+core@7.18.13
@@ -466,7 +466,7 @@ importers:
       webpack-node-externals: ^3.0.0
     dependencies:
       fast-deep-equal: 3.1.3
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@babel/plugin-transform-runtime': 7.18.10_@babel+core@7.18.13
@@ -523,7 +523,7 @@ importers:
     dependencies:
       fast-deep-equal: 3.1.3
       react: 18.2.0
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@babel/plugin-transform-runtime': 7.18.10_@babel+core@7.18.13
@@ -583,7 +583,7 @@ importers:
     dependencies:
       fast-deep-equal: 3.1.3
       react: 18.2.0
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@babel/plugin-transform-runtime': 7.18.10_@babel+core@7.18.13
@@ -625,7 +625,7 @@ importers:
       riot: ^7.0.0
       tsparticles-engine: ^2.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/preset-typescript': 7.18.6_@babel+core@7.18.13
       '@riotjs/cli': 6.1.0_@babel+core@7.18.13
@@ -669,7 +669,8 @@ importers:
       webpack-dev-server: ^4.8.1
     dependencies:
       fast-deep-equal: 3.1.3
-      tsparticles-engine: link:../../engine
+      solid-js: 1.5.3
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@babel/plugin-proposal-class-properties': 7.18.6_@babel+core@7.18.13
@@ -689,7 +690,6 @@ importers:
       node-sass: 7.0.1
       prettier: 2.7.1
       sass-loader: 13.0.2_md2tbmlws6v2567ksxonc6tawa
-      solid-js: 1.5.3
       source-map-loader: 4.0.0_webpack@5.74.0
       style-loader: 3.3.1_webpack@5.74.0
       typescript: 4.8.2
@@ -700,7 +700,7 @@ importers:
   components/svelte:
     specifiers:
       '@rollup/plugin-commonjs': ^22.0.0
-      '@rollup/plugin-node-resolve': ^13.2.1
+      '@rollup/plugin-node-resolve': ^14.0.0
       '@rollup/plugin-typescript': ^8.3.2
       '@tsconfig/svelte': ^3.0.0
       prettier: ^2.6.2
@@ -714,10 +714,10 @@ importers:
       tsparticles-engine: ^2.2.4
       typescript: ~4.8.0
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@rollup/plugin-commonjs': 22.0.2_rollup@2.79.0
-      '@rollup/plugin-node-resolve': 13.3.0_rollup@2.79.0
+      '@rollup/plugin-node-resolve': 14.0.0_rollup@2.79.0
       '@rollup/plugin-typescript': 8.4.0_lgw3yndmlomwrra4tomb66mtni
       '@tsconfig/svelte': 3.0.0
       prettier: 2.7.1
@@ -735,7 +735,7 @@ importers:
       '@babel/core': ^7.18.9
       '@babel/plugin-proposal-class-properties': ^7.18.6
       '@babel/plugin-proposal-decorators': ^7.18.9
-      '@rollup/plugin-node-resolve': ^13.3.0
+      '@rollup/plugin-node-resolve': ^14.0.0
       '@rollup/plugin-replace': ^4.0.0
       '@vue/cli-plugin-babel': ~5.0.8
       '@vue/cli-plugin-typescript': ~5.0.8
@@ -756,14 +756,14 @@ importers:
       vue-property-decorator: <10
       vue-template-compiler: ^2.7.8
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
       vue-class-component: 7.2.6_vue@2.7.10
       vue-property-decorator: 9.1.2_xovzknyasni4brq5g3yfvdslua
     devDependencies:
       '@babel/core': 7.18.13
       '@babel/plugin-proposal-class-properties': 7.18.6_@babel+core@7.18.13
       '@babel/plugin-proposal-decorators': 7.18.10_@babel+core@7.18.13
-      '@rollup/plugin-node-resolve': 13.3.0_rollup@2.79.0
+      '@rollup/plugin-node-resolve': 14.0.0_rollup@2.79.0
       '@rollup/plugin-replace': 4.0.0_rollup@2.79.0
       '@vue/cli-plugin-babel': 5.0.8_jyrkubdqmlmdepg4r32ybbpaum
       '@vue/cli-plugin-typescript': 5.0.8_lt55qqz5tymupgme4vl2p2cteu
@@ -786,7 +786,7 @@ importers:
       '@babel/core': ^7.18.9
       '@babel/plugin-proposal-class-properties': ^7.18.6
       '@babel/plugin-proposal-decorators': ^7.18.9
-      '@rollup/plugin-node-resolve': ^13.3.0
+      '@rollup/plugin-node-resolve': ^14.0.0
       '@rollup/plugin-replace': ^4.0.0
       '@vue/cli-plugin-babel': ~5.0.8
       '@vue/cli-plugin-typescript': ~5.0.8
@@ -807,14 +807,14 @@ importers:
       vue-property-decorator: <10
       vue-template-compiler: ^2.7.8
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
       vue-class-component: 7.2.6_vue@2.7.10
       vue-property-decorator: 9.1.2_xovzknyasni4brq5g3yfvdslua
     devDependencies:
       '@babel/core': 7.18.13
       '@babel/plugin-proposal-class-properties': 7.18.6_@babel+core@7.18.13
       '@babel/plugin-proposal-decorators': 7.18.10_@babel+core@7.18.13
-      '@rollup/plugin-node-resolve': 13.3.0_rollup@2.79.0
+      '@rollup/plugin-node-resolve': 14.0.0_rollup@2.79.0
       '@rollup/plugin-replace': 4.0.0_rollup@2.79.0
       '@vue/cli-plugin-babel': 5.0.8_jyrkubdqmlmdepg4r32ybbpaum
       '@vue/cli-plugin-typescript': 5.0.8_lt55qqz5tymupgme4vl2p2cteu
@@ -851,7 +851,7 @@ importers:
       vue: ^3.2.36
       vue-tsc: ^0.40.0
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
       vue: 3.2.38
     devDependencies:
       '@rushstack/eslint-patch': 1.1.4
@@ -888,7 +888,7 @@ importers:
       vue: ^3.2.36
       vue-tsc: ^0.40.0
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
       vue: 3.2.38
     devDependencies:
       '@rushstack/eslint-patch': 1.1.4
@@ -916,7 +916,7 @@ importers:
       tsparticles-engine: ^2.2.4
       typescript: ^4.7.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       rollup: 2.79.0
       rollup-plugin-node-resolve: 5.2.0_rollup@2.79.0
@@ -1002,51 +1002,51 @@ importers:
       '@angular/platform-browser': 14.2.0_afytwol7hs4qio34buyx2grhfa
       '@angular/platform-browser-dynamic': 14.2.0_owch6soaoexeadly32xw5vendq
       '@angular/router': 14.2.0_6lk4yxyxfaqzosenawf2bqx6vy
-      ng-particles: link:../../components/angular
+      ng-particles: link:../../components/angular/dist/ng-particles
       rxjs: 7.5.6
       tslib: 2.4.0
-      tsparticles: link:../../bundles/full
-      tsparticles-engine: link:../../engine
-      tsparticles-interaction-external-attract: link:../../interactions/external/attract
-      tsparticles-interaction-external-bounce: link:../../interactions/external/bounce
-      tsparticles-interaction-external-bubble: link:../../interactions/external/bubble
-      tsparticles-interaction-external-connect: link:../../interactions/external/connect
-      tsparticles-interaction-external-grab: link:../../interactions/external/grab
-      tsparticles-interaction-external-pause: link:../../interactions/external/pause
-      tsparticles-interaction-external-push: link:../../interactions/external/push
-      tsparticles-interaction-external-remove: link:../../interactions/external/remove
-      tsparticles-interaction-external-repulse: link:../../interactions/external/repulse
-      tsparticles-interaction-external-slow: link:../../interactions/external/slow
-      tsparticles-interaction-external-trail: link:../../interactions/external/trail
-      tsparticles-interaction-particles-attract: link:../../interactions/particles/attract
-      tsparticles-interaction-particles-collisions: link:../../interactions/particles/collisions
-      tsparticles-interaction-particles-links: link:../../interactions/particles/links
-      tsparticles-move-base: link:../../move/base
-      tsparticles-move-parallax: link:../../move/parallax
-      tsparticles-particles.js: link:../../bundles/pjs
-      tsparticles-plugin-absorbers: link:../../plugins/absorbers
-      tsparticles-plugin-emitters: link:../../plugins/emitters
-      tsparticles-plugin-polygon-mask: link:../../plugins/polygonMask
-      tsparticles-shape-circle: link:../../shapes/circle
-      tsparticles-shape-image: link:../../shapes/image
-      tsparticles-shape-line: link:../../shapes/line
-      tsparticles-shape-polygon: link:../../shapes/polygon
-      tsparticles-shape-square: link:../../shapes/square
-      tsparticles-shape-star: link:../../shapes/star
-      tsparticles-shape-text: link:../../shapes/text
-      tsparticles-slim: link:../../bundles/slim
-      tsparticles-updater-angle: link:../../updaters/angle
-      tsparticles-updater-color: link:../../updaters/color
-      tsparticles-updater-destroy: link:../../updaters/destroy
-      tsparticles-updater-life: link:../../updaters/life
-      tsparticles-updater-opacity: link:../../updaters/opacity
-      tsparticles-updater-out-modes: link:../../updaters/outModes
-      tsparticles-updater-roll: link:../../updaters/roll
-      tsparticles-updater-size: link:../../updaters/size
-      tsparticles-updater-stroke-color: link:../../updaters/strokeColor
-      tsparticles-updater-tilt: link:../../updaters/tilt
-      tsparticles-updater-twinkle: link:../../updaters/twinkle
-      tsparticles-updater-wobble: link:../../updaters/wobble
+      tsparticles: link:../../bundles/full/dist
+      tsparticles-engine: link:../../engine/dist
+      tsparticles-interaction-external-attract: link:../../interactions/external/attract/dist
+      tsparticles-interaction-external-bounce: link:../../interactions/external/bounce/dist
+      tsparticles-interaction-external-bubble: link:../../interactions/external/bubble/dist
+      tsparticles-interaction-external-connect: link:../../interactions/external/connect/dist
+      tsparticles-interaction-external-grab: link:../../interactions/external/grab/dist
+      tsparticles-interaction-external-pause: link:../../interactions/external/pause/dist
+      tsparticles-interaction-external-push: link:../../interactions/external/push/dist
+      tsparticles-interaction-external-remove: link:../../interactions/external/remove/dist
+      tsparticles-interaction-external-repulse: link:../../interactions/external/repulse/dist
+      tsparticles-interaction-external-slow: link:../../interactions/external/slow/dist
+      tsparticles-interaction-external-trail: link:../../interactions/external/trail/dist
+      tsparticles-interaction-particles-attract: link:../../interactions/particles/attract/dist
+      tsparticles-interaction-particles-collisions: link:../../interactions/particles/collisions/dist
+      tsparticles-interaction-particles-links: link:../../interactions/particles/links/dist
+      tsparticles-move-base: link:../../move/base/dist
+      tsparticles-move-parallax: link:../../move/parallax/dist
+      tsparticles-particles.js: link:../../bundles/pjs/dist
+      tsparticles-plugin-absorbers: link:../../plugins/absorbers/dist
+      tsparticles-plugin-emitters: link:../../plugins/emitters/dist
+      tsparticles-plugin-polygon-mask: link:../../plugins/polygonMask/dist
+      tsparticles-shape-circle: link:../../shapes/circle/dist
+      tsparticles-shape-image: link:../../shapes/image/dist
+      tsparticles-shape-line: link:../../shapes/line/dist
+      tsparticles-shape-polygon: link:../../shapes/polygon/dist
+      tsparticles-shape-square: link:../../shapes/square/dist
+      tsparticles-shape-star: link:../../shapes/star/dist
+      tsparticles-shape-text: link:../../shapes/text/dist
+      tsparticles-slim: link:../../bundles/slim/dist
+      tsparticles-updater-angle: link:../../updaters/angle/dist
+      tsparticles-updater-color: link:../../updaters/color/dist
+      tsparticles-updater-destroy: link:../../updaters/destroy/dist
+      tsparticles-updater-life: link:../../updaters/life/dist
+      tsparticles-updater-opacity: link:../../updaters/opacity/dist
+      tsparticles-updater-out-modes: link:../../updaters/outModes/dist
+      tsparticles-updater-roll: link:../../updaters/roll/dist
+      tsparticles-updater-size: link:../../updaters/size/dist
+      tsparticles-updater-stroke-color: link:../../updaters/strokeColor/dist
+      tsparticles-updater-tilt: link:../../updaters/tilt/dist
+      tsparticles-updater-twinkle: link:../../updaters/twinkle/dist
+      tsparticles-updater-wobble: link:../../updaters/wobble/dist
       zone.js: 0.11.8
     devDependencies:
       '@angular-devkit/build-angular': 14.2.1_wkrgjiv2rh6axo7wvbwg2mxasa
@@ -1093,9 +1093,9 @@ importers:
       pug: 3.0.2
       pug-cli: 1.0.0-alpha6
       stylus: 0.59.0
-      tsparticles: link:../../bundles/full
-      tsparticles-editor: link:../../editor
-      tsparticles-engine: link:../../engine
+      tsparticles: link:../../bundles/full/dist
+      tsparticles-editor: link:../../editor/dist
+      tsparticles-engine: link:../../engine/dist
       typescript: 4.8.2
 
   demo/inferno:
@@ -1124,8 +1124,8 @@ importers:
     dependencies:
       inferno: 8.0.3
       inferno-particles: link:../../components/inferno
-      tsparticles: link:../../bundles/full
-      tsparticles-engine: link:../../engine
+      tsparticles: link:../../bundles/full/dist
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@babel/plugin-proposal-class-properties': 7.18.6_@babel+core@7.18.13
@@ -1253,51 +1253,51 @@ importers:
       '@ionic/angular': 6.2.5_rxo5py4euu4rqsorjar3mslr2m
       '@ionic/core': 6.2.5
       ionicons: 6.0.3
-      ng-particles: link:../../components/angular
+      ng-particles: link:../../components/angular/dist/ng-particles
       rxjs: 7.5.6
       tslib: 2.4.0
-      tsparticles: link:../../bundles/full
-      tsparticles-engine: link:../../engine
-      tsparticles-interaction-external-attract: link:../../interactions/external/attract
-      tsparticles-interaction-external-bounce: link:../../interactions/external/bounce
-      tsparticles-interaction-external-bubble: link:../../interactions/external/bubble
-      tsparticles-interaction-external-connect: link:../../interactions/external/connect
-      tsparticles-interaction-external-grab: link:../../interactions/external/grab
-      tsparticles-interaction-external-pause: link:../../interactions/external/pause
-      tsparticles-interaction-external-push: link:../../interactions/external/push
-      tsparticles-interaction-external-remove: link:../../interactions/external/remove
-      tsparticles-interaction-external-repulse: link:../../interactions/external/repulse
-      tsparticles-interaction-external-slow: link:../../interactions/external/slow
-      tsparticles-interaction-external-trail: link:../../interactions/external/trail
-      tsparticles-interaction-particles-attract: link:../../interactions/particles/attract
-      tsparticles-interaction-particles-collisions: link:../../interactions/particles/collisions
-      tsparticles-interaction-particles-links: link:../../interactions/particles/links
-      tsparticles-move-base: link:../../move/base
-      tsparticles-move-parallax: link:../../move/parallax
-      tsparticles-particles.js: link:../../bundles/pjs
-      tsparticles-plugin-absorbers: link:../../plugins/absorbers
-      tsparticles-plugin-emitters: link:../../plugins/emitters
-      tsparticles-plugin-polygon-mask: link:../../plugins/polygonMask
-      tsparticles-shape-circle: link:../../shapes/circle
-      tsparticles-shape-image: link:../../shapes/image
-      tsparticles-shape-line: link:../../shapes/line
-      tsparticles-shape-polygon: link:../../shapes/polygon
-      tsparticles-shape-square: link:../../shapes/square
-      tsparticles-shape-star: link:../../shapes/star
-      tsparticles-shape-text: link:../../shapes/text
-      tsparticles-slim: link:../../bundles/slim
-      tsparticles-updater-angle: link:../../updaters/angle
-      tsparticles-updater-color: link:../../updaters/color
-      tsparticles-updater-destroy: link:../../updaters/destroy
-      tsparticles-updater-life: link:../../updaters/life
-      tsparticles-updater-opacity: link:../../updaters/opacity
-      tsparticles-updater-out-modes: link:../../updaters/outModes
-      tsparticles-updater-roll: link:../../updaters/roll
-      tsparticles-updater-size: link:../../updaters/size
-      tsparticles-updater-stroke-color: link:../../updaters/strokeColor
-      tsparticles-updater-tilt: link:../../updaters/tilt
-      tsparticles-updater-twinkle: link:../../updaters/twinkle
-      tsparticles-updater-wobble: link:../../updaters/wobble
+      tsparticles: link:../../bundles/full/dist
+      tsparticles-engine: link:../../engine/dist
+      tsparticles-interaction-external-attract: link:../../interactions/external/attract/dist
+      tsparticles-interaction-external-bounce: link:../../interactions/external/bounce/dist
+      tsparticles-interaction-external-bubble: link:../../interactions/external/bubble/dist
+      tsparticles-interaction-external-connect: link:../../interactions/external/connect/dist
+      tsparticles-interaction-external-grab: link:../../interactions/external/grab/dist
+      tsparticles-interaction-external-pause: link:../../interactions/external/pause/dist
+      tsparticles-interaction-external-push: link:../../interactions/external/push/dist
+      tsparticles-interaction-external-remove: link:../../interactions/external/remove/dist
+      tsparticles-interaction-external-repulse: link:../../interactions/external/repulse/dist
+      tsparticles-interaction-external-slow: link:../../interactions/external/slow/dist
+      tsparticles-interaction-external-trail: link:../../interactions/external/trail/dist
+      tsparticles-interaction-particles-attract: link:../../interactions/particles/attract/dist
+      tsparticles-interaction-particles-collisions: link:../../interactions/particles/collisions/dist
+      tsparticles-interaction-particles-links: link:../../interactions/particles/links/dist
+      tsparticles-move-base: link:../../move/base/dist
+      tsparticles-move-parallax: link:../../move/parallax/dist
+      tsparticles-particles.js: link:../../bundles/pjs/dist
+      tsparticles-plugin-absorbers: link:../../plugins/absorbers/dist
+      tsparticles-plugin-emitters: link:../../plugins/emitters/dist
+      tsparticles-plugin-polygon-mask: link:../../plugins/polygonMask/dist
+      tsparticles-shape-circle: link:../../shapes/circle/dist
+      tsparticles-shape-image: link:../../shapes/image/dist
+      tsparticles-shape-line: link:../../shapes/line/dist
+      tsparticles-shape-polygon: link:../../shapes/polygon/dist
+      tsparticles-shape-square: link:../../shapes/square/dist
+      tsparticles-shape-star: link:../../shapes/star/dist
+      tsparticles-shape-text: link:../../shapes/text/dist
+      tsparticles-slim: link:../../bundles/slim/dist
+      tsparticles-updater-angle: link:../../updaters/angle/dist
+      tsparticles-updater-color: link:../../updaters/color/dist
+      tsparticles-updater-destroy: link:../../updaters/destroy/dist
+      tsparticles-updater-life: link:../../updaters/life/dist
+      tsparticles-updater-opacity: link:../../updaters/opacity/dist
+      tsparticles-updater-out-modes: link:../../updaters/outModes/dist
+      tsparticles-updater-roll: link:../../updaters/roll/dist
+      tsparticles-updater-size: link:../../updaters/size/dist
+      tsparticles-updater-stroke-color: link:../../updaters/strokeColor/dist
+      tsparticles-updater-tilt: link:../../updaters/tilt/dist
+      tsparticles-updater-twinkle: link:../../updaters/twinkle/dist
+      tsparticles-updater-wobble: link:../../updaters/wobble/dist
       zone.js: 0.11.8
     devDependencies:
       '@angular-devkit/build-angular': 14.2.1_t6q26arcchkvjmzj6qty5ec3fm
@@ -1358,9 +1358,9 @@ importers:
     dependencies:
       jquery: 3.6.1
       jquery-particles: link:../../components/jquery
-      tsparticles: link:../../bundles/full
-      tsparticles-engine: link:../../engine
-      tsparticles-preset-links: link:../../presets/links
+      tsparticles: link:../../bundles/full/dist
+      tsparticles-engine: link:../../engine/dist
+      tsparticles-preset-links: link:../../presets/links/dist
     devDependencies:
       '@fortawesome/fontawesome-free': 6.2.0
       '@typescript-eslint/eslint-plugin': 5.36.1_lbwfnm54o3pmr3ypeqp3btnera
@@ -1393,8 +1393,8 @@ importers:
       next: 12.2.5_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-particles: link:../../components/react
-      tsparticles-preset-big-circles: link:../../presets/bigCircles
+      react-particles: link:../../components/react/dist
+      tsparticles-preset-big-circles: link:../../presets/bigCircles/dist
       typescript: 4.8.2
     devDependencies:
       eslint: 8.23.0
@@ -1426,8 +1426,8 @@ importers:
       preact-particles: link:../../components/preact
       preact-render-to-string: 5.2.2_preact@10.10.6
       preact-router: 4.1.0_preact@10.10.6
-      tsparticles: link:../../bundles/full
-      tsparticles-engine: link:../../engine
+      tsparticles: link:../../bundles/full/dist
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@typescript-eslint/eslint-plugin': 5.36.1_lbwfnm54o3pmr3ypeqp3btnera
       '@typescript-eslint/parser': 5.36.1_yqf6kl63nyoq5megxukfnom5rm
@@ -1511,50 +1511,50 @@ importers:
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-particles: link:../../components/react
+      react-particles: link:../../components/react/dist
       rxjs: 7.5.6
-      tsparticles: link:../../bundles/full
-      tsparticles-engine: link:../../engine
-      tsparticles-interaction-external-attract: link:../../interactions/external/attract
-      tsparticles-interaction-external-bounce: link:../../interactions/external/bounce
-      tsparticles-interaction-external-bubble: link:../../interactions/external/bubble
-      tsparticles-interaction-external-connect: link:../../interactions/external/connect
-      tsparticles-interaction-external-grab: link:../../interactions/external/grab
-      tsparticles-interaction-external-pause: link:../../interactions/external/pause
-      tsparticles-interaction-external-push: link:../../interactions/external/push
-      tsparticles-interaction-external-remove: link:../../interactions/external/remove
-      tsparticles-interaction-external-repulse: link:../../interactions/external/repulse
-      tsparticles-interaction-external-slow: link:../../interactions/external/slow
-      tsparticles-interaction-external-trail: link:../../interactions/external/trail
-      tsparticles-interaction-particles-attract: link:../../interactions/particles/attract
-      tsparticles-interaction-particles-collisions: link:../../interactions/particles/collisions
-      tsparticles-interaction-particles-links: link:../../interactions/particles/links
-      tsparticles-move-base: link:../../move/base
-      tsparticles-move-parallax: link:../../move/parallax
-      tsparticles-particles.js: link:../../bundles/pjs
-      tsparticles-plugin-absorbers: link:../../plugins/absorbers
-      tsparticles-plugin-emitters: link:../../plugins/emitters
-      tsparticles-plugin-polygon-mask: link:../../plugins/polygonMask
-      tsparticles-shape-circle: link:../../shapes/circle
-      tsparticles-shape-image: link:../../shapes/image
-      tsparticles-shape-line: link:../../shapes/line
-      tsparticles-shape-polygon: link:../../shapes/polygon
-      tsparticles-shape-square: link:../../shapes/square
-      tsparticles-shape-star: link:../../shapes/star
-      tsparticles-shape-text: link:../../shapes/text
-      tsparticles-slim: link:../../bundles/slim
-      tsparticles-updater-angle: link:../../updaters/angle
-      tsparticles-updater-color: link:../../updaters/color
-      tsparticles-updater-destroy: link:../../updaters/destroy
-      tsparticles-updater-life: link:../../updaters/life
-      tsparticles-updater-opacity: link:../../updaters/opacity
-      tsparticles-updater-out-modes: link:../../updaters/outModes
-      tsparticles-updater-roll: link:../../updaters/roll
-      tsparticles-updater-size: link:../../updaters/size
-      tsparticles-updater-stroke-color: link:../../updaters/strokeColor
-      tsparticles-updater-tilt: link:../../updaters/tilt
-      tsparticles-updater-twinkle: link:../../updaters/twinkle
-      tsparticles-updater-wobble: link:../../updaters/wobble
+      tsparticles: link:../../bundles/full/dist
+      tsparticles-engine: link:../../engine/dist
+      tsparticles-interaction-external-attract: link:../../interactions/external/attract/dist
+      tsparticles-interaction-external-bounce: link:../../interactions/external/bounce/dist
+      tsparticles-interaction-external-bubble: link:../../interactions/external/bubble/dist
+      tsparticles-interaction-external-connect: link:../../interactions/external/connect/dist
+      tsparticles-interaction-external-grab: link:../../interactions/external/grab/dist
+      tsparticles-interaction-external-pause: link:../../interactions/external/pause/dist
+      tsparticles-interaction-external-push: link:../../interactions/external/push/dist
+      tsparticles-interaction-external-remove: link:../../interactions/external/remove/dist
+      tsparticles-interaction-external-repulse: link:../../interactions/external/repulse/dist
+      tsparticles-interaction-external-slow: link:../../interactions/external/slow/dist
+      tsparticles-interaction-external-trail: link:../../interactions/external/trail/dist
+      tsparticles-interaction-particles-attract: link:../../interactions/particles/attract/dist
+      tsparticles-interaction-particles-collisions: link:../../interactions/particles/collisions/dist
+      tsparticles-interaction-particles-links: link:../../interactions/particles/links/dist
+      tsparticles-move-base: link:../../move/base/dist
+      tsparticles-move-parallax: link:../../move/parallax/dist
+      tsparticles-particles.js: link:../../bundles/pjs/dist
+      tsparticles-plugin-absorbers: link:../../plugins/absorbers/dist
+      tsparticles-plugin-emitters: link:../../plugins/emitters/dist
+      tsparticles-plugin-polygon-mask: link:../../plugins/polygonMask/dist
+      tsparticles-shape-circle: link:../../shapes/circle/dist
+      tsparticles-shape-image: link:../../shapes/image/dist
+      tsparticles-shape-line: link:../../shapes/line/dist
+      tsparticles-shape-polygon: link:../../shapes/polygon/dist
+      tsparticles-shape-square: link:../../shapes/square/dist
+      tsparticles-shape-star: link:../../shapes/star/dist
+      tsparticles-shape-text: link:../../shapes/text/dist
+      tsparticles-slim: link:../../bundles/slim/dist
+      tsparticles-updater-angle: link:../../updaters/angle/dist
+      tsparticles-updater-color: link:../../updaters/color/dist
+      tsparticles-updater-destroy: link:../../updaters/destroy/dist
+      tsparticles-updater-life: link:../../updaters/life/dist
+      tsparticles-updater-opacity: link:../../updaters/opacity/dist
+      tsparticles-updater-out-modes: link:../../updaters/outModes/dist
+      tsparticles-updater-roll: link:../../updaters/roll/dist
+      tsparticles-updater-size: link:../../updaters/size/dist
+      tsparticles-updater-stroke-color: link:../../updaters/strokeColor/dist
+      tsparticles-updater-tilt: link:../../updaters/tilt/dist
+      tsparticles-updater-twinkle: link:../../updaters/twinkle/dist
+      tsparticles-updater-wobble: link:../../updaters/wobble/dist
     devDependencies:
       '@parcel/core': 2.7.0
       '@parcel/transformer-sass': 2.7.0_@parcel+core@2.7.0
@@ -1606,8 +1606,8 @@ importers:
       path: 0.12.7
       riot: 7.0.4
       riot-particles: link:../../components/riot
-      tsparticles: link:../../bundles/full
-      tsparticles-engine: link:../../engine
+      tsparticles: link:../../bundles/full/dist
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@riotjs/compiler': 6.3.2
       '@riotjs/register': 6.0.1_@riotjs+compiler@6.3.2
@@ -1641,8 +1641,8 @@ importers:
       solid-js: 1.5.3
       solid-particles: link:../../components/solid
       solid-scripts: 0.0.61_ihmwx4o7t5x7m2ydo74afn7jce
-      tsparticles: link:../../bundles/full
-      tsparticles-engine: link:../../engine
+      tsparticles: link:../../bundles/full/dist
+      tsparticles-engine: link:../../engine/dist
       typescript: 4.8.2
 
   demo/svelte:
@@ -1667,7 +1667,7 @@ importers:
     dependencies:
       sirv-cli: 2.0.2
       svelte-particles: link:../../components/svelte
-      tsparticles: link:../../bundles/full
+      tsparticles: link:../../bundles/full/dist
     devDependencies:
       '@rollup/plugin-commonjs': 22.0.2_rollup@2.79.0
       '@rollup/plugin-node-resolve': 13.3.0_rollup@2.79.0
@@ -1800,76 +1800,76 @@ importers:
       pug-cli: 1.0.0-alpha6
       stats.ts: 1.1.0
       stylus: 0.59.0
-      tsparticles: link:../../bundles/full
-      tsparticles-engine: link:../../engine
-      tsparticles-interaction-external-attract: link:../../interactions/external/attract
-      tsparticles-interaction-external-bounce: link:../../interactions/external/bounce
-      tsparticles-interaction-external-bubble: link:../../interactions/external/bubble
-      tsparticles-interaction-external-connect: link:../../interactions/external/connect
-      tsparticles-interaction-external-grab: link:../../interactions/external/grab
-      tsparticles-interaction-external-pause: link:../../interactions/external/pause
-      tsparticles-interaction-external-push: link:../../interactions/external/push
-      tsparticles-interaction-external-remove: link:../../interactions/external/remove
-      tsparticles-interaction-external-repulse: link:../../interactions/external/repulse
-      tsparticles-interaction-external-slow: link:../../interactions/external/slow
-      tsparticles-interaction-external-trail: link:../../interactions/external/trail
-      tsparticles-interaction-light: link:../../interactions/light
-      tsparticles-interaction-particles-attract: link:../../interactions/particles/attract
-      tsparticles-interaction-particles-collisions: link:../../interactions/particles/collisions
-      tsparticles-interaction-particles-links: link:../../interactions/particles/links
-      tsparticles-interaction-particles-repulse: link:../../interactions/particles/repulse
-      tsparticles-move-base: link:../../move/base
-      tsparticles-move-parallax: link:../../move/parallax
-      tsparticles-particles.js: link:../../bundles/pjs
-      tsparticles-path-curves: link:../../paths/curves
-      tsparticles-path-perlin-noise: link:../../paths/perlinNoise
-      tsparticles-path-polygon: link:../../paths/polygon
-      tsparticles-path-simplex-noise: link:../../paths/simplexNoise
-      tsparticles-plugin-absorbers: link:../../plugins/absorbers
-      tsparticles-plugin-canvas-mask: link:../../plugins/canvasMask
-      tsparticles-plugin-emitters: link:../../plugins/emitters
-      tsparticles-plugin-hsv-color: link:../../plugins/hsvColor
-      tsparticles-plugin-infection: link:../../plugins/infection
-      tsparticles-plugin-polygon-mask: link:../../plugins/polygonMask
-      tsparticles-preset-big-circles: link:../../presets/bigCircles
-      tsparticles-preset-bubbles: link:../../presets/bubbles
-      tsparticles-preset-confetti: link:../../presets/confetti
-      tsparticles-preset-fire: link:../../presets/fire
-      tsparticles-preset-firefly: link:../../presets/firefly
-      tsparticles-preset-fireworks: link:../../presets/fireworks
-      tsparticles-preset-fountain: link:../../presets/fountain
-      tsparticles-preset-links: link:../../presets/links
-      tsparticles-preset-sea-anemone: link:../../presets/seaAnemone
-      tsparticles-preset-snow: link:../../presets/snow
-      tsparticles-preset-stars: link:../../presets/stars
-      tsparticles-preset-triangles: link:../../presets/triangles
-      tsparticles-shape-bubble: link:../../shapes/bubble
-      tsparticles-shape-circle: link:../../shapes/circle
-      tsparticles-shape-heart: link:../../shapes/heart
-      tsparticles-shape-image: link:../../shapes/image
-      tsparticles-shape-line: link:../../shapes/line
-      tsparticles-shape-multiline-text: link:../../shapes/multiline-text
-      tsparticles-shape-polygon: link:../../shapes/polygon
-      tsparticles-shape-rounded-rect: link:../../shapes/rounded-rect
-      tsparticles-shape-spiral: link:../../shapes/spiral
-      tsparticles-shape-square: link:../../shapes/square
-      tsparticles-shape-star: link:../../shapes/star
-      tsparticles-shape-text: link:../../shapes/text
-      tsparticles-slim: link:../../bundles/slim
-      tsparticles-updater-angle: link:../../updaters/angle
-      tsparticles-updater-color: link:../../updaters/color
-      tsparticles-updater-destroy: link:../../updaters/destroy
-      tsparticles-updater-gradient: link:../../updaters/gradient
-      tsparticles-updater-life: link:../../updaters/life
-      tsparticles-updater-opacity: link:../../updaters/opacity
-      tsparticles-updater-orbit: link:../../updaters/orbit
-      tsparticles-updater-out-modes: link:../../updaters/outModes
-      tsparticles-updater-roll: link:../../updaters/roll
-      tsparticles-updater-size: link:../../updaters/size
-      tsparticles-updater-stroke-color: link:../../updaters/strokeColor
-      tsparticles-updater-tilt: link:../../updaters/tilt
-      tsparticles-updater-twinkle: link:../../updaters/twinkle
-      tsparticles-updater-wobble: link:../../updaters/wobble
+      tsparticles: link:../../bundles/full/dist
+      tsparticles-engine: link:../../engine/dist
+      tsparticles-interaction-external-attract: link:../../interactions/external/attract/dist
+      tsparticles-interaction-external-bounce: link:../../interactions/external/bounce/dist
+      tsparticles-interaction-external-bubble: link:../../interactions/external/bubble/dist
+      tsparticles-interaction-external-connect: link:../../interactions/external/connect/dist
+      tsparticles-interaction-external-grab: link:../../interactions/external/grab/dist
+      tsparticles-interaction-external-pause: link:../../interactions/external/pause/dist
+      tsparticles-interaction-external-push: link:../../interactions/external/push/dist
+      tsparticles-interaction-external-remove: link:../../interactions/external/remove/dist
+      tsparticles-interaction-external-repulse: link:../../interactions/external/repulse/dist
+      tsparticles-interaction-external-slow: link:../../interactions/external/slow/dist
+      tsparticles-interaction-external-trail: link:../../interactions/external/trail/dist
+      tsparticles-interaction-light: link:../../interactions/light/dist
+      tsparticles-interaction-particles-attract: link:../../interactions/particles/attract/dist
+      tsparticles-interaction-particles-collisions: link:../../interactions/particles/collisions/dist
+      tsparticles-interaction-particles-links: link:../../interactions/particles/links/dist
+      tsparticles-interaction-particles-repulse: link:../../interactions/particles/repulse/dist
+      tsparticles-move-base: link:../../move/base/dist
+      tsparticles-move-parallax: link:../../move/parallax/dist
+      tsparticles-particles.js: link:../../bundles/pjs/dist
+      tsparticles-path-curves: link:../../paths/curves/dist
+      tsparticles-path-perlin-noise: link:../../paths/perlinNoise/dist
+      tsparticles-path-polygon: link:../../paths/polygon/dist
+      tsparticles-path-simplex-noise: link:../../paths/simplexNoise/dist
+      tsparticles-plugin-absorbers: link:../../plugins/absorbers/dist
+      tsparticles-plugin-canvas-mask: link:../../plugins/canvasMask/dist
+      tsparticles-plugin-emitters: link:../../plugins/emitters/dist
+      tsparticles-plugin-hsv-color: link:../../plugins/hsvColor/dist
+      tsparticles-plugin-infection: link:../../plugins/infection/dist
+      tsparticles-plugin-polygon-mask: link:../../plugins/polygonMask/dist
+      tsparticles-preset-big-circles: link:../../presets/bigCircles/dist
+      tsparticles-preset-bubbles: link:../../presets/bubbles/dist
+      tsparticles-preset-confetti: link:../../presets/confetti/dist
+      tsparticles-preset-fire: link:../../presets/fire/dist
+      tsparticles-preset-firefly: link:../../presets/firefly/dist
+      tsparticles-preset-fireworks: link:../../presets/fireworks/dist
+      tsparticles-preset-fountain: link:../../presets/fountain/dist
+      tsparticles-preset-links: link:../../presets/links/dist
+      tsparticles-preset-sea-anemone: link:../../presets/seaAnemone/dist
+      tsparticles-preset-snow: link:../../presets/snow/dist
+      tsparticles-preset-stars: link:../../presets/stars/dist
+      tsparticles-preset-triangles: link:../../presets/triangles/dist
+      tsparticles-shape-bubble: link:../../shapes/bubble/dist
+      tsparticles-shape-circle: link:../../shapes/circle/dist
+      tsparticles-shape-heart: link:../../shapes/heart/dist
+      tsparticles-shape-image: link:../../shapes/image/dist
+      tsparticles-shape-line: link:../../shapes/line/dist
+      tsparticles-shape-multiline-text: link:../../shapes/multiline-text/dist
+      tsparticles-shape-polygon: link:../../shapes/polygon/dist
+      tsparticles-shape-rounded-rect: link:../../shapes/rounded-rect/dist
+      tsparticles-shape-spiral: link:../../shapes/spiral/dist
+      tsparticles-shape-square: link:../../shapes/square/dist
+      tsparticles-shape-star: link:../../shapes/star/dist
+      tsparticles-shape-text: link:../../shapes/text/dist
+      tsparticles-slim: link:../../bundles/slim/dist
+      tsparticles-updater-angle: link:../../updaters/angle/dist
+      tsparticles-updater-color: link:../../updaters/color/dist
+      tsparticles-updater-destroy: link:../../updaters/destroy/dist
+      tsparticles-updater-gradient: link:../../updaters/gradient/dist
+      tsparticles-updater-life: link:../../updaters/life/dist
+      tsparticles-updater-opacity: link:../../updaters/opacity/dist
+      tsparticles-updater-orbit: link:../../updaters/orbit/dist
+      tsparticles-updater-out-modes: link:../../updaters/outModes/dist
+      tsparticles-updater-roll: link:../../updaters/roll/dist
+      tsparticles-updater-size: link:../../updaters/size/dist
+      tsparticles-updater-stroke-color: link:../../updaters/strokeColor/dist
+      tsparticles-updater-tilt: link:../../updaters/tilt/dist
+      tsparticles-updater-twinkle: link:../../updaters/twinkle/dist
+      tsparticles-updater-wobble: link:../../updaters/wobble/dist
       typescript: 4.8.2
 
   demo/vanilla_new:
@@ -1896,17 +1896,17 @@ importers:
       minify: 9.1.0
       rimraf: 3.0.2
       sass: 1.54.8
-      tsparticles: link:../../bundles/full
-      tsparticles-engine: link:../../engine
-      tsparticles-interaction-light: link:../../interactions/light
-      tsparticles-interaction-particles-repulse: link:../../interactions/particles/repulse
-      tsparticles-path-curves: link:../../paths/curves
-      tsparticles-path-perlin-noise: link:../../paths/perlinNoise
-      tsparticles-path-polygon: link:../../paths/polygon
-      tsparticles-path-simplex-noise: link:../../paths/simplexNoise
-      tsparticles-plugin-infection: link:../../plugins/infection
-      tsparticles-updater-gradient: link:../../updaters/gradient
-      tsparticles-updater-orbit: link:../../updaters/orbit
+      tsparticles: link:../../bundles/full/dist
+      tsparticles-engine: link:../../engine/dist
+      tsparticles-interaction-light: link:../../interactions/light/dist
+      tsparticles-interaction-particles-repulse: link:../../interactions/particles/repulse/dist
+      tsparticles-path-curves: link:../../paths/curves/dist
+      tsparticles-path-perlin-noise: link:../../paths/perlinNoise/dist
+      tsparticles-path-polygon: link:../../paths/polygon/dist
+      tsparticles-path-simplex-noise: link:../../paths/simplexNoise/dist
+      tsparticles-plugin-infection: link:../../plugins/infection/dist
+      tsparticles-updater-gradient: link:../../updaters/gradient/dist
+      tsparticles-updater-orbit: link:../../updaters/orbit/dist
 
   demo/vue:
     specifiers:
@@ -1940,8 +1940,8 @@ importers:
       vue-template-compiler: ^2.6.14
       vue2-particles: ^2.2.4
     dependencies:
-      tsparticles: link:../../bundles/full
-      tsparticles-engine: link:../../engine
+      tsparticles: link:../../bundles/full/dist
+      tsparticles-engine: link:../../engine/dist
       vue: 2.7.10
       vue-class-component: 7.2.6_vue@2.7.10
       vue-property-decorator: 9.1.2_xovzknyasni4brq5g3yfvdslua
@@ -1994,8 +1994,8 @@ importers:
       vue-tsc: ^0.40.0
       vue3-particles: ^2.2.4
     dependencies:
-      tsparticles: link:../../bundles/full
-      tsparticles-engine: link:../../engine
+      tsparticles: link:../../bundles/full/dist
+      tsparticles-engine: link:../../engine/dist
       vue: 3.2.38
       vue-router: 4.1.5_vue@3.2.38
       vue3-particles: link:../../components/vue3
@@ -2047,8 +2047,8 @@ importers:
       pug: 3.0.2
       pug-cli: 1.0.0-alpha6
       stylus: 0.59.0
-      tsparticles: link:../../bundles/full
-      tsparticles-engine: link:../../engine
+      tsparticles: link:../../bundles/full/dist
+      tsparticles-engine: link:../../engine/dist
       typescript: 4.8.2
       web-particles: link:../../components/web
 
@@ -2093,21 +2093,21 @@ importers:
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
       object-gui: 2.0.1
-      tsparticles-engine: link:../engine
-      tsparticles-interaction-external-attract: link:../interactions/external/attract
-      tsparticles-interaction-external-bounce: link:../interactions/external/bounce
-      tsparticles-interaction-external-bubble: link:../interactions/external/bubble
-      tsparticles-interaction-external-connect: link:../interactions/external/connect
-      tsparticles-interaction-external-grab: link:../interactions/external/grab
-      tsparticles-interaction-external-pause: link:../interactions/external/pause
-      tsparticles-interaction-external-push: link:../interactions/external/push
-      tsparticles-interaction-external-remove: link:../interactions/external/remove
-      tsparticles-interaction-external-repulse: link:../interactions/external/repulse
-      tsparticles-interaction-light: link:../interactions/light
-      tsparticles-interaction-particles-links: link:../interactions/particles/links
-      tsparticles-plugin-absorbers: link:../plugins/absorbers
-      tsparticles-plugin-emitters: link:../plugins/emitters
-      tsparticles-plugin-infection: link:../plugins/infection
+      tsparticles-engine: link:../engine/dist
+      tsparticles-interaction-external-attract: link:../interactions/external/attract/dist
+      tsparticles-interaction-external-bounce: link:../interactions/external/bounce/dist
+      tsparticles-interaction-external-bubble: link:../interactions/external/bubble/dist
+      tsparticles-interaction-external-connect: link:../interactions/external/connect/dist
+      tsparticles-interaction-external-grab: link:../interactions/external/grab/dist
+      tsparticles-interaction-external-pause: link:../interactions/external/pause/dist
+      tsparticles-interaction-external-push: link:../interactions/external/push/dist
+      tsparticles-interaction-external-remove: link:../interactions/external/remove/dist
+      tsparticles-interaction-external-repulse: link:../interactions/external/repulse/dist
+      tsparticles-interaction-light: link:../interactions/light/dist
+      tsparticles-interaction-particles-links: link:../interactions/particles/links/dist
+      tsparticles-plugin-absorbers: link:../plugins/absorbers/dist
+      tsparticles-plugin-emitters: link:../plugins/emitters/dist
+      tsparticles-plugin-infection: link:../plugins/infection/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../utils/builder
@@ -2240,7 +2240,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../../engine
+      tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../../utils/builder
@@ -2290,7 +2290,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../../engine
+      tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../../utils/builder
@@ -2340,7 +2340,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../../engine
+      tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../../utils/builder
@@ -2390,7 +2390,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../../engine
+      tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../../utils/builder
@@ -2440,7 +2440,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../../engine
+      tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../../utils/builder
@@ -2490,7 +2490,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../../engine
+      tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../../utils/builder
@@ -2540,7 +2540,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../../engine
+      tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../../utils/builder
@@ -2590,7 +2590,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../../engine
+      tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../../utils/builder
@@ -2640,7 +2640,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../../engine
+      tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../../utils/builder
@@ -2690,7 +2690,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.1
     dependencies:
-      tsparticles-engine: link:../../../engine
+      tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../../utils/builder
@@ -2740,7 +2740,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../../engine
+      tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../../utils/builder
@@ -2790,7 +2790,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -2840,7 +2840,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../../engine
+      tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../../utils/builder
@@ -2890,7 +2890,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../../engine
+      tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../../utils/builder
@@ -2940,7 +2940,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../../engine
+      tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../../utils/builder
@@ -2990,7 +2990,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../../engine
+      tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../../utils/builder
@@ -3040,7 +3040,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -3090,7 +3090,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -3140,7 +3140,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -3190,7 +3190,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -3240,7 +3240,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -3290,7 +3290,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -3340,7 +3340,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -3390,7 +3390,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -3440,7 +3440,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -3490,7 +3490,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -3540,7 +3540,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -3590,7 +3590,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -3647,14 +3647,14 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
-      tsparticles-move-base: link:../../move/base
-      tsparticles-plugin-emitters: link:../../plugins/emitters
-      tsparticles-shape-circle: link:../../shapes/circle
-      tsparticles-updater-color: link:../../updaters/color
-      tsparticles-updater-opacity: link:../../updaters/opacity
-      tsparticles-updater-out-modes: link:../../updaters/outModes
-      tsparticles-updater-size: link:../../updaters/size
+      tsparticles-engine: link:../../engine/dist
+      tsparticles-move-base: link:../../move/base/dist
+      tsparticles-plugin-emitters: link:../../plugins/emitters/dist
+      tsparticles-shape-circle: link:../../shapes/circle/dist
+      tsparticles-updater-color: link:../../updaters/color/dist
+      tsparticles-updater-opacity: link:../../updaters/opacity/dist
+      tsparticles-updater-out-modes: link:../../updaters/outModes/dist
+      tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -3711,14 +3711,14 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
-      tsparticles-move-base: link:../../move/base
-      tsparticles-plugin-emitters: link:../../plugins/emitters
-      tsparticles-shape-circle: link:../../shapes/circle
-      tsparticles-updater-color: link:../../updaters/color
-      tsparticles-updater-opacity: link:../../updaters/opacity
-      tsparticles-updater-out-modes: link:../../updaters/outModes
-      tsparticles-updater-size: link:../../updaters/size
+      tsparticles-engine: link:../../engine/dist
+      tsparticles-move-base: link:../../move/base/dist
+      tsparticles-plugin-emitters: link:../../plugins/emitters/dist
+      tsparticles-shape-circle: link:../../shapes/circle/dist
+      tsparticles-updater-color: link:../../updaters/color/dist
+      tsparticles-updater-opacity: link:../../updaters/opacity/dist
+      tsparticles-updater-out-modes: link:../../updaters/outModes/dist
+      tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -3781,20 +3781,20 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
-      tsparticles-move-base: link:../../move/base
-      tsparticles-plugin-emitters: link:../../plugins/emitters
-      tsparticles-shape-circle: link:../../shapes/circle
-      tsparticles-shape-square: link:../../shapes/square
-      tsparticles-updater-angle: link:../../updaters/angle
-      tsparticles-updater-color: link:../../updaters/color
-      tsparticles-updater-life: link:../../updaters/life
-      tsparticles-updater-opacity: link:../../updaters/opacity
-      tsparticles-updater-out-modes: link:../../updaters/outModes
-      tsparticles-updater-roll: link:../../updaters/roll
-      tsparticles-updater-size: link:../../updaters/size
-      tsparticles-updater-tilt: link:../../updaters/tilt
-      tsparticles-updater-wobble: link:../../updaters/wobble
+      tsparticles-engine: link:../../engine/dist
+      tsparticles-move-base: link:../../move/base/dist
+      tsparticles-plugin-emitters: link:../../plugins/emitters/dist
+      tsparticles-shape-circle: link:../../shapes/circle/dist
+      tsparticles-shape-square: link:../../shapes/square/dist
+      tsparticles-updater-angle: link:../../updaters/angle/dist
+      tsparticles-updater-color: link:../../updaters/color/dist
+      tsparticles-updater-life: link:../../updaters/life/dist
+      tsparticles-updater-opacity: link:../../updaters/opacity/dist
+      tsparticles-updater-out-modes: link:../../updaters/outModes/dist
+      tsparticles-updater-roll: link:../../updaters/roll/dist
+      tsparticles-updater-size: link:../../updaters/size/dist
+      tsparticles-updater-tilt: link:../../updaters/tilt/dist
+      tsparticles-updater-wobble: link:../../updaters/wobble/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -3851,14 +3851,14 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
-      tsparticles-interaction-external-push: link:../../interactions/external/push
-      tsparticles-move-base: link:../../move/base
-      tsparticles-shape-circle: link:../../shapes/circle
-      tsparticles-updater-color: link:../../updaters/color
-      tsparticles-updater-opacity: link:../../updaters/opacity
-      tsparticles-updater-out-modes: link:../../updaters/outModes
-      tsparticles-updater-size: link:../../updaters/size
+      tsparticles-engine: link:../../engine/dist
+      tsparticles-interaction-external-push: link:../../interactions/external/push/dist
+      tsparticles-move-base: link:../../move/base/dist
+      tsparticles-shape-circle: link:../../shapes/circle/dist
+      tsparticles-updater-color: link:../../updaters/color/dist
+      tsparticles-updater-opacity: link:../../updaters/opacity/dist
+      tsparticles-updater-out-modes: link:../../updaters/outModes/dist
+      tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -3915,14 +3915,14 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
-      tsparticles-interaction-external-trail: link:../../interactions/external/trail
-      tsparticles-move-base: link:../../move/base
-      tsparticles-shape-circle: link:../../shapes/circle
-      tsparticles-updater-color: link:../../updaters/color
-      tsparticles-updater-life: link:../../updaters/life
-      tsparticles-updater-opacity: link:../../updaters/opacity
-      tsparticles-updater-size: link:../../updaters/size
+      tsparticles-engine: link:../../engine/dist
+      tsparticles-interaction-external-trail: link:../../interactions/external/trail/dist
+      tsparticles-move-base: link:../../move/base/dist
+      tsparticles-shape-circle: link:../../shapes/circle/dist
+      tsparticles-updater-color: link:../../updaters/color/dist
+      tsparticles-updater-life: link:../../updaters/life/dist
+      tsparticles-updater-opacity: link:../../updaters/opacity/dist
+      tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -3984,19 +3984,19 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
-      tsparticles-move-base: link:../../move/base
-      tsparticles-plugin-emitters: link:../../plugins/emitters
-      tsparticles-shape-circle: link:../../shapes/circle
-      tsparticles-shape-line: link:../../shapes/line
-      tsparticles-updater-angle: link:../../updaters/angle
-      tsparticles-updater-color: link:../../updaters/color
-      tsparticles-updater-destroy: link:../../updaters/destroy
-      tsparticles-updater-life: link:../../updaters/life
-      tsparticles-updater-opacity: link:../../updaters/opacity
-      tsparticles-updater-out-modes: link:../../updaters/outModes
-      tsparticles-updater-size: link:../../updaters/size
-      tsparticles-updater-stroke-color: link:../../updaters/strokeColor
+      tsparticles-engine: link:../../engine/dist
+      tsparticles-move-base: link:../../move/base/dist
+      tsparticles-plugin-emitters: link:../../plugins/emitters/dist
+      tsparticles-shape-circle: link:../../shapes/circle/dist
+      tsparticles-shape-line: link:../../shapes/line/dist
+      tsparticles-updater-angle: link:../../updaters/angle/dist
+      tsparticles-updater-color: link:../../updaters/color/dist
+      tsparticles-updater-destroy: link:../../updaters/destroy/dist
+      tsparticles-updater-life: link:../../updaters/life/dist
+      tsparticles-updater-opacity: link:../../updaters/opacity/dist
+      tsparticles-updater-out-modes: link:../../updaters/outModes/dist
+      tsparticles-updater-size: link:../../updaters/size/dist
+      tsparticles-updater-stroke-color: link:../../updaters/strokeColor/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -4054,15 +4054,15 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
-      tsparticles-move-base: link:../../move/base
-      tsparticles-plugin-emitters: link:../../plugins/emitters
-      tsparticles-shape-circle: link:../../shapes/circle
-      tsparticles-updater-color: link:../../updaters/color
-      tsparticles-updater-destroy: link:../../updaters/destroy
-      tsparticles-updater-opacity: link:../../updaters/opacity
-      tsparticles-updater-out-modes: link:../../updaters/outModes
-      tsparticles-updater-size: link:../../updaters/size
+      tsparticles-engine: link:../../engine/dist
+      tsparticles-move-base: link:../../move/base/dist
+      tsparticles-plugin-emitters: link:../../plugins/emitters/dist
+      tsparticles-shape-circle: link:../../shapes/circle/dist
+      tsparticles-updater-color: link:../../updaters/color/dist
+      tsparticles-updater-destroy: link:../../updaters/destroy/dist
+      tsparticles-updater-opacity: link:../../updaters/opacity/dist
+      tsparticles-updater-out-modes: link:../../updaters/outModes/dist
+      tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -4119,14 +4119,14 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
-      tsparticles-interaction-particles-links: link:../../interactions/particles/links
-      tsparticles-move-base: link:../../move/base
-      tsparticles-shape-circle: link:../../shapes/circle
-      tsparticles-updater-color: link:../../updaters/color
-      tsparticles-updater-opacity: link:../../updaters/opacity
-      tsparticles-updater-out-modes: link:../../updaters/outModes
-      tsparticles-updater-size: link:../../updaters/size
+      tsparticles-engine: link:../../engine/dist
+      tsparticles-interaction-particles-links: link:../../interactions/particles/links/dist
+      tsparticles-move-base: link:../../move/base/dist
+      tsparticles-shape-circle: link:../../shapes/circle/dist
+      tsparticles-updater-color: link:../../updaters/color/dist
+      tsparticles-updater-opacity: link:../../updaters/opacity/dist
+      tsparticles-updater-out-modes: link:../../updaters/outModes/dist
+      tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -4184,15 +4184,15 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
-      tsparticles-move-base: link:../../move/base
-      tsparticles-path-curves: link:../../paths/curves
-      tsparticles-plugin-emitters: link:../../plugins/emitters
-      tsparticles-shape-circle: link:../../shapes/circle
-      tsparticles-updater-color: link:../../updaters/color
-      tsparticles-updater-opacity: link:../../updaters/opacity
-      tsparticles-updater-out-modes: link:../../updaters/outModes
-      tsparticles-updater-size: link:../../updaters/size
+      tsparticles-engine: link:../../engine/dist
+      tsparticles-move-base: link:../../move/base/dist
+      tsparticles-path-curves: link:../../paths/curves/dist
+      tsparticles-plugin-emitters: link:../../plugins/emitters/dist
+      tsparticles-shape-circle: link:../../shapes/circle/dist
+      tsparticles-updater-color: link:../../updaters/color/dist
+      tsparticles-updater-opacity: link:../../updaters/opacity/dist
+      tsparticles-updater-out-modes: link:../../updaters/outModes/dist
+      tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -4249,14 +4249,14 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
-      tsparticles-move-base: link:../../move/base
-      tsparticles-shape-circle: link:../../shapes/circle
-      tsparticles-updater-color: link:../../updaters/color
-      tsparticles-updater-opacity: link:../../updaters/opacity
-      tsparticles-updater-out-modes: link:../../updaters/outModes
-      tsparticles-updater-size: link:../../updaters/size
-      tsparticles-updater-wobble: link:../../updaters/wobble
+      tsparticles-engine: link:../../engine/dist
+      tsparticles-move-base: link:../../move/base/dist
+      tsparticles-shape-circle: link:../../shapes/circle/dist
+      tsparticles-updater-color: link:../../updaters/color/dist
+      tsparticles-updater-opacity: link:../../updaters/opacity/dist
+      tsparticles-updater-out-modes: link:../../updaters/outModes/dist
+      tsparticles-updater-size: link:../../updaters/size/dist
+      tsparticles-updater-wobble: link:../../updaters/wobble/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -4312,13 +4312,13 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
-      tsparticles-move-base: link:../../move/base
-      tsparticles-shape-circle: link:../../shapes/circle
-      tsparticles-updater-color: link:../../updaters/color
-      tsparticles-updater-opacity: link:../../updaters/opacity
-      tsparticles-updater-out-modes: link:../../updaters/outModes
-      tsparticles-updater-size: link:../../updaters/size
+      tsparticles-engine: link:../../engine/dist
+      tsparticles-move-base: link:../../move/base/dist
+      tsparticles-shape-circle: link:../../shapes/circle/dist
+      tsparticles-updater-color: link:../../updaters/color/dist
+      tsparticles-updater-opacity: link:../../updaters/opacity/dist
+      tsparticles-updater-out-modes: link:../../updaters/outModes/dist
+      tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -4375,14 +4375,14 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
-      tsparticles-interaction-particles-links: link:../../interactions/particles/links
-      tsparticles-move-base: link:../../move/base
-      tsparticles-shape-circle: link:../../shapes/circle
-      tsparticles-updater-color: link:../../updaters/color
-      tsparticles-updater-opacity: link:../../updaters/opacity
-      tsparticles-updater-out-modes: link:../../updaters/outModes
-      tsparticles-updater-size: link:../../updaters/size
+      tsparticles-engine: link:../../engine/dist
+      tsparticles-interaction-particles-links: link:../../interactions/particles/links/dist
+      tsparticles-move-base: link:../../move/base/dist
+      tsparticles-shape-circle: link:../../shapes/circle/dist
+      tsparticles-updater-color: link:../../updaters/color/dist
+      tsparticles-updater-opacity: link:../../updaters/opacity/dist
+      tsparticles-updater-out-modes: link:../../updaters/outModes/dist
+      tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -4432,7 +4432,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -4482,7 +4482,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -4532,7 +4532,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -4582,7 +4582,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -4632,7 +4632,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -4682,7 +4682,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -4732,7 +4732,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -4782,7 +4782,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -4832,7 +4832,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -4882,7 +4882,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -4932,7 +4932,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -4982,7 +4982,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -5015,10 +5015,10 @@ importers:
       tsparticles: ^2.2.4
       tsparticles-engine: ^2.2.4
     dependencies:
-      react-particles: link:../../components/react
+      react-particles: link:../../components/react/dist
       tslib: 2.4.0
-      tsparticles: link:../../bundles/full
-      tsparticles-engine: link:../../engine
+      tsparticles: link:../../bundles/full/dist
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       fs-extra: 10.1.0
 
@@ -5030,10 +5030,10 @@ importers:
       tsparticles: ^2.2.4
       tsparticles-engine: ^2.2.4
     dependencies:
-      react-particles: link:../../components/react
+      react-particles: link:../../components/react/dist
       tslib: 2.4.0
-      tsparticles: link:../../bundles/full
-      tsparticles-engine: link:../../engine
+      tsparticles: link:../../bundles/full/dist
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       fs-extra: 10.1.0
 
@@ -5062,7 +5062,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -5112,7 +5112,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -5162,7 +5162,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.1
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -5212,7 +5212,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -5262,7 +5262,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -5312,7 +5312,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -5362,7 +5362,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -5412,7 +5412,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -5462,7 +5462,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -5512,7 +5512,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -5562,7 +5562,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -5612,7 +5612,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -5662,7 +5662,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -5712,7 +5712,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/build': link:../../utils/builder
@@ -5807,7 +5807,7 @@ importers:
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
     dependencies:
-      tsparticles-engine: link:../../../../../engine
+      tsparticles-engine: link:../../../../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@babel/eslint-parser': 7.18.9_f6qngz4m6vfa3g3bk2x4qa2a2q
@@ -5843,7 +5843,7 @@ importers:
       webpack-bundle-analyzer: ^4.5.0
       webpack-cli: ^4.9.2
     dependencies:
-      tsparticles-engine: link:../../../../../engine
+      tsparticles-engine: link:../../../../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@types/webpack-env': 1.18.0
@@ -5886,7 +5886,7 @@ importers:
       webpack-cli: ^4.10.0
       webpack-tsparticles-plugin: ^1.2.4
     dependencies:
-      tsparticles-engine: link:../../engine
+      tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.18.13
       '@tsparticles/eslint-config': link:../eslint
@@ -5979,7 +5979,7 @@ importers:
       rimraf: ^3.0.2
       tsparticles: ^2.2.4
     dependencies:
-      tsparticles: link:../../bundles/full
+      tsparticles: link:../../bundles/full/dist
     devDependencies:
       gh-pages: 4.0.0
       rimraf: 3.0.2
@@ -6003,10 +6003,10 @@ importers:
       prettier: 2.7.1
       rimraf: 3.0.2
       sass: 1.54.8
-      tsparticles: link:../../bundles/full
-      tsparticles-editor: link:../../editor
-      tsparticles-engine: link:../../engine
-      tsparticles-preset-links: link:../../presets/links
+      tsparticles: link:../../bundles/full/dist
+      tsparticles-editor: link:../../editor/dist
+      tsparticles-engine: link:../../engine/dist
+      tsparticles-preset-links: link:../../presets/links/dist
 
 packages:
 
@@ -9614,7 +9614,7 @@ packages:
     engines: {node: '>= 10.14.2'}
     dependencies:
       '@jest/types': 26.6.2
-      '@types/node': 17.0.45
+      '@types/node': 18.7.14
       chalk: 4.1.2
       jest-message-util: 26.6.2
       jest-util: 26.6.2
@@ -9626,7 +9626,7 @@ packages:
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
       '@jest/types': 27.5.1
-      '@types/node': 17.0.45
+      '@types/node': 18.7.14
       chalk: 4.1.2
       jest-message-util: 27.5.1
       jest-util: 27.5.1
@@ -9654,7 +9654,7 @@ packages:
       '@jest/test-result': 26.6.2
       '@jest/transform': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 17.0.45
+      '@types/node': 18.7.14
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       exit: 0.1.2
@@ -9691,7 +9691,7 @@ packages:
     dependencies:
       '@jest/fake-timers': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 17.0.45
+      '@types/node': 18.7.14
       jest-mock: 26.6.2
     dev: true
 
@@ -9735,7 +9735,7 @@ packages:
     dependencies:
       '@jest/types': 26.6.2
       '@sinonjs/fake-timers': 6.0.1
-      '@types/node': 17.0.45
+      '@types/node': 18.7.14
       jest-message-util: 26.6.2
       jest-mock: 26.6.2
       jest-util: 26.6.2
@@ -9996,7 +9996,7 @@ packages:
     dependencies:
       '@types/istanbul-lib-coverage': 2.0.4
       '@types/istanbul-reports': 3.0.1
-      '@types/node': 17.0.45
+      '@types/node': 18.7.14
       '@types/yargs': 15.0.14
       chalk: 4.1.2
     dev: true
@@ -10007,7 +10007,7 @@ packages:
     dependencies:
       '@types/istanbul-lib-coverage': 2.0.4
       '@types/istanbul-reports': 3.0.1
-      '@types/node': 17.0.45
+      '@types/node': 18.7.14
       '@types/yargs': 16.0.4
       chalk: 4.1.2
     dev: true
@@ -10031,7 +10031,7 @@ packages:
       '@jest/schemas': 29.0.0
       '@types/istanbul-lib-coverage': 2.0.4
       '@types/istanbul-reports': 3.0.1
-      '@types/node': 17.0.45
+      '@types/node': 18.7.14
       '@types/yargs': 17.0.12
       chalk: 4.1.2
     dev: true
@@ -12593,6 +12593,21 @@ packages:
       rollup: 2.79.0
     dev: true
 
+  /@rollup/plugin-node-resolve/14.0.0_rollup@2.79.0:
+    resolution: {integrity: sha512-XkWfpgp/zGiFu8LS+JAiQeZN4oYYA4/ViFJiZhwQegTg5ZbzKTvM9YyKXVBNnmZ8Et76WnlVgwRUu1rhKF4ayw==}
+    engines: {node: '>= 10.0.0'}
+    peerDependencies:
+      rollup: ^2.78.0
+    dependencies:
+      '@rollup/pluginutils': 3.1.0_rollup@2.79.0
+      '@types/resolve': 1.17.1
+      deepmerge: 4.2.2
+      is-builtin-module: 3.2.0
+      is-module: 1.0.0
+      resolve: 1.22.1
+      rollup: 2.79.0
+    dev: true
+
   /@rollup/plugin-replace/2.4.2_rollup@2.79.0:
     resolution: {integrity: sha512-IGcu+cydlUMZ5En85jxHH4qj2hta/11BHq95iHEyb2sbgiN0eCdzvUcHw5gt9pBL5lTi4JDYJ1acCoMGpTvEZg==}
     peerDependencies:
@@ -12994,7 +13009,7 @@ packages:
   /@types/graceful-fs/4.1.5:
     resolution: {integrity: sha512-anKkLmZZ+xm4p8JWBf4hElkM4XR+EZeA2M9BAkkTldmcyDY4mbdIJnRghDJH3Ov5ooY7/UAoENtmdMSkaAd7Cw==}
     dependencies:
-      '@types/node': 17.0.45
+      '@types/node': 18.7.14
     dev: true
 
   /@types/hast/2.3.4:
@@ -24205,6 +24220,10 @@ packages:
     resolution: {integrity: sha512-qybtBUesniQdW6n+QIHMng2vDOHscIC/dEXjW+JzO9+LoAZMb03RCUC5xFOv/btSKPm1xL42fn+RjlU4oB42Lg==}
     dev: true
 
+  /jasmine-core/4.4.0:
+    resolution: {integrity: sha512-+l482uImx5BVd6brJYlaHe2UwfKoZBqQfNp20ZmdNfsjGFTemGfqHLsXjKEW23w9R/m8WYeFc9JmIgjj6dUtAA==}
+    dev: true
+
   /jasmine-spec-reporter/7.0.0:
     resolution: {integrity: sha512-OtC7JRasiTcjsaCBPtMO0Tl8glCejM4J4/dNuOJdA8lBjz4PmWjYQ6pzb0uzpBNAWJMDudYuj9OdXJWqM2QTJg==}
     dependencies:
@@ -24442,7 +24461,7 @@ packages:
       '@jest/environment': 26.6.2
       '@jest/fake-timers': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 17.0.45
+      '@types/node': 18.7.14
       jest-mock: 26.6.2
       jest-util: 26.6.2
       jsdom: 16.7.0
@@ -24460,7 +24479,7 @@ packages:
       '@jest/environment': 26.6.2
       '@jest/fake-timers': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 17.0.45
+      '@types/node': 18.7.14
       jest-mock: 26.6.2
       jest-util: 26.6.2
     dev: true
@@ -24498,7 +24517,7 @@ packages:
     dependencies:
       '@jest/types': 26.6.2
       '@types/graceful-fs': 4.1.5
-      '@types/node': 17.0.45
+      '@types/node': 18.7.14
       anymatch: 3.1.2
       fb-watchman: 2.0.1
       graceful-fs: 4.2.10
@@ -24543,7 +24562,7 @@ packages:
       '@jest/source-map': 26.6.2
       '@jest/test-result': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 17.0.45
+      '@types/node': 18.7.14
       chalk: 4.1.2
       co: 4.6.0
       expect: 26.6.2
@@ -24675,7 +24694,7 @@ packages:
     engines: {node: '>= 10.14.2'}
     dependencies:
       '@jest/types': 26.6.2
-      '@types/node': 17.0.45
+      '@types/node': 18.7.14
     dev: true
 
   /jest-mock/28.1.3:
@@ -24800,7 +24819,7 @@ packages:
       '@jest/environment': 26.6.2
       '@jest/test-result': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 17.0.45
+      '@types/node': 18.7.14
       chalk: 4.1.2
       emittery: 0.7.2
       exit: 0.1.2
@@ -24927,7 +24946,7 @@ packages:
     resolution: {integrity: sha512-S5wqyz0DXnNJPd/xfIzZ5Xnp1HrJWBczg8mMfMpN78OJ5eDxXyf+Ygld9wX1DnUWbIbhM1YDY95NjR4CBXkb2g==}
     engines: {node: '>= 10.14.2'}
     dependencies:
-      '@types/node': 17.0.45
+      '@types/node': 18.7.14
       graceful-fs: 4.2.10
     dev: true
 
@@ -24991,7 +25010,7 @@ packages:
     engines: {node: '>= 10.14.2'}
     dependencies:
       '@jest/types': 26.6.2
-      '@types/node': 17.0.45
+      '@types/node': 18.7.14
       chalk: 4.1.2
       graceful-fs: 4.2.10
       is-ci: 2.0.0
@@ -25003,7 +25022,7 @@ packages:
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
       '@jest/types': 27.5.1
-      '@types/node': 17.0.45
+      '@types/node': 18.7.14
       chalk: 4.1.2
       ci-info: 3.3.2
       graceful-fs: 4.2.10
@@ -25039,7 +25058,7 @@ packages:
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
       '@jest/types': 29.0.1
-      '@types/node': 17.0.45
+      '@types/node': 18.7.14
       chalk: 4.1.2
       ci-info: 3.3.2
       graceful-fs: 4.2.10
@@ -25092,7 +25111,7 @@ packages:
     dependencies:
       '@jest/test-result': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 17.0.45
+      '@types/node': 18.7.14
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       jest-util: 26.6.2
@@ -25105,7 +25124,7 @@ packages:
     dependencies:
       '@jest/test-result': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 17.0.45
+      '@types/node': 18.7.14
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       jest-util: 27.5.1
@@ -25613,6 +25632,18 @@ packages:
       - supports-color
     dev: true
 
+  /karma-jasmine-html-reporter/2.0.0_g7zo7ywktikjdpkbmijus2j5li:
+    resolution: {integrity: sha512-SB8HNNiazAHXM1vGEzf8/tSyEhkfxuDdhYdPBX2Mwgzt0OuF2gicApQ+uvXLID/gXyJQgvrM9+1/2SxZFUUDIA==}
+    peerDependencies:
+      jasmine-core: ^4.0.0
+      karma: ^6.0.0
+      karma-jasmine: ^5.0.0
+    dependencies:
+      jasmine-core: 4.4.0
+      karma: 6.4.0
+      karma-jasmine: 5.1.0_karma@6.4.0
+    dev: true
+
   /karma-jasmine-html-reporter/2.0.0_kn32zzqrpbpapqtjwiltm573ri:
     resolution: {integrity: sha512-SB8HNNiazAHXM1vGEzf8/tSyEhkfxuDdhYdPBX2Mwgzt0OuF2gicApQ+uvXLID/gXyJQgvrM9+1/2SxZFUUDIA==}
     peerDependencies:
@@ -25631,7 +25662,7 @@ packages:
     peerDependencies:
       karma: ^6.0.0
     dependencies:
-      jasmine-core: 4.3.0
+      jasmine-core: 4.4.0
       karma: 6.4.0
     dev: true
 
@@ -32715,7 +32746,6 @@ packages:
     resolution: {integrity: sha512-F6LCJie+ZiGfvbHsqJ0UwDiSYN+2rR5CUGK7siU2fGptCDalMKL4mZVumQlwfq+wBSWlMt1BoB/OcjnYkDzBhg==}
     dependencies:
       csstype: 3.1.0
-    dev: true
 
   /solid-scripts/0.0.61_ihmwx4o7t5x7m2ydo74afn7jce:
     resolution: {integrity: sha512-BGORs4exWVO3EtTK81h4hog/MpXkTm3jTNQtUZKslwac+S2k0lBjoKNhI5S6qdcv/5yHv9p15CTRyMwEPdzLBw==}
