@@ -14,6 +14,11 @@ export async function lint(ci: boolean): Promise<boolean> {
 
         const errors = ESLint.getErrorResults(results);
 
+        await ESLint.outputFixes(results);
+
+        const formatter = await eslint.loadFormatter("stylish");
+        const resultText = formatter.format(results);
+
         if (errors.length > 0) {
             const messages = errors.map((t) =>
                 t.messages.map((m) => `${t.filePath} (${m.line},${m.column}): ${m.message}`).join("\n")
@@ -22,11 +27,6 @@ export async function lint(ci: boolean): Promise<boolean> {
 
             return false;
         }
-
-        await ESLint.outputFixes(results);
-
-        const formatter = await eslint.loadFormatter("stylish");
-        const resultText = formatter.format(results);
 
         console.log(resultText);
 
