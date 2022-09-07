@@ -46,8 +46,9 @@ export class CanvasMaskInstance implements IContainerPlugin {
             const textOptions = options.text;
 
             pixelData = getTextData(textOptions.text, textOptions.color, offset, textOptions.font);
-        } else if (options.selector) {
-            const canvas = document.querySelector<HTMLCanvasElement>(options.selector);
+        } else if (options.element || options.selector) {
+            const canvas =
+                options.element || (options.selector && document.querySelector<HTMLCanvasElement>(options.selector));
 
             if (!canvas) {
                 return;

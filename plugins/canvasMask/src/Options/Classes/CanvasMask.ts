@@ -10,6 +10,7 @@ import { TextMask } from "./TextMask";
  * @category Canvas Mask Plugin
  */
 export class CanvasMask implements ICanvasMask, IOptionLoader<ICanvasMask> {
+    element?: HTMLCanvasElement;
     enable;
     image?: ImageMask;
     override;
@@ -33,6 +34,10 @@ export class CanvasMask implements ICanvasMask, IOptionLoader<ICanvasMask> {
     load(data?: RecursivePartial<ICanvasMask>): void {
         if (!data) {
             return;
+        }
+
+        if (data.element !== undefined && data.element instanceof HTMLCanvasElement) {
+            this.element = data.element;
         }
 
         if (data.enable !== undefined) {

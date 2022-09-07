@@ -8,6 +8,7 @@ import type { ITextMask } from "./ITextMask";
  * @category Canvas Mask Plugin
  */
 export interface ICanvasMask {
+    element?: HTMLCanvasElement;
     enable: boolean;
     image?: IImageMask;
     override: ICanvasMaskOverride;
