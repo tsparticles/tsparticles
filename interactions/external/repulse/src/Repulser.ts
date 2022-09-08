@@ -16,8 +16,8 @@ import {
     isInArray,
     mouseMoveEvent,
 } from "tsparticles-engine";
-import type { DivEvent, ICoordinates, IModes, Modes, Particle, Range, RecursivePartial } from "tsparticles-engine";
-import type { IRepulseMode, RepulseContainer, RepulseMode } from "./Types";
+import type { DivEvent, ICoordinates, IDelta, IModes, Modes, Range, RecursivePartial } from "tsparticles-engine";
+import type { IRepulseMode, RepulseContainer, RepulseMode, RepulseParticle } from "./Types";
 import { Repulse } from "./Options/Classes/Repulse";
 import type { RepulseDiv } from "./Options/Classes/RepulseDiv";
 
@@ -31,10 +31,6 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     constructor(container: RepulseContainer) {
         super(container);
 
-        if (!container.repulse) {
-            container.repulse = { particles: [] };
-        }
-
         this.handleClickMode = (mode): void => {
             const options = this.container.actualOptions,
                 repulse = options.interactivity.modes.repulse;
@@ -42,39 +38,37 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             if (!repulse || mode !== ClickMode.repulse) {
                 return;
             }
-
-            if (!container.repulse) {
-                container.repulse = { particles: [] };
-            }
-
-            container.repulse.clicking = true;
-            container.repulse.count = 0;
-
-            for (const particle of container.repulse.particles) {
-                if (!this.isEnabled(particle)) {
-                    continue;
-                }
-
-                particle.velocity.setTo(particle.initialVelocity);
-            }
-
-            container.repulse.particles = [];
-            container.repulse.finish = false;
-
-            setTimeout(() => {
-                if (!container.destroyed) {
-                    if (!container.repulse) {
-                        container.repulse = { particles: [] };
-                    }
-
-                    container.repulse.clicking = false;
-                }
-            }, repulse.duration * 1000);
         };
     }
 
-    clear(): void {
-        // do nothing
+    clear(particle: RepulseParticle): void {
+        if (!particle.repulse && particle.normalPosition) {
+            //this.doInteract(true);
+            //particle.position.setTo(particle.normalPosition);
+            //particle.normalPosition = undefined;
+        }
+    }
+
+    doInteract(delta: IDelta, inverse = false): void {
+        const container = this.container,
+            options = container.actualOptions,
+            mouseMoveStatus = container.interactivity.status === mouseMoveEvent,
+            events = options.interactivity.events,
+            hoverEnabled = events.onHover.enable,
+            hoverMode = events.onHover.mode,
+            clickEnabled = events.onClick.enable,
+            clickMode = events.onClick.mode,
+            divs = events.onDiv;
+
+        if (mouseMoveStatus && hoverEnabled && isInArray(HoverMode.repulse, hoverMode)) {
+            this.hoverRepulse(delta, inverse);
+        } else if (clickEnabled && isInArray(ClickMode.repulse, clickMode)) {
+            this.clickRepulse(delta, inverse);
+        } else {
+            divModeExecute(DivMode.repulse, divs, (selector, div): void =>
+                this.singleSelectorRepulse(delta, inverse, selector, div)
+            );
+        }
     }
 
     init(): void {
@@ -88,27 +82,11 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         container.retina.repulseModeDistance = repulse.distance * container.retina.pixelRatio;
     }
 
-    async interact(): Promise<void> {
-        const container = this.container,
-            options = container.actualOptions,
-            mouseMoveStatus = container.interactivity.status === mouseMoveEvent,
-            events = options.interactivity.events,
-            hoverEnabled = events.onHover.enable,
-            hoverMode = events.onHover.mode,
-            clickEnabled = events.onClick.enable,
-            clickMode = events.onClick.mode,
-            divs = events.onDiv;
-
-        if (mouseMoveStatus && hoverEnabled && isInArray(HoverMode.repulse, hoverMode)) {
-            this.hoverRepulse();
-        } else if (clickEnabled && isInArray(ClickMode.repulse, clickMode)) {
-            this.clickRepulse();
-        } else {
-            divModeExecute(DivMode.repulse, divs, (selector, div): void => this.singleSelectorRepulse(selector, div));
-        }
+    async interact(delta: IDelta): Promise<void> {
+        this.doInteract(delta);
     }
 
-    isEnabled(particle?: Particle): boolean {
+    isEnabled(particle?: RepulseParticle): boolean {
         const container = this.container,
             options = container.actualOptions,
             mouse = container.interactivity.mouse,
@@ -141,11 +119,11 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         }
     }
 
-    reset(): void {
-        // do nothing
+    reset(particle: RepulseParticle): void {
+        particle.repulse = false;
     }
 
-    private clickRepulse(): void {
+    private clickRepulse(delta: IDelta, inverse: boolean): void {
         const container = this.container,
             repulse = container.actualOptions.interactivity.modes.repulse;
 
@@ -153,47 +131,29 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             return;
         }
 
-        if (!container.repulse) {
-            container.repulse = { particles: [] };
+        const repulseDistance = container.retina.repulseModeDistance;
+
+        if (!repulseDistance || repulseDistance < 0) {
+            return;
         }
 
-        if (!container.repulse.finish) {
-            if (!container.repulse.count) {
-                container.repulse.count = 0;
-            }
+        const repulseRadius = repulseDistance,
+            mouseClickPos = container.interactivity.mouse.clickPosition;
 
-            container.repulse.count++;
-
-            if (container.repulse.count === container.particles.count) {
-                container.repulse.finish = true;
-            }
+        if (mouseClickPos === undefined) {
+            return;
         }
 
-        if (container.repulse.clicking) {
-            const repulseDistance = container.retina.repulseModeDistance;
-
-            if (!repulseDistance || repulseDistance < 0) {
-                return;
-            }
-
-            const repulseRadius = repulseDistance,
-                mouseClickPos = container.interactivity.mouse.clickPosition;
-
-            if (mouseClickPos === undefined) {
-                return;
-            }
-
-            this.processRepulse(
-                mouseClickPos,
-                repulseRadius,
-                new Circle(mouseClickPos.x, mouseClickPos.y, repulseRadius)
-            );
-        } else if (container.repulse.clicking === false) {
-            container.repulse.particles = [];
-        }
+        this.processRepulse(
+            delta,
+            inverse,
+            mouseClickPos,
+            repulseRadius,
+            new Circle(mouseClickPos.x, mouseClickPos.y, repulseRadius)
+        );
     }
 
-    private hoverRepulse(): void {
+    private hoverRepulse(delta: IDelta, inverse: boolean): void {
         const container = this.container,
             mousePos = container.interactivity.mouse.position,
             repulseRadius = container.retina.repulseModeDistance;
@@ -202,12 +162,50 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             return;
         }
 
-        this.processRepulse(mousePos, repulseRadius, new Circle(mousePos.x, mousePos.y, repulseRadius));
+        this.processRepulse(delta, inverse, mousePos, repulseRadius, new Circle(mousePos.x, mousePos.y, repulseRadius));
     }
 
-    private processRepulse(position: ICoordinates, repulseRadius: number, area: Range, divRepulse?: RepulseDiv): void {
+    private particleRepulse(
+        particle: RepulseParticle,
+        delta: IDelta,
+        inverse: boolean,
+        position: ICoordinates,
+        repulseOptions: Repulse,
+        repulseRadius: number,
+        speed: number
+    ): void {
+        const { dx, dy, distance } = getDistances(particle.position, position),
+            velocity = speed * repulseOptions.factor * (inverse ? -1 : 1),
+            repulseFactor = clamp(
+                calcEasing(1 - distance / repulseRadius, repulseOptions.easing) * velocity,
+                0,
+                repulseOptions.maxSpeed
+            ),
+            normVec = Vector.create(
+                distance === 0 ? repulseFactor : (dx / distance) * repulseFactor,
+                distance === 0 ? repulseFactor : (dy / distance) * repulseFactor
+            );
+
+        if (!particle.normalPosition) {
+            particle.normalPosition = particle.position.copy();
+        } else {
+            particle.normalPosition.add(particle.velocity);
+        }
+
+        particle.repulse = true;
+        particle.position.addTo(normVec);
+    }
+
+    private processRepulse(
+        delta: IDelta,
+        inverse: boolean,
+        position: ICoordinates,
+        repulseRadius: number,
+        area: Range,
+        divRepulse?: RepulseDiv
+    ): void {
         const container = this.container,
-            query = container.particles.quadTree.query(area, (p) => this.isEnabled(p)),
+            query = container.particles.quadTree.query(area, (p) => this.isEnabled(p)) as RepulseParticle[],
             repulseOptions = container.actualOptions.interactivity.modes.repulse;
 
         if (!repulseOptions) {
@@ -215,23 +213,19 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         }
 
         for (const particle of query) {
-            const { dx, dy, distance } = getDistances(particle.position, position),
-                velocity = (divRepulse?.speed ?? repulseOptions.speed) * repulseOptions.factor,
-                repulseFactor = clamp(
-                    calcEasing(1 - distance / repulseRadius, repulseOptions.easing) * velocity,
-                    0,
-                    repulseOptions.maxSpeed
-                ),
-                normVec = Vector.create(
-                    distance === 0 ? velocity : (dx / distance) * repulseFactor,
-                    distance === 0 ? velocity : (dy / distance) * repulseFactor
-                );
-
-            particle.position.addTo(normVec);
+            this.particleRepulse(
+                particle,
+                delta,
+                inverse,
+                position,
+                repulseOptions,
+                repulseRadius,
+                divRepulse?.speed ?? repulseOptions.speed
+            );
         }
     }
 
-    private singleSelectorRepulse(selector: string, div: DivEvent): void {
+    private singleSelectorRepulse(delta: IDelta, inverse: boolean, selector: string, div: DivEvent): void {
         const container = this.container,
             repulse = container.actualOptions.interactivity.modes.repulse;
 
@@ -265,7 +259,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
                 divs = repulse.divs,
                 divRepulse = divMode(divs, elem);
 
-            this.processRepulse(pos, repulseRadius, area, divRepulse);
+            this.processRepulse(delta, inverse, pos, repulseRadius, area, divRepulse);
         });
     }
 }
