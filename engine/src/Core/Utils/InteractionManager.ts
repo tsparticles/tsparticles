@@ -95,7 +95,7 @@ export class InteractionManager {
      */
     async particlesInteract(particle: Particle, delta: IDelta): Promise<void> {
         for (const interactor of this._externalInteractors) {
-            interactor.clear(particle);
+            interactor.clear(particle, delta);
         }
 
         /* interaction auto between particles */

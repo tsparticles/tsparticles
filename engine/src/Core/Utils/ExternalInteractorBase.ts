@@ -23,8 +23,9 @@ export abstract class ExternalInteractorBase<TContainer extends Container = Cont
     /**
      * Before interaction clear
      * @param particle the particle to clear
+     * @param delta this variable contains the delta between the current frame and the previous frame
      */
-    abstract clear(particle: Particle): void;
+    abstract clear(particle: Particle, delta: IDelta): void;
 
     /**
      * Initializes the interactivity manager

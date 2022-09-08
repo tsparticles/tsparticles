@@ -41,12 +41,28 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         };
     }
 
-    clear(particle: RepulseParticle): void {
-        if (!particle.repulse && particle.normalPosition) {
-            //this.doInteract(true);
-            //particle.position.setTo(particle.normalPosition);
-            //particle.normalPosition = undefined;
+    clear(particle: RepulseParticle, delta: IDelta): void {
+        if (particle.repulse || !particle.normalPosition) {
+            return;
         }
+
+        const container = this.container,
+            repulseOptions = container.actualOptions.interactivity.modes.repulse,
+            repulseDistance = container.retina.repulseModeDistance;
+
+        if (!repulseOptions || !repulseDistance) {
+            return;
+        }
+
+        this.particleRepulse(
+            particle,
+            delta,
+            true,
+            particle.normalPosition,
+            repulseOptions,
+            repulseDistance,
+            repulseOptions.speed
+        );
     }
 
     doInteract(delta: IDelta, inverse = false): void {
@@ -178,21 +194,35 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             velocity = speed * repulseOptions.factor * (inverse ? -1 : 1),
             repulseFactor = clamp(
                 calcEasing(1 - distance / repulseRadius, repulseOptions.easing) * velocity,
-                0,
-                repulseOptions.maxSpeed
+                inverse ? -repulseOptions.maxSpeed : 0,
+                inverse ? 0 : repulseOptions.maxSpeed
             ),
             normVec = Vector.create(
                 distance === 0 ? repulseFactor : (dx / distance) * repulseFactor,
                 distance === 0 ? repulseFactor : (dy / distance) * repulseFactor
             );
 
-        if (!particle.normalPosition) {
-            particle.normalPosition = particle.position.copy();
+        if (!inverse) {
+            if (!particle.normalPosition) {
+                particle.normalPosition = particle.position.copy();
+            } else {
+                particle.normalPosition.add(particle.velocity);
+            }
+
+            particle.repulse = true;
         } else {
-            particle.normalPosition.add(particle.velocity);
+            if (
+                particle.normalPosition &&
+                particle.position.x - particle.normalPosition.x < 1 &&
+                particle.position.y - particle.normalPosition.y < 1
+            ) {
+                console.log("ciao");
+
+                particle.normalPosition = undefined;
+                return;
+            }
         }
 
-        particle.repulse = true;
         particle.position.addTo(normVec);
     }
 
