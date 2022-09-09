@@ -204,5 +204,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
       - run: pnpm install --no-frozen-lockfile
+      - run: pnpm run --filter @tsparticles/build build:ci
+      - run: pnpm install --no-frozen-lockfile
       - name: Start Nx Agent ${{ matrix.agent }}
         run: npx nx-cloud start-agent
