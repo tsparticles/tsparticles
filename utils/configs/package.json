@@ -106,8 +106,8 @@
   "prettier": "@tsparticles/prettier-config",
   "devDependencies": {
     "@babel/core": "^7.19.0",
-    "@tsparticles/eslint-config": "^1.1.4",
-    "@tsparticles/prettier-config": "^1.1.3",
+    "@tsparticles/eslint-config": "workspace:^1.1.4",
+    "@tsparticles/prettier-config": "workspace:^1.1.3",
     "@types/webpack-env": "^1.18.0",
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2",
@@ -123,9 +123,9 @@
     "webpack": "^5.74.0",
     "webpack-bundle-analyzer": "^4.6.1",
     "webpack-cli": "^4.10.0",
-    "webpack-tsparticles-plugin": "^1.2.4"
+    "webpack-tsparticles-plugin": "workspace:^1.2.4"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.2.4"
+    "tsparticles-engine": "workspace:^2.2.4"
   }
 }

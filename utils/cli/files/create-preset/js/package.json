@@ -59,21 +59,21 @@
     "url": "https://github.com/tsparticles/preset-template/issues"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.9",
-    "@babel/eslint-parser": "^7.17.0",
+    "@babel/core": "^7.19.0",
+    "@babel/eslint-parser": "^7.18.9",
     "babel-loader": "^8.2.5",
-    "browserslist": "^4.20.3",
+    "browserslist": "^4.21.3",
     "copyfiles": "^2.4.1",
-    "eslint": "^8.14.0",
+    "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
-    "prettier": "^2.6.2",
+    "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
-    "terser-webpack-plugin": "^5.3.1",
-    "webpack": "^5.72.0",
-    "webpack-bundle-analyzer": "^4.5.0",
-    "webpack-cli": "^4.9.2"
+    "terser-webpack-plugin": "^5.3.6",
+    "webpack": "^5.74.0",
+    "webpack-bundle-analyzer": "^4.6.1",
+    "webpack-cli": "^4.10.0"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.2.4"
+    "tsparticles-engine": "workspace:^2.2.4"
   }
 }

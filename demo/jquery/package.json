@@ -21,28 +21,28 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "dependencies": {
-    "jquery": "^3.6.0",
-    "jquery-particles": "^2.2.4",
-    "tsparticles": "^2.2.4",
-    "tsparticles-engine": "^2.2.4",
-    "tsparticles-preset-links": "^2.2.4"
+    "jquery": "^3.6.1",
+    "jquery-particles": "workspace:^2.2.4",
+    "tsparticles": "workspace:^2.2.4",
+    "tsparticles-engine": "workspace:^2.2.4",
+    "tsparticles-preset-links": "workspace:^2.2.4"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^6.1.1",
-    "@typescript-eslint/eslint-plugin": "^5.36.1",
-    "@typescript-eslint/parser": "^5.36.1",
+    "@fortawesome/fontawesome-free": "^6.2.0",
+    "@typescript-eslint/eslint-plugin": "^5.36.2",
+    "@typescript-eslint/parser": "^5.36.2",
     "babel-preset-env": "^1.7.0",
-    "eslint": "^8.14.0",
+    "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
-    "express": "^4.18.0",
-    "express-rate-limit": "^6.4.0",
+    "express": "^4.18.1",
+    "express-rate-limit": "^6.6.0",
     "helmet": "^6.0.0",
-    "jsoneditor": "^9.7.4",
-    "prettier": "^2.6.2",
+    "jsoneditor": "^9.9.0",
+    "prettier": "^2.7.1",
     "pug": "^3.0.2",
     "pug-cli": "^1.0.0-alpha6",
     "stats.ts": "^1.1.0",
     "stylus": "^0.59.0",
-    "typescript": "^4.8.2"
+    "typescript": "^4.8.3"
   }
 }

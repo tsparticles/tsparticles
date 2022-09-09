@@ -18,7 +18,7 @@
   },
   "homepage": "https://confetti.js.org",
   "dependencies": {
-    "tsparticles": "^2.2.4"
+    "tsparticles": "workspace:^2.2.4"
   },
   "devDependencies": {
     "gh-pages": "^4.0.0",
