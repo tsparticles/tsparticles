@@ -74,7 +74,8 @@ export class BaseMover implements IParticleMover {
                 gravityFactor = gravityOptions?.enable && gravityOptions.inverse ? -1 : 1;
 
             if (gravityOptions?.enable && moveSpeed) {
-                particle.velocity.y += (gravityFactor * (gravityOptions.acceleration * delta.factor)) / (60 * moveSpeed);
+                particle.velocity.y +=
+                    (gravityFactor * (gravityOptions.acceleration * delta.factor)) / (60 * moveSpeed);
             }
 
             if (moveDrift && moveSpeed) {

@@ -1,5 +1,5 @@
 import { ExternalInteractorBase, HoverMode, getDistance, isInArray } from "tsparticles-engine";
-import type { IModes, Modes, Particle, RecursivePartial } from "tsparticles-engine";
+import type { IDelta, IModes, Modes, Particle, RecursivePartial } from "tsparticles-engine";
 import type { ISlowMode, SlowContainer, SlowMode } from "./Types";
 import { Slow } from "./Options/Classes/Slow";
 
@@ -12,7 +12,7 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
         super(container);
     }
 
-    clear(particle: Particle, force?: boolean): void {
+    clear(particle: Particle, delta: IDelta, force?: boolean): void {
         if (particle.slow.inRange && !force) {
             return;
         }

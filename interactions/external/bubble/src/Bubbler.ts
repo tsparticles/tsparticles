@@ -21,7 +21,7 @@ import {
     rangeColorToHsl,
     rgbToHsl,
 } from "tsparticles-engine";
-import type { DivEvent, IModes, Modes, Particle, RecursivePartial } from "tsparticles-engine";
+import type { DivEvent, IDelta, IModes, Modes, Particle, RecursivePartial } from "tsparticles-engine";
 import { Bubble } from "./Options/Classes/Bubble";
 import type { BubbleDiv } from "./Options/Classes/BubbleDiv";
 import type { IBubblerProcessParam } from "./IBubblerProcessParam";
@@ -71,7 +71,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         };
     }
 
-    clear(particle: Particle, force?: boolean): void {
+    clear(particle: Particle, delta: IDelta, force?: boolean): void {
         if (particle.bubble.inRange && !force) {
             return;
         }
@@ -97,7 +97,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         }
     }
 
-    async interact(): Promise<void> {
+    async interact(delta: IDelta): Promise<void> {
         const options = this.container.actualOptions,
             events = options.interactivity.events,
             onHover = events.onHover,
@@ -110,11 +110,13 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
 
         /* on hover event */
         if (hoverEnabled && isInArray(HoverMode.bubble, hoverMode)) {
-            this.hoverBubble();
+            this.hoverBubble(delta);
         } else if (clickEnabled && isInArray(ClickMode.bubble, clickMode)) {
-            this.clickBubble();
+            this.clickBubble(delta);
         } else {
-            divModeExecute(DivMode.bubble, divs, (selector, div): void => this.singleSelectorHover(selector, div));
+            divModeExecute(DivMode.bubble, divs, (selector, div): void =>
+                this.singleSelectorHover(delta, selector, div)
+            );
         }
     }
 
@@ -155,7 +157,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         particle.bubble.inRange = false;
     }
 
-    private clickBubble(): void {
+    private clickBubble(delta: IDelta): void {
         const container = this.container,
             options = container.actualOptions,
             mouseClickPos = container.interactivity.mouse.clickPosition,
@@ -235,7 +237,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         }
     }
 
-    private hoverBubble(): void {
+    private hoverBubble(delta: IDelta): void {
         const container = this.container,
             mousePos = container.interactivity.mouse.position,
             distance = container.retina.bubbleModeDistance;
@@ -409,7 +411,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         }
     }
 
-    private singleSelectorHover(selector: string, div: DivEvent): void {
+    private singleSelectorHover(delta: IDelta, selector: string, div: DivEvent): void {
         const container = this.container,
             selectors = document.querySelectorAll(selector),
             bubble = container.actualOptions.interactivity.modes.bubble;
@@ -448,7 +450,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
                 const divBubble = divMode(divs, elem);
 
                 if (!particle.bubble.div || particle.bubble.div !== elem) {
-                    this.clear(particle, true);
+                    this.clear(particle, delta, true);
 
                     particle.bubble.div = elem;
                 }
