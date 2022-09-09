@@ -41,28 +41,28 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         };
     }
 
-    clear(particle: RepulseParticle, delta: IDelta): void {
-        if (particle.repulse || !particle.normalPosition) {
-            return;
-        }
-
-        const container = this.container,
-            repulseOptions = container.actualOptions.interactivity.modes.repulse,
-            repulseDistance = container.retina.repulseModeDistance;
-
-        if (!repulseOptions || !repulseDistance) {
-            return;
-        }
-
-        this.particleRepulse(
-            particle,
-            delta,
-            true,
-            particle.normalPosition,
-            repulseOptions,
-            repulseDistance,
-            repulseOptions.speed
-        );
+    clear(/*particle: RepulseParticle, delta: IDelta*/): void {
+        // if (particle.repulse || !particle.normalPosition) {
+        //     return;
+        // }
+        //
+        // const container = this.container,
+        //     repulseOptions = container.actualOptions.interactivity.modes.repulse,
+        //     repulseDistance = container.retina.repulseModeDistance;
+        //
+        // if (!repulseOptions || !repulseDistance) {
+        //     return;
+        // }
+        //
+        // this.particleRepulse(
+        //     particle,
+        //     delta,
+        //     true,
+        //     particle.normalPosition,
+        //     repulseOptions,
+        //     repulseDistance,
+        //     repulseOptions.speed
+        // );
     }
 
     doInteract(delta: IDelta, inverse = false): void {
