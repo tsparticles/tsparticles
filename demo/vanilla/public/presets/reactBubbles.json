@@ -50,9 +50,8 @@
         "quantity": 2
       },
       "repulse": {
-        "distance": 300,
-        "speed": 15,
-        "factor": 1
+        "distance": 200,
+        "duration": 4
       },
       "slow": {
         "factor": 1,
