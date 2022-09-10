@@ -274,11 +274,11 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
                     div.type === DivType.circle
                         ? new Circle(pos.x, pos.y, repulseRadius)
                         : new Rectangle(
-                            elem.offsetLeft * pxRatio,
-                            elem.offsetTop * pxRatio,
-                            elem.offsetWidth * pxRatio,
-                            elem.offsetHeight * pxRatio
-                        ),
+                              elem.offsetLeft * pxRatio,
+                              elem.offsetTop * pxRatio,
+                              elem.offsetWidth * pxRatio,
+                              elem.offsetHeight * pxRatio
+                          ),
                 divs = repulse.divs,
                 divRepulse = divMode(divs, elem);
 
