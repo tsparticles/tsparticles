@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-interaction-external-remove",
-  "version": "2.2.4",
+  "version": "2.3.0",
   "description": "tsParticles remove external interaction",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -74,6 +74,6 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.2.4"
+    "tsparticles-engine": "^2.3.0"
   }
 }

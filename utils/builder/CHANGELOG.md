@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/matteobruni/tsparticles/compare/@tsparticles/build@1.1.4...@tsparticles/build@1.2.0) (2022-09-11)
+
+
+### Features
+
+* created destroy updater, moved all particles destroy (split and similar) code from engine ([f8642fd](https://github.com/matteobruni/tsparticles/commit/f8642fda3f43688ae7a0df55f5b06bb2a45d9e80))
+* updating editor to Object GUI v2 ([12ea540](https://github.com/matteobruni/tsparticles/commit/12ea540a040aae301401e3941c0cd1ca18f4ed3e))
+
+
+
+
+
 ## [1.1.4](https://github.com/matteobruni/tsparticles/compare/@tsparticles/build@1.1.2...@tsparticles/build@1.1.4) (2022-08-26)
 
 **Note:** Version bump only for package @tsparticles/build

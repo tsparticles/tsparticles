@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.2.4...tsparticles-engine@2.3.0) (2022-09-11)
+
+
+### Bug Fixes
+
+* fixed container duration, using it as seconds instead of milliseconds ([ba05eec](https://github.com/matteobruni/tsparticles/commit/ba05eec31ae30dffff6871669a34360547663605))
+* fixed issue with stroke options loading ([9633356](https://github.com/matteobruni/tsparticles/commit/9633356a62e3654c3a5c11508bfefe7b255c6f32))
+
+
+### Features
+
+* added more easing types ([5f8f1c4](https://github.com/matteobruni/tsparticles/commit/5f8f1c43503b022494b28dbff229337da9f45fd1))
+* added smooth options, it ignores the fpsLimit trying to create a smoother animation* ([5ad1a27](https://github.com/matteobruni/tsparticles/commit/5ad1a27dd7496377aa2f87e2c32b1b45b2c68ef7))
+* created destroy updater, moved all particles destroy (split and similar) code from engine ([f8642fd](https://github.com/matteobruni/tsparticles/commit/f8642fda3f43688ae7a0df55f5b06bb2a45d9e80))
+* first attempt of repulse bounce back ([8379f9c](https://github.com/matteobruni/tsparticles/commit/8379f9ce912f310b0602b462dda03c61924fe9f3))
+* moved out all the external interactors from the engine ([9d3c325](https://github.com/matteobruni/tsparticles/commit/9d3c32514c8682fa6ed466185751de80c4fe0baa))
+* removed some constants from engine that are relative only to polygon mask plugin ([2920980](https://github.com/matteobruni/tsparticles/commit/29209805481f2d6a7704ec73800bc416233b3362))
+* removed support for very old browsers that don't support requestAnimationFrame ([edf5f9d](https://github.com/matteobruni/tsparticles/commit/edf5f9dc70ea7cd3c3ef278e88ed448fabbf688f))
+
+
+
+
+
 ## [2.2.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.2.2...tsparticles-engine@2.2.4) (2022-08-26)
 
 

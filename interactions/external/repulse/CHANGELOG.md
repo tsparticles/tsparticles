@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-external-repulse@2.2.4...tsparticles-interaction-external-repulse@2.3.0) (2022-09-11)
+
+
+### Features
+
+* added more easing types ([5f8f1c4](https://github.com/matteobruni/tsparticles/commit/5f8f1c43503b022494b28dbff229337da9f45fd1))
+* first attempt of repulse bounce back ([8379f9c](https://github.com/matteobruni/tsparticles/commit/8379f9ce912f310b0602b462dda03c61924fe9f3))
+* refactor click repulse, now it uses the same algorithm as the hover and div events ([b552869](https://github.com/matteobruni/tsparticles/commit/b55286956bbf8217af7338842528884abfdbdda4))
+
+
+
+
+
 ## [2.2.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-external-repulse@2.2.2...tsparticles-interaction-external-repulse@2.2.4) (2022-08-26)
 
 **Note:** Version bump only for package tsparticles-interaction-external-repulse
