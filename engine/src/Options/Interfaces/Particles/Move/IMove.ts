@@ -1,6 +1,6 @@
 import type { MoveDirection, MoveDirectionAlt } from "../../../../Enums/Directions/MoveDirection";
 import type { OutMode, OutModeAlt } from "../../../../Enums/Modes/OutMode";
-import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
+import type { ICenterCoordinates } from "../../../../Core/Interfaces/ICoordinates";
 import type { IDistance } from "../../../../Core/Interfaces/IDistance";
 import type { IMoveAngle } from "./IMoveAngle";
 import type { IMoveAttract } from "./IMoveAttract";
@@ -24,7 +24,7 @@ export interface IMove {
      */
     bounce: boolean;
 
-    center: Partial<ICoordinates & { radius: number }>;
+    center: Partial<ICenterCoordinates>;
 
     /**
      * @deprecated use the new collisions property on particles instead

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-template-typescript",
-  "version": "1.45.4",
+  "version": "1.46.0",
   "private": true,
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "description": "tsParticles template preset, using TypeScript",
@@ -46,6 +46,6 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.2.4"
+    "tsparticles-engine": "workspace:^2.3.0"
   }
 }

@@ -23,7 +23,7 @@ app.use("/fontawesome", express.static("./node_modules/@fortawesome/fontawesome-
 app.use("/jsoneditor", express.static("./node_modules/jsoneditor/dist"));
 app.use("/tsparticles", express.static("./node_modules/tsparticles"));
 app.use("/jquery-particles", express.static("./node_modules/jquery-particles/dist"));
-app.use("/preset-links", express.static("./node_modules/tsparticles-preset-links/dist"));
+app.use("/preset-links", express.static("./node_modules/tsparticles-preset-links"));
 app.use("/stats.ts", express.static("./node_modules/stats.ts/"));
 app.use("/jquery", express.static("./node_modules/jquery/dist/"));
 

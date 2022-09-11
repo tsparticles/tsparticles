@@ -31,29 +31,28 @@ For building the first time:
 Unix
 
 ```shell
-yarn && npx lerna bootstrap && npx lerna run build
+pnpm i && npx lerna run build
 ```
 
 Windows
 
 ```shell
-yarn
-npx lerna bootstrap
+pnpm i
 npx lerna run build
 ```
 
-For building local packages it's possible to run only `yarn build` in every folder with a package.json file
+For building local packages it's possible to run only `pnpm run build` in every folder with a package.json file
 
 For running demos
 
 ```shell
-yarn start
+pnpm run start
 ```
 
 or
 
 ```shell
-yarn serve
+pnpm run serve
 ```
 
 where the start commands returns an error (this could be another improvement)

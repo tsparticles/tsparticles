@@ -5,7 +5,7 @@ import type { RecursivePartial } from "../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
 import { generatedAttribute } from "./Utils/Constants";
 import { getRandom } from "../Utils/NumberUtils";
-import { itemFromArray } from "../Utils/Utils";
+import { itemFromSingleOrMultiple } from "../Utils/Utils";
 
 /**
  * Default fetch error catcher
@@ -19,7 +19,7 @@ async function getDataFromUrl(
     jsonUrl?: SingleOrMultiple<string>,
     index?: number
 ): Promise<SingleOrMultiple<RecursivePartial<IOptions>> | undefined> {
-    const url = jsonUrl instanceof Array ? itemFromArray(jsonUrl, index) : jsonUrl;
+    const url = itemFromSingleOrMultiple(jsonUrl, index);
 
     if (!url) {
         return;
@@ -78,14 +78,14 @@ export class Loader {
      * The engine containing this Loader instance
      * @private
      */
-    readonly #engine;
+    private readonly _engine;
 
     /**
      * Loader constructor, assigns the engine
      * @param engine the engine containing this Loader instance
      */
     constructor(engine: Engine) {
-        this.#engine = engine;
+        this._engine = engine;
     }
 
     /**
@@ -161,12 +161,12 @@ export class Loader {
             document.querySelector("body")?.append(domContainer);
         }
 
-        const currentOptions = options instanceof Array ? itemFromArray(options, index) : options,
-            dom = this.#engine.dom(),
+        const currentOptions = itemFromSingleOrMultiple(options, index),
+            dom = this._engine.dom(),
             oldIndex = dom.findIndex((v) => v.id === tagId);
 
         if (oldIndex >= 0) {
-            const old = this.#engine.domItem(oldIndex);
+            const old = this._engine.domItem(oldIndex);
 
             if (old && !old.destroyed) {
                 old.destroy();
@@ -209,7 +209,7 @@ export class Loader {
         }
 
         /* launch tsParticles */
-        const newItem = new Container(this.#engine, tagId, currentOptions);
+        const newItem = new Container(this._engine, tagId, currentOptions);
 
         if (oldIndex >= 0) {
             dom.splice(oldIndex, 0, newItem);

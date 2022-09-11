@@ -2,8 +2,8 @@ import type { Container, IMovePathGenerator, Particle } from "tsparticles-engine
 import type { ISimplexOptions } from "./ISimplexOptions";
 import type { Noise4D } from "./simplex";
 import { Vector } from "tsparticles-engine";
-import { makeNoise4D } from "./simplex";
 import { getRandom } from "tsparticles-engine";
+import { makeNoise4D } from "./simplex";
 
 export class SimplexNoiseGenerator implements IMovePathGenerator {
     container?: Container;

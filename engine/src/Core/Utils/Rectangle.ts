@@ -1,4 +1,4 @@
-import type { Circle } from "./Circle";
+import { Circle } from "./Circle";
 import type { ICoordinates } from "../Interfaces/ICoordinates";
 import type { IDimension } from "../Interfaces/IDimension";
 import { Range } from "./Range";
@@ -47,22 +47,15 @@ export class Rectangle extends Range {
      * @returns true or false, checking if the range is intersecting with the rectangle
      */
     intersects(range: Range): boolean {
-        const rect = range as Rectangle,
-            circle = range as Circle,
-            w = this.size.width,
+        if (range instanceof Circle) {
+            range.intersects(this);
+        }
+
+        const w = this.size.width,
             h = this.size.height,
             pos1 = this.position,
-            pos2 = range.position;
-
-        if (circle.radius !== undefined) {
-            return circle.intersects(this);
-        }
-
-        if (!rect.size) {
-            return false;
-        }
-
-        const size2 = rect.size,
+            pos2 = range.position,
+            size2 = range instanceof Rectangle ? range.size : { width: 0, height: 0 },
             w2 = size2.width,
             h2 = size2.height;
 

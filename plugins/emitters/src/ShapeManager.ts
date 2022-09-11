@@ -4,10 +4,10 @@ import type { IEmitterShape } from "./IEmitterShape";
 const shapes: Map<string, IEmitterShape> = new Map<string, IEmitterShape>();
 
 export class ShapeManager {
-    readonly #engine;
+    private readonly _engine;
 
     constructor(engine: Engine) {
-        this.#engine = engine;
+        this._engine = engine;
     }
 
     addShape(name: string, drawer: IEmitterShape): void {

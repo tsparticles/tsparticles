@@ -2,11 +2,8 @@ import { Container } from "../../src/Core/Container";
 import type { IOptions } from "../../src";
 import { Options } from "../../src";
 import { RecursivePartial } from "../../src";
+import { TestWindow } from "./Window";
 import { tsParticles } from "../../src";
-
-const Window = require("window");
-
-const gThis = globalThis;
 
 declare global {
     interface Window {
@@ -20,7 +17,7 @@ export class TestContainer {
     container: Container;
 
     constructor(options?: RecursivePartial<IOptions>) {
-        gThis.window = new Window();
+        globalThis.window = TestWindow;
 
         window.SVGPathSeg = {} as any;
         tsParticles.init();

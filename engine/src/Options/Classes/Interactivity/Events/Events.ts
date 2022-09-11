@@ -5,6 +5,7 @@ import type { IEvents } from "../../../Interfaces/Interactivity/Events/IEvents";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import { executeOnSingleOrMultiple } from "../../../../Utils/Utils";
 
 /**
  * [[include:Options/Interactivity/Events.md]]
@@ -84,19 +85,13 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
         const onDiv = data.onDiv ?? data.ondiv;
 
         if (onDiv !== undefined) {
-            if (onDiv instanceof Array) {
-                this.onDiv = onDiv.map((div) => {
-                    const tmp = new DivEvent();
+            this.onDiv = executeOnSingleOrMultiple(onDiv, (t) => {
+                const tmp = new DivEvent();
 
-                    tmp.load(div);
+                tmp.load(t);
 
-                    return tmp;
-                });
-            } else {
-                this.onDiv = new DivEvent();
-
-                this.onDiv.load(onDiv);
-            }
+                return tmp;
+            });
         }
 
         this.onHover.load(data.onHover ?? data.onhover);

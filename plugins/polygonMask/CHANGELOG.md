@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-polygon-mask@2.2.4...tsparticles-plugin-polygon-mask@2.3.0) (2022-09-11)
+
+
+### Features
+
+* first version of image mask plugin, needs refactoring but works ([fd8a142](https://github.com/matteobruni/tsparticles/commit/fd8a1425f47e480c5703b8b3e2fe48ccdba5c79c))
+* removed some constants from engine that are relative only to polygon mask plugin ([2920980](https://github.com/matteobruni/tsparticles/commit/29209805481f2d6a7704ec73800bc416233b3362))
+
+
+
+
+
 ## [2.2.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-polygon-mask@2.2.2...tsparticles-plugin-polygon-mask@2.2.4) (2022-08-26)
 
 **Note:** Version bump only for package tsparticles-plugin-polygon-mask

@@ -13,12 +13,8 @@ type RepulseParticle = Particle & {
 };
 
 export class Repulser extends ParticlesInteractorBase {
-    readonly #container;
-
     constructor(container: Container) {
         super(container);
-
-        this.#container = container;
     }
 
     clear(): void {
@@ -30,7 +26,7 @@ export class Repulser extends ParticlesInteractorBase {
     }
 
     async interact(p1: RepulseParticle): Promise<void> {
-        const container = this.#container;
+        const container = this.container;
 
         if (!p1.repulse) {
             const repulseOpt1 = p1.options.repulse;

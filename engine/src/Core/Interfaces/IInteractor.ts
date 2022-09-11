@@ -1,3 +1,4 @@
+import type { IDelta } from "./IDelta";
 import type { IOptions } from "../../Options/Interfaces/IOptions";
 import type { IParticlesOptions } from "../../Options/Interfaces/Particles/IParticlesOptions";
 import type { InteractorType } from "../../Enums/Types/InteractorType";
@@ -19,7 +20,7 @@ export interface IInteractor {
 
     type: InteractorType;
 
-    clear(particle: Particle): void;
+    clear(particle: Particle, delta: IDelta): void;
 
     init(): void;
 

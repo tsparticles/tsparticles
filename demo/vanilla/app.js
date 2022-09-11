@@ -35,6 +35,7 @@ app.use("/docs", express.static("../../engine/docs"));
 app.use("/fontawesome", express.static("./node_modules/@fortawesome/fontawesome-free"));
 app.use("/jsoneditor", express.static("./node_modules/jsoneditor/dist"));
 app.use("/jquery", express.static("./node_modules/jquery/dist"));
+app.use("/lodash", express.static("./node_modules/lodash"));
 app.use("/popper.js", express.static("./node_modules/popper.js/dist"));
 app.use("/bootstrap", express.static("./node_modules/bootstrap/dist"));
 app.use("/tsparticles-engine", express.static("./node_modules/tsparticles-engine"));
@@ -50,6 +51,7 @@ app.use("/interaction-external-pause", express.static("./node_modules/tsparticle
 app.use("/interaction-external-push", express.static("./node_modules/tsparticles-interaction-external-push"));
 app.use("/interaction-external-remove", express.static("./node_modules/tsparticles-interaction-external-remove"));
 app.use("/interaction-external-repulse", express.static("./node_modules/tsparticles-interaction-external-repulse"));
+app.use("/interaction-external-slow", express.static("./node_modules/tsparticles-interaction-external-slow"));
 app.use("/interaction-particles-attract", express.static("./node_modules/tsparticles-interaction-particles-attract"));
 app.use("/interaction-particles-collisions", express.static("./node_modules/tsparticles-interaction-particles-collisions"));
 app.use("/interaction-particles-links", express.static("./node_modules/tsparticles-interaction-particles-links"));
@@ -65,6 +67,7 @@ app.use("/updater-opacity", express.static("./node_modules/tsparticles-updater-o
 app.use("/updater-size", express.static("./node_modules/tsparticles-updater-size"));
 app.use("/updater-angle", express.static("./node_modules/tsparticles-updater-angle"));
 app.use("/updater-color", express.static("./node_modules/tsparticles-updater-color"));
+app.use("/updater-destroy", express.static("./node_modules/tsparticles-updater-destroy"));
 app.use("/updater-stroke-color", express.static("./node_modules/tsparticles-updater-stroke-color"));
 app.use("/updater-out-modes", express.static("./node_modules/tsparticles-updater-out-modes"));
 app.use("/updater-tilt", express.static("./node_modules/tsparticles-updater-tilt"))
@@ -86,6 +89,7 @@ app.use("/path-polygon", express.static("./node_modules/tsparticles-path-polygon
 app.use("/path-perlin-noise", express.static("./node_modules/tsparticles-path-perlin-noise"));
 app.use("/path-simplex-noise", express.static("./node_modules/tsparticles-path-simplex-noise"));
 app.use("/plugin-hsv-color", express.static("./node_modules/tsparticles-plugin-hsv-color"));
+app.use("/plugin-canvas-mask", express.static("./node_modules/tsparticles-plugin-canvas-mask"))
 app.use("/plugin-infection", express.static("./node_modules/tsparticles-plugin-infection"));
 app.use("/preset-big-circles", express.static("./node_modules/tsparticles-preset-big-circles"));
 app.use("/preset-bubbles", express.static("./node_modules/tsparticles-preset-bubbles"));

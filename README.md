@@ -135,6 +135,12 @@ npm install tsparticles-engine
 yarn add tsparticles-engine
 ```
 
+### **_pnpm_**
+
+```shell
+pnpm install tsparticles-engine
+```
+
 #### Import and require
 
 Starting from version 1.12.11 `import` and `require` can be used to import `tsParticles` .
@@ -560,11 +566,10 @@ Otherwise, there's the demo page link below. Just click/tap the Coronavirus belo
 Want to see ever more demos? Clone the repository on your computer and follow these instructions
 
 ```shell
-$ yarn
-$ npx lerna bootstrap
+$ pnpm i
 $ npx lerna run build
 $ cd demo/vanilla
-$ yarn start
+$ pnpm run start
 ```
 
 **Boom! 💥** <http://localhost:3000> and you can checkout other demos.

@@ -5,13 +5,13 @@ import { EditorType } from "object-gui";
 
 export class TwinkleOptionsEditor extends EditorBase {
     group!: EditorGroup;
-    private options!: unknown;
+    private options!: () => unknown;
 
-    constructor(particles: Container) {
+    constructor(particles: () => Container) {
         super(particles);
     }
 
-    addToGroup(parent: EditorGroup, options?: unknown): void {
+    addToGroup(parent: EditorGroup, options?: () => unknown): void {
         this.group = parent.addGroup("twinkle", "Twinkle", true, options);
         this.options = this.group.data;
 
@@ -24,11 +24,14 @@ export class TwinkleOptionsEditor extends EditorBase {
     }
 
     private addTwinkleValues(group: EditorGroup): void {
-        const particles = this.particles;
-        const options = group.data as { color: string | undefined | { value: unknown } };
+        const optionsFunc = (): { color: string | undefined | { value: unknown } } =>
+            group.data() as { color: string | undefined | { value: unknown } };
+        const options = optionsFunc();
         const color = typeof options.color === "string" ? options.color : options.color?.value;
 
         group.addProperty("color", "Color", EditorType.color, color, false).change(async (value: unknown) => {
+            const options = optionsFunc();
+
             if (typeof value === "string") {
                 if (typeof options.color === "string") {
                     options.color = value;
@@ -39,21 +42,21 @@ export class TwinkleOptionsEditor extends EditorBase {
                 }
             }
 
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group.addProperty("frequency", "Frequency", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group
             .addProperty("opacity", "Opacity", EditorType.number)
             .change(async () => {
-                await particles.refresh();
+                await this.particles().refresh();
             })
             .step(0.01)
             .min(0)

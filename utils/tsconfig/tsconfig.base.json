@@ -15,6 +15,9 @@
       "ES2015",
       "DOM"
     ],
+    "types": [
+      "node"
+    ],
     "allowJs": true,
     "declaration": false,
     "removeComments": true,

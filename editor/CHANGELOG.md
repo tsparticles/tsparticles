@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@2.2.4...tsparticles-editor@2.3.0) (2022-09-11)
+
+
+### Bug Fixes
+
+* fixed editor ([d78892e](https://github.com/matteobruni/tsparticles/commit/d78892ea1af4ad47f677af0bbbae2272eea5e5b4))
+
+
+### Features
+
+* updating editor to Object GUI v2 ([12ea540](https://github.com/matteobruni/tsparticles/commit/12ea540a040aae301401e3941c0cd1ca18f4ed3e))
+
+
+
+
+
 ## [2.2.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@2.2.2...tsparticles-editor@2.2.4) (2022-08-26)
 
 **Note:** Version bump only for package tsparticles-editor

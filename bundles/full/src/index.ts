@@ -1,5 +1,6 @@
 import type { Engine } from "tsparticles-engine";
 import { loadAbsorbersPlugin } from "tsparticles-plugin-absorbers";
+import { loadDestroyUpdater } from "tsparticles-updater-destroy";
 import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
 import { loadExternalTrailInteraction } from "tsparticles-interaction-external-trail";
 import { loadPolygonMaskPlugin } from "tsparticles-plugin-polygon-mask";
@@ -12,6 +13,7 @@ import { loadWobbleUpdater } from "tsparticles-updater-wobble";
 export async function loadFull(engine: Engine): Promise<void> {
     await loadSlim(engine);
 
+    await loadDestroyUpdater(engine);
     await loadRollUpdater(engine);
     await loadTiltUpdater(engine);
     await loadTwinkleUpdater(engine);

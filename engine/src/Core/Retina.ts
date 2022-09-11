@@ -12,7 +12,6 @@ export class Retina {
     pixelRatio!: number;
     reduceFactor!: number;
     sizeAnimationSpeed!: number;
-    slowModeRadius!: number;
 
     constructor(private readonly container: Container) {}
 
@@ -35,11 +34,11 @@ export class Retina {
 
                 if (mediaQuery) {
                     // Check if the media query matches or is not available.
-                    this.handleMotionChange(mediaQuery);
+                    this._handleMotionChange(mediaQuery);
 
                     // Ads an event listener to check for changes in the media query's value.
                     const handleChange = (): void => {
-                        this.handleMotionChange(mediaQuery);
+                        this._handleMotionChange(mediaQuery);
 
                         container.refresh().catch(() => {
                             // ignore
@@ -71,10 +70,6 @@ export class Retina {
         this.attractDistance = getRangeValue(particles.move.attract.distance) * ratio;
         this.sizeAnimationSpeed = getRangeValue(particles.size.animation.speed) * ratio;
         this.maxSpeed = getRangeValue(particles.move.gravity.maxSpeed) * ratio;
-
-        const modes = options.interactivity.modes;
-
-        this.slowModeRadius = modes.slow.radius * ratio;
     }
 
     initParticle(particle: Particle): void {
@@ -96,7 +91,7 @@ export class Retina {
         props.maxSpeed = getRangeValue(options.move.gravity.maxSpeed) * ratio;
     }
 
-    private handleMotionChange(mediaQuery: MediaQueryList): void {
+    private _handleMotionChange(mediaQuery: MediaQueryList): void {
         const options = this.container.actualOptions;
 
         if (mediaQuery.matches) {

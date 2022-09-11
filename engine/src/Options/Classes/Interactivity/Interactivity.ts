@@ -14,19 +14,12 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial";
 export class Interactivity implements IInteractivity, IOptionLoader<IInteractivity> {
     [name: string]: unknown;
 
-    readonly #container;
-
     detectsOn: InteractivityDetect | keyof typeof InteractivityDetect;
-
-    readonly #engine;
 
     events;
     modes;
 
     constructor(engine: Engine, container?: Container) {
-        this.#engine = engine;
-        this.#container = container;
-
         this.detectsOn = InteractivityDetect.window;
         this.events = new Events();
         this.modes = new Modes(engine, container);

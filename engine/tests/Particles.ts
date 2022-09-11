@@ -3,12 +3,11 @@ import { ICoordinates3d, getRandom } from "../src";
 import { TestCanvas } from "./Fixture/TestCanvas";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticles } from "./Fixture/TestParticles";
+import { TestWindow } from "./Fixture/Window";
 import { expect } from "chai";
 
-const Window = require("window");
-
 describe("Particles", () => {
-    globalThis.window = new Window();
+    globalThis.window = TestWindow;
     const testContainer = new TestContainer({});
     const testParticles = new TestParticles(testContainer.container);
     const testCanvas = new TestCanvas(testContainer.container, 1920, 1080);

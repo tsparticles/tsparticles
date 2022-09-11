@@ -3,13 +3,14 @@ import {
     GradientType,
     RotateDirection,
     StartValueType,
+    executeOnSingleOrMultiple,
     getHslAnimationFromHsl,
     getRandom,
     getRangeMax,
     getRangeMin,
     getRangeValue,
     getStyleFromHsl,
-    itemFromArray,
+    itemFromSingleOrMultiple,
     randomInRange,
     rangeColorToHsl,
 } from "tsparticles-engine";
@@ -228,10 +229,7 @@ export class GradientUpdater implements IParticleUpdater {
     }
 
     init(particle: GradientParticle): void {
-        const gradient =
-            particle.options.gradient instanceof Array
-                ? itemFromArray(particle.options.gradient)
-                : particle.options.gradient;
+        const gradient = itemFromSingleOrMultiple(particle.options.gradient);
 
         if (!gradient) {
             return;
@@ -359,21 +357,13 @@ export class GradientUpdater implements IParticleUpdater {
                 continue;
             }
 
-            if (gradientToLoad instanceof Array) {
-                options.gradient = gradientToLoad.map((s) => {
-                    const tmp = new AnimatableGradient();
+            options.gradient = executeOnSingleOrMultiple(gradientToLoad, (gradient) => {
+                const tmp = new AnimatableGradient();
 
-                    tmp.load(s);
+                tmp.load(gradient);
 
-                    return tmp;
-                });
-            } else {
-                if (!options.gradient || options.gradient instanceof Array) {
-                    options.gradient = new AnimatableGradient();
-                }
-
-                options.gradient.load(gradientToLoad);
-            }
+                return tmp;
+            });
         }
     }
 

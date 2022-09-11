@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-plugin-emitters",
-  "version": "2.2.4",
+  "version": "2.3.0",
   "description": "tsParticles emitters plugin",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -63,7 +63,8 @@
     "tsparticles-plugin"
   ],
   "publishConfig": {
-    "directory": "dist"
+    "directory": "dist",
+    "linkDirectory": true
   },
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
@@ -76,6 +77,6 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.2.4"
+    "tsparticles-engine": "^2.3.0"
   }
 }

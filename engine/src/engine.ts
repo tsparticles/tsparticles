@@ -1,6 +1,6 @@
 /**
  * Engine class for creating the singleton on window.
- * It's a singleton proxy to the static [[this.#loader]] class for initializing [[Container]] instances
+ * It's a singleton proxy to the [[Loader]] class for initializing [[Container]] instances
  * @category Engine
  */
 import type {
@@ -34,36 +34,36 @@ import type { SingleOrMultiple } from "./Types/SingleOrMultiple";
  */
 export class Engine {
     /**
-     * Contains all the [[Container]] instances of the current engine instance
-     */
-    readonly #domArray: Container[];
-
-    readonly #eventDispatcher;
-
-    /**
-     * Checks if the engine instance is initialized
-     */
-    #initialized: boolean;
-
-    /**
-     * Contains the [[Loader]] engine instance
-     * @private
-     */
-    readonly #loader: Loader;
-
-    /**
      * Contains the [[Plugins]] engine instance
      */
     readonly plugins: Plugins;
 
     /**
+     * Contains all the [[Container]] instances of the current engine instance
+     */
+    private readonly _domArray: Container[];
+
+    private readonly _eventDispatcher;
+
+    /**
+     * Checks if the engine instance is initialized
+     */
+    private _initialized: boolean;
+
+    /**
+     * Contains the [[Loader]] engine instance
+     * @private
+     */
+    private readonly _loader: Loader;
+
+    /**
      * Engine constructor, initializes plugins, loader and the containers array
      */
     constructor() {
-        this.#domArray = [];
-        this.#eventDispatcher = new EventDispatcher();
-        this.#initialized = false;
-        this.#loader = new Loader(this);
+        this._domArray = [];
+        this._eventDispatcher = new EventDispatcher();
+        this._initialized = false;
+        this._loader = new Loader(this);
         this.plugins = new Plugins(this);
     }
 
@@ -73,7 +73,7 @@ export class Engine {
      * @param listener The listener of the specified event
      */
     addEventListener(type: string, listener: CustomEventListener): void {
-        this.#eventDispatcher.addEventListener(type, listener);
+        this._eventDispatcher.addEventListener(type, listener);
     }
 
     /**
@@ -179,7 +179,7 @@ export class Engine {
      * @param args The event parameters
      */
     dispatchEvent(type: string, args: CustomEventArgs): void {
-        this.#eventDispatcher.dispatchEvent(type, args);
+        this._eventDispatcher.dispatchEvent(type, args);
     }
 
     /**
@@ -187,7 +187,7 @@ export class Engine {
      * @returns All the [[Container]] objects loaded
      */
     dom(): Container[] {
-        return this.#domArray;
+        return this._domArray;
     }
 
     /**
@@ -210,8 +210,8 @@ export class Engine {
      * init method, used by imports
      */
     init(): void {
-        if (!this.#initialized) {
-            this.#initialized = true;
+        if (!this._initialized) {
+            this._initialized = true;
         }
     }
 
@@ -225,7 +225,7 @@ export class Engine {
         tagId: string | SingleOrMultiple<RecursivePartial<IOptions>>,
         options?: SingleOrMultiple<RecursivePartial<IOptions>>
     ): Promise<Container | undefined> {
-        return this.#loader.load(tagId, options);
+        return this._loader.load(tagId, options);
     }
 
     /**
@@ -240,7 +240,7 @@ export class Engine {
         options: RecursivePartial<IOptions>[],
         index?: number
     ): Promise<Container | undefined> {
-        return this.#loader.load(tagId, options, index);
+        return this._loader.load(tagId, options, index);
     }
 
     /**
@@ -256,7 +256,7 @@ export class Engine {
         pathConfigJson?: SingleOrMultiple<string> | number,
         index?: number
     ): Promise<Container | undefined> {
-        return this.#loader.loadJSON(tagId, pathConfigJson, index);
+        return this._loader.loadJSON(tagId, pathConfigJson, index);
     }
 
     /**
@@ -274,7 +274,7 @@ export class Engine {
      * @param listener The listener of the specified event
      */
     removeEventListener(type: string, listener: CustomEventListener): void {
-        this.#eventDispatcher.removeEventListener(type, listener);
+        this._eventDispatcher.removeEventListener(type, listener);
     }
 
     /**
@@ -288,7 +288,7 @@ export class Engine {
         element: HTMLElement | RecursivePartial<IOptions>,
         options?: RecursivePartial<IOptions>
     ): Promise<Container | undefined> {
-        return this.#loader.set(id, element, options);
+        return this._loader.set(id, element, options);
     }
 
     /**
@@ -305,7 +305,7 @@ export class Engine {
         pathConfigJson?: SingleOrMultiple<string> | number,
         index?: number
     ): Promise<Container | undefined> {
-        return this.#loader.setJSON(id, element, pathConfigJson, index);
+        return this._loader.setJSON(id, element, pathConfigJson, index);
     }
 
     /**

@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-editor",
-  "version": "2.2.4",
+  "version": "2.3.0",
   "description": "tsParticles Configuration Editor",
   "keywords": [
     "front-end",
@@ -25,10 +25,10 @@
     "directory": "editor"
   },
   "scripts": {
-    "build": "tsparticles-build src",
-    "build:ci": "tsparticles-build src --ci",
-    "version": "tsparticles-build src --distfiles && git add package.dist.json",
-    "prepack": "yarn build"
+    "build": "tsparticles-build",
+    "build:ci": "tsparticles-build --ci",
+    "version": "tsparticles-build -d && git add package.dist.json",
+    "prepack": "pnpm run build"
   },
   "bugs": {
     "url": "https://github.com/matteobruni/tsparticles/issues"
@@ -48,47 +48,48 @@
   "types": "dist/types/index.d.ts",
   "prettier": "@tsparticles/prettier-config",
   "devDependencies": {
-    "@babel/core": "^7.18.9",
-    "@tsparticles/build": "^1.1.4",
-    "@tsparticles/eslint-config": "^1.1.4",
-    "@tsparticles/prettier-config": "^1.1.3",
-    "@tsparticles/tsconfig": "^1.1.3",
-    "@types/webpack-env": "^1.17.0",
-    "@typescript-eslint/eslint-plugin": "^5.30.7",
-    "@typescript-eslint/parser": "^5.30.7",
+    "@babel/core": "^7.19.0",
+    "@tsparticles/build": "workspace:^1.2.0",
+    "@tsparticles/eslint-config": "workspace:^1.2.0",
+    "@tsparticles/prettier-config": "workspace:^1.2.0",
+    "@tsparticles/tsconfig": "workspace:^1.2.0",
+    "@types/webpack-env": "^1.18.0",
+    "@typescript-eslint/eslint-plugin": "^5.36.2",
+    "@typescript-eslint/parser": "^5.36.2",
     "babel-loader": "^8.2.5",
-    "browserslist": "^4.20.3",
+    "browserslist": "^4.21.3",
     "copyfiles": "^2.4.1",
-    "eslint": "^8.20.0",
+    "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
-    "terser-webpack-plugin": "^5.3.3",
-    "typescript": "^4.7.4",
+    "terser-webpack-plugin": "^5.3.6",
+    "typescript": "^4.8.3",
     "webpack": "^5.74.0",
-    "webpack-bundle-analyzer": "^4.5.0",
+    "webpack-bundle-analyzer": "^4.6.1",
     "webpack-cli": "^4.10.0",
-    "webpack-tsparticles-plugin": "^1.2.4"
+    "webpack-tsparticles-plugin": "workspace:^1.3.0"
   },
   "dependencies": {
-    "object-gui": "^1.1.1",
-    "tsparticles-engine": "^2.2.4",
-    "tsparticles-interaction-external-attract": "^2.2.4",
-    "tsparticles-interaction-external-bounce": "^2.2.4",
-    "tsparticles-interaction-external-bubble": "^2.2.4",
-    "tsparticles-interaction-external-connect": "^2.2.4",
-    "tsparticles-interaction-external-grab": "^2.2.4",
-    "tsparticles-interaction-external-pause": "^2.2.4",
-    "tsparticles-interaction-external-push": "^2.2.4",
-    "tsparticles-interaction-external-remove": "^2.2.4",
-    "tsparticles-interaction-external-repulse": "^2.2.4",
-    "tsparticles-interaction-light": "^2.2.4",
-    "tsparticles-interaction-particles-links": "^2.2.4",
-    "tsparticles-plugin-absorbers": "^2.2.4",
-    "tsparticles-plugin-emitters": "^2.2.4",
-    "tsparticles-plugin-infection": "^2.2.4"
+    "object-gui": "^2.0.1",
+    "tsparticles-engine": "workspace:^2.3.0",
+    "tsparticles-interaction-external-attract": "workspace:^2.3.0",
+    "tsparticles-interaction-external-bounce": "workspace:^2.3.0",
+    "tsparticles-interaction-external-bubble": "workspace:^2.3.0",
+    "tsparticles-interaction-external-connect": "workspace:^2.3.0",
+    "tsparticles-interaction-external-grab": "workspace:^2.3.0",
+    "tsparticles-interaction-external-pause": "workspace:^2.3.0",
+    "tsparticles-interaction-external-push": "workspace:^2.3.0",
+    "tsparticles-interaction-external-remove": "workspace:^2.3.0",
+    "tsparticles-interaction-external-repulse": "workspace:^2.3.0",
+    "tsparticles-interaction-light": "workspace:^2.3.0",
+    "tsparticles-interaction-particles-links": "workspace:^2.3.0",
+    "tsparticles-plugin-absorbers": "workspace:^2.3.0",
+    "tsparticles-plugin-emitters": "workspace:^2.3.0",
+    "tsparticles-plugin-infection": "workspace:^2.3.0"
   },
   "publishConfig": {
-    "directory": "dist"
+    "directory": "dist",
+    "linkDirectory": true
   }
 }

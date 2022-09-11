@@ -11,6 +11,12 @@
       "ES2015",
       "DOM"
     ],
+    "types": [
+      "jsdom",
+      "mocha",
+      "chai",
+      "node"
+    ],
     "allowJs": true,
     "rootDir": "./test",
     "declaration": false,

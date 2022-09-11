@@ -5,7 +5,7 @@ import type { LightContainer, LightParticle } from "./Types";
 import { Light } from "./Options/Classes/Light";
 import { drawLight } from "./Utils";
 
-export class ExternalLighter extends ExternalInteractorBase {
+export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
     constructor(container: LightContainer) {
         super(container);
     }
@@ -36,7 +36,7 @@ export class ExternalLighter extends ExternalInteractorBase {
     }
 
     isEnabled(particle?: LightParticle): boolean {
-        const container = this.container as LightContainer,
+        const container = this.container,
             mouse = container.interactivity.mouse,
             interactivity = particle?.interactivity ?? container.actualOptions.interactivity,
             events = interactivity.events;

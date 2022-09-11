@@ -65,47 +65,48 @@ export class BaseMover implements IParticleMover {
             diffFactor = 2,
             moveSpeed = (baseSpeed * speedFactor) / diffFactor;
 
-        applyPath(particle, delta);
-
-        const gravityOptions = particle.gravity,
-            gravityFactor = gravityOptions?.enable && gravityOptions.inverse ? -1 : 1;
-
-        if (gravityOptions?.enable && moveSpeed) {
-            particle.velocity.y += (gravityFactor * (gravityOptions.acceleration * delta.factor)) / (60 * moveSpeed);
-        }
-
-        if (moveDrift && moveSpeed) {
-            particle.velocity.x += (moveDrift * delta.factor) / (60 * moveSpeed);
-        }
-
-        const decay = particle.moveDecay;
-
-        if (decay != 1) {
-            particle.velocity.multTo(decay);
-        }
-
-        const velocity = particle.velocity.mult(moveSpeed),
-            maxSpeed = particle.retina.maxSpeed ?? container.retina.maxSpeed;
-
-        if (
-            gravityOptions?.enable &&
-            maxSpeed > 0 &&
-            ((!gravityOptions.inverse && velocity.y >= 0 && velocity.y >= maxSpeed) ||
-                (gravityOptions.inverse && velocity.y <= 0 && velocity.y <= -maxSpeed))
-        ) {
-            velocity.y = gravityFactor * maxSpeed;
-
-            if (moveSpeed) {
-                particle.velocity.y = velocity.y / moveSpeed;
-            }
-        }
-
-        const zIndexOptions = particle.options.zIndex,
-            zVelocityFactor = (1 - particle.zIndexFactor) ** zIndexOptions.velocityRate;
-
         if (moveOptions.spin.enable) {
             spin(particle, moveSpeed);
         } else {
+            applyPath(particle, delta);
+
+            const gravityOptions = particle.gravity,
+                gravityFactor = gravityOptions?.enable && gravityOptions.inverse ? -1 : 1;
+
+            if (gravityOptions?.enable && moveSpeed) {
+                particle.velocity.y +=
+                    (gravityFactor * (gravityOptions.acceleration * delta.factor)) / (60 * moveSpeed);
+            }
+
+            if (moveDrift && moveSpeed) {
+                particle.velocity.x += (moveDrift * delta.factor) / (60 * moveSpeed);
+            }
+
+            const decay = particle.moveDecay;
+
+            if (decay != 1) {
+                particle.velocity.multTo(decay);
+            }
+
+            const velocity = particle.velocity.mult(moveSpeed),
+                maxSpeed = particle.retina.maxSpeed ?? container.retina.maxSpeed;
+
+            if (
+                gravityOptions?.enable &&
+                maxSpeed > 0 &&
+                ((!gravityOptions.inverse && velocity.y >= 0 && velocity.y >= maxSpeed) ||
+                    (gravityOptions.inverse && velocity.y <= 0 && velocity.y <= -maxSpeed))
+            ) {
+                velocity.y = gravityFactor * maxSpeed;
+
+                if (moveSpeed) {
+                    particle.velocity.y = velocity.y / moveSpeed;
+                }
+            }
+
+            const zIndexOptions = particle.options.zIndex,
+                zVelocityFactor = (1 - particle.zIndexFactor) ** zIndexOptions.velocityRate;
+
             if (zVelocityFactor != 1) {
                 velocity.multTo(zVelocityFactor);
             }

@@ -2,6 +2,7 @@ import type { IOptionLoader, RecursivePartial, SingleOrMultiple } from "tspartic
 import { BubbleBase } from "./BubbleBase";
 import { BubbleDiv } from "./BubbleDiv";
 import type { IBubble } from "../Interfaces/IBubble";
+import { executeOnSingleOrMultiple } from "tsparticles-engine";
 
 /**
  * @category Options
@@ -16,20 +17,12 @@ export class Bubble extends BubbleBase implements IBubble, IOptionLoader<IBubble
             return;
         }
 
-        if (data.divs instanceof Array) {
-            this.divs = data.divs.map((s) => {
-                const tmp = new BubbleDiv();
+        this.divs = executeOnSingleOrMultiple(data.divs, (div) => {
+            const tmp = new BubbleDiv();
 
-                tmp.load(s);
+            tmp.load(div);
 
-                return tmp;
-            });
-        } else {
-            if (this.divs instanceof Array || !this.divs) {
-                this.divs = new BubbleDiv();
-            }
-
-            this.divs.load(data.divs);
-        }
+            return tmp;
+        });
     }
 }

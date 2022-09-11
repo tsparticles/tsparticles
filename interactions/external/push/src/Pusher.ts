@@ -8,22 +8,18 @@ import { itemFromArray } from "tsparticles-engine";
  * Particle attract manager
  * @category Interactions
  */
-export class Pusher extends ExternalInteractorBase {
-    readonly #container;
-
+export class Pusher extends ExternalInteractorBase<PushContainer> {
     handleClickMode: (mode: string) => void;
 
     constructor(container: PushContainer) {
         super(container);
-
-        this.#container = container;
 
         this.handleClickMode = (mode): void => {
             if (mode !== ClickMode.push) {
                 return;
             }
 
-            const container = this.#container,
+            const container = this.container,
                 options = container.actualOptions,
                 pushOptions = options.interactivity.modes.push;
 

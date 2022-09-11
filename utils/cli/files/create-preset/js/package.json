@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-template",
-  "version": "1.45.4",
+  "version": "1.46.0",
   "private": true,
   "description": "tsParticles template preset",
   "homepage": "https://particles.js.org",
@@ -18,10 +18,10 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "lint:ci": "eslint . --ext .js,.jsx,.ts,.tsx",
     "bundle": "webpack --mode production --config webpack.config.cjs",
-    "build": "yarn clear:dist && yarn prettify:src && yarn lint && yarn bundle && yarn prettify:readme",
-    "build:ci": "yarn clear:dist && yarn prettify:ci:src && yarn lint:ci && yarn bundle && yarn prettify:ci:readme",
+    "build": "pnpm run clear:dist && pnpm run prettify:src && pnpm run lint && pnpm run bundle && pnpm run prettify:readme",
+    "build:ci": "pnpm run clear:dist && pnpm run prettify:ci:src && pnpm run lint:ci && pnpm run bundle && pnpm run prettify:ci:readme",
     "clear:dist": "rimraf -f ./dist",
-    "prepack": "yarn build"
+    "prepack": "pnpm run build"
   },
   "repository": {
     "type": "git",
@@ -59,21 +59,21 @@
     "url": "https://github.com/tsparticles/preset-template/issues"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.9",
-    "@babel/eslint-parser": "^7.17.0",
+    "@babel/core": "^7.19.0",
+    "@babel/eslint-parser": "^7.18.9",
     "babel-loader": "^8.2.5",
-    "browserslist": "^4.20.3",
+    "browserslist": "^4.21.3",
     "copyfiles": "^2.4.1",
-    "eslint": "^8.14.0",
+    "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
-    "prettier": "^2.6.2",
+    "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
-    "terser-webpack-plugin": "^5.3.1",
-    "webpack": "^5.72.0",
-    "webpack-bundle-analyzer": "^4.5.0",
-    "webpack-cli": "^4.9.2"
+    "terser-webpack-plugin": "^5.3.6",
+    "webpack": "^5.74.0",
+    "webpack-bundle-analyzer": "^4.6.1",
+    "webpack-cli": "^4.10.0"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.2.4"
+    "tsparticles-engine": "workspace:^2.3.0"
   }
 }

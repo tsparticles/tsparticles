@@ -1,3 +1,4 @@
+import { deepExtend, executeOnSingleOrMultiple } from "../../Utils/Utils";
 import { Background } from "./Background/Background";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
 import type { Container } from "../../Core/Container";
@@ -15,7 +16,6 @@ import { ResponsiveMode } from "../../Enums/Modes/ResponsiveMode";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 import { Theme } from "./Theme/Theme";
 import { ThemeMode } from "../../Enums/Modes/ThemeMode";
-import { deepExtend } from "../../Utils/Utils";
 import { loadParticlesOptions } from "../../Utils/OptionsUtils";
 
 /**
@@ -28,12 +28,10 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     autoPlay;
     background;
     backgroundMask;
-    readonly #container;
     defaultDarkTheme?: string;
     defaultLightTheme?: string;
     detectRetina;
     duration: RangeValue;
-    readonly #engine;
     fpsLimit;
     fullScreen;
     interactivity;
@@ -44,13 +42,17 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     pauseOnOutsideViewport;
     preset?: SingleOrMultiple<string>;
     responsive: Responsive[];
+    smooth: boolean;
     style: RecursivePartial<CSSStyleDeclaration>;
     themes: Theme[];
     zLayers;
 
+    private readonly _container;
+    private readonly _engine;
+
     constructor(engine: Engine, container: Container) {
-        this.#engine = engine;
-        this.#container = container;
+        this._engine = engine;
+        this._container = container;
         this.autoPlay = true;
         this.background = new Background();
         this.backgroundMask = new BackgroundMask();
@@ -61,10 +63,11 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.interactivity = new Interactivity(engine, container);
         this.manualParticles = [];
         this.motion = new Motion();
-        this.particles = loadParticlesOptions(this.#engine, this.#container);
+        this.particles = loadParticlesOptions(this._engine, this._container);
         this.pauseOnBlur = true;
         this.pauseOnOutsideViewport = true;
         this.responsive = [];
+        this.smooth = false;
         this.style = {};
         this.themes = [];
         this.zLayers = 100;
@@ -116,13 +119,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.detectRetina = value;
     }
 
-    #findDefaultTheme(mode: ThemeMode): Theme | undefined {
-        return (
-            this.themes.find((theme) => theme.default.value && theme.default.mode === mode) ??
-            this.themes.find((theme) => theme.default.value && theme.default.mode === ThemeMode.any)
-        );
-    }
-
     /**
      * This methods loads the source object in the current instance
      * @param data the source data to load into the instance
@@ -133,13 +129,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
 
         if (data.preset !== undefined) {
-            if (data.preset instanceof Array) {
-                for (const preset of data.preset) {
-                    this.importPreset(preset);
-                }
-            } else {
-                this.importPreset(data.preset);
-            }
+            executeOnSingleOrMultiple(data.preset, (preset) => this._importPreset(preset));
         }
 
         if (data.autoPlay !== undefined) {
@@ -200,9 +190,13 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.motion.load(data.motion);
         this.particles.load(data.particles);
         this.style = deepExtend(this.style, data.style) as RecursivePartial<CSSStyleDeclaration>;
-        this.#engine.plugins.loadOptions(this, data);
+        this._engine.plugins.loadOptions(this, data);
 
-        const interactors = this.#engine.plugins.interactors.get(this.#container);
+        if (data.smooth !== undefined) {
+            this.smooth = data.smooth;
+        }
+
+        const interactors = this._engine.plugins.interactors.get(this._container);
 
         if (interactors) {
             for (const interactor of interactors) {
@@ -234,8 +228,8 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
             }
         }
 
-        this.defaultDarkTheme = this.#findDefaultTheme(ThemeMode.dark)?.name;
-        this.defaultLightTheme = this.#findDefaultTheme(ThemeMode.light)?.name;
+        this.defaultDarkTheme = this._findDefaultTheme(ThemeMode.dark)?.name;
+        this.defaultLightTheme = this._findDefaultTheme(ThemeMode.light)?.name;
     }
 
     setResponsive(width: number, pxRatio: number, defaultOptions: IOptions): number | undefined {
@@ -260,7 +254,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         } else {
             const mediaMatch = typeof matchMedia !== "undefined" && matchMedia("(prefers-color-scheme: dark)"),
                 clientDarkMode = mediaMatch && mediaMatch.matches,
-                defaultTheme = this.#findDefaultTheme(clientDarkMode ? ThemeMode.dark : ThemeMode.light);
+                defaultTheme = this._findDefaultTheme(clientDarkMode ? ThemeMode.dark : ThemeMode.light);
 
             if (defaultTheme) {
                 this.load(defaultTheme.options);
@@ -268,7 +262,14 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
     }
 
-    private importPreset(preset: string): void {
-        this.load(this.#engine.plugins.getPreset(preset));
+    private _findDefaultTheme(mode: ThemeMode): Theme | undefined {
+        return (
+            this.themes.find((theme) => theme.default.value && theme.default.mode === mode) ??
+            this.themes.find((theme) => theme.default.value && theme.default.mode === ThemeMode.any)
+        );
+    }
+
+    private _importPreset(preset: string): void {
+        this.load(this._engine.plugins.getPreset(preset));
     }
 }

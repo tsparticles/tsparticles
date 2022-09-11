@@ -10,15 +10,15 @@ import { ParticlesOptionsEditor } from "../../Particles/ParticlesOptionsEditor";
 
 export class ModesOptionsEditor extends EditorBase {
     group!: EditorGroup;
-    private options!: IModes;
+    private options!: () => IModes;
 
-    constructor(particles: Container) {
+    constructor(particles: () => Container) {
         super(particles);
     }
 
     addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("modes", "Modes");
-        this.options = this.group.data as IModes;
+        this.options = this.group.data as () => IModes;
 
         this.addAttract();
         this.addBubble();
@@ -33,21 +33,20 @@ export class ModesOptionsEditor extends EditorBase {
     }
 
     private addAttract(): void {
-        const particles = this.particles;
         const group = this.group.addGroup("attract", "Attract");
 
         group.addProperty("distance", "Distance", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group.addProperty("duration", "Duration", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group
             .addProperty("easing", "Easing", EditorType.select)
             .change(async () => {
-                await particles.refresh();
+                await this.particles().refresh();
             })
             .addItems([
                 {
@@ -74,21 +73,21 @@ export class ModesOptionsEditor extends EditorBase {
             ]);
 
         group.addProperty("factor", "Factor", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group.addProperty("maxSpeed", "Max Speed", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group.addProperty("speed", "Speed", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
     }
 
     private addBubble(): void {
-        const particles = this.particles;
-        const options = this.options.bubble as IBubble | undefined;
+        const optionsFunc = (() => this.options().bubble) as () => IBubble | undefined;
+        const options = optionsFunc();
         const group = this.group.addGroup("bubble", "Bubble");
         const color =
             typeof options?.color === "string"
@@ -98,6 +97,8 @@ export class ModesOptionsEditor extends EditorBase {
                 : options?.color?.value;
 
         group.addProperty("color", "Color", EditorType.color, color, false).change(async (value: unknown) => {
+            const options = optionsFunc();
+
             if (!options) {
                 return;
             }
@@ -112,33 +113,32 @@ export class ModesOptionsEditor extends EditorBase {
                 }
             }
 
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group.addProperty("distance", "Distance", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group.addProperty("duration", "Duration", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group
             .addProperty("opacity", "Opacity", EditorType.number)
             .change(async () => {
-                await particles.refresh();
+                await this.particles().refresh();
             })
             .step(0.01)
             .min(0)
             .max(1);
 
         group.addProperty("size", "Size", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
     }
 
     private addConnect(): void {
-        const particles = this.particles;
         const group = this.group.addGroup("connect", "Connect");
 
         const connectLinksGroup = group.addGroup("links", "Links");
@@ -146,34 +146,36 @@ export class ModesOptionsEditor extends EditorBase {
         connectLinksGroup
             .addProperty("opacity", "Opacity", EditorType.number)
             .change(async () => {
-                await particles.refresh();
+                await this.particles().refresh();
             })
             .step(0.01)
             .min(0)
             .max(1);
 
         group.addProperty("distance", "Distance", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group.addProperty("radius", "Radius", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
     }
 
     private addGrab(): void {
-        const particles = this.particles;
-        const options = this.options.grab as IGrab | undefined;
+        const optionsFunc = (() => this.options().grab) as () => IGrab | undefined;
+        const options = optionsFunc();
         const group = this.group.addGroup("grab", "Grab");
         const grabLinksGroup = group.addGroup("links", "Links");
         const links = options?.links;
         const color = typeof links?.color === "string" ? links?.color : links?.color?.value;
 
         grabLinksGroup.addProperty("blink", "Blink", EditorType.boolean).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         grabLinksGroup.addProperty("color", "Color", EditorType.color, color, false).change(async (value: unknown) => {
+            const options = optionsFunc();
+
             if (!options) {
                 return;
             }
@@ -187,31 +189,31 @@ export class ModesOptionsEditor extends EditorBase {
                     };
                 }
 
-                await particles.refresh();
+                await this.particles().refresh();
             }
         });
 
         grabLinksGroup.addProperty("consent", "Consent", EditorType.boolean).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         grabLinksGroup
             .addProperty("opacity", "Opacity", EditorType.number)
             .change(async () => {
-                await particles.refresh();
+                await this.particles().refresh();
             })
             .step(0.01)
             .min(0)
             .max(1);
 
         group.addProperty("distance", "Distance", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
     }
 
     private addLight(): void {
-        const particles = this.particles;
-        const options = this.options.light as ILight | undefined;
+        const optionsFunc = (() => this.options().light) as () => ILight | undefined;
+        const options = optionsFunc();
         const group = this.group.addGroup("light", "Light");
 
         const areaGroup = group.addGroup("area", "Light");
@@ -224,6 +226,8 @@ export class ModesOptionsEditor extends EditorBase {
         gradientGroup
             .addProperty("start", "Start", EditorType.color, startColor, false)
             .change(async (value: unknown) => {
+                const options = optionsFunc();
+
                 if (!options) {
                     return;
                 }
@@ -238,7 +242,7 @@ export class ModesOptionsEditor extends EditorBase {
                     }
                 }
 
-                await particles.refresh();
+                await this.particles().refresh();
             });
 
         const stopColor =
@@ -247,6 +251,8 @@ export class ModesOptionsEditor extends EditorBase {
                 : options?.area.gradient.stop?.value;
 
         gradientGroup.addProperty("stop", "Stop", EditorType.color, stopColor, false).change(async (value: unknown) => {
+            const options = optionsFunc();
+
             if (!options) {
                 return;
             }
@@ -261,11 +267,11 @@ export class ModesOptionsEditor extends EditorBase {
                 }
             }
 
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         areaGroup.addProperty("radius", "Radius", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         const shadowGroup = group.addGroup("shadow", "Shadow");
@@ -276,6 +282,8 @@ export class ModesOptionsEditor extends EditorBase {
         shadowGroup
             .addProperty("color", "Color", EditorType.color, shadowColor, false)
             .change(async (value: unknown) => {
+                const options = optionsFunc();
+
                 if (!options) {
                     return;
                 }
@@ -290,48 +298,45 @@ export class ModesOptionsEditor extends EditorBase {
                     }
                 }
 
-                await particles.refresh();
+                await this.particles().refresh();
             });
 
         shadowGroup.addProperty("length", "Length", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
     }
 
     private addPush(): void {
-        const particles = this.particles;
         const group = this.group.addGroup("push", "Push");
 
         group.addProperty("quantity", "Quantity", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
     }
 
     private addRemove(): void {
-        const particles = this.particles;
         const group = this.group.addGroup("remove", "Remove");
 
         group.addProperty("quantity", "Quantity", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
     }
 
     private addRepulse(): void {
-        const particles = this.particles;
         const group = this.group.addGroup("repulse", "Repulse");
 
         group.addProperty("distance", "Distance", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group.addProperty("duration", "Duration", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group
             .addProperty("easing", "Easing", EditorType.select)
             .change(async () => {
-                await particles.refresh();
+                await this.particles().refresh();
             })
             .addItems([
                 {
@@ -358,50 +363,48 @@ export class ModesOptionsEditor extends EditorBase {
             ]);
 
         group.addProperty("factor", "Factor", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group.addProperty("maxSpeed", "Max Speed", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group.addProperty("speed", "Speed", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
     }
 
     private addSlow(): void {
-        const particles = this.particles;
         const group = this.group.addGroup("slow", "Slow");
 
         group.addProperty("factor", "Factor", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group.addProperty("radius", "Radius", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
     }
 
     private addTrail(): void {
-        const particles = this.particles;
         const group = this.group.addGroup("trail", "Trail");
-        const options = this.options.trail;
+        const options = (): unknown => this.options().trail;
 
-        const particlesEditor = new ParticlesOptionsEditor(particles);
+        const particlesEditor = new ParticlesOptionsEditor(this.particles);
 
-        particlesEditor.addToGroup(group, "particles", options);
+        particlesEditor.addParticlesToGroup(group, "particles", options);
 
         group.addProperty("delay", "Delay", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group.addProperty("pauseOnStop", "Pause on Stop", EditorType.boolean).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group.addProperty("quantity", "Quantity", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
     }
 }

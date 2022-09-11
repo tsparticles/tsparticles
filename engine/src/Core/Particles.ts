@@ -1,12 +1,4 @@
-import {
-    calcPositionFromSize,
-    getRandom,
-    getRangeMax,
-    getRangeMin,
-    getValue,
-    randomInRange,
-    setRangeValue,
-} from "../Utils/NumberUtils";
+import { calcPositionFromSize, getRandom, getRangeMax, getRangeMin, setRangeValue } from "../Utils/NumberUtils";
 import type { ClickMode } from "../Enums/Modes/ClickMode";
 import type { Container } from "./Container";
 import type { Engine } from "../engine";
@@ -24,7 +16,6 @@ import { Point } from "./Utils/Point";
 import { QuadTree } from "./Utils/QuadTree";
 import { Rectangle } from "./Utils/Rectangle";
 import type { RecursivePartial } from "../Types/RecursivePartial";
-import { loadParticlesOptions } from "../Utils/OptionsUtils";
 
 /**
  * Particles manager object
@@ -35,8 +26,6 @@ export class Particles {
      * All the particles used in canvas
      */
     array: Particle[];
-
-    readonly #engine;
 
     lastZIndex;
     limit;
@@ -53,12 +42,14 @@ export class Particles {
 
     zArray: Particle[];
 
+    private readonly _engine;
+
     private readonly freqs: IParticlesFrequencies;
     private readonly interactionManager;
     private nextId;
 
     constructor(engine: Engine, private readonly container: Container) {
-        this.#engine = engine;
+        this._engine = engine;
         this.nextId = 0;
         this.array = [];
         this.zArray = [];
@@ -69,7 +60,7 @@ export class Particles {
             links: new Map<string, number>(),
             triangles: new Map<string, number>(),
         };
-        this.interactionManager = new InteractionManager(this.#engine, container);
+        this.interactionManager = new InteractionManager(this._engine, container);
 
         const canvasSize = this.container.canvas.size;
 
@@ -83,8 +74,8 @@ export class Particles {
             4
         );
 
-        this.movers = this.#engine.plugins.getMovers(container, true);
-        this.updaters = this.#engine.plugins.getUpdaters(container, true);
+        this.movers = this._engine.plugins.getMovers(container, true);
+        this.updaters = this._engine.plugins.getUpdaters(container, true);
     }
 
     get count(): number {
@@ -109,7 +100,8 @@ export class Particles {
     addParticle(
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticlesOptions>,
-        group?: string
+        group?: string,
+        initializer?: (particle: Particle) => boolean
     ): Particle | undefined {
         const container = this.container,
             options = container.actualOptions,
@@ -123,53 +115,7 @@ export class Particles {
             }
         }
 
-        return this.pushParticle(position, overrideOptions, group);
-    }
-
-    addSplitParticle(
-        parent: Particle,
-        splitParticlesOptions?: RecursivePartial<IParticlesOptions>
-    ): Particle | undefined {
-        const splitOptions = parent.options.destroy.split,
-            options = loadParticlesOptions(this.#engine, this.container, parent.options),
-            factor = getValue(splitOptions.factor);
-
-        options.color.load({
-            value: {
-                hsl: parent.getFillColor(),
-            },
-        });
-
-        if (typeof options.size.value === "number") {
-            options.size.value /= factor;
-        } else {
-            options.size.value.min /= factor;
-            options.size.value.max /= factor;
-        }
-
-        options.load(splitParticlesOptions);
-
-        const offset = splitOptions.sizeOffset ? setRangeValue(-parent.size.value, parent.size.value) : 0,
-            position = {
-                x: parent.position.x + randomInRange(offset),
-                y: parent.position.y + randomInRange(offset),
-            };
-
-        return this.pushParticle(position, options, parent.group, (particle) => {
-            if (particle.size.value < 0.5) {
-                return false;
-            }
-
-            particle.velocity.length = randomInRange(setRangeValue(parent.velocity.length, particle.velocity.length));
-            particle.splitCount = parent.splitCount + 1;
-            particle.unbreakable = true;
-
-            setTimeout(() => {
-                particle.unbreakable = false;
-            }, 500);
-
-            return true;
-        });
+        return this._pushParticle(position, overrideOptions, group, initializer);
     }
 
     /**
@@ -287,7 +233,7 @@ export class Particles {
 
         let handled = false;
 
-        this.updaters = this.#engine.plugins.getUpdaters(container, true);
+        this.updaters = this._engine.plugins.getUpdaters(container, true);
         this.interactionManager.init();
 
         for (const [, plugin] of container.plugins) {
@@ -369,7 +315,7 @@ export class Particles {
 
             deleted++;
 
-            this.#engine.dispatchEvent(EventType.particleRemoved, {
+            this._engine.dispatchEvent(EventType.particleRemoved, {
                 container: this.container,
                 data: {
                     particle,
@@ -386,10 +332,10 @@ export class Particles {
         const options = this.container.actualOptions;
 
         for (const group in options.particles.groups) {
-            this.applyDensity(options.particles.groups[group], 0, group);
+            this._applyDensity(options.particles.groups[group], 0, group);
         }
 
-        this.applyDensity(options.particles, options.manualParticles.length);
+        this._applyDensity(options.particles, options.manualParticles.length);
     }
 
     async update(delta: IDelta): Promise<void> {
@@ -405,15 +351,6 @@ export class Particles {
         }
 
         for (const particle of this.array) {
-            // let d = ( dx = container.interactivity.mouse.click_pos_x - p.x ) * dx +
-            //         ( dy = container.interactivity.mouse.click_pos_y - p.y ) * dy;
-            // let f = -BANG_SIZE / d;
-            // if ( d < BANG_SIZE ) {
-            //     let t = Math.atan2( dy, dx );
-            //     p.vx = f * Math.cos(t);
-            //     p.vy = f * Math.sin(t);
-            // }
-
             const resizeFactor = container.canvas.resizeFactor;
 
             if (resizeFactor && !particle.ignoresResizeRatio) {
@@ -467,13 +404,13 @@ export class Particles {
         delete container.canvas.resizeFactor;
     }
 
-    private applyDensity(options: IParticlesOptions, manualCount: number, group?: string): void {
+    private _applyDensity(options: IParticlesOptions, manualCount: number, group?: string): void {
         if (!options.number.density?.enable) {
             return;
         }
 
         const numberOptions = options.number,
-            densityFactor = this.initDensityFactor(numberOptions.density),
+            densityFactor = this._initDensityFactor(numberOptions.density),
             optParticlesNumber = numberOptions.value,
             optParticlesLimit = numberOptions.limit > 0 ? numberOptions.limit : optParticlesNumber,
             particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + manualCount,
@@ -488,7 +425,7 @@ export class Particles {
         }
     }
 
-    private initDensityFactor(densityOptions: IParticlesDensity): number {
+    private _initDensityFactor(densityOptions: IParticlesDensity): number {
         const container = this.container;
 
         if (!container.canvas.element || !densityOptions.enable) {
@@ -501,14 +438,14 @@ export class Particles {
         return (canvas.width * canvas.height) / (densityOptions.factor * pxRatio ** 2 * densityOptions.area);
     }
 
-    private pushParticle(
+    private _pushParticle(
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticlesOptions>,
         group?: string,
         initializer?: (particle: Particle) => boolean
     ): Particle | undefined {
         try {
-            const particle = new Particle(this.#engine, this.nextId, this.container, position, overrideOptions, group);
+            const particle = new Particle(this._engine, this.nextId, this.container, position, overrideOptions, group);
 
             let canAdd = true;
 
@@ -525,7 +462,7 @@ export class Particles {
 
             this.nextId++;
 
-            this.#engine.dispatchEvent(EventType.particleAdded, {
+            this._engine.dispatchEvent(EventType.particleAdded, {
                 container: this.container,
                 data: {
                     particle,

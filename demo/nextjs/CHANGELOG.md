@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/matteobruni/tsparticles/compare/nextjs@0.4.4...nextjs@0.5.0) (2022-09-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency next to v12.2.4 [security] ([8ac6931](https://github.com/matteobruni/tsparticles/commit/8ac6931121a264d986f96e0a59db517ccb404451))
+
+
+
+
+
 ## [0.4.4](https://github.com/matteobruni/tsparticles/compare/nextjs@0.4.2...nextjs@0.4.4) (2022-08-26)
 
 **Note:** Version bump only for package nextjs
