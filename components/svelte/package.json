@@ -79,7 +79,7 @@
     "svelte": ">=3"
   },
   "dependencies": {
-    "tsparticles-engine": "workspace:^2.3.0"
+    "tsparticles-engine": "^2.3.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^22.0.2",

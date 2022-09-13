@@ -85,7 +85,7 @@
     }
   ],
   "dependencies": {
-    "tsparticles-engine": "workspace:^2.3.0",
+    "tsparticles-engine": "^2.3.0",
     "vue": "^3.2.39"
   },
   "devDependencies": {
