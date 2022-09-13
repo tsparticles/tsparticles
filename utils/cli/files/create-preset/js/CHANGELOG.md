@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.46.1](https://github.com/tsparticles/preset-template/compare/tsparticles-preset-template@1.46.0...tsparticles-preset-template@1.46.1) (2022-09-13)
+
+**Note:** Version bump only for package tsparticles-preset-template
+
+
+
+
+
 # [1.46.0](https://github.com/tsparticles/preset-template/compare/tsparticles-preset-template@1.45.4...tsparticles-preset-template@1.46.0) (2022-09-11)
 
 **Note:** Version bump only for package tsparticles-preset-template
