@@ -746,7 +746,7 @@ importers:
       rollup: ^2.79.0
       rollup-plugin-terser: ^7.0.2
       rollup-plugin-typescript: ^1.0.1
-      rollup-plugin-typescript2: ^0.33.0
+      rollup-plugin-typescript2: ^0.34.0
       rollup-plugin-vue: ^5.1.9
       ssri: ^9.0.1
       tsparticles-engine: workspace:^2.3.0
@@ -774,7 +774,7 @@ importers:
       rollup: 2.79.0
       rollup-plugin-terser: 7.0.2_rollup@2.79.0
       rollup-plugin-typescript: 1.0.1_tolwdiperr6qb7nroa47xa7b44
-      rollup-plugin-typescript2: 0.33.0_ihkqvyh37tzxtjmovjyy2yrv7m
+      rollup-plugin-typescript2: 0.34.0_ihkqvyh37tzxtjmovjyy2yrv7m
       rollup-plugin-vue: 5.1.9_k74wmqjxgim6n7fk6f2237dhrm
       ssri: 9.0.1
       typescript: 4.8.3
@@ -797,7 +797,7 @@ importers:
       rollup: ^2.79.0
       rollup-plugin-terser: ^7.0.2
       rollup-plugin-typescript: ^1.0.1
-      rollup-plugin-typescript2: ^0.33.0
+      rollup-plugin-typescript2: ^0.34.0
       rollup-plugin-vue: ^5.1.9
       ssri: ^9.0.1
       tsparticles-engine: workspace:^2.3.0
@@ -825,7 +825,7 @@ importers:
       rollup: 2.79.0
       rollup-plugin-terser: 7.0.2_rollup@2.79.0
       rollup-plugin-typescript: 1.0.1_tolwdiperr6qb7nroa47xa7b44
-      rollup-plugin-typescript2: 0.33.0_ihkqvyh37tzxtjmovjyy2yrv7m
+      rollup-plugin-typescript2: 0.34.0_ihkqvyh37tzxtjmovjyy2yrv7m
       rollup-plugin-vue: 5.1.9_k74wmqjxgim6n7fk6f2237dhrm
       ssri: 9.0.1
       typescript: 4.8.3
@@ -910,7 +910,7 @@ importers:
     specifiers:
       rollup: ^2.79.0
       rollup-plugin-node-resolve: ^5.2.0
-      rollup-plugin-typescript2: ^0.33.0
+      rollup-plugin-typescript2: ^0.34.0
       ts-node: ^10.9.1
       tslib: ^2.4.0
       tsparticles-engine: workspace:^2.3.0
@@ -920,7 +920,7 @@ importers:
     devDependencies:
       rollup: 2.79.0
       rollup-plugin-node-resolve: 5.2.0_rollup@2.79.0
-      rollup-plugin-typescript2: 0.33.0_ihkqvyh37tzxtjmovjyy2yrv7m
+      rollup-plugin-typescript2: 0.34.0_ihkqvyh37tzxtjmovjyy2yrv7m
       ts-node: 10.9.1_jq3ovzqw3j7j4aj2v37zonaj5u
       tslib: 2.4.0
       typescript: 4.8.3
@@ -1928,7 +1928,7 @@ importers:
       rollup: ^2.79.0
       rollup-plugin-terser: ^7.0.2
       rollup-plugin-typescript: ^1.0.1
-      rollup-plugin-typescript2: ^0.33.0
+      rollup-plugin-typescript2: ^0.34.0
       rollup-plugin-vue: ^5.1.9
       tslib: ^2.4.0
       tsparticles: workspace:^2.3.0
@@ -1965,7 +1965,7 @@ importers:
       rollup: 2.79.0
       rollup-plugin-terser: 7.0.2_rollup@2.79.0
       rollup-plugin-typescript: 1.0.1_tolwdiperr6qb7nroa47xa7b44
-      rollup-plugin-typescript2: 0.33.0_ihkqvyh37tzxtjmovjyy2yrv7m
+      rollup-plugin-typescript2: 0.34.0_ihkqvyh37tzxtjmovjyy2yrv7m
       rollup-plugin-vue: 5.1.9_zr5fs3u6lcqlzlmiewppwrbidi
       tslib: 2.4.0
       typescript: 4.8.3
@@ -31602,8 +31602,8 @@ packages:
       typescript: 4.8.3
     dev: true
 
-  /rollup-plugin-typescript2/0.33.0_ihkqvyh37tzxtjmovjyy2yrv7m:
-    resolution: {integrity: sha512-7ZXoZeX93kNb4/ICzOi2AlperVV6cAsNz8THqrbz+KNvpn47P2F/nFdK/BGhkoOsOwuYDuY57vccdZZrcd8/dA==}
+  /rollup-plugin-typescript2/0.34.0_ihkqvyh37tzxtjmovjyy2yrv7m:
+    resolution: {integrity: sha512-dGtOz2kL6nQVgfIOmnA4Xh+5cFrs3bdu4jja/ej7WKR92RzOOixsn71LY5ZFFmKe1R677nUh+k2++NiY3un2PQ==}
     peerDependencies:
       rollup: '>=1.26.3'
       typescript: '>=2.4.0'
