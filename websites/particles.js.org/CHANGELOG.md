@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@2.3.2...tsparticles-website@2.3.3) (2022-09-14)
+
+
+### Bug Fixes
+
+* fixed editor issue with particles bounce factors ([e809e7d](https://github.com/matteobruni/tsparticles/commit/e809e7ddef8267f075758aad46032d303da4f71a))
+
+
+
+
+
+## [2.3.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@2.3.1...tsparticles-website@2.3.2) (2022-09-14)
+
+
+### Bug Fixes
+
+* fixed editor issue with particles bounce factors ([c14f41c](https://github.com/matteobruni/tsparticles/commit/c14f41cf7097d034f99ec3d271fb2e7fdde73152))
+
+
+
+
+
 ## [2.3.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-website@2.3.0...tsparticles-website@2.3.1) (2022-09-13)
 
 **Note:** Version bump only for package tsparticles-website

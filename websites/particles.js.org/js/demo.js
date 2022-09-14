@@ -299,7 +299,7 @@
 <div id="tsparticles"></div>`,
                 css: ``,
                 js: `tsParticles.load("tsparticles", ${JSON.stringify(container.options)});`,
-                js_external: "https://cdn.jsdelivr.net/npm/tsparticles@2.2.2/tsparticles.bundle.min.js",
+                js_external: "https://cdn.jsdelivr.net/npm/tsparticles@2.3.1/tsparticles.bundle.min.js",
                 title: "tsParticles example",
                 description: "This pen was created with tsParticles from https://particles.js.org",
                 tags: "tsparticles, javascript, typescript, design, animation",
@@ -478,6 +478,7 @@
 
         await loadFull(tsParticles);
 
+        await loadCanvasMaskPlugin(tsParticles);
         await loadInfectionPlugin(tsParticles);
         await loadHsvColorPlugin(tsParticles);
         await loadLightInteraction(tsParticles);

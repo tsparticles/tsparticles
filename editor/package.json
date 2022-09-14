@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-editor",
-  "version": "2.3.1",
+  "version": "2.3.3",
   "description": "tsParticles Configuration Editor",
   "keywords": [
     "front-end",
@@ -71,7 +71,7 @@
     "webpack-tsparticles-plugin": "^1.3.1"
   },
   "dependencies": {
-    "object-gui": "^2.0.1",
+    "object-gui": "^2.0.2",
     "tsparticles-engine": "^2.3.1",
     "tsparticles-interaction-external-attract": "^2.3.1",
     "tsparticles-interaction-external-bounce": "^2.3.1",
