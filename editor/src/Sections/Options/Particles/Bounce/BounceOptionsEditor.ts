@@ -19,13 +19,7 @@ export class BounceOptionsEditor extends EditorBase {
     }
 
     private addFactor(name: string, title: string): void {
-        const group = this.group.addGroup(name, title);
-
-        const randomGroup = group.addGroup("random", "Random");
-
-        randomGroup.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
-            await this.particles().refresh();
-        });
+        const group = this.group.addGroup(name, title), randomGroup = group.addGroup("random", "Random");
 
         randomGroup.addProperty("minimumValue", "Minimum Value", EditorType.number).change(async () => {
             await this.particles().refresh();

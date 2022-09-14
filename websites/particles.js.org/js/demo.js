@@ -478,6 +478,7 @@
 
         await loadFull(tsParticles);
 
+        await loadCanvasMaskPlugin(tsParticles);
         await loadInfectionPlugin(tsParticles);
         await loadHsvColorPlugin(tsParticles);
         await loadLightInteraction(tsParticles);
