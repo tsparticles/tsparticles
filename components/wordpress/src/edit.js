@@ -12,6 +12,8 @@ import { __ } from '@wordpress/i18n';
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
 import { useBlockProps } from '@wordpress/block-editor';
+import { tsParticles } from "tsparticles-engine";
+import { loadFull } from "tsparticles";
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -30,9 +32,23 @@ import './editor.scss';
  * @return {WPElement} Element to render.
  */
 export default function Edit() {
-	return (
-		<p { ...useBlockProps() }>
-			{ __( 'Wordpress – hello from the editor!', 'wordpress' ) }
-		</p>
-	);
+	setTimeout(async () => {
+		await loadFull(tsParticles);
+
+		await tsParticles.load("tsparticles", {
+			background: {
+				color: "#000",
+			},
+			fullScreen: {
+				enable: false,
+			},
+			particles: {
+				move: {
+					enable: true,
+				},
+			},
+		});
+	}, 500);
+
+	return <div id={"tsparticles"} style={{ height: "500px"}} {...useBlockProps()}></div>;
 }

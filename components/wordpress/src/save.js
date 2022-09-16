@@ -4,7 +4,9 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps } from "@wordpress/block-editor";
+import { tsParticles } from "tsparticles-engine";
+import { loadFull } from "tsparticles";
 
 /**
  * The save function defines the way in which the different attributes should
@@ -16,9 +18,23 @@ import { useBlockProps } from '@wordpress/block-editor';
  * @return {WPElement} Element to render.
  */
 export default function save() {
-	return (
-		<p { ...useBlockProps.save() }>
-			{ 'Wordpress – hello from the saved content!' }
-		</p>
-	);
+	setTimeout(async () => {
+		await loadFull(tsParticles);
+
+		await tsParticles.load("tsparticles", {
+			background: {
+				color: "#000",
+			},
+			fullScreen: {
+				enable: false,
+			},
+			particles: {
+				move: {
+					enable: true,
+				},
+			},
+		});
+	}, 500);
+
+	return <div id={"tsparticles"} style={{ height: "500px"}} {...useBlockProps.save()}></div>;
 }

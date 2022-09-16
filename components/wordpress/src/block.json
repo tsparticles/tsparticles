@@ -3,14 +3,14 @@
 	"apiVersion": 2,
 	"name": "create-block/wordpress",
 	"version": "0.1.0",
-	"title": "Wordpress",
+	"title": "Wordpress Particles",
 	"category": "widgets",
 	"icon": "smiley",
-	"description": "Example block scaffolded with Create Block tool.",
+	"description": "Official tsParticles WordPress Plugin - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website.",
 	"supports": {
 		"html": false
 	},
-	"textdomain": "wordpress",
+	"textdomain": "wordpress-particles",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css"

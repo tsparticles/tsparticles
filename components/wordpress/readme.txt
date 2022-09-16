@@ -1,10 +1,10 @@
 === Wordpress ===
-Contributors:      The WordPress Contributors
-Tags:              block
+Contributors:      Matteo Bruni
+Tags:              block, particles, tsparticles
 Tested up to:      6.0
 Stable tag:        0.1.0
-License:           GPL-2.0-or-later
-License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+License:           MIT
+License URI:       https://mit-license.org
 
 Example block scaffolded with Create Block tool.
 
