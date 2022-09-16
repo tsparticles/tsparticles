@@ -7,6 +7,7 @@
   "main": "build/index.js",
   "scripts": {
 	"build": "wp-scripts build",
+	"build:ci": "wp-scripts build",
 	"format": "wp-scripts format",
 	"lint:css": "wp-scripts lint-style",
 	"lint:js": "wp-scripts lint-js",
