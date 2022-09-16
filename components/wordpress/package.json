@@ -12,7 +12,8 @@
 	"lint:js": "wp-scripts lint-js",
 	"packages-update": "wp-scripts packages-update",
 	"plugin-zip": "wp-scripts plugin-zip",
-	"start": "wp-scripts start"
+	"start": "wp-scripts start",
+	"prepack": "pnpm run build"
   },
   "dependencies": {
 	"tsparticles-engine": "^2.3.1"
