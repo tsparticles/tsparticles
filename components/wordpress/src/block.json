@@ -4,7 +4,7 @@
   "name": "create-block/wordpress",
   "version": "0.1.0",
   "title": "Wordpress Particles",
-  "category": "widgets",
+  "category": "dynamic",
   "icon": "smiley",
   "description": "Official tsParticles WordPress Plugin - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website.",
   "supports": {
