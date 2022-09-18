@@ -50,5 +50,7 @@ export default function Edit() {
 		});
 	}, 500);
 
-	return <div id={"tsparticles"} style={{ height: "500px"}} {...useBlockProps()}></div>;
+	return <p {...useBlockProps()}>
+		<div id={"tsparticles"} style={{ height: "500px" }}></div>
+	</p>;
 }
