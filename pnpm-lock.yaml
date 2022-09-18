@@ -927,6 +927,7 @@ importers:
 
   components/wordpress:
     specifiers:
+      '@babel/runtime': ^7.19.0
       '@wordpress/scripts': ^24.1.0
       gulp: ^4.0.2
       tsparticles: ^2.3.1
@@ -936,6 +937,7 @@ importers:
       tsparticles: link:../../bundles/full/dist
       tsparticles-engine: link:../../engine/dist
     devDependencies:
+      '@babel/runtime': 7.19.0
       '@wordpress/scripts': 24.1.0_mjb3abnop6izgvkouxh4aqdnvm
       gulp: 4.0.2
       typescript: 4.8.3
