@@ -10,6 +10,36 @@
   "supports": {
 	"html": false
   },
+  "attributes": {
+	"width": {
+	  "type": "number",
+	  "default": -1
+	},
+	"height": {
+	  "type": "number",
+	  "default": 500
+	},
+	"id": {
+	  "type": "string",
+	  "default": "tsparticles"
+	},
+	"options": {
+	  "type": "object",
+	  "default": {
+		"background": {
+		  "color": "#000"
+		},
+		"fullScreen": {
+		  "enable": false
+		},
+		"particles": {
+		  "move": {
+			"enable": true
+		  }
+		}
+	  }
+	}
+  },
   "textdomain": "wordpress-particles",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",

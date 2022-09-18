@@ -31,26 +31,18 @@ import './editor.scss';
  *
  * @return {WPElement} Element to render.
  */
-export default function Edit() {
+export default function Edit({ attributes }) {
 	setTimeout(async () => {
-		await loadFull(tsParticles);
+		await tsParticles.load("tsparticles", attributes.options);
+	});
 
-		await tsParticles.load("tsparticles", {
-			background: {
-				color: "#000",
-			},
-			fullScreen: {
-				enable: false,
-			},
-			particles: {
-				move: {
-					enable: true,
-				},
-			},
-		});
-	}, 500);
+	const width = attributes.width < 0 ? "100%" : `${attributes.width}px`,
+		height = attributes.height < 0 ? "100%" : `${attributes.height}px`;
 
-	return <p {...useBlockProps()}>
-		<div id={"tsparticles"} style={{ height: "500px" }}></div>
-	</p>;
+	return (
+		<p {...useBlockProps()}>
+			<div id={"tsparticles"} style={{ height, width }}></div>
+		</p>
+	);
 }
+

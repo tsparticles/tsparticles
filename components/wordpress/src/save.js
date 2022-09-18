@@ -17,24 +17,19 @@ import { loadFull } from "tsparticles";
  *
  * @return {WPElement} Element to render.
  */
-export default function save() {
+export default function save({ attributes }) {
 	setTimeout(async () => {
-		await loadFull(tsParticles);
+		await tsParticles.load(attributes.id, attributes.options);
+	});
 
-		await tsParticles.load("tsparticles", {
-			background: {
-				color: "#000",
-			},
-			fullScreen: {
-				enable: false,
-			},
-			particles: {
-				move: {
-					enable: true,
-				},
-			},
-		});
-	}, 500);
+	const width = attributes.width < 0 ? "100%" : `${attributes.width}px`,
+		height = attributes.height < 0 ? "100%" : `${attributes.height}px`;
 
-	return <div id={"tsparticles"} style={{ height: "500px"}} {...useBlockProps.save()}></div>;
+	return (
+		<div
+			id={"tsparticles"}
+			style={{ width, height }}
+			{...useBlockProps.save()}
+		></div>
+	);
 }
