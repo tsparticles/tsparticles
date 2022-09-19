@@ -8,6 +8,10 @@ import { useBlockProps } from "@wordpress/block-editor";
 import { tsParticles } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 
+document.addEventListener("DOMContentLoaded", async () => {
+	await loadFull(tsParticles);
+});
+
 /**
  * The save function defines the way in which the different attributes should
  * be combined into the final markup, which is then serialized by the block
