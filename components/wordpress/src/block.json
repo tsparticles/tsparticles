@@ -1,10 +1,10 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
-  "name": "create-block/wordpress",
+  "name": "tsparticles/wordpress-particles",
   "version": "0.1.0",
   "title": "Wordpress Particles",
-  "category": "dynamic",
+  "category": "widgets",
   "icon": "smiley",
   "description": "Official tsParticles WordPress Plugin - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website.",
   "supports": {
@@ -12,32 +12,20 @@
   },
   "attributes": {
 	"width": {
-	  "type": "number",
-	  "default": -1
+	  "type": "string",
+	  "default": "100%"
 	},
 	"height": {
-	  "type": "number",
-	  "default": 500
+	  "type": "string",
+	  "default": "500px"
 	},
 	"id": {
 	  "type": "string",
 	  "default": "tsparticles"
 	},
 	"options": {
-	  "type": "object",
-	  "default": {
-		"background": {
-		  "color": "#000"
-		},
-		"fullScreen": {
-		  "enable": false
-		},
-		"particles": {
-		  "move": {
-			"enable": true
-		  }
-		}
-	  }
+	  "type": "string",
+	  "default": "{\"background\":{\"color\":\"#000\"},\"fullScreen\":{\"enable\":false},\"particles\":{\"move\":{\"enable\": true}}}"
 	}
   },
   "textdomain": "wordpress-particles",

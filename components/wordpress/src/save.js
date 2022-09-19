@@ -22,16 +22,18 @@ document.addEventListener("DOMContentLoaded", async () => {
  * @return {WPElement} Element to render.
  */
 export default function save({ attributes }) {
+	console.log("save");
+
 	setTimeout(async () => {
-		await tsParticles.load(attributes.id, attributes.options);
+		await tsParticles.load(attributes.id, JSON.parse(attributes.options));
 	});
 
-	const width = attributes.width < 0 ? "100%" : `${attributes.width}px`,
-		height = attributes.height < 0 ? "100%" : `${attributes.height}px`;
+	const width = attributes.width ? attributes.width : "100%",
+		height = attributes.height ? attributes.height : "500px";
 
 	return (
 		<div
-			id={"tsparticles"}
+			id={attributes.id}
 			style={{ width, height }}
 			{...useBlockProps.save()}
 		></div>

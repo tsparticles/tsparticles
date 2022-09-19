@@ -1,10 +1,18 @@
 /**
+ * Retrieves the translation of text.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
+ */
+import { __ } from "@wordpress/i18n";
+
+/**
  * React hook that is used to mark the block wrapper element.
  * It provides all the necessary props like the class name.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import { PanelBody, TextControl, TextareaControl } from "@wordpress/components";
+import { InspectorControls, useBlockProps } from "@wordpress/block-editor";
 import { tsParticles } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 
@@ -14,7 +22,7 @@ import { loadFull } from "tsparticles";
  *
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
-import './editor.scss';
+import "./editor.scss";
 
 document.addEventListener("DOMContentLoaded", async () => {
 	await loadFull(tsParticles);
@@ -28,18 +36,66 @@ document.addEventListener("DOMContentLoaded", async () => {
  *
  * @return {WPElement} Element to render.
  */
-export default function Edit({ attributes }) {
+export default function Edit({ attributes, setAttributes }) {
+	console.log("edit");
+
 	setTimeout(async () => {
-		await tsParticles.load("tsparticles", attributes.options);
+		await tsParticles.load("tsparticles", JSON.parse(attributes.options));
 	});
 
-	const width = attributes.width < 0 ? "100%" : `${attributes.width}px`,
-		height = attributes.height < 0 ? "100%" : `${attributes.height}px`;
+	const widthChange = (e) => {
+		setAttributes({ width: e });
+	};
+
+	const heightChange = (e) => {
+		setAttributes({ height: e });
+	};
+
+	const idChange = (e) => {
+		setAttributes({ id: e });
+	};
+
+	const optionsChange = (e) => {
+		setAttributes({ options: e });
+	};
 
 	return (
-		<p {...useBlockProps()}>
-			<div id={"tsparticles"} style={{ height, width }}></div>
-		</p>
+		<div {...useBlockProps()}>
+			<InspectorControls key="setting">
+				<PanelBody title={__("Particles Settings")}>
+					<fieldset>
+						<TextControl
+							label="Width"
+							value={attributes.width}
+							onChange={widthChange}
+						/>
+					</fieldset>
+					<fieldset>
+						<TextControl
+							label="Height"
+							value={attributes.height}
+							onChange={heightChange}
+						/>
+					</fieldset>
+					<fieldset>
+						<TextControl label="Id" value={attributes.id} onChange={idChange} />
+					</fieldset>
+					<fieldset>
+						<TextareaControl
+							label="Options"
+							value={attributes.options}
+							onChange={optionsChange}
+						/>
+					</fieldset>
+				</PanelBody>
+			</InspectorControls>
+			<div
+				id={attributes.id || "tsparticles"}
+				style={{
+					height: attributes.height || "500px",
+					width: attributes.width || "100%",
+				}}
+			></div>
+		</div>
 	);
 }
-
