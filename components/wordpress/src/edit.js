@@ -95,6 +95,7 @@ export default function Edit({ attributes, setAttributes }) {
 					height: attributes.height || "500px",
 					width: attributes.width || "100%",
 				}}
+				data-options={attributes.options}
 			></div>
 		</div>
 	);

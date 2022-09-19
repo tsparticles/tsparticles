@@ -35,6 +35,7 @@ export default function save({ attributes }) {
 		<div
 			id={attributes.id}
 			style={{ width, height }}
+			data-options={attributes.options}
 			{...useBlockProps.save()}
 		></div>
 	);

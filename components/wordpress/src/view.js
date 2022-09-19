@@ -4,13 +4,9 @@ import { loadFull } from "tsparticles";
 document.addEventListener("DOMContentLoaded", async () => {
 	await loadFull(tsParticles);
 
-	document
-		.querySelectorAll(".wp-block-tsparticles-wordpress-particles")
-		.forEach((el) => {
-			console.log(el.parentElement);
-		});
-});
+	const els = Array.from(document.querySelectorAll(".wp-block-tsparticles-wordpress-particles"));
 
-window.loadParticles = async (id, options) => {
-	await tsParticles.load(id, options);
-};
+	for (const el of els) {
+		await tsParticles.load(el.id, JSON.parse(el.dataset.options));
+	}
+});
