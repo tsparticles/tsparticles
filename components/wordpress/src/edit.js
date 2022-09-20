@@ -14,7 +14,7 @@ import { __ } from "@wordpress/i18n";
 import { PanelBody, TextControl, TextareaControl } from "@wordpress/components";
 import { InspectorControls, useBlockProps } from "@wordpress/block-editor";
 import { tsParticles } from "tsparticles-engine";
-import { loadWordpressParticles } from "./load";
+import { getPlugins, loadWordpressParticles } from "./load";
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -25,7 +25,7 @@ import { loadWordpressParticles } from "./load";
 import "./editor.scss";
 
 document.addEventListener("DOMContentLoaded", async () => {
-	await loadWordpressParticles(tsParticles);
+	await loadWordpressParticles(tsParticles, getPlugins());
 });
 
 /**
@@ -37,6 +37,8 @@ document.addEventListener("DOMContentLoaded", async () => {
  * @return {WPElement} Element to render.
  */
 export default function Edit({ attributes, setAttributes }) {
+	const plugins = getPlugins(attributes);
+
 	setTimeout(async () => {
 		await tsParticles.load("tsparticles", JSON.parse(attributes.options));
 	});
@@ -95,6 +97,7 @@ export default function Edit({ attributes, setAttributes }) {
 					width: attributes.width || "100%",
 				}}
 				data-options={attributes.options}
+				data-plugins={plugins.join(",")}
 			></div>
 		</div>
 	);

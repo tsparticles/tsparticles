@@ -6,10 +6,10 @@
  */
 import { useBlockProps } from "@wordpress/block-editor";
 import { tsParticles } from "tsparticles-engine";
-import { loadWordpressParticles } from "./load";
+import { getPlugins, loadWordpressParticles } from "./load";
 
 document.addEventListener("DOMContentLoaded", async () => {
-	await loadWordpressParticles(tsParticles);
+	await loadWordpressParticles(tsParticles, getPlugins());
 });
 
 /**
@@ -27,13 +27,15 @@ export default function save({ attributes }) {
 	});
 
 	const width = attributes.width ? attributes.width : "100%",
-		height = attributes.height ? attributes.height : "500px";
+		height = attributes.height ? attributes.height : "500px",
+		plugins = getPlugins(attributes);
 
 	return (
 		<div
 			id={attributes.id}
 			style={{ width, height }}
 			data-options={attributes.options}
+			data-plugins={plugins.join(",")}
 			{...useBlockProps.save()}
 		></div>
 	);
