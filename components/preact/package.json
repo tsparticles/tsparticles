@@ -90,12 +90,12 @@
     "tsparticles-engine": "^2.3.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.0",
-    "@babel/plugin-transform-runtime": "^7.18.10",
-    "@babel/preset-env": "^7.19.0",
+    "@babel/core": "^7.19.1",
+    "@babel/plugin-transform-runtime": "^7.19.1",
+    "@babel/preset-env": "^7.19.1",
     "@babel/runtime": "^7.19.0",
-    "@types/node": "^18.7.16",
-    "@types/react": "^18.0.19",
+    "@types/node": "^18.7.18",
+    "@types/react": "^18.0.20",
     "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.37.0",
     "@typescript-eslint/parser": "^5.37.0",

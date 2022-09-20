@@ -89,7 +89,7 @@
   },
   "prettier": "@tsparticles/prettier-config",
   "devDependencies": {
-    "@babel/core": "^7.19.0",
+    "@babel/core": "^7.19.1",
     "@tsparticles/build": "^1.2.1",
     "@tsparticles/eslint-config": "^1.2.1",
     "@tsparticles/prettier-config": "^1.2.1",
@@ -98,7 +98,7 @@
     "@typescript-eslint/eslint-plugin": "^5.37.0",
     "@typescript-eslint/parser": "^5.37.0",
     "babel-loader": "^8.2.5",
-    "browserslist": "^4.21.3",
+    "browserslist": "^4.21.4",
     "copyfiles": "^2.4.1",
     "eslint": "^8.23.1",
     "eslint-config-prettier": "^8.5.0",
