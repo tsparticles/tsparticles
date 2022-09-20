@@ -1,8 +1,8 @@
-=== Wordpress ===
+=== Wordpress Particles ===
 Contributors:      Matteo Bruni
 Tags:              block, particles, tsparticles
 Tested up to:      6.0
-Stable tag:        0.1.0
+Stable tag:        2.3.1
 License:           MIT
 License URI:       https://mit-license.org
 
@@ -10,28 +10,18 @@ Example block scaffolded with Create Block tool.
 
 == Description ==
 
-This is the long description. No limit, and you can use Markdown (as well as in the following sections).
-
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+Official tsParticles WordPress Plugin - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, React, Riot.js, Solid.js, Inferno.
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
-
-e.g.
-
 1. Upload the plugin files to the `/wp-content/plugins/wordpress` directory, or install the plugin through the WordPress plugins screen directly.
-1. Activate the plugin through the 'Plugins' screen in WordPress
-
+2. Activate the plugin through the 'Plugins' screen in WordPress
 
 == Frequently Asked Questions ==
 
-= A question that someone might have =
+= Where I can find particles options?
 
-An answer to that question.
-
-= What about foo bar? =
+Go to the official tsParticles website https://particles.js.org and export options using the editor.
 
 Answer to foo bar dilemma.
 
@@ -47,9 +37,3 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 = 0.1.0 =
 * Release
-
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above. This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation." Arbitrary sections will be shown below the built-in sections outlined above.

@@ -6,10 +6,10 @@
  */
 import { useBlockProps } from "@wordpress/block-editor";
 import { tsParticles } from "tsparticles-engine";
-import { loadFull } from "tsparticles";
+import { loadWordpressParticles } from "./load";
 
 document.addEventListener("DOMContentLoaded", async () => {
-	await loadFull(tsParticles);
+	await loadWordpressParticles(tsParticles);
 });
 
 /**

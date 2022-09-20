@@ -14,7 +14,7 @@ import { __ } from "@wordpress/i18n";
 import { PanelBody, TextControl, TextareaControl } from "@wordpress/components";
 import { InspectorControls, useBlockProps } from "@wordpress/block-editor";
 import { tsParticles } from "tsparticles-engine";
-import { loadFull } from "tsparticles";
+import { loadWordpressParticles } from "./load";
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -25,7 +25,7 @@ import { loadFull } from "tsparticles";
 import "./editor.scss";
 
 document.addEventListener("DOMContentLoaded", async () => {
-	await loadFull(tsParticles);
+	await loadWordpressParticles(tsParticles);
 });
 
 /**
@@ -78,7 +78,7 @@ export default function Edit({ attributes, setAttributes }) {
 						/>
 					</fieldset>
 					<fieldset>
-						<TextControl label="Id" value={attributes.id} onChange={idChange} />
+						<TextControl label="Id" value={attributes.id} onChange={idChange}/>
 					</fieldset>
 					<fieldset>
 						<TextareaControl
