@@ -28,7 +28,7 @@ export default function save({ attributes }) {
 
 	const width = attributes.width ? attributes.width : "100%",
 		height = attributes.height ? attributes.height : "500px",
-		plugins = getPlugins(attributes);
+		plugins = getPlugins(attributes).map(t => t.name);
 
 	return (
 		<div

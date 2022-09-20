@@ -11,7 +11,7 @@ import { __ } from "@wordpress/i18n";
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { PanelBody, TextControl, TextareaControl } from "@wordpress/components";
+import { Panel, PanelBody, PanelRow, TextControl, TextareaControl, ToggleControl } from "@wordpress/components";
 import { InspectorControls, useBlockProps } from "@wordpress/block-editor";
 import { tsParticles } from "tsparticles-engine";
 import { getPlugins, loadWordpressParticles } from "./load";
@@ -37,58 +37,69 @@ document.addEventListener("DOMContentLoaded", async () => {
  * @return {WPElement} Element to render.
  */
 export default function Edit({ attributes, setAttributes }) {
-	const plugins = getPlugins(attributes);
+	const plugins = getPlugins(attributes).map(t => t.name);
 
 	setTimeout(async () => {
 		await tsParticles.load("tsparticles", JSON.parse(attributes.options));
 	});
 
-	const widthChange = (e) => {
-		setAttributes({ width: e });
+	const getLoadPLuginGroup = (group) => {
+		const groupPlugins = allPlugins.filter(t => t.group === group).map((plugin) => getLoadPluginField(plugin.name, plugin.description))
+
+		return <Panel key={group}>
+			<PanelBody title={`${group} Settings`} initialOpen={false}>
+				{groupPlugins}
+			</PanelBody>
+		</Panel>
 	};
 
-	const heightChange = (e) => {
-		setAttributes({ height: e });
-	};
+	const getLoadPluginField = (name, description) => {
+		return <PanelRow key={name}>
+			<ToggleControl
+				label={`Load ${description}`}
+				checked={attributes[name]}
+				onChange={() => setAttributes({ [name]: !attributes[name] })}
+			></ToggleControl>
+		</PanelRow>;
+	}
 
-	const idChange = (e) => {
-		setAttributes({ id: e });
-	};
+	const allPlugins = getPlugins();
 
-	const optionsChange = (e) => {
-		setAttributes({ options: e });
-	};
+	const pluginsFieldGroups = Array.from(new Set(allPlugins.map(t => t.group))).map(group => getLoadPLuginGroup(group));
 
 	return (
 		<div {...useBlockProps()}>
 			<InspectorControls key="setting">
-				<PanelBody title={__("Particles Settings")}>
-					<fieldset>
-						<TextControl
-							label="Width"
-							value={attributes.width}
-							onChange={widthChange}
-						/>
-					</fieldset>
-					<fieldset>
-						<TextControl
-							label="Height"
-							value={attributes.height}
-							onChange={heightChange}
-						/>
-					</fieldset>
-					<fieldset>
-						<TextControl label="Id" value={attributes.id} onChange={idChange}/>
-					</fieldset>
-					<fieldset>
-						<TextareaControl
-							style={{ height: "300px" }}
-							label="Options"
-							value={attributes.options}
-							onChange={optionsChange}
-						/>
-					</fieldset>
-				</PanelBody>
+				<Panel>
+					<PanelBody title={__("Particles Settings")}>
+						<fieldset>
+							<TextControl
+								label="Width"
+								value={attributes.width}
+								onChange={(e) => setAttributes({ width: e })}
+							/>
+						</fieldset>
+						<fieldset>
+							<TextControl
+								label="Height"
+								value={attributes.height}
+								onChange={(e) => setAttributes({ height: e })}
+							/>
+						</fieldset>
+						<fieldset>
+							<TextControl label="Id" value={attributes.id} onChange={(e) => setAttributes({ id: e })}/>
+						</fieldset>
+						<fieldset>
+							<TextareaControl
+								style={{ height: "300px" }}
+								label="Options"
+								value={attributes.options}
+								onChange={(e) => setAttributes({ options: e })}
+							/>
+						</fieldset>
+					</PanelBody>
+				</Panel>
+				{pluginsFieldGroups}
 			</InspectorControls>
 			<div
 				id={attributes.id || "tsparticles"}

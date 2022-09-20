@@ -1,86 +1,148 @@
 export function getPlugins(attributes) {
 	const allPlugins = [
-		"bundle-full",
-		"bundle-slim",
-		"interaction-external-attract",
-		"interaction-external-bounce",
-		"interaction-external-bubble",
-		"interaction-external-connect",
-		"interaction-external-grab",
-		"interaction-external-pause",
-		"interaction-external-push",
-		"interaction-external-remove",
-		"interaction-external-repulse",
-		"interaction-external-slow",
-		"interaction-external-trail",
-		"interaction-light",
-		"interaction-particles-attract",
-		"interaction-particles-collisions",
-		"interaction-particles-links",
-		"interaction-particles-repulse",
-		"move-base",
-		"move-parallax",
-		"particles.js",
-		"path-curves",
-		"path-perlin-noise",
-		"path-polygon",
-		"path-simplex-noise",
-		"plugin-absorbers",
-		"plugin-canvas-mask",
-		"plugin-emitters",
-		"plugin-hsv-color",
-		"plugin-infection",
-		"plugin-polygon-mask",
-		"preset-big-circles",
-		"preset-bubbles",
-		"preset-confetti",
-		"preset-fire",
-		"preset-firefly",
-		"preset-fireworks",
-		"preset-fountain",
-		"preset-links",
-		"preset-sea-anemone",
-		"preset-snow",
-		"preset-stars",
-		"preset-triangles",
-		"shape-bubble",
-		"shape-circle",
-		"shape-heart",
-		"shape-image",
-		"shape-line",
-		"shape-multiline-text",
-		"shape-polygon",
-		"shape-rounded-rect",
-		"shape-spiral",
-		"shape-square",
-		"shape-star",
-		"shape-text",
-		"updater-angle",
-		"updater-color",
-		"updater-destroy",
-		"updater-gradient",
-		"updater-life",
-		"updater-opacity",
-		"updater-orbit",
-		"updater-out-modes",
-		"updater-roll",
-		"updater-size",
-		"updater-stroke-color",
-		"updater-tilt",
-		"updater-twinkle",
-		"updater-wobble",
+		{ name: "bundle-full", description: "tsParticles", group: "Bundles" },
+		{ name: "bundle-slim", description: "tsParticles Slim", group: "Bundles" },
+		{ name: "particles.js", description: "tsParticles-Particles.js interoperability", group: "Bundles" },
+		{
+			name: "interaction-external-attract",
+			description: "External Attract",
+			group: "Interactions"
+		},
+		{
+			name: "interaction-external-bounce",
+			description: "External Bounce",
+			group: "Interactions"
+		},
+		{
+			name: "interaction-external-bubble",
+			description: "External Bubble",
+			group: "Interactions"
+		},
+		{
+			name: "interaction-external-connect",
+			description: "External Connect",
+			group: "Interactions"
+		},
+		{
+			name: "interaction-external-grab",
+			description: "External Grab",
+			group: "Interactions"
+		},
+		{
+			name: "interaction-external-pause",
+			description: "External Pause",
+			group: "Interactions"
+		},
+		{
+			name: "interaction-external-push",
+			description: "External Push",
+			group: "Interactions"
+		},
+		{
+			name: "interaction-external-remove",
+			description: "External Remove",
+			group: "Interactions"
+		},
+		{
+			name: "interaction-external-repulse",
+			description: "External Repulse",
+			group: "Interactions"
+		},
+		{
+			name: "interaction-external-slow",
+			description: "External Slow",
+			group: "Interactions"
+		},
+		{
+			name: "interaction-external-trail",
+			description: "External Trail",
+			group: "Interactions"
+		},
+		{ name: "interaction-light", description: "tsParticles Light", group: "Interactions" },
+		{
+			name: "interaction-particles-attract",
+			description: "Particles Attract",
+			group: "Interactions"
+		},
+		{
+			name: "interaction-particles-collisions",
+			description: "Particles Collisions",
+			group: "Interactions"
+		},
+		{
+			name: "interaction-particles-links",
+			description: "Particles Links",
+			group: "Interactions"
+		},
+		{
+			name: "interaction-particles-repulse",
+			description: "Particles Repulse",
+			group: "Interactions"
+		},
+		{ name: "move-base", description: "Base", group: "Movers" },
+		{ name: "move-parallax", description: "Parallax", group: "Movers" },
+		{ name: "path-curves", description: "Curves", group: "Paths" },
+		{ name: "path-perlin-noise", description: "Perlin Noise", group: "Paths" },
+		{ name: "path-polygon", description: "Polygon", group: "Paths" },
+		{ name: "path-simplex-noise", description: "Simplex Noise", group: "Paths" },
+		{ name: "plugin-absorbers", description: "Absorbers", group: "Plugins" },
+		{ name: "plugin-canvas-mask", description: "Canvas Mask", group: "Plugins" },
+		{ name: "plugin-emitters", description: "Emitters", group: "Plugins" },
+		{ name: "plugin-hsv-color", description: "HSV Color", group: "Plugins" },
+		{ name: "plugin-infection", description: "Infection", group: "Plugins" },
+		{ name: "plugin-polygon-mask", description: "Polygon Mask", group: "Plugins" },
+		{ name: "preset-big-circles", description: "Big Circles", group: "Presets" },
+		{ name: "preset-bubbles", description: "Bubbles", group: "Presets" },
+		{ name: "preset-confetti", description: "Confetti", group: "Presets" },
+		{ name: "preset-fire", description: "Fire", group: "Presets" },
+		{ name: "preset-firefly", description: "Firefly", group: "Presets" },
+		{ name: "preset-fireworks", description: "Fireworks", group: "Presets" },
+		{ name: "preset-fountain", description: "Fountain", group: "Presets" },
+		{ name: "preset-links", description: "Links", group: "Presets" },
+		{ name: "preset-sea-anemone", description: "Sea Anemone", group: "Presets" },
+		{ name: "preset-snow", description: "Snow", group: "Presets" },
+		{ name: "preset-stars", description: "Stars", group: "Presets" },
+		{ name: "preset-triangles", description: "Triangles", group: "Presets" },
+		{ name: "shape-bubble", description: "Bubble", group: "Shapes" },
+		{ name: "shape-circle", description: "Circle", group: "Shapes" },
+		{ name: "shape-heart", description: "Heart", group: "Shapes" },
+		{ name: "shape-image", description: "Image", group: "Shapes" },
+		{ name: "shape-line", description: "Line", group: "Shapes" },
+		{ name: "shape-multiline-text", description: "Multiline Text", group: "Shapes" },
+		{ name: "shape-polygon", description: "Polygon", group: "Shapes" },
+		{ name: "shape-rounded-rect", description: "Rounded Rectangle", group: "Shapes" },
+		{ name: "shape-spiral", description: "Spiral", group: "Shapes" },
+		{ name: "shape-square", description: "Square", group: "Shapes" },
+		{ name: "shape-star", description: "Star", group: "Shapes" },
+		{ name: "shape-text", description: "Text", group: "Shapes" },
+		{ name: "updater-angle", description: "Angle", group: "Updaters" },
+		{ name: "updater-color", description: "Color", group: "Updaters" },
+		{ name: "updater-destroy", description: "Destroy", group: "Updaters" },
+		{ name: "updater-gradient", description: "Gradient", group: "Updaters" },
+		{ name: "updater-life", description: "Life", group: "Updaters" },
+		{ name: "updater-opacity", description: "Opacity", group: "Updaters" },
+		{ name: "updater-orbit", description: "Orbit", group: "Updaters" },
+		{ name: "updater-out-modes", description: "Out Modes", group: "Updaters" },
+		{ name: "updater-roll", description: "Roll", group: "Updaters" },
+		{ name: "updater-size", description: "Size", group: "Updaters" },
+		{ name: "updater-stroke-color", description: "Stroke Color", group: "Updaters" },
+		{ name: "updater-tilt", description: "Tilt", group: "Updaters" },
+		{ name: "updater-twinkle", description: "Twinkle", group: "Updaters" },
+		{ name: "updater-wobble", description: "Wobble", group: "Updaters" },
 	];
 
 	if (!attributes) {
 		return allPlugins;
 	}
 
-	return allPlugins.filter(plugin => Object.hasOwn(attributes, plugin) && attributes[plugin]);
+	return allPlugins.filter(plugin => Object.hasOwn(attributes, plugin.name) && attributes[plugin.name]);
 }
 
 export async function loadWordpressParticles(engine, plugins) {
 	for (const plugin of plugins) {
-		switch (plugin) {
+		const pluginName = typeof plugin === "string" ? plugin : plugin.name;
+
+		switch (pluginName) {
 			case "bundle-full":
 				const { loadFull } = await import("tsparticles");
 
