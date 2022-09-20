@@ -3,8 +3,8 @@ Contributors:      Matteo Bruni
 Tags:              block, particles, tsparticles
 Tested up to:      6.0
 Stable tag:        2.3.1
-License:           MIT
-License URI:       https://mit-license.org
+License:           GPL-2.0-or-later
+License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
 Example block scaffolded with Create Block tool.
 
