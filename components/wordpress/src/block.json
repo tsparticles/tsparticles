@@ -1,9 +1,9 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
-  "name": "tsparticles/wordpress-particles",
-  "version": "0.1.0",
-  "title": "Wordpress Particles",
+  "name": "tsparticles/tsparticles-wp-block",
+  "version": "2.3.1",
+  "title": "tsParticles WP Block",
   "category": "widgets",
   "icon": "smiley",
   "description": "Official tsParticles WordPress Plugin - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website.",
