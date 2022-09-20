@@ -37,8 +37,6 @@ document.addEventListener("DOMContentLoaded", async () => {
  * @return {WPElement} Element to render.
  */
 export default function Edit({ attributes, setAttributes }) {
-	console.log("edit");
-
 	setTimeout(async () => {
 		await tsParticles.load("tsparticles", JSON.parse(attributes.options));
 	});
@@ -82,6 +80,7 @@ export default function Edit({ attributes, setAttributes }) {
 					</fieldset>
 					<fieldset>
 						<TextareaControl
+							style={{ height: "300px" }}
 							label="Options"
 							value={attributes.options}
 							onChange={optionsChange}

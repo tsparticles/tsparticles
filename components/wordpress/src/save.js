@@ -22,8 +22,6 @@ document.addEventListener("DOMContentLoaded", async () => {
  * @return {WPElement} Element to render.
  */
 export default function save({ attributes }) {
-	console.log("save");
-
 	setTimeout(async () => {
 		await tsParticles.load(attributes.id, JSON.parse(attributes.options));
 	});
