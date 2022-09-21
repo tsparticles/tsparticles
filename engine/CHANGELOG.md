@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.3.1...tsparticles-engine@2.3.2) (2022-09-21)
+
+
+### Bug Fixes
+
+* fixed export configuration method of container ([f7c3c7f](https://github.com/matteobruni/tsparticles/commit/f7c3c7f210017e91ac3fa5a54a911d714d207ca5))
+
+
+
+
+
 ## [2.3.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.3.0...tsparticles-engine@2.3.1) (2022-09-13)
 
 **Note:** Version bump only for package tsparticles-engine
