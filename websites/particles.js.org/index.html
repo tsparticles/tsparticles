@@ -1,811 +1,811 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <link rel="shortcut icon" href="https://particles.js.org/tsParticles-64.png"/>
-    <meta
+    <head>
+        <meta charset="utf-8" />
+        <link rel="shortcut icon" href="https://particles.js.org/tsParticles-64.png" />
+        <meta
             name="description"
             content="tsParticles - Easily create highly customizable particles, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno."
-    />
-    <meta name="author" content="Matteo Bruni"/>
-    <meta
+        />
+        <meta name="author" content="Matteo Bruni" />
+        <meta
             name="keyword"
             content="html css javascript typescript particles js ts jsx tsx canvas confetti fireworks animations react vue angular svelte libraries how to create add"
-    />
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta
+        />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+        />
 
-    <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:creator" content="@HollowMatt_ITA"/>
-    <meta name="twitter:image:src" content="https://particles.js.org/images/demo2.png"/>
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:creator" content="@HollowMatt_ITA" />
+        <meta name="twitter:image:src" content="https://particles.js.org/images/demo2.png" />
 
-    <meta
+        <meta
             property="og:title"
             content="tsParticles - JavaScript Particles, Confetti and Fireworks animations for your website"
-    />
-    <meta property="og:site_name" content="tsParticles"/>
-    <meta property="og:url" content="https://particles.js.org/"/>
-    <meta
+        />
+        <meta property="og:site_name" content="tsParticles" />
+        <meta property="og:url" content="https://particles.js.org/" />
+        <meta
             property="og:description"
             content="Easily create highly customizable particles, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno."
-    />
-    <meta property="og:image" content="https://particles.js.org/images/demo2.png"/>
+        />
+        <meta property="og:image" content="https://particles.js.org/images/demo2.png" />
 
-    <title>tsParticles | JavaScript Particles, Confetti and Fireworks animations for your website</title>
+        <title>tsParticles | JavaScript Particles, Confetti and Fireworks animations for your website</title>
 
-    <link
+        <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.3.1/build/styles/ir-black.min.css"
-    />
-    <link
+        />
+        <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
             rel="stylesheet"
             integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
             crossorigin="anonymous"
-    />
-    <link
+        />
+        <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"
             integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
             crossorigin="anonymous"
-    />
-    <link
+        />
+        <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/jsoneditor@8.6.3/dist/jsoneditor.min.css"
             integrity="sha256-thQmdfrg82/N5u9ybMxam1RKdSfaxOPCgl5q9AI/mDI="
             crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/object-gui@2.0.2/dist/css/object-gui.min.css"/>
+        />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/object-gui@2.0.2/dist/css/object-gui.min.css" />
 
-    <link href="css/main.min.css" rel="stylesheet" type="text/css"/>
-    <style>
-        #carbonads * {
-            margin: initial;
-            padding: initial;
-        }
+        <link href="css/main.min.css" rel="stylesheet" type="text/css" />
+        <style>
+            #carbonads * {
+                margin: initial;
+                padding: initial;
+            }
 
-        #carbonads {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell,
-            "Helvetica Neue", Helvetica, Arial, sans-serif;
-        }
+            #carbonads {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell,
+                    "Helvetica Neue", Helvetica, Arial, sans-serif;
+            }
 
-        #carbonads {
-            display: flex;
-            max-width: 330px;
-            background-color: hsl(0, 0%, 98%);
-            box-shadow: 0 1px 4px 1px hsla(0, 0%, 0%, 0.1);
-            z-index: 100;
-            color: #000;
-            margin: 0 auto;
-        }
+            #carbonads {
+                display: flex;
+                max-width: 330px;
+                background-color: hsl(0, 0%, 98%);
+                box-shadow: 0 1px 4px 1px hsla(0, 0%, 0%, 0.1);
+                z-index: 100;
+                color: #000;
+                margin: 0 auto;
+            }
 
-        #carbonads a {
-            color: inherit;
-            text-decoration: none;
-        }
+            #carbonads a {
+                color: inherit;
+                text-decoration: none;
+            }
 
-        #carbonads a:hover {
-            color: inherit;
-        }
+            #carbonads a:hover {
+                color: inherit;
+            }
 
-        #carbonads span {
-            position: relative;
-            display: block;
-            overflow: hidden;
-        }
+            #carbonads span {
+                position: relative;
+                display: block;
+                overflow: hidden;
+            }
 
-        #carbonads .carbon-wrap {
-            display: flex;
-        }
+            #carbonads .carbon-wrap {
+                display: flex;
+            }
 
-        #carbonads .carbon-img {
-            display: block;
-            margin: 0;
-            line-height: 1;
-        }
+            #carbonads .carbon-img {
+                display: block;
+                margin: 0;
+                line-height: 1;
+            }
 
-        #carbonads .carbon-img img {
-            display: block;
-        }
+            #carbonads .carbon-img img {
+                display: block;
+            }
 
-        #carbonads .carbon-text {
-            font-size: 13px;
-            padding: 10px;
-            margin-bottom: 16px;
-            line-height: 1.5;
-            text-align: left;
-        }
+            #carbonads .carbon-text {
+                font-size: 13px;
+                padding: 10px;
+                margin-bottom: 16px;
+                line-height: 1.5;
+                text-align: left;
+            }
 
-        #carbonads .carbon-poweredby {
-            display: block;
-            padding: 6px 8px;
-            background: #f1f1f2;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 600;
-            font-size: 8px;
-            line-height: 1;
-            border-top-left-radius: 3px;
-            position: absolute;
-            bottom: 0;
-            right: 0;
-        }
-    </style>
+            #carbonads .carbon-poweredby {
+                display: block;
+                padding: 6px 8px;
+                background: #f1f1f2;
+                text-align: center;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                font-weight: 600;
+                font-size: 8px;
+                line-height: 1;
+                border-top-left-radius: 3px;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+            }
+        </style>
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-922Z47NPS0"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-922Z47NPS0"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
+            function gtag() {
+                dataLayer.push(arguments);
+            }
 
-        gtag("js", new Date());
+            gtag("js", new Date());
 
-        gtag("config", "G-922Z47NPS0");
-    </script>
-</head>
+            gtag("config", "G-922Z47NPS0");
+        </script>
+    </head>
 
-<body>
-<div class="container h-100 text-white" style="overflow: auto">
-    <div class="row align-items-center h-100">
-        <header class="d-md-none d-block">
-            <!-- Fixed navbar -->
-            <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
-                <img
-                        src="https://particles.js.org/tsParticles-64.png"
-                        width="30"
-                        height="30"
-                        class="d-inline-block align-top"
-                        alt=""
-                />
-                <a class="navbar-brand" href="#">tsParticles</a>
-                <button
-                        class="navbar-toggler"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarCollapse"
-                        aria-controls="navbarCollapse"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation"
-                >
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item dropdown">
+    <body>
+        <div class="container h-100 text-white" style="overflow: auto">
+            <div class="row align-items-center h-100">
+                <header class="d-md-none d-block">
+                    <!-- Fixed navbar -->
+                    <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+                        <img
+                            src="https://particles.js.org/tsParticles-64.png"
+                            width="30"
+                            height="30"
+                            class="d-inline-block align-top"
+                            alt=""
+                        />
+                        <a class="navbar-brand" href="#">tsParticles</a>
+                        <button
+                            class="navbar-toggler"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#navbarCollapse"
+                            aria-controls="navbarCollapse"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation"
+                        >
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarCollapse">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item dropdown">
+                                    <a
+                                        class="nav-link dropdown-toggle"
+                                        href="#"
+                                        id="navbarFrameworksDropdown"
+                                        role="button"
+                                        data-bs-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                    >
+                                        Frameworks
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarFrameworksDropdown">
+                                        <a
+                                            class="dropdown-item"
+                                            href="https://github.com/matteobruni/tsparticles/"
+                                            target="_blank"
+                                            ><i class="fab fa-js fa-fw"></i> No Framework</a
+                                        >
+                                        <a
+                                            class="dropdown-item"
+                                            href="https://github.com/matteobruni/tsparticles/tree/main/components/angular"
+                                            target="_blank"
+                                            ><i class="fab fa-angular fa-fw"></i> Angular</a
+                                        >
+                                        <a
+                                            class="dropdown-item"
+                                            href="https://github.com/matteobruni/tsparticles/tree/main/components/react"
+                                            target="_blank"
+                                            ><i class="fab fa-react fa-fw"></i> React</a
+                                        >
+                                        <a
+                                            class="dropdown-item"
+                                            href="https://github.com/matteobruni/tsparticles/tree/main/components/vue"
+                                            target="_blank"
+                                            ><i class="fab fa-vuejs fa-fw"></i> Vue 2.x</a
+                                        >
+                                        <a
+                                            class="dropdown-item"
+                                            href="https://github.com/matteobruni/tsparticles/tree/main/components/vue3"
+                                            target="_blank"
+                                            ><i class="fab fa-vuejs fa-fw"></i> Vue 3.x</a
+                                        >
+                                        <a
+                                            class="dropdown-item"
+                                            href="https://github.com/matteobruni/tsparticles/tree/main/components/inferno"
+                                            target="_blank"
+                                            >Inferno</a
+                                        >
+                                        <a
+                                            class="dropdown-item"
+                                            href="https://github.com/matteobruni/tsparticles/tree/main/components/jquery"
+                                            target="_blank"
+                                            >jQuery</a
+                                        >
+                                        <a
+                                            class="dropdown-item"
+                                            href="https://github.com/matteobruni/tsparticles/tree/main/components/preact"
+                                            target="_blank"
+                                            >Preact</a
+                                        >
+                                        <a
+                                            class="dropdown-item"
+                                            href="https://github.com/matteobruni/tsparticles/tree/main/components/riot"
+                                            target="_blank"
+                                            >Riot.js</a
+                                        >
+                                        <a
+                                            class="dropdown-item"
+                                            href="https://github.com/matteobruni/tsparticles/tree/main/components/solid"
+                                            target="_blank"
+                                            >Solid.js</a
+                                        >
+                                        <a
+                                            class="dropdown-item"
+                                            href="https://github.com/matteobruni/tsparticles/tree/main/components/svelte"
+                                            target="_blank"
+                                            >Svelte</a
+                                        >
+                                        <a
+                                            class="dropdown-item"
+                                            href="https://github.com/matteobruni/tsparticles/tree/main/components/web"
+                                            target="_blank"
+                                            >Web Components</a
+                                        >
+                                        <a
+                                            class="dropdown-item"
+                                            href="https://wordpress.org/plugins/tsparticles-block/"
+                                            target="_blank"
+                                            ><i class="fab fa-wordpress fa-fw"></i> WordPress</a
+                                        >
+                                        <a
+                                            class="dropdown-item"
+                                            href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/"
+                                            target="_blank"
+                                            ><i class="fab fa-elementor fa-fw"></i> Elementor</a
+                                        >
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </header>
+                <div class="col" style="background: rgba(0, 0, 0, 0); border-radius: 20px">
+                    <div class="row mb-4">
+                        <div class="col text-center">
+                            <h1 style="font-family: Polya; font-size: 6vmin; white-space: nowrap">
+                                ts <span style="font-size: 3em">P</span><span style="font-size: 2em">articles</span>
+                            </h1>
                             <a
-                                    class="nav-link dropdown-toggle"
-                                    href="#"
-                                    id="navbarFrameworksDropdown"
-                                    role="button"
-                                    data-bs-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
+                                class="github-button"
+                                href="https://github.com/matteobruni/tsparticles/subscription"
+                                data-icon="octicon-eye"
+                                data-size="large"
+                                data-show-count="true"
+                                aria-label="Watch matteobruni/tsparticles on GitHub"
+                                >Watch</a
                             >
-                                Frameworks
+                            <a
+                                class="github-button"
+                                href="https://github.com/matteobruni/tsparticles"
+                                data-icon="octicon-star"
+                                data-size="large"
+                                data-show-count="true"
+                                aria-label="Star matteobruni/tsparticles on GitHub"
+                                >Star</a
+                            >
+                            <a
+                                class="github-button"
+                                href="https://github.com/matteobruni/tsparticles/fork"
+                                data-icon="octicon-repo-forked"
+                                data-size="large"
+                                data-show-count="true"
+                                aria-label="Fork matteobruni/tsparticles on GitHub"
+                                >Fork</a
+                            >
+                            <a
+                                class="twitter-share-button"
+                                data-size="large"
+                                href="https://twitter.com/intent/tweet?text=tsParticles%20-%20A%20lightweight%20TypeScript%20library%20for%20creating%20particles&amp;url=https://particles.js.org&amp;hashtags=typescript,particles,html5,webdesign&amp;via=HollowMatt_ITA"
+                            >
+                                Tweet
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarFrameworksDropdown">
+                            <div
+                                class="fb-share-button"
+                                data-href="https://particles.js.org"
+                                data-layout="button"
+                                data-size="large"
+                            >
                                 <a
-                                        class="dropdown-item"
-                                        href="https://github.com/matteobruni/tsparticles/"
-                                        target="_blank"
-                                ><i class="fab fa-js fa-fw"></i> No Framework</a
+                                    target="_blank"
+                                    href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fparticles.js.org%2F&amp;src=sdkpreparse"
+                                    class="fb-xfbml-parse-ignore"
                                 >
+                                    Share
+                                </a>
+                            </div>
+                            <a
+                                href="https://twitter.com/tsParticles?ref_src=twsrc%5Etfw"
+                                class="twitter-follow-button"
+                                data-show-count="false"
+                                >Follow @tsParticles</a
+                            >
+                            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-center">
+                            <h2>Samples</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3 d-grid mb-4">
+                            <a href="samples/index.html" class="btn btn-primary">
+                                <i class="far fa-folder-open fa-fw"></i> Demos
+                            </a>
+                        </div>
+                        <div class="col-md-6 col-lg-3 d-grid mb-4">
+                            <a href="samples/presets/index.html" class="btn btn-secondary">
+                                <i class="fas fa-vial fa-fw"></i> Presets
+                            </a>
+                        </div>
+                        <div class="col-md-6 col-lg-3 d-grid mb-4">
+                            <a href="docs/index.html" class="btn btn-info">
+                                <i class="fas fa-book fa-fw"></i> API Docs
+                            </a>
+                        </div>
+                        <div class="col-md-6 col-lg-3 d-grid mb-4">
+                            <a href="https://codepen.io/collection/DPOage" target="_blank" class="btn btn-secondary">
+                                <i class="fab fa-codepen fa-fw"></i> CodePen
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4 offset-lg-1 d-grid mb-4">
+                            <a class="btn btn-success" href="https://confetti.js.org" target="_blank">
+                                <i class="fas fa-asterisk fa-fw"></i> Confetti
+                            </a>
+                        </div>
+                        <div class="col-md-6 col-lg-4 offset-lg-2 d-grid mb-4">
+                            <a class="btn btn-success" href="video.html" target="_blank">
+                                <i class="fas fa-video fa-fw"></i> Video Tutorials
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-center">
+                            <h2>Discussions</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3 d-grid mb-4">
+                            <a
+                                class="btn btn-secondary"
+                                href="https://github.com/matteobruni/tsparticles/discussions?discussions_q=category%3AGeneral"
+                                target="_blank"
+                                ><i class="fas fa-comments fa-fw"></i> General</a
+                            >
+                        </div>
+                        <div class="col-md-6 col-lg-3 d-grid mb-4">
+                            <a
+                                class="btn btn-secondary"
+                                href="https://github.com/matteobruni/tsparticles/discussions?discussions_q=category%3A%22Show+and+tell%22"
+                                target="_blank"
+                                ><i class="fas fa-chalkboard-teacher fa-fw"></i> Show &amp; Tell</a
+                            >
+                        </div>
+                        <div class="col-md-6 col-lg-3 d-grid mb-4">
+                            <a
+                                class="btn btn-secondary"
+                                href="https://github.com/matteobruni/tsparticles/discussions?discussions_q=category%3AQ%26A"
+                                target="_blank"
+                                ><i class="fas fa-question-circle fa-fw"></i> Q/A - Help</a
+                            >
+                        </div>
+                        <div class="col-md-6 col-lg-3 d-grid mb-4">
+                            <a
+                                class="btn btn-secondary"
+                                href="https://github.com/matteobruni/tsparticles/discussions?discussions_q=category%3AIdeas"
+                                target="_blank"
+                                ><i class="far fa-lightbulb fa-fw"></i> New Ideas</a
+                            >
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="offset-md-3 offset-lg-4 col-md-6 col-lg-4 d-grid mb-4">
+                            <a
+                                class="btn btn-secondary"
+                                href="https://github.com/matteobruni/tsparticles/discussions/new"
+                                target="_blank"
+                                ><i class="fas fa-plus-circle fa-fw"></i> Create New</a
+                            >
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col text-center">
+                            <script
+                                async
+                                type="text/javascript"
+                                src="//cdn.carbonads.com/carbon.js?serve=CEAI6KJL&placement=particlesjsorg"
+                                id="_carbonads_js"
+                            ></script>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-center">
+                            <h2>Social</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3 d-grid mb-4">
+                            <a class="btn btn-secondary" href="https://discord.gg/hACwv45Hme" target="_blank"
+                                ><i class="fab fa-discord fa-fw"></i> Discord</a
+                            >
+                        </div>
+                        <div class="col-md-6 col-lg-3 d-grid mb-4">
+                            <a
+                                class="btn btn-secondary"
+                                href="https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI"
+                                target="_blank"
+                                ><i class="fab fa-slack fa-fw"></i> Slack</a
+                            >
+                        </div>
+                        <div class="col-md-6 col-lg-3 d-grid mb-4">
+                            <a class="btn btn-secondary" href="https://t.me/tsparticles" target="_blank"
+                                ><i class="fab fa-telegram fa-fw"></i> Telegram</a
+                            >
+                        </div>
+                        <div class="col-md-6 col-lg-3 d-grid mb-4">
+                            <a class="btn btn-secondary" href="https://www.reddit.com/r/tsParticles/" target="_blank"
+                                ><i class="fab fa-reddit fa-fw"></i> Reddit</a
+                            >
+                        </div>
+                    </div>
+                    <div class="d-none d-md-block d-lg-block d-xl-block">
+                        <div class="row">
+                            <div class="col text-center">
+                                <h2>Which framework are you using?</h2>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-6 col-lg-4 offset-lg-4 offset-md-3 d-grid">
                                 <a
-                                        class="dropdown-item"
-                                        href="https://github.com/matteobruni/tsparticles/tree/main/components/angular"
-                                        target="_blank"
-                                ><i class="fab fa-angular fa-fw"></i> Angular</a
-                                >
-                                <a
-                                        class="dropdown-item"
-                                        href="https://github.com/matteobruni/tsparticles/tree/main/components/react"
-                                        target="_blank"
-                                ><i class="fab fa-react fa-fw"></i> React</a
-                                >
-                                <a
-                                        class="dropdown-item"
-                                        href="https://github.com/matteobruni/tsparticles/tree/main/components/vue"
-                                        target="_blank"
-                                ><i class="fab fa-vuejs fa-fw"></i> Vue 2.x</a
-                                >
-                                <a
-                                        class="dropdown-item"
-                                        href="https://github.com/matteobruni/tsparticles/tree/main/components/vue3"
-                                        target="_blank"
-                                ><i class="fab fa-vuejs fa-fw"></i> Vue 3.x</a
-                                >
-                                <a
-                                        class="dropdown-item"
-                                        href="https://github.com/matteobruni/tsparticles/tree/main/components/inferno"
-                                        target="_blank"
-                                >Inferno</a
-                                >
-                                <a
-                                        class="dropdown-item"
-                                        href="https://github.com/matteobruni/tsparticles/tree/main/components/jquery"
-                                        target="_blank"
-                                >jQuery</a
-                                >
-                                <a
-                                        class="dropdown-item"
-                                        href="https://github.com/matteobruni/tsparticles/tree/main/components/preact"
-                                        target="_blank"
-                                >Preact</a
-                                >
-                                <a
-                                        class="dropdown-item"
-                                        href="https://github.com/matteobruni/tsparticles/tree/main/components/riot"
-                                        target="_blank"
-                                >Riot.js</a
-                                >
-                                <a
-                                        class="dropdown-item"
-                                        href="https://github.com/matteobruni/tsparticles/tree/main/components/solid"
-                                        target="_blank"
-                                >Solid.js</a
-                                >
-                                <a
-                                        class="dropdown-item"
-                                        href="https://github.com/matteobruni/tsparticles/tree/main/components/svelte"
-                                        target="_blank"
-                                >Svelte</a
-                                >
-                                <a
-                                        class="dropdown-item"
-                                        href="https://github.com/matteobruni/tsparticles/tree/main/components/web"
-                                        target="_blank"
-                                >Web Components</a
-                                >
-                                <a
-                                        class="dropdown-item"
-                                        href="https://wordpress.org/plugins/tsparticles-block/"
-                                        target="_blank"
-                                ><i class="fab fa-wordpress fa-fw"></i> WordPress</a
-                                >
-                                <a
-                                        class="dropdown-item"
-                                        href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/"
-                                        target="_blank"
-                                ><i class="fab fa-elementor fa-fw"></i> Elementor</a
+                                    href="https://github.com/matteobruni/tsparticles/"
+                                    target="_blank"
+                                    class="btn btn-lg btn-warning m-1"
+                                    ><i class="fab fa-js fa-fw"></i> No Framework</a
                                 >
                             </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <div class="col" style="background: rgba(0, 0, 0, 0); border-radius: 20px">
-            <div class="row mb-4">
-                <div class="col text-center">
-                    <h1 style="font-family: Polya; font-size: 6vmin; white-space: nowrap">
-                        ts <span style="font-size: 3em">P</span><span style="font-size: 2em">articles</span>
-                    </h1>
-                    <a
-                            class="github-button"
-                            href="https://github.com/matteobruni/tsparticles/subscription"
-                            data-icon="octicon-eye"
-                            data-size="large"
-                            data-show-count="true"
-                            aria-label="Watch matteobruni/tsparticles on GitHub"
-                    >Watch</a
-                    >
-                    <a
-                            class="github-button"
-                            href="https://github.com/matteobruni/tsparticles"
-                            data-icon="octicon-star"
-                            data-size="large"
-                            data-show-count="true"
-                            aria-label="Star matteobruni/tsparticles on GitHub"
-                    >Star</a
-                    >
-                    <a
-                            class="github-button"
-                            href="https://github.com/matteobruni/tsparticles/fork"
-                            data-icon="octicon-repo-forked"
-                            data-size="large"
-                            data-show-count="true"
-                            aria-label="Fork matteobruni/tsparticles on GitHub"
-                    >Fork</a
-                    >
-                    <a
-                            class="twitter-share-button"
-                            data-size="large"
-                            href="https://twitter.com/intent/tweet?text=tsParticles%20-%20A%20lightweight%20TypeScript%20library%20for%20creating%20particles&amp;url=https://particles.js.org&amp;hashtags=typescript,particles,html5,webdesign&amp;via=HollowMatt_ITA"
-                    >
-                        Tweet
-                    </a>
-                    <div
-                            class="fb-share-button"
-                            data-href="https://particles.js.org"
-                            data-layout="button"
-                            data-size="large"
-                    >
-                        <a
-                                target="_blank"
-                                href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fparticles.js.org%2F&amp;src=sdkpreparse"
-                                class="fb-xfbml-parse-ignore"
-                        >
-                            Share
-                        </a>
-                    </div>
-                    <a
-                            href="https://twitter.com/tsParticles?ref_src=twsrc%5Etfw"
-                            class="twitter-follow-button"
-                            data-show-count="false"
-                    >Follow @tsParticles</a
-                    >
-                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col text-center">
-                    <h2>Samples</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-3 d-grid mb-4">
-                    <a href="samples/index.html" class="btn btn-primary">
-                        <i class="far fa-folder-open fa-fw"></i> Demos
-                    </a>
-                </div>
-                <div class="col-md-6 col-lg-3 d-grid mb-4">
-                    <a href="samples/presets/index.html" class="btn btn-secondary">
-                        <i class="fas fa-vial fa-fw"></i> Presets
-                    </a>
-                </div>
-                <div class="col-md-6 col-lg-3 d-grid mb-4">
-                    <a href="docs/index.html" class="btn btn-info">
-                        <i class="fas fa-book fa-fw"></i> API Docs
-                    </a>
-                </div>
-                <div class="col-md-6 col-lg-3 d-grid mb-4">
-                    <a href="https://codepen.io/collection/DPOage" target="_blank" class="btn btn-secondary">
-                        <i class="fab fa-codepen fa-fw"></i> CodePen
-                    </a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-4 offset-lg-1 d-grid mb-4">
-                    <a class="btn btn-success" href="https://confetti.js.org" target="_blank">
-                        <i class="fas fa-asterisk fa-fw"></i> Confetti
-                    </a>
-                </div>
-                <div class="col-md-6 col-lg-4 offset-lg-2 d-grid mb-4">
-                    <a class="btn btn-success" href="video.html" target="_blank">
-                        <i class="fas fa-video fa-fw"></i> Video Tutorials
-                    </a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col text-center">
-                    <h2>Discussions</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-3 d-grid mb-4">
-                    <a
-                            class="btn btn-secondary"
-                            href="https://github.com/matteobruni/tsparticles/discussions?discussions_q=category%3AGeneral"
-                            target="_blank"
-                    ><i class="fas fa-comments fa-fw"></i> General</a
-                    >
-                </div>
-                <div class="col-md-6 col-lg-3 d-grid mb-4">
-                    <a
-                            class="btn btn-secondary"
-                            href="https://github.com/matteobruni/tsparticles/discussions?discussions_q=category%3A%22Show+and+tell%22"
-                            target="_blank"
-                    ><i class="fas fa-chalkboard-teacher fa-fw"></i> Show &amp; Tell</a
-                    >
-                </div>
-                <div class="col-md-6 col-lg-3 d-grid mb-4">
-                    <a
-                            class="btn btn-secondary"
-                            href="https://github.com/matteobruni/tsparticles/discussions?discussions_q=category%3AQ%26A"
-                            target="_blank"
-                    ><i class="fas fa-question-circle fa-fw"></i> Q/A - Help</a
-                    >
-                </div>
-                <div class="col-md-6 col-lg-3 d-grid mb-4">
-                    <a
-                            class="btn btn-secondary"
-                            href="https://github.com/matteobruni/tsparticles/discussions?discussions_q=category%3AIdeas"
-                            target="_blank"
-                    ><i class="far fa-lightbulb fa-fw"></i> New Ideas</a
-                    >
-                </div>
-            </div>
-            <div class="row">
-                <div class="offset-md-3 offset-lg-4 col-md-6 col-lg-4 d-grid mb-4">
-                    <a
-                            class="btn btn-secondary"
-                            href="https://github.com/matteobruni/tsparticles/discussions/new"
-                            target="_blank"
-                    ><i class="fas fa-plus-circle fa-fw"></i> Create New</a
-                    >
-                </div>
-            </div>
-            <div class="row mb-4">
-                <div class="col text-center">
-                    <script
-                            async
-                            type="text/javascript"
-                            src="//cdn.carbonads.com/carbon.js?serve=CEAI6KJL&placement=particlesjsorg"
-                            id="_carbonads_js"
-                    ></script>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col text-center">
-                    <h2>Social</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-3 d-grid mb-4">
-                    <a class="btn btn-secondary" href="https://discord.gg/hACwv45Hme" target="_blank"
-                    ><i class="fab fa-discord fa-fw"></i> Discord</a
-                    >
-                </div>
-                <div class="col-md-6 col-lg-3 d-grid mb-4">
-                    <a
-                            class="btn btn-secondary"
-                            href="https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI"
-                            target="_blank"
-                    ><i class="fab fa-slack fa-fw"></i> Slack</a
-                    >
-                </div>
-                <div class="col-md-6 col-lg-3 d-grid mb-4">
-                    <a class="btn btn-secondary" href="https://t.me/tsparticles" target="_blank"
-                    ><i class="fab fa-telegram fa-fw"></i> Telegram</a
-                    >
-                </div>
-                <div class="col-md-6 col-lg-3 d-grid mb-4">
-                    <a class="btn btn-secondary" href="https://www.reddit.com/r/tsParticles/" target="_blank"
-                    ><i class="fab fa-reddit fa-fw"></i> Reddit</a
-                    >
-                </div>
-            </div>
-            <div class="d-none d-md-block d-lg-block d-xl-block">
-                <div class="row">
-                    <div class="col text-center">
-                        <h2>Which framework are you using?</h2>
-                    </div>
-                </div>
-                <div class="row mb-2">
-                    <div class="col-md-6 col-lg-4 offset-lg-4 offset-md-3 d-grid">
-                        <a
-                                href="https://github.com/matteobruni/tsparticles/"
-                                target="_blank"
-                                class="btn btn-lg btn-warning m-1"
-                        ><i class="fab fa-js fa-fw"></i> No Framework</a
-                        >
-                    </div>
-                </div>
-                <div class="row mb-2">
-                    <div class="col-md-3 d-grid">
-                        <a
-                                href="https://github.com/matteobruni/tsparticles/tree/main/components/angular"
-                                target="_blank"
-                                class="btn btn-danger m-1"
-                        ><i class="fab fa-angular fa-fw"></i> Angular</a
-                        >
-                    </div>
-                    <div class="col-md-3 d-grid">
-                        <a
-                                href="https://github.com/matteobruni/tsparticles/tree/main/components/react"
-                                target="_blank"
-                                class="btn btn-info m-1"
-                        ><i class="fab fa-react fa-fw"></i> React</a
-                        >
-                    </div>
-                    <div class="col-md-3 d-grid">
-                        <a
-                                href="https://github.com/matteobruni/tsparticles/tree/main/components/vue"
-                                target="_blank"
-                                class="btn btn-success m-1"
-                        ><i class="fab fa-vuejs fa-fw"></i> Vue 2.x</a
-                        >
-                    </div>
-                    <div class="col-md-3 d-grid">
-                        <a
-                                href="https://github.com/matteobruni/tsparticles/tree/main/components/vue3"
-                                target="_blank"
-                                class="btn btn-success m-1"
-                        ><i class="fab fa-vuejs fa-fw"></i> Vue 3.x</a
-                        >
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 col-lg-3 d-grid">
-                        <a
-                                href="https://github.com/matteobruni/tsparticles/tree/main/components/inferno"
-                                target="_blank"
-                                class="btn btn-sm btn-light m-1"
-                        >Inferno</a
-                        >
-                    </div>
-                    <div class="col-md-6 col-lg-3 d-grid">
-                        <a
-                                href="https://github.com/matteobruni/tsparticles/tree/main/components/jquery"
-                                target="_blank"
-                                class="btn btn-sm btn-light m-1"
-                        >jQuery</a
-                        >
-                    </div>
-                    <div class="col-md-6 col-lg-3 d-grid">
-                        <a
-                                href="https://github.com/matteobruni/tsparticles/tree/main/components/preact"
-                                target="_blank"
-                                class="btn btn-sm btn-light m-1"
-                        >Preact</a
-                        >
-                    </div>
-                    <div class="col-md-6 col-lg-3 d-grid">
-                        <a
-                                href="https://github.com/matteobruni/tsparticles/tree/main/components/riot"
-                                target="_blank"
-                                class="btn btn-sm btn-light m-1"
-                        >Riot.js</a
-                        >
-                    </div>
-                    <div class="col-md-6 col-lg-3 d-grid">
-                        <a
-                                href="https://github.com/matteobruni/tsparticles/tree/main/components/solid"
-                                target="_blank"
-                                class="btn btn-sm btn-light m-1"
-                        >Solid.js</a
-                        >
-                    </div>
-                    <div class="col-md-6 col-lg-3 d-grid">
-                        <a
-                                href="https://github.com/matteobruni/tsparticles/tree/main/components/svelte"
-                                target="_blank"
-                                class="btn btn-sm btn-light m-1"
-                        >Svelte</a
-                        >
-                    </div>
-                    <div class="col-md-6 col-lg-3 d-grid">
-                        <a
-                                href="https://github.com/matteobruni/tsparticles/tree/main/components/web"
-                                target="_blank"
-                                class="btn btn-sm btn-light m-1"
-                        >Web Components</a
-                        >
-                    </div>
-                    <div class="col-md-6 col-lg-3 d-grid">
-                        <a
-                                href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/"
-                                target="_blank"
-                                class="btn btn-sm btn-light m-1"
-                        ><i class="fab fa-elementor fa-fw"></i> Elementor</a
-                        >
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-3 d-grid">
+                                <a
+                                    href="https://github.com/matteobruni/tsparticles/tree/main/components/angular"
+                                    target="_blank"
+                                    class="btn btn-danger m-1"
+                                    ><i class="fab fa-angular fa-fw"></i> Angular</a
+                                >
+                            </div>
+                            <div class="col-md-3 d-grid">
+                                <a
+                                    href="https://github.com/matteobruni/tsparticles/tree/main/components/react"
+                                    target="_blank"
+                                    class="btn btn-info m-1"
+                                    ><i class="fab fa-react fa-fw"></i> React</a
+                                >
+                            </div>
+                            <div class="col-md-3 d-grid">
+                                <a
+                                    href="https://github.com/matteobruni/tsparticles/tree/main/components/vue"
+                                    target="_blank"
+                                    class="btn btn-success m-1"
+                                    ><i class="fab fa-vuejs fa-fw"></i> Vue 2.x</a
+                                >
+                            </div>
+                            <div class="col-md-3 d-grid">
+                                <a
+                                    href="https://github.com/matteobruni/tsparticles/tree/main/components/vue3"
+                                    target="_blank"
+                                    class="btn btn-success m-1"
+                                    ><i class="fab fa-vuejs fa-fw"></i> Vue 3.x</a
+                                >
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-3 d-grid">
+                                <a
+                                    href="https://github.com/matteobruni/tsparticles/tree/main/components/inferno"
+                                    target="_blank"
+                                    class="btn btn-sm btn-light m-1"
+                                    >Inferno</a
+                                >
+                            </div>
+                            <div class="col-md-6 col-lg-3 d-grid">
+                                <a
+                                    href="https://github.com/matteobruni/tsparticles/tree/main/components/jquery"
+                                    target="_blank"
+                                    class="btn btn-sm btn-light m-1"
+                                    >jQuery</a
+                                >
+                            </div>
+                            <div class="col-md-6 col-lg-3 d-grid">
+                                <a
+                                    href="https://github.com/matteobruni/tsparticles/tree/main/components/preact"
+                                    target="_blank"
+                                    class="btn btn-sm btn-light m-1"
+                                    >Preact</a
+                                >
+                            </div>
+                            <div class="col-md-6 col-lg-3 d-grid">
+                                <a
+                                    href="https://github.com/matteobruni/tsparticles/tree/main/components/riot"
+                                    target="_blank"
+                                    class="btn btn-sm btn-light m-1"
+                                    >Riot.js</a
+                                >
+                            </div>
+                            <div class="col-md-6 col-lg-3 d-grid">
+                                <a
+                                    href="https://github.com/matteobruni/tsparticles/tree/main/components/solid"
+                                    target="_blank"
+                                    class="btn btn-sm btn-light m-1"
+                                    >Solid.js</a
+                                >
+                            </div>
+                            <div class="col-md-6 col-lg-3 d-grid">
+                                <a
+                                    href="https://github.com/matteobruni/tsparticles/tree/main/components/svelte"
+                                    target="_blank"
+                                    class="btn btn-sm btn-light m-1"
+                                    >Svelte</a
+                                >
+                            </div>
+                            <div class="col-md-6 col-lg-3 d-grid">
+                                <a
+                                    href="https://github.com/matteobruni/tsparticles/tree/main/components/web"
+                                    target="_blank"
+                                    class="btn btn-sm btn-light m-1"
+                                    >Web Components</a
+                                >
+                            </div>
+                            <div class="col-md-6 col-lg-3 d-grid">
+                                <a
+                                    href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/"
+                                    target="_blank"
+                                    class="btn btn-sm btn-light m-1"
+                                    ><i class="fab fa-elementor fa-fw"></i> Elementor</a
+                                >
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<div id="tsparticles"></div>
+        <div id="tsparticles"></div>
 
-<script type="text/javascript">
-    (function (c, l, a, r, i, t, y) {
-        c[a] =
-            c[a] ||
-            function () {
-                (c[a].q = c[a].q || []).push(arguments);
-            };
-        t = l.createElement(r);
-        t.async = 1;
-        t.src = "https://www.clarity.ms/tag/" + i;
-        y = l.getElementsByTagName(r)[0];
-        y.parentNode.insertBefore(t, y);
-    })(window, document, "clarity", "script", "8q4bxin4tm");
-</script>
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.3.1/build/highlight.min.js"></script>
-<script
-        src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
-        crossorigin="anonymous"
-></script>
-<script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-        crossorigin="anonymous"
-></script>
-<script
-        src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/js/fontawesome.min.js"
-        integrity="sha256-NP9NujdEzS5m4ZxvNqkcbxyHB0dTRy9hG13RwTVBGwo="
-        crossorigin="anonymous"
-></script>
-<script
-        src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"
-        integrity="sha256-ur/YlHMU96MxHEsy3fHGszZHas7NzH4RQlD4tDVvFhw="
-        crossorigin="anonymous"
-></script>
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2.3.1/tsparticles.engine.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-attract@2.3.1/tsparticles.interaction.external.attract.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-bounce@2.3.1/tsparticles.interaction.external.bounce.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-bubble@2.3.1/tsparticles.interaction.external.bubble.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-connect@2.3.1/tsparticles.interaction.external.connect.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-grab@2.3.1/tsparticles.interaction.external.grab.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-pause@2.3.1/tsparticles.interaction.external.pause.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-push@2.3.1/tsparticles.interaction.external.push.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-remove@2.3.1/tsparticles.interaction.external.remove.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-repulse@2.3.1/tsparticles.interaction.external.repulse.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-slow@2.3.1/tsparticles.interaction.external.slow.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-particles-attract@2.3.1/tsparticles.interaction.particles.attract.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-particles-collisions@2.3.1/tsparticles.interaction.particles.collisions.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-particles-links@2.3.1/tsparticles.interaction.particles.links.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-move-base@2.3.1/tsparticles.move.base.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-move-parallax@2.3.1/tsparticles.move.parallax.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-particles.js@2.3.1/tsparticles.pjs.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-circle@2.3.1/tsparticles.shape.circle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-image@2.3.1/tsparticles.shape.image.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-line@2.3.1/tsparticles.shape.line.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-polygon@2.3.1/tsparticles.shape.polygon.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-square@2.3.1/tsparticles.shape.square.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-star@2.3.1/tsparticles.shape.star.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-text@2.3.1/tsparticles.shape.text.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-angle@2.3.1/tsparticles.updater.angle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-color@2.3.1/tsparticles.updater.color.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-destroy@2.3.1/tsparticles.updater.destroy.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-life@2.3.1/tsparticles.updater.life.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-opacity@2.3.1/tsparticles.updater.opacity.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-out-modes@2.3.1/tsparticles.updater.out-modes.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-size@2.3.1/tsparticles.updater.size.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-stroke-color@2.3.1/tsparticles.updater.stroke-color.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.3.1/tsparticles.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-trail@2.3.1/tsparticles.interaction.external.trail.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-absorbers@2.3.1/tsparticles.plugin.absorbers.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-emitters@2.3.1/tsparticles.plugin.emitters.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-polygon-mask@2.3.1/tsparticles.plugin.polygon-mask.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-roll@2.3.1/tsparticles.updater.roll.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-tilt@2.3.1/tsparticles.updater.tilt.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-twinkle@2.3.1/tsparticles.updater.twinkle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-wobble@2.3.1/tsparticles.updater.wobble.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@2.3.1/tsparticles.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-canvas-mask@2.3.1/tsparticles.plugin.canvas-mask.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-infection@2.3.1/tsparticles.plugin.infection.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-hsv-color@2.3.1/tsparticles.plugin.hsvColor.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-light@2.3.1/tsparticles.interaction.light.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-particles-repulse@2.3.1/tsparticles.interaction.particles.repulse.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-gradient@2.3.1/tsparticles.updater.gradient.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-orbit@2.3.1/tsparticles.updater.orbit.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-curves@2.3.1/tsparticles.path.curves.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-polygon@2.3.1/tsparticles.path.polygon.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-perlin-noise@2.3.1/tsparticles.path.perlin.noise.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-path-simplex-noise@2.3.1/tsparticles.path.simplex.noise.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-links@2.3.1/tsparticles.preset.links.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-bubble@2.3.1/tsparticles.shape.bubble.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-heart@2.3.1/tsparticles.shape.heart.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-multiline-text@2.3.1/tsparticles.shape.multiline-text.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-rounded-rect@2.3.1/tsparticles.shape.rounded-rect.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-spiral@2.3.1/tsparticles.shape.spiral.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/object-gui@2.0.2/dist/js/object-gui.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-editor@2.3.3/tsparticles.editor.js"></script>
-<script type="text/javascript">
-    hljs.highlightAll();
-</script>
-<script>
-    window.twttr = (function (d, s, id) {
-        var js,
-            fjs = d.getElementsByTagName(s)[0],
-            t = window.twttr || {};
-        if (d.getElementById(id)) return t;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "https://platform.twitter.com/widgets.js";
-        fjs.parentNode.insertBefore(js, fjs);
+        <script type="text/javascript">
+            (function (c, l, a, r, i, t, y) {
+                c[a] =
+                    c[a] ||
+                    function () {
+                        (c[a].q = c[a].q || []).push(arguments);
+                    };
+                t = l.createElement(r);
+                t.async = 1;
+                t.src = "https://www.clarity.ms/tag/" + i;
+                y = l.getElementsByTagName(r)[0];
+                y.parentNode.insertBefore(t, y);
+            })(window, document, "clarity", "script", "8q4bxin4tm");
+        </script>
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.3.1/build/highlight.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+            integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+            integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/js/fontawesome.min.js"
+            integrity="sha256-NP9NujdEzS5m4ZxvNqkcbxyHB0dTRy9hG13RwTVBGwo="
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"
+            integrity="sha256-ur/YlHMU96MxHEsy3fHGszZHas7NzH4RQlD4tDVvFhw="
+            crossorigin="anonymous"
+        ></script>
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2.3.1/tsparticles.engine.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-attract@2.3.1/tsparticles.interaction.external.attract.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-bounce@2.3.1/tsparticles.interaction.external.bounce.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-bubble@2.3.1/tsparticles.interaction.external.bubble.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-connect@2.3.1/tsparticles.interaction.external.connect.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-grab@2.3.1/tsparticles.interaction.external.grab.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-pause@2.3.1/tsparticles.interaction.external.pause.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-push@2.3.1/tsparticles.interaction.external.push.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-remove@2.3.1/tsparticles.interaction.external.remove.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-repulse@2.3.1/tsparticles.interaction.external.repulse.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-slow@2.3.1/tsparticles.interaction.external.slow.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-particles-attract@2.3.1/tsparticles.interaction.particles.attract.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-particles-collisions@2.3.1/tsparticles.interaction.particles.collisions.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-particles-links@2.3.1/tsparticles.interaction.particles.links.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-move-base@2.3.1/tsparticles.move.base.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-move-parallax@2.3.1/tsparticles.move.parallax.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-particles.js@2.3.1/tsparticles.pjs.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-circle@2.3.1/tsparticles.shape.circle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-image@2.3.1/tsparticles.shape.image.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-line@2.3.1/tsparticles.shape.line.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-polygon@2.3.1/tsparticles.shape.polygon.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-square@2.3.1/tsparticles.shape.square.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-star@2.3.1/tsparticles.shape.star.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-text@2.3.1/tsparticles.shape.text.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-angle@2.3.1/tsparticles.updater.angle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-color@2.3.1/tsparticles.updater.color.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-destroy@2.3.1/tsparticles.updater.destroy.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-life@2.3.1/tsparticles.updater.life.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-opacity@2.3.1/tsparticles.updater.opacity.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-out-modes@2.3.1/tsparticles.updater.out-modes.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-size@2.3.1/tsparticles.updater.size.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-stroke-color@2.3.1/tsparticles.updater.stroke-color.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.3.1/tsparticles.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-trail@2.3.1/tsparticles.interaction.external.trail.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-absorbers@2.3.1/tsparticles.plugin.absorbers.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-emitters@2.3.1/tsparticles.plugin.emitters.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-polygon-mask@2.3.1/tsparticles.plugin.polygon-mask.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-roll@2.3.1/tsparticles.updater.roll.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-tilt@2.3.1/tsparticles.updater.tilt.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-twinkle@2.3.1/tsparticles.updater.twinkle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-wobble@2.3.1/tsparticles.updater.wobble.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.3.1/tsparticles.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-canvas-mask@2.3.1/tsparticles.plugin.canvas-mask.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-infection@2.3.1/tsparticles.plugin.infection.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-hsv-color@2.3.1/tsparticles.plugin.hsvColor.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-light@2.3.1/tsparticles.interaction.light.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-particles-repulse@2.3.1/tsparticles.interaction.particles.repulse.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-gradient@2.3.1/tsparticles.updater.gradient.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-orbit@2.3.1/tsparticles.updater.orbit.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-path-curves@2.3.1/tsparticles.path.curves.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-path-polygon@2.3.1/tsparticles.path.polygon.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-path-perlin-noise@2.3.1/tsparticles.path.perlin.noise.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-path-simplex-noise@2.3.1/tsparticles.path.simplex.noise.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-links@2.3.1/tsparticles.preset.links.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-bubble@2.3.1/tsparticles.shape.bubble.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-heart@2.3.1/tsparticles.shape.heart.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-multiline-text@2.3.1/tsparticles.shape.multiline-text.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-rounded-rect@2.3.1/tsparticles.shape.rounded-rect.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-spiral@2.3.1/tsparticles.shape.spiral.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/object-gui@2.0.2/dist/js/object-gui.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-editor@2.3.3/tsparticles.editor.js"></script>
+        <script type="text/javascript">
+            hljs.highlightAll();
+        </script>
+        <script>
+            window.twttr = (function (d, s, id) {
+                var js,
+                    fjs = d.getElementsByTagName(s)[0],
+                    t = window.twttr || {};
+                if (d.getElementById(id)) return t;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "https://platform.twitter.com/widgets.js";
+                fjs.parentNode.insertBefore(js, fjs);
 
-        t._e = [];
-        t.ready = function (f) {
-            t._e.push(f);
-        };
+                t._e = [];
+                t.ready = function (f) {
+                    t._e.push(f);
+                };
 
-        return t;
-    })(document, "script", "twitter-wjs");
-</script>
-<div id="fb-root"></div>
-<script
-        async
-        defer
-        crossorigin="anonymous"
-        src="https://connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v10.0&appId=130672560341873&autoLogAppEvents=1"
-        nonce="jC6Fjy00"
-></script>
-<script type="text/javascript">
-    (async () => {
-        await loadFull(tsParticles);
+                return t;
+            })(document, "script", "twitter-wjs");
+        </script>
+        <div id="fb-root"></div>
+        <script
+            async
+            defer
+            crossorigin="anonymous"
+            src="https://connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v10.0&appId=130672560341873&autoLogAppEvents=1"
+            nonce="jC6Fjy00"
+        ></script>
+        <script type="text/javascript">
+            (async () => {
+                await loadFull(tsParticles);
 
-        await loadCanvasMaskPlugin(tsParticles);
-        await loadInfectionPlugin(tsParticles);
-        await loadHsvColorPlugin(tsParticles);
-        await loadLightInteraction(tsParticles);
-        await loadParticlesRepulseInteraction(tsParticles);
-        await loadGradientUpdater(tsParticles);
-        await loadOrbitUpdater(tsParticles);
-        await loadCurvesPath(tsParticles);
-        await loadPolygonPath(tsParticles);
-        await loadPerlinNoisePath(tsParticles);
-        await loadSimplexNoisePath(tsParticles);
-        await loadBubbleShape(tsParticles);
-        await loadHeartShape(tsParticles);
-        await loadMultilineTextShape(tsParticles);
-        await loadRoundedRectShape(tsParticles);
-        await loadSpiralShape(tsParticles);
+                await loadCanvasMaskPlugin(tsParticles);
+                await loadInfectionPlugin(tsParticles);
+                await loadHsvColorPlugin(tsParticles);
+                await loadLightInteraction(tsParticles);
+                await loadParticlesRepulseInteraction(tsParticles);
+                await loadGradientUpdater(tsParticles);
+                await loadOrbitUpdater(tsParticles);
+                await loadCurvesPath(tsParticles);
+                await loadPolygonPath(tsParticles);
+                await loadPerlinNoisePath(tsParticles);
+                await loadSimplexNoisePath(tsParticles);
+                await loadBubbleShape(tsParticles);
+                await loadHeartShape(tsParticles);
+                await loadMultilineTextShape(tsParticles);
+                await loadRoundedRectShape(tsParticles);
+                await loadSpiralShape(tsParticles);
 
-        const configsUrl = "/configs";
-        const configs = [
-            {
-                id: "amongUs",
-                text: "Among Us",
-            },
-            {
-                id: "colors",
-                text: "Colors",
-            },
-            {
-                id: "confetti",
-                text: "Confetti",
-            },
-            {
-                id: "confettiExplosions",
-                text: "Confetti Explosions",
-            },
-            {
-                id: "fireworks",
-                text: "Fireworks",
-            },
-            {
-                id: "hexagonPath",
-                text: "Hexagons",
-            },
-            {
-                id: "light",
-                text: "Light",
-            },
-            {
-                id: "sideConfetti",
-                text: "Side Confetti",
-            },
-            {
-                id: "starry",
-                text: "Starry",
-            },
-            {
-                id: "tunnel",
-                text: "Tunnel",
-            },
-        ];
+                const configsUrl = "/configs";
+                const configs = [
+                    {
+                        id: "amongUs",
+                        text: "Among Us",
+                    },
+                    {
+                        id: "colors",
+                        text: "Colors",
+                    },
+                    {
+                        id: "confetti",
+                        text: "Confetti",
+                    },
+                    {
+                        id: "confettiExplosions",
+                        text: "Confetti Explosions",
+                    },
+                    {
+                        id: "fireworks",
+                        text: "Fireworks",
+                    },
+                    {
+                        id: "hexagonPath",
+                        text: "Hexagons",
+                    },
+                    {
+                        id: "light",
+                        text: "Light",
+                    },
+                    {
+                        id: "sideConfetti",
+                        text: "Side Confetti",
+                    },
+                    {
+                        id: "starry",
+                        text: "Starry",
+                    },
+                    {
+                        id: "tunnel",
+                        text: "Tunnel",
+                    },
+                ];
 
-        const randomIdx = Math.floor(Math.random() * configs.length);
-        const randomEl = configs[randomIdx];
-        const randomUrl = `${configsUrl}/${randomEl.id}.json`;
+                const randomIdx = Math.floor(Math.random() * configs.length);
+                const randomEl = configs[randomIdx];
+                const randomUrl = `${configsUrl}/${randomEl.id}.json`;
 
-        const container = await tsParticles.loadJSON("tsparticles", randomUrl);
-        const editor = showEditor(container);
+                const container = await tsParticles.loadJSON("tsparticles", randomUrl);
+                const editor = showEditor(container);
 
-        for (const config of configs) {
-            editor.addPreset(config.text, `${configsUrl}/${config.id}.json`);
-        }
+                for (const config of configs) {
+                    editor.addPreset(config.text, `${configsUrl}/${config.id}.json`);
+                }
 
-        document.getElementById("input_m_tsparticles_editor_preset").value = randomUrl;
+                document.getElementById("input_m_tsparticles_editor_preset").value = randomUrl;
 
-        editor.top().right().theme("neu-dark");
+                editor.top().right().theme("neu-dark");
 
-        const editorEl = document.querySelector("#m_tsparticles_editor");
+                const editorEl = document.querySelector("#m_tsparticles_editor");
 
-        editorEl.classList.add("d-md-block");
-        editorEl.classList.add("d-none");
-    })();
-</script>
-</body>
+                editorEl.classList.add("d-md-block");
+                editorEl.classList.add("d-none");
+            })();
+        </script>
+    </body>
 </html>
