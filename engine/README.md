@@ -33,41 +33,42 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) for **v1** documentation\* ⚠️⚠️
 
 - [Use for your website](#Do-you-want-to-use-it-on-your-website)
-  - [Library installation](#Library-installation)
+    - [Library installation](#Library-installation)
 - [Official components for some of the most used frameworks](#Official-components-for-some-of-the-most-used-frameworks)
-  - [Angular](#Angular)
-  - [Inferno](#Inferno)
-  - [jQuery](#jQuery)
-  - [Preact](#Preact)
-  - [ReactJS](#ReactJS)
-  - [RiotJS](#RiotJS)
-  - [SolidJS](#SolidJS)
-  - [Svelte](#Svelte)
-  - [VueJS 2.x](#VueJS-2x)
-  - [VueJS 3.x](#VueJS-3x)
-  - [Web Components](#Web-Components)
-  - [WordPress](#WordPress)
+    - [Angular](#Angular)
+    - [Inferno](#Inferno)
+    - [jQuery](#jQuery)
+    - [Preact](#Preact)
+    - [ReactJS](#ReactJS)
+    - [RiotJS](#RiotJS)
+    - [SolidJS](#SolidJS)
+    - [Svelte](#Svelte)
+    - [VueJS 2.x](#VueJS-2x)
+    - [VueJS 3.x](#VueJS-3x)
+    - [Web Components](#Web-Components)
+    - [WordPress](#WordPress)
+    - [Elementor](#Elementor)
 - [Presets](#Presets)
-  - [Big Circles](#Big-Circles)
-  - [Bubbles](#Bubbles)
-  - [Confetti](#Confetti)
-  - [Fire](#Fire)
-  - [Firefly](#Firefly)
-  - [Fireworks](#Fireworks)
-  - [Fountain](#fountain)
-  - [Links](#links)
-  - [Sea Anemone](#Sea-Anemone)
-  - [Snow](#Snow)
-  - [Stars](#Stars)
-  - [Triangles](#Triangles)
+    - [Big Circles](#Big-Circles)
+    - [Bubbles](#Bubbles)
+    - [Confetti](#Confetti)
+    - [Fire](#Fire)
+    - [Firefly](#Firefly)
+    - [Fireworks](#Fireworks)
+    - [Fountain](#fountain)
+    - [Links](#links)
+    - [Sea Anemone](#Sea-Anemone)
+    - [Snow](#Snow)
+    - [Stars](#Stars)
+    - [Triangles](#Triangles)
 - [Templates and Resources](#Templates-and-Resources)
 - [Demo / Generator](#Demo--Generator)
-  - [Characters as particles](#Characters-as-particles)
-  - [Mouse hover connections](#Mouse-hover-connections)
-  - [Polygon mask](#Polygon-mask)
-  - [Animated stars](#Animated-stars)
-  - [Nyan cat flying on scrolling stars](#Nyan-cat-flying-on-scrolling-stars)
-  - [Background Mask particles](#Background-Mask-particles)
+    - [Characters as particles](#Characters-as-particles)
+    - [Mouse hover connections](#Mouse-hover-connections)
+    - [Polygon mask](#Polygon-mask)
+    - [Animated stars](#Animated-stars)
+    - [Nyan cat flying on scrolling stars](#Nyan-cat-flying-on-scrolling-stars)
+    - [Background Mask particles](#Background-Mask-particles)
 - [Video Tutorials](#Video-Tutorials)
 - [Migrating from Particles.js](#Migrating-from-Particlesjs)
 - [Plugins/Customizations](#PluginsCustomizations)
@@ -174,6 +175,7 @@ Load tsParticles and configure the particles:
 **index.html**
 
 ```html
+
 <div id="tsparticles"></div>
 
 <script src="tsparticles.engine.min.js"></script>
@@ -186,20 +188,20 @@ Load tsParticles and configure the particles:
 /* tsParticles.loadJSON(@dom-id, @path-json, @callback (optional)); */
 
 tsParticles
-  .loadJSON("tsparticles", "presets/default.json")
-  .then((container) => {
-    console.log("callback - tsparticles config loaded");
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+    .loadJSON("tsparticles", "presets/default.json")
+    .then((container) => {
+        console.log("callback - tsparticles config loaded");
+    })
+    .catch((error) => {
+        console.error(error);
+    });
 
 //or
 
 /* tsParticles.load(@dom-id, @options); */
 
 tsParticles.load("tsparticles", {
-  /* options here */
+    /* options here */
 });
 
 //or
@@ -207,26 +209,26 @@ tsParticles.load("tsparticles", {
 /* tsParticles.loadFromArray(@dom-id, @options, @index (optional)); */
 
 tsParticles.loadFromArray("tsparticles", [
-  {
-    /* options here */
-  },
-  {
-    /* other options here */
-  },
+    {
+        /* options here */
+    },
+    {
+        /* other options here */
+    },
 ]);
 //random object
 
 tsParticles.loadFromArray(
-  "tsparticles",
-  [
-    {
-      /* options here */
-    },
-    {
-      /* other options here */
-    },
-  ],
-  1
+    "tsparticles",
+    [
+        {
+            /* options here */
+        },
+        {
+            /* other options here */
+        },
+    ],
+    1
 ); //the second one
 // Important! If the index is not in range 0...<array.length, the index will be ignored.
 
@@ -237,7 +239,7 @@ tsParticles.loadFromArray(
 /* this will be fired from all particles loaded */
 
 tsParticles.setOnClickHandler((event, particles) => {
-  /* custom on click handler */
+    /* custom on click handler */
 });
 
 // now you can control the animations too, it's possible to pause and resume the animations
@@ -345,6 +347,15 @@ Instruction available [here](https://github.com/matteobruni/tsparticles/blob/mai
 You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/components/web/README.md)
 
 ### WordPress
+
+#### `wordpress-particles`
+
+[![npm](https://img.shields.io/npm/v/wordpress-particles)](https://www.npmjs.com/package/wordpress-particles) [![npm](https://img.shields.io/npm/dm/wordpress-particles)](https://www.npmjs.com/package/wordpress-particles)
+
+The plugin page hosted on WordPress.org can be
+found [here](https://wordpress.org/plugins/tsparticles-block/#description)
+
+### Elementor
 
 Actually an official tsParticles plugin isn't existing, but I have a collaboration with
 the `Premium Addons for Elementor` plugin collection.
