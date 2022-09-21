@@ -1,6 +1,6 @@
 === Wordpress Particles ===
 Contributors:      Matteo Bruni
-Tags:              block, particles, tsparticles
+Tags:              block, particles, tsparticles, confetti, fireworks, javascript, animations
 Tested up to:      6.0
 Stable tag:        2.3.1
 License:           GPL-2.0-or-later
