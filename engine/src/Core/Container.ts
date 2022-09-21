@@ -408,7 +408,17 @@ export class Container {
      * @returns a JSON string created from `options` property
      */
     exportConfiguration(): string {
-        return JSON.stringify(this.actualOptions, undefined, 2);
+        return JSON.stringify(
+            this.actualOptions,
+            (key, value) => {
+                if (key === "_engine" || key === "_container") {
+                    return;
+                }
+
+                return value;
+            },
+            2
+        );
     }
 
     /**
