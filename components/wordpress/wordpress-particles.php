@@ -4,13 +4,13 @@
  * Description:       Official tsParticles WordPress Plugin - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website.
  * Requires at least: 5.9
  * Requires PHP:      7.0
- * Version:           2.3.1
+ * Version:           2.3.3
  * Author:            Matteo Bruni
  * License:           MIT
  * License URI:       https://mit-license.org
  * Text Domain:       tsparticles-block
  *
- * @package           create-block
+ * @package           tsparticles-block
  */
 
 /**
@@ -20,7 +20,7 @@
  *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
-function create_block_wordpress_block_init() {
+function tsparticles_block_init() {
 	register_block_type( __DIR__ . '/build' );
 }
-add_action( 'init', 'create_block_wordpress_block_init' );
+add_action( 'init', 'tsparticles_block_init' );

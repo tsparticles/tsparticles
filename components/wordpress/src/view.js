@@ -2,7 +2,7 @@ import { tsParticles } from "tsparticles-engine";
 import { loadWordpressParticles } from "./load";
 
 document.addEventListener("DOMContentLoaded", async () => {
-	const els = Array.from(document.querySelectorAll(".wp-block-tsparticles-wordpress-particles")),
+	const els = Array.from(document.querySelectorAll(".wp-block-tsparticles-tsparticles-wp-block")),
 		plugins = new Set();
 
 	for (const el of els) {

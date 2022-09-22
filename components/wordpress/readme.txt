@@ -1,8 +1,8 @@
 === Wordpress Particles ===
 Contributors:      Matteo Bruni
-Tags:              block, particles, tsparticles
+Tags:              block, particles, tsparticles, confetti, fireworks, javascript, animations
 Tested up to:      6.0
-Stable tag:        2.3.1
+Stable tag:        2.3.3
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,6 +34,9 @@ Answer to foo bar dilemma.
 2. This screenshot shows the particles block in the editor.
 
 == Changelog ==
+
+= 2.3.3 =
+* Release
 
 = 2.3.1 =
 * Release

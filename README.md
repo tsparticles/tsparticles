@@ -47,6 +47,7 @@ version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) 
     - [VueJS 3.x](#VueJS-3x)
     - [Web Components](#Web-Components)
     - [WordPress](#WordPress)
+    - [Elementor](#Elementor)
 - [Presets](#Presets)
     - [Big Circles](#Big-Circles)
     - [Bubbles](#Bubbles)
@@ -346,6 +347,15 @@ Instruction available [here](https://github.com/matteobruni/tsparticles/blob/mai
 You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/components/web/README.md)
 
 ### WordPress
+
+#### `wordpress-particles`
+
+[![npm](https://img.shields.io/npm/v/wordpress-particles)](https://www.npmjs.com/package/wordpress-particles) [![npm](https://img.shields.io/npm/dm/wordpress-particles)](https://www.npmjs.com/package/wordpress-particles)
+
+The plugin page hosted on WordPress.org can be
+found [here](https://wordpress.org/plugins/tsparticles-block/#description)
+
+### Elementor
 
 Actually an official tsParticles plugin isn't existing, but I have a collaboration with
 the `Premium Addons for Elementor` plugin collection.
