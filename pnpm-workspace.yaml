@@ -1,7 +1,7 @@
 packages:
   - 'bundles/*'
   - 'components/*'
-  - 'demo/**/*'
+  - 'demo/**'
   - 'editor'
   - 'engine'
   - 'interactions/*'
