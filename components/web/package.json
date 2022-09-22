@@ -86,10 +86,10 @@
     "prepack": "pnpm run build"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.3.2"
+    "tsparticles-engine": "workspace:^2.3.2"
   },
   "devDependencies": {
-    "rollup": "^2.79.0",
+    "rollup": "^2.79.1",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-typescript2": "^0.34.0",
     "ts-node": "^10.9.1",
