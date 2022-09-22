@@ -14,9 +14,9 @@ export async function buildDistFiles(basePath: string): Promise<boolean> {
         libObj.version = pkgInfo.version;
 
         if (pkgInfo.dependencies) {
-            libObj.dependencies = JSON.parse(JSON.stringify(pkgInfo.dependencies).replaceAll("workspace:", ""));
+            libObj.dependencies = JSON.parse(JSON.stringify(pkgInfo.dependencies).replaceAll("", ""));
         } else if (pkgInfo.peerDependencies) {
-            libObj.peerDependencies = JSON.parse(JSON.stringify(pkgInfo.peerDependencies).replaceAll("workspace:", ""));
+            libObj.peerDependencies = JSON.parse(JSON.stringify(pkgInfo.peerDependencies).replaceAll("", ""));
         }
 
         fs.writeFileSync(libPackage, JSON.stringify(libObj, undefined, 2), "utf8");
