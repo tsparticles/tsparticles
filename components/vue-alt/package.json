@@ -93,7 +93,7 @@
     "vue": "<3"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.3.2",
+    "tsparticles-engine": "workspace:^2.3.2",
     "vue-class-component": "^7.2.6",
     "vue-property-decorator": "^9.1.2"
   },
@@ -109,7 +109,7 @@
     "is-svg": "^4.3.2",
     "postcss": "^8.4.16",
     "pug": "^3.0.2",
-    "rollup": "^2.79.0",
+    "rollup": "^2.79.1",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript": "^1.0.1",
     "rollup-plugin-typescript2": "^0.34.0",
