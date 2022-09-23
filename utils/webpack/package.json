@@ -23,8 +23,8 @@
   "prettier": "@tsparticles/prettier-config",
   "dependencies": {
     "@babel/core": "^7.19.1",
-    "@tsparticles/eslint-config": "workspace:^1.2.2",
-    "@tsparticles/prettier-config": "workspace:^1.2.2",
+    "@tsparticles/eslint-config": "^1.2.2",
+    "@tsparticles/prettier-config": "^1.2.2",
     "@types/node": "^18.7.18",
     "@types/webpack-bundle-analyzer": "^4.4.2",
     "@types/webpack-env": "^1.18.0",

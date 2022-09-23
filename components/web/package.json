@@ -86,7 +86,7 @@
     "prepack": "pnpm run build"
   },
   "dependencies": {
-    "tsparticles-engine": "workspace:^2.3.2"
+    "tsparticles-engine": "^2.3.2"
   },
   "devDependencies": {
     "rollup": "^2.79.1",

@@ -12,11 +12,11 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "tsparticles": "workspace:^2.3.2",
-    "tsparticles-engine": "workspace:^2.3.2",
+    "tsparticles": "^2.3.2",
+    "tsparticles-engine": "^2.3.2",
     "vue": "^3.2.39",
     "vue-router": "^4.1.5",
-    "vue3-particles": "workspace:^2.3.2"
+    "vue3-particles": "^2.3.2"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.2.0",

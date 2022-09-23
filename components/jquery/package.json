@@ -100,7 +100,7 @@
     "jquery": "*"
   },
   "dependencies": {
-    "tsparticles-engine": "workspace:^2.3.2"
+    "tsparticles-engine": "^2.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.19.1",
