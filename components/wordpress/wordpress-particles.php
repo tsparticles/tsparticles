@@ -7,8 +7,8 @@
  * Requires PHP:      7.0
  * Version:           2.3.3
  * Author:            matteobruni
- * License:           MIT
- * License URI:       https://mit-license.org
+ * License:           GPL-2.0-or-later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       tsparticles-block
  *
  * @package           tsparticles-block
