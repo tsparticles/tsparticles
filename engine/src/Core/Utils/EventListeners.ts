@@ -1,3 +1,4 @@
+import { executeOnSingleOrMultiple, isSsr } from "../../Utils/Utils";
 import {
     mouseDownEvent,
     mouseLeaveEvent,
@@ -15,7 +16,6 @@ import type { ClickMode } from "../../Enums/Modes/ClickMode";
 import type { Container } from "../Container";
 import type { ICoordinates } from "../Interfaces/ICoordinates";
 import { InteractivityDetect } from "../../Enums/InteractivityDetect";
-import { isSsr } from "../../Utils/Utils";
 
 /**
  * Manage the given event listeners
@@ -125,22 +125,12 @@ export class EventListeners {
                 return;
             }
 
-            container.interactivity.mouse.clickPosition = {
-                x: mousePos.x,
-                y: mousePos.y,
-            };
-
+            container.interactivity.mouse.clickPosition = { ...mousePos };
             container.interactivity.mouse.clickTime = new Date().getTime();
 
             const onClick = options.interactivity.events.onClick;
 
-            if (onClick.mode instanceof Array) {
-                for (const mode of onClick.mode) {
-                    this.handleClickMode(mode);
-                }
-            } else {
-                this.handleClickMode(onClick.mode);
-            }
+            executeOnSingleOrMultiple(onClick.mode, (mode) => this.handleClickMode(mode));
         }
 
         if (e.type === "touchend") {
@@ -417,7 +407,7 @@ export class EventListeners {
 
         const canvas = container.canvas.element;
 
-        if (e.type.startsWith("mouse")) {
+        if (e.type.startsWith("pointer")) {
             this.canPush = true;
 
             const mouseEvent = e as MouseEvent;
@@ -432,14 +422,14 @@ export class EventListeners {
                     };
                 }
             } else if (options.interactivity.detectsOn === InteractivityDetect.parent) {
-                const source = mouseEvent.target as HTMLElement;
-                const target = mouseEvent.currentTarget as HTMLElement;
-                const canvasEl = container.canvas.element;
+                const source = mouseEvent.target as HTMLElement,
+                    target = mouseEvent.currentTarget as HTMLElement,
+                    canvasEl = container.canvas.element;
 
                 if (source && target && canvasEl) {
-                    const sourceRect = source.getBoundingClientRect();
-                    const targetRect = target.getBoundingClientRect();
-                    const canvasRect = canvasEl.getBoundingClientRect();
+                    const sourceRect = source.getBoundingClientRect(),
+                        targetRect = target.getBoundingClientRect(),
+                        canvasRect = canvasEl.getBoundingClientRect();
 
                     pos = {
                         x: mouseEvent.offsetX + 2 * sourceRect.left - (targetRect.left + canvasRect.left),
@@ -451,20 +441,18 @@ export class EventListeners {
                         y: mouseEvent.offsetY ?? mouseEvent.clientY,
                     };
                 }
-            } else {
-                if (mouseEvent.target === container.canvas.element) {
-                    pos = {
-                        x: mouseEvent.offsetX ?? mouseEvent.clientX,
-                        y: mouseEvent.offsetY ?? mouseEvent.clientY,
-                    };
-                }
+            } else if (mouseEvent.target === container.canvas.element) {
+                pos = {
+                    x: mouseEvent.offsetX ?? mouseEvent.clientX,
+                    y: mouseEvent.offsetY ?? mouseEvent.clientY,
+                };
             }
         } else {
             this.canPush = e.type !== "touchmove";
 
-            const touchEvent = e as TouchEvent;
-            const lastTouch = touchEvent.touches[touchEvent.touches.length - 1];
-            const canvasRect = canvas?.getBoundingClientRect();
+            const touchEvent = e as TouchEvent,
+                lastTouch = touchEvent.touches[touchEvent.touches.length - 1],
+                canvasRect = canvas?.getBoundingClientRect();
 
             pos = {
                 x: lastTouch.clientX - (canvasRect?.left ?? 0),

@@ -2,6 +2,5 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "module": "esnext",
-    "removeComments": false
   }
 }

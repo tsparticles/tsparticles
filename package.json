@@ -5,7 +5,7 @@
   "scripts": {
     "build": "lerna run build",
     "build:ci": "lerna run build:ci",
-    "build:docs": "rimraf -f docs && typedoc",
+    "build:docs": "rimraf -f docs && npx typedoc",
     "version:alpha": "lerna version prerelease --preid alpha --conventional-commits",
     "version:beta": "lerna version prerelease --preid beta --conventional-commits",
     "publish:alpha": "lerna publish from-package --pre-dist-tag alpha --preid alpha",
@@ -16,31 +16,28 @@
     "prepare": "husky install"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.0.3",
-    "@commitlint/config-conventional": "^17.0.3",
-    "@nrwl/cli": "14.5.4",
-    "@nrwl/nx-cloud": "14.3.0",
-    "@nrwl/workspace": "14.5.4",
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "@nrwl/cli": "^14.7.8",
+    "@nrwl/nx-cloud": "^14.6.2",
+    "@nrwl/workspace": "^14.7.8",
+    "@parcel/core": "^2.7.0",
     "@parcel/transformer-sass": "^2.7.0",
-    "@types/node": "^18.6.1",
+    "@types/node": "^18.7.18",
     "copyfiles": "^2.4.1",
     "husky": "^8.0.1",
-    "ini": "^3.0.0",
-    "lerna": "^5.3.0",
-    "nx": "14.5.4",
+    "ini": "^3.0.1",
+    "lerna": "^5.5.2",
+    "nx": "^14.7.8",
     "parcel": "^2.7.0",
     "rimraf": "^3.0.2",
-    "typedoc": "^0.23.9",
+    "typedoc": "^0.23.15",
     "typedoc-plugin-carbon-ads": "^1.1.6",
     "typedoc-plugin-clarity": "^1.1.0",
     "typedoc-plugin-coverage": "^2.0.0",
     "typedoc-plugin-keyword": "^1.1.0",
-    "typedoc-plugin-missing-exports": "^0.23.0",
-    "typescript": "^4.7.4",
+    "typedoc-plugin-missing-exports": "^1.0.0",
+    "typescript": "^4.8.3",
     "yorkie": "^2.0.0"
-  },
-  "resolutions": {
-    "npm-packlist": "5.1.1"
   }
 }
-

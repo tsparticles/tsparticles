@@ -1,4 +1,4 @@
-import type { BubbleDiv, Container, DivEvent, Particle } from "tsparticles-engine";
+import type { BubbleContainer, BubbleMode, IBubbleMode } from "./Types";
 import {
     Circle,
     ClickMode,
@@ -15,23 +15,17 @@ import {
     getRangeMax,
     isDivModeEnabled,
     isInArray,
-    itemFromArray,
+    itemFromSingleOrMultiple,
     mouseLeaveEvent,
     mouseMoveEvent,
     rangeColorToHsl,
     rgbToHsl,
 } from "tsparticles-engine";
+import type { DivEvent, IDelta, IModes, Modes, Particle, RecursivePartial } from "tsparticles-engine";
+import { Bubble } from "./Options/Classes/Bubble";
+import type { BubbleDiv } from "./Options/Classes/BubbleDiv";
 import type { IBubblerProcessParam } from "./IBubblerProcessParam";
 import { ProcessBubbleType } from "./ProcessBubbleType";
-
-interface IContainerBubble {
-    clicking?: boolean;
-    durationEnd?: boolean;
-}
-
-type ContainerBubbler = Container & {
-    bubble?: IContainerBubble;
-};
 
 function calculateBubbleValue(
     particleValue: number,
@@ -54,10 +48,10 @@ function calculateBubbleValue(
  * Particle bubble manager
  * @category Interactions
  */
-export class Bubbler extends ExternalInteractorBase {
+export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     handleClickMode: (mode: ClickMode | string) => void;
 
-    constructor(container: ContainerBubbler) {
+    constructor(container: BubbleContainer) {
         super(container);
 
         if (!container.bubble) {
@@ -77,7 +71,7 @@ export class Bubbler extends ExternalInteractorBase {
         };
     }
 
-    clear(particle: Particle, force?: boolean): void {
+    clear(particle: Particle, delta: IDelta, force?: boolean): void {
         if (particle.bubble.inRange && !force) {
             return;
         }
@@ -89,10 +83,21 @@ export class Bubbler extends ExternalInteractorBase {
     }
 
     init(): void {
-        // do nothing
+        const container = this.container,
+            bubble = container.actualOptions.interactivity.modes.bubble;
+
+        if (!bubble) {
+            return;
+        }
+
+        container.retina.bubbleModeDistance = bubble.distance * container.retina.pixelRatio;
+
+        if (bubble.size !== undefined) {
+            container.retina.bubbleModeSize = bubble.size * container.retina.pixelRatio;
+        }
     }
 
-    async interact(): Promise<void> {
+    async interact(delta: IDelta): Promise<void> {
         const options = this.container.actualOptions,
             events = options.interactivity.events,
             onHover = events.onHover,
@@ -105,11 +110,13 @@ export class Bubbler extends ExternalInteractorBase {
 
         /* on hover event */
         if (hoverEnabled && isInArray(HoverMode.bubble, hoverMode)) {
-            this.hoverBubble();
+            this.hoverBubble(delta);
         } else if (clickEnabled && isInArray(ClickMode.bubble, clickMode)) {
-            this.clickBubble();
+            this.clickBubble(delta);
         } else {
-            divModeExecute(DivMode.bubble, divs, (selector, div): void => this.singleSelectorHover(selector, div));
+            divModeExecute(DivMode.bubble, divs, (selector, div): void =>
+                this.singleSelectorHover(delta, selector, div)
+            );
         }
     }
 
@@ -133,16 +140,30 @@ export class Bubbler extends ExternalInteractorBase {
         return isInArray(HoverMode.bubble, hoverMode) || isInArray(ClickMode.bubble, clickMode) || divBubble;
     }
 
+    loadModeOptions(
+        options: Modes & BubbleMode,
+        ...sources: RecursivePartial<(IModes & IBubbleMode) | undefined>[]
+    ): void {
+        if (!options.bubble) {
+            options.bubble = new Bubble();
+        }
+
+        for (const source of sources) {
+            options.bubble.load(source?.bubble);
+        }
+    }
+
     reset(particle: Particle): void {
         particle.bubble.inRange = false;
     }
 
-    private clickBubble(): void {
-        const container = this.container as ContainerBubbler,
+    private clickBubble(delta: IDelta): void {
+        const container = this.container,
             options = container.actualOptions,
-            mouseClickPos = container.interactivity.mouse.clickPosition;
+            mouseClickPos = container.interactivity.mouse.clickPosition,
+            bubble = options.interactivity.modes.bubble;
 
-        if (!mouseClickPos) {
+        if (!bubble || !mouseClickPos) {
             return;
         }
 
@@ -150,8 +171,13 @@ export class Bubbler extends ExternalInteractorBase {
             container.bubble = {};
         }
 
-        const distance = container.retina.bubbleModeDistance,
-            query = container.particles.quadTree.queryCircle(mouseClickPos, distance, (p) => this.isEnabled(p));
+        const distance = container.retina.bubbleModeDistance;
+
+        if (!distance || distance < 0) {
+            return;
+        }
+
+        const query = container.particles.quadTree.queryCircle(mouseClickPos, distance, (p) => this.isEnabled(p));
 
         for (const particle of query) {
             if (!container.bubble.clicking) {
@@ -164,10 +190,10 @@ export class Bubbler extends ExternalInteractorBase {
                 distMouse = getDistance(pos, mouseClickPos),
                 timeSpent = (new Date().getTime() - (container.interactivity.mouse.clickTime || 0)) / 1000;
 
-            if (timeSpent > options.interactivity.modes.bubble.duration) {
+            if (timeSpent > bubble.duration) {
                 container.bubble.durationEnd = true;
             }
-            if (timeSpent > options.interactivity.modes.bubble.duration * 2) {
+            if (timeSpent > bubble.duration * 2) {
                 container.bubble.clicking = false;
                 container.bubble.durationEnd = false;
             }
@@ -187,7 +213,7 @@ export class Bubbler extends ExternalInteractorBase {
 
             const opacityData: IBubblerProcessParam = {
                 bubbleObj: {
-                    optValue: options.interactivity.modes.bubble.opacity,
+                    optValue: bubble.opacity,
                     value: particle.bubble.opacity,
                 },
                 particlesObj: {
@@ -200,7 +226,7 @@ export class Bubbler extends ExternalInteractorBase {
             this.process(particle, distMouse, timeSpent, opacityData);
 
             if (!container.bubble.durationEnd) {
-                if (distMouse <= container.retina.bubbleModeDistance) {
+                if (distMouse <= distance) {
                     this.hoverBubbleColor(particle, distMouse);
                 } else {
                     delete particle.bubble.color;
@@ -211,16 +237,16 @@ export class Bubbler extends ExternalInteractorBase {
         }
     }
 
-    private hoverBubble(): void {
+    private hoverBubble(delta: IDelta): void {
         const container = this.container,
-            mousePos = container.interactivity.mouse.position;
+            mousePos = container.interactivity.mouse.position,
+            distance = container.retina.bubbleModeDistance;
 
-        if (mousePos === undefined) {
+        if (!distance || distance < 0 || mousePos === undefined) {
             return;
         }
 
-        const distance = container.retina.bubbleModeDistance,
-            query = container.particles.quadTree.queryCircle(mousePos, distance, (p) => this.isEnabled(p));
+        const query = container.particles.quadTree.queryCircle(mousePos, distance, (p) => this.isEnabled(p));
 
         //for (const { distance, particle } of query) {
         for (const particle of query) {
@@ -257,6 +283,10 @@ export class Bubbler extends ExternalInteractorBase {
         const options = this.container.actualOptions;
         const bubbleOptions = divBubble ?? options.interactivity.modes.bubble;
 
+        if (!bubbleOptions) {
+            return;
+        }
+
         if (!particle.bubble.finalColor) {
             const modeColor = bubbleOptions.color;
 
@@ -264,7 +294,7 @@ export class Bubbler extends ExternalInteractorBase {
                 return;
             }
 
-            const bubbleColor = modeColor instanceof Array ? itemFromArray(modeColor) : modeColor;
+            const bubbleColor = itemFromSingleOrMultiple(modeColor);
 
             particle.bubble.finalColor = rangeColorToHsl(bubbleColor);
         }
@@ -289,7 +319,7 @@ export class Bubbler extends ExternalInteractorBase {
     private hoverBubbleOpacity(particle: Particle, ratio: number, divBubble?: BubbleDiv): void {
         const container = this.container,
             options = container.actualOptions,
-            modeOpacity = divBubble?.opacity ?? options.interactivity.modes.bubble.opacity;
+            modeOpacity = divBubble?.opacity ?? options.interactivity.modes.bubble?.opacity;
 
         if (!modeOpacity) {
             return;
@@ -322,22 +352,23 @@ export class Bubbler extends ExternalInteractorBase {
     }
 
     private process(particle: Particle, distMouse: number, timeSpent: number, data: IBubblerProcessParam): void {
-        const container = this.container as ContainerBubbler,
-            bubbleParam = data.bubbleObj.optValue;
+        const container = this.container,
+            bubbleParam = data.bubbleObj.optValue,
+            options = container.actualOptions,
+            bubble = options.interactivity.modes.bubble;
 
-        if (bubbleParam === undefined) {
+        if (!bubble || bubbleParam === undefined) {
             return;
         }
 
-        const options = container.actualOptions,
-            bubbleDuration = options.interactivity.modes.bubble.duration,
+        const bubbleDuration = bubble.duration,
             bubbleDistance = container.retina.bubbleModeDistance,
             particlesParam = data.particlesObj.optValue,
             pObjBubble = data.bubbleObj.value,
             pObj = data.particlesObj.value || 0,
             type = data.type;
 
-        if (bubbleParam === particlesParam) {
+        if (!bubbleDistance || bubbleDistance < 0 || bubbleParam === particlesParam) {
             return;
         }
 
@@ -380,11 +411,12 @@ export class Bubbler extends ExternalInteractorBase {
         }
     }
 
-    private singleSelectorHover(selector: string, div: DivEvent): void {
+    private singleSelectorHover(delta: IDelta, selector: string, div: DivEvent): void {
         const container = this.container,
-            selectors = document.querySelectorAll(selector);
+            selectors = document.querySelectorAll(selector),
+            bubble = container.actualOptions.interactivity.modes.bubble;
 
-        if (!selectors.length) {
+        if (!bubble || !selectors.length) {
             return;
         }
 
@@ -414,11 +446,11 @@ export class Bubbler extends ExternalInteractorBase {
 
                 particle.bubble.inRange = true;
 
-                const divs = container.actualOptions.interactivity.modes.bubble.divs;
+                const divs = bubble.divs;
                 const divBubble = divMode(divs, elem);
 
                 if (!particle.bubble.div || particle.bubble.div !== elem) {
-                    this.clear(particle, true);
+                    this.clear(particle, delta, true);
 
                     particle.bubble.div = elem;
                 }

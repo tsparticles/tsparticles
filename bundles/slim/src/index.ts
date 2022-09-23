@@ -13,6 +13,7 @@ import { loadExternalPauseInteraction } from "tsparticles-interaction-external-p
 import { loadExternalPushInteraction } from "tsparticles-interaction-external-push";
 import { loadExternalRemoveInteraction } from "tsparticles-interaction-external-remove";
 import { loadExternalRepulseInteraction } from "tsparticles-interaction-external-repulse";
+import { loadExternalSlowInteraction } from "tsparticles-interaction-external-slow";
 import { loadImageShape } from "tsparticles-shape-image";
 import { loadLifeUpdater } from "tsparticles-updater-life";
 import { loadLineShape } from "tsparticles-shape-line";
@@ -42,6 +43,7 @@ export async function loadSlim(engine: Engine): Promise<void> {
     await loadExternalPushInteraction(engine);
     await loadExternalRemoveInteraction(engine);
     await loadExternalRepulseInteraction(engine);
+    await loadExternalSlowInteraction(engine);
 
     await loadParticlesAttractInteraction(engine);
     await loadParticlesCollisionsInteraction(engine);

@@ -5,7 +5,7 @@ import type { LightContainer, LightParticle } from "./Types";
 import { Light } from "./Options/Classes/Light";
 import { drawLight } from "./Utils";
 
-export class ExternalLighter extends ExternalInteractorBase {
+export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
     constructor(container: LightContainer) {
         super(container);
     }
@@ -22,7 +22,7 @@ export class ExternalLighter extends ExternalInteractorBase {
         const container = this.container,
             options = container.actualOptions;
 
-        if (options.interactivity.events.onHover.enable && container.interactivity.status === "mousemove") {
+        if (options.interactivity.events.onHover.enable && container.interactivity.status === "pointermove") {
             const mousePos = container.interactivity.mouse.position;
 
             if (!mousePos) {
@@ -36,7 +36,7 @@ export class ExternalLighter extends ExternalInteractorBase {
     }
 
     isEnabled(particle?: LightParticle): boolean {
-        const container = this.container as LightContainer,
+        const container = this.container,
             mouse = container.interactivity.mouse,
             interactivity = particle?.interactivity ?? container.actualOptions.interactivity,
             events = interactivity.events;
@@ -63,11 +63,11 @@ export class ExternalLighter extends ExternalInteractorBase {
         options: Modes & LightMode,
         ...sources: RecursivePartial<(IModes & ILightMode) | undefined>[]
     ): void {
-        for (const source of sources) {
-            if (!options.light) {
-                options.light = new Light();
-            }
+        if (!options.light) {
+            options.light = new Light();
+        }
 
+        for (const source of sources) {
             options.light.load(source?.light);
         }
     }

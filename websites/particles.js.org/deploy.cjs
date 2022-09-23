@@ -8,7 +8,7 @@ if (!fs.pathExists("./dist")) {
 fs.copySync("./audio", "./dist/audio");
 fs.copySync("./configs", "./dist/configs");
 fs.copySync("./css", "./dist/css");
-fs.copySync("../engine/docs", "./dist/docs");
+fs.copySync("../../engine/docs", "./dist/docs");
 fs.copySync("./fonts", "./dist/fonts");
 fs.copySync("./images", "./dist/images");
 fs.copySync("./js", "./dist/js");

@@ -6,7 +6,7 @@ import type {
     RecursivePartial,
     SingleOrMultiple,
 } from "tsparticles-engine";
-import { arrayRandomIndex, deepExtend, itemFromArray } from "tsparticles-engine";
+import { arrayRandomIndex, executeOnSingleOrMultiple, itemFromArray } from "tsparticles-engine";
 import { Emitter } from "./Options/Classes/Emitter";
 import { EmitterClickMode } from "./Enums/EmitterClickMode";
 import type { EmitterContainer } from "./EmitterContainer";
@@ -22,11 +22,12 @@ import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 export class Emitters implements IContainerPlugin {
     array: EmitterInstance[];
     emitters: SingleOrMultiple<Emitter>;
-    readonly #engine;
     interactivityEmitters: IEmitterModeOptions;
 
+    private readonly _engine;
+
     constructor(engine: EmittersEngine, private readonly container: EmitterContainer) {
-        this.#engine = engine;
+        this._engine = engine;
         this.array = [];
         this.emitters = [];
         this.interactivityEmitters = {
@@ -75,7 +76,7 @@ export class Emitters implements IContainerPlugin {
 
         emitterOptions.load(options);
 
-        const emitter = new EmitterInstance(this.#engine, this, this.container, emitterOptions, position);
+        const emitter = new EmitterInstance(this._engine, this, this.container, emitterOptions, position);
 
         this.array.push(emitter);
 
@@ -115,13 +116,9 @@ export class Emitters implements IContainerPlugin {
             const emittersOptions = emittersModeOptions ?? emitterOptions,
                 ePosition = this.container.interactivity.mouse.clickPosition;
 
-            if (emittersOptions instanceof Array) {
-                for (const emitterOptions of emittersOptions) {
-                    this.addEmitter(emitterOptions, ePosition);
-                }
-            } else {
-                this.addEmitter(deepExtend({}, emittersOptions) as IEmitter, ePosition);
-            }
+            executeOnSingleOrMultiple(emittersOptions, (emitter) => {
+                this.addEmitter(emitter, ePosition);
+            });
         }
     }
 
@@ -130,23 +127,13 @@ export class Emitters implements IContainerPlugin {
             return;
         }
 
-        if (options.emitters) {
-            if (options.emitters instanceof Array) {
-                this.emitters = options.emitters.map((s) => {
-                    const tmp = new Emitter();
+        this.emitters = executeOnSingleOrMultiple(options.emitters, (emitter) => {
+            const tmp = new Emitter();
 
-                    tmp.load(s);
+            tmp.load(emitter);
 
-                    return tmp;
-                });
-            } else {
-                if (this.emitters instanceof Array) {
-                    this.emitters = new Emitter();
-                }
-
-                this.emitters.load(options.emitters);
-            }
-        }
+            return tmp;
+        });
 
         const interactivityEmitters = options.interactivity?.modes?.emitters;
 

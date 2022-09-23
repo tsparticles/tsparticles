@@ -1,5 +1,5 @@
-import { HoverMode, RotateDirection, clamp, getDistance, getDistances, isInArray, tspRandom } from "tsparticles-engine";
 import type { IDelta, Particle } from "tsparticles-engine";
+import { RotateDirection, clamp, getDistances, getRandom } from "tsparticles-engine";
 import type { MoveParticle } from "./Types";
 
 export function applyDistance(particle: MoveParticle): void {
@@ -31,11 +31,11 @@ export function applyDistance(particle: MoveParticle): void {
             vel = particle.velocity;
 
         if (hDistance && ((pos.x < initialPosition.x && vel.x < 0) || (pos.x > initialPosition.x && vel.x > 0))) {
-            vel.x *= -tspRandom();
+            vel.x *= -getRandom();
         }
 
         if (vDistance && ((pos.y < initialPosition.y && vel.y < 0) || (pos.y > initialPosition.y && vel.y > 0))) {
-            vel.y *= -tspRandom();
+            vel.y *= -getRandom();
         }
     }
 }
@@ -99,30 +99,5 @@ export function applyPath(particle: Particle, delta: IDelta): void {
 }
 
 export function getProximitySpeedFactor(particle: Particle): number {
-    const container = particle.container;
-    const options = container.actualOptions;
-    const active = isInArray(HoverMode.slow, options.interactivity.events.onHover.mode);
-
-    if (!active) {
-        return 1;
-    }
-
-    const mousePos = particle.container.interactivity.mouse.position;
-
-    if (!mousePos) {
-        return 1;
-    }
-
-    const particlePos = particle.getPosition();
-    const dist = getDistance(mousePos, particlePos);
-    const radius = container.retina.slowModeRadius;
-
-    if (dist > radius) {
-        return 1;
-    }
-
-    const proximityFactor = dist / radius || 0;
-    const slowFactor = options.interactivity.modes.slow.factor;
-
-    return proximityFactor / slowFactor;
+    return particle.slow.inRange ? particle.slow.factor : 1;
 }

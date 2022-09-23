@@ -1,8 +1,10 @@
 {
   "name": "cra-template-particles",
-  "version": "2.1.4",
+  "version": "2.3.2",
   "description": "Official React tsParticles template",
   "keywords": [
+    "front-end",
+    "frontend",
     "tsparticles",
     "particles.js",
     "particlesjs",
@@ -80,15 +82,18 @@
     }
   ],
   "dependencies": {
-    "react-particles": "^2.1.4",
+    "react-particles": "^2.3.2",
     "tslib": "^2.4.0",
-    "tsparticles": "^2.1.4",
-    "tsparticles-engine": "^2.1.4"
+    "tsparticles": "^2.3.2",
+    "tsparticles-engine": "^2.3.2"
+  },
+  "devDependencies": {
+    "fs-extra": "^10.1.0"
   },
   "scripts": {
     "build": "node scripts/prebuild.js",
     "build:ci": "node scripts/prebuild.js",
-    "version": "yarn build && git add ./template.json",
-    "prepack": "yarn build"
+    "version": "pnpm run build && git add ./template.json",
+    "prepack": "pnpm run build"
   }
 }

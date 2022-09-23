@@ -1,5 +1,5 @@
 import type { Container, IParticle, IShapeDrawer, SingleOrMultiple } from "tsparticles-engine";
-import { isInArray, itemFromArray, loadFont } from "tsparticles-engine";
+import { executeOnSingleOrMultiple, isInArray, itemFromSingleOrMultiple, loadFont } from "tsparticles-engine";
 import type { IMultilineTextShape } from "./IMultilineTextShape";
 import type { MultilineTextParticle } from "./MultilineTextParticle";
 
@@ -20,8 +20,7 @@ export class MultilineTextDrawer implements IShapeDrawer {
         const textParticle = particle as MultilineTextParticle;
 
         if (textParticle.text === undefined) {
-            textParticle.text =
-                textData instanceof Array ? itemFromArray(textData, particle.randomIndexData) : textData;
+            textParticle.text = itemFromSingleOrMultiple(textData, particle.randomIndexData);
         }
 
         const text = textParticle.text;
@@ -59,20 +58,18 @@ export class MultilineTextDrawer implements IShapeDrawer {
     }
 
     async init(container: Container): Promise<void> {
-        const options = container.options;
-        const shapeType = "multiline-text";
+        const options = container.options,
+            shapeType = "multiline-text";
 
         if (isInArray(shapeType, options.particles.shape.type)) {
-            const shapeOptions = options.particles.shape.options[shapeType] as SingleOrMultiple<IMultilineTextShape>;
-            if (shapeOptions instanceof Array) {
-                for (const character of shapeOptions) {
-                    await loadFont(character.font, character.weight);
-                }
-            } else {
-                if (shapeOptions !== undefined) {
-                    await loadFont(shapeOptions.font, shapeOptions.weight);
-                }
-            }
+            const shapeOptions = options.particles.shape.options[shapeType] as SingleOrMultiple<IMultilineTextShape>,
+                promises: Promise<void>[] = [];
+
+            executeOnSingleOrMultiple(shapeOptions, (shape) => {
+                promises.push(loadFont(shape.font, shape.weight));
+            });
+
+            await Promise.all(promises);
         }
     }
 }

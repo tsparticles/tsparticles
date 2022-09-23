@@ -1,4 +1,4 @@
-import { AnimatableColor, deepExtend, setRangeValue } from "tsparticles-engine";
+import { AnimatableColor, deepExtend, executeOnSingleOrMultiple, setRangeValue } from "tsparticles-engine";
 import type {
     IOptionLoader,
     IParticlesOptions,
@@ -73,15 +73,9 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
 
         this.name = data.name;
 
-        if (data.particles !== undefined) {
-            if (data.particles instanceof Array) {
-                this.particles = data.particles.map((s) => {
-                    return deepExtend({}, s) as RecursivePartial<IParticlesOptions>;
-                });
-            } else {
-                this.particles = deepExtend({}, data.particles) as RecursivePartial<IParticlesOptions>;
-            }
-        }
+        this.particles = executeOnSingleOrMultiple(data.particles, (particles) => {
+            return deepExtend({}, particles) as RecursivePartial<IParticlesOptions>;
+        });
 
         this.rate.load(data.rate);
 

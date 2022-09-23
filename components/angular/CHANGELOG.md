@@ -3,6 +3,79 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.2](https://github.com/matteobruni/tsparticles/compare/ng-particles@3.3.1...ng-particles@3.3.2) (2022-09-21)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+## [3.3.1](https://github.com/matteobruni/tsparticles/compare/ng-particles@3.3.0...ng-particles@3.3.1) (2022-09-13)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+# [3.3.0](https://github.com/matteobruni/tsparticles/compare/ng-particles@3.2.4...ng-particles@3.3.0) (2022-09-11)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to ~14.2.0 ([a95f5e4](https://github.com/matteobruni/tsparticles/commit/a95f5e4a70bdff2c99bd0bf0c726a3c0b61b8886))
+
+
+
+
+
+## [3.2.4](https://github.com/matteobruni/tsparticles/compare/ng-particles@3.2.2...ng-particles@3.2.4) (2022-08-26)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+## [3.2.3](https://github.com/matteobruni/tsparticles/compare/ng-particles@3.2.2...ng-particles@3.2.3) (2022-08-21)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+## [3.2.2](https://github.com/matteobruni/tsparticles/compare/ng-particles@3.2.1...ng-particles@3.2.2) (2022-08-16)
+
+
+### Bug Fixes
+
+* fixed double mouse events on mobile using pointer events, closes [#4622](https://github.com/matteobruni/tsparticles/issues/4622) ([1019fa4](https://github.com/matteobruni/tsparticles/commit/1019fa431f8a43cbd45d6adeb5adf94433e6e04b))
+
+
+
+
+
+## [3.2.1](https://github.com/matteobruni/tsparticles/compare/ng-particles@3.2.0...ng-particles@3.2.1) (2022-08-12)
+
+**Note:** Version bump only for package ng-particles
+
+
+
+
+
+# [3.2.0](https://github.com/matteobruni/tsparticles/compare/ng-particles@3.1.4...ng-particles@3.2.0) (2022-08-11)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to ~14.1.0 ([284f4fc](https://github.com/matteobruni/tsparticles/commit/284f4fcff996381a784b1eed9271fab33c23613d))
+
+
+
+
+
 ## [3.1.4](https://github.com/matteobruni/tsparticles/compare/ng-particles@3.1.3...ng-particles@3.1.4) (2022-07-28)
 
 **Note:** Version bump only for package ng-particles

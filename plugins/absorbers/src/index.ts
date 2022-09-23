@@ -1,10 +1,10 @@
 import type { Engine, IOptions, IPlugin, Options, RecursivePartial } from "tsparticles-engine";
+import { executeOnSingleOrMultiple, isInArray } from "tsparticles-engine";
 import { Absorber } from "./Options/Classes/Absorber";
 import { AbsorberClickMode } from "./Enums/AbsorberClickMode";
 import type { AbsorberContainer } from "./AbsorberContainer";
 import { Absorbers } from "./Absorbers";
 import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
-import { isInArray } from "tsparticles-engine";
 
 /**
  * @category Absorbers Plugin
@@ -27,47 +27,24 @@ class AbsorbersPlugin implements IPlugin {
 
         const optionsCast = options as unknown as IAbsorberOptions;
 
-        if (source?.absorbers) {
-            if (source?.absorbers instanceof Array) {
-                optionsCast.absorbers = source?.absorbers.map((s) => {
-                    const tmp = new Absorber();
+        optionsCast.absorbers = executeOnSingleOrMultiple(source?.absorbers, (absorber) => {
+            const tmp = new Absorber();
 
-                    tmp.load(s);
+            tmp.load(absorber);
 
-                    return tmp;
-                });
-            } else {
-                let absorberOptions = optionsCast.absorbers as Absorber;
+            return tmp;
+        });
 
-                if (absorberOptions?.load === undefined) {
-                    optionsCast.absorbers = absorberOptions = new Absorber();
-                }
+        optionsCast.interactivity.modes.absorbers = executeOnSingleOrMultiple(
+            source?.interactivity?.modes?.absorbers,
+            (absorber) => {
+                const tmp = new Absorber();
 
-                absorberOptions.load(source?.absorbers);
+                tmp.load(absorber);
+
+                return tmp;
             }
-        }
-
-        const interactivityAbsorbers = source?.interactivity?.modes?.absorbers;
-
-        if (interactivityAbsorbers) {
-            if (interactivityAbsorbers instanceof Array) {
-                optionsCast.interactivity.modes.absorbers = interactivityAbsorbers.map((s) => {
-                    const tmp = new Absorber();
-
-                    tmp.load(s);
-
-                    return tmp;
-                });
-            } else {
-                let absorberOptions = optionsCast.interactivity.modes.absorbers as Absorber;
-
-                if (absorberOptions?.load === undefined) {
-                    optionsCast.interactivity.modes.absorbers = absorberOptions = new Absorber();
-                }
-
-                absorberOptions.load(interactivityAbsorbers);
-            }
-        }
+        );
     }
 
     needsPlugin(options?: RecursivePartial<IOptions & IAbsorberOptions>): boolean {

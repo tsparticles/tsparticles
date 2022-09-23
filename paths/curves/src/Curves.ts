@@ -1,4 +1,4 @@
-import { tspRandom } from "tsparticles-engine";
+import { getRandom } from "tsparticles-engine";
 
 export function CurvesPathGen(
     rndFunc: (() => number) | null | undefined,
@@ -13,7 +13,7 @@ export function CurvesPathGen(
         amplitudes: number[] = [], // amplitudes oh harmonics
         increments: number[] = [], // n / period, which will be added to phases for every point
         phases: number[] = [],
-        randomFunc = rndFunc ?? tspRandom;
+        randomFunc = rndFunc ?? getRandom;
 
     let globAmplitude = 0;
 

@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs-extra');
 const packageInfo = require('../package.json');
 const filePath = './tsParticles.nuspec';
 

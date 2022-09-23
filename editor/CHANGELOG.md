@@ -3,6 +3,109 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@2.3.3...tsparticles-editor@2.3.4) (2022-09-21)
+
+
+### Bug Fixes
+
+* fixed editor issue with particles bounce factors ([202890d](https://github.com/matteobruni/tsparticles/commit/202890d274c305af83390851912d307e5cf82a95))
+
+
+
+
+
+## [2.3.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@2.3.2...tsparticles-editor@2.3.3) (2022-09-14)
+
+
+### Bug Fixes
+
+* fixed editor issue with particles bounce factors ([e809e7d](https://github.com/matteobruni/tsparticles/commit/e809e7ddef8267f075758aad46032d303da4f71a))
+
+
+
+
+
+## [2.3.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@2.3.1...tsparticles-editor@2.3.2) (2022-09-14)
+
+
+### Bug Fixes
+
+* fixed editor issue with particles bounce factors ([c14f41c](https://github.com/matteobruni/tsparticles/commit/c14f41cf7097d034f99ec3d271fb2e7fdde73152))
+
+
+
+
+
+## [2.3.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@2.3.0...tsparticles-editor@2.3.1) (2022-09-13)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
+# [2.3.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@2.2.4...tsparticles-editor@2.3.0) (2022-09-11)
+
+
+### Bug Fixes
+
+* fixed editor ([d78892e](https://github.com/matteobruni/tsparticles/commit/d78892ea1af4ad47f677af0bbbae2272eea5e5b4))
+
+
+### Features
+
+* updating editor to Object GUI v2 ([12ea540](https://github.com/matteobruni/tsparticles/commit/12ea540a040aae301401e3941c0cd1ca18f4ed3e))
+
+
+
+
+
+## [2.2.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@2.2.2...tsparticles-editor@2.2.4) (2022-08-26)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
+## [2.2.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@2.2.2...tsparticles-editor@2.2.3) (2022-08-21)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
+## [2.2.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@2.2.1...tsparticles-editor@2.2.2) (2022-08-16)
+
+
+### Bug Fixes
+
+* fixed double mouse events on mobile using pointer events, closes [#4622](https://github.com/matteobruni/tsparticles/issues/4622) ([1019fa4](https://github.com/matteobruni/tsparticles/commit/1019fa431f8a43cbd45d6adeb5adf94433e6e04b))
+
+
+
+
+
+## [2.2.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@2.2.0...tsparticles-editor@2.2.1) (2022-08-12)
+
+
+### Bug Fixes
+
+* fixed editor for v2.2 ([ae41163](https://github.com/matteobruni/tsparticles/commit/ae41163473095aba0083478a47c70d1cc44bf250))
+
+
+
+
+
+# [2.2.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@2.1.4...tsparticles-editor@2.2.0) (2022-08-11)
+
+**Note:** Version bump only for package tsparticles-editor
+
+
+
+
+
 ## [2.1.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-editor@2.1.3...tsparticles-editor@2.1.4) (2022-07-28)
 
 **Note:** Version bump only for package tsparticles-editor

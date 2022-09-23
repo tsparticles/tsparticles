@@ -1,5 +1,4 @@
 import {
-    DestroyMode,
     DestroyType,
     MoveDirection,
     OutMode,
@@ -139,7 +138,7 @@ export const options: ISourceOptions = {
             value: 0,
         },
         destroy: {
-            mode: DestroyMode.split,
+            mode: "split",
             split: {
                 count: 1,
                 factor: {

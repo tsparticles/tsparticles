@@ -15,7 +15,7 @@ import type {
     SVGPathSegMovetoRel,
 } from "./pathseg";
 import type { IOptions } from "tsparticles-engine";
-import type { IPolygonMask } from "./Options/Interfaces/IPolygonMask";
+import type { IPolygonMaskOptions } from "./Options/Interfaces/IPolygonMaskOptions";
 
 export type SvgAbsoluteCoordinatesTypes =
     | SVGPathSegArcAbs
@@ -35,6 +35,4 @@ export type SvgRelativeCoordinatesTypes =
     | SVGPathSegLinetoRel
     | SVGPathSegMovetoRel;
 
-export type IPolygonMaskOptions = IOptions & {
-    polygon: IPolygonMask;
-};
+export type PolygonMaskOptions = IOptions & IPolygonMaskOptions;

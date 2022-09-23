@@ -115,6 +115,14 @@
         "rate": {
             "quantity": 10,
             "delay": 0.1
+        },
+        "particles": {
+            "links": {
+                "enable": false
+            },
+            "shape": {
+                "type": "circle"
+            }
         }
     }
 }

@@ -74,8 +74,8 @@ describe("Options tests", () => {
         //expect(options.interactivity.modes.remove.quantity).to.equal(2);
         //expect(options.interactivity.modes.repulse.distance).to.equal(200);
         //expect(options.interactivity.modes.repulse.duration).to.equal(0.4);
-        expect(options.interactivity.modes.slow.factor).to.equal(3);
-        expect(options.interactivity.modes.slow.radius).to.equal(200);
+        //expect(options.interactivity.modes.slow.factor).to.equal(3);
+        //expect(options.interactivity.modes.slow.radius).to.equal(200);
 
         /* particles */
         /* particles collisions */

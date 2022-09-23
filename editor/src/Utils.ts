@@ -8,4 +8,6 @@ const changeHandler = async (container: Container, callback?: (container: Contai
     await container.refresh();
 };
 
-export { changeHandler };
+const editorChangedEvent = "editorChanged";
+
+export { changeHandler, editorChangedEvent };

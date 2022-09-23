@@ -8,19 +8,10 @@ import { isSsr } from "../Utils/Utils";
  */
 export class Retina {
     attractDistance!: number;
-    attractModeDistance!: number;
-    bounceModeDistance!: number;
-    bubbleModeDistance!: number;
-    bubbleModeSize?: number;
-    connectModeDistance!: number;
-    connectModeRadius!: number;
-    grabModeDistance!: number;
     maxSpeed!: number;
     pixelRatio!: number;
     reduceFactor!: number;
-    repulseModeDistance!: number;
     sizeAnimationSpeed!: number;
-    slowModeRadius!: number;
 
     constructor(private readonly container: Container) {}
 
@@ -43,11 +34,11 @@ export class Retina {
 
                 if (mediaQuery) {
                     // Check if the media query matches or is not available.
-                    this.handleMotionChange(mediaQuery);
+                    this._handleMotionChange(mediaQuery);
 
                     // Ads an event listener to check for changes in the media query's value.
                     const handleChange = (): void => {
-                        this.handleMotionChange(mediaQuery);
+                        this._handleMotionChange(mediaQuery);
 
                         container.refresh().catch(() => {
                             // ignore
@@ -79,20 +70,6 @@ export class Retina {
         this.attractDistance = getRangeValue(particles.move.attract.distance) * ratio;
         this.sizeAnimationSpeed = getRangeValue(particles.size.animation.speed) * ratio;
         this.maxSpeed = getRangeValue(particles.move.gravity.maxSpeed) * ratio;
-
-        const modes = options.interactivity.modes;
-
-        this.connectModeDistance = modes.connect.distance * ratio;
-        this.connectModeRadius = modes.connect.radius * ratio;
-        this.grabModeDistance = modes.grab.distance * ratio;
-        this.bounceModeDistance = modes.bounce.distance * ratio;
-        this.attractModeDistance = modes.attract.distance * ratio;
-        this.slowModeRadius = modes.slow.radius * ratio;
-        this.bubbleModeDistance = modes.bubble.distance * ratio;
-
-        if (modes.bubble.size) {
-            this.bubbleModeSize = modes.bubble.size * ratio;
-        }
     }
 
     initParticle(particle: Particle): void {
@@ -114,7 +91,7 @@ export class Retina {
         props.maxSpeed = getRangeValue(options.move.gravity.maxSpeed) * ratio;
     }
 
-    private handleMotionChange(mediaQuery: MediaQueryList): void {
+    private _handleMotionChange(mediaQuery: MediaQueryList): void {
         const options = this.container.actualOptions;
 
         if (mediaQuery.matches) {

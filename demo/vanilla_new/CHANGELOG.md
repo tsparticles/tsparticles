@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@2.3.1...tsparticles-demo-new@2.3.2) (2022-09-21)
+
+**Note:** Version bump only for package tsparticles-demo-new
+
+
+
+
+
+## [2.3.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@2.3.0...tsparticles-demo-new@2.3.1) (2022-09-13)
+
+**Note:** Version bump only for package tsparticles-demo-new
+
+
+
+
+
+# [2.3.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@2.2.4...tsparticles-demo-new@2.3.0) (2022-09-11)
+
+**Note:** Version bump only for package tsparticles-demo-new
+
+
+
+
+
+## [2.2.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@2.2.2...tsparticles-demo-new@2.2.4) (2022-08-26)
+
+**Note:** Version bump only for package tsparticles-demo-new
+
+
+
+
+
+## [2.2.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@2.2.2...tsparticles-demo-new@2.2.3) (2022-08-21)
+
+**Note:** Version bump only for package tsparticles-demo-new
+
+
+
+
+
+## [2.2.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@2.2.1...tsparticles-demo-new@2.2.2) (2022-08-16)
+
+**Note:** Version bump only for package tsparticles-demo-new
+
+
+
+
+
+## [2.2.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@2.2.0...tsparticles-demo-new@2.2.1) (2022-08-12)
+
+**Note:** Version bump only for package tsparticles-demo-new
+
+
+
+
+
+# [2.2.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@2.1.4...tsparticles-demo-new@2.2.0) (2022-08-11)
+
+
+### Bug Fixes
+
+* **deps:** update capacitor monorepo to v4 ([a63d3a0](https://github.com/matteobruni/tsparticles/commit/a63d3a005ff47dd38ca7924b29267f4796ffebdb))
+
+
+
+
+
 ## [2.1.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@2.1.3...tsparticles-demo-new@2.1.4) (2022-07-28)
 
 

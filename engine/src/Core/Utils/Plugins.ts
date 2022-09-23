@@ -35,12 +35,6 @@ export class Plugins {
     readonly drawers;
 
     /**
-     * The engine used for registering plugins
-     * @private
-     */
-    readonly #engine;
-
-    /**
      * The interaction managers array
      */
     readonly interactors;
@@ -80,11 +74,17 @@ export class Plugins {
     readonly updatersInitializers;
 
     /**
+     * The engine used for registering plugins
+     * @private
+     */
+    private readonly _engine;
+
+    /**
      * The constructor of the plugin manager
      * @param engine the parent engine
      */
     constructor(engine: Engine) {
-        this.#engine = engine;
+        this._engine = engine;
 
         this.plugins = [];
         this.interactorsInitializers = new Map<string, InteractorInitializer>();

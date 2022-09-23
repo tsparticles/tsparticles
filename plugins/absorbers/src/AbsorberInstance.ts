@@ -6,11 +6,11 @@ import {
     calcPositionOrRandomFromSizeRanged,
     getDistance,
     getDistances,
+    getRandom,
     getRangeValue,
     getStyleFromRgb,
     isPointInside,
     rangeColorToRgb,
-    tspRandom,
 } from "tsparticles-engine";
 import { Absorber } from "./Options/Classes/Absorber";
 import type { Absorbers } from "./Absorbers";
@@ -270,13 +270,13 @@ export class AbsorberInstance {
             if (particle.absorberOrbit === undefined) {
                 particle.absorberOrbit = Vector.create(0, 0);
                 particle.absorberOrbit.length = getDistance(particle.getPosition(), this.position);
-                particle.absorberOrbit.angle = tspRandom() * Math.PI * 2;
+                particle.absorberOrbit.angle = getRandom() * Math.PI * 2;
             }
 
             if (particle.absorberOrbit.length <= this.size && !this.options.destroy) {
                 const minSize = Math.min(canvasSize.width, canvasSize.height);
 
-                particle.absorberOrbit.length = minSize * (1 + (tspRandom() * 0.2 - 0.1));
+                particle.absorberOrbit.length = minSize * (1 + (getRandom() * 0.2 - 0.1));
             }
 
             if (particle.absorberOrbitDirection === undefined) {

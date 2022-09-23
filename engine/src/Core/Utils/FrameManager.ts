@@ -1,4 +1,12 @@
 import type { Container } from "../Container";
+import type { IDelta } from "../Interfaces/IDelta";
+
+function initDelta(value: number, fpsLimit = 60, smooth = false): IDelta {
+    return {
+        value,
+        factor: smooth ? 60 / fpsLimit : (60 * value) / 1000,
+    };
+}
 
 /**
  * @category Core
@@ -17,6 +25,7 @@ export class FrameManager {
 
             // FPS limit logic - if we are too fast, just draw without updating
             if (
+                !container.smooth &&
                 container.lastFrameTime !== undefined &&
                 timestamp < container.lastFrameTime + 1000 / container.fpsLimit
             ) {
@@ -27,16 +36,12 @@ export class FrameManager {
 
             container.lastFrameTime ??= timestamp;
 
-            const deltaValue = timestamp - container.lastFrameTime,
-                delta = {
-                    value: deltaValue,
-                    factor: (60 * deltaValue) / 1000,
-                };
+            const delta = initDelta(timestamp - container.lastFrameTime, container.fpsLimit, container.smooth);
 
             container.lifeTime += delta.value;
             container.lastFrameTime = timestamp;
 
-            if (deltaValue > 1000) {
+            if (delta.value > 1000) {
                 container.draw(false);
                 return;
             }

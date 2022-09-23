@@ -1,6 +1,4 @@
 import { Circle } from "./Circle";
-import { CircleWarp } from "./CircleWarp";
-import type { Container } from "../Container";
 import type { ICoordinates } from "../Interfaces/ICoordinates";
 import type { IDimension } from "../Interfaces/IDimension";
 import type { Particle } from "../Particle";
@@ -132,34 +130,6 @@ export class QuadTree {
      */
     queryCircle(position: ICoordinates, radius: number, check?: (particle: Particle) => boolean): Particle[] {
         return this.query(new Circle(position.x, position.y, radius), check);
-    }
-
-    /**
-     * Queries the instance using a [[CircleWarp]] object, with the given position and the given radius
-     * @param position the circle position
-     * @param radius the circle radius
-     * @param containerOrSize the container canvas size
-     * @param check the function to check if the particle can be added to the result
-     * @returns the particles inside the given circle
-     */
-    queryCircleWarp(
-        position: ICoordinates,
-        radius: number,
-        containerOrSize: Container | IDimension,
-        check?: (particle: Particle) => boolean
-    ): Particle[] {
-        const container = containerOrSize as Container,
-            size = containerOrSize as IDimension;
-
-        return this.query(
-            new CircleWarp(
-                position.x,
-                position.y,
-                radius,
-                container.canvas !== undefined ? container.canvas.size : size
-            ),
-            check
-        );
     }
 
     /**

@@ -15,7 +15,7 @@
       "delay": 0.1
     },
     "rate": {
-      "delay": 0.5,
+      "delay": 0.15,
       "quantity": 1
     },
     "size": {
@@ -32,6 +32,9 @@
       "value": 0
     },
     "destroy": {
+      "bounds": {
+        "top": 30
+      },
       "mode": "split",
       "split": {
         "count": 1,
@@ -59,6 +62,11 @@
           },
           "collisions": {
             "enable": false
+          },
+          "destroy": {
+            "bounds": {
+              "top": 0
+            }
           },
           "opacity": {
             "value": {
@@ -94,10 +102,16 @@
           "move": {
             "enable": true,
             "gravity": {
-              "enable": false
+              "enable": true,
+              "acceleration": 9.81,
+              "inverse": false
             },
-            "speed": 2,
-            "direction": "none",
+            "decay": 0.1,
+            "speed": {
+              "min": 10,
+              "max": 25
+            },
+            "direction": "outside",
             "random": true,
             "straight": false,
             "outMode": "destroy"

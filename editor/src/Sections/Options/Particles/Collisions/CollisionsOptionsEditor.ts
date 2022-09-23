@@ -6,15 +6,15 @@ import { EditorType } from "object-gui";
 
 export class CollisionsOptionsEditor extends EditorBase {
     group!: EditorGroup;
-    private options!: ICollisions;
+    private options!: () => ICollisions;
 
-    constructor(particles: Container) {
+    constructor(particles: () => Container) {
         super(particles);
     }
 
     addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("collisions", "Collisions");
-        this.options = this.group.data as ICollisions;
+        this.options = this.group.data as () => ICollisions;
 
         this.addBounce();
         this.addOverlap();
@@ -29,48 +29,43 @@ export class CollisionsOptionsEditor extends EditorBase {
     }
 
     private addBounceFactor(parentGroup: EditorGroup, name: string, title: string): void {
-        const particles = this.particles;
         const group = parentGroup.addGroup(name, title);
-
         const randomGroup = group.addGroup("random", "Random");
 
         randomGroup.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         randomGroup.addProperty("minimumValue", "Minimum Value", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group.addProperty("value", "Value", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
     }
 
     private addOverlap(): void {
-        const particles = this.particles;
         const group = this.group.addGroup("overlap", "Overlap");
 
         group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group.addProperty("retries", "Retries", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
     }
 
     private addProperties(): void {
-        const particles = this.particles;
-
         this.group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         this.group
             .addProperty("mode", "Mode", EditorType.select)
             .change(async () => {
-                await particles.refresh();
+                await this.particles().refresh();
             })
             .addItems([
                 {

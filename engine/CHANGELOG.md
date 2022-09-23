@@ -3,6 +3,131 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.3.1...tsparticles-engine@2.3.2) (2022-09-21)
+
+
+### Bug Fixes
+
+* fixed export configuration method of container ([f7c3c7f](https://github.com/matteobruni/tsparticles/commit/f7c3c7f210017e91ac3fa5a54a911d714d207ca5))
+
+
+
+
+
+## [2.3.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.3.0...tsparticles-engine@2.3.1) (2022-09-13)
+
+**Note:** Version bump only for package tsparticles-engine
+
+
+
+
+
+# [2.3.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.2.4...tsparticles-engine@2.3.0) (2022-09-11)
+
+
+### Bug Fixes
+
+* fixed container duration, using it as seconds instead of milliseconds ([ba05eec](https://github.com/matteobruni/tsparticles/commit/ba05eec31ae30dffff6871669a34360547663605))
+* fixed issue with stroke options loading ([9633356](https://github.com/matteobruni/tsparticles/commit/9633356a62e3654c3a5c11508bfefe7b255c6f32))
+
+
+### Features
+
+* added more easing types ([5f8f1c4](https://github.com/matteobruni/tsparticles/commit/5f8f1c43503b022494b28dbff229337da9f45fd1))
+* added smooth options, it ignores the fpsLimit trying to create a smoother animation* ([5ad1a27](https://github.com/matteobruni/tsparticles/commit/5ad1a27dd7496377aa2f87e2c32b1b45b2c68ef7))
+* created destroy updater, moved all particles destroy (split and similar) code from engine ([f8642fd](https://github.com/matteobruni/tsparticles/commit/f8642fda3f43688ae7a0df55f5b06bb2a45d9e80))
+* first attempt of repulse bounce back ([8379f9c](https://github.com/matteobruni/tsparticles/commit/8379f9ce912f310b0602b462dda03c61924fe9f3))
+* moved out all the external interactors from the engine ([9d3c325](https://github.com/matteobruni/tsparticles/commit/9d3c32514c8682fa6ed466185751de80c4fe0baa))
+* removed some constants from engine that are relative only to polygon mask plugin ([2920980](https://github.com/matteobruni/tsparticles/commit/29209805481f2d6a7704ec73800bc416233b3362))
+* removed support for very old browsers that don't support requestAnimationFrame ([edf5f9d](https://github.com/matteobruni/tsparticles/commit/edf5f9dc70ea7cd3c3ef278e88ed448fabbf688f))
+
+
+
+
+
+## [2.2.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.2.2...tsparticles-engine@2.2.4) (2022-08-26)
+
+
+### Bug Fixes
+
+* fixed issue on container guard check, fixes [#4679](https://github.com/matteobruni/tsparticles/issues/4679) ([953767d](https://github.com/matteobruni/tsparticles/commit/953767d8f1d616aa58759efc8b63730cb0f94811))
+* fixed issue with detectsOn with non "window" values, fixes [#4606](https://github.com/matteobruni/tsparticles/issues/4606) ([91f7890](https://github.com/matteobruni/tsparticles/commit/91f78904474b9b021c783342c5968e3debe035c4))
+
+
+
+
+
+## [2.2.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.2.2...tsparticles-engine@2.2.3) (2022-08-21)
+
+
+### Bug Fixes
+
+* fixed issue with detectsOn with non "window" values, fixes [#4606](https://github.com/matteobruni/tsparticles/issues/4606) ([ac97f83](https://github.com/matteobruni/tsparticles/commit/ac97f83d470efcb51a3b1942edd7536574c54bad))
+
+
+
+
+
+## [2.2.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.2.1...tsparticles-engine@2.2.2) (2022-08-16)
+
+
+### Bug Fixes
+
+* fixed double mouse events on mobile using pointer events, closes [#4622](https://github.com/matteobruni/tsparticles/issues/4622) ([1019fa4](https://github.com/matteobruni/tsparticles/commit/1019fa431f8a43cbd45d6adeb5adf94433e6e04b))
+
+
+
+
+
+## [2.2.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.2.0...tsparticles-engine@2.2.1) (2022-08-12)
+
+**Note:** Version bump only for package tsparticles-engine
+
+
+
+
+
+# [2.2.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.1.4...tsparticles-engine@2.2.0) (2022-08-11)
+
+
+### Bug Fixes
+
+* fix responsive screen size ([6d5cdd7](https://github.com/matteobruni/tsparticles/commit/6d5cdd70ac72fea5db4c8412d2c057903ed8b1b2))
+* fixed container refresh ([9e0c71e](https://github.com/matteobruni/tsparticles/commit/9e0c71ea8f73562f53027bb08c13603dd90157c8))
+* fixed correctly both [#4031](https://github.com/matteobruni/tsparticles/issues/4031) and [#4385](https://github.com/matteobruni/tsparticles/issues/4385) ([6b57b69](https://github.com/matteobruni/tsparticles/commit/6b57b69585f931478118bd466dcdce9bbc90fa79))
+* fixed some exports and comments ([389d82c](https://github.com/matteobruni/tsparticles/commit/389d82c7cf2786f2d32f54683779bd6bda96a877))
+* fixed some regex, added support for rgba/hsla/hsva string values with alpha % ([84b31fe](https://github.com/matteobruni/tsparticles/commit/84b31fefe25a7bec93f8942036d1af51e4749bbc))
+* improved container guard check before doing stuff ([ebca38e](https://github.com/matteobruni/tsparticles/commit/ebca38ed5e208b6f1ab507fa7cd1221cdbd7cbc5))
+* moved gradients classes to gradient updater, lighter engine ([e08d09f](https://github.com/matteobruni/tsparticles/commit/e08d09f7243c4fd790b990e1c3f75c832b9e3ef3))
+* **readme:** fix error 404 links ([21bd331](https://github.com/matteobruni/tsparticles/commit/21bd3315437050c6cbc48d7ad2ed8f522937385f))
+
+
+### Features
+
+* added new tspRandom function and setRandom for customizing all the random behaviors ([bd83a57](https://github.com/matteobruni/tsparticles/commit/bd83a57b2eb8b455450a5940ba4c4d5ff34834b2))
+* changed load interactivity options to load mode options and moved to external interactors only ([697a155](https://github.com/matteobruni/tsparticles/commit/697a155856c81ad2d4793404f9fc9e34ff78ed68))
+* containers now can have more than one path generator, each particle will keep its own ([94f2985](https://github.com/matteobruni/tsparticles/commit/94f29855b6fd646a61bf2c7bd2df8ffe18990c77))
+* moved hsv color management to external plugin since it's not commonly used ([d2cf77b](https://github.com/matteobruni/tsparticles/commit/d2cf77b6b4a81c09ed46c137941e7d6eddf5ea43))
+* moved links options out from engine ([3d1dd68](https://github.com/matteobruni/tsparticles/commit/3d1dd6884337f3d6c77d8348351d985364a1aae1))
+* moved more code out from engine to specific plugins ([14d4887](https://github.com/matteobruni/tsparticles/commit/14d488756b759b7650e02886ed862f821a6e8ed1))
+* moved more code out from engine to specific plugins ([e28e28d](https://github.com/matteobruni/tsparticles/commit/e28e28d7b1a2d3d49334024c012bd49c3b0a40a6))
+* moved more code out from engine to specific plugins ([eea8fee](https://github.com/matteobruni/tsparticles/commit/eea8fee6512722fce084385f8ae36f9e99a44ab9))
+* moved more code out from engine to specific plugins ([9e00627](https://github.com/matteobruni/tsparticles/commit/9e00627dc5e7c864b559f53e79bcd49a537c17a4))
+* moved more code out from engine to specific plugins ([7cc8ee4](https://github.com/matteobruni/tsparticles/commit/7cc8ee41b80cd151ae71eb6551484ab473b04175))
+* moved more code out from engine to specific plugins ([cf88d6e](https://github.com/matteobruni/tsparticles/commit/cf88d6e2529cafd15c82253ab0099ed082eb2456))
+* moved more code out from engine to specific plugins ([336a940](https://github.com/matteobruni/tsparticles/commit/336a9404a6f88e53a0f318d847e48bc54a5b4c03))
+* moved more code out from engine to specific plugins ([bdd916b](https://github.com/matteobruni/tsparticles/commit/bdd916b157de7edd96e6401a2366f4e60416ab72))
+* moved more code out from engine to specific plugins ([9279a1b](https://github.com/matteobruni/tsparticles/commit/9279a1b962cd20cce6e99a9ca3f137e60a51fc30))
+* moved more code out from engine to specific plugins ([b504a14](https://github.com/matteobruni/tsparticles/commit/b504a147d6664faccf4fbc990d32c5dc07ef3945))
+* moved more code out from engine to specific plugins, added new method to interactors ([c3aab68](https://github.com/matteobruni/tsparticles/commit/c3aab68c6ce3317ece3f76e6cd8745db8a7dd6d7))
+* removed active from slow mode, it was obsolete, small breaking change but smaller engine ([378bc65](https://github.com/matteobruni/tsparticles/commit/378bc65516dbbf8e6b80bbc026695145f7c9a867))
+* reworked image shape, now supports multiple colors in svg replace color, random value too ([3173ebc](https://github.com/matteobruni/tsparticles/commit/3173ebc14716b241fbb84ae9f1a2cd3c5567f846))
+* reworking image shape for supporting multiple colors in svg replace color ([c28bc85](https://github.com/matteobruni/tsparticles/commit/c28bc85fded04a54a3d4cb25dca1701f1f6b1f01))
+
+
+
+
+
 ## [2.1.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.1.3...tsparticles-engine@2.1.4) (2022-07-28)
 
 

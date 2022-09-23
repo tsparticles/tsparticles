@@ -3,11 +3,11 @@ import {
     DestroyType,
     StartValueType,
     clamp,
+    getRandom,
     getRangeMax,
     getRangeMin,
     getRangeValue,
     randomInRange,
-    tspRandom,
 } from "tsparticles-engine";
 import type { Container, IDelta, IParticleUpdater, Particle } from "tsparticles-engine";
 
@@ -122,7 +122,7 @@ export class OpacityUpdater implements IParticleUpdater {
                 case StartValueType.random:
                     particle.opacity.value = randomInRange(particle.opacity);
                     particle.opacity.status =
-                        tspRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
+                        getRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
                     break;
 
@@ -138,7 +138,7 @@ export class OpacityUpdater implements IParticleUpdater {
                 (getRangeValue(opacityAnimation.speed) / 100) * this.container.retina.reduceFactor;
 
             if (!opacityAnimation.sync) {
-                particle.opacity.velocity *= tspRandom();
+                particle.opacity.velocity *= getRandom();
             }
         }
     }

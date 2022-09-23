@@ -7,7 +7,7 @@ export class ParticlesEditor extends Editor {
     private _presets?: EditorInputBase;
 
     constructor(readonly particles: Container) {
-        super(particles.id, "tsParticles", particles);
+        super(particles.id, "tsParticles", () => particles);
     }
 
     addPreset(text: string, file: string): void {
@@ -44,15 +44,29 @@ export class ParticlesEditor extends Editor {
             a.href = url;
             a.dataset.downloadUrl = [contentType, a.download, a.href].join(":");
 
-            const e = document.createEvent("MouseEvents");
+            const evt = new MouseEvent("click", {
+                bubbles: true,
+                cancelable: false,
+                view: window,
+                detail: 0,
+                screenX: 0,
+                screenY: 0,
+                clientX: 0,
+                clientY: 0,
+                ctrlKey: false,
+                altKey: false,
+                shiftKey: false,
+                metaKey: false,
+                button: 0,
+                relatedTarget: null,
+            });
 
-            e.initMouseEvent("click", true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-            a.dispatchEvent(e);
+            a.dispatchEvent(evt);
         });
     }
 
     private addOptions(): void {
-        const options = new OptionsEditor(this.data as Container);
+        const options = new OptionsEditor(this.data as () => Container);
 
         options.addToGroup(this);
     }

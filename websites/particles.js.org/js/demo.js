@@ -299,7 +299,7 @@
 <div id="tsparticles"></div>`,
                 css: ``,
                 js: `tsParticles.load("tsparticles", ${JSON.stringify(container.options)});`,
-                js_external: "https://cdn.jsdelivr.net/npm/tsparticles@2.1.4/tsparticles.bundle.min.js",
+                js_external: "https://cdn.jsdelivr.net/npm/tsparticles@2.3.2/tsparticles.bundle.min.js",
                 title: "tsParticles example",
                 description: "This pen was created with tsParticles from https://particles.js.org",
                 tags: "tsparticles, javascript, typescript, design, animation",
@@ -385,7 +385,7 @@
         }
     });
 
-    window.addEventListener("load", function () {
+    window.addEventListener("load", async () => {
         const element = document.getElementById("editor");
         const options = {
             mode: "form",
@@ -476,21 +476,23 @@
         initSidebar();
         initStats();
 
-        loadFull(tsParticles);
+        await loadFull(tsParticles);
 
-        loadInfectionPlugin(tsParticles);
-        loadLightInteraction(tsParticles);
-        loadParticlesRepulseInteraction(tsParticles);
-        loadGradientUpdater(tsParticles);
-        loadOrbitUpdater(tsParticles);
-        loadCurvesPath(tsParticles);
-        loadPolygonPath(tsParticles);
-        loadPerlinNoisePath(tsParticles);
-        loadSimplexNoisePath(tsParticles);
-        loadBubbleShape(tsParticles);
-        loadHeartShape(tsParticles);
-        loadMultilineTextShape(tsParticles);
-        loadRoundedRectShape(tsParticles);
-        loadSpiralShape(tsParticles);
+        await loadCanvasMaskPlugin(tsParticles);
+        await loadInfectionPlugin(tsParticles);
+        await loadHsvColorPlugin(tsParticles);
+        await loadLightInteraction(tsParticles);
+        await loadParticlesRepulseInteraction(tsParticles);
+        await loadGradientUpdater(tsParticles);
+        await loadOrbitUpdater(tsParticles);
+        await loadCurvesPath(tsParticles);
+        await loadPolygonPath(tsParticles);
+        await loadPerlinNoisePath(tsParticles);
+        await loadSimplexNoisePath(tsParticles);
+        await loadBubbleShape(tsParticles);
+        await loadHeartShape(tsParticles);
+        await loadMultilineTextShape(tsParticles);
+        await loadRoundedRectShape(tsParticles);
+        await loadSpiralShape(tsParticles);
     });
 })();

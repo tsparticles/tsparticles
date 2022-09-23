@@ -3,6 +3,81 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-move-base@2.3.1...tsparticles-move-base@2.3.2) (2022-09-21)
+
+**Note:** Version bump only for package tsparticles-move-base
+
+
+
+
+
+## [2.3.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-move-base@2.3.0...tsparticles-move-base@2.3.1) (2022-09-13)
+
+**Note:** Version bump only for package tsparticles-move-base
+
+
+
+
+
+# [2.3.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-move-base@2.2.4...tsparticles-move-base@2.3.0) (2022-09-11)
+
+
+### Features
+
+* added more easing types ([5f8f1c4](https://github.com/matteobruni/tsparticles/commit/5f8f1c43503b022494b28dbff229337da9f45fd1))
+* moved out all the external interactors from the engine ([9d3c325](https://github.com/matteobruni/tsparticles/commit/9d3c32514c8682fa6ed466185751de80c4fe0baa))
+
+
+
+
+
+## [2.2.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-move-base@2.2.2...tsparticles-move-base@2.2.4) (2022-08-26)
+
+**Note:** Version bump only for package tsparticles-move-base
+
+
+
+
+
+## [2.2.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-move-base@2.2.2...tsparticles-move-base@2.2.3) (2022-08-21)
+
+**Note:** Version bump only for package tsparticles-move-base
+
+
+
+
+
+## [2.2.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-move-base@2.2.1...tsparticles-move-base@2.2.2) (2022-08-16)
+
+
+### Bug Fixes
+
+* fixed double mouse events on mobile using pointer events, closes [#4622](https://github.com/matteobruni/tsparticles/issues/4622) ([1019fa4](https://github.com/matteobruni/tsparticles/commit/1019fa431f8a43cbd45d6adeb5adf94433e6e04b))
+
+
+
+
+
+## [2.2.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-move-base@2.2.0...tsparticles-move-base@2.2.1) (2022-08-12)
+
+**Note:** Version bump only for package tsparticles-move-base
+
+
+
+
+
+# [2.2.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-move-base@2.1.4...tsparticles-move-base@2.2.0) (2022-08-11)
+
+
+### Features
+
+* added new tspRandom function and setRandom for customizing all the random behaviors ([bd83a57](https://github.com/matteobruni/tsparticles/commit/bd83a57b2eb8b455450a5940ba4c4d5ff34834b2))
+* containers now can have more than one path generator, each particle will keep its own ([94f2985](https://github.com/matteobruni/tsparticles/commit/94f29855b6fd646a61bf2c7bd2df8ffe18990c77))
+
+
+
+
+
 ## [2.1.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-move-base@2.1.3...tsparticles-move-base@2.1.4) (2022-07-28)
 
 **Note:** Version bump only for package tsparticles-move-base

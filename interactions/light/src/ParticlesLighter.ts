@@ -2,13 +2,9 @@ import { HoverMode, ParticlesInteractorBase, isInArray, rangeColorToRgb } from "
 import type { LightContainer, LightParticle } from "./Types";
 import { drawParticleShadow } from "./Utils";
 
-export class ParticlesLighter extends ParticlesInteractorBase {
-    readonly #container;
-
+export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
     constructor(container: LightContainer) {
         super(container);
-
-        this.#container = container;
     }
 
     clear(): void {
@@ -20,10 +16,10 @@ export class ParticlesLighter extends ParticlesInteractorBase {
     }
 
     async interact(particle: LightParticle): Promise<void> {
-        const container = this.#container,
+        const container = this.container,
             options = container.actualOptions;
 
-        if (options.interactivity.events.onHover.enable && container.interactivity.status === "mousemove") {
+        if (options.interactivity.events.onHover.enable && container.interactivity.status === "pointermove") {
             const mousePos = this.container.interactivity.mouse.position;
 
             if (mousePos) {
@@ -35,7 +31,7 @@ export class ParticlesLighter extends ParticlesInteractorBase {
     }
 
     isEnabled(particle: LightParticle): boolean {
-        const container = this.container as LightContainer,
+        const container = this.container,
             interactivity = particle.interactivity ?? container.actualOptions.interactivity,
             mouse = container.interactivity.mouse,
             events = interactivity.events;

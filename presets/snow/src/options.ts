@@ -17,5 +17,13 @@ export const options = {
         size: {
             value: { min: 1, max: 10 },
         },
+        wobble: {
+            distance: 20,
+            enable: true,
+            speed: {
+                min: -5,
+                max: 5,
+            },
+        },
     },
 };

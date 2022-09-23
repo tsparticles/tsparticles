@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.46.2](https://github.com/tsparticles/preset-template/compare/tsparticles-preset-template@1.46.1...tsparticles-preset-template@1.46.2) (2022-09-21)
+
+**Note:** Version bump only for package tsparticles-preset-template
+
+
+
+
+
+## [1.46.1](https://github.com/tsparticles/preset-template/compare/tsparticles-preset-template@1.46.0...tsparticles-preset-template@1.46.1) (2022-09-13)
+
+**Note:** Version bump only for package tsparticles-preset-template
+
+
+
+
+
+# [1.46.0](https://github.com/tsparticles/preset-template/compare/tsparticles-preset-template@1.45.4...tsparticles-preset-template@1.46.0) (2022-09-11)
+
+**Note:** Version bump only for package tsparticles-preset-template
+
+
+
+
+
+## [1.45.4](https://github.com/tsparticles/preset-template/compare/tsparticles-preset-template@1.45.2...tsparticles-preset-template@1.45.4) (2022-08-26)
+
+**Note:** Version bump only for package tsparticles-preset-template
+
+
+
+
+
+## [1.45.3](https://github.com/tsparticles/preset-template/compare/tsparticles-preset-template@1.45.2...tsparticles-preset-template@1.45.3) (2022-08-21)
+
+**Note:** Version bump only for package tsparticles-preset-template
+
+
+
+
+
+## [1.45.2](https://github.com/tsparticles/preset-template/compare/tsparticles-preset-template@1.45.1...tsparticles-preset-template@1.45.2) (2022-08-16)
+
+
+### Bug Fixes
+
+* fixed double mouse events on mobile using pointer events, closes [#4622](https://github.com/tsparticles/preset-template/issues/4622) ([1019fa4](https://github.com/tsparticles/preset-template/commit/1019fa431f8a43cbd45d6adeb5adf94433e6e04b))
+
+
+
+
+
+## [1.45.1](https://github.com/tsparticles/preset-template/compare/tsparticles-preset-template@1.45.0...tsparticles-preset-template@1.45.1) (2022-08-12)
+
+**Note:** Version bump only for package tsparticles-preset-template
+
+
+
+
+
+# [1.45.0](https://github.com/tsparticles/preset-template/compare/tsparticles-preset-template@1.44.4...tsparticles-preset-template@1.45.0) (2022-08-11)
+
+**Note:** Version bump only for package tsparticles-preset-template
+
+
+
+
+
 ## [1.44.4](https://github.com/tsparticles/preset-template/compare/tsparticles-preset-template@1.44.3...tsparticles-preset-template@1.44.4) (2022-07-28)
 
 

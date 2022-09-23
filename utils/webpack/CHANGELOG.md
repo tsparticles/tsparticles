@@ -3,6 +3,78 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.2](https://github.com/matteobruni/tsparticles/compare/webpack-tsparticles-plugin@1.3.1...webpack-tsparticles-plugin@1.3.2) (2022-09-21)
+
+**Note:** Version bump only for package webpack-tsparticles-plugin
+
+
+
+
+
+## [1.3.1](https://github.com/matteobruni/tsparticles/compare/webpack-tsparticles-plugin@1.3.0...webpack-tsparticles-plugin@1.3.1) (2022-09-13)
+
+**Note:** Version bump only for package webpack-tsparticles-plugin
+
+
+
+
+
+# [1.3.0](https://github.com/matteobruni/tsparticles/compare/webpack-tsparticles-plugin@1.2.4...webpack-tsparticles-plugin@1.3.0) (2022-09-11)
+
+
+### Features
+
+* created destroy updater, moved all particles destroy (split and similar) code from engine ([f8642fd](https://github.com/matteobruni/tsparticles/commit/f8642fda3f43688ae7a0df55f5b06bb2a45d9e80))
+* first version of image mask plugin, needs refactoring but works ([fd8a142](https://github.com/matteobruni/tsparticles/commit/fd8a1425f47e480c5703b8b3e2fe48ccdba5c79c))
+* moved out all the external interactors from the engine ([9d3c325](https://github.com/matteobruni/tsparticles/commit/9d3c32514c8682fa6ed466185751de80c4fe0baa))
+
+
+
+
+
+## [1.2.4](https://github.com/matteobruni/tsparticles/compare/webpack-tsparticles-plugin@1.2.2...webpack-tsparticles-plugin@1.2.4) (2022-08-26)
+
+**Note:** Version bump only for package webpack-tsparticles-plugin
+
+
+
+
+
+## [1.2.3](https://github.com/matteobruni/tsparticles/compare/webpack-tsparticles-plugin@1.2.2...webpack-tsparticles-plugin@1.2.3) (2022-08-21)
+
+**Note:** Version bump only for package webpack-tsparticles-plugin
+
+
+
+
+
+## [1.2.2](https://github.com/matteobruni/tsparticles/compare/webpack-tsparticles-plugin@1.2.1...webpack-tsparticles-plugin@1.2.2) (2022-08-16)
+
+**Note:** Version bump only for package webpack-tsparticles-plugin
+
+
+
+
+
+## [1.2.1](https://github.com/matteobruni/tsparticles/compare/webpack-tsparticles-plugin@1.2.0...webpack-tsparticles-plugin@1.2.1) (2022-08-12)
+
+**Note:** Version bump only for package webpack-tsparticles-plugin
+
+
+
+
+
+# [1.2.0](https://github.com/matteobruni/tsparticles/compare/webpack-tsparticles-plugin@1.1.2...webpack-tsparticles-plugin@1.2.0) (2022-08-11)
+
+
+### Features
+
+* moved hsv color management to external plugin since it's not commonly used ([d2cf77b](https://github.com/matteobruni/tsparticles/commit/d2cf77b6b4a81c09ed46c137941e7d6eddf5ea43))
+
+
+
+
+
 ## [1.1.2](https://github.com/matteobruni/tsparticles/compare/webpack-tsparticles-plugin@1.1.1...webpack-tsparticles-plugin@1.1.2) (2022-07-28)
 
 **Note:** Version bump only for package webpack-tsparticles-plugin

@@ -8,8 +8,7 @@
             maxParticles = Math.max(container.particles.count, maxParticles);
 
             return {
-                value: container.particles.count,
-                maxValue: maxParticles
+                value: container.particles.count, maxValue: maxParticles
             };
         }
     });
@@ -69,9 +68,36 @@
 
         tsParticles.loadJSON('tsparticles', `/presets/${presetId}.json`).then((particles) => {
             localStorage.presetId = presetId;
-            editor.set(particles.options);
+
+            const omit = (obj) => {
+                return _.omitBy(obj, (value, key) => {
+                    return _.startsWith(key, "_");
+                })
+            };
+
+            const transform = (obj) => {
+                return _.transform(omit(obj), function (result, value, key) {
+                    result[key] = _.isObject(value) ? transform(omit(value)) : value;
+                })
+            };
+
+            editor.update(transform(particles.options));
             editor.expandAll();
         });
+    };
+
+    const omit = (obj, keys) => {
+        if (!keys.length) return obj;
+        const key = keys.pop();
+        const parts = key.split(".");
+        if (parts.length > 1) {
+            const { [parts[0]]: todo, ...rest } = obj;
+            return {
+                ...omit(rest, keys), [parts[0]]: omit(todo, [ parts[1] ]),
+            };
+        }
+        const { [key]: omitted, ...rest } = obj;
+        return omit(rest, keys);
     };
 
     let initSidebar = function () {
@@ -108,21 +134,16 @@
         tsParticles.domItem(0).refresh();
     };
 
-    window.addEventListener('load', function () {
+    window.addEventListener('load', async function () {
         const element = document.getElementById('editor');
         const options = {
-            mode: 'form',
-            modes: [ 'code', 'form', 'view', 'preview', 'text' ], // allowed modes
+            mode: 'form', modes: [ 'code', 'form', 'view', 'preview', 'text' ], // allowed modes
             autocomplete: {
-                filter: 'contain',
-                trigger: 'focus'
-            },
-            onError: function (err) {
+                filter: 'contain', trigger: 'focus'
+            }, onError: function (err) {
                 alert(err.toString())
-            },
-            onModeChange: function (newMode, oldMode) {
-            },
-            onChange: function () {
+            }, onModeChange: function (newMode, oldMode) {
+            }, onChange: function () {
             }
         };
         const editor = new JSONEditor(element, options);
@@ -270,23 +291,32 @@ canvas {
         initSidebar();
         initStats();
 
-        loadHsvColorPlugin();
+        await loadHsvColorPlugin();
 
-        loadFull(tsParticles);
+        await loadFull(tsParticles);
 
-        loadInfectionPlugin(tsParticles);
-        loadLightInteraction(tsParticles);
-        loadParticlesRepulseInteraction(tsParticles);
-        loadGradientUpdater(tsParticles);
-        loadOrbitUpdater(tsParticles);
-        loadCurvesPath(tsParticles);
-        loadPolygonPath(tsParticles);
-        loadPerlinNoisePath(tsParticles);
-        loadSimplexNoisePath(tsParticles);
-        loadBubbleShape(tsParticles);
-        loadHeartShape(tsParticles);
-        loadMultilineTextShape(tsParticles);
-        loadRoundedRectShape(tsParticles);
-        loadSpiralShape(tsParticles);
+        await loadCanvasMaskPlugin(tsParticles);
+        await loadInfectionPlugin(tsParticles);
+        await loadLightInteraction(tsParticles);
+        await loadParticlesRepulseInteraction(tsParticles);
+        await loadGradientUpdater(tsParticles);
+        await loadOrbitUpdater(tsParticles);
+        await loadCurvesPath(tsParticles);
+        await loadPolygonPath(tsParticles);
+        await loadPerlinNoisePath(tsParticles);
+        await loadSimplexNoisePath(tsParticles);
+        await loadBubbleShape(tsParticles);
+        await loadHeartShape(tsParticles);
+        await loadMultilineTextShape(tsParticles);
+        await loadRoundedRectShape(tsParticles);
+        await loadSpiralShape(tsParticles);
     });
 })();
+
+function pixelFilter(pixel) {
+    return pixel.r < 30 && pixel.g < 30 && pixel.b < 30 ? false : pixel.a > 0;
+}
+
+function pixelTextFilter(pixel) {
+    return pixel.a > 0;
+}

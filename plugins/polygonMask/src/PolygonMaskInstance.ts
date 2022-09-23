@@ -1,22 +1,17 @@
 import type { Container, Engine, IContainerPlugin, ICoordinates, IDelta, IDimension } from "tsparticles-engine";
 import { calcClosestPtOnSegment, drawPolygonMask, drawPolygonMaskPath, parsePaths, segmentBounce } from "./utils";
-import {
-    deepExtend,
-    getDistance,
-    getDistances,
-    itemFromArray,
-    noPolygonDataLoaded,
-    noPolygonFound,
-    tspRandom,
-} from "tsparticles-engine";
-import type { IPolygonMaskOptions } from "./types";
+import { deepExtend, getDistance, getDistances, getRandom, itemFromArray } from "tsparticles-engine";
 import type { ISvgPath } from "./Interfaces/ISvgPath";
 import { OutModeDirection } from "tsparticles-engine";
 import type { Particle } from "tsparticles-engine";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
 import { PolygonMaskInlineArrangement } from "./Enums/PolygonMaskInlineArrangement";
+import type { PolygonMaskOptions } from "./types";
 import { PolygonMaskType } from "./Enums/PolygonMaskType";
 import type { RecursivePartial } from "tsparticles-engine";
+
+const noPolygonDataLoaded = "No polygon data loaded.",
+    noPolygonFound = "No polygon found, you need to specify SVG url in config.";
 
 /**
  * Polygon Mask manager
@@ -24,7 +19,6 @@ import type { RecursivePartial } from "tsparticles-engine";
  */
 export class PolygonMaskInstance implements IContainerPlugin {
     dimension: IDimension;
-    #engine;
     offset?: ICoordinates;
     readonly options;
     readonly path2DSupported;
@@ -32,17 +26,20 @@ export class PolygonMaskInstance implements IContainerPlugin {
     raw?: ICoordinates[];
     redrawTimeout?: number;
 
-    private polygonMaskMoveRadius;
+    private readonly _container;
+    private readonly _engine;
+    private _polygonMaskMoveRadius;
 
-    constructor(private readonly container: Container, engine: Engine) {
-        this.#engine = engine;
+    constructor(container: Container, engine: Engine) {
+        this._container = container;
+        this._engine = engine;
         this.dimension = {
             height: 0,
             width: 0,
         };
         this.path2DSupported = !!window.Path2D;
         this.options = new PolygonMask();
-        this.polygonMaskMoveRadius = this.options.move.radius * container.retina.pixelRatio;
+        this._polygonMaskMoveRadius = this.options.move.radius * container.retina.pixelRatio;
     }
 
     clickPositionValid(position: ICoordinates): boolean {
@@ -86,12 +83,12 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
     }
 
-    async initAsync(options?: RecursivePartial<IPolygonMaskOptions>): Promise<void> {
+    async initAsync(options?: RecursivePartial<PolygonMaskOptions>): Promise<void> {
         this.options.load(options?.polygon);
 
         const polygonMaskOptions = this.options;
 
-        this.polygonMaskMoveRadius = polygonMaskOptions.move.radius * this.container.retina.pixelRatio;
+        this._polygonMaskMoveRadius = polygonMaskOptions.move.radius * this._container.retina.pixelRatio;
 
         /* If is set the url of svg element, load it and parse into raw polygon data */
         if (polygonMaskOptions.enable) {
@@ -131,7 +128,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
 
     resize(): void {
-        const container = this.container,
+        const container = this._container,
             options = this.options;
 
         if (!(options.enable && options.type !== PolygonMaskType.none)) {
@@ -155,7 +152,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
 
     private checkInsidePolygon(position?: ICoordinates): boolean {
-        const container = this.container,
+        const container = this._container,
             options = this.options;
 
         if (!options.enable || options.type === PolygonMaskType.none || options.type === PolygonMaskType.inline) {
@@ -170,8 +167,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
 
         const canvasSize = container.canvas.size,
-            x = position?.x ?? tspRandom() * canvasSize.width,
-            y = position?.y ?? tspRandom() * canvasSize.height;
+            x = position?.x ?? getRandom() * canvasSize.width,
+            y = position?.y ?? getRandom() * canvasSize.height;
 
         let inside = false;
 
@@ -271,7 +268,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
 
         for (const item of this.raw) {
-            this.container.particles.addParticle({
+            this._container.particles.addParticle({
                 x: item.x,
                 y: item.y,
             });
@@ -279,7 +276,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
 
     private getEquidistantPointByIndex(index: number): ICoordinates {
-        const options = this.container.actualOptions,
+        const options = this._container.actualOptions,
             polygonMaskOptions = this.options;
 
         if (!this.raw || !this.raw.length || !this.paths?.length) throw new Error(noPolygonDataLoaded);
@@ -342,7 +339,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
 
         const path = itemFromArray(this.paths),
-            distance = Math.floor(tspRandom() * path.length) + 1,
+            distance = Math.floor(getRandom() * path.length) + 1,
             point = path.element.getPointAtLength(distance);
 
         return {
@@ -379,8 +376,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
         this.createPath2D();
 
-        this.#engine.dispatchEvent("polygonMaskLoaded", {
-            container: this.container,
+        this._engine.dispatchEvent("polygonMaskLoaded", {
+            container: this._container,
         });
     }
 
@@ -391,7 +388,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
             return this.raw;
         }
 
-        const container = this.container,
+        const container = this._container,
             options = this.options,
             parser = new DOMParser(),
             doc = parser.parseFromString(xml, "image/svg+xml"),
@@ -485,7 +482,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         } else if (options.type === PolygonMaskType.inline && particle.initialPosition) {
             const dist = getDistance(particle.initialPosition, particle.getPosition());
 
-            if (dist > this.polygonMaskMoveRadius) {
+            if (dist > this._polygonMaskMoveRadius) {
                 particle.velocity.x = particle.velocity.y / 2 - particle.velocity.x;
                 particle.velocity.y = particle.velocity.x / 2 - particle.velocity.y;
 
@@ -497,7 +494,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
 
     private randomPoint(): ICoordinates {
-        const container = this.container,
+        const container = this._container,
             options = this.options;
 
         let position: ICoordinates;
@@ -520,8 +517,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
             }
         } else {
             position = {
-                x: tspRandom() * container.canvas.size.width,
-                y: tspRandom() * container.canvas.size.height,
+                x: getRandom() * container.canvas.size.width,
+                y: getRandom() * container.canvas.size.height,
             };
         }
 

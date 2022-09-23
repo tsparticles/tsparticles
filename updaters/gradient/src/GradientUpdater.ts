@@ -3,15 +3,16 @@ import {
     GradientType,
     RotateDirection,
     StartValueType,
+    executeOnSingleOrMultiple,
     getHslAnimationFromHsl,
+    getRandom,
     getRangeMax,
     getRangeMin,
     getRangeValue,
     getStyleFromHsl,
-    itemFromArray,
+    itemFromSingleOrMultiple,
     randomInRange,
     rangeColorToHsl,
-    tspRandom,
 } from "tsparticles-engine";
 import type {
     IDelta,
@@ -228,10 +229,7 @@ export class GradientUpdater implements IParticleUpdater {
     }
 
     init(particle: GradientParticle): void {
-        const gradient =
-            particle.options.gradient instanceof Array
-                ? itemFromArray(particle.options.gradient)
-                : particle.options.gradient;
+        const gradient = itemFromSingleOrMultiple(particle.options.gradient);
 
         if (!gradient) {
             return;
@@ -252,7 +250,7 @@ export class GradientUpdater implements IParticleUpdater {
         let rotateDirection = gradient.angle.direction;
 
         if (rotateDirection === RotateDirection.random) {
-            const index = Math.floor(tspRandom() * 2);
+            const index = Math.floor(getRandom() * 2);
 
             rotateDirection = index > 0 ? RotateDirection.counterClockwise : RotateDirection.clockwise;
         }
@@ -317,7 +315,7 @@ export class GradientUpdater implements IParticleUpdater {
                     case StartValueType.random:
                         addColor.opacity.value = randomInRange(addColor.opacity);
                         addColor.opacity.status =
-                            tspRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
+                            getRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
                         break;
 
@@ -359,21 +357,13 @@ export class GradientUpdater implements IParticleUpdater {
                 continue;
             }
 
-            if (gradientToLoad instanceof Array) {
-                options.gradient = gradientToLoad.map((s) => {
-                    const tmp = new AnimatableGradient();
+            options.gradient = executeOnSingleOrMultiple(gradientToLoad, (gradient) => {
+                const tmp = new AnimatableGradient();
 
-                    tmp.load(s);
+                tmp.load(gradient);
 
-                    return tmp;
-                });
-            } else {
-                if (!options.gradient || options.gradient instanceof Array) {
-                    options.gradient = new AnimatableGradient();
-                }
-
-                options.gradient.load(gradientToLoad);
-            }
+                return tmp;
+            });
         }
     }
 

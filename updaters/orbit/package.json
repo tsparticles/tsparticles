@@ -1,14 +1,14 @@
 {
   "name": "tsparticles-updater-orbit",
-  "version": "2.1.4",
+  "version": "2.3.2",
   "description": "tsParticles particles orbit updater",
   "homepage": "https://particles.js.org",
   "scripts": {
-    "build": "tsparticles-build src && yarn build:docs",
-    "build:ci": "tsparticles-build src --ci",
-    "build:docs": "rimraf -f docs && typedoc",
-    "version": "tsparticles-build src --distfiles && git add package.dist.json",
-    "prepack": "yarn build"
+    "build": "tsparticles-build",
+    "build:ci": "tsparticles-build --ci",
+    "build:docs": "rimraf -f docs && npx typedoc",
+    "version": "tsparticles-build -d && git add package.dist.json",
+    "prepack": "pnpm run build"
   },
   "repository": {
     "type": "git",
@@ -16,6 +16,8 @@
     "directory": "updaters/orbit"
   },
   "keywords": [
+    "front-end",
+    "frontend",
     "tsparticles",
     "particles.js",
     "particlesjs",
@@ -69,7 +71,8 @@
     "tsparticles-updater"
   ],
   "publishConfig": {
-    "directory": "dist"
+    "directory": "dist",
+    "linkDirectory": true
   },
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
@@ -96,29 +99,29 @@
   },
   "prettier": "@tsparticles/prettier-config",
   "devDependencies": {
-    "@babel/core": "^7.18.9",
-    "@tsparticles/build": "^1.0.0",
-    "@tsparticles/eslint-config": "^1.0.3",
-    "@tsparticles/prettier-config": "^1.0.0",
-    "@tsparticles/tsconfig": "^1.0.0",
-    "@types/webpack-env": "^1.17.0",
-    "@typescript-eslint/eslint-plugin": "^5.30.7",
-    "@typescript-eslint/parser": "^5.30.7",
+    "@babel/core": "^7.19.1",
+    "@tsparticles/build": "^1.2.2",
+    "@tsparticles/eslint-config": "^1.2.2",
+    "@tsparticles/prettier-config": "^1.2.2",
+    "@tsparticles/tsconfig": "^1.2.2",
+    "@types/webpack-env": "^1.18.0",
+    "@typescript-eslint/eslint-plugin": "^5.38.0",
+    "@typescript-eslint/parser": "^5.38.0",
     "babel-loader": "^8.2.5",
-    "browserslist": "^4.20.3",
+    "browserslist": "^4.21.4",
     "copyfiles": "^2.4.1",
-    "eslint": "^8.20.0",
+    "eslint": "^8.23.1",
     "eslint-config-prettier": "^8.5.0",
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
-    "terser-webpack-plugin": "^5.3.3",
-    "typescript": "^4.7.4",
+    "terser-webpack-plugin": "^5.3.6",
+    "typescript": "^4.8.3",
     "webpack": "^5.74.0",
-    "webpack-bundle-analyzer": "^4.5.0",
+    "webpack-bundle-analyzer": "^4.6.1",
     "webpack-cli": "^4.10.0",
-    "webpack-tsparticles-plugin": "^1.1.2"
+    "webpack-tsparticles-plugin": "^1.3.2"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.1.4"
+    "tsparticles-engine": "^2.3.2"
   }
 }

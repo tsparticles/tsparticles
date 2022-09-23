@@ -1,5 +1,5 @@
 import type { Engine, RecursivePartial } from "tsparticles-engine";
-import { tsParticles, tspRandom } from "tsparticles-engine";
+import { getRandom, tsParticles } from "tsparticles-engine";
 import type { IConfettiOptions } from "./IConfettiOptions";
 import { loadAngleUpdater } from "tsparticles-updater-angle";
 import { loadBaseMover } from "tsparticles-move-base";
@@ -56,7 +56,7 @@ export async function confetti(
         id = idOrOptions;
         options = confettiOptions ?? {};
     } else {
-        id = `tsparticles_${Math.floor(tspRandom() * 1000)}`;
+        id = `tsparticles_${Math.floor(getRandom() * 1000)}`;
         options = idOrOptions;
     }
 

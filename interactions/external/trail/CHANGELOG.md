@@ -3,6 +3,82 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-external-trail@2.3.1...tsparticles-interaction-external-trail@2.3.2) (2022-09-21)
+
+**Note:** Version bump only for package tsparticles-interaction-external-trail
+
+
+
+
+
+## [2.3.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-external-trail@2.3.0...tsparticles-interaction-external-trail@2.3.1) (2022-09-13)
+
+**Note:** Version bump only for package tsparticles-interaction-external-trail
+
+
+
+
+
+# [2.3.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-external-trail@2.2.4...tsparticles-interaction-external-trail@2.3.0) (2022-09-11)
+
+**Note:** Version bump only for package tsparticles-interaction-external-trail
+
+
+
+
+
+## [2.2.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-external-trail@2.2.2...tsparticles-interaction-external-trail@2.2.4) (2022-08-26)
+
+**Note:** Version bump only for package tsparticles-interaction-external-trail
+
+
+
+
+
+## [2.2.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-external-trail@2.2.2...tsparticles-interaction-external-trail@2.2.3) (2022-08-21)
+
+**Note:** Version bump only for package tsparticles-interaction-external-trail
+
+
+
+
+
+## [2.2.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-external-trail@2.2.1...tsparticles-interaction-external-trail@2.2.2) (2022-08-16)
+
+
+### Bug Fixes
+
+* fixed double mouse events on mobile using pointer events, closes [#4622](https://github.com/matteobruni/tsparticles/issues/4622) ([1019fa4](https://github.com/matteobruni/tsparticles/commit/1019fa431f8a43cbd45d6adeb5adf94433e6e04b))
+
+
+
+
+
+## [2.2.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-external-trail@2.2.0...tsparticles-interaction-external-trail@2.2.1) (2022-08-12)
+
+
+### Bug Fixes
+
+* fixed editor for v2.2 ([ae41163](https://github.com/matteobruni/tsparticles/commit/ae41163473095aba0083478a47c70d1cc44bf250))
+
+
+
+
+
+# [2.2.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-external-trail@2.1.4...tsparticles-interaction-external-trail@2.2.0) (2022-08-11)
+
+
+### Features
+
+* changed load interactivity options to load mode options and moved to external interactors only ([697a155](https://github.com/matteobruni/tsparticles/commit/697a155856c81ad2d4793404f9fc9e34ff78ed68))
+* moved more code out from engine to specific plugins ([14d4887](https://github.com/matteobruni/tsparticles/commit/14d488756b759b7650e02886ed862f821a6e8ed1))
+* moved more code out from engine to specific plugins ([bdd916b](https://github.com/matteobruni/tsparticles/commit/bdd916b157de7edd96e6401a2366f4e60416ab72))
+* moved more code out from engine to specific plugins ([b504a14](https://github.com/matteobruni/tsparticles/commit/b504a147d6664faccf4fbc990d32c5dc07ef3945))
+
+
+
+
+
 ## [2.1.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-external-trail@2.1.3...tsparticles-interaction-external-trail@2.1.4) (2022-07-28)
 
 **Note:** Version bump only for package tsparticles-interaction-external-trail

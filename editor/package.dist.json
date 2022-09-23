@@ -1,8 +1,10 @@
 {
   "name": "tsparticles-editor",
-  "version": "2.1.4",
+  "version": "2.3.4",
   "description": "tsParticles Configuration Editor",
   "keywords": [
+    "front-end",
+    "frontend",
     "tsparticles",
     "particles.js",
     "particles",
@@ -33,11 +35,22 @@
     }
   ],
   "dependencies": {
-    "object-gui": "^1.1.1",
-    "tsparticles-engine": "^2.1.4",
-    "tsparticles-plugin-absorbers": "^2.1.4",
-    "tsparticles-plugin-emitters": "^2.1.4",
-    "tsparticles-plugin-infection": "^2.1.4"
+    "object-gui": "^2.0.2",
+    "tsparticles-engine": "^2.3.2",
+    "tsparticles-interaction-external-attract": "^2.3.2",
+    "tsparticles-interaction-external-bounce": "^2.3.2",
+    "tsparticles-interaction-external-bubble": "^2.3.2",
+    "tsparticles-interaction-external-connect": "^2.3.2",
+    "tsparticles-interaction-external-grab": "^2.3.2",
+    "tsparticles-interaction-external-pause": "^2.3.2",
+    "tsparticles-interaction-external-push": "^2.3.2",
+    "tsparticles-interaction-external-remove": "^2.3.2",
+    "tsparticles-interaction-external-repulse": "^2.3.2",
+    "tsparticles-interaction-light": "^2.3.2",
+    "tsparticles-interaction-particles-links": "^2.3.2",
+    "tsparticles-plugin-absorbers": "^2.3.2",
+    "tsparticles-plugin-emitters": "^2.3.2",
+    "tsparticles-plugin-infection": "^2.3.2"
   },
   "main": "cjs/index.js",
   "jsdelivr": "tsparticles.editor.min.js",
