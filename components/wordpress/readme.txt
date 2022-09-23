@@ -15,16 +15,19 @@ Example block scaffolded with Create Block tool.
 
 Official tsParticles WordPress Plugin
 
-[![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni?style=for-the-badge)](https://github.com/sponsors/matteobruni)
-[![Discord](https://img.shields.io/discord/872061157379301416?label=discord&logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/hACwv45Hme)
-[![Slack](https://particles.js.org/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI)
-[![Telegram](https://particles.js.org/images/telegram.png)](https://t.me/tsparticles)
-[![Reddit](https://img.shields.io/reddit/subreddit-subscribers/tsParticles?style=for-the-badge)](https://www.reddit.com/r/tsParticles/)
-
 Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website.
 Ready to use components available also for Web Components, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, React, Riot.js, Solid.js, Inferno.
 
 Official tsParticles website with options editor: <https://particles.js.org>
+
+Official Social Channels:
+
+- [GitHub](https://github.com/matteobruni/tsparticles)
+- [Discord](https://discord.gg/hACwv45Hme)
+- [Slack](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI)
+- [Telegram](https://t.me/tsparticles)
+- [Reddit](https://www.reddit.com/r/tsParticles/)
+- [Twitter](https://www.twitter.com/r/tsParticles/)
 
 == Installation ==
 
