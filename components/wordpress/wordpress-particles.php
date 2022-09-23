@@ -6,7 +6,7 @@
  * Requires at least: 5.9
  * Requires PHP:      7.0
  * Version:           2.3.3
- * Author:            Ar3sHack
+ * Author:            matteobruni
  * License:           MIT
  * License URI:       https://mit-license.org
  * Text Domain:       tsparticles-block
