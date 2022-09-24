@@ -40,7 +40,7 @@
     "@vue/cli-plugin-typescript": "^5.0.8",
     "@vue/cli-service": "^5.0.8",
     "babel-loader": "^8.2.5",
-    "eslint": "^8.23.1",
+    "eslint": "^8.24.0",
     "eslint-config-prettier": "^8.5.0",
     "postcss": "^8.4.16",
     "prettier": "^2.7.1",
