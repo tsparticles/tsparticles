@@ -109,7 +109,7 @@
 		"babel-plugin-inferno": "^6.5.0",
 		"clean-webpack-plugin": "^4.0.0",
 		"css-loader": "^6.7.1",
-		"eslint": "^8.23.1",
+		"eslint": "^8.24.0",
 		"eslint-config-prettier": "^8.5.0",
 		"html-webpack-plugin": "^5.5.0",
 		"inferno": "^8.0.3",

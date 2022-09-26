@@ -6,9 +6,9 @@
  * Requires at least: 5.9
  * Requires PHP:      7.0
  * Version:           2.3.3
- * Author:            Ar3sHack
- * License:           MIT
- * License URI:       https://mit-license.org
+ * Author:            matteobruni
+ * License:           GPL-2.0-or-later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       tsparticles-block
  *
  * @package           tsparticles-block
