@@ -378,6 +378,8 @@ export function getLinkRandomColor(
         }
 
         return midColorValue;
+    } else if (color === midColorValue) {
+        return midColorValue;
     } else {
         return rangeColorToRgb({
             value: color,
