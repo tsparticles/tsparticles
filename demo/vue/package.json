@@ -48,7 +48,7 @@
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript": "^1.0.1",
     "rollup-plugin-typescript2": "^0.34.0",
-    "rollup-plugin-vue": "^5.1.9",
+    "rollup-plugin-vue": "^6.0.0",
     "tslib": "^2.4.0",
     "typescript": "^4.8.3",
     "vue-template-compiler": "^2.7.10"
