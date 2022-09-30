@@ -1,4 +1,4 @@
-import type { Container, IRotate } from "tsparticles-engine";
+import type { Container } from "tsparticles-engine";
 import { EditorBase } from "../../../../EditorBase";
 import type { EditorGroup } from "object-gui";
 import { EditorType } from "object-gui";
@@ -6,7 +6,8 @@ import { RotateDirection } from "tsparticles-engine";
 
 export class RotateOptionsEditor extends EditorBase {
     group!: EditorGroup;
-    private options!: () => IRotate;
+
+    private options!: () => unknown;
 
     constructor(particles: () => Container) {
         super(particles);
@@ -14,7 +15,7 @@ export class RotateOptionsEditor extends EditorBase {
 
     addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("rotate", "Rotate");
-        this.options = this.group.data as () => IRotate;
+        this.options = this.group.data as () => unknown;
 
         this.addAnimation();
         this.addProperties();

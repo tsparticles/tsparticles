@@ -1,4 +1,4 @@
-import { AnimationStatus, getRandom, getRangeValue } from "tsparticles-engine";
+import { AnimationStatus, RotateDirection, getRandom, getRangeValue } from "tsparticles-engine";
 import type {
     Container,
     IDelta,
@@ -11,7 +11,6 @@ import type {
 } from "tsparticles-engine";
 import type { IRotate } from "./Options/Interfaces/IRotate";
 import { Rotate } from "./Options/Classes/Rotate";
-import { RotateDirection } from "./RotateDirection";
 
 type RotateParticle = Particle & {
     options: RotateParticlesOptions;
