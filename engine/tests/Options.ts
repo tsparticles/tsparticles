@@ -8,7 +8,6 @@ import {
     OptionsColor,
     OutMode,
     ParticlesOptions,
-    RotateDirection,
     tsParticles,
 } from "../src";
 import type { IParticlesOptions, RecursivePartial } from "../src";
@@ -124,11 +123,11 @@ describe("Options tests", () => {
         expect(options.particles.opacity.value).to.equal(1);
 
         /* particles rotate */
-        expect(options.particles.rotate.animation.enable).to.be.false;
-        expect(options.particles.rotate.animation.speed).to.equal(0);
-        expect(options.particles.rotate.animation.sync).to.be.false;
-        expect(options.particles.rotate.direction).to.equal(RotateDirection.clockwise);
-        expect(options.particles.rotate.value).to.be.equal(0);
+        //expect(options.particles.rotate.animation.enable).to.be.false;
+        //expect(options.particles.rotate.animation.speed).to.equal(0);
+        //expect(options.particles.rotate.animation.sync).to.be.false;
+        //expect(options.particles.rotate.direction).to.equal(RotateDirection.clockwise);
+        //expect(options.particles.rotate.value).to.be.equal(0);
 
         /* particles shadow */
         expect(options.particles.shadow.blur).to.equal(0);
@@ -587,7 +586,7 @@ describe("Options tests", () => {
             opacity: { value: 1 },
             rotate: {
                 value: { min: 0, max: 360 },
-                direction: RotateDirection.clockwise,
+                direction: "clockwise",
                 animation: { enable: true, speed: 15, sync: false },
             },
             shape: { type: "star", options: { star: { sides: 7 } } },

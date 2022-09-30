@@ -14,8 +14,8 @@ const randomColorValue = "random",
     midColorValue = "mid",
     colorManagers = new Map<string, IColorManager>();
 
-export function addColorManager(key: string, manager: IColorManager): void {
-    colorManagers.set(key, manager);
+export function addColorManager(manager: IColorManager): void {
+    colorManagers.set(manager.key, manager);
 }
 
 /**
@@ -377,6 +377,8 @@ export function getLinkRandomColor(
             return randomColorValue;
         }
 
+        return midColorValue;
+    } else if (color === midColorValue) {
         return midColorValue;
     } else {
         return rangeColorToRgb({

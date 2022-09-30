@@ -209,9 +209,11 @@ export function hsvaToRgba(hsva: IHsva): IRgba {
 }
 
 export class HsvColorManager implements IColorManager {
-    stringPrefix: string;
+    readonly key;
+    readonly stringPrefix;
 
     constructor() {
+        this.key = "hsv";
         this.stringPrefix = "hsv";
     }
 

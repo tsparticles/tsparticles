@@ -1,10 +1,7 @@
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { IRotate } from "../../../Interfaces/Particles/Rotate/IRotate";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IOptionLoader, RecursivePartial, RotateDirectionAlt } from "tsparticles-engine";
+import { RotateDirection, ValueWithRandom } from "tsparticles-engine";
+import type { IRotate } from "../Interfaces/IRotate";
 import { RotateAnimation } from "./RotateAnimation";
-import { RotateDirection } from "../../../../Enums/Directions/RotateDirection";
-import type { RotateDirectionAlt } from "../../../../Enums/Directions/RotateDirection";
-import { ValueWithRandom } from "../../ValueWithRandom";
 
 /**
  * [[include:Options/Particles/Rotate.md]]

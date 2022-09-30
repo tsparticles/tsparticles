@@ -150,7 +150,7 @@ export function drawParticle(data: DrawParticleParams): void {
 
     context.beginPath();
 
-    const angle = particle.rotation + (particle.options.rotate.path ? particle.velocity.angle : 0);
+    const angle = particle.rotation + (particle.pathRotation ? particle.velocity.angle : 0);
 
     if (angle !== 0) {
         context.rotate(angle);
