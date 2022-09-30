@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.3.2...tsparticles-engine@2.3.3) (2022-09-30)
+
+
+### Bug Fixes
+
+* handling "mid" value in links colors ([0698d04](https://github.com/matteobruni/tsparticles/commit/0698d0461d8d2f882f219e6e08b1aa7076264462))
+
+
+
+
+
 ## [2.3.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.3.1...tsparticles-engine@2.3.2) (2022-09-21)
 
 

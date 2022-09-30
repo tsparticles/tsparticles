@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-plugin-absorbers",
-  "version": "2.3.2",
+  "version": "2.3.3",
   "description": "tsParticles absorbers plugin",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -89,10 +89,10 @@
   "prettier": "@tsparticles/prettier-config",
   "devDependencies": {
     "@babel/core": "^7.19.3",
-    "@tsparticles/build": "^1.2.2",
-    "@tsparticles/eslint-config": "^1.2.2",
-    "@tsparticles/prettier-config": "^1.2.2",
-    "@tsparticles/tsconfig": "^1.2.2",
+    "@tsparticles/build": "^1.2.3",
+    "@tsparticles/eslint-config": "^1.2.3",
+    "@tsparticles/prettier-config": "^1.2.3",
+    "@tsparticles/tsconfig": "^1.2.3",
     "@types/webpack-env": "^1.18.0",
     "@typescript-eslint/eslint-plugin": "^5.38.1",
     "@typescript-eslint/parser": "^5.38.1",
@@ -108,9 +108,9 @@
     "webpack": "^5.74.0",
     "webpack-bundle-analyzer": "^4.6.1",
     "webpack-cli": "^4.10.0",
-    "webpack-tsparticles-plugin": "^1.3.2"
+    "webpack-tsparticles-plugin": "^1.3.3"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.3.2"
+    "tsparticles-engine": "^2.3.3"
   }
 }
