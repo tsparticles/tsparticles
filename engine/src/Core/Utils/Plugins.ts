@@ -25,6 +25,23 @@ type MoverInitializer = (container: Container) => IParticleMover;
  */
 type UpdaterInitializer = (container: Container) => IParticleUpdater;
 
+function getItemsFromInitializer<TItem, TInitializer extends (container: Container) => TItem>(
+    container: Container,
+    map: Map<Container, TItem[]>,
+    initializers: Map<string, TInitializer>,
+    force = false
+): TItem[] {
+    let res = map.get(container);
+
+    if (!res || force) {
+        res = [...initializers.values()].map((t) => t(container));
+
+        map.set(container, res);
+    }
+
+    return res;
+}
+
 /**
  * @category Utils
  */
@@ -196,27 +213,11 @@ export class Plugins {
      * @returns the array of interaction managers for the given container
      */
     getInteractors(container: Container, force = false): IInteractor[] {
-        let res = this.interactors.get(container);
-
-        if (!res || force) {
-            res = [...this.interactorsInitializers.values()].map((t) => t(container));
-
-            this.interactors.set(container, res);
-        }
-
-        return res;
+        return getItemsFromInitializer(container, this.interactors, this.interactorsInitializers, force);
     }
 
     getMovers(container: Container, force = false): IParticleMover[] {
-        let res = this.movers.get(container);
-
-        if (!res || force) {
-            res = [...this.moversInitializers.values()].map((t) => t(container));
-
-            this.movers.set(container, res);
-        }
-
-        return res;
+        return getItemsFromInitializer(container, this.movers, this.moversInitializers, force);
     }
 
     /**
@@ -270,15 +271,7 @@ export class Plugins {
      * @returns the array of updaters for the given container
      */
     getUpdaters(container: Container, force = false): IParticleUpdater[] {
-        let res = this.updaters.get(container);
-
-        if (!res || force) {
-            res = [...this.updatersInitializers.values()].map((t) => t(container));
-
-            this.updaters.set(container, res);
-        }
-
-        return res;
+        return getItemsFromInitializer(container, this.updaters, this.updatersInitializers, force);
     }
 
     /**
