@@ -61,6 +61,17 @@ Nothing to say
 
 == Changelog ==
 
+= 2.3.4 =
+
+* Bug Fixes
+
+- Handling "mid" value in links color value
+- Fixed links id generation algorithm, it could improve links performances
+
+* Other Changes
+
+- Moved some specific code to correct plugins
+
 = 2.3.3 =
 * Release
 
