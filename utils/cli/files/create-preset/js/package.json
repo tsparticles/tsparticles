@@ -59,7 +59,7 @@
     "url": "https://github.com/tsparticles/preset-template/issues"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.1",
+    "@babel/core": "^7.19.3",
     "@babel/eslint-parser": "^7.19.1",
     "babel-loader": "^8.2.5",
     "browserslist": "^4.21.4",

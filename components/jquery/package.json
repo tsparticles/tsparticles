@@ -103,13 +103,13 @@
     "tsparticles-engine": "^2.3.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.1",
-    "@babel/preset-env": "^7.19.1",
+    "@babel/core": "^7.19.3",
+    "@babel/preset-env": "^7.19.3",
     "@types/jquery": "^3.5.14",
-    "@types/node": "^18.7.19",
+    "@types/node": "^18.7.23",
     "@types/webpack-env": "^1.18.0",
-    "@typescript-eslint/eslint-plugin": "^5.38.0",
-    "@typescript-eslint/parser": "^5.38.0",
+    "@typescript-eslint/eslint-plugin": "^5.38.1",
+    "@typescript-eslint/parser": "^5.38.1",
     "babel-preset-env": "^1.7.0",
     "eslint": "^8.24.0",
     "eslint-config-prettier": "^8.5.0",
@@ -118,7 +118,7 @@
     "rollup": "^2.79.1",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-sourcemaps": "^0.6.3",
-    "typescript": "^4.8.3",
-    "uglify-js": "^3.17.1"
+    "typescript": "^4.8.4",
+    "uglify-js": "^3.17.2"
   }
 }
