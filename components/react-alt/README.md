@@ -2,7 +2,7 @@
 
 # react-tsparticles
 
-[![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles)
+[![npm](https://img.shields.io/npm/v/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![npm](https://img.shields.io/npm/dm/react-tsparticles)](https://www.npmjs.com/package/react-tsparticles) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 Official [tsParticles](https://github.com/matteobruni/tsparticles) ReactJS component
 
@@ -52,35 +52,36 @@ Examples:
 ##### JavaScript support - url
 
 ```jsx
+import { useCallback } from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
-import { useCallback } from "react";
 
 const App = () => {
-    const particlesInit = useCallback(async (engine) => {
-        console.log(engine);
-        // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
-        // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-        // starting from v2 you can add only the features you need reducing the bundle size
-        await loadFull(engine);
-    }, []);
+  const particlesInit = useCallback(async (engine) => {
+    console.log(engine);
+    // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
+    // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+    // starting from v2 you can add only the features you need reducing the bundle size
+    await loadFull(engine);
+  }, []);
 
-    const particlesLoaded = useCallback(async (container) => {
-        await console.log(container);
-    }, []);
+  const particlesLoaded = useCallback(async (container) => {
+    await console.log(container);
+  }, []);
 
-    return (
-        <Particles id="tsparticles" url="http://foo.bar/particles.json" init={particlesInit} loaded={particlesLoaded} />
-    );
+  return (
+    <Particles id="tsparticles" url="http://foo.bar/particles.json" init={particlesInit} loaded={particlesLoaded} />
+  );
 };
 ```
 
 ##### TypeScript support - url
 
 ```typescript jsx
-import Particles from "react-tsparticles";
-import { loadFull } from "tsparticles";
 import { useCallback } from "react";
+import Particles from "react-tsparticles";
+import type { Container, Engine } from "tsparticles-engine";
+import { loadFull } from "tsparticles";
 
 const App = () => {
   const particlesInit = useCallback(async (engine: Engine) => {
@@ -107,108 +108,110 @@ const App = () => {
 ##### JavaScript support - object
 
 ```jsx
+import { useCallback } from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
-import { useCallback } from "react";
 
 const App = () => {
-    const particlesInit = useCallback(async (engine) => {
-        console.log(engine);
-        // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
-        // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-        // starting from v2 you can add only the features you need reducing the bundle size
-        await loadFull(engine);
-    }, []);
+  const particlesInit = useCallback(async (engine) => {
+    console.log(engine);
+    // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
+    // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+    // starting from v2 you can add only the features you need reducing the bundle size
+    await loadFull(engine);
+  }, []);
 
-    const particlesLoaded = useCallback(async (container) => {
-        await console.log(container);
-    }, []);
+  const particlesLoaded = useCallback(async (container) => {
+    await console.log(container);
+  }, []);
 
-    return (
-        <Particles
-            id="tsparticles"
-            init={particlesInit}
-            loaded={particlesLoaded}
-            options={{
-                background: {
-                    color: {
-                        value: "#0d47a1",
-                    },
-                },
-                fpsLimit: 120,
-                interactivity: {
-                    events: {
-                        onClick: {
-                            enable: true,
-                            mode: "push",
-                        },
-                        onHover: {
-                            enable: true,
-                            mode: "repulse",
-                        },
-                        resize: true,
-                    },
-                    modes: {
-                        push: {
-                            quantity: 4,
-                        },
-                        repulse: {
-                            distance: 200,
-                            duration: 0.4,
-                        },
-                    },
-                },
-                particles: {
-                    color: {
-                        value: "#ffffff",
-                    },
-                    links: {
-                        color: "#ffffff",
-                        distance: 150,
-                        enable: true,
-                        opacity: 0.5,
-                        width: 1,
-                    },
-                    collisions: {
-                        enable: true,
-                    },
-                    move: {
-                        directions: "none",
-                        enable: true,
-                        outModes: {
-                            default: "bounce",
-                        },
-                        random: false,
-                        speed: 6,
-                        straight: false,
-                    },
-                    number: {
-                        density: {
-                            enable: true,
-                            area: 800,
-                        },
-                        value: 80,
-                    },
-                    opacity: {
-                        value: 0.5,
-                    },
-                    shape: {
-                        type: "circle",
-                    },
-                    size: {
-                        value: { min: 1, max: 5 },
-                    },
-                },
-                detectRetina: true,
-            }}
-        />
-    );
+  return (
+    <Particles
+      id="tsparticles"
+      init={particlesInit}
+      loaded={particlesLoaded}
+      options={{
+        background: {
+          color: {
+            value: "#0d47a1",
+          },
+        },
+        fpsLimit: 120,
+        interactivity: {
+          events: {
+            onClick: {
+              enable: true,
+              mode: "push",
+            },
+            onHover: {
+              enable: true,
+              mode: "repulse",
+            },
+            resize: true,
+          },
+          modes: {
+            push: {
+              quantity: 4,
+            },
+            repulse: {
+              distance: 200,
+              duration: 0.4,
+            },
+          },
+        },
+        particles: {
+          color: {
+            value: "#ffffff",
+          },
+          links: {
+            color: "#ffffff",
+            distance: 150,
+            enable: true,
+            opacity: 0.5,
+            width: 1,
+          },
+          collisions: {
+            enable: true,
+          },
+          move: {
+            directions: "none",
+            enable: true,
+            outModes: {
+              default: "bounce",
+            },
+            random: false,
+            speed: 6,
+            straight: false,
+          },
+          number: {
+            density: {
+              enable: true,
+              area: 800,
+            },
+            value: 80,
+          },
+          opacity: {
+            value: 0.5,
+          },
+          shape: {
+            type: "circle",
+          },
+          size: {
+            value: { min: 1, max: 5 },
+          },
+        },
+        detectRetina: true,
+      }}
+    />
+  );
 };
 ```
 
 ##### TypeScript support - object
 
 ```typescript jsx
+import { useCallback } from "react";
+import type { Container, Engine } from "tsparticles-engine";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 
@@ -223,7 +226,7 @@ const App = () => {
   }, []);
 
   const particlesLoaded = useCallback(async (container: Container | undefined) => {
-      await console.log(container)
+    await console.log(container);
   }, []);
   return (
     <Particles
@@ -319,7 +322,7 @@ const App = () => {
 | style           | object   | The style of the canvas element.                                                                                                                    |
 | className       | string   | The class name of the canvas wrapper.                                                                                                               |
 | canvasClassName | string   | the class name of the canvas.                                                                                                                       |
-| container       | object   | The instance of the [particles container](https://particles.js.org/docs/modules/_core_container_.html)                                              |
+| container       | object   | The instance of the [particles container](https://particles.js.org/docs/modules/Core_Container.html)                                                |
 | init            | function | This function is called after the tsParticles instance initialization, the instance is the parameter and you can load custom presets or shapes here |
 | loaded          | function | This function is called when particles are correctly loaded in canvas, the current container is the parameter and you can customize it here         |
 

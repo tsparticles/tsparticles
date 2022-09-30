@@ -52,9 +52,9 @@ Examples:
 ##### JavaScript support - url
 
 ```jsx
+import { useCallback } from "react";
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
-import { useCallback } from "react";
 
 const App = () => {
   const particlesInit = useCallback(async (engine) => {
@@ -78,9 +78,10 @@ const App = () => {
 ##### TypeScript support - url
 
 ```typescript jsx
-import Particles from "react-particles";
-import { loadFull } from "tsparticles";
 import { useCallback } from "react";
+import Particles from "react-particles";
+import type { Container, Engine } from "tsparticles-engine";
+import { loadFull } from "tsparticles";
 
 const App = () => {
   const particlesInit = useCallback(async (engine: Engine) => {
@@ -107,9 +108,9 @@ const App = () => {
 ##### JavaScript support - object
 
 ```jsx
+import { useCallback } from "react";
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
-import { useCallback } from "react";
 
 const App = () => {
   const particlesInit = useCallback(async (engine) => {
@@ -209,6 +210,8 @@ const App = () => {
 ##### TypeScript support - object
 
 ```typescript jsx
+import { useCallback } from "react";
+import type { Container, Engine } from "tsparticles-engine";
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 
