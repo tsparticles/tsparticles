@@ -1,6 +1,6 @@
 {
   "name": "vue3-demo",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -12,7 +12,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "tsparticles": "^2.3.3",
+    "tsparticles": "^2.3.4",
     "tsparticles-engine": "^2.3.3",
     "vue": "^3.2.40",
     "vue-router": "^4.1.5",

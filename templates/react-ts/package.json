@@ -1,6 +1,6 @@
 {
   "name": "cra-template-particles-typescript",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "description": "Official TypeScript React tsParticles template",
   "keywords": [
     "front-end",
@@ -84,7 +84,7 @@
   "dependencies": {
     "react-particles": "^2.3.3",
     "tslib": "^2.4.0",
-    "tsparticles": "^2.3.3",
+    "tsparticles": "^2.3.4",
     "tsparticles-engine": "^2.3.3"
   },
   "devDependencies": {
