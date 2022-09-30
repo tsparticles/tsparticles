@@ -172,6 +172,11 @@ export class Particle implements IParticle {
     readonly pathGenerator?: IMovePathGenerator;
 
     /**
+     * Gets if the particle should rotate with path
+     */
+    pathRotation: boolean;
+
+    /**
      * Gets particle current position
      */
     readonly position: Vector3d;
@@ -279,6 +284,7 @@ export class Particle implements IParticle {
     ) {
         this._engine = engine;
         this.fill = true;
+        this.pathRotation = false;
         this.close = true;
         this.lastPathTime = 0;
         this.destroyed = false;

@@ -1,19 +1,40 @@
-import { AnimationStatus, RotateDirection, getRandom, getRangeValue } from "tsparticles-engine";
-import type { Container, IDelta, IParticleUpdater, IParticleValueAnimation, Particle } from "tsparticles-engine";
+import { AnimationStatus, getRandom, getRangeValue } from "tsparticles-engine";
+import type {
+    Container,
+    IDelta,
+    IParticleUpdater,
+    IParticleValueAnimation,
+    IParticlesOptions,
+    Particle,
+    ParticlesOptions,
+    RecursivePartial,
+} from "tsparticles-engine";
+import type { IRotate } from "./Options/Interfaces/IRotate";
+import { Rotate } from "./Options/Classes/Rotate";
+import { RotateDirection } from "./RotateDirection";
 
 type RotateParticle = Particle & {
+    options: RotateParticlesOptions;
     rotate?: IParticleValueAnimation<number>;
 };
 
-function updateAngle(particle: RotateParticle, delta: IDelta): void {
-    const rotate = particle.rotate;
+type IRotateParticlesOptions = IParticlesOptions & {
+    rotate?: IRotate;
+};
 
-    if (!rotate) {
+type RotateParticlesOptions = ParticlesOptions & {
+    rotate?: Rotate;
+};
+
+function updateAngle(particle: RotateParticle, delta: IDelta): void {
+    const rotate = particle.rotate,
+        rotateOptions = particle.options.rotate;
+
+    if (!rotate || !rotateOptions) {
         return;
     }
 
-    const rotateOptions = particle.options.rotate,
-        rotateAnimation = rotateOptions.animation,
+    const rotateAnimation = rotateOptions.animation,
         speed = (rotate.velocity ?? 0) * delta.factor,
         max = 2 * Math.PI,
         decay = rotate.decay ?? 1;
@@ -47,16 +68,22 @@ function updateAngle(particle: RotateParticle, delta: IDelta): void {
     }
 }
 
-export class AngleUpdater implements IParticleUpdater {
+export class RotateUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
 
     init(particle: RotateParticle): void {
         const rotateOptions = particle.options.rotate;
 
+        if (!rotateOptions) {
+            return;
+        }
+
         particle.rotate = {
             enable: rotateOptions.animation.enable,
             value: (getRangeValue(rotateOptions.value) * Math.PI) / 180,
         };
+
+        particle.pathRotation = rotateOptions.path;
 
         let rotateDirection = rotateOptions.direction;
 
@@ -76,7 +103,7 @@ export class AngleUpdater implements IParticleUpdater {
                 break;
         }
 
-        const rotateAnimation = particle.options.rotate.animation;
+        const rotateAnimation = rotateOptions.animation;
 
         if (rotateAnimation.enable) {
             particle.rotate.decay = 1 - getRangeValue(rotateAnimation.decay);
@@ -91,11 +118,27 @@ export class AngleUpdater implements IParticleUpdater {
         particle.rotation = particle.rotate.value;
     }
 
-    isEnabled(particle: Particle): boolean {
-        const rotate = particle.options.rotate,
-            rotateAnimation = rotate.animation;
+    isEnabled(particle: RotateParticle): boolean {
+        const rotate = particle.options.rotate;
 
-        return !particle.destroyed && !particle.spawning && rotateAnimation.enable && !rotate.path;
+        if (!rotate) {
+            return false;
+        }
+
+        return !particle.destroyed && !particle.spawning && rotate.animation.enable && !rotate.path;
+    }
+
+    loadOptions(
+        options: RotateParticlesOptions,
+        ...sources: (RecursivePartial<IRotateParticlesOptions> | undefined)[]
+    ): void {
+        if (!options.rotate) {
+            options.rotate = new Rotate();
+        }
+
+        for (const source of sources) {
+            options.rotate.load(source?.rotate);
+        }
     }
 
     update(particle: RotateParticle, delta: IDelta): void {

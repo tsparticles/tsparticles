@@ -1,4 +1,4 @@
-import { executeOnSingleOrMultiple, isSsr, safeMatchMedia } from "../../Utils/Utils";
+import { executeOnSingleOrMultiple, safeMatchMedia } from "../../Utils/Utils";
 import {
     mouseDownEvent,
     mouseLeaveEvent,
