@@ -1,4 +1,4 @@
-import { deepExtend, executeOnSingleOrMultiple } from "../../Utils/Utils";
+import { deepExtend, executeOnSingleOrMultiple, safeMatchMedia } from "../../Utils/Utils";
 import { Background } from "./Background/Background";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
 import type { Container } from "../../Core/Container";
@@ -252,7 +252,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
                 this.load(chosenTheme.options);
             }
         } else {
-            const mediaMatch = typeof matchMedia !== "undefined" && matchMedia("(prefers-color-scheme: dark)"),
+            const mediaMatch = safeMatchMedia("(prefers-color-scheme: dark)"),
                 clientDarkMode = mediaMatch && mediaMatch.matches,
                 defaultTheme = this._findDefaultTheme(clientDarkMode ? ThemeMode.dark : ThemeMode.light);
 

@@ -1,4 +1,4 @@
-import { executeOnSingleOrMultiple, isSsr } from "../../Utils/Utils";
+import { executeOnSingleOrMultiple, isSsr, safeMatchMedia } from "../../Utils/Utils";
 import {
     mouseDownEvent,
     mouseLeaveEvent,
@@ -229,7 +229,7 @@ export class EventListeners {
             container.interactivity.element = container.canvas.element;
         }
 
-        const mediaMatch = !isSsr() && typeof matchMedia !== "undefined" && matchMedia("(prefers-color-scheme: dark)");
+        const mediaMatch = safeMatchMedia("(prefers-color-scheme: dark)");
 
         if (mediaMatch) {
             if (mediaMatch.addEventListener !== undefined) {

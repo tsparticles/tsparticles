@@ -1,7 +1,7 @@
+import { isSsr, safeMatchMedia } from "../Utils/Utils";
 import type { Container } from "./Container";
 import type { Particle } from "./Particle";
 import { getRangeValue } from "../Utils/NumberUtils";
-import { isSsr } from "../Utils/Utils";
 
 /**
  * @category Core
@@ -27,30 +27,28 @@ export class Retina {
         const motionOptions = this.container.actualOptions.motion;
 
         if (motionOptions && (motionOptions.disable || motionOptions.reduce.value)) {
-            if (isSsr() || typeof matchMedia === "undefined" || !matchMedia) {
-                this.reduceFactor = 1;
-            } else {
-                const mediaQuery = matchMedia("(prefers-reduced-motion: reduce)");
+            const mediaQuery = safeMatchMedia("(prefers-reduced-motion: reduce)");
 
-                if (mediaQuery) {
-                    // Check if the media query matches or is not available.
+            if (mediaQuery) {
+                // Check if the media query matches or is not available.
+                this._handleMotionChange(mediaQuery);
+
+                // Ads an event listener to check for changes in the media query's value.
+                const handleChange = (): void => {
                     this._handleMotionChange(mediaQuery);
 
-                    // Ads an event listener to check for changes in the media query's value.
-                    const handleChange = (): void => {
-                        this._handleMotionChange(mediaQuery);
+                    container.refresh().catch(() => {
+                        // ignore
+                    });
+                };
 
-                        container.refresh().catch(() => {
-                            // ignore
-                        });
-                    };
-
-                    if (mediaQuery.addEventListener !== undefined) {
-                        mediaQuery.addEventListener("change", handleChange);
-                    } else if (mediaQuery.addListener !== undefined) {
-                        mediaQuery.addListener(handleChange);
-                    }
+                if (mediaQuery.addEventListener !== undefined) {
+                    mediaQuery.addEventListener("change", handleChange);
+                } else if (mediaQuery.addListener !== undefined) {
+                    mediaQuery.addListener(handleChange);
                 }
+            } else {
+                this.reduceFactor = 1;
             }
         } else {
             this.reduceFactor = 1;

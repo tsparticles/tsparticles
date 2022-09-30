@@ -8,8 +8,8 @@ import { addColorManager } from "./Utils/ColorUtils";
 const rgbColorManager = new RgbColorManager(),
     hslColorManager = new HslColorManager();
 
-addColorManager("rgb", rgbColorManager);
-addColorManager("hsl", hslColorManager);
+addColorManager(rgbColorManager);
+addColorManager(hslColorManager);
 
 /**
  * The exposed tsParticles instance

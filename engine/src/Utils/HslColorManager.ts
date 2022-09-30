@@ -8,9 +8,11 @@ import type { IRangeValueColor } from "../Core/Interfaces/Colors";
 import type { IValueColor } from "../Core/Interfaces/Colors";
 
 export class HslColorManager implements IColorManager {
-    stringPrefix: string;
+    readonly key;
+    readonly stringPrefix;
 
     constructor() {
+        this.key = "hsl";
         this.stringPrefix = "hsl";
     }
 
