@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-slim",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "description": "Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -119,7 +119,7 @@
     "tsparticles-interaction-external-pause": "^2.3.3",
     "tsparticles-interaction-external-push": "^2.3.3",
     "tsparticles-interaction-external-remove": "^2.3.3",
-    "tsparticles-interaction-external-repulse": "^2.3.3",
+    "tsparticles-interaction-external-repulse": "^2.3.4",
     "tsparticles-interaction-external-slow": "^2.3.3",
     "tsparticles-interaction-particles-attract": "^2.3.3",
     "tsparticles-interaction-particles-collisions": "^2.3.3",

@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-fireworks",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "description": "tsParticles fireworks preset",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -123,7 +123,7 @@
   "dependencies": {
     "tsparticles-engine": "^2.3.3",
     "tsparticles-move-base": "^2.3.3",
-    "tsparticles-plugin-emitters": "^2.3.3",
+    "tsparticles-plugin-emitters": "^2.3.4",
     "tsparticles-shape-circle": "^2.3.3",
     "tsparticles-shape-line": "^2.3.3",
     "tsparticles-updater-angle": "^2.3.3",

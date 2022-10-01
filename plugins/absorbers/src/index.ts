@@ -27,13 +27,15 @@ class AbsorbersPlugin implements IPlugin {
 
         const optionsCast = options as unknown as IAbsorberOptions;
 
-        optionsCast.absorbers = executeOnSingleOrMultiple(source?.absorbers, (absorber) => {
-            const tmp = new Absorber();
+        if (source?.absorbers) {
+            optionsCast.absorbers = executeOnSingleOrMultiple(source.absorbers, (absorber) => {
+                const tmp = new Absorber();
 
-            tmp.load(absorber);
+                tmp.load(absorber);
 
-            return tmp;
-        });
+                return tmp;
+            });
+        }
 
         optionsCast.interactivity.modes.absorbers = executeOnSingleOrMultiple(
             source?.interactivity?.modes?.absorbers,

@@ -505,8 +505,6 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
                 particle.position.x - particle.normalPosition.x < 1 &&
                 particle.position.y - particle.normalPosition.y < 1
             ) {
-                console.log("ciao");
-
                 particle.normalPosition = undefined;
                 return;
             }

@@ -38,13 +38,15 @@ class EmittersPlugin implements IPlugin {
 
         const optionsCast = options as unknown as IEmitterOptions;
 
-        optionsCast.emitters = executeOnSingleOrMultiple(source?.emitters, (emitter) => {
-            const tmp = new Emitter();
+        if (source?.emitters) {
+            optionsCast.emitters = executeOnSingleOrMultiple(source.emitters, (emitter) => {
+                const tmp = new Emitter();
 
-            tmp.load(emitter);
+                tmp.load(emitter);
 
-            return tmp;
-        });
+                return tmp;
+            });
+        }
 
         const interactivityEmitters = source?.interactivity?.modes?.emitters;
 

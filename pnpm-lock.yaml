@@ -72,10 +72,10 @@ importers:
       terser-webpack-plugin: ^5.3.6
       tsparticles-engine: ^2.3.3
       tsparticles-interaction-external-trail: ^2.3.3
-      tsparticles-plugin-absorbers: ^2.3.3
-      tsparticles-plugin-emitters: ^2.3.3
+      tsparticles-plugin-absorbers: ^2.3.4
+      tsparticles-plugin-emitters: ^2.3.4
       tsparticles-plugin-polygon-mask: ^2.3.3
-      tsparticles-slim: ^2.3.3
+      tsparticles-slim: ^2.3.4
       tsparticles-updater-destroy: ^2.3.3
       tsparticles-updater-roll: ^2.3.3
       tsparticles-updater-tilt: ^2.3.3
@@ -199,7 +199,7 @@ importers:
       tsparticles-interaction-external-pause: ^2.3.3
       tsparticles-interaction-external-push: ^2.3.3
       tsparticles-interaction-external-remove: ^2.3.3
-      tsparticles-interaction-external-repulse: ^2.3.3
+      tsparticles-interaction-external-repulse: ^2.3.4
       tsparticles-interaction-external-slow: ^2.3.3
       tsparticles-interaction-particles-attract: ^2.3.3
       tsparticles-interaction-particles-collisions: ^2.3.3
@@ -931,7 +931,7 @@ importers:
       '@wordpress/scripts': ^24.2.0
       fs-extra: ^10.1.0
       gulp: ^4.0.2
-      tsparticles: ^2.3.3
+      tsparticles: ^2.3.4
       tsparticles-engine: ^2.3.3
       tsparticles-interaction-external-attract: ^2.3.3
       tsparticles-interaction-external-bounce: ^2.3.3
@@ -941,7 +941,7 @@ importers:
       tsparticles-interaction-external-pause: ^2.3.3
       tsparticles-interaction-external-push: ^2.3.3
       tsparticles-interaction-external-remove: ^2.3.3
-      tsparticles-interaction-external-repulse: ^2.3.3
+      tsparticles-interaction-external-repulse: ^2.3.4
       tsparticles-interaction-external-slow: ^2.3.3
       tsparticles-interaction-external-trail: ^2.3.3
       tsparticles-interaction-light: ^2.3.3
@@ -956,21 +956,21 @@ importers:
       tsparticles-path-perlin-noise: ^2.3.3
       tsparticles-path-polygon: ^2.3.3
       tsparticles-path-simplex-noise: ^2.3.3
-      tsparticles-plugin-absorbers: ^2.3.3
+      tsparticles-plugin-absorbers: ^2.3.4
       tsparticles-plugin-canvas-mask: ^2.3.3
-      tsparticles-plugin-emitters: ^2.3.3
+      tsparticles-plugin-emitters: ^2.3.4
       tsparticles-plugin-hsv-color: ^2.3.3
       tsparticles-plugin-infection: ^2.3.3
       tsparticles-plugin-polygon-mask: ^2.3.3
-      tsparticles-preset-big-circles: ^2.3.3
-      tsparticles-preset-bubbles: ^2.3.3
-      tsparticles-preset-confetti: ^2.3.3
+      tsparticles-preset-big-circles: ^2.3.4
+      tsparticles-preset-bubbles: ^2.3.4
+      tsparticles-preset-confetti: ^2.3.4
       tsparticles-preset-fire: ^2.3.3
       tsparticles-preset-firefly: ^2.3.3
-      tsparticles-preset-fireworks: ^2.3.3
-      tsparticles-preset-fountain: ^2.3.3
+      tsparticles-preset-fireworks: ^2.3.4
+      tsparticles-preset-fountain: ^2.3.4
       tsparticles-preset-links: ^2.3.3
-      tsparticles-preset-sea-anemone: ^2.3.3
+      tsparticles-preset-sea-anemone: ^2.3.4
       tsparticles-preset-snow: ^2.3.3
       tsparticles-preset-stars: ^2.3.3
       tsparticles-preset-triangles: ^2.3.3
@@ -986,7 +986,7 @@ importers:
       tsparticles-shape-square: ^2.3.3
       tsparticles-shape-star: ^2.3.3
       tsparticles-shape-text: ^2.3.3
-      tsparticles-slim: ^2.3.3
+      tsparticles-slim: ^2.3.4
       tsparticles-updater-angle: ^2.3.3
       tsparticles-updater-color: ^2.3.3
       tsparticles-updater-destroy: ^2.3.3
@@ -1104,7 +1104,7 @@ importers:
       ng-particles: ^3.3.3
       rxjs: ~7.5.7
       tslib: ^2.4.0
-      tsparticles: ^2.3.3
+      tsparticles: ^2.3.4
       tsparticles-engine: ^2.3.3
       tsparticles-interaction-external-attract: ^2.3.3
       tsparticles-interaction-external-bounce: ^2.3.3
@@ -1114,7 +1114,7 @@ importers:
       tsparticles-interaction-external-pause: ^2.3.3
       tsparticles-interaction-external-push: ^2.3.3
       tsparticles-interaction-external-remove: ^2.3.3
-      tsparticles-interaction-external-repulse: ^2.3.3
+      tsparticles-interaction-external-repulse: ^2.3.4
       tsparticles-interaction-external-slow: ^2.3.3
       tsparticles-interaction-external-trail: ^2.3.3
       tsparticles-interaction-particles-attract: ^2.3.3
@@ -1123,8 +1123,8 @@ importers:
       tsparticles-move-base: ^2.3.3
       tsparticles-move-parallax: ^2.3.3
       tsparticles-particles.js: ^2.3.3
-      tsparticles-plugin-absorbers: ^2.3.3
-      tsparticles-plugin-emitters: ^2.3.3
+      tsparticles-plugin-absorbers: ^2.3.4
+      tsparticles-plugin-emitters: ^2.3.4
       tsparticles-plugin-polygon-mask: ^2.3.3
       tsparticles-shape-circle: ^2.3.3
       tsparticles-shape-image: ^2.3.3
@@ -1133,7 +1133,7 @@ importers:
       tsparticles-shape-square: ^2.3.3
       tsparticles-shape-star: ^2.3.3
       tsparticles-shape-text: ^2.3.3
-      tsparticles-slim: ^2.3.3
+      tsparticles-slim: ^2.3.4
       tsparticles-updater-angle: ^2.3.3
       tsparticles-updater-color: ^2.3.3
       tsparticles-updater-destroy: ^2.3.3
@@ -1231,8 +1231,8 @@ importers:
       pug: ^3.0.2
       pug-cli: ^1.0.0-alpha6
       stylus: ^0.59.0
-      tsparticles: ^2.3.3
-      tsparticles-editor: ^2.3.5
+      tsparticles: ^2.3.4
+      tsparticles-editor: ^2.3.6
       tsparticles-engine: ^2.3.3
       typescript: ^4.8.4
     devDependencies:
@@ -1270,7 +1270,7 @@ importers:
       sass-loader: ^13.0.2
       source-map-loader: ^4.0.0
       style-loader: ^3.3.1
-      tsparticles: ^2.3.3
+      tsparticles: ^2.3.4
       tsparticles-engine: ^2.3.3
       typescript: ^4.8.4
       webpack: ^5.74.0
@@ -1349,7 +1349,7 @@ importers:
       rxjs: ~7.5.7
       ts-node: ~10.9.1
       tslib: ^2.4.0
-      tsparticles: ^2.3.3
+      tsparticles: ^2.3.4
       tsparticles-engine: ^2.3.3
       tsparticles-interaction-external-attract: ^2.3.3
       tsparticles-interaction-external-bounce: ^2.3.3
@@ -1359,7 +1359,7 @@ importers:
       tsparticles-interaction-external-pause: ^2.3.3
       tsparticles-interaction-external-push: ^2.3.3
       tsparticles-interaction-external-remove: ^2.3.3
-      tsparticles-interaction-external-repulse: ^2.3.3
+      tsparticles-interaction-external-repulse: ^2.3.4
       tsparticles-interaction-external-slow: ^2.3.3
       tsparticles-interaction-external-trail: ^2.3.3
       tsparticles-interaction-particles-attract: ^2.3.3
@@ -1368,8 +1368,8 @@ importers:
       tsparticles-move-base: ^2.3.3
       tsparticles-move-parallax: ^2.3.3
       tsparticles-particles.js: ^2.3.3
-      tsparticles-plugin-absorbers: ^2.3.3
-      tsparticles-plugin-emitters: ^2.3.3
+      tsparticles-plugin-absorbers: ^2.3.4
+      tsparticles-plugin-emitters: ^2.3.4
       tsparticles-plugin-polygon-mask: ^2.3.3
       tsparticles-shape-circle: ^2.3.3
       tsparticles-shape-image: ^2.3.3
@@ -1378,7 +1378,7 @@ importers:
       tsparticles-shape-square: ^2.3.3
       tsparticles-shape-star: ^2.3.3
       tsparticles-shape-text: ^2.3.3
-      tsparticles-slim: ^2.3.3
+      tsparticles-slim: ^2.3.4
       tsparticles-updater-angle: ^2.3.3
       tsparticles-updater-color: ^2.3.3
       tsparticles-updater-destroy: ^2.3.3
@@ -1506,7 +1506,7 @@ importers:
       pug-cli: ^1.0.0-alpha6
       stats.ts: ^1.1.0
       stylus: ^0.59.0
-      tsparticles: ^2.3.3
+      tsparticles: ^2.3.4
       tsparticles-engine: ^2.3.3
       tsparticles-preset-links: ^2.3.3
       typescript: ^4.8.4
@@ -1542,7 +1542,7 @@ importers:
       react: ^18.2.0
       react-dom: ^18.2.0
       react-particles: ^2.3.3
-      tsparticles-preset-big-circles: ^2.3.3
+      tsparticles-preset-big-circles: ^2.3.4
       typescript: ^4.8.4
     dependencies:
       next: 12.3.1_biqbaboplfbrettd7655fr4n2y
@@ -1574,7 +1574,7 @@ importers:
       preact-router: ^4.1.0
       prettier: ^2.7.1
       sirv-cli: ^2.0.2
-      tsparticles: ^2.3.3
+      tsparticles: ^2.3.4
       tsparticles-engine: ^2.3.3
     dependencies:
       preact: 10.11.0
@@ -1620,7 +1620,7 @@ importers:
       react-syntax-highlighter: ^15.5.0
       rimraf: ^3.0.2
       rxjs: ^7.5.7
-      tsparticles: ^2.3.3
+      tsparticles: ^2.3.4
       tsparticles-engine: ^2.3.3
       tsparticles-interaction-external-attract: ^2.3.3
       tsparticles-interaction-external-bounce: ^2.3.3
@@ -1630,7 +1630,7 @@ importers:
       tsparticles-interaction-external-pause: ^2.3.3
       tsparticles-interaction-external-push: ^2.3.3
       tsparticles-interaction-external-remove: ^2.3.3
-      tsparticles-interaction-external-repulse: ^2.3.3
+      tsparticles-interaction-external-repulse: ^2.3.4
       tsparticles-interaction-external-slow: ^2.3.3
       tsparticles-interaction-external-trail: ^2.3.3
       tsparticles-interaction-particles-attract: ^2.3.3
@@ -1639,8 +1639,8 @@ importers:
       tsparticles-move-base: ^2.3.3
       tsparticles-move-parallax: ^2.3.3
       tsparticles-particles.js: ^2.3.3
-      tsparticles-plugin-absorbers: ^2.3.3
-      tsparticles-plugin-emitters: ^2.3.3
+      tsparticles-plugin-absorbers: ^2.3.4
+      tsparticles-plugin-emitters: ^2.3.4
       tsparticles-plugin-polygon-mask: ^2.3.3
       tsparticles-shape-circle: ^2.3.3
       tsparticles-shape-image: ^2.3.3
@@ -1649,7 +1649,7 @@ importers:
       tsparticles-shape-square: ^2.3.3
       tsparticles-shape-star: ^2.3.3
       tsparticles-shape-text: ^2.3.3
-      tsparticles-slim: ^2.3.3
+      tsparticles-slim: ^2.3.4
       tsparticles-updater-angle: ^2.3.3
       tsparticles-updater-color: ^2.3.3
       tsparticles-updater-destroy: ^2.3.3
@@ -1749,7 +1749,7 @@ importers:
       path: ^0.12.7
       riot: ^7.0.6
       riot-particles: ^2.3.3
-      tsparticles: ^2.3.3
+      tsparticles: ^2.3.4
       tsparticles-engine: ^2.3.3
       webpack: ^5.74.0
       webpack-cli: ^4.10.0
@@ -1787,7 +1787,7 @@ importers:
       solid-js: ^1.5.7
       solid-particles: ^2.3.3
       solid-scripts: ^0.0.61
-      tsparticles: ^2.3.3
+      tsparticles: ^2.3.4
       tsparticles-engine: ^2.3.3
       typescript: ^4.8.4
     devDependencies:
@@ -1817,7 +1817,7 @@ importers:
       svelte-particles: ^2.3.3
       svelte-preprocess: ^4.10.7
       tslib: ^2.4.0
-      tsparticles: ^2.3.3
+      tsparticles: ^2.3.4
       typescript: ^4.8.4
     dependencies:
       sirv-cli: 2.0.2
@@ -1862,7 +1862,7 @@ importers:
       pug-cli: ^1.0.0-alpha6
       stats.ts: ^1.1.0
       stylus: ^0.59.0
-      tsparticles: ^2.3.3
+      tsparticles: ^2.3.4
       tsparticles-engine: ^2.3.3
       tsparticles-interaction-external-attract: ^2.3.3
       tsparticles-interaction-external-bounce: ^2.3.3
@@ -1872,7 +1872,7 @@ importers:
       tsparticles-interaction-external-pause: ^2.3.3
       tsparticles-interaction-external-push: ^2.3.3
       tsparticles-interaction-external-remove: ^2.3.3
-      tsparticles-interaction-external-repulse: ^2.3.3
+      tsparticles-interaction-external-repulse: ^2.3.4
       tsparticles-interaction-external-slow: ^2.3.3
       tsparticles-interaction-external-trail: ^2.3.3
       tsparticles-interaction-light: ^2.3.3
@@ -1887,21 +1887,21 @@ importers:
       tsparticles-path-perlin-noise: ^2.3.3
       tsparticles-path-polygon: ^2.3.3
       tsparticles-path-simplex-noise: ^2.3.3
-      tsparticles-plugin-absorbers: ^2.3.3
+      tsparticles-plugin-absorbers: ^2.3.4
       tsparticles-plugin-canvas-mask: ^2.3.3
-      tsparticles-plugin-emitters: ^2.3.3
+      tsparticles-plugin-emitters: ^2.3.4
       tsparticles-plugin-hsv-color: ^2.3.3
       tsparticles-plugin-infection: ^2.3.3
       tsparticles-plugin-polygon-mask: ^2.3.3
-      tsparticles-preset-big-circles: ^2.3.3
-      tsparticles-preset-bubbles: ^2.3.3
-      tsparticles-preset-confetti: ^2.3.3
+      tsparticles-preset-big-circles: ^2.3.4
+      tsparticles-preset-bubbles: ^2.3.4
+      tsparticles-preset-confetti: ^2.3.4
       tsparticles-preset-fire: ^2.3.3
       tsparticles-preset-firefly: ^2.3.3
-      tsparticles-preset-fireworks: ^2.3.3
-      tsparticles-preset-fountain: ^2.3.3
+      tsparticles-preset-fireworks: ^2.3.4
+      tsparticles-preset-fountain: ^2.3.4
       tsparticles-preset-links: ^2.3.3
-      tsparticles-preset-sea-anemone: ^2.3.3
+      tsparticles-preset-sea-anemone: ^2.3.4
       tsparticles-preset-snow: ^2.3.3
       tsparticles-preset-stars: ^2.3.3
       tsparticles-preset-triangles: ^2.3.3
@@ -1917,7 +1917,7 @@ importers:
       tsparticles-shape-square: ^2.3.3
       tsparticles-shape-star: ^2.3.3
       tsparticles-shape-text: ^2.3.3
-      tsparticles-slim: ^2.3.3
+      tsparticles-slim: ^2.3.4
       tsparticles-updater-angle: ^2.3.3
       tsparticles-updater-color: ^2.3.3
       tsparticles-updater-destroy: ^2.3.3
@@ -2034,7 +2034,7 @@ importers:
       minify: ^9.1.0
       rimraf: ^3.0.2
       sass: ^1.55.0
-      tsparticles: ^2.3.3
+      tsparticles: ^2.3.4
       tsparticles-engine: ^2.3.3
       tsparticles-interaction-light: ^2.3.3
       tsparticles-interaction-particles-repulse: ^2.3.3
@@ -2086,7 +2086,7 @@ importers:
       rollup-plugin-typescript2: ^0.34.0
       rollup-plugin-vue: ^5.1.9
       tslib: ^2.4.0
-      tsparticles: ^2.3.3
+      tsparticles: ^2.3.4
       tsparticles-engine: ^2.3.3
       typescript: ^4.8.4
       vue: ^2.7.10
@@ -2140,7 +2140,7 @@ importers:
       minimatch: ^5.1.0
       npm-run-all: ^4.1.5
       prettier: ^2.7.1
-      tsparticles: ^2.3.3
+      tsparticles: ^2.3.4
       tsparticles-engine: ^2.3.3
       typescript: ~4.8.4
       vite: ^3.1.4
@@ -2185,7 +2185,7 @@ importers:
       pug: ^3.0.2
       pug-cli: ^1.0.0-alpha6
       stylus: ^0.59.0
-      tsparticles: ^2.3.3
+      tsparticles: ^2.3.4
       tsparticles-engine: ^2.3.3
       typescript: ^4.8.4
       web-particles: ^2.3.3
@@ -2235,11 +2235,11 @@ importers:
       tsparticles-interaction-external-pause: ^2.3.3
       tsparticles-interaction-external-push: ^2.3.3
       tsparticles-interaction-external-remove: ^2.3.3
-      tsparticles-interaction-external-repulse: ^2.3.3
+      tsparticles-interaction-external-repulse: ^2.3.4
       tsparticles-interaction-light: ^2.3.3
       tsparticles-interaction-particles-links: ^2.3.3
-      tsparticles-plugin-absorbers: ^2.3.3
-      tsparticles-plugin-emitters: ^2.3.3
+      tsparticles-plugin-absorbers: ^2.3.4
+      tsparticles-plugin-emitters: ^2.3.4
       tsparticles-plugin-infection: ^2.3.3
       typescript: ^4.8.4
       webpack: ^5.74.0
@@ -3790,7 +3790,7 @@ importers:
       terser-webpack-plugin: ^5.3.6
       tsparticles-engine: ^2.3.3
       tsparticles-move-base: ^2.3.3
-      tsparticles-plugin-emitters: ^2.3.3
+      tsparticles-plugin-emitters: ^2.3.4
       tsparticles-shape-circle: ^2.3.3
       tsparticles-updater-color: ^2.3.3
       tsparticles-updater-opacity: ^2.3.3
@@ -3854,7 +3854,7 @@ importers:
       terser-webpack-plugin: ^5.3.6
       tsparticles-engine: ^2.3.3
       tsparticles-move-base: ^2.3.3
-      tsparticles-plugin-emitters: ^2.3.3
+      tsparticles-plugin-emitters: ^2.3.4
       tsparticles-shape-circle: ^2.3.3
       tsparticles-updater-color: ^2.3.3
       tsparticles-updater-opacity: ^2.3.3
@@ -3918,7 +3918,7 @@ importers:
       terser-webpack-plugin: ^5.3.6
       tsparticles-engine: ^2.3.3
       tsparticles-move-base: ^2.3.3
-      tsparticles-plugin-emitters: ^2.3.3
+      tsparticles-plugin-emitters: ^2.3.4
       tsparticles-shape-circle: ^2.3.3
       tsparticles-shape-square: ^2.3.3
       tsparticles-updater-angle: ^2.3.3
@@ -4122,7 +4122,7 @@ importers:
       terser-webpack-plugin: ^5.3.6
       tsparticles-engine: ^2.3.3
       tsparticles-move-base: ^2.3.3
-      tsparticles-plugin-emitters: ^2.3.3
+      tsparticles-plugin-emitters: ^2.3.4
       tsparticles-shape-circle: ^2.3.3
       tsparticles-shape-line: ^2.3.3
       tsparticles-updater-angle: ^2.3.3
@@ -4196,7 +4196,7 @@ importers:
       terser-webpack-plugin: ^5.3.6
       tsparticles-engine: ^2.3.3
       tsparticles-move-base: ^2.3.3
-      tsparticles-plugin-emitters: ^2.3.3
+      tsparticles-plugin-emitters: ^2.3.4
       tsparticles-shape-circle: ^2.3.3
       tsparticles-updater-color: ^2.3.3
       tsparticles-updater-destroy: ^2.3.3
@@ -4327,7 +4327,7 @@ importers:
       tsparticles-engine: ^2.3.3
       tsparticles-move-base: ^2.3.3
       tsparticles-path-curves: ^2.3.3
-      tsparticles-plugin-emitters: ^2.3.3
+      tsparticles-plugin-emitters: ^2.3.4
       tsparticles-shape-circle: ^2.3.3
       tsparticles-updater-color: ^2.3.3
       tsparticles-updater-opacity: ^2.3.3
@@ -5167,7 +5167,7 @@ importers:
       fs-extra: ^10.1.0
       react-particles: ^2.3.3
       tslib: ^2.4.0
-      tsparticles: ^2.3.3
+      tsparticles: ^2.3.4
       tsparticles-engine: ^2.3.3
     dependencies:
       react-particles: link:../../components/react/dist
@@ -5182,7 +5182,7 @@ importers:
       fs-extra: ^10.1.0
       react-particles: ^2.3.3
       tslib: ^2.4.0
-      tsparticles: ^2.3.3
+      tsparticles: ^2.3.4
       tsparticles-engine: ^2.3.3
     dependencies:
       react-particles: link:../../components/react/dist
@@ -6140,7 +6140,7 @@ importers:
     specifiers:
       gh-pages: ^4.0.0
       rimraf: ^3.0.2
-      tsparticles: ^2.3.3
+      tsparticles: ^2.3.4
     dependencies:
       tsparticles: link:../../bundles/full/dist
     devDependencies:
@@ -6155,8 +6155,8 @@ importers:
       prettier: ^2.7.1
       rimraf: ^3.0.2
       sass: ^1.55.0
-      tsparticles: ^2.3.3
-      tsparticles-editor: ^2.3.5
+      tsparticles: ^2.3.4
+      tsparticles-editor: ^2.3.6
       tsparticles-engine: ^2.3.3
       tsparticles-preset-links: ^2.3.3
     dependencies:
