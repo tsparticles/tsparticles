@@ -61,6 +61,12 @@ Nothing to say
 
 == Changelog ==
 
+= 2.3.5 =
+
+* Bug Fixes
+
+- Fixed issue when loading Absorbers and Emitters options
+
 = 2.3.4 =
 
 * Bug Fixes
