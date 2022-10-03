@@ -654,7 +654,8 @@ export class Particle implements IParticle {
         }
 
         const rad = (Math.PI / 180) * getRangeValue(moveOptions.angle.value),
-            radOffset = (Math.PI / 180) * getRangeValue(moveOptions.angle.offset), range = {
+            radOffset = (Math.PI / 180) * getRangeValue(moveOptions.angle.offset),
+            range = {
                 left: radOffset - rad / 2,
                 right: radOffset + rad / 2,
             };

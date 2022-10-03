@@ -86,8 +86,7 @@ function updateOpacity(particle: Particle, delta: IDelta): void {
 }
 
 export class OpacityUpdater implements IParticleUpdater {
-    constructor(private readonly container: Container) {
-    }
+    constructor(private readonly container: Container) {}
 
     init(particle: Particle): void {
         /* opacity */
