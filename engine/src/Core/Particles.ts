@@ -14,6 +14,7 @@ import { QuadTree } from "./Utils/QuadTree";
 import { Rectangle } from "./Utils/Rectangle";
 import type { RecursivePartial } from "../Types/RecursivePartial";
 import { calcPositionFromSize } from "../Utils/NumberUtils";
+import { executeOnSingleOrMultiple } from "../Utils/Utils";
 
 /**
  * Particles manager object
@@ -234,6 +235,7 @@ export class Particles {
     async redraw(): Promise<void> {
         this.clear();
         this.init();
+
         await this.draw({ value: 0, factor: 0 });
     }
 
@@ -326,6 +328,7 @@ export class Particles {
 
             if (particle.destroyed) {
                 particlesToDelete.push(particle);
+
                 continue;
             }
 

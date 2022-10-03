@@ -472,7 +472,7 @@ export class Particle implements IParticle {
         this.shadowColor = rangeColorToRgb(this.options.shadow.color);
 
         for (const updater of container.particles.updaters) {
-            updater.init?.(this);
+            updater.init(this);
         }
 
         for (const mover of container.particles.movers) {
@@ -582,11 +582,9 @@ export class Particle implements IParticle {
      * This method is used when the particle has lost a life and needs some value resets
      */
     reset(): void {
-        if (this.opacity) {
-            this.opacity.loops = 0;
+        for (const updater of this.container.particles.updaters) {
+            updater.reset?.(this);
         }
-
-        this.size.loops = 0;
     }
 
     private _calcPosition(
@@ -655,13 +653,11 @@ export class Particle implements IParticle {
             return res;
         }
 
-        const rad = (Math.PI / 180) * getRangeValue(moveOptions.angle.value);
-        const radOffset = (Math.PI / 180) * getRangeValue(moveOptions.angle.offset);
-
-        const range = {
-            left: radOffset - rad / 2,
-            right: radOffset + rad / 2,
-        };
+        const rad = (Math.PI / 180) * getRangeValue(moveOptions.angle.value),
+            radOffset = (Math.PI / 180) * getRangeValue(moveOptions.angle.offset), range = {
+                left: radOffset - rad / 2,
+                right: radOffset + rad / 2,
+            };
 
         if (!moveOptions.straight) {
             res.angle += randomInRange(setRangeValue(range.left, range.right));

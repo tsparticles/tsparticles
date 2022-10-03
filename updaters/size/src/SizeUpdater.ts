@@ -85,6 +85,10 @@ export class SizeUpdater implements IParticleUpdater {
         );
     }
 
+    reset(particle: Particle): void {
+        particle.size.loops = 0;
+    }
+
     update(particle: Particle, delta: IDelta): void {
         if (!this.isEnabled(particle)) {
             return;

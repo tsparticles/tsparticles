@@ -86,7 +86,8 @@ function updateOpacity(particle: Particle, delta: IDelta): void {
 }
 
 export class OpacityUpdater implements IParticleUpdater {
-    constructor(private readonly container: Container) {}
+    constructor(private readonly container: Container) {
+    }
 
     init(particle: Particle): void {
         /* opacity */
@@ -153,6 +154,12 @@ export class OpacityUpdater implements IParticleUpdater {
                 ((particle.opacity.maxLoops ?? 0) > 0 &&
                     (particle.opacity.loops ?? 0) < (particle.opacity.maxLoops ?? 0)))
         );
+    }
+
+    reset(particle: Particle): void {
+        if (particle.opacity) {
+            particle.opacity.loops = 0;
+        }
     }
 
     update(particle: Particle, delta: IDelta): void {
