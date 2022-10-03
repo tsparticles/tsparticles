@@ -14,7 +14,6 @@ import { QuadTree } from "./Utils/QuadTree";
 import { Rectangle } from "./Utils/Rectangle";
 import type { RecursivePartial } from "../Types/RecursivePartial";
 import { calcPositionFromSize } from "../Utils/NumberUtils";
-import { executeOnSingleOrMultiple } from "../Utils/Utils";
 
 /**
  * Particles manager object
