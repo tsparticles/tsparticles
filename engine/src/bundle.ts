@@ -6,8 +6,8 @@ import { addColorManager } from "./Utils/ColorUtils";
 const rgbColorManager = new RgbColorManager(),
     hslColorManager = new HslColorManager();
 
-addColorManager("rgb", rgbColorManager);
-addColorManager("hsl", hslColorManager);
+addColorManager(rgbColorManager);
+addColorManager(hslColorManager);
 
 /**
  * The exposed tsParticles instance
@@ -64,8 +64,6 @@ export * from "./Options/Classes/Interactivity/Events/Parallax";
 export * from "./Options/Classes/Interactivity/Interactivity";
 export * from "./Options/Classes/Interactivity/Modes/Modes";
 export * from "./Options/Classes/ManualParticle";
-export * from "./Options/Classes/Motion/Motion";
-export * from "./Options/Classes/Motion/MotionReduce";
 export * from "./Options/Classes/Options";
 export * from "./Options/Classes/OptionsColor";
 export * from "./Options/Classes/Particles/Bounce/ParticlesBounce";
@@ -88,8 +86,6 @@ export * from "./Options/Classes/Particles/Number/ParticlesNumber";
 export * from "./Options/Classes/Particles/Number/ParticlesDensity";
 export * from "./Options/Classes/Particles/Opacity/Opacity";
 export * from "./Options/Classes/Particles/Opacity/OpacityAnimation";
-export * from "./Options/Classes/Particles/Rotate/Rotate";
-export * from "./Options/Classes/Particles/Rotate/RotateAnimation";
 export * from "./Options/Classes/Particles/Shape/Shape";
 export * from "./Options/Classes/Particles/Size/Size";
 export * from "./Options/Classes/Particles/Size/SizeAnimation";

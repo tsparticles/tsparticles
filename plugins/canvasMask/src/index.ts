@@ -1,7 +1,8 @@
-import type { Container, Engine, IPlugin, Options, RecursivePartial } from "tsparticles-engine";
+import type { Container, Engine, IPlugin, RecursivePartial } from "tsparticles-engine";
 import { CanvasMask } from "./Options/Classes/CanvasMask";
 import { CanvasMaskInstance } from "./CanvasMaskInstance";
 import type { CanvasMaskOptions } from "./types";
+import type { ICanvasMaskOptions } from "./types";
 
 /**
  * @category Canvas Mask Plugin
@@ -21,22 +22,21 @@ class CanvasMaskPlugin implements IPlugin {
         return new CanvasMaskInstance(container, this._engine);
     }
 
-    loadOptions(options: Options, source?: RecursivePartial<CanvasMaskOptions>): void {
+    loadOptions(options: CanvasMaskOptions, source?: RecursivePartial<ICanvasMaskOptions>): void {
         if (!this.needsPlugin(source)) {
             return;
         }
 
-        const optionsCast = options as unknown as CanvasMaskOptions;
-        let canvasMaskOptions = optionsCast.canvasMask as CanvasMask;
+        let canvasMaskOptions = options.canvasMask;
 
         if (canvasMaskOptions?.load === undefined) {
-            optionsCast.canvasMask = canvasMaskOptions = new CanvasMask();
+            options.canvasMask = canvasMaskOptions = new CanvasMask();
         }
 
         canvasMaskOptions.load(source?.canvasMask);
     }
 
-    needsPlugin(options?: RecursivePartial<CanvasMaskOptions>): boolean {
+    needsPlugin(options?: RecursivePartial<ICanvasMaskOptions>): boolean {
         return options?.canvasMask?.enable ?? false;
     }
 }

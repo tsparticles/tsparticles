@@ -1,4 +1,4 @@
-import { AnimationStatus, DestroyType, clamp } from "tsparticles-engine";
+import { AnimationStatus, DestroyType, clamp, getRandom } from "tsparticles-engine";
 import type { IDelta, IParticleUpdater, Particle } from "tsparticles-engine";
 
 function checkDestroy(particle: Particle, value: number, minValue: number, maxValue: number): void {
@@ -71,8 +71,20 @@ function updateSize(particle: Particle, delta: IDelta): void {
 }
 
 export class SizeUpdater implements IParticleUpdater {
-    init(): void {
-        // nothing
+    init(particle: Particle): void {
+        const container = particle.container,
+            sizeOptions = particle.options.size,
+            sizeAnimation = sizeOptions.animation;
+
+        if (sizeAnimation.enable) {
+            particle.size.velocity =
+                ((particle.retina.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100) *
+                container.retina.reduceFactor;
+
+            if (!sizeAnimation.sync) {
+                particle.size.velocity *= getRandom();
+            }
+        }
     }
 
     isEnabled(particle: Particle): boolean {
@@ -83,6 +95,10 @@ export class SizeUpdater implements IParticleUpdater {
             ((particle.size.maxLoops ?? 0) <= 0 ||
                 ((particle.size.maxLoops ?? 0) > 0 && (particle.size.loops ?? 0) < (particle.size.maxLoops ?? 0)))
         );
+    }
+
+    reset(particle: Particle): void {
+        particle.size.loops = 0;
     }
 
     update(particle: Particle, delta: IDelta): void {

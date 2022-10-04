@@ -8,8 +8,8 @@ import { addColorManager } from "./Utils/ColorUtils";
 const rgbColorManager = new RgbColorManager(),
     hslColorManager = new HslColorManager();
 
-addColorManager("rgb", rgbColorManager);
-addColorManager("hsl", hslColorManager);
+addColorManager(rgbColorManager);
+addColorManager(hslColorManager);
 
 /**
  * The exposed tsParticles instance
@@ -99,8 +99,6 @@ export * from "./Options/Classes/Interactivity/Events/Parallax";
 export * from "./Options/Classes/Interactivity/Interactivity";
 export * from "./Options/Classes/Interactivity/Modes/Modes";
 export * from "./Options/Classes/ManualParticle";
-export * from "./Options/Classes/Motion/Motion";
-export * from "./Options/Classes/Motion/MotionReduce";
 export * from "./Options/Classes/Options";
 export * from "./Options/Classes/OptionsColor";
 export * from "./Options/Classes/Particles/Bounce/ParticlesBounce";
@@ -123,8 +121,6 @@ export * from "./Options/Classes/Particles/Number/ParticlesNumber";
 export * from "./Options/Classes/Particles/Number/ParticlesDensity";
 export * from "./Options/Classes/Particles/Opacity/Opacity";
 export * from "./Options/Classes/Particles/Opacity/OpacityAnimation";
-export * from "./Options/Classes/Particles/Rotate/Rotate";
-export * from "./Options/Classes/Particles/Rotate/RotateAnimation";
 export * from "./Options/Classes/Particles/Shape/Shape";
 export * from "./Options/Classes/Particles/Size/Size";
 export * from "./Options/Classes/Particles/Size/SizeAnimation";
@@ -156,8 +152,6 @@ export * from "./Options/Interfaces/Interactivity/Events/IParallax";
 export * from "./Options/Interfaces/Interactivity/Modes/IModeDiv";
 export * from "./Options/Interfaces/Interactivity/Modes/IModes";
 export * from "./Options/Interfaces/Interactivity/IInteractivity";
-export * from "./Options/Interfaces/Motion/IMotion";
-export * from "./Options/Interfaces/Motion/IMotionReduce";
 export * from "./Options/Interfaces/Particles/Bounce/IParticlesBounce";
 export * from "./Options/Interfaces/Particles/Collisions/ICollisions";
 export * from "./Options/Interfaces/Particles/Collisions/ICollisionsOverlap";
@@ -176,8 +170,6 @@ export * from "./Options/Interfaces/Particles/Number/IParticlesDensity";
 export * from "./Options/Interfaces/Particles/Number/IParticlesNumber";
 export * from "./Options/Interfaces/Particles/Opacity/IOpacity";
 export * from "./Options/Interfaces/Particles/Opacity/IOpacityAnimation";
-export * from "./Options/Interfaces/Particles/Rotate/IRotate";
-export * from "./Options/Interfaces/Particles/Rotate/IRotateAnimation";
 export * from "./Options/Interfaces/Particles/Shape/ICharacterShape";
 export * from "./Options/Interfaces/Particles/Shape/IImageShape";
 export * from "./Options/Interfaces/Particles/Shape/IPolygonShape";

@@ -1,9 +1,9 @@
 {
   "package": {
     "dependencies": {
-      "react-particles": "^2.3.2",
-      "tsparticles-engine": "^2.3.2",
-      "tsparticles": "^2.3.2",
+      "react-particles": "^2.3.3",
+      "tsparticles-engine": "^2.3.3",
+      "tsparticles": "^2.3.4",
       "tslib": "^2.4.0"
     }
   }

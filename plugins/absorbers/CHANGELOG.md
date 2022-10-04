@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.4](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-absorbers@2.3.3...tsparticles-plugin-absorbers@2.3.4) (2022-09-30)
+
+
+### Bug Fixes
+
+* fix options loading issue in absorbers and emitters ([6afaf3e](https://github.com/matteobruni/tsparticles/commit/6afaf3e4abd31fc63746358ccea1e21bfb754142))
+
+
+
+
+
+## [2.3.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-absorbers@2.3.2...tsparticles-plugin-absorbers@2.3.3) (2022-09-30)
+
+**Note:** Version bump only for package tsparticles-plugin-absorbers
+
+
+
+
+
 ## [2.3.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-absorbers@2.3.1...tsparticles-plugin-absorbers@2.3.2) (2022-09-21)
 
 **Note:** Version bump only for package tsparticles-plugin-absorbers

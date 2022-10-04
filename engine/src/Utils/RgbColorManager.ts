@@ -3,9 +3,11 @@ import { getRangeValue, parseAlpha } from "./NumberUtils";
 import type { IColorManager } from "../Core/Interfaces/IColorManager";
 
 export class RgbColorManager implements IColorManager {
-    stringPrefix;
+    readonly key;
+    readonly stringPrefix;
 
     constructor() {
+        this.key = "rgb";
         this.stringPrefix = "rgb";
     }
 

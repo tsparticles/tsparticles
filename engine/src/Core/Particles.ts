@@ -1,4 +1,3 @@
-import { calcPositionFromSize, getRandom, getRangeMax, getRangeMin, setRangeValue } from "../Utils/NumberUtils";
 import type { ClickMode } from "../Enums/Modes/ClickMode";
 import type { Container } from "./Container";
 import type { Engine } from "../engine";
@@ -6,9 +5,7 @@ import { EventType } from "../Enums/Types/EventType";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IDelta } from "./Interfaces/IDelta";
 import type { IMouseData } from "./Interfaces/IMouseData";
-import type { IParticle } from "./Interfaces/IParticle";
 import type { IParticlesDensity } from "../Options/Interfaces/Particles/Number/IParticlesDensity";
-import type { IParticlesFrequencies } from "./Interfaces/IParticlesFrequencies";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions";
 import { InteractionManager } from "./Utils/InteractionManager";
 import { Particle } from "./Particle";
@@ -16,6 +13,7 @@ import { Point } from "./Utils/Point";
 import { QuadTree } from "./Utils/QuadTree";
 import { Rectangle } from "./Utils/Rectangle";
 import type { RecursivePartial } from "../Types/RecursivePartial";
+import { calcPositionFromSize } from "../Utils/NumberUtils";
 
 /**
  * Particles manager object
@@ -44,7 +42,6 @@ export class Particles {
 
     private readonly _engine;
 
-    private readonly freqs: IParticlesFrequencies;
     private readonly interactionManager;
     private nextId;
 
@@ -56,10 +53,6 @@ export class Particles {
         this.limit = 0;
         this.needsSort = false;
         this.lastZIndex = 0;
-        this.freqs = {
-            links: new Map<string, number>(),
-            triangles: new Map<string, number>(),
-        };
         this.interactionManager = new InteractionManager(this._engine, container);
 
         const canvasSize = this.container.canvas.size;
@@ -174,49 +167,6 @@ export class Particles {
         }
     }
 
-    getLinkFrequency(p1: IParticle, p2: IParticle): number {
-        const range = setRangeValue(p1.id, p2.id),
-            key = `${getRangeMin(range)}_${getRangeMax(range)}`;
-
-        let res = this.freqs.links.get(key);
-
-        if (res === undefined) {
-            res = getRandom();
-
-            this.freqs.links.set(key, res);
-        }
-
-        return res;
-    }
-
-    getTriangleFrequency(p1: IParticle, p2: IParticle, p3: IParticle): number {
-        let [id1, id2, id3] = [p1.id, p2.id, p3.id];
-
-        if (id1 > id2) {
-            [id2, id1] = [id1, id2];
-        }
-
-        if (id2 > id3) {
-            [id3, id2] = [id2, id3];
-        }
-
-        if (id1 > id3) {
-            [id3, id1] = [id1, id3];
-        }
-
-        const key = `${id1}_${id2}_${id3}`;
-
-        let res = this.freqs.triangles.get(key);
-
-        if (res === undefined) {
-            res = getRandom();
-
-            this.freqs.triangles.set(key, res);
-        }
-
-        return res;
-    }
-
     handleClickMode(mode: ClickMode | string): void {
         this.interactionManager.handleClickMode(mode);
     }
@@ -228,8 +178,6 @@ export class Particles {
 
         this.lastZIndex = 0;
         this.needsSort = false;
-        this.freqs.links = new Map<string, number>();
-        this.freqs.triangles = new Map<string, number>();
 
         let handled = false;
 
@@ -286,6 +234,7 @@ export class Particles {
     async redraw(): Promise<void> {
         this.clear();
         this.init();
+
         await this.draw({ value: 0, factor: 0 });
     }
 
@@ -294,7 +243,7 @@ export class Particles {
     }
 
     removeAt(index: number, quantity = 1, group?: string, override?: boolean): void {
-        if (!(index >= 0 && index <= this.count)) {
+        if (index < 0 || index > this.count) {
             return;
         }
 
@@ -378,6 +327,7 @@ export class Particles {
 
             if (particle.destroyed) {
                 particlesToDelete.push(particle);
+
                 continue;
             }
 

@@ -487,6 +487,12 @@ export class Container {
         this._options = loadContainerOptions(this._engine, this, this._initialSourceOptions, this.sourceOptions);
         this.actualOptions = loadContainerOptions(this._engine, this, this._options);
 
+        const availablePlugins = this._engine.plugins.getAvailablePlugins(this);
+
+        for (const [id, plugin] of availablePlugins) {
+            this.plugins.set(id, plugin);
+        }
+
         /* init canvas + particles */
         this.retina.init();
         this.canvas.init();
@@ -502,12 +508,6 @@ export class Container {
         this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 120;
         this.smooth = this.actualOptions.smooth;
 
-        const availablePlugins = this._engine.plugins.getAvailablePlugins(this);
-
-        for (const [id, plugin] of availablePlugins) {
-            this.plugins.set(id, plugin);
-        }
-
         for (const [, drawer] of this.drawers) {
             if (drawer.init) {
                 await drawer.init(this);
@@ -516,9 +516,9 @@ export class Container {
 
         for (const [, plugin] of this.plugins) {
             if (plugin.init) {
-                plugin.init(this.actualOptions);
+                plugin.init();
             } else if (plugin.initAsync !== undefined) {
-                await plugin.initAsync(this.actualOptions);
+                await plugin.initAsync();
             }
         }
 

@@ -262,6 +262,8 @@ export class Canvas {
     initPlugins(): void {
         this._resizePlugins = [];
 
+        console.log(this.container.plugins);
+
         for (const [, plugin] of this.container.plugins) {
             if (plugin.resize) {
                 this._resizePlugins.push(plugin);

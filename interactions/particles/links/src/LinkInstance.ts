@@ -15,8 +15,40 @@ interface ITwinkle {
     };
 }
 
+interface IParticlesFrequencies {
+    links: Map<string, number>;
+    triangles: Map<string, number>;
+}
+
+function getLinkKey(ids: number[]): string {
+    ids.sort((a, b) => a - b);
+
+    return ids.join("_");
+}
+
+function setLinkFrequency(particles: LinkParticle[], dictionary: Map<string, number>): number {
+    const key = getLinkKey(particles.map((t) => t.id));
+
+    let res = dictionary.get(key);
+
+    if (res === undefined) {
+        res = getRandom();
+
+        dictionary.set(key, res);
+    }
+
+    return res;
+}
+
 export class LinkInstance implements IContainerPlugin {
-    constructor(private readonly container: LinkContainer) {}
+    private readonly _freqs: IParticlesFrequencies;
+
+    constructor(private readonly container: LinkContainer) {
+        this._freqs = {
+            links: new Map<string, number>(),
+            triangles: new Map<string, number>(),
+        };
+    }
 
     drawParticle(context: CanvasRenderingContext2D, particle: LinkParticle): void {
         const container = this.container,
@@ -29,9 +61,7 @@ export class LinkInstance implements IContainerPlugin {
         context.save();
 
         const p1Links = particle.links.filter(
-            (l) =>
-                pOptions.links &&
-                container.particles.getLinkFrequency(particle, l.destination) <= pOptions.links.frequency
+            (l) => pOptions.links && this.getLinkFrequency(particle, l.destination) <= pOptions.links.frequency
         );
 
         for (const link of p1Links) {
@@ -43,6 +73,11 @@ export class LinkInstance implements IContainerPlugin {
         }
 
         context.restore();
+    }
+
+    init(): void {
+        this._freqs.links = new Map<string, number>();
+        this._freqs.triangles = new Map<string, number>();
     }
 
     particleCreated(particle: LinkParticle): void {
@@ -199,15 +234,14 @@ export class LinkInstance implements IContainerPlugin {
         link: ILink,
         p1Links: ILink[]
     ): void {
-        const p2 = link.destination,
-            particles = container.particles;
+        const p2 = link.destination;
 
         if (!(options.links?.triangles.enable && p2.options.links?.triangles.enable)) {
             return;
         }
 
         const vertices = p2.links?.filter((t) => {
-            const linkFreq = container.particles.getLinkFrequency(p2, t.destination);
+            const linkFreq = this.getLinkFrequency(p2, t.destination);
 
             return (
                 p2.options.links &&
@@ -222,7 +256,7 @@ export class LinkInstance implements IContainerPlugin {
 
         for (const vertex of vertices) {
             const p3 = vertex.destination,
-                triangleFreq = particles.getTriangleFrequency(p1, p2, p3);
+                triangleFreq = this.getTriangleFrequency(p1, p2, p3);
 
             if (triangleFreq > options.links.triangles.frequency) {
                 continue;
@@ -230,5 +264,13 @@ export class LinkInstance implements IContainerPlugin {
 
             this.drawLinkTriangle(p1, link, vertex);
         }
+    }
+
+    private getLinkFrequency(p1: LinkParticle, p2: LinkParticle): number {
+        return setLinkFrequency([p1, p2], this._freqs.links);
+    }
+
+    private getTriangleFrequency(p1: LinkParticle, p2: LinkParticle, p3: LinkParticle): number {
+        return setLinkFrequency([p1, p2, p3], this._freqs.triangles);
     }
 }

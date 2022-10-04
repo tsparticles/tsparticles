@@ -91,6 +91,7 @@ app.use("/path-simplex-noise", express.static("./node_modules/tsparticles-path-s
 app.use("/plugin-hsv-color", express.static("./node_modules/tsparticles-plugin-hsv-color"));
 app.use("/plugin-canvas-mask", express.static("./node_modules/tsparticles-plugin-canvas-mask"))
 app.use("/plugin-infection", express.static("./node_modules/tsparticles-plugin-infection"));
+app.use("/plugin-motion", express.static("./node_modules/tsparticles-plugin-motion"));
 app.use("/preset-big-circles", express.static("./node_modules/tsparticles-preset-big-circles"));
 app.use("/preset-bubbles", express.static("./node_modules/tsparticles-preset-bubbles"));
 app.use("/preset-confetti", express.static("./node_modules/tsparticles-preset-confetti"));

@@ -1,4 +1,4 @@
-import { executeOnSingleOrMultiple, isSsr } from "../../Utils/Utils";
+import { executeOnSingleOrMultiple, safeMatchMedia } from "../../Utils/Utils";
 import {
     mouseDownEvent,
     mouseLeaveEvent,
@@ -155,8 +155,8 @@ export class EventListeners {
     private handleThemeChange(e: Event): void {
         const mediaEvent = e as MediaQueryListEvent,
             themeName = mediaEvent.matches
-                ? this.container.options.defaultDarkTheme
-                : this.container.options.defaultLightTheme,
+                ? this.container.options.defaultThemes.dark
+                : this.container.options.defaultThemes.light,
             theme = this.container.options.themes.find((theme) => theme.name === themeName);
 
         if (theme && theme.default.auto) {
@@ -229,7 +229,7 @@ export class EventListeners {
             container.interactivity.element = container.canvas.element;
         }
 
-        const mediaMatch = !isSsr() && typeof matchMedia !== "undefined" && matchMedia("(prefers-color-scheme: dark)");
+        const mediaMatch = safeMatchMedia("(prefers-color-scheme: dark)");
 
         if (mediaMatch) {
             if (mediaMatch.addEventListener !== undefined) {

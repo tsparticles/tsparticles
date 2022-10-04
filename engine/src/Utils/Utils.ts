@@ -74,6 +74,18 @@ export function isSsr(): boolean {
     return typeof window === "undefined" || !window || typeof window.document === "undefined" || !window.document;
 }
 
+export function hasMatchMedia(): boolean {
+    return !isSsr() && typeof matchMedia !== "undefined";
+}
+
+export function safeMatchMedia(query: string): MediaQueryList | undefined {
+    if (!hasMatchMedia()) {
+        return;
+    }
+
+    return matchMedia(query);
+}
+
 /**
  * Calls the requestAnimationFrame function or a polyfill
  */
@@ -131,9 +143,7 @@ export function arrayRandomIndex<T>(array: T[]): number {
  * @param useIndex if true, the index will be used instead of a random index
  */
 export function itemFromArray<T>(array: T[], index?: number, useIndex = true): T {
-    const fixedIndex = index !== undefined && useIndex ? index % array.length : arrayRandomIndex(array);
-
-    return array[fixedIndex];
+    return array[index !== undefined && useIndex ? index % array.length : arrayRandomIndex(array)];
 }
 
 /**

@@ -1,4 +1,4 @@
-import { ClickMode, HoverMode, MoveDirection, Options, OutMode, RotateDirection, ThemeMode, tsParticles } from "../src";
+import { ClickMode, HoverMode, MoveDirection, Options, OutMode, ThemeMode, tsParticles } from "../src";
 import { describe, it } from "mocha";
 import { TestContainer } from "./Fixture/TestContainer";
 import { expect } from "chai";
@@ -67,7 +67,7 @@ describe("Themes", () => {
             },
             rotate: {
                 value: 0,
-                direction: RotateDirection.random,
+                direction: "random",
                 animation: {
                     speed: 5,
                     enable: true,

@@ -1,11 +1,9 @@
 import type { ClickMode } from "../../Enums/Modes/ClickMode";
 import type { ICoordinates } from "./ICoordinates";
 import type { IDelta } from "./IDelta";
-import type { IOptions } from "../../Options/Interfaces/IOptions";
 import type { IOptionsColor } from "../../Options/Interfaces/IOptionsColor";
 import type { OutModeDirection } from "../../Enums/Directions/OutModeDirection";
 import type { Particle } from "../Particle";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
 
 /**
  * @category Interfaces
@@ -15,8 +13,8 @@ export interface IContainerPlugin {
     draw?: (context: CanvasRenderingContext2D, delta: IDelta) => void;
     drawParticle?: (context: CanvasRenderingContext2D, particle: Particle, delta: IDelta) => void;
     handleClickMode?: (mode: ClickMode | string) => void;
-    init?: (options?: RecursivePartial<IOptions>) => void;
-    initAsync?: (options?: RecursivePartial<IOptions>) => Promise<void>;
+    init?: () => void;
+    initAsync?: () => Promise<void>;
     particleBounce?: (particle: Particle, delta: IDelta, direction: OutModeDirection) => boolean;
     particleCreated?: (particle: Particle) => void;
     particleDestroyed?: (particle: Particle, override?: boolean) => void;

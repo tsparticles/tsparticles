@@ -39,9 +39,9 @@
         "sync": false
       }
     },
-    "line_linked": {
+    "links": {
       "enable": true,
-      "distance": 100,
+      "distance": 150,
       "color": "random",
       "opacity": 0.4,
       "width": 1,

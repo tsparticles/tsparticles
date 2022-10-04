@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-template-typescript",
-  "version": "1.46.2",
+  "version": "1.46.3",
   "private": true,
   "description": "tsParticles template preset, using TypeScript",
   "homepage": "https://particles.js.org",
@@ -67,10 +67,10 @@
     "url": "https://github.com/tsparticles/preset-template/issues"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.1",
+    "@babel/core": "^7.19.3",
     "@types/webpack-env": "^1.18.0",
-    "@typescript-eslint/eslint-plugin": "^5.38.0",
-    "@typescript-eslint/parser": "^5.38.0",
+    "@typescript-eslint/eslint-plugin": "^5.38.1",
+    "@typescript-eslint/parser": "^5.38.1",
     "babel-loader": "^8.2.5",
     "browserslist": "^4.21.4",
     "copyfiles": "^2.4.1",
@@ -79,12 +79,12 @@
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
     "terser-webpack-plugin": "^5.3.6",
-    "typescript": "^4.8.3",
+    "typescript": "^4.8.4",
     "webpack": "^5.74.0",
     "webpack-bundle-analyzer": "^4.6.1",
     "webpack-cli": "^4.10.0"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.3.2"
+    "tsparticles-engine": "^2.3.3"
   }
 }

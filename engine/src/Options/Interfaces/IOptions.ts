@@ -3,7 +3,6 @@ import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask";
 import type { IFullScreen } from "./FullScreen/IFullScreen";
 import type { IInteractivity } from "./Interactivity/IInteractivity";
 import type { IManualParticle } from "./IManualParticle";
-import type { IMotion } from "./Motion/IMotion";
 import type { IParticlesOptions } from "./Particles/IParticlesOptions";
 import type { IResponsive } from "./IResponsive";
 import type { ITheme } from "./Theme/ITheme";
@@ -78,11 +77,6 @@ export interface IOptions {
      * Particles inserted at load time with a specific position
      */
     manualParticles: IManualParticle[];
-
-    /**
-     * Handles user's preferences about motion
-     */
-    motion: IMotion;
 
     /**
      * The particles options

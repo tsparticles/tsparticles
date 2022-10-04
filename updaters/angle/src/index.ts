@@ -1,6 +1,6 @@
-import { AngleUpdater } from "./AngleUpdater";
 import type { Engine } from "tsparticles-engine";
+import { RotateUpdater } from "./RotateUpdater";
 
 export async function loadAngleUpdater(engine: Engine): Promise<void> {
-    await engine.addParticleUpdater("angle", (container) => new AngleUpdater(container));
+    await engine.addParticleUpdater("rotate", (container) => new RotateUpdater(container));
 }

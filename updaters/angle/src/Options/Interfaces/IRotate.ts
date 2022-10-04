@@ -1,6 +1,5 @@
-import type { RotateDirection, RotateDirectionAlt } from "../../../../Enums/Directions/RotateDirection";
+import type { IValueWithRandom, RotateDirection, RotateDirectionAlt } from "tsparticles-engine";
 import type { IRotateAnimation } from "./IRotateAnimation";
-import type { IValueWithRandom } from "../../IValueWithRandom";
 
 /**
  * [[include:Options/Particles/Rotate.md]]
