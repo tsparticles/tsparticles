@@ -1,8 +1,7 @@
 import type { Container, Engine, IPlugin, RecursivePartial } from "tsparticles-engine";
-import type { IInfectionOptions } from "./Options/Interfaces/IInfectionOptions";
+import type { IInfectionOptions, InfectionOptions } from "./Types";
 import { Infection } from "./Options/Classes/Infection";
 import { InfectionInstance } from "./InfectionInstance";
-import type { Options } from "tsparticles-engine";
 import { ParticlesInfecter } from "./ParticlesInfecter";
 
 /**
@@ -19,16 +18,15 @@ class Plugin implements IPlugin {
         return new InfectionInstance(container);
     }
 
-    loadOptions(options: Options, source?: RecursivePartial<IInfectionOptions>): void {
+    loadOptions(options: InfectionOptions, source?: RecursivePartial<IInfectionOptions>): void {
         if (!this.needsPlugin(source)) {
             return;
         }
 
-        const optionsCast = options as unknown as IInfectionOptions;
-        let infectionOptions = optionsCast.infection as Infection;
+        let infectionOptions = options.infection as Infection;
 
         if (infectionOptions?.load === undefined) {
-            optionsCast.infection = infectionOptions = new Infection();
+            options.infection = infectionOptions = new Infection();
         }
 
         infectionOptions.load(source?.infection);
