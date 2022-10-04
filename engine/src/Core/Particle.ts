@@ -389,14 +389,6 @@ export class Particle implements IParticle {
 
                     break;
             }
-
-            this.size.velocity =
-                ((this.retina.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100) *
-                container.retina.reduceFactor;
-
-            if (!sizeAnimation.sync) {
-                this.size.velocity *= getRandom();
-            }
         }
 
         /* position */
@@ -407,6 +399,7 @@ export class Particle implements IParticle {
             inRange: false,
             factor: 1,
         };
+
         this.position = this._calcPosition(container, position, clamp(zIndexValue, 0, container.zLayers));
         this.initialPosition = this.position.copy();
 
