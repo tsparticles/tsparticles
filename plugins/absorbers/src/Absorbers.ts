@@ -57,7 +57,7 @@ export class Absorbers implements IContainerPlugin {
         }
     }
 
-    init(): void {
+    async init(): Promise<void> {
         this.absorbers = this.container.actualOptions.absorbers;
         this.interactivityAbsorbers = this.container.actualOptions.interactivity.modes.absorbers;
 

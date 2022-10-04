@@ -516,9 +516,7 @@ export class Container {
 
         for (const [, plugin] of this.plugins) {
             if (plugin.init) {
-                plugin.init();
-            } else if (plugin.initAsync !== undefined) {
-                await plugin.initAsync();
+                await plugin.init();
             }
         }
 

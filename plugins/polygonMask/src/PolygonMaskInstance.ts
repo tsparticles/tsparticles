@@ -84,7 +84,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
     }
 
-    async initAsync(): Promise<void> {
+    async init(): Promise<void> {
         const polygonMaskOptions = this._container.actualOptions.polygon;
 
         if (!polygonMaskOptions) {

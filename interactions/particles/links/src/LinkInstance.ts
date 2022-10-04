@@ -75,7 +75,7 @@ export class LinkInstance implements IContainerPlugin {
         context.restore();
     }
 
-    init(): void {
+    async init(): Promise<void> {
         this._freqs.links = new Map<string, number>();
         this._freqs.triangles = new Map<string, number>();
     }

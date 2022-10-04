@@ -12,7 +12,7 @@ export class CanvasMaskInstance implements IContainerPlugin {
         this._engine = engine;
     }
 
-    async initAsync(): Promise<void> {
+    async init(): Promise<void> {
         const container = this._container,
             options = container.actualOptions.canvasMask;
 

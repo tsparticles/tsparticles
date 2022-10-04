@@ -114,7 +114,7 @@ export class Emitters implements IContainerPlugin {
         }
     }
 
-    init(): void {
+    async init(): Promise<void> {
         this.emitters = this.container.actualOptions.emitters;
         this.interactivityEmitters = this.container.actualOptions.interactivity.modes.emitters;
 

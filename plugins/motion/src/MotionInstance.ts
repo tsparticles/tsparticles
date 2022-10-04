@@ -11,7 +11,7 @@ export class MotionInstance implements IContainerPlugin {
         this._engine = engine;
     }
 
-    init(): void {
+    async init(): Promise<void> {
         const container = this._container,
             options = container.actualOptions.motion;
 
@@ -23,12 +23,14 @@ export class MotionInstance implements IContainerPlugin {
                 this._handleMotionChange(mediaQuery);
 
                 // Ads an event listener to check for changes in the media query's value.
-                const handleChange = (): void => {
+                const handleChange = async (): Promise<void> => {
                     this._handleMotionChange(mediaQuery);
 
-                    container.refresh().catch(() => {
+                    try {
+                        await container.refresh();
+                    } catch {
                         // ignore
-                    });
+                    }
                 };
 
                 if (mediaQuery.addEventListener !== undefined) {
