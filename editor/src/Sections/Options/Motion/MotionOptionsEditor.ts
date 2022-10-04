@@ -1,11 +1,11 @@
-import type { Container, IMotion } from "tsparticles-engine";
+import type { Container } from "tsparticles-engine";
 import { EditorBase } from "../../../EditorBase";
 import type { EditorGroup } from "object-gui";
 import { EditorType } from "object-gui";
 
 export class MotionOptionsEditor extends EditorBase {
     private group!: EditorGroup;
-    private options!: () => IMotion;
+    private options!: () => unknown;
 
     constructor(particles: () => Container) {
         super(particles);
@@ -13,7 +13,7 @@ export class MotionOptionsEditor extends EditorBase {
 
     addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("motion", "Motion");
-        this.options = this.group.data as () => IMotion;
+        this.options = this.group.data;
 
         this.addReduce();
         this.addProperties();

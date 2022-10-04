@@ -73,6 +73,7 @@
     "tsparticles-plugin-emitters": "^2.3.4",
     "tsparticles-plugin-hsv-color": "^2.3.3",
     "tsparticles-plugin-infection": "^2.3.3",
+    "tsparticles-plugin-motion": "^2.3.3",
     "tsparticles-plugin-polygon-mask": "^2.3.3",
     "tsparticles-preset-big-circles": "^2.3.4",
     "tsparticles-preset-bubbles": "^2.3.4",

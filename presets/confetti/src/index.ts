@@ -7,6 +7,7 @@ import { loadCircleShape } from "tsparticles-shape-circle";
 import { loadColorUpdater } from "tsparticles-updater-color";
 import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
 import { loadLifeUpdater } from "tsparticles-updater-life";
+import { loadMotionPlugin } from "tsparticles-plugin-motion";
 import { loadOpacityUpdater } from "tsparticles-updater-opacity";
 import { loadOptions } from "./options";
 import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
@@ -29,6 +30,7 @@ async function loadPreset(
     await loadOpacityUpdater(engine);
     await loadOutModesUpdater(engine);
     await loadEmittersPlugin(engine);
+    await loadMotionPlugin(engine);
     await loadWobbleUpdater(engine);
     await loadRollUpdater(engine);
     await loadAngleUpdater(engine);

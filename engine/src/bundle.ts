@@ -64,8 +64,6 @@ export * from "./Options/Classes/Interactivity/Events/Parallax";
 export * from "./Options/Classes/Interactivity/Interactivity";
 export * from "./Options/Classes/Interactivity/Modes/Modes";
 export * from "./Options/Classes/ManualParticle";
-export * from "./Options/Classes/Motion/Motion";
-export * from "./Options/Classes/Motion/MotionReduce";
 export * from "./Options/Classes/Options";
 export * from "./Options/Classes/OptionsColor";
 export * from "./Options/Classes/Particles/Bounce/ParticlesBounce";
