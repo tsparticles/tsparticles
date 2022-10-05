@@ -297,10 +297,11 @@ export class Container {
                     }
                 }
 
-                const canvasRect = this.canvas.element?.getBoundingClientRect(),
+                const element = this.canvas.element,
+                    canvasRect = element ? element.getBoundingClientRect() : undefined,
                     pos = {
-                        x: lastTouch.clientX - (canvasRect?.left ?? 0),
-                        y: lastTouch.clientY - (canvasRect?.top ?? 0),
+                        x: lastTouch.clientX - (canvasRect ? canvasRect.left : 0),
+                        y: lastTouch.clientY - (canvasRect ? canvasRect.top : 0),
                     };
 
                 clickOrTouchHandler(e, pos, Math.max(lastTouch.radiusX, lastTouch.radiusY));
@@ -428,7 +429,11 @@ export class Container {
      * @param quality The exported image quality
      */
     exportImage(callback: BlobCallback, type?: string, quality?: number): void {
-        return this.canvas.element?.toBlob(callback, type ?? "image/png", quality);
+        const element = this.canvas.element;
+
+        if (element) {
+            element.toBlob(callback, type ?? "image/png", quality);
+        }
     }
 
     /**
@@ -526,7 +531,7 @@ export class Container {
         this.particles.setDensity();
 
         for (const [, plugin] of this.plugins) {
-            if (plugin.particlesSetup !== undefined) {
+            if (plugin.particlesSetup) {
                 plugin.particlesSetup();
             }
         }
@@ -713,10 +718,8 @@ export class Container {
         }
 
         for (const [, plugin] of this.plugins) {
-            if (plugin.startAsync !== undefined) {
-                await plugin.startAsync();
-            } else if (plugin.start !== undefined) {
-                plugin.start();
+            if (plugin.start) {
+                await plugin.start();
             }
         }
 
@@ -745,7 +748,9 @@ export class Container {
         }
 
         for (const [, plugin] of this.plugins) {
-            plugin.stop?.();
+            if (plugin.stop) {
+                plugin.stop();
+            }
         }
 
         for (const key of this.plugins.keys()) {

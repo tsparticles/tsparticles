@@ -27,8 +27,7 @@ export interface IContainerPlugin {
     play?: () => void;
     reset?: () => void;
     resize?: () => void;
-    start?: () => void;
-    startAsync?: () => Promise<void>;
+    start?: () => Promise<void>;
     stop?: () => void;
     update?: (delta: IDelta) => void;
 }

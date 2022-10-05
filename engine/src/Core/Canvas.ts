@@ -1,5 +1,6 @@
 import type { IHsl, IRgba } from "./Interfaces/Colors";
 import { clear, drawParticle, drawParticlePlugin, drawPlugin, paintBase } from "../Utils/CanvasUtils";
+import { deepExtend, isSsr } from "../Utils/Utils";
 import { getStyleFromHsl, getStyleFromRgb, rangeColorToHsl, rangeColorToRgb } from "../Utils/ColorUtils";
 import type { Container } from "./Container";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
@@ -9,7 +10,6 @@ import type { IParticleColorStyle } from "./Interfaces/IParticleColorStyle";
 import type { IParticleTransformValues } from "./Interfaces/IParticleTransformValues";
 import type { IParticleUpdater } from "./Interfaces/IParticleUpdater";
 import type { Particle } from "./Particle";
-import { deepExtend } from "../Utils/Utils";
 import { generatedAttribute } from "./Utils/Constants";
 
 function setTransformValue(
@@ -50,7 +50,7 @@ export class Canvas {
 
     private _coverColorStyle?: string;
     private _generatedCanvas;
-    private readonly _mutationObserver: MutationObserver;
+    private readonly _mutationObserver?: MutationObserver;
     private _originalStyle?: CSSStyleDeclaration;
     private _postDrawUpdaters: IParticleUpdater[];
     private _preDrawUpdaters: IParticleUpdater[];
@@ -73,13 +73,16 @@ export class Canvas {
         this._postDrawUpdaters = [];
         this._resizePlugins = [];
         this._colorPlugins = [];
-        this._mutationObserver = new MutationObserver((records) => {
-            for (const record of records) {
-                if (record.type === "attributes" && record.attributeName === "style") {
-                    this._repairStyle();
-                }
-            }
-        });
+        this._mutationObserver =
+            !isSsr() && typeof MutationObserver !== "undefined"
+                ? new MutationObserver((records) => {
+                      for (const record of records) {
+                          if (record.type === "attributes" && record.attributeName === "style") {
+                              this._repairStyle();
+                          }
+                      }
+                  })
+                : undefined;
     }
 
     /**
@@ -104,7 +107,7 @@ export class Canvas {
      * Destroying object actions
      */
     destroy(): void {
-        this._mutationObserver.disconnect();
+        this._mutationObserver?.disconnect();
 
         if (this._generatedCanvas) {
             this.element?.remove();
@@ -236,7 +239,7 @@ export class Canvas {
         this.initBackground();
 
         if (this.element) {
-            this._mutationObserver.observe(this.element, { attributes: true });
+            this._mutationObserver?.observe(this.element, { attributes: true });
         }
 
         this.initUpdaters();
@@ -326,7 +329,7 @@ export class Canvas {
         this.size.height = canvas.offsetHeight;
         this.size.width = canvas.offsetWidth;
         this._context = this.element.getContext("2d");
-        this._mutationObserver.observe(this.element, { attributes: true });
+        this._mutationObserver?.observe(this.element, { attributes: true });
         this.container.retina.init();
         this.initBackground();
     }
@@ -553,12 +556,12 @@ export class Canvas {
             return;
         }
 
-        this._mutationObserver.disconnect();
+        this._mutationObserver?.disconnect();
 
         this._initStyle();
         this.initBackground();
 
-        this._mutationObserver.observe(element, { attributes: true });
+        this._mutationObserver?.observe(element, { attributes: true });
     }
 
     private _resetOriginalStyle(): void {
