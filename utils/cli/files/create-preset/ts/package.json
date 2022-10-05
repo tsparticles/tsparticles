@@ -69,8 +69,8 @@
   "devDependencies": {
     "@babel/core": "^7.19.3",
     "@types/webpack-env": "^1.18.0",
-    "@typescript-eslint/eslint-plugin": "^5.38.1",
-    "@typescript-eslint/parser": "^5.38.1",
+    "@typescript-eslint/eslint-plugin": "^5.39.0",
+    "@typescript-eslint/parser": "^5.39.0",
     "babel-loader": "^8.2.5",
     "browserslist": "^4.21.4",
     "copyfiles": "^2.4.1",

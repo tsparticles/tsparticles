@@ -28,8 +28,8 @@
     "url": "https://github.com/matteobruni/tsparticles/issues"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.38.1",
-    "@typescript-eslint/parser": "^5.38.1",
+    "@typescript-eslint/eslint-plugin": "^5.39.0",
+    "@typescript-eslint/parser": "^5.39.0",
     "copyfiles": "^2.4.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-preact-pure": "^4.0.1",
@@ -43,7 +43,7 @@
     "sirv-cli": "^2.0.2"
   },
   "dependencies": {
-    "preact": "^10.11.0",
+    "preact": "^10.11.1",
     "preact-particles": "^2.3.3",
     "preact-render-to-string": "^5.2.4",
     "preact-router": "^4.1.0",

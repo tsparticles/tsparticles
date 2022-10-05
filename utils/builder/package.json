@@ -29,8 +29,8 @@
     "@tsparticles/eslint-config": "^1.2.3",
     "@tsparticles/prettier-config": "^1.2.3",
     "@tsparticles/tsconfig": "^1.2.3",
-    "@typescript-eslint/eslint-plugin": "^5.38.1",
-    "@typescript-eslint/parser": "^5.38.1",
+    "@typescript-eslint/eslint-plugin": "^5.39.0",
+    "@typescript-eslint/parser": "^5.39.0",
     "eslint": "^8.24.0",
     "eslint-config-prettier": "^8.5.0",
     "fs-extra": "^10.1.0",
@@ -45,7 +45,7 @@
     "@types/eslint": "^8.4.6",
     "@types/fs-extra": "^9.0.13",
     "@types/klaw": "^3.0.3",
-    "@types/node": "^18.7.23",
+    "@types/node": "^18.8.2",
     "@types/prettier": "^2.7.1",
     "@types/rimraf": "^3.0.2"
   }
