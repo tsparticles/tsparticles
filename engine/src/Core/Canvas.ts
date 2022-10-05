@@ -74,13 +74,9 @@ export class Canvas {
         this._resizePlugins = [];
         this._colorPlugins = [];
         this._mutationObserver = new MutationObserver((records) => {
-            if (!this.container.actualOptions.fullScreen.enable) {
-                return;
-            }
-
             for (const record of records) {
                 if (record.type === "attributes" && record.attributeName === "style") {
-                    this._setFullScreenStyle();
+                    this._repairStyle();
                 }
             }
         });
@@ -238,6 +234,11 @@ export class Canvas {
         this._initCover();
         this._initTrail();
         this.initBackground();
+
+        if (this.element) {
+            this._mutationObserver.observe(this.element, { attributes: true });
+        }
+
         this.initUpdaters();
         this.initPlugins();
         this.paint();
@@ -545,6 +546,21 @@ export class Canvas {
         });
     }
 
+    private _repairStyle(): void {
+        const element = this.element;
+
+        if (!element) {
+            return;
+        }
+
+        this._mutationObserver.disconnect();
+
+        this._initStyle();
+        this.initBackground();
+
+        this._mutationObserver.observe(element, { attributes: true });
+    }
+
     private _resetOriginalStyle(): void {
         const element = this.element,
             originalStyle = this._originalStyle;
@@ -560,14 +576,13 @@ export class Canvas {
     }
 
     private _setFullScreenStyle(): void {
-        const zIndex = this.container.actualOptions.fullScreen.zIndex.toString(10),
+        const fullScreen = this.container.actualOptions.fullScreen,
+            zIndex = fullScreen.zIndex.toString(10),
             element = this.element;
 
         if (!element) {
             return;
         }
-
-        this._mutationObserver.disconnect();
 
         element.style.setProperty("position", "fixed", "important");
         element.style.setProperty("z-index", zIndex, "important");
@@ -575,7 +590,5 @@ export class Canvas {
         element.style.setProperty("left", "0", "important");
         element.style.setProperty("width", "100%", "important");
         element.style.setProperty("height", "100%", "important");
-
-        this._mutationObserver.observe(element, { attributes: true });
     }
 }
