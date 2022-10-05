@@ -50,6 +50,7 @@ export class Canvas {
 
     private _coverColorStyle?: string;
     private _generatedCanvas;
+    private readonly _mutationObserver: MutationObserver;
     private _originalStyle?: CSSStyleDeclaration;
     private _postDrawUpdaters: IParticleUpdater[];
     private _preDrawUpdaters: IParticleUpdater[];
@@ -72,6 +73,17 @@ export class Canvas {
         this._postDrawUpdaters = [];
         this._resizePlugins = [];
         this._colorPlugins = [];
+        this._mutationObserver = new MutationObserver((records) => {
+            if (!this.container.actualOptions.fullScreen.enable) {
+                return;
+            }
+
+            for (const record of records) {
+                if (record.type === "attributes" && record.attributeName === "style") {
+                    this._setFullScreenStyle();
+                }
+            }
+        });
     }
 
     /**
@@ -96,6 +108,8 @@ export class Canvas {
      * Destroying object actions
      */
     destroy(): void {
+        this._mutationObserver.disconnect();
+
         if (this._generatedCanvas) {
             this.element?.remove();
         } else {
@@ -311,6 +325,7 @@ export class Canvas {
         this.size.height = canvas.offsetHeight;
         this.size.width = canvas.offsetWidth;
         this._context = this.element.getContext("2d");
+        this._mutationObserver.observe(this.element, { attributes: true });
         this.container.retina.init();
         this.initBackground();
     }
@@ -487,12 +502,7 @@ export class Canvas {
         if (options.fullScreen.enable) {
             this._originalStyle = deepExtend({}, element.style) as CSSStyleDeclaration;
 
-            element.style.setProperty("position", "fixed", "important");
-            element.style.setProperty("z-index", options.fullScreen.zIndex.toString(10), "important");
-            element.style.setProperty("top", "0", "important");
-            element.style.setProperty("left", "0", "important");
-            element.style.setProperty("width", "100%", "important");
-            element.style.setProperty("height", "100%", "important");
+            this._setFullScreenStyle();
         } else {
             this._resetOriginalStyle();
         }
@@ -547,5 +557,25 @@ export class Canvas {
             element.style.width = originalStyle.width;
             element.style.height = originalStyle.height;
         }
+    }
+
+    private _setFullScreenStyle(): void {
+        const zIndex = this.container.actualOptions.fullScreen.zIndex.toString(10),
+            element = this.element;
+
+        if (!element) {
+            return;
+        }
+
+        this._mutationObserver.disconnect();
+
+        element.style.setProperty("position", "fixed", "important");
+        element.style.setProperty("z-index", zIndex, "important");
+        element.style.setProperty("top", "0", "important");
+        element.style.setProperty("left", "0", "important");
+        element.style.setProperty("width", "100%", "important");
+        element.style.setProperty("height", "100%", "important");
+
+        this._mutationObserver.observe(element, { attributes: true });
     }
 }
