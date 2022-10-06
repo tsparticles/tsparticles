@@ -114,7 +114,6 @@
     "tsparticles-interaction-external-trail": "^2.3.3",
     "tsparticles-plugin-absorbers": "^2.3.4",
     "tsparticles-plugin-emitters": "^2.3.4",
-    "tsparticles-plugin-polygon-mask": "^2.3.3",
     "tsparticles-slim": "^2.3.4",
     "tsparticles-updater-destroy": "^2.3.3",
     "tsparticles-updater-roll": "^2.3.3",

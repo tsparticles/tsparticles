@@ -73,7 +73,7 @@
                 return "[object SVGPathSegMovetoAbs]";
             };
             window.SVGPathSegMovetoAbs.prototype._asPathString = function () {
-                return this.pathSegTypeAsLetter + " " + this._x + " " + this._y;
+                return `${this.pathSegTypeAsLetter} ${this._x} ${this._y}`;
             };
             window.SVGPathSegMovetoAbs.prototype.clone = function () {
                 return new window.SVGPathSegMovetoAbs(undefined, this._x, this._y);
@@ -109,7 +109,7 @@
                 return "[object SVGPathSegMovetoRel]";
             };
             window.SVGPathSegMovetoRel.prototype._asPathString = function () {
-                return this.pathSegTypeAsLetter + " " + this._x + " " + this._y;
+                return `${this.pathSegTypeAsLetter} ${this._x} ${this._y}`;
             };
             window.SVGPathSegMovetoRel.prototype.clone = function () {
                 return new window.SVGPathSegMovetoRel(undefined, this._x, this._y);
@@ -145,7 +145,7 @@
                 return "[object SVGPathSegLinetoAbs]";
             };
             window.SVGPathSegLinetoAbs.prototype._asPathString = function () {
-                return this.pathSegTypeAsLetter + " " + this._x + " " + this._y;
+                return `${this.pathSegTypeAsLetter} ${this._x} ${this._y}`;
             };
             window.SVGPathSegLinetoAbs.prototype.clone = function () {
                 return new window.SVGPathSegLinetoAbs(undefined, this._x, this._y);
@@ -181,7 +181,7 @@
                 return "[object SVGPathSegLinetoRel]";
             };
             window.SVGPathSegLinetoRel.prototype._asPathString = function () {
-                return this.pathSegTypeAsLetter + " " + this._x + " " + this._y;
+                return `${this.pathSegTypeAsLetter} ${this._x} ${this._y}`;
             };
             window.SVGPathSegLinetoRel.prototype.clone = function () {
                 return new window.SVGPathSegLinetoRel(undefined, this._x, this._y);
@@ -221,21 +221,7 @@
                 return "[object SVGPathSegCurvetoCubicAbs]";
             };
             window.SVGPathSegCurvetoCubicAbs.prototype._asPathString = function () {
-                return (
-                    this.pathSegTypeAsLetter +
-                    " " +
-                    this._x1 +
-                    " " +
-                    this._y1 +
-                    " " +
-                    this._x2 +
-                    " " +
-                    this._y2 +
-                    " " +
-                    this._x +
-                    " " +
-                    this._y
-                );
+                return `${this.pathSegTypeAsLetter}  ${this._x1} ${this._y1} ${this._x2} ${this._y2} ${this._x} ${this._y}`;
             };
             window.SVGPathSegCurvetoCubicAbs.prototype.clone = function () {
                 return new window.SVGPathSegCurvetoCubicAbs(
@@ -323,21 +309,7 @@
                 return "[object SVGPathSegCurvetoCubicRel]";
             };
             window.SVGPathSegCurvetoCubicRel.prototype._asPathString = function () {
-                return (
-                    this.pathSegTypeAsLetter +
-                    " " +
-                    this._x1 +
-                    " " +
-                    this._y1 +
-                    " " +
-                    this._x2 +
-                    " " +
-                    this._y2 +
-                    " " +
-                    this._x +
-                    " " +
-                    this._y
-                );
+                return `${this.pathSegTypeAsLetter} ${this._x1} ${this._y1} ${this._x2} ${this._y2} ${this._x} ${this._y}`;
             };
             window.SVGPathSegCurvetoCubicRel.prototype.clone = function () {
                 return new window.SVGPathSegCurvetoCubicRel(
@@ -423,7 +395,7 @@
                 return "[object SVGPathSegCurvetoQuadraticAbs]";
             };
             window.SVGPathSegCurvetoQuadraticAbs.prototype._asPathString = function () {
-                return this.pathSegTypeAsLetter + " " + this._x1 + " " + this._y1 + " " + this._x + " " + this._y;
+                return `${this.pathSegTypeAsLetter} ${this._x1} ${this._y1} ${this._x} ${this._y}`;
             };
             window.SVGPathSegCurvetoQuadraticAbs.prototype.clone = function () {
                 return new window.SVGPathSegCurvetoQuadraticAbs(undefined, this._x, this._y, this._x1, this._y1);
@@ -481,7 +453,7 @@
                 return "[object SVGPathSegCurvetoQuadraticRel]";
             };
             window.SVGPathSegCurvetoQuadraticRel.prototype._asPathString = function () {
-                return this.pathSegTypeAsLetter + " " + this._x1 + " " + this._y1 + " " + this._x + " " + this._y;
+                return `${this.pathSegTypeAsLetter} ${this._x1} ${this._y1} ${this._x} ${this._y}`;
             };
             window.SVGPathSegCurvetoQuadraticRel.prototype.clone = function () {
                 return new window.SVGPathSegCurvetoQuadraticRel(undefined, this._x, this._y, this._x1, this._y1);
@@ -542,23 +514,9 @@
                 return "[object SVGPathSegArcAbs]";
             };
             window.SVGPathSegArcAbs.prototype._asPathString = function () {
-                return (
-                    this.pathSegTypeAsLetter +
-                    " " +
-                    this._r1 +
-                    " " +
-                    this._r2 +
-                    " " +
-                    this._angle +
-                    " " +
-                    (this._largeArcFlag ? "1" : "0") +
-                    " " +
-                    (this._sweepFlag ? "1" : "0") +
-                    " " +
-                    this._x +
-                    " " +
-                    this._y
-                );
+                return `${this.pathSegTypeAsLetter} ${this._r1} ${this._r2} ${this._angle} ${
+                    this._largeArcFlag ? "1" : "0"
+                } ${this._sweepFlag ? "1" : "0"} ${this._x} ${this._y}`;
             };
             window.SVGPathSegArcAbs.prototype.clone = function () {
                 return new window.SVGPathSegArcAbs(
@@ -658,23 +616,9 @@
                 return "[object SVGPathSegArcRel]";
             };
             window.SVGPathSegArcRel.prototype._asPathString = function () {
-                return (
-                    this.pathSegTypeAsLetter +
-                    " " +
-                    this._r1 +
-                    " " +
-                    this._r2 +
-                    " " +
-                    this._angle +
-                    " " +
-                    (this._largeArcFlag ? "1" : "0") +
-                    " " +
-                    (this._sweepFlag ? "1" : "0") +
-                    " " +
-                    this._x +
-                    " " +
-                    this._y
-                );
+                return `${this.pathSegTypeAsLetter} ${this._r1} ${this._r2} ${this._angle} ${
+                    this._largeArcFlag ? "1" : "0"
+                } ${this._sweepFlag ? "1" : "0"} ${this._x} ${this._y}`;
             };
             window.SVGPathSegArcRel.prototype.clone = function () {
                 return new window.SVGPathSegArcRel(
@@ -768,7 +712,7 @@
                 return "[object SVGPathSegLinetoHorizontalAbs]";
             };
             window.SVGPathSegLinetoHorizontalAbs.prototype._asPathString = function () {
-                return this.pathSegTypeAsLetter + " " + this._x;
+                return `${this.pathSegTypeAsLetter} ${this._x}`;
             };
             window.SVGPathSegLinetoHorizontalAbs.prototype.clone = function () {
                 return new window.SVGPathSegLinetoHorizontalAbs(undefined, this._x);
@@ -793,7 +737,7 @@
                 return "[object SVGPathSegLinetoHorizontalRel]";
             };
             window.SVGPathSegLinetoHorizontalRel.prototype._asPathString = function () {
-                return this.pathSegTypeAsLetter + " " + this._x;
+                return `${this.pathSegTypeAsLetter} ${this._x}`;
             };
             window.SVGPathSegLinetoHorizontalRel.prototype.clone = function () {
                 return new window.SVGPathSegLinetoHorizontalRel(undefined, this._x);
@@ -818,7 +762,7 @@
                 return "[object SVGPathSegLinetoVerticalAbs]";
             };
             window.SVGPathSegLinetoVerticalAbs.prototype._asPathString = function () {
-                return this.pathSegTypeAsLetter + " " + this._y;
+                return `${this.pathSegTypeAsLetter} ${this._y}`;
             };
             window.SVGPathSegLinetoVerticalAbs.prototype.clone = function () {
                 return new window.SVGPathSegLinetoVerticalAbs(undefined, this._y);
@@ -843,7 +787,7 @@
                 return "[object SVGPathSegLinetoVerticalRel]";
             };
             window.SVGPathSegLinetoVerticalRel.prototype._asPathString = function () {
-                return this.pathSegTypeAsLetter + " " + this._y;
+                return `${this.pathSegTypeAsLetter} ${this._y}`;
             };
             window.SVGPathSegLinetoVerticalRel.prototype.clone = function () {
                 return new window.SVGPathSegLinetoVerticalRel(undefined, this._y);
@@ -876,7 +820,7 @@
                 return "[object SVGPathSegCurvetoCubicSmoothAbs]";
             };
             window.SVGPathSegCurvetoCubicSmoothAbs.prototype._asPathString = function () {
-                return this.pathSegTypeAsLetter + " " + this._x2 + " " + this._y2 + " " + this._x + " " + this._y;
+                return `${this.pathSegTypeAsLetter} ${this._x2} ${this._y2} ${this._x} ${this._y}`;
             };
             window.SVGPathSegCurvetoCubicSmoothAbs.prototype.clone = function () {
                 return new window.SVGPathSegCurvetoCubicSmoothAbs(undefined, this._x, this._y, this._x2, this._y2);
@@ -939,7 +883,7 @@
                 return "[object SVGPathSegCurvetoCubicSmoothRel]";
             };
             window.SVGPathSegCurvetoCubicSmoothRel.prototype._asPathString = function () {
-                return this.pathSegTypeAsLetter + " " + this._x2 + " " + this._y2 + " " + this._x + " " + this._y;
+                return `${this.pathSegTypeAsLetter} ${this._x2} ${this._y2} ${this._x} ${this._y}`;
             };
             window.SVGPathSegCurvetoCubicSmoothRel.prototype.clone = function () {
                 return new window.SVGPathSegCurvetoCubicSmoothRel(undefined, this._x, this._y, this._x2, this._y2);
@@ -1000,7 +944,7 @@
                 return "[object SVGPathSegCurvetoQuadraticSmoothAbs]";
             };
             window.SVGPathSegCurvetoQuadraticSmoothAbs.prototype._asPathString = function () {
-                return this.pathSegTypeAsLetter + " " + this._x + " " + this._y;
+                return `${this.pathSegTypeAsLetter} ${this._x} ${this._y}`;
             };
             window.SVGPathSegCurvetoQuadraticSmoothAbs.prototype.clone = function () {
                 return new window.SVGPathSegCurvetoQuadraticSmoothAbs(undefined, this._x, this._y);
@@ -1041,7 +985,7 @@
                 return "[object SVGPathSegCurvetoQuadraticSmoothRel]";
             };
             window.SVGPathSegCurvetoQuadraticSmoothRel.prototype._asPathString = function () {
-                return this.pathSegTypeAsLetter + " " + this._x + " " + this._y;
+                return `${this.pathSegTypeAsLetter} ${this._x} ${this._y}`;
             };
             window.SVGPathSegCurvetoQuadraticSmoothRel.prototype.clone = function () {
                 return new window.SVGPathSegCurvetoQuadraticSmoothRel(undefined, this._x, this._y);
@@ -1351,7 +1295,7 @@
                         first = false;
                         string += pathSeg._asPathString();
                     } else {
-                        string += " " + pathSeg._asPathString();
+                        string += ` ${pathSeg._asPathString()}`;
                     }
                 });
                 return string;
@@ -1359,7 +1303,7 @@
 
             // This closely follows SVGPathParser::parsePath from Source/core/svg/SVGPathParser.cpp.
             window.SVGPathSegList.prototype._parsePath = function (string) {
-                if (!string || string.length == 0) return [];
+                if (!string || !string.length) return [];
 
                 const owningPathSegList = this;
 

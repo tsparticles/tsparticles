@@ -3,7 +3,6 @@ import { loadAbsorbersPlugin } from "tsparticles-plugin-absorbers";
 import { loadDestroyUpdater } from "tsparticles-updater-destroy";
 import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
 import { loadExternalTrailInteraction } from "tsparticles-interaction-external-trail";
-import { loadPolygonMaskPlugin } from "tsparticles-plugin-polygon-mask";
 import { loadRollUpdater } from "tsparticles-updater-roll";
 import { loadSlim } from "tsparticles-slim";
 import { loadTiltUpdater } from "tsparticles-updater-tilt";
@@ -23,5 +22,4 @@ export async function loadFull(engine: Engine): Promise<void> {
 
     await loadAbsorbersPlugin(engine);
     await loadEmittersPlugin(engine);
-    await loadPolygonMaskPlugin(engine);
 }

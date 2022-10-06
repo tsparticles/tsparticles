@@ -298,6 +298,7 @@ canvas {
         await loadCanvasMaskPlugin(tsParticles);
         await loadInfectionPlugin(tsParticles);
         await loadMotionPlugin(tsParticles);
+        await loadPolygonMaskPlugin(tsParticles);
         await loadLightInteraction(tsParticles);
         await loadParticlesRepulseInteraction(tsParticles);
         await loadGradientUpdater(tsParticles);
