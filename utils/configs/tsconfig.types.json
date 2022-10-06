@@ -3,6 +3,7 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
-    "noEmit": true
+    "declaration": true,
+    "emitDeclarationOnly": true
   }
 }
