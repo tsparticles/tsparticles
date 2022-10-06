@@ -148,7 +148,7 @@ export function calcClosestPtOnSegment(
         // calc nearest pt on line
         res = {
             x: s1.x + dxx * t,
-            y: s1.x + dyy * t,
+            y: s1.y + dyy * t,
             isOnSegment: t >= 0 && t <= 1,
         };
 
