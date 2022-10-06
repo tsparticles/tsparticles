@@ -136,7 +136,9 @@
       "x": 50,
       "y": 50
     },
-    "inlineArrangement": "equidistant",
+    "inline": {
+      "arrangement": "equidistant"
+    },
     "scale": 2,
     "type": "inline",
     "data": {

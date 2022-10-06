@@ -151,7 +151,9 @@
     "move": {
       "radius": 10
     },
-    "inlineArrangement": "equidistant",
+    "inline": {
+      "arrangement": "equidistant"
+    },
     "scale": 3,
     "type": "inline",
     "url": "images/hollowknight.svg"
