@@ -45,7 +45,7 @@
     "@types/eslint": "^8.4.6",
     "@types/fs-extra": "^9.0.13",
     "@types/klaw": "^3.0.3",
-    "@types/node": "^18.8.2",
+    "@types/node": "^18.8.3",
     "@types/prettier": "^2.7.1",
     "@types/rimraf": "^3.0.2"
   }

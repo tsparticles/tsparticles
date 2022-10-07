@@ -106,7 +106,7 @@
     "@babel/core": "^7.19.3",
     "@babel/preset-env": "^7.19.3",
     "@types/jquery": "^3.5.14",
-    "@types/node": "^18.8.2",
+    "@types/node": "^18.8.3",
     "@types/webpack-env": "^1.18.0",
     "@typescript-eslint/eslint-plugin": "^5.39.0",
     "@typescript-eslint/parser": "^5.39.0",
@@ -119,6 +119,6 @@
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-sourcemaps": "^0.6.3",
     "typescript": "^4.8.4",
-    "uglify-js": "^3.17.2"
+    "uglify-js": "^3.17.3"
   }
 }

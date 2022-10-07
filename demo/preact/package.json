@@ -45,7 +45,7 @@
   "dependencies": {
     "preact": "^10.11.1",
     "preact-particles": "^2.3.3",
-    "preact-render-to-string": "^5.2.4",
+    "preact-render-to-string": "^5.2.5",
     "preact-router": "^4.1.0",
     "tsparticles": "^2.3.4",
     "tsparticles-engine": "^2.3.3"

@@ -116,7 +116,7 @@
     "@types/chai": "^4.3.3",
     "@types/jsdom": "^20.0.0",
     "@types/mocha": "^10.0.0",
-    "@types/node": "^18.8.2",
+    "@types/node": "^18.8.3",
     "@types/webpack-env": "^1.18.0",
     "@typescript-eslint/eslint-plugin": "^5.39.0",
     "@typescript-eslint/parser": "^5.39.0",

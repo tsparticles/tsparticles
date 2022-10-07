@@ -97,7 +97,7 @@
 	},
 	"devDependencies": {
 		"@babel/runtime": "^7.19.0",
-		"@wordpress/scripts": "^24.2.0",
+		"@wordpress/scripts": "^24.3.0",
 		"fs-extra": "^10.1.0",
 		"gulp": "^4.0.2",
 		"typescript": "^4.8.4"
