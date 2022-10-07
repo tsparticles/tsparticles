@@ -381,7 +381,7 @@ _Tıklamayın! TIKLAMAYIN! AH, HAYIR YAYILIYOR!!!!_
 
 **particles.json**
 
-Bazı yapılandırma örneklerini [burada](https://github.com/matteobruni/tsparticles/tree/main/website/presets) bulabilirsiniz. 📖
+Bazı yapılandırma örneklerini [burada](https://github.com/matteobruni/tsparticles/tree/main/websites/particles.js.org/presets) bulabilirsiniz. 📖
 
 ---
 

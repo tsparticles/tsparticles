@@ -562,7 +562,7 @@ _More videos are coming soon! Check every day if there are some new contents._
 
 **particles.json**
 
-You can find some config samples [here](https://github.com/matteobruni/tsparticles/tree/main/website/presets) 📖
+You can find some config samples [here](https://github.com/matteobruni/tsparticles/tree/main/websites/particles.js.org/presets) 📖
 
 ---
 
