@@ -234,6 +234,7 @@ export class Particles {
     async redraw(): Promise<void> {
         this.clear();
         this.init();
+
         await this.draw({ value: 0, factor: 0 });
     }
 
@@ -326,6 +327,7 @@ export class Particles {
 
             if (particle.destroyed) {
                 particlesToDelete.push(particle);
+
                 continue;
             }
 

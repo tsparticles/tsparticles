@@ -5,13 +5,13 @@ import {
     ExternalInteractorBase,
     HoverMode,
     Vector,
-    calcEasing,
     clamp,
     getDistances,
+    getEasing,
     isInArray,
     mouseMoveEvent,
 } from "tsparticles-engine";
-import type { ICoordinates, IModes, Modes, Particle, Range, RecursivePartial } from "tsparticles-engine";
+import type { Engine, ICoordinates, IModes, Modes, Particle, Range, RecursivePartial } from "tsparticles-engine";
 import { Attract } from "./Options/Classes/Attract";
 
 /**
@@ -21,8 +21,12 @@ import { Attract } from "./Options/Classes/Attract";
 export class Attractor extends ExternalInteractorBase<AttractContainer> {
     handleClickMode: (mode: string) => void;
 
-    constructor(container: AttractContainer) {
+    private readonly _engine;
+
+    constructor(engine: Engine, container: AttractContainer) {
         super(container);
+
+        this._engine = engine;
 
         if (!container.attract) {
             container.attract = { particles: [] };
@@ -192,7 +196,7 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
             const { dx, dy, distance } = getDistances(particle.position, position);
             const velocity = attractOptions.speed * attractOptions.factor;
             const attractFactor = clamp(
-                calcEasing(1 - distance / attractRadius, attractOptions.easing) * velocity,
+                getEasing(attractOptions.easing)(1 - distance / attractRadius) * velocity,
                 0,
                 attractOptions.maxSpeed
             );

@@ -136,7 +136,9 @@
         "move": {
             "radius": 10
         },
-        "inlineArrangement": "equidistant",
+        "inline": {
+            "arrangement": "equidistant"
+        },
         "scale": 2,
         "type": "inline",
         "url": "https://particles.js.org/images/hollowknight.svg"

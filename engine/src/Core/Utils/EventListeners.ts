@@ -155,8 +155,8 @@ export class EventListeners {
     private handleThemeChange(e: Event): void {
         const mediaEvent = e as MediaQueryListEvent,
             themeName = mediaEvent.matches
-                ? this.container.options.defaultDarkTheme
-                : this.container.options.defaultLightTheme,
+                ? this.container.options.defaultThemes.dark
+                : this.container.options.defaultThemes.light,
             theme = this.container.options.themes.find((theme) => theme.name === themeName);
 
         if (theme && theme.default.auto) {

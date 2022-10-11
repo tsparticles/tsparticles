@@ -1,20 +1,12 @@
-import type {
-    IContainerPlugin,
-    ICoordinates,
-    IDelta,
-    IOptions,
-    RecursivePartial,
-    SingleOrMultiple,
-} from "tsparticles-engine";
+import type { IContainerPlugin, ICoordinates, IDelta, RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
 import { arrayRandomIndex, executeOnSingleOrMultiple, itemFromArray } from "tsparticles-engine";
 import { Emitter } from "./Options/Classes/Emitter";
 import { EmitterClickMode } from "./Enums/EmitterClickMode";
 import type { EmitterContainer } from "./EmitterContainer";
 import { EmitterInstance } from "./EmitterInstance";
+import type { EmitterModeOptions } from "./types";
 import type { EmittersEngine } from "./EmittersEngine";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
-import type { IEmitterModeOptions } from "./Options/Interfaces/IEmitterModeOptions";
-import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 
 /**
  * @category Emitters Plugin
@@ -22,7 +14,7 @@ import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 export class Emitters implements IContainerPlugin {
     array: EmitterInstance[];
     emitters: SingleOrMultiple<Emitter>;
-    interactivityEmitters: IEmitterModeOptions;
+    interactivityEmitters: EmitterModeOptions;
 
     private readonly _engine;
 
@@ -122,82 +114,9 @@ export class Emitters implements IContainerPlugin {
         }
     }
 
-    init(options?: RecursivePartial<IOptions & IEmitterOptions>): void {
-        if (!options) {
-            return;
-        }
-
-        this.emitters = executeOnSingleOrMultiple(options.emitters, (emitter) => {
-            const tmp = new Emitter();
-
-            tmp.load(emitter);
-
-            return tmp;
-        });
-
-        const interactivityEmitters = options.interactivity?.modes?.emitters;
-
-        if (interactivityEmitters) {
-            if (interactivityEmitters instanceof Array) {
-                this.interactivityEmitters = {
-                    random: {
-                        count: 1,
-                        enable: true,
-                    },
-                    value: interactivityEmitters.map((s) => {
-                        const tmp = new Emitter();
-
-                        tmp.load(s);
-
-                        return tmp;
-                    }),
-                };
-            } else {
-                const emitterMode = interactivityEmitters as IEmitterModeOptions;
-
-                if (emitterMode.value !== undefined) {
-                    if (emitterMode.value instanceof Array) {
-                        this.interactivityEmitters = {
-                            random: {
-                                count: this.interactivityEmitters.random.count ?? 1,
-                                enable: this.interactivityEmitters.random.enable ?? false,
-                            },
-                            value: emitterMode.value.map((s) => {
-                                const tmp = new Emitter();
-
-                                tmp.load(s);
-
-                                return tmp;
-                            }),
-                        };
-                    } else {
-                        const tmp = new Emitter();
-
-                        tmp.load(emitterMode.value);
-
-                        this.interactivityEmitters = {
-                            random: {
-                                count: this.interactivityEmitters.random.count ?? 1,
-                                enable: this.interactivityEmitters.random.enable ?? false,
-                            },
-                            value: tmp,
-                        };
-                    }
-                } else {
-                    const tmp = new Emitter();
-
-                    tmp.load(interactivityEmitters as IEmitter);
-
-                    this.interactivityEmitters = {
-                        random: {
-                            count: this.interactivityEmitters.random.count ?? 1,
-                            enable: this.interactivityEmitters.random.enable ?? false,
-                        },
-                        value: tmp,
-                    };
-                }
-            }
-        }
+    async init(): Promise<void> {
+        this.emitters = this.container.actualOptions.emitters;
+        this.interactivityEmitters = this.container.actualOptions.interactivity.modes.emitters;
 
         if (this.emitters instanceof Array) {
             for (const emitterOptions of this.emitters) {

@@ -1,8 +1,8 @@
 import "./pathseg";
-import type { Container, Engine, IPlugin, Options, RecursivePartial } from "tsparticles-engine";
+import type { Container, Engine, IPlugin, RecursivePartial } from "tsparticles-engine";
+import type { IPolygonMaskOptions, PolygonMaskOptions } from "./types";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
 import { PolygonMaskInstance } from "./PolygonMaskInstance";
-import type { PolygonMaskOptions } from "./types";
 import { PolygonMaskType } from "./Enums/PolygonMaskType";
 
 /**
@@ -23,22 +23,21 @@ class PolygonMaskPlugin implements IPlugin {
         return new PolygonMaskInstance(container, this._engine);
     }
 
-    loadOptions(options: Options, source?: RecursivePartial<PolygonMaskOptions>): void {
+    loadOptions(options: PolygonMaskOptions, source?: RecursivePartial<IPolygonMaskOptions>): void {
         if (!this.needsPlugin(source)) {
             return;
         }
 
-        const optionsCast = options as unknown as PolygonMaskOptions;
-        let polygonOptions = optionsCast.polygon as PolygonMask;
+        let polygonOptions = options.polygon;
 
         if (polygonOptions?.load === undefined) {
-            optionsCast.polygon = polygonOptions = new PolygonMask();
+            options.polygon = polygonOptions = new PolygonMask();
         }
 
         polygonOptions.load(source?.polygon);
     }
 
-    needsPlugin(options?: RecursivePartial<PolygonMaskOptions>): boolean {
+    needsPlugin(options?: RecursivePartial<IPolygonMaskOptions>): boolean {
         return (
             options?.polygon?.enable ??
             (options?.polygon?.type !== undefined && options.polygon.type !== PolygonMaskType.none)
@@ -55,4 +54,3 @@ export async function loadPolygonMaskPlugin(engine: Engine): Promise<void> {
 export * from "./Enums/PolygonMaskInlineArrangement";
 export * from "./Enums/PolygonMaskMoveType";
 export * from "./Enums/PolygonMaskType";
-export * from "./Options/Interfaces/IPolygonMaskOptions";

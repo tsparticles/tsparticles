@@ -1,4 +1,4 @@
-=== Wordpress Particles ===
+=== tsParticles WP Block ===
 Contributors:      matteobruni
 Donate link:       https://github.com/sponsors/matteobruni
 Tags:              block, particles, confetti, fireworks, animations, javascript, tsparticles, particles js, background, particle background, animated background, particlesjs

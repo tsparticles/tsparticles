@@ -15,7 +15,6 @@ export class MoveTrail implements IMoveTrail, IOptionLoader<IMoveTrail> {
         this.enable = false;
         this.length = 10;
         this.fillColor = new OptionsColor();
-
         this.fillColor.value = "#000000";
     }
 

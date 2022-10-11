@@ -22,7 +22,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - run: yarn install
-      - run: npx lerna bootstrap
+      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm run --filter @tsparticles/build build:ci
+      - run: pnpm install --no-frozen-lockfile
       - run: npx lerna run build
-      - run: npx lerna run --scope tsparticles-website deploy
+      - run: npx lerna run --scope @tsparticles/website deploy

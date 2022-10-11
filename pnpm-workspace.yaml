@@ -10,6 +10,7 @@ packages:
   - 'move/*'
   - 'paths/*'
   - 'plugins/*'
+  - 'plugins/easings/*'
   - 'presets/*'
   - 'shapes/*'
   - 'templates/*'

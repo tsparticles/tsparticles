@@ -322,7 +322,7 @@ _Klik niet! KLIK NIET! OH NEE HET VERSPREIDT!!!!_
 
 **particles.json**
 
-Je kan [hier](https://github.com/matteobruni/tsparticles/tree/main/website/presets) een voorbeeld configuratie vinden 📖
+Je kan [hier](https://github.com/matteobruni/tsparticles/tree/main/websites/particles.js.org/presets) een voorbeeld configuratie vinden 📖
 
 ---
 

@@ -32,11 +32,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
-      - uses: pnpm/action-setup@v2.2.2
+      - uses: pnpm/action-setup@v2.2.3
         name: Install pnpm
         id: pnpm-install
         with:
-          version: 7.11.0
+          version: 7
           run_install: false
       - name: Get pnpm version
         id: pnpm-version
@@ -107,11 +107,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
-      - uses: pnpm/action-setup@v2.2.2
+      - uses: pnpm/action-setup@v2.2.3
         name: Install pnpm
         id: pnpm-install
         with:
-          version: 7.11.0
+          version: 7
           run_install: false
       - name: Get pnpm version
         id: pnpm-version

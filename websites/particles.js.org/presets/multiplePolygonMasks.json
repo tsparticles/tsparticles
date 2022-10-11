@@ -140,7 +140,9 @@
             "x": 30,
             "y": 10
         },
-        "inlineArrangement": "equidistant",
+        "inline": {
+            "arrangement": "equidistant"
+        },
         "scale": 1,
         "type": "inline",
         "url": "https://particles.js.org/images/google.svg"
