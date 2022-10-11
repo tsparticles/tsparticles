@@ -43,7 +43,7 @@ export class RgbColorManager implements IColorManager {
 
         return result
             ? {
-                  a: result.length > 4 ? parseAlpha(result[5]) : 1,
+                  a: result.length > 4 && result[5] ? parseAlpha(result[5]) : 1,
                   b: parseInt(result[3], 10),
                   g: parseInt(result[2], 10),
                   r: parseInt(result[1], 10),

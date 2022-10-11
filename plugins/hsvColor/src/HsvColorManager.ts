@@ -249,11 +249,11 @@ export class HsvColorManager implements IColorManager {
 
         return result
             ? hsvaToRgba({
-                  a: result.length > 4 ? parseAlpha(result[5]) : 1,
-                  h: parseInt(result[1], 10),
-                  s: parseInt(result[2], 10),
-                  v: parseInt(result[3], 10),
-              })
+                a: result.length > 4 && result[5] ? parseAlpha(result[5]) : 1,
+                h: parseInt(result[1], 10),
+                s: parseInt(result[2], 10),
+                v: parseInt(result[3], 10),
+            })
             : undefined;
     }
 }
