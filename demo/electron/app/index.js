@@ -10,7 +10,7 @@ const createWindow = () => {
         }
     });
 
-    win.loadFile('index.html');
+    win.loadFile('client/index.html');
 };
 
 app.whenReady().then(() => {

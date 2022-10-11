@@ -1,15 +1,15 @@
 {
   "name": "electron-particles-demo",
-  "version": "1.0.0",
+  "version": "2.3.4",
   "description": "",
-  "main": "index.js",
+  "main": "app/index.js",
   "scripts": {
     "start": "pnpm run build:client && electron .",
     "build:client":"webpack --mode production"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["electron"],
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
+  "license": "MIT",
   "dependencies": {
     "tsparticles-engine": "^2.3.3",
     "tsparticles": "^2.3.4"
