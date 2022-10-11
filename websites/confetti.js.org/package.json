@@ -1,5 +1,5 @@
 {
-  "name": "confetti-website",
+  "name": "@tsparticles/confetti-website",
   "version": "1.2.5",
   "description": "tsParticles confetti webpage",
   "private": true,
