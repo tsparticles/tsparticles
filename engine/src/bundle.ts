@@ -79,7 +79,6 @@ export * from "./Options/Classes/Particles/Move/MoveAngle";
 export * from "./Options/Classes/Particles/Move/MoveGravity";
 export * from "./Options/Classes/Particles/Move/OutModes";
 export * from "./Options/Classes/Particles/Move/Path/MovePath";
-export * from "./Options/Classes/Particles/Move/Path/MovePathDelay";
 export * from "./Options/Classes/Particles/Move/Spin";
 export * from "./Options/Classes/Particles/Move/MoveTrail";
 export * from "./Options/Classes/Particles/Number/ParticlesNumber";

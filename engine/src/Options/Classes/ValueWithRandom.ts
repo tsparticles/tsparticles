@@ -5,7 +5,7 @@ import type { RangeValue } from "../../Types/RangeValue";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
 import { setRangeValue } from "../../Utils/NumberUtils";
 
-export abstract class ValueWithRandom implements IValueWithRandom, IOptionLoader<IValueWithRandom> {
+export class ValueWithRandom implements IValueWithRandom, IOptionLoader<IValueWithRandom> {
     /**
      * @deprecated use the new [[RangeValue]] type instead
      */
@@ -13,7 +13,7 @@ export abstract class ValueWithRandom implements IValueWithRandom, IOptionLoader
 
     value: RangeValue;
 
-    protected constructor() {
+    constructor() {
         this.random = new Random();
         this.value = 0;
     }

@@ -13,19 +13,27 @@ import type { Options } from "../../Options/Classes/Options";
 import type { ParticlesOptions } from "../../Options/Classes/Particles/ParticlesOptions";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
 
+type GenericInitializer<T> = (container: Container) => T;
+
 /**
  * Alias for interactivity manager initializer function
  */
-type InteractorInitializer = (container: Container) => IInteractor;
+type InteractorInitializer = GenericInitializer<IInteractor>;
 
-type MoverInitializer = (container: Container) => IParticleMover;
+type MoverInitializer = GenericInitializer<IParticleMover>;
 
 /**
  * Alias for updater initializer function
  */
-type UpdaterInitializer = (container: Container) => IParticleUpdater;
+type UpdaterInitializer = GenericInitializer<IParticleUpdater>;
 
-function getItemsFromInitializer<TItem, TInitializer extends (container: Container) => TItem>(
+type Initializers = {
+    interactors: Map<string, InteractorInitializer>;
+    movers: Map<string, MoverInitializer>;
+    updaters: Map<string, UpdaterInitializer>;
+};
+
+function getItemsFromInitializer<TItem, TInitializer extends GenericInitializer<TItem>>(
     container: Container,
     map: Map<Container, TItem[]>,
     initializers: Map<string, TInitializer>,
@@ -56,14 +64,7 @@ export class Plugins {
      */
     readonly interactors;
 
-    /**
-     * The interaction manager initializers array
-     */
-    readonly interactorsInitializers;
-
     readonly movers;
-
-    readonly moversInitializers;
 
     /**
      * The path generators array
@@ -86,15 +87,12 @@ export class Plugins {
     readonly updaters;
 
     /**
-     * The updater initializers array
-     */
-    readonly updatersInitializers;
-
-    /**
      * The engine used for registering plugins
      * @private
      */
     private readonly _engine;
+
+    private readonly _initializers: Initializers;
 
     /**
      * The constructor of the plugin manager
@@ -104,9 +102,11 @@ export class Plugins {
         this._engine = engine;
 
         this.plugins = [];
-        this.interactorsInitializers = new Map<string, InteractorInitializer>();
-        this.moversInitializers = new Map<string, MoverInitializer>();
-        this.updatersInitializers = new Map<string, UpdaterInitializer>();
+        this._initializers = {
+            interactors: new Map<string, InteractorInitializer>(),
+            movers: new Map<string, MoverInitializer>(),
+            updaters: new Map<string, UpdaterInitializer>(),
+        };
         this.interactors = new Map<Container, IInteractor[]>();
         this.movers = new Map<Container, IParticleMover[]>();
         this.updaters = new Map<Container, IParticleUpdater[]>();
@@ -120,12 +120,12 @@ export class Plugins {
      * @param name the interaction manager name
      * @param initInteractor the interaction manager initializer
      */
-    addInteractor(name: string, initInteractor: (container: Container) => IInteractor): void {
-        this.interactorsInitializers.set(name, initInteractor);
+    addInteractor(name: string, initInteractor: InteractorInitializer): void {
+        this._initializers.interactors.set(name, initInteractor);
     }
 
-    addParticleMover(name: string, initMover: (container: Container) => IParticleMover): void {
-        this.moversInitializers.set(name, initMover);
+    addParticleMover(name: string, initMover: MoverInitializer): void {
+        this._initializers.movers.set(name, initMover);
     }
 
     /**
@@ -133,8 +133,8 @@ export class Plugins {
      * @param name the particle updater name used as a key
      * @param initUpdater the particle updater initializer
      */
-    addParticleUpdater(name: string, initUpdater: (container: Container) => IParticleUpdater): void {
-        this.updatersInitializers.set(name, initUpdater);
+    addParticleUpdater(name: string, initUpdater: UpdaterInitializer): void {
+        this._initializers.updaters.set(name, initUpdater);
     }
 
     /**
@@ -213,11 +213,11 @@ export class Plugins {
      * @returns the array of interaction managers for the given container
      */
     getInteractors(container: Container, force = false): IInteractor[] {
-        return getItemsFromInitializer(container, this.interactors, this.interactorsInitializers, force);
+        return getItemsFromInitializer(container, this.interactors, this._initializers.interactors, force);
     }
 
     getMovers(container: Container, force = false): IParticleMover[] {
-        return getItemsFromInitializer(container, this.movers, this.moversInitializers, force);
+        return getItemsFromInitializer(container, this.movers, this._initializers.movers, force);
     }
 
     /**
@@ -271,7 +271,7 @@ export class Plugins {
      * @returns the array of updaters for the given container
      */
     getUpdaters(container: Container, force = false): IParticleUpdater[] {
-        return getItemsFromInitializer(container, this.updaters, this.updatersInitializers, force);
+        return getItemsFromInitializer(container, this.updaters, this._initializers.updaters, force);
     }
 
     /**
