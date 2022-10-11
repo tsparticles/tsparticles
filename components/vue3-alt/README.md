@@ -37,6 +37,8 @@ createApp(App).use(Particles)
                 url="http://foo.bar/particles.json"
         />
 
+        <!-- or -->
+
         <Particles
                 id="tsparticles"
                 :particlesInit="particlesInit"
