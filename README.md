@@ -29,8 +29,8 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 
 ## Table of Contents
 
-⚠️⚠️ \_This readme refers to **v2**
-version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) for **v1** documentation\* ⚠️⚠️
+⚠️⚠️ _This readme refers to **v2** version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme)
+for **v1** documentation_ ⚠️⚠️
 
 - [Use for your website](#Do-you-want-to-use-it-on-your-website)
     - [Library installation](#Library-installation)
