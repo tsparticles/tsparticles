@@ -161,7 +161,7 @@ const tsParticles = require("tsparticles-engine");
 
 // or
 
-import { tsParticles } from "tsparticles-engine";
+import {tsParticles} from "tsparticles-engine";
 ```
 
 The imported `tsParticles` is the same instance you have when including the script.
@@ -531,6 +531,12 @@ You can find all video tutorials in the website here: <https://particles.js.org/
 
 ---
 
+### Mouse hover connections
+
+[![Particles mouse connections demo](https://media.giphy.com/media/XzvZThpVbxHxMYz5xt/giphy.gif)](https://particles.js.org/samples#connect)
+
+---
+
 ### Polygon mask
 
 [![tsParticles Polygon Mask demo](https://media.giphy.com/media/lNRfiSgaMFbL4FMhW6/giphy.gif)](https://particles.js.org/samples/#polygonMask)
@@ -563,7 +569,8 @@ You can find all video tutorials in the website here: <https://particles.js.org/
 
 **particles.json**
 
-You can find some config samples [here](https://github.com/matteobruni/tsparticles/tree/main/website/presets) 📖
+You can find some config
+samples [here](https://github.com/matteobruni/tsparticles/tree/main/websites/particles.js.org/presets) 📖
 
 ---
 
