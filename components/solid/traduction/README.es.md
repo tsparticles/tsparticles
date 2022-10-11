@@ -163,18 +163,18 @@ class App extends Component {
 
 ### Propiedades
 
-| Propiedad            | Tipo     | Definición                                                                                                                                          |
-| --------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| width           | string   | El ancho del  canvas.                                                                                                                            |
+| Propiedad            | Tipo     | Definición                                                                                                                                         |
+| --------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| width           | string   | El ancho del canvas.                                                                                                                            |
 | height          | string   | El alto del canvas.                                                                                                                           |
-| options         | object   | Las opciones de la instancia de las partículas.                                                                                                              |
-| url             | string   | Las opciones remotas de la url, llamadas usando una petición de AJAX                                                                                                  |
+| options         | object   | Las opciones de la instancia de las partículas.                                                                                                             |
+| url             | string   | Las opciones remotas de la url, llamadas usando una petición de AJAX                                                                                                 |
 | style           | object   | Estilo del elemento element.                                                                                                                    |
-| className       | string   | El nombre de la clase del contenedor del canvas.                                                                                                               |
-| canvasClassName | string   | El nombre de la clase del canvas.                                                                                                                       |
+| className       | string   | El nombre de la clase del contenedor del canvas.                                                                                                              |
+| canvasClassName | string   | El nombre de la clase del canvas.                                                                                                                      |
 | container       | object   | La instancia de [particles container](https://particles.js.org/docs/modules/Core_Container.html)                                              |
 | init            | function | Esta función se llama después de la inicialización de la instancia de tsParticles, la instancia es el parámetro y puede cargar configuraciones o formas preestablecidas personalizadas aquí |
-| loaded          | function | Esta función se llama cuando las partículas se cargan correctamente en el lienzo, el contenedor actual es el parámetro y puede personalizarlo aquí         |
+| loaded          | function | Esta función se llama cuando las partículas se cargan correctamente en el lienzo, el contenedor actual es el parámetro y puede personalizarlo aquí        |
 
 Puedes encontrar los parametros de configuración [aquí](https://particles.js.org)
 
@@ -185,6 +185,6 @@ El sitio demo es [aquí](https://particles.js.org)
 
 <https://particles.js.org>
 
-También hay una colección de CodePen que se mantiene y actualiza activamente  [aquí](https://codepen.io/collection/DPOage)
+También hay una colección de CodePen que se mantiene y actualiza activamente [aquí](https://codepen.io/collection/DPOage)
 
 <https://codepen.io/collection/DPOage>
