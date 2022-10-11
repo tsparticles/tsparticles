@@ -88,8 +88,16 @@ app.use("/path-curves", express.static("./node_modules/tsparticles-path-curves")
 app.use("/path-polygon", express.static("./node_modules/tsparticles-path-polygon"));
 app.use("/path-perlin-noise", express.static("./node_modules/tsparticles-path-perlin-noise"));
 app.use("/path-simplex-noise", express.static("./node_modules/tsparticles-path-simplex-noise"));
+app.use("/plugin-canvas-mask", express.static("./node_modules/tsparticles-plugin-canvas-mask"));
+app.use("/plugin-easing-back", express.static("./node_modules/tsparticles-plugin-easing-back"));
+app.use("/plugin-easing-circ", express.static("./node_modules/tsparticles-plugin-easing-circ"));
+app.use("/plugin-easing-cubic", express.static("./node_modules/tsparticles-plugin-easing-cubic"));
+app.use("/plugin-easing-expo", express.static("./node_modules/tsparticles-plugin-easing-expo"));
+app.use("/plugin-easing-quad", express.static("./node_modules/tsparticles-plugin-easing-quad"));
+app.use("/plugin-easing-quart", express.static("./node_modules/tsparticles-plugin-easing-quart"));
+app.use("/plugin-easing-quint", express.static("./node_modules/tsparticles-plugin-easing-quint"));
+app.use("/plugin-easing-sine", express.static("./node_modules/tsparticles-plugin-easing-sine"));
 app.use("/plugin-hsv-color", express.static("./node_modules/tsparticles-plugin-hsv-color"));
-app.use("/plugin-canvas-mask", express.static("./node_modules/tsparticles-plugin-canvas-mask"))
 app.use("/plugin-infection", express.static("./node_modules/tsparticles-plugin-infection"));
 app.use("/plugin-motion", express.static("./node_modules/tsparticles-plugin-motion"));
 app.use("/preset-big-circles", express.static("./node_modules/tsparticles-preset-big-circles"));

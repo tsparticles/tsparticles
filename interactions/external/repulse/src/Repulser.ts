@@ -7,16 +7,25 @@ import {
     HoverMode,
     Rectangle,
     Vector,
-    calcEasing,
     clamp,
     divMode,
     divModeExecute,
     getDistances,
+    getEasing,
     isDivModeEnabled,
     isInArray,
     mouseMoveEvent,
 } from "tsparticles-engine";
-import type { DivEvent, ICoordinates, IModes, Modes, Particle, Range, RecursivePartial } from "tsparticles-engine";
+import type {
+    DivEvent,
+    Engine,
+    ICoordinates,
+    IModes,
+    Modes,
+    Particle,
+    Range,
+    RecursivePartial,
+} from "tsparticles-engine";
 import type { IRepulseMode, RepulseContainer, RepulseMode } from "./Types";
 import { Repulse } from "./Options/Classes/Repulse";
 import type { RepulseDiv } from "./Options/Classes/RepulseDiv";
@@ -28,8 +37,12 @@ import type { RepulseDiv } from "./Options/Classes/RepulseDiv";
 export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     handleClickMode: (mode: string) => void;
 
-    constructor(container: RepulseContainer) {
+    private readonly _engine;
+
+    constructor(engine: Engine, container: RepulseContainer) {
         super(container);
+
+        this._engine = engine;
 
         if (!container.repulse) {
             container.repulse = { particles: [] };
@@ -235,7 +248,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             const { dx, dy, distance } = getDistances(particle.position, position),
                 velocity = (divRepulse?.speed ?? repulseOptions.speed) * repulseOptions.factor,
                 repulseFactor = clamp(
-                    calcEasing(1 - distance / repulseRadius, repulseOptions.easing) * velocity,
+                    getEasing(repulseOptions.easing)(1 - distance / repulseRadius) * velocity,
                     0,
                     repulseOptions.maxSpeed
                 ),
@@ -296,16 +309,16 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     HoverMode,
     Rectangle,
     Vector,
-    calcEasing,
     clamp,
     divMode,
     divModeExecute,
     getDistances,
+    getEasing,
     isDivModeEnabled,
     isInArray,
     mouseMoveEvent,
 } from "tsparticles-engine";
-import type { DivEvent, ICoordinates, IDelta, IModes, Modes, Range, RecursivePartial } from "tsparticles-engine";
+import type { DivEvent, Engine, ICoordinates, IDelta, IModes, Modes, Range, RecursivePartial } from "tsparticles-engine";
 import type { IRepulseMode, RepulseContainer, RepulseMode, RepulseParticle } from "./Types";
 import { Repulse } from "./Options/Classes/Repulse";
 import type { RepulseDiv } from "./Options/Classes/RepulseDiv";
@@ -317,8 +330,12 @@ import type { RepulseDiv } from "./Options/Classes/RepulseDiv";
 export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     handleClickMode: (mode: string) => void;
 
-    constructor(container: RepulseContainer) {
+    private readonly _engine;
+
+    constructor(engine: Engine, container: RepulseContainer) {
         super(container);
+
+        this._engine = engine;
 
         this.handleClickMode = (mode): void => {
             const options = this.container.actualOptions,
@@ -482,7 +499,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         const { dx, dy, distance } = getDistances(particle.position, position),
             velocity = speed * repulseOptions.factor * (inverse ? -1 : 1),
             repulseFactor = clamp(
-                calcEasing(1 - distance / repulseRadius, repulseOptions.easing) * velocity,
+                getEasing(repulseOptions.easing)(1 - distance / repulseRadius) * velocity,
                 inverse ? -repulseOptions.maxSpeed : 0,
                 inverse ? 0 : repulseOptions.maxSpeed
             ),

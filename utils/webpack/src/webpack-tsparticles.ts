@@ -6,6 +6,7 @@ import { loadParticlesInteractionParticles } from "./interactions/particles/buil
 import { loadParticlesMove } from "./moves/buildMove";
 import { loadParticlesPath } from "./paths/buildPath";
 import { loadParticlesPlugin } from "./plugins/buildPlugin";
+import { loadParticlesPluginEasing } from "./plugins/easings/buildEasing";
 import { loadParticlesPreset } from "./presets/buildPreset";
 import { loadParticlesShape } from "./shapes/buildShape";
 import { loadParticlesUpdater } from "./updaters/buildUpdater";
@@ -19,6 +20,7 @@ export {
     loadParticlesMove,
     loadParticlesPath,
     loadParticlesPlugin,
+    loadParticlesPluginEasing,
     loadParticlesPreset,
     loadParticlesShape,
     loadParticlesUpdater,

@@ -127,6 +127,7 @@
     "tsparticles-move-base": "^2.3.3",
     "tsparticles-move-parallax": "^2.3.3",
     "tsparticles-particles.js": "^2.3.3",
+    "tsparticles-plugin-easing-quad": "^2.3.3",
     "tsparticles-shape-circle": "^2.3.3",
     "tsparticles-shape-image": "^2.3.3",
     "tsparticles-shape-line": "^2.3.3",

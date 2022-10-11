@@ -48,7 +48,7 @@ export class HslColorManager implements IColorManager {
 
         return result
             ? hslaToRgba({
-                  a: result.length > 4 && result[5] ? parseAlpha(result[5]) : 1,
+                  a: result.length > 4 ? parseAlpha(result[5]) : 1,
                   h: parseInt(result[1], 10),
                   l: parseInt(result[3], 10),
                   s: parseInt(result[2], 10),
