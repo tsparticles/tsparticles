@@ -1815,7 +1815,7 @@ importers:
     specifiers:
       '@rollup/plugin-commonjs': ^23.0.0
       '@rollup/plugin-node-resolve': ^15.0.0
-      '@rollup/plugin-typescript': ^8.5.0
+      '@rollup/plugin-typescript': ^9.0.0
       '@tsconfig/svelte': ^3.0.0
       rollup: ^2.79.1
       rollup-plugin-css-only: ^3.1.0
@@ -1837,7 +1837,7 @@ importers:
     devDependencies:
       '@rollup/plugin-commonjs': 23.0.0_rollup@2.79.1
       '@rollup/plugin-node-resolve': 15.0.0_rollup@2.79.1
-      '@rollup/plugin-typescript': 8.5.0_hafrwlgfjmvsm7253l3bfjzhnq
+      '@rollup/plugin-typescript': 9.0.1_hafrwlgfjmvsm7253l3bfjzhnq
       '@tsconfig/svelte': 3.0.0
       rollup: 2.79.1
       rollup-plugin-css-only: 3.1.0_rollup@2.79.1
@@ -13245,24 +13245,6 @@ packages:
       '@rollup/pluginutils': 4.2.1
       magic-string: 0.26.6
       rollup: 2.79.1
-    dev: true
-
-  /@rollup/plugin-typescript/8.5.0_hafrwlgfjmvsm7253l3bfjzhnq:
-    resolution: {integrity: sha512-wMv1/scv0m/rXx21wD2IsBbJFba8wGF3ErJIr6IKRfRj49S85Lszbxb4DCo8iILpluTjk2GAAu9CoZt4G3ppgQ==}
-    engines: {node: '>=8.0.0'}
-    peerDependencies:
-      rollup: ^2.14.0
-      tslib: '*'
-      typescript: '>=3.7.0'
-    peerDependenciesMeta:
-      tslib:
-        optional: true
-    dependencies:
-      '@rollup/pluginutils': 3.1.0_rollup@2.79.1
-      resolve: 1.22.1
-      rollup: 2.79.1
-      tslib: 2.4.0
-      typescript: 4.8.4
     dev: true
 
   /@rollup/plugin-typescript/9.0.1_hafrwlgfjmvsm7253l3bfjzhnq:
