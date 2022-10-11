@@ -42,8 +42,8 @@ _template.html_
 _app.ts_
 
 ```typescript
-import { MoveDirection, ClickMode, HoverMode, OutMode } from "tsparticles-engine";
-import { loadFull } from "tsparticles";
+import {MoveDirection, ClickMode, HoverMode, OutMode} from "tsparticles-engine";
+import {loadFull} from "tsparticles";
 
 export class AppComponent {
   id = "tsparticles";
@@ -119,7 +119,7 @@ export class AppComponent {
         type: "circle"
       },
       size: {
-        value: {min: 1, max: 5 },
+        value: {min: 1, max: 5},
       }
     },
     detectRetina: true
@@ -143,8 +143,8 @@ export class AppComponent {
 _app.module.ts_
 
 ```typescript
-import { NgParticlesModule } from "ng-particles";
-import { NgModule } from "@angular/core";
+import {NgParticlesModule} from "ng-particles";
+import {NgModule} from "@angular/core";
 
 @NgModule({
   declarations: [

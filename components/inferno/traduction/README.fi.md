@@ -32,39 +32,39 @@ _Remote url_
 
 ```javascript
 import Particles from "inferno-particles";
-import { loadFull } from "tsparticles";
+import {loadFull} from "tsparticles";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+    constructor(props) {
+        super(props);
 
-    this.particlesInit = this.particlesInit.bind(this);
-    this.particlesLoaded = this.particlesLoaded.bind(this);
-  }
+        this.particlesInit = this.particlesInit.bind(this);
+        this.particlesLoaded = this.particlesLoaded.bind(this);
+    }
 
-  particlesInit(main) {
-    console.log(main);
+    particlesInit(main) {
+        console.log(main);
 
-    // Täällä voit alustaa tsParticles esiintymän (main), lisäämällä mukautettuja muotoja tai esiasetuksia
-    // tämä lataa tsparticles-paketin, joka on helpoin tapa saada kaikki käyttövalmiiksi
-    // alaken versiosta 2 voit lisätä vain tarvitsemasi ominaisuudet ja pienentää paketin kokoa
-    loadFull(main);
-  }
+        // Täällä voit alustaa tsParticles esiintymän (main), lisäämällä mukautettuja muotoja tai esiasetuksia
+        // tämä lataa tsparticles-paketin, joka on helpoin tapa saada kaikki käyttövalmiiksi
+        // alaken versiosta 2 voit lisätä vain tarvitsemasi ominaisuudet ja pienentää paketin kokoa
+        loadFull(main);
+    }
 
-  particlesLoaded(container) {
-    console.log(container);
-  }
+    particlesLoaded(container) {
+        console.log(container);
+    }
 
-  render() {
-    return (
-      <Particles
-        id="tsparticles"
-        url="http://foo.bar/particles.json"
-        init={this.particlesInit}
-        loaded={this.particlesLoaded}
-      />
-    );
-  }
+    render() {
+        return (
+            <Particles
+                id="tsparticles"
+                url="http://foo.bar/particles.json"
+                init={this.particlesInit}
+                loaded={this.particlesLoaded}
+            />
+        );
+    }
 }
 ```
 
@@ -72,108 +72,108 @@ _Options objekti_
 
 ```javascript
 import Particles from "inferno-particles";
-import { loadFull } from "tsparticles";
+import {loadFull} from "tsparticles";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+    constructor(props) {
+        super(props);
 
-    this.particlesInit = this.particlesInit.bind(this);
-    this.particlesLoaded = this.particlesLoaded.bind(this);
-  }
+        this.particlesInit = this.particlesInit.bind(this);
+        this.particlesLoaded = this.particlesLoaded.bind(this);
+    }
 
-  particlesInit(main) {
-    console.log(main);
+    particlesInit(main) {
+        console.log(main);
 
-    // Täällä voit alustaa tsParticles esiintymän (main), lisäämällä mukautettuja muotoja tai esiasetuksia
-    // tämä lataa tsparticles-paketin, joka on helpoin tapa saada kaikki käyttövalmiiksi
-    // alaken versiosta 2 voit lisätä vain tarvitsemasi ominaisuudet ja pienentää paketin kokoa
-    loadFull(main);
-  }
+        // Täällä voit alustaa tsParticles esiintymän (main), lisäämällä mukautettuja muotoja tai esiasetuksia
+        // tämä lataa tsparticles-paketin, joka on helpoin tapa saada kaikki käyttövalmiiksi
+        // alaken versiosta 2 voit lisätä vain tarvitsemasi ominaisuudet ja pienentää paketin kokoa
+        loadFull(main);
+    }
 
-  particlesLoaded(container) {
-    console.log(container);
-  }
+    particlesLoaded(container) {
+        console.log(container);
+    }
 
-  render() {
-    return (
-      <Particles
-        id="tsparticles"
-        init={this.particlesInit}
-        loaded={this.particlesLoaded}
-        options={{
-          background: {
-            color: {
-              value: "#0d47a1",
-            },
-          },
-          fpsLimit: 120,
-          interactivity: {
-            events: {
-              onClick: {
-                enable: true,
-                mode: "push",
-              },
-              onHover: {
-                enable: true,
-                mode: "repulse",
-              },
-              resize: true,
-            },
-            modes: {
-              push: {
-                quantity: 4,
-              },
-              repulse: {
-                distance: 200,
-                duration: 0.4,
-              },
-            },
-          },
-          particles: {
-            color: {
-              value: "#ffffff",
-            },
-            links: {
-              color: "#ffffff",
-              distance: 150,
-              enable: true,
-              opacity: 0.5,
-              width: 1,
-            },
-            collisions: {
-              enable: true,
-            },
-            move: {
-              direction: "none",
-              enable: true,
-              outMode: "bounce",
-              random: false,
-              speed: 6,
-              straight: false,
-            },
-            number: {
-              density: {
-                enable: true,
-                area: 800,
-              },
-              value: 80,
-            },
-            opacity: {
-              value: 0.5,
-            },
-            shape: {
-              type: "circle",
-            },
-            size: {
-              value: { min: 1, max: 5 },
-            },
-          },
-          detectRetina: true,
-        }}
-      />
-    );
-  }
+    render() {
+        return (
+            <Particles
+                id="tsparticles"
+                init={this.particlesInit}
+                loaded={this.particlesLoaded}
+                options={{
+                    background: {
+                        color: {
+                            value: "#0d47a1",
+                        },
+                    },
+                    fpsLimit: 120,
+                    interactivity: {
+                        events: {
+                            onClick: {
+                                enable: true,
+                                mode: "push",
+                            },
+                            onHover: {
+                                enable: true,
+                                mode: "repulse",
+                            },
+                            resize: true,
+                        },
+                        modes: {
+                            push: {
+                                quantity: 4,
+                            },
+                            repulse: {
+                                distance: 200,
+                                duration: 0.4,
+                            },
+                        },
+                    },
+                    particles: {
+                        color: {
+                            value: "#ffffff",
+                        },
+                        links: {
+                            color: "#ffffff",
+                            distance: 150,
+                            enable: true,
+                            opacity: 0.5,
+                            width: 1,
+                        },
+                        collisions: {
+                            enable: true,
+                        },
+                        move: {
+                            direction: "none",
+                            enable: true,
+                            outMode: "bounce",
+                            random: false,
+                            speed: 6,
+                            straight: false,
+                        },
+                        number: {
+                            density: {
+                                enable: true,
+                                area: 800,
+                            },
+                            value: 80,
+                        },
+                        opacity: {
+                            value: 0.5,
+                        },
+                        shape: {
+                            type: "circle",
+                        },
+                        size: {
+                            value: {min: 1, max: 5},
+                        },
+                    },
+                    detectRetina: true,
+                }}
+            />
+        );
+    }
 }
 ```
 

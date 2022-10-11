@@ -27,6 +27,7 @@ Vue.use(Particles);
 ### Demo konfiguraatio
 
 ```html
+
 <template>
     <div id="app">
         <Particles
@@ -126,7 +127,7 @@ Vue.use(Particles);
 ```
 
 ```javascript
-import { loadFull } from "tsparticles";
+import {loadFull} from "tsparticles";
 
 const particlesInit = async (engine) => {
     await loadFull(engine);
@@ -139,7 +140,8 @@ const particlesLoaded = async (container) => {
 
 ### TypeScript ongelmat
 
-Jos TypeScript palauttaa virheen tuodessaan/käytettäessä Particles-lisäosaa, kokeile lisätä seuraava koodi ennen edellistä.
+Jos TypeScript palauttaa virheen tuodessaan/käytettäessä Particles-lisäosaa, kokeile lisätä seuraava koodi ennen
+edellistä.
 
 ```typescript
 declare module "particles.vue";

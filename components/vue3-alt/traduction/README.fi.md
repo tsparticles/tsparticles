@@ -127,7 +127,7 @@ createApp(App).use(Particles)
 ```
 
 ```javascript
-import { loadFull } from "tsparticles";
+import {loadFull} from "tsparticles";
 
 const particlesInit = async (engine) => {
     await loadFull(engine);
@@ -140,8 +140,8 @@ const particlesLoaded = async (container) => {
 
 ### TypeScript ongelmat
 
-Jos TypeScript palauttaa virheen tuodessaan/käytettäessä Particles-laajennusta, kokeile lisätä seuraava koodi ennen edellistä.
-
+Jos TypeScript palauttaa virheen tuodessaan/käytettäessä Particles-laajennusta, kokeile lisätä seuraava koodi ennen
+edellistä.
 
 ```typescript
 declare module "particles.vue3";
@@ -156,7 +156,6 @@ Demo verkkosivu löytyy [täältä](https://particles.js.org)
 Aktiivisesti ylläpidetty ja päivitetty CodePen kokoelma löytyy [täältä](https://codepen.io/collection/DPOage)
 
 <https://codepen.io/collection/DPOage>
-
 
 ## Siirtyminen versiosta Vue 2.x versioon Vue 3.x
 
