@@ -195,7 +195,7 @@ class App extends Component {
 | init            | function | Tämä funktio kutsutaan tsParticles esiintymän määrittelyn jälkeen, esiintymä on parametri, ja voit ladata mukautettuja esiasetuksia tai muotoja tästä |
 | loaded          | function | Tämä funktio kutsutaan kun partikkelit on ladattu kanvakselle onnistuneesti, nykyinen säiliö tulee parametrinä ja sitä voidaan mukauttaa täällä.      |
 
-Parametri konfiguraatio löytyy [täältä](https://particles.js.org).
+Parametrien konfiguraatiot löytyvät [täältä](https://particles.js.org).
 
 ## Demot
 
