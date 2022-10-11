@@ -33,7 +33,7 @@ _template.html_
 <ng-particles [id]="id" [options]="particlesOptions" [particlesInit]="particlesInit"
               (particlesLoaded)="particlesLoaded($event)"></ng-particles>
 
-<!-- or -->
+<!-- tai -->
 
 <ng-particles [id]="id" [url]="particlesUrl" [particlesInit]="particlesInit"
               (particlesLoaded)="particlesLoaded($event)"></ng-particles>
