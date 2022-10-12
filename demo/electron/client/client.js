@@ -1,5 +1,5 @@
-import {tsParticles} from "tsparticles-engine";
-import {loadFull} from "tsparticles";
+import { tsParticles } from "tsparticles-engine";
+import { loadFull } from "tsparticles";
 
 document.addEventListener("DOMContentLoaded", async () => {
     await loadFull(tsParticles);

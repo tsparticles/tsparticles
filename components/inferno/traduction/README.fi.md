@@ -32,7 +32,7 @@ _Remote url_
 
 ```javascript
 import Particles from "inferno-particles";
-import {loadFull} from "tsparticles";
+import { loadFull } from "tsparticles";
 
 class App extends Component {
     constructor(props) {
@@ -72,7 +72,7 @@ _Options objekti_
 
 ```javascript
 import Particles from "inferno-particles";
-import {loadFull} from "tsparticles";
+import { loadFull } from "tsparticles";
 
 class App extends Component {
     constructor(props) {

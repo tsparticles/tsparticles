@@ -51,7 +51,7 @@ yarn add riot-particles
 
 <script>
     import RiotParticles from "riot-particles";
-    import {loadFull} from "tsparticles";
+    import { loadFull } from "tsparticles";
 
     export default {
         components: {

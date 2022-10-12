@@ -52,9 +52,9 @@ Esimerkit:
 ##### JavaScript tuki - url
 
 ```jsx
-import {useCallback} from "react";
+import { useCallback } from "react";
 import Particles from "react-tsparticles";
-import {loadFull} from "tsparticles";
+import { loadFull } from "tsparticles";
 
 const App = () => {
     const particlesInit = useCallback(async (engine) => {
@@ -78,10 +78,10 @@ const App = () => {
 ##### TypeScript support - url
 
 ```typescript jsx
-import {useCallback} from "react";
+import { useCallback } from "react";
 import Particles from "react-tsparticles";
 import type {Container, Engine} from "tsparticles-engine";
-import {loadFull} from "tsparticles";
+import { loadFull } from "tsparticles";
 
 const App = () => {
     const particlesInit = useCallback(async (engine: Engine) => {
@@ -108,9 +108,9 @@ const App = () => {
 ##### JavaScript tuki - object
 
 ```jsx
-import {useCallback} from "react";
+import { useCallback } from "react";
 import Particles from "react-tsparticles";
-import {loadFull} from "tsparticles";
+import { loadFull } from "tsparticles";
 
 const App = () => {
     const particlesInit = useCallback(async (engine) => {
@@ -210,10 +210,10 @@ const App = () => {
 ##### TypeScript tuki - objekti
 
 ```typescript jsx
-import {useCallback} from "react";
+import { useCallback } from "react";
 import type {Container, Engine} from "tsparticles-engine";
 import Particles from "react-tsparticles";
-import {loadFull} from "tsparticles";
+import { loadFull } from "tsparticles";
 
 const App = () => {
     const particlesInit = useCallback(async (engine: Engine) => {

@@ -63,7 +63,7 @@ _Options object_
 
 ```javascript
 import Particles from "solid-particles";
-import {loadFull} from "tsparticles";
+import { loadFull } from "tsparticles";
 
 class App extends Component {
     constructor(props) {

@@ -28,7 +28,7 @@ yarn add svelte-particles
 
 <script>
     import Particles from "svelte-particles";
-    import {loadFull} from "tsparticles";
+    import { loadFull } from "tsparticles";
 
     let particlesUrl = "http://foo.bar/particles.json";
 
@@ -89,8 +89,8 @@ Esimerkki alla:
 ```html
 
 <script>
-    import {onMount} from "svelte";
-    import {loadFull} from "tsparticles";
+    import { onMount } from "svelte";
+    import { loadFull } from "tsparticles";
 
     let ParticlesComponent;
 

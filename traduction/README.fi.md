@@ -159,7 +159,7 @@ const tsParticles = require("tsparticles-engine");
 
 // tai
 
-import {tsParticles} from "tsparticles-engine";
+import { tsParticles } from "tsparticles-engine";
 ```
 
 Tuotu/Importattu `tsParticles` on sama esiintymä/instance, joka sinulla on, kun sisällytät/include skriptin.

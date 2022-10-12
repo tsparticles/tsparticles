@@ -122,7 +122,7 @@ const tsParticles = require("tsparticles");
 
 // ya da
 
-import {tsParticles} from "tsparticles";
+import { tsParticles } from "tsparticles";
 ```
 
 İçe aktarılan `tsParticles` kütüphanesi, betiği eklerken sahip olduğunuz örnekle aynıdır.

@@ -77,7 +77,7 @@ const tsParticles = require('tsparticles');
 
 // oder
 
-import {tsParticles} from 'tsparticles';
+import { tsParticles } from 'tsparticles';
 ```
 
 Die importierte `tsParticles` ist die gleiche Instanz, die du bekommst, wenn du das Skript einbindest.

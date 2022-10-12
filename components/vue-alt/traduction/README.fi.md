@@ -127,7 +127,7 @@ Vue.use(Particles);
 ```
 
 ```javascript
-import {loadFull} from "tsparticles";
+import { loadFull } from "tsparticles";
 
 const particlesInit = async (engine) => {
     await loadFull(engine);
