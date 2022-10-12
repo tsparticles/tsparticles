@@ -25,7 +25,6 @@
   "npmClient": "pnpm",
   "useWorkspaces": true,
   "conventionalCommits": true,
-  "useNx": true,
   "command": {
     "version": {
       "message": "chore(release): published new version"
