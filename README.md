@@ -569,15 +569,13 @@ You can find all video tutorials in the website here: <https://particles.js.org/
 
 **particles.json**
 
-You can find some config
-samples [here](https://github.com/matteobruni/tsparticles/tree/main/websites/particles.js.org/presets) 📖
+You can find some config samples [here](https://github.com/matteobruni/tsparticles/tree/main/websites/particles.js.org/presets) 📖
 
 ---
 
 ## **_Options_**
 
-You can find all options
-available [here](https://particles.js.org/docs/interfaces/Options_Interfaces_IOptions.IOptions.html) 📖
+You can find all options available [here](https://particles.js.org/docs/interfaces/Options_Interfaces_IOptions.IOptions.html) 📖
 
 ## Want to see it in action and try it?
 
