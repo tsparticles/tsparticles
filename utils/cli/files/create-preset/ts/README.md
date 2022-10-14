@@ -41,7 +41,7 @@ Once the scripts are loaded you can set up `tsParticles` like this:
 
 ```javascript
 tsParticles.load("tsparticles", {
-  preset: "template",
+    preset: "template",
 });
 ```
 
@@ -52,12 +52,12 @@ You can override all the options defining the properties like in any standard `t
 
 ```javascript
 tsParticles.load("tsparticles", {
-  particles: {
-    shape: {
-      type: "square",
+    particles: {
+        shape: {
+            type: "square",
+        },
     },
-  },
-  preset: "template",
+    preset: "template",
 });
 ```
 
@@ -75,19 +75,19 @@ import { Main } from "tsparticles";
 import { loadTemplatePreset } from "tsparticles-preset-template";
 
 export class ParticlesContainer extends React.PureComponent<IProps> {
-  // this customizes the component tsParticles installation
-  customInit(main: Main) {
-    // this adds the preset to tsParticles, you can safely use the
-    loadTemplatePreset(main);
-  }
+    // this customizes the component tsParticles installation
+    customInit(main: Main) {
+        // this adds the preset to tsParticles, you can safely use the
+        loadTemplatePreset(main);
+    }
 
-  render() {
-    const options = {
-      preset: "template", // also "template" is accepted
-    };
+    render() {
+        const options = {
+            preset: "template", // also "template" is accepted
+        };
 
-    return <Particles options={options} init={this.customInit} />;
-  }
+        return <Particles options={options} init={this.customInit} />;
+    }
 }
 ```
 
@@ -101,7 +101,7 @@ _The syntax for `Vue.js 2.x` and `3.x` is the same_
 
 ```js
 function particlesInit(main: Main) {
-  loadTemplatePreset(main);
+    loadTemplatePreset(main);
 }
 ```
 
@@ -109,16 +109,16 @@ function particlesInit(main: Main) {
 
 ```html
 <ng-particles
-  [id]="id"
-  [options]="particlesOptions"
-  (particlesLoaded)="particlesLoaded($event)"
-  (particlesInit)="particlesInit($event)"
+    [id]="id"
+    [options]="particlesOptions"
+    (particlesLoaded)="particlesLoaded($event)"
+    (particlesInit)="particlesInit($event)"
 ></ng-particles>
 ```
 
 ```ts
 function particlesInit(main: Main): void {
-  loadTemplatePreset(main);
+    loadTemplatePreset(main);
 }
 ```
 
@@ -135,6 +135,6 @@ function particlesInit(main: Main): void {
 
 ```js
 let onParticlesInit = (main) => {
-  loadTemplatePreset(main);
+    loadTemplatePreset(main);
 };
 ```

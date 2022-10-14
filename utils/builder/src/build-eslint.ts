@@ -20,8 +20,8 @@ export async function lint(ci: boolean): Promise<boolean> {
         const resultText = formatter.format(results);
 
         if (errors.length > 0) {
-            const messages = errors.map((t) =>
-                t.messages.map((m) => `${t.filePath} (${m.line},${m.column}): ${m.message}`).join("\n")
+            const messages = errors.map(t =>
+                t.messages.map(m => `${t.filePath} (${m.line},${m.column}): ${m.message}`).join("\n")
             );
             console.log(messages.join("\n"));
 

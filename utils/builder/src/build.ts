@@ -120,7 +120,7 @@ const pkgInfo = require("../package.json");
     if (!canContinue) {
         process.exitCode = 1;
     }
-})().catch((error) => {
+})().catch(error => {
     process.exitCode = 1;
 
     console.error(error);

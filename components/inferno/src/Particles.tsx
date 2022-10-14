@@ -11,10 +11,7 @@ interface MutableRefObject<T> {
 /**
  * @param {IParticlesProps}
  */
-export default class Particles extends Component<
-	IParticlesProps,
-	IParticlesState
-> {
+export default class Particles extends Component<IParticlesProps, IParticlesState> {
 	static defaultProps: IParticlesProps = {
 		width: "100%",
 		height: "100%",
@@ -109,8 +106,7 @@ export default class Particles extends Component<
 
 		const cb = async (container?: Container) => {
 			if (this.props.container) {
-				(this.props.container as MutableRefObject<Container>).current =
-					container;
+				(this.props.container as MutableRefObject<Container>).current = container;
 			}
 
 			this.setState({
@@ -124,10 +120,7 @@ export default class Particles extends Component<
 
 		const container = await (this.props.url
 			? tsParticles.loadJSON(this.props.id, this.props.url)
-			: tsParticles.load(
-					this.props.id,
-					this.props.params ?? this.props.options
-			  ));
+			: tsParticles.load(this.props.id, this.props.params ?? this.props.options));
 
 		await cb(container);
 	}

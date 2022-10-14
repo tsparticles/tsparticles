@@ -2,17 +2,18 @@
   "$schema": "http://json.schemastore.org/prettierrc",
   "printWidth": 120,
   "endOfLine": "lf",
+  "editorconfig": true,
   "overrides": [
     {
-      "files": "*.ts",
+      "files": [
+        "*.js",
+        "*.ts",
+        "*.jsx",
+        "*.tsx"
+      ],
       "options": {
-        "tabWidth": 4
-      }
-    },
-    {
-      "files": "*.js",
-      "options": {
-        "tabWidth": 4
+        "tabWidth": 4,
+        "arrowParens": "avoid"
       }
     }
   ]

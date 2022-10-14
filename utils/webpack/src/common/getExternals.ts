@@ -12,7 +12,7 @@ const getParticleExternal = (name: string): unknown => {
 };
 
 const getParticleExternals = (...names: string[]): unknown[] => {
-    return names.map((name) => getParticleExternal(name));
+    return names.map(name => getParticleExternal(name));
 };
 
 const getExternals = (bundle: boolean): unknown[] => {

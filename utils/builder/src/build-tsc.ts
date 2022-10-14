@@ -119,7 +119,7 @@ async function compile(basePath: string, type: "browser" | "cjs" | "esm" | "type
 
     let failed = false;
 
-    allDiagnostics.forEach((diagnostic) => {
+    allDiagnostics.forEach(diagnostic => {
         failed = failed || diagnostic.category === ts.DiagnosticCategory.Error;
 
         if (diagnostic.file) {
