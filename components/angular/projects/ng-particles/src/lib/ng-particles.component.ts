@@ -30,8 +30,7 @@ export class NgParticlesComponent implements AfterViewInit, OnDestroy {
 
   private destroy$ = new Subject<void>();
 
-  constructor(@Inject(PLATFORM_ID) private platformId: string) {
-  }
+  constructor(@Inject(PLATFORM_ID) private platformId: string) {}
 
   public ngAfterViewInit(): void {
     if (isPlatformServer(this.platformId)) {
