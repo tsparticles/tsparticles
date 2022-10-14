@@ -2,7 +2,6 @@
   "$schema": "http://json.schemastore.org/prettierrc",
   "printWidth": 120,
   "endOfLine": "lf",
-  "editorconfig": true,
   "overrides": [
     {
       "files": [
