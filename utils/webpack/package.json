@@ -5,9 +5,9 @@
   "types": "dist/webpack-tsparticles.d.ts",
   "license": "MIT",
   "scripts": {
-    "prettify:ci:src": "prettier --check ./src",
+    "prettify:ci:src": "prettier --check ./src/*",
     "prettify:ci:readme": "prettier --check ./README.md",
-    "prettify:src": "prettier --write ./src",
+    "prettify:src": "prettier --write ./src/*",
     "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "lint:ci": "eslint src --ext .js,.jsx,.ts,.tsx",

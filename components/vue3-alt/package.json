@@ -57,8 +57,12 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
-    "build:ci": "vue-tsc --noEmit && vite build",
+    "build": "pnpm run prettify:src && pnpm run prettify:readme && vue-tsc --noEmit && vite build",
+    "build:ci": "pnpm run prettify:ci:src && pnpm run prettify:ci:readme && vue-tsc --noEmit && vite build",
+    "prettify:ci:src": "prettier --check ./src/*",
+    "prettify:ci:readme": "prettier --check ./README.md",
+    "prettify:src": "prettier --write ./src/*",
+    "prettify:readme": "prettier --write ./README.md",
     "preview": "vite preview --port 5050",
     "typecheck": "vue-tsc --noEmit",
     "lint": "echo eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
@@ -84,12 +88,14 @@
       "url": "https://www.buymeacoffee.com/matteobruni"
     }
   ],
+  "prettier": "@tsparticles/prettier-config",
   "dependencies": {
     "tsparticles-engine": "^2.3.3",
     "vue": "^3.2.40"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.2.0",
+    "@tsparticles/prettier-config": "^1.2.3",
     "@types/node": "^18.8.3",
     "@vitejs/plugin-vue": "^3.1.2",
     "@vitejs/plugin-vue-jsx": "^2.0.1",

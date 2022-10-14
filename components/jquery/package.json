@@ -4,9 +4,9 @@
   "description": "Official tsParticles jQuery Plugin - Easily create highly customizable particle, confetti and fireworks animations and use them as animated backgrounds for your website. Ready to use components available also for Web Components, React, Vue.js (2.x and 3.x), Angular, Svelte, Preact, Riot.js, Solid.js, Inferno.",
   "main": "dist/jquery.particles.min.js",
   "scripts": {
-    "prettify:ci:src": "prettier --check ./src",
+    "prettify:ci:src": "prettier --check ./src/*",
     "prettify:ci:readme": "prettier --check ./README.md",
-    "prettify:src": "prettier --write ./src",
+    "prettify:src": "prettier --write ./src/*",
     "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "lint:ci": "eslint src --ext .js,.jsx,.ts,.tsx",
@@ -96,6 +96,7 @@
       "url": "https://www.buymeacoffee.com/matteobruni"
     }
   ],
+  "prettier": "@tsparticles/prettier-config",
   "peerDependencies": {
     "jquery": "*"
   },
@@ -108,6 +109,7 @@
     "@types/jquery": "^3.5.14",
     "@types/node": "^18.8.3",
     "@types/webpack-env": "^1.18.0",
+    "@tsparticles/prettier-config": "^1.2.3",
     "@typescript-eslint/eslint-plugin": "^5.39.0",
     "@typescript-eslint/parser": "^5.39.0",
     "babel-preset-env": "^1.7.0",

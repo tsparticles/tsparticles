@@ -295,6 +295,7 @@ importers:
       '@angular/platform-browser': ~14.2.5
       '@angular/platform-browser-dynamic': ~14.2.5
       '@angular/router': ~14.2.5
+      '@tsparticles/prettier-config': ^1.2.3
       '@types/jasmine': ~4.3.0
       '@types/node': ^18.8.3
       jasmine-core: ~4.4.0
@@ -326,6 +327,7 @@ importers:
       '@angular-devkit/build-angular': 14.2.5_axiamzgljaxxhyn4bg3fqgx4ha
       '@angular/cli': 14.2.5
       '@angular/compiler-cli': 14.2.5_bgykobdioj4uqrgbu7r6ud4jgm
+      '@tsparticles/prettier-config': link:../../utils/prettier
       '@types/jasmine': 4.3.0
       '@types/node': 18.8.3
       jasmine-core: 4.4.0
@@ -346,6 +348,7 @@ importers:
       '@babel/preset-env': ^7.19.3
       '@babel/preset-typescript': ^7.18.6
       '@babel/runtime': ^7.19.0
+      '@tsparticles/prettier-config': ^1.2.3
       '@typescript-eslint/eslint-plugin': ^5.39.0
       '@typescript-eslint/parser': ^5.39.0
       babel-loader: ^8.2.5
@@ -377,6 +380,7 @@ importers:
       '@babel/preset-env': 7.19.3_@babel+core@7.19.3
       '@babel/preset-typescript': 7.18.6_@babel+core@7.19.3
       '@babel/runtime': 7.19.0
+      '@tsparticles/prettier-config': link:../../utils/prettier
       '@typescript-eslint/eslint-plugin': 5.39.0_xyciw6oqjoiiono4dhv3uhn5my
       '@typescript-eslint/parser': 5.39.0_ypn2ylkkyfa5i233caldtndbqa
       babel-loader: 8.2.5_wfdvla2jorjoj23kkavho2upde
@@ -401,6 +405,7 @@ importers:
     specifiers:
       '@babel/core': ^7.19.3
       '@babel/preset-env': ^7.19.3
+      '@tsparticles/prettier-config': ^1.2.3
       '@types/jquery': ^3.5.14
       '@types/node': ^18.8.3
       '@types/webpack-env': ^1.18.0
@@ -422,6 +427,7 @@ importers:
     devDependencies:
       '@babel/core': 7.19.3
       '@babel/preset-env': 7.19.3_@babel+core@7.19.3
+      '@tsparticles/prettier-config': link:../../utils/prettier
       '@types/jquery': 3.5.14
       '@types/node': 18.8.3
       '@types/webpack-env': 1.18.0
@@ -444,6 +450,7 @@ importers:
       '@babel/plugin-transform-runtime': ^7.19.1
       '@babel/preset-env': ^7.19.3
       '@babel/runtime': ^7.19.0
+      '@tsparticles/prettier-config': ^1.2.3
       '@types/node': ^18.8.3
       '@types/react': ^18.0.21
       '@types/react-dom': ^18.0.6
@@ -472,6 +479,7 @@ importers:
       '@babel/plugin-transform-runtime': 7.19.1_@babel+core@7.19.3
       '@babel/preset-env': 7.19.3_@babel+core@7.19.3
       '@babel/runtime': 7.19.0
+      '@tsparticles/prettier-config': link:../../utils/prettier
       '@types/node': 18.8.3
       '@types/react': 18.0.21
       '@types/react-dom': 18.0.6
@@ -497,6 +505,7 @@ importers:
       '@babel/plugin-transform-runtime': ^7.19.1
       '@babel/preset-env': ^7.19.3
       '@babel/runtime': ^7.19.0
+      '@tsparticles/prettier-config': ^1.2.3
       '@types/node': ^18.8.3
       '@types/react': ^18.0.21
       '@types/react-dom': ^18.0.6
@@ -529,6 +538,7 @@ importers:
       '@babel/plugin-transform-runtime': 7.19.1_@babel+core@7.19.3
       '@babel/preset-env': 7.19.3_@babel+core@7.19.3
       '@babel/runtime': 7.19.0
+      '@tsparticles/prettier-config': link:../../utils/prettier
       '@types/node': 18.8.3
       '@types/react': 18.0.21
       '@types/react-dom': 18.0.6
@@ -557,6 +567,7 @@ importers:
       '@babel/plugin-transform-runtime': ^7.19.1
       '@babel/preset-env': ^7.19.3
       '@babel/runtime': ^7.19.0
+      '@tsparticles/prettier-config': ^1.2.3
       '@types/node': ^18.8.3
       '@types/react': ^18.0.21
       '@types/react-dom': ^18.0.6
@@ -589,6 +600,7 @@ importers:
       '@babel/plugin-transform-runtime': 7.19.1_@babel+core@7.19.3
       '@babel/preset-env': 7.19.3_@babel+core@7.19.3
       '@babel/runtime': 7.19.0
+      '@tsparticles/prettier-config': link:../../utils/prettier
       '@types/node': 18.8.3
       '@types/react': 18.0.21
       '@types/react-dom': 18.0.6
@@ -616,12 +628,14 @@ importers:
       '@babel/preset-typescript': ^7.18.6
       '@riotjs/cli': ^6.1.0
       '@riotjs/compiler': ^6.3.2
+      '@tsparticles/prettier-config': ^1.2.3
       chai: ^4.3.6
       esm: ^3.2.25
       jsdom: ^20.0.1
       jsdom-global: ^3.0.2
       mocha: ^10.0.0
       nyc: ^15.1.0
+      prettier: ^2.7.1
       riot: ^7.0.6
       tsparticles-engine: ^2.3.3
     dependencies:
@@ -630,12 +644,14 @@ importers:
       '@babel/preset-typescript': 7.18.6_@babel+core@7.19.3
       '@riotjs/cli': 6.1.0_@babel+core@7.19.3
       '@riotjs/compiler': 6.3.2
+      '@tsparticles/prettier-config': link:../../utils/prettier
       chai: 4.3.6
       esm: 3.2.25
       jsdom: 20.0.1
       jsdom-global: 3.0.2_jsdom@20.0.1
       mocha: 10.0.0
       nyc: 15.1.0
+      prettier: 2.7.1
       riot: 7.0.6
 
   components/solid:
@@ -705,7 +721,9 @@ importers:
       '@rollup/plugin-node-resolve': ^15.0.0
       '@rollup/plugin-typescript': ^9.0.0
       '@tsconfig/svelte': ^3.0.0
+      '@tsparticles/prettier-config': ^1.2.3
       prettier: ^2.7.1
+      prettier-plugin-svelte: ^2.8.0
       rollup: ^3.0.0
       rollup-plugin-svelte: ^7.1.0
       rollup-plugin-terser: ^7.0.2
@@ -722,7 +740,9 @@ importers:
       '@rollup/plugin-node-resolve': 15.0.0_rollup@3.1.0
       '@rollup/plugin-typescript': 9.0.1_52y3o6nq3pi22pxbagne3lkikq
       '@tsconfig/svelte': 3.0.0
+      '@tsparticles/prettier-config': link:../../utils/prettier
       prettier: 2.7.1
+      prettier-plugin-svelte: 2.8.0_nk6d2fkgcllkkdynqbuearcure
       rollup: 3.1.0
       rollup-plugin-svelte: 7.1.0_rollup@3.1.0+svelte@3.50.1
       rollup-plugin-terser: 7.0.2_rollup@3.1.0
@@ -739,6 +759,7 @@ importers:
       '@babel/plugin-proposal-decorators': ^7.19.3
       '@rollup/plugin-node-resolve': ^15.0.0
       '@rollup/plugin-replace': ^5.0.0
+      '@tsparticles/prettier-config': ^1.2.3
       '@vue/cli-plugin-babel': ~5.0.8
       '@vue/cli-plugin-typescript': ~5.0.8
       '@vue/cli-service': ~5.0.8
@@ -767,6 +788,7 @@ importers:
       '@babel/plugin-proposal-decorators': 7.19.3_@babel+core@7.19.3
       '@rollup/plugin-node-resolve': 15.0.0_rollup@3.1.0
       '@rollup/plugin-replace': 5.0.0_rollup@3.1.0
+      '@tsparticles/prettier-config': link:../../utils/prettier
       '@vue/cli-plugin-babel': 5.0.8_jyrkubdqmlmdepg4r32ybbpaum
       '@vue/cli-plugin-typescript': 5.0.8_dahefqtxvpg4hmqckfyghcclnq
       '@vue/cli-service': 5.0.8_h5zmvsivrdwlayjqbmkpg6uawy
@@ -790,6 +812,7 @@ importers:
       '@babel/plugin-proposal-decorators': ^7.19.3
       '@rollup/plugin-node-resolve': ^15.0.0
       '@rollup/plugin-replace': ^5.0.0
+      '@tsparticles/prettier-config': ^1.2.3
       '@vue/cli-plugin-babel': ~5.0.8
       '@vue/cli-plugin-typescript': ~5.0.8
       '@vue/cli-service': ~5.0.8
@@ -818,6 +841,7 @@ importers:
       '@babel/plugin-proposal-decorators': 7.19.3_@babel+core@7.19.3
       '@rollup/plugin-node-resolve': 15.0.0_rollup@3.1.0
       '@rollup/plugin-replace': 5.0.0_rollup@3.1.0
+      '@tsparticles/prettier-config': link:../../utils/prettier
       '@vue/cli-plugin-babel': 5.0.8_jyrkubdqmlmdepg4r32ybbpaum
       '@vue/cli-plugin-typescript': 5.0.8_dahefqtxvpg4hmqckfyghcclnq
       '@vue/cli-service': 5.0.8_h5zmvsivrdwlayjqbmkpg6uawy
@@ -837,6 +861,7 @@ importers:
   components/vue3:
     specifiers:
       '@rushstack/eslint-patch': ^1.2.0
+      '@tsparticles/prettier-config': ^1.2.3
       '@types/node': ^18.8.3
       '@vitejs/plugin-vue': ^3.1.2
       '@vitejs/plugin-vue-jsx': ^2.0.1
@@ -857,6 +882,7 @@ importers:
       vue: 3.2.40
     devDependencies:
       '@rushstack/eslint-patch': 1.2.0
+      '@tsparticles/prettier-config': link:../../utils/prettier
       '@types/node': 18.8.3
       '@vitejs/plugin-vue': 3.1.2_vite@3.1.6+vue@3.2.40
       '@vitejs/plugin-vue-jsx': 2.0.1_vite@3.1.6+vue@3.2.40
@@ -874,6 +900,7 @@ importers:
   components/vue3-alt:
     specifiers:
       '@rushstack/eslint-patch': ^1.2.0
+      '@tsparticles/prettier-config': ^1.2.3
       '@types/node': ^18.8.3
       '@vitejs/plugin-vue': ^3.1.2
       '@vitejs/plugin-vue-jsx': ^2.0.1
@@ -894,6 +921,7 @@ importers:
       vue: 3.2.40
     devDependencies:
       '@rushstack/eslint-patch': 1.2.0
+      '@tsparticles/prettier-config': link:../../utils/prettier
       '@types/node': 18.8.3
       '@vitejs/plugin-vue': 3.1.2_vite@3.1.6+vue@3.2.40
       '@vitejs/plugin-vue-jsx': 2.0.1_vite@3.1.6+vue@3.2.40
@@ -910,6 +938,7 @@ importers:
 
   components/web:
     specifiers:
+      '@tsparticles/prettier-config': ^1.2.3
       rollup: ^3.0.0
       rollup-plugin-node-resolve: ^5.2.0
       rollup-plugin-typescript2: ^0.34.1
@@ -920,6 +949,7 @@ importers:
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
+      '@tsparticles/prettier-config': link:../../utils/prettier
       rollup: 3.1.0
       rollup-plugin-node-resolve: 5.2.0_rollup@3.1.0
       rollup-plugin-typescript2: 0.34.1_iveik5itt6bizfkphibyk5djdy
@@ -33915,6 +33945,16 @@ packages:
     engines: {node: '>=6.0.0'}
     dependencies:
       fast-diff: 1.2.0
+    dev: true
+
+  /prettier-plugin-svelte/2.8.0_nk6d2fkgcllkkdynqbuearcure:
+    resolution: {integrity: sha512-QlXv/U3bUszks3XYDPsk1fsaQC+fo2lshwKbcbO+lrSVdJ+40mB1BfL8OCAk1W9y4pJxpqO/4gqm6NtF3zNGCw==}
+    peerDependencies:
+      prettier: ^1.16.4 || ^2.0.0
+      svelte: ^3.2.0
+    dependencies:
+      prettier: 2.7.1
+      svelte: 3.50.1
     dev: true
 
   /prettier/2.7.1:

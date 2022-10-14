@@ -7,9 +7,9 @@
   "jsdelivr": "umd/particles.js",
   "types": "index.d.ts",
   "scripts": {
-    "prettify:ci:src": "prettier --check ./src",
+    "prettify:ci:src": "prettier --check ./src/*",
     "prettify:ci:readme": "prettier --check ./README.md",
-    "prettify:src": "prettier --write ./src",
+    "prettify:src": "prettier --write ./src/*",
     "prettify:readme": "prettier --write ./README.md",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "lint:ci": "eslint src --ext .js,.jsx,.ts,.tsx",
@@ -82,6 +82,7 @@
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "homepage": "https://particles.js.org",
+  "prettier": "@tsparticles/prettier-config",
   "peerDependencies": {
     "preact": ">=10"
   },
@@ -94,6 +95,7 @@
     "@babel/plugin-transform-runtime": "^7.19.1",
     "@babel/preset-env": "^7.19.3",
     "@babel/runtime": "^7.19.0",
+    "@tsparticles/prettier-config": "^1.2.3",
     "@types/node": "^18.8.3",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",

@@ -8,11 +8,22 @@
         "*.js",
         "*.ts",
         "*.jsx",
-        "*.tsx"
+        "*.tsx",
+        "*.vue",
+        "*.svelte",
+        "*.html",
+        "*.json",
+        "*.md"
       ],
       "options": {
         "tabWidth": 4,
         "arrowParens": "avoid"
+      }
+    }, {
+      "files": "*.riot",
+      "options": {
+        "parser": "mdx",
+        "jsxBracketSameLine": true
       }
     }
   ]

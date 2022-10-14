@@ -58,9 +58,13 @@
   "scripts": {
     "ng": "ng",
     "build:all": "ng build",
-    "build": "node scripts/prebuild.js && ng build ng-particles --configuration production",
-    "build:ci": "node scripts/prebuild.js && ng build ng-particles --configuration production",
+    "build": "node scripts/prebuild.js && pnpm run prettify:src && pnpm run prettify:readme && ng build ng-particles --configuration production",
+    "build:ci": "node scripts/prebuild.js && pnpm run prettify:ci:src && pnpm run prettify:ci:readme && ng build ng-particles --configuration production",
     "version": "pnpm run build && git add ./projects/ng-particles/package.json",
+    "prettify:ci:src": "prettier --check ./projects/ng-particles/src/*",
+    "prettify:ci:readme": "prettier --check ./README.md",
+    "prettify:src": "prettier --write ./projects/ng-particles/src/*",
+    "prettify:readme": "prettier --write ./README.md",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "prepack": "pnpm run build"
@@ -69,6 +73,7 @@
     "directory": "dist/ng-particles",
     "linkDirectory": true
   },
+  "prettier": "@tsparticles/prettier-config",
   "dependencies": {
     "@angular/animations": "~14.2.5",
     "@angular/common": "~14.2.5",
@@ -87,6 +92,7 @@
     "@angular-devkit/build-angular": "~14.2.5",
     "@angular/cli": "~14.2.5",
     "@angular/compiler-cli": "~14.2.5",
+    "@tsparticles/prettier-config": "^1.2.3",
     "@types/jasmine": "~4.3.0",
     "@types/node": "^18.8.3",
     "jasmine-core": "~4.4.0",
