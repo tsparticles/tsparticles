@@ -40,13 +40,18 @@ export function addParticlesFromCanvasPixels(
     override: ICanvasMaskOverride,
     filter: (pixel: IRgba) => boolean
 ): void {
-    const height = data.height,
-        width = data.width,
+    const { height, width } = data,
         numPixels = height * width,
         indexArray = shuffle(range(numPixels)),
-        maxParticles = Math.min(numPixels, container.actualOptions.particles.number.value);
+        maxParticles = Math.min(numPixels, container.actualOptions.particles.number.value),
+        canvasSize = container.canvas.size;
 
     let selectedPixels = 0;
+
+    const positionOffset = {
+        x: (canvasSize.width * position.x) / 100 - (width * scale) / 2,
+        y: (canvasSize.height * position.y) / 100 - (height * scale) / 2,
+    };
 
     while (selectedPixels < maxParticles && indexArray.length) {
         const nextIndex = indexArray.pop() || 0,
@@ -55,13 +60,12 @@ export function addParticlesFromCanvasPixels(
                 y: Math.floor(nextIndex / width),
             },
             pixel = data.pixels[pixelPos.y][pixelPos.x],
-            shouldCreateParticle = filter(pixel),
-            canvasSize = container.canvas.size;
+            shouldCreateParticle = filter(pixel);
 
         if (shouldCreateParticle) {
             const pos = {
-                x: pixelPos.x * scale + (canvasSize.width * position.x) / 100 - (width * scale) / 2,
-                y: pixelPos.y * scale + (canvasSize.height * position.y) / 100 - (height * scale) / 2,
+                x: pixelPos.x * scale + positionOffset.x,
+                y: pixelPos.y * scale + positionOffset.y,
             };
 
             const pOptions: RecursivePartial<IParticlesOptions> = {};
@@ -174,7 +178,7 @@ export function getTextData(textOptions: TextMask, offset: number): CanvasPixelD
     for (const line of lines) {
         context.font = `${font.style || ""} ${font.variant || ""} ${font.weight || ""} ${fontSize} ${font.family}`;
 
-        const measure = context.measureText(text),
+        const measure = context.measureText(line),
             lineData = {
                 measure,
                 text: line,

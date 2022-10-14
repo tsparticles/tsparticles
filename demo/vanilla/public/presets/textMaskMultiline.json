@@ -59,15 +59,15 @@
       "filter": "pixelTextFilter"
     },
     "position": {
-      "x": 70,
-      "y": 30
+      "x": 50,
+      "y": 50
     },
     "text": {
       "color": "#ff0000",
       "font": {
-        "size": 500
+        "size": 300
       },
-      "text": "Hello\nWorld",
+      "text": "Hello\nWorld\nHello\nWorld",
       "lines": {
         "spacing": 50
       }
