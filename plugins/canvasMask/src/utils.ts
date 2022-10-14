@@ -7,11 +7,18 @@ import type {
     RecursivePartial,
 } from "tsparticles-engine";
 import type { ICanvasMaskOverride } from "./Options/Interfaces/ICanvasMaskOverride";
-import type { IFontTextMask } from "./Options/Interfaces/IFontTextMask";
+import type { TextMask } from "./Options/Classes/TextMask";
 
 export type CanvasPixelData = {
     height: number;
     pixels: IRgba[][];
+    width: number;
+};
+
+type TextLineData = {
+    height: number;
+    measure: TextMetrics;
+    text: string;
     width: number;
 };
 
@@ -148,26 +155,51 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
     return p;
 }
 
-export function getTextData(text: string, color: string, offset: number, font: IFontTextMask): CanvasPixelData {
+export function getTextData(textOptions: TextMask, offset: number): CanvasPixelData | undefined {
     const canvas = document.createElement("canvas"),
-        context = canvas.getContext("2d");
+        context = canvas.getContext("2d"),
+        { font, text, lines: linesOptions, color } = textOptions;
 
-    if (!context) {
-        throw new Error("Could not get canvas context");
+    if (!text || !context) {
+        return;
     }
 
-    const fontSize = typeof font.size === "number" ? `${font.size}px` : font.size;
+    const lines = text ? text.split(linesOptions.separator) : "",
+        fontSize = typeof font.size === "number" ? `${font.size}px` : font.size,
+        linesData: TextLineData[] = [];
 
-    context.font = `${font.style || ""} ${font.variant || ""} ${font.weight || ""} ${fontSize} ${font.family}`;
+    let maxWidth = 0,
+        totalHeight = 0;
 
-    const measure = context.measureText(text);
+    for (const line of lines) {
+        context.font = `${font.style || ""} ${font.variant || ""} ${font.weight || ""} ${fontSize} ${font.family}`;
 
-    canvas.width = measure.width;
-    canvas.height = measure.actualBoundingBoxAscent + measure.actualBoundingBoxDescent;
+        const measure = context.measureText(text),
+            lineData = {
+                measure,
+                text: line,
+                height: measure.actualBoundingBoxAscent + measure.actualBoundingBoxDescent,
+                width: measure.width,
+            };
 
-    context.font = `${font.style || ""} ${font.variant || ""} ${font.weight || ""} ${fontSize} ${font.family}`;
-    context.fillStyle = color;
-    context.fillText(text, 0, measure.actualBoundingBoxAscent);
+        maxWidth = Math.max(maxWidth || 0, lineData.width);
+        totalHeight += lineData.height + linesOptions.spacing;
+
+        linesData.push(lineData);
+    }
+
+    canvas.width = maxWidth;
+    canvas.height = totalHeight;
+
+    let currentHeight = 0;
+
+    for (const line of linesData) {
+        context.font = `${font.style || ""} ${font.variant || ""} ${font.weight || ""} ${fontSize} ${font.family}`;
+        context.fillStyle = color;
+        context.fillText(line.text, 0, currentHeight + line.measure.actualBoundingBoxAscent);
+
+        currentHeight += line.height + linesOptions.spacing;
+    }
 
     return getCanvasImageData(context, canvas, offset);
 }
