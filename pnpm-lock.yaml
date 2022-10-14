@@ -771,7 +771,7 @@ importers:
       rollup-plugin-typescript: ^1.0.1
       rollup-plugin-typescript2: ^0.34.1
       rollup-plugin-vue: ^5.1.9
-      ssri: ^9.0.1
+      ssri: ^10.0.0
       tsparticles-engine: ^2.3.3
       typescript: ^4.8.4
       vue: ^2.7.10
@@ -800,7 +800,7 @@ importers:
       rollup-plugin-typescript: 1.0.1_hjjpfygmunulepk75ead4kovya
       rollup-plugin-typescript2: 0.34.1_iveik5itt6bizfkphibyk5djdy
       rollup-plugin-vue: 5.1.9_bkvzjsbe52sgou5k6qf2c7ll4i
-      ssri: 9.0.1
+      ssri: 10.0.0
       typescript: 4.8.4
       vue: 2.7.10
       vue-template-compiler: 2.7.10
@@ -824,7 +824,7 @@ importers:
       rollup-plugin-typescript: ^1.0.1
       rollup-plugin-typescript2: ^0.34.1
       rollup-plugin-vue: ^5.1.9
-      ssri: ^9.0.1
+      ssri: ^10.0.0
       tsparticles-engine: ^2.3.3
       typescript: ^4.8.4
       vue: ^2.7.10
@@ -853,7 +853,7 @@ importers:
       rollup-plugin-typescript: 1.0.1_hjjpfygmunulepk75ead4kovya
       rollup-plugin-typescript2: 0.34.1_iveik5itt6bizfkphibyk5djdy
       rollup-plugin-vue: 5.1.9_bkvzjsbe52sgou5k6qf2c7ll4i
-      ssri: 9.0.1
+      ssri: 10.0.0
       typescript: 4.8.4
       vue: 2.7.10
       vue-template-compiler: 2.7.10
@@ -18571,7 +18571,7 @@ packages:
       mississippi: 3.0.0
       mkdirp: 0.5.6
       move-concurrently: 1.0.1
-      promise-inflight: 1.0.1
+      promise-inflight: 1.0.1_bluebird@3.7.2
       rimraf: 2.7.1
       ssri: 6.0.2
       unique-filename: 1.1.1
@@ -34110,6 +34110,17 @@ packages:
         optional: true
     dev: true
 
+  /promise-inflight/1.0.1_bluebird@3.7.2:
+    resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
+    peerDependencies:
+      bluebird: '*'
+    peerDependenciesMeta:
+      bluebird:
+        optional: true
+    dependencies:
+      bluebird: 3.7.2
+    dev: true
+
   /promise-polyfill/8.2.3:
     resolution: {integrity: sha512-Og0+jCRQetV84U8wVjMNccfGCnMQ9mGs9Hv78QFe+pSDD3gWTpz0y+1QCuxy5d/vBFuZ3iwP2eycAkvqIMPmWg==}
     dev: true
@@ -37096,6 +37107,13 @@ packages:
       jsbn: 0.1.1
       safer-buffer: 2.1.2
       tweetnacl: 0.14.5
+    dev: true
+
+  /ssri/10.0.0:
+    resolution: {integrity: sha512-64ghGOpqW0k+jh7m5jndBGdVEoPikWwGQmBNN5ks6jyUSMymzHDTlnNHOvzp+6MmHOljr2MokUzvRksnTwG0Iw==}
+    engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
+    dependencies:
+      minipass: 3.3.4
     dev: true
 
   /ssri/6.0.2:
