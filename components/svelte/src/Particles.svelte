@@ -61,4 +61,4 @@
   });
 </script>
 
-<div {id}></div>
+<div {id} />
