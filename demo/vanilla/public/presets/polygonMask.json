@@ -135,7 +135,9 @@
       "x": 50,
       "y": 50
     },
-    "inlineArrangement": "equidistant",
+    "inline": {
+      "arrangement": "equidistant"
+    },
     "scale": 0.5,
     "type": "inline",
     "url": "https://particles.js.org/images/smalldeer.svg"

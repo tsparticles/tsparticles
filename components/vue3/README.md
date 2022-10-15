@@ -21,27 +21,26 @@ yarn add vue3-particles
 ```javascript
 import Particles from "vue3-particles";
 
-createApp(App).use(Particles)
+createApp(App).use(Particles);
 ```
 
 ### Demo config
 
 ```html
-
 <template>
     <div id="app">
         <Particles
-                id="tsparticles"
-                :particlesInit="particlesInit"
-                :particlesLoaded="particlesLoaded"
-                url="http://foo.bar/particles.json"
+            id="tsparticles"
+            :particlesInit="particlesInit"
+            :particlesLoaded="particlesLoaded"
+            url="http://foo.bar/particles.json"
         />
 
         <Particles
-                id="tsparticles"
-                :particlesInit="particlesInit"
-                :particlesLoaded="particlesLoaded"
-                :options="{
+            id="tsparticles"
+            :particlesInit="particlesInit"
+            :particlesLoaded="particlesLoaded"
+            :options="{
                     background: {
                         color: {
                             value: '#0d47a1'
@@ -126,13 +125,13 @@ createApp(App).use(Particles)
 ```javascript
 import { loadFull } from "tsparticles";
 
-const particlesInit = async (engine) => {
+const particlesInit = async engine => {
     await loadFull(engine);
-}
+};
 
-const particlesLoaded = async (container) => {
+const particlesLoaded = async container => {
     console.log("Particles container loaded", container);
-}
+};
 ```
 
 ### TypeScript errors
@@ -158,8 +157,8 @@ There's also a CodePen collection actively maintained and updated [here](https:/
 
 If you are migrating your project from Vue 2.x to 3.x you need to these steps:
 
-- Change the dependency from `vue2-particles` to `vue3-particles`
-- Update the `node_modules` folder executing `npm install` or `yarn`
-- Change the `use` function from `Vue.use(Particles)` to `createApp(App).use(Particles)`.
+-   Change the dependency from `vue2-particles` to `vue3-particles`
+-   Update the `node_modules` folder executing `npm install` or `yarn`
+-   Change the `use` function from `Vue.use(Particles)` to `createApp(App).use(Particles)`.
 
 The `<Particles />` tag syntax remains the same, so you don't need to do any additional action.

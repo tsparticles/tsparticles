@@ -312,7 +312,7 @@ _Não clique! Não clique! OH NÃO ESTÁ SE ESPALHANDO!!!!_
 
 **particles.json**
 
-Você pode encontrar uma config de exemplo [aqui](https://github.com/matteobruni/tsparticles/tree/main/website/presets)
+Você pode encontrar uma config de exemplo [aqui](https://github.com/matteobruni/tsparticles/tree/main/websites/particles.js.org/presets)
 📖
 
 ---

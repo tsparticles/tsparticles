@@ -322,7 +322,7 @@ _JANGAN DISENTUH! JANGAN! OH TIDAK VIRUS NYA MENYEBAR!!!!_
 
 **particles.json**
 
-Temukan contoh kode di [disini](https://github.com/matteobruni/tsparticles/tree/main/website/presets) 📖
+Temukan contoh kode di [disini](https://github.com/matteobruni/tsparticles/tree/main/websites/particles.js.org/presets) 📖
 
 ---
 

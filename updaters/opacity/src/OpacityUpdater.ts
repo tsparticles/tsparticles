@@ -155,6 +155,12 @@ export class OpacityUpdater implements IParticleUpdater {
         );
     }
 
+    reset(particle: Particle): void {
+        if (particle.opacity) {
+            particle.opacity.loops = 0;
+        }
+    }
+
     update(particle: Particle, delta: IDelta): void {
         if (!this.isEnabled(particle)) {
             return;

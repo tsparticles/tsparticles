@@ -9,9 +9,9 @@
 		"check": "tsc",
 		"lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
 		"lint:ci": "eslint src --ext .js,.jsx,.ts,.tsx",
-		"prettify:ci:src": "prettier --check ./src",
+		"prettify:ci:src": "prettier --check ./src/*",
 		"prettify:ci:readme": "prettier --check ./README.md",
-		"prettify:src": "prettier --write ./src",
+		"prettify:src": "prettier --write ./src/*",
 		"prettify:readme": "prettier --write ./README.md",
 		"prepack": "pnpm run build"
 	},
@@ -89,6 +89,7 @@
 			"url": "https://www.buymeacoffee.com/matteobruni"
 		}
 	],
+	"prettier": "@tsparticles/prettier-config",
 	"peerDependencies": {
 		"inferno": ">=7"
 	},
@@ -103,8 +104,9 @@
 		"@babel/preset-env": "^7.19.3",
 		"@babel/preset-typescript": "^7.18.6",
 		"@babel/runtime": "^7.19.0",
-		"@typescript-eslint/eslint-plugin": "^5.38.1",
-		"@typescript-eslint/parser": "^5.38.1",
+		"@tsparticles/prettier-config": "^1.2.3",
+		"@typescript-eslint/eslint-plugin": "^5.39.0",
+		"@typescript-eslint/parser": "^5.39.0",
 		"babel-loader": "^8.2.5",
 		"babel-plugin-inferno": "^6.5.0",
 		"clean-webpack-plugin": "^4.0.0",
@@ -115,7 +117,7 @@
 		"inferno": "^8.0.3",
 		"node-sass": "^7.0.3",
 		"prettier": "^2.7.1",
-		"sass-loader": "^13.0.2",
+		"sass-loader": "^13.1.0",
 		"source-map-loader": "^4.0.0",
 		"style-loader": "^3.3.1",
 		"typescript": "^4.8.4",

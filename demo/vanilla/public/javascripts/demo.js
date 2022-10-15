@@ -296,7 +296,16 @@ canvas {
         await loadFull(tsParticles);
 
         await loadCanvasMaskPlugin(tsParticles);
+        await loadEasingBackPlugin(tsParticles);
+        await loadEasingCircPlugin(tsParticles);
+        await loadEasingCubicPlugin(tsParticles);
+        await loadEasingExpoPlugin(tsParticles);
+        await loadEasingQuartPlugin(tsParticles);
+        await loadEasingQuintPlugin(tsParticles);
+        await loadEasingSinePlugin(tsParticles);
         await loadInfectionPlugin(tsParticles);
+        await loadMotionPlugin(tsParticles);
+        await loadPolygonMaskPlugin(tsParticles);
         await loadLightInteraction(tsParticles);
         await loadParticlesRepulseInteraction(tsParticles);
         await loadGradientUpdater(tsParticles);

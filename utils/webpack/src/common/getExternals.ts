@@ -12,7 +12,7 @@ const getParticleExternal = (name: string): unknown => {
 };
 
 const getParticleExternals = (...names: string[]): unknown[] => {
-    return names.map((name) => getParticleExternal(name));
+    return names.map(name => getParticleExternal(name));
 };
 
 const getExternals = (bundle: boolean): unknown[] => {
@@ -22,9 +22,11 @@ const getExternals = (bundle: boolean): unknown[] => {
 
     return getParticleExternals(
         "tsparticles",
-        "tsparticles-slim",
-        "tsparticles-engine",
         "tsparticles-particles.js",
+        "tsparticles-slim",
+        "tsparticles-editor",
+        "tsparticles-engine",
+        "tsparticles-interaction-light",
         "tsparticles-interaction-external-attract",
         "tsparticles-interaction-external-bounce",
         "tsparticles-interaction-external-bubble",
@@ -36,7 +38,6 @@ const getExternals = (bundle: boolean): unknown[] => {
         "tsparticles-interaction-external-repulse",
         "tsparticles-interaction-external-slow",
         "tsparticles-interaction-external-trail",
-        "tsparticles-interaction-light",
         "tsparticles-interaction-particles-attract",
         "tsparticles-interaction-particles-collisions",
         "tsparticles-interaction-particles-links",
@@ -48,11 +49,32 @@ const getExternals = (bundle: boolean): unknown[] => {
         "tsparticles-path-polygon",
         "tsparticles-path-simplex-noise",
         "tsparticles-plugin-absorbers",
+        "tsparticles-plugin-canvas-mask",
         "tsparticles-plugin-emitters",
         "tsparticles-plugin-hsv-color",
-        "tsparticles-plugin-image-mask",
         "tsparticles-plugin-infection",
+        "tsparticles-plugin-motion",
         "tsparticles-plugin-polygon-mask",
+        "tsparticles-plugin-easing-back",
+        "tsparticles-plugin-easing-circ",
+        "tsparticles-plugin-easing-cubic",
+        "tsparticles-plugin-easing-expo",
+        "tsparticles-plugin-easing-quad",
+        "tsparticles-plugin-easing-quart",
+        "tsparticles-plugin-easing-quint",
+        "tsparticles-plugin-easing-sine",
+        "tsparticles-preset-big-circles",
+        "tsparticles-preset-bubbles",
+        "tsparticles-preset-confetti",
+        "tsparticles-preset-fire",
+        "tsparticles-preset-firefly",
+        "tsparticles-preset-fireworks",
+        "tsparticles-preset-fountain",
+        "tsparticles-preset-links",
+        "tsparticles-preset-sea-anemone",
+        "tsparticles-preset-snow",
+        "tsparticles-preset-stars",
+        "tsparticles-preset-triangles",
         "tsparticles-shape-bubble",
         "tsparticles-shape-circle",
         "tsparticles-shape-heart",
@@ -75,6 +97,7 @@ const getExternals = (bundle: boolean): unknown[] => {
         "tsparticles-updater-out-modes",
         "tsparticles-updater-roll",
         "tsparticles-updater-size",
+        "tsparticles-updater-stroke-color",
         "tsparticles-updater-tilt",
         "tsparticles-updater-twinkle",
         "tsparticles-updater-wobble"

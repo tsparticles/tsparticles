@@ -1,6 +1,6 @@
 import RiotParticles from './'
-import {expect} from 'chai'
-import {component} from 'riot'
+import { expect } from 'chai'
+import { component } from 'riot'
 
 describe('My Component Unit Test', () => {
     const mountMyComponent = component(RiotParticles)

@@ -91,7 +91,7 @@ export class TestParticle {
      * @param particles
      */
     static sortedPositions(particles: Particle[]): ICoordinates[] {
-        return particles.sort(TestParticle.sort).map((particle) => particle.getPosition());
+        return particles.sort(TestParticle.sort).map(particle => particle.getPosition());
     }
 
     /**
@@ -112,7 +112,7 @@ export class TestParticle {
                     return TestParticle.sort(result1.particle, result2.particle);
                 }
             )
-            .map((sortedResult) => {
+            .map(sortedResult => {
                 return {
                     distance: sortedResult.distance,
                     position: sortedResult.particle.getPosition(),

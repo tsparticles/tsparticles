@@ -24,6 +24,8 @@ export interface IParticleUpdater {
 
     particleDestroyed?: (particle: Particle, override?: boolean) => void;
 
+    reset?: (particle: Particle) => void;
+
     init(particle: Particle): void;
 
     isEnabled(particle: Particle): boolean;

@@ -366,7 +366,7 @@ _Não clique! NÃO CLIQUE! OH NÃO ESTÁ-SE A ESPALHAR!!!!_
 
 **particles.json**
 
-Pode encontrar uns exemplos de configuração [aqui](https://github.com/matteobruni/tsparticles/tree/main/website/presets) 📖
+Pode encontrar uns exemplos de configuração [aqui](https://github.com/matteobruni/tsparticles/tree/main/websites/particles.js.org/presets) 📖
 
 ---
 

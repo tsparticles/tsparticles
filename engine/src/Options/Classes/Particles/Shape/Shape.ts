@@ -10,6 +10,13 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 import type { Stroke } from "../Stroke";
 import { deepExtend } from "../../../../Utils/Utils";
 
+const charKey = "character",
+    charAltKey = "char",
+    imageKey = "image",
+    imageAltKey = "images",
+    polygonKey = "polygon",
+    polygonAltKey = "star";
+
 /**
  * [[include:Options/Particles/Shape.md]]
  * @category Options
@@ -27,15 +34,14 @@ export class Shape implements IShape, IOptionLoader<IShape> {
      * @deprecated this property was integrated in custom shape management
      */
     get character(): SingleOrMultiple<ICharacterShape> {
-        return (this.options["character"] ?? this.options["char"]) as SingleOrMultiple<ICharacterShape>;
+        return (this.options[charKey] ?? this.options[charAltKey]) as SingleOrMultiple<ICharacterShape>;
     }
 
     /**
      * @deprecated this property was integrated in custom shape management
      */
     set character(value: SingleOrMultiple<ICharacterShape>) {
-        this.options["character"] = value;
-        this.options["char"] = value;
+        this.options[charAltKey] = this.options[charKey] = value;
     }
 
     /**
@@ -57,7 +63,7 @@ export class Shape implements IShape, IOptionLoader<IShape> {
      * @deprecated this property was integrated in custom shape management
      */
     get image(): SingleOrMultiple<IImageShape> {
-        return (this.options["image"] ?? this.options["images"]) as SingleOrMultiple<IImageShape>;
+        return (this.options[imageKey] ?? this.options[imageAltKey]) as SingleOrMultiple<IImageShape>;
     }
 
     /**
@@ -65,8 +71,7 @@ export class Shape implements IShape, IOptionLoader<IShape> {
      * @param value
      */
     set image(value: SingleOrMultiple<IImageShape>) {
-        this.options["image"] = value;
-        this.options["images"] = value;
+        this.options[imageAltKey] = this.options[imageKey] = value;
     }
 
     /**
@@ -87,15 +92,14 @@ export class Shape implements IShape, IOptionLoader<IShape> {
      * @deprecated this property was integrated in custom shape management
      */
     get polygon(): SingleOrMultiple<IPolygonShape> {
-        return (this.options["polygon"] ?? this.options["star"]) as SingleOrMultiple<IPolygonShape>;
+        return (this.options[polygonKey] ?? this.options[polygonAltKey]) as SingleOrMultiple<IPolygonShape>;
     }
 
     /**
      * @deprecated this property was integrated in custom shape management
      */
     set polygon(value: SingleOrMultiple<IPolygonShape>) {
-        this.options["polygon"] = value;
-        this.options["star"] = value;
+        this.options[polygonAltKey] = this.options[polygonKey] = value;
     }
 
     /**
@@ -129,9 +133,9 @@ export class Shape implements IShape, IOptionLoader<IShape> {
             }
         }
 
-        this.loadShape(data.character, "character", "char", true);
-        this.loadShape(data.polygon, "polygon", "star", false);
-        this.loadShape(data.image ?? data.images, "image", "images", true);
+        this.loadShape(data.character, charKey, charAltKey, true);
+        this.loadShape(data.polygon, polygonKey, polygonAltKey, false);
+        this.loadShape(data.image ?? data.images, imageKey, imageAltKey, true);
 
         if (data.type !== undefined) {
             this.type = data.type;

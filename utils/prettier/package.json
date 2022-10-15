@@ -5,6 +5,7 @@
   "main": "prettier-config.json",
   "license": "MIT",
   "files": [
+    ".editorconfig",
     "prettier-config.json"
   ],
   "publishConfig": {

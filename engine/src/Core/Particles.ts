@@ -234,6 +234,7 @@ export class Particles {
     async redraw(): Promise<void> {
         this.clear();
         this.init();
+
         await this.draw({ value: 0, factor: 0 });
     }
 
@@ -304,6 +305,8 @@ export class Particles {
             if (resizeFactor && !particle.ignoresResizeRatio) {
                 particle.position.x *= resizeFactor.width;
                 particle.position.y *= resizeFactor.height;
+                particle.initialPosition.x *= resizeFactor.width;
+                particle.initialPosition.y *= resizeFactor.height;
             }
 
             particle.ignoresResizeRatio = false;
@@ -326,6 +329,7 @@ export class Particles {
 
             if (particle.destroyed) {
                 particlesToDelete.push(particle);
+
                 continue;
             }
 

@@ -1,5 +1,5 @@
 {
-  "name": "tsparticles-website",
+  "name": "@tsparticles/website",
   "version": "2.3.6",
   "private": true,
   "description": "tsParticles Official Website",

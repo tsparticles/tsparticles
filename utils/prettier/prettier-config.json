@@ -4,15 +4,26 @@
   "endOfLine": "lf",
   "overrides": [
     {
-      "files": "*.ts",
+      "files": [
+        "*.js",
+        "*.ts",
+        "*.jsx",
+        "*.tsx",
+        "*.vue",
+        "*.svelte",
+        "*.html",
+        "*.json",
+        "*.md"
+      ],
       "options": {
-        "tabWidth": 4
+        "tabWidth": 4,
+        "arrowParens": "avoid"
       }
-    },
-    {
-      "files": "*.js",
+    }, {
+      "files": "*.riot",
       "options": {
-        "tabWidth": 4
+        "parser": "mdx",
+        "jsxBracketSameLine": true
       }
     }
   ]

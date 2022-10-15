@@ -139,16 +139,16 @@ export function calcClosestPtOnSegment(
     pos: ICoordinates
 ): ICoordinates & { isOnSegment: boolean } {
     // calc delta distance: source point to line start, line start to end
-    const { dx, dy } = getDistances(pos, s1),
+    const { dx: dx1, dy: dy1 } = getDistances(pos, s1),
         // calc delta distance:
-        { dx: dxx, dy: dyy } = getDistances(s2, s1),
+        { dx: dx2, dy: dy2 } = getDistances(s2, s1),
         // Calc position on line normalized between 0.00 & 1.00
         // == dot product divided by delta line distances squared
-        t = (dx * dxx + dy * dyy) / (dxx ** 2 + dyy ** 2),
+        t = (dx1 * dx2 + dy1 * dy2) / (dx2 ** 2 + dy2 ** 2),
         // calc nearest pt on line
         res = {
-            x: s1.x + dxx * t,
-            y: s1.x + dyy * t,
+            x: s1.x + dx2 * t,
+            y: s1.y + dy2 * t,
             isOnSegment: t >= 0 && t <= 1,
         };
 
