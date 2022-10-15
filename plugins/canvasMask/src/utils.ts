@@ -168,7 +168,7 @@ export function getTextData(textOptions: TextMask, offset: number): CanvasPixelD
         return;
     }
 
-    const lines = text ? text.split(linesOptions.separator) : "",
+    const lines = text.split(linesOptions.separator),
         fontSize = typeof font.size === "number" ? `${font.size}px` : font.size,
         linesData: TextLineData[] = [];
 
