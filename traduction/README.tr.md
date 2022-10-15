@@ -71,7 +71,7 @@ _Dokümantasyon ve Geliştirme referansları burada [here](https://particles.js.
 
 **Bu kitaplık en popüler CDN'lerden ikisinde mevcuttur; kolay ve kullanıma hazır bir durumdadır, hatta eğer Particles.js kütüphanesini kullanıyorsanız bu daha da kolaydır.**.
 
-[Aşağıdaki](https://github.com/matteobruni/tsparticles/blob/main/README.md#library-installation) talimatları, ihtiyacınız olan tüm bağlantılarla birlikte bulacaksınız ve... ****TypeScript**'ten korkmayın! Bu yalnızca kaynak dildir.**
+[Aşağıdaki](https://github.com/matteobruni/tsparticles/blob/main/README.md#library-installation) talimatları, ihtiyacınız olan tüm bağlantılarla birlikte bulacaksınız ve... \***\*TypeScript**'ten korkmayın! Bu yalnızca kaynak dildir.\*\*
 
 **Çıktı dosyaları sadece JavaScript'tir.**. 🤩
 
