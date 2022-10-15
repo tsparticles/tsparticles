@@ -75,7 +75,7 @@ const tsParticles = require("tsparticles");
 
 // atau
 
-import {tsParticles} from "tsparticles-engine";
+import { tsParticles } from "tsparticles-engine";
 ```
 
 `tsParticles` yang di muat berasal dari instance yang sama ketika kamu memanggil script nya.
@@ -97,7 +97,6 @@ Muat dan konfigurasi _particles_ nya:
 **index.html**
 
 ```html
-
 <div id="tsparticles"></div>
 
 <script src="tsparticles.min.js"></script>
@@ -111,10 +110,10 @@ Muat dan konfigurasi _particles_ nya:
 
 tsParticles
     .loadJSON("tsparticles", "presets/default.json")
-    .then((container) => {
+    .then(container => {
         console.log("callback - tsparticles config loaded");
     })
-    .catch((error) => {
+    .catch(error => {
         console.error(error);
     });
 
@@ -381,7 +380,7 @@ tsParticles sekarang mendukung beberapa kustomisasi 🥳.
 
 **Kamu bisa membuat plugin mu sendiri**
 
-_Baca selengkapnya [disini](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.html)...\_
+\_Baca selengkapnya [disini](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.html)...\_
 
 ---
 

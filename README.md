@@ -32,48 +32,48 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 ⚠️⚠️ \_This readme refers to **v2**
 version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) for **v1** documentation\* ⚠️⚠️
 
-- [Use for your website](#Do-you-want-to-use-it-on-your-website)
-    - [Library installation](#Library-installation)
-- [Official components for some of the most used frameworks](#Official-components-for-some-of-the-most-used-frameworks)
-    - [Angular](#Angular)
-    - [Inferno](#Inferno)
-    - [jQuery](#jQuery)
-    - [Preact](#Preact)
-    - [ReactJS](#ReactJS)
-    - [RiotJS](#RiotJS)
-    - [SolidJS](#SolidJS)
-    - [Svelte](#Svelte)
-    - [VueJS 2.x](#VueJS-2x)
-    - [VueJS 3.x](#VueJS-3x)
-    - [Web Components](#Web-Components)
-    - [WordPress](#WordPress)
-    - [Elementor](#Elementor)
-- [Presets](#Presets)
-    - [Big Circles](#Big-Circles)
-    - [Bubbles](#Bubbles)
-    - [Confetti](#Confetti)
-    - [Fire](#Fire)
-    - [Firefly](#Firefly)
-    - [Fireworks](#Fireworks)
-    - [Fountain](#fountain)
-    - [Links](#links)
-    - [Sea Anemone](#Sea-Anemone)
-    - [Snow](#Snow)
-    - [Stars](#Stars)
-    - [Triangles](#Triangles)
-- [Templates and Resources](#Templates-and-Resources)
-- [Demo / Generator](#Demo--Generator)
-    - [Characters as particles](#Characters-as-particles)
-    - [Mouse hover connections](#Mouse-hover-connections)
-    - [Polygon mask](#Polygon-mask)
-    - [Animated stars](#Animated-stars)
-    - [Nyan cat flying on scrolling stars](#Nyan-cat-flying-on-scrolling-stars)
-    - [Background Mask particles](#Background-Mask-particles)
-- [Video Tutorials](#Video-Tutorials)
-- [Migrating from Particles.js](#Migrating-from-Particlesjs)
-- [Plugins/Customizations](#PluginsCustomizations)
-- [Dependency Graphs](#Dependency-Graphs)
-- [Sponsors](#Sponsors)
+-   [Use for your website](#Do-you-want-to-use-it-on-your-website)
+    -   [Library installation](#Library-installation)
+-   [Official components for some of the most used frameworks](#Official-components-for-some-of-the-most-used-frameworks)
+    -   [Angular](#Angular)
+    -   [Inferno](#Inferno)
+    -   [jQuery](#jQuery)
+    -   [Preact](#Preact)
+    -   [ReactJS](#ReactJS)
+    -   [RiotJS](#RiotJS)
+    -   [SolidJS](#SolidJS)
+    -   [Svelte](#Svelte)
+    -   [VueJS 2.x](#VueJS-2x)
+    -   [VueJS 3.x](#VueJS-3x)
+    -   [Web Components](#Web-Components)
+    -   [WordPress](#WordPress)
+    -   [Elementor](#Elementor)
+-   [Presets](#Presets)
+    -   [Big Circles](#Big-Circles)
+    -   [Bubbles](#Bubbles)
+    -   [Confetti](#Confetti)
+    -   [Fire](#Fire)
+    -   [Firefly](#Firefly)
+    -   [Fireworks](#Fireworks)
+    -   [Fountain](#fountain)
+    -   [Links](#links)
+    -   [Sea Anemone](#Sea-Anemone)
+    -   [Snow](#Snow)
+    -   [Stars](#Stars)
+    -   [Triangles](#Triangles)
+-   [Templates and Resources](#Templates-and-Resources)
+-   [Demo / Generator](#Demo--Generator)
+    -   [Characters as particles](#Characters-as-particles)
+    -   [Mouse hover connections](#Mouse-hover-connections)
+    -   [Polygon mask](#Polygon-mask)
+    -   [Animated stars](#Animated-stars)
+    -   [Nyan cat flying on scrolling stars](#Nyan-cat-flying-on-scrolling-stars)
+    -   [Background Mask particles](#Background-Mask-particles)
+-   [Video Tutorials](#Video-Tutorials)
+-   [Migrating from Particles.js](#Migrating-from-Particlesjs)
+-   [Plugins/Customizations](#PluginsCustomizations)
+-   [Dependency Graphs](#Dependency-Graphs)
+-   [Sponsors](#Sponsors)
 
 ---
 
@@ -122,15 +122,15 @@ migrate from the old particles.js library.
 
 ### **_npm_**
 
-*tsParticles Engine*
+_tsParticles Engine_
 
 [![npm](https://img.shields.io/npm/v/tsparticles-engine?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-engine) [![npmjs](https://img.shields.io/npm/dt/tsparticles-engine?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-engine)
 
-*tsParticles Slim*
+_tsParticles Slim_
 
 [![npm](https://img.shields.io/npm/v/tsparticles-slim?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-slim) [![npmjs](https://img.shields.io/npm/dt/tsparticles-slim?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-slim)
 
-*tsParticles*
+_tsParticles_
 
 [![npm](https://img.shields.io/npm/v/tsparticles?style=for-the-badge)](https://www.npmjs.com/package/tsparticles) [![npmjs](https://img.shields.io/npm/dt/tsparticles?style=for-the-badge)](https://www.npmjs.com/package/tsparticles)
 
@@ -183,7 +183,6 @@ Load tsParticles and configure the particles:
 **index.html**
 
 ```html
-
 <div id="tsparticles"></div>
 
 <script src="tsparticles.engine.min.js"></script>
@@ -197,10 +196,10 @@ Load tsParticles and configure the particles:
 
 tsParticles
     .loadJSON("tsparticles", "presets/default.json")
-    .then((container) => {
+    .then(container => {
         console.log("callback - tsparticles config loaded");
     })
-    .catch((error) => {
+    .catch(error => {
         console.error(error);
     });
 
@@ -521,7 +520,7 @@ credited as the template author!
 
 You can find all video tutorials on the website here: <https://particles.js.org/video.html>
 
-*More videos are coming soon! Check every day if there are some new contents.*
+_More videos are coming soon! Check every day if there are some new contents._
 
 ---
 

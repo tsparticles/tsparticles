@@ -71,7 +71,7 @@ const tsParticles = require("tsparticles");
 
 // ou
 
-import {tsParticles} from "tsparticles-engine";
+import { tsParticles } from "tsparticles-engine";
 ```
 
 O `tsParticles` importado é a mesma instância que você tem quando está incluindo o script.
@@ -93,7 +93,6 @@ Carregue tsParticles e configure as partículas:
 **index.html**
 
 ```html
-
 <div id="tsparticles"></div>
 
 <script src="tsparticles.min.js"></script>
@@ -107,10 +106,10 @@ Carregue tsParticles e configure as partículas:
 
 tsParticles
     .loadJSON("tsparticles", "presets/default.json")
-    .then((container) => {
+    .then(container => {
         console.log("callback - configuração do tsparticles carregada");
     })
-    .catch((error) => {
+    .catch(error => {
         console.error(error);
     });
 
@@ -243,12 +242,12 @@ Você pode encontrar as instruções [aqui](https://github.com/matteobruni/tspar
 ## Templates e Recursos
 
 Você pode encontar alguns templates relacionados a tsParticles [aqui](https://github.com/tsparticles/templates). Os
-templates são criados para *Vanilla Javascript*, *ReactJS*, *VueJS*, *Angular*, *SvelteJS* e outros frameworks.
+templates são criados para _Vanilla Javascript_, _ReactJS_, _VueJS_, _Angular_, _SvelteJS_ e outros frameworks.
 
 Os templates podem variar, novos podem ser criados ou antigos atualizados com as últimas features ou modificados para um
 estilo melhor. Dê uma olhada neles de vez em quando.
 
-Se você criou um bom design com *tsParticles* sinta-se livre para enviar um pull request com seu template legal, você
+Se você criou um bom design com _tsParticles_ sinta-se livre para enviar um pull request com seu template legal, você
 será creditado como autor do template!
 
 <https://github.com/tsparticles/templates>

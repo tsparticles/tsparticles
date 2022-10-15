@@ -3,9 +3,11 @@
   "name": "tsparticles-workspace",
   "version": "0.0.0",
   "scripts": {
-    "build": "lerna run build",
-    "build:ci": "lerna run build:ci",
+    "build": "lerna run build && pnpm run prettify:readme",
+    "build:ci": "lerna run build:ci && pnpm run prettify:ci:readme",
     "build:docs": "rimraf -f docs && npx typedoc",
+    "prettify:ci:readme": "prettier --check ./README.md && prettier --check ./traduction && prettier --check ./markdown",
+    "prettify:readme": "prettier --write ./README.md && prettier --write ./traduction && prettier --write ./markdown",
     "version:alpha": "lerna version prerelease --preid alpha --conventional-commits",
     "version:beta": "lerna version prerelease --preid beta --conventional-commits",
     "publish:alpha": "lerna publish from-package --pre-dist-tag alpha --preid alpha",
@@ -15,6 +17,7 @@
     "deploy:site": "lerna run deploy --scope website",
     "prepare": "husky install"
   },
+  "prettier": "@tsparticles/prettier-config",
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
@@ -23,6 +26,7 @@
     "@nrwl/workspace": "^14.8.3",
     "@parcel/core": "^2.7.0",
     "@parcel/transformer-sass": "^2.7.0",
+    "@tsparticles/prettier-config": "^1.2.3",
     "@types/node": "^18.8.3",
     "copyfiles": "^2.4.1",
     "husky": "^8.0.1",
@@ -30,6 +34,7 @@
     "lerna": "^6.0.1",
     "nx": "^14.8.3",
     "parcel": "^2.7.0",
+    "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
     "typedoc": "^0.23.15",
     "typedoc-plugin-carbon-ads": "^1.1.6",

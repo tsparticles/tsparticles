@@ -1,11 +1,11 @@
 # Background
 
-- [`color`](#color)
-- [`opacity`](#opacity)
-- [`image`](#image)
-- [`position`](#position)
-- [`repeat`](#repeat)
-- [`size`](#size)
+-   [`color`](#color)
+-   [`opacity`](#opacity)
+-   [`image`](#image)
+-   [`position`](#position)
+-   [`repeat`](#repeat)
+-   [`size`](#size)
 
 ## Color
 
@@ -24,7 +24,7 @@ HEX sample
 
 ```json
 {
-  "color": "#bada55"
+    "color": "#bada55"
 }
 ```
 
@@ -34,9 +34,9 @@ HEX IColor sample
 
 ```json
 {
-  "color": {
-    "value": "#bada55"
-  }
+    "color": {
+        "value": "#bada55"
+    }
 }
 ```
 
@@ -46,13 +46,13 @@ Rgb sample
 
 ```json
 {
-  "color": {
-    "value": {
-      "r": 255,
-      "g": 127,
-      "b": 0
+    "color": {
+        "value": {
+            "r": 255,
+            "g": 127,
+            "b": 0
+        }
     }
-  }
 }
 ```
 
@@ -62,11 +62,11 @@ Hsl sample
 
 ```json
 {
-  "color": {
-    "h": 180,
-    "s": 100,
-    "l": 50
-  }
+    "color": {
+        "h": 180,
+        "s": 100,
+        "l": 50
+    }
 }
 ```
 
@@ -91,7 +91,7 @@ syntax with the `url()` function.
 
 ```json
 {
-  "image": "url('https://particles.js.org/images/background3.jpg')"
+    "image": "url('https://particles.js.org/images/background3.jpg')"
 }
 ```
 

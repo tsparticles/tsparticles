@@ -73,11 +73,11 @@ Ab Version 1.12.11 können `import` oder `require` verwendet werden, um `tsParti
 Ab dann kannst du folgendes schreiben:
 
 ```javascript
-const tsParticles = require('tsparticles');
+const tsParticles = require("tsparticles");
 
 // oder
 
-import {tsParticles} from 'tsparticles';
+import { tsParticles } from "tsparticles";
 ```
 
 Die importierte `tsParticles` ist die gleiche Instanz, die du bekommst, wenn du das Skript einbindest.
@@ -99,7 +99,6 @@ Lade tsParticles und konfiguriere die Partikel:
 **index.html**
 
 ```html
-
 <div id="tsparticles"></div>
 
 <script src="tsparticles.min.js"></script>
@@ -114,10 +113,10 @@ Lade tsParticles und konfiguriere die Partikel:
 
 tsParticles
 
-    .loadJSON('tsparticles', 'presets/default.json')
+    .loadJSON("tsparticles", "presets/default.json")
 
     .then(container => {
-        console.log('callback - tsparticles config loaded');
+        console.log("callback - tsparticles config loaded");
     })
 
     .catch(error => {
@@ -128,7 +127,7 @@ tsParticles
 
 /* tsParticles.load(@dom-id, @options); */
 
-tsParticles.load('tsparticles', {
+tsParticles.load("tsparticles", {
     /* Optionen hier */
 });
 
@@ -136,7 +135,7 @@ tsParticles.load('tsparticles', {
 
 /* tsParticles.loadFromArray(@dom-id, @options, @index (optional)); */
 
-tsParticles.loadFromArray('tsparticles', [
+tsParticles.loadFromArray("tsparticles", [
     {
         /* Optionen hier */
     },
@@ -149,7 +148,7 @@ tsParticles.loadFromArray('tsparticles', [
 //zufälliges Objekt
 
 tsParticles.loadFromArray(
-    'tsparticles',
+    "tsparticles",
 
     [
         {
@@ -393,7 +392,7 @@ tsParticles unterstützt jetzt einige individuelle Anpassungen 🥳.
 
 **Du kannst deine eigenen Plugins erstellen**
 
-_Lies mehr dazu [hier](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.html)...\_
+\_Lies mehr dazu [hier](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.html)...\_
 
 ---
 

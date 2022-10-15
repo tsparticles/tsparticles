@@ -60,6 +60,7 @@ jobs:
       - run: pnpm install --no-frozen-lockfile
       #- run: npx nx-cloud start-ci-run
       - run: npx lerna run build:ci #--concurrency 3
+      - run: pnpm run prettify:ci:readme
       #- run: npx nx-cloud stop-all-agents
       - if: env.firebaseToken != '' && github.ref == 'refs/heads/main'
         uses: FirebaseExtended/action-hosting-deploy@v0
@@ -135,6 +136,7 @@ jobs:
       - run: pnpm install --no-frozen-lockfile
       #- run: npx nx-cloud start-ci-run
       - run: npx lerna run build:ci #--concurrency 3
+      - run: pnpm run prettify:ci:readme
       #- run: npx nx-cloud stop-all-agents
       - run: echo ${{ github.repository_owner }}
       - run: echo ${{ github.actor }}
