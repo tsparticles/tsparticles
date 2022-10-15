@@ -90,7 +90,7 @@ links you need, and _don't be scared by **TypeScript**, it's just the source lan
 
 **The output files are just JavaScript**. 🤩
 
-CDNs and `npm` have all the sources you need in **Javascript**, a bundle browser ready (tsparticles.engine.min.js) and
+CDNs and `npm` have all the sources you need in **Javascript**, a bundle browser ready (tsparticles.engine.min.js), and
 all
 files splitted for `import` syntax.
 
@@ -192,7 +192,7 @@ Load tsParticles and configure the particles:
 **app.js**
 
 ```javascript
-// @path-json can be an object or an array, the first will be loaded directly, the object from the array will be random selected
+// @path-json can be an object or an array, the first will be loaded directly, and the object from the array will be randomly selected
 /* tsParticles.loadJSON(@dom-id, @path-json, @callback (optional)); */
 
 tsParticles
@@ -365,7 +365,7 @@ found [here](https://wordpress.org/plugins/tsparticles-block/#description)
 
 ### Elementor
 
-Actually an official tsParticles plugin isn't existing, but I have a collaboration with
+Actually, an official tsParticles plugin isn't existing, but I have a collaboration with
 the `Premium Addons for Elementor` plugin collection.
 
 <div style="float: left; margin-right: 10px;">
@@ -418,7 +418,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-fire/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-fire) [![npmjs](https://badge.fury.io/js/tsparticles-preset-fire.svg)](https://www.npmjs.com/package/tsparticles-preset-fire) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-fire)](https://www.npmjs.com/package/tsparticles-preset-fire)
 
-This preset loads a faded red to black background with particles colored like fire and ash sparks.
+This preset loads a faded red to a black background with particles colored like fire and ash sparks.
 
 [![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/fire/images/sample.png)](https://particles.js.org/samples/presets/fire)
 
@@ -497,9 +497,9 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 ## Templates and Resources
 
 You can find some tsParticles related templates [here](https://github.com/tsparticles/templates). The templates are
-created for _Vanilla Javascript_, _ReactJS_, _VueJS_, _Angular_, _SvelteJS_ and other frameworks.
+created for _Vanilla Javascript_, _ReactJS_, _VueJS_, _Angular_, _SvelteJS_, and other frameworks.
 
-The templates will vary, new ones can be created or older ones updated with latest features or changed to a better
+The templates will vary, new ones can be created or older ones updated with the latest features or changed to a better
 style. Check them out once in a while.
 
 If you created some good design with _tsParticles_ feel free to submit a pull request with your cool template, you'll be
@@ -519,7 +519,7 @@ credited as the template author!
 
 ## **_Video Tutorials_**
 
-You can find all video tutorials in the website here: <https://particles.js.org/video.html>
+You can find all video tutorials on the website here: <https://particles.js.org/video.html>
 
 *More videos are coming soon! Check every day if there are some new contents.*
 
@@ -574,14 +574,14 @@ available [here](https://particles.js.org/docs/interfaces/Options_Interfaces_IOp
 
 ## Want to see it in action and try it?
 
-I've created a tsParticles collection on [CodePen](https://codepen.io/collection/DPOage) 😮 or you can checkout
+I've created a tsParticles collection on [CodePen](https://codepen.io/collection/DPOage) 😮 or you can check out
 my [profile](https://codepen.io/matteobruni)
 
 Otherwise, there's the demo page link below. Just click/tap the Coronavirus below, don't be scared. **It's safe** 😷.
 
 [![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/samples/#virus)
 
-Want to see ever more demos? Clone the repository on your computer and follow these instructions
+Want to see even more demos? Clone the repository on your computer and follow these instructions
 
 ```shell
 $ pnpm i
@@ -590,7 +590,7 @@ $ cd demo/vanilla
 $ pnpm run start
 ```
 
-**Boom! 💥** <http://localhost:3000> and you can checkout other demos.
+**Boom! 💥** <http://localhost:3000> and you can check out other demos.
 
 _If you are brave enough_ you can switch to the `dev` branch for trying the features under development.
 
