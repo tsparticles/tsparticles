@@ -26,8 +26,8 @@ yarn add react-particles react
 
 Mulai dari versi 1.17.0 ada dua template `create-react-app`:
 
-- `cra-template-particles`: Template ReactJS sederhana dengan partikel layar penuh, menggunakan JavaScript
-- `cra-template-particles-typescript`: Template ReactJS dengan partikel layar penuh, menggunakan TypeScript
+-   `cra-template-particles`: Template ReactJS sederhana dengan partikel layar penuh, menggunakan JavaScript
+-   `cra-template-particles-typescript`: Template ReactJS dengan partikel layar penuh, menggunakan TypeScript
 
 Anda dapat menginstallnya dengan perintah `create-react-app` seperti ini:
 
@@ -53,19 +53,19 @@ _Remote url_
 import Particles from "react-particles";
 
 const App = () => {
-  const particlesInit = (main) => {
-    console.log(main);
+    const particlesInit = main => {
+        console.log(main);
 
-    // Anda dapat menginisialisasi tsParticles instance (main) di sini, menambahkan bentuk kustom atau preset
-  };
+        // Anda dapat menginisialisasi tsParticles instance (main) di sini, menambahkan bentuk kustom atau preset
+    };
 
-  const particlesLoaded = (container) => {
-    console.log(container);
-  };
+    const particlesLoaded = container => {
+        console.log(container);
+    };
 
-  return (
-    <Particles id="tsparticles" url="http://foo.bar/particles.json" init={particlesInit} loaded={particlesLoaded} />
-  );
+    return (
+        <Particles id="tsparticles" url="http://foo.bar/particles.json" init={particlesInit} loaded={particlesLoaded} />
+    );
 };
 ```
 
@@ -75,116 +75,116 @@ _Options object_
 import Particles from "react-particles";
 
 const App = () => {
-  const particlesInit = (main) => {
-    console.log(main);
+    const particlesInit = main => {
+        console.log(main);
 
-    // Anda dapat menginisialisasi tsParticles instance (main) di sini, menambahkan bentuk kustom atau preset
-  };
+        // Anda dapat menginisialisasi tsParticles instance (main) di sini, menambahkan bentuk kustom atau preset
+    };
 
-  const particlesLoaded = (container) => {
-    console.log(container);
-  };
-  return (
-    <Particles
-      id="tsparticles"
-      init={particlesInit}
-      loaded={particlesLoaded}
-      options={{
-        background: {
-          color: {
-            value: "#0d47a1",
-          },
-        },
-        fpsLimit: 120,
-        interactivity: {
-          events: {
-            onClick: {
-              enable: true,
-              mode: "push",
-            },
-            onHover: {
-              enable: true,
-              mode: "repulse",
-            },
-            resize: true,
-          },
-          modes: {
-            bubble: {
-              distance: 400,
-              duration: 2,
-              opacity: 0.8,
-              size: 40,
-            },
-            push: {
-              quantity: 4,
-            },
-            repulse: {
-              distance: 200,
-              duration: 0.4,
-            },
-          },
-        },
-        particles: {
-          color: {
-            value: "#ffffff",
-          },
-          links: {
-            color: "#ffffff",
-            distance: 150,
-            enable: true,
-            opacity: 0.5,
-            width: 1,
-          },
-          collisions: {
-            enable: true,
-          },
-          move: {
-            direction: "none",
-            enable: true,
-            outMode: "bounce",
-            random: false,
-            speed: 6,
-            straight: false,
-          },
-          number: {
-            density: {
-              enable: true,
-              area: 800,
-            },
-            value: 80,
-          },
-          opacity: {
-            value: 0.5,
-          },
-          shape: {
-            type: "circle",
-          },
-          size: {
-            random: true,
-            value: 5,
-          },
-        },
-        detectRetina: true,
-      }}
-    />
-  );
+    const particlesLoaded = container => {
+        console.log(container);
+    };
+    return (
+        <Particles
+            id="tsparticles"
+            init={particlesInit}
+            loaded={particlesLoaded}
+            options={{
+                background: {
+                    color: {
+                        value: "#0d47a1",
+                    },
+                },
+                fpsLimit: 120,
+                interactivity: {
+                    events: {
+                        onClick: {
+                            enable: true,
+                            mode: "push",
+                        },
+                        onHover: {
+                            enable: true,
+                            mode: "repulse",
+                        },
+                        resize: true,
+                    },
+                    modes: {
+                        bubble: {
+                            distance: 400,
+                            duration: 2,
+                            opacity: 0.8,
+                            size: 40,
+                        },
+                        push: {
+                            quantity: 4,
+                        },
+                        repulse: {
+                            distance: 200,
+                            duration: 0.4,
+                        },
+                    },
+                },
+                particles: {
+                    color: {
+                        value: "#ffffff",
+                    },
+                    links: {
+                        color: "#ffffff",
+                        distance: 150,
+                        enable: true,
+                        opacity: 0.5,
+                        width: 1,
+                    },
+                    collisions: {
+                        enable: true,
+                    },
+                    move: {
+                        direction: "none",
+                        enable: true,
+                        outMode: "bounce",
+                        random: false,
+                        speed: 6,
+                        straight: false,
+                    },
+                    number: {
+                        density: {
+                            enable: true,
+                            area: 800,
+                        },
+                        value: 80,
+                    },
+                    opacity: {
+                        value: 0.5,
+                    },
+                    shape: {
+                        type: "circle",
+                    },
+                    size: {
+                        random: true,
+                        value: 5,
+                    },
+                },
+                detectRetina: true,
+            }}
+        />
+    );
 };
 ```
 
 ### Props
 
-| Prop            | Tipe     | Definisi                                                                                                                                          |
-| --------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| width           | string   | Lebar kanvas.                                                                                                                            |
-| height          | string   | Tinggi kanvas.                                                                                                                           |
-| options         | object   | Opsi untuk partikel.                                                                                                              |
-| url             | string   | Opsi remote url, dipanggil dengan AJAX request.                                                                                               |
-| style           | object   | Style untuk elemen kanvas.                                                                                                                    |
-| className       | string   | Nama kelas untuk wrapper kanvas.                                                                                                               |
-| canvasClassName | string   | Nama kelas untuk kanvas.                                                                                                                       |
-| container       | object   | Instance untuk [kontainer partikel](https://particles.js.org/docs/modules/Core_Container.html)                                              |
+| Prop            | Tipe     | Definisi                                                                                                                                                       |
+| --------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| width           | string   | Lebar kanvas.                                                                                                                                                  |
+| height          | string   | Tinggi kanvas.                                                                                                                                                 |
+| options         | object   | Opsi untuk partikel.                                                                                                                                           |
+| url             | string   | Opsi remote url, dipanggil dengan AJAX request.                                                                                                                |
+| style           | object   | Style untuk elemen kanvas.                                                                                                                                     |
+| className       | string   | Nama kelas untuk wrapper kanvas.                                                                                                                               |
+| canvasClassName | string   | Nama kelas untuk kanvas.                                                                                                                                       |
+| container       | object   | Instance untuk [kontainer partikel](https://particles.js.org/docs/modules/Core_Container.html)                                                                 |
 | init            | function | Fungsi ini dipanggil seletah inisialisasi instance tsParticles, parameternya adalah instance tersebut dan Anda dapat memuat preset kustom atau bentuk di sini. |
-| loaded          | function | Fungsi ini dipangil ketika partikel sudah termuat dengan benar di kanvas, kontainer saat ini adalah parameternya dan Anda dapat melakukan kustomisasi di sini.         |
+| loaded          | function | Fungsi ini dipangil ketika partikel sudah termuat dengan benar di kanvas, kontainer saat ini adalah parameternya dan Anda dapat melakukan kustomisasi di sini. |
 
 Temukan konfigurasi parameter di [sini](https://particles.js.org).
 

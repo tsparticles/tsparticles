@@ -60,9 +60,9 @@
     "build": "pnpm run prettify:src && pnpm run prettify:readme && vue-tsc --noEmit && vite build",
     "build:ci": "pnpm run prettify:ci:src && pnpm run prettify:ci:readme && vue-tsc --noEmit && vite build",
     "prettify:ci:src": "prettier --check ./src/*",
-    "prettify:ci:readme": "prettier --check ./README.md",
+    "prettify:ci:readme": "prettier --check ./README.md && prettier --check ./traduction/*",
     "prettify:src": "prettier --write ./src/*",
-    "prettify:readme": "prettier --write ./README.md",
+    "prettify:readme": "prettier --write ./README.md && prettier --write ./traduction/*",
     "preview": "vite preview --port 5050",
     "typecheck": "vue-tsc --noEmit",
     "lint": "echo eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"

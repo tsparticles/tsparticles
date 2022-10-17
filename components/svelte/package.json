@@ -6,9 +6,9 @@
     "build": "pnpm run prettify:src && pnpm run prettify:readme && rollup -c",
     "build:ci": "pnpm run prettify:ci:src && pnpm run prettify:ci:readme && rollup -c",
     "prettify:ci:src": "prettier --check --plugin-search-dir=. ./src/*",
-    "prettify:ci:readme": "prettier --check --plugin-search-dir=. ./README.md",
+    "prettify:ci:readme": "prettier --check --plugin-search-dir=. ./README.md && prettier --check ./traduction/*",
     "prettify:src": "prettier --write --plugin-search-dir=. ./src/*",
-    "prettify:readme": "prettier --write --plugin-search-dir=. ./README.md",
+    "prettify:readme": "prettier --write --plugin-search-dir=. ./README.md && prettier --write ./traduction/*",
     "validate": "svelte-check"
   },
   "repository": {

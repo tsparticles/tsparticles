@@ -26,53 +26,53 @@ yarn add svelte-particles svelte
 
 ```html
 <script>
-  import Particles from "svelte-particles";
+    import Particles from "svelte-particles";
 
-  let particlesUrl = "http://foo.bar/particles.json";
+    let particlesUrl = "http://foo.bar/particles.json";
 
-  let particlesConfig = {
-    particles: {
-      color: {
-        value: "#000",
-      },
-      links: {
-        enable: true,
-        color: "#000",
-      },
-      move: {
-        enable: true,
-      },
-    },
-  };
+    let particlesConfig = {
+        particles: {
+            color: {
+                value: "#000",
+            },
+            links: {
+                enable: true,
+                color: "#000",
+            },
+            move: {
+                enable: true,
+            },
+        },
+    };
 
-  let onParticlesLoaded = (event) => {
-    const particlesContainer = event.detail.particles;
+    let onParticlesLoaded = event => {
+        const particlesContainer = event.detail.particles;
 
-    // you can use particlesContainer to call all the Container class
-    // (from the core library) methods like play, pause, refresh, start, stop
-  };
+        // you can use particlesContainer to call all the Container class
+        // (from the core library) methods like play, pause, refresh, start, stop
+    };
 
-  let onParticlesInit = (event) => {
-    const main = event.detail;
+    let onParticlesInit = event => {
+        const main = event.detail;
 
-    // you can use main to customize the tsParticles instance adding presets or custom shapes
-  };
+        // you can use main to customize the tsParticles instance adding presets or custom shapes
+    };
 </script>
 
 <Particles
-  id="tsparticles"
-  options="{particlesConfig}"
-  on:particlesLoaded="{onParticlesLoaded}"
-  on:particlesInit="{onParticlesInit}"
+    id="tsparticles"
+    options="{particlesConfig}"
+    on:particlesLoaded="{onParticlesLoaded}"
+    on:particlesInit="{onParticlesInit}"
 />
 
 <!-- эсвэл -->
 
 <Particles
-  id="tsparticles"
-  url="{particlesUrl}"
-  on:particlesLoaded="{onParticlesLoaded}"
-  on:particlesInit="{onParticlesInit}"
+    id="tsparticles"
+    url="{particlesUrl}"
+    on:particlesLoaded="{onParticlesLoaded}"
+    on:particlesInit="{onParticlesInit}"
 />
 ```
 
@@ -85,61 +85,61 @@ Particles компонэнт нь SSR -д зориулж хийгдээгүй у
 
 ```html
 <script>
-  import { onMount } from "svelte";
+    import { onMount } from "svelte";
 
-  let ParticlesComponent;
+    let ParticlesComponent;
 
-  onMount(async () => {
-    const module = await import("svelte-particles");
+    onMount(async () => {
+        const module = await import("svelte-particles");
 
-    ParticlesComponent = module.default;
-  });
+        ParticlesComponent = module.default;
+    });
 
-  let particlesUrl = "http://foo.bar/particles.json";
+    let particlesUrl = "http://foo.bar/particles.json";
 
-  let particlesConfig = {
-    particles: {
-      color: {
-        value: "#000",
-      },
-      links: {
-        enable: true,
-        color: "#000",
-      },
-      move: {
-        enable: true,
-      },
-    },
-  };
+    let particlesConfig = {
+        particles: {
+            color: {
+                value: "#000",
+            },
+            links: {
+                enable: true,
+                color: "#000",
+            },
+            move: {
+                enable: true,
+            },
+        },
+    };
 
-  let onParticlesLoaded = (event) => {
-    const particlesContainer = event.detail.particles;
+    let onParticlesLoaded = event => {
+        const particlesContainer = event.detail.particles;
 
-    // та particlesContainer -ийг ашиглан бүх Container классын дуудаж болно
-    // (үндсэн номын сангаас) тоглох, түр зогсоох, сэргээх, эхлүүлэх, зогсоох гэх зэрэг аргууд
-  };
+        // та particlesContainer -ийг ашиглан бүх Container классын дуудаж болно
+        // (үндсэн номын сангаас) тоглох, түр зогсоох, сэргээх, эхлүүлэх, зогсоох гэх зэрэг аргууд
+    };
 
-  let onParticlesInit = (main) => {
-    // та энд tsParticles instance (main) ийг эхлүүлэн дурын дүрс нэмж болно
-  };
+    let onParticlesInit = main => {
+        // та энд tsParticles instance (main) ийг эхлүүлэн дурын дүрс нэмж болно
+    };
 </script>
 
 <svelte:component
-  this="{ParticlesComponent}"
-  id="tsparticles"
-  options="{particlesConfig}"
-  on:particlesLoaded="{onParticlesLoaded}"
-  on:particlesInit="{onParticlesInit}"
+    this="{ParticlesComponent}"
+    id="tsparticles"
+    options="{particlesConfig}"
+    on:particlesLoaded="{onParticlesLoaded}"
+    on:particlesInit="{onParticlesInit}"
 />
 
 <!-- эсвэл -->
 
 <svelte:component
-  this="{ParticlesComponent}"
-  id="tsparticles"
-  url="{particlesUrl}"
-  on:particlesLoaded="{onParticlesLoaded}"
-  on:particlesInit="{onParticlesInit}"
+    this="{ParticlesComponent}"
+    id="tsparticles"
+    url="{particlesUrl}"
+    on:particlesLoaded="{onParticlesLoaded}"
+    on:particlesInit="{onParticlesInit}"
 />
 ```
 

@@ -7,9 +7,9 @@
     "build": "npm run clean && pnpm run prettify:src && pnpm run prettify:readme && rollup -c",
     "build:ci": "npm run clean && pnpm run prettify:ci:src && pnpm run prettify:ci:readme && rollup -c",
     "prettify:ci:src": "prettier --check ./src/*",
-    "prettify:ci:readme": "prettier --check ./README.md",
+    "prettify:ci:readme": "prettier --check ./README.md && prettier --check ./traduction/*",
     "prettify:src": "prettier --write ./src/*",
-    "prettify:readme": "prettier --write ./README.md",
+    "prettify:readme": "prettier --write ./README.md && prettier --write ./traduction/*",
     "prepack": "pnpm run build"
   },
   "keywords": [

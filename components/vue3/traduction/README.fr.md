@@ -21,27 +21,26 @@ yarn add vue3-particles
 ```javascript
 import Particles from "vue3-particles";
 
-createApp(App).use(Particles)
+createApp(App).use(Particles);
 ```
 
 ### Configuration de démonstration
 
 ```html
-
 <template>
     <div id="app">
         <Particles
-                id="tsparticles"
-                :particlesInit="particlesInit"
-                :particlesLoaded="particlesLoaded"
-                url="http://foo.bar/particles.json"
+            id="tsparticles"
+            :particlesInit="particlesInit"
+            :particlesLoaded="particlesLoaded"
+            url="http://foo.bar/particles.json"
         />
 
         <Particles
-                id="tsparticles"
-                :particlesInit="particlesInit"
-                :particlesLoaded="particlesLoaded"
-                :options="{
+            id="tsparticles"
+            :particlesInit="particlesInit"
+            :particlesLoaded="particlesLoaded"
+            :options="{
                     background: {
                         color: {
                             value: '#0d47a1'
@@ -126,13 +125,13 @@ createApp(App).use(Particles)
 ```javascript
 import { loadFull } from "tsparticles";
 
-const particlesInit = async (engine) => {
+const particlesInit = async engine => {
     await loadFull(engine);
-}
+};
 
-const particlesLoaded = async (container) => {
+const particlesLoaded = async container => {
     console.log("Particles container loaded", container);
-}
+};
 ```
 
 ### Erreurs TypeScript
@@ -157,8 +156,8 @@ Il y a aussi une collection CodePen activement maintenue et mise à jour [ici](h
 
 Si vous migrez votre projet de Vue 2.x vers Vue 3.x, vous devez suivre ces étapes:
 
-- Changer la dépendance de `vue2-particles` en `vue3-particles`
-- Mettre à jour le dossier `node_modules` en exécutant `npm install` ou `yarn`
-- Changez l'utilisation de la fonction `use` de `Vue.use(Particles)` en `createApp(App).use(Particles)`.
+-   Changer la dépendance de `vue2-particles` en `vue3-particles`
+-   Mettre à jour le dossier `node_modules` en exécutant `npm install` ou `yarn`
+-   Changez l'utilisation de la fonction `use` de `Vue.use(Particles)` en `createApp(App).use(Particles)`.
 
 La syntaxe de la balise `<Particles />` reste la même, vous n'avez donc pas besoin d'effectuer d'action supplémentaire.

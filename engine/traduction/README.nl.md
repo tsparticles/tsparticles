@@ -77,7 +77,7 @@ const tsParticles = require("tsparticles");
 
 // of
 
-import {tsParticles} from "tsparticles-engine";
+import { tsParticles } from "tsparticles-engine";
 ```
 
 De geïmporteerde `tsParticles` is dezelfde instantie als wanneer je het script had gebruikt van een CDN.
@@ -99,7 +99,6 @@ Laad tsParticles en configureer de deeltjes:
 **index.html**
 
 ```html
-
 <div id="tsparticles"></div>
 
 <script src="tsparticles.min.js"></script>
@@ -112,20 +111,20 @@ Laad tsParticles en configureer de deeltjes:
 /* tsParticles.loadJSON(@dom-id, @path-json, @callback (optional)); */
 
 tsParticles
-    .loadJSON("tsparticles", "presets/default.json")
-    .then((container) => {
-        console.log("callback - tsparticles config loaded");
-    })
-    .catch((error) => {
-        console.error(error);
-    });
+  .loadJSON("tsparticles", "presets/default.json")
+  .then((container) => {
+    console.log("callback - tsparticles config loaded");
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 
 // of
 
 /* tsParticles.load(@dom-id, @options); */
 
 tsParticles.load("tsparticles", {
-    /* opties hier */
+  /* opties hier */
 });
 
 // of
@@ -133,26 +132,26 @@ tsParticles.load("tsparticles", {
 /* tsParticles.loadFromArray(@dom-id, @options, @index (optioneel)); */
 
 tsParticles.loadFromArray("tsparticles", [
-    {
-        /* opties hier */
-    },
-    {
-        /* andere opties hier */
-    },
+  {
+    /* opties hier */
+  },
+  {
+    /* andere opties hier */
+  },
 ]);
 // willekeurig object
 
 tsParticles.loadFromArray(
-    "tsparticles",
-    [
-        {
-            /* opties hier */
-        },
-        {
-            /* andere opties hier */
-        },
-    ],
-    1
+  "tsparticles",
+  [
+    {
+      /* opties hier */
+    },
+    {
+      /* andere opties hier */
+    },
+  ],
+  1
 ); // de tweede
 // Belangrijk! Als de index niet in de reeks 0...<array.length> zit, dan wordt de index genereerd.
 
@@ -163,7 +162,7 @@ tsParticles.loadFromArray(
 /* Dit wordt afgevuurd na alle deeltjes geladen zijn */
 
 tsParticles.setOnClickHandler((event, particles) => {
-    /* Eigen gemaakte klik handler */
+  /* Eigen gemaakte klik handler */
 });
 
 // Nu kan je de animaties ook besturen, het is mogelijk om de animaties te pauzeren en weer door te laten gaan
@@ -250,12 +249,12 @@ instructies vinden
 ## Templates and Resources
 
 Je kan wat tsParticles gerelateerde sjablonen [hier](https://github.com/tsparticles/templates) vinden. De sjablonen zijn
-gemaakt voor *Vanilla Javascript*, *ReactJS*, *VueJS*, *Angular*, *SvelteJS* en andere raamwerken,
+gemaakt voor _Vanilla Javascript_, _ReactJS_, _VueJS_, _Angular_, _SvelteJS_ en andere raamwerken,
 
 De sjablonen kunnen wat variëren, nieuwere kunnen worden gemaakt en ouderen geüpdated met de laatste features of
 veranderd naar een betere stijl. Bekijk ze van tijd tot tijd.
 
-Als je een goed design hebt gemaakt met *tsParticles*, maak gerust een pull request met je coole sjabloon. Je wordt
+Als je een goed design hebt gemaakt met _tsParticles_, maak gerust een pull request met je coole sjabloon. Je wordt
 gecrediteerd als de auteur.
 
 <https://github.com/tsparticles/templates>

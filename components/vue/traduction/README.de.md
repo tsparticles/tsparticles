@@ -21,7 +21,7 @@ yarn add vue2-particles
 ## Verwendung
 
 ```javascript
-import Particles from 'vue2-particles';
+import Particles from "vue2-particles";
 
 Vue.use(Particles);
 ```
@@ -29,12 +29,11 @@ Vue.use(Particles);
 ### Demo config
 
 ```html
-
 <template>
     <div id="app">
         <Particles
-                id="tsparticles"
-                :options="{
+            id="tsparticles"
+            :options="{
 
 background: {
 
@@ -198,7 +197,7 @@ Wenn TypeScript beim Importieren/Benutzen des Particles-Plugins einen Fehler zur
 dem vorherigen Code einzufügen.
 
 ```typescript
-declare module 'vue2-particles';
+declare module "vue2-particles";
 ```
 
 ## Demos

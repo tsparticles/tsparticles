@@ -25,11 +25,11 @@ creator.
 
 All the shapes have in common these properties
 
-| key         | option type | example          | notes                                                                     |
-| ----------- | ----------- | ---------------- | ------------------------------------------------------------------------- |
-| `particles` | `object`    |                  | See Particles options [here](https://particles.js.org/docs/interfaces/_options_interfaces_ioptions_.ioptions.html-Particles)                                               |
-| `fill`      | `boolean`   | `true` / `false` | Used to specify if its shape particles should be filled with color or not |
-| `close`     | `boolean`   | `true` / `false` | Used to specify if its shape particles should have a closed shape         |
+| key         | option type | example          | notes                                                                                                                        |
+| ----------- | ----------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `particles` | `object`    |                  | See Particles options [here](https://particles.js.org/docs/interfaces/_options_interfaces_ioptions_.ioptions.html-Particles) |
+| `fill`      | `boolean`   | `true` / `false` | Used to specify if its shape particles should be filled with color or not                                                    |
+| `close`     | `boolean`   | `true` / `false` | Used to specify if its shape particles should have a closed shape                                                            |
 
 Below you'll find the options of some shape types that need additional properties, you can add to the object below the 3
 properties above.
@@ -38,7 +38,7 @@ properties above.
 
 ```javascript
 polygon: {
-    sides: 5 // the number of sides of the polygon
+  sides: 5; // the number of sides of the polygon
 }
 ```
 
@@ -46,10 +46,10 @@ polygon: {
 
 ```json
 {
-    "star": {
-        "sides": 5, // the number of sides of the star
-        "inset": 2 // the inset length, 2 is the default and an acceptable value
-    }
+  "star": {
+    "sides": 5, // the number of sides of the star
+    "inset": 2 // the inset length, 2 is the default and an acceptable value
+  }
 }
 ```
 
@@ -57,12 +57,12 @@ polygon: {
 
 ```json
 {
-    "character": {
-        "value": "*", // the text to use as particles, any string is valid, for escaping unicode char use the `\uXXXX` syntax
-        "font": "Verdana", // the font to use to draw the text. If the font needs an external css or javascript like FontAwesome you should include all the necessary files on your own
-        "style": "", // any additional css style to add to the text
-        "weight": "" // the css weight property, some fonts like font awesome have a specified weight, check the documentation if needed
-    }
+  "character": {
+    "value": "*", // the text to use as particles, any string is valid, for escaping unicode char use the `\uXXXX` syntax
+    "font": "Verdana", // the font to use to draw the text. If the font needs an external css or javascript like FontAwesome you should include all the necessary files on your own
+    "style": "", // any additional css style to add to the text
+    "weight": "" // the css weight property, some fonts like font awesome have a specified weight, check the documentation if needed
+  }
 }
 ```
 
@@ -70,15 +70,15 @@ polygon: {
 
 ```json
 {
-    "image": {
-        // any path or url to your image that will be used as a particle
-        "src": "http://mywebsite.com/assets/img/image.png",
-        // the pixel width of the image, you can use any value, the image will be scaled
-        "width": 100,
-        // the pixel height of the image, you can use any value, the image will be scaled
-        "height": 100,
-        // if true and the image type is SVG, it will replace all the colors with the particle color
-        "replaceColor": false 
-    }
+  "image": {
+    // any path or url to your image that will be used as a particle
+    "src": "http://mywebsite.com/assets/img/image.png",
+    // the pixel width of the image, you can use any value, the image will be scaled
+    "width": 100,
+    // the pixel height of the image, you can use any value, the image will be scaled
+    "height": 100,
+    // if true and the image type is SVG, it will replace all the colors with the particle color
+    "replaceColor": false
+  }
 }
 ```

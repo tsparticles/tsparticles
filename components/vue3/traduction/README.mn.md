@@ -21,27 +21,26 @@ yarn add vue3-particles vue@3
 ```javascript
 import Particles from "vue3-particles";
 
-createApp(App).use(Particles)
+createApp(App).use(Particles);
 ```
 
 ### Жишээ тохиргоо
 
 ```html
-
 <template>
     <div id="app">
         <Particles
-                id="tsparticles"
-                :particlesInit="particlesInit"
-                :particlesLoaded="particlesLoaded"
-                url="http://foo.bar/particles.json"
+            id="tsparticles"
+            :particlesInit="particlesInit"
+            :particlesLoaded="particlesLoaded"
+            url="http://foo.bar/particles.json"
         />
 
         <Particles
-                id="tsparticles"
-                :particlesInit="particlesInit"
-                :particlesLoaded="particlesLoaded"
-                :options="{
+            id="tsparticles"
+            :particlesInit="particlesInit"
+            :particlesLoaded="particlesLoaded"
+            :options="{
                     background: {
                         color: {
                             value: '#0d47a1'
@@ -145,8 +144,8 @@ CodePen -ий байнга шинэчлэгдэж байдаг цуглуулг�
 
 Хэрвээ та прожектоо Vue 2.x -оос Vue 3.x руу шилжүүлж байгаа бол дөрөөх алхамыг дагана уу:
 
-- `vue2-particles` -ын хараат байдлыг `vue3-particles` болгон өөрчилнө үү.
-- `node_modules` хавтсын `npm install` эсвэл `yarn` ашиглах шинэчилнэ үү.
-- `Vue.use(Particles)` доторх `use` функцийг `createApp(App).use(Particles)` болгон өөрчилнө үү.
+-   `vue2-particles` -ын хараат байдлыг `vue3-particles` болгон өөрчилнө үү.
+-   `node_modules` хавтсын `npm install` эсвэл `yarn` ашиглах шинэчилнэ үү.
+-   `Vue.use(Particles)` доторх `use` функцийг `createApp(App).use(Particles)` болгон өөрчилнө үү.
 
 `<Particles />` хаяг хэвээр учир өөрчлөх шаардлагагүй.

@@ -62,9 +62,9 @@
     "build:ci": "node scripts/prebuild.js && pnpm run prettify:ci:src && pnpm run prettify:ci:readme && ng build ng-particles --configuration production",
     "version": "pnpm run build && git add ./projects/ng-particles/package.json",
     "prettify:ci:src": "prettier --check ./projects/ng-particles/src/*",
-    "prettify:ci:readme": "prettier --check ./README.md",
+    "prettify:ci:readme": "prettier --check ./README.md && prettier --check ./traduction/*",
     "prettify:src": "prettier --write ./projects/ng-particles/src/*",
-    "prettify:readme": "prettier --write ./README.md",
+    "prettify:readme": "prettier --write ./README.md && prettier --write ./traduction/*",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "prepack": "pnpm run build"
