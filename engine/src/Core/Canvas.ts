@@ -49,7 +49,7 @@ export class Canvas {
     private _context: CanvasRenderingContext2D | null;
 
     private _coverColorStyle?: string;
-    private _generatedCanvas;
+    private _generated;
     private readonly _mutationObserver?: MutationObserver;
     private _originalStyle?: CSSStyleDeclaration;
     private _postDrawUpdaters: IParticleUpdater[];
@@ -68,7 +68,7 @@ export class Canvas {
         };
 
         this._context = null;
-        this._generatedCanvas = false;
+        this._generated = false;
         this._preDrawUpdaters = [];
         this._postDrawUpdaters = [];
         this._resizePlugins = [];
@@ -83,6 +83,10 @@ export class Canvas {
                       }
                   })
                 : undefined;
+    }
+
+    private get _fullScreen(): boolean {
+        return this.container.actualOptions.fullScreen.enable;
     }
 
     /**
@@ -109,7 +113,7 @@ export class Canvas {
     destroy(): void {
         this._mutationObserver?.disconnect();
 
-        if (this._generatedCanvas) {
+        if (this._generated) {
             this.element?.remove();
         } else {
             this._resetOriginalStyle();
@@ -314,14 +318,14 @@ export class Canvas {
      * @param canvas the canvas html element
      */
     loadCanvas(canvas: HTMLCanvasElement): void {
-        if (this._generatedCanvas) {
+        if (this._generated) {
             this.element?.remove();
         }
 
-        this._generatedCanvas =
+        this._generated =
             canvas.dataset && generatedAttribute in canvas.dataset
                 ? canvas.dataset[generatedAttribute] === "true"
-                : this._generatedCanvas;
+                : this._generated;
         this.element = canvas;
         this._originalStyle = deepExtend({}, this.element.style) as CSSStyleDeclaration;
         this.size.height = canvas.offsetHeight;
@@ -451,7 +455,9 @@ export class Canvas {
 
     private _applyResizePlugins(): void {
         for (const plugin of this._resizePlugins) {
-            plugin.resize?.();
+            if (plugin.resize) {
+                plugin.resize();
+            }
         }
     }
 
@@ -501,7 +507,7 @@ export class Canvas {
             return;
         }
 
-        if (options.fullScreen.enable) {
+        if (this._fullScreen) {
             this._originalStyle = deepExtend({}, element.style) as CSSStyleDeclaration;
 
             this._setFullScreenStyle();
@@ -533,9 +539,7 @@ export class Canvas {
             const trail = options.particles.move.trail;
 
             this._trailFillColor = {
-                r: fillColor.r,
-                g: fillColor.g,
-                b: fillColor.b,
+                ...fillColor,
                 a: 1 / trail.length,
             };
         }
@@ -566,30 +570,32 @@ export class Canvas {
         const element = this.element,
             originalStyle = this._originalStyle;
 
-        if (element && originalStyle) {
-            element.style.position = originalStyle.position;
-            element.style.zIndex = originalStyle.zIndex;
-            element.style.top = originalStyle.top;
-            element.style.left = originalStyle.left;
-            element.style.width = originalStyle.width;
-            element.style.height = originalStyle.height;
+        if (!(element && originalStyle)) {
+            return;
         }
+
+        element.style.position = originalStyle.position;
+        element.style.zIndex = originalStyle.zIndex;
+        element.style.top = originalStyle.top;
+        element.style.left = originalStyle.left;
+        element.style.width = originalStyle.width;
+        element.style.height = originalStyle.height;
     }
 
     private _setFullScreenStyle(): void {
-        const fullScreen = this.container.actualOptions.fullScreen,
-            zIndex = fullScreen.zIndex.toString(10),
-            element = this.element;
+        const element = this.element;
 
         if (!element) {
             return;
         }
 
-        element.style.setProperty("position", "fixed", "important");
-        element.style.setProperty("z-index", zIndex, "important");
-        element.style.setProperty("top", "0", "important");
-        element.style.setProperty("left", "0", "important");
-        element.style.setProperty("width", "100%", "important");
-        element.style.setProperty("height", "100%", "important");
+        const priority = "important";
+
+        element.style.setProperty("position", "fixed", priority);
+        element.style.setProperty("z-index", this.container.actualOptions.fullScreen.zIndex.toString(10), priority);
+        element.style.setProperty("top", "0", priority);
+        element.style.setProperty("left", "0", priority);
+        element.style.setProperty("width", "100%", priority);
+        element.style.setProperty("height", "100%", priority);
     }
 }
