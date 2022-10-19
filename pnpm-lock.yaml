@@ -7,7 +7,7 @@ importers:
       '@commitlint/cli': ^17.1.2
       '@commitlint/config-conventional': ^17.1.0
       '@nrwl/cli': ^15.0.0
-      '@nrwl/nx-cloud': ^14.7.0
+      '@nrwl/nx-cloud': ^15.0.0
       '@nrwl/workspace': ^15.0.0
       '@parcel/core': ^2.7.0
       '@parcel/transformer-sass': ^2.7.0
@@ -33,7 +33,7 @@ importers:
       '@commitlint/cli': 17.1.2
       '@commitlint/config-conventional': 17.1.0
       '@nrwl/cli': 15.0.0
-      '@nrwl/nx-cloud': 14.7.0
+      '@nrwl/nx-cloud': 15.0.0
       '@nrwl/workspace': 15.0.0_2oys7pdhpaqp4q3oh53dxbjizq
       '@parcel/core': 2.7.0
       '@parcel/transformer-sass': 2.7.0_@parcel+core@2.7.0
@@ -12491,8 +12491,8 @@ packages:
       - typescript
     dev: true
 
-  /@nrwl/nx-cloud/14.7.0:
-    resolution: {integrity: sha512-sEGK5Ire5DC2liIsT89qR6SzZa46uinmWEAMz8ocMuu7nIMnwV9m15qajxhmYKasYsq9vTeT+x7BlZ4fnxPrNg==}
+  /@nrwl/nx-cloud/15.0.0:
+    resolution: {integrity: sha512-KAYmbx8M4we9gUn14rDnt5vMz+yYwIa4xJNsByWf7mjzC4lvBVZKqFzFGaklWzp/gJN/xyNleZt/Fg64k/kF+A==}
     hasBin: true
     dependencies:
       axios: 0.21.4
@@ -28112,7 +28112,7 @@ packages:
     peerDependencies:
       jsdom: '>=10.0.0'
     dependencies:
-      jsdom: 20.0.1_canvas@2.10.1
+      jsdom: 20.0.1
     dev: true
 
   /jsdom/12.2.0:
@@ -39951,7 +39951,7 @@ packages:
       mime-types: 2.1.35
       range-parser: 1.2.1
       schema-utils: 4.0.0
-      webpack: 5.74.0
+      webpack: 5.74.0_webpack-cli@4.10.0
     dev: true
 
   /webpack-dev-server/3.11.3_webpack@4.46.0:
