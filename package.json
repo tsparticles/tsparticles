@@ -22,7 +22,7 @@
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
     "@nrwl/cli": "^15.0.0",
-    "@nrwl/nx-cloud": "^14.7.0",
+    "@nrwl/nx-cloud": "^15.0.0",
     "@nrwl/workspace": "^15.0.0",
     "@parcel/core": "^2.7.0",
     "@parcel/transformer-sass": "^2.7.0",
