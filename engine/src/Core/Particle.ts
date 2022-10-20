@@ -38,7 +38,6 @@ import { OutMode } from "../Enums/Modes/OutMode";
 import type { OutModeAlt } from "../Enums/Modes/OutMode";
 import { ParticleOutType } from "../Enums/Types/ParticleOutType";
 import type { RecursivePartial } from "../Types/RecursivePartial";
-import { Shape } from "../Options/Classes/Particles/Shape/Shape";
 import { SizeMode } from "../Enums/Modes/SizeMode";
 import { StartValueType } from "../Enums/Types/StartValueType";
 import type { Stroke } from "../Options/Classes/Particles/Stroke";
@@ -59,7 +58,7 @@ const fixOutMode = (data: {
     radius: number;
     setCb: (value: number) => void;
 }): void => {
-    if (!(isInArray(data.outMode, data.checkModes) || isInArray(data.outMode, data.checkModes))) {
+    if (!isInArray(data.outMode, data.checkModes)) {
         return;
     }
 
@@ -301,27 +300,24 @@ export class Particle implements IParticle {
             mainOptions = container.actualOptions,
             particlesOptions = loadParticlesOptions(this._engine, container, mainOptions.particles),
             shapeType = particlesOptions.shape.type,
-            reduceDuplicates = particlesOptions.reduceDuplicates;
+            { reduceDuplicates } = particlesOptions;
 
         this.shape = itemFromSingleOrMultiple(shapeType, this.id, reduceDuplicates);
 
-        if (overrideOptions?.shape) {
-            if (overrideOptions.shape.type) {
-                const overrideShapeType = overrideOptions.shape.type;
+        const shapeOptions = particlesOptions.shape;
 
-                this.shape = itemFromSingleOrMultiple(overrideShapeType, this.id, reduceDuplicates);
+        if (overrideOptions && overrideOptions.shape && overrideOptions.shape.type) {
+            const overrideShapeType = overrideOptions.shape.type,
+                shape = itemFromSingleOrMultiple(overrideShapeType, this.id, reduceDuplicates);
+
+            if (shape) {
+                this.shape = shape;
+
+                shapeOptions.load(overrideOptions.shape);
             }
-
-            const shapeOptions = new Shape();
-
-            shapeOptions.load(overrideOptions.shape);
-
-            if (this.shape) {
-                this.shapeData = this._loadShapeData(shapeOptions, reduceDuplicates);
-            }
-        } else {
-            this.shapeData = this._loadShapeData(particlesOptions.shape, reduceDuplicates);
         }
+
+        this.shapeData = this._loadShapeData(shapeOptions, reduceDuplicates);
 
         particlesOptions.load(overrideOptions);
         particlesOptions.load(this.shapeData?.particles);
@@ -404,12 +400,12 @@ export class Particle implements IParticle {
         this.initialPosition = this.position.copy();
 
         const canvasSize = container.canvas.size,
-            moveCenter = this.options.move.center,
+            moveCenter = { ...this.options.move.center },
             isCenterPercent = moveCenter.mode === SizeMode.percent;
 
         this.moveCenter = {
-            x: (moveCenter.x ?? 50) * (isCenterPercent ? canvasSize.width / 100 : 1),
-            y: (moveCenter.y ?? 50) * (isCenterPercent ? canvasSize.height / 100 : 1),
+            x: moveCenter.x * (isCenterPercent ? canvasSize.width / 100 : 1),
+            y: moveCenter.y * (isCenterPercent ? canvasSize.height / 100 : 1),
             radius: this.options.move.center.radius ?? 0,
             mode: this.options.move.center.mode ?? SizeMode.percent,
         };

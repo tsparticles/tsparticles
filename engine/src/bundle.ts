@@ -76,6 +76,7 @@ export * from "./Options/Classes/Particles/Stroke";
 export * from "./Options/Classes/Particles/Move/MoveAttract";
 export * from "./Options/Classes/Particles/Move/Move";
 export * from "./Options/Classes/Particles/Move/MoveAngle";
+export * from "./Options/Classes/Particles/Move/MoveCenter";
 export * from "./Options/Classes/Particles/Move/MoveGravity";
 export * from "./Options/Classes/Particles/Move/OutModes";
 export * from "./Options/Classes/Particles/Move/Path/MovePath";
