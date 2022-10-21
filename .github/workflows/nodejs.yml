@@ -78,7 +78,7 @@ jobs:
 
   build-pr:
     runs-on: ubuntu-latest
-    needs: [ checkout-main ]
+    needs: [ checkout-pr ]
     steps:
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v3
