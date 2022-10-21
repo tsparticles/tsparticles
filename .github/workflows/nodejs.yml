@@ -111,7 +111,7 @@ jobs:
   main:
     runs-on: ubuntu-latest
     if: ${{ github.event_name != 'pull_request' }}
-    needs: [checkout-main, build-main]
+    needs: [build-main]
     steps:
       - if: env.firebaseToken != '' && github.ref == 'refs/heads/main'
         uses: FirebaseExtended/action-hosting-deploy@v0
@@ -131,7 +131,7 @@ jobs:
   pr:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
-    needs: [checkout-pr, build-pr]
+    needs: [build-pr]
     steps:
       - run: echo ${{ github.repository_owner }}
       - run: echo ${{ github.actor }}
