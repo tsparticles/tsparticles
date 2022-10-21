@@ -21,7 +21,6 @@ jobs:
 
   build-main:
     runs-on: ubuntu-latest
-    needs: [checkout-main]
     steps:
       - uses: actions/checkout@v3
         name: Checkout [main]
@@ -65,7 +64,6 @@ jobs:
 
   build-pr:
     runs-on: ubuntu-latest
-    needs: [ checkout-pr ]
     steps:
       - uses: actions/checkout@v3
         with:
@@ -111,7 +109,7 @@ jobs:
   main:
     runs-on: ubuntu-latest
     if: ${{ github.event_name != 'pull_request' }}
-    needs: [build-main]
+    needs: [ build-main ]
     steps:
       - if: env.firebaseToken != '' && github.ref == 'refs/heads/main'
         uses: FirebaseExtended/action-hosting-deploy@v0
@@ -131,7 +129,7 @@ jobs:
   pr:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
-    needs: [build-pr]
+    needs: [ build-pr ]
     steps:
       - run: echo ${{ github.repository_owner }}
       - run: echo ${{ github.actor }}
