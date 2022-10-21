@@ -7,8 +7,8 @@ const getEntry = (name, bundle) => {
     const obj = {};
     const fileName = bundle ? "bundle" : "index";
 
-    obj[`tsparticles.preset.${name}`] = `./${fileName}.js`;
-    obj[`tsparticles.preset.${name}.min`] = `./${fileName}.js`;
+    obj[`tsparticles.preset.${name}`] = `./src/${fileName}.js`;
+    obj[`tsparticles.preset.${name}.min`] = `./src/${fileName}.js`;
 
     return obj;
 }
