@@ -57,7 +57,7 @@ jobs:
             ${{ runner.os }}-pnpm-store-
       - run: pnpm install --no-frozen-lockfile
       - run: npx nx-cloud start-ci-run
-      - run: lerna run build:ci --scope @tsparticles/build --concurrency 3
+      - run: lerna run build:ci --scope @tsparticles/build --concurrency 1 #3
       - run: pnpm install --no-frozen-lockfile
       - run: npx lerna run build:ci --concurrency 3
       - run: pnpm run prettify:ci:readme
@@ -102,7 +102,7 @@ jobs:
             ${{ runner.os }}-pnpm-store-
       - run: pnpm install --no-frozen-lockfile
       - run: npx nx-cloud start-ci-run
-      - run: lerna run build:ci --scope @tsparticles/build --concurrency 3
+      - run: lerna run build:ci --scope @tsparticles/build --concurrency 1 #3
       - run: pnpm install --no-frozen-lockfile
       - run: npx lerna run build:ci --concurrency 3
       - run: pnpm run prettify:ci:readme
@@ -148,7 +148,7 @@ jobs:
     timeout-minutes: 60
     strategy:
       matrix:
-        agent: [ 1, 2, 3 ]
+        agent: [1]#[ 1, 2, 3 ]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
