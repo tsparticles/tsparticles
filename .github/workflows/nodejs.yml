@@ -61,7 +61,7 @@ jobs:
       - run: pnpm install --no-frozen-lockfile
       - run: npx lerna run build:ci --ignore "*demo*" --concurrency 3
       - run: pnpm install --no-frozen-lockfile
-      - run: npx lerna run build:ci --filter "*demo*" --concurrency 3
+      - run: npx lerna run build:ci --scope "*demo*" --concurrency 3
       - run: pnpm run prettify:ci:readme
       - run: npx nx-cloud stop-all-agents
       - if: env.firebaseToken != '' && github.ref == 'refs/heads/main'
@@ -139,7 +139,7 @@ jobs:
       - run: pnpm install --no-frozen-lockfile
       - run: npx lerna run build:ci --ignore "*demo*" --concurrency 3
       - run: pnpm install --no-frozen-lockfile
-      - run: npx lerna run build:ci --filter "*demo*" --concurrency 3
+      - run: npx lerna run build:ci --scope "*demo*" --concurrency 3
       - run: pnpm run prettify:ci:readme
       - run: npx nx-cloud stop-all-agents
       - run: echo ${{ github.repository_owner }}
