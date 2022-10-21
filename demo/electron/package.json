@@ -3,11 +3,14 @@
   "version": "2.3.4",
   "description": "",
   "main": "app/index.js",
+  "private": true,
   "scripts": {
     "start": "pnpm run build:client && electron .",
-    "build:client":"webpack --mode production"
+    "build:client": "webpack --mode production"
   },
-  "keywords": ["electron"],
+  "keywords": [
+    "electron"
+  ],
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "dependencies": {
