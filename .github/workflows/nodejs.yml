@@ -21,6 +21,7 @@ jobs:
 
   build-main:
     runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'pull_request' }}
     steps:
       - uses: actions/checkout@v3
         name: Checkout [main]
@@ -64,6 +65,7 @@ jobs:
 
   build-pr:
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }}
     steps:
       - uses: actions/checkout@v3
         with:
