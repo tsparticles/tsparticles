@@ -15,88 +15,18 @@ env:
   NX_CLOUD_DISTRIBUTED_EXECUTION: true
   NX_CLOUD_ACCESS_TOKEN: '${{ secrets.NX_CLOUD_ACCESS_TOKEN }}'
   NX_BRANCH: '${{github.event.pull_request.number || github.ref_name}}'
+  firebaseToken: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
 
 jobs:
-  main:
-    env:
-      firebaseToken: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
+  checkout-main:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name != 'pull_request' }}
     steps:
-      - uses: actions/checkout@v3
-        name: Checkout [main]
-        with:
-          fetch-depth: 0
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-      - uses: pnpm/action-setup@v2.2.4
-        name: Install pnpm
-        id: pnpm-install
-        with:
-          version: 7
-          run_install: false
-      - name: Get pnpm version
-        id: pnpm-version
-        run: |
-          echo "$(pnpm --version)"
+    - uses: actions/checkout@v3
+      name: Checkout [main]
+      with:
+        fetch-depth: 0
 
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        run: |
-          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
-
-      - uses: actions/cache@v3
-        name: Setup pnpm cache
-        with:
-          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-      - run: pnpm install --no-frozen-lockfile
-      - run: npx nx-cloud start-ci-run
-      - run: lerna run build:ci --scope @tsparticles/build --concurrency 3
-      - run: pnpm install --no-frozen-lockfile
-      - run: npx lerna run build:ci --ignore "*demo*" --concurrency 3
-      - run: pnpm install --no-frozen-lockfile
-      - run: npx lerna run build:ci --scope "*demo*" --concurrency 3
-      - run: pnpm run prettify:ci:readme
-      - run: npx nx-cloud stop-all-agents
-      - if: env.firebaseToken != '' && github.ref == 'refs/heads/main'
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
-          projectId: tsparticles
-          channelId: live
-
-      - if: env.firebaseToken != '' && github.ref == 'refs/heads/staging'
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
-          projectId: tsparticles
-          channelId: next
-
-      - if: env.firebaseToken != '' && github.ref == 'refs/heads/dev'
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
-          projectId: tsparticles
-          channelId: dev
-
-      - if: env.firebaseToken != '' && contains(github.ref, 'refs/pull') && github.actor == 'matteobruni'
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
-          projectId: tsparticles
-  pr:
-    env:
-      firebaseToken: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
+  checkout-pr:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
     steps:
@@ -105,6 +35,11 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           fetch-depth: 0
+
+  build-main:
+    runs-on: ubuntu-latest
+    needs: [checkout-main]
+    steps:
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v3
       - uses: actions/setup-node@v3
@@ -137,13 +72,55 @@ jobs:
       - run: npx nx-cloud start-ci-run
       - run: lerna run build:ci --scope @tsparticles/build --concurrency 3
       - run: pnpm install --no-frozen-lockfile
-      - run: npx lerna run build:ci --ignore "*demo*" --concurrency 3
-      - run: pnpm install --no-frozen-lockfile
-      - run: npx lerna run build:ci --scope "*demo*" --concurrency 3
+      - run: npx lerna run build:ci --concurrency 3
       - run: pnpm run prettify:ci:readme
       - run: npx nx-cloud stop-all-agents
-      - run: echo ${{ github.repository_owner }}
-      - run: echo ${{ github.actor }}
+
+  build-pr:
+    runs-on: ubuntu-latest
+    needs: [ checkout-main ]
+    steps:
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - uses: pnpm/action-setup@v2.2.4
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 7
+          run_install: false
+      - name: Get pnpm version
+        id: pnpm-version
+        run: |
+          echo "$(pnpm --version)"
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+      - run: pnpm install --no-frozen-lockfile
+      - run: npx nx-cloud start-ci-run
+      - run: lerna run build:ci --scope @tsparticles/build --concurrency 3
+      - run: pnpm install --no-frozen-lockfile
+      - run: npx lerna run build:ci --concurrency 3
+      - run: pnpm run prettify:ci:readme
+      - run: npx nx-cloud stop-all-agents
+
+  main:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'pull_request' }}
+    needs: [checkout-main, build-main]
+    steps:
       - if: env.firebaseToken != '' && github.ref == 'refs/heads/main'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
@@ -152,22 +129,20 @@ jobs:
           projectId: tsparticles
           channelId: live
 
-      - if: env.firebaseToken != '' && github.ref == 'refs/heads/staging'
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
-          projectId: tsparticles
-          channelId: next
-
       - if: env.firebaseToken != '' && github.ref == 'refs/heads/dev'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
           projectId: tsparticles
-          channelId: dev
-
+          channelId: next
+  pr:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }}
+    needs: [checkout-pr, build-pr]
+    steps:
+      - run: echo ${{ github.repository_owner }}
+      - run: echo ${{ github.actor }}
       - if: env.firebaseToken != '' && contains(github.ref, 'refs/pull') && github.actor == 'matteobruni'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
