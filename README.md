@@ -803,6 +803,11 @@ e --> pr
 [Codacy](https://www.codacy.com) is a code quality platform that helps you to detect and fix code quality issues in your
 code.
 
+## Contributors
+<a href="https://github.com/abel-otegbola/clock-app/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=abel-otegbola/clock-app" />
+</a>  
+
 **Automate code reviews on your commits and pull requests**
 
 Check your code quality and keep track of your technical debt for more than 40 programming languages. Seamlessly
