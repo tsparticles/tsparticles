@@ -81,7 +81,7 @@ version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) 
 
 _Documentation and Development references [here](https://particles.js.org/docs/) 📖_
 
-**This library is available on the two most popular CDNs and it's easy and ready to use, if you were using particles.js
+**This library is available on two of the most popular CDNs and it's easy and ready to use, if you were using particles.js
 it's even easier**.
 
 You'll find the
@@ -372,8 +372,8 @@ the `Premium Addons for Elementor` plugin collection.
     <img width="64" alt="Premium Addons for Elementor" src="https://particles.js.org/images/premium-addons-wordpress-plugin.png" />
 </div>
 <div>
-    Premium Addons for Elementor is one of the most common plugins for Elementor that offers more than 55 highly customizable Elementor Widgets and Section Add-ons. tsParticles is exclusively included in Premium Particles Section Add-on for Elementor Page Builder. <a href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/" target="_blank">Check It Now</a>.<br />
-    Use Premium Addons for Elementor Page Builder and get the chance to include tsParticles in your next WordPress website without the need to write a single line of code. <a href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/" target="_blank">See a Live Example</a>.
+    Premium Addons for Elementor is one of the most common plugins for Elementor that offers 55+ highly customizable Elementor Widgets and Section Add-ons. tsParticles is exclusively included in the Premium Particles Section Add-on for the Elementor Page Builder. <a href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/" target="_blank">Check It Now</a>.<br />
+    Use Premium Addons for Elementor Page Builder and get the chance to include tsParticles in your next WordPress website without writing a single line of code. <a href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/" target="_blank">See a Live Example</a>.
 </div>
 <div style="clear: both;"></div>
 
@@ -381,7 +381,7 @@ the `Premium Addons for Elementor` plugin collection.
 
 ## Presets
 
-There are some presets ready to be used in this repository, and they have also a bundle file that contains everything
+There are some presets ready to be used in this repository, and they also have a bundle file that contains everything
 needed to run.
 
 ### Big Circles
