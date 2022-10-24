@@ -56,9 +56,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
       - run: pnpm install --no-frozen-lockfile
-      - run: npx nx-cloud start-ci-run
       - run: lerna run build:ci --scope @tsparticles/build --concurrency 1 #3
       - run: pnpm install --no-frozen-lockfile
+      - run: npx nx-cloud start-ci-run
       - run: npx lerna run build:ci --concurrency 1 #3
       - run: pnpm run prettify:ci:readme
       - run: npx nx-cloud stop-all-agents
@@ -101,9 +101,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
       - run: pnpm install --no-frozen-lockfile
-      - run: npx nx-cloud start-ci-run
       - run: lerna run build:ci --scope @tsparticles/build --concurrency 1 #3
       - run: pnpm install --no-frozen-lockfile
+      - run: npx nx-cloud start-ci-run
       - run: npx lerna run build:ci --concurrency 1 #3
       - run: pnpm run prettify:ci:readme
       - run: npx nx-cloud stop-all-agents
@@ -177,6 +177,8 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
+      - run: pnpm install --no-frozen-lockfile
+      - run: lerna run build:ci --scope @tsparticles/build
       - run: pnpm install --no-frozen-lockfile
       - name: Start Nx Agent ${{ matrix.agent }}
         run: npx nx-cloud start-agent
