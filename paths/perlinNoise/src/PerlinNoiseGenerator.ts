@@ -102,7 +102,7 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
             this.field[x] = new Array(this.options.rows);
 
             for (let y = 0; y < this.options.rows; y++) {
-                this.field[x][y] = [ 0, 0 ];
+                this.field[x][y] = [0, 0];
             }
         }
     }
