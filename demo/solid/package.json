@@ -3,9 +3,9 @@
   "version": "2.3.4",
   "private": true,
   "devDependencies": {
-    "@types/jest": "^29.1.2",
+    "@types/jest": "^29.2.0",
     "@types/node": "^17.0.45",
-    "solid-js": "^1.5.7",
+    "solid-js": "^1.6.0",
     "solid-particles": "^2.3.3",
     "solid-scripts": "^0.0.61",
     "tsparticles": "^2.3.4",
