@@ -15,9 +15,9 @@ jobs:
       init-commands: |
         pnpm exec nx-cloud start-ci-run --stop-agents-after="build:ci" --agent-count=3
       parallel-commands-on-agents: |
-        pnpm install --no-frozen-lockfile
+        pnpm install --no-frozen-lockfile -s
         lerna run build:ci --scope @tsparticles/build --concurrency 3
-        pnpm install --no-frozen-lockfile
+        pnpm install --no-frozen-lockfile -s
         pnpm run prettify:ci:readme
         npx lerna run build:ci --concurrency 3
 
