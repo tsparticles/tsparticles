@@ -327,6 +327,7 @@ export class Canvas {
                 ? canvas.dataset[generatedAttribute] === "true"
                 : this._generated;
         this.element = canvas;
+        this.element.ariaHidden = "true";
         this._originalStyle = deepExtend({}, this.element.style) as CSSStyleDeclaration;
         this.size.height = canvas.offsetHeight;
         this.size.width = canvas.offsetWidth;
