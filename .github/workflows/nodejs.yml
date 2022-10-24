@@ -12,9 +12,9 @@ on:
       - v1
 
 env:
-  NX_CLOUD_DISTRIBUTED_EXECUTION: true
-  NX_CLOUD_ACCESS_TOKEN: '${{ secrets.NX_CLOUD_ACCESS_TOKEN }}'
-  NX_BRANCH: '${{github.event.pull_request.number || github.ref_name}}'
+  #NX_CLOUD_DISTRIBUTED_EXECUTION: true
+  #NX_CLOUD_ACCESS_TOKEN: '${{ secrets.NX_CLOUD_ACCESS_TOKEN }}'
+  #NX_BRANCH: '${{github.event.pull_request.number || github.ref_name}}'
   firebaseToken: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
 
 jobs:
@@ -27,8 +27,8 @@ jobs:
         name: Checkout [main]
         with:
           fetch-depth: 0
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v3
+      #- name: Derive appropriate SHAs for base and head for `nx affected` commands
+      #  uses: nrwl/nx-set-shas@v3
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
@@ -56,10 +56,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
       - run: pnpm install --no-frozen-lockfile
-      - run: npx nx-cloud start-ci-run
+      #- run: npx nx-cloud start-ci-run
       - run: pnpm run prettify:ci:readme
-      - run: npx lerna run build:ci --concurrency 3
-      - run: npx nx-cloud stop-all-agents
+      - run: npx lerna run build:ci #--concurrency 3
+      #- run: npx nx-cloud stop-all-agents
       - if: env.firebaseToken != '' && github.ref == 'refs/heads/main'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
@@ -84,8 +84,8 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           fetch-depth: 0
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v3
+      #- name: Derive appropriate SHAs for base and head for `nx affected` commands
+      #  uses: nrwl/nx-set-shas@v3
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
@@ -113,10 +113,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
       - run: pnpm install --no-frozen-lockfile
-      - run: npx nx-cloud start-ci-run
+      #- run: npx nx-cloud start-ci-run
       - run: pnpm run prettify:ci:readme
-      - run: npx lerna run build:ci --concurrency 3
-      - run: npx nx-cloud stop-all-agents
+      - run: npx lerna run build:ci #--concurrency 3
+      #- run: npx nx-cloud stop-all-agents
       - run: echo ${{ github.repository_owner }}
       - run: echo ${{ github.actor }}
       - if: env.firebaseToken != '' && contains(github.ref, 'refs/pull') && github.actor == 'matteobruni'
@@ -126,42 +126,41 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
           projectId: tsparticles
 
-  agents:
-    runs-on: ubuntu-latest
-    name: Nx Agent
-    timeout-minutes: 60
-    strategy:
-      matrix:
-        agent: [ 1, 2, 3 ]
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-      - uses: pnpm/action-setup@v2.2.2
-        name: Install pnpm
-        id: pnpm-install
-        with:
-          version: 7
-          run_install: false
-      - name: Get pnpm version
-        id: pnpm-version
-        run: |
-          echo "$(pnpm --version)"
-
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        run: |
-          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
-
-      - uses: actions/cache@v3
-        name: Setup pnpm cache
-        with:
-          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-      - run: pnpm install --no-frozen-lockfile
-      - name: Start Nx Agent ${{ matrix.agent }}
-        run: npx nx-cloud start-agent
-
+#  agents:
+#    runs-on: ubuntu-latest
+#    name: Nx Agent
+#    timeout-minutes: 60
+#    strategy:
+#      matrix:
+#        agent: [ 1, 2, 3 ]
+#    steps:
+#      - uses: actions/checkout@v3
+#      - uses: actions/setup-node@v3
+#        with:
+#          node-version: '16'
+#      - uses: pnpm/action-setup@v2.2.2
+#        name: Install pnpm
+#        id: pnpm-install
+#        with:
+#          version: 7
+#          run_install: false
+#      - name: Get pnpm version
+#        id: pnpm-version
+#        run: |
+#          echo "$(pnpm --version)"
+#
+#      - name: Get pnpm store directory
+#        id: pnpm-cache
+#        run: |
+#          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+#
+#      - uses: actions/cache@v3
+#        name: Setup pnpm cache
+#        with:
+#          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+#          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+#          restore-keys: |
+#            ${{ runner.os }}-pnpm-store-
+#      - run: pnpm install --no-frozen-lockfile
+#      - name: Start Nx Agent ${{ matrix.agent }}
+#        run: npx nx-cloud start-agent
