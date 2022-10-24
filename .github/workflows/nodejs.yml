@@ -19,7 +19,7 @@ env:
 
 jobs:
 
-  build-main:
+  main:
     runs-on: ubuntu-latest
     if: ${{ github.event_name != 'pull_request' }}
     steps:
@@ -56,14 +56,28 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
       - run: pnpm install --no-frozen-lockfile
+      - run: pnpm run prettify:ci:readme
       - run: lerna run build:ci --scope @tsparticles/build --concurrency 1 #3
       - run: pnpm install --no-frozen-lockfile
       - run: npx nx-cloud start-ci-run
       - run: npx lerna run build:ci --concurrency 1 #3
-      - run: pnpm run prettify:ci:readme
       - run: npx nx-cloud stop-all-agents
+      - if: env.firebaseToken != '' && github.ref == 'refs/heads/main'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
+          projectId: tsparticles
+          channelId: live
 
-  build-pr:
+      - if: env.firebaseToken != '' && github.ref == 'refs/heads/dev'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
+          projectId: tsparticles
+          channelId: next
+  pr:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
     steps:
@@ -101,38 +115,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
       - run: pnpm install --no-frozen-lockfile
+      - run: pnpm run prettify:ci:readme
       - run: lerna run build:ci --scope @tsparticles/build --concurrency 1 #3
       - run: pnpm install --no-frozen-lockfile
       - run: npx nx-cloud start-ci-run
       - run: npx lerna run build:ci --concurrency 1 #3
-      - run: pnpm run prettify:ci:readme
       - run: npx nx-cloud stop-all-agents
-
-  main:
-    runs-on: ubuntu-latest
-    if: ${{ github.event_name != 'pull_request' }}
-    needs: [ build-main ]
-    steps:
-      - if: env.firebaseToken != '' && github.ref == 'refs/heads/main'
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
-          projectId: tsparticles
-          channelId: live
-
-      - if: env.firebaseToken != '' && github.ref == 'refs/heads/dev'
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
-          projectId: tsparticles
-          channelId: next
-  pr:
-    runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'pull_request' }}
-    needs: [ build-pr ]
-    steps:
       - run: echo ${{ github.repository_owner }}
       - run: echo ${{ github.actor }}
       - if: env.firebaseToken != '' && contains(github.ref, 'refs/pull') && github.actor == 'matteobruni'
