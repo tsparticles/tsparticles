@@ -17,7 +17,7 @@ jobs:
       install-commands: | 
         pnpm install --no-frozen-lockfile
       parallel-commands-on-agents: |
-        pnpm exec lerna run build:ci --concurrent 3
+        pnpm exec lerna run build:ci --concurrency 3
 
   agents:
     name: Nx Cloud - Agents
