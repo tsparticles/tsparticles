@@ -58,8 +58,6 @@ export class LinkInstance implements IContainerPlugin {
             return;
         }
 
-        context.save();
-
         const p1Links = particle.links.filter(
             (l) => pOptions.links && this.getLinkFrequency(particle, l.destination) <= pOptions.links.frequency
         );
@@ -71,8 +69,6 @@ export class LinkInstance implements IContainerPlugin {
                 this.drawLinkLine(particle, link);
             }
         }
-
-        context.restore();
     }
 
     async init(): Promise<void> {

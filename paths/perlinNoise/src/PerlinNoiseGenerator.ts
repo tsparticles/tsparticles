@@ -81,15 +81,16 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
                 const angle = this.field[x][y][0];
                 const length = this.field[x][y][1];
 
-                ctx.save();
-                ctx.translate(x * this.options.size, y * this.options.size);
+                //ctx.save();
+                ctx.setTransform(1, 0, 0, 1, x * this.options.size, y * this.options.size);
                 ctx.rotate(angle);
                 ctx.strokeStyle = "white";
                 ctx.beginPath();
                 ctx.moveTo(0, 0);
                 ctx.lineTo(0, this.options.size * length);
                 ctx.stroke();
-                ctx.restore();
+                ctx.setTransform(1, 0, 0, 1, 0, 0);
+                //ctx.restore();
             }
         }
     }
@@ -101,7 +102,7 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
             this.field[x] = new Array(this.options.rows);
 
             for (let y = 0; y < this.options.rows; y++) {
-                this.field[x][y] = [0, 0];
+                this.field[x][y] = [ 0, 0 ];
             }
         }
     }

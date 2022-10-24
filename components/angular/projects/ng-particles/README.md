@@ -30,19 +30,19 @@ _template.html_
 
 ```html
 <ng-particles
-  [id]="id"
-  [options]="particlesOptions"
-  [particlesInit]="particlesInit"
-  (particlesLoaded)="particlesLoaded($event)"
+    [id]="id"
+    [options]="particlesOptions"
+    [particlesInit]="particlesInit"
+    (particlesLoaded)="particlesLoaded($event)"
 ></ng-particles>
 
 <!-- or -->
 
 <ng-particles
-  [id]="id"
-  [url]="particlesUrl"
-  [particlesInit]="particlesInit"
-  (particlesLoaded)="particlesLoaded($event)"
+    [id]="id"
+    [url]="particlesUrl"
+    [particlesInit]="particlesInit"
+    (particlesLoaded)="particlesLoaded($event)"
 ></ng-particles>
 ```
 
@@ -53,97 +53,97 @@ import { MoveDirection, ClickMode, HoverMode, OutMode } from "tsparticles-engine
 import { loadFull } from "tsparticles";
 
 export class AppComponent {
-  id = "tsparticles";
+    id = "tsparticles";
 
-  /* Starting from 1.19.0 you can use a remote url (AJAX request) to a JSON with the configuration */
-  particlesUrl = "http://foo.bar/particles.json";
+    /* Starting from 1.19.0 you can use a remote url (AJAX request) to a JSON with the configuration */
+    particlesUrl = "http://foo.bar/particles.json";
 
-  /* or the classic JavaScript object */
-  particlesOptions = {
-    background: {
-      color: {
-        value: "#0d47a1",
-      },
-    },
-    fpsLimit: 120,
-    interactivity: {
-      events: {
-        onClick: {
-          enable: true,
-          mode: ClickMode.push,
+    /* or the classic JavaScript object */
+    particlesOptions = {
+        background: {
+            color: {
+                value: "#0d47a1",
+            },
         },
-        onHover: {
-          enable: true,
-          mode: HoverMode.repulse,
+        fpsLimit: 120,
+        interactivity: {
+            events: {
+                onClick: {
+                    enable: true,
+                    mode: ClickMode.push,
+                },
+                onHover: {
+                    enable: true,
+                    mode: HoverMode.repulse,
+                },
+                resize: true,
+            },
+            modes: {
+                push: {
+                    quantity: 4,
+                },
+                repulse: {
+                    distance: 200,
+                    duration: 0.4,
+                },
+            },
         },
-        resize: true,
-      },
-      modes: {
-        push: {
-          quantity: 4,
+        particles: {
+            color: {
+                value: "#ffffff",
+            },
+            links: {
+                color: "#ffffff",
+                distance: 150,
+                enable: true,
+                opacity: 0.5,
+                width: 1,
+            },
+            collisions: {
+                enable: true,
+            },
+            move: {
+                direction: MoveDirection.none,
+                enable: true,
+                outModes: {
+                    default: OutMode.bounce,
+                },
+                random: false,
+                speed: 6,
+                straight: false,
+            },
+            number: {
+                density: {
+                    enable: true,
+                    area: 800,
+                },
+                value: 80,
+            },
+            opacity: {
+                value: 0.5,
+            },
+            shape: {
+                type: "circle",
+            },
+            size: {
+                value: { min: 1, max: 5 },
+            },
         },
-        repulse: {
-          distance: 200,
-          duration: 0.4,
-        },
-      },
-    },
-    particles: {
-      color: {
-        value: "#ffffff",
-      },
-      links: {
-        color: "#ffffff",
-        distance: 150,
-        enable: true,
-        opacity: 0.5,
-        width: 1,
-      },
-      collisions: {
-        enable: true,
-      },
-      move: {
-        direction: MoveDirection.none,
-        enable: true,
-        outModes: {
-          default: OutMode.bounce,
-        },
-        random: false,
-        speed: 6,
-        straight: false,
-      },
-      number: {
-        density: {
-          enable: true,
-          area: 800,
-        },
-        value: 80,
-      },
-      opacity: {
-        value: 0.5,
-      },
-      shape: {
-        type: "circle",
-      },
-      size: {
-        value: { min: 1, max: 5 },
-      },
-    },
-    detectRetina: true,
-  };
+        detectRetina: true,
+    };
 
-  particlesLoaded(container: Container): void {
-    console.log(container);
-  }
+    particlesLoaded(container: Container): void {
+        console.log(container);
+    }
 
-  async particlesInit(engine: Engine): Promise<void> {
-    console.log(engine);
+    async particlesInit(engine: Engine): Promise<void> {
+        console.log(engine);
 
-    // Starting from 1.19.0 you can add custom presets or shape here, using the current tsParticles instance (main)
-    // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-    // starting from v2 you can add only the features you need reducing the bundle size
-    await loadFull(engine);
-  }
+        // Starting from 1.19.0 you can add custom presets or shape here, using the current tsParticles instance (main)
+        // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+        // starting from v2 you can add only the features you need reducing the bundle size
+        await loadFull(engine);
+    }
 }
 ```
 
@@ -154,14 +154,14 @@ import { NgParticlesModule } from "ng-particles";
 import { NgModule } from "@angular/core";
 
 @NgModule({
-  declarations: [
-    /* AppComponent */
-  ],
-  imports: [/* other imports */ NgParticlesModule /* NgParticlesModule is required*/],
-  providers: [],
-  bootstrap: [
-    /* AppComponent */
-  ],
+    declarations: [
+        /* AppComponent */
+    ],
+    imports: [/* other imports */ NgParticlesModule /* NgParticlesModule is required*/],
+    providers: [],
+    bootstrap: [
+        /* AppComponent */
+    ],
 })
 export class AppModule {}
 ```

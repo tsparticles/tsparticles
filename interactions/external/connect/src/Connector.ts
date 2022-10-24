@@ -57,14 +57,11 @@ function drawConnectLine(
     begin: ICoordinates,
     end: ICoordinates
 ): void {
-    context.save();
-
     drawLine(context, begin, end);
 
     context.lineWidth = width;
     context.strokeStyle = lineStyle;
     context.stroke();
-    context.restore();
 }
 
 function lineStyle(

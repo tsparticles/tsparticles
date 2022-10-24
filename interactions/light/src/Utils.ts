@@ -52,8 +52,6 @@ export function drawParticleShadow(
         return;
     }
 
-    context.save();
-
     const radius = particle.getRadius();
     const sides = particle.sides;
     const full = (Math.PI * 2) / sides;
@@ -102,6 +100,4 @@ export function drawParticleShadow(
 
         context.fill();
     }
-
-    context.restore();
 }
