@@ -15,7 +15,11 @@ jobs:
       init-commands: |
         pnpm exec nx-cloud start-ci-run --stop-agents-after="build:ci" --agent-count=3
       parallel-commands-on-agents: |
-        pnpm exec nx affected --target=build:ci --parallel=3
+        - run: pnpm install --no-frozen-lockfile
+        - run: lerna run build:ci --scope @tsparticles/build --concurrency 3
+        - run: pnpm install --no-frozen-lockfile
+        - run: pnpm run prettify:ci:readme
+        - run: npx lerna run build:ci --concurrency 3
 
   agents:
     name: Nx Cloud - Agents
