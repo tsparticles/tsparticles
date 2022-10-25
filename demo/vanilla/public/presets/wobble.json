@@ -93,10 +93,7 @@
       "type": [
         "circle",
         "square",
-        "polygon",
-        "character",
-        "character",
-        "character"
+        "polygon"
       ],
       "options": {
         "polygon": [
@@ -105,16 +102,6 @@
           },
           {
             "sides": 6
-          }
-        ],
-        "character": [
-          {
-            "value": [
-              "💩",
-              "🤡",
-              "🍀",
-              "🍙"
-            ]
           }
         ]
       }
@@ -158,8 +145,8 @@
       "height": 0
     },
     "rate": {
-      "quantity": 5,
-      "delay": 0.1
+      "quantity": 10,
+      "delay": 0.05
     }
   }
 }

@@ -343,7 +343,7 @@ export class Particles {
         await this.interactionManager.externalInteract(delta);
 
         // this loop is required to be done after mouse interactions
-        for (const particle of container.particles.array) {
+        for (const particle of this.array) {
             for (const updater of this.updaters) {
                 updater.update(particle, delta);
             }
