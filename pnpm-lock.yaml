@@ -66,7 +66,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -109,7 +109,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -134,7 +134,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -159,7 +159,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -184,7 +184,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -271,7 +271,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -355,7 +355,7 @@ importers:
       '@tsparticles/prettier-config': ^1.3.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       babel-plugin-inferno: ^6.5.0
       clean-webpack-plugin: ^4.0.0
       css-loader: ^6.7.1
@@ -387,7 +387,7 @@ importers:
       '@tsparticles/prettier-config': 1.3.0_prettier@2.7.1
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       babel-plugin-inferno: 6.5.0_@babel+core@7.19.6
       clean-webpack-plugin: 4.0.0_webpack@5.74.0
       css-loader: 6.7.1_webpack@5.74.0
@@ -460,7 +460,7 @@ importers:
       '@types/react-dom': ^18.0.6
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       cross-env: ^7.0.3
       eslint: ^8.26.0
       eslint-config-prettier: ^8.5.0
@@ -489,7 +489,7 @@ importers:
       '@types/react-dom': 18.0.6
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       cross-env: 7.0.3
       eslint: 8.26.0
       eslint-config-prettier: 8.5.0_eslint@8.26.0
@@ -515,7 +515,7 @@ importers:
       '@types/react-dom': ^18.0.6
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       cross-env: ^7.0.3
       eslint: ^8.26.0
       eslint-config-prettier: ^8.5.0
@@ -548,7 +548,7 @@ importers:
       '@types/react-dom': 18.0.6
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       cross-env: 7.0.3
       eslint: 8.26.0
       eslint-config-prettier: 8.5.0_eslint@8.26.0
@@ -577,7 +577,7 @@ importers:
       '@types/react-dom': ^18.0.6
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       cross-env: ^7.0.3
       eslint: ^8.26.0
       eslint-config-prettier: ^8.5.0
@@ -610,7 +610,7 @@ importers:
       '@types/react-dom': 18.0.6
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       cross-env: 7.0.3
       eslint: 8.26.0
       eslint-config-prettier: 8.5.0_eslint@8.26.0
@@ -669,7 +669,7 @@ importers:
       '@tsparticles/prettier-config': ^1.3.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       babel-preset-solid: ^1.6.0
       clean-webpack-plugin: ^4.0.0
       css-loader: ^6.7.1
@@ -702,7 +702,7 @@ importers:
       '@tsparticles/prettier-config': 1.3.0_prettier@2.7.1
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       babel-preset-solid: 1.6.0_@babel+core@7.19.6
       clean-webpack-plugin: 4.0.0_webpack@5.74.0
       css-loader: 6.7.1_webpack@5.74.0
@@ -1308,7 +1308,7 @@ importers:
       '@babel/plugin-proposal-class-properties': ^7.18.6
       '@babel/preset-env': ^7.19.4
       '@babel/preset-typescript': ^7.18.6
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       babel-plugin-inferno: ^6.5.0
       clean-webpack-plugin: ^4.0.0
       css-loader: ^6.7.1
@@ -1335,7 +1335,7 @@ importers:
       '@babel/plugin-proposal-class-properties': 7.18.6_@babel+core@7.19.6
       '@babel/preset-env': 7.19.4_@babel+core@7.19.6
       '@babel/preset-typescript': 7.18.6_@babel+core@7.19.6
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       babel-plugin-inferno: 6.5.0_@babel+core@7.19.6
       clean-webpack-plugin: 4.0.0_webpack@5.74.0
       css-loader: 6.7.1_webpack@5.74.0
@@ -2142,7 +2142,7 @@ importers:
       '@vue/cli-plugin-babel': ^5.0.8
       '@vue/cli-plugin-typescript': ^5.0.8
       '@vue/cli-service': ^5.0.8
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       eslint: ^8.26.0
       eslint-config-prettier: ^8.5.0
       postcss: ^8.4.18
@@ -2179,7 +2179,7 @@ importers:
       '@vue/cli-plugin-babel': 5.0.8_p6on7kfm6yf4a7bzg62p6blz24
       '@vue/cli-plugin-typescript': 5.0.8_a6wojouh3phmsewyrfl5pr7cfy
       '@vue/cli-service': 5.0.8_sjdzupvrm5o6lvuecggr3cwms4
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       eslint: 8.26.0
       eslint-config-prettier: 8.5.0_eslint@8.26.0
       postcss: 8.4.18
@@ -2284,7 +2284,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -2339,7 +2339,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -2368,7 +2368,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       canvas: ^2.10.1
       chai: ^4.3.6
@@ -2408,7 +2408,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       canvas: 2.10.1
       chai: 4.3.6
@@ -2447,7 +2447,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -2472,7 +2472,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -2497,7 +2497,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -2522,7 +2522,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -2547,7 +2547,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -2572,7 +2572,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -2597,7 +2597,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -2622,7 +2622,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -2647,7 +2647,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -2672,7 +2672,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -2697,7 +2697,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -2722,7 +2722,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -2747,7 +2747,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -2772,7 +2772,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -2797,7 +2797,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -2822,7 +2822,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -2847,7 +2847,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -2872,7 +2872,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -2897,7 +2897,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -2922,7 +2922,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -2947,7 +2947,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -2972,7 +2972,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -2997,7 +2997,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -3022,7 +3022,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -3047,7 +3047,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -3072,7 +3072,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -3097,7 +3097,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -3122,7 +3122,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -3147,7 +3147,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -3172,7 +3172,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -3197,7 +3197,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -3222,7 +3222,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -3247,7 +3247,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -3272,7 +3272,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -3297,7 +3297,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -3322,7 +3322,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -3347,7 +3347,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -3372,7 +3372,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -3397,7 +3397,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -3422,7 +3422,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -3447,7 +3447,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -3472,7 +3472,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -3497,7 +3497,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -3522,7 +3522,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -3547,7 +3547,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -3572,7 +3572,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -3597,7 +3597,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -3622,7 +3622,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -3647,7 +3647,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -3672,7 +3672,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -3697,7 +3697,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -3722,7 +3722,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -3747,7 +3747,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -3772,7 +3772,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -3797,7 +3797,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -3822,7 +3822,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -3847,7 +3847,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -3872,7 +3872,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -3897,7 +3897,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -3922,7 +3922,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -3947,7 +3947,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -3972,7 +3972,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -3997,7 +3997,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -4022,7 +4022,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -4047,7 +4047,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -4072,7 +4072,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -4097,7 +4097,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -4122,7 +4122,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -4147,7 +4147,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -4172,7 +4172,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -4197,7 +4197,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -4222,7 +4222,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -4247,7 +4247,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -4272,7 +4272,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -4297,7 +4297,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -4336,7 +4336,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -4361,7 +4361,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -4400,7 +4400,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -4425,7 +4425,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -4478,7 +4478,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -4503,7 +4503,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -4542,7 +4542,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -4567,7 +4567,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -4606,7 +4606,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -4631,7 +4631,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -4680,7 +4680,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -4705,7 +4705,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -4746,7 +4746,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -4771,7 +4771,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -4810,7 +4810,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -4835,7 +4835,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -4876,7 +4876,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -4901,7 +4901,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -4940,7 +4940,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -4965,7 +4965,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -5002,7 +5002,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -5027,7 +5027,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -5066,7 +5066,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -5091,7 +5091,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -5116,7 +5116,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -5141,7 +5141,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -5166,7 +5166,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -5191,7 +5191,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -5216,7 +5216,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -5241,7 +5241,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -5266,7 +5266,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -5291,7 +5291,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -5316,7 +5316,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -5341,7 +5341,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -5366,7 +5366,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -5391,7 +5391,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -5416,7 +5416,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -5441,7 +5441,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -5466,7 +5466,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -5491,7 +5491,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -5516,7 +5516,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -5541,7 +5541,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -5566,7 +5566,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -5591,7 +5591,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -5616,7 +5616,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -5641,7 +5641,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -5666,7 +5666,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -5721,7 +5721,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -5746,7 +5746,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -5771,7 +5771,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -5796,7 +5796,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -5821,7 +5821,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -5846,7 +5846,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -5871,7 +5871,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -5896,7 +5896,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -5921,7 +5921,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -5946,7 +5946,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -5971,7 +5971,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -5996,7 +5996,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -6021,7 +6021,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -6046,7 +6046,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -6071,7 +6071,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -6096,7 +6096,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -6121,7 +6121,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -6146,7 +6146,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -6171,7 +6171,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -6196,7 +6196,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -6221,7 +6221,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -6246,7 +6246,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -6271,7 +6271,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -6296,7 +6296,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -6321,7 +6321,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -6346,7 +6346,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -6371,7 +6371,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -6396,7 +6396,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -6419,7 +6419,7 @@ importers:
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.40.1
       '@typescript-eslint/parser': ^5.40.1
-      babel-loader: ^8.2.5
+      babel-loader: ^9.0.0
       browserslist: ^4.21.4
       copyfiles: ^2.4.1
       eslint: ^8.26.0
@@ -6442,7 +6442,7 @@ importers:
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
-      babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
+      babel-loader: 9.0.0_6zc4kxld457avlfyhj3lzsljlm
       browserslist: 4.21.4
       copyfiles: 2.4.1
       eslint: 8.26.0
@@ -17394,7 +17394,7 @@ packages:
       loader-utils: 2.0.3
       make-dir: 3.1.0
       schema-utils: 2.7.1
-      webpack: 5.74.0_webpack-cli@4.10.0
+      webpack: 5.74.0
     dev: true
 
   /babel-loader/8.2.5_q4ydpsrmbqywduja5orgah6fgq:
@@ -17425,6 +17425,19 @@ packages:
       make-dir: 3.1.0
       schema-utils: 2.7.1
       webpack: 5.74.0
+    dev: true
+
+  /babel-loader/9.0.0_6zc4kxld457avlfyhj3lzsljlm:
+    resolution: {integrity: sha512-qVGQb0PNw/B1sGhPf0/KKsHZAPfa2Bk+JbjkW7yGjAHZyvjAULXYq0et0+/+7DL/rGYU+y8UoGPzA32NP29pVQ==}
+    engines: {node: '>= 14.15.0'}
+    peerDependencies:
+      '@babel/core': ^7.12.0
+      webpack: '>=5'
+    dependencies:
+      '@babel/core': 7.19.6
+      find-cache-dir: 3.3.2
+      schema-utils: 4.0.0
+      webpack: 5.74.0_webpack-cli@4.10.0
     dev: true
 
   /babel-messages/6.23.0:
@@ -18490,7 +18503,7 @@ packages:
       mississippi: 3.0.0
       mkdirp: 0.5.6
       move-concurrently: 1.0.1
-      promise-inflight: 1.0.1
+      promise-inflight: 1.0.1_bluebird@3.7.2
       rimraf: 2.7.1
       ssri: 6.0.2
       unique-filename: 1.1.1
@@ -34145,6 +34158,17 @@ packages:
     peerDependenciesMeta:
       bluebird:
         optional: true
+    dev: true
+
+  /promise-inflight/1.0.1_bluebird@3.7.2:
+    resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
+    peerDependencies:
+      bluebird: '*'
+    peerDependenciesMeta:
+      bluebird:
+        optional: true
+    dependencies:
+      bluebird: 3.7.2
     dev: true
 
   /promise-polyfill/8.2.3:

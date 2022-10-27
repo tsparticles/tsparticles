@@ -107,7 +107,7 @@
 		"@tsparticles/prettier-config": "^1.3.0",
 		"@typescript-eslint/eslint-plugin": "^5.40.1",
 		"@typescript-eslint/parser": "^5.40.1",
-		"babel-loader": "^8.2.5",
+		"babel-loader": "^9.0.0",
 		"babel-plugin-inferno": "^6.5.0",
 		"clean-webpack-plugin": "^4.0.0",
 		"css-loader": "^6.7.1",
