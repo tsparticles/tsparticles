@@ -2,7 +2,7 @@
   "extends": "@nrwl/workspace/presets/npm.json",
   "npmScope": "tsparticles-workspace",
   "tasksRunnerOptions": {
-    "cloud": {
+    "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
         "accessToken": "YmE3OGY1MTQtNTJjMC00MzdjLTgwYjEtZDk4YWE0OTQ4MTIzfHJlYWQ=",
@@ -18,7 +18,7 @@
         ]
       }
     },
-    "default": {
+    "local": {
       "runner": "nx/tasks-runners/default",
       "options": {
         "cacheableOperations": [
