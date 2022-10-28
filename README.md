@@ -81,7 +81,7 @@ version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) 
 
 _Documentation and Development references [here](https://particles.js.org/docs/) 📖_
 
-**This library is available on two of the most popular CDNs and it's easy and ready to use, if you were using particles.js
+**This library is available on two of the most popular CDNs and it's super easy, and ready to use, if you were using particles.js
 it's even easier**.
 
 You'll find the
@@ -272,7 +272,7 @@ particles.pause();
 
 [![npm](https://img.shields.io/npm/v/ng-particles?style=for-the-badge)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/ng-particles?style=for-the-badge)](https://www.npmjs.com/package/ng-particles)
 
-Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/angular/README.md)
+The Instructions are available [here](https://github.com/matteobruni/tsparticles/blob/main/components/angular/README.md)
 
 ### Inferno
 
@@ -280,7 +280,7 @@ Instructions available [here](https://github.com/matteobruni/tsparticles/blob/ma
 
 [![npm](https://img.shields.io/npm/v/inferno-particles?style=for-the-badge)](https://www.npmjs.com/package/inferno-particles) [![npm](https://img.shields.io/npm/dm/inferno-particles?style=for-the-badge)](https://www.npmjs.com/package/inferno-particles)
 
-Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/inferno/README.md)
+The Instructions are available [here](https://github.com/matteobruni/tsparticles/blob/main/components/inferno/README.md)
 
 ### jQuery
 
@@ -288,7 +288,7 @@ Instructions available [here](https://github.com/matteobruni/tsparticles/blob/ma
 
 [![npm](https://img.shields.io/npm/v/jquery-particles?style=for-the-badge)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles?style=for-the-badge)](https://www.npmjs.com/package/jquery-particles)
 
-Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/jquery/README.md)
+The Instructions are available [here](https://github.com/matteobruni/tsparticles/blob/main/components/jquery/README.md)
 
 ### Preact
 
@@ -296,7 +296,7 @@ Instructions available [here](https://github.com/matteobruni/tsparticles/blob/ma
 
 [![npm](https://img.shields.io/npm/v/preact-particles?style=for-the-badge)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles?style=for-the-badge)](https://www.npmjs.com/package/preact-particles)
 
-Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/preact/README.md)
+The Instructions are available [here](https://github.com/matteobruni/tsparticles/blob/main/components/preact/README.md)
 
 ### ReactJS
 
@@ -304,7 +304,7 @@ Instructions available [here](https://github.com/matteobruni/tsparticles/blob/ma
 
 [![npm](https://img.shields.io/npm/v/react-particles?style=for-the-badge)](https://www.npmjs.com/package/react-particles) [![npm](https://img.shields.io/npm/dm/react-particles?style=for-the-badge)](https://www.npmjs.com/package/react-particles)
 
-Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md)
+The Instructions are available [here](https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md)
 
 ### RiotJS
 
@@ -328,7 +328,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![npm](https://img.shields.io/npm/v/svelte-particles?style=for-the-badge)](https://www.npmjs.com/package/svelte-particles) [![npm downloads](https://img.shields.io/npm/dm/svelte-particles?style=for-the-badge)](https://www.npmjs.com/package/svelte-particles)
 
-Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/svelte/README.md)
+The Instructions are available [here](https://github.com/matteobruni/tsparticles/blob/main/components/svelte/README.md)
 
 ### VueJS 2.x
 
@@ -336,7 +336,7 @@ Instructions available [here](https://github.com/matteobruni/tsparticles/blob/ma
 
 [![npm](https://img.shields.io/npm/v/vue2-particles?style=for-the-badge)](https://www.npmjs.com/package/vue2-particles) [![npm](https://img.shields.io/npm/dm/vue2-particles?style=for-the-badge)](https://www.npmjs.com/package/vue2-particles)
 
-Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md)
+The Instructions are available [here](https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md)
 
 ### VueJS 3.x
 
@@ -344,7 +344,7 @@ Instructions available [here](https://github.com/matteobruni/tsparticles/blob/ma
 
 [![npm](https://img.shields.io/npm/v/vue3-particles?style=for-the-badge)](https://www.npmjs.com/package/vue3-particles) [![npm](https://img.shields.io/npm/dm/vue3-particles?style=for-the-badge)](https://www.npmjs.com/package/vue3-particles)
 
-Instruction available [here](https://github.com/matteobruni/tsparticles/blob/main/components/vue3/README.md)
+The Instruction are available [here](https://github.com/matteobruni/tsparticles/blob/main/components/vue3/README.md)
 
 ### Web Components
 
@@ -372,8 +372,8 @@ the `Premium Addons for Elementor` plugin collection.
     <img width="64" alt="Premium Addons for Elementor" src="https://particles.js.org/images/premium-addons-wordpress-plugin.png" />
 </div>
 <div>
-    Premium Addons for Elementor is one of the most common plugins for Elementor that offers 55+ highly customizable Elementor Widgets and Section Add-ons. tsParticles is exclusively included in the Premium Particles Section Add-on for the Elementor Page Builder. <a href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/" target="_blank">Check It Now</a>.<br />
-    Use Premium Addons for Elementor Page Builder and get the chance to include tsParticles in your next WordPress website without writing a single line of code. <a href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/" target="_blank">See a Live Example</a>.
+    Premium Addons for Elementor is one of the most common plugins for Elementor, that offers 55+ highly customizable Elementor Widgets and Section Add-ons. tsParticles is exclusively included in the Premium Particles Section Add-on, for the Elementor Page Builder. <a href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/" target="_blank">Check It Now</a>.<br />
+    Use Premium Addons for Elementor Page Builder, and get the chance to include tsParticles in your next WordPress website without even writing a single line of code. <a href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/" target="_blank">See a Live Example</a>.
 </div>
 <div style="clear: both;"></div>
 
@@ -382,7 +382,7 @@ the `Premium Addons for Elementor` plugin collection.
 ## Presets
 
 There are some presets ready to be used in this repository, and they also have a bundle file that contains everything
-needed to run.
+required to run.
 
 ### Big Circles
 
@@ -408,7 +408,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-confetti/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-confetti) [![npmjs](https://badge.fury.io/js/tsparticles-preset-confetti.svg)](https://www.npmjs.com/package/tsparticles-preset-confetti) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-confetti)](https://www.npmjs.com/package/tsparticles-preset-confetti)
 
-This preset loads white and red confetti launched from the screen center on a transparent background.
+This preset loads white and red confetti launched from the center of the screen on a transparent background.
 
 [![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/confetti/images/sample.png)](https://particles.js.org/samples/presets/confetti)
 
@@ -581,7 +581,7 @@ Otherwise, there's the demo page link below. Just click/tap the Coronavirus belo
 
 [![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/samples/#virus)
 
-Want to see ever more demos? Clone the repository on your computer and follow these instructions
+Want to see ever more demos? Clone the repository on your computer and follow the instructions below
 
 ```shell
 $ pnpm i
@@ -616,7 +616,7 @@ _Below you can find all the information you need to install tsParticles and its 
 
 ## Plugins/Customizations
 
-tsParticles now supports some customizations 🥳.
+tsParticles now supports some customizations too 🥳!
 
 **You can create your own plugins**
 
