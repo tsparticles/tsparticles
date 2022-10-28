@@ -373,7 +373,7 @@ the `Premium Addons for Elementor` plugin collection.
 </div>
 <div>
     Premium Addons for Elementor is one of the most common plugins for Elementor that offers 55+ highly customizable Elementor Widgets and Section Add-ons. tsParticles is exclusively included in the Premium Particles Section Add-on for the Elementor Page Builder. <a href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/" target="_blank">Check It Now</a>.<br />
-    Use Premium Addons for Elementor Page Builder and get the chance to include tsParticles in your next WordPress website without writing a single line of code. <a href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/" target="_blank">See a Live Example</a>.
+    Use Premium Addons for Elementor Page Builder and get the chance to include tsParticles in your next WordPress website without even writing a single line of code. <a href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/" target="_blank">See a Live Example</a>.
 </div>
 <div style="clear: both;"></div>
 
@@ -382,7 +382,7 @@ the `Premium Addons for Elementor` plugin collection.
 ## Presets
 
 There are some presets ready to be used in this repository, and they also have a bundle file that contains everything
-needed to run.
+required to run.
 
 ### Big Circles
 
@@ -408,7 +408,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-confetti/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-confetti) [![npmjs](https://badge.fury.io/js/tsparticles-preset-confetti.svg)](https://www.npmjs.com/package/tsparticles-preset-confetti) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-confetti)](https://www.npmjs.com/package/tsparticles-preset-confetti)
 
-This preset loads white and red confetti launched from the screen center on a transparent background.
+This preset loads white and red confetti launched from the center of the screen on a transparent background.
 
 [![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/confetti/images/sample.png)](https://particles.js.org/samples/presets/confetti)
 
@@ -502,7 +502,7 @@ created for _Vanilla Javascript_, _ReactJS_, _VueJS_, _Angular_, _SvelteJS_ and 
 The templates will vary, new ones can be created or older ones updated with latest features or changed to a better
 style. Check them out once in a while.
 
-If you created some good design with _tsParticles_ feel free to submit a pull request with your cool template, you'll be
+If you have created some good design with _tsParticles_ feel free to submit a pull request with your cool template, you'll be
 credited as the template author!
 
 <https://github.com/tsparticles/templates>
@@ -581,7 +581,7 @@ Otherwise, there's the demo page link below. Just click/tap the Coronavirus belo
 
 [![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/samples/#virus)
 
-Want to see ever more demos? Clone the repository on your computer and follow these instructions
+Want to see ever more demos? Clone the repository on your computer and follow the instructions below:
 
 ```shell
 $ pnpm i
@@ -616,7 +616,7 @@ _Below you can find all the information you need to install tsParticles and its 
 
 ## Plugins/Customizations
 
-tsParticles now supports some customizations 🥳.
+tsParticles now supports some customizations too🥳!
 
 **You can create your own plugins**
 
