@@ -52,8 +52,11 @@ export function drawParticleShadow(
         return;
     }
 
-    const radius = particle.getRadius(), sides = particle.sides, full = (Math.PI * 2) / sides,
-        angle = -particle.rotation + Math.PI / 4, factor = 1, //Math.sqrt(2)
+    const radius = particle.getRadius(),
+        sides = particle.sides,
+        full = (Math.PI * 2) / sides,
+        angle = -particle.rotation + Math.PI / 4,
+        factor = 1, //Math.sqrt(2)
         dots = [];
 
     for (let i = 0; i < sides; i++) {
@@ -63,7 +66,8 @@ export function drawParticleShadow(
         });
     }
 
-    const points = [], shadowLength = shadowOptions.length;
+    const points = [],
+        shadowLength = shadowOptions.length;
 
     for (const dot of dots) {
         const dotAngle = Math.atan2(mousePos.y - dot.y, mousePos.x - dot.x),
