@@ -102,3 +102,4 @@ export * from "./Utils/OptionsUtils";
 export * from "./Utils/RgbColorManager";
 export * from "./Utils/Utils";
 export { tsParticles };
+export { CollisionsAbsorb } from "./Options/Classes/Particles/Collisions/CollisionsAbsorb";

@@ -212,3 +212,5 @@ export type { Engine, Engine as Main };
  * tsParticles source options alias type, supporting partial objects
  */
 export type ISourceOptions = RecursivePartial<IOptions>;
+export type { ICollisionsAbsorb } from "./Options/Interfaces/Particles/Collisions/ICollisionsAbsorb";
+export { CollisionsAbsorb } from "./Options/Classes/Particles/Collisions/CollisionsAbsorb";
