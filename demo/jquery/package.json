@@ -1,48 +1,48 @@
 {
-  "name": "jquery-particles-demo",
-  "private": true,
-  "version": "2.3.4",
-  "description": "> TODO: description",
-  "author": "Matteo Bruni <matteo.bruni@me.com>",
-  "homepage": "https://particles.js.org",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/matteobruni/tsparticles.git"
-  },
-  "scripts": {
-    "build": "pnpm run build:style && pnpm run build:index",
-    "build:ci": "pnpm run build:style && pnpm run build:index",
-    "build:index": "npx pug ./views/index.pug",
-    "build:style": "npx stylus ./public/stylesheets/main.styl",
-    "start": "pnpm run build && node ./app.js"
-  },
-  "bugs": {
-    "url": "https://github.com/matteobruni/tsparticles/issues"
-  },
-  "dependencies": {
-    "jquery": "^3.6.1",
-    "jquery-particles": "^2.3.3",
-    "tsparticles": "^2.3.4",
-    "tsparticles-engine": "^2.3.3",
-    "tsparticles-preset-links": "^2.3.3"
-  },
-  "devDependencies": {
-    "@fortawesome/fontawesome-free": "^6.2.0",
-    "@typescript-eslint/eslint-plugin": "^5.41.0",
-    "@typescript-eslint/parser": "^5.41.0",
-    "babel-preset-env": "^1.7.0",
-    "eslint": "^8.26.0",
-    "eslint-config-prettier": "^8.5.0",
-    "express": "^4.18.2",
-    "express-rate-limit": "^6.6.0",
-    "helmet": "^6.0.0",
-    "jsoneditor": "^9.9.2",
-    "prettier": "^2.7.1",
-    "pug": "^3.0.2",
-    "pug-cli": "^1.0.0-alpha6",
-    "stats.ts": "^1.1.0",
-    "stylus": "^0.59.0",
-    "typescript": "^4.8.4"
-  }
+    "name": "jquery-particles-demo",
+    "private": true,
+    "version": "2.4.0",
+    "description": "> TODO: description",
+    "author": "Matteo Bruni <matteo.bruni@me.com>",
+    "homepage": "https://particles.js.org",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/matteobruni/tsparticles.git"
+    },
+    "scripts": {
+        "build": "pnpm run build:style && pnpm run build:index",
+        "build:ci": "pnpm run build:style && pnpm run build:index",
+        "build:index": "npx pug ./views/index.pug",
+        "build:style": "npx stylus ./public/stylesheets/main.styl",
+        "start": "pnpm run build && node ./app.js"
+    },
+    "bugs": {
+        "url": "https://github.com/matteobruni/tsparticles/issues"
+    },
+    "dependencies": {
+        "jquery": "^3.6.1",
+        "jquery-particles": "^2.4.0",
+        "tsparticles": "^2.4.0",
+        "tsparticles-engine": "^2.4.0",
+        "tsparticles-preset-links": "^2.4.0"
+    },
+    "devDependencies": {
+        "@fortawesome/fontawesome-free": "^6.2.0",
+        "@typescript-eslint/eslint-plugin": "^5.41.0",
+        "@typescript-eslint/parser": "^5.41.0",
+        "babel-preset-env": "^1.7.0",
+        "eslint": "^8.26.0",
+        "eslint-config-prettier": "^8.5.0",
+        "express": "^4.18.2",
+        "express-rate-limit": "^6.6.0",
+        "helmet": "^6.0.0",
+        "jsoneditor": "^9.9.2",
+        "prettier": "^2.7.1",
+        "pug": "^3.0.2",
+        "pug-cli": "^1.0.0-alpha6",
+        "stats.ts": "^1.1.0",
+        "stylus": "^0.59.0",
+        "typescript": "^4.8.4"
+    }
 }
