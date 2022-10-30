@@ -1,8 +1,8 @@
 # Background Mask
 
-- [`composite`](#composite)
-- [`cover`](#cover)
-- [`enable`](#enable)
+-   [`composite`](#composite)
+-   [`cover`](#cover)
+-   [`enable`](#enable)
 
 ## Composite
 
@@ -18,8 +18,8 @@ in `particles.color` options.
 
 The `cover` can also be a {@link IBackgroundMaskCover | cover object} like the one described below.
 
-- [`color`](#color)
-- [`opacity`](#opacity)
+-   [`color`](#color)
+-   [`opacity`](#opacity)
 
 ### Color
 
@@ -38,7 +38,7 @@ HEX sample
 
 ```json
 {
-  "color": "#bada55"
+    "color": "#bada55"
 }
 ```
 
@@ -48,9 +48,9 @@ HEX IColor sample
 
 ```json
 {
-  "color": {
-    "value": "#bada55"
-  }
+    "color": {
+        "value": "#bada55"
+    }
 }
 ```
 
@@ -60,13 +60,13 @@ Rgb sample
 
 ```json
 {
-  "color": {
-    "value": {
-      "r": 255,
-      "g": 127,
-      "b": 0
+    "color": {
+        "value": {
+            "r": 255,
+            "g": 127,
+            "b": 0
+        }
     }
-  }
 }
 ```
 
@@ -76,11 +76,11 @@ Hsl sample
 
 ```json
 {
-  "color": {
-    "h": 180,
-    "s": 100,
-    "l": 50
-  }
+    "color": {
+        "h": 180,
+        "s": 100,
+        "l": 50
+    }
 }
 ```
 

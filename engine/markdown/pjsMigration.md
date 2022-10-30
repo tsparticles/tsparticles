@@ -22,7 +22,7 @@ If you have customized the css like this:
 
 ```css
 .particles-js-canvas-element {
-    /* your awesome CSS code */
+  /* your awesome CSS code */
 }
 ```
 
@@ -30,7 +30,7 @@ You have to change it like this
 
 ```css
 .tsparticles-canvas-element {
-    /* your awesome CSS code */
+  /* your awesome CSS code */
 }
 ```
 
@@ -50,15 +50,17 @@ Now let's checkout the Javascript code, you should have something like this
 
 ```javascript
 /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
-particlesJS.load('particles-js', 'assets/particles.json', function() {
-  console.log('callback - particles.js config loaded');
+particlesJS.load("particles-js", "assets/particles.json", function () {
+  console.log("callback - particles.js config loaded");
 });
 ```
 
 or something like this
 
 ```javascript
-particlesJS('particles-js', { /* your options here */ });
+particlesJS("particles-js", {
+  /* your options here */
+});
 ```
 
 All you have to do to use the new identifiers it replacing the function
@@ -77,12 +79,14 @@ Let's convert the sample provided above to understand
 
 ```javascript
 /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
-tsParticles.loadJSON('particles-js', 'assets/particles.json').then(function(p) {
+tsParticles.loadJSON("particles-js", "assets/particles.json").then(function (p) {
   // p is the loaded container, for using it later
-  console.log('callback - particles.js config loaded');
+  console.log("callback - particles.js config loaded");
 });
 
-tsParticles.load('particles-js', { /* your options here */ });
+tsParticles.load("particles-js", {
+  /* your options here */
+});
 ```
 
 But probably you noticed that your warnings are still there, well the options are changed too but like the identifier this is not an issue.

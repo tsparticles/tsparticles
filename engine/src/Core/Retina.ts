@@ -1,7 +1,7 @@
-import { isSsr, safeMatchMedia } from "../Utils/Utils";
 import type { Container } from "./Container";
 import type { Particle } from "./Particle";
 import { getRangeValue } from "../Utils/NumberUtils";
+import { isSsr } from "../Utils/Utils";
 
 /**
  * @category Core
@@ -23,36 +23,7 @@ export class Retina {
             options = container.actualOptions;
 
         this.pixelRatio = !options.detectRetina || isSsr() ? 1 : window.devicePixelRatio;
-
-        const motionOptions = this.container.actualOptions.motion;
-
-        if (motionOptions && (motionOptions.disable || motionOptions.reduce.value)) {
-            const mediaQuery = safeMatchMedia("(prefers-reduced-motion: reduce)");
-
-            if (mediaQuery) {
-                // Check if the media query matches or is not available.
-                this._handleMotionChange(mediaQuery);
-
-                // Ads an event listener to check for changes in the media query's value.
-                const handleChange = (): void => {
-                    this._handleMotionChange(mediaQuery);
-
-                    container.refresh().catch(() => {
-                        // ignore
-                    });
-                };
-
-                if (mediaQuery.addEventListener !== undefined) {
-                    mediaQuery.addEventListener("change", handleChange);
-                } else if (mediaQuery.addListener !== undefined) {
-                    mediaQuery.addListener(handleChange);
-                }
-            } else {
-                this.reduceFactor = 1;
-            }
-        } else {
-            this.reduceFactor = 1;
-        }
+        this.reduceFactor = 1;
 
         const ratio = this.pixelRatio;
 
@@ -87,17 +58,5 @@ export class Retina {
         maxDistance.vertical = moveDistance.vertical !== undefined ? moveDistance.vertical * ratio : undefined;
 
         props.maxSpeed = getRangeValue(options.move.gravity.maxSpeed) * ratio;
-    }
-
-    private _handleMotionChange(mediaQuery: MediaQueryList): void {
-        const options = this.container.actualOptions;
-
-        if (mediaQuery.matches) {
-            const motion = options.motion;
-
-            this.reduceFactor = motion.disable ? 0 : motion.reduce.value ? 1 / motion.reduce.factor : 1;
-        } else {
-            this.reduceFactor = 1;
-        }
     }
 }

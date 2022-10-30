@@ -58,8 +58,6 @@ export class LinkInstance implements IContainerPlugin {
             return;
         }
 
-        context.save();
-
         const p1Links = particle.links.filter(
             (l) => pOptions.links && this.getLinkFrequency(particle, l.destination) <= pOptions.links.frequency
         );
@@ -71,11 +69,9 @@ export class LinkInstance implements IContainerPlugin {
                 this.drawLinkLine(particle, link);
             }
         }
-
-        context.restore();
     }
 
-    init(): void {
+    async init(): Promise<void> {
         this._freqs.links = new Map<string, number>();
         this._freqs.triangles = new Map<string, number>();
     }

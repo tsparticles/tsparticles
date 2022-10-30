@@ -73,7 +73,7 @@ const tsParticles = require("tsparticles");
 
 // or
 
-import {tsParticles} from "tsparticles-engine";
+import { tsParticles } from "tsparticles-engine";
 ```
 
 El `tsParticles` importado es la misma instancia que tienes cuando incluyes el script.
@@ -95,7 +95,6 @@ Carga tsParticles y configura las particulas:
 **index.html**
 
 ```html
-
 <div id="tsparticles"></div>
 
 <script src="tsparticles.min.js"></script>
@@ -109,10 +108,10 @@ Carga tsParticles y configura las particulas:
 
 tsParticles
     .loadJSON("tsparticles", "presets/default.json")
-    .then((container) => {
+    .then(container => {
         console.log("callback - tsparticles config loaded");
     })
-    .catch((error) => {
+    .catch(error => {
         console.error(error);
     });
 
@@ -253,12 +252,12 @@ Puedes encontrar las intrucciones [aqui](https://github.com/matteobruni/tspartic
 ## Templates and Recursos
 
 Puedes encontrar algunos templates relacionados con tsParticles [aqui](https://github.com/tsparticles/templates). Los
-templates están creados para *Vanilla Javascript*, *ReactJS*, *VueJS*, *Angular*, *SvelteJS* y otros frameworks.
+templates están creados para _Vanilla Javascript_, _ReactJS_, _VueJS_, _Angular_, _SvelteJS_ y otros frameworks.
 
 Los templates pueden variar, los nuevos pueden ser creados y los antiguos actualizados con las última características o
 cambios para mejorar el estilo. Échales un vistazo de vez en cuando.
 
-Si creas algun buen diseño con *tsParticles* eres libre de crear un pull request con tu diseño, te daremos crédito como
+Si creas algun buen diseño con _tsParticles_ eres libre de crear un pull request con tu diseño, te daremos crédito como
 autor del template!
 
 <https://github.com/tsparticles/templates>
@@ -328,7 +327,7 @@ _No hagas clic! NO HAGAS CLIC! OH NO SE ESTÁ PROPAGANDO!!!!_
 **particles.json**
 
 Puede encontrar una configuración de
-ejemplo [aqui](https://github.com/matteobruni/tsparticles/tree/main/website/presets) 📖
+ejemplo [aqui](https://github.com/matteobruni/tsparticles/tree/main/websites/particles.js.org/presets) 📖
 
 ---
 
@@ -418,4 +417,3 @@ proyecto.
 ### ¡Muchas gracias a [SauceLabs](https://saucelabs.com) por la Licencia Open Source!
 
 <img alt="Testing Powered By SauceLabs" src="https://raw.githubusercontent.com/saucelabs/saucelabs.github.io/publish/images/opensauce/powered-by-saucelabs-badge-red.svg" width="250" />
-

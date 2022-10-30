@@ -21,7 +21,7 @@ yarn add particles.vue3
 ## Verwendung
 
 ```javascript
-import Particles from 'particles.vue3';
+import Particles from "particles.vue3";
 
 createApp(App).use(Particles);
 ```
@@ -30,10 +30,10 @@ createApp(App).use(Particles);
 
 ```html
 <template>
-  <div id="app">
-    <Particles
-      id="tsparticles"
-      :options="{
+    <div id="app">
+        <Particles
+            id="tsparticles"
+            :options="{
 
 background: {
 
@@ -186,8 +186,8 @@ value: 5
 detectRetina: true
 
 }"
-    />
-  </div>
+        />
+    </div>
 </template>
 ```
 
@@ -196,7 +196,7 @@ detectRetina: true
 Wenn TypeScript beim Importieren/Benutzen des Particles-Plugins einen Fehler zurückgibt, versuche die folgende Zeile vor dem vorherigen Code einzufügen.
 
 ```typescript
-declare module 'particles.vue3';
+declare module "particles.vue3";
 ```
 
 ## Demos

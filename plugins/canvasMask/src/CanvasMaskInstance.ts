@@ -1,28 +1,22 @@
-import type { Container, Engine, IContainerPlugin, RecursivePartial } from "tsparticles-engine";
+import type { Engine, IContainerPlugin } from "tsparticles-engine";
 import { addParticlesFromCanvasPixels, getCanvasImageData, getImageData, getTextData } from "./utils";
-import { CanvasMask } from "./Options/Classes/CanvasMask";
-import type { CanvasMaskOptions } from "./types";
+import type { CanvasMaskContainer } from "./types";
 import type { CanvasPixelData } from "./utils";
 
 export class CanvasMaskInstance implements IContainerPlugin {
-    readonly options;
-
     private readonly _container;
     private readonly _engine;
 
-    constructor(container: Container, engine: Engine) {
+    constructor(container: CanvasMaskContainer, engine: Engine) {
         this._container = container;
         this._engine = engine;
-        this.options = new CanvasMask();
     }
 
-    async initAsync(data?: RecursivePartial<CanvasMaskOptions>): Promise<void> {
-        const options = this.options,
-            container = this._container;
+    async init(): Promise<void> {
+        const container = this._container,
+            options = container.actualOptions.canvasMask;
 
-        options.load(data?.canvasMask);
-
-        if (!options.enable) {
+        if (!options?.enable) {
             return;
         }
 
@@ -45,7 +39,13 @@ export class CanvasMaskInstance implements IContainerPlugin {
         } else if (options.text) {
             const textOptions = options.text;
 
-            pixelData = getTextData(textOptions.text, textOptions.color, offset, textOptions.font);
+            const data = getTextData(textOptions, offset);
+
+            if (!data) {
+                return;
+            }
+
+            pixelData = data;
         } else if (options.element || options.selector) {
             const canvas =
                 options.element || (options.selector && document.querySelector<HTMLCanvasElement>(options.selector));

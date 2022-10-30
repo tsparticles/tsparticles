@@ -52,10 +52,8 @@ export function drawTriangle(
  * @param baseColor - The base color of the rectangle, if not specified a transparent color will be used.
  */
 export function paintBase(context: CanvasRenderingContext2D, dimension: IDimension, baseColor?: string): void {
-    context.save();
     context.fillStyle = baseColor ?? "rgba(0,0,0,0)";
     context.fillRect(0, 0, dimension.width, dimension.height);
-    context.restore();
 }
 
 /**
@@ -133,28 +131,22 @@ export function drawParticle(data: DrawParticleParams): void {
         transform,
     } = data;
 
-    const pos = particle.getPosition();
+    const pos = particle.getPosition(),
+        angle = particle.rotation + (particle.pathRotation ? particle.velocity.angle : 0),
+        rotateData = {
+            sin: Math.sin(angle),
+            cos: Math.cos(angle),
+        },
+        transformData = {
+            a: rotateData.cos * (transform.a ?? 1),
+            b: rotateData.sin * (transform.b ?? 1),
+            c: -rotateData.sin * (transform.c ?? 1),
+            d: rotateData.cos * (transform.d ?? 1),
+        };
 
-    context.save();
-
-    if (
-        transform.a !== undefined ||
-        transform.b !== undefined ||
-        transform.c !== undefined ||
-        transform.d !== undefined
-    ) {
-        context.setTransform(transform.a ?? 1, transform.b ?? 0, transform.c ?? 0, transform.d ?? 1, pos.x, pos.y);
-    } else {
-        context.translate(pos.x, pos.y);
-    }
+    context.setTransform(transformData.a, transformData.b, transformData.c, transformData.d, pos.x, pos.y);
 
     context.beginPath();
-
-    const angle = particle.rotation + (particle.pathRotation ? particle.velocity.angle : 0);
-
-    if (angle !== 0) {
-        context.rotate(angle);
-    }
 
     if (backgroundMask) {
         context.globalCompositeOperation = composite;
@@ -195,32 +187,10 @@ export function drawParticle(data: DrawParticleParams): void {
         context.fill();
     }
 
-    context.restore();
-
-    context.save();
-
-    if (
-        transform.a !== undefined ||
-        transform.b !== undefined ||
-        transform.c !== undefined ||
-        transform.d !== undefined
-    ) {
-        context.setTransform(transform.a ?? 1, transform.b ?? 0, transform.c ?? 0, transform.d ?? 1, pos.x, pos.y);
-    } else {
-        context.translate(pos.x, pos.y);
-    }
-
-    if (particle.rotation) {
-        context.rotate(particle.rotation);
-    }
-
-    if (backgroundMask) {
-        context.globalCompositeOperation = composite;
-    }
-
     drawShapeAfterEffect(container, context, particle, radius, opacity, delta);
 
-    context.restore();
+    context.globalCompositeOperation = "source-over";
+    context.setTransform(1, 0, 0, 1, 0, 0);
 }
 
 /**
@@ -294,9 +264,7 @@ export function drawPlugin(context: CanvasRenderingContext2D, plugin: IContainer
         return;
     }
 
-    context.save();
     plugin.draw(context, delta);
-    context.restore();
 }
 
 /**
@@ -316,9 +284,7 @@ export function drawParticlePlugin(
         return;
     }
 
-    context.save();
     plugin.drawParticle(context, particle, delta);
-    context.restore();
 }
 
 /**

@@ -76,7 +76,7 @@ const tsParticles = require("tsparticles");
 
 // o
 
-import {tsParticles} from "tsparticles-engine";
+import { tsParticles } from "tsparticles-engine";
 ```
 
 Al importar `tsParticles `, esa es la misma instancia que tienes al incluir el script.
@@ -98,7 +98,6 @@ Carga tsParticles y configura las partículas:
 **index.html**
 
 ```html
-
 <div id="tsparticles"></div>
 
 <script src="tsparticles.min.js"></script>
@@ -111,20 +110,20 @@ Carga tsParticles y configura las partículas:
 /* tsParticles.loadJSON(@dom-id, @path-json, @callback (optional)); */
 
 tsParticles
-    .loadJSON("tsparticles", "presets/default.json")
-    .then((container) => {
-        console.log("callback - configuración de tsparticles cargada");
-    })
-    .catch((error) => {
-        console.error(error);
-    });
+  .loadJSON("tsparticles", "presets/default.json")
+  .then((container) => {
+    console.log("callback - configuración de tsparticles cargada");
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 
 //or
 
 /* tsParticles.load(@dom-id, @options); */
 
 tsParticles.load("tsparticles", {
-    /* aquí escribe las opciones */
+  /* aquí escribe las opciones */
 });
 
 //or
@@ -132,26 +131,26 @@ tsParticles.load("tsparticles", {
 /* tsParticles.loadFromArray(@dom-id, @options, @index (optional)); */
 
 tsParticles.loadFromArray("tsparticles", [
-    {
-        /* aquí escribe las opciones */
-    },
-    {
-        /* otras opciones aquí */
-    },
+  {
+    /* aquí escribe las opciones */
+  },
+  {
+    /* otras opciones aquí */
+  },
 ]);
 //objeto al azar
 
 tsParticles.loadFromArray(
-    "tsparticles",
-    [
-        {
-            /* aquí escribe las opciones */
-        },
-        {
-            /* otras opciones aquí */
-        },
-    ],
-    1
+  "tsparticles",
+  [
+    {
+      /* aquí escribe las opciones */
+    },
+    {
+      /* otras opciones aquí */
+    },
+  ],
+  1
 ); //el segundo
 // ¡Importante! Si el índice no se encuentra en el rango 0...<array.length, el índice va a ser ignorado.
 
@@ -162,7 +161,7 @@ tsParticles.loadFromArray(
 /* esto va a ejecutarse desde todas las partículas cargadas */
 
 tsParticles.setOnClickHandler((event, particles) => {
-    /* manejador para el evento al hacer click */
+  /* manejador para el evento al hacer click */
 });
 
 // ahora también es posible controlar las animaciones. Podemos pausar y continuar las
@@ -249,12 +248,12 @@ Puedes encontrar las instrucciones [aquí](https://github.com/matteobruni/tspart
 ## Plantillas y Recursos
 
 Puedes encontrar algunas plantillas que incorporan tsParticles [aquí](https://github.com/tsparticles/templates). Las
-plantillas están creadas en *Vanilla JavaScript*, *ReactJS*, *VueJS*, *Angular*, *SvelteJS* y otros frameworks.
+plantillas están creadas en _Vanilla JavaScript_, _ReactJS_, _VueJS_, _Angular_, _SvelteJS_ y otros frameworks.
 
 Las plantillas pueden variar, pueden crearse nuevas o haber actualizaciones para antiguas, incorporando nuevas
 características o mejores estilos. Revísalas de vez en cuando.
 
-Si creaste un buen diseño que utiliza *tsParticles*, siéntete libre de enviar un pull request con tu increíble
+Si creaste un buen diseño que utiliza _tsParticles_, siéntete libre de enviar un pull request con tu increíble
 plantilla, ¡se te dará reconocimiento por tu autoría!
 
 <https://github.com/tsparticles/templates>
@@ -324,7 +323,7 @@ _¡No hagas click! ¡NO HAGAS CLICK! OH NO ¡¡¡SE ESPARCE!!!_
 **particles.json**
 
 Puedes encontrar un ejemplo de
-configuración [aquí](https://github.com/matteobruni/tsparticles/tree/main/website/presets) 📖
+configuración [aquí](https://github.com/matteobruni/tsparticles/tree/main/websites/particles.js.org/presets) 📖
 
 ---
 

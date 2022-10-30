@@ -11,20 +11,18 @@
     "move/*",
     "paths/*",
     "plugins/*",
+    "plugins/easings/*",
     "presets/*",
     "shapes/*",
     "templates/*",
     "updaters/*",
     "utils/*",
-    "utils/cli/files/create-preset/js",
-    "utils/cli/files/create-preset/ts",
     "websites/*"
   ],
   "version": "independent",
   "npmClient": "pnpm",
   "useWorkspaces": true,
   "conventionalCommits": true,
-  "useNx": true,
   "command": {
     "version": {
       "message": "chore(release): published new version"

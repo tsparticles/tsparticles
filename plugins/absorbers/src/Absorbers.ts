@@ -1,18 +1,10 @@
-import type {
-    IContainerPlugin,
-    ICoordinates,
-    IOptions,
-    Particle,
-    RecursivePartial,
-    SingleOrMultiple,
-} from "tsparticles-engine";
+import type { IContainerPlugin, ICoordinates, Particle, RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
 import { executeOnSingleOrMultiple, itemFromSingleOrMultiple } from "tsparticles-engine";
-import { Absorber } from "./Options/Classes/Absorber";
+import type { Absorber } from "./Options/Classes/Absorber";
 import { AbsorberClickMode } from "./Enums/AbsorberClickMode";
 import type { AbsorberContainer } from "./AbsorberContainer";
 import { AbsorberInstance } from "./AbsorberInstance";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
-import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
 
 /**
  * @category Absorbers Plugin
@@ -46,9 +38,7 @@ export class Absorbers implements IContainerPlugin {
 
     draw(context: CanvasRenderingContext2D): void {
         for (const absorber of this.array) {
-            context.save();
             absorber.draw(context);
-            context.restore();
         }
     }
 
@@ -65,26 +55,9 @@ export class Absorbers implements IContainerPlugin {
         }
     }
 
-    init(options?: RecursivePartial<IOptions & IAbsorberOptions>): void {
-        if (!options) {
-            return;
-        }
-
-        this.absorbers = executeOnSingleOrMultiple(options.absorbers, (absorber) => {
-            const tmp = new Absorber();
-
-            tmp.load(absorber);
-
-            return tmp;
-        });
-
-        this.interactivityAbsorbers = executeOnSingleOrMultiple(options.interactivity?.modes?.absorbers, (absorber) => {
-            const tmp = new Absorber();
-
-            tmp.load(absorber);
-
-            return tmp;
-        });
+    async init(): Promise<void> {
+        this.absorbers = this.container.actualOptions.absorbers;
+        this.interactivityAbsorbers = this.container.actualOptions.interactivity.modes.absorbers;
 
         executeOnSingleOrMultiple(this.absorbers, (absorber) => {
             this.addAbsorber(absorber);

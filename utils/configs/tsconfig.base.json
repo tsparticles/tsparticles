@@ -2,12 +2,20 @@
   "compilerOptions": {
     /* Basic Options */
     // "incremental": true,                   /* Enable incremental compilation */
-    "target": "es6",
+    "target": "ES2019",
     /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */
-    "module": "esnext",
+    "module": "ESNext",
     /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
     "lib": [
+      "ESNext",
+      "ES2021",
+      "ES2020",
+      "ES2019",
+      "ES2018",
+      "ES2017",
+      "ES2016",
       "ES2015",
+      "ES5",
       "DOM"
     ],
     /* Specify library files to be included in the compilation. */
@@ -40,13 +48,17 @@
     /* Raise error on expressions and declarations with an implied 'any' type. */
     "strictNullChecks": true,
     /* Enable strict null checks. */
-    // "strictFunctionTypes": true,           /* Enable strict checking of function types. */
-    // "strictBindCallApply": true,           /* Enable strict 'bind', 'call', and 'apply' methods on functions. */
+    "strictFunctionTypes": true,
+    /* Enable strict checking of function types. */
+    "strictBindCallApply": true,
+    /* Enable strict 'bind', 'call', and 'apply' methods on functions. */
     "strictPropertyInitialization": true,
     /* Enable strict checking of property initialization in classes. */
-    // "noImplicitThis": true,                /* Raise error on 'this' expressions with an implied 'any' type. */
+    "noImplicitThis": true,
+    /* Raise error on 'this' expressions with an implied 'any' type. */
     "alwaysStrict": true,
     /* Parse in strict mode and emit "use strict" for each source file. */
+    "useUnknownInCatchVariables": true,
 
     /* Additional Checks */
     // "noUnusedLocals": true,                /* Report errors on unused locals. */
@@ -62,7 +74,8 @@
     // "paths": {},                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
     // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
     // "typeRoots": [],                       /* List of folders to include type definitions from. */
-    "types": [],                           /* Type declaration files to be included in compilation. */
+    "types": [],
+    /* Type declaration files to be included in compilation. */
     // "allowSyntheticDefaultImports": true,  /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */
     "esModuleInterop": true,
     /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */

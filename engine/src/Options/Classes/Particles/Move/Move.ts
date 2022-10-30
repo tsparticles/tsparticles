@@ -1,10 +1,10 @@
 import type { OutMode, OutModeAlt } from "../../../../Enums/Modes/OutMode";
-import type { ICenterCoordinates } from "../../../../Core/Interfaces/ICoordinates";
 import type { IDistance } from "../../../../Core/Interfaces/IDistance";
 import type { IMove } from "../../../Interfaces/Particles/Move/IMove";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { MoveAngle } from "./MoveAngle";
 import { MoveAttract } from "./MoveAttract";
+import { MoveCenter } from "./MoveCenter";
 import { MoveDirection } from "../../../../Enums/Directions/MoveDirection";
 import type { MoveDirectionAlt } from "../../../../Enums/Directions/MoveDirection";
 import { MoveGravity } from "./MoveGravity";
@@ -13,9 +13,7 @@ import { MoveTrail } from "./MoveTrail";
 import { OutModes } from "./OutModes";
 import type { RangeValue } from "../../../../Types/RangeValue";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { SizeMode } from "../../../../Enums/Modes/SizeMode";
 import { Spin } from "./Spin";
-import { deepExtend } from "../../../../Utils/Utils";
 import { setRangeValue } from "../../../../Utils/NumberUtils";
 
 /**
@@ -25,7 +23,7 @@ import { setRangeValue } from "../../../../Utils/NumberUtils";
 export class Move implements IMove, IOptionLoader<IMove> {
     angle;
     attract;
-    center: Partial<ICenterCoordinates>;
+    center: MoveCenter;
     decay;
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
     distance: Partial<IDistance>;
@@ -46,12 +44,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
     constructor() {
         this.angle = new MoveAngle();
         this.attract = new MoveAttract();
-        this.center = {
-            x: 50,
-            y: 50,
-            mode: SizeMode.percent,
-            radius: 0,
-        };
+        this.center = new MoveCenter();
         this.decay = 0;
         this.distance = {};
         this.direction = MoveDirection.none;
@@ -156,7 +149,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.angle.load(typeof data.angle === "number" ? { value: data.angle } : data.angle);
         this.attract.load(data.attract);
 
-        this.center = deepExtend(this.center ?? {}, data.center) as ICenterCoordinates;
+        this.center.load(data.center);
 
         if (data.decay !== undefined) {
             this.decay = data.decay;

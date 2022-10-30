@@ -83,7 +83,7 @@
             }
         },
         "shape": {
-            "type": ["circle", "square", "polygon", "character", "character", "character"],
+            "type": ["circle", "square", "polygon"],
             "options": {
                 "polygon": [
                     {
@@ -91,11 +91,6 @@
                     },
                     {
                         "sides": 6
-                    }
-                ],
-                "character": [
-                    {
-                        "value": ["💩", "🤡", "🍀", "🍙"]
                     }
                 ]
             }

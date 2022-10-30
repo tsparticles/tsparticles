@@ -16,6 +16,5 @@ declare module "svelte-particles" {
             particles?: Container;
         };
     }>;
-    export default class extends SvelteComponentTyped<ParticlesProps, ParticlesEvents, {}> {
-    }
+    export default class extends SvelteComponentTyped<ParticlesProps, ParticlesEvents, {}> {}
 }

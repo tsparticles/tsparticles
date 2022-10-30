@@ -26,36 +26,32 @@ yarn add svelte-particles
 
 ```html
 <script>
-  import Particles from "svelte-particles";
+    import Particles from "svelte-particles";
 
-  let particlesConfig = {
-    particles: {
-      color: {
-        value: "#000",
-      },
-      links: {
-        enable: true,
-        color: "#000",
-      },
-      move: {
-        enable: true,
-      },
-    },
-  };
+    let particlesConfig = {
+        particles: {
+            color: {
+                value: "#000",
+            },
+            links: {
+                enable: true,
+                color: "#000",
+            },
+            move: {
+                enable: true,
+            },
+        },
+    };
 
-  let onParticlesLoaded = (event) => {
-    const particlesContainer = event.detail.particles;
+    let onParticlesLoaded = event => {
+        const particlesContainer = event.detail.particles;
 
-    // you can use particlesContainer to call all the Container class
-    // (from the core library) methods like play, pause, refresh, start, stop
-  };
+        // you can use particlesContainer to call all the Container class
+        // (from the core library) methods like play, pause, refresh, start, stop
+    };
 </script>
 
-<Particles
-  id="tsparticles"
-  options="{particlesConfig}"
-  on:particlesLoaded="{onParticlesLoaded}"
-/>
+<Particles id="tsparticles" options="{particlesConfig}" on:particlesLoaded="{onParticlesLoaded}" />
 ```
 
 ### SSR
@@ -65,47 +61,46 @@ Het deeltjes component is niet gebouwd voor SSR, dus je moet afdwingen dat het c
 Je kan hier onder een voorbeeld zien
 You can see a sample below:
 
-
 ```html
 <script>
-  import { onMount } from "svelte";
+    import { onMount } from "svelte";
 
-  let ParticlesComponent;
+    let ParticlesComponent;
 
-  onMount(async () => {
-    const module = await import("svelte-particles");
+    onMount(async () => {
+        const module = await import("svelte-particles");
 
-    ParticlesComponent = module.default;
-  });
+        ParticlesComponent = module.default;
+    });
 
-  let particlesConfig = {
-    particles: {
-      color: {
-        value: "#000",
-      },
-      links: {
-        enable: true,
-        color: "#000",
-      },
-      move: {
-        enable: true,
-      },
-    },
-  };
+    let particlesConfig = {
+        particles: {
+            color: {
+                value: "#000",
+            },
+            links: {
+                enable: true,
+                color: "#000",
+            },
+            move: {
+                enable: true,
+            },
+        },
+    };
 
-  let onParticlesLoaded = (event) => {
-    const particlesContainer = event.detail.particles;
+    let onParticlesLoaded = event => {
+        const particlesContainer = event.detail.particles;
 
-    // Je kan particlesContainer gebruiken om alle Container class
-    // (van de core biblitheek) methodes aan te roepen zoals play, pause, refresh, start en stop
-  };
+        // Je kan particlesContainer gebruiken om alle Container class
+        // (van de core biblitheek) methodes aan te roepen zoals play, pause, refresh, start en stop
+    };
 </script>
 
 <svelte:component
-  this="{ParticlesComponent}"
-  id="tsparticles"
-  options="{particlesConfig}"
-  on:particlesLoaded="{onParticlesLoaded}"
+    this="{ParticlesComponent}"
+    id="tsparticles"
+    options="{particlesConfig}"
+    on:particlesLoaded="{onParticlesLoaded}"
 />
 ```
 

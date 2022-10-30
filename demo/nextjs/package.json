@@ -1,24 +1,24 @@
 {
-  "name": "nextjs",
-  "version": "0.5.4",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "build:ci": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "next": "^12.3.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-particles": "^2.3.3",
-    "tsparticles-preset-big-circles": "^2.3.4",
-    "typescript": "^4.8.4"
-  },
-  "devDependencies": {
-    "eslint": "^8.24.0",
-    "eslint-config-next": "^12.3.1"
-  }
+    "name": "nextjs",
+    "version": "0.6.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "build:ci": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "next": "^13.0.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-particles": "^2.4.0",
+        "tsparticles-preset-big-circles": "^2.4.0",
+        "typescript": "^4.8.4"
+    },
+    "devDependencies": {
+        "eslint": "^8.26.0",
+        "eslint-config-next": "^13.0.0"
+    }
 }

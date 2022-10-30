@@ -12,14 +12,14 @@ on:
       - v1
 
 env:
-  NX_CLOUD_DISTRIBUTED_EXECUTION: true
-  NX_CLOUD_ACCESS_TOKEN: '${{ secrets.NX_CLOUD_ACCESS_TOKEN }}'
-  NX_BRANCH: '${{github.event.pull_request.number || github.ref_name}}'
+  #NX_CLOUD_DISTRIBUTED_EXECUTION: true
+  #NX_CLOUD_ACCESS_TOKEN: '${{ secrets.NX_CLOUD_ACCESS_TOKEN }}'
+  #NX_BRANCH: '${{github.event.pull_request.number || github.ref_name}}'
+  firebaseToken: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
 
 jobs:
+
   main:
-    env:
-      firebaseToken: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
     runs-on: ubuntu-latest
     if: ${{ github.event_name != 'pull_request' }}
     steps:
@@ -28,15 +28,15 @@ jobs:
         with:
           fetch-depth: 0
       #- name: Derive appropriate SHAs for base and head for `nx affected` commands
-      #  uses: nrwl/nx-set-shas@v2
+      #  uses: nrwl/nx-set-shas@v3
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
-      - uses: pnpm/action-setup@v2.2.2
+      - uses: pnpm/action-setup@v2.2.4
         name: Install pnpm
         id: pnpm-install
         with:
-          version: 7.11.0
+          version: 7
           run_install: false
       - name: Get pnpm version
         id: pnpm-version
@@ -56,9 +56,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
       - run: pnpm install --no-frozen-lockfile
-      - run: pnpm run --filter @tsparticles/build build:ci
-      - run: pnpm install --no-frozen-lockfile
       #- run: npx nx-cloud start-ci-run
+      - run: pnpm run prettify:ci:readme
       - run: npx lerna run build:ci #--concurrency 3
       #- run: npx nx-cloud stop-all-agents
       - if: env.firebaseToken != '' && github.ref == 'refs/heads/main'
@@ -69,31 +68,14 @@ jobs:
           projectId: tsparticles
           channelId: live
 
-      - if: env.firebaseToken != '' && github.ref == 'refs/heads/staging'
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
-          projectId: tsparticles
-          channelId: next
-
       - if: env.firebaseToken != '' && github.ref == 'refs/heads/dev'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
           projectId: tsparticles
-          channelId: dev
-
-      - if: env.firebaseToken != '' && contains(github.ref, 'refs/pull') && github.actor == 'matteobruni'
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
-          projectId: tsparticles
+          channelId: next
   pr:
-    env:
-      firebaseToken: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
     steps:
@@ -103,15 +85,15 @@ jobs:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           fetch-depth: 0
       #- name: Derive appropriate SHAs for base and head for `nx affected` commands
-      #  uses: nrwl/nx-set-shas@v2
+      #  uses: nrwl/nx-set-shas@v3
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
-      - uses: pnpm/action-setup@v2.2.2
+      - uses: pnpm/action-setup@v2.2.4
         name: Install pnpm
         id: pnpm-install
         with:
-          version: 7.11.0
+          version: 7
           run_install: false
       - name: Get pnpm version
         id: pnpm-version
@@ -131,37 +113,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
       - run: pnpm install --no-frozen-lockfile
-      - run: pnpm run --filter @tsparticles/build build:ci
-      - run: pnpm install --no-frozen-lockfile
       #- run: npx nx-cloud start-ci-run
+      - run: pnpm run prettify:ci:readme
       - run: npx lerna run build:ci #--concurrency 3
       #- run: npx nx-cloud stop-all-agents
       - run: echo ${{ github.repository_owner }}
       - run: echo ${{ github.actor }}
-      - if: env.firebaseToken != '' && github.ref == 'refs/heads/main'
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
-          projectId: tsparticles
-          channelId: live
-
-      - if: env.firebaseToken != '' && github.ref == 'refs/heads/staging'
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
-          projectId: tsparticles
-          channelId: next
-
-      - if: env.firebaseToken != '' && github.ref == 'refs/heads/dev'
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
-          projectId: tsparticles
-          channelId: dev
-
       - if: env.firebaseToken != '' && contains(github.ref, 'refs/pull') && github.actor == 'matteobruni'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
@@ -205,8 +162,5 @@ jobs:
 #          restore-keys: |
 #            ${{ runner.os }}-pnpm-store-
 #      - run: pnpm install --no-frozen-lockfile
-#      - run: pnpm run --filter @tsparticles/build build:ci
-#      - run: pnpm install --no-frozen-lockfile
 #      - name: Start Nx Agent ${{ matrix.agent }}
 #        run: npx nx-cloud start-agent
-#

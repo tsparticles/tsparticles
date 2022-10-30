@@ -1,10 +1,10 @@
-import type { Engine, IOptions, IPlugin, Options, RecursivePartial } from "tsparticles-engine";
+import type { AbsorberOptions, IAbsorberOptions } from "./types";
+import type { Engine, IOptions, IPlugin, RecursivePartial } from "tsparticles-engine";
 import { executeOnSingleOrMultiple, isInArray } from "tsparticles-engine";
 import { Absorber } from "./Options/Classes/Absorber";
 import { AbsorberClickMode } from "./Enums/AbsorberClickMode";
 import type { AbsorberContainer } from "./AbsorberContainer";
 import { Absorbers } from "./Absorbers";
-import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
 
 /**
  * @category Absorbers Plugin
@@ -20,15 +20,13 @@ class AbsorbersPlugin implements IPlugin {
         return new Absorbers(container);
     }
 
-    loadOptions(options: Options, source?: RecursivePartial<IOptions & IAbsorberOptions>): void {
+    loadOptions(options: AbsorberOptions, source?: RecursivePartial<IAbsorberOptions>): void {
         if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
             return;
         }
 
-        const optionsCast = options as unknown as IAbsorberOptions;
-
         if (source?.absorbers) {
-            optionsCast.absorbers = executeOnSingleOrMultiple(source.absorbers, (absorber) => {
+            options.absorbers = executeOnSingleOrMultiple(source.absorbers, (absorber) => {
                 const tmp = new Absorber();
 
                 tmp.load(absorber);
@@ -37,7 +35,7 @@ class AbsorbersPlugin implements IPlugin {
             });
         }
 
-        optionsCast.interactivity.modes.absorbers = executeOnSingleOrMultiple(
+        options.interactivity.modes.absorbers = executeOnSingleOrMultiple(
             source?.interactivity?.modes?.absorbers,
             (absorber) => {
                 const tmp = new Absorber();
@@ -79,4 +77,3 @@ export async function loadAbsorbersPlugin(engine: Engine): Promise<void> {
 
 export * from "./AbsorberContainer";
 export * from "./Enums/AbsorberClickMode";
-export * from "./Options/Interfaces/IAbsorberOptions";

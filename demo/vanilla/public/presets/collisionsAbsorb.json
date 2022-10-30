@@ -46,7 +46,10 @@
     },
     "collisions": {
       "enable": true,
-      "mode": "absorb"
+      "mode": "absorb",
+      "absorb": {
+        "speed": 5
+      }
     },
     "move": {
       "enable": true,

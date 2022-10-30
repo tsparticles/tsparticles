@@ -1,89 +1,89 @@
 {
-  "name": "tsparticles-shape-circle",
-  "version": "2.3.3",
-  "description": "tsParticles circle shape",
-  "homepage": "https://particles.js.org",
-  "scripts": {
-    "build": "tsparticles-build",
-    "build:ci": "tsparticles-build --ci",
-    "build:docs": "rimraf -f docs && npx typedoc",
-    "version": "tsparticles-build -d && git add package.dist.json",
-    "prepack": "pnpm run build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/matteobruni/tsparticles.git",
-    "directory": "shapes/circle"
-  },
-  "keywords": [
-    "front-end",
-    "frontend",
-    "tsparticles",
-    "particles",
-    "particle",
-    "canvas",
-    "jsparticles",
-    "xparticles",
-    "particles-js",
-    "particles.js",
-    "particles-ts",
-    "particles.ts",
-    "typescript",
-    "javascript",
-    "animation",
-    "web",
-    "html5",
-    "web-design",
-    "webdesign",
-    "css",
-    "html",
-    "css3",
-    "animated",
-    "background",
-    "tsparticles-shape"
-  ],
-  "publishConfig": {
-    "directory": "dist",
-    "linkDirectory": true
-  },
-  "author": "Matteo Bruni <matteo.bruni@me.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/matteobruni/tsparticles/issues"
-  },
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
-  "typedoc": {
-    "entryPoint": "./src/index.ts",
-    "displayName": "tsParticles circle shape",
-    "readmeFile": "./README.md"
-  },
-  "prettier": "@tsparticles/prettier-config",
-  "devDependencies": {
-    "@babel/core": "^7.19.3",
-    "@tsparticles/build": "^1.2.3",
-    "@tsparticles/eslint-config": "^1.2.3",
-    "@tsparticles/prettier-config": "^1.2.3",
-    "@tsparticles/tsconfig": "^1.2.3",
-    "@types/webpack-env": "^1.18.0",
-    "@typescript-eslint/eslint-plugin": "^5.38.1",
-    "@typescript-eslint/parser": "^5.38.1",
-    "babel-loader": "^8.2.5",
-    "browserslist": "^4.21.4",
-    "copyfiles": "^2.4.1",
-    "eslint": "^8.24.0",
-    "eslint-config-prettier": "^8.5.0",
-    "prettier": "^2.7.1",
-    "rimraf": "^3.0.2",
-    "terser-webpack-plugin": "^5.3.6",
-    "typescript": "^4.8.4",
-    "webpack": "^5.74.0",
-    "webpack-bundle-analyzer": "^4.6.1",
-    "webpack-cli": "^4.10.0",
-    "webpack-tsparticles-plugin": "^1.3.3"
-  },
-  "dependencies": {
-    "tsparticles-engine": "^2.3.3"
-  }
+    "name": "tsparticles-shape-circle",
+    "version": "2.4.0",
+    "description": "tsParticles circle shape",
+    "homepage": "https://particles.js.org",
+    "scripts": {
+        "build": "tsparticles-build",
+        "build:ci": "tsparticles-build --ci",
+        "build:docs": "rimraf -f docs && npx typedoc",
+        "version": "tsparticles-build -d && git add package.dist.json",
+        "prepack": "pnpm run build"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/matteobruni/tsparticles.git",
+        "directory": "shapes/circle"
+    },
+    "keywords": [
+        "front-end",
+        "frontend",
+        "tsparticles",
+        "particles",
+        "particle",
+        "canvas",
+        "jsparticles",
+        "xparticles",
+        "particles-js",
+        "particles.js",
+        "particles-ts",
+        "particles.ts",
+        "typescript",
+        "javascript",
+        "animation",
+        "web",
+        "html5",
+        "web-design",
+        "webdesign",
+        "css",
+        "html",
+        "css3",
+        "animated",
+        "background",
+        "tsparticles-shape"
+    ],
+    "publishConfig": {
+        "directory": "dist",
+        "linkDirectory": true
+    },
+    "author": "Matteo Bruni <matteo.bruni@me.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/matteobruni/tsparticles/issues"
+    },
+    "main": "dist/cjs/index.js",
+    "module": "dist/esm/index.js",
+    "types": "dist/types/index.d.ts",
+    "typedoc": {
+        "entryPoint": "./src/index.ts",
+        "displayName": "tsParticles circle shape",
+        "readmeFile": "./README.md"
+    },
+    "prettier": "@tsparticles/prettier-config",
+    "devDependencies": {
+        "@babel/core": "^7.19.6",
+        "@tsparticles/build": "^1.3.3",
+        "@tsparticles/eslint-config": "^1.3.2",
+        "@tsparticles/prettier-config": "^1.3.1",
+        "@tsparticles/tsconfig": "^1.3.1",
+        "@types/webpack-env": "^1.18.0",
+        "@typescript-eslint/eslint-plugin": "^5.41.0",
+        "@typescript-eslint/parser": "^5.41.0",
+        "babel-loader": "^9.0.0",
+        "browserslist": "^4.21.4",
+        "copyfiles": "^2.4.1",
+        "eslint": "^8.26.0",
+        "eslint-config-prettier": "^8.5.0",
+        "prettier": "^2.7.1",
+        "rimraf": "^3.0.2",
+        "terser-webpack-plugin": "^5.3.6",
+        "typescript": "^4.8.4",
+        "webpack": "^5.74.0",
+        "webpack-bundle-analyzer": "^4.7.0",
+        "webpack-cli": "^4.10.0",
+        "webpack-tsparticles-plugin": "^1.4.3"
+    },
+    "dependencies": {
+        "tsparticles-engine": "^2.4.0"
+    }
 }

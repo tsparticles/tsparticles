@@ -1,2 +1,0 @@
-# cli
-tsParticles CLI utility

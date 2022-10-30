@@ -8,7 +8,6 @@ import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import type { IOptions } from "../Interfaces/IOptions";
 import { Interactivity } from "./Interactivity/Interactivity";
 import { ManualParticle } from "./ManualParticle";
-import { Motion } from "./Motion/Motion";
 import type { RangeValue } from "../../Types/RangeValue";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
 import { Responsive } from "./Responsive";
@@ -17,6 +16,12 @@ import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 import { Theme } from "./Theme/Theme";
 import { ThemeMode } from "../../Enums/Modes/ThemeMode";
 import { loadParticlesOptions } from "../../Utils/OptionsUtils";
+import { setRangeValue } from "../../Utils/NumberUtils";
+
+interface DefaultThemes {
+    dark?: string;
+    light?: string;
+}
 
 /**
  * [[include:Options.md]]
@@ -28,15 +33,14 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     autoPlay;
     background;
     backgroundMask;
-    defaultDarkTheme?: string;
-    defaultLightTheme?: string;
+    defaultThemes: DefaultThemes;
+    delay: RangeValue;
     detectRetina;
     duration: RangeValue;
     fpsLimit;
     fullScreen;
     interactivity;
     manualParticles: ManualParticle[];
-    motion;
     particles;
     pauseOnBlur;
     pauseOnOutsideViewport;
@@ -56,13 +60,14 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.autoPlay = true;
         this.background = new Background();
         this.backgroundMask = new BackgroundMask();
+        this.defaultThemes = {};
+        this.delay = 0;
         this.fullScreen = new FullScreen();
         this.detectRetina = true;
         this.duration = 0;
         this.fpsLimit = 120;
         this.interactivity = new Interactivity(engine, container);
         this.manualParticles = [];
-        this.motion = new Motion();
         this.particles = loadParticlesOptions(this._engine, this._container);
         this.pauseOnBlur = true;
         this.pauseOnOutsideViewport = true;
@@ -136,6 +141,10 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
             this.autoPlay = data.autoPlay;
         }
 
+        if (data.delay !== undefined) {
+            this.delay = setRangeValue(data.delay);
+        }
+
         const detectRetina = data.detectRetina ?? data.retina_detect;
 
         if (detectRetina !== undefined) {
@@ -143,7 +152,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
 
         if (data.duration !== undefined) {
-            this.duration = data.duration;
+            this.duration = setRangeValue(data.duration);
         }
 
         const fpsLimit = data.fpsLimit ?? data.fps_limit;
@@ -187,7 +196,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
             });
         }
 
-        this.motion.load(data.motion);
         this.particles.load(data.particles);
         this.style = deepExtend(this.style, data.style) as RecursivePartial<CSSStyleDeclaration>;
         this._engine.plugins.loadOptions(this, data);
@@ -228,8 +236,8 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
             }
         }
 
-        this.defaultDarkTheme = this._findDefaultTheme(ThemeMode.dark)?.name;
-        this.defaultLightTheme = this._findDefaultTheme(ThemeMode.light)?.name;
+        this.defaultThemes.dark = this._findDefaultTheme(ThemeMode.dark)?.name;
+        this.defaultThemes.light = this._findDefaultTheme(ThemeMode.light)?.name;
     }
 
     setResponsive(width: number, pxRatio: number, defaultOptions: IOptions): number | undefined {

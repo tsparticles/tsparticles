@@ -29,6 +29,9 @@ export class Particles {
     limit;
     movers;
     needsSort;
+
+    pool: Particle[];
+
     pushing?: boolean;
 
     /**
@@ -50,6 +53,7 @@ export class Particles {
         this.nextId = 0;
         this.array = [];
         this.zArray = [];
+        this.pool = [];
         this.limit = 0;
         this.needsSort = false;
         this.lastZIndex = 0;
@@ -234,6 +238,7 @@ export class Particles {
     async redraw(): Promise<void> {
         this.clear();
         this.init();
+
         await this.draw({ value: 0, factor: 0 });
     }
 
@@ -260,6 +265,7 @@ export class Particles {
             this.array.splice(i--, 1);
             const zIdx = this.zArray.indexOf(particle);
             this.zArray.splice(zIdx, 1);
+            this.pool.push(particle);
 
             deleted++;
 
@@ -304,6 +310,8 @@ export class Particles {
             if (resizeFactor && !particle.ignoresResizeRatio) {
                 particle.position.x *= resizeFactor.width;
                 particle.position.y *= resizeFactor.height;
+                particle.initialPosition.x *= resizeFactor.width;
+                particle.initialPosition.y *= resizeFactor.height;
             }
 
             particle.ignoresResizeRatio = false;
@@ -326,6 +334,7 @@ export class Particles {
 
             if (particle.destroyed) {
                 particlesToDelete.push(particle);
+
                 continue;
             }
 
@@ -339,7 +348,7 @@ export class Particles {
         await this.interactionManager.externalInteract(delta);
 
         // this loop is required to be done after mouse interactions
-        for (const particle of container.particles.array) {
+        for (const particle of this.array) {
             for (const updater of this.updaters) {
                 updater.update(particle, delta);
             }
@@ -393,7 +402,13 @@ export class Particles {
         initializer?: (particle: Particle) => boolean
     ): Particle | undefined {
         try {
-            const particle = new Particle(this._engine, this.nextId, this.container, position, overrideOptions, group);
+            let particle = this.pool.pop();
+
+            if (particle) {
+                particle.init(this.nextId, position, overrideOptions, group);
+            } else {
+                particle = new Particle(this._engine, this.nextId, this.container, position, overrideOptions, group);
+            }
 
             let canAdd = true;
 
