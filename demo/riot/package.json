@@ -16,7 +16,7 @@
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "devDependencies": {
-    "@riotjs/compiler": "^6.3.2",
+    "@riotjs/compiler": "^6.4.0",
     "@riotjs/register": "^6.0.1",
     "@riotjs/webpack-loader": "^6.0.0",
     "chai": "^4.3.6",

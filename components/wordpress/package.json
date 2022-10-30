@@ -96,7 +96,7 @@
 		"tsparticles-updater-wobble": "^2.3.3"
 	},
 	"devDependencies": {
-		"@babel/runtime": "^7.19.4",
+		"@babel/runtime": "^7.20.0",
 		"@wordpress/scripts": "^24.4.0",
 		"fs-extra": "^10.1.0",
 		"gulp": "^4.0.2",
