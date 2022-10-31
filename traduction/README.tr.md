@@ -2,7 +2,7 @@
 
 # tsParticles - TypeScript Parçacıkları
 
-**Parçacıklar oluşturmak için hafif bir TypeScript kitaplığı. Bağımlılık içermeyen (\*), tarayıcıya hazır ve React.js, Vue.js (2.x ve 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.js, Solid.js ve Web Components ile uyumlu.**
+**Parçacık oluşturmak için hafif bir TypeScript kitaplığı. Bağımlılık içermeyen (\*), tarayıcıya hazır ve React.js, Vue.js (2.x ve 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.js, Solid.js ve Web Components ile uyumlu.**
 
 [![Rate on Openbase](https://badges.openbase.com/js/rating/tsparticles.svg)](https://openbase.com/js/tsparticles?utm_source=embedded&utm_medium=badge&utm_campaign=rate-badge) [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge?style=rounded)](https://www.jsdelivr.com/package/npm/tsparticles) [![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) [![npm](https://img.shields.io/npm/dm/tsparticles)](https://www.npmjs.com/package/tsparticles) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/) [![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Grade) [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/matteobruni/tsparticles) [![Run on Repl.it](https://repl.it/badge/github/matteobruni/tsparticles)](https://repl.it/github/matteobruni/tsparticles)
 
@@ -67,7 +67,7 @@
 
 ## Bu kütüphaneyi sitenizde kullanmak ister misiniz?
 
-_Dokümantasyon ve Geliştirme referansları burada [here](https://particles.js.org/docs/) 📖_
+_Dokümantasyon ve Geliştirme referansları [burada](https://particles.js.org/docs/) 📖_
 
 **Bu kitaplık en popüler CDN'lerden ikisinde mevcuttur; kolay ve kullanıma hazır bir durumdadır, hatta eğer Particles.js kütüphanesini kullanıyorsanız bu daha da kolaydır.**.
 
@@ -81,9 +81,9 @@ CDN'ler ve `npm`, **Javascript**'te ihtiyacınız olan tüm kaynaklara; tarayıc
 
 ## **_Kütüphane kurulumu_**
 
-### **_Hosting / CDN_**
+### **_Sunucular / CDN_**
 
-**_Projelerinize tsParticles kütüphanesini yüklemek için lütfen bu ana bilgisayarları veya kendinizinkini kullanın._**
+**_Projelerinize tsParticles kütüphanesini yüklemek için lütfen bu ana sunucuları veya kendinizinkini kullanın._**
 
 #### jsDelivr
 
@@ -202,18 +202,18 @@ tsParticles.loadFromArray(
 ); //ikincisi
 // Önemli! İndeks 0...<array.length aralığında değilse, indesk yok sayılır.
 
-// başlatmadan sonra bu kullanılabilir.
+// Başlatmadan sonra bu kullanılabilir.
 
 /* tsParticles.setOnClickHandler(@callback); */
 
-/* bu, yüklenen tüm parçacıklardan ateşlenecek */
+/* Bu, yüklenen tüm parçacıklardan ateşlenecek */
 
 tsParticles.setOnClickHandler((event, particles) => {
-    /* özel tıklama işleyicisi */
+    /* Özel tıklama işleyicisi */
 });
 
-// artık animasyonları da kontrol edebilirsiniz, animasyonları duraklatmak ve devam ettirmek mümkündür.
-// bu yöntemler yapılandırmayı değiştirmez, böylece tüm yapılandırmalarınız konusunda güvende olursunuz.
+// Artık animasyonları da kontrol edebilirsiniz. animasyonları duraklatmak ve devam ettirmek mümkündür.
+// Bu yöntemler yapılandırmayı değiştirmez, böylece tüm yapılandırmalarınız konusunda güvende olursunuz.
 // domItem(0), DOM'a yüklenen ilk tsParticles örneğini döndürür.
 const particles = tsParticles.domItem(0);
 
@@ -328,7 +328,7 @@ _tsParticles_ ile iyi bir tasarım yarattıysanız, havalı şablonunuzla bir PR
 
 ---
 
-### Harf parçacıklar
+### Harfli parçacıklar
 
 [![Particles chars demo](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.js.org/samples#chars)
 
@@ -352,7 +352,7 @@ _tsParticles_ ile iyi bir tasarım yarattıysanız, havalı şablonunuzla bir PR
 
 ---
 
-### Kayan yıldızlar üzerinde uçan Nyan cat
+### Kayan yıldızlar üzerinde uçan Nyan Cat
 
 [![Particles Nyan Cat demo](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.js.org/samples#nyancat2)
 
