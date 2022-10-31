@@ -42,7 +42,7 @@
         "tsparticles-interaction-external-push": "^2.4.0",
         "tsparticles-interaction-external-remove": "^2.4.0",
         "tsparticles-interaction-external-repulse": "^2.4.0",
-        "tsparticles-interaction-external-slow": "^2.4.0",
+        "tsparticles-interaction-external-slow": "^2.3.3",
         "tsparticles-interaction-external-trail": "^2.4.0",
         "tsparticles-interaction-particles-attract": "^2.4.0",
         "tsparticles-interaction-particles-collisions": "^2.4.0",
