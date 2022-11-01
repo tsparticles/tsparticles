@@ -33,50 +33,49 @@ export function drawLinkLine(
 
         drawn = true;
     } else if (warp) {
-        let pi1: ICoordinates | undefined;
-        let pi2: ICoordinates | undefined;
+        const offsets = [
+            { x: canvasSize.width, y: 0 },
+            { x: 0, y: canvasSize.height },
+            { x: canvasSize.width, y: canvasSize.height },
+        ];
 
-        const endNE = {
-            x: end.x - canvasSize.width,
-            y: end.y,
-        };
+        let pi1: ICoordinates | undefined, pi2: ICoordinates | undefined;
 
-        const d1 = getDistances(begin, endNE);
+        for (const offset of offsets) {
+            const pos2 = {
+                    x: end.x + offset.x,
+                    y: end.y + offset.y,
+                },
+                d = getDistances(begin, pos2);
 
-        if (d1.distance <= maxDistance) {
-            const yi = begin.y - (d1.dy / d1.dx) * begin.x;
-
-            pi1 = { x: 0, y: yi };
-            pi2 = { x: canvasSize.width, y: yi };
-        } else {
-            const endSW = {
-                x: end.x,
-                y: end.y - canvasSize.height,
-            };
-
-            const d2 = getDistances(begin, endSW);
-
-            if (d2.distance <= maxDistance) {
-                const yi = begin.y - (d2.dy / d2.dx) * begin.x;
-                const xi = -yi / (d2.dy / d2.dx);
-
-                pi1 = { x: xi, y: 0 };
-                pi2 = { x: xi, y: canvasSize.height };
-            } else {
-                const endSE = {
-                    x: end.x - canvasSize.width,
-                    y: end.y - canvasSize.height,
-                };
-
-                const d3 = getDistances(begin, endSE);
-
-                if (d3.distance <= maxDistance) {
-                    const yi = begin.y - (d3.dy / d3.dx) * begin.x;
-                    const xi = -yi / (d3.dy / d3.dx);
-
-                    pi1 = { x: xi, y: yi };
-                    pi2 = { x: pi1.x + canvasSize.width, y: pi1.y + canvasSize.height };
+            if (d.dx === 0 && Math.abs(d.dy) <= maxDistance) {
+                if (begin.y > end.y) {
+                    pi1 = { x: begin.x, y: canvasSize.height };
+                    pi2 = { x: end.x, y: 0 };
+                } else {
+                    pi1 = { x: begin.x, y: 0 };
+                    pi2 = { x: end.x, y: canvasSize.height };
                 }
+
+                break;
+            } else if (d.dy === 0 && Math.abs(d.dx) <= maxDistance) {
+                if (begin.x > end.x) {
+                    pi1 = { x: canvasSize.width, y: begin.y };
+                    pi2 = { x: 0, y: end.y };
+                } else {
+                    pi1 = { x: 0, y: begin.y };
+                    pi2 = { x: canvasSize.width, y: end.y };
+                }
+
+                break;
+            } else if (d.distance <= maxDistance) {
+                const yi = begin.y - (d.dy / d.dx) * begin.x,
+                    xi = -yi / (d.dy / d.dx);
+
+                pi1 = { x: xi, y: yi };
+                pi2 = { x: pi1.x + offset.x, y: pi1.y + offset.y };
+
+                break;
             }
         }
 

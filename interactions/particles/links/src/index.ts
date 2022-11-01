@@ -1,5 +1,5 @@
 import type { Engine } from "tsparticles-engine";
-import { loadInteraction } from "./interaction";
+import { loadInteraction } from "./Linker";
 import { loadPlugin } from "./plugin";
 
 export async function loadParticlesLinksInteraction(engine: Engine): Promise<void> {
