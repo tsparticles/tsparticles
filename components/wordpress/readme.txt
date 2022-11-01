@@ -63,7 +63,7 @@ Nothing to say
 
 = 2.4.0 =
 
-* New Features
+## New Features
 
 - Added `reset` method to updaters, this method will be called after a particle loses a life.
 - Created the motion plugin for handling motion sickness, I moved this feature from the engine to a plugin since I prefer to have it more customizable. Everyone now can create their own motion sickness plugin, instead of having a standard behavior for everyone
@@ -76,13 +76,13 @@ Nothing to say
 - Changed collision absorb code, added `absorb.speed` option to `collisions` section
 - Added delay to root options, fixes #4766
 
-* Bug Fixes
+## Bug Fixes
 
 - Fixed infection plugin
 - Fixed issue with polygon mask when particles bounce on the polygon edges
 - Fixed issue with `rgb()`, `hsl()` and `hsv()` values in color option values
 
-* Other Changes
+## Other Changes
 
 - Refactored plugins to avoid passing options in init functions since it's no more necessary
 - Removed `initAsync` function from plugins, standard `init` is now async for all plugins
@@ -91,23 +91,25 @@ Nothing to say
 
 = 2.3.5 =
 
-* Bug Fixes
+## Bug Fixes
 
 - Fixed issue when loading Absorbers and Emitters options
 
 = 2.3.4 =
 
-* Bug Fixes
+## Bug Fixes
 
 - Handling "mid" value in links color value
 - Fixed links id generation algorithm, it could improve links performances
 
-* Other Changes
+## Other Changes
 
 - Moved some specific code to correct plugins
 
 = 2.3.3 =
-* Release
+
+## Release
 
 = 2.3.1 =
-* Release
+
+## Release
