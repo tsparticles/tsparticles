@@ -1,6 +1,6 @@
 {
     "name": "tsparticles-preset-stars",
-    "version": "2.4.0",
+    "version": "2.5.0",
     "description": "tsParticles stars preset",
     "homepage": "https://particles.js.org",
     "scripts": {
@@ -121,12 +121,12 @@
         "webpack-tsparticles-plugin": "^1.4.3"
     },
     "dependencies": {
-        "tsparticles-engine": "workspace:^2.4.0",
-        "tsparticles-move-base": "workspace:^2.4.0",
-        "tsparticles-shape-circle": "workspace:^2.4.0",
-        "tsparticles-updater-color": "workspace:^2.4.0",
-        "tsparticles-updater-opacity": "workspace:^2.4.0",
-        "tsparticles-updater-out-modes": "workspace:^2.4.0",
-        "tsparticles-updater-size": "workspace:^2.4.0"
+        "tsparticles-engine": "workspace:^2.5.0",
+        "tsparticles-move-base": "workspace:^2.5.0",
+        "tsparticles-shape-circle": "workspace:^2.5.0",
+        "tsparticles-updater-color": "workspace:^2.5.0",
+        "tsparticles-updater-opacity": "workspace:^2.5.0",
+        "tsparticles-updater-out-modes": "workspace:^2.5.0",
+        "tsparticles-updater-size": "workspace:^2.5.0"
     }
 }

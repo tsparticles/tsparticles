@@ -1,6 +1,6 @@
 {
     "name": "cra-template-particles",
-    "version": "2.4.0",
+    "version": "2.5.0",
     "description": "Official React tsParticles template",
     "keywords": [
         "front-end",
@@ -82,10 +82,10 @@
         }
     ],
     "dependencies": {
-        "react-particles": "workspace:^2.4.0",
+        "react-particles": "workspace:^2.5.0",
         "tslib": "^2.4.1",
-        "tsparticles": "workspace:^2.4.0",
-        "tsparticles-engine": "workspace:^2.4.0"
+        "tsparticles": "workspace:^2.5.0",
+        "tsparticles-engine": "workspace:^2.5.0"
     },
     "devDependencies": {
         "fs-extra": "^10.1.0"

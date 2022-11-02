@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-external-grab@2.4.0...tsparticles-interaction-external-grab@2.5.0) (2022-11-02)
+
+**Note:** Version bump only for package tsparticles-interaction-external-grab
+
 # [2.4.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-external-grab@2.3.3...tsparticles-interaction-external-grab@2.4.0) (2022-10-30)
 
 ### Features

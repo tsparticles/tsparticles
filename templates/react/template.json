@@ -1,9 +1,9 @@
 {
   "package": {
     "dependencies": {
-      "react-particles": "workspace:^2.4.0",
-      "tsparticles-engine": "workspace:^2.4.0",
-      "tsparticles": "workspace:^2.4.0",
+      "react-particles": "workspace:^2.5.0",
+      "tsparticles-engine": "workspace:^2.5.0",
+      "tsparticles": "workspace:^2.5.0",
       "tslib": "^2.4.0"
     }
   }

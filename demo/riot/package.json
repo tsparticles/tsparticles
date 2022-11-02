@@ -1,7 +1,7 @@
 {
     "name": "riot-particles-demo",
     "private": true,
-    "version": "2.4.0",
+    "version": "2.5.0",
     "description": "",
     "main": "index.js",
     "scripts": {
@@ -38,8 +38,8 @@
         "@riotjs/route": "^8.0.2",
         "path": "^0.12.7",
         "riot": "^7.0.7",
-        "riot-particles": "workspace:^2.4.0",
-        "tsparticles": "workspace:^2.4.0",
-        "tsparticles-engine": "workspace:^2.4.0"
+        "riot-particles": "workspace:^2.5.0",
+        "tsparticles": "workspace:^2.5.0",
+        "tsparticles-engine": "workspace:^2.5.0"
     }
 }

@@ -1,6 +1,6 @@
 {
     "name": "tsparticles-plugin-absorbers",
-    "version": "2.4.0",
+    "version": "2.5.0",
     "description": "tsParticles absorbers plugin",
     "homepage": "https://particles.js.org",
     "scripts": {
@@ -111,6 +111,6 @@
         "webpack-tsparticles-plugin": "^1.4.3"
     },
     "dependencies": {
-        "tsparticles-engine": "workspace:^2.4.0"
+        "tsparticles-engine": "workspace:^2.5.0"
     }
 }

@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-preset-fountain",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "description": "tsParticles fountain preset",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -83,14 +83,14 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "workspace:^2.4.0",
-    "tsparticles-move-base": "workspace:^2.4.0",
-    "tsparticles-plugin-emitters": "workspace:^2.4.0",
-    "tsparticles-shape-circle": "workspace:^2.4.0",
-    "tsparticles-updater-color": "workspace:^2.4.0",
-    "tsparticles-updater-destroy": "workspace:^2.4.0",
-    "tsparticles-updater-opacity": "workspace:^2.4.0",
-    "tsparticles-updater-out-modes": "workspace:^2.4.0",
-    "tsparticles-updater-size": "workspace:^2.4.0"
+    "tsparticles-engine": "workspace:^2.5.0",
+    "tsparticles-move-base": "workspace:^2.5.0",
+    "tsparticles-plugin-emitters": "workspace:^2.5.0",
+    "tsparticles-shape-circle": "workspace:^2.5.0",
+    "tsparticles-updater-color": "workspace:^2.5.0",
+    "tsparticles-updater-destroy": "workspace:^2.5.0",
+    "tsparticles-updater-opacity": "workspace:^2.5.0",
+    "tsparticles-updater-out-modes": "workspace:^2.5.0",
+    "tsparticles-updater-size": "workspace:^2.5.0"
   }
 }

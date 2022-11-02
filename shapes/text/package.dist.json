@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-text",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "description": "tsParticles text shape",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -46,6 +46,6 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "workspace:^2.4.0"
+    "tsparticles-engine": "workspace:^2.5.0"
   }
 }

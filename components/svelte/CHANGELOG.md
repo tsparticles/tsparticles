@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/matteobruni/tsparticles/compare/svelte-particles@2.4.0...svelte-particles@2.5.0) (2022-11-02)
+
+**Note:** Version bump only for package svelte-particles
+
 # [2.4.0](https://github.com/matteobruni/tsparticles/compare/svelte-particles@2.3.3...svelte-particles@2.4.0) (2022-10-30)
 
 **Note:** Version bump only for package svelte-particles
