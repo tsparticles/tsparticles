@@ -3,13 +3,13 @@
     "version": "2.4.0",
     "private": true,
     "devDependencies": {
-        "@types/jest": "^29.2.0",
-        "@types/node": "^18.11.7",
-        "solid-js": "^1.6.0",
-        "solid-particles": "^2.4.0",
+        "@types/jest": "^29.2.1",
+        "@types/node": "^18.11.9",
+        "solid-js": "^1.6.1",
+        "solid-particles": "workspace:^2.4.0",
         "solid-scripts": "^0.0.61",
-        "tsparticles": "^2.4.0",
-        "tsparticles-engine": "^2.4.0",
+        "tsparticles": "workspace:^2.4.0",
+        "tsparticles-engine": "workspace:^2.4.0",
         "typescript": "^4.8.4"
     },
     "scripts": {

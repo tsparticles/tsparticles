@@ -90,20 +90,20 @@
         "riot": ">=5"
     },
     "dependencies": {
-        "tsparticles-engine": "^2.4.0"
+        "tsparticles-engine": "workspace:^2.4.0"
     },
     "devDependencies": {
         "@babel/preset-typescript": "^7.18.6",
         "@riotjs/cli": "^6.1.0",
-        "@riotjs/compiler": "^6.4.0",
+        "@riotjs/compiler": "^6.4.1",
         "@tsparticles/prettier-config": "^1.3.1",
         "chai": "^4.3.6",
         "esm": "^3.2.25",
-        "jsdom": "^20.0.1",
+        "jsdom": "^20.0.2",
         "jsdom-global": "^3.0.2",
         "mocha": "^10.1.0",
         "nyc": "^15.1.0",
         "prettier": "^2.7.1",
-        "riot": "^7.0.6"
+        "riot": "^7.0.7"
     }
 }

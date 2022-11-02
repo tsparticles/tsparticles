@@ -14,11 +14,11 @@
     "author": "Matteo Bruni <matteo.bruni@me.com>",
     "license": "MIT",
     "dependencies": {
-        "tsparticles": "^2.4.0",
-        "tsparticles-engine": "^2.4.0"
+        "tsparticles": "workspace:^2.4.0",
+        "tsparticles-engine": "workspace:^2.4.0"
     },
     "devDependencies": {
-        "electron": "^21.2.0",
+        "electron": "^21.2.2",
         "webpack": "^5.74.0"
     }
 }

@@ -82,6 +82,6 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.4.0"
+    "tsparticles-engine": "workspace:^2.4.0"
   }
 }
