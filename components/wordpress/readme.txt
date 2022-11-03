@@ -61,6 +61,12 @@ Nothing to say
 
 == Changelog ==
 
+= 2.5.1 =
+
+## Bug Fixes
+
+- Fixed issue with ES modules
+
 = 2.4.0 =
 
 ## New Features
