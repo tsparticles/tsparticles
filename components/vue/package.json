@@ -98,7 +98,7 @@
         "vue": "<3"
     },
     "dependencies": {
-        "tsparticles-engine": "workspace:^2.5.0",
+        "tsparticles-engine": "^2.5.0",
         "vue-class-component": "^7.2.6",
         "vue-property-decorator": "^9.1.2"
     },

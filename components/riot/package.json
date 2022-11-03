@@ -90,7 +90,7 @@
         "riot": ">=5"
     },
     "dependencies": {
-        "tsparticles-engine": "workspace:^2.5.0"
+        "tsparticles-engine": "^2.5.0"
     },
     "devDependencies": {
         "@babel/preset-typescript": "^7.18.6",

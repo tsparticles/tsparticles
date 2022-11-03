@@ -14,9 +14,9 @@
     "license": "MIT",
     "dependencies": {
         "inferno": "^8.0.4",
-        "inferno-particles": "workspace:^2.5.0",
-        "tsparticles": "workspace:^2.5.0",
-        "tsparticles-engine": "workspace:^2.5.0"
+        "inferno-particles": "^2.5.0",
+        "tsparticles": "^2.5.0",
+        "tsparticles-engine": "^2.5.0"
     },
     "devDependencies": {
         "@babel/core": "^7.19.6",

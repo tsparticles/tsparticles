@@ -44,10 +44,10 @@
     },
     "dependencies": {
         "preact": "^10.11.2",
-        "preact-particles": "workspace:^2.5.0",
+        "preact-particles": "^2.5.0",
         "preact-render-to-string": "^5.2.6",
         "preact-router": "^4.1.0",
-        "tsparticles": "workspace:^2.5.0",
-        "tsparticles-engine": "workspace:^2.5.0"
+        "tsparticles": "^2.5.0",
+        "tsparticles-engine": "^2.5.0"
     }
 }

@@ -85,7 +85,7 @@
         "@angular/router": "~14.2.8",
         "rxjs": "~7.5.7",
         "tslib": "^2.4.1",
-        "tsparticles-engine": "workspace:^2.5.0",
+        "tsparticles-engine": "^2.5.0",
         "zone.js": "~0.11.8"
     },
     "devDependencies": {

@@ -39,16 +39,16 @@
         "minify": "^9.1.0",
         "rimraf": "^3.0.2",
         "sass": "^1.55.0",
-        "tsparticles": "workspace:^2.5.0",
-        "tsparticles-engine": "workspace:^2.5.0",
-        "tsparticles-interaction-light": "workspace:^2.5.0",
-        "tsparticles-interaction-particles-repulse": "workspace:^2.5.0",
-        "tsparticles-path-curves": "workspace:^2.5.0",
-        "tsparticles-path-perlin-noise": "workspace:^2.5.0",
-        "tsparticles-path-polygon": "workspace:^2.5.0",
-        "tsparticles-path-simplex-noise": "workspace:^2.5.0",
-        "tsparticles-plugin-infection": "workspace:^2.5.0",
-        "tsparticles-updater-gradient": "workspace:^2.5.0",
-        "tsparticles-updater-orbit": "workspace:^2.5.0"
+        "tsparticles": "^2.5.0",
+        "tsparticles-engine": "^2.5.0",
+        "tsparticles-interaction-light": "^2.5.0",
+        "tsparticles-interaction-particles-repulse": "^2.5.0",
+        "tsparticles-path-curves": "^2.5.0",
+        "tsparticles-path-perlin-noise": "^2.5.0",
+        "tsparticles-path-polygon": "^2.5.0",
+        "tsparticles-path-simplex-noise": "^2.5.0",
+        "tsparticles-plugin-infection": "^2.5.0",
+        "tsparticles-updater-gradient": "^2.5.0",
+        "tsparticles-updater-orbit": "^2.5.0"
     }
 }

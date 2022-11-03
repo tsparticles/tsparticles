@@ -110,16 +110,16 @@
         "webpack-tsparticles-plugin": "^1.4.3"
     },
     "dependencies": {
-        "tsparticles-engine": "workspace:^2.5.0",
-        "tsparticles-interaction-external-trail": "workspace:^2.5.0",
-        "tsparticles-plugin-absorbers": "workspace:^2.5.0",
-        "tsparticles-plugin-emitters": "workspace:^2.5.0",
-        "tsparticles-slim": "workspace:^2.5.0",
-        "tsparticles-updater-destroy": "workspace:^2.5.0",
-        "tsparticles-updater-roll": "workspace:^2.5.0",
-        "tsparticles-updater-tilt": "workspace:^2.5.0",
-        "tsparticles-updater-twinkle": "workspace:^2.5.0",
-        "tsparticles-updater-wobble": "workspace:^2.5.0"
+        "tsparticles-engine": "^2.5.0",
+        "tsparticles-interaction-external-trail": "^2.5.0",
+        "tsparticles-plugin-absorbers": "^2.5.0",
+        "tsparticles-plugin-emitters": "^2.5.0",
+        "tsparticles-slim": "^2.5.0",
+        "tsparticles-updater-destroy": "^2.5.0",
+        "tsparticles-updater-roll": "^2.5.0",
+        "tsparticles-updater-tilt": "^2.5.0",
+        "tsparticles-updater-twinkle": "^2.5.0",
+        "tsparticles-updater-wobble": "^2.5.0"
     },
     "publishConfig": {
         "directory": "dist",
