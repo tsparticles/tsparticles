@@ -1,7 +1,7 @@
 {
     "name": "riot-particles-demo",
     "private": true,
-    "version": "2.4.0",
+    "version": "2.5.1",
     "description": "",
     "main": "index.js",
     "scripts": {
@@ -16,14 +16,14 @@
     "author": "Matteo Bruni <matteo.bruni@me.com>",
     "license": "MIT",
     "devDependencies": {
-        "@riotjs/compiler": "^6.4.0",
+        "@riotjs/compiler": "^6.4.1",
         "@riotjs/register": "^6.0.1",
         "@riotjs/webpack-loader": "^6.0.0",
         "chai": "^4.3.6",
         "css-loader": "^6.7.1",
         "esm": "^3.2.25",
         "html-webpack-plugin": "^5.5.0",
-        "jsdom": "^20.0.1",
+        "jsdom": "^20.0.2",
         "jsdom-global": "^3.0.2",
         "mini-css-extract-plugin": "^2.6.1",
         "mocha": "^10.1.0",
@@ -37,9 +37,9 @@
         "@riotjs/lazy": "^2.0.2",
         "@riotjs/route": "^8.0.2",
         "path": "^0.12.7",
-        "riot": "^7.0.6",
-        "riot-particles": "^2.4.0",
-        "tsparticles": "^2.4.0",
-        "tsparticles-engine": "^2.4.0"
+        "riot": "^7.0.7",
+        "riot-particles": "^2.5.1",
+        "tsparticles": "^2.5.1",
+        "tsparticles-engine": "^2.5.0"
     }
 }

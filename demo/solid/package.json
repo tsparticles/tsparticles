@@ -1,15 +1,15 @@
 {
     "name": "solid-particles-demo",
-    "version": "2.4.0",
+    "version": "2.5.1",
     "private": true,
     "devDependencies": {
-        "@types/jest": "^29.2.0",
-        "@types/node": "^18.11.7",
-        "solid-js": "^1.6.0",
-        "solid-particles": "^2.4.0",
+        "@types/jest": "^29.2.1",
+        "@types/node": "^18.11.9",
+        "solid-js": "^1.6.1",
+        "solid-particles": "^2.5.1",
         "solid-scripts": "^0.0.61",
-        "tsparticles": "^2.4.0",
-        "tsparticles-engine": "^2.4.0",
+        "tsparticles": "^2.5.1",
+        "tsparticles-engine": "^2.5.0",
         "typescript": "^4.8.4"
     },
     "scripts": {
