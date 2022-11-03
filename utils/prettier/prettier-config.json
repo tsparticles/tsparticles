@@ -6,13 +6,13 @@
     {
       "files": "*.ts",
       "options": {
-        "tabWidth": 1
+        "tabWidth": 4
       }
     },
     {
       "files": "*.js",
       "options": {
-        "tabWidth": 1
+        "tabWidth": 4
       }
     }
   ]
