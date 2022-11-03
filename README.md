@@ -156,13 +156,13 @@ Starting from version 1.12.11 `import` and `require` can be used to import `tsPa
 
 Now you can write something like this
 
-  ```javascript
-  const tsParticles = require("tsparticles-engine");
+```javascript
+const tsParticles = require("tsparticles-engine");
 
 // or
 
-import {tsParticles} from "tsparticles-engine";
-  ```
+import { tsParticles } from "tsparticles-engine";
+```
 
 The imported `tsParticles` is the same instance you have when including the script.
 
