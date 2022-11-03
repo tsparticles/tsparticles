@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-path-simplex-noise",
-  "version": "2.4.0",
+  "version": "2.5.1",
   "description": "tsParticles simplex noise path",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -88,6 +88,6 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.4.0"
+    "tsparticles-engine": "^2.5.0"
   }
 }

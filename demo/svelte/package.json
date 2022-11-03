@@ -1,6 +1,6 @@
 {
     "name": "svelte-demo",
-    "version": "2.4.0",
+    "version": "2.5.1",
     "private": true,
     "scripts": {
         "build": "rollup -c",
@@ -14,7 +14,7 @@
         "@rollup/plugin-node-resolve": "^15.0.1",
         "@rollup/plugin-typescript": "^9.0.2",
         "@tsconfig/svelte": "^3.0.0",
-        "rollup": "^3.2.3",
+        "rollup": "^3.2.5",
         "rollup-plugin-css-only": "^4.2.0",
         "rollup-plugin-livereload": "^2.0.5",
         "rollup-plugin-svelte": "^7.1.0",
@@ -22,12 +22,12 @@
         "svelte": "^3.52.0",
         "svelte-check": "^2.9.2",
         "svelte-preprocess": "^4.10.7",
-        "tslib": "^2.4.0",
+        "tslib": "^2.4.1",
         "typescript": "^4.8.4"
     },
     "dependencies": {
         "sirv-cli": "^2.0.2",
-        "svelte-particles": "^2.4.0",
-        "tsparticles": "^2.4.0"
+        "svelte-particles": "^2.5.1",
+        "tsparticles": "^2.5.1"
     }
 }
