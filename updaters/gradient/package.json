@@ -1,6 +1,6 @@
 {
     "name": "tsparticles-updater-gradient",
-    "version": "2.5.0",
+    "version": "2.5.1",
     "description": "tsParticles particles gradient updater",
     "homepage": "https://particles.js.org",
     "scripts": {

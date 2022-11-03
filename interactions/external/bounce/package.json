@@ -1,6 +1,6 @@
 {
     "name": "tsparticles-interaction-external-bounce",
-    "version": "2.5.0",
+    "version": "2.5.1",
     "description": "tsParticles bounce external interaction",
     "homepage": "https://particles.js.org",
     "scripts": {

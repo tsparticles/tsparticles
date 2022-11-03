@@ -1,6 +1,6 @@
 {
     "name": "tsparticles-shape-polygon",
-    "version": "2.5.0",
+    "version": "2.5.1",
     "description": "tsParticles polygon shape",
     "homepage": "https://particles.js.org",
     "scripts": {

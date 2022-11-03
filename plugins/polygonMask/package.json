@@ -1,6 +1,6 @@
 {
     "name": "tsparticles-plugin-polygon-mask",
-    "version": "2.5.0",
+    "version": "2.5.1",
     "description": "tsParticles polygon mask plugin",
     "homepage": "https://particles.js.org",
     "scripts": {

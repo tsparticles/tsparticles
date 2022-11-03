@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-plugin-canvas-mask",
-  "version": "2.5.0",
+  "version": "2.5.1",
   "description": "tsParticles canvas mask plugin",
   "homepage": "https://particles.js.org",
   "repository": {

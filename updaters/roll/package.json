@@ -1,6 +1,6 @@
 {
     "name": "tsparticles-updater-roll",
-    "version": "2.5.0",
+    "version": "2.5.1",
     "description": "tsParticles particles roll updater",
     "homepage": "https://particles.js.org",
     "scripts": {
