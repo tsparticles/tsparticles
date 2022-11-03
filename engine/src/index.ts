@@ -111,6 +111,7 @@ export * from "./Options/Classes/Particles/Stroke";
 export * from "./Options/Classes/Particles/Move/MoveAttract";
 export * from "./Options/Classes/Particles/Move/Move";
 export * from "./Options/Classes/Particles/Move/MoveAngle";
+export * from "./Options/Classes/Particles/Move/MoveCenter";
 export * from "./Options/Classes/Particles/Move/MoveGravity";
 export * from "./Options/Classes/Particles/Move/OutModes";
 export * from "./Options/Classes/Particles/Move/Path/MovePath";
@@ -160,6 +161,7 @@ export * from "./Options/Interfaces/Particles/IStroke";
 export * from "./Options/Interfaces/Particles/Move/IMoveAttract";
 export * from "./Options/Interfaces/Particles/Move/IMove";
 export * from "./Options/Interfaces/Particles/Move/IMoveAngle";
+export * from "./Options/Interfaces/Particles/Move/IMoveCenter";
 export * from "./Options/Interfaces/Particles/Move/IMoveGravity";
 export * from "./Options/Interfaces/Particles/Move/Path/IMovePath";
 export * from "./Options/Interfaces/Particles/Move/IOutModes";
@@ -210,3 +212,5 @@ export type { Engine, Engine as Main };
  * tsParticles source options alias type, supporting partial objects
  */
 export type ISourceOptions = RecursivePartial<IOptions>;
+export type { ICollisionsAbsorb } from "./Options/Interfaces/Particles/Collisions/ICollisionsAbsorb";
+export { CollisionsAbsorb } from "./Options/Classes/Particles/Collisions/CollisionsAbsorb";

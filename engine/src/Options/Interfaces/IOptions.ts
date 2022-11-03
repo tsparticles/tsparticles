@@ -43,6 +43,11 @@ export interface IOptions {
     backgroundMode: RecursivePartial<IFullScreen> | boolean;
 
     /**
+     * The initial delay before starting the animation
+     */
+    delay: RangeValue;
+
+    /**
      * Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.
      */
     detectRetina: boolean;

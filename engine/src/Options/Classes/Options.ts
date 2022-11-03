@@ -16,6 +16,7 @@ import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 import { Theme } from "./Theme/Theme";
 import { ThemeMode } from "../../Enums/Modes/ThemeMode";
 import { loadParticlesOptions } from "../../Utils/OptionsUtils";
+import { setRangeValue } from "../../Utils/NumberUtils";
 
 interface DefaultThemes {
     dark?: string;
@@ -33,6 +34,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     background;
     backgroundMask;
     defaultThemes: DefaultThemes;
+    delay: RangeValue;
     detectRetina;
     duration: RangeValue;
     fpsLimit;
@@ -59,6 +61,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.background = new Background();
         this.backgroundMask = new BackgroundMask();
         this.defaultThemes = {};
+        this.delay = 0;
         this.fullScreen = new FullScreen();
         this.detectRetina = true;
         this.duration = 0;
@@ -138,6 +141,10 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
             this.autoPlay = data.autoPlay;
         }
 
+        if (data.delay !== undefined) {
+            this.delay = setRangeValue(data.delay);
+        }
+
         const detectRetina = data.detectRetina ?? data.retina_detect;
 
         if (detectRetina !== undefined) {
@@ -145,7 +152,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
 
         if (data.duration !== undefined) {
-            this.duration = data.duration;
+            this.duration = setRangeValue(data.duration);
         }
 
         const fpsLimit = data.fpsLimit ?? data.fps_limit;

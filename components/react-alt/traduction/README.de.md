@@ -30,9 +30,9 @@ yarn add react-tsparticles
 
 Ab Version 1.17.0 gibt es zwei offizielle `create-react-app` Vorlagen:
 
-- `cra-template-particles`: Einfache ReactJS-Vorlage mit Vollbildschirm-Partikeln, unter Verwendung von JavaScript
+-   `cra-template-particles`: Einfache ReactJS-Vorlage mit Vollbildschirm-Partikeln, unter Verwendung von JavaScript
 
-- `cra-template-particles-typescript`: Einfache ReactJS-Vorlage mit Vollbildpartikeln, unter Verwendung von TypeScript
+-   `cra-template-particles-typescript`: Einfache ReactJS-Vorlage mit Vollbildpartikeln, unter Verwendung von TypeScript
 
 Du kannst sie einfach mit dem Befehl `create-react-app` wie folgt installieren:
 
@@ -60,134 +60,134 @@ Beispiel:
 import Particles from "react-tsparticles";
 
 const App = () => {
-  const particlesInit = (main) => {
-    console.log(main);
+    const particlesInit = main => {
+        console.log(main);
 
-    // Sie können die tsParticles-Instanz (main) hier initialisieren und benutzerdefinierte Formen oder Voreinstellungen hinzufügen
-  }
-  
-  const particlesLoaded = (container) => {
-    console.log(container);
-  }
-  return (
-    <Particles
-      id="tsparticles"
-      init={particlesInit}
-      loaded={particlesLoaded}
-      options={{
-        background: {
-          color: {
-            value: "#0d47a1",
-          },
-        },
+        // Sie können die tsParticles-Instanz (main) hier initialisieren und benutzerdefinierte Formen oder Voreinstellungen hinzufügen
+    };
 
-        fpsLimit: 120,
+    const particlesLoaded = container => {
+        console.log(container);
+    };
+    return (
+        <Particles
+            id="tsparticles"
+            init={particlesInit}
+            loaded={particlesLoaded}
+            options={{
+                background: {
+                    color: {
+                        value: "#0d47a1",
+                    },
+                },
 
-        interactivity: {
-          events: {
-            onClick: {
-              enable: true,
+                fpsLimit: 120,
 
-              mode: "push",
-            },
+                interactivity: {
+                    events: {
+                        onClick: {
+                            enable: true,
 
-            onHover: {
-              enable: true,
+                            mode: "push",
+                        },
 
-              mode: "repulse",
-            },
+                        onHover: {
+                            enable: true,
 
-            resize: true,
-          },
+                            mode: "repulse",
+                        },
 
-          modes: {
-            bubble: {
-              distance: 400,
+                        resize: true,
+                    },
 
-              duration: 2,
+                    modes: {
+                        bubble: {
+                            distance: 400,
 
-              opacity: 0.8,
+                            duration: 2,
 
-              size: 40,
-            },
+                            opacity: 0.8,
 
-            push: {
-              quantity: 4,
-            },
+                            size: 40,
+                        },
 
-            repulse: {
-              distance: 200,
+                        push: {
+                            quantity: 4,
+                        },
 
-              duration: 0.4,
-            },
-          },
-        },
+                        repulse: {
+                            distance: 200,
 
-        particles: {
-          color: {
-            value: "#ffffff",
-          },
+                            duration: 0.4,
+                        },
+                    },
+                },
 
-          links: {
-            color: "#ffffff",
+                particles: {
+                    color: {
+                        value: "#ffffff",
+                    },
 
-            distance: 150,
+                    links: {
+                        color: "#ffffff",
 
-            enable: true,
+                        distance: 150,
 
-            opacity: 0.5,
+                        enable: true,
 
-            width: 1,
-          },
+                        opacity: 0.5,
 
-          collisions: {
-            enable: true,
-          },
+                        width: 1,
+                    },
 
-          move: {
-            direction: "none",
+                    collisions: {
+                        enable: true,
+                    },
 
-            enable: true,
+                    move: {
+                        direction: "none",
 
-            outMode: "bounce",
+                        enable: true,
 
-            random: false,
+                        outMode: "bounce",
 
-            speed: 6,
+                        random: false,
 
-            straight: false,
-          },
+                        speed: 6,
 
-          number: {
-            density: {
-              enable: true,
+                        straight: false,
+                    },
 
-              area: 800,
-            },
+                    number: {
+                        density: {
+                            enable: true,
 
-            value: 80,
-          },
+                            area: 800,
+                        },
 
-          opacity: {
-            value: 0.5,
-          },
+                        value: 80,
+                    },
 
-          shape: {
-            type: "circle",
-          },
+                    opacity: {
+                        value: 0.5,
+                    },
 
-          size: {
-            random: true,
+                    shape: {
+                        type: "circle",
+                    },
 
-            value: 5,
-          },
-        },
+                    size: {
+                        random: true,
 
-        detectRetina: true,
-      }}
-    />
-  );
-}
+                        value: 5,
+                    },
+                },
+
+                detectRetina: true,
+            }}
+        />
+    );
+};
 ```
 
 ### Props

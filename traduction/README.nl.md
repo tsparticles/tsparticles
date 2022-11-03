@@ -95,7 +95,6 @@ Laad tsParticles en configureer de deeltjes:
 **index.html**
 
 ```html
-
 <div id="tsparticles"></div>
 
 <script src="tsparticles.min.js"></script>
@@ -109,10 +108,10 @@ Laad tsParticles en configureer de deeltjes:
 
 tsParticles
     .loadJSON("tsparticles", "presets/default.json")
-    .then((container) => {
+    .then(container => {
         console.log("callback - tsparticles config loaded");
     })
-    .catch((error) => {
+    .catch(error => {
         console.error(error);
     });
 
@@ -246,12 +245,12 @@ instructies vinden
 ## Templates and Resources
 
 Je kan wat tsParticles gerelateerde sjablonen [hier](https://github.com/tsparticles/templates) vinden. De sjablonen zijn
-gemaakt voor *Vanilla Javascript*, *ReactJS*, *VueJS*, *Angular*, *SvelteJS* en andere raamwerken,
+gemaakt voor _Vanilla Javascript_, _ReactJS_, _VueJS_, _Angular_, _SvelteJS_ en andere raamwerken,
 
 De sjablonen kunnen wat variëren, nieuwere kunnen worden gemaakt en ouderen geüpdated met de laatste features of
 veranderd naar een betere stijl. Bekijk ze van tijd tot tijd.
 
-Als je een goed design hebt gemaakt met *tsParticles*, maak gerust een pull request met je coole sjabloon. Je wordt
+Als je een goed design hebt gemaakt met _tsParticles_, maak gerust een pull request met je coole sjabloon. Je wordt
 gecrediteerd als de auteur.
 
 <https://github.com/tsparticles/templates>

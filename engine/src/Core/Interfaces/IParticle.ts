@@ -35,7 +35,7 @@ export interface IParticle {
     readonly retina: IParticleRetinaProps;
     readonly roll?: IParticleRoll;
     readonly rotation: number;
-    readonly shadowColor: IRgb | undefined;
+    readonly shadowColor?: IRgb;
     readonly shape?: string;
     readonly shapeData?: IShapeValues;
     readonly sides: number;

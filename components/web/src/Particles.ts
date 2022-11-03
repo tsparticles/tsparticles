@@ -16,7 +16,9 @@ export class Particles extends HTMLElement {
 
         this.container.current?.destroy();
 
-        window.tsParticles.setJSON(this.id, this, this._url ?? undefined).then(container => this.notifyParticlesLoaded(container));
+        window.tsParticles
+            .setJSON(this.id, this, this._url ?? undefined)
+            .then(container => this.notifyParticlesLoaded(container));
     }
 
     get options(): ISourceOptions | undefined {
@@ -35,8 +37,8 @@ export class Particles extends HTMLElement {
     private _url?: string | null;
 
     public container: {
-        current?: Container
-    }
+        current?: Container;
+    };
 
     constructor() {
         super();
@@ -48,14 +50,15 @@ export class Particles extends HTMLElement {
         if (options) {
             try {
                 this._options = JSON.parse(options);
-            } catch {
-            }
+            } catch {}
         }
         this._url = this.getAttribute("url");
 
-        this.dispatchEvent(new CustomEvent("particlesInit", {
-            detail: window.tsParticles
-        }));
+        this.dispatchEvent(
+            new CustomEvent("particlesInit", {
+                detail: window.tsParticles,
+            })
+        );
     }
 
     connectedCallback() {
@@ -64,18 +67,24 @@ export class Particles extends HTMLElement {
         }
 
         if (this._url) {
-            window.tsParticles.setJSON(this.id, this, this._url).then(container => this.notifyParticlesLoaded(container));
+            window.tsParticles
+                .setJSON(this.id, this, this._url)
+                .then(container => this.notifyParticlesLoaded(container));
         } else if (this._options) {
-            window.tsParticles.set(this.id, this, this._options).then(container => this.notifyParticlesLoaded(container));
+            window.tsParticles
+                .set(this.id, this, this._options)
+                .then(container => this.notifyParticlesLoaded(container));
         }
     }
 
     private notifyParticlesLoaded(container?: Container): void {
         this.container.current = container;
 
-        this.dispatchEvent(new CustomEvent("particlesLoaded", {
-            detail: container
-        }));
+        this.dispatchEvent(
+            new CustomEvent("particlesLoaded", {
+                detail: container,
+            })
+        );
     }
 }
 

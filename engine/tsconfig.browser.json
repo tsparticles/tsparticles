@@ -2,7 +2,6 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "module": "ESNext",
-    "outDir": "./dist/browser",
-    "removeComments": true
+    "outDir": "./dist/browser"
   }
 }

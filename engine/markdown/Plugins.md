@@ -26,10 +26,8 @@ tsParticles.addShape("spiral", function (context, particle, radius, opacity) {
 
   for (let i = 0; i < realWidth * 10; i++) {
     const angle = 0.1 * i;
-    const x =
-      (shapeData.innerRadius + shapeData.lineSpacing * angle) * Math.cos(angle);
-    const y =
-      (shapeData.innerRadius + shapeData.lineSpacing * angle) * Math.sin(angle);
+    const x = (shapeData.innerRadius + shapeData.lineSpacing * angle) * Math.cos(angle);
+    const y = (shapeData.innerRadius + shapeData.lineSpacing * angle) * Math.sin(angle);
 
     context.lineTo(x, y);
   }
@@ -46,12 +44,8 @@ class SpiralDrawer {
 
     for (let i = 0; i < realWidth * 10; i++) {
       const angle = 0.1 * i;
-      const x =
-        (shapeData.innerRadius + shapeData.lineSpacing * angle) *
-        Math.cos(angle);
-      const y =
-        (shapeData.innerRadius + shapeData.lineSpacing * angle) *
-        Math.sin(angle);
+      const x = (shapeData.innerRadius + shapeData.lineSpacing * angle) * Math.cos(angle);
+      const y = (shapeData.innerRadius + shapeData.lineSpacing * angle) * Math.sin(angle);
 
       context.lineTo(x, y);
     }
@@ -69,20 +63,22 @@ _bubble.js_ - The custom shape script
 
 ```javascript
 tsParticles.addShape(
-    "bubble",
-    function (context, particle, radius) { // drawing function
-        context.arc(0, 0, radius, 0, Math.PI * 2, false);
-    },
-    undefined, // init function is not required
-    function (context, particle, radius) { // after effect function
-        context.save();
-        context.beginPath();
-        context.arc(radius / 3, -radius / 3, radius / 3, 0, Math.PI * 2, false);
-        context.closePath();
-        context.fillStyle = "#fff9";
-        context.fill();
-        context.restore();
-    }
+  "bubble",
+  function (context, particle, radius) {
+    // drawing function
+    context.arc(0, 0, radius, 0, Math.PI * 2, false);
+  },
+  undefined, // init function is not required
+  function (context, particle, radius) {
+    // after effect function
+    context.save();
+    context.beginPath();
+    context.arc(radius / 3, -radius / 3, radius / 3, 0, Math.PI * 2, false);
+    context.closePath();
+    context.fillStyle = "#fff9";
+    context.fill();
+    context.restore();
+  }
 );
 ```
 

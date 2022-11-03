@@ -11,43 +11,43 @@ Let's explore all valid values.
 ### hex short syntax
 
 ```javascript
-color: '#fff'
+color: "#fff";
 ```
 
 ### hex full syntax
 
 ```javascript
-color: '#ffffff'
+color: "#ffffff";
 ```
 
 ### rgb syntax
 
-*alpha will be ignored, there are `opacity` values for that*
+_alpha will be ignored, there are `opacity` values for that_
 
 ```javascript
-color: 'rgb(255, 255, 255)'
+color: "rgb(255, 255, 255)";
 ```
 
 ### hsl syntax
 
-*alpha will be ignored, there are `opacity` values for that*
+_alpha will be ignored, there are `opacity` values for that_
 
 ```javascript
-color: 'hsl(0, 100%, 100%)'
+color: "hsl(0, 100%, 100%)";
 ```
 
 ### hsv syntax
 
-*alpha will be ignored, there are `opacity` values for that*
+_alpha will be ignored, there are `opacity` values for that_
 
 ```javascript
-color: 'hsv(0°, 100%, 100%)'
+color: "hsv(0°, 100%, 100%)";
 ```
 
 ### random
 
 ```javascript
-random: 'random' // a random color will be picked
+random: "random"; // a random color will be picked
 ```
 
 That's the easier part, now we go deeper.
@@ -60,7 +60,7 @@ That's the easier part, now we go deeper.
 
 ```javascript
 color: {
-  value: '#fff' // I won't repeat myself, all the string values above will be valid here too
+    value: "#fff"; // I won't repeat myself, all the string values above will be valid here too
 }
 ```
 
@@ -111,7 +111,7 @@ color: {
 }
 ```
 
-*if `rgb` and `hsl` properties are set together only `rgb` will be used*
+_if `rgb` and `hsl` properties are set together only `rgb` will be used_
 
 ---
 

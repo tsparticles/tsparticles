@@ -8,7 +8,7 @@ export interface IParticlesProps {
 	options?: ISourceOptions;
 	url?: string;
 	params?: ISourceOptions;
-	style?: CSSProperties;
+	style?: Record<string, unknown>;
 	className?: string;
 	canvasClassName?: string;
 	container?: RefObject<Container>;

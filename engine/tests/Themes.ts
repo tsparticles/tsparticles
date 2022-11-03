@@ -102,7 +102,7 @@ describe("Themes", () => {
 
     it("Set theme", () => {
         options.setTheme();
-        const theme = options.themes.find((t) => t.default);
+        const theme = options.themes.find(t => t.default);
 
         expect(options.particles.color.value).to.be.equal(theme?.options?.particles?.color?.value);
     });
@@ -112,7 +112,7 @@ describe("Themes", () => {
 
         options.setTheme(themeName);
 
-        const theme = options.themes.find((t) => t.name === themeName);
+        const theme = options.themes.find(t => t.name === themeName);
 
         if (!theme?.options) {
             // no theme
@@ -127,7 +127,7 @@ describe("Themes", () => {
 
         options.setTheme(themeName);
 
-        const theme = options.themes.find((t) => t.name === themeName);
+        const theme = options.themes.find(t => t.name === themeName);
 
         if (!theme?.options) {
             // no theme

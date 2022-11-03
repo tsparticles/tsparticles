@@ -33,38 +33,38 @@
       }
     }
   },
-  "targetDependencies": {
-    "build": [
-      {
-        "target": "build",
-        "projects": "dependencies"
-      }
-    ],
-    "build:ci": [
-      {
-        "target": "build:ci",
-        "projects": "dependencies"
-      }
-    ],
-    "prepare": [
-      {
-        "target": "prepare",
-        "projects": "dependencies"
-      }
-    ],
-    "package": [
-      {
-        "target": "package",
-        "projects": "dependencies"
-      }
-    ]
-  },
   "affected": {
     "defaultBase": "main"
   },
   "pluginsConfig": {
     "@nrwl/js": {
       "analyzeSourceFiles": false
+    }
+  },
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "targetDefaults": {
+    "build": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "build:ci": {
+      "dependsOn": [
+        "^build:ci"
+      ]
+    },
+    "prepare": {
+      "dependsOn": [
+        "^build",
+        "^prepare"
+      ]
+    },
+    "package": {
+      "dependsOn": [
+        "^build",
+        "^prepare",
+        "^package"
+      ]
     }
   }
 }

@@ -108,12 +108,6 @@ export class ImageDrawer implements IShapeDrawer {
             this.loadImageShape(container, imageData).then(() => {
                 this.loadShape(particle);
             });
-
-            return;
-        }
-
-        if (image.error) {
-            return;
         }
     }
 
@@ -148,7 +142,7 @@ export class ImageDrawer implements IShapeDrawer {
         (async (): Promise<void> => {
             let imageRes: IParticleImage;
 
-            if (image.svgData && replaceColor && color) {
+            if (image.svgData && color) {
                 imageRes = await replaceImageColor(image, imageData, color, particle);
             } else {
                 imageRes = {

@@ -96,7 +96,6 @@ import { tsParticles } from "tsparticles-engine";
 **index.html**
 
 ```html
-
 <div id="tsparticles"></div>
 
 <script src="tsparticles.min.js"></script>
@@ -374,7 +373,7 @@ tsParticles поддерживает дополнительные настрой
 
 **Вы можете создавать свои собственные плагины**
 
-_Подробности [здесь](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.html)...\_
+\_Подробности [здесь](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.html)...\_
 
 ---
 

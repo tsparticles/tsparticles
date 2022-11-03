@@ -26,36 +26,32 @@ yarn add svelte-particles
 
 ```html
 <script>
-  import Particles from "svelte-particles";
+    import Particles from "svelte-particles";
 
-  let particlesConfig = {
-    particles: {
-      color: {
-        value: "#000",
-      },
-      links: {
-        enable: true,
-        color: "#000",
-      },
-      move: {
-        enable: true,
-      },
-    },
-  };
+    let particlesConfig = {
+        particles: {
+            color: {
+                value: "#000",
+            },
+            links: {
+                enable: true,
+                color: "#000",
+            },
+            move: {
+                enable: true,
+            },
+        },
+    };
 
-  let onParticlesLoaded = (event) => {
-    const particlesContainer = event.detail.particles;
+    let onParticlesLoaded = event => {
+        const particlesContainer = event.detail.particles;
 
-    // você pode usar particlesContainer para chamar todos os métodos da classe
-    // Container (da biblioteca principal) como play, pause, refresh, start, stop
-  };
+        // você pode usar particlesContainer para chamar todos os métodos da classe
+        // Container (da biblioteca principal) como play, pause, refresh, start, stop
+    };
 </script>
 
-<Particles
-  id="tsparticles"
-  options="{particlesConfig}"
-  on:particlesLoaded="{onParticlesLoaded}"
-/>
+<Particles id="tsparticles" options="{particlesConfig}" on:particlesLoaded="{onParticlesLoaded}" />
 ```
 
 ### SSR
@@ -66,44 +62,44 @@ Você pode ver um exemplo abaixo:
 
 ```html
 <script>
-  import { onMount } from "svelte";
+    import { onMount } from "svelte";
 
-  let ParticlesComponent;
+    let ParticlesComponent;
 
-  onMount(async () => {
-    const module = await import("svelte-particles");
+    onMount(async () => {
+        const module = await import("svelte-particles");
 
-    ParticlesComponent = module.default;
-  });
+        ParticlesComponent = module.default;
+    });
 
-  let particlesConfig = {
-    particles: {
-      color: {
-        value: "#000",
-      },
-      links: {
-        enable: true,
-        color: "#000",
-      },
-      move: {
-        enable: true,
-      },
-    },
-  };
+    let particlesConfig = {
+        particles: {
+            color: {
+                value: "#000",
+            },
+            links: {
+                enable: true,
+                color: "#000",
+            },
+            move: {
+                enable: true,
+            },
+        },
+    };
 
-  let onParticlesLoaded = (event) => {
-    const particlesContainer = event.detail.particles;
+    let onParticlesLoaded = event => {
+        const particlesContainer = event.detail.particles;
 
-    // você pode usar particlesContainer para chamar todos os métodos da classe
-    // Container (da biblioteca principal) como play, pause, refresh, start, stop
-  };
+        // você pode usar particlesContainer para chamar todos os métodos da classe
+        // Container (da biblioteca principal) como play, pause, refresh, start, stop
+    };
 </script>
 
 <svelte:component
-  this="{ParticlesComponent}"
-  id="tsparticles"
-  options="{particlesConfig}"
-  on:particlesLoaded="{onParticlesLoaded}"
+    this="{ParticlesComponent}"
+    id="tsparticles"
+    options="{particlesConfig}"
+    on:particlesLoaded="{onParticlesLoaded}"
 />
 ```
 
