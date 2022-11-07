@@ -21,18 +21,16 @@ _spiral.js_ - The custom shape script, you can distribute it or reuse in all you
 // parameters: shape name, drawing method
 // opacity is just for shapes that needs a differenc opacity handling like images
 tsParticles.addShape("spiral", function (context, particle, radius, opacity) {
-  const shapeData = particle.shapeData;
-  const realWidth = (radius - shapeData.innerRadius) / shapeData.lineSpacing;
+    const shapeData = particle.shapeData;
+    const realWidth = (radius - shapeData.innerRadius) / shapeData.lineSpacing;
 
-  for (let i = 0; i < realWidth * 10; i++) {
-    const angle = 0.1 * i;
-    const x =
-      (shapeData.innerRadius + shapeData.lineSpacing * angle) * Math.cos(angle);
-    const y =
-      (shapeData.innerRadius + shapeData.lineSpacing * angle) * Math.sin(angle);
+    for (let i = 0; i < realWidth * 10; i++) {
+        const angle = 0.1 * i;
+        const x = (shapeData.innerRadius + shapeData.lineSpacing * angle) * Math.cos(angle);
+        const y = (shapeData.innerRadius + shapeData.lineSpacing * angle) * Math.sin(angle);
 
-    context.lineTo(x, y);
-  }
+        context.lineTo(x, y);
+    }
 });
 ```
 
@@ -40,22 +38,18 @@ If you prefer using classes you can, {@link IShapeDrawer} interface can be imple
 
 ```javascript
 class SpiralDrawer {
-  draw(context, particle, radius, opacity, delta) {
-    const shapeData = particle.shapeData;
-    const realWidth = (radius - shapeData.innerRadius) / shapeData.lineSpacing;
+    draw(context, particle, radius, opacity, delta) {
+        const shapeData = particle.shapeData;
+        const realWidth = (radius - shapeData.innerRadius) / shapeData.lineSpacing;
 
-    for (let i = 0; i < realWidth * 10; i++) {
-      const angle = 0.1 * i;
-      const x =
-        (shapeData.innerRadius + shapeData.lineSpacing * angle) *
-        Math.cos(angle);
-      const y =
-        (shapeData.innerRadius + shapeData.lineSpacing * angle) *
-        Math.sin(angle);
+        for (let i = 0; i < realWidth * 10; i++) {
+            const angle = 0.1 * i;
+            const x = (shapeData.innerRadius + shapeData.lineSpacing * angle) * Math.cos(angle);
+            const y = (shapeData.innerRadius + shapeData.lineSpacing * angle) * Math.sin(angle);
 
-      context.lineTo(x, y);
+            context.lineTo(x, y);
+        }
     }
-  }
 }
 
 // call this method before initializing tsParticles, this shape will be available in all of your tsParticles instances
@@ -70,11 +64,13 @@ _bubble.js_ - The custom shape script
 ```javascript
 tsParticles.addShape(
     "bubble",
-    function (context, particle, radius) { // drawing function
+    function (context, particle, radius) {
+        // drawing function
         context.arc(0, 0, radius, 0, Math.PI * 2, false);
     },
     undefined, // init function is not required
-    function (context, particle, radius) { // after effect function
+    function (context, particle, radius) {
+        // after effect function
         context.save();
         context.beginPath();
         context.arc(radius / 3, -radius / 3, radius / 3, 0, Math.PI * 2, false);
@@ -131,44 +127,44 @@ _fire.preset.js_ - The custom preset script, you can distribute it or reuse in a
 // call this method before initializing tsParticles, this preset will be available in all of your tsParticles instances
 // parameters: preset name, preset partial options
 tsParticles.addPreset("fire", {
-  fpsLimit: 40,
-  particles: {
-    number: {
-      value: 80,
-      density: {
-        enable: true,
-        area: 800,
-      },
+    fpsLimit: 40,
+    particles: {
+        number: {
+            value: 80,
+            density: {
+                enable: true,
+                area: 800,
+            },
+        },
+        color: {
+            value: ["#fdcf58", "#757676", "#f27d0c", "#800909", "#f07f13"],
+        },
+        opacity: {
+            value: 0.5,
+            random: true,
+        },
+        size: {
+            value: 3,
+            random: true,
+        },
+        move: {
+            enable: true,
+            speed: 6,
+            random: false,
+        },
     },
-    color: {
-      value: ["#fdcf58", "#757676", "#f27d0c", "#800909", "#f07f13"],
+    interactivity: {
+        events: {
+            onclick: {
+                enable: true,
+                mode: "push",
+            },
+            resize: true,
+        },
     },
-    opacity: {
-      value: 0.5,
-      random: true,
+    background: {
+        image: "radial-gradient(#4a0000, #000)",
     },
-    size: {
-      value: 3,
-      random: true,
-    },
-    move: {
-      enable: true,
-      speed: 6,
-      random: false,
-    },
-  },
-  interactivity: {
-    events: {
-      onclick: {
-        enable: true,
-        mode: "push",
-      },
-      resize: true,
-    },
-  },
-  background: {
-    image: "radial-gradient(#4a0000, #000)",
-  },
 });
 ```
 

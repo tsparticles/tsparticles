@@ -10,4 +10,3 @@ See Particles options {@link IParticlesOptions | here}
 ## Position
 
 The position specified is not absolute, it will be used as a percent value of the canvas size. If it's not specified a random position will be used.
-

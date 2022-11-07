@@ -19,7 +19,7 @@ Values accepted
 
 ### Value
 
-If set to `true` this theme will be the default one for the specified mode, the last one set to default will be used if more than one are set. 
+If set to `true` this theme will be the default one for the specified mode, the last one set to default will be used if more than one are set.
 
 ## Name
 

@@ -26,8 +26,8 @@ yarn add react-tsparticles react
 
 Хувилбар 1.17.0 ээс эхлэн хоёр албан ёсны `create-react-app` загвар гарсан:
 
-- `cra-template-particles`: JavaScript-ээр үүсгэсэн бүтэн дэлгэцийн жижиг хэсгүүдээс бүтсэн энгийн ReactJS загвар
-- `cra-template-particles-typescript`: TypeScript-ээр үүсгэсэн бүтэн дэлгэцийн жижиг хэсгүүдээс бүтсэн энгийн ReactJS загвар
+-   `cra-template-particles`: JavaScript-ээр үүсгэсэн бүтэн дэлгэцийн жижиг хэсгүүдээс бүтсэн энгийн ReactJS загвар
+-   `cra-template-particles-typescript`: TypeScript-ээр үүсгэсэн бүтэн дэлгэцийн жижиг хэсгүүдээс бүтсэн энгийн ReactJS загвар
 
 Та ингэж `create-react-app` комманд ашиглан татаж болно:
 
@@ -53,24 +53,19 @@ _Remote url_
 import Particles from "react-tsparticles";
 
 const App = () => {
-  const particlesInit = (main) => {
-    console.log(main);
-    // та энд tsParticles instance (main) ийг эхлүүлэн дурын дүрс нэмж болно
-  }
-  
-  const particlesLoaded = (container) => {
-    console.log(container);
-  }
+    const particlesInit = main => {
+        console.log(main);
+        // та энд tsParticles instance (main) ийг эхлүүлэн дурын дүрс нэмж болно
+    };
 
-  return (
-    <Particles
-      id="tsparticles"
-      url="http://foo.bar/particles.json"
-      init={particlesInit}
-      loaded={particlesLoaded}
-    />
-  );
-}
+    const particlesLoaded = container => {
+        console.log(container);
+    };
+
+    return (
+        <Particles id="tsparticles" url="http://foo.bar/particles.json" init={particlesInit} loaded={particlesLoaded} />
+    );
+};
 ```
 
 _Options object_
@@ -79,116 +74,116 @@ _Options object_
 import Particles from "react-tsparticles";
 
 const App = () => {
-  const particlesInit = (main) => {
-    console.log(main);
-    
-    // та энд tsParticles instance (main) ийг эхлүүлэн дурын дүрс нэмж болно
-  }
-  
-  const particlesLoaded = (container) => {
-    console.log(container);
-  }
-  return (
-    <Particles
-      id="tsparticles"
-      init={particlesInit}
-      loaded={particlesLoaded}
-      options={{
-        background: {
-          color: {
-            value: "#0d47a1",
-          },
-        },
-        fpsLimit: 120,
-        interactivity: {
-          events: {
-            onClick: {
-              enable: true,
-              mode: "push",
-            },
-            onHover: {
-              enable: true,
-              mode: "repulse",
-            },
-            resize: true,
-          },
-          modes: {
-            bubble: {
-              distance: 400,
-              duration: 2,
-              opacity: 0.8,
-              size: 40,
-            },
-            push: {
-              quantity: 4,
-            },
-            repulse: {
-              distance: 200,
-              duration: 0.4,
-            },
-          },
-        },
-        particles: {
-          color: {
-            value: "#ffffff",
-          },
-          links: {
-            color: "#ffffff",
-            distance: 150,
-            enable: true,
-            opacity: 0.5,
-            width: 1,
-          },
-          collisions: {
-            enable: true,
-          },
-          move: {
-            direction: "none",
-            enable: true,
-            outMode: "bounce",
-            random: false,
-            speed: 6,
-            straight: false,
-          },
-          number: {
-            density: {
-              enable: true,
-              area: 800,
-            },
-            value: 80,
-          },
-          opacity: {
-            value: 0.5,
-          },
-          shape: {
-            type: "circle",
-          },
-          size: {
-            random: true,
-            value: 5,
-          },
-        },
-        detectRetina: true,
-      }}
-    />
-  );
-}
+    const particlesInit = main => {
+        console.log(main);
+
+        // та энд tsParticles instance (main) ийг эхлүүлэн дурын дүрс нэмж болно
+    };
+
+    const particlesLoaded = container => {
+        console.log(container);
+    };
+    return (
+        <Particles
+            id="tsparticles"
+            init={particlesInit}
+            loaded={particlesLoaded}
+            options={{
+                background: {
+                    color: {
+                        value: "#0d47a1",
+                    },
+                },
+                fpsLimit: 120,
+                interactivity: {
+                    events: {
+                        onClick: {
+                            enable: true,
+                            mode: "push",
+                        },
+                        onHover: {
+                            enable: true,
+                            mode: "repulse",
+                        },
+                        resize: true,
+                    },
+                    modes: {
+                        bubble: {
+                            distance: 400,
+                            duration: 2,
+                            opacity: 0.8,
+                            size: 40,
+                        },
+                        push: {
+                            quantity: 4,
+                        },
+                        repulse: {
+                            distance: 200,
+                            duration: 0.4,
+                        },
+                    },
+                },
+                particles: {
+                    color: {
+                        value: "#ffffff",
+                    },
+                    links: {
+                        color: "#ffffff",
+                        distance: 150,
+                        enable: true,
+                        opacity: 0.5,
+                        width: 1,
+                    },
+                    collisions: {
+                        enable: true,
+                    },
+                    move: {
+                        direction: "none",
+                        enable: true,
+                        outMode: "bounce",
+                        random: false,
+                        speed: 6,
+                        straight: false,
+                    },
+                    number: {
+                        density: {
+                            enable: true,
+                            area: 800,
+                        },
+                        value: 80,
+                    },
+                    opacity: {
+                        value: 0.5,
+                    },
+                    shape: {
+                        type: "circle",
+                    },
+                    size: {
+                        random: true,
+                        value: 5,
+                    },
+                },
+                detectRetina: true,
+            }}
+        />
+    );
+};
 ```
 
 ### Props
 
-| Prop    | Утга     |  Тайлбар    |
-| --------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| width           | мөр   | Канвасын өргөн|
-| height          | мөр   | Канвасын өндөр|
-| options         | обжект   | The options of the particles instance.|
-| url             | мөр   | The remote options url, called using an AJAX request                                                                                                |
-| style           | обжект   | Канвасын стилл|
-| className       | мөр   | Канвас агуулагчын класс|
-| canvasClassName | мөр   | Канвасын класс|
-| container       | обжект   | Жишээ [particles container](https://particles.js.org/docs/modules/_core_container_.html)                                              |
-| init            | функц | tsParticles instance эхэлсний дараа дуудагддаг функц|
-| loaded          | функц | Канвас бүрэн зөв ажилсан бол дуудагддаг функц|
+| Prop            | Утга   | Тайлбар                                                                                  |
+| --------------- | ------ | ---------------------------------------------------------------------------------------- |
+| width           | мөр    | Канвасын өргөн                                                                           |
+| height          | мөр    | Канвасын өндөр                                                                           |
+| options         | обжект | The options of the particles instance.                                                   |
+| url             | мөр    | The remote options url, called using an AJAX request                                     |
+| style           | обжект | Канвасын стилл                                                                           |
+| className       | мөр    | Канвас агуулагчын класс                                                                  |
+| canvasClassName | мөр    | Канвасын класс                                                                           |
+| container       | обжект | Жишээ [particles container](https://particles.js.org/docs/modules/_core_container_.html) |
+| init            | функц  | tsParticles instance эхэлсний дараа дуудагддаг функц                                     |
+| loaded          | функц  | Канвас бүрэн зөв ажилсан бол дуудагддаг функц                                            |
 
 Утгийн тохиргоогоо эндээс олно уу [энд](https://particles.js.org).
 

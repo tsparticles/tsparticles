@@ -146,6 +146,8 @@ export class Container {
     zLayers;
 
     private _currentTheme?: string;
+    private _delay: number;
+    private _delayTimeout?: number | NodeJS.Timeout;
     private _drawAnimationFrame?: number;
     private readonly _engine;
     private readonly _eventListeners;
@@ -167,6 +169,7 @@ export class Container {
         this._engine = engine;
         this.fpsLimit = 120;
         this.smooth = false;
+        this._delay = 0;
         this.duration = 0;
         this.lifeTime = 0;
         this._firstStart = true;
@@ -509,6 +512,7 @@ export class Container {
 
         this.zLayers = this.actualOptions.zLayers;
         this.duration = getRangeValue(this.actualOptions.duration) * 1000;
+        this._delay = getRangeValue(this.actualOptions.delay) * 1000;
         this.lifeTime = 0;
         this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 120;
         this.smooth = this.actualOptions.smooth;
@@ -711,21 +715,27 @@ export class Container {
 
         this.started = true;
 
-        this._eventListeners.addListeners();
+        await new Promise<void>((resolve) => {
+            this._delayTimeout = setTimeout(async () => {
+                this._eventListeners.addListeners();
 
-        if (this.interactivity.element instanceof HTMLElement && this._intersectionObserver) {
-            this._intersectionObserver.observe(this.interactivity.element);
-        }
+                if (this.interactivity.element instanceof HTMLElement && this._intersectionObserver) {
+                    this._intersectionObserver.observe(this.interactivity.element);
+                }
 
-        for (const [, plugin] of this.plugins) {
-            if (plugin.start) {
-                await plugin.start();
-            }
-        }
+                for (const [, plugin] of this.plugins) {
+                    if (plugin.start) {
+                        await plugin.start();
+                    }
+                }
 
-        this._engine.dispatchEvent(EventType.containerStarted, { container: this });
+                this._engine.dispatchEvent(EventType.containerStarted, { container: this });
 
-        this.play();
+                this.play();
+
+                resolve();
+            }, this._delay);
+        });
     }
 
     /**
@@ -734,6 +744,12 @@ export class Container {
     stop(): void {
         if (!guardCheck(this) || !this.started) {
             return;
+        }
+
+        if (this._delayTimeout) {
+            clearTimeout(this._delayTimeout);
+
+            delete this._delayTimeout;
         }
 
         this._firstStart = true;

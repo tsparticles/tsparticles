@@ -16,6 +16,4 @@ packages:
   - 'templates/*'
   - 'updaters/*'
   - 'utils/*'
-  - 'utils/cli/files/create-preset/js'
-  - 'utils/cli/files/create-preset/ts'
   - 'websites/*'

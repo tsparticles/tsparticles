@@ -107,20 +107,20 @@ Laad tsParticles en configureer de deeltjes:
 /* tsParticles.loadJSON(@dom-id, @path-json, @callback (optional)); */
 
 tsParticles
-  .loadJSON("tsparticles", "presets/default.json")
-  .then((container) => {
-    console.log("callback - tsparticles config loaded");
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+    .loadJSON("tsparticles", "presets/default.json")
+    .then(container => {
+        console.log("callback - tsparticles config loaded");
+    })
+    .catch(error => {
+        console.error(error);
+    });
 
 // of
 
 /* tsParticles.load(@dom-id, @options); */
 
 tsParticles.load("tsparticles", {
-  /* opties hier */
+    /* opties hier */
 });
 
 // of
@@ -128,26 +128,26 @@ tsParticles.load("tsparticles", {
 /* tsParticles.loadFromArray(@dom-id, @options, @index (optioneel)); */
 
 tsParticles.loadFromArray("tsparticles", [
-  {
-    /* opties hier */
-  },
-  {
-    /* andere opties hier */
-  },
+    {
+        /* opties hier */
+    },
+    {
+        /* andere opties hier */
+    },
 ]);
 // willekeurig object
 
 tsParticles.loadFromArray(
-  "tsparticles",
-  [
-    {
-      /* opties hier */
-    },
-    {
-      /* andere opties hier */
-    },
-  ],
-  1
+    "tsparticles",
+    [
+        {
+            /* opties hier */
+        },
+        {
+            /* andere opties hier */
+        },
+    ],
+    1
 ); // de tweede
 // Belangrijk! Als de index niet in de reeks 0...<array.length> zit, dan wordt de index genereerd.
 
@@ -158,7 +158,7 @@ tsParticles.loadFromArray(
 /* Dit wordt afgevuurd na alle deeltjes geladen zijn */
 
 tsParticles.setOnClickHandler((event, particles) => {
-  /* Eigen gemaakte klik handler */
+    /* Eigen gemaakte klik handler */
 });
 
 // Nu kan je de animaties ook besturen, het is mogelijk om de animaties te pauzeren en weer door te laten gaan

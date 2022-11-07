@@ -113,22 +113,22 @@ Lade tsParticles und konfiguriere die Partikel:
 
 tsParticles
 
-  .loadJSON("tsparticles", "presets/default.json")
+    .loadJSON("tsparticles", "presets/default.json")
 
-  .then((container) => {
-    console.log("callback - tsparticles config loaded");
-  })
+    .then(container => {
+        console.log("callback - tsparticles config loaded");
+    })
 
-  .catch((error) => {
-    console.error(error);
-  });
+    .catch(error => {
+        console.error(error);
+    });
 
 //oder
 
 /* tsParticles.load(@dom-id, @options); */
 
 tsParticles.load("tsparticles", {
-  /* Optionen hier */
+    /* Optionen hier */
 });
 
 //oder
@@ -136,31 +136,31 @@ tsParticles.load("tsparticles", {
 /* tsParticles.loadFromArray(@dom-id, @options, @index (optional)); */
 
 tsParticles.loadFromArray("tsparticles", [
-  {
-    /* Optionen hier */
-  },
+    {
+        /* Optionen hier */
+    },
 
-  {
-    /* andere Optionen hier */
-  },
+    {
+        /* andere Optionen hier */
+    },
 ]);
 
 //zufälliges Objekt
 
 tsParticles.loadFromArray(
-  "tsparticles",
+    "tsparticles",
 
-  [
-    {
-      /* Optionen hier */
-    },
+    [
+        {
+            /* Optionen hier */
+        },
 
-    {
-      /* andere Optionen hier */
-    },
-  ],
+        {
+            /* andere Optionen hier */
+        },
+    ],
 
-  1
+    1
 ); //das Zweite
 
 // Wichtig! Wenn der Index nicht zwischen 0...<array.length liegt, wird der Index ignoriert.
@@ -172,7 +172,7 @@ tsParticles.loadFromArray(
 /* dieses Event wird von allen geladenen Teilchen abgefeuert */
 
 tsParticles.setOnClickHandler((event, particles) => {
-  /* benutzerdefinierter Klick-Handler */
+    /* benutzerdefinierter Klick-Handler */
 });
 
 // jetzt können auch die Animationen kontrolliert werden, es ist möglich diese anzuhalten und wieder fortzusetzen

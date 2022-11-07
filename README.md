@@ -23,7 +23,7 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 [![Reddit](https://img.shields.io/reddit/subreddit-subscribers/tsParticles?style=for-the-badge)](https://www.reddit.com/r/tsParticles/)
 
 [![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles")
-[![Buy Me A Coffee](https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00")](https://www.buymeacoffee.com/matteobruni)
+[![Buy Me A Coffee](https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00")](https://www.buymeacoffee.com/matteobruni) <a href="https://linktr.ee/tsparticles"><img alt="Linktree" height="30" src="https://particles.js.org/images/linktree.svg" /></a>
 
 ---
 
@@ -32,48 +32,48 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 ⚠️⚠️ _This readme refers to **v2** version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme)
 for **v1** documentation_ ⚠️⚠️
 
-- [Use for your website](#Do-you-want-to-use-it-on-your-website)
-  - [Library installation](#Library-installation)
-- [Official components for some of the most used frameworks](#Official-components-for-some-of-the-most-used-frameworks)
-  - [Angular](#Angular)
-  - [Inferno](#Inferno)
-  - [jQuery](#jQuery)
-  - [Preact](#Preact)
-  - [ReactJS](#ReactJS)
-  - [RiotJS](#RiotJS)
-  - [SolidJS](#SolidJS)
-  - [Svelte](#Svelte)
-  - [VueJS 2.x](#VueJS-2x)
-  - [VueJS 3.x](#VueJS-3x)
-  - [Web Components](#Web-Components)
-  - [WordPress](#WordPress)
-  - [Elementor](#Elementor)
-- [Presets](#Presets)
-  - [Big Circles](#Big-Circles)
-  - [Bubbles](#Bubbles)
-  - [Confetti](#Confetti)
-  - [Fire](#Fire)
-  - [Firefly](#Firefly)
-  - [Fireworks](#Fireworks)
-  - [Fountain](#fountain)
-  - [Links](#links)
-  - [Sea Anemone](#Sea-Anemone)
-  - [Snow](#Snow)
-  - [Stars](#Stars)
-  - [Triangles](#Triangles)
-- [Templates and Resources](#Templates-and-Resources)
-- [Demo / Generator](#Demo--Generator)
-  - [Characters as particles](#Characters-as-particles)
-  - [Mouse hover connections](#Mouse-hover-connections)
-  - [Polygon mask](#Polygon-mask)
-  - [Animated stars](#Animated-stars)
-  - [Nyan cat flying on scrolling stars](#Nyan-cat-flying-on-scrolling-stars)
-  - [Background Mask particles](#Background-Mask-particles)
-- [Video Tutorials](#Video-Tutorials)
-- [Migrating from Particles.js](#Migrating-from-Particlesjs)
-- [Plugins/Customizations](#PluginsCustomizations)
-- [Dependency Graphs](#Dependency-Graphs)
-- [Sponsors](#Sponsors)
+-   [Use for your website](#Do-you-want-to-use-it-on-your-website)
+    -   [Library installation](#Library-installation)
+-   [Official components for some of the most used frameworks](#Official-components-for-some-of-the-most-used-frameworks)
+    -   [Angular](#Angular)
+    -   [Inferno](#Inferno)
+    -   [jQuery](#jQuery)
+    -   [Preact](#Preact)
+    -   [ReactJS](#ReactJS)
+    -   [RiotJS](#RiotJS)
+    -   [SolidJS](#SolidJS)
+    -   [Svelte](#Svelte)
+    -   [VueJS 2.x](#VueJS-2x)
+    -   [VueJS 3.x](#VueJS-3x)
+    -   [Web Components](#Web-Components)
+    -   [WordPress](#WordPress)
+    -   [Elementor](#Elementor)
+-   [Presets](#Presets)
+    -   [Big Circles](#Big-Circles)
+    -   [Bubbles](#Bubbles)
+    -   [Confetti](#Confetti)
+    -   [Fire](#Fire)
+    -   [Firefly](#Firefly)
+    -   [Fireworks](#Fireworks)
+    -   [Fountain](#fountain)
+    -   [Links](#links)
+    -   [Sea Anemone](#Sea-Anemone)
+    -   [Snow](#Snow)
+    -   [Stars](#Stars)
+    -   [Triangles](#Triangles)
+-   [Templates and Resources](#Templates-and-Resources)
+-   [Demo / Generator](#Demo--Generator)
+    -   [Characters as particles](#Characters-as-particles)
+    -   [Mouse hover connections](#Mouse-hover-connections)
+    -   [Polygon mask](#Polygon-mask)
+    -   [Animated stars](#Animated-stars)
+    -   [Nyan cat flying on scrolling stars](#Nyan-cat-flying-on-scrolling-stars)
+    -   [Background Mask particles](#Background-Mask-particles)
+-   [Video Tutorials](#Video-Tutorials)
+-   [Migrating from Particles.js](#Migrating-from-Particlesjs)
+-   [Plugins/Customizations](#PluginsCustomizations)
+-   [Dependency Graphs](#Dependency-Graphs)
+-   [Sponsors](#Sponsors)
 
 ---
 
@@ -81,7 +81,7 @@ for **v1** documentation_ ⚠️⚠️
 
 _Documentation and Development references [here](https://particles.js.org/docs/) 📖_
 
-**This library is available on the two most popular CDNs and it's easy and ready to use, if you were using particles.js
+**This library is available on two of the most popular CDNs and it's easy and ready to use, if you were using particles.js
 it's even easier**.
 
 You'll find the
@@ -90,7 +90,7 @@ links you need, and _don't be scared by **TypeScript**, it's just the source lan
 
 **The output files are just JavaScript**. 🤩
 
-CDNs and `npm` have all the sources you need in **Javascript**, a bundle browser ready (tsparticles.engine.min.js) and
+CDNs and `npm` have all the sources you need in **Javascript**, a bundle browser ready (tsparticles.engine.min.js), and
 all
 files splitted for `import` syntax.
 
@@ -191,24 +191,24 @@ Load tsParticles and configure the particles:
 **app.js**
 
 ```javascript
-// @path-json can be an object or an array, the first will be loaded directly, the object from the array will be random selected
+// @path-json can be an object or an array, the first will be loaded directly, and the object from the array will be randomly selected
 /* tsParticles.loadJSON(@dom-id, @path-json, @callback (optional)); */
 
 tsParticles
-  .loadJSON("tsparticles", "presets/default.json")
-  .then((container) => {
-    console.log("callback - tsparticles config loaded");
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+    .loadJSON("tsparticles", "presets/default.json")
+    .then(container => {
+        console.log("callback - tsparticles config loaded");
+    })
+    .catch(error => {
+        console.error(error);
+    });
 
 //or
 
 /* tsParticles.load(@dom-id, @options); */
 
 tsParticles.load("tsparticles", {
-  /* options here */
+    /* options here */
 });
 
 //or
@@ -216,26 +216,26 @@ tsParticles.load("tsparticles", {
 /* tsParticles.loadFromArray(@dom-id, @options, @index (optional)); */
 
 tsParticles.loadFromArray("tsparticles", [
-  {
-    /* options here */
-  },
-  {
-    /* other options here */
-  },
+    {
+        /* options here */
+    },
+    {
+        /* other options here */
+    },
 ]);
 //random object
 
 tsParticles.loadFromArray(
-  "tsparticles",
-  [
-    {
-      /* options here */
-    },
-    {
-      /* other options here */
-    },
-  ],
-  1
+    "tsparticles",
+    [
+        {
+            /* options here */
+        },
+        {
+            /* other options here */
+        },
+    ],
+    1
 ); //the second one
 // Important! If the index is not in range 0...<array.length, the index will be ignored.
 
@@ -246,7 +246,7 @@ tsParticles.loadFromArray(
 /* this will be fired from all particles loaded */
 
 tsParticles.setOnClickHandler((event, particles) => {
-  /* custom on click handler */
+    /* custom on click handler */
 });
 
 // now you can control the animations too, it's possible to pause and resume the animations
@@ -364,15 +364,15 @@ found [here](https://wordpress.org/plugins/tsparticles-block/#description)
 
 ### Elementor
 
-Actually an official tsParticles plugin isn't existing, but I have a collaboration with
+Actually, an official tsParticles plugin isn't existing, but I have a collaboration with
 the `Premium Addons for Elementor` plugin collection.
 
 <div style="float: left; margin-right: 10px;">
     <img width="64" alt="Premium Addons for Elementor" src="https://particles.js.org/images/premium-addons-wordpress-plugin.png" />
 </div>
 <div>
-    Premium Addons for Elementor is one of the most common plugins for Elementor that offers more than 55 highly customizable Elementor Widgets and Section Add-ons. tsParticles is exclusively included in Premium Particles Section Add-on for Elementor Page Builder. <a href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/" target="_blank">Check It Now</a>.<br />
-    Use Premium Addons for Elementor Page Builder and get the chance to include tsParticles in your next WordPress website without the need to write a single line of code. <a href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/" target="_blank">See a Live Example</a>.
+    Premium Addons for Elementor is one of the most common plugins for Elementor that offers 55+ highly customizable Elementor Widgets and Section Add-ons. tsParticles is exclusively included in the Premium Particles Section Add-on for the Elementor Page Builder. <a href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/" target="_blank">Check It Now</a>.<br />
+    Use Premium Addons for Elementor Page Builder and get the chance to include tsParticles in your next WordPress website without writing a single line of code. <a href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/" target="_blank">See a Live Example</a>.
 </div>
 <div style="clear: both;"></div>
 
@@ -380,7 +380,7 @@ the `Premium Addons for Elementor` plugin collection.
 
 ## Presets
 
-There are some presets ready to be used in this repository, and they have also a bundle file that contains everything
+There are some presets ready to be used in this repository, and they also have a bundle file that contains everything
 needed to run.
 
 ### Big Circles
@@ -417,7 +417,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-fire/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-fire) [![npmjs](https://badge.fury.io/js/tsparticles-preset-fire.svg)](https://www.npmjs.com/package/tsparticles-preset-fire) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-fire)](https://www.npmjs.com/package/tsparticles-preset-fire)
 
-This preset loads a faded red to black background with particles colored like fire and ash sparks.
+This preset loads a faded red to a black background with particles colored like fire and ash sparks.
 
 [![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/fire/images/sample.png)](https://particles.js.org/samples/presets/fire)
 
@@ -496,9 +496,9 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 ## Templates and Resources
 
 You can find some tsParticles related templates [here](https://github.com/tsparticles/templates). The templates are
-created for _Vanilla Javascript_, _ReactJS_, _VueJS_, _Angular_, _SvelteJS_ and other frameworks.
+created for _Vanilla Javascript_, _ReactJS_, _VueJS_, _Angular_, _SvelteJS_, and other frameworks.
 
-The templates will vary, new ones can be created or older ones updated with latest features or changed to a better
+The templates will vary, new ones can be created or older ones updated with the latest features or changed to a better
 style. Check them out once in a while.
 
 If you created some good design with _tsParticles_ feel free to submit a pull request with your cool template, you'll be
@@ -518,7 +518,7 @@ credited as the template author!
 
 ## **_Video Tutorials_**
 
-You can find all video tutorials in the website here: <https://particles.js.org/video.html>
+You can find all video tutorials on the website here: <https://particles.js.org/video.html>
 
 _More videos are coming soon! Check every day if there are some new contents._
 
@@ -578,14 +578,14 @@ You can find all options available [here](https://particles.js.org/docs/interfac
 
 ## Want to see it in action and try it?
 
-I've created a tsParticles collection on [CodePen](https://codepen.io/collection/DPOage) 😮 or you can checkout
+I've created a tsParticles collection on [CodePen](https://codepen.io/collection/DPOage) 😮 or you can check out
 my [profile](https://codepen.io/matteobruni)
 
 Otherwise, there's the demo page link below. Just click/tap the Coronavirus below, don't be scared. **It's safe** 😷.
 
 [![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/samples/#virus)
 
-Want to see ever more demos? Clone the repository on your computer and follow these instructions
+Want to see even more demos? Clone the repository on your computer and follow these instructions
 
 ```shell
 $ pnpm i
@@ -594,7 +594,7 @@ $ cd demo/vanilla
 $ pnpm run start
 ```
 
-**Boom! 💥** <http://localhost:3000> and you can checkout other demos.
+**Boom! 💥** <http://localhost:3000> and you can check out other demos.
 
 _If you are brave enough_ you can switch to the `dev` branch for trying the features under development.
 

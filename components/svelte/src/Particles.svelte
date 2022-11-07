@@ -1,3 +1,5 @@
+<svelte:options accessors={true} />
+
 <script lang="ts">
     import { afterUpdate, createEventDispatcher } from "svelte";
     import type { ISourceOptions } from "tsparticles-engine";
@@ -22,7 +24,7 @@
         }
 
         if (oldId) {
-            const oldContainer = tsParticles.dom().find((c) => c.id === oldId);
+            const oldContainer = tsParticles.dom().find(c => c.id === oldId);
 
             if (oldContainer) {
                 oldContainer.destroy();
@@ -30,7 +32,7 @@
         }
 
         if (id) {
-            const cb = (container) => {
+            const cb = container => {
                 dispatch(particlesLoadedEvent, {
                     particles: container,
                 });
@@ -59,6 +61,4 @@
     });
 </script>
 
-<svelte:options accessors={true}/>
-
-<div {id}></div>
+<div {id} />

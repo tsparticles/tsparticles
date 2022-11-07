@@ -2,7 +2,7 @@
 
 # tsParticles - TypeScript Parçacıkları
 
-**Parçacıklar oluşturmak için hafif bir TypeScript kitaplığı. Bağımlılık içermeyen (\*), tarayıcıya hazır ve React.js, Vue.js (2.x ve 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.js, Solid.js ve Web Components ile uyumlu.**
+**Parçacık oluşturmak için hafif bir TypeScript kitaplığı. Bağımlılık içermeyen (\*), tarayıcıya hazır ve React.js, Vue.js (2.x ve 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.js, Solid.js ve Web Components ile uyumlu.**
 
 [![Rate on Openbase](https://badges.openbase.com/js/rating/tsparticles.svg)](https://openbase.com/js/tsparticles?utm_source=embedded&utm_medium=badge&utm_campaign=rate-badge) [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge?style=rounded)](https://www.jsdelivr.com/package/npm/tsparticles) [![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) [![npm](https://img.shields.io/npm/dm/tsparticles)](https://www.npmjs.com/package/tsparticles) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/) [![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Grade) [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/matteobruni/tsparticles) [![Run on Repl.it](https://repl.it/badge/github/matteobruni/tsparticles)](https://repl.it/github/matteobruni/tsparticles)
 
@@ -14,64 +14,64 @@
 
 ## İçindekiler
 
-- [tsParticles - TypeScript Parçacıkları](#tsparticles---typescript-parçacıkları)
-  - [İçindekiler](#i̇çindekiler)
-  - [Bu kütüphaneyi sitenizde kullanmak ister misiniz?](#bu-kütüphaneyi-sitenizde-kullanmak-ister-misiniz)
-  - [**_Kütüphane kurulumu_**](#kütüphane-kurulumu)
-    - [**_Hosting / CDN_**](#hosting--cdn)
-      - [jsDelivr](#jsdelivr)
-      - [cdnjs](#cdnjs)
-      - [unpkg](#unpkg)
-    - [**_npm_**](#npm)
-    - [**_yarn_**](#yarn)
-      - [Import ve require](#import-ve-require)
-    - [**_NuGet_**](#nuget)
-    - [**_Kullanım_**](#kullanım)
-  - [Popüler çerçevelerden bazıları için resmi bileşenler](#popüler-çerçevelerden-bazıları-için-resmi-bileşenler)
-    - [Angular](#angular)
-      - [`ng-particles`](#ng-particles)
-    - [Inferno](#inferno)
-      - [`inferno-particles`](#inferno-particles)
-    - [jQuery](#jquery)
-      - [`jquery-particles`](#jquery-particles)
-    - [Preact](#preact)
-      - [`preact-particles`](#preact-particles)
-    - [ReactJS](#reactjs)
-      - [`react-particles`](#react-particles)
-    - [Svelte](#svelte)
-      - [`svelte-particles`](#svelte-particles)
-    - [VueJS 2.x](#vuejs-2x)
-      - [`vue2-particles`](#vue2-particles)
-    - [VueJS 3.x](#vuejs-3x)
-      - [`vue3-particles`](#vue3-particles)
-    - [WordPress](#wordpress)
-  - [Şablonlar ve Kaynaklar](#şablonlar-ve-kaynaklar)
-  - [**_Demo / Üretici_**](#demo--üretici)
-    - [Harf parçacıklar](#harf-parçacıklar)
-    - ["Mouse hover" bağlantıları](#mouse-hover-bağlantıları)
-    - [Çokgen maskesi](#çokgen-maskesi)
-    - [Hareketli yıldızlar](#hareketli-yıldızlar)
-    - [Kayan yıldızlar üzerinde uçan Nyan cat](#kayan-yıldızlar-üzerinde-uçan-nyan-cat)
-    - [Kar parçacıkları](#kar-parçacıkları)
-    - [Arka fonu maskeleyen parçacıklar](#arka-fonu-maskeleyen-parçacıklar)
-      - [COVID-19 SARS-CoV-2 parçacıkları](#covid-19-sars-cov-2-parçacıkları)
-  - [**_Seçenekler_**](#seçenekler)
-  - [Bunu, gerçekte görmek ve denemek ister misiniz?](#bunu-gerçekte-görmek-ve-denemek-ister-misiniz)
-  - [Particles.js kütüphanesinden göç](#particlesjs-kütüphanesinden-göç)
-  - [Eklentiler ve Özelleştirlemeler](#eklentiler-ve-özelleştirlemeler)
-    - [2020-2021 Açık Kaynak Lisansları için JetBrains'e çok teşekkürler!](#2020-2021-açık-kaynak-lisansları-için-jetbrainse-çok-teşekkürler)
+-   [tsParticles - TypeScript Parçacıkları](#tsparticles---typescript-parçacıkları)
+    -   [İçindekiler](#i̇çindekiler)
+    -   [Bu kütüphaneyi sitenizde kullanmak ister misiniz?](#bu-kütüphaneyi-sitenizde-kullanmak-ister-misiniz)
+    -   [**_Kütüphane kurulumu_**](#kütüphane-kurulumu)
+        -   [**_Hosting / CDN_**](#hosting--cdn)
+            -   [jsDelivr](#jsdelivr)
+            -   [cdnjs](#cdnjs)
+            -   [unpkg](#unpkg)
+        -   [**_npm_**](#npm)
+        -   [**_yarn_**](#yarn)
+            -   [Import ve require](#import-ve-require)
+        -   [**_NuGet_**](#nuget)
+        -   [**_Kullanım_**](#kullanım)
+    -   [Popüler çerçevelerden bazıları için resmi bileşenler](#popüler-çerçevelerden-bazıları-için-resmi-bileşenler)
+        -   [Angular](#angular)
+            -   [`ng-particles`](#ng-particles)
+        -   [Inferno](#inferno)
+            -   [`inferno-particles`](#inferno-particles)
+        -   [jQuery](#jquery)
+            -   [`jquery-particles`](#jquery-particles)
+        -   [Preact](#preact)
+            -   [`preact-particles`](#preact-particles)
+        -   [ReactJS](#reactjs)
+            -   [`react-particles`](#react-particles)
+        -   [Svelte](#svelte)
+            -   [`svelte-particles`](#svelte-particles)
+        -   [VueJS 2.x](#vuejs-2x)
+            -   [`vue2-particles`](#vue2-particles)
+        -   [VueJS 3.x](#vuejs-3x)
+            -   [`vue3-particles`](#vue3-particles)
+        -   [WordPress](#wordpress)
+    -   [Şablonlar ve Kaynaklar](#şablonlar-ve-kaynaklar)
+    -   [**_Demo / Üretici_**](#demo--üretici)
+        -   [Harf parçacıklar](#harf-parçacıklar)
+        -   ["Mouse hover" bağlantıları](#mouse-hover-bağlantıları)
+        -   [Çokgen maskesi](#çokgen-maskesi)
+        -   [Hareketli yıldızlar](#hareketli-yıldızlar)
+        -   [Kayan yıldızlar üzerinde uçan Nyan cat](#kayan-yıldızlar-üzerinde-uçan-nyan-cat)
+        -   [Kar parçacıkları](#kar-parçacıkları)
+        -   [Arka fonu maskeleyen parçacıklar](#arka-fonu-maskeleyen-parçacıklar)
+            -   [COVID-19 SARS-CoV-2 parçacıkları](#covid-19-sars-cov-2-parçacıkları)
+    -   [**_Seçenekler_**](#seçenekler)
+    -   [Bunu, gerçekte görmek ve denemek ister misiniz?](#bunu-gerçekte-görmek-ve-denemek-ister-misiniz)
+    -   [Particles.js kütüphanesinden göç](#particlesjs-kütüphanesinden-göç)
+    -   [Eklentiler ve Özelleştirlemeler](#eklentiler-ve-özelleştirlemeler)
+        -   [2020-2021 Açık Kaynak Lisansları için JetBrains'e çok teşekkürler!](#2020-2021-açık-kaynak-lisansları-için-jetbrainse-çok-teşekkürler)
 
-* [Particles.js kütüphanesinden göç](#particlesjs-kütüphanesinden-göç)
+*   [Particles.js kütüphanesinden göç](#particlesjs-kütüphanesinden-göç)
 
-* [Eklentiler ve Özelleştirlemeler](#Eklentiler-ve-Özelleştirlemeler)
+*   [Eklentiler ve Özelleştirlemeler](#Eklentiler-ve-Özelleştirlemeler)
 
 ## Bu kütüphaneyi sitenizde kullanmak ister misiniz?
 
-_Dokümantasyon ve Geliştirme referansları burada [here](https://particles.js.org/docs/) 📖_
+_Dokümantasyon ve Geliştirme referansları [burada](https://particles.js.org/docs/) 📖_
 
 **Bu kitaplık en popüler CDN'lerden ikisinde mevcuttur; kolay ve kullanıma hazır bir durumdadır, hatta eğer Particles.js kütüphanesini kullanıyorsanız bu daha da kolaydır.**.
 
-[Aşağıdaki](https://github.com/matteobruni/tsparticles/blob/main/README.md#library-installation) talimatları, ihtiyacınız olan tüm bağlantılarla birlikte bulacaksınız ve... ****TypeScript**'ten korkmayın! Bu yalnızca kaynak dildir.**
+[Aşağıdaki](https://github.com/matteobruni/tsparticles/blob/main/README.md#library-installation) talimatları, ihtiyacınız olan tüm bağlantılarla birlikte bulacaksınız ve... \***\*TypeScript**'ten korkmayın! Bu yalnızca kaynak dildir.\*\*
 
 **Çıktı dosyaları sadece JavaScript'tir.**. 🤩
 
@@ -81,9 +81,9 @@ CDN'ler ve `npm`, **Javascript**'te ihtiyacınız olan tüm kaynaklara; tarayıc
 
 ## **_Kütüphane kurulumu_**
 
-### **_Hosting / CDN_**
+### **_Sunucular / CDN_**
 
-**_Projelerinize tsParticles kütüphanesini yüklemek için lütfen bu ana bilgisayarları veya kendinizinkini kullanın._**
+**_Projelerinize tsParticles kütüphanesini yüklemek için lütfen bu ana sunucuları veya kendinizinkini kullanın._**
 
 #### jsDelivr
 
@@ -158,20 +158,20 @@ tsParticles kütüphanesini yükleyin ve parçacıkları yapılandırın:
 /* tsParticles.loadJSON(@dom-id, @path-json, @callback (optional)); */
 
 tsParticles
-  .loadJSON("tsparticles", "presets/default.json")
-  .then((container) => {
-    console.log("callback - tsparticles config loaded");
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+    .loadJSON("tsparticles", "presets/default.json")
+    .then(container => {
+        console.log("callback - tsparticles config loaded");
+    })
+    .catch(error => {
+        console.error(error);
+    });
 
 //ya da
 
 /* tsParticles.load(@dom-id, @options); */
 
 tsParticles.load("tsparticles", {
-  /* seçenekler buraya */
+    /* seçenekler buraya */
 });
 
 //ya da
@@ -179,41 +179,41 @@ tsParticles.load("tsparticles", {
 /* tsParticles.loadFromArray(@dom-id, @options, @index (optional)); */
 
 tsParticles.loadFromArray("tsparticles", [
-  {
-    /* seçenekler buraya */
-  },
-  {
-    /* diğer seçenekler buraya */
-  },
+    {
+        /* seçenekler buraya */
+    },
+    {
+        /* diğer seçenekler buraya */
+    },
 ]);
 //rastgele nesne
 
 tsParticles.loadFromArray(
-  "tsparticles",
-  [
-    {
-      /* seçenekler buraya */
-    },
-    {
-      /* diğer seçenekler buraya */
-    },
-  ],
-  1
+    "tsparticles",
+    [
+        {
+            /* seçenekler buraya */
+        },
+        {
+            /* diğer seçenekler buraya */
+        },
+    ],
+    1
 ); //ikincisi
 // Önemli! İndeks 0...<array.length aralığında değilse, indesk yok sayılır.
 
-// başlatmadan sonra bu kullanılabilir.
+// Başlatmadan sonra bu kullanılabilir.
 
 /* tsParticles.setOnClickHandler(@callback); */
 
-/* bu, yüklenen tüm parçacıklardan ateşlenecek */
+/* Bu, yüklenen tüm parçacıklardan ateşlenecek */
 
 tsParticles.setOnClickHandler((event, particles) => {
-  /* özel tıklama işleyicisi */
+    /* Özel tıklama işleyicisi */
 });
 
-// artık animasyonları da kontrol edebilirsiniz, animasyonları duraklatmak ve devam ettirmek mümkündür.
-// bu yöntemler yapılandırmayı değiştirmez, böylece tüm yapılandırmalarınız konusunda güvende olursunuz.
+// Artık animasyonları da kontrol edebilirsiniz. animasyonları duraklatmak ve devam ettirmek mümkündür.
+// Bu yöntemler yapılandırmayı değiştirmez, böylece tüm yapılandırmalarınız konusunda güvende olursunuz.
 // domItem(0), DOM'a yüklenen ilk tsParticles örneğini döndürür.
 const particles = tsParticles.domItem(0);
 
@@ -328,7 +328,7 @@ _tsParticles_ ile iyi bir tasarım yarattıysanız, havalı şablonunuzla bir PR
 
 ---
 
-### Harf parçacıklar
+### Harfli parçacıklar
 
 [![Particles chars demo](https://media.giphy.com/media/JsssOXz72bM6jGEZ0s/giphy.gif)](https://particles.js.org/samples#chars)
 
@@ -352,7 +352,7 @@ _tsParticles_ ile iyi bir tasarım yarattıysanız, havalı şablonunuzla bir PR
 
 ---
 
-### Kayan yıldızlar üzerinde uçan Nyan cat
+### Kayan yıldızlar üzerinde uçan Nyan Cat
 
 [![Particles Nyan Cat demo](https://media.giphy.com/media/LpX2oNc9ZMgIhIXQL9/giphy.gif)](https://particles.js.org/samples#nyancat2)
 

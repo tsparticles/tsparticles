@@ -41,14 +41,11 @@ export function drawGrabLine(
     colorLine: IRgb,
     opacity: number
 ): void {
-    context.save();
-
     drawLine(context, begin, end);
 
     context.strokeStyle = getStyleFromRgb(colorLine, opacity);
     context.lineWidth = width;
     context.stroke();
-    context.restore();
 }
 
 function drawGrab(

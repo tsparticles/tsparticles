@@ -52,14 +52,12 @@ export function drawParticleShadow(
         return;
     }
 
-    context.save();
-
-    const radius = particle.getRadius();
-    const sides = particle.sides;
-    const full = (Math.PI * 2) / sides;
-    const angle = -particle.rotation + Math.PI / 4;
-    const factor = 1; //Math.sqrt(2);
-    const dots = [];
+    const radius = particle.getRadius(),
+        sides = particle.sides,
+        full = (Math.PI * 2) / sides,
+        angle = -particle.rotation + Math.PI / 4,
+        factor = 1, //Math.sqrt(2)
+        dots = [];
 
     for (let i = 0; i < sides; i++) {
         dots.push({
@@ -68,14 +66,13 @@ export function drawParticleShadow(
         });
     }
 
-    const points = [];
-
-    const shadowLength = shadowOptions.length;
+    const points = [],
+        shadowLength = shadowOptions.length;
 
     for (const dot of dots) {
-        const dotAngle = Math.atan2(mousePos.y - dot.y, mousePos.x - dot.x);
-        const endX = dot.x + shadowLength * Math.sin(-dotAngle - Math.PI / 2);
-        const endY = dot.y + shadowLength * Math.cos(-dotAngle - Math.PI / 2);
+        const dotAngle = Math.atan2(mousePos.y - dot.y, mousePos.x - dot.x),
+            endX = dot.x + shadowLength * Math.sin(-dotAngle - Math.PI / 2),
+            endY = dot.y + shadowLength * Math.cos(-dotAngle - Math.PI / 2);
 
         points.push({
             endX: endX,
@@ -88,7 +85,7 @@ export function drawParticleShadow(
     const shadowColor = getStyleFromRgb(shadowRgb);
 
     for (let i = points.length - 1; i >= 0; i--) {
-        const n = i == points.length - 1 ? 0 : i + 1;
+        const n = i === points.length - 1 ? 0 : i + 1;
 
         context.beginPath();
 
@@ -102,6 +99,4 @@ export function drawParticleShadow(
 
         context.fill();
     }
-
-    context.restore();
 }

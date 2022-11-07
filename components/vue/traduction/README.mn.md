@@ -27,23 +27,22 @@ Vue.use(Particles);
 ### Жишээ тохиргоо
 
 ```html
-
 <template>
     <div id="app">
         <Particles
-                id="tsparticles"
-                :particlesInit="particlesInit"
-                :particlesLoaded="particlesLoaded"
-                url="http://foo.bar/particles.json"
+            id="tsparticles"
+            :particlesInit="particlesInit"
+            :particlesLoaded="particlesLoaded"
+            url="http://foo.bar/particles.json"
         />
 
         <!-- эсвэл -->
 
         <Particles
-                id="tsparticles"
-                :particlesInit="particlesInit"
-                :particlesLoaded="particlesLoaded"
-                :options="{
+            id="tsparticles"
+            :particlesInit="particlesInit"
+            :particlesLoaded="particlesLoaded"
+            :options="{
                     background: {
                         color: {
                             value: '#0d47a1'

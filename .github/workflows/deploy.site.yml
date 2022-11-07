@@ -23,7 +23,5 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: pnpm install --no-frozen-lockfile
-      - run: pnpm run --filter @tsparticles/build build:ci
-      - run: pnpm install --no-frozen-lockfile
       - run: npx lerna run build
       - run: npx lerna run --scope @tsparticles/website deploy

@@ -38,9 +38,7 @@ export class Absorbers implements IContainerPlugin {
 
     draw(context: CanvasRenderingContext2D): void {
         for (const absorber of this.array) {
-            context.save();
             absorber.draw(context);
-            context.restore();
         }
     }
 

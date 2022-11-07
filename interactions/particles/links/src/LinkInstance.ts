@@ -51,28 +51,23 @@ export class LinkInstance implements IContainerPlugin {
     }
 
     drawParticle(context: CanvasRenderingContext2D, particle: LinkParticle): void {
-        const container = this.container,
-            pOptions = particle.options;
+        const pOptions = particle.options;
 
         if (!particle.links || particle.links.length <= 0) {
             return;
         }
-
-        context.save();
 
         const p1Links = particle.links.filter(
             (l) => pOptions.links && this.getLinkFrequency(particle, l.destination) <= pOptions.links.frequency
         );
 
         for (const link of p1Links) {
-            this.drawTriangles(container, pOptions, particle, link, p1Links);
+            this.drawTriangles(pOptions, particle, link, p1Links);
 
             if (link.opacity > 0 && (particle.retina.linksWidth ?? 0) > 0) {
                 this.drawLinkLine(particle, link);
             }
         }
-
-        context.restore();
     }
 
     async init(): Promise<void> {
@@ -227,13 +222,7 @@ export class LinkInstance implements IContainerPlugin {
         });
     }
 
-    private drawTriangles(
-        container: LinkContainer,
-        options: ParticlesLinkOptions,
-        p1: LinkParticle,
-        link: ILink,
-        p1Links: ILink[]
-    ): void {
+    private drawTriangles(options: ParticlesLinkOptions, p1: LinkParticle, link: ILink, p1Links: ILink[]): void {
         const p2 = link.destination;
 
         if (!(options.links?.triangles.enable && p2.options.links?.triangles.enable)) {

@@ -105,20 +105,20 @@ Carregue tsParticles e configure as partículas:
 /* tsParticles.loadJSON(@dom-id, @path-json, @callback (opcional)); */
 
 tsParticles
-  .loadJSON("tsparticles", "presets/default.json")
-  .then((container) => {
-    console.log("callback - configuração do tsparticles carregada");
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+    .loadJSON("tsparticles", "presets/default.json")
+    .then(container => {
+        console.log("callback - configuração do tsparticles carregada");
+    })
+    .catch(error => {
+        console.error(error);
+    });
 
 //ou
 
 /* tsParticles.load(@dom-id, @options); */
 
 tsParticles.load("tsparticles", {
-  /* options aqui */
+    /* options aqui */
 });
 
 //ou
@@ -126,26 +126,26 @@ tsParticles.load("tsparticles", {
 /* tsParticles.loadFromArray(@dom-id, @options, @index (opcional)); */
 
 tsParticles.loadFromArray("tsparticles", [
-  {
-    /* options aqui */
-  },
-  {
-    /* outras options aqui */
-  },
+    {
+        /* options aqui */
+    },
+    {
+        /* outras options aqui */
+    },
 ]);
 //objeto aleatório
 
 tsParticles.loadFromArray(
-  "tsparticles",
-  [
-    {
-      /* options aqui */
-    },
-    {
-      /* outras options aqui */
-    },
-  ],
-  1
+    "tsparticles",
+    [
+        {
+            /* options aqui */
+        },
+        {
+            /* outras options aqui */
+        },
+    ],
+    1
 ); //o segundo
 // Importante! Se o index não está na faixa entre 0...<array.length, o index vai ser ignorado.
 
@@ -156,7 +156,7 @@ tsParticles.loadFromArray(
 /* isso vai ser disparado por todas as partículas carregadas */
 
 tsParticles.setOnClickHandler((event, particles) => {
-  /* tratamento customizado de clique */
+    /* tratamento customizado de clique */
 });
 
 // agora você pode controlar as animações também, é possível pausar e resumir as animações

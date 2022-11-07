@@ -104,46 +104,46 @@ TsParticles लोड करें और कणों को कॉन्फ़
 /* tsParticles.loadJSON(@dom-id, @path-json, @callback (optional)); */
 
 tsParticles
-  .loadJSON("tsparticles", "presets/default.json")
-  .then((container) => {
-    console.log("callback - tsparticles config loaded");
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+    .loadJSON("tsparticles", "presets/default.json")
+    .then(container => {
+        console.log("callback - tsparticles config loaded");
+    })
+    .catch(error => {
+        console.error(error);
+    });
 
 // या
 
 /* tsParticles.load(@dom-id, @options); */
 
 tsParticles.load("tsparticles", {
-  /* विकल्प यहाँ  */
+    /* विकल्प यहाँ  */
 });
 
 // या
 /* tsParticles.loadFromArray(@dom-id, @options, @index (optional)); */
 
 tsParticles.loadFromArray("tsparticles", [
-  {
-    /* विकल्प यहाँ */
-  },
-  {
-    /* अन्य विकल्प यहाँ */
-  },
+    {
+        /* विकल्प यहाँ */
+    },
+    {
+        /* अन्य विकल्प यहाँ */
+    },
 ]);
 //यादृच्छिक वस्तु
 
 tsParticles.loadFromArray(
-  "tsparticles",
-  [
-    {
-      /* विकल्प यहाँ */
-    },
-    {
-      /* अन्य विकल्प यहाँ*/
-    },
-  ],
-  1
+    "tsparticles",
+    [
+        {
+            /* विकल्प यहाँ */
+        },
+        {
+            /* अन्य विकल्प यहाँ*/
+        },
+    ],
+    1
 ); //दूसरा एक
 // जरूरी! यदि इंडेक्स 0 रेंज में नहीं है ... <array.length, इंडेक्स को नजरअंदाज कर दिया जाएगा।
 
@@ -154,7 +154,7 @@ tsParticles.loadFromArray(
 /* यह लोड किए गए सभी कणों से निकाल दिया जाएगा */
 
 tsParticles.setOnClickHandler((event, particles) => {
-  /* क्लिक हैंडलर पर कस्टम */
+    /* क्लिक हैंडलर पर कस्टम */
 });
 
 // अब आप एनिमेशन को भी नियंत्रित कर सकते हैं, एनिमेशन को रोकना और फिर से शुरू करना संभव है

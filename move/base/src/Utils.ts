@@ -70,9 +70,9 @@ export function spin(particle: MoveParticle, moveSpeed: number): void {
 }
 
 export function applyPath(particle: Particle, delta: IDelta): void {
-    const particlesOptions = particle.options;
-    const pathOptions = particlesOptions.move.path;
-    const pathEnabled = pathOptions.enable;
+    const particlesOptions = particle.options,
+        pathOptions = particlesOptions.move.path,
+        pathEnabled = pathOptions.enable;
 
     if (!pathEnabled) {
         return;
