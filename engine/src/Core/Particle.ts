@@ -395,7 +395,7 @@ export class Particle implements IParticle {
             particlesOptions = loadParticlesOptions(this._engine, container, mainOptions.particles),
             shapeType = particlesOptions.shape.type,
             { reduceDuplicates } = particlesOptions;
-        
+
         this.shape = itemFromSingleOrMultiple(shapeType, this.id, reduceDuplicates);
 
         const shapeOptions = particlesOptions.shape;
