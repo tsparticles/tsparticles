@@ -61,7 +61,7 @@ Nothing to say
 
 == Changelog ==
 
-= 2.5.2 =
+= 2.5.3 =
 
 ## Bug Fixes
 
