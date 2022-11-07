@@ -102,11 +102,11 @@ A partir da versão 1.12.11 `import` e `require` podem ser utilizados para impor
 Agora pode escrever algo deste género
 
 ```javascript
-const tsParticles = require('tsparticles')
+const tsParticles = require("tsparticles");
 
 // ou
 
-import { tsParticles } from 'tsparticles-engine'
+import { tsParticles } from "tsparticles-engine";
 ```
 
 A `tsParticles` importada é a mesma instância que tem quando inclui o script.
@@ -140,48 +140,48 @@ Carregue `tsParticles` e configure as partículas:
 /* tsParticles.loadJSON(@dom-id, @path-json, @callback (opcional)); */
 
 tsParticles
-  .loadJSON('tsparticles', 'presets/default.json')
-  .then(container => {
-    console.log('callback - configuração tsparticles carregada')
+  .loadJSON("tsparticles", "presets/default.json")
+  .then((container) => {
+    console.log("callback - configuração tsparticles carregada");
   })
-  .catch(error => {
-    console.error(error)
-  })
+  .catch((error) => {
+    console.error(error);
+  });
 
 //ou
 
 /* tsParticles.load(@dom-id, @options); */
 
-tsParticles.load('tsparticles', {
+tsParticles.load("tsparticles", {
   /* opções aqui */
-})
+});
 
 //ou
 
 /* tsParticles.loadFromArray(@dom-id, @options, @index (opcional)); */
 
-tsParticles.loadFromArray('tsparticles', [
+tsParticles.loadFromArray("tsparticles", [
   {
     /* opções aqui */
   },
   {
     /* outras opções aqui */
-  }
-])
+  },
+]);
 //objeto aleatório
 
 tsParticles.loadFromArray(
-  'tsparticles',
+  "tsparticles",
   [
     {
       /* opções aqui */
     },
     {
       /* outras opções aqui */
-    }
+    },
   ],
   1
-) //o segundo
+); //o segundo
 // Importante! Se o index não estiver no range 0...<array.length, o index será ignorado.
 
 // após a inicialização isto pode ser utilizado.
@@ -192,18 +192,18 @@ tsParticles.loadFromArray(
 
 tsParticles.setOnClickHandler((event, particles) => {
   /* handler personalizado no clique */
-})
+});
 
 // agora também poderá controlar as animações, é possível pausar e retomar as animações
 // estes métodos não alteram a configuração por isso todas as suas configurações estarão salvaguardadas
 // domItem(0) retorna a primeira instância tsParticles carregada no dom
-const particles = tsParticles.domItem(0)
+const particles = tsParticles.domItem(0);
 
 // play irá iniciar as animações, se o movimento não estiver ativo ele não será ativado, apenas irá atualizar a frame
-particles.play()
+particles.play();
 
 // pause irá parar todas as animações
-particles.pause()
+particles.pause();
 ```
 
 ---

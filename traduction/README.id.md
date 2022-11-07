@@ -97,7 +97,6 @@ Muat dan konfigurasi _particles_ nya:
 **index.html**
 
 ```html
-
 <div id="tsparticles"></div>
 
 <script src="tsparticles.min.js"></script>
@@ -110,20 +109,20 @@ Muat dan konfigurasi _particles_ nya:
 /* tsParticles.loadJSON(@dom-id, @path-json, @callback (opsional)); */
 
 tsParticles
-    .loadJSON("tsparticles", "presets/default.json")
-    .then((container) => {
-        console.log("callback - tsparticles config loaded");
-    })
-    .catch((error) => {
-        console.error(error);
-    });
+  .loadJSON("tsparticles", "presets/default.json")
+  .then((container) => {
+    console.log("callback - tsparticles config loaded");
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 
 //atau
 
 /* tsParticles.load(@dom-id, @options); */
 
 tsParticles.load("tsparticles", {
-    /* pengaturan disini */
+  /* pengaturan disini */
 });
 
 //atau
@@ -131,26 +130,26 @@ tsParticles.load("tsparticles", {
 /* tsParticles.loadFromArray(@dom-id, @options, @index (opsional)); */
 
 tsParticles.loadFromArray("tsparticles", [
-    {
-        /* pengaturan disini */
-    },
-    {
-        /* pengaturan lain disini */
-    },
+  {
+    /* pengaturan disini */
+  },
+  {
+    /* pengaturan lain disini */
+  },
 ]);
 //random object
 
 tsParticles.loadFromArray(
-    "tsparticles",
-    [
-        {
-            /* pengaturan disini */
-        },
-        {
-            /* pengaturan lain disini */
-        },
-    ],
-    1
+  "tsparticles",
+  [
+    {
+      /* pengaturan disini */
+    },
+    {
+      /* pengaturan lain disini */
+    },
+  ],
+  1
 ); //yang ke-dua
 // Penting! Jika index tidak diantara 0...<array.length, maka index akan diabaikan.
 
@@ -161,7 +160,7 @@ tsParticles.loadFromArray(
 /* ini akan dilakukan oleh semua partikel yang dimuat*/
 
 tsParticles.setOnClickHandler((event, particles) => {
-    /* kustomisasi pada penangan klik */
+  /* kustomisasi pada penangan klik */
 });
 
 // sekarang kamu dapat mengendalikan animasinya juga, sangat memungkinkan untuk menunda dan melanjutkan animasi.
@@ -381,7 +380,7 @@ tsParticles sekarang mendukung beberapa kustomisasi 🥳.
 
 **Kamu bisa membuat plugin mu sendiri**
 
-_Baca selengkapnya [disini](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.html)...\_
+\_Baca selengkapnya [disini](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.html)...\_
 
 ---
 

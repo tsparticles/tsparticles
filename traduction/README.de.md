@@ -73,11 +73,11 @@ Ab Version 1.12.11 können `import` oder `require` verwendet werden, um `tsParti
 Ab dann kannst du folgendes schreiben:
 
 ```javascript
-const tsParticles = require('tsparticles');
+const tsParticles = require("tsparticles");
 
 // oder
 
-import { tsParticles } from 'tsparticles';
+import { tsParticles } from "tsparticles";
 ```
 
 Die importierte `tsParticles` ist die gleiche Instanz, die du bekommst, wenn du das Skript einbindest.
@@ -99,7 +99,6 @@ Lade tsParticles und konfiguriere die Partikel:
 **index.html**
 
 ```html
-
 <div id="tsparticles"></div>
 
 <script src="tsparticles.min.js"></script>
@@ -114,54 +113,54 @@ Lade tsParticles und konfiguriere die Partikel:
 
 tsParticles
 
-    .loadJSON('tsparticles', 'presets/default.json')
+  .loadJSON("tsparticles", "presets/default.json")
 
-    .then(container => {
-        console.log('callback - tsparticles config loaded');
-    })
+  .then((container) => {
+    console.log("callback - tsparticles config loaded");
+  })
 
-    .catch(error => {
-        console.error(error);
-    });
+  .catch((error) => {
+    console.error(error);
+  });
 
 //oder
 
 /* tsParticles.load(@dom-id, @options); */
 
-tsParticles.load('tsparticles', {
-    /* Optionen hier */
+tsParticles.load("tsparticles", {
+  /* Optionen hier */
 });
 
 //oder
 
 /* tsParticles.loadFromArray(@dom-id, @options, @index (optional)); */
 
-tsParticles.loadFromArray('tsparticles', [
-    {
-        /* Optionen hier */
-    },
+tsParticles.loadFromArray("tsparticles", [
+  {
+    /* Optionen hier */
+  },
 
-    {
-        /* andere Optionen hier */
-    },
+  {
+    /* andere Optionen hier */
+  },
 ]);
 
 //zufälliges Objekt
 
 tsParticles.loadFromArray(
-    'tsparticles',
+  "tsparticles",
 
-    [
-        {
-            /* Optionen hier */
-        },
+  [
+    {
+      /* Optionen hier */
+    },
 
-        {
-            /* andere Optionen hier */
-        },
-    ],
+    {
+      /* andere Optionen hier */
+    },
+  ],
 
-    1
+  1
 ); //das Zweite
 
 // Wichtig! Wenn der Index nicht zwischen 0...<array.length liegt, wird der Index ignoriert.
@@ -173,7 +172,7 @@ tsParticles.loadFromArray(
 /* dieses Event wird von allen geladenen Teilchen abgefeuert */
 
 tsParticles.setOnClickHandler((event, particles) => {
-    /* benutzerdefinierter Klick-Handler */
+  /* benutzerdefinierter Klick-Handler */
 });
 
 // jetzt können auch die Animationen kontrolliert werden, es ist möglich diese anzuhalten und wieder fortzusetzen
@@ -393,7 +392,7 @@ tsParticles unterstützt jetzt einige individuelle Anpassungen 🥳.
 
 **Du kannst deine eigenen Plugins erstellen**
 
-_Lies mehr dazu [hier](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.html)...\_
+\_Lies mehr dazu [hier](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.html)...\_
 
 ---
 

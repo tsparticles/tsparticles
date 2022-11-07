@@ -6,11 +6,12 @@
 
 [![Rate on Openbase](https://badges.openbase.com/js/rating/tsparticles.svg)](https://openbase.com/js/tsparticles?utm_source=embedded&utm_medium=badge&utm_campaign=rate-badge) [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge?style=rounded)](https://www.jsdelivr.com/package/npm/tsparticles) [![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles)](https://cdnjs.com/libraries/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) [![npm](https://img.shields.io/npm/dm/tsparticles)](https://www.npmjs.com/package/tsparticles) [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/) [![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Grade) [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/matteobruni/tsparticles) [![Run on Repl.it](https://repl.it/badge/github/matteobruni/tsparticles)](https://repl.it/github/matteobruni/tsparticles)
 
-[![Slack](https://particles.js.org/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI) [![Discord](https://particles.js.org/images/discord.png)](https://discord.gg/hACwv45Hme) [![Telegram](https://particles.js.org/images/telegram.png)](https://t.me/tsparticles) 
+[![Slack](https://particles.js.org/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI) [![Discord](https://particles.js.org/images/discord.png)](https://discord.gg/hACwv45Hme) [![Telegram](https://particles.js.org/images/telegram.png)](https://t.me/tsparticles)
 
 [![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles")
 
 ---
+
 ## İçindekiler
 
 - [tsParticles - TypeScript Parçacıkları](#tsparticles---typescript-parçacıkları)
@@ -63,19 +64,20 @@
 * [Particles.js kütüphanesinden göç](#particlesjs-kütüphanesinden-göç)
 
 * [Eklentiler ve Özelleştirlemeler](#Eklentiler-ve-Özelleştirlemeler)
+
 ## Bu kütüphaneyi sitenizde kullanmak ister misiniz?
 
-*Dokümantasyon ve Geliştirme referansları burada [here](https://particles.js.org/docs/) 📖*
+_Dokümantasyon ve Geliştirme referansları burada [here](https://particles.js.org/docs/) 📖_
 
 **Bu kitaplık en popüler CDN'lerden ikisinde mevcuttur; kolay ve kullanıma hazır bir durumdadır, hatta eğer Particles.js kütüphanesini kullanıyorsanız bu daha da kolaydır.**.
 
- [Aşağıdaki](https://github.com/matteobruni/tsparticles/blob/main/README.md#library-installation) talimatları, ihtiyacınız olan tüm bağlantılarla birlikte bulacaksınız ve... __**TypeScript**'ten korkmayın! Bu yalnızca kaynak dildir.__
+[Aşağıdaki](https://github.com/matteobruni/tsparticles/blob/main/README.md#library-installation) talimatları, ihtiyacınız olan tüm bağlantılarla birlikte bulacaksınız ve... ****TypeScript**'ten korkmayın! Bu yalnızca kaynak dildir.**
 
 **Çıktı dosyaları sadece JavaScript'tir.**. 🤩
 
 CDN'ler ve `npm`, **Javascript**'te ihtiyacınız olan tüm kaynaklara; tarayıcıya hazır bir pakete (tsparticles.min.js) ve `import` sözdizimi için bölünmüş tüm dosyalara sahiptir.
 
-**Eğer ilgiliyseniz**, eski Particles.js kitaplığından geçiş yapmanıza yardımcı olacak bazı __basit talimatlar__ hemen [aşağıdadır](https://github.com/matteobruni/tsparticles/blob/main/README.md#library-installation).
+**Eğer ilgiliyseniz**, eski Particles.js kitaplığından geçiş yapmanıza yardımcı olacak bazı **basit talimatlar** hemen [aşağıdadır](https://github.com/matteobruni/tsparticles/blob/main/README.md#library-installation).
 
 ## **_Kütüphane kurulumu_**
 
@@ -144,7 +146,6 @@ tsParticles kütüphanesini yükleyin ve parçacıkları yapılandırın:
 **index.html**
 
 ```html
-
 <div id="tsparticles"></div>
 
 <script src="tsparticles.min.js"></script>
@@ -157,20 +158,20 @@ tsParticles kütüphanesini yükleyin ve parçacıkları yapılandırın:
 /* tsParticles.loadJSON(@dom-id, @path-json, @callback (optional)); */
 
 tsParticles
-    .loadJSON("tsparticles", "presets/default.json")
-    .then((container) => {
-        console.log("callback - tsparticles config loaded");
-    })
-    .catch((error) => {
-        console.error(error);
-    });
+  .loadJSON("tsparticles", "presets/default.json")
+  .then((container) => {
+    console.log("callback - tsparticles config loaded");
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 
 //ya da
 
 /* tsParticles.load(@dom-id, @options); */
 
 tsParticles.load("tsparticles", {
-    /* seçenekler buraya */
+  /* seçenekler buraya */
 });
 
 //ya da
@@ -178,26 +179,26 @@ tsParticles.load("tsparticles", {
 /* tsParticles.loadFromArray(@dom-id, @options, @index (optional)); */
 
 tsParticles.loadFromArray("tsparticles", [
-    {
-        /* seçenekler buraya */
-    },
-    {
-        /* diğer seçenekler buraya */
-    },
+  {
+    /* seçenekler buraya */
+  },
+  {
+    /* diğer seçenekler buraya */
+  },
 ]);
 //rastgele nesne
 
 tsParticles.loadFromArray(
-    "tsparticles",
-    [
-        {
-            /* seçenekler buraya */
-        },
-        {
-            /* diğer seçenekler buraya */
-        },
-    ],
-    1
+  "tsparticles",
+  [
+    {
+      /* seçenekler buraya */
+    },
+    {
+      /* diğer seçenekler buraya */
+    },
+  ],
+  1
 ); //ikincisi
 // Önemli! İndeks 0...<array.length aralığında değilse, indesk yok sayılır.
 
@@ -208,7 +209,7 @@ tsParticles.loadFromArray(
 /* bu, yüklenen tüm parçacıklardan ateşlenecek */
 
 tsParticles.setOnClickHandler((event, particles) => {
-    /* özel tıklama işleyicisi */
+  /* özel tıklama işleyicisi */
 });
 
 // artık animasyonları da kontrol edebilirsiniz, animasyonları duraklatmak ve devam ettirmek mümkündür.
@@ -309,11 +310,11 @@ Aslında resmi bir tsParticles eklentisi mevcut değil, ancak `Premium Addons fo
 
 ## Şablonlar ve Kaynaklar
 
-tsParticles ile ilgili bazı şablonları [burada](https://github.com/tsparticles/templates) bulabilirsiniz. Şablonlar, *Vanilla Javascript*, *ReactJS*, *VueJS*, *Angular*, *SvelteJS* ve diğer frameworkler için oluşturulmuştur.
+tsParticles ile ilgili bazı şablonları [burada](https://github.com/tsparticles/templates) bulabilirsiniz. Şablonlar, _Vanilla Javascript_, _ReactJS_, _VueJS_, _Angular_, _SvelteJS_ ve diğer frameworkler için oluşturulmuştur.
 
 Şablonlar değişiklik gösterir, yenileri oluşturulabilir veya eskileri en son özelliklerle güncellenebilir veya daha iyi bir stile dönüştürülebilir. Arada bir onları kontrol edin.
 
-*tsParticles* ile iyi bir tasarım yarattıysanız, havalı şablonunuzla bir PR isteği göndermekten çekinmeyin, şablon yazarı olarak kabul edileceksiniz!
+_tsParticles_ ile iyi bir tasarım yarattıysanız, havalı şablonunuzla bir PR isteği göndermekten çekinmeyin, şablon yazarı olarak kabul edileceksiniz!
 
 <https://github.com/tsparticles/templates>
 
@@ -405,8 +406,7 @@ yarn install && yarn start
 
 **Boom! 💥**! http://localhost:3000 ve diğer demoları kontrol edebilirsiniz.
 
-_Yeterince cesursanız__, geliştirilmekte olan özellikleri denemek için `dev` branch'ine geçebilirsiniz.
-
+\_Yeterince cesursanız\_\_, geliştirilmekte olan özellikleri denemek için `dev` branch'ine geçebilirsiniz.
 
 ---
 

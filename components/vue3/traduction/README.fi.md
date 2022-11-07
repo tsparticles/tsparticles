@@ -21,29 +21,28 @@ yarn add vue3-particles
 ```javascript
 import Particles from "vue3-particles";
 
-createApp(App).use(Particles)
+createApp(App).use(Particles);
 ```
 
 ### Demo konfiguraatio
 
 ```html
-
 <template>
-    <div id="app">
-        <Particles
-                id="tsparticles"
-                :particlesInit="particlesInit"
-                :particlesLoaded="particlesLoaded"
-                url="http://foo.bar/particles.json"
-        />
+  <div id="app">
+    <Particles
+      id="tsparticles"
+      :particlesInit="particlesInit"
+      :particlesLoaded="particlesLoaded"
+      url="http://foo.bar/particles.json"
+    />
 
-        <!-- tai -->
+    <!-- tai -->
 
-        <Particles
-                id="tsparticles"
-                :particlesInit="particlesInit"
-                :particlesLoaded="particlesLoaded"
-                :options="{
+    <Particles
+      id="tsparticles"
+      :particlesInit="particlesInit"
+      :particlesLoaded="particlesLoaded"
+      :options="{
                     background: {
                         color: {
                             value: '#0d47a1'
@@ -120,8 +119,8 @@ createApp(App).use(Particles)
                     },
                     detectRetina: true
                 }"
-        />
-    </div>
+    />
+  </div>
 </template>
 ```
 
@@ -129,12 +128,12 @@ createApp(App).use(Particles)
 import { loadFull } from "tsparticles";
 
 const particlesInit = async (engine) => {
-    await loadFull(engine);
-}
+  await loadFull(engine);
+};
 
 const particlesLoaded = async (container) => {
-    console.log("Particles container loaded", container);
-}
+  console.log("Particles container loaded", container);
+};
 ```
 
 ### TypeScript ongelmat

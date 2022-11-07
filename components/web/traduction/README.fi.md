@@ -21,15 +21,11 @@ yarn add web-particles
 ### Demo konfiguraatio
 
 ```html
+<web-particles id="tsparticles" url="http://foo.bar/particles.json" />
 
 <web-particles
-        id="tsparticles"
-        url="http://foo.bar/particles.json"
-/>
-
-<web-particles
-        id="tsparticles"
-        options="{
+  id="tsparticles"
+  options="{
             background: {
                 color: {
                     value: '#0d47a1'

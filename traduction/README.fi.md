@@ -34,42 +34,42 @@ kanssa**
 löytyy version **v1** dokumentaatio_ ⚠️⚠️
 
 - [Käyttö verkkosivullasi](#Haluatko-käyttää-tsPartikkeleita-verkkosivullasi?)
-    - [Kirjaston asennus](#Kirjaston-asennus)
-- [Viralliset komponentit käytetyimpiin kehyksiin (framework)](#Viralliset-komponentit-käyteyimpiin-kehyksiin-(frameworkkeihin))
-    - [Angular](#Angular)
-    - [Inferno](#Inferno)
-    - [jQuery](#jQuery)
-    - [Preact](#Preact)
-    - [ReactJS](#ReactJS)
-    - [RiotJS](#RiotJS)
-    - [SolidJS](#SolidJS)
-    - [Svelte](#Svelte)
-    - [VueJS 2.x](#VueJS-2.x)
-    - [VueJS 3.x](#VueJS-3.x)
-    - [Web Komponentit](#Web-Komponentit)
-    - [WordPress](#WordPress)
-    - [Elementor](#Elementor)
+  - [Kirjaston asennus](#Kirjaston-asennus)
+- [Viralliset komponentit käytetyimpiin kehyksiin (framework)](<#Viralliset-komponentit-käyteyimpiin-kehyksiin-(frameworkkeihin)>)
+  - [Angular](#Angular)
+  - [Inferno](#Inferno)
+  - [jQuery](#jQuery)
+  - [Preact](#Preact)
+  - [ReactJS](#ReactJS)
+  - [RiotJS](#RiotJS)
+  - [SolidJS](#SolidJS)
+  - [Svelte](#Svelte)
+  - [VueJS 2.x](#VueJS-2.x)
+  - [VueJS 3.x](#VueJS-3.x)
+  - [Web Komponentit](#Web-Komponentit)
+  - [WordPress](#WordPress)
+  - [Elementor](#Elementor)
 - [Valmiit mallit](#Valmiit-mallit)
-    - [Suuret ympyrät](#Suuret-ympyrät)
-    - [Kuplat](#Kuplat)
-    - [Konfetti](#Konfetti)
-    - [Tuli](#Tuli)
-    - [Tulikärpäset](#Tulikärpäset)
-    - [Ilotulitukset](#Ilotulitukset)
-    - [Suihkulähde](#Suihkulähde)
-    - [Linkit](#Linkit)
-    - [Merivuokko](#Merivuokko)
-    - [Lumisade](#Lumisade)
-    - [Tähdet](#Tähdet)
-    - [Kolmiot](#Kolmiot)
+  - [Suuret ympyrät](#Suuret-ympyrät)
+  - [Kuplat](#Kuplat)
+  - [Konfetti](#Konfetti)
+  - [Tuli](#Tuli)
+  - [Tulikärpäset](#Tulikärpäset)
+  - [Ilotulitukset](#Ilotulitukset)
+  - [Suihkulähde](#Suihkulähde)
+  - [Linkit](#Linkit)
+  - [Merivuokko](#Merivuokko)
+  - [Lumisade](#Lumisade)
+  - [Tähdet](#Tähdet)
+  - [Kolmiot](#Kolmiot)
 - [Mallit ja Resurssit](#Mallit-ja-Resurssit)
 - [Demo / Generaattori](#**_Demo-/-Generaattori_**)
-    - [Hahmot partikkeleina](#Hahmot-partikkeleina)
-    - [Kursorin seuraaminen](#Hiiren-hover-yhteydet)
-    - [Monikulmio maski](#Monikulmio-maski)
-    - [Animoidut tähdet](#Animoidut-tähdet)
-    - [Nyan kissa lentää avaruudeessa](#Nyan-kissa-lentämässä-avaruudessa)
-    - [Taustan maski partikkelit](#Taustan-maski-partikkelit)
+  - [Hahmot partikkeleina](#Hahmot-partikkeleina)
+  - [Kursorin seuraaminen](#Hiiren-hover-yhteydet)
+  - [Monikulmio maski](#Monikulmio-maski)
+  - [Animoidut tähdet](#Animoidut-tähdet)
+  - [Nyan kissa lentää avaruudeessa](#Nyan-kissa-lentämässä-avaruudessa)
+  - [Taustan maski partikkelit](#Taustan-maski-partikkelit)
 - [Video Tutoriaalit](#**_Video-Tutoriaalit_**)
 - [Siirtyminen Particles.js:stä](#Migrating-from-Particlesjs)
 - [Lisäosat/Kustomointi](#PluginsCustomizations)
@@ -120,15 +120,15 @@ on _yksinkertaisia ohjeita_, jotka auttavat sinua siirtymään tsPartikkeleihin 
 
 ### **_npm_**
 
-*tsParticles Engine*
+_tsParticles Engine_
 
 [![npm](https://img.shields.io/npm/v/tsparticles-engine?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-engine) [![npmjs](https://img.shields.io/npm/dt/tsparticles-engine?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-engine)
 
-*tsParticles Slim*
+_tsParticles Slim_
 
 [![npm](https://img.shields.io/npm/v/tsparticles-slim?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-slim) [![npmjs](https://img.shields.io/npm/dt/tsparticles-slim?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-slim)
 
-*tsParticles*
+_tsParticles_
 
 [![npm](https://img.shields.io/npm/v/tsparticles?style=for-the-badge)](https://www.npmjs.com/package/tsparticles) [![npmjs](https://img.shields.io/npm/dt/tsparticles?style=for-the-badge)](https://www.npmjs.com/package/tsparticles)
 
@@ -181,7 +181,6 @@ Lataa tsParticles kirjaston ja konfiguroi partikkelit:
 **index.html**
 
 ```html
-
 <div id="tsparticles"></div>
 
 <script src="tsparticles.engine.min.js"></script>
@@ -194,20 +193,20 @@ Lataa tsParticles kirjaston ja konfiguroi partikkelit:
 /* tsParticles.loadJSON(@dom-id, @path-json, @callback (optional)); */
 
 tsParticles
-    .loadJSON("tsparticles", "presets/default.json")
-    .then((container) => {
-        console.log("callback - tsparticles config loaded");
-    })
-    .catch((error) => {
-        console.error(error);
-    });
+  .loadJSON("tsparticles", "presets/default.json")
+  .then((container) => {
+    console.log("callback - tsparticles config loaded");
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 
 //tai
 
 /* tsParticles.load(@dom-id, @options); */
 
 tsParticles.load("tsparticles", {
-    /* asetukset tänne */
+  /* asetukset tänne */
 });
 
 //tai
@@ -215,26 +214,26 @@ tsParticles.load("tsparticles", {
 /* tsParticles.loadFromArray(@dom-id, @options, @index (optional)); */
 
 tsParticles.loadFromArray("tsparticles", [
-    {
-        /* asetukset tänne */
-    },
-    {
-        /* muut asetukset tänne */
-    },
+  {
+    /* asetukset tänne */
+  },
+  {
+    /* muut asetukset tänne */
+  },
 ]);
 //random objekti
 
 tsParticles.loadFromArray(
-    "tsparticles",
-    [
-        {
-            /* asetukset tänne */
-        },
-        {
-            /* muut asetukset tänne */
-        },
-    ],
-    1
+  "tsparticles",
+  [
+    {
+      /* asetukset tänne */
+    },
+    {
+      /* muut asetukset tänne */
+    },
+  ],
+  1
 ); //the second one
 // Tärkeää! Jos indeksi ei ole välillä 0...<array.length, indeksiä ei huomioida.
 
@@ -245,7 +244,7 @@ tsParticles.loadFromArray(
 /* tämä laukaistaan/fired  kaikista ladatuista partikkeleista */
 
 tsParticles.setOnClickHandler((event, particles) => {
-    /* kustom on click käsittelijä */
+  /* kustom on click käsittelijä */
 });
 
 // Nyt voit myös hallita animaatioita kuten keskeyttää ja jatkaa niitä
@@ -517,7 +516,7 @@ Sinut merkitään mallin tekijäksi.
 
 Löydät kaikki video tutoriialit täältä: <https://particles.js.org/video.html>
 
-*Lisää videoita tulossa pian! Tarkista päivittäin, onko uutta sisältöä tullut.*
+_Lisää videoita tulossa pian! Tarkista päivittäin, onko uutta sisältöä tullut._
 
 ---
 

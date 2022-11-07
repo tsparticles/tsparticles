@@ -25,8 +25,9 @@ yarn add riot-particles
 ## Käyttö
 
 ```html
-
-<riot-particles id="tsparticles" options='{{
+<riot-particles
+  id="tsparticles"
+  options='{{
         background: {
             color: "#000"
         },
@@ -41,37 +42,42 @@ yarn add riot-particles
                 enable: true
             }
         }
-    }}' particlesInit='{async (main) => {
+    }}'
+  particlesInit="{async (main) => {
         console.log(main);
         
         // this loads the tsparticles package bundle, it is the easiest method for getting everything ready
         // starting from v2 you can add only the features you need reducing the bundle size
         await loadFull(main); 
-    }}' particlesLoaded='{(container) => console.log(container)}'/>
+    }}"
+  particlesLoaded="{(container) => console.log(container)}"
+/>
 
 <script>
-    import RiotParticles from "riot-particles";
-    import { loadFull } from "tsparticles";
+  import RiotParticles from "riot-particles";
+  import { loadFull } from "tsparticles";
 
-    export default {
-        components: {
-            RiotParticles
-        }
-    }
+  export default {
+    components: {
+      RiotParticles,
+    },
+  };
 </script>
 
 <!-- tai -->
 
 <riot-particles
-        id="tsparticles"
-        url="https://foo.bar/particles.json"
-        particlesInit='{async (main) => {
+  id="tsparticles"
+  url="https://foo.bar/particles.json"
+  particlesInit="{async (main) => {
         console.log(main);
         
         // this loads the tsparticles package bundle, it is the easiest method for getting everything ready
         // starting from v2 you can add only the features you need reducing the bundle size
         await loadFull(main); 
-    }}' particlesLoaded='{(container) => console.log(container)}'/>
+    }}"
+  particlesLoaded="{(container) => console.log(container)}"
+/>
 />
 ```
 

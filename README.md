@@ -33,42 +33,42 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 for **v1** documentation_ ⚠️⚠️
 
 - [Use for your website](#Do-you-want-to-use-it-on-your-website)
-    - [Library installation](#Library-installation)
+  - [Library installation](#Library-installation)
 - [Official components for some of the most used frameworks](#Official-components-for-some-of-the-most-used-frameworks)
-    - [Angular](#Angular)
-    - [Inferno](#Inferno)
-    - [jQuery](#jQuery)
-    - [Preact](#Preact)
-    - [ReactJS](#ReactJS)
-    - [RiotJS](#RiotJS)
-    - [SolidJS](#SolidJS)
-    - [Svelte](#Svelte)
-    - [VueJS 2.x](#VueJS-2x)
-    - [VueJS 3.x](#VueJS-3x)
-    - [Web Components](#Web-Components)
-    - [WordPress](#WordPress)
-    - [Elementor](#Elementor)
+  - [Angular](#Angular)
+  - [Inferno](#Inferno)
+  - [jQuery](#jQuery)
+  - [Preact](#Preact)
+  - [ReactJS](#ReactJS)
+  - [RiotJS](#RiotJS)
+  - [SolidJS](#SolidJS)
+  - [Svelte](#Svelte)
+  - [VueJS 2.x](#VueJS-2x)
+  - [VueJS 3.x](#VueJS-3x)
+  - [Web Components](#Web-Components)
+  - [WordPress](#WordPress)
+  - [Elementor](#Elementor)
 - [Presets](#Presets)
-    - [Big Circles](#Big-Circles)
-    - [Bubbles](#Bubbles)
-    - [Confetti](#Confetti)
-    - [Fire](#Fire)
-    - [Firefly](#Firefly)
-    - [Fireworks](#Fireworks)
-    - [Fountain](#fountain)
-    - [Links](#links)
-    - [Sea Anemone](#Sea-Anemone)
-    - [Snow](#Snow)
-    - [Stars](#Stars)
-    - [Triangles](#Triangles)
+  - [Big Circles](#Big-Circles)
+  - [Bubbles](#Bubbles)
+  - [Confetti](#Confetti)
+  - [Fire](#Fire)
+  - [Firefly](#Firefly)
+  - [Fireworks](#Fireworks)
+  - [Fountain](#fountain)
+  - [Links](#links)
+  - [Sea Anemone](#Sea-Anemone)
+  - [Snow](#Snow)
+  - [Stars](#Stars)
+  - [Triangles](#Triangles)
 - [Templates and Resources](#Templates-and-Resources)
 - [Demo / Generator](#Demo--Generator)
-    - [Characters as particles](#Characters-as-particles)
-    - [Mouse hover connections](#Mouse-hover-connections)
-    - [Polygon mask](#Polygon-mask)
-    - [Animated stars](#Animated-stars)
-    - [Nyan cat flying on scrolling stars](#Nyan-cat-flying-on-scrolling-stars)
-    - [Background Mask particles](#Background-Mask-particles)
+  - [Characters as particles](#Characters-as-particles)
+  - [Mouse hover connections](#Mouse-hover-connections)
+  - [Polygon mask](#Polygon-mask)
+  - [Animated stars](#Animated-stars)
+  - [Nyan cat flying on scrolling stars](#Nyan-cat-flying-on-scrolling-stars)
+  - [Background Mask particles](#Background-Mask-particles)
 - [Video Tutorials](#Video-Tutorials)
 - [Migrating from Particles.js](#Migrating-from-Particlesjs)
 - [Plugins/Customizations](#PluginsCustomizations)
@@ -122,15 +122,15 @@ migrate from the old particles.js library.
 
 ### **_npm_**
 
-*tsParticles Engine*
+_tsParticles Engine_
 
 [![npm](https://img.shields.io/npm/v/tsparticles-engine?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-engine) [![npmjs](https://img.shields.io/npm/dt/tsparticles-engine?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-engine)
 
-*tsParticles Slim*
+_tsParticles Slim_
 
 [![npm](https://img.shields.io/npm/v/tsparticles-slim?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-slim) [![npmjs](https://img.shields.io/npm/dt/tsparticles-slim?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-slim)
 
-*tsParticles*
+_tsParticles_
 
 [![npm](https://img.shields.io/npm/v/tsparticles?style=for-the-badge)](https://www.npmjs.com/package/tsparticles) [![npmjs](https://img.shields.io/npm/dt/tsparticles?style=for-the-badge)](https://www.npmjs.com/package/tsparticles)
 
@@ -183,7 +183,6 @@ Load tsParticles and configure the particles:
 **index.html**
 
 ```html
-
 <div id="tsparticles"></div>
 
 <script src="tsparticles.engine.min.js"></script>
@@ -196,20 +195,20 @@ Load tsParticles and configure the particles:
 /* tsParticles.loadJSON(@dom-id, @path-json, @callback (optional)); */
 
 tsParticles
-    .loadJSON("tsparticles", "presets/default.json")
-    .then((container) => {
-        console.log("callback - tsparticles config loaded");
-    })
-    .catch((error) => {
-        console.error(error);
-    });
+  .loadJSON("tsparticles", "presets/default.json")
+  .then((container) => {
+    console.log("callback - tsparticles config loaded");
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 
 //or
 
 /* tsParticles.load(@dom-id, @options); */
 
 tsParticles.load("tsparticles", {
-    /* options here */
+  /* options here */
 });
 
 //or
@@ -217,26 +216,26 @@ tsParticles.load("tsparticles", {
 /* tsParticles.loadFromArray(@dom-id, @options, @index (optional)); */
 
 tsParticles.loadFromArray("tsparticles", [
-    {
-        /* options here */
-    },
-    {
-        /* other options here */
-    },
+  {
+    /* options here */
+  },
+  {
+    /* other options here */
+  },
 ]);
 //random object
 
 tsParticles.loadFromArray(
-    "tsparticles",
-    [
-        {
-            /* options here */
-        },
-        {
-            /* other options here */
-        },
-    ],
-    1
+  "tsparticles",
+  [
+    {
+      /* options here */
+    },
+    {
+      /* other options here */
+    },
+  ],
+  1
 ); //the second one
 // Important! If the index is not in range 0...<array.length, the index will be ignored.
 
@@ -247,7 +246,7 @@ tsParticles.loadFromArray(
 /* this will be fired from all particles loaded */
 
 tsParticles.setOnClickHandler((event, particles) => {
-    /* custom on click handler */
+  /* custom on click handler */
 });
 
 // now you can control the animations too, it's possible to pause and resume the animations
@@ -521,7 +520,7 @@ credited as the template author!
 
 You can find all video tutorials in the website here: <https://particles.js.org/video.html>
 
-*More videos are coming soon! Check every day if there are some new contents.*
+_More videos are coming soon! Check every day if there are some new contents._
 
 ---
 

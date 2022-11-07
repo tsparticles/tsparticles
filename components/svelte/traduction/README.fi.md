@@ -25,57 +25,56 @@ yarn add svelte-particles
 ## Käyttöohjeet
 
 ```html
-
 <script>
-    import Particles from "svelte-particles";
-    import { loadFull } from "tsparticles";
+  import Particles from "svelte-particles";
+  import { loadFull } from "tsparticles";
 
-    let particlesUrl = "http://foo.bar/particles.json";
+  let particlesUrl = "http://foo.bar/particles.json";
 
-    let particlesConfig = {
-        particles: {
-            color: {
-                value: "#000",
-            },
-            links: {
-                enable: true,
-                color: "#000",
-            },
-            move: {
-                enable: true,
-            },
-        },
-    };
+  let particlesConfig = {
+    particles: {
+      color: {
+        value: "#000",
+      },
+      links: {
+        enable: true,
+        color: "#000",
+      },
+      move: {
+        enable: true,
+      },
+    },
+  };
 
-    let onParticlesLoaded = (event) => {
-        const particlesContainer = event.detail.particles;
+  let onParticlesLoaded = (event) => {
+    const particlesContainer = event.detail.particles;
 
-        // voit käyttää particlesContaineria kutsuaksesi kaikkia säiliö luokkien
-        // (core kirjastosta) metodeja kuten play, pause, refresh, start, stop
-    };
+    // voit käyttää particlesContaineria kutsuaksesi kaikkia säiliö luokkien
+    // (core kirjastosta) metodeja kuten play, pause, refresh, start, stop
+  };
 
-    let particlesInit = async (engine) => {
-        // you can use main to customize the tsParticles instance adding presets or custom shapes
-        // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-        // starting from v2 you can add only the features you need reducing the bundle size
-        await loadFull(engine);
-    };
+  let particlesInit = async (engine) => {
+    // you can use main to customize the tsParticles instance adding presets or custom shapes
+    // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+    // starting from v2 you can add only the features you need reducing the bundle size
+    await loadFull(engine);
+  };
 </script>
 
 <Particles
-        id="tsparticles"
-        options="{particlesConfig}"
-        on:particlesLoaded="{onParticlesLoaded}"
-        particlesInit="{particlesInit}"
+  id="tsparticles"
+  options="{particlesConfig}"
+  on:particlesLoaded="{onParticlesLoaded}"
+  particlesInit="{particlesInit}"
 />
 
 <!-- tai -->
 
 <Particles
-        id="tsparticles"
-        url="{particlesUrl}"
-        on:particlesLoaded="{onParticlesLoaded}"
-        particlesInit="{particlesInit}"
+  id="tsparticles"
+  url="{particlesUrl}"
+  on:particlesLoaded="{onParticlesLoaded}"
+  particlesInit="{particlesInit}"
 />
 ```
 
@@ -87,67 +86,66 @@ joten sinun täytyy pakottaa komponentin kutsu client puolelta `async import` av
 Esimerkki alla:
 
 ```html
-
 <script>
-    import { onMount } from "svelte";
-    import { loadFull } from "tsparticles";
+  import { onMount } from "svelte";
+  import { loadFull } from "tsparticles";
 
-    let ParticlesComponent;
+  let ParticlesComponent;
 
-    onMount(async () => {
-        const module = await import("svelte-particles");
+  onMount(async () => {
+    const module = await import("svelte-particles");
 
-        ParticlesComponent = module.default;
-    });
+    ParticlesComponent = module.default;
+  });
 
-    let particlesUrl = "http://foo.bar/particles.json";
+  let particlesUrl = "http://foo.bar/particles.json";
 
-    let particlesConfig = {
-        particles: {
-            color: {
-                value: "#000",
-            },
-            links: {
-                enable: true,
-                color: "#000",
-            },
-            move: {
-                enable: true,
-            },
-        },
-    };
+  let particlesConfig = {
+    particles: {
+      color: {
+        value: "#000",
+      },
+      links: {
+        enable: true,
+        color: "#000",
+      },
+      move: {
+        enable: true,
+      },
+    },
+  };
 
-    let onParticlesLoaded = (event) => {
-        const particlesContainer = event.detail.particles;
+  let onParticlesLoaded = (event) => {
+    const particlesContainer = event.detail.particles;
 
-        // voit käyttää particlesContaineria kutsuaksesi kaikkia säiliö luokkien
-        // (core kirjastosta) metodeja kuten play, pause, refresh, start, stop
-    };
+    // voit käyttää particlesContaineria kutsuaksesi kaikkia säiliö luokkien
+    // (core kirjastosta) metodeja kuten play, pause, refresh, start, stop
+  };
 
-    let particlesInit = async (main) => {
-        // Täällä voit alustaa tsParticles esiintymän (main), lisäämällä mukautettuja muotoja tai esiasetuksia
-        // tämä lataa tsparticles-paketin, joka on helpoin tapa saada kaikki käyttövalmiiksi
-        // alaken versiosta 2 voit lisätä vain tarvitsemasi ominaisuudet ja pienentää paketin kokoa
-        await loadFull(main);
-    };
+  let particlesInit = async (main) => {
+    // Täällä voit alustaa tsParticles esiintymän (main), lisäämällä mukautettuja muotoja tai esiasetuksia
+    // tämä lataa tsparticles-paketin, joka on helpoin tapa saada kaikki käyttövalmiiksi
+    // alaken versiosta 2 voit lisätä vain tarvitsemasi ominaisuudet ja pienentää paketin kokoa
+    await loadFull(main);
+  };
 </script>
 
 <svelte:component
-        this="{ParticlesComponent}"
-        id="tsparticles"
-        options="{particlesConfig}"
-        on:particlesLoaded="{onParticlesLoaded}"
-        particlesInit="{particlesInit}"
+  this="{ParticlesComponent}"
+  id="tsparticles"
+  options="{particlesConfig}"
+  on:particlesLoaded="{onParticlesLoaded}"
+  particlesInit="{particlesInit}"
 />
 
 <!-- tai -->
 
 <svelte:component
-        this="{ParticlesComponent}"
-        id="tsparticles"
-        url="{particlesUrl}"
-        on:particlesLoaded="{onParticlesLoaded}"
-        particlesInit="{particlesInit}"
+  this="{ParticlesComponent}"
+  id="tsparticles"
+  url="{particlesUrl}"
+  on:particlesLoaded="{onParticlesLoaded}"
+  particlesInit="{particlesInit}"
 />
 ```
 

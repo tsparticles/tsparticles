@@ -57,21 +57,21 @@ import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 
 const App = () => {
-    const particlesInit = useCallback(async (engine) => {
-        console.log(engine);
-        // Täällä voit alustaa tsParticles esiintymän (main), lisäämällä mukautettuja muotoja tai esiasetuksia
-        // tämä lataa tsparticles-paketin, joka on helpoin tapa saada kaikki käyttövalmiiksi
-        // alaken versiosta 2 voit lisätä vain tarvitsemasi ominaisuudet ja pienentää paketin kokoa
-        await loadFull(engine);
-    }, []);
+  const particlesInit = useCallback(async (engine) => {
+    console.log(engine);
+    // Täällä voit alustaa tsParticles esiintymän (main), lisäämällä mukautettuja muotoja tai esiasetuksia
+    // tämä lataa tsparticles-paketin, joka on helpoin tapa saada kaikki käyttövalmiiksi
+    // alaken versiosta 2 voit lisätä vain tarvitsemasi ominaisuudet ja pienentää paketin kokoa
+    await loadFull(engine);
+  }, []);
 
-    const particlesLoaded = useCallback(async (container) => {
-        await console.log(container);
-    }, []);
+  const particlesLoaded = useCallback(async (container) => {
+    await console.log(container);
+  }, []);
 
-    return (
-        <Particles id="tsparticles" url="http://foo.bar/particles.json" init={particlesInit} loaded={particlesLoaded}/>
-    );
+  return (
+    <Particles id="tsparticles" url="http://foo.bar/particles.json" init={particlesInit} loaded={particlesLoaded} />
+  );
 };
 ```
 
@@ -80,26 +80,26 @@ const App = () => {
 ```typescript jsx
 import { useCallback } from "react";
 import Particles from "react-particles";
-import type {Container, Engine} from "tsparticles-engine";
+import type { Container, Engine } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 
 const App = () => {
-    const particlesInit = useCallback(async (engine: Engine) => {
-        console.log(engine);
+  const particlesInit = useCallback(async (engine: Engine) => {
+    console.log(engine);
 
-        // Täällä voit alustaa tsParticles esiintymän (main), lisäämällä mukautettuja muotoja tai esiasetuksia
-        // tämä lataa tsparticles-paketin, joka on helpoin tapa saada kaikki käyttövalmiiksi
-        // alaken versiosta 2 voit lisätä vain tarvitsemasi ominaisuudet ja pienentää paketin kokoa
-        await loadFull(engine);
-    }, []);
+    // Täällä voit alustaa tsParticles esiintymän (main), lisäämällä mukautettuja muotoja tai esiasetuksia
+    // tämä lataa tsparticles-paketin, joka on helpoin tapa saada kaikki käyttövalmiiksi
+    // alaken versiosta 2 voit lisätä vain tarvitsemasi ominaisuudet ja pienentää paketin kokoa
+    await loadFull(engine);
+  }, []);
 
-    const particlesLoaded = useCallback(async (container: Container | undefined) => {
-        await console.log(container);
-    }, []);
+  const particlesLoaded = useCallback(async (container: Container | undefined) => {
+    await console.log(container);
+  }, []);
 
-    return (
-        <Particles id="tsparticles" url="http://foo.bar/particles.json" init={particlesInit} loaded={particlesLoaded}/>
-    );
+  return (
+    <Particles id="tsparticles" url="http://foo.bar/particles.json" init={particlesInit} loaded={particlesLoaded} />
+  );
 };
 ```
 
@@ -113,97 +113,97 @@ import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 
 const App = () => {
-    const particlesInit = useCallback(async (engine) => {
-        console.log(engine);
-        // Täällä voit alustaa tsParticles esiintymän (main), lisäämällä mukautettuja muotoja tai esiasetuksia
-        // tämä lataa tsparticles-paketin, joka on helpoin tapa saada kaikki käyttövalmiiksi
-        // alaken versiosta 2 voit lisätä vain tarvitsemasi ominaisuudet ja pienentää paketin kokoa
-        await loadFull(engine);
-    }, []);
+  const particlesInit = useCallback(async (engine) => {
+    console.log(engine);
+    // Täällä voit alustaa tsParticles esiintymän (main), lisäämällä mukautettuja muotoja tai esiasetuksia
+    // tämä lataa tsparticles-paketin, joka on helpoin tapa saada kaikki käyttövalmiiksi
+    // alaken versiosta 2 voit lisätä vain tarvitsemasi ominaisuudet ja pienentää paketin kokoa
+    await loadFull(engine);
+  }, []);
 
-    const particlesLoaded = useCallback(async (container) => {
-        await console.log(container);
-    }, []);
+  const particlesLoaded = useCallback(async (container) => {
+    await console.log(container);
+  }, []);
 
-    return (
-        <Particles
-            id="tsparticles"
-            init={particlesInit}
-            loaded={particlesLoaded}
-            options={{
-                background: {
-                    color: {
-                        value: "#0d47a1",
-                    },
-                },
-                fpsLimit: 120,
-                interactivity: {
-                    events: {
-                        onClick: {
-                            enable: true,
-                            mode: "push",
-                        },
-                        onHover: {
-                            enable: true,
-                            mode: "repulse",
-                        },
-                        resize: true,
-                    },
-                    modes: {
-                        push: {
-                            quantity: 4,
-                        },
-                        repulse: {
-                            distance: 200,
-                            duration: 0.4,
-                        },
-                    },
-                },
-                particles: {
-                    color: {
-                        value: "#ffffff",
-                    },
-                    links: {
-                        color: "#ffffff",
-                        distance: 150,
-                        enable: true,
-                        opacity: 0.5,
-                        width: 1,
-                    },
-                    collisions: {
-                        enable: true,
-                    },
-                    move: {
-                        directions: "none",
-                        enable: true,
-                        outModes: {
-                            default: "bounce",
-                        },
-                        random: false,
-                        speed: 6,
-                        straight: false,
-                    },
-                    number: {
-                        density: {
-                            enable: true,
-                            area: 800,
-                        },
-                        value: 80,
-                    },
-                    opacity: {
-                        value: 0.5,
-                    },
-                    shape: {
-                        type: "circle",
-                    },
-                    size: {
-                        value: {min: 1, max: 5},
-                    },
-                },
-                detectRetina: true,
-            }}
-        />
-    );
+  return (
+    <Particles
+      id="tsparticles"
+      init={particlesInit}
+      loaded={particlesLoaded}
+      options={{
+        background: {
+          color: {
+            value: "#0d47a1",
+          },
+        },
+        fpsLimit: 120,
+        interactivity: {
+          events: {
+            onClick: {
+              enable: true,
+              mode: "push",
+            },
+            onHover: {
+              enable: true,
+              mode: "repulse",
+            },
+            resize: true,
+          },
+          modes: {
+            push: {
+              quantity: 4,
+            },
+            repulse: {
+              distance: 200,
+              duration: 0.4,
+            },
+          },
+        },
+        particles: {
+          color: {
+            value: "#ffffff",
+          },
+          links: {
+            color: "#ffffff",
+            distance: 150,
+            enable: true,
+            opacity: 0.5,
+            width: 1,
+          },
+          collisions: {
+            enable: true,
+          },
+          move: {
+            directions: "none",
+            enable: true,
+            outModes: {
+              default: "bounce",
+            },
+            random: false,
+            speed: 6,
+            straight: false,
+          },
+          number: {
+            density: {
+              enable: true,
+              area: 800,
+            },
+            value: 80,
+          },
+          opacity: {
+            value: 0.5,
+          },
+          shape: {
+            type: "circle",
+          },
+          size: {
+            value: { min: 1, max: 5 },
+          },
+        },
+        detectRetina: true,
+      }}
+    />
+  );
 };
 ```
 
@@ -211,109 +211,109 @@ const App = () => {
 
 ```typescript jsx
 import { useCallback } from "react";
-import type {Container, Engine} from "tsparticles-engine";
+import type { Container, Engine } from "tsparticles-engine";
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 
 const App = () => {
-    const particlesInit = useCallback(async (engine: Engine) => {
-        console.log(engine);
+  const particlesInit = useCallback(async (engine: Engine) => {
+    console.log(engine);
 
-        // Täällä voit alustaa tsParticles esiintymän (main), lisäämällä mukautettuja muotoja tai esiasetuksia
-        // tämä lataa tsparticles-paketin, joka on helpoin tapa saada kaikki käyttövalmiiksi
-        // alaken versiosta 2 voit lisätä vain tarvitsemasi ominaisuudet ja pienentää paketin kokoa
-        await loadFull(engine);
-    }, []);
+    // Täällä voit alustaa tsParticles esiintymän (main), lisäämällä mukautettuja muotoja tai esiasetuksia
+    // tämä lataa tsparticles-paketin, joka on helpoin tapa saada kaikki käyttövalmiiksi
+    // alaken versiosta 2 voit lisätä vain tarvitsemasi ominaisuudet ja pienentää paketin kokoa
+    await loadFull(engine);
+  }, []);
 
-    const particlesLoaded = useCallback(async (container: Container | undefined) => {
-        await console.log(container);
-    }, []);
-    return (
-        <Particles
-            id="tsparticles"
-            init={particlesInit}
-            loaded={particlesLoaded}
-            options={{
-                background: {
-                    color: {
-                        value: "#0d47a1",
-                    },
-                },
-                fpsLimit: 120,
-                interactivity: {
-                    events: {
-                        onClick: {
-                            enable: true,
-                            mode: "push",
-                        },
-                        onHover: {
-                            enable: true,
-                            mode: "repulse",
-                        },
-                        resize: true,
-                    },
-                    modes: {
-                        push: {
-                            quantity: 4,
-                        },
-                        repulse: {
-                            distance: 200,
-                            duration: 0.4,
-                        },
-                    },
-                },
-                particles: {
-                    color: {
-                        value: "#ffffff",
-                    },
-                    links: {
-                        color: "#ffffff",
-                        distance: 150,
-                        enable: true,
-                        opacity: 0.5,
-                        width: 1,
-                    },
-                    collisions: {
-                        enable: true,
-                    },
-                    move: {
-                        direction: "none",
-                        enable: true,
-                        outModes: {
-                            default: "bounce",
-                        },
-                        random: false,
-                        speed: 6,
-                        straight: false,
-                    },
-                    number: {
-                        density: {
-                            enable: true,
-                            area: 800,
-                        },
-                        value: 80,
-                    },
-                    opacity: {
-                        value: 0.5,
-                    },
-                    shape: {
-                        type: "circle",
-                    },
-                    size: {
-                        value: {min: 1, max: 5},
-                    },
-                },
-                detectRetina: true,
-            }}
-        />
-    );
+  const particlesLoaded = useCallback(async (container: Container | undefined) => {
+    await console.log(container);
+  }, []);
+  return (
+    <Particles
+      id="tsparticles"
+      init={particlesInit}
+      loaded={particlesLoaded}
+      options={{
+        background: {
+          color: {
+            value: "#0d47a1",
+          },
+        },
+        fpsLimit: 120,
+        interactivity: {
+          events: {
+            onClick: {
+              enable: true,
+              mode: "push",
+            },
+            onHover: {
+              enable: true,
+              mode: "repulse",
+            },
+            resize: true,
+          },
+          modes: {
+            push: {
+              quantity: 4,
+            },
+            repulse: {
+              distance: 200,
+              duration: 0.4,
+            },
+          },
+        },
+        particles: {
+          color: {
+            value: "#ffffff",
+          },
+          links: {
+            color: "#ffffff",
+            distance: 150,
+            enable: true,
+            opacity: 0.5,
+            width: 1,
+          },
+          collisions: {
+            enable: true,
+          },
+          move: {
+            direction: "none",
+            enable: true,
+            outModes: {
+              default: "bounce",
+            },
+            random: false,
+            speed: 6,
+            straight: false,
+          },
+          number: {
+            density: {
+              enable: true,
+              area: 800,
+            },
+            value: 80,
+          },
+          opacity: {
+            value: 0.5,
+          },
+          shape: {
+            type: "circle",
+          },
+          size: {
+            value: { min: 1, max: 5 },
+          },
+        },
+        detectRetina: true,
+      }}
+    />
+  );
 };
 ```
 
 ### Parametrit
 
 | Parametri       | Tyyppi   | Määritelmä                                                                                                                                             |
-|-----------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| --------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | id              | string   | Elementin id.                                                                                                                                          |
 | width           | string   | Kanvaksen leveys.                                                                                                                                      |
 | height          | string   | Kanvaksen korkeus.                                                                                                                                     |
