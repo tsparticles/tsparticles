@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@2.5.2...tsparticles-demo@2.5.3) (2022-11-07)
+
+**Note:** Version bump only for package tsparticles-demo
+
+## [2.5.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@2.5.1...tsparticles-demo@2.5.2) (2022-11-07)
+
+### Bug Fixes
+
+-   fixed issue with reduce duplicates flag, fixes [#4805](https://github.com/matteobruni/tsparticles/issues/4805) ([1d3fe78](https://github.com/matteobruni/tsparticles/commit/1d3fe78d63bf7fa27dc6f9eb97249ed0b6029b2e))
+
 ## [2.5.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@2.5.0...tsparticles-demo@2.5.1) (2022-11-03)
 
 **Note:** Version bump only for package tsparticles-demo
