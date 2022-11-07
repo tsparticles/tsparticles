@@ -33,17 +33,31 @@ function getLinkDistance(
         [0, canvasSize.height],
         [canvasSize.width, 0],
         [canvasSize.width, canvasSize.height],
+        [0, -canvasSize.height],
+        [-canvasSize.width, 0],
+        [-canvasSize.width, -canvasSize.height],
+        [canvasSize.width, -canvasSize.height],
+        [-canvasSize.width, canvasSize.height],
     ];
 
     for (const offset of offsets) {
-        const pos = {
+        const pos1o = {
+                x: pos1.x + offset[0],
+                y: pos1.y + offset[1],
+            },
+            pos2o = {
                 x: pos2.x + offset[0],
                 y: pos2.y + offset[1],
             },
-            distance = getDistance(pos1, pos);
+            d1 = getDistance(pos1o, pos2),
+            d2 = getDistance(pos1, pos2o);
 
-        if (distance <= optDistance) {
-            return distance;
+        if (d1 <= optDistance) {
+            return d1;
+        }
+
+        if (d2 <= optDistance) {
+            return d2;
         }
     }
 }
