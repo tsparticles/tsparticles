@@ -26,8 +26,8 @@ yarn add react-tsparticles
 
 Alkaen versiosta 1.17.0 virallisia `create-react-app` malleja on kaksi:
 
-- `cra-template-particles`: Yksinkertainen ReactJS fullscreen partikkeli malli JavaScriptillä
-- `cra-template-particles-typescript`: Yksinkertainen ReactJS fullscreen partikkeli malli TypeScriptillä
+-   `cra-template-particles`: Yksinkertainen ReactJS fullscreen partikkeli malli JavaScriptillä
+-   `cra-template-particles-typescript`: Yksinkertainen ReactJS fullscreen partikkeli malli TypeScriptillä
 
 Voit asentaa ne helposti `create-react-app` komennolla:
 
