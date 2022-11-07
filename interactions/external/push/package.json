@@ -1,6 +1,6 @@
 {
     "name": "tsparticles-interaction-external-push",
-    "version": "2.5.1",
+    "version": "2.5.2",
     "description": "tsParticles push external interaction",
     "homepage": "https://particles.js.org",
     "scripts": {
@@ -112,6 +112,6 @@
         "webpack-tsparticles-plugin": "^1.4.3"
     },
     "dependencies": {
-        "tsparticles-engine": "^2.5.0"
+        "tsparticles-engine": "^2.5.1"
     }
 }
