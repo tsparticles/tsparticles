@@ -374,6 +374,7 @@ export class Particle implements IParticle {
         const container = this.container,
             engine = this._engine;
 
+        this.id = id;
         this.group = group;
         this.fill = true;
         this.pathRotation = false;
@@ -394,6 +395,8 @@ export class Particle implements IParticle {
             particlesOptions = loadParticlesOptions(this._engine, container, mainOptions.particles),
             shapeType = particlesOptions.shape.type,
             { reduceDuplicates } = particlesOptions;
+
+        console.log(this.id, container.particles.count, this.id % container.particles.count);
 
         this.shape = itemFromSingleOrMultiple(shapeType, this.id, reduceDuplicates);
 
