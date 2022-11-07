@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-plugin-easing-quart",
-  "version": "2.5.2",
+  "version": "2.5.3",
   "description": "tsParticles easing quart plugin",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -87,6 +87,6 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.5.1"
+    "tsparticles-engine": "^2.5.2"
   }
 }
