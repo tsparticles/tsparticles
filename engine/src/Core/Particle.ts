@@ -374,6 +374,7 @@ export class Particle implements IParticle {
         const container = this.container,
             engine = this._engine;
 
+        this.id = id;
         this.group = group;
         this.fill = true;
         this.pathRotation = false;
