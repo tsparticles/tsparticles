@@ -11,12 +11,12 @@ const group = __('Interactions'),
 		),
 		{
 			name: 'interaction-light',
-			description: __('Mouse Light'),
+			description: `${__('Mouse')} ${__('Light')}`,
 			group,
 			load: async (engine) => {
 				const { loadLightInteraction } = await import(
 					'tsparticles-interaction-light'
-				);
+					);
 
 				await loadLightInteraction(engine);
 			},

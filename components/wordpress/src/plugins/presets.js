@@ -5,12 +5,12 @@ const group = __('Presets'),
 	presets = [
 		{
 			name: 'preset-big-circles',
-			description: __('Big Circles'),
+			description: `${__('Big')} ${__('Circles')}`,
 			group,
 			load: async (engine) => {
 				const { loadBigCirclesPreset } = await import(
 					'tsparticles-preset-big-circles'
-				);
+					);
 
 				await loadBigCirclesPreset(engine);
 			},
@@ -22,7 +22,7 @@ const group = __('Presets'),
 			load: async (engine) => {
 				const { loadBubblesPreset } = await import(
 					'tsparticles-preset-bubbles'
-				);
+					);
 
 				await loadBubblesPreset(engine);
 			},
@@ -34,7 +34,7 @@ const group = __('Presets'),
 			load: async (engine) => {
 				const { loadConfettiPreset } = await import(
 					'tsparticles-preset-confetti'
-				);
+					);
 
 				await loadConfettiPreset(engine);
 			},
@@ -46,7 +46,7 @@ const group = __('Presets'),
 			load: async (engine) => {
 				const { loadFirePreset } = await import(
 					'tsparticles-preset-fire'
-				);
+					);
 
 				await loadFirePreset(engine);
 			},
@@ -58,7 +58,7 @@ const group = __('Presets'),
 			load: async (engine) => {
 				const { loadFireflyPreset } = await import(
 					'tsparticles-preset-firefly'
-				);
+					);
 
 				await loadFireflyPreset(engine);
 			},
@@ -70,7 +70,7 @@ const group = __('Presets'),
 			load: async (engine) => {
 				const { loadFireworksPreset } = await import(
 					'tsparticles-preset-fireworks'
-				);
+					);
 
 				await loadFireworksPreset(engine);
 			},
@@ -82,7 +82,7 @@ const group = __('Presets'),
 			load: async (engine) => {
 				const { loadFountainPreset } = await import(
 					'tsparticles-preset-fountain'
-				);
+					);
 
 				await loadFountainPreset(engine);
 			},
@@ -94,19 +94,19 @@ const group = __('Presets'),
 			load: async (engine) => {
 				const { loadLinksPreset } = await import(
 					'tsparticles-preset-links'
-				);
+					);
 
 				await loadLinksPreset(engine);
 			},
 		},
 		{
 			name: 'preset-sea-anemone',
-			description: __('Sea Anemone'),
+			description: `${__('Sea')} ${__('Anemone')}`,
 			group,
 			load: async (engine) => {
 				const { loadSeaAnemonePreset } = await import(
 					'tsparticles-preset-sea-anemone'
-				);
+					);
 
 				await loadSeaAnemonePreset(engine);
 			},
@@ -118,7 +118,7 @@ const group = __('Presets'),
 			load: async (engine) => {
 				const { loadSnowPreset } = await import(
 					'tsparticles-preset-snow'
-				);
+					);
 
 				await loadSnowPreset(engine);
 			},
@@ -130,7 +130,7 @@ const group = __('Presets'),
 			load: async (engine) => {
 				const { loadStarsPreset } = await import(
 					'tsparticles-preset-stars'
-				);
+					);
 
 				await loadStarsPreset(engine);
 			},
@@ -142,7 +142,7 @@ const group = __('Presets'),
 			load: async (engine) => {
 				const { loadTrianglesPreset } = await import(
 					'tsparticles-preset-triangles'
-				);
+					);
 
 				await loadTrianglesPreset(engine);
 			},

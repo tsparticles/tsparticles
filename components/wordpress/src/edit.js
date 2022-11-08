@@ -96,7 +96,7 @@ export default function Edit({ attributes, setAttributes }) {
 		<div {...useBlockProps()}>
 			<InspectorControls key="setting">
 				<Panel>
-					<PanelBody title={__('Particles Settings')}>
+					<PanelBody title={`${__('Particles')} ${__('Settings')}`}>
 						<fieldset>
 							<TextControl
 								label={__('Width')}

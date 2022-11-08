@@ -10,19 +10,19 @@ const group = __('Plugins'),
 			load: async (engine) => {
 				const { loadAbsorbersPlugin } = await import(
 					'tsparticles-plugin-absorbers'
-				);
+					);
 
 				await loadAbsorbersPlugin(engine);
 			},
 		},
 		{
 			name: 'plugin-canvas-mask',
-			description: __('Canvas Mask'),
+			description: `${__('Canvas')} ${__('Mask')}`,
 			group,
 			load: async (engine) => {
 				const { loadCanvasMaskPlugin } = await import(
 					'tsparticles-plugin-canvas-mask'
-				);
+					);
 
 				await loadCanvasMaskPlugin(engine);
 			},
@@ -34,19 +34,19 @@ const group = __('Plugins'),
 			load: async (engine) => {
 				const { loadEmittersPlugin } = await import(
 					'tsparticles-plugin-emitters'
-				);
+					);
 
 				await loadEmittersPlugin(engine);
 			},
 		},
 		{
 			name: 'plugin-hsv-color',
-			description: __('HSV Color'),
+			description: `${__('HSV')} ${__('Color')}`,
 			group,
 			load: async () => {
 				const { loadHsvColorPlugin } = await import(
 					'tsparticles-plugin-hsv-color'
-				);
+					);
 
 				await loadHsvColorPlugin();
 			},
@@ -58,19 +58,19 @@ const group = __('Plugins'),
 			load: async (engine) => {
 				const { loadInfectionPlugin } = await import(
 					'tsparticles-plugin-infection'
-				);
+					);
 
 				await loadInfectionPlugin(engine);
 			},
 		},
 		{
 			name: 'plugin-polygon-mask',
-			description: __('Polygon Mask'),
+			description: `${__('Polygon')} ${__('Mask')}`,
 			group,
 			load: async (engine) => {
 				const { loadPolygonMaskPlugin } = await import(
 					'tsparticles-plugin-polygon-mask'
-				);
+					);
 
 				await loadPolygonMaskPlugin(engine);
 			},

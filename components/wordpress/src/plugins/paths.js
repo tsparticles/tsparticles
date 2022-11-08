@@ -10,19 +10,19 @@ const group = __('Paths'),
 			load: async (engine) => {
 				const { loadCurvesPath } = await import(
 					'tsparticles-path-curves'
-				);
+					);
 
 				await loadCurvesPath(engine);
 			},
 		},
 		{
 			name: 'path-perlin-noise',
-			description: __('Perlin Noise'),
+			description: `${__('Perlin')} ${__('Noise')}`,
 			group,
 			load: async (engine) => {
 				const { loadPerlinNoisePath } = await import(
 					'tsparticles-path-perlin-noise'
-				);
+					);
 
 				await loadPerlinNoisePath(engine);
 			},
@@ -34,19 +34,19 @@ const group = __('Paths'),
 			load: async (engine) => {
 				const { loadPolygonPath } = await import(
 					'tsparticles-path-polygon'
-				);
+					);
 
 				await loadPolygonPath(engine);
 			},
 		},
 		{
 			name: 'path-simplex-noise',
-			description: __('Simplex Noise'),
+			description: `${__('Simplex')} ${__('Noise')}`,
 			group,
 			load: async (engine) => {
 				const { loadSimplexNoisePath } = await import(
 					'tsparticles-path-simplex-noise'
-				);
+					);
 
 				await loadSimplexNoisePath(engine);
 			},
