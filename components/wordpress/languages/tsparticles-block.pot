@@ -122,6 +122,42 @@ msgstr ""
 msgid "Mask"
 msgstr ""
 
+#. Easing
+msgid "Easing"
+msgstr ""
+
+#. Back
+msgid "Back"
+msgstr ""
+
+#. Circ
+msgid "Circ"
+msgstr ""
+
+#. Cubic
+msgid "Cubic"
+msgstr ""
+
+#. Expo
+msgid "Expo"
+msgstr ""
+
+#. Quad
+msgid "Quad"
+msgstr ""
+
+#. Quart
+msgid "Quart"
+msgstr ""
+
+#. Quint
+msgid "Quint"
+msgstr ""
+
+#. Sine
+msgid "Sine"
+msgstr ""
+
 #. Emitters
 msgid "Emitters"
 msgstr ""

@@ -1,5 +1,6 @@
 import { __ } from '@wordpress/i18n';
-import { handlePlugin, transformLoadableObject } from '../utils';
+import { handlePlugin, transformLoadableObject } from '../../utils';
+import { getEasings } from "./easings";
 
 const group = __('Plugins'),
 	plugins = [
@@ -27,6 +28,7 @@ const group = __('Plugins'),
 				await loadCanvasMaskPlugin(engine);
 			},
 		},
+		...getEasings(group, (name) => `${__('Easing')} ${name}`),
 		{
 			name: 'plugin-emitters',
 			description: __('Emitters'),
@@ -61,6 +63,18 @@ const group = __('Plugins'),
 					);
 
 				await loadInfectionPlugin(engine);
+			},
+		},
+		{
+			name: 'plugin-motion',
+			description: __('Motion'),
+			group,
+			load: async (engine) => {
+				const { loadMotionPlugin } = await import(
+					'tsparticles-plugin-motion'
+					);
+
+				await loadMotionPlugin(engine);
 			},
 		},
 		{

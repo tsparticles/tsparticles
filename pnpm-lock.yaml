@@ -997,9 +997,18 @@ importers:
       tsparticles-path-simplex-noise: ^2.5.3
       tsparticles-plugin-absorbers: ^2.5.3
       tsparticles-plugin-canvas-mask: ^2.5.3
+      tsparticles-plugin-easing-back: ^2.5.3
+      tsparticles-plugin-easing-circ: ^2.5.3
+      tsparticles-plugin-easing-cubic: ^2.5.3
+      tsparticles-plugin-easing-expo: ^2.5.3
+      tsparticles-plugin-easing-quad: ^2.5.3
+      tsparticles-plugin-easing-quart: ^2.5.3
+      tsparticles-plugin-easing-quint: ^2.5.3
+      tsparticles-plugin-easing-sine: ^2.5.3
       tsparticles-plugin-emitters: ^2.5.3
       tsparticles-plugin-hsv-color: ^2.5.3
       tsparticles-plugin-infection: ^2.5.3
+      tsparticles-plugin-motion: ^2.5.3
       tsparticles-plugin-polygon-mask: ^2.5.3
       tsparticles-preset-big-circles: ^2.5.3
       tsparticles-preset-bubbles: ^2.5.3
@@ -1069,9 +1078,18 @@ importers:
       tsparticles-path-simplex-noise: link:../../paths/simplexNoise/dist
       tsparticles-plugin-absorbers: link:../../plugins/absorbers/dist
       tsparticles-plugin-canvas-mask: link:../../plugins/canvasMask/dist
+      tsparticles-plugin-easing-back: link:../../plugins/easings/back/dist
+      tsparticles-plugin-easing-circ: link:../../plugins/easings/circ/dist
+      tsparticles-plugin-easing-cubic: link:../../plugins/easings/cubic/dist
+      tsparticles-plugin-easing-expo: link:../../plugins/easings/expo/dist
+      tsparticles-plugin-easing-quad: link:../../plugins/easings/quad/dist
+      tsparticles-plugin-easing-quart: link:../../plugins/easings/quart/dist
+      tsparticles-plugin-easing-quint: link:../../plugins/easings/quint/dist
+      tsparticles-plugin-easing-sine: link:../../plugins/easings/sine/dist
       tsparticles-plugin-emitters: link:../../plugins/emitters/dist
       tsparticles-plugin-hsv-color: link:../../plugins/hsvColor/dist
       tsparticles-plugin-infection: link:../../plugins/infection/dist
+      tsparticles-plugin-motion: link:../../plugins/motion/dist
       tsparticles-plugin-polygon-mask: link:../../plugins/polygonMask/dist
       tsparticles-preset-big-circles: link:../../presets/bigCircles/dist
       tsparticles-preset-bubbles: link:../../presets/bubbles/dist
@@ -41182,7 +41200,7 @@ packages:
       mime-types: 2.1.35
       range-parser: 1.2.1
       schema-utils: 4.0.0
-      webpack: 5.74.0_webpack-cli@4.10.0
+      webpack: 5.74.0
     dev: true
 
   /webpack-dev-server/3.11.3_webpack@4.46.0:
