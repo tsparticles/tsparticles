@@ -3,7 +3,7 @@ Contributors:      matteobruni
 Donate link:       https://github.com/sponsors/matteobruni
 Tags:              block, particles, confetti, fireworks, animations, javascript, tsparticles, particles js, background, particle background, animated background, particlesjs
 Requires at least: 5.9
-Tested up to:      6.0
+Tested up to:      6.1
 Stable tag:        2.5.3
 Requires PHP:      7.0
 License:           GPL-2.0-or-later
@@ -60,6 +60,12 @@ There are some ways to ask for support:
 Nothing to say
 
 == Changelog ==
+
+= 2.5.4 =
+
+## New Features
+
+- Added localization support
 
 = 2.5.3 =
 

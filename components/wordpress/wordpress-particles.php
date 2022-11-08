@@ -22,6 +22,17 @@
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
 function tsparticles_block_init() {
+	wp_register_script(
+        'tsparticles-block-script',
+        plugins_url( 'block.js', __FILE__ ),
+        array( 'wp-blocks', 'wp-element', 'wp-i18n', 'wp-block-editor' )
+    );
+
 	register_block_type( __DIR__ . '/build' );
 }
 add_action( 'init', 'tsparticles_block_init' );
+
+function tsparticles_block_set_script_translations() {
+	wp_set_script_translations( 'tsparticles-block-script', 'tsparticles-block' );
+}
+add_action( 'init', 'tsparticles_block_set_script_translations' );
