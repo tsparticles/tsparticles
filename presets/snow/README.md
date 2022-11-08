@@ -164,7 +164,7 @@ let particlesInit = async (engine) => {
 ---
 
 ```mermaid
-flowchart LR
+flowchart TD
 
 e[tsParticles Engine]
 

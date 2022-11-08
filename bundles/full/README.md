@@ -51,11 +51,11 @@ Once the scripts are loaded you can set up `tsParticles` like this:
 
 ```javascript
 (async () => {
-  await loadFull(tsParticles); // not needed if using the bundle script, required for any other installation
+    await loadFull(tsParticles); // not needed if using the bundle script, required for any other installation
 
-  await tsParticles.load("tsparticles", {
-    /* options */
-  });
+    await tsParticles.load("tsparticles", {
+        /* options */
+    });
 })();
 ```
 
@@ -74,19 +74,19 @@ import type { Engine } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 
 export class ParticlesContainer extends PureComponent<unknown> {
-  // this customizes the component tsParticles installation
-  async customInit(engine: Engine): Promise<void> {
-    // this adds the bundle to tsParticles
-    await loadFull(engine);
-  }
+    // this customizes the component tsParticles installation
+    async customInit(engine: Engine): Promise<void> {
+        // this adds the bundle to tsParticles
+        await loadFull(engine);
+    }
 
-  render() {
-    const options = {
-      /* custom options */
-    };
+    render() {
+        const options = {
+            /* custom options */
+        };
 
-    return <Particles options={options} init={this.customInit} />;
-  }
+        return <Particles options={options} init={this.customInit}/>;
+    }
 }
 ```
 
@@ -99,17 +99,17 @@ import type { Engine } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 
 export function ParticlesContainer(props: unknown) {
-  // this customizes the component tsParticles installation
-  const customInit = useCallback(async (engine: Engine) => {
-    // this adds the bundle to tsParticles
-    await loadFull(engine);
-  });
+    // this customizes the component tsParticles installation
+    const customInit = useCallback(async (engine: Engine) => {
+        // this adds the bundle to tsParticles
+        await loadFull(engine);
+    });
 
-  const options = {
-    /* custom options */
-  };
+    const options = {
+        /* custom options */
+    };
 
-  return <Particles options={options} init={this.customInit} />;
+    return <Particles options={options} init={this.customInit}/>;
 }
 ```
 
@@ -118,32 +118,34 @@ export function ParticlesContainer(props: unknown) {
 _The syntax for `Vue.js 2.x` and `3.x` is the same_
 
 ```vue
-<Particles id="tsparticles" :particlesInit="particlesInit" :options="options" />
+
+<Particles id="tsparticles" :particlesInit="particlesInit" :options="options"/>
 ```
 
 ```js
 const options = {
-  /* custom options */
+    /* custom options */
 };
 
 async function particlesInit(engine: Engine): Promise<void> {
-  await loadFull(engine);
+    await loadFull(engine);
 }
 ```
 
 ### Angular
 
 ```html
+
 <ng-particles [id]="id" [options]="options" [particlesInit]="particlesInit"></ng-particles>
 ```
 
 ```ts
 const options = {
-  /* custom options */
+    /* custom options */
 };
 
 async function particlesInit(engine: Engine): Promise<void> {
-  await loadFull(engine);
+    await loadFull(engine);
 }
 ```
 
@@ -151,8 +153,6 @@ async function particlesInit(engine: Engine): Promise<void> {
 
 ```sveltehtml
 
-<script>
-</script>
 <Particles
         id="tsparticles"
         options={options}
@@ -162,10 +162,10 @@ async function particlesInit(engine: Engine): Promise<void> {
 
 ```js
 let options = {
-  /* custom options */
+    /* custom options */
 };
 
 let particlesInit = async (engine) => {
-  await loadFull(engine);
+    await loadFull(engine);
 };
 ```

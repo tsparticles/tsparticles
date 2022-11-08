@@ -419,6 +419,7 @@ e[tsParticles Engine] --> m
 
 subgraph pl [Plugins]
 ple[Emitters]
+plm[Motion]
 end
 
 e --> pl
@@ -433,8 +434,10 @@ e --> s
 subgraph u [Updaters]
 ua[Angle]
 uc[Color]
+ul[Life]
 uop[Opacity]
 uou[Out Modes]
+ur[Roll]
 usi[Size]
 uti[Tilt]
 uw[Wobble]
@@ -446,5 +449,5 @@ subgraph pr [Presets]
 prc[Confetti]
 end
 
-mb & ple & sc & ssq & ua & uc & uop & uou & usi & uti & uw --> prc
+mb & ple & plm & sc & ssq & ua & uc & ul & uop & uou & ur & usi & uti & uw --> prc
 ```

@@ -192,6 +192,7 @@ e --> s
 subgraph u [Updaters]
 ua[Angle]
 uc[Color]
+ud[Destroy]
 ul[Life]
 uop[Opacity]
 uou[Out Modes]
@@ -207,5 +208,5 @@ end
 
 e --> pr
 
-mb & ple & sc & sl & ua & uc & ul & uop & uou & usi & ust --> prfw
+mb & ple & sc & sl & ua & uc & ud & ul & uop & uou & usi & ust --> prfw
 ```
