@@ -1,4 +1,4 @@
-**[![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
+\*\*[![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
 # tsParticles - TypeScript Particles
 
@@ -824,4 +824,4 @@ code.
 **Automate code reviews on your commits and pull requests**
 
 Check your code quality and keep track of your technical debt for more than 40 programming languages. Seamlessly
-integrated within your development workflow.**
+integrated within your development workflow.\*\*

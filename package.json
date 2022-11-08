@@ -3,8 +3,8 @@
   "name": "tsparticles-workspace",
   "version": "0.0.0",
   "scripts": {
-    "build": "lerna run build && pnpm run prettify:readme",
-    "build:ci": "lerna run build:ci && pnpm run prettify:ci:readme",
+    "build": "pnpm run prettify:readme && lerna run build",
+    "build:ci": "pnpm run prettify:ci:readme && lerna run build:ci",
     "build:docs": "rimraf -f docs && npx typedoc",
     "prettify:ci:readme": "prettier --check ./README.md && prettier --check ./traduction/* && prettier --check ./markdown/*",
     "prettify:readme": "prettier --write ./README.md && prettier --write ./traduction/* && prettier --write ./markdown/*",
