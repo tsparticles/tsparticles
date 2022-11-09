@@ -364,7 +364,7 @@ importers:
       fast-deep-equal: ^3.1.3
       html-webpack-plugin: ^5.5.0
       inferno: ^8.0.4
-      node-sass: ^7.0.3
+      node-sass: ^8.0.0
       prettier: ^2.7.1
       sass-loader: ^13.1.0
       source-map-loader: ^4.0.1
@@ -395,9 +395,9 @@ importers:
       eslint-config-prettier: 8.5.0_eslint@8.27.0
       html-webpack-plugin: 5.5.0_webpack@5.74.0
       inferno: 8.0.4
-      node-sass: 7.0.3
+      node-sass: 8.0.0
       prettier: 2.7.1
-      sass-loader: 13.1.0_if6h3gdw6pla6jas3olbkxwst4
+      sass-loader: 13.1.0_pklzicfgv4gsl4pzppcwitaory
       source-map-loader: 4.0.1_webpack@5.74.0
       style-loader: 3.3.1_webpack@5.74.0
       typescript: 4.8.4
@@ -677,7 +677,7 @@ importers:
       eslint-config-prettier: ^8.5.0
       fast-deep-equal: ^3.1.3
       html-webpack-plugin: ^5.5.0
-      node-sass: ^7.0.3
+      node-sass: ^8.0.0
       prettier: ^2.7.1
       sass-loader: ^13.1.0
       solid-js: ^1.6.1
@@ -709,9 +709,9 @@ importers:
       eslint: 8.27.0
       eslint-config-prettier: 8.5.0_eslint@8.27.0
       html-webpack-plugin: 5.5.0_webpack@5.74.0
-      node-sass: 7.0.3
+      node-sass: 8.0.0
       prettier: 2.7.1
-      sass-loader: 13.1.0_if6h3gdw6pla6jas3olbkxwst4
+      sass-loader: 13.1.0_pklzicfgv4gsl4pzppcwitaory
       source-map-loader: 4.0.1_webpack@5.74.0
       style-loader: 3.3.1_webpack@5.74.0
       typescript: 4.8.4
@@ -1315,7 +1315,7 @@ importers:
       html-webpack-plugin: ^5.5.0
       inferno: ^8.0.4
       inferno-particles: ^2.5.3
-      node-sass: ^7.0.3
+      node-sass: ^8.0.0
       sass-loader: ^13.1.0
       source-map-loader: ^4.0.1
       style-loader: ^3.3.1
@@ -1340,8 +1340,8 @@ importers:
       clean-webpack-plugin: 4.0.0_webpack@5.74.0
       css-loader: 6.7.1_webpack@5.74.0
       html-webpack-plugin: 5.5.0_webpack@5.74.0
-      node-sass: 7.0.3
-      sass-loader: 13.1.0_if6h3gdw6pla6jas3olbkxwst4
+      node-sass: 8.0.0
+      sass-loader: 13.1.0_pklzicfgv4gsl4pzppcwitaory
       source-map-loader: 4.0.1_webpack@5.74.0
       style-loader: 3.3.1_webpack@5.74.0
       typescript: 4.8.4
@@ -1659,7 +1659,7 @@ importers:
       browserslist: ^4.21.4
       eslint: ^8.27.0
       eslint-config-prettier: ^8.5.0
-      node-sass: ^7.0.3
+      node-sass: ^8.0.0
       parcel: ^2.7.0
       prettier: ^2.7.1
       process: ^0.11.10
@@ -1770,7 +1770,7 @@ importers:
       browserslist: 4.21.4
       eslint: 8.27.0
       eslint-config-prettier: 8.5.0_eslint@8.27.0
-      node-sass: 7.0.3
+      node-sass: 8.0.0
       parcel: 2.7.0
       prettier: 2.7.1
       process: 0.11.10
@@ -10380,7 +10380,7 @@ packages:
     dependencies:
       '@jest/types': 28.1.3
       '@types/node': 18.11.9
-      chalk: 4.1.0
+      chalk: 4.1.2
       jest-message-util: 28.1.3
       jest-util: 28.1.3
       slash: 3.0.0
@@ -10678,10 +10678,10 @@ packages:
       '@jest/types': 28.1.3
       '@jridgewell/trace-mapping': 0.3.17
       '@types/node': 18.11.9
-      chalk: 4.1.0
+      chalk: 4.1.2
       collect-v8-coverage: 1.0.1
       exit: 0.1.2
-      glob: 7.1.4
+      glob: 7.2.3
       graceful-fs: 4.2.10
       istanbul-lib-coverage: 3.2.0
       istanbul-lib-instrument: 5.2.1
@@ -10874,7 +10874,7 @@ packages:
       '@jest/types': 28.1.3
       '@jridgewell/trace-mapping': 0.3.17
       babel-plugin-istanbul: 6.1.1
-      chalk: 4.1.0
+      chalk: 4.1.2
       convert-source-map: 1.9.0
       fast-json-stable-stringify: 2.1.0
       graceful-fs: 4.2.10
@@ -10920,7 +10920,7 @@ packages:
       '@types/istanbul-reports': 3.0.1
       '@types/node': 18.11.9
       '@types/yargs': 17.0.13
-      chalk: 4.1.0
+      chalk: 4.1.2
     dev: true
 
   /@jest/types/29.2.1:
@@ -12128,7 +12128,7 @@ packages:
     engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
     dependencies:
       '@gar/promisify': 1.1.3
-      semver: 7.3.7
+      semver: 7.3.8
     dev: true
 
   /@npmcli/git/3.0.2:
@@ -12142,7 +12142,7 @@ packages:
       proc-log: 2.0.1
       promise-inflight: 1.0.1
       promise-retry: 2.0.1
-      semver: 7.3.7
+      semver: 7.3.8
       which: 2.0.2
     transitivePeerDependencies:
       - bluebird
@@ -17360,7 +17360,7 @@ packages:
       '@types/babel__core': 7.1.19
       babel-plugin-istanbul: 6.1.1
       babel-preset-jest: 28.1.3_@babel+core@7.20.2
-      chalk: 4.1.0
+      chalk: 4.1.2
       graceful-fs: 4.2.10
       slash: 3.0.0
     transitivePeerDependencies:
@@ -24539,7 +24539,7 @@ packages:
       fs.realpath: 1.0.0
       inflight: 1.0.6
       inherits: 2.0.4
-      minimatch: 3.0.5
+      minimatch: 3.1.2
       once: 1.4.0
       path-is-absolute: 1.0.1
     dev: true
@@ -26620,9 +26620,9 @@ packages:
     hasBin: true
     dependencies:
       async: 3.2.4
-      chalk: 4.1.0
+      chalk: 4.1.2
       filelist: 1.0.4
-      minimatch: 3.0.5
+      minimatch: 3.1.2
     dev: true
 
   /jasmine-core/2.8.0:
@@ -26715,7 +26715,7 @@ packages:
       '@jest/test-result': 28.1.3
       '@jest/types': 28.1.3
       '@types/node': 18.11.9
-      chalk: 4.1.0
+      chalk: 4.1.2
       co: 4.6.0
       dedent: 0.7.0
       is-generator-fn: 2.1.0
@@ -26880,10 +26880,10 @@ packages:
       '@jest/types': 28.1.3
       '@types/node': 18.11.9
       babel-jest: 28.1.3_@babel+core@7.20.2
-      chalk: 4.1.0
+      chalk: 4.1.2
       ci-info: 3.5.0
       deepmerge: 4.2.2
-      glob: 7.1.4
+      glob: 7.2.3
       graceful-fs: 4.2.10
       jest-circus: 28.1.3
       jest-environment-node: 28.1.3
@@ -26942,7 +26942,7 @@ packages:
     resolution: {integrity: sha512-8RqP1B/OXzjjTWkqMX67iqgwBVJRgCyKD3L9nq+6ZqJMdvjE8RgHktqZ6jNrkdMT+dJuYNI3rhQpxaz7drJHfw==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     dependencies:
-      chalk: 4.1.0
+      chalk: 4.1.2
       diff-sequences: 28.1.1
       jest-get-type: 28.0.2
       pretty-format: 28.1.3
@@ -27006,7 +27006,7 @@ packages:
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     dependencies:
       '@jest/types': 28.1.3
-      chalk: 4.1.0
+      chalk: 4.1.2
       jest-get-type: 28.0.2
       jest-util: 28.1.3
       pretty-format: 28.1.3
@@ -27269,7 +27269,7 @@ packages:
     resolution: {integrity: sha512-kQeJ7qHemKfbzKoGjHHrRKH6atgxMk8Enkk2iPQ3XwO6oE/KYD8lMYOziCkeSB9G4adPM4nR1DE8Tf5JeWH6Bw==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     dependencies:
-      chalk: 4.1.0
+      chalk: 4.1.2
       jest-diff: 28.1.3
       jest-get-type: 28.0.2
       pretty-format: 28.1.3
@@ -27322,7 +27322,7 @@ packages:
       '@babel/code-frame': 7.18.6
       '@jest/types': 28.1.3
       '@types/stack-utils': 2.0.1
-      chalk: 4.1.0
+      chalk: 4.1.2
       graceful-fs: 4.2.10
       micromatch: 4.0.5
       pretty-format: 28.1.3
@@ -27488,7 +27488,7 @@ packages:
     resolution: {integrity: sha512-/d1UbyUkf9nvsgdBildLe6LAD4DalgkgZcKd0nZ8XUGPyA/7fsnaQIlKVnDiuUXv/IeZhPEDrRJubVSulxrShA==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     dependencies:
-      chalk: 4.1.0
+      chalk: 4.1.2
       graceful-fs: 4.2.10
       jest-haste-map: 28.1.3
       jest-pnp-resolver: 1.2.2_jest-resolve@28.1.1
@@ -27503,7 +27503,7 @@ packages:
     resolution: {integrity: sha512-Z1W3tTjE6QaNI90qo/BJpfnvpxtaFTFw5CDgwpyE/Kz8U/06N1Hjf4ia9quUhCh39qIGWF1ZuxFiBiJQwSEYKQ==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     dependencies:
-      chalk: 4.1.0
+      chalk: 4.1.2
       graceful-fs: 4.2.10
       jest-haste-map: 28.1.3
       jest-pnp-resolver: 1.2.2_jest-resolve@28.1.3
@@ -27588,7 +27588,7 @@ packages:
       '@jest/transform': 28.1.3
       '@jest/types': 28.1.3
       '@types/node': 18.11.9
-      chalk: 4.1.0
+      chalk: 4.1.2
       emittery: 0.10.2
       graceful-fs: 4.2.10
       jest-docblock: 28.1.1
@@ -27688,11 +27688,11 @@ packages:
       '@jest/test-result': 28.1.3
       '@jest/transform': 28.1.3
       '@jest/types': 28.1.3
-      chalk: 4.1.0
+      chalk: 4.1.2
       cjs-module-lexer: 1.2.2
       collect-v8-coverage: 1.0.1
       execa: 5.1.1
-      glob: 7.1.4
+      glob: 7.2.3
       graceful-fs: 4.2.10
       jest-haste-map: 28.1.3
       jest-message-util: 28.1.3
@@ -27792,7 +27792,7 @@ packages:
       '@types/babel__traverse': 7.18.2
       '@types/prettier': 2.7.1
       babel-preset-current-node-syntax: 1.0.1_@babel+core@7.20.2
-      chalk: 4.1.0
+      chalk: 4.1.2
       expect: 28.1.3
       graceful-fs: 4.2.10
       jest-diff: 28.1.3
@@ -27838,7 +27838,7 @@ packages:
     dependencies:
       '@jest/types': 28.1.3
       '@types/node': 18.11.9
-      chalk: 4.1.0
+      chalk: 4.1.2
       ci-info: 3.5.0
       graceful-fs: 4.2.10
       picomatch: 2.3.1
@@ -27850,7 +27850,7 @@ packages:
     dependencies:
       '@jest/types': 28.1.3
       '@types/node': 18.11.9
-      chalk: 4.1.0
+      chalk: 4.1.2
       ci-info: 3.5.0
       graceful-fs: 4.2.10
       picomatch: 2.3.1
@@ -27898,7 +27898,7 @@ packages:
     dependencies:
       '@jest/types': 28.1.3
       camelcase: 6.3.0
-      chalk: 4.1.0
+      chalk: 4.1.2
       jest-get-type: 28.0.2
       leven: 3.1.0
       pretty-format: 28.1.3
@@ -27954,7 +27954,7 @@ packages:
       '@jest/types': 28.1.3
       '@types/node': 18.11.9
       ansi-escapes: 4.3.2
-      chalk: 4.1.0
+      chalk: 4.1.2
       emittery: 0.10.2
       jest-util: 28.1.3
       string-length: 4.0.2
@@ -30474,7 +30474,7 @@ packages:
       nopt: 6.0.0
       npmlog: 6.0.2
       rimraf: 3.0.2
-      semver: 7.3.7
+      semver: 7.3.8
       tar: 6.1.12
       which: 2.0.2
     transitivePeerDependencies:
@@ -30546,9 +30546,9 @@ packages:
     resolution: {integrity: sha512-PiVXnNuFm5+iYkLBNeq5211hvO38y63T0i2KKh2KnUs3RpzJ+JtODFjkD8yjLwnDkTYF1eKXheUwdssR+NRZdg==}
     dev: true
 
-  /node-sass/7.0.3:
-    resolution: {integrity: sha512-8MIlsY/4dXUkJDYht9pIWBhMil3uHmE8b/AdJPjmFn1nBx9X9BASzfzmsCy0uCCb8eqI3SYYzVPDswWqSx7gjw==}
-    engines: {node: '>=12'}
+  /node-sass/8.0.0:
+    resolution: {integrity: sha512-jPzqCF2/e6JXw6r3VxfIqYc8tKQdkj5Z/BDATYyG6FL6b/LuYBNFGFVhus0mthcWifHm/JzBpKAd+3eXsWeK/A==}
+    engines: {node: '>=14'}
     hasBin: true
     requiresBuild: true
     dependencies:
@@ -30559,14 +30559,13 @@ packages:
       get-stdin: 4.0.1
       glob: 7.2.3
       lodash: 4.17.21
+      make-fetch-happen: 10.2.1
       meow: 9.0.0
       nan: 2.17.0
       node-gyp: 8.4.1
-      npmlog: 5.0.1
-      request: 2.88.2
       sass-graph: 4.0.1
       stdout-stream: 1.4.1
-      true-case-path: 1.0.3
+      true-case-path: 2.2.1
     transitivePeerDependencies:
       - bluebird
       - supports-color
@@ -30643,7 +30642,7 @@ packages:
     dependencies:
       hosted-git-info: 5.2.1
       is-core-module: 2.11.0
-      semver: 7.3.7
+      semver: 7.3.8
       validate-npm-package-license: 3.0.4
     dev: true
 
@@ -30726,7 +30725,7 @@ packages:
     resolution: {integrity: sha512-65lUsMI8ztHCxFz5ckCEC44DRvEGdZX5usQFriauxHEwt7upv1FKaQEmAtU0YnOAdwuNWCmk64xYiQABNrEyLA==}
     engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
     dependencies:
-      semver: 7.3.7
+      semver: 7.3.8
     dev: true
 
   /npm-normalize-package-bin/1.0.1:
@@ -30753,7 +30752,7 @@ packages:
     dependencies:
       hosted-git-info: 5.2.1
       proc-log: 2.0.1
-      semver: 7.3.7
+      semver: 7.3.8
       validate-npm-package-name: 4.0.0
     dev: true
 
@@ -30820,7 +30819,7 @@ packages:
       npm-install-checks: 5.0.0
       npm-normalize-package-bin: 1.0.1
       npm-package-arg: 9.1.0
-      semver: 7.3.7
+      semver: 7.3.8
     dev: true
 
   /npm-pick-manifest/7.0.2:
@@ -32734,7 +32733,7 @@ packages:
       cosmiconfig: 7.0.1
       klona: 2.0.5
       postcss: 8.4.16
-      semver: 7.3.7
+      semver: 7.3.8
       webpack: 5.74.0
     dev: true
 
@@ -36037,7 +36036,7 @@ packages:
       webpack: 5.74.0
     dev: true
 
-  /sass-loader/13.1.0_if6h3gdw6pla6jas3olbkxwst4:
+  /sass-loader/13.1.0_pklzicfgv4gsl4pzppcwitaory:
     resolution: {integrity: sha512-tZS1RJQ2n2+QNyf3CCAo1H562WjL/5AM6Gi8YcPVVoNxQX8d19mx8E+8fRrMWsyc93ZL6Q8vZDSM0FHVTJaVnQ==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
@@ -36058,7 +36057,7 @@ packages:
     dependencies:
       klona: 2.0.5
       neo-async: 2.6.2
-      node-sass: 7.0.3
+      node-sass: 8.0.0
       webpack: 5.74.0_webpack-cli@4.10.0
     dev: true
 
@@ -37716,7 +37715,7 @@ packages:
       safer-buffer: 2.1.2
       sax: 1.2.4
       semver: 6.3.0
-      source-map: 0.7.3
+      source-map: 0.7.4
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -38456,10 +38455,8 @@ packages:
     dependencies:
       escape-string-regexp: 1.0.5
 
-  /true-case-path/1.0.3:
-    resolution: {integrity: sha512-m6s2OdQe5wgpFMC+pAJ+q9djG82O2jcHPOI6RNg1yy9rCYR+WD6Nbpl32fDpfC56nirdRy+opFa/Vk7HYhqaew==}
-    dependencies:
-      glob: 7.2.3
+  /true-case-path/2.2.1:
+    resolution: {integrity: sha512-0z3j8R7MCjy10kc/g+qg7Ln3alJTodw9aDuVWZa3uiWqfuBMKeAeP2ocWcxoyM3D73yz3Jt/Pu4qPr4wHSdB/Q==}
     dev: true
 
   /try-catch/3.0.1:

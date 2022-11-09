@@ -115,7 +115,7 @@
         "eslint-config-prettier": "^8.5.0",
         "html-webpack-plugin": "^5.5.0",
         "inferno": "^8.0.4",
-        "node-sass": "^7.0.3",
+        "node-sass": "^8.0.0",
         "prettier": "^2.7.1",
         "sass-loader": "^13.1.0",
         "source-map-loader": "^4.0.1",
