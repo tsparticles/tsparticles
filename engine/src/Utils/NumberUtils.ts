@@ -23,9 +23,7 @@ export function addEasing(name: EasingType | EasingTypeAlt, easing: EasingFuncti
 }
 
 export function getEasing(name: EasingType | EasingTypeAlt): EasingFunction {
-    const noEasing = (value: number): number => value;
-
-    return easings.get(name) ?? noEasing;
+    return easings.get(name) || ((value: number): number => value);
 }
 
 /**
@@ -125,7 +123,7 @@ export function getDistances(pointA: ICoordinates, pointB: ICoordinates): { dist
     const dx = pointA.x - pointB.x,
         dy = pointA.y - pointB.y;
 
-    return { dx: dx, dy: dy, distance: Math.sqrt(dx * dx + dy * dy) };
+    return { dx: dx, dy: dy, distance: Math.sqrt(dx ** 2 + dy ** 2) };
 }
 
 /**

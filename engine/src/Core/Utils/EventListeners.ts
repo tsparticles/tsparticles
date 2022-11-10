@@ -49,6 +49,22 @@ function manageListener(
     }
 }
 
+type EventListenersHandlers = {
+    readonly mouseDown: EventListenerOrEventListenerObject;
+    readonly mouseLeave: EventListenerOrEventListenerObject;
+    readonly mouseMove: EventListenerOrEventListenerObject;
+    readonly mouseUp: EventListenerOrEventListenerObject;
+    readonly oldThemeChange: (this: MediaQueryList, ev: MediaQueryListEvent) => unknown;
+    readonly resize: EventListenerOrEventListenerObject;
+    readonly themeChange: EventListenerOrEventListenerObject;
+    readonly touchCancel: EventListenerOrEventListenerObject;
+    readonly touchEnd: EventListenerOrEventListenerObject;
+    readonly touchEndClick: EventListenerOrEventListenerObject;
+    readonly touchMove: EventListenerOrEventListenerObject;
+    readonly touchStart: EventListenerOrEventListenerObject;
+    readonly visibilityChange: EventListenerOrEventListenerObject;
+};
+
 /**
  * Particles container event listeners manager
  * @category Utils
@@ -56,23 +72,9 @@ function manageListener(
 export class EventListeners {
     private canPush: boolean;
 
-    private readonly mouseDownHandler: EventListenerOrEventListenerObject;
-    private readonly mouseLeaveHandler: EventListenerOrEventListenerObject;
-    private readonly mouseMoveHandler: EventListenerOrEventListenerObject;
-    private readonly mouseUpHandler: EventListenerOrEventListenerObject;
-    private readonly oldThemeChangeHandler: (this: MediaQueryList, ev: MediaQueryListEvent) => unknown;
-    private readonly resizeHandler: EventListenerOrEventListenerObject;
-
+    private readonly handlers: EventListenersHandlers;
     private resizeObserver?: ResizeObserver;
     private resizeTimeout?: NodeJS.Timeout;
-
-    private readonly themeChangeHandler: EventListenerOrEventListenerObject;
-    private readonly touchCancelHandler: EventListenerOrEventListenerObject;
-    private readonly touchEndClickHandler: EventListenerOrEventListenerObject;
-    private readonly touchEndHandler: EventListenerOrEventListenerObject;
-    private readonly touchMoveHandler: EventListenerOrEventListenerObject;
-    private readonly touchStartHandler: EventListenerOrEventListenerObject;
-    private readonly visibilityChangeHandler: EventListenerOrEventListenerObject;
 
     /**
      * Events listener constructor
@@ -81,19 +83,21 @@ export class EventListeners {
     constructor(private readonly container: Container) {
         this.canPush = true;
 
-        this.mouseMoveHandler = (e): void => this.mouseTouchMove(e);
-        this.touchStartHandler = (e): void => this.mouseTouchMove(e);
-        this.touchMoveHandler = (e): void => this.mouseTouchMove(e);
-        this.touchEndHandler = (): void => this.mouseTouchFinish();
-        this.mouseLeaveHandler = (): void => this.mouseTouchFinish();
-        this.touchCancelHandler = (): void => this.mouseTouchFinish();
-        this.touchEndClickHandler = (e): void => this.mouseTouchClick(e);
-        this.mouseUpHandler = (e): void => this.mouseTouchClick(e);
-        this.mouseDownHandler = (): void => this.mouseDown();
-        this.visibilityChangeHandler = (): void => this.handleVisibilityChange();
-        this.themeChangeHandler = (e): void => this.handleThemeChange(e);
-        this.oldThemeChangeHandler = (e): void => this.handleThemeChange(e);
-        this.resizeHandler = (): void => this.handleWindowResize();
+        this.handlers = {
+            mouseMove: (e): void => this.mouseTouchMove(e),
+            touchStart: (e): void => this.mouseTouchMove(e),
+            touchMove: (e): void => this.mouseTouchMove(e),
+            touchEnd: (): void => this.mouseTouchFinish(),
+            mouseLeave: (): void => this.mouseTouchFinish(),
+            touchCancel: (): void => this.mouseTouchFinish(),
+            touchEndClick: (e): void => this.mouseTouchClick(e),
+            mouseUp: (e): void => this.mouseTouchClick(e),
+            mouseDown: (): void => this.mouseDown(),
+            visibilityChange: (): void => this.handleVisibilityChange(),
+            themeChange: (e): void => this.handleThemeChange(e),
+            oldThemeChange: (e): void => this.handleThemeChange(e),
+            resize: (): void => this.handleWindowResize(),
+        };
     }
 
     /**
@@ -119,14 +123,15 @@ export class EventListeners {
             options = container.actualOptions;
 
         if (this.canPush) {
-            const mousePos = container.interactivity.mouse.position;
+            const mouseInteractivity = container.interactivity.mouse,
+                mousePos = mouseInteractivity.position;
 
             if (!mousePos) {
                 return;
             }
 
-            container.interactivity.mouse.clickPosition = { ...mousePos };
-            container.interactivity.mouse.clickTime = new Date().getTime();
+            mouseInteractivity.clickPosition = { ...mousePos };
+            mouseInteractivity.clickTime = new Date().getTime();
 
             const onClick = options.interactivity.events.onClick;
 
@@ -154,13 +159,14 @@ export class EventListeners {
      */
     private handleThemeChange(e: Event): void {
         const mediaEvent = e as MediaQueryListEvent,
-            themeName = mediaEvent.matches
-                ? this.container.options.defaultThemes.dark
-                : this.container.options.defaultThemes.light,
-            theme = this.container.options.themes.find((theme) => theme.name === themeName);
+            container = this.container,
+            options = container.options,
+            defaultThemes = options.defaultThemes,
+            themeName = mediaEvent.matches ? defaultThemes.dark : defaultThemes.light,
+            theme = options.themes.find((theme) => theme.name === themeName);
 
         if (theme && theme.default.auto) {
-            this.container.loadTheme(themeName);
+            container.loadTheme(themeName);
         }
     }
 
@@ -204,14 +210,18 @@ export class EventListeners {
             delete this.resizeTimeout;
         }
 
-        this.resizeTimeout = setTimeout(async () => this.container.canvas?.windowResize(), 500);
+        this.resizeTimeout = setTimeout(
+            async () => this.container.canvas?.windowResize(),
+            this.container.actualOptions.interactivity.events.resize.delay * 1000
+        );
     }
 
     /**
      * Initializing event listeners
      */
     private manageListeners(add: boolean): void {
-        const container = this.container,
+        const handlers = this.handlers,
+            container = this.container,
             options = container.actualOptions,
             detectType = options.interactivity.detectsOn;
         let mouseLeaveTmpEvent = mouseLeaveEvent;
@@ -233,12 +243,12 @@ export class EventListeners {
 
         if (mediaMatch) {
             if (mediaMatch.addEventListener !== undefined) {
-                manageListener(mediaMatch, "change", this.themeChangeHandler, add);
+                manageListener(mediaMatch, "change", handlers.themeChange, add);
             } else if (mediaMatch.addListener !== undefined) {
                 if (add) {
-                    mediaMatch.addListener(this.oldThemeChangeHandler);
+                    mediaMatch.addListener(handlers.oldThemeChange);
                 } else {
-                    mediaMatch.removeListener(this.oldThemeChangeHandler);
+                    mediaMatch.removeListener(handlers.oldThemeChange);
                 }
             }
         }
@@ -254,28 +264,28 @@ export class EventListeners {
 
         if (options.interactivity.events.onHover.enable || options.interactivity.events.onClick.enable) {
             /* el on mousemove */
-            manageListener(interactivityEl, mouseMoveEvent, this.mouseMoveHandler, add);
+            manageListener(interactivityEl, mouseMoveEvent, handlers.mouseMove, add);
 
             /* el on touchstart */
-            manageListener(interactivityEl, touchStartEvent, this.touchStartHandler, add);
+            manageListener(interactivityEl, touchStartEvent, handlers.touchStart, add);
 
             /* el on touchmove */
-            manageListener(interactivityEl, touchMoveEvent, this.touchMoveHandler, add);
+            manageListener(interactivityEl, touchMoveEvent, handlers.touchMove, add);
 
             if (!options.interactivity.events.onClick.enable) {
                 /* el on touchend */
-                manageListener(interactivityEl, touchEndEvent, this.touchEndHandler, add);
+                manageListener(interactivityEl, touchEndEvent, handlers.touchEnd, add);
             } else {
-                manageListener(interactivityEl, touchEndEvent, this.touchEndClickHandler, add);
-                manageListener(interactivityEl, mouseUpEvent, this.mouseUpHandler, add);
-                manageListener(interactivityEl, mouseDownEvent, this.mouseDownHandler, add);
+                manageListener(interactivityEl, touchEndEvent, handlers.touchEndClick, add);
+                manageListener(interactivityEl, mouseUpEvent, handlers.mouseUp, add);
+                manageListener(interactivityEl, mouseDownEvent, handlers.mouseDown, add);
             }
 
             /* el on onmouseleave */
-            manageListener(interactivityEl, mouseLeaveTmpEvent, this.mouseLeaveHandler, add);
+            manageListener(interactivityEl, mouseLeaveTmpEvent, handlers.mouseLeave, add);
 
             /* el on touchcancel */
-            manageListener(interactivityEl, touchCancelEvent, this.touchCancelHandler, add);
+            manageListener(interactivityEl, touchCancelEvent, handlers.touchCancel, add);
         }
 
         if (container.canvas.element) {
@@ -306,12 +316,12 @@ export class EventListeners {
                     this.resizeObserver.observe(container.canvas.element);
                 }
             } else {
-                manageListener(window, resizeEvent, this.resizeHandler, add);
+                manageListener(window, resizeEvent, handlers.resize, add);
             }
         }
 
         if (document) {
-            manageListener(document, visibilityChangeEvent, this.visibilityChangeHandler, add, false);
+            manageListener(document, visibilityChangeEvent, handlers.visibilityChange, add, false);
         }
     }
 

@@ -103,3 +103,4 @@ export * from "./Utils/RgbColorManager";
 export * from "./Utils/Utils";
 export { tsParticles };
 export { CollisionsAbsorb } from "./Options/Classes/Particles/Collisions/CollisionsAbsorb";
+export { ResizeEvent } from "./Options/Classes/Interactivity/Events/ResizeEvent";

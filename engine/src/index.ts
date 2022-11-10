@@ -214,3 +214,5 @@ export type { Engine, Engine as Main };
 export type ISourceOptions = RecursivePartial<IOptions>;
 export type { ICollisionsAbsorb } from "./Options/Interfaces/Particles/Collisions/ICollisionsAbsorb";
 export { CollisionsAbsorb } from "./Options/Classes/Particles/Collisions/CollisionsAbsorb";
+export type { IResizeEvent } from "./Options/Interfaces/Interactivity/Events/IResizeEvent";
+export { ResizeEvent } from "./Options/Classes/Interactivity/Events/ResizeEvent";
