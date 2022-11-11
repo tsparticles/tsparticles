@@ -6451,6 +6451,7 @@ importers:
     specifiers:
       '@babel/core': ^7.20.2
       '@tsparticles/eslint-config': ^1.3.2
+      '@tsparticles/options-updater': ^2.5.3
       '@tsparticles/prettier-config': ^1.3.1
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.42.1
@@ -6474,6 +6475,7 @@ importers:
     devDependencies:
       '@babel/core': 7.20.2
       '@tsparticles/eslint-config': 1.3.2_h6ovu3vtbopef5tmregupb63lm
+      '@tsparticles/options-updater': link:../options-updater
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.42.1_2udltptbznfmezdozpdoa2aemq

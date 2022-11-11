@@ -41,6 +41,10 @@ type CustomRecord = {
 const objectDifference = (object: CustomRecord, base: CustomRecord): CustomRecord => {
     function changes(object: CustomRecord, base: CustomRecord): CustomRecord {
         return _.transform(object, function (result: CustomRecord, value: CustomRecord, key: string) {
+            if (key.startsWith("_")) {
+                return;
+            }
+
             if (!_.isEqual(value, base[key])) {
                 result[key] = _.isObject(value) && _.isObject(base[key]) ? changes(value, base[key]) : value;
             }
@@ -133,30 +137,35 @@ const objectDifference = (object: CustomRecord, base: CustomRecord): CustomRecor
     let canContinue = true;
 
     if (canContinue) {
-        globalThis.window = new JSDOM("").window as unknown as Window & typeof globalThis;
+        const jsdom = new JSDOM("");
 
-        const container = await tsParticles.load("tmp", {});
+        globalThis.window = jsdom.window as unknown as Window & typeof globalThis;
+        globalThis.document = jsdom.window.document;
+        globalThis.HTMLElement = jsdom.window.HTMLElement;
+        globalThis.HTMLCanvasElement = jsdom.window.HTMLCanvasElement;
+        globalThis.requestAnimationFrame = jsdom.window.requestAnimationFrame;
+        globalThis.cancelAnimationFrame = jsdom.window.cancelAnimationFrame;
 
-        if (!container) {
-            console.error("Error: Couldn't load tsParticles");
-
-            process.exitCode = 1;
-
-            return;
-        }
-
-        const defaultOptions = new Options(tsParticles, container) as unknown as CustomRecord,
-            fileStat = await fs.lstat(srcPath);
+        const fileStat = await fs.lstat(srcPath);
 
         if (fileStat.isFile()) {
             const fileContent = await fs.readFile(srcPath, "utf8"),
                 fileData = JSON.parse(fileContent),
-                fileContainer = await tsParticles.load(`file-tmp`, fileData);
+                fileContainer = await tsParticles.load("file-tmp", fileData);
 
             if (fileContainer) {
-                const newOptions = objectDifference(fileContainer.options as unknown as CustomRecord, defaultOptions);
+                const fileOptions = fileContainer.actualOptions;
+
+                fileContainer.reset();
+
+                const newOptions = objectDifference(
+                    fileOptions as unknown as CustomRecord,
+                    fileContainer.options as unknown as CustomRecord
+                );
 
                 await fs.writeFile(srcPath, JSON.stringify(newOptions, undefined, 4));
+
+                fileContainer.destroy();
             }
         } else {
             const files = await fs.readdir(srcPath);
@@ -173,12 +182,18 @@ const objectDifference = (object: CustomRecord, base: CustomRecord): CustomRecor
                     fileContainer = await tsParticles.load(`file-${file}`, fileData);
 
                 if (fileContainer) {
+                    const fileOptions = fileContainer.options;
+
+                    fileContainer.reset();
+
                     const newOptions = objectDifference(
-                        fileContainer.options as unknown as CustomRecord,
-                        defaultOptions
+                        fileOptions as unknown as CustomRecord,
+                        fileContainer.options as unknown as CustomRecord
                     );
 
                     await fs.writeFile(filePath, JSON.stringify(newOptions, undefined, 4));
+
+                    fileContainer.destroy();
                 }
             }
         }
