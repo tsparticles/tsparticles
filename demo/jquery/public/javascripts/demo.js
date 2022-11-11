@@ -57,7 +57,7 @@ let updateBackground = function () {
 let updateParticles = function (editor) {
     let presetId = localStorage.presetId || 'default';
 
-    $('#tsparticles').particles().ajax(`/presets/${presetId}.json`, (particles) => {
+    $('#tsparticles').particles().ajax(`/demo-configs/${presetId}.json`, (particles) => {
         localStorage.presetId = presetId;
         editor.set(particles.options);
         editor.expandAll();
