@@ -55,9 +55,9 @@ let updateBackground = function () {
 };
 
 let updateParticles = function (editor) {
-    let presetId = localStorage.presetId || 'default';
+    let presetId = localStorage.presetId || 'basic';
 
-    $('#tsparticles').particles().ajax(`/demo-configs/${presetId}.json`, (particles) => {
+    $('#tsparticles').particles().init(tsParticles.configs[presetId], (particles) => {
         localStorage.presetId = presetId;
         editor.set(particles.options);
         editor.expandAll();
@@ -91,7 +91,7 @@ $(document).ready(function () {
     });
 
     if (!localStorage.presetId) {
-        localStorage.presetId = 'default';
+        localStorage.presetId = 'basic';
     }
 
     cmbPresets.val(localStorage.presetId);

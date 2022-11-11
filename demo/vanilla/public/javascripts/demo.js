@@ -36,7 +36,7 @@
     }
 
     let updateParticles = async function (editor) {
-        let presetId = localStorage.presetId || 'default';
+        let presetId = localStorage.presetId || 'basic';
 
         if (presetId === "divEvents") {
             document.querySelectorAll('.bubble').forEach(elem => {

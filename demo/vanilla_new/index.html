@@ -128,12 +128,12 @@
         <option value="ring">Ring</option>
         <option value="seaAnemone">Sea Anemone</option>
         <option value="shadow">Shadow</option>
-        <option value="shape-bubble">Shape Bubble</option>
-        <option value="shape-heart">Shape Heart</option>
-        <option value="shape-multiline-text">Shape Multiline Text</option>
-        <option value="shape-options">Shape Options</option>
-        <option value="shape-rounded-rect">Shape Rounded Rect</option>
-        <option value="shape-spiral">Shape Spiral</option>
+        <option value="shapeBubble">Shape Bubble</option>
+        <option value="shapeHeart">Shape Heart</option>
+        <option value="shapeMultilineText">Shape Multiline Text</option>
+        <option value="shapeOptions">Shape Options</option>
+        <option value="shapeRoundedRect">Shape Rounded Rect</option>
+        <option value="shapeSpiral">Shape Spiral</option>
         <option value="slow">Slow on Hover</option>
         <option value="snow">Snow</option>
         <option value="speedDecay">Speed Decay</option>
@@ -151,7 +151,7 @@
         <option value="virus">Virus</option>
         <option value="warp">Warp</option>
         <option value="wobble">Wobble</option>
-        <option value="zindex">Z Index</option>
+        <option value="zIndex">Z Index</option>
     </select>
 </div>
 
@@ -167,6 +167,7 @@
 <script src="https://cdn.jsdelivr.net/npm/pathseg@1.2.0/pathseg.min.js"></script>
 
 <script src="js/tsparticles.bundle.min.js"></script>
+<script src="js/tsparticles.configs.min.js"></script>
 <script src="js/tsparticles.interaction.light.min.js"></script>
 <script src="js/tsparticles.interaction.particles.repulse.min.js"></script>
 <script src="js/tsparticles.path.curves.min.js"></script>
@@ -192,10 +193,10 @@
         })();
 
         const loadPreset = async (preset) => {
-            await tsParticles.loadJSON("tsparticles", `/configs/${preset}.json`);
+            await tsParticles.load("tsparticles", tsParticles.configs[preset]);
         }
 
-        loadPreset(sessionStorage.preset || "index");
+        loadPreset(sessionStorage.preset || "basic");
 
         const cmbPreset = document.getElementById("preset");
 
