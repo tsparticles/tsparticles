@@ -54,7 +54,7 @@
         <option value="customPreset">Custom Preset</option>
         <option value="customShape">Custom Shape</option>
         <option value="dataImages">Data URI Images</option>
-        <option value="default">Default</option>
+        <option value="basic">Default</option>
         <option value="destroy">Destroy</option>
         <option value="disappearing">Disappearing</option>
         <option value="divEvents">Div Events</option>
@@ -158,18 +158,20 @@
 
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", () => {
-        loadInfectionPlugin(tsParticles);
-        loadLightInteraction(tsParticles);
-        loadParticlesRepulseInteraction(tsParticles);
-        loadGradientUpdater(tsParticles);
-        loadOrbitUpdater(tsParticles);
-        loadCurvesPath(tsParticles);
-        loadPolygonPath(tsParticles);
-        loadPerlinNoisePath(tsParticles);
-        loadSimplexNoisePath(tsParticles);
+        (async () => {
+            await loadInfectionPlugin(tsParticles);
+            await loadLightInteraction(tsParticles);
+            await loadParticlesRepulseInteraction(tsParticles);
+            await loadGradientUpdater(tsParticles);
+            await loadOrbitUpdater(tsParticles);
+            await loadCurvesPath(tsParticles);
+            await loadPolygonPath(tsParticles);
+            await loadPerlinNoisePath(tsParticles);
+            await loadSimplexNoisePath(tsParticles);
+        })();
 
-        const loadPreset = (preset) => {
-            tsParticles.loadJSON("tsparticles", `/configs/${preset}.json`);
+        const loadPreset = async (preset) => {
+            await tsParticles.loadJSON("tsparticles", `/configs/${preset}.json`);
         }
 
         loadPreset(sessionStorage.preset || "index");
