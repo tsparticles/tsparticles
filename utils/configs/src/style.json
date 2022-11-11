@@ -28,7 +28,6 @@
             "enable": true,
             "speed": 6,
             "direction": "none",
-            "outModes": "out",
             "trail": {
                 "enable": true,
                 "length": 50

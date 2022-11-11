@@ -26,7 +26,6 @@
             "direction": "none",
             "distance": 2,
             "enable": true,
-            "outModes": "out",
             "speed": 1
         },
         "number": {

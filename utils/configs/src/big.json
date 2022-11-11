@@ -31,8 +31,7 @@
             "speed": 10,
             "direction": "top",
             "random": false,
-            "straight": false,
-            "outModes": "out"
+            "straight": false
         }
     },
     "background": {

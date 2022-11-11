@@ -27,14 +27,8 @@
             "value": "#ffffff"
         },
         "move": {
-            "direction": "none",
             "enable": true,
-            "outModes": {
-                "default": "out"
-            },
-            "random": false,
-            "speed": 2,
-            "straight": false
+            "speed": 2
         },
         "number": {
             "density": {

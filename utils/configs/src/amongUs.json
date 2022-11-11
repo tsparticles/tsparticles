@@ -63,8 +63,7 @@
             "speed": 5,
             "direction": "right",
             "random": false,
-            "straight": false,
-            "outModes": "out"
+            "straight": false
         },
         "zIndex": {
             "value": 5,

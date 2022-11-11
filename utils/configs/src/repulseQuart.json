@@ -24,13 +24,7 @@
         },
         "move": {
             "enable": true,
-            "speed": 0,
-            "direction": "none",
-            "random": false,
-            "straight": false,
-            "outModes": {
-                "default": "out"
-            }
+            "speed": 0
         }
     },
     "interactivity": {

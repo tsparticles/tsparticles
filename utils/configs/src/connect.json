@@ -76,7 +76,6 @@
             "bounce": false,
             "direction": "none",
             "enable": true,
-            "outModes": "out",
             "random": false,
             "speed": 6,
             "straight": false

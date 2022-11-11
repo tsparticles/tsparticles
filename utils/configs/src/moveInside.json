@@ -32,8 +32,7 @@
             "speed": 10,
             "direction": "inside",
             "random": false,
-            "straight": true,
-            "outModes": "out"
+            "straight": true
         }
     },
     "background": {

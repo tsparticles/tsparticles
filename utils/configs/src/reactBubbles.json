@@ -84,7 +84,6 @@
             "collisions": true,
             "direction": "top",
             "enable": true,
-            "outModes": "out",
             "random": true,
             "speed": 1,
             "straight": false,

@@ -6,7 +6,6 @@
         "move": {
             "direction": "none",
             "enable": true,
-            "outModes": "out",
             "speed": 6
         },
         "number": {

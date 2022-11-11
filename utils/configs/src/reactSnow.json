@@ -75,7 +75,6 @@
             "collisions": true,
             "direction": "bottom",
             "enable": true,
-            "outModes": "out",
             "random": false,
             "speed": 3,
             "straight": false,

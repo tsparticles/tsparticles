@@ -4,18 +4,7 @@
             "value": ["#5bc0eb", "#fde74c", "#9bc53d", "#e55934", "#fa7921"]
         },
         "move": {
-            "attract": {
-                "enable": false,
-                "rotate": {
-                    "x": 600,
-                    "y": 1200
-                }
-            },
-            "direction": "none",
             "enable": true,
-            "outModes": {
-                "default": "out"
-            },
             "speed": 3
         },
         "number": {

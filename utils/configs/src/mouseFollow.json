@@ -35,7 +35,6 @@
         "move": {
             "direction": "none",
             "enable": true,
-            "outModes": "out",
             "random": false,
             "speed": 2,
             "straight": false

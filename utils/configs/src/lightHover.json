@@ -39,8 +39,7 @@
         "move": {
             "enable": true,
             "speed": 6,
-            "direction": "none",
-            "outModes": "out"
+            "direction": "none"
         }
     },
     "interactivity": {

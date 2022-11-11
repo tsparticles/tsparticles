@@ -30,7 +30,6 @@
             "direction": "top",
             "random": false,
             "straight": true,
-            "outModes": "out",
             "warp": true
         }
     },

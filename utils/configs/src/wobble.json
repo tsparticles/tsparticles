@@ -1,12 +1,6 @@
 {
     "background": {
-        "color": {
-            "value": "#000000"
-        }
-    },
-    "fullScreen": {
-        "enable": false,
-        "zIndex": -1
+        "color": "#000000"
     },
     "particles": {
         "bounce": {

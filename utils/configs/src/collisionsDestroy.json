@@ -79,7 +79,6 @@
             "direction": "none",
             "random": false,
             "straight": false,
-            "outModes": "out",
             "attract": {
                 "enable": false,
                 "rotateX": 600,

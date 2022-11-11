@@ -46,11 +46,7 @@
                 },
                 "generator": "simplexNoise"
             },
-            "direction": "none",
             "enable": true,
-            "outModes": {
-                "default": "out"
-            },
             "speed": 6
         },
         "number": {

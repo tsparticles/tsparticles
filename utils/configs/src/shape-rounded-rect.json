@@ -51,8 +51,7 @@
             "speed": 6,
             "direction": "none",
             "random": false,
-            "straight": false,
-            "outModes": "out"
+            "straight": false
         }
     },
     "interactivity": {

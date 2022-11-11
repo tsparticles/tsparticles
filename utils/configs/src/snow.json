@@ -24,10 +24,7 @@
             "speed": 2,
             "direction": "bottom",
             "random": false,
-            "straight": true,
-            "outModes": {
-                "default": "out"
-            }
+            "straight": true
         },
         "wobble": {
             "enable": true,

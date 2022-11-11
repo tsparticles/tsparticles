@@ -94,11 +94,7 @@
         },
         "move": {
             "enable": true,
-            "speed": 5,
-            "direction": "none",
-            "outModes": {
-                "default": "out"
-            }
+            "speed": 5
         }
     },
     "background": {
