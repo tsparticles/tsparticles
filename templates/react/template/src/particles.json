@@ -1,10 +1,7 @@
 {
   "background": {
-    "color": {
-      "value": "#282c34"
-    }
+    "color": "#282c34"
   },
-  "fpsLimit": 120,
   "interactivity": {
     "events": {
       "onClick": {
@@ -54,7 +51,7 @@
     "number": {
       "density": {
         "enable": true,
-        "value_area": 800
+        "area": 800
       },
       "value": 80
     },
@@ -68,6 +65,5 @@
       "random": true,
       "value": 5
     }
-  },
-  "detectRetina": true
+  }
 }

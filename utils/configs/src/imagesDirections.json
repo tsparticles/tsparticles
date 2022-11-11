@@ -1,8 +1,5 @@
 {
-    "detectRetina": true,
-    "fpsLimit": 60,
     "interactivity": {
-        "detectsOn": "canvas",
         "events": {
             "onClick": {
                 "enable": true,
@@ -10,14 +7,8 @@
             },
             "onHover": {
                 "enable": true,
-                "mode": "bubble",
-                "parallax": {
-                    "enable": false,
-                    "force": 60,
-                    "smooth": 10
-                }
-            },
-            "resize": true
+                "mode": "bubble"
+            }
         },
         "modes": {
             "bubble": {
@@ -35,7 +26,7 @@
         "move": {
             "direction": "none",
             "enable": true,
-            "outMode": "out",
+            "outModes": "out",
             "speed": 2
         },
         "number": {

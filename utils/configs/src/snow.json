@@ -1,5 +1,4 @@
 {
-    "fpsLimit": 60,
     "particles": {
         "number": {
             "value": 400,
@@ -46,7 +45,6 @@
             "velocityRate": 10
         }
     },
-    "detectRetina": true,
     "background": {
         "color": "#333333"
     }

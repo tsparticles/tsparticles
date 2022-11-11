@@ -1,46 +1,14 @@
 {
-    "fpsLimit": 60,
     "interactivity": {
-        "detect_on": "canvas",
         "events": {
-            "onclick": {
+            "onClick": {
                 "enable": true,
                 "mode": "push"
-            },
-            "onhover": {
-                "enable": false,
-                "mode": "repulse",
-                "parallax": {
-                    "enable": false,
-                    "force": 60,
-                    "smooth": 10
-                }
-            },
-            "resize": true
+            }
         },
         "modes": {
-            "bubble": {
-                "distance": 400,
-                "duration": 2,
-                "opacity": 0.8,
-                "size": 40,
-                "speed": 3
-            },
-            "grab": {
-                "distance": 400,
-                "line_linked": {
-                    "opacity": 1
-                }
-            },
             "push": {
-                "particles_nb": 4
-            },
-            "remove": {
-                "particles_nb": 2
-            },
-            "repulse": {
-                "distance": 200,
-                "duration": 0.4
+                "quantity": 4
             }
         }
     },
@@ -57,7 +25,7 @@
             "bounce": false,
             "direction": "none",
             "enable": true,
-            "out_mode": "out",
+            "outModes": "out",
             "random": false,
             "speed": 6,
             "straight": false
@@ -65,7 +33,7 @@
         "number": {
             "density": {
                 "enable": true,
-                "value_area": 800
+                "area": 800
             },
             "value": 80
         },
@@ -74,7 +42,7 @@
             "path": true
         },
         "opacity": {
-            "anim": {
+            "animation": {
                 "enable": false,
                 "opacity_min": 0.1,
                 "speed": 1,
@@ -92,7 +60,7 @@
             "type": "image"
         },
         "size": {
-            "anim": {
+            "animation": {
                 "enable": false,
                 "size_min": 0.1,
                 "speed": 40,
@@ -105,5 +73,5 @@
             "value": 32
         }
     },
-    "retina_detect": true
+    "detectRetina": true
 }

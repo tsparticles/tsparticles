@@ -55,12 +55,7 @@
             }
         }
     },
-    "detectRetina": true,
     "background": {
-        "color": "#ffffff",
-        "image": "",
-        "position": "50% 50%",
-        "repeat": "no-repeat",
-        "size": "cover"
+        "color": "#ffffff"
     }
 }

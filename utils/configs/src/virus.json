@@ -1,7 +1,5 @@
 {
-    "fpsLimit": 60,
     "interactivity": {
-        "detectsOn": "canvas",
         "events": {
             "onClick": {
                 "enable": true,
@@ -9,14 +7,8 @@
             },
             "onHover": {
                 "enable": true,
-                "mode": "bubble",
-                "parallax": {
-                    "enable": false,
-                    "force": 60,
-                    "smooth": 10
-                }
-            },
-            "resize": true
+                "mode": "bubble"
+            }
         },
         "modes": {
             "bubble": {
@@ -25,21 +17,8 @@
                 "opacity": 0.8,
                 "size": 40
             },
-            "grab": {
-                "distance": 400,
-                "lineLinked": {
-                    "opacity": 1
-                }
-            },
             "push": {
                 "quantity": 4
-            },
-            "remove": {
-                "quantity": 2
-            },
-            "repulse": {
-                "distance": 200,
-                "duration": 0.4
             }
         }
     },
@@ -47,7 +26,7 @@
         "color": {
             "value": "#ffffff"
         },
-        "lineLinked": {
+        "links": {
             "color": "#323031",
             "distance": 150,
             "enable": false,
@@ -63,7 +42,7 @@
             "bounce": false,
             "direction": "none",
             "enable": true,
-            "out_mode": "bounce",
+            "outModes": "bounce",
             "random": false,
             "speed": 6,
             "straight": false
@@ -71,7 +50,7 @@
         "number": {
             "density": {
                 "enable": true,
-                "value_area": 800
+                "area": 800
             },
             "value": 170
         },
@@ -132,12 +111,7 @@
         "type": "none",
         "url": ""
     },
-    "retina_detect": true,
     "background": {
-        "color": "#323031",
-        "image": "",
-        "position": "50% 50%",
-        "repeat": "no-repeat",
-        "size": "cover"
+        "color": "#323031"
     }
 }

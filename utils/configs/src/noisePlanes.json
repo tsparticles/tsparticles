@@ -2,15 +2,12 @@
     "background": {
         "color": "#000"
     },
-    "fpsLimit": 60,
     "interactivity": {
-        "detectsOn": "canvas",
         "events": {
             "onClick": {
                 "enable": true,
                 "mode": "push"
-            },
-            "resize": true
+            }
         },
         "modes": {
             "bubble": {
@@ -90,6 +87,5 @@
             "sizeRate": 2,
             "velocityRate": 2
         }
-    },
-    "detectRetina": true
+    }
 }

@@ -1,11 +1,10 @@
 {
-    "fpsLimit": 60,
     "particles": {
         "number": {
             "value": 1,
             "density": {
                 "enable": false,
-                "value_area": 800
+                "area": 800
             }
         },
         "color": {
@@ -29,7 +28,7 @@
         "opacity": {
             "value": 0.5,
             "random": false,
-            "anim": {
+            "animation": {
                 "enable": false,
                 "speed": 1,
                 "opacity_min": 0.1,
@@ -39,14 +38,14 @@
         "size": {
             "value": 240,
             "random": false,
-            "anim": {
+            "animation": {
                 "enable": false,
                 "speed": 40,
                 "size_min": 0.1,
                 "sync": false
             }
         },
-        "line_linked": {
+        "links": {
             "enable": false,
             "distance": 150,
             "color": "#ffffff",
@@ -59,7 +58,7 @@
             "direction": "right",
             "random": false,
             "straight": true,
-            "out_mode": "out",
+            "outModes": "out",
             "bounce": false,
             "attract": {
                 "enable": false,
@@ -69,22 +68,20 @@
         }
     },
     "interactivity": {
-        "detect_on": "canvas",
         "events": {
-            "onhover": {
+            "onHover": {
                 "enable": false,
                 "mode": "grab"
             },
-            "onclick": {
+            "onClick": {
                 "enable": true,
                 "mode": "repulse"
-            },
-            "resize": true
+            }
         },
         "modes": {
             "grab": {
                 "distance": 200,
-                "line_linked": {
+                "links": {
                     "opacity": 1
                 }
             },
@@ -99,14 +96,13 @@
                 "duration": 0.4
             },
             "push": {
-                "particles_nb": 4
+                "quantity": 4
             },
             "remove": {
-                "particles_nb": 2
+                "quantity": 2
             }
         }
     },
-    "retina_detect": true,
     "background": {
         "color": "#0d47a1",
         "image": "url('http://fc06.deviantart.net/fs71/f/2011/187/1/0/nyan_cat_background_by_kento1-d3l6i50.jpg')",

@@ -1,11 +1,10 @@
 {
-    "fpsLimit": 60,
     "particles": {
         "number": {
             "value": 100,
             "density": {
                 "enable": false,
-                "value_area": 800
+                "area": 800
             }
         },
         "color": {
@@ -20,7 +19,7 @@
         "opacity": {
             "value": 0.5,
             "random": false,
-            "anim": {
+            "animation": {
                 "enable": false,
                 "speed": 1,
                 "opacity_min": 0.1,
@@ -30,14 +29,14 @@
         "size": {
             "value": 4,
             "random": true,
-            "anim": {
+            "animation": {
                 "enable": false,
                 "speed": 40,
                 "size_min": 0.1,
                 "sync": false
             }
         },
-        "line_linked": {
+        "links": {
             "enable": false,
             "distance": 150,
             "color": "#ffffff",
@@ -50,7 +49,7 @@
             "direction": "left",
             "random": false,
             "straight": true,
-            "out_mode": "out",
+            "outModes": "out",
             "bounce": false,
             "attract": {
                 "enable": false,
@@ -60,44 +59,19 @@
         }
     },
     "interactivity": {
-        "detect_on": "canvas",
         "events": {
-            "onhover": {
-                "enable": false,
-                "mode": "grab"
-            },
-            "onclick": {
+            "onClick": {
                 "enable": true,
                 "mode": "repulse"
-            },
-            "resize": true
+            }
         },
         "modes": {
-            "grab": {
-                "distance": 200,
-                "line_linked": {
-                    "opacity": 1
-                }
-            },
-            "bubble": {
-                "distance": 400,
-                "size": 40,
-                "duration": 2,
-                "opacity": 8
-            },
             "repulse": {
                 "distance": 200,
                 "duration": 0.4
-            },
-            "push": {
-                "particles_nb": 4
-            },
-            "remove": {
-                "particles_nb": 2
             }
         }
     },
-    "retina_detect": true,
     "background": {
         "color": "#043564",
         "image": "url('http://vincentgarreau.com/particles.js/assets/img/kbLd9vb_new.gif')",

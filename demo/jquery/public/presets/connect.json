@@ -1,6 +1,4 @@
 {
-  "detectRetina": true,
-  "fpsLimit": 120,
   "interactivity": {
     "events": {
       "onClick": {

@@ -66,7 +66,7 @@
             });
         }
 
-        tsParticles.loadJSON('tsparticles', `/presets/${presetId}.json`).then((particles) => {
+        tsParticles.loadJSON('tsparticles', `/demo-configs/${presetId}.json`).then((particles) => {
             localStorage.presetId = presetId;
 
             const omit = (obj) => {

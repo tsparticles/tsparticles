@@ -1,63 +1,22 @@
 {
-    "fpsLimit": 60,
-    "detectRetina": true,
     "interactivity": {
-        "detectsOn": "canvas",
         "events": {
             "onClick": {
                 "enable": true,
                 "mode": "push"
             },
-            "onDiv": {
-                "elementId": "repulse-div",
-                "enable": false,
-                "mode": "repulse"
-            },
             "onHover": {
                 "enable": true,
-                "mode": "repulse",
-                "parallax": {
-                    "enable": false,
-                    "force": 60,
-                    "smooth": 10
-                }
-            },
-            "resize": true
+                "mode": "repulse"
+            }
         },
         "modes": {
-            "bubble": {
-                "distance": 400,
-                "duration": 2,
-                "opacity": 0.8,
-                "size": 40
-            },
-            "connect": {
-                "distance": 80,
-                "lineLinked": {
-                    "opacity": 0.5
-                },
-                "radius": 60
-            },
-            "grab": {
-                "distance": 400,
-                "lineLinked": {
-                    "opacity": 1
-                }
-            },
             "push": {
                 "quantity": 4
-            },
-            "remove": {
-                "quantity": 2
             },
             "repulse": {
                 "distance": 200,
                 "duration": 0.4
-            },
-            "slow": {
-                "active": false,
-                "factor": 1,
-                "radius": 0
             }
         }
     },
@@ -65,7 +24,7 @@
         "color": {
             "value": "#ffffff"
         },
-        "lineLinked": {
+        "links": {
             "blink": false,
             "color": "#ffffff",
             "consent": false,
@@ -90,7 +49,7 @@
             "collisions": false,
             "direction": "none",
             "enable": true,
-            "outMode": "out",
+            "outModes": "out",
             "random": false,
             "speed": 2,
             "straight": false,

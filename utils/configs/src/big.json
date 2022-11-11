@@ -1,12 +1,7 @@
 {
-    "fpsLimit": 60,
     "particles": {
         "number": {
-            "value": 30,
-            "density": {
-                "enable": false,
-                "area": 800
-            }
+            "value": 30
         },
         "color": {
             "value": ["#5bc0eb", "#fde74c", "#9bc53d", "#e55934", "#fa7921"]
@@ -25,7 +20,7 @@
                 "min": 300,
                 "max": 400
             },
-            "anim": {
+            "animation": {
                 "enable": true,
                 "speed": 100,
                 "sync": false
@@ -40,12 +35,7 @@
             "outModes": "out"
         }
     },
-    "detectRetina": true,
     "background": {
-        "color": "#ffffff",
-        "image": "",
-        "position": "50% 50%",
-        "repeat": "no-repeat",
-        "size": "cover"
+        "color": "#ffffff"
     }
 }

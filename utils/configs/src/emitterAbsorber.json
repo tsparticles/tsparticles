@@ -1,12 +1,7 @@
 {
-    "fpsLimit": 60,
     "particles": {
         "number": {
-            "value": 0,
-            "density": {
-                "enable": false,
-                "value_area": 800
-            }
+            "value": 0
         },
         "color": {
             "value": "#000"
@@ -17,7 +12,7 @@
         "opacity": {
             "value": 0.5,
             "random": false,
-            "anim": {
+            "animation": {
                 "enable": false,
                 "speed": 1,
                 "opacity_min": 0.1,
@@ -27,14 +22,14 @@
         "size": {
             "value": 5,
             "random": true,
-            "anim": {
+            "animation": {
                 "enable": false,
                 "speed": 40,
                 "size_min": 0.1,
                 "sync": false
             }
         },
-        "line_linked": {
+        "links": {
             "enable": true,
             "distance": 150,
             "color": "#000",
@@ -47,7 +42,7 @@
             "direction": "none",
             "random": false,
             "straight": false,
-            "out_mode": "out",
+            "outModes": "out",
             "attract": {
                 "enable": false,
                 "rotateX": 600,
@@ -56,9 +51,8 @@
         }
     },
     "interactivity": {
-        "detect_on": "canvas",
         "events": {
-            "onhover": {
+            "onHover": {
                 "enable": false,
                 "mode": "repulse",
                 "parallax": {
@@ -67,16 +61,15 @@
                     "smooth": 10
                 }
             },
-            "onclick": {
+            "onClick": {
                 "enable": false,
                 "mode": "push"
-            },
-            "resize": true
+            }
         },
         "modes": {
             "grab": {
                 "distance": 400,
-                "line_linked": {
+                "links": {
                     "opacity": 1
                 }
             },
@@ -90,14 +83,13 @@
                 "distance": 200
             },
             "push": {
-                "particles_nb": 4
+                "quantity": 4
             },
             "remove": {
-                "particles_nb": 2
+                "quantity": 2
             }
         }
     },
-    "retina_detect": true,
     "background": {
         "color": "#fff",
         "image": "",
@@ -134,7 +126,7 @@
                 "color": {
                     "value": "random"
                 },
-                "lineLinked": {
+                "links": {
                     "enable": false
                 },
                 "opacity": {
@@ -160,7 +152,7 @@
                 "move": {
                     "speed": 5,
                     "random": false,
-                    "outMode": "bounce"
+                    "outModes": "bounce"
                 }
             }
         }

@@ -1,6 +1,4 @@
 {
-    "detectRetina": true,
-    "fpsLimit": 60,
     "particles": {
         "color": {
             "value": ["#5bc0eb", "#fde74c", "#9bc53d", "#e55934", "#fa7921"]
@@ -34,7 +32,7 @@
         "orbit": {
             "animation": {
                 "enable": true,
-                "speed": 10
+                "speed": 1
             },
             "enable": true,
             "opacity": 1,
