@@ -196,7 +196,9 @@
             await tsParticles.load("tsparticles", tsParticles.configs[preset]);
         }
 
-        loadPreset(sessionStorage.preset || "basic");
+        let preset = sessionStorage.preset || "basic";
+
+        loadPreset(preset);
 
         const cmbPreset = document.getElementById("preset");
 
