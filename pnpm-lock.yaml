@@ -1580,6 +1580,7 @@ importers:
       stats.ts: ^1.1.0
       stylus: ^0.59.0
       tsparticles: ^2.5.3
+      tsparticles-demo-configs: ^1.5.3
       tsparticles-engine: ^2.5.2
       tsparticles-preset-links: ^2.5.3
       typescript: ^4.8.4
@@ -1587,6 +1588,7 @@ importers:
       jquery: 3.6.1
       jquery-particles: link:../../components/jquery
       tsparticles: link:../../bundles/full/dist
+      tsparticles-demo-configs: link:../../utils/configs/dist
       tsparticles-engine: link:../../engine/dist
       tsparticles-preset-links: link:../../presets/links/dist
     devDependencies:
@@ -2157,6 +2159,12 @@ importers:
       tsparticles-plugin-infection: link:../../plugins/infection/dist
       tsparticles-updater-gradient: link:../../updaters/gradient/dist
       tsparticles-updater-orbit: link:../../updaters/orbit/dist
+
+  demo/vanilla_new/configs:
+    specifiers:
+      tsparticles-engine: ^2.5.2
+    dependencies:
+      tsparticles-engine: link:../../../engine/dist
 
   demo/vue:
     specifiers:
@@ -41914,7 +41922,7 @@ packages:
       mime-types: 2.1.35
       range-parser: 1.2.1
       schema-utils: 4.0.0
-      webpack: 5.74.0
+      webpack: 5.74.0_webpack-cli@4.10.0
     dev: true
 
   /webpack-dev-server/3.11.3_webpack@4.46.0:
