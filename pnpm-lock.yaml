@@ -1580,7 +1580,7 @@ importers:
       stats.ts: ^1.1.0
       stylus: ^0.59.0
       tsparticles: ^2.5.3
-      tsparticles-demo-configs: ^1.5.3
+      tsparticles-demo-configs: ^2.5.3
       tsparticles-engine: ^2.5.2
       tsparticles-preset-links: ^2.5.3
       typescript: ^4.8.4
@@ -1588,7 +1588,7 @@ importers:
       jquery: 3.6.1
       jquery-particles: link:../../components/jquery
       tsparticles: link:../../bundles/full/dist
-      tsparticles-demo-configs: 1.5.3
+      tsparticles-demo-configs: link:../../utils/configs/dist
       tsparticles-engine: link:../../engine/dist
       tsparticles-preset-links: link:../../presets/links/dist
     devDependencies:
@@ -1938,7 +1938,7 @@ importers:
       stats.ts: ^1.1.0
       stylus: ^0.59.0
       tsparticles: ^2.5.3
-      tsparticles-demo-configs: ^1.5.3
+      tsparticles-demo-configs: ^2.5.3
       tsparticles-engine: ^2.5.2
       tsparticles-interaction-external-attract: ^2.5.3
       tsparticles-interaction-external-bounce: ^2.5.3
@@ -2041,7 +2041,7 @@ importers:
       stats.ts: 1.1.0
       stylus: 0.59.0
       tsparticles: link:../../bundles/full/dist
-      tsparticles-demo-configs: 1.5.3
+      tsparticles-demo-configs: link:../../utils/configs/dist
       tsparticles-engine: link:../../engine/dist
       tsparticles-interaction-external-attract: link:../../interactions/external/attract/dist
       tsparticles-interaction-external-bounce: link:../../interactions/external/bounce/dist
@@ -2130,7 +2130,7 @@ importers:
       rimraf: ^3.0.2
       sass: ^1.56.0
       tsparticles: ^2.5.3
-      tsparticles-demo-configs: ^1.5.3
+      tsparticles-demo-configs: ^2.5.3
       tsparticles-engine: ^2.5.2
       tsparticles-interaction-light: ^2.5.3
       tsparticles-interaction-particles-repulse: ^2.5.3
@@ -2148,7 +2148,7 @@ importers:
       rimraf: 3.0.2
       sass: 1.56.0
       tsparticles: link:../../bundles/full/dist
-      tsparticles-demo-configs: 1.5.3
+      tsparticles-demo-configs: link:../../utils/configs/dist
       tsparticles-engine: link:../../engine/dist
       tsparticles-interaction-light: link:../../interactions/light/dist
       tsparticles-interaction-particles-repulse: link:../../interactions/particles/repulse/dist
@@ -6513,7 +6513,7 @@ importers:
       prettier: ^2.7.1
       rimraf: ^3.0.2
       tsparticles: ^2.5.3
-      tsparticles-demo-configs: ^1.5.3
+      tsparticles-demo-configs: ^2.5.3
       tsparticles-engine: ^2.5.2
       tsparticles-interaction-external-attract: ^2.5.3
       tsparticles-interaction-external-bounce: ^2.5.3
@@ -6598,7 +6598,7 @@ importers:
       prettier: 2.7.1
       rimraf: 3.0.2
       tsparticles: link:../../bundles/full/dist
-      tsparticles-demo-configs: 1.5.3
+      tsparticles-demo-configs: link:../configs/dist
       tsparticles-engine: link:../../engine/dist
       tsparticles-interaction-external-attract: link:../../interactions/external/attract/dist
       tsparticles-interaction-external-bounce: link:../../interactions/external/bounce/dist
@@ -39458,15 +39458,6 @@ packages:
 
   /tslib/2.4.1:
     resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==}
-
-  /tsparticles-demo-configs/1.5.3:
-    resolution: {integrity: sha512-bLEnp9mCHBsYYtRNMTsAlOBovC2vyrE9cJgO4U4tTrd7qFlp65QhyW6YBQa3JvDeFlzBLVBE/RmZU5lvGjtIWQ==}
-    dependencies:
-      tsparticles-engine: 2.5.2
-
-  /tsparticles-engine/2.5.2:
-    resolution: {integrity: sha512-P2m1E/EIlvEnH9l7OEIpeKXxSn1ThNhWSp6zeRYvH/DntJpI5Oqa/AMrjum15rUzBkMDgRo7XFO4LqRWs8iB/Q==}
-    requiresBuild: true
 
   /tsutils/3.21.0_typescript@4.8.4:
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}

@@ -41,7 +41,7 @@
         "rimraf": "^3.0.2",
         "sass": "^1.56.0",
         "tsparticles": "^2.5.3",
-        "tsparticles-demo-configs": "^1.5.3",
+        "tsparticles-demo-configs": "^2.5.3",
         "tsparticles-engine": "^2.5.2",
         "tsparticles-interaction-light": "^2.5.3",
         "tsparticles-interaction-particles-repulse": "^2.5.3",

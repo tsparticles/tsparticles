@@ -88,12 +88,12 @@ import responsive from "./responsive.json";
 import ring from "./ring.json";
 import seaAnemone from "./seaAnemone.json";
 import shadow from "./shadow.json";
-import shapeBubble from "./shape-bubble.json";
-import shapeHeart from "./shape-heart.json";
-import shapeMultilineText from "./shape-multiline-text.json";
-import shapeOptions from "./shape-options.json";
-import shapeRoundedRect from "./shape-rounded-rect.json";
-import shapeSpiral from "./shape-spiral.json";
+import shapeBubble from "./shapeBubble.json";
+import shapeHeart from "./shapeHeart.json";
+import shapeMultilineText from "./shapeMultilineText.json";
+import shapeOptions from "./shapeOptions.json";
+import shapeRoundedRect from "./shapeRoundedRect.json";
+import shapeSpiral from "./shapeSpiral.json";
 import slow from "./slow.json";
 import snow from "./snow.json";
 import speedDecay from "./speedDecay.json";
@@ -112,10 +112,10 @@ import vibrate from "./vibrate.json";
 import virus from "./virus.json";
 import warp from "./warp.json";
 import wobble from "./wobble.json";
-import zindex from "./zindex.json";
+import zIndex from "./zIndex.json";
 
-const mainConfigs = tsParticles as unknown as {
-    configs: unknown;
+const mainConfigs = tsParticles as {
+    configs?: unknown;
 };
 
 mainConfigs.configs = {
@@ -232,5 +232,5 @@ mainConfigs.configs = {
     virus,
     warp,
     wobble,
-    zindex,
+    zIndex,
 };
