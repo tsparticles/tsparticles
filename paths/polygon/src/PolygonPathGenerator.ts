@@ -58,6 +58,12 @@ export class PolygonPathGenerator implements IMovePathGenerator {
         this.createDirs();
     }
 
+    reset(particle: PolygonPathParticle): void {
+        delete particle.hexStep;
+        delete particle.hexDirection;
+        delete particle.hexSpeed;
+    }
+
     update(): void {
         // do nothing
     }

@@ -72,6 +72,11 @@ export class CurvesPathGenerator implements IMovePathGenerator {
         this.options.highValue = (sourceOptions.highValue as number) ?? this.options.highValue;
     }
 
+    reset(particle: CurvesPathParticle): void {
+        delete particle.pathGen;
+        delete particle.curveVelocity;
+    }
+
     update(): void {
         // do nothing
     }
