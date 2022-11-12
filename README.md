@@ -1,4 +1,4 @@
-[![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
+\*\*[![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
 # tsParticles - TypeScript Particles
 
@@ -639,7 +639,8 @@ cso[Solid.js]
 csv[Svelte]
 cv2[Vue.js 2.x]
 cv3[Vue.js 3.x]
-cw[Web Components]
+cwc[Web Components]
+cwp[WordPress]
 end
 
 e[tsParticles Engine] --> c
@@ -655,14 +656,15 @@ end
 
 e[tsParticles Engine] --> b
 
-iea & iebo & iebu & iec & ieg & iepa & iepu & ierem & ierep --> bs
+iea & iebo & iebu & iec & ieg & iepa & iepu & ierem & ierep & ies --> bs
 ipa & ipc & ipl --> bs
 mb & mp --> bs
+ple4 --> bs
 sc & si & sl & sp & ssq & sst & st --> bs
 ua & uc & ul & uop & uou & usi & ust --> bs
 
 iet --> bf
-pla & ple & plp --> bf
+pla & plem --> bf
 ur & uti & utw & uw --> bf
 
 subgraph i [Interactions]
@@ -677,6 +679,7 @@ iepa[Pause]
 iepu[Push]
 ierem[Remove]
 ierep[Repulse]
+ies[Slow]
 iet[Trail]
 end
 
@@ -714,10 +717,25 @@ e --> pa
 
 subgraph pl [Plugins]
 pla[Absorbers]
-ple[Emitters]
+plem[Emitters]
+plh[HSV Color]
 pli[Infection]
+plm[Motion]
 plp[Polygon Mask]
+
+subgraph plea [Easings]
+pleb[Back]
+pleci[Circ]
+plecu[Cubic]
+plee[Expo]
+ple4[Quad]
+ple5[Quint]
+ples[Sine]
 end
+
+end
+
+pl --> plea
 
 e --> pl
 
@@ -741,6 +759,7 @@ e --> s
 subgraph u [Updaters]
 ua[Angle]
 uc[Color]
+ud[Destroy]
 ug[Gradient]
 ul[Life]
 uop[Opacity]
@@ -805,4 +824,4 @@ code.
 **Automate code reviews on your commits and pull requests**
 
 Check your code quality and keep track of your technical debt for more than 40 programming languages. Seamlessly
-integrated within your development workflow.
+integrated within your development workflow.\*\*

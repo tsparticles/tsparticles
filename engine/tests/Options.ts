@@ -56,7 +56,7 @@ describe("Options tests", () => {
         expect(options.interactivity.events.onHover.parallax.enable).to.be.false;
         expect(options.interactivity.events.onHover.parallax.force).to.equal(2);
         expect(options.interactivity.events.onHover.parallax.smooth).to.equal(10);
-        expect(options.interactivity.events.resize).to.be.true;
+        expect(options.interactivity.events.resize).to.be.an("object").to.have.property("enable").to.be.true;
 
         /* interactivity modes */
         //expect(options.interactivity.modes.bubble.color).to.be.undefined;
@@ -271,7 +271,7 @@ describe("Options tests", () => {
         expect(options.interactivity.events.onClick.mode).to.equal(ClickMode.push);
         expect(options.interactivity.events.onHover.enable).to.be.true;
         expect(options.interactivity.events.onHover.mode).to.equal(HoverMode.repulse);
-        expect(options.interactivity.events.resize).to.be.true;
+        expect(options.interactivity.events.resize).to.be.an("object").to.have.property("enable").to.be.true;
 
         /* interactivity modes */
         //expect(options.interactivity.modes.bubble.distance).to.equal(400);
@@ -447,7 +447,7 @@ describe("Options tests", () => {
         expect(options.interactivity.events.onClick.mode).to.equal(ClickMode.repulse);
         expect(options.interactivity.events.onHover.enable).to.be.false;
         expect(options.interactivity.events.onHover.mode).to.equal(HoverMode.grab);
-        expect(options.interactivity.events.resize).to.be.true;
+        expect(options.interactivity.events.resize).to.be.an("object").to.have.property("enable").to.be.true;
 
         /* interactivity modes */
         //expect(options.interactivity.modes.bubble.distance).to.equal(400);

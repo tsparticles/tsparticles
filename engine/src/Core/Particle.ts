@@ -311,6 +311,8 @@ export class Particle implements IParticle {
                 updater.particleDestroyed(this, override);
             }
         }
+
+        this.pathGenerator?.reset(this);
     }
 
     draw(delta: IDelta): void {
@@ -654,9 +656,9 @@ export class Particle implements IParticle {
     }
 
     private _calculateVelocity(): Vector {
-        const baseVelocity = getParticleBaseVelocity(this.direction);
-        const res = baseVelocity.copy();
-        const moveOptions = this.options.move;
+        const baseVelocity = getParticleBaseVelocity(this.direction),
+            res = baseVelocity.copy(),
+            moveOptions = this.options.move;
 
         if (moveOptions.direction === MoveDirection.inside || moveOptions.direction === MoveDirection.outside) {
             return res;

@@ -1,5 +1,4 @@
 {
-    "fpsLimit": 60,
     "particles": {
         "number": {
             "value": 80,
@@ -17,7 +16,7 @@
         "opacity": {
             "value": 0.5,
             "random": false,
-            "anim": {
+            "animation": {
                 "enable": false,
                 "speed": 3,
                 "opacity_min": 0.1,
@@ -27,7 +26,7 @@
         "size": {
             "value": 3,
             "random": true,
-            "anim": {
+            "animation": {
                 "enable": false,
                 "speed": 20,
                 "size_min": 0.1,
@@ -47,7 +46,6 @@
             "direction": "none",
             "random": false,
             "straight": false,
-            "out_mode": "out",
             "attract": {
                 "enable": false,
                 "rotateX": 600,
@@ -56,22 +54,20 @@
         }
     },
     "interactivity": {
-        "detect_on": "canvas",
         "events": {
-            "onhover": {
+            "onHover": {
                 "enable": true,
                 "mode": "repulse"
             },
-            "onclick": {
+            "onClick": {
                 "enable": true,
                 "mode": "push"
-            },
-            "resize": true
+            }
         },
         "modes": {
             "grab": {
                 "distance": 400,
-                "line_linked": {
+                "links": {
                     "opacity": 1
                 }
             },
@@ -85,14 +81,13 @@
                 "distance": 200
             },
             "push": {
-                "particles_nb": 4
+                "quantity": 4
             },
             "remove": {
-                "particles_nb": 2
+                "quantity": 2
             }
         }
     },
-    "detectRetina": true,
     "responsive": [
         {
             "maxWidth": 600,

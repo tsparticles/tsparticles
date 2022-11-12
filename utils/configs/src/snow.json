@@ -1,5 +1,4 @@
 {
-    "fpsLimit": 60,
     "particles": {
         "number": {
             "value": 400,
@@ -25,10 +24,7 @@
             "speed": 2,
             "direction": "bottom",
             "random": false,
-            "straight": true,
-            "outModes": {
-                "default": "out"
-            }
+            "straight": true
         },
         "wobble": {
             "enable": true,
@@ -46,7 +42,6 @@
             "velocityRate": 10
         }
     },
-    "detectRetina": true,
     "background": {
         "color": "#333333"
     }

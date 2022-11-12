@@ -183,8 +183,6 @@ end
 
 e --> m
 
-e --> pa
-
 subgraph s [Shapes]
 sc[Circle]
 end

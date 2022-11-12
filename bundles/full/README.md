@@ -151,8 +151,6 @@ async function particlesInit(engine: Engine): Promise<void> {
 
 ```sveltehtml
 
-<script>
-</script>
 <Particles
         id="tsparticles"
         options={options}

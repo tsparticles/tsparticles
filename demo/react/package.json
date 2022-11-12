@@ -26,8 +26,8 @@
         }
     },
     "devDependencies": {
-        "@parcel/core": "^2.7.0",
-        "@parcel/transformer-sass": "^2.7.0",
+        "@parcel/core": "^2.8.0",
+        "@parcel/transformer-sass": "^2.8.0",
         "@types/react": "^18.0.25",
         "@types/react-dom": "^18.0.8",
         "@types/react-syntax-highlighter": "^15.5.5",
@@ -36,8 +36,8 @@
         "browserslist": "^4.21.4",
         "eslint": "^8.27.0",
         "eslint-config-prettier": "^8.5.0",
-        "node-sass": "^8.0.0",
-        "parcel": "^2.7.0",
+        "node-sass": "^7.0.3",
+        "parcel": "^2.8.0",
         "prettier": "^2.7.1",
         "process": "^0.11.10",
         "react-syntax-highlighter": "^15.5.0",

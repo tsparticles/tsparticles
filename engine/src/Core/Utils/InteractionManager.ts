@@ -76,10 +76,10 @@ export class InteractionManager {
 
         for (const interactor of this._interactors) {
             switch (interactor.type) {
-                case InteractorType.External:
+                case InteractorType.external:
                     this._externalInteractors.push(interactor as IExternalInteractor);
                     break;
-                case InteractorType.Particles:
+                case InteractorType.particles:
                     this._particleInteractors.push(interactor as IParticlesInteractor);
                     break;
             }

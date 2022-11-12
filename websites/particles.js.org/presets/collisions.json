@@ -104,12 +104,7 @@
             }
         }
     },
-    "detectRetina": true,
     "background": {
-        "color": "#0d47a1",
-        "image": "",
-        "position": "50% 50%",
-        "repeat": "no-repeat",
-        "size": "cover"
+        "color": "#0d47a1"
     }
 }

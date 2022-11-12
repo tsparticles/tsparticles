@@ -1,9 +1,7 @@
+import { Options, RecursivePartial, tsParticles } from "../../src";
 import { Container } from "../../src/Core/Container";
 import type { IOptions } from "../../src";
-import { Options } from "../../src";
-import { RecursivePartial } from "../../src";
 import { TestWindow } from "./Window";
-import { tsParticles } from "../../src";
 
 declare global {
     interface Window {

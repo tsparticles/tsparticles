@@ -31,8 +31,8 @@ importsNames.sort(checkStrings);
 
 const text = `${importsNames.join("\n")}
 
-const mainConfigs = tsParticles as unknown as {
-    configs: unknown;
+const mainConfigs = tsParticles as {
+    configs?: unknown;
 };
 
 mainConfigs.configs = {

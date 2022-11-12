@@ -187,6 +187,7 @@ e --> s
 
 subgraph u [Updaters]
 uc[Color]
+ud[Destroy]
 uop[Opacity]
 uou[Out Modes]
 usi[Size]
@@ -200,5 +201,5 @@ end
 
 e --> pr
 
-mb & ple & sc & uc & uop & uou & usi --> prfo
+mb & ple & sc & uc & ud & uop & uou & usi --> prfo
 ```

@@ -42,6 +42,7 @@ app.use("/tsparticles-engine", express.static("./node_modules/tsparticles-engine
 app.use("/tsparticles-particles.js", express.static("./node_modules/tsparticles-particles.js"));
 app.use("/tsparticles-slim", express.static("./node_modules/tsparticles-slim"));
 app.use("/tsparticles", express.static("./node_modules/tsparticles"));
+app.use("/demo-configs", express.static("./node_modules/tsparticles-demo-configs"));
 app.use("/interaction-external-attract", express.static("./node_modules/tsparticles-interaction-external-attract"));
 app.use("/interaction-external-bounce", express.static("./node_modules/tsparticles-interaction-external-bounce"));
 app.use("/interaction-external-bubble", express.static("./node_modules/tsparticles-interaction-external-bubble"));

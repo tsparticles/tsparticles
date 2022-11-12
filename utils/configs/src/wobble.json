@@ -1,12 +1,6 @@
 {
     "background": {
-        "color": {
-            "value": "#000000"
-        }
-    },
-    "fullScreen": {
-        "enable": false,
-        "zIndex": -1
+        "color": "#000000"
     },
     "particles": {
         "bounce": {
@@ -85,7 +79,7 @@
             }
         },
         "shape": {
-            "type": ["circle", "square", "polygon", "character", "character", "character"],
+            "type": ["circle", "square", "polygon"],
             "options": {
                 "polygon": [
                     {
@@ -93,11 +87,6 @@
                     },
                     {
                         "sides": 6
-                    }
-                ],
-                "character": [
-                    {
-                        "value": ["💩", "🤡", "🍀", "🍙"]
                     }
                 ]
             }
@@ -141,8 +130,8 @@
             "height": 0
         },
         "rate": {
-            "quantity": 5,
-            "delay": 0.1
+            "quantity": 10,
+            "delay": 0.05
         }
     }
 }

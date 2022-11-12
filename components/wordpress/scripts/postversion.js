@@ -9,10 +9,15 @@ fs.readFile(readmeFilePath, function (error, data) {
 
 	const text = data.toString();
 
-	const newValue = text.replace(/Stable tag:(\s+)\S+/gm, `Stable tag:$1${packageInfo.version}`);
+	const newValue = text.replace(
+		/Stable tag:(\s+)\S+/gm,
+		`Stable tag:$1${packageInfo.version}`
+	);
 
 	fs.writeFile(readmeFilePath, newValue, 'utf-8', function () {
-		console.log(`readme updated successfully to version ${packageInfo.version}`);
+		console.log(
+			`readme updated successfully to version ${packageInfo.version}`
+		);
 	});
 });
 
@@ -25,17 +30,25 @@ fs.readFile(pluginFilePath, function (error, data) {
 
 	const text = data.toString();
 
-	const newValue = text.replace(/\* Version:(\s+)\S+/gm, `* Version:$1${packageInfo.version}`);
+	const newValue = text.replace(
+		/\* Version:(\s+)\S+/gm,
+		`* Version:$1${packageInfo.version}`
+	);
 
 	fs.writeFile(pluginFilePath, newValue, 'utf-8', function () {
-		console.log(`plugin file updated successfully to version ${packageInfo.version}`);
+		console.log(
+			`plugin file updated successfully to version ${packageInfo.version}`
+		);
 	});
 });
 
-const blockFilePath = '../src/block.json', blockFile = require(blockFilePath);
+const blockFilePath = '../src/block.json',
+	blockFile = require(blockFilePath);
 
 blockFile.version = packageInfo.version;
 
 fs.writeFile(blockFilePath, JSON.stringify(blockFile), function () {
-	console.log(`block file updated successfully to version ${packageInfo.version}`);
+	console.log(
+		`block file updated successfully to version ${packageInfo.version}`
+	);
 });

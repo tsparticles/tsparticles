@@ -1,5 +1,4 @@
 {
-    "fpsLimit": 60,
     "particles": {
         "number": {
             "value": 80,
@@ -37,7 +36,7 @@
                 "sync": false
             }
         },
-        "lineLinked": {
+        "links": {
             "enable": false,
             "distance": 150,
             "color": "#ffffff",
@@ -46,7 +45,10 @@
         },
         "collisions": {
             "enable": true,
-            "mode": "absorb"
+            "mode": "absorb",
+            "absorb": {
+                "speed": 5
+            }
         },
         "move": {
             "enable": true,
@@ -54,7 +56,6 @@
             "direction": "none",
             "random": false,
             "straight": false,
-            "out_mode": "out",
             "attract": {
                 "enable": false,
                 "rotateX": 600,
@@ -63,7 +64,6 @@
         }
     },
     "interactivity": {
-        "detect_on": "canvas",
         "events": {
             "onHover": {
                 "enable": false,
@@ -77,13 +77,12 @@
             "onClick": {
                 "enable": true,
                 "mode": "push"
-            },
-            "resize": true
+            }
         },
         "modes": {
             "grab": {
                 "distance": 400,
-                "line_linked": {
+                "links": {
                     "opacity": 1
                 }
             },
@@ -97,19 +96,14 @@
                 "distance": 200
             },
             "push": {
-                "particles_nb": 4
+                "quantity": 4
             },
             "remove": {
-                "particles_nb": 2
+                "quantity": 2
             }
         }
     },
-    "detectRetina": true,
     "background": {
-        "color": "#0d47a1",
-        "image": "",
-        "position": "50% 50%",
-        "repeat": "no-repeat",
-        "size": "cover"
+        "color": "#0d47a1"
     }
 }

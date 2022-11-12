@@ -2,7 +2,6 @@
     "background": {
         "color": "#000"
     },
-    "fpsLimit": 120,
     "emitters": {
         "position": {
             "x": 50,
@@ -111,6 +110,5 @@
                 "quantity": 2
             }
         }
-    },
-    "detectRetina": true
+    }
 }

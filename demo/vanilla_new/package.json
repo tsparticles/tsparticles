@@ -7,7 +7,8 @@
     "scripts": {
         "clear:cache": "rimraf -f ./node_modules/.cache",
         "clear:docs": "rimraf -f ./docs",
-        "build:js": "minify ./js/404.js > ./js/404.min.js && pnpm run copy:engine && pnpm run copy:light && pnpm run copy:p-repulse && pnpm run copy:curves && pnpm run copy:polygon && pnpm run copy:perlin && pnpm run copy:simplex && pnpm run copy:infection && pnpm run copy:gradient && pnpm run copy:orbit",
+        "build:js": "minify ./js/404.js > ./js/404.min.js && pnpm run copy:engine && pnpm run copy:light && pnpm run copy:p-repulse && pnpm run copy:curves && pnpm run copy:polygon && pnpm run copy:perlin && pnpm run copy:simplex && pnpm run copy:infection && pnpm run copy:gradient && pnpm run copy:orbit && pnpm run copy:configs",
+        "copy:configs": "copyfiles -u 2 ./node_modules/tsparticles-demo-configs/*.json ./configs && rimraf ./configs/package.json && copyfiles -u 2 ./node_modules/tsparticles-demo-configs/tsparticles.configs.min.js ./js",
         "copy:engine": "copyfiles -u 2 ./node_modules/tsparticles/tsparticles.bundle.min.js ./js",
         "copy:light": "copyfiles -u 2 ./node_modules/tsparticles-interaction-light/tsparticles.interaction.light.min.js ./js",
         "copy:p-repulse": "copyfiles -u 2 ./node_modules/tsparticles-interaction-particles-repulse/tsparticles.interaction.particles.repulse.min.js ./js",
@@ -40,6 +41,7 @@
         "rimraf": "^3.0.2",
         "sass": "^1.56.0",
         "tsparticles": "^2.5.3",
+        "tsparticles-demo-configs": "^2.5.3",
         "tsparticles-engine": "^2.5.2",
         "tsparticles-interaction-light": "^2.5.3",
         "tsparticles-interaction-particles-repulse": "^2.5.3",

@@ -13,7 +13,7 @@ export abstract class ParticlesInteractorBase<TContainer extends Container = Con
     /**
      * Particles interactions type
      */
-    type: InteractorType = InteractorType.Particles;
+    type: InteractorType = InteractorType.particles;
 
     /**
      * The particles interactions manager constructor
