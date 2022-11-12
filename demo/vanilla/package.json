@@ -44,7 +44,7 @@
         "stats.ts": "^1.1.0",
         "stylus": "^0.59.0",
         "tsparticles": "^2.5.3",
-        "tsparticles-demo-configs": "^2.5.3",
+        "tsparticles-demo-configs": "^1.5.3",
         "tsparticles-engine": "^2.5.2",
         "tsparticles-interaction-external-attract": "^2.5.3",
         "tsparticles-interaction-external-bounce": "^2.5.3",
