@@ -33,11 +33,6 @@ function getLinkDistance(
         [0, canvasSize.height],
         [canvasSize.width, 0],
         [canvasSize.width, canvasSize.height],
-        [0, -canvasSize.height],
-        [-canvasSize.width, 0],
-        [-canvasSize.width, -canvasSize.height],
-        [canvasSize.width, -canvasSize.height],
-        [-canvasSize.width, canvasSize.height],
     ];
 
     for (const offset of offsets) {

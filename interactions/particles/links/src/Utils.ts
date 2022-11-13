@@ -42,11 +42,6 @@ export function drawLinkLine(
             { x: canvasSize.width, y: 0 },
             { x: 0, y: canvasSize.height },
             { x: canvasSize.width, y: canvasSize.height },
-            { x: -canvasSize.width, y: 0 },
-            { x: 0, y: -canvasSize.height },
-            { x: -canvasSize.width, y: -canvasSize.height },
-            { x: canvasSize.width, y: -canvasSize.height },
-            { x: -canvasSize.width, y: canvasSize.height },
         ];
 
         let pi1: ICoordinates | undefined, pi2: ICoordinates | undefined;
