@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": [
+      "ESNext",
+      "ES2020",
+      "ES2019",
+      "ES2018",
+      "ES2017",
+      "ES2016",
+      "ES2015",
+      "DOM"
+    ],
+    "types": [
+      "mocha",
+      "chai",
+      "node"
+    ],
+    "allowJs": true,
+    "rootDir": "./test",
+    "declaration": false,
+    "removeComments": true,
+    "importHelpers": false,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "alwaysStrict": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "./test",
+    "./test"
+  ],
+  "exclude": [
+    "./node_modules/**/*",
+    "../../node_modules/**/*",
+    "./dist/",
+    "./typedoc/",
+    "./docs/"
+  ],
+}
