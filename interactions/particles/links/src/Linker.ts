@@ -22,17 +22,25 @@ function getLinkDistance(
     canvasSize: IDimension,
     warp: boolean
 ): number | undefined {
-    if (!warp) {
-        const distance = getDistance(pos1, pos2);
+    const distance = getDistance(pos1, pos2);
 
-        return distance <= optDistance ? distance : undefined;
+    if (distance <= optDistance) {
+        return distance;
+    }
+
+    if (!warp) {
+        return;
     }
 
     const offsets = [
-        [0, 0],
         [0, canvasSize.height],
         [canvasSize.width, 0],
         [canvasSize.width, canvasSize.height],
+        [-canvasSize.width, 0],
+        [0, -canvasSize.height],
+        [-canvasSize.width, -canvasSize.height],
+        [canvasSize.width, -canvasSize.height],
+        [-canvasSize.width, canvasSize.height],
     ];
 
     for (const offset of offsets) {

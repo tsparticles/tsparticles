@@ -9,6 +9,28 @@ import {
 } from "tsparticles-engine";
 import type { ILinksShadow } from "./Options/Interfaces/ILinksShadow";
 
+export function getLinkPoints(
+    begin: ICoordinates,
+    end: ICoordinates,
+    maxDistance: number,
+    warp: boolean,
+    canvasSize: IDimension
+): { begin: ICoordinates; end: ICoordinates }[] {
+    const lines: { begin: ICoordinates; end: ICoordinates }[] = [];
+
+    if (getDistance(begin, end) <= maxDistance) {
+        lines.push({ begin, end });
+    }
+
+    if (warp) {
+        for (const line of getIntermediatePoints(begin, end, canvasSize, maxDistance)) {
+            lines.push(line);
+        }
+    }
+
+    return lines;
+}
+
 export function getIntermediatePoints(
     begin: ICoordinates,
     end: ICoordinates,
@@ -16,10 +38,14 @@ export function getIntermediatePoints(
     maxDistance: number
 ): { begin: ICoordinates; end: ICoordinates }[] {
     const offsets = [
-        { x: 0, y: 0 },
         { x: canvasSize.width, y: 0 },
         { x: 0, y: canvasSize.height },
         { x: canvasSize.width, y: canvasSize.height },
+        { x: -canvasSize.width, y: 0 },
+        { x: 0, y: -canvasSize.height },
+        { x: -canvasSize.width, y: -canvasSize.height },
+        { x: canvasSize.width, y: -canvasSize.height },
+        { x: -canvasSize.width, y: canvasSize.height },
     ];
 
     let pi1: ICoordinates | undefined, pi2: ICoordinates | undefined;
@@ -36,6 +62,8 @@ export function getIntermediatePoints(
             },
             d2 = getDistances(begin, pos2);
 
+        console.log({ pos1, end, d1, begin, pos2, d2, offset });
+
         if (d1.distance > maxDistance && d2.distance > maxDistance) {
             continue;
         }
@@ -44,23 +72,34 @@ export function getIntermediatePoints(
 
         if (d1.distance <= maxDistance) {
             m = d1.dy / d1.dx;
-            q = end.y - m * end.x;
+            q = Number.isFinite(m) ? end.y - m * end.x : begin.x;
             beginPos = pos1;
             endPos = end;
-        } else {
+        } else if (d2.distance <= maxDistance) {
             m = d2.dy / d2.dx;
-            q = begin.y - m * begin.x;
+            q = Number.isFinite(m) ? begin.y - m * begin.x : begin.x;
             beginPos = begin;
             endPos = pos2;
+        } else {
+            return [];
         }
+
+        console.log({ beginPos, endPos, m, q });
 
         for (const innerOffset of offsets) {
             const px = { x: innerOffset.x, y: m * innerOffset.x + q },
-                py = { x: (innerOffset.y - q) / m, y: innerOffset.y };
+                py = {
+                    x: Number.isFinite(m) ? innerOffset.y - q / m : q,
+                    y: Number.isFinite(m) ? innerOffset.y : offset.y,
+                };
+
+            console.log({ beginPos, endPos, px, py, innerOffset });
 
             if (isPointBetweenPoints(px, beginPos, endPos)) {
                 const db = getDistance(beginPos, px),
                     de = getDistance(endPos, px);
+
+                console.log("px between points", db, de);
 
                 const xi = offset.x - px.x,
                     yi = m * xi + q;
@@ -76,84 +115,21 @@ export function getIntermediatePoints(
                 const db = getDistance(beginPos, py),
                     de = getDistance(endPos, py);
 
+                console.log("py between points", db, de);
+
                 const yi = offset.y - py.y,
                     xi = (yi - q) / m;
 
-                if (db < de) {
-                    pi1 = { x: xi, y: yi };
-                    pi2 = py;
-                } else {
-                    pi1 = py;
-                    pi2 = { x: xi, y: yi };
+                if (yi >= 0 && xi >= 0) {
+                    if (db < de) {
+                        pi1 = { x: xi, y: yi };
+                        pi2 = py;
+                    } else {
+                        pi1 = py;
+                        pi2 = { x: xi, y: yi };
+                    }
                 }
             }
-
-            if (pi1 && pi2) {
-                break;
-            }
-
-            /*const px0 = {
-                    x: 0,
-                    y: q,
-                },
-                py0 = {
-                    x: -q / m,
-                    y: 0,
-                },
-                pxMax = {
-                    x: canvasSize.width,
-                    y: m * canvasSize.width + q,
-                },
-                pyMax = {
-                    x: (canvasSize.height - q) / m,
-                    y: canvasSize.height,
-                };
-
-            if (isPointBetweenPoints(py0, beginPos, endPos)) {
-                const db = getDistance(beginPos, py0),
-                    de = getDistance(endPos, py0);
-
-                if (db < de) {
-                    pi1 = py0;
-                    pi2 = { x: canvasSize.width, y: m * canvasSize.width + q };
-                } else {
-                    pi1 = { x: canvasSize.width, y: m * canvasSize.width + q };
-                    pi2 = py0;
-                }
-            } else if (isPointBetweenPoints(px0, beginPos, endPos)) {
-                const db = getDistance(beginPos, px0),
-                    de = getDistance(endPos, px0);
-
-                if (db < de) {
-                    pi1 = px0;
-                    pi2 = { x: -q / m, y: canvasSize.height };
-                } else {
-                    pi1 = { x: -q / m, y: canvasSize.height };
-                    pi2 = px0;
-                }
-            } else if (isPointBetweenPoints(pyMax, beginPos, endPos)) {
-                const db = getDistance(beginPos, pyMax),
-                    de = getDistance(endPos, pyMax);
-
-                if (db < de) {
-                    pi1 = pyMax;
-                    pi2 = { x: 0, y: q };
-                } else {
-                    pi1 = { x: 0, y: q };
-                    pi2 = pyMax;
-                }
-            } else if (isPointBetweenPoints(pxMax, beginPos, endPos)) {
-                const db = getDistance(beginPos, pxMax),
-                    de = getDistance(endPos, pxMax);
-
-                if (db < de) {
-                    pi1 = pxMax;
-                    pi2 = { x: (canvasSize.height - q) / m, y: canvasSize.height };
-                } else {
-                    pi1 = { x: (canvasSize.height - q) / m, y: canvasSize.height };
-                    pi2 = pxMax;
-                }
-            }*/
 
             if (pi1 && pi2) {
                 break;
@@ -173,7 +149,7 @@ export function getIntermediatePoints(
 
 export function isPointBetweenPoints(check: ICoordinates, begin: ICoordinates, end: ICoordinates): boolean {
     return (
-        ((begin.x > check.x && check.x > end.x) || (begin.x < check.x && check.x < end.x)) &&
+        ((begin.x >= check.x && check.x >= end.x) || (begin.x <= check.x && check.x <= end.x)) &&
         ((begin.y >= check.y && check.y >= end.y) || (begin.y <= check.y && check.y <= end.y))
     );
 }
@@ -192,17 +168,7 @@ export function drawLinkLine(
     opacity: number,
     shadow: ILinksShadow
 ): void {
-    const lines: { begin: ICoordinates; end: ICoordinates }[] = [];
-
-    if (!warp) {
-        if (getDistance(begin, end) <= maxDistance) {
-            lines.push({ begin, end });
-        }
-    } else {
-        for (const line of getIntermediatePoints(begin, end, canvasSize, maxDistance)) {
-            lines.push(line);
-        }
-    }
+    const lines = getLinkPoints(begin, end, maxDistance, warp, canvasSize);
 
     if (!lines.length) {
         return;
