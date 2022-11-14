@@ -9,6 +9,8 @@ import {
 } from "tsparticles-engine";
 import type { ILinksShadow } from "./Options/Interfaces/ILinksShadow";
 
+let printed = false;
+
 function isPointBetweenPoints(check: ICoordinates, begin: ICoordinates, end: ICoordinates): boolean {
     return (
         ((begin.x > check.x && check.x > end.x) || (begin.x < check.x && check.x < end.x)) &&
@@ -91,10 +93,66 @@ export function drawLinkLine(
                     continue;
                 }
 
-                const d = d1.distance <= maxDistance ? 1 : 2,
-                    m = d === 1 ? d1.dy / d1.dx : d2.dy / d2.dx,
-                    q = d === 1 ? end.y - m * end.x : begin.y - m * begin.x,
-                    px0 = {
+                let m: number, q: number, beginPos: ICoordinates, endPos: ICoordinates;
+
+                if (d1.distance <= maxDistance) {
+                    m = d1.dy / d1.dx;
+                    q = end.y - m * end.x;
+                    beginPos = pos1;
+                    endPos = end;
+                } else {
+                    m = d2.dy / d2.dx;
+                    q = begin.y - m * begin.x;
+                    beginPos = begin;
+                    endPos = pos2;
+                }
+
+                for (const innerOffset of offsets) {
+                    const px = { x: innerOffset.x, y: m * innerOffset.x + q },
+                        py = { x: (innerOffset.y - q) / m, y: innerOffset.y };
+
+                    if (isPointBetweenPoints(px, beginPos, endPos)) {
+                        const db = getDistance(beginPos, px),
+                            de = getDistance(endPos, px);
+
+                        const xi = offset.x - px.x,
+                            yi = m * xi + q;
+
+                        if (db < de) {
+                            pi1 = { x: xi, y: yi };
+                            pi2 = px;
+                        } else {
+                            pi1 = px;
+                            pi2 = { x: xi, y: yi };
+                        }
+                    } else if (isPointBetweenPoints(py, beginPos, endPos)) {
+                        const db = getDistance(beginPos, py),
+                            de = getDistance(endPos, py);
+
+                        const yi = offset.y - py.y,
+                            xi = (yi - q) / m;
+
+                        if (db < de) {
+                            pi1 = { x: xi, y: yi };
+                            pi2 = py;
+                        } else {
+                            pi1 = py;
+                            pi2 = { x: xi, y: yi };
+                        }
+                    }
+
+                    if (pi1 && pi2) {
+                        if (!printed) {
+                            printed = true;
+
+                            console.log(beginPos, endPos, pi1, pi2);
+                        }
+
+                        break;
+                    }
+                }
+
+                /*const px0 = {
                         x: 0,
                         y: q,
                     },
@@ -109,9 +167,7 @@ export function drawLinkLine(
                     pyMax = {
                         x: (canvasSize.height - q) / m,
                         y: canvasSize.height,
-                    },
-                    beginPos = d === 1 ? pos1 : begin,
-                    endPos = d === 1 ? end : pos2;
+                    };
 
                 if (isPointBetweenPoints(py0, beginPos, endPos)) {
                     const db = getDistance(beginPos, py0),
@@ -157,7 +213,7 @@ export function drawLinkLine(
                         pi1 = { x: (canvasSize.height - q) / m, y: canvasSize.height };
                         pi2 = pxMax;
                     }
-                }
+                }*/
 
                 if (pi1 && pi2) {
                     break;
