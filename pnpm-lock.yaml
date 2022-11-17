@@ -87,7 +87,7 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
@@ -102,7 +102,7 @@ importers:
       tsparticles-updater-wobble: link:../../updaters/wobble/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -118,9 +118,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -146,13 +146,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -168,9 +168,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -227,7 +227,7 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
@@ -264,7 +264,7 @@ importers:
       tsparticles-updater-stroke-color: link:../../updaters/strokeColor/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -280,9 +280,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -372,7 +372,7 @@ importers:
       tsparticles-engine: ^2.5.2
       typescript: ^4.8.4
       webpack: ^5.75.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-dev-server: ^4.11.1
     dependencies:
       fast-deep-equal: 3.1.3
@@ -401,9 +401,9 @@ importers:
       source-map-loader: 4.0.1_webpack@5.75.0
       style-loader: 3.3.1_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
-      webpack-cli: 4.10.0_uaydpeuxkjjcxdbyfgk36cjdxi
-      webpack-dev-server: 4.11.1_pda42hcaj7d62cr262fr632kue
+      webpack: 5.75.0_webpack-cli@5.0.0
+      webpack-cli: 5.0.0_uaydpeuxkjjcxdbyfgk36cjdxi
+      webpack-dev-server: 4.11.1_5mhpyft47fxnqdave7meqiud7i
 
   components/jquery:
     specifiers:
@@ -473,7 +473,7 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-node-externals: ^3.0.0
     dependencies:
       fast-deep-equal: 3.1.3
@@ -498,9 +498,9 @@ importers:
       ts-loader: 9.4.1_qw7fmzhoapcndkteb5rsc33stq
       ts-node: 10.9.1_cbe7ovvae6zqfnmtgctpgpys54
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-node-externals: 3.0.0
 
   components/react:
@@ -531,7 +531,7 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-node-externals: ^3.0.0
     dependencies:
       fast-deep-equal: 3.1.3
@@ -559,9 +559,9 @@ importers:
       ts-loader: 9.4.1_qw7fmzhoapcndkteb5rsc33stq
       ts-node: 10.9.1_cbe7ovvae6zqfnmtgctpgpys54
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-node-externals: 3.0.0
     publishDirectory: dist
 
@@ -593,7 +593,7 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-node-externals: ^3.0.0
     dependencies:
       fast-deep-equal: 3.1.3
@@ -621,9 +621,9 @@ importers:
       ts-loader: 9.4.1_qw7fmzhoapcndkteb5rsc33stq
       ts-node: 10.9.1_cbe7ovvae6zqfnmtgctpgpys54
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-node-externals: 3.0.0
     publishDirectory: dist
 
@@ -686,7 +686,7 @@ importers:
       tsparticles-engine: ^2.5.2
       typescript: ^4.8.4
       webpack: ^5.75.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-dev-server: ^4.11.1
     dependencies:
       fast-deep-equal: 3.1.3
@@ -715,9 +715,9 @@ importers:
       source-map-loader: 4.0.1_webpack@5.75.0
       style-loader: 3.3.1_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
-      webpack-cli: 4.10.0_uaydpeuxkjjcxdbyfgk36cjdxi
-      webpack-dev-server: 4.11.1_pda42hcaj7d62cr262fr632kue
+      webpack: 5.75.0_webpack-cli@5.0.0
+      webpack-cli: 5.0.0_uaydpeuxkjjcxdbyfgk36cjdxi
+      webpack-dev-server: 4.11.1_5mhpyft47fxnqdave7meqiud7i
 
   components/svelte:
     specifiers:
@@ -1347,7 +1347,7 @@ importers:
       tsparticles-engine: ^2.5.2
       typescript: ^4.8.4
       webpack: ^5.75.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-dev-server: ^4.11.1
     dependencies:
       inferno: 8.0.4
@@ -1369,9 +1369,9 @@ importers:
       source-map-loader: 4.0.1_webpack@5.75.0
       style-loader: 3.3.1_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
-      webpack-cli: 4.10.0_uaydpeuxkjjcxdbyfgk36cjdxi
-      webpack-dev-server: 4.11.1_pda42hcaj7d62cr262fr632kue
+      webpack: 5.75.0_webpack-cli@5.0.0
+      webpack-cli: 5.0.0_uaydpeuxkjjcxdbyfgk36cjdxi
+      webpack-dev-server: 4.11.1_5mhpyft47fxnqdave7meqiud7i
 
   demo/ionic:
     specifiers:
@@ -1827,7 +1827,7 @@ importers:
       tsparticles: ^2.5.3
       tsparticles-engine: ^2.5.2
       webpack: ^5.75.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-dev-server: ^4.11.1
     dependencies:
       '@riotjs/hot-reload': 6.0.1_riot@7.1.0
@@ -1851,9 +1851,9 @@ importers:
       mini-css-extract-plugin: 2.6.1_webpack@5.75.0
       mocha: 10.1.0
       nyc: 15.1.0
-      webpack: 5.75.0_webpack-cli@4.10.0
-      webpack-cli: 4.10.0_uaydpeuxkjjcxdbyfgk36cjdxi
-      webpack-dev-server: 4.11.1_pda42hcaj7d62cr262fr632kue
+      webpack: 5.75.0_webpack-cli@5.0.0
+      webpack-cli: 5.0.0_uaydpeuxkjjcxdbyfgk36cjdxi
+      webpack-dev-server: 4.11.1_5mhpyft47fxnqdave7meqiud7i
 
   demo/solid:
     specifiers:
@@ -2341,7 +2341,7 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       object-gui: 2.0.2
@@ -2362,7 +2362,7 @@ importers:
       tsparticles-plugin-infection: link:../plugins/infection/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -2378,9 +2378,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -2423,11 +2423,11 @@ importers:
       typescript-json-schema: ^0.54.0
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -2461,9 +2461,9 @@ importers:
       ts-node: 10.9.1_cbe7ovvae6zqfnmtgctpgpys54
       typescript: 4.8.4
       typescript-json-schema: 0.54.0
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -2489,13 +2489,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -2511,9 +2511,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -2539,13 +2539,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -2561,9 +2561,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -2589,13 +2589,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -2611,9 +2611,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -2639,13 +2639,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -2661,9 +2661,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -2689,13 +2689,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -2711,9 +2711,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -2739,13 +2739,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -2761,9 +2761,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -2789,13 +2789,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -2811,9 +2811,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -2839,13 +2839,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -2861,9 +2861,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -2889,13 +2889,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -2911,9 +2911,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -2939,13 +2939,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -2961,9 +2961,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -2989,13 +2989,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -3011,9 +3011,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -3039,13 +3039,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -3061,9 +3061,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -3089,13 +3089,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -3111,9 +3111,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -3139,13 +3139,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -3161,9 +3161,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -3196,13 +3196,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -3225,9 +3225,9 @@ importers:
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       ts-node: 10.9.1_cbe7ovvae6zqfnmtgctpgpys54
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -3253,13 +3253,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -3275,9 +3275,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -3303,13 +3303,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -3325,9 +3325,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -3353,13 +3353,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -3375,9 +3375,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -3403,13 +3403,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -3425,9 +3425,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -3453,13 +3453,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -3475,9 +3475,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -3503,13 +3503,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -3525,9 +3525,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -3553,13 +3553,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -3575,9 +3575,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -3603,13 +3603,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -3625,9 +3625,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -3653,13 +3653,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -3675,9 +3675,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -3703,13 +3703,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -3725,9 +3725,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -3753,13 +3753,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -3775,9 +3775,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -3803,13 +3803,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -3825,9 +3825,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -3853,13 +3853,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -3875,9 +3875,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -3903,13 +3903,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -3925,9 +3925,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -3953,13 +3953,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -3975,9 +3975,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -4003,13 +4003,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -4025,9 +4025,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -4053,13 +4053,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -4075,9 +4075,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -4103,13 +4103,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -4125,9 +4125,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -4153,13 +4153,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -4175,9 +4175,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -4203,13 +4203,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -4225,9 +4225,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -4253,13 +4253,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -4275,9 +4275,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -4303,13 +4303,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -4325,9 +4325,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -4360,7 +4360,7 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
@@ -4373,7 +4373,7 @@ importers:
       tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -4389,9 +4389,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -4424,7 +4424,7 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
@@ -4437,7 +4437,7 @@ importers:
       tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -4453,9 +4453,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -4495,7 +4495,7 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
@@ -4515,7 +4515,7 @@ importers:
       tsparticles-updater-wobble: link:../../updaters/wobble/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -4531,9 +4531,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -4566,7 +4566,7 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
@@ -4579,7 +4579,7 @@ importers:
       tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -4595,9 +4595,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -4630,7 +4630,7 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
@@ -4643,7 +4643,7 @@ importers:
       tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -4659,9 +4659,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -4699,7 +4699,7 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
@@ -4717,7 +4717,7 @@ importers:
       tsparticles-updater-stroke-color: link:../../updaters/strokeColor/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -4733,9 +4733,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -4769,7 +4769,7 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
@@ -4783,7 +4783,7 @@ importers:
       tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -4799,9 +4799,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -4834,7 +4834,7 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
@@ -4847,7 +4847,7 @@ importers:
       tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -4863,9 +4863,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -4899,7 +4899,7 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
@@ -4913,7 +4913,7 @@ importers:
       tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -4929,9 +4929,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -4964,7 +4964,7 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
@@ -4977,7 +4977,7 @@ importers:
       tsparticles-updater-wobble: link:../../updaters/wobble/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -4993,9 +4993,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -5027,7 +5027,7 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
@@ -5039,7 +5039,7 @@ importers:
       tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -5055,9 +5055,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -5090,7 +5090,7 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
@@ -5103,7 +5103,7 @@ importers:
       tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -5119,9 +5119,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -5147,13 +5147,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -5169,9 +5169,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -5197,13 +5197,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -5219,9 +5219,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -5247,13 +5247,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -5269,9 +5269,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -5297,13 +5297,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -5319,9 +5319,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -5347,13 +5347,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -5369,9 +5369,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -5397,13 +5397,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -5419,9 +5419,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -5447,13 +5447,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -5469,9 +5469,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -5497,13 +5497,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -5519,9 +5519,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -5547,13 +5547,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -5569,9 +5569,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -5597,13 +5597,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -5619,9 +5619,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -5647,13 +5647,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -5669,9 +5669,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -5697,13 +5697,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -5719,9 +5719,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -5777,13 +5777,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -5799,9 +5799,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -5827,13 +5827,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -5849,9 +5849,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -5877,13 +5877,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -5899,9 +5899,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -5927,13 +5927,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -5949,9 +5949,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -5977,13 +5977,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -5999,9 +5999,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -6027,13 +6027,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -6049,9 +6049,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -6077,13 +6077,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -6099,9 +6099,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -6127,13 +6127,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -6149,9 +6149,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -6177,13 +6177,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -6199,9 +6199,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -6227,13 +6227,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -6249,9 +6249,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -6277,13 +6277,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -6299,9 +6299,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -6327,13 +6327,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -6349,9 +6349,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -6377,13 +6377,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -6399,9 +6399,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -6427,13 +6427,13 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.2
-      '@tsparticles/build': 1.4.1_webpack-cli@4.10.0
+      '@tsparticles/build': 1.4.1_webpack-cli@5.0.0
       '@tsparticles/eslint-config': 1.3.2_dypctflb7xu3kybbdrzvac2n2e
       '@tsparticles/prettier-config': 1.3.1_prettier@2.7.1
       '@tsparticles/tsconfig': 1.4.0_typescript@4.8.4
@@ -6449,9 +6449,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -6476,7 +6476,7 @@ importers:
       typescript: ^4.8.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^4.10.0
+      webpack-cli: ^5.0.0
       webpack-tsparticles-plugin: ^1.4.3
     dependencies:
       tsparticles-engine: link:../../engine/dist
@@ -6497,9 +6497,9 @@ importers:
       rimraf: 3.0.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-tsparticles-plugin: 1.4.3
     publishDirectory: dist
 
@@ -10103,6 +10103,7 @@ packages:
 
   /@leichtgewicht/ip-codec/2.0.4:
     resolution: {integrity: sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==}
+    dev: true
 
   /@lerna/add/6.0.3:
     resolution: {integrity: sha512-EM9hJExG6bV4Hg+XpHTg5nGCuZl3pUEdbYLtyXfMUj/7fpCrUkxB0oESIVhFINVbxHm2pdnUfOxPDHwFSyWBig==}
@@ -13296,7 +13297,7 @@ packages:
     resolution: {integrity: sha512-pYrtLtOwku/7r1i9AMONsJMVYAtk3hzOfiGNekhtq5tYBGA7unMve8RvUclKLMT3PrihvJqUmzsRGh0RP84hKg==}
     dev: true
 
-  /@tsparticles/build/1.4.1_webpack-cli@4.10.0:
+  /@tsparticles/build/1.4.1_webpack-cli@5.0.0:
     resolution: {integrity: sha512-SEVV0eg7CvJ1Qjgx9KLmQRcnOJDTO0rYcQJURQGpgKalRbacyI2c3/wOCTLI2yFRv3b0FQZSyO/fHBJ8LVfsvQ==}
     hasBin: true
     dependencies:
@@ -13312,7 +13313,7 @@ packages:
       prettier: 2.7.1
       rimraf: 3.0.2
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-tsparticles-plugin: 1.4.3
     transitivePeerDependencies:
       - '@swc/core'
@@ -13427,11 +13428,13 @@ packages:
     dependencies:
       '@types/connect': 3.4.35
       '@types/node': 18.11.9
+    dev: true
 
   /@types/bonjour/3.5.10:
     resolution: {integrity: sha512-p7ienRMiS41Nu2/igbJxxLDWrSZ0WxM8UQgCeO9KhoVF7cOVFkrKsiDr1EsJIla8vV3oEEjGcz11jc5yimhzZw==}
     dependencies:
       '@types/node': 18.11.9
+    dev: true
 
   /@types/chai/4.3.4:
     resolution: {integrity: sha512-KnRanxnpfpjUTqTCXslZSEdLfXExwgNxYPdiO2WGUj8+HDjFi8R3k5RVKPeSCzLjCcshCAtVO2QBbVuAV4kTnw==}
@@ -13442,11 +13445,13 @@ packages:
     dependencies:
       '@types/express-serve-static-core': 4.17.31
       '@types/node': 18.11.9
+    dev: true
 
   /@types/connect/3.4.35:
     resolution: {integrity: sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==}
     dependencies:
       '@types/node': 18.11.9
+    dev: true
 
   /@types/cookie/0.4.1:
     resolution: {integrity: sha512-XW/Aa8APYr6jSVVA1y/DEIZX0/GMKLEVekNG727R8cs56ahETkRAy/3DR7+fJyh7oUgGwNQaRfXCun0+KbWY7Q==}
@@ -13484,6 +13489,7 @@ packages:
       '@types/node': 18.11.9
       '@types/qs': 6.9.7
       '@types/range-parser': 1.2.4
+    dev: true
 
   /@types/express/4.17.14:
     resolution: {integrity: sha512-TEbt+vaPFQ+xpxFLFssxUDXj5cWCxZJjIcB7Yg0k0GMHGtgtQgpvx/MUQUeAkNbA9AAGrwkAsoeItdTgS7FMyg==}
@@ -13492,6 +13498,7 @@ packages:
       '@types/express-serve-static-core': 4.17.31
       '@types/qs': 6.9.7
       '@types/serve-static': 1.15.0
+    dev: true
 
   /@types/fs-extra/8.1.2:
     resolution: {integrity: sha512-SvSrYXfWSc7R4eqnOzbQF4TZmfpNSM9FrSWLU3EUnWBuyZqNBOrv1B1JA3byUDPUl9z4Ab3jeZG2eDdySlgNMg==}
@@ -13539,6 +13546,7 @@ packages:
     resolution: {integrity: sha512-QsbSjA/fSk7xB+UXlCT3wHBy5ai9wOcNDWwZAtud+jXhwOM3l+EYZh8Lng4+/6n8uar0J7xILzqftJdJ/Wdfkw==}
     dependencies:
       '@types/node': 18.11.9
+    dev: true
 
   /@types/istanbul-lib-coverage/2.0.4:
     resolution: {integrity: sha512-z/QT1XN4K4KYuslS23k62yDIDLwLFkzxOuMplDtObz0+y7VqJCaO2o+SPwHCvLFZh7xazvvoor2tA/hPz9ee7g==}
@@ -13612,6 +13620,7 @@ packages:
 
   /@types/mime/3.0.1:
     resolution: {integrity: sha512-Y4XFY5VJAuw0FgAqPNd6NNoV44jbq9Bz2L7Rh/J6jLTiHBSBJa9fxqQIvkIld4GsoDOcCbvzOUAbLPsSKKg+uA==}
+    dev: true
 
   /@types/minimatch/3.0.5:
     resolution: {integrity: sha512-Klz949h02Gz2uZCMGwDUSDS1YBlTdDDgbWHi+81l29tQALUtvz4rAYi5uoVhE5Lagoq6DeqAUlbrHvW/mXDgdQ==}
@@ -13678,9 +13687,11 @@ packages:
 
   /@types/qs/6.9.7:
     resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==}
+    dev: true
 
   /@types/range-parser/1.2.4:
     resolution: {integrity: sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==}
+    dev: true
 
   /@types/react-dom/17.0.18:
     resolution: {integrity: sha512-rLVtIfbwyur2iFKykP2w0pl/1unw26b5td16d5xMgp7/yjTHomkyxPYChFoCr/FtEX1lN9wY6lFj1qvKdS5kDw==}
@@ -13740,6 +13751,7 @@ packages:
 
   /@types/retry/0.12.0:
     resolution: {integrity: sha512-wWKOClTTiizcZhXnPY4wikVAwmdYHp8q6DmC+EJUzAMsycb7HB32Kh9RN4+0gExjmPmZSAQjgURXIGATPegAvA==}
+    dev: true
 
   /@types/rimraf/3.0.2:
     resolution: {integrity: sha512-F3OznnSLAUxFrCEu/L5PY8+ny8DtcFRjx7fZZ9bycvXRi3KPTRS9HOitGZwvPg0juRhXFWIeKX58cnX5YqLohQ==}
@@ -13769,12 +13781,14 @@ packages:
     resolution: {integrity: sha512-d/Hs3nWDxNL2xAczmOVZNj92YZCS6RGxfBPjKzuu/XirCgXdpKEb88dYNbrYGint6IVWLNP+yonwVAuRC0T2Dg==}
     dependencies:
       '@types/express': 4.17.14
+    dev: true
 
   /@types/serve-static/1.15.0:
     resolution: {integrity: sha512-z5xyF6uh8CbjAu9760KDKsH2FcDxZ2tFCsA4HIMWE6IkiYMXfVoa+4f9KX+FN0ZLsaMw1WNG2ETLA6N+/YA+cg==}
     dependencies:
       '@types/mime': 3.0.1
       '@types/node': 18.11.9
+    dev: true
 
   /@types/sizzle/2.3.3:
     resolution: {integrity: sha512-JYM8x9EGF163bEyhdJBpR2QX1R5naCJHC8ucJylJ3w9/CVBaskdQ8WqBf8MmQrd1kRvp/a4TS8HJ+bxzR7ZJYQ==}
@@ -13788,6 +13802,7 @@ packages:
     resolution: {integrity: sha512-f0KEEe05NvUnat+boPTZ0dgaLZ4SfSouXUgv5noUiefG2ajgKjmETo9ZJyuqsl7dfl2aHlLJUiki6B4ZYldiiw==}
     dependencies:
       '@types/node': 18.11.9
+    dev: true
 
   /@types/source-list-map/0.1.2:
     resolution: {integrity: sha512-K5K+yml8LTo9bWJI/rECfIPrGgxdpeNbj+d53lwN4QjW1MCwlkhUms+gtdzigTeUyBr09+u8BwOIY3MXvHdcsA==}
@@ -13857,6 +13872,7 @@ packages:
     resolution: {integrity: sha512-6YOoWjruKj1uLf3INHH7D3qTXwFfEsg1kf3c0uDdSBJwfa/llkwIjrAGV7j7mVgGNbzTQ3HiHKKDXl6bJPD97w==}
     dependencies:
       '@types/node': 18.11.9
+    dev: true
 
   /@types/yargs-parser/21.0.0:
     resolution: {integrity: sha512-iO9ZQHkZxHn4mSakYV0vFHAVDyEOIJQrV2uZ06HxEPcx+mt8swXoZHIbaaJ2crJYFfErySgktuTZ3BeLz+XmFA==}
@@ -15397,7 +15413,17 @@ packages:
       webpack-cli: 4.x.x
     dependencies:
       webpack: 5.75.0_webpack-cli@4.10.0
-      webpack-cli: 4.10.0_uaydpeuxkjjcxdbyfgk36cjdxi
+      webpack-cli: 4.10.0_webpack@5.75.0
+
+  /@webpack-cli/configtest/2.0.0_5mhpyft47fxnqdave7meqiud7i:
+    resolution: {integrity: sha512-war4OU8NGjBqU3DP3bx6ciODXIh7dSXcpQq+P4K2Tqyd8L5OjZ7COx9QXx/QdCIwL2qoX09Wr4Cwf7uS4qdEng==}
+    engines: {node: '>=14.15.0'}
+    peerDependencies:
+      webpack: 5.x.x
+      webpack-cli: 5.x.x
+    dependencies:
+      webpack: 5.75.0_webpack-cli@5.0.0
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
 
   /@webpack-cli/info/1.5.0_webpack-cli@4.10.0:
     resolution: {integrity: sha512-e8tSXZpw2hPl2uMJY6fsMswaok5FdlGNRTktvFk2sD8RjH0hE2+XistawJx1vmKteh4NmGmNUrp+Tb2w+udPcQ==}
@@ -15405,19 +15431,17 @@ packages:
       webpack-cli: 4.x.x
     dependencies:
       envinfo: 7.8.1
-      webpack-cli: 4.10.0_uaydpeuxkjjcxdbyfgk36cjdxi
+      webpack-cli: 4.10.0_webpack@5.75.0
 
-  /@webpack-cli/serve/1.7.0_ud4agclah7rahur6ntojouq57y:
-    resolution: {integrity: sha512-oxnCNGj88fL+xzV+dacXs44HcDwf1ovs3AuEzvP7mqXw7fQntqIhQ1BRmynh4qEKQSSSRSWVyXRjmTbZIX9V2Q==}
+  /@webpack-cli/info/2.0.0_5mhpyft47fxnqdave7meqiud7i:
+    resolution: {integrity: sha512-NNxDgbo4VOkNhOlTgY0Elhz3vKpOJq4/PKeKg7r8cmYM+GQA9vDofLYyup8jS6EpUvhNmR30cHTCEIyvXpskwA==}
+    engines: {node: '>=14.15.0'}
     peerDependencies:
-      webpack-cli: 4.x.x
-      webpack-dev-server: '*'
-    peerDependenciesMeta:
-      webpack-dev-server:
-        optional: true
+      webpack: 5.x.x
+      webpack-cli: 5.x.x
     dependencies:
-      webpack-cli: 4.10.0_uaydpeuxkjjcxdbyfgk36cjdxi
-      webpack-dev-server: 4.11.1_pda42hcaj7d62cr262fr632kue
+      webpack: 5.75.0_webpack-cli@5.0.0
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
 
   /@webpack-cli/serve/1.7.0_webpack-cli@4.10.0:
     resolution: {integrity: sha512-oxnCNGj88fL+xzV+dacXs44HcDwf1ovs3AuEzvP7mqXw7fQntqIhQ1BRmynh4qEKQSSSRSWVyXRjmTbZIX9V2Q==}
@@ -15428,7 +15452,37 @@ packages:
       webpack-dev-server:
         optional: true
     dependencies:
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 4.10.0_webpack@5.75.0
+
+  /@webpack-cli/serve/2.0.0_5mhpyft47fxnqdave7meqiud7i:
+    resolution: {integrity: sha512-Rumq5mHvGXamnOh3O8yLk1sjx8dB30qF1OeR6VC00DIR6SLJ4bwwUGKC4pE7qBFoQyyh0H9sAg3fikYgAqVR0w==}
+    engines: {node: '>=14.15.0'}
+    peerDependencies:
+      webpack: 5.x.x
+      webpack-cli: 5.x.x
+      webpack-dev-server: '*'
+    peerDependenciesMeta:
+      webpack-dev-server:
+        optional: true
+    dependencies:
+      webpack: 5.75.0_webpack-cli@5.0.0
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
+
+  /@webpack-cli/serve/2.0.0_s4gx4u3got3vsyxpifomhm7lri:
+    resolution: {integrity: sha512-Rumq5mHvGXamnOh3O8yLk1sjx8dB30qF1OeR6VC00DIR6SLJ4bwwUGKC4pE7qBFoQyyh0H9sAg3fikYgAqVR0w==}
+    engines: {node: '>=14.15.0'}
+    peerDependencies:
+      webpack: 5.x.x
+      webpack-cli: 5.x.x
+      webpack-dev-server: '*'
+    peerDependenciesMeta:
+      webpack-dev-server:
+        optional: true
+    dependencies:
+      webpack: 5.75.0_webpack-cli@5.0.0
+      webpack-cli: 5.0.0_uaydpeuxkjjcxdbyfgk36cjdxi
+      webpack-dev-server: 4.11.1_5mhpyft47fxnqdave7meqiud7i
+    dev: true
 
   /@wordpress/a11y/3.21.0:
     resolution: {integrity: sha512-8LUJEMJOKgWIG1kZu1lZFqbFYQEac7UBhsPcpFUjfJJbCP5OR1nqL0pjnDXS17cmJafO8eW/3Z4qPH28G2gXjA==}
@@ -16198,6 +16252,7 @@ packages:
     dependencies:
       mime-types: 2.1.35
       negotiator: 0.6.3
+    dev: true
 
   /ace-builds/1.13.0:
     resolution: {integrity: sha512-KGS/bfBK+OY5unl3KDXdGvvlvKRQPllLeVsSf1gVxqL97agPxO3WzrepkuFdZSUiMcJThf3jCrZ4r51bb1ObRg==}
@@ -16386,6 +16441,7 @@ packages:
         optional: true
     dependencies:
       ajv: 8.11.2
+    dev: true
 
   /ajv-keywords/3.5.2_ajv@6.12.6:
     resolution: {integrity: sha512-5p6WTN0DdTGVQk6VjcEju19IgaHudalcfabD7yhDGeA6bcQnmL+CpveLJq/3hvfwd1aof6L386Ougkx6RfyMIQ==}
@@ -16401,6 +16457,7 @@ packages:
     dependencies:
       ajv: 8.11.2
       fast-deep-equal: 3.1.3
+    dev: true
 
   /ajv/6.12.6:
     resolution: {integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==}
@@ -16426,6 +16483,7 @@ packages:
       json-schema-traverse: 1.0.0
       require-from-string: 2.0.2
       uri-js: 4.4.1
+    dev: true
 
   /align-text/0.1.4:
     resolution: {integrity: sha512-GrTZLRpmp6wIC2ztrWW9MjjTgSKccffgFagbNDOX95/dcjEcYZibYTeaOntySQLcdw1ztBoFkviiUvTMbb9MYg==}
@@ -16491,6 +16549,7 @@ packages:
     resolution: {integrity: sha512-1APHAyr3+PCamwNw3bXCPp4HFLONZt/yIH0sZp0/469KWNTEy+qN5jQ3GVX6DMZ1UXAi34yVwtTeaG/HpBuuzw==}
     engines: {'0': node >= 0.8.0}
     hasBin: true
+    dev: true
 
   /ansi-regex/2.1.1:
     resolution: {integrity: sha512-TIGnTpdo+E3+pCyAluZvtED5p5wCqLdezCyhPZzKPcxvFplEt4i+W7OONCKgeZFT3+y5NZZfOOS/Bdcanm1MYA==}
@@ -16685,9 +16744,11 @@ packages:
 
   /array-flatten/1.1.1:
     resolution: {integrity: sha512-PCVAQswWemu6UdxsDFFX/+gVeYqKAod3D3UVm91jHwynguOwAvYPhx8nNlM++NqRcK6CxxpUafjmhIdKiHibqg==}
+    dev: true
 
   /array-flatten/2.1.2:
     resolution: {integrity: sha512-hNfzcOV8W4NdualtqBFPyVO+54DSJuZGY9qT4pRroB6S9e3iiido2ISIC5h9R2sPJ8H3FHCIiEnsv1lPXO3KtQ==}
+    dev: true
 
   /array-ify/1.0.0:
     resolution: {integrity: sha512-c5AMf34bKdvPhQ7tBGhqkgKNUzMr4WUs+WDtC2ZUGOUncbxKMTvqxYctiseW3+L4bA8ec+GcZ6/A/FW4m8ukng==}
@@ -17242,7 +17303,7 @@ packages:
       '@babel/core': 7.20.2
       find-cache-dir: 3.3.2
       schema-utils: 4.0.0
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
     dev: true
 
   /babel-messages/6.23.0:
@@ -17825,6 +17886,7 @@ packages:
 
   /batch/0.6.1:
     resolution: {integrity: sha512-x+VAiMRL6UPkx+kudNvxTl6hB2XNNCG2r+7wixVfIYwu/2HKRXimwQyaumLjMveWvT2Hkd/cAJw+QBMfJ/EKVw==}
+    dev: true
 
   /bcrypt-pbkdf/1.0.2:
     resolution: {integrity: sha512-qeFIXtP4MSoi6NLqO12WfqARWWuCKi2Rn/9hJLEmtB5yTNr9DqFWkJRCf2qShWzPeAMRnOgCrq0sg/KLv5ES9w==}
@@ -17945,6 +18007,7 @@ packages:
       unpipe: 1.0.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /body-parser/1.20.1_supports-color@6.1.0:
     resolution: {integrity: sha512-jWi7abTbYwajOytWCQc37VulmWiRae5RyTpaCyDcS5/lMdtwSz5lOpDE67srw/HYe35f1z3fDQw+3txg7gNtWw==}
@@ -17977,6 +18040,7 @@ packages:
       dns-equal: 1.0.0
       fast-deep-equal: 3.1.3
       multicast-dns: 7.2.5
+    dev: true
 
   /bonjour/3.5.0:
     resolution: {integrity: sha512-RaVTblr+OnEli0r/ud8InrU7D+G0y6aJhlxaLa6Pwty4+xoxboF1BsUI45tujvRpbj9dQVoglChqonGAsjEBYg==}
@@ -18251,10 +18315,12 @@ packages:
   /bytes/3.0.0:
     resolution: {integrity: sha512-pMhOfFDPiv9t5jjIXkHosWmkSyQbvsgEVNkz0ERHbuLh2T/7j4Mqqpz523Fe8MVY89KC6Sh/QfS2sM+SjgFDcw==}
     engines: {node: '>= 0.8'}
+    dev: true
 
   /bytes/3.1.2:
     resolution: {integrity: sha512-/Nf7TyzTx6S3yRJObOAV7956r8cr2+Oj8AC5dt8wSP3BQAoeX58NoHyCU8P8zGkNXStjTSi6fzO6F0pBdcYbEg==}
     engines: {node: '>= 0.8'}
+    dev: true
 
   /cacache/12.0.4:
     resolution: {integrity: sha512-a0tMB40oefvuInr4Cwb3GerbL9xTj1D5yg0T5xrjGCGyfvbxseIXX7BAO/u/hIXdafzOI5JC3wDwHyf24buOAQ==}
@@ -18269,7 +18335,7 @@ packages:
       mississippi: 3.0.0
       mkdirp: 0.5.6
       move-concurrently: 1.0.1
-      promise-inflight: 1.0.1
+      promise-inflight: 1.0.1_bluebird@3.7.2
       rimraf: 2.7.1
       ssri: 6.0.2
       unique-filename: 1.1.1
@@ -18418,6 +18484,7 @@ packages:
     dependencies:
       function-bind: 1.1.1
       get-intrinsic: 1.1.3
+    dev: true
 
   /call-me-maybe/1.0.2:
     resolution: {integrity: sha512-HpX65o1Hnr9HH25ojC1YGs7HCQLq0GCOibSaWER0eNpgJ/Z1MZv2mTc7+xh6WOPxbRVcmgbv4hGU+uSQ/2xFZQ==}
@@ -18852,7 +18919,7 @@ packages:
       webpack: '>=4.0.0 <6.0.0'
     dependencies:
       del: 4.1.1
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
     dev: true
 
   /cli-boxes/2.2.1:
@@ -19242,6 +19309,7 @@ packages:
     engines: {node: '>= 0.6'}
     dependencies:
       mime-db: 1.52.0
+    dev: true
 
   /compression-webpack-plugin/6.1.1_webpack@4.46.0:
     resolution: {integrity: sha512-BEHft9M6lwOqVIQFMS/YJGmeCYXVOakC5KzQk05TFpMBlODByh1qNsZCWjUBxCQhUP9x0WfGidxTbGkjbWO/TQ==}
@@ -19272,6 +19340,7 @@ packages:
       vary: 1.1.2
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /compression/1.7.4_supports-color@6.1.0:
     resolution: {integrity: sha512-jaSIDzP9pZVS4ZfQ+TzvtiWhdpFhE2RDHz8QJkpX9SIpLq88VueF5jJw6t+6CUQcAoA6t+x89MLrWAqpfDE8iQ==}
@@ -19346,6 +19415,7 @@ packages:
   /connect-history-api-fallback/2.0.0:
     resolution: {integrity: sha512-U73+6lQFmfiNPrYbXqr6kZ1i1wiRqXnp2nhMsINseWXO8lDau0LGEffJ8kQi4EjLZympVgRdvqjAgiZ1tgzDDA==}
     engines: {node: '>=0.8'}
+    dev: true
 
   /connect-livereload/0.6.1:
     resolution: {integrity: sha512-3R0kMOdL7CjJpU66fzAkCe6HNtd3AavCS4m+uW4KtJjrdGPT0SQEZieAYd+cm+lJoBznNQ4lqipYWkhBMgk00g==}
@@ -19745,10 +19815,12 @@ packages:
     engines: {node: '>= 0.6'}
     dependencies:
       safe-buffer: 5.2.1
+    dev: true
 
   /content-type/1.0.4:
     resolution: {integrity: sha512-hIP3EEPs8tB9AT1L+NUqtwOAps4mk2Zob89MWXMHjHWg9milF/j4osnnQLXBCBFBk/tvIG/tUc9mOUJiPBhPXA==}
     engines: {node: '>= 0.6'}
+    dev: true
 
   /conventional-changelog-angular/5.0.13:
     resolution: {integrity: sha512-i/gipMxs7s8L/QeuavPF2hLnJgH6pEZAttySB6aiQLWcX3puWDL3ACVmvBhJGxnAy52Qc15ua26BufY6KpmrVA==}
@@ -19849,6 +19921,7 @@ packages:
 
   /cookie-signature/1.0.6:
     resolution: {integrity: sha512-QADzlaHc8icV8I7vbaJXJwod9HWYp8uCqf1xa4OfNu1T7JVxQIrUgOWtHdNDtPiywmFbiS12VjotIXLrKM3orQ==}
+    dev: true
 
   /cookie/0.4.2:
     resolution: {integrity: sha512-aSWTXFzaKWkvHO1Ny/s+ePFpvKsPnjc551iI41v3ny/ow6tBG5Vd+FuqGNhh1LxOmVzOlGUriIlOaokOvhaStA==}
@@ -19858,6 +19931,7 @@ packages:
   /cookie/0.5.0:
     resolution: {integrity: sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==}
     engines: {node: '>= 0.6'}
+    dev: true
 
   /copy-anything/2.0.6:
     resolution: {integrity: sha512-1j20GZTsvKNkc4BY3NpMOM8tt///wY3FpIzozTOFO2ffuZcV61nojHXVKIy3WM+7ADCy5FVhdZYHYDdgTU0yJw==}
@@ -20305,7 +20379,7 @@ packages:
       postcss-modules-values: 4.0.0_postcss@8.4.19
       postcss-value-parser: 4.2.0
       semver: 7.3.8
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
     dev: true
 
   /css-minimizer-webpack-plugin/3.4.1_webpack@5.75.0:
@@ -20706,6 +20780,7 @@ packages:
         optional: true
     dependencies:
       ms: 2.0.0
+    dev: true
 
   /debug/2.6.9_supports-color@6.1.0:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
@@ -20933,6 +21008,7 @@ packages:
     engines: {node: '>= 10'}
     dependencies:
       execa: 5.1.1
+    dev: true
 
   /default-require-extensions/3.0.1:
     resolution: {integrity: sha512-eXTJmRbm2TIt9MgWTsOH1wEuhew6XGZcMeGKCtLedIg/NCsg1iBePXkceTdK4Fii7pzmN9tGsZhKzZ4h7O/fxw==}
@@ -20959,6 +21035,7 @@ packages:
   /define-lazy-prop/2.0.0:
     resolution: {integrity: sha512-Ds09qNh8yw3khSjiJjiUInaGX9xlqZDY7JVryGxdxV7NPeuqQfplOpQ66yJFZut3jLa5zOwkXw1g9EI2uKh4Og==}
     engines: {node: '>=8'}
+    dev: true
 
   /define-properties/1.1.4:
     resolution: {integrity: sha512-uckOqKcfaVvtBdsVkdPv3XjveQJsNQqmhXgRi8uhvWWuPYZCNlzT8qAyblUgNoXdHdjMTzAqeGjAoli8f+bzPA==}
@@ -21031,10 +21108,12 @@ packages:
   /depd/1.1.2:
     resolution: {integrity: sha512-7emPTl6Dpo6JRXOXjLRxck+FlLRX5847cLKEn00PLAgc3g2hTZZgr+e4c2v6QpSmLeFP3n5yUo7ft6avBK/5jQ==}
     engines: {node: '>= 0.6'}
+    dev: true
 
   /depd/2.0.0:
     resolution: {integrity: sha512-g7nH6P6dyDioJogAAGprGpCtVImJhpPk/roCzdb3fIh61/s/nPsfR6onyMwkCAR/OlC3yBC0lESvUoQEAssIrw==}
     engines: {node: '>= 0.8'}
+    dev: true
 
   /dependency-graph/0.11.0:
     resolution: {integrity: sha512-JeMq7fEshyepOWDfcfHK06N3MhyPhz++vtqWhMT5O9A3K42rdsEDpfdVqjaqaAhsw6a+ZqeDvQVtD0hFHQWrzg==}
@@ -21055,6 +21134,7 @@ packages:
   /destroy/1.2.0:
     resolution: {integrity: sha512-2sJGJTaXIIaR1w4iJSNoN0hnMY7Gpc/n8D4qSCJw8QqFWXf7cuAgnEHxBpweaVcPevC2l3KpjYCx3NypQQgaJg==}
     engines: {node: '>= 0.8', npm: 1.2.8000 || >= 1.4.16}
+    dev: true
 
   /detect-file/1.0.0:
     resolution: {integrity: sha512-DtCOLG98P007x7wiiOmfI0fi3eIKyWiLTGJ2MDnVi/E04lWGbf+JzrRHMm0rgIIZJGtHpKpbVgLWHrv8xXpc3Q==}
@@ -21089,6 +21169,7 @@ packages:
 
   /detect-node/2.1.0:
     resolution: {integrity: sha512-T0NIuQpnTvFDATNuHN5roPwSBG83rFsuO+MXXH9/3N1eFbn4wcPjttvjMLEPWJ0RGUYgQE7cGgS3tNxbqCGM7g==}
+    dev: true
 
   /detect-port-alt/1.1.6:
     resolution: {integrity: sha512-5tQykt+LqfJFBEYaDITx7S7cR7mJ/zQmLXZ2qt5w04ainYZw6tBf9dBunMjVeVOdYVRUzUOE4HkY5J7+uttb5Q==}
@@ -21174,6 +21255,7 @@ packages:
 
   /dns-equal/1.0.0:
     resolution: {integrity: sha512-z+paD6YUQsk+AbGCEM4PrOXSss5gd66QfcVBFTKR/HpFL9jCqikS94HYwKww6fQyO7IxrIIyUu+g0Ka9tUS2Cg==}
+    dev: true
 
   /dns-packet/1.3.4:
     resolution: {integrity: sha512-BQ6F4vycLXBvdrJZ6S3gZewt6rcrks9KBgM9vrhW+knGRqc8uEdT7fuCwloc7nny5xNoMJ17HGH0R/6fpo8ECA==}
@@ -21187,6 +21269,7 @@ packages:
     engines: {node: '>=6'}
     dependencies:
       '@leichtgewicht/ip-codec': 2.0.4
+    dev: true
 
   /dns-txt/2.0.2:
     resolution: {integrity: sha512-Ix5PrWjphuSoUXV/Zv5gaFHjnaJtb02F2+Si3Ht9dyJ87+Z/lMmy+dpNHtTGraNK958ndXq2i+GLkWsWHcKaBQ==}
@@ -21420,6 +21503,7 @@ packages:
 
   /ee-first/1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
+    dev: true
 
   /ejs-loader/0.5.0:
     resolution: {integrity: sha512-iirFqlP3tiFoedNZ7dQcjvechunl054VbW6Ki38T/pabgXMAncduSE0ZXLeVGn1NbmcUJF9Z5TC0EvQ4RIpP9Q==}
@@ -21512,6 +21596,7 @@ packages:
   /encodeurl/1.0.2:
     resolution: {integrity: sha512-TPJXq8JqFaVYm2CWmPvnP2Iyo4ZSM7/QKcSmuMLDObfpH5fi7RUGmd/rTDf+rut/saiDiQEeVTNgAmJEdAOx0w==}
     engines: {node: '>= 0.8'}
+    dev: true
 
   /encoding/0.1.13:
     resolution: {integrity: sha512-ETBauow1T35Y/WZMkio9jiM0Z5xjHHmJ4XmjZOq1l/dXz3lr2sRn87nJy20RupqSh1F2m3HHPSp8ShIPQJrJ3A==}
@@ -22026,6 +22111,7 @@ packages:
 
   /escape-html/1.0.3:
     resolution: {integrity: sha512-NiSupZ4OeuGwr68lGIeym/ksIZMJodUGOSCZ/FSnTxcrekbvqrgdUxlJOMpijaKZVjAJrWrGs/6Jy8OMuyj9ow==}
+    dev: true
 
   /escape-string-regexp/1.0.5:
     resolution: {integrity: sha512-vbRorB5FUQWvla16U8R/qgaFIya2qGzwDrNmCZuYKrbdSUMG6I1ZCGQRefkRVhuOkIGVne7BQ35DSfo1qvJqFg==}
@@ -22618,6 +22704,7 @@ packages:
   /etag/1.8.1:
     resolution: {integrity: sha512-aIL5Fx7mawVa300al2BnEE4iNvo1qETxLrPI/o05L7z6go7fCw1J6EQmbK4FmJ2AS7kgVF/KEZWufBfdClMcPg==}
     engines: {node: '>= 0.6'}
+    dev: true
 
   /event-pubsub/4.3.0:
     resolution: {integrity: sha512-z7IyloorXvKbFx9Bpie2+vMJKKx1fH1EN5yiTfp8CiLOTptSYy1g8H4yDpGlEdshL1PBiFtBHepF2cNsqeEeFQ==}
@@ -22630,6 +22717,7 @@ packages:
 
   /eventemitter3/4.0.7:
     resolution: {integrity: sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==}
+    dev: true
 
   /events/3.3.0:
     resolution: {integrity: sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==}
@@ -22710,6 +22798,7 @@ packages:
       onetime: 5.1.2
       signal-exit: 3.0.7
       strip-final-newline: 2.0.0
+    dev: true
 
   /exit/0.1.2:
     resolution: {integrity: sha512-Zk/eNKV2zbjpKzrsQ+n1G6poVbErQxJ0LBOJXaKZ1EViLzH+hrLu9cdXI4zw9dBQJslwBEpbQ2P1oS7nDxs6jQ==}
@@ -22854,6 +22943,7 @@ packages:
       vary: 1.1.2
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /express/4.18.2_supports-color@6.1.0:
     resolution: {integrity: sha512-5/PsL6iGPdfQ/lKM1UuielYgv3BUoJfz1aUwU9vHZ+J7gyvwdQXFEBIEIaxeGf0GIcreATNyBExtalisDbuMqQ==}
@@ -23085,6 +23175,7 @@ packages:
     engines: {node: '>=0.8.0'}
     dependencies:
       websocket-driver: 0.7.4
+    dev: true
 
   /fb-watchman/2.0.2:
     resolution: {integrity: sha512-p5161BqbuCaSnB8jIbzQHOlpgsPmK5rJVDfDKO91Axs5NC1uu3HRQm6wt9cd9/+GtQQIO53JdGXXoyDpTAsgYA==}
@@ -23217,6 +23308,7 @@ packages:
       unpipe: 1.0.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /finalhandler/1.2.0_supports-color@6.1.0:
     resolution: {integrity: sha512-5uXcUVftlQMFnWC9qu/svkWv3GTd2PfUhK/3PLkYNAe7FbqJMt3515HaxE6eRL74GdsriiwujiawdaB1BpEISg==}
@@ -23403,6 +23495,7 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
+    dev: true
 
   /follow-redirects/1.15.2_debug@4.3.4:
     resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
@@ -23613,6 +23706,7 @@ packages:
   /forwarded/0.2.0:
     resolution: {integrity: sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==}
     engines: {node: '>= 0.6'}
+    dev: true
 
   /fraction.js/4.2.0:
     resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}
@@ -23652,6 +23746,7 @@ packages:
   /fresh/0.5.2:
     resolution: {integrity: sha512-zJ2mQYM18rEFOudeV4GShTGIQ7RbzA7ozbU9I/XBpm7kqgMywgmylMwXHxZJmkVoYkna9d2pVXVXPdYTP9ej8Q==}
     engines: {node: '>= 0.6'}
+    dev: true
 
   /from2/2.3.0:
     resolution: {integrity: sha512-OMcX/4IC/uqEPVgGeyfN22LJk6AZrMkRZHxcHBMBvHScDGgwTm2GT2Wkgtocyd3JfZffjj2kYUDXXII0Fk9W0g==}
@@ -23739,6 +23834,7 @@ packages:
 
   /fs-monkey/1.0.3:
     resolution: {integrity: sha512-cybjIfiiE+pTWicSCLFHSrXZ6EilF30oh91FDP9S2B051prEa7QWfrVTQm10/dDpswBDXZugPa1Ogu8Yh+HV0Q==}
+    dev: true
 
   /fs-write-stream-atomic/1.0.10:
     resolution: {integrity: sha512-gehEzmPn2nAwr39eay+x3X34Ra+M2QlVUTLhkXPjWdeO8RF9kszk116avgBJM3ZyNHgHXBNx+VmPaFC36k0PzA==}
@@ -23852,6 +23948,7 @@ packages:
       function-bind: 1.1.1
       has: 1.0.3
       has-symbols: 1.0.3
+    dev: true
 
   /get-own-enumerable-property-symbols/3.0.2:
     resolution: {integrity: sha512-I0UBV/XOz1XkIJHEUDMZAbzCThU/H8DxmSfmdGcKPnVhu2VfFqr34jr9777IyaTYvxjedWhqVIilEDsCdP5G6g==}
@@ -23919,6 +24016,7 @@ packages:
   /get-stream/6.0.1:
     resolution: {integrity: sha512-ts6Wi+2j3jQjqi70w5AlN8DFnkSwC+MqmxEzdEALB2qXZYV3X/b1CTfgPLGJNMeAWxdPfU8FO1ms3NUfaHCPYg==}
     engines: {node: '>=10'}
+    dev: true
 
   /get-symbol-description/1.0.0:
     resolution: {integrity: sha512-2EmdH1YvIQiZpltCNgkuiUnyukzxM/R6NDJX31Ke3BG1Nq5b0S2PhX59UKi9vZpPDQVdqn+1IcaAwnzTT5vCjw==}
@@ -24444,6 +24542,7 @@ packages:
 
   /handle-thing/2.0.1:
     resolution: {integrity: sha512-9Qn4yBxelxoh2Ow62nP+Ka/kMnOXRi8BXnRaUwezLNhqelnN49xKz4F/dPP8OYLxLxq6JDtZb2i9XznUQbNPTg==}
+    dev: true
 
   /handlebars/4.7.7:
     resolution: {integrity: sha512-aAcXm5OAfE/8IXkcZvCepKU3VzW1/39Fb5ZuqMtgI/hT8X2YgoMvBY5dLhq/cpOvw7Lk1nK/UF71aLG/ZnVYRA==}
@@ -24514,6 +24613,7 @@ packages:
   /has-symbols/1.0.3:
     resolution: {integrity: sha512-l3LCuF6MgDNwTDKkdYGEihYjt5pRPbEg46rtlmnSPlUbgmB8LOIrKJbYYFBSbnPaJexMKtiPO8hmeRjRz2Td+A==}
     engines: {node: '>= 0.4'}
+    dev: true
 
   /has-tostringtag/1.0.0:
     resolution: {integrity: sha512-kFjcSNhnlGV1kyoGk7OXKSawH5JOb/LzUc5w9B02hOTO0dfFRjbHQKvg1d6cf3HbeUmtU9VbbV3qzZ2Teh97WQ==}
@@ -24719,6 +24819,7 @@ packages:
       obuf: 1.1.2
       readable-stream: 2.3.7
       wbuf: 1.7.3
+    dev: true
 
   /hpq/1.3.0:
     resolution: {integrity: sha512-fvYTvdCFOWQupGxqkahrkA+ERBuMdzkxwtUdKrxR6rmMd4Pfl+iZ1QiQYoaZ0B/v0y59MOMnz3XFUWbT50/NWA==}
@@ -24768,6 +24869,7 @@ packages:
 
   /html-entities/2.3.3:
     resolution: {integrity: sha512-DV5Ln36z34NNTDgnz0EWGBLZENelNAtkiFA4kyNOG2tDI6Mz1uSWiq1wAKdyjnJwyDiDO7Fa2SO1CTxPXL8VxA==}
+    dev: true
 
   /html-escaper/2.0.2:
     resolution: {integrity: sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==}
@@ -24874,7 +24976,7 @@ packages:
       lodash: 4.17.21
       pretty-error: 4.0.0
       tapable: 2.2.1
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
     dev: true
 
   /htmlnano/2.0.3_svgo@2.8.0:
@@ -24945,6 +25047,7 @@ packages:
 
   /http-deceiver/1.2.7:
     resolution: {integrity: sha512-LmpOGxTfbpgtGVxJrj5k7asXHCgNZp5nLfp+hWc8QQRqtb7fUy6kRY3BO1h9ddF6yIPYUARgxGOwB42DnxIaNw==}
+    dev: true
 
   /http-errors/1.6.3:
     resolution: {integrity: sha512-lks+lVC8dgGyh97jxvxeYTWQFvh4uw4yC12gVl63Cg30sjPX4wuGcdkICVXDAESr6OJGjqGA8Iz5mkeN6zlD7A==}
@@ -24954,6 +25057,7 @@ packages:
       inherits: 2.0.3
       setprototypeof: 1.1.0
       statuses: 1.5.0
+    dev: true
 
   /http-errors/2.0.0:
     resolution: {integrity: sha512-FtwrG/euBzaEjYeRqOgly7G0qviiXoJWnvEH2Z1plBdXgbyjv34pHTSb9zoeHMyDy33+DWy5Wt9Wo+TURtOYSQ==}
@@ -24964,9 +25068,11 @@ packages:
       setprototypeof: 1.2.0
       statuses: 2.0.1
       toidentifier: 1.0.1
+    dev: true
 
   /http-parser-js/0.5.8:
     resolution: {integrity: sha512-SGeBX54F94Wgu5RH3X5jsDtf4eHyRogWX1XGT3b4HuW3tQPM4AaBzoUji/4AAJNXCEOWZ5O0DgZmJw1947gD5Q==}
+    dev: true
 
   /http-proxy-agent/4.0.1:
     resolution: {integrity: sha512-k0zdNgqWTGA6aeIRVpvfVob4fL52dTfaehylg0Y4UvSySvOq/Y+BOyPrgpUrA7HylqvU8vIZGsRuXmspskV0Tg==}
@@ -25019,6 +25125,7 @@ packages:
       micromatch: 4.0.5
     transitivePeerDependencies:
       - debug
+    dev: true
 
   /http-proxy-middleware/2.0.6_bwlemkrjb22k3yqlwsvvolpocy:
     resolution: {integrity: sha512-ya/UeJ6HVBYxrgYotAZo1KvPWlgB48kUJLDePFeneHsVujFaW5WNj2NgWCAE//B1Dl02BIfYlpNgBy8Kf8Rjmw==}
@@ -25048,6 +25155,7 @@ packages:
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
+    dev: true
 
   /http-proxy/1.18.1_debug@4.3.4:
     resolution: {integrity: sha512-7mz/721AbnJwIVbnaSv1Cz3Am0ZLT/UBwkC92VlxhXv/k/BBQfM2fXElQNC27BVGr0uwUpplYPQM9LnaBMR5NQ==}
@@ -25100,6 +25208,7 @@ packages:
   /human-signals/2.1.0:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
     engines: {node: '>=10.17.0'}
+    dev: true
 
   /humanize-ms/1.2.1:
     resolution: {integrity: sha512-Fl70vYtsAFb/C06PTS9dZBo7ihau+Tu/DNCk/OyHhea07S+aeMWpFFkUaXRa8fI+ScZbEI8dfSxwY7gxZ9SAVQ==}
@@ -25118,6 +25227,7 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       safer-buffer: 2.1.2
+    dev: true
 
   /iconv-lite/0.6.3:
     resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
@@ -25427,6 +25537,10 @@ packages:
     resolution: {integrity: sha512-Ju0Bz/cEia55xDwUWEa8+olFpCiQoypjnQySseKtmjNrnps3P+xfpUmGr90T7yjlVJmOtybRvPXhKMbHr+fWnw==}
     engines: {node: '>= 0.10'}
 
+  /interpret/3.1.1:
+    resolution: {integrity: sha512-6xwYfHbajpoF0xLW+iwLkhwgvLoZDfjYfoFNu8ftMoXINzwuymNLd9u/KmwtdT2GbR+/Cz66otEGEVVUHX9QLQ==}
+    engines: {node: '>=10.13.0'}
+
   /invariant/2.2.4:
     resolution: {integrity: sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==}
     dependencies:
@@ -25460,10 +25574,12 @@ packages:
   /ipaddr.js/1.9.1:
     resolution: {integrity: sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==}
     engines: {node: '>= 0.10'}
+    dev: true
 
   /ipaddr.js/2.0.1:
     resolution: {integrity: sha512-1qTgH9NG+IIJ4yfKs2e6Pp1bZg8wbDbKHT21HrLIeYBTRLgMYKnMTPAuI3Lcs61nfx5h1xlXnbJtH1kX5/d/ng==}
     engines: {node: '>= 10'}
+    dev: true
 
   /irregular-plurals/3.3.0:
     resolution: {integrity: sha512-MVBLKUTangM3EfRPFROhmWQQKRDsrgI83J8GS3jXy+OwYqiR2/aoWndYQ5416jLE3uaGgLH7ncme3X9y09gZ3g==}
@@ -25654,6 +25770,7 @@ packages:
     resolution: {integrity: sha512-F+i2BKsFrH66iaUFc0woD8sLy8getkwTwtOBjvs56Cx4CgJDeKQeqfz8wAYiSb8JOprWhHH5p77PbmYCvvUuXQ==}
     engines: {node: '>=8'}
     hasBin: true
+    dev: true
 
   /is-expression/3.0.0:
     resolution: {integrity: sha512-vyMeQMq+AiH5uUnoBfMTwf18tO3bM6k1QXBE9D6ueAAquEfCZe3AJPtud9g6qS0+4X8xA7ndpZiDyeb2l2qOBw==}
@@ -25861,6 +25978,7 @@ packages:
   /is-plain-obj/3.0.0:
     resolution: {integrity: sha512-gwsOE28k+23GP1B6vFl1oVh/WOzmawBrKwo5Ev6wMKzPkaXaCDIQKzLnvsA42DRlbVTWorkgTKIviAKCWkfUwA==}
     engines: {node: '>=10'}
+    dev: true
 
   /is-plain-object/2.0.4:
     resolution: {integrity: sha512-h5PpgXkWitc38BBMYawTYMWJHFZJVnBquFE57xFpjB8pJFiF6gZ+bU+WyI/yqXiFR5mdLsgYNaPe8uao6Uv9Og==}
@@ -25943,6 +26061,7 @@ packages:
   /is-stream/2.0.1:
     resolution: {integrity: sha512-hFoiJiTl63nn+kstHGBtewWSKnQLpyb155KHheA1l39uvtO9nWIop1p3udqPcUd/xbF1VLMO4n7OI6p7RbngDg==}
     engines: {node: '>=8'}
+    dev: true
 
   /is-string/1.0.7:
     resolution: {integrity: sha512-tE2UXzivje6ofPW7l23cjDOMa09gb7xlAqG6jG5ej6uPV32TlWP3NKPigtaGeHNu9fohccRYvIiZMfOOnOYUtg==}
@@ -26053,6 +26172,7 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       is-docker: 2.2.1
+    dev: true
 
   /is-yarn-global/0.3.0:
     resolution: {integrity: sha512-VjSeb/lHmkoyd8ryPVIKvOCn4D1koMqY+vqyjjUfc3xyKtP4dYOxM44sZrnqQSzSds3xyOrUTLTC9LVCVgLngw==}
@@ -27880,6 +28000,7 @@ packages:
 
   /json-schema-traverse/1.0.0:
     resolution: {integrity: sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug==}
+    dev: true
 
   /json-schema/0.4.0:
     resolution: {integrity: sha512-es94M3nTIfsEPisRafak+HDLfHXnKBhV3vU5eqPcS3flIWqcxJWgXHXiey3YrpaNsanY5ei1VoYEbOzijuq9BA==}
@@ -29129,12 +29250,14 @@ packages:
   /media-typer/0.3.0:
     resolution: {integrity: sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==}
     engines: {node: '>= 0.6'}
+    dev: true
 
   /memfs/3.4.11:
     resolution: {integrity: sha512-GvsCITGAyDCxxsJ+X6prJexFQEhOCJaIlUbsAvjzSI5o5O7j2dle3jWvz5Z5aOdpOxW6ol3vI1+0ut+641F1+w==}
     engines: {node: '>= 4.0.0'}
     dependencies:
       fs-monkey: 1.0.3
+    dev: true
 
   /memize/1.1.0:
     resolution: {integrity: sha512-K4FcPETOMTwe7KL2LK0orMhpOmWD2wRGwWWpbZy0fyArwsyIKR8YJVz8+efBAh3BO4zPqlSICu4vsLTRRqtFAg==}
@@ -29223,6 +29346,7 @@ packages:
 
   /merge-descriptors/1.0.1:
     resolution: {integrity: sha512-cCi6g3/Zr1iqQi6ySbseM1Xvooa98N0w31jzUYrXPX2xqObmFGHJ0tQ5u74H3mVh7wLouTseZyYIq39g8cNp1w==}
+    dev: true
 
   /merge-source-map/1.1.0:
     resolution: {integrity: sha512-Qkcp7P2ygktpMPh2mCQZaf3jhN6D3Z/qVZHSdWvQ+2Ef5HgRAPBO57A77+ENm0CPx2+1Ce/MYKi3ymqdfuqibw==}
@@ -29240,6 +29364,7 @@ packages:
   /methods/1.1.2:
     resolution: {integrity: sha512-iclAHeNqNm68zFtnZ0e+1L2yUIdvzNoauKU4WBA3VvH/vPFieF7qfRlwUZU+DA9P9bPXIS90ulxoUoCH23sV2w==}
     engines: {node: '>= 0.6'}
+    dev: true
 
   /microevent.ts/0.1.1:
     resolution: {integrity: sha512-jo1OfR4TaEwd5HOrt5+tAZ9mqT4jmpNAusXtyfNzqVm9uiSYFZlKM1wYL4oU7azZW/PxQW53wM0S6OR1JHNa2g==}
@@ -29316,6 +29441,7 @@ packages:
     resolution: {integrity: sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==}
     engines: {node: '>=4'}
     hasBin: true
+    dev: true
 
   /mime/2.5.2:
     resolution: {integrity: sha512-tqkh47FzKeCPD2PUiPB6pkbMzsCasjxAfC62/Wap5qrUWcb+sFasXUC5I3gYM5iBM8v/Qpn4UK0x+j0iHyFPDg==}
@@ -29337,6 +29463,7 @@ packages:
   /mimic-fn/2.1.0:
     resolution: {integrity: sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==}
     engines: {node: '>=6'}
+    dev: true
 
   /mimic-response/1.0.1:
     resolution: {integrity: sha512-j5EctnkH7amfV/q5Hgmoal1g2QHFJRraOtmx0JpIqkxhBhI/lJSl1nMpQ45hVarwNETOoWEimndZ4QK0RHxuxQ==}
@@ -29372,7 +29499,7 @@ packages:
       webpack: ^5.0.0
     dependencies:
       schema-utils: 4.0.0
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
     dev: true
 
   /minify/9.1.0:
@@ -29396,6 +29523,7 @@ packages:
 
   /minimalistic-assert/1.0.1:
     resolution: {integrity: sha512-UtJcAD4yEaGtjPezWuO9wC4nwUnVH/8/Im3yEHQP4b67cXlD/Qr9hdITCU1xDbSEXg2XKNaP8jsReV7vQd00/A==}
+    dev: true
 
   /minimalistic-crypto-utils/1.0.1:
     resolution: {integrity: sha512-JIYlbt6g8i5jKfJ3xz7rF0LXmv2TkDxBLUkiBeZ7bAx4GnnNMr8xFpGnOxn6GhTEHx3SjRrZEoU+j04prX1ktg==}
@@ -29684,12 +29812,14 @@ packages:
 
   /ms/2.0.0:
     resolution: {integrity: sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==}
+    dev: true
 
   /ms/2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
 
   /ms/2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
+    dev: true
 
   /msgpackr-extract/2.2.0:
     resolution: {integrity: sha512-0YcvWSv7ZOGl9Od6Y5iJ3XnPww8O7WLcpYMDwX+PAA/uXLDtyw94PJv9GLQV/nnp3cWlDhMoyKZIQLrx33sWog==}
@@ -29735,6 +29865,7 @@ packages:
     dependencies:
       dns-packet: 5.4.0
       thunky: 1.1.0
+    dev: true
 
   /multimatch/5.0.0:
     resolution: {integrity: sha512-ypMKuglUrZUD99Tk2bUQ+xNQj43lPEfAeX2o9cTteAmShXy2VHDJpuwu1o0xqoKCt9jLVAvwyFKdLTPXKAfJyA==}
@@ -29886,6 +30017,7 @@ packages:
   /negotiator/0.6.3:
     resolution: {integrity: sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==}
     engines: {node: '>= 0.6'}
+    dev: true
 
   /neo-async/2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
@@ -30040,6 +30172,7 @@ packages:
   /node-forge/1.3.1:
     resolution: {integrity: sha512-dPEtOeMvF9VMcYV/1Wb8CPoVAXtp6MKMlcbAt4ddqmGqUJ6fQZFXkNZNkNlfevtNkGtaSoXf/vNNNSvgrdXwtA==}
     engines: {node: '>= 6.13.0'}
+    dev: true
 
   /node-gyp-build-optional-packages/5.0.3:
     resolution: {integrity: sha512-k75jcVzk5wnnc/FMxsf4udAoTEUv2jY3ycfdSd3yWu6Cnd1oee6/CfZJApyscA4FJOmdoixWwiwOyf16RzD5JA==}
@@ -30566,6 +30699,7 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       path-key: 3.1.1
+    dev: true
 
   /npmlog/5.0.1:
     resolution: {integrity: sha512-AqZtDUWOMKs1G/8lwylVjrdYgqA4d9nu8hc+0gzRxlDb1I10+FHBGMXs6aiQHFdCUUlqH99MUMuLfzWDNDtfxw==}
@@ -30728,6 +30862,7 @@ packages:
 
   /object-inspect/1.12.2:
     resolution: {integrity: sha512-z+cPxW0QGUp0mcqcsgQyLVRDoXFQbXOwBaqyF7VIgI4TWNQsDHrBpUQslRmIfAoYWdYzs6UlKJtB2XJpTaNSpQ==}
+    dev: true
 
   /object-is/1.1.5:
     resolution: {integrity: sha512-3cyDsyHgtmi7I7DfSSI2LDp6SK2lwvtbg0p0R1e0RvTqF5ceGx+K2dfSjm1bKDMVCFEDAQvy+o8c6a7VujOddw==}
@@ -30838,6 +30973,7 @@ packages:
 
   /obuf/1.1.2:
     resolution: {integrity: sha512-PX1wu0AmAdPqOL1mWhqmlOd8kOIZQwGZw6rh7uby9fTc5lhaOWFLX3I6R1hrF9k3zUY40e6igsLGkDXK92LJNg==}
+    dev: true
 
   /on-finished/2.3.0:
     resolution: {integrity: sha512-ikqdkGAAyf/X/gPhXGvfgAytDZtDbr+bkNUJ0N9h5MI/dmdgCs3l6hoHrcUv41sRKew3jIwrp4qQDXiK99Utww==}
@@ -30851,10 +30987,12 @@ packages:
     engines: {node: '>= 0.8'}
     dependencies:
       ee-first: 1.1.1
+    dev: true
 
   /on-headers/1.0.2:
     resolution: {integrity: sha512-pZAE+FJLoyITytdqK0U5s+FIpjN0JP3OzFi/u8Rx+EV5/W+JTWGXG8xFzevE7AjBfDqHv/8vL8qQsIhHnqRkrA==}
     engines: {node: '>= 0.8'}
+    dev: true
 
   /once/1.4.0:
     resolution: {integrity: sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==}
@@ -30873,6 +31011,7 @@ packages:
     engines: {node: '>=6'}
     dependencies:
       mimic-fn: 2.1.0
+    dev: true
 
   /open/6.4.0:
     resolution: {integrity: sha512-IFenVPgF70fSm1keSd2iDBIDIBZkroLeuffXq+wKTzTJlBpesFWojV9lb8mzOfaAzM1sr7HQHuO0vtV0zYekGg==}
@@ -30888,6 +31027,7 @@ packages:
       define-lazy-prop: 2.0.0
       is-docker: 2.2.1
       is-wsl: 2.2.0
+    dev: true
 
   /opencollective-postinstall/2.0.3:
     resolution: {integrity: sha512-8AV/sCtuzUeTo8gQK5qDZzARrulB3egtLzFgteqB2tcT4Mw7B8Kt7JcDHmltjz6FOAHsvTevk70gZEbhM4ZS9Q==}
@@ -31126,6 +31266,7 @@ packages:
     dependencies:
       '@types/retry': 0.12.0
       retry: 0.13.1
+    dev: true
 
   /p-timeout/3.2.0:
     resolution: {integrity: sha512-rhIwUycgwwKcP9yTOOFK/AKsAopjjCakVqLHePO3CC6Mir1Z99xT+R63jZxAT5lFZLa2inS5h+ZS2GvR99/FBg==}
@@ -31426,6 +31567,7 @@ packages:
   /parseurl/1.3.3:
     resolution: {integrity: sha512-CiyeOxFT/JZyN5m0z9PfXw4SCBJ6Sygz1Dpl0wqjlhDEGGBP1GnsUVEL0p63hoG1fcj3fHynXi9NYO4nWOL+qQ==}
     engines: {node: '>= 0.8'}
+    dev: true
 
   /pascal-case/3.1.2:
     resolution: {integrity: sha512-uWlGT3YSnK9x3BQJaOdcZwrnV6hPpd8jFH1/ucpiLRPh/2zCVJKS19E4GvYHvaCcACn3foXZ0cLB9Wrx1KGe5g==}
@@ -31516,6 +31658,7 @@ packages:
 
   /path-to-regexp/0.1.7:
     resolution: {integrity: sha512-5DFkuoqlv1uYQKxy8omFBeJPQcdoE07Kv2sferDCrAq1ohOU+MSDswDIbnx3YAM60qIOnYa53wBhXW0EbMonrQ==}
+    dev: true
 
   /path-to-regexp/6.2.1:
     resolution: {integrity: sha512-JLyh7xT1kizaEvcaXOQwOc2/Yhw6KZOvPf1S8401UyLk86CU79LN3vl7ztXGm/pZ+YjoyAJ4rxmHwbkBXJX+yw==}
@@ -33190,6 +33333,17 @@ packages:
         optional: true
     dev: true
 
+  /promise-inflight/1.0.1_bluebird@3.7.2:
+    resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
+    peerDependencies:
+      bluebird: '*'
+    peerDependenciesMeta:
+      bluebird:
+        optional: true
+    dependencies:
+      bluebird: 3.7.2
+    dev: true
+
   /promise-polyfill/8.2.3:
     resolution: {integrity: sha512-Og0+jCRQetV84U8wVjMNccfGCnMQ9mGs9Hv78QFe+pSDD3gWTpz0y+1QCuxy5d/vBFuZ3iwP2eycAkvqIMPmWg==}
     dev: true
@@ -33281,6 +33435,7 @@ packages:
     dependencies:
       forwarded: 0.2.0
       ipaddr.js: 1.9.1
+    dev: true
 
   /proxy-compare/2.3.0:
     resolution: {integrity: sha512-c3L2CcAi7f7pvlD0D7xsF+2CQIW8C3HaYx2Pfgq8eA4HAl3GAH6/dVYsyBbYF/0XJs2ziGLrzmz5fmzPm6A0pQ==}
@@ -33594,6 +33749,7 @@ packages:
     engines: {node: '>=0.6'}
     dependencies:
       side-channel: 1.0.4
+    dev: true
 
   /qs/6.5.3:
     resolution: {integrity: sha512-qxXIEh4pCGfHICj1mAJQ2/2XVZkjCDTcEgfoSQxc/fYivUZxTkk7L3bDBJSoNrEzXI17oUO5Dp07ktqE5KzczA==}
@@ -33669,6 +33825,7 @@ packages:
   /range-parser/1.2.1:
     resolution: {integrity: sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg==}
     engines: {node: '>= 0.6'}
+    dev: true
 
   /raw-body/2.5.1:
     resolution: {integrity: sha512-qqJBtEyVgS0ZmPGdCFPWJ3FreoqvG4MVQln/kCgF7Olq95IbOp0/BWyMwbdtn4VTvkM8Y7khCQ2Xgk/tcrCXig==}
@@ -33678,6 +33835,7 @@ packages:
       http-errors: 2.0.0
       iconv-lite: 0.4.24
       unpipe: 1.0.0
+    dev: true
 
   /raw-loader/4.0.2_webpack@4.46.0:
     resolution: {integrity: sha512-ZnScIV3ag9A4wPX/ZayxL/jZH+euYb6FcUinPcgiQW0+UBtEv0O6Q3lGd3cqJ+GHH+rksEv3Pj99oxJ3u3VIKA==}
@@ -34011,6 +34169,7 @@ packages:
       inherits: 2.0.4
       string_decoder: 1.3.0
       util-deprecate: 1.0.2
+    dev: true
 
   /readdir-scoped-modules/1.1.0:
     resolution: {integrity: sha512-asaikDeqAQg7JifRsZn1NJZXo9E+VwlyCfbkZhwyISinqk5zNS6266HS5kah6P0SaQKGF6SkNnZVHUzHFYxYDw==}
@@ -34125,6 +34284,12 @@ packages:
   /rechoir/0.7.1:
     resolution: {integrity: sha512-/njmZ8s1wVeR6pjTZ+0nCnv8SpZNRMT2D1RLOJQESlYFDBvwpTA4KWJpZ+sBJ4+vhjILRcK7JIFdGCdxEAAitg==}
     engines: {node: '>= 0.10'}
+    dependencies:
+      resolve: 1.22.1
+
+  /rechoir/0.8.0:
+    resolution: {integrity: sha512-/vxpCXddiX8NGfGO/mTafwjq4aFa/71pvamip0++IQk3zG8cbCj0fifNPrjjF1XMXUne91jL9OoxmdykoEtifQ==}
+    engines: {node: '>= 10.13.0'}
     dependencies:
       resolve: 1.22.1
 
@@ -34418,6 +34583,7 @@ packages:
   /require-from-string/2.0.2:
     resolution: {integrity: sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==}
     engines: {node: '>=0.10.0'}
+    dev: true
 
   /require-main-filename/1.0.1:
     resolution: {integrity: sha512-IqSUtOVP4ksd1C/ej5zeEh/BIP2ajqpn8c5x+q99gvcIG/Qf0cud5raVnE/Dwd0ua9TXYDoDc0RE5hBSdz22Ug==}
@@ -34587,6 +34753,7 @@ packages:
   /retry/0.13.1:
     resolution: {integrity: sha512-XQBQ3I8W1Cge0Seh+6gjj03LbmRFWuoszgK9ooCpwYIrhhoO80pfq4cUkU5DkknwfOfFteRwlZ56PYOGYyFWdg==}
     engines: {node: '>= 4'}
+    dev: true
 
   /reusify/1.0.4:
     resolution: {integrity: sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==}
@@ -35137,7 +35304,7 @@ packages:
       klona: 2.0.5
       neo-async: 2.6.2
       node-sass: 8.0.0
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
     dev: true
 
   /sass-loader/13.2.0_sass@1.56.1+webpack@5.75.0:
@@ -35288,6 +35455,7 @@ packages:
       ajv: 8.11.2
       ajv-formats: 2.1.1_ajv@8.11.2
       ajv-keywords: 5.1.0_ajv@8.11.2
+    dev: true
 
   /scss-tokenizer/0.4.3:
     resolution: {integrity: sha512-raKLgf1LI5QMQnG+RxHz6oK0sL3x3I4FN2UDLqgLOGO8hodECNnNh5BXn7fAyBxrA8zVzdQizQ6XjNJQ+uBwMw==}
@@ -35298,6 +35466,7 @@ packages:
 
   /select-hose/2.0.0:
     resolution: {integrity: sha512-mEugaLK+YfkijB4fx0e6kImuJdCIt2LxCRcbEYPqRGCs4F2ogyfZU5IAZRdjCP8JPq2AtdNoC/Dux63d9Kiryg==}
+    dev: true
 
   /select/1.1.2:
     resolution: {integrity: sha512-OwpTSOfy6xSs1+pwcNrv0RBMOzI39Lp3qQKUTPVVPRjCdNa5JH/oPRiqsesIskK8TVgmRiHwO4KXlV2Li9dANA==}
@@ -35324,6 +35493,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       node-forge: 1.3.1
+    dev: true
 
   /semiver/1.1.0:
     resolution: {integrity: sha512-QNI2ChmuioGC1/xjyYwyZYADILWyW6AmS1UH6gDj/SFUUUS4MBAWs/7mxnkRPc/F4iHezDP+O8t0dO8WHiEOdg==}
@@ -35412,6 +35582,7 @@ packages:
       statuses: 2.0.1
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /send/0.18.0_supports-color@6.1.0:
     resolution: {integrity: sha512-qqWzuOjSFOuqPjFe4NOsMLafToQQwBSOEpS+FwEt3A2V3vKubTquT3vmLTQpFgMXp8AlFWFuP1qKaJZOtPpVXg==}
@@ -35480,6 +35651,7 @@ packages:
       parseurl: 1.3.3
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /serve-index/1.9.1_supports-color@6.1.0:
     resolution: {integrity: sha512-pXHfKNP4qujrtteMrSBb0rc8HJ9Ms/GrXwcUtUtD5s4ewDJI8bT3Cz2zTVRMKtri49pLx2e0Ya8ziP5Ya2pZZw==}
@@ -35506,6 +35678,7 @@ packages:
       send: 0.18.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /serve-static/1.15.0_supports-color@6.1.0:
     resolution: {integrity: sha512-XGuRDNjXUijsUL0vl6nSD7cwURuzEgglbOaFuZM9g3kwDXOWVTck0jLzjPzGD+TazWbboZYu52/9/XPdUgne9g==}
@@ -35539,9 +35712,11 @@ packages:
 
   /setprototypeof/1.1.0:
     resolution: {integrity: sha512-BvE/TwpZX4FXExxOxZyRGQQv651MSwmWKZGqvmPcRIjDqWub67kTKuIMx43cZZrS/cBBzwBcNDWoFxt2XEFIpQ==}
+    dev: true
 
   /setprototypeof/1.2.0:
     resolution: {integrity: sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==}
+    dev: true
 
   /sha.js/2.4.11:
     resolution: {integrity: sha512-QMEp5B7cftE7APOjk5Y6xgrbWu+WkLVQwk8JNjZ8nKRciZaByEW6MubieAiToS7+dwvrjGhH8jRXz3MVd0AYqQ==}
@@ -35623,9 +35798,11 @@ packages:
       call-bind: 1.0.2
       get-intrinsic: 1.1.3
       object-inspect: 1.12.2
+    dev: true
 
   /signal-exit/3.0.7:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
+    dev: true
 
   /simple-concat/1.0.1:
     resolution: {integrity: sha512-cSFtAPtRhljv69IK0hTVZQ+OfE9nePi/rtJmw5UjHeVyVroEqJXP1sFztKUy1qU+xvz3u/sfYJLa947b7nAN2Q==}
@@ -35861,6 +36038,7 @@ packages:
       faye-websocket: 0.11.4
       uuid: 8.3.2
       websocket-driver: 0.7.4
+    dev: true
 
   /socks-proxy-agent/6.2.1:
     resolution: {integrity: sha512-a6KW9G+6B3nWZ1yB8G7pJwL3ggLy1uTzKAgCb7ttblwqdz9fMGJUuTy3uFzEP48FAs9FLILlmzDlE2JJhVQaXQ==}
@@ -36020,7 +36198,7 @@ packages:
       abab: 2.0.6
       iconv-lite: 0.6.3
       source-map-js: 1.0.2
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
     dev: true
 
   /source-map-resolve/0.5.3:
@@ -36157,6 +36335,7 @@ packages:
       wbuf: 1.7.3
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /spdy-transport/3.0.0_supports-color@6.1.0:
     resolution: {integrity: sha512-hsLVFE5SjA6TCisWeJXFKniGGOpBgMLmerfO2aCyCU5s7nJ/rpAepqmFifv/GCbSbueEeAJJnmSQ2rKC/g8Fcw==}
@@ -36182,6 +36361,7 @@ packages:
       spdy-transport: 3.0.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /spdy/4.0.2_supports-color@6.1.0:
     resolution: {integrity: sha512-r46gZQZQV+Kl9oItvl1JZZqJKGr+oEkB08A6BzkiR7593/7IbtuncXHd2YoYeTsG4157ZssMu9KYvUHLcjcDoA==}
@@ -36314,10 +36494,12 @@ packages:
   /statuses/1.5.0:
     resolution: {integrity: sha512-OpZ3zP+jT1PI7I8nemJX4AKmAX070ZkYPVWV/AaKTJl+tXCTGyVdC1a4SL8RUQYEwk/f34ZX8UTykN68FwrqAA==}
     engines: {node: '>= 0.6'}
+    dev: true
 
   /statuses/2.0.1:
     resolution: {integrity: sha512-RwNA9Z/7PrK06rYLIzFMlaF+l73iwpzsqRIFgbMLbTcLD6cOao82TaWefPXQvB2fOC4AjuYSEndS7N/mTCbkdQ==}
     engines: {node: '>= 0.8'}
+    dev: true
 
   /stdout-stream/1.4.1:
     resolution: {integrity: sha512-j4emi03KXqJWcIeF8eIXkjMFN1Cmb8gUlDYGeBALLPo5qdyTfA9bOtl8m33lRoC+vFMkP3gl0WsDr6+gzxbbTA==}
@@ -36488,6 +36670,7 @@ packages:
     resolution: {integrity: sha512-hkRX8U1WjJFd8LsDJ2yQ/wWWxaopEsABU1XfkM8A+j0+85JAGppt16cr1Whg6KIbb4okU6Mql6BOj+uup/wKeA==}
     dependencies:
       safe-buffer: 5.2.1
+    dev: true
 
   /stringify-object/3.3.0:
     resolution: {integrity: sha512-rHqiFh1elqCQ9WPLIC8I0Q/g/wj5J1eMkyoiD6eoQApWHP0FtlK7rqnhmabL5VUY9JQCcqwwvlOaSuutekgyrw==}
@@ -36563,6 +36746,7 @@ packages:
   /strip-final-newline/2.0.0:
     resolution: {integrity: sha512-BrpvfNAE3dcvq7ll3xVumzjKjZQ5tI1sEUIKr3Uoks0XUl45St3FlatVqef9prk4jRDzhW6WZg+3bk93y6pLjA==}
     engines: {node: '>=6'}
+    dev: true
 
   /strip-indent/2.0.0:
     resolution: {integrity: sha512-RsSNPLpq6YUL7QYy44RnPVTn/lcVZtb48Uof3X5JLbF4zD/Gs7ZFDv2HWol+leoQN2mT86LAzSshGfkTlSOpsA==}
@@ -36633,7 +36817,7 @@ packages:
     peerDependencies:
       webpack: ^5.0.0
     dependencies:
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
     dev: true
 
   /style-search/0.1.0:
@@ -37246,7 +37430,7 @@ packages:
       schema-utils: 3.1.1
       serialize-javascript: 6.0.0
       terser: 5.15.1
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
 
   /terser/4.8.1:
     resolution: {integrity: sha512-4GnLC0x667eJG0ewJTa6z/yXrbLGv80D9Ru6HIpCQmO+Q4PfEtBFi0ObSckqwL6VyQv/7ENJieXHo2ANmdQwgw==}
@@ -37346,6 +37530,7 @@ packages:
 
   /thunky/1.1.0:
     resolution: {integrity: sha512-eHY7nBftgThBqOyHGVN+l8gF0BucP09fMo0oO/Lb0w1OF80dJv+lDVpXG60WMQvkcxAkNybKsrEIE3ZtKGmPrA==}
+    dev: true
 
   /time-stamp/1.1.0:
     resolution: {integrity: sha512-gLCeArryy2yNTRzTGKbZbloctj64jkZ57hj5zdraXue6aFgd6PmvVtEyiUU+hvU0v7q08oVv8r8ev0tRo6bvgw==}
@@ -37469,6 +37654,7 @@ packages:
   /toidentifier/1.0.1:
     resolution: {integrity: sha512-o5sSPKEkg/DIQNmH43V0/uerLrpzVedkUh8tGNvaeXpfpuwjKenlSox/2O/BTlZUtEe+JG7s5YhEz608PlAHRA==}
     engines: {node: '>=0.6'}
+    dev: true
 
   /token-stream/0.0.1:
     resolution: {integrity: sha512-nfjOAu/zAWmX9tgwi5NRp7O7zTDUD1miHiB40klUnAh9qnL1iXdgzcz/i5dMaL5jahcBAaSfmNOBBJBLJW8TEg==}
@@ -37608,7 +37794,7 @@ packages:
       micromatch: 4.0.5
       semver: 7.3.8
       typescript: 4.8.4
-      webpack: 5.75.0_webpack-cli@4.10.0
+      webpack: 5.75.0_webpack-cli@5.0.0
     dev: true
 
   /ts-morph/16.0.0:
@@ -37815,6 +38001,7 @@ packages:
     dependencies:
       media-typer: 0.3.0
       mime-types: 2.1.35
+    dev: true
 
   /type/1.2.0:
     resolution: {integrity: sha512-+5nt5AAniqsCnu2cEQQdpzCAh33kVx8n0VoFidKpB1dVVLAN/F+bgVOqOJqOnEnrhp222clB5p3vUlD+1QAnfg==}
@@ -38130,6 +38317,7 @@ packages:
   /unpipe/1.0.0:
     resolution: {integrity: sha512-pjy2bYhSsufwWlKwPc+l3cN7+wuJlK6uz0YdJEOlQDbl6jo/YlPi4mb8agUkVC8BF7V8NuzeyPNqRksA3hztKQ==}
     engines: {node: '>= 0.8'}
+    dev: true
 
   /unquote/1.1.1:
     resolution: {integrity: sha512-vRCqFv6UhXpWxZPyGDh/F3ZpNv8/qo7w6iufLpQg9aKnQ71qM4B5KiI7Mia9COcjEhrO9LueHpMYjYzsWH3OIg==}
@@ -38382,6 +38570,7 @@ packages:
   /utils-merge/1.0.1:
     resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
     engines: {node: '>= 0.4.0'}
+    dev: true
 
   /uuid/3.4.0:
     resolution: {integrity: sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==}
@@ -38392,6 +38581,7 @@ packages:
   /uuid/8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
     hasBin: true
+    dev: true
 
   /v8-compile-cache-lib/3.0.1:
     resolution: {integrity: sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==}
@@ -38510,6 +38700,7 @@ packages:
   /vary/1.1.2:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
+    dev: true
 
   /vendors/1.0.4:
     resolution: {integrity: sha512-/juG65kTL4Cy2su4P8HjtkTxk6VmJDiOPBufWniqQ6wknac6jNiXS9vU+hO3wgusiyqWlzTbVHi0dyJqRONg3w==}
@@ -39002,6 +39193,7 @@ packages:
     resolution: {integrity: sha512-O84QOnr0icsbFGLS0O3bI5FswxzRr8/gHwWkDlQFskhSPryQXvrTMxjxGP4+iWYoauLoBvfDpkrOauZ+0iZpDA==}
     dependencies:
       minimalistic-assert: 1.0.1
+    dev: true
 
   /wcwidth/1.0.1:
     resolution: {integrity: sha512-XHPEwS0q6TaxcvG85+8EYkbiCux2XtWG2mkc47Ng2A77BQu9+DqIOJldST4HgPkuea7dvKSj5VgX3P1d4rW8Tg==}
@@ -39087,41 +39279,6 @@ packages:
       javascript-stringify: 2.1.0
     dev: true
 
-  /webpack-cli/4.10.0_uaydpeuxkjjcxdbyfgk36cjdxi:
-    resolution: {integrity: sha512-NLhDfH/h4O6UOy+0LSso42xvYypClINuMNBVVzX4vX98TmTaTUxwRbXdhucbFMd2qLaCTcLq/PdYrvi8onw90w==}
-    engines: {node: '>=10.13.0'}
-    hasBin: true
-    peerDependencies:
-      '@webpack-cli/generators': '*'
-      '@webpack-cli/migrate': '*'
-      webpack: 4.x.x || 5.x.x
-      webpack-bundle-analyzer: '*'
-      webpack-dev-server: '*'
-    peerDependenciesMeta:
-      '@webpack-cli/generators':
-        optional: true
-      '@webpack-cli/migrate':
-        optional: true
-      webpack-bundle-analyzer:
-        optional: true
-      webpack-dev-server:
-        optional: true
-    dependencies:
-      '@discoveryjs/json-ext': 0.5.7
-      '@webpack-cli/configtest': 1.2.0_pda42hcaj7d62cr262fr632kue
-      '@webpack-cli/info': 1.5.0_webpack-cli@4.10.0
-      '@webpack-cli/serve': 1.7.0_ud4agclah7rahur6ntojouq57y
-      colorette: 2.0.19
-      commander: 7.2.0
-      cross-spawn: 7.0.3
-      fastest-levenshtein: 1.0.16
-      import-local: 3.1.0
-      interpret: 2.2.0
-      rechoir: 0.7.1
-      webpack: 5.75.0_webpack-cli@4.10.0
-      webpack-dev-server: 4.11.1_pda42hcaj7d62cr262fr632kue
-      webpack-merge: 5.8.0
-
   /webpack-cli/4.10.0_webpack@5.75.0:
     resolution: {integrity: sha512-NLhDfH/h4O6UOy+0LSso42xvYypClINuMNBVVzX4vX98TmTaTUxwRbXdhucbFMd2qLaCTcLq/PdYrvi8onw90w==}
     engines: {node: '>=10.13.0'}
@@ -39155,7 +39312,6 @@ packages:
       rechoir: 0.7.1
       webpack: 5.75.0_webpack-cli@4.10.0
       webpack-merge: 5.8.0
-    dev: true
 
   /webpack-cli/4.10.0_zfjer5eiwvoit4zaxwbfe5plkm:
     resolution: {integrity: sha512-NLhDfH/h4O6UOy+0LSso42xvYypClINuMNBVVzX4vX98TmTaTUxwRbXdhucbFMd2qLaCTcLq/PdYrvi8onw90w==}
@@ -39189,6 +39345,73 @@ packages:
       interpret: 2.2.0
       rechoir: 0.7.1
       webpack: 5.75.0_webpack-cli@4.10.0
+      webpack-bundle-analyzer: 4.7.0
+      webpack-merge: 5.8.0
+
+  /webpack-cli/5.0.0_uaydpeuxkjjcxdbyfgk36cjdxi:
+    resolution: {integrity: sha512-AACDTo20yG+xn6HPW5xjbn2Be4KUzQPebWXsDMHwPPyKh9OnTOJgZN2Nc+g/FZKV3ObRTYsGvibAvc+5jAUrVA==}
+    engines: {node: '>=14.15.0'}
+    hasBin: true
+    peerDependencies:
+      '@webpack-cli/generators': '*'
+      webpack: 5.x.x
+      webpack-bundle-analyzer: '*'
+      webpack-dev-server: '*'
+    peerDependenciesMeta:
+      '@webpack-cli/generators':
+        optional: true
+      webpack-bundle-analyzer:
+        optional: true
+      webpack-dev-server:
+        optional: true
+    dependencies:
+      '@discoveryjs/json-ext': 0.5.7
+      '@webpack-cli/configtest': 2.0.0_5mhpyft47fxnqdave7meqiud7i
+      '@webpack-cli/info': 2.0.0_5mhpyft47fxnqdave7meqiud7i
+      '@webpack-cli/serve': 2.0.0_s4gx4u3got3vsyxpifomhm7lri
+      colorette: 2.0.19
+      commander: 9.4.1
+      cross-spawn: 7.0.3
+      envinfo: 7.8.1
+      fastest-levenshtein: 1.0.16
+      import-local: 3.1.0
+      interpret: 3.1.1
+      rechoir: 0.8.0
+      webpack: 5.75.0_webpack-cli@5.0.0
+      webpack-dev-server: 4.11.1_5mhpyft47fxnqdave7meqiud7i
+      webpack-merge: 5.8.0
+    dev: true
+
+  /webpack-cli/5.0.0_zfjer5eiwvoit4zaxwbfe5plkm:
+    resolution: {integrity: sha512-AACDTo20yG+xn6HPW5xjbn2Be4KUzQPebWXsDMHwPPyKh9OnTOJgZN2Nc+g/FZKV3ObRTYsGvibAvc+5jAUrVA==}
+    engines: {node: '>=14.15.0'}
+    hasBin: true
+    peerDependencies:
+      '@webpack-cli/generators': '*'
+      webpack: 5.x.x
+      webpack-bundle-analyzer: '*'
+      webpack-dev-server: '*'
+    peerDependenciesMeta:
+      '@webpack-cli/generators':
+        optional: true
+      webpack-bundle-analyzer:
+        optional: true
+      webpack-dev-server:
+        optional: true
+    dependencies:
+      '@discoveryjs/json-ext': 0.5.7
+      '@webpack-cli/configtest': 2.0.0_5mhpyft47fxnqdave7meqiud7i
+      '@webpack-cli/info': 2.0.0_5mhpyft47fxnqdave7meqiud7i
+      '@webpack-cli/serve': 2.0.0_5mhpyft47fxnqdave7meqiud7i
+      colorette: 2.0.19
+      commander: 9.4.1
+      cross-spawn: 7.0.3
+      envinfo: 7.8.1
+      fastest-levenshtein: 1.0.16
+      import-local: 3.1.0
+      interpret: 3.1.1
+      rechoir: 0.8.0
+      webpack: 5.75.0_webpack-cli@5.0.0
       webpack-bundle-analyzer: 4.7.0
       webpack-merge: 5.8.0
 
@@ -39232,6 +39455,7 @@ packages:
       range-parser: 1.2.1
       schema-utils: 4.0.0
       webpack: 5.75.0
+    dev: true
 
   /webpack-dev-server/3.11.3_webpack@4.46.0:
     resolution: {integrity: sha512-3x31rjbEQWKMNzacUZRE6wXvUFuGpH7vr0lIEbYpMAG9BOxi0928QU1BBswOAP3kg3H1O4hiS+sq4YyAn6ANnA==}
@@ -39280,6 +39504,55 @@ packages:
       yargs: 13.3.2
     transitivePeerDependencies:
       - bufferutil
+      - utf-8-validate
+    dev: true
+
+  /webpack-dev-server/4.11.1_5mhpyft47fxnqdave7meqiud7i:
+    resolution: {integrity: sha512-lILVz9tAUy1zGFwieuaQtYiadImb5M3d+H+L1zDYalYoDl0cksAB1UNyuE5MMWJrG6zR1tXkCP2fitl7yoUJiw==}
+    engines: {node: '>= 12.13.0'}
+    hasBin: true
+    peerDependencies:
+      webpack: ^4.37.0 || ^5.0.0
+      webpack-cli: '*'
+    peerDependenciesMeta:
+      webpack-cli:
+        optional: true
+    dependencies:
+      '@types/bonjour': 3.5.10
+      '@types/connect-history-api-fallback': 1.3.5
+      '@types/express': 4.17.14
+      '@types/serve-index': 1.9.1
+      '@types/serve-static': 1.15.0
+      '@types/sockjs': 0.3.33
+      '@types/ws': 8.5.3
+      ansi-html-community: 0.0.8
+      bonjour-service: 1.0.14
+      chokidar: 3.5.3
+      colorette: 2.0.19
+      compression: 1.7.4
+      connect-history-api-fallback: 2.0.0
+      default-gateway: 6.0.3
+      express: 4.18.2
+      graceful-fs: 4.2.10
+      html-entities: 2.3.3
+      http-proxy-middleware: 2.0.6_@types+express@4.17.14
+      ipaddr.js: 2.0.1
+      open: 8.4.0
+      p-retry: 4.6.2
+      rimraf: 3.0.2
+      schema-utils: 4.0.0
+      selfsigned: 2.1.1
+      serve-index: 1.9.1
+      sockjs: 0.3.24
+      spdy: 4.0.2
+      webpack: 5.75.0_webpack-cli@5.0.0
+      webpack-cli: 5.0.0_uaydpeuxkjjcxdbyfgk36cjdxi
+      webpack-dev-middleware: 5.3.3_webpack@5.75.0
+      ws: 8.11.0
+    transitivePeerDependencies:
+      - bufferutil
+      - debug
+      - supports-color
       - utf-8-validate
     dev: true
 
@@ -39370,7 +39643,7 @@ packages:
       sockjs: 0.3.24
       spdy: 4.0.2
       webpack: 5.75.0_webpack-cli@4.10.0
-      webpack-cli: 4.10.0_uaydpeuxkjjcxdbyfgk36cjdxi
+      webpack-cli: 4.10.0_webpack@5.75.0
       webpack-dev-middleware: 5.3.3_webpack@5.75.0
       ws: 8.11.0
     transitivePeerDependencies:
@@ -39378,6 +39651,7 @@ packages:
       - debug
       - supports-color
       - utf-8-validate
+    dev: true
 
   /webpack-dev-server/4.11.1_webpack@4.46.0:
     resolution: {integrity: sha512-lILVz9tAUy1zGFwieuaQtYiadImb5M3d+H+L1zDYalYoDl0cksAB1UNyuE5MMWJrG6zR1tXkCP2fitl7yoUJiw==}
@@ -39712,7 +39986,47 @@ packages:
       tapable: 2.2.1
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       watchpack: 2.4.0
-      webpack-cli: 4.10.0_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-cli: 4.10.0_webpack@5.75.0
+      webpack-sources: 3.2.3
+    transitivePeerDependencies:
+      - '@swc/core'
+      - esbuild
+      - uglify-js
+
+  /webpack/5.75.0_webpack-cli@5.0.0:
+    resolution: {integrity: sha512-piaIaoVJlqMsPtX/+3KTTO6jfvrSYgauFVdt8cr9LTHKmcq/AMd4mhzsiP7ZF/PGRNPGA8336jldh9l2Kt2ogQ==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
+    peerDependencies:
+      webpack-cli: '*'
+    peerDependenciesMeta:
+      webpack-cli:
+        optional: true
+    dependencies:
+      '@types/eslint-scope': 3.7.4
+      '@types/estree': 0.0.51
+      '@webassemblyjs/ast': 1.11.1
+      '@webassemblyjs/wasm-edit': 1.11.1
+      '@webassemblyjs/wasm-parser': 1.11.1
+      acorn: 8.8.1
+      acorn-import-assertions: 1.8.0_acorn@8.8.1
+      browserslist: 4.21.4
+      chrome-trace-event: 1.0.3
+      enhanced-resolve: 5.10.0
+      es-module-lexer: 0.9.3
+      eslint-scope: 5.1.1
+      events: 3.3.0
+      glob-to-regexp: 0.4.1
+      graceful-fs: 4.2.10
+      json-parse-even-better-errors: 2.3.1
+      loader-runner: 4.3.0
+      mime-types: 2.1.35
+      neo-async: 2.6.2
+      schema-utils: 3.1.1
+      tapable: 2.2.1
+      terser-webpack-plugin: 5.3.6_webpack@5.75.0
+      watchpack: 2.4.0
+      webpack-cli: 5.0.0_zfjer5eiwvoit4zaxwbfe5plkm
       webpack-sources: 3.2.3
     transitivePeerDependencies:
       - '@swc/core'
@@ -39726,10 +40040,12 @@ packages:
       http-parser-js: 0.5.8
       safe-buffer: 5.2.1
       websocket-extensions: 0.1.4
+    dev: true
 
   /websocket-extensions/0.1.4:
     resolution: {integrity: sha512-OqedPIGOfsDlo31UNwYbCFMSaO9m9G/0faIHj5/dZFDMFqPTcx6UwqyOy3COEaEOg/9VsGIpdqn62W5KhoKSpg==}
     engines: {node: '>=0.8.0'}
+    dev: true
 
   /whatwg-encoding/1.0.5:
     resolution: {integrity: sha512-b5lim54JOPN9HtzvK9HFXvBma/rnfFeqsic0hSpjtDbVxR3dJKLc+KB4V6GgiGOvl7CY/KNh8rxSo9DKQrnUEw==}
