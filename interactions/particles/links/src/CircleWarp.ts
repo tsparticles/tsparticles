@@ -11,8 +11,15 @@ export class CircleWarp extends Circle {
      * @param y Y coordinate of the position
      * @param radius Circle's radius
      * @param canvasSize the canvas size, used for warp formulas
+     * @param offsets warp offsets for looking around the center
      */
-    constructor(x: number, y: number, radius: number, private readonly canvasSize: IDimension) {
+    constructor(
+        x: number,
+        y: number,
+        radius: number,
+        private readonly canvasSize: IDimension,
+        private readonly offsets: ICoordinates[]
+    ) {
         super(x, y, radius);
 
         this.canvasSize = { ...canvasSize };
@@ -28,16 +35,10 @@ export class CircleWarp extends Circle {
             return true;
         }
 
-        const offsets = [
-            [0, this.canvasSize.height],
-            [this.canvasSize.width, 0],
-            [this.canvasSize.width, this.canvasSize.height],
-        ];
-
-        for (const offset of offsets) {
+        for (const offset of this.offsets) {
             const pos = {
-                x: point.x + offset[0],
-                y: point.y + offset[1],
+                x: point.x + offset.x,
+                y: point.y + offset.y,
             };
 
             if (super.contains(pos)) {

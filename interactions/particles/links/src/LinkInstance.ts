@@ -1,5 +1,5 @@
 import type { IContainerPlugin, IRangeColor, IRgb, RangeValue } from "tsparticles-engine";
-import { drawLinkLine, drawLinkTriangle } from "./Utils";
+import { drawLinkLine, drawLinkTriangle, getOffsets } from "./Utils";
 import { getDistance, getLinkColor, getRandom, getRangeValue, rangeColorToRgb } from "tsparticles-engine";
 import type { ILink } from "./ILink";
 import type { LinkContainer } from "./LinkContainer";
@@ -44,6 +44,8 @@ export class LinkInstance implements IContainerPlugin {
     private readonly _freqs: IParticlesFrequencies;
 
     constructor(private readonly container: LinkContainer) {
+        container.offsets = getOffsets(container.canvas.size);
+
         this._freqs = {
             links: new Map<string, number>(),
             triangles: new Map<string, number>(),
@@ -90,6 +92,10 @@ export class LinkInstance implements IContainerPlugin {
 
     particleDestroyed(particle: LinkParticle): void {
         particle.links = [];
+    }
+
+    resize(): void {
+        this.container.offsets = getOffsets(this.container.canvas.size);
     }
 
     private drawLinkLine(p1: LinkParticle, link: ILink): void {
@@ -154,6 +160,7 @@ export class LinkInstance implements IContainerPlugin {
                 maxDistance,
                 container.canvas.size,
                 p1.options.links.warp,
+                this.container.offsets,
                 options.backgroundMask.enable,
                 options.backgroundMask.composite,
                 colorLine,

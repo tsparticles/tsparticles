@@ -7,7 +7,7 @@ import type { LinkParticle } from "./LinkParticle";
 import { Links } from "./Options/Classes/Links";
 import type { ParticlesLinkOptions } from "./Options/Classes/ParticlesLinkOptions";
 
-function findLink(p1: LinkParticle, p2: LinkParticle): boolean {
+export function findLink(p1: LinkParticle, p2: LinkParticle): boolean {
     if (!p1.links || !p2.links) {
         return false;
     }
@@ -15,12 +15,13 @@ function findLink(p1: LinkParticle, p2: LinkParticle): boolean {
     return !!p1.links.find((t) => t.destination === p2) || !!p2.links.find((t) => t.destination === p1);
 }
 
-function getLinkDistance(
+export function getLinkDistance(
     pos1: ICoordinates,
     pos2: ICoordinates,
     optDistance: number,
     canvasSize: IDimension,
-    warp: boolean
+    warp: boolean,
+    offsets: ICoordinates[]
 ): number | undefined {
     const distance = getDistance(pos1, pos2);
 
@@ -32,25 +33,14 @@ function getLinkDistance(
         return;
     }
 
-    const offsets = [
-        [0, canvasSize.height],
-        [canvasSize.width, 0],
-        [canvasSize.width, canvasSize.height],
-        [-canvasSize.width, 0],
-        [0, -canvasSize.height],
-        [-canvasSize.width, -canvasSize.height],
-        [canvasSize.width, -canvasSize.height],
-        [-canvasSize.width, canvasSize.height],
-    ];
-
     for (const offset of offsets) {
         const pos1o = {
-                x: pos1.x + offset[0],
-                y: pos1.y + offset[1],
+                x: pos1.x + offset.x,
+                y: pos1.y + offset.y,
             },
             pos2o = {
-                x: pos2.x + offset[0],
-                y: pos2.y + offset[1],
+                x: pos2.x + offset.x,
+                y: pos2.y + offset.y,
             },
             d1 = getDistance(pos1o, pos2),
             d2 = getDistance(pos1, pos2o);
@@ -102,7 +92,7 @@ class Linker extends ParticlesInteractorBase {
             optDistance = p1.retina.linksDistance ?? 0,
             warp = linkOpt1.warp,
             range = warp
-                ? new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize)
+                ? new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize, this.linkContainer.offsets)
                 : new Circle(pos1.x, pos1.y, optDistance),
             query = container.particles.quadTree.query(range) as LinkParticle[];
 
@@ -128,7 +118,14 @@ class Linker extends ParticlesInteractorBase {
                 continue;
             }
 
-            const distance = getLinkDistance(pos1, pos2, optDistance, canvasSize, warp && linkOpt2.warp);
+            const distance = getLinkDistance(
+                pos1,
+                pos2,
+                optDistance,
+                canvasSize,
+                warp && linkOpt2.warp,
+                this.linkContainer.offsets
+            );
 
             if (distance === undefined || distance > optDistance) {
                 return;
