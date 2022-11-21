@@ -83,9 +83,7 @@ export function getIntermediatePoints(
                 pi2 = { x: end.x, y: canvasSize.height };
             }
 
-            if (pi1 && pi2) {
-                break;
-            }
+            break;
         } else if (d1.dy === 0 || d2.dy === 0) {
             if (Math.abs(d1.dx) > maxDistance && Math.abs(d2.dx) > maxDistance) {
                 continue;
@@ -99,9 +97,7 @@ export function getIntermediatePoints(
                 pi2 = { x: canvasSize.width, y: end.y };
             }
 
-            if (pi1 && pi2) {
-                break;
-            }
+            break;
         } else {
             let m: number, q: number, beginPos: ICoordinates, endPos: ICoordinates;
 
