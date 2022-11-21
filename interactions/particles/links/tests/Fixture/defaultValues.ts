@@ -181,7 +181,7 @@ export const tests: LinkTest[] = [
             },
         ],
         warp: true,
-    }/*,
+    } /*,
     {
         begin: { x: 3, y: 1 },
         tests: [
@@ -200,5 +200,5 @@ export const tests: LinkTest[] = [
             }
         ],
         warp: true,
-    }*/
+    }*/,
 ];
