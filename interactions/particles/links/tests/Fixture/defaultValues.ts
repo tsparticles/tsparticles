@@ -181,7 +181,7 @@ export const tests: LinkTest[] = [
             },
         ],
         warp: true,
-    } /*,
+    },
     {
         begin: { x: 3, y: 1 },
         tests: [
@@ -194,11 +194,11 @@ export const tests: LinkTest[] = [
                 coordinates: { x: 99, y: 2 },
                 fail: false,
                 midPoints: [
-                    { x: 100, y: 7 / 4 },
                     { x: 0, y: 107 / 4 },
+                    { x: 100, y: 7 / 4 },
                 ],
             },
         ],
         warp: true,
-    },*/,
+    },
 ];
