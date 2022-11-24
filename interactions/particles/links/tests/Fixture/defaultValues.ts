@@ -220,4 +220,23 @@ export const tests: LinkTest[] = [
         ],
         warp: true,
     },
+    {
+        begin: { x: 3, y: 2 },
+        tests: [
+            {
+                coordinates: { x: 3, y: 3 },
+                fail: false,
+                midPoints: [],
+            },
+            {
+                coordinates: { x: 99, y: 1 },
+                fail: false,
+                midPoints: [
+                    //{ x: 0, y: 107 / 4 },
+                    //{ x: 100, y: 7 / 4 },
+                ],
+            },
+        ],
+        warp: true,
+    },
 ];

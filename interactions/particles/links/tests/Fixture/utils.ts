@@ -32,10 +32,10 @@ export function checkIntermediatePointsTests(
             ).to.be.not.undefined;
         }
 
-        expect(point.begin.x).to.be.within(0, canvasSize.width);
-        expect(point.begin.y).to.be.within(0, canvasSize.height);
-        expect(point.end.x).to.be.within(0, canvasSize.width);
-        expect(point.end.y).to.be.within(0, canvasSize.height);
+        //expect(point.begin.x).to.be.within(0, canvasSize.width);
+        //expect(point.begin.y).to.be.within(0, canvasSize.height);
+        //expect(point.end.x).to.be.within(0, canvasSize.width);
+        //expect(point.end.y).to.be.within(0, canvasSize.height);
     }
 }
 

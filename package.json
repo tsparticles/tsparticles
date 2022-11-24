@@ -19,11 +19,11 @@
   },
   "prettier": "@tsparticles/prettier-config",
   "devDependencies": {
-    "@commitlint/cli": "^17.2.0",
-    "@commitlint/config-conventional": "^17.2.0",
-    "@nrwl/cli": "^15.0.13",
+    "@commitlint/cli": "^17.3.0",
+    "@commitlint/config-conventional": "^17.3.0",
+    "@nrwl/cli": "^15.2.1",
     "@nrwl/nx-cloud": "^15.0.2",
-    "@nrwl/workspace": "^15.0.13",
+    "@nrwl/workspace": "^15.2.1",
     "@parcel/core": "^2.8.0",
     "@parcel/transformer-sass": "^2.8.0",
     "@tsparticles/prettier-config": "^1.3.1",
@@ -32,7 +32,7 @@
     "husky": "^8.0.2",
     "ini": "^3.0.1",
     "lerna": "^6.0.3",
-    "nx": "^15.0.13",
+    "nx": "^15.2.1",
     "parcel": "^2.8.0",
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
@@ -42,7 +42,7 @@
     "typedoc-plugin-coverage": "^2.0.0",
     "typedoc-plugin-keyword": "^1.1.0",
     "typedoc-plugin-missing-exports": "^1.0.0",
-    "typescript": "^4.8.4",
+    "typescript": "^4.9.3",
     "yorkie": "^2.0.0"
   }
 }
