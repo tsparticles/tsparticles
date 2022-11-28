@@ -33,7 +33,7 @@
     "@typescript-eslint/parser": "^5.43.0",
     "eslint": "^8.27.0",
     "eslint-config-prettier": "^8.5.0",
-    "fs-extra": "^10.1.0",
+    "fs-extra": "^11.0.0",
     "jsdom": "^20.0.2",
     "klaw": "^4.0.1",
     "lodash": "^4.17.21",

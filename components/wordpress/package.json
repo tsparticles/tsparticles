@@ -111,7 +111,7 @@
 		"@wordpress/blocks": "^11.20.0",
 		"@wordpress/i18n": "^4.21.0",
 		"@wordpress/scripts": "^24.5.0",
-		"fs-extra": "^10.1.0",
+		"fs-extra": "^11.0.0",
 		"gulp": "^4.0.2",
 		"typescript": "^4.8.4"
 	}
