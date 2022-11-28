@@ -27,7 +27,7 @@
     },
     "homepage": "https://particles.js.org",
     "dependencies": {
-        "fs-extra": "^10.1.0",
+        "fs-extra": "^11.0.0",
         "gh-pages": "^4.0.0",
         "minify": "^9.1.0",
         "prettier": "^2.7.1",

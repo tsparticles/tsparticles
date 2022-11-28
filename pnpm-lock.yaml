@@ -968,7 +968,7 @@ importers:
       '@wordpress/blocks': ^11.20.0
       '@wordpress/i18n': ^4.21.0
       '@wordpress/scripts': ^24.5.0
-      fs-extra: ^10.1.0
+      fs-extra: ^11.0.0
       gulp: ^4.0.2
       tsparticles: ^2.5.3
       tsparticles-engine: ^2.5.2
@@ -1136,7 +1136,7 @@ importers:
       '@wordpress/blocks': 11.20.0_react@17.0.2
       '@wordpress/i18n': 4.21.0
       '@wordpress/scripts': 24.5.0_56jbash75ng5psbctf36wqywr4
-      fs-extra: 10.1.0
+      fs-extra: 11.0.0
       gulp: 4.0.2
       typescript: 4.8.4
 
@@ -2125,7 +2125,7 @@ importers:
   demo/vanilla_new:
     specifiers:
       copyfiles: ^2.4.1
-      fs-extra: ^10.1.0
+      fs-extra: ^11.0.0
       minify: ^9.1.0
       rimraf: ^3.0.2
       sass: ^1.56.1
@@ -2143,7 +2143,7 @@ importers:
       tsparticles-updater-orbit: ^2.5.3
     dependencies:
       copyfiles: 2.4.1
-      fs-extra: 10.1.0
+      fs-extra: 11.0.0
       minify: 9.1.0
       rimraf: 3.0.2
       sass: 1.56.1
@@ -2406,7 +2406,7 @@ importers:
       copyfiles: ^2.4.1
       eslint: ^8.27.0
       eslint-config-prettier: ^8.5.0
-      fs-extra: ^10.1.0
+      fs-extra: ^11.0.0
       install: ^0.13.0
       jsdom: ^20.0.2
       jsdom-global: ^3.0.2
@@ -2446,7 +2446,7 @@ importers:
       copyfiles: 2.4.1
       eslint: 8.27.0
       eslint-config-prettier: 8.5.0_eslint@8.27.0
-      fs-extra: 10.1.0
+      fs-extra: 11.0.0
       install: 0.13.0
       jsdom: 20.0.2_canvas@2.10.2
       jsdom-global: 3.0.2_jsdom@20.0.2
@@ -5727,7 +5727,7 @@ importers:
 
   templates/react:
     specifiers:
-      fs-extra: ^10.1.0
+      fs-extra: ^11.0.0
       react-particles: ^2.5.3
       tslib: ^2.4.1
       tsparticles: ^2.5.3
@@ -5738,11 +5738,11 @@ importers:
       tsparticles: link:../../bundles/full/dist
       tsparticles-engine: link:../../engine/dist
     devDependencies:
-      fs-extra: 10.1.0
+      fs-extra: 11.0.0
 
   templates/react-ts:
     specifiers:
-      fs-extra: ^10.1.0
+      fs-extra: ^11.0.0
       react-particles: ^2.5.3
       tslib: ^2.4.1
       tsparticles: ^2.5.3
@@ -5753,7 +5753,7 @@ importers:
       tsparticles: link:../../bundles/full/dist
       tsparticles-engine: link:../../engine/dist
     devDependencies:
-      fs-extra: 10.1.0
+      fs-extra: 11.0.0
 
   updaters/angle:
     specifiers:
@@ -6520,7 +6520,7 @@ importers:
       '@typescript-eslint/parser': ^5.43.0
       eslint: ^8.27.0
       eslint-config-prettier: ^8.5.0
-      fs-extra: ^10.1.0
+      fs-extra: ^11.0.0
       jsdom: ^20.0.2
       klaw: ^4.0.1
       lodash: ^4.17.21
@@ -6605,7 +6605,7 @@ importers:
       '@typescript-eslint/parser': 5.43.0_rmayb2veg2btbq6mbmnyivgasy
       eslint: 8.27.0
       eslint-config-prettier: 8.5.0_eslint@8.27.0
-      fs-extra: 10.1.0
+      fs-extra: 11.0.0
       jsdom: 20.0.2
       klaw: 4.0.1
       lodash: 4.17.21
@@ -6705,7 +6705,7 @@ importers:
 
   websites/particles.js.org:
     specifiers:
-      fs-extra: ^10.1.0
+      fs-extra: ^11.0.0
       gh-pages: ^4.0.0
       minify: ^9.1.0
       prettier: ^2.7.1
@@ -6716,7 +6716,7 @@ importers:
       tsparticles-engine: ^2.5.2
       tsparticles-preset-links: ^2.5.3
     dependencies:
-      fs-extra: 10.1.0
+      fs-extra: 11.0.0
       gh-pages: 4.0.0
       minify: 9.1.0
       prettier: 2.7.1
@@ -23839,6 +23839,15 @@ packages:
   /fs-extra/10.1.0:
     resolution: {integrity: sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ==}
     engines: {node: '>=12'}
+    dependencies:
+      graceful-fs: 4.2.10
+      jsonfile: 6.1.0
+      universalify: 2.0.0
+    dev: true
+
+  /fs-extra/11.0.0:
+    resolution: {integrity: sha512-4YxRvMi4P5C3WQTvdRfrv5UVqbISpqjORFQAW5QPiKAauaxNCwrEdIi6pG3tDFhKKpMen+enEhHIzB/tvIO+/w==}
+    engines: {node: '>=14.14'}
     dependencies:
       graceful-fs: 4.2.10
       jsonfile: 6.1.0
