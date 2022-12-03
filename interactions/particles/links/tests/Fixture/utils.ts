@@ -1,4 +1,4 @@
-import { ICoordinates, IDimension } from "tsparticles-engine";
+import { /*getDistance,*/ ICoordinates, IDimension } from "tsparticles-engine";
 import { getLinkPoints } from "../../src/Utils";
 import { expect } from "chai";
 
@@ -24,6 +24,10 @@ export function checkIntermediatePointsTests(
         expect(point).to.be.not.empty;
 
         if (midPoints.length) {
+            //const midDistance = getDistance(point.begin, point.end);
+
+            //expect(midDistance).to.be.greaterThanOrEqual(0).and.lessThan(distance);
+
             expect(
                 midPoints.find(
                     t =>

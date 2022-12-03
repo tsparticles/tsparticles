@@ -41,12 +41,12 @@ function setLinkFrequency(particles: LinkParticle[], dictionary: Map<string, num
 }
 
 export class LinkInstance implements IContainerPlugin {
-    private readonly _freqs: IParticlesFrequencies;
+    private readonly _frequencies: IParticlesFrequencies;
 
     constructor(private readonly container: LinkContainer) {
         container.offsets = getOffsets(container.canvas.size);
 
-        this._freqs = {
+        this._frequencies = {
             links: new Map<string, number>(),
             triangles: new Map<string, number>(),
         };
@@ -73,8 +73,8 @@ export class LinkInstance implements IContainerPlugin {
     }
 
     async init(): Promise<void> {
-        this._freqs.links = new Map<string, number>();
-        this._freqs.triangles = new Map<string, number>();
+        this._frequencies.links = new Map<string, number>();
+        this._frequencies.triangles = new Map<string, number>();
     }
 
     particleCreated(particle: LinkParticle): void {
@@ -263,10 +263,10 @@ export class LinkInstance implements IContainerPlugin {
     }
 
     private getLinkFrequency(p1: LinkParticle, p2: LinkParticle): number {
-        return setLinkFrequency([p1, p2], this._freqs.links);
+        return setLinkFrequency([p1, p2], this._frequencies.links);
     }
 
     private getTriangleFrequency(p1: LinkParticle, p2: LinkParticle, p3: LinkParticle): number {
-        return setLinkFrequency([p1, p2, p3], this._freqs.triangles);
+        return setLinkFrequency([p1, p2, p3], this._frequencies.triangles);
     }
 }

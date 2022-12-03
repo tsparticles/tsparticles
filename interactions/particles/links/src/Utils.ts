@@ -115,43 +115,32 @@ export function getIntermediatePoints(
                 return [];
             }
 
-            for (const innerOffset of offsets) {
-                const px = { x: innerOffset.x, y: m * innerOffset.x + q },
-                    py = {
-                        x: Number.isFinite(m) ? innerOffset.y - q / m : q,
-                        y: Number.isFinite(m) ? innerOffset.y : offset.y,
-                    };
+            if (beginPos.x > canvasSize.width) {
+                pi1 = { x: canvasSize.width, y: m * canvasSize.width + q };
+                pi2 = { x: 0, y: q };
+            } else if (beginPos.x < 0) {
+                pi1 = { x: 0, y: q };
+                pi2 = { x: canvasSize.width, y: m * canvasSize.width + q };
+            } else if (beginPos.y > canvasSize.height) {
+                pi1 = { x: (canvasSize.height - q) / m, y: canvasSize.height };
+                pi2 = { x: -q / m, y: 0 };
+            } else if (beginPos.y < 0) {
+                pi1 = { x: -q / m, y: 0 };
+                pi2 = { x: (canvasSize.height - q) / m, y: canvasSize.height };
+            }
 
-                if (isPointBetweenPoints(px, beginPos, endPos)) {
-                    const db = getDistance(beginPos, px),
-                        de = getDistance(endPos, px);
-
-                    const xi = offset.x - px.x,
-                        yi = m * xi + q;
-
-                    if (db <= de) {
-                        pi1 = { x: xi, y: yi };
-                        pi2 = px;
-                    } else {
-                        pi1 = px;
-                        pi2 = { x: xi, y: yi };
-                    }
-                } else if (isPointBetweenPoints(py, beginPos, endPos)) {
-                    const db = getDistance(beginPos, py),
-                        de = getDistance(endPos, py),
-                        yi = offset.y - py.y,
-                        xi = (yi - q) / m;
-
-                    if (yi >= 0 && xi >= 0) {
-                        if (db <= de) {
-                            pi1 = { x: xi, y: yi };
-                            pi2 = py;
-                        } else {
-                            pi1 = py;
-                            pi2 = { x: xi, y: yi };
-                        }
-                    }
-                }
+            if (endPos.x > canvasSize.width) {
+                pi1 = { x: canvasSize.width, y: m * canvasSize.width + q };
+                pi2 = { x: 0, y: q };
+            } else if (endPos.x < 0) {
+                pi1 = { x: 0, y: q };
+                pi2 = { x: canvasSize.width, y: m * canvasSize.width + q };
+            } else if (endPos.y > canvasSize.height) {
+                pi1 = { x: (canvasSize.height - q) / m, y: canvasSize.height };
+                pi2 = { x: -q / m, y: 0 };
+            } else if (endPos.y < 0) {
+                pi1 = { x: -q / m, y: 0 };
+                pi2 = { x: (canvasSize.height - q) / m, y: canvasSize.height };
             }
 
             if (pi1 && pi2) {
