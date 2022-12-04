@@ -29,7 +29,7 @@
     "@ionic/core": "^6.3.6",
     "ionicons": "^6.0.4",
     "ng-particles": "^3.5.3",
-    "rxjs": "~7.5.7",
+    "rxjs": "~7.6.0",
     "tslib": "^2.4.1",
     "tsparticles": "^2.5.3",
     "tsparticles-engine": "^2.5.2",
