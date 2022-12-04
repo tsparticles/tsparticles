@@ -1,4 +1,4 @@
-import { /*getDistance,*/ ICoordinates, IDimension } from "tsparticles-engine";
+import { getDistance, ICoordinates, IDimension } from "tsparticles-engine";
 import { getLinkPoints } from "../../src/Utils";
 import { expect } from "chai";
 
@@ -9,9 +9,8 @@ export function checkIntermediatePointsTests(
     distance: number,
     warp: boolean,
     canvasSize: IDimension,
-    offsets: ICoordinates[]
 ): void {
-    const linkPoints = getLinkPoints(begin, end, distance, warp, canvasSize, offsets);
+    const linkPoints = getLinkPoints(begin, end, distance, warp, canvasSize);
 
     console.log("begin", begin);
     console.log("end", end);
@@ -24,9 +23,9 @@ export function checkIntermediatePointsTests(
         expect(point).to.be.not.empty;
 
         if (midPoints.length) {
-            //const midDistance = getDistance(point.begin, point.end);
+            const midDistance = getDistance(point.begin, point.end);
 
-            //expect(midDistance).to.be.greaterThanOrEqual(0).and.lessThan(distance);
+            expect(midDistance).to.be.greaterThanOrEqual(0).and.lessThan(distance);
 
             expect(
                 midPoints.find(
@@ -48,10 +47,9 @@ export function checkIntermediatePointsFailTests(
     end: ICoordinates,
     distance: number,
     warp: boolean,
-    canvasSize: IDimension,
-    offsets: ICoordinates[]
+    canvasSize: IDimension
 ): void {
-    const linkPoints = getLinkPoints(begin, end, distance, warp, canvasSize, offsets);
+    const linkPoints = getLinkPoints(begin, end, distance, warp, canvasSize);
 
     expect(linkPoints).to.be.empty;
 }

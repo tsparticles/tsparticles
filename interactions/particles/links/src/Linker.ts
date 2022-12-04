@@ -6,6 +6,7 @@ import type { LinkContainer } from "./LinkContainer";
 import type { LinkParticle } from "./LinkParticle";
 import { Links } from "./Options/Classes/Links";
 import type { ParticlesLinkOptions } from "./Options/Classes/ParticlesLinkOptions";
+import { offsetsFactors } from "./Utils";
 
 export function findLink(p1: LinkParticle, p2: LinkParticle): boolean {
     if (!p1.links || !p2.links) {
@@ -20,8 +21,7 @@ export function getLinkDistance(
     pos2: ICoordinates,
     optDistance: number,
     canvasSize: IDimension,
-    warp: boolean,
-    offsets: ICoordinates[]
+    warp: boolean
 ): number | undefined {
     const distance = getDistance(pos1, pos2);
 
@@ -33,8 +33,9 @@ export function getLinkDistance(
         return;
     }
 
-    for (const offset of offsets) {
-        const pos1o = {
+    for (const offsetFactor of offsetsFactors) {
+        const offset = { x: offsetFactor.x * canvasSize.width, y: offsetFactor.y * canvasSize.height },
+            pos1o = {
                 x: pos1.x + offset.x,
                 y: pos1.y + offset.y,
             },
@@ -93,7 +94,7 @@ class Linker extends ParticlesInteractorBase {
             optDistance = p1.retina.linksDistance ?? 0,
             warp = linkOpt1.warp,
             range = warp
-                ? new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize, this.linkContainer.offsets)
+                ? new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize)
                 : new Circle(pos1.x, pos1.y, optDistance),
             query = container.particles.quadTree.query(range) as LinkParticle[];
 
@@ -119,14 +120,7 @@ class Linker extends ParticlesInteractorBase {
                 continue;
             }
 
-            const distance = getLinkDistance(
-                pos1,
-                pos2,
-                optDistance,
-                canvasSize,
-                warp && linkOpt2.warp,
-                this.linkContainer.offsets
-            );
+            const distance = getLinkDistance(pos1, pos2, optDistance, canvasSize, warp && linkOpt2.warp);
 
             if (distance === undefined || distance > optDistance) {
                 return;

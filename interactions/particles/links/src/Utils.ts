@@ -9,26 +9,23 @@ import {
 } from "tsparticles-engine";
 import type { ILinksShadow } from "./Options/Interfaces/ILinksShadow";
 
-export function getOffsets(canvasSize: IDimension): ICoordinates[] {
-    return [
-        { x: canvasSize.width, y: 0 },
-        { x: 0, y: canvasSize.height },
-        { x: canvasSize.width, y: canvasSize.height },
-        { x: -canvasSize.width, y: 0 },
-        { x: 0, y: -canvasSize.height },
-        { x: -canvasSize.width, y: -canvasSize.height },
-        { x: canvasSize.width, y: -canvasSize.height },
-        { x: -canvasSize.width, y: canvasSize.height },
-    ];
-}
+export const offsetsFactors = [
+    { x: 1, y: 0 },
+    { x: 0, y: 1 },
+    { x: 1, y: 1 },
+    { x: -1, y: 0 },
+    { x: 0, y: -1 },
+    { x: -1, y: -1 },
+    { x: 1, y: -1 },
+    { x: -1, y: 1 },
+];
 
 export function getLinkPoints(
     begin: ICoordinates,
     end: ICoordinates,
     maxDistance: number,
     warp: boolean,
-    canvasSize: IDimension,
-    offsets: ICoordinates[]
+    canvasSize: IDimension
 ): { begin: ICoordinates; end: ICoordinates }[] {
     const lines: { begin: ICoordinates; end: ICoordinates }[] = [];
 
@@ -37,7 +34,7 @@ export function getLinkPoints(
     }
 
     if (warp) {
-        for (const line of getIntermediatePoints(begin, end, canvasSize, maxDistance, offsets)) {
+        for (const line of getIntermediatePoints(begin, end, canvasSize, maxDistance)) {
             lines.push(line);
         }
     }
@@ -49,13 +46,13 @@ export function getIntermediatePoints(
     begin: ICoordinates,
     end: ICoordinates,
     canvasSize: IDimension,
-    maxDistance: number,
-    offsets: ICoordinates[]
+    maxDistance: number
 ): { begin: ICoordinates; end: ICoordinates }[] {
     let pi1: ICoordinates | undefined, pi2: ICoordinates | undefined;
 
-    for (const offset of offsets) {
-        const pos1 = {
+    for (const offsetFactor of offsetsFactors) {
+        const offset = { x: offsetFactor.x * canvasSize.width, y: offsetFactor.y * canvasSize.height },
+            pos1 = {
                 x: begin.x + offset.x,
                 y: begin.y + offset.y,
             },
@@ -174,14 +171,13 @@ export function drawLinkLine(
     maxDistance: number,
     canvasSize: IDimension,
     warp: boolean,
-    offsets: ICoordinates[],
     backgroundMask: boolean,
     composite: GlobalCompositeOperation,
     colorLine: IRgb,
     opacity: number,
     shadow: ILinksShadow
 ): void {
-    const lines = getLinkPoints(begin, end, maxDistance, warp, canvasSize, offsets);
+    const lines = getLinkPoints(begin, end, maxDistance, warp, canvasSize);
 
     if (!lines.length) {
         return;

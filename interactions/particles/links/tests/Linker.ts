@@ -1,7 +1,7 @@
 import { describe, it } from "mocha";
 import { expect } from "chai";
 import { getLinkDistance } from "../src/Linker";
-import { canvasSize, distance, offsets, tests } from "./Fixture/defaultValues";
+import { canvasSize, distance, tests } from "./Fixture/defaultValues";
 import { checkIntermediatePointsFailTests, checkIntermediatePointsTests } from "./Fixture/utils";
 
 describe(`Linker (Canvas: ${canvasSize.width}x${canvasSize.height}, Distance: ${distance})`, () => {
@@ -15,8 +15,7 @@ describe(`Linker (Canvas: ${canvasSize.width}x${canvasSize.height}, Distance: ${
                             end.coordinates,
                             distance,
                             test.warp,
-                            canvasSize,
-                            offsets
+                            canvasSize
                         );
                     } else {
                         const linkDistance = getLinkDistance(
@@ -24,8 +23,7 @@ describe(`Linker (Canvas: ${canvasSize.width}x${canvasSize.height}, Distance: ${
                             end.coordinates,
                             distance,
                             canvasSize,
-                            test.warp,
-                            offsets
+                            test.warp
                         );
 
                         console.log("linkDistance", linkDistance);
@@ -38,8 +36,7 @@ describe(`Linker (Canvas: ${canvasSize.width}x${canvasSize.height}, Distance: ${
                             end.midPoints,
                             distance,
                             test.warp,
-                            canvasSize,
-                            offsets
+                            canvasSize
                         );
                     }
                 });

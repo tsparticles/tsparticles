@@ -1,5 +1,6 @@
 import { Circle, Rectangle } from "tsparticles-engine";
 import type { ICoordinates, IDimension, Range } from "tsparticles-engine";
+import { offsetsFactors } from "./Utils";
 
 /**
  * @category Utils
@@ -11,15 +12,8 @@ export class CircleWarp extends Circle {
      * @param y Y coordinate of the position
      * @param radius Circle's radius
      * @param canvasSize the canvas size, used for warp formulas
-     * @param offsets warp offsets for looking around the center
      */
-    constructor(
-        x: number,
-        y: number,
-        radius: number,
-        private readonly canvasSize: IDimension,
-        private readonly offsets: ICoordinates[]
-    ) {
+    constructor(x: number, y: number, radius: number, private readonly canvasSize: IDimension) {
         super(x, y, radius);
 
         this.canvasSize = { ...canvasSize };
@@ -35,11 +29,15 @@ export class CircleWarp extends Circle {
             return true;
         }
 
-        for (const offset of this.offsets) {
-            const pos = {
-                x: point.x + offset.x,
-                y: point.y + offset.y,
-            };
+        for (const offsetFactor of offsetsFactors) {
+            const offset = {
+                    x: offsetFactor.x * this.canvasSize.width,
+                    y: offsetFactor.y * this.canvasSize.height,
+                },
+                pos = {
+                    x: point.x + offset.x,
+                    y: point.y + offset.y,
+                };
 
             if (super.contains(pos)) {
                 return true;

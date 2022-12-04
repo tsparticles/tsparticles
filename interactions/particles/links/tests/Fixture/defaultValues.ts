@@ -1,9 +1,7 @@
 import { LinkTest } from "./types";
-import { getOffsets } from "../../src/Utils";
 
 export const canvasSize = { width: 100, height: 100 },
-    distance = 10,
-    offsets = getOffsets(canvasSize);
+    distance = 10;
 
 export const tests: LinkTest[] = [
     {
