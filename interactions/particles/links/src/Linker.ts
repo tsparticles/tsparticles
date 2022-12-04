@@ -69,6 +69,7 @@ class Linker extends ParticlesInteractorBase {
     }
 
     init(): void {
+        this.linkContainer.particles.linksColor = undefined;
         this.linkContainer.particles.linksColors = new Map<string, IRgb | string | undefined>();
     }
 
