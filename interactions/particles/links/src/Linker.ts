@@ -1,62 +1,58 @@
 import { Circle, ParticlesInteractorBase, getDistance, getLinkRandomColor } from "tsparticles-engine";
-import type { Engine, ICoordinates, IDimension, IRgb, RecursivePartial } from "tsparticles-engine";
+import type { ICoordinates, IDimension, IRgb, RecursivePartial } from "tsparticles-engine";
 import { CircleWarp } from "./CircleWarp";
 import type { IParticlesLinkOptions } from "./Options/Interfaces/IParticlesLinkOptions";
 import type { LinkContainer } from "./LinkContainer";
 import type { LinkParticle } from "./LinkParticle";
 import { Links } from "./Options/Classes/Links";
 import type { ParticlesLinkOptions } from "./Options/Classes/ParticlesLinkOptions";
-import { offsetsFactors } from "./Utils";
 
-export function findLink(p1: LinkParticle, p2: LinkParticle): boolean {
-    if (!p1.links || !p2.links) {
-        return false;
-    }
-
-    return !!p1.links.find((t) => t.destination === p2) || !!p2.links.find((t) => t.destination === p1);
-}
-
-export function getLinkDistance(
+function getLinkDistance(
     pos1: ICoordinates,
     pos2: ICoordinates,
     optDistance: number,
     canvasSize: IDimension,
     warp: boolean
-): number | undefined {
-    const distance = getDistance(pos1, pos2);
+): number {
+    let distance = getDistance(pos1, pos2);
+
+    if (!warp || distance <= optDistance) {
+        return distance;
+    }
+
+    const pos2NE = {
+        x: pos2.x - canvasSize.width,
+        y: pos2.y,
+    };
+
+    distance = getDistance(pos1, pos2NE);
 
     if (distance <= optDistance) {
         return distance;
     }
 
-    if (!warp) {
-        return;
+    const pos2SE = {
+        x: pos2.x - canvasSize.width,
+        y: pos2.y - canvasSize.height,
+    };
+
+    distance = getDistance(pos1, pos2SE);
+
+    if (distance <= optDistance) {
+        return distance;
     }
 
-    for (const offsetFactor of offsetsFactors) {
-        const offset = { x: offsetFactor.x * canvasSize.width, y: offsetFactor.y * canvasSize.height },
-            pos1o = {
-                x: pos1.x + offset.x,
-                y: pos1.y + offset.y,
-            },
-            pos2o = {
-                x: pos2.x + offset.x,
-                y: pos2.y + offset.y,
-            },
-            d1 = getDistance(pos1o, pos2),
-            d2 = getDistance(pos1, pos2o);
+    const pos2SW = {
+        x: pos2.x,
+        y: pos2.y - canvasSize.height,
+    };
 
-        if (d1 <= optDistance) {
-            return d1;
-        }
+    distance = getDistance(pos1, pos2SW);
 
-        if (d2 <= optDistance) {
-            return d2;
-        }
-    }
+    return distance;
 }
 
-class Linker extends ParticlesInteractorBase {
+export class Linker extends ParticlesInteractorBase {
     linkContainer: LinkContainer;
 
     constructor(container: LinkContainer) {
@@ -102,14 +98,14 @@ class Linker extends ParticlesInteractorBase {
             const linkOpt2 = p2.options.links;
 
             if (
-                !linkOpt2 ||
                 p1 === p2 ||
-                !linkOpt2.enable ||
+                !linkOpt2?.enable ||
                 linkOpt1.id !== linkOpt2.id ||
                 p2.spawning ||
                 p2.destroyed ||
                 !p2.links ||
-                findLink(p1, p2)
+                p1.links.map((t) => t.destination).indexOf(p2) !== -1 ||
+                p2.links.map((t) => t.destination).indexOf(p1) !== -1
             ) {
                 continue;
             }
@@ -122,7 +118,7 @@ class Linker extends ParticlesInteractorBase {
 
             const distance = getLinkDistance(pos1, pos2, optDistance, canvasSize, warp && linkOpt2.warp);
 
-            if (distance === undefined || distance > optDistance) {
+            if (distance > optDistance) {
                 return;
             }
 
@@ -186,8 +182,4 @@ class Linker extends ParticlesInteractorBase {
             container.particles.linksColors.set(linksOptions.id, linkColor);
         }
     }
-}
-
-export async function loadInteraction(engine: Engine): Promise<void> {
-    await engine.addInteractor("particlesLinks", (container) => new Linker(container as LinkContainer));
 }

@@ -9,160 +9,6 @@ import {
 } from "tsparticles-engine";
 import type { ILinksShadow } from "./Options/Interfaces/ILinksShadow";
 
-export const offsetsFactors = [
-    { x: 1, y: 0 },
-    { x: 0, y: 1 },
-    { x: 1, y: 1 },
-    { x: -1, y: 0 },
-    { x: 0, y: -1 },
-    { x: -1, y: -1 },
-    { x: 1, y: -1 },
-    { x: -1, y: 1 },
-];
-
-export function getLinkPoints(
-    begin: ICoordinates,
-    end: ICoordinates,
-    maxDistance: number,
-    warp: boolean,
-    canvasSize: IDimension
-): { begin: ICoordinates; end: ICoordinates }[] {
-    const lines: { begin: ICoordinates; end: ICoordinates }[] = [];
-
-    if (getDistance(begin, end) <= maxDistance) {
-        lines.push({ begin, end });
-    }
-
-    if (warp) {
-        for (const line of getIntermediatePoints(begin, end, canvasSize, maxDistance)) {
-            lines.push(line);
-        }
-    }
-
-    return lines;
-}
-
-export function getIntermediatePoints(
-    begin: ICoordinates,
-    end: ICoordinates,
-    canvasSize: IDimension,
-    maxDistance: number
-): { begin: ICoordinates; end: ICoordinates }[] {
-    let pi1: ICoordinates | undefined, pi2: ICoordinates | undefined;
-
-    for (const offsetFactor of offsetsFactors) {
-        const offset = { x: offsetFactor.x * canvasSize.width, y: offsetFactor.y * canvasSize.height },
-            pos1 = {
-                x: begin.x + offset.x,
-                y: begin.y + offset.y,
-            },
-            d1 = getDistances(pos1, end),
-            pos2 = {
-                x: end.x + offset.x,
-                y: end.y + offset.y,
-            },
-            d2 = getDistances(begin, pos2);
-
-        if (d1.distance > maxDistance && d2.distance > maxDistance) {
-            continue;
-        }
-
-        if (d1.dx === 0 || d2.dx === 0) {
-            if (Math.abs(d1.dy) > maxDistance && Math.abs(d2.dy) > maxDistance) {
-                continue;
-            }
-
-            if (begin.y >= end.y) {
-                pi1 = { x: begin.x, y: canvasSize.height };
-                pi2 = { x: end.x, y: 0 };
-            } else {
-                pi1 = { x: begin.x, y: 0 };
-                pi2 = { x: end.x, y: canvasSize.height };
-            }
-
-            break;
-        } else if (d1.dy === 0 || d2.dy === 0) {
-            if (Math.abs(d1.dx) > maxDistance && Math.abs(d2.dx) > maxDistance) {
-                continue;
-            }
-
-            if (begin.x >= end.x) {
-                pi1 = { x: canvasSize.width, y: begin.y };
-                pi2 = { x: 0, y: end.y };
-            } else {
-                pi1 = { x: 0, y: begin.y };
-                pi2 = { x: canvasSize.width, y: end.y };
-            }
-
-            break;
-        } else {
-            let m: number, q: number, beginPos: ICoordinates, endPos: ICoordinates;
-
-            if (d1.distance <= maxDistance) {
-                m = d1.dy / d1.dx;
-                q = Number.isFinite(m) ? end.y - m * end.x : begin.x;
-                beginPos = pos1;
-                endPos = end;
-            } else if (d2.distance <= maxDistance) {
-                m = d2.dy / d2.dx;
-                q = Number.isFinite(m) ? begin.y - m * begin.x : begin.x;
-                beginPos = begin;
-                endPos = pos2;
-            } else {
-                return [];
-            }
-
-            if (beginPos.x > canvasSize.width) {
-                pi1 = { x: canvasSize.width, y: m * canvasSize.width + q };
-                pi2 = { x: 0, y: q };
-            } else if (beginPos.x < 0) {
-                pi1 = { x: 0, y: q };
-                pi2 = { x: canvasSize.width, y: m * canvasSize.width + q };
-            } else if (beginPos.y > canvasSize.height) {
-                pi1 = { x: (canvasSize.height - q) / m, y: canvasSize.height };
-                pi2 = { x: -q / m, y: 0 };
-            } else if (beginPos.y < 0) {
-                pi1 = { x: -q / m, y: 0 };
-                pi2 = { x: (canvasSize.height - q) / m, y: canvasSize.height };
-            }
-
-            if (endPos.x > canvasSize.width) {
-                pi1 = { x: canvasSize.width, y: m * canvasSize.width + q };
-                pi2 = { x: 0, y: q };
-            } else if (endPos.x < 0) {
-                pi1 = { x: 0, y: q };
-                pi2 = { x: canvasSize.width, y: m * canvasSize.width + q };
-            } else if (endPos.y > canvasSize.height) {
-                pi1 = { x: (canvasSize.height - q) / m, y: canvasSize.height };
-                pi2 = { x: -q / m, y: 0 };
-            } else if (endPos.y < 0) {
-                pi1 = { x: -q / m, y: 0 };
-                pi2 = { x: (canvasSize.height - q) / m, y: canvasSize.height };
-            }
-
-            if (pi1 && pi2) {
-                break;
-            }
-        }
-    }
-
-    if (pi1 && pi2) {
-        return [
-            { begin, end: pi1 },
-            { begin: end, end: pi2 },
-        ];
-    }
-
-    return [];
-}
-
-export function isPointBetweenPoints(check: ICoordinates, begin: ICoordinates, end: ICoordinates): boolean {
-    return (
-        ((begin.x >= check.x && check.x >= end.x) || (begin.x <= check.x && check.x <= end.x)) &&
-        ((begin.y >= check.y && check.y >= end.y) || (begin.y <= check.y && check.y <= end.y))
-    );
-}
-
 export function drawLinkLine(
     context: CanvasRenderingContext2D,
     width: number,
@@ -177,34 +23,93 @@ export function drawLinkLine(
     opacity: number,
     shadow: ILinksShadow
 ): void {
-    const lines = getLinkPoints(begin, end, maxDistance, warp, canvasSize);
+    // this.ctx.lineCap = "round"; /* performance issue */
+    /* path */
 
-    if (!lines.length) {
-        return;
-    }
+    let drawn = false;
 
-    for (const line of lines) {
-        drawLine(context, line.begin, line.end);
+    if (getDistance(begin, end) <= maxDistance) {
+        drawLine(context, begin, end);
 
-        context.lineWidth = width;
+        drawn = true;
+    } else if (warp) {
+        let pi1: ICoordinates | undefined;
+        let pi2: ICoordinates | undefined;
 
-        if (backgroundMask) {
-            context.globalCompositeOperation = composite;
-        }
+        const endNE = {
+            x: end.x - canvasSize.width,
+            y: end.y,
+        };
 
-        context.strokeStyle = getStyleFromRgb(colorLine, opacity);
+        const d1 = getDistances(begin, endNE);
 
-        if (shadow.enable) {
-            const shadowColor = rangeColorToRgb(shadow.color);
+        if (d1.distance <= maxDistance) {
+            const yi = begin.y - (d1.dy / d1.dx) * begin.x;
 
-            if (shadowColor) {
-                context.shadowBlur = shadow.blur;
-                context.shadowColor = getStyleFromRgb(shadowColor);
+            pi1 = { x: 0, y: yi };
+            pi2 = { x: canvasSize.width, y: yi };
+        } else {
+            const endSW = {
+                x: end.x,
+                y: end.y - canvasSize.height,
+            };
+
+            const d2 = getDistances(begin, endSW);
+
+            if (d2.distance <= maxDistance) {
+                const yi = begin.y - (d2.dy / d2.dx) * begin.x;
+                const xi = -yi / (d2.dy / d2.dx);
+
+                pi1 = { x: xi, y: 0 };
+                pi2 = { x: xi, y: canvasSize.height };
+            } else {
+                const endSE = {
+                    x: end.x - canvasSize.width,
+                    y: end.y - canvasSize.height,
+                };
+
+                const d3 = getDistances(begin, endSE);
+
+                if (d3.distance <= maxDistance) {
+                    const yi = begin.y - (d3.dy / d3.dx) * begin.x;
+                    const xi = -yi / (d3.dy / d3.dx);
+
+                    pi1 = { x: xi, y: yi };
+                    pi2 = { x: pi1.x + canvasSize.width, y: pi1.y + canvasSize.height };
+                }
             }
         }
 
-        context.stroke();
+        if (pi1 && pi2) {
+            drawLine(context, begin, pi1);
+            drawLine(context, end, pi2);
+
+            drawn = true;
+        }
     }
+
+    if (!drawn) {
+        return;
+    }
+
+    context.lineWidth = width;
+
+    if (backgroundMask) {
+        context.globalCompositeOperation = composite;
+    }
+
+    context.strokeStyle = getStyleFromRgb(colorLine, opacity);
+
+    if (shadow.enable) {
+        const shadowColor = rangeColorToRgb(shadow.color);
+
+        if (shadowColor) {
+            context.shadowBlur = shadow.blur;
+            context.shadowColor = getStyleFromRgb(shadowColor);
+        }
+    }
+
+    context.stroke();
 }
 
 export function drawLinkTriangle(

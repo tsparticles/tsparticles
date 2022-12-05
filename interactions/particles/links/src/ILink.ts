@@ -7,3 +7,11 @@ export interface ILink {
     destination: LinkParticle;
     opacity: number;
 }
+
+/**
+ * @category Interfaces
+ */
+export interface ILinkTriangle {
+    opacity: number;
+    vertices: LinkParticle[];
+}
