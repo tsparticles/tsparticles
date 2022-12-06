@@ -84,6 +84,6 @@
         "webpack-tsparticles-plugin": "^1.5.0"
     },
     "dependencies": {
-        "tsparticles-engine": "workspace:^2.6.0"
+        "tsparticles-engine": "^2.6.0"
     }
 }

@@ -121,14 +121,14 @@
         "webpack-tsparticles-plugin": "^1.5.0"
     },
     "dependencies": {
-        "tsparticles-engine": "workspace:^2.6.0",
-        "tsparticles-move-base": "workspace:^2.6.0",
-        "tsparticles-plugin-emitters": "workspace:^2.6.0",
-        "tsparticles-shape-circle": "workspace:^2.6.0",
-        "tsparticles-updater-color": "workspace:^2.6.0",
-        "tsparticles-updater-destroy": "workspace:^2.6.0",
-        "tsparticles-updater-opacity": "workspace:^2.6.0",
-        "tsparticles-updater-out-modes": "workspace:^2.6.0",
-        "tsparticles-updater-size": "workspace:^2.6.0"
+        "tsparticles-engine": "^2.6.0",
+        "tsparticles-move-base": "^2.6.0",
+        "tsparticles-plugin-emitters": "^2.6.0",
+        "tsparticles-shape-circle": "^2.6.0",
+        "tsparticles-updater-color": "^2.6.0",
+        "tsparticles-updater-destroy": "^2.6.0",
+        "tsparticles-updater-opacity": "^2.6.0",
+        "tsparticles-updater-out-modes": "^2.6.0",
+        "tsparticles-updater-size": "^2.6.0"
     }
 }

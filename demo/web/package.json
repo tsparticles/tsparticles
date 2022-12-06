@@ -37,9 +37,9 @@
         "pug": "^3.0.2",
         "pug-cli": "^1.0.0-alpha6",
         "stylus": "^0.59.0",
-        "tsparticles": "workspace:^2.6.0",
-        "tsparticles-engine": "workspace:^2.6.0",
+        "tsparticles": "^2.6.0",
+        "tsparticles-engine": "^2.6.0",
         "typescript": "^4.9.3",
-        "web-particles": "workspace:^2.6.0"
+        "web-particles": "^2.6.0"
     }
 }

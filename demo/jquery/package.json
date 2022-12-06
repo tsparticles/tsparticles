@@ -22,11 +22,11 @@
     },
     "dependencies": {
         "jquery": "^3.6.1",
-        "jquery-particles": "workspace:^2.6.0",
-        "tsparticles": "workspace:^2.6.0",
-        "tsparticles-demo-configs": "workspace:^2.6.0",
-        "tsparticles-engine": "workspace:^2.6.0",
-        "tsparticles-preset-links": "workspace:^2.6.0"
+        "jquery-particles": "^2.6.0",
+        "tsparticles": "^2.6.0",
+        "tsparticles-demo-configs": "^2.6.0",
+        "tsparticles-engine": "^2.6.0",
+        "tsparticles-preset-links": "^2.6.0"
     },
     "devDependencies": {
         "@fortawesome/fontawesome-free": "^6.2.1",

@@ -107,7 +107,7 @@
     "devDependencies": {
         "@babel/core": "^7.20.5",
         "@tsparticles/eslint-config": "^1.4.0",
-        "@tsparticles/options-updater": "workspace:^2.6.0",
+        "@tsparticles/options-updater": "^2.6.0",
         "@tsparticles/prettier-config": "^1.4.0",
         "@types/webpack-env": "^1.18.0",
         "@typescript-eslint/eslint-plugin": "^5.45.1",
@@ -127,6 +127,6 @@
         "webpack-tsparticles-plugin": "^1.5.0"
     },
     "dependencies": {
-        "tsparticles-engine": "workspace:^2.6.0"
+        "tsparticles-engine": "^2.6.0"
     }
 }

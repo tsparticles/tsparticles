@@ -90,7 +90,7 @@
     ],
     "prettier": "@tsparticles/prettier-config",
     "dependencies": {
-        "tsparticles-engine": "workspace:^2.6.0",
+        "tsparticles-engine": "^2.6.0",
         "vue": "^3.2.45"
     },
     "devDependencies": {
