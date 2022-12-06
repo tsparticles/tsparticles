@@ -1,7 +1,6 @@
 {
-    "fpsLimit": 60,
     "particles": {
-        "lineLinked": {
+        "links": {
             "enable": false
         },
         "stroke": {

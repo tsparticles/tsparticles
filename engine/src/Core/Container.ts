@@ -60,6 +60,9 @@ const defaultPathGeneratorKey = "default",
         update: (): void => {
             // nothing required
         },
+        reset: (): void => {
+            // nothing required
+        },
     };
 
 /**

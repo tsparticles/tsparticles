@@ -1,11 +1,10 @@
 {
-    "fpsLimit": 60,
     "particles": {
         "number": {
             "value": 30,
             "density": {
                 "enable": true,
-                "value_area": 800
+                "area": 800
             }
         },
         "color": {
@@ -40,18 +39,15 @@
         "move": {
             "enable": true,
             "speed": 6,
-            "direction": "none",
-            "out_mode": "out"
+            "direction": "none"
         }
     },
     "interactivity": {
-        "detectsOn": "canvas",
         "events": {
             "onHover": {
                 "enable": true,
                 "mode": "light"
-            },
-            "resize": true
+            }
         },
         "modes": {
             "light": {
@@ -67,7 +63,6 @@
             }
         }
     },
-    "detectRetina": true,
     "background": {
         "color": "#17163e"
     }

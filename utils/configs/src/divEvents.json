@@ -1,12 +1,10 @@
 {
-    "fps_limit": 60,
     "background": {
         "color": "#0d47a1"
     },
     "interactivity": {
-        "detect_on": "canvas",
         "events": {
-            "ondiv": [
+            "onDiv": [
                 {
                     "enable": true,
                     "selectors": ".bubble.circle",
@@ -43,8 +41,7 @@
                     "mode": "bounce",
                     "type": "rectangle"
                 }
-            ],
-            "resize": true
+            ]
         },
         "modes": {
             "bubble": {
@@ -56,15 +53,15 @@
             },
             "grab": {
                 "distance": 400,
-                "line_linked": {
+                "links": {
                     "opacity": 1
                 }
             },
             "push": {
-                "particles_nb": 4
+                "quantity": 4
             },
             "remove": {
-                "particles_nb": 2
+                "quantity": 2
             },
             "repulse": {
                 "distance": 200,
@@ -76,7 +73,7 @@
         "color": {
             "value": "#ffffff"
         },
-        "line_linked": {
+        "links": {
             "color": "#ffffff",
             "distance": 150,
             "enable": true,
@@ -92,7 +89,6 @@
             "bounce": false,
             "direction": "none",
             "enable": true,
-            "out_mode": "out",
             "random": false,
             "speed": 2,
             "straight": false
@@ -100,12 +96,12 @@
         "number": {
             "density": {
                 "enable": true,
-                "value_area": 800
+                "area": 800
             },
             "value": 80
         },
         "opacity": {
-            "anim": {
+            "animation": {
                 "enable": false,
                 "opacity_min": 0.1,
                 "speed": 1,
@@ -118,7 +114,7 @@
             "type": "circle"
         },
         "size": {
-            "anim": {
+            "animation": {
                 "enable": false,
                 "size_min": 0.1,
                 "speed": 40,
@@ -141,5 +137,5 @@
         "type": "none",
         "url": ""
     },
-    "retina_detect": true
+    "detectRetina": true
 }

@@ -1,11 +1,10 @@
 {
-    "fpsLimit": 60,
     "particles": {
         "number": {
             "value": 1000,
             "density": {
                 "enable": true,
-                "value_area": 800
+                "area": 800
             }
         },
         "color": {
@@ -17,7 +16,7 @@
         "opacity": {
             "value": 1,
             "random": false,
-            "anim": {
+            "animation": {
                 "enable": false,
                 "speed": 3,
                 "opacity_min": 0.1,
@@ -27,14 +26,14 @@
         "size": {
             "value": 10,
             "random": true,
-            "anim": {
+            "animation": {
                 "enable": false,
                 "speed": 20,
                 "size_min": 0.1,
                 "sync": false
             }
         },
-        "line_linked": {
+        "links": {
             "enable": false,
             "distance": 150,
             "color": "#ffffff",
@@ -47,7 +46,6 @@
             "direction": "none",
             "random": false,
             "straight": false,
-            "out_mode": "out",
             "attract": {
                 "enable": false,
                 "rotateX": 600,
@@ -57,54 +55,18 @@
         }
     },
     "interactivity": {
-        "detect_on": "canvas",
         "events": {
-            "onhover": {
-                "enable": false,
-                "mode": "repulse"
-            },
-            "onclick": {
+            "onClick": {
                 "enable": true,
                 "mode": "push"
-            },
-            "resize": true
+            }
         },
         "modes": {
-            "grab": {
-                "distance": 400,
-                "line_linked": {
-                    "opacity": 1
-                }
-            },
-            "absorbers": {
-                "color": "#ff0000",
-                "size": {
-                    "value": 10,
-                    "limit": 50,
-                    "random": {
-                        "enable": true,
-                        "minimumValue": 5
-                    }
-                }
-            },
-            "bubble": {
-                "distance": 400,
-                "size": 40,
-                "duration": 2,
-                "opacity": 0.8
-            },
-            "repulse": {
-                "distance": 200
-            },
             "push": {
-                "particles_nb": 4
-            },
-            "remove": {
-                "particles_nb": 2
+                "quantity": 4
             }
         }
     },
-    "retina_detect": true,
     "absorbers": {
         "orbits": true,
         "destroy": false,

@@ -4,13 +4,12 @@
             "value": "#000000"
         }
     },
-    "fpsLimit": 60,
     "particles": {
         "number": {
             "value": 150,
             "density": {
                 "enable": true,
-                "value_area": 800
+                "area": 800
             }
         },
         "color": {
@@ -34,7 +33,7 @@
         "opacity": {
             "value": 1,
             "random": false,
-            "anim": {
+            "animation": {
                 "enable": false,
                 "speed": 1,
                 "opacity_min": 0.1,
@@ -44,14 +43,14 @@
         "size": {
             "value": 0,
             "random": false,
-            "anim": {
+            "animation": {
                 "enable": false,
                 "speed": 40,
                 "size_min": 0.1,
                 "sync": false
             }
         },
-        "line_linked": {
+        "links": {
             "enable": true,
             "distance": 110,
             "color": "#19f",
@@ -64,7 +63,7 @@
             "direction": "none",
             "random": true,
             "straight": false,
-            "out_mode": "bounce",
+            "outModes": "bounce",
             "bounce": false,
             "attract": {
                 "enable": false,
@@ -74,22 +73,20 @@
         }
     },
     "interactivity": {
-        "detect_on": "canvas",
         "events": {
-            "onhover": {
+            "onHover": {
                 "enable": true,
                 "mode": "repulse"
             },
-            "onclick": {
+            "onClick": {
                 "enable": false,
                 "mode": "repulse"
-            },
-            "resize": true
+            }
         },
         "modes": {
             "grab": {
                 "distance": 200,
-                "line_linked": {
+                "links": {
                     "opacity": 1
                 }
             },
@@ -104,12 +101,12 @@
                 "duration": 0.4
             },
             "push": {
-                "particles_nb": 4
+                "quantity": 4
             },
             "remove": {
-                "particles_nb": 2
+                "quantity": 2
             }
         }
     },
-    "retina_detect": true
+    "detectRetina": true
 }

@@ -29,21 +29,26 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
         };
     }
 
-    generate(p: Particle): Vector {
-        const pos = p.getPosition();
+    generate(particle: Particle): Vector {
+        const pos = particle.getPosition(),
+            point = {
+                x: Math.max(Math.floor(pos.x / this.options.size), 0),
+                y: Math.max(Math.floor(pos.y / this.options.size), 0),
+                z: Math.max(Math.floor(pos.z / this.options.size), 0),
+            },
+            v = Vector.origin;
 
-        const px = Math.max(Math.floor(pos.x / this.options.size), 0);
-        const py = Math.max(Math.floor(pos.y / this.options.size), 0);
-        const pz = Math.max(Math.floor(pos.z / this.options.size), 0);
-
-        const v = Vector.origin;
-
-        if (!this.field || !this.field[px] || !this.field[px][py] || !this.field[px][py][pz]) {
+        if (
+            !this.field ||
+            !this.field[point.x] ||
+            !this.field[point.x][point.y] ||
+            !this.field[point.x][point.y][point.z]
+        ) {
             return v;
         }
 
-        v.length = this.field[px][py][pz][1];
-        v.angle = this.field[px][py][pz][0];
+        v.length = this.field[point.x][point.y][point.z][1];
+        v.angle = this.field[point.x][point.y][point.z][0];
 
         return v;
     }
@@ -52,6 +57,10 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
         this.container = container;
 
         this.setup(this.container);
+    }
+
+    reset(): void {
+        // nothing to do
     }
 
     update(): void {
@@ -68,8 +77,8 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
         for (let x = 0; x < this.options.columns; x++) {
             for (let y = 0; y < this.options.rows; y++) {
                 for (let z = 0; z < this.options.layers; z++) {
-                    const angle = this.noiseFunc(x / 50, y / 50, z / 50, this.noiseW) * Math.PI * 2;
-                    const length = this.noiseFunc(x / 100 + 40000, y / 100 + 40000, z / 100 + 40000, this.noiseW);
+                    const angle = this.noiseFunc(x / 50, y / 50, z / 50, this.noiseW) * Math.PI * 2,
+                        length = this.noiseFunc(x / 100 + 40000, y / 100 + 40000, z / 100 + 40000, this.noiseW);
 
                     this.field[x][y][z][0] = angle;
                     this.field[x][y][z][1] = length;
@@ -94,7 +103,7 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
         }
     }
 
-    private reset(container: Container): void {
+    private resetField(container: Container): void {
         const sourceOptions = container.actualOptions.particles.move.path.options;
 
         this.options.size = (sourceOptions.size as number) > 0 ? (sourceOptions.size as number) : 20;
@@ -114,8 +123,8 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
     private setup(container: Container): void {
         this.noiseW = 0;
 
-        this.reset(container);
+        this.resetField(container);
 
-        addEventListener("resize", () => this.reset(container));
+        addEventListener("resize", () => this.resetField(container));
     }
 }

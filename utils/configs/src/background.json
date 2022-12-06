@@ -34,12 +34,10 @@
             "speed": 2,
             "direction": "none",
             "random": false,
-            "straight": false,
-            "outModes": "out"
+            "straight": false
         }
     },
     "interactivity": {
-        "detectsOn": "canvas",
         "events": {
             "onHover": {
                 "enable": true,
@@ -48,30 +46,17 @@
             "onClick": {
                 "enable": true,
                 "mode": "push"
-            },
-            "resize": true
+            }
         },
         "modes": {
-            "grab": {
-                "distance": 400,
-                "links": {
-                    "opacity": 1
-                }
-            },
             "bubble": {
                 "distance": 400,
                 "size": 100,
                 "duration": 2,
                 "opacity": 1
             },
-            "repulse": {
-                "distance": 200
-            },
             "push": {
                 "quantity": 4
-            },
-            "remove": {
-                "quantity": 2
             }
         }
     },
@@ -85,8 +70,6 @@
             }
         }
     },
-    "detectRetina": true,
-    "fpsLimit": 60,
     "background": {
         "color": "#ffffff",
         "image": "url('https://particles.js.org/images/background3.jpg')",

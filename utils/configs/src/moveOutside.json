@@ -1,5 +1,4 @@
 {
-    "fpsLimit": 60,
     "particles": {
         "number": {
             "value": 80,
@@ -33,16 +32,10 @@
             "speed": 10,
             "direction": "outside",
             "random": false,
-            "straight": true,
-            "outModes": "out"
+            "straight": true
         }
     },
-    "detectRetina": true,
     "background": {
-        "color": "#000000",
-        "image": "",
-        "position": "50% 50%",
-        "repeat": "no-repeat",
-        "size": "cover"
+        "color": "#000000"
     }
 }

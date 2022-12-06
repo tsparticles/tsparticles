@@ -1,4 +1,4 @@
-(function () {
+(async function () {
     let schema = {};
     const stats = new Stats();
 
@@ -35,8 +35,8 @@
         return self.indexOf(value) === index;
     }
 
-    let updateParticles = function (editor) {
-        let presetId = localStorage.presetId || 'default';
+    let updateParticles = async function (editor) {
+        let presetId = localStorage.presetId || 'basic';
 
         if (presetId === "divEvents") {
             document.querySelectorAll('.bubble').forEach(elem => {
@@ -66,24 +66,24 @@
             });
         }
 
-        tsParticles.loadJSON('tsparticles', `/presets/${presetId}.json`).then((particles) => {
-            localStorage.presetId = presetId;
+        const particles = await tsParticles.load('tsparticles', tsParticles.configs[presetId]);
 
-            const omit = (obj) => {
-                return _.omitBy(obj, (value, key) => {
-                    return _.startsWith(key, "_");
-                })
-            };
+        localStorage.presetId = presetId;
 
-            const transform = (obj) => {
-                return _.transform(omit(obj), function (result, value, key) {
-                    result[key] = _.isObject(value) ? transform(omit(value)) : value;
-                })
-            };
+        const omit = (obj) => {
+            return _.omitBy(obj, (value, key) => {
+                return _.startsWith(key, "_");
+            })
+        };
 
-            editor.update(transform(particles.options));
-            editor.expandAll();
-        });
+        const transform = (obj) => {
+            return _.transform(omit(obj), function (result, value, key) {
+                result[key] = _.isObject(value) ? transform(omit(value)) : value;
+            })
+        };
+
+        editor.update(transform(particles.options));
+        editor.expandAll();
     };
 
     const omit = (obj, keys) => {
@@ -135,6 +135,35 @@
     };
 
     window.addEventListener('load', async function () {
+        await loadHsvColorPlugin();
+
+        await loadFull(tsParticles);
+
+        await loadCanvasMaskPlugin(tsParticles);
+        await loadEasingBackPlugin(tsParticles);
+        await loadEasingCircPlugin(tsParticles);
+        await loadEasingCubicPlugin(tsParticles);
+        await loadEasingExpoPlugin(tsParticles);
+        await loadEasingQuartPlugin(tsParticles);
+        await loadEasingQuintPlugin(tsParticles);
+        await loadEasingSinePlugin(tsParticles);
+        await loadInfectionPlugin(tsParticles);
+        await loadMotionPlugin(tsParticles);
+        await loadPolygonMaskPlugin(tsParticles);
+        await loadLightInteraction(tsParticles);
+        await loadParticlesRepulseInteraction(tsParticles);
+        await loadGradientUpdater(tsParticles);
+        await loadOrbitUpdater(tsParticles);
+        await loadCurvesPath(tsParticles);
+        await loadPolygonPath(tsParticles);
+        await loadPerlinNoisePath(tsParticles);
+        await loadSimplexNoisePath(tsParticles);
+        await loadBubbleShape(tsParticles);
+        await loadHeartShape(tsParticles);
+        await loadMultilineTextShape(tsParticles);
+        await loadRoundedRectShape(tsParticles);
+        await loadSpiralShape(tsParticles);
+
         const element = document.getElementById('editor');
         const options = {
             mode: 'form', modes: [ 'code', 'form', 'view', 'preview', 'text' ], // allowed modes
@@ -150,14 +179,14 @@
 
         const cmbPresets = document.getElementById('presets');
 
-        cmbPresets.onchange = function () {
+        cmbPresets.onchange = async function () {
             localStorage.presetId = this.value;
 
-            updateParticles(editor);
+            await updateParticles(editor);
         };
 
         if (!localStorage.presetId) {
-            localStorage.presetId = 'default';
+            localStorage.presetId = 'basic';
         }
 
         cmbPresets.value = localStorage.presetId;
@@ -290,35 +319,6 @@ canvas {
 
         initSidebar();
         initStats();
-
-        await loadHsvColorPlugin();
-
-        await loadFull(tsParticles);
-
-        await loadCanvasMaskPlugin(tsParticles);
-        await loadEasingBackPlugin(tsParticles);
-        await loadEasingCircPlugin(tsParticles);
-        await loadEasingCubicPlugin(tsParticles);
-        await loadEasingExpoPlugin(tsParticles);
-        await loadEasingQuartPlugin(tsParticles);
-        await loadEasingQuintPlugin(tsParticles);
-        await loadEasingSinePlugin(tsParticles);
-        await loadInfectionPlugin(tsParticles);
-        await loadMotionPlugin(tsParticles);
-        await loadPolygonMaskPlugin(tsParticles);
-        await loadLightInteraction(tsParticles);
-        await loadParticlesRepulseInteraction(tsParticles);
-        await loadGradientUpdater(tsParticles);
-        await loadOrbitUpdater(tsParticles);
-        await loadCurvesPath(tsParticles);
-        await loadPolygonPath(tsParticles);
-        await loadPerlinNoisePath(tsParticles);
-        await loadSimplexNoisePath(tsParticles);
-        await loadBubbleShape(tsParticles);
-        await loadHeartShape(tsParticles);
-        await loadMultilineTextShape(tsParticles);
-        await loadRoundedRectShape(tsParticles);
-        await loadSpiralShape(tsParticles);
     });
 })();
 

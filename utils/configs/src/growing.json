@@ -1,5 +1,4 @@
 {
-    "fpsLimit": 60,
     "emitters": {
         "direction": "top",
         "size": {
@@ -20,7 +19,7 @@
             "value": 0,
             "density": {
                 "enable": true,
-                "value_area": 800
+                "area": 800
             }
         },
         "color": {
@@ -32,7 +31,7 @@
         "opacity": {
             "value": 1,
             "random": false,
-            "anim": {
+            "animation": {
                 "enable": false,
                 "speed": 3,
                 "opacity_min": 0.1,
@@ -42,7 +41,7 @@
         "size": {
             "value": 20,
             "random": false,
-            "anim": {
+            "animation": {
                 "enable": true,
                 "speed": 5,
                 "size_min": 0.1,
@@ -51,7 +50,7 @@
                 "destroy": "max"
             }
         },
-        "line_linked": {
+        "links": {
             "enable": false,
             "distance": 150,
             "color": "#ffffff",
@@ -64,7 +63,7 @@
             "direction": "none",
             "random": false,
             "straight": false,
-            "out_mode": "destroy",
+            "outModes": "destroy",
             "attract": {
                 "enable": false,
                 "rotateX": 600,
@@ -72,44 +71,6 @@
             }
         }
     },
-    "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-            "onhover": {
-                "enable": false,
-                "mode": "repulse"
-            },
-            "onclick": {
-                "enable": false,
-                "mode": "push"
-            },
-            "resize": true
-        },
-        "modes": {
-            "grab": {
-                "distance": 400,
-                "line_linked": {
-                    "opacity": 1
-                }
-            },
-            "bubble": {
-                "distance": 400,
-                "size": 40,
-                "duration": 2,
-                "opacity": 0.8
-            },
-            "repulse": {
-                "distance": 200
-            },
-            "push": {
-                "particles_nb": 4
-            },
-            "remove": {
-                "particles_nb": 2
-            }
-        }
-    },
-    "retina_detect": true,
     "background": {
         "color": "#000000",
         "image": "",

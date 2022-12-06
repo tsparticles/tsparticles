@@ -228,11 +228,17 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
         if (data.themes !== undefined) {
             for (const theme of data.themes) {
-                const optTheme = new Theme();
+                const existingTheme = this.themes.find((t) => t.name === theme.name);
 
-                optTheme.load(theme);
+                if (!existingTheme) {
+                    const optTheme = new Theme();
 
-                this.themes.push(optTheme);
+                    optTheme.load(theme);
+
+                    this.themes.push(optTheme);
+                } else {
+                    existingTheme.load(theme);
+                }
             }
         }
 

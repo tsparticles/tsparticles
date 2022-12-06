@@ -1,5 +1,4 @@
 {
-    "fpsLimit": 60,
     "particles": {
         "number": {
             "value": 80,
@@ -30,7 +29,7 @@
         },
         "links": {
             "enable": true,
-            "distance": 100,
+            "distance": 150,
             "color": "#ffffff",
             "opacity": 0.4,
             "width": 1
@@ -40,12 +39,10 @@
             "speed": 6,
             "direction": "none",
             "random": false,
-            "straight": false,
-            "outModes": "out"
+            "straight": false
         }
     },
     "interactivity": {
-        "detectsOn": "canvas",
         "events": {
             "onHover": {
                 "enable": true,
@@ -54,8 +51,7 @@
             "onClick": {
                 "enable": true,
                 "mode": "push"
-            },
-            "resize": true
+            }
         },
         "modes": {
             "repulse": {
@@ -66,7 +62,6 @@
             }
         }
     },
-    "detectRetina": true,
     "background": {
         "color": "#000000"
     }

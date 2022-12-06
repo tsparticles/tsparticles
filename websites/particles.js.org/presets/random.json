@@ -1,10 +1,7 @@
 {
     "fullScreen": {
-        "enable": true,
         "zIndex": 1
     },
-    "detectRetina": true,
-    "fpsLimit": 120,
     "interactivity": {
         "events": {
             "onClick": {

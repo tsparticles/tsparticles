@@ -1,5 +1,4 @@
 {
-    "fpsLimit": 60,
     "particles": {
         "number": {
             "value": 0
@@ -35,13 +34,6 @@
             }
         }
     },
-    "interactivity": {
-        "detectsOn": "canvas",
-        "events": {
-            "resize": true
-        }
-    },
-    "detectRetina": true,
     "background": {
         "color": "#fff"
     },
@@ -49,6 +41,10 @@
         {
             "direction": "top",
             "position": {
+                "x": {
+                    "min": 25,
+                    "max": 75
+                },
                 "y": 100
             },
             "life": {

@@ -1,8 +1,6 @@
 {
     "detectRetina": false,
-    "fpsLimit": 30,
     "interactivity": {
-        "detectsOn": "canvas",
         "events": {
             "onClick": {
                 "enable": false,
@@ -21,8 +19,7 @@
                     "force": 2,
                     "smooth": 10
                 }
-            },
-            "resize": true
+            }
         },
         "modes": {
             "bubble": {
@@ -33,14 +30,14 @@
             },
             "connect": {
                 "distance": 80,
-                "lineLinked": {
+                "links": {
                     "opacity": 0.5
                 },
                 "radius": 60
             },
             "grab": {
                 "distance": 400,
-                "lineLinked": {
+                "links": {
                     "opacity": 1
                 }
             },
@@ -65,7 +62,7 @@
         "color": {
             "value": "#ffffff"
         },
-        "lineLinked": {
+        "links": {
             "blink": false,
             "color": "#ffffff",
             "consent": false,
@@ -85,7 +82,7 @@
             "bounce": false,
             "direction": "none",
             "enable": true,
-            "outMode": "bounce",
+            "outModes": "bounce",
             "random": false,
             "speed": 1,
             "straight": false
@@ -126,7 +123,7 @@
         "draw": {
             "enable": true,
             "lineColor": "rgba(255,255,255,0.2)",
-            "lineWidth": 0.5
+            "lineWidth": 1
         },
         "enable": true,
         "move": {

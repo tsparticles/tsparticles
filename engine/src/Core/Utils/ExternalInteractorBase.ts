@@ -11,7 +11,7 @@ export abstract class ExternalInteractorBase<TContainer extends Container = Cont
     /**
      * External Interactivity type
      */
-    type: InteractorType = InteractorType.External;
+    type: InteractorType = InteractorType.external;
 
     /**
      * Constructor of external interactivity manager

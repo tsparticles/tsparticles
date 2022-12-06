@@ -4,7 +4,6 @@
             "value": "#000"
         }
     },
-    "fpsLimit": 60,
     "emitters": {
         "direction": "random",
         "size": {
@@ -39,7 +38,7 @@
         },
         "size": {
             "value": 50,
-            "anim": {
+            "animation": {
                 "enable": true,
                 "speed": 30,
                 "size_min": 2,
@@ -54,7 +53,7 @@
             "direction": "none",
             "random": false,
             "straight": false,
-            "out_mode": "destroy",
+            "outModes": "destroy",
             "attract": {
                 "enable": false,
                 "rotateX": 600,
@@ -63,22 +62,20 @@
         }
     },
     "interactivity": {
-        "detect_on": "canvas",
         "events": {
-            "onhover": {
+            "onHover": {
                 "enable": true,
                 "mode": "repulse"
             },
-            "onclick": {
+            "onClick": {
                 "enable": true,
                 "mode": "push"
-            },
-            "resize": true
+            }
         },
         "modes": {
             "grab": {
                 "distance": 400,
-                "line_linked": {
+                "links": {
                     "opacity": 1
                 }
             },
@@ -89,6 +86,5 @@
                 "quantity": 4
             }
         }
-    },
-    "detectRetina": true
+    }
 }

@@ -1,11 +1,10 @@
 {
-    "fpsLimit": 60,
     "particles": {
         "number": {
             "value": 160,
             "density": {
                 "enable": true,
-                "value_area": 800
+                "area": 800
             }
         },
         "color": {
@@ -17,7 +16,7 @@
         "opacity": {
             "value": 1,
             "random": true,
-            "anim": {
+            "animation": {
                 "enable": true,
                 "speed": 1,
                 "opacity_min": 0,
@@ -27,14 +26,14 @@
         "size": {
             "value": 3,
             "random": true,
-            "anim": {
+            "animation": {
                 "enable": false,
                 "speed": 4,
                 "size_min": 0.3,
                 "sync": false
             }
         },
-        "line_linked": {
+        "links": {
             "enable": false,
             "distance": 150,
             "color": "#ffffff",
@@ -47,7 +46,6 @@
             "direction": "none",
             "random": true,
             "straight": false,
-            "out_mode": "out",
             "bounce": false,
             "attract": {
                 "enable": false,
@@ -57,22 +55,20 @@
         }
     },
     "interactivity": {
-        "detect_on": "canvas",
         "events": {
-            "onhover": {
+            "onHover": {
                 "enable": true,
                 "mode": "bubble"
             },
-            "onclick": {
+            "onClick": {
                 "enable": true,
                 "mode": "repulse"
-            },
-            "resize": true
+            }
         },
         "modes": {
             "grab": {
                 "distance": 400,
-                "line_linked": {
+                "links": {
                     "opacity": 1
                 }
             },
@@ -87,14 +83,13 @@
                 "duration": 0.4
             },
             "push": {
-                "particles_nb": 4
+                "quantity": 4
             },
             "remove": {
-                "particles_nb": 2
+                "quantity": 2
             }
         }
     },
-    "retina_detect": true,
     "background": {
         "color": "#232741",
         "image": "url('http://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/NASA_logo.svg/1237px-NASA_logo.svg.png')",

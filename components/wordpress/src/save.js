@@ -4,12 +4,12 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from "@wordpress/block-editor";
-import { tsParticles } from "tsparticles-engine";
-import { getPlugins, loadWordpressParticles } from "./load";
+import { useBlockProps } from '@wordpress/block-editor';
+import { tsParticles } from 'tsparticles-engine';
+import { getAllPlugins, loadWordpressParticles } from './load';
 
-document.addEventListener("DOMContentLoaded", async () => {
-	await loadWordpressParticles(tsParticles, getPlugins());
+document.addEventListener('DOMContentLoaded', async () => {
+	await loadWordpressParticles(tsParticles, getAllPlugins());
 });
 
 /**
@@ -17,6 +17,8 @@ document.addEventListener("DOMContentLoaded", async () => {
  * be combined into the final markup, which is then serialized by the block
  * editor into `post_content`.
  *
+ * @param  root0
+ * @param  root0.attributes
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#save
  *
  * @return {WPElement} Element to render.
@@ -26,16 +28,16 @@ export default function save({ attributes }) {
 		await tsParticles.load(attributes.id, JSON.parse(attributes.options));
 	});
 
-	const width = attributes.width ? attributes.width : "100%",
-		height = attributes.height ? attributes.height : "500px",
-		plugins = getPlugins(attributes).map(t => t.name);
+	const width = attributes.width ? attributes.width : '100%',
+		height = attributes.height ? attributes.height : '500px',
+		plugins = getAllPlugins(attributes).map((t) => t.name);
 
 	return (
 		<div
 			id={attributes.id}
 			style={{ width, height }}
 			data-options={attributes.options}
-			data-plugins={plugins.join(",")}
+			data-plugins={plugins.join(',')}
 			{...useBlockProps.save()}
 		></div>
 	);

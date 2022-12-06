@@ -1,8 +1,5 @@
 {
-    "detectRetina": true,
-    "fpsLimit": 60,
     "interactivity": {
-        "detectsOn": "canvas",
         "events": {
             "onClick": {
                 "enable": true,
@@ -21,8 +18,7 @@
                     "force": 60,
                     "smooth": 10
                 }
-            },
-            "resize": true
+            }
         },
         "modes": {
             "bubble": {
@@ -33,14 +29,14 @@
             },
             "connect": {
                 "distance": 80,
-                "lineLinked": {
+                "links": {
                     "opacity": 0.5
                 },
                 "radius": 60
             },
             "grab": {
                 "distance": 400,
-                "lineLinked": {
+                "links": {
                     "opacity": 1
                 }
             },
@@ -58,9 +54,9 @@
     },
     "particles": {
         "color": {
-            "value": "#ff0000"
+            "value": "#00f"
         },
-        "lineLinked": {
+        "links": {
             "blink": false,
             "color": "#000",
             "consent": false,
@@ -80,7 +76,6 @@
             "bounce": false,
             "direction": "none",
             "enable": true,
-            "outMode": "out",
             "random": false,
             "speed": 2,
             "straight": false
@@ -96,12 +91,13 @@
         "opacity": {
             "animation": {
                 "enable": false,
-                "minimumValue": 0.1,
                 "speed": 1,
                 "sync": false
             },
-            "random": false,
-            "value": 0.5
+            "value": {
+                "min": 0.1,
+                "max": 1
+            }
         },
         "rotate": {
             "animation": {
@@ -114,27 +110,13 @@
             "value": 0
         },
         "shape": {
-            "character": {
-                "fill": false,
-                "font": "Verdana",
-                "style": "",
-                "value": "*",
-                "weight": "400"
-            },
-            "image": [
-                {
+            "options": {
+                "image": {
                     "src": "/images/canine.svg",
                     "width": 32,
                     "height": 32,
                     "replaceColor": true
                 }
-            ],
-            "polygon": {
-                "sides": 5
-            },
-            "stroke": {
-                "color": "#000000",
-                "width": 0
             },
             "type": "image"
         },

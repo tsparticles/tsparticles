@@ -2,15 +2,12 @@
     "background": {
         "color": "#000"
     },
-    "fpsLimit": 60,
     "interactivity": {
-        "detectsOn": "canvas",
         "events": {
             "onClick": {
                 "enable": true,
                 "mode": "push"
-            },
-            "resize": true
+            }
         },
         "modes": {
             "bubble": {
@@ -49,11 +46,7 @@
                 },
                 "generator": "simplexNoise"
             },
-            "direction": "none",
             "enable": true,
-            "outModes": {
-                "default": "out"
-            },
             "speed": 6
         },
         "number": {
@@ -90,6 +83,5 @@
             "sizeRate": 2,
             "velocityRate": 2
         }
-    },
-    "detectRetina": true
+    }
 }

@@ -10,5 +10,7 @@ export interface IMovePathGenerator {
 
     init: (container: Container) => void;
 
+    reset: (particle: Particle) => void;
+
     update: () => void;
 }

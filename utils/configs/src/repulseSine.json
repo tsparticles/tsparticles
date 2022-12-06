@@ -1,5 +1,4 @@
 {
-    "fpsLimit": 60,
     "particles": {
         "number": {
             "value": 200,
@@ -25,23 +24,15 @@
         },
         "move": {
             "enable": true,
-            "speed": 0,
-            "direction": "none",
-            "random": false,
-            "straight": false,
-            "outModes": {
-                "default": "out"
-            }
+            "speed": 0
         }
     },
     "interactivity": {
-        "detectsOn": "canvas",
         "events": {
             "onHover": {
                 "enable": true,
                 "mode": "repulse"
-            },
-            "resize": true
+            }
         },
         "modes": {
             "repulse": {
@@ -52,7 +43,6 @@
             }
         }
     },
-    "detectRetina": true,
     "background": {
         "color": "#000000"
     }

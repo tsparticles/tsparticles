@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.5.2...tsparticles-engine@2.6.0) (2022-12-06)
+
+### Bug Fixes
+
+-   **deps:** update dependency fs-extra to v11 ([e82352a](https://github.com/matteobruni/tsparticles/commit/e82352a685960603a58fb222f91d157ee65967de))
+-   updated all mermaid charts in the readme files, closes [#4763](https://github.com/matteobruni/tsparticles/issues/4763) ([eac8139](https://github.com/matteobruni/tsparticles/commit/eac813939b0857902cda1be0585e35e23e541723))
+
+### Features
+
+-   added localization support to wordpress plugin, fixes [#4807](https://github.com/matteobruni/tsparticles/issues/4807) ([8a93b8a](https://github.com/matteobruni/tsparticles/commit/8a93b8a3d6a1327903c745d7a3b04cb41e5249c8))
+-   added new resize object to interactivity options, can change the debounce delay, fixes [#4803](https://github.com/matteobruni/tsparticles/issues/4803) ([c79cccc](https://github.com/matteobruni/tsparticles/commit/c79ccccdc1f3be6c1a9fc2d471d5d7b5ab64d7a7))
+-   added reset to path generators, this fixes issues with sea anemone and polygon path plugins ([97830dc](https://github.com/matteobruni/tsparticles/commit/97830dc8dffbb0356c82449727ec85a8ac042391))
+
 ## [2.5.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.5.1...tsparticles-engine@2.5.2) (2022-11-07)
 
 **Note:** Version bump only for package tsparticles-engine

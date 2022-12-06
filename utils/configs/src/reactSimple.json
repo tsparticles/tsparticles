@@ -1,62 +1,15 @@
 {
-    "detectRetina": true,
-    "fpsLimit": 999,
     "interactivity": {
-        "detectsOn": "canvas",
         "events": {
-            "onClick": {
-                "enable": false,
-                "mode": "repulse"
-            },
-            "onDiv": {
-                "elementId": "repulse-div",
-                "enable": false,
-                "mode": "repulse"
-            },
             "onHover": {
                 "enable": true,
-                "mode": "repulse",
-                "parallax": {
-                    "enable": false,
-                    "force": 2,
-                    "smooth": 10
-                }
-            },
-            "resize": true
+                "mode": "repulse"
+            }
         },
         "modes": {
-            "bubble": {
-                "distance": 200,
-                "duration": 0.4,
-                "opacity": 1,
-                "size": 80
-            },
-            "connect": {
-                "distance": 80,
-                "lineLinked": {
-                    "opacity": 0.5
-                },
-                "radius": 60
-            },
-            "grab": {
-                "distance": 180,
-                "lineLinked": {
-                    "opacity": 0.35
-                }
-            },
-            "push": {
-                "quantity": 4
-            },
-            "remove": {
-                "quantity": 2
-            },
             "repulse": {
                 "distance": 100,
                 "duration": 5
-            },
-            "slow": {
-                "factor": 1,
-                "radius": 0
             }
         }
     },
@@ -64,7 +17,7 @@
         "color": {
             "value": "#FFF"
         },
-        "lineLinked": {
+        "links": {
             "blink": false,
             "color": {
                 "value": "#fff"
@@ -93,7 +46,7 @@
             "collisions": true,
             "direction": "none",
             "enable": true,
-            "outMode": "bounce",
+            "outModes": "bounce",
             "random": false,
             "speed": 3,
             "straight": false,

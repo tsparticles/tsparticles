@@ -20,7 +20,7 @@ export class HslColorManager implements IColorManager {
         const colorValue = color.value as IValueColor,
             hslColor = colorValue.hsl ?? (color.value as IHsl);
 
-        if (hslColor.h !== undefined && hslColor.l !== undefined) {
+        if (hslColor.h !== undefined && hslColor.s !== undefined && hslColor.l !== undefined) {
             return hslToRgb(hslColor);
         }
     }

@@ -25,20 +25,20 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
         };
     }
 
-    generate(p: Particle): Vector {
-        const pos = p.getPosition();
+    generate(particle: Particle): Vector {
+        const pos = particle.getPosition(),
+            point = {
+                x: Math.max(Math.floor(pos.x / this.options.size), 0),
+                y: Math.max(Math.floor(pos.y / this.options.size), 0),
+            },
+            v = Vector.origin;
 
-        const px = Math.max(Math.floor(pos.x / this.options.size), 0);
-        const py = Math.max(Math.floor(pos.y / this.options.size), 0);
-
-        const v = Vector.origin;
-
-        if (!this.field || !this.field[px] || !this.field[px][py]) {
+        if (!this.field || !this.field[point.x] || !this.field[point.x][point.y]) {
             return v;
         }
 
-        v.length = this.field[px][py][1];
-        v.angle = this.field[px][py][0];
+        v.length = this.field[point.x][point.y][1];
+        v.angle = this.field[point.x][point.y][0];
 
         return v;
     }
@@ -47,6 +47,10 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
         this.container = container;
 
         this.setup(container);
+    }
+
+    reset(): void {
+        // nothing to do
     }
 
     update(): void {
@@ -107,7 +111,7 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
         }
     }
 
-    private reset(container: Container): void {
+    private resetField(container: Container): void {
         const sourceOptions = container.actualOptions.particles.move.path.options;
 
         this.options.size = (sourceOptions.size as number) > 0 ? (sourceOptions.size as number) : 20;
@@ -127,8 +131,8 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
     private setup(container: Container): void {
         this.noiseZ = 0;
 
-        this.reset(container);
+        this.resetField(container);
 
-        window.addEventListener("resize", () => this.reset(container));
+        window.addEventListener("resize", () => this.resetField(container));
     }
 }
