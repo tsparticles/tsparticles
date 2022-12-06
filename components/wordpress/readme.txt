@@ -61,6 +61,24 @@ Nothing to say
 
 == Changelog ==
 
+= 2.6.0 =
+
+## Bug Fixes
+
+- Improved angular component id management
+- Fixed multiline text shape (and relative demo)
+- Fixed issues with links colors and themes, fixes #4841
+
+## New Features
+
+- Added new resize object to interactivity options, can change the debounce delay, fixes #4803
+- WordPress plugin is now localizable, closes #4807
+
+## Other Changes
+
+- Fixed dependencies charts on README files, closes #4763
+- Added reset to path generators, this fixes issues with sea anemone and polygon path plugins
+
 = 2.5.4 =
 
 ## New Features
