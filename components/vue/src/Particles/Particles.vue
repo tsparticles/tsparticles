@@ -3,6 +3,7 @@
 </template>
 
 <script lang="ts">
+import "tslib";
 import { Component, Prop } from "vue-property-decorator";
 import { tsParticles } from "tsparticles-engine";
 import type { Container, ISourceOptions, Engine } from "tsparticles-engine";

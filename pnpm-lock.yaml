@@ -776,6 +776,7 @@ importers:
       rollup-plugin-typescript2: ^0.34.1
       rollup-plugin-vue: ^5.1.9
       ssri: ^10.0.0
+      tslib: ^2.4.1
       tsparticles-engine: ^2.6.0
       typescript: ^4.9.3
       vue: ^2.7.14
@@ -805,6 +806,7 @@ importers:
       rollup-plugin-typescript2: 0.34.1_b62htvnbshcybhtkm3m3gan63e
       rollup-plugin-vue: 5.1.9_oikoutvjez2z5fqy7zpnksrdse
       ssri: 10.0.0
+      tslib: 2.4.1
       typescript: 4.9.3
       vue: 2.7.14
       vue-template-compiler: 2.7.14
@@ -829,6 +831,7 @@ importers:
       rollup-plugin-typescript2: ^0.34.1
       rollup-plugin-vue: ^5.1.9
       ssri: ^10.0.0
+      tslib: ^2.4.1
       tsparticles-engine: ^2.6.0
       typescript: ^4.9.3
       vue: ^2.7.14
@@ -858,6 +861,7 @@ importers:
       rollup-plugin-typescript2: 0.34.1_b62htvnbshcybhtkm3m3gan63e
       rollup-plugin-vue: 5.1.9_oikoutvjez2z5fqy7zpnksrdse
       ssri: 10.0.0
+      tslib: 2.4.1
       typescript: 4.9.3
       vue: 2.7.14
       vue-template-compiler: 2.7.14
@@ -14365,7 +14369,7 @@ packages:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
       '@types/eslint': 8.4.10
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
 
   /@types/eslint/8.4.10:
     resolution: {integrity: sha512-Sl/HOqN8NKPmhWo2VBEPm0nvHnu2LL3v9vKo8MEq0EtbJ4eVzGPl41VNPvn5E1i5poMk4/XD8UriLHpJvEP/Nw==}
@@ -40669,7 +40673,7 @@ packages:
       mime-types: 2.1.35
       range-parser: 1.2.1
       schema-utils: 4.0.0
-      webpack: 5.75.0
+      webpack: 5.75.0_webpack-cli@5.0.1
 
   /webpack-dev-server/3.11.3_webpack@4.46.0:
     resolution: {integrity: sha512-3x31rjbEQWKMNzacUZRE6wXvUFuGpH7vr0lIEbYpMAG9BOxi0928QU1BBswOAP3kg3H1O4hiS+sq4YyAn6ANnA==}
@@ -41164,6 +41168,7 @@ packages:
       - '@swc/core'
       - esbuild
       - uglify-js
+    dev: true
 
   /webpack/5.75.0_webpack-cli@4.10.0:
     resolution: {integrity: sha512-piaIaoVJlqMsPtX/+3KTTO6jfvrSYgauFVdt8cr9LTHKmcq/AMd4mhzsiP7ZF/PGRNPGA8336jldh9l2Kt2ogQ==}
