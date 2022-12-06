@@ -94,9 +94,7 @@ Vue.use(Particles);
                         move: {
                             direction: 'none',
                             enable: true,
-                            outModes: {
-                                default: 'bounce'
-                            },
+                            outModes: 'bounce',
                             random: false,
                             speed: 6,
                             straight: false

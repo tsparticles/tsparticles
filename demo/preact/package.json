@@ -28,18 +28,18 @@
         "url": "https://github.com/matteobruni/tsparticles/issues"
     },
     "devDependencies": {
-        "@typescript-eslint/eslint-plugin": "^5.43.0",
-        "@typescript-eslint/parser": "^5.43.0",
+        "@typescript-eslint/eslint-plugin": "^5.45.1",
+        "@typescript-eslint/parser": "^5.45.1",
         "copyfiles": "^2.4.1",
         "enzyme": "^3.11.0",
         "enzyme-adapter-preact-pure": "^4.0.1",
-        "eslint": "^8.27.0",
+        "eslint": "^8.29.0",
         "eslint-config-preact": "^1.3.0",
         "eslint-config-prettier": "^8.5.0",
         "eslint-plugin-react-hooks": "^4.6.0",
         "identity-obj-proxy": "^3.0.0",
         "preact-cli": "^3.4.1",
-        "prettier": "^2.7.1",
+        "prettier": "^2.8.0",
         "sirv-cli": "^2.0.2"
     },
     "dependencies": {

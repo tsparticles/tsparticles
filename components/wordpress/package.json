@@ -106,13 +106,13 @@
         "tsparticles-updater-wobble": "^2.6.0"
     },
     "devDependencies": {
-        "@babel/runtime": "^7.20.1",
-        "@wordpress/block-editor": "^10.4.0",
-        "@wordpress/blocks": "^11.20.0",
-        "@wordpress/i18n": "^4.21.0",
-        "@wordpress/scripts": "^24.5.0",
-        "fs-extra": "^11.0.0",
+        "@babel/runtime": "^7.20.6",
+        "@wordpress/block-editor": "^10.5.0",
+        "@wordpress/blocks": "^11.21.0",
+        "@wordpress/i18n": "^4.22.0",
+        "@wordpress/scripts": "^24.6.0",
+        "fs-extra": "^11.1.0",
         "gulp": "^4.0.2",
-        "typescript": "^4.8.4"
+        "typescript": "^4.9.3"
     }
 }
