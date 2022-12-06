@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/matteobruni/tsparticles/compare/wordpress-particles@2.5.3...wordpress-particles@2.6.0) (2022-12-06)
+
+### Bug Fixes
+
+-   **deps:** update dependency fs-extra to v11 ([e82352a](https://github.com/matteobruni/tsparticles/commit/e82352a685960603a58fb222f91d157ee65967de))
+
+### Features
+
+-   added languages folder and file to wordpress plugin, fixes [#4807](https://github.com/matteobruni/tsparticles/issues/4807) ([ab12d1d](https://github.com/matteobruni/tsparticles/commit/ab12d1d186ea83c01b8206c784a9915fde308d03))
+-   added localization support to wordpress plugin, fixes [#4807](https://github.com/matteobruni/tsparticles/issues/4807) ([8a93b8a](https://github.com/matteobruni/tsparticles/commit/8a93b8a3d6a1327903c745d7a3b04cb41e5249c8))
+-   updated wordpress plugins list ([e0e077a](https://github.com/matteobruni/tsparticles/commit/e0e077a80c8d746372f9e4dd33fb69597fd67c67))
+
 ## [2.5.3](https://github.com/matteobruni/tsparticles/compare/wordpress-particles@2.5.2...wordpress-particles@2.5.3) (2022-11-07)
 
 **Note:** Version bump only for package wordpress-particles

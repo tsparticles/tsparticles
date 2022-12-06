@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-confetti@2.5.3...tsparticles-preset-confetti@2.6.0) (2022-12-06)
+
+### Bug Fixes
+
+-   updated all mermaid charts in the readme files, closes [#4763](https://github.com/matteobruni/tsparticles/issues/4763) ([eac8139](https://github.com/matteobruni/tsparticles/commit/eac813939b0857902cda1be0585e35e23e541723))
+
+### Features
+
+-   added localization support to wordpress plugin, fixes [#4807](https://github.com/matteobruni/tsparticles/issues/4807) ([8a93b8a](https://github.com/matteobruni/tsparticles/commit/8a93b8a3d6a1327903c745d7a3b04cb41e5249c8))
+
 ## [2.5.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-confetti@2.5.2...tsparticles-preset-confetti@2.5.3) (2022-11-07)
 
 **Note:** Version bump only for package tsparticles-preset-confetti

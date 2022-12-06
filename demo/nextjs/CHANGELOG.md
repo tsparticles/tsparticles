@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/matteobruni/tsparticles/compare/nextjs@0.7.3...nextjs@0.8.0) (2022-12-06)
+
+**Note:** Version bump only for package nextjs
+
 ## [0.7.3](https://github.com/matteobruni/tsparticles/compare/nextjs@0.7.2...nextjs@0.7.3) (2022-11-07)
 
 **Note:** Version bump only for package nextjs

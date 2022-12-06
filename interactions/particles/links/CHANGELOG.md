@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-particles-links@2.5.3...tsparticles-interaction-particles-links@2.6.0) (2022-12-06)
+
+### Bug Fixes
+
+-   fixed issues with links colors and themes, fixes [#4841](https://github.com/matteobruni/tsparticles/issues/4841) ([34b570d](https://github.com/matteobruni/tsparticles/commit/34b570d780aa305d6e731a8c0b66375d65d40835))
+
 ## [2.5.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-particles-links@2.5.2...tsparticles-interaction-particles-links@2.5.3) (2022-11-07)
 
 **Note:** Version bump only for package tsparticles-interaction-particles-links

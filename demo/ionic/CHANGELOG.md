@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/matteobruni/tsparticles/compare/ionic-demo@1.5.3...ionic-demo@1.6.0) (2022-12-06)
+
+### Bug Fixes
+
+-   **deps:** update angular monorepo to v15 ([7f07d5c](https://github.com/matteobruni/tsparticles/commit/7f07d5c529ec79fc4d23209ecac28e8540b1dfbf))
+-   **deps:** update dependency rxjs to ~7.6.0 ([250ef9c](https://github.com/matteobruni/tsparticles/commit/250ef9c3ff73fbde55abc05aa7183e280fd7f297))
+-   **deps:** update dependency zone.js to ~0.12.0 ([eb78579](https://github.com/matteobruni/tsparticles/commit/eb7857971c8919d4c7b009c10790ece14d79cfe4))
+
 ## [1.5.3](https://github.com/matteobruni/tsparticles/compare/ionic-demo@1.5.2...ionic-demo@1.5.3) (2022-11-07)
 
 **Note:** Version bump only for package ionic-demo
