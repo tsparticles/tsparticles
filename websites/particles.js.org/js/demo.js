@@ -121,7 +121,21 @@
         tsParticles.loadJSON("tsparticles", `../presets/${presetId}.json`).then((particles) => {
             localStorage.presetId = presetId;
             window.location.hash = presetId;
-            editor.set(particles.options);
+
+            const omit = (obj) => {
+                return _.omitBy(obj, (value, key) => {
+                    return _.startsWith(key, "_");
+                });
+            };
+
+            const transform = (obj) => {
+                return _.transform(omit(obj), function (result, value, key) {
+                    result[key] = _.isObject(value) ? transform(omit(value)) : value;
+                });
+            };
+
+            editor.update(transform(particles.options));
+
             editor.expandAll();
         });
     };
@@ -229,61 +243,48 @@
         const container = tsParticles.domItem(0);
 
         if (container) {
-            const modalBody = document.body.querySelector("#exportModal .modal-body .modal-body-content");
+            const modalBody = document.body.querySelector("#exportModal .modal-body .modal-body-content"),
+                json = container.exportConfiguration();
 
-            const tmp = document.createElement("div");
+            modalBody.innerHTML = `<pre>${json}</pre>`;
 
-            tsParticles.set("tmp", tmp, {}).then((tmpContainer) => {
-                const source = {};
+            const copyBtn = document.querySelector("#exportConfigCopy");
+            const downloadBtn = document.querySelector("#exportConfigDownload");
 
-                _.assignIn(source, tmpContainer.options);
+            copyBtn.onclick = function () {
+                if (!navigator.clipboard) {
+                    return;
+                }
 
-                tmpContainer.destroy();
+                navigator.clipboard.writeText(json);
+            };
 
-                const diff = objectDifference(container.options, source);
+            downloadBtn.onclick = function () {
+                const contentType = "application/json";
+                const blob = new Blob([json], { type: contentType });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
 
-                const json = JSON.stringify(diff, undefined, 2);
+                a.download = "particles.json";
+                a.href = url;
+                a.dataset.downloadUrl = [contentType, a.download, a.href].join(":");
 
-                modalBody.innerHTML = `<pre style="max-height: 70vh">${json}</pre>`;
+                const e = document.createEvent("MouseEvents");
 
-                const copyBtn = document.querySelector("#exportConfigCopy");
-                const downloadBtn = document.querySelector("#exportConfigDownload");
+                e.initMouseEvent("click", true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+                a.dispatchEvent(e);
+            };
 
-                copyBtn.onclick = function () {
-                    if (!navigator.clipboard) {
-                        return;
-                    }
-
-                    navigator.clipboard.writeText(json);
-                };
-
-                downloadBtn.onclick = function () {
-                    const contentType = "application/json";
-                    const blob = new Blob([json], { type: contentType });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement("a");
-
-                    a.download = "particles.json";
-                    a.href = url;
-                    a.dataset.downloadUrl = [contentType, a.download, a.href].join(":");
-
-                    const e = document.createEvent("MouseEvents");
-
-                    e.initMouseEvent("click", true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-                    a.dispatchEvent(e);
-                };
-
-                /*gtag("event", "export_config", {
+            /*gtag("event", "export_config", {
                     dimension_particles_export_config: JSON.stringify(container.options),
                     event_category: "Particles",
                     event_action: "Config Export",
                     event_label: "Config Export",
                 });*/
 
-                const exportModal = new bootstrap.Modal(document.getElementById("exportModal"));
+            const exportModal = new bootstrap.Modal(document.getElementById("exportModal"));
 
-                exportModal.show();
-            });
+            exportModal.show();
         }
     };
 
@@ -298,8 +299,13 @@
                 html: `<!-- tsParticles - https://particles.js.org - https://github.com/matteobruni/tsparticles -->
 <div id="tsparticles"></div>`,
                 css: ``,
-                js: `tsParticles.load("tsparticles", ${JSON.stringify(container.options)});`,
-                js_external: "https://cdn.jsdelivr.net/npm/tsparticles@2.3.4/tsparticles.bundle.min.js",
+                js: `tsParticles.load("tsparticles", ${JSON.stringify(container.options, (key, value) => {
+                    if (key === "_engine" || key === "_container") {
+                        return;
+                    }
+                    return value;
+                })});`,
+                js_external: "https://cdn.jsdelivr.net/npm/tsparticles@2.6.0/tsparticles.bundle.min.js",
                 title: "tsParticles example",
                 description: "This pen was created with tsParticles from https://particles.js.org",
                 tags: "tsparticles, javascript, typescript, design, animation",
@@ -481,6 +487,7 @@
         await loadCanvasMaskPlugin(tsParticles);
         await loadInfectionPlugin(tsParticles);
         await loadHsvColorPlugin(tsParticles);
+        await loadPolygonMaskPlugin(tsParticles);
         await loadLightInteraction(tsParticles);
         await loadParticlesRepulseInteraction(tsParticles);
         await loadGradientUpdater(tsParticles);

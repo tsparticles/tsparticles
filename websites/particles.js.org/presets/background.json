@@ -8,7 +8,7 @@
             "value": 80,
             "density": {
                 "enable": true,
-                "value_area": 800
+                "area": 800
             }
         },
         "color": {
@@ -36,13 +36,6 @@
                 "size_min": 0.1,
                 "sync": false
             }
-        },
-        "line_linked": {
-            "enable": true,
-            "distance": 150,
-            "color": "#ffffff",
-            "opacity": 1,
-            "width": 1
         },
         "move": {
             "enable": true,
