@@ -149,7 +149,7 @@ export class Engine {
      * @param destroy Optional: the shape drawer destroy function, used only if the drawer parameter is a function
      */
     async addShape(
-        shape: string,
+        shape: SingleOrMultiple<string>,
         drawer: IShapeDrawer | ShapeDrawerDrawFunction,
         init?: ShapeDrawerInitFunction,
         afterEffect?: ShapeDrawerAfterEffectFunction,

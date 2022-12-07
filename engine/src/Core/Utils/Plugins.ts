@@ -12,6 +12,8 @@ import type { IShapeDrawer } from "../Interfaces/IShapeDrawer";
 import type { Options } from "../../Options/Classes/Options";
 import type { ParticlesOptions } from "../../Options/Classes/Particles/ParticlesOptions";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
+import { executeOnSingleOrMultiple } from "../../Utils/Utils";
 
 type GenericInitializer<T> = (container: Container) => T;
 
@@ -172,13 +174,15 @@ export class Plugins {
 
     /**
      * Adds a shape drawer (additional particle shape) to the current collection
-     * @param type the shape drawer type (particle shape name)
+     * @param types the shape drawer types (particle shape names)
      * @param drawer the shape drawer
      */
-    addShapeDrawer(type: string, drawer: IShapeDrawer): void {
-        if (!this.getShapeDrawer(type)) {
-            this.drawers.set(type, drawer);
-        }
+    addShapeDrawer(types: SingleOrMultiple<string>, drawer: IShapeDrawer): void {
+        executeOnSingleOrMultiple(types, (type) => {
+            if (!this.getShapeDrawer(type)) {
+                this.drawers.set(type, drawer);
+            }
+        });
     }
 
     destroy(container: Container): void {
