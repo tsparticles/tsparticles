@@ -114,6 +114,7 @@ app.use("/preset-snow", express.static("./node_modules/tsparticles-preset-snow")
 app.use("/preset-stars", express.static("./node_modules/tsparticles-preset-stars"));
 app.use("/preset-triangles", express.static("./node_modules/tsparticles-preset-triangles"));
 app.use("/shape-bubble", express.static("./node_modules/tsparticles-shape-bubble"));
+app.use("/shape-cards", express.static("./node_modules/tsparticles-shape-cards"));
 app.use("/shape-heart", express.static("./node_modules/tsparticles-shape-heart"));
 app.use("/shape-multiline-text", express.static("./node_modules/tsparticles-shape-multiline-text"));
 app.use("/shape-rounded-rect", express.static("./node_modules/tsparticles-shape-rounded-rect"));

@@ -5,6 +5,7 @@ import basic from "./basic.json";
 import big from "./big.json";
 import blackHole from "./blackHole.json";
 import bubble from "./bubble.json";
+import cards from "./cards.json";
 import chars from "./chars.json";
 import clickPause from "./clickPause.json";
 import collisionsAbsorb from "./collisionsAbsorb.json";
@@ -126,6 +127,7 @@ mainConfigs.configs = {
     big,
     blackHole,
     bubble,
+    cards,
     chars,
     clickPause,
     collisionsAbsorb,

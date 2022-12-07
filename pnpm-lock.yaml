@@ -1995,6 +1995,7 @@ importers:
       tsparticles-preset-stars: ^2.6.0
       tsparticles-preset-triangles: ^2.6.0
       tsparticles-shape-bubble: ^2.6.0
+      tsparticles-shape-cards: ^2.6.0
       tsparticles-shape-circle: ^2.6.0
       tsparticles-shape-heart: ^2.6.0
       tsparticles-shape-image: ^2.6.0
@@ -2098,6 +2099,7 @@ importers:
       tsparticles-preset-stars: link:../../presets/stars/dist
       tsparticles-preset-triangles: link:../../presets/triangles/dist
       tsparticles-shape-bubble: link:../../shapes/bubble/dist
+      tsparticles-shape-cards: link:../../shapes/cards/dist
       tsparticles-shape-circle: link:../../shapes/circle/dist
       tsparticles-shape-heart: link:../../shapes/heart/dist
       tsparticles-shape-image: link:../../shapes/image/dist
@@ -5165,6 +5167,56 @@ importers:
       webpack-tsparticles-plugin: 1.5.0
     publishDirectory: dist
 
+  shapes/cards:
+    specifiers:
+      '@babel/core': ^7.20.5
+      '@tsparticles/build': ^1.5.0
+      '@tsparticles/eslint-config': ^1.4.0
+      '@tsparticles/prettier-config': ^1.4.0
+      '@tsparticles/tsconfig': ^1.5.0
+      '@types/webpack-env': ^1.18.0
+      '@typescript-eslint/eslint-plugin': ^5.45.1
+      '@typescript-eslint/parser': ^5.45.1
+      babel-loader: ^9.1.0
+      browserslist: ^4.21.4
+      copyfiles: ^2.4.1
+      eslint: ^8.29.0
+      eslint-config-prettier: ^8.5.0
+      prettier: ^2.8.0
+      rimraf: ^3.0.2
+      terser-webpack-plugin: ^5.3.6
+      tsparticles-engine: ^2.6.0
+      typescript: ^4.9.3
+      webpack: ^5.75.0
+      webpack-bundle-analyzer: ^4.7.0
+      webpack-cli: ^5.0.1
+      webpack-tsparticles-plugin: ^1.5.0
+    dependencies:
+      tsparticles-engine: link:../../engine/dist
+    devDependencies:
+      '@babel/core': 7.20.5
+      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
+      '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
+      '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
+      '@types/webpack-env': 1.18.0
+      '@typescript-eslint/eslint-plugin': 5.45.1_tdm6ms4ntwhlpozn7kjqrhum74
+      '@typescript-eslint/parser': 5.45.1_s5ps7njkmjlaqajutnox5ntcla
+      babel-loader: 9.1.0_ztqwsvkb6z73luspkai6ilstpu
+      browserslist: 4.21.4
+      copyfiles: 2.4.1
+      eslint: 8.29.0
+      eslint-config-prettier: 8.5.0_eslint@8.29.0
+      prettier: 2.8.0
+      rimraf: 3.0.2
+      terser-webpack-plugin: 5.3.6_webpack@5.75.0
+      typescript: 4.9.3
+      webpack: 5.75.0_webpack-cli@5.0.1
+      webpack-bundle-analyzer: 4.7.0
+      webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-tsparticles-plugin: 1.5.0
+    publishDirectory: dist
+
   shapes/circle:
     specifiers:
       '@babel/core': ^7.20.5
@@ -7469,7 +7521,7 @@ packages:
     dependencies:
       '@ampproject/remapping': 2.2.0
       '@babel/code-frame': 7.18.6
-      '@babel/generator': 7.20.4
+      '@babel/generator': 7.20.5
       '@babel/helper-compilation-targets': 7.20.0_@babel+core@7.20.2
       '@babel/helper-module-transforms': 7.20.2
       '@babel/helpers': 7.20.6
@@ -10446,7 +10498,7 @@ packages:
     dependencies:
       '@jest/types': 28.1.3
       '@types/node': 18.11.11
-      chalk: 4.1.0
+      chalk: 4.1.2
       jest-message-util: 28.1.3
       jest-util: 28.1.3
       slash: 3.0.0
@@ -10744,10 +10796,10 @@ packages:
       '@jest/types': 28.1.3
       '@jridgewell/trace-mapping': 0.3.17
       '@types/node': 18.11.11
-      chalk: 4.1.0
+      chalk: 4.1.2
       collect-v8-coverage: 1.0.1
       exit: 0.1.2
-      glob: 7.1.4
+      glob: 7.2.3
       graceful-fs: 4.2.10
       istanbul-lib-coverage: 3.2.0
       istanbul-lib-instrument: 5.2.1
@@ -10940,7 +10992,7 @@ packages:
       '@jest/types': 28.1.3
       '@jridgewell/trace-mapping': 0.3.17
       babel-plugin-istanbul: 6.1.1
-      chalk: 4.1.0
+      chalk: 4.1.2
       convert-source-map: 1.9.0
       fast-json-stable-stringify: 2.1.0
       graceful-fs: 4.2.10
@@ -10986,7 +11038,7 @@ packages:
       '@types/istanbul-reports': 3.0.1
       '@types/node': 18.11.11
       '@types/yargs': 17.0.16
-      chalk: 4.1.0
+      chalk: 4.1.2
     dev: true
 
   /@jest/types/29.3.1:
@@ -14336,7 +14388,7 @@ packages:
     dependencies:
       '@types/http-cache-semantics': 4.0.1
       '@types/keyv': 3.1.4
-      '@types/node': 16.18.6
+      '@types/node': 18.11.11
       '@types/responselike': 1.0.0
     dev: true
 
@@ -14510,7 +14562,7 @@ packages:
   /@types/keyv/3.1.4:
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
     dependencies:
-      '@types/node': 16.18.6
+      '@types/node': 18.11.11
     dev: true
 
   /@types/klaw/3.0.3:
@@ -14648,7 +14700,7 @@ packages:
   /@types/responselike/1.0.0:
     resolution: {integrity: sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA==}
     dependencies:
-      '@types/node': 16.18.6
+      '@types/node': 18.11.11
     dev: true
 
   /@types/retry/0.12.0:
@@ -14797,7 +14849,7 @@ packages:
     resolution: {integrity: sha512-Cn6WYCm0tXv8p6k+A8PvbDG763EDpBoTzHdA+Q/MF6H3sapGjCm9NzoaJncJS9tUKSuCoDs9XHxYYsQDgxR6kw==}
     requiresBuild: true
     dependencies:
-      '@types/node': 16.18.6
+      '@types/node': 18.11.11
     dev: true
     optional: true
 
@@ -18233,7 +18285,7 @@ packages:
       '@types/babel__core': 7.1.20
       babel-plugin-istanbul: 6.1.1
       babel-preset-jest: 28.1.3_@babel+core@7.20.5
-      chalk: 4.1.0
+      chalk: 4.1.2
       graceful-fs: 4.2.10
       slash: 3.0.0
     transitivePeerDependencies:
@@ -25429,7 +25481,7 @@ packages:
       fs.realpath: 1.0.0
       inflight: 1.0.6
       inherits: 2.0.4
-      minimatch: 3.0.5
+      minimatch: 3.1.2
       once: 1.4.0
       path-is-absolute: 1.0.1
     dev: true
@@ -27578,9 +27630,9 @@ packages:
     hasBin: true
     dependencies:
       async: 3.2.4
-      chalk: 4.1.0
+      chalk: 4.1.2
       filelist: 1.0.4
-      minimatch: 3.0.5
+      minimatch: 3.1.2
     dev: true
 
   /jasmine-core/2.8.0:
@@ -27673,7 +27725,7 @@ packages:
       '@jest/test-result': 28.1.3
       '@jest/types': 28.1.3
       '@types/node': 18.11.11
-      chalk: 4.1.0
+      chalk: 4.1.2
       co: 4.6.0
       dedent: 0.7.0
       is-generator-fn: 2.1.0
@@ -27838,10 +27890,10 @@ packages:
       '@jest/types': 28.1.3
       '@types/node': 18.11.11
       babel-jest: 28.1.3_@babel+core@7.20.5
-      chalk: 4.1.0
+      chalk: 4.1.2
       ci-info: 3.7.0
       deepmerge: 4.2.2
-      glob: 7.1.4
+      glob: 7.2.3
       graceful-fs: 4.2.10
       jest-circus: 28.1.3
       jest-environment-node: 28.1.3
@@ -27900,7 +27952,7 @@ packages:
     resolution: {integrity: sha512-8RqP1B/OXzjjTWkqMX67iqgwBVJRgCyKD3L9nq+6ZqJMdvjE8RgHktqZ6jNrkdMT+dJuYNI3rhQpxaz7drJHfw==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     dependencies:
-      chalk: 4.1.0
+      chalk: 4.1.2
       diff-sequences: 28.1.1
       jest-get-type: 28.0.2
       pretty-format: 28.1.3
@@ -27964,7 +28016,7 @@ packages:
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     dependencies:
       '@jest/types': 28.1.3
-      chalk: 4.1.0
+      chalk: 4.1.2
       jest-get-type: 28.0.2
       jest-util: 28.1.3
       pretty-format: 28.1.3
@@ -28227,7 +28279,7 @@ packages:
     resolution: {integrity: sha512-kQeJ7qHemKfbzKoGjHHrRKH6atgxMk8Enkk2iPQ3XwO6oE/KYD8lMYOziCkeSB9G4adPM4nR1DE8Tf5JeWH6Bw==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     dependencies:
-      chalk: 4.1.0
+      chalk: 4.1.2
       jest-diff: 28.1.3
       jest-get-type: 28.0.2
       pretty-format: 28.1.3
@@ -28280,7 +28332,7 @@ packages:
       '@babel/code-frame': 7.18.6
       '@jest/types': 28.1.3
       '@types/stack-utils': 2.0.1
-      chalk: 4.1.0
+      chalk: 4.1.2
       graceful-fs: 4.2.10
       micromatch: 4.0.5
       pretty-format: 28.1.3
@@ -28446,7 +28498,7 @@ packages:
     resolution: {integrity: sha512-/d1UbyUkf9nvsgdBildLe6LAD4DalgkgZcKd0nZ8XUGPyA/7fsnaQIlKVnDiuUXv/IeZhPEDrRJubVSulxrShA==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     dependencies:
-      chalk: 4.1.0
+      chalk: 4.1.2
       graceful-fs: 4.2.10
       jest-haste-map: 28.1.3
       jest-pnp-resolver: 1.2.3_jest-resolve@28.1.1
@@ -28461,7 +28513,7 @@ packages:
     resolution: {integrity: sha512-Z1W3tTjE6QaNI90qo/BJpfnvpxtaFTFw5CDgwpyE/Kz8U/06N1Hjf4ia9quUhCh39qIGWF1ZuxFiBiJQwSEYKQ==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     dependencies:
-      chalk: 4.1.0
+      chalk: 4.1.2
       graceful-fs: 4.2.10
       jest-haste-map: 28.1.3
       jest-pnp-resolver: 1.2.3_jest-resolve@28.1.3
@@ -28546,7 +28598,7 @@ packages:
       '@jest/transform': 28.1.3
       '@jest/types': 28.1.3
       '@types/node': 18.11.11
-      chalk: 4.1.0
+      chalk: 4.1.2
       emittery: 0.10.2
       graceful-fs: 4.2.10
       jest-docblock: 28.1.1
@@ -28646,11 +28698,11 @@ packages:
       '@jest/test-result': 28.1.3
       '@jest/transform': 28.1.3
       '@jest/types': 28.1.3
-      chalk: 4.1.0
+      chalk: 4.1.2
       cjs-module-lexer: 1.2.2
       collect-v8-coverage: 1.0.1
       execa: 5.1.1
-      glob: 7.1.4
+      glob: 7.2.3
       graceful-fs: 4.2.10
       jest-haste-map: 28.1.3
       jest-message-util: 28.1.3
@@ -28750,7 +28802,7 @@ packages:
       '@types/babel__traverse': 7.18.3
       '@types/prettier': 2.7.1
       babel-preset-current-node-syntax: 1.0.1_@babel+core@7.20.5
-      chalk: 4.1.0
+      chalk: 4.1.2
       expect: 28.1.3
       graceful-fs: 4.2.10
       jest-diff: 28.1.3
@@ -28796,7 +28848,7 @@ packages:
     dependencies:
       '@jest/types': 28.1.3
       '@types/node': 18.11.11
-      chalk: 4.1.0
+      chalk: 4.1.2
       ci-info: 3.7.0
       graceful-fs: 4.2.10
       picomatch: 2.3.1
@@ -28808,7 +28860,7 @@ packages:
     dependencies:
       '@jest/types': 28.1.3
       '@types/node': 18.11.11
-      chalk: 4.1.0
+      chalk: 4.1.2
       ci-info: 3.7.0
       graceful-fs: 4.2.10
       picomatch: 2.3.1
@@ -28856,7 +28908,7 @@ packages:
     dependencies:
       '@jest/types': 28.1.3
       camelcase: 6.3.0
-      chalk: 4.1.0
+      chalk: 4.1.2
       jest-get-type: 28.0.2
       leven: 3.1.0
       pretty-format: 28.1.3
@@ -28912,7 +28964,7 @@ packages:
       '@jest/types': 28.1.3
       '@types/node': 18.11.11
       ansi-escapes: 4.3.2
-      chalk: 4.1.0
+      chalk: 4.1.2
       emittery: 0.10.2
       jest-util: 28.1.3
       string-length: 4.0.2

@@ -159,6 +159,7 @@
         await loadPerlinNoisePath(tsParticles);
         await loadSimplexNoisePath(tsParticles);
         await loadBubbleShape(tsParticles);
+        await loadCardsShape(tsParticles);
         await loadHeartShape(tsParticles);
         await loadMultilineTextShape(tsParticles);
         await loadRoundedRectShape(tsParticles);
