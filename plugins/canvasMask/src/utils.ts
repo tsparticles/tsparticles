@@ -8,6 +8,7 @@ import type {
 } from "tsparticles-engine";
 import type { ICanvasMaskOverride } from "./Options/Interfaces/ICanvasMaskOverride";
 import type { TextMask } from "./Options/Classes/TextMask";
+import { getRandom } from "tsparticles-engine";
 
 export type CanvasPixelData = {
     height: number;
@@ -24,7 +25,7 @@ type TextLineData = {
 
 export function shuffle<T>(array: T[]): T[] {
     for (let currentIndex = array.length - 1; currentIndex >= 0; currentIndex--) {
-        const randomIndex = Math.floor(Math.random() * currentIndex);
+        const randomIndex = Math.floor(getRandom() * currentIndex);
 
         [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
     }
