@@ -72,8 +72,8 @@
   },
   "main": "cjs/index.js",
   "module": "esm/index.js",
-  "jsdelivr": "tsparticles.min.js",
-  "unpkg": "tsparticles.min.js",
+  "jsdelivr": "tsparticles.bundle.min.js",
+  "unpkg": "tsparticles.bundle.min.js",
   "types": "types/index.d.ts",
   "dependencies": {
     "tsparticles-engine": "^2.6.0",

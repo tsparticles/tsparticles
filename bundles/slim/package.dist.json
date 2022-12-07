@@ -106,7 +106,7 @@
   },
   "main": "cjs/index.js",
   "module": "esm/index.js",
-  "jsdelivr": "tsparticles.slim.min.js",
-  "unpkg": "tsparticles.slim.min.js",
+  "jsdelivr": "tsparticles.slim.bundle.min.js",
+  "unpkg": "tsparticles.slim.bundle.min.js",
   "types": "types/index.d.ts"
 }
